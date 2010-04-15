@@ -5,6 +5,55 @@ The missing administration module for your Rails applications.
 == COMING SOON
 ...
 
+== Some Initial DSL Ideas
+
+To get the defeaults:
+
+  ActiveAdmin.register User
+
+Or to customize the UI:
+
+  ActiveAdmin.register User do
+    
+    require_permission :view_users
+    require_permission :manage_users, :except => [:index, :show]
+    
+    # Sets up a sidebar with these filters
+    # They just call named scopes on the backend
+    filter :all
+    filter :admins
+    filter :customers
+  
+    search :username, :first_name, :last_name, :email
+
+    # Customize what shows up on the index page
+    index do |display|
+      display.status_column :status
+      display.column("Name"){|user| link_to u.full_name, [:admin, user] }
+      display.column :email
+      display.default_actions :if => lambda { current_user.has_permission?(:manage_users)  }
+    end
+  
+    # Generates the form for User. Just uses Formtastic to display form
+    form do |f|
+      f.inputs "User Details" do
+        f.input :username
+        f.input :first_name
+        f.input :last_name
+        f.input :email
+      end
+      f.inputs "Password" do
+        f.input :password, :type => :password
+        f.input :password_confirmation, :type => :password
+      end
+      f.inputs "Admin Access" do
+        f.input :admin, :label => "Give user admin privileges"
+      end
+      f.buttons
+    end
+  
+  end
+
 == Contributors
 
 * Greg Bell       http://github.com/gregbell
