@@ -1,6 +1,15 @@
-= active_admin
+= Active Admin
 
-Description goes here.
+The missing administration module for your Rails applications.
+
+== COMING SOON
+...
+
+== Contributors
+
+Greg Bell       http://github.com/gregbell
+Philipe Creux   http://github.com/pcreux
+Sam Vincent     http://github.com/samvincent
 
 == Note on Patches/Pull Requests
  
@@ -14,4 +23,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2010 Greg Bell. See LICENSE for details.
+Copyright (c) 2010 Greg Bell, VersaPay Corporation. See LICENSE for details.
