@@ -7,9 +7,9 @@ The missing administration module for your Rails applications.
 
 == Contributors
 
-Greg Bell       http://github.com/gregbell
-Philipe Creux   http://github.com/pcreux
-Sam Vincent     http://github.com/samvincent
+* Greg Bell       http://github.com/gregbell
+* Philipe Creux   http://github.com/pcreux
+* Sam Vincent     http://github.com/samvincent
 
 == Note on Patches/Pull Requests
  
