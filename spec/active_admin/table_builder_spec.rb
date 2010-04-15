@@ -17,16 +17,16 @@ describe ActiveAdmin::TableBuilder do
   describe "when creating a simple column" do
     before(:each) do
       @builder = TableBuilder.new(@user) do |t|
-        t.column :username
+        t.column :first_name
       end
     end
     
     it "should set the column title" do
-      @builder.columns.first.title.should == 'Username'
+      @builder.columns.first.title.should == 'First Name'
     end
     
     it "should set the column data" do
-      @builder.columns.first.data.should == :username
+      @builder.columns.first.data.should == :first_name
     end
   end
   

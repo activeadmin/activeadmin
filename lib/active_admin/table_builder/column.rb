@@ -13,7 +13,7 @@ module ActiveAdmin
       private
       
       def pretty_title(raw)
-        raw.is_a?(Symbol) ? raw.to_s.gsub('_', ' ').capitalize : raw
+        raw.is_a?(Symbol) ? raw.to_s.split('_').collect{|s| s.capitalize }.join(' ') : raw
       end
       
     end
