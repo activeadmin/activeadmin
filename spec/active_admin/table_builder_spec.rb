@@ -30,6 +30,14 @@ describe ActiveAdmin::TableBuilder do
     end
   end
   
+  it "should generate multiple columns" do
+    builder = TableBuilder.new(@user) do |t|
+      t.column :username
+      t.column :last_name
+    end
+    builder.columns.size.should == 2
+  end
+  
   describe 'when creating a column with a title' do
     before(:each) do
       @builder = TableBuilder.new(@user) do |t|
