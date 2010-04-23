@@ -22,7 +22,7 @@ describe Admin::PostsController, :type => :controller do
       end
     end
     
-    describe "with symbol colum keys" do
+    describe "with symbol column keys" do
       before(:each) do
         Admin::PostsController.index do |i|
           i.column :title

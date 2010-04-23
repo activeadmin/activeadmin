@@ -9,6 +9,8 @@ module ActiveAdmin
     
     class_inheritable_accessor :index_config
     
+    helper ::ActiveAdmin::ViewHelpers
+    
     class << self
       def index(&block)
         self.index_config = TableBuilder.new(&block)

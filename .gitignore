@@ -21,3 +21,4 @@ pkg
 ## PROJECT::SPECIFIC
 
 spec/rails/**/log/*.log
+*.sqlite3-journal
