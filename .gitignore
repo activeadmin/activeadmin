@@ -19,3 +19,5 @@ rdoc
 pkg
 
 ## PROJECT::SPECIFIC
+
+# spec/rails/**/log/*.log

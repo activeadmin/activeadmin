@@ -47,7 +47,7 @@ describe Admin::PostsController, :type => :controller do
     describe "with block column keys" do
       before(:each) do
         Admin::PostsController.index do |i|
-          i.column('Great Titles'){|post| post.title }
+          i.column('Great Titles'){ link_to @post.title, [:admin, @post] }
         end
         Post.create(:title => "Hello World", :body => "Woot Woot")
         get :index
@@ -57,10 +57,13 @@ describe Admin::PostsController, :type => :controller do
         response.should have_tag("th", "Great Titles")
       end
       
+      it "should render the block in the view" do
+        response.should have_tag("a", "Hello World")
+      end
+      
       it "should show the column data" do
         response.should have_tag("td", "Hello World")
       end
-
     end    
     
   end
