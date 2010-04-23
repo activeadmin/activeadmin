@@ -3,10 +3,9 @@ module ActiveAdmin
     
     autoload :Column, 'active_admin/table_builder/column'
     
-    attr_reader :subject, :columns
+    attr_reader :columns
     
-    def initialize(subject)
-      @subject = subject
+    def initialize
       @columns = []
       yield self if block_given?
     end

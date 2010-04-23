@@ -3,20 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 include ActiveAdmin
 
 describe ActiveAdmin::TableBuilder do
-
-  before(:each) do
-    @user = mock('User')
-  end
-    
-  it "should require a subject" do
-    builder = TableBuilder.new(@user)
-    builder.subject.should == @user
-  end
-  
   
   describe "when creating a simple column" do
     before(:each) do
-      @builder = TableBuilder.new(@user) do |t|
+      @builder = TableBuilder.new do |t|
         t.column :first_name
       end
     end
@@ -31,7 +21,7 @@ describe ActiveAdmin::TableBuilder do
   end
   
   it "should generate multiple columns" do
-    builder = TableBuilder.new(@user) do |t|
+    builder = TableBuilder.new do |t|
       t.column :username
       t.column :last_name
     end
@@ -40,7 +30,7 @@ describe ActiveAdmin::TableBuilder do
   
   describe 'when creating a column with a title' do
     before(:each) do
-      @builder = TableBuilder.new(@user) do |t|
+      @builder = TableBuilder.new do |t|
         t.column 'My Great Username', :username
       end
     end
@@ -56,7 +46,7 @@ describe ActiveAdmin::TableBuilder do
   
   describe 'when creating a column with a title and a block as the data' do
     before(:each) do
-      @builder = TableBuilder.new(@user) do |t|
+      @builder = TableBuilder.new do |t|
         t.column('Username'){|u| u.username }
       end
     end
