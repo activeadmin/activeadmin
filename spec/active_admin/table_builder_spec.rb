@@ -47,7 +47,7 @@ describe ActiveAdmin::TableBuilder do
   describe 'when creating a column with a title and a block as the data' do
     before(:each) do
       @builder = TableBuilder.new do |t|
-        t.column('Username'){ "Some return value" }
+        t.column('Username'){ |u| u.username }
       end
     end
     
