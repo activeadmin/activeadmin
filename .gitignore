@@ -20,4 +20,4 @@ pkg
 
 ## PROJECT::SPECIFIC
 
-# spec/rails/**/log/*.log
+spec/rails/**/log/*.log
