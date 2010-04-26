@@ -1,6 +1,10 @@
 module ActiveAdmin
   module ViewHelpers
     
+    def render_index_from_config(index_config)
+      send index_config.display_method, index_config
+    end
+    
     def active_admin_table(table_config)
       table = "<table id=\"#{resource_class.name.underscore.pluralize}_index_table\" class=\"index_table\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">"
       
