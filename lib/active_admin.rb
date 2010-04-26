@@ -3,7 +3,7 @@ module ActiveAdmin
   autoload :TableBuilder, 'active_admin/table_builder'
   autoload :IndexBuilder,  'active_admin/index_builder'
   autoload :FormBuilder,  'active_admin/form_builder'
-	autoload :BaseController, 	'active_admin/base_controller'
+	autoload :AdminController, 	'active_admin/admin_controller'
 	autoload :ViewHelpers, 'active_admin/view_helpers'
   
 end

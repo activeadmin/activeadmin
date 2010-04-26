@@ -45,7 +45,7 @@ end
 module ActiveAdminIntegrationSpecHelper
 
   module ::Admin
-    class PostsController < ::ActiveAdmin::BaseController
+    class PostsController < ::ActiveAdmin::AdminController
     end
   end
 

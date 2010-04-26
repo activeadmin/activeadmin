@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 include ActiveAdmin
 
-describe ActiveAdmin::BaseController do
+describe ActiveAdmin::AdminController do
   
   include ActiveAdminIntegrationSpecHelper
   
