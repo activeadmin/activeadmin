@@ -4,7 +4,12 @@ include ActiveAdminIntegrationSpecHelper
 
 describe Admin::PostsController, :type => :controller do
 
-  integrate_views
+  if defined? ControllerExampleGroupBehaviour
+    # Rails 3 with Rspec 2
+    include ControllerExampleGroupBehaviour
+  else
+    integrate_views  
+  end
 
   before(:each) do
     Admin::PostsController.reset_index_config!

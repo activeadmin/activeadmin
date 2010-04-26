@@ -2,7 +2,7 @@ module ActiveAdmin
   module ViewHelpers
     
     def active_admin_table(table_config)
-      table = "<table id=\"#{resource_class.name.underscore.pluralize}_index_table\" class=\"index_table\">"
+      table = "<table id=\"#{resource_class.name.underscore.pluralize}_index_table\" class=\"index_table\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">"
       
       # Header
       table << "<tr>"
@@ -26,7 +26,11 @@ module ActiveAdmin
       end
       
       table << "</table>"
-      table
+      html_safe_or_string(table)
+    end
+    
+    def html_safe_or_string(string)
+      string.respond_to?(:html_safe) ? string.html_safe : string
     end
     
   end

@@ -13,9 +13,21 @@ Spec::Rake::SpecTask.new(:rcov) do |spec|
   spec.rcov = true
 end
 
-task :spec => :check_dependencies
-
 task :default => :spec
+
+namespace :spec do
+  
+  desc "Run specs for all versions of rails"
+  task :all do
+    puts "Runing for Rails 2.3.5"
+    out = `rake spec`
+    puts out
+    puts "Running for Rails 3"
+    out = `rake spec RAILS=3.0.0`
+    puts out
+  end
+  
+end
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
