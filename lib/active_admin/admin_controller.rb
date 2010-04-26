@@ -10,6 +10,8 @@ module ActiveAdmin
     class_inheritable_accessor :index_config
     
     helper ::ActiveAdmin::ViewHelpers
+
+    layout 'active_admin'
     
     class << self
       
