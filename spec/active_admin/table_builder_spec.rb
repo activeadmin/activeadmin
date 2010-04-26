@@ -4,6 +4,10 @@ include ActiveAdmin
 
 describe ActiveAdmin::TableBuilder do
   
+  it "should use the active_admin_table display method" do
+    TableBuilder.new.display_method.should == :active_admin_table
+  end
+  
   describe "when creating a simple column" do
     before(:each) do
       @builder = TableBuilder.new do |t|

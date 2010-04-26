@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class TableBuilder
+  class TableBuilder < IndexBuilder
     
     autoload :Column, 'active_admin/table_builder/column'
     
@@ -12,6 +12,10 @@ module ActiveAdmin
     
     def column(*args, &block)
       @columns << Column.new(*args, &block)
+    end
+    
+    def display_method
+      :active_admin_table
     end
         
   end
