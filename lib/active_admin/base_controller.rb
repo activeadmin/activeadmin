@@ -12,8 +12,11 @@ module ActiveAdmin
     helper ::ActiveAdmin::ViewHelpers
     
     class << self
-      def index(&block)
-        self.index_config = TableBuilder.new(&block)
+      
+      # Configure the index page for the resource
+      def index(options = {}, &block)
+        options[:as] ||= TableBuilder
+        self.index_config = options[:as].new(&block)
       end
 
       def index_config
