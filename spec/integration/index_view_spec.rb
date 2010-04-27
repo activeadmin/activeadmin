@@ -25,6 +25,18 @@ describe Admin::PostsController, :type => :controller do
         get :index
         response.should have_tag("th", "Title")
       end
+      it "should render a view link" do
+        get :index
+        response.should have_tag("a", "View")
+      end
+      it "should render an edit link" do
+        get :index
+        response.should have_tag("a", "Edit")
+      end
+      it "should render a delete link" do
+        get :index
+        response.should have_tag("a", "Delete")
+      end
     end
     
     describe "with symbol column keys" do

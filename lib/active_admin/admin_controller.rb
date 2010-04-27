@@ -34,6 +34,7 @@ module ActiveAdmin
           resource_class.content_columns.each do |column|
             display.column column.name.to_sym
           end
+          display.default_actions
         end
       end
     end
