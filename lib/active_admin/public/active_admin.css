@@ -1,0 +1,38 @@
+/*
+	Active Admin CSS
+*/
+
+/* -------------------------------------- General */
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	line-height: 140%;
+	font-size: 78%;
+}
+
+
+/* -------------------------------------- Tables */
+table tr th {
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+			color-stop(0, rgb(209,209,209)),
+	    color-stop(1, rgb(237,237,237))	);
+	background-image:-moz-linear-gradient(
+	    center bottom,
+	    rgb(209,209,209) 0%,
+	    rgb(237,237,237) 100%
+	);
+	margin: 0;
+	padding: 0;
+	color: #555;
+	text-shadow:1px 1px 1px #fefefe;
+	
+}
+table tr td, table tr th {
+	text-align: left;
+	padding: 4px 12px !important;
+	margin: 0;
+	padding: 0;
+	
+}
