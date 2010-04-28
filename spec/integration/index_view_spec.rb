@@ -21,20 +21,22 @@ describe Admin::PostsController, :type => :controller do
     end
     
     describe "with default table" do
-      it "should render a table with default headers" do
+      before(:each) do
         get :index
+      end
+      it "should render a header for the section" do
+        response.should have_tag("h2", "Posts")
+      end
+      it "should render a table with default headers" do
         response.should have_tag("th", "Title")
       end
       it "should render a view link" do
-        get :index
         response.should have_tag("a", "View")
       end
       it "should render an edit link" do
-        get :index
         response.should have_tag("a", "Edit")
       end
       it "should render a delete link" do
-        get :index
         response.should have_tag("a", "Delete")
       end
     end
