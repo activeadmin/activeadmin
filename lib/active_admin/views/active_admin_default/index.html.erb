@@ -3,3 +3,7 @@
 <%= render_partial_or_default 'table' %>
 
 <%= will_paginate collection %>
+
+<% content_for :sidebar do %>
+  <p><%= link_to "New #{resource_name}", new_resource_path %></p>
+<% end %>

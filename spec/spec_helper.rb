@@ -52,6 +52,6 @@ module ActiveAdminIntegrationSpecHelper
   def admin_post_path(*args); "/posts/1"; end
   def edit_admin_post_path(*args); "/posts/1/edit"; end
   def admin_posts_path; "/posts"; end
-  def amin_new_post_path; "/posts/new"; end
+  def new_admin_post_path(*args); "/posts/new"; end
  
 end

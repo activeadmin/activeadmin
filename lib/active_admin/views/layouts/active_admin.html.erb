@@ -12,7 +12,12 @@
     <h1 id="site_title">Active Admin</h1>
   </div>
   <div id="content">
-    <%= yield %>
+    <div id="main_content">
+      <%= yield %>
+    </div>
+    <div id="sidebar">
+      <%= yield :sidebar %>
+    </div>
   </div>
 </div>
 </body>
