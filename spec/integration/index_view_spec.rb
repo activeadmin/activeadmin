@@ -28,7 +28,7 @@ describe Admin::PostsController, :type => :controller do
         response.should have_tag("h2", "Posts")
       end
       it "should render a new link" do
-        response.should have_tag("a", "New Post", :attributes => {:href => "/posts/new"})
+        response.should have_tag("a", "New Post", :attributes => {:href => "/admin/posts/new"})
       end
       it "should render a table with default headers" do
         response.should have_tag("th", "Title")

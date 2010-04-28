@@ -43,15 +43,16 @@ end
 
 
 module ActiveAdminIntegrationSpecHelper
-
+  def self.included(klass)
+    ActionController::Routing::Routes.draw do |map|
+      map.namespace :admin do |admin|
+        admin.resources :posts
+      end
+    end
+  end
   module ::Admin
     class PostsController < ::ActiveAdmin::AdminController
     end
   end
 
-  def admin_post_path(*args); "/posts/1"; end
-  def edit_admin_post_path(*args); "/posts/1/edit"; end
-  def admin_posts_path; "/posts"; end
-  def new_admin_post_path(*args); "/posts/new"; end
- 
 end
