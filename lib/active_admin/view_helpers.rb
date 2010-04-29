@@ -36,6 +36,6 @@ module ActiveAdmin
     def html_safe_or_string(string)
       string.respond_to?(:html_safe) ? string.html_safe : string
     end
-    
+
   end
 end

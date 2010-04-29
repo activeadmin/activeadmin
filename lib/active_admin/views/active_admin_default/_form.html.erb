@@ -1,4 +1,3 @@
-<% semantic_form_for resource do |f| %>
-  <%= f.inputs %>
-  <%= f.buttons %>
+<% semantic_form_for resource, :url => resource.new_record? ? collection_path : resource_path(resource) do |f| %>
+  <%= render :inline => form_config.to_erb, :locals => { :f => f } %>
 <% end %>

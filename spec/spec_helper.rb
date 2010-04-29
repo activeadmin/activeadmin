@@ -4,7 +4,7 @@ require 'active_admin'
 
 require 'rubygems'
 
-TEST_RAILS_VERSION = ENV['RAILS'] || '3.0.0'
+TEST_RAILS_VERSION = ENV['RAILS'] || '2.3.5'
 
 RAILS_ENV = 'test'
 
