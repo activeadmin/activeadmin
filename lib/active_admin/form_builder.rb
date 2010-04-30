@@ -12,7 +12,7 @@ module ActiveAdmin
     end
     
     def method_missing(*args)
-      @buffer << OpenStruct.new(:name => args.shift, :args => args, :children => [])
+      @buffer << ::OpenStruct.new(:name => args.shift, :args => args, :children => [])
       if block_given?
         with_new_buffer(@buffer.last.children) do
           yield self
