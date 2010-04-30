@@ -63,5 +63,13 @@ describe ActiveAdmin::TableBuilder do
       @builder.columns.first.data.should be_a(Proc)
     end
   end
+
+  it "should generate many columns" do
+    builder = TableBuilder.new do |t|
+      t.columns :first, :second, :third
+    end
+    builder.columns.size.should == 3
+    builder.columns.first.data.should == :first
+  end
     
 end

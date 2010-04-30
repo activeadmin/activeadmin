@@ -13,6 +13,23 @@ module ActiveAdmin
     def column(*args, &block)
       @columns << Column.new(*args, &block)
     end
+
+    # This method allows you to add many columns at
+    # once or returns the list of all columns.
+    # 
+    # TableBuilder.new do |t|
+    #   t.columns :first, :second, :third
+    # end
+    # 
+    # OR
+    #
+    # builder.columns #=> [:first, :second, :third]
+    def columns(first_column = nil, *more)
+      return @columns unless first_column 
+      [first_column, more].flatten.each do |c|
+        column(c)
+      end
+    end
     
     def display_method
       :active_admin_table
