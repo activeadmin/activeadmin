@@ -7,10 +7,36 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 	line-height: 140%;
 	font-size: 78%;
+  background: #F4F4EE;
+}
+#content {
+  margin: 0 30px;
+  color: #fff;
+}
+#main_content {
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  background: #fff;
+  color: #333;
+  padding: 20px;
+  -moz-box-shadow: 0px 1px 10px #ddd;
+  -webkit-box-shadow: 0px 1px 10px #ddd;
+  box-shadow: 0px 1px 10px #ddd;
+}
+#title_bar {
+  position: relative;
+}
+#action_items {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
 }
 
-
 /* -------------------------------------- Tables */
+table {
+  width: 100%
+}
 table tr th {
 	background-image: -webkit-gradient(
 	    linear,
@@ -36,3 +62,50 @@ table tr td, table tr th {
 	padding: 0;
 	
 }
+
+h2 {
+  font-size: 2em;
+  color: #666;
+}
+
+/* -------------------------------------- Links */
+a { color: #27637D; }
+a:link, a:visited { }
+a:hover {}
+
+/* -------------------------------------- Buttons */
+.button, .button:visited {
+	background: #222 url(/images/alert-overlay.png) repeat-x; 
+	display: inline-block; 
+	padding: 5px 10px 4px; 
+	color: #fff; 
+	text-decoration: none;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+}
+ 
+.button:hover							{ background-color: #111; color: #fff; }
+.button:active							{ top: 1px; }
+.small.button, .small.button:visited 			{ font-size: 11px; padding: ; }
+.button, .button:visited,
+.medium.button, .medium.button:visited 		{ font-size: 13px; font-weight: bold; line-height: 1; text-shadow: 0 -1px 1px rgba(0,0,0,0.25); }
+.large.button, .large.button:visited 			{ font-size: 14px; padding: 8px 14px 9px; }
+
+.green.button, .green.button:visited		{ background-color: #91bd09; }
+.green.button:hover						{ background-color: #749a02; }
+.blue.button, .blue.button:visited		{ background-color: #2daebf; }
+.blue.button:hover							{ background-color: #007d9a; }
+.red.button, .red.button:visited			{ background-color: #e33100; }
+.red.button:hover							{ background-color: #872300; }
+.magenta.button, .magenta.button:visited		{ background-color: #a9014b; }
+.magenta.button:hover							{ background-color: #630030; }
+.orange.button, .orange.button:visited		{ background-color: #ff5c00; }
+.orange.button:hover							{ background-color: #d45500; }
+.yellow.button, .yellow.button:visited		{ background-color: #ffb515; }
+.yellow.button:hover							{ background-color: #fc9200; }

@@ -1,9 +1,11 @@
-<h2><%= resources_name %></h2>
+<% title(resources_name) %>
 
 <%= render_partial_or_default 'table' %>
 
 <%= will_paginate collection %>
 
-<% content_for :sidebar do %>
-  <p><%= link_to "New #{resource_name}", new_resource_path %></p>
+<% content_for :title_bar do %>
+  <div id="action_items">
+    <%= link_to "New #{resource_name}", new_resource_path, :class => "button small " %>
+  </div>
 <% end %>

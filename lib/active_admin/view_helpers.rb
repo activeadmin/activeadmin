@@ -37,5 +37,9 @@ module ActiveAdmin
       string.respond_to?(:html_safe) ? string.html_safe : string
     end
 
+    def title(_title)
+      @page_title = _title 
+    end
+
   end
 end

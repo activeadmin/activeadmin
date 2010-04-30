@@ -2,9 +2,10 @@
 <html>
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  
+ 
+  <title><%= [@page_title, "Site Title"].join(" | ") %></title>
+
   <%= stylesheet_link_tag 'active_admin' %>
-  
 </head>
 <body>
 <div id="wrapper">
@@ -12,6 +13,10 @@
     <h1 id="site_title">Active Admin</h1>
   </div>
   <div id="content">
+    <div id="title_bar">
+      <h2 id="page_title"><%= @page_title %></h2>
+      <%= yield :title_bar %>
+    </div>
     <div id="main_content">
       <%= yield %>
     </div>
