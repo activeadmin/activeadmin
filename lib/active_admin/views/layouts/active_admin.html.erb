@@ -19,11 +19,11 @@
     </div>
     <div id="main_content">
       <%= yield %>
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div>
     </div>
-    <div id="sidebar">
-      <%= yield :sidebar %>
-    </div>
-  </div>
+ </div>
 </div>
 </body>
 </html>
