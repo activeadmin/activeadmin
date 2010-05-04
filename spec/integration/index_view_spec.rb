@@ -19,6 +19,13 @@ describe Admin::PostsController, :type => :controller do
     before(:each) do
       @post = Post.create(:title => "Hello World")
     end
+
+    describe "in general" do
+      it "should have a breadcrumb" do
+        get :index
+        response.should have_tag("a", "Dashboard")
+      end
+    end
     
     describe "with default table" do
       before(:each) do

@@ -13,6 +13,14 @@ module ActiveAdmin
     
     class_inheritable_accessor :index_config
     class_inheritable_accessor :form_config
+    
+    include ::ActiveAdmin::Breadcrumbs
+
+    add_breadcrumb "Dashboard", "/admin"
+    before_filter :add_section_breadcrumb
+    def add_section_breadcrumb
+      add_breadcrumb resources_name, collection_path 
+    end
 
     class << self
      

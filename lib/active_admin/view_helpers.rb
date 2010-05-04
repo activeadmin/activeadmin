@@ -4,6 +4,10 @@ module ActiveAdmin
     def render_index_from_config(index_config)
       send index_config.display_method, index_config
     end
+
+    def breadcrumb(separator = "&rsaquo;")
+      html_safe_or_string @breadcrumbs.map { |txt, path| link_to_unless((path.blank? || current_page?(path)), h(txt), path) }.join(" #{separator} ")
+    end
     
     def active_admin_table(table_config)
       table = "<table id=\"#{resource_class.name.underscore.pluralize}_index_table\" class=\"index_table\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">"
