@@ -14,6 +14,10 @@ module ActiveAdmin
     class_inheritable_accessor :index_config
     class_inheritable_accessor :form_config
     
+    class_inheritable_accessor :active_admin_config
+    self.active_admin_config = {}
+
+    
     include ::ActiveAdmin::Breadcrumbs
 
     add_breadcrumb "Dashboard", "/admin"
@@ -74,7 +78,28 @@ module ActiveAdmin
           f.buttons
         end
       end
- 
+
+
+      #
+      # Naming
+      #
+
+      def resource_name(name)
+        if name.nil?
+          get_resource_name
+        else
+          set_resource_name(name)
+        end
+      end
+      
+      def set_resource_name(name)
+        self.active_admin_config[:resource_name] = name
+      end
+      
+      def get_resource_name
+        self.active_admin_config[:resource_name] ||= resource_class.human_name.titleize
+      end
+      
     end
     
         
@@ -89,6 +114,11 @@ module ActiveAdmin
       @form_config ||= self.class.form_config
     end
     helper_method :form_config
+    
+    def resource_name
+      self.class.get_resource_name
+    end
+    helper_method :resource_name
 
 	end
 end
