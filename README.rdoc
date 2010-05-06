@@ -13,7 +13,7 @@ To get the defeaults:
 
 Or to customize the UI:
 
-  ActiveAdmin.register User do
+  ActiveAdmin.register User, :as => "Admin Users" do
     
     require_permission :view_users
     require_permission :manage_users, :except => [:index, :show]
@@ -29,7 +29,7 @@ Or to customize the UI:
     # Customize what shows up on the index page
     index do |display|
       display.status_column :status
-      display.column("Name"){|user| link_to u.full_name, [:admin, user] }
+      display.column("Name"){ link_to u.full_name, [:admin, @user] }
       display.column :email
       display.default_actions :if => lambda { current_user.has_permission?(:manage_users)  }
     end
