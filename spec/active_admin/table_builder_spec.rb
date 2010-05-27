@@ -64,6 +64,49 @@ describe ActiveAdmin::TableBuilder do
     end
   end
 
+  describe "column sorting" do
+    before(:each) do
+      @builder = TableBuilder.new
+    end
+
+    it "should default to true" do
+      @builder.column :username
+      @builder.columns.first.should be_sortable
+    end
+
+    it "should be set with a symbol" do
+      @builder.column :username, :sortable => false
+      @builder.columns.first.should_not be_sortable
+    end
+
+    it "should be set with a string and a symbol" do
+      @builder.column "Username", :username, :sortable => false
+      @builder.columns.first.should_not be_sortable
+    end
+
+    it "should set the default sort key to the column symbol data" do
+      @builder.column :username
+      @builder.columns.first.sort_key.should == "username"
+    end
+
+    it "should not be sortable if a block given and no sort key" do
+      @builder.column('Username'){ @user.username }
+      @builder.columns.first.should_not be_sortable
+    end
+
+    it "should be sortable if a block given and a string to sortable" do
+      @builder.column('Username', :sortable => 'username'){ @user.pretty_username }
+      @builder.columns.first.should be_sortable
+      @builder.columns.first.sort_key.should == 'username'
+    end
+    
+    it "should be sortable if a block given and a symbol to sortable" do
+      @builder.column('Username', :sortable => :username){ @user.pretty_username }
+      @builder.columns.first.should be_sortable
+      @builder.columns.first.sort_key.should == 'username'
+    end
+  end
+
   it "should generate many columns" do
     builder = TableBuilder.new do |t|
       t.columns :first, :second, :third
