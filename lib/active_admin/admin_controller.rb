@@ -144,5 +144,5 @@ module ActiveAdmin
     end
     helper_method :resource_name
 
-	end
+  end
 end
