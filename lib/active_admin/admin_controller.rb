@@ -1,7 +1,7 @@
 require 'inherited_views'
 
 module ActiveAdmin
-	class AdminController < InheritedViews::Base
+  class AdminController < InheritedViews::Base
   
     # Add our views to the view path
     ActionController::Base.append_view_path File.expand_path('../views', __FILE__)
