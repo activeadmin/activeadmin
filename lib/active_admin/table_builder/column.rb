@@ -44,6 +44,10 @@ module ActiveAdmin
           @options[:sortable].to_s
         end
       end
+
+      def conditional_block
+        @options[:if]
+      end
       
       private
       
@@ -53,7 +57,8 @@ module ActiveAdmin
 
       def default_options
         {
-          :sortable => true
+          :sortable => true,
+          :if => lambda{ true }
         }
       end
       

@@ -107,6 +107,21 @@ describe ActiveAdmin::TableBuilder do
     end
   end
 
+  describe "column conditionals" do
+    before(:each) do
+      @builder = TableBuilder.new
+    end
+    it "should default to true" do
+      @builder.column :username
+      @builder.columns.first.conditional_block.call.should be_true
+    end
+    it "should accept a lamdba" do
+      @builder.column :username, :if => lambda{ false }
+      @builder.columns.first.conditional_block.call.should be_false
+    end
+  end
+
+
   it "should generate many columns" do
     builder = TableBuilder.new do |t|
       t.columns :first, :second, :third
