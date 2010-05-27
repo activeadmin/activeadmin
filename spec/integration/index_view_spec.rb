@@ -96,6 +96,18 @@ describe Admin::PostsController, :type => :controller do
       end
     end    
     
+    describe "hiding columns" do
+      before(:each) do
+        Admin::PostsController.index do |i|
+          i.column :title, :if => lambda{ false }
+          i.column :body
+        end
+        get :index
+      end
+      it "should not show columns which conditionals eval to false" do
+        response.should_not have_tag("th", "Title")
+      end
+    end
   end
 
   describe "ordering get #index" do
