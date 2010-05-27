@@ -104,11 +104,11 @@ describe Admin::PostsController, :type => :controller do
       @today = Post.create :title => "Today"
     end
     it "should sort ascending" do
-      get :index, 'sort' => 'created_at_asc'
+      get :index, 'order' => 'created_at_asc'
       response.body.scan(/Yesterday|Today/).should == ["Yesterday", "Today"] 
     end
     it "should sort descending" do
-      get :index, 'sort' => 'created_at_desc'
+      get :index, 'order' => 'created_at_desc'
       response.body.scan(/Yesterday|Today/).should == ["Today", "Yesterday"] 
     end
   end
