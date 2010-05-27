@@ -97,4 +97,19 @@ describe Admin::PostsController, :type => :controller do
     end    
     
   end
+
+  describe "ordering get #index" do
+    before(:each) do
+      @yesterday = Post.create :title => "Yesterday", :created_at => Time.now - 1.day
+      @today = Post.create :title => "Today"
+    end
+    it "should sort ascending" do
+      get :index, 'sort' => 'created_at_asc'
+      response.body.scan(/Yesterday|Today/).should == ["Yesterday", "Today"] 
+    end
+    it "should sort descending" do
+      get :index, 'sort' => 'created_at_desc'
+      response.body.scan(/Yesterday|Today/).should == ["Today", "Yesterday"] 
+    end
+  end
 end

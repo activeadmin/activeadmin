@@ -104,6 +104,30 @@ module ActiveAdmin
     
         
     private
+
+    # Overriding so that we have pagination by default
+    def collection
+      get_collection_ivar || set_collection_ivar(active_admin_collection)
+    end
+
+    def active_admin_collection
+      chain = end_of_association_chain
+      chain = sort_order(chain)
+      chain = paginate(chain)
+      chain
+    end
+
+    def paginate(chain)
+      chain.paginate(:page => params[:page])
+    end
+
+    def sort_order(chain)
+      if params[:sort] && params[:sort] =~ /^([\w\_]+)_(desc|asc)$/
+        chain.order("#{$1} #{$2}")
+      else
+        chain # just return the chain
+      end
+    end
     
     def index_config
       @index_config ||= self.class.index_config
