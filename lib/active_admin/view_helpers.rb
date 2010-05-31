@@ -50,6 +50,7 @@ module ActiveAdmin
       end
 
       # Header
+      table << "<thead>"
       table << "<tr>"
       columns.each do |column|
         if column.sortable?
@@ -59,8 +60,10 @@ module ActiveAdmin
         end
       end
       table << "</tr>"
+      table << "</thead>"
       
       # Body
+      table << "<tbody>"
       collection.each do |row_object|
         table << "<tr class=\"#{cycle 'odd', 'even'}\">"
         
@@ -73,6 +76,7 @@ module ActiveAdmin
         end
         table << "</tr>"
       end
+      table << "</tbody>"
       
       table << "</table>"
       html_safe_or_string(table)
