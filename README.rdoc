@@ -59,13 +59,16 @@ Or you can pass them in individually:
   class Admin::PostsController < ActiveAdmin::AdminController
     
     index do |display|
+
       # This will title the column 'Title' and call the #title method on each object
       display.column :title
+
       # This will title the column 'How many comments?' and call the #comments_count method on each object
       display.column 'How many comments?', :comments_count
-      display.column :created_at
+
       # You can add methods to the table builder which builds common things (ie: selectable checkboxes)
       display.default_actions
+
     end
 
   end
@@ -98,7 +101,8 @@ The index views in Active Admin include sorting by default.
   class Admin::PostsController < ActiveAdmin::AdminController
     
     index do |display|
-      # A column created by a method call assumes its sortabled
+
+      # A column created by a method call assumes its sortable
       display.column :id
 
       # If a column is defined using a block, you must pass the key to turn on sorting. The key
@@ -107,6 +111,7 @@ The index views in Active Admin include sorting by default.
 
       # Turn off sorting by passing false
       display.column :do_not_sort_me, :sortable => false
+
     end
 
   end
@@ -119,15 +124,15 @@ The index views in Active Admin include sorting by default.
 We believe strongly in not writing code unless we have to, so Active Admin is built using many 
 other open source projects:
 
-  InheritedResources::
-    Inherited Resources speeds up development by making your controllers inherit all restful 
-    actions so you just have to focus on what is important.
-  InheritedViews::
-    Inherited Views is a thin addition to Inherited Resources which adds in html views to the mix
-  Formtastic::
-    A DSL for semantically building amazing forms.
-  WillPaginate::
-    Pagination for rails apps
+InheritedResources::
+  Inherited Resources speeds up development by making your controllers inherit all restful 
+  actions so you just have to focus on what is important.
+InheritedViews::
+  Inherited Views is a thin addition to Inherited Resources which adds in html views to the mix
+Formtastic::
+  A DSL for semantically building amazing forms.
+WillPaginate::
+  Pagination for rails apps
 
 
 == Contributors
