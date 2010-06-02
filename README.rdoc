@@ -15,6 +15,13 @@ Although Active Admin is very young in its development cycle, here are its curre
    community (ie: devise admin)
 
 
+== Status
+
+Active Admin is very young. Although the code is well tested and is being used in production,
+the project is under heavy development. Once we get it to a point that has a relatively stable api,
+we will begin numbered releases starting with a 0.1 release.
+
+
 == Installation (Rails 3)
 
 Add the following to your Gemfile:
