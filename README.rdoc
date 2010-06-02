@@ -119,6 +119,29 @@ The index views in Active Admin include sorting by default.
 
 === Customize the Form
 
+Active Admin gives complete control over the output of the form by creating a thin DSL on top of
+the fabulous DSL created by Formtastic (http://github.com/justinfrench/formtastic).
+  
+  class Admin::PostsController < ActiveAdmin::AdminController
+    
+    form do |f|
+      f.inputs "Details" do
+        f.input :title
+        f.input :published_at, :label => "Publish Post At"
+        f.input :category
+      end
+      f.inputs "Content" do
+        f.input :body
+      end
+      f.buttons
+    end
+
+  end
+
+Please view the documentation for Formtastic to see all the wonderful things you can do:
+http://github.com/justinfrench/formtastic
+
+
 == Tools Being Used
 
 We believe strongly in not writing code unless we have to, so Active Admin is built using many 
