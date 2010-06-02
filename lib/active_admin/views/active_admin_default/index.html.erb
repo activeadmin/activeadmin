@@ -9,3 +9,7 @@
     <%= link_to "New #{resource_name}", new_resource_path, :class => "button small" %>
   </div>
 <% end %>
+
+<% content_for :sidebar do %>
+  <%= render_partial_or_default "sidebar" %>
+<% end %>
