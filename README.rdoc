@@ -94,7 +94,7 @@ The block has access to an instance variable named after the model which holds t
 object while iterating over the collection. You can also access the current object using the
 #resource method and the @resource instance variable
 
-===== Sorting
+==== Sorting
 
 The index views in Active Admin include sorting by default. 
   
