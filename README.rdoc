@@ -1,64 +1,141 @@
 = Active Admin
 
-The missing administration module for your Rails applications.
+Active Admin is a tool to facilitate the generation of administration style interfaces.
 
-== COMING SOON
-...
 
-== Some Initial DSL Ideas
+== Goals
 
-To get the defeaults:
+Although Active Admin is very young in its development cycle, here are its current goals:
 
-  ActiveAdmin.register User
+1. Build a toolset to quickly create template-able administration interfaces
+2. Allow the toolset to be entirely customizable (ie: we use standard rails coding practices
+   which can be overridden at any point)
+3. Design an interface which looks great!
+4. Build administration interfaces for common rails plugins as gems and share with the 
+   community (ie: devise admin)
 
-Or to customize the UI:
 
-  ActiveAdmin.register User, :as => "Admin Users" do
-    
-    require_permission :view_users
-    require_permission :manage_users, :except => [:index, :show]
-    
-    # Sets up a sidebar with these filters
-    # They just call named scopes on the backend
-    filter :all
-    filter :admins
-    filter :customers
-  
-    search :username, :first_name, :last_name, :email
+== Installation (Rails 3)
 
-    # Customize what shows up on the index page
-    index do |display|
-      display.status_column :status
-      display.column("Name"){ link_to u.full_name, [:admin, @user] }
-      display.column :email
-      display.default_actions :if => lambda { current_user.has_permission?(:manage_users)  }
-    end
-  
-    # Generates the form for User. Just uses Formtastic to display form
-    form do |f|
-      f.inputs "User Details" do
-        f.input :username
-        f.input :first_name
-        f.input :last_name
-        f.input :email
-      end
-      f.inputs "Password" do
-        f.input :password, :type => :password
-        f.input :password_confirmation, :type => :password
-      end
-      f.inputs "Admin Access" do
-        f.input :admin, :label => "Give user admin privileges"
-      end
-      f.buttons
-    end
-  
+Add the following to your Gemfile:
+
+  gem 'formtastic',     :git => "git://github.com/justinfrench/formtastic.git", :branch => 'rails3'
+  gem 'will_paginate',  :git => "git://github.com/mislav/will_paginate.git", :branch => 'rails3'
+  gem 'active_admin',   :git => "git://github.com/gregbell/active_admin.git"
+
+
+== Usage
+
+Currently, to use the features of Active Admin, create a controller for which you would like
+administer a model and subclass the ActiveAdmin::AdminController. Let's build up an example
+using a Post model.
+
+  # /app/controllers/admin/posts_controller.rb
+  class Admin::PostsController < ActiveAdmin::AdminController
   end
+  
+That's all you need to get a full CRUD, beautiful administration interfaces.
+
+=== Customize the Index Page
+
+By default, the index page is a table with each of the models content columns and links to
+show, edit and delete the object. There are many ways to customize what gets displayed:
+
+==== Simple Columns
+
+If all you need to do is change the columns which get displayed, you can do so by passing
+them to the columns method:
+
+  class Admin::PostsController < ActiveAdmin::AdminController
+    
+    index do |display|
+      display.columns :title, :comments_count, :created_at
+    end
+
+  end
+
+Or you can pass them in individually:
+
+  class Admin::PostsController < ActiveAdmin::AdminController
+    
+    index do |display|
+      # This will title the column 'Title' and call the #title method on each object
+      display.column :title
+      # This will title the column 'How many comments?' and call the #comments_count method on each object
+      display.column 'How many comments?', :comments_count
+      display.column :created_at
+      # You can add methods to the table builder which builds common things (ie: selectable checkboxes)
+      display.default_actions
+    end
+
+  end
+  
+==== Advanced Columns
+
+Sometimes calling methods just isn't enough and you need to write some view specific code. For
+example, say we wanted a colum called Title which holds a link to the posts admin screen.
+
+You can pass a block to a column which will then be rendered within the context of the view
+for each of the objects in the collection.
+
+  
+  class Admin::PostsController < ActiveAdmin::AdminController
+    
+    index do |display|
+      display.column("Title"){ link_to @post.title, admin_post_path(@post) }
+    end
+
+  end
+
+The block has access to an instance variable named after the model which holds the current
+object while iterating over the collection. You can also access the current object using the
+#resource method and the @resource instance variable
+
+===== Sorting
+
+The index views in Active Admin include sorting by default. 
+  
+  class Admin::PostsController < ActiveAdmin::AdminController
+    
+    index do |display|
+      # A column created by a method call assumes its sortabled
+      display.column :id
+
+      # If a column is defined using a block, you must pass the key to turn on sorting. The key
+      # is the attribute which gets used to sort objects using Active Record.
+      display.column("Title", :sortable => :title){ link_to @post.title, admin_post_path(@post) }
+
+      # Turn off sorting by passing false
+      display.column :do_not_sort_me, :sortable => false
+    end
+
+  end
+
+
+=== Customize the Form
+
+== Tools Being Used
+
+We believe strongly in not writing code unless we have to, so Active Admin is built using many 
+other open source projects:
+
+  InheritedResources::
+    Inherited Resources speeds up development by making your controllers inherit all restful 
+    actions so you just have to focus on what is important.
+  InheritedViews::
+    Inherited Views is a thin addition to Inherited Resources which adds in html views to the mix
+  Formtastic::
+    A DSL for semantically building amazing forms.
+  WillPaginate::
+    Pagination for rails apps
+
 
 == Contributors
 
 * Greg Bell       http://github.com/gregbell
 * Philipe Creux   http://github.com/pcreux
 * Sam Vincent     http://github.com/samvincent
+* Matt Vague      http://github.com/mattvague
 
 == Note on Patches/Pull Requests
  
