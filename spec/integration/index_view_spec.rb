@@ -43,12 +43,10 @@ describe Admin::PostsController, :type => :controller do
         # I should be able to match against the url attribute, but it doesn't want to work
                                       # :attributes => { 'href' => "/admin/posts?order=title_desc"})
         # So instead, we'll check that it exists
-        puts response.body
         response.body.should match(/\"\/admin\/posts\?order\=title_desc\"/)
       end
       it "should render the sortable header for ascending if we are currently sorted descending" do
         get :index, 'order' => 'title_desc'
-        puts response.body
         response.body.should match(/\"\/admin\/posts\?order\=title_asc\"/)
       end
       it "should render a view link" do

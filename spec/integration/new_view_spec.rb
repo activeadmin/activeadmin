@@ -20,7 +20,7 @@ describe Admin::PostsController, :type => :controller do
     it "should generate a default form with no config" do
       get :new
       response.should have_tag("input", :attributes => {
-        :type => "text", 
+        :type => "text",
         :name => "post[title]"
       })
       response.should have_tag("textarea", :attributes => {
@@ -48,7 +48,8 @@ describe Admin::PostsController, :type => :controller do
         response.should have_tag("legend", "Your Post") 
       end
       it "should create a title field inside the fieldset" do
-        response.should have_tag("fieldset input[type=text][name='post[title]']")
+        response.should have_tag("input", :attributes => { :type => "text", :name => 'post[title]' },
+                                          :ancestor => { :tag => "fieldset" })
       end
     end
   end

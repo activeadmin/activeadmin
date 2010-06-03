@@ -20,7 +20,7 @@ if TEST_RAILS_VERSION == '3.0.0'
   Rspec::Matchers.define :have_tag do |*args|
     match_unless_raises Test::Unit::AssertionFailedError do |response|
       tag = args.shift
-      content = args.shift
+      content = args.first.is_a?(Hash) ? nil : args.shift
       
       options = {
         :tag => tag
