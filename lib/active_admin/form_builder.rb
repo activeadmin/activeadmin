@@ -3,11 +3,12 @@ require 'ostruct'
 module ActiveAdmin
   class FormBuilder
     
-    attr_reader :calls
+    attr_reader :calls, :block
     
     def initialize(&block)
       @calls = []
       @buffer = @calls
+      @block = block
       block.call(self)
     end
     

@@ -1,3 +1,2 @@
-<% semantic_form_for resource, :url => resource.new_record? ? collection_path : resource_path(resource) do |f| %>
-  <%= render :inline => form_config.to_erb, :locals => { :f => f } %>
-<% end %>
+<%= semantic_form_for resource, :builder => ActiveAdmin::FormViewBuilder, 
+  :url => resource.new_record? ? collection_path : resource_path(resource), &form_config.block %>

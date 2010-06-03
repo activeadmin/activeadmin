@@ -86,5 +86,9 @@ module ActiveAdmin
       @page_title = _title 
     end
 
+
+    def active_admin_form_for(*args, &block)
+    end
+
   end
 end
