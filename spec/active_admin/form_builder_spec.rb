@@ -1,53 +1,79 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-include ActiveAdmin
+include ActiveAdminIntegrationSpecHelper
 
 describe ActiveAdmin::FormBuilder do
-  
-  before(:each) do
-    @form = FormBuilder.new do |f|
-      f.inputs "User Details" do
-        f.input :username
-        f.input :first_name
-        f.input :last_name
+
+  include ControllerExampleGroupBehaviour
+  before do
+    @controller = Admin::PostsController.new
+  end
+
+  def build_form(&block)
+    Admin::PostsController.form(&block)
+    get :new
+  end
+
+  context "in general" do
+    before do
+      build_form do |f|
+        f.inputs do
+          f.input :title
+          f.input :body
+        end
+        f.buttons do
+          f.commit_button "Submit Me"
+          f.commit_button "Another Button"
+        end
       end
-      f.inputs "Password" do
-        f.input :password
-        f.input :password_confirmation
-      end
-      f.inputs "Account Info", :for => :account do |account_form|
-        account_form.input :subdomain
-      end
-      f.buttons
+    end
+    it "should generate a text input" do
+      response.should have_tag("input", :attributes => { :type => "text",
+                                                     :name => "post[title]" })
+    end
+    it "should generate a textarea" do
+      response.should have_tag("textarea", :attributes => { :name => "post[body]" })
+    end
+    it "should generate buttons" do
+      response.should have_tag("input", :attributes => {  :type => "submit",
+                                                          :value => "Submit Me" })
+      response.should have_tag("input", :attributes => {  :type => "submit",
+                                                          :value => "Another Button" })
     end
   end
 
-  it "should track level method calls" do
-    @form.calls.size.should == 4
+  context "without passing a block to inputs" do
+    before do
+      build_form do |f|
+        f.inputs :title, :body
+      end
+    end
+    it "should have a title input" do
+      response.should have_tag("input", :attributes => { :type => "text",
+                                                          :name => "post[title]" })
+    end
+    it "should have a body textarea" do
+      response.should have_tag("textarea", :attributes => { :name => "post[body]" })
+    end
   end
-  
-  it "should store the arguments" do
-    @form.calls.first.args.should == ["User Details"]
+
+  context "with fields for" do
+    before do
+      build_form do |f|
+        f.inputs do
+          f.input :title
+          f.input :body
+        end
+        f.instance_eval do
+          @object.author = User.new
+        end
+        f.semantic_fields_for :author do |author|
+          author.inputs :first_name, :last_name
+        end
+      end
+    end
+    it "should generate a nested text input once" do
+      response.body.scan("post_author_attributes_first_name_input").size.should == 1
+    end
   end
-  
-  it "should store the method calls in the inputs block" do
-    user_details = @form.calls.first
-    user_details.children.size.should == 3
-  end
-  
-  it "should store the method name of children methods" do
-    user_details = @form.calls.first
-    user_details.children.first.name.should == :input
-  end
-  
-  it "should store the arguments of the children methods" do
-    user_details = @form.calls.first
-    user_details.children.first.args.should == [:username]
-  end
-  
-  it "should store method calls to blocks which accept a parameter" do
-    account_info = @form.calls[2]
-    account_info.children.first.name.should == :input
-  end
-  
 end

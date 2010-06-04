@@ -61,7 +61,7 @@ module ActiveAdmin
       #
 
       def form(options = {}, &block)
-        self.form_config = FormBuilder.new(&block)
+        self.form_config = block
       end
 
       def form_config

@@ -1,2 +1,2 @@
-<%= semantic_form_for resource, :builder => ActiveAdmin::FormViewBuilder, 
-  :url => resource.new_record? ? collection_path : resource_path(resource), &form_config.block %>
+<%= semantic_form_for resource, :builder => ActiveAdmin::FormBuilder, 
+  :url => resource.new_record? ? collection_path : resource_path(resource), &form_config %>

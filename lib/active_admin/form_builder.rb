@@ -1,59 +1,47 @@
 require 'ostruct'
 
 module ActiveAdmin
-  class FormBuilder
+  class FormBuilder < ::Formtastic::SemanticFormBuilder
     
-    attr_reader :calls, :block
-    
-    def initialize(&block)
-      @calls = []
-      @buffer = @calls
-      @block = block
-      block.call(self)
+    def initialize(*args)
+      super(*args)
+      @form_buffers = [""]
     end
-    
-    def method_missing(*args)
-      @buffer << ::OpenStruct.new(:name => args.shift, :args => args, :children => [])
-      if block_given?
-        with_new_buffer(@buffer.last.children) do
-          yield self
-        end
+
+    # Sets up buffering for this form which allows
+    # the entire form to be built in a block outside
+    # of the context of the view. Ie: you don't need
+    # to use erb tags.
+    def self.buffer_output_for(*method_names)
+      method_names.each do |method_name|
+        module_eval <<-EOF
+          def #{method_name}(*args)
+            content = block_given? ? with_new_form_buffer { super } : super
+            @form_buffers.last << content
+          end
+        EOF
       end
     end
-    
-    def to_erb
-      @indent = 0
-      @erb = ""
-      @calling_on = 'f'
-      @calls.each do |c|
-        method_to_erb(c)
-      end
-      @erb
+
+    buffer_output_for   :inputs,
+                        :input,
+                        :buttons,
+                        :commit_button
+
+    def semantic_fields_for(record_or_name_or_array, *args, &block)
+      opts = args.extract_options!
+      opts[:builder] ||= ::ActiveAdmin::FormBuilder
+      args.push(opts)
+      @form_buffers.last << super
     end
-    
-    def method_to_erb(c)
-      has_block = c.children.any?
-      options = c.args.last.is_a?(Hash) ? c.args.last : {}
-      @erb << "#{@indent.times.collect{' '}}<%#{'=' unless has_block} #{@calling_on}.#{c.name} #{c.args.collect{|a| a.inspect}.join(', ')} #{"do" if has_block} #{"|" + options[:for].to_s + "_form|" if options[:for]} %>\n"
-      if has_block
-        old_calling_on = @calling_on
-        @calling_on = "#{options[:for].to_s}_form" if options[:for]
-        @indent += 2
-        c.children.each{|child| method_to_erb(child)}
-        @indent -= 2
-        @calling_on = old_calling_on 
-        @erb << "<% end %>\n"
-      end
-    end
-      
-    
+
     private
-    
-    def with_new_buffer(new_buffer)
-      old_buffer = @buffer
-      @buffer = new_buffer
-      yield
-      @buffer = old_buffer      
+
+    def with_new_form_buffer
+      @form_buffers << ""
+      return_value = yield
+      @form_buffers.pop
+      return_value
     end
     
   end
