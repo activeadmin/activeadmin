@@ -4,7 +4,7 @@ module ActiveAdmin
     def initialize(*args)
       @form_buffers = ["".html_safe]
       @skip_form_buffer = false
-      super(*args)
+      super
     end
 
     # Sets up buffering for this form which allows

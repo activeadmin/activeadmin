@@ -4,12 +4,8 @@ include ActiveAdminIntegrationSpecHelper
 
 describe Admin::PostsController, :type => :controller do
 
-  if defined? ControllerExampleGroupBehaviour
-    # Rails 3 with Rspec 2
-    include ControllerExampleGroupBehaviour
-  else
-    integrate_views  
-  end
+  include RSpec::Rails::ControllerExampleGroup
+  render_views
 
   before(:each) do
     Admin::PostsController.reset_index_config!
@@ -131,6 +127,17 @@ describe Admin::PostsController, :type => :controller do
     it "should sort descending" do
       get :index, 'order' => 'created_at_desc'
       response.body.scan(/Yesterday|Today/).should == ["Today", "Yesterday"] 
+    end
+  end
+
+  describe "searching" do
+    before do
+      Post.create :title => "Hello World"
+      Post.create :title => "Goodbye World"
+    end
+    it "should find posts based on search" do
+      get :index, 'q' => { 'title_like' => 'hello' }
+      response.body.should include("Hello World")
     end
   end
 end

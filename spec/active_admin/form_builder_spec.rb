@@ -1,12 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 include ActiveAdminIntegrationSpecHelper
 
-describe ActiveAdmin::FormBuilder do
+# Actually Describes ActiveAdmin::FormBuilder, but RSpec 2 has
+# issues setting this up without a whole bunch of hackery
+describe Admin::PostsController do
 
-  include ControllerExampleGroupBehaviour
-  before do
-    @controller = Admin::PostsController.new
-  end
+  include RSpec::Rails::ControllerExampleGroup
+  render_views  
 
   def build_form(&block)
     Admin::PostsController.form(&block)
@@ -106,6 +106,7 @@ describe ActiveAdmin::FormBuilder do
         end
       end
       it "should create 2 radio buttons" do
+        puts response.body
         response.body.scan(/type=\"radio\"/).size.should == 2
       end
     end

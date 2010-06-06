@@ -10,6 +10,7 @@ gem 'formtastic', :git => "http://github.com/justinfrench/formtastic.git", :bran
 gem 'inherited_views'
 
 gem 'will_paginate', :git => 'http://github.com/mislav/will_paginate.git', :branch => 'rails3'
+gem "meta_search", :git => "git://github.com/ernie/meta_search.git"
 
 group :test do
   gem 'rspec', '>=2.0.0.beta.6'

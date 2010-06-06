@@ -73,7 +73,7 @@ module ActiveAdmin
       end
 
       def default_form_config
-        FormBuilder.new do |f|
+        lambda do |f|
           f.inputs
           f.buttons
         end

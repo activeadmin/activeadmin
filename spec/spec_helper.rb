@@ -6,7 +6,7 @@ require 'rubygems'
 
 TEST_RAILS_VERSION = ENV['RAILS'] || '3.0.0'
 
-RAILS_ENV = 'test'
+RAILS_ENV = ENV['RAILS_ENV'] = 'test'
 
 if TEST_RAILS_VERSION == '3.0.0'
   # Rails 3
@@ -14,9 +14,12 @@ if TEST_RAILS_VERSION == '3.0.0'
   ENV['BUNDLE_GEMFILE'] = File.join(RAILS_ROOT, 'Gemfile')
   require RAILS_ROOT + '/config/environment'
   require 'rspec/rails'
-  Rspec.configure do |config|
 
+  Rspec.configure do |config|
+    config.use_transactional_fixtures = true
+    config.use_instantiated_fixtures = false
   end
+
   Rspec::Matchers.define :have_tag do |*args|
     match_unless_raises Test::Unit::AssertionFailedError do |response|
       tag = args.shift
