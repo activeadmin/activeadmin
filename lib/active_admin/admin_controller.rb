@@ -15,7 +15,9 @@ module ActiveAdmin
     class_inheritable_accessor :form_config
     
     class_inheritable_accessor :active_admin_config
-    self.active_admin_config = {}
+    self.active_admin_config = {
+      :per_page => 50
+    }
 
     
     include ::ActiveAdmin::Breadcrumbs
@@ -25,6 +27,11 @@ module ActiveAdmin
     def add_section_breadcrumb
       add_breadcrumb resources_name, collection_path 
     end
+
+    respond_to :html, :xml, :json
+    respond_to :csv, :only => :index
+
+    before_filter :setup_pagination_for_csv
 
     class << self
      
@@ -53,6 +60,14 @@ module ActiveAdmin
           end
           display.default_actions
         end
+      end
+
+      def default_per_page=(per_page)
+        read_inheritable_attribute(:active_admin_config)[:per_page] = per_page
+      end
+
+      def default_per_page
+        read_inheritable_attribute(:active_admin_config)[:per_page]
       end
 
 
@@ -101,7 +116,21 @@ module ActiveAdmin
       end
       
     end
+
+
+    #
+    # Actions
+    #
     
+    def index
+      index! do |format|
+        format.html { render_or_default 'index' }
+        format.csv { 
+          @csv_columns = resource_class.columns.collect{ |column| column.name.to_sym }
+          render_or_default 'index' 
+        }
+      end
+    end
         
     private
 
@@ -118,8 +147,13 @@ module ActiveAdmin
       chain
     end
 
+    # Allow more records for csv files
+    def setup_pagination_for_csv
+      @per_page = 10_000 if request.format == 'text/csv'
+    end
+
     def paginate(chain)
-      chain.paginate(:page => params[:page])
+      chain.paginate(:page => params[:page], :per_page => @per_page || self.class.default_per_page)
     end
 
     def sort_order(chain)
