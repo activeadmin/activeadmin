@@ -39,12 +39,44 @@ describe Admin::PostsController do
     it "should generate a textarea" do
       response.should have_tag("textarea", :attributes => { :name => "post[body]" })
     end
+    it "should only generate the form once" do
+      response.body.scan(/My Super Title/).size.should == 1
+    end
     it "should generate buttons" do
       response.should have_tag("input", :attributes => {  :type => "submit",
                                                           :value => "Submit Me" })
       response.should have_tag("input", :attributes => {  :type => "submit",
                                                           :value => "Another Button" })
     end
+  end
+
+  context "with buttons" do
+    it "should generate the form once" do
+      build_form do |f|
+        f.inputs do
+          f.input :title
+        end
+        f.buttons
+      end
+      response.body.scan(/id=\"post_title\"/).size.should == 1
+    end
+    it "should generate one button" do
+      build_form do |f|
+        f.buttons
+      end
+      response.body.scan(/type=\"submit\"/).size.should == 1
+    end
+    it "should generate multiple buttons" do
+      build_form do |f|
+        f.buttons do
+          f.submit "Create"
+          f.commit_button "Create & Continue"
+          f.commit_button "Create & Edit"
+        end
+      end
+      response.body.scan(/type=\"submit\"/).size.should == 3
+    end
+
   end
 
   context "without passing a block to inputs" do
@@ -106,7 +138,6 @@ describe Admin::PostsController do
         end
       end
       it "should create 2 radio buttons" do
-        puts response.body
         response.body.scan(/type=\"radio\"/).size.should == 2
       end
     end

@@ -15,7 +15,7 @@ module ActiveAdmin
       method_names.each do |method_name|
         module_eval <<-EOF
           def #{method_name}(*args)
-            content = block_given? ? with_new_form_buffer('#{method_name}') { super } : super
+            content = block_given? ? with_new_form_buffer{ super } : super
             return content if @skip_form_buffer
             @form_buffers.last << content.html_safe
           end
@@ -24,8 +24,6 @@ module ActiveAdmin
     end
 
     buffer_output_for   :inputs,
-                        :buttons,
-                        :commit_button,
                         :submit,
                         :label,
                         :inputs_for_nested_attributes,
@@ -49,9 +47,15 @@ module ActiveAdmin
       @form_buffers.last << content.html_safe
     end
 
+    # The buttons method always needs to be wrapped in a new buffer
+    def buttons(*args, &block)
+      content = with_new_form_buffer{ super }
+      @form_buffers.last << content.html_safe
+    end
+
     private
 
-    def with_new_form_buffer(name)
+    def with_new_form_buffer
       @form_buffers << "".html_safe
       return_value = yield
       @form_buffers.pop
