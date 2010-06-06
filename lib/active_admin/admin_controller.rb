@@ -113,6 +113,7 @@ module ActiveAdmin
     def active_admin_collection
       chain = end_of_association_chain
       chain = sort_order(chain)
+      chain = search(chain)
       chain = paginate(chain)
       chain
     end
@@ -127,6 +128,10 @@ module ActiveAdmin
       else
         chain # just return the chain
       end
+    end
+
+    def search(chain)
+      @search = chain.search(params[:q])
     end
     
     def index_config

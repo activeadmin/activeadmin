@@ -134,10 +134,16 @@ describe Admin::PostsController, :type => :controller do
     before do
       Post.create :title => "Hello World"
       Post.create :title => "Goodbye World"
+      get :index, 'q' => { 'title_like' => 'hello' }
     end
     it "should find posts based on search" do
-      get :index, 'q' => { 'title_like' => 'hello' }
       response.body.should include("Hello World")
+    end
+    it "should not includes posts that don't meet the search" do
+      response.body.should_not include("Goodbye")
+    end
+    it "should set @search for the view" do
+      assigns["search"].should_not be_nil
     end
   end
 end
