@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.description = "ActiveAdmin DRY's your administration UI so that you can concentrate on what's actually important" 
 
   s.add_dependency 'inherited_views', '>= 0.0.1'
+  s.add_dependency 'meta_search'
   
   s.files        = Dir.glob("lib/**/*") + %w(LICENSE README.rdoc)
   s.require_path = 'lib'
