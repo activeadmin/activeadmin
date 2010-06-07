@@ -168,7 +168,7 @@ WillPaginate::
 == Contributors
 
 * Greg Bell       http://github.com/gregbell
-* Philipe Creux   http://github.com/pcreux
+* Philippe Creux  http://github.com/pcreux
 * Sam Vincent     http://github.com/samvincent
 * Matt Vague      http://github.com/mattvague
 
