@@ -172,6 +172,12 @@ WillPaginate::
 * Sam Vincent     http://github.com/samvincent
 * Matt Vague      http://github.com/mattvague
 
+
+== Roadmap & Issue Tracking
+
+We are using the awesome Lighthouse ticketing system. The project can be found at:
+http://activeadmin.lighthouseapp.com
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
