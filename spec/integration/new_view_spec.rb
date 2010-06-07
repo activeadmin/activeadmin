@@ -44,7 +44,6 @@ describe Admin::PostsController, :type => :controller do
         response.should have_tag("legend", "Your Post") 
       end
       it "should create a title field inside the fieldset" do
-        puts response.body
         response.should have_tag("input", :attributes => { :type => "text", :name => 'post[title]' },
                                           :ancestor => { :tag => "fieldset" })
       end
