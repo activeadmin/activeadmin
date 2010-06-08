@@ -61,6 +61,13 @@ module ActiveAdmin
       @form_buffers.pop
       return_value
     end
+
+    def skip_form_buffers
+      @skip_form_buffer = true
+      return_value = yield
+      @skip_form_buffer = false
+      return_value
+    end
     
   end
 end

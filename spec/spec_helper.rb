@@ -1,11 +1,6 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'active_admin'
-
 require 'rubygems'
-
 TEST_RAILS_VERSION = ENV['RAILS'] || '3.0.0'
-
 RAILS_ENV = ENV['RAILS_ENV'] = 'test'
 
 if TEST_RAILS_VERSION == '3.0.0'
@@ -44,6 +39,9 @@ else
   end
 end
 
+# Require Active Admin after we load the app env
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'active_admin'
 
 module ActiveAdminIntegrationSpecHelper
   def self.included(klass)

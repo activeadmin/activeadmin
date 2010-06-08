@@ -72,6 +72,20 @@ module ActiveAdmin
 
 
       #
+      # Filters Sidebar Configuration
+      #
+
+      def filters(&block)
+        config = self.read_inheritable_attribute(:active_admin_config)
+        config[:filters_config] = block
+      end
+
+      def filters_config
+        read_inheritable_attribute(:active_admin_config)[:filters_config]
+      end
+
+
+      #
       # Form Config
       #
 
@@ -167,6 +181,11 @@ module ActiveAdmin
     def search(chain)
       @search = chain.search(params[:q])
     end
+
+    def active_admin_config
+      self.class.active_admin_config
+    end
+    helper_method :active_admin_config
     
     def index_config
       @index_config ||= self.class.index_config

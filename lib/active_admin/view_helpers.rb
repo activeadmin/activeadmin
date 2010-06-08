@@ -94,5 +94,11 @@ module ActiveAdmin
     def active_admin_form_for(*args, &block)
     end
 
+    def active_admin_filters_form_for(search, options = {}, &block)
+      options[:builder] ||= ActiveAdmin::FilterFormBuilder
+      options[:url] ||= collection_path
+      form_for :q, search, options, &block
+    end
+
   end
 end

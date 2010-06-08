@@ -8,6 +8,6 @@ module ActiveAdmin
   autoload :AdminController, 	'active_admin/admin_controller'
   autoload :ViewHelpers, 'active_admin/view_helpers'
   autoload :Breadcrumbs, 'active_admin/breadcrumbs'
-  autoload :FormViewBuilder, 'active_admin/form_view_builder'
+  autoload :FilterFormBuilder, 'active_admin/filter_form_builder'
   
 end
