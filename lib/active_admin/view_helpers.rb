@@ -99,7 +99,8 @@ module ActiveAdmin
       options[:url] ||= collection_path
       options[:html] ||= {}
       options[:html][:method] = :get
-      form_for :q, search, options, &block
+      block_with_buttons = lambda{|f| block.call(f); f.submit("Filter") }
+      form_for :q, search, options, &block_with_buttons
     end
 
   end

@@ -25,6 +25,11 @@ describe Admin::PostsController do
     response.should have_tag("form", :attributes => { :method => 'get' })
   end
 
+  it "should generate a filter button" do
+    response.should have_tag("input", :attributes => { :type => "submit",
+                                                        :value => "Filter" })
+  end
+
   it "should generate a search field for a string attribute" do
     response.should have_tag("input", :attributes => { :name => "q[title_contains]"})
   end
