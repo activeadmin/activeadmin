@@ -81,7 +81,11 @@ module ActiveAdmin
       end
 
       def filters_config
-        read_inheritable_attribute(:active_admin_config)[:filters_config]
+        read_inheritable_attribute(:active_admin_config)[:filters_config] || default_filters_config
+      end
+
+      def default_filters_config
+        lambda{|f| }
       end
 
 
@@ -200,6 +204,11 @@ module ActiveAdmin
       @index_config ||= self.class.index_config
     end
     helper_method :index_config
+
+    def filters_config
+      self.class.filters_config
+    end
+    helper_method :filters_config
 
     def form_config
       @form_config ||= self.class.form_config

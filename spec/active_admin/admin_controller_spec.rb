@@ -20,6 +20,7 @@ describe ActiveAdmin::AdminController do
       class MyCustomBuilder; end
       Admin::PostsController.index :as => MyCustomBuilder
       Admin::PostsController.index_config.should be_an_instance_of(MyCustomBuilder)
+      Admin::PostsController.index_config = nil
     end
     
   end
