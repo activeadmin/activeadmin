@@ -179,7 +179,16 @@ module ActiveAdmin
     end
 
     def search(chain)
-      @search = chain.search(params[:q])
+      @search = chain.search(clean_search_params(params[:q]))
+    end
+
+    def clean_search_params(search_params)
+      return {} unless search_params.is_a?(Hash)
+      search_params = search_params.dup
+      search_params.delete_if do |key, value|
+        value == ""
+      end
+      search_params
     end
 
     def active_admin_config
