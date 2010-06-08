@@ -21,6 +21,10 @@ describe Admin::PostsController do
     end
   end
 
+  it "should generate a form which submits via get" do
+    response.should have_tag("form", :attributes => { :method => 'get' })
+  end
+
   it "should generate a search field for a string attribute" do
     response.should have_tag("input", :attributes => { :name => "q[title_contains]"})
   end
@@ -30,7 +34,6 @@ describe Admin::PostsController do
   end
 
   it "should generate a search field for a text attribute" do
-    puts response.body
     response.should have_tag("input", :attributes => { :name => "q[body_contains]"})
   end
 
