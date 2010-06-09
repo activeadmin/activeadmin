@@ -4,6 +4,7 @@ module ActiveAdmin
     def filter(method, options = {})
       return "" if method.nil? || method == ""
       options[:as] ||= default_filter_type(method)
+      return "" unless options[:as]
       content = skip_form_buffers do
         send("filter_#{options.delete(:as)}_input", method, options)
       end
@@ -40,11 +41,9 @@ module ActiveAdmin
         case column.type
         when :date, :datetime
           return :date_range
-        else
+        when :string, :text
           return :string
         end
-      else
-        return :string
       end
     end
 
