@@ -2,6 +2,7 @@ module ActiveAdmin
   class FilterFormBuilder < FormBuilder
   
     def filter(method, options = {})
+      return "" if method.nil? || method == ""
       options[:as] ||= default_filter_type(method)
       content = skip_form_buffers do
         send("filter_#{options.delete(:as)}_input", method, options)

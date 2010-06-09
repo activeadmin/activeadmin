@@ -8,17 +8,12 @@ describe Admin::PostsController do
   include RSpec::Rails::ControllerExampleGroup
   render_views  
 
-  def build_form(*args, &block)
-    Admin::PostsController.filters(*args, &block)
-    get :index
-  end
-
   before do
-    build_form do |f|
-      f.filter :title
-      f.filter :body
-      f.filter :created_at
-    end
+    Admin::PostsController.reset_filters!
+    Admin::PostsController.filter :title
+    Admin::PostsController.filter :body
+    Admin::PostsController.filter :created_at
+    get :index
   end
 
   it "should generate a form which submits via get" do

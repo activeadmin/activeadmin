@@ -94,14 +94,19 @@ module ActiveAdmin
     def active_admin_form_for(*args, &block)
     end
 
-    def active_admin_filters_form_for(search, options = {}, &block)
+    def active_admin_filters_form_for(search, filters, options = {})
       options[:builder] ||= ActiveAdmin::FilterFormBuilder
       options[:url] ||= collection_path
       options[:html] ||= {}
       options[:html][:method] = :get
       options[:as] = :q
-      block_with_buttons = lambda{|f| block.call(f); f.submit("Filter") }
-      form_for search, options, &block_with_buttons
+      form_for search, options do |f|
+        filters.each do |filter_options|
+          attribute = filter_options.delete(:attribute)
+          f.filter attribute, filter_options
+        end
+        f.submit "Filter"
+      end
     end
 
   end

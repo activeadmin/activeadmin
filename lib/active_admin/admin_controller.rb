@@ -75,17 +75,22 @@ module ActiveAdmin
       # Filters Sidebar Configuration
       #
 
-      def filters(&block)
-        config = self.read_inheritable_attribute(:active_admin_config)
-        config[:filters_config] = block
+      def filter(attribute, options = {})
+        return false if attribute.nil?
+        @filters ||= []
+        @filters << options.merge(:attribute => attribute)
       end
 
       def filters_config
-        read_inheritable_attribute(:active_admin_config)[:filters_config] || default_filters_config
+        @filters && @filters.any? ? @filters : default_filters_config
+      end
+
+      def reset_filters!
+        @filters = []
       end
 
       def default_filters_config
-        lambda{|f| }
+        []
       end
 
 
@@ -199,16 +204,16 @@ module ActiveAdmin
       self.class.active_admin_config
     end
     helper_method :active_admin_config
-    
-    def index_config
-      @index_config ||= self.class.index_config
-    end
-    helper_method :index_config
 
     def filters_config
       self.class.filters_config
     end
     helper_method :filters_config
+    
+    def index_config
+      @index_config ||= self.class.index_config
+    end
+    helper_method :index_config
 
     def form_config
       @form_config ||= self.class.form_config
