@@ -90,7 +90,7 @@ module ActiveAdmin
       end
 
       def default_filters_config
-        []
+        resource_class.columns.collect{|c| { :attribute => c.name.to_sym } }
       end
 
 
