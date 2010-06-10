@@ -35,6 +35,30 @@ module ActiveAdmin
       text_field(method, :size => 10, :max => 10, :value => current_value.respond_to?(:strftime) ? current_value.strftime("%Y-%m-%d") : "")
     end
 
+    def filter_numeric_input(method, options = {})
+      l = label(method)
+      filters = numeric_filters_for_method(method, options.delete(:filters) || default_numeric_filters)
+      current_filter = current_numeric_scope(filters)
+      s = @template.select_tag '', @template.options_for_select(filters, current_filter), 
+                                  :onchange => "document.getElementById('#{method}_numeric').name = 'q[' + this.value + ']';"
+      f = text_field current_filter, :size => 10, :id => "#{method}_numeric"
+      l + s + " " + f
+    end
+    
+    def numeric_filters_for_method(method, filters)
+      filters.collect{|scope| [scope[0], [method,scope[1]].join("_") ] }
+    end
+
+    # Returns the scope for which we are currently searching. If no search is available
+    # it returns the first scope
+    def current_numeric_scope(filters)
+      filters[1..-1].inject(filters.first){|a,b| object.send(b[1].to_sym) ? b : a }[1]
+    end
+
+    def default_numeric_filters
+      [['Equal To', 'eq'], ['Greater Than', 'gt'], ['Less Than', 'lt']]
+    end
+
     # Returns the default filter type for a given attribute
     def default_filter_type(method)
       if column = column_for(method)
@@ -43,6 +67,8 @@ module ActiveAdmin
           return :date_range
         when :string, :text
           return :string
+        when :integer
+          return :numeric
         end
       end
     end

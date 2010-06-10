@@ -13,6 +13,7 @@ describe Admin::PostsController do
     Admin::PostsController.filter :title
     Admin::PostsController.filter :body
     Admin::PostsController.filter :created_at
+    Admin::PostsController.filter :id
     get :index
   end
 
@@ -49,6 +50,23 @@ describe Admin::PostsController do
     it "should generate a date less than" do
       response.should have_tag("input", :attributes => { :name => "q[created_at_lte]" })
     end
+  end
+
+  context "when integer" do
+    it "should generate a select option for equal to" do
+      response.should have_tag("option", "Equal To", :attributes => { :value => 'id_eq' })
+    end
+    it "should generate a select option for greater than" do
+      response.should have_tag("option", "Greater Than")
+    end
+    it "should generate a select option for less than" do
+      response.should have_tag("option", "Less Than")
+    end
+    it "should generate a text field for input" do
+      response.should have_tag("input", :attributes => {
+                                          :name => "q[id_eq]" })
+    end
+    it "should select the option which is currently being filtered"
   end
 
 end
