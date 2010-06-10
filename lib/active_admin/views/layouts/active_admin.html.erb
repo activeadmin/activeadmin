@@ -13,16 +13,18 @@
     <h1 id="site_title">Active Admin</h1>
   </div>
   <div id="content">
-    <div id="title_bar">
-      <%= breadcrumb %>
-      <h2 id="page_title"><%= @page_title %></h2>
-      <%= yield :title_bar %>
-    </div>
-    <div id="main_content">
-      <%= yield %>
-      <div id="sidebar">
-        <%= yield :sidebar %>
+    <div id="main_content_wrapper">
+      <div id="main_content">
+        <div id="title_bar">
+          <%= breadcrumb %>
+          <h2 id="page_title"><%= @page_title %></h2>
+          <%= yield :title_bar %>
+        </div>        
+        <%= yield %>
       </div>
+    </div>
+    <div id="sidebar">
+      <%= yield :sidebar %>
     </div>
  </div>
 </div>
