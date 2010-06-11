@@ -105,7 +105,7 @@ module ActiveAdmin
           attribute = filter_options.delete(:attribute)
           f.filter attribute, filter_options
         end
-        f.submit "Filter"
+        f.submit("Filter") + hidden_field_tag("order", params[:order])
       end
     end
 
