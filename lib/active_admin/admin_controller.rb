@@ -16,7 +16,8 @@ module ActiveAdmin
     
     class_inheritable_accessor :active_admin_config
     self.active_admin_config = {
-      :per_page => 50
+      :per_page => 50,
+      :default_sort_order => 'id_desc'
     }
 
     
@@ -180,6 +181,7 @@ module ActiveAdmin
     end
 
     def sort_order(chain)
+      params[:order] ||= active_admin_config[:default_sort_order]
       if params[:order] && params[:order] =~ /^([\w\_]+)_(desc|asc)$/
         chain.order("#{$1} #{$2}")
       else
