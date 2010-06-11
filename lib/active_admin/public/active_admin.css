@@ -40,6 +40,8 @@ body {
   width: 270px; 
   margin-left: -270px; 
 }
+#index_footer { padding-top: 5px; text-align: right; font-size: 0.85em; }
+.clear { clear: both; }
 
 /* -------------------------------------- Links */
 a { color: #27637D; }
@@ -48,11 +50,11 @@ a:hover {}
 a { color: #27637D; }
 
 /* -------------------------------------- Tables */
-table { width: 100% }
+table { width: 100%; margin-bottom: 10px; }
 table tr th { padding: 5px 10px; text-align: left; background-color: #555; color: #eee; }
 table tr th a, table tr th a:link, table tr th a:visited, table tr th a:hover { color: #eee }
-table tr td { padding: 5px 10px; }
-table tr:hover td, table tr.odd:hover td { background-color: #FFFFE5}
+table tr td { padding: 8px 10px; border-bottom: 1px solid #e0e0e0; }
+table tr:hover td, table tr.odd:hover td { background-color: #ddd}
 table tr.odd td { background-color: #eee }
 
 /* -------------------------------------- Typography */
@@ -60,6 +62,14 @@ h2 { font-size: 2em; }
 
 /* -------------------------------------- Filters Sidebar */
 label { display: block; }
+
+/* -------------------------------------- Pagination */
+.pagination_information { float: right }
+.pagination { display: inline; font-size: 0.9; }
+.pagination a, .pagination em { padding: 4px 6px 3px 6px; margin-right: 4px; }
+.pagination a { background: #ddd; color: #333; text-decoration: none;}
+.pagination em {background: #333; color: #ddd; font-style: none;}
+.pagination .previous_page, .pagination .next_page { display:none; }
 
 /* -------------------------------------- Formtastic */
 /* -------------------------------------------------------------------------------------------------

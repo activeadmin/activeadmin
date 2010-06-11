@@ -21,6 +21,10 @@ describe Admin::PostsController, :type => :controller do
         get :index
         response.should have_tag("a", "Dashboard")
       end
+      it "should have pagination information" do
+        get :index
+        response.body.should match(/Displaying \<b\>1\<\/b\> Post/)
+      end
     end
     
     describe "with default table" do
