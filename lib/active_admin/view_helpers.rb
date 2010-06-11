@@ -90,6 +90,11 @@ module ActiveAdmin
       @page_title = _title 
     end
 
+    def status_tag(status, options = {})
+      options[:class] ||= ""
+      options[:class] << ["status", status.downcase].join(' ')
+      content_tag :span, status, options
+    end
 
     def active_admin_form_for(*args, &block)
     end

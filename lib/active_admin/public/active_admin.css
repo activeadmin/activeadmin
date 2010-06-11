@@ -71,6 +71,16 @@ label { display: block; }
 .pagination em {background: #333; color: #ddd; font-style: none;}
 .pagination .previous_page, .pagination .next_page { display:none; }
 
+
+/* -------------------------------------- Status Labels */
+span.status {
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding: 2px 5px;
+  color: #fff;
+  background-color: #aaa;
+}  
+
 /* -------------------------------------- Formtastic */
 /* -------------------------------------------------------------------------------------------------
 
