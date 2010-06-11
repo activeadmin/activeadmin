@@ -13,7 +13,7 @@ module ActiveAdmin
     #   current_sort[0] #=> sort_key
     #   current_sort[1] #=> asc | desc
     def current_sort
-      @current_sort ||= if params[:order] && params[:order] =~ /^([\w\_]+)_(desc|asc)$/
+      @current_sort ||= if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
         [$1,$2]
       else
         []

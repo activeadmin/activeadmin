@@ -158,17 +158,25 @@ module ActiveAdmin
         
     private
 
-    # Overriding so that we have pagination by default
     def collection
       get_collection_ivar || set_collection_ivar(active_admin_collection)
     end
 
     def active_admin_collection
-      chain = end_of_association_chain
+      chain = scoped_collection
       chain = sort_order(chain)
       chain = search(chain)
       chain = paginate(chain)
       chain
+    end
+
+    # Override this method in your controllers to modify the start point
+    # of our searches and index.
+    #
+    # This method should return an ActiveRecord::Relation object so that
+    # the searching and filtering can be applied on top
+    def scoped_collection
+      end_of_association_chain
     end
 
     # Allow more records for csv files
@@ -182,7 +190,7 @@ module ActiveAdmin
 
     def sort_order(chain)
       params[:order] ||= active_admin_config[:default_sort_order]
-      if params[:order] && params[:order] =~ /^([\w\_]+)_(desc|asc)$/
+      if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
         chain.order("#{$1} #{$2}")
       else
         chain # just return the chain
