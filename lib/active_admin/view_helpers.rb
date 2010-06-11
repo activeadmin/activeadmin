@@ -38,7 +38,7 @@ module ActiveAdmin
       end
 
       th = "<th class=\"#{classes.join(' ')}\">"
-      th << link_to(text, :order => "#{sort_key}_#{order_for_sort_key(sort_key)}")
+      th << link_to(text, request.query_parameters.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}"))
       th << "</th>"
     end
     
