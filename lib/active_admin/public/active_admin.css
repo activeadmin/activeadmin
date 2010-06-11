@@ -65,7 +65,7 @@ label { display: block; }
 
 /* -------------------------------------- Pagination */
 .pagination_information { float: right }
-.pagination { display: inline; font-size: 0.9; }
+.pagination { display: inline; font-size: 0.9; margin-left: 10px; }
 .pagination a, .pagination em { padding: 4px 6px 3px 6px; margin-right: 4px; }
 .pagination a { background: #ddd; color: #333; text-decoration: none;}
 .pagination em {background: #333; color: #ddd; font-style: none;}

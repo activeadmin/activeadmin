@@ -7,8 +7,7 @@
   Download:
   <%= link_to "CSV", { :format => 'csv'}.merge(request.query_parameters.except(:commit, :format)) %>&nbsp;
   <%= link_to "XML", { :format => 'xml'}.merge(request.query_parameters.except(:commit, :format)) %>&nbsp;
-  <%= link_to "JSON", { :format => 'json'}.merge(request.query_parameters.except(:commit, :format)) %>&nbsp; 
-  &nbsp;
+  <%= link_to "JSON", { :format => 'json'}.merge(request.query_parameters.except(:commit, :format)) %>
   <%= will_paginate collection, :previous_label => "Previous", :next_label => "Next"%>
 </div>
 
