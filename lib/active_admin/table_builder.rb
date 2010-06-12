@@ -49,12 +49,20 @@ module ActiveAdmin
     end
 
     class Renderer < ActiveAdmin::Renderer
-
       def to_html(builder, collection, resource_instance_name = nil)
         @builder, @collection = builder, collection
-        content_tag :table do
-          table_head + table_body
-        end          
+        wrap_with_pagination(collection, :entry_name => resource_name) do
+          table_options = {
+            :id => resource_name.underscore.pluralize, 
+            :class => "index_table", 
+            :border => 0, 
+            :cellpadding => 0, 
+            :cellspacing => 0            
+          }
+          content_tag :table, table_options do
+            table_head + table_body
+          end          
+        end
       end
 
       def columns

@@ -16,6 +16,29 @@ module ActiveAdmin
       end
     end
 
+    def pagination_information(collection, options = {})
+      content_tag :div, page_entries_info(collection, options), :class => "pagination_information"
+    end
+
+    def download_format_links(formats = [:csv, :xml, :json])
+      links = formats.collect do |format|
+        link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format)) 
+      end
+      ["Download:", links].flatten.join("&nbsp;").html_safe
+    end
+
+    def pagination(collection)
+      will_paginate collection, :previous_label => "Previous", :next_label => "Next"
+    end
+
+    def index_footer(collection)
+      content_tag :div, [download_format_links, pagination(collection)].join(" ").html_safe, :id => "index_footer"
+    end
+
+    def wrap_with_pagination(collection, options = {}, &block)
+      pagination_information(collection, options) + capture(&block) + index_footer(collection)
+    end
+
     # Returns the order to use for a given sort key
     # 
     # Default is to use 'desc'. If the current sort key is

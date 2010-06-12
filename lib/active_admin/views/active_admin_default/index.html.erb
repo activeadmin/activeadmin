@@ -1,15 +1,6 @@
 <% title(resources_name) %>
 
-<div class="pagination_information"><%= page_entries_info collection, :entry_name => resource_name %></div>
-<%= render_partial_or_default 'table' %>
-
-<div id="index_footer">
-  Download:
-  <%= link_to "CSV", { :format => 'csv'}.merge(request.query_parameters.except(:commit, :format)) %>&nbsp;
-  <%= link_to "XML", { :format => 'xml'}.merge(request.query_parameters.except(:commit, :format)) %>&nbsp;
-  <%= link_to "JSON", { :format => 'json'}.merge(request.query_parameters.except(:commit, :format)) %>
-  <%= will_paginate collection, :previous_label => "Previous", :next_label => "Next"%>
-</div>
+<%= index_config.render(self, collection) %>
 
 <% content_for :title_bar do %>
   <div id="action_items">
