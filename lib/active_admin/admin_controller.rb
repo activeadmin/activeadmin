@@ -16,7 +16,7 @@ module ActiveAdmin
     
     class_inheritable_accessor :active_admin_config
     self.active_admin_config = {
-      :per_page => 50,
+      :per_page => 30,
       :default_sort_order => 'id_desc'
     }
 

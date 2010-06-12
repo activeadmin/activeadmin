@@ -2,6 +2,7 @@ require 'meta_search'
 
 module ActiveAdmin
   
+  autoload :Renderer, 'active_admin/renderer'
   autoload :TableBuilder, 'active_admin/table_builder'
   autoload :IndexBuilder,  'active_admin/index_builder'
   autoload :FormBuilder,  'active_admin/form_builder'

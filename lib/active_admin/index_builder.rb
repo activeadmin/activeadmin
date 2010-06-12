@@ -1,10 +1,12 @@
 module ActiveAdmin
   class IndexBuilder
+
+    def renderer
+      self.class.const_get("Renderer")
+    end
     
-    # IndexBuilder#display_method should return the name of the method
-    # to be used in the view to display this configuration.
-    def display_method
-      raise "#{self.class.name}#display_method has not been defined. Please override #{self.class.name}#display_method and return the name of the method to use in the view"
+    def render(view, collection)
+      renderer.new(view).render(self, collection)
     end
     
   end

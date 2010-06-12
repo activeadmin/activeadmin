@@ -48,6 +48,70 @@ module ActiveAdmin
       end
     end
 
+    class Renderer < ActiveAdmin::Renderer
+
+      def to_html(builder, collection, resource_instance_name = nil)
+        @builder, @collection = builder, collection
+        content_tag :table do
+          table_head + table_body
+        end          
+      end
+
+      def columns
+        @columns ||= @builder.columns.select do |column|
+          instance_eval &column.conditional_block
+        end
+      end
+
+      def table_head
+        content_tag :thead do
+          columns.collect do |column|
+            if column.sortable?
+              sortable_header_for column.title, column.sort_key
+            else
+              content_tag :th, column.title
+            end
+          end.join
+        end
+      end
+
+      def table_body
+        content_tag :tbody do
+          @collection.collect{|item| table_row(item) }.join
+        end
+      end
+
+      def table_row(item)
+        content_tag :tr, :class => cycle('odd', 'even') do
+          columns.collect{|column| table_cell(column, item) }.join
+        end
+      end
+
+      def resource
+        @resource
+      end
+
+      def resource_instance_name
+        @resource_instance_name ||= @collection.first.class.name.underscore
+      end
+
+      def table_cell(column, item)
+        # Setup some nice variables for the block
+        @resource = item && instance_variable_set("@#{resource_instance_name}", item)
+        row_content = case column.data
+                      when Proc
+                        instance_eval(&column.data)
+                      when Symbol, String
+                        item.send(column.data.to_sym)
+                      else
+                        ""
+                      end
+        content_tag :td, row_content.to_s.html_safe
+      end
+          
+
+    end
+
     class Column
       
       attr_accessor :title, :data
