@@ -31,12 +31,12 @@ module ActiveAdmin
       will_paginate collection, :previous_label => "Previous", :next_label => "Next"
     end
 
-    def index_footer(collection)
+    def pagination_with_formats(collection)
       content_tag :div, [download_format_links, pagination(collection)].join(" ").html_safe, :id => "index_footer"
     end
 
     def wrap_with_pagination(collection, options = {}, &block)
-      pagination_information(collection, options) + capture(&block) + index_footer(collection)
+      pagination_information(collection, options) + capture(&block) + pagination_with_formats(collection)
     end
 
     # Returns the order to use for a given sort key
