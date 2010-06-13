@@ -29,6 +29,7 @@ Add the following to your Gemfile:
   gem 'formtastic',     :git => "git://github.com/justinfrench/formtastic.git", :branch => 'rails3'
   gem 'will_paginate',  :git => "git://github.com/mislav/will_paginate.git", :branch => 'rails3'
   gem 'active_admin',   :git => "git://github.com/gregbell/active_admin.git"
+  gem 'meta_search',    :git => "git://github.com/ernie/meta_search.git"
 
 
 == Usage
