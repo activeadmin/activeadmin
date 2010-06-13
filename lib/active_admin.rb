@@ -10,5 +10,6 @@ module ActiveAdmin
   autoload :ViewHelpers, 'active_admin/view_helpers'
   autoload :Breadcrumbs, 'active_admin/breadcrumbs'
   autoload :FilterFormBuilder, 'active_admin/filter_form_builder'
+  autoload :Pages, 'active_admin/pages'
   
 end

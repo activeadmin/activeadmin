@@ -235,5 +235,16 @@ module ActiveAdmin
     end
     helper_method :resource_name
 
+    # Returns the renderer class to use for the given action.
+    #
+    # TODO: This needs to be wrapped into a default config as well
+    # as overrideable on each controller
+    def renderer_for(action)
+      {
+        :index => ActiveAdmin::Pages::Index
+      }[action]
+    end
+    helper_method :renderer_for
+
   end
 end

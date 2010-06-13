@@ -1,13 +1,1 @@
-<% title(resources_name) %>
-
-<%= index_config.render(self, collection) %>
-
-<% content_for :title_bar do %>
-  <div id="action_items">
-    <%= link_to "New #{resource_name}", new_resource_path, :class => "button small" %>
-  </div>
-<% end %>
-
-<% content_for :sidebar do %>
-  <%= render_partial_or_default "sidebar" %>
-<% end %>
+<%= renderer_for(:index).new(self).render %>
