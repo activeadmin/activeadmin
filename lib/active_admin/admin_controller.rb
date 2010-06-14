@@ -1,4 +1,5 @@
 require 'inherited_views'
+require 'active_admin/pages'
 
 module ActiveAdmin
   class AdminController < ::InheritedViews::Base
@@ -241,7 +242,10 @@ module ActiveAdmin
     # as overrideable on each controller
     def renderer_for(action)
       {
-        :index => ActiveAdmin::Pages::Index
+        :index  => ::ActiveAdmin::Pages::Index,
+        :new    => ::ActiveAdmin::Pages::New,
+        :show   => ::ActiveAdmin::Pages::Show,
+        :edit   => ::ActiveAdmin::Pages::Edit
       }[action]
     end
     helper_method :renderer_for

@@ -1,7 +1,1 @@
-<% title "#{resource_name} ##{resource.id}" %>
-<dl id="<%= resource_class.name.underscore.pluralize %>_resource_attributes" class="resource_attributes">
-  <% show_view_columns.each do |column| %>
-    <dt><%= column.to_s.titlecase %></dt>
-    <dd><%= resource.send(column) %></dd>
-  <% end %>
-</dl>
+<%= renderer_for(:show).new(self).render %>

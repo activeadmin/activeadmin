@@ -31,9 +31,6 @@ module ActiveAdmin
       end
 
       def sidebar
-        content_for :sidebar do
-          render_partial_or_default 'sidebar'
-        end
       end
 
       def to_html
@@ -48,6 +45,8 @@ module ActiveAdmin
         resources_name
       end
 
+      # Render's the index configuration that was set in the
+      # controller. Defaults to rendering the ActiveAdmin::TableBuilder::Renderer
       def main_content
         index_config.render(self, collection)
       end
@@ -55,15 +54,43 @@ module ActiveAdmin
       def action_items
         link_to "New #{resource_name}", new_resource_path
       end
+
+      def sidebar
+        content_for :sidebar do
+          render_partial_or_default 'sidebar'
+        end
+      end
     end
 
     class New < BaseRenderer
+      def title
+        "New #{resource_name}"
+      end
+      def main_content
+        active_admin_form_for resource, :url => collection_path, &form_config
+      end
     end
 
     class Edit < BaseRenderer
+      def title
+        "Edit #{resource_name}"
+      end
+      def main_content
+        active_admin_form_for resource, :url => resource_path(resource), &form_config
+      end
     end
 
     class Show < BaseRenderer
+      def title
+        "#{resource_name} ##{resource.id}"
+      end
+      def main_content
+        content_tag :dl, :id => "#{resource_class.name.underscore}_attributes", :class => "resource_attributes" do
+          show_view_columns.collect do |attr|
+            content_tag(:dt, attr.to_s.titlecase) + content_tag(:dd, resource.send(attr))
+          end.join
+        end
+      end
     end
 
   end

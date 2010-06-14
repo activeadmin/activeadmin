@@ -1,2 +1,1 @@
-<% title "Edit #{resource_name}" %>
-<%= render_partial_or_default 'form' %>
+<%= renderer_for(:edit).new(self).render %>

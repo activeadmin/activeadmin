@@ -1,2 +1,1 @@
-<% title "New #{resource_name}" %>
-<%= render_partial_or_default 'form' %>
+<%= renderer_for(:new).new(self).render %>

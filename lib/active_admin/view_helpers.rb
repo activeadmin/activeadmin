@@ -75,7 +75,9 @@ module ActiveAdmin
       content_tag :span, status, options
     end
 
-    def active_admin_form_for(*args, &block)
+    def active_admin_form_for(resource, options = {}, &block)
+      options[:builder] ||= ActiveAdmin::FormBuilder
+      semantic_form_for resource, options, &block
     end
 
     def active_admin_filters_form_for(search, filters, options = {})
