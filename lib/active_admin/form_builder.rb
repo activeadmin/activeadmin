@@ -23,8 +23,7 @@ module ActiveAdmin
       end
     end
 
-    buffer_output_for   :inputs,
-                        :submit,
+    buffer_output_for   :submit,
                         :label,
                         :inputs_for_nested_attributes,
                         :semantic_fields_for,
@@ -35,15 +34,26 @@ module ActiveAdmin
                         :date_select,
                         :radio_button,
                         :file_field,
-                        :hidden_field
+                        :hidden_field,
+                        :select,
+                        :grouped_collection_select,
+                        :collection_select
+
+    def inputs(*args, &block)
+      # Store that we are creating inputs without a block
+      @inputs_with_no_block = true unless block_given?
+      content = with_new_form_buffer { super }
+      @form_buffers.last << content.html_safe
+    end
 
     # The input method returns a properly formatted string for
     # its contents, so we want to skip the internal buffering
     # while building up its contents
     def input(*args)
       @skip_form_buffer = true
-      content = super
+      content = with_new_form_buffer { super }
       @skip_form_buffer = false
+      return content.html_safe if @inputs_with_no_block
       @form_buffers.last << content.html_safe
     end
 

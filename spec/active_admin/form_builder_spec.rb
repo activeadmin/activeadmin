@@ -50,6 +50,16 @@ describe Admin::PostsController do
     end
   end
 
+  context "with default settings" do
+    before do
+      Admin::PostsController.reset_form_config!
+      get :new
+    end
+    it "should generate one post title field" do
+      response.body.scan('id="post_title"').size.should == 1
+    end
+  end
+
   context "with buttons" do
     it "should generate the form once" do
       build_form do |f|
