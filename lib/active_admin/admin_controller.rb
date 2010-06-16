@@ -23,6 +23,7 @@ module ActiveAdmin
 
     
     include ::ActiveAdmin::Breadcrumbs
+    include ::ActiveAdmin::Sidebar
 
     add_breadcrumb "Dashboard", "/admin"
     before_filter :add_section_breadcrumb
@@ -95,7 +96,6 @@ module ActiveAdmin
         resource_class.columns.collect{|c| { :attribute => c.name.to_sym } }
       end
 
-
       #
       # Form Config
       #
@@ -142,6 +142,10 @@ module ActiveAdmin
       
     end
 
+    # Default Sidebar Sections
+    sidebar :filters, :only => :index do
+      active_admin_filters_form_for @search, filters_config
+    end
 
     #
     # Actions

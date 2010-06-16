@@ -30,7 +30,24 @@ module ActiveAdmin
       def action_items
       end
 
+      # Returns the renderer class to use to render the sidebar
+      #
+      # You could override this method and return your own custom
+      # sidebar renderer
+      def sidebar_renderer
+        ActiveAdmin::Sidebar::Renderer
+      end
+
+      # Returns the sidebar sections to render for the current action
+      def sidebar_sections
+        controller.class.sidebar_sections_for(params[:action])
+      end
+
+      # Renders the sidebar
       def sidebar
+        content_for :sidebar do
+          sidebar_renderer.new(self).render(sidebar_sections)
+        end
       end
 
       def to_html
@@ -53,12 +70,6 @@ module ActiveAdmin
 
       def action_items
         link_to "New #{resource_name}", new_resource_path
-      end
-
-      def sidebar
-        content_for :sidebar do
-          render_partial_or_default 'sidebar'
-        end
       end
     end
 

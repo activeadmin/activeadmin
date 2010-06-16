@@ -1,7 +1,7 @@
 module ActiveAdmin
   class Renderer
 
-    attr_accessor :controller, :view, :assigns
+    attr_accessor :view, :assigns
 
     def initialize(view_or_renderer)
       @view = view_or_renderer.is_a?(Renderer) ? view_or_renderer.view : view_or_renderer

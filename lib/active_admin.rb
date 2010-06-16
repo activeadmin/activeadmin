@@ -11,5 +11,6 @@ module ActiveAdmin
   autoload :Breadcrumbs, 'active_admin/breadcrumbs'
   autoload :FilterFormBuilder, 'active_admin/filter_form_builder'
   autoload :Pages, 'active_admin/pages'
+  autoload :Sidebar, 'active_admin/sidebar'
   
 end
