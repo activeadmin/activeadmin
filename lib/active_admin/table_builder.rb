@@ -43,7 +43,7 @@ module ActiveAdmin
         links += " | "
         links += link_to "Edit", edit_resource_path(resource)
         links += " | "
-        links += link_to "Delete", resource_path(resource), :method => :destroy, :confirm => "Are you sure you want to delete this?"
+        links += link_to "Delete", resource_path(resource), :method => :delete, :confirm => "Are you sure you want to delete this?"
         links
       end
     end
