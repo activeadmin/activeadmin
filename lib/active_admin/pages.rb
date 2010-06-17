@@ -23,11 +23,13 @@ module ActiveAdmin
         self.class.name
       end
 
-      def action_items_tag
-        content_tag :div, action_items, :id => "action_items"
+      def action_items_renderer
+        ActiveAdmin::ActionItems::Renderer
       end
 
       def action_items
+        items = controller.class.action_items_for(params[:action])
+        action_items_renderer.new(self).render(items)
       end
 
       # Returns the renderer class to use to render the sidebar
@@ -66,10 +68,6 @@ module ActiveAdmin
       # controller. Defaults to rendering the ActiveAdmin::TableBuilder::Renderer
       def main_content
         index_config.render(self, collection)
-      end
-
-      def action_items
-        link_to "New #{resource_name}", new_resource_path
       end
     end
 

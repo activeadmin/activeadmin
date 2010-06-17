@@ -24,6 +24,7 @@ module ActiveAdmin
     
     include ::ActiveAdmin::Breadcrumbs
     include ::ActiveAdmin::Sidebar
+    include ::ActiveAdmin::ActionItems
 
     add_breadcrumb "Dashboard", "/admin"
     before_filter :add_section_breadcrumb
@@ -145,6 +146,19 @@ module ActiveAdmin
     # Default Sidebar Sections
     sidebar :filters, :only => :index do
       active_admin_filters_form_for @search, filters_config
+    end
+
+    # Default Action Item Links
+    action_item :only => :show do
+      if controller.public_methods.include?('edit')
+        link_to "Edit #{resource_name}", edit_resource_path(resource)
+      end
+    end
+
+    action_item :except => :new do
+      if controller.public_methods.include?('new')
+        link_to "New #{resource_name}", new_resource_path
+      end
     end
 
     #

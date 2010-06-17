@@ -1,3 +1,5 @@
+require 'active_admin/helpers/optional_display'
+
 module ActiveAdmin
   module Sidebar
 
@@ -23,6 +25,7 @@ module ActiveAdmin
     end
 
     class Section
+      include ActiveAdmin::OptionalDisplay
   
       attr_accessor :name, :options, :block
 
@@ -40,24 +43,6 @@ module ActiveAdmin
       def title
         name.to_s.titlecase
       end
-
-      def display_on?(action)
-        return @options[:only].include?(action.to_sym) if @options[:only]
-        return !@options[:except].include?(action.to_sym) if @options[:except]
-        true
-      end
-
-      private
-
-      def normalize_display_options!
-        if @options[:only]
-          @options[:only] = @options[:only].is_a?(Array) ? @options[:only] : [@options[:only]]
-        end
-        if @options[:except]
-          @options[:except] = @options[:except].is_a?(Array) ? @options[:except] : [@options[:except]]
-        end
-      end        
-
     end
 
     class Renderer < ActiveAdmin::Renderer

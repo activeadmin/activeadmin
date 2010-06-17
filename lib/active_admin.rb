@@ -12,5 +12,6 @@ module ActiveAdmin
   autoload :FilterFormBuilder, 'active_admin/filter_form_builder'
   autoload :Pages, 'active_admin/pages'
   autoload :Sidebar, 'active_admin/sidebar'
+  autoload :ActionItems, 'active_admin/action_items'
   
 end
