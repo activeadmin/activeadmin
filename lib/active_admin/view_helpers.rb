@@ -81,13 +81,14 @@ module ActiveAdmin
     end
 
     def active_admin_filters_form_for(search, filters, options = {})
-      options[:builder] ||= ActiveAdmin::FilterFormBuilder
+      options[:builder] ||= ActiveAdmin::Filters::FormBuilder
       options[:url] ||= collection_path
       options[:html] ||= {}
       options[:html][:method] = :get
       options[:as] = :q
       form_for search, options do |f|
         filters.each do |filter_options|
+          filter_options = filter_options.dup
           attribute = filter_options.delete(:attribute)
           f.filter attribute, filter_options
         end

@@ -3,7 +3,7 @@ require 'active_admin/pages'
 
 module ActiveAdmin
   class AdminController < ::InheritedViews::Base
-  
+
     # Add our views to the view path
     ActionController::Base.append_view_path File.expand_path('../views', __FILE__)
     self.default_views = 'active_admin_default'
@@ -21,10 +21,10 @@ module ActiveAdmin
       :default_sort_order => 'id_desc'
     }
 
-    
     include ::ActiveAdmin::Breadcrumbs
     include ::ActiveAdmin::Sidebar
     include ::ActiveAdmin::ActionItems
+    include ::ActiveAdmin::Filters
 
     add_breadcrumb "Dashboard", "/admin"
     before_filter :add_section_breadcrumb
@@ -72,29 +72,6 @@ module ActiveAdmin
 
       def default_per_page
         read_inheritable_attribute(:active_admin_config)[:per_page]
-      end
-
-
-      #
-      # Filters Sidebar Configuration
-      #
-
-      def filter(attribute, options = {})
-        return false if attribute.nil?
-        @filters ||= []
-        @filters << options.merge(:attribute => attribute)
-      end
-
-      def filters_config
-        @filters && @filters.any? ? @filters : default_filters_config
-      end
-
-      def reset_filters!
-        @filters = []
-      end
-
-      def default_filters_config
-        resource_class.columns.collect{|c| { :attribute => c.name.to_sym } }
       end
 
       #
@@ -234,11 +211,6 @@ module ActiveAdmin
     end
     helper_method :active_admin_config
 
-    def filters_config
-      self.class.filters_config
-    end
-    helper_method :filters_config
-    
     def index_config
       @index_config ||= self.class.index_config
     end
