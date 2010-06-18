@@ -29,7 +29,7 @@ module ActiveAdmin
 
       def action_items
         items = controller.class.action_items_for(params[:action])
-        action_items_renderer.new(self).render(items)
+        action_items_renderer.new(self).to_html(items)
       end
 
       # Returns the renderer class to use to render the sidebar
@@ -48,7 +48,7 @@ module ActiveAdmin
       # Renders the sidebar
       def sidebar
         content_for :sidebar do
-          sidebar_renderer.new(self).render(sidebar_sections)
+          sidebar_renderer.new(self).to_html(sidebar_sections)
         end
       end
 

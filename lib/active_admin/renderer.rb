@@ -12,10 +12,6 @@ module ActiveAdmin
       view.send(*args, &block)
     end    
 
-    def render(*args)
-      to_html(*args)
-    end
-
     def to_html(*args)
     end
 

@@ -6,7 +6,7 @@ module ActiveAdmin
     end
     
     def render(view, collection)
-      renderer.new(view).render(self, collection)
+      renderer.new(view).to_html(self, collection)
     end
     
   end
