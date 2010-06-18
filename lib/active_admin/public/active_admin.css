@@ -40,6 +40,8 @@ body {
   width: 270px; 
   margin-left: -270px; 
 }
+#title_bar { position: relative; }
+#title_bar .action_items { position: absolute; right: 0; bottom: 0; }
 #index_footer { padding-top: 5px; text-align: right; font-size: 0.85em; }
 .clear { clear: both; }
 
@@ -48,6 +50,19 @@ a { color: #27637D; }
 a:link, a:visited { }
 a:hover {}
 a { color: #27637D; }
+
+/* -------------------------------------- Action Items */
+.action_items a {
+  background: #DDD;
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 4px 6px 3px 6px;
+  margin-left: 10px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;  
+}
+.action_items a:hover { background: #333; color: #ddd; }
 
 /* -------------------------------------- Tables */
 table { width: 100%; margin-bottom: 10px; }
