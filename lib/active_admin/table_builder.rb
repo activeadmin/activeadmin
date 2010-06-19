@@ -28,10 +28,6 @@ module ActiveAdmin
         column(c)
       end
     end
-    
-    def display_method
-      :active_admin_table
-    end
 
     # Adds links to View, Edit and Delete
     def default_actions(options = {})
