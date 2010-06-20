@@ -45,8 +45,19 @@ module ActiveAdmin
 
       # Configure the index page for the resource
       def index(options = {}, &block)
-        options[:as] ||= ::ActiveAdmin::Pages::Index::Table
-        self.index_config = options[:as].new(&block)
+        options[:as] ||= :table
+        self.index_config = find_index_config_class(options[:as]).new(&block)
+      end
+
+      def find_index_config_class(symbol_or_class)
+        case symbol_or_class
+        when Symbol
+          ::ActiveAdmin::Pages::Index.const_get(symbol_or_class.to_s.camelcase)
+        when Class
+          symbol_or_class
+        else
+          raise ArgumentError, "'as' requires a class or a symbol"
+        end
       end
 
       def index_config

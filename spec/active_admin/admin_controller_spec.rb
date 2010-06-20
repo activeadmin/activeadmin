@@ -16,11 +16,16 @@ describe ActiveAdmin::AdminController do
       Admin::PostsController.index_config.should be_an_instance_of(ActiveAdmin::Pages::Index::Table)
     end
     
-    it 'should use a builder that you pass in' do
+    it 'should use a builder that you pass in as a class' do
       class MyCustomBuilder; end
       Admin::PostsController.index :as => MyCustomBuilder
       Admin::PostsController.index_config.should be_an_instance_of(MyCustomBuilder)
       Admin::PostsController.index_config = nil
+    end
+
+    it "should use a builder that you pass in as a symbol" do
+      Admin::PostsController.index :as => :posts
+      Admin::PostsController.index_config.should be_an_instance_of(ActiveAdmin::Pages::Index::Posts)
     end
     
   end
