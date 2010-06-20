@@ -4,11 +4,6 @@ include ActiveAdmin
 
 describe ActiveAdmin::Renderer do
 
-  def action_view(assigns = {})
-    controller = ActionView::TestCase::TestController.new
-    view = ActionView::Base.new(ActionController::Base.view_paths, assigns, controller)
-  end
-
   context "when initiailizing from a view" do
     it "should have a view" do
       view = action_view

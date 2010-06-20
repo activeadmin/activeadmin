@@ -13,7 +13,7 @@ describe ActiveAdmin::AdminController do
     end
     
     it "should use the table builder by default" do
-      Admin::PostsController.index_config.should be_an_instance_of(TableBuilder)
+      Admin::PostsController.index_config.should be_an_instance_of(ActiveAdmin::Pages::Index::Table)
     end
     
     it 'should use a builder that you pass in' do

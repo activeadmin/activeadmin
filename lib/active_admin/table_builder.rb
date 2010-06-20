@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class TableBuilder < IndexBuilder
+  class TableBuilder
     
     attr_reader :columns
     
@@ -29,35 +29,23 @@ module ActiveAdmin
       end
     end
 
-    # Adds links to View, Edit and Delete
-    def default_actions(options = {})
-      options = {
-        :name => ""
-      }.merge(options)
-      column options[:name] do 
-        links = link_to "View", resource_path(resource)
-        links += " | "
-        links += link_to "Edit", edit_resource_path(resource)
-        links += " | "
-        links += link_to "Delete", resource_path(resource), :method => :delete, :confirm => "Are you sure you want to delete this?"
-        links
-      end
+    # Helper method to quickly render a table builder
+    def to_html(view, collection, options)
+      Renderer.new(view).to_html(self, collection, options)
     end
 
     class Renderer < ActiveAdmin::Renderer
-      def to_html(builder, collection, resource_instance_name = nil)
+      def to_html(builder, collection, options = {})
         @builder, @collection = builder, collection
-        wrap_with_pagination(collection, :entry_name => resource_name) do
-          table_options = {
-            :id => resource_name.underscore.pluralize, 
-            :class => "index_table", 
-            :border => 0, 
-            :cellpadding => 0, 
-            :cellspacing => 0            
-          }
-          content_tag :table, table_options do
-            table_head + table_body
-          end          
+        @resource_instance_name = options.delete(:resource_instance_name)
+        @sortable = options.delete(:sortable) || false
+        table_options = {
+          :border => 0, 
+          :cellpadding => 0, 
+          :cellspacing => 0            
+        }.merge(options)
+        content_tag :table, table_options do
+          table_head + table_body
         end
       end
 
@@ -67,10 +55,14 @@ module ActiveAdmin
         end
       end
 
+      def sortable?
+        @sortable
+      end
+
       def table_head
         content_tag :thead do
           columns.collect do |column|
-            if column.sortable?
+            if sortable? && column.sortable?
               sortable_header_for column.title, column.sort_key
             else
               content_tag :th, column.title

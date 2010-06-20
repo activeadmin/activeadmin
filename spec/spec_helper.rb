@@ -43,6 +43,7 @@ end
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'active_admin'
 
+
 module ActiveAdminIntegrationSpecHelper
   def self.included(klass)
     ActionController::Routing::Routes.draw do |map|
@@ -56,4 +57,13 @@ module ActiveAdminIntegrationSpecHelper
     end
   end
 
+  # Returns a fake action view instance to use with our renderers
+  def action_view(assigns = {})
+    controller = ActionView::TestCase::TestController.new
+    ActionView::Base.send :include, ActionView::Helpers
+    ActionView::Base.send :include, ActiveAdmin::ViewHelpers
+    view = ActionView::Base.new(ActionController::Base.view_paths, assigns, controller)
+    view._router = controller._router
+    view
+  end  
 end

@@ -4,10 +4,6 @@ include ActiveAdmin
 
 describe ActiveAdmin::TableBuilder do
   
-  it "should use the active_admin_table display method" do
-    TableBuilder.new.display_method.should == :active_admin_table
-  end
-  
   describe "when creating a simple column" do
     before(:each) do
       @builder = TableBuilder.new do |t|
@@ -128,6 +124,25 @@ describe ActiveAdmin::TableBuilder do
     end
     builder.columns.size.should == 3
     builder.columns.first.data.should == :first
+  end
+
+  include ActiveAdminIntegrationSpecHelper
+
+  describe "rendering" do
+    context "when a table of objects" do
+      let(:collection) { [ "Hello World", "Ruby Rocks", "Foo Bar" ] }
+      let(:table_builder) do
+        TableBuilder.new do |t|
+          t.column :to_s
+          t.column :size
+          t.column("Underscored") { @string.underscore }
+        end
+      end
+      let(:table) { TableBuilder::Renderer.new(action_view).to_html(table_builder,collection) }
+      it "should have 3 rows and 1 header row" do
+        table.scan('<tr').size.should == 3
+      end
+    end
   end
     
 end

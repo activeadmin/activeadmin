@@ -45,7 +45,7 @@ module ActiveAdmin
 
       # Configure the index page for the resource
       def index(options = {}, &block)
-        options[:as] ||= TableBuilder
+        options[:as] ||= ::ActiveAdmin::Pages::Index::Table
         self.index_config = options[:as].new(&block)
       end
 
@@ -58,7 +58,7 @@ module ActiveAdmin
       end
 
       def default_index_config
-        TableBuilder.new do |display|
+        ::ActiveAdmin::Pages::Index::Table.new do |display|
           resource_class.content_columns.each do |column|
             display.column column.name.to_sym
           end
