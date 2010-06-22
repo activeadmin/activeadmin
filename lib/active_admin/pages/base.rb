@@ -22,6 +22,11 @@ module ActiveAdmin
         self.class.name
       end
 
+      # Set's the page title for the layout to render
+      def set_page_title
+        set_ivar_on_view "@page_title", title
+      end
+
       def action_items_renderer
         ActiveAdmin::ActionItems::Renderer
       end
@@ -52,6 +57,7 @@ module ActiveAdmin
       end
 
       def to_html
+        set_page_title
         title_bar +
           main_content +
           sidebar

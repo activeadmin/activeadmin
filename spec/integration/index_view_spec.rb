@@ -25,6 +25,10 @@ describe Admin::PostsController, :type => :controller do
         get :index
         response.body.should match(/Displaying \<b\>1\<\/b\> Post/)
       end
+      it "should set the page title" do
+        get :index
+        response.should have_tag("title", "Posts | Site Title")
+      end
     end
     
     describe "with default table" do
