@@ -7,9 +7,18 @@ module ActiveAdmin
       end
 
       def main_content
-        content_tag :dl, :id => "#{resource_class.name.underscore}_attributes", :class => "resource_attributes" do
+        table_options = {
+          :border => 0, 
+          :cellpadding => 0, 
+          :cellspacing => 0,
+          :id => "#{resource_class.name.underscore}_attributes",
+          :class => "resource_attributes"
+        }        
+        content_tag :table, table_options do
           show_view_columns.collect do |attr|
-            content_tag(:dt, attr.to_s.titlecase) + content_tag(:dd, resource.send(attr))
+            content_tag :tr do
+              content_tag(:th, attr.to_s.titlecase) + content_tag(:td, resource.send(attr))
+            end
           end.join
         end
       end

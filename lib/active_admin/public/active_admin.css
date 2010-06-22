@@ -68,7 +68,7 @@ a { color: #27637D; }
 table { width: 100%; margin-bottom: 10px; }
 table tr th { padding: 5px 10px; text-align: left; background-color: #555; color: #eee; }
 table tr th a, table tr th a:link, table tr th a:visited, table tr th a:hover { color: #eee }
-table tr td { padding: 8px 10px; border-bottom: 1px solid #e0e0e0; }
+table tr td { padding: 8px 10px; border-bottom: 1px solid #e0e0e0; text-shadow: #fff 2px 2px 2px; }
 table tr:hover td, table tr.odd:hover td { background-color: #ddd}
 table tr.odd td { background-color: #eee }
 
@@ -86,6 +86,23 @@ label { display: block; }
 .pagination em {background: #333; color: #ddd; font-style: none;}
 .pagination .previous_page, .pagination .next_page { display:none; }
 
+/* -------------------------------------- Resource Attribute Tables */
+table.resource_attributes {
+  font-size: 0.9em;
+}
+table.resource_attributes th, table.resource_attributes td {
+  padding: 5px 10px;
+}
+table.resource_attributes th { 
+  width: 150px; 
+  color: #777;
+  background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
+  background: -moz-linear-gradient(top,  #eee,  #ddd);
+  vertical-align: top;
+}
+table.resource_attributes tr:hover td{
+  background: #fff;
+}
 
 /* -------------------------------------- Status Labels */
 span.status {
