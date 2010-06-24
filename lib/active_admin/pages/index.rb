@@ -59,7 +59,7 @@ module ActiveAdmin
             wrap_with_pagination(collection, :entry_name => resource_name) do
               table_options = {
                 :id => resource_name.underscore.pluralize, 
-                :resource_instance_name => resource_name.underscore,
+                :resource_instance_name => resource_name.underscore.gsub(" ", "_"),
                 :sortable => true,
                 :class => "index_table", 
               }
