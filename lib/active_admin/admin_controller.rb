@@ -14,6 +14,7 @@ module ActiveAdmin
     
     class_inheritable_accessor :index_config
     class_inheritable_accessor :form_config
+    class_inheritable_accessor :show_config
     
     class_inheritable_accessor :active_admin_config
     self.active_admin_config = {
@@ -67,7 +68,7 @@ module ActiveAdmin
       def reset_index_config!
         self.index_config = nil
       end
-
+      
       def default_index_config
         ::ActiveAdmin::Pages::Index::Table.new do |display|
           resource_class.content_columns.each do |column|
@@ -83,6 +84,18 @@ module ActiveAdmin
 
       def default_per_page
         read_inheritable_attribute(:active_admin_config)[:per_page]
+      end
+      
+      #
+      # Show Config
+      #
+      
+      def show(&block)
+        self.show_config = block
+      end
+      
+      def reset_show_config!
+        self.show_config = nil
       end
 
       #

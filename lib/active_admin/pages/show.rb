@@ -7,6 +7,14 @@ module ActiveAdmin
       end
 
       def main_content
+        if controller.show_config
+          instance_eval &controller.show_config
+        else
+          default_main_content
+        end
+      end
+      
+      def default_main_content
         table_options = {
           :border => 0, 
           :cellpadding => 0, 
