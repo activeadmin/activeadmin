@@ -20,6 +20,7 @@ describe Admin::PostsController, :type => :controller do
       
       it "should render default view" do
         response.should have_tag("th", "Title")
+        response.should have_tag('td', 'Hello World')
       end
     end
     
