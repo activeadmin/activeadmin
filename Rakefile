@@ -4,6 +4,10 @@ Bundler.setup
 
 require 'rake'
 
+task :setup do
+  system "bundle exec rails new spec/rails/rails-3.0.0 -m spec/support/rails_template.rb"
+end
+
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec)
 
