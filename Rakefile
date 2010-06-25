@@ -4,7 +4,9 @@ Bundler.setup
 
 require 'rake'
 
+desc "Creates a test rails app for the specs to run against"
 task :setup do
+  system("mkdir spec/rails") unless File.exists?("spec/rails")
   system "bundle exec rails new spec/rails/rails-3.0.0 -m spec/support/rails_template.rb"
 end
 

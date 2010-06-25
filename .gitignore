@@ -20,5 +20,5 @@ pkg
 
 ## PROJECT::SPECIFIC
 .bundle
-spec/rails/**/log/*.log
+spec/rails
 *.sqlite3-journal
