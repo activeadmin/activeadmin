@@ -112,7 +112,7 @@ describe ActiveAdmin::TableBuilder do
       @builder.columns.first.conditional_block.call.should be_true
     end
     it "should accept a lamdba" do
-      @builder.column :username, :if => lambda{ false }
+      @builder.column :username, :if => proc{ false }
       @builder.columns.first.conditional_block.call.should be_false
     end
   end

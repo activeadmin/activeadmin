@@ -166,7 +166,7 @@ module ActiveAdmin
       def default_options
         {
           :sortable => true,
-          :if => lambda{ true }
+          :if => proc{ true }
         }
       end
       

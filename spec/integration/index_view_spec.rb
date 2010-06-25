@@ -112,7 +112,7 @@ describe Admin::PostsController, :type => :controller do
     describe "hiding columns" do
       before(:each) do
         Admin::PostsController.index do |i|
-          i.column :title, :if => lambda{ false }
+          i.column :title, :if => proc{ false }
           i.column :body
         end
         get :index
