@@ -19,6 +19,6 @@ rdoc
 pkg
 
 ## PROJECT::SPECIFIC
-
+.bundle
 spec/rails/**/log/*.log
 *.sqlite3-journal
