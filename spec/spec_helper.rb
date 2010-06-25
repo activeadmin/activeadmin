@@ -32,15 +32,6 @@ if ENV['RAILS'] == '3.0.0'
       assert_tag(options)
     end
   end
-else
-  # Rails 2.3.5
-  RAILS_ROOT = File.expand_path('../rails/rails-2.3.5', __FILE__)
-  require RAILS_ROOT + '/config/environment'
-  require 'spec/rails'
-  require 'spec/autorun'  
-  Spec::Runner.configure do |config|
-
-  end
 end
 
 # Require Active Admin after we load the app env
