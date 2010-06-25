@@ -139,7 +139,7 @@ module ActiveAdmin
       end
       
       def get_resource_name
-        self.active_admin_config[:resource_name] ||= resource_class.human_name.titleize
+        self.active_admin_config[:resource_name] ||= resource_class.model_name.human.titleize
       end
       
     end
