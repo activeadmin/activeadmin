@@ -6,6 +6,7 @@ inject_into_file 'app/models/user.rb', "  has_many :posts, :foreign_key => 'auth
 
 run "rm Gemfile"
 run "rm -r test"
+run "rm -r spec"
 
 rake "db:migrate"
 rake "db:test:prepare"
