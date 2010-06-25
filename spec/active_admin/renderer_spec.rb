@@ -45,4 +45,40 @@ describe ActiveAdmin::Renderer do
       view.instance_variable_get("@my_ivar").should == 'Hello World'
     end    
   end
+
+  describe "rendering HAML" do
+    before do
+      @haml_renderer = Class.new(Renderer)
+      @haml_renderer.class_eval do
+        def hello_world
+          "Hello World"
+        end
+      end
+    end
+    it "should render haml within the context of the renderer" do
+      @haml_renderer.class_eval do
+        def to_html
+          haml <<-HAML
+%p
+  =hello_world
+          HAML
+        end
+      end
+      @renderer = @haml_renderer.new(action_view)
+      @renderer.to_html.should == "<p>\n  Hello World\n</p>\n"
+    end
+
+    it "should allow for indentation at the start of the template" do
+      @haml_renderer.class_eval do
+        def to_html
+          haml <<-HAML
+            %p
+              =hello_world
+          HAML
+        end
+      end
+      @renderer = @haml_renderer.new(action_view)
+      @renderer.to_html.should == "<p>\n  Hello World\n</p>\n"      
+    end
+  end
 end

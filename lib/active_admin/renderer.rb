@@ -19,6 +19,27 @@ module ActiveAdmin
       to_html(*args)
     end
 
+    def haml(template)
+      begin
+        require 'haml' unless defined?(Haml)
+      rescue LoadError
+        raise LoadError, "Please install the HAML gem to use the HAML method with ActiveAdmin"
+      end
+
+      # Find the first non whitespace character in the template
+      indent = template.index(/\S/)
+
+      # Remove the indent if its greater than 0
+      if indent > 0
+        template = template.split("\n").collect do |line|
+          line[indent..-1]
+        end.join("\n")
+      end
+
+      # Render it baby
+      Haml::Engine.new(template).render(self)
+    end
+
     protected
 
     # Although we make a copy of all the instance variables on the way in, it
