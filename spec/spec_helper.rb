@@ -5,13 +5,13 @@ require 'rubygems'
 require "bundler"
 Bundler.setup
 
-TEST_RAILS_VERSION = ENV['RAILS'] || '3.0.0'
-RAILS_ENV = ENV['RAILS_ENV'] = 'test'
+ENV['RAILS'] ||= '3.0.0'
+ENV['RAILS_ENV'] = 'test'
 
-if TEST_RAILS_VERSION == '3.0.0'
+if ENV['RAILS'] == '3.0.0'
   # Rails 3
-  RAILS_ROOT = File.expand_path('../rails/rails-3.0.0', __FILE__)
-  require RAILS_ROOT + '/config/environment'
+  ENV['RAILS_ROOT'] = File.expand_path('../rails/rails-3.0.0', __FILE__)
+  require ENV['RAILS_ROOT'] + '/config/environment'
   require 'rspec/rails'
 
   Rspec.configure do |config|
@@ -50,7 +50,7 @@ require 'active_admin'
 
 module ActiveAdminIntegrationSpecHelper
   def self.included(klass)
-    ActionController::Routing::Routes.draw do |map|
+    Rails.application.routes.draw do |map|
       map.namespace :admin do |admin|
         admin.resources :posts
       end
