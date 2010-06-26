@@ -7,6 +7,10 @@ describe ActiveAdmin::AssetRegistration do
     ActiveAdmin.clear_javascripts!
   end
 
+  after(:each) do
+    ActiveAdmin.register_assets
+  end
+
   it "should register a stylesheet file" do
     ActiveAdmin.register_stylesheet "active_admin.css"
     ActiveAdmin.stylesheets.should == ["active_admin.css"]

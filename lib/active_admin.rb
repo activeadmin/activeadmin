@@ -16,4 +16,17 @@ module ActiveAdmin
 
   extend AssetRegistration
 
+  class << self
+
+    def init!
+      register_assets
+    end
+
+    def register_assets
+      register_stylesheet 'active_admin.css'
+    end    
+
+  end
 end
+
+ActiveAdmin.init!

@@ -5,7 +5,9 @@
  
   <title><%= [@page_title, "Site Title"].join(" | ") %></title>
 
-  <%= stylesheet_link_tag 'active_admin' %>
+  <%= stylesheet_link_tag *ActiveAdmin.stylesheets %>
+  <%= javascript_include_tag *ActiveAdmin.javascripts %>
+
 </head>
 <body>
 <div id="wrapper">
