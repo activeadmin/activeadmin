@@ -12,5 +12,8 @@ module ActiveAdmin
   autoload :Pages,            'active_admin/pages'
   autoload :Sidebar,          'active_admin/sidebar'
   autoload :ActionItems,      'active_admin/action_items'
-  
+  autoload :AssetRegistration,'active_admin/asset_registration'
+
+  extend AssetRegistration
+
 end
