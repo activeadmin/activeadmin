@@ -19,12 +19,8 @@ module ActiveAdmin
   class << self
 
     def init!
-      register_assets
-    end
-
-    def register_assets
       register_stylesheet 'active_admin.css'
-    end    
+    end
 
   end
 end

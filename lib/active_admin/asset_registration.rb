@@ -8,11 +8,11 @@ module ActiveAdmin
     end
 
     def stylesheets
-      @@stylesheets ||= []
+      @stylesheets ||= []
     end
 
     def clear_stylesheets!
-      @@stylesheets = []
+      @stylesheets = []
     end
 
 
@@ -23,11 +23,11 @@ module ActiveAdmin
     end
 
     def javascripts
-      @@javascripts ||= []
+      @javascripts ||= []
     end
 
     def clear_javascripts!
-      @@javascripts = []
+      @javascripts = []
     end
     
   end
