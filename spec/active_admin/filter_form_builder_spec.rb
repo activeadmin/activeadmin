@@ -45,10 +45,10 @@ describe Admin::PostsController do
 
   context "when date" do
     it "should generate a date greater than" do
-      response.should have_tag("input", :attributes => { :name => "q[created_at_gte]" })
+      response.should have_tag("input", :attributes => { :name => "q[created_at_gte]", :class => "datepicker"})
     end
     it "should generate a date less than" do
-      response.should have_tag("input", :attributes => { :name => "q[created_at_lte]" })
+      response.should have_tag("input", :attributes => { :name => "q[created_at_lte]", :class => "datepicker"})
     end
   end
 
