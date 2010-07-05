@@ -113,6 +113,25 @@ span.status {
   background-color: #aaa;
 }  
 
+/* -------------------------------------- Datepicker */
+.ui-datepicker {
+  color: #fff;
+  background: #333;
+  padding: 5px 5px 0 5px;
+  display: none;
+}
+.ui-datepicker table th, .ui-datepicker table td, .ui-datepicker table tr:hover td{
+  background: #333;
+  border: 0;
+  padding: 1px 3px;
+}
+.ui-datepicker table a {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: none;
+}
+
+
 /* -------------------------------------- Formtastic */
 /* -------------------------------------------------------------------------------------------------
 

@@ -20,6 +20,7 @@ module ActiveAdmin
 
     def init!
       register_stylesheet 'active_admin.css'
+      register_javascript 'active_admin.js'
     end
 
   end

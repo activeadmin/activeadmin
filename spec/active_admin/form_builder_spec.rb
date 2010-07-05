@@ -212,6 +212,20 @@ describe Admin::PostsController do
      response.body.scan(regex).size.should == 2
    end
   end
-      
+
+  describe "datepicker input" do
+    before do
+      build_form do |f|
+        f.inputs do
+          f.input :created_at, :as => :datepicker
+        end
+      end
+    end
+    it "should generate a text input with the class of datepicker" do
+      response.should have_tag("input", :attributes => {  :type => "text",
+                                                          :class => "datepicker",
+                                                          :name => "post[created_at]" })
+    end
+  end
 
 end

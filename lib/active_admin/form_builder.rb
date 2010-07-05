@@ -63,6 +63,14 @@ module ActiveAdmin
       @form_buffers.last << content.html_safe
     end
 
+    def datepicker_input(method, options)
+      options = options.dup
+      options[:input_html] ||= {}
+      options[:input_html][:class] = [options[:input_html][:class], "datepicker"].compact.join(' ')
+      options[:input_html][:size] ||= "10"
+      string_input(method, options)
+    end
+
     private
 
     def with_new_form_buffer

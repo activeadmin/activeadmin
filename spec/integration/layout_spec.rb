@@ -12,4 +12,9 @@ describe Admin::PostsController, :type => :controller do
     response.should have_tag("link", :attributes => { :href => '/stylesheets/active_admin.css' })
   end
 
+  it "should include active admin js" do
+    get :index
+    response.should have_tag("script", :attributes => { :src => '/javascripts/active_admin.js' })
+  end
+
 end

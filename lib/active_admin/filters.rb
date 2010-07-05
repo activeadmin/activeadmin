@@ -64,7 +64,7 @@ module ActiveAdmin
 
       def filter_date_text_field(method)
         current_value = @object.send(method)
-        text_field(method, :size => 10, :max => 10, :value => current_value.respond_to?(:strftime) ? current_value.strftime("%Y-%m-%d") : "")
+        text_field(method, :size => 12, :class => "datepicker", :max => 10, :value => current_value.respond_to?(:strftime) ? current_value.strftime("%Y-%m-%d") : "")
       end
 
       def filter_numeric_input(method, options = {})
