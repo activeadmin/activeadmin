@@ -48,18 +48,21 @@ module ActiveAdmin
 
       def filter_string_input(method, options = {})
         field_name = "#{method}_contains"
-        l = label(field_name, "Search #{method.to_s.titlecase}")
-        f = text_field(field_name)
-        l + f
+
+        [ label(field_name, "Search #{method.to_s.titlecase}"),
+          text_field(field_name)
+        ].join("\n").html_safe
       end
 
       def filter_date_range_input(method, options = {})
         gt_field_name = "#{method}_gte"
         lt_field_name = "#{method}_lte"
-        l = label(gt_field_name, method.to_s.titlecase)
-        gt = filter_date_text_field(gt_field_name)
-        lt = filter_date_text_field(lt_field_name)
-        l + gt + " - " + lt
+
+        [ label(gt_field_name, method.to_s.titlecase),
+          filter_date_text_field(gt_field_name),
+          " - ",
+          filter_date_text_field(lt_field_name)
+        ].join("\n").html_safe
       end
 
       def filter_date_text_field(method)
@@ -68,13 +71,17 @@ module ActiveAdmin
       end
 
       def filter_numeric_input(method, options = {})
-        l = label(method)
         filters = numeric_filters_for_method(method, options.delete(:filters) || default_numeric_filters)
         current_filter = current_numeric_scope(filters)
-        s = @template.select_tag '', @template.options_for_select(filters, current_filter), 
+        filter_select = @template.select_tag '', @template.options_for_select(filters, current_filter), 
                                     :onchange => "document.getElementById('#{method}_numeric').name = 'q[' + this.value + ']';"
-        f = text_field current_filter, :size => 10, :id => "#{method}_numeric"
-        l + s + " " + f
+        filter_input = text_field current_filter, :size => 10, :id => "#{method}_numeric"
+
+        [ label(method),
+          filter_select,
+          " ",
+          filter_input
+        ].join("\n").html_safe
       end
       
       def numeric_filters_for_method(method, filters)
@@ -93,10 +100,11 @@ module ActiveAdmin
 
       def filter_select_input(method, options = {})
         input_name = (generate_association_input_name(method).to_s + "_eq").to_sym
-        l = label(input_name, method.to_s.titlecase)
         collection = find_collection_for_column(method, options)
-        f = select(input_name, collection, options.merge(:include_blank => 'Any'))
-        l + f
+
+        [ label(input_name, method.to_s.titlecase),
+          select(input_name, collection, options.merge(:include_blank => 'Any'))
+        ].join("\n").html_safe
       end
 
       # Returns the default filter type for a given attribute
