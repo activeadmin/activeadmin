@@ -42,6 +42,10 @@ describe Admin::PostsController do
     response.body.scan(/q\[title_contains\]/).size.should == 1
   end
 
+  it "should generate a clear filters link" do
+    response.should have_tag("a", "Clear Filters", :attributes => { :class => "clear_filters_btn" })
+  end
+
 
   context "when date" do
     it "should generate a date greater than" do
