@@ -107,6 +107,21 @@ module ActiveAdmin
         ].join("\n").html_safe
       end
 
+      def filter_check_boxes_input(method, options = {})
+        input_name = (generate_association_input_name(method).to_s + "_in").to_sym
+        collection = find_collection_for_column(method, options)
+        selected_values = @object.send(input_name) || []
+        checkboxes = collection.map do |c|
+          label = c.is_a?(Array) ? c.first : c
+          value = c.is_a?(Array) ? c.last : c
+          "<label><input type=\"checkbox\" name=\"q[#{input_name}][]\" value=\"#{value}\" #{selected_values.include?(value) ? "checked" : ""}/> #{label}</label>"
+        end.join("\n").html_safe
+
+        [ label(input_name, method.to_s.titlecase),
+          checkboxes
+        ].join("\n").html_safe
+      end
+
       # Returns the default filter type for a given attribute
       def default_filter_type(method)
         if column = column_for(method)

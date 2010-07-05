@@ -93,6 +93,23 @@ describe Admin::PostsController do
                                                           :value => @jane.id })
       end
     end
+    context "as check boxes" do
+      before do
+        Admin::PostsController.reset_filters!
+        Admin::PostsController.filter :author, :as => :check_boxes
+        get :index
+      end
+      it "should create a check box for each related object" do
+        response.should have_tag("input", :attributes => {
+                                            :name => "q[author_id_in][]",
+                                            :type => "checkbox",
+                                            :value => @john.id })
+        response.should have_tag("input", :attributes => {
+                                            :name => "q[author_id_in][]",
+                                            :type => "checkbox",          
+                                            :value => @jane.id })
+      end      
+    end
   end
 
 end
