@@ -9,11 +9,14 @@ describe Admin::PostsController do
   render_views  
 
   before do
+    @john = User.create :first_name => "John", :last_name => "Doe", :username => "john_doe"
+    @jane = User.create :first_name => "Jane", :last_name => "Doe", :username => "jane_doe"
     Admin::PostsController.reset_filters!
     Admin::PostsController.filter :title
     Admin::PostsController.filter :body
     Admin::PostsController.filter :created_at
     Admin::PostsController.filter :id
+    Admin::PostsController.filter :author
     get :index
   end
 
@@ -71,6 +74,25 @@ describe Admin::PostsController do
                                           :name => "q[id_eq]" })
     end
     it "should select the option which is currently being filtered"
+  end
+
+  context "when belong to" do
+    context "as select" do
+      it "should generate a select" do
+        response.should have_tag("select", :attributes => {
+                                            :name => "q[author_id_eq]"})
+      end
+      it "should set the default text to 'Any'" do
+        response.should have_tag("option", "Any", :attributes => {
+                                                    :value => "" })
+      end
+      it "should create an option for each related object" do
+        response.should have_tag("option", "john_doe", :attributes => {
+                                                          :value => @john.id })
+        response.should have_tag("option", "jane_doe", :attributes => {
+                                                          :value => @jane.id })
+      end
+    end
   end
 
 end

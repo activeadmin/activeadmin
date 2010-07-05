@@ -91,6 +91,14 @@ module ActiveAdmin
         [['Equal To', 'eq'], ['Greater Than', 'gt'], ['Less Than', 'lt']]
       end
 
+      def filter_select_input(method, options = {})
+        input_name = (generate_association_input_name(method).to_s + "_eq").to_sym
+        l = label(input_name, method.to_s.titlecase)
+        collection = find_collection_for_column(method, options)
+        f = select(input_name, collection, options.merge(:include_blank => 'Any'))
+        l + f
+      end
+
       # Returns the default filter type for a given attribute
       def default_filter_type(method)
         if column = column_for(method)
@@ -103,12 +111,21 @@ module ActiveAdmin
             return :numeric
           end
         end
+
+        if reflection = reflection_for(method)
+          return :select if reflection.macro == :belongs_to
+        end
       end
 
       # Returns the column for an attribute on the object being searched
       # if it exists. Otherwise returns nil
       def column_for(method)
         @object.base.columns_hash[method.to_s] if @object.base.respond_to?(:columns_hash)
+      end
+
+      # Returns the association reflection for the method if it exists
+      def reflection_for(method)
+        @object.base.reflect_on_association(method) if @object.base.respond_to?(:reflect_on_association)
       end
 
     end    
