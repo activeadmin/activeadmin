@@ -21,9 +21,28 @@ module ActiveAdmin
         @filters = []
       end
 
+      # Returns a sane set of filters by default for the object
       def default_filters_config
-        resource_class.columns.collect{|c| { :attribute => c.name.to_sym } }
-      end      
+        default_association_filters + default_content_filters
+      end
+
+      # Returns a default set of filters for the associations
+      def default_association_filters
+        if resource_class.respond_to?(:reflections)
+          resource_class.reflections.collect{|name, r| { :attribute => name }}
+        else
+          []
+        end
+      end
+
+      # Returns a default set of filters for the content columns
+      def default_content_filters
+        if resource_class.respond_to?(:content_columns)
+          resource_class.content_columns.collect{|c| { :attribute => c.name.to_sym } }
+        else
+          []
+        end
+      end
     end
 
 
@@ -99,8 +118,9 @@ module ActiveAdmin
       end
 
       def filter_select_input(method, options = {})
+        association_name = method.to_s.gsub(/_id$/, '').to_sym
         input_name = (generate_association_input_name(method).to_s + "_eq").to_sym
-        collection = find_collection_for_column(method, options)
+        collection = find_collection_for_column(association_name, options)
 
         [ label(input_name, method.to_s.titlecase),
           select(input_name, collection, options.merge(:include_blank => 'Any'))
@@ -131,6 +151,9 @@ module ActiveAdmin
           when :string, :text
             return :string
           when :integer
+            return :select if method.to_s =~ /_id$/
+            return :numeric
+          when :float, :decimal
             return :numeric
           end
         end

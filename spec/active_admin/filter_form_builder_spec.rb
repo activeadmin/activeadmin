@@ -8,16 +8,28 @@ describe Admin::PostsController do
   include RSpec::Rails::ControllerExampleGroup
   render_views  
 
+  def reset!
+    Admin::PostsController.reset_filters!
+  end
+
+  def filter(*args)
+    Admin::PostsController.filter *args
+  end
+
   before do
     @john = User.create :first_name => "John", :last_name => "Doe", :username => "john_doe"
     @jane = User.create :first_name => "Jane", :last_name => "Doe", :username => "jane_doe"
-    Admin::PostsController.reset_filters!
-    Admin::PostsController.filter :title
-    Admin::PostsController.filter :body
-    Admin::PostsController.filter :created_at
-    Admin::PostsController.filter :id
-    Admin::PostsController.filter :author
+    reset!
+    filter :title
+    filter :body
+    filter :created_at
+    filter :id
+    filter :author
     get :index
+  end
+
+  after(:each) do
+    reset!
   end
 
   it "should generate a form which submits via get" do
@@ -49,7 +61,6 @@ describe Admin::PostsController do
     response.should have_tag("a", "Clear Filters", :attributes => { :class => "clear_filters_btn" })
   end
 
-
   context "when date" do
     it "should generate a date greater than" do
       response.should have_tag("input", :attributes => { :name => "q[created_at_gte]", :class => "datepicker"})
@@ -77,6 +88,24 @@ describe Admin::PostsController do
   end
 
   context "when belong to" do
+
+    context "when given as the _id attribute name" do
+      before do
+        filter :author_id
+        get :index
+      end
+      it "should not render as an integer" do
+        response.should_not have_tag("input", :attributes => {
+                                                :name => "q[author_id_eq]"})
+      end
+      it "should render as belongs to select" do
+        response.should have_tag("select", :attributes => {
+                                            :name => "q[author_id_eq]"})
+        response.should have_tag("option", "jane_doe", :attributes => {
+                                                          :value => @jane.id })
+      end
+    end
+
     context "as select" do
       it "should generate a select" do
         response.should have_tag("select", :attributes => {
@@ -93,10 +122,10 @@ describe Admin::PostsController do
                                                           :value => @jane.id })
       end
     end
+
     context "as check boxes" do
       before do
-        Admin::PostsController.reset_filters!
-        Admin::PostsController.filter :author, :as => :check_boxes
+        filter :author, :as => :check_boxes
         get :index
       end
       it "should create a check box for each related object" do
@@ -108,7 +137,14 @@ describe Admin::PostsController do
                                             :name => "q[author_id_in][]",
                                             :type => "checkbox",          
                                             :value => @jane.id })
-      end      
+      end
+    end
+  end # belongs to
+
+  describe "default filters" do
+    it "should order by association, then content columns" do
+      attributes = controller.class.default_filters_config.collect{|f| f[:attribute] }
+      attributes.should == [ :author, :title, :body, :published_at, :created_at, :updated_at ]
     end
   end
 
