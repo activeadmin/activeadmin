@@ -93,14 +93,13 @@ for each of the objects in the collection.
   class Admin::PostsController < ActiveAdmin::AdminController
     
     index do |display|
-      display.column("Title"){ link_to @post.title, admin_post_path(@post) }
+      display.column("Title"){|post| link_to post.title, admin_post_path(post) }
     end
 
   end
 
-The block has access to an instance variable named after the model which holds the current
-object while iterating over the collection. You can also access the current object using the
-#resource method and the @resource instance variable
+The block gets called once for each resource in the collection. The resource gets passed into
+the block as an argument.
 
 ==== Sorting
 
@@ -115,7 +114,7 @@ The index views in Active Admin include sorting by default.
 
       # If a column is defined using a block, you must pass the key to turn on sorting. The key
       # is the attribute which gets used to sort objects using Active Record.
-      display.column("Title", :sortable => :title){ link_to @post.title, admin_post_path(@post) }
+      display.column("Title", :sortable => :title){|post| link_to post.title, admin_post_path(post) }
 
       # Turn off sorting by passing false
       display.column :do_not_sort_me, :sortable => false
