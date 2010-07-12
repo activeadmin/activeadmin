@@ -90,7 +90,7 @@ describe Admin::PostsController, :type => :controller do
       before(:each) do
         
         Admin::PostsController.index do |i|
-          i.column('Great Titles'){ link_to @post.title, [:admin, @post] }
+          i.column('Great Titles'){|post| link_to post.title, [:admin, post] }
         end
         Post.create(:title => "Hello World", :body => "Woot Woot")
         get :index

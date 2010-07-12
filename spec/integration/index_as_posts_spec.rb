@@ -48,8 +48,8 @@ describe Admin::PostsController, :type => :controller do
     context "when blocks given as config" do
       before do
         Admin::PostsController.index :as => :posts do |i|
-          i.title { @post.title }
-          i.content { simple_format @post.body }
+          i.title {|post| post.title }
+          i.content {|post| simple_format post.body }
         end
         get :index
       end

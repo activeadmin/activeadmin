@@ -37,7 +37,7 @@ module ActiveAdmin
             options = {
               :name => ""
             }.merge(options)
-            column options[:name] do 
+            column options[:name] do |resource|
               links = link_to "View", resource_path(resource)
               links += " | "
               links += link_to "Edit", edit_resource_path(resource)
@@ -109,8 +109,7 @@ module ActiveAdmin
             when Symbol
               post.send @config.title
             when Proc
-              setup_instance_variables(post)
-              instance_eval(&@config.title)
+              instance_exec(post, &@config.title)
             else
               "#{resource_name} #{post.id}"
             end
@@ -121,8 +120,7 @@ module ActiveAdmin
             when Symbol
               post.send @config.content
             when Proc
-              setup_instance_variables(post)
-              instance_eval(&@config.content)              
+              instance_exec(post, &@config.content)
             else
               ""
             end            
@@ -134,12 +132,6 @@ module ActiveAdmin
               main_content = content_tag(:div, content(post), :class => 'content')
               title + main_content
             end
-          end
-
-          protected
-
-          def setup_instance_variables(post)
-            @resource = post && instance_variable_set("@#{resource_instance_name}", post)
           end
 
         end

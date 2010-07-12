@@ -37,7 +37,6 @@ module ActiveAdmin
     class Renderer < ActiveAdmin::Renderer
       def to_html(builder, collection, options = {})
         @builder, @collection = builder, collection
-        @resource_instance_name = options.delete(:resource_instance_name)
         @sortable = options.delete(:sortable) || false
         table_options = {
           :border => 0, 
@@ -87,16 +86,10 @@ module ActiveAdmin
         @resource
       end
 
-      def resource_instance_name
-        @resource_instance_name ||= @collection.first.class.name.underscore
-      end
-
       def table_cell(column, item)
-        # Setup some nice variables for the block
-        @resource = item && instance_variable_set("@#{resource_instance_name}", item)
         row_content = case column.data
                       when Proc
-                        instance_eval(&column.data)
+                        instance_exec(item, &column.data)
                       when Symbol, String
                         item.send(column.data.to_sym)
                       else

@@ -135,7 +135,7 @@ describe ActiveAdmin::TableBuilder do
         TableBuilder.new do |t|
           t.column :to_s
           t.column :size
-          t.column("Underscored") { @string.underscore }
+          t.column("Underscored"){|string| string.underscore }
         end
       end
       let(:table) { TableBuilder::Renderer.new(action_view).to_html(table_builder,collection) }
