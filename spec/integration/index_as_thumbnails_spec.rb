@@ -1,0 +1,43 @@
+require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+
+include ActiveAdminIntegrationSpecHelper
+
+describe Admin::PostsController, :type => :controller do
+
+  include RSpec::Rails::ControllerExampleGroup
+  render_views
+
+  before do
+    Admin::PostsController.reset_index_config!
+    @post = Post.create(:title => "Hello World", :body => "This is the hello world post")
+
+    # Create a method for a fake thumbnail url
+    class Post < ActiveRecord::Base
+      def thumbnail_url
+        title.downcase.gsub(' ', '-') + ".jpg"
+      end
+    end
+  end
+
+  describe "displaying the index as thumbnails" do
+
+    context "when only setting the image path" do
+      before do
+        Admin::PostsController.index :as => :thumbnails do |i|
+          i.image :thumbnail_url
+        end
+        get :index
+      end
+      it "should generate an image" do
+        response.should have_tag("img", :attributes => {
+                                          :src => "hello-world.jpg",
+                                          :width => "200", :height => "200"})
+      end
+      it "should create a link to the resource" do
+        response.should have_tag("a", :attributes => {
+                                        :href => "/admin/posts/#{@post.id}" })
+      end
+    end
+
+  end
+end
