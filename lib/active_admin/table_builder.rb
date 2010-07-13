@@ -87,14 +87,7 @@ module ActiveAdmin
       end
 
       def table_cell(column, item)
-        row_content = case column.data
-                      when Proc
-                        instance_exec(item, &column.data)
-                      when Symbol, String
-                        item.send(column.data.to_sym)
-                      else
-                        ""
-                      end
+        row_content = call_method_or_proc_on(item, column.data) || ""
         content_tag :td, row_content.to_s.html_safe
       end
           

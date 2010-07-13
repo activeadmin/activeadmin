@@ -37,13 +37,7 @@ module ActiveAdmin
           end
 
           def thumbnail_url(item)
-            case @config.image
-            when Symbol
-              item.send @config.image
-            when Proc
-              setup_instance_variables(item)
-              instance_eval(&@config.image)
-            end
+            call_method_or_proc_on(item, @config.image)
           end          
         end
       end

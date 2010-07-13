@@ -36,25 +36,11 @@ module ActiveAdmin
           end
 
           def title_content(post)
-            case @config.title
-            when Symbol
-              post.send @config.title
-            when Proc
-              instance_exec(post, &@config.title)
-            else
-              "#{resource_name} #{post.id}"
-            end
+            call_method_or_proc_on(post, @config.title) || "#{resource_name} #{post.id}"
           end
 
           def content(post)
-            case @config.content
-            when Symbol
-              post.send @config.content
-            when Proc
-              instance_exec(post, &@config.content)
-            else
-              ""
-            end            
+            call_method_or_proc_on(post, @config.content) || ""
           end
 
           def render_post(post)
