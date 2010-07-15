@@ -32,7 +32,7 @@ module ActiveAdmin
       register_javascript 'active_admin.js'
     end
 
-    def register(resource, options = {})
+    def register(resource, options = {}, &block)
       opts = resources[resource] = default_options.merge(options)
       opts[:namespace_module] = opts[:namespace].to_s.camelcase if opts[:namespace]
       opts[:controller_name] = [opts[:namespace_module], resource.name.pluralize + "Controller"].compact.join('::')
@@ -42,6 +42,8 @@ module ActiveAdmin
       end
 
       eval "class ::#{opts[:controller_name]} < ActiveAdmin::AdminController; end"
+
+      opts[:controller_name].constantize.class_eval(&block) if block_given?
     end
 
     def default_options

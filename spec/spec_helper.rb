@@ -47,15 +47,13 @@ require 'active_admin'
 module ActiveAdminIntegrationSpecHelper
   def self.included(klass)
     Rails.application.routes.draw do |map|
-      map.namespace :admin do |admin|
-        admin.resources :posts
+      namespace :admin do
+        resources :posts
       end
     end
   end
-  module ::Admin
-    class PostsController < ::ActiveAdmin::AdminController
-    end
-  end
+
+  ActiveAdmin.register Post
 
   # Returns a fake action view instance to use with our renderers
   def action_view(assigns = {})

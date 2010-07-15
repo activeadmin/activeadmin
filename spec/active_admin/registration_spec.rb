@@ -7,7 +7,7 @@ describe "Registering an object to administer" do
       ActiveAdmin.register Category
     end
     it "should store the registered configuration" do
-      ActiveAdmin.resources.keys.should == [Category]
+      ActiveAdmin.resources.keys.should include(Category)
     end
     it "should create a new controller in the default namespace" do
       defined?(Admin::CategoriesController).should be_true
@@ -29,6 +29,16 @@ describe "Registering an object to administer" do
     end
     it "should register the controller" do
       defined?(CategoriesController).should be_true
+    end
+  end
+
+  context "with a block configuration" do
+    it "should be evaluated in the controller" do
+      lambda {
+        ActiveAdmin.register Category do
+          raise "Hello World"
+        end
+      }.should raise_error
     end
   end
 
