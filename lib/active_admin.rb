@@ -16,12 +16,36 @@ module ActiveAdmin
 
   extend AssetRegistration
 
+  # The default namespace to put controllers and routes in
+  mattr_accessor :default_namespace
+  @@default_namespace = :admin
+
+  # A hash of all the configurations for all registered resources
+  mattr_accessor :resources
+  @@resources = {}
+
   class << self
 
     def init!
       register_stylesheet 'active_admin.css'
       register_javascript 'active_admin_vendor.js'
       register_javascript 'active_admin.js'
+    end
+
+    def register(resource, options = {})
+      opts = resources[resource] = default_options.merge(options)
+      opts[:namespace_module] = opts[:namespace].to_s.camelcase if opts[:namespace]
+      opts[:controller_name] = [opts[:namespace_module], resource.name.pluralize + "Controller"].compact.join('::')
+      
+      if opts[:namespace] && !const_defined?(opts[:namespace_module])
+        eval "module ::#{opts[:namespace_module]}; end"
+      end
+
+      eval "class ::#{opts[:controller_name]} < ActiveAdmin::AdminController; end"
+    end
+
+    def default_options
+      { :namespace => default_namespace }
     end
 
   end
