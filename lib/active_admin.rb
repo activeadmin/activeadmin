@@ -20,7 +20,7 @@ module ActiveAdmin
   mattr_accessor :default_namespace
   @@default_namespace = :admin
 
-  # A hash of all the configurations for all registered resources
+  # A hash of configurations for each of the registered resources
   mattr_accessor :resources
   @@resources = {}
 
