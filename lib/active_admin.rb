@@ -70,11 +70,15 @@ module ActiveAdmin
     end
 
     def register(resource, options = {}, &block)
-      opts = resources[resource.name] = default_options.merge(options)
+      opts = default_options.merge(options)
       opts[:namespace_module] = opts[:namespace].to_s.camelcase if opts[:namespace]
       opts[:controller_name] = [opts[:namespace_module], resource.name.pluralize + "Controller"].compact.join('::')
 
       opts[:class] = resource
+
+      # Store the namespaced resource in @@resources
+      key = [opts[:namespace_module], opts[:class].name].join('::')
+      resources[key] = opts
       
       if opts[:namespace] && !const_defined?(opts[:namespace_module])
         eval "module ::#{opts[:namespace_module]}; end"

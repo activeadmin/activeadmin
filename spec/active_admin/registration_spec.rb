@@ -6,8 +6,8 @@ describe "Registering an object to administer" do
     before do
       ActiveAdmin.register Category
     end
-    it "should store the registered configuration" do
-      ActiveAdmin.resources.keys.should include('Category')
+    it "should store the namespaced registered configuration" do
+      ActiveAdmin.resources.keys.should include('Admin::Category')
     end
     it "should create a new controller in the default namespace" do
       defined?(Admin::CategoriesController).should be_true
