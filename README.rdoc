@@ -21,28 +21,35 @@ Active Admin is very young. Although the code is well tested and is being used i
 the project is under heavy development. Once we get it to a point that has a relatively stable api,
 we will begin numbered releases starting with a 0.1 release.
 
-
 == Installation (Rails 3)
 
 Add the following to your Gemfile:
 
   gem 'formtastic',     :git => "git://github.com/justinfrench/formtastic.git", :branch => 'rails3'
   gem 'will_paginate',  :git => "git://github.com/mislav/will_paginate.git", :branch => 'rails3'
-  gem 'active_admin',   :git => "git://github.com/gregbell/active_admin.git"
   gem 'meta_search',    :git => "git://github.com/ernie/meta_search.git"
+  gem 'active_admin',   :git => "git://github.com/gregbell/active_admin.git"
 
+Then, run the installer:
+
+  rails generate active_admin
+
+This will create an initializer which is used for configuring defaults used by Active Admin as well
+as a new folder at app/active_admin to put all your admin configurations. Note: All ruby files in 
+the Active Admin load path get loaded into the rails application.
 
 == Usage
 
-Currently, to use the features of Active Admin, create a controller for which you would like
-administer a model and subclass the ActiveAdmin::AdminController. Let's build up an example
-using a Post model.
+Let's build up an example using a Post model and the provided admin generator.
 
-  # /app/controllers/admin/posts_controller.rb
-  class Admin::PostsController < ActiveAdmin::AdminController
-  end
+  rails generate admin posts
   
-That's all you need to get a full CRUD, beautiful administration interfaces.
+That's all you need to get a full CRUD, beautiful administration interface!
+
+The generator will create a new file app/active_admin/posts.rb that will
+look like the following:
+
+  ActiveAdmin.register Post
 
 === Customize the Index Page
 
@@ -54,7 +61,7 @@ show, edit and delete the object. There are many ways to customize what gets dis
 If all you need to do is change the columns which get displayed, you can do so by passing
 them to the columns method:
 
-  class Admin::PostsController < ActiveAdmin::AdminController
+  ActiveAdmin.regiser Post do
     
     index do |display|
       display.columns :title, :comments_count, :created_at
@@ -64,7 +71,7 @@ them to the columns method:
 
 Or you can pass them in individually:
 
-  class Admin::PostsController < ActiveAdmin::AdminController
+  ActiveAdmin.regiser Post do
     
     index do |display|
 
@@ -90,7 +97,7 @@ You can pass a block to a column which will then be rendered within the context 
 for each of the objects in the collection.
 
   
-  class Admin::PostsController < ActiveAdmin::AdminController
+  ActiveAdmin.regiser Post do
     
     index do |display|
       display.column("Title"){|post| link_to post.title, admin_post_path(post) }
@@ -105,7 +112,7 @@ the block as an argument.
 
 The index views in Active Admin include sorting by default. 
   
-  class Admin::PostsController < ActiveAdmin::AdminController
+  ActiveAdmin.regiser Post do
     
     index do |display|
 
@@ -129,7 +136,7 @@ The index views in Active Admin include sorting by default.
 Active Admin gives complete control over the output of the form by creating a thin DSL on top of
 the fabulous DSL created by Formtastic (http://github.com/justinfrench/formtastic).
   
-  class Admin::PostsController < ActiveAdmin::AdminController
+  ActiveAdmin.regiser Post do
     
     form do |f|
       f.inputs "Details" do
