@@ -22,4 +22,9 @@ describe Admin::PostsController, :type => :controller do
     response.should have_tag("script", :attributes => { :src => '/javascripts/active_admin.js' })
   end
 
+  it "should display the site title" do
+    get :index
+    response.should have_tag("h1", ActiveAdmin.site_title)
+  end
+
 end

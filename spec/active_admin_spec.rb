@@ -22,4 +22,15 @@ describe ActiveAdmin do
   #  end
   #end
   
+  it "should default the application name" do
+    ActiveAdmin.site_title.should == "Rails300"
+  end
+  
+  it "should set the site title" do
+    old_title = ActiveAdmin.site_title.dup
+    ActiveAdmin.site_title = "New Title"
+    ActiveAdmin.site_title.should == "New Title"
+    ActiveAdmin.site_title = old_title
+  end
+  
 end

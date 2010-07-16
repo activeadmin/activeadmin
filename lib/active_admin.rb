@@ -28,6 +28,10 @@ module ActiveAdmin
   mattr_accessor :resources
   @@resources = {}
 
+  # The title which get's displayed in the main layout
+  mattr_accessor :site_title
+  @@site_title = Rails.application.class.name.split("::").first.titlecase
+
   # Load paths for admin configurations. Add folders to this load path
   # to load up other resources for administration. External gems can
   # include thier paths in this load path to provide active_admin UIs
