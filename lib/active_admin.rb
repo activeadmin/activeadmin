@@ -16,7 +16,11 @@ module ActiveAdmin
 
   extend AssetRegistration
 
-  # The default namespace to put controllers and routes in
+  # The default namespace to put controllers and routes inside. Set this
+  # in config/initializers/active_admin.rb using:
+  # 
+  #   ActiveAdmin.default_namespace = :super_admin
+  #
   mattr_accessor :default_namespace
   @@default_namespace = :admin
 
@@ -24,18 +28,49 @@ module ActiveAdmin
   mattr_accessor :resources
   @@resources = {}
 
+  # Load paths for admin configurations. Add folders to this load path
+  # to load up other resources for administration. External gems can
+  # include thier paths in this load path to provide active_admin UIs
+  mattr_accessor :load_paths
+  @@load_paths = [File.expand_path('app/active_admin', Rails.root)]
+
+  # Stores if everything has been loaded or we need to reload
+  @@loaded = false
+
   class << self
 
+    def setup
+      yield self
+    end
+
     def init!
+      # Register the default assets
       register_stylesheet 'active_admin.css'
       register_javascript 'active_admin_vendor.js'
       register_javascript 'active_admin.js'
+
+      # Dispatch request which gets triggered once in production
+      # and on every require in development mode
+      ActionDispatch::Callbacks.to_prepare :active_admin do
+        ActiveAdmin.unload!
+        # Because every time we load, the routes may have changed
+        # we must ensure to load the routes each request (in dev)
+        Rails::Application.routes_reloader.reload!
+      end
+    end
+
+    # The default options which get applied when a new object is
+    # registered with ActiveAdmin
+    def default_options
+      { :namespace => default_namespace }
     end
 
     def register(resource, options = {}, &block)
-      opts = resources[resource] = default_options.merge(options)
+      opts = resources[resource.name] = default_options.merge(options)
       opts[:namespace_module] = opts[:namespace].to_s.camelcase if opts[:namespace]
       opts[:controller_name] = [opts[:namespace_module], resource.name.pluralize + "Controller"].compact.join('::')
+
+      opts[:class] = resource
       
       if opts[:namespace] && !const_defined?(opts[:namespace_module])
         eval "module ::#{opts[:namespace_module]}; end"
@@ -46,8 +81,67 @@ module ActiveAdmin
       opts[:controller_name].constantize.class_eval(&block) if block_given?
     end
 
-    def default_options
-      { :namespace => default_namespace }
+    # Returns true if all the configuration files have been loaded.
+    def loaded?
+      @@loaded
+    end
+
+    # Removes all the controllers that were defined by registering
+    # resources for administration.
+    #
+    # We remove them, then load them on each request in development
+    # to allow for changes without having to restart the server.
+    def unload!
+      resources.each do |name, config|
+        parent = (config[:namespace_module] || 'Object').constantize
+        parent.send :remove_const, config[:controller_name].split('::').last
+      end
+      @@loaded = false
+    end
+
+    # Loads all of the ruby files that are within the load path of
+    # ActiveAdmin.load_paths. This should load all of the administration
+    # UIs so that they are available for the router to proceed.
+    #
+    # The files are only loaded if we haven't already loaded all the files
+    # and they aren't marked for re-loading. To mark the files for re-loading
+    # you must first call ActiveAdmin.unload!
+    def load!
+      unless loaded?
+        load_paths.flatten.compact.uniq.each do |path|
+          Dir["#{path}/*.rb"].each{|f| load f }
+        end
+        @@loaded = true
+        return true
+      end
+      false
+    end
+
+    # Creates all the necessary routes for the ActiveAdmin configurations
+    #
+    # Use this within the routes.rb file:
+    #
+    #   Application.routes.draw do |map|
+    #     ActiveAdmin.routes(self)
+    #   end
+    #
+    def routes(router)
+      # Ensure that all the configurations (which define the routes)
+      # are all loaded
+      load!
+
+      # Now define the routes for each resource
+      router.instance_exec(resources) do |admin_resources|
+        admin_resources.each do |name, config|
+          if config[:namespace]
+            namespace config[:namespace] do
+              resources config[:class].name.pluralize.underscore
+            end
+          else
+            resources config[:class].name.pluralize.underscore
+          end
+        end
+      end
     end
 
   end

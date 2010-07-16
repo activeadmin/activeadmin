@@ -5,6 +5,34 @@ require 'rubygems'
 require "bundler"
 Bundler.setup
 
+# Setup autoloading of ActiveAdmin and the load path
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+autoload :ActiveAdmin, 'active_admin'
+
+module ActiveAdminIntegrationSpecHelper
+
+  def self.load!
+    ActiveAdmin.register Post
+  end
+
+  # Sometimes we need to reload the routes within
+  # the application to test them out
+  def reload_routes!
+    Rails::Application.routes_reloader.reload!
+  end
+
+  # Returns a fake action view instance to use with our renderers
+  def action_view(assigns = {})
+    controller = ActionView::TestCase::TestController.new
+    ActionView::Base.send :include, ActionView::Helpers
+    ActionView::Base.send :include, ActiveAdmin::ViewHelpers
+    view = ActionView::Base.new(ActionController::Base.view_paths, assigns, controller)
+    view._router = controller._router
+    view
+  end  
+
+end
+
 ENV['RAILS'] ||= '3.0.0'
 ENV['RAILS_ENV'] = 'test'
 
@@ -18,6 +46,16 @@ if ENV['RAILS'] == '3.0.0'
 
   require ENV['RAILS_ROOT'] + '/config/environment'
   require 'rspec/rails'
+
+  # Setup Some Admin stuff for us to play with
+  ActiveAdminIntegrationSpecHelper.load!
+
+  # Force the routes to be reloaded
+  Rails::Application.routes_reloader.reload!
+
+  # Don't add asset cache timestamps. Makes it easy to integration
+  # test for the presence of an asset file
+  ENV["RAILS_ASSET_ID"] = ''
 
   Rspec.configure do |config|
     config.use_transactional_fixtures = true
@@ -39,29 +77,4 @@ if ENV['RAILS'] == '3.0.0'
   end
 end
 
-# Require Active Admin after we load the app env
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'active_admin'
 
-
-module ActiveAdminIntegrationSpecHelper
-  def self.included(klass)
-    Rails.application.routes.draw do |map|
-      namespace :admin do
-        resources :posts
-      end
-    end
-  end
-
-  ActiveAdmin.register Post
-
-  # Returns a fake action view instance to use with our renderers
-  def action_view(assigns = {})
-    controller = ActionView::TestCase::TestController.new
-    ActionView::Base.send :include, ActionView::Helpers
-    ActionView::Base.send :include, ActiveAdmin::ViewHelpers
-    view = ActionView::Base.new(ActionController::Base.view_paths, assigns, controller)
-    view._router = controller._router
-    view
-  end  
-end
