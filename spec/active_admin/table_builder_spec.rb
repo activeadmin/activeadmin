@@ -129,20 +129,34 @@ describe ActiveAdmin::TableBuilder do
   include ActiveAdminIntegrationSpecHelper
 
   describe "rendering" do
-    context "when a table of objects" do
-      let(:collection) { [ "Hello World", "Ruby Rocks", "Foo Bar" ] }
-      let(:table_builder) do
-        TableBuilder.new do |t|
-          t.column :to_s
-          t.column :size
-          t.column("Underscored"){|string| string.underscore }
-        end
+
+    let(:collection) { [ "Hello World", "Ruby Rocks", "Foo Bar" ] }
+    let(:table_builder) do
+      TableBuilder.new do |t|
+        t.column :to_s
+        t.column :size
+        t.column("Underscored"){|string| string.underscore }
       end
-      let(:table) { TableBuilder::Renderer.new(action_view).to_html(table_builder,collection) }
+    end
+    let(:table) { TableBuilder::Renderer.new(action_view).to_html(table_builder,collection) }
+
+    context "when a table of objects" do
       it "should have 3 rows and 1 header row" do
         table.scan('<tr').size.should == 3
       end
     end
+
+    context "when unescaped html" do
+      let(:table_builder) do
+        TableBuilder.new do |t|
+          t.column(''){ "<h2>scary html</h2>" }
+        end
+      end
+      it "should escape the html" do
+        table.should_not include("<h2>scary html</h2>")
+      end
+    end
+
   end
     
 end
