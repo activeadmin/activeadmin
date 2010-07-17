@@ -108,8 +108,8 @@ module ActiveAdmin
     # to allow for changes without having to restart the server.
     def unload!
       resources.each do |name, config|
-        parent = (config[:namespace_module] || 'Object').constantize
-        parent.send :remove_const, config[:controller_name].split('::').last
+        parent = (config.namespace_module_name || 'Object').constantize
+        parent.send :remove_const, config.controller_name.split('::').last
       end
       @@loaded = false
     end
