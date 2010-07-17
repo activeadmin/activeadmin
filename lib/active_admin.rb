@@ -13,6 +13,8 @@ module ActiveAdmin
   autoload :Sidebar,          'active_admin/sidebar'
   autoload :ActionItems,      'active_admin/action_items'
   autoload :AssetRegistration,'active_admin/asset_registration'
+  autoload :Menu,             'active_admin/menu'
+  autoload :MenuItem,         'active_admin/menu_item'
 
   extend AssetRegistration
 
