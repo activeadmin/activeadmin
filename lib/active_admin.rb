@@ -15,6 +15,7 @@ module ActiveAdmin
   autoload :AssetRegistration,'active_admin/asset_registration'
   autoload :Menu,             'active_admin/menu'
   autoload :MenuItem,         'active_admin/menu_item'
+  autoload :ResourceConfig,   'active_admin/resource_config'
 
   extend AssetRegistration
 
@@ -43,6 +44,10 @@ module ActiveAdmin
   # Stores if everything has been loaded or we need to reload
   @@loaded = false
 
+  # A hash containing a menu for each of our namespaces
+  mattr_accessor :menus
+  @@menus = {}
+
   class << self
 
     def setup
@@ -65,30 +70,30 @@ module ActiveAdmin
       end
     end
 
-    # The default options which get applied when a new object is
-    # registered with ActiveAdmin
-    def default_options
-      { :namespace => default_namespace }
-    end
-
+    # Registers a brand new configuration for the given resource.
+    #
+    # TODO: Setup docs for registration options
     def register(resource, options = {}, &block)
-      opts = default_options.merge(options)
-      opts[:namespace_module] = opts[:namespace].to_s.camelcase if opts[:namespace]
-      opts[:controller_name] = [opts[:namespace_module], resource.name.pluralize + "Controller"].compact.join('::')
-
-      opts[:class] = resource
+      config = ResourceConfig.new(resource, options)
 
       # Store the namespaced resource in @@resources
-      key = [opts[:namespace_module], opts[:class].name].join('::')
-      resources[key] = opts
+      resources[[config.namespace_module_name, resource.name].compact.join('::')] = config
       
-      if opts[:namespace] && !const_defined?(opts[:namespace_module])
-        eval "module ::#{opts[:namespace_module]}; end"
+      # Generate the module, controller and eval contents of block inside controller
+      eval "module ::#{config.namespace_module_name}; end" if config.namespace
+      eval "class ::#{config.controller_name} < ActiveAdmin::AdminController; end"
+      config.controller.class_eval(&block) if block_given?
+      
+      # Find the menu this resource should be added to
+      menu = menus[config.menu_name] ||= Menu.new
+
+      # Add a new menu item if it doesn't exist yet
+      unless menu[config.menu_item_name]
+        menu.add(config.menu_item_name, config.route_collection_path)
       end
 
-      eval "class ::#{opts[:controller_name]} < ActiveAdmin::AdminController; end"
-
-      opts[:controller_name].constantize.class_eval(&block) if block_given?
+      # Return the config
+      config
     end
 
     # Returns true if all the configuration files have been loaded.
@@ -143,12 +148,12 @@ module ActiveAdmin
       # Now define the routes for each resource
       router.instance_exec(resources) do |admin_resources|
         admin_resources.each do |name, config|
-          if config[:namespace]
-            namespace config[:namespace] do
-              resources config[:class].name.pluralize.underscore
+          if config.namespace
+            namespace config.namespace do
+              resources config.resource.name.pluralize.underscore
             end
           else
-            resources config[:class].name.pluralize.underscore
+            resources config.resource.name.pluralize.underscore
           end
         end
       end

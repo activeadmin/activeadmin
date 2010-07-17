@@ -32,5 +32,9 @@ describe ActiveAdmin do
     ActiveAdmin.site_title.should == "New Title"
     ActiveAdmin.site_title = old_title
   end
+
+  it "should have a set of menus" do
+    ActiveAdmin.menus.should be_an_instance_of(Hash)
+  end
   
 end

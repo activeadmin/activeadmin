@@ -1,0 +1,64 @@
+module ActiveAdmin
+  class ResourceConfig
+
+    attr_reader :resource
+
+    def initialize(resource, options = {})
+      @resource = resource
+      @options = default_options.merge(options)
+    end
+
+    # Returns the namespace for the resource
+    def namespace
+      @options[:namespace]
+    end
+
+    # If the resource is namespaced, this returns a string
+    # which represents the name of the ruby module.
+    #
+    # If the resource is not namespaced it returns nil
+    def namespace_module_name
+      return nil unless namespace
+      namespace.to_s.camelcase
+    end
+
+    # Returns a properly formatted controller name for this
+    # resource within its namespace
+    def controller_name
+      [namespace_module_name, resource.name.pluralize + "Controller"].compact.join('::')
+    end
+
+    # Returns the controller for this resource
+    def controller
+      @controller ||= controller_name.constantize
+    end
+
+    # Returns the routes prefix for this resource
+    def route_prefix
+      controller.resources_configuration[:self][:route_prefix]
+    end
+
+    # Returns a symbol for the route to use to get to the
+    # collection of this resource
+    def route_collection_path
+      [route_prefix, controller.resources_configuration[:self][:route_collection_name], 'path'].compact.join('_').to_sym
+    end
+
+    # Returns which menu to add the item to
+    def menu_name
+      namespace || :root
+    end
+
+    # Returns the name to be displayed in the menu for this resource
+    def menu_item_name
+      @menu_item_name ||= resource.name.titlecase.pluralize
+    end
+
+    private
+
+    def default_options
+      { :namespace => ActiveAdmin.default_namespace }
+    end
+
+  end
+end
