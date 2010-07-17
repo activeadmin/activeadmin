@@ -91,7 +91,6 @@ module ActiveAdmin
         l(row_content) if [Date, DateTime, Time].include?(row_content)
         content_tag :td, row_content
       end
-          
 
     end
 
