@@ -61,7 +61,7 @@ show, edit and delete the object. There are many ways to customize what gets dis
 If all you need to do is change the columns which get displayed, you can do so by passing
 them to the columns method:
 
-  ActiveAdmin.regiser Post do
+  ActiveAdmin.register Post do
     
     index do |display|
       display.columns :title, :comments_count, :created_at
@@ -71,7 +71,7 @@ them to the columns method:
 
 Or you can pass them in individually:
 
-  ActiveAdmin.regiser Post do
+  ActiveAdmin.register Post do
     
     index do |display|
 
@@ -97,7 +97,7 @@ You can pass a block to a column which will then be rendered within the context 
 for each of the objects in the collection.
 
   
-  ActiveAdmin.regiser Post do
+  ActiveAdmin.register Post do
     
     index do |display|
       display.column("Title"){|post| link_to post.title, admin_post_path(post) }
@@ -112,7 +112,7 @@ the block as an argument.
 
 The index views in Active Admin include sorting by default. 
   
-  ActiveAdmin.regiser Post do
+  ActiveAdmin.register Post do
     
     index do |display|
 
@@ -136,7 +136,7 @@ The index views in Active Admin include sorting by default.
 Active Admin gives complete control over the output of the form by creating a thin DSL on top of
 the fabulous DSL created by Formtastic (http://github.com/justinfrench/formtastic).
   
-  ActiveAdmin.regiser Post do
+  ActiveAdmin.register Post do
     
     form do |f|
       f.inputs "Details" do
