@@ -57,6 +57,10 @@ module ActiveAdmin
   mattr_accessor :menus
   @@menus = {}
 
+  # The class to use to render the tabs in the interface
+  mattr_accessor :tabs_renderer
+  @@tabs_renderer = ActiveAdmin::TabsRenderer
+
   class << self
 
     def setup
