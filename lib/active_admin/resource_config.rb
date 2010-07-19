@@ -2,12 +2,13 @@ module ActiveAdmin
   class ResourceConfig
 
     attr_reader :resource
-    attr_accessor :resource_name
+    attr_accessor :resource_name, :sort_order
 
     def initialize(resource, options = {})
       @resource = resource
       @options = default_options.merge(options)
       @resource_name = options[:as]
+      @sort_order = @options[:sort_order]
     end
 
     # Returns the namespace for the resource
@@ -69,7 +70,10 @@ module ActiveAdmin
     private
 
     def default_options
-      { :namespace => ActiveAdmin.default_namespace }
+      {
+        :namespace  => ActiveAdmin.default_namespace,
+        :sort_order => ActiveAdmin.default_sort_order,
+      }
     end
 
   end

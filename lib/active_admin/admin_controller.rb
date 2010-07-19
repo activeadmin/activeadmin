@@ -202,7 +202,7 @@ module ActiveAdmin
     end
 
     def sort_order(chain)
-      params[:order] ||= ActiveAdmin.default_sort_order
+      params[:order] ||= active_admin_config.sort_order
       if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
         chain.order("#{$1} #{$2}")
       else

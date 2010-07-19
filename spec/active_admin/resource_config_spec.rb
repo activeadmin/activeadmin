@@ -73,5 +73,21 @@ module ActiveAdmin
       end
     end
 
+    describe "sort order" do
+      subject { resource_config.sort_order }
+
+      context "by default" do
+        let(:resource_config) { config }
+
+        it { should == ActiveAdmin.default_sort_order }
+      end
+
+      context "when default_sort_order is set" do
+        let(:sort_order)      { "name_desc"                      }
+        let(:resource_config) { config :sort_order => sort_order }
+
+        it { should == sort_order }
+      end
+    end
   end
 end
