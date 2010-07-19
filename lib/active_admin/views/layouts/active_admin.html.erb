@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
  
-  <title><%= [@page_title, "Site Title"].join(" | ") %></title>
+  <title><%= [@page_title, ActiveAdmin.site_title].join(" | ") %></title>
 
   <%= stylesheet_link_tag *ActiveAdmin.stylesheets %>
   <%= javascript_include_tag *ActiveAdmin.javascripts %>
