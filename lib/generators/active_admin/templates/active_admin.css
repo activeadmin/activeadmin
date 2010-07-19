@@ -64,6 +64,16 @@ a { color: #27637D; }
 }
 .action_items a:hover { background: #333; color: #ddd; }
 
+/* -------------------------------------- Tabs */
+ul#tabs { margin: 0; padding: 0; font-size: 1.3em; }
+ul#tabs li {
+  display: inline;
+  margin: 0 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+ul#tabs li.current a { text-decoration: none; }
+
 /* -------------------------------------- Tables */
 table { width: 100%; margin-bottom: 10px; }
 table tr th { padding: 5px 10px; text-align: left; background-color: #555; color: #eee; }

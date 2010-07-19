@@ -2,6 +2,7 @@ module ActiveAdmin
   class ResourceConfig
 
     attr_reader :resource
+    attr_accessor :resource_name
 
     def initialize(resource, options = {})
       @resource = resource
@@ -11,6 +12,11 @@ module ActiveAdmin
     # Returns the namespace for the resource
     def namespace
       @options[:namespace]
+    end
+
+    # Returns the name to call this resource
+    def resource_name
+      @resource_name ||= resource.name.titleize
     end
 
     # If the resource is namespaced, this returns a string

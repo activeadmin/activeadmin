@@ -1,0 +1,35 @@
+module ActiveAdmin
+
+  # Renders out a horizontal list of tabs.
+  class TabsRenderer < Renderer
+
+    # Pass in an ActiveAdmin::Menu and it will display the first level
+    # of navigation as a horizontal list of tabs
+    def to_html(menu, options = {})
+      @options = default_options.merge(options)
+      content_tag :ul, :id => @options[:id] do
+        menu.items.collect do |item|
+          render_item(item)
+        end.join
+      end
+    end
+
+    protected
+
+    def render_item(item)
+      content_tag :li, :id => item.dom_id, :class => ("current" if current?(item)) do
+        link_to item.name, item.url
+      end
+    end
+
+    # Returns true if the menu item matches the begining of the current url
+    def current?(menu_item)
+      request.path =~ /^#{menu_item.url}/
+    end
+
+    def default_options
+      { :id => "tabs" }
+    end
+
+  end
+end

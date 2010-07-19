@@ -16,11 +16,6 @@ module ActiveAdmin
     class_inheritable_accessor :form_config
     class_inheritable_accessor :show_config
     
-    class_inheritable_accessor :active_admin_config
-    self.active_admin_config = {
-      :per_page => 30,
-      :default_sort_order => 'id_desc'
-    }
 
     include ::ActiveAdmin::Breadcrumbs
     include ::ActiveAdmin::Sidebar
@@ -39,6 +34,9 @@ module ActiveAdmin
     before_filter :setup_pagination_for_csv
 
     class << self
+      # Reference to the ResourceConfig object which initialized
+      # this controller
+      attr_accessor :active_admin_config
      
       #
       # Index Config
@@ -78,14 +76,6 @@ module ActiveAdmin
         end
       end
 
-      def default_per_page=(per_page)
-        read_inheritable_attribute(:active_admin_config)[:per_page] = per_page
-      end
-
-      def default_per_page
-        read_inheritable_attribute(:active_admin_config)[:per_page]
-      end
-      
       #
       # Show Config
       #
@@ -159,11 +149,11 @@ module ActiveAdmin
       end
       
       def set_resource_name(name)
-        self.active_admin_config[:resource_name] = name
+        self.active_admin_config.resource_name = name
       end
       
       def get_resource_name
-        self.active_admin_config[:resource_name] ||= resource_class.model_name.human.titleize
+        self.active_admin_config.resource_name
       end
       
     end
@@ -229,11 +219,11 @@ module ActiveAdmin
     end
 
     def paginate(chain)
-      chain.paginate(:page => params[:page], :per_page => @per_page || self.class.default_per_page)
+      chain.paginate(:page => params[:page], :per_page => @per_page || ActiveAdmin.default_per_page)
     end
 
     def sort_order(chain)
-      params[:order] ||= active_admin_config[:default_sort_order]
+      params[:order] ||= ActiveAdmin.default_sort_order
       if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
         chain.order("#{$1} #{$2}")
       else

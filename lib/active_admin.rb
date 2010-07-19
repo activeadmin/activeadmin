@@ -5,6 +5,7 @@ module ActiveAdmin
   autoload :Renderer,         'active_admin/renderer'
   autoload :TableBuilder,     'active_admin/table_builder'
   autoload :FormBuilder,      'active_admin/form_builder'
+  autoload :TabsRenderer,     'active_admin/tabs_renderer'
   autoload :AdminController,  'active_admin/admin_controller'
   autoload :ViewHelpers,      'active_admin/view_helpers'
   autoload :Breadcrumbs,      'active_admin/breadcrumbs'
@@ -26,6 +27,14 @@ module ActiveAdmin
   #
   mattr_accessor :default_namespace
   @@default_namespace = :admin
+
+  # The default number of resources to display on index pages
+  mattr_accessor :default_per_page
+  @@default_per_page = 30
+
+  # The default sort order for index pages
+  mattr_accessor :default_sort_order
+  @@default_sort_order = 'id_desc'
 
   # A hash of configurations for each of the registered resources
   mattr_accessor :resources
@@ -82,6 +91,7 @@ module ActiveAdmin
       # Generate the module, controller and eval contents of block inside controller
       eval "module ::#{config.namespace_module_name}; end" if config.namespace
       eval "class ::#{config.controller_name} < ActiveAdmin::AdminController; end"
+      config.controller.active_admin_config = config
       config.controller.class_eval(&block) if block_given?
       
       # Find the menu this resource should be added to
