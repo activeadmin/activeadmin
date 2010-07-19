@@ -178,6 +178,7 @@ WillPaginate::
 * Philippe Creux  http://github.com/pcreux
 * Sam Vincent     http://github.com/samvincent
 * Matt Vague      http://github.com/mattvague
+* Dan Kubb        http://github.com/dkubb
 
 
 == Roadmap & Issue Tracking
