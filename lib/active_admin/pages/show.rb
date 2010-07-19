@@ -3,7 +3,7 @@ module ActiveAdmin
     class Show < Base
 
       def title
-        "#{resource_name} ##{resource.id}"
+        "#{active_admin_config.resource_name} ##{resource.id}"
       end
 
       def main_content

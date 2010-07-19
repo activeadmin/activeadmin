@@ -3,7 +3,7 @@ module ActiveAdmin
     class New < Base
 
       def title
-        "New #{resource_name}"
+        "New #{active_admin_config.resource_name}"
       end
 
       def main_content

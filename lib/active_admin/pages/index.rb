@@ -3,7 +3,7 @@ module ActiveAdmin
 
     class Index < Base
       def title
-        resources_name
+        active_admin_config.plural_resource_name
       end
 
       # Render's the index configuration that was set in the

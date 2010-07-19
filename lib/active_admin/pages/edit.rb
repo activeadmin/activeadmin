@@ -3,7 +3,7 @@ module ActiveAdmin
     class Edit < Base
 
       def title
-        "Edit #{resource_name}"
+        "Edit #{active_admin_config.resource_name}"
       end
 
       def main_content

@@ -7,6 +7,7 @@ module ActiveAdmin
     def initialize(resource, options = {})
       @resource = resource
       @options = default_options.merge(options)
+      @resource_name = options[:as]
     end
 
     # Returns the namespace for the resource
@@ -17,6 +18,11 @@ module ActiveAdmin
     # Returns the name to call this resource
     def resource_name
       @resource_name ||= resource.name.titleize
+    end
+
+    # Returns the plural version of this resource
+    def plural_resource_name
+      @plural_resource_name ||= resource_name.pluralize
     end
 
     # If the resource is namespaced, this returns a string
@@ -57,7 +63,7 @@ module ActiveAdmin
 
     # Returns the name to be displayed in the menu for this resource
     def menu_item_name
-      @menu_item_name ||= resource.name.titlecase.pluralize
+      @menu_item_name ||= plural_resource_name
     end
 
     private

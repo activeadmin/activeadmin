@@ -7,6 +7,20 @@ module ActiveAdmin
       ResourceConfig.new(Category, options)
     end
 
+    describe "resource name" do
+      it "should return a pretty name" do
+        config.resource_name.should == "Category"
+      end
+      it "should return the plural version" do
+        config.plural_resource_name.should == "Categories"
+      end
+      context "when the :as option is give" do
+        it "should return the custom name" do
+          config(:as => "My Category").resource_name.should == "My Category"
+        end
+      end
+    end
+
     describe "namespace" do
       it "should return the default namspace if none given" do
         config.namespace.should == ActiveAdmin.default_namespace

@@ -28,7 +28,7 @@ module ActiveAdmin
 
           def to_html(config, collection)
             @config = config
-            wrap_with_pagination(collection, :entry_name => resource_name) do
+            wrap_with_pagination(collection, :entry_name => active_admin_config.resource_name) do
               content_tag :div do
                 collection.collect{|item| render_post(item) }.join
               end
@@ -36,7 +36,7 @@ module ActiveAdmin
           end
 
           def title_content(post)
-            call_method_or_proc_on(post, @config.title) || "#{resource_name} #{post.id}"
+            call_method_or_proc_on(post, @config.title) || "#{active_admin_config.resource_name} #{post.id}"
           end
 
           def content(post)

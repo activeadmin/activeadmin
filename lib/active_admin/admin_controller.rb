@@ -25,7 +25,7 @@ module ActiveAdmin
     add_breadcrumb "Dashboard", "/admin"
     before_filter :add_section_breadcrumb
     def add_section_breadcrumb
-      add_breadcrumb resources_name, collection_path 
+      add_breadcrumb active_admin_config.plural_resource_name, collection_path 
     end
 
     respond_to :html, :xml, :json
@@ -134,27 +134,6 @@ module ActiveAdmin
           f.buttons
         end
       end
-
-
-      #
-      # Naming
-      #
-
-      def resource_name(name)
-        if name.nil?
-          get_resource_name
-        else
-          set_resource_name(name)
-        end
-      end
-      
-      def set_resource_name(name)
-        self.active_admin_config.resource_name = name
-      end
-      
-      def get_resource_name
-        self.active_admin_config.resource_name
-      end
       
     end
 
@@ -166,13 +145,13 @@ module ActiveAdmin
     # Default Action Item Links
     action_item :only => :show do
       if controller.public_methods.include?('edit')
-        link_to "Edit #{resource_name}", edit_resource_path(resource)
+        link_to "Edit #{active_admin_config.resource_name}", edit_resource_path(resource)
       end
     end
 
     action_item :except => :new do
       if controller.public_methods.include?('new')
-        link_to "New #{resource_name}", new_resource_path
+        link_to "New #{active_admin_config.resource_name}", new_resource_path
       end
     end
 
@@ -258,11 +237,6 @@ module ActiveAdmin
       @form_config ||= self.class.form_config
     end
     helper_method :form_config
-    
-    def resource_name
-      self.class.get_resource_name
-    end
-    helper_method :resource_name
 
     # Returns the renderer class to use for the given action.
     #

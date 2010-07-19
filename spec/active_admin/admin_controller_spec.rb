@@ -29,12 +29,4 @@ describe ActiveAdmin::AdminController do
     end
     
   end
-  
-  it "should set the resource name" do
-    Admin::PostsController.resource_name "My Post"
-    Admin::PostsController.new.send(:resource_name).should == "My Post"
-    Admin::PostsController.set_resource_name nil # Set it back for other specs
-  end
-  
-  
 end

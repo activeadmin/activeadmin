@@ -41,10 +41,10 @@ module ActiveAdmin
         class Renderer < ::ActiveAdmin::Renderer
 
           def to_html(config, collection)
-            wrap_with_pagination(collection, :entry_name => resource_name) do
+            wrap_with_pagination(collection, :entry_name => active_admin_config.resource_name) do
               table_options = {
-                :id => resource_name.underscore.pluralize, 
-                :resource_instance_name => resource_name.underscore.gsub(" ", "_"),
+                :id => active_admin_config.plural_resource_name.underscore, 
+                :resource_instance_name => active_admin_config.resource_name.underscore.gsub(" ", "_"),
                 :sortable => true,
                 :class => "index_table", 
               }
