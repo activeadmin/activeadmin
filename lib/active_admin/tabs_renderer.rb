@@ -7,14 +7,18 @@ module ActiveAdmin
     # of navigation as a horizontal list of tabs
     def to_html(menu, options = {})
       @options = default_options.merge(options)
+      render_menu(menu)
+    end
+
+    protected
+
+    def render_menu(menu)
       content_tag :ul, :id => @options[:id] do
         menu.items.collect do |item|
           render_item(item)
         end.join
       end
     end
-
-    protected
 
     def render_item(item)
       content_tag :li, :id => item.dom_id, :class => ("current" if current?(item)) do
