@@ -27,6 +27,28 @@ describe Admin::PostsController, :type => :controller do
     response.should have_tag("h1", ActiveAdmin.site_title)
   end
 
+  describe "csrf meta tags" do
+    # Turn on then off protect against forgery so that our tests
+    # will render the required meta tags
+    before(:each) do
+      class Admin::PostsController
+        def protect_against_forgery_with_mock?; true; end
+        alias_method_chain :protect_against_forgery?, :mock
+      end
+    end
+    after(:each) do
+      Admin::PostsController.send :alias_method, :protect_against_forgery?, :protect_against_forgery_without_mock?
+    end
+    it "should include the csrf-param meta tag" do
+      get :index
+      response.should have_tag("meta", :attributes => { :name => "csrf-param" })
+    end
+    it "should include the csrf-token meta tag" do
+      get :index
+      response.should have_tag("meta", :attributes => { :name => "csrf-token" })
+    end
+  end
+
   describe "tabs" do
     context "when index" do
       before do
