@@ -27,7 +27,7 @@ describe Admin::PostsController, :type => :controller do
       end
       it "should set the page title" do
         get :index
-        response.should have_tag("title", "Posts | Site Title")
+        response.should have_tag("title", "Posts | Rails300")
       end
     end
     
