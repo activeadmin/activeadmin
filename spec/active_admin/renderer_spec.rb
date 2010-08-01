@@ -4,8 +4,6 @@ include ActiveAdmin
 
 describe ActiveAdmin::Renderer do
 
-  include ActiveAdminIntegrationSpecHelper
-
   context "when initiailizing from a view" do
     it "should have a view" do
       view = action_view

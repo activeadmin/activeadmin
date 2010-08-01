@@ -1,12 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
-include ActiveAdminIntegrationSpecHelper
 
-# Actually Describes ActiveAdmin::FormBuilder, but RSpec 2 has
-# issues setting this up without a whole bunch of hackery
-describe Admin::PostsController do
 
-  include RSpec::Rails::ControllerExampleGroup
-  render_views  
+describe_with_render ActiveAdmin::FormBuilder do
 
   def reset!
     Admin::PostsController.reset_filters!

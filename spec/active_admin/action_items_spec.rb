@@ -1,11 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
-include ActiveAdminIntegrationSpecHelper
 
-# Describes "ActiveAdmin::ActionItems"
-describe Admin::PostsController do
-
-  include RSpec::Rails::ControllerExampleGroup
-  render_views  
+describe_with_render ActiveAdmin::ActionItems do
 
   # Store the config and set it back after each spec so that we
   # dont mess with other specs

@@ -1,11 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-include ActiveAdminIntegrationSpecHelper
-
-describe Admin::PostsController, :type => :controller do
-
-  include RSpec::Rails::ControllerExampleGroup
-  render_views
+describe_with_render "Index as Table" do
 
   before(:each) do
     Admin::PostsController.reset_index_config!

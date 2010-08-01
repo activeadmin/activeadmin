@@ -21,6 +21,18 @@ module ActiveAdminIntegrationSpecHelper
     Rails::Application.routes_reloader.reload!
   end
 
+  # Sets up a describe block where you can render controller 
+  # actions. Uses the Admin::PostsController as the subject
+  # for the describe block
+  def describe_with_render(*args, &block)
+    describe *args do
+      include RSpec::Rails::ControllerExampleGroup
+      render_views  
+      metadata[:behaviour][:describes] = Admin::PostsController
+      module_eval &block
+    end
+  end
+
   # Returns a fake action view instance to use with our renderers
   def action_view(assigns = {})
     controller = ActionView::TestCase::TestController.new
@@ -49,6 +61,7 @@ if ENV['RAILS'] == '3.0.0'
 
   # Setup Some Admin stuff for us to play with
   ActiveAdminIntegrationSpecHelper.load!
+  include ActiveAdminIntegrationSpecHelper
 
   # Force the routes to be reloaded
   Rails::Application.routes_reloader.reload!
