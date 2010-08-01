@@ -80,37 +80,15 @@ module ActiveAdmin
       # Show Config
       #
       
-      def show(&block)
-        self.show_config = block
+      def show(options = {}, &block)
+        self.show_config = options.merge(:block => block)
       end
       
       def reset_show_config!
         self.show_config = nil
       end
 
-      def show_config
-        read_inheritable_attribute(:show_config) || default_show_config
-      end
-
       # By default, we'll render a table with all the resources attributes
-      def default_show_config
-        Proc.new do
-          table_options = {
-            :border => 0, 
-            :cellpadding => 0, 
-            :cellspacing => 0,
-            :id => "#{resource_class.name.underscore}_attributes",
-            :class => "resource_attributes"
-          }        
-          content_tag :table, table_options do
-            show_view_columns.collect do |attr|
-              content_tag :tr do
-                content_tag(:th, attr.to_s.titlecase) + content_tag(:td, resource.send(attr))
-              end
-            end.join
-          end        
-        end
-      end
 
       #
       # Form Config
