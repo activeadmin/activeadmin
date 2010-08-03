@@ -34,6 +34,18 @@ module ActiveAdmin
       # Reference to the ResourceConfig object which initialized
       # this controller
       attr_accessor :active_admin_config
+
+      def set_page_config(page, config)
+        active_admin_config.page_configs[page] = config
+      end
+
+      def get_page_config(page)
+        active_admin_config.page_configs[page]
+      end
+
+      def reset_page_config!(page)
+        active_admin_config.page_configs[page] = nil
+      end
      
       #
       # Index Config
@@ -42,32 +54,27 @@ module ActiveAdmin
       # Configure the index page for the resource
       def index(options = {}, &block)
         options[:as] ||= :table
-        active_admin_config.page_configs[:index] = ActiveAdmin::PageConfig.new(options, &block)
+        set_page_config :index, ActiveAdmin::PageConfig.new(options, &block)
       end
 
-      def index_config
-        active_admin_config.page_configs[:index]
-      end
-      
-      def reset_index_config!
-        active_admin_config.page_configs[:index] = nil
-      end
-      
-      #
-      # Show Config
-      #
-      
+      # Configure the show page for the resource
       def show(options = {}, &block)
-        active_admin_config.page_configs[:show] = ::ActiveAdmin::PageConfig.new(options, &block)
+        set_page_config :show, ActiveAdmin::PageConfig.new(options, &block)
       end
 
-      def show_config
-        active_admin_config.page_configs[:show]
+      # Define the getting and re-setter for each configurable page
+      [:index, :show].each do |page|
+        # eg: index_config
+        define_method :"#{page}_config" do
+          get_page_config(page)
+        end
+
+        # eg: reset_index_config!
+        define_method :"reset_#{page}_config!" do
+          reset_page_config! page
+        end
       end
-      
-      def reset_show_config!
-        active_admin_config.page_configs[:show] = nil
-      end
+
 
       #
       # Form Config
