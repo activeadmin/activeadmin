@@ -2,7 +2,7 @@ module ActiveAdmin
   module Pages
     class Index
 
-      class Posts < Renderer
+      class Blog < Renderer
 
         def to_html(page_config, collection)
           @page_config = page_config

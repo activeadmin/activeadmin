@@ -7,7 +7,7 @@ module ActiveAdmin
       # actually gets rendered in the main content and configured
       # through the :as option when configuring your index
       autoload :Table,      'active_admin/pages/index/table'
-      autoload :Posts,      'active_admin/pages/index/posts'
+      autoload :Blog,      'active_admin/pages/index/blog'
       autoload :Thumbnails, 'active_admin/pages/index/thumbnails'
 
       def title

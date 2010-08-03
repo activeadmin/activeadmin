@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe_with_render "Index as Posts" do
+describe_with_render "Index as Blog" do
 
   before do
     Admin::PostsController.reset_index_config!
@@ -11,7 +11,7 @@ describe_with_render "Index as Posts" do
 
     context "when no configuration block given" do
       before do
-        Admin::PostsController.index :as => :posts 
+        Admin::PostsController.index :as => :blog 
         get :index
       end      
 
@@ -26,7 +26,7 @@ describe_with_render "Index as Posts" do
 
     context "when a simple config given" do
       before do
-        Admin::PostsController.index :as => :posts do |i|
+        Admin::PostsController.index :as => :blog do |i|
           i.title :title
           i.content :body
         end
@@ -42,7 +42,7 @@ describe_with_render "Index as Posts" do
 
     context "when blocks given as config" do
       before do
-        Admin::PostsController.index :as => :posts do |i|
+        Admin::PostsController.index :as => :blog do |i|
           i.title {|post| post.title }
           i.content {|post| simple_format post.body }
         end
