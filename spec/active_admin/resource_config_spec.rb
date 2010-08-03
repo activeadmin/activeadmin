@@ -4,7 +4,7 @@ module ActiveAdmin
   describe ResourceConfig do
 
     def config(options = {})
-      ResourceConfig.new(Category, options)
+      @config ||= ResourceConfig.new(Category, options)
     end
 
     describe "resource name" do
@@ -70,6 +70,18 @@ module ActiveAdmin
       end
       it "should return the route collection path" do
         config.route_collection_path.should == :admin_categories_path
+      end
+    end
+
+    describe "page configs" do
+      context "when initialized" do
+        it "should be empty" do
+          config.page_configs.should == {}
+        end
+      end
+      it "should be set-able" do
+        config.page_configs[:index] = "hello world"
+        config.page_configs[:index].should == "hello world"
       end
     end
 

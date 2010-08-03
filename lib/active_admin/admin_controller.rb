@@ -12,10 +12,7 @@ module ActiveAdmin
 
     layout 'active_admin'
     
-    class_inheritable_accessor :index_config
     class_inheritable_accessor :form_config
-    class_inheritable_accessor :show_config
-    
 
     include ::ActiveAdmin::Breadcrumbs
     include ::ActiveAdmin::Sidebar
@@ -45,27 +42,32 @@ module ActiveAdmin
       # Configure the index page for the resource
       def index(options = {}, &block)
         options[:as] ||= :table
-        self.index_config = ::ActiveAdmin::PageConfig.new(options, &block)
+        active_admin_config.page_configs[:index] = ActiveAdmin::PageConfig.new(options, &block)
+      end
+
+      def index_config
+        active_admin_config.page_configs[:index]
       end
       
       def reset_index_config!
-        self.index_config = nil
+        active_admin_config.page_configs[:index] = nil
       end
       
-
       #
       # Show Config
       #
       
       def show(options = {}, &block)
-        self.show_config = ::ActiveAdmin::PageConfig.new(options, &block)
+        active_admin_config.page_configs[:show] = ::ActiveAdmin::PageConfig.new(options, &block)
+      end
+
+      def show_config
+        active_admin_config.page_configs[:show]
       end
       
       def reset_show_config!
-        self.show_config = nil
+        active_admin_config.page_configs[:show] = nil
       end
-
-      # By default, we'll render a table with all the resources attributes
 
       #
       # Form Config
@@ -187,6 +189,11 @@ module ActiveAdmin
       @index_config ||= self.class.index_config
     end
     helper_method :index_config
+
+    def show_config
+      @show_config ||= self.class.show_config
+    end
+    helper_method :show_config
 
     def form_config
       @form_config ||= self.class.form_config

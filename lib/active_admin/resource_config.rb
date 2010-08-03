@@ -1,7 +1,7 @@
 module ActiveAdmin
   class ResourceConfig
 
-    attr_reader :resource
+    attr_reader :resource, :page_configs
     attr_accessor :resource_name, :sort_order
 
     def initialize(resource, options = {})
@@ -9,6 +9,7 @@ module ActiveAdmin
       @options = default_options.merge(options)
       @resource_name = options[:as]
       @sort_order = @options[:sort_order]
+      @page_configs = {}
     end
 
     # Returns the namespace for the resource

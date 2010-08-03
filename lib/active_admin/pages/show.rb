@@ -3,7 +3,7 @@ module ActiveAdmin
     class Show < Base
 
       def config
-        controller.show_config || ::ActiveAdmin::PageConfig.new
+        active_admin_config.page_configs[:show] || ::ActiveAdmin::PageConfig.new
       end
 
       def title
