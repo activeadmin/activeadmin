@@ -3,7 +3,7 @@ module ActiveAdmin
     class Show < Base
 
       def config
-        controller.show_config || {}
+        controller.show_config || ::ActiveAdmin::PageConfig.new
       end
 
       def title
@@ -18,9 +18,9 @@ module ActiveAdmin
       end
 
       def main_content
-        if config[:block]
+        if config.block
           # Eval the show config from the controller
-          instance_eval &config[:block]
+          instance_eval &config.block
         else
           default_main_content
         end

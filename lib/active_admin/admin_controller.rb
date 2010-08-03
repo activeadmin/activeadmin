@@ -45,43 +45,20 @@ module ActiveAdmin
       # Configure the index page for the resource
       def index(options = {}, &block)
         options[:as] ||= :table
-        self.index_config = find_index_config_class(options[:as]).new(&block)
-      end
-
-      def find_index_config_class(symbol_or_class)
-        case symbol_or_class
-        when Symbol
-          ::ActiveAdmin::Pages::Index.const_get(symbol_or_class.to_s.camelcase)
-        when Class
-          symbol_or_class
-        else
-          raise ArgumentError, "'as' requires a class or a symbol"
-        end
-      end
-
-      def index_config
-        read_inheritable_attribute(:index_config) || default_index_config
+        self.index_config = ::ActiveAdmin::PageConfig.new(options, &block)
       end
       
       def reset_index_config!
         self.index_config = nil
       end
       
-      def default_index_config
-        ::ActiveAdmin::Pages::Index::Table.new do |display|
-          resource_class.content_columns.each do |column|
-            display.column column.name.to_sym
-          end
-          display.default_actions
-        end
-      end
 
       #
       # Show Config
       #
       
       def show(options = {}, &block)
-        self.show_config = options.merge(:block => block)
+        self.show_config = ::ActiveAdmin::PageConfig.new(options, &block)
       end
       
       def reset_show_config!

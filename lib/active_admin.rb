@@ -10,6 +10,7 @@ module ActiveAdmin
   autoload :ViewHelpers,      'active_admin/view_helpers'
   autoload :Breadcrumbs,      'active_admin/breadcrumbs'
   autoload :Filters,          'active_admin/filters'
+  autoload :PageConfig,       'active_admin/page_config'
   autoload :Pages,            'active_admin/pages'
   autoload :Sidebar,          'active_admin/sidebar'
   autoload :ActionItems,      'active_admin/action_items'
