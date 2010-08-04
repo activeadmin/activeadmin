@@ -26,41 +26,41 @@ module ActiveAdmin
   # 
   #   ActiveAdmin.default_namespace = :super_admin
   #
-  mattr_accessor :default_namespace
   @@default_namespace = :admin
+  mattr_accessor :default_namespace
 
   # The default number of resources to display on index pages
-  mattr_accessor :default_per_page
   @@default_per_page = 30
+  mattr_accessor :default_per_page
 
   # The default sort order for index pages
-  mattr_accessor :default_sort_order
   @@default_sort_order = 'id_desc'
+  mattr_accessor :default_sort_order
 
   # A hash of configurations for each of the registered resources
-  mattr_accessor :resources
   @@resources = {}
+  mattr_accessor :resources
 
   # The title which get's displayed in the main layout
-  mattr_accessor :site_title
   @@site_title = Rails.application.class.name.split("::").first.titlecase
+  mattr_accessor :site_title
 
   # Load paths for admin configurations. Add folders to this load path
   # to load up other resources for administration. External gems can
   # include thier paths in this load path to provide active_admin UIs
-  mattr_accessor :load_paths
   @@load_paths = [File.expand_path('app/active_admin', Rails.root)]
+  mattr_accessor :load_paths
 
   # Stores if everything has been loaded or we need to reload
   @@loaded = false
 
   # A hash containing a menu for each of our namespaces
-  mattr_accessor :menus
   @@menus = {}
+  mattr_accessor :menus
 
   # The class to use to render the tabs in the interface
-  mattr_accessor :tabs_renderer
   @@tabs_renderer = ActiveAdmin::TabsRenderer
+  mattr_accessor :tabs_renderer
 
   class << self
 
