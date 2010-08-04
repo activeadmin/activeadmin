@@ -18,7 +18,7 @@ module ActiveAdminIntegrationSpecHelper
   # Sometimes we need to reload the routes within
   # the application to test them out
   def reload_routes!
-    Rails::Application.routes_reloader.reload!
+    Rails.application.reload_routes!
   end
 
   # Sets up a describe block where you can render controller 
@@ -38,9 +38,7 @@ module ActiveAdminIntegrationSpecHelper
     controller = ActionView::TestCase::TestController.new
     ActionView::Base.send :include, ActionView::Helpers
     ActionView::Base.send :include, ActiveAdmin::ViewHelpers
-    view = ActionView::Base.new(ActionController::Base.view_paths, assigns, controller)
-    view._router = controller._router
-    view
+    ActionView::Base.new(ActionController::Base.view_paths, assigns, controller)
   end  
 
 end
@@ -64,7 +62,7 @@ if ENV['RAILS'] == '3.0.0'
   include ActiveAdminIntegrationSpecHelper
 
   # Force the routes to be reloaded
-  Rails::Application.routes_reloader.reload!
+  Rails.application.reload_routes!
 
   # Don't add asset cache timestamps. Makes it easy to integration
   # test for the presence of an asset file

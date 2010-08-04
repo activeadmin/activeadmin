@@ -80,7 +80,7 @@ module ActiveAdmin
         ActiveAdmin.unload!
         # Because every time we load, the routes may have changed
         # we must ensure to load the routes each request (in dev)
-        Rails::Application.routes_reloader.reload!
+        Rails.application.reload_routes!
       end
     end
 
