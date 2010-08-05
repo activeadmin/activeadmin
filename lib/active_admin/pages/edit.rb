@@ -7,7 +7,13 @@ module ActiveAdmin
       end
 
       def main_content
-        active_admin_form_for resource, :url => resource_path(resource), &form_config
+        config = self.form_config.dup
+        config.delete(:block)
+        config.reverse_merge!({
+          :url => resource_path(resource)
+        })
+
+        active_admin_form_for resource, config, &form_config[:block]
       end
 
     end

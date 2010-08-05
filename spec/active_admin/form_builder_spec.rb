@@ -44,6 +44,19 @@ describe_with_render ActiveAdmin::FormBuilder do
     end
   end
 
+  describe "passing in options" do
+    before do
+      Admin::PostsController.form :html => { :multipart => true } do |f|
+        f.inputs :title
+        f.buttons
+      end
+      get :new
+    end
+    it "should pass the options on to the form" do
+      response.should have_tag("form", :attributes => { :enctype => "multipart/form-data" })
+    end
+  end
+
   context "with default settings" do
     before do
       Admin::PostsController.reset_form_config!

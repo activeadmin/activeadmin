@@ -81,7 +81,8 @@ module ActiveAdmin
       #
 
       def form(options = {}, &block)
-        self.form_config = block
+        options[:block] = block
+        self.form_config = options
       end
 
       def form_config
@@ -93,10 +94,12 @@ module ActiveAdmin
       end
 
       def default_form_config
-        lambda do |f|
+        config = {}
+        config[:block] = lambda do |f|
           f.inputs
           f.buttons
         end
+        config
       end
       
     end
