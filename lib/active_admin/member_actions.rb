@@ -1,7 +1,7 @@
 module ActiveAdmin
 
   # Member Actions give you the functionality of defining both the
-  # action and the route directly from your ActiveAdmnin registration
+  # action and the route directly from your ActiveAdmin registration
   # block.
   #
   # For example:
