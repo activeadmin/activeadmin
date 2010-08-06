@@ -14,10 +14,11 @@ module ActiveAdmin
     
     class_inheritable_accessor :form_config
 
-    include ::ActiveAdmin::Breadcrumbs
-    include ::ActiveAdmin::Sidebar
-    include ::ActiveAdmin::ActionItems
-    include ::ActiveAdmin::Filters
+    include ActiveAdmin::Breadcrumbs
+    include ActiveAdmin::Sidebar
+    include ActiveAdmin::ActionItems
+    include ActiveAdmin::Filters
+    include ActiveAdmin::MemberActions
 
     add_breadcrumb "Dashboard", "/admin"
     before_filter :add_section_breadcrumb

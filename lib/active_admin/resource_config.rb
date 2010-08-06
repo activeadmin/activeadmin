@@ -1,7 +1,7 @@
 module ActiveAdmin
   class ResourceConfig
 
-    attr_reader :resource, :page_configs
+    attr_reader :resource, :page_configs, :member_actions
     attr_accessor :resource_name, :sort_order
 
     def initialize(resource, options = {})
@@ -10,6 +10,7 @@ module ActiveAdmin
       @resource_name = options[:as]
       @sort_order = @options[:sort_order]
       @page_configs = {}
+      @member_actions = []
     end
 
     # Returns the namespace for the resource
@@ -66,6 +67,10 @@ module ActiveAdmin
     # Returns the name to be displayed in the menu for this resource
     def menu_item_name
       @menu_item_name ||= plural_resource_name
+    end
+
+    def clear_member_actions!
+      @member_actions = []
     end
 
     private

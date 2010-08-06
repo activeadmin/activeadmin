@@ -18,6 +18,7 @@ module ActiveAdmin
   autoload :Menu,             'active_admin/menu'
   autoload :MenuItem,         'active_admin/menu_item'
   autoload :ResourceConfig,   'active_admin/resource_config'
+  autoload :MemberActions,    'active_admin/member_actions'
 
   extend AssetRegistration
 
@@ -163,12 +164,27 @@ module ActiveAdmin
       # Now define the routes for each resource
       router.instance_exec(resources) do |admin_resources|
         admin_resources.each do |name, config|
+          
+          # Define the block the will get eval'd within the namespace
+          route_definition_block = Proc.new do
+            resources config.resource.name.pluralize.underscore do
+
+              # Define any member actions
+              member do
+                config.member_actions.each do |action|
+                  # eg: get :comment
+                  send(action.http_verb, action.name)
+                end
+              end
+            end
+          end
+
           if config.namespace
             namespace config.namespace do
-              resources config.resource.name.pluralize.underscore
+              instance_eval(&route_definition_block)
             end
           else
-            resources config.resource.name.pluralize.underscore
+            instance_eval(&route_definition_block)
           end
         end
       end
