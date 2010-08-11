@@ -19,7 +19,7 @@ module ActiveAdmin
   # You can treat everything within the block as a standard Rails controller
   # action.
   # 
-  module MemberActions
+  module ActionBuilder
 
     def self.included(base)
       base.extend ClassMethods
@@ -27,16 +27,26 @@ module ActiveAdmin
 
     module ClassMethods
       def member_action(name, options = {}, &block)
-        active_admin_config.member_actions << MemberAction.new(name, options)
+        active_admin_config.member_actions << ControllerAction.new(name, options)
         define_method(name, &block)
       end
 
       def clear_member_actions!
         active_admin_config.clear_member_actions!
       end
+
+
+      def collection_action(name, options = {}, &block)
+        active_admin_config.collection_actions << ControllerAction.new(name, options)
+        define_method(name, &block)
+      end
+
+      def clear_collection_actions!
+        active_admin_config.clear_collection_actions!
+      end
     end
 
-    class MemberAction
+    class ControllerAction
       attr_reader :name
       def initialize(name, options = {})
         @name, @options = name, options

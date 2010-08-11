@@ -18,7 +18,7 @@ module ActiveAdmin
     include ActiveAdmin::Sidebar
     include ActiveAdmin::ActionItems
     include ActiveAdmin::Filters
-    include ActiveAdmin::MemberActions
+    include ActiveAdmin::ActionBuilder
 
     add_breadcrumb "Dashboard", "/admin"
     before_filter :add_section_breadcrumb

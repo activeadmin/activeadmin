@@ -1,7 +1,7 @@
 module ActiveAdmin
   class ResourceConfig
 
-    attr_reader :resource, :page_configs, :member_actions
+    attr_reader :resource, :page_configs, :member_actions, :collection_actions
     attr_accessor :resource_name, :sort_order
 
     def initialize(resource, options = {})
@@ -10,7 +10,7 @@ module ActiveAdmin
       @resource_name = options[:as]
       @sort_order = @options[:sort_order]
       @page_configs = {}
-      @member_actions = []
+      @member_actions, @collection_actions = [], []
     end
 
     # Returns the namespace for the resource
@@ -71,6 +71,10 @@ module ActiveAdmin
 
     def clear_member_actions!
       @member_actions = []
+    end
+
+    def clear_collection_actions!
+      @collection_actions = []
     end
 
     private

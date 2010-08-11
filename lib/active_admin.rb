@@ -18,7 +18,7 @@ module ActiveAdmin
   autoload :Menu,             'active_admin/menu'
   autoload :MenuItem,         'active_admin/menu_item'
   autoload :ResourceConfig,   'active_admin/resource_config'
-  autoload :MemberActions,    'active_admin/member_actions'
+  autoload :ActionBuilder,    'active_admin/action_builder'
 
   extend AssetRegistration
 
@@ -173,6 +173,13 @@ module ActiveAdmin
               member do
                 config.member_actions.each do |action|
                   # eg: get :comment
+                  send(action.http_verb, action.name)
+                end
+              end
+
+              # Define any collection actions
+              collection do
+                config.collection_actions.each do |action|
                   send(action.http_verb, action.name)
                 end
               end
