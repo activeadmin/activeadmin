@@ -197,6 +197,25 @@ module ActiveAdmin
       end
     end
 
+    #
+    # Add before, around and after filters to each registered resource.
+    #
+    # eg:
+    #
+    #   ActiveAdmin.before_filter :authenticate_admin!
+    #
+    def before_filter(*args, &block)
+      AdminController.before_filter(*args, &block)
+    end
+
+    def after_filter(*args, &block)
+      AdminController.after_filter(*args, &block)
+    end
+
+    def around_filter(*args, &block)
+      AdminController.around_filter(*args, &block)
+    end
+
   end
 end
 
