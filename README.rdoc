@@ -32,7 +32,7 @@ Add the following to your Gemfile:
 
 Then, run the installer:
 
-  rails generate active_admin
+  rails generate active_admin:install
 
 This will create an initializer which is used for configuring defaults used by Active Admin as well
 as a new folder at app/active_admin to put all your admin configurations. Note: All ruby files in 
