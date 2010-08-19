@@ -42,7 +42,7 @@ the Active Admin load path get loaded into the rails application.
 
 Let's build up an example using a Post model and the provided admin generator.
 
-  rails generate admin posts
+  rails generate active_admin:resource post
   
 That's all you need to get a full CRUD, beautiful administration interface!
 
