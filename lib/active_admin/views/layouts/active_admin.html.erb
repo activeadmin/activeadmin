@@ -16,6 +16,9 @@
     <h1 id="site_title"><%= ActiveAdmin.site_title %></h1>
     <%= ActiveAdmin.tabs_renderer.new(self).to_html(ActiveAdmin.menus[active_admin_config.menu_name]) %>
   </div>
+  <div id="title_bar">
+    <%= yield :title_bar %>
+  </div>
   <div id="content">
     <div id="main_content_wrapper">
       <div id="main_content">
@@ -25,7 +28,10 @@
     <div id="sidebar">
       <%= yield :sidebar %>
     </div>
- </div>
+  </div>
+  <div id="footer">
+    <%= yield :footer %>
+  </div>
 </div>
 </body>
 </html>

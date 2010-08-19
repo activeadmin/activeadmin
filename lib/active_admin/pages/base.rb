@@ -2,8 +2,10 @@ module ActiveAdmin
   module Pages
     class Base < ::ActiveAdmin::Renderer
 
-      def breadcrumb(separator = "&rsaquo;")
-        @breadcrumbs.map { |txt, path| link_to_unless((path.blank? || current_page?(path)), h(txt), path) }.join(" #{separator} ")
+      def breadcrumb(separator = "/")
+        content_tag :span, :class => "breadcrumb" do
+          @breadcrumbs.map { |txt, path| link_to_unless((path.blank? || current_page?(path)), h(txt), path) }.join(" #{content_tag(:span, separator, :class => "breadcrumb_sep")} ")
+        end
       end
 
       def main_content
@@ -11,7 +13,9 @@ module ActiveAdmin
       end
 
       def title_bar
-        content_tag :div, [breadcrumb, title_tag, action_items].join.html_safe, :id => 'title_bar'
+        content_for :title_bar do
+          [breadcrumb, title_tag, action_items].join.html_safe
+        end
       end
 
       def title_tag
@@ -56,11 +60,19 @@ module ActiveAdmin
         end
       end
 
+      # Renders the content for the footer
+      def footer
+        content_for :footer do
+          content_tag :p, "Powered by #{link_to("Active Admin", "http://www.activeadmin.info")} #{ActiveAdmin::VERSION}".html_safe
+        end
+      end
+
       def to_html
         set_page_title
-        title_bar +
-          main_content +
-          sidebar
+        title_bar
+        footer
+        sidebar
+        main_content
       end
     end
   end

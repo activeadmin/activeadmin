@@ -7,43 +7,34 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   line-height: 140%;
   font-size: 78%;
-  background: #eee;
+  background: #fff;
   margin: 0;
   padding: 0;
 }
-#main_content, .container, .sidebar_section{
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  background: #fff;
-  color: #333;
-  padding: 18px;
-  -moz-box-shadow: 0px 1px 3px #ccc;
-  -webkit-box-shadow: 0px 1px 3px #ccc;
-  box-shadow: 0px 1px 3px #ccc;
-  margin-bottom: 15px;
-}
-#header {
-  margin: 15px;
-}
-#content {
-  margin: 0 15px;
-}
-#main_content_wrapper{
-  float: left;
-  width: 100%;
-}
-#main_content{
-  margin-right: 285px; 
-}
-#sidebar{
-  float: left;
-  width: 270px; 
-  margin-left: -270px; 
-}
-#title_bar { position: relative; }
-#title_bar .action_items { position: absolute; right: 0; bottom: 0; }
+
+#header { background-color: #4b4a48; padding: 9px 30px; text-shadow: #222 1px 1px 0; }
+#header h1 { display: inline; margin-right: 10px; font-size: 1.2em; color: #94999a; font-weight: normal;}
+#header ul#tabs { margin: 0; padding: 0; display: inline; }
+#header ul#tabs li { display: inline; margin-right: 10px; font-size: 1.2em; }
+#header ul#tabs li a { text-decoration: none; color: #dfdfdf; }
+
+#content { margin: 0; padding: 25px 30px; }
+#main_content_wrapper{ float: left; width: 100%; }
+#main_content{ margin-right: 300px; }
+#sidebar{ float: left; width: 270px; margin-left: -270px; }
+
+#title_bar { position: relative; background: #e4e3e3; margin: 0; padding: 10px 30px; color: #535353; text-shadow: #fff 1px 1px 0;}
+#title_bar .action_items { position: absolute; right: 30px; top: 28px; }
+#title_bar .breadcrumb a { color: #777; }
+#title_bar .breadcrumb .breadcrumb_sep { color: #aaa; margin: 0 2px; }
+#title_bar h2 { margin: 12px 0 5px 0; padding: 0; font-size: 2.2em;}
+
 #index_footer { padding-top: 5px; text-align: right; font-size: 0.85em; }
 .clear { clear: both; }
+
+#footer { padding: 30px 30px;  font-size: 0.8em; font-style: italic; color: #bbb; clear: both; }
+#footer p { border-top: 1px solid #eee; padding-top: 10px}
+#footer a { color: #bbb; }
 
 /* -------------------------------------- Links */
 a { color: #27637D; }
@@ -51,8 +42,35 @@ a:link, a:visited { }
 a:hover {}
 a { color: #27637D; }
 
+/* -------------------------------------- Buttons */
+a.button, input[type=submit], .action_items a {
+  background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#dddbdb));  
+  -webkit-box-shadow: 0px 1px 1px #bbb;
+  -webkit-border-radius: 200px;
+  text-shadow: #fff 1px 1px 1px;
+  padding: 10px 15px 8px 15px !important;
+  border: 1px solid #f8f8f8;
+  color: #777;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+a.button:active, input[type=submit]:active, .action_items a:active{
+  background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#dddbdb));  
+  -webkit-box-shadow: inset 0px 1px 2px #bbb;
+  -webkit-border-radius: 200px;
+  text-shadow: #fff 1px 1px 1px;
+  border: 1px solid #f8f8f8;
+  color: #666666;
+}
+
+a.button.small {
+  font-size: 0.9em;
+  padding: 6px 12px 4px 12px;
+}
+
 /* -------------------------------------- Action Items */
-.action_items a {
+/*.action_items a {
   background: #DDD;
   color: #333;
   font-weight: bold;
@@ -62,23 +80,13 @@ a { color: #27637D; }
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;  
 }
-.action_items a:hover { background: #333; color: #ddd; }
-
-/* -------------------------------------- Tabs */
-ul#tabs { margin: 0; padding: 0; font-size: 1.3em; }
-ul#tabs li {
-  display: inline;
-  margin: 0 10px 0 0;
-  padding: 0;
-  list-style: none;
-}
-ul#tabs li.current a { text-decoration: none; }
+.action_items a:hover { background: #333; color: #ddd; } */
 
 /* -------------------------------------- Tables */
 table { width: 100%; margin-bottom: 10px; }
 table tr th { padding: 5px 10px; text-align: left; background-color: #555; color: #eee; }
 table tr th a, table tr th a:link, table tr th a:visited, table tr th a:hover { color: #eee }
-table tr td { padding: 8px 10px; border-bottom: 1px solid #e0e0e0; text-shadow: #fff 2px 2px 2px; }
+table tr td { padding: 8px 10px; border-bottom: 1px solid #e0e0e0; }
 table tr:hover td, table tr.odd:hover td { background-color: #ddd}
 table tr.odd td { background-color: #eee }
 
@@ -155,8 +163,6 @@ This stylesheet forms part of the Formtastic Rails Plugin
 --------------------------------------------------------------------------------------------------*/
 
 
-/* NORMALIZE AND RESET - obviously inspired by Yahoo's reset.css, but scoped to just form.formtastic
---------------------------------------------------------------------------------------------------*/
 form.formtastic, form.formtastic ul, form.formtastic ol, form.formtastic li, form.formtastic fieldset, form.formtastic legend, form.formtastic input, form.formtastic textarea, form.formtastic select, form.formtastic p { margin:0; padding:0; }
 form.formtastic fieldset { border:0; }
 form.formtastic em, form.formtastic strong { font-style:normal; font-weight:normal; }
@@ -166,19 +172,15 @@ form.formtastic input, form.formtastic textarea, form.formtastic select { font-f
 form.formtastic input, form.formtastic textarea, form.formtastic select { font-size:100%; }
 form.formtastic legend { white-space:normal; color:#000; }
 
-
 /* SEMANTIC ERRORS
 --------------------------------------------------------------------------------------------------*/
-form.formtastic ul.errors { color:#cc0000; margin:0.5em 0 1.5em 25%; list-style:square; }
+form.formtastic ul.errors { color:#cc0000; margin:0.5em 0 1.5em 20%; list-style:square; }
 form.formtastic ul.errors li { padding:0; border:none; display:list-item; }
 
 
 /* FIELDSETS & LISTS
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset { }
-form.formtastic fieldset.inputs { }
-form.formtastic fieldset.buttons { padding-left:25%; }
-form.formtastic fieldset ol { }
+form.formtastic fieldset.buttons { padding-left:20%; }
 form.formtastic fieldset.buttons li { float:left; padding-right:0.5em; }
 
 /* clearfixing the fieldsets */
@@ -201,11 +203,15 @@ html[xmlns] form.formtastic fieldset > ol > li { display: block; }
 form.formtastic fieldset > ol > li.required { }
 form.formtastic fieldset > ol > li.optional { }
 form.formtastic fieldset > ol > li.error { }
+form.formtastic fieldset > ol > li.error input[type=text],
+form.formtastic fieldset > ol > li.error input[type=password],
+form.formtastic fieldset > ol > li.error textarea
+{ border: 1px solid red; }
   
 
 /* LABELS
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li label { display:block; width:25%; float:left; padding-top:.2em; }
+form.formtastic fieldset > ol > li label { display:block; width:20%; float:left; padding-top:.2em; }
 form.formtastic fieldset > ol > li > li label { line-height:100%; padding-top:0; }
 form.formtastic fieldset > ol > li > li label input { line-height:100%; vertical-align:middle; margin-top:-0.1em;}
 
@@ -216,36 +222,24 @@ form.formtastic fieldset > ol > li fieldset { position:relative; }
 form.formtastic fieldset > ol > li fieldset legend { position:absolute; width:95%; padding-top:0.1em; left: 0px; }
 form.formtastic fieldset > ol > li fieldset legend span { position:absolute; }
 form.formtastic fieldset > ol > li fieldset legend.label label { position:absolute; }
-form.formtastic fieldset > ol > li fieldset ol { float:left; width:74%; margin:0; padding:0 0 0 25%; }
+form.formtastic fieldset > ol > li fieldset ol { float:left; width:74%; margin:0; padding:0 0 0 20%; }
 form.formtastic fieldset > ol > li fieldset ol li { padding:0; border:0; }
 
 
 /* INLINE HINTS
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li p.inline-hints { color:#666; margin:0.5em 0 0 25%; }
+form.formtastic fieldset > ol > li p.inline-hints { color:#666; margin:0.5em 0 0 20%; }
 
 
 /* INLINE ERRORS
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li p.inline-errors { color:#cc0000; margin:0.5em 0 0 25%; }
-form.formtastic fieldset > ol > li ul.errors { color:#cc0000; margin:0.5em 0 0 25%; list-style:square; }
+form.formtastic fieldset > ol > li p.inline-errors { color:#cc0000; margin:0.5em 0 0 20%; }
+form.formtastic fieldset > ol > li ul.errors { color:#cc0000; margin:0.5em 0 0 20%; list-style:square; }
 form.formtastic fieldset > ol > li ul.errors li { padding:0; border:none; display:list-item; }
 
 
-/* STRING & NUMERIC OVERRIDES
---------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li.string input { max-width:74%; }
-form.formtastic fieldset > ol > li.password input { max-width: 13em; }
-form.formtastic fieldset > ol > li.numeric input { max-width:74%; }
-
-
-/* TEXTAREA OVERRIDES
---------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li.text textarea { width:74%; }
-
-
 /* HIDDEN OVERRIDES
-The dual declarations are required because of our clearfix display hack on the LIs, which is more
+the dual declarations are required because of our clearfix display hack on the LIs, which is more
 specific than the more general rule below. TODO: Revist the clearing hack and this rule.
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset ol li.hidden,
@@ -253,7 +247,7 @@ html[xmlns] form.formtastic fieldset ol li.hidden { display:none; }
 
 /* BOOLEAN OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li.boolean label { padding-left:25%; width:auto; }
+form.formtastic fieldset > ol > li.boolean label { padding-left:20%; width:auto; padding-right: 10px; text-transform: none !important;}
 form.formtastic fieldset > ol > li.boolean label input { margin:0 0.5em 0 0.2em; }
 
 
@@ -261,7 +255,7 @@ form.formtastic fieldset > ol > li.boolean label input { margin:0 0.5em 0 0.2em;
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li.radio { }
 form.formtastic fieldset > ol > li.radio fieldset ol { margin-bottom:-0.6em; }
-form.formtastic fieldset > ol > li.radio fieldset ol li { margin:0.1em 0 0.5em 0; }
+form.formtastic fieldset > ol > li.radio fieldset ol li { margin:0.1em 0 0 0; }
 form.formtastic fieldset > ol > li.radio fieldset ol li label { float:none; width:100%; }
 form.formtastic fieldset > ol > li.radio fieldset ol li label input { margin-right:0.2em; }
 
@@ -290,13 +284,11 @@ form.formtastic fieldset > ol > li.date fieldset ol li label input,
 form.formtastic fieldset > ol > li.time fieldset ol li label input, 
 form.formtastic fieldset > ol > li.datetime fieldset ol li label input { display:inline; margin:0; padding:0;  }
 
-/* -------------------------------------- Form Overrides */
-input[type=text], input[type=password], textarea {
-  border: 1px solid #ccc;
-  font-size: 0.8em;
-  padding: 5px 5px !important;
-  outline: none;
-}
-input[type=text]:focus, input[type=password]:focus, textarea:focus {
-  border: 1px solid #aaa;
-}
+/* -------------------------------------- Formtastic Specific Forms */
+form.formtastic li { margin-bottom: 10px; }
+form.formtastic label { color: #666; text-transform: uppercase; }
+form.formtastic input[type=text], form.formtastic input[type=password], form.formtastic textarea { width: 76%; }
+
+/* -------------------------------------- Form */
+input[type=text], input[type=password], textarea { border: 1px solid #ccc; font-size: 0.8em; padding: 8px 10px !important; outline: none; }
+input[type=text]:focus, input[type=password]:focus, textarea:focus { border: 1px solid #aaa; }
