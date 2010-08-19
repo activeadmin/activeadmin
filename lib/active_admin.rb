@@ -2,6 +2,7 @@ require 'meta_search'
 
 module ActiveAdmin
   
+  autoload :VERSION,          'active_admin/version'
   autoload :Renderer,         'active_admin/renderer'
   autoload :TableBuilder,     'active_admin/table_builder'
   autoload :FormBuilder,      'active_admin/form_builder'
@@ -99,17 +100,33 @@ module ActiveAdmin
       eval "class ::#{config.controller_name} < ActiveAdmin::AdminController; end"
       config.controller.active_admin_config = config
       config.controller.class_eval(&block) if block_given?
+
+      # Setup menus
+      register_with_menu config
       
+      # Return the config
+      config
+    end
+
+    # Does all the work of registernig a config with the menu system
+    def register_with_menu(config)
       # Find the menu this resource should be added to
       menu = menus[config.menu_name] ||= Menu.new
 
-      # Add a new menu item if it doesn't exist yet
-      unless menu[config.menu_item_name]
-        menu.add(config.menu_item_name, config.route_collection_path)
+      # Adding as a child
+      if config.parent_menu_item_name
+        # Create the parent if it doesn't exist
+        menu.add(config.parent_menu_item_name, '#') unless menu[config.parent_menu_item_name]
+        menu = menu[config.parent_menu_item_name]
       end
 
-      # Return the config
-      config
+      # Check if this menu item has already been created
+      if menu[config.menu_item_name]
+        # Update the url if it's already been created
+        menu[config.menu_item_name].url = config.route_collection_path
+      else
+        menu.add(config.menu_item_name, config.route_collection_path)
+      end
     end
 
     # Returns true if all the configuration files have been loaded.

@@ -60,6 +60,17 @@ module ActiveAdmin
       end
     end
 
+    describe "parent menu item name" do
+      it "should be nil when not set" do
+        config.parent_menu_item_name.should == nil
+      end
+      it "should return the name if set" do
+        config.tap do |c|
+          c.menu :parent => "Blog"
+        end.parent_menu_item_name.should == "Blog"
+      end
+    end
+
     describe "route names" do
       before do
         ActiveAdmin.register Category

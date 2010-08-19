@@ -1,7 +1,8 @@
 module ActiveAdmin
   class ResourceConfig
 
-    attr_reader :resource, :page_configs, :member_actions, :collection_actions
+    attr_reader :resource, :page_configs, :member_actions, :collection_actions,
+                :parent_menu_item_name
     attr_accessor :resource_name, :sort_order
 
     def initialize(resource, options = {})
@@ -62,6 +63,11 @@ module ActiveAdmin
     # Returns which menu to add the item to
     def menu_name
       namespace || :root
+    end
+
+    # Set the menu options
+    def menu(options = {})
+      @parent_menu_item_name = options[:parent]
     end
 
     # Returns the name to be displayed in the menu for this resource

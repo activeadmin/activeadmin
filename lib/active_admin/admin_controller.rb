@@ -47,6 +47,12 @@ module ActiveAdmin
       def reset_page_config!(page)
         active_admin_config.page_configs[page] = nil
       end
+
+
+      # Setting the menu options
+      def menu(options = {})
+        active_admin_config.menu(options)
+      end
      
       #
       # Index Config

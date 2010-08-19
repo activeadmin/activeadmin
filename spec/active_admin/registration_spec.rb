@@ -57,4 +57,36 @@ describe "Registering an object to administer" do
     end
   end
 
+
+  describe "menu system" do
+
+    describe "adding as a top level item" do
+      before do
+        ActiveAdmin.register Category
+      end
+      it "should add a new menu item" do
+        ActiveAdmin.menus[:admin]['Categories'].should_not be_nil
+      end
+    end
+
+    describe "adding as a child" do
+      before do
+        ActiveAdmin.register Category do
+          menu :parent => 'Blog'
+        end
+      end
+      it "should generate the parent menu item" do
+        ActiveAdmin.menus[:admin]['Blog'].should_not be_nil
+      end
+      it "should generate its own child item" do
+        ActiveAdmin.menus[:admin]['Blog']['Categories'].should_not be_nil
+      end
+    end
+
+    describe "disabling the menu" do
+      # TODO
+      it "should not create a menu item"
+    end
+  end
+
 end
