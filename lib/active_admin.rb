@@ -142,7 +142,9 @@ module ActiveAdmin
     def unload!
       resources.each do |name, config|
         parent = (config.namespace_module_name || 'Object').constantize
-        parent.send :remove_const, config.controller_name.split('::').last
+        const_name = config.controller_name.split('::').last
+        # Remove the const if its been defined
+        parent.send(:remove_const, const_name) if parent.const_defined?(const_name)
       end
       @@loaded = false
     end
