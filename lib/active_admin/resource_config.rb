@@ -3,7 +3,7 @@ module ActiveAdmin
 
     attr_reader :resource, :page_configs, :member_actions, :collection_actions,
                 :parent_menu_item_name
-    attr_accessor :resource_name, :sort_order
+    attr_accessor :resource_name, :sort_order, :scope_to
 
     def initialize(resource, options = {})
       @resource = resource

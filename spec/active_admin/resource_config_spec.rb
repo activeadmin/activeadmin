@@ -96,6 +96,49 @@ module ActiveAdmin
       end
     end
 
+    describe "scoping" do
+      let(:controller){ Admin::CategoriesController.new }
+      let(:begin_of_association_chain){ controller.send(:begin_of_association_chain) }
+
+      context "when using a block" do
+        before do
+          ActiveAdmin.register Category do
+            scope_to do
+              "scoped"
+            end
+          end
+        end
+        it "should call the proc for the begin of association chain" do
+          begin_of_association_chain.should == "scoped"
+        end
+      end
+
+      context "when using a symbol" do
+        before do
+          ActiveAdmin.register Category do
+            scope_to :current_user
+          end
+        end
+        it "should call the method for the begin of association chain" do
+          controller.should_receive(:current_user).and_return(true)
+          begin_of_association_chain.should == true
+        end
+      end
+
+      context "when not using a block or symbol" do
+        before do
+          ActiveAdmin.register Category do
+            scope_to "Some string"
+          end
+        end
+        it "should raise and exception" do
+          lambda {
+            begin_of_association_chain
+          }.should raise_error(ArgumentError)
+        end
+      end
+    end
+
     describe "sort order" do
       subject { resource_config.sort_order }
 

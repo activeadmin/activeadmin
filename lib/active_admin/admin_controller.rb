@@ -53,6 +53,24 @@ module ActiveAdmin
       def menu(options = {})
         active_admin_config.menu(options)
       end
+
+      # Scope this controller to some object which has a relation
+      # to the resource. Can either accept a block or a symbol 
+      # of a method to call.
+      #
+      # Eg:
+      #
+      #   ActiveAdmin.register Post do
+      #     scope_to :current_user
+      #   end
+      #
+      # Then every time we instantiate and object, it would call
+      #   
+      #   current_user.posts.build
+      #
+      def scope_to(method = nil, &block)
+        active_admin_config.scope_to = block_given? ? block : method
+      end
      
       #
       # Index Config
@@ -164,6 +182,18 @@ module ActiveAdmin
     # the searching and filtering can be applied on top
     def scoped_collection
       end_of_association_chain
+    end
+
+    def begin_of_association_chain
+      return nil unless active_admin_config.scope_to
+      case active_admin_config.scope_to
+      when Proc
+        instance_eval &active_admin_config.scope_to
+      when Symbol
+        send active_admin_config.scope_to
+      else
+        raise ArgumentError, "#scope_to accepts a symbol or a block"
+      end
     end
 
     # Allow more records for csv files
