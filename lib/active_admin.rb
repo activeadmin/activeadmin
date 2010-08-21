@@ -76,6 +76,11 @@ module ActiveAdmin
       register_javascript 'active_admin_vendor.js'
       register_javascript 'active_admin.js'
 
+      # Since we're dealing with all our own file loading, we need
+      # to remove our paths from the ActiveSupport autoload paths.
+      # If not, file nameing becomes very important and can cause clashes.
+      ActiveSupport::Dependencies.autoload_paths.reject!{|path| load_paths.include?(path) }
+
       # Dispatch request which gets triggered once in production
       # and on every require in development mode
       ActionDispatch::Callbacks.to_prepare :active_admin do
