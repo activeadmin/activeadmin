@@ -93,7 +93,7 @@ module ActiveAdmin
       config = ResourceConfig.new(resource, options)
 
       # Store the namespaced resource in @@resources
-      resources[[config.namespace_module_name, resource.name].compact.join('::')] = config
+      resources[[config.namespace_module_name, config.camelized_resource_name].compact.join('::')] = config
       
       # Generate the module, controller and eval contents of block inside controller
       eval "module ::#{config.namespace_module_name}; end" if config.namespace
@@ -186,7 +186,7 @@ module ActiveAdmin
           
           # Define the block the will get eval'd within the namespace
           route_definition_block = Proc.new do
-            resources config.resource.name.pluralize.underscore do
+            resources config.underscored_resource_name.pluralize do
 
               # Define any member actions
               member do

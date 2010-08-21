@@ -8,7 +8,6 @@ module ActiveAdmin
     def initialize(resource, options = {})
       @resource = resource
       @options = default_options.merge(options)
-      @resource_name = options[:as]
       @sort_order = @options[:sort_order]
       @page_configs = {}
       @member_actions, @collection_actions = [], []
@@ -19,9 +18,23 @@ module ActiveAdmin
       @options[:namespace]
     end
 
+    # An underscored safe representation internally for this resource
+    def underscored_resource_name
+      @underscored_resource_name ||= if @options[:as]
+        @options[:as].gsub(' ', '').underscore.singularize
+      else
+        resource.name.gsub('::','').underscore
+      end
+    end
+
+    # A camelized safe representation for this resource
+    def camelized_resource_name
+      underscored_resource_name.camelize
+    end
+
     # Returns the name to call this resource
     def resource_name
-      @resource_name ||= resource.name.titleize
+      @resource_name ||= underscored_resource_name.titleize
     end
 
     # Returns the plural version of this resource
@@ -41,7 +54,7 @@ module ActiveAdmin
     # Returns a properly formatted controller name for this
     # resource within its namespace
     def controller_name
-      [namespace_module_name, resource.name.pluralize + "Controller"].compact.join('::')
+      [namespace_module_name, camelized_resource_name.pluralize + "Controller"].compact.join('::')
     end
 
     # Returns the controller for this resource

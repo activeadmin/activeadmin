@@ -57,6 +57,25 @@ describe "Registering an object to administer" do
     end
   end
 
+  context "with a resource that's namespaced" do
+    before do
+      module Mock; class Resource; end; end
+      ActiveAdmin.register Mock::Resource
+      reload_routes!
+    end
+    
+    it "should store the namespaced registered configuration" do
+      ActiveAdmin.resources.keys.should include('Admin::MockResource')
+    end
+    it "should create a new controller in the default namespace" do
+      defined?(Admin::MockResourcesController).should be_true
+    end
+    it "should create a menu item" do
+      ActiveAdmin.menus[:admin]["Mock Resources"].should be_an_instance_of(ActiveAdmin::MenuItem)
+      ActiveAdmin.menus[:admin]["Mock Resources"].url.should == "/admin/mock_resources"
+    end
+  end
+
 
   describe "menu system" do
 

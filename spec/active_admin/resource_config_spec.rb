@@ -7,6 +7,31 @@ module ActiveAdmin
       @config ||= ResourceConfig.new(Category, options)
     end
 
+    describe "underscored resource name" do
+      context "when class" do
+        it "should be the underscored singular resource name" do
+          config.underscored_resource_name.should == "category"
+        end
+      end
+      context "when a class in a module" do
+        it "should underscore the module and the class" do
+          module ::Mock; class Resource; end; end
+          ResourceConfig.new(Mock::Resource).underscored_resource_name.should == "mock_resource"
+        end
+      end
+      context "when you pass the 'as' option" do
+        it "should underscore the passed through string and singulralize" do
+          config(:as => "Blog Categories").underscored_resource_name.should == "blog_category"
+        end
+      end
+    end
+
+    describe "camelized resource name" do
+      it "should return a camelized version of the underscored resource name" do
+        config(:as => "Blog Categories").camelized_resource_name.should == "BlogCategory"
+      end
+    end
+
     describe "resource name" do
       it "should return a pretty name" do
         config.resource_name.should == "Category"
