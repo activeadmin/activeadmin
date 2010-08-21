@@ -162,6 +162,29 @@ module ActiveAdmin
           }.should raise_error(ArgumentError)
         end
       end
+
+      describe "getting the method for the association chain" do
+        context "when a simple registration" do
+          before do
+            ActiveAdmin.register Category do
+              scope_to :current_user
+            end
+          end
+          it "should return the pluralized collection name" do
+            controller.send(:method_for_association_chain).should == :categories
+          end
+        end
+        context "when passing in the method as an option" do
+          before do
+            ActiveAdmin.register Category do
+              scope_to :current_user, :association_method => :blog_categories
+            end
+          end
+          it "should return the method from the option" do
+            controller.send(:method_for_association_chain).should == :blog_categories
+          end
+        end
+      end
     end
 
     describe "sort order" do

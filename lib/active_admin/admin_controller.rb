@@ -35,6 +35,11 @@ module ActiveAdmin
       # Reference to the ResourceConfig object which initialized
       # this controller
       attr_accessor :active_admin_config
+      
+      def active_admin_config=(config)
+        @active_admin_config = config
+        defaults :resource_class => config.resource
+      end
 
       def set_page_config(page, config)
         active_admin_config.page_configs[page] = config
@@ -68,8 +73,22 @@ module ActiveAdmin
       #   
       #   current_user.posts.build
       #
-      def scope_to(method = nil, &block)
+      # By default Active Admin will use the resource name to build a
+      # method to call as the association. If its different, you can 
+      # pass in the association_method as an option.
+      #
+      #   scope_to :current_user, :association_method => :blog_posts
+      #
+      # will result in the following
+      # 
+      #   current_user.blog_posts.build
+      #
+      def scope_to(*args, &block)
+        options = args.extract_options!
+        method = args.first
+
         active_admin_config.scope_to = block_given? ? block : method
+        active_admin_config.scope_to_association_method = options[:association_method]
       end
      
       #
@@ -194,6 +213,14 @@ module ActiveAdmin
       else
         raise ArgumentError, "#scope_to accepts a symbol or a block"
       end
+    end
+
+    # Overriding from InheritedResources::BaseHelpers
+    #
+    # Returns the method for the association chain when using
+    # the scope_to option
+    def method_for_association_chain
+      active_admin_config.scope_to_association_method || super
     end
 
     # Allow more records for csv files

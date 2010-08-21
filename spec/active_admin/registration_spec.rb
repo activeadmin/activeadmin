@@ -59,7 +59,7 @@ describe "Registering an object to administer" do
 
   context "with a resource that's namespaced" do
     before do
-      module Mock; class Resource; end; end
+      module ::Mock; class Resource; end; end
       ActiveAdmin.register Mock::Resource
       reload_routes!
     end
@@ -73,6 +73,9 @@ describe "Registering an object to administer" do
     it "should create a menu item" do
       ActiveAdmin.menus[:admin]["Mock Resources"].should be_an_instance_of(ActiveAdmin::MenuItem)
       ActiveAdmin.menus[:admin]["Mock Resources"].url.should == "/admin/mock_resources"
+    end
+    it "should use the resource as the model in the controller" do
+      Admin::MockResourcesController.resource_class.should == Mock::Resource
     end
   end
 
