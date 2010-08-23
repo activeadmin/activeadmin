@@ -28,7 +28,7 @@ module ActiveAdmin
     module ClassMethods
       def member_action(name, options = {}, &block)
         active_admin_config.member_actions << ControllerAction.new(name, options)
-        define_method(name, &block)
+        define_method(name, &block || Proc.new{})
       end
 
       def clear_member_actions!
@@ -38,7 +38,7 @@ module ActiveAdmin
 
       def collection_action(name, options = {}, &block)
         active_admin_config.collection_actions << ControllerAction.new(name, options)
-        define_method(name, &block)
+        define_method(name, &block || Proc.new{})
       end
 
       def clear_collection_actions!
