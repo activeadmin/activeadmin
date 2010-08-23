@@ -2,7 +2,7 @@ require 'inherited_views'
 require 'active_admin/pages'
 
 module ActiveAdmin
-  class AdminController < ::InheritedViews::Base
+  class ResourceController < ::InheritedViews::Base
 
     # Add our views to the view path
     ActionController::Base.append_view_path File.expand_path('../views', __FILE__)

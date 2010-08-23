@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe ActiveAdmin::AdminController do
+describe ActiveAdmin::ResourceController do
   
   [:index, :show].each do |page|
     describe "#{page} config" do

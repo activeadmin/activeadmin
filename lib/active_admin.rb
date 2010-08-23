@@ -2,24 +2,24 @@ require 'meta_search'
 
 module ActiveAdmin
   
-  autoload :VERSION,          'active_admin/version'
-  autoload :Renderer,         'active_admin/renderer'
-  autoload :TableBuilder,     'active_admin/table_builder'
-  autoload :FormBuilder,      'active_admin/form_builder'
-  autoload :TabsRenderer,     'active_admin/tabs_renderer'
-  autoload :AdminController,  'active_admin/admin_controller'
-  autoload :ViewHelpers,      'active_admin/view_helpers'
-  autoload :Breadcrumbs,      'active_admin/breadcrumbs'
-  autoload :Filters,          'active_admin/filters'
-  autoload :PageConfig,       'active_admin/page_config'
-  autoload :Pages,            'active_admin/pages'
-  autoload :Sidebar,          'active_admin/sidebar'
-  autoload :ActionItems,      'active_admin/action_items'
-  autoload :AssetRegistration,'active_admin/asset_registration'
-  autoload :Menu,             'active_admin/menu'
-  autoload :MenuItem,         'active_admin/menu_item'
-  autoload :Resource,         'active_admin/resource'
-  autoload :ActionBuilder,    'active_admin/action_builder'
+  autoload :VERSION,              'active_admin/version'
+  autoload :Resource,             'active_admin/resource'
+  autoload :ResourceController,   'active_admin/resource_controller'
+  autoload :Renderer,             'active_admin/renderer'
+  autoload :TableBuilder,         'active_admin/table_builder'
+  autoload :FormBuilder,          'active_admin/form_builder'
+  autoload :TabsRenderer,         'active_admin/tabs_renderer'
+  autoload :ViewHelpers,          'active_admin/view_helpers'
+  autoload :Breadcrumbs,          'active_admin/breadcrumbs'
+  autoload :Filters,              'active_admin/filters'
+  autoload :PageConfig,           'active_admin/page_config'
+  autoload :Pages,                'active_admin/pages'
+  autoload :Sidebar,              'active_admin/sidebar'
+  autoload :ActionItems,          'active_admin/action_items'
+  autoload :AssetRegistration,    'active_admin/asset_registration'
+  autoload :Menu,                 'active_admin/menu'
+  autoload :MenuItem,             'active_admin/menu_item'
+  autoload :ActionBuilder,        'active_admin/action_builder'
 
   extend AssetRegistration
 
@@ -102,7 +102,7 @@ module ActiveAdmin
       
       # Generate the module, controller and eval contents of block inside controller
       eval "module ::#{config.namespace_module_name}; end" if config.namespace
-      eval "class ::#{config.controller_name} < ActiveAdmin::AdminController; end"
+      eval "class ::#{config.controller_name} < ActiveAdmin::ResourceController; end"
       config.controller.active_admin_config = config
       config.controller.class_eval(&block) if block_given?
 
@@ -229,15 +229,15 @@ module ActiveAdmin
     #   ActiveAdmin.before_filter :authenticate_admin!
     #
     def before_filter(*args, &block)
-      AdminController.before_filter(*args, &block)
+      ResourceController.before_filter(*args, &block)
     end
 
     def after_filter(*args, &block)
-      AdminController.after_filter(*args, &block)
+      ResourceController.after_filter(*args, &block)
     end
 
     def around_filter(*args, &block)
-      AdminController.around_filter(*args, &block)
+      ResourceController.around_filter(*args, &block)
     end
 
   end
