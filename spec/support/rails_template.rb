@@ -16,4 +16,4 @@ rake "db:test:prepare"
 # This should happen last so that we don't have to worry about the
 # rake's blowing up due to not having active admin in their load paths
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-generate :active_admin
+generate :'active_admin:install'
