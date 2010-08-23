@@ -18,7 +18,7 @@ module ActiveAdmin
   autoload :AssetRegistration,'active_admin/asset_registration'
   autoload :Menu,             'active_admin/menu'
   autoload :MenuItem,         'active_admin/menu_item'
-  autoload :ResourceConfig,   'active_admin/resource_config'
+  autoload :Resource,         'active_admin/resource'
   autoload :ActionBuilder,    'active_admin/action_builder'
 
   extend AssetRegistration
@@ -95,7 +95,7 @@ module ActiveAdmin
     #
     # TODO: Setup docs for registration options
     def register(resource, options = {}, &block)
-      config = ResourceConfig.new(resource, options)
+      config = Resource.new(resource, options)
 
       # Store the namespaced resource in @@resources
       resources[[config.namespace_module_name, config.camelized_resource_name].compact.join('::')] = config

@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class ResourceConfig
+  class Resource
 
     attr_reader :resource, :page_configs, :member_actions, :collection_actions,
                 :parent_menu_item_name

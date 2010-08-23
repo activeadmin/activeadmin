@@ -1,10 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
 module ActiveAdmin
-  describe ResourceConfig do
+  describe Resource do
 
     def config(options = {})
-      @config ||= ResourceConfig.new(Category, options)
+      @config ||= Resource.new(Category, options)
     end
 
     describe "underscored resource name" do
@@ -16,7 +16,7 @@ module ActiveAdmin
       context "when a class in a module" do
         it "should underscore the module and the class" do
           module ::Mock; class Resource; end; end
-          ResourceConfig.new(Mock::Resource).underscored_resource_name.should == "mock_resource"
+          Resource.new(Mock::Resource).underscored_resource_name.should == "mock_resource"
         end
       end
       context "when you pass the 'as' option" do

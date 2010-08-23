@@ -32,7 +32,7 @@ module ActiveAdmin
     before_filter :setup_pagination_for_csv
 
     class << self
-      # Reference to the ResourceConfig object which initialized
+      # Reference to the Resource object which initialized
       # this controller
       attr_accessor :active_admin_config
       
