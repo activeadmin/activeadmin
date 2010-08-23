@@ -66,11 +66,8 @@ module ActiveAdmin
 
   class << self
 
+    # Get's called within the initializer
     def setup
-      yield self
-    end
-
-    def init!
       # Register the default assets
       register_stylesheet 'active_admin.css'
       register_javascript 'active_admin_vendor.js'
@@ -81,6 +78,11 @@ module ActiveAdmin
       # If not, file nameing becomes very important and can cause clashes.
       ActiveSupport::Dependencies.autoload_paths.reject!{|path| load_paths.include?(path) }
 
+      # Don't eagerload our configs, we'll deal with them ourselves
+      Rails.application.config.eager_load_paths = Rails.application.config.eager_load_paths.reject do |path| 
+        load_paths.include?(path)
+      end
+
       # Dispatch request which gets triggered once in production
       # and on every require in development mode
       ActionDispatch::Callbacks.to_prepare :active_admin do
@@ -89,6 +91,8 @@ module ActiveAdmin
         # we must ensure to load the routes each request (in dev)
         Rails.application.reload_routes!
       end
+
+      yield self
     end
 
     # Registers a brand new configuration for the given resource.
@@ -242,5 +246,3 @@ module ActiveAdmin
 
   end
 end
-
-ActiveAdmin.init!

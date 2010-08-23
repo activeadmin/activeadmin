@@ -9,6 +9,10 @@ describe ActiveAdmin do
   it "should remove app/active_admin from the autoload path to remove the possibility of conflicts" do
     ActiveSupport::Dependencies.autoload_paths.should_not include(File.join(Rails.root, "app/active_admin"))
   end
+
+  it "should remove app/active_admin from the eager load paths (Active Admin deals with loading)" do
+    Rails.application.config.eager_load_paths.should_not include(File.join(Rails.root, "app/active_admin"))
+  end
   
   # TODO: Find a good way to test loading and unloading constants
   #       without blowing up all the other specs
