@@ -187,6 +187,17 @@ module ActiveAdmin
       end
     end
 
+    describe "dashboard controller name" do
+      context "when namespaced" do
+        subject{ config.dashboard_controller_name }
+        it { should == "Admin::DashboardController" }
+      end
+      context "when not namespaced" do
+        subject{ config(:namespace => false).dashboard_controller_name }
+        it { should == "DashboardController" }
+      end
+    end
+
     describe "sort order" do
       subject { resource_config.sort_order }
 

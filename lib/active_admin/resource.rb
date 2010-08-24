@@ -96,6 +96,11 @@ module ActiveAdmin
       @collection_actions = []
     end
 
+    # Returns the name of the controller class for this resource
+    def dashboard_controller_name
+      [namespace_module_name, "DashboardController"].compact.join("::")
+    end
+
     private
 
     def default_options

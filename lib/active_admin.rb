@@ -5,6 +5,7 @@ module ActiveAdmin
   autoload :VERSION,              'active_admin/version'
   autoload :Resource,             'active_admin/resource'
   autoload :ResourceController,   'active_admin/resource_controller'
+  autoload :Dashboards,           'active_admin/dashboards'
   autoload :Renderer,             'active_admin/renderer'
   autoload :TableBuilder,         'active_admin/table_builder'
   autoload :FormBuilder,          'active_admin/form_builder'
@@ -110,11 +111,18 @@ module ActiveAdmin
       config.controller.active_admin_config = config
       config.controller.class_eval(&block) if block_given?
 
+      register_dashboard_controller(config)
+
       # Setup menus
       register_with_menu config
       
       # Return the config
       config
+    end
+
+    # Creates a dashboard controller for this config
+    def register_dashboard_controller(config)
+      eval "class ::#{config.dashboard_controller_name} < ActiveAdmin::Dashboards::DashboardController; end"
     end
 
     # Does all the work of registernig a config with the menu system
@@ -149,13 +157,22 @@ module ActiveAdmin
     # We remove them, then load them on each request in development
     # to allow for changes without having to restart the server.
     def unload!
+      unload_resources!
+      unload_dashboards!
+      @@loaded = false
+    end
+
+    def unload_resources!
       resources.each do |name, config|
         parent = (config.namespace_module_name || 'Object').constantize
         const_name = config.controller_name.split('::').last
         # Remove the const if its been defined
         parent.send(:remove_const, const_name) if parent.const_defined?(const_name)
       end
-      @@loaded = false
+    end
+
+    def unload_dashboards!
+      Dashboards.clear_all_sections!
     end
 
     # Loads all of the ruby files that are within the load path of
@@ -188,6 +205,13 @@ module ActiveAdmin
       # Ensure that all the configurations (which define the routes)
       # are all loaded
       load!
+
+      # Define any necessary dashboard routes
+      router.instance_exec(menus.keys) do |namespaces|
+        namespaces.each do |name|
+          match name.to_s => "#{name}/dashboard#index", :as => "#{name.to_s}_dashboard"
+        end
+      end
 
       # Now define the routes for each resource
       router.instance_exec(resources) do |admin_resources|
@@ -243,6 +267,13 @@ module ActiveAdmin
     def around_filter(*args, &block)
       ResourceController.around_filter(*args, &block)
     end
+
+    # Helper method to add a dashboard section
+    def dashboard_section(name, options = {}, &block)
+      namespace = options.delete(:namespace) || default_namespace
+      ActiveAdmin::Dashboards.add_section(namespace, name, options, &block)
+    end
+
 
   end
 end

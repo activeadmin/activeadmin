@@ -274,6 +274,21 @@ module ActiveAdmin
     end
     helper_method :form_config
 
+    def current_menu_name
+      active_admin_config.menu_name
+    end
+    helper_method :current_menu_name
+
+    def skip_sidebar!
+      @skip_sidebar = true
+    end
+    helper_method :skip_sidebar!
+
+    def skip_sidebar?
+      @skip_sidebar == true
+    end
+    helper_method :skip_sidebar?
+
     # Returns the renderer class to use for the given action.
     #
     # TODO: This needs to be wrapped into a default config as well

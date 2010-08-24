@@ -13,6 +13,9 @@ describe "Registering an object to administer" do
     it "should create a new controller in the default namespace" do
       defined?(Admin::CategoriesController).should be_true
     end
+    it "should create the dashboard controller" do
+      defined?(Admin::DashboardController).should be_true
+    end
     it "should create a menu item" do
       ActiveAdmin.menus[:admin]["Categories"].should be_an_instance_of(ActiveAdmin::MenuItem)
       ActiveAdmin.menus[:admin]["Categories"].url.should == "/admin/categories"
@@ -27,6 +30,9 @@ describe "Registering an object to administer" do
     it "should register the controller" do
       defined?(HelloWorld::CategoriesController).should be_true
     end
+    it "should create the dashboard controller" do
+      defined?(HelloWorld::DashboardController).should be_true
+    end
     it "should create a menu item" do
       ActiveAdmin.menus[:hello_world]["Categories"].should be_an_instance_of(ActiveAdmin::MenuItem)
       ActiveAdmin.menus[:hello_world]["Categories"].url.should == "/hello_world/categories"
@@ -40,6 +46,9 @@ describe "Registering an object to administer" do
     end
     it "should register the controller" do
       defined?(CategoriesController).should be_true
+    end
+    it "should create the dashboard controller" do
+      defined?(DashboardController).should be_true
     end
     it "should create a menu item" do
       ActiveAdmin.menus[:root]["Categories"].should be_an_instance_of(ActiveAdmin::MenuItem)

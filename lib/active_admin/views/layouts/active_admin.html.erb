@@ -14,20 +14,22 @@
 <div id="wrapper">
   <div id="header">
     <h1 id="site_title"><%= ActiveAdmin.site_title %></h1>
-    <%= ActiveAdmin.tabs_renderer.new(self).to_html(ActiveAdmin.menus[active_admin_config.menu_name]) %>
+    <%= ActiveAdmin.tabs_renderer.new(self).to_html(ActiveAdmin.menus[current_menu_name]) %>
   </div>
   <div id="title_bar">
     <%= yield :title_bar %>
   </div>
-  <div id="content">
+  <div id="content" class="<%= skip_sidebar? ? 'without_sidebar' : 'with_sidebar' %>">
     <div id="main_content_wrapper">
       <div id="main_content">
         <%= yield %>
       </div>
     </div>
-    <div id="sidebar">
-      <%= yield :sidebar %>
-    </div>
+    <% unless skip_sidebar? %>
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div>
+    <% end %>
   </div>
   <div id="footer">
     <%= yield :footer %>
