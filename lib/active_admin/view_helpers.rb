@@ -16,6 +16,11 @@ module ActiveAdmin
       end
     end
 
+    # Helper to render a table for a collection
+    def table_for(collection, options = {}, &block)
+      ActiveAdmin::TableBuilder.new(&block).to_html(self, collection, options)
+    end
+
     def pagination_information(collection, options = {})
       content_tag :div, page_entries_info(collection, options), :class => "pagination_information"
     end
