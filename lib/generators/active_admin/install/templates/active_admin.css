@@ -21,6 +21,7 @@ body {
 #content { margin: 0; padding: 25px 30px; }
 #main_content_wrapper{ float: left; width: 100%; }
 #main_content{ margin-right: 300px; }
+#content.without_sidebar #main_content{ margin-right: 0; }
 #sidebar{ float: left; width: 270px; margin-left: -270px; }
 
 #title_bar { position: relative; background: #e4e3e3; margin: 0; padding: 10px 30px; color: #535353; text-shadow: #fff 1px 1px 0;}
@@ -87,13 +88,13 @@ table { width: 100%; margin-bottom: 10px; }
 table tr th { padding: 5px 10px; text-align: left; background-color: #555; color: #eee; }
 table tr th a, table tr th a:link, table tr th a:visited, table tr th a:hover { color: #eee }
 table tr td { padding: 8px 10px; border-bottom: 1px solid #e0e0e0; }
-table tr:hover td, table tr.odd:hover td { background-color: #ddd}
+table > tbody > tr:hover > td, table > tbody > tr.odd:hover > td { background-color: #ddd}
 table tr.odd td { background-color: #eee }
 
 /* -------------------------------------- Typography */
 h2 { font-size: 2em; }
 
-/* -------------------------------------- Filters Sidebar */
+/* -------------------------------------- Sidebar */
 label { display: block; }
 
 /* -------------------------------------- Pagination */
@@ -121,6 +122,12 @@ table.resource_attributes th {
 table.resource_attributes tr:hover td{
   background: #fff;
 }
+
+/* -------------------------------------- Dashboard */
+table.dashboard > tbody > tr > td { vertical-align: top; border-bottom: none; }
+table.dashboard > tbody > tr:hover > td,
+table.dashboard > tbody > tr.odd:hover > td
+{ background: none;}
 
 /* -------------------------------------- Status Labels */
 span.status {
