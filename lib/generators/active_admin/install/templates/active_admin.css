@@ -13,16 +13,17 @@ body {
 }
 
 #header { background-color: #4b4a48; padding: 9px 30px; text-shadow: #222 1px 1px 0; }
-#header h1 { display: inline; margin-right: 10px; font-size: 1.2em; color: #94999a; font-weight: normal;}
+#header h1 { display: inline; margin-right: 20px; font-size: 1.1em; color: #94999a; font-weight: normal; text-transform: uppercase; }
 #header ul#tabs { margin: 0; padding: 0; display: inline; }
-#header ul#tabs li { display: inline; margin-right: 10px; font-size: 1.2em; }
-#header ul#tabs li a { text-decoration: none; color: #dfdfdf; }
+#header ul#tabs li { display: inline; margin-right: 4px; font-size: 1.2em; }
+#header ul#tabs li a { text-decoration: none; color: #bbb; padding: 2px 9px 3px 9px; }
+#header ul#tabs li.current a { -webkit-border-radius: 8px; color: #dfdfdf; background: #777; }
 
 #content { margin: 0; padding: 25px 30px; }
 #main_content_wrapper{ float: left; width: 100%; }
 #main_content{ margin-right: 300px; }
 #content.without_sidebar #main_content{ margin-right: 0; }
-#sidebar{ float: left; width: 270px; margin-left: -270px; }
+#sidebar{ float: left; width: 270px; margin-left: -270px; padding-top: 1.3em; }
 
 #title_bar { position: relative; background: #e4e3e3; margin: 0; padding: 10px 30px; color: #535353; text-shadow: #fff 1px 1px 0;}
 #title_bar .action_items { position: absolute; right: 30px; top: 28px; }
@@ -86,16 +87,26 @@ a.button.small {
 /* -------------------------------------- Tables */
 table { width: 100%; margin-bottom: 10px; }
 table tr th { padding: 5px 10px; text-align: left; background-color: #555; color: #eee; }
-table tr th a, table tr th a:link, table tr th a:visited, table tr th a:hover { color: #eee }
+table tr th a, table tr th a:link, table tr th a:visited, table tr th a:hover { color: #eee; text-decoration: none; }
 table tr td { padding: 8px 10px; border-bottom: 1px solid #e0e0e0; }
 table > tbody > tr:hover > td, table > tbody > tr.odd:hover > td { background-color: #ddd}
 table tr.odd td { background-color: #eee }
+
+/* -------------------------------------- Sortable Tables */
+th.sortable a { background: url('/images/active_admin/orderable.gif') no-repeat 0 4px; padding-left: 13px; display: block; }
+th.sortable.sorted-asc a { background-position: 0 -27px; }
+th.sortable.sorted-desc a { background-position: 0 -56px; }
 
 /* -------------------------------------- Typography */
 h2 { font-size: 2em; }
 
 /* -------------------------------------- Sidebar */
-label { display: block; }
+.sidebar_section { background: #eee; padding: 5px 15px 10px 15px; border-bottom: 1px solid #e0e0e0; }
+.sidebar_section h3 { padding: 5px 15px; background: #555; color: #fff; margin: -5px -15px 10px -15px; }
+
+/* -------------------------------------- Filters Sidebar */
+#filters_sidebar_section label { display: block; text-shadow: #fff 1px 1px 0; text-transform: uppercase; font-size: 0.8em; }
+#filters_sidebar_section .filter-form-field { margin-bottom: 6px; }
 
 /* -------------------------------------- Pagination */
 .pagination_information { float: right }
