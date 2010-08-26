@@ -142,6 +142,16 @@ module ActiveAdmin
         ].join("\n").html_safe
       end
 
+      # Override the standard finder to accept a proc
+      def find_collection_for_column(method, options = {})
+        options = options.dup
+        case options[:collection]
+        when Proc
+          options[:collection] = options[:collection].call
+        end
+        super(method, options)
+      end
+
       # Returns the default filter type for a given attribute
       def default_filter_type(method)
         if column = column_for(method)

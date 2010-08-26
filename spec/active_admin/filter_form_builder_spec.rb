@@ -116,6 +116,17 @@ describe_with_render ActiveAdmin::FormBuilder do
         response.should have_tag("option", "jane_doe", :attributes => {
                                                           :value => @jane.id })
       end
+      context "with a proc" do
+        before do
+          reset!
+          filter :title, :as => :select, :collection => proc{ ['Title One', 'Title Two'] }
+          get :index
+        end
+        it "should use call the proc as the collection" do
+          response.should have_tag("option", "Title One")
+          response.should have_tag("option", "Title Two")
+        end
+      end
     end
 
     context "as check boxes" do
