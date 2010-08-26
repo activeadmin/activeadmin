@@ -30,8 +30,8 @@ module ActiveAdmin
 
       def render_section(section)
         title = content_tag :h3, section.name.to_s.titleize
-        content = content_tag :div, instance_eval(&section.block), :class => 'dashboard_section', :id => "#{section.name.to_s.downcase.gsub(' ', '_')}_dashboard_section"
-        title + content
+        content = content_tag :div, instance_eval(&section.block), :class => 'dashboard_section_content'
+        content_tag :div, title + content, :class => 'dashboard_section', :id => "#{section.name.to_s.downcase.gsub(' ', '_')}_dashboard_section"
       end
 
       def default_welcome_section
