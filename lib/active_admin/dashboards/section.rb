@@ -2,6 +2,11 @@ module ActiveAdmin
   module Dashboards
     class Section
 
+      @@renderers = {
+        :default => SectionRenderer
+      }
+      cattr_accessor :renderers
+
       DEFAULT_PRIORITY = 10
 
       attr_accessor :name, :block
@@ -23,6 +28,14 @@ module ActiveAdmin
         result = priority <=> other.priority
         result = name <=> other.name if result == 0
         result
+      end
+
+      # Returns the class to use as this sections renderer. Raises
+      # an exception if the renderer could not be found
+      def renderer
+        klass = Section.renderers[@options[:as] || :default]
+        raise StandardError, "Could not find the #{@options[:as].inspect} dashboard section renderer." unless klass
+        klass
       end
 
     end

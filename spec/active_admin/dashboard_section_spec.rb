@@ -21,6 +21,23 @@ describe ActiveAdmin::Dashboards::Section do
     end
   end
 
+  describe "retrieving the renderer class" do
+    it "should return default if not set" do
+      section.renderer.should == ActiveAdmin::Dashboards::Section.renderers[:default]
+    end
+    it "should return a set renderer class" do
+      m = mock('SectionRenderer')
+      ActiveAdmin::Dashboards::Section.renderers[:mock] = m
+      section(:as => :mock).renderer.should == m
+      ActiveAdmin::Dashboards::Section.renderers.delete(:mock)
+    end
+    it "should raise an exception if the renderer does not exist" do
+      lambda{
+        section(:as => :woot).renderer
+      }.should raise_error(StandardError)
+    end
+  end
+
   describe "priority" do
     context "when not set" do
       subject{ section.priority }
