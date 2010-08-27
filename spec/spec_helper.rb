@@ -34,12 +34,13 @@ module ActiveAdminIntegrationSpecHelper
   end
 
   # Returns a fake action view instance to use with our renderers
-  def action_view(assigns = {})
+  def mock_action_view(assigns = {})
     controller = ActionView::TestCase::TestController.new
     ActionView::Base.send :include, ActionView::Helpers
     ActionView::Base.send :include, ActiveAdmin::ViewHelpers
     ActionView::Base.new(ActionController::Base.view_paths, assigns, controller)
   end  
+  alias_method :action_view, :mock_action_view
 
 end
 
@@ -73,7 +74,9 @@ if ENV['RAILS'] == '3.0.0'
     config.use_instantiated_fixtures = false
   end
 
+
   Rspec::Matchers.define :have_tag do |*args|
+
     match_unless_raises Test::Unit::AssertionFailedError do |response|
       tag = args.shift
       content = args.first.is_a?(Hash) ? nil : args.shift
@@ -83,9 +86,18 @@ if ENV['RAILS'] == '3.0.0'
       }.merge(args[0] || {})
       
       options[:content] = content if content
-      assert_tag(options)
+
+      begin
+        assert_tag(options)
+      rescue NoMethodError
+        # We are not in a controller, so let's do the checking ourselves
+        doc = HTML::Document.new(response, false, false)
+        tag = doc.find(options)
+        assert tag, "expected tag, but no tag found matching #{options.inspect} in:\n#{response.inspect}"
+      end
     end
   end
+
 end
 
 

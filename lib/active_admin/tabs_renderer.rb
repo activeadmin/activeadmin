@@ -26,9 +26,9 @@ module ActiveAdmin
       end
     end
 
-    # Returns true if the menu item matches the begining of the current url
+    # Returns true if the menu item name is @current_tab
     def current?(menu_item)
-      request.path =~ /^#{menu_item.url}/
+      menu_item.name == @current_tab
     end
 
     def default_options

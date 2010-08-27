@@ -20,15 +20,13 @@ module ActiveAdmin
     include ActiveAdmin::Filters
     include ActiveAdmin::ActionBuilder
 
-    add_breadcrumb "Dashboard", "/admin"
-    before_filter :add_section_breadcrumb
-    def add_section_breadcrumb
-      add_breadcrumb active_admin_config.plural_resource_name, collection_path 
-    end
-
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
 
+    add_breadcrumb "Dashboard", "/admin"
+
+    before_filter :add_section_breadcrumb
+    before_filter :set_current_tab
     before_filter :setup_pagination_for_csv
 
     class << self
@@ -252,6 +250,18 @@ module ActiveAdmin
         value == ""
       end
       search_params
+    end
+    
+    # Gets called as a before filter to set the section's breadcrumb
+    def add_section_breadcrumb
+      add_breadcrumb active_admin_config.plural_resource_name, collection_path 
+    end
+
+    # Set's @current_tab to be name of the tab to mark as current
+    # Get's called through a before filter
+    def set_current_tab
+      @current_tab = active_admin_config.parent_menu_item_name || 
+                        active_admin_config.menu_item_name
     end
 
     def active_admin_config

@@ -130,6 +130,8 @@ module ActiveAdmin
       # Find the menu this resource should be added to
       menu = menus[config.menu_name] ||= Menu.new
 
+      menu.add("Dashboard", "#{config.namespace}_dashboard_path".to_sym, 1) unless menu["Dashboard"]
+
       # Adding as a child
       if config.parent_menu_item_name
         # Create the parent if it doesn't exist
