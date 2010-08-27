@@ -15,6 +15,10 @@ module ActiveAdmin
 
       protected
 
+      def set_current_tab
+        @current_tab = "Dashboard"
+      end
+
       def find_sections
         ActiveAdmin::Dashboards.sections_for_namespace(namespace)
       end
