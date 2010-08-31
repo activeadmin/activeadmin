@@ -13,6 +13,7 @@ module ActiveAdminIntegrationSpecHelper
 
   def self.load!
     ActiveAdmin.register Post
+    ActiveAdmin.register Category
   end
 
   # Sometimes we need to reload the routes within
