@@ -284,10 +284,10 @@ module ActiveAdmin
     end
     helper_method :form_config
 
-    def current_menu_name
-      active_admin_config.menu_name
+    def current_menu
+      active_admin_config.namespace.menu
     end
-    helper_method :current_menu_name
+    helper_method :current_menu
 
     def skip_sidebar!
       @skip_sidebar = true

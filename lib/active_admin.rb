@@ -3,6 +3,7 @@ require 'meta_search'
 module ActiveAdmin
   
   autoload :VERSION,              'active_admin/version'
+  autoload :Namespace,            'active_admin/namespace'
   autoload :Resource,             'active_admin/resource'
   autoload :ResourceController,   'active_admin/resource_controller'
   autoload :Dashboards,           'active_admin/dashboards'
@@ -40,9 +41,9 @@ module ActiveAdmin
   @@default_sort_order = 'id_desc'
   mattr_accessor :default_sort_order
 
-  # A hash of configurations for each of the registered resources
-  @@resources = {}
-  mattr_accessor :resources
+  # A hash of all the registered namespaces
+  @@namespaces = {}
+  mattr_accessor :namespaces
 
   # The title which get's displayed in the main layout
   @@site_title = Rails.application.class.name.split("::").first.titlecase
@@ -100,52 +101,9 @@ module ActiveAdmin
     #
     # TODO: Setup docs for registration options
     def register(resource, options = {}, &block)
-      config = Resource.new(resource, options)
-
-      # Store the namespaced resource in @@resources
-      resources[[config.namespace_module_name, config.camelized_resource_name].compact.join('::')] = config
-      
-      # Generate the module, controller and eval contents of block inside controller
-      eval "module ::#{config.namespace_module_name}; end" if config.namespace
-      eval "class ::#{config.controller_name} < ActiveAdmin::ResourceController; end"
-      config.controller.active_admin_config = config
-      config.controller.class_eval(&block) if block_given?
-
-      register_dashboard_controller(config)
-
-      # Setup menus
-      register_with_menu config
-      
-      # Return the config
-      config
-    end
-
-    # Creates a dashboard controller for this config
-    def register_dashboard_controller(config)
-      eval "class ::#{config.dashboard_controller_name} < ActiveAdmin::Dashboards::DashboardController; end"
-    end
-
-    # Does all the work of registernig a config with the menu system
-    def register_with_menu(config)
-      # Find the menu this resource should be added to
-      menu = menus[config.menu_name] ||= Menu.new
-
-      menu.add("Dashboard", "#{config.namespace}_dashboard_path".to_sym, 1) unless menu["Dashboard"]
-
-      # Adding as a child
-      if config.parent_menu_item_name
-        # Create the parent if it doesn't exist
-        menu.add(config.parent_menu_item_name, '#') unless menu[config.parent_menu_item_name]
-        menu = menu[config.parent_menu_item_name]
-      end
-
-      # Check if this menu item has already been created
-      if menu[config.menu_item_name]
-        # Update the url if it's already been created
-        menu[config.menu_item_name].url = config.route_collection_path
-      else
-        menu.add(config.menu_item_name, config.route_collection_path)
-      end
+      namespace_name = options[:namespace] == false ? :root : (options[:namespace] || default_namespace)
+      namespace = namespaces[namespace_name] ||= Namespace.new(namespace_name)
+      namespace.register(resource, options, &block)
     end
 
     # Returns true if all the configuration files have been loaded.
@@ -159,22 +117,8 @@ module ActiveAdmin
     # We remove them, then load them on each request in development
     # to allow for changes without having to restart the server.
     def unload!
-      unload_resources!
-      unload_dashboards!
+      namespaces.values.each{|namespace| namespace.unload! }
       @@loaded = false
-    end
-
-    def unload_resources!
-      resources.each do |name, config|
-        parent = (config.namespace_module_name || 'Object').constantize
-        const_name = config.controller_name.split('::').last
-        # Remove the const if its been defined
-        parent.send(:remove_const, const_name) if parent.const_defined?(const_name)
-      end
-    end
-
-    def unload_dashboards!
-      Dashboards.clear_all_sections!
     end
 
     # Loads all of the ruby files that are within the load path of
@@ -209,16 +153,18 @@ module ActiveAdmin
       load!
 
       # Define any necessary dashboard routes
-      router.instance_exec(menus.keys) do |namespaces|
-        namespaces.each do |name|
+      router.instance_exec(namespaces.values) do |namespaces|
+        namespaces.each do |namespace|
+          name = namespace.name
           match name.to_s => "#{name}/dashboard#index", :as => "#{name.to_s}_dashboard"
         end
       end
 
       # Now define the routes for each resource
-      router.instance_exec(resources) do |admin_resources|
-        admin_resources.each do |name, config|
-          
+      router.instance_exec(namespaces) do |namespaces|
+        resources = namespaces.values.collect{|n| n.resources.values }.flatten
+        resources.each do |config|
+
           # Define the block the will get eval'd within the namespace
           route_definition_block = Proc.new do
             resources config.underscored_resource_name.pluralize do
@@ -240,12 +186,12 @@ module ActiveAdmin
             end
           end
 
-          if config.namespace
-            namespace config.namespace do
+          if config.namespace.root?
+            instance_eval(&route_definition_block)
+          else
+            namespace config.namespace.name do
               instance_eval(&route_definition_block)
             end
-          else
-            instance_eval(&route_definition_block)
           end
         end
       end

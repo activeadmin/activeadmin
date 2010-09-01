@@ -27,10 +27,10 @@ module ActiveAdmin
         self.class.name.split('::').first.underscore.to_sym
       end
 
-      def current_menu_name
-        namespace
+      # Return the current menu for the view. This is a helper method
+      def current_menu
+        ActiveAdmin.namespaces[namespace].menu
       end
-      helper_method :current_menu_name
 
       # Override to do nothing
       def add_section_breadcrumb

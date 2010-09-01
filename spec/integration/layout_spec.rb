@@ -53,7 +53,7 @@ describe_with_render "Layout" do
         response.should have_tag("ul", :attributes => { :id => "tabs" })
       end
       it "should generate an li and a for each resource" do
-        ActiveAdmin.resources.values.each do |r|
+        ActiveAdmin.namespaces[:admin].resources.values.each do |r|
           response.should have_tag("a", r.resource_name.pluralize, :parent => {
                                                           :tag => "li" })
         end

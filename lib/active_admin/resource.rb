@@ -1,21 +1,17 @@
 module ActiveAdmin
   class Resource
 
-    attr_reader :resource, :page_configs, :member_actions, :collection_actions,
+    attr_reader :namespace, :resource, :page_configs, :member_actions, :collection_actions,
                 :parent_menu_item_name
     attr_accessor :resource_name, :sort_order, :scope_to, :scope_to_association_method
 
-    def initialize(resource, options = {})
+    def initialize(namespace, resource, options = {})
+      @namespace = namespace
       @resource = resource
       @options = default_options.merge(options)
       @sort_order = @options[:sort_order]
       @page_configs = {}
       @member_actions, @collection_actions = [], []
-    end
-
-    # Returns the namespace for the resource
-    def namespace
-      @options[:namespace]
     end
 
     # An underscored safe representation internally for this resource
@@ -42,19 +38,10 @@ module ActiveAdmin
       @plural_resource_name ||= resource_name.pluralize
     end
 
-    # If the resource is namespaced, this returns a string
-    # which represents the name of the ruby module.
-    #
-    # If the resource is not namespaced it returns nil
-    def namespace_module_name
-      return nil unless namespace
-      namespace.to_s.camelcase
-    end
-
     # Returns a properly formatted controller name for this
     # resource within its namespace
     def controller_name
-      [namespace_module_name, camelized_resource_name.pluralize + "Controller"].compact.join('::')
+      [namespace.module_name, camelized_resource_name.pluralize + "Controller"].compact.join('::')
     end
 
     # Returns the controller for this resource
@@ -71,11 +58,6 @@ module ActiveAdmin
     # collection of this resource
     def route_collection_path
       [route_prefix, controller.resources_configuration[:self][:route_collection_name], 'path'].compact.join('_').to_sym
-    end
-
-    # Returns which menu to add the item to
-    def menu_name
-      namespace || :root
     end
 
     # Set the menu options
@@ -98,7 +80,7 @@ module ActiveAdmin
 
     # Returns the name of the controller class for this resource
     def dashboard_controller_name
-      [namespace_module_name, "DashboardController"].compact.join("::")
+      [namespace.module_name, "DashboardController"].compact.join("::")
     end
 
     private

@@ -3,8 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 module ActiveAdmin
   describe Resource do
 
+    let(:namespace){ Namespace.new(:admin) }
+
     def config(options = {})
-      @config ||= Resource.new(Category, options)
+      @config ||= Resource.new(namespace, Category, options)
     end
 
     describe "underscored resource name" do
@@ -16,7 +18,7 @@ module ActiveAdmin
       context "when a class in a module" do
         it "should underscore the module and the class" do
           module ::Mock; class Resource; end; end
-          Resource.new(Mock::Resource).underscored_resource_name.should == "mock_resource"
+          Resource.new(namespace, Mock::Resource).underscored_resource_name.should == "mock_resource"
         end
       end
       context "when you pass the 'as' option" do
@@ -47,23 +49,8 @@ module ActiveAdmin
     end
 
     describe "namespace" do
-      it "should return the default namspace if none given" do
-        config.namespace.should == ActiveAdmin.default_namespace
-      end
-      it "should set the namespace" do
-        config(:namespace => :hello_world).namespace.should == :hello_world
-      end
-      it "should have no namespace" do
-        config(:namespace => false).namespace.should == false
-      end
-    end
-
-    describe "namespace_module_name" do
-      it "should be the module name" do
-        config(:namespace => :hello_world).namespace_module_name.should == 'HelloWorld'
-      end
-      it "should be nil" do
-        config(:namespace => false).namespace_module_name.should == nil
+      it "should return the namespace" do
+        config.namespace.should == namespace
       end
     end
 
@@ -71,17 +58,11 @@ module ActiveAdmin
       it "should return a namespaced controller name" do
         config.controller_name.should == "Admin::CategoriesController"
       end
-      it "should return a non namespaced controller name" do
-        config(:namespace => false).controller_name.should == "CategoriesController"
-      end
-    end
-
-    describe "menu name" do
-      it "should return the namespace" do
-        config.menu_name.should == :admin
-      end
-      it "should return :root if no namespace" do
-        config(:namespace => false).menu_name.should == :root
+      context "when non namespaced controller" do
+        let(:namespace){ ActiveAdmin::Namespace.new(:root) }
+        it "should return a non namespaced controller name" do
+          config.controller_name.should == "CategoriesController"
+        end
       end
     end
 
@@ -97,10 +78,7 @@ module ActiveAdmin
     end
 
     describe "route names" do
-      before do
-        ActiveAdmin.register Category
-      end
-      let(:config){ ActiveAdmin.resources['Admin::Category'] }
+      let(:config){ ActiveAdmin.register Category }
       it "should return the route prefix" do
         config.route_prefix.should == "admin"
       end
@@ -193,7 +171,8 @@ module ActiveAdmin
         it { should == "Admin::DashboardController" }
       end
       context "when not namespaced" do
-        subject{ config(:namespace => false).dashboard_controller_name }
+        let(:namespace){ ActiveAdmin::Namespace.new(:root) }
+        subject{ config.dashboard_controller_name }
         it { should == "DashboardController" }
       end
     end
