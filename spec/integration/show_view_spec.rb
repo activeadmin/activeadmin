@@ -1,7 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe_with_render "Show View" do
-  
+
+  before :all do
+    load_defaults!
+    reload_routes!
+  end
+
   describe "GET #show" do
     before(:each) do
       Admin::PostsController.reset_show_config!

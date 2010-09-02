@@ -2,14 +2,14 @@
 source 'http://rubygems.org'
 
 # Rails & ActiveAdmin Dependencies
-gem 'rails',          '3.0.0.rc'
+gem 'rails',          '3.0.0'
 gem 'sqlite3-ruby',   :require => 'sqlite3'
-gem 'haml',           '3.0.15'
-gem 'formtastic',     :git => "git://github.com/justinfrench/formtastic.git", :branch => 'rails3'
-gem 'will_paginate',  :git => "git://github.com/mislav/will_paginate.git", :branch => 'rails3'
-gem "meta_search",    '0.5.4'
+gem 'haml',           '3.0.18'
+gem 'formtastic',     '1.1.0.beta'
+gem 'will_paginate',  '3.0.pre2'
+gem "meta_search",    '0.9.2'
 gem 'inherited_views'
 
 # Testing Dependencies
-gem 'rspec',          '2.0.0.beta.19'
-gem 'rspec-rails',    '2.0.0.beta.19'
+gem 'rspec',          '2.0.0.beta.20'
+gem 'rspec-rails',    '2.0.0.beta.20'

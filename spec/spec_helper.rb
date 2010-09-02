@@ -11,7 +11,9 @@ autoload :ActiveAdmin, 'active_admin'
 
 module ActiveAdminIntegrationSpecHelper
 
-  def self.load!
+  extend self
+
+  def load_defaults!
     ActiveAdmin.register Post
     ActiveAdmin.register Category
   end
@@ -60,11 +62,9 @@ if ENV['RAILS'] == '3.0.0'
   require 'rspec/rails'
 
   # Setup Some Admin stuff for us to play with
-  ActiveAdminIntegrationSpecHelper.load!
   include ActiveAdminIntegrationSpecHelper
-
-  # Force the routes to be reloaded
-  Rails.application.reload_routes!
+  load_defaults!
+  reload_routes!
 
   # Don't add asset cache timestamps. Makes it easy to integration
   # test for the presence of an asset file

@@ -7,6 +7,11 @@ describe ActiveAdmin, "rendering the dashboard" do
   render_views  
   metadata[:behaviour][:describes] = Admin::DashboardController
 
+  before :all do
+    load_defaults!
+    reload_routes!
+  end
+
   context "when no configuration" do
     before do
       get :index

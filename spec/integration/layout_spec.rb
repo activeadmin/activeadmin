@@ -2,6 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe_with_render "Layout" do
 
+  before :all do
+    load_defaults!
+    reload_routes!
+  end
+
   it "should include the active admin stylesheet" do
     get :index
     response.should have_tag("link", :attributes => { :href => '/stylesheets/active_admin.css' })

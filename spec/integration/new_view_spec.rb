@@ -2,6 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe_with_render "New View" do
 
+  before :all do
+    load_defaults!
+    reload_routes!
+  end
+
   before(:each) do
     Admin::PostsController.reset_form_config!
   end

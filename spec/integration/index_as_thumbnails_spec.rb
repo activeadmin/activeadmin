@@ -2,6 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe_with_render "Index as Thumbnails" do
 
+  before :all do
+    load_defaults!
+    reload_routes!
+  end
+
   before do
     Admin::PostsController.reset_index_config!
     @post = Post.create(:title => "Hello World", :body => "This is the hello world post")

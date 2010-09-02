@@ -2,6 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe_with_render ActiveAdmin::Sidebar do
 
+  before :all do
+    load_defaults!
+    reload_routes!
+  end
+
   # Store the config and set it back after each spec so that we
   # dont mess with other specs
   before do

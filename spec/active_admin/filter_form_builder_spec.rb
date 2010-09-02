@@ -77,7 +77,7 @@ describe_with_render ActiveAdmin::FormBuilder do
     end
     it "should generate a text field for input" do
       response.should have_tag("input", :attributes => {
-                                          :name => "q[id_eq]" })
+                                          :name => "q[id_equals]" })
     end
     it "should select the option which is currently being filtered"
   end
