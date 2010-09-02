@@ -48,6 +48,19 @@ describe_with_render "Show View" do
       end
 
     end
+
+    describe "action items" do
+      before do
+        @post = Post.create(:title => "Hello World", :body => "Woot Woot")
+        get :show, :id => @post.id
+      end
+      it "should have a delete button" do
+        response.should have_tag("a", "Delete Post", :attributes => { 'data-method' => 'delete' })
+      end
+      it "should have an edit button" do
+        response.should have_tag("a", "Edit Post")
+      end
+    end
     
     context "with default output" do
       before do

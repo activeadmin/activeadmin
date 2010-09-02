@@ -158,7 +158,15 @@ module ActiveAdmin
       end
     end
 
-    action_item :except => :new do
+    action_item :only => :show do
+      if controller.public_methods.include?("destroy")
+        link_to "Delete #{active_admin_config.resource_name}",
+          resource_path(resource), 
+          :method => :delete, :confirm => "Are you sure you want to delete this?"
+      end
+    end
+
+    action_item :except => [:new, :show] do
       if controller.public_methods.include?('new')
         link_to "New #{active_admin_config.resource_name}", new_resource_path
       end
