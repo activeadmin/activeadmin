@@ -2,16 +2,16 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe ActiveAdmin do
 
-  it "should have a default load path of ['app/active_admin']" do
-    ActiveAdmin.load_paths.should == [File.expand_path('app/active_admin', Rails.root)]
+  it "should have a default load path of ['app/admin']" do
+    ActiveAdmin.load_paths.should == [File.expand_path('app/admin', Rails.root)]
   end
 
-  it "should remove app/active_admin from the autoload path to remove the possibility of conflicts" do
-    ActiveSupport::Dependencies.autoload_paths.should_not include(File.join(Rails.root, "app/active_admin"))
+  it "should remove app/admin from the autoload path to remove the possibility of conflicts" do
+    ActiveSupport::Dependencies.autoload_paths.should_not include(File.join(Rails.root, "app/admin"))
   end
 
-  it "should remove app/active_admin from the eager load paths (Active Admin deals with loading)" do
-    Rails.application.config.eager_load_paths.should_not include(File.join(Rails.root, "app/active_admin"))
+  it "should remove app/admin from the eager load paths (Active Admin deals with loading)" do
+    Rails.application.config.eager_load_paths.should_not include(File.join(Rails.root, "app/admin"))
   end
   
   # TODO: Find a good way to test loading and unloading constants

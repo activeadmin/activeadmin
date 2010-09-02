@@ -35,7 +35,7 @@ Then, run the installer:
   rails generate active_admin:install
 
 This will create an initializer which is used for configuring defaults used by Active Admin as well
-as a new folder at app/active_admin to put all your admin configurations. Note: All ruby files in 
+as a new folder at app/admin to put all your admin configurations. Note: All ruby files in 
 the Active Admin load path get loaded into the rails application.
 
 == Usage
@@ -46,7 +46,7 @@ Let's build up an example using a Post model and the provided admin generator.
   
 That's all you need to get a full CRUD, beautiful administration interface!
 
-The generator will create a new file app/active_admin/posts.rb that will
+The generator will create a new file app/admin/posts.rb that will
 look like the following:
 
   ActiveAdmin.register Post

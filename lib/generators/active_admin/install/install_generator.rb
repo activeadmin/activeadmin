@@ -12,7 +12,7 @@ module ActiveAdmin
       end
 
       def setup_directory
-        empty_directory "app/active_admin"
+        empty_directory "app/admin"
       end
 
       def setup_routes

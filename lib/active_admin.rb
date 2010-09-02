@@ -52,7 +52,7 @@ module ActiveAdmin
   # Load paths for admin configurations. Add folders to this load path
   # to load up other resources for administration. External gems can
   # include thier paths in this load path to provide active_admin UIs
-  @@load_paths = [File.expand_path('app/active_admin', Rails.root)]
+  @@load_paths = [File.expand_path('app/admin', Rails.root)]
   mattr_accessor :load_paths
 
   # Stores if everything has been loaded or we need to reload
