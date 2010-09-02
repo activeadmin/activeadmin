@@ -26,7 +26,7 @@ module ActiveAdmin
       # Sort by priority then by name
       def <=>(other)
         result = priority <=> other.priority
-        result = name <=> other.name if result == 0
+        result = name.to_s <=> other.name.to_s if result == 0
         result
       end
 

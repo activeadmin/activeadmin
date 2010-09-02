@@ -53,7 +53,7 @@ describe ActiveAdmin::Dashboards::Section do
   describe "sorting sections" do
     it "should sort by priority then alpha" do
       s1 = section :name => "Woot"
-      s2 = section :name => "Alpha"
+      s2 = section :name => :Alpha
       s3 = section :name => "Zulu", :priority => 1
       s4 = section :name => "Beta", :priority => 100
       [s1,s2,s3,s4].sort.should == [s3, s2, s1, s4]
