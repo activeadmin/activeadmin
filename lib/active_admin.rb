@@ -46,7 +46,7 @@ module ActiveAdmin
   mattr_accessor :namespaces
 
   # The title which get's displayed in the main layout
-  @@site_title = Rails.application.class.name.split("::").first.titlecase
+  @@site_title = ""
   mattr_accessor :site_title
 
   # Load paths for admin configurations. Add folders to this load path

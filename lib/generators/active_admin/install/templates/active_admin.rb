@@ -5,10 +5,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  # If you don't set it here, it defaults to a friendly
-  # name of your Rails.application class name.
-  #
-  # config.site_title = "My Great Site"
+  config.site_title = "<%= Rails.application.class.name.split("::").first.titlecase %>"
 
 
   # == Default Namespace
