@@ -21,6 +21,11 @@ module ActiveAdmin
         #
         class TableBuilder < ::ActiveAdmin::TableBuilder
 
+          # Display a column for the id
+          def id
+            column 'ID', :id
+          end
+
           # Adds links to View, Edit and Delete
           def default_actions(options = {})
             options = {

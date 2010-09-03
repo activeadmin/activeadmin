@@ -31,6 +31,7 @@ module ActiveAdmin
       # with each column displayed as well as all the default actions
       def default_index_config
         @default_index_config ||= ::ActiveAdmin::PageConfig.new(:as => :table) do |display|
+          display.id
           resource_class.content_columns.each do |column|
             display.column column.name.to_sym
           end

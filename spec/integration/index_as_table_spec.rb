@@ -41,6 +41,9 @@ describe_with_render "Index as Table" do
       it "should render a new link" do
         response.should have_tag("a", "New Post", :attributes => {:href => "/admin/posts/new"})
       end
+      it "should render an ID header" do
+        response.should have_tag("th", "ID")
+      end
       it "should render a table with default sortable headers" do
         response.should have_tag("a", :content => "Title", 
                                       :parent => { :tag => "th" })
