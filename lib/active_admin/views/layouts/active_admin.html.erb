@@ -20,6 +20,7 @@
     <%= yield :title_bar %>
   </div>
   <div id="content" class="<%= skip_sidebar? ? 'without_sidebar' : 'with_sidebar' %>">
+    <%= yield :flash_messages %>
     <div id="main_content_wrapper">
       <div id="main_content">
         <%= yield %>
