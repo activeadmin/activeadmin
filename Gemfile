@@ -12,5 +12,6 @@ gem 'inherited_views'
 gem 'jeweler'
 
 # Testing Dependencies
-gem 'rspec',          '2.0.0.beta.20'
-gem 'rspec-rails',    '2.0.0.beta.20'
+gem 'rspec',          '2.0.0.beta.22'
+gem 'rspec-rails',    '2.0.0.beta.22'
+gem 'capybara',       '0.3.9'

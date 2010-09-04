@@ -3,8 +3,11 @@ module ActiveAdmin
     class Base < ::ActiveAdmin::Renderer
 
       def breadcrumb(separator = "/")
+        links = breadcrumb_links
+        return if links.empty?
+        sep = content_tag(:span, separator, :class => "breadcrumb_sep")
         content_tag :span, :class => "breadcrumb" do
-          @breadcrumbs.map { |txt, path| link_to_unless((path.blank? || current_page?(path)), h(txt), path) }.join(" #{content_tag(:span, separator, :class => "breadcrumb_sep")} ")
+          links.join(" #{sep} ") + sep
         end
       end
 

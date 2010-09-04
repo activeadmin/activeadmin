@@ -32,9 +32,6 @@ module ActiveAdmin
         ActiveAdmin.namespaces[namespace].menu
       end
 
-      # Override to do nothing
-      def add_section_breadcrumb
-      end
     end
   end
 end

@@ -36,6 +36,7 @@ describe ActiveAdmin::Namespace do
         defined?(Admin::DashboardController).should be_true
       end
       it "should create a menu item" do
+        namespace.load_menu!
         namespace.menu["Categories"].should be_an_instance_of(ActiveAdmin::MenuItem)
         namespace.menu["Categories"].url.should == "/admin/categories"
       end
@@ -64,6 +65,7 @@ describe ActiveAdmin::Namespace do
         defined?(Admin::MockResourcesController).should be_true
       end
       it "should create a menu item" do
+        namespace.load_menu!
         namespace.menu["Mock Resources"].should be_an_instance_of(ActiveAdmin::MenuItem)
       end
       it "should use the resource as the model in the controller" do
@@ -76,6 +78,7 @@ describe ActiveAdmin::Namespace do
       describe "adding as a top level item" do
         before do
           namespace.register Category
+          namespace.load_menu!
         end
         it "should add a new menu item" do
           namespace.menu['Categories'].should_not be_nil
@@ -87,6 +90,7 @@ describe ActiveAdmin::Namespace do
           namespace.register Category do
             menu :parent => 'Blog'
           end
+          namespace.load_menu!
         end
         it "should generate the parent menu item" do
           namespace.menu['Blog'].should_not be_nil

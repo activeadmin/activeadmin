@@ -3,7 +3,8 @@ module ActiveAdmin
 
     attr_reader :namespace, :resource, :page_configs, :member_actions, :collection_actions,
                 :parent_menu_item_name
-    attr_accessor :resource_name, :sort_order, :scope_to, :scope_to_association_method
+    attr_accessor :resource_name, :sort_order, :scope_to, :scope_to_association_method,
+                  :belongs_to
 
     def initialize(namespace, resource, options = {})
       @namespace = namespace
@@ -81,6 +82,11 @@ module ActiveAdmin
     # Returns the name of the controller class for this resource
     def dashboard_controller_name
       [namespace.module_name, "DashboardController"].compact.join("::")
+    end
+
+    # Do we belong to another resource
+    def belongs_to?
+      !belongs_to.nil?
     end
 
     private

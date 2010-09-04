@@ -14,7 +14,6 @@ module ActiveAdmin
     
     class_inheritable_accessor :form_config
 
-    include ActiveAdmin::Breadcrumbs
     include ActiveAdmin::Sidebar
     include ActiveAdmin::ActionItems
     include ActiveAdmin::Filters
@@ -23,9 +22,6 @@ module ActiveAdmin
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
 
-    add_breadcrumb "Dashboard", "/admin"
-
-    before_filter :add_section_breadcrumb
     before_filter :set_current_tab
     before_filter :setup_pagination_for_csv
 
@@ -87,6 +83,11 @@ module ActiveAdmin
 
         active_admin_config.scope_to = block_given? ? block : method
         active_admin_config.scope_to_association_method = options[:association_method]
+      end
+
+      def belongs_to(target, options = {})
+        active_admin_config.belongs_to = BelongsTo.new(active_admin_config, target, options)
+        super(target, options.dup)
       end
      
       #
@@ -260,16 +261,14 @@ module ActiveAdmin
       search_params
     end
     
-    # Gets called as a before filter to set the section's breadcrumb
-    def add_section_breadcrumb
-      add_breadcrumb active_admin_config.plural_resource_name, collection_path 
-    end
-
     # Set's @current_tab to be name of the tab to mark as current
     # Get's called through a before filter
     def set_current_tab
-      @current_tab = active_admin_config.parent_menu_item_name || 
-                        active_admin_config.menu_item_name
+      @current_tab = if active_admin_config.belongs_to? && parent?
+        active_admin_config.belongs_to.target.menu_item_name
+      else
+        active_admin_config.parent_menu_item_name || active_admin_config.menu_item_name
+      end
     end
 
     def active_admin_config

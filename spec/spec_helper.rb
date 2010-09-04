@@ -1,4 +1,6 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
+$LOAD_PATH << File.expand_path('../support', __FILE__)
+
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../../Gemfile', __FILE__)
 
 require 'rubygems'
@@ -14,8 +16,14 @@ module ActiveAdminIntegrationSpecHelper
   extend self
 
   def load_defaults!
-    ActiveAdmin.register Post
-    ActiveAdmin.register Category
+    ActiveAdmin.register(Category)
+    ActiveAdmin.register(User)
+    ActiveAdmin.register(Post){ belongs_to :user, :optional => true }
+    reload_menus!
+  end
+
+  def reload_menus!
+    ActiveAdmin.namespaces.values.each{|n| n.load_menu! }
   end
 
   # Sometimes we need to reload the routes within
@@ -32,6 +40,16 @@ module ActiveAdminIntegrationSpecHelper
       include RSpec::Rails::ControllerExampleGroup
       render_views  
       metadata[:behaviour][:describes] = Admin::PostsController
+      module_eval &block
+    end
+  end
+
+  # Setup a describe block which uses capybara and rails integration
+  # test methods.
+  def describe_with_capybara(*args, &block)
+    require 'integration_example_group'
+    describe *args do
+      include RSpec::Rails::IntegrationExampleGroup
       module_eval &block
     end
   end

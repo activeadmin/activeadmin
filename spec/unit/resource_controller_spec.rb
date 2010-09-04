@@ -29,20 +29,25 @@ describe ActiveAdmin::ResourceController do
   describe "setting the current tab" do
     let(:controller) { ActiveAdmin::ResourceController.new }
     before do 
-      controller.stub!(:active_admin_config => resource)
+      controller.stub!(:active_admin_config => resource, :parent? => true)
       controller.send :set_current_tab # Run the before filter
     end
     subject{ controller.instance_variable_get(:@current_tab) }
 
     context "when menu item name is 'Resources' without a parent menu item" do
-      let(:resource){ mock(:menu_item_name => "Resources", :parent_menu_item_name => nil) }
+      let(:resource){ mock(:menu_item_name => "Resources", :parent_menu_item_name => nil, :belongs_to? => false) }
       it { should == "Resources" }
     end
 
     context "when there is a parent menu item of 'Admin'" do
-      let(:resource){ mock(:parent_menu_item_name => "Admin") }
+      let(:resource){ mock(:parent_menu_item_name => "Admin", :belongs_to? => false) }
       it { should == "Admin" }
     end
+
+   # context "when belongs to resource named 'Parent'" do
+   #   let(:resource){ mock(:belongs_to? => { :name => :parent }) }
+   #   it { should == 'Parents' }
+   # end
   end
 
 end

@@ -18,7 +18,6 @@ module ActiveAdmin
       register_module unless root?
       register_resource_controller(config, &block)
       register_dashboard_controller(config)
-      register_with_menu(config)
       
       # Return the config
       config
@@ -45,6 +44,12 @@ module ActiveAdmin
       unload_resources!
       unload_dashboard!
       unload_menu!
+    end
+
+    def load_menu!
+      resources.values.each do |config|
+        register_with_menu(config)
+      end
     end
 
     protected
@@ -89,6 +94,8 @@ module ActiveAdmin
 
       # The menu we're going to add this resource to
       add_to = menu
+
+      return if config.belongs_to? && !config.belongs_to.optional?
 
       # Adding as a child
       if config.parent_menu_item_name
