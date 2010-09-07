@@ -32,4 +32,16 @@ ActiveAdmin.setup do |config|
   #
   # config.before_filter :authenticate_user!
 
+
+  # == Register Stylesheets & Javascripts
+  #
+  # We recomend using the built in Active Admin layout and loading
+  # up your own stylesheets / javascripts to customize the look
+  # and feel.
+  #
+  # To load a stylesheet:
+  #   config.register_stylesheet 'my_stylesheet.css'
+  #
+  # To load a javascript file:
+  #   config.register_javascript 'my_javascript.js'
 end
