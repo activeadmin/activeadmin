@@ -15,8 +15,8 @@ body {
 #header { background-color: #4b4a48; padding: 9px 30px; text-shadow: #222 1px 1px 0; }
 #header h1 { display: inline; margin-right: 20px; font-size: 1.1em; color: #94999a; font-weight: normal; text-transform: uppercase; }
 #header ul#tabs { margin: 0; padding: 0; display: inline; }
-#header ul#tabs li { display: inline; margin-right: 4px; font-size: 1.2em; }
-#header ul#tabs li a { text-decoration: none; color: #bbb; padding: 2px 9px 3px 9px; }
+#header ul#tabs li { display: inline; margin-right: 4px; font-size: 1.0em; }
+#header ul#tabs li a { text-decoration: none; color: #bbb; padding: 4px 10px; }
 #header ul#tabs li.current a { -webkit-border-radius: 8px; color: #dfdfdf; background: #777; }
 
 #content { margin: 0; padding: 25px 30px; }
@@ -25,7 +25,7 @@ body {
 #content.without_sidebar #main_content{ margin-right: 0; }
 #sidebar{ float: left; width: 270px; margin-left: -270px; padding-top: 1.3em; }
 
-#title_bar { position: relative; background: #e4e3e3; margin: 0; padding: 10px 30px; color: #535353; text-shadow: #fff 1px 1px 0;}
+#title_bar { position: relative; background: #e4e3e3; background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#dddbdb)); margin: 0; padding: 10px 30px; color: #535353; text-shadow: #fff 1px 1px 0;}
 #title_bar .action_items { position: absolute; right: 30px; top: 28px; }
 #title_bar .breadcrumb a { color: #777; }
 #title_bar .breadcrumb .breadcrumb_sep { color: #aaa; margin: 0 2px; }
@@ -139,6 +139,19 @@ table.dashboard > tbody > tr > td { vertical-align: top; border-bottom: none; }
 table.dashboard > tbody > tr:hover > td,
 table.dashboard > tbody > tr.odd:hover > td
 { background: none;}
+table.dashboard .dashboard_section{ border: 1px solid #eee; padding: 0; -webkit-border-radius: 5px; }
+table.dashboard .dashboard_section_content { padding: 0 15px 5px 15px; }
+table.dashboard h3 {
+  margin-top: 0;
+  background: #eee;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#dddbdb));
+  padding: 5px;
+  color: #535353;
+  font-size: 1.1em;
+  text-shadow: #fff 1px 1px 0;
+}
 
 /* -------------------------------------- Status Labels */
 span.status {
