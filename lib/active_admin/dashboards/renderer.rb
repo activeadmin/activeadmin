@@ -36,7 +36,7 @@ module ActiveAdmin
 
       def default_welcome_section
         content_tag :p, :id => "dashboard_default_message" do
-          "Welcome to Active Admin. This is the default dashboard page. More details coming soon"
+          "Welcome to Active Admin. This is the default dashboard page. To add dashboard sections, checkout 'app/admin/dashboards.rb'"
         end
       end
 
