@@ -222,10 +222,8 @@ module ActiveAdmin
 
     # Helper method to add a dashboard section
     def dashboard_section(name, options = {}, &block)
-      namespace = options.delete(:namespace) || default_namespace
-      ActiveAdmin::Dashboards.add_section(namespace, name, options, &block)
+      ActiveAdmin::Dashboards.add_section(name, options, &block)
     end
-
 
   end
 end
