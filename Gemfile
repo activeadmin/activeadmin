@@ -9,6 +9,7 @@ gem 'formtastic',     '1.1.0.beta'
 gem 'will_paginate',  '3.0.pre2'
 gem "meta_search",    '0.9.2'
 gem 'inherited_views'
+gem 'jeweler'
 
 # Testing Dependencies
 gem 'rspec',          '2.0.0.beta.20'
