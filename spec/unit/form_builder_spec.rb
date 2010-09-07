@@ -14,10 +14,7 @@ describe_with_render ActiveAdmin::FormBuilder do
           f.input :title
           f.input :body
         end
-        f.label :title, "My Super Title"
-        f.text_field :title
         f.buttons do
-          f.submit "My Submit Button"
           f.commit_button "Submit Me"
           f.commit_button "Another Button"
         end
@@ -27,14 +24,11 @@ describe_with_render ActiveAdmin::FormBuilder do
       response.should have_tag("input", :attributes => { :type => "text",
                                                      :name => "post[title]" })
     end
-    it "should generate a label using the default form methods" do
-      response.should have_tag("label", "My Super Title")
-    end
     it "should generate a textarea" do
       response.should have_tag("textarea", :attributes => { :name => "post[body]" })
     end
     it "should only generate the form once" do
-      response.body.scan(/My Super Title/).size.should == 1
+      response.body.scan(/Title/).size.should == 1
     end
     it "should generate buttons" do
       response.should have_tag("input", :attributes => {  :type => "submit",
@@ -86,12 +80,11 @@ describe_with_render ActiveAdmin::FormBuilder do
     it "should generate multiple buttons" do
       build_form do |f|
         f.buttons do
-          f.submit "Create"
           f.commit_button "Create & Continue"
           f.commit_button "Create & Edit"
         end
       end
-      response.body.scan(/type=\"submit\"/).size.should == 3
+      response.body.scan(/type=\"submit\"/).size.should == 2
     end
 
   end
@@ -193,28 +186,19 @@ describe_with_render ActiveAdmin::FormBuilder do
   end
 
 
-  # This checks that each input can be added via the standard
-  # rails method as well as using the form builder's #input method.
   { 
     "input :title, :as => :string"        => /id\=\"post_title\"/,
-    "text_field :title"                   => /id\=\"post_title\"/,
     "input :title, :as => :text"          => /id\=\"post_title\"/,
-    "text_area :title"                    => /id\=\"post_title\"/,
     "input :created_at, :as => :time"     => /id\=\"post_created_at_2i\"/,
-    "time_select :created_at"             => /id\=\"post_created_at_2i\"/,
     "input :created_at, :as => :datetime" => /id\=\"post_created_at_2i\"/,
-    "datetime_select :created_at"         => /id\=\"post_created_at_2i\"/,
     "input :created_at, :as => :date"     => /id\=\"post_created_at_2i\"/,
-    "date_select :created_at"             => /id\=\"post_created_at_2i\"/,
-    "radio_button :title, 'title'"        => /id\=\"post_title_title\"/,
-    "file_field :title"                   => /id\=\"post_title\"/,
-    "hidden_field :title"                 => /id\=\"post_title\"/,
-    "label :title"                        => /for\=\"post_title\"/,
   }.each do |source, regex|
    it "should properly buffer #{source}" do
      build_form do |f|
-       f.instance_eval(source)
-       f.instance_eval(source)
+       f.inputs do
+         f.instance_eval(source)
+         f.instance_eval(source)
+       end
      end
      response.body.scan(regex).size.should == 2
    end

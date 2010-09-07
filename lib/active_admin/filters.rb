@@ -57,7 +57,7 @@ module ActiveAdmin
         return "" if method.nil? || method == ""
         options[:as] ||= default_filter_type(method)
         return "" unless options[:as]
-        content = skip_form_buffers do
+        content = with_new_form_buffer do
           send("filter_#{options.delete(:as)}_input", method, options)
         end
         @form_buffers.last << template.content_tag(:div, content, :class => "filter-form-field")
