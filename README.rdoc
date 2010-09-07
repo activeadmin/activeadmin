@@ -14,7 +14,6 @@ Although Active Admin is very young in its development cycle, here are its curre
 4. Build administration interfaces for common rails plugins as gems and share with the 
    community (ie: devise admin)
 
-
 == Status
 
 Active Admin is very young. Although the code is well tested and is being used in production,
@@ -23,12 +22,13 @@ we will begin numbered releases starting with a 0.1 release.
 
 == Installation (Rails 3)
 
+Active Admin is released as a Gem. Installing the gem deals with all its dependencies, however 
+WillPaginate seems to have some Rails 3 issues still. For now:
+
 Add the following to your Gemfile:
 
   gem 'formtastic',     :git => "git://github.com/justinfrench/formtastic.git", :branch => 'rails3'
-  gem 'will_paginate',  :git => "git://github.com/mislav/will_paginate.git", :branch => 'rails3'
-  gem 'meta_search',    :git => "git://github.com/ernie/meta_search.git"
-  gem 'active_admin',   :git => "git://github.com/gregbell/active_admin.git"
+  gem 'activeadmin'
 
 Then, run the installer:
 
