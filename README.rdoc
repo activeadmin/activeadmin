@@ -27,7 +27,7 @@ WillPaginate seems to have some Rails 3 issues still. For now:
 
 Add the following to your Gemfile:
 
-  gem 'formtastic',     :git => "git://github.com/justinfrench/formtastic.git", :branch => 'rails3'
+  gem 'will_paginate',  :git => "git://github.com/mislav/will_paginate.git", :branch => 'rails3'
   gem 'activeadmin'
 
 Then, run the installer:
