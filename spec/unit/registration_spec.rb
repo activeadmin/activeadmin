@@ -23,7 +23,7 @@ describe "Registering an object to administer" do
     it "should generate a path to the dashboard" do
       ActiveAdmin.register Category, :namespace => :hello_world
       reload_routes!
-      Rails.application.routes.url_helpers.methods.should include("hello_world_dashboard_path")
+      Rails.application.routes.url_helpers.methods.collect(&:to_s).should include("hello_world_dashboard_path")
     end
   end
 
@@ -39,7 +39,7 @@ describe "Registering an object to administer" do
     it "should generate a path to the dashboard" do
       ActiveAdmin.register Category, :namespace => false
       reload_routes!
-      Rails.application.routes.url_helpers.methods.should include("dashboard_path")
+      Rails.application.routes.url_helpers.methods.collect(&:to_s).should include("dashboard_path")
     end
   end
 
