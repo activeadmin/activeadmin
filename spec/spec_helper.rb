@@ -75,6 +75,8 @@ if ENV['RAILS'] == '3.0.0'
     config.use_instantiated_fixtures = false
   end
 
+  # Ensure this is defined for Ruby 1.8
+  module MiniTest; class Assertion < Exception; end; end
 
   Rspec::Matchers.define :have_tag do |*args|
 
@@ -89,12 +91,18 @@ if ENV['RAILS'] == '3.0.0'
       options[:content] = content if content
 
       begin
-        assert_tag(options)
-      rescue NoMethodError
-        # We are not in a controller, so let's do the checking ourselves
-        doc = HTML::Document.new(response, false, false)
-        tag = doc.find(options)
-        assert tag, "expected tag, but no tag found matching #{options.inspect} in:\n#{response.inspect}"
+        begin
+          assert_tag(options)
+        rescue NoMethodError
+          # We are not in a controller, so let's do the checking ourselves
+          doc = HTML::Document.new(response, false, false)
+          tag = doc.find(options)
+          assert tag, "expected tag, but no tag found matching #{options.inspect} in:\n#{response.inspect}"
+        end
+      # In Ruby 1.9, MiniTest::Assertion get's raised, so we'll
+      # handle raising a Test::Unit::AssertionFailedError
+      rescue MiniTest::Assertion => e
+        raise Test::Unit::AssertionFailedError, e.message
       end
     end
   end
