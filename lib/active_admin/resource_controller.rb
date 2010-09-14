@@ -153,13 +153,13 @@ module ActiveAdmin
 
     # Default Action Item Links
     action_item :only => :show do
-      if controller.public_methods.include?('edit')
+      if controller.action_methods.include?('edit')
         link_to "Edit #{active_admin_config.resource_name}", edit_resource_path(resource)
       end
     end
 
     action_item :only => :show do
-      if controller.public_methods.include?("destroy")
+      if controller.action_methods.include?("destroy")
         link_to "Delete #{active_admin_config.resource_name}",
           resource_path(resource), 
           :method => :delete, :confirm => "Are you sure you want to delete this?"
@@ -167,7 +167,7 @@ module ActiveAdmin
     end
 
     action_item :except => [:new, :show] do
-      if controller.public_methods.include?('new')
+      if controller.action_methods.include?('new')
         link_to "New #{active_admin_config.resource_name}", new_resource_path
       end
     end
