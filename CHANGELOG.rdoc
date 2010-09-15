@@ -1,0 +1,8 @@
+== 0.1.1
+
+* Bug Fixes
+  * Fixed issues running on Ruby 1.9.2
+
+== 0.1.0
+
+* Initial release
