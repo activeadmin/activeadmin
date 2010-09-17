@@ -168,7 +168,7 @@ module ActiveAdmin
 
     action_item :except => [:new, :show] do
       if controller.action_methods.include?('new')
-        link_to "New #{active_admin_config.resource_name}", new_resource_path
+        link_to "+ New #{active_admin_config.resource_name}", new_resource_path
       end
     end
 

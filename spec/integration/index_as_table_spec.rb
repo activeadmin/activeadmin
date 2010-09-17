@@ -39,7 +39,7 @@ describe_with_render "Index as Table" do
         response.should have_tag("h2", "Posts")
       end
       it "should render a new link" do
-        response.should have_tag("a", "New Post", :attributes => {:href => "/admin/posts/new"})
+        response.should have_tag("a", "+ New Post", :attributes => {:href => "/admin/posts/new"})
       end
       it "should render an ID header" do
         response.should have_tag("th", "ID")
