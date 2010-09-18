@@ -5,6 +5,9 @@ require 'rubygems'
 require "bundler"
 Bundler.setup
 
+require 'shoulda/active_record'
+include Shoulda::ActiveRecord::Macros
+
 # Setup autoloading of ActiveAdmin and the load path
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 autoload :ActiveAdmin, 'active_admin'

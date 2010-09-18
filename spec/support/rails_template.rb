@@ -5,15 +5,14 @@ generate :model, "user first_name:string last_name:string username:string"
 inject_into_file 'app/models/user.rb', "  has_many :posts, :foreign_key => 'author_id'\n", :after => "class User < ActiveRecord::Base\n"
 generate :model, 'category name:string'
 
+inject_into_file "config/environment.rb", "\n$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', '..', '..', '..', '..', '..', 'lib'))\nrequire \"active_admin\"\n", :after => "require File.expand_path('../application', __FILE__)"
+
 run "rm Gemfile"
 run "rm -r test"
 run "rm -r spec"
 
-rake "db:migrate"
-rake "db:test:prepare"
-
-# Install ActiveAdmin
-# This should happen last so that we don't have to worry about the
-# rake's blowing up due to not having active admin in their load paths
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 generate :'active_admin:install'
+
+rake "db:migrate"
+rake "db:test:prepare"

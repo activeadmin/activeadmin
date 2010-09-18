@@ -14,3 +14,4 @@ gem 'jeweler'
 # Testing Dependencies
 gem 'rspec',          '2.0.0.beta.20'
 gem 'rspec-rails',    '2.0.0.beta.20'
+gem 'shoulda',        '2.11.2',           :require => nil

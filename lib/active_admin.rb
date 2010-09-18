@@ -2,26 +2,28 @@ require 'meta_search'
 
 module ActiveAdmin
   
-  autoload :VERSION,              'active_admin/version'
-  autoload :Namespace,            'active_admin/namespace'
-  autoload :Resource,             'active_admin/resource'
-  autoload :ResourceController,   'active_admin/resource_controller'
-  autoload :Dashboards,           'active_admin/dashboards'
-  autoload :Renderer,             'active_admin/renderer'
-  autoload :TableBuilder,         'active_admin/table_builder'
-  autoload :FormBuilder,          'active_admin/form_builder'
-  autoload :TabsRenderer,         'active_admin/tabs_renderer'
-  autoload :ViewHelpers,          'active_admin/view_helpers'
-  autoload :Breadcrumbs,          'active_admin/breadcrumbs'
-  autoload :Filters,              'active_admin/filters'
-  autoload :PageConfig,           'active_admin/page_config'
-  autoload :Pages,                'active_admin/pages'
-  autoload :Sidebar,              'active_admin/sidebar'
-  autoload :ActionItems,          'active_admin/action_items'
-  autoload :AssetRegistration,    'active_admin/asset_registration'
-  autoload :Menu,                 'active_admin/menu'
-  autoload :MenuItem,             'active_admin/menu_item'
-  autoload :ActionBuilder,        'active_admin/action_builder'
+  autoload :VERSION,                  'active_admin/version'
+  autoload :Namespace,                'active_admin/namespace'
+  autoload :Resource,                 'active_admin/resource'
+  autoload :ResourceController,       'active_admin/resource_controller'
+  autoload :Dashboards,               'active_admin/dashboards'
+  autoload :Renderer,                 'active_admin/renderer'
+  autoload :TableBuilder,             'active_admin/table_builder'
+  autoload :FormBuilder,              'active_admin/form_builder'
+  autoload :TabsRenderer,             'active_admin/tabs_renderer'
+  autoload :ViewHelpers,              'active_admin/view_helpers'
+  autoload :Breadcrumbs,              'active_admin/breadcrumbs'
+  autoload :Filters,                  'active_admin/filters'
+  autoload :PageConfig,               'active_admin/page_config'
+  autoload :Pages,                    'active_admin/pages'
+  autoload :Sidebar,                  'active_admin/sidebar'
+  autoload :ActionItems,              'active_admin/action_items'
+  autoload :AssetRegistration,        'active_admin/asset_registration'
+  autoload :Menu,                     'active_admin/menu'
+  autoload :MenuItem,                 'active_admin/menu_item'
+  autoload :ActionBuilder,            'active_admin/action_builder'
+  autoload :AdminComment,             'active_admin/comments/admin_comment'
+  autoload :AdminCommentsController,  'active_admin/comments/admin_comments_controller'
 
   extend AssetRegistration
 
@@ -152,6 +154,11 @@ module ActiveAdmin
       # are all loaded
       load!
 
+      # routes for comments controller
+      router.instance_eval do
+        post "/admin/admin_comments", :to => "active_admin/admin_comments#create", :as => :admin_admin_comments
+      end
+      
       # Define any necessary dashboard routes
       router.instance_exec(namespaces.values) do |namespaces|
         namespaces.each do |namespace|

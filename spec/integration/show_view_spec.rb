@@ -87,5 +87,40 @@ describe_with_render "Show View" do
         response.body.should include("Woot Bang")
       end
     end
+    
+    describe "admin comments" do
+      
+      context "without comments" do
+        before(:each) do
+          @post = Post.create(:title => "Hello World", :body => "Woot Woot")
+          get :show, :id => @post.id
+        end
+        
+        it "should have a comment form" do
+          response.should have_tag(:form, :attributes => {:action => "/admin/admin_comments", :method => "post"})
+        end
+        
+        it "should have a hidden entity_id field" do
+          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "admin_comment[entity_id]"})
+        end
+        
+        it "should have a hidden entity_type field" do
+          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "admin_comment[entity_type]"})
+        end
+        
+        it "should have a textarea" do
+          response.should have_tag(:textarea)
+        end
+        
+        it "should have a submit button" do
+          response.should have_tag(:input, :attributes => {:type => "submit"})
+        end
+        
+      end
+      
+      context "with comments" do
+        
+      end
+    end
   end
 end
