@@ -9,7 +9,7 @@ module ActiveAdmin
       autoload :Table,      'active_admin/pages/index/table'
       autoload :Blog,       'active_admin/pages/index/blog'
       autoload :Thumbnails, 'active_admin/pages/index/thumbnails'
-      autoload :Div,        'active_admin/pages/index/div'
+      autoload :Block,      'active_admin/pages/index/block'
 
       def title
         active_admin_config.plural_resource_name

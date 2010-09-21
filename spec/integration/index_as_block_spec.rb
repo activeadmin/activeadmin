@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe_with_render "Index as Div" do
+describe_with_render "Index as Block" do
 
   before :all do
     load_defaults!
@@ -10,17 +10,13 @@ describe_with_render "Index as Div" do
   before do
     Admin::PostsController.reset_index_config!
     @post = Post.create(:title => "Hello World", :body => "This is the hello world post")
-    Admin::PostsController.index :as => :div do |post|
+    Admin::PostsController.index :as => :block do |post|
       link_to post.title, admin_post_path(post)
     end
     get :index
   end
 
-  it "should render a div for each resource" do
-    response.should have_tag("div", :attributes => { :id => "post_#{@post.id}" })
-  end
-
-  it "should render the block with the resource being passed in" do
+  it "should render the block for each resource in the collection" do
     response.should have_tag("a", "Hello World")
   end
 
