@@ -21,14 +21,24 @@ module ActiveAdmin
     end
 
     def render_item(item)
-      content_tag :li, :id => item.dom_id, :class => ("current" if current?(item)) do
-        link_to item.name, item.url
+      content_tag :li, :id => item.dom_id, :class => [("current" if current?(item)), ("has_nested" unless item.children.blank?)].compact.join(" ") do
+        unless item.children.blank?
+          content_tag( :a, :href => "#") { item.name.to_s } + render_nested_menu(item)
+        else
+          link_to item.name, item.url
+        end
+      end
+    end
+    
+    def render_nested_menu(item)
+      content_tag :ul do
+        item.children.collect {|child| render_item(child)}.join 
       end
     end
 
     # Returns true if the menu item name is @current_tab
     def current?(menu_item)
-      menu_item.name == @current_tab
+      @current_tab.split("/").include?(menu_item.name)
     end
 
     def default_options

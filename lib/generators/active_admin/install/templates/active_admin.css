@@ -15,9 +15,15 @@ body {
 #header { background-color: #4b4a48; padding: 9px 30px; text-shadow: #222 1px 1px 0; }
 #header h1 { display: inline; margin-right: 20px; font-size: 1.1em; color: #94999a; font-weight: normal; text-transform: uppercase; }
 #header ul#tabs { margin: 0; padding: 0; display: inline; }
-#header ul#tabs li { display: inline; margin-right: 4px; font-size: 1.0em; }
+#header ul#tabs li { display: inline; margin-right: 4px; font-size: 1.0em; position: relative; }
 #header ul#tabs li a { text-decoration: none; color: #bbb; padding: 4px 10px; }
-#header ul#tabs li.current a { -webkit-border-radius: 8px; color: #dfdfdf; background: #777; }
+#header ul#tabs > li.current > a { -webkit-border-radius: 8px; color: #dfdfdf; background: #777; }
+#header ul#tabs li ul { position: absolute; left: 0; top: 18px; display: none; z-index: 999; background: #4B4A48; border-bottom-left-radius: 8px 8px; border-bottom-right-radius: 8px 8px; padding: 5px 0px;}
+#header ul#tabs li ul li { margin: 0px; }
+#header ul#tabs li:hover ul, #header ul#tabs li ul li a { display: block; }
+#header ul#tabs li ul li.current > a { color:#fff; }
+#header ul#tabs li.has_nested > a { background: url('/images/active_admin/nested_menu_arrow.gif') no-repeat 89% 50%; padding-right:16px; }
+#header ul#tabs li.has_nested.current > a { background: #777 url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%; padding-right:16px; }
 
 #content { margin: 0; padding: 25px 30px; }
 #main_content_wrapper{ float: left; width: 100%; }
