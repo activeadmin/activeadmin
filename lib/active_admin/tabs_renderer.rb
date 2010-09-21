@@ -38,7 +38,7 @@ module ActiveAdmin
 
     # Returns true if the menu item name is @current_tab
     def current?(menu_item)
-      @current_tab.split("/").include?(menu_item.name)
+      @current_tab.split("/").include?(menu_item.name) unless @current_tab.blank?
     end
 
     def default_options
