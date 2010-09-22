@@ -24,7 +24,12 @@ module ActiveAdmin
       end
 
       def namespace
-        self.class.name.split('::').first.underscore.to_sym
+        class_name = self.class.name
+        if class_name.include?('::')
+          self.class.name.split('::').first.underscore.to_sym
+        else
+          :root
+        end
       end
 
       # Return the current menu for the view. This is a helper method
