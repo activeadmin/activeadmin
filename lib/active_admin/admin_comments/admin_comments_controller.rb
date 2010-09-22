@@ -8,7 +8,7 @@ module ActiveAdmin
       
       if @admin_comment.save
         respond_to do |format|
-          format.js { render :partial => "admin/admin_comments/admin_comment", :locals => {:admin_comment => @admin_comment} }
+          format.js { render :text => self.class.helpers.admin_comment(@admin_comment), :status => 200 }
         end
       else
         respond_to do |format|

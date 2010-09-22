@@ -103,7 +103,7 @@ module ActiveAdmin
     end
     
     def admin_comments_for(resource)
-      html = content_tag(:div, :class => "comments") do
+      html = content_tag(:ul, :class => "comments") do
         resource.admin_comments.collect do |comment|
           admin_comment(comment)
         end.join
@@ -113,19 +113,19 @@ module ActiveAdmin
     end
     
     def admin_comment(comment)
-      content_tag_for(comment) do
+      content_tag_for(:li, comment) do
         content_tag(:h3, "Comment @ #{comment.created_at}") +
-          content_tag(:div, simple_format(admin_comment.body))
+          simple_format(comment.body)
       end
     end
     
     def admin_comment_form_for(resource)
       loader = content_tag(:div, :class => "loading_indicator", :style => "display: none") do
-        content_tag(:img, :src => "/images/loading.gif", :size => "16x16") +
+        image_tag("/images/loading.gif", :size => "16x16") +
           content_tag(:span, "Adding comment...")
       end
         
-      active_admin_form_for(ActiveAdmin::AdminComment.new, :url => admin_admin_comments_path, :html => {:class => "inline_form"}) do |form|
+      form = active_admin_form_for(ActiveAdmin::AdminComment.new, :url => admin_admin_comments_path, :html => {:class => "inline_form"}) do |form|
         form.inputs do
           form.input :entity_type, :value => resource.class.to_s.downcase, :as => :hidden
           form.input :entity_id, :value => resource.id, :as => :hidden
@@ -135,6 +135,7 @@ module ActiveAdmin
           form.commit_button 'Add Comment'
         end
       end
+      loader + form
     end
 
   end

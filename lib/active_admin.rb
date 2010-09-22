@@ -22,8 +22,8 @@ module ActiveAdmin
   autoload :Menu,                     'active_admin/menu'
   autoload :MenuItem,                 'active_admin/menu_item'
   autoload :ActionBuilder,            'active_admin/action_builder'
-  autoload :AdminComment,             'active_admin/comments/admin_comment'
-  autoload :AdminCommentsController,  'active_admin/comments/admin_comments_controller'
+  autoload :AdminComment,             'active_admin/admin_comments/admin_comment'
+  autoload :AdminCommentsController,  'active_admin/admin_comments/admin_comments_controller'
 
   extend AssetRegistration
 
