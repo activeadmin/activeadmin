@@ -88,7 +88,7 @@ if ENV['RAILS'] == '3.0.0'
       content = args.first.is_a?(Hash) ? nil : args.shift
       
       options = {
-        :tag => tag
+        :tag => tag.to_s
       }.merge(args[0] || {})
       
       options[:content] = content if content

@@ -88,24 +88,28 @@ describe_with_render "Show View" do
       end
     end
     
-    describe "admin comments" do
+    describe "admin notes" do
       
-      context "without comments" do
+      context "without notes" do
         before(:each) do
           @post = Post.create(:title => "Hello World", :body => "Woot Woot")
           get :show, :id => @post.id
         end
         
-        it "should have a comment form" do
+        it "should have an empty message" do
+          response.body.should include("No admin notes yet for this post")
+        end
+        
+        it "should have a note form" do
           response.should have_tag(:form, :attributes => {:action => "/admin/admin_notes", :method => "post"})
         end
         
         it "should have a hidden entity_id field" do
-          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "admin_note[entity_id]"})
+          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "active_admin_admin_note[entity_id]"})
         end
         
         it "should have a hidden entity_type field" do
-          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "admin_note[entity_type]"})
+          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "active_admin_admin_note[entity_type]"})
         end
         
         it "should have a textarea" do
@@ -118,7 +122,24 @@ describe_with_render "Show View" do
         
       end
       
-      context "with comments" do
+      context "with notes" do
+        before(:each) do
+          @post = Post.create(:title => "Hello World", :body => "Woot Woot")
+          @post.admin_notes.create(:body => "This is a note")
+          get :show, :id => @post.id
+        end
+        
+        it "should not have an empty message" do
+          response.body.should_not include("No admin notes yet for this post")
+        end
+        
+        it "should have a note form" do
+          response.should have_tag(:form, :attributes => {:action => "/admin/admin_notes", :method => "post"})
+        end
+        
+        it "should have notes" do
+          response.body.should include("This is a note")
+        end
         
       end
     end
