@@ -90,7 +90,8 @@ module ActiveAdmin
 
     # Does all the work of registernig a config with the menu system
     def register_with_menu(config)
-      menu.add("Dashboard", "#{name}_dashboard_path".to_sym, 1) unless menu["Dashboard"]
+      dashboard_path = root? ? :dashboard_path : "#{name}_dashboard_path".to_sym
+      menu.add("Dashboard", dashboard_path, 1) unless menu["Dashboard"]
 
       # The menu we're going to add this resource to
       add_to = menu
