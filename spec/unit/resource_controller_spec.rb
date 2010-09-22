@@ -40,8 +40,8 @@ describe ActiveAdmin::ResourceController do
     end
 
     context "when there is a parent menu item of 'Admin'" do
-      let(:resource){ mock(:parent_menu_item_name => "Admin", :belongs_to? => false) }
-      it { should == "Admin" }
+      let(:resource){ mock(:parent_menu_item_name => "Admin", :menu_item_name => "Resources", :belongs_to? => false) }
+      it { should == "Admin/Resources" }
     end
 
    # context "when belongs to resource named 'Parent'" do
