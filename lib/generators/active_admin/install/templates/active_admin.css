@@ -186,6 +186,31 @@ span.status {
   text-shadow: none;
 }
 
+/* -------------------------------------- Flash Messages */
+.flash {
+  background: -webkit-gradient(linear, left top, left bottom, from(#F3F3F3), to(#dddbdb));
+  -webkit-box-shadow: #BBB 0px 1px 1px;
+  border-bottom-left-radius: 10px 10px;
+  border-bottom-right-radius: 10px 10px;
+  border-top-left-radius: 10px 10px;
+  border-top-right-radius: 10px 10px;
+  font-size: 1.1em;
+  margin: 0px 0px 20px;
+  padding: 10px;
+  text-shadow: white 1px 1px 1px;
+}
+
+.flash_notice {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E4F5E1), to(#C1E5BE));
+  border: 1px solid #EEF8ED;
+  color: #295A25;
+}
+
+.flash_error {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FCF4F4), to(#F3D9D9));
+  border: 1px solid #FEF2F2;
+  color: #BC3E3E;
+}
 
 /* -------------------------------------- Formtastic */
 /* -------------------------------------------------------------------------------------------------
