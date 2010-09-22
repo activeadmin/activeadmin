@@ -24,8 +24,6 @@ describe_with_render "New View" do
       })
     end
 
-    it "should generate a form with simple symbol configuration"
-
     describe "when generating a complex form" do
       before(:each) do
         Admin::PostsController.form do |f|
@@ -46,6 +44,28 @@ describe_with_render "New View" do
       it "should create a title field inside the fieldset" do
         response.should have_tag("input", :attributes => { :type => "text", :name => 'post[title]' },
                                           :ancestor => { :tag => "fieldset" })
+      end
+    end
+
+    describe "generating a form from a partial" do
+      require 'fileutils'
+
+      before do
+        @filename = Rails.root + "app/views/admin/posts/_form.html.erb"
+        FileUtils.mkdir_p(Rails.root + "app/views/admin/posts")
+        File.open(@filename, 'w+') do |f|
+          f << "Hello World"
+        end
+        Admin::PostsController.form :partial => "form"
+      end
+
+      after do
+        File.delete(@filename)
+      end
+
+      it "should render the partial" do
+        get :new
+        response.body.should include("Hello World")
       end
     end
   end
