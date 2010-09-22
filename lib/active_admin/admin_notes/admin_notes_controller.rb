@@ -5,15 +5,15 @@ module ActiveAdmin
     
     def create
       @admin_note = AdminNote.new(params[:active_admin_admin_note])
-      
+            
       if @admin_note.save
         respond_to do |format|
-          format.js { render :text => self.class.helpers.admin_note(@admin_note), :status => 200 }
+          format.js { render :json => {:note => self.class.helpers.admin_note(@admin_note), :number_of_notes => @admin_note.entity.admin_notes.count}.to_json, :status => 200 }
         end
       else
         respond_to do |format|
           format.json { render :json => @admin_note.errors.full_messages, :status => :precondition_failed }
-        end
+        end.adm
       end
     end
     

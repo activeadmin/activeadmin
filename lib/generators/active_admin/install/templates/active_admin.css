@@ -128,6 +128,8 @@ table.resource_attributes th {
   color: #777;
   background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
   background: -moz-linear-gradient(top,  #eee,  #ddd);
+  text-shadow: #fff 1px 1px 0;
+  padding: 6px 10px 3px 10px;
   vertical-align: top;
 }
 table.resource_attributes tr:hover td{
@@ -161,6 +163,77 @@ span.status {
   color: #fff;
   background-color: #aaa;
 }  
+
+/* -------------------------------------- Show screen sections */
+
+.show .section h3 {
+  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#dddbdb));
+  text-shadow: #fff 1px 1px 0;
+  color: #777;
+  font-size: 0.9em;
+  margin-top: 20px;
+  padding: 5px 10px;
+}
+
+.show .section ul {
+  list-style: none;
+  padding-left: 10px;
+}
+
+.show .section ul li {
+  width: 90%;
+}
+
+
+.show .section ul li h4 {
+  color: #555;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.show .section ul li p {
+  color: #555;
+  margin: 0px;
+}
+
+.show .section form {
+  padding-left: 10px;
+  width: 90%;
+}
+
+.show .section form textarea {
+  width: 100%;
+}
+
+.show .section form .buttons {
+  padding-left: 0;
+}
+
+/* -------------------------------------- Admin Notes */
+
+.show .section.admin_notes h3 {
+  background:  url() no-repeat left middle;
+  
+  background: #dfdfdf;
+  background-image: url('/images/active_admin/admin_notes_icon.png'); /* fallback */
+  background-image: url('/images/active_admin/admin_notes_icon.png'), -moz-linear-gradient(top,  #eee,  #ddd);
+  background-image: url('/images/active_admin/admin_notes_icon.png'), -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
+  background-position: left 65%;
+  background-repeat: no-repeat;
+  padding: 6px 10px 3px 32px;
+}
+
+.admin_notes ul {
+  margin-bottom: 24px;
+}
+
+.admin_notes ul li + li {
+  border-top: solid 1px #ececec;
+  margin-top: 15px;
+  padding-top: 15px;
+  
+}
+
 
 /* -------------------------------------- Datepicker */
 .ui-datepicker {
