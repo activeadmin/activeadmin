@@ -13,7 +13,7 @@ describe "Registering an object to administer" do
      
     it "should have many admin comments" do
       namespace.register Category
-      Category.reflect_on_association(:admin_comments).macro.should == :has_many
+      Category.reflect_on_association(:admin_notes).macro.should == :has_many
     end
   end
 

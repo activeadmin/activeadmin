@@ -22,8 +22,8 @@ module ActiveAdmin
   autoload :Menu,                     'active_admin/menu'
   autoload :MenuItem,                 'active_admin/menu_item'
   autoload :ActionBuilder,            'active_admin/action_builder'
-  autoload :AdminComment,             'active_admin/admin_comments/admin_comment'
-  autoload :AdminCommentsController,  'active_admin/admin_comments/admin_comments_controller'
+  autoload :AdminNote,             'active_admin/admin_notes/admin_note'
+  autoload :AdminNotesController,  'active_admin/admin_notes/admin_notes_controller'
 
   extend AssetRegistration
 
@@ -156,7 +156,7 @@ module ActiveAdmin
 
       # routes for comments controller
       router.instance_eval do
-        post "/admin/admin_comments", :to => "active_admin/admin_comments#create", :as => :admin_admin_comments
+        post "/admin/admin_notes", :to => "active_admin/admin_notes#create", :as => :admin_admin_notes
       end
       
       # Define any necessary dashboard routes

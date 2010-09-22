@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class AdminComment < ActiveRecord::Base
+  class AdminNote < ActiveRecord::Base
     
     belongs_to :entity, :polymorphic => true
     belongs_to :admin_user, :polymorphic => true

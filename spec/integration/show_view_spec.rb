@@ -97,15 +97,15 @@ describe_with_render "Show View" do
         end
         
         it "should have a comment form" do
-          response.should have_tag(:form, :attributes => {:action => "/admin/admin_comments", :method => "post"})
+          response.should have_tag(:form, :attributes => {:action => "/admin/admin_notes", :method => "post"})
         end
         
         it "should have a hidden entity_id field" do
-          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "admin_comment[entity_id]"})
+          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "admin_note[entity_id]"})
         end
         
         it "should have a hidden entity_type field" do
-          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "admin_comment[entity_type]"})
+          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "admin_note[entity_type]"})
         end
         
         it "should have a textarea" do

@@ -8,6 +8,6 @@ describe ActiveAdmin, "Routing" do
   it { should respond_to(:admin_post_path) }
   it { should respond_to(:new_admin_post_path) }
   it { should respond_to(:edit_admin_post_path) }
-  it { should respond_to(:admin_admin_comments_path) }
+  it { should respond_to(:admin_admin_notes_path) }
 
 end

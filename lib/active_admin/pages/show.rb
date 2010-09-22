@@ -28,7 +28,7 @@ module ActiveAdmin
       end
       
       def comments
-        admin_comments_for(resource)
+        admin_notes_for(resource)
       end
 
       protected

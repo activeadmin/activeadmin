@@ -35,7 +35,7 @@ module ActiveAdmin
       end
 
       def create_comments_migration
-        migration_template 'create_admin_comments.rb', 'db/migrate/create_admin_comments.rb'
+        migration_template 'create_admin_notes.rb', 'db/migrate/create_admin_notes.rb'
       end
     end
   end

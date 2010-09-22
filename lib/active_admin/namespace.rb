@@ -19,7 +19,7 @@ module ActiveAdmin
       register_resource_controller(config, &block)
       register_dashboard_controller(config)
       register_with_menu(config)
-      register_with_admin_comments(config)
+      register_with_admin_notes(config)
       
       # Return the config
       config
@@ -107,8 +107,8 @@ module ActiveAdmin
       end
     end
     
-    def register_with_admin_comments(config)
-      config.resource.has_many :admin_comments, :as => :entity, :class_name => "ActiveAdmin::AdminComment"
+    def register_with_admin_notes(config)
+      config.resource.has_many :admin_notes, :as => :entity, :class_name => "ActiveAdmin::AdminNote"
       
     end
 

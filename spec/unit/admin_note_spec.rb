@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe ActiveAdmin::AdminComment do
+describe ActiveAdmin::AdminNote do
 
   describe "Associations and Validations" do
-    subject { ActiveAdmin::AdminComment.new }
+    subject { ActiveAdmin::AdminNote.new }
     it { should belong_to :entity }
     it { should belong_to :admin_user }
 
