@@ -226,13 +226,14 @@ This stylesheet forms part of the Formtastic Rails Plugin
 
 
 form.formtastic, form.formtastic ul, form.formtastic ol, form.formtastic li, form.formtastic fieldset, form.formtastic legend, form.formtastic input, form.formtastic textarea, form.formtastic select, form.formtastic p { margin:0; padding:0; }
-form.formtastic fieldset { border:0; }
+form.formtastic fieldset { border: 0; margin-top: 20px; }
+form.formtastic fieldset.inputs { background: #f0f0f0; padding: 10px 10px 5px 10px; border-top: 2px solid #ddd; border-bottom: 2px solid #ddd; }
 form.formtastic em, form.formtastic strong { font-style:normal; font-weight:normal; }
 form.formtastic ol, form.formtastic ul { list-style:none; }
 form.formtastic abbr, form.formtastic acronym { border:0; font-variant:normal; }
 form.formtastic input, form.formtastic textarea, form.formtastic select { font-family:inherit; font-size:inherit; font-weight:inherit; }
 form.formtastic input, form.formtastic textarea, form.formtastic select { font-size:100%; }
-form.formtastic legend { white-space:normal; color:#000; }
+form.formtastic legend { font-size: 1.4em; font-weight: bold; color: #888; }
 
 /* SEMANTIC ERRORS
 --------------------------------------------------------------------------------------------------*/
