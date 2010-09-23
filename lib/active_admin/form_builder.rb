@@ -26,7 +26,9 @@ module ActiveAdmin
 
     # The buttons method always needs to be wrapped in a new buffer
     def buttons(*args, &block)
-      content = with_new_form_buffer{ super }
+      content = with_new_form_buffer do
+        block_given? ? super : super { commit_button_with_cancel_link }
+      end
       form_buffers.last << content.html_safe
     end
 
@@ -34,7 +36,18 @@ module ActiveAdmin
       content = with_new_form_buffer{ super }
       form_buffers.last << content.html_safe
     end
-
+    
+    def cancel_link(url = nil, html_options = {}, li_attributes = {})
+      li_attributes[:class] ||= "cancel"
+      url ||= {:action => "index"}
+      template.content_tag(:li, (template.link_to "Cancel", url, html_options), li_attributes)
+    end
+    
+    def commit_button_with_cancel_link
+      content = commit_button
+      content << cancel_link
+    end
+    
     def datepicker_input(method, options)
       options = options.dup
       options[:input_html] ||= {}

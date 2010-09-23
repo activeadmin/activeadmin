@@ -22,6 +22,8 @@ describe_with_render "New View" do
       response.should have_tag("textarea", :attributes => {
         :name => "post[body]"
       })
+      
+      response.should have_tag("a", :attributes => { :href => "/admin/posts" }, :ancestor => { :tag => "li" })
     end
 
     describe "when generating a complex form" do

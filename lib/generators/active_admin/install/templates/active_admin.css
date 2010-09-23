@@ -244,6 +244,7 @@ form.formtastic ul.errors li { padding:0; border:none; display:list-item; }
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset.buttons { padding-left:20%; }
 form.formtastic fieldset.buttons li { float:left; padding-right:0.5em; }
+form.formtastic fieldset.buttons li.cancel { margin-left: 0.3em; margin-top: 0.9em; }
 
 /* clearfixing the fieldsets */
 form.formtastic fieldset { display: block; }
