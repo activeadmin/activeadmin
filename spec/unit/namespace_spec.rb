@@ -101,6 +101,23 @@ describe ActiveAdmin::Namespace do
         it "should not create a menu item"
       end
     end
+    
+    describe "admin notes" do
+      let(:namespace){ ActiveAdmin::Namespace.new(:admin) }
+      context "when admin notes are disabled" do
+        it "should not call #register_with_admin_notes" do
+          namespace.should_not_receive :register_with_admin_notes
+          namespace.register Category do
+            admin_notes false
+          end
+        end
+      end
+      context "when admin notes are enabled" do
+        it "should call #register_with_admin_notes" do
+          
+        end
+      end
+    end
 
   end  
 

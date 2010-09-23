@@ -8,12 +8,14 @@ module ActiveAdmin
             
       if @admin_note.save
         respond_to do |format|
-          format.js { render :json => {:note => self.class.helpers.admin_note(@admin_note), :number_of_notes => @admin_note.entity.admin_notes.count}.to_json, :status => 200 }
+          format.js { render :json => {:note => self.class.helpers.admin_note(@admin_note),
+                                       :number_of_notes => @admin_note.entity.admin_notes.count}.to_json,
+                                       :status => 200 }
         end
       else
         respond_to do |format|
           format.json { render :json => @admin_note.errors.full_messages, :status => :precondition_failed }
-        end.adm
+        end
       end
     end
     

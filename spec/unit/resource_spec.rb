@@ -193,5 +193,38 @@ module ActiveAdmin
         it { should == sort_order }
       end
     end
+    
+    describe "admin notes" do
+      context "when not set" do
+        context "when global is true" do
+          before(:each) do
+            ActiveAdmin.admin_notes = true
+          end
+          it "should default to true" do
+            config.admin_notes?.should be_true
+          end
+        end
+        context "when global is false" do
+          before(:each) do
+            ActiveAdmin.admin_notes = false
+          end
+          it "should default to false" do
+            config.admin_notes?.should be_false
+          end
+        end
+      end
+      context "when set" do
+        it "should be set to the local value true" do
+          ActiveAdmin.admin_notes = false
+          config.admin_notes = true
+          config.admin_notes?.should be_true
+        end
+        it "should be set to the local value false" do
+          ActiveAdmin.admin_notes = true
+          config.admin_notes = false
+          config.admin_notes?.should be_false
+        end
+      end
+    end
   end
 end

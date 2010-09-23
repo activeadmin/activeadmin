@@ -49,4 +49,8 @@ describe ActiveAdmin do
     ActiveAdmin.tabs_renderer.should == ActiveAdmin::TabsRenderer
   end
   
+  it "should have admin notes by default" do
+    ActiveAdmin.admin_notes.should == true
+  end
+  
 end

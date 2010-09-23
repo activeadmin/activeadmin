@@ -44,5 +44,17 @@ describe ActiveAdmin::ResourceController do
       it { should == "Admin" }
     end
   end
+  
+  describe "setting whether to use admin notes" do
+    let(:controller) { Admin::PostsController }
+    
+    it "should set the admin notes on active admin config" do
+      controller.active_admin_config.admin_notes = false
+      controller.admin_notes true
+      controller.active_admin_config.admin_notes?.should be_true
+    end
+    
+    
+  end
 
 end

@@ -19,7 +19,7 @@ module ActiveAdmin
       register_resource_controller(config, &block)
       register_dashboard_controller(config)
       register_with_menu(config)
-      register_with_admin_notes(config)
+      register_with_admin_notes(config) if config.admin_notes?
       
       # Return the config
       config

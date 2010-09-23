@@ -68,6 +68,10 @@ module ActiveAdmin
   @@tabs_renderer = ActiveAdmin::TabsRenderer
   mattr_accessor :tabs_renderer
 
+  # Whether or not to use admin comments
+  @@admin_notes = true
+  mattr_accessor :admin_notes
+
   class << self
 
     # Get's called within the initializer
