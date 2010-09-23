@@ -45,4 +45,10 @@ describe ActiveAdmin::ResourceController do
     end
   end
 
+  describe "accessing the Resource intsance" do
+    it "should be available as config" do
+      Admin::PostsController.config.should == Admin::PostsController.active_admin_config
+    end
+  end
+
 end
