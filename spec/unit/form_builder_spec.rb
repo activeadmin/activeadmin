@@ -71,11 +71,12 @@ describe_with_render ActiveAdmin::FormBuilder do
       end
       response.body.scan(/id=\"post_title\"/).size.should == 1
     end
-    it "should generate one button" do
+    it "should generate one button and a cancel link" do
       build_form do |f|
         f.buttons
       end
       response.body.scan(/type=\"submit\"/).size.should == 1
+      response.body.scan(/class=\"cancel\"/).size.should == 1
     end
     it "should generate multiple buttons" do
       build_form do |f|
@@ -85,6 +86,7 @@ describe_with_render ActiveAdmin::FormBuilder do
         end
       end
       response.body.scan(/type=\"submit\"/).size.should == 2
+      response.body.scan(/class=\"cancel\"/).size.should == 0
     end
 
   end
