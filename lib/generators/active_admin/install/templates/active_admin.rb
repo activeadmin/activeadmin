@@ -22,7 +22,14 @@ ActiveAdmin.setup do |config|
   # To set no namespace by default, use:
   #   config.default_namespace = false
   config.default_namespace = :admin
-
+  
+  # == Admin Notes
+  # 
+  # Admin notes allow you to add notes to any model
+  # Admin notes are enabled by default, but can be disabled
+  # by uncommenting this line:
+  #
+  # config.admin_notes = false
 
   # == Controller Filters
   #

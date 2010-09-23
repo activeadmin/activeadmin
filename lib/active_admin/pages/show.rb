@@ -24,7 +24,7 @@ module ActiveAdmin
         else
           default_main_content
         end
-        html + comments
+        html + (comments if active_admin_config.admin_notes?)
       end
       
       def comments
