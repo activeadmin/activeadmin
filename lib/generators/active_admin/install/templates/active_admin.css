@@ -211,7 +211,6 @@ span.status {
   border: 1px solid #FEF2F2;
   color: #BC3E3E;
 }
-
 /* -------------------------------------- Formtastic */
 /* -------------------------------------------------------------------------------------------------
 
@@ -233,7 +232,7 @@ form.formtastic ol, form.formtastic ul { list-style:none; }
 form.formtastic abbr, form.formtastic acronym { border:0; font-variant:normal; }
 form.formtastic input, form.formtastic textarea, form.formtastic select { font-family:inherit; font-size:inherit; font-weight:inherit; }
 form.formtastic input, form.formtastic textarea, form.formtastic select { font-size:100%; }
-form.formtastic legend { font-size: 1.4em; font-weight: bold; color: #888; }
+form.formtastic > fieldset > legend { color: #888; font-size: 1.4em; font-weight: bold; background: #fff; display: block; border-bottom: 2px solid #ddd; width: 100%; margin: 0 -10px; padding: 5px 20px 5px 0;}
 
 /* SEMANTIC ERRORS
 --------------------------------------------------------------------------------------------------*/
