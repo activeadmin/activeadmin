@@ -29,7 +29,6 @@ module ActiveAdmin
       # Reference to the Resource object which initialized
       # this controller
       attr_accessor :active_admin_config
-      alias_method :config, :active_admin_config
       
       def active_admin_config=(config)
         @active_admin_config = config
