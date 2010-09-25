@@ -53,7 +53,7 @@ describe ActiveAdmin::Namespace do
 
     context "with a resource that's namespaced" do
       before do
-        module ::Mock; class Resource; end; end
+        module ::Mock; class Resource; def self.has_many(arg1, arg2); end; end; end
         namespace.register Mock::Resource
       end
       
@@ -114,7 +114,10 @@ describe ActiveAdmin::Namespace do
       end
       context "when admin notes are enabled" do
         it "should call #register_with_admin_notes" do
-          
+          namespace.should_receive :register_with_admin_notes
+          namespace.register Category do
+            admin_notes true
+          end
         end
       end
     end

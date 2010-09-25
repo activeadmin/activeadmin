@@ -90,7 +90,7 @@ describe_with_render "Show View" do
     
     describe "admin notes" do
       
-      context "without notes" do
+      context "when no notes" do
         before(:each) do
           @post = Post.create(:title => "Hello World", :body => "Woot Woot")
           get :show, :id => @post.id
@@ -104,12 +104,12 @@ describe_with_render "Show View" do
           response.should have_tag(:form, :attributes => {:action => "/admin/admin_notes", :method => "post"})
         end
         
-        it "should have a hidden entity_id field" do
-          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "active_admin_admin_note[entity_id]"})
+        it "should have a hidden resource_id field" do
+          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "active_admin_admin_note[resource_id]"})
         end
         
-        it "should have a hidden entity_type field" do
-          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "active_admin_admin_note[entity_type]"})
+        it "should have a hidden resource_type field" do
+          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "active_admin_admin_note[resource_type]"})
         end
         
         it "should have a textarea" do
@@ -122,7 +122,7 @@ describe_with_render "Show View" do
         
       end
       
-      context "with notes" do
+      context "when there are notes" do
         before(:each) do
           @post = Post.create(:title => "Hello World", :body => "Woot Woot")
           @post.admin_notes.create(:body => "This is a note")
@@ -140,7 +140,6 @@ describe_with_render "Show View" do
         it "should have notes" do
           response.body.should include("This is a note")
         end
-        
       end
     end
   end

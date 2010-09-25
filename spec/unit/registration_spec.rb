@@ -11,7 +11,7 @@ describe "Registering an object to administer" do
       ActiveAdmin.register Category
     end
      
-    it "should have many admin comments" do
+    it "should have many admin notes" do
       namespace.register Category
       Category.reflect_on_association(:admin_notes).macro.should == :has_many
     end

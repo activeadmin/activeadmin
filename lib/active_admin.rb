@@ -71,6 +71,11 @@ module ActiveAdmin
   # Whether or not to use admin comments
   @@admin_notes = true
   mattr_accessor :admin_notes
+  
+  # Which method do we use to find the current admin user?
+  # By default there is no current admin user
+  @@current_admin_user_method = false
+  mattr_accessor :current_admin_user_method
 
   class << self
 

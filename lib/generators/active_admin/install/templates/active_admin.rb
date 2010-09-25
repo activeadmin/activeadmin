@@ -26,10 +26,16 @@ ActiveAdmin.setup do |config|
   # == Admin Notes
   # 
   # Admin notes allow you to add notes to any model
+  #
   # Admin notes are enabled by default, but can be disabled
   # by uncommenting this line:
   #
   # config.admin_notes = false
+  #
+  # To relate notes to users, indicate which method represents
+  # the current user (typically current_user or current_admin_user)
+  #
+  # config.current_admin_user_method = current_admin_user
 
   # == Controller Filters
   #
@@ -38,7 +44,6 @@ ActiveAdmin.setup do |config|
   # to authenticate users before each request.
   #
   # config.before_filter :authenticate_user!
-
 
   # == Register Stylesheets & Javascripts
   #

@@ -108,10 +108,7 @@ module ActiveAdmin
     end
     
     def register_with_admin_notes(config)
-      config.resource.has_many :admin_notes, :as => :entity, :class_name => "ActiveAdmin::AdminNote"
-      
+      config.resource.has_many :admin_notes, :as => :resource, :class_name => "ActiveAdmin::AdminNote"
     end
-
-
   end
 end

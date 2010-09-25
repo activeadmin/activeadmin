@@ -50,7 +50,11 @@ describe ActiveAdmin do
   end
   
   it "should have admin notes by default" do
-    ActiveAdmin.admin_notes.should == true
+    ActiveAdmin.admin_notes.should be_true
+  end
+  
+  it "should have no current_user_method by default" do
+    ActiveAdmin.current_admin_user_method.should be_false
   end
   
 end

@@ -138,8 +138,8 @@ module ActiveAdmin
         
       form = active_admin_form_for(ActiveAdmin::AdminNote.new, :url => admin_admin_notes_path, :html => {:class => "inline_form"}) do |form|
         form.inputs do
-          form.input :entity_type, :value => resource.class.to_s, :as => :hidden
-          form.input :entity_id, :value => resource.id, :as => :hidden
+          form.input :resource_type, :value => resource.class.to_s, :as => :hidden
+          form.input :resource_id, :value => resource.id, :as => :hidden
           form.input :body, :input_html => {:size => "80x12"}, :label => false
         end
         form.buttons do
