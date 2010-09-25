@@ -11,6 +11,17 @@ module ActiveAdmin
     # We didn't use the ActiveSupport callbacks becuase they do not support
     # passing in any arbitrary object into the callback method (which we
     # need to do)
+    
+    def call_callback_with(method, *args)
+      case method
+      when Symbol
+        send(method, *args)
+      when Proc
+        method.call(*args)
+      else
+        raise "Not a symbol or proc"
+      end
+    end
 
     module ClassMethods
 
