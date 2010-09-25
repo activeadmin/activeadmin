@@ -19,7 +19,7 @@ module ActiveAdmin
       when Proc
         method.call(*args)
       else
-        raise "Not a symbol or proc"
+        raise "Please register with callbacks using a symbol or a block/proc."
       end
     end
 
