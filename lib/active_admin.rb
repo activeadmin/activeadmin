@@ -23,6 +23,7 @@ module ActiveAdmin
   autoload :MenuItem,             'active_admin/menu_item'
   autoload :ActionBuilder,        'active_admin/action_builder'
   autoload :BelongsTo,            'active_admin/belongs_to'
+  autoload :Callbacks,            'active_admin/callbacks'
 
   extend AssetRegistration
 
