@@ -56,6 +56,7 @@ module ActiveAdmin
     def build_resource
       object = super
       run_build_callbacks object
+      object
     end
 
     def create_resource(object)
@@ -83,16 +84,6 @@ module ActiveAdmin
       end
     end
 
-    def call_callback_with(method, *args)
-      case method
-      when Symbol
-        send(method, *args)
-      when Proc
-        method.call(*args)
-      else
-        raise "Not a symbol or proc"
-      end
-    end
 
     class << self
 

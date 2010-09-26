@@ -12,18 +12,19 @@ body {
   padding: 0;
 }
 
-#header { background-color: #4b4a48; padding: 9px 30px; text-shadow: #222 1px 1px 0; }
+#header { background-color: #4b4a48; padding: 9px 30px; text-shadow: #222 1px 1px 0; background: -webkit-gradient(linear, left top, left bottom, from(#555351), to(#444341)); border-bottom: 1px solid #cdcdcd; }
 #header h1 { display: inline; margin-right: 20px; font-size: 1.1em; color: #94999a; font-weight: normal; text-transform: uppercase; }
-#header ul#tabs { margin: 0; padding: 0; display: inline; }
-#header ul#tabs li { display: inline; margin-right: 4px; font-size: 1.0em; position: relative; }
+#header ul#tabs { margin: 0; padding: 0; display: inline; height: 100%; }
+#header ul#tabs li { display: inline; margin-right: 4px; padding: 9px 0; font-size: 1.0em; position: relative; }
 #header ul#tabs li a { text-decoration: none; color: #bbb; padding: 4px 10px; }
+#header ul#tabs li a:hover { color: #fff; }
 #header ul#tabs > li.current > a { -webkit-border-radius: 8px; color: #dfdfdf; background: #777; }
-#header ul#tabs li ul { position: absolute; left: 0; top: 18px; display: none; z-index: 999; background: #4B4A48; border-bottom-left-radius: 8px 8px; border-bottom-right-radius: 8px 8px; padding: 5px 0px;}
+#header ul#tabs li ul { -webkit-box-shadow: 0px 1px 2px #aaa; position: absolute; width: 200px; left: 0; top: 33px; display: none; z-index: 999; background: #555351; border-bottom-left-radius: 8px 8px; border-bottom-right-radius: 8px 8px; padding: 5px 0px;}
 #header ul#tabs li ul li { margin: 0px; }
-#header ul#tabs li:hover ul, #header ul#tabs li ul li a { display: block; }
+#header ul#tabs li:hover ul, #header ul#tabs li ul li a { display: block;}
 #header ul#tabs li ul li.current > a { color:#fff; }
-#header ul#tabs li.has_nested > a { background: url('/images/active_admin/nested_menu_arrow.gif') no-repeat 89% 50%; padding-right:16px; }
-#header ul#tabs li.has_nested.current > a { background: #777 url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%; padding-right:16px; }
+#header ul#tabs li.has_nested > a { background: url('/images/active_admin/nested_menu_arrow.gif') no-repeat 89% 50%; padding-right: 20px; }
+#header ul#tabs li.has_nested.current > a { background: #777 url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%; padding-right: 20px; }
 
 #content { margin: 0; padding: 25px 30px; }
 #main_content_wrapper{ float: left; width: 100%; }
@@ -187,30 +188,9 @@ span.status {
 }
 
 /* -------------------------------------- Flash Messages */
-.flash {
-  background: -webkit-gradient(linear, left top, left bottom, from(#F3F3F3), to(#dddbdb));
-  -webkit-box-shadow: #BBB 0px 1px 1px;
-  border-bottom-left-radius: 10px 10px;
-  border-bottom-right-radius: 10px 10px;
-  border-top-left-radius: 10px 10px;
-  border-top-right-radius: 10px 10px;
-  font-size: 1.1em;
-  margin: 0px 0px 20px;
-  padding: 10px;
-  text-shadow: white 1px 1px 1px;
-}
-
-.flash_notice {
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E4F5E1), to(#C1E5BE));
-  border: 1px solid #EEF8ED;
-  color: #295A25;
-}
-
-.flash_error {
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FCF4F4), to(#F3D9D9));
-  border: 1px solid #FEF2F2;
-  color: #BC3E3E;
-}
+.flash { margin: 0px 0px 15px; padding: 10px; text-shadow: #333 1px 1px 1px; color: #fff; }
+.flash_notice { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#79ad80), to(#567c5b)); }
+.flash_error { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#b95a4e), to(#844038)); }
 /* -------------------------------------- Formtastic */
 /* -------------------------------------------------------------------------------------------------
 
