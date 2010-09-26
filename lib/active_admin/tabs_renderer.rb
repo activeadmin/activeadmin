@@ -23,7 +23,7 @@ module ActiveAdmin
     def render_item(item)
       content_tag :li, :id => item.dom_id, :class => [("current" if current?(item)), ("has_nested" unless item.children.blank?)].compact.join(" ") do
         unless item.children.blank?
-          content_tag( :a, :href => "#") { item.name.to_s } + render_nested_menu(item)
+          link_to(item.name, item.url || "#") + render_nested_menu(item)
         else
           link_to item.name, item.url
         end
