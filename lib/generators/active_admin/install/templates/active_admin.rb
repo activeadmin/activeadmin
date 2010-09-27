@@ -35,7 +35,7 @@ ActiveAdmin.setup do |config|
   # To relate notes to users, indicate which method represents
   # the current user (typically current_user or current_admin_user)
   #
-  # config.current_admin_user_method = current_admin_user
+  # config.current_admin_user_method = :current_admin_user
 
   # == Controller Filters
   #
