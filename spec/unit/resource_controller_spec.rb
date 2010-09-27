@@ -29,19 +29,115 @@ describe ActiveAdmin::ResourceController do
   describe "setting the current tab" do
     let(:controller) { ActiveAdmin::ResourceController.new }
     before do 
-      controller.stub!(:active_admin_config => resource)
+      controller.stub!(:active_admin_config => resource, :parent? => true)
       controller.send :set_current_tab # Run the before filter
     end
     subject{ controller.instance_variable_get(:@current_tab) }
 
     context "when menu item name is 'Resources' without a parent menu item" do
-      let(:resource){ mock(:menu_item_name => "Resources", :parent_menu_item_name => nil) }
+      let(:resource){ mock(:menu_item_name => "Resources", :parent_menu_item_name => nil, :belongs_to? => false) }
       it { should == "Resources" }
     end
 
     context "when there is a parent menu item of 'Admin'" do
-      let(:resource){ mock(:parent_menu_item_name => "Admin") }
-      it { should == "Admin" }
+      let(:resource){ mock(:parent_menu_item_name => "Admin", :menu_item_name => "Resources", :belongs_to? => false) }
+      it { should == "Admin/Resources" }
+    end
+  end
+
+  Admin::PostsController.after_build :call_after_build
+  Admin::PostsController.before_save :call_before_save
+  Admin::PostsController.after_save :call_after_save
+  Admin::PostsController.before_create :call_before_create
+  Admin::PostsController.after_create :call_after_create
+  Admin::PostsController.before_update :call_before_update
+  Admin::PostsController.after_update :call_after_update
+  Admin::PostsController.before_destroy :call_before_destroy
+  Admin::PostsController.after_destroy :call_after_destroy
+  class Admin::PostsController < ActiveAdmin::ResourceController
+    def call_after_build(obj); end
+    def call_before_save(obj); end
+    def call_after_save(obj); end
+    def call_before_create(obj); end
+    def call_after_create(obj); end
+    def call_before_update(obj); end
+    def call_after_update(obj); end
+    def call_before_destroy(obj); end
+    def call_after_destroy(obj); end
+  end
+
+  describe "callbacks" do
+    describe "performing create" do
+      let(:controller){ Admin::PostsController.new }
+      let(:resource){ mock("Resource", :save => true) }
+
+      before do
+        resource.should_receive(:save)
+      end
+
+      it "should call the before create callback" do
+        controller.should_receive(:call_before_create).with(resource)
+        controller.send :create_resource, resource
+      end
+      it "should call the before save callback" do
+        controller.should_receive(:call_before_save).with(resource)
+        controller.send :create_resource, resource
+      end
+      it "should call the after save callback" do
+        controller.should_receive(:call_after_save).with(resource)
+        controller.send :create_resource, resource
+      end
+      it "should call the after create callback" do
+        controller.should_receive(:call_after_create).with(resource)
+        controller.send :create_resource, resource
+      end
+    end
+
+    describe "performing update" do
+      let(:controller){ Admin::PostsController.new }
+      let(:resource){ mock("Resource", :attributes= => true, :save => true) }
+      let(:attributes){ {} }
+
+      before do
+        resource.should_receive(:attributes=).with(attributes)
+        resource.should_receive(:save)
+      end
+
+      it "should call the before update callback" do
+        controller.should_receive(:call_before_update).with(resource)
+        controller.send :update_resource, resource, attributes
+      end
+      it "should call the before save callback" do
+        controller.should_receive(:call_before_save).with(resource)
+        controller.send :update_resource, resource, attributes
+      end
+      it "should call the after save callback" do
+        controller.should_receive(:call_after_save).with(resource)
+        controller.send :update_resource, resource, attributes
+      end
+      it "should call the after create callback" do
+        controller.should_receive(:call_after_update).with(resource)
+        controller.send :update_resource, resource, attributes
+      end
+    end
+
+    describe "performing destroy" do
+      let(:controller){ Admin::PostsController.new }
+      let(:resource){ mock("Resource", :destroy => true) }
+
+      before do
+        resource.should_receive(:destroy)
+      end
+
+      it "should call the before destroy callback" do
+        controller.should_receive(:call_before_destroy).with(resource)
+        controller.send :destroy_resource, resource
+      end
+
+      it "should call the after destroy callback" do
+        controller.should_receive(:call_after_destroy).with(resource)
+        controller.send :destroy_resource, resource
+      end
     end
   end
   

@@ -3,7 +3,8 @@ module ActiveAdmin
 
     attr_reader :namespace, :resource, :page_configs, :member_actions, :collection_actions,
                 :parent_menu_item_name
-    attr_accessor :resource_name, :sort_order, :scope_to, :scope_to_association_method, :admin_notes
+    attr_accessor :resource_name, :sort_order, :scope_to, :scope_to_association_method,
+                  :belongs_to, :admin_notes
 
     def initialize(namespace, resource, options = {})
       @namespace = namespace
@@ -85,6 +86,11 @@ module ActiveAdmin
     
     def admin_notes?
       admin_notes.nil? ? ActiveAdmin.admin_notes : admin_notes
+    end
+
+    # Do we belong to another resource
+    def belongs_to?
+      !belongs_to.nil?
     end
 
     private

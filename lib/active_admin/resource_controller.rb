@@ -14,22 +14,79 @@ module ActiveAdmin
     
     class_inheritable_accessor :form_config
 
-    include ActiveAdmin::Breadcrumbs
     include ActiveAdmin::Sidebar
     include ActiveAdmin::ActionItems
     include ActiveAdmin::Filters
     include ActiveAdmin::ActionBuilder
+    include ActiveAdmin::Callbacks
 
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
 
-    add_breadcrumb "Dashboard", "/admin"
-
-    before_filter :add_section_breadcrumb
     before_filter :set_current_tab
     before_filter :setup_pagination_for_csv
 
+    # Defined Callbacks
+    #
+    # == After Build
+    # Called after the resource is built in the new and create actions.
+    #
+    # ActiveAdmin.register Post do
+    #   after_build do |post|
+    #     post.author = current_user
+    #   end
+    # end
+    #
+    # == Before / After Create
+    # Called before and after a resource is saved to the db on the create action.
+    #
+    # == Before / After Update
+    # Called before and after a resource is saved to the db on the update action.
+    #
+    # == Before / After Save
+    # Called before and after the object is saved in the create and update action.
+    # Note: Gets called after the create and update callbacks
+    #
+    # == Before / After Destroy
+    # Called before and after the object is destroyed from the database.
+    #
+    define_active_admin_callbacks :build, :create,
+                                  :update, :save, :destroy
+
+    def build_resource
+      object = super
+      run_build_callbacks object
+      object
+    end
+
+    def create_resource(object)
+      run_create_callbacks object do
+        save_resource(object)
+      end
+    end
+
+    def save_resource(object)
+      run_save_callbacks object do
+        object.save
+      end
+    end
+
+    def update_resource(object, attributes)
+      object.attributes = attributes
+      run_update_callbacks object do
+        save_resource(object)
+      end
+    end
+
+    def destroy_resource(object)
+      run_destroy_callbacks object do
+        object.destroy
+      end
+    end
+
+
     class << self
+
       # Reference to the Resource object which initialized
       # this controller
       attr_accessor :active_admin_config
@@ -101,6 +158,11 @@ module ActiveAdmin
 
         active_admin_config.scope_to = block_given? ? block : method
         active_admin_config.scope_to_association_method = options[:association_method]
+      end
+
+      def belongs_to(target, options = {})
+        active_admin_config.belongs_to = BelongsTo.new(active_admin_config, target, options)
+        super(target, options.dup)
       end
      
       #
@@ -182,7 +244,7 @@ module ActiveAdmin
 
     action_item :except => [:new, :show] do
       if controller.action_methods.include?('new')
-        link_to "New #{active_admin_config.resource_name}", new_resource_path
+        link_to "+ New #{active_admin_config.resource_name}", new_resource_path
       end
     end
 
@@ -274,16 +336,14 @@ module ActiveAdmin
       search_params
     end
     
-    # Gets called as a before filter to set the section's breadcrumb
-    def add_section_breadcrumb
-      add_breadcrumb active_admin_config.plural_resource_name, collection_path 
-    end
-
     # Set's @current_tab to be name of the tab to mark as current
     # Get's called through a before filter
     def set_current_tab
-      @current_tab = active_admin_config.parent_menu_item_name || 
-                        active_admin_config.menu_item_name
+      @current_tab = if active_admin_config.belongs_to? && parent?
+        active_admin_config.belongs_to.target.menu_item_name
+      else
+        [active_admin_config.parent_menu_item_name, active_admin_config.menu_item_name].compact.join("/")
+      end
     end
 
     def active_admin_config

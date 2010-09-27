@@ -150,7 +150,7 @@ describe_with_render ActiveAdmin::FormBuilder do
   describe "default filters" do
     it "should order by association, then content columns" do
       attributes = controller.class.default_filters_config.collect{|f| f[:attribute] }
-      attributes.should == [  :admin_notes, :author, :title, :body, :published_at, :created_at, :updated_at ]
+      attributes.should include(:author, :admin_notes, :title, :body, :published_at, :created_at, :updated_at)
     end
   end
 

@@ -24,6 +24,8 @@ module ActiveAdmin
   autoload :ActionBuilder,            'active_admin/action_builder'
   autoload :AdminNote,             'active_admin/admin_notes/admin_note'
   autoload :AdminNotesController,  'active_admin/admin_notes/admin_notes_controller'
+  autoload :BelongsTo,            'active_admin/belongs_to'
+  autoload :Callbacks,            'active_admin/callbacks'
 
   extend AssetRegistration
 
@@ -100,8 +102,6 @@ module ActiveAdmin
       # and on every require in development mode
       ActionDispatch::Callbacks.to_prepare :active_admin do
         ActiveAdmin.unload!
-        # Because every time we load, the routes may have changed
-        # we must ensure to load the routes each request (in dev)
         Rails.application.reload_routes!
       end
 
@@ -140,14 +140,18 @@ module ActiveAdmin
     # and they aren't marked for re-loading. To mark the files for re-loading
     # you must first call ActiveAdmin.unload!
     def load!
-      unless loaded?
-        load_paths.flatten.compact.uniq.each do |path|
-          Dir["#{path}/*.rb"].each{|f| load f }
-        end
-        @@loaded = true
-        return true
+      # No work to do if we've already loaded
+      return false if loaded?
+
+      # Load files
+      load_paths.flatten.compact.uniq.each do |path|
+        Dir["#{path}/*.rb"].each{|f| load f }
       end
-      false
+
+      # Load Menus
+      namespaces.values.each{|namespace| namespace.load_menu! }
+
+      @@loaded = true
     end
 
     # Creates all the necessary routes for the ActiveAdmin configurations
@@ -206,13 +210,31 @@ module ActiveAdmin
             end
           end
 
-          if config.namespace.root?
-            instance_eval(&route_definition_block)
-          else
-            namespace config.namespace.name do
-              instance_eval(&route_definition_block)
+          # Add in the parent if it exists
+          if config.belongs_to?
+            routes_for_belongs_to = route_definition_block.dup
+            route_definition_block = Proc.new do
+              # If its optional, make the normal resource routes
+              instance_eval &routes_for_belongs_to if config.belongs_to.optional?
+
+              # Make the nested belongs_to routes
+              resources config.belongs_to.target.underscored_resource_name.pluralize do
+                instance_eval &routes_for_belongs_to
+              end
             end
           end
+
+          # Add on the namespace if required
+          if !config.namespace.root?
+            routes_in_namespace = route_definition_block.dup
+            route_definition_block = Proc.new do
+              namespace config.namespace.name do
+                instance_eval(&routes_in_namespace)
+              end
+            end
+          end
+
+          instance_eval &route_definition_block
         end
       end
     end

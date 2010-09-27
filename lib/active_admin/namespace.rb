@@ -48,6 +48,12 @@ module ActiveAdmin
       unload_menu!
     end
 
+    def load_menu!
+      resources.values.each do |config|
+        register_with_menu(config)
+      end
+    end
+
     protected
 
     def unload_resources!
@@ -86,10 +92,13 @@ module ActiveAdmin
 
     # Does all the work of registernig a config with the menu system
     def register_with_menu(config)
-      menu.add("Dashboard", "#{name}_dashboard_path".to_sym, 1) unless menu["Dashboard"]
+      dashboard_path = root? ? :dashboard_path : "#{name}_dashboard_path".to_sym
+      menu.add("Dashboard", dashboard_path, 1) unless menu["Dashboard"]
 
       # The menu we're going to add this resource to
       add_to = menu
+
+      return if config.belongs_to? && !config.belongs_to.optional?
 
       # Adding as a child
       if config.parent_menu_item_name
