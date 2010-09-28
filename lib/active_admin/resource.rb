@@ -1,10 +1,49 @@
 module ActiveAdmin
+
+  # Resource is the primary data storage for resource configuration in Active Admin
+  #
+  # When you register a resource (ActiveAdmin.register Post) you are actually creating
+  # a new Resource instance within the given Namespace.
+  #
+  # The instance of the current resource is available in ResourceController and views
+  # by calling the #active_admin_config method.
+  #
   class Resource
 
-    attr_reader :namespace, :resource, :page_configs, :member_actions, :collection_actions,
-                :parent_menu_item_name
-    attr_accessor :resource_name, :sort_order, :scope_to, :scope_to_association_method,
-                  :belongs_to, :admin_notes
+    # The namespace this resource belongs to
+    attr_reader :namespace
+
+    # The class this resource wraps. If you register the Post model, Resource#resource
+    # will point to the Post class
+    attr_reader :resource
+
+    # A hash of page configurations for the controller indexed by action name
+    attr_reader :page_configs
+
+    # An array of member actions defined for this resource
+    attr_reader :member_actions
+
+    # An array of collection actions defined for this resource
+    attr_reader :collection_actions
+
+    # The titleized name to use for this resource
+    attr_accessor :resource_name
+
+    # The default sort order to use in the controller
+    attr_accessor :sort_order
+
+    # Scope this resource to an association in the controller
+    attr_accessor :scope_to
+
+    # If we're scoping resources, use this method on the parent to return the collection
+    attr_accessor :scope_to_association_method
+
+    # Stores the instance of BelongsTo for this resource
+    attr_accessor :belongs_to
+
+    # Set to false to turn off admin notes
+    attr_accessor :admin_notes
+
 
     def initialize(namespace, resource, options = {})
       @namespace = namespace
@@ -12,6 +51,7 @@ module ActiveAdmin
       @options = default_options.merge(options)
       @sort_order = @options[:sort_order]
       @page_configs = {}
+      @menu_options = {}
       @member_actions, @collection_actions = [], []
     end
 
@@ -63,7 +103,11 @@ module ActiveAdmin
 
     # Set the menu options
     def menu(options = {})
-      @parent_menu_item_name = options[:parent]
+      @menu_options = options
+    end
+
+    def parent_menu_item_name
+      @menu_options[:parent]
     end
 
     # Returns the name to be displayed in the menu for this resource
