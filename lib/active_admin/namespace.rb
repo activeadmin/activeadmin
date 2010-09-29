@@ -1,4 +1,27 @@
 module ActiveAdmin
+
+  # Namespaces are the basic organizing principle for resources within Active Admin
+  #
+  # Each resource is registered into a namespace which defines:
+  #   * the namespaceing for routing
+  #   * the module to namespace controllers
+  #   * the menu which gets displayed (other resources in the same namespace)
+  #
+  # For example:
+  #   
+  #   ActiveAdmin.register Post, :namespace => :admin
+  #
+  # Will register the Post model into the "admin" namespace. This will namespace the
+  # urls for the resource to "/admin/posts" and will set the controller to
+  # Admin::PostsController
+  #
+  # You can also register to the "root" namespace, which is to say no namespace at all.
+  #
+  #   ActiveAdmin.register Post, :namespace => false
+  #
+  # This will register the resource to an instantiated namespace called :root. The 
+  # resource will be accessible from "/posts" and the controller will be PostsController.
+  #
   class Namespace
 
     attr_reader :resources, :name, :menu
@@ -9,6 +32,9 @@ module ActiveAdmin
       @menu = Menu.new
     end
 
+    # Register a resource into this namespace. The preffered method to access this is to 
+    # use the global registration ActiveAdmin.register which delegates to the proper 
+    # namespace instance.
     def register(resource, options = {}, &block)
       # Init and store the resource
       config = Resource.new(self, resource, options)
@@ -48,9 +74,12 @@ module ActiveAdmin
       unload_menu!
     end
 
+    # The menu gets built by Active Admin once all the resources have been
+    # loaded. This method gets called to register each resource with the menu system.
     def load_menu!
+      register_dashboard
       resources.values.each do |config|
-        register_with_menu(config)
+        register_with_menu(config) if config.include_in_menu?
       end
     end
 
@@ -90,15 +119,16 @@ module ActiveAdmin
       eval "class ::#{config.dashboard_controller_name} < ActiveAdmin::Dashboards::DashboardController; end"
     end
 
-    # Does all the work of registernig a config with the menu system
-    def register_with_menu(config)
+    # Adds the dashboard to the menu
+    def register_dashboard
       dashboard_path = root? ? :dashboard_path : "#{name}_dashboard_path".to_sym
       menu.add("Dashboard", dashboard_path, 1) unless menu["Dashboard"]
+    end
 
+    # Does all the work of registernig a config with the menu system
+    def register_with_menu(config)
       # The menu we're going to add this resource to
       add_to = menu
-
-      return if config.belongs_to? && !config.belongs_to.optional?
 
       # Adding as a child
       if config.parent_menu_item_name

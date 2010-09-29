@@ -66,6 +66,28 @@ module ActiveAdmin
       end
     end
 
+    describe "#include_in_menu?" do
+      let(:namespace){ ActiveAdmin::Namespace.new(:admin) }
+      subject{ resource }
+
+      context "when regular resource" do
+        let(:resource){ namespace.register(Post) }
+        it { should be_include_in_menu }
+      end
+      context "when belongs to" do
+        let(:resource){ namespace.register(Post){ belongs_to :author } }
+        it { should_not be_include_in_menu }
+      end
+      context "when belongs to optional" do
+        let(:resource){ namespace.register(Post){ belongs_to :author, :optional => true} }
+        it { should be_include_in_menu }
+      end
+      context "when menu set to false" do
+        let(:resource){ namespace.register(Post){ menu false } }
+        it { should_not be_include_in_menu }
+      end
+    end
+
     describe "parent menu item name" do
       it "should be nil when not set" do
         config.parent_menu_item_name.should == nil
