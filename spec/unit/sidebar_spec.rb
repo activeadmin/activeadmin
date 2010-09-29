@@ -1,6 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
-describe_with_render ActiveAdmin::Sidebar do
+describe ActiveAdmin::Sidebar do
+
+  include RSpec::Rails::ControllerExampleGroup
+  render_views  
+  metadata[:behaviour][:describes] = Admin::CategoriesController
 
   before :all do
     load_defaults!
@@ -10,17 +14,17 @@ describe_with_render ActiveAdmin::Sidebar do
   # Store the config and set it back after each spec so that we
   # dont mess with other specs
   before do
-    @config_before = Admin::PostsController.sidebar_sections
-    Admin::PostsController.clear_sidebar_sections!
+    @config_before = Admin::CategoriesController.sidebar_sections.dup
+    Admin::CategoriesController.clear_sidebar_sections!
   end
 
   after(:each) do
-    Admin::PostsController.sidebar_sections = @config_before
+    Admin::CategoriesController.sidebar_sections = @config_before
   end
 
   # Helper method to define a sidebar
   def sidebar(name, options = {}, &block)
-    Admin::PostsController.class_eval do
+    Admin::CategoriesController.class_eval do
       sidebar(name, options, &block)
     end    
   end
@@ -33,7 +37,7 @@ describe_with_render ActiveAdmin::Sidebar do
       get :index
     end
     it "should add a new sidebar to @sidebar_sections" do
-      Admin::PostsController.sidebar_sections.size.should == 1
+      Admin::CategoriesController.sidebar_sections.size.should == 1
     end
     it "should render content in the context of the view" do
       response.should have_tag("a", "My Filters")
@@ -48,10 +52,10 @@ describe_with_render ActiveAdmin::Sidebar do
       sidebar(:filters, :only => :index){ }
     end
     it "should be available on index" do
-      Admin::PostsController.sidebar_sections_for(:index).size.should == 1
+      Admin::CategoriesController.sidebar_sections_for(:index).size.should == 1
     end
     it "should not be available on edit" do
-      Admin::PostsController.sidebar_sections_for(:edit).size.should == 0
+      Admin::CategoriesController.sidebar_sections_for(:edit).size.should == 0
     end
   end
 
@@ -60,10 +64,10 @@ describe_with_render ActiveAdmin::Sidebar do
       sidebar(:filters, :except => :index){ }
     end
     it "should not be availbale on index" do
-      Admin::PostsController.sidebar_sections_for(:index).size.should == 0
+      Admin::CategoriesController.sidebar_sections_for(:index).size.should == 0
     end
     it "should be available on edit" do
-      Admin::PostsController.sidebar_sections_for(:edit).size.should == 1
+      Admin::CategoriesController.sidebar_sections_for(:edit).size.should == 1
     end
   end
 
