@@ -1,8 +1,19 @@
 require 'inherited_views'
 require 'active_admin/pages'
+require 'active_admin/resource_controller/collection'
+require 'active_admin/resource_controller/scoping'
 
 module ActiveAdmin
   class ResourceController < ::InheritedViews::Base
+
+    include ActiveAdmin::Sidebar
+    include ActiveAdmin::ActionItems
+    include ActiveAdmin::Filters
+    include ActiveAdmin::ActionBuilder
+    include ActiveAdmin::Callbacks
+
+    include Collection
+    include Scoping
 
     # Add our views to the view path
     ActionController::Base.append_view_path File.expand_path('../views', __FILE__)
@@ -14,17 +25,10 @@ module ActiveAdmin
     
     class_inheritable_accessor :form_config
 
-    include ActiveAdmin::Sidebar
-    include ActiveAdmin::ActionItems
-    include ActiveAdmin::Filters
-    include ActiveAdmin::ActionBuilder
-    include ActiveAdmin::Callbacks
-
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
 
     before_filter :set_current_tab
-    before_filter :setup_pagination_for_csv
 
     # Defined Callbacks
     #
@@ -128,37 +132,6 @@ module ActiveAdmin
         active_admin_config.admin_notes = true_or_false
       end
 
-      # Scope this controller to some object which has a relation
-      # to the resource. Can either accept a block or a symbol 
-      # of a method to call.
-      #
-      # Eg:
-      #
-      #   ActiveAdmin.register Post do
-      #     scope_to :current_user
-      #   end
-      #
-      # Then every time we instantiate and object, it would call
-      #   
-      #   current_user.posts.build
-      #
-      # By default Active Admin will use the resource name to build a
-      # method to call as the association. If its different, you can 
-      # pass in the association_method as an option.
-      #
-      #   scope_to :current_user, :association_method => :blog_posts
-      #
-      # will result in the following
-      # 
-      #   current_user.blog_posts.build
-      #
-      def scope_to(*args, &block)
-        options = args.extract_options!
-        method = args.first
-
-        active_admin_config.scope_to = block_given? ? block : method
-        active_admin_config.scope_to_association_method = options[:association_method]
-      end
 
       def belongs_to(target, options = {})
         active_admin_config.belongs_to = BelongsTo.new(active_admin_config, target, options)
@@ -261,81 +234,9 @@ module ActiveAdmin
         }
       end
     end
-        
-    private
 
-    def collection
-      get_collection_ivar || set_collection_ivar(active_admin_collection)
-    end
+    protected
 
-    def active_admin_collection
-      chain = scoped_collection
-      chain = sort_order(chain)
-      chain = search(chain)
-      chain = paginate(chain)
-      chain
-    end
-
-    # Override this method in your controllers to modify the start point
-    # of our searches and index.
-    #
-    # This method should return an ActiveRecord::Relation object so that
-    # the searching and filtering can be applied on top
-    def scoped_collection
-      end_of_association_chain
-    end
-
-    def begin_of_association_chain
-      return nil unless active_admin_config.scope_to
-      case active_admin_config.scope_to
-      when Proc
-        instance_eval &active_admin_config.scope_to
-      when Symbol
-        send active_admin_config.scope_to
-      else
-        raise ArgumentError, "#scope_to accepts a symbol or a block"
-      end
-    end
-
-    # Overriding from InheritedResources::BaseHelpers
-    #
-    # Returns the method for the association chain when using
-    # the scope_to option
-    def method_for_association_chain
-      active_admin_config.scope_to_association_method || super
-    end
-
-    # Allow more records for csv files
-    def setup_pagination_for_csv
-      @per_page = 10_000 if request.format == 'text/csv'
-    end
-
-    def paginate(chain)
-      chain.paginate(:page => params[:page], :per_page => @per_page || ActiveAdmin.default_per_page)
-    end
-
-    def sort_order(chain)
-      params[:order] ||= active_admin_config.sort_order
-      if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
-        chain.order("#{$1} #{$2}")
-      else
-        chain # just return the chain
-      end
-    end
-
-    def search(chain)
-      @search = chain.search(clean_search_params(params[:q]))
-    end
-
-    def clean_search_params(search_params)
-      return {} unless search_params.is_a?(Hash)
-      search_params = search_params.dup
-      search_params.delete_if do |key, value|
-        value == ""
-      end
-      search_params
-    end
-    
     # Set's @current_tab to be name of the tab to mark as current
     # Get's called through a before filter
     def set_current_tab
