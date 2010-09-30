@@ -2,11 +2,11 @@ require 'active_admin/helpers/optional_display'
 
 module ActiveAdmin
   module Sidebar
+    extend ActiveSupport::Concern
 
-    def self.included(base)
-      base.send :extend, ClassMethods
-      base.class_inheritable_accessor :sidebar_sections
-      base.sidebar_sections = []
+    included do
+      self.class_inheritable_accessor :sidebar_sections
+      self.sidebar_sections = []
     end
 
     module ClassMethods

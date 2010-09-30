@@ -20,10 +20,7 @@ module ActiveAdmin
   # action.
   # 
   module ActionBuilder
-
-    def self.included(base)
-      base.extend ClassMethods
-    end
+    extend ActiveSupport::Concern
 
     module ClassMethods
       def member_action(name, options = {}, &block)

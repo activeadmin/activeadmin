@@ -1,25 +1,24 @@
 module ActiveAdmin
   module Callbacks
+    extend ActiveSupport::Concern
 
-    def self.included(base)
-      base.extend ClassMethods
-    end
-
-    # Simple callback system. Implements before and after callbacks for
-    # use within the controllers.
-    #
-    # We didn't use the ActiveSupport callbacks becuase they do not support
-    # passing in any arbitrary object into the callback method (which we
-    # need to do)
-    
-    def call_callback_with(method, *args)
-      case method
-      when Symbol
-        send(method, *args)
-      when Proc
-        method.call(*args)
-      else
-        raise "Please register with callbacks using a symbol or a block/proc."
+    module InstanceMethods
+      # Simple callback system. Implements before and after callbacks for
+      # use within the controllers.
+      #
+      # We didn't use the ActiveSupport callbacks becuase they do not support
+      # passing in any arbitrary object into the callback method (which we
+      # need to do)
+      
+      def call_callback_with(method, *args)
+        case method
+        when Symbol
+          send(method, *args)
+        when Proc
+          method.call(*args)
+        else
+          raise "Please register with callbacks using a symbol or a block/proc."
+        end
       end
     end
 

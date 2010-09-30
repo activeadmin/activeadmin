@@ -1,9 +1,9 @@
 module ActiveAdmin
   module Filters
+    extend ActiveSupport::Concern
 
-    def self.included(base)
-      base.extend ClassMethods
-      base.send :helper_method, :filters_config
+    included do
+      helper_method :filters_config
     end
 
     module ClassMethods
@@ -45,11 +45,11 @@ module ActiveAdmin
       end
     end
 
-
-    def filters_config
-      self.class.filters_config
+    module InstanceMethods
+      def filters_config
+        self.class.filters_config
+      end
     end
-
 
     class FormBuilder < FormBuilder
     
