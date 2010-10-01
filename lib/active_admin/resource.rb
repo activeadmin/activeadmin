@@ -10,6 +10,8 @@ module ActiveAdmin
   #
   class Resource
 
+    autoload :BelongsTo, 'active_admin/resource/belongs_to'
+
     # The namespace this resource belongs to
     attr_reader :namespace
 

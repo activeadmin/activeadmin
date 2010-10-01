@@ -81,7 +81,7 @@ module ActiveAdmin
 
 
       def belongs_to(target, options = {})
-        active_admin_config.belongs_to = BelongsTo.new(active_admin_config, target, options)
+        active_admin_config.belongs_to = Resource::BelongsTo.new(active_admin_config, target, options)
         super(target, options.dup)
       end
      

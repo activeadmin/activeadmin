@@ -6,7 +6,6 @@ module ActiveAdmin
   autoload :ActionItems,              'active_admin/action_items'
   autoload :AdminNote,                'active_admin/admin_notes/admin_note'
   autoload :AdminNotesController,     'active_admin/admin_notes/admin_notes_controller'
-  autoload :BelongsTo,                'active_admin/belongs_to'
   autoload :AssetRegistration,        'active_admin/asset_registration'
   autoload :Breadcrumbs,              'active_admin/breadcrumbs'
   autoload :Callbacks,                'active_admin/callbacks'
