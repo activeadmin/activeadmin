@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
 
-describe_with_render ActiveAdmin::FormBuilder do
+describe_with_render 'A resource\'s filters' do
 
   def reset!
     Admin::PostsController.reset_filters!

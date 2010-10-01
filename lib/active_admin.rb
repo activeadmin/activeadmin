@@ -11,7 +11,6 @@ module ActiveAdmin
   autoload :Breadcrumbs,              'active_admin/breadcrumbs'
   autoload :Callbacks,                'active_admin/callbacks'
   autoload :Dashboards,               'active_admin/dashboards'
-  autoload :Filters,                  'active_admin/filters'
   autoload :FormBuilder,              'active_admin/form_builder'
   autoload :Menu,                     'active_admin/menu'
   autoload :MenuItem,                 'active_admin/menu_item'
