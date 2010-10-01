@@ -1,6 +1,7 @@
 require 'inherited_views'
 require 'active_admin/pages'
 require 'active_admin/resource_controller/actions'
+require 'active_admin/resource_controller/action_builder'
 require 'active_admin/resource_controller/collection'
 require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/sidebars'
@@ -11,9 +12,9 @@ module ActiveAdmin
 
     include ActiveAdmin::ActionItems
     include ActiveAdmin::Filters
-    include ActiveAdmin::ActionBuilder
 
     include Actions
+    include ActionBuilder
     include Callbacks
     include Collection
     include Scoping

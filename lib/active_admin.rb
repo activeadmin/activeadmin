@@ -3,7 +3,6 @@ require 'meta_search'
 module ActiveAdmin
   
   autoload :VERSION,                  'active_admin/version'
-  autoload :ActionBuilder,            'active_admin/action_builder'
   autoload :ActionItems,              'active_admin/action_items'
   autoload :AdminNote,                'active_admin/admin_notes/admin_note'
   autoload :AdminNotesController,     'active_admin/admin_notes/admin_notes_controller'

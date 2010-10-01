@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
-describe ActiveAdmin::ActionBuilder do
+describe 'defining new actions from registration blocks' do
 
   let(:controller){ Admin::PostsController }
 
