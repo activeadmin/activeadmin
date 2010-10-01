@@ -2,11 +2,11 @@ require 'inherited_views'
 require 'active_admin/pages'
 require 'active_admin/resource_controller/collection'
 require 'active_admin/resource_controller/scoping'
+require 'active_admin/resource_controller/sidebars'
 
 module ActiveAdmin
   class ResourceController < ::InheritedViews::Base
 
-    include ActiveAdmin::Sidebar
     include ActiveAdmin::ActionItems
     include ActiveAdmin::Filters
     include ActiveAdmin::ActionBuilder
@@ -14,6 +14,7 @@ module ActiveAdmin
 
     include Collection
     include Scoping
+    include Sidebars
 
     # Add our views to the view path
     ActionController::Base.append_view_path File.expand_path('../views', __FILE__)
