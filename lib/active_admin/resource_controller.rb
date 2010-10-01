@@ -1,5 +1,6 @@
 require 'inherited_views'
 require 'active_admin/pages'
+require 'active_admin/resource_controller/actions'
 require 'active_admin/resource_controller/collection'
 require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/sidebars'
@@ -12,6 +13,7 @@ module ActiveAdmin
     include ActiveAdmin::ActionBuilder
     include ActiveAdmin::Callbacks
 
+    include Actions
     include Collection
     include Scoping
     include Sidebars
@@ -219,20 +221,6 @@ module ActiveAdmin
     action_item :except => [:new, :show] do
       if controller.action_methods.include?('new')
         link_to "+ New #{active_admin_config.resource_name}", new_resource_path
-      end
-    end
-
-    #
-    # Actions
-    #
-    
-    def index
-      index! do |format|
-        format.html { render_or_default 'index' }
-        format.csv { 
-          @csv_columns = resource_class.columns.collect{ |column| column.name.to_sym }
-          render_or_default 'index' 
-        }
       end
     end
 
