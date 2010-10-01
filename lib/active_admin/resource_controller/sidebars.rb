@@ -7,10 +7,11 @@ module ActiveAdmin
       included do
         self.class_inheritable_accessor :sidebar_sections
         self.sidebar_sections = []
+        helper_method :skip_sidebar!
+        helper_method :skip_sidebar?
       end
 
       module ClassMethods
-
         def sidebar(name, options = {}, &block)
           self.sidebar_sections << ActiveAdmin::Sidebar::Section.new(name, options, &block)
         end
@@ -21,6 +22,16 @@ module ActiveAdmin
 
         def sidebar_sections_for(action)
           sidebar_sections.select{|section| section.display_on?(action) }
+        end
+      end
+
+      module InstanceMethods
+        def skip_sidebar!
+          @skip_sidebar = true
+        end
+
+        def skip_sidebar?
+          @skip_sidebar == true
         end
       end
     end
