@@ -5,6 +5,7 @@ require 'active_admin/resource_controller/action_builder'
 require 'active_admin/resource_controller/callbacks'
 require 'active_admin/resource_controller/collection'
 require 'active_admin/resource_controller/filters'
+require 'active_admin/resource_controller/form'
 require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/sidebars'
 
@@ -18,6 +19,7 @@ module ActiveAdmin
     include Callbacks
     include Collection
     include Filters
+    include Form
     include Scoping
     include Sidebars
 
@@ -29,8 +31,6 @@ module ActiveAdmin
 
     layout 'active_admin'
     
-    class_inheritable_accessor :form_config
-
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
 
@@ -112,33 +112,6 @@ module ActiveAdmin
           reset_page_config! page
         end
       end
-
-
-      #
-      # Form Config
-      #
-
-      def form(options = {}, &block)
-        options[:block] = block
-        self.form_config = options
-      end
-
-      def form_config
-        read_inheritable_attribute(:form_config) || default_form_config
-      end
-
-      def reset_form_config!
-        self.form_config = nil
-      end
-
-      def default_form_config
-        config = {}
-        config[:block] = lambda do |f|
-          f.inputs
-          f.buttons
-        end
-        config
-      end
       
     end
 
@@ -194,11 +167,6 @@ module ActiveAdmin
       @show_config ||= self.class.show_config
     end
     helper_method :show_config
-
-    def form_config
-      @form_config ||= self.class.form_config
-    end
-    helper_method :form_config
 
     def current_menu
       active_admin_config.namespace.menu
