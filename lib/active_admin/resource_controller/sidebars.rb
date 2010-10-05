@@ -25,14 +25,14 @@ module ActiveAdmin
         end
       end
 
-      module InstanceMethods
-        def skip_sidebar!
-          @skip_sidebar = true
-        end
+      protected
 
-        def skip_sidebar?
-          @skip_sidebar == true
-        end
+      def skip_sidebar!
+        @skip_sidebar = true
+      end
+
+      def skip_sidebar?
+        @skip_sidebar == true
       end
     end
 

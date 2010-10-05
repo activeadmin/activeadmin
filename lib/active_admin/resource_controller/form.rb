@@ -31,10 +31,10 @@ module ActiveAdmin
         end
       end
 
-      module InstanceMethods
-        def form_config
-          @form_config ||= self.class.form_config
-        end
+      protected
+
+      def form_config
+        @form_config ||= self.class.form_config
       end
 
     end

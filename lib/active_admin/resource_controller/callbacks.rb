@@ -33,6 +33,8 @@ module ActiveAdmin
         define_active_admin_callbacks :build, :create, :update, :save, :destroy
       end
 
+      protected
+
       def build_resource
         object = super
         run_build_callbacks object

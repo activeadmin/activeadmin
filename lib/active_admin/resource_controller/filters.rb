@@ -47,10 +47,10 @@ module ActiveAdmin
         end
       end
 
-      module InstanceMethods
-        def filters_config
-          self.class.filters_config
-        end
+      protected
+
+      def filters_config
+        self.class.filters_config
       end
     end
 

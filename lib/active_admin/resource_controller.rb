@@ -6,6 +6,7 @@ require 'active_admin/resource_controller/callbacks'
 require 'active_admin/resource_controller/collection'
 require 'active_admin/resource_controller/filters'
 require 'active_admin/resource_controller/form'
+require 'active_admin/resource_controller/menu'
 require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/sidebars'
 
@@ -20,6 +21,7 @@ module ActiveAdmin
     include Collection
     include Filters
     include Form
+    include Menu
     include Scoping
     include Sidebars
 
@@ -33,8 +35,6 @@ module ActiveAdmin
     
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
-
-    before_filter :set_current_tab
 
     class << self
 
@@ -59,11 +59,6 @@ module ActiveAdmin
         active_admin_config.page_configs[page] = nil
       end
 
-
-      # Setting the menu options
-      def menu(options = {})
-        active_admin_config.menu(options)
-      end
       
       # By default Admin Notes are on for all registered models
       # To turn off admin notes for a specific model pass false to admin_notes 
@@ -143,16 +138,6 @@ module ActiveAdmin
 
     protected
 
-    # Set's @current_tab to be name of the tab to mark as current
-    # Get's called through a before filter
-    def set_current_tab
-      @current_tab = if active_admin_config.belongs_to? && parent?
-        active_admin_config.belongs_to.target.menu_item_name
-      else
-        [active_admin_config.parent_menu_item_name, active_admin_config.menu_item_name].compact.join("/")
-      end
-    end
-
     def active_admin_config
       self.class.active_admin_config
     end
@@ -167,11 +152,6 @@ module ActiveAdmin
       @show_config ||= self.class.show_config
     end
     helper_method :show_config
-
-    def current_menu
-      active_admin_config.namespace.menu
-    end
-    helper_method :current_menu
 
     # Returns the renderer class to use for the given action.
     #
