@@ -7,6 +7,7 @@ require 'active_admin/resource_controller/collection'
 require 'active_admin/resource_controller/filters'
 require 'active_admin/resource_controller/form'
 require 'active_admin/resource_controller/menu'
+require 'active_admin/resource_controller/page_configurations'
 require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/sidebars'
 
@@ -22,6 +23,7 @@ module ActiveAdmin
     include Filters
     include Form
     include Menu
+    include PageConfigurations
     include Scoping
     include Sidebars
 
@@ -47,19 +49,6 @@ module ActiveAdmin
         defaults :resource_class => config.resource
       end
 
-      def set_page_config(page, config)
-        active_admin_config.page_configs[page] = config
-      end
-
-      def get_page_config(page)
-        active_admin_config.page_configs[page]
-      end
-
-      def reset_page_config!(page)
-        active_admin_config.page_configs[page] = nil
-      end
-
-      
       # By default Admin Notes are on for all registered models
       # To turn off admin notes for a specific model pass false to admin_notes 
       # method in the registration block
@@ -80,34 +69,6 @@ module ActiveAdmin
         super(target, options.dup)
       end
      
-      #
-      # Index Config
-      #
-
-      # Configure the index page for the resource
-      def index(options = {}, &block)
-        options[:as] ||= :table
-        set_page_config :index, ActiveAdmin::PageConfig.new(options, &block)
-      end
-
-      # Configure the show page for the resource
-      def show(options = {}, &block)
-        set_page_config :show, ActiveAdmin::PageConfig.new(options, &block)
-      end
-
-      # Define the getting and re-setter for each configurable page
-      [:index, :show].each do |page|
-        # eg: index_config
-        define_method :"#{page}_config" do
-          get_page_config(page)
-        end
-
-        # eg: reset_index_config!
-        define_method :"reset_#{page}_config!" do
-          reset_page_config! page
-        end
-      end
-      
     end
 
     # Default Sidebar Sections
