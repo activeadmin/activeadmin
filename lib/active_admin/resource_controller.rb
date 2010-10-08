@@ -104,16 +104,6 @@ module ActiveAdmin
     end
     helper_method :active_admin_config
 
-    def index_config
-      @index_config ||= self.class.index_config
-    end
-    helper_method :index_config
-
-    def show_config
-      @show_config ||= self.class.show_config
-    end
-    helper_method :show_config
-
     # Returns the renderer class to use for the given action.
     #
     # TODO: This needs to be wrapped into a default config as well
