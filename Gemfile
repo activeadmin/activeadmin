@@ -4,6 +4,7 @@ source 'http://rubygems.org'
 # Rails & ActiveAdmin Dependencies
 gem 'rails',          '3.0.0'
 gem 'sqlite3-ruby',   :require => 'sqlite3'
+gem 'devise',         '1.1.3'
 gem 'haml',           '3.0.18'
 gem 'formtastic',     '1.1.0.beta'
 gem 'will_paginate',  '3.0.pre2'
