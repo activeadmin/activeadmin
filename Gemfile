@@ -15,4 +15,7 @@ gem 'jeweler'
 gem 'rspec',          '2.0.0.beta.22'
 gem 'rspec-rails',    '2.0.0.beta.22'
 gem 'capybara',       '0.3.9'
+gem 'cucumber',       '0.9.2'
+gem 'cucumber-rails', '0.3.2'
 gem 'shoulda',        '2.11.2',           :require => nil
+gem 'launchy'

@@ -20,7 +20,6 @@ end
 task :default => :spec
 
 namespace :spec do
-  
   desc "Run specs for all versions of rails"
   task :all do
     puts "Runing for Rails 2.3.5"
@@ -30,8 +29,17 @@ namespace :spec do
     out = `rake spec RAILS=3.0.0`
     puts out
   end
-  
 end
+
+require 'cucumber/rake/task'
+
+namespace :cucumber do
+  Cucumber::Rake::Task.new(:all) do |t|
+    t.profile = 'default'
+  end
+end
+
+task :cucumber => "cucumber:all"
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
