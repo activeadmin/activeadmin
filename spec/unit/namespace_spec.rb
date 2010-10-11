@@ -105,6 +105,21 @@ describe ActiveAdmin::Namespace do
         it "should not create a menu item"
       end
     end
+
+    describe "dashboard controller name" do
+      context "when namespaced" do
+        it "should be namespaced" do
+          namespace = ActiveAdmin::Namespace.new(:admin)
+          namespace.dashboard_controller_name.should == "Admin::DashboardController"
+        end
+      end
+      context "when not namespaced" do
+        it "should not be namespaced" do
+          namespace = ActiveAdmin::Namespace.new(:root)
+          namespace.dashboard_controller_name.should == "DashboardController"
+        end
+      end
+    end
     
     describe "admin notes" do
       let(:namespace){ ActiveAdmin::Namespace.new(:admin) }

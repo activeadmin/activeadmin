@@ -30,6 +30,7 @@ module ActiveAdmin
       @name = name.to_s.underscore.to_sym
       @resources = {}
       @menu = Menu.new
+      generate_dashboard_controller
     end
 
     # Register a resource into this namespace. The preffered method to access this is to 
@@ -43,9 +44,11 @@ module ActiveAdmin
       # Register the resource
       register_module unless root?
       register_resource_controller(config, &block)
-      register_dashboard_controller(config)
       register_with_menu(config)
       register_with_admin_notes(config) if config.admin_notes?
+
+      # Ensure that the dashboard is generated
+      generate_dashboard_controller
       
       # Return the config
       config
@@ -65,6 +68,11 @@ module ActiveAdmin
     def module_name
       return nil if root?
       @module_name ||= name.to_s.camelize
+    end
+
+    # Returns the name of the dashboard controller for this namespace
+    def dashboard_controller_name
+      [module_name, "DashboardController"].compact.join("::")
     end
 
     # Unload all the registered resources for this namespace
@@ -115,8 +123,8 @@ module ActiveAdmin
     end
 
     # Creates a dashboard controller for this config
-    def register_dashboard_controller(config)
-      eval "class ::#{config.dashboard_controller_name} < ActiveAdmin::Dashboards::DashboardController; end"
+    def generate_dashboard_controller
+      eval "class ::#{dashboard_controller_name} < ActiveAdmin::Dashboards::DashboardController; end"
     end
 
     # Adds the dashboard to the menu
