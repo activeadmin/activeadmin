@@ -191,5 +191,8 @@ module ActiveAdmin
     # Sidebar
     delegate :sidebar, :to => :controller
 
+    # Standard rails filters
+    delegate :before_filter, :after_filter, :around_filter, :to => :controller
+
   end
 end
