@@ -12,6 +12,12 @@ Bundler.setup
 
 ENV["RAILS_ENV"] ||= "cucumber"
 ENV['RAILS_ROOT'] = File.expand_path('../../../spec/rails/rails-3.0.0', __FILE__)
+
+# Create the test app if it doesn't exists
+unless File.exists?(ENV['RAILS_ROOT'])
+  system 'rake setup'
+end
+
 require ENV['RAILS_ROOT'] + '/config/environment'
 
 # Setup autoloading of ActiveAdmin and the load path
