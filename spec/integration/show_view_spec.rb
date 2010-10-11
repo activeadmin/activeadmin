@@ -15,33 +15,52 @@ describe_with_render "Show View" do
     describe "the page title" do
       before do
         @post = Post.create :title => "Hello World"
-        Admin::PostsController.show(:title => title)
-        get :show, :id => @post.id
       end
 
       context "with default" do
-        let(:title){ nil }
+        before do
+          ActiveAdmin.register Post do
+            show :title => nil
+          end
+          get :show, :id => @post.id
+        end
+
         it "should render the type and id" do
           response.should have_tag("h2", "Post ##{@post.id}") 
         end
       end
 
       context "with a symbol set" do
-        let(:title) { :title }
+        before do
+          ActiveAdmin.register Post do
+            show :title => :title
+          end
+          get :show, :id => @post.id
+        end
         it "should call the method on the object and render the response" do
           response.should have_tag("h2", @post.title)
         end
       end
 
       context "with a string set" do
-        let(:title) { "Hey Hey" }
+        before do
+          ActiveAdmin.register Post do
+            show :title => "Hey Hey"
+          end
+          get :show, :id => @post.id
+        end
         it "should render the string" do
           response.should have_tag("h2", "Hey Hey")
         end
       end
 
       context "with a block set" do
-        let(:title) { proc{|r| r.title } }
+        before do
+          ActiveAdmin.register Post do
+            show :title => proc{|p| p.title }
+          end
+          get :show, :id => @post.id
+        end
         it "should render the proc with the object as a param" do
           response.should have_tag("h2", @post.title)
         end
@@ -76,8 +95,10 @@ describe_with_render "Show View" do
     
     context "with custom output" do
       before(:each) do
-        Admin::PostsController.show do
-          "Woot Bang"
+        ActiveAdmin.register Post do
+          show do
+            "Woot Bang"
+          end
         end
         @post = Post.create(:title => "Hello World", :body => "Woot Woot")
         get :show, :id => @post.id

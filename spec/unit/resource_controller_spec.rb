@@ -9,13 +9,13 @@ describe ActiveAdmin::ResourceController do
       end
 
       it "should be set" do
-        Admin::PostsController.send(page)
-        Admin::PostsController.send(:"#{page}_config").should be_an_instance_of(ActiveAdmin::PageConfig)
+        Admin::PostsController.send(:set_page_config, page, {})
+        Admin::PostsController.send(:"#{page}_config").should == {}
       end
 
       it "should store the block" do
         block = Proc.new {}
-        Admin::PostsController.send(:"#{page}", &block)
+        Admin::PostsController.send(:set_page_config, page, ActiveAdmin::PageConfig.new(&block))
         Admin::PostsController.send(:"#{page}_config").block.should == block
       end
 
@@ -45,15 +45,18 @@ describe ActiveAdmin::ResourceController do
     end
   end
 
-  Admin::PostsController.after_build :call_after_build
-  Admin::PostsController.before_save :call_before_save
-  Admin::PostsController.after_save :call_after_save
-  Admin::PostsController.before_create :call_before_create
-  Admin::PostsController.after_create :call_after_create
-  Admin::PostsController.before_update :call_before_update
-  Admin::PostsController.after_update :call_after_update
-  Admin::PostsController.before_destroy :call_before_destroy
-  Admin::PostsController.after_destroy :call_after_destroy
+  ActiveAdmin.register Post do
+    after_build :call_after_build
+    before_save :call_before_save
+    after_save :call_after_save
+    before_create :call_before_create
+    after_create :call_after_create
+    before_update :call_before_update
+    after_update :call_after_update
+    before_destroy :call_before_destroy
+    after_destroy :call_after_destroy
+  end
+
   class Admin::PostsController < ActiveAdmin::ResourceController
     def call_after_build(obj); end
     def call_before_save(obj); end
@@ -139,18 +142,6 @@ describe ActiveAdmin::ResourceController do
         controller.send :destroy_resource, resource
       end
     end
-  end
-  
-  describe "setting whether to use admin notes" do
-    let(:controller) { Admin::PostsController }
-    
-    it "should set the admin notes on active admin config" do
-      controller.active_admin_config.admin_notes = false
-      controller.admin_notes true
-      controller.active_admin_config.admin_notes?.should be_true
-    end
-    
-    
   end
 
 end

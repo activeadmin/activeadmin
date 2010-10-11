@@ -30,6 +30,7 @@ module ActiveAdmin
       @name = name.to_s.underscore.to_sym
       @resources = {}
       @menu = Menu.new
+      register_module unless root?
       generate_dashboard_controller
     end
 
@@ -38,12 +39,14 @@ module ActiveAdmin
     # namespace instance.
     def register(resource, options = {}, &block)
       # Init and store the resource
+
+
       config = Resource.new(self, resource, options)
       @resources[config.camelized_resource_name] = config
 
       # Register the resource
-      register_module unless root?
-      register_resource_controller(config, &block)
+      register_resource_controller(config)
+      parse_registration_block(config, &block) if block_given?
       register_with_menu(config)
       register_with_admin_notes(config) if config.admin_notes?
 
@@ -116,10 +119,17 @@ module ActiveAdmin
       eval "module ::#{module_name}; end"
     end
 
-    def register_resource_controller(config, &block)
+    def register_resource_controller(config)
       eval "class ::#{config.controller_name} < ActiveAdmin::ResourceController; end"
       config.controller.active_admin_config = config
-      config.controller.class_eval(&block) if block_given?
+    end
+
+    def dsl
+      @dsl ||= DSL.new
+    end
+
+    def parse_registration_block(config, &block)
+      dsl.run_registration_block(config, &block)
     end
 
     # Creates a dashboard controller for this config

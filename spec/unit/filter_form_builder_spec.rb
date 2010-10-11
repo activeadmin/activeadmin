@@ -8,7 +8,9 @@ describe_with_render 'A resource\'s filters' do
   end
 
   def filter(*args)
-    Admin::PostsController.filter *args
+	ActiveAdmin.register Post do
+	  filter *args
+	end
   end
 
   before do

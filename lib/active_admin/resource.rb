@@ -135,11 +135,6 @@ module ActiveAdmin
       @collection_actions = []
     end
 
-    # Returns the name of the controller class for this resource
-    def dashboard_controller_name
-      [namespace.module_name, "DashboardController"].compact.join("::")
-    end
-    
     # Are admin notes turned on for this resource
     def admin_notes?
       admin_notes.nil? ? ActiveAdmin.admin_notes : admin_notes

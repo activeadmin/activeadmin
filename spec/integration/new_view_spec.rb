@@ -28,15 +28,17 @@ describe_with_render "New View" do
 
     describe "when generating a complex form" do
       before(:each) do
-        Admin::PostsController.form do |f|
-          f.inputs "Your Post" do
-            f.input :title
-            f.input :body
+        ActiveAdmin.register Post do
+          form do |f|
+            f.inputs "Your Post" do
+              f.input :title
+              f.input :body
+            end
+            f.inputs "Publishing" do
+              f.input :published_at
+            end
+            f.buttons
           end
-          f.inputs "Publishing" do
-            f.input :published_at
-          end
-          f.buttons
         end
         get :new
       end
@@ -58,7 +60,9 @@ describe_with_render "New View" do
         File.open(@filename, 'w+') do |f|
           f << "Hello World"
         end
-        Admin::PostsController.form :partial => "form"
+        ActiveAdmin.register Post do
+          form :partial => "form"
+        end
       end
 
       after do

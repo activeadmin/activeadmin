@@ -49,26 +49,7 @@ module ActiveAdmin
         defaults :resource_class => config.resource
       end
 
-      # By default Admin Notes are on for all registered models
-      # To turn off admin notes for a specific model pass false to admin_notes 
-      # method in the registration block
-      #
-      # Eg:
-      #
-      #   ActiveAdmin.register Post do
-      #     admin_notes false
-      #   end
-      #
-      def admin_notes(true_or_false)
-        active_admin_config.admin_notes = true_or_false
-      end
-
-
-      def belongs_to(target, options = {})
-        active_admin_config.belongs_to = Resource::BelongsTo.new(active_admin_config, target, options)
-        super(target, options.dup)
-      end
-     
+      public :belongs_to
     end
 
     # Default Sidebar Sections

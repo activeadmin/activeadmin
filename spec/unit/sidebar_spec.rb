@@ -24,9 +24,9 @@ describe ActiveAdmin::Sidebar do
 
   # Helper method to define a sidebar
   def sidebar(name, options = {}, &block)
-    Admin::CategoriesController.class_eval do
-      sidebar(name, options, &block)
-    end    
+	ActiveAdmin.register Category do
+	  sidebar(name, options, &block)
+	end
   end
 
   context "when setting with a block" do

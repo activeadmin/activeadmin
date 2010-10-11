@@ -43,7 +43,7 @@ describe ActiveAdmin::Namespace do
     end
 
     context "with a block configuration" do
-      it "should be evaluated in the controller" do
+      it "should be evaluated in the dsl" do
         lambda {
           namespace.register Category do
             raise "Hello World"

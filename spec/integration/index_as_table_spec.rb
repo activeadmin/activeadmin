@@ -69,8 +69,10 @@ describe_with_render "Index as Table" do
     
     describe "with symbol column keys" do
       before(:each) do
-        Admin::PostsController.index do |i|
-          i.column :title
+        ActiveAdmin.register Post do
+          index do |i|
+            i.column :title
+          end
         end
         Post.create(:title => "Hello World", :body => "Woot Woot")
         get :index
@@ -91,9 +93,10 @@ describe_with_render "Index as Table" do
     
     describe "with block column keys" do
       before(:each) do
-        
-        Admin::PostsController.index do |i|
-          i.column('Great Titles'){|post| link_to post.title, [:admin, post] }
+        ActiveAdmin.register Post do
+          index do |i|
+            i.column('Great Titles'){|post| link_to post.title, [:admin, post] }
+          end
         end
         Post.create(:title => "Hello World", :body => "Woot Woot")
         get :index
@@ -114,9 +117,11 @@ describe_with_render "Index as Table" do
     
     describe "hiding columns" do
       before(:each) do
-        Admin::PostsController.index do |i|
-          i.column :title, :if => proc{ false }
-          i.column :body
+        ActiveAdmin.register Post do
+          index do |i|
+            i.column :title, :if => proc{ false }
+            i.column :body
+          end
         end
         get :index
       end

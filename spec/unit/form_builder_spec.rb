@@ -3,7 +3,9 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe_with_render ActiveAdmin::FormBuilder do
 
   def build_form(&block)
-    Admin::PostsController.form(&block)
+    ActiveAdmin.register Post do
+      form(&block)
+    end
     get :new
   end
 
@@ -40,9 +42,11 @@ describe_with_render ActiveAdmin::FormBuilder do
 
   describe "passing in options" do
     before do
-      Admin::PostsController.form :html => { :multipart => true } do |f|
-        f.inputs :title
-        f.buttons
+      ActiveAdmin.register Post do
+        form :html => { :multipart => true } do |f|
+          f.inputs :title
+          f.buttons
+        end
       end
       get :new
     end

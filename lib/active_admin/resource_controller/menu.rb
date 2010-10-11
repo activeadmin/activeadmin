@@ -8,13 +8,6 @@ module ActiveAdmin
         helper_method :current_menu
       end
 
-      module ClassMethods
-        # Setting the menu options
-        def menu(options = {})
-          active_admin_config.menu(options)
-        end
-      end
-
       protected
 
       def current_menu

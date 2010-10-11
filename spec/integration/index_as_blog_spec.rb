@@ -8,7 +8,6 @@ describe_with_render "Index as Blog" do
   end
 
   before do
-    Admin::PostsController.reset_index_config!
     @post = Post.create(:title => "Hello World", :body => "This is the hello world post")
   end
 
@@ -16,7 +15,9 @@ describe_with_render "Index as Blog" do
 
     context "when no configuration block given" do
       before do
-        Admin::PostsController.index :as => :blog 
+        ActiveAdmin.register Post do
+          index :as => :blog 
+        end
         get :index
       end      
 
@@ -31,9 +32,11 @@ describe_with_render "Index as Blog" do
 
     context "when a simple config given" do
       before do
-        Admin::PostsController.index :as => :blog do |i|
-          i.title :title
-          i.content :body
+        ActiveAdmin.register Post do
+          index :as => :blog do |i|
+            i.title :title
+            i.content :body
+          end
         end
         get :index
       end
@@ -47,9 +50,11 @@ describe_with_render "Index as Blog" do
 
     context "when blocks given as config" do
       before do
-        Admin::PostsController.index :as => :blog do |i|
-          i.title {|post| post.title }
-          i.content {|post| simple_format post.body }
+        ActiveAdmin.register Post do
+          index :as => :blog do |i|
+            i.title {|post| post.title }
+            i.content {|post| simple_format post.body }
+          end
         end
         get :index
       end

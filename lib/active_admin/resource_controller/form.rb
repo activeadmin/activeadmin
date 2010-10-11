@@ -8,9 +8,9 @@ module ActiveAdmin
       end
 
       module ClassMethods
-        def form(options = {}, &block)
-          options[:block] = block
-          @form_config = options
+
+        def form_config=(config)
+          @form_config = config
         end
 
         def form_config

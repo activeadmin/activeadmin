@@ -23,17 +23,6 @@ module ActiveAdmin
           active_admin_config.page_configs[page] = nil
         end
 
-        # Configure the index page for the resource
-        def index(options = {}, &block)
-          options[:as] ||= :table
-          set_page_config :index, ActiveAdmin::PageConfig.new(options, &block)
-        end
-
-        # Configure the show page for the resource
-        def show(options = {}, &block)
-          set_page_config :show, ActiveAdmin::PageConfig.new(options, &block)
-        end
-
         # Define the getting and re-setter for each configurable page
         [:index, :show].each do |page|
           # eg: index_config

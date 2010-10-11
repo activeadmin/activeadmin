@@ -1,30 +1,6 @@
 module ActiveAdmin
   class ResourceController < ::InheritedViews::Base
 
-    # Defined Callbacks
-    #
-    # == After Build
-    # Called after the resource is built in the new and create actions.
-    #
-    # ActiveAdmin.register Post do
-    #   after_build do |post|
-    #     post.author = current_user
-    #   end
-    # end
-    #
-    # == Before / After Create
-    # Called before and after a resource is saved to the db on the create action.
-    #
-    # == Before / After Update
-    # Called before and after a resource is saved to the db on the update action.
-    #
-    # == Before / After Save
-    # Called before and after the object is saved in the create and update action.
-    # Note: Gets called after the create and update callbacks
-    #
-    # == Before / After Destroy
-    # Called before and after the object is destroyed from the database.
-    #
     module Callbacks
       extend ActiveSupport::Concern
       include ::ActiveAdmin::Callbacks
