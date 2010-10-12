@@ -194,5 +194,16 @@ module ActiveAdmin
     # Standard rails filters
     delegate :before_filter, :after_filter, :around_filter, :to => :controller
 
+    # Specify which actions to create in the controller
+    #
+    # Eg:
+    #   
+    #   ActiveAdmin.register Post do
+    #     actions :index, :show
+    #   end
+    #
+    # Will only create the index and show actions (no create, update or delete)
+    delegate :actions, :to => :controller
+
   end
 end

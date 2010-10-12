@@ -13,7 +13,7 @@ module NavigationHelpers
     when /the dashboard/
       "/admin"
 
-    when /^index page for (.*)$/
+    when /^the index page for (.*)$/
       send(:"admin_#{$1}_path")
 
     # Add more mappings here.

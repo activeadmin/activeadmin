@@ -7,7 +7,7 @@ Feature: Index as Table
       """
         ActiveAdmin.register Post
       """
-    When I am on index page for posts
+    When I am on the index page for posts
     Then I should see a table header with "ID"
     And I should see a table header with "Title"
 
@@ -17,7 +17,7 @@ Feature: Index as Table
       """
         ActiveAdmin.register Post
       """
-    When I am on index page for posts
+    When I am on the index page for posts
     Then I should see "Hello World"
     And I should see a link to "View"
     And I should see a link to "Edit"

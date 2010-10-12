@@ -4,13 +4,13 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-ENV['BUNDLE_GEMFILE'] = File.expand_path('../../Gemfile', __FILE__)
+ENV['BUNDLE_GEMFILE'] = File.expand_path('../../../Gemfile', __FILE__)
 
 require 'rubygems'
 require "bundler"
 Bundler.setup
 
-ENV["RAILS_ENV"] ||= "test"
+ENV["RAILS_ENV"] ||= "cucumber"
 ENV['RAILS_ROOT'] = File.expand_path('../../../spec/rails/rails-3.0.0', __FILE__)
 require ENV['RAILS_ROOT'] + '/config/environment'
 
@@ -70,4 +70,35 @@ end
 # Create the test app if it doesn't exists
 unless File.exists?(ENV['RAILS_ROOT'])
   system 'rake setup'  
+end
+
+ACTIVE_ADMIN_TEST_CONFIG = File.expand_path('app/admin/__cuke.rb', Rails.root)
+
+After do
+  # Remove test configs if they exist
+  File.delete(ACTIVE_ADMIN_TEST_CONFIG) if File.exists?(ACTIVE_ADMIN_TEST_CONFIG)
+end
+
+
+# rails/railties/lib/rails/test_help.rb aborts if the environment is not 'test'. (Rails 3.0.0.beta3)
+# We can't run Cucumber/RSpec/Test_Unit tests in different environments then.
+#
+# For now, I patch StringInquirer so that Rails.env.test? returns true when Rails.env is 'test' or 'cucumber'
+#
+# https://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/4458-rails-should-allow-test-to-run-in-cucumber-environment
+module ActiveSupport
+  class StringInquirer < String
+    def method_missing(method_name, *arguments)
+      if method_name.to_s[-1,1] == "?"
+        test_string = method_name.to_s[0..-2]
+        if test_string == 'test'
+          self == 'test' or self == 'cucumber'
+        else
+          self == test_string
+        end
+      else
+        super
+      end
+    end
+  end
 end

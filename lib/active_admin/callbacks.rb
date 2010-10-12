@@ -3,6 +3,8 @@ module ActiveAdmin
     extend ActiveSupport::Concern
 
     module InstanceMethods
+      protected
+
       # Simple callback system. Implements before and after callbacks for
       # use within the controllers.
       #

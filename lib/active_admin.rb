@@ -128,6 +128,7 @@ module ActiveAdmin
     # to allow for changes without having to restart the server.
     def unload!
       namespaces.values.each{|namespace| namespace.unload! }
+      self.namespaces = {}
       @@loaded = false
     end
 
