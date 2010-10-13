@@ -13,6 +13,8 @@ module ActiveAdmin
       instance_eval &block
     end
 
+    private
+
     # The instance of ActiveAdmin::Resource that's being registered
     # currently. You can use this within your registration blocks to
     # modify options:
