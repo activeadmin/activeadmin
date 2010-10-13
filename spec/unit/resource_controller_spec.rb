@@ -10,12 +10,12 @@ describe ActiveAdmin::ResourceController do
 
       it "should be set" do
         Admin::PostsController.send(:set_page_config, page, {})
-        Admin::PostsController.send(:"#{page}_config").should == {}
+        Admin::PostsController.send(:"#{page}_config").should be_an_instance_of(ActiveAdmin::PageConfig)
       end
 
       it "should store the block" do
         block = Proc.new {}
-        Admin::PostsController.send(:set_page_config, page, ActiveAdmin::PageConfig.new(&block))
+        Admin::PostsController.send(:set_page_config, page, {}, &block)
         Admin::PostsController.send(:"#{page}_config").block.should == block
       end
 

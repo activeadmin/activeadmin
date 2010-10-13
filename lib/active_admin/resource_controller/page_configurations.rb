@@ -11,8 +11,8 @@ module ActiveAdmin
 
       module ClassMethods
 
-        def set_page_config(page, config)
-          active_admin_config.page_configs[page] = config
+        def set_page_config(page, options, &block)
+          active_admin_config.page_configs[page] = ActiveAdmin::PageConfig.new(options, &block)
         end
 
         def get_page_config(page)
