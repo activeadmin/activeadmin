@@ -211,10 +211,10 @@ module ActiveAdmin
             routes_for_belongs_to = route_definition_block.dup
             route_definition_block = Proc.new do
               # If its optional, make the normal resource routes
-              instance_eval &routes_for_belongs_to if config.belongs_to.optional?
+              instance_eval &routes_for_belongs_to if config.belongs_to_config.optional?
 
               # Make the nested belongs_to routes
-              resources config.belongs_to.target.underscored_resource_name.pluralize do
+              resources config.belongs_to_config.target.underscored_resource_name.pluralize do
                 instance_eval &routes_for_belongs_to
               end
             end

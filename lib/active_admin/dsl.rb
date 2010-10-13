@@ -48,8 +48,7 @@ module ActiveAdmin
     end
 
     def belongs_to(target, options = {})
-      config.belongs_to = Resource::BelongsTo.new(config, target, options)
-      controller.belongs_to(target, options.dup)
+      config.belongs_to(target, options)
     end
 
     def menu(options = {})

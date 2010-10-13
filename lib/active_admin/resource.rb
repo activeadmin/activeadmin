@@ -40,9 +40,6 @@ module ActiveAdmin
     # If we're scoping resources, use this method on the parent to return the collection
     attr_accessor :scope_to_association_method
 
-    # Stores the instance of BelongsTo for this resource
-    attr_accessor :belongs_to
-
     # Set to false to turn off admin notes
     attr_accessor :admin_notes
 
@@ -118,7 +115,7 @@ module ActiveAdmin
     # Should this resource be added to the menu system?
     def include_in_menu?
       return false if @menu_options[:display] == false
-      !(belongs_to? && !belongs_to.optional?)
+      !(belongs_to? && !belongs_to_config.optional?)
     end
 
     # Returns the name to be displayed in the menu for this resource
@@ -140,9 +137,18 @@ module ActiveAdmin
       admin_notes.nil? ? ActiveAdmin.admin_notes : admin_notes
     end
 
+    def belongs_to(target, options = {})
+      @belongs_to = Resource::BelongsTo.new(self, target, options)
+      controller.belongs_to(target, options.dup)
+    end
+
+    def belongs_to_config
+      @belongs_to
+    end
+
     # Do we belong to another resource
     def belongs_to?
-      !belongs_to.nil?
+      !belongs_to_config.nil?
     end
 
     private

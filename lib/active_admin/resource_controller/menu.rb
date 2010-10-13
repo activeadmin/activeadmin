@@ -18,7 +18,7 @@ module ActiveAdmin
       # Get's called through a before filter
       def set_current_tab
         @current_tab = if active_admin_config.belongs_to? && parent?
-          active_admin_config.belongs_to.target.menu_item_name
+          active_admin_config.belongs_to_config.target.menu_item_name
         else
           [active_admin_config.parent_menu_item_name, active_admin_config.menu_item_name].compact.join("/")
         end
