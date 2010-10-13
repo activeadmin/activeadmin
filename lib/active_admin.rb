@@ -61,10 +61,6 @@ module ActiveAdmin
   # Stores if everything has been loaded or we need to reload
   @@loaded = false
 
-  # A hash containing a menu for each of our namespaces
-  @@menus = {}
-  mattr_accessor :menus
-
   # The class to use to render the tabs in the interface
   @@tabs_renderer = ActiveAdmin::TabsRenderer
   mattr_accessor :tabs_renderer
