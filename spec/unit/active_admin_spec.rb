@@ -14,22 +14,6 @@ describe ActiveAdmin do
     Rails.application.config.eager_load_paths.should_not include(File.join(Rails.root, "app/admin"))
   end
   
-  # TODO: Find a good way to test loading and unloading constants
-  #       without blowing up all the other specs
-  #
-  #describe "loading" do
-  #  it "should unload all registered controllers" do
-  #    TestClass = Class.new(ActiveRecord::Base)
-  #    ActiveAdmin.register(TestClass)
-  #    Admin::TestClassesController
-  #    ActiveAdmin.unload!
-  #    lambda {
-  #      Admin::TestClassesController
-  #    }.should raise_error
-  #    ActiveAdminIntegrationSpecHelper.load!
-  #  end
-  #end
-  
   it "should default the application name" do
     ActiveAdmin.site_title.should == "Rails300"
   end
