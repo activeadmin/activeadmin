@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe ActiveAdmin::AdminNotesController do
+describe ActiveAdmin::AdminNotes::NotesController do
   include RSpec::Rails::ControllerExampleGroup
-  metadata[:behaviour][:describes] = ActiveAdmin::AdminNotesController
+  metadata[:behaviour][:describes] = ActiveAdmin::AdminNotes::NotesController
   
   describe "relating admin notes to admin users" do    
    

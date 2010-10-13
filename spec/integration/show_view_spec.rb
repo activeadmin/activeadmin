@@ -126,11 +126,11 @@ describe_with_render "Show View" do
         end
         
         it "should have a hidden resource_id field" do
-          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "active_admin_admin_note[resource_id]"})
+          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "admin_note[resource_id]"})
         end
         
         it "should have a hidden resource_type field" do
-          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "active_admin_admin_note[resource_type]"})
+          response.should have_tag(:input, :attributes => {:type => "hidden", :name => "admin_note[resource_type]"})
         end
         
         it "should have a textarea" do

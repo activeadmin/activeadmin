@@ -4,8 +4,7 @@ module ActiveAdmin
   
   autoload :VERSION,                  'active_admin/version'
   autoload :ActionItems,              'active_admin/action_items'
-  autoload :AdminNote,                'active_admin/admin_notes/admin_note'
-  autoload :AdminNotesController,     'active_admin/admin_notes/admin_notes_controller'
+  autoload :AdminNotes,               'active_admin/admin_notes'
   autoload :AssetRegistration,        'active_admin/asset_registration'
   autoload :Breadcrumbs,              'active_admin/breadcrumbs'
   autoload :Callbacks,                'active_admin/callbacks'
@@ -165,7 +164,7 @@ module ActiveAdmin
 
       # routes for comments controller
       router.instance_eval do
-        post "/admin/admin_notes", :to => "active_admin/admin_notes#create", :as => :admin_admin_notes
+        post "/admin/admin_notes", :to => "active_admin/admin_notes/notes#create", :as => :admin_admin_notes
       end
       
       # Define any necessary dashboard routes
