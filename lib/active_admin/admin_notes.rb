@@ -3,7 +3,7 @@ module ActiveAdmin
 
     autoload :Note,             'active_admin/admin_notes/note'
     autoload :NotesController,  'active_admin/admin_notes/notes_controller'
-    autoload :Renderer,         'active_admin/admin_notes/renderer'
+    autoload :NotesForRenderer, 'active_admin/admin_notes/notes_for_renderer'
 
   end
 end

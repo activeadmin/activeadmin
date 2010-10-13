@@ -3,24 +3,7 @@ module ActiveAdmin
     module AdminNotesHelper
 
       def admin_notes_for(resource)
-        content_tag(:div, :class => "admin_notes section") do
-          heading = content_tag(:h3) do
-            "Admin Notes " + 
-              content_tag(:span, "(#{resource.admin_notes.count})")
-          end
-          notes = content_tag(:ul, :class => "admin_notes_list") do
-            if resource.admin_notes.count > 0
-              resource.admin_notes.collect do |note|
-                admin_note(note)
-              end.join
-            else
-              content_tag(:li, :class => "empty") do
-                content_tag(:h4, "No admin notes yet for this #{resource.class.to_s.downcase}")
-              end
-            end
-          end
-          heading + notes + admin_note_form_for(resource)
-        end
+        render ActiveAdmin::AdminNotes::NotesForRenderer, resource
       end
       
       def admin_note(note)
