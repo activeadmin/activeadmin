@@ -14,19 +14,6 @@ require 'active_admin/resource_controller/sidebars'
 module ActiveAdmin
   class ResourceController < ::InheritedViews::Base
 
-    include ActiveAdmin::ActionItems
-
-    include Actions
-    include ActionBuilder
-    include Callbacks
-    include Collection
-    include Filters
-    include Form
-    include Menu
-    include PageConfigurations
-    include Scoping
-    include Sidebars
-
     # Add our views to the view path
     ActionController::Base.append_view_path File.expand_path('../views', __FILE__)
     self.default_views = 'active_admin_default'
@@ -37,6 +24,20 @@ module ActiveAdmin
     
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
+
+	before_filter :authenticate_active_admin_user
+
+    include ActiveAdmin::ActionItems
+    include Actions
+    include ActionBuilder
+    include Callbacks
+    include Collection
+    include Filters
+    include Form
+    include Menu
+    include PageConfigurations
+    include Scoping
+    include Sidebars
 
     class << self
 
@@ -51,6 +52,7 @@ module ActiveAdmin
 
       public :belongs_to
     end
+
 
     # Default Sidebar Sections
     sidebar :filters, :only => :index do
@@ -79,6 +81,19 @@ module ActiveAdmin
     end
 
     protected
+
+	# Calls the authentication method as defined in ActiveAdmin.authentication_method
+	def authenticate_active_admin_user
+	  send(ActiveAdmin.authentication_method) if ActiveAdmin.authentication_method
+	end
+
+	def current_active_admin_user
+	  send(ActiveAdmin.current_user_method) if ActiveAdmin.current_user_method
+	end
+
+	def current_active_admin_user?
+	  !current_active_admin_user.nil?
+	end
 
     def active_admin_config
       self.class.active_admin_config

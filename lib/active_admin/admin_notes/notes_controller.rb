@@ -8,7 +8,7 @@ module ActiveAdmin
       def create
         @admin_note = Note.new(params[:admin_note])
                           
-        if ActiveAdmin.current_admin_user_method
+        if current_active_admin_user?
          assign_admin_note_to_current_admin_user(@admin_note)
         end
               
@@ -30,11 +30,7 @@ module ActiveAdmin
       private
       
       def assign_admin_note_to_current_admin_user(admin_note)
-        admin_note.admin_user = admin_user
-      end
-      
-      def admin_user
-        send(ActiveAdmin.current_admin_user_method.to_sym)
+        admin_note.admin_user = current_active_admin_user
       end
       
     end

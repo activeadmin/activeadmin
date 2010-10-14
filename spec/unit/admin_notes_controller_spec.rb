@@ -12,6 +12,7 @@ describe ActiveAdmin::AdminNotes::NotesController do
     
     context "when admin user not set" do
       it "should not add an Admin User to a new Admin Note" do
+        ActiveAdmin.current_user_method = false
         controller.should_not_receive(:assign_admin_note_to_current_admin_user)
         do_create
       end
@@ -19,7 +20,7 @@ describe ActiveAdmin::AdminNotes::NotesController do
     
     context "when admin user set" do
       it "should add the current Admin User to a new Admin Note" do
-        ActiveAdmin.current_admin_user_method = :current_admin_user
+        ActiveAdmin.current_user_method = :current_admin_user
         controller.should_receive(:assign_admin_note_to_current_admin_user)
         do_create
       end

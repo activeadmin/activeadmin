@@ -68,10 +68,14 @@ module ActiveAdmin
   @@admin_notes = true
   mattr_accessor :admin_notes
   
-  # Which method do we use to find the current admin user?
-  # By default there is no current admin user
-  @@current_admin_user_method = false
-  mattr_accessor :current_admin_user_method
+  # The method to call in controllers to get the current user
+  @@current_user_method = :current_admin_user
+  mattr_accessor :current_user_method
+
+  # The method to call in the controllers to ensure that there
+  # is a currently authenticated admin user
+  @@authentication_method = :authenticate_admin_user!
+  mattr_accessor :authentication_method
 
   class << self
 

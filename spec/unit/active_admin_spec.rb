@@ -33,8 +33,12 @@ describe ActiveAdmin do
     ActiveAdmin.admin_notes.should be_true
   end
   
-  it "should have no current_user_method by default" do
-    ActiveAdmin.current_admin_user_method.should be_false
+  it "should have a default current_user_method" do
+    ActiveAdmin.current_user_method.should == :current_admin_user
+  end
+
+  it "should have a default authentication method" do
+	ActiveAdmin.authentication_method.should  == :authenticate_admin_user!
   end
   
 end

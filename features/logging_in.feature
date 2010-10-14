@@ -5,6 +5,10 @@ Feature: Logging In
   Scenario: Logging in successfully
     Given I am logged out
     And an admin user "admin@example.com" exists
+    And a configuration of:
+    """
+      ActiveAdmin.register Post
+    """
     When I go to the dashboard
     And I fill in "Email" with "admin@example.com"
     And I fill in "Password" with "password"
