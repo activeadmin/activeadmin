@@ -1,8 +1,9 @@
 module ActiveAdmin
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      desc "Installs ActiveAdmin in a rails 3 application"
-      class_option :comments, :type => :boolean, :default => true, :desc => "Include the migration to create admin comments"
+      desc "Installs Active Admin and generats the necessary migrations"
+
+      hook_for :users, :default => "devise", :desc => "Admin user generator to run. Skip with --skip-users"
 
       include Rails::Generators::Migration
 
