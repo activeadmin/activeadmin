@@ -7,10 +7,7 @@ module ActiveAdmin
       end
       
       def admin_note(note)
-        content_tag_for(:li, note) do
-          content_tag(:h4, "Posted at #{l note.created_at}") +
-            simple_format(note.body)
-        end
+        render ActiveAdmin::AdminNotes::NoteRenderer, note
       end
       
       def admin_note_form_for(resource)
