@@ -2,6 +2,8 @@ module ActiveAdmin
   module Dashboards
     class DashboardController < ResourceController
 
+	  actions :index
+
       # Render from here if not overriden
       self.default_views = 'active_admin_dashboard'
 
