@@ -22,7 +22,29 @@ ActiveAdmin.setup do |config|
   # To set no namespace by default, use:
   #   config.default_namespace = false
   config.default_namespace = :admin
+
+
+  # == User Authentication
+  #
+  # Active Admin will automatically call an authentication 
+  # method in a before filter of all controller actions to 
+  # ensure that there is a currently logged in admin user.
+  #
+  # This setting changes the method which Active Admin calls
+  # within the controller.
+  config.authentication_method = :authenticate_admin_user!
+
+
+  # == Current User
+  #
+  # Active Admin will associate actions with the current
+  # user performing them.
+  #
+  # This setting changes the method which Active Admin calls
+  # to return the currently logged in user.
+  config.current_user_method = :current_admin_user
   
+
   # == Admin Notes
   # 
   # Admin notes allow you to add notes to any model
@@ -30,20 +52,16 @@ ActiveAdmin.setup do |config|
   # Admin notes are enabled by default, but can be disabled
   # by uncommenting this line:
   #
-  # config.admin_notes = false
-  #
-  # To relate notes to users, indicate which method represents
-  # the current user (typically current_user or current_admin_user)
-  #
-  # config.current_admin_user_method = :current_admin_user
+  config.admin_notes = true
+
 
   # == Controller Filters
   #
   # You can add before, after and around filters to all of your
-  # Active Admin resources from here. For example you may wish
-  # to authenticate users before each request.
+  # Active Admin resources from here. 
   #
-  # config.before_filter :authenticate_user!
+  # config.before_filter :do_something_awesome
+
 
   # == Register Stylesheets & Javascripts
   #

@@ -10,6 +10,7 @@ Feature: Specifying Actions
           actions :index
         end
       """
+	And I am logged in
     And a post with the title "Hello World" exists
     When I am on the index page for posts
     Then an "AbstractController::ActionNotFound" exception should be raised when I follow "View"

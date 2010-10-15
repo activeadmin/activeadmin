@@ -22,6 +22,9 @@ run "rm -r spec"
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 generate :'active_admin:install'
 
+# Setup a root path for devise
+route "root :to => 'admin/dashboard#index'"
+
 rake "db:migrate"
 rake "db:test:prepare"
 run "/usr/bin/env RAILS_ENV=cucumber /usr/bin/rake db:migrate"

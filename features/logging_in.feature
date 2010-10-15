@@ -16,12 +16,12 @@ Feature: Logging In
     Then I should be on the the dashboard
 
   Scenario: Attempting to log in with an incorrent email address
-    Given I am logged out
-    And an admin user "admin@example.com" exists
-    And a configuration of:
+    Given a configuration of:
       """
         ActiveAdmin.register Post
       """
+    And I am logged out
+    And an admin user "admin@example.com" exists
     When I go to the dashboard
     And I fill in "Email" with "not-an-admin@example.com"
     And I fill in "Password" with "not-my-password"
@@ -29,12 +29,12 @@ Feature: Logging In
     Then I should see "Sign in"
 
   Scenario: Attempting to log in with an incorrect password
-    Given I am logged out
-    And an admin user "admin@example.com" exists
-    And a configuration of:
+    Given a configuration of:
       """
         ActiveAdmin.register Post
       """
+    And I am logged out
+    And an admin user "admin@example.com" exists
     When I go to the dashboard
     And I fill in "Email" with "admin@example.com"
     And I fill in "Password" with "not-my-password"
