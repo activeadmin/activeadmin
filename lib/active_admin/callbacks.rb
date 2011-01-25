@@ -17,7 +17,7 @@ module ActiveAdmin
         when Symbol
           send(method, *args)
         when Proc
-          instance_exec(*args)
+          instance_exec(*args, &method)
         else
           raise "Please register with callbacks using a symbol or a block/proc."
         end
