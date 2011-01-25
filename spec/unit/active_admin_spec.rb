@@ -36,9 +36,5 @@ describe ActiveAdmin do
   it "should have a default current_user_method" do
     ActiveAdmin.current_user_method.should == :current_admin_user
   end
-
-  it "should have a default authentication method" do
-	ActiveAdmin.authentication_method.should  == :authenticate_admin_user!
-  end
   
 end
