@@ -104,6 +104,29 @@ describe ActiveAdmin::Namespace do
         # TODO
         it "should not create a menu item"
       end
+
+      describe "adding as a belongs to" do
+        context "when not optional" do
+          before do
+            namespace.register Post do
+              belongs_to :author
+            end
+          end
+          it "should not show up in the menu" do
+            namespace.menu["Posts"].should be_nil
+          end
+        end
+        context "when optional" do
+          before do
+            namespace.register Post do
+              belongs_to :author, :optional => true
+            end
+          end
+          it "should show up in the menu" do
+            namespace.menu["Posts"].should_not be_nil
+          end
+        end
+      end
     end
 
     describe "dashboard controller name" do
