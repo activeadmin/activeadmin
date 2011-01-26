@@ -101,6 +101,7 @@ module ActiveAdmin
 
     # Configure the show page for the resource
     def show(options = {}, &block)
+      # TODO: controller.set_page_config just sets page_configs on the Resource (config) obj
       controller.set_page_config :show, options, &block
     end
 

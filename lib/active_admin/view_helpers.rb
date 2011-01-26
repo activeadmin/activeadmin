@@ -9,11 +9,13 @@ module ActiveAdmin
     include BreadcrumbHelper
     include PaginationHelper
     include SortableHelper
+    include SidebarHelper
     include TableHelper
     include FormHelper
     include StatusTagHelper
     include FilterFormHelper
     include TitleHelper
+    include FlashMessageHelper
 
   end
 end

@@ -10,6 +10,7 @@ module ActiveAdmin
   autoload :Callbacks,                'active_admin/callbacks'
   autoload :ControllerAction,         'active_admin/controller_action'
   autoload :Dashboards,               'active_admin/dashboards'
+  autoload :Devise,                   'active_admin/devise'
   autoload :DSL,                      'active_admin/dsl'
   autoload :FormBuilder,              'active_admin/form_builder'
   autoload :Menu,                     'active_admin/menu'

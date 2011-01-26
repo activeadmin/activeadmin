@@ -7,8 +7,6 @@ module ActiveAdmin
       included do
         self.class_inheritable_accessor :sidebar_sections
         self.sidebar_sections = []
-        helper_method :skip_sidebar!
-        helper_method :skip_sidebar?
       end
 
       module ClassMethods

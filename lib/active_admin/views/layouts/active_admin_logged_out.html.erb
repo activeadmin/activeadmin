@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+ 
+  <title><%= [@page_title, ActiveAdmin.site_title].join(" | ") %></title>
+
+  <%= stylesheet_link_tag *ActiveAdmin.stylesheets %>
+  <%= javascript_include_tag *ActiveAdmin.javascripts %>
+  <%= csrf_meta_tag %>
+
+</head>
+<body class="logged_out <%= controller.action_name %>">
+<div id="wrapper">
+  <div id="content">
+    <%= flash_messages %>
+    <%= yield %>
+  </div>
+  <div id="footer">
+    <%= yield :footer %>
+  </div>
+</div>
+</body>
+</html>

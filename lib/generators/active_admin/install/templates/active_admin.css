@@ -263,7 +263,7 @@ span.status {
 /* -------------------------------------- Flash Messages */
 .flash { margin: 0px 0px 15px; padding: 10px; text-shadow: #333 1px 1px 1px; color: #fff; }
 .flash_notice { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#79ad80), to(#567c5b)); }
-.flash_error { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#b95a4e), to(#844038)); }
+.flash_error, .flash_alert { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#b95a4e), to(#844038)); }
 /* -------------------------------------- Formtastic */
 /* -------------------------------------------------------------------------------------------------
 
