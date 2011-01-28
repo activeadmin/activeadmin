@@ -4,10 +4,10 @@ end
 
 Given /^I am logged in$/ do
   Given 'an admin user "admin@example.com" exists'
-  visit "/admin/sign_in"
+  visit new_admin_user_session_path
   fill_in "Email", :with => "admin@example.com"
   fill_in "Password", :with => "password"
-  click_button "Sign in"
+  click_button "Login"
 end
 
 Given /^an admin user "([^"]*)" exists$/ do |admin_email|

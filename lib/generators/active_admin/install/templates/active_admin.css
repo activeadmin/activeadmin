@@ -26,6 +26,10 @@ body {
 #header ul#tabs li.has_nested > a { background: url('/images/active_admin/nested_menu_arrow.gif') no-repeat 89% 50%; padding-right: 20px; }
 #header ul#tabs li.has_nested.current > a { background: #777 url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%; padding-right: 20px; }
 
+#header #utility_nav { position: absolute; right: 25px; top: -2px; }
+#header #utility_nav a { color: #bbb; text-decoration: none; }
+#header #utility_nav a:hover { color: #fff; }
+
 #content { margin: 0; padding: 25px 30px; }
 #main_content_wrapper{ float: left; width: 100%; }
 #main_content{ margin-right: 300px; }

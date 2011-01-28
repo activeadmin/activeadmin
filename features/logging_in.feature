@@ -1,8 +1,8 @@
-Feature: Logging In
+Feature: logging in
 
   Logging in to the system as an admin user
 
-  Scenario: Logging in successfully
+  Scenario: logging in successfully
     Given I am logged out
     And an admin user "admin@example.com" exists
     And a configuration of:
@@ -10,9 +10,9 @@ Feature: Logging In
       ActiveAdmin.register Post
     """
     When I go to the dashboard
-    And I fill in "Email" with "admin@example.com"
-    And I fill in "Password" with "password"
-    And I press "Login"
+    And I fill in "email" with "admin@example.com"
+    And I fill in "password" with "password"
+    And I press "login"
     Then I should be on the the dashboard
 
   Scenario: Attempting to log in with an incorrent email address

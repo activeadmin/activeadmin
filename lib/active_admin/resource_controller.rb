@@ -14,8 +14,6 @@ require 'active_admin/resource_controller/sidebars'
 module ActiveAdmin
   class ResourceController < ::InheritedViews::Base
 
-    # Add our views to the view path
-    ActionController::Base.append_view_path File.expand_path('../views', __FILE__)
     self.default_views = 'active_admin_default'
     
     helper ::ActiveAdmin::ViewHelpers
