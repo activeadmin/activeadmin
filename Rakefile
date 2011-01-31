@@ -66,13 +66,6 @@ begin
 
     require File.join(File.dirname(File.expand_path(__FILE__)), 'lib', 'active_admin', 'version')
     gem.version = ActiveAdmin::VERSION
-
-    gem.add_dependency 'rails',           '>= 3.0.0'
-    gem.add_dependency 'formtastic',      '>= 1.1.0'
-    gem.add_dependency 'will_paginate',   '>= 3.0.pre2'
-    gem.add_dependency "meta_search",     '>= 0.9.2'
-    gem.add_dependency 'inherited_views'
-    gem.add_dependency 'devise'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
