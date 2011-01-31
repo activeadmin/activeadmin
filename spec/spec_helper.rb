@@ -7,9 +7,13 @@ require 'rubygems'
 require "bundler"
 Bundler.setup
 
+require 'shoulda/active_record'
+include Shoulda::ActiveRecord::Macros
+
 # Setup autoloading of ActiveAdmin and the load path
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 autoload :ActiveAdmin, 'active_admin'
+
 
 module ActiveAdminIntegrationSpecHelper
 
@@ -84,6 +88,10 @@ if ENV['RAILS'] == '3.0.0'
   load_defaults!
   reload_routes!
 
+  # Disabling authentication in specs so that we don't have to worry about
+  # it allover the place
+  ActiveAdmin.authentication_method = false
+
   # Don't add asset cache timestamps. Makes it easy to integration
   # test for the presence of an asset file
   ENV["RAILS_ASSET_ID"] = ''
@@ -103,7 +111,7 @@ if ENV['RAILS'] == '3.0.0'
       content = args.first.is_a?(Hash) ? nil : args.shift
       
       options = {
-        :tag => tag
+        :tag => tag.to_s
       }.merge(args[0] || {})
       
       options[:content] = content if content

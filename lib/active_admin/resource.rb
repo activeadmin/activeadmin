@@ -1,10 +1,48 @@
 module ActiveAdmin
+
+  # Resource is the primary data storage for resource configuration in Active Admin
+  #
+  # When you register a resource (ActiveAdmin.register Post) you are actually creating
+  # a new Resource instance within the given Namespace.
+  #
+  # The instance of the current resource is available in ResourceController and views
+  # by calling the #active_admin_config method.
+  #
   class Resource
 
-    attr_reader :namespace, :resource, :page_configs, :member_actions, :collection_actions,
-                :parent_menu_item_name
-    attr_accessor :resource_name, :sort_order, :scope_to, :scope_to_association_method,
-                  :belongs_to
+    autoload :BelongsTo, 'active_admin/resource/belongs_to'
+
+    # The namespace this resource belongs to
+    attr_reader :namespace
+
+    # The class this resource wraps. If you register the Post model, Resource#resource
+    # will point to the Post class
+    attr_reader :resource
+
+    # A hash of page configurations for the controller indexed by action name
+    attr_reader :page_configs
+
+    # An array of member actions defined for this resource
+    attr_reader :member_actions
+
+    # An array of collection actions defined for this resource
+    attr_reader :collection_actions
+
+    # The titleized name to use for this resource
+    attr_accessor :resource_name
+
+    # The default sort order to use in the controller
+    attr_accessor :sort_order
+
+    # Scope this resource to an association in the controller
+    attr_accessor :scope_to
+
+    # If we're scoping resources, use this method on the parent to return the collection
+    attr_accessor :scope_to_association_method
+
+    # Set to false to turn off admin notes
+    attr_accessor :admin_notes
+
 
     def initialize(namespace, resource, options = {})
       @namespace = namespace
@@ -12,6 +50,7 @@ module ActiveAdmin
       @options = default_options.merge(options)
       @sort_order = @options[:sort_order]
       @page_configs = {}
+      @menu_options = {}
       @member_actions, @collection_actions = [], []
     end
 
@@ -61,9 +100,22 @@ module ActiveAdmin
       [route_prefix, controller.resources_configuration[:self][:route_collection_name], 'path'].compact.join('_').to_sym
     end
 
-    # Set the menu options
+    # Set the menu options. To not add this resource to the menu, just
+    # call #menu(false)
     def menu(options = {})
-      @parent_menu_item_name = options[:parent]
+      options = options == false ? { :display => false } : options
+      @menu_options = options
+    end
+
+    # Returns the name to put this resource under in the menu
+    def parent_menu_item_name
+      @menu_options[:parent]
+    end
+
+    # Should this resource be added to the menu system?
+    def include_in_menu?
+      return false if @menu_options[:display] == false
+      !(belongs_to? && !belongs_to_config.optional?)
     end
 
     # Returns the name to be displayed in the menu for this resource
@@ -71,6 +123,7 @@ module ActiveAdmin
       @menu_item_name ||= plural_resource_name
     end
 
+    # Clears all the member actions this resource knows about
     def clear_member_actions!
       @member_actions = []
     end
@@ -79,14 +132,23 @@ module ActiveAdmin
       @collection_actions = []
     end
 
-    # Returns the name of the controller class for this resource
-    def dashboard_controller_name
-      [namespace.module_name, "DashboardController"].compact.join("::")
+    # Are admin notes turned on for this resource
+    def admin_notes?
+      admin_notes.nil? ? ActiveAdmin.admin_notes : admin_notes
+    end
+
+    def belongs_to(target, options = {})
+      @belongs_to = Resource::BelongsTo.new(self, target, options)
+      controller.belongs_to(target, options.dup)
+    end
+
+    def belongs_to_config
+      @belongs_to
     end
 
     # Do we belong to another resource
     def belongs_to?
-      !belongs_to.nil?
+      !belongs_to_config.nil?
     end
 
     private

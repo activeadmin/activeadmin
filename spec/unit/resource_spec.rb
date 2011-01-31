@@ -66,6 +66,28 @@ module ActiveAdmin
       end
     end
 
+    describe "#include_in_menu?" do
+      let(:namespace){ ActiveAdmin::Namespace.new(:admin) }
+      subject{ resource }
+
+      context "when regular resource" do
+        let(:resource){ namespace.register(Post) }
+        it { should be_include_in_menu }
+      end
+      context "when belongs to" do
+        let(:resource){ namespace.register(Post){ belongs_to :author } }
+        it { should_not be_include_in_menu }
+      end
+      context "when belongs to optional" do
+        let(:resource){ namespace.register(Post){ belongs_to :author, :optional => true} }
+        it { should be_include_in_menu }
+      end
+      context "when menu set to false" do
+        let(:resource){ namespace.register(Post){ menu false } }
+        it { should_not be_include_in_menu }
+      end
+    end
+
     describe "parent menu item name" do
       it "should be nil when not set" do
         config.parent_menu_item_name.should == nil
@@ -165,17 +187,6 @@ module ActiveAdmin
       end
     end
 
-    describe "dashboard controller name" do
-      context "when namespaced" do
-        subject{ config.dashboard_controller_name }
-        it { should == "Admin::DashboardController" }
-      end
-      context "when not namespaced" do
-        let(:namespace){ ActiveAdmin::Namespace.new(:root) }
-        subject{ config.dashboard_controller_name }
-        it { should == "DashboardController" }
-      end
-    end
 
     describe "sort order" do
       subject { resource_config.sort_order }
@@ -191,6 +202,39 @@ module ActiveAdmin
         let(:resource_config) { config :sort_order => sort_order }
 
         it { should == sort_order }
+      end
+    end
+    
+    describe "admin notes" do
+      context "when not set" do
+        context "when global is true" do
+          before(:each) do
+            ActiveAdmin.admin_notes = true
+          end
+          it "should default to true" do
+            config.admin_notes?.should be_true
+          end
+        end
+        context "when global is false" do
+          before(:each) do
+            ActiveAdmin.admin_notes = false
+          end
+          it "should default to false" do
+            config.admin_notes?.should be_false
+          end
+        end
+      end
+      context "when set" do
+        it "should be set to the local value true" do
+          ActiveAdmin.admin_notes = false
+          config.admin_notes = true
+          config.admin_notes?.should be_true
+        end
+        it "should be set to the local value false" do
+          ActiveAdmin.admin_notes = true
+          config.admin_notes = false
+          config.admin_notes?.should be_false
+        end
       end
     end
   end

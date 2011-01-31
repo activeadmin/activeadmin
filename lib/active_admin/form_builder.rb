@@ -1,3 +1,5 @@
+require 'formtastic'
+
 module ActiveAdmin
   class FormBuilder < ::Formtastic::SemanticFormBuilder
 
@@ -58,21 +60,35 @@ module ActiveAdmin
 
     def has_many(association, options = {}, &block)
       options = { :for => association }.merge(options)
+      options[:class] ||= ""
+      options[:class] << "inputs has_many_fields"
+
+      # Add Delete Links
+      form_block = proc do |has_many_form|
+        block.call(has_many_form) + if has_many_form.object.new_record?
+                                      template.content_tag :li do
+                                        template.link_to "Delete", "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
+                                      end
+                                    else
+                                    end
+      end
 
       content = with_new_form_buffer do
         template.content_tag :div, :class => "has_many #{association}" do
-          inputs options, &block
+          form_buffers.last << template.content_tag(:h3, association.to_s.titlecase)
+          inputs options, &form_block
 
           # Capture the ADD JS
           js = with_new_form_buffer do
             inputs_for_nested_attributes  :for => [association, object.class.reflect_on_association(association).klass.new],
+                                          :class => "inputs has_many_fields",
                                           :for_options => {
                                             :child_index => "NEW_RECORD"
-                                          }, &block
+                                          }, &form_block
           end
 
           js = template.escape_javascript(js)
-          js = template.link_to "Add New", "#", :onclick => "$(this).before('#{js}'.replace(/NEW_RECORD/g, new Date().getTime())); return false;"
+          js = template.link_to "Add New #{association.to_s.singularize.titlecase}", "#", :onclick => "$(this).before('#{js}'.replace(/NEW_RECORD/g, new Date().getTime())); return false;", :class => "button"
 
           form_buffers.last << js.html_safe
         end

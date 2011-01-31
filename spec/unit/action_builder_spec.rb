@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
-describe ActiveAdmin::ActionBuilder do
+describe 'defining new actions from registration blocks' do
 
   let(:controller){ Admin::PostsController }
 
@@ -16,8 +16,10 @@ describe ActiveAdmin::ActionBuilder do
     
     context "with a block" do
       let(:action!) do
-        controller.member_action :comment do
-          # Do nothing
+        ActiveAdmin.register Post do
+          member_action :comment do
+            # Do nothing
+          end
         end
       end
         
@@ -33,7 +35,11 @@ describe ActiveAdmin::ActionBuilder do
     end
 
     context "without a block" do
-      let(:action!){ controller.member_action :comment }
+      let(:action!) do 
+        ActiveAdmin.register Post do
+          member_action :comment
+        end
+      end
       it "should still generate a new empty action" do
         controller.public_instance_methods.collect(&:to_s).should include("comment")
       end
@@ -51,8 +57,10 @@ describe ActiveAdmin::ActionBuilder do
 
     context "with a block" do
       let(:action!) do
-        controller.collection_action :comments do
-          # Do nothing
+        ActiveAdmin.register Post do
+          collection_action :comments do
+            # Do nothing
+          end
         end
       end
       it "should create a new public instance method" do
@@ -66,7 +74,11 @@ describe ActiveAdmin::ActionBuilder do
       end
     end
     context "without a block" do
-      let(:action!){ controller.collection_action :comments }
+      let(:action!) do 
+        ActiveAdmin.register Post do
+          collection_action :comments
+        end
+      end
       it "should still generate a new empty action" do
         controller.public_instance_methods.collect(&:to_s).should include("comments")
       end

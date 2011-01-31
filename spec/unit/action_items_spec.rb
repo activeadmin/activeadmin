@@ -15,7 +15,7 @@ describe_with_render ActiveAdmin::ActionItems do
 
   # Helpers method to define an action item
   def action_item(*args, &block)
-    Admin::PostsController.class_eval do
+    ActiveAdmin.register Post do
       action_item *args, &block
     end
   end

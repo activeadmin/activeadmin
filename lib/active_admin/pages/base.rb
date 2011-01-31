@@ -2,6 +2,19 @@ module ActiveAdmin
   module Pages
     class Base < ::ActiveAdmin::Renderer
 
+      autoload :Header, 'active_admin/pages/base/header'
+
+      # Returns the redenderer to use for the header on each page
+      def header_renderer
+        ActiveAdmin::Pages::Base::Header
+      end
+
+      def header
+        content_for :header do
+          header_renderer.new(self).to_html
+        end
+      end
+
       def breadcrumb(separator = "/")
         links = breadcrumb_links
         return if links.empty?
@@ -70,22 +83,10 @@ module ActiveAdmin
         end
       end
 
-      def flash_messages
-        content_for :flash_messages do
-          if flash.keys.any?
-            content_tag :div, :class => 'flashes' do
-              flash.collect do |type, message|
-                content_tag :div, message, :class => "flash flash_#{type}"
-              end.join
-            end
-          end
-        end
-      end
-
       def to_html
         set_page_title
+        header
         title_bar
-        flash_messages
         footer
         sidebar
         main_content

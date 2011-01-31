@@ -23,8 +23,10 @@ describe_with_render "Index as Thumbnails" do
 
     context "when only setting the image path" do
       before do
-        Admin::PostsController.index :as => :thumbnails do |i|
-          i.image :thumbnail_url
+        ActiveAdmin.register Post do
+          index :as => :thumbnails do |i|
+            i.image :thumbnail_url
+          end
         end
         get :index
       end

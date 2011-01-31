@@ -43,7 +43,7 @@ describe ActiveAdmin::Namespace do
     end
 
     context "with a block configuration" do
-      it "should be evaluated in the controller" do
+      it "should be evaluated in the dsl" do
         lambda {
           namespace.register Category do
             raise "Hello World"
@@ -54,7 +54,7 @@ describe ActiveAdmin::Namespace do
 
     context "with a resource that's namespaced" do
       before do
-        module ::Mock; class Resource; end; end
+        module ::Mock; class Resource; def self.has_many(arg1, arg2); end; end; end
         namespace.register Mock::Resource
       end
       
@@ -103,6 +103,64 @@ describe ActiveAdmin::Namespace do
       describe "disabling the menu" do
         # TODO
         it "should not create a menu item"
+      end
+
+      describe "adding as a belongs to" do
+        context "when not optional" do
+          before do
+            namespace.register Post do
+              belongs_to :author
+            end
+          end
+          it "should not show up in the menu" do
+            namespace.menu["Posts"].should be_nil
+          end
+        end
+        context "when optional" do
+          before do
+            namespace.register Post do
+              belongs_to :author, :optional => true
+            end
+          end
+          it "should show up in the menu" do
+            namespace.menu["Posts"].should_not be_nil
+          end
+        end
+      end
+    end
+
+    describe "dashboard controller name" do
+      context "when namespaced" do
+        it "should be namespaced" do
+          namespace = ActiveAdmin::Namespace.new(:admin)
+          namespace.dashboard_controller_name.should == "Admin::DashboardController"
+        end
+      end
+      context "when not namespaced" do
+        it "should not be namespaced" do
+          namespace = ActiveAdmin::Namespace.new(:root)
+          namespace.dashboard_controller_name.should == "DashboardController"
+        end
+      end
+    end
+    
+    describe "admin notes" do
+      let(:namespace){ ActiveAdmin::Namespace.new(:admin) }
+      context "when admin notes are disabled" do
+        it "should not call #register_with_admin_notes" do
+          namespace.should_not_receive :register_with_admin_notes
+          namespace.register Category do
+            config.admin_notes = false
+          end
+        end
+      end
+      context "when admin notes are enabled" do
+        it "should call #register_with_admin_notes" do
+          namespace.should_receive :register_with_admin_notes
+          namespace.register Category do
+            config.admin_notes = true
+          end
+        end
       end
     end
 

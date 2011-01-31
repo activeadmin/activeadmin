@@ -1,28 +1,31 @@
 require 'meta_search'
+require 'devise'
 
 module ActiveAdmin
   
-  autoload :VERSION,              'active_admin/version'
-  autoload :Namespace,            'active_admin/namespace'
-  autoload :Resource,             'active_admin/resource'
-  autoload :ResourceController,   'active_admin/resource_controller'
-  autoload :Dashboards,           'active_admin/dashboards'
-  autoload :Renderer,             'active_admin/renderer'
-  autoload :TableBuilder,         'active_admin/table_builder'
-  autoload :FormBuilder,          'active_admin/form_builder'
-  autoload :TabsRenderer,         'active_admin/tabs_renderer'
-  autoload :ViewHelpers,          'active_admin/view_helpers'
-  autoload :Breadcrumbs,          'active_admin/breadcrumbs'
-  autoload :Filters,              'active_admin/filters'
-  autoload :PageConfig,           'active_admin/page_config'
-  autoload :Pages,                'active_admin/pages'
-  autoload :Sidebar,              'active_admin/sidebar'
-  autoload :ActionItems,          'active_admin/action_items'
-  autoload :AssetRegistration,    'active_admin/asset_registration'
-  autoload :Menu,                 'active_admin/menu'
-  autoload :MenuItem,             'active_admin/menu_item'
-  autoload :ActionBuilder,        'active_admin/action_builder'
-  autoload :BelongsTo,            'active_admin/belongs_to'
+  autoload :VERSION,                  'active_admin/version'
+  autoload :ActionItems,              'active_admin/action_items'
+  autoload :AdminNotes,               'active_admin/admin_notes'
+  autoload :AssetRegistration,        'active_admin/asset_registration'
+  autoload :Breadcrumbs,              'active_admin/breadcrumbs'
+  autoload :Callbacks,                'active_admin/callbacks'
+  autoload :ControllerAction,         'active_admin/controller_action'
+  autoload :Dashboards,               'active_admin/dashboards'
+  autoload :Devise,                   'active_admin/devise'
+  autoload :DSL,                      'active_admin/dsl'
+  autoload :FormBuilder,              'active_admin/form_builder'
+  autoload :Menu,                     'active_admin/menu'
+  autoload :MenuItem,                 'active_admin/menu_item'
+  autoload :Namespace,                'active_admin/namespace'
+  autoload :PageConfig,               'active_admin/page_config'
+  autoload :Pages,                    'active_admin/pages'
+  autoload :Resource,                 'active_admin/resource'
+  autoload :ResourceController,       'active_admin/resource_controller'
+  autoload :Renderer,                 'active_admin/renderer'
+  autoload :Sidebar,                  'active_admin/sidebar'
+  autoload :TableBuilder,             'active_admin/table_builder'
+  autoload :TabsRenderer,             'active_admin/tabs_renderer'
+  autoload :ViewHelpers,              'active_admin/view_helpers'
 
   extend AssetRegistration
 
@@ -59,13 +62,22 @@ module ActiveAdmin
   # Stores if everything has been loaded or we need to reload
   @@loaded = false
 
-  # A hash containing a menu for each of our namespaces
-  @@menus = {}
-  mattr_accessor :menus
-
   # The class to use to render the tabs in the interface
   @@tabs_renderer = ActiveAdmin::TabsRenderer
   mattr_accessor :tabs_renderer
+
+  # Whether or not to use admin comments
+  @@admin_notes = true
+  mattr_accessor :admin_notes
+  
+  # The method to call in controllers to get the current user
+  @@current_user_method = :current_admin_user
+  mattr_accessor :current_user_method
+
+  # The method to call in the controllers to ensure that there
+  # is a currently authenticated admin user
+  @@authentication_method = :authenticate_admin_user!
+  mattr_accessor :authentication_method
 
   class << self
 
@@ -80,6 +92,9 @@ module ActiveAdmin
       # to remove our paths from the ActiveSupport autoload paths.
       # If not, file nameing becomes very important and can cause clashes.
       ActiveSupport::Dependencies.autoload_paths.reject!{|path| load_paths.include?(path) }
+
+      # Add the Active Admin view path to the rails view path
+      ActionController::Base.append_view_path File.expand_path('../active_admin/views', __FILE__)
 
       # Don't eagerload our configs, we'll deal with them ourselves
       Rails.application.config.eager_load_paths = Rails.application.config.eager_load_paths.reject do |path| 
@@ -117,6 +132,7 @@ module ActiveAdmin
     # to allow for changes without having to restart the server.
     def unload!
       namespaces.values.each{|namespace| namespace.unload! }
+      self.namespaces = {}
       @@loaded = false
     end
 
@@ -155,6 +171,11 @@ module ActiveAdmin
       # are all loaded
       load!
 
+      # routes for comments controller
+      router.instance_eval do
+        post "/admin/admin_notes", :to => "active_admin/admin_notes/notes#create", :as => :admin_admin_notes
+      end
+      
       # Define any necessary dashboard routes
       router.instance_exec(namespaces.values) do |namespaces|
         namespaces.each do |namespace|
@@ -198,10 +219,10 @@ module ActiveAdmin
             routes_for_belongs_to = route_definition_block.dup
             route_definition_block = Proc.new do
               # If its optional, make the normal resource routes
-              instance_eval &routes_for_belongs_to if config.belongs_to.optional?
+              instance_eval &routes_for_belongs_to if config.belongs_to_config.optional?
 
               # Make the nested belongs_to routes
-              resources config.belongs_to.target.underscored_resource_name.pluralize do
+              resources config.belongs_to_config.target.underscored_resource_name.pluralize do
                 instance_eval &routes_for_belongs_to
               end
             end

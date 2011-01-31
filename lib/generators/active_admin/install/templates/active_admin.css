@@ -12,18 +12,23 @@ body {
   padding: 0;
 }
 
-#header { background-color: #4b4a48; padding: 9px 30px; text-shadow: #222 1px 1px 0; }
+#header { background-color: #4b4a48; padding: 9px 30px; text-shadow: #222 1px 1px 0; background: -webkit-gradient(linear, left top, left bottom, from(#555351), to(#444341)); border-bottom: 1px solid #cdcdcd; }
 #header h1 { display: inline; margin-right: 20px; font-size: 1.1em; color: #94999a; font-weight: normal; text-transform: uppercase; }
-#header ul#tabs { margin: 0; padding: 0; display: inline; }
-#header ul#tabs li { display: inline; margin-right: 4px; font-size: 1.0em; position: relative; }
+#header ul#tabs { margin: 0; padding: 0; display: inline; height: 100%; }
+#header ul#tabs li { display: inline; margin-right: 4px; padding: 9px 0; font-size: 1.0em; position: relative; }
 #header ul#tabs li a { text-decoration: none; color: #bbb; padding: 4px 10px; }
+#header ul#tabs li a:hover { color: #fff; }
 #header ul#tabs > li.current > a { -webkit-border-radius: 8px; color: #dfdfdf; background: #777; }
-#header ul#tabs li ul { position: absolute; left: 0; top: 18px; display: none; z-index: 999; background: #4B4A48; border-bottom-left-radius: 8px 8px; border-bottom-right-radius: 8px 8px; padding: 5px 0px;}
+#header ul#tabs li ul { -webkit-box-shadow: 0px 1px 2px #aaa; position: absolute; width: 200px; left: 0; top: 33px; display: none; z-index: 999; background: #555351; border-bottom-left-radius: 8px 8px; border-bottom-right-radius: 8px 8px; padding: 5px 0px;}
 #header ul#tabs li ul li { margin: 0px; }
-#header ul#tabs li:hover ul, #header ul#tabs li ul li a { display: block; }
+#header ul#tabs li:hover ul, #header ul#tabs li ul li a { display: block;}
 #header ul#tabs li ul li.current > a { color:#fff; }
-#header ul#tabs li.has_nested > a { background: url('/images/active_admin/nested_menu_arrow.gif') no-repeat 89% 50%; padding-right:16px; }
-#header ul#tabs li.has_nested.current > a { background: #777 url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%; padding-right:16px; }
+#header ul#tabs li.has_nested > a { background: url('/images/active_admin/nested_menu_arrow.gif') no-repeat 89% 50%; padding-right: 20px; }
+#header ul#tabs li.has_nested.current > a { background: #777 url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%; padding-right: 20px; }
+
+#header #utility_nav { position: absolute; right: 25px; top: -2px; }
+#header #utility_nav a { color: #bbb; text-decoration: none; }
+#header #utility_nav a:hover { color: #fff; }
 
 #content { margin: 0; padding: 25px 30px; }
 #main_content_wrapper{ float: left; width: 100%; }
@@ -134,6 +139,8 @@ table.resource_attributes th {
   color: #777;
   background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
   background: -moz-linear-gradient(top,  #eee,  #ddd);
+  text-shadow: #fff 1px 1px 0;
+  padding: 6px 10px 3px 10px;
   vertical-align: top;
 }
 table.resource_attributes tr:hover td{
@@ -168,6 +175,77 @@ span.status {
   background-color: #aaa;
 }  
 
+/* -------------------------------------- Show screen sections */
+
+.show .section h3 {
+  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#dddbdb));
+  text-shadow: #fff 1px 1px 0;
+  color: #777;
+  font-size: 0.9em;
+  margin-top: 20px;
+  padding: 5px 10px;
+}
+
+.show .section ul {
+  list-style: none;
+  padding-left: 10px;
+}
+
+.show .section ul li {
+  width: 90%;
+}
+
+
+.show .section ul li h4 {
+  color: #555;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.show .section ul li p {
+  color: #555;
+  margin: 0px;
+}
+
+.show .section form {
+  padding-left: 10px;
+  width: 90%;
+}
+
+.show .section form textarea {
+  width: 100%;
+}
+
+.show .section form .buttons {
+  padding-left: 0;
+}
+
+/* -------------------------------------- Admin Notes */
+
+.show .section.admin_notes h3 {
+  background:  url() no-repeat left middle;
+  
+  background: #dfdfdf;
+  background-image: url('/images/active_admin/admin_notes_icon.png'); /* fallback */
+  background-image: url('/images/active_admin/admin_notes_icon.png'), -moz-linear-gradient(top,  #eee,  #ddd);
+  background-image: url('/images/active_admin/admin_notes_icon.png'), -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
+  background-position: left 65%;
+  background-repeat: no-repeat;
+  padding: 6px 10px 3px 32px;
+}
+
+.admin_notes ul {
+  margin-bottom: 24px;
+}
+
+.admin_notes ul li + li {
+  border-top: solid 1px #ececec;
+  margin-top: 15px;
+  padding-top: 15px;
+  
+}
+
+
 /* -------------------------------------- Datepicker */
 .ui-datepicker {
   color: #fff;
@@ -187,31 +265,9 @@ span.status {
 }
 
 /* -------------------------------------- Flash Messages */
-.flash {
-  background: -webkit-gradient(linear, left top, left bottom, from(#F3F3F3), to(#dddbdb));
-  -webkit-box-shadow: #BBB 0px 1px 1px;
-  border-bottom-left-radius: 10px 10px;
-  border-bottom-right-radius: 10px 10px;
-  border-top-left-radius: 10px 10px;
-  border-top-right-radius: 10px 10px;
-  font-size: 1.1em;
-  margin: 0px 0px 20px;
-  padding: 10px;
-  text-shadow: white 1px 1px 1px;
-}
-
-.flash_notice {
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E4F5E1), to(#C1E5BE));
-  border: 1px solid #EEF8ED;
-  color: #295A25;
-}
-
-.flash_error {
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FCF4F4), to(#F3D9D9));
-  border: 1px solid #FEF2F2;
-  color: #BC3E3E;
-}
-
+.flash { margin: 0px 0px 15px; padding: 10px; text-shadow: #333 1px 1px 1px; color: #fff; }
+.flash_notice { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#79ad80), to(#567c5b)); }
+.flash_error, .flash_alert { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#b95a4e), to(#844038)); }
 /* -------------------------------------- Formtastic */
 /* -------------------------------------------------------------------------------------------------
 
@@ -226,13 +282,14 @@ This stylesheet forms part of the Formtastic Rails Plugin
 
 
 form.formtastic, form.formtastic ul, form.formtastic ol, form.formtastic li, form.formtastic fieldset, form.formtastic legend, form.formtastic input, form.formtastic textarea, form.formtastic select, form.formtastic p { margin:0; padding:0; }
-form.formtastic fieldset { border:0; }
+form.formtastic fieldset { border: 0; margin-top: 20px; }
+form.formtastic fieldset.inputs { background: #f0f0f0; padding: 10px 10px 5px 10px; border-top: 2px solid #ddd; border-bottom: 2px solid #ddd; }
 form.formtastic em, form.formtastic strong { font-style:normal; font-weight:normal; }
 form.formtastic ol, form.formtastic ul { list-style:none; }
 form.formtastic abbr, form.formtastic acronym { border:0; font-variant:normal; }
 form.formtastic input, form.formtastic textarea, form.formtastic select { font-family:inherit; font-size:inherit; font-weight:inherit; }
 form.formtastic input, form.formtastic textarea, form.formtastic select { font-size:100%; }
-form.formtastic legend { white-space:normal; color:#000; }
+form.formtastic > fieldset > legend { color: #888; font-size: 1.4em; font-weight: bold; background: #fff; display: block; border-bottom: 2px solid #ddd; width: 100%; margin: 0 -10px; padding: 5px 20px 5px 0;}
 
 /* SEMANTIC ERRORS
 --------------------------------------------------------------------------------------------------*/
@@ -282,7 +339,7 @@ form.formtastic fieldset > ol > li > li label input { line-height:100%; vertical
 /* NESTED FIELDSETS AND LEGENDS (radio, check boxes and date/time inputs use nested fieldsets)
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li fieldset { position:relative; }
-form.formtastic fieldset > ol > li fieldset legend { position:absolute; width:95%; padding-top:0.1em; left: 0px; }
+form.formtastic fieldset > ol > li fieldset legend { position:absolute; width:95%; padding-top:0.1em; left: 0px; font-size: 100%; font-weight: normal; }
 form.formtastic fieldset > ol > li fieldset legend span { position:absolute; }
 form.formtastic fieldset > ol > li fieldset legend.label label { position:absolute; }
 form.formtastic fieldset > ol > li fieldset ol { float:left; width:74%; margin:0; padding:0 0 0 20%; }

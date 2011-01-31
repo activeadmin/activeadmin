@@ -18,12 +18,17 @@ module ActiveAdmin
       end
 
       def main_content
-        if config.block
+        html = if config.block
           # Eval the show config from the controller
           instance_eval &config.block
         else
           default_main_content
         end
+        html + (comments if active_admin_config.admin_notes?)
+      end
+      
+      def comments
+        admin_notes_for(resource)
       end
 
       protected

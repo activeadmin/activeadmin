@@ -3,12 +3,17 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe "Registering an object to administer" do
 
   context "with no configuration" do
+    let(:namespace) { ActiveAdmin::Namespace.new(:admin) }
     it "should call register on the namespace" do
-      namespace = ActiveAdmin::Namespace.new(:admin)
       ActiveAdmin.namespaces[namespace.name] = namespace
       namespace.should_receive(:register)
 
       ActiveAdmin.register Category
+    end
+     
+    it "should have many admin notes" do
+      namespace.register Category
+      Category.reflect_on_association(:admin_notes).macro.should == :has_many
     end
   end
 

@@ -10,17 +10,16 @@
   <%= csrf_meta_tag %>
 
 </head>
-<body>
+<body class="<%= controller.action_name %>">
 <div id="wrapper">
   <div id="header">
-    <h1 id="site_title"><%= ActiveAdmin.site_title %></h1>
-    <%= ActiveAdmin.tabs_renderer.new(self).to_html(current_menu) %>
+    <%= yield :header %>
   </div>
   <div id="title_bar">
     <%= yield :title_bar %>
   </div>
   <div id="content" class="<%= skip_sidebar? ? 'without_sidebar' : 'with_sidebar' %>">
-    <%= yield :flash_messages %>
+    <%= flash_messages %>
     <div id="main_content_wrapper">
       <div id="main_content">
         <%= yield %>

@@ -20,7 +20,6 @@ end
 task :default => :spec
 
 namespace :spec do
-  
   desc "Run specs for all versions of rails"
   task :all do
     puts "Runing for Rails 2.3.5"
@@ -30,8 +29,17 @@ namespace :spec do
     out = `rake spec RAILS=3.0.0`
     puts out
   end
-  
 end
+
+require 'cucumber/rake/task'
+
+namespace :cucumber do
+  Cucumber::Rake::Task.new(:all) do |t|
+    t.profile = 'default'
+  end
+end
+
+task :cucumber => "cucumber:all"
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
@@ -58,12 +66,6 @@ begin
 
     require File.join(File.dirname(File.expand_path(__FILE__)), 'lib', 'active_admin', 'version')
     gem.version = ActiveAdmin::VERSION
-
-    gem.add_dependency 'rails',           '>= 3.0.0'
-    gem.add_dependency 'formtastic',      '>= 1.1.0.beta'
-    gem.add_dependency 'will_paginate',   '>= 3.0.pre2'
-    gem.add_dependency "meta_search",     '>= 0.9.2'
-    gem.add_dependency 'inherited_views'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

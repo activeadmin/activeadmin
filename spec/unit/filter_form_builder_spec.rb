@@ -1,14 +1,16 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
 
-describe_with_render ActiveAdmin::FormBuilder do
+describe_with_render 'A resource\'s filters' do
 
   def reset!
     Admin::PostsController.reset_filters!
   end
 
   def filter(*args)
-    Admin::PostsController.filter *args
+	ActiveAdmin.register Post do
+	  filter *args
+	end
   end
 
   before do
@@ -150,7 +152,7 @@ describe_with_render ActiveAdmin::FormBuilder do
   describe "default filters" do
     it "should order by association, then content columns" do
       attributes = controller.class.default_filters_config.collect{|f| f[:attribute] }
-      attributes.should == [ :author, :title, :body, :published_at, :created_at, :updated_at ]
+      attributes.should include(:author, :admin_notes, :title, :body, :published_at, :created_at, :updated_at)
     end
   end
 

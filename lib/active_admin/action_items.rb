@@ -2,11 +2,11 @@ require 'active_admin/helpers/optional_display'
 
 module ActiveAdmin
   module ActionItems
+    extend ActiveSupport::Concern
 
-    def self.included(base)
-      base.send :extend, ClassMethods
-      base.class_inheritable_accessor :action_items
-      base.action_items = []
+    included do
+      self.class_inheritable_accessor :action_items
+      self.action_items = []
     end
 
     module ClassMethods

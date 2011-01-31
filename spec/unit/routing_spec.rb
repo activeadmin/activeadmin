@@ -1,7 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-
-
 describe ActiveAdmin, "Routing" do
 
   before :each do
@@ -46,5 +44,12 @@ describe ActiveAdmin, "Routing" do
       edit_admin_user_post_path(1,2).should == "/admin/users/1/posts/2/edit"
     end
   end
+
+  describe "notes routes" do
+    it "should have a admin notes path" do
+      admin_admin_notes_path.should == "/admin/admin_notes"
+    end
+  end
+
 
 end
