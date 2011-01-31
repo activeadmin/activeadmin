@@ -1,3 +1,5 @@
+require 'devise'
+
 module ActiveAdmin
   module Devise
 
