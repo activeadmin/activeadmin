@@ -9,6 +9,7 @@ module ActiveAdmin
                     :desc => "Should the generated resource be registerable?"
 
       def install_devise
+        require 'devise'
         if File.exists?(File.join(destination_root, "config", "initializers", "devise.rb"))
           log :generate, "No need to install devise, already done."
         else

@@ -1,3 +1,5 @@
+require 'formtastic'
+
 module ActiveAdmin
   class FormBuilder < ::Formtastic::SemanticFormBuilder
 

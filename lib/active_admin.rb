@@ -1,4 +1,5 @@
 require 'meta_search'
+require 'devise'
 
 module ActiveAdmin
   
