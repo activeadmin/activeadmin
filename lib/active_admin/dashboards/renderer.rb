@@ -12,6 +12,9 @@ module ActiveAdmin
 
       protected
 
+      # Dashboards don't have a sidebar
+      def sidebar; end
+
       def title
         "Dashboard"
       end

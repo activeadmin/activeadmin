@@ -2,6 +2,8 @@ module ActiveAdmin
   module Dashboards
     class DashboardController < ResourceController
 
+      before_filter :skip_sidebar!
+
 	  actions :index
 
       # Render from here if not overriden
@@ -10,7 +12,6 @@ module ActiveAdmin
       clear_action_items!
 
       def index
-        skip_sidebar!
         @dashboard_sections = find_sections
         render_or_default 'index'
       end
