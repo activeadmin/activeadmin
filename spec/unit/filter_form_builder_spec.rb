@@ -79,7 +79,7 @@ describe_with_render 'A resource\'s filters' do
     end
     it "should generate a text field for input" do
       response.should have_tag("input", :attributes => {
-                                          :name => "q[id_equals]" })
+                                          :name => /q\[(id_eq|id_equals)\]/ })
     end
     it "should select the option which is currently being filtered"
   end

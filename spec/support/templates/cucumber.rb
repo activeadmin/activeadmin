@@ -1,6 +1,6 @@
 require File.expand_path('config/environments/test', Rails.root)
 
-Rails300::Application.configure do
+Rails.application.class.configure do
   config.cache_classes = false
 end
 

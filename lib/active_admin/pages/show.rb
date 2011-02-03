@@ -50,7 +50,7 @@ module ActiveAdmin
             content_tag :tr do
               content_tag(:th, attr.to_s.titlecase) + content_tag(:td, resource.send(attr))
             end
-          end.join
+          end.join.html_safe
         end        
       end
 

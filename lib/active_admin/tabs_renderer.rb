@@ -16,7 +16,7 @@ module ActiveAdmin
       content_tag :ul, :id => @options[:id] do
         menu.items.collect do |item|
           render_item(item)
-        end.join
+        end.join.html_safe
       end
     end
 
@@ -32,7 +32,7 @@ module ActiveAdmin
     
     def render_nested_menu(item)
       content_tag :ul do
-        item.children.collect {|child| render_item(child)}.join 
+        item.children.collect {|child| render_item(child)}.join.html_safe
       end
     end
 

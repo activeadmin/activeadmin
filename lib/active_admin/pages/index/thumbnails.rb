@@ -11,7 +11,7 @@ module ActiveAdmin
 
           wrap_with_pagination(collection, :entry_name => active_admin_config.resource_name) do
             content_tag :div, :style => "clear:both;" do
-              collection.collect{|item| render_image(item) }.join
+              collection.collect{|item| render_image(item) }.join.html_safe
             end
           end
         end

@@ -72,67 +72,62 @@ end
 ENV['RAILS'] ||= '3.0.0'
 ENV['RAILS_ENV'] = 'test'
 
-if ENV['RAILS'] == '3.0.0'
-  ENV['RAILS_ROOT'] = File.expand_path('../rails/rails-3.0.0', __FILE__)
+ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{ENV["RAILS"]}", __FILE__)
 
-  # Create the test app if it doesn't exists
-  unless File.exists?(ENV['RAILS_ROOT'])
-    system 'rake setup'  
-  end
-
-  require ENV['RAILS_ROOT'] + '/config/environment'
-  require 'rspec/rails'
-
-  # Setup Some Admin stuff for us to play with
-  include ActiveAdminIntegrationSpecHelper
-  load_defaults!
-  reload_routes!
-
-  # Disabling authentication in specs so that we don't have to worry about
-  # it allover the place
-  ActiveAdmin.authentication_method = false
-
-  # Don't add asset cache timestamps. Makes it easy to integration
-  # test for the presence of an asset file
-  ENV["RAILS_ASSET_ID"] = ''
-
-  Rspec.configure do |config|
-    config.use_transactional_fixtures = true
-    config.use_instantiated_fixtures = false
-  end
-
-  # Ensure this is defined for Ruby 1.8
-  module MiniTest; class Assertion < Exception; end; end
-
-  Rspec::Matchers.define :have_tag do |*args|
-
-    match_unless_raises Test::Unit::AssertionFailedError do |response|
-      tag = args.shift
-      content = args.first.is_a?(Hash) ? nil : args.shift
-      
-      options = {
-        :tag => tag.to_s
-      }.merge(args[0] || {})
-      
-      options[:content] = content if content
-
-      begin
-        begin
-          assert_tag(options)
-        rescue NoMethodError
-          # We are not in a controller, so let's do the checking ourselves
-          doc = HTML::Document.new(response, false, false)
-          tag = doc.find(options)
-          assert tag, "expected tag, but no tag found matching #{options.inspect} in:\n#{response.inspect}"
-        end
-      # In Ruby 1.9, MiniTest::Assertion get's raised, so we'll
-      # handle raising a Test::Unit::AssertionFailedError
-      rescue MiniTest::Assertion => e
-        raise Test::Unit::AssertionFailedError, e.message
-      end
-    end
-  end
-
+# Create the test app if it doesn't exists
+unless File.exists?(ENV['RAILS_ROOT'])
+  system 'rake setup'  
 end
 
+require ENV['RAILS_ROOT'] + '/config/environment'
+require 'rspec/rails'
 
+# Setup Some Admin stuff for us to play with
+include ActiveAdminIntegrationSpecHelper
+load_defaults!
+reload_routes!
+
+# Disabling authentication in specs so that we don't have to worry about
+# it allover the place
+ActiveAdmin.authentication_method = false
+
+# Don't add asset cache timestamps. Makes it easy to integration
+# test for the presence of an asset file
+ENV["RAILS_ASSET_ID"] = ''
+
+Rspec.configure do |config|
+  config.use_transactional_fixtures = true
+  config.use_instantiated_fixtures = false
+end
+
+# Ensure this is defined for Ruby 1.8
+module MiniTest; class Assertion < Exception; end; end
+
+Rspec::Matchers.define :have_tag do |*args|
+
+  match_unless_raises Test::Unit::AssertionFailedError do |response|
+    tag = args.shift
+    content = args.first.is_a?(Hash) ? nil : args.shift
+    
+    options = {
+      :tag => tag.to_s
+    }.merge(args[0] || {})
+    
+    options[:content] = content if content
+
+    begin
+      begin
+        assert_tag(options)
+      rescue NoMethodError
+        # We are not in a controller, so let's do the checking ourselves
+        doc = HTML::Document.new(response, false, false)
+        tag = doc.find(options)
+        assert tag, "expected tag, but no tag found matching #{options.inspect} in:\n#{response.inspect}"
+      end
+    # In Ruby 1.9, MiniTest::Assertion get's raised, so we'll
+    # handle raising a Test::Unit::AssertionFailedError
+    rescue MiniTest::Assertion => e
+      raise Test::Unit::AssertionFailedError, e.message
+    end
+  end
+end

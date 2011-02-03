@@ -25,9 +25,9 @@ module ActiveAdmin
             content_tag :tr do
               row.collect do |section| 
                 content_tag :td, render_section(section)
-              end.join
+              end.join.html_safe
             end
-          end.join
+          end.join.html_safe
         end
       end
 

@@ -20,7 +20,7 @@ module ActiveAdmin
         return if links.empty?
         sep = content_tag(:span, separator, :class => "breadcrumb_sep")
         content_tag :span, :class => "breadcrumb" do
-          links.join(" #{sep} ") + sep
+          links.join(" #{sep} ").html_safe + sep
         end
       end
 

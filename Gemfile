@@ -1,12 +1,25 @@
 # These resources are needed to setup the test env
 source 'http://rubygems.org'
 
-# Rails & ActiveAdmin Dependencies
-gem 'rails',          '>= 3.0.0'
-gem 'devise',         '>= 1.1.2'
-gem 'formtastic',     '>= 1.1.0.beta'
-gem 'will_paginate',  '>= 3.0.pre2'
+# Set the RAILS env variable to test against diffirent versions of rails
+case ENV["RAILS"]
+when "3.0.0"
+  gem 'rails',          '= 3.0.0'
+when "3.0.1"
+  gem 'rails',          '= 3.0.1'
+when "3.0.2"
+  gem 'rails',          '= 3.0.2'
+when "3.0.3"
+  gem 'rails',          '= 3.0.3'
+else
+  # Default gems for in the gemspec
+  gem 'rails',          '>= 3.0.0'
+end
+
 gem "meta_search",    '>= 0.9.2'
+gem 'devise',         '>= 1.1.2'
+gem 'formtastic',     '>= 1.1.0'
+gem 'will_paginate',  '>= 3.0.pre2'
 gem 'inherited_views'
 
 group :development, :test do

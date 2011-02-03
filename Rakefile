@@ -4,10 +4,25 @@ Bundler.setup
 
 require 'rake'
 
+def cmd(command)
+  puts command
+  system command
+end
+
+desc "Install all supported versions of rails"
+task :install_rails do
+  (0..3).to_a.each do |v|
+    system "rm Gemfile.lock"
+    puts "Installing for RAILS=3.0.#{v}"
+    system "RAILS=3.0.#{v} bundle install"
+  end
+end
+
 desc "Creates a test rails app for the specs to run against"
 task :setup do
+  require 'rails/version'
   system("mkdir spec/rails") unless File.exists?("spec/rails")
-  system "bundle exec rails new spec/rails/rails-3.0.0 -m spec/support/rails_template.rb"
+  system "bundle exec rails new spec/rails/rails-#{Rails::VERSION::STRING} -m spec/support/rails_template.rb"
 end
 
 require "rspec/core/rake_task"
@@ -22,12 +37,12 @@ task :default => :spec
 namespace :spec do
   desc "Run specs for all versions of rails"
   task :all do
-    puts "Runing for Rails 2.3.5"
-    out = `rake spec`
-    puts out
-    puts "Running for Rails 3"
-    out = `rake spec RAILS=3.0.0`
-    puts out
+    [0,3].each do |v|
+      puts "Running for Rails 3.0.#{v}"
+      cmd "rm Gemfile.lock" if File.exists?("Gemfile.lock")
+      cmd "RAILS=3.0.#{v} bundle install --local"
+      cmd "RAILS=3.0.#{v} rake spec"
+    end
   end
 end
 

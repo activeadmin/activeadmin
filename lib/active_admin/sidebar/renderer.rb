@@ -11,7 +11,7 @@ module ActiveAdmin
           content_tag :div, :class => 'sidebar_section', :id => section.id do
             title + content
           end
-        end.join
+        end.join.html_safe
       end
 
       # If a block exists, render the block. Otherwise render a partial

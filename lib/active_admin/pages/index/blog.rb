@@ -11,7 +11,7 @@ module ActiveAdmin
 
           wrap_with_pagination(collection, :entry_name => active_admin_config.resource_name) do
             content_tag :div do
-              collection.collect{|item| render_post(item) }.join
+              collection.collect{|item| render_post(item) }.join.html_safe
             end
           end
         end

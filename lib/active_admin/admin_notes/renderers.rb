@@ -33,7 +33,7 @@ module ActiveAdmin
           if resource.admin_notes.count > 0
             resource.admin_notes.collect do |note|
               admin_note(note)
-            end.join
+            end.join.html_safe
           else
             content_tag(:li, :class => "empty") do
               content_tag(:h4, "No admin notes yet for this #{resource.class.to_s.downcase}")

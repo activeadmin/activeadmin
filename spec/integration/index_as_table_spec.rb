@@ -27,7 +27,7 @@ describe_with_render "Index as Table" do
       end
       it "should set the page title" do
         get :index
-        response.should have_tag("title", "Posts | Rails300")
+        response.should have_tag("title", "Posts | #{ActiveAdmin.site_title}")
       end
     end
     

@@ -11,7 +11,7 @@ ActiveAdmin::Dashboards.build do
   #     content_tag :ul do
   #       Post.recent(5).collect do |post|
   #         content_tag(:li, link_to(post.title, admin_post_path(post)))
-  #       end.join
+  #       end.join.html_safe
   #     end
   #   end
   

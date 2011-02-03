@@ -66,19 +66,19 @@ module ActiveAdmin
             else
               content_tag :th, column.title
             end
-          end.join
+          end.join.html_safe
         end
       end
 
       def table_body
         content_tag :tbody do
-          @collection.collect{|item| table_row(item) }.join
+          @collection.collect{|item| table_row(item) }.join.html_safe
         end
       end
 
       def table_row(item)
         content_tag :tr, :class => cycle('odd', 'even') do
-          columns.collect{|column| table_cell(column, item) }.join
+          columns.collect{|column| table_cell(column, item) }.join.html_safe
         end
       end
 

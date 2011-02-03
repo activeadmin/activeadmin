@@ -7,7 +7,7 @@ module ActiveAdmin
           content_tag :div, :class => 'flashes' do
             flash.collect do |type, message|
               content_tag :div, message, :class => "flash flash_#{type}"
-            end.join
+            end.join.html_safe
           end
         end
       end
