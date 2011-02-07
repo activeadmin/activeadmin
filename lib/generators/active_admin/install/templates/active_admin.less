@@ -1,0 +1,645 @@
+/*
+	Active Admin CSS
+*/
+
+@horizontal-page-margin: 30px;
+@primary-color: #5E6469;
+@secondary-color: #f0f0f0;
+@text-color: #323537;
+@link-color: #38678b;
+@section-header-text-color: @primary-color;
+@cell-padding: 5px 10px 3px 10px; 
+@cell-horizontal-padding: 12px;
+
+/* ----------------------------------- Functions */
+.gradient (@start, @end){ 
+  background: @start; 
+  background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@end)); 
+  background: -moz-linear-gradient(-90deg, @start, @end); 
+  filter: %("progid:DXImageTransform.Microsoft.gradient(startColorstr=%d, endColorstr=%d)", @start, @end);	/* IE6 & 7 */ 
+  -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(startColorstr=%d, endColorstr=%d)", @start, @end); /* IE8 */ 
+}
+
+.primary-gradient { 
+  .gradient(lighten(@primary-color, 5%), darken(@primary-color, 7%));
+  border-bottom: 1px solid darken(@primary-color, 11%);
+}
+
+
+@secondary-gradient-start: #efefef;
+@secondary-gradient-stop: #dfe1e2;
+.secondary-gradient { .gradient(@secondary-gradient-start, @secondary-gradient-stop); }
+
+.shadow(@x: 0, @y: 1px, @blur: 2px, @color: #aaa) { 
+  box-shadow: @x @y @blur @color; 
+  -moz-box-shadow: @x @y @blur @color; 
+  -webkit-box-shadow: @x @y @blur @color;
+}
+.no-shadow {
+  box-shadow: none; 
+  -moz-box-shadow: none; 
+  -webkit-box-shadow: none;
+}
+
+.rounded(@radius: 3px) { 
+  -webkit-border-radius: @radius; 
+  -moz-border-radius: @radius; 
+  border-radius: @radius;
+}
+
+.text-shadow(@color: #fff, @x: 0, @y: 1px, @blur: 0) {
+  text-shadow: @color @x @y @blur;
+}
+
+.section-header {
+  .secondary-gradient;
+  .shadow;
+  .text-shadow;
+  border-bottom: 1px solid #ededed;
+  padding: 5px 10px 3px 10px; 
+  font-size: 1.0em;
+  font-weight: bold;
+  color: @section-header-text-color;
+  .icon(@section-header-text-color, 1.0em);
+  span.icon { margin-right: 5px; }
+}
+
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 140%;
+  font-size: 72%;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  color: @text-color;
+}
+
+/* ----------------------------------- Header */
+#header { 
+  padding: 9px @horizontal-page-margin;
+  .primary-gradient;
+  .shadow;
+  position: relative;
+  z-index: 900;
+  .text-shadow(#000);
+
+  h1 { 
+    display: inline; 
+    color: #cdcdcd;
+    margin-right: 20px; 
+    font-size: 1.3em; 
+    font-weight: normal; 
+  }
+
+  a, a:link { color: #cdcdcd; }
+
+  ul#tabs {
+    margin: 0; 
+    padding: 0; 
+    display: inline; 
+    height: 100%;
+
+    li { 
+      display: inline; 
+      margin-right: 4px; 
+      padding: 9px 0; 
+      font-size: 1.0em; 
+      position: relative; 
+
+      a { 
+        text-decoration: none; 
+        padding: 6px 10px 4px 10px; 
+      }
+
+      &.current > a {
+        //background: #848b90;
+        background: lighten(@primary-color, 12%);
+        color: #fff;
+        .rounded(10px);
+      }
+
+      /*  > li.current > a { -webkit-border-radius: 8px; color: #dfdfdf; background: #777; } */
+      /*  li ul li.current > a { color:#fff; } */
+
+      &.has_nested > a { 
+        background: url('/images/active_admin/nested_menu_arrow.gif') no-repeat 89% 50%; 
+        padding-right: 20px; 
+      }
+
+      &.has_nested.current > a { 
+        background: #777 url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%; 
+        padding-right: 20px; 
+      }
+
+      /* Hover on li, display the ul */
+      &:hover ul { display: block;}
+      /* Drop down menus */
+      ul { 
+        position: absolute; 
+        width: 200px; 
+        left: 0; 
+        top: 33px; 
+        display: none; 
+        z-index: 999; 
+        padding: 5px 0px;
+
+        li { 
+          margin: 0px; 
+          a { display: block; }
+        }
+      }
+    }
+
+  }
+
+  #utility_nav { 
+    position: absolute; right: 25px; top: -2px; 
+
+    a { text-decoration: none; }
+    /* a:hover { color: #fff; } */
+  }
+
+}
+
+/* ----------------------------------- Page Title Bar */
+#title_bar {
+  .section-header;
+  position: relative; 
+  margin: 0; 
+  padding: 10px @horizontal-page-margin; 
+
+  h2 { 
+    margin: 12px 0 5px 0; 
+    padding: 0; 
+    font-size: 2.6em;
+  }
+
+  .action_items { 
+    position: absolute; 
+    right: @horizontal-page-margin; 
+    top: 28px;
+
+    a { 
+      .light-button; 
+      .icon(#777, 0.8em); 
+      .gradient(#f9f9f9, #dddbdb);
+      padding: .8em 1.5em .7em 1.5em;
+      border: 1px solid #f8f8f8;
+      span.icon { vertical-align: bottom; margin-right: 4px;} 
+      &:hover{ .icon-color(#000); } }
+  }
+}
+
+/* ----------------------------------- Main Structure */
+#content { 
+  margin: 0; 
+  padding: 25px @horizontal-page-margin; 
+  
+  #main_content_wrapper { 
+    float: left; 
+    width: 100%; 
+
+    #main_content{ 
+      margin-right: 300px; 
+    }
+  }
+
+  &.without_sidebar #main_content_wrapper #main_content{ margin-right: 0; }
+
+  #sidebar { 
+    float: left; 
+    width: 270px; 
+    margin-left: -270px; 
+  }
+}
+
+/* ----------------------------------- Footer */
+#footer {
+  padding: 30px 30px;  
+  font-size: 0.8em; 
+  clear: both; 
+
+  p { 
+    padding-top: 10px
+  }
+}
+
+/* ----------------------------------- Links */
+a, a:link, a:visited {
+  color: @link-color;
+  text-decoration: underline;
+}
+a:hover { text-decoration: none; }
+
+/* ----------------------------------- Buttons */
+.default-button {
+  .shadow;
+  .gradient(lighten(@primary-color, 15%), darken(@primary-color, 12%));
+  .rounded(200px);
+  .text-shadow(#000);
+  text-decoration: none;
+  margin-right: 3px;
+  font-weight: bold;
+  font-size: 1.0em;
+  cursor: pointer;
+  padding: .6em 1.4em .5em 1.3em;
+  border: none;
+  color: #efefef;
+  &:hover { color: #fff; .icon-color(#fff) }
+}
+
+.light-button {
+  .default-button;
+  .gradient(#f9f9f9, #dddbdb);
+  .text-shadow;
+  color: #777;
+  &:hover { color: #444; .icon-color(#444) }
+}
+
+.dark-button { .default-button; }
+
+span.icon { vertical-align: middle; }
+span.icon svg { vertical-align: baseline; }
+
+.icon-color (@color) {
+  span.icon svg {
+    path, polygon, rect, circle { fill: @color !important; }
+  }
+}
+
+.icon-size (@size) {
+  span.icon { width: @size; height: @size; }
+  span.icon svg { width: @size; height: @size; }
+}
+
+.icon(@color, @size) {
+  .icon-color(@color);
+  .icon-size(@size);
+}
+
+.icon-size(0.8em);
+
+td, p {
+  .icon(#B3BCC1, 0.8em);
+  span.icon { margin: 0 3px; }
+}
+
+a.view_link, a.edit_link, a.delete_link {
+  margin-right: 7px;
+  white-space: nowrap;
+}
+
+a.button, input[type=submit] { .dark-button; }
+
+/* ----------------------------------- Breadcrumbs */
+.breadcrumb {
+  text-transform: uppercase;
+  font-size: 0.9em;
+  font-weight: normal;
+
+  a, a:link {
+    color: #8a949e ;
+    text-decoration: none;
+  }
+
+  a:hover { text-decoration: underline; }
+
+  .breadcrumb_sep {
+    margin: 0 2px;
+    color: #aab2ba;
+  }
+}
+
+/* ----------------------------------- Tables */
+table {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 0;
+  border-spacing: 0;
+
+
+  th { 
+    .section-header;
+    text-align: left;
+    padding-left: @cell-horizontal-padding;
+    padding-right: @cell-horizontal-padding;
+
+    a, a:link, a:visited {
+      color: @section-header-text-color;
+      text-decoration: none;
+      display: block;
+    }
+
+    &.sorted-asc, &.sorted-desc {
+      .gradient(darken(@secondary-gradient-start, 5%), darken(@secondary-gradient-stop, 5%);
+      border-bottom: 1px solid @secondary-gradient-stop;
+    }
+  }
+
+  td {
+    padding: 10px @cell-horizontal-padding 8px @cell-horizontal-padding;
+    border-bottom: 1px solid #e8e8e8;
+    vertical-align: top;
+  }
+}
+
+/* ----------------------------------- Sidebar Sections */
+.sidebar_section {
+  background: #f4f4f4;
+  margin-bottom: 20px;
+
+  > div { padding: 3px 15px 15px 15px; }
+  h3 { .section-header; }
+}
+
+/* -------------------------------------- Pagination */
+.pagination_information { 
+  float: right;
+  margin-bottom: 5px;
+  font-size: 0.95em;
+  color: #b3bcc1;
+  b { color: #5c6469; }
+}
+
+/* -------------------------------------- Index Footer (Under Table) */
+#index_footer { padding-top: 5px; text-align: right; font-size: 0.85em; }
+
+.pagination { 
+  display: inline; 
+  font-size: 0.9; 
+  margin-left: 10px; 
+
+  a, em { 
+    padding: 4px 6px 3px 6px; 
+    margin-right: 4px; 
+  }
+  a { 
+    .section-header;
+    text-decoration: none;
+  }
+  em {
+    .section-header;
+    .primary-gradient;
+    color: #fff;
+    .text-shadow(#000);
+  }
+  .previous_page, .next_page { display:none; }
+}
+
+/* -------------------------------------- Forms */
+form {
+  /* Reset margins & Padding */
+  ul, ol, li, fieldset, legend, input, textarea, select, p { margin:0; padding:0; }
+  ol, ul { list-style: none }
+
+  fieldset { 
+    border: 0; 
+    padding: 10px 0;
+    margin-bottom: 20px;
+
+    &.inputs {
+      background: #f4f4f4;
+    }
+
+    legend {
+      width: 100%;
+      span { display: block; .section-header; }
+    }
+
+    ol > li {
+      padding: 10px;
+      label {
+        display: block;
+        width: 20%;
+        float: left;
+        font-size: 1.0em;
+        font-weight: bold;
+        color: @section-header-text-color;
+      }
+    }
+
+
+    ol > li > li label { 
+      line-height:100%; 
+      padding-top:0; 
+      input { 
+        line-height:100%; 
+        vertical-align:middle; 
+        margin-top:-0.1em;
+      }
+    }
+  }
+
+  /* Nested Fieldsets and Legends */
+  fieldset > ol > li {
+    fieldset { 
+      position:relative; 
+      padding: 0;
+      margin-bottom: 0;
+
+      legend { 
+        position:absolute; 
+        width:95%; 
+        padding-top:0.1em; 
+        left: 0px; 
+        font-size: 100%; 
+        font-weight: normal;
+        span { position:absolute; }
+        &.label label { position:absolute; }
+      }
+
+      ol { 
+        float:left; 
+        width:74%; 
+        margin:0; 
+        padding:0 0 0 20%; 
+
+        li {
+          padding:0; 
+          border:0; 
+        }
+      }
+    }
+  }
+
+  /* Text Fields */
+  input[type=text], input[type=password], input[type=email], textarea {
+    width: 76%;
+    border: 1px solid #c9d0d6;
+    font-size: 0.95em;
+    outline: none;
+    padding: 8px 10px;
+    
+    &:focus {
+      border: 1px solid #99a2aa;
+    }
+  }
+
+  fieldset > ol > li {
+
+    /* Hints */
+    p.inline-hints { 
+      font-size: 0.95em;
+      font-style: italic;
+      color:#666; 
+      margin: 0.5em 0 0 20%;  
+    }
+
+    /* Date and Time Fields */
+    &.date, &.time, &.datetime {
+      fieldset ol li {
+        float:left; width:auto; margin:0 0.5em 0 0; 
+        label { display: none; }
+        input { display:inline; margin:0; padding:0;  }
+      }
+    }
+
+    /* Check Boxes or Radio fields */
+    &.check_boxes, &.radio {
+      fieldset ol { 
+        margin-bottom:-0.6em;
+        li { 
+          margin:0.1em 0 0.5em 0; 
+          label { 
+            float:none; 
+            width:100%; 
+            input { margin-right:0.2em; }
+          }
+        }
+      }
+    }
+
+    /* Boolean Field */
+    &.boolean {
+      height: 1.1em;
+      label { 
+        width: 100%;
+        padding-left:20%; 
+        padding-right: 10px; 
+        text-transform: none !important;
+        font-weight: normal;
+        input { margin:0 0.5em 0 0.2em; }
+      }
+    }
+
+    &.hidden { display: none; }
+
+    /* Errors */
+    p.inline-errors { 
+      text-transform:capitalize;
+      color:#cc0000; 
+      margin:0.5em 0 0 20%; 
+    }
+    ul.errors { 
+      color:#cc0000; 
+      margin:0.5em 0 0 20%; 
+      list-style:square; 
+      li { padding:0; border:none; display:list-item; }
+    }
+
+    &.error {
+      input[type=text], input[type=password], input[type=email], textarea {
+        border: 1px solid #cc0000;
+      }
+    }
+  }
+
+  /* Buttons */
+  input[type=submit] { .dark-button; }
+  fieldset.buttons li { 
+    float:left; 
+    padding-right:0.5em;
+    padding-top: 0;
+    &.cancel { margin-left: 0.3em; padding: 5px; a { .light-button; .icon(#777, 9px);} }
+  }
+
+}
+
+/* -------------------------------------- Filter Forms */
+form {
+  .filter-form-field {
+    margin-bottom: 6px; 
+
+    label {
+      display: block;
+      text-transform: uppercase;
+      color: @section-header-text-color;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+    .datepicker { width: 80px; }
+  }
+  a.clear_filters_btn { .light-button; }
+}
+
+
+/* -------------------------------------- Logged Out */
+body.logged_out {
+  background: #e8e9ea;
+
+  #content {
+    width: 500px;
+    margin: 70px auto;
+    padding: 13px 30px;
+    .shadow;
+    background: #fff;
+  }
+
+  #login {
+    /* Login Form */
+    form {
+      fieldset {
+        background: none;
+        padding: 0;
+        li { padding: 10px 0; }
+
+        input[type=text], input[type=password] {
+          width: 72%;
+        }
+        &.buttons { margin-left: 20%; }
+        margin-bottom: 0;
+      }
+    }
+
+    a { float: right; margin-top: -32px; }
+  }
+
+
+}
+
+/* -------------------------------------- Date Picker */
+.ui-datepicker {
+  .primary-gradient;
+  padding: 5px 5px 0 5px;
+  color: #fff;
+  display: none;
+  a { 
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+    }
+    &.ui-datepicker-prev { float: left; }
+    &.ui-datepicker-next { float: right; }
+  }
+  .ui-datepicker-title { text-align: center; display: block;}
+  table {
+    td, th { padding: 1px 3px; }
+    td { border: none; }
+  }
+}
+
+/* -------------------------------------- Dashboard */
+table.dashboard {
+  width: 100%; 
+  td { border-bottom: none; }
+  .dashboard_section {
+    h3 { .section-header; }
+    border-bottom: none;
+    background: #f4f4f4;
+    .dashboard_section_content {
+      padding: 0 15px 15px 15px; 
+    }
+  }
+}
