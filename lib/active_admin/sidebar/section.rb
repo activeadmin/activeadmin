@@ -18,6 +18,14 @@ module ActiveAdmin
         name.to_s.downcase.underscore + '_sidebar_section'
       end
 
+      def icon?
+        options[:icon]
+      end
+
+      def icon
+        ActiveAdmin::Iconic.icon options[:icon]
+      end
+
       # The title gets displayed within the section in the view
       def title
         name.to_s.titlecase

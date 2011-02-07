@@ -5,7 +5,8 @@ module ActiveAdmin
     class Renderer < ActiveAdmin::Renderer
       def to_html(sidebar_sections)
         sidebar_sections.collect do |section|
-          title   = content_tag :h3, section.title
+          icon = section.icon? ? section.icon : "".html_safe
+          title   = content_tag :h3, icon + section.title
           content = content_tag :div, sidebar_content(section)
 
           content_tag :div, :class => 'sidebar_section', :id => section.id do

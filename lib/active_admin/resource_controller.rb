@@ -53,20 +53,20 @@ module ActiveAdmin
 
 
     # Default Sidebar Sections
-    sidebar :filters, :only => :index do
+    sidebar :filters, :only => :index, :icon => :magnifying_glass do
       active_admin_filters_form_for @search, filters_config
     end
 
     # Default Action Item Links
     action_item :only => :show do
       if controller.action_methods.include?('edit')
-        link_to "Edit #{active_admin_config.resource_name}", edit_resource_path(resource)
+        link_to icon(:pen) + "Edit #{active_admin_config.resource_name}", edit_resource_path(resource)
       end
     end
 
     action_item :only => :show do
       if controller.action_methods.include?("destroy")
-        link_to "Delete #{active_admin_config.resource_name}",
+        link_to icon(:trash_stroke) + "Delete #{active_admin_config.resource_name}",
           resource_path(resource), 
           :method => :delete, :confirm => "Are you sure you want to delete this?"
       end
@@ -74,7 +74,7 @@ module ActiveAdmin
 
     action_item :except => [:new, :show] do
       if controller.action_methods.include?('new')
-        link_to "+ New #{active_admin_config.resource_name}", new_resource_path
+        link_to icon(:plus_alt) + "New #{active_admin_config.resource_name}", new_resource_path
       end
     end
 

@@ -23,7 +23,7 @@ module ActiveAdmin
 
           # Display a column for the id
           def id
-            column 'ID', :id
+            column('ID', :sortable => :id){|resource| link_to resource.id, resource_path(resource), :class => "resource_id_link"}
           end
 
           # Adds links to View, Edit and Delete
@@ -32,11 +32,9 @@ module ActiveAdmin
               :name => ""
             }.merge(options)
             column options[:name] do |resource|
-              links = link_to "View", resource_path(resource)
-              links += " | "
-              links += link_to "Edit", edit_resource_path(resource)
-              links += " | "
-              links += link_to "Delete", resource_path(resource), :method => :delete, :confirm => "Are you sure you want to delete this?"
+              links = link_to icon(:arrow_right_alt1) + "View", resource_path(resource), :class => "view_link"
+              links += link_to icon(:pen) + "Edit", edit_resource_path(resource), :class => "edit_link"
+              links += link_to icon(:trash_stroke) + "Delete", resource_path(resource), :method => :delete, :confirm => "Are you sure you want to delete this?", :class => "delete_link"
               links
             end
           end

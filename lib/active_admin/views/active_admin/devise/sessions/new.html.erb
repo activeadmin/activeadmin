@@ -1,17 +1,17 @@
-<h2><%= title "Login" %></h2>
+<div id="login">
+  <h2><%= title "#{ActiveAdmin.site_title} Login" %></h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
+  <%= active_admin_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :id => "session_new" }) do |f| 
+    f.inputs do
+      f.input :email
+      f.input :password
+      f.input :remember_me, :as => :boolean, :if =>  false  #devise_mapping.rememberable? }
+    end
+    f.buttons do
+      f.commit_button "Login"
+    end
+  end
+  %>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
-
-  <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-  <% end -%>
-
-  <p><%= f.submit "Login" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+  <%= render :partial => "devise/shared/links" %>
+</div>
