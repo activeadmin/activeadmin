@@ -1,5 +1,6 @@
 require 'meta_search'
 require 'devise'
+require 'will_paginate'
 
 module ActiveAdmin
   
