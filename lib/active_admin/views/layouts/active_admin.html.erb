@@ -6,9 +6,10 @@
   <title><%= [@page_title, ActiveAdmin.site_title].join(" | ") %></title>
 
   <style type="text/less">
-    @import "/stylesheets/active_admin.less";
+    <% ActiveAdmin.stylesheets.each do |stylesheet| %>
+      @import '<%= html_escape(path_to_stylesheet(stylesheet)) %>';
+    <% end %>
   </style>
-  <script src="/javascripts/less.min.js" type="text/javascript"></script>
 
   <%= javascript_include_tag *ActiveAdmin.javascripts %>
   <%= csrf_meta_tag %>

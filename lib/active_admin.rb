@@ -86,7 +86,7 @@ module ActiveAdmin
     # Get's called within the initializer
     def setup
       # Register the default assets
-      register_stylesheet 'active_admin.css'
+      register_stylesheet 'active_admin.less'
       register_javascript 'active_admin_vendor.js'
       register_javascript 'active_admin.js'
 
