@@ -40,6 +40,11 @@
   -moz-box-shadow: none; 
   -webkit-box-shadow: none;
 }
+.inset-shadow(@x: 0, @y: 1px, @blur: 2px, @color: #aaa) { 
+  box-shadow: inset @x @y @blur @color; 
+  -moz-box-shadow: inset @x @y @blur @color; 
+  -webkit-box-shadow: inset @x @y @blur @color;
+}
 
 .rounded(@radius: 3px) { 
   -webkit-border-radius: @radius; 
@@ -187,7 +192,9 @@ body {
       padding: .8em 1.5em .7em 1.5em;
       border: 1px solid #f8f8f8;
       span.icon { vertical-align: bottom; margin-right: 4px;} 
-      &:hover{ .icon-color(#000); } }
+      &:hover{ .icon-color(#000); }
+      &:active { border: inherit; }
+    }
   }
 }
 
@@ -247,6 +254,7 @@ a:hover { text-decoration: none; }
   border: none;
   color: #efefef;
   &:hover { color: #fff; .icon-color(#fff); .shadow(0, 1px, 3px, #888) }
+  &:active { .inset-shadow(0, 1px, 2px, #000); }
 }
 
 .light-button {
@@ -255,6 +263,7 @@ a:hover { text-decoration: none; }
   .text-shadow;
   color: #777;
   &:hover { color: #444; .icon-color(#444) }
+  &:active { .inset-shadow; }
 }
 
 .dark-button { .default-button; }
