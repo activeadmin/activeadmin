@@ -643,3 +643,57 @@ table.dashboard {
     }
   }
 }
+
+/* -------------------------------------- Resource Attributes Table */
+table.resource_attributes {
+  border-top: 1px solid #E8E8E8;
+
+  th { 
+    .no-shadow;
+  }
+  td {
+    .empty {
+      color: #ccc;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+  }
+}
+
+/* -------------------------------------- Admin Notes */
+.admin_notes.section {
+  margin-top: 20px;
+
+  h3 { .section-header; }
+  ul { 
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    
+    li {
+      border-bottom: solid 1px #ececec;
+      margin-bottom: 10px;
+      h4 { margin-bottom: 0; }
+
+      &.empty {
+        color: #777;
+        font-style: italic;
+        border-bottom: none;
+      }
+    }
+
+
+  }
+
+  fieldset {
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    ol > li {
+      margin: 0 0 10px 0;
+      padding: 0;
+    }
+  }
+
+}

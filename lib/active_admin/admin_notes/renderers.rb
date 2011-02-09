@@ -23,8 +23,8 @@ module ActiveAdmin
 
       def heading
         content_tag(:h3) do
-          "Admin Notes " + 
-            content_tag(:span, "(#{resource.admin_notes.count})")
+          icon(:chat_alt_stroke) + "Admin Notes " + 
+            content_tag(:span, "(#{resource.admin_notes.count})", :class => "admin_notes_count")
         end
       end
 
@@ -87,7 +87,7 @@ module ActiveAdmin
           form.inputs do
             form.input :resource_type, :value => resource.class.base_class.name.to_s, :as => :hidden
             form.input :resource_id, :value => resource.id, :as => :hidden
-            form.input :body, :input_html => {:size => "80x12"}, :label => false
+            form.input :body, :input_html => {:size => "80x8"}, :label => false
           end
           form.buttons do
             form.commit_button 'Add Note'

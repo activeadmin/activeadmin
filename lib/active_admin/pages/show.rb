@@ -37,6 +37,10 @@ module ActiveAdmin
         "#{active_admin_config.resource_name} ##{resource.id}"
       end
 
+      def default_empty
+        content_tag :span, "Empty", :class => "empty"
+      end
+
       def default_main_content
         table_options = {
           :border => 0, 
@@ -48,7 +52,7 @@ module ActiveAdmin
         content_tag :table, table_options do
           show_view_columns.collect do |attr|
             content_tag :tr do
-              content_tag(:th, attr.to_s.titlecase) + content_tag(:td, resource.send(attr))
+              content_tag(:th, attr.to_s.titlecase) + content_tag(:td, resource.send(attr) || default_empty )
             end
           end.join.html_safe
         end        
