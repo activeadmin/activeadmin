@@ -170,7 +170,8 @@ Formtastic::
   A DSL for semantically building amazing forms.
 WillPaginate::
   Pagination for rails apps
-
+Iconic Icons::
+  Excellent SVG icon set designed by P.J. Onori: http://somerandomdude.com/projects/iconic
 
 == Contributors
 
