@@ -331,6 +331,13 @@ table {
       display: block;
     }
 
+    &.sortable a {
+      background: url('/images/active_admin/orderable.png') no-repeat 0 4px; padding-left: 13px;
+    }
+
+    &.sorted-asc a { background-position: 0 -27px; }
+    &.sorted-desc a {  background-position: 0 -56px;}
+
     &.sorted-asc, &.sorted-desc {
       .gradient(darken(@secondary-gradient-start, 5%), darken(@secondary-gradient-stop, 5%);
       border-bottom: 1px solid @secondary-gradient-stop;
