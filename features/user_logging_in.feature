@@ -1,4 +1,4 @@
-Feature: logging in
+Feature: User Logging In
 
   Logging in to the system as an admin user
 
