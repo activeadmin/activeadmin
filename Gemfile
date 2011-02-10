@@ -34,6 +34,7 @@ group :test do
   gem 'capybara',       '0.3.9'
   gem 'cucumber',       '0.9.2'
   gem 'cucumber-rails', '0.3.2'
+  gem 'database_cleaner'
   gem 'shoulda',        '2.11.2',           :require => nil
   gem 'launchy'
 end
