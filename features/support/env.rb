@@ -12,7 +12,7 @@ Bundler.setup
 
 ENV["RAILS"] ||= "3.0.0"
 ENV["RAILS_ENV"] ||= "cucumber"
-ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{ENV["RAILS"}", __FILE__)
+ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{ENV["RAILS"]}", __FILE__)
 
 # Create the test app if it doesn't exists
 unless File.exists?(ENV['RAILS_ROOT'])

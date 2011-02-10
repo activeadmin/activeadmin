@@ -1,6 +1,6 @@
 Feature: Index as Table
 
-  Viewing resources as a table
+  Viewing resources as a table on the index page
 
   Scenario: Viewing the default table with no resources
     Given a configuration of:
