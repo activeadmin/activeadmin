@@ -23,6 +23,10 @@ module ActiveAdmin
         @options[:priority] || DEFAULT_PRIORITY
       end
 
+      def icon
+        @options[:icon]
+      end
+
       # Sort by priority then by name
       def <=>(other)
         result = priority <=> other.priority

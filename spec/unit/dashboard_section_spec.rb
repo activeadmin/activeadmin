@@ -50,6 +50,16 @@ describe ActiveAdmin::Dashboards::Section do
     end
   end
 
+  describe "icon" do
+    it "should set the icon" do
+      s = section(:icon => :my_icon)
+      s.icon.should == :my_icon
+    end
+    it "should be nil by default" do
+      section.icon.should be_nil
+    end
+  end
+
   describe "sorting sections" do
     it "should sort by priority then alpha" do
       s1 = section :name => "Woot"

@@ -8,7 +8,15 @@ module ActiveAdmin
       end
 
       def title_wrapped
-        content_tag :h3, title
+        content_tag :h3, icon + title
+      end
+
+      def icon
+        if @section.icon
+          ActiveAdmin::Iconic.icon(@section.icon)
+        else
+          ""
+        end
       end
 
       def title
