@@ -154,6 +154,9 @@ module ActiveAdmin
         Dir["#{path}/*.rb"].each{|f| load f }
       end
 
+      # If no configurations, let's make sure you can still login
+      load_default_namespace if namespaces.values.empty?
+
       # Load Menus
       namespaces.values.each{|namespace| namespace.load_menu! }
 
@@ -243,6 +246,10 @@ module ActiveAdmin
           instance_eval &route_definition_block
         end
       end
+    end
+
+    def load_default_namespace
+      namespaces[default_namespace] ||= Namespace.new(default_namespace)
     end
 
     #
