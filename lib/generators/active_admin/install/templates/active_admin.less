@@ -10,6 +10,7 @@
 @section-header-text-color: @primary-color;
 @cell-padding: 5px 10px 3px 10px; 
 @cell-horizontal-padding: 12px;
+@current-menu-item-background: lighten(@primary-color, 12%);
 
 /* ----------------------------------- Functions */
 .gradient (@start, @end){ 
@@ -44,6 +45,15 @@
   box-shadow: inset @x @y @blur @color; 
   -moz-box-shadow: inset @x @y @blur @color; 
   -webkit-box-shadow: inset @x @y @blur @color;
+}
+
+.rounded-bottom(@radius: 3px) {
+  border-bottom-right-radius: @radius;
+  border-bottom-left-radius: @radius;
+  -moz-border-radius-bottomright: @radius;
+  -moz-border-radius-bottomleft: @radius;
+  -webkit-border-bottom-right-radius: @radius;
+  -webkit-border-bottom-left-radius: @radius;
 }
 
 .rounded(@radius: 3px) { 
@@ -117,15 +127,12 @@ body {
         padding: 6px 10px 4px 10px; 
       }
 
+
       &.current > a {
-        //background: #848b90;
-        background: lighten(@primary-color, 12%);
+        background: @current-menu-item-background;
         color: #fff;
         .rounded(10px);
       }
-
-      /*  > li.current > a { -webkit-border-radius: 8px; color: #dfdfdf; background: #777; } */
-      /*  li ul li.current > a { color:#fff; } */
 
       &.has_nested > a { 
         background: url('/images/active_admin/nested_menu_arrow.gif') no-repeat 89% 50%; 
@@ -133,7 +140,7 @@ body {
       }
 
       &.has_nested.current > a { 
-        background: #777 url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%; 
+        background: @current-menu-item-background url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%; 
         padding-right: 20px; 
       }
 
@@ -146,12 +153,24 @@ body {
         left: 0; 
         top: 33px; 
         display: none; 
-        z-index: 999; 
+        z-index: 700; 
         padding: 5px 0px;
+        border-top: 1px solid #444;
+        background: lighten(@primary-color, 5%);
+        .primary-gradient;
+        .rounded-bottom;
+        .shadow(0, 1px, 2px, #777);
 
         li { 
           margin: 0px; 
-          a { display: block; }
+          a { 
+            display: block; 
+            &:hover { color: #fff; }
+          }
+
+          &.current {
+            a { .rounded(0) }
+          }
         }
       }
     }
