@@ -9,21 +9,61 @@ describe ActiveAdmin, "Routing" do
 
   include Rails.application.routes.url_helpers
 
+  describe "dashboard" do
+    context "when in admin namespace" do
+      it "should route the admin dashboard" do
+        admin_dashboard_path.should == "/admin"
+      end
+    end
+    context "when in root namespace" do
+      before(:each) do
+        load_resources { ActiveAdmin.register(Post, :namespace => false) }
+      end
+      it "should route the root dashboard" do
+        dashboard_path.should == "/"
+      end
+    end
+  end
+
   describe "standard resources" do
-    it "should route the index path" do
-      admin_posts_path.should == "/admin/posts"
+    context "when in admin namespace" do
+      it "should route the index path" do
+        admin_posts_path.should == "/admin/posts"
+      end
+
+      it "should route the show path" do
+        admin_post_path(1).should == "/admin/posts/1"
+      end
+
+      it "should route the new path" do
+        new_admin_post_path.should == "/admin/posts/new"
+      end
+
+      it "should route the edit path" do
+        edit_admin_post_path(1).should == "/admin/posts/1/edit"
+      end
     end
 
-    it "should route the show path" do
-      admin_post_path(1).should == "/admin/posts/1"
-    end
+    context "when in root namespace" do
+      before(:each) do
+        load_resources { ActiveAdmin.register(Post, :namespace => false) }
+      end
 
-    it "should route the new path" do
-      new_admin_post_path.should == "/admin/posts/new"
-    end
+      it "should route the index path" do
+        posts_path.should == "/posts"
+      end
 
-    it "should route the edit path" do
-      edit_admin_post_path(1).should == "/admin/posts/1/edit"
+      it "should route the show path" do
+        post_path(1).should == "/posts/1"
+      end
+
+      it "should route the new path" do
+        new_post_path.should == "/posts/new"
+      end
+
+      it "should route the edit path" do
+        edit_post_path(1).should == "/posts/1/edit"
+      end
     end
   end
 
@@ -50,6 +90,5 @@ describe ActiveAdmin, "Routing" do
       admin_admin_notes_path.should == "/admin/admin_notes"
     end
   end
-
 
 end

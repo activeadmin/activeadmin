@@ -36,6 +36,20 @@ module ActiveAdminIntegrationSpecHelper
     Rails.application.reload_routes!
   end
 
+  # Helper method to load resources and ensure that Active Admin is
+  # setup with the new configurations.
+  #
+  # Eg:
+  #   load_resources do
+  #     ActiveAdmin.regiser(Post)
+  #   end
+  #
+  def load_resources
+    yield
+    reload_menus!
+    reload_routes!
+  end
+
   # Sets up a describe block where you can render controller 
   # actions. Uses the Admin::PostsController as the subject
   # for the describe block
