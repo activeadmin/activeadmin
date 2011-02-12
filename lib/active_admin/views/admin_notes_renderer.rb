@@ -1,12 +1,10 @@
 module ActiveAdmin
-  module AdminNotes
+  module Views
 
     # Renders the entire section for admin notes
     #
-    # To render, a view helper is provided:
-    #
-    #   <%= admin_notes_for @post %>
-    class NotesForRenderer < Renderer
+    #   <%= render view_factory.admin_notes, @post %>
+    class AdminNotesRenderer < ActiveAdmin::Renderer
 
       def to_html(resource)
         @resource = resource
@@ -17,7 +15,7 @@ module ActiveAdmin
 
       def admin_notes_section
         content_tag(:div, :class => "admin_notes section") do
-          heading + notes + admin_note_form
+          heading + notes + ajax_loader + admin_note_form
         end
       end
 
@@ -42,51 +40,31 @@ module ActiveAdmin
         end
       end
 
-      def admin_note_form
-        admin_note_form_for(@resource)
-      end
-
-    end
-
-    # Renders a single note. Called through using the
-    # view helper #admin_note(note)
-    class NoteRenderer < Renderer
-      def to_html(note)
-        @note = note
+      def admin_note(note)
         content_tag_for(:li, note) do
-          title + body
+          note_title(note) + note_body(note)
         end
       end
 
-      def title
-        content_tag(:h4, "Posted at #{l @note.created_at}")
+      def note_title(note)
+        content_tag(:h4, "Posted at #{l note.created_at}")
       end
 
-      def body
-        simple_format(@note.body)
-      end
-    end
-
-    # Renders the form for a resource which accepts admin notes
-    class FormForRenderer < Renderer
-
-      # @param resource - The resource this admin notes form is for
-      def to_html(resource)
-        @resource = resource
-        loader + form
+      def note_body(note)
+        simple_format(note.body)
       end
 
-      def loader
+      def ajax_loader
         content_tag(:div, :class => "loading_indicator", :style => "display: none") do
           image_tag("active_admin/loading.gif", :size => "16x16") + content_tag(:span, "Adding note...")
         end
       end
 
-      def form
+      def admin_note_form
         active_admin_form_for(ActiveAdmin::AdminNotes::Note.new, :as => :admin_note, :url => admin_admin_notes_path, :html => {:class => "inline_form"}) do |form|
           form.inputs do
-            form.input :resource_type, :value => resource.class.base_class.name.to_s, :as => :hidden
-            form.input :resource_id, :value => resource.id, :as => :hidden
+            form.input :resource_type, :value => @resource.class.base_class.name.to_s, :as => :hidden
+            form.input :resource_id, :value => @resource.id, :as => :hidden
             form.input :body, :input_html => {:size => "80x8"}, :label => false
           end
           form.buttons do
@@ -94,7 +72,7 @@ module ActiveAdmin
           end
         end
       end
-    end
 
+    end
   end
 end

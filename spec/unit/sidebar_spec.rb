@@ -75,7 +75,7 @@ describe ActiveAdmin::Sidebar do
 
   describe "rendering partials" do
     let(:sections){ [section] }
-    let(:renderer){ ActiveAdmin::Sidebar::Renderer.new(action_view) }
+    let(:renderer){ ActiveAdmin::Views::SidebarRenderer.new(action_view) }
     let(:render!){ renderer.to_html(sections) }
 
     context "when a partial name is set" do

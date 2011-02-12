@@ -1,8 +1,9 @@
 module ActiveAdmin
-  module Sidebar
+  module Views
 
     # Renders the an array of sidebar sections
-    class Renderer < ActiveAdmin::Renderer
+    class SidebarRenderer < ActiveAdmin::Renderer
+
       def to_html(sidebar_sections)
         sidebar_sections.collect do |section|
           icon = section.icon? ? section.icon : "".html_safe

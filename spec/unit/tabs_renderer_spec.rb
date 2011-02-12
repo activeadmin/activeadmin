@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe ActiveAdmin::TabsRenderer do
+describe ActiveAdmin::Views::TabsRenderer do
 
-  let(:renderer){ ActiveAdmin::TabsRenderer.new(mock_action_view) }
+  let(:renderer){ ActiveAdmin::Views::TabsRenderer.new(mock_action_view) }
   let(:menu){ ActiveAdmin::Menu.new }
   let(:html){ renderer.to_html(menu) }
 

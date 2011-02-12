@@ -1,6 +1,6 @@
 module ActiveAdmin
-  module Pages
-    class Show < Base
+  module Views
+    class ShowPage < BasePage
 
       def config
         active_admin_config.page_configs[:show] || ::ActiveAdmin::PageConfig.new
@@ -28,7 +28,7 @@ module ActiveAdmin
       end
       
       def comments
-        admin_notes_for(resource)
+        render view_factory.admin_notes, resource
       end
 
       protected

@@ -1,6 +1,6 @@
 module ActiveAdmin
-  module Dashboards
-    class SectionRenderer < ::ActiveAdmin::Renderer
+  module Views
+    class DashboardSectionRenderer < ::ActiveAdmin::Renderer
 
       def to_html(section)
         @section = section

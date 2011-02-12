@@ -1,6 +1,6 @@
 module ActiveAdmin
-  module Pages
-    class New < Base
+  module Views
+    class NewPage < BasePage
 
       def title
         "New #{active_admin_config.resource_name}"

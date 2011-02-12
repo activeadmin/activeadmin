@@ -20,70 +20,67 @@ module ActiveAdmin
   autoload :MenuItem,                 'active_admin/menu_item'
   autoload :Namespace,                'active_admin/namespace'
   autoload :PageConfig,               'active_admin/page_config'
-  autoload :Pages,                    'active_admin/pages'
   autoload :Resource,                 'active_admin/resource'
   autoload :ResourceController,       'active_admin/resource_controller'
   autoload :Renderer,                 'active_admin/renderer'
   autoload :Sidebar,                  'active_admin/sidebar'
   autoload :TableBuilder,             'active_admin/table_builder'
-  autoload :TabsRenderer,             'active_admin/tabs_renderer'
   autoload :ViewFactory,              'active_admin/view_factory'
   autoload :ViewHelpers,              'active_admin/view_helpers'
+  autoload :Views,                    'active_admin/views'
 
   extend AssetRegistration
 
-  # The default namespace to put controllers and routes inside. Set this
-  # in config/initializers/active_admin.rb using:
-  # 
-  #   ActiveAdmin.default_namespace = :super_admin
-  #
-  @@default_namespace = :admin
-  mattr_accessor :default_namespace
-
-  # The default number of resources to display on index pages
-  @@default_per_page = 30
-  mattr_accessor :default_per_page
-
-  # The default sort order for index pages
-  @@default_sort_order = 'id_desc'
-  mattr_accessor :default_sort_order
-
-  # A hash of all the registered namespaces
-  @@namespaces = {}
-  mattr_accessor :namespaces
-
-  # The title which get's displayed in the main layout
-  @@site_title = ""
-  mattr_accessor :site_title
-
-  # Load paths for admin configurations. Add folders to this load path
-  # to load up other resources for administration. External gems can
-  # include thier paths in this load path to provide active_admin UIs
-  @@load_paths = [File.expand_path('app/admin', Rails.root)]
-  mattr_accessor :load_paths
-
-  # Stores if everything has been loaded or we need to reload
-  @@loaded = false
-
-  # The view factory to use to generate all the view classes. Take
-  # a look at ActiveAdmin::ViewFactory
-  @@view_factory = ActiveAdmin::ViewFactory.new
-  mattr_accessor :view_factory
-
-  # Whether or not to use admin comments
-  @@admin_notes = true
-  mattr_accessor :admin_notes
-  
-  # The method to call in controllers to get the current user
-  @@current_user_method = :current_admin_user
-  mattr_accessor :current_user_method
-
-  # The method to call in the controllers to ensure that there
-  # is a currently authenticated admin user
-  @@authentication_method = :authenticate_admin_user!
-  mattr_accessor :authentication_method
 
   class << self
+
+    # The default namespace to put controllers and routes inside. Set this
+    # in config/initializers/active_admin.rb using:
+    # 
+    #   ActiveAdmin.default_namespace = :super_admin
+    #
+    mattr_accessor :default_namespace
+    self.default_namespace = :admin
+
+    # The default number of resources to display on index pages
+    mattr_accessor :default_per_page
+    self.default_per_page = 30
+
+    # The default sort order for index pages
+    mattr_accessor :default_sort_order
+    self.default_sort_order = 'id_desc'
+
+    # A hash of all the registered namespaces
+    mattr_accessor :namespaces
+    self.namespaces = {}
+
+    # The title which get's displayed in the main layout
+    mattr_accessor :site_title
+    self.site_title = ""
+
+    # Load paths for admin configurations. Add folders to this load path
+    # to load up other resources for administration. External gems can
+    # include thier paths in this load path to provide active_admin UIs
+    mattr_accessor :load_paths
+    self.load_paths = [File.expand_path('app/admin', Rails.root)]
+
+    # The view factory to use to generate all the view classes. Take
+    # a look at ActiveAdmin::ViewFactory
+    mattr_accessor :view_factory
+    self.view_factory = ActiveAdmin::ViewFactory.new
+
+    # Whether or not to use admin comments
+    mattr_accessor :admin_notes
+    self.admin_notes = true
+    
+    # The method to call in controllers to get the current user
+    mattr_accessor :current_user_method
+    self.current_user_method = :current_admin_user
+
+    # The method to call in the controllers to ensure that there
+    # is a currently authenticated admin user
+    mattr_accessor :authentication_method
+    self.authentication_method = :authenticate_admin_user!
 
     # Get's called within the initializer
     def setup
@@ -123,6 +120,10 @@ module ActiveAdmin
       namespace = namespaces[namespace_name] ||= Namespace.new(namespace_name)
       namespace.register(resource, options, &block)
     end
+
+
+    # Stores if everything has been loaded or we need to reload
+    @@loaded = false
 
     # Returns true if all the configuration files have been loaded.
     def loaded?

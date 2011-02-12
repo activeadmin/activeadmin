@@ -5,7 +5,6 @@ module ActiveAdmin
     Dir[File.expand_path('../view_helpers', __FILE__) + "/*.rb"].each{|f| require f }
 
     include RendererHelper
-    include AdminNotesHelper
     include BreadcrumbHelper
     include IconHelper
     include PaginationHelper

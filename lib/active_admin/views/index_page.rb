@@ -1,15 +1,7 @@
 module ActiveAdmin
-  module Pages
+  module Views
 
-    class Index < Base
-
-      # Default Index config styles. Each of these are what 
-      # actually gets rendered in the main content and configured
-      # through the :as option when configuring your index
-      autoload :Table,      'active_admin/pages/index/table'
-      autoload :Blog,       'active_admin/pages/index/blog'
-      autoload :Thumbnails, 'active_admin/pages/index/thumbnails'
-      autoload :Block,      'active_admin/pages/index/block'
+    class IndexPage < BasePage
 
       def title
         active_admin_config.plural_resource_name
@@ -45,7 +37,7 @@ module ActiveAdmin
       def find_index_renderer_class(symbol_or_class)
         case symbol_or_class
         when Symbol
-          ::ActiveAdmin::Pages::Index.const_get(symbol_or_class.to_s.camelcase)
+          ::ActiveAdmin::Views.const_get("IndexAs" + symbol_or_class.to_s.camelcase)
         when Class
           symbol_or_class
         else

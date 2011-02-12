@@ -1,17 +1,10 @@
 module ActiveAdmin
-  module Pages
-    class Base < ::ActiveAdmin::Renderer
-
-      autoload :Header, 'active_admin/pages/base/header'
-
-      # Returns the redenderer to use for the header on each page
-      def header_renderer
-        ActiveAdmin::Pages::Base::Header
-      end
+  module Views
+    class BasePage < ActiveAdmin::Renderer
 
       def header
         content_for :header do
-          header_renderer.new(self).to_html
+          render view_factory.header
         end
       end
 
@@ -47,21 +40,9 @@ module ActiveAdmin
         set_ivar_on_view "@page_title", title
       end
 
-      def action_items_renderer
-        ActiveAdmin::ActionItems::Renderer
-      end
-
       def action_items
         items = controller.class.action_items_for(params[:action])
-        action_items_renderer.new(self).to_html(items)
-      end
-
-      # Returns the renderer class to use to render the sidebar
-      #
-      # You could override this method and return your own custom
-      # sidebar renderer
-      def sidebar_renderer
-        ActiveAdmin::Sidebar::Renderer
+        render view_factory.action_items, items
       end
 
       # Returns the sidebar sections to render for the current action
@@ -72,7 +53,7 @@ module ActiveAdmin
       # Renders the sidebar
       def sidebar
         content_for :sidebar do
-          sidebar_renderer.new(self).to_html(sidebar_sections)
+          render view_factory.sidebar, sidebar_sections
         end
       end
 

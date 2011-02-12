@@ -1,6 +1,6 @@
 module ActiveAdmin
-  module Pages
-    class Edit < Base
+  module Views
+    class EditPage < BasePage
 
       def title
         "Edit #{active_admin_config.resource_name}"

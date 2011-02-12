@@ -1,5 +1,4 @@
 require 'inherited_views'
-require 'active_admin/pages'
 require 'active_admin/resource_controller/actions'
 require 'active_admin/resource_controller/action_builder'
 require 'active_admin/resource_controller/callbacks'
@@ -99,16 +98,8 @@ module ActiveAdmin
     helper_method :active_admin_config
 
     # Returns the renderer class to use for the given action.
-    #
-    # TODO: This needs to be wrapped into a default config as well
-    # as overrideable on each controller
     def renderer_for(action)
-      {
-        :index  => ::ActiveAdmin::Pages::Index,
-        :new    => ::ActiveAdmin::Pages::New,
-        :show   => ::ActiveAdmin::Pages::Show,
-        :edit   => ::ActiveAdmin::Pages::Edit
-      }[action]
+      ActiveAdmin.view_factory["#{action}_page"]
     end
     helper_method :renderer_for
 

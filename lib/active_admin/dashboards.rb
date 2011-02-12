@@ -2,9 +2,7 @@ module ActiveAdmin
   module Dashboards
 
     autoload :DashboardController,  'active_admin/dashboards/dashboard_controller'
-    autoload :Renderer,             'active_admin/dashboards/renderer'
     autoload :Section,              'active_admin/dashboards/section'
-    autoload :SectionRenderer,      'active_admin/dashboards/section_renderer'
 
     @@sections = {}
     mattr_accessor :sections
