@@ -1,6 +1,8 @@
 module ActiveAdmin
   class Renderer
 
+    include ::ActiveAdmin::ViewHelpers::RendererHelper
+
     attr_accessor :view, :assigns
 
     def initialize(view_or_renderer)

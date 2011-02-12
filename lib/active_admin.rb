@@ -27,6 +27,7 @@ module ActiveAdmin
   autoload :Sidebar,                  'active_admin/sidebar'
   autoload :TableBuilder,             'active_admin/table_builder'
   autoload :TabsRenderer,             'active_admin/tabs_renderer'
+  autoload :ViewFactory,              'active_admin/view_factory'
   autoload :ViewHelpers,              'active_admin/view_helpers'
 
   extend AssetRegistration
@@ -64,9 +65,10 @@ module ActiveAdmin
   # Stores if everything has been loaded or we need to reload
   @@loaded = false
 
-  # The class to use to render the tabs in the interface
-  @@tabs_renderer = ActiveAdmin::TabsRenderer
-  mattr_accessor :tabs_renderer
+  # The view factory to use to generate all the view classes. Take
+  # a look at ActiveAdmin::ViewFactory
+  @@view_factory = ActiveAdmin::ViewFactory.new
+  mattr_accessor :view_factory
 
   # Whether or not to use admin comments
   @@admin_notes = true

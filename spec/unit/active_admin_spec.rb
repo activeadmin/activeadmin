@@ -25,8 +25,8 @@ describe ActiveAdmin do
     ActiveAdmin.site_title = old_title
   end
 
-  it "should have a default tab renderer" do
-    ActiveAdmin.tabs_renderer.should == ActiveAdmin::TabsRenderer
+  it "should have a view factory" do
+    ActiveAdmin.view_factory.should be_an_instance_of(ActiveAdmin::ViewFactory)
   end
   
   it "should have admin notes by default" do

@@ -21,7 +21,7 @@ module ActiveAdmin
         #
         # It uses the ActiveAdmin.tabs_renderer option
         def global_navigation
-          ActiveAdmin.tabs_renderer.new(self).to_html(current_menu)
+          render view_factory.global_navigation, current_menu
         end
 
         def utility_navigation
