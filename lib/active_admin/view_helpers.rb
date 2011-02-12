@@ -17,6 +17,7 @@ module ActiveAdmin
     include FilterFormHelper
     include TitleHelper
     include FlashMessageHelper
+    include ViewFactoryHelper
 
   end
 end

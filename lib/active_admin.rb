@@ -98,7 +98,7 @@ module ActiveAdmin
       ActiveSupport::Dependencies.autoload_paths.reject!{|path| load_paths.include?(path) }
 
       # Add the Active Admin view path to the rails view path
-      ActionController::Base.append_view_path File.expand_path('../active_admin/views', __FILE__)
+      ActionController::Base.append_view_path File.expand_path('../active_admin/views/templates', __FILE__)
 
       # Don't eagerload our configs, we'll deal with them ourselves
       Rails.application.config.eager_load_paths = Rails.application.config.eager_load_paths.reject do |path| 
