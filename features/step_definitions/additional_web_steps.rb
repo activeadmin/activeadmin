@@ -2,6 +2,24 @@ Then /^I should see a table header with "([^"]*)"$/ do |content|
   Then "I should see \"#{content}\" within \"th\""
 end
 
+Then /^the table "([^"]*)" should have (\d+) rows/ do |selector, count|
+  with_scope(selector) do
+    page.all(:css, 'tr').size.should == count.to_i
+  end
+end
+
+Then /^the table "([^"]*)" should have (\d+) columns/ do |selector, count|
+  with_scope(selector + " tr:first") do
+    page.all(:css, "td").size.should == count.to_i
+  end
+end
+
+Then /^there should be (\d+) "([^"]*)" tags within "([^"]*)"$/ do |count, tag, selector|
+  with_scope(selector) do
+    page.all(:css, tag).size.should == count.to_i
+  end
+end
+
 Then /^I should see a link to "([^"]*)"$/ do |link|
   Then "I should see \"#{link}\" within \"a\""
 end

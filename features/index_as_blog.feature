@@ -1,6 +1,6 @@
 Feature: Index as Blog
 
-  Viewing resdources as a blog on the index page
+  Viewing resources as a blog on the index page
 
   Scenario: Viewing the blog with a resource
     Given a post with the title "Hello World" exists
