@@ -1,33 +1,24 @@
 = Active Admin
 
-Active Admin is a tool to facilitate the generation of administration style interfaces.
+Active Admin is a tool to facilitate the generation of administration style interfaces. It is
+a framework built on top of Ruby on Rails to allow developers to quickly and easily create
+administration interfaces which are beautiful and usable for the business.
 
 
 == Goals
 
-Although Active Admin is very young in its development cycle, here are its current goals:
+1. Allow developers to quickly create gorgeous administration interfaces.
+2. Build a DSL for developers and an interface for businesses.
+3. Ensure that developers can easily customize every nook and cranny of the interface.
+4. Build common interfaces as shareable gems so that the entire community benefits.
 
-1. Build a toolset to quickly create template-able administration interfaces
-2. Allow the toolset to be entirely customizable (ie: we use standard rails coding practices
-   which can be overridden at any point)
-3. Design an interface which looks great!
-4. Build administration interfaces for common rails plugins as gems and share with the 
-   community (ie: devise admin)
 
-== Status
+== Installation
 
-Active Admin is very young. Although the code is well tested and is being used in production,
-the project is under heavy development. Once we get it to a point that has a relatively stable api,
-we will begin numbered releases starting with a 0.1 release.
+Active Admin is released as a Ruby Gem. Installing the gem deals with all its dependencies.
 
-== Installation (Rails 3)
+Add the following to your Gemfile inside a Rails 3 project:
 
-Active Admin is released as a Gem. Installing the gem deals with all its dependencies, however 
-WillPaginate seems to have some Rails 3 issues still. For now:
-
-Add the following to your Gemfile:
-
-  gem 'will_paginate',  :git => "git://github.com/mislav/will_paginate.git", :branch => 'rails3'
   gem 'activeadmin'
 
 Then, run the installer:
@@ -37,6 +28,10 @@ Then, run the installer:
 This will create an initializer which is used for configuring defaults used by Active Admin as well
 as a new folder at app/admin to put all your admin configurations. Note: All ruby files in 
 the Active Admin load path get loaded into the rails application.
+
+It will also generate a new model in your application for admin users. The administration section
+will be authenticated using Devise.
+
 
 == Usage
 
@@ -51,10 +46,12 @@ look like the following:
 
   ActiveAdmin.register Post
 
+
 === Customize the Index Page
 
 By default, the index page is a table with each of the models content columns and links to
 show, edit and delete the object. There are many ways to customize what gets displayed:
+
 
 ==== Simple Columns
 
@@ -88,6 +85,7 @@ Or you can pass them in individually:
 
   end
   
+
 ==== Advanced Columns
 
 Sometimes calling methods just isn't enough and you need to write some view specific code. For
@@ -107,6 +105,7 @@ for each of the objects in the collection.
 
 The block gets called once for each resource in the collection. The resource gets passed into
 the block as an argument.
+
 
 ==== Sorting
 
@@ -168,10 +167,13 @@ InheritedViews::
   Inherited Views is a thin addition to Inherited Resources which adds in html views to the mix
 Formtastic::
   A DSL for semantically building amazing forms.
+Devise::
+  User authentication is done using Devise
 WillPaginate::
   Pagination for rails apps
 Iconic Icons::
   Excellent SVG icon set designed by P.J. Onori: http://somerandomdude.com/projects/iconic
+
 
 == Contributors
 
