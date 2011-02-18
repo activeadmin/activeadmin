@@ -5,10 +5,13 @@ module ActiveAdmin
       def to_html(page_config, collection)
         @page_config = page_config
         columns = page_config[:columns] || default_columns
-        content_tag :table, :class => "index_grid" do
-          collection.in_groups_of(columns).collect do |group|
-            render_row(group)
-          end.join.html_safe
+
+        wrap_with_pagination(collection, :entry_name => active_admin_config.resource_name) do
+          content_tag :table, :class => "index_grid" do
+            collection.in_groups_of(columns).collect do |group|
+              render_row(group)
+            end.join.html_safe
+          end
         end
       end
 
@@ -29,7 +32,7 @@ module ActiveAdmin
       end
 
       def render_empty_cell
-        content_tag(:td, '&nbsp;')
+        content_tag(:td, '&nbsp;'.html_safe)
       end
 
       def default_columns
