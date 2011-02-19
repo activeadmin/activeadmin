@@ -16,6 +16,8 @@ Feature: User Logging In
     And I fill in "Password" with "password"
     And I press "Login"
     Then I should be on the the dashboard
+    And I should see "Logout"
+    And I should see "admin@example.com"
 
   Scenario: Attempting to log in with an incorrent email address
     When I fill in "Email" with "not-an-admin@example.com"

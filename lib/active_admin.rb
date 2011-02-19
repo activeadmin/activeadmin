@@ -79,6 +79,11 @@ module ActiveAdmin
     @@authentication_method = :authenticate_admin_user!
     mattr_accessor :authentication_method
 
+    # Active Admin makes educated guesses when displaying objects, this is
+    # the list of methods its tries calling in order
+    @@display_name_methods = [:display_name, :full_name, :name, :username, :login, :title, :email, :to_s]
+    mattr_accessor :display_name_methods
+
   end
 
   extend Configuration

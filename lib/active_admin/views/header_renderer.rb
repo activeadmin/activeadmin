@@ -25,7 +25,10 @@ module ActiveAdmin
 
       def utility_navigation
         content_tag 'p', :id => "utility_nav" do
-          link_to "Logout", "/#{ActiveAdmin.default_namespace}/logout"
+          if current_active_admin_user?
+            content_tag(:span, display_name(current_active_admin_user), :class => "current_user") +
+              link_to("Logout", "/#{ActiveAdmin.default_namespace}/logout")
+          end
         end
       end
     end

@@ -87,10 +87,12 @@ module ActiveAdmin
 	def current_active_admin_user
 	  send(ActiveAdmin.current_user_method) if ActiveAdmin.current_user_method
 	end
+    helper_method :current_active_admin_user
 
 	def current_active_admin_user?
 	  !current_active_admin_user.nil?
 	end
+    helper_method :current_active_admin_user?
 
     def active_admin_config
       self.class.active_admin_config

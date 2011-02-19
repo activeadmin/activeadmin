@@ -6,6 +6,7 @@ module ActiveAdmin
 
     include RendererHelper
     include BreadcrumbHelper
+    include DisplayHelper
     include IconHelper
     include PaginationHelper
     include SortableHelper
