@@ -407,19 +407,12 @@ table {
   font-size: 0.9; 
   margin-left: 10px; 
 
+  a { .light-button; }
+  em { .default-button; }
   a, em { 
-    padding: 4px 6px 3px 6px; 
+    .rounded(0px);
     margin-right: 4px; 
-  }
-  a { 
-    .section-header;
-    text-decoration: none;
-  }
-  em {
-    .section-header;
-    .primary-gradient;
-    color: #fff;
-    .text-shadow(#000);
+    padding: 2px 5px;
   }
   .previous_page, .next_page { display:none; }
 }
