@@ -104,6 +104,7 @@ reload_routes!
 # Disabling authentication in specs so that we don't have to worry about
 # it allover the place
 ActiveAdmin.authentication_method = false
+ActiveAdmin.current_user_method = false
 
 # Don't add asset cache timestamps. Makes it easy to integration
 # test for the presence of an asset file

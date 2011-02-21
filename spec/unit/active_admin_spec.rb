@@ -34,7 +34,7 @@ describe ActiveAdmin do
   end
   
   it "should have a default current_user_method" do
-    ActiveAdmin.current_user_method.should == :current_admin_user
+    ActiveAdmin.current_user_method.should == false
   end
   
 end
