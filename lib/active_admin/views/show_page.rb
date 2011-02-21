@@ -52,10 +52,19 @@ module ActiveAdmin
         content_tag :table, table_options do
           show_view_columns.collect do |attr|
             content_tag :tr do
-              content_tag(:th, attr.to_s.titlecase) + content_tag(:td, resource.send(attr) || default_empty )
+              content_tag(:th, attr.to_s.titlecase) + content_tag(:td, default_content_for(resource, attr))
             end
           end.join.html_safe
         end        
+      end
+
+      def default_content_for(resource, attr)
+        if attr.to_s =~ /^([\w]+)_id$/ && resource.respond_to?($1.to_sym)
+          default_content_for(resource, $1)
+        else
+          value = auto_link(resource.send(attr.to_sym))
+          value == "" ? default_empty : value
+        end
       end
 
     end

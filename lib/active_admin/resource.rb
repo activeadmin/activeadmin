@@ -100,6 +100,11 @@ module ActiveAdmin
       [route_prefix, controller.resources_configuration[:self][:route_collection_name], 'path'].compact.join('_').to_sym
     end
 
+    # Returns the named route for an instance of this resource
+    def route_instance_path
+      [route_prefix, controller.resources_configuration[:self][:route_instance_name], 'path'].compact.join('_').to_sym
+    end
+
     # Set the menu options. To not add this resource to the menu, just
     # call #menu(false)
     def menu(options = {})

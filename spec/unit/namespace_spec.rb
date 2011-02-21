@@ -73,6 +73,23 @@ describe ActiveAdmin::Namespace do
       end
     end
 
+    describe "finding resource instances" do
+      let(:namespace){ ActiveAdmin::Namespace.new(:admin) }
+      context "when registered" do
+        before do
+          @post_resource = namespace.register Post
+        end
+        it "should return the resource instance" do
+          namespace.resource_for(Post).should == @post_resource
+        end
+      end
+      context "when not registered" do
+        it "should be nil" do
+          namespace.resource_for(Post).should == nil
+        end
+      end
+    end
+
     describe "adding to the menu" do
 
       describe "adding as a top level item" do
