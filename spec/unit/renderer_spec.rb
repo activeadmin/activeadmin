@@ -44,6 +44,14 @@ describe ActiveAdmin::Renderer do
     end    
   end
 
+  context "when initializing from some other object" do
+    it "should initialize successfully" do
+      lambda {
+        Renderer.new "Hello World"
+      }.should_not raise_exception
+    end
+  end
+
   describe "rendering HAML" do
     before do
       @haml_renderer = Class.new(Renderer)

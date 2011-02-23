@@ -11,6 +11,13 @@ module ActiveAdmin
         admin_notes_section
       end
 
+      # This method is public because we render
+      def admin_note(note)
+        content_tag_for(:li, note) do
+          note_title(note) + note_body(note)
+        end
+      end
+
       private
 
       def admin_notes_section
@@ -37,12 +44,6 @@ module ActiveAdmin
               content_tag(:h4, "No admin notes yet for this #{resource.class.to_s.downcase}")
             end
           end
-        end
-      end
-
-      def admin_note(note)
-        content_tag_for(:li, note) do
-          note_title(note) + note_body(note)
         end
       end
 

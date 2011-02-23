@@ -13,13 +13,14 @@ module ActiveAdmin
         end
               
         if @admin_note.save
+          renderer = ActiveAdmin.view_factory.admin_notes.new(self.class.helpers)
           respond_to do |format|
-            format.js { render :json => {:note => self.class.helpers.admin_note(@admin_note),
+            format.js { render :json => {:note => renderer.admin_note(@admin_note),
                                          :number_of_notes => @admin_note.resource.admin_notes.count}.to_json, :status => 200 }
           end
         else
           respond_to do |format|
-            format.json { render :json => @admin_note.errors.full_messages, :status => :precondition_failed }
+            format.js { render :json => @admin_note.errors.full_messages, :status => :precondition_failed }
           end
         end
       end

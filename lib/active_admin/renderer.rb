@@ -7,7 +7,12 @@ module ActiveAdmin
 
     def initialize(view_or_renderer)
       @view = view_or_renderer.is_a?(Renderer) ? view_or_renderer.view : view_or_renderer
-      @assigns = view.assigns.each { |key, value| instance_variable_set("@#{key}", value) }
+
+      if view.respond_to?(:assigns)
+        @assigns = view.assigns.each { |key, value| instance_variable_set("@#{key}", value) }
+      else
+        @assigns = {}
+      end
     end
 
     def method_missing(*args, &block)
