@@ -10,8 +10,10 @@
     
     li {
       border-bottom: solid 1px #ececec;
+      margin-top: 10px;
       margin-bottom: 10px;
-      h4 { margin-bottom: 0; }
+      padding-bottom: 10px;
+      h4 { margin-bottom: 0; font-weight: bold;  }
 
       &.empty {
         color: #777;
