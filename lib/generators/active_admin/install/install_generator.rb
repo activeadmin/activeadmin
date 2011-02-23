@@ -29,7 +29,6 @@ module ActiveAdmin
       end
 
       def copy_assets
-        template 'active_admin.less',        'public/stylesheets/active_admin.less'
         template 'active_admin_vendor.js',  'public/javascripts/active_admin_vendor.js'
         template 'active_admin.js',         'public/javascripts/active_admin.js'
         directory 'images', 'public/images/active_admin'

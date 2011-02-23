@@ -1,0 +1,323 @@
+/*
+	Active Admin CSS
+*/
+
+$horizontal-page-margin: 30px;
+$primary-color: #5E6469;
+$secondary-color: #f0f0f0;
+$text-color: #323537;
+$link-color: #38678b;
+$section-header-text-color: $primary-color;
+$cell-padding: 5px 10px 3px 10px; 
+$cell-horizontal-padding: 12px;
+$current-menu-item-background: lighten($primary-color, 12%);
+
+// Mixins
+@import "mixins/gradients";
+@import "mixins/shadows";
+@import "mixins/icons";
+@import "mixins/rounded";
+@import "mixins/buttons";
+@import "mixins/sections";
+
+// Partials
+@import "header";
+@import "forms";
+@import "admin_notes";
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 140%;
+  font-size: 72%;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  color: $text-color;
+}
+
+// ----------------------------------- Page Title Bar 
+#title_bar {
+  @include section-header;
+  position: relative; 
+  margin: 0; 
+  padding: 10px $horizontal-page-margin; 
+
+  h2 { 
+    margin: 12px 0 5px 0; 
+    padding: 0; 
+    font-size: 2.6em;
+  }
+
+  .action_items { 
+    position: absolute; 
+    right: $horizontal-page-margin; 
+    top: 28px;
+
+    a { 
+      @include light-button; 
+      @include icon(#777, 0.8em); 
+      @include gradient(#f9f9f9, #dddbdb);
+      padding: .8em 1.5em .7em 1.5em;
+      border: 1px solid #f8f8f8;
+      span.icon { vertical-align: bottom; margin-right: 4px;} 
+      &:hover{ @include icon-color(#000); }
+      &:active { border: inherit; }
+    }
+  }
+}
+
+// ----------------------------------- Main Structure 
+#content { 
+  margin: 0; 
+  padding: 25px $horizontal-page-margin; 
+  
+  #main_content_wrapper { 
+    float: left; 
+    width: 100%; 
+
+    #main_content{ 
+      margin-right: 300px; 
+    }
+  }
+
+  &.without_sidebar #main_content_wrapper #main_content{ margin-right: 0; }
+
+  #sidebar { 
+    float: left; 
+    width: 270px; 
+    margin-left: -270px; 
+  }
+}
+
+// ----------------------------------- Footer 
+#footer {
+  padding: 30px 30px;  
+  font-size: 0.8em; 
+  clear: both; 
+
+  p { 
+    padding-top: 10px
+  }
+}
+
+// ----------------------------------- Links 
+a, a:link, a:visited {
+  color: $link-color;
+  text-decoration: underline;
+}
+a:hover { text-decoration: none; }
+
+// ----------------------------------- Buttons 
+
+td, p {
+  @include icon(#B3BCC1, 0.8em);
+  span.icon { margin: 0 3px; }
+}
+
+a.view_link, a.edit_link, a.delete_link {
+  margin-right: 7px;
+  white-space: nowrap;
+}
+
+a.button, input[type=submit] { @include dark-button; }
+
+// ----------------------------------- Breadcrumbs 
+.breadcrumb {
+  text-transform: uppercase;
+  font-size: 0.9em;
+  font-weight: normal;
+
+  a, a:link {
+    color: #8a949e ;
+    text-decoration: none;
+  }
+
+  a:hover { text-decoration: underline; }
+
+  .breadcrumb_sep {
+    margin: 0 2px;
+    color: #aab2ba;
+  }
+}
+
+// ----------------------------------- Tables 
+table {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 0;
+  border-spacing: 0;
+
+
+  th { 
+    @include section-header;
+    text-align: left;
+    padding-left: $cell-horizontal-padding;
+    padding-right: $cell-horizontal-padding;
+
+    a, a:link, a:visited {
+      color: $section-header-text-color;
+      text-decoration: none;
+      display: block;
+    }
+
+    &.sortable a {
+      background: url('/images/active_admin/orderable.png') no-repeat 0 4px; padding-left: 13px;
+    }
+
+    &.sorted-asc a { background-position: 0 -27px; }
+    &.sorted-desc a {  background-position: 0 -56px;}
+
+    &.sorted-asc, &.sorted-desc {
+      @include gradient(darken($secondary-gradient-start, 5%), darken($secondary-gradient-stop, 5%));
+      border-bottom: 1px solid $secondary-gradient-stop;
+    }
+  }
+
+  td {
+    padding: 10px $cell-horizontal-padding 8px $cell-horizontal-padding;
+    border-bottom: 1px solid #e8e8e8;
+    vertical-align: top;
+  }
+}
+
+// ----------------------------------- Sidebar Sections 
+.sidebar_section {
+  background: #f4f4f4;
+  margin-bottom: 20px;
+
+  > div { padding: 3px 15px 15px 15px; }
+  h3 { @include section-header; }
+}
+
+// -------------------------------------- Pagination 
+.pagination_information { 
+  float: right;
+  margin-bottom: 5px;
+  font-size: 0.95em;
+  color: #b3bcc1;
+  b { color: #5c6469; }
+}
+
+// -------------------------------------- Index Footer (Under Table) 
+#index_footer { padding-top: 5px; text-align: right; font-size: 0.85em; }
+
+.pagination { 
+  display: inline; 
+  font-size: 0.9; 
+  margin-left: 10px; 
+
+  a { @include light-button; }
+  em { @include default-button; }
+  a, em { 
+    @include rounded(0px);
+    margin-right: 4px; 
+    padding: 2px 5px;
+  }
+  .previous_page, .next_page { display:none; }
+}
+
+// -------------------------------------- Index as Grid 
+table.index_grid td { border: none; background: none; padding: 0 20px 20px 0; margin: 0;}
+
+
+// -------------------------------------- Filter Forms 
+form {
+  .filter-form-field {
+    margin-bottom: 6px; 
+
+    label {
+      display: block;
+      text-transform: uppercase;
+      color: $section-header-text-color;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+    .datepicker { width: 80px; }
+  }
+  a.clear_filters_btn { @include light-button; }
+}
+
+
+// -------------------------------------- Logged Out 
+body.logged_out {
+  background: #e8e9ea;
+
+  #content {
+    @include shadow;
+    width: 500px;
+    margin: 70px auto;
+    padding: 13px 30px;
+    background: #fff;
+  }
+
+  #login {
+    /* Login Form */
+    form {
+      fieldset {
+        background: none;
+        padding: 0;
+        li { padding: 10px 0; }
+
+        input[type=text], input[type=email], input[type=password] {
+          width: 70%;
+        }
+        &.buttons { margin-left: 20%; }
+        margin-bottom: 0;
+      }
+    }
+
+    a { float: right; margin-top: -32px; }
+  }
+}
+
+// -------------------------------------- Date Picker 
+.ui-datepicker {
+  @include primary-gradient;
+  padding: 5px 5px 0 5px;
+  color: #fff;
+  display: none;
+  a { 
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+    }
+    &.ui-datepicker-prev { float: left; }
+    &.ui-datepicker-next { float: right; }
+  }
+  .ui-datepicker-title { text-align: center; display: block;}
+  table {
+    td, th { padding: 1px 3px; }
+    td { border: none; }
+  }
+}
+
+// -------------------------------------- Dashboard 
+table.dashboard {
+  width: 100%; 
+  td { border-bottom: none; }
+  .dashboard_section {
+    h3 { @include section-header; }
+    border-bottom: none;
+    background: #f4f4f4;
+    .dashboard_section_content {
+      padding: 0 15px 15px 15px; 
+    }
+  }
+}
+
+// -------------------------------------- Resource Attributes Table 
+table.resource_attributes {
+  border-top: 1px solid #E8E8E8;
+
+  th { @include no-shadow; }
+  td {
+    .empty {
+      color: #ccc;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+  }
+}
+

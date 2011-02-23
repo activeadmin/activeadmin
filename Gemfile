@@ -21,10 +21,10 @@ gem 'devise',         '>= 1.1.2'
 gem 'formtastic',     '>= 1.1.0'
 gem 'will_paginate',  '>= 3.0.pre2'
 gem 'inherited_views'
+gem 'haml',           '>= 3.0.18'
 
 group :development, :test do
   gem 'sqlite3-ruby',   :require => 'sqlite3'
-  gem 'haml',           '>= 3.0.18'
   gem 'jeweler',        '1.5.2'
 end
 

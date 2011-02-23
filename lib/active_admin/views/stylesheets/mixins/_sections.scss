@@ -1,0 +1,13 @@
+@mixin section-header {
+  @include secondary-gradient;
+  @include shadow;
+  @include text-shadow;
+  border-bottom: 1px solid #ededed;
+  padding: 5px 10px 3px 10px; 
+  font-size: 1.0em;
+  font-weight: bold;
+  color: $section-header-text-color;
+  @include icon($section-header-text-color, 1.0em);
+  span.icon { margin-right: 5px; }
+}
+

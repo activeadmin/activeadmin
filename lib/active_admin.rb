@@ -95,7 +95,7 @@ module ActiveAdmin
     # Get's called within the initializer
     def setup
       # Register the default assets
-      register_stylesheet 'active_admin.less'
+      register_stylesheet 'admin/active_admin.css'
       register_javascript 'active_admin_vendor.js'
       register_javascript 'active_admin.js'
 
@@ -120,6 +120,9 @@ module ActiveAdmin
       end
 
       yield self
+
+      # Setup SASS
+      Sass::Plugin.add_template_location(File.expand_path("../active_admin/views/stylesheets/", __FILE__), "public/stylesheets/admin")
     end
 
     # Registers a brand new configuration for the given resource.

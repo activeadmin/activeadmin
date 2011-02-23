@@ -5,12 +5,7 @@
  
   <title><%= [@page_title, ActiveAdmin.site_title].join(" | ") %></title>
 
-  <style type="text/less">
-    <% ActiveAdmin.stylesheets.each do |stylesheet| %>
-      @import '<%= html_escape(path_to_stylesheet(stylesheet)) %>';
-    <% end %>
-  </style>
-
+  <%= stylesheet_link_tag *ActiveAdmin.stylesheets %>
   <%= javascript_include_tag *ActiveAdmin.javascripts %>
   <%= csrf_meta_tag %>
 

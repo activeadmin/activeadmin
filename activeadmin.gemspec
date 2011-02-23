@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Greg Bell"]
-  s.date = %q{2011-02-16}
+  s.date = %q{2011-02-23}
   s.description = %q{The administration framework for Ruby on Rails.}
   s.email = %q{gregdbell@gmail.com}
   s.extra_rdoc_files = [
@@ -27,9 +27,12 @@ Gem::Specification.new do |s|
     "cucumber.yml",
     "features/first_boot.feature",
     "features/index_as_blog.feature",
+    "features/index_as_grid.feature",
     "features/index_as_table.feature",
+    "features/show_resource.feature",
     "features/specifying_actions.feature",
     "features/step_definitions/additional_web_steps.rb",
+    "features/step_definitions/attribute_steps.rb",
     "features/step_definitions/configuration_steps.rb",
     "features/step_definitions/factory_steps.rb",
     "features/step_definitions/user_steps.rb",
@@ -79,7 +82,9 @@ Gem::Specification.new do |s|
     "lib/active_admin/version.rb",
     "lib/active_admin/view_factory.rb",
     "lib/active_admin/view_helpers.rb",
+    "lib/active_admin/view_helpers/auto_link_helper.rb",
     "lib/active_admin/view_helpers/breadcrumb_helper.rb",
+    "lib/active_admin/view_helpers/display_helper.rb",
     "lib/active_admin/view_helpers/filter_form_helper.rb",
     "lib/active_admin/view_helpers/flash_message_helper.rb",
     "lib/active_admin/view_helpers/form_helper.rb",
@@ -102,6 +107,7 @@ Gem::Specification.new do |s|
     "lib/active_admin/views/header_renderer.rb",
     "lib/active_admin/views/index_as_block.rb",
     "lib/active_admin/views/index_as_blog.rb",
+    "lib/active_admin/views/index_as_grid.rb",
     "lib/active_admin/views/index_as_table.rb",
     "lib/active_admin/views/index_as_thumbnails.rb",
     "lib/active_admin/views/index_page.rb",
@@ -128,7 +134,6 @@ Gem::Specification.new do |s|
     "lib/generators/active_admin/devise/devise_generator.rb",
     "lib/generators/active_admin/install/install_generator.rb",
     "lib/generators/active_admin/install/templates/active_admin.js",
-    "lib/generators/active_admin/install/templates/active_admin.less",
     "lib/generators/active_admin/install/templates/active_admin.rb",
     "lib/generators/active_admin/install/templates/active_admin_vendor.js",
     "lib/generators/active_admin/install/templates/create_admin_notes.rb",
@@ -160,12 +165,14 @@ Gem::Specification.new do |s|
     "spec/unit/admin_note_spec.rb",
     "spec/unit/admin_notes_controller_spec.rb",
     "spec/unit/asset_registration_spec.rb",
+    "spec/unit/auto_link_spec.rb",
     "spec/unit/belongs_to_spec.rb",
     "spec/unit/breadcrumbs_spec.rb",
     "spec/unit/controller_filters_spec.rb",
     "spec/unit/dashboard_controller_spec.rb",
     "spec/unit/dashboard_section_spec.rb",
     "spec/unit/dashboards_spec.rb",
+    "spec/unit/display_name_spec.rb",
     "spec/unit/filter_form_builder_spec.rb",
     "spec/unit/form_builder_spec.rb",
     "spec/unit/menu_item_spec.rb",
@@ -206,12 +213,14 @@ Gem::Specification.new do |s|
     "spec/unit/admin_note_spec.rb",
     "spec/unit/admin_notes_controller_spec.rb",
     "spec/unit/asset_registration_spec.rb",
+    "spec/unit/auto_link_spec.rb",
     "spec/unit/belongs_to_spec.rb",
     "spec/unit/breadcrumbs_spec.rb",
     "spec/unit/controller_filters_spec.rb",
     "spec/unit/dashboard_controller_spec.rb",
     "spec/unit/dashboard_section_spec.rb",
     "spec/unit/dashboards_spec.rb",
+    "spec/unit/display_name_spec.rb",
     "spec/unit/filter_form_builder_spec.rb",
     "spec/unit/form_builder_spec.rb",
     "spec/unit/menu_item_spec.rb",
@@ -239,8 +248,8 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<formtastic>, [">= 1.1.0"])
       s.add_runtime_dependency(%q<will_paginate>, [">= 3.0.pre2"])
       s.add_runtime_dependency(%q<inherited_views>, [">= 0"])
+      s.add_runtime_dependency(%q<haml>, [">= 3.0.18"])
       s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
-      s.add_development_dependency(%q<haml>, [">= 3.0.18"])
       s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
     else
       s.add_dependency(%q<rails>, [">= 3.0.0"])
@@ -249,8 +258,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<formtastic>, [">= 1.1.0"])
       s.add_dependency(%q<will_paginate>, [">= 3.0.pre2"])
       s.add_dependency(%q<inherited_views>, [">= 0"])
-      s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<haml>, [">= 3.0.18"])
+      s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["= 1.5.2"])
     end
   else
@@ -260,8 +269,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<formtastic>, [">= 1.1.0"])
     s.add_dependency(%q<will_paginate>, [">= 3.0.pre2"])
     s.add_dependency(%q<inherited_views>, [">= 0"])
-    s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<haml>, [">= 3.0.18"])
+    s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["= 1.5.2"])
   end
 end

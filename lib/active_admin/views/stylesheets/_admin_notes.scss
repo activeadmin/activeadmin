@@ -1,0 +1,33 @@
+// -------------------------------------- Admin Notes 
+.admin_notes.section {
+  margin-top: 20px;
+
+  h3 { @include section-header; }
+  ul { 
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    
+    li {
+      border-bottom: solid 1px #ececec;
+      margin-bottom: 10px;
+      h4 { margin-bottom: 0; }
+
+      &.empty {
+        color: #777;
+        font-style: italic;
+        border-bottom: none;
+      }
+    }
+  }
+
+  fieldset {
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    ol > li {
+      margin: 0 0 10px 0;
+      padding: 0;
+    }
+  }
+}

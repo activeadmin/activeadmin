@@ -38,3 +38,7 @@ Then /^an "([^"]*)" exception should be raised when I follow "([^"]*)"$/ do |err
     When "I follow \"#{link}\""
   }.should raise_error(error.constantize)
 end
+
+Then /^I should be in the resource section for (.+)$/ do |resource_name|
+  current_url.should include(resource_name.gsub(' ', '').underscore.pluralize)
+end
