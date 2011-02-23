@@ -122,7 +122,7 @@ module ActiveAdmin
       yield self
 
       # Setup SASS
-      Sass::Plugin.add_template_location(File.expand_path("../active_admin/views/stylesheets/", __FILE__), "public/stylesheets/admin")
+      Sass::Plugin.add_template_location(File.expand_path("../active_admin/stylesheets/", __FILE__), "public/stylesheets/admin")
     end
 
     # Registers a brand new configuration for the given resource.
