@@ -13,6 +13,7 @@ $cell-horizontal-padding: 12px;
 $current-menu-item-background: lighten($primary-color, 12%);
 
 // Mixins
+@import "mixins/reset";
 @import "mixins/gradients";
 @import "mixins/shadows";
 @import "mixins/icons";
@@ -24,6 +25,8 @@ $current-menu-item-background: lighten($primary-color, 12%);
 @import "header";
 @import "forms";
 @import "admin_notes";
+
+@include global-reset;
 
 body {
   font-family: Helvetica, Arial, sans-serif;
