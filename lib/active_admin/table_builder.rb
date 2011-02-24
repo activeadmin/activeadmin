@@ -9,7 +9,7 @@ module ActiveAdmin
     end
     
     def column(*args, &block)
-      @columns << Column.new(*args, &block)
+      add_column Column.new(*args, &block)
     end
 
     # This method allows you to add many columns at
@@ -32,6 +32,12 @@ module ActiveAdmin
     # Helper method to quickly render a table builder
     def to_html(view, collection, options)
       Renderer.new(view).to_html(self, collection, options)
+    end
+
+    private
+
+    def add_column(column)
+      @columns << column
     end
 
     class Renderer < ActiveAdmin::Renderer

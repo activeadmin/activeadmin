@@ -37,6 +37,31 @@ module ActiveAdmin
             links
           end
         end
+
+        # Display A Status Tag Column
+        #
+        #   index do |i|
+        #     i.status_tag :state
+        #   end
+        #
+        #   index do |i|
+        #     i.status_tag "State", :status_name
+        #   end
+        #
+        #   index do |i|
+        #     i.status_tag do |post|
+        #       post.published? ? 'published' : 'draft'
+        #     end
+        #   end
+        #   
+        def status_tag(*args, &block)
+          col = Column.new(*args, &block)
+          data = col.data
+          col.data = proc do |resource|
+            status_tag call_method_or_proc_on(resource, data)
+          end
+          add_column col
+        end
       end # TableBuilder
 
     end # Table
