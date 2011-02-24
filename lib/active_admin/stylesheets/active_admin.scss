@@ -25,6 +25,7 @@ $current-menu-item-background: lighten($primary-color, 12%);
 @import "header";
 @import "forms";
 @import "admin_notes";
+@import "flash_messages";
 
 @include global-reset;
 
@@ -245,13 +246,25 @@ form {
 body.logged_out {
   background: #e8e9ea;
 
-  #content {
-    @include shadow;
+  #content_wrapper{
     width: 500px;
     margin: 70px auto;
-    padding: 13px 30px;
-    background: #fff;
+    #content {
+      @include shadow;
+      background: #fff;
+      padding: 13px 30px;
+    }
   }
+
+  h2 {
+    @include section-header;
+    @include primary-gradient;
+    @include text-shadow(#000);
+    color: #fff;
+    margin: -13px -30px 20px -30px;
+  }
+
+  .flash { padding: 6px 10px 5px 10px; }
 
   #login {
     /* Login Form */
@@ -271,6 +284,7 @@ body.logged_out {
 
     a { float: right; margin-top: -32px; }
   }
+
 }
 
 // -------------------------------------- Date Picker 

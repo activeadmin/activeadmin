@@ -12,9 +12,12 @@
 </head>
 <body class="logged_out <%= controller.action_name %>">
 <div id="wrapper">
-  <div id="content">
+
+  <div id="content_wrapper">
     <%= flash_messages %>
-    <%= yield %>
+    <div id="content">
+      <%= yield %>
+    </div>
   </div>
   <div id="footer">
     <%= yield :footer %>
