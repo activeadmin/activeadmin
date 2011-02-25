@@ -123,6 +123,7 @@ module ActiveAdmin
       yield self
 
       # Setup SASS
+      require 'sass/plugin' # This must be required after initialization
       Sass::Plugin.add_template_location(File.expand_path("../active_admin/stylesheets/", __FILE__), "public/stylesheets/admin")
     end
 
