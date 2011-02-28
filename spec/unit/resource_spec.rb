@@ -204,6 +204,20 @@ module ActiveAdmin
         it { should == sort_order }
       end
     end
+
+    describe "adding a scope" do
+
+      it "should add a scope" do
+        config.scope :published
+        config.scopes.first.should be_a(ActiveAdmin::Scope)
+        config.scopes.first.name.should == "Published"
+      end
+
+      it "should retrive a scope by its id" do
+        config.scope :published
+        config.get_scope_by_id(:published).name.should == "Published"
+      end
+    end
     
     describe "admin notes" do
       context "when not set" do

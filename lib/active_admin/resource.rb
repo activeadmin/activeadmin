@@ -52,6 +52,7 @@ module ActiveAdmin
       @page_configs = {}
       @menu_options = {}
       @member_actions, @collection_actions = [], []
+	  @scopes = []
     end
 
     # An underscored safe representation internally for this resource
@@ -136,6 +137,30 @@ module ActiveAdmin
     def clear_collection_actions!
       @collection_actions = []
     end
+
+	# Return an array of scopes for this resource
+	def scopes
+	  @scopes
+	end
+
+	# Returns a scope for this object by its identifier
+	def get_scope_by_id(id)
+	  id = id.to_s
+	  @scopes.find{|s| s.id == id }
+	end
+
+	def default_scope
+	  @default_scope
+	end
+
+	# Create a new scope object for this resource
+	def scope(*args, &block)
+	  options = args.extract_options!
+	  @scopes << ActiveAdmin::Scope.new(*args, &block)
+	  if options[:default]
+		@default_scope = @scopes.last
+	  end
+	end
 
     # Are admin notes turned on for this resource
     def admin_notes?

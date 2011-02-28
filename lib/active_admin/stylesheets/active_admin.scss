@@ -351,3 +351,19 @@ table.resource_attributes {
   &.published, &.complete, &.completed, &.green { background: #8daa92; }
   &.error, &.errored, &.red { background: #d45f53;}
 }
+
+
+// -------------------------------------- Scopes
+.scopes {
+  float: left;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+
+  .scope {
+	a { text-decoration: none; color: #aaa; font-weight: bold; }
+	a:hover { text-decoration: underline; color: $primary-color; }
+	&.selected em { font-weight: bold; text-transform: none;  }
+	.count{ color: #bbb; font-size: 0.9em; }
+  }
+  .scopes_seperator { margin: 0 6px; color: #eee; font-weight: bold;}
+}

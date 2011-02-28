@@ -13,11 +13,9 @@ module ActiveAdmin
     #   end
     class IndexAsBlock < Renderer
       def to_html(page_config, collection)
-        wrap_with_pagination(collection, :entry_name => active_admin_config.resource_name) do
-          collection.collect do |obj|
-            instance_exec(obj, &page_config.block)
-          end.join.html_safe
-        end          
+		collection.collect do |obj|
+		  instance_exec(obj, &page_config.block)
+		end.join.html_safe
       end
     end
   end

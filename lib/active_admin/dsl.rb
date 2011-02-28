@@ -89,6 +89,11 @@ module ActiveAdmin
       config.scope_to_association_method = options[:association_method]
     end
 
+    # Create a scope
+    def scope(*args, &block)
+      config.scope(*args, &block)
+    end
+
     def action_item(options = {}, &block)
       controller.action_item(options, &block)
     end

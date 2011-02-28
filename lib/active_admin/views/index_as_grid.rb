@@ -6,13 +6,11 @@ module ActiveAdmin
         @page_config = page_config
         columns = page_config[:columns] || default_columns
 
-        wrap_with_pagination(collection, :entry_name => active_admin_config.resource_name) do
-          content_tag :table, :class => "index_grid" do
-            collection.in_groups_of(columns).collect do |group|
-              render_row(group)
-            end.join.html_safe
-          end
-        end
+		content_tag :table, :class => "index_grid" do
+		  collection.in_groups_of(columns).collect do |group|
+			render_row(group)
+		  end.join.html_safe
+		end
       end
 
       protected

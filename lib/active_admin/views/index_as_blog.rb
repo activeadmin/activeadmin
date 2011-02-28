@@ -7,11 +7,9 @@ module ActiveAdmin
         @config = Builder.new
         @page_config.block.call(@config) if @page_config.block
 
-        wrap_with_pagination(collection, :entry_name => active_admin_config.resource_name) do
-          content_tag :div do
-            collection.collect{|item| render_post(item) }.join.html_safe
-          end
-        end
+		content_tag :div do
+		  collection.collect{|item| render_post(item) }.join.html_safe
+		end
       end
 
       private

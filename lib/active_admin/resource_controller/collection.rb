@@ -64,6 +64,7 @@ module ActiveAdmin
 
         def search(chain)
           @search = chain.search(clean_search_params(params[:q]))
+          @search.relation
         end
 
         def clean_search_params(search_params)
@@ -73,6 +74,40 @@ module ActiveAdmin
             value == ""
           end
           search_params
+        end
+      end
+
+
+      module Scoping
+        protected
+
+        def active_admin_collection
+          scope_collection(super)
+        end
+
+        def scope_collection(chain)
+          if current_scope
+            @before_scope_collection = chain
+
+            # ActiveRecord::Base isn't a relation, so let's help you out
+            return chain if current_scope.scope_method == :all
+
+            if current_scope.scope_method
+              chain.send(current_scope.scope_method)
+            else
+              instance_exec chain, &current_scope.scope_block
+            end
+          else
+            chain
+          end
+        end
+
+        def current_scope
+          @current_scope ||= if params[:scope]
+            active_admin_config.get_scope_by_id(params[:scope]) if params[:scope]
+          else
+            active_admin_config.default_scope
+          end
         end
       end
 
@@ -99,6 +134,7 @@ module ActiveAdmin
       include BaseCollection
       include Sorting
       include Search
+      include Scoping
       include Pagination
 
     end

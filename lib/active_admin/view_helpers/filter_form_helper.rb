@@ -20,7 +20,8 @@ module ActiveAdmin
           f.form_buffers.last +
             f.submit("Filter") + 
             clear_link + 
-            hidden_field_tag("order", params[:order])
+            hidden_field_tag("order", params[:order]) +
+			hidden_field_tag("scope", params[:scope])
         end
       end
 
