@@ -21,13 +21,15 @@ $current-menu-item-background: lighten($primary-color, 12%);
 @import "mixins/buttons";
 @import "mixins/sections";
 
+@include global-reset;
+
 // Partials
+@import "typography";
 @import "header";
 @import "forms";
 @import "admin_notes";
 @import "flash_messages";
 
-@include global-reset;
 
 body {
   font-family: Helvetica, Arial, sans-serif;
@@ -50,6 +52,7 @@ body {
     margin: 12px 0 5px 0; 
     padding: 0; 
     font-size: 2.6em;
+	font-weight: bold;
   }
 
   .action_items { 
@@ -362,7 +365,7 @@ table.resource_attributes {
   .scope {
 	a { text-decoration: none; color: #aaa; font-weight: bold; }
 	a:hover { text-decoration: underline; color: $primary-color; }
-	&.selected em { font-weight: bold; text-transform: none;  }
+	&.selected em { font-weight: bold; font-style: normal;  }
 	.count{ color: #bbb; font-size: 0.9em; }
   }
   .scopes_seperator { margin: 0 6px; color: #eee; font-weight: bold;}

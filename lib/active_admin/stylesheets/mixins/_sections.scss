@@ -6,6 +6,8 @@
   padding: 5px 10px 3px 10px; 
   font-size: 1.0em;
   font-weight: bold;
+  line-height: 140%;
+  margin-bottom: 0.5em;
   color: $section-header-text-color;
   @include icon($section-header-text-color, 1.0em);
   span.icon { margin-right: 5px; }
