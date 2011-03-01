@@ -11,6 +11,7 @@ $section-header-text-color: $primary-color;
 $cell-padding: 5px 10px 3px 10px; 
 $cell-horizontal-padding: 12px;
 $current-menu-item-background: lighten($primary-color, 12%);
+$table-stripe-color: lighten($primary-color, 57%); 
 
 // Mixins
 @import "mixins/reset";
@@ -179,6 +180,8 @@ table {
       border-bottom: 1px solid $secondary-gradient-stop;
     }
   }
+
+  tr.even td { background: $table-stripe-color; }
 
   td {
     padding: 10px $cell-horizontal-padding 8px $cell-horizontal-padding;
