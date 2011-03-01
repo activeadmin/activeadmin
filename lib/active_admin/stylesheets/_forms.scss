@@ -75,7 +75,7 @@ form {
   }
 
   /* Text Fields */
-  input[type=text], input[type=password], input[type=email], textarea {
+  input[type=text], input[type=password], input[type=email], input[type=tel], textarea {
     width: 76%;
     border: 1px solid #c9d0d6;
     font-size: 0.95em;
@@ -150,7 +150,7 @@ form {
     }
 
     &.error {
-      input[type=text], input[type=password], input[type=email], textarea {
+      input[type=text], input[type=password], input[type=email], input[type=tel], textarea {
         border: 1px solid #cc0000;
       }
     }
