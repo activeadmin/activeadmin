@@ -33,11 +33,11 @@
       a { 
         text-decoration: none; 
         padding: 6px 10px 4px 10px; 
-        &:hover { color: #fff; }
+		position: relative;
+        @include rounded(10px);
       }
 
       &.current > a {
-        @include rounded(10px);
         background: $current-menu-item-background;
         color: #fff;
       }
@@ -52,28 +52,39 @@
         padding-right: 20px; 
       }
 
+	  &:hover > a { 
+		background: $hover-menu-item-background;
+		color: #fff;
+	  }
+
+	  &.has_nested:hover > a { 
+		@include rounded-top(10px);
+		z-index: 800;
+		border-bottom: 5px solid $hover-menu-item-background;
+		background: $hover-menu-item-background url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%;
+	  }
+
+
       /* Hover on li, display the ul */
       &:hover ul { display: block;}
       /* Drop down menus */
       ul { 
-        @include primary-gradient;
-        @include rounded-bottom;
-        @include shadow(0, 1px, 2px, #777);
+        background: $hover-menu-item-background;
+        @include rounded-all(0,10px,10px,10px);
+        @include shadow(0, 1px, 3px, #444);
         position: absolute; 
-        width: 200px; 
-        left: 0; 
-        top: 33px; 
+        width: 175px; 
+		margin-top: 4px;
+		float: left;
         display: none; 
-        z-index: 700; 
-        padding: 5px 0px;
-        border-top: 1px solid #444;
-        background: lighten($primary-color, 5%);
+        padding: 3px 0px 5px 0;
 
         li { 
           margin: 0px; 
           a { 
+			background: none;
             display: block; 
-            &:hover { color: #fff; }
+            &:hover { color: #fff; background: none; }
           }
 
           &.current {

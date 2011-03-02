@@ -11,6 +11,7 @@ $section-header-text-color: $primary-color;
 $cell-padding: 5px 10px 3px 10px; 
 $cell-horizontal-padding: 12px;
 $current-menu-item-background: lighten($primary-color, 12%);
+$hover-menu-item-background: lighten($primary-color, 12%);
 $table-stripe-color: lighten($primary-color, 57%); 
 
 // Mixins
@@ -363,13 +364,23 @@ table.resource_attributes {
 .scopes {
   float: left;
   margin-bottom: 10px;
-  font-size: 1.1em;
+  font-size: 1.0em;
 
   .scope {
-	a { text-decoration: none; color: #aaa; font-weight: bold; }
-	a:hover { text-decoration: underline; color: $primary-color; }
-	&.selected em { font-weight: bold; font-style: normal;  }
-	.count{ color: #bbb; font-size: 0.9em; }
+	padding: 4px 8px 3px 8px;
+	margin-right: 5px;
+	a { text-decoration: none; font-weight: bold; color: #888; }
+	a:hover { text-decoration: underline; ; }
+	&.selected { 
+	  @include rounded(5px);
+	  @include inset-shadow(0,1px,2px,#bbb);
+	  @include text-shadow;
+	  @include gradient(#eee, #f3f3f3);
+	  color: #666;
+	  em { font-weight: bold; font-style: normal;  
+	  }
+	}
+	.count{ color: #aaa; font-size: 0.9em; }
   }
-  .scopes_seperator { margin: 0 6px; color: #eee; font-weight: bold;}
+  .scopes_seperator { display: none; }
 }
