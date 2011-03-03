@@ -9,9 +9,7 @@ form {
     padding: 10px 0;
     margin-bottom: 20px;
 
-    &.inputs {
-      background: #f4f4f4;
-    }
+    &.inputs { @include section-background; }
 
     legend {
       width: 100%;

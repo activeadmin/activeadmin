@@ -13,3 +13,15 @@
   span.icon { margin-right: 5px; }
 }
 
+@mixin section-background {
+  background: #f4f4f4;
+  @include rounded(4px);
+  @include inset-shadow(0,1px,4px, #ddd);
+}
+
+@mixin section {
+  @include section-background;
+  h3 { @include section-header; }
+  margin-bottom: 20px;
+  > div { padding: 3px 15px 15px 15px; }
+}

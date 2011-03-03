@@ -149,6 +149,10 @@ a.button, input[type=submit] { @include dark-button; }
   }
 }
 
+// ----------------------------------- Sections
+// Helper class to apply to elements to make them sections
+.section { @include section; }
+
 // ----------------------------------- Tables 
 table {
   width: 100%;
@@ -192,13 +196,7 @@ table {
 }
 
 // ----------------------------------- Sidebar Sections 
-.sidebar_section {
-  background: #f4f4f4;
-  margin-bottom: 20px;
-
-  > div { padding: 3px 15px 15px 15px; }
-  h3 { @include section-header; }
-}
+.sidebar_section { @include section; }
 
 // -------------------------------------- Pagination 
 .pagination_information { 
@@ -343,14 +341,7 @@ body.logged_out {
 table.dashboard {
   width: 100%; 
   td { border-bottom: none; }
-  .dashboard_section {
-    h3 { @include section-header; }
-    border-bottom: none;
-    background: #f4f4f4;
-    .dashboard_section_content {
-      padding: 0 15px 15px 15px; 
-    }
-  }
+  .dashboard_section { @include section; }
 }
 
 // -------------------------------------- Resource Attributes Table 
