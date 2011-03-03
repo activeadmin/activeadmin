@@ -27,6 +27,7 @@ form {
         font-size: 1.0em;
         font-weight: bold;
         color: $section-header-text-color;
+		abbr { border: none; color: #aaa; }
       }
     }
 

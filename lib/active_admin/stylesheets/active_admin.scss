@@ -271,7 +271,13 @@ body.logged_out {
     margin: -13px -30px 20px -30px;
   }
 
-  .flash { padding: 6px 10px 5px 10px; }
+  .flash { 
+	@include no-shadow;
+	@include text-shadow(#fff);
+	padding: 0; 
+	color: #666;
+	background: none;
+  }
 
   #login {
     /* Login Form */
@@ -368,14 +374,14 @@ table.resource_attributes {
 
   .scope {
 	padding: 4px 8px 3px 8px;
-	margin-right: 5px;
+	margin-right: 4px;
 	a { text-decoration: none; font-weight: bold; color: #888; }
 	a:hover { text-decoration: underline; ; }
 	&.selected { 
 	  @include rounded(5px);
-	  @include inset-shadow(0,1px,2px,#bbb);
+	  @include inset-shadow(0,1px,0,#ccc);
 	  @include text-shadow;
-	  @include gradient(#eee, #f3f3f3);
+	  background: #efefef;
 	  color: #666;
 	  em { font-weight: bold; font-style: normal;  
 	  }
