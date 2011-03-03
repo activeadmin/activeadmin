@@ -17,11 +17,15 @@ module ActiveAdmin
             attribute = filter_options.delete(:attribute)
             f.filter attribute, filter_options
           end
-          f.form_buffers.last +
+
+		  buttons = content_tag :div, :class => "buttons" do
             f.submit("Filter") + 
-            clear_link + 
-            hidden_field_tag("order", params[:order]) +
-			hidden_field_tag("scope", params[:scope])
+			  clear_link + 
+			  hidden_field_tag("order", params[:order]) +
+			  hidden_field_tag("scope", params[:scope])
+		  end
+
+          f.form_buffers.last + buttons
         end
       end
 
@@ -36,10 +40,11 @@ module ActiveAdmin
       return "" if method.nil? || method == ""
       options[:as] ||= default_filter_type(method)
       return "" unless options[:as]
+	  field_type = options.delete(:as)
       content = with_new_form_buffer do
-        send("filter_#{options.delete(:as)}_input", method, options)
+        send("filter_#{field_type}_input", method, options)
       end
-      @form_buffers.last << template.content_tag(:div, content, :class => "filter-form-field")
+      @form_buffers.last << template.content_tag(:div, content, :class => "filter_form_field filter_#{field_type}")
     end
 
     protected
@@ -110,11 +115,13 @@ module ActiveAdmin
       input_name = (generate_association_input_name(method).to_s + "_in").to_sym
       collection = find_collection_for_column(method, options)
       selected_values = @object.send(input_name) || []
-      checkboxes = collection.map do |c|
-        label = c.is_a?(Array) ? c.first : c
-        value = c.is_a?(Array) ? c.last : c
-        "<label><input type=\"checkbox\" name=\"q[#{input_name}][]\" value=\"#{value}\" #{selected_values.include?(value) ? "checked" : ""}/> #{label}</label>"
-      end.join("\n").html_safe
+	  checkboxes = template.content_tag :div, :class => "check_boxes_wrapper" do
+		collection.map do |c|
+		  label = c.is_a?(Array) ? c.first : c
+		  value = c.is_a?(Array) ? c.last : c
+		  "<label><input type=\"checkbox\" name=\"q[#{input_name}][]\" value=\"#{value}\" #{selected_values.include?(value) ? "checked" : ""}/> #{label}</label>"
+		end.join("\n").html_safe
+	  end
 
       [ label(input_name, method.to_s.titlecase),
         checkboxes
