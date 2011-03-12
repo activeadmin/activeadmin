@@ -298,6 +298,7 @@ body.logged_out {
     /* Login Form */
     form {
       fieldset {
+		@include no-shadow;
         background: none;
         padding: 0;
         li { padding: 10px 0; }
