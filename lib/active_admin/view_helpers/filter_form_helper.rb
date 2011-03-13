@@ -147,7 +147,7 @@ module ActiveAdmin
         when :string, :text
           return :string
         when :integer
-          return :select if method.to_s =~ /_id$/
+          return :select if reflection_for(method.to_s.gsub('_id','').to_sym)
           return :numeric
         when :float, :decimal
           return :numeric
