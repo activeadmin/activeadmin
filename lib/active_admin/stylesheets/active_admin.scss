@@ -347,9 +347,21 @@ table.dashboard {
 
 // -------------------------------------- Resource Attributes Table 
 table.resource_attributes {
-  border-top: 1px solid #E8E8E8;
+  border-top: 1px solid $secondary-color;
+  border-right: 1px solid $secondary-color;
 
-  th { @include no-shadow; }
+  th, td { 
+	border-bottom: 1px solid $secondary-color; 
+    padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
+	vertical-align: top;
+  }
+
+  th { 
+	@include no-shadow;
+	background: $secondary-color;
+	width: 150px;
+	text-align: right;
+  }
   td {
     .empty {
       color: #ccc;
