@@ -1,6 +1,8 @@
 module ActiveAdmin
   class Renderer
 
+	autoload :HTML, 'active_admin/renderer/html'
+
     include ::ActiveAdmin::ViewHelpers::RendererHelper
 
     attr_accessor :view, :assigns
