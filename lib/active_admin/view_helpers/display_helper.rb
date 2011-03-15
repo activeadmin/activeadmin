@@ -14,11 +14,6 @@ module ActiveAdmin
         resource.send(display_name_method_for(resource))
       end
 
-      class Post
-        def display_name
-        end
-      end
-
     end
   end
 end
