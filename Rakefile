@@ -28,8 +28,8 @@ end
 namespace :local do
   desc "Creates a local rails app to play with in development"
   task :setup do
-    unless File.exists? "new-test-rails-app"
-      system "bundle exec rails new test-rails-app -m spec/support/rails_template.rb"
+    unless File.exists? "test-rails-app"
+      system "bundle exec rails new test-rails-app -m spec/support/rails_template_with_data.rb"
     end
   end
 
