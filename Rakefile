@@ -25,6 +25,20 @@ task :setup do
   system "bundle exec rails new spec/rails/rails-#{Rails::VERSION::STRING} -m spec/support/rails_template.rb"
 end
 
+namespace :local do
+  desc "Creates a local rails app to play with in development"
+  task :setup do
+    unless File.exists? "new-test-rails-app"
+      system "bundle exec rails new test-rails-app -m spec/support/rails_template.rb"
+    end
+  end
+
+  desc "Start a local rails app to play"
+  task :server => :setup do
+    exec "cd test-rails-app && GEMFILE=../Gemfile bundle exec rails s"
+  end
+end
+
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec)
 
