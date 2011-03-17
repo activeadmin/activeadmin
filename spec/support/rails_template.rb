@@ -28,4 +28,4 @@ route "root :to => 'admin/dashboard#index'"
 
 rake "db:migrate"
 rake "db:test:prepare"
-run "/usr/bin/env RAILS_ENV=cucumber /usr/bin/rake db:migrate"
+run "/usr/bin/env RAILS_ENV=cucumber rake db:migrate"
