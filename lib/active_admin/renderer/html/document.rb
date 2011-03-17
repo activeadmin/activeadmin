@@ -64,7 +64,7 @@ module ActiveAdmin
 
           # Return the buffer
           @buffer.pop
-		end
+        end
 	  end
 
     end
