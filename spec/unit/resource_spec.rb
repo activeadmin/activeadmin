@@ -107,6 +107,13 @@ module ActiveAdmin
       it "should return the route collection path" do
         config.route_collection_path.should == :admin_categories_path
       end
+
+      context "when in the root namespace" do
+        let(:config){ ActiveAdmin.register Category, :namespace => false}
+        it "should have a nil route_prefix" do
+          config.route_prefix.should == nil
+        end
+      end
     end
 
     describe "page configs" do
