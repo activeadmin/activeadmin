@@ -3,12 +3,12 @@ module ActiveAdmin
     module HTML
 
       class Element
-		attr_accessor :parent, :document
+        attr_accessor :parent, :document
         attr_reader :children
 
-		def initialize
-		  @children = Collection.new
-		end
+        def initialize
+          @children = Collection.new
+        end
 
         def add_child(child)
           return unless child
@@ -25,17 +25,17 @@ module ActiveAdmin
           add_child(string_contents)
         end
 
-		def content
-		  @children.to_html
-		end
+        def content
+          @children.to_html
+        end
 
-		def to_s
-		  to_html
-		end
+        def to_s
+          to_html
+        end
 
-		def to_html
-		  content
-		end
+        def to_html
+          content
+        end
 
         private
 

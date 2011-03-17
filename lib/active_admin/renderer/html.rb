@@ -1,6 +1,6 @@
 class Object
   def to_html
-	to_s
+    to_s
   end
 end
 
@@ -12,11 +12,11 @@ require "active_admin/renderer/html/text_node"
 
 module ActiveAdmin
   class Renderer
-	module HTML
+    module HTML
 
-	  def __current_html_document__
-		@__current_html_document__ ||= Document.new
-	  end
+      def __current_html_document__
+        @__current_html_document__ ||= Document.new
+      end
 
       [:span, :li, :ul].each do |name|
         class_eval <<-EOF, __FILE__, __LINE__
@@ -26,6 +26,6 @@ module ActiveAdmin
         EOF
       end
 
-	end
+    end
   end
 end

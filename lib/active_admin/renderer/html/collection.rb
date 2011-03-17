@@ -11,7 +11,7 @@ module ActiveAdmin
           end.join
         end
       end
-      
+
     end
   end
 end
