@@ -22,7 +22,7 @@ module ActiveAdmin
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
 
-	before_filter :authenticate_active_admin_user
+    before_filter :authenticate_active_admin_user
 
     include ActiveAdmin::ActionItems
     include Actions
@@ -79,19 +79,19 @@ module ActiveAdmin
 
     protected
 
-	# Calls the authentication method as defined in ActiveAdmin.authentication_method
-	def authenticate_active_admin_user
-	  send(ActiveAdmin.authentication_method) if ActiveAdmin.authentication_method
-	end
+    # Calls the authentication method as defined in ActiveAdmin.authentication_method
+    def authenticate_active_admin_user
+      send(ActiveAdmin.authentication_method) if ActiveAdmin.authentication_method
+    end
 
-	def current_active_admin_user
-	  send(ActiveAdmin.current_user_method) if ActiveAdmin.current_user_method
-	end
+    def current_active_admin_user
+      send(ActiveAdmin.current_user_method) if ActiveAdmin.current_user_method
+    end
     helper_method :current_active_admin_user
 
-	def current_active_admin_user?
-	  !current_active_admin_user.nil?
-	end
+    def current_active_admin_user?
+      !current_active_admin_user.nil?
+    end
     helper_method :current_active_admin_user?
 
     def active_admin_config

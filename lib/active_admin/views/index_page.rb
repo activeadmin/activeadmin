@@ -11,18 +11,18 @@ module ActiveAdmin
         index_config || default_index_config
       end
 
-	  def scopes
-		render ActiveAdmin.view_factory.index_scopes, active_admin_config.scopes
-	  end
+      def scopes
+        render ActiveAdmin.view_factory.index_scopes, active_admin_config.scopes
+      end
 
       # Render's the index configuration that was set in the
       # controller. Defaults to rendering the ActiveAdmin::Pages::Index::Table
       def main_content
         renderer_class = find_index_renderer_class(config[:as])
-		scopes + 
-		  wrap_with_pagination(collection, :entry_name => active_admin_config.resource_name) do
-			renderer_class.new(self).to_html(config, collection)
-		  end
+        scopes + 
+          wrap_with_pagination(collection, :entry_name => active_admin_config.resource_name) do
+            renderer_class.new(self).to_html(config, collection)
+          end
       end
 
       private

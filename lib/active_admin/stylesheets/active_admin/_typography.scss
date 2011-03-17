@@ -45,15 +45,15 @@ h6 { font-size: 1em; font-weight: bold; }
 p { 
   margin: 0 0 1.5em; 
 
-  .left	 { margin: 1.5em 1.5em 1.5em 0; padding: 0; }
+  .left     { margin: 1.5em 1.5em 1.5em 0; padding: 0; }
   .right { margin: 1.5em 0 1.5em 1.5em; padding: 0; }
 }
 
-.left  			{ float: left !important; }
-.right 			{ float: right !important; }
+.left              { float: left !important; }
+.right             { float: right !important; }
 
 blockquote  { margin: 1.5em; color: #666; font-style: italic; }
-strong,dfn	{ font-weight: bold; }
+strong,dfn    { font-weight: bold; }
 em,dfn      { font-style: italic; }
 sup, sub    { line-height: 0; }
 

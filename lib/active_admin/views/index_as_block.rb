@@ -13,9 +13,9 @@ module ActiveAdmin
     #   end
     class IndexAsBlock < Renderer
       def to_html(page_config, collection)
-		collection.collect do |obj|
-		  instance_exec(obj, &page_config.block)
-		end.join.html_safe
+        collection.collect do |obj|
+          instance_exec(obj, &page_config.block)
+        end.join.html_safe
       end
     end
   end

@@ -4,12 +4,12 @@ module ActiveAdmin
     class IndexAsTable < Renderer
 
       def to_html(page_config, collection)
-		table_options = {
-		  :id => active_admin_config.plural_resource_name.underscore, 
-		  :sortable => true,
-		  :class => "index_table"
-		}
-		TableBuilder.new(&page_config.block).to_html(self, collection, table_options)
+        table_options = {
+          :id => active_admin_config.plural_resource_name.underscore, 
+          :sortable => true,
+          :class => "index_table"
+        }
+        TableBuilder.new(&page_config.block).to_html(self, collection, table_options)
       end
 
       # 

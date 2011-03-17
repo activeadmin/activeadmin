@@ -34,7 +34,7 @@ body {
     margin: 12px 0 5px 0; 
     padding: 0; 
     font-size: 2.6em;
-	font-weight: bold;
+    font-weight: bold;
   }
 
   .action_items { 
@@ -212,12 +212,12 @@ table.index_grid td { border: none; background: none; padding: 0 20px 20px 0; ma
 // -------------------------------------- Filter Forms 
 form {
   .buttons { 
-	margin-top: 15px; 
-	input[type=submit] { margin-right: 10px; }
+    margin-top: 15px; 
+    input[type=submit] { margin-right: 10px; }
   }
   .filter_form_field {
     margin-bottom: 10px; 
-	clear: both;
+    clear: both;
 
 
     label {
@@ -228,17 +228,17 @@ form {
       font-weight: bold;
     }
     .datepicker { width: 80px; }
-	&.filter_numeric { input[type=text] { width: 80px; margin-left: 5px; } }
-	&.filter_check_boxes {
-	  label { margin-bottom: 3px; }
-	  .check_boxes_wrapper label { 
-		font-weight: normal; 
-		margin-bottom: 3px;
-		text-transform: none;
-		font-size: 1.0em;
-		input { vertical-align: baseline; }
-	  }
-	}
+    &.filter_numeric { input[type=text] { width: 80px; margin-left: 5px; } }
+    &.filter_check_boxes {
+      label { margin-bottom: 3px; }
+      .check_boxes_wrapper label { 
+        font-weight: normal; 
+        margin-bottom: 3px;
+        text-transform: none;
+        font-size: 1.0em;
+        input { vertical-align: baseline; }
+      }
+    }
   }
   a.clear_filters_btn { @include light-button; }
 }
@@ -267,18 +267,18 @@ body.logged_out {
   }
 
   .flash { 
-	@include no-shadow;
-	@include text-shadow(#fff);
-	padding: 0; 
-	color: #666;
-	background: none;
+    @include no-shadow;
+    @include text-shadow(#fff);
+    padding: 0; 
+    color: #666;
+    background: none;
   }
 
   #login {
     /* Login Form */
     form {
       fieldset {
-		@include no-shadow;
+        @include no-shadow;
         background: none;
         padding: 0;
         li { padding: 10px 0; }
@@ -331,16 +331,16 @@ table.resource_attributes {
   border-right: 1px solid $secondary-color;
 
   th, td { 
-	border-bottom: 1px solid $secondary-color; 
+    border-bottom: 1px solid $secondary-color; 
     padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
-	vertical-align: top;
+    vertical-align: top;
   }
 
   th { 
-	@include no-shadow;
-	background: $secondary-color;
-	width: 150px;
-	text-align: right;
+    @include no-shadow;
+    background: $secondary-color;
+    width: 150px;
+    text-align: right;
   }
   td {
     .empty {
@@ -374,20 +374,20 @@ table.resource_attributes {
   font-size: 1.0em;
 
   .scope {
-	padding: 4px 8px 3px 8px;
-	margin-right: 4px;
-	a { text-decoration: none; font-weight: bold; color: #888; }
-	a:hover { text-decoration: underline; ; }
-	&.selected { 
-	  @include rounded(5px);
-	  @include inset-shadow(0,1px,0,#ccc);
-	  @include text-shadow;
-	  background: #efefef;
-	  color: #666;
-	  em { font-weight: bold; font-style: normal;  
-	  }
-	}
-	.count{ color: #aaa; font-size: 0.9em; }
+    padding: 4px 8px 3px 8px;
+    margin-right: 4px;
+    a { text-decoration: none; font-weight: bold; color: #888; }
+    a:hover { text-decoration: underline; ; }
+    &.selected { 
+      @include rounded(5px);
+      @include inset-shadow(0,1px,0,#ccc);
+      @include text-shadow;
+      background: #efefef;
+      color: #666;
+      em { font-weight: bold; font-style: normal;  
+      }
+    }
+    .count{ color: #aaa; font-size: 0.9em; }
   }
   .scopes_seperator { display: none; }
 }
