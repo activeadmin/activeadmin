@@ -14,6 +14,7 @@ tmtags
 *.swp
 
 ## PROJECT::GENERAL
+tags
 coverage
 rdoc
 doc
