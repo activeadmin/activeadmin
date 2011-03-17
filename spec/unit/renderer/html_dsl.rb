@@ -75,7 +75,7 @@ describe ActiveAdmin::Renderer, "HTML DSL" do
         li "First"
         li "Second"
       end
-      __.to_html.should == "<ul><li>First</li><li>Second</li></ul>"
+      __current_html_document__.to_html.should == "<ul><li>First</li><li>Second</li></ul>"
     end
   end
 
