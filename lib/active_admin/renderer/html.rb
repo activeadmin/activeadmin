@@ -1,9 +1,4 @@
-class Object
-  def to_html
-    to_s
-  end
-end
-
+require "active_admin/renderer/html/core_extensions.rb"
 require "active_admin/renderer/html/document"
 require "active_admin/renderer/html/element"
 require "active_admin/renderer/html/collection"
