@@ -25,7 +25,7 @@ form {
         font-size: 1.0em;
         font-weight: bold;
         color: $section-header-text-color;
-		abbr { border: none; color: #aaa; }
+        abbr { border: none; color: #aaa; }
       }
     }
 
@@ -83,7 +83,7 @@ form {
     
     &:focus {
       border: 1px solid #99a2aa;
-	  @include shadow(0,0,4px,#99a2aa);
+      @include shadow(0,0,4px,#99a2aa);
     }
   }
 
