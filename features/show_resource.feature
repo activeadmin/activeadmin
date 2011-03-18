@@ -12,6 +12,7 @@ Feature: Show Resource
       """
     Then I should see the attribute "Title" with "Hello World"
     And I should see the attribute "Body" with "Empty"
+    And I should see the attribute "Created At" with a nicely formatted datetime
     And I should see the attribute "Author" with "jane_doe"
 
   Scenario: Attributes should link when linked resource is registered

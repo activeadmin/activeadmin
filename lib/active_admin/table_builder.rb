@@ -94,8 +94,7 @@ module ActiveAdmin
 
       def table_cell(column, item)
         row_content = call_method_or_proc_on(item, column.data) || ""
-        l(row_content) if [Date, DateTime, Time].include?(row_content)
-        content_tag :td, row_content
+        content_tag :td, pretty_format(row_content)
       end
 
     end

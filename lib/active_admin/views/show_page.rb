@@ -62,7 +62,7 @@ module ActiveAdmin
         if attr.to_s =~ /^([\w]+)_id$/ && resource.respond_to?($1.to_sym)
           default_content_for(resource, $1)
         else
-          value = auto_link(resource.send(attr.to_sym))
+          value = pretty_format(resource.send(attr.to_sym))
           value == "" ? default_empty : value
         end
       end
