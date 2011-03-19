@@ -17,6 +17,7 @@ Feature: Index as Table
         ActiveAdmin.register Post
       """
     Then I should see "Hello World"
+    Then I should see nicely formatted datetimes
     And I should see a link to "View"
     And I should see a link to "Edit"
     And I should see a link to "Delete"

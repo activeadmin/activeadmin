@@ -33,7 +33,7 @@
       a { 
         text-decoration: none; 
         padding: 6px 10px 4px 10px; 
-		position: relative;
+        position: relative;
         @include rounded(10px);
       }
 
@@ -52,17 +52,17 @@
         padding-right: 20px; 
       }
 
-	  &:hover > a { 
-		background: $hover-menu-item-background;
-		color: #fff;
-	  }
+      &:hover > a { 
+        background: $hover-menu-item-background;
+        color: #fff;
+      }
 
-	  &.has_nested:hover > a { 
-		@include rounded-top(10px);
-		z-index: 800;
-		border-bottom: 5px solid $hover-menu-item-background;
-		background: $hover-menu-item-background url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%;
-	  }
+      &.has_nested:hover > a { 
+        @include rounded-top(10px);
+        z-index: 800;
+        border-bottom: 5px solid $hover-menu-item-background;
+        background: $hover-menu-item-background url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%;
+      }
 
 
       /* Hover on li, display the ul */
@@ -74,15 +74,15 @@
         @include shadow(0, 1px, 3px, #444);
         position: absolute; 
         width: 175px; 
-		margin-top: 4px;
-		float: left;
+        margin-top: 4px;
+        float: left;
         display: none; 
         padding: 3px 0px 5px 0;
 
         li { 
           margin: 0px; 
           a { 
-			background: none;
+            background: none;
             display: block; 
             &:hover { color: #fff; background: none; }
           }

@@ -18,12 +18,12 @@ module ActiveAdmin
             f.filter attribute, filter_options
           end
 
-		  buttons = content_tag :div, :class => "buttons" do
+          buttons = content_tag :div, :class => "buttons" do
             f.submit("Filter") + 
-			  clear_link + 
-			  hidden_field_tag("order", params[:order]) +
-			  hidden_field_tag("scope", params[:scope])
-		  end
+              clear_link + 
+              hidden_field_tag("order", params[:order]) +
+              hidden_field_tag("scope", params[:scope])
+          end
 
           f.form_buffers.last + buttons
         end
@@ -40,7 +40,7 @@ module ActiveAdmin
       return "" if method.nil? || method == ""
       options[:as] ||= default_filter_type(method)
       return "" unless options[:as]
-	  field_type = options.delete(:as)
+      field_type = options.delete(:as)
       content = with_new_form_buffer do
         send("filter_#{field_type}_input", method, options)
       end
@@ -115,13 +115,13 @@ module ActiveAdmin
       input_name = (generate_association_input_name(method).to_s + "_in").to_sym
       collection = find_collection_for_column(method, options)
       selected_values = @object.send(input_name) || []
-	  checkboxes = template.content_tag :div, :class => "check_boxes_wrapper" do
-		collection.map do |c|
-		  label = c.is_a?(Array) ? c.first : c
-		  value = c.is_a?(Array) ? c.last : c
-		  "<label><input type=\"checkbox\" name=\"q[#{input_name}][]\" value=\"#{value}\" #{selected_values.include?(value) ? "checked" : ""}/> #{label}</label>"
-		end.join("\n").html_safe
-	  end
+      checkboxes = template.content_tag :div, :class => "check_boxes_wrapper" do
+        collection.map do |c|
+          label = c.is_a?(Array) ? c.first : c
+          value = c.is_a?(Array) ? c.last : c
+          "<label><input type=\"checkbox\" name=\"q[#{input_name}][]\" value=\"#{value}\" #{selected_values.include?(value) ? "checked" : ""}/> #{label}</label>"
+        end.join("\n").html_safe
+      end
 
       [ label(input_name, method.to_s.titlecase),
         checkboxes

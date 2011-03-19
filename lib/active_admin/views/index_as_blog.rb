@@ -7,9 +7,9 @@ module ActiveAdmin
         @config = Builder.new
         @page_config.block.call(@config) if @page_config.block
 
-		content_tag :div do
-		  collection.collect{|item| render_post(item) }.join.html_safe
-		end
+        content_tag :div do
+          collection.collect{|item| render_post(item) }.join.html_safe
+        end
       end
 
       private

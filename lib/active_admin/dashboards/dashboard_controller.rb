@@ -4,7 +4,7 @@ module ActiveAdmin
 
       before_filter :skip_sidebar!
 
-	  actions :index
+      actions :index
 
       # Render from here if not overriden
       self.default_views = 'active_admin_dashboard'

@@ -8,9 +8,9 @@ module ActiveAdmin
         @config = Builder.new
         @page_config.block.call(@config) if @page_config.block
 
-		content_tag :div, :style => "clear:both;" do
-		  collection.collect{|item| render_image(item) }.join.html_safe
-		end
+        content_tag :div, :style => "clear:both;" do
+          collection.collect{|item| render_image(item) }.join.html_safe
+        end
       end
 
       def render_image(item)
