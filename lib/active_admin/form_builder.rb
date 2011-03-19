@@ -21,9 +21,11 @@ module ActiveAdmin
     # its contents, so we want to skip the internal buffering
     # while building up its contents
     def input(*args)
-      content = with_new_form_buffer { super }
-      return content.html_safe unless @inputs_with_block
-      form_buffers.last << content.html_safe
+      if !polymorphic_attribute(args.first) || @inputs_with_block #ignore polymorphic attributes in default view
+        content = with_new_form_buffer { super }
+        return content.html_safe unless @inputs_with_block
+        form_buffers.last << content.html_safe
+      end
     end
 
     # The buttons method always needs to be wrapped in a new buffer
@@ -105,5 +107,12 @@ module ActiveAdmin
       return_value
     end
     
+    def polymorphic_attribute(attribute)
+      polymorpic_attributes = Array.new
+      polymorphic_associations = @object.class.reflect_on_all_associations.find_all{|e| e.options[:polymorphic]==true}
+      polymorphic_associations ||= []
+      polymorphic_associations.each{|p| polymorpic_attributes.push(p.name, p.options[:foreign_type].to_sym)}
+      polymorpic_attributes.include?(attribute)
+    end
   end
 end

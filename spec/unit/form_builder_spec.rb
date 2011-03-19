@@ -224,5 +224,29 @@ describe_with_render ActiveAdmin::FormBuilder do
                                                           :name => "post[created_at]" })
     end
   end
+end
 
+describe_with_render ActiveAdmin::FormBuilder, :controller => Admin::PicturesController do
+  describe "polymorphic" do    
+    context "with default settings" do
+      before do
+        Admin::PicturesController.reset_form_config!
+        get :new
+      end
+
+      it "should generate one picture url field" do
+        response.body.scan('id="picture_url"').size.should == 1
+      end
+
+      it "should not generate a imageable field" do
+        response.body.scan('id="picture_imageable"').size.should == 0
+      end
+      
+      it "should not generate a imageable type field" do
+        response.body.scan('id="picture_imageable_type"').size.should == 0
+      end
+      
+    end
+    
+  end
 end

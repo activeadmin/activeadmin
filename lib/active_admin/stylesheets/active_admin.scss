@@ -1,37 +1,17 @@
-/*
-	Active Admin CSS
-*/
+/* Active Admin CSS */
 
-$horizontal-page-margin: 30px;
-$primary-color: #5E6469;
-$secondary-color: #f0f0f0;
-$text-color: #323537;
-$link-color: #38678b;
-$section-header-text-color: $primary-color;
-$cell-padding: 5px 10px 3px 10px; 
-$cell-horizontal-padding: 12px;
-$current-menu-item-background: lighten($primary-color, 12%);
-$hover-menu-item-background: lighten($primary-color, 12%);
-$table-stripe-color: lighten($primary-color, 57%); 
+// Bring in all the shared goodness
+@import "active_admin/mixins/all";
 
-// Mixins
-@import "mixins/reset";
-@import "mixins/gradients";
-@import "mixins/shadows";
-@import "mixins/icons";
-@import "mixins/rounded";
-@import "mixins/buttons";
-@import "mixins/sections";
-
+// Reset Away!
 @include global-reset;
 
 // Partials
-@import "typography";
-@import "header";
-@import "forms";
-@import "admin_notes";
-@import "flash_messages";
-
+@import "active_admin/typography";
+@import "active_admin/header";
+@import "active_admin/forms";
+@import "active_admin/admin_notes";
+@import "active_admin/flash_messages";
 
 body {
   font-family: Helvetica, Arial, sans-serif;

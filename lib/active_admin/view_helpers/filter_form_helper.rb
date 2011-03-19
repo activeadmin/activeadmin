@@ -167,7 +167,8 @@ module ActiveAdmin
 
     # Returns the association reflection for the method if it exists
     def reflection_for(method)
-      @object.base.reflect_on_association(method) if @object.base.respond_to?(:reflect_on_association)
+      reflection = @object.base.reflect_on_association(method) if @object.base.respond_to?(:reflect_on_association)
+      reflection.options[:polymorphic] ? false : reflection if reflection && reflection.options
     end
 
   end    

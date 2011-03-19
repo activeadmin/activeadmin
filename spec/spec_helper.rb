@@ -22,6 +22,7 @@ module ActiveAdminIntegrationSpecHelper
   def load_defaults!
     ActiveAdmin.register(Category)
     ActiveAdmin.register(User)
+    ActiveAdmin.register(Picture)
     ActiveAdmin.register(Post){ belongs_to :user, :optional => true }
     reload_menus!
   end
@@ -54,10 +55,11 @@ module ActiveAdminIntegrationSpecHelper
   # actions. Uses the Admin::PostsController as the subject
   # for the describe block
   def describe_with_render(*args, &block)
+    options = args.extract_options!    
     describe *args do
       include RSpec::Rails::ControllerExampleGroup
       render_views  
-      metadata[:behaviour][:describes] = Admin::PostsController
+      metadata[:behaviour][:describes] = options[:controller] ||= Admin::PostsController
       module_eval &block
     end
   end

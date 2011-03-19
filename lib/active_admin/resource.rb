@@ -92,7 +92,7 @@ module ActiveAdmin
 
     # Returns the routes prefix for this resource
     def route_prefix
-      controller.resources_configuration[:self][:route_prefix]
+      namespace.module_name.try(:underscore)
     end
 
     # Returns a symbol for the route to use to get to the

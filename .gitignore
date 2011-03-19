@@ -14,6 +14,7 @@ tmtags
 *.swp
 
 ## PROJECT::GENERAL
+tags
 coverage
 rdoc
 doc
@@ -27,3 +28,4 @@ spec/rails
 Gemfile.lock
 capybara*
 viewcumber
+test-rails-app
