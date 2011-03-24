@@ -2,7 +2,12 @@ module ActiveAdmin
   class Renderer
     module HTML
 
-      class Document
+      # An HTML buffer that wraps and buffers all the content
+      # generated using the HTML builder methods.
+      #
+      # Each context where you include ActiveAdmin::Renderer::HTML 
+      # generates a single Buffer and inserts tags into it.
+      class Buffer
 
         def initialize
           @buffer = [Collection.new]
@@ -21,12 +26,6 @@ module ActiveAdmin
           if block_given?
             children = with_new_buffer { yield } || []
             children.each do |child|
-              case child
-              when String
-                tn = TextNode.new
-                tn.build(child)
-                child = tn
-              end
               tag << child
             end
           end
@@ -57,9 +56,7 @@ module ActiveAdmin
 
           # If the block returns a string, we add it to the buffer
           if rvalue.is_a?(String)
-            node = TextNode.new
-            node.build(rvalue)
-            current_buffer.push node 
+            current_buffer.push rvalue 
           end
 
           # Return the buffer

@@ -1,0 +1,17 @@
+module ActiveAdmin
+  class Renderer
+    module HTML
+
+      class Attributes < Hash
+
+        def to_html
+          self.collect do |name, value|
+            "#{name}=\"#{value}\""
+          end.join(" ")
+        end
+
+      end
+
+    end
+  end
+end

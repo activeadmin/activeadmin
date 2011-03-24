@@ -37,6 +37,11 @@ namespace :local do
   task :server => :setup do
     exec "cd test-rails-app && GEMFILE=../Gemfile bundle exec rails s"
   end
+
+  desc "Load the local rails console"
+  task :console => :setup do
+    exec "cd test-rails-app && GEMFILE=../Gemfile bundle exec rails c"
+  end
 end
 
 require "rspec/core/rake_task"

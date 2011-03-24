@@ -1,8 +1,17 @@
+require 'erb'
+
 module ActiveAdmin
   class Renderer
     module HTML
 
       class TextNode < Element
+
+        # Builds a text node from a string
+        def self.from_string(string)
+          node = new
+          node.build(string)
+          node
+        end
 
         def add_child(*args)
           raise "TextNodes do not have children"
@@ -13,7 +22,7 @@ module ActiveAdmin
         end
 
         def to_html
-          @content.to_html
+          ERB::Util.html_escape @content.to_html
         end
       end
 

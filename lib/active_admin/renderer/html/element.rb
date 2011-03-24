@@ -3,6 +3,8 @@ module ActiveAdmin
     module HTML
 
       class Element
+        include ::ActiveAdmin::Renderer::HTML
+        
         attr_accessor :parent, :document
         attr_reader :children
 
@@ -10,19 +12,27 @@ module ActiveAdmin
           @children = Collection.new
         end
 
+        def build(*args)
+        end
+
         def add_child(child)
           return unless child
-          @children << child
+          if child.is_a?(String)
+            child = TextNode.from_string(child)
+          end
           child.parent = self if child.respond_to?(:parent=)
+          @children << child
         end
         alias :<< :add_child
 
-        def build(*args)
+        def parent=(parent)
+          @document = parent.document if parent.respond_to?(:document)
+          @parent = parent
         end
 
         def content=(string_contents)
           clear_children!
-          add_child(string_contents)
+          add_child(ERB::Util.html_escape(string_contents)) if string_contents
         end
 
         def content

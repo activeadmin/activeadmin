@@ -27,9 +27,9 @@ describe ActiveAdmin::Renderer, "HTML DSL" do
 
   it "should return the correct object" do
     list_1 = ul
-    list_2 = ul
-    list_1.should be_instance_of(ActiveAdmin::Renderer::HTML::Tag)
-    list_2.should be_instance_of(ActiveAdmin::Renderer::HTML::Tag)
+    list_2 = li
+    list_1.should be_instance_of(ActiveAdmin::Renderer::HTML::Ul)
+    list_2.should be_instance_of(ActiveAdmin::Renderer::HTML::Li)
   end
 
   it "should allow local variables inside the tags" do
@@ -57,10 +57,6 @@ describe ActiveAdmin::Renderer, "HTML DSL" do
     end.to_html.should == "<li>Hello World</li>"
   end
 
-  it "should set the tag's document" do
-    li("Hello").document.should be_instance_of(ActiveAdmin::Renderer::HTML::Document)
-  end
-
   describe "text nodes" do
     it "should turn strings into text nodes" do
       li do
@@ -69,20 +65,20 @@ describe ActiveAdmin::Renderer, "HTML DSL" do
     end
   end
 
-  describe "document" do
-    it "should contain the contents" do
-      ul do
-        li "First"
-        li "Second"
-      end
-      __current_html_document__.to_html.should == "<ul><li>First</li><li>Second</li></ul>"
-    end
-  end
-
-  describe "attributes" do
-
-  end
-
   describe "html safe" do
+    it "should escape the contents" do
+      span("<br />").to_html.should == "<span>&lt;br /&gt;</span>"
+    end
+
+    it "should escape string contents when passed in block" do
+      span {
+        span {
+          "<br />"
+        }
+      }.to_html.should == "<span><span>&lt;br /&gt;</span></span>"
+    end
+
+    it "should escape the contents of attributes"
   end
+
 end
