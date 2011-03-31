@@ -7,10 +7,10 @@ module ActiveAdmin
       class Tag < Element
         attr_reader :attributes
 
-        def self.builder_method(name)
-          ::ActiveAdmin::Renderer::HTML.class_eval <<-EOF, __FILE__, __LINE__
-            def #{name}(*args, &block)
-              __current_html_document__.insert #{name.to_s.capitalize}.new, *args, &block
+        def self.builder_method(method_name)
+          ::ActiveAdmin::Renderer::HTML::BuilderMethods.class_eval <<-EOF, __FILE__, __LINE__
+            def #{method_name}(*args, &block)
+              insert_tag #{self.name}, *args, &block
             end
           EOF
         end
@@ -25,8 +25,9 @@ module ActiveAdmin
         end
 
         def build(*args)
+          super
           attributes = args.extract_options!
-          self.content = args.first
+          self.content = args.first if args.first
 
           attributes.each do |key, value|
             set_attribute(key, value)
