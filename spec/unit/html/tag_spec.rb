@@ -1,7 +1,7 @@
 require 'spec_helper'
-include ActiveAdmin::Renderer::HTML
+include ActiveAdmin::HTML
 
-describe ActiveAdmin::Renderer::HTML::Tag do
+describe ActiveAdmin::HTML::Tag do
   let(:tag){ Tag.new }
 
   describe "building a new tag" do

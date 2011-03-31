@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe ActiveAdmin::Renderer, "HTML DSL" do
+describe ActiveAdmin::HTML do
 
-  include ActiveAdmin::Renderer::HTML
+  include ActiveAdmin::HTML
 
   it "should render a single element" do
     content = span("Hello World")
@@ -28,8 +28,8 @@ describe ActiveAdmin::Renderer, "HTML DSL" do
   it "should return the correct object" do
     list_1 = ul
     list_2 = li
-    list_1.should be_instance_of(ActiveAdmin::Renderer::HTML::Ul)
-    list_2.should be_instance_of(ActiveAdmin::Renderer::HTML::Li)
+    list_1.should be_instance_of(ActiveAdmin::HTML::Ul)
+    list_2.should be_instance_of(ActiveAdmin::HTML::Li)
   end
 
   it "should allow local variables inside the tags" do
@@ -61,7 +61,7 @@ describe ActiveAdmin::Renderer, "HTML DSL" do
     it "should turn strings into text nodes" do
       li do
         "Hello World"
-      end.children.first.should be_instance_of(ActiveAdmin::Renderer::HTML::TextNode)
+      end.children.first.should be_instance_of(ActiveAdmin::HTML::TextNode)
     end
   end
 

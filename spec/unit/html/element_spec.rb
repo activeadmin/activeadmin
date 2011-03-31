@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-include ActiveAdmin::Renderer::HTML
+include ActiveAdmin::HTML
 
-describe ActiveAdmin::Renderer::HTML::Element do
+describe ActiveAdmin::HTML::Element do
 
   let(:element){ Element.new }
 
@@ -74,7 +74,7 @@ describe ActiveAdmin::Renderer::HTML::Element do
   describe "setting the parent" do
     let(:parent) do
       parent = Element.new
-      parent.document = Buffer.new
+      parent.document = Document.new
       parent
     end
     before { element.parent = parent }

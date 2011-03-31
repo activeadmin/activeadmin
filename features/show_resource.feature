@@ -23,3 +23,21 @@ Feature: Show Resource
       """
     Then I should see the attribute "Author" with "jane_doe"
     And I should see a link to "jane_doe"
+
+  Scenario: Customizing the attributes table with a set of attributes
+    Given a show configuration of:
+    """
+      ActiveAdmin.register Post do
+
+        show do
+          attributes_table do |t|
+            t.attributes :title, :body, :created_at, :updated_at
+          end
+        end
+
+      end
+    """
+    Then I should see the attribute "Title" with "Hello World"
+    And I should see the attribute "Body" with "Empty"
+    And I should see the attribute "Created At" with a nicely formatted datetime
+    And I should not see the attribute "Author"

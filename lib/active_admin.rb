@@ -16,6 +16,7 @@ module ActiveAdmin
   autoload :Devise,                   'active_admin/devise'
   autoload :DSL,                      'active_admin/dsl'
   autoload :FormBuilder,              'active_admin/form_builder'
+  autoload :HTML,                     'active_admin/html'
   autoload :Iconic,                   'active_admin/iconic'
   autoload :Menu,                     'active_admin/menu'
   autoload :MenuItem,                 'active_admin/menu_item'
