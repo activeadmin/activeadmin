@@ -41,7 +41,6 @@ describe ActiveAdmin::HTML::Element, "Finder Methods" do
         end
       end
       elements = html.get_elements_by_tag_name("li")
-      puts html.to_html
       elements.size.should == 2
       elements[0].should be_instance_of(ActiveAdmin::HTML::Li)
       elements[1].should be_instance_of(ActiveAdmin::HTML::Li)

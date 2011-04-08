@@ -20,7 +20,7 @@ describe ActiveAdmin::Scope do
     end
 
     context "when a name and scope block" do
-      let(:scope)        { ActiveAdmin::Scope.new("My Scope"){|s| puts s } }
+      let(:scope)        { ActiveAdmin::Scope.new("My Scope"){|s| s } }
       its(:name)         { should == "My Scope"}
       its(:id)           { should == "my_scope"}
       its(:scope_method) { should == nil }

@@ -391,3 +391,10 @@ table.resource_attributes {
   }
   .scopes_seperator { display: none; }
 }
+
+// -------------------------------------- Columns
+.columns {
+  clear: both;
+  padding: 0;
+  .column { float: left; }
+}
