@@ -29,3 +29,4 @@ Gemfile.lock
 capybara*
 viewcumber
 test-rails-app
+public
