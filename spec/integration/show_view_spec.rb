@@ -93,22 +93,6 @@ describe_with_render "Show View" do
       end
     end
     
-    context "with custom output" do
-      before(:each) do
-        ActiveAdmin.register Post do
-          show do
-            "Woot Bang"
-          end
-        end
-        @post = Post.create(:title => "Hello World", :body => "Woot Woot")
-        get :show, :id => @post.id
-      end
-      
-      it "should render contents" do
-        response.body.should include("Woot Bang")
-      end
-    end
-    
     describe "admin notes" do
       
       context "when no notes" do
