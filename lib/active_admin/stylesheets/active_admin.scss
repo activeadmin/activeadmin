@@ -129,9 +129,9 @@ a.button, input[type=submit] { @include dark-button; }
   }
 }
 
-// ----------------------------------- Sections
+// ----------------------------------- Sections & Panels
 // Helper class to apply to elements to make them sections
-.section { @include section; }
+.section, .panel{ @include section; }
 
 // ----------------------------------- Tables 
 table {
