@@ -42,6 +42,35 @@ describe ActiveAdmin::HTML do
     content.to_html.should == "<ul><li>First</li><li>Second</li></ul>"
   end
 
+  it "should add children and nested" do
+    content = div do
+      ul
+      li do
+        li
+      end
+    end
+    content.to_html.should == "<div><ul></ul><li><li></li></li></div>"
+  end
+
+  it "should pass the element in to the block if asked for" do
+    content = div do |d|
+      d.ul do
+        li
+      end
+    end
+    content.to_html.should == "<div><ul><li></li></ul></div>"
+  end
+
+  it "should add content to the parent if the element is passed into block" do
+    content = div do |d|
+      d.id = "my-tag"
+      ul do
+        li
+      end
+    end
+    content.to_html.should == "<div id=\"my-tag\"><ul><li></li></ul></div>"
+  end
+
   it "should have the parent set on it" do
     item = nil
     list = ul do

@@ -19,6 +19,20 @@ describe ActiveAdmin::HTML::Element do
     it "should respond to the HTML builder methods" do
       element.should respond_to(:span)
     end
+    it "should have a set of local assigns" do
+      element = Element.new :hello => "World"
+      element.assigns[:hello].should == "World"
+    end
+    it "should have an empty hash with no local assigns" do
+      element.assigns.should == {}
+    end
+  end
+
+  describe "passing in a helper object" do
+    it "should call methods on the helper object" do
+      element = Element.new(nil, action_view)
+      element.content_tag(:div).should == "<div></div>"
+    end
   end
 
   describe "adding a child" do
@@ -73,8 +87,9 @@ describe ActiveAdmin::HTML::Element do
 
   describe "setting the parent" do
     let(:parent) do
+      doc = Document.new
       parent = Element.new
-      parent.document = Document.new
+      doc << parent
       parent
     end
     before { element.parent = parent }

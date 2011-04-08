@@ -1,14 +1,23 @@
 module ActiveAdmin
   module HTML
-
     def current_dom_context
-      @__current_dom_element__ ||= Document.new
+      @__current_dom_element__ ||= Document.new(assigns, helpers)
       @__current_dom_element__.current_dom_context
+    end
+
+    def assigns
+      @_assigns || {}
+    end
+
+    def helpers
+      @_helpers
     end
 
     def method_missing(name, *args, &block)
       if current_dom_context.respond_to?(name)
         current_dom_context.send name, *args, &block
+      elsif helpers.respond_to?(name)
+        helpers.send(name, *args, &block)
       else
         super
       end
@@ -16,7 +25,7 @@ module ActiveAdmin
 
     module BuilderMethods
       def build_tag(klass, *args, &block)
-        tag = klass.new
+        tag = klass.new(assigns, helpers)
 
         # If you passed in a block and want the object
         if block_given? && block.arity > 0
@@ -26,7 +35,7 @@ module ActiveAdmin
           end
         else
           # Build the tag
-          tag.build(*args, &block)
+          tag.build(*args)
 
           # Render the blocks contents
           if block_given?
@@ -56,10 +65,12 @@ module ActiveAdmin
       end
 
       def with_current_dom_context(tag)
+        current_dom_context # Ensure a context is setup
         @__current_dom_element_buffer__.push tag
         yield
         @__current_dom_element_buffer__.pop
       end
+      alias_method :within, :with_current_dom_context
 
       # Inserts a text node if the tag is a string
       def insert_text_node_if_string(tag)
@@ -76,6 +87,7 @@ require "active_admin/html/attributes.rb"
 require "active_admin/html/core_extensions.rb"
 require "active_admin/html/element"
 require "active_admin/html/collection"
+require "active_admin/html/class_list"
 require "active_admin/html/tag"
 require "active_admin/html/document"
 require "active_admin/html/html5_elements"

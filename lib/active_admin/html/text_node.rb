@@ -20,6 +20,10 @@ module ActiveAdmin
         @content = string
       end
 
+      def tag_name
+        nil
+      end
+
       def to_html
         ERB::Util.html_escape @content.to_html
       end

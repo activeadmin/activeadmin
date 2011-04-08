@@ -22,6 +22,8 @@ module ActiveAdmin
         case object
         when String
           object
+        when ActiveAdmin::HTML::Element
+          object
         when Date, Time
           localize(object, :format => :long)
         when ActiveRecord::Base

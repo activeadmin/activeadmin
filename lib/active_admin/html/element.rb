@@ -4,17 +4,22 @@ module ActiveAdmin
     class Element
       include ::ActiveAdmin::HTML
       include ::ActiveAdmin::HTML::BuilderMethods
-      
-      attr_accessor :parent, :document
+
+      attr_accessor :parent
       attr_reader :children
 
-      def initialize
+      def initialize(assigns = {}, helpers = nil)
+        @_assigns, @_helpers = assigns, helpers
         @children = Collection.new
       end
 
-      def build(*args)
+      def tag_name
+        @tag_name ||= self.class.name.demodulize.downcase
+      end
+
+      def build(*args, &block)
         # Render the block passing ourselves in
-        insert_text_node_if_string(yield(self)) if block_given?
+        insert_text_node_if_string(block.call(self)) if block
       end
 
       def add_child(child)
@@ -35,9 +40,8 @@ module ActiveAdmin
       end
 
       def remove_child(child)
-        p "Removing child"
         child.parent = nil if child.respond_to?(:parent=)
-        children.delete(child)
+        @children.delete(child)
       end
 
       def <<(child)
@@ -45,8 +49,15 @@ module ActiveAdmin
       end
 
       def parent=(parent)
-        @document = parent.respond_to?(:document) ? parent.document : nil
         @parent = parent
+      end
+
+      def parent?
+        !@parent.nil?
+      end
+
+      def document
+        parent.document if parent?
       end
 
       def content=(string_contents)
@@ -54,8 +65,18 @@ module ActiveAdmin
         add_child(ERB::Util.html_escape(string_contents)) if string_contents
       end
 
+      def get_elements_by_tag_name(tag_name)
+        elements = Collection.new
+        children.each do |child|
+          elements << child if child.tag_name == tag_name
+          elements.concat(child.get_elements_by_tag_name(tag_name))
+        end
+        elements
+      end
+      alias_method :find_by_tag, :get_elements_by_tag_name
+
       def content
-        @children.to_html
+        children.to_html
       end
 
       def to_s

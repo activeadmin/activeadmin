@@ -2,8 +2,12 @@ module ActiveAdmin
   class Renderer
 
     include ::ActiveAdmin::ViewHelpers::RendererHelper
+    include ::ActiveAdmin::HTML
 
     attr_accessor :view, :assigns
+
+    # For use in html
+    alias_method :helpers, :view
 
     def initialize(view_or_renderer)
       @view = view_or_renderer.is_a?(Renderer) ? view_or_renderer.view : view_or_renderer
@@ -15,8 +19,12 @@ module ActiveAdmin
       end
     end
 
-    def method_missing(*args, &block)
-      view.send(*args, &block)
+    def method_missing(name,*args, &block)
+      if view.respond_to?(name)
+        view.send(name, *args, &block)
+      else
+        super
+      end
     end    
 
     def to_html(*args)

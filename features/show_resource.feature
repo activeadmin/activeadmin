@@ -30,9 +30,7 @@ Feature: Show Resource
       ActiveAdmin.register Post do
 
         show do
-          attributes_table do |t|
-            t.attributes :title, :body, :created_at, :updated_at
-          end
+          attributes_table :title, :body, :created_at, :updated_at
         end
 
       end

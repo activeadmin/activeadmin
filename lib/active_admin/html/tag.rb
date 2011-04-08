@@ -14,19 +14,17 @@ module ActiveAdmin
         EOF
       end
 
-      def initialize
+      def initialize(*)
         super
         @attributes = Attributes.new
-      end
-
-      def tag_name
-        @tag_name ||= self.class.name.demodulize.downcase
       end
 
       def build(*args)
         super
         attributes = args.extract_options!
         self.content = args.first if args.first
+
+        set_for_attribute(attributes.delete(:for))
 
         attributes.each do |key, value|
           set_attribute(key, value)
@@ -50,6 +48,38 @@ module ActiveAdmin
         @attributes.delete(name.to_sym)
       end
 
+      def id
+        get_attribute(:id)
+      end
+
+      # Generates and id for the object if it doesn't exist already
+      def id!
+        return id if id
+        self.id = object_id.to_s
+        id
+      end
+
+      def id=(id)
+        set_attribute(:id, id)
+      end
+
+      def add_class(class_names)
+        class_list.add class_names
+      end
+
+      def remove_class(class_names)
+        class_list.delete(class_names)
+      end
+
+      # Returns a string of classes
+      def class_names
+        class_list.to_html
+      end
+
+      def class_list
+        get_attribute(:class) || set_attribute(:class, ClassList.new)
+      end
+
       def to_html
         "<#{tag_name}#{attributes_html}>#{content}</#{tag_name}>"
       end
@@ -58,6 +88,16 @@ module ActiveAdmin
 
       def attributes_html
         attributes.any? ? " " + attributes.to_html : nil
+      end
+
+      def set_for_attribute(record)
+        return unless record
+        set_attribute :id, ActionController::RecordIdentifier.dom_id(record, default_id_for_prefix)
+        add_class ActionController::RecordIdentifier.dom_class(record)
+      end
+
+      def default_id_for_prefix
+        nil
       end
 
     end

@@ -11,6 +11,7 @@ module ActiveAdmin
   autoload :AssetRegistration,        'active_admin/asset_registration'
   autoload :Breadcrumbs,              'active_admin/breadcrumbs'
   autoload :Callbacks,                'active_admin/callbacks'
+  autoload :Component,                'active_admin/component'
   autoload :ControllerAction,         'active_admin/controller_action'
   autoload :Dashboards,               'active_admin/dashboards'
   autoload :Devise,                   'active_admin/devise'
