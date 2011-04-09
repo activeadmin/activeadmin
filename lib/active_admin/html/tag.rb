@@ -81,7 +81,7 @@ module ActiveAdmin
       end
 
       def to_html
-        "<#{tag_name}#{attributes_html}>#{content}</#{tag_name}>"
+        "<#{tag_name}#{attributes_html}>#{content}</#{tag_name}>".html_safe
       end
 
       private

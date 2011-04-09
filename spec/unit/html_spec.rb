@@ -99,6 +99,14 @@ describe ActiveAdmin::HTML do
       span("<br />").to_html.should == "<span>&lt;br /&gt;</span>"
     end
 
+    it "should return html safe strings" do
+      span("<br />").to_html.should be_html_safe
+    end
+
+    it "should not escape html passed in" do
+      span(span("<br />")).to_html.should == "<span><span>&lt;br /&gt;</span></span>"
+    end
+
     it "should escape string contents when passed in block" do
       span {
         span {

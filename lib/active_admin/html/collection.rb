@@ -19,7 +19,7 @@ module ActiveAdmin
       def to_html
         self.collect do |element|
           element.to_html
-        end.join
+        end.join.html_safe
       end
     end
 

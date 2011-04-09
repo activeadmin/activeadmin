@@ -20,11 +20,11 @@ module ActiveAdmin
       def main_content
         if config.block
           # Eval the show config from the controller
-          instance_eval &config.block
+          instance_exec resource, &config.block
         else
           default_main_content
         end
-        html = current_dom_context.document.content.html_safe
+        html = current_dom_context.document.content
         html + (comments if active_admin_config.admin_notes?)
       end
 
@@ -33,7 +33,9 @@ module ActiveAdmin
       end
 
       def attributes_table(*args, &block)
-        attributes_table_for resource, *args, &block
+        panel(active_admin_config.resource_name + " Details") do
+          attributes_table_for resource, *args, &block
+        end
       end
 
       protected
