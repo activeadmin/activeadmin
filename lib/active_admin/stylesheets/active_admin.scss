@@ -326,30 +326,27 @@ table.dashboard {
 }
 
 // -------------------------------------- Resource Attributes Table 
-.attributes_table {
-  margin: -2px -15px -15px -15px;
-
-  table {
-    th, td {
-      padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
-      vertical-align: top;
-    }
-
-    th {
-      @include no-shadow;
-      background: none;
-      width: 150px;
-    }
-    td {
-      .empty {
-        color: #bbb;
-        font-size: 0.8em;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-      }
+.attributes_table table {
+  th, td {
+    padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
+    vertical-align: top;
+  }
+  th {
+    @include no-shadow;
+    background: none;
+    width: 150px;
+  }
+  td {
+    .empty {
+      color: #bbb;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
     }
   }
 }
+// If its in a panel, take up the whole thing
+.panel .attributes_table { margin: -2px -15px -15px -15px; }
 
 
 // -------------------------------------- Status Tags
