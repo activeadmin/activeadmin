@@ -4,14 +4,14 @@ module ActiveAdmin
 
       defaults :resource_class => ActiveAdmin::AdminNotes::Note
       actions :create
-      
+
       def create
         @admin_note = Note.new(params[:admin_note])
-                          
+
         if current_active_admin_user?
-         assign_admin_note_to_current_admin_user(@admin_note)
+          assign_admin_note_to_current_admin_user(@admin_note)
         end
-              
+
         if @admin_note.save
           renderer = ActiveAdmin.view_factory.admin_notes.new(self.class.helpers)
           respond_to do |format|
@@ -24,16 +24,16 @@ module ActiveAdmin
           end
         end
       end
-      
+
       def add_section_breadcrumb; end
       def set_current_tab; end
-      
+
       private
-      
+
       def assign_admin_note_to_current_admin_user(admin_note)
         admin_note.admin_user = current_active_admin_user
       end
-      
+
     end
   end
 end

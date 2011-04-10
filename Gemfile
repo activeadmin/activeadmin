@@ -11,6 +11,12 @@ when "3.0.2"
   gem 'rails',          '= 3.0.2'
 when "3.0.3"
   gem 'rails',          '= 3.0.3'
+when "3.0.4"
+  gem 'rails',          '= 3.0.4'
+when "3.0.5"
+  gem 'rails',          '= 3.0.5'
+when "3.0.6"
+  gem 'rails',          '= 3.0.6'
 else
   # Default gems for in the gemspec
   gem 'rails',          '>= 3.0.0'
