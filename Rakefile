@@ -10,11 +10,11 @@ def cmd(command)
 end
 
 desc "Install all supported versions of rails"
-task :install_rails do
-  (0..3).to_a.each do |v|
+task :install_all_rails do
+  (0..6).to_a.each do |v|
     system "rm Gemfile.lock"
     puts "Installing for RAILS=3.0.#{v}"
-    system "RAILS=3.0.#{v} bundle install"
+    cmd "RAILS=3.0.#{v} bundle install"
   end
 end
 
@@ -56,11 +56,11 @@ task :default => :spec
 namespace :spec do
   desc "Run specs for all versions of rails"
   task :all do
-    [0,3].each do |v|
+    (0..6).to_a.each do |v|
       puts "Running for Rails 3.0.#{v}"
       cmd "rm Gemfile.lock" if File.exists?("Gemfile.lock")
-      cmd "RAILS=3.0.#{v} bundle install --local"
-      cmd "RAILS=3.0.#{v} rake spec"
+      cmd "/usr/bin/env RAILS=3.0.#{v} bundle install"
+      cmd "/usr/bin/env RAILS=3.0.#{v} rake spec"
     end
   end
 end

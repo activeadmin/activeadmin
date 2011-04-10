@@ -1,8 +1,7 @@
 require 'spec_helper'
 
-include ActiveAdmin::HTML
-
 describe ActiveAdmin::HTML::Element do
+  include ActiveAdmin::HTML
 
   let(:element){ Element.new }
 

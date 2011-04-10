@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe ActiveAdmin::HTML do
-
   include ActiveAdmin::HTML
 
   it "should render a single element" do

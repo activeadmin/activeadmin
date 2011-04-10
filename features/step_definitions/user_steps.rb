@@ -1,5 +1,5 @@
 Given /^I am logged out$/ do
-  visit "/admin/sign_out"
+  visit destroy_admin_user_session_path
 end
 
 Given /^I am logged in$/ do

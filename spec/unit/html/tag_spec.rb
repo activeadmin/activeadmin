@@ -1,7 +1,8 @@
 require 'spec_helper'
-include ActiveAdmin::HTML
 
 describe ActiveAdmin::HTML::Tag do
+  include ActiveAdmin::HTML
+
   let(:tag){ Tag.new }
 
   describe "building a new tag" do

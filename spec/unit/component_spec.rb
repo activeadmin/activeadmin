@@ -1,8 +1,10 @@
 require 'spec_helper'
 
+class MockComponentClass < ActiveAdmin::Component; end
+
 describe ActiveAdmin::Component do
 
-  let(:component_class){ Class.new(ActiveAdmin::Component) }
+  let(:component_class){ MockComponentClass }
   let(:component){ component_class.new }
 
   it "should be a subclass of an html div" do

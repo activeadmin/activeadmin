@@ -13,25 +13,26 @@ describe ActiveAdmin::Views::AttributesTable do
       post
     end
 
+
     # Loop through a few different ways to make the same table
     # and ensure that they produce the same results
     {
-      "when attributes are passed in to the builder methods" => lambda {
+      "when attributes are passed in to the builder methods" => proc {
         attributes_table_for post, :id, :title, :body
       },
-      "when attributes are built using the block" => lambda {
+      "when attributes are built using the block" => proc {
         attributes_table_for post do
           rows :id, :title, :body
         end
       },
-      "when each attribute is passed in by itself" => lambda {
+      "when each attribute is passed in by itself" => proc {
         attributes_table_for post do
           row :id
           row :title
           row :body
         end
       },
-      "when you create each row with a custom block" => lambda {
+      "when you create each row with a custom block" => proc {
         attributes_table_for post do
           row("Id")   { post.id }
           row("Title"){ post.title }
