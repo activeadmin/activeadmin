@@ -1,5 +1,6 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Sign in", new_session_path(resource_name) %><br />
+  <% scope = Devise::Mapping.find_scope!(resource_name) %>
+  <%= link_to "Sign in", send(:"new_#{scope}_session_path") }")br />
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>

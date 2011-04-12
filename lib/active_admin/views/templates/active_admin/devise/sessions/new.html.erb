@@ -1,7 +1,8 @@
 <div id="login">
   <h2><%= title "#{ActiveAdmin.site_title} Login" %></h2>
 
-  <%= active_admin_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :id => "session_new" }) do |f| 
+  <% scope = Devise::Mapping.find_scope!(resource_name) %>
+  <%= active_admin_form_for(resource, :as => resource_name, :url => send(:"#{scope}_session_path"), :html => { :id => "session_new" }) do |f| 
     f.inputs do
       f.input :email
       f.input :password
