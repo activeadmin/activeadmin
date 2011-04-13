@@ -1,1 +1,1 @@
-default: --format 'progress' features
+default: --format 'progress' --require features/support/env.rb --require features/step_definitions features
