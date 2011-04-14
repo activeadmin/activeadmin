@@ -54,7 +54,7 @@ module ActiveAdmin
 
     # Default Sidebar Sections
     sidebar :filters, :only => :index, :icon => :magnifying_glass do
-      active_admin_filters_form_for @search, filters_config
+      active_admin_filters_form_for assigns["search"], filters_config
     end
 
     # Default Action Item Links

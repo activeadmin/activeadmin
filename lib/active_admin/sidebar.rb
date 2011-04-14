@@ -21,7 +21,7 @@ module ActiveAdmin
       end
 
       def icon
-        ActiveAdmin::Iconic.icon options[:icon]
+        ActiveAdmin::Iconic.icon(options[:icon]) if icon?
       end
 
       # The title gets displayed within the section in the view

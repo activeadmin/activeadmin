@@ -82,7 +82,7 @@ describe ActiveAdmin::Sidebar do
       let(:section){ ActiveAdmin::Sidebar::Section.new(:filters, :partial => 'custom_partial') }
 
       it "should render the partial" do
-        renderer.should_receive(:render).with('custom_partial').and_return("woot")
+        renderer.helpers.should_receive(:render).with('custom_partial').and_return("woot")
         render!.should include("woot")
       end
     end
@@ -91,7 +91,7 @@ describe ActiveAdmin::Sidebar do
       let(:section){ ActiveAdmin::Sidebar::Section.new(:filters) }
 
       it "should render the partial based on the name of the sidebar section" do
-        renderer.should_receive(:render).with('filters_sidebar').and_return("woot")
+        renderer.helpers.should_receive(:render).with('filters_sidebar').and_return("woot")
         render!.should include("woot")
       end
     end
