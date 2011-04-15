@@ -17,42 +17,6 @@ describe ActiveAdmin::HTML::Tag do
     end
   end
 
-  describe "attributes" do
-    before { tag.build :id => "my_id" }
-
-    it "should have an attributes hash" do
-      tag.attributes.should == {:id => "my_id"}
-    end
-
-    it "should render the attributes to html" do
-      tag.to_html.should == '<tag id="my_id"></tag>'
-    end
-
-    it "should get an attribute value" do
-      tag.attr(:id).should == "my_id"
-    end
-
-    describe "#has_attribute?" do
-      context "when the attribute exists" do
-        it "should return true" do
-          tag.has_attribute?(:id).should == true
-        end
-      end
-
-      context "when the attribute does not exist" do
-        it "should return false" do
-          tag.has_attribute?(:class).should == false
-        end
-      end
-    end
-
-    it "should remove an attribute" do
-      tag.attributes.should == {:id => "my_id"}
-      tag.remove_attribute(:id).should == "my_id"
-      tag.attributes.should == {}
-    end
-  end
-
   describe "creating a tag 'for' an object" do
     let(:model_name){ mock(:singular => "resource_class")}
     let(:resource_class){ mock(:model_name => model_name) }
@@ -93,4 +57,6 @@ describe ActiveAdmin::HTML::Tag do
       tag.class_list.size.should == 2
     end
   end
+
+
 end
