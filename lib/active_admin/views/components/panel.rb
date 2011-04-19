@@ -5,8 +5,10 @@ module ActiveAdmin
       builder_method :panel
 
       def build(title, attributes = {})
+        icon_name = attributes.delete(:icon)
+        icn = icon_name ? icon(icon_name) : ""
         super(attributes)
-        @title = h3(title)
+        @title = h3(icn + title.to_s)
         @contents = div(:class => "panel_contents")
       end
 
