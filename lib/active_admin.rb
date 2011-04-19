@@ -16,6 +16,7 @@ module ActiveAdmin
   autoload :Dashboards,               'active_admin/dashboards'
   autoload :Devise,                   'active_admin/devise'
   autoload :DSL,                      'active_admin/dsl'
+  autoload :Event,                    'active_admin/event'
   autoload :FormBuilder,              'active_admin/form_builder'
   autoload :HTML,                     'active_admin/html'
   autoload :Iconic,                   'active_admin/iconic'
@@ -135,8 +136,15 @@ module ActiveAdmin
     # TODO: Setup docs for registration options
     def register(resource, options = {}, &block)
       namespace_name = options[:namespace] == false ? :root : (options[:namespace] || default_namespace)
-      namespace = namespaces[namespace_name] ||= Namespace.new(namespace_name)
+      namespace = namespaces[namespace_name] ||= create_namespace(namespace_name)
       namespace.register(resource, options, &block)
+    end
+
+    # Creates a namespace for the given name
+    def create_namespace(name)
+      namespace = Namespace.new(name)
+      ActiveAdmin::Event.dispatch ActiveAdmin::Namespace::RegisterEvent, namespace
+      namespace
     end
 
 

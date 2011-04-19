@@ -10,6 +10,9 @@ module ActiveAdmin
   #
   class Resource
 
+    # Event dispatched when a new resource is registered
+    RegisterEvent = 'active_admin.resource.register'.freeze
+
     autoload :BelongsTo, 'active_admin/resource/belongs_to'
 
     # The namespace this resource belongs to

@@ -24,6 +24,8 @@ module ActiveAdmin
   #
   class Namespace
 
+    RegisterEvent = 'active_admin.namespace.register'.freeze
+
     attr_reader :resources, :name, :menu
 
     def initialize(name)
@@ -52,7 +54,10 @@ module ActiveAdmin
 
       # Ensure that the dashboard is generated
       generate_dashboard_controller
-      
+
+      # Dispatch a registration event
+      ActiveAdmin::Event.dispatch ActiveAdmin::Resource::RegisterEvent, config
+
       # Return the config
       config
     end
