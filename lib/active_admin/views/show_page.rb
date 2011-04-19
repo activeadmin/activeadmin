@@ -44,9 +44,17 @@ module ActiveAdmin
         "#{active_admin_config.resource_name} ##{resource.id}"
       end
 
-      def default_main_content
-        attributes_table *show_view_columns
+      module DefaultMainContent
+        def default_main_content
+          attributes_table *default_attribute_table_rows
+        end
+
+        def default_attribute_table_rows
+          resource.class.columns.collect{|column| column.name.to_sym }
+        end
       end
+
+      include DefaultMainContent
     end
   end
 end
