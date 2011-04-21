@@ -12,7 +12,7 @@ module ActiveAdmin
       end  
 
       def self.next_migration_number(dirname)
-        Time.now.strftime("%Y%m%d%H%M")
+        Time.now.strftime("%Y%m%d%H%M%S")
       end
 
       def copy_initializer
@@ -34,8 +34,12 @@ module ActiveAdmin
         directory 'images', 'public/images/active_admin'
       end
 
-      def create_comments_migration
-        migration_template 'create_admin_notes.rb', 'db/migrate/create_admin_notes.rb'
+      def create_migrations
+        Dir["#{self.class.source_root}/migrations/*.rb"].sort.each do |filepath|
+          name = File.basename(filepath)
+          migration_template "migrations/#{name}", "db/migrate/#{name.gsub(/^\d+_/,'')}"
+          sleep 1
+        end
       end
     end
   end

@@ -16,10 +16,11 @@ autoload :ActiveAdmin, 'active_admin'
 
 
 module ActiveAdminIntegrationSpecHelper
-
   extend self
 
   def load_defaults!
+    ActiveAdmin.unload!
+    ActiveAdmin.load!
     ActiveAdmin.register(Category)
     ActiveAdmin.register(User)
     ActiveAdmin.register(Post){ belongs_to :user, :optional => true }
@@ -45,6 +46,7 @@ module ActiveAdminIntegrationSpecHelper
   #   end
   #
   def load_resources
+    ActiveAdmin.unload!
     yield
     reload_menus!
     reload_routes!
@@ -90,7 +92,7 @@ ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{ENV["RAILS"]}", __FILE__)
 
 # Create the test app if it doesn't exists
 unless File.exists?(ENV['RAILS_ROOT'])
-  system 'rake setup'  
+  system 'rake setup'
 end
 
 require ENV['RAILS_ROOT'] + '/config/environment'

@@ -45,7 +45,8 @@ module ActiveAdmin
       def active_admin_config=(config)
         @active_admin_config = config
         defaults  :resource_class => config.resource,
-                  :route_prefix => config.route_prefix
+                  :route_prefix => config.route_prefix,
+                  :instance_name => config.underscored_resource_name
       end
 
       public :belongs_to

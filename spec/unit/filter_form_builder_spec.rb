@@ -152,7 +152,7 @@ describe_with_render 'A resource\'s filters' do
   describe "default filters" do
     it "should order by association, then content columns" do
       attributes = controller.class.default_filters_config.collect{|f| f[:attribute] }
-      attributes.should include(:author, :admin_notes, :title, :body, :published_at, :created_at, :updated_at)
+      attributes.should include(:author, :active_admin_comments, :title, :body, :published_at, :created_at, :updated_at)
     end
   end
 

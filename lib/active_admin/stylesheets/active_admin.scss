@@ -10,12 +10,12 @@
 @import "active_admin/typography";
 @import "active_admin/header";
 @import "active_admin/forms";
-@import "active_admin/admin_notes";
+@import "active_admin/comments";
 @import "active_admin/flash_messages";
 
 body {
   font-family: Helvetica, Arial, sans-serif;
-  line-height: 140%;
+  line-height: 150%;
   font-size: 72%;
   background: #fff;
   margin: 0;

@@ -42,3 +42,14 @@ end
 Then /^I should be in the resource section for (.+)$/ do |resource_name|
   current_url.should include(resource_name.gsub(' ', '').underscore.pluralize)
 end
+
+Then /^I should wait and see "([^"]*)"(?: within "([^"]*)")?$/ do |text, selector|
+  sleep 1
+  Then 'show me the page'
+  selector ||= "*"
+  locate(:xpath, "//#{selector}[text()='#{text}']")
+end
+
+Then /^I should see the page title "([^"]*)"$/ do |title|
+  Then %{I should see "#{title}" within "h2#page_title"}
+end

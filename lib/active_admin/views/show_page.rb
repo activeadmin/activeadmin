@@ -24,12 +24,7 @@ module ActiveAdmin
         else
           default_main_content
         end
-        html = current_dom_context.document.content
-        html + (comments if active_admin_config.admin_notes?)
-      end
-
-      def comments
-        render view_factory.admin_notes, resource
+        current_dom_context.document.content
       end
 
       def attributes_table(*args, &block)

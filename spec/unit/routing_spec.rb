@@ -85,10 +85,4 @@ describe ActiveAdmin, "Routing" do
     end
   end
 
-  describe "notes routes" do
-    it "should have a admin notes path" do
-      admin_admin_notes_path.should == "/admin/admin_notes"
-    end
-  end
-
 end

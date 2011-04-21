@@ -11,11 +11,6 @@ describe "Registering an object to administer" do
       ActiveAdmin.register Category
     end
 
-    it "should have many admin notes" do
-      namespace.register Category
-      Category.reflect_on_association(:admin_notes).macro.should == :has_many
-    end
-
     it "should dispatch a Resource::RegisterEvent" do
       ActiveAdmin::Event.should_receive(:dispatch).with(ActiveAdmin::Resource::RegisterEvent, an_instance_of(ActiveAdmin::Resource))
       ActiveAdmin.register Category
@@ -66,6 +61,24 @@ describe "Registering an object to administer" do
       ActiveAdmin.register Category, :namespace => false
       reload_routes!
       Rails.application.routes.url_helpers.methods.collect(&:to_s).should include("dashboard_path")
+    end
+  end
+
+  context "when being registered multiple times" do
+    it "should run the dsl in the same config object" do
+      config_1 = ActiveAdmin.register(Category) { filter :name }
+      config_2 = ActiveAdmin.register(Category) { filter :id }
+      config_1.should == config_2
+      config_1.controller.filters_config.size.should == 2
+    end
+
+    context "with different resource classes" do
+      it "should raise an ActiveAdmin::ResourceMismatch" do
+        lambda {
+          ActiveAdmin.register Category
+          ActiveAdmin.register Post, :as => "Category"
+        }.should raise_error(ActiveAdmin::ResourceMismatchError)
+      end
     end
   end
 

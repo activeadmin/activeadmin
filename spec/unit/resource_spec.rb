@@ -3,6 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 module ActiveAdmin
   describe Resource do
 
+    before { load_defaults! }
+
     let(:namespace){ Namespace.new(:admin) }
 
     def config(options = {})

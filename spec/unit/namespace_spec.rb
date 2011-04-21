@@ -160,27 +160,6 @@ describe ActiveAdmin::Namespace do
         end
       end
     end
-    
-    describe "admin notes" do
-      let(:namespace){ ActiveAdmin::Namespace.new(:admin) }
-      context "when admin notes are disabled" do
-        it "should not call #register_with_admin_notes" do
-          namespace.should_not_receive :register_with_admin_notes
-          namespace.register Category do
-            config.admin_notes = false
-          end
-        end
-      end
-      context "when admin notes are enabled" do
-        it "should call #register_with_admin_notes" do
-          namespace.should_receive :register_with_admin_notes
-          namespace.register Category do
-            config.admin_notes = true
-          end
-        end
-      end
-    end
 
-  end  
-
+  end
 end

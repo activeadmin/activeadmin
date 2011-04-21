@@ -4,10 +4,9 @@ require 'will_paginate'
 require 'sass'
 
 module ActiveAdmin
-  
+
   autoload :VERSION,                  'active_admin/version'
   autoload :ActionItems,              'active_admin/action_items'
-  autoload :AdminNotes,               'active_admin/admin_notes'
   autoload :AssetRegistration,        'active_admin/asset_registration'
   autoload :Breadcrumbs,              'active_admin/breadcrumbs'
   autoload :Callbacks,                'active_admin/callbacks'
@@ -132,18 +131,18 @@ module ActiveAdmin
     end
 
     # Registers a brand new configuration for the given resource.
-    #
-    # TODO: Setup docs for registration options
     def register(resource, options = {}, &block)
       namespace_name = options[:namespace] == false ? :root : (options[:namespace] || default_namespace)
-      namespace = namespaces[namespace_name] ||= create_namespace(namespace_name)
+      namespace = find_or_create_namespace(namespace_name)
       namespace.register(resource, options, &block)
     end
 
     # Creates a namespace for the given name
-    def create_namespace(name)
+    def find_or_create_namespace(name)
+      return namespaces[name] if namespaces[name]
       namespace = Namespace.new(name)
       ActiveAdmin::Event.dispatch ActiveAdmin::Namespace::RegisterEvent, namespace
+      namespaces[name] = namespace
       namespace
     end
 
@@ -205,11 +204,6 @@ module ActiveAdmin
       # are all loaded
       load!
 
-      # routes for comments controller
-      router.instance_eval do
-        post "/admin/admin_notes", :to => "active_admin/admin_notes/notes#create", :as => :admin_admin_notes
-      end
-      
       # Define any necessary dashboard routes
       router.instance_exec(namespaces.values) do |namespaces|
         namespaces.each do |namespace|
@@ -278,7 +272,7 @@ module ActiveAdmin
     end
 
     def load_default_namespace
-      namespaces[default_namespace] ||= Namespace.new(default_namespace)
+      find_or_create_namespace(default_namespace)
     end
 
     #
@@ -307,3 +301,5 @@ module ActiveAdmin
 
   end
 end
+
+require 'active_admin/comments'

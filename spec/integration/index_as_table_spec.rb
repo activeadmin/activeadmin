@@ -8,7 +8,7 @@ describe_with_render "Index as Table" do
   end
 
   before(:each) do
-    Admin::PostsController.reset_index_config!
+    load_defaults!
   end
 
   describe "GET #index" do

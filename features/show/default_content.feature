@@ -1,4 +1,4 @@
-Feature: Show Resource
+Feature: Show - Default Content
 
   Viewing the show page for a resource
 

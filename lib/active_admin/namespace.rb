@@ -1,5 +1,7 @@
 module ActiveAdmin
 
+  class ResourceMismatchError < StandardError; end
+
   # Namespaces are the basic organizing principle for resources within Active Admin
   #
   # Each resource is registered into a namespace which defines:
@@ -40,17 +42,12 @@ module ActiveAdmin
     # use the global registration ActiveAdmin.register which delegates to the proper 
     # namespace instance.
     def register(resource, options = {}, &block)
-      # Init and store the resource
-
-
-      config = Resource.new(self, resource, options)
-      @resources[config.camelized_resource_name] = config
+      config = find_or_build_resource(resource, options)
 
       # Register the resource
       register_resource_controller(config)
       parse_registration_block(config, &block) if block_given?
       register_with_menu(config) if config.include_in_menu?
-      register_with_admin_notes(config) if config.admin_notes?
 
       # Ensure that the dashboard is generated
       generate_dashboard_controller
@@ -107,6 +104,28 @@ module ActiveAdmin
 
     protected
 
+    # Either returns an existing Resource instance or builds a new
+    # one for the resource and options
+    def find_or_build_resource(resource_class, options)
+      resource = Resource.new(self, resource_class, options)
+
+      # If we've already registered this resource, use the existing
+      if @resources.has_key? resource.camelized_resource_name
+        existing_resource = @resources[resource.camelized_resource_name]
+
+        if existing_resource.resource != resource_class
+          raise ActiveAdmin::ResourceMismatchError, 
+            "Tried to register #{resource_class} as #{resource.camelized_resource_name} but already registered to #{resource.resource}"
+        end
+
+        resource = existing_resource
+      else
+        @resources[resource.camelized_resource_name] = resource
+      end
+
+      resource
+    end
+
     def unload_resources!
       resources.each do |name, config|
         parent = (module_name || 'Object').constantize
@@ -114,6 +133,7 @@ module ActiveAdmin
         # Remove the const if its been defined
         parent.send(:remove_const, const_name) if parent.const_defined?(const_name)
       end
+      @resources = {}
     end
 
     def unload_dashboard!
@@ -173,10 +193,6 @@ module ActiveAdmin
       else
         add_to.add(config.menu_item_name, config.route_collection_path)
       end
-    end
-    
-    def register_with_admin_notes(config)
-      config.resource.has_many :admin_notes, :as => :resource, :class_name => "ActiveAdmin::AdminNotes::Note"
     end
   end
 end

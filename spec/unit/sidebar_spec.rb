@@ -6,20 +6,9 @@ describe ActiveAdmin::Sidebar do
   render_views  
   metadata[:behaviour][:describes] = Admin::CategoriesController
 
-  before :all do
-    load_defaults!
-    reload_routes!
-  end
-
-  # Store the config and set it back after each spec so that we
-  # dont mess with other specs
   before do
-    @config_before = Admin::CategoriesController.sidebar_sections.dup
-    Admin::CategoriesController.clear_sidebar_sections!
-  end
-
-  after(:each) do
-    Admin::CategoriesController.sidebar_sections = @config_before
+    load_defaults!
+    ActiveAdmin.namespaces[:admin].resource_for(Category).controller.clear_sidebar_sections!
   end
 
   # Helper method to define a sidebar
@@ -29,12 +18,17 @@ describe ActiveAdmin::Sidebar do
     end
   end
 
+  def get_index
+    self.class.metadata[:behaviour][:describes] = Admin::CategoriesController
+    get :index
+  end
+
   context "when setting with a block" do
     before do
       sidebar :my_filters do
         link_to "My Filters", '#'
       end
-      get :index
+      get_index
     end
     it "should add a new sidebar to @sidebar_sections" do
       Admin::CategoriesController.sidebar_sections.size.should == 1
