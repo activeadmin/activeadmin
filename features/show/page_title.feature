@@ -8,13 +8,26 @@ Feature: Show - Page Title
   Scenario: Set a method to be called on the resource as the title
     Given a show configuration of:
     """
-    ActiveAdmin.register Post do
-      show :title => :title
-    end
+      ActiveAdmin.register Post do
+        show :title => :title
+      end
     """
     Then I should see the page title "Hello World"
 
   Scenario: Set a string as the title
+    Given a show configuration of:
+    """
+      ActiveAdmin.register Post do
+        show :title => "Title From String"
+      end
+    """
+    Then I should see the page title "Title From String"
 
   Scenario: Set a proc as the title
-
+    Given a show configuration of:
+    """
+      ActiveAdmin.register Post do
+        show :title => proc{|post| "Title: " + post.title }
+      end
+    """
+    Then I should see the page title "Title: Hello World"
