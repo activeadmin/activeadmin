@@ -2,6 +2,14 @@ Then /^I should see a table header with "([^"]*)"$/ do |content|
   Then "I should see \"#{content}\" within \"th\""
 end
 
+Then /^I should not see a table header with "([^"]*)"$/ do |content|
+  Then "I should not see \"#{content}\" within \"th\""
+end
+
+Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
+  Then "I should see \"#{content}\" within \"th.sortable\""
+end
+
 Then /^the table "([^"]*)" should have (\d+) rows/ do |selector, count|
   with_scope(selector) do
     page.all(:css, 'tr').size.should == count.to_i
