@@ -1,4 +1,4 @@
-Feature: Comments
+Feature: Commenting
 
   As a user
   In order to document changes and have a discussion
@@ -61,3 +61,10 @@ Feature: Comments
     And I follow "View"
     Then I should not see "Hello world in public namespace"
     And I should see "Comments (1)"
+
+  Scenario: Viewing all commments for a namespace
+    When I add a comment "Hello from Comment"
+    When I am on the index page for comments
+    Then I should see a table header for "Body"
+    And I should see "Hello from Comment"
+

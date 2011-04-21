@@ -21,12 +21,21 @@ ActiveAdmin.view_factory.show_page.send :include, ActiveAdmin::Comments::ShowPag
 ActiveAdmin::Event.subscribe ActiveAdmin::Namespace::RegisterEvent do |namespace|
   if namespace.comments?
     namespace.register ActiveAdmin::Comment, :as => 'Comment' do
+      actions :index, :show, :create
 
       # Don't display in the menu
       menu false
 
       # Don't allow comments on comments
       config.comments = false
+
+      # Filter Comments by date
+      filter :created_at
+
+      # Only view comments in this namespace
+      scope :all, :default => true do |comments|
+        comments.where(:namespace => active_admin_config.namespace.name)
+      end
 
       # Always redirect to the resource on show
       before_filter :only => :show do
@@ -35,9 +44,17 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Namespace::RegisterEvent do |namespace
         redirect_to [active_admin_config.namespace.name, comment.resource]
       end
 
+      # Store the author and namespace
       before_save do |comment|
         comment.namespace = active_admin_config.namespace.name
         comment.author = current_active_admin_user
+      end
+
+      # Display as a table
+      index do |i|
+        i.column("Resource"){|comment| auto_link(comment.resource) }
+        i.column("Author"){|comment| auto_link(comment.author) }
+        i.column :body
       end
     end
   end
