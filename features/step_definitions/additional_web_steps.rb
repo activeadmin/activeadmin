@@ -61,3 +61,7 @@ end
 Then /^I should see the page title "([^"]*)"$/ do |title|
   Then %{I should see "#{title}" within "h2#page_title"}
 end
+
+Then /^I should see a fieldset titled "([^"]*)"$/ do |title|
+  Then %{I should see "#{title}" within "fieldset legend"}
+end

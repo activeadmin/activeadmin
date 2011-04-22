@@ -22,3 +22,10 @@ Given /^a show configuration of:$/ do |config|
   When "I am on the index page for posts"
   And 'I follow "View"'
 end
+
+Given /^"([^"]*)" contains:$/ do |filename, contents|
+  require 'fileutils'
+  filepath = Rails.root + filename
+  FileUtils.mkdir_p File.dirname(filepath)
+  File.open(filepath, 'w+'){|f| f << contents }
+end

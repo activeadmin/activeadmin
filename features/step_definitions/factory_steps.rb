@@ -17,3 +17,12 @@ Given /^(\d+) posts exist/ do |count|
     Post.create! :title => "Hello World #{i}"
   end
 end
+
+Given /^a category named "([^"]*)" exists$/ do |name|
+  Category.create! :name => name
+end
+
+Given /^a user named "([^"]*)" exists$/ do |name|
+  first, last = name.split(" ")
+  User.create! :first_name => first, :last_name => last, :username => name
+end
