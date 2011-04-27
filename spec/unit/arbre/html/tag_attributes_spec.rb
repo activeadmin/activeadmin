@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe ActiveAdmin::HTML::Tag, "Attributes" do
-  include ActiveAdmin::HTML
+describe Arbre::HTML::Tag, "Attributes" do
+  include Arbre::HTML
 
   let(:tag){ Tag.new }
 

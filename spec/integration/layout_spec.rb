@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe_with_render "Layout" do
 
-  before :all do
+  before do
     load_defaults!
   end
 
@@ -34,10 +34,12 @@ describe_with_render "Layout" do
       Admin::PostsController.send :alias_method, :protect_against_forgery?, :protect_against_forgery_without_mock?
     end
     it "should include the csrf-param meta tag" do
+      self.class.metadata[:behaviour][:describes] = Admin::PostsController
       get :index
       response.should have_tag("meta", :attributes => { :name => "csrf-param" })
     end
     it "should include the csrf-token meta tag" do
+      self.class.metadata[:behaviour][:describes] = Admin::PostsController
       get :index
       response.should have_tag("meta", :attributes => { :name => "csrf-token" })
     end

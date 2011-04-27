@@ -1,9 +1,9 @@
-module ActiveAdmin
+module Arbre
   module HTML
 
     class Element
-      include ::ActiveAdmin::HTML
-      include ::ActiveAdmin::HTML::BuilderMethods
+      include ::Arbre::HTML
+      include ::Arbre::HTML::BuilderMethods
 
       attr_accessor :parent
       attr_reader :children

@@ -1,4 +1,4 @@
-module ActiveAdmin
+module Arbre
   module HTML
 
     AUTO_BUILD_ELEMENTS = [ :a, :abbr, :address, :area, :article, :aside, :audio, :b, :base,

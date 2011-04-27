@@ -1,13 +1,13 @@
 require 'erb'
 
-module ActiveAdmin
+module Arbre
   module HTML
 
     class Tag < Element
       attr_reader :attributes
 
       def self.builder_method(method_name)
-        ::ActiveAdmin::HTML::BuilderMethods.class_eval <<-EOF, __FILE__, __LINE__
+        ::Arbre::HTML::BuilderMethods.class_eval <<-EOF, __FILE__, __LINE__
           def #{method_name}(*args, &block)
             insert_tag #{self.name}, *args, &block
           end

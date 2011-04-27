@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe ActiveAdmin::Views::AttributesTable do
+  include Arbre::HTML
 
   describe "creating with the dsl" do
-    include ActiveAdmin::HTML
     let(:helpers) { action_view }
 
     let(:post) do

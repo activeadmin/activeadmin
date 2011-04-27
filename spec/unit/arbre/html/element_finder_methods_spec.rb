@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe ActiveAdmin::HTML::Element, "Finder Methods" do
-  include ActiveAdmin::HTML
+describe Arbre::HTML::Element, "Finder Methods" do
+  include Arbre::HTML
 
   describe "finding elements by tag name" do
 
@@ -17,7 +17,7 @@ describe ActiveAdmin::HTML::Element, "Finder Methods" do
       end
       elements = html.get_elements_by_tag_name("li")
       elements.size.should == 1
-      elements[0].should be_instance_of(ActiveAdmin::HTML::Li)
+      elements[0].should be_instance_of(Arbre::HTML::Li)
     end
 
     it "should return multple child elements" do
@@ -29,8 +29,8 @@ describe ActiveAdmin::HTML::Element, "Finder Methods" do
       end
       elements = html.get_elements_by_tag_name("li")
       elements.size.should == 2
-      elements[0].should be_instance_of(ActiveAdmin::HTML::Li)
-      elements[1].should be_instance_of(ActiveAdmin::HTML::Li)
+      elements[0].should be_instance_of(Arbre::HTML::Li)
+      elements[1].should be_instance_of(Arbre::HTML::Li)
     end
 
     it "should return children's child elements" do
@@ -42,8 +42,8 @@ describe ActiveAdmin::HTML::Element, "Finder Methods" do
       end
       elements = html.get_elements_by_tag_name("li")
       elements.size.should == 2
-      elements[0].should be_instance_of(ActiveAdmin::HTML::Li)
-      elements[1].should be_instance_of(ActiveAdmin::HTML::Li)
+      elements[0].should be_instance_of(Arbre::HTML::Li)
+      elements[1].should be_instance_of(Arbre::HTML::Li)
       elements[1].parent.should == elements[0]
     end
   end

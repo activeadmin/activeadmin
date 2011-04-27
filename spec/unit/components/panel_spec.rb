@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ActiveAdmin::Views::Panel do
-  include ActiveAdmin::HTML
+  include Arbre::HTML
 
   let(:helpers) { action_view }
 

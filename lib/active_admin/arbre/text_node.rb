@@ -1,6 +1,6 @@
 require 'erb'
 
-module ActiveAdmin
+module Arbre
   module HTML
 
     class TextNode < Element

@@ -2,6 +2,7 @@ require 'meta_search'
 require 'devise'
 require 'will_paginate'
 require 'sass'
+require 'active_admin/arbre'
 
 module ActiveAdmin
 
@@ -17,7 +18,6 @@ module ActiveAdmin
   autoload :DSL,                      'active_admin/dsl'
   autoload :Event,                    'active_admin/event'
   autoload :FormBuilder,              'active_admin/form_builder'
-  autoload :HTML,                     'active_admin/html'
   autoload :Iconic,                   'active_admin/iconic'
   autoload :Menu,                     'active_admin/menu'
   autoload :MenuItem,                 'active_admin/menu_item'

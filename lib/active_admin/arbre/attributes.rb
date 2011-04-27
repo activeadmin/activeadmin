@@ -1,4 +1,4 @@
-module ActiveAdmin
+module Arbre
   module HTML
 
     class Attributes < Hash

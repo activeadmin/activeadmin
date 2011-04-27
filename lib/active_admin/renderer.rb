@@ -2,7 +2,7 @@ module ActiveAdmin
   class Renderer
 
     include ::ActiveAdmin::ViewHelpers::RendererHelper
-    include ::ActiveAdmin::HTML
+    include Arbre::HTML
 
     attr_accessor :view, :assigns
 

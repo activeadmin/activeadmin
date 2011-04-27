@@ -32,10 +32,10 @@ Feature: Index Scoping
       """
       ActiveAdmin.register Post do
         scope 'Today', :default => true do |posts|
-          posts.where(["created_at > ? AND created_at < ?", Time.zone.now.beginning_of_day, Time.zone.now.end_of_day])
+          posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day, ::Time.zone.now.end_of_day])
         end
         scope 'Tomorrow' do |posts|
-          posts.where(["created_at > ? AND created_at < ?", Time.zone.now.beginning_of_day + 1.day, Time.zone.now.end_of_day + 1.day])
+          posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day + 1.day, ::Time.zone.now.end_of_day + 1.day])
         end
       end
       """

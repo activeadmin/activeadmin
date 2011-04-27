@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe ActiveAdmin::HTML::Element do
-  include ActiveAdmin::HTML
+describe Arbre::HTML::Element do
+  include Arbre::HTML
 
   let(:element){ Element.new }
 

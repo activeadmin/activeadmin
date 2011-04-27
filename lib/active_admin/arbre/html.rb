@@ -1,4 +1,4 @@
-module ActiveAdmin
+module Arbre
   module HTML
     def current_dom_context
       @__current_dom_element__ ||= Document.new(assigns, helpers)
@@ -83,12 +83,3 @@ module ActiveAdmin
   end
 end
 
-require "active_admin/html/attributes.rb"
-require "active_admin/html/core_extensions.rb"
-require "active_admin/html/element"
-require "active_admin/html/collection"
-require "active_admin/html/class_list"
-require "active_admin/html/tag"
-require "active_admin/html/document"
-require "active_admin/html/html5_elements"
-require "active_admin/html/text_node"

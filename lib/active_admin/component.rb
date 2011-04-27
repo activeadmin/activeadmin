@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class Component < ActiveAdmin::HTML::Div
+  class Component < Arbre::HTML::Div
 
     # By default components render a div
     def tag_name

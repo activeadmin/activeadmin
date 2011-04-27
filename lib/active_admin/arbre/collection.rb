@@ -1,4 +1,4 @@
-module ActiveAdmin
+module Arbre
   module HTML
 
     # Stores a collection of Element objects

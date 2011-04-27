@@ -1,6 +1,6 @@
 require 'set'
 
-module ActiveAdmin
+module Arbre
   module HTML
 
     # Holds a set of classes
