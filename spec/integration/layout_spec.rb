@@ -4,7 +4,6 @@ describe_with_render "Layout" do
 
   before :all do
     load_defaults!
-    reload_routes!
   end
 
   it "should include active admin vendor js" do
@@ -41,36 +40,6 @@ describe_with_render "Layout" do
     it "should include the csrf-token meta tag" do
       get :index
       response.should have_tag("meta", :attributes => { :name => "csrf-token" })
-    end
-  end
-
-  describe "tabs" do
-    context "when index" do
-      before do
-        get :index
-      end
-      it "should generate an ul for tabs" do
-        response.should have_tag("ul", :attributes => { :id => "tabs" })
-      end
-      it "should generate an li and a for each resource" do
-        ActiveAdmin.namespaces[:admin].resources.values.each do |r|
-          response.should have_tag("a", r.resource_name.pluralize, :parent => {
-                                                          :tag => "li" })
-        end
-      end
-      it "should mark the current tab as current" do
-        response.should have_tag("li", "Posts", :attributes => {
-                                                :class => "current" })
-      end
-    end
-    context "when /new" do
-      before do
-        get :new
-      end
-      it "should mark the current tab section as current" do
-        response.should have_tag("li", "Posts", :attributes => {
-                                                :class => "current" })
-      end
     end
   end
 
