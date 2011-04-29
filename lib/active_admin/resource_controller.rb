@@ -17,7 +17,7 @@ module ActiveAdmin
     
     helper ::ActiveAdmin::ViewHelpers
 
-    layout 'active_admin'
+    layout false
     
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
@@ -51,7 +51,6 @@ module ActiveAdmin
 
       public :belongs_to
     end
-
 
     # Default Sidebar Sections
     sidebar :filters, :only => :index, :icon => :magnifying_glass do

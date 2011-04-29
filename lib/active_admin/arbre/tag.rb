@@ -6,14 +6,6 @@ module Arbre
     class Tag < Element
       attr_reader :attributes
 
-      def self.builder_method(method_name)
-        ::Arbre::HTML::BuilderMethods.class_eval <<-EOF, __FILE__, __LINE__
-          def #{method_name}(*args, &block)
-            insert_tag #{self.name}, *args, &block
-          end
-        EOF
-      end
-
       def initialize(*)
         super
         @attributes = Attributes.new

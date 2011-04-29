@@ -1,34 +1,74 @@
 module ActiveAdmin
   module Views
-    class BasePage < ActiveAdmin::Renderer
+    class BasePage < Arbre::HTML::Document
 
-      def header
-        content_for :header do
+      def build(*args)
+        super
+        build_page
+      end
+
+      def build_page
+        within @body do
+          div :id => "wrapper" do
+            build_header
+            build_title_bar
+            build_page_content
+            build_footer
+          end
+        end
+      end
+
+      def build_header
+        div :id => "header" do
           render view_factory.header
         end
       end
 
-      def breadcrumb(separator = "/")
+      def build_title_bar
+        div :id => "title_bar" do
+          build_breadcrumb
+          build_title_tag
+          build_action_items
+        end
+      end
+
+      def build_breadcrumb(separator = "/")
         links = breadcrumb_links
         return if links.empty?
-        sep = content_tag(:span, separator, :class => "breadcrumb_sep")
-        content_tag :span, :class => "breadcrumb" do
-          links.join(" #{sep} ").html_safe + sep
+        sep = span(separator, :class => "breadcrumb_sep")
+        span :class => "breadcrumb" do
+          links.join(" #{sep} ").html_safe + sep.to_s
+        end
+      end
+
+      def build_title_tag
+        h2(title, :id => 'page_title')
+      end
+
+      def build_action_items
+        items = controller.class.action_items_for(params[:action])
+        render view_factory.action_items, items
+      end
+
+      def build_page_content
+        # TODO: Skip sidebar
+        div :id => "content", :class => "with_sidebar" do
+          # TODO: FLash Messages
+          build_main_content_wrapper
+          build_sidebar
+        end
+      end
+
+      def build_main_content_wrapper
+        div :id => "main_content_wrapper" do
+          div :id => "main_content" do
+            main_content
+          end
         end
       end
 
       def main_content
         "Please implement #{self.class.name}#main_content to display content.".html_safe
-      end
-
-      def title_bar
-        content_for :title_bar do
-          [breadcrumb, title_tag, action_items].join.html_safe
-        end
-      end
-
-      def title_tag
-        content_tag :h2, title, :id => 'page_title'
       end
 
       def title
@@ -40,38 +80,28 @@ module ActiveAdmin
         set_ivar_on_view "@page_title", title
       end
 
-      def action_items
-        items = controller.class.action_items_for(params[:action])
-        render view_factory.action_items, items
-      end
 
       # Returns the sidebar sections to render for the current action
-      def sidebar_sections
+      def sidebar_sections_for_action
         controller.class.sidebar_sections_for(params[:action])
       end
 
       # Renders the sidebar
-      def sidebar
-        content_for :sidebar do
-          render view_factory.sidebar, sidebar_sections
+      def build_sidebar
+        div :id => "sidebar" do
+          sidebar_sections_for_action.collect do |section|
+            sidebar_section(section)
+          end
         end
       end
 
       # Renders the content for the footer
-      def footer
-        content_for :footer do
-          content_tag :p, "Powered by #{link_to("Active Admin", "http://www.activeadmin.info")} #{ActiveAdmin::VERSION}".html_safe
+      def build_footer
+        div :id => "footer" do
+          para "Powered by #{link_to("Active Admin", "http://www.activeadmin.info")} #{ActiveAdmin::VERSION}".html_safe
         end
       end
 
-      def to_html
-        set_page_title
-        header
-        title_bar
-        footer
-        sidebar
-        main_content
-      end
     end
   end
 end

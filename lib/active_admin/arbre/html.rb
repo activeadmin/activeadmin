@@ -1,12 +1,8 @@
 module Arbre
   module HTML
     def current_dom_context
-      @__current_dom_element__ ||= Document.new(assigns, helpers)
+      @__current_dom_element__ ||= Arbre::Context.new(assigns, helpers)
       @__current_dom_element__.current_dom_context
-    end
-
-    def assigns
-      @_assigns || {}
     end
 
     def helpers

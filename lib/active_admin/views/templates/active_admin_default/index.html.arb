@@ -1,0 +1,2 @@
+@_helpers = self
+render renderer_for(:index)

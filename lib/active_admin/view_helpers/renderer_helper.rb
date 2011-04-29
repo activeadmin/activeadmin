@@ -16,6 +16,9 @@ module ActiveAdmin
         if args[0].is_a?(Class) && args[0].ancestors.include?(ActiveAdmin::Renderer)
           renderer = args.shift
           renderer.new(self).to_html(*args)
+        elsif args[0].is_a?(Class) && args[0].ancestors.include?(Arbre::HTML::Tag)
+          tag_class = args.shift
+          insert_tag tag_class, *args
         else
           super
         end

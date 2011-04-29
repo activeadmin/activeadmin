@@ -5,11 +5,10 @@ module ActiveAdmin
 
     # Register Helper Renderers
     register  :global_navigation  => ActiveAdmin::Views::TabsRenderer,
-              :sidebar            => ActiveAdmin::Views::SidebarRenderer,
               :action_items       => ActiveAdmin::Views::ActionItemsRenderer,
               :header             => ActiveAdmin::Views::HeaderRenderer,
               :dashboard_section  => ActiveAdmin::Views::DashboardSectionRenderer,
-              :index_scopes       => ActiveAdmin::Views::ScopesRenderer
+              :index_scopes       => ActiveAdmin::Views::Scopes
 
     # Register All The Pages
     register  :dashboard_page     => ActiveAdmin::Views::DashboardPage,

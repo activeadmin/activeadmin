@@ -1,25 +1,31 @@
 module ActiveAdmin
   module Views
 
-    class IndexAsTable < Renderer
+    class IndexAsTable < ActiveAdmin::Component
 
-      def to_html(page_config, collection)
+      def build(page_config, collection)
         table_options = {
           :id => active_admin_config.plural_resource_name.underscore, 
           :sortable => true,
           :class => "index_table"
         }
-        TableBuilder.new(&page_config.block).to_html(self, collection, table_options)
+        table_for collection, table_options do |t|
+          instance_exec(t, &page_config.block)
+        end
       end
 
-      # 
-      # Extend the default ActiveAdmin::TableBuilder with some
+      def table_for(*args, &block)
+        insert_tag IndexTableFor, *args, &block
+      end
+
+      #
+      # Extend the default ActiveAdmin::Views::TableFor with some
       # methods for quickly displaying items on the index page
       #
-      class TableBuilder < ::ActiveAdmin::TableBuilder
+      class IndexTableFor < ::ActiveAdmin::Views::TableFor
 
         # Display a column for the id
-        def id
+        def id_column
           column('ID', :sortable => :id){|resource| link_to resource.id, resource_path(resource), :class => "resource_id_link"}
         end
 

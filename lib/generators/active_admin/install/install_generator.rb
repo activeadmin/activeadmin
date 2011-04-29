@@ -16,7 +16,7 @@ module ActiveAdmin
       end
 
       def copy_initializer
-        template 'active_admin.rb', 'config/initializers/active_admin.rb'
+        template 'active_admin.rb.erb', 'config/initializers/active_admin.rb'
       end
 
       def setup_directory

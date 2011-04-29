@@ -9,8 +9,8 @@ module ActiveAdmin
     include BreadcrumbHelper
     include DisplayHelper
     include IconHelper
+    include MethodOrProcHelper
     include PaginationHelper
-    include SortableHelper
     include SidebarHelper
     include TableHelper
     include FormHelper

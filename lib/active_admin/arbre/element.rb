@@ -8,9 +8,25 @@ module Arbre
       attr_accessor :parent
       attr_reader :children
 
+      def self.builder_method(method_name)
+        ::Arbre::HTML::BuilderMethods.class_eval <<-EOF, __FILE__, __LINE__
+          def #{method_name}(*args, &block)
+            insert_tag #{self.name}, *args, &block
+          end
+        EOF
+      end
+
       def initialize(assigns = {}, helpers = nil)
         @_assigns, @_helpers = assigns, helpers
         @children = Collection.new
+      end
+
+      def assigns
+        @_assigns
+      end
+
+      def helpers
+        @_helpers
       end
 
       def tag_name
@@ -77,6 +93,14 @@ module Arbre
 
       def content
         children.to_html
+      end
+
+      def html_safe
+        to_html
+      end
+
+      def each(&block)
+        [to_html].each(&block)
       end
 
       def to_s

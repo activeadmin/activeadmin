@@ -27,9 +27,9 @@ Feature: Index as Table
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index do |i|
-          i.column :title
-          i.column :body
+        index do
+          column :title
+          column :body
         end
       end
       """
@@ -43,11 +43,11 @@ Feature: Index as Table
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index do |i|
-          i.column("My Title") do |post|
+        index do
+          column("My Title") do |post|
             post.title
           end
-          i.column("My Body") do |post|
+          column("My Body") do |post|
             post.body
           end
         end
@@ -63,9 +63,9 @@ Feature: Index as Table
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index do |i|
-          i.column :title, :if => proc{ true }
-          i.column :body, :if => proc { false }
+        index do
+          column :title, :if => current_active_admin_user
+          column :body, :if => current_active_admin_user.nil?
         end
       end
       """
