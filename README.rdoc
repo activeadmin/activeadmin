@@ -187,8 +187,7 @@ Iconic Icons::
 
 == Roadmap & Issue Tracking
 
-We are using the awesome Lighthouse ticketing system. The project can be found at:
-http://activeadmin.lighthouseapp.com
+We are using the awesome Github issues!
 
 == Note on Patches/Pull Requests
  
