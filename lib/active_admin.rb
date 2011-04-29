@@ -127,7 +127,7 @@ module ActiveAdmin
 
       # Setup SASS
       require 'sass/plugin' # This must be required after initialization
-      Sass::Plugin.add_template_location(File.expand_path("../active_admin/stylesheets/", __FILE__), "public/stylesheets/admin")
+      Sass::Plugin.add_template_location(File.expand_path("../active_admin/stylesheets/", __FILE__), File.join(Rails.root, "public/stylesheets/admin"))
     end
 
     # Registers a brand new configuration for the given resource.
