@@ -12,6 +12,8 @@ generate :model, "user first_name:string last_name:string username:string"
 inject_into_file 'app/models/user.rb', "  has_many :posts, :foreign_key => 'author_id'\n", :after => "class User < ActiveRecord::Base\n"
 generate :model, 'category name:string description:text'
 inject_into_file 'app/models/category.rb', "  has_many :posts\n", :after => "class Category < ActiveRecord::Base\n"
+generate :model, 'picture name:string url:string imageable_id:integer imageable_type:string'
+inject_into_file 'app/models/picture.rb', "  belongs_to :imageable, :polymorphic => true\n", :after => "class Picture < ActiveRecord::Base\n"
 
 # Add our local Active Admin to the load path
 inject_into_file "config/environment.rb", "\n$LOAD_PATH.unshift('#{File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'lib'))}')\nrequire \"active_admin\"\n", :after => "require File.expand_path('../application', __FILE__)"

@@ -146,7 +146,7 @@ describe_with_render 'A resource\'s filters' do
                                             :type => "checkbox",          
                                             :value => @jane.id })
       end
-    end
+    end    
   end # belongs to
 
   describe "default filters" do
@@ -155,5 +155,22 @@ describe_with_render 'A resource\'s filters' do
       attributes.should include(:author, :active_admin_comments, :title, :body, :published_at, :created_at, :updated_at)
     end
   end
+end
 
+describe_with_render ActiveAdmin::FormBuilder, :controller => Admin::PicturesController do
+  def reset!
+    Admin::PostsController.reset_filters!
+  end
+  
+  context "polymorphic" do
+    before do
+      reset!
+      get :index
+    end
+        
+    it "should render form with a search filter on association type" do
+      response.should have_tag("input", :attributes => {
+                                          :name => "q[imageable_type_contains]"})
+    end    
+  end
 end

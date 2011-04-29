@@ -2,7 +2,7 @@
 apply File.expand_path("../rails_template.rb", __FILE__)
 
 # Register Active Admin controllers
-%w{ Post User Category }.each do |type|
+%w{ Post User Category Picture}.each do |type|
   generate :'active_admin:resource', type
 end
 
