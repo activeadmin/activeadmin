@@ -8,7 +8,7 @@ Feature: Index as Block
       """
       ActiveAdmin.register Post do
         index :as => :block do |post|
-          link_to post.title, admin_post_path(post)
+          span(link_to(post.title, admin_post_path(post)))
         end
       end
       """

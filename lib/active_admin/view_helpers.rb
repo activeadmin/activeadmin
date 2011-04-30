@@ -10,7 +10,6 @@ module ActiveAdmin
     include DisplayHelper
     include IconHelper
     include MethodOrProcHelper
-    include PaginationHelper
     include SidebarHelper
     include TableHelper
     include FormHelper

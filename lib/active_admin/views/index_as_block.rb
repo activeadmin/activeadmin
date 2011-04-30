@@ -11,12 +11,14 @@ module ActiveAdmin
     #       render 'post', :post => post 
     #     end
     #   end
-    class IndexAsBlock < Renderer
-      def to_html(page_config, collection)
-        collection.collect do |obj|
+    class IndexAsBlock < ActiveAdmin::Component
+
+      def build(page_config, collection)
+        collection.each do |obj|
           instance_exec(obj, &page_config.block)
-        end.join.html_safe
+        end
       end
+
     end
   end
 end
