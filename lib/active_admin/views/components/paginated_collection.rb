@@ -62,7 +62,7 @@ module ActiveAdmin
       end
 
       # TODO: Refactor to new HTML DSL
-      def build_download_format_links
+      def build_download_format_links(formats = [:csv, :xml, :json])
         links = formats.collect do |format|
           link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format)) 
         end
