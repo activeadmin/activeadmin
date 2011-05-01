@@ -27,6 +27,11 @@ module Arbre
       builder_method :para
     end
 
+    class A < Tag
+      # Add a helper builder method
+      builder_method :link_to
+    end
+
     class Table < Tag
       def initialize(*)
         super

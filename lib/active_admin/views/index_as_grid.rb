@@ -1,39 +1,46 @@
 module ActiveAdmin
   module Views
-    class IndexAsGrid < Renderer
+    class IndexAsGrid < ActiveAdmin::Component
 
-      def to_html(page_config, collection)
+      def build(page_config, collection)
         @page_config = page_config
-        columns = page_config[:columns] || default_columns
+        @collection = collection
+        build_table
+      end
 
-        content_tag :table, :class => "index_grid" do
-          collection.in_groups_of(columns).collect do |group|
-            render_row(group)
-          end.join.html_safe
-        end
+      def number_of_columns
+        @page_config[:columns] || default_number_of_columns
       end
 
       protected
 
-      def render_row(group)
-        content_tag :tr do
-          group.collect do |item|
-            item ? render_item(item) : render_empty_cell
-          end.join.html_safe
+      def build_table
+        table :class => "index_grid" do
+          collection.in_groups_of(number_of_columns).each do |group|
+            build_row(group)
+          end
         end
       end
 
-      def render_item(item)
-        content_tag_for :td, item do
+      def build_row(group)
+        tr do
+          group.each do |item|
+            item ? build_item(item) : build_empty_cell
+          end
+        end
+      end
+
+      def build_item(item)
+        td :for => item do
           instance_exec(item, &@page_config.block)
         end
       end
 
-      def render_empty_cell
-        content_tag(:td, '&nbsp;'.html_safe)
+      def build_empty_cell
+        td '&nbsp;'.html_safe
       end
 
-      def default_columns
+      def default_number_of_columns
         3
       end
 

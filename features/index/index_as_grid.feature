@@ -8,7 +8,7 @@ Feature: Index as Grid
       """
       ActiveAdmin.register Post do
         index :as => :grid do |post|
-          link_to post.title, admin_post_path(post)
+          h2 auto_link(post)
         end
       end
       """
@@ -22,7 +22,7 @@ Feature: Index as Grid
       """
       ActiveAdmin.register Post do
       index :as => :grid, :columns => 1 do |post|
-          link_to post.title, admin_post_path(post)
+          h2 auto_link(post)
         end
       end
       """
@@ -36,23 +36,10 @@ Feature: Index as Grid
       """
       ActiveAdmin.register Post do
       index :as => :grid, :columns => 2 do |post|
-          link_to post.title, admin_post_path(post)
+          h2 auto_link(post)
         end
       end
       """
     Then the table ".index_grid" should have 5 rows
     And the table ".index_grid" should have 2 columns
     And there should be 9 "a" tags within "table.index_grid"
-
-  Scenario: Viewing index as a grid with pagination
-    Given 35 posts exist
-    And an index configuration of:
-      """
-      ActiveAdmin.register Post do
-      index :as => :grid do |post|
-          link_to post.title, admin_post_path(post)
-        end
-      end
-      """
-      Then the table ".index_grid" should have 10 rows
-      And I should see a link to "2"
