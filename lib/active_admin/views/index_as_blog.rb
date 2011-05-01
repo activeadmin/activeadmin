@@ -1,57 +1,86 @@
 module ActiveAdmin
   module Views
-    class IndexAsBlog < Renderer
+    class IndexAsBlog < ActiveAdmin::Component
 
-      def to_html(page_config, collection)
+      def build(page_config, collection)
         @page_config = page_config
-        @config = Builder.new
-        @page_config.block.call(@config) if @page_config.block
+        @collection = collection
 
-        content_tag :div do
-          collection.collect{|item| render_post(item) }.join.html_safe
+        # Call the block passed in. This will set the 
+        # title and body methods
+        instance_eval &page_config.block if page_config.block
+
+        build_posts
+      end
+
+      # Setter method for the configuration of the title
+      #
+      #   index :as => :blog do
+      #     title :a_method_to_call #=> Calls #a_method_to_call on the resource
+      #
+      #     # OR
+      #
+      #     title do |post|
+      #       post.a_method_to_call
+      #     end
+      #   end
+      def title(method = nil, &block)
+        if block_given? || method
+          @title = block_given? ? block : method
         end
+        @title
+      end
+
+      # Setter method for the configuration of the body
+      #
+      #   index :as => :blog do
+      #     title :my_title
+      #
+      #     body :a_method_to_call #=> Calls #a_method_to_call on the resource
+      #
+      #     # OR
+      #
+      #     title do |post|
+      #       post.a_method_to_call
+      #     end
+      #   end
+      def body(method = nil, &block)
+        if block_given? || method
+          @body = block_given? ? block : method
+        end
+        @body
       end
 
       private
 
-      def render_post(post)
-        content_tag_for :div, post do
-          title = content_tag :h3, link_to(post_title_content(post), resource_path(post))
-          main_content = content_tag(:div, post_content(post), :class => 'content')
-          title + main_content
+      def build_posts
+        @collection.each do |post|
+          build_post(post)
         end
       end
 
-      def post_title_content(post)
-        call_method_or_proc_on(post, @config.title) || "#{active_admin_config.resource_name} #{post.id}"
-      end
-
-      def post_content(post)
-        call_method_or_proc_on(post, @config.content) || ""
-      end
-
-
-      # A small builder class which gets passed into the block when defining
-      # the options to display as posts.
-      #
-      # ActiveAdmin.register Post
-      #   index :as => :posts do |i|
-      #     # i is an instance of Builder
-      #   end
-      # end
-      class Builder
-        def title(method = nil, &block)
-          if block_given? || method
-            @title = block_given? ? block : method
-          end
-          @title
+      def build_post(post)
+        div :for => post do
+          build_title(post)
+          build_body(post)
         end
+      end
 
-        def content(method = nil, &block)
-          if block_given? || method
-            @content = block_given? ? block : method
+      def build_title(post)
+        if @title
+          h3 do
+            link_to(call_method_or_proc_on(post, @title), resource_path(post))
           end
-          @content
+        else
+          h3 do
+            auto_link(post)
+          end
+        end
+      end
+
+      def build_body(post)
+        if @body
+          div(call_method_or_proc_on(post, @body), :class => 'content')
         end
       end
 

@@ -12,17 +12,17 @@ Feature: Index as Blog
       """
 	And I am logged in
     When I am on the index page for posts
-    Then I should see /Post \d+/ within "h3"
-    And I should see a link to /Post \d+/
+    Then I should see "Hello World" within "h3"
+    And I should see a link to "Hello World"
 
   Scenario: Viewing the blog with a resource as a simple configuration
     Given a post with the title "Hello World" and body "My great post body" exists
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :blog do |i|
-          i.title :title
-          i.content :body
+        index :as => :blog do
+          title :title
+          body :body
         end
       end
       """
@@ -35,9 +35,13 @@ Feature: Index as Blog
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :blog do |i|
-          i.title {|post| post.title + " From Block" }
-          i.content {|post| post.body + " From Block" }
+        index :as => :blog do
+          title do |post| 
+            post.title + " From Block"
+          end
+          body do |post|
+            post.body + " From Block"
+          end
         end
       end
       """
