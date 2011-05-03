@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Arbre::HTML::Element, "Finder Methods" do
   include Arbre::HTML
+  let(:assigns){ {} }
 
   describe "finding elements by tag name" do
 

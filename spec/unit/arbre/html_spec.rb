@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Arbre::HTML do
   include Arbre::HTML
 
+  let(:assigns){ {} }
+
   it "should render a single element" do
     content = span("Hello World")
     content.to_html.should == "<span>Hello World</span>"
@@ -58,6 +60,13 @@ describe Arbre::HTML do
       end
     end
     content.to_html.should == "<div><ul><li></li></ul></div>"
+  end
+
+  it "should move content tags between parents" do
+    content = div do
+      span(ul(li))
+    end
+    content.to_html.should == "<div><span><ul><li></li></ul></span></div>"
   end
 
   it "should add content to the parent if the element is passed into block" do

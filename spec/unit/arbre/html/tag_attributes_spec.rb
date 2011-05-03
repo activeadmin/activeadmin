@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Arbre::HTML::Tag, "Attributes" do
   include Arbre::HTML
+  let(:assigns){ {} }
 
   let(:tag){ Tag.new }
 

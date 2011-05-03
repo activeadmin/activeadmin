@@ -1,8 +1,11 @@
 require 'spec_helper'
+require 'active_admin/arbre/element'
 
+include Arbre::HTML
 describe Arbre::HTML::Element do
-  include Arbre::HTML
+include Arbre::HTML
 
+  let(:assigns){ {} }
   let(:element){ Element.new }
 
   context "when initialized" do
@@ -28,10 +31,13 @@ describe Arbre::HTML::Element do
   end
 
   describe "passing in a helper object" do
-    it "should call methods on the helper object" do
+
+    it "should call methods on the helper object and return TextNode objects" do
       element = Element.new(nil, action_view)
-      element.content_tag(:div).should == "<div></div>"
+      element.content_tag(:div).should be_an_instance_of(TextNode)
+      element.content.should == "<div></div>"
     end
+
   end
 
   describe "adding a child" do
@@ -64,24 +70,53 @@ describe Arbre::HTML::Element do
     end
   end
 
-  describe "setting string content" do
-    before do
-      element.add_child "Hello World"
-      element.content = "Goodbye"
-    end
-    it "should clear the existing children" do
-      element.children.size.should == 1
+  describe "setting the content" do
+
+    context "when a string" do
+      before do
+        element.add_child "Hello World"
+        element.content = "Goodbye"
+      end
+      it "should clear the existing children" do
+        element.children.size.should == 1
+      end
+
+      it "should add the string as a child" do
+        element.children.first.to_html.should == "Goodbye"
+      end
+
+      it "should html escape the string" do
+        string = "Goodbye <br />"
+        element.content = string
+        element.content.to_html.should == "Goodbye &lt;br /&gt;"
+      end
     end
 
-    it "should add the string as a child" do
-      element.children.first.to_html.should == "Goodbye"
+    context "when a tag" do
+      before do
+        element.content = h2("Hello")
+      end
+      it "should set the content tag" do
+        element.children.first.should be_an_instance_of(Arbre::HTML::H2)
+      end
+      it "should set the tags parent" do
+        element.children.first.parent.should == element
+      end
     end
 
-    it "should html escape the string" do
-      string = "Goodbye"
-      ERB::Util.should_receive(:html_escape).with(string)
-      element.content = string
+    context "when an array of tags" do
+      before do
+        element.content = [ul,div]
+      end
+
+      it "should set the content tag" do
+        element.children.first.should be_an_instance_of(Arbre::HTML::Ul)
+      end
+      it "should set the tags parent" do
+        element.children.first.parent.should == element
+      end
     end
+
   end
 
   describe "setting the parent" do

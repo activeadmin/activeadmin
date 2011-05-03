@@ -41,6 +41,11 @@ module Arbre
       def add_child(child)
         return unless child
 
+        if child.is_a?(Array)
+          child.each{|item| add_child(item) }
+          return @children
+        end
+
         if child.is_a?(String)
           child = TextNode.from_string(child)
         end
@@ -76,9 +81,9 @@ module Arbre
         parent.document if parent?
       end
 
-      def content=(string_contents)
+      def content=(contents)
         clear_children!
-        add_child(ERB::Util.html_escape(string_contents)) if string_contents
+        add_child(contents)
       end
 
       def get_elements_by_tag_name(tag_name)
