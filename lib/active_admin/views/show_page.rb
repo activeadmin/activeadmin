@@ -24,7 +24,6 @@ module ActiveAdmin
         else
           default_main_content
         end
-        current_dom_context.document.content
       end
 
       def attributes_table(*args, &block)

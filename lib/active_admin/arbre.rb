@@ -19,5 +19,5 @@ end
 require 'action_view'
 
 ActionView::Template.register_template_handler :arb, lambda { |template|
-  "self.class.send :include, Arbre::HTML; #{template.source}; current_dom_context"
+  "self.class.send :include, Arbre::HTML; @_helpers = self; #{template.source}; current_dom_context"
 }

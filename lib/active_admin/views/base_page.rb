@@ -54,8 +54,19 @@ module ActiveAdmin
         # TODO: Skip sidebar
         div :id => "content", :class => "with_sidebar" do
           # TODO: FLash Messages
+          build_flash_messages
           build_main_content_wrapper
           build_sidebar
+        end
+      end
+
+      def build_flash_messages
+        if flash.keys.any?
+          div :class => 'flashes' do
+            flash.each do |type, message|
+              div message, :class => "flash flash_#{type}"
+            end
+          end
         end
       end
 

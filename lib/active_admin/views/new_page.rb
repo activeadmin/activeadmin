@@ -7,6 +7,7 @@ module ActiveAdmin
       end
 
       def main_content
+        p "Building main content"
         config = self.form_config.dup
         config.delete(:block)
         config.reverse_merge!({
@@ -14,12 +15,12 @@ module ActiveAdmin
         })
 
         if form_config[:partial]
-          render form_config[:partial]
+          text_node render(form_config[:partial])
         else
-          active_admin_form_for resource, config, &form_config[:block]
+          text_node active_admin_form_for(resource, config, &form_config[:block])
         end
       end
-    end    
+    end
 
   end
 end

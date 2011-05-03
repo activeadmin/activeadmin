@@ -54,7 +54,8 @@ Feature: New Page
   Scenario: Generating a form from a partial
     Given "app/views/admin/posts/_form.html.erb" contains:
     """
-      <%= active_admin_form_for @post, :url => admin_posts_path do |f|
+      <% url = @post.new_record? ? admin_posts_path : admin_post_path(@post) %>
+      <%= active_admin_form_for @post, :url => url do |f|
             f.inputs :title, :body
             f.buttons 
           end %>
