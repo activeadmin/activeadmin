@@ -14,7 +14,11 @@ module Arbre
         current_dom_context.send name, *args, &block
       elsif helpers.respond_to?(name)
         return_value = helpers.send(name, *args, &block)
-        return_value.is_a?(String) ? text_node(return_value) : return_value
+        if return_value.is_a?(String) && !name.to_s.match(/(_path|_url)$/)
+          text_node(return_value) 
+        else
+          return_value
+        end
       else
         super
       end
