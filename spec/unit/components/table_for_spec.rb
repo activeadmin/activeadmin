@@ -68,7 +68,7 @@ describe ActiveAdmin::Views::TableFor do
         "<span>Second Post</span>", 
         "<span>Third Post</span>" ].each_with_index do |content, index|
         it "should create a cell with #{content}" do
-          table.find_by_tag("td")[index].content.should == content
+          table.find_by_tag("td")[index].content.strip.should == content
         end
       end
     end
@@ -83,11 +83,9 @@ describe ActiveAdmin::Views::TableFor do
         end
       end
 
-      [ "<span>First Post</span><span>First Post</span>", 
-        "<span>Second Post</span><span>Second Post</span>", 
-        "<span>Third Post</span><span>Third Post</span>" ].each_with_index do |content, index|
-        it "should create a cell with #{content}" do
-          table.find_by_tag("td")[index].content.should == content
+      3.times do |index|
+        it "should create a cell with multiple elements in row #{index}" do
+          table.find_by_tag("td")[index].find_by_tag("span").size.should == 2
         end
       end
     end

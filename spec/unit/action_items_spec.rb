@@ -20,7 +20,7 @@ describe ActiveAdmin::ActionItems do
 
     it "should render the contents of each action item" do
       rendered.children.size.should == 1
-      rendered.content.should == "<h2>Hello World</h2>"
+      rendered.content.strip.should == "<h2>Hello World</h2>"
     end
   end
 
