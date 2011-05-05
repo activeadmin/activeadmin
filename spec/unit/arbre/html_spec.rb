@@ -7,14 +7,20 @@ describe Arbre::HTML do
 
   it "should render a single element" do
     content = span("Hello World")
-    content.to_html.should == "<span>Hello World</span>"
+    content.to_html.should == <<-HTML
+<span>Hello World</span>
+HTML
   end
 
   it "should render a child element" do
     content = span do
       span "Hello World"
     end
-    content.to_html.should == "<span><span>Hello World</span></span>"
+    content.to_html.should == <<-HTML
+<span>
+  <span>Hello World</span>
+</span>
+HTML
   end
 
   it "should render an unordered list" do
@@ -23,7 +29,13 @@ describe Arbre::HTML do
       li "Second"
       li "Third"
     end
-    content.to_html.should == "<ul><li>First</li><li>Second</li><li>Third</li></ul>"
+    content.to_html.should == <<-HTML
+<ul>
+  <li>First</li>
+  <li>Second</li>
+  <li>Third</li>
+</ul>
+HTML
   end
 
   it "should return the correct object" do
@@ -40,7 +52,12 @@ describe Arbre::HTML do
       li first
       li second
     end
-    content.to_html.should == "<ul><li>First</li><li>Second</li></ul>"
+    content.to_html.should == <<-EOS
+<ul>
+  <li>First</li>
+  <li>Second</li>
+</ul>
+EOS
   end
 
   it "should add children and nested" do
@@ -50,7 +67,14 @@ describe Arbre::HTML do
         li
       end
     end
-    content.to_html.should == "<div><ul></ul><li><li></li></li></div>"
+    content.to_html.should == <<-HTML
+<div>
+  <ul></ul>
+  <li>
+    <li></li>
+  </li>
+</div>
+HTML
   end
 
   it "should pass the element in to the block if asked for" do
@@ -59,14 +83,28 @@ describe Arbre::HTML do
         li
       end
     end
-    content.to_html.should == "<div><ul><li></li></ul></div>"
+    content.to_html.should == <<-HTML
+<div>
+  <ul>
+    <li></li>
+  </ul>
+</div>
+HTML
   end
 
   it "should move content tags between parents" do
     content = div do
       span(ul(li))
     end
-    content.to_html.should == "<div><span><ul><li></li></ul></span></div>"
+    content.to_html.should == <<-HTML
+<div>
+  <span>
+    <ul>
+      <li></li>
+    </ul>
+  </span>
+</div>
+HTML
   end
 
   it "should add content to the parent if the element is passed into block" do
@@ -76,7 +114,13 @@ describe Arbre::HTML do
         li
       end
     end
-    content.to_html.should == "<div id=\"my-tag\"><ul><li></li></ul></div>"
+    content.to_html.should == <<-HTML
+<div id="my-tag">
+  <ul>
+    <li></li>
+  </ul>
+</div>
+HTML
   end
 
   it "should have the parent set on it" do
@@ -91,7 +135,9 @@ describe Arbre::HTML do
   it "should set a string content return value with no children" do
     li do
       "Hello World"
-    end.to_html.should == "<li>Hello World</li>"
+    end.to_html.should == <<-HTML
+<li>Hello World</li>
+HTML
   end
 
   describe "text nodes" do
@@ -104,7 +150,9 @@ describe Arbre::HTML do
 
   describe "html safe" do
     it "should escape the contents" do
-      span("<br />").to_html.should == "<span>&lt;br /&gt;</span>"
+      span("<br />").to_html.should == <<-HTML
+<span>&lt;br /&gt;</span>
+HTML
     end
 
     it "should return html safe strings" do
@@ -112,7 +160,11 @@ describe Arbre::HTML do
     end
 
     it "should not escape html passed in" do
-      span(span("<br />")).to_html.should == "<span><span>&lt;br /&gt;</span></span>"
+      span(span("<br />")).to_html.should == <<-HTML
+<span>
+  <span>&lt;br /&gt;</span>
+</span>
+HTML
     end
 
     it "should escape string contents when passed in block" do
@@ -120,7 +172,11 @@ describe Arbre::HTML do
         span {
           "<br />"
         }
-      }.to_html.should == "<span><span>&lt;br /&gt;</span></span>"
+      }.to_html.should == <<-HTML
+<span>
+  <span>&lt;br /&gt;</span>
+</span>
+HTML
     end
 
     it "should escape the contents of attributes"

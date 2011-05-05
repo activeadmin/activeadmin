@@ -104,6 +104,10 @@ module Arbre
         to_html
       end
 
+      def indent_level
+        parent? ? parent.indent_level + 1 : 0
+      end
+
       def each(&block)
         [to_html].each(&block)
       end

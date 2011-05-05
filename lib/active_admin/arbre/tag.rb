@@ -73,10 +73,41 @@ module Arbre
       end
 
       def to_html
-        "<#{tag_name}#{attributes_html}>#{content}</#{tag_name}>".html_safe
+        indent("<#{tag_name}#{attributes_html}>", content, "</#{tag_name}>").html_safe
       end
 
       private
+
+      INDENT_SIZE = 2
+      
+      def indent(open_tag, child_content, close_tag)
+        spaces = ' ' * indent_level * INDENT_SIZE
+
+        html = ""
+
+        if no_child? || child_is_text?
+          # one line
+          html << spaces << open_tag << child_content << close_tag
+        else
+          # multiple lines
+          html << spaces << open_tag << "\n"
+          html << child_content # the child takes care of its own spaces
+          html << spaces << close_tag
+        end
+
+        html << "\n"
+
+        html
+      end
+      
+      def no_child?
+        children.empty?
+      end
+
+      def child_is_text?
+        children.size == 1 && children.first.is_a?(TextNode)
+      end
+
 
       def attributes_html
         attributes.any? ? " " + attributes.to_html : nil
