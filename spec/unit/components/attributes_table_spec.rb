@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::AttributesTable do
   include Arbre::HTML
+  let(:assigns){ {} }
 
   describe "creating with the dsl" do
     let(:helpers) { action_view }
@@ -72,7 +73,7 @@ describe ActiveAdmin::Views::AttributesTable do
                 current_row.find_by_tag("th").first.content.should == title
               end
               it "should have the content '#{set[1]}'" do
-                current_row.find_by_tag("td").first.content.should == content
+                current_row.find_by_tag("td").first.content.chomp.strip.should == content
               end
             end
           end
