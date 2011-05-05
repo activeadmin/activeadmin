@@ -71,7 +71,6 @@ module ActiveAdmin
         def build_page_content
           # TODO: Skip sidebar
           div :id => "content", :class => "with_sidebar" do
-            # TODO: FLash Messages
             build_flash_messages
             build_main_content_wrapper
             build_sidebar

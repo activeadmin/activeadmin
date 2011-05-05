@@ -14,7 +14,11 @@
 <div id="wrapper">
 
   <div id="content_wrapper">
-    <% #flash_messages %>
+    <% if flash.keys.any? %>
+      <% flash.each do |type, message| %>
+        <%= content_tag :div, message, :class => "flash flash_#{type}" %>
+      <% end %>
+    <% end %>
     <div id="content">
       <%= yield %>
     </div>
