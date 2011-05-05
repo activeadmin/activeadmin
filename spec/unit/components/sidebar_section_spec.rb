@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::SidebarSection do
   include Arbre::HTML
+  let(:assigns){ {} }
 
   let(:section) do
     ActiveAdmin::Sidebar::Section.new(:help) do

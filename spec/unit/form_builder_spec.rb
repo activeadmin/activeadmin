@@ -2,9 +2,9 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe_with_render ActiveAdmin::FormBuilder do
 
-  def build_form(&block)
+  def build_form(options = {}, &block)
     ActiveAdmin.register Post do
-      form(&block)
+      form(options, &block)
     end
     get :new
   end
@@ -23,42 +23,38 @@ describe_with_render ActiveAdmin::FormBuilder do
       end
     end
     it "should generate a text input" do
-      response.should have_tag("input", :attributes => { :type => "text",
+      response.body.should have_tag("input", :attributes => { :type => "text",
                                                      :name => "post[title]" })
     end
     it "should generate a textarea" do
-      response.should have_tag("textarea", :attributes => { :name => "post[body]" })
+      response.body.should have_tag("textarea", :attributes => { :name => "post[body]" })
     end
     it "should only generate the form once" do
       response.body.scan(/Title/).size.should == 1
     end
     it "should generate buttons" do
-      response.should have_tag("input", :attributes => {  :type => "submit",
+      response.body.should have_tag("input", :attributes => {  :type => "submit",
                                                           :value => "Submit Me" })
-      response.should have_tag("input", :attributes => {  :type => "submit",
+      response.body.should have_tag("input", :attributes => {  :type => "submit",
                                                           :value => "Another Button" })
     end
   end
 
   describe "passing in options" do
     before do
-      ActiveAdmin.register Post do
-        form :html => { :multipart => true } do |f|
-          f.inputs :title
-          f.buttons
-        end
+      build_form :html => { :multipart => true } do |f|
+        f.inputs :title
+        f.buttons
       end
-      get :new
     end
     it "should pass the options on to the form" do
-      response.should have_tag("form", :attributes => { :enctype => "multipart/form-data" })
+      response.body.should have_tag("form", :attributes => { :enctype => "multipart/form-data" })
     end
   end
 
   context "with default settings" do
     before do
-      Admin::PostsController.reset_form_config!
-      get :new
+      @controller.class.reset_form_config!
     end
     it "should generate one post title field" do
       response.body.scan('id="post_title"').size.should == 1
@@ -102,11 +98,11 @@ describe_with_render ActiveAdmin::FormBuilder do
       end
     end
     it "should have a title input" do
-      response.should have_tag("input", :attributes => { :type => "text",
+      response.body.should have_tag("input", :attributes => { :type => "text",
                                                           :name => "post[title]" })
     end
     it "should have a body textarea" do
-      response.should have_tag("textarea", :attributes => { :name => "post[body]" })
+      response.body.should have_tag("textarea", :attributes => { :name => "post[body]" })
     end
   end
 
@@ -187,7 +183,7 @@ describe_with_render ActiveAdmin::FormBuilder do
       build_form do |f|
         f.input :title, :wrapper_html => { :class => "important" }
       end
-      response.should have_tag("li", :attributes => {:class => "string optional important"})
+      response.body.should have_tag("li", :attributes => {:class => "string optional important"})
     end
   end
 
@@ -219,7 +215,7 @@ describe_with_render ActiveAdmin::FormBuilder do
       end
     end
     it "should generate a text input with the class of datepicker" do
-      response.should have_tag("input", :attributes => {  :type => "text",
+      response.body.should have_tag("input", :attributes => {  :type => "text",
                                                           :class => "datepicker",
                                                           :name => "post[created_at]" })
     end

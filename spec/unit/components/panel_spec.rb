@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::Panel do
   include Arbre::HTML
+  let(:assigns){ {} }
 
   let(:helpers) { action_view }
 

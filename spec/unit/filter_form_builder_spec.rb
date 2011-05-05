@@ -30,24 +30,24 @@ describe_with_render 'A resource\'s filters' do
   end
 
   it "should generate a form which submits via get" do
-    response.should have_tag("form", :attributes => { :method => 'get' })
+    response.body.should have_tag("form", :attributes => { :method => 'get' })
   end
 
   it "should generate a filter button" do
-    response.should have_tag("input", :attributes => { :type => "submit",
+    response.body.should have_tag("input", :attributes => { :type => "submit",
                                                         :value => "Filter" })
   end
 
   it "should generate a search field for a string attribute" do
-    response.should have_tag("input", :attributes => { :name => "q[title_contains]"})
+    response.body.should have_tag("input", :attributes => { :name => "q[title_contains]"})
   end
 
   it "should label a text field with search" do
-    response.should have_tag('label', 'Search Title')
+    response.body.should have_tag('label', 'Search Title')
   end
 
   it "should generate a search field for a text attribute" do
-    response.should have_tag("input", :attributes => { :name => "q[body_contains]"})
+    response.body.should have_tag("input", :attributes => { :name => "q[body_contains]"})
   end
 
   it "should only generate the form once" do
@@ -55,30 +55,30 @@ describe_with_render 'A resource\'s filters' do
   end
 
   it "should generate a clear filters link" do
-    response.should have_tag("a", "Clear Filters", :attributes => { :class => "clear_filters_btn" })
+    response.body.should have_tag("a", "Clear Filters", :attributes => { :class => "clear_filters_btn" })
   end
 
   context "when date" do
     it "should generate a date greater than" do
-      response.should have_tag("input", :attributes => { :name => "q[created_at_gte]", :class => "datepicker"})
+      response.body.should have_tag("input", :attributes => { :name => "q[created_at_gte]", :class => "datepicker"})
     end
     it "should generate a date less than" do
-      response.should have_tag("input", :attributes => { :name => "q[created_at_lte]", :class => "datepicker"})
+      response.body.should have_tag("input", :attributes => { :name => "q[created_at_lte]", :class => "datepicker"})
     end
   end
 
   context "when integer" do
     it "should generate a select option for equal to" do
-      response.should have_tag("option", "Equal To", :attributes => { :value => 'id_eq' })
+      response.body.should have_tag("option", "Equal To", :attributes => { :value => 'id_eq' })
     end
     it "should generate a select option for greater than" do
-      response.should have_tag("option", "Greater Than")
+      response.body.should have_tag("option", "Greater Than")
     end
     it "should generate a select option for less than" do
-      response.should have_tag("option", "Less Than")
+      response.body.should have_tag("option", "Less Than")
     end
     it "should generate a text field for input" do
-      response.should have_tag("input", :attributes => {
+      response.body.should have_tag("input", :attributes => {
                                           :name => /q\[(id_eq|id_equals)\]/ })
     end
     it "should select the option which is currently being filtered"
@@ -92,30 +92,30 @@ describe_with_render 'A resource\'s filters' do
         get :index
       end
       it "should not render as an integer" do
-        response.should_not have_tag("input", :attributes => {
+        response.body.should_not have_tag("input", :attributes => {
                                                 :name => "q[author_id_eq]"})
       end
       it "should render as belongs to select" do
-        response.should have_tag("select", :attributes => {
+        response.body.should have_tag("select", :attributes => {
                                             :name => "q[author_id_eq]"})
-        response.should have_tag("option", "jane_doe", :attributes => {
+        response.body.should have_tag("option", "jane_doe", :attributes => {
                                                           :value => @jane.id })
       end
     end
 
     context "as select" do
       it "should generate a select" do
-        response.should have_tag("select", :attributes => {
+        response.body.should have_tag("select", :attributes => {
                                             :name => "q[author_id_eq]"})
       end
       it "should set the default text to 'Any'" do
-        response.should have_tag("option", "Any", :attributes => {
+        response.body.should have_tag("option", "Any", :attributes => {
                                                     :value => "" })
       end
       it "should create an option for each related object" do
-        response.should have_tag("option", "john_doe", :attributes => {
+        response.body.should have_tag("option", "john_doe", :attributes => {
                                                           :value => @john.id })
-        response.should have_tag("option", "jane_doe", :attributes => {
+        response.body.should have_tag("option", "jane_doe", :attributes => {
                                                           :value => @jane.id })
       end
       context "with a proc" do
@@ -125,8 +125,8 @@ describe_with_render 'A resource\'s filters' do
           get :index
         end
         it "should use call the proc as the collection" do
-          response.should have_tag("option", "Title One")
-          response.should have_tag("option", "Title Two")
+          response.body.should have_tag("option", "Title One")
+          response.body.should have_tag("option", "Title Two")
         end
       end
     end
@@ -137,11 +137,11 @@ describe_with_render 'A resource\'s filters' do
         get :index
       end
       it "should create a check box for each related object" do
-        response.should have_tag("input", :attributes => {
+        response.body.should have_tag("input", :attributes => {
                                             :name => "q[author_id_in][]",
                                             :type => "checkbox",
                                             :value => @john.id })
-        response.should have_tag("input", :attributes => {
+        response.body.should have_tag("input", :attributes => {
                                             :name => "q[author_id_in][]",
                                             :type => "checkbox",          
                                             :value => @jane.id })

@@ -4,8 +4,8 @@ describe ActiveAdmin::Views::TableFor do
   describe "creating with the dsl" do
     include Arbre::HTML
 
-    let(:helpers){ mock_action_view }
     let(:assigns){ {} }
+    let(:helpers){ mock_action_view }
 
     let(:collection) do
       [Post.new(:title => "First Post"), Post.new(:title => "Second Post"), Post.new(:title => "Third Post")]

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::Columns do
   include Arbre::HTML
+  let(:assigns){ {} }
 
   describe "Rendering one column" do
     let(:cols) do
