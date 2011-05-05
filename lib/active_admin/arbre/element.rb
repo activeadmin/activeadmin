@@ -112,9 +112,27 @@ module Arbre
         to_html
       end
 
+      def to_str
+        to_s
+      end
+
       def to_html
         content
       end
+
+      def +(element)
+        case element
+        when Element, Collection
+        else
+          element = TextNode.from_string(element)
+        end
+        Collection.new([self]) + element
+      end
+
+      def to_ary
+        Collection.new [self]
+      end
+      alias_method :to_a, :to_ary
 
       private
 

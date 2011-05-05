@@ -51,10 +51,14 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Namespace::RegisterEvent do |namespace
       end
 
       # Display as a table
-      index do |i|
-        i.column("Resource"){|comment| auto_link(comment.resource) }
-        i.column("Author"){|comment| auto_link(comment.author) }
-        i.column :body
+      index do
+        column("Resource"){|comment| 
+          s =  auto_link(comment.resource) 
+          p s
+          s
+        }
+        column("Author"){|comment| auto_link(comment.author) }
+        column :body
       end
     end
   end

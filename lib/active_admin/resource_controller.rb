@@ -60,21 +60,21 @@ module ActiveAdmin
     # Default Action Item Links
     action_item :only => :show do
       if controller.action_methods.include?('edit')
-        link_to icon(:pen) + "Edit #{active_admin_config.resource_name}", edit_resource_path(resource)
+        add_child link_to(icon(:pen) + "Edit #{active_admin_config.resource_name}", edit_resource_path(resource))
       end
     end
 
     action_item :only => :show do
       if controller.action_methods.include?("destroy")
-        link_to icon(:trash_stroke) + "Delete #{active_admin_config.resource_name}",
+        add_child link_to(icon(:trash_stroke) + "Delete #{active_admin_config.resource_name}",
           resource_path(resource), 
-          :method => :delete, :confirm => "Are you sure you want to delete this?"
+          :method => :delete, :confirm => "Are you sure you want to delete this?")
       end
     end
 
     action_item :except => [:new, :show] do
       if controller.action_methods.include?('new')
-        link_to icon(:plus_alt) + "New #{active_admin_config.resource_name}", new_resource_path
+        add_child link_to(icon(:plus_alt) + "New #{active_admin_config.resource_name}", new_resource_path)
       end
     end
 

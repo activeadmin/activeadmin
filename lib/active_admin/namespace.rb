@@ -98,8 +98,7 @@ module ActiveAdmin
 
     # Returns the first registered ActiveAdmin::Resource instance for a given class
     def resource_for(klass)
-      @resource_for ||= {}
-      @resource_for[klass] ||= resources.values.find{|config| config.resource == klass }
+      resources.values.find{|config| config.resource == klass }
     end
 
     protected

@@ -5,7 +5,22 @@ module ActiveAdmin
 
         def build(*args)
           super
+          build_active_admin_head
           build_page
+        end
+
+        private
+
+        def build_active_admin_head
+          within @head do
+            meta :"http-equiv" => "Content-type", :content => "text/html; charset=utf-8"
+            insert_tag Arbre::HTML::Title, [title, ActiveAdmin.site_title].join(" | ")
+            ActiveAdmin.stylesheets.each do |path|
+              link :href => stylesheet_path(path), :media => "screen", :rel => "stylesheet", :type => "text/css"
+            end
+            # output javascript_include_tag *ActiveAdmin.javascripts
+            # output csrf_meta_tag
+          end
         end
 
         def build_page
@@ -36,9 +51,11 @@ module ActiveAdmin
         def build_breadcrumb(separator = "/")
           links = breadcrumb_links
           return if links.empty?
-          sep = span(separator, :class => "breadcrumb_sep")
           span :class => "breadcrumb" do
-            links.join(" #{sep} ").html_safe + sep.to_s
+            links.each do |link|
+              text_node link
+              span(separator, :class => "breadcrumb_sep")
+            end
           end
         end
 
@@ -48,7 +65,7 @@ module ActiveAdmin
 
         def build_action_items
           items = controller.class.action_items_for(params[:action])
-          render view_factory.action_items, items
+          insert_tag view_factory.action_items, items
         end
 
         def build_page_content

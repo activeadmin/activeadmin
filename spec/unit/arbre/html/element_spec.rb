@@ -1,9 +1,8 @@
 require 'spec_helper'
 require 'active_admin/arbre/element'
 
-include Arbre::HTML
 describe Arbre::HTML::Element do
-include Arbre::HTML
+  include Arbre::HTML
 
   let(:assigns){ {} }
   let(:element){ Element.new }
@@ -31,13 +30,16 @@ include Arbre::HTML
   end
 
   describe "passing in a helper object" do
-
+    let(:element){ Element.new(nil, action_view) }
     it "should call methods on the helper object and return TextNode objects" do
-      element = Element.new(nil, action_view)
-      element.content_tag(:div).should be_an_instance_of(TextNode)
-      element.content.should == "<div></div>"
+      element.content_tag(:div).should == "<div></div>"
     end
 
+    it "should raise a NoMethodError if not found" do
+      lambda {
+        element.a_method_that_doesnt_exist
+      }.should raise_error(NoMethodError)
+    end
   end
 
   describe "adding a child" do
@@ -140,6 +142,75 @@ include Arbre::HTML
     it "should render the children collection" do
       element.children.should_receive(:to_html).and_return("content")
       element.to_html.should == "content"
+    end
+  end
+
+  describe "adding elements together" do
+
+    context "when both elements are tags" do
+      let(:collection){ h1 + h2}
+
+      it "should return an instance of Collection" do
+        collection.should be_an_instance_of(Arbre::HTML::Collection)
+      end
+
+      it "should return the elements in the collection" do
+        collection.size.should == 2
+        collection.first.should be_an_instance_of(Arbre::HTML::H1)
+        collection[1].should be_an_instance_of(Arbre::HTML::H2)
+      end
+    end
+
+    context "when the left is a collection and the right is a tag" do
+      let(:collection){ Collection.new([h1, h2]) + h3}
+
+      it "should return an instance of Collection" do
+        collection.should be_an_instance_of(Arbre::HTML::Collection)
+      end
+
+      it "should return the elements in the collection flattened" do
+        collection.size.should == 3
+        collection[0].should be_an_instance_of(Arbre::HTML::H1)
+        collection[1].should be_an_instance_of(Arbre::HTML::H2)
+        collection[2].should be_an_instance_of(Arbre::HTML::H3)
+      end
+    end
+
+    context "when the right is a collection and the left is a tag" do
+      let(:collection){ h1 + Collection.new([h2,h3]) }
+
+      it "should return an instance of Collection" do
+        collection.should be_an_instance_of(Arbre::HTML::Collection)
+      end
+
+      it "should return the elements in the collection flattened" do
+        collection.size.should == 3
+        collection[0].should be_an_instance_of(Arbre::HTML::H1)
+        collection[1].should be_an_instance_of(Arbre::HTML::H2)
+        collection[2].should be_an_instance_of(Arbre::HTML::H3)
+      end
+    end
+
+    context "when the left is a tag and the right is a string" do
+      let(:collection){ h1 + "Hello World"}
+
+      it "should return an instance of Collection" do
+        collection.should be_an_instance_of(Arbre::HTML::Collection)
+      end
+
+      it "should return the elements in the collection" do
+        collection.size.should == 2
+        collection[0].should be_an_instance_of(Arbre::HTML::H1)
+        collection[1].should be_an_instance_of(Arbre::HTML::TextNode)
+      end
+    end
+
+    context "when the left is a string and the right is a tag" do
+      let(:collection){ "hello World" + h1}
+
+      it "should return a string" do
+        collection.should == "hello World<h1></h1>"
+      end
     end
   end
 
