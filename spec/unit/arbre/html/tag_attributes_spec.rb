@@ -4,7 +4,7 @@ describe Arbre::HTML::Tag, "Attributes" do
   include Arbre::HTML
   let(:assigns){ {} }
 
-  let(:tag){ Tag.new }
+  let(:tag){ Arbre::HTML::Tag.new }
 
   describe "attributes" do
     before { tag.build :id => "my_id" }

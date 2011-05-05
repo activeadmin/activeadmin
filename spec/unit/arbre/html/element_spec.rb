@@ -5,7 +5,7 @@ describe Arbre::HTML::Element do
   include Arbre::HTML
 
   let(:assigns){ {} }
-  let(:element){ Element.new }
+  let(:element){ Arbre::HTML::Element.new }
 
   context "when initialized" do
     it "should have no children" do
@@ -21,7 +21,7 @@ describe Arbre::HTML::Element do
       element.should respond_to(:span)
     end
     it "should have a set of local assigns" do
-      element = Element.new :hello => "World"
+      element = Arbre::HTML::Element.new :hello => "World"
       element.assigns[:hello].should == "World"
     end
     it "should have an empty hash with no local assigns" do
@@ -30,7 +30,7 @@ describe Arbre::HTML::Element do
   end
 
   describe "passing in a helper object" do
-    let(:element){ Element.new(nil, action_view) }
+    let(:element){ Arbre::HTML::Element.new(nil, action_view) }
     it "should call methods on the helper object and return TextNode objects" do
       element.content_tag(:div).should == "<div></div>"
     end
@@ -43,7 +43,7 @@ describe Arbre::HTML::Element do
   end
 
   describe "adding a child" do
-    let(:child){ Element.new }
+    let(:child){ Arbre::HTML::Element.new }
     before do
       element.add_child child
     end
@@ -66,7 +66,7 @@ describe Arbre::HTML::Element do
     context "when the child is a string" do
       let(:child){ "Hello World" }
       it "should add as a TextNode" do
-        element.children.first.should be_instance_of(TextNode)
+        element.children.first.should be_instance_of(Arbre::HTML::TextNode)
         element.children.first.to_html.should == "Hello World"
       end
     end
@@ -123,8 +123,8 @@ describe Arbre::HTML::Element do
 
   describe "setting the parent" do
     let(:parent) do
-      doc = Document.new
-      parent = Element.new
+      doc = Arbre::HTML::Document.new
+      parent = Arbre::HTML::Element.new
       doc << parent
       parent
     end
@@ -162,7 +162,7 @@ describe Arbre::HTML::Element do
     end
 
     context "when the left is a collection and the right is a tag" do
-      let(:collection){ Collection.new([h1, h2]) + h3}
+      let(:collection){ Arbre::HTML::Collection.new([h1, h2]) + h3}
 
       it "should return an instance of Collection" do
         collection.should be_an_instance_of(Arbre::HTML::Collection)
@@ -177,7 +177,7 @@ describe Arbre::HTML::Element do
     end
 
     context "when the right is a collection and the left is a tag" do
-      let(:collection){ h1 + Collection.new([h2,h3]) }
+      let(:collection){ h1 + Arbre::HTML::Collection.new([h2,h3]) }
 
       it "should return an instance of Collection" do
         collection.should be_an_instance_of(Arbre::HTML::Collection)
