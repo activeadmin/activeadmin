@@ -6,7 +6,6 @@ Feature: Sidebar Sections
     Given I am logged in
     And a post with the title "Hello World" exists
 
-
   Scenario: Create a sidebar for all actions
     Given a configuration of:
     """
@@ -76,3 +75,54 @@ Feature: Sidebar Sections
     When I am on the index page for posts
     When I follow "New Post"
     Then I should see a sidebar titled "Help"
+
+  Scenario: Create a sidebar with deep content
+    Given a configuration of:
+    """
+    ActiveAdmin.register Post do
+      sidebar :help do
+        ul do
+          li "First List First Item"
+          li "First List Second Item"
+        end
+        ul do
+          li "Second List First Item"
+          li "Second List Second Item"
+        end
+      end
+    end
+    """
+    When I am on the index page for posts
+    Then I should see a sidebar titled "Help"
+    And I should see "First List First Item" within "ul li"
+    And I should see "Second List Second Item" within "ul li"
+
+  Scenario: Rendering sidebar by default without a block or partial name
+    Given "app/views/admin/posts/_help_sidebar.html.erb" contains:
+    """
+      <p>Hello World from a partial</p>
+    """
+    Given a configuration of:
+    """
+    ActiveAdmin.register Post do
+      sidebar :help
+    end
+    """
+    When I am on the index page for posts
+    Then I should see "Hello World from a partial" within ".sidebar_section"
+
+  Scenario: Rendering a partial as the sidebar content
+    Given "app/views/admin/posts/_custom_help_partial.html.erb" contains:
+    """
+      <p>Hello World from a partial</p>
+    """
+    Given a configuration of:
+    """
+    ActiveAdmin.register Post do
+      sidebar :help, :partial => "custom_help_partial"
+    end
+    """
+    When I am on the index page for posts
+    Then I should see "Hello World from a partial" within ".sidebar_section"
+
+
