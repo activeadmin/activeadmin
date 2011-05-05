@@ -46,7 +46,8 @@ module Arbre
           return @children
         end
 
-        if child.is_a?(String)
+        # If its not an element, wrap it in a TextNode
+        unless child.is_a?(Element)
           child = TextNode.from_string(child)
         end
 

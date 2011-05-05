@@ -86,7 +86,7 @@ describe ActiveAdmin::Views::AttributesTable do
       table = attributes_table_for(post) do
         row("ID"){ span(post.id, :class => 'id') }
       end
-      table.find_by_tag("td").first.content.should == "<span class=\"id\">1</span>"
+      table.find_by_tag("td").first.content.chomp.strip.should == "<span class=\"id\">1</span>"
     end
 
     it "should check if an association exists when an attribute has id in it" do
