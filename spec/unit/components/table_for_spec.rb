@@ -11,11 +11,6 @@ describe ActiveAdmin::Views::TableFor do
       [Post.new(:title => "First Post"), Post.new(:title => "Second Post"), Post.new(:title => "Third Post")]
     end
 
-    before do
-      # Force the building of the table
-      table.send(:build_table)
-    end
-
     context "when creating a column with a symbol" do
       let(:table) do
         table_for(collection) do
@@ -72,6 +67,25 @@ describe ActiveAdmin::Views::TableFor do
       [ "<span>First Post</span>", 
         "<span>Second Post</span>", 
         "<span>Third Post</span>" ].each_with_index do |content, index|
+        it "should create a cell with #{content}" do
+          table.find_by_tag("td")[index].content.should == content
+        end
+      end
+    end
+
+    context "when creating a column with multiple block content" do
+      let(:table) do
+        table_for(collection) do
+          column :title do |post|
+            span(post.title)
+            span(post.title)
+          end
+        end
+      end
+
+      [ "<span>First Post</span><span>First Post</span>", 
+        "<span>Second Post</span><span>Second Post</span>", 
+        "<span>Third Post</span><span>Third Post</span>" ].each_with_index do |content, index|
         it "should create a cell with #{content}" do
           table.find_by_tag("td")[index].content.should == content
         end

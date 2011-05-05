@@ -58,14 +58,18 @@ Feature: Index as Table
     And I should see "Hello World"
     And I should see "From the body"
 
-  Scenario: Showing and Hiding columns based on an if block at runtime
+  Scenario: Showing and Hiding columns
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
       """
       ActiveAdmin.register Post do
         index do
-          column :title, :if => current_active_admin_user
-          column :body, :if => current_active_admin_user.nil?
+          if current_active_admin_user
+            column :title
+          end
+          if current_active_admin_user.nil?
+            column :body
+          end
         end
       end
       """

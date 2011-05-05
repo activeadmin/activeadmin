@@ -11,16 +11,25 @@ module ActiveAdmin
         @sortable = options.delete(:sortable)
         @collection = collection
         @columns = []
+        build_table
         super(options)
       end
 
       def column(*args, &block)
-        @columns << Column.new(*args, &block)
-      end
+        col = Column.new(*args, &block)
+        @columns << col
 
-      def to_html
-        build_table
-        super
+        # Build our header item
+        within @header_row do
+          build_table_header(col)
+        end
+
+        # Add a table cell for each item
+        @collection.each_with_index do |item, i|
+          within @tbody.children[i] do
+            build_table_cell(col, item)
+          end
+        end
       end
 
       def sortable?
@@ -40,16 +49,16 @@ module ActiveAdmin
       end
 
       def build_table_head
-        thead do
-          tr do
-            visible_columns.each do |col|
-              if sortable? && col.sortable?
-                build_sortable_header_for(col.title, col.sort_key)
-              else
-                th(col.title)
-              end
-            end
-          end
+        @thead = thead do
+          @header_row = tr
+        end
+      end
+
+      def build_table_header(col)
+        if sortable? && col.sortable?
+          build_sortable_header_for(col.title, col.sort_key)
+        else
+          th(col.title)
         end
       end
 
@@ -65,21 +74,20 @@ module ActiveAdmin
       end
 
       def build_table_body
-        tbody do
-          @collection.each{|item| build_table_row(item) }
-        end
-      end
-
-      def build_table_row(item)
-        tr :class => cycle('odd', 'even') do
-          visible_columns.each do |col|
-            build_table_cell(col, item)
-          end
+        @tbody = tbody do
+          # Build enough rows for our collection
+          @collection.each{|_| tr(:class => cycle('odd', 'event')) }
         end
       end
 
       def build_table_cell(col, item)
-        td pretty_format(call_method_or_proc_on(item, col.data, :exec => false))
+        td do
+          rvalue = call_method_or_proc_on(item, col.data, :exec => false)
+          if col.data.is_a?(Symbol)
+            rvalue = pretty_format(rvalue)
+          end
+          rvalue
+        end
       end
 
       # Returns an array for the current sort order
@@ -148,10 +156,6 @@ module ActiveAdmin
           end
         end
 
-        def display_column?
-          @options[:if]
-        end
-
         private
 
         def pretty_title(raw)
@@ -160,8 +164,7 @@ module ActiveAdmin
 
         def default_options
           {
-            :sortable => true,
-            :if => true
+            :sortable => true
           }
         end
 

@@ -61,6 +61,7 @@ module Arbre
       end
 
       def with_current_dom_context(tag)
+        raise ArgumentError, "Can't be in the context of nil. #{@__current_dom_element_buffer__.inspect}" unless tag
         current_dom_context # Ensure a context is setup
         @__current_dom_element_buffer__.push tag
         yield
