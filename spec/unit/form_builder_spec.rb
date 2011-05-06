@@ -1,16 +1,25 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
-describe_with_render ActiveAdmin::FormBuilder do
+describe ActiveAdmin::FormBuilder do
+  include Arbre::HTML
+  let(:assigns){ {} }
+  let(:helpers) do 
+    v = action_view
+    def v.posts_path
+      "/posts"
+    end
+    def v.protect_against_forgery?
+      false
+    end
+    v
+  end
 
   def build_form(options = {}, &block)
-    ActiveAdmin.register Post do
-      form(options, &block)
-    end
-    get :new
+    active_admin_form_for Post.new, &block
   end
 
   context "in general" do
-    before do
+    let :body do
       build_form do |f|
         f.inputs do
           f.input :title
@@ -22,92 +31,84 @@ describe_with_render ActiveAdmin::FormBuilder do
         end
       end
     end
+
     it "should generate a text input" do
-      response.body.should have_tag("input", :attributes => { :type => "text",
+      body.should have_tag("input", :attributes => { :type => "text",
                                                      :name => "post[title]" })
     end
     it "should generate a textarea" do
-      response.body.should have_tag("textarea", :attributes => { :name => "post[body]" })
+      body.should have_tag("textarea", :attributes => { :name => "post[body]" })
     end
     it "should only generate the form once" do
-      response.body.scan(/Title/).size.should == 1
+      body.scan(/Title/).size.should == 1
     end
     it "should generate buttons" do
-      response.body.should have_tag("input", :attributes => {  :type => "submit",
+      body.should have_tag("input", :attributes => {  :type => "submit",
                                                           :value => "Submit Me" })
-      response.body.should have_tag("input", :attributes => {  :type => "submit",
+      body.should have_tag("input", :attributes => {  :type => "submit",
                                                           :value => "Another Button" })
     end
   end
 
   describe "passing in options" do
-    before do
+    let :body do
       build_form :html => { :multipart => true } do |f|
         f.inputs :title
         f.buttons
       end
     end
     it "should pass the options on to the form" do
-      response.body.should have_tag("form", :attributes => { :enctype => "multipart/form-data" })
-    end
-  end
-
-  context "with default settings" do
-    before do
-      @controller.class.reset_form_config!
-    end
-    it "should generate one post title field" do
-      response.body.scan('id="post_title"').size.should == 1
+      body.should have_tag("form", :attributes => { :enctype => "multipart/form-data" })
     end
   end
 
   context "with buttons" do
     it "should generate the form once" do
-      build_form do |f|
+      body = build_form do |f|
         f.inputs do
           f.input :title
         end
         f.buttons
       end
-      response.body.scan(/id=\"post_title\"/).size.should == 1
+      body.scan(/id=\"post_title\"/).size.should == 1
     end
     it "should generate one button and a cancel link" do
-      build_form do |f|
+      body = build_form do |f|
         f.buttons
       end
-      response.body.scan(/type=\"submit\"/).size.should == 1
-      response.body.scan(/class=\"cancel\"/).size.should == 1
+      body.scan(/type=\"submit\"/).size.should == 1
+      body.scan(/class=\"cancel\"/).size.should == 1
     end
     it "should generate multiple buttons" do
-      build_form do |f|
+      body = build_form do |f|
         f.buttons do
           f.commit_button "Create & Continue"
           f.commit_button "Create & Edit"
         end
       end
-      response.body.scan(/type=\"submit\"/).size.should == 2
-      response.body.scan(/class=\"cancel\"/).size.should == 0
+      body.scan(/type=\"submit\"/).size.should == 2
+      body.scan(/class=\"cancel\"/).size.should == 0
     end
 
   end
 
   context "without passing a block to inputs" do
-    before do
+    let :body do
       build_form do |f|
         f.inputs :title, :body
       end
     end
     it "should have a title input" do
-      response.body.should have_tag("input", :attributes => { :type => "text",
+      body.should have_tag("input", :attributes => { :type => "text",
                                                           :name => "post[title]" })
     end
     it "should have a body textarea" do
-      response.body.should have_tag("textarea", :attributes => { :name => "post[body]" })
+      body.should have_tag("textarea", :attributes => { :name => "post[body]" })
     end
   end
 
   context "with semantic fields for" do
-    before do
+    let :body do
       build_form do |f|
         f.inputs do
           f.input :title
@@ -122,7 +123,7 @@ describe_with_render ActiveAdmin::FormBuilder do
       end
     end
     it "should generate a nested text input once" do
-      response.body.scan("post_author_attributes_first_name_input").size.should == 1
+      body.scan("post_author_attributes_first_name_input").size.should == 1
     end
   end
 
@@ -133,30 +134,30 @@ describe_with_render ActiveAdmin::FormBuilder do
     end
 
     describe "as select" do
-      before do
+      let :body do
         build_form do |f|
           f.input :author
         end
       end
       it "should create 2 options" do
-        response.body.scan(/\<option/).size.should == 3
+        body.scan(/\<option/).size.should == 3
       end
     end
 
     describe "as radio buttons" do
-      before do
+      let :body do
         build_form do |f|
           f.input :author, :as => :radio
         end
       end
       it "should create 2 radio buttons" do
-        response.body.scan(/type=\"radio\"/).size.should == 2
+        body.scan(/type=\"radio\"/).size.should == 2
       end
     end
   end
 
   context "with inputs 'for'" do
-    before do
+    let :body do
       build_form do |f|
         f.inputs do
           f.input :title
@@ -171,19 +172,19 @@ describe_with_render ActiveAdmin::FormBuilder do
       end
     end
     it "should generate a nested text input once" do
-      response.body.scan("post_author_attributes_first_name_input").size.should == 1
+      body.scan("post_author_attributes_first_name_input").size.should == 1
     end
     it "should add an author first name field" do
-      response.body.should have_tag("input", :attributes => { :name => "post[author_attributes][first_name]"})
+      body.should have_tag("input", :attributes => { :name => "post[author_attributes][first_name]"})
     end
   end
 
   context "with wrapper html" do
     it "should set a class" do
-      build_form do |f|
+      body = build_form do |f|
         f.input :title, :wrapper_html => { :class => "important" }
       end
-      response.body.should have_tag("li", :attributes => {:class => "string optional important"})
+      body.should have_tag("li", :attributes => {:class => "string optional important"})
     end
   end
 
@@ -196,18 +197,18 @@ describe_with_render ActiveAdmin::FormBuilder do
     "input :created_at, :as => :date"     => /id\=\"post_created_at_2i\"/,
   }.each do |source, regex|
    it "should properly buffer #{source}" do
-     build_form do |f|
+     body = build_form do |f|
        f.inputs do
          f.instance_eval(source)
          f.instance_eval(source)
        end
      end
-     response.body.scan(regex).size.should == 2
+     body.scan(regex).size.should == 2
    end
   end
 
   describe "datepicker input" do
-    before do
+    let :body do
       build_form do |f|
         f.inputs do
           f.input :created_at, :as => :datepicker
@@ -215,7 +216,7 @@ describe_with_render ActiveAdmin::FormBuilder do
       end
     end
     it "should generate a text input with the class of datepicker" do
-      response.body.should have_tag("input", :attributes => {  :type => "text",
+      body.should have_tag("input", :attributes => {  :type => "text",
                                                           :class => "datepicker",
                                                           :name => "post[created_at]" })
     end
