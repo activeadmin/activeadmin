@@ -1,159 +1,169 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
 
-describe_with_render 'A resource\'s filters' do
+describe ActiveAdmin::ViewHelpers::FilterFormHelper do
+  include Arbre::HTML
+  let(:assigns){ {} }
 
-  def reset!
-    Admin::PostsController.reset_filters!
+  # Setup an ActionView::Base object which can be used for
+  # generating the form for.
+  let(:helpers) do 
+    view = action_view
+    def view.collection_path
+      "/posts"
+    end
+
+    def view.protect_against_forgery?
+      false
+    end
+
+    view
   end
 
-  def filter(*args)
-    ActiveAdmin.register Post do
-      filter *args
+  def filter(name, options = {})
+    search = Post.search
+    active_admin_filters_form_for(search, [options.merge(:attribute => name)])
+  end
+
+  describe "the form in general" do
+    let(:body) { filter :title }
+
+    it "should generate a form which submits via get" do
+      body.should have_tag("form", :attributes => { :method => 'get' })
+    end
+
+    it "should generate a filter button" do
+      body.should have_tag("input", :attributes => { :type => "submit",
+                                                        :value => "Filter" })
+    end
+
+    it "should only generate the form once" do
+      body.scan(/q\[title_contains\]/).size.should == 1
+    end
+
+    it "should generate a clear filters link" do
+      body.should have_tag("a", "Clear Filters", :attributes => { :class => "clear_filters_btn" })
     end
   end
 
-  before do
-    @john = User.create :first_name => "John", :last_name => "Doe", :username => "john_doe"
-    @jane = User.create :first_name => "Jane", :last_name => "Doe", :username => "jane_doe"
-    reset!
-    filter :title
-    filter :body
-    filter :created_at
-    filter :id
-    filter :author
-    get :index
+  describe "string attribute" do
+    let(:body) { filter :title }
+
+    it "should generate a search field for a string attribute" do
+      body.should have_tag("input", :attributes => { :name => "q[title_contains]"})
+    end
+
+    it "should label a text field with search" do
+      body.should have_tag('label', 'Search Title')
+    end
   end
 
-  after(:each) do
-    reset!
+  describe "text attribute" do
+    let(:body) { filter :body }
+
+    it "should generate a search field for a text attribute" do
+      body.should have_tag("input", :attributes => { :name => "q[body_contains]"})
+    end
+
+    it "should label a text field with search" do
+      body.should have_tag('label', 'Search Body')
+    end
   end
 
-  it "should generate a form which submits via get" do
-    response.body.should have_tag("form", :attributes => { :method => 'get' })
-  end
+  describe "datetime attribute" do
+    let(:body) { filter :created_at }
 
-  it "should generate a filter button" do
-    response.body.should have_tag("input", :attributes => { :type => "submit",
-                                                        :value => "Filter" })
-  end
-
-  it "should generate a search field for a string attribute" do
-    response.body.should have_tag("input", :attributes => { :name => "q[title_contains]"})
-  end
-
-  it "should label a text field with search" do
-    response.body.should have_tag('label', 'Search Title')
-  end
-
-  it "should generate a search field for a text attribute" do
-    response.body.should have_tag("input", :attributes => { :name => "q[body_contains]"})
-  end
-
-  it "should only generate the form once" do
-    response.body.scan(/q\[title_contains\]/).size.should == 1
-  end
-
-  it "should generate a clear filters link" do
-    response.body.should have_tag("a", "Clear Filters", :attributes => { :class => "clear_filters_btn" })
-  end
-
-  context "when date" do
     it "should generate a date greater than" do
-      response.body.should have_tag("input", :attributes => { :name => "q[created_at_gte]", :class => "datepicker"})
+      body.should have_tag("input", :attributes => { :name => "q[created_at_gte]", :class => "datepicker"})
     end
     it "should generate a date less than" do
-      response.body.should have_tag("input", :attributes => { :name => "q[created_at_lte]", :class => "datepicker"})
+      body.should have_tag("input", :attributes => { :name => "q[created_at_lte]", :class => "datepicker"})
     end
   end
 
-  context "when integer" do
+  describe "integer attribute" do
+    let(:body) { filter :id }
+
     it "should generate a select option for equal to" do
-      response.body.should have_tag("option", "Equal To", :attributes => { :value => 'id_eq' })
+      body.should have_tag("option", "Equal To", :attributes => { :value => 'id_eq' })
     end
     it "should generate a select option for greater than" do
-      response.body.should have_tag("option", "Greater Than")
+      body.should have_tag("option", "Greater Than")
     end
     it "should generate a select option for less than" do
-      response.body.should have_tag("option", "Less Than")
+      body.should have_tag("option", "Less Than")
     end
     it "should generate a text field for input" do
-      response.body.should have_tag("input", :attributes => {
+      body.should have_tag("input", :attributes => {
                                           :name => /q\[(id_eq|id_equals)\]/ })
     end
     it "should select the option which is currently being filtered"
   end
 
-  context "when belong to" do
+  describe "belong to" do
+    before do
+      @john = User.create :first_name => "John", :last_name => "Doe", :username => "john_doe"
+      @jane = User.create :first_name => "Jane", :last_name => "Doe", :username => "jane_doe"
+    end
 
     context "when given as the _id attribute name" do
-      before do
-        filter :author_id
-        get :index
-      end
+      let(:body) { filter :author_id }
+
       it "should not render as an integer" do
-        response.body.should_not have_tag("input", :attributes => {
+        body.should_not have_tag("input", :attributes => {
                                                 :name => "q[author_id_eq]"})
       end
       it "should render as belongs to select" do
-        response.body.should have_tag("select", :attributes => {
+        body.should have_tag("select", :attributes => {
                                             :name => "q[author_id_eq]"})
-        response.body.should have_tag("option", "jane_doe", :attributes => {
+        body.should have_tag("option", "jane_doe", :attributes => {
                                                           :value => @jane.id })
       end
     end
 
-    context "as select" do
+    context "when given as the name of the relationship" do
+      let(:body) { filter :author }
+
       it "should generate a select" do
-        response.body.should have_tag("select", :attributes => {
+        body.should have_tag("select", :attributes => {
                                             :name => "q[author_id_eq]"})
       end
       it "should set the default text to 'Any'" do
-        response.body.should have_tag("option", "Any", :attributes => {
+        body.should have_tag("option", "Any", :attributes => {
                                                     :value => "" })
       end
       it "should create an option for each related object" do
-        response.body.should have_tag("option", "john_doe", :attributes => {
+        body.should have_tag("option", "john_doe", :attributes => {
                                                           :value => @john.id })
-        response.body.should have_tag("option", "jane_doe", :attributes => {
+        body.should have_tag("option", "jane_doe", :attributes => {
                                                           :value => @jane.id })
       end
+
       context "with a proc" do
-        before do
-          reset!
+        let :body do
           filter :title, :as => :select, :collection => proc{ ['Title One', 'Title Two'] }
-          get :index
         end
+
         it "should use call the proc as the collection" do
-          response.body.should have_tag("option", "Title One")
-          response.body.should have_tag("option", "Title Two")
+          body.should have_tag("option", "Title One")
+          body.should have_tag("option", "Title Two")
         end
       end
     end
 
     context "as check boxes" do
-      before do
-        filter :author, :as => :check_boxes
-        get :index
-      end
+      let(:body) { filter :author, :as => :check_boxes }
+
       it "should create a check box for each related object" do
-        response.body.should have_tag("input", :attributes => {
+        body.should have_tag("input", :attributes => {
                                             :name => "q[author_id_in][]",
                                             :type => "checkbox",
                                             :value => @john.id })
-        response.body.should have_tag("input", :attributes => {
+        body.should have_tag("input", :attributes => {
                                             :name => "q[author_id_in][]",
                                             :type => "checkbox",          
                                             :value => @jane.id })
       end
     end
   end # belongs to
-
-  describe "default filters" do
-    it "should order by association, then content columns" do
-      attributes = controller.class.default_filters_config.collect{|f| f[:attribute] }
-      attributes.should include(:author, :active_admin_comments, :title, :body, :published_at, :created_at, :updated_at)
-    end
-  end
-
 end

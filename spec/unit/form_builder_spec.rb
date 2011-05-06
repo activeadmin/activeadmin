@@ -3,19 +3,32 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe ActiveAdmin::FormBuilder do
   include Arbre::HTML
   let(:assigns){ {} }
+
+  # Setup an ActionView::Base object which can be used for
+  # generating the form for.
   let(:helpers) do 
-    v = action_view
-    def v.posts_path
+    view = action_view
+    def view.posts_path
       "/posts"
     end
-    def v.protect_against_forgery?
+
+    def view.protect_against_forgery?
       false
     end
-    v
+
+    def view.url_for(*args)
+      if args.first == {:action => "index"}
+        posts_path
+      else
+        super
+      end
+    end
+
+    view
   end
 
   def build_form(options = {}, &block)
-    active_admin_form_for Post.new, &block
+    active_admin_form_for Post.new, options, &block
   end
 
   context "in general" do
