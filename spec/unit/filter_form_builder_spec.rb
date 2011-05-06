@@ -165,5 +165,15 @@ describe ActiveAdmin::ViewHelpers::FilterFormHelper do
                                             :value => @jane.id })
       end
     end
+
+    context "when polymorphic relationship" do
+      let(:body) do
+        search = ActiveAdmin::Comment.search
+        active_admin_filters_form_for(search, [{ :attribute => :resource}])
+      end
+      it "should not generate any field" do
+        body.should have_tag("form", :attributes => { :method => 'get' })
+      end
+    end
   end # belongs to
 end

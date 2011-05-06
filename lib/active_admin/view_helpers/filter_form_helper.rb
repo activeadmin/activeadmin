@@ -155,7 +155,7 @@ module ActiveAdmin
       end
 
       if reflection = reflection_for(method)
-        return :select if reflection.macro == :belongs_to
+        return :select if reflection.macro == :belongs_to && reflection.collection?
       end
     end
 

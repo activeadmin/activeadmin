@@ -30,6 +30,8 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Namespace::RegisterEvent do |namespace
       config.comments = false
 
       # Filter Comments by date
+      filter :resource_type
+      filter :body
       filter :created_at
 
       # Only view comments in this namespace
