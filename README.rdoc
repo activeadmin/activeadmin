@@ -59,9 +59,11 @@ If all you need to do is change the columns which get displayed, you can do so b
 them to the columns method:
 
   ActiveAdmin.register Post do
-    
-    index do |display|
-      display.columns :title, :comments_count, :created_at
+
+    index do
+      column :title
+      column :comments_count
+      column :created_at
     end
 
   end
@@ -69,22 +71,22 @@ them to the columns method:
 Or you can pass them in individually:
 
   ActiveAdmin.register Post do
-    
-    index do |display|
+
+    index do
 
       # This will title the column 'Title' and call the #title method on each object
-      display.column :title
+      column :title
 
       # This will title the column 'How many comments?' and call the #comments_count method on each object
-      display.column 'How many comments?', :comments_count
+      column 'How many comments?', :comments_count
 
       # You can add methods to the table builder which builds common things (ie: selectable checkboxes)
-      display.default_actions
+      default_actions
 
     end
 
   end
-  
+
 
 ==== Advanced Columns
 
@@ -94,11 +96,11 @@ example, say we wanted a colum called Title which holds a link to the posts admi
 You can pass a block to a column which will then be rendered within the context of the view
 for each of the objects in the collection.
 
-  
+
   ActiveAdmin.register Post do
-    
-    index do |display|
-      display.column("Title"){|post| link_to post.title, admin_post_path(post) }
+
+    index do
+      column("Title"){|post| link_to post.title, admin_post_path(post) }
     end
 
   end
@@ -110,20 +112,20 @@ the block as an argument.
 ==== Sorting
 
 The index views in Active Admin include sorting by default. 
-  
+
   ActiveAdmin.register Post do
-    
-    index do |display|
+
+    index do
 
       # A column created by a method call assumes its sortable
-      display.column :id
+      column :id
 
       # If a column is defined using a block, you must pass the key to turn on sorting. The key
       # is the attribute which gets used to sort objects using Active Record.
-      display.column("Title", :sortable => :title){|post| link_to post.title, admin_post_path(post) }
+      column("Title", :sortable => :title){|post| link_to post.title, admin_post_path(post) }
 
       # Turn off sorting by passing false
-      display.column :do_not_sort_me, :sortable => false
+      column :do_not_sort_me, :sortable => false
 
     end
 
@@ -134,9 +136,9 @@ The index views in Active Admin include sorting by default.
 
 Active Admin gives complete control over the output of the form by creating a thin DSL on top of
 the fabulous DSL created by Formtastic (http://github.com/justinfrench/formtastic).
-  
+
   ActiveAdmin.register Post do
-    
+
     form do |f|
       f.inputs "Details" do
         f.input :title
