@@ -175,6 +175,23 @@ table {
   }
 }
 
+// ----------------------------------- Tables inside Panels
+
+.panel_contents table {
+  margin-top: 5px;
+  th { 
+    padding-top: 10px;
+    background: none;
+    color: $primary-color;
+    @include no-shadow;
+    @include text-shadow;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ccc;
+  }
+  tr.odd td { background: darken($table-stripe-color, 3%); }
+  tr.even td { background: $table-stripe-color; }
+}
+
 // ----------------------------------- Sidebar Sections 
 .sidebar_section { @include section; }
 
@@ -330,11 +347,15 @@ table.dashboard {
   th, td {
     padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
     vertical-align: top;
+    border-bottom: 1px solid #e8e8e8; 
   }
   th {
     @include no-shadow;
     background: none;
     width: 150px;
+    text-transform: uppercase;
+    color: $primary-color;
+    @include text-shadow;
   }
   td {
     .empty {
@@ -345,9 +366,6 @@ table.dashboard {
     }
   }
 }
-// If its in a panel, take up the whole thing
-.panel .attributes_table { margin: -2px -15px -15px -15px; }
-
 
 // -------------------------------------- Status Tags
 .status {
