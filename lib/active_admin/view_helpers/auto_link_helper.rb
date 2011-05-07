@@ -29,7 +29,7 @@ module ActiveAdmin
 
       # Returns the current Active Admin namespace
       def active_admin_namespace
-        if respond_to?(:active_admin_config)
+        if respond_to?(:active_admin_config) && active_admin_config
           active_admin_config.namespace
         else
           ActiveAdmin::Namespace.new(ActiveAdmin.default_namespace)
