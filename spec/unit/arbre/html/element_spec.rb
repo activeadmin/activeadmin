@@ -42,6 +42,13 @@ describe Arbre::HTML::Element do
     end
   end
 
+  describe "passing in assigns" do
+    let(:assigns){ {:post => Post.new(:title => "Hello")} }
+    it "should be accessible via a method call" do
+      post.should be_an_instance_of(Post)
+    end
+  end
+
   describe "adding a child" do
     let(:child){ Arbre::HTML::Element.new }
     before do

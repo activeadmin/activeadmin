@@ -12,6 +12,8 @@ module Arbre
     def method_missing(name, *args, &block)
       if current_dom_context.respond_to?(name)
         current_dom_context.send name, *args, &block
+      elsif assigns && assigns.has_key?(name)
+        assigns[name]
       elsif helpers.respond_to?(name)
         helpers.send(name, *args, &block)
       else
