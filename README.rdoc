@@ -1,13 +1,13 @@
 = Active Admin
 
-Active Admin is a tool to facilitate the generation of administration style interfaces. It is
-a framework built on top of Ruby on Rails to allow developers to quickly and easily create
-administration interfaces which are beautiful and usable for the business.
-
+Active Admin is a framework for creating administration style interfaces. It
+abstracts common business application patterns to make it simple for developers
+to implement beautiful and elegant interfaces with very little effort.
 
 == Goals
 
-1. Allow developers to quickly create gorgeous administration interfaces.
+1. Allow developers to quickly create gorgeous administration interfaces 
+   <strong>(Not Just CRUD)</strong>
 2. Build a DSL for developers and an interface for businesses.
 3. Ensure that developers can easily customize every nook and cranny of the interface.
 4. Build common interfaces as shareable gems so that the entire community benefits.
@@ -15,80 +15,117 @@ administration interfaces which are beautiful and usable for the business.
 
 == Installation
 
-Active Admin is released as a Ruby Gem. Installing the gem deals with all its dependencies.
+Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby
+on Rails 3 application. To install, simply add the following to your Gemfile:
 
-Add the following to your Gemfile inside a Rails 3 project:
-
+  # Gemfile
   gem 'activeadmin'
 
 Then, run the installer:
 
-  rails generate active_admin:install
+  $> rails generate active_admin:install
 
 This will create an initializer which is used for configuring defaults used by Active Admin as well
-as a new folder at app/admin to put all your admin configurations. Note: All ruby files in 
-the Active Admin load path get loaded into the rails application.
+as a new folder at app/admin to put all your admin configurations. 
 
-It will also generate a new model in your application for admin users. The administration section
-will be authenticated using Devise.
+=== Admin Users
+
+By default Active Admin will include Devise and create a new model called
+AdminUser. If you would like to use another name, you can pass it in to the
+installer through the user option:
+
+  $> rails generate active_admin:install UserClassName
+
+If you don't want the generator to create any user classes:
+
+  $> rails generate active_admin:install --skip-users
+
+=== Authentication
+
+Active Admin requires two settings to authenticate and use the current user
+within your application. Both are set in
+<tt>config/initializers/active_admin.rb</tt>. By default they are setup for use
+with Devise and a model named AdminUser. If you chose a different model name,
+you will need to update these settings.
+
+Set the method that controllers should call to authenticate the current user
+with:
+
+  # config/initializers/active_admin.rb
+  config.authentication_method = :authenticate_admin_user!
+
+Set the method to call within the view to access the current admin user
+
+  # config/initializers/active_admin.rb
+  config.current_user_method = :current_admin_user
+
+Both of these settings can be set to false to turn off authentication.
+
+  # Turn off authentication all together
+  config.authentication_method = false
+  config.current_user_method   = false
+
+=== Site Title
+
+You can update the title used for the site in the initializer also. By default
+it is set to the name of your Rails.application class name.
+
+  # config/initializers/active_admin.rb
+  config.site_title = "My Admin Site"
 
 
-== Usage
+== Registering Resources
 
-Let's build up an example using a Post model and the provided admin generator.
+=== Resource Naming
 
-  rails generate active_admin:resource post
-  
-That's all you need to get a full CRUD, beautiful administration interface!
+=== Namespaces
 
-The generator will create a new file app/admin/posts.rb that will
-look like the following:
+=== Routes
 
-  ActiveAdmin.register Post
+=== Global Navigation
 
+=== Available Actions
 
-=== Customize the Index Page
+=== Scoping a Resource (scope_to and belongs_to)
+
+=== Accessing the Controller
+
+== Customizing the Index Page
+
+Filtering and listing resources is one of the most important tasks for
+administering a web application. Active Admin provides many different tools for
+you to build a compelling interface into your data for the admin staff.
+
+Built in, Active Admin supports:
+
+* As a Table
+* As a Grid
+* As a Block
+* As a Blog
+
+All index pages also support scopes, filters, pagination, action items, and
+sidebar sections.
+
+=== Index as a Table
 
 By default, the index page is a table with each of the models content columns and links to
-show, edit and delete the object. There are many ways to customize what gets displayed:
+show, edit and delete the object. There are many ways to customize what gets
+displayed.
 
+==== Defining Columns
 
-==== Simple Columns
-
-If all you need to do is change the columns which get displayed, you can do so by passing
-them to the columns method:
-
-  ActiveAdmin.register Post do
+To display an attribute or a method on a resource, simply pass a symbol into the
+column method:
 
     index do
       column :title
-      column :comments_count
-      column :created_at
     end
 
-  end
-
-Or you can pass them in individually:
-
-  ActiveAdmin.register Post do
+If the default title does not work for you, pass it as the first argument:
 
     index do
-
-      # This will title the column 'Title' and call the #title method on each object
-      column :title
-
-      # This will title the column 'How many comments?' and call the #comments_count method on each object
-      column 'How many comments?', :comments_count
-
-      # You can add methods to the table builder which builds common things (ie: selectable checkboxes)
-      default_actions
-
+      column "My Custom Title", :title
     end
-
-  end
-
-
-==== Advanced Columns
 
 Sometimes calling methods just isn't enough and you need to write some view specific code. For
 example, say we wanted a colum called Title which holds a link to the posts admin screen.
@@ -96,14 +133,11 @@ example, say we wanted a colum called Title which holds a link to the posts admi
 You can pass a block to a column which will then be rendered within the context of the view
 for each of the objects in the collection.
 
-
-  ActiveAdmin.register Post do
-
     index do
-      column("Title"){|post| link_to post.title, admin_post_path(post) }
+      column "Title" do |post| 
+        link_to post.title, admin_post_path(post)
+      end
     end
-
-  end
 
 The block gets called once for each resource in the collection. The resource gets passed into
 the block as an argument.
@@ -111,28 +145,52 @@ the block as an argument.
 
 ==== Sorting
 
-The index views in Active Admin include sorting by default. 
+When a column is generated from an Active Record attribute, the table is
+sortable by default. If you are creating a custom column, you may need to give
+Active Admin a hint for how to sort the table.
 
-  ActiveAdmin.register Post do
+If a column is defined using a block, you must pass the key to turn on sorting. The key
+is the attribute which gets used to sort objects using Active Record.
 
     index do
-
-      # A column created by a method call assumes its sortable
-      column :id
-
-      # If a column is defined using a block, you must pass the key to turn on sorting. The key
-      # is the attribute which gets used to sort objects using Active Record.
-      column("Title", :sortable => :title){|post| link_to post.title, admin_post_path(post) }
-
-      # Turn off sorting by passing false
-      column :do_not_sort_me, :sortable => false
-
+      column "Title", :sortable => :title do |post| 
+        link_to post.title, admin_post_path(post)
+      end
     end
 
-  end
+You can turn off sorting on any column by passing false:
 
+    index do
+      column :title, :sortable => false
+    end
 
-=== Customize the Form
+==== Showing and Hiding Columns
+
+The entire index block is rendered within the context of the view, so you can
+easily do things that show or hide columns based on the current context.
+
+For example, if you were using CanCan:
+
+    index do
+      column :title, :sortable => false
+      if can? :manage, Post
+        column :some_secret_data
+      end
+    end
+
+=== Index as a Grid
+
+=== Index as a Block
+
+=== Index as a Blog
+
+=== Create Your Own Index Style
+
+=== Index Filters
+
+=== Index Scopes
+
+== Customizing the Form
 
 Active Admin gives complete control over the output of the form by creating a thin DSL on top of
 the fabulous DSL created by Formtastic (http://github.com/justinfrench/formtastic).
@@ -155,6 +213,25 @@ the fabulous DSL created by Formtastic (http://github.com/justinfrench/formtasti
 
 Please view the documentation for Formtastic to see all the wonderful things you can do:
 http://github.com/justinfrench/formtastic
+
+
+== Customizing the Show Screen
+
+== Action Items
+
+== Sidebar Sections
+
+== The Dashboard
+
+== Custom Actions
+
+=== Collection Actions
+
+=== Member Actions
+
+== Adding a Stylesheet or Javascript File
+
+== Adding Before or After Filters to all Resource Controllers
 
 
 == Tools Being Used
