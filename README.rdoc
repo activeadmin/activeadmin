@@ -341,7 +341,7 @@ Iconic Icons::
 We are using the awesome Github issues!
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix on a new topic branch
 * Add specs and cukes for it. This is important so I don't break it in a
