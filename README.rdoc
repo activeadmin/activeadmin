@@ -13,7 +13,7 @@ to implement beautiful and elegant interfaces with very little effort.
 4. Build common interfaces as shareable gems so that the entire community benefits.
 
 
-== Installation
+== Getting Started
 
 Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby
 on Rails 3 application. To install, simply add the following to your Gemfile:
@@ -21,12 +21,35 @@ on Rails 3 application. To install, simply add the following to your Gemfile:
   # Gemfile
   gem 'activeadmin'
 
-Then, run the installer:
+After updating your bundle, run the installer
 
   $> rails generate active_admin:install
 
-This will create an initializer which is used for configuring defaults used by Active Admin as well
-as a new folder at app/admin to put all your admin configurations. 
+The installer creates an initializer used for configuring defaults used by Active Admin as well
+as a new folder at <tt>app/admin</tt> to put all your admin configurations. 
+
+Migrate your db and start the server:
+
+  $> rake db:migrate
+  $> rails server
+
+Visit http://localhost:3000/admin and log in using:
+
+* *User*: admin@example.com
+* *Password*: password
+
+Voila! You're on your brand new Active Admin dashboard.
+
+To register your first model, run:
+
+  $> rails generate active_admin:resource [MyModelName]
+
+This creates a file at <tt>app/admin/my_model_names.rb</tt> for configuring the resource.
+Refresh your web browser to see the interface.
+
+To learn how to further configure your admin section, keep on reading!
+
+== General Configuration
 
 === Admin Users
 
@@ -72,22 +95,6 @@ it is set to the name of your Rails.application class name.
 
   # config/initializers/active_admin.rb
   config.site_title = "My Admin Site"
-
-== Registering Resources
-
-=== Resource Naming
-
-=== Namespaces
-
-=== Routes
-
-=== Global Navigation
-
-=== Available Actions
-
-=== Scoping a Resource (scope_to and belongs_to)
-
-=== Accessing the Controller
 
 == Customizing the Index Page
 
@@ -213,11 +220,7 @@ resource.
       end
     end
   end
-  
 
-=== Index as a Blog
-
-=== Create Your Own Index Style
 
 === Index Filters
 
@@ -262,10 +265,6 @@ http://github.com/justinfrench/formtastic
 
 === Member Actions
 
-== Adding a Stylesheet or Javascript File
-
-== Adding Before or After Filters to all Resource Controllers
-
 
 == Tools Being Used
 
@@ -304,12 +303,12 @@ We are using the awesome Github issues!
 == Note on Patches/Pull Requests
  
 * Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
+* Make your feature addition or bug fix on a new topic branch
+* Add specs and cukes for it. This is important so I don't break it in a
   future version unintentionally.
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+* Send me a pull request.
 
 == Copyright
 
