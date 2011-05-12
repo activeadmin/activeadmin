@@ -1,4 +1,4 @@
-span.icon { vertical-align: middle; }
+span.icon { vertical-align: middle; display: inline-block; }
 span.icon svg { vertical-align: baseline; }
 
 @mixin icon-color ($color) {
