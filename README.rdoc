@@ -221,11 +221,6 @@ resource.
     end
   end
 
-
-=== Index Filters
-
-=== Index Scopes
-
 == Customizing the Form
 
 Active Admin gives complete control over the output of the form by creating a thin DSL on top of
@@ -253,18 +248,63 @@ http://github.com/justinfrench/formtastic
 
 == Customizing the Show Screen
 
-== Action Items
+Customizing the show screen is as simple as implementing the show block:
+
+  ActiveAdmin.register Post do
+    show do 
+      h3 post.title
+      div do
+        simple_format post.body
+      end
+    end
+  end
+
+The show block is rendered within the context of the view and uses the Arbre HTML DSL. You
+can also render a partial at any point.
+
+  ActiveAdmin.register Post do
+    show do 
+      # renders app/admin/posts/_some_partial.html.erb
+      render "some_partial"
+    end
+  end
+
 
 == Sidebar Sections
 
-== The Dashboard
+To add a sidebar section to all the screen within a section, use the sidebar method:
 
-== Custom Actions
+  sidebar :help do
+    "Need help? Email us at help@example.com"
+  end
 
-=== Collection Actions
+This will generate a sidebar section on each screen of the resource. With the block as
+the contents of the section. The first argument is the section title.
 
-=== Member Actions
+You can also use Arbre syntax to define the content.
 
+  sidebar :help do
+    ul do
+      li "Second List First Item"
+      li "Second List Second Item"
+    end
+  end
+
+Sidebar sections can be rendered on a specific action by using the :only or :except
+options.
+
+  sidebar :help, :only => :index do
+    "Need help? Email us at help@example.com"
+  end
+
+If you only pass a symbol, Active Admin will attempt to locate a partial to render.
+
+  # Will render app/views/admin/posts/_help_sidebar.html.erb
+  sidebar :help
+
+Or you can pass your own custom partial to render.
+
+  sidebar :help, :partial => "custom_help_partial"
 
 == Tools Being Used
 
