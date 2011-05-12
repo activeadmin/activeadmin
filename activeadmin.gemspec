@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{activeadmin}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Greg Bell"]
-  s.date = %q{2011-05-10}
+  s.date = %q{2011-05-12}
   s.description = %q{The administration framework for Ruby on Rails.}
   s.email = %q{gregdbell@gmail.com}
   s.extra_rdoc_files = [
@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
     "features/index/index_scopes.feature",
     "features/index/pagination.feature",
     "features/new_page.feature",
+    "features/registering_assets.feature",
     "features/registering_resources.feature",
     "features/show/default_content.feature",
     "features/show/page_title.feature",
@@ -45,6 +46,7 @@ Gem::Specification.new do |s|
     "features/specifying_actions.feature",
     "features/step_definitions/action_item_steps.rb",
     "features/step_definitions/additional_web_steps.rb",
+    "features/step_definitions/asset_steps.rb",
     "features/step_definitions/attribute_steps.rb",
     "features/step_definitions/comment_steps.rb",
     "features/step_definitions/configuration_steps.rb",
