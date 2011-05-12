@@ -62,6 +62,17 @@ Feature: Commenting
     Then I should not see "Hello world in public namespace"
     And I should see "Comments (1)"
 
+  Scenario: Creating a comment on an aliased resource
+    Given a configuration of:
+    """
+    ActiveAdmin.register Post, :as => "Article"
+    """
+    When I am on the index page for articles
+    And I follow "View"
+    When I add a comment "Hello from Comment"
+    Then I should see a flash with "Comment was successfully created"
+    And I should be in the resource section for articles
+
   Scenario: Viewing all commments for a namespace
     When I add a comment "Hello from Comment"
     When I am on the index page for comments

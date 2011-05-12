@@ -43,7 +43,8 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Namespace::RegisterEvent do |namespace
       before_filter :only => :show do
         flash[:notice] = flash[:notice].dup if flash[:notice]
         comment = ActiveAdmin::Comment.find(params[:id])
-        redirect_to [active_admin_config.namespace.name, comment.resource]
+        resource_config = active_admin_config.namespace.resource_for(comment.resource.class)
+        redirect_to send(resource_config.route_instance_path, comment.resource)
       end
 
       # Store the author and namespace
@@ -66,6 +67,7 @@ end
 ActiveAdmin::Event.subscribe ActiveAdmin::Resource::RegisterEvent do |resource|
   if resource.comments?
     resource.resource.has_many :active_admin_comments, :class_name => "ActiveAdmin::Comment",
-                                                       :as         => :resource
+                                                       :as         => :resource, 
+                                                       :dependent  => :destroy
   end
 end
