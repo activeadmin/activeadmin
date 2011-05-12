@@ -18,8 +18,10 @@ module ActiveAdmin
             ActiveAdmin.stylesheets.each do |path|
               link :href => stylesheet_path(path), :media => "screen", :rel => "stylesheet", :type => "text/css"
             end
-            # output javascript_include_tag *ActiveAdmin.javascripts
-            # output csrf_meta_tag
+            ActiveAdmin.javascripts.each do |path|
+              script :src => stylesheet_path(path), :type => "text/javascript"
+            end
+            text_node csrf_meta_tag
           end
         end
 
