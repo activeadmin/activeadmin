@@ -5,7 +5,9 @@ module ActiveAdmin
 
       def build(action_items)
         action_items.each do |action_item|
-          instance_eval(&action_item.block)
+          span :class => "action_item" do
+            instance_eval(&action_item.block)
+          end
         end
       end
 

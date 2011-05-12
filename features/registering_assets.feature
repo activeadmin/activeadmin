@@ -24,7 +24,6 @@ Feature: Registering Assets
     """
     When I am on the index page for posts
     Then I should see the css file "some-random-css.css"
-    Then show me the page
 
   Scenario: Registering a JS file
     Given a configuration of:
