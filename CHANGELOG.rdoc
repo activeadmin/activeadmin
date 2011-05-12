@@ -1,3 +1,8 @@
+== 0.2.1 (2011-05-12)
+
+* Bug Fixes
+  * Fixed issue with dashboard rendering a sidebar
+
 == 0.2.0 (2011-05-12)
 
 0.2.0 is essentially an entire re-write of Active Admin. Here are some
