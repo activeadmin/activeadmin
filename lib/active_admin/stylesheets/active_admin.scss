@@ -353,6 +353,8 @@ table.dashboard {
     @include no-shadow;
     background: none;
     width: 150px;
+    font-size: 0.9em;
+    padding-left: 0;
     text-transform: uppercase;
     color: $primary-color;
     @include text-shadow;
@@ -366,6 +368,8 @@ table.dashboard {
     }
   }
 }
+
+.sidebar_section .attributes_table th { width: 50px; }
 
 // -------------------------------------- Status Tags
 .status {
