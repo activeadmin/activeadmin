@@ -42,7 +42,7 @@ module ActiveAdmin
     def cancel_link(url = nil, html_options = {}, li_attributes = {})
       li_attributes[:class] ||= "cancel"
       url ||= {:action => "index"}
-      template.content_tag(:li, (template.link_to ActiveAdmin::Iconic.icon(:x) + " Cancel", url, html_options), li_attributes)
+      template.content_tag(:li, (template.link_to "Cancel", url, html_options), li_attributes)
     end
     
     def commit_button_with_cancel_link
