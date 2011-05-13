@@ -222,6 +222,9 @@ table {
   .previous_page, .next_page { display:none; }
 }
 
+
+.index_content { clear: both; }
+
 // -------------------------------------- Index as Grid 
 table.index_grid td { border: none; background: none; padding: 0 20px 20px 0; margin: 0;}
 

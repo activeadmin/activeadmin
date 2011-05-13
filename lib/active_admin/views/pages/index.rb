@@ -20,7 +20,9 @@ module ActiveAdmin
           renderer_class = find_index_renderer_class(config[:as])
 
           paginated_collection(collection, :entry_name => active_admin_config.resource_name) do
-            insert_tag(renderer_class, config, collection)
+            div :class => 'index_content' do
+              insert_tag(renderer_class, config, collection)
+            end
           end
         end
 
