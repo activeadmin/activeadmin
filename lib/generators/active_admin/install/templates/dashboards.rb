@@ -8,9 +8,10 @@ ActiveAdmin::Dashboards.build do
   # Here is an example of a simple dashboard section
   #
   #   section "Recent Posts" do
-  #   ul do
-  #     Post.recent(5).collect do |post|
-  #       li link_to(post.title, admin_post_path(post)))
+  #     ul do
+  #       Post.recent(5).collect do |post|
+  #         li link_to(post.title, admin_post_path(post))
+  #       end
   #     end
   #   end
   
