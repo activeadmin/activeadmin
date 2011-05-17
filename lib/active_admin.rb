@@ -29,6 +29,7 @@ module ActiveAdmin
   autoload :Scope,                    'active_admin/scope'
   autoload :Sidebar,                  'active_admin/sidebar'
   autoload :TableBuilder,             'active_admin/table_builder'
+  autoload :TableToCSV,				  'active_admin/table_to_csv'
   autoload :ViewFactory,              'active_admin/view_factory'
   autoload :ViewHelpers,              'active_admin/view_helpers'
   autoload :Views,                    'active_admin/views'
