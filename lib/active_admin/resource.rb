@@ -121,16 +121,17 @@ module ActiveAdmin
       @menu_options[:parent]
     end
 
+    # Returns the name to be displayed in the menu for this resource
+    def menu_item_name
+      @menu_options[:label] || plural_resource_name
+    end
+
     # Should this resource be added to the menu system?
     def include_in_menu?
       return false if @menu_options[:display] == false
       !(belongs_to? && !belongs_to_config.optional?)
     end
 
-    # Returns the name to be displayed in the menu for this resource
-    def menu_item_name
-      @menu_item_name ||= plural_resource_name
-    end
 
     # Clears all the member actions this resource knows about
     def clear_member_actions!

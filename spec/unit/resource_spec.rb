@@ -90,6 +90,16 @@ module ActiveAdmin
       end
     end
 
+    describe "menu item name" do
+      it "should be the resource name when not set" do
+        config.menu_item_name.should == "Categories"
+      end
+      it "should be settable" do
+        config.menu :label => "My Label"
+        config.menu_item_name.should == "My Label"
+      end
+    end
+
     describe "parent menu item name" do
       it "should be nil when not set" do
         config.parent_menu_item_name.should == nil
