@@ -33,14 +33,17 @@ describe ActiveAdmin::TableToCSV do
   describe "a table with html" do
 	let :table do
 	  table_for [post_1, post_2] do
-		column(:title){|p| a p.title, :href => "/woot" }
+		column("<b>Title</b>".html_safe){|p| a p.title, :href => "/woot" }
 		column(:body){|p| para p.body }
 	  end
 	end
 
-	it "content without html tags" do
+	it "should render content without html tags" do
 	  csv.split("\n")[1].should == %{Hello world,""}
 	end
+    it "should render headers without html tags" do
+	  csv.split("\n")[0].should == %{Title,Body}
+    end
   end
 
 end

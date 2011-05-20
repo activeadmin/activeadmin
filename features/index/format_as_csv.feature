@@ -9,8 +9,8 @@ Feature: Format as CSV
     When I am on the index page for posts
     And I follow "CSV"
     Then I should see the CSV:
-	 | Id | Title       | Body | Published At | Created At | Updated At |
-	 | 1  | Hello World |      |              | (.*)       | (.*)       |
+    | ID  | Title       | Body | Published At | Created At | Updated At | 
+    | \d+ | Hello World |      |              | (.*)       | (.*)       | 
 
   Scenario: With index customization
 

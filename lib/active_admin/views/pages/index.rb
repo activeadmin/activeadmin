@@ -26,14 +26,6 @@ module ActiveAdmin
           end
         end
 
-        protected
-
-        def build_scopes
-          if active_admin_config.scopes.any?
-            scopes_renderer active_admin_config.scopes
-          end
-        end
-
         # Creates a default configuration for the resource class. This is a table
         # with each column displayed as well as all the default actions
         def default_index_config
@@ -45,6 +37,15 @@ module ActiveAdmin
             default_actions
           end
         end
+
+        protected
+
+        def build_scopes
+          if active_admin_config.scopes.any?
+            scopes_renderer active_admin_config.scopes
+          end
+        end
+
 
         # Returns the actual class for renderering the main content on the index
         # page. To set this, use the :as option in the page_config block.
