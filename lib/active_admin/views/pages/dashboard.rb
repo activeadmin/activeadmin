@@ -21,8 +21,6 @@ module ActiveAdmin
         end
 
         def render_sections(sections)
-          p "Rendering sections"
-          p sections.count
           table :class => "dashboard" do
             sections.in_groups_of(3, false).each do |row|
               tr do
