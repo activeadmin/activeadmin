@@ -178,9 +178,7 @@ module ActiveAdmin
       return false if loaded?
 
       # Load files
-      load_paths.flatten.compact.uniq.each do |path|
-        Dir["#{path}/*.rb"].each{|f| load f }
-      end
+      files_in_load_path.each{|file| load file }
 
       # If no configurations, let's make sure you can still login
       load_default_namespace if namespaces.values.empty?
@@ -189,6 +187,11 @@ module ActiveAdmin
       namespaces.values.each{|namespace| namespace.load_menu! }
 
       @@loaded = true
+    end
+
+    # Returns ALL the files to load from all the load paths
+    def files_in_load_path
+      load_paths.flatten.compact.uniq.collect{|path| Dir["#{path}/**/*.rb"] }.flatten
     end
 
     # Creates all the necessary routes for the ActiveAdmin configurations
