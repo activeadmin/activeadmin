@@ -55,13 +55,13 @@ module ActiveAdmin
     @@namespaces = {}
     mattr_accessor :namespaces
 
-    # The title which get's displayed in the main layout
+    # The title which gets displayed in the main layout
     @@site_title = ""
     mattr_accessor :site_title
 
     # Load paths for admin configurations. Add folders to this load path
     # to load up other resources for administration. External gems can
-    # include thier paths in this load path to provide active_admin UIs
+    # include their paths in this load path to provide active_admin UIs
     @@load_paths = [File.expand_path('app/admin', Rails.root)]
     mattr_accessor :load_paths
 
@@ -84,7 +84,7 @@ module ActiveAdmin
     mattr_accessor :authentication_method
 
     # Active Admin makes educated guesses when displaying objects, this is
-    # the list of methods its tries calling in order
+    # the list of methods it tries calling in order
     @@display_name_methods = [:display_name, :full_name, :name, :username, :login, :title, :email, :to_s]
     mattr_accessor :display_name_methods
 
@@ -96,7 +96,7 @@ module ActiveAdmin
   class << self
 
 
-    # Get's called within the initializer
+    # Gets called within the initializer
     def setup
       # Register the default assets
       register_stylesheet 'admin/active_admin.css'
@@ -105,7 +105,7 @@ module ActiveAdmin
 
       # Since we're dealing with all our own file loading, we need
       # to remove our paths from the ActiveSupport autoload paths.
-      # If not, file nameing becomes very important and can cause clashes.
+      # If not, file naming becomes very important and can cause clashes.
       ActiveSupport::Dependencies.autoload_paths.reject!{|path| load_paths.include?(path) }
 
       # Add the Active Admin view path to the rails view path
