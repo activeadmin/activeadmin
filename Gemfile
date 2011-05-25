@@ -35,8 +35,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec',          '2.0.0.beta.22'
-  gem 'rspec-rails',    '2.0.0.beta.22'
+  gem 'rspec',          '~> 2.6.0'
+  gem 'rspec-rails',    '~> 2.6.0'
   gem 'capybara',       '0.3.9'
   gem 'cucumber',       '0.9.2'
   gem 'cucumber-rails', '0.3.2'
