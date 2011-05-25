@@ -158,7 +158,7 @@ HTML
     it "should close tags that have attributes but no child nodes" do
       tag = meta :"http-equiv" => "Content-type", :content => "text/html; charset=utf-8"
       tag.to_html.should == <<-HTML
-<meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8\"/>
 HTML
     end
   end
