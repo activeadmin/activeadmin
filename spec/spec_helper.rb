@@ -59,7 +59,7 @@ module ActiveAdminIntegrationSpecHelper
     describe *args do
       include RSpec::Rails::ControllerExampleGroup
       render_views  
-      metadata[:behaviour][:describes] = ActiveAdmin.namespaces[:admin].resources['Post'].controller
+      # metadata[:behaviour][:describes] = ActiveAdmin.namespaces[:admin].resources['Post'].controller
       module_eval &block
     end
   end
