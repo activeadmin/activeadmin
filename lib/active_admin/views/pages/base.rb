@@ -71,7 +71,7 @@ module ActiveAdmin
         end
 
         def build_page_content
-          div :id => "content", :class => (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
+          div :id => "active_admin_content", :class => (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
             build_flash_messages
             build_main_content_wrapper
             build_sidebar
