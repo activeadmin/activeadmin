@@ -17,6 +17,8 @@ when "3.0.5"
   gem 'rails',          '= 3.0.5'
 when "3.0.6"
   gem 'rails',          '= 3.0.6'
+when "3.0.7"
+  gem 'rails',          '= 3.0.7'
 else
   # Default gems for in the gemspec
   gem 'rails',          '>= 3.0.0'
@@ -32,6 +34,7 @@ gem 'haml',           '>= 3.0.18'
 group :development, :test do
   gem 'sqlite3-ruby',   :require => 'sqlite3'
   gem 'jeweler',        '1.5.2'
+  gem 'rake',           '0.8.7'
 end
 
 group :test do

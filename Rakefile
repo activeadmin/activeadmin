@@ -11,7 +11,7 @@ end
 
 desc "Install all supported versions of rails"
 task :install_all_rails do
-  (0..6).to_a.each do |v|
+  (0..7).to_a.each do |v|
     system "rm Gemfile.lock"
     puts "Installing for RAILS=3.0.#{v}"
     cmd "RAILS=3.0.#{v} bundle install"
