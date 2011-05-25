@@ -5,11 +5,18 @@ module ActiveAdmin
 
         def build(*args)
           super
+          add_classes_to_body
           build_active_admin_head
           build_page
         end
 
         private
+
+
+        def add_classes_to_body
+          @body.add_class(params[:action])
+          @body.add_class(params[:controller].gsub('/', '_'))
+        end
 
         def build_active_admin_head
           within @head do
