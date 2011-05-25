@@ -28,10 +28,6 @@ module RSpec
           @router = ::Rails.application.routes
         end
       end
-
-      RSpec.configure do |c|
-        c.include self, :example_group => { :file_path => /\bspec\/integration\// }
-      end
     end
   end
 end

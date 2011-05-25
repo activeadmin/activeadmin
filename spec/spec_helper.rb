@@ -67,7 +67,6 @@ module ActiveAdminIntegrationSpecHelper
   # Setup a describe block which uses capybara and rails integration
   # test methods.
   def describe_with_capybara(*args, &block)
-    require 'integration_example_group'
     describe *args do
       include RSpec::Rails::IntegrationExampleGroup
       module_eval &block
@@ -116,6 +115,13 @@ ENV["RAILS_ASSET_ID"] = ''
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
+end
+
+# All RSpec configuration needs to happen before any examples
+# or else it whines.
+require 'integration_example_group'
+RSpec.configure do |c|
+  c.include RSpec::Rails::IntegrationExampleGroup, :example_group => { :file_path => /\bspec\/integration\// }
 end
 
 # Ensure this is defined for Ruby 1.8
