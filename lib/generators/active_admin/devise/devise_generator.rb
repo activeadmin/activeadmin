@@ -35,9 +35,13 @@ module ActiveAdmin
       end
 
       def add_default_user_to_migration
-        inject_into_file  Dir["db/migrate/*_devise_create_#{table_name}.rb"].first, 
-                          "# Create a default user\n    #{class_name}.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')\n\n    ",
-                          :before => "add_index :#{table_name}, :email"
+        # Don't assume that we have a migration!
+        devise_migrations = Dir["db/migrate/*_devise_create_#{table_name}.rb"]
+        if devise_migrations.size > 0
+          inject_into_file  Dir["db/migrate/*_devise_create_#{table_name}.rb"].first, 
+                            "# Create a default user\n    #{class_name}.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')\n\n    ",
+                            :before => "add_index :#{table_name}, :email"
+        end
       end
 
     end
