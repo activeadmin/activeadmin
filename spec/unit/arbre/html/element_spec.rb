@@ -216,7 +216,7 @@ describe Arbre::HTML::Element do
       let(:collection){ "hello World" + h1}
 
       it "should return a string" do
-        collection.strip.chomp.should == "hello World<h1></h1>"
+        collection.strip.chomp.should == "hello World<h1/>"
       end
     end
   end
