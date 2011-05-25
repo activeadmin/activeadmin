@@ -1,8 +1,0 @@
-page_config = active_admin_config.page_configs[:index] || ActiveAdmin::PageConfig.new(:as => table) do |display|
-  id_column
-  resource_class.content_columns.each do |col|
-    column col.name.to_sym
-  end
-end
-index_table = insert_tag(ActiveAdmin::Views::IndexAsTable, page_config, collection)
-@__current_dom_element__ = ActiveAdmin::TableToCSV.new(index_table)
