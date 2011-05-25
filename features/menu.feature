@@ -22,5 +22,4 @@ Feature: Menu
     """
     When I am on the dashboard
     Then I should see a menu item for "Articles"
-    Then show me the page
     And I should not see a menu item for "Posts"
