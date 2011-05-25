@@ -113,7 +113,7 @@ ActiveAdmin.current_user_method = false
 # test for the presence of an asset file
 ENV["RAILS_ASSET_ID"] = ''
 
-Rspec.configure do |config|
+RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
 end
@@ -121,7 +121,7 @@ end
 # Ensure this is defined for Ruby 1.8
 module MiniTest; class Assertion < Exception; end; end
 
-Rspec::Matchers.define :have_tag do |*args|
+RSpec::Matchers.define :have_tag do |*args|
 
   match_unless_raises Test::Unit::AssertionFailedError do |response|
     tag = args.shift
