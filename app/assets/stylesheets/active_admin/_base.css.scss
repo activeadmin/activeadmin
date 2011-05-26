@@ -132,7 +132,7 @@ a.button, input[type=submit] { @include dark-button; }
 .section, .panel{ @include section; }
 
 // ----------------------------------- Tables 
-table {
+table.index_table {
   width: 100%;
   margin-bottom: 10px;
   border: 0;
@@ -246,7 +246,11 @@ form {
       font-size: 0.9em;
       font-weight: bold;
     }
-    .datepicker { width: 80px; }
+    .datepicker { 
+      background: #fff url('/images/active_admin/datepicker/datepicker-input-icon.png') no-repeat 78px 6px;
+      padding-right: 27px;
+      width: 62px;
+    }
     &.filter_numeric { input[type=text] { width: 80px; margin-left: 5px; } }
     &.filter_check_boxes {
       label { margin-bottom: 3px; }
@@ -317,23 +321,109 @@ body.logged_out {
 
 // -------------------------------------- Date Picker 
 .ui-datepicker {
-  @include primary-gradient;
-  padding: 5px 5px 0 5px;
+  background: #fff;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
   color: #fff;
-  display: none;
+  //display: none;
+  padding: 0;
+  
+  background: url('/images/active_admin/datepicker/datepicker-nipple.png') no-repeat 0 -40px;
+  
   a { 
-    color: #fff;
     text-decoration: none;
     &:hover {
       cursor: pointer;
     }
-    &.ui-datepicker-prev { float: left; }
-    &.ui-datepicker-next { float: right; }
   }
-  .ui-datepicker-title { text-align: center; display: block;}
-  table {
-    td, th { padding: 1px 3px; }
-    td { border: none; }
+  
+  .ui-datepicker-header {
+    background: url('/images/active_admin/datepicker/datepicker-header-bg.png') no-repeat 0px 0px;
+    padding: 16px 7px 8px;
+    height: 12px;
+    
+    .ui-datepicker-title {
+      @include text-shadow(#000);
+      display: block;
+      font-size: 1.1em;
+      font-weight: bold;
+      line-height: 0.8em;
+      text-align: center;
+    }
+    
+    a { 
+      color: #fff;
+      display: block;
+      height: 19px;
+      margin-top: -4px;
+      width: 20px;
+      
+      &.ui-datepicker-prev { 
+        float: left;
+        background: url('/images/active_admin/datepicker/datepicker-prev-link-icon.png') no-repeat 0 5px;
+      }
+      &.ui-datepicker-next {
+        float: right;  
+        background: url('/images/active_admin/datepicker/datepicker-next-link-icon.png') no-repeat 100% 5px;
+      }
+      &:active {
+        margin-top: -3px;
+        height: 18px;
+      }
+      
+      span {
+        display: none;
+      }
+    }
+  }
+  
+  table.ui-datepicker-calendar {
+    @include rounded-bottom;
+    background-color: #f4f4f4;
+    margin-bottom: 0px;
+    border: solid 1px #63686e;
+    
+    td, th {
+      padding: 0px;
+      text-align: center;
+    }
+    
+    thead th {
+      background-color: #dbdddf;
+      color: #333333;
+      font-weight: normal;
+      font-size: 0.8em;
+    }
+    
+    tbody {
+      color: #666666;
+      
+      td {
+        border: none;
+        height: 24px;
+        width: 22px;
+        
+        a {
+          @include rounded;
+          color: #666666;
+          font-weight: bold;
+          font-size: 0.85em;
+          padding: 4px;
+          
+          &.ui-state-active {
+            background-color: #dbdddf;
+          }
+          &.ui-state-hover {
+            background-color: #eceef0;
+          }
+          &.ui-state-highlight {
+            background-color: #5a5f64;
+            color: #fff;
+          }
+        }
+      }
+    }
   }
 }
 
