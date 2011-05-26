@@ -35,6 +35,7 @@ group :development, :test do
   gem 'sqlite3-ruby',   :require => 'sqlite3'
   gem 'jeweler',        '1.5.2'
   gem 'rake',           '0.8.7', :require => false
+  gem 'haml',           '~> 3.1.1', :require => false
 end
 
 group :test do

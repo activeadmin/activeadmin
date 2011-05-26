@@ -329,6 +329,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
       s.add_development_dependency(%q<rake>, ["= 0.8.7"])
+      s.add_development_dependency(%q<haml>, ["~> 3.1.1"])
     else
       s.add_dependency(%q<rails>, [">= 3.0.0"])
       s.add_dependency(%q<meta_search>, [">= 0.9.2"])
@@ -340,6 +341,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["= 1.5.2"])
       s.add_dependency(%q<rake>, ["= 0.8.7"])
+      s.add_dependency(%q<haml>, ["~> 3.1.1"])
     end
   else
     s.add_dependency(%q<rails>, [">= 3.0.0"])
@@ -352,6 +354,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["= 1.5.2"])
     s.add_dependency(%q<rake>, ["= 0.8.7"])
+    s.add_dependency(%q<haml>, ["~> 3.1.1"])
   end
 end
 
