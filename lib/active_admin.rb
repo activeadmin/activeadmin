@@ -70,10 +70,10 @@ module ActiveAdmin
     @@view_factory = ActiveAdmin::ViewFactory.new
     mattr_accessor :view_factory
 
-    # Whether or not to use admin comments
-    @@admin_notes = true
+    # DEPRECATED: This option is deprecated and will be removed. Use
+    # the #allow_comments_in option instead
     mattr_accessor :admin_notes
-    
+
     # The method to call in controllers to get the current user
     @@current_user_method = :current_admin_user
     mattr_accessor :current_user_method

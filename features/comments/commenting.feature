@@ -83,4 +83,3 @@ Feature: Commenting
     When I am on the index page for comments
     Then I should see a table header for "Body"
     And I should see "Hello from Comment"
-
