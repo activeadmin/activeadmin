@@ -161,6 +161,12 @@ HTML
 <meta content="text/html; charset=utf-8\"/>
 HTML
     end
+    it "should self-close link tags" do
+      tag = link :rel => "stylesheet"
+      tag.to_html.should == <<-HTML
+<link rel="stylesheet"/>
+HTML
+    end
   end
 
   describe "html safe" do
