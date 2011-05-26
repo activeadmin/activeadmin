@@ -82,6 +82,10 @@ module ActiveAdmin
       @plural_resource_name ||= resource_name.pluralize
     end
 
+    def resource_table_name
+      resource.table_name
+    end
+
     # Returns a properly formatted controller name for this
     # resource within its namespace
     def controller_name

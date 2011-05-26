@@ -34,7 +34,7 @@ gem 'haml',           '>= 3.0.18'
 group :development, :test do
   gem 'sqlite3-ruby',   :require => 'sqlite3'
   gem 'jeweler',        '1.5.2'
-  gem 'rake',           '0.8.7'
+  gem 'rake',           '0.8.7', :require => false
 end
 
 group :test do
