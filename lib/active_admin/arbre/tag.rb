@@ -85,12 +85,13 @@ module Arbre
 
         html = ""
 
-        if no_child?
-          # self-closing tag
-          html << spaces << open_tag.sub( />$/, '/>' )
-        elsif child_is_text?
-          # one line
-          html << spaces << open_tag << child_content << close_tag
+        if no_child? || child_is_text?
+          if self_closing_tag?
+            html << spaces << open_tag.sub( />$/, '/>' )
+          else
+            # one line
+            html << spaces << open_tag << child_content << close_tag
+          end
         else
           # multiple lines
           html << spaces << open_tag << "\n"
@@ -101,6 +102,10 @@ module Arbre
         html << "\n"
 
         html
+      end
+      
+      def self_closing_tag?
+        %w|meta link|.include?(tag_name)
       end
       
       def no_child?
