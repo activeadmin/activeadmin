@@ -85,10 +85,7 @@ module Arbre
 
         html = ""
 
-        if no_child?
-          # self-closing tag
-          html << spaces << open_tag.sub( />$/, '/>' )
-        elsif child_is_text?
+        if no_child? || child_is_text?
           # one line
           html << spaces << open_tag << child_content << close_tag
         else

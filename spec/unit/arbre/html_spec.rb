@@ -69,9 +69,9 @@ EOS
     end
     content.to_html.should == <<-HTML
 <div>
-  <ul/>
+  <ul></ul>
   <li>
-    <li/>
+    <li></li>
   </li>
 </div>
 HTML
@@ -86,7 +86,7 @@ HTML
     content.to_html.should == <<-HTML
 <div>
   <ul>
-    <li/>
+    <li></li>
   </ul>
 </div>
 HTML
@@ -100,7 +100,7 @@ HTML
 <div>
   <span>
     <ul>
-      <li/>
+      <li></li>
     </ul>
   </span>
 </div>
@@ -117,7 +117,7 @@ HTML
     content.to_html.should == <<-HTML
 <div id="my-tag">
   <ul>
-    <li/>
+    <li></li>
   </ul>
 </div>
 HTML
@@ -147,18 +147,18 @@ HTML
       end.children.first.should be_instance_of(Arbre::HTML::TextNode)
     end
   end
-  
+
   describe "self-closing nodes" do
-    it "should close tags that do not have any child nodes" do
-      tag = li
+    it "should not self-close script tags" do
+      tag = script :type => 'text/javascript'
       tag.to_html.should == <<-HTML
-<li/>
+<script type="text/javascript"></script>
 HTML
     end
-    it "should close tags that have attributes but no child nodes" do
-      tag = meta :"http-equiv" => "Content-type", :content => "text/html; charset=utf-8"
+    it "should self-close meta tags" do
+      tag = meta :content => "text/html; charset=utf-8"
       tag.to_html.should == <<-HTML
-<meta http-equiv="Content-type" content="text/html; charset=utf-8\"/>
+<meta content="text/html; charset=utf-8\"/>
 HTML
     end
   end
