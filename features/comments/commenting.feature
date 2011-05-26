@@ -76,7 +76,6 @@ Feature: Commenting
   Scenario: Create an empty comment
     When I add a comment ""
     Then I should see a flash with "Comment wasn't saved, text was empty."
-    Then show me the page
     And I should see "Comments (0)"
 
   Scenario: Viewing all commments for a namespace
