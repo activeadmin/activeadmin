@@ -73,7 +73,6 @@ Feature: Commenting
     Then I should see a flash with "Comment was successfully created"
     And I should be in the resource section for articles
 
-  @wip
   Scenario: Create an empty comment
     When I add a comment ""
     Then I should see a flash with "Comment wasn't saved, text was empty."
