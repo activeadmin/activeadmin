@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe "Configuration" do
   it "should have an array of namespaces which allow comments" do
