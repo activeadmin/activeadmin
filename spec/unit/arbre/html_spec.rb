@@ -200,7 +200,11 @@ HTML
 HTML
     end
 
-    it "should escape the contents of attributes"
+    it "should escape the contents of attributes" do
+      span(:class => "<br />").to_html.should == <<-HTML
+<span class="&lt;br /&gt;"></span>
+HTML
+    end
   end
 
 end
