@@ -207,10 +207,7 @@ Gem::Specification.new do |s|
     "lib/generators/active_admin/resource/resource_generator.rb",
     "lib/generators/active_admin/resource/templates/admin.rb",
     "spec/integration/belongs_to_spec.rb",
-    "spec/integration/dashboard_spec.rb",
     "spec/integration/index_as_csv_spec.rb",
-    "spec/integration/index_as_table_spec.rb",
-    "spec/integration/layout_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/integration_example_group.rb",
     "spec/support/rails_template.rb",
@@ -263,10 +260,7 @@ Gem::Specification.new do |s|
   s.summary = %q{The administration framework for Ruby on Rails.}
   s.test_files = [
     "spec/integration/belongs_to_spec.rb",
-    "spec/integration/dashboard_spec.rb",
     "spec/integration/index_as_csv_spec.rb",
-    "spec/integration/index_as_table_spec.rb",
-    "spec/integration/layout_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/integration_example_group.rb",
     "spec/support/rails_template.rb",
