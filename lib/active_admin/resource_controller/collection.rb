@@ -28,7 +28,7 @@ module ActiveAdmin
         # This method should return an ActiveRecord::Relation object so that
         # the searching and filtering can be applied on top
         #
-        # Note, unless you are doing something special, you should use the 
+        # Note, unless you are doing something special, you should use the
         # scope_to method from the Scoping module instead of overriding this
         # method.
         def scoped_collection
@@ -126,7 +126,12 @@ module ActiveAdmin
         end
 
         def paginate(chain)
-          chain.paginate(:page => params[:page], :per_page => @per_page || ActiveAdmin.default_per_page)
+          per_page = @per_page || ActiveAdmin.default_per_page
+          if chain.respond_to?(:paginate)
+            chain.paginate(:page => params[:page], :per_page => per_page)
+          elsif chain.respond_to?(:page)
+            chain.page(params[:page]).per(per_page)
+          end
         end
       end
 
@@ -141,3 +146,4 @@ module ActiveAdmin
     end
   end
 end
+
