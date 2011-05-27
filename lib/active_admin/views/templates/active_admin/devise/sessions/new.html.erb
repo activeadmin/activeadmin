@@ -1,21 +1,18 @@
-<div id="active_admin_content">
-	<div id="login">
-	  <h2><%= title "#{ActiveAdmin.site_title} Login" %></h2>
+<div id="login">
+  <h2><%= title "#{ActiveAdmin.site_title} Login" %></h2>
 
-	  <% scope = Devise::Mapping.find_scope!(resource_name) %>
-	  <%= active_admin_form_for(resource, :as => resource_name, :url => send(:"#{scope}_session_path"), :html => { :id => "session_new" }) do |f| 
-	    f.inputs do
-	      Devise.authentication_keys.each { |key| f.input key }
-	      f.input :password
-	      f.input :remember_me, :as => :boolean, :if =>  false  #devise_mapping.rememberable? }
-	    end
-	    f.buttons do
-	      f.commit_button "Login"
-	    end
-	  end
-	  %>
+  <% scope = Devise::Mapping.find_scope!(resource_name) %>
+  <%= active_admin_form_for(resource, :as => resource_name, :url => send(:"#{scope}_session_path"), :html => { :id => "session_new" }) do |f| 
+    f.inputs do
+      Devise.authentication_keys.each { |key| f.input key }
+      f.input :password
+      f.input :remember_me, :as => :boolean, :if =>  false  #devise_mapping.rememberable? }
+    end
+    f.buttons do
+      f.commit_button "Login"
+    end
+  end
+  %>
 
-	  <%= render :partial => "devise/shared/links" %>
-	</div>
-	
+  <%= render :partial => "devise/shared/links" %>
 </div>
