@@ -71,13 +71,13 @@ module ActiveAdmin
       end
 
       def total_pages
-        collection.total_pages if collection.respond_to?(:total_pages)
-        collection.num_pages if collection.respond_to?(:num_pages)
+        return collection.num_pages if collection.respond_to?(:num_pages)
+        collection.total_pages
       end
 
       def total_entries
-        collection.total_entries if collection.respond_to?(:total_entries)
-        collection.total_count if collection.respond_to?(:total_count)
+        return collection.total_count if collection.respond_to?(:total_count)
+        collection.total_entries
       end
 
       def page_entries_info(collection, options = {})
