@@ -33,11 +33,17 @@ module ActiveAdmin
   autoload :ViewHelpers,              'active_admin/view_helpers'
   autoload :Views,                    'active_admin/views'
 
+  class Railtie < ::Rails::Railtie
+    # Add load paths straight to I18n, so engines and application can overwrite it.
+    require 'active_support/i18n'
+    I18n.load_path << File.expand_path('../active_admin/locales/en.yml', __FILE__)
+  end
+
   module Configuration
 
     # The default namespace to put controllers and routes inside. Set this
     # in config/initializers/active_admin.rb using:
-    # 
+    #
     #   config.default_namespace = :super_admin
     #
     @@default_namespace = :admin
@@ -112,7 +118,7 @@ module ActiveAdmin
       ActionController::Base.append_view_path File.expand_path('../active_admin/views/templates', __FILE__)
 
       # Don't eagerload our configs, we'll deal with them ourselves
-      Rails.application.config.eager_load_paths = Rails.application.config.eager_load_paths.reject do |path| 
+      Rails.application.config.eager_load_paths = Rails.application.config.eager_load_paths.reject do |path|
         load_paths.include?(path)
       end
 

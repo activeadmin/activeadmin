@@ -5,7 +5,7 @@ module ActiveAdmin
 
       def build(page_config, collection)
         table_options = {
-          :id => active_admin_config.plural_resource_name.underscore, 
+          :id => active_admin_config.plural_resource_name.underscore,
           :sortable => true,
           :class => "index_table"
         }
@@ -35,9 +35,9 @@ module ActiveAdmin
             :name => ""
           }.merge(options)
           column options[:name] do |resource|
-            links = link_to "View", resource_path(resource), :class => "view_link"
-            links += link_to "Edit", edit_resource_path(resource), :class => "edit_link"
-            links += link_to "Delete", resource_path(resource), :method => :delete, :confirm => "Are you sure you want to delete this?", :class => "delete_link"
+            links = link_to I18n.t('active_admin.view'), resource_path(resource), :class => "view_link"
+            links += link_to I18n.t('active_admin.edit'), edit_resource_path(resource), :class => "edit_link"
+            links += link_to I18n.t('active_admin.delete'), resource_path(resource), :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'), :class => "delete_link"
             links
           end
         end
@@ -57,7 +57,7 @@ module ActiveAdmin
         #       post.published? ? 'published' : 'draft'
         #     end
         #   end
-        #   
+        #
         def status_tag(*args, &block)
           col = Column.new(*args, &block)
           data = col.data

@@ -39,7 +39,7 @@ module ActiveAdmin
       end
 
       def empty_value
-        span "Empty", :class => "empty"
+        span I18n.t('active_admin.empty'), :class => "empty"
       end
 
       def content_for(attr_or_proc)
