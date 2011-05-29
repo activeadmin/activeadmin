@@ -72,9 +72,14 @@ module ActiveAdmin
       underscored_resource_name.camelize
     end
 
-    # Returns the name to call this resource
+    # Returns the name to call this resource.
+    # By default will use resource.model_name.human
     def resource_name
-      @resource_name ||= underscored_resource_name.titleize
+      @resource_name ||= if @options[:as] || !resource.respond_to?(:model_name)
+        underscored_resource_name.titleize
+      else
+        resource.model_name.human.titleize
+      end
     end
 
     # Returns the plural version of this resource
