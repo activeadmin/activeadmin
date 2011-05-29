@@ -18,7 +18,7 @@ pt:
     has_many_delete: "Remover"
     filter: "Filtrar"
     clear_filters: "Limpar Filtros"
-    search_filter: "Pesquisar %{field}"
+    search_field: "Pesquisar %{field}"
     equal_to: "Igual A"
     greater_than: "Maior Que"
     less_than: "Menor Que"
