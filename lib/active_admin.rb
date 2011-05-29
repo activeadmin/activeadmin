@@ -36,7 +36,7 @@ module ActiveAdmin
   class Railtie < ::Rails::Railtie
     # Add load paths straight to I18n, so engines and application can overwrite it.
     require 'active_support/i18n'
-    I18n.load_path << File.expand_path('../active_admin/locales/en.yml', __FILE__)
+    I18n.load_path += Dir[File.expand_path('../active_admin/locales/*.yml', __FILE__)]
   end
 
   module Configuration
