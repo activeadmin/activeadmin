@@ -36,9 +36,7 @@ module ActiveAdmin
       end
 
       def to_html
-        html = super
-        p html
-        html.to_s + "<div style=\"clear:both;\"></div>".html_safe
+        super.to_s + "<div style=\"clear:both;\"></div>".html_safe
       end
 
     end
