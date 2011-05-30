@@ -72,7 +72,7 @@ body {
   #sidebar { 
     float: left; 
     width: 270px; 
-    margin-left: -270px; 
+    margin-left: -270px;
   }
 }
 
@@ -247,7 +247,7 @@ form {
       font-weight: bold;
     }
     .datepicker { 
-      background: #fff url('/images/active_admin/datepicker/datepicker-input-icon.png') no-repeat 78px 6px;
+      background: #fff url('/images/active_admin/datepicker/datepicker-input-icon.png') no-repeat 77px 0px;
       padding-right: 27px;
       width: 62px;
     }
@@ -326,8 +326,11 @@ body.logged_out {
   -moz-background-clip: padding-box;
   background-clip: padding-box;
   color: #fff;
-  //display: none;
+  display: none;
+  margin-top: 2px;
   padding: 0;
+  text-align: center;
+  width: 160px;
   
   background: url('/images/active_admin/datepicker/datepicker-nipple.png') no-repeat 0 -40px;
   
@@ -340,11 +343,14 @@ body.logged_out {
   
   .ui-datepicker-header {
     background: url('/images/active_admin/datepicker/datepicker-header-bg.png') no-repeat 0px 0px;
-    padding: 16px 7px 8px;
     height: 12px;
+    padding: 16px 7px 8px;
+    position: relative;
+    z-index: 2000;
     
     .ui-datepicker-title {
-      @include text-shadow(#000);
+      @include text-shadow(#FFF);
+      color: $primary-color;
       display: block;
       font-size: 1.1em;
       font-weight: bold;
@@ -353,7 +359,7 @@ body.logged_out {
     }
     
     a { 
-      color: #fff;
+      color: $primary-color;
       display: block;
       height: 19px;
       margin-top: -4px;
@@ -361,11 +367,11 @@ body.logged_out {
       
       &.ui-datepicker-prev { 
         float: left;
-        background: url('/images/active_admin/datepicker/datepicker-prev-link-icon.png') no-repeat 0 5px;
+        background: url('/images/active_admin/datepicker/datepicker-prev-link-icon.png') no-repeat 2px 5px;
       }
       &.ui-datepicker-next {
         float: right;  
-        background: url('/images/active_admin/datepicker/datepicker-next-link-icon.png') no-repeat 100% 5px;
+        background: url('/images/active_admin/datepicker/datepicker-next-link-icon.png') no-repeat 12px 5px;
       }
       &:active {
         margin-top: -3px;
@@ -380,9 +386,14 @@ body.logged_out {
   
   table.ui-datepicker-calendar {
     @include rounded-bottom;
+    @include shadow(0,1px,6px,rgba(0,0,0,0.26));
     background-color: #f4f4f4;
+    border: solid 1px #d4d3d2;
+    left: 2px;
     margin-bottom: 0px;
-    border: solid 1px #63686e;
+    position: relative;
+    top: -2px;
+    width: 156px;
     
     td, th {
       padding: 0px;
@@ -394,6 +405,7 @@ body.logged_out {
       color: #333333;
       font-weight: normal;
       font-size: 0.8em;
+      padding-top: 1px;
     }
     
     tbody {
