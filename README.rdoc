@@ -263,7 +263,7 @@ By default the index screen includes a "Filters" sidebar on the right hand side
 with a filter for each attribute of the registered model. You can customize the
 filters that are displayed as well as the type of widgets they use.
 
-To dislay a filter for an attribute, use the filter method
+To display a filter for an attribute, use the filter method
 
   ActiveAdmin.register Post do
     filter :title
@@ -290,6 +290,12 @@ the collection as a proc to be called at render time.
 
   # Will call available
   filter :author, :as => :check_boxes, :collection => proc { Author.all }
+
+You can change the filter label by passing a label option:
+
+  filter :author, :label => 'Author'
+
+By default, Active Admin will try to use ActiveModel I18n to determine the label.
 
 == Customizing the Form
 

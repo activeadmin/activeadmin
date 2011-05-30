@@ -41,6 +41,7 @@ module ActiveAdmin
       options[:as] ||= default_filter_type(method)
       return "" unless options[:as]
       field_type = options.delete(:as)
+      options[:label] ||= default_filter_label(method)
       content = with_new_form_buffer do
         send("filter_#{field_type}_input", method, options)
       end
@@ -52,7 +53,7 @@ module ActiveAdmin
     def filter_string_input(method, options = {})
       field_name = "#{method}_contains"
 
-      [ label(field_name, I18n.t('active_admin.search_field', :field => method.to_s.titlecase)),
+      [ label(field_name, I18n.t('active_admin.search_field', :field => options[:label])),
         text_field(field_name)
       ].join("\n").html_safe
     end
@@ -61,7 +62,7 @@ module ActiveAdmin
       gt_field_name = "#{method}_gte"
       lt_field_name = "#{method}_lte"
 
-      [ label(gt_field_name, method.to_s.titlecase),
+      [ label(gt_field_name, options[:label]),
         filter_date_text_field(gt_field_name),
         " - ",
         filter_date_text_field(lt_field_name)
@@ -106,7 +107,7 @@ module ActiveAdmin
       input_name = (generate_association_input_name(method).to_s + "_eq").to_sym
       collection = find_collection_for_column(association_name, options)
 
-      [ label(input_name, method.to_s.titlecase),
+      [ label(input_name, options[:label]),
         select(input_name, collection, options.merge(:include_blank => 'Any'))
       ].join("\n").html_safe
     end
@@ -123,7 +124,7 @@ module ActiveAdmin
         end.join("\n").html_safe
       end
 
-      [ label(input_name, method.to_s.titlecase),
+      [ label(input_name, options[:label]),
         checkboxes
       ].join("\n").html_safe
     end
@@ -156,6 +157,16 @@ module ActiveAdmin
 
       if reflection = reflection_for(method)
         return :select if reflection.macro == :belongs_to && !reflection.options[:polymorphic]
+      end
+    end
+
+    # Returns the default label for a given attribute
+    # Will use ActiveModel I18n if possible
+    def default_filter_label(method)
+      if @object.base.respond_to?(:human_attribute_name)
+        @object.base.human_attribute_name(method)
+      else
+        method.to_s.titlecase
       end
     end
 
