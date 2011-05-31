@@ -16,11 +16,7 @@ module ActiveAdmin
       end
 
       def column(*args, &block)
-        options = args.last.is_a?(::Hash) ? args.pop : {}
-        title = (args[0].is_a?(Symbol) && self.respond_to?(:resource_class) && resource_class.respond_to?(:human_attribute_name) && !resource_class.human_attribute_name(args[0]).nil?) ? resource_class.human_attribute_name(args[0]) : args[0]
-        data  = args[1] || args[0]
-
-        col = Column.new(title, data, options, &block)
+        col = Column.new(*args, &block)
         @columns << col
 
         # Build our header item
@@ -106,7 +102,7 @@ module ActiveAdmin
       end
 
       # Returns the order to use for a given sort key
-      #
+      # 
       # Default is to use 'desc'. If the current sort key is
       # 'desc' it will return 'asc'
       def order_for_sort_key(sort_key)
@@ -146,12 +142,12 @@ module ActiveAdmin
         #   column :username, :sortable => 'other_column_to_sort_on'
         #
         # If you pass a block to be rendered for this column, the column
-        # will not be sortable unless you pass a string to sortable to
+        # will not be sortable unless you pass a string to sortable to 
         # sort the column on:
         #
         #   column('Username', :sortable => 'login'){ @user.pretty_name }
         #   # => Sort key will be 'login'
-        #
+        #   
         def sort_key
           if @options[:sortable] == true || @options[:sortable] == false
             @data.to_s
