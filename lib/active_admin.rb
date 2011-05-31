@@ -88,6 +88,9 @@ module ActiveAdmin
     @@display_name_methods = [:display_name, :full_name, :name, :username, :login, :title, :email, :to_s]
     mattr_accessor :display_name_methods
 
+    @@views_path = File.expand_path('../active_admin/views/templates', __FILE__)
+    mattr_reader :views_path
+
   end
 
   extend Configuration
@@ -109,7 +112,7 @@ module ActiveAdmin
       ActiveSupport::Dependencies.autoload_paths.reject!{|path| load_paths.include?(path) }
 
       # Add the Active Admin view path to the rails view path
-      ActionController::Base.append_view_path File.expand_path('../active_admin/views/templates', __FILE__)
+      ActionController::Base.append_view_path ActiveAdmin.views_path
 
       # Don't eagerload our configs, we'll deal with them ourselves
       Rails.application.config.eager_load_paths = Rails.application.config.eager_load_paths.reject do |path| 

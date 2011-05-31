@@ -6,17 +6,19 @@ module ActiveAdmin
 
       actions :index
 
-      # Render from here if not overriden
-      self.default_views = 'active_admin_dashboard'
-
       clear_action_items!
 
       def index
         @dashboard_sections = find_sections
-        render_or_default 'index'
       end
 
       protected
+
+      # Override _prefix so we force ActionController to render
+      # the views from active_admin/dashboard instead of default path.
+      def _prefix
+        'active_admin/dashboard'
+      end
 
       def set_current_tab
         @current_tab = "Dashboard"

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Greg Bell"]
-  s.date = %q{2011-05-27}
+  s.date = %q{2011-05-31}
   s.description = %q{The administration framework for Ruby on Rails.}
   s.email = %q{gregdbell@gmail.com}
   s.extra_rdoc_files = [
@@ -115,7 +115,6 @@ Gem::Specification.new do |s|
     "lib/active_admin/resource/belongs_to.rb",
     "lib/active_admin/resource_controller.rb",
     "lib/active_admin/resource_controller/action_builder.rb",
-    "lib/active_admin/resource_controller/actions.rb",
     "lib/active_admin/resource_controller/callbacks.rb",
     "lib/active_admin/resource_controller/collection.rb",
     "lib/active_admin/resource_controller/filters.rb",
@@ -187,12 +186,6 @@ Gem::Specification.new do |s|
     "lib/active_admin/views/templates/active_admin/devise/sessions/new.html.erb",
     "lib/active_admin/views/templates/active_admin/devise/shared/_links.erb",
     "lib/active_admin/views/templates/active_admin/devise/unlocks/new.html.erb",
-    "lib/active_admin/views/templates/active_admin_dashboard/index.html.arb",
-    "lib/active_admin/views/templates/active_admin_default/edit.html.arb",
-    "lib/active_admin/views/templates/active_admin_default/index.csv.erb",
-    "lib/active_admin/views/templates/active_admin_default/index.html.arb",
-    "lib/active_admin/views/templates/active_admin_default/new.html.arb",
-    "lib/active_admin/views/templates/active_admin_default/show.html.arb",
     "lib/active_admin/views/templates/layouts/active_admin.html.erb",
     "lib/active_admin/views/templates/layouts/active_admin_logged_out.html.erb",
     "lib/activeadmin.rb",
@@ -319,24 +312,24 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, [">= 3.0.0"])
+      s.add_runtime_dependency(%q<rails>, ["= 3.0.5"])
       s.add_runtime_dependency(%q<meta_search>, [">= 0.9.2"])
       s.add_runtime_dependency(%q<devise>, [">= 1.1.2"])
       s.add_runtime_dependency(%q<formtastic>, [">= 1.1.0"])
       s.add_runtime_dependency(%q<will_paginate>, [">= 3.0.pre2"])
-      s.add_runtime_dependency(%q<inherited_views>, [">= 0"])
+      s.add_runtime_dependency(%q<inherited_resources>, [">= 0"])
       s.add_runtime_dependency(%q<sass>, [">= 3.1.0"])
       s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
       s.add_development_dependency(%q<rake>, ["= 0.8.7"])
       s.add_development_dependency(%q<haml>, ["~> 3.1.1"])
     else
-      s.add_dependency(%q<rails>, [">= 3.0.0"])
+      s.add_dependency(%q<rails>, ["= 3.0.5"])
       s.add_dependency(%q<meta_search>, [">= 0.9.2"])
       s.add_dependency(%q<devise>, [">= 1.1.2"])
       s.add_dependency(%q<formtastic>, [">= 1.1.0"])
       s.add_dependency(%q<will_paginate>, [">= 3.0.pre2"])
-      s.add_dependency(%q<inherited_views>, [">= 0"])
+      s.add_dependency(%q<inherited_resources>, [">= 0"])
       s.add_dependency(%q<sass>, [">= 3.1.0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["= 1.5.2"])
@@ -344,12 +337,12 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<haml>, ["~> 3.1.1"])
     end
   else
-    s.add_dependency(%q<rails>, [">= 3.0.0"])
+    s.add_dependency(%q<rails>, ["= 3.0.5"])
     s.add_dependency(%q<meta_search>, [">= 0.9.2"])
     s.add_dependency(%q<devise>, [">= 1.1.2"])
     s.add_dependency(%q<formtastic>, [">= 1.1.0"])
     s.add_dependency(%q<will_paginate>, [">= 3.0.pre2"])
-    s.add_dependency(%q<inherited_views>, [">= 0"])
+    s.add_dependency(%q<inherited_resources>, [">= 0"])
     s.add_dependency(%q<sass>, [">= 3.1.0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["= 1.5.2"])
