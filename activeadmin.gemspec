@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
     "features/edit_page.feature",
     "features/first_boot.feature",
     "features/global_navigation.feature",
+    "features/index/format_as_csv.feature",
     "features/index/formats.feature",
     "features/index/index_as_block.feature",
     "features/index/index_as_blog.feature",
@@ -96,6 +97,7 @@ Gem::Specification.new do |s|
     "lib/active_admin/comments/views/active_admin_comments.rb",
     "lib/active_admin/component.rb",
     "lib/active_admin/controller_action.rb",
+    "lib/active_admin/csv_builder.rb",
     "lib/active_admin/dashboards.rb",
     "lib/active_admin/dashboards/dashboard_controller.rb",
     "lib/active_admin/dashboards/section.rb",
@@ -210,7 +212,6 @@ Gem::Specification.new do |s|
     "lib/generators/active_admin/install/templates/migrations/2_move_admin_notes_to_comments.rb",
     "lib/generators/active_admin/resource/resource_generator.rb",
     "lib/generators/active_admin/resource/templates/admin.rb",
-    "spec/controllers/index_as_csv_spec.rb",
     "spec/integration/belongs_to_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/integration_example_group.rb",
@@ -238,6 +239,7 @@ Gem::Specification.new do |s|
     "spec/unit/components/sidebar_section_spec.rb",
     "spec/unit/components/table_for_spec.rb",
     "spec/unit/controller_filters_spec.rb",
+    "spec/unit/csv_builder_spec.rb",
     "spec/unit/dashboard_controller_spec.rb",
     "spec/unit/dashboard_section_spec.rb",
     "spec/unit/dashboards_spec.rb",
@@ -261,10 +263,9 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{http://github.com/gregbell/active_admin}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.7.2}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{The administration framework for Ruby on Rails.}
   s.test_files = [
-    "spec/controllers/index_as_csv_spec.rb",
     "spec/integration/belongs_to_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/integration_example_group.rb",
@@ -292,6 +293,7 @@ Gem::Specification.new do |s|
     "spec/unit/components/sidebar_section_spec.rb",
     "spec/unit/components/table_for_spec.rb",
     "spec/unit/controller_filters_spec.rb",
+    "spec/unit/csv_builder_spec.rb",
     "spec/unit/dashboard_controller_spec.rb",
     "spec/unit/dashboard_section_spec.rb",
     "spec/unit/dashboards_spec.rb",
@@ -315,6 +317,7 @@ Gem::Specification.new do |s|
   ]
 
   if s.respond_to? :specification_version then
+    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
@@ -325,6 +328,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<will_paginate>, [">= 3.0.pre2"])
       s.add_runtime_dependency(%q<inherited_resources>, [">= 0"])
       s.add_runtime_dependency(%q<sass>, [">= 3.1.0"])
+      s.add_runtime_dependency(%q<fastercsv>, [">= 0"])
       s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
       s.add_development_dependency(%q<rake>, ["= 0.8.7"])
@@ -337,6 +341,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<will_paginate>, [">= 3.0.pre2"])
       s.add_dependency(%q<inherited_resources>, [">= 0"])
       s.add_dependency(%q<sass>, [">= 3.1.0"])
+      s.add_dependency(%q<fastercsv>, [">= 0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["= 1.5.2"])
       s.add_dependency(%q<rake>, ["= 0.8.7"])
@@ -350,6 +355,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<will_paginate>, [">= 3.0.pre2"])
     s.add_dependency(%q<inherited_resources>, [">= 0"])
     s.add_dependency(%q<sass>, [">= 3.1.0"])
+    s.add_dependency(%q<fastercsv>, [">= 0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["= 1.5.2"])
     s.add_dependency(%q<rake>, ["= 0.8.7"])

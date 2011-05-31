@@ -21,7 +21,6 @@ module ActiveAdmin
 
     before_filter :only_render_implemented_actions
     before_filter :authenticate_active_admin_user
-    before_filter :prepare_csv_columns, :only => :index
 
     include ActiveAdmin::ActionItems
     include ActionBuilder
@@ -116,13 +115,5 @@ module ActiveAdmin
       ActiveAdmin.view_factory["#{action}_page"]
     end
     helper_method :renderer_for
-
-    # Before filter to prepare the columns for CSV. Note this will
-    # be deprecated very soon.
-    def prepare_csv_columns
-      if request.format.csv?
-        @csv_columns = resource_class.columns.collect{ |column| column.name.to_sym }
-      end
-    end
   end
 end

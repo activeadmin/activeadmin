@@ -291,6 +291,15 @@ the collection as a proc to be called at render time.
   # Will call available
   filter :author, :as => :check_boxes, :collection => proc { Author.all }
 
+== Customizing the CSV format
+
+Customizing the CSV format is as simple as customizing the index page.
+
+  csv do
+    column :name
+    column("Author") { |post| post.author.full_name }
+  end
+
 == Customizing the Form
 
 Active Admin gives complete control over the output of the form by creating a thin DSL on top of
