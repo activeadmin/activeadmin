@@ -115,6 +115,19 @@ module ActiveAdmin
       controller.form_config = options
     end
 
+    # Configure the CSV format
+    #
+    # For example:
+    #
+    #   csv do
+    #     column :name
+    #     column("Author") { |post| post.author.full_name }
+    #   end
+    #
+    def csv(&block)
+      config.csv_builder = CSVBuilder.new(&block)
+    end
+
     # Member Actions give you the functionality of defining both the
     # action and the route directly from your ActiveAdmin registration
     # block.

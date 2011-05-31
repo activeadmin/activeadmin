@@ -248,6 +248,22 @@ module ActiveAdmin
         config.get_scope_by_id(:published).name.should == "Published"
       end
     end
+
+    describe "#csv_builder" do
+      context "when no csv builder set" do
+        it "should return a default column builder with id and content columns" do
+          config.csv_builder.columns.size.should == Category.content_columns.size + 1
+        end
+      end
+
+      context "when csv builder set" do
+        it "shuld return the csv_builder we set" do
+          csv_builder = CSVBuilder.new
+          config.csv_builder = csv_builder
+          config.csv_builder.should == csv_builder
+        end
+      end
+    end
     
     describe "admin notes" do
       context "when not set" do
