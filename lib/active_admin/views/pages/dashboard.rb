@@ -24,7 +24,7 @@ module ActiveAdmin
           table :class => "dashboard" do
             sections.in_groups_of(3, false).each do |row|
               tr do
-                row.each do |section| 
+                row.each do |section|
                   td do
                     render_section(section)
                   end
@@ -49,7 +49,7 @@ module ActiveAdmin
 
         def default_welcome_section
           para :id => "dashboard_default_message" do
-            "Welcome to Active Admin. This is the default dashboard page. To add dashboard sections, checkout 'app/admin/dashboards.rb'"
+            I18n.t('active_admin.dashboard_welcome')
           end
         end
 

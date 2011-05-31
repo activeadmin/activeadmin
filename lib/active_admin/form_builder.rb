@@ -4,7 +4,7 @@ module ActiveAdmin
   class FormBuilder < ::Formtastic::SemanticFormBuilder
 
     attr_reader :form_buffers
-    
+
     def initialize(*args)
       @form_buffers = ["".html_safe]
       super
@@ -38,18 +38,18 @@ module ActiveAdmin
       content = with_new_form_buffer{ super }
       form_buffers.last << content.html_safe
     end
-    
+
     def cancel_link(url = nil, html_options = {}, li_attributes = {})
       li_attributes[:class] ||= "cancel"
       url ||= {:action => "index"}
-      template.content_tag(:li, (template.link_to "Cancel", url, html_options), li_attributes)
+      template.content_tag(:li, (template.link_to I18n.t('active_admin.cancel'), url, html_options), li_attributes)
     end
-    
+
     def commit_button_with_cancel_link
       content = commit_button
       content << cancel_link
     end
-    
+
     def datepicker_input(method, options)
       options = options.dup
       options[:input_html] ||= {}
@@ -67,7 +67,7 @@ module ActiveAdmin
       form_block = proc do |has_many_form|
         block.call(has_many_form) + if has_many_form.object.new_record?
                                       template.content_tag :li do
-                                        template.link_to "Delete", "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
+                                        template.link_to I18n.t('active_admin.has_many_delete'), "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
                                       end
                                     else
                                     end
@@ -88,7 +88,7 @@ module ActiveAdmin
           end
 
           js = template.escape_javascript(js)
-          js = template.link_to "Add New #{association.to_s.singularize.titlecase}", "#", :onclick => "$(this).before('#{js}'.replace(/NEW_RECORD/g, new Date().getTime())); return false;", :class => "button"
+          js = template.link_to I18n.t('active_admin.has_many_new', :model => association.to_s.singularize.titlecase), "#", :onclick => "$(this).before('#{js}'.replace(/NEW_RECORD/g, new Date().getTime())); return false;", :class => "button"
 
           form_buffers.last << js.html_safe
         end
@@ -104,6 +104,6 @@ module ActiveAdmin
       form_buffers.pop
       return_value
     end
-    
+
   end
 end

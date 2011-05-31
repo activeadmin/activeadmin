@@ -4,7 +4,7 @@ module ActiveAdmin
       class New < Base
 
         def title
-          "New #{active_admin_config.resource_name}"
+          I18n.t('active_admin.new_model', :model => active_admin_config.resource_name)
         end
 
         def main_content

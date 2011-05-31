@@ -7,7 +7,7 @@ module ActiveAdmin
     #
     #   paginated_collection collection, :entry_name => "Post" do
     #     div do
-    #       h2 "Inside the 
+    #       h2 "Inside the
     #     end
     #   end
     #
@@ -58,15 +58,15 @@ module ActiveAdmin
       end
 
       def build_pagination
-        text_node will_paginate(collection, :previous_label => "Previous", :next_label => "Next")
+        text_node will_paginate(collection, :previous_label => I18n.t('active_admin.previous'), :next_label => I18n.t('active_admin.next'))
       end
 
       # TODO: Refactor to new HTML DSL
       def build_download_format_links(formats = [:csv, :xml, :json])
         links = formats.collect do |format|
-          link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format)) 
+          link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format))
         end
-        text_node ["Download:", links].flatten.join("&nbsp;").html_safe
+        text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
       end
 
     end

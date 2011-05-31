@@ -104,7 +104,7 @@ module ActiveAdmin
         end
 
         def main_content
-          "Please implement #{self.class.name}#main_content to display content.".html_safe
+          I18n.t('active_admin.main_content', :model => self.class.name).html_safe
         end
 
         def title
