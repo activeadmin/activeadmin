@@ -53,6 +53,21 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Namespace::RegisterEvent do |namespace
         comment.author = current_active_admin_user
       end
 
+      # Redirect to the resource show page when failing to add a comment
+      # TODO: Provide helpers to make such kind of customization much simpler
+      controller do
+        def create
+          create! do |success, failure|
+            failure.html do 
+              resource_config = active_admin_config.namespace.resource_for(@comment.resource.class)
+              flash[:error] = "Comment wasn't saved, text was empty."
+              redirect_to send(resource_config.route_instance_path, @comment.resource)
+            end
+          end
+        end
+      end
+
+
       # Display as a table
       index do
         column("Resource"){|comment| auto_link(comment.resource) }

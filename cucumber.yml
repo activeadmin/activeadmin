@@ -1,1 +1,2 @@
 default: --format 'progress' --require features/support/env.rb --require features/step_definitions features
+wip: --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags @wip:3 --wip features

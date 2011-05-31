@@ -59,7 +59,7 @@ module ActiveAdminIntegrationSpecHelper
     describe *args do
       include RSpec::Rails::ControllerExampleGroup
       render_views  
-      metadata[:behaviour][:describes] = ActiveAdmin.namespaces[:admin].resources['Post'].controller
+      # metadata[:behaviour][:describes] = ActiveAdmin.namespaces[:admin].resources['Post'].controller
       module_eval &block
     end
   end
@@ -67,7 +67,6 @@ module ActiveAdminIntegrationSpecHelper
   # Setup a describe block which uses capybara and rails integration
   # test methods.
   def describe_with_capybara(*args, &block)
-    require 'integration_example_group'
     describe *args do
       include RSpec::Rails::IntegrationExampleGroup
       module_eval &block
@@ -113,15 +112,22 @@ ActiveAdmin.current_user_method = false
 # test for the presence of an asset file
 ENV["RAILS_ASSET_ID"] = ''
 
-Rspec.configure do |config|
+RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
+end
+
+# All RSpec configuration needs to happen before any examples
+# or else it whines.
+require 'integration_example_group'
+RSpec.configure do |c|
+  c.include RSpec::Rails::IntegrationExampleGroup, :example_group => { :file_path => /\bspec\/integration\// }
 end
 
 # Ensure this is defined for Ruby 1.8
 module MiniTest; class Assertion < Exception; end; end
 
-Rspec::Matchers.define :have_tag do |*args|
+RSpec::Matchers.define :have_tag do |*args|
 
   match_unless_raises Test::Unit::AssertionFailedError do |response|
     tag = args.shift

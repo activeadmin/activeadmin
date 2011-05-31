@@ -56,7 +56,7 @@ body {
 }
 
 // ----------------------------------- Main Structure 
-#content { 
+#active_admin_content { 
   margin: 0; 
   padding: 25px $horizontal-page-margin; 
   
@@ -271,7 +271,7 @@ body.logged_out {
   #content_wrapper{
     width: 500px;
     margin: 70px auto;
-    #content {
+    #active_admin_content {
       @include shadow;
       background: #fff;
       padding: 13px 30px;
@@ -345,7 +345,10 @@ table.dashboard {
   .dashboard_section { @include section; }
 }
 
+
 // -------------------------------------- Resource Attributes Table 
+.attributes_table { overflow: hidden; }
+
 .attributes_table table {
   th, td {
     padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
@@ -373,6 +376,7 @@ table.dashboard {
 }
 
 .sidebar_section .attributes_table th { width: 50px; }
+
 
 // -------------------------------------- Status Tags
 .status {

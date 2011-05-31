@@ -13,6 +13,7 @@ Feature: Menu
     When I am on the dashboard
     Then I should not see a menu item for "Posts"
 
+  @wip
   Scenario: Set the menu item label
     Given a configuration of:
     """
@@ -22,5 +23,4 @@ Feature: Menu
     """
     When I am on the dashboard
     Then I should see a menu item for "Articles"
-    Then show me the page
     And I should not see a menu item for "Posts"

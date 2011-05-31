@@ -46,8 +46,9 @@ module ActiveAdmin
 
         def sort_order(chain)
           params[:order] ||= active_admin_config.sort_order
+          table_name = active_admin_config.resource_table_name
           if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
-            chain.order("#{$1} #{$2}")
+            chain.order("#{table_name}.#{$1} #{$2}")
           else
             chain # just return the chain
           end

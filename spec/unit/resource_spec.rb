@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
+require 'spec_helper' 
 
 module ActiveAdmin
   describe Resource do
@@ -43,9 +43,20 @@ module ActiveAdmin
       it "should return the plural version" do
         config.plural_resource_name.should == "Categories"
       end
-      context "when the :as option is give" do
+      context "when the :as option is given" do
         it "should return the custom name" do
           config(:as => "My Category").resource_name.should == "My Category"
+        end
+      end
+    end
+
+    describe "#resource_table_name" do
+      it "should return the resource's table name" do
+        config.resource_table_name.should == 'categories'
+      end
+      context "when the :as option is given" do
+        it "should return the resource's table name" do
+          config(:as => "My Category").resource_table_name.should == 'categories'
         end
       end
     end

@@ -6,7 +6,7 @@ describe ActiveAdmin::ResourceController::Collection do
   end
 
   let(:controller) do
-    rc = ActiveAdmin::ResourceController.new
+    rc = Admin::PostsController.new
     rc.stub!(:params) do
       params
     end
@@ -19,6 +19,15 @@ describe ActiveAdmin::ResourceController::Collection do
       chain = mock("ChainObj")
       chain.should_receive(:metasearch).with(params[:q]).once.and_return(Post.search)
       controller.send :search, chain
+    end
+  end
+
+  describe ActiveAdmin::ResourceController::Collection::Sorting do
+    let(:params){ {:order => "id_asc" }}
+    it "should prepend the table name" do
+      chain = mock("ChainObj")
+      chain.should_receive(:order).with("posts.id asc").once.and_return(Post.search)
+      controller.send :sort_order, chain
     end
   end
 

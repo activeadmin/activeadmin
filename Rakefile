@@ -11,7 +11,7 @@ end
 
 desc "Install all supported versions of rails"
 task :install_all_rails do
-  (0..6).to_a.each do |v|
+  (0..7).to_a.each do |v|
     system "rm Gemfile.lock"
     puts "Installing for RAILS=3.0.#{v}"
     cmd "RAILS=3.0.#{v} bundle install"
@@ -70,6 +70,10 @@ require 'cucumber/rake/task'
 namespace :cucumber do
   Cucumber::Rake::Task.new(:all) do |t|
     t.profile = 'default'
+  end
+  
+  Cucumber::Rake::Task.new(:wip) do |t|
+    t.profile = 'wip'
   end
 end
 

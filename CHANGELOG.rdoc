@@ -1,26 +1,75 @@
+== 0.2.2 (2011-05-26)
+
+68 Commits by 13 Contributors
+
+=== Features & Enhancements
+
+* Arbre includes self closing tags (#100)
+* Controller class & action added to body as CSS classes (#99)
+* HAML is not required by default (#92)
+* Devise login now respects Devise.authentication_keys (#69)
+* Active Admin no longer uses <tt>ActiveRecord::Base#search</tt> (#28)
+* Resource's can now override the label in the menu (#48)
+* Subdirectories are now loaded in the Active Admin load path
+
+=== Bug Fixes
+
+* Sort order now includes table name (#38)
+* Fixed table_for 'odd', 'even' row classes (#96)
+* Fixed Devise installation if AdminUser already exists (#95)
+* Fixed issues when ActiveAdmin.default_namespaces is false (#32)
+* Added styles for missing HTML 5 inputs (#31)
+* Fixed issue if adding empty Active Admin Comment (#21)
+* Fixed layout issues in FF 4 (#22)
+* Use Sass::Plugin.options[:css_location] instead of Rails.root (#55)
+
+=== Test Suite
+
+* Update RSpec to latest & fix specs (Thanks Ben Marini & Jeremt Ruppel!) (#100)
+* Added tests for STI models (#52)
+
+=== Contributors
+
+* Ben Marini
+* Bookis Smuin
+* Caley Woods
+* Doug Puchalski
+* Federico Romero
+* Greg Bell
+* Ian MacLeod
+* Jeremy Ruppel
+* Jordan Sitkin
+* Juha Suuraho
+* Mathieu Martin
+* Paul Annesley
+* Philippe Creux
+
 == 0.2.1 (2011-05-12)
 
-* Bug Fixes
-  * Fixed issue with dashboard rendering a sidebar
+=== Bug Fixes
+* Fixed issue with dashboard rendering a sidebar
 
 == 0.2.0 (2011-05-12)
 
 0.2.0 is essentially an entire re-write of Active Admin. Here are some
 of the highlights. 250 commits. Enough said.
 
-* Features & Enhancements
-  * Full visual redesign
-  * Integrated Devise for authentication
-  * Brand new view and component layer called Arbre (Project coming soon)
-  * Added ActiveAdmin::Comments
+=== Features & Enhancements
 
-* Bug Fixes
-  * Too many to list! Been in production for close to a year
+* Full visual redesign
+* Integrated Devise for authentication
+* Brand new view and component layer called Arbre (Project coming soon)
+* Added ActiveAdmin::Comments
+
+=== Bug Fixes
+
+* Too many to list! Been in production for close to a year
 
 == 0.1.1 (2010-09-15)
 
-* Bug Fixes
-  * Fixed issues running on Ruby 1.9.2
+=== Bug Fixes
+
+* Fixed issues running on Ruby 1.9.2
 
 == 0.1.0
 

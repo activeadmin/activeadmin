@@ -148,6 +148,27 @@ HTML
     end
   end
 
+  describe "self-closing nodes" do
+    it "should not self-close script tags" do
+      tag = script :type => 'text/javascript'
+      tag.to_html.should == <<-HTML
+<script type="text/javascript"></script>
+HTML
+    end
+    it "should self-close meta tags" do
+      tag = meta :content => "text/html; charset=utf-8"
+      tag.to_html.should == <<-HTML
+<meta content="text/html; charset=utf-8\"/>
+HTML
+    end
+    it "should self-close link tags" do
+      tag = link :rel => "stylesheet"
+      tag.to_html.should == <<-HTML
+<link rel="stylesheet"/>
+HTML
+    end
+  end
+
   describe "html safe" do
     it "should escape the contents" do
       span("<br />").to_html.should == <<-HTML
@@ -179,7 +200,11 @@ HTML
 HTML
     end
 
-    it "should escape the contents of attributes"
+    it "should escape the contents of attributes" do
+      span(:class => "<br />").to_html.should == <<-HTML
+<span class="&lt;br /&gt;"></span>
+HTML
+    end
   end
 
 end
