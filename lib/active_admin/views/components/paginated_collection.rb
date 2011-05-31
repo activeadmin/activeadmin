@@ -81,10 +81,10 @@ module ActiveAdmin
           else;   "Displaying <b>all #{collection.size}</b> #{entry_name.pluralize}"
           end
         else
-          offset = collection.current_page * collection.per_page
+          offset = collection.current_page * ActiveAdmin.default_per_page
           total  = collection.total_count
           %{Displaying #{entry_name.pluralize} <b>%d&nbsp;-&nbsp;%d</b> of <b>%d</b> in total} % [
-            offset - collection.per_page + 1,
+            offset - ActiveAdmin.default_per_page + 1,
             offset > total ? total : offset,
             total
           ]
