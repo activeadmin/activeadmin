@@ -1,6 +1,5 @@
 <%-
-  # FasterCSV is CSV in ruby1.9
-  csv_lib = defined?(FasterCSV) ? FasterCSV : CSV
+  csv_lib = RUBY_VERSION =~ /^1.8/ ? FasterCSV : CSV
 
   csv_output = csv_lib.generate do |csv|
     columns = active_admin_config.csv_builder.columns

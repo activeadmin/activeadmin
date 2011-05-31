@@ -30,7 +30,7 @@ gem 'formtastic',     '>= 1.1.0'
 gem 'will_paginate',  '>= 3.0.pre2'
 gem 'inherited_resources'
 gem 'sass',           '>= 3.1.0'
-gem 'fastercsv',      :platforms => :ruby_18
+gem 'fastercsv'
 
 group :development, :test do
   gem 'sqlite3-ruby',   :require => 'sqlite3'
