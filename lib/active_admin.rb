@@ -3,7 +3,6 @@ require 'devise'
 require 'will_paginate'
 require 'sass'
 require 'active_admin/arbre'
-require 'active_admin/cancan'
 
 module ActiveAdmin
 
