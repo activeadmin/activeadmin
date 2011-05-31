@@ -26,14 +26,14 @@ module ActiveAdmin
 
       # Builds a new paginated collection component
       #
-      # @param [Array] collection  A "paginated" collection from will_paginate or kaminari
+      # @param [Array] collection  A "paginated" collection from kaminari
       # @param [Hash]  options     These options will be passed on to the page_entries_info
-      #                            method supplied in will_paginate.
+      #                            method.
       #                            Useful keys:
-      #                             :entry_name - The name to dislpay for this resource collection
+      #                             :entry_name - The name to display for this resource collection
       def build(collection, options = {})
         @collection = collection
-        div(page_entries_info(@collection, options).html_safe, :class => "pagination_information")
+        div(page_entries_info(options).html_safe, :class => "pagination_information")
         @contents = div(:class => "paginated_collection_contents")
         build_pagination_with_formats
         @built = true
@@ -58,8 +58,7 @@ module ActiveAdmin
       end
 
       def build_pagination
-        return text_node paginate(collection) if collection.respond_to?(:page)
-        text_node will_paginate(collection, :previous_label => "Previous", :next_label => "Next")
+        text_node paginate(collection)
       end
 
       # TODO: Refactor to new HTML DSL
@@ -70,31 +69,24 @@ module ActiveAdmin
         text_node ["Download:", links].flatten.join("&nbsp;").html_safe
       end
 
-      def total_pages
-        return collection.num_pages if collection.respond_to?(:num_pages)
-        collection.total_pages
-      end
-
-      def total_entries
-        return collection.total_count if collection.respond_to?(:total_count)
-        collection.total_entries
-      end
-
-      def page_entries_info(collection, options = {})
+      # modified from will_paginate
+      def page_entries_info(options = {})
         entry_name = options[:entry_name] ||
           (collection.empty?? 'entry' : collection.first.class.name.underscore.sub('_', ' '))
 
-        if total_pages < 2
+        if collection.num_pages < 2
           case collection.size
           when 0; "No #{entry_name.pluralize} found"
           when 1; "Displaying <b>1</b> #{entry_name}"
           else;   "Displaying <b>all #{collection.size}</b> #{entry_name.pluralize}"
           end
         else
+          offset = collection.current_page * collection.per_page
+          total  = collection.total_count
           %{Displaying #{entry_name.pluralize} <b>%d&nbsp;-&nbsp;%d</b> of <b>%d</b> in total} % [
-            collection.offset + 1,
-            collection.offset + collection.length,
-            total_entries
+            offset - collection.per_page + 1,
+            offset > total ? total : offset,
+            total
           ]
         end
       end

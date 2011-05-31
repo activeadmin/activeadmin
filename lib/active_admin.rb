@@ -1,6 +1,6 @@
 require 'meta_search'
 require 'devise'
-require 'will_paginate'
+require 'kaminari'
 require 'sass'
 require 'active_admin/arbre'
 
@@ -37,7 +37,7 @@ module ActiveAdmin
 
     # The default namespace to put controllers and routes inside. Set this
     # in config/initializers/active_admin.rb using:
-    # 
+    #
     #   config.default_namespace = :super_admin
     #
     @@default_namespace = :admin
@@ -112,7 +112,7 @@ module ActiveAdmin
       ActionController::Base.append_view_path File.expand_path('../active_admin/views/templates', __FILE__)
 
       # Don't eagerload our configs, we'll deal with them ourselves
-      Rails.application.config.eager_load_paths = Rails.application.config.eager_load_paths.reject do |path| 
+      Rails.application.config.eager_load_paths = Rails.application.config.eager_load_paths.reject do |path|
         load_paths.include?(path)
       end
 
@@ -310,3 +310,4 @@ module ActiveAdmin
 end
 
 require 'active_admin/comments'
+

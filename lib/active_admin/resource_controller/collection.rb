@@ -126,12 +126,7 @@ module ActiveAdmin
         end
 
         def paginate(chain)
-          per_page = @per_page || ActiveAdmin.default_per_page
-          if chain.respond_to?(:paginate)
-            chain.paginate(:page => params[:page], :per_page => per_page)
-          elsif chain.respond_to?(:page)
-            chain.page(params[:page]).per(per_page)
-          end
+          chain.page(params[:page]).per(@per_page || ActiveAdmin.default_per_page)
         end
       end
 
