@@ -179,6 +179,7 @@ Gem::Specification.new do |s|
     "lib/active_admin/views/pages/new.rb",
     "lib/active_admin/views/pages/show.rb",
     "lib/active_admin/views/tabs_renderer.rb",
+    "lib/active_admin/views/templates/active_admin/dashboard/index.html.arb",
     "lib/active_admin/views/templates/active_admin/devise/mailer/reset_password_instructions.html.erb",
     "lib/active_admin/views/templates/active_admin/devise/mailer/unlock_instructions.html.erb",
     "lib/active_admin/views/templates/active_admin/devise/passwords/edit.html.erb",
@@ -186,6 +187,11 @@ Gem::Specification.new do |s|
     "lib/active_admin/views/templates/active_admin/devise/sessions/new.html.erb",
     "lib/active_admin/views/templates/active_admin/devise/shared/_links.erb",
     "lib/active_admin/views/templates/active_admin/devise/unlocks/new.html.erb",
+    "lib/active_admin/views/templates/active_admin/resource/edit.html.arb",
+    "lib/active_admin/views/templates/active_admin/resource/index.csv.erb",
+    "lib/active_admin/views/templates/active_admin/resource/index.html.arb",
+    "lib/active_admin/views/templates/active_admin/resource/new.html.arb",
+    "lib/active_admin/views/templates/active_admin/resource/show.html.arb",
     "lib/active_admin/views/templates/layouts/active_admin.html.erb",
     "lib/active_admin/views/templates/layouts/active_admin_logged_out.html.erb",
     "lib/activeadmin.rb",
@@ -312,7 +318,7 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, ["= 3.0.5"])
+      s.add_runtime_dependency(%q<rails>, [">= 3.0.0"])
       s.add_runtime_dependency(%q<meta_search>, [">= 0.9.2"])
       s.add_runtime_dependency(%q<devise>, [">= 1.1.2"])
       s.add_runtime_dependency(%q<formtastic>, [">= 1.1.0"])
@@ -324,7 +330,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rake>, ["= 0.8.7"])
       s.add_development_dependency(%q<haml>, ["~> 3.1.1"])
     else
-      s.add_dependency(%q<rails>, ["= 3.0.5"])
+      s.add_dependency(%q<rails>, [">= 3.0.0"])
       s.add_dependency(%q<meta_search>, [">= 0.9.2"])
       s.add_dependency(%q<devise>, [">= 1.1.2"])
       s.add_dependency(%q<formtastic>, [">= 1.1.0"])
@@ -337,7 +343,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<haml>, ["~> 3.1.1"])
     end
   else
-    s.add_dependency(%q<rails>, ["= 3.0.5"])
+    s.add_dependency(%q<rails>, [">= 3.0.0"])
     s.add_dependency(%q<meta_search>, [">= 0.9.2"])
     s.add_dependency(%q<devise>, [">= 1.1.2"])
     s.add_dependency(%q<formtastic>, [">= 1.1.0"])
