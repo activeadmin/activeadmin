@@ -27,7 +27,7 @@ end
 gem "meta_search",    '>= 0.9.2'
 gem 'devise',         '>= 1.1.2'
 gem 'formtastic',     '>= 1.1.0'
-gem 'will_paginate',  '>= 3.0.pre2'
+gem 'kaminari',       '>= 0.12.4'
 gem 'inherited_views'
 gem 'sass',           '>= 3.1.0'
 
@@ -48,3 +48,4 @@ group :test do
   gem 'shoulda',        '2.11.2',           :require => nil
   gem 'launchy'
 end
+
