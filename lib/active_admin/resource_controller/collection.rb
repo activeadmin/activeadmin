@@ -126,7 +126,7 @@ module ActiveAdmin
         end
 
         def paginate(chain)
-          chain.paginate(:page => params[:page], :per_page => @per_page || ActiveAdmin.default_per_page)
+          @paginated_collection = chain.paginate(:page => params[:page], :per_page => @per_page || ActiveAdmin.default_per_page)
         end
       end
 
