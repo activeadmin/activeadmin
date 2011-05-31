@@ -390,7 +390,7 @@ Formtastic::
   A DSL for semantically building amazing forms.
 Devise::
   User authentication is done using Devise
-WillPaginate::
+Kaminari::
   Pagination for rails apps
 Iconic Icons::
   Excellent SVG icon set designed by P.J. Onori: http://somerandomdude.com/projects/iconic
