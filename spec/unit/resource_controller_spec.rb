@@ -43,7 +43,7 @@ describe ActiveAdmin::ResourceController do
       let(:resource){ mock(:parent_menu_item_name => "Admin", :menu_item_name => "Resources", :belongs_to? => false) }
       it { should == "Admin/Resources" }
     end
-  end
+  end # describe "setting the current tab"
 
   ActiveAdmin.register Post do
     after_build :call_after_build
@@ -142,6 +142,25 @@ describe ActiveAdmin::ResourceController do
         controller.send :destroy_resource, resource
       end
     end
-  end
+  end # describe "callbacks"
 
+  describe "#_prefix" do
+    let(:controller){ Admin::PostsController.new }
+    context "when action is implemented (index, new...)" do
+      it "should be overwritten to active_admin/resource" do
+        %w(index new create edit update show delete).each do |action|
+          controller.stub!(:params).and_return(:action => action)
+          controller.send(:_prefix).should == "active_admin/resource"
+        end
+      end
+    end
+
+    context "when custom action" do
+      it "should be the default one" do
+        action = 'import'
+        controller.stub!(:params).and_return(:action => action)
+        controller.send(:_prefix).should == "admin/posts"
+      end
+    end
+  end # describe "#_prefix"
 end

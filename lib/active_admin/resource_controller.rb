@@ -77,13 +77,22 @@ module ActiveAdmin
 
     protected
 
-    # Override _prefix so we force ActionController to render the
-    # views from active_admin/resource instead of default path
+    # Override _prefix so we force ActionController to render the views from
+    # active_admin/resource for the implemented actions
     def _prefix
-      'active_admin/resource'
+      if implemented_actions.include?(params[:action])
+        'active_admin/resource'
+      else
+        super
+      end
     end
 
-    # By default Rails will render un-implemented actions when the view exists. Becuase Active
+    # Action methods that active admin implements
+    def implemented_actions
+      %w(index new create edit update show delete)
+    end
+
+    # By default Rails will render un-implemented actions when the view exists. Because Active
     # Admin allows you to not render any of the actions by using the #actions method, we need
     # to check if they are implemented.
     def only_render_implemented_actions
