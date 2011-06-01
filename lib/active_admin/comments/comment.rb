@@ -1,4 +1,9 @@
+require 'kaminari/models/active_record_extension'
+
 module ActiveAdmin
+
+  # manually initialize kaminari for this model
+  ::ActiveRecord::Base.send :include, Kaminari::ActiveRecordExtension
 
   class Comment < ActiveRecord::Base
     self.table_name = "active_admin_comments"
@@ -13,3 +18,4 @@ module ActiveAdmin
   end
 
 end
+

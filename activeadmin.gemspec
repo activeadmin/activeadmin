@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Greg Bell"]
-  s.date = %q{2011-05-31}
+  s.date = %q{2011-06-01}
   s.description = %q{The administration framework for Ruby on Rails.}
   s.email = %q{gregdbell@gmail.com}
   s.extra_rdoc_files = [
@@ -263,7 +263,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{http://github.com/gregbell/active_admin}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.7.2}
   s.summary = %q{The administration framework for Ruby on Rails.}
   s.test_files = [
     "spec/integration/belongs_to_spec.rb",
@@ -317,7 +317,6 @@ Gem::Specification.new do |s|
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
@@ -325,8 +324,8 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<meta_search>, [">= 0.9.2"])
       s.add_runtime_dependency(%q<devise>, [">= 1.1.2"])
       s.add_runtime_dependency(%q<formtastic>, [">= 1.1.0"])
-      s.add_runtime_dependency(%q<will_paginate>, [">= 3.0.pre2"])
       s.add_runtime_dependency(%q<inherited_resources>, [">= 0"])
+      s.add_runtime_dependency(%q<kaminari>, [">= 0.12.4"])
       s.add_runtime_dependency(%q<sass>, [">= 3.1.0"])
       s.add_runtime_dependency(%q<fastercsv>, [">= 0"])
       s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
@@ -338,8 +337,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<meta_search>, [">= 0.9.2"])
       s.add_dependency(%q<devise>, [">= 1.1.2"])
       s.add_dependency(%q<formtastic>, [">= 1.1.0"])
-      s.add_dependency(%q<will_paginate>, [">= 3.0.pre2"])
       s.add_dependency(%q<inherited_resources>, [">= 0"])
+      s.add_dependency(%q<kaminari>, [">= 0.12.4"])
       s.add_dependency(%q<sass>, [">= 3.1.0"])
       s.add_dependency(%q<fastercsv>, [">= 0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
@@ -352,8 +351,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<meta_search>, [">= 0.9.2"])
     s.add_dependency(%q<devise>, [">= 1.1.2"])
     s.add_dependency(%q<formtastic>, [">= 1.1.0"])
-    s.add_dependency(%q<will_paginate>, [">= 3.0.pre2"])
     s.add_dependency(%q<inherited_resources>, [">= 0"])
+    s.add_dependency(%q<kaminari>, [">= 0.12.4"])
     s.add_dependency(%q<sass>, [">= 3.1.0"])
     s.add_dependency(%q<fastercsv>, [">= 0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
