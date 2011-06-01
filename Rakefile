@@ -51,7 +51,17 @@ RSpec::Core::RakeTask.new(:rcov) do |spec|
   spec.rcov = true
 end
 
-task :default => :spec
+# Run the specs & cukes
+task :default do
+  # Force spec files to be loaded and ran in alphabetical order.
+  specs_unit = Dir['spec/unit/**/*_spec.rb'].sort.join(' ')
+  specs_integration = Dir['spec/integration/**/*_spec.rb'].sort.join(' ')
+  exit [
+    cmd("export RAILS=3.0.5 && export RAILS_ENV=test && bundle exec rspec #{specs_unit}"),
+    cmd("export RAILS=3.0.5 && export RAILS_ENV=test && bundle exec rspec #{specs_integration}"),
+    cmd("export RAILS=3.0.5 && export RAILS_ENV=cucumber && bundle exec cucumber features"),
+  ].uniq == [true]
+end
 
 namespace :spec do
   desc "Run specs for all versions of rails"
