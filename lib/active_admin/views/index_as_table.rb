@@ -7,8 +7,10 @@ module ActiveAdmin
         table_options = {
           :id => active_admin_config.plural_resource_name.underscore,
           :sortable => true,
-          :class => "index_table"
+          :class => "index_table",
+          :i18n => active_admin_config.resource
         }
+
         table_for collection, table_options do |t|
           instance_exec(t, &page_config.block)
         end
