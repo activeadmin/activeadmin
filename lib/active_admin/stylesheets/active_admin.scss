@@ -204,23 +204,24 @@ table {
   b { color: #5c6469; }
 }
 
-// -------------------------------------- Index Footer (Under Table) 
-#index_footer { padding-top: 5px; text-align: right; font-size: 0.85em; }
-
 .pagination { 
   display: inline; 
   font-size: 0.9; 
   margin-left: 10px; 
 
   a { @include light-button; }
-  em { @include default-button; }
-  a, em { 
+  span.page.current { @include default-button; }
+  a, span.page.current { 
     @include rounded(0px);
     margin-right: 4px; 
     padding: 2px 5px;
   }
-  .previous_page, .next_page { display:none; }
+  span.page.current { padding-left: 7px; }
 }
+
+// -------------------------------------- Index Footer (Under Table) 
+#index_footer { padding-top: 5px; text-align: right; font-size: 0.85em; }
+
 
 
 .index_content { clear: both; }
