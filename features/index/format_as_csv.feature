@@ -23,10 +23,10 @@ Feature: Format as CSV
         end
       end
     """
-    And a post with the title "Hello World" exists
+    And a post with the title "Hello, World" exists
     When I am on the index page for posts
     And I follow "CSV"
     Then I should see the CSV:
-    | Title       | Last update | Copyright |
-    | Hello World | (.*)        | Greg Bell |
+    | Title        | Last update | Copyright |
+    | Hello, World | (.*)        | Greg Bell |
 
