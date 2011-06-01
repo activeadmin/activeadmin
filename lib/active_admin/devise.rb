@@ -5,7 +5,7 @@ module ActiveAdmin
 
     def self.config
       {
-        :path => ActiveAdmin.default_namespace,
+        :path => ActiveAdmin.devise_namespace,
         :controllers => ActiveAdmin::Devise.controllers,
         :path_names => { :sign_in => 'login', :sign_out => "logout" }
       }
@@ -27,7 +27,7 @@ module ActiveAdmin
 
       # Redirect to the default namespace on logout
       def root_path
-        "/#{ActiveAdmin.default_namespace}"
+        "/#{ActiveAdmin.devise_namespace}"
       end
     end
 
