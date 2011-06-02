@@ -44,6 +44,9 @@ module ActiveAdmin
     @@default_namespace = :admin
     mattr_accessor :default_namespace
 
+    @@devise_namespace = :admin
+    mattr_accessor :devise_namespace
+
     # The default number of resources to display on index pages
     @@default_per_page = 30
     mattr_accessor :default_per_page
