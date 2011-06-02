@@ -56,6 +56,7 @@ module ActiveAdmin
       @sort_order = @options[:sort_order]
       @page_configs = {}
       @menu_options = {}
+      @menu_item_name = options[:menu_item_name]
       @member_actions, @collection_actions = [], []
       @scopes = []
     end
