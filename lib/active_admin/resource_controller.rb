@@ -1,4 +1,5 @@
 require 'inherited_resources'
+require 'active_admin/resource_controller/actions'
 require 'active_admin/resource_controller/action_builder'
 require 'active_admin/resource_controller/callbacks'
 require 'active_admin/resource_controller/collection'
@@ -22,6 +23,7 @@ module ActiveAdmin
     before_filter :only_render_implemented_actions
     before_filter :authenticate_active_admin_user
 
+    include Actions
     include ActiveAdmin::ActionItems
     include ActionBuilder
     include Callbacks
@@ -76,12 +78,6 @@ module ActiveAdmin
     end
 
     protected
-
-    # Override _prefix so we force ActionController to render the
-    # views from active_admin/resource instead of default path
-    def _prefix
-      'active_admin/resource'
-    end
 
     # By default Rails will render un-implemented actions when the view exists. Becuase Active
     # Admin allows you to not render any of the actions by using the #actions method, we need
