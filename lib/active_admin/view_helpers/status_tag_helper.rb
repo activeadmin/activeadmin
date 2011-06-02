@@ -3,8 +3,7 @@ module ActiveAdmin
     module StatusTagHelper
 
       def status_tag(status, options = {})
-        options[:class] ||= ""
-        options[:class] << ["status", status.downcase].join(' ')
+        options[:class] = ["status", status.try(:downcase), options[:class]].compact.join(' ')
         content_tag :span, status, options
       end
 
