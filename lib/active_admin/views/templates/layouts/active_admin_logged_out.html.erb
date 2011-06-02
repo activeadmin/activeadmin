@@ -5,8 +5,8 @@
  
   <title><%= [@page_title, ActiveAdmin.site_title].join(" | ") %></title>
 
-  <%= stylesheet_link_tag *ActiveAdmin.stylesheets %>
-  <%= javascript_include_tag *ActiveAdmin.javascripts %>
+  <%= stylesheet_link_tag ActiveAdmin.stylesheets %>
+  <%= javascript_include_tag ActiveAdmin.javascripts %>
   <%= csrf_meta_tag %>
 
 </head>

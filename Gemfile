@@ -3,28 +3,17 @@ source 'http://rubygems.org'
 
 # Set the RAILS env variable to test against diffirent versions of rails
 case ENV["RAILS"]
-when "3.0.0"
-  gem 'rails',          '= 3.0.0'
-when "3.0.1"
-  gem 'rails',          '= 3.0.1'
-when "3.0.2"
-  gem 'rails',          '= 3.0.2'
-when "3.0.3"
-  gem 'rails',          '= 3.0.3'
-when "3.0.4"
-  gem 'rails',          '= 3.0.4'
-when "3.0.5"
-  gem 'rails',          '= 3.0.5'
-when "3.0.6"
-  gem 'rails',          '= 3.0.6'
-when "3.0.7"
-  gem 'rails',          '= 3.0.7'
+when /3.0.(\d)*/
+  gem 'rails',          "= 3.0.#{$1}"
+when "3.1.0.rc1"
+  gem 'rails',          '= 3.1.0.rc1'
 else
   # Default gems for in the gemspec
   gem 'rails',          '>= 3.0.0'
 end
 
-gem "meta_search",    '>= 0.9.2'
+
+gem "meta_search",    '>= 1.1.0.pre'
 gem 'devise',         '>= 1.1.2'
 gem 'formtastic',     '>= 1.1.0'
 gem 'inherited_resources'
@@ -42,9 +31,9 @@ end
 group :test do
   gem 'rspec',          '~> 2.6.0'
   gem 'rspec-rails',    '~> 2.6.0'
-  gem 'capybara',       '0.3.9'
-  gem 'cucumber',       '0.9.2'
-  gem 'cucumber-rails', '0.3.2'
+  gem 'capybara',       '1.0.0.beta1'
+  gem 'cucumber',       '0.10.3'
+  gem 'cucumber-rails', '0.5.1'
   gem 'database_cleaner'
   gem 'shoulda',        '2.11.2',           :require => nil
   gem 'launchy'

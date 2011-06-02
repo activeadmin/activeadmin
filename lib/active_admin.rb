@@ -122,7 +122,7 @@ module ActiveAdmin
 
       # Dispatch request which gets triggered once in production
       # and on every require in development mode
-      ActionDispatch::Callbacks.to_prepare :active_admin do
+      ActionDispatch::Reloader.to_prepare do
         ActiveAdmin.unload!
         Rails.application.reload_routes!
       end
