@@ -388,8 +388,11 @@ table.dashboard {
   padding: 3px 5px 2px 5px;
   font-size: 0.8em;
 
-  &.published, &.complete, &.completed, &.green { background: #8daa92; }
-  &.error, &.errored, &.red { background: #d45f53;}
+  &.ok, &.published, &.complete, &.completed, &.green { background: #8daa92; }
+  &.warn, &.warning, &.orange { background: #e29b20; }
+  &.error, &.errored, &.red { background: #d45f53; }
+
+
 }
 
 

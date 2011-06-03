@@ -8,6 +8,10 @@ module ActiveAdmin
         'span'
       end
 
+      def default_class_name
+        'status'
+      end
+
       # @method status_tag(status, type = nil, options = {})
       #
       # @param [String] status the status to display. One of the span classes will be an underscored version of the status.
@@ -34,15 +38,11 @@ module ActiveAdmin
 
         status = status.titleize if status
 
-        add_class('status')
+        super(status, options)
+
         add_class(status_to_class(status)) if status
         add_class(type.to_s) if type
         add_class(classes) if classes
-
-        # Note: Calling super with options {:class => 'ok'} raises an exception.
-        # I thought that the superclass would handle this option though.
-        # @gregbell: Is that a bug?
-        super(status, options)
       end
 
       protected

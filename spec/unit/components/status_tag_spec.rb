@@ -38,12 +38,14 @@ describe ActiveAdmin::Views::StatusTag do
     context "when status is an empty string" do
       subject { status_tag('') }
 
+      its(:class_list)  { should include('status') }
       its(:content)     { should == '' }
     end
 
     context "when status is nil" do
       subject { status_tag(nil) }
 
+      its(:class_list)  { should include('status') }
       its(:content)     { should == '' }
     end
 
@@ -66,6 +68,7 @@ describe ActiveAdmin::Views::StatusTag do
     context "when status is 'So useless', type is :ok, class is 'woot awesome' and id is 'useless'" do
       subject { status_tag('So useless', :ok, :class => 'woot awesome', :id => 'useless') }
 
+      its(:content)     { should == 'So Useless' }
       its(:class_list)  { should include('status') }
       its(:class_list)  { should include('ok') }
       its(:class_list)  { should include('so_useless') }
