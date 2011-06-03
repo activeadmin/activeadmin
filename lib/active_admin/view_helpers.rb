@@ -14,7 +14,6 @@ module ActiveAdmin
     include SidebarHelper
     include TableHelper
     include FormHelper
-    include StatusTagHelper
     include FilterFormHelper
     include TitleHelper
     include ViewFactoryHelper
