@@ -1,4 +1,4 @@
-require 'inherited_views'
+require 'inherited_resources'
 require 'active_admin/resource_controller/actions'
 require 'active_admin/resource_controller/action_builder'
 require 'active_admin/resource_controller/callbacks'
@@ -11,9 +11,7 @@ require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/sidebars'
 
 module ActiveAdmin
-  class ResourceController < ::InheritedViews::Base
-
-    self.default_views = 'active_admin_default'
+  class ResourceController < ::InheritedResources::Base
 
     helper ::ActiveAdmin::ViewHelpers
 
@@ -22,10 +20,11 @@ module ActiveAdmin
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
 
+    before_filter :only_render_implemented_actions
     before_filter :authenticate_active_admin_user
 
-    include ActiveAdmin::ActionItems
     include Actions
+    include ActiveAdmin::ActionItems
     include ActionBuilder
     include Callbacks
     include Collection
@@ -80,6 +79,13 @@ module ActiveAdmin
 
     protected
 
+    # By default Rails will render un-implemented actions when the view exists. Becuase Active
+    # Admin allows you to not render any of the actions by using the #actions method, we need
+    # to check if they are implemented.
+    def only_render_implemented_actions
+      raise AbstractController::ActionNotFound unless action_methods.include?(params[:action])
+    end
+
     # Calls the authentication method as defined in ActiveAdmin.authentication_method
     def authenticate_active_admin_user
       send(ActiveAdmin.authentication_method) if ActiveAdmin.authentication_method
@@ -105,6 +111,5 @@ module ActiveAdmin
       ActiveAdmin.view_factory["#{action}_page"]
     end
     helper_method :renderer_for
-
   end
 end

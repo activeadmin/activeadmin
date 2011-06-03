@@ -1,52 +1,69 @@
 module ActiveAdmin
-  class ResourceController < ::InheritedViews::Base
+  class ResourceController < ::InheritedResources::Base
 
-    # All the controller actions are defined here. They all use
-    # the render_or_default method provided by InheritedViews which
-    # tries to render the view in the user's application, then falls
-    # back the view declared by Active Admin.
-    module Actions
-      def index
-        index! do |format|
-          format.html do
-            render_or_default 'index'
-          end
-          format.csv do 
-            @csv_columns = resource_class.columns.collect{ |column| column.name.to_sym }
-            render_or_default 'index' 
-          end
-        end
-      end
+    # Override the InheritedResources actions to use the
+    # Active Admin templates.
+    #
+    # We ensure that the functionality provided by Inherited
+    # Resources is still available within any ResourceController
 
-      def new
-        new! do |format|
-          format.html { render_or_default 'new' }
-        end
+    def index(options={}, &block)
+      super(options) do |format|
+        block.call(format) if block
+        format.html { render active_admin_template('index.html.arb') }
+        format.csv  { render active_admin_template('index.csv.erb') }
       end
-      
-      def create
-        create! do |success, failure|
-          failure.html { render_or_default 'new' }
-        end
+    end
+    alias :index! :index
+
+    def show(options={}, &block)
+      super do |format|
+        block.call(format) if block
+        format.html { render active_admin_template('show.html.arb') }
       end
-      
-      def show
-        show! do |format|
-          format.html { render_or_default 'show' }
-        end
+    end
+    alias :show! :show
+
+    def new(options={}, &block)
+      super do |format|
+        block.call(format) if block
+        format.html { render active_admin_template('new.html.arb') }
       end
-      
-      def edit
-        edit! do |format|
-          format.html { render_or_default 'edit' }
-        end
+    end
+    alias :new! :new
+
+    def edit(options={}, &block)
+      super do |format|
+        block.call(format) if block
+        format.html { render active_admin_template('edit.html.arb') }
       end
-      
-      def update
-        update! do |success, failure|
-          failure.html { render_or_default 'edit' }
-        end
+    end
+    alias :edit! :edit
+
+    def create(options={}, &block)
+      super(options) do |success, failure|
+        block.call(success, failure) if block
+        failure.html { render active_admin_template('new.html.arb') }
       end
+    end
+    alias :create! :create
+
+    def update(options={}, &block)
+      super do |success, failure|
+        block.call(success, failure) if block
+        failure.html { render active_admin_template('edit.html.arb') }
+      end
+    end
+    alias :update! :update
+
+    # Make aliases protected
+    protected :index!, :show!, :new!, :create!, :edit!, :update!
+
+    protected
+
+    # Returns the full location to the Active Admin template path
+    def active_admin_template(template)
+      "active_admin/resource/#{template}"
     end
 
   end

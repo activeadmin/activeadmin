@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class ResourceController < ::InheritedViews::Base
+  class ResourceController < ::InheritedResources::Base
 
     # This module deals with scoping entire controllers to a relation
     module Scoping

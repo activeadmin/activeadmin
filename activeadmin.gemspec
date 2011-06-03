@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Greg Bell"]
-  s.date = %q{2011-05-27}
+  s.date = %q{2011-06-01}
   s.description = %q{The administration framework for Ruby on Rails.}
   s.email = %q{gregdbell@gmail.com}
   s.extra_rdoc_files = [
@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
     "features/edit_page.feature",
     "features/first_boot.feature",
     "features/global_navigation.feature",
+    "features/index/format_as_csv.feature",
     "features/index/formats.feature",
     "features/index/index_as_block.feature",
     "features/index/index_as_blog.feature",
@@ -96,6 +97,7 @@ Gem::Specification.new do |s|
     "lib/active_admin/comments/views/active_admin_comments.rb",
     "lib/active_admin/component.rb",
     "lib/active_admin/controller_action.rb",
+    "lib/active_admin/csv_builder.rb",
     "lib/active_admin/dashboards.rb",
     "lib/active_admin/dashboards/dashboard_controller.rb",
     "lib/active_admin/dashboards/section.rb",
@@ -115,7 +117,6 @@ Gem::Specification.new do |s|
     "lib/active_admin/resource/belongs_to.rb",
     "lib/active_admin/resource_controller.rb",
     "lib/active_admin/resource_controller/action_builder.rb",
-    "lib/active_admin/resource_controller/actions.rb",
     "lib/active_admin/resource_controller/callbacks.rb",
     "lib/active_admin/resource_controller/collection.rb",
     "lib/active_admin/resource_controller/filters.rb",
@@ -180,6 +181,7 @@ Gem::Specification.new do |s|
     "lib/active_admin/views/pages/new.rb",
     "lib/active_admin/views/pages/show.rb",
     "lib/active_admin/views/tabs_renderer.rb",
+    "lib/active_admin/views/templates/active_admin/dashboard/index.html.arb",
     "lib/active_admin/views/templates/active_admin/devise/mailer/reset_password_instructions.html.erb",
     "lib/active_admin/views/templates/active_admin/devise/mailer/unlock_instructions.html.erb",
     "lib/active_admin/views/templates/active_admin/devise/passwords/edit.html.erb",
@@ -187,12 +189,11 @@ Gem::Specification.new do |s|
     "lib/active_admin/views/templates/active_admin/devise/sessions/new.html.erb",
     "lib/active_admin/views/templates/active_admin/devise/shared/_links.erb",
     "lib/active_admin/views/templates/active_admin/devise/unlocks/new.html.erb",
-    "lib/active_admin/views/templates/active_admin_dashboard/index.html.arb",
-    "lib/active_admin/views/templates/active_admin_default/edit.html.arb",
-    "lib/active_admin/views/templates/active_admin_default/index.csv.erb",
-    "lib/active_admin/views/templates/active_admin_default/index.html.arb",
-    "lib/active_admin/views/templates/active_admin_default/new.html.arb",
-    "lib/active_admin/views/templates/active_admin_default/show.html.arb",
+    "lib/active_admin/views/templates/active_admin/resource/edit.html.arb",
+    "lib/active_admin/views/templates/active_admin/resource/index.csv.erb",
+    "lib/active_admin/views/templates/active_admin/resource/index.html.arb",
+    "lib/active_admin/views/templates/active_admin/resource/new.html.arb",
+    "lib/active_admin/views/templates/active_admin/resource/show.html.arb",
     "lib/active_admin/views/templates/layouts/active_admin.html.erb",
     "lib/active_admin/views/templates/layouts/active_admin_logged_out.html.erb",
     "lib/activeadmin.rb",
@@ -211,7 +212,6 @@ Gem::Specification.new do |s|
     "lib/generators/active_admin/install/templates/migrations/2_move_admin_notes_to_comments.rb",
     "lib/generators/active_admin/resource/resource_generator.rb",
     "lib/generators/active_admin/resource/templates/admin.rb",
-    "spec/controllers/index_as_csv_spec.rb",
     "spec/integration/belongs_to_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/integration_example_group.rb",
@@ -239,6 +239,7 @@ Gem::Specification.new do |s|
     "spec/unit/components/sidebar_section_spec.rb",
     "spec/unit/components/table_for_spec.rb",
     "spec/unit/controller_filters_spec.rb",
+    "spec/unit/csv_builder_spec.rb",
     "spec/unit/dashboard_controller_spec.rb",
     "spec/unit/dashboard_section_spec.rb",
     "spec/unit/dashboards_spec.rb",
@@ -265,7 +266,6 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.7.2}
   s.summary = %q{The administration framework for Ruby on Rails.}
   s.test_files = [
-    "spec/controllers/index_as_csv_spec.rb",
     "spec/integration/belongs_to_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/integration_example_group.rb",
@@ -293,6 +293,7 @@ Gem::Specification.new do |s|
     "spec/unit/components/sidebar_section_spec.rb",
     "spec/unit/components/table_for_spec.rb",
     "spec/unit/controller_filters_spec.rb",
+    "spec/unit/csv_builder_spec.rb",
     "spec/unit/dashboard_controller_spec.rb",
     "spec/unit/dashboard_section_spec.rb",
     "spec/unit/dashboards_spec.rb",
@@ -323,9 +324,10 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<meta_search>, [">= 0.9.2"])
       s.add_runtime_dependency(%q<devise>, [">= 1.1.2"])
       s.add_runtime_dependency(%q<formtastic>, [">= 1.1.0"])
-      s.add_runtime_dependency(%q<will_paginate>, [">= 3.0.pre2"])
-      s.add_runtime_dependency(%q<inherited_views>, [">= 0"])
+      s.add_runtime_dependency(%q<inherited_resources>, [">= 0"])
+      s.add_runtime_dependency(%q<kaminari>, [">= 0.12.4"])
       s.add_runtime_dependency(%q<sass>, [">= 3.1.0"])
+      s.add_runtime_dependency(%q<fastercsv>, [">= 0"])
       s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
       s.add_development_dependency(%q<rake>, ["= 0.8.7"])
@@ -335,9 +337,10 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<meta_search>, [">= 0.9.2"])
       s.add_dependency(%q<devise>, [">= 1.1.2"])
       s.add_dependency(%q<formtastic>, [">= 1.1.0"])
-      s.add_dependency(%q<will_paginate>, [">= 3.0.pre2"])
-      s.add_dependency(%q<inherited_views>, [">= 0"])
+      s.add_dependency(%q<inherited_resources>, [">= 0"])
+      s.add_dependency(%q<kaminari>, [">= 0.12.4"])
       s.add_dependency(%q<sass>, [">= 3.1.0"])
+      s.add_dependency(%q<fastercsv>, [">= 0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["= 1.5.2"])
       s.add_dependency(%q<rake>, ["= 0.8.7"])
@@ -348,9 +351,10 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<meta_search>, [">= 0.9.2"])
     s.add_dependency(%q<devise>, [">= 1.1.2"])
     s.add_dependency(%q<formtastic>, [">= 1.1.0"])
-    s.add_dependency(%q<will_paginate>, [">= 3.0.pre2"])
-    s.add_dependency(%q<inherited_views>, [">= 0"])
+    s.add_dependency(%q<inherited_resources>, [">= 0"])
+    s.add_dependency(%q<kaminari>, [">= 0.12.4"])
     s.add_dependency(%q<sass>, [">= 3.1.0"])
+    s.add_dependency(%q<fastercsv>, [">= 0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["= 1.5.2"])
     s.add_dependency(%q<rake>, ["= 0.8.7"])

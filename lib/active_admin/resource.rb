@@ -46,6 +46,8 @@ module ActiveAdmin
     # Set to false to turn off admin notes
     attr_accessor :admin_notes
 
+    # Set the configuration for the CSV
+    attr_writer :csv_builder
 
     def initialize(namespace, resource, options = {})
       @namespace = namespace
@@ -194,6 +196,11 @@ module ActiveAdmin
       !belongs_to_config.nil?
     end
 
+    # The csv builder for this resource
+    def csv_builder
+      @csv_builder || default_csv_builder
+    end
+
     private
 
     def default_options
@@ -203,5 +210,8 @@ module ActiveAdmin
       }
     end
 
-  end
-end
+    def default_csv_builder
+      @default_csv_builder ||= CSVBuilder.default_for_resource(resource)
+    end
+  end # class Resource
+end # module ActiveAdmin

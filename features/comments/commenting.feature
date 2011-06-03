@@ -81,5 +81,5 @@ Feature: Commenting
   Scenario: Viewing all commments for a namespace
     When I add a comment "Hello from Comment"
     When I am on the index page for comments
-    Then I should see a table header for "Body"
+    Then I should see a table header with "Body"
     And I should see "Hello from Comment"

@@ -1,2 +1,0 @@
-<%= @csv_columns.collect{|c| c.to_s.titleize }.join(",").html_safe %>
-<%= collection.collect{|resource| @csv_columns.collect{|col| "\"#{resource.send(col).to_s.gsub('"', '""')}\""}.join(",") }.join("\n").html_safe %>

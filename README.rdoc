@@ -297,6 +297,16 @@ You can change the filter label by passing a label option:
 
 By default, Active Admin will try to use ActiveModel I18n to determine the label.
 
+== Customizing the CSV format
+
+Customizing the CSV format is as simple as customizing the index page.
+
+  csv do
+    column :name
+    column("Author") { |post| post.author.full_name }
+  end
+>>>>>>> master
+
 == Customizing the Form
 
 Active Admin gives complete control over the output of the form by creating a thin DSL on top of
@@ -402,7 +412,7 @@ Formtastic::
   A DSL for semantically building amazing forms.
 Devise::
   User authentication is done using Devise
-WillPaginate::
+Kaminari::
   Pagination for rails apps
 Iconic Icons::
   Excellent SVG icon set designed by P.J. Onori: http://somerandomdude.com/projects/iconic

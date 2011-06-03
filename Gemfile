@@ -27,9 +27,10 @@ end
 gem "meta_search",    '>= 0.9.2'
 gem 'devise',         '>= 1.1.2'
 gem 'formtastic',     '>= 1.1.0'
-gem 'will_paginate',  '>= 3.0.pre2'
-gem 'inherited_views'
+gem 'inherited_resources'
+gem 'kaminari',       '>= 0.12.4'
 gem 'sass',           '>= 3.1.0'
+gem 'fastercsv'
 
 group :development, :test do
   gem 'sqlite3-ruby',   :require => 'sqlite3'
@@ -48,3 +49,4 @@ group :test do
   gem 'shoulda',        '2.11.2',           :require => nil
   gem 'launchy'
 end
+
