@@ -73,8 +73,8 @@ module Arbre
 
       # Inserts a text node if the tag is a string
       def insert_text_node_if_string(tag)
-        if tag.is_a?(String)
-          current_dom_context << TextNode.from_string(tag)
+        if tag.respond_to?(:to_s) && !tag.is_a?(Arbre::HTML)
+          current_dom_context << TextNode.from_string(tag.to_s)
         end
       end
     end
