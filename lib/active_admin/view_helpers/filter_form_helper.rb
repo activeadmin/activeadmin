@@ -108,7 +108,7 @@ module ActiveAdmin
       collection = find_collection_for_column(association_name, options)
 
       [ label(input_name, options[:label]),
-        select(input_name, collection, options.merge(:include_blank => 'Any'))
+        select(input_name, collection, options.merge(:include_blank => I18n.t('active_admin.any')))
       ].join("\n").html_safe
     end
 
