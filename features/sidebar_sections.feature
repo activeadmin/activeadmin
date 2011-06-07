@@ -125,4 +125,3 @@ Feature: Sidebar Sections
     When I am on the index page for posts
     Then I should see "Hello World from a partial" within ".sidebar_section"
 
-
