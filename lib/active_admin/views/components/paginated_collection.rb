@@ -76,18 +76,18 @@ module ActiveAdmin
 
         if collection.num_pages < 2
           case collection.size
-          when 0; I18n.t('active_admin.no_entries_found', :model => entry_name.pluralize)
-          when 1; I18n.t('active_admin.displaying_entry', :number => '<b>1</b>', :model => entry_name)
-          else;   I18n.t('active_admin.displaying_entries', :number => "<b>#{collection.size}</b>", :model => entry_name.pluralize)
+          when 0; "No #{entry_name.pluralize} found"
+          when 1; "Displaying <b>1</b> #{entry_name}"
+          else;   "Displaying <b>all #{collection.size}</b> #{entry_name.pluralize}"
           end
         else
           offset = collection.current_page * ActiveAdmin.default_per_page
           total  = collection.total_count
-          range = %{<b>%d&nbsp;-&nbsp;%d</b>} % [
+          %{Displaying #{entry_name.pluralize} <b>%d&nbsp;-&nbsp;%d</b> of <b>%d</b> in total} % [
             offset - ActiveAdmin.default_per_page + 1,
-            offset > total ? total : offset
+            offset > total ? total : offset,
+            total
           ]
-          I18n.t('active_admin.displaying_n_entries_of_m', :range => range, :total => "<b>#{total}</b>", :model => entry_name.pluralize)
         end
       end
 

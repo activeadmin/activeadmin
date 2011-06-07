@@ -24,7 +24,4 @@ es:
     less_than: "Menor que"
     main_content: "Por favor implemente %{model}#main_content para mostrar contenido."
     logout: "Salir"
-    no_entries_found: "No se encontraron %{model}"
-    displaying_entry: "Mostrando %{number} %{model}"
-    displaying_entries: "Mostrando %{number} %{model}"
-    displaying_n_entries_of_m: "Mostrando %{range} %{model} de %{total} en total"
+
