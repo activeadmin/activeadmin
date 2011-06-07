@@ -24,4 +24,11 @@ es:
     less_than: "Menor que"
     main_content: "Por favor implemente %{model}#main_content para mostrar contenido."
     logout: "Salir"
+    sidebars:
+      filters: "Filtros"
+    pagination:
+      empty: "Ningún %{model} encontrado"
+      one: "Mostrando <b>1</b> %{model}"
+      one_page: "Mostrando <b>todos los %{n}</b> %{model}"
+      multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
 
