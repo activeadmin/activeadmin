@@ -52,7 +52,7 @@ module ActiveAdmin
     end
 
     # Default Sidebar Sections
-    sidebar :filters, :only => :index do
+    sidebar I18n.t('active_admin.filters'), :only => :index do
       active_admin_filters_form_for assigns["search"], filters_config
     end
 
