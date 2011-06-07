@@ -24,4 +24,9 @@ pt:
     less_than: "Menor Que"
     main_content: "Por favor implemente %{model}#main_content para exibir conteúdo."
     logout: "Sair"
+    pagination:
+      empty: "Nenhum(a) %{model} encontrado(a)"
+      one: "Exibindo <b>1</b> %{model}"
+      one_page: "Exibindo <b>todos os(a) %{n}</b> %{model}"
+      multiple: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
 
