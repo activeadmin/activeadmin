@@ -16,7 +16,6 @@ pt:
     download: "Baixar:"
     has_many_new: "Adicionar Novo(a) %{model}"
     has_many_delete: "Remover"
-    filters: "Filtros"
     filter: "Filtrar"
     clear_filters: "Limpar Filtros"
     search_field: "Pesquisar %{field}"
@@ -25,6 +24,8 @@ pt:
     less_than: "Menor Que"
     main_content: "Por favor implemente %{model}#main_content para exibir conteúdo."
     logout: "Sair"
+    sidebars:
+      filters: "Filtros"
     pagination:
       empty: "Nenhum(a) %{model} encontrado(a)"
       one: "Exibindo <b>1</b> %{model}"

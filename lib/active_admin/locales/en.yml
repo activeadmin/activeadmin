@@ -16,7 +16,6 @@ en:
     download: "Download:"
     has_many_new: "Add New %{model}"
     has_many_delete: "Delete"
-    filters: "Filters"
     filter: "Filter"
     clear_filters: "Clear Filters"
     search_field: "Search %{field}"
@@ -25,6 +24,8 @@ en:
     less_than: "Less Than"
     main_content: "Please implement %{model}#main_content to display content."
     logout: "Logout"
+    sidebars:
+      filters: "Filters"
     pagination:
       empty: "No %{model} found"
       one: "Displaying <b>1</b> %{model}"
