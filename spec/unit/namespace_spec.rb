@@ -141,7 +141,7 @@ describe ActiveAdmin::Namespace do
         end
       end
       
-      describe "setting the a condition for displaying" do
+      describe "setting a condition for displaying" do
         before do
           namespace.register Category do
             menu :if => proc { false }

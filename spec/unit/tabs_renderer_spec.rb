@@ -19,6 +19,9 @@ describe ActiveAdmin::Views::TabsRenderer do
     menu.add "Management", "#"
     management = menu["Management"]
     management.add "Order management", '/admin/order-management', 10, :if => lambda { false }
+    management.add "Bill management", '/admin/bill-management', 10, :if => :admin_logged_in?
+    
+    renderer.stub!(:admin_logged_in?).and_return(false)
   end
 
   it "should generate a ul" do
@@ -56,6 +59,10 @@ describe ActiveAdmin::Views::TabsRenderer do
   
   it "should not generate a link for order management" do
     html.should_not have_tag("a", "Order management", :attributes => { :href => '/admin/order-management' })
+  end
+  
+  it "should not generate a link for bill management" do
+    html.should_not have_tag("a", "Bill management", :attributes => { :href => '/admin/bill-management' })
   end
   
   it "should not generate the management parent menu" do
