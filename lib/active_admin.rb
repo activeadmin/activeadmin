@@ -3,6 +3,7 @@ require 'devise'
 require 'kaminari'
 require 'sass'
 require 'active_admin/arbre'
+require 'active_admin/engine'
 
 module ActiveAdmin
 
@@ -89,9 +90,11 @@ module ActiveAdmin
     @@display_name_methods = [:display_name, :full_name, :name, :username, :login, :title, :email, :to_s]
     mattr_accessor :display_name_methods
 
-    @@views_path = File.expand_path('../active_admin/views/templates', __FILE__)
-    mattr_reader :views_path
+    @@assets_path = File.expand_path("../assets", __FILE__)
+    mattr_reader :assets_path
 
+    @@views_path = File.expand_path("../views/templates", __FILE__)
+    mattr_reader :views_path
   end
 
   extend Configuration
@@ -103,17 +106,13 @@ module ActiveAdmin
     # Gets called within the initializer
     def setup
       # Register the default assets
-      register_stylesheet 'admin/active_admin.css'
-      register_javascript 'active_admin_vendor.js'
+      register_stylesheet 'active_admin.css'
       register_javascript 'active_admin.js'
 
       # Since we're dealing with all our own file loading, we need
       # to remove our paths from the ActiveSupport autoload paths.
       # If not, file naming becomes very important and can cause clashes.
       ActiveSupport::Dependencies.autoload_paths.reject!{|path| load_paths.include?(path) }
-
-      # Add the Active Admin view path to the rails view path
-      ActionController::Base.append_view_path ActiveAdmin.views_path
 
       # Don't eagerload our configs, we'll deal with them ourselves
       Rails.application.config.eager_load_paths = Rails.application.config.eager_load_paths.reject do |path|
@@ -135,7 +134,7 @@ module ActiveAdmin
     def generate_stylesheets
       # Setup SASS
       require 'sass/plugin' # This must be required after initialization
-      Sass::Plugin.add_template_location(File.expand_path("../active_admin/stylesheets/", __FILE__), File.join(Sass::Plugin.options[:css_location], 'admin'))
+      Sass::Engine::DEFAULT_OPTIONS[:load_paths] <<  File.expand_path("../../app/assets/stylesheets/", __FILE__)
     end
 
     # Registers a brand new configuration for the given resource.

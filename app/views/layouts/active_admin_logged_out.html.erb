@@ -5,10 +5,14 @@
  
   <title><%= [@page_title, ActiveAdmin.site_title].join(" | ") %></title>
 
-  <%= stylesheet_link_tag ActiveAdmin.stylesheets %>
-  <%= javascript_include_tag ActiveAdmin.javascripts %>
-  <%= csrf_meta_tag %>
+  <% ActiveAdmin.stylesheets.each do |path| %>
+    <%= stylesheet_link_tag path %>
+  <% end %>
+  <% ActiveAdmin.javascripts.each do |path| %>
+    <%= javascript_include_tag path %>
+  <% end %>
 
+  <%= csrf_meta_tag %>
 </head>
 <body class="logged_out <%= controller.action_name %>">
 <div id="wrapper">

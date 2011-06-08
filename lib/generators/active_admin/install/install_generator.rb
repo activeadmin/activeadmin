@@ -28,10 +28,16 @@ module ActiveAdmin
         route "ActiveAdmin.routes(self)"
       end
 
-      def copy_assets
-        template 'active_admin_vendor.js',  'public/javascripts/active_admin_vendor.js'
-        template 'active_admin.js',         'public/javascripts/active_admin.js'
-        directory 'images', 'public/images/active_admin'
+      def create_assets
+        if Rails.version[0..2] == '3.1'
+          template '3.1/active_admin.js', 'app/assets/javascripts/active_admin.js'
+          template '3.1/active_admin.css.scss', 'app/assets/stylesheets/active_admin.css.scss'
+        else
+          # Install the standard assets
+          template 'active_admin_vendor.js',  'public/javascripts/active_admin_vendor.js'
+          template 'active_admin.js',         'public/javascripts/active_admin.js'
+          directory 'images', 'public/images/active_admin'
+        end
       end
 
       def create_migrations
