@@ -15,10 +15,10 @@ describe ActiveAdmin::Views::TabsRenderer do
     reports.add "B Sub Reports", "/admin/b-sub-reports"
     menu.add "Administration", "/admin/administration"
     administration = menu["Administration"]
-    administration.add "User administration", '/admin/user-administration', 10, :if => lambda { false }
+    administration.add "User administration", '/admin/user-administration', 10, :if => proc { false }
     menu.add "Management", "#"
     management = menu["Management"]
-    management.add "Order management", '/admin/order-management', 10, :if => lambda { false }
+    management.add "Order management", '/admin/order-management', 10, :if => proc { false }
     management.add "Bill management", '/admin/bill-management', 10, :if => :admin_logged_in?
     
     renderer.stub!(:admin_logged_in?).and_return(false)
