@@ -121,6 +121,16 @@ module ActiveAdmin
         end.parent_menu_item_name.should == "Blog"
       end
     end
+    
+    describe "menu item priority" do
+      it "should be 10 when not set" do
+        config.menu_item_priority.should == 10
+      end
+      it "should be settable" do
+        config.menu :priority => 2
+        config.menu_item_priority.should == 2
+      end
+    end
 
     describe "route names" do
       let(:config){ ActiveAdmin.register Category }

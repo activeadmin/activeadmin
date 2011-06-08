@@ -136,6 +136,11 @@ module ActiveAdmin
     def menu_item_name
       @menu_options[:label] || plural_resource_name
     end
+    
+    # Returns the items priority for altering the default sort order
+    def menu_item_priority
+      @menu_options[:priority] || 10
+    end
 
     # Should this resource be added to the menu system?
     def include_in_menu?
