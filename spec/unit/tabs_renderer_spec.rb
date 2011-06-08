@@ -13,6 +13,12 @@ describe ActiveAdmin::Views::TabsRenderer do
     reports = menu["Reports"]
     reports.add "A Sub Reports", "/admin/a-sub-reports"
     reports.add "B Sub Reports", "/admin/b-sub-reports"
+    menu.add "Administration", "/admin/administration"
+    administration = menu["Administration"]
+    administration.add "User administration", '/admin/user-administration', 10, :if => lambda { false }
+    menu.add "Management", "#"
+    management = menu["Management"]
+    management.add "Order management", '/admin/order-management', 10, :if => lambda { false }
   end
 
   it "should generate a ul" do
@@ -38,6 +44,22 @@ describe ActiveAdmin::Views::TabsRenderer do
   it "should generate a nested list with li for each child" do
     html.should have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "a_sub_reports"})
     html.should have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "b_sub_reports"})
+  end
+  
+  it "should not generate a link for user administration" do
+    html.should_not have_tag("a", "User administration", :attributes => { :href => '/admin/user-administration' })
+  end
+  
+  it "should generate the administration parent menu" do
+    html.should have_tag("a", "Administration", :attributes => { :href => '/admin/administration' })
+  end
+  
+  it "should not generate a link for order management" do
+    html.should_not have_tag("a", "Order management", :attributes => { :href => '/admin/order-management' })
+  end
+  
+  it "should not generate the management parent menu" do
+    html.should_not have_tag("a", "Management", :attributes => { :href => '#' })
   end
 
   describe "marking current item" do
