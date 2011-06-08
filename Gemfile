@@ -5,15 +5,17 @@ source 'http://rubygems.org'
 case ENV["RAILS"]
 when /3.0.(\d)*/
   gem 'rails',          "= 3.0.#{$1}"
+  gem "meta_search",    '~> 1.0.0'
 when "3.1.0.rc1"
   gem 'rails',          '= 3.1.0.rc1'
+  gem "meta_search",    '>= 1.1.0.pre'
 else
   # Default gems for in the gemspec
   gem 'rails',          '>= 3.0.0'
+  gem "meta_search",    '>= 1.0.0'
 end
 
 
-gem "meta_search",    '>= 1.1.0.pre'
 gem 'devise',         '>= 1.1.2'
 gem 'formtastic',     '>= 1.1.0'
 gem 'inherited_resources'

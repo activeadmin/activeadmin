@@ -25,6 +25,7 @@ module ActiveAdmin
   autoload :MenuItem,                 'active_admin/menu_item'
   autoload :Namespace,                'active_admin/namespace'
   autoload :PageConfig,               'active_admin/page_config'
+  autoload :Reloader,                 'active_admin/reloader'
   autoload :Resource,                 'active_admin/resource'
   autoload :ResourceController,       'active_admin/resource_controller'
   autoload :Renderer,                 'active_admin/renderer'
@@ -119,12 +120,7 @@ module ActiveAdmin
         load_paths.include?(path)
       end
 
-      # Dispatch request which gets triggered once in production
-      # and on every require in development mode
-      ActionDispatch::Reloader.to_prepare do
-        ActiveAdmin.unload!
-        Rails.application.reload_routes!
-      end
+      ActiveAdmin::Reloader.new(Rails.version).attach!
 
       yield self
 

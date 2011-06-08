@@ -33,10 +33,8 @@ module ActiveAdmin
           template '3.1/active_admin.js', 'app/assets/javascripts/active_admin.js'
           template '3.1/active_admin.css.scss', 'app/assets/stylesheets/active_admin.css.scss'
         else
-          # Install the standard assets
-          template 'active_admin_vendor.js',  'public/javascripts/active_admin_vendor.js'
-          template 'active_admin.js',         'public/javascripts/active_admin.js'
-          directory 'images', 'public/images/active_admin'
+          # Install Images
+          directory '../../../../../app/assets/images/active_admin', 'public/images/active_admin'
         end
       end
 
