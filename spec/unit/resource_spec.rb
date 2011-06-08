@@ -131,6 +131,17 @@ module ActiveAdmin
         config.menu_item_priority.should == 2
       end
     end
+    
+    describe "menu item display if" do
+      it "should be a proc always returning true if not set" do
+        config.menu_item_display_if.should be_instance_of(Proc)
+        config.menu_item_display_if.call.should == true
+      end
+      it "should be settable" do
+        config.menu :if => proc { false }
+        config.menu_item_display_if.call.should == false
+      end
+    end
 
     describe "route names" do
       let(:config){ ActiveAdmin.register Category }
