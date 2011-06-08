@@ -22,9 +22,9 @@ module ActiveAdmin
       end
 
       def render_item(item)
-        if !self.instance_eval(&item.display_if_block)
+        if !call_method_or_proc_on(self, item.display_if_block)
           return
-        elsif (!item.url or item.url == '#') and item.children.any? and (item.children.detect {|child| self.instance_eval(&child.display_if_block)}).nil?
+        elsif (!item.url or item.url == '#') and item.children.any? and (item.children.detect {|child| call_method_or_proc_on(self, child.display_if_block)}).nil?
           return
         end
         
