@@ -31,7 +31,7 @@ module ActiveAdmin
     it "should have a default display if block always returning true" do
       item = MenuItem.new("Dashboard", "/admin")
       item.display_if_block.should be_instance_of(Proc)
-      item.display_if_block.call.should == true
+      item.display_if_block.call(self).should == true
     end
 
     describe "url generation and caching" do
