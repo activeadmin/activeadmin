@@ -118,8 +118,15 @@ describe ActiveAdmin::Namespace do
       end
 
       describe "disabling the menu" do
-        # TODO
-        it "should not create a menu item"
+        before do
+          namespace.register Category do
+            menu false
+          end
+          namespace.load_menu!
+        end
+        it "should not create a menu item" do
+          namespace.menu["Category"].should be_nil
+        end
       end
 
       describe "adding as a belongs to" do
