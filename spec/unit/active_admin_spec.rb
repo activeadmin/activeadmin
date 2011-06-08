@@ -29,9 +29,13 @@ describe ActiveAdmin do
   it "should have a view factory" do
     ActiveAdmin.view_factory.should be_an_instance_of(ActiveAdmin::ViewFactory)
   end
+  
+  it "should have deprecated admin notes by default" do 
+    ActiveAdmin.admin_notes.should be_nil
+  end
 
-  it "should have admin notes by default" do
-    ActiveAdmin.admin_notes.should be_true
+  it "should have admin notes in admin namespace by default" do
+    ActiveAdmin.allow_comments_in.should == [:admin]
   end
 
   it "should have a default current_user_method" do
