@@ -6,16 +6,20 @@ Feature: Commenting
 
   Background:
     Given a post with the title "Hello World" written by "Jane Doe" exists
+
+  Scenario: View a resource with no comments
     Given a show configuration of:
       """
         ActiveAdmin.register Post
       """
-
-  Scenario: View a resource with no comments
     Then I should see "Comments (0)"
     And I should see "No comments yet."
 
   Scenario: Create a new comment
+    Given a show configuration of:
+      """
+        ActiveAdmin.register Post
+      """
     When I add a comment "Hello from Comment"
     Then I should see a flash with "Comment was successfully created"
     And I should be in the resource section for posts
@@ -37,6 +41,7 @@ Feature: Commenting
     """
       ActiveAdmin.register Post, :namespace => :new_namespace
     """
+    Given I am logged in
     When I am on the index page for posts in the new_namespace namespace
     And I follow "View"
     Then I should not see "Comments"
@@ -67,6 +72,7 @@ Feature: Commenting
     """
     ActiveAdmin.register Post, :as => "Article"
     """
+    Given I am logged in
     When I am on the index page for articles
     And I follow "View"
     When I add a comment "Hello from Comment"
@@ -74,11 +80,19 @@ Feature: Commenting
     And I should be in the resource section for articles
 
   Scenario: Create an empty comment
+    Given a show configuration of:
+      """
+        ActiveAdmin.register Post
+      """
     When I add a comment ""
     Then I should see a flash with "Comment wasn't saved, text was empty."
     And I should see "Comments (0)"
 
   Scenario: Viewing all commments for a namespace
+    Given a show configuration of:
+      """
+        ActiveAdmin.register Post
+      """
     When I add a comment "Hello from Comment"
     When I am on the index page for comments
     Then I should see a table header with "Body"

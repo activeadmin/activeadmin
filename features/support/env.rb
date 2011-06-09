@@ -80,9 +80,13 @@ unless File.exists?(ENV['RAILS_ROOT'])
   system 'rake setup'  
 end
 
-ACTIVE_ADMIN_TEST_CONFIG = File.expand_path('app/admin/__cuke.rb', Rails.root)
+# Remove all our constants
+Before do
+  # We are cachine classes, but need to manually clear references to
+  # the controllers. If they aren't clear, the router stores references
+  ActiveSupport::Dependencies.clear
 
-After do
-  # Remove test configs if they exist
-  File.delete(ACTIVE_ADMIN_TEST_CONFIG) if File.exists?(ACTIVE_ADMIN_TEST_CONFIG)
+  # Reload Active Admin
+  ActiveAdmin.unload!
+  ActiveAdmin.load!
 end
