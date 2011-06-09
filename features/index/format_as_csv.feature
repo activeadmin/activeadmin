@@ -18,11 +18,11 @@ Feature: Format as CSV
   Scenario: Default with alias
     Given a configuration of:
     """
-      ActiveAdmin.register Post, :as => "Article"
+      ActiveAdmin.register Post, :as => "MyArticle"
     """
-    When I am on the index page for articles
+    When I am on the index page for my_articles
     And I follow "CSV"
-    And I should download a CSV file for "articles" containing:
+    And I should download a CSV file for "my-articles" containing:
     | Id  | Title       | Body | Published At | Created At | Updated At |
 
   Scenario: With CSV format customization

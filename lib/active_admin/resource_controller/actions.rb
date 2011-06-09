@@ -71,10 +71,9 @@ module ActiveAdmin
     end
 
     # Returns a filename for the csv file using the collection_name
-    # and current date such as 'articles-2011-06-24.csv'.
+    # and current date such as 'my-articles-2011-06-24.csv'.
     def csv_filename
-      collection_name = collection_path.split('/').last
-      "#{collection_name}-#{Time.now.strftime("%Y-%m-%d")}.csv"
+      "#{resource_collection_name.to_s.gsub('_', '-')}-#{Time.now.strftime("%Y-%m-%d")}.csv"
     end
   end
 end
