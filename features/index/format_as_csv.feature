@@ -1,19 +1,32 @@
 Feature: Format as CSV
 
-  Scenario: Default with no index customization
-    Given an index configuration of:
+  Background:
+    Given I am logged in
+
+  Scenario: Default
+    Given a configuration of:
     """
       ActiveAdmin.register Post
     """
     And a post with the title "Hello World" exists
     When I am on the index page for posts
     And I follow "CSV"
-    Then I should see the CSV:
-    | Id  | Title       | Body | Published At | Created At | Updated At | 
-    | \d+ | Hello World |      |              | (.*)       | (.*)       | 
+    And I should download a CSV file for "posts" containing:
+    | Id  | Title       | Body | Published At | Created At | Updated At |
+    | \d+ | Hello World |      |              | (.*)       | (.*)       |
+
+  Scenario: Default with alias
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post, :as => "Article"
+    """
+    When I am on the index page for articles
+    And I follow "CSV"
+    And I should download a CSV file for "articles" containing:
+    | Id  | Title       | Body | Published At | Created At | Updated At |
 
   Scenario: With CSV format customization
-    Given an index configuration of:
+    Given a configuration of:
     """
       ActiveAdmin.register Post do
         csv do
@@ -26,7 +39,7 @@ Feature: Format as CSV
     And a post with the title "Hello, World" exists
     When I am on the index page for posts
     And I follow "CSV"
-    Then I should see the CSV:
+    And I should download a CSV file for "posts" containing:
     | Title        | Last update | Copyright |
     | Hello, World | (.*)        | Greg Bell |
 

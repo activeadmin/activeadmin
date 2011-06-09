@@ -11,7 +11,11 @@ module ActiveAdmin
       super(options) do |format|
         block.call(format) if block
         format.html { render active_admin_template('index.html.arb') }
-        format.csv  { render active_admin_template('index.csv.erb') }
+        format.csv do
+          headers['Content-Type'] = 'text/csv; charset=utf-8'
+          headers['Content-Disposition'] = %{attachment; filename="#{csv_filename}"}
+          render active_admin_template('index.csv.erb')
+        end
       end
     end
     alias :index! :index
@@ -66,5 +70,11 @@ module ActiveAdmin
       "active_admin/resource/#{template}"
     end
 
+    # Returns a filename for the csv file using the collection_name
+    # and current date such as 'articles-2011-06-24.csv'.
+    def csv_filename
+      collection_name = collection_path.split('/').last
+      "#{collection_name}-#{Time.now.strftime("%Y-%m-%d")}.csv"
+    end
   end
 end
