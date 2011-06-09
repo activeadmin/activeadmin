@@ -3,7 +3,7 @@ module ActiveAdmin
 
     class Section
       include ActiveAdmin::OptionalDisplay
-  
+
       attr_accessor :name, :options, :block
 
       def initialize(name, options = {}, &block)
@@ -26,7 +26,11 @@ module ActiveAdmin
 
       # The title gets displayed within the section in the view
       def title
-        name.to_s.titlecase
+        begin
+          I18n.t!("active_admin.sidebars.#{name.to_s}")
+        rescue I18n::MissingTranslationData
+          name.to_s.titlecase
+        end
       end
 
       # If a block is not passed in, the name of the partial to render

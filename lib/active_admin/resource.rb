@@ -168,7 +168,9 @@ module ActiveAdmin
       @default_scope
     end
 
-    # Create a new scope object for this resource
+    # Create a new scope object for this resource.
+    # If you want to internationalize the scope name, you can add
+    # to your i18n files a key like "active_admin.scopes.scope_method".
     def scope(*args, &block)
       options = args.extract_options!
       @scopes << ActiveAdmin::Scope.new(*args, &block)

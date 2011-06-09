@@ -110,6 +110,7 @@ Gem::Specification.new do |s|
     "lib/active_admin/iconic/icons.rb",
     "lib/active_admin/locales/en.yml",
     "lib/active_admin/locales/pt.yml",
+    "lib/active_admin/locales/es.yml",
     "lib/active_admin/menu.rb",
     "lib/active_admin/menu_item.rb",
     "lib/active_admin/namespace.rb",
