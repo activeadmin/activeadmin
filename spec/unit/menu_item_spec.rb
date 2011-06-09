@@ -27,6 +27,12 @@ module ActiveAdmin
       item = MenuItem.new("Dashboard", "/admin", 10, :if => block )
       item.display_if_block.should == block
     end
+    
+    it "should have a default display if block always returning true" do
+      item = MenuItem.new("Dashboard", "/admin")
+      item.display_if_block.should be_instance_of(Proc)
+      item.display_if_block.call(self).should == true
+    end
 
     describe "url generation and caching" do
       it "should generate a url if it is a symbol" do
