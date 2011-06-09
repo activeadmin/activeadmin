@@ -96,7 +96,7 @@ begin
     gem.summary = "The administration framework for Ruby on Rails."
     gem.description = "The administration framework for Ruby on Rails."
     gem.email = "gregdbell@gmail.com"
-    gem.homepage = "http://github.com/gregbell/active_admin"
+    gem.homepage = "http://activeadmin.info"
     gem.authors = ["Greg Bell"]
 
     gem.files.exclude 'spec/rails'

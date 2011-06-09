@@ -6,7 +6,7 @@ to implement beautiful and elegant interfaces with very little effort.
 
 == Goals
 
-1. Allow developers to quickly create gorgeous administration interfaces 
+1. Allow developers to quickly create gorgeous administration interfaces
    <strong>(Not Just CRUD)</strong>
 2. Build a DSL for developers and an interface for businesses.
 3. Ensure that developers can easily customize every nook and cranny of the interface.
@@ -26,7 +26,7 @@ After updating your bundle, run the installer
   $> rails generate active_admin:install
 
 The installer creates an initializer used for configuring defaults used by Active Admin as well
-as a new folder at <tt>app/admin</tt> to put all your admin configurations. 
+as a new folder at <tt>app/admin</tt> to put all your admin configurations.
 
 Migrate your db and start the server:
 
@@ -171,13 +171,13 @@ If the default title does not work for you, pass it as the first argument:
 
 Sometimes calling methods just isn't enough and you need to write some view
 specific code. For example, say we wanted a colum called Title which holds a
-link to the posts admin screen. 
+link to the posts admin screen.
 
 The column method accepts a block as an argument which will then be rendered
 within the context of the view for each of the objects in the collection.
 
     index do
-      column "Title" do |post| 
+      column "Title" do |post|
         link_to post.title, admin_post_path(post)
       end
     end
@@ -196,7 +196,7 @@ If a column is defined using a block, you must pass the key to turn on sorting. 
 is the attribute which gets used to sort objects using Active Record.
 
   index do
-    column "Title", :sortable => :title do |post| 
+    column "Title", :sortable => :title do |post|
       link_to post.title, admin_post_path(post)
     end
   end
@@ -263,7 +263,7 @@ By default the index screen includes a "Filters" sidebar on the right hand side
 with a filter for each attribute of the registered model. You can customize the
 filters that are displayed as well as the type of widgets they use.
 
-To dislay a filter for an attribute, use the filter method
+To display a filter for an attribute, use the filter method
 
   ActiveAdmin.register Post do
     filter :title
@@ -291,6 +291,12 @@ the collection as a proc to be called at render time.
   # Will call available
   filter :author, :as => :check_boxes, :collection => proc { Author.all }
 
+You can change the filter label by passing a label option:
+
+  filter :author, :label => 'Author'
+
+By default, Active Admin will try to use ActiveModel I18n to determine the label.
+
 == Customizing the CSV format
 
 Customizing the CSV format is as simple as customizing the index page.
@@ -299,6 +305,7 @@ Customizing the CSV format is as simple as customizing the index page.
     column :name
     column("Author") { |post| post.author.full_name }
   end
+>>>>>>> master
 
 == Customizing the Form
 
@@ -330,7 +337,7 @@ http://github.com/justinfrench/formtastic
 Customizing the show screen is as simple as implementing the show block:
 
   ActiveAdmin.register Post do
-    show do 
+    show do
       h3 post.title
       div do
         simple_format post.body
@@ -342,7 +349,7 @@ The show block is rendered within the context of the view and uses the Arbre HTM
 can also render a partial at any point.
 
   ActiveAdmin.register Post do
-    show do 
+    show do
       # renders app/views/admin/posts/_some_partial.html.erb
       render "some_partial"
     end
@@ -385,13 +392,19 @@ Or you can pass your own custom partial to render.
 
   sidebar :help, :partial => "custom_help_partial"
 
+== Internationalization (I18n)
+
+To internationalize Active Admin or to change default strings, you can copy
+lib/active_admin/locales/en.yml to your application config/locales directory and
+change its content. You can contribute to the project with your translations to!
+
 == Tools Being Used
 
-We believe strongly in not writing code unless we have to, so Active Admin is built using many 
+We believe strongly in not writing code unless we have to, so Active Admin is built using many
 other open source projects:
 
 InheritedResources::
-  Inherited Resources speeds up development by making your controllers inherit all restful 
+  Inherited Resources speeds up development by making your controllers inherit all restful
   actions so you just have to focus on what is important.
 InheritedViews::
   Inherited Views is a thin addition to Inherited Resources which adds in html views to the mix

@@ -35,11 +35,11 @@ module ActiveAdmin
       end
 
       def header_content_for(attr)
-        attr.to_s.titleize
+        @record.class.respond_to?(:human_attribute_name) ? @record.class.human_attribute_name(attr).titleize : attr.to_s.titleize
       end
 
       def empty_value
-        span "Empty", :class => "empty"
+        span I18n.t('active_admin.empty'), :class => "empty"
       end
 
       def content_for(attr_or_proc)

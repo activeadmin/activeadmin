@@ -9,6 +9,7 @@ module ActiveAdmin
 
       def build(collection, options = {})
         @sortable = options.delete(:sortable)
+        @resource_class = options.delete(:i18n)
         @collection = collection
         @columns = []
         build_table
@@ -16,7 +17,11 @@ module ActiveAdmin
       end
 
       def column(*args, &block)
-        col = Column.new(*args, &block)
+        options = default_options.merge(args.last.is_a?(::Hash) ? args.pop : {})
+        title = args[0]
+        data  = args[1] || args[0]
+
+        col = Column.new(title, data, options, &block)
         @columns << col
 
         # Build our header item
@@ -69,7 +74,7 @@ module ActiveAdmin
         end
 
         th :class => classes do
-          link_to(title, request.query_parameters.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
+          link_to(title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
         end
       end
 
@@ -102,13 +107,19 @@ module ActiveAdmin
       end
 
       # Returns the order to use for a given sort key
-      # 
+      #
       # Default is to use 'desc'. If the current sort key is
       # 'desc' it will return 'asc'
       def order_for_sort_key(sort_key)
         current_key, current_order = current_sort
         return 'desc' unless current_key == sort_key
         current_order == 'desc' ? 'asc' : 'desc'
+      end
+
+      def default_options
+        {
+          :i18n => @resource_class
+        }
       end
 
       class Column
@@ -142,12 +153,12 @@ module ActiveAdmin
         #   column :username, :sortable => 'other_column_to_sort_on'
         #
         # If you pass a block to be rendered for this column, the column
-        # will not be sortable unless you pass a string to sortable to 
+        # will not be sortable unless you pass a string to sortable to
         # sort the column on:
         #
         #   column('Username', :sortable => 'login'){ @user.pretty_name }
         #   # => Sort key will be 'login'
-        #   
+        #
         def sort_key
           if @options[:sortable] == true || @options[:sortable] == false
             @data.to_s
@@ -159,7 +170,15 @@ module ActiveAdmin
         private
 
         def pretty_title(raw)
-          raw.is_a?(Symbol) ? raw.to_s.titleize : raw
+          if raw.is_a?(Symbol)
+            if @options[:i18n] && @options[:i18n].respond_to?(:human_attribute_name) && human_name = @options[:i18n].human_attribute_name(raw)
+              raw = human_name
+            end
+
+            raw.to_s.titleize
+          else
+            raw
+          end
         end
 
         def default_options

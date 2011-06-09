@@ -118,8 +118,40 @@ describe ActiveAdmin::Namespace do
       end
 
       describe "disabling the menu" do
-        # TODO
-        it "should not create a menu item"
+        before do
+          namespace.register Category do
+            menu false
+          end
+          namespace.load_menu!
+        end
+        it "should not create a menu item" do
+          namespace.menu["Categories"].should be_nil
+        end
+      end
+      
+      describe "setting menu priority" do
+        before do
+          namespace.register Category do
+            menu :priority => 2
+          end
+          namespace.load_menu!
+        end
+        it "should have a custom priority of 2" do
+          namespace.menu["Categories"].priority.should == 2
+        end
+      end
+      
+      describe "setting a condition for displaying" do
+        before do
+          namespace.register Category do
+            menu :if => proc { false }
+          end
+          namespace.load_menu!
+        end
+        it "should have a proc returning false" do
+          namespace.menu["Categories"].display_if_block.should be_instance_of(Proc)
+          namespace.menu["Categories"].display_if_block.call.should == false
+        end
       end
 
       describe "adding as a belongs to" do

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Greg Bell"]
-  s.date = %q{2011-06-01}
+  s.date = %q{2011-06-03}
   s.description = %q{The administration framework for Ruby on Rails.}
   s.email = %q{gregdbell@gmail.com}
   s.extra_rdoc_files = [
@@ -108,6 +108,9 @@ Gem::Specification.new do |s|
     "lib/active_admin/helpers/optional_display.rb",
     "lib/active_admin/iconic.rb",
     "lib/active_admin/iconic/icons.rb",
+    "lib/active_admin/locales/en.yml",
+    "lib/active_admin/locales/pt.yml",
+    "lib/active_admin/locales/es.yml",
     "lib/active_admin/menu.rb",
     "lib/active_admin/menu_item.rb",
     "lib/active_admin/namespace.rb",
@@ -117,6 +120,7 @@ Gem::Specification.new do |s|
     "lib/active_admin/resource/belongs_to.rb",
     "lib/active_admin/resource_controller.rb",
     "lib/active_admin/resource_controller/action_builder.rb",
+    "lib/active_admin/resource_controller/actions.rb",
     "lib/active_admin/resource_controller/callbacks.rb",
     "lib/active_admin/resource_controller/collection.rb",
     "lib/active_admin/resource_controller/filters.rb",
@@ -261,7 +265,7 @@ Gem::Specification.new do |s|
     "spec/unit/tabs_renderer_spec.rb",
     "spec/unit/view_factory_spec.rb"
   ]
-  s.homepage = %q{http://github.com/gregbell/active_admin}
+  s.homepage = %q{http://activeadmin.info}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.7.2}
   s.summary = %q{The administration framework for Ruby on Rails.}

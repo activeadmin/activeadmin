@@ -74,9 +74,14 @@ module ActiveAdmin
       underscored_resource_name.camelize
     end
 
-    # Returns the name to call this resource
+    # Returns the name to call this resource.
+    # By default will use resource.model_name.human
     def resource_name
-      @resource_name ||= underscored_resource_name.titleize
+      @resource_name ||= if @options[:as] || !resource.respond_to?(:model_name)
+        underscored_resource_name.titleize
+      else
+        resource.model_name.human.titleize
+      end
     end
 
     # Returns the plural version of this resource
@@ -131,6 +136,16 @@ module ActiveAdmin
     def menu_item_name
       @menu_options[:label] || plural_resource_name
     end
+    
+    # Returns the items priority for altering the default sort order
+    def menu_item_priority
+      @menu_options[:priority] || 10
+    end
+    
+    # Returns a proc for deciding whether to display the menu item or not in the view
+    def menu_item_display_if
+      @menu_options[:if] || proc { true }
+    end
 
     # Should this resource be added to the menu system?
     def include_in_menu?
@@ -163,7 +178,9 @@ module ActiveAdmin
       @default_scope
     end
 
-    # Create a new scope object for this resource
+    # Create a new scope object for this resource.
+    # If you want to internationalize the scope name, you can add
+    # to your i18n files a key like "active_admin.scopes.scope_method".
     def scope(*args, &block)
       options = args.extract_options!
       @scopes << ActiveAdmin::Scope.new(*args, &block)

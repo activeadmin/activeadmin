@@ -10,7 +10,7 @@ module ActiveAdmin
         options[:html] ||= {}
         options[:html][:method] = :get
         options[:as] = :q
-        clear_link = link_to("Clear Filters", "#", :class => "clear_filters_btn")
+        clear_link = link_to(I18n.t('active_admin.clear_filters'), "#", :class => "clear_filters_btn")
         form_for search, options do |f|
           filters.each do |filter_options|
             filter_options = filter_options.dup
@@ -19,8 +19,8 @@ module ActiveAdmin
           end
 
           buttons = content_tag :div, :class => "buttons" do
-            f.submit("Filter") + 
-              clear_link + 
+            f.submit(I18n.t('active_admin.filter')) +
+              clear_link +
               hidden_field_tag("order", params[:order]) +
               hidden_field_tag("scope", params[:scope])
           end
@@ -35,12 +35,13 @@ module ActiveAdmin
   # This form builder defines methods to build filter forms such
   # as the one found in the sidebar of the index page of a standard resource.
   class FilterFormBuilder < FormBuilder
-  
+
     def filter(method, options = {})
       return "" if method.nil? || method == ""
       options[:as] ||= default_filter_type(method)
       return "" unless options[:as]
       field_type = options.delete(:as)
+      options[:label] ||= default_filter_label(method)
       content = with_new_form_buffer do
         send("filter_#{field_type}_input", method, options)
       end
@@ -52,7 +53,7 @@ module ActiveAdmin
     def filter_string_input(method, options = {})
       field_name = "#{method}_contains"
 
-      [ label(field_name, "Search #{method.to_s.titlecase}"),
+      [ label(field_name, I18n.t('active_admin.search_field', :field => options[:label])),
         text_field(field_name)
       ].join("\n").html_safe
     end
@@ -61,7 +62,7 @@ module ActiveAdmin
       gt_field_name = "#{method}_gte"
       lt_field_name = "#{method}_lte"
 
-      [ label(gt_field_name, method.to_s.titlecase),
+      [ label(gt_field_name, options[:label]),
         filter_date_text_field(gt_field_name),
         " - ",
         filter_date_text_field(lt_field_name)
@@ -76,7 +77,7 @@ module ActiveAdmin
     def filter_numeric_input(method, options = {})
       filters = numeric_filters_for_method(method, options.delete(:filters) || default_numeric_filters)
       current_filter = current_numeric_scope(filters)
-      filter_select = @template.select_tag '', @template.options_for_select(filters, current_filter), 
+      filter_select = @template.select_tag '', @template.options_for_select(filters, current_filter),
                                   :onchange => "document.getElementById('#{method}_numeric').name = 'q[' + this.value + ']';"
       filter_input = text_field current_filter, :size => 10, :id => "#{method}_numeric"
 
@@ -86,7 +87,7 @@ module ActiveAdmin
         filter_input
       ].join("\n").html_safe
     end
-    
+
     def numeric_filters_for_method(method, filters)
       filters.collect{|scope| [scope[0], [method,scope[1]].join("_") ] }
     end
@@ -98,7 +99,7 @@ module ActiveAdmin
     end
 
     def default_numeric_filters
-      [['Equal To', 'eq'], ['Greater Than', 'gt'], ['Less Than', 'lt']]
+      [[I18n.t('active_admin.equal_to'), 'eq'], [I18n.t('active_admin.greater_than'), 'gt'], [I18n.t('active_admin.less_than'), 'lt']]
     end
 
     def filter_select_input(method, options = {})
@@ -106,8 +107,8 @@ module ActiveAdmin
       input_name = (generate_association_input_name(method).to_s + "_eq").to_sym
       collection = find_collection_for_column(association_name, options)
 
-      [ label(input_name, method.to_s.titlecase),
-        select(input_name, collection, options.merge(:include_blank => 'Any'))
+      [ label(input_name, options[:label]),
+        select(input_name, collection, options.merge(:include_blank => I18n.t('active_admin.any')))
       ].join("\n").html_safe
     end
 
@@ -123,7 +124,7 @@ module ActiveAdmin
         end.join("\n").html_safe
       end
 
-      [ label(input_name, method.to_s.titlecase),
+      [ label(input_name, options[:label]),
         checkboxes
       ].join("\n").html_safe
     end
@@ -159,6 +160,16 @@ module ActiveAdmin
       end
     end
 
+    # Returns the default label for a given attribute
+    # Will use ActiveModel I18n if possible
+    def default_filter_label(method)
+      if @object.base.respond_to?(:human_attribute_name)
+        @object.base.human_attribute_name(method)
+      else
+        method.to_s.titlecase
+      end
+    end
+
     # Returns the column for an attribute on the object being searched
     # if it exists. Otherwise returns nil
     def column_for(method)
@@ -170,5 +181,5 @@ module ActiveAdmin
       @object.base.reflect_on_association(method) if @object.base.respond_to?(:reflect_on_association)
     end
 
-  end    
+  end
 end

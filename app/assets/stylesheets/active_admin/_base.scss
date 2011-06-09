@@ -101,7 +101,7 @@ td, p {
   span.icon { margin: 0 3px; }
 }
 
-a.view_link, a.edit_link, a.delete_link {
+a.member_link {
   margin-right: 7px;
   white-space: nowrap;
 }
@@ -386,8 +386,11 @@ table.dashboard {
   padding: 3px 5px 2px 5px;
   font-size: 0.8em;
 
-  &.published, &.complete, &.completed, &.green { background: #8daa92; }
-  &.error, &.errored, &.red { background: #d45f53;}
+  &.ok, &.published, &.complete, &.completed, &.green { background: #8daa92; }
+  &.warn, &.warning, &.orange { background: #e29b20; }
+  &.error, &.errored, &.red { background: #d45f53; }
+
+
 }
 
 
