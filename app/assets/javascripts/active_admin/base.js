@@ -1,4 +1,4 @@
-//= require active_admin/vendor
+//= require "vendor"
 
 /* Active Admin JS */
 

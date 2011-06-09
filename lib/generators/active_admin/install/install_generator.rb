@@ -29,13 +29,7 @@ module ActiveAdmin
       end
 
       def create_assets
-        if Rails.version[0..2] == '3.1'
-          template '3.1/active_admin.js', 'app/assets/javascripts/active_admin.js'
-          template '3.1/active_admin.css.scss', 'app/assets/stylesheets/active_admin.css.scss'
-        else
-          # Install Images
-          directory '../../../../../app/assets/images/active_admin', 'public/images/active_admin'
-        end
+        generate "active_admin:assets"
       end
 
       def create_migrations

@@ -127,10 +127,16 @@ module ActiveAdmin
       generate_stylesheets
     end
 
+    # Setup SASS
     def generate_stylesheets
-      # Setup SASS
-      require 'sass/plugin' # This must be required after initialization
-      Sass::Engine::DEFAULT_OPTIONS[:load_paths] <<  File.expand_path("../../app/assets/stylesheets/", __FILE__)
+      # Create our own asset pipeline in Rails 3.0
+      if Rails.version[0..2] == '3.0'
+        Sass::Plugin.add_template_location(File.expand_path("../../app/assets/stylesheets", __FILE__))
+        Sass::Plugin.add_template_location(File.expand_path("../active_admin/sass", __FILE__))
+      else
+        # Otherwise, just add our mixins to the load path for SASS
+        Sass::Engine::DEFAULT_OPTIONS[:load_paths] <<  File.expand_path("../../app/assets/stylesheets", __FILE__)
+      end
     end
 
     # Registers a brand new configuration for the given resource.
