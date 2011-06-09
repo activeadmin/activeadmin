@@ -22,6 +22,12 @@ module ActiveAdmin
       end
 
       def render_item(item)
+        if !call_method_or_proc_on(self, item.display_if_block)
+          return
+        elsif (!item.url or item.url == '#') and item.children.any? and (item.children.detect {|child| call_method_or_proc_on(self, child.display_if_block)}).nil?
+          return
+        end
+        
         content_tag :li, :id => item.dom_id, :class => [("current" if current?(item)), ("has_nested" unless item.children.blank?)].compact.join(" ") do
           unless item.children.blank?
             link_to(item.name, item.url || "#") + render_nested_menu(item)
