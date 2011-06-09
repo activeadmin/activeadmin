@@ -74,7 +74,7 @@ module ActiveAdmin
         end
 
         th :class => classes do
-          link_to(title, request.query_parameters.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
+          link_to(title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
         end
       end
 
