@@ -1,6 +1,6 @@
-require 'rubygems'
 require "bundler"
 Bundler.setup
+Bundler::GemHelper.install_tasks
 
 require 'rake'
 
@@ -97,25 +97,4 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "active_admin #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "activeadmin"
-    gem.summary = "The administration framework for Ruby on Rails."
-    gem.description = "The administration framework for Ruby on Rails."
-    gem.email = "gregdbell@gmail.com"
-    gem.homepage = "http://activeadmin.info"
-    gem.authors = ["Greg Bell"]
-
-    gem.files.exclude 'spec/rails'
-    gem.test_files.exclude 'spec/rails'
-
-    require File.join(File.dirname(File.expand_path(__FILE__)), 'lib', 'active_admin', 'version')
-    gem.version = ActiveAdmin::VERSION
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler not available. Install it with: gem install jeweler"
 end
