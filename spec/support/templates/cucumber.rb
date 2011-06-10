@@ -1,9 +1,5 @@
 require File.expand_path('config/environments/test', Rails.root)
 
-Rails.application.class.configure do
-  config.cache_classes = false
-end
-
 # rails/railties/lib/rails/test_help.rb aborts if the environment is not 'test'. (Rails 3.0.0.beta3)
 # We can't run Cucumber/RSpec/Test_Unit tests in different environments then.
 #

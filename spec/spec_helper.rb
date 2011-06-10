@@ -3,17 +3,11 @@ $LOAD_PATH << File.expand_path('../support', __FILE__)
 
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../../Gemfile', __FILE__)
 
-require 'rubygems'
 require "bundler"
 Bundler.setup
 
 require 'shoulda/active_record'
 include Shoulda::ActiveRecord::Macros
-
-# Setup autoloading of ActiveAdmin and the load path
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-autoload :ActiveAdmin, 'active_admin'
-
 
 module ActiveAdminIntegrationSpecHelper
   extend self
@@ -94,6 +88,11 @@ ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{ENV["RAILS"]}", __FILE__)
 unless File.exists?(ENV['RAILS_ROOT'])
   system 'rake setup'
 end
+
+# Ensure the Active Admin load path is happy
+require 'rails'
+require 'active_admin'
+ActiveAdmin.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
 
 require ENV['RAILS_ROOT'] + '/config/environment'
 require 'rspec/rails'

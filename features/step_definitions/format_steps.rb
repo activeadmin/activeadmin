@@ -6,16 +6,21 @@ Then /^I should see a link to download "([^"]*)"$/ do |format_type|
   Then %{I should see "#{format_type}" within "#index_footer a"}
 end
 
-Then /^I should see the CSV:$/ do |table|
+# Check first rows of the displayed CSV.
+Then /^I should download a CSV file for "([^"]*)" containing:$/ do |resource_name, table|
+  page.response_headers['Content-Type'].should == 'text/csv; charset=utf-8'
+  csv_filename = "#{resource_name}-#{Time.now.strftime("%Y-%m-%d")}.csv"
+  page.response_headers['Content-Disposition'].should == %{attachment; filename="#{csv_filename}"}
+
   begin
     csv = CSV.parse(page.body)
-    csv.each_with_index do |row, row_index|
-      row.each_with_index do |cell, col_index|
-        expected_cell = table.raw.try(:[], row_index).try(:[], col_index)
+    table.raw.each_with_index do |expected_row, row_index|
+      expected_row.each_with_index do |expected_cell, col_index|
+        cell = csv.try(:[], row_index).try(:[], col_index)
         if expected_cell.blank?
           cell.should be_nil
         else
-          cell.should match(/#{expected_cell}/)
+          (cell || '').should match(/#{expected_cell}/)
         end
       end
     end
