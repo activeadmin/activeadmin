@@ -19,7 +19,7 @@ Feature: Registering Assets
   Scenario: Registering a CSS file
     Given a configuration of:
     """
-      ActiveAdmin.register_stylesheet "some-random-css.css"
+      ActiveAdmin.application.register_stylesheet "some-random-css.css"
       ActiveAdmin.register Post
     """
     When I am on the index page for posts
@@ -28,7 +28,7 @@ Feature: Registering Assets
   Scenario: Registering a JS file
     Given a configuration of:
     """
-      ActiveAdmin.register_javascript "some-random-js.js"
+      ActiveAdmin.application.register_javascript "some-random-js.js"
       ActiveAdmin.register Post
     """
     When I am on the index page for posts

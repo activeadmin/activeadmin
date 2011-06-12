@@ -32,7 +32,8 @@ module ActiveAdmin
         if respond_to?(:active_admin_config) && active_admin_config
           active_admin_config.namespace
         else
-          ActiveAdmin::Namespace.new(ActiveAdmin.default_namespace)
+          # Return a default namespace if none exists
+          active_admin_application.find_or_create_namespace(active_admin_application.default_namespace)
         end
       end
 

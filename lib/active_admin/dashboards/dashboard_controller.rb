@@ -39,7 +39,7 @@ module ActiveAdmin
 
       # Return the current menu for the view. This is a helper method
       def current_menu
-        ActiveAdmin.namespaces[namespace].menu
+        ActiveAdmin.application.namespaces[namespace].menu
       end
 
     end

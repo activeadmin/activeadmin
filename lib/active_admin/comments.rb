@@ -6,7 +6,7 @@ require 'active_admin/comments/namespace_helper'
 require 'active_admin/comments/resource_helper'
 
 # Add the comments configuration
-ActiveAdmin.extend ActiveAdmin::Comments::Configuration
+ActiveAdmin::Application.send :include, ActiveAdmin::Comments::Configuration
 
 # Add the comments module to ActiveAdmin::Namespace
 ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper
@@ -15,7 +15,7 @@ ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper
 ActiveAdmin::Resource.send :include, ActiveAdmin::Comments::ResourceHelper
 
 # Add the module to the show page
-ActiveAdmin.view_factory.show_page.send :include, ActiveAdmin::Comments::ShowPageHelper
+ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comments::ShowPageHelper
 
 # Generate a Comment resource when namespaces are registered
 ActiveAdmin::Event.subscribe ActiveAdmin::Namespace::RegisterEvent do |namespace|

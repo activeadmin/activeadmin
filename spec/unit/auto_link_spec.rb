@@ -8,11 +8,12 @@ class AutoLinkMockResource
 end
 
 describe "auto linking resources" do
+  include ActiveAdmin::ViewHelpers::ActiveAdminApplicationHelper
   include ActiveAdmin::ViewHelpers::AutoLinkHelper
   include ActiveAdmin::ViewHelpers::DisplayHelper
 
   let(:active_admin_config) { AutoLinkMockResource.new(namespace) }
-  let(:namespace){ ActiveAdmin::Namespace.new(:admin) }
+  let(:namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
   let(:post){ Post.create! :title => "Hello World" }
 
   def admin_post_path(post)

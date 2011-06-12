@@ -22,7 +22,7 @@ module ActiveAdminIntegrationSpecHelper
   end
 
   def reload_menus!
-    ActiveAdmin.namespaces.values.each{|n| n.load_menu! }
+    ActiveAdmin.application.namespaces.values.each{|n| n.load_menu! }
   end
 
   # Sometimes we need to reload the routes within
@@ -92,7 +92,7 @@ end
 # Ensure the Active Admin load path is happy
 require 'rails'
 require 'active_admin'
-ActiveAdmin.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
+ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
 
 require ENV['RAILS_ROOT'] + '/config/environment'
 require 'rspec/rails'
@@ -104,8 +104,8 @@ reload_routes!
 
 # Disabling authentication in specs so that we don't have to worry about
 # it allover the place
-ActiveAdmin.authentication_method = false
-ActiveAdmin.current_user_method = false
+ActiveAdmin.application.authentication_method = false
+ActiveAdmin.application.current_user_method = false
 
 # Don't add asset cache timestamps. Makes it easy to integration
 # test for the presence of an asset file

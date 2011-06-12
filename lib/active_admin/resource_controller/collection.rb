@@ -126,7 +126,7 @@ module ActiveAdmin
         end
 
         def paginate(chain)
-          chain.page(params[:page]).per(@per_page || ActiveAdmin.default_per_page)
+          chain.page(params[:page]).per(@per_page || active_admin_application.default_per_page)
         end
       end
 
