@@ -152,6 +152,7 @@ Gem::Specification.new do |s|
     "lib/active_admin/view_helpers/status_tag_helper.rb",
     "lib/active_admin/view_helpers/table_helper.rb",
     "lib/active_admin/view_helpers/title_helper.rb",
+    "lib/active_admin/view_helpers/url_helper.rb",
     "lib/active_admin/view_helpers/view_factory_helper.rb",
     "lib/active_admin/views.rb",
     "lib/active_admin/views/action_items.rb",
