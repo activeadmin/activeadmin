@@ -7,9 +7,12 @@ case ENV["RAILS"]
 when /3.0.(\d)*/
   gem 'rails',          "= 3.0.#{$1}"
   gem "meta_search",    '~> 1.0.0'
-when "3.1.0.rc1"
-  gem 'rails',          '= 3.1.0.rc1'
+when /3.1.(.*)/
+  gem 'rails',          "= 3.1.#{$1}"
   gem "meta_search",    '>= 1.1.0.pre'
+  gem "uglifier"
+  gem 'sass-rails',     "~> 3.1.0.rc"
+  gem 'coffee-script'
 end
 
 group :development, :test do
