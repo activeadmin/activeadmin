@@ -33,7 +33,7 @@ describe_with_capybara "Belongs To" do
 
     describe "the view links" do
       it "should take you to the sub resource" do
-        click "View"
+        click_link "View"
         current_path.should == "/admin/users/#{user.id}/posts/#{post.id}"
       end
     end
