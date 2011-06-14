@@ -2,8 +2,14 @@ require 'spec_helper'
 
 describe ActiveAdmin::Namespace do
 
+  let(:application){ ActiveAdmin::Application.new }
+
   context "when new" do
-    let(:namespace){ ActiveAdmin::Namespace.new(:admin) }
+    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+
+    it "should have an application instance" do
+      namespace.application.should == application
+    end
 
     it "should have a name" do
       namespace.name.should == :admin
@@ -20,7 +26,7 @@ describe ActiveAdmin::Namespace do
 
   describe "registering a resource" do
 
-    let(:namespace){ ActiveAdmin::Namespace.new(:admin) }
+    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
 
     context "with no configuration" do
       before do
@@ -74,7 +80,7 @@ describe ActiveAdmin::Namespace do
     end
 
     describe "finding resource instances" do
-      let(:namespace){ ActiveAdmin::Namespace.new(:admin) }
+      let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
       context "when registered" do
         before do
           @post_resource = namespace.register Post
@@ -181,13 +187,13 @@ describe ActiveAdmin::Namespace do
     describe "dashboard controller name" do
       context "when namespaced" do
         it "should be namespaced" do
-          namespace = ActiveAdmin::Namespace.new(:admin)
+          namespace = ActiveAdmin::Namespace.new(application, :admin)
           namespace.dashboard_controller_name.should == "Admin::DashboardController"
         end
       end
       context "when not namespaced" do
         it "should not be namespaced" do
-          namespace = ActiveAdmin::Namespace.new(:root)
+          namespace = ActiveAdmin::Namespace.new(application, :root)
           namespace.dashboard_controller_name.should == "DashboardController"
         end
       end

@@ -5,7 +5,8 @@ module ActiveAdmin
 
     before { load_defaults! }
 
-    let(:namespace){ Namespace.new(:admin) }
+    let(:application){ ActiveAdmin::Application.new }
+    let(:namespace){ Namespace.new(application, :admin) }
 
     def config(options = {})
       @config ||= Resource.new(namespace, Category, options)
@@ -72,7 +73,7 @@ module ActiveAdmin
         config.controller_name.should == "Admin::CategoriesController"
       end
       context "when non namespaced controller" do
-        let(:namespace){ ActiveAdmin::Namespace.new(:root) }
+        let(:namespace){ ActiveAdmin::Namespace.new(application, :root) }
         it "should return a non namespaced controller name" do
           config.controller_name.should == "CategoriesController"
         end
@@ -80,7 +81,7 @@ module ActiveAdmin
     end
 
     describe "#include_in_menu?" do
-      let(:namespace){ ActiveAdmin::Namespace.new(:admin) }
+      let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
       subject{ resource }
 
       context "when regular resource" do
@@ -144,7 +145,7 @@ module ActiveAdmin
     end
 
     describe "route names" do
-      let(:config){ ActiveAdmin.register Category }
+      let(:config){ application.register Category }
       it "should return the route prefix" do
         config.route_prefix.should == "admin"
       end
@@ -153,7 +154,7 @@ module ActiveAdmin
       end
 
       context "when in the root namespace" do
-        let(:config){ ActiveAdmin.register Category, :namespace => false}
+        let(:config){ application.register Category, :namespace => false}
         it "should have a nil route_prefix" do
           config.route_prefix.should == nil
         end
@@ -173,43 +174,43 @@ module ActiveAdmin
     end
 
     describe "scoping" do
-      let(:controller){ Admin::CategoriesController.new }
-      let(:begin_of_association_chain){ controller.send(:begin_of_association_chain) }
-
       context "when using a block" do
         before do
-          ActiveAdmin.register Category do
+          @resource = application.register Category do
             scope_to do
               "scoped"
             end
           end
         end
         it "should call the proc for the begin of association chain" do
+          begin_of_association_chain = @resource.controller.new.send(:begin_of_association_chain)
           begin_of_association_chain.should == "scoped"
         end
       end
 
       context "when using a symbol" do
         before do
-          ActiveAdmin.register Category do
+          @resource = application.register Category do
             scope_to :current_user
           end
         end
         it "should call the method for the begin of association chain" do
+          controller = @resource.controller.new
           controller.should_receive(:current_user).and_return(true)
+          begin_of_association_chain = controller.send(:begin_of_association_chain)
           begin_of_association_chain.should == true
         end
       end
 
       context "when not using a block or symbol" do
         before do
-          ActiveAdmin.register Category do
+          @resource = application.register Category do
             scope_to "Some string"
           end
         end
         it "should raise and exception" do
           lambda {
-            begin_of_association_chain
+            @resource.controller.new.send(:begin_of_association_chain)
           }.should raise_error(ArgumentError)
         end
       end
@@ -217,22 +218,22 @@ module ActiveAdmin
       describe "getting the method for the association chain" do
         context "when a simple registration" do
           before do
-            ActiveAdmin.register Category do
+            @resource = application.register Category do
               scope_to :current_user
             end
           end
           it "should return the pluralized collection name" do
-            controller.send(:method_for_association_chain).should == :categories
+            @resource.controller.new.send(:method_for_association_chain).should == :categories
           end
         end
         context "when passing in the method as an option" do
           before do
-            ActiveAdmin.register Category do
+            @resource = application.register Category do
               scope_to :current_user, :association_method => :blog_categories
             end
           end
           it "should return the method from the option" do
-            controller.send(:method_for_association_chain).should == :blog_categories
+            @resource.controller.new.send(:method_for_association_chain).should == :blog_categories
           end
         end
       end
@@ -245,7 +246,7 @@ module ActiveAdmin
       context "by default" do
         let(:resource_config) { config }
 
-        it { should == ActiveAdmin.default_sort_order }
+        it { should == application.default_sort_order }
       end
 
       context "when default_sort_order is set" do
@@ -282,39 +283,6 @@ module ActiveAdmin
           csv_builder = CSVBuilder.new
           config.csv_builder = csv_builder
           config.csv_builder.should == csv_builder
-        end
-      end
-    end
-    
-    describe "admin notes" do
-      context "when not set" do
-        context "when global is true" do
-          before(:each) do
-            ActiveAdmin.admin_notes = true
-          end
-          it "should default to true" do
-            config.admin_notes?.should be_true
-          end
-        end
-        context "when global is false" do
-          before(:each) do
-            ActiveAdmin.admin_notes = false
-          end
-          it "should default to false" do
-            config.admin_notes?.should be_false
-          end
-        end
-      end
-      context "when set" do
-        it "should be set to the local value true" do
-          ActiveAdmin.admin_notes = false
-          config.admin_notes = true
-          config.admin_notes?.should be_true
-        end
-        it "should be set to the local value false" do
-          ActiveAdmin.admin_notes = true
-          config.admin_notes = false
-          config.admin_notes?.should be_false
         end
       end
     end

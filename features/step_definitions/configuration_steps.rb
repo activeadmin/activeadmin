@@ -1,13 +1,13 @@
 Given /^a configuration of:$/ do |configuration_content|
   eval configuration_content
   Rails.application.reload_routes!
-  ActiveAdmin.namespaces.values.each{|n| n.load_menu! }
+  ActiveAdmin.application.namespaces.values.each{|n| n.load_menu! }
 end
 
 Given /^an index configuration of:$/ do |configuration_content|
   eval configuration_content
   Rails.application.reload_routes!
-  ActiveAdmin.namespaces.values.each{|n| n.load_menu! }
+  ActiveAdmin.application.namespaces.values.each{|n| n.load_menu! }
 
   And 'I am logged in'
   When "I am on the index page for posts"
@@ -16,7 +16,7 @@ end
 Given /^a show configuration of:$/ do |configuration_content|
   eval configuration_content
   Rails.application.reload_routes!
-  ActiveAdmin.namespaces.values.each{|n| n.load_menu! }
+  ActiveAdmin.application.namespaces.values.each{|n| n.load_menu! }
 
   And 'I am logged in'
   When "I am on the index page for posts"

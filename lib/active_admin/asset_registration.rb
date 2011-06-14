@@ -29,6 +29,6 @@ module ActiveAdmin
     def clear_javascripts!
       @javascripts = []
     end
-    
+
   end
 end

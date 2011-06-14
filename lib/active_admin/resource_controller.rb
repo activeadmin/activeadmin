@@ -88,11 +88,11 @@ module ActiveAdmin
 
     # Calls the authentication method as defined in ActiveAdmin.authentication_method
     def authenticate_active_admin_user
-      send(ActiveAdmin.authentication_method) if ActiveAdmin.authentication_method
+      send(active_admin_application.authentication_method) if active_admin_application.authentication_method
     end
 
     def current_active_admin_user
-      send(ActiveAdmin.current_user_method) if ActiveAdmin.current_user_method
+      send(active_admin_application.current_user_method) if active_admin_application.current_user_method
     end
     helper_method :current_active_admin_user
 
@@ -106,9 +106,13 @@ module ActiveAdmin
     end
     helper_method :active_admin_config
 
+    def active_admin_application
+      ActiveAdmin.application
+    end
+
     # Returns the renderer class to use for the given action.
     def renderer_for(action)
-      ActiveAdmin.view_factory["#{action}_page"]
+      active_admin_application.view_factory["#{action}_page"]
     end
     helper_method :renderer_for
   end

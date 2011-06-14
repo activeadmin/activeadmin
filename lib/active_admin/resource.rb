@@ -217,8 +217,8 @@ module ActiveAdmin
 
     def default_options
       {
-        :namespace  => ActiveAdmin.default_namespace,
-        :sort_order => ActiveAdmin.default_sort_order,
+        :namespace  => ActiveAdmin.application.default_namespace,
+        :sort_order => ActiveAdmin.application.default_sort_order
       }
     end
 

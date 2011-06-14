@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "display names" do
 
-  include ActiveAdmin::ViewHelpers::DisplayHelper
+  include ActiveAdmin::ViewHelpers
 
   [:display_name, :full_name, :name, :username, :login, :title, :email, :to_s].each do |m|
     it "should return #{m} if defined" do
@@ -22,7 +22,7 @@ describe "display names" do
       end
     end
     display_name(c.new).should == "My Name"
-    ActiveAdmin.should_not_receive(:display_name_methods)
+    ActiveAdmin.application.should_not_receive(:display_name_methods)
     display_name(c.new).should == "My Name"
   end
 

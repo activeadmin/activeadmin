@@ -49,7 +49,7 @@ Feature: Commenting
   Scenario: Creating a comment in one namespace does not create it in another
     Given a show configuration of:
     """
-      ActiveAdmin.allow_comments_in << :public
+      ActiveAdmin.application.allow_comments_in << :public
       ActiveAdmin.register Post
       ActiveAdmin.register Post, :namespace => :public
     """
