@@ -21,9 +21,9 @@ end
 group :test do
   gem 'rspec',          '~> 2.6.0'
   gem 'rspec-rails',    '~> 2.6.0'
-  gem 'capybara',       '1.0.0.beta1'
-  gem 'cucumber',       '0.10.3'
-  gem 'cucumber-rails', '0.5.1'
+  gem 'capybara',       '1.0.0'
+  gem 'cucumber',       '0.10.6'
+  gem 'cucumber-rails', '0.5.2'
   gem 'database_cleaner'
   gem 'shoulda',        '2.11.2',           :require => nil
   gem 'launchy'
