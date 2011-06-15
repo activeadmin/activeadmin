@@ -26,6 +26,7 @@ pkg
 spec/rails
 *.sqlite3-journal
 Gemfile.lock
+Gemfile-*.lock
 capybara*
 viewcumber
 test-rails-app

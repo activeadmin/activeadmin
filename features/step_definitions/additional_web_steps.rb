@@ -1,13 +1,13 @@
 Then /^I should see a table header with "([^"]*)"$/ do |content|
-  Then "I should see \"#{content}\" within \"th\""
+  page.should have_xpath('//th', :text => content)
 end
 
 Then /^I should not see a table header with "([^"]*)"$/ do |content|
-  Then "I should not see \"#{content}\" within \"th\""
+  page.should_not have_xpath('//th', :text => content)
 end
 
 Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
-  Then "I should see \"#{content}\" within \"th.sortable\""
+  page.should have_css('th.sortable', :text => content)
 end
 
 Then /^the table "([^"]*)" should have (\d+) rows/ do |selector, count|
@@ -29,7 +29,11 @@ Then /^there should be (\d+) "([^"]*)" tags within "([^"]*)"$/ do |count, tag, s
 end
 
 Then /^I should see a link to "([^"]*)"$/ do |link|
-  Then "I should see \"#{link}\" within \"a\""
+  if page.respond_to? :should
+    page.should have_xpath('//a', :text => link)
+  else
+    assert page.has_xpath?('//a', :text => link)
+  end
 end
 
 Then /^I should see a link to \/([^\/]*)\/$/ do |regexp|
@@ -59,9 +63,9 @@ Then /^I should wait and see "([^"]*)"(?: within "([^"]*)")?$/ do |text, selecto
 end
 
 Then /^I should see the page title "([^"]*)"$/ do |title|
-  Then %{I should see "#{title}" within "h2#page_title"}
+  page.should have_css('h2#page_title', :text => title)
 end
 
 Then /^I should see a fieldset titled "([^"]*)"$/ do |title|
-  Then %{I should see "#{title}" within "fieldset legend"}
+  page.should have_css('fieldset legend', :text => title)
 end
