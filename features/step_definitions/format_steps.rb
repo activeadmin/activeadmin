@@ -3,7 +3,7 @@ Then "I should see nicely formatted datetimes" do
 end
 
 Then /^I should see a link to download "([^"]*)"$/ do |format_type|
-  Then %{I should see "#{format_type}" within "#index_footer a"}
+  page.should have_css("#index_footer a", :text => format_type)
 end
 
 # Check first rows of the displayed CSV.
