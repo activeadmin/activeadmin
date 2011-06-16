@@ -2,7 +2,6 @@ Feature: Specifying Actions
 
   Specifying which actions to allow on my resource
 
-  @allow-rescue
   Scenario: Only creating the index action
     Given a configuration of:
       """
