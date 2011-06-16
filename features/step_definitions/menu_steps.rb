@@ -1,7 +1,7 @@
 Then /^I should see a menu item for "([^"]*)"$/ do |name|
-  Then %{I should see "#{name}" within "#tabs li a"}
+  page.should have_css('#tabs li a', :text => name)
 end
 
 Then /^I should not see a menu item for "([^"]*)"$/ do |name|
-  Then %{I should not see "#{name}" within "#tabs li a"}
+  page.should_not have_css('#tabs li a', :text => name)
 end
