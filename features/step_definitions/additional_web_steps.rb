@@ -69,3 +69,8 @@ end
 Then /^I should see a fieldset titled "([^"]*)"$/ do |title|
   page.should have_css('fieldset legend', :text => title)
 end
+
+Then /^the "([^"]*)" field should contain the option "([^"]*)"$/ do |field, option|
+  field = find_field(field)
+  field.should have_css("option", :text => option)
+end
