@@ -1,9 +1,10 @@
 <%-
   csv_lib = if RUBY_VERSION =~ /^1.8/
 			  require 'fastercsv'
-			  FasterCSV
+			  ::FasterCSV
 			else
-			  CSV
+              require 'csv'
+			  ::CSV
 			end
 
 
