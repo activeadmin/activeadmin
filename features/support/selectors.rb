@@ -23,6 +23,9 @@ module HtmlSelectorsHelpers
     #  when /the header/
     #    [:xpath, "//header"]
 
+    when "index grid"
+      [:css, "table.index_grid"]
+
     # This allows you to provide a quoted selector as the scope
     # for "within" steps as was previously the default for the
     # web steps:

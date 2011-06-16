@@ -11,21 +11,18 @@ Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
 end
 
 Then /^the table "([^"]*)" should have (\d+) rows/ do |selector, count|
-  with_scope(selector) do
-    page.all(:css, 'tr').size.should == count.to_i
-  end
+  table = page.find(selector)
+  table.all(:css, 'tr').size.should == count.to_i
 end
 
 Then /^the table "([^"]*)" should have (\d+) columns/ do |selector, count|
-  with_scope(selector + " tr:first") do
-    page.all(:css, "td").size.should == count.to_i
-  end
+  table = page.find(selector)
+  row = table.find('tr:first')
+  row.all(:css, "td").size.should == count.to_i
 end
 
-Then /^there should be (\d+) "([^"]*)" tags within "([^"]*)"$/ do |count, tag, selector|
-  with_scope(selector) do
-    page.all(:css, tag).size.should == count.to_i
-  end
+Then /^there should be (\d+) "([^"]*)" tags$/ do |count, tag|
+  page.all(:css, tag).size.should == count.to_i
 end
 
 Then /^I should see a link to "([^"]*)"$/ do |link|
