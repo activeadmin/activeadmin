@@ -1,11 +1,11 @@
 <%-
   csv_lib = if RUBY_VERSION =~ /^1.8/
-			  require 'fastercsv'
-			  FasterCSV
-			else
-			  CSV
-			end
-
+              require 'fastercsv'
+              FasterCSV
+            else
+              require 'csv'
+              CSV
+            end
 
   csv_output = csv_lib.generate do |csv|
     columns = active_admin_config.csv_builder.columns
