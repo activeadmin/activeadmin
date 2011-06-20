@@ -332,6 +332,22 @@ the fabulous DSL created by Formtastic (http://github.com/justinfrench/formtasti
 Please view the documentation for Formtastic to see all the wonderful things you can do:
 http://github.com/justinfrench/formtastic
 
+If you require a more custom form than can be provided through the DSL, you can pass
+a partial in to render the form yourself.
+
+For example:
+
+  ActiveAdmin.register Post do
+    form :partial => "form"
+  end
+
+Then implement app/views/admin/posts/_form.html.erb:
+
+  <%= semantic_form_for [:admin, @post] do |f| %>
+    <%= f.inputs :title, :body %>
+    <%= f.buttons :commit %>
+  <% end %>
+
 
 == Customizing the Show Screen
 
