@@ -13,6 +13,8 @@ when /3.1.(.*)/
   gem "uglifier"
   gem 'sass-rails',     "~> 3.1.0.rc"
   gem 'coffee-script'
+  gem 'execjs'
+  gem 'therubyracer'
 end
 
 group :development, :test do

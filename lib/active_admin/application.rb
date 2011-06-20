@@ -194,10 +194,12 @@ module ActiveAdmin
       ActiveAdmin::Reloader.new(Rails.version).attach!
     end
 
+
     def generate_stylesheets
       require 'sass/plugin' # This must be required after initialization
       # Create our own asset pipeline in Rails 3.0
       if Rails.version[0..2] == '3.0'
+        require 'active_admin/sass/css_loader'
         Sass::Plugin.add_template_location(File.expand_path("../../../app/assets/stylesheets", __FILE__))
         Sass::Plugin.add_template_location(File.expand_path("../sass", __FILE__))
       else
