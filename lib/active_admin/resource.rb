@@ -90,7 +90,7 @@ module ActiveAdmin
     end
 
     def resource_table_name
-      resource.table_name
+      resource.quoted_table_name
     end
 
     # Returns a properly formatted controller name for this
