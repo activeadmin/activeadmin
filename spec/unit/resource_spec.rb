@@ -53,11 +53,11 @@ module ActiveAdmin
 
     describe "#resource_table_name" do
       it "should return the resource's table name" do
-        config.resource_table_name[1..-1].should == 'categories'
+        config.resource_table_name.should == '"categories"'
       end
       context "when the :as option is given" do
         it "should return the resource's table name" do
-          config(:as => "My Category").resource_table_name[1..-1].should == 'categories'
+          config(:as => "My Category").resource_table_name.should == '"categories"'
         end
       end
     end
