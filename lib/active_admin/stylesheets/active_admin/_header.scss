@@ -15,7 +15,7 @@
     font-weight: normal; 
   }
 
-  a, a:link { color: #cdcdcd; }
+  a, a:link, span { color: #cdcdcd; }
 
   ul#tabs {
     margin: 0; 
@@ -29,7 +29,7 @@
       font-size: 1.0em; 
       position: relative; 
 
-      a { 
+      a, span {
         text-decoration: none; 
         padding: 6px 10px 4px 10px; 
         position: relative;
@@ -41,22 +41,22 @@
         color: #fff;
       }
 
-      &.has_nested > a { 
-        background: url('/images/active_admin/nested_menu_arrow.gif') no-repeat 89% 50%; 
-        padding-right: 20px; 
+      &.has_nested > a, &.has_nested > span {
+        background: url('/images/active_admin/nested_menu_arrow.gif') no-repeat 89% 50%;
+        padding-right: 20px;
       }
 
-      &.has_nested.current > a { 
-        background: $current-menu-item-background url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%; 
-        padding-right: 20px; 
+      &.has_nested.current > a, &.has_nested.current > span {
+        background: $current-menu-item-background url('/images/active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%;
+        padding-right: 20px;
       }
 
-      &:hover > a { 
+      &:hover > a, &:hover > span {
         background: $hover-menu-item-background;
         color: #fff;
       }
 
-      &.has_nested:hover > a { 
+      &.has_nested:hover > a, &.has_nested:hover > span {
         @include rounded-top(10px);
         z-index: 800;
         border-bottom: 5px solid $hover-menu-item-background;
