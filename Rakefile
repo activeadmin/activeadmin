@@ -9,12 +9,27 @@ def cmd(command)
   system command
 end
 
-desc "Install all supported versions of rails"
-task :install_all_rails do
-  (0..7).to_a.each do |v|
-    system "rm Gemfile.lock"
-    puts "Installing for RAILS=3.0.#{v}"
-    cmd "RAILS=3.0.#{v} bundle install"
+require File.expand_path('../spec/support/detect_rails_version', __FILE__)
+
+namespace :bundle do
+  desc "Change the version of rails."
+  task :use, :version do |t, args|
+    version = args[:version]
+
+    gem_lock_dir = ".gemfile-locks"
+    gem_lock_file = "#{gem_lock_dir}/Gemfile-#{version}.lock"
+
+    # Ensure our lock dir is created
+    cmd "mkdir #{gem_lock_dir}" unless File.exists?(gem_lock_dir)
+
+    unless File.exists?(gem_lock_file)
+      cmd "rm Gemfile.lock" if File.exists?("Gemfile.lock")
+      cmd "export RAILS=#{version} && bundle install"
+      cmd "mv Gemfile.lock #{gem_lock_file}"
+    end
+
+    cmd "rm Gemfile.lock" if File.exists?("Gemfile.lock")
+    cmd "ln -s #{gem_lock_file} Gemfile.lock"
   end
 end
 
@@ -28,9 +43,19 @@ end
 namespace :local do
   desc "Creates a local rails app to play with in development"
   task :setup do
-    unless File.exists? "test-rails-app"
-      system "bundle exec rails new test-rails-app -m spec/support/rails_template_with_data.rb"
+    rails_version = detect_rails_version
+    test_app_dir = ".test-rails-apps"
+    test_app_path = "#{test_app_dir}/test-rails-app-#{rails_version}"
+
+    # Ensure .test-rails-apps is created
+    cmd "mkdir #{test_app_dir}" unless File.exists?(test_app_dir)
+
+    unless File.exists? test_app_path
+      cmd "bundle exec rails new #{test_app_path} -m spec/support/rails_template_with_data.rb"
     end
+
+    cmd "rm test-rails-app"
+    cmd "ln -s #{test_app_path} test-rails-app"
   end
 
   desc "Start a local rails app to play"
