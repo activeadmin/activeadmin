@@ -11,26 +11,22 @@ end
 
 require File.expand_path('../spec/support/detect_rails_version', __FILE__)
 
-namespace :bundle do
-  desc "Change the version of rails."
-  task :use, :version do |t, args|
-    version = args[:version]
+namespace :test do
 
-    gem_lock_dir = ".gemfile-locks"
-    gem_lock_file = "#{gem_lock_dir}/Gemfile-#{version}.lock"
-
-    # Ensure our lock dir is created
-    cmd "mkdir #{gem_lock_dir}" unless File.exists?(gem_lock_dir)
-
-    unless File.exists?(gem_lock_file)
-      cmd "rm Gemfile.lock" if File.exists?("Gemfile.lock")
-      cmd "export RAILS=#{version} && bundle install"
-      cmd "mv Gemfile.lock #{gem_lock_file}"
+  desc "Run against the important versions of rails"
+  task :major_rails_versions do
+    current_version = detect_rails_version
+    ["3.0.7", "3.1.0.rc4"].each do |version|
+      puts
+      puts
+      puts "== Using Rails #{version}"
+      cmd "./script/use_rails #{version}"
+      cmd "export RAILS=#{version} && bundle exec rspec spec"
+      cmd "export RAILS=#{version} && bundle exec cucumber features"
     end
-
-    cmd "rm Gemfile.lock" if File.exists?("Gemfile.lock")
-    cmd "ln -s #{gem_lock_file} Gemfile.lock"
+    cmd "./script/use_rails #{current_version}"
   end
+
 end
 
 desc "Creates a test rails app for the specs to run against"
