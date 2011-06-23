@@ -197,8 +197,8 @@ module ActiveAdmin
 
     def generate_stylesheets
       # Setup SASS
-      require 'sass/plugin' # This must be required after initialization
-      Sass::Plugin.add_template_location(File.expand_path("../active_admin/stylesheets/", __FILE__), File.join(Sass::Plugin.options[:css_location], 'admin'))
+      #require 'sass/plugin' # This must be required after initialization
+      #Sass::Plugin.add_template_location(File.expand_path("../active_admin/stylesheets/", __FILE__), File.join(Sass::Plugin.options[:css_location], 'admin'))
     end
   end
 end

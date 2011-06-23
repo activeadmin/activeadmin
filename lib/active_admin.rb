@@ -1,7 +1,7 @@
 require 'meta_search'
 require 'devise'
 require 'kaminari'
-require 'sass'
+#require 'sass'
 require 'active_admin/arbre'
 
 module ActiveAdmin
