@@ -49,9 +49,7 @@ module ActiveAdmin
       @config.controller
     end
 
-    def belongs_to(target, options = {})
-      config.belongs_to(target, options)
-    end
+    delegate :belongs_to, :to => :config
 
     def menu(options = {})
       config.menu(options)

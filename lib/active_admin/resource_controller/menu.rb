@@ -17,8 +17,8 @@ module ActiveAdmin
       # Set's @current_tab to be name of the tab to mark as current
       # Get's called through a before filter
       def set_current_tab
-        @current_tab = if active_admin_config.belongs_to? && parent?
-          active_admin_config.belongs_to_config.target.menu_item_name
+        @current_tab = if active_admin_config.belongs_to? && parent.present?
+          active_admin_config.namespace.resource_for(parent.class).menu_item_name
         else
           [active_admin_config.parent_menu_item_name, active_admin_config.menu_item_name].compact.join("/")
         end
