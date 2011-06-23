@@ -5,8 +5,10 @@ module Arbre
       super - 1
     end
 
-    def bytesize
-      to_html.bytesize
+    def length
+      to_html.length
     end
+    alias :bytesize :length
+
   end
 end
