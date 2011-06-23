@@ -55,13 +55,16 @@ module ActiveAdmin
           # Add in the parent if it exists
           if config.belongs_to?
             routes_for_belongs_to = route_definition_block.dup
-            route_definition_block = Proc.new do
-              # If its optional, make the normal resource routes
-              instance_eval &routes_for_belongs_to if config.belongs_to_config.optional?
 
-              # Make the nested belongs_to routes
-              resources config.belongs_to_config.target.underscored_resource_name.pluralize do
-                instance_eval &routes_for_belongs_to
+            config.belongs_to_config.each do |belongs_to_config|
+              route_definition_block = Proc.new do
+                # If its optional, make the normal resource routes
+                instance_eval &routes_for_belongs_to if belongs_to_config.optional?
+
+                # Make the nested belongs_to routes
+                resources belongs_to_config.target.underscored_resource_name.pluralize do
+                  instance_eval &routes_for_belongs_to
+                end
               end
             end
           end
