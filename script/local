@@ -3,9 +3,18 @@
 require File.expand_path('../../spec/support/detect_rails_version', __FILE__)
 
 unless ARGV[0]
-  puts "usage: ./script/#{__FILE__} COMMAND [ARGS]"
-  puts "  The command will be run in the context of the local rails"
-  puts "  app stored in test-rails-app."
+  puts <<-EOF
+Usage: ./script/#{__FILE__} COMMAND [ARGS]
+
+The command will be run in the context of the local rails
+app stored in test-rails-app.
+
+Examples:
+
+./script/local server
+./script/local c
+./script/local rake db:migrate
+  EOF
   exit(1)
 end
 
@@ -27,5 +36,9 @@ end
 system "rm test-rails-app"
 system "ln -s #{test_app_path} test-rails-app"
 
+# If it's a rails command, auto add the rails script
+RAILS_COMMANDS = %w{generate console server dbconsole g c s runner}
+args = RAILS_COMMANDS.include?(ARGV[0]) ? ["rails", ARGV].flatten : ARGV
+
 # Run the command
-exec "cd test-rails-app && GEMFILE=../Gemfile bundle exec rails #{ARGV.join(" ")}"
+exec "cd test-rails-app && GEMFILE=../Gemfile bundle exec #{args.join(" ")}"
