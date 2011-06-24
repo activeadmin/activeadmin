@@ -36,35 +36,6 @@ task :setup do
   system "bundle exec rails new spec/rails/rails-#{Rails::VERSION::STRING} -m spec/support/rails_template.rb"
 end
 
-namespace :local do
-  desc "Creates a local rails app to play with in development"
-  task :setup do
-    rails_version = detect_rails_version
-    test_app_dir = ".test-rails-apps"
-    test_app_path = "#{test_app_dir}/test-rails-app-#{rails_version}"
-
-    # Ensure .test-rails-apps is created
-    cmd "mkdir #{test_app_dir}" unless File.exists?(test_app_dir)
-
-    unless File.exists? test_app_path
-      cmd "bundle exec rails new #{test_app_path} -m spec/support/rails_template_with_data.rb"
-    end
-
-    cmd "rm test-rails-app"
-    cmd "ln -s #{test_app_path} test-rails-app"
-  end
-
-  desc "Start a local rails app to play"
-  task :server => :setup do
-    exec "cd test-rails-app && GEMFILE=../Gemfile bundle exec rails s"
-  end
-
-  desc "Load the local rails console"
-  task :console => :setup do
-    exec "cd test-rails-app && GEMFILE=../Gemfile bundle exec rails c"
-  end
-end
-
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec)
 
