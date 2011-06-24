@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 require File.expand_path('../../spec/support/detect_rails_version', __FILE__)
 

@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 #
 # Switches the development environment to use the given
 # version of rails. Caches the Gemfile.locks so that 
