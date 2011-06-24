@@ -16,6 +16,10 @@ unless version
   exit(1)
 end
 
+def file_or_symlink?(path)
+  File.exist?(path) || File.symlink?(path)
+end
+
 gem_lock_dir = ".gemfile-locks"
 gem_lock_file = "#{gem_lock_dir}/Gemfile-#{version}.lock"
 
@@ -23,10 +27,10 @@ gem_lock_file = "#{gem_lock_dir}/Gemfile-#{version}.lock"
 cmd "mkdir #{gem_lock_dir}" unless File.exists?(gem_lock_dir)
 
 unless File.exists?(gem_lock_file)
-  cmd "rm Gemfile.lock" if File.exists?("Gemfile.lock")
+  cmd "rm Gemfile.lock" if file_or_symlink?("Gemfile.lock")
   cmd "export RAILS=#{version} && bundle install"
   cmd "mv Gemfile.lock #{gem_lock_file}"
 end
 
-cmd("rm Gemfile.lock") if File.exists?("Gemfile.lock")
+cmd("rm Gemfile.lock") if file_or_symlink?("Gemfile.lock")
 cmd("ln -s #{gem_lock_file} Gemfile.lock")
