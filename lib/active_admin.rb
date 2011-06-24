@@ -4,6 +4,7 @@ require 'kaminari'
 require 'sass'
 require 'active_admin/arbre'
 require 'active_admin/engine'
+require 'rails/version'
 
 module ActiveAdmin
 
@@ -59,6 +60,13 @@ module ActiveAdmin
     delegate :unload!,  :to => :application
     delegate :load!,    :to => :application
     delegate :routes,   :to => :application
+
+    # Returns true if this rails application has the asset
+    # pipeline enabled.
+    def use_asset_pipeline?
+      return false unless Rails::VERSION::MINOR > 0
+      Rails.application.config.assets.enabled
+    end
 
   end
 end
