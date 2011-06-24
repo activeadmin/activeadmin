@@ -4,8 +4,6 @@ Active Admin is a framework for creating administration style interfaces. It
 abstracts common business application patterns to make it simple for developers
 to implement beautiful and elegant interfaces with very little effort.
 
-http://travis-ci.org/gregbell/active_admin.png
-
 == Goals
 
 1. Allow developers to quickly create gorgeous administration interfaces
