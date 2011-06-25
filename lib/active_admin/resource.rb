@@ -1,4 +1,5 @@
 require 'active_admin/resource/naming'
+require 'active_admin/resource/menu'
 
 module ActiveAdmin
 
@@ -16,7 +17,6 @@ module ActiveAdmin
     RegisterEvent = 'active_admin.resource.register'.freeze
 
     autoload :BelongsTo, 'active_admin/resource/belongs_to'
-
 
     # The namespace this resource belongs to
     attr_reader :namespace
@@ -55,17 +55,12 @@ module ActiveAdmin
       @options = default_options.merge(options)
       @sort_order = @options[:sort_order]
       @page_configs = {}
-      @menu_options = {}
       @member_actions, @collection_actions = [], []
       @scopes = []
     end
 
     include Naming
-
-    # Returns the plural version of this resource
-    def plural_resource_name
-      @plural_resource_name ||= resource_name.pluralize
-    end
+    include Menu
 
     def resource_table_name
       resource.table_name
@@ -97,40 +92,6 @@ module ActiveAdmin
     def route_instance_path
       [route_prefix, controller.resources_configuration[:self][:route_instance_name], 'path'].compact.join('_').to_sym
     end
-
-    # Set the menu options. To not add this resource to the menu, just
-    # call #menu(false)
-    def menu(options = {})
-      options = options == false ? { :display => false } : options
-      @menu_options = options
-    end
-
-    # Returns the name to put this resource under in the menu
-    def parent_menu_item_name
-      @menu_options[:parent]
-    end
-
-    # Returns the name to be displayed in the menu for this resource
-    def menu_item_name
-      @menu_options[:label] || plural_resource_name
-    end
-    
-    # Returns the items priority for altering the default sort order
-    def menu_item_priority
-      @menu_options[:priority] || 10
-    end
-    
-    # Returns a proc for deciding whether to display the menu item or not in the view
-    def menu_item_display_if
-      @menu_options[:if] || proc { true }
-    end
-
-    # Should this resource be added to the menu system?
-    def include_in_menu?
-      return false if @menu_options[:display] == false
-      !(belongs_to? && !belongs_to_config.optional?)
-    end
-
 
     # Clears all the member actions this resource knows about
     def clear_member_actions!
