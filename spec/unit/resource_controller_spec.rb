@@ -45,31 +45,36 @@ describe ActiveAdmin::ResourceController do
     end
   end
 
-  ActiveAdmin.register Post do
-    after_build :call_after_build
-    before_save :call_before_save
-    after_save :call_after_save
-    before_create :call_before_create
-    after_create :call_after_create
-    before_update :call_before_update
-    after_update :call_after_update
-    before_destroy :call_before_destroy
-    after_destroy :call_after_destroy
-  end
-
-  class Admin::PostsController < ActiveAdmin::ResourceController
-    def call_after_build(obj); end
-    def call_before_save(obj); end
-    def call_after_save(obj); end
-    def call_before_create(obj); end
-    def call_after_create(obj); end
-    def call_before_update(obj); end
-    def call_after_update(obj); end
-    def call_before_destroy(obj); end
-    def call_after_destroy(obj); end
-  end
-
   describe "callbacks" do
+    let(:application){ ::ActiveAdmin::Application.new }
+    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+
+    before :all do
+      namespace.register Post do
+        after_build :call_after_build
+        before_save :call_before_save
+        after_save :call_after_save
+        before_create :call_before_create
+        after_create :call_after_create
+        before_update :call_before_update
+        after_update :call_after_update
+        before_destroy :call_before_destroy
+        after_destroy :call_after_destroy
+
+        controller do
+          def call_after_build(obj); end
+          def call_before_save(obj); end
+          def call_after_save(obj); end
+          def call_before_create(obj); end
+          def call_after_create(obj); end
+          def call_before_update(obj); end
+          def call_after_update(obj); end
+          def call_before_destroy(obj); end
+          def call_after_destroy(obj); end
+        end
+      end
+    end
+
     describe "performing create" do
       let(:controller){ Admin::PostsController.new }
       let(:resource){ mock("Resource", :save => true) }
