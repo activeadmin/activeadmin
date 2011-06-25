@@ -58,12 +58,14 @@ module ActiveAdmin
       def define_active_admin_callbacks(*names)
         names.each do |name|
           [:before, :after].each do |type|
-            # Create an inheritable accessor array for the callbacks
-            class_inheritable_array "#{type}_#{name}_callbacks".to_sym
-            send("#{type}_#{name}_callbacks=".to_sym, [])
 
             # Define a method to set the callback
             class_eval(<<-EOS, __FILE__, __LINE__ + 1)
+              # def self.before_create_callbacks
+              def self.#{type}_#{name}_callbacks
+                @#{type}_#{name}_callbacks ||= []
+              end
+
               # def self.before_create
               def self.#{type}_#{name}(method = nil, &block)
                 #{type}_#{name}_callbacks << (method || block)
