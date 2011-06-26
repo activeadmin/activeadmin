@@ -9,6 +9,13 @@ describe ActiveAdmin, "filters" do
       application.before_filter :my_filter, :only => :show
     end
   end
+  
+  describe "skip before filters" do
+    it "should add a new skip before filter to ActiveAdmin::ResourceController" do
+      ActiveAdmin::ResourceController.should_receive(:skip_before_filter).and_return(true)
+      application.skip_before_filter :my_filter, :only => :show
+    end
+  end
 
   describe "after filters" do
     it "should add a new after filter to ActiveAdmin::ResourceController" do
