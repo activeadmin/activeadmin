@@ -1,6 +1,8 @@
 da:
   active_admin:
-    dashboard_welcome: "Velkommen til Active Admin. Dette er standardoversigtssiden. Rediger 'app/admin/dashboards.rb' for at tilføje nye elementer til oversigtssiden."
+    dashboard_welcome:
+      welcome: "Velkommen til Active Admin. Dette er standardoversigtssiden."
+      call_to_action: "Rediger 'app/admin/dashboards.rb' for at tilføje nye elementer til oversigtssiden."
     view: "Vis"
     edit: "Rediger"
     delete: "Slet"
