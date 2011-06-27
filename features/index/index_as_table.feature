@@ -7,6 +7,8 @@ Feature: Index as Table
       """
         ActiveAdmin.register Post
       """
+    And 1 post exists
+    When I am on the index page for posts
     Then I should see a sortable table header with "ID"
     And I should see a sortable table header with "Title"
 
