@@ -8,7 +8,8 @@ module ActiveAdmin
               :action_items       => ActiveAdmin::Views::ActionItems,
               :header             => ActiveAdmin::Views::HeaderRenderer,
               :dashboard_section  => ActiveAdmin::Views::DashboardSection,
-              :index_scopes       => ActiveAdmin::Views::Scopes
+              :index_scopes       => ActiveAdmin::Views::Scopes,
+              :blank_slate        => ActiveAdmin::Views::BlankSlate
 
     # Register All The Pages
     register  :dashboard_page     => ActiveAdmin::Views::Pages::Dashboard,

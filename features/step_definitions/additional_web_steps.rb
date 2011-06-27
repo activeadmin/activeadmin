@@ -10,6 +10,10 @@ Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
   page.should have_css('th.sortable', :text => content)
 end
 
+Then /^I should not see a sortable table header$/ do
+  Then "I should not see \"th.sortable\""
+end
+
 Then /^the table "([^"]*)" should have (\d+) rows/ do |selector, count|
   table = page.find(selector)
   table.all(:css, 'tr').size.should == count.to_i

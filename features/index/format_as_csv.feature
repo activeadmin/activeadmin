@@ -20,6 +20,7 @@ Feature: Format as CSV
     """
       ActiveAdmin.register Post, :as => "MyArticle"
     """
+    And 1 post exists
     When I am on the index page for my_articles
     And I follow "CSV"
     And I should download a CSV file for "my-articles" containing:

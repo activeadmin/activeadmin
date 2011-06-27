@@ -12,7 +12,7 @@ Given /^a post with the title "([^"]*)" written by "([^"]*)" exists$/ do |title,
   Post.create! :title => title, :author => author
 end
 
-Given /^(\d+) posts exist/ do |count|
+Given /^(\d+) posts? exists?/ do |count|
   (0...count.to_i).each do |i|
     Post.create! :title => "Hello World #{i}"
   end
