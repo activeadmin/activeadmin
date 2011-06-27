@@ -17,6 +17,8 @@ inject_into_file 'app/models/category.rb', "  has_many :posts\n", :after => "cla
 # Add our local Active Admin to the load path
 inject_into_file "config/environment.rb", "\n$LOAD_PATH.unshift('#{File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'lib'))}')\nrequire \"active_admin\"\n", :after => "require File.expand_path('../application', __FILE__)"
 
+inject_into_file "config/locales/en.yml", "\n  active_admin:\n    sections:\n      spams: SPAMs", :after => "  hello: \"Hello world\"\n"
+
 run "rm Gemfile"
 run "rm -r test"
 run "rm -r spec"
