@@ -155,6 +155,15 @@ a.button, input[type=submit] { @include dark-button; }
   }
 }
 
+.admin_dashboard .blank_slate_container .blank_slate {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.with_sidebar .blank_slate_container .blank_slate {
+  margin-top: 80px;
+}
+
 // ----------------------------------- Tables 
 table.index_table {
   width: 100%;
