@@ -139,7 +139,7 @@ a.button, input[type=submit] { @include dark-button; }
   .blank_slate {
     @include rounded;
     -webkit-font-smoothing: antialiased;
-    border: 1px dashed #EDEDED;
+    border: 1px dashed #DDD;
     color: #ADB3B6;
     display: inline-block;
     font-size: 1.2em;
@@ -284,7 +284,7 @@ form {
       font-weight: bold;
     }
     .datepicker { 
-      background: #fff url('/images/active_admin/datepicker/datepicker-input-icon.png') no-repeat 100% 10px;
+      background: #fff url('/images/active_admin/datepicker/datepicker-input-icon.png') no-repeat 100% 7px;
       padding-right: 27px;
       width: 75px;
     }
@@ -386,8 +386,8 @@ body.logged_out {
     z-index: 2000;
     
     .ui-datepicker-title {
-      @include text-shadow(#FFF);
-      color: $primary-color;
+      @include text-shadow(#000);
+      color: #fff;
       display: block;
       font-size: 1.1em;
       font-weight: bold;
@@ -396,7 +396,7 @@ body.logged_out {
     }
     
     a { 
-      color: $primary-color;
+      color: #fff;
       display: block;
       height: 19px;
       margin-top: -4px;
@@ -462,13 +462,13 @@ body.logged_out {
           
           &.ui-state-active {
             background-color: #5a5f64;
+            color: #fff;
           }
           &.ui-state-hover {
             background-color: #eceef0;
           }
           &.ui-state-highlight {
             background-color: #dbdddf;
-            color: #fff;
           }
         }
       }
