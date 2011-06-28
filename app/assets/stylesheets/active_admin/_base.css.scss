@@ -284,7 +284,7 @@ form {
       font-weight: bold;
     }
     .datepicker { 
-      background: #fff url('/images/active_admin/datepicker/datepicker-input-icon.png') no-repeat 90px 0px;
+      background: #fff url('/images/active_admin/datepicker/datepicker-input-icon.png') no-repeat 100% 10px;
       padding-right: 27px;
       width: 75px;
     }
@@ -425,7 +425,7 @@ body.logged_out {
     @include rounded-bottom;
     @include shadow(0,1px,6px,rgba(0,0,0,0.26));
     background-color: #f4f4f4;
-    border: solid 1px #d4d3d2;
+    border: solid 1px #63686e;
     left: 2px;
     margin-bottom: 0px;
     position: relative;
@@ -461,13 +461,13 @@ body.logged_out {
           padding: 4px;
           
           &.ui-state-active {
-            background-color: #dbdddf;
+            background-color: #5a5f64;
           }
           &.ui-state-hover {
             background-color: #eceef0;
           }
           &.ui-state-highlight {
-            background-color: #5a5f64;
+            background-color: #dbdddf;
             color: #fff;
           }
         }
