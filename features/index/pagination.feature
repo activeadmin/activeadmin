@@ -5,12 +5,6 @@ Feature: Index Pagination
     """
       ActiveAdmin.register Post
     """
-
-  Scenario: Viewing index when no resources exist
-    When I am on the index page for posts
-    Then I should see "No Posts found"
-    And I should not see pagination
-
   Scenario: Viewing index when one page of resources exist
     Given 20 posts exist
     When I am on the index page for posts

@@ -1,6 +1,8 @@
 es:
   active_admin:
-    dashboard_welcome: "Bienvenido a Active Admin. Esta es la página de panel predeterminada. Para agregar secciones edita 'app/admin/dashboards.rb'"
+    dashboard_welcome:
+      welcome: "Bienvenido a Active Admin. Esta es la página de panel predeterminada."
+      call_to_action: "Para agregar secciones edita 'app/admin/dashboards.rb'"
     view: "Ver"
     edit: "Editar"
     delete: "Eliminar"
