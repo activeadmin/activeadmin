@@ -77,9 +77,10 @@ form {
   input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
     width: 76%;
     border: 1px solid #c9d0d6;
+    @include rounded;
     font-size: 0.95em;
     outline: none;
-    padding: 8px 10px;
+    padding: 8px 10px 7px;
     
     &:focus {
       border: 1px solid #99a2aa;
@@ -163,6 +164,22 @@ form {
     padding-right:0.5em;
     padding-top: 0;
     &.cancel { margin-left: 0.3em; padding: 5px; a { @include light-button; @include icon(#777, 9px);} }
+  }
+
+}
+
+/* Sidebar forms */
+
+#sidebar { 
+  .filter_form_field {
+    
+    &.filter_select select {
+      width: 239px;
+    }
+    
+    &.filter_string {
+      width: 286px;
+    }
   }
 
 }
