@@ -6,11 +6,13 @@
 
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../../../Gemfile', __FILE__)
 
+require File.expand_path('../../../spec/support/detect_rails_version', __FILE__)
+ENV["RAILS"] ||= detect_rails_version
+
 require 'rubygems'
 require "bundler"
 Bundler.setup
 
-ENV["RAILS"] ||= "3.0.0"
 ENV["RAILS_ENV"] ||= "cucumber"
 ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{ENV["RAILS"]}", __FILE__)
 
