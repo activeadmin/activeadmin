@@ -58,6 +58,7 @@ module ActiveAdmin
       @menu_options = {}
       @member_actions, @collection_actions = [], []
       @scopes = []
+      @belongs_to = []
     end
 
     # An underscored safe representation internally for this resource
@@ -86,7 +87,11 @@ module ActiveAdmin
 
     # Returns the plural version of this resource
     def plural_resource_name
-      @plural_resource_name ||= resource_name.pluralize
+      @plural_resource_name ||= if @options[:as] || !resource.respond_to?(:model_name)
+        resource_name.pluralize
+      else
+        resource.model_name.human(:count => 2).titleize
+      end
     end
 
     def resource_table_name
@@ -150,7 +155,7 @@ module ActiveAdmin
     # Should this resource be added to the menu system?
     def include_in_menu?
       return false if @menu_options[:display] == false
-      !(belongs_to? && !belongs_to_config.optional?)
+      !(belongs_to? && belongs_to_config.reject(&:optional?).any?)
     end
 
 
@@ -195,7 +200,7 @@ module ActiveAdmin
     end
 
     def belongs_to(target, options = {})
-      @belongs_to = Resource::BelongsTo.new(self, target, options)
+      @belongs_to << Resource::BelongsTo.new(self, target, options)
       controller.belongs_to(target, options.dup)
     end
 
@@ -205,7 +210,7 @@ module ActiveAdmin
 
     # Do we belong to another resource
     def belongs_to?
-      !belongs_to_config.nil?
+      belongs_to_config.any?
     end
 
     # The csv builder for this resource
