@@ -1,3 +1,7 @@
+require 'active_admin/resource/naming'
+require 'active_admin/resource/menu'
+require 'active_admin/resource/scopes'
+
 module ActiveAdmin
 
   # Resource is the primary data storage for resource configuration in Active Admin
@@ -31,9 +35,6 @@ module ActiveAdmin
     # An array of collection actions defined for this resource
     attr_reader :collection_actions
 
-    # The titleized name to use for this resource
-    attr_accessor :resource_name
-
     # The default sort order to use in the controller
     attr_accessor :sort_order
 
@@ -55,39 +56,12 @@ module ActiveAdmin
       @options = default_options.merge(options)
       @sort_order = @options[:sort_order]
       @page_configs = {}
-      @menu_options = {}
       @member_actions, @collection_actions = [], []
-      @scopes = []
     end
 
-    # An underscored safe representation internally for this resource
-    def underscored_resource_name
-      @underscored_resource_name ||= if @options[:as]
-        @options[:as].gsub(' ', '').underscore.singularize
-      else
-        resource.name.gsub('::','').underscore
-      end
-    end
-
-    # A camelized safe representation for this resource
-    def camelized_resource_name
-      underscored_resource_name.camelize
-    end
-
-    # Returns the name to call this resource.
-    # By default will use resource.model_name.human
-    def resource_name
-      @resource_name ||= if @options[:as] || !resource.respond_to?(:model_name)
-        underscored_resource_name.titleize
-      else
-        resource.model_name.human.titleize
-      end
-    end
-
-    # Returns the plural version of this resource
-    def plural_resource_name
-      @plural_resource_name ||= resource_name.pluralize
-    end
+    include Naming
+    include Menu
+    include Scopes
 
     def resource_table_name
       resource.quoted_table_name
@@ -120,40 +94,6 @@ module ActiveAdmin
       [route_prefix, controller.resources_configuration[:self][:route_instance_name], 'path'].compact.join('_').to_sym
     end
 
-    # Set the menu options. To not add this resource to the menu, just
-    # call #menu(false)
-    def menu(options = {})
-      options = options == false ? { :display => false } : options
-      @menu_options = options
-    end
-
-    # Returns the name to put this resource under in the menu
-    def parent_menu_item_name
-      @menu_options[:parent]
-    end
-
-    # Returns the name to be displayed in the menu for this resource
-    def menu_item_name
-      @menu_options[:label] || plural_resource_name
-    end
-    
-    # Returns the items priority for altering the default sort order
-    def menu_item_priority
-      @menu_options[:priority] || 10
-    end
-    
-    # Returns a proc for deciding whether to display the menu item or not in the view
-    def menu_item_display_if
-      @menu_options[:if] || proc { true }
-    end
-
-    # Should this resource be added to the menu system?
-    def include_in_menu?
-      return false if @menu_options[:display] == false
-      !(belongs_to? && !belongs_to_config.optional?)
-    end
-
-
     # Clears all the member actions this resource knows about
     def clear_member_actions!
       @member_actions = []
@@ -161,32 +101,6 @@ module ActiveAdmin
 
     def clear_collection_actions!
       @collection_actions = []
-    end
-
-    # Return an array of scopes for this resource
-    def scopes
-      @scopes
-    end
-
-    # Returns a scope for this object by its identifier
-    def get_scope_by_id(id)
-      id = id.to_s
-      @scopes.find{|s| s.id == id }
-    end
-
-    def default_scope
-      @default_scope
-    end
-
-    # Create a new scope object for this resource.
-    # If you want to internationalize the scope name, you can add
-    # to your i18n files a key like "active_admin.scopes.scope_method".
-    def scope(*args, &block)
-      options = args.extract_options!
-      @scopes << ActiveAdmin::Scope.new(*args, &block)
-      if options[:default]
-        @default_scope = @scopes.last
-      end
     end
 
     # Are admin notes turned on for this resource

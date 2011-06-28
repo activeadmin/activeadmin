@@ -28,6 +28,7 @@ describe ActiveAdmin::FormBuilder do
   end
 
   def build_form(options = {}, &block)
+    options.merge!({:url => posts_path})
     active_admin_form_for Post.new, options, &block
   end
 

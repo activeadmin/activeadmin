@@ -18,7 +18,7 @@ Feature: Edit Page
     Then the "Title" field should contain "Hello World"
     And the "Body" field should contain ""
     And the "Category" field should contain ""
-    And the "Author" field should contain "John Doe"
+    And the "Author" field should contain the option "John Doe"
     When I fill in "Title" with "Hello World from update"
     When I press "Update Post"
     Then I should see "Post was successfully updated."

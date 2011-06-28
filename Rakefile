@@ -9,13 +9,24 @@ def cmd(command)
   system command
 end
 
-desc "Install all supported versions of rails"
-task :install_all_rails do
-  (0..7).to_a.each do |v|
-    system "rm Gemfile.lock"
-    puts "Installing for RAILS=3.0.#{v}"
-    cmd "RAILS=3.0.#{v} bundle install"
+require File.expand_path('../spec/support/detect_rails_version', __FILE__)
+
+namespace :test do
+
+  desc "Run against the important versions of rails"
+  task :major_rails_versions do
+    current_version = detect_rails_version
+    ["3.0.7", "3.1.0.rc4"].each do |version|
+      puts
+      puts
+      puts "== Using Rails #{version}"
+      cmd "./script/use_rails #{version}"
+      cmd "bundle exec rspec spec"
+      cmd "bundle exec cucumber features"
+    end
+    cmd "./script/use_rails #{current_version}"
   end
+
 end
 
 desc "Creates a test rails app for the specs to run against"
@@ -23,25 +34,6 @@ task :setup do
   require 'rails/version'
   system("mkdir spec/rails") unless File.exists?("spec/rails")
   system "bundle exec rails new spec/rails/rails-#{Rails::VERSION::STRING} -m spec/support/rails_template.rb"
-end
-
-namespace :local do
-  desc "Creates a local rails app to play with in development"
-  task :setup do
-    unless File.exists? "test-rails-app"
-      system "bundle exec rails new test-rails-app -m spec/support/rails_template_with_data.rb"
-    end
-  end
-
-  desc "Start a local rails app to play"
-  task :server => :setup do
-    exec "cd test-rails-app && GEMFILE=../Gemfile bundle exec rails s"
-  end
-
-  desc "Load the local rails console"
-  task :console => :setup do
-    exec "cd test-rails-app && GEMFILE=../Gemfile bundle exec rails c"
-  end
 end
 
 require "rspec/core/rake_task"

@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require File.expand_path('../../spec/support/detect_rails_version', __FILE__)
+
+unless ARGV[0]
+  puts <<-EOF
+Usage: ./script/#{__FILE__} COMMAND [ARGS]
+
+The command will be run in the context of the local rails
+app stored in test-rails-app.
+
+Examples:
+
+./script/local server
+./script/local c
+./script/local rake db:migrate
+  EOF
+  exit(1)
+end
+
+# Set up some variables
+rails_version = detect_rails_version || '3.0.0'
+
+test_app_dir = ".test-rails-apps"
+test_app_path = "#{test_app_dir}/test-rails-app-#{rails_version}"
+
+# Ensure .test-rails-apps is created
+system "mkdir #{test_app_dir}" unless File.exists?(test_app_dir)
+
+# Create the sample rails app if it doesn't already exist
+unless File.exists? test_app_path
+  system "RAILS='#{rails_version}' bundle exec rails new #{test_app_path} -m spec/support/rails_template_with_data.rb"
+end
+
+# Link this rails app
+system "rm test-rails-app"
+system "ln -s #{test_app_path} test-rails-app"
+
+# If it's a rails command, auto add the rails script
+RAILS_COMMANDS = %w{generate console server dbconsole g c s runner}
+args = RAILS_COMMANDS.include?(ARGV[0]) ? ["rails", ARGV].flatten : ARGV
+
+# Run the command
+exec "cd test-rails-app && GEMFILE=../Gemfile bundle exec #{args.join(" ")}"

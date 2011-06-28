@@ -14,7 +14,7 @@ Feature: Index as Grid
       """
     Then the table ".index_grid" should have 3 rows
     And the table ".index_grid" should have 3 columns
-    And there should be 9 "a" tags within "table.index_grid"
+    And there should be 9 "a" tags within index grid
 
   Scenario: Viewing index as a grid and set the number of columns
     Given 9 posts exist
