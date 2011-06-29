@@ -11,7 +11,8 @@ module ActiveAdmin
           config = self.form_config.dup
           config.delete(:block)
           config.reverse_merge!({
-            :url => resource_path(resource)
+            :url => resource_path(resource),
+            :as => active_admin_config.underscored_resource_name
           })
 
           if form_config[:partial]

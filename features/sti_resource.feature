@@ -47,3 +47,15 @@ Feature: STI Resource
 
     When I follow "Delete User"
     Then I should see "User was successfully destroyed"
+
+  Scenario: Update and delete a child STI when the parent is registered
+    Given a publisher named "Terry Fox" exists
+    And I am on the index page for users
+    When I follow "Edit"
+    And I fill in "First name" with "Joe"
+    And I press "Update Publisher"
+    Then I should see "Publisher was successfully updated"
+    And I should see "Joe"
+
+    When I follow "Delete User"
+    Then I should see "Publisher was successfully destroyed"
