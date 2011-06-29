@@ -1,6 +1,5 @@
 module ActiveAdmin
   class Router
-
     def initialize(application)
       @application = application
     end
@@ -20,69 +19,59 @@ module ActiveAdmin
           if namespace.root?
             match '/' => 'dashboard#index', :as => 'dashboard'
           else
-            name = namespace.name
-            match name.to_s => "#{name}/dashboard#index", :as => "#{name.to_s}_dashboard"
+            name = namespace.name.to_s
+            match name => "#{name}/dashboard#index", :as => "#{name}_dashboard"
           end
         end
       end
 
-      # Now define the routes for each resource
       router.instance_exec(@application.namespaces) do |namespaces|
-        resources = namespaces.values.collect{|n| n.resources.values }.flatten
-        resources.each do |config|
-
-          # Define the block the will get eval'd within the namespace
-          route_definition_block = Proc.new do
-            resources config.underscored_resource_name.pluralize do
-
-              # Define any member actions
-              member do
-                config.member_actions.each do |action|
-                  # eg: get :comment
-                  send(action.http_verb, action.name)
-                end
-              end
-
-              # Define any collection actions
-              collection do
-                config.collection_actions.each do |action|
-                  send(action.http_verb, action.name)
+        namespaces.each do |namespace_name, namespace|
+          active_admin_namespace(namespace) do
+            namespace.resources.each do |resource_name, resource|
+              children_resources = namespace.resources.values.select { |children| children.belongs_to_config.map(&:target).include?(resource) }
+              active_admin_resources(resource) do
+                children_resources.each do |children|
+                  active_admin_resources(children)
                 end
               end
             end
           end
-
-          # Add in the parent if it exists
-          if config.belongs_to?
-            routes_for_belongs_to = route_definition_block.dup
-
-            config.belongs_to_config.each do |belongs_to_config|
-              route_definition_block = Proc.new do
-                # If its optional, make the normal resource routes
-                instance_eval &routes_for_belongs_to if belongs_to_config.optional?
-
-                # Make the nested belongs_to routes
-                resources belongs_to_config.target.underscored_resource_name.pluralize do
-                  instance_eval &routes_for_belongs_to
-                end
-              end
-            end
-          end
-
-          # Add on the namespace if required
-          if !config.namespace.root?
-            routes_in_namespace = route_definition_block.dup
-            route_definition_block = Proc.new do
-              namespace config.namespace.name do
-                instance_eval(&routes_in_namespace)
-              end
-            end
-          end
-
-          instance_eval &route_definition_block
         end
       end
     end
 
+    module ::ActionDispatch::Routing
+      class Mapper
+        def active_admin_namespace(namespace, &block)
+          namespace.root? ? yield : namespace(namespace.name, &block)
+        end
+
+        def active_admin_resources(resource, &block)
+          resources(resource.underscored_resource_name.pluralize) do
+            active_admin_member_actions(resource)
+            active_admin_collection_actions(resource)
+            yield if block_given?
+          end
+        end
+
+        def active_admin_member_actions(resource)
+          member do
+            resource.member_actions.each do |action|
+              # eg: get :comment
+              send(action.http_verb, action.name)
+            end
+          end
+        end
+
+        def active_admin_collection_actions(resource)
+          collection do
+            resource.collection_actions.each do |action|
+              send(action.http_verb, action.name)
+            end
+          end
+        end
+      end
+    end
   end
 end

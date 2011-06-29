@@ -85,4 +85,33 @@ describe ActiveAdmin, "Routing" do
     end
   end
 
+  describe "multiple belongs_to" do
+    before(:each) do
+      load_resources {
+        ActiveAdmin.register(Category)
+        ActiveAdmin.register(User)
+        ActiveAdmin.register(Post) { belongs_to :user; belongs_to :category }
+      }
+    end
+
+    it "should route the nested index path" do
+      admin_category_posts_path(1).should == "/admin/categories/1/posts"
+      admin_user_posts_path(1).should == "/admin/users/1/posts"
+    end
+
+    it "should route the nested show path" do
+      admin_category_post_path(1, 2).should == "/admin/categories/1/posts/2"
+      admin_user_post_path(1, 2).should == "/admin/users/1/posts/2"
+    end
+
+    it "should route the nested new path" do
+      new_admin_category_post_path(1).should == "/admin/categories/1/posts/new"
+      new_admin_user_post_path(1).should == "/admin/users/1/posts/new"
+    end
+
+    it "should route the nested edit path" do
+      edit_admin_category_post_path(1, 2).should == "/admin/categories/1/posts/2/edit"
+      edit_admin_user_post_path(1, 2).should == "/admin/users/1/posts/2/edit"
+    end
+  end
 end
