@@ -16,7 +16,8 @@ module ActiveAdmin
               :index_page         => ActiveAdmin::Views::Pages::Index,
               :show_page          => ActiveAdmin::Views::Pages::Show,
               :new_page           => ActiveAdmin::Views::Pages::New,
-              :edit_page          => ActiveAdmin::Views::Pages::Edit
+              :edit_page          => ActiveAdmin::Views::Pages::Edit,
+              :layout             => ActiveAdmin::Views::Pages::Layout
 
   end
 end

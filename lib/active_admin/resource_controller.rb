@@ -15,13 +15,15 @@ module ActiveAdmin
 
     helper ::ActiveAdmin::ViewHelpers
 
-    layout false
+    layout :determine_active_admin_layout
 
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
 
     before_filter :only_render_implemented_actions
     before_filter :authenticate_active_admin_user
+
+    ACTIVE_ADMIN_ACTIONS = [:index, :show, :new, :create, :edit, :update, :destroy]
 
     include Actions
     include ActiveAdmin::ActionItems
@@ -84,6 +86,17 @@ module ActiveAdmin
     # to check if they are implemented.
     def only_render_implemented_actions
       raise AbstractController::ActionNotFound unless action_methods.include?(params[:action])
+    end
+
+    # Determine which layout to use.
+    #
+    #   1.  If we're rendering a standard Active Admin action, we want layout(false)
+    #       because these actions are subclasses of the Base page (which implementes
+    #       all the required layout code)
+    #   2.  If we're rendering a custom action, we'll use the active_admin layout so
+    #       that users can render any template inside Active Admin.
+    def determine_active_admin_layout
+      ACTIVE_ADMIN_ACTIONS.include?(params[:action].to_sym) ? false : 'active_admin'
     end
 
     # Calls the authentication method as defined in ActiveAdmin.authentication_method
