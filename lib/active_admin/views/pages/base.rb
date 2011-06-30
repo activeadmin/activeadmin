@@ -74,8 +74,10 @@ module ActiveAdmin
         end
 
         def build_action_items
-          items = controller.class.action_items_for(params[:action])
-          insert_tag view_factory.action_items, items
+          if active_admin_config
+            items = active_admin_config.action_items_for(params[:action])
+            insert_tag view_factory.action_items, items
+          end
         end
 
         def build_page_content

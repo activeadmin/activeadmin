@@ -26,7 +26,6 @@ module ActiveAdmin
     ACTIVE_ADMIN_ACTIONS = [:index, :show, :new, :create, :edit, :update, :destroy]
 
     include Actions
-    include ActiveAdmin::ActionItems
     include ActionBuilder
     include Callbacks
     include Collection
@@ -58,26 +57,6 @@ module ActiveAdmin
       active_admin_filters_form_for assigns["search"], filters_config
     end
 
-    # Default Action Item Links
-    action_item :only => :show do
-      if controller.action_methods.include?('edit')
-        link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path(resource))
-      end
-    end
-
-    action_item :only => :show do
-      if controller.action_methods.include?("destroy")
-        link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name),
-          resource_path(resource),
-          :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'))
-      end
-    end
-
-    action_item :except => [:new, :show] do
-      if controller.action_methods.include?('new')
-        link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), new_resource_path)
-      end
-    end
 
     protected
 

@@ -9,7 +9,6 @@ require 'rails/version'
 module ActiveAdmin
 
   autoload :VERSION,                  'active_admin/version'
-  autoload :ActionItems,              'active_admin/action_items'
   autoload :Application,              'active_admin/application'
   autoload :AssetRegistration,        'active_admin/asset_registration'
   autoload :Breadcrumbs,              'active_admin/breadcrumbs'
