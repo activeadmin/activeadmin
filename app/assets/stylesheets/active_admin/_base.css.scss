@@ -334,7 +334,7 @@ body.logged_out {
     background: none;
     
     &.flash_alert {
-      color: #93342c;
+      color: $error-color;
     }
   
   }
