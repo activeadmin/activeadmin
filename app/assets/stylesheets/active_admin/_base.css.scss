@@ -332,6 +332,11 @@ body.logged_out {
     padding: 0; 
     color: #666;
     background: none;
+    
+    &.flash_alert {
+      color: #93342c;
+    }
+  
   }
 
   #login {
