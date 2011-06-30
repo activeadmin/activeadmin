@@ -1,13 +1,32 @@
-.flash {
-  @include primary-gradient;
-  @include shadow;
-  @include text-shadow(#222);
-  border: none;
-  font-weight: bold;
-  padding: 10px 10px 8px 10px;
-  margin-bottom: 10px;
-  color: #fff;
+body.logged_in {
+  .flash {
+    @include primary-gradient;
+    @include shadow;
+    @include text-shadow(#222);
+    background-color: #a24a42;
+    border-bottom: 
+    color: #fff;
+    font-weight: bold;
+    line-height: 1.0em;
+    margin-bottom: 10px;
+    padding: 12px 30px;
 
-  &.flash_notice { @include gradient(#87a28b, #657b6a); }
-  &.flash_error { @include gradient(#ca5b4f, #97443c); }
+    &.flash_notice { @include gradient(#689571, #557d5c); }
+    &.flash_error { @include gradient(#ad544b, #9b443d); }
+  }
+}
+
+body.logged_out {
+  .flash { 
+    @include no-shadow;
+    @include text-shadow(#fff);
+    padding: 0; 
+    color: #666;
+    background: none;
+    
+    &.flash_alert {
+      color: $error-color;
+    }
+  
+  }
 }
