@@ -140,11 +140,12 @@ form {
     /* Errors */
     p.inline-errors { 
       text-transform:capitalize;
-      color:#cc0000; 
-      margin:0.5em 0 0 20%; 
+      color: $error-color;
+      font-weight: bold;
+      margin:0.3em 0 0 20%; 
     }
     ul.errors { 
-      color:#cc0000; 
+      color: $error-color;
       margin:0.5em 0 0 20%; 
       list-style:square; 
       li { padding:0; border:none; display:list-item; }
@@ -152,7 +153,7 @@ form {
 
     &.error {
       input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
-        border: 1px solid #cc0000;
+        border: 1px solid $error-color;
       }
     }
   }
