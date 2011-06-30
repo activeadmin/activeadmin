@@ -16,6 +16,7 @@ module ActiveAdmin
         def add_classes_to_body
           @body.add_class(params[:action])
           @body.add_class(params[:controller].gsub('/', '_'))
+          @body.add_class("logged_in")
         end
 
         def build_active_admin_head
@@ -78,8 +79,8 @@ module ActiveAdmin
         end
 
         def build_page_content
+          build_flash_messages
           div :id => "active_admin_content", :class => (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
-            build_flash_messages
             build_main_content_wrapper
             build_sidebar
           end

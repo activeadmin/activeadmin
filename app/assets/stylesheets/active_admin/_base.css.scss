@@ -326,14 +326,6 @@ body.logged_out {
     margin: -13px -30px 20px -30px;
   }
 
-  .flash { 
-    @include no-shadow;
-    @include text-shadow(#fff);
-    padding: 0; 
-    color: #666;
-    background: none;
-  }
-
   #login {
     /* Login Form */
     form {
