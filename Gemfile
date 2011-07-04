@@ -33,4 +33,5 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda',        '2.11.2',           :require => nil
   gem 'launchy'
+  gem 'jslint_on_rails',    '~> 1.0.6'
 end
