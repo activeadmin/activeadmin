@@ -34,3 +34,6 @@ es:
       one_page: "Mostrando <b>todos los %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
     any: "Todos"
+    blank_slate:
+      content: "No hay ningún %{resource_name} aun."
+      link: "Crea uno"
