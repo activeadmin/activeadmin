@@ -455,6 +455,10 @@ body.logged_out {
           &.ui-state-active {
             background-color: #5a5f64;
             color: #fff;
+            &.ui-state-hover {
+              background-color: #5a5f64;
+              color: #fff;
+            }
           }
           &.ui-state-hover {
             background-color: #eceef0;
