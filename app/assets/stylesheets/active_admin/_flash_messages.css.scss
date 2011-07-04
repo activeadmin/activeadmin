@@ -4,28 +4,28 @@ body.logged_in {
     @include shadow;
     @include text-shadow(#222);
     background-color: #a24a42;
+    border: none;
+    border-bottom: 1px solid #44484B;
     color: #fff;
     font-weight: bold;
     line-height: 1.0em;
     margin-bottom: 10px;
     padding: 12px 30px;
 
-    &.flash_notice { @include gradient(#689571, #557d5c); }
-    &.flash_error { @include gradient(#ad544b, #9b443d); }
+    &.flash_notice { @include gradient(#7d9582, #667d6a); }
+    &.flash_error { @include gradient(#a8716d, #955c59); }
   }
 }
 
 body.logged_out {
-  .flash { 
+  .flash {
     @include no-shadow;
     @include text-shadow(#fff);
-    padding: 0; 
-    color: #666;
     background: none;
-    
-    &.flash_alert {
-      color: $error-color;
-    }
-  
+    color: #666;
+    font-weight: bold;
+    line-height: 1.0em;
+    margin-bottom: 10px;
+    padding: 0;
   }
 }
