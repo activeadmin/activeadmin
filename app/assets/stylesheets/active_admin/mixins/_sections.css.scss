@@ -21,7 +21,14 @@
 
 @mixin section {
   @include section-background;
-  h3 { @include section-header; }
   margin-bottom: 20px;
+  
+  h3 { @include section-header; }
+  
   > div { padding: 3px $section-padding $section-padding $section-padding; }
+  
+  hr {
+    border: none;
+    border-bottom: 1px solid #E8E8E8;
+  }
 }
