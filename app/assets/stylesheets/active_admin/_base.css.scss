@@ -71,8 +71,8 @@ body {
 
   #sidebar { 
     float: left; 
-    width: 270px; 
-    margin-left: -270px;
+    width: $sidebar-width; 
+    margin-left: -$sidebar-width;
   }
 }
 
@@ -263,45 +263,6 @@ table.index_table {
 
 // -------------------------------------- Index as Grid 
 table.index_grid td { border: none; background: none; padding: 0 20px 20px 0; margin: 0;}
-
-
-// -------------------------------------- Filter Forms 
-form {
-  .buttons { 
-    margin-top: 15px; 
-    input[type=submit] { margin-right: 10px; }
-  }
-  .filter_form_field {
-    margin-bottom: 10px; 
-    clear: both;
-
-
-    label {
-      display: block;
-      text-transform: uppercase;
-      color: $section-header-text-color;
-      font-size: 0.9em;
-      font-weight: bold;
-    }
-    .datepicker { 
-      background: #fff url(active_admin_image_path('datepicker/datepicker-input-icon.png')) no-repeat 100% 7px;
-      padding-right: 27px;
-      width: 75px;
-    }
-    &.filter_numeric { input[type=text] { width: 80px; margin-left: 5px; } }
-    &.filter_check_boxes {
-      label { margin-bottom: 3px; }
-      .check_boxes_wrapper label { 
-        font-weight: normal; 
-        margin-bottom: 3px;
-        text-transform: none;
-        font-size: 1.0em;
-        input { vertical-align: baseline; }
-      }
-    }
-  }
-  a.clear_filters_btn { @include light-button; }
-}
 
 
 // -------------------------------------- Logged Out 

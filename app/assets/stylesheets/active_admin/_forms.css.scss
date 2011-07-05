@@ -80,7 +80,7 @@ form {
     @include rounded;
     font-size: 0.95em;
     outline: none;
-    padding: 8px 10px 7px;
+    padding: 8px $text-input-horizontal-padding 7px;
     
     &:focus {
       border: 1px solid #99a2aa;
@@ -159,7 +159,14 @@ form {
   }
 
   /* Buttons */
+  
   input[type=submit] { @include dark-button; }
+  
+  .buttons { 
+    margin-top: 15px; 
+    input[type=submit] { margin-right: 10px; }
+  }
+  
   fieldset.buttons li { 
     float:left; 
     padding-right:0.5em;
@@ -169,18 +176,68 @@ form {
 
 }
 
-/* Sidebar forms */
+// -------------------------------------- Sidebar Forms 
 
-#sidebar { 
-  .filter_form_field {
-    
-    &.filter_select select {
-      width: 239px;
-    }
-    
-    &.filter_string {
-      width: 286px;
-    }
+$sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
+
+.sidebar_section { 
+
+  label {
+    display: block;
+    text-transform: uppercase;
+    color: $section-header-text-color;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+
+  select {
+    width: $sidebar-inner-content-width;
+  }
+  
+  input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
+    width: $sidebar-inner-content-width - ($text-input-horizontal-padding * 2);
   }
 
 }
+
+// -------------------------------------- Filter Forms
+
+$date-range-filter-seperator-width: 12px;
+$date-range-filter-input-right-padding: 27px;
+$date-range-filter-input-horizontal-padding: $date-range-filter-input-right-padding + $text-input-horizontal-padding;
+
+form.filter_form {
+  .filter_form_field {
+    margin-bottom: 10px; 
+    clear: both;
+    
+    &.filter_numeric { input[type=text] { width: 80px; margin-left: 5px; } }
+    
+    &.filter_check_boxes {
+      label { margin-bottom: 3px; }
+      .check_boxes_wrapper label { 
+        font-weight: normal; 
+        margin-bottom: 3px;
+        text-transform: none;
+        font-size: 1.0em;
+        input { vertical-align: baseline; }
+      }
+    }
+
+    &.filter_date_range {
+      .seperator {
+        display: inline-block;
+        text-align: center;
+        width: $date-range-filter-seperator-width;
+      }
+    
+      input[type=text] {
+        background: #fff url('/images/active_admin/datepicker/datepicker-input-icon.png') no-repeat 100% 7px;
+        padding-right: $date-range-filter-input-right-padding;
+        width: ($sidebar-inner-content-width / 2) - $date-range-filter-seperator-width - $date-range-filter-input-horizontal-padding;
+      }
+    }
+  }
+  a.clear_filters_btn { @include light-button; }
+}
+
