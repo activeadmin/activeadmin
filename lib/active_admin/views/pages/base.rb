@@ -84,7 +84,7 @@ module ActiveAdmin
           build_flash_messages
           div :id => "active_admin_content", :class => (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
             build_main_content_wrapper
-            build_sidebar
+            build_sidebar unless skip_sidebar?
           end
         end
 
@@ -122,7 +122,11 @@ module ActiveAdmin
 
         # Returns the sidebar sections to render for the current action
         def sidebar_sections_for_action
-          controller.class.sidebar_sections_for(params[:action])
+          if active_admin_config
+            active_admin_config.sidebar_sections_for(params[:action])
+          else
+            []
+          end
         end
 
         # Renders the sidebar
@@ -132,6 +136,10 @@ module ActiveAdmin
               sidebar_section(section)
             end
           end
+        end
+
+        def skip_sidebar?
+          sidebar_sections_for_action.empty? || assigns[:skip_sidebar] == true
         end
 
         # Renders the content for the footer

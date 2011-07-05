@@ -8,7 +8,6 @@ require 'active_admin/resource_controller/form'
 require 'active_admin/resource_controller/menu'
 require 'active_admin/resource_controller/page_configurations'
 require 'active_admin/resource_controller/scoping'
-require 'active_admin/resource_controller/sidebars'
 
 module ActiveAdmin
   class ResourceController < ::InheritedResources::Base
@@ -34,7 +33,6 @@ module ActiveAdmin
     include Menu
     include PageConfigurations
     include Scoping
-    include Sidebars
 
     class << self
 
@@ -51,12 +49,6 @@ module ActiveAdmin
 
       public :belongs_to
     end
-
-    # Default Sidebar Sections
-    sidebar :filters, :only => :index do
-      active_admin_filters_form_for assigns["search"], filters_config
-    end
-
 
     protected
 

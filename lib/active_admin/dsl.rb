@@ -122,6 +122,10 @@ module ActiveAdmin
       controller.form_config = options
     end
 
+    def sidebar(name, options = {}, &block)
+      config.sidebar_sections << ActiveAdmin::SidebarSection.new(name, options, &block)
+    end
+
     # Configure the CSV format
     #
     # For example:
@@ -201,8 +205,6 @@ module ActiveAdmin
     # Filters
     delegate :filter, :to => :controller
 
-    # Sidebar
-    delegate :sidebar, :to => :controller
 
     # Standard rails filters
     delegate :before_filter, :after_filter, :around_filter, :to => :controller

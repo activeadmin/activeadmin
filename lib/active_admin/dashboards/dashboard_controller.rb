@@ -2,8 +2,6 @@ module ActiveAdmin
   module Dashboards
     class DashboardController < ResourceController
 
-      before_filter :skip_sidebar!
-
       actions :index
 
       def index

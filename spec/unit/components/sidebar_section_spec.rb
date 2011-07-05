@@ -5,7 +5,7 @@ describe ActiveAdmin::Views::SidebarSection do
   let(:assigns){ {} }
 
   let(:section) do
-    ActiveAdmin::Sidebar::Section.new(:help) do
+    ActiveAdmin::SidebarSection.new(:help) do
       span "Help Me"
     end
   end

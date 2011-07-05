@@ -1,7 +1,8 @@
-require 'active_admin/resource/naming'
-require 'active_admin/resource/menu'
-require 'active_admin/resource/scopes'
 require 'active_admin/resource/action_items'
+require 'active_admin/resource/menu'
+require 'active_admin/resource/naming'
+require 'active_admin/resource/scopes'
+require 'active_admin/resource/sidebars'
 
 module ActiveAdmin
 
@@ -61,10 +62,12 @@ module ActiveAdmin
       super
     end
 
-    include Naming
-    include Menu
-    include Scopes
     include ActionItems
+    include Menu
+    include Naming
+    include Scopes
+    include Sidebars
+
 
     def resource_table_name
       resource.quoted_table_name
