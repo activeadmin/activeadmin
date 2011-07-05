@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'jslint'
 
-%x[java]
+%x[which java]
 if $? == 0 # Only run the JS Lint test if Java is installed
   describe "Javascript" do
     before do
