@@ -52,16 +52,18 @@ module ActiveAdmin
     # Set the configuration for the CSV
     attr_writer :csv_builder
 
-    def initialize(namespace, resource, options = {})
-      @namespace = namespace
-      @resource = resource
-      @options = default_options.merge(options)
-      @sort_order = @options[:sort_order]
-      @page_configs = {}
-      @member_actions, @collection_actions = [], []
-      super
+    module Base
+      def initialize(namespace, resource, options = {})
+        @namespace = namespace
+        @resource = resource
+        @options = default_options.merge(options)
+        @sort_order = @options[:sort_order]
+        @page_configs = {}
+        @member_actions, @collection_actions = [], []
+      end
     end
 
+    include Base
     include ActionItems
     include Menu
     include Naming
