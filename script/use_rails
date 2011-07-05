@@ -12,7 +12,10 @@ end
 version = ARGV[0]
 
 unless version
-  puts "usage: ./script/#{__FILE__} VERSION"
+  puts "USAGE: ./script/#{__FILE__} VERSION [OPTIONS]"
+  puts
+  puts "Options:"
+  puts "  --clobber   Add this flag to remove the existing Gemfile.lock before running"
   exit(1)
 end
 
@@ -26,7 +29,13 @@ gem_lock_file = "#{gem_lock_dir}/Gemfile-#{version}.lock"
 # Ensure our lock dir is created
 cmd "mkdir #{gem_lock_dir}" unless File.exists?(gem_lock_dir)
 
+# --clobber passed in
+if File.exists?(gem_lock_file) && ARGV.include?('--clobber')
+  cmd "rm #{gem_lock_file}"
+end
+
 unless File.exists?(gem_lock_file)
+  # Generate it
   cmd "rm Gemfile.lock" if file_or_symlink?("Gemfile.lock")
   cmd "export RAILS=#{version} && bundle install"
   cmd "mv Gemfile.lock #{gem_lock_file}"
