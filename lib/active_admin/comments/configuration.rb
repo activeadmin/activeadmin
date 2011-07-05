@@ -9,7 +9,11 @@ module ActiveAdmin
         #
         #   config.allow_comments_in = [:admin, :root]
         #
-        attr_accessor_with_default :allow_comments_in, [:admin]
+        attr_accessor :allow_comments_in
+
+        def allow_comments_in
+          @allow_comments_in || [:admin]
+        end
       end
 
     end
