@@ -58,7 +58,6 @@ module ActiveAdmin
     include AssetRegistration
 
     def initialize
-      initialize_defaults!
       register_default_assets
     end
 

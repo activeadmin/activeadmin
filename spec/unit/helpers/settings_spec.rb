@@ -7,9 +7,6 @@ describe ActiveAdmin::Settings do
   let(:klass) do
     Class.new do
       include ActiveAdmin::Settings
-      def initialize
-        initialize_defaults!
-      end
     end
   end
 
@@ -21,6 +18,13 @@ describe ActiveAdmin::Settings do
   it "should initialize the defaults" do
     klass.setting :my_setting, "Hello World"
     klass.new.my_setting.should == "Hello World"
+  end
+
+  it "should support settings of nil" do
+    klass.setting :my_setting, :some_val
+    inst = klass.new
+    inst.my_setting = nil
+    inst.my_setting.should == nil
   end
 
 end
