@@ -232,7 +232,7 @@ form.filter_form {
       }
     
       input[type=text] {
-        background: #fff url('/images/active_admin/datepicker/datepicker-input-icon.png') no-repeat 100% 7px;
+        background: #fff url(active_admin_image_path('datepicker/datepicker-input-icon.png')) no-repeat 100% 7px;
         padding-right: $date-range-filter-input-right-padding;
         width: ($sidebar-inner-content-width / 2) - $date-range-filter-seperator-width - $date-range-filter-input-horizontal-padding;
       }
