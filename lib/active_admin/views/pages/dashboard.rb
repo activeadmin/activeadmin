@@ -17,7 +17,7 @@ module ActiveAdmin
         def build_sidebar; end
 
         def title
-          "Dashboard"
+          I18n.t("dashboard")
         end
 
         def render_sections(sections)
