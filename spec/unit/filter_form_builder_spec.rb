@@ -29,7 +29,7 @@ describe ActiveAdmin::ViewHelpers::FilterFormHelper do
     let(:body) { filter :title }
 
     it "should generate a form which submits via get" do
-      body.should have_tag("form", :attributes => { :method => 'get' })
+      body.should have_tag("form", :attributes => { :method => 'get', :class => 'filter_form' })
     end
 
     it "should generate a filter button" do
@@ -75,6 +75,9 @@ describe ActiveAdmin::ViewHelpers::FilterFormHelper do
 
     it "should generate a date greater than" do
       body.should have_tag("input", :attributes => { :name => "q[created_at_gte]", :class => "datepicker"})
+    end
+    it "should generate a seperator" do
+      body.should have_tag("span", :attributes => { :class => "seperator"})
     end
     it "should generate a date less than" do
       body.should have_tag("input", :attributes => { :name => "q[created_at_lte]", :class => "datepicker"})

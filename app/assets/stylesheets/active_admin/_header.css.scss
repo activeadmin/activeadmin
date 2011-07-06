@@ -3,14 +3,15 @@
   @include primary-gradient;
   @include shadow;
   @include text-shadow(#000);
+  overflow: visible;
   padding: 9px $horizontal-page-margin;
-  position: relative;
   z-index: 900;
 
   h1 { 
-    display: inline; 
+    display: inline-block; 
     color: #cdcdcd;
     margin-right: 20px; 
+    margin-bottom: 0px;
     font-size: 1.3em; 
     font-weight: normal; 
   }
@@ -20,7 +21,7 @@
   ul#tabs {
     margin: 0; 
     padding: 0; 
-    display: inline; 
+    display: inline-block; 
     height: 100%;
 
     & > li { 
@@ -44,6 +45,7 @@
       &.has_nested > a { 
         background: url(active_admin_image_path('nested_menu_arrow.gif')) no-repeat 89% 50%; 
         padding-right: 20px; 
+        z-index: 1050;
       }
 
       &.has_nested.current > a { 
@@ -58,7 +60,6 @@
 
       &.has_nested:hover > a { 
         @include rounded-top(10px);
-        z-index: 800;
         border-bottom: 5px solid $hover-menu-item-background;
         background: $hover-menu-item-background url(active_admin_image_path('nested_menu_arrow_dark.gif')) no-repeat 89% 50%;
       }
@@ -73,11 +74,12 @@
         @include shadow(0, 1px, 3px, #444);
         position: absolute; 
         width: 175px; 
-        margin-top: 4px;
+        margin-top: 5px;
         float: left;
         display: none; 
         padding: 3px 0px 5px 0;
         list-style: none;
+        z-index: 1010;
 
         li { 
           margin: 0px; 

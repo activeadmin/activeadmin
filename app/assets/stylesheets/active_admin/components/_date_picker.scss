@@ -1,0 +1,123 @@
+// -------------------------------------- Date Picker 
+.ui-datepicker {
+  background: #fff;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  color: #fff;
+  display: none;
+  margin-top: 2px;
+  padding: 0;
+  text-align: center;
+  width: 160px;
+  
+  background: url(active_admin_image_path('datepicker/datepicker-nipple.png')) no-repeat 0 -40px;
+  
+  a { 
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  .ui-datepicker-header {
+    background: url(active_admin_image_path('datepicker/datepicker-header-bg.png')) no-repeat 0px 0px;
+    height: 12px;
+    padding: 16px 7px 8px;
+    position: relative;
+    z-index: 2000;
+    
+    .ui-datepicker-title {
+      @include text-shadow(#000);
+      color: #fff;
+      display: block;
+      font-size: 1.1em;
+      font-weight: bold;
+      line-height: 0.8em;
+      text-align: center;
+    }
+    
+    a { 
+      color: #fff;
+      display: block;
+      height: 19px;
+      margin-top: -4px;
+      width: 20px;
+      
+      &.ui-datepicker-prev { 
+        float: left;
+        background: url(active_admin_image_path('datepicker/datepicker-prev-link-icon.png')) no-repeat 2px 5px;
+      }
+      &.ui-datepicker-next {
+        float: right;  
+        background: url(active_admin_image_path('datepicker/datepicker-next-link-icon.png')) no-repeat 12px 5px;
+      }
+      &:active {
+        margin-top: -3px;
+        height: 18px;
+      }
+      
+      span {
+        display: none;
+      }
+    }
+  }
+  
+  table.ui-datepicker-calendar {
+    @include rounded-bottom;
+    @include shadow(0,1px,6px,rgba(0,0,0,0.26));
+    background-color: #f4f4f4;
+    border: solid 1px #63686e;
+    left: 2px;
+    margin-bottom: 0px;
+    position: relative;
+    top: -2px;
+    width: 156px;
+    
+    td, th {
+      padding: 0px;
+      text-align: center;
+    }
+    
+    thead th {
+      background-color: #dbdddf;
+      color: #333333;
+      font-weight: normal;
+      font-size: 0.8em;
+      padding-top: 1px;
+    }
+    
+    tbody {
+      color: #666666;
+      
+      td {
+        border: none;
+        height: 24px;
+        width: 22px;
+        
+        a {
+          @include rounded;
+          color: #666666;
+          font-weight: bold;
+          font-size: 0.85em;
+          padding: 4px;
+          
+          &.ui-state-active {
+            background-color: #5a5f64;
+            color: #fff;
+            &.ui-state-hover {
+              background-color: #5a5f64;
+              color: #fff;
+            }
+          }
+          &.ui-state-hover {
+            background-color: #eceef0;
+          }
+          &.ui-state-highlight {
+            background-color: #dbdddf;
+          }
+        }
+      }
+    }
+  }
+}
