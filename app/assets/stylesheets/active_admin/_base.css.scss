@@ -185,7 +185,7 @@ table.index_table {
     }
 
     &.sortable a {
-      background: url('/images/active_admin/orderable.png') no-repeat 0 4px; padding-left: 13px;
+      background: url(active_admin_image_path('orderable.png')) no-repeat 0 4px; padding-left: 13px;
     }
 
     &.sorted-asc a { background-position: 0 -27px; }
@@ -284,7 +284,7 @@ form {
       font-weight: bold;
     }
     .datepicker { 
-      background: #fff url('/images/active_admin/datepicker/datepicker-input-icon.png') no-repeat 100% 7px;
+      background: #fff url(active_admin_image_path('datepicker/datepicker-input-icon.png')) no-repeat 100% 7px;
       padding-right: 27px;
       width: 75px;
     }
@@ -361,7 +361,7 @@ body.logged_out {
   text-align: center;
   width: 160px;
   
-  background: url('/images/active_admin/datepicker/datepicker-nipple.png') no-repeat 0 -40px;
+  background: url(active_admin_image_path('datepicker/datepicker-nipple.png')) no-repeat 0 -40px;
   
   a { 
     text-decoration: none;
@@ -371,7 +371,7 @@ body.logged_out {
   }
   
   .ui-datepicker-header {
-    background: url('/images/active_admin/datepicker/datepicker-header-bg.png') no-repeat 0px 0px;
+    background: url(active_admin_image_path('datepicker/datepicker-header-bg.png')) no-repeat 0px 0px;
     height: 12px;
     padding: 16px 7px 8px;
     position: relative;
@@ -396,11 +396,11 @@ body.logged_out {
       
       &.ui-datepicker-prev { 
         float: left;
-        background: url('/images/active_admin/datepicker/datepicker-prev-link-icon.png') no-repeat 2px 5px;
+        background: url(active_admin_image_path('datepicker/datepicker-prev-link-icon.png')) no-repeat 2px 5px;
       }
       &.ui-datepicker-next {
         float: right;  
-        background: url('/images/active_admin/datepicker/datepicker-next-link-icon.png') no-repeat 12px 5px;
+        background: url(active_admin_image_path('datepicker/datepicker-next-link-icon.png')) no-repeat 12px 5px;
       }
       &:active {
         margin-top: -3px;
