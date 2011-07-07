@@ -13,7 +13,7 @@ append_file "db/seeds.rb", <<-EOF
     User.create!  :first_name => first,
                   :last_name => last,
                   :username => [first,last].join('-').downcase,
-                  :number_of_guitars => rand(20)
+                  :age => rand(80)
   end
 
   categories = ["Rock", "Pop Rock", "Alt-Country", "Blues", "Dub-Step"].collect do |name|
