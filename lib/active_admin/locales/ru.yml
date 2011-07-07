@@ -1,6 +1,8 @@
-ru:
+en:
   active_admin:
-    dashboard_welcome: "Добро пожаловать в Active Admin. Это стандартная страница управления сайтом. Чтобы добавить сюда что-нибудь загляните в 'app/admin/dashboards.rb'"
+    dashboard_welcome:
+      welcome: "Добро пожаловать в Active Admin. Это стандартная страница управления сайтом."
+      call_to_action: "Чтобы добавить сюда что-нибудь загляните в 'app/admin/dashboards.rb'"
     view: "Открыть"
     edit: "Изменить"
     delete: "Удалить"
@@ -25,6 +27,8 @@ ru:
     main_content: "Создайте %{model}#main_content для отображения содержимого."
     logout: "Выйти"
     sidebars:
+      filters: "Filters"
+    sidebars:
       filters: "Фильтры"
     pagination:
       empty: "%{model} не найдено"
@@ -32,3 +36,6 @@ ru:
       one_page: "Результат: <b>%{n}</b> %{model}"
       multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{total}</b>"
     any: "Любой"
+    blank_slate:
+      content: "Пока нет %{resource_name}."
+      link: "Создать"
