@@ -1,4 +1,4 @@
-en:
+ru:
   active_admin:
     dashboard_welcome:
       welcome: "Добро пожаловать в Active Admin. Это стандартная страница управления сайтом."
@@ -26,8 +26,6 @@ en:
     less_than: "<"
     main_content: "Создайте %{model}#main_content для отображения содержимого."
     logout: "Выйти"
-    sidebars:
-      filters: "Filters"
     sidebars:
       filters: "Фильтры"
     pagination:
