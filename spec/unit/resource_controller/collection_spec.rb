@@ -26,7 +26,7 @@ describe ActiveAdmin::ResourceController::Collection do
     let(:params){ {:order => "id_asc" }}
     it "should prepend the table name" do
       chain = mock("ChainObj")
-      chain.should_receive(:order).with("posts.id asc").once.and_return(Post.search)
+      chain.should_receive(:order).with("\"posts\".id asc").once.and_return(Post.search)
       controller.send :sort_order, chain
     end
   end

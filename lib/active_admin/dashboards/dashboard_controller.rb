@@ -2,23 +2,14 @@ module ActiveAdmin
   module Dashboards
     class DashboardController < ResourceController
 
-      before_filter :skip_sidebar!
-
       actions :index
-
-      clear_action_items!
 
       def index
         @dashboard_sections = find_sections
+        render 'active_admin/dashboard/index.html.arb'
       end
 
       protected
-
-      # Override _prefix so we force ActionController to render
-      # the views from active_admin/dashboard instead of default path.
-      def _prefix
-        'active_admin/dashboard'
-      end
 
       def set_current_tab
         @current_tab = "Dashboard"

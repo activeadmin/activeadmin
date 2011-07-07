@@ -9,6 +9,7 @@ module ActiveAdmin
         options[:url] ||= collection_path
         options[:html] ||= {}
         options[:html][:method] = :get
+        options[:html][:class] ||= "filter_form"
         options[:as] = :q
         clear_link = link_to(I18n.t('active_admin.clear_filters'), "#", :class => "clear_filters_btn")
         form_for search, options do |f|
@@ -64,7 +65,7 @@ module ActiveAdmin
 
       [ label(gt_field_name, options[:label]),
         filter_date_text_field(gt_field_name),
-        " - ",
+        template.content_tag(:span, "-", :class => "seperator"),
         filter_date_text_field(lt_field_name)
       ].join("\n").html_safe
     end

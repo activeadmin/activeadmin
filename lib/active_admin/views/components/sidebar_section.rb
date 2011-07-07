@@ -19,9 +19,7 @@ module ActiveAdmin
           rvalue = instance_eval(&@section.block)
           self << rvalue if rvalue.is_a?(String)
         else
-          self << capture do
-            render @section.partial_name
-          end
+          text_node render(@section.partial_name)
         end
       end
     end

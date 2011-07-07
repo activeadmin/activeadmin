@@ -11,9 +11,10 @@ Then /^I should download a CSV file for "([^"]*)" containing:$/ do |resource_nam
   page.response_headers['Content-Type'].should == 'text/csv; charset=utf-8'
   csv_filename = "#{resource_name}-#{Time.now.strftime("%Y-%m-%d")}.csv"
   page.response_headers['Content-Disposition'].should == %{attachment; filename="#{csv_filename}"}
+  body = page.driver.response.body
 
   begin
-    csv = CSV.parse(page.body)
+    csv = CSV.parse(body)
     table.raw.each_with_index do |expected_row, row_index|
       expected_row.each_with_index do |expected_cell, col_index|
         cell = csv.try(:[], row_index).try(:[], col_index)
