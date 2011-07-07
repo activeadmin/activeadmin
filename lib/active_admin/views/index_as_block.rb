@@ -1,16 +1,21 @@
 module ActiveAdmin
   module Views
 
-    # Simplest rendering possible. Calls the block for each element in the collection.
+    # = Index as a Block
     #
-    # Example:
+    # If you want to fully customize the display of your resources on the index
+    # screen, Index as a Block allows you to render a block of content for each
+    # resource.
     #
-    #   ActiveAdmin.register Post do
-    #     index :as => :block do |post|
-    #       # render the post partial (app/views/admin/posts/_post)
-    #       render 'post', :post => post 
+    #     index :as => :block do |product|
+    #       div :for => product do
+    #         h2 auto_link(product.title)
+    #         div do
+    #           simple_format product.description
+    #         end
+    #       end
     #     end
-    #   end
+    #
     class IndexAsBlock < ActiveAdmin::Component
 
       def build(page_config, collection)
