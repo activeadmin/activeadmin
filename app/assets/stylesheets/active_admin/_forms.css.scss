@@ -202,16 +202,29 @@ $sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
 
 // -------------------------------------- Filter Forms
 
-$date-range-filter-seperator-width: 12px;
+$filter-field-seperator-width: 12px;
+
+$side-by-side-filter-input-width: ($sidebar-inner-content-width / 2) - ($text-input-horizontal-padding * 2) - $filter-field-seperator-width;
+$side-by-side-filter-select-width: ($sidebar-inner-content-width / 2) - $filter-field-seperator-width;
+
 $date-range-filter-input-right-padding: 27px;
 $date-range-filter-input-horizontal-padding: $date-range-filter-input-right-padding + $text-input-horizontal-padding;
+$date-range-filter-input-width: ($sidebar-inner-content-width / 2) - $filter-field-seperator-width - $date-range-filter-input-horizontal-padding;
 
 form.filter_form {
   .filter_form_field {
     margin-bottom: 10px; 
     clear: both;
     
-    &.filter_numeric { input[type=text] { width: 80px; margin-left: 5px; } }
+    &.filter_numeric {
+      input[type=text] {
+        margin-left: $filter-field-seperator-width + 4;
+        width: $side-by-side-filter-input-width;
+      }
+      select {
+        width: $side-by-side-filter-select-width;
+      }
+    }
     
     &.filter_check_boxes {
       label { margin-bottom: 3px; }
@@ -228,13 +241,13 @@ form.filter_form {
       .seperator {
         display: inline-block;
         text-align: center;
-        width: $date-range-filter-seperator-width;
+        width: $filter-field-seperator-width;
       }
     
       input[type=text] {
         background: #fff url(active_admin_image_path('datepicker/datepicker-input-icon.png')) no-repeat 100% 7px;
         padding-right: $date-range-filter-input-right-padding;
-        width: ($sidebar-inner-content-width / 2) - $date-range-filter-seperator-width - $date-range-filter-input-horizontal-padding;
+        width: $date-range-filter-input-width;
       }
     }
   }
