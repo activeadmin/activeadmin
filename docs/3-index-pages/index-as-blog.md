@@ -23,7 +23,7 @@ resource. For example:
     end
 
 This will result in the title of the post being the return value of
-#a_method_to_call
+Resource#a_method_to_call
 
 Second, you can pass a block to the tile option which will then be
 used as the contents fo the title. The resource being rendered
