@@ -30,9 +30,9 @@ module ActiveAdmin
 
       # Returns a set of action items to display for a specific controller action
       #
-      # @params [String, Symbol] action the action to retrieve action items for
+      # @param [String, Symbol] action the action to retrieve action items for
       #
-      # @returns [Array] Array of ActionItems for the controller actions
+      # @return [Array] Array of ActionItems for the controller actions
       def action_items_for(action)
         action_items.select{|item| item.display_on?(action) }
       end
