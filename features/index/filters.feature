@@ -28,10 +28,8 @@ Feature: Index Pagination
     Then I should see "Displaying all 20 Posts"
     When I fill in "Search Title" with "THIS IS NOT AN EXISTING TITLE!!"
     And I press "Filter"
-    And show me the page
     
     And I should not see ".index_table"
-    Then I should see a sortable table header with "ID"
-    And I should see a sortable table header with "Title"
+    Then I should not see a sortable table header
     And I should not see pagination
     And I should see "No Posts found"
