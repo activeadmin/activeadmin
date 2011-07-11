@@ -12,7 +12,7 @@ module ActiveAdmin
       protected
 
       def set_current_tab
-        @current_tab = "Dashboard"
+        @current_tab = I18n.t("active_admin.dashboard")
       end
 
       def find_sections

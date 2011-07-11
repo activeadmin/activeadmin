@@ -171,7 +171,7 @@ module ActiveAdmin
     # Adds the dashboard to the menu
     def register_dashboard
       dashboard_path = root? ? :dashboard_path : "#{name}_dashboard_path".to_sym
-      menu.add("Dashboard", dashboard_path, 1) unless menu["Dashboard"]
+      menu.add(I18n.t("active_admin.dashboard"), dashboard_path, 1) unless menu[I18n.t("active_admin.dashboard")]
     end
 
     # Does all the work of registernig a config with the menu system
