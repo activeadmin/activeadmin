@@ -158,6 +158,10 @@ module ActiveAdmin
       ResourceController.before_filter(*args, &block)
     end
 
+    def skip_before_filter(*args, &block)
+      ResourceController.skip_before_filter(*args, &block)
+    end
+
     def after_filter(*args, &block)
       ResourceController.after_filter(*args, &block)
     end
