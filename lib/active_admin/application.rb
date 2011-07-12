@@ -176,6 +176,7 @@ module ActiveAdmin
 
     def register_default_assets
       register_stylesheet 'active_admin.css'
+      register_javascript 'active_admin_vendor.js'
       register_javascript 'active_admin.js'
     end
 
