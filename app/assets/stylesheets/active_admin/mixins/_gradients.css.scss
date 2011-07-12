@@ -19,3 +19,11 @@ $secondary-gradient-stop: #dfe1e2;
 @mixin secondary-gradient { 
   @include gradient($secondary-gradient-start, $secondary-gradient-stop);
 }
+
+@mixin no-gradient {
+  background: none;
+  // IE 6 & 7
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  // IE 8
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+}

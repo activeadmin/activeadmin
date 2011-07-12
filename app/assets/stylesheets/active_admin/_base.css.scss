@@ -329,11 +329,7 @@ table.dashboard {
   }
   th {
     @include no-shadow;
-    background: none;
-    // IE 6 & 7
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-    // IE 8
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+    @include no-gradient;
     width: 150px;
     font-size: 0.9em;
     padding-left: 0;
