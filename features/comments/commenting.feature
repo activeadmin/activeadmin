@@ -97,3 +97,26 @@ Feature: Commenting
     When I am on the index page for comments
     Then I should see a table header with "Body"
     And I should see "Hello from Comment"
+
+  Scenario: Creating a comment in one namespace is viewable in another that has configured as such
+    Given a show configuration of:
+    """
+      ActiveAdmin.application.allow_comments_in << :public
+      ActiveAdmin.register Post, :namespace => :public
+      ActiveAdmin.register Post do
+        config.comments_condition = nil
+      end
+    """
+    When I add a comment "Hello world in admin namespace"
+    Then I should see "Hello world in admin namespace"
+    When I am on the index page for posts in the public namespace
+    And I follow "View"
+    Then I should not see "Hello world in admin namespace"
+    And I should see "Comments (0)"
+
+    When I add a comment "Hello world in public namespace"
+    Then I should see "Hello world in public namespace"
+    When I am on the index page for posts in the admin namespace
+    And I follow "View"
+    Then I should see "Hello world in public namespace"
+    And I should see "Comments (2)"

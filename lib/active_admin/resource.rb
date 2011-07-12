@@ -49,6 +49,9 @@ module ActiveAdmin
     # Set to false to turn off admin notes
     attr_accessor :admin_notes
 
+    # Set the condition used to fetch comments
+    attr_accessor :comments_condition
+
     # Set the configuration for the CSV
     attr_writer :csv_builder
 
@@ -58,6 +61,7 @@ module ActiveAdmin
         @resource = resource
         @options = default_options.merge(options)
         @sort_order = @options[:sort_order]
+        @comments_condition = @options[:comments_condition]
         @page_configs = {}
         @member_actions, @collection_actions = [], []
       end
@@ -139,8 +143,9 @@ module ActiveAdmin
 
     def default_options
       {
-        :namespace  => ActiveAdmin.application.default_namespace,
-        :sort_order => ActiveAdmin.application.default_sort_order
+        :namespace          => ActiveAdmin.application.default_namespace,
+        :sort_order         => ActiveAdmin.application.default_sort_order,
+        :comments_condition => {:namespace => namespace.name}
       }
     end
 
