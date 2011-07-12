@@ -329,7 +329,7 @@ table.dashboard {
   }
   th {
     @include no-shadow;
-    background: none;
+    @include no-gradient;
     width: 150px;
     font-size: 0.9em;
     padding-left: 0;
