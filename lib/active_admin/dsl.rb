@@ -126,6 +126,22 @@ module ActiveAdmin
       config.sidebar_sections << ActiveAdmin::SidebarSection.new(name, options, &block)
     end
 
+    # Shorthand for calling the filter & column methods:
+    # Specify which columns to use by default in the index and show actions,
+    # and add them as filters
+    #
+    # Eg:
+    #
+    #   ActiveAdmin.register Post do
+    #     filtered_column :title
+    #   end
+    #
+    def filtered_column(column, options = {})
+      column_options = options.extract!(:only, :except)
+      controller.filter(column, options)
+      controller.column(column, column_options)
+    end
+
     # Configure the CSV format
     #
     # For example:
