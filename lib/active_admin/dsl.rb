@@ -206,6 +206,17 @@ module ActiveAdmin
     delegate :filter, :to => :controller
 
 
+    # Specify which columns to use by default in the index and show actions
+    #
+    # Eg:
+    #
+    #   ActiveAdmin.register Post do
+    #     column :title
+    #   end
+    #
+    delegate :column, :to => :controller
+
+
     # Standard rails filters
     delegate :before_filter, :skip_before_filter, :after_filter, :around_filter, :to => :controller
 

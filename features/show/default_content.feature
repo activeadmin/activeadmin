@@ -41,3 +41,19 @@ Feature: Show - Default Content
     And I should see the attribute "Body" with "Empty"
     And I should see the attribute "Created At" with a nicely formatted datetime
     And I should not see the attribute "Author"
+
+  Scenario: Declaring the set of attributes to display
+    Given a show configuration of:
+    """
+      ActiveAdmin.register Post do
+
+        column :title
+        column :body, :only => :show
+        column :created_at, :except => :show
+
+      end
+    """
+    Then I should see the attribute "Title" with "Hello World"
+    And I should see the attribute "Body" with "Empty"
+    And I should not see the attribute "Created At"
+    And I should not see the attribute "Author"

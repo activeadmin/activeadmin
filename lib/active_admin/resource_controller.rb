@@ -3,6 +3,7 @@ require 'active_admin/resource_controller/actions'
 require 'active_admin/resource_controller/action_builder'
 require 'active_admin/resource_controller/callbacks'
 require 'active_admin/resource_controller/collection'
+require 'active_admin/resource_controller/columns'
 require 'active_admin/resource_controller/filters'
 require 'active_admin/resource_controller/form'
 require 'active_admin/resource_controller/menu'
@@ -28,6 +29,7 @@ module ActiveAdmin
     include ActionBuilder
     include Callbacks
     include Collection
+    include Columns
     include Filters
     include Form
     include Menu
