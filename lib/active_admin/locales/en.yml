@@ -1,6 +1,9 @@
 en:
   active_admin:
-    dashboard_welcome: "Welcome to Active Admin. This is the default dashboard page. To add dashboard sections, checkout 'app/admin/dashboards.rb'"
+    dashboard: Dashboard
+    dashboard_welcome:
+      welcome: "Welcome to Active Admin. This is the default dashboard page."
+      call_to_action: "To add dashboard sections, checkout 'app/admin/dashboards.rb'"
     view: "View"
     edit: "Edit"
     delete: "Delete"
@@ -32,3 +35,6 @@ en:
       one_page: "Displaying <b>all %{n}</b> %{model}"
       multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
     any: "Any"
+    blank_slate:
+      content: "There are no %{resource_name} yet."
+      link: "Create one"

@@ -1,35 +1,40 @@
 Then /^I should see a table header with "([^"]*)"$/ do |content|
-  Then "I should see \"#{content}\" within \"th\""
+  page.should have_xpath('//th', :text => content)
 end
 
 Then /^I should not see a table header with "([^"]*)"$/ do |content|
-  Then "I should not see \"#{content}\" within \"th\""
+  page.should_not have_xpath('//th', :text => content)
 end
 
 Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
-  Then "I should see \"#{content}\" within \"th.sortable\""
+  page.should have_css('th.sortable', :text => content)
+end
+
+Then /^I should not see a sortable table header$/ do
+  Then "I should not see \"th.sortable\""
 end
 
 Then /^the table "([^"]*)" should have (\d+) rows/ do |selector, count|
-  with_scope(selector) do
-    page.all(:css, 'tr').size.should == count.to_i
-  end
+  table = page.find(selector)
+  table.all(:css, 'tr').size.should == count.to_i
 end
 
 Then /^the table "([^"]*)" should have (\d+) columns/ do |selector, count|
-  with_scope(selector + " tr:first") do
-    page.all(:css, "td").size.should == count.to_i
-  end
+  table = page.find(selector)
+  row = table.find('tr:first')
+  row.all(:css, "td").size.should == count.to_i
 end
 
-Then /^there should be (\d+) "([^"]*)" tags within "([^"]*)"$/ do |count, tag, selector|
-  with_scope(selector) do
-    page.all(:css, tag).size.should == count.to_i
-  end
+Then /^there should be (\d+) "([^"]*)" tags$/ do |count, tag|
+  page.all(:css, tag).size.should == count.to_i
 end
 
 Then /^I should see a link to "([^"]*)"$/ do |link|
-  Then "I should see \"#{link}\" within \"a\""
+  if page.respond_to? :should
+    page.should have_xpath('//a', :text => link)
+  else
+    assert page.has_xpath?('//a', :text => link)
+  end
 end
 
 Then /^I should see a link to \/([^\/]*)\/$/ do |regexp|
@@ -59,9 +64,14 @@ Then /^I should wait and see "([^"]*)"(?: within "([^"]*)")?$/ do |text, selecto
 end
 
 Then /^I should see the page title "([^"]*)"$/ do |title|
-  Then %{I should see "#{title}" within "h2#page_title"}
+  page.should have_css('h2#page_title', :text => title)
 end
 
 Then /^I should see a fieldset titled "([^"]*)"$/ do |title|
-  Then %{I should see "#{title}" within "fieldset legend"}
+  page.should have_css('fieldset legend', :text => title)
+end
+
+Then /^the "([^"]*)" field should contain the option "([^"]*)"$/ do |field, option|
+  field = find_field(field)
+  field.should have_css("option", :text => option)
 end

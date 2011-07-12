@@ -2,7 +2,6 @@ Feature: Specifying Actions
 
   Specifying which actions to allow on my resource
 
-  @allow-rescue
   Scenario: Only creating the index action
     Given a configuration of:
       """
@@ -58,3 +57,31 @@ Feature: Specifying Actions
     And I follow "View"
     And I follow "Review"
     Then I should see "Review: Hello World"
+    And I should see the page title "Review"
+    And I should see the Active Admin layout
+
+  Scenario: Specify a custom member action with template using arb
+    Given a configuration of:
+      """
+        ActiveAdmin.register Post do
+          action_item(:only => :show) do
+            link_to('Review', review_admin_post_path)
+          end
+
+          member_action :review do
+            @post = Post.find(params[:id])
+          end
+        end
+      """
+    Given "app/views/admin/posts/review.html.arb" contains:
+      """
+        h1 "Review: #{@post.title}"
+      """
+    And I am logged in
+    And a post with the title "Hello World" exists
+    When I am on the index page for posts
+    And I follow "View"
+    And I follow "Review"
+    Then I should see "Review: Hello World"
+    And I should see the page title "Review"
+    And I should see the Active Admin layout

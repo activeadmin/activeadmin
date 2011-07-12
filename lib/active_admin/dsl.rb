@@ -94,8 +94,15 @@ module ActiveAdmin
       config.scope(*args, &block)
     end
 
+    # Add a new action item to the resource
+    #
+    # @param [Hash] options valid keys include:
+    #                 :only:  A single or array of controller actions to display
+    #                         this action item on.
+    #                 :except: A single or array of controller actions not to
+    #                          display this action item on.
     def action_item(options = {}, &block)
-      controller.action_item(options, &block)
+      config.add_action_item(options, &block)
     end
 
     # Configure the index page for the resource
@@ -113,6 +120,10 @@ module ActiveAdmin
     def form(options = {}, &block)
       options[:block] = block
       controller.form_config = options
+    end
+
+    def sidebar(name, options = {}, &block)
+      config.sidebar_sections << ActiveAdmin::SidebarSection.new(name, options, &block)
     end
 
     # Configure the CSV format
@@ -194,11 +205,9 @@ module ActiveAdmin
     # Filters
     delegate :filter, :to => :controller
 
-    # Sidebar
-    delegate :sidebar, :to => :controller
 
     # Standard rails filters
-    delegate :before_filter, :after_filter, :around_filter, :to => :controller
+    delegate :before_filter, :skip_before_filter, :after_filter, :around_filter, :to => :controller
 
     # Specify which actions to create in the controller
     #

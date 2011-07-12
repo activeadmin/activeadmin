@@ -19,9 +19,17 @@ module ActiveAdmin
           build_scopes
           renderer_class = find_index_renderer_class(config[:as])
 
-          paginated_collection(collection, :entry_name => active_admin_config.resource_name) do
-            div :class => 'index_content' do
-              insert_tag(renderer_class, config, collection)
+          if collection.any?
+            paginated_collection(collection, :entry_name => active_admin_config.resource_name) do
+              div :class => 'index_content' do
+                insert_tag(renderer_class, config, collection)
+              end
+            end
+          else
+            if controller.action_methods.include?('new')
+              insert_tag(view_factory.blank_slate, active_admin_config.resource_name.pluralize, new_resource_path)
+            else
+              insert_tag(view_factory.blank_slate, active_admin_config.resource_name.pluralize)
             end
           end
         end

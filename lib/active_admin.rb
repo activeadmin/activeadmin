@@ -3,11 +3,12 @@ require 'devise'
 require 'kaminari'
 require 'sass'
 require 'active_admin/arbre'
+require 'active_admin/engine'
+require 'rails/version'
 
 module ActiveAdmin
 
   autoload :VERSION,                  'active_admin/version'
-  autoload :ActionItems,              'active_admin/action_items'
   autoload :Application,              'active_admin/application'
   autoload :AssetRegistration,        'active_admin/asset_registration'
   autoload :Breadcrumbs,              'active_admin/breadcrumbs'
@@ -25,11 +26,12 @@ module ActiveAdmin
   autoload :MenuItem,                 'active_admin/menu_item'
   autoload :Namespace,                'active_admin/namespace'
   autoload :PageConfig,               'active_admin/page_config'
+  autoload :Reloader,                 'active_admin/reloader'
   autoload :Resource,                 'active_admin/resource'
   autoload :ResourceController,       'active_admin/resource_controller'
   autoload :Renderer,                 'active_admin/renderer'
   autoload :Scope,                    'active_admin/scope'
-  autoload :Sidebar,                  'active_admin/sidebar'
+  autoload :SidebarSection,           'active_admin/sidebar_section'
   autoload :TableBuilder,             'active_admin/table_builder'
   autoload :ViewFactory,              'active_admin/view_factory'
   autoload :ViewHelpers,              'active_admin/view_helpers'
@@ -51,19 +53,19 @@ module ActiveAdmin
     def setup
       yield(application)
       application.prepare!
-
-      # Dispatch request which gets triggered once in production
-      # and on every require in development mode
-      ActionDispatch::Callbacks.to_prepare :active_admin do
-        ActiveAdmin.unload!
-        Rails.application.reload_routes!
-      end
     end
 
     delegate :register, :to => :application
     delegate :unload!,  :to => :application
     delegate :load!,    :to => :application
     delegate :routes,   :to => :application
+
+    # Returns true if this rails application has the asset
+    # pipeline enabled.
+    def use_asset_pipeline?
+      return false unless Rails::VERSION::MINOR > 0
+      Rails.application.config.assets.enabled
+    end
 
   end
 end

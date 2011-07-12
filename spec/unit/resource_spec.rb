@@ -12,52 +12,13 @@ module ActiveAdmin
       @config ||= Resource.new(namespace, Category, options)
     end
 
-    describe "underscored resource name" do
-      context "when class" do
-        it "should be the underscored singular resource name" do
-          config.underscored_resource_name.should == "category"
-        end
-      end
-      context "when a class in a module" do
-        it "should underscore the module and the class" do
-          module ::Mock; class Resource; end; end
-          Resource.new(namespace, Mock::Resource).underscored_resource_name.should == "mock_resource"
-        end
-      end
-      context "when you pass the 'as' option" do
-        it "should underscore the passed through string and singulralize" do
-          config(:as => "Blog Categories").underscored_resource_name.should == "blog_category"
-        end
-      end
-    end
-
-    describe "camelized resource name" do
-      it "should return a camelized version of the underscored resource name" do
-        config(:as => "Blog Categories").camelized_resource_name.should == "BlogCategory"
-      end
-    end
-
-    describe "resource name" do
-      it "should return a pretty name" do
-        config.resource_name.should == "Category"
-      end
-      it "should return the plural version" do
-        config.plural_resource_name.should == "Categories"
-      end
-      context "when the :as option is given" do
-        it "should return the custom name" do
-          config(:as => "My Category").resource_name.should == "My Category"
-        end
-      end
-    end
-
     describe "#resource_table_name" do
       it "should return the resource's table name" do
-        config.resource_table_name.should == 'categories'
+        config.resource_table_name.should == '"categories"'
       end
       context "when the :as option is given" do
         it "should return the resource's table name" do
-          config(:as => "My Category").resource_table_name.should == 'categories'
+          config(:as => "My Category").resource_table_name.should == '"categories"'
         end
       end
     end

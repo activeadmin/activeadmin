@@ -12,7 +12,7 @@ Given /^a post with the title "([^"]*)" written by "([^"]*)" exists$/ do |title,
   Post.create! :title => title, :author => author
 end
 
-Given /^(\d+) posts exist/ do |count|
+Given /^(\d+) posts? exists?/ do |count|
   (0...count.to_i).each do |i|
     Post.create! :title => "Hello World #{i}"
   end
@@ -22,7 +22,8 @@ Given /^a category named "([^"]*)" exists$/ do |name|
   Category.create! :name => name
 end
 
-Given /^a user named "([^"]*)" exists$/ do |name|
+Given /^a (user|publisher) named "([^"]*)" exists$/ do |type, name|
   first, last = name.split(" ")
-  User.create! :first_name => first, :last_name => last, :username => name
+  type = type.camelize.constantize
+  type.create! :first_name => first, :last_name => last, :username => name
 end

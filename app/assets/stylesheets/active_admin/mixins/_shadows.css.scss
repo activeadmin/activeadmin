@@ -1,0 +1,21 @@
+@mixin shadow($x: 0, $y: 1px, $blur: 2px, $color: rgba(0,0,0,0.37)) { 
+  box-shadow: $x $y $blur $color; 
+  -moz-box-shadow: $x $y $blur $color; 
+  -webkit-box-shadow: $x $y $blur $color;
+}
+
+@mixin no-shadow {
+  box-shadow: none; 
+  -moz-box-shadow: none; 
+  -webkit-box-shadow: none;
+}
+
+@mixin inset-shadow($x: 0, $y: 1px, $blur: 2px, $color: #aaa) { 
+  box-shadow: inset $x $y $blur $color; 
+  -moz-box-shadow: inset $x $y $blur $color; 
+  -webkit-box-shadow: inset $x $y $blur $color;
+}
+
+@mixin text-shadow($color: #fff, $x: 0, $y: 1px, $blur: 0) {
+  text-shadow: $color $x $y $blur;
+}

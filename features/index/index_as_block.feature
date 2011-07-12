@@ -12,4 +12,4 @@ Feature: Index as Block
         end
       end
       """
-    Then I should see "Hello World from Block" within "a"
+    Then I should see "Hello World from Block" within ".index_as_block"

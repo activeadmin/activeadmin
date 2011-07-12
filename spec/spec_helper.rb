@@ -3,6 +3,9 @@ $LOAD_PATH << File.expand_path('../support', __FILE__)
 
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../../Gemfile', __FILE__)
 
+require 'detect_rails_version'
+ENV['RAILS'] ||= detect_rails_version
+
 require "bundler"
 Bundler.setup
 
@@ -79,9 +82,7 @@ module ActiveAdminIntegrationSpecHelper
 
 end
 
-ENV['RAILS'] ||= '3.0.0'
 ENV['RAILS_ENV'] = 'test'
-
 ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{ENV["RAILS"]}", __FILE__)
 
 # Create the test app if it doesn't exists

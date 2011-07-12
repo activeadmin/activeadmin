@@ -16,6 +16,7 @@ module ActiveAdmin
         def add_classes_to_body
           @body.add_class(params[:action])
           @body.add_class(params[:controller].gsub('/', '_'))
+          @body.add_class("logged_in")
         end
 
         def build_active_admin_head
@@ -73,15 +74,17 @@ module ActiveAdmin
         end
 
         def build_action_items
-          items = controller.class.action_items_for(params[:action])
-          insert_tag view_factory.action_items, items
+          if active_admin_config
+            items = active_admin_config.action_items_for(params[:action])
+            insert_tag view_factory.action_items, items
+          end
         end
 
         def build_page_content
+          build_flash_messages
           div :id => "active_admin_content", :class => (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
-            build_flash_messages
             build_main_content_wrapper
-            build_sidebar
+            build_sidebar unless skip_sidebar?
           end
         end
 
@@ -119,7 +122,11 @@ module ActiveAdmin
 
         # Returns the sidebar sections to render for the current action
         def sidebar_sections_for_action
-          controller.class.sidebar_sections_for(params[:action])
+          if active_admin_config
+            active_admin_config.sidebar_sections_for(params[:action])
+          else
+            []
+          end
         end
 
         # Renders the sidebar
@@ -129,6 +136,10 @@ module ActiveAdmin
               sidebar_section(section)
             end
           end
+        end
+
+        def skip_sidebar?
+          sidebar_sections_for_action.empty? || assigns[:skip_sidebar] == true
         end
 
         # Renders the content for the footer

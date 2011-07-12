@@ -1,0 +1,20 @@
+<%-
+  csv_lib = if RUBY_VERSION =~ /^1.8/
+              require 'fastercsv'
+              FasterCSV
+            else
+              require 'csv'
+              CSV
+            end
+
+  csv_output = csv_lib.generate do |csv|
+    columns = active_admin_config.csv_builder.columns
+    csv << columns.map(&:name)
+    collection.each do |resource|
+      csv << columns.map do |column|
+        call_method_or_proc_on resource, column.data
+      end
+    end
+  end
+%>
+<%= csv_output.html_safe %>

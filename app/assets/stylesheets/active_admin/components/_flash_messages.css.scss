@@ -1,0 +1,38 @@
+body.logged_in {
+  .flash {
+    @include primary-gradient;
+    @include text-shadow(#fafafa);
+    background-color: #a24a42;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    line-height: 1.0em;
+    margin-bottom: 10px;
+    padding: 13px 30px 11px;
+
+    &.flash_notice {
+      @include gradient(#dce9dd, #ccdfcd);
+      border-bottom: 1px solid #adcbaf;
+      color: #416347;
+    }
+    &.flash_error {
+      @include gradient(#f5e4e4, #f1dcdc);
+      border-bottom: 1px solid #e0c2c0;
+      color: #b33c33;
+    }
+  }
+}
+
+body.logged_out {
+  .flash {
+    @include no-shadow;
+    @include text-shadow(#fff);
+    background: none;
+    color: #666;
+    font-weight: bold;
+    line-height: 1.0em;
+    margin-bottom: 10px;
+    padding: 0;
+  }
+}

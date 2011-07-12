@@ -6,11 +6,13 @@
 
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../../../Gemfile', __FILE__)
 
+require File.expand_path('../../../spec/support/detect_rails_version', __FILE__)
+ENV["RAILS"] ||= detect_rails_version
+
 require 'rubygems'
 require "bundler"
 Bundler.setup
 
-ENV["RAILS"] ||= "3.0.0"
 ENV["RAILS_ENV"] ||= "cucumber"
 ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{ENV["RAILS"]}", __FILE__)
 
@@ -25,15 +27,11 @@ require ENV['RAILS_ROOT'] + '/config/environment'
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 autoload :ActiveAdmin, 'active_admin'
 
-require 'cucumber/formatter/unicode' # Remove this line if you don't want Cucumber Unicode support
-require 'cucumber/rails/world'
-require 'cucumber/rails/active_record'
-require 'cucumber/web/tableish'
+require 'cucumber/rails'
 
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
-require 'cucumber/rails/capybara_javascript_emulation' # Lets you click links with onclick javascript handlers without using @culerity or @javascript
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your

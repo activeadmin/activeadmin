@@ -1,0 +1,34 @@
+@mixin section-header {
+  @include secondary-gradient;
+  @include shadow;
+  @include text-shadow;
+  border-bottom: 1px solid #ededed;
+  padding: 5px 10px 3px 10px; 
+  font-size: 1.0em;
+  font-weight: bold;
+  line-height: 140%;
+  margin-bottom: 0.5em;
+  color: $section-header-text-color;
+  @include icon($section-header-text-color, 1.0em);
+  span.icon { margin-right: 5px; }
+}
+
+@mixin section-background {
+  background: #f4f4f4;
+  @include rounded(4px);
+  @include inset-shadow(0,1px,4px, #ddd);
+}
+
+@mixin section {
+  @include section-background;
+  margin-bottom: 20px;
+  
+  h3 { @include section-header; }
+  
+  > div { padding: 3px $section-padding $section-padding $section-padding; }
+  
+  hr {
+    border: none;
+    border-bottom: 1px solid #E8E8E8;
+  }
+}
