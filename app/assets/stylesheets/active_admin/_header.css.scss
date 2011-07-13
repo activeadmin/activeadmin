@@ -1,6 +1,7 @@
 // ----------------------------------- Header 
 #header { 
   @include primary-gradient;
+  @include no-ie-gradient;
   @include shadow;
   @include text-shadow(#000);
   overflow: visible;
