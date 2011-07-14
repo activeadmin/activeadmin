@@ -10,7 +10,7 @@ to implement beautiful and elegant interfaces with very little effort.
 * RDoc: http://rubydoc.info/github/gregbell/active_admin/master/frames
 * Guides: http://activeadmin.info/documentation.html
 * Live demo: http://demo.activeadmin.info/admin
-* Website: http://.activeadmin.info
+* Website: http://www.activeadmin.info
 
 
 == Goals
