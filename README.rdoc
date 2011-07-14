@@ -4,6 +4,15 @@ Active Admin is a framework for creating administration style interfaces. It
 abstracts common business application patterns to make it simple for developers
 to implement beautiful and elegant interfaces with very little effort.
 
+== Help / Support / Demo
+* Mailing list: http://groups.google.com/group/activeadmin
+* Bug reports: https://github.com/gregbell/active_admin/issues
+* RDoc: http://rubydoc.info/github/gregbell/active_admin/master/frames
+* Guides: http://activeadmin.info/documentation.html
+* Live demo: http://demo.activeadmin.info/admin
+* Website: http://.activeadmin.info
+
+
 == Goals
 
 1. Allow developers to quickly create gorgeous administration interfaces
@@ -476,4 +485,3 @@ We are using the awesome Github issues!
 == Copyright
 
 Copyright (c) 2010 Greg Bell, VersaPay Corporation. See LICENSE for details.
-
