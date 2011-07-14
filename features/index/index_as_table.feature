@@ -79,3 +79,30 @@ Feature: Index as Table
     And I should not see a table header with "Body"
     And I should see "Hello World"
     And I should not see "From the body"
+
+  Scenario: Declaring the columns to display
+    Given a post with the title "Hello World" and body "From the body" exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        column :title
+      end
+      """
+    Then I should see a sortable table header with "Title"
+    And I should not see a sortable table header with "Body"
+    And I should see "Hello World"
+    And I should not see "From the body"
+
+  Scenario: Declaring the columns to display with only and except
+    Given a post with the title "Hello World" and body "From the body" exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        column :title, :except => :index
+        column :body, :only => :index
+      end
+      """
+    Then I should not see a sortable table header with "Title"
+    And I should see a sortable table header with "Body"
+    And I should not see "Hello World"
+    And I should see "From the body"

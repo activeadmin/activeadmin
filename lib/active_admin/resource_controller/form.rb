@@ -24,7 +24,7 @@ module ActiveAdmin
         def default_form_config
           config = {}
           config[:block] = lambda do |f|
-            f.inputs
+            f.inputs *columns_config_for(:form).collect(&:to_sym)
             f.buttons
           end
           config

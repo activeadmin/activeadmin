@@ -47,8 +47,8 @@ module ActiveAdmin
         def default_index_config
           @default_index_config ||= ::ActiveAdmin::PageConfig.new(:as => :table) do |display|
             id_column
-            resource_class.content_columns.each do |col|
-              column col.name.to_sym
+            columns_config_for(:index).each do |col|
+              column col.to_sym
             end
             default_actions
           end
