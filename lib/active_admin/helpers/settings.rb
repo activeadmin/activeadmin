@@ -35,7 +35,7 @@ module ActiveAdmin
 
         # Create an accessor that grabs from the defaults
         # if @name has not been set yet
-        class_eval <<-EOC, __FILE__, __LINE__
+        class_eval <<-EOC, __FILE__, __LINE__ + 1
           def #{name}
             if instance_variable_defined? :@#{name}
               @#{name}
@@ -44,6 +44,14 @@ module ActiveAdmin
             end
           end
         EOC
+      end
+
+      def deprecated_setting(name, default, message = nil)
+        message = message || "The #{name} setting is deprecated and will be removed."
+        setting(name, default)
+
+        ActiveAdmin::Deprecation.deprecate self, name, message
+        ActiveAdmin::Deprecation.deprecate self, :"#{name}=", message
       end
 
       def default_settings
