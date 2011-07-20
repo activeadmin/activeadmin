@@ -140,7 +140,7 @@ module ActiveAdmin
     def default_options
       {
         :namespace  => ActiveAdmin.application.default_namespace,
-        :sort_order => ActiveAdmin.application.default_sort_order
+        :sort_order => "#{resource.respond_to?(:primary_key) ? resource.primary_key : 'id'}_desc"
       }
     end
 

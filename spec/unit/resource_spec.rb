@@ -202,20 +202,29 @@ module ActiveAdmin
 
 
     describe "sort order" do
-      subject { resource_config.sort_order }
 
-      context "by default" do
-        let(:resource_config) { config }
-
-        it { should == application.default_sort_order }
+      context "when resource class responds to primary_key" do
+        it "should sort by primary key desc by default" do
+          mock_resource = mock
+          mock_resource.should_receive(:primary_key).and_return("pk")
+          config = Resource.new(namespace, mock_resource)
+          config.sort_order.should == "pk_desc"
+        end
       end
 
-      context "when default_sort_order is set" do
-        let(:sort_order)      { "name_desc"                      }
-        let(:resource_config) { config :sort_order => sort_order }
-
-        it { should == sort_order }
+      context "when resource class does not respond to primary_key" do
+        it "should default to id" do
+          mock_resource = mock
+          config = Resource.new(namespace, mock_resource)
+          config.sort_order.should == "id_desc"
+        end
       end
+
+      it "should be set-able" do
+        config.sort_order = "task_id_desc"
+        config.sort_order.should == "task_id_desc"
+      end
+
     end
 
     describe "adding a scope" do

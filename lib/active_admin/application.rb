@@ -15,9 +15,6 @@ module ActiveAdmin
     # The default number of resources to display on index pages
     setting :default_per_page, 30
 
-    # The default sort order for index pages
-    setting :default_sort_order, 'id_desc'
-
     # A hash of all the registered namespaces
     setting :namespaces, {}
 
@@ -54,6 +51,11 @@ module ActiveAdmin
                                       :title,
                                       :email,
                                       :to_s ]
+
+    # == Deprecated Settings
+
+    # @deprecated The default sort order for index pages
+    deprecated_setting :default_sort_order, 'id_desc'
 
     include AssetRegistration
 
