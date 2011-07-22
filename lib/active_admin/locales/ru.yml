@@ -1,0 +1,40 @@
+ru:
+  active_admin:
+    dashboard: Dashboard
+    dashboard_welcome:
+      welcome: "Добро пожаловать в Active Admin. Это стандартная страница управления сайтом."
+      call_to_action: "Чтобы добавить сюда что-нибудь загляните в 'app/admin/dashboards.rb'"
+    view: "Открыть"
+    edit: "Изменить"
+    delete: "Удалить"
+    delete_confirmation: "Вы уверены, что хотите удалить это?"
+    new_model: "Создать"
+    edit_model: "Изменить"
+    delete_model: "Удалить"
+    details: "Подробнее"
+    cancel: "Отмена"
+    empty: "Пусто"
+    previous: "Пред."
+    next: "След."
+    download: "Загрузка:"
+    has_many_new: "Добавить %{model}"
+    has_many_delete: "Удалить"
+    filter: "Фильтровать"
+    clear_filters: "Очистить"
+    search_field: "Искать по %{field}"
+    equal_to: "="
+    greater_than: ">"
+    less_than: "<"
+    main_content: "Создайте %{model}#main_content для отображения содержимого."
+    logout: "Выйти"
+    sidebars:
+      filters: "Фильтры"
+    pagination:
+      empty: "%{model} не найдено"
+      one: "Результат: <b>1</b> %{model}"
+      one_page: "Результат: <b>%{n}</b> %{model}"
+      multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{total}</b>"
+    any: "Любой"
+    blank_slate:
+      content: "Пока нет %{resource_name}."
+      link: "Создать"
