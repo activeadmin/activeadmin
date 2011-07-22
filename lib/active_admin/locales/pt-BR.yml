@@ -1,4 +1,4 @@
-pt:
+"pt-BR":
   active_admin:
     dashboard_welcome:
       welcome: "Bem vindo ao Active Admin. Esta é a página de painéis padrão."
@@ -31,6 +31,6 @@ pt:
     pagination:
       empty: "Nenhum(a) %{model} encontrado(a)"
       one: "Exibindo <b>1</b> %{model}"
-      one_page: "Exibindo <b>todos os(a) %{n}</b> %{model}"
+      one_page: "Exibindo <b>todos(as) os(as) %{n}</b> %{model}"
       multiple: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
 
