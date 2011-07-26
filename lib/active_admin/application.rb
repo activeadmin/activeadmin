@@ -79,13 +79,14 @@ module ActiveAdmin
 
     # Registers a brand new configuration for the given resource.
     def register(resource, options = {}, &block)
-      namespace_name = options[:namespace] == false ? :root : (options[:namespace] || default_namespace || :root)
+      namespace_name = options.has_key?(:namespace) ? options[:namespace] : default_namespace
       namespace = find_or_create_namespace(namespace_name)
       namespace.register(resource, options, &block)
     end
 
     # Creates a namespace for the given name
     def find_or_create_namespace(name)
+      name ||= :root
       return namespaces[name] if namespaces[name]
       namespace = Namespace.new(self, name)
       ActiveAdmin::Event.dispatch ActiveAdmin::Namespace::RegisterEvent, namespace
