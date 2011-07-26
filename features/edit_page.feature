@@ -52,6 +52,35 @@ Feature: Edit Page
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"
 
+  Scenario: Generating a custom form with :html set, visiting the new page first (bug probing issue #109)
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        form :html => {} do |f|
+          f.inputs "Your Post" do
+            f.input :title
+            f.input :body
+          end
+          f.inputs "Publishing" do
+            f.input :published_at
+          end
+          f.buttons
+        end
+      end
+    """
+    Given I follow "New"
+    Then I follow "Posts"
+    Then I follow "Edit"
+    Then I should see a fieldset titled "Your Post"
+    And I should see a fieldset titled "Publishing"
+    And the "Title" field should contain "Hello World"
+    And the "Body" field should contain ""
+    When I fill in "Title" with "Hello World from update"
+    When I press "Update Post"
+    Then I should see "Post was successfully updated."
+    And I should see the attribute "Title" with "Hello World from update"
+    And I should see the attribute "Author" with "John Doe"
+
   Scenario: Generating a form from a partial
     Given "app/views/admin/posts/_form.html.erb" contains:
     """
