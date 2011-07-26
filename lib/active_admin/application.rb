@@ -39,10 +39,10 @@ module ActiveAdmin
 
     # The path to log user's out with. If set to a symbol, we assume
     # that it's a method to call which returns the path
-    setting :logout_link_path, nil
+    setting :logout_link_path, :destroy_admin_user_session_path
 
     # The method to use when generating the link for user logout
-    setting :logout_link_method, nil
+    setting :logout_link_method, :delete
 
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order

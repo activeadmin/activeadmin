@@ -54,11 +54,11 @@ describe ActiveAdmin::Application do
     end
 
     it "should have a logout link path" do
-      application.logout_link_path.should == nil
+      application.logout_link_path.should == :destroy_admin_user_session_path
     end
 
     it "should have a logout link method" do
-      application.logout_link_method.should == nil
+      application.logout_link_method.should == :delete
     end
   end
 
