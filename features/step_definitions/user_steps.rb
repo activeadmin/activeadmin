@@ -1,10 +1,16 @@
 Given /^I am logged out$/ do
-  visit destroy_admin_user_session_path
+  if page.all(:css, "a", :text => "Logout").size > 0
+    click_link "Logout"
+  end
 end
 
 Given /^I am logged in$/ do
   Given 'an admin user "admin@example.com" exists'
-  visit destroy_admin_user_session_path
+
+  if page.all(:css, "a", :text => "Logout").size > 0
+    click_link "Logout"
+  end
+
   visit new_admin_user_session_path
   fill_in "Email", :with => "admin@example.com"
   fill_in "Password", :with => "password"

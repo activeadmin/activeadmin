@@ -45,6 +45,21 @@ ActiveAdmin.setup do |config|
   config.current_user_method = :current_admin_user
 
 
+  # == Logging Out
+  #
+  # Active Admin displays a logout link on each screen. These
+  # settings configure the location and method used for the link.
+  #
+  # This setting changes the path where the link points to. If it's
+  # a string, the strings is used as the path. If it's a Symbol, we
+  # will call the method to return the path.
+  config.logout_link_path = :destroy_admin_user_session_path
+
+  # This setting changes the http method used when rendering the
+  # link. For example :get, :delete, :put, etc..
+  config.logout_link_method = :delete
+
+
   # == Admin Comments
   #
   # Admin comments allow you to add comments to any model for admin use

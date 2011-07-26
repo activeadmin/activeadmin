@@ -30,16 +30,19 @@ module ActiveAdmin
     # a look at ActiveAdmin::ViewFactory
     setting :view_factory, ActiveAdmin::ViewFactory.new
 
-    # DEPRECATED: This option is deprecated and will be removed. Use
-    # the #allow_comments_in option instead
-    attr_accessor :admin_notes
-
     # The method to call in controllers to get the current user
     setting :current_user_method, false
 
     # The method to call in the controllers to ensure that there
     # is a currently authenticated admin user
     setting :authentication_method, false
+
+    # The path to log user's out with. If set to a symbol, we assume
+    # that it's a method to call which returns the path
+    setting :logout_link_path, nil
+
+    # The method to use when generating the link for user logout
+    setting :logout_link_method, nil
 
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
@@ -56,6 +59,11 @@ module ActiveAdmin
 
     # @deprecated The default sort order for index pages
     deprecated_setting :default_sort_order, 'id_desc'
+
+    # DEPRECATED: This option is deprecated and will be removed. Use
+    # the #allow_comments_in option instead
+    attr_accessor :admin_notes
+
 
     include AssetRegistration
 
