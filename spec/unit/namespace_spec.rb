@@ -59,11 +59,12 @@ describe ActiveAdmin::Namespace do
     end
 
     context "with a resource that's namespaced" do
+
       before do
         module ::Mock; class Resource; def self.has_many(arg1, arg2); end; end; end
         namespace.register Mock::Resource
       end
-      
+
       it "should store the namespaced registered configuration" do
         namespace.resources.keys.should include('MockResource')
       end
@@ -77,23 +78,33 @@ describe ActiveAdmin::Namespace do
       it "should use the resource as the model in the controller" do
         Admin::MockResourcesController.resource_class.should == Mock::Resource
       end
+
     end
 
     describe "finding resource instances" do
+
       let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
-      context "when registered" do
-        before do
-          @post_resource = namespace.register Post
-        end
-        it "should return the resource instance" do
-          namespace.resource_for(Post).should == @post_resource
-        end
+
+      it "should return the resource when its been registered" do
+        post = namespace.register Post
+        namespace.resource_for(Post).should == post
       end
-      context "when not registered" do
-        it "should be nil" do
-          namespace.resource_for(Post).should == nil
-        end
+
+      it 'should return nil when the resource has not been registered' do
+        namespace.resource_for(Post).should == nil
       end
+
+      it "should return the parent when the parent class has been registered and the child has not" do
+        user = namespace.register User
+        namespace.resource_for(Publisher).should == user
+      end
+
+      it "should return the resource if it and it's parent were registered" do
+        user = namespace.register User
+        publisher = namespace.register Publisher
+        namespace.resource_for(Publisher).should == publisher
+      end
+
     end
 
     describe "adding to the menu" do
