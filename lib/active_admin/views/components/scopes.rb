@@ -53,12 +53,11 @@ module ActiveAdmin
         end
       end
 
+      include ActiveAdmin::ScopeChain
+
+      # Return the count for the scope passed in.
       def get_scope_count(scope)
-        if scope.scope_method
-          scoping_class.send(scope.scope_method).count
-        else
-          instance_exec(scoping_class, &scope.scope_block).count
-        end
+        scope_chain(scope, scoping_class).count
       end
 
       def scoping_class

@@ -32,6 +32,7 @@ module ActiveAdmin
   autoload :ResourceController,       'active_admin/resource_controller'
   autoload :Renderer,                 'active_admin/renderer'
   autoload :Scope,                    'active_admin/scope'
+  autoload :ScopeChain,               'active_admin/helpers/scope_chain'
   autoload :SidebarSection,           'active_admin/sidebar_section'
   autoload :TableBuilder,             'active_admin/table_builder'
   autoload :ViewFactory,              'active_admin/view_factory'
