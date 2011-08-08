@@ -10,16 +10,23 @@ module ActiveAdmin
   #     include ActiveAdmin::Settings
   #
   #     setting :site_title, "Default Site Title"
+  #   end
   #
-  #     def initialize
-  #       # You must call this method to initialize the defaults
-  #       initialize_defaults!
-  #     end
+  #   conf = Configuration.new
+  #   conf.site_title #=> "Default Site Title"
+  #   conf.site_title = "Override Default"
+  #   conf.site_title #=> "Override Default"
   #
   module Settings
     extend ActiveSupport::Concern
 
     module InstanceMethods
+
+      def read_default_setting(name)
+        default_settings[name]
+      end
+
+      private
 
       def default_settings
         self.class.default_settings
@@ -40,7 +47,7 @@ module ActiveAdmin
             if instance_variable_defined? :@#{name}
               @#{name}
             else
-              default_settings[:#{name}]
+              read_default_setting(:#{name})
             end
           end
         EOC
