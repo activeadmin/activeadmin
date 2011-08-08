@@ -36,7 +36,7 @@ module ActiveAdmin
     # Returns the display if block. If the block was not explicitly defined
     # a default block always returning true will be returned.
     def display_if_block
-      @display_if_block || proc{ |_| true }
+      @display_if_block || proc{ true }
     end
 
   end

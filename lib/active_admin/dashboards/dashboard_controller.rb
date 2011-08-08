@@ -42,7 +42,11 @@ module ActiveAdmin
 
       # Return the current menu for the view. This is a helper method
       def current_menu
-        ActiveAdmin.application.namespaces[namespace].menu
+        active_admin_namespace.menu
+      end
+
+      def active_admin_namespace
+        active_admin_application.namespace(namespace)
       end
 
     end

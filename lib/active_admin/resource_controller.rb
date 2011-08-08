@@ -92,6 +92,11 @@ module ActiveAdmin
     end
     helper_method :active_admin_config
 
+    def active_admin_namespace
+      active_admin_config.namespace
+    end
+    helper_method :active_admin_namespace
+
     def active_admin_application
       ActiveAdmin.application
     end

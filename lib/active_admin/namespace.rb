@@ -1,3 +1,5 @@
+require 'active_admin/helpers/settings'
+
 module ActiveAdmin
 
   class ResourceMismatchError < StandardError; end
@@ -25,6 +27,7 @@ module ActiveAdmin
   # resource will be accessible from "/posts" and the controller will be PostsController.
   #
   class Namespace
+    include Settings
 
     RegisterEvent = 'active_admin.namespace.register'.freeze
 
@@ -108,6 +111,12 @@ module ActiveAdmin
       else
         nil
       end
+    end
+
+    # Override from ActiveAdmin::Settings to inherit default attributes
+    # from the application
+    def read_default_setting(name)
+      application.send(name)
     end
 
     protected

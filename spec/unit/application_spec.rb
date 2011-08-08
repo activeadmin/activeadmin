@@ -93,4 +93,31 @@ describe ActiveAdmin::Application do
     end
   end
 
+  describe "adding an inheritable setting" do
+
+    it "should add a setting to Application and Namespace" do
+      ActiveAdmin::Application.inheritable_setting :inheritable_setting, "inheritable_setting"
+      app = ActiveAdmin::Application.new
+      app.inheritable_setting.should == "inheritable_setting"
+      ns = ActiveAdmin::Namespace.new(app, :admin)
+      ns.inheritable_setting.should == "inheritable_setting"
+    end
+
+  end
+
+  describe "#namespace" do
+    it "should yield a new namespace" do
+      application.namespace :new_namespace do |ns|
+        ns.name.should == :new_namespace
+      end
+    end
+
+    it "should return an instantiated namespace" do
+      admin = application.find_or_create_namespace :admin
+      application.namespace :admin do |ns|
+        ns.should == admin
+      end
+    end
+  end
+
 end

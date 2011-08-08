@@ -55,6 +55,7 @@ Feature: Commenting
     """
     When I add a comment "Hello world in admin namespace"
     Then I should see "Hello world in admin namespace"
+
     When I am on the index page for posts in the public namespace
     And I follow "View"
     Then I should not see "Hello world in admin namespace"
