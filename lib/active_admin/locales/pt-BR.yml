@@ -1,5 +1,6 @@
 "pt-BR":
   active_admin:
+    dashboard: Dashboard
     dashboard_welcome:
       welcome: "Bem vindo ao Active Admin. Esta é a página de painéis padrão."
       call_to_action: "Para adicionar seções ao painel, verifique 'app/admin/dashboards.rb'"
@@ -33,4 +34,8 @@
       one: "Exibindo <b>1</b> %{model}"
       one_page: "Exibindo <b>todos(as) os(as) %{n}</b> %{model}"
       multiple: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
+    any: "Qualquer"
+    blank_slate:
+      content: "Não existem %{resource_name} ainda."
+      link: "Crie uma"
 
