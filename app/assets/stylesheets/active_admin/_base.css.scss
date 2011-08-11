@@ -140,8 +140,8 @@ a.button, input[type=submit] { @include dark-button; }
   .blank_slate {
     @include rounded;
     -webkit-font-smoothing: antialiased;
-    border: 1px dashed #DDD;
-    color: #ADB3B6;
+    border: 1px dashed #DADADA;
+    color: #AAA;
     display: inline-block;
     font-size: 1.2em;
     font-weight: bold;

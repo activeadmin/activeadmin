@@ -12,24 +12,18 @@ module ActiveAdmin
           index_config || default_index_config
         end
 
-
         # Render's the index configuration that was set in the
         # controller. Defaults to rendering the ActiveAdmin::Pages::Index::Table
         def main_content
           build_scopes
-          renderer_class = find_index_renderer_class(config[:as])
 
           if collection.any?
-            paginated_collection(collection, :entry_name => active_admin_config.resource_name) do
-              div :class => 'index_content' do
-                insert_tag(renderer_class, config, collection)
-              end
-            end
+            render_index
           else
-            if controller.action_methods.include?('new')
-              insert_tag(view_factory.blank_slate, active_admin_config.resource_name.pluralize, new_resource_path)
+            if params[:q]
+              render_empty_results
             else
-              insert_tag(view_factory.blank_slate, active_admin_config.resource_name.pluralize)
+              render_blank_slate
             end
           end
         end
@@ -64,6 +58,33 @@ module ActiveAdmin
             symbol_or_class
           else
             raise ArgumentError, "'as' requires a class or a symbol"
+          end
+        end
+        
+        def render_blank_slate
+          if controller.action_methods.include?('new')
+            blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.resource_name.pluralize) +
+              " " +
+                link_to(I18n.t("active_admin.blank_slate.link"), new_resource_path)
+            insert_tag(view_factory.blank_slate, blank_slate_content)
+          else
+            blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.resource_name.pluralize)
+            insert_tag(view_factory.blank_slate, blank_slate_content)
+          end
+        end
+        
+        def render_empty_results
+          empty_results_content = I18n.t("active_admin.pagination.empty", :model => active_admin_config.resource_name.pluralize)
+          insert_tag(view_factory.blank_slate, empty_results_content)
+        end
+        
+        def render_index
+          renderer_class = find_index_renderer_class(config[:as])
+          
+          paginated_collection(collection, :entry_name => active_admin_config.resource_name) do
+            div :class => 'index_content' do
+              insert_tag(renderer_class, config, collection)
+            end
           end
         end
 
