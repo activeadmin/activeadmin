@@ -7,7 +7,7 @@
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../../../Gemfile', __FILE__)
 
 require File.expand_path('../../../spec/support/detect_rails_version', __FILE__)
-ENV["RAILS"] ||= detect_rails_version
+ENV["RAILS"] = detect_rails_version
 
 require 'rubygems'
 require "bundler"

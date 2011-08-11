@@ -4,7 +4,7 @@ gemspec
 
 require File.expand_path('../spec/support/detect_rails_version', __FILE__)
 
-case detect_rails_version
+case ENV['RAILS'] || detect_rails_version
 when /3.0.(\d)*/
   gem 'rails',          "= 3.0.#{$1}"
   gem "meta_search",    '~> 1.0.0'
