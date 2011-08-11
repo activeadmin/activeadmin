@@ -30,6 +30,17 @@ describe ActiveAdmin::Dashboards do
     end
   end
 
+  describe "adding sections using i18n on name" do
+    before do
+      ActiveAdmin::Dashboards.clear_all_sections!
+      ActiveAdmin::Dashboards.add_section(:spams)
+    end
+
+    it "should add a new section" do
+      ActiveAdmin::Dashboards.sections[:admin].first.title.should == "SPAMs"
+    end
+  end
+
   describe "clearing all sections" do
     before do
       ActiveAdmin::Dashboards.add_section('Recent Posts')

@@ -24,3 +24,17 @@ Feature: Dashboard
     Then I should not see the default welcome message
     And I should see a dashboard widget "Hello World"
     And I should see "Hello world from the content"
+
+  Scenario: Displaying a dashboard widget using i18n
+    Given a configuration of:
+      """
+      ActiveAdmin::Dashboards.build do
+        section :spams do
+          para "Hello world from the content"
+        end
+      end
+      """
+    When I go to the dashboard
+    Then I should not see the default welcome message
+    And I should see a dashboard widget "SPAMs"
+    And I should see "Hello world from the content"

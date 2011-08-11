@@ -11,7 +11,7 @@ module ActiveAdmin
       protected
 
       def title
-        @section.name.to_s.titleize
+        @section.title
       end
 
     end

@@ -22,6 +22,12 @@ module ActiveAdmin
         @options[:icon]
       end
 
+      def title
+        I18n.t!("active_admin.sections.#{name.to_s}")
+      rescue I18n::MissingTranslationData
+        @name.to_s.titlecase
+      end
+
       # Sort by priority then by name
       def <=>(other)
         result = priority <=> other.priority
