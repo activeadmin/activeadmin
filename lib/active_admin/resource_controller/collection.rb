@@ -83,25 +83,19 @@ module ActiveAdmin
         protected
 
         def active_admin_collection
-          scope_collection(super)
+          scope_current_collection(super)
         end
 
-        def scope_collection(chain)
+        def scope_current_collection(chain)
           if current_scope
             @before_scope_collection = chain
-
-            # ActiveRecord::Base isn't a relation, so let's help you out
-            return chain if current_scope.scope_method == :all
-
-            if current_scope.scope_method
-              chain.send(current_scope.scope_method)
-            else
-              instance_exec chain, &current_scope.scope_block
-            end
+            scope_chain(current_scope, chain)
           else
             chain
           end
         end
+
+        include ActiveAdmin::ScopeChain
 
         def current_scope
           @current_scope ||= if params[:scope]
