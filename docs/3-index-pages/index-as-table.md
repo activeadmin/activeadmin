@@ -37,6 +37,13 @@ within the context of the view for each of the objects in the collection.
 The block gets called once for each resource in the collection. The resource gets passed into
 the block as an argument.
 
+To setup links to View, Edit and Delete a resource, use the default_actions method:
+
+    index do
+      column :title
+      default_actions
+    end
+
 
 ## Sorting
 

@@ -38,6 +38,22 @@ module ActiveAdmin
     # The block gets called once for each resource in the collection. The resource gets passed into
     # the block as an argument.
     #
+    # To setup links to View, Edit and Delete a resource, use the default_actions method:
+    #
+    #     index do
+    #       column :title
+    #       default_actions
+    #     end
+    #
+    # Alternatively, you can create a column with custom links:
+    #
+    #     index do
+    #       column :title
+    #       column "Actions" do |post|
+    #         link_to "View", admin_post_path(post)
+    #       end
+    #     end
+    #
     #
     # == Sorting
     #
