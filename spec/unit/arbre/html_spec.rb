@@ -146,6 +146,12 @@ HTML
         "Hello World"
       end.children.first.should be_instance_of(Arbre::HTML::TextNode)
     end
+
+    it "should turn objects that respond to :to_s into text nodes" do
+      li do
+        42
+      end.children.first.should be_instance_of(Arbre::HTML::TextNode)
+    end
   end
 
   describe "self-closing nodes" do
