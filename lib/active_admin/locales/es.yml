@@ -1,13 +1,14 @@
 es:
   active_admin:
+    dashboard: Inicio
     dashboard_welcome:
-      welcome: "Bienvenido a Active Admin. Esta es la página de panel predeterminada."
+      welcome: "Bienvenido a Active Admin. Esta es la página de inicio predeterminada."
       call_to_action: "Para agregar secciones edita 'app/admin/dashboards.rb'"
     view: "Ver"
     edit: "Editar"
     delete: "Eliminar"
     delete_confirmation: "¿Está seguro que quiere eliminar esto?"
-    new_model: "Nuevo %{model}"
+    new_model: "Nuevo(a) %{model}"
     edit_model: "Editar %{model}"
     delete_model: "Eliminar %{model}"
     details: "Detalles de %{model}"
@@ -16,7 +17,7 @@ es:
     previous: "Anterior"
     next: "Siguiente"
     download: "Descargar:"
-    has_many_new: "Agregar nuevo %{model}"
+    has_many_new: "Agregar nuevo(a) %{model}"
     has_many_delete: "Eliminar"
     filter: "Filtrar"
     clear_filters: "Quitar Filtros"
@@ -29,11 +30,11 @@ es:
     sidebars:
       filters: "Filtros"
     pagination:
-      empty: "Ningún %{model} encontrado"
+      empty: "Ningún(a) %{model} encontrado"
       one: "Mostrando <b>1</b> %{model}"
-      one_page: "Mostrando <b>todos los %{n}</b> %{model}"
+      one_page: "Mostrando <b>todos(as) los(as) %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
     any: "Todos"
     blank_slate:
-      content: "No hay ningún %{resource_name} aun."
-      link: "Crea uno"
+      content: "No hay %{resource_name} aun."
+      link: "Crea uno(a)"
