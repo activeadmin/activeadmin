@@ -9,7 +9,7 @@ namespace :test do
   desc "Run against the important versions of rails"
   task :major_rails_versions do
     current_version = detect_rails_version if File.exists?("Gemfile.lock")
-    ["3.0.7", "3.1.0.rc4"].each do |version|
+    ["3.0.10", "3.1.0.rc6"].each do |version|
       puts
       puts
       puts "== Using Rails #{version}"
@@ -17,9 +17,15 @@ namespace :test do
       cmd "bundle exec rspec spec"
       cmd "bundle exec cucumber features"
     end
-    cmd "./script/use_rails #{current_version}"
+    cmd "./script/use_rails #{current_version}" if current_version
   end
 
+end
+
+# Run specs and cukes
+task :test do
+  cmd "bundle exec rspec spec"
+  cmd "bundle exec cucumber features"
 end
 
 namespace :spec do
