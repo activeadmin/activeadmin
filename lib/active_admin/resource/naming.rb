@@ -28,11 +28,7 @@ module ActiveAdmin
 
       # Returns the plural version of this resource
       def plural_resource_name
-        @plural_resource_name ||= if @options[:as] || !resource.respond_to?(:model_name)
-          resource_name.pluralize
-        else
-          resource.model_name.human(:count => 3)
-        end
+        @plural_resource_name ||= resource_name.pluralize
       end
 
     end
