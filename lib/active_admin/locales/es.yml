@@ -13,7 +13,7 @@ es:
     delete_model: "Eliminar %{model}"
     details: "Detalles de %{model}"
     cancel: "Cancelar"
-    empty: "Vacio"
+    empty: "Vacío"
     previous: "Anterior"
     next: "Siguiente"
     download: "Descargar:"
@@ -36,5 +36,5 @@ es:
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
     any: "Todos"
     blank_slate:
-      content: "No hay %{resource_name} aun."
+      content: "No hay %{resource_name} aún."
       link: "Crea uno(a)"
