@@ -50,6 +50,14 @@ module ActiveAdmin
           config(:as => "My Category").resource_name.should == "My Category"
         end
       end
+      context "I18n" do
+        before do
+          I18n.stub(:translate) { 'Categorie' }
+        end
+        it "should return the plural version defined in the i18n if available" do
+          config.plural_resource_name.should == "Categorie"
+        end
+      end
     end
 
   end
