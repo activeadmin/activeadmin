@@ -1,4 +1,4 @@
-= Active Admin
+= Active Admin {<img src="http://travis-ci.org/gregbell/active_admin.png" />}[http://travis-ci.org/gregbell/active_admin]
 
 Active Admin is a framework for creating administration style interfaces. It
 abstracts common business application patterns to make it simple for developers
