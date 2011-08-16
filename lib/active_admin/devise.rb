@@ -27,7 +27,11 @@ module ActiveAdmin
 
       # Redirect to the default namespace on logout
       def root_path
-        "/#{ActiveAdmin.application.default_namespace}"
+        if ActiveAdmin.application.default_namespace
+          "/#{ActiveAdmin.application.default_namespace}"
+        else
+          "/"
+        end
       end
     end
 
