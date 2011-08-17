@@ -1,11 +1,9 @@
 require 'spec_helper'
-require 'active_admin/arbre/element'
 
 describe Arbre::HTML::Element do
 
   setup_arbre_context!
 
-  let(:assigns){ {} }
   let(:element){ Arbre::HTML::Element.new }
 
   context "when initialized" do

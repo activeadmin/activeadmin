@@ -1,3 +1,5 @@
+require 'active_admin/arbre/html/element'
+
 module Arbre
   class Context < Arbre::HTML::Element
     def indent_level
