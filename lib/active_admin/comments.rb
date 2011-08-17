@@ -36,7 +36,7 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Namespace::RegisterEvent do |namespace
 
       # Only view comments in this namespace
       scope :all, :default => true do |comments|
-        comments.where(:namespace => active_admin_config.namespace.name)
+        comments.where(:namespace => active_admin_config.namespace.name.to_s)
       end
 
       # Always redirect to the resource on show
