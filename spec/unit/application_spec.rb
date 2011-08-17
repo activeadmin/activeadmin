@@ -53,12 +53,12 @@ describe ActiveAdmin::Application do
       application.authentication_method.should == false
     end
 
-    it "should have a logout link path" do
+    it "should have a logout link path (Devise's default)" do
       application.logout_link_path.should == :destroy_admin_user_session_path
     end
 
-    it "should have a logout link method" do
-      application.logout_link_method.should == :delete
+    it "should have a logout link method (Devise's default)" do
+      application.logout_link_method.should == :get
     end
   end
 

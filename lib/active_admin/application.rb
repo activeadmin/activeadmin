@@ -42,7 +42,7 @@ module ActiveAdmin
     setting :logout_link_path, :destroy_admin_user_session_path
 
     # The method to use when generating the link for user logout
-    setting :logout_link_method, :delete
+    setting :logout_link_method, :get
 
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
