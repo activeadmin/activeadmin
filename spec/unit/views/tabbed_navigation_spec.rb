@@ -2,18 +2,15 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::TabbedNavigation do
 
-  include Arbre::HTML
+  setup_arbre_context!
   include ActiveAdmin::ViewHelpers
-  let(:assigns){ {} }
 
   let(:menu){ ActiveAdmin::Menu.new }
-  let(:view) { mock_action_view }
   let(:tabbed_navigation){ insert_tag(ActiveAdmin::Views::TabbedNavigation, menu) }
   let(:html) { tabbed_navigation.to_s }
 
   before do
-    @_helpers = view
-    view.stub!(:admin_logged_in?).and_return(false)
+    helpers.stub!(:admin_logged_in?).and_return(false)
   end
 
   describe "rendering a menu" do

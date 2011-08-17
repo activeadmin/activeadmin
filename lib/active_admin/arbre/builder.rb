@@ -1,5 +1,5 @@
 module Arbre
-  module HTML
+  module Builder
     def current_dom_context
       @__current_dom_element__ ||= Arbre::Context.new(assigns, helpers)
       @__current_dom_element__.current_dom_context
@@ -74,7 +74,7 @@ module Arbre
       # Inserts a text node if the tag is a string
       def insert_text_node_if_string(tag)
         if tag.is_a?(String)
-          current_dom_context << TextNode.from_string(tag)
+          current_dom_context << Arbre::HTML::TextNode.from_string(tag)
         end
       end
     end

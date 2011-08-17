@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe ActiveAdmin::Views::AttributesTable do
-  include Arbre::HTML
-  let(:assigns){ {} }
+
+  setup_arbre_context!
 
   describe "creating with the dsl" do
     let(:helpers) { action_view }

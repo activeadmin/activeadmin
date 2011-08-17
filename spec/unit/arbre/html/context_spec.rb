@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Arbre::Context do
-  include Arbre::HTML
-  let(:assigns){ {} }
+
+  setup_arbre_context!
 
   before do
     h1 # Add some HTML to the context

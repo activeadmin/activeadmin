@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::TableFor do
   describe "creating with the dsl" do
-    include Arbre::HTML
+
+    setup_arbre_context!
 
     let(:assigns){ {} }
     let(:helpers){ mock_action_view }

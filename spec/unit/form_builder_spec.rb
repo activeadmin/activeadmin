@@ -1,8 +1,8 @@
 require 'spec_helper' 
 
 describe ActiveAdmin::FormBuilder do
-  include Arbre::HTML
-  let(:assigns){ {} }
+
+  setup_arbre_context!
 
   # Setup an ActionView::Base object which can be used for
   # generating the form for.

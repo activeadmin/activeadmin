@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 describe ActiveAdmin::Views::StatusTag do
-  include Arbre::HTML
-  let(:assigns) { {} }
 
-  let(:helpers) { action_view }
+  setup_arbre_context!
 
   describe "#status_tag" do
     subject { status_tag(nil) }

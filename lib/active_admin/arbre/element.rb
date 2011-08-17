@@ -2,16 +2,16 @@ module Arbre
   module HTML
 
     class Element
-      include ::Arbre::HTML
-      include ::Arbre::HTML::BuilderMethods
+      include ::Arbre::Builder
+      include ::Arbre::Builder::BuilderMethods
 
       attr_accessor :parent
       attr_reader :children
 
       def self.builder_method(method_name)
-        ::Arbre::HTML::BuilderMethods.class_eval <<-EOF, __FILE__, __LINE__
+        ::Arbre::Builder::BuilderMethods.class_eval <<-EOF, __FILE__, __LINE__
           def #{method_name}(*args, &block)
-            insert_tag #{self.name}, *args, &block
+            insert_tag ::#{self.name}, *args, &block
           end
         EOF
       end
@@ -48,7 +48,7 @@ module Arbre
 
         # If its not an element, wrap it in a TextNode
         unless child.is_a?(Element)
-          child = TextNode.from_string(child)
+          child = Arbre::HTML::TextNode.from_string(child)
         end
 
         if child.respond_to?(:parent)
@@ -129,7 +129,7 @@ module Arbre
         case element
         when Element, Collection
         else
-          element = TextNode.from_string(element)
+          element = Arbre::HTML::TextNode.from_string(element)
         end
         Collection.new([self]) + element
       end

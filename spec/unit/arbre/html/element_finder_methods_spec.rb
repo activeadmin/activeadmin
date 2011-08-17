@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Arbre::HTML::Element, "Finder Methods" do
-  include Arbre::HTML
-  let(:assigns){ {} }
+
+  setup_arbre_context!
 
   describe "finding elements by tag name" do
 

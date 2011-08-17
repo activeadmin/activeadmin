@@ -1,9 +1,11 @@
 require 'spec_helper'
 
-describe Arbre::HTML do
-  include Arbre::HTML
+# Test class to ensure builder context
+class Table; end;
 
-  let(:assigns){ {} }
+describe Arbre do
+
+  setup_arbre_context!
 
   it "should render a single element" do
     content = span("Hello World")
@@ -43,6 +45,10 @@ HTML
     list_2 = li
     list_1.should be_instance_of(Arbre::HTML::Ul)
     list_2.should be_instance_of(Arbre::HTML::Li)
+  end
+
+  it "should not clash with existing classes" do
+    span(Table).to_s.should == "<span>Table</span>\n"
   end
 
   it "should allow local variables inside the tags" do

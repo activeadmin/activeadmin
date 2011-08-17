@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe ActiveAdmin::Views::Columns do
-  include Arbre::HTML
-  let(:assigns){ {} }
+
+  setup_arbre_context!
 
   describe "Rendering one column" do
     let(:cols) do

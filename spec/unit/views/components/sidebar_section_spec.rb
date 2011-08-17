@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe ActiveAdmin::Views::SidebarSection do
-  include Arbre::HTML
-  let(:assigns){ {} }
+
+  setup_arbre_context!
 
   let(:section) do
     ActiveAdmin::SidebarSection.new(:help) do

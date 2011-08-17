@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Arbre::HTML::Tag do
-  include Arbre::HTML
-  let(:assigns){ {} }
+
+  setup_arbre_context!
 
   let(:tag){ Arbre::HTML::Tag.new }
 

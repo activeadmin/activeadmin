@@ -61,6 +61,16 @@ module ActiveAdminIntegrationSpecHelper
     end
   end
 
+  # Sets up an Arbre::Builder context
+  def setup_arbre_context!
+    include Arbre::Builder
+    let(:assigns){ {} }
+    let(:helpers){ mock_action_view }
+    before do
+      @_helpers = helpers
+    end
+  end
+
   # Setup a describe block which uses capybara and rails integration
   # test methods.
   def describe_with_capybara(*args, &block)

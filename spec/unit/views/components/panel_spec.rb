@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 describe ActiveAdmin::Views::Panel do
-  include Arbre::HTML
-  let(:assigns){ {} }
 
-  let(:helpers) { action_view }
+  setup_arbre_context!
 
   let(:the_panel) do
     panel "My Title" do

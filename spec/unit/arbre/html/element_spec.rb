@@ -2,7 +2,8 @@ require 'spec_helper'
 require 'active_admin/arbre/element'
 
 describe Arbre::HTML::Element do
-  include Arbre::HTML
+
+  setup_arbre_context!
 
   let(:assigns){ {} }
   let(:element){ Arbre::HTML::Element.new }
