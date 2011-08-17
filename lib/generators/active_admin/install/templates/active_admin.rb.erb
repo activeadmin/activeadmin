@@ -21,7 +21,9 @@ ActiveAdmin.setup do |config|
   #
   # To set no namespace by default, use:
   #   config.default_namespace = false
-  config.default_namespace = :admin
+  #
+  # Default:
+  # config.default_namespace = :admin
 
 
   # == User Authentication
@@ -53,11 +55,15 @@ ActiveAdmin.setup do |config|
   # This setting changes the path where the link points to. If it's
   # a string, the strings is used as the path. If it's a Symbol, we
   # will call the method to return the path.
-  config.logout_link_path = :destroy_admin_user_session_path
+  #
+  # Default:
+  # config.logout_link_path = :destroy_admin_user_session_path
 
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
-  config.logout_link_method = :delete
+  #
+  # Default:
+  # config.logout_link_method = :get
 
 
   # == Admin Comments
@@ -68,6 +74,7 @@ ActiveAdmin.setup do |config|
   # namespace only. You can turn them on in a namesapce
   # by adding them to the comments array.
   #
+  # Default:
   # config.allow_comments_in = [:admin]
 
 
