@@ -10,7 +10,7 @@
 * Added a blank slate design (@mattvague)
 * Collection and Member actions use the Active Admin layout (@gregbell)
 
-## Enhancements
+### Enhancements
 
 * Better I18n config file loading (@fabiokr)
 * `TableFor` now supports I18n headers (@fabiokr)
@@ -33,13 +33,13 @@
 * Removed unwanted gradient in IE in attribute table headers (@emzeq)
 * #222: Added `Arbre::Context#length` for Rack servers (@gregbell)
 
-## Dependencies
+### Dependencies
 
 * Switched from will_paginate to  Kaminari for pagination (@mwindwer)
 * Removed dependency on InheritedViews (@gregbell)
 * Removed Jeweler. Using Bundler and a gemspec (@gregbell)
 
-## Test Suite
+### Test Suite
 
 * Removed reloading. Cukes went from 6min to 48s (@gregbell)
 * Upgraded to latest cucumber (@gregbell)
