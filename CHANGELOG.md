@@ -1,3 +1,50 @@
+## Master
+
+### New Features
+
+* Customizeable CSV (@pcreux, @gregbell)
+* Menus now support `if` and `priority` (Moritz Lawitschka)
+* Rails 3.1 support
+* Asset pipeline support (@gregbell)
+* `skip_before_filter` now supported in DSL (@shayfrendt)
+* Added a blank slate design (@mattvague)
+* Collection and Member actions use the Active Admin layout (@gregbell)
+
+## Enhancements
+
+* Better I18n config file loading (@fabiokr)
+* `TableFor` now supports I18n headers (@fabiokr)
+* `AttributesTable` now supports I18n attributes (@fabiokr)
+* Member actions all use CSS class `member_link` (@doug316)
+* Made `status_tag` an Arbre component (@pcreux)
+* CSV downloads have sexy names such as "articles-2011-06-21.csv" (@pcreux)
+* Created `ActiveAdmin::Setting` to easily create settings (@gregbell)
+* New datepicker styles (@mattvague)
+
+### Bug Fixes
+
+* #52: Fix update action with STI models (@gregbell)
+* #122: Fix sortable columns on nested resources (@knoopx)
+* Fix so that Dashboard Sections can appear in root namespace (@knoopx)
+* #131: Fixed `status_tag` with nil content (@pcreux)
+* #110: Fixed dropdown menu floats in Firefox (@mattvague)
+* Use quoted table names (@krug)
+* Fixed CSS float of `.paginated_collection_contents` bug in Firefox (@mattvague)
+* Removed unwanted gradient in IE in attribute table headers (@emzeq)
+* #222: Added `Arbre::Context#length` for Rack servers (@gregbell)
+
+## Dependencies
+
+* Switched from will_paginate to  Kaminari for pagination (@mwindwer)
+* Removed dependency on InheritedViews (@gregbell)
+* Removed Jeweler. Using Bundler and a gemspec (@gregbell)
+
+## Test Suite
+
+* Removed reloading. Cukes went from 6min to 48s (@gregbell)
+* Upgraded to latest cucumber (@gregbell)
+
+
 ## 0.2.2 (2011-05-26)
 
 68 Commits by 13 Contributors
