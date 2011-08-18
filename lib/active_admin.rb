@@ -69,6 +69,11 @@ module ActiveAdmin
       Rails.application.config.assets.enabled
     end
 
+    # Migration MoveAdminNotesToComments generated with version 0.2.2 might reference
+    # to ActiveAdmin.default_namespace.
+    delegate :default_namespace, :to => :application
+    ActiveAdmin::Deprecation.deprecate self, :default_namespace, "Please use ActiveAdmin.application.default_namespace instead."
+
   end
 end
 
