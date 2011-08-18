@@ -120,6 +120,15 @@ module ActiveAdmin
           config.route_prefix.should == nil
         end
       end
+
+      context "when registering a plural resource" do
+        class ::News; def self.has_many(*); end end
+
+        let(:config){ application.register News }
+        it "should return the plurali route with _index" do
+          config.route_collection_path.should == :admin_news_index_path
+        end
+      end
     end
 
     describe "page configs" do
