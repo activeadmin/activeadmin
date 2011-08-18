@@ -4,7 +4,6 @@ require 'kaminari'
 require 'sass'
 require 'active_admin/arbre'
 require 'active_admin/engine'
-require 'rails/version'
 
 module ActiveAdmin
 
@@ -17,6 +16,7 @@ module ActiveAdmin
   autoload :ControllerAction,         'active_admin/controller_action'
   autoload :CSVBuilder,               'active_admin/csv_builder'
   autoload :Dashboards,               'active_admin/dashboards'
+  autoload :DependencyChecker,        'active_admin/dependency_checker'
   autoload :Deprecation,              'active_admin/deprecation'
   autoload :Devise,                   'active_admin/devise'
   autoload :DSL,                      'active_admin/dsl'
@@ -65,16 +65,18 @@ module ActiveAdmin
     # Returns true if this rails application has the asset
     # pipeline enabled.
     def use_asset_pipeline?
-      return false unless Rails::VERSION::MINOR > 0
-      Rails.application.config.assets.enabled
+      DependencyChecker.rails_3_1? && Rails.application.config.assets.enabled
     end
 
     # Migration MoveAdminNotesToComments generated with version 0.2.2 might reference
     # to ActiveAdmin.default_namespace.
     delegate :default_namespace, :to => :application
-    ActiveAdmin::Deprecation.deprecate self, :default_namespace, "Please use ActiveAdmin.application.default_namespace instead."
+    ActiveAdmin::Deprecation.deprecate self, :default_namespace, 
+      "ActiveAdmin.default_namespace is deprecated. Please use ActiveAdmin.application.default_namespace"
 
   end
 end
+
+ActiveAdmin::DependencyChecker.check!
 
 require 'active_admin/comments'
