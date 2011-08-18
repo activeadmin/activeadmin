@@ -1,9 +1,14 @@
 require 'sass'
 require 'sass/script/functions'
+require 'sass-rails' if ActiveAdmin::DependencyChecker.rails_3_1?
 
 module ActiveAdmin
   module Sass
     module Helpers
+
+      if ActiveAdmin::DependencyChecker.rails_3_1?
+        include ::Sass::Rails::Helpers
+      end
 
       # Provides a helper in SASS to ensure that the paths to image
       # assets are always correct across Rails versions.
