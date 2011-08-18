@@ -21,9 +21,15 @@ module ActiveAdmin
     # its contents, so we want to skip the internal buffering
     # while building up its contents
     def input(*args)
-      content = with_new_form_buffer { super }
-      return content.html_safe unless @inputs_with_block
-      form_buffers.last << content.html_safe
+      reflection = reflection_for(args.first)
+      
+      if reflection && reflection.macro == :belongs_to && reflection.options[:polymorphic]
+        return nil
+      else
+        content = with_new_form_buffer { super }
+        return content.html_safe unless @inputs_with_block
+        form_buffers.last << content.html_safe
+      end
     end
 
     # The buttons method always needs to be wrapped in a new buffer

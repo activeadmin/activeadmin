@@ -64,6 +64,23 @@ describe ActiveAdmin::FormBuilder do
     end
   end
 
+  context "when polymorphic relationship" do
+    
+    let(:body) do
+      comment = ActiveAdmin::Comment.new
+      
+      active_admin_form_for comment, :url => "admins/comments" do |f|
+        f.inputs :resource
+      end
+      
+    end
+    
+    it "should not generate any field" do
+      body.should have_tag("form", :attributes => { :method => 'post' })
+      body.should_not have_tag("select")
+    end
+  end
+
   describe "passing in options" do
     let :body do
       build_form :html => { :multipart => true } do |f|
