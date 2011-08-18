@@ -12,11 +12,7 @@ when /^3\.0/
   gem "meta_search",    '~> 1.0.0'
 when /^3\.1/
   gem "meta_search",    '>= 1.1.0.pre'
-  gem "uglifier"
   gem 'sass-rails',     "~> 3.1.0.rc"
-  gem 'coffee-script'
-  gem 'execjs'
-  gem 'therubyracer'
 else
   raise "Rails #{rails_version} is not supported yet"
 end
