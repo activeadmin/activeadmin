@@ -135,6 +135,7 @@ a.button, input[type=submit] { @include dark-button; }
 // ----------------------------------- Blank Slate
 
 .blank_slate_container {
+  clear: both;
   text-align: center;
   
   .blank_slate {
