@@ -20,7 +20,9 @@ module ActiveAdmin
     # The input method returns a properly formatted string for
     # its contents, so we want to skip the internal buffering
     # while building up its contents
-    def input(*args)
+    def input(method, *args)
+      return if polymorphic_belongs_to_association?(method)
+      
       content = with_new_form_buffer { super }
       return content.html_safe unless @inputs_with_block
       form_buffers.last << content.html_safe
@@ -97,6 +99,13 @@ module ActiveAdmin
     end
 
     private
+
+    # Pass in a method to check if it's a polymorphic association
+    def polymorphic_belongs_to_association?(method)
+      reflection = reflection_for(method)
+      
+      reflection && reflection.macro == :belongs_to && reflection.options[:polymorphic]
+    end
 
     def with_new_form_buffer
       form_buffers << "".html_safe
