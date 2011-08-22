@@ -37,6 +37,17 @@ module ActiveAdmin
         config(:as => "Blog Categories").camelized_resource_name.should == "BlogCategory"
       end
     end
+    
+    describe "plural underscored resource name" do
+      before(:all) do
+        class ::CandyCane; end
+        @config = Resource.new(namespace, CandyCane, {})
+      end
+      
+      it "should return an underscored and pluralized resource name" do
+        config.plural_underscored_resource_name.should == "candy_canes"
+      end
+    end
 
     describe "resource name" do
       it "should return a pretty name" do
