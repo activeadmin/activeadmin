@@ -1,16 +1,7 @@
 # General Configuration
 
-## Admin Users
-
-By default Active Admin will include Devise and create a new model called
-AdminUser. If you would like to use another name, you can pass it in to the
-installer through the user option:
-
-    $> rails generate active_admin:install UserClassName
-
-If you don't want the generator to create any user classes:
-
-    $> rails generate active_admin:install --skip-users
+Below are some common settings you'll find in
+`config/initializers/active_admin.rb`.
 
 ## Authentication
 
