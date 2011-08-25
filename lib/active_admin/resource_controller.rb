@@ -35,6 +35,8 @@ module ActiveAdmin
     include Scoping
 
     class << self
+      # Ensure that this method is available for the DSL
+      public :actions
 
       # Reference to the Resource object which initialized
       # this controller
