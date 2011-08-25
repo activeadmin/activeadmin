@@ -172,6 +172,13 @@ column method:
       column :title
     end
 
+If you define your own set of columns, you can display default actions column by calling default_actions
+
+    index do
+      column :title
+      default_actions
+    end
+
 If the default title does not work for you, pass it as the first argument:
 
     index do
