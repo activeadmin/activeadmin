@@ -21,7 +21,7 @@ module ActiveAdmin
         end
 
         def record_comments
-          @record_comments ||= @record.active_admin_comments.where(:namespace => active_admin_namespace.name)
+          @record_comments ||= @record.active_admin_comments.where(:namespace => active_admin_namespace.name.to_s)
         end
 
         def build_comments
