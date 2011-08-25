@@ -5,10 +5,10 @@
 Render your index page as a set of posts. The post has two main options:
 title and body.
 
-  index :as => :blog do
-    title :my_title # Calls #my_title on each resource
-    body  :my_body  # Calls #my_body on each resource
-  end
+    index :as => :blog do
+      title :my_title # Calls #my_title on each resource
+      body  :my_body  # Calls #my_body on each resource
+    end
 
 ## Post Title
 

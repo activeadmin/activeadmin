@@ -4,5 +4,5 @@ lib/**/*.rb
 --asset docs/images:images
 -
 README.rdoc 
-CHANGELOG.rdoc
+CHANGELOG.md
 docs/**/*.md
