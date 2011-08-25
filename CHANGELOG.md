@@ -1,7 +1,14 @@
 ## Master
 
+Nothing yet
+
+## 0.3.0
+
+326 commits by 35 contributors
+
 ### New Features
 
+* I18n! Now supported in 10 languages!
 * Customizeable CSV (@pcreux, @gregbell)
 * Menus now support `if` and `priority` (Moritz Lawitschka)
 * Rails 3.1 support
@@ -20,6 +27,9 @@
 * CSV downloads have sexy names such as "articles-2011-06-21.csv" (@pcreux)
 * Created `ActiveAdmin::Setting` to easily create settings (@gregbell)
 * New datepicker styles (@mattvague)
+* Set `@page_title` in member action to render a custom title (@gregbell)
+* #248: Settable logout link options in initializer (@gregbell)
+* Added a DependencyChecker that warns if dependencies aren't met (@pcreux)
 
 ### Bug Fixes
 
@@ -32,6 +42,17 @@
 * Fixed CSS float of `.paginated_collection_contents` bug in Firefox (@mattvague)
 * Removed unwanted gradient in IE in attribute table headers (@emzeq)
 * #222: Added `Arbre::Context#length` for Rack servers (@gregbell)
+* #255: Fixed problem with dropdown menus in IE8 and IE9 (@mattvague)
+* #235: Default sort order should use primary_key (@gregbell)
+* #197: Fixed issues with #form params disappearing (@rolfb)
+* #186: Fixes for when `default_namespace = false` (@gregbell)
+* #135: Comments on STI classes redirect correctly (@gregbell)
+* #77: Fixed performance issue where ActiveRecord::Base.all was being called (@pcreux)
+* #332: Fixed Devise redirection when in false namespace (@gregbell)
+* #171: Fixed issue where class names would clash with HTML object names (@gregbell)
+* #381: Fixed issues with Devise < 1.2 (@pcreux)
+* #369: Added support for pluralized model names such as News (@gregbell)
+* #42: Default forms work with polymorphic associations (@mattvague)
 
 ### Dependencies
 
@@ -39,10 +60,43 @@
 * Removed dependency on InheritedViews (@gregbell)
 * Removed Jeweler. Using Bundler and a gemspec (@gregbell)
 
-### Test Suite
+### Contributors
 
-* Removed reloading. Cukes went from 6min to 48s (@gregbell)
-* Upgraded to latest cucumber (@gregbell)
+* Armand du Plessis
+* Aurelio Agundez
+* Bruno Bonamin
+* Chris Ostrowski
+* Corey Woodcox
+* DeLynn Berry
+* Doug Puchalski
+* Fabio Kreusch
+* Greg Bell
+* Ismael G Marin C
+* Jackson Pires
+* Jesper Hvirring Henriksen
+* Josef Šimánek
+* Jørgen Orehøj Erichsen
+* Liborio Cannici
+* Matt Vague
+* Matthew Windwer
+* Moritz Lawitschka
+* Nathan Le Ray
+* Nicolas Mosconi
+* Philippe Creux
+* Rolf Bjaanes
+* Ryan D Johnson
+* Ryan Krug
+* Shay Frendt
+* Steve Klabnik
+* Tiago Rafael Godinho
+* Toby Hede
+* Vijay Dev
+* Víctor Martínez
+* doabit
+* hoverlover
+* nhurst
+* whatthewhat
+* Łukasz Anwajler
 
 
 ## 0.2.2 (2011-05-26)
@@ -120,4 +174,4 @@ of the highlights. 250 commits. Enough said.
 
 ## 0.1.0
 
-* Initial release
+e Initial release
