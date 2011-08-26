@@ -23,6 +23,7 @@ module ActiveAdmin
     class PaginatedCollection < ActiveAdmin::Component
       builder_method :paginated_collection
 
+      attr_reader :collection
 
       # Builds a new paginated collection component
       #
@@ -33,6 +34,11 @@ module ActiveAdmin
       #                             :entry_name - The name to display for this resource collection
       def build(collection, options = {})
         @collection = collection
+
+        unless collection.respond_to?(:num_pages)
+          raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
+        end
+        
         div(page_entries_info(options).html_safe, :class => "pagination_information")
         @contents = div(:class => "paginated_collection_contents")
         build_pagination_with_formats
