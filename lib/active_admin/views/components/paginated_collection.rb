@@ -71,7 +71,7 @@ module ActiveAdmin
         options =  request.query_parameters.except(:commit, :format)
         options[:param_name] = @param_name if @param_name
         
-        text_node paginate(collection, options)
+        text_node paginate(collection, options.symbolize_keys)
       end
 
       # TODO: Refactor to new HTML DSL
