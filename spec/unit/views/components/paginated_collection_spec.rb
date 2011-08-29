@@ -11,6 +11,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
     
     before do
       request.stub!(:query_parameters).and_return({:controller => 'admin/posts', :action => 'index', :page => '1'})
+      controller.params = {:controller => 'admin/posts', :action => 'index'}
     end
 
     context "when specifying collection" do
@@ -36,13 +37,22 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
       
       let(:pagination) { paginated_collection(collection, :param_name => :post_page) }
-      
-      before do
-        controller.params = {:controller => 'admin/posts', :action => 'index'}
-      end 
-      
+            
       it "should customize the page number parameter in pagination links" do
         pagination.find_by_tag('div').last.content.should match(/\/admin\/posts\?post_page=2/)
+      end
+    end
+    
+    context "when specifying :download_links => false option" do
+      let(:collection) do
+        posts = 10.times.inject([]) {|m| m << Post.new }
+        Kaminari.paginate_array(posts).page(1).per(5)
+      end
+      
+      let(:pagination) { paginated_collection(collection, :download_links => false) }
+      
+      it "should not render download links" do
+        pagination.find_by_tag('div').last.content.should_not match(/Download:/)
       end
     end
   end  

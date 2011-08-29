@@ -33,9 +33,11 @@ module ActiveAdmin
       #                            Useful keys:
       #                              :entry_name - The name to display for this resource collection
       #                              :param_name - Parameter name for page number in the links (:page by default)
+      #                              :download_links - Set to false to skip download format links
       def build(collection, options = {})
         @collection = collection
-        @param_name = options.delete(:param_name)
+        @param_name     = options.delete(:param_name)
+        @download_links = options.delete(:download_links)
 
         unless collection.respond_to?(:num_pages)
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
@@ -60,7 +62,7 @@ module ActiveAdmin
 
       def build_pagination_with_formats
         div :id => "index_footer" do
-          build_download_format_links
+          build_download_format_links unless @download_links == false
           build_pagination
         end
       end
