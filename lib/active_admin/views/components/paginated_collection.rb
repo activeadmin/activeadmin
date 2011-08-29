@@ -31,9 +31,11 @@ module ActiveAdmin
       # @param [Hash]  options     These options will be passed on to the page_entries_info
       #                            method.
       #                            Useful keys:
-      #                             :entry_name - The name to display for this resource collection
+      #                              :entry_name - The name to display for this resource collection
+      #                              :param_name - Parameter name for page number in the links (:page by default)
       def build(collection, options = {})
         @collection = collection
+        @param_name = options.delete(:param_name)
 
         unless collection.respond_to?(:num_pages)
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
@@ -64,7 +66,10 @@ module ActiveAdmin
       end
 
       def build_pagination
-        text_node paginate(collection)
+        options =  request.query_parameters.except(:commit, :format)
+        options[:param_name] = @param_name if @param_name
+        
+        text_node paginate(collection, options)
       end
 
       # TODO: Refactor to new HTML DSL
