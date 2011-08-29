@@ -40,4 +40,4 @@ it is set to the name of your Rails.application class name.
 
 To internationalize Active Admin or to change default strings, you can copy
 lib/active_admin/locales/en.yml to your application config/locales directory and
-change its content. You can contribute to the project with your translations to!
+change its content. You can contribute to the project with your translations too!
