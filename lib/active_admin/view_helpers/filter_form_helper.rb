@@ -82,7 +82,7 @@ module ActiveAdmin
                                   :onchange => "document.getElementById('#{method}_numeric').name = 'q[' + this.value + ']';"
       filter_input = text_field current_filter, :size => 10, :id => "#{method}_numeric"
 
-      [ label(method),
+      [ label(method, options[:label]),
         filter_select,
         " ",
         filter_input
