@@ -4,15 +4,16 @@ gemspec
 
 require File.expand_path('../spec/support/detect_rails_version', __FILE__)
 
-rails_version = ENV['RAILS'] || detect_rails_version || "3.1.0.rc10"
+rails_version = ENV['RAILS'] || detect_rails_version || '3.1.0.rc10'
 gem 'rails',          rails_version
 
 case rails_version
 when /^3\.0/
-  gem "meta_search",    '~> 1.0.0'
+  gem 'meta_search',         '~> 1.0.0'
 when /^3\.1/
-  gem "meta_search",    '>= 1.1.0.pre'
-  gem 'sass-rails',     "~> 3.1.0.rc"
+  gem 'meta_search',         '>= 1.1.0.pre'
+  gem 'sass-rails',          '~> 3.1.0.rc'
+  gem 'inherited_resources', '>= 1.3.0'
 else
   raise "Rails #{rails_version} is not supported yet"
 end
