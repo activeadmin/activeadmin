@@ -9,10 +9,11 @@ gem 'rails',          rails_version
 
 case rails_version
 when /^3\.0/
-  gem "meta_search",    '~> 1.0.0'
+  # Do nothing, bundler should figure it out
 when /^3\.1/
-  gem "meta_search",    '>= 1.1.0.pre'
-  gem 'sass-rails',     "~> 3.1.0.rc"
+  # These are the gems you have to have for Rails 3.1 to be happy
+  gem 'sass-rails'
+  gem 'uglifier'
 else
   raise "Rails #{rails_version} is not supported yet"
 end

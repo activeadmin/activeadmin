@@ -9,7 +9,7 @@ namespace :test do
   desc "Run against the important versions of rails"
   task :major_rails_versions do
     current_version = detect_rails_version if File.exists?("Gemfile.lock")
-    ["3.0.10", "3.1.0.rc6"].each do |version|
+    ["3.0.10", "3.1.0"].each do |version|
       puts
       puts
       puts "== Using Rails #{version}"

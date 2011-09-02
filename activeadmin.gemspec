@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency("meta_search", ">= 0.9.2")
   s.add_dependency("devise", ">= 1.1.2")
   s.add_dependency("formtastic", ">= 1.1.0")
-  s.add_dependency("inherited_resources", ">= 0")
+  s.add_dependency("inherited_resources", "< 1.3.0")
   s.add_dependency("kaminari", ">= 0.12.4")
   s.add_dependency("sass", ">= 3.1.0")
   s.add_dependency("fastercsv", ">= 0")
