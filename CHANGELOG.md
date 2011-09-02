@@ -2,6 +2,10 @@
 
 Nothing yet
 
+## 0.3.1
+
+* Only support InheritedResources up to 1.2.2
+
 ## 0.3.0
 
 326 commits by 35 contributors
