@@ -22,6 +22,8 @@ module ActiveAdmin
       def sass_rails_3_1?
         require 'sass/rails/version'
         Sass::Rails::VERSION >= "3.1"
+      rescue LoadError
+        false
       end
     end
   end
