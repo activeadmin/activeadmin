@@ -12,5 +12,9 @@ module Arbre
     end
     alias :bytesize :length
 
+    def method_missing(sym, *args, &block)
+      to_html.send sym, *args, &block
+    end
+
   end
 end
