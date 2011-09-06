@@ -8,6 +8,10 @@ describe Arbre::Context do
     h1 # Add some HTML to the context
   end
 
+  it "should not increment the indent_level" do
+    current_dom_context.indent_level.should == -1
+  end
+
   it "should return a bytesize" do
     current_dom_context.bytesize.should == 10
   end
@@ -16,7 +20,15 @@ describe Arbre::Context do
     current_dom_context.length.should == 10
   end
 
-  it "should not increment the indent_level" do
-    current_dom_context.indent_level.should == -1
+  it "should delegate missing methods to the html string" do
+    current_dom_context.should respond_to(:index)
+    current_dom_context.index('<').should == 0
   end
+
+  it "should use a cached version of the HTML for method delegation" do
+    current_dom_context.should_receive(:to_html).once.and_return("<h1></h1>")
+    current_dom_context.index('<').should == 0
+    current_dom_context.index('<').should == 0
+  end
+
 end
