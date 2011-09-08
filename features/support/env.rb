@@ -86,7 +86,7 @@ end
 
 # Remove all our constants
 Before do
-  # We are cachine classes, but need to manually clear references to
+  # We are caching classes, but need to manually clear references to
   # the controllers. If they aren't clear, the router stores references
   ActiveSupport::Dependencies.clear
 
