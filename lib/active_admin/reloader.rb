@@ -12,7 +12,7 @@ module ActiveAdmin
 
     # Attach to Rails and perform the reload on each request.
     def attach!
-      reloader_class.to_prepare do
+      reloader_class.to_prepare(:active_admin) do
         ActiveAdmin.application.unload!
         Rails.application.reload_routes!
       end
