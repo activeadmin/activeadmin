@@ -16,8 +16,14 @@ describe Arbre::HTML::Tag do
     it "should set the hash of options to the attributes" do
       tag.attributes.should == { :id => "my_id" }
     end
+    
+    it "should set contents to a string if passed a numeric value" do
+      numeric_tag = Arbre::HTML:Tag.new 
+      numeric_tag.build 42, :id => "answer_to_life"
+      numeric_tag.content.should == 42.to_s
+    end
   end
-
+  
   describe "creating a tag 'for' an object" do
     let(:model_name){ mock(:singular => "resource_class")}
     let(:resource_class){ mock(:model_name => model_name) }
