@@ -63,7 +63,9 @@ module ActiveAdmin
     def has_many(association, options = {}, &block)
       options = { :for => association }.merge(options)
       options[:class] ||= ""
-      options[:class] << "inputs has_many_fields"
+      options[:class] << " inputs has_many_fields"
+      
+      sortable = options.delete :sortable
 
       # Add Delete Links
       form_block = proc do |has_many_form|
@@ -76,7 +78,13 @@ module ActiveAdmin
       end
 
       content = with_new_form_buffer do
-        template.content_tag :div, :class => "has_many #{association}" do
+        attributes = { :class => "has_many #{association}" }
+        unless sortable.nil?
+          attributes[:class] << " sortable"
+          attributes['data-sortable-input'] = sortable
+        end
+        
+        template.content_tag :div, attributes do
           form_buffers.last << template.content_tag(:h3, association.to_s.titlecase)
           inputs options, &form_block
 
