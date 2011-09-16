@@ -8,9 +8,32 @@ module Arbre
     end
 
     def length
-      to_html.length
+      cached_html.length
     end
     alias :bytesize :length
+
+    def respond_to?(method)
+      super || cached_html.respond_to?(method)
+    end
+
+    # Webservers treat Arbre::Context as a string. We override
+    # method_missing to delegate to the string representation
+    # of the html.
+    def method_missing(method, *args, &block)
+      if cached_html.respond_to? method
+        cached_html.send method, *args, &block
+      else
+        super
+      end
+    end
+
+    private
+
+    # Caches the rendered HTML so that we don't re-render just to
+    # get the content lenght or to delegate a method to the HTML
+    def cached_html
+      @cached_html ||= to_html
+    end
 
   end
 end
