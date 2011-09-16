@@ -24,7 +24,8 @@ end
 
 # Run specs and cukes
 task :test do
-  cmd "bundle exec rspec spec"
+  cmd "bundle exec rspec spec/unit"
+  cmd "bundle exec rspec spec/integration"
   cmd "bundle exec cucumber features"
 end
 

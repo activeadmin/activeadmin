@@ -20,3 +20,17 @@ can also render a partial at any point.
         render "some_partial"
       end
     end
+
+If you'd like to keep the default active_admin look, you can also use "attributes_table":
+
+    ActiveAdmin.register Ad do
+      show do |ad|
+        attributes_table do
+          row :title
+          row :image do
+            image_tag(ad.image.url)
+          end
+        end
+        active_admin_comments
+      end
+    end

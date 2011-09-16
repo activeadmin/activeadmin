@@ -20,6 +20,9 @@ module ActiveAdmin
 
     # The title which gets displayed in the main layout
     setting :site_title, ""
+    
+    # Set the site title link href (defaults to AA dashboard)
+    setting :site_title_link, ""
 
     # Load paths for admin configurations. Add folders to this load path
     # to load up other resources for administration. External gems can

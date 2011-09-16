@@ -30,6 +30,15 @@ describe ActiveAdmin::Application do
     application.site_title = "New Title"
     application.site_title.should == "New Title"
   end
+  
+  it "should store the site's title link" do
+    application.site_title_link.should == ""
+  end
+
+  it "should set the site's title link" do
+    application.site_title_link = "http://www.mygreatsite.com"
+    application.site_title_link.should == "http://www.mygreatsite.com"
+  end
 
   it "should have a view factory" do
     application.view_factory.should be_an_instance_of(ActiveAdmin::ViewFactory)

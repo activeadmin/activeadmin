@@ -4,7 +4,7 @@ gemspec
 
 require File.expand_path('../spec/support/detect_rails_version', __FILE__)
 
-rails_version = ENV['RAILS'] || detect_rails_version || "3.1.0.rc10"
+rails_version = ENV['RAILS'] || detect_rails_version || "3.1.0"
 gem 'rails',          rails_version
 
 case rails_version
