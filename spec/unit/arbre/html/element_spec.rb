@@ -96,7 +96,7 @@ describe Arbre::HTML::Element do
       it "should html escape the string" do
         string = "Goodbye <br />"
         element.content = string
-        element.content.to_html.should == "Goodbye &lt;br /&gt;"
+        element.to_html.should == "Goodbye &lt;br /&gt;"
       end
     end
 
