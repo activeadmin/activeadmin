@@ -33,13 +33,14 @@ on Rails 3 application. To install, simply add the following to your Gemfile:
   # Gemfile in Rails <= 3.1
   gem 'activeadmin'
 
-If you are using Rails >= 3.1, you must also include sass-rails (if already present in assets group, move it out):
+
+If you are using Rails >= 3.1, you must also include a beta version of sass-rails (if already present in assets group, move it out):
 
   # Gemfile in Rails >= 3.1
   gem 'activeadmin'
   gem 'sass-rails'
 
-and add active_admin assets into precompiling by adding the following line into your config/environments/production.rb:
+and add activeadmin assets into precompiling by adding the following line into your config/environments/production.rb:
 
   config.assets.precompile += %w[active_admin.css active_admin.js]
 
