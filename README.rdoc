@@ -34,7 +34,7 @@ on Rails 3 application. To install, simply add the following to your Gemfile:
   gem 'activeadmin'
 
 
-If you are using Rails >= 3.1, you must also include a beta version of sass-rails (if already present in assets group, move it out):
+If you are using Rails >= 3.1, you must also include sass-rails (if already present in assets group, move it out):
 
   # Gemfile in Rails >= 3.1
   gem 'activeadmin'
