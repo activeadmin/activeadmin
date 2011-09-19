@@ -32,12 +32,19 @@ on Rails 3 application. To install, simply add the following to your Gemfile:
   # Gemfile
   gem 'activeadmin'
 
-If you are using Rails >= 3.1, you must also include a beta version of MetaSearch and sass-rails:
+
+If you are using Rails >= 3.1, you must also include a beta version of sass-rails (if already present in assets group, move it out):
 
   # Gemfile in Rails >= 3.1
   gem 'activeadmin'
   gem 'sass-rails'
-  gem "meta_search",    '>= 1.1.0.pre'
+
+and add activeadmin assets into precompiling by adding the following line into your config/environments/production.rb:
+
+  config.assets.precompile += %w[active_admin.css active_admin.js]
+
+There is also some issue with precompiling activeadmin images in Rails 3.1.0, it is fixed in Rails 3.1.1.rc1.
+
 
 After updating your bundle, run the installer
 
