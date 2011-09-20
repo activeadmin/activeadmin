@@ -55,6 +55,7 @@ module ActiveAdmin
           I18n.stub(:translate) { 'Categorie' }
         end
         it "should return the plural version defined in the i18n if available" do
+          config.resource.model_name.should_receive(:i18n_key).twice
           config.plural_resource_name.should == "Categorie"
         end
       end
