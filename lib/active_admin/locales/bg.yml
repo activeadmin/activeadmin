@@ -1,0 +1,40 @@
+bg:
+  active_admin:
+    dashboard: Табло
+    dashboard_welcome:
+      welcome: "Добре дошли в Active Admin. Това е таблото по подразбиране."
+      call_to_action: "За да добавите секции, проверете 'app/admin/dashboards.rb'"
+    view: "Преглед"
+    edit: "Редакция"
+    delete: "Изтриване"
+    delete_confirmation: "Сигурни ли сте, че искате да изтриете това?"
+    new_model: "Създай %{model}"
+    edit_model: "Редактирай %{model}"
+    delete_model: "Изтрий %{model}"
+    details: "%{model} Детайли"
+    cancel: "Отказ"
+    empty: "Празни"
+    previous: "Назад"
+    next: "Напред"
+    download: "Свали:"
+    has_many_new: "Добави нов %{model}"
+    has_many_delete: "Изтрий"
+    filter: "Филтър"
+    clear_filters: "Изчисти филтрите"
+    search_field: "Търси %{field}"
+    equal_to: "Съответства на"
+    greater_than: "По-голямо от"
+    less_than: "По-малко от"
+    main_content: "Моля, приложи %{model}#main_content за визуализация на съдържанието."
+    logout: "Изход"
+    sidebars:
+      filters: "Филтри"
+    pagination:
+      empty: "%{model} не е открит"
+      one: "Показване на <b>1</b> %{model}"
+      one_page: "Показване на <b>всички %{n}</b> %{model}"
+      multiple: "Показване на %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> от <b>%{total}</b> общо"
+    any: "Всеки"
+    blank_slate:
+      content: "Няма %{resource_name} все още."
+      link: "Създай връзка"
