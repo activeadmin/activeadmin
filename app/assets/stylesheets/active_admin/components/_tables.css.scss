@@ -1,0 +1,66 @@
+// ----------------------------------- Tables 
+
+table tr {
+  td {
+    vertical-align: top;
+  }
+}
+
+// --------- Index Tables 
+
+table.index_table {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 0;
+  border-spacing: 0;
+
+  th { 
+    @include section-header;
+    text-align: left;
+    padding-left: $cell-horizontal-padding;
+    padding-right: $cell-horizontal-padding;
+
+    a, a:link, a:visited {
+      color: $section-header-text-color;
+      text-decoration: none;
+      display: block;
+    }
+
+    &.sortable a {
+      background: url(active_admin_image_path('orderable.png')) no-repeat 0 4px; padding-left: 13px;
+    }
+
+    &.sorted-asc a { background-position: 0 -27px; }
+    &.sorted-desc a {  background-position: 0 -56px;}
+
+    &.sorted-asc, &.sorted-desc {
+      @include gradient(darken($secondary-gradient-start, 5%), darken($secondary-gradient-stop, 5%));
+      border-bottom: 1px solid $secondary-gradient-stop;
+    }
+  }
+
+  tr.even td { background: $table-stripe-color; }
+
+  td {
+    padding: 10px $cell-horizontal-padding 8px $cell-horizontal-padding;
+    border-bottom: 1px solid #e8e8e8;
+    vertical-align: top;
+  }
+}
+
+// --------- Tables inside Panels
+
+.panel_contents table {
+  margin-top: 5px;
+  th { 
+    padding-top: 10px;
+    background: none;
+    color: $primary-color;
+    @include no-shadow;
+    @include text-shadow;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ccc;
+  }
+  tr.odd td { background: darken($table-stripe-color, 3%); }
+  tr.even td { background: $table-stripe-color; }
+}
