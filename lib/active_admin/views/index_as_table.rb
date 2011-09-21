@@ -94,7 +94,7 @@ module ActiveAdmin
 
       def build(page_config, collection)
         table_options = {
-          :id => active_admin_config.plural_resource_name.underscore,
+          :id => active_admin_config.plural_underscored_resource_name,
           :sortable => true,
           :class => "index_table",
           :i18n => active_admin_config.resource
