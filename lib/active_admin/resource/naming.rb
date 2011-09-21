@@ -40,7 +40,11 @@ module ActiveAdmin
           end
         end
       end
-
+      
+      # Returns the plural and underscored version of this resource. Useful for element id's.
+      def plural_underscored_resource_name
+        plural_resource_name.underscore.gsub(/\s/, '_')
+      end
     end
   end
 end
