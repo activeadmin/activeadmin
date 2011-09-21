@@ -25,36 +25,52 @@ body {
 // ----------------------------------- Page Title Bar 
 #title_bar {
   @include section-header;
+  @include clearfix;
+  @include box-sizing(border-box);
+  display: table;
+  width: 100%;
   position: relative; 
   margin: 0; 
   padding: 10px $horizontal-page-margin; 
 
+  #titlebar_left, #titlebar_right {
+    height: 50px;
+    vertical-align: middle;
+    display: table-cell;
+  }
+  
+  #titlebar_right {
+    text-align: right;
+  }
+  
   h2 { 
-    margin: 12px 0 5px 0; 
+    margin: 0;
     padding: 0; 
     font-size: 2.6em;
     font-weight: bold;
   }
 
   .action_items { 
-    position: absolute; 
-    right: $horizontal-page-margin; 
-    top: 28px;
-
     a { 
       @include light-button; 
       @include icon(#777, 0.8em); 
       @include gradient(#f9f9f9, #dddbdb);
+      display: inline-block;
       padding: .8em 1.5em .7em 1.5em;
       border: 1px solid #f8f8f8;
       span.icon { vertical-align: bottom; margin-right: 4px;} 
       &:hover{ @include icon-color(#000); }
-      &:active { border: inherit; }
     }
   }
 }
 
-// ----------------------------------- Main Structure 
+// ----------------------------------- Main Structure
+
+#wrapper {
+  display: table;
+  width: 100%;
+}
+
 #active_admin_content { 
   margin: 0; 
   padding: 25px $horizontal-page-margin; 
@@ -111,9 +127,12 @@ a.button, input[type=submit] { @include dark-button; }
 
 // ----------------------------------- Breadcrumbs 
 .breadcrumb {
-  text-transform: uppercase;
+  display: block;
   font-size: 0.9em;
   font-weight: normal;
+  line-height: 1.0em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
 
   a, a:link {
     color: #8a949e ;
