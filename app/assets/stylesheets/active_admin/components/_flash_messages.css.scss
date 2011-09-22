@@ -1,10 +1,9 @@
 body.logged_in {
   .flash {
-    @include primary-gradient;
+    @include gradient(#f7f1d3, #f5edc5);
     @include text-shadow(#fafafa);
-    background-color: #a24a42;
-    border: none;
-    color: #fff;
+    border-bottom: 1px solid #eee098;
+    color: #cb9810;
     font-weight: bold;
     font-size: 1.1em;
     line-height: 1.0em;
