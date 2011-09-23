@@ -6,9 +6,11 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
   config.site_title = "<%= Rails.application.class.name.split("::").first.titlecase %>"
-  
-  # Set the link url for the title (to take users to your main site)
-  config.site_title_link = "/"
+
+  # Set the link url for the title. For example, to take 
+  # users to your main site. Defaults to no link.
+  #
+  # config.site_title_link = "/"
 
   # == Default Namespace
   #
