@@ -35,8 +35,16 @@ module ActiveAdmin
 
         protected
 
+        # If #to_s is defined on the resource, use it for the title. Otherwise
+        # show the resource name and it's id.
         def default_title
-          "#{active_admin_config.resource_name} ##{resource.id}"
+          # Object#to_s returns something like this:
+          # => "#<Object:0x007fa1d454b1e0>"
+          if resource.to_s.starts_with? '#<'
+            "#{active_admin_config.resource_name} ##{resource.id}"
+          else
+            resource.to_s
+          end
         end
 
         module DefaultMainContent
