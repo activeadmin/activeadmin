@@ -2,6 +2,51 @@
 
 Nothing yet
 
+## 0.3.2
+
+45 commits by 15 contributors
+
+### Enhancements
+
+* Site title can now be a link. Use config.site_title_link in
+  config/initializers/active_admin.rb
+* i18n support for Japanese
+* i18n support for Bulgarian
+* i18n support for Swedish
+
+### Bug Fixes
+
+* DeviseGenerator respects singular table names
+* Active Admin no longer assumes sass-rails is installed
+* Arbre::Context passes methods to the underlying html which fixes
+  issues on different types of servers (and on Heroku)
+* #45: Fix for multibyte characters (@tricknotes)
+* #505: Fix titlebar height when no breadcrumb (@mattvague)
+* Fixed vertical align in dashboard
+* Fixed i18n path's for multi-word model names
+
+### Dependencies
+
+* Formtastic 2.0.0 breaks Active Admin. Locking to < 2.0.0
+
+### Contributors
+
+* Amiel Martin
+* Christian Hjalmarsson
+* Edgars Beigarts
+* Greg Bell
+* Jan Dupal
+* Joe Van
+* Mark Roghelia
+* Mathieu Martin
+* Matt Vague
+* Philippe Creux
+* Ryunosuke SATO
+* Sam Vincent
+* Trace Wax
+* Tsvetan Roustchev
+* l4u
+
 ## 0.3.1
 
 * Only support InheritedResources up to 1.2.2
