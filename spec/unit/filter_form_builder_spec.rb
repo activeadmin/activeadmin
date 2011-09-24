@@ -56,6 +56,15 @@ describe ActiveAdmin::ViewHelpers::FilterFormHelper do
     it "should label a text field with search" do
       body.should have_tag('label', 'Search Title')
     end
+
+    it "should translate the label for text field" do
+      begin
+        I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => "Name" } } })
+        body.should have_tag('label', 'Search Name')
+      ensure
+        I18n.backend.reload!
+      end
+    end
   end
 
   describe "text attribute" do

@@ -29,11 +29,11 @@ module ActiveAdmin
 
       # Returns the default label for a given attribute
       # Will use ActiveModel I18n if possible
-      def default_filter_label(method)
-        if @object.base.respond_to?(:human_attribute_name)
-          @object.base.human_attribute_name(method)
+      def humanized_method_name
+        if object.base.respond_to?(:human_attribute_name)
+          object.base.human_attribute_name(method)
         else
-          method.to_s.titlecase
+          method.to_s.send(builder.label_str_method)
         end
       end
 
