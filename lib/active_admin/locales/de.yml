@@ -1,0 +1,40 @@
+de:
+  active_admin:
+    dashboard: Übersicht
+    dashboard_welcome:
+      welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
+      call_to_action: "Siehe 'app/admin/dashboards.rb', um Übersichts-Bereiche hinzuzufügen."
+    view: "Anzeigen"
+    edit: "Bearbeiten"
+    delete: "Löschen"
+    delete_confirmation: "Wollen Sie dieses Element wirklich löschen?"
+    new_model: "%{model} erstellen"
+    edit_model: "%{model} bearbeiten"
+    delete_model: "%{model} löschen"
+    details: "%{model} Details"
+    cancel: "Abbrechen"
+    empty: "Leer"
+    previous: "Zurück"
+    next: "Weiter"
+    download: "Herunterladen:"
+    has_many_new: "%{model} hinzufügen"
+    has_many_delete: "Löschen"
+    filter: "Filtern"
+    clear_filters: "Filter entfernen"
+    search_field: "Durchsuche %{field}"
+    equal_to: "Gleich"
+    greater_than: "Größer als"
+    less_than: "Kleiner als"
+    main_content: "Bitte implementieren Sie %{model}#main_content, um Inhalte anzuzeigen."
+    logout: "Abmelden"
+    sidebars:
+      filters: "Filter"
+    pagination:
+      empty: "Keine %{model} gefunden"
+      one: "Zeige <b>1</b> %{model}"
+      one_page: "Zeige <b>alle %{n}</b> %{model}"
+      multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
+    any: "Alle"
+    blank_slate:
+      content: "Es gibt noch keine %{resource_name}."
+      link: "Erstellen"
