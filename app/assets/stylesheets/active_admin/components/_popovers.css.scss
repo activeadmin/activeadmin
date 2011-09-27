@@ -1,0 +1,79 @@
+// TESTING
+#list_popover {
+  top: 25%;
+  left: 2%;
+}
+
+#content_popover {
+  top: 25%;
+  left: 14%;
+}
+
+.popover {
+  display: inline-block;
+  position: absolute;
+  background-color: white;
+  padding: 3px;
+  box-shadow: rgba(0,0,0,0.3) 0 1px 5px;
+  background-color: $primary-color;
+  border-radius: 3px;
+  width: 120px;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 10px;
+    border-width: 0 6px 6px;
+    border-style: solid;
+    border-color: $primary-color transparent;
+    display: block;
+    width: 0;
+  }
+  
+  .popover-content {
+    display: block;
+    background-color: #FFF;
+    border-radius: 3px;
+    margin: 0;
+    padding: 8px;
+  }
+  
+}
+  
+// -------------------------------------- Popover with action list
+
+.popover {
+  ul.popover-content {
+    list-style-type: none;
+    padding: 0;
+  
+    li {
+      display: block;
+      border-bottom: solid 1px #ebebeb;
+    
+      a {
+        display: block;
+        font-size: 0.9em;
+        font-weight: bold;
+        padding: 6px 8px;
+        text-decoration: none;
+      
+        &:hover {
+          @include gradient(#75a1c2, #608cb4);
+          color: #FFF;
+        }
+      
+        &:active {
+          @include gradient(#608cb4, #75a1c2);
+          color: #FFF;
+        }
+      
+      }
+    
+      &:last-child {
+        border: none;
+      }
+    }
+  }
+}
