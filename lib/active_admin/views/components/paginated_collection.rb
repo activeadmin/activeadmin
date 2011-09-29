@@ -23,6 +23,7 @@ module ActiveAdmin
     class PaginatedCollection < ActiveAdmin::Component
       builder_method :paginated_collection
 
+      attr_reader :collection
 
       # Builds a new paginated collection component
       #
@@ -30,9 +31,18 @@ module ActiveAdmin
       # @param [Hash]  options     These options will be passed on to the page_entries_info
       #                            method.
       #                            Useful keys:
-      #                             :entry_name - The name to display for this resource collection
+      #                              :entry_name - The name to display for this resource collection
+      #                              :param_name - Parameter name for page number in the links (:page by default)
+      #                              :download_links - Set to false to skip download format links
       def build(collection, options = {})
         @collection = collection
+        @param_name     = options.delete(:param_name)
+        @download_links = options.delete(:download_links)
+
+        unless collection.respond_to?(:num_pages)
+          raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
+        end
+        
         div(page_entries_info(options).html_safe, :class => "pagination_information")
         @contents = div(:class => "paginated_collection_contents")
         build_pagination_with_formats
@@ -52,13 +62,16 @@ module ActiveAdmin
 
       def build_pagination_with_formats
         div :id => "index_footer" do
-          build_download_format_links
+          build_download_format_links unless @download_links == false
           build_pagination
         end
       end
 
       def build_pagination
-        text_node paginate(collection)
+        options =  request.query_parameters.except(:commit, :format)
+        options[:param_name] = @param_name if @param_name
+        
+        text_node paginate(collection, options.symbolize_keys)
       end
 
       # TODO: Refactor to new HTML DSL
