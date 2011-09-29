@@ -32,7 +32,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
     
     context "when specifying :param_name option" do
       let(:collection) do
-        posts = 10.times.inject([]) {|m| m << Post.new }
+        posts = 10.times.inject([]) {|m, _| m << Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
       
@@ -45,7 +45,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
     
     context "when specifying :download_links => false option" do
       let(:collection) do
-        posts = 10.times.inject([]) {|m| m << Post.new }
+        posts = 10.times.inject([]) {|m, _| m << Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
       
