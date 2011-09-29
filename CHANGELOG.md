@@ -1,6 +1,10 @@
 ## Master
 
-Nothing yet
+### Enhancements
+
+* [#428][]: Paginated Collection now supports :param_name and :download_links.
+            These two additions allow you to use the paginated_collection
+            component multiple times on show screens. ([@samvincent][])
 
 ## 0.3.2
 
@@ -258,6 +262,7 @@ of the highlights. 250 commits. Enough said.
 [#332]: https://github.com/gregbell/active_admin/issues/332
 [#369]: https://github.com/gregbell/active_admin/issues/369
 [#381]: https://github.com/gregbell/active_admin/issues/381
+[#428]: https://github.com/gregbell/active_admin/issues/428
 [#505]: https://github.com/gregbell/active_admin/issues/505
 [@doug316]: https://github.com/doug316
 [@emzeq]: https://github.com/emzeq
@@ -272,3 +277,4 @@ of the highlights. 250 commits. Enough said.
 [@rolfb]: https://github.com/rolfb
 [@shayfrendt]: https://github.com/shayfrendt
 [@tricknotes]: https://github.com/tricknotes
+[@samvincent]: https://github.com/samvincent
