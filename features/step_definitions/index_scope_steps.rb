@@ -2,6 +2,10 @@ Then /^I should see the scope "([^"]*)"$/ do |name|
   Then %{I should see "#{name}" within ".scopes"}
 end
 
+Then /^I should not see the scope "([^"]*)"$/ do |name|
+  Then %{I should not see "#{name}" within ".scopes"}
+end
+
 Then /^I should see the scope "([^"]*)" selected$/ do |name|
   Then %{I should see "#{name}" within ".scopes span.selected"}
 end
