@@ -1,0 +1,26 @@
+.pagination_information { 
+  float: right;
+  margin-bottom: 5px;
+  font-size: 0.95em;
+  color: #b3bcc1;
+  b { color: #5c6469; }
+}
+
+.paginated_collection_contents { 
+  clear: both;
+}
+
+.pagination { 
+  display: inline; 
+  font-size: 0.9; 
+  margin-left: 10px; 
+
+  a { @include light-button; }
+  span.page.current { @include default-button; }
+  a, span.page.current { 
+    @include rounded(0px);
+    margin-right: 4px; 
+    padding: 2px 5px;
+  }
+  span.page.current { padding-left: 7px; }
+}
