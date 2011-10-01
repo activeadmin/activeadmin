@@ -16,6 +16,7 @@ table.index_table {
 
   th { 
     @include section-header;
+    border-right: none;
     text-align: left;
     padding-left: $cell-horizontal-padding;
     padding-right: $cell-horizontal-padding;
@@ -37,6 +38,11 @@ table.index_table {
       @include gradient(darken($secondary-gradient-start, 5%), darken($secondary-gradient-stop, 5%));
       border-bottom: 1px solid $secondary-gradient-stop;
     }
+    
+    &:last-child {
+      border-right: solid 1px #d9d9d9;
+    }
+    
   }
 
   tr.even td { background: $table-stripe-color; }
