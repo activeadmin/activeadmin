@@ -64,3 +64,34 @@ table.index_table {
   tr.odd td { background: darken($table-stripe-color, 3%); }
   tr.even td { background: $table-stripe-color; }
 }
+
+// -------------------------------------- Resource Attributes Table 
+.attributes_table { overflow: hidden; }
+
+.attributes_table table {
+  th, td {
+    padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
+    vertical-align: top;
+    border-bottom: 1px solid #e8e8e8; 
+  }
+  th {
+    @include no-shadow;
+    @include no-gradient;
+    width: 150px;
+    font-size: 0.9em;
+    padding-left: 0;
+    text-transform: uppercase;
+    color: $primary-color;
+    @include text-shadow;
+  }
+  td {
+    .empty {
+      color: #bbb;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+  }
+}
+
+.sidebar_section .attributes_table th { width: 50px; }
