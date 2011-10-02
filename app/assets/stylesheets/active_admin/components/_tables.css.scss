@@ -36,7 +36,6 @@ table.index_table {
 
     &.sorted-asc, &.sorted-desc {
       @include gradient(darken($secondary-gradient-start, 5%), darken($secondary-gradient-stop, 5%));
-      border-bottom: 1px solid $secondary-gradient-stop;
     }
     
     &:last-child {
