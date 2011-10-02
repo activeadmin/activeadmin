@@ -1,13 +1,14 @@
-// TESTING
-#list_popover {
-  top: 25%;
-  left: 2%;
-}
-
-#content_popover {
-  top: 25%;
-  left: 14%;
-}
+//// TESTING
+//#list_popover {
+//  top: 25%;
+//  left: 2%;
+//}
+//
+//#content_popover {
+//  top: 25%;
+//  left: 14%;
+//}
+//
 
 .popover {
   display: inline-block;
@@ -31,7 +32,7 @@
     width: 0;
   }
   
-  .popover-content {
+  .popover_contents {
     display: block;
     background-color: #FFF;
     border-radius: 3px;
@@ -44,7 +45,7 @@
 // -------------------------------------- Popover with action list
 
 .popover {
-  ul.popover-content {
+  ul.popover_contents {
     list-style-type: none;
     padding: 0;
   

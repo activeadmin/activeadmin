@@ -24,6 +24,8 @@ module ActiveAdmin
             build_scopes
           end
 
+          build_batch_action_popover
+
           if collection.any?
             render_index
           else
@@ -44,6 +46,19 @@ module ActiveAdmin
             link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format))
           end
           text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
+        end
+
+        def build_batch_action_popover
+          insert_tag view_factory.popover do
+            "Popover contents"
+          end
+
+          #
+          #view_factory.action_list_popover do
+          #  action "Delete Selected", "#"
+          #  action "Flag Selected", "#"
+          #  action "Export Selected", "#"
+          #end
         end
 
         def build_scopes
