@@ -1,27 +1,41 @@
 @mixin default-button {
-  @include shadow;
+  //@include shadow;
   @include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
+  @include border-colors(#d7d7d7, #c9caca, #bbbcbc);
   @include rounded(200px);
   @include text-shadow(#000);
+  @include box-shadow(0 1px 0px rgba(0,0,0,0.12), 0 0 0 1px #FFF inset);
+  border: solid 1px #c9caca;
   text-decoration: none;
   margin-right: 3px;
   font-weight: bold;
   font-size: 1.0em;
-  cursor: pointer;
-  padding: .6em 1.4em .5em 1.3em;
-  border: none;
+  padding: 6px 16px 5px;
   color: #efefef;
-  &:hover { color: #fff; @include icon-color(#fff); @include shadow(0, 1px, 3px, #888) }
-  &:active { @include inset-shadow(0, 1px, 2px, #000); }
+  
+  &:hover {
+    color: #fff;
+    @include icon-color(#fff);
+  }
+  &:active {
+    @include inset-shadow(0, 1px, 2px, #000);
+  }
 }
 
 @mixin light-button {
   @include default-button;
-  @include gradient(#f9f9f9, #dddbdb);
+  @include gradient(#fbfbfb, #e0e0e0);
   @include text-shadow;
   color: #777;
-  &:hover { color: #444; @include icon-color(#444) }
-  &:active { @include inset-shadow; }
+  &:hover {
+    color: #444;
+    @include icon-color(#444);
+  }
+  &:active {
+    @include inset-shadow;
+  }
 }
 
-@mixin dark-button { @include default-button; }
+@mixin dark-button {
+  @include default-button;
+}

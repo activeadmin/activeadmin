@@ -11,7 +11,7 @@
 }
 
 .pagination { 
-  display: inline; 
+  float: right; 
   font-size: 0.9; 
   margin-left: 10px; 
 
@@ -23,4 +23,8 @@
     padding: 2px 5px;
   }
   span.page.current { padding-left: 7px; }
+}
+
+.download_links {
+  float: left;
 }
