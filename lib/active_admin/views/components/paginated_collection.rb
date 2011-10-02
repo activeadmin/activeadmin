@@ -65,7 +65,6 @@ module ActiveAdmin
           build_pagination
           div(page_entries_info(options).html_safe, :class => "pagination_information")
           build_download_format_links unless @download_links == false
-          
         end
       end
 
