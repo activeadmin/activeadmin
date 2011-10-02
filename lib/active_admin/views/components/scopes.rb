@@ -6,17 +6,21 @@ module ActiveAdmin
     class Scopes < ActiveAdmin::Component
       builder_method :scopes_renderer
 
+      include ActiveAdmin::ScopeChain
+
       def default_class_name
         "scopes table_tools_segmented_control"
       end
-      
+
       def tag_name
         'ul'
       end
 
       def build(scopes)
-        scopes.each do |scope|
-          build_scope(scope) if call_method_or_proc_on(self, scope.display_if_block)
+        unless current_filter_search_empty?
+          scopes.each do |scope|
+            build_scope(scope) if call_method_or_proc_on(self, scope.display_if_block)
+          end
         end
       end
 
@@ -53,7 +57,9 @@ module ActiveAdmin
         end
       end
 
-      include ActiveAdmin::ScopeChain
+      def current_filter_search_empty?
+        collection.empty? && params.include?(:q)
+      end
 
       # Return the count for the scope passed in.
       def get_scope_count(scope)
