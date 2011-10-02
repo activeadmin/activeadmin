@@ -28,11 +28,8 @@
   .action_items { 
     a { 
       @include light-button; 
-      @include icon(#777, 0.8em); 
-      @include gradient(#f9f9f9, #dddbdb);
       display: inline-block;
       padding: .8em 1.5em .7em 1.5em;
-      border: 1px solid #f8f8f8;
       span.icon { vertical-align: bottom; margin-right: 4px;} 
       &:hover{ @include icon-color(#000); }
     }
