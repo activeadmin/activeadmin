@@ -17,6 +17,8 @@ module ActiveAdmin
         def main_content
           build_scopes
 
+          build_batch_action_popover
+
           if collection.any?
             render_index
           else
@@ -29,6 +31,19 @@ module ActiveAdmin
         end
 
         protected
+
+        def build_batch_action_popover
+          insert_tag view_factory.popover do
+            "Popover contents"
+          end
+
+          #
+          #view_factory.action_list_popover do
+          #  action "Delete Selected", "#"
+          #  action "Flag Selected", "#"
+          #  action "Export Selected", "#"
+          #end
+        end
 
         def build_scopes
           if active_admin_config.scopes.any?

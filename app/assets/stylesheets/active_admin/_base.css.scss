@@ -24,6 +24,10 @@ body {
   color: $text-color;
 }
 
+// ----------------------------------- Random
+
+.hidden { display: none; }
+
 // ----------------------------------- Page Title Bar 
 #title_bar {
   @include section-header;

@@ -9,7 +9,9 @@ module ActiveAdmin
               :header             => ActiveAdmin::Views::HeaderRenderer,
               :dashboard_section  => ActiveAdmin::Views::DashboardSection,
               :index_scopes       => ActiveAdmin::Views::Scopes,
-              :blank_slate        => ActiveAdmin::Views::BlankSlate
+              :blank_slate        => ActiveAdmin::Views::BlankSlate,
+              :popover            => ActiveAdmin::Views::Popover
+              
 
     # Register All The Pages
     register  :dashboard_page     => ActiveAdmin::Views::Pages::Dashboard,
