@@ -17,7 +17,8 @@ module ActiveAdmin
         def main_content
           div :class => "table_tools" do
             a :class => 'table_tools_button', :href => "#" do
-              "Batch Actions"
+              text_node "Batch Actions"
+              span :class => "arrow"
             end
             
             build_scopes

@@ -1,6 +1,21 @@
 .table_tools {
-  dipslay: block;
+  display: block;
+  margin-bottom: 14px;
   width: 100%;
+}
+
+.table_tools {
+  .table_tools_button + .table_tools_button {
+    margin-left: 6px;
+  }
+  
+  .table_tools_button + .table_tools_segmented_control {
+    margin-left: 6px;
+  }
+  
+  .table_tools_segmented_control + .table_tools_button {
+    margin-left: 6px;
+  }
 }
 
 a.table_tools_button {
@@ -9,11 +24,23 @@ a.table_tools_button {
   color: #777;
   text-decoration: none;
   padding: 4px 13px;
+  
+  .arrow {
+    border-color: #777 transparent transparent;
+    border-style: solid;
+    border-width: 3px 3px 0;
+    height: 0;
+    position: relative;
+    top: 8px;
+    right: -2px;
+    width: 0;
+  }
 }
 
 .table_tools_segmented_control {
   display: inline-block;
   list-style-type: none;
+  margin: 0;
   padding: 0;
   
   li {
@@ -47,7 +74,11 @@ a.table_tools_button {
       a {
         @include gradient(#eeeeee, #f9f9f9);
         @include box-shadow(0 1px 0px rgba(0,0,0,0.12), 0 1px 0px 0 rgba(0,0,0,0.05) inset);
+        cursor: default;
         
+        &:hover {
+          color: #777;
+        }
       }
     }
   }
