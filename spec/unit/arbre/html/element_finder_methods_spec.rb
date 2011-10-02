@@ -49,6 +49,32 @@ describe Arbre::HTML::Element, "Finder Methods" do
     end
   end
 
-  describe "finding an element by id"
-  describe "finding an element by a class name"
+  #TODO: describe "finding an element by id"
+  
+  describe "finding an element by a class name" do
+    it "should return 0 when no elements exist" do
+      div.get_elements_by_class_name("my_class").size.should == 0
+    end
+    it "should return a child element" do
+      html = div do
+        div :class => "some_class"
+        div :class => "my_class"
+      end
+      elements = html.get_elements_by_class_name("my_class")
+      elements.size.should == 1
+      elements[0].should be_instance_of(Arbre::HTML::Div)
+    end
+
+    it "should return multple child elements" do
+      html = div do
+        div :class => "some_class"
+        div :class => "my_class"
+        div :class => "my_class"
+      end
+      elements = html.get_elements_by_class_name("my_class")
+      elements.size.should == 2
+      elements[0].should be_instance_of(Arbre::HTML::Div)
+      elements[1].should be_instance_of(Arbre::HTML::Div)
+    end
+  end
 end

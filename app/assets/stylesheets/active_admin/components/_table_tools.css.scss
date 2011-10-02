@@ -46,7 +46,7 @@ a.table_tools_button {
     &.selected {
       a {
         @include gradient(#eeeeee, #f9f9f9);
-        @include box-shadow(0 1px 0px rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.05) inset);
+        @include box-shadow(0 1px 0px rgba(0,0,0,0.12), 0 1px 0px 0 rgba(0,0,0,0.05) inset);
         
       }
     }
