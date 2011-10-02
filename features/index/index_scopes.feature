@@ -26,7 +26,24 @@ Feature: Index Scoping
     And I should see the scope "All" with the count 10
     And I should see 10 posts in the table
 
-  Scenario: Viewing resources with mulitple scopes as blocks
+  Scenario: Viewing resources with one scope and no results
+	Given 10 posts exist
+	And an index configuration of:
+	 """
+ 	 ActiveAdmin.register Post do
+	   scope :all, :default => true
+	   filter :title
+	 end
+	 """
+
+	When I fill in "Search Title" with "Hello World 17"
+    And I press "Filter"
+	And I should not see the scope "All"
+
+    When I am on the index page for posts
+	Then I should see the scope "All" selected
+
+  Scenario: Viewing resources with multiple scopes as blocks
     Given 10 posts exist
     And an index configuration of:
       """

@@ -7,8 +7,10 @@ module ActiveAdmin
       builder_method :scopes_renderer
 
       def build(scopes)
-        scopes.each do |scope|
-          build_scope(scope)
+        unless collection.empty? and params.include?( :q )
+          scopes.each do |scope|
+            build_scope(scope) if call_method_or_proc_on(self, scope.display_if_block)
+          end
         end
       end
 
