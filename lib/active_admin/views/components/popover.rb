@@ -5,19 +5,22 @@ module ActiveAdmin
       builder_method :popover
       
       def default_class_name
-        'popover hidden'
+        'popover'
       end
       
       def build(*args, &block)
         
         options = args.extract_options!
         
-        super(options)
- 
         self.id = options[:id]
+        
+        super(options)
         
         @contents ||= div(:class => "popover_contents")
         
+        # Hide the popover by default
+        
+        attributes[:style] = "display: none"
       end
       
       def add_child(child)

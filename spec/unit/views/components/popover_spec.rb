@@ -27,7 +27,7 @@ describe ActiveAdmin::Views::Popover do
   end
   
   it "should be hidden" do
-    the_popover.class_list.should include("hidden")
+    the_popover.attributes.should include(:style => "display: none");
   end
   
   #describe "when content is given as the first arg" do
