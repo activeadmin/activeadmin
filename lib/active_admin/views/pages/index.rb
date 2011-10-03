@@ -49,16 +49,15 @@ module ActiveAdmin
         end
 
         def build_batch_action_popover
-          insert_tag view_factory.popover do
-            "Popover contents"
-          end
-
-          #
-          #view_factory.action_list_popover do
-          #  action "Delete Selected", "#"
-          #  action "Flag Selected", "#"
-          #  action "Export Selected", "#"
+          #insert_tag view_factory.popover do
+          #  "Popover contents"
           #end
+          
+          insert_tag view_factory.action_list_popover do
+            action "Delete Selected", "#"
+            action "Flag Selected", "#"
+            action "Export Selected", "#"
+          end
         end
 
         def build_scopes

@@ -16,7 +16,7 @@ module ActiveAdmin
  
         self.id = options[:id]
         
-        @contents = div(:class => "popover_contents")
+        @contents ||= div(:class => "popover_contents")
         
       end
       
