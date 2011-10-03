@@ -9,8 +9,10 @@ module ActiveAdmin
       
       def build(*args, &block)
         @contents = ul :class => "popover_contents"
-
-        super(args)
+        
+        options = args.extract_options!
+        
+        super(options)
       end
       
       def action(title, url, *args)

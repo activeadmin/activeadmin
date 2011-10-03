@@ -12,6 +12,10 @@ describe ActiveAdmin::Views::ActionListPopover do
     end
   end
   
+  it "should have an id" do
+    the_popover.id.should == "my_awesome_action_list_popover"
+  end
+  
   describe "the action list" do
     subject do
       the_popover.find_by_class("popover_contents").first
