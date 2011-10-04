@@ -36,6 +36,19 @@
   &:active {
     @include inset-shadow(0, 1px, 2px, rgba(0,0,0,0.30));
   }
+  
+  &.disabled {
+    color: #777;
+    cursor: default;
+    opacity: 0.6;
+    
+    &:hover {
+      color: #777;
+    }
+    &:active {
+      @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #FFF inset);
+    }
+  }
 }
 
 @mixin dark-button {
