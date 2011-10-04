@@ -115,6 +115,11 @@ module ActiveAdmin
       #
       class IndexTableFor < ::ActiveAdmin::Views::TableFor
 
+        # Display a column for checkbox
+        def selectable_column
+          column(input(:type => "checkbox"), :class => "selectable"){|resource| input :type => "checkbox" }
+        end
+
         # Display a column for the id
         def id_column
           column('ID', :sortable => :id){|resource| link_to resource.id, resource_path(resource), :class => "resource_id_link"}
