@@ -1,0 +1,40 @@
+nl:
+  active_admin:
+    dashboard: Dashboard
+    dashboard_welcome:
+      welcome: "Welkom bij Active Admin. Dit us de standaard Dashboard pagina."
+      call_to_action: "Indien u dashboard secties toe wenst te voegen, bekijk dan 'app/admin/dashboards.rb'"
+    view: "Bekijk"
+    edit: "Wijzig"
+    delete: "Verwijder"
+    delete_confirmation: "Weet u zeker dat u dit wilt verwijderen?"
+    new_model: "Voeg %{model} toe"
+    edit_model: "Wijzig %{model}"
+    delete_model: "Verwijder %{model}"
+    details: "%{model} Eigenschappen"
+    cancel: "Annuleren"
+    empty: "Leeg"
+    previous: "Vorige"
+    next: "Volgende"
+    download: "Download:"
+    has_many_new: "Voeg %{model} toe"
+    has_many_delete: "Verwijder"
+    filter: "Filter"
+    clear_filters: "Maak filters leeg"
+    search_field: "Zoek %{field}"
+    equal_to: "Gelijk aan"
+    greater_than: "Groter dan"
+    less_than: "Kleiner dan"
+    main_content: "Implementeer %{model}#main_content om inhoud weer te geven."
+    logout: "Log uit"
+    sidebars:
+      filters: "Filters"
+    pagination:
+      empty: "Geen %{model} gevonden"
+      one: "Toon <b>1</b> %{model}"
+      one_page: "Toon <b>alle %{n}</b> %{model}"
+      multiple: "Toon %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> van <b>%{total}</b> in totaal"
+    any: "een"
+    blank_slate:
+      content: "Er zijn nog geen %{resource_name}."
+      link: "Maak er één aan."
