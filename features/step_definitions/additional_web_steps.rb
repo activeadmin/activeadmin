@@ -37,6 +37,14 @@ Then /^I should see a link to "([^"]*)"$/ do |link|
   end
 end
 
+Then /^I should not see a link to "([^"]*)"$/ do |link|
+  if page.respond_to? :should
+    page.should have_no_xpath('//a', :text => link)
+  else
+    assert page.has_no_xpath?('//a', :text => link)
+  end
+end
+
 Then /^I should see a link to \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
   if page.respond_to? :should
@@ -46,9 +54,9 @@ Then /^I should see a link to \/([^\/]*)\/$/ do |regexp|
   end
 end
 
-Then /^an "([^"]*)" exception should be raised when I follow "([^"]*)"$/ do |error, link|
+Then /^an "([^"]*)" exception should be raised when (.+)$/ do |error, action|
   lambda {
-    When "I follow \"#{link}\""
+    When action
   }.should raise_error(error.constantize)
 end
 

@@ -28,6 +28,9 @@ module NavigationHelpers
     when /^the index page for (.*)$/
       send(:"admin_#{$1}_path")
 
+    when /^the post page for "([^"]+)"$/
+      post = Post.find_by_title $1
+      admin_post_path post
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
