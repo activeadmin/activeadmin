@@ -2,7 +2,7 @@ nl:
   active_admin:
     dashboard: Dashboard
     dashboard_welcome:
-      welcome: "Welkom bij Active Admin. Dit is de standaart dashboard pagina"
+      welcome: "Welkom bij Active Admin. Dit is de standaard dashboard pagina"
       call_to_action: "Maak je dashboard op maat in het bestand 'app/admin/dashboards.rb'"
     view: "Bekijk"
     edit: "Wijzig"
