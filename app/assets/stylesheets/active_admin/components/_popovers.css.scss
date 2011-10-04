@@ -41,7 +41,7 @@
   
 }
   
-// -------------------------------------- Popover with action list
+//-------------------------------------- Popover with action list
 
 .popover {
   ul.popover_contents {
@@ -61,12 +61,12 @@
         text-align: center;
       
         &:hover {
-          @include gradient(#75a1c2, #608cb4);
+          @include highlight-gradient;
           color: #FFF;
         }
       
         &:active {
-          @include gradient(#608cb4, #75a1c2);
+          @include reverse-highlight-gradient;
           color: #FFF;
         }
       

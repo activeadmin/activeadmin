@@ -16,7 +16,7 @@ module ActiveAdmin
         # controller. Defaults to rendering the ActiveAdmin::Pages::Index::Table
         def main_content
           div :class => "table_tools" do
-            a :class => 'table_tools_button', :href => "#" do
+            a :class => 'table_tools_button disabled', :href => "#", :id => "batch_actions_button" do
               text_node "Batch Actions"
               span :class => "arrow"
             end
@@ -49,11 +49,7 @@ module ActiveAdmin
         end
 
         def build_batch_action_popover
-          #insert_tag view_factory.popover do
-          #  "Popover contents"
-          #end
-          
-          insert_tag view_factory.action_list_popover do
+          insert_tag view_factory.action_list_popover, :id => "batch_actions_popover" do
             action "Delete Selected", "#"
             action "Flag Selected", "#"
             action "Export Selected", "#"

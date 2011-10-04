@@ -9,4 +9,11 @@ $(function(){
     window.location.search = "";
     return false;
   });
+
+  $('#batch_actions_button:not(:disabled)').toggle(function() {
+    $("#batch_actions_popover").fadeIn(50);
+  }, function() {
+    $("#batch_actions_popover").fadeOut(100);
+  });
+
 });
