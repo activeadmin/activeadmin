@@ -91,25 +91,25 @@ module ActiveAdmin
     def active_admin_input_class_name(as)
       "ActiveAdmin::Inputs::#{as.to_s.camelize}Input"
     end
-    
+
     def input_class(as)
-        @input_classes_cache ||= {}
-        @input_classes_cache[as] ||= begin
+      @input_classes_cache ||= {}
+      @input_classes_cache[as] ||= begin
+        begin
           begin
-            begin
-              custom_input_class_name(as).constantize
-            rescue NameError
-              begin
-                active_admin_input_class_name(as).constantize
-              rescue NameError
-                standard_input_class_name(as).constantize
-              end
-            end
+            custom_input_class_name(as).constantize
           rescue NameError
-            raise Formtastic::UnknownInputError
+            begin
+              active_admin_input_class_name(as).constantize
+            rescue NameError
+              standard_input_class_name(as).constantize
+            end
           end
+        rescue NameError
+          raise Formtastic::UnknownInputError
         end
       end
+    end
 
     private
 
