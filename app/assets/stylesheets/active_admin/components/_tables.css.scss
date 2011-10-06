@@ -46,6 +46,8 @@ table.index_table {
 
   tr.even td { background: $table-stripe-color; }
 
+  tr.selected td { background: $table-selected-color; }
+
   td {
     padding: 10px $cell-horizontal-padding 8px $cell-horizontal-padding;
     border-bottom: 1px solid #e8e8e8;

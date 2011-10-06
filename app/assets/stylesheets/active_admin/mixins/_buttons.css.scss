@@ -1,5 +1,4 @@
 @mixin default-button {
-  //@include shadow;
   @include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
   @include rounded(200px);
   @include text-shadow(#000);
@@ -53,4 +52,10 @@
 
 @mixin dark-button {
   @include default-button;
+  
+  &:hover {
+    color: #fff;
+    @include icon-color(#fff);
+    @include gradient(lighten($primary-color, 20%), darken($primary-color, 18%));
+  }
 }
