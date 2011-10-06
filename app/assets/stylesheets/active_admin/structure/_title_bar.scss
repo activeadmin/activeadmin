@@ -8,8 +8,10 @@
   width: 100%;
   position: relative; 
   margin: 0; 
+  margin-bottom: 15px;
   padding: 10px $horizontal-page-margin; 
-
+  z-index: 800;
+  
   #titlebar_left, #titlebar_right {
     height: 50px;
     vertical-align: middle;

@@ -37,19 +37,14 @@ a.table_tools_button {
   }
   
   &.selected {
-    @include gradient(#73a8c8, #4d7cad);
-    @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #6fa4c6 inset);
-    @include border-colors(#5786b2, #4f79a1, #466b8f);
-    @include text-shadow(#162d7c);
+    @include dark-button;
+    font-size: 0.9em;
+    padding: 4px 13px;
     
-    color: #FFF;
+    color: #efefef;
 
     .arrow {
-      border-color: #FFF transparent transparent;
-    }
-
-    &:active {
-      @include inset-shadow(0, 1px, 2px, rgba(0,0,0,0.30));
+      border-color: #efefef transparent transparent;
     }
     
   }
@@ -91,12 +86,13 @@ a.table_tools_button {
     
     &.selected {
       a {
-        @include gradient(#eeeeee, #f9f9f9);
-        @include box-shadow(0 1px 0px rgba(0,0,0,0.12), 0 1px 0px 0 rgba(0,0,0,0.05) inset);
+        background: #ededed;
+        @include box-shadow(0 1px 0px 0 rgba(0,0,0,0.06) inset);
+        color: #989ca0;
         cursor: default;
         
         &:hover {
-          color: #777;
+          color: #989ca0;
         }
       }
     }
