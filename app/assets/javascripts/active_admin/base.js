@@ -13,7 +13,7 @@ $(function(){
   // Batch actions stuff
   
   $('#batch_actions_button').toggle(function() {
-    if ($(this).hasClass("selected")) {
+    if (!$(this).hasClass("disabled")) {
       $("#batch_actions_popover").fadeIn(50);
     };
   }, function() {
@@ -23,7 +23,7 @@ $(function(){
   $('.index_table thead :checkbox').click(function() {
     if ($(this).attr('checked') == true) {
       $('#batch_actions_button').removeClass("disabled");
-      $('#batch_actions_button').addClass("selected");
+      //$('#batch_actions_button').addClass("selected");
       $(this).parents(".index_table").find('tr :checkbox').attr('checked', 'true');
       $(this).parents(".index_table").find('tr').addClass("selected");
     } else {
@@ -37,7 +37,7 @@ $(function(){
   $('.index_table tbody :checkbox').click(function() {
     if ($(this).attr('checked') == true) {
       $('#batch_actions_button').removeClass("disabled");
-      $('#batch_actions_button').addClass("selected");
+      //$('#batch_actions_button').addClass("selected");
       $(this).parents('tr').addClass("selected");
     } else {
       if ($(this).parents(".index_table").find("tbody").find("input:checked").length == 0) {

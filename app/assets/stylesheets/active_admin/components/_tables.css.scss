@@ -39,14 +39,16 @@ table.index_table {
     }
     
     &:last-child {
-      border-right: solid 1px #d9d9d9;
+      border-right: solid 1px #d4d4d4;
     }
     
   }
 
   tr.even td { background: $table-stripe-color; }
 
-  tr.selected td { background: $table-selected-color; }
+  tr.selected td {
+    background: $table-selected-color;
+  }
 
   td {
     padding: 10px $cell-horizontal-padding 8px $cell-horizontal-padding;

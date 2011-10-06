@@ -23,7 +23,7 @@
 
 @mixin light-button {
   @include default-button;
-  @include gradient(#fbfbfb, #e0e0e0);
+  @include gradient(#fdfdfd, #e8e8e8);
   @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #FFF inset);
   @include border-colors(#dbdbdb, #d2d2d2, #c5c5c5);
   @include text-shadow;
