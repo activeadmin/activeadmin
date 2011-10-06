@@ -117,7 +117,7 @@ module ActiveAdmin
 
         # Display a column for checkbox
         def selectable_column
-          column(input(:type => "checkbox"), :class => "selectable"){|resource| input :type => "checkbox" }
+          column(input(:type => "checkbox"), {:class => "selectable"}){|resource| input :type => "checkbox" }
         end
 
         # Display a column for the id
