@@ -56,7 +56,7 @@ module ActiveAdmin
         end
 
         def comment_form_url # modified to allow for no default_namespace or :root default_namespace
-          send_path = active_admin_namespace.name == "root" ? "comments_path" : "#{active_admin_namespace.name}_comments_path"
+          send_path = active_admin_namespace.name.to_s == "root" ? "comments_path" : "#{active_admin_namespace.name}_comments_path"
           send(:"#{send_path}")
         end
 
