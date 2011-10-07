@@ -81,6 +81,16 @@ For example, create app/views/admin/posts/comments.html.arb with:
         simple_format comment.body
       end
     end
+    
+### Custom Action Items
+
+To include your own action items (like the New, Edit and Delete buttons), add an 
+`action_item` block. For example, to add a "View on site" button to view a blog
+post:
+
+    action_item :only => :show do
+      link_to 'View on site', post_path(params[:id])
+    end
 
 ### Page Titles
 
