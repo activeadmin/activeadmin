@@ -9,10 +9,10 @@ Feature: Specifying Actions
           actions :index
         end
       """
-	And I am logged in
+    And I am logged in
     And a post with the title "Hello World" exists
     When I am on the index page for posts
-    Then an "AbstractController::ActionNotFound" exception should be raised when I follow "View"
+    Then an "AbstractController::ActionNotFound" exception should be raised when I go to the post page for "Hello World"
 
   Scenario: Specify a custom collection action with template
     Given a configuration of:

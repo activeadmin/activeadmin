@@ -24,6 +24,22 @@ Feature: Index as Table
     And I should see a link to "Edit"
     And I should see a link to "Delete"
 
+
+  Scenario: Viewing the default table with a resource
+    Given a post with the title "Hello World" exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          actions :index, :show
+        end
+      """
+    Then I should see "Hello World"
+    Then I should see nicely formatted datetimes
+    And I should see a link to "View"
+    And I should not see a link to "Edit"
+    And I should not see a link to "Delete"
+
+
   Scenario: Customizing the columns with symbols
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
