@@ -6,13 +6,14 @@ require 'active_admin/resource/sidebars'
 
 module ActiveAdmin
 
-  # Resource is the primary data storage for resource configuration in Active Admin
+  # Resource is the primary data storage for resource configuration in Active
+  # Admin
   #
-  # When you register a resource (ActiveAdmin.register Post) you are actually creating
-  # a new Resource instance within the given Namespace.
+  # When you register a resource (ActiveAdmin.register Post) you are actually
+  # creating a new Resource instance within the given Namespace.
   #
-  # The instance of the current resource is available in ResourceController and views
-  # by calling the #active_admin_config method.
+  # The instance of the current resource is available in ResourceController and
+  # views by calling the #active_admin_config method.
   #
   class Resource
 
@@ -24,8 +25,8 @@ module ActiveAdmin
     # The namespace this resource belongs to
     attr_reader :namespace
 
-    # The class this resource wraps. If you register the Post model, Resource#resource
-    # will point to the Post class
+    # The class this resource wraps. If you register the Post model,
+    # Resource#resource will point to the Post class
     attr_reader :resource
 
     # A hash of page configurations for the controller indexed by action name
@@ -43,7 +44,8 @@ module ActiveAdmin
     # Scope this resource to an association in the controller
     attr_accessor :scope_to
 
-    # If we're scoping resources, use this method on the parent to return the collection
+    # If we're scoping resources, use this method on the parent to return the
+    # collection
     attr_accessor :scope_to_association_method
 
     # Set to false to turn off admin notes
@@ -70,6 +72,59 @@ module ActiveAdmin
     include Scopes
     include Sidebars
 
+    # determine both what resources belong_to a given resource,
+    # and what resources it belongs_to
+
+    def self.belongs_to_resources(controller_name, options = {})
+
+      resource_list = []
+
+      # max_depth limits how many resources away from the current one
+      # we're willing to look. restricting this to 1 will return only
+      # resources that belong_to the resource in question. 2 would return
+      # resources that belong_to it and resources it belongs_to. et cetera.
+
+      max_depth = options[:max_depth] ||= nil
+      current_depth = 0
+
+      # loop through the resources. we do this to grab not only the
+      # relationships for the current resource, but to roll back through
+      # its parents as well, if it also belongs_to another resource
+
+      current_resource = controller_name
+      next_resource = nil
+
+      # collect all resources
+      resources = ActiveAdmin.application.namespaces.values.collect {
+                  |n| n.resources.values }.flatten
+
+      while current_resource != nil and (max_depth == nil or depth < max_depth)
+
+        resources.each do |resource|
+          if resource.belongs_to? # if not, we don't care
+            target = resource.belongs_to_config.target
+
+            if resource.plural_underscored_resource_name == current_resource
+              # oh, it's us? we have a parent then
+              next_resource = target.plural_underscored_resource_name
+
+            elsif target.plural_underscored_resource_name == current_resource
+              # it's one of our children
+              resource_list.push(resource)
+
+            end
+          end
+        end
+
+        current_resource = next_resource ||= nil
+        next_resource = nil
+        current_depth += 1 # let's not go too far
+
+      end
+
+      resource_list
+
+    end
 
     def resource_table_name
       resource.quoted_table_name

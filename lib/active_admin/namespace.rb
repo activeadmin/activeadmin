@@ -2,7 +2,8 @@ module ActiveAdmin
 
   class ResourceMismatchError < StandardError; end
 
-  # Namespaces are the basic organizing principle for resources within Active Admin
+  # Namespaces are the basic organizing principle for resources within Active
+  # Admin
   #
   # Each resource is registered into a namespace which defines:
   #   * the namespaceing for routing
@@ -10,19 +11,21 @@ module ActiveAdmin
   #   * the menu which gets displayed (other resources in the same namespace)
   #
   # For example:
-  #   
+  #
   #   ActiveAdmin.register Post, :namespace => :admin
   #
-  # Will register the Post model into the "admin" namespace. This will namespace the
-  # urls for the resource to "/admin/posts" and will set the controller to
-  # Admin::PostsController
+  # Will register the Post model into the "admin" namespace. This will
+  # namespace the urls for the resource to "/admin/posts" and will set the
+  # controller to Admin::PostsController
   #
-  # You can also register to the "root" namespace, which is to say no namespace at all.
+  # You can also register to the "root" namespace, which is to say no namespace
+  # at all.
   #
   #   ActiveAdmin.register Post, :namespace => false
   #
-  # This will register the resource to an instantiated namespace called :root. The 
-  # resource will be accessible from "/posts" and the controller will be PostsController.
+  # This will register the resource to an instantiated namespace called :root.
+  # The resource will be accessible from "/posts" and the controller will be
+  # PostsController.
   #
   class Namespace
 
@@ -39,9 +42,9 @@ module ActiveAdmin
       generate_dashboard_controller
     end
 
-    # Register a resource into this namespace. The preffered method to access this is to 
-    # use the global registration ActiveAdmin.register which delegates to the proper 
-    # namespace instance.
+    # Register a resource into this namespace. The preffered method to access
+    # this is to use the global registration ActiveAdmin.register which
+    # delegates to the proper namespace instance.
     def register(resource, options = {}, &block)
       config = find_or_build_resource(resource, options)
 
@@ -67,7 +70,7 @@ module ActiveAdmin
     # Returns the name of the module if required. Will be nil if none
     # is required.
     #
-    # eg: 
+    # eg:
     #   Namespace.new(:admin).module_name # => 'Admin'
     #   Namespace.new(:root).module_name # => nil
     #
@@ -89,7 +92,8 @@ module ActiveAdmin
     end
 
     # The menu gets built by Active Admin once all the resources have been
-    # loaded. This method gets called to register each resource with the menu system.
+    # loaded. This method gets called to register each resource with the menu
+    # system.
     def load_menu!
       register_dashboard
       resources.values.each do |config|
@@ -97,7 +101,8 @@ module ActiveAdmin
       end
     end
 
-    # Returns the first registered ActiveAdmin::Resource instance for a given class
+    # Returns the first registered ActiveAdmin::Resource instance for a given
+    # class
     def resource_for(klass)
       actual = resources.values.find{|config| config.resource == klass }
       return actual if actual
@@ -122,7 +127,7 @@ module ActiveAdmin
         existing_resource = @resources[resource.camelized_resource_name]
 
         if existing_resource.resource != resource_class
-          raise ActiveAdmin::ResourceMismatchError, 
+          raise ActiveAdmin::ResourceMismatchError,
             "Tried to register #{resource_class} as #{resource.camelized_resource_name} but already registered to #{resource.resource}"
         end
 
@@ -182,7 +187,7 @@ module ActiveAdmin
       menu.add(I18n.t("active_admin.dashboard"), dashboard_path, 1) unless menu[I18n.t("active_admin.dashboard")]
     end
 
-    # Does all the work of registernig a config with the menu system
+    # Does all the work of registering a config with the menu system
     def register_with_menu(config)
       # The menu we're going to add this resource to
       add_to = menu
