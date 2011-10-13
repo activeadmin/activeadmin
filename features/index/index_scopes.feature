@@ -31,14 +31,14 @@ Feature: Index Scoping
 	And an index configuration of:
 	 """
 	 ActiveAdmin.register Post do
-	   scope :all, :if => proc { false }
-	   scope "Shown", :if => proc { true } do |posts|
-		posts
-	   end 
-	   scope "Default", :default => true do |posts|
-		posts
+       scope :all, :if => proc { false }
+       scope "Shown", :if => proc { true } do |posts|
+         posts
 	   end
-	   scope 'Today', :if => proc { false } do |posts|
+	   scope "Default", :default => true do |posts|
+         posts
+       end
+       scope 'Today', :if => proc { false } do |posts|
          posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day, ::Time.zone.now.end_of_day])
        end
 	 end
