@@ -30,7 +30,7 @@ module ActiveAdmin
         @scope_block = block
       end
 
-      @display_if_block = options.delete(:if)
+      @display_if_block = options[:if]
     end
 
     # Returns the display if block. If the block was not explicitly defined
