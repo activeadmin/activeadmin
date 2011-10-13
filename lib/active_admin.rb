@@ -10,7 +10,9 @@ module ActiveAdmin
   autoload :VERSION,                  'active_admin/version'
   autoload :Application,              'active_admin/application'
   autoload :AssetRegistration,        'active_admin/asset_registration'
+  autoload :AuthorizationAdapter,     'active_admin/authorization_adapter'
   autoload :Breadcrumbs,              'active_admin/breadcrumbs'
+  autoload :CanCanAdapter,            'active_admin/adapters/cancan'
   autoload :Callbacks,                'active_admin/callbacks'
   autoload :Component,                'active_admin/component'
   autoload :ControllerAction,         'active_admin/controller_action'
@@ -71,7 +73,7 @@ module ActiveAdmin
     # Migration MoveAdminNotesToComments generated with version 0.2.2 might reference
     # to ActiveAdmin.default_namespace.
     delegate :default_namespace, :to => :application
-    ActiveAdmin::Deprecation.deprecate self, :default_namespace, 
+    ActiveAdmin::Deprecation.deprecate self, :default_namespace,
       "ActiveAdmin.default_namespace is deprecated. Please use ActiveAdmin.application.default_namespace"
 
   end

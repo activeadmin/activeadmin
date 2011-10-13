@@ -21,6 +21,7 @@ module ActiveAdmin
 
     before_filter :only_render_implemented_actions
     before_filter :authenticate_active_admin_user
+    before_filter :authorization_adapter_before_filter
 
     ACTIVE_ADMIN_ACTIONS = [:index, :show, :new, :create, :edit, :update,
                             :destroy]
@@ -77,6 +78,11 @@ module ActiveAdmin
     # ActiveAdmin.authentication_method
     def authenticate_active_admin_user
       send(active_admin_application.authentication_method) if active_admin_application.authentication_method
+    end
+
+    # Calls the before_filter for the currently enabled authorization adapter
+    def authorization_adapter_before_filter
+      ActiveAdmin.application.authorization_adapter.controller_before_filter
     end
 
     def current_active_admin_user

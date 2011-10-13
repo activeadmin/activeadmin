@@ -6,7 +6,8 @@ module ActiveAdmin
       # the resource has not been registered, a string representation of
       # the object is returned.
       #
-      # The default content in the link is returned from ActiveAdmin::ViewHelpers::DisplayHelper#display_name
+      # The default content in the link is returned from
+      ActiveAdmin::ViewHelpers::DisplayHelper#display_name
       #
       # You can pass in the content to display
       #   eg: auto_link(@post, "My Link Content")
@@ -15,7 +16,7 @@ module ActiveAdmin
         content = link_content || display_name(resource)
         if registration = active_admin_resource_for(resource.class)
           begin
-            content = link_to(content, send(registration.route_instance_path, resource))
+            content = view_link_to(content, resource, :path => send(registration.route_instance_path, resource), :display_if_false => true)
           rescue
           end
         end

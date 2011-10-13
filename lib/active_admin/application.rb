@@ -40,6 +40,8 @@ module ActiveAdmin
     # is a currently authenticated admin user
     setting :authentication_method, false
 
+    setting :authorization_adapter_class, ActiveAdmin::AuthorizationAdapter
+
     # The path to log user's out with. If set to a symbol, we assume
     # that it's a method to call which returns the path
     setting :logout_link_path, :destroy_admin_user_session_path
@@ -193,6 +195,11 @@ module ActiveAdmin
     # Helper method to add a dashboard section
     def dashboard_section(name, options = {}, &block)
       ActiveAdmin::Dashboards.add_section(name, options, &block)
+    end
+
+    # Helper method to return the current authorization adapter
+    def authorization_adapter
+      @authorization_adapter || ActiveAdmin.application.authorization_adapter_class.new
     end
 
     private
