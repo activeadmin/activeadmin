@@ -29,16 +29,15 @@ module ActiveAdmin
         @scope_method = nil
         @scope_block = block
       end
-      
+
       @display_if_block = options.delete(:if)
-      
     end
-    
+
     # Returns the display if block. If the block was not explicitly defined
     # a default block always returning true will be returned.
     def display_if_block
       @display_if_block || lambda { |_| true }
     end
-    
+
   end
 end
