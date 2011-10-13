@@ -20,7 +20,7 @@ module ActiveAdmin
 
     # The title which gets displayed in the main layout
     setting :site_title, ""
-    
+
     # Set the site title link href (defaults to AA dashboard)
     setting :site_title_link, ""
 
@@ -58,6 +58,12 @@ module ActiveAdmin
                                       :email,
                                       :to_s ]
 
+
+    # By default, ActiveAdmin hides belongs_to associations from menus and
+    # depends on the user to configure nesting. By enabling this, resources
+    # will nest appropriately
+    setting :nested_associations, false
+    #
     # == Deprecated Settings
 
     # @deprecated The default sort order for index pages
