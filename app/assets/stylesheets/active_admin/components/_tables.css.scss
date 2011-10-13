@@ -25,6 +25,7 @@ table.index_table {
       color: $section-header-text-color;
       text-decoration: none;
       display: block;
+      white-space: nowrap;
     }
 
     &.sortable a {

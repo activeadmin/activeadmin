@@ -5,11 +5,13 @@
   @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #777d83 inset);
   border: solid 1px #484e53;
   @include border-colors(#616a71, #484e53, #363b3f);
+  display: inline-block;
   text-decoration: none;
   margin-right: 3px;
   font-weight: bold;
   font-size: 1.0em;
-  padding: 6px 16px 5px;
+  line-height: 12px;
+  padding: 6px 16px 6px;
   color: #efefef;
   
   &:hover {

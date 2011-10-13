@@ -32,8 +32,7 @@
   .action_items { 
     a { 
       @include light-button; 
-      display: inline-block;
-      padding: .8em 1.5em .7em 1.5em;
+      padding: 12px 17px 10px;
       span.icon { vertical-align: bottom; margin-right: 4px;} 
       &:hover{ @include icon-color(#000); }
     }
