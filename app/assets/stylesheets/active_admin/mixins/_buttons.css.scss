@@ -1,27 +1,63 @@
 @mixin default-button {
-  @include shadow;
   @include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
   @include rounded(200px);
   @include text-shadow(#000);
+  @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #777d83 inset);
+  border: solid 1px #484e53;
+  @include border-colors(#616a71, #484e53, #363b3f);
+  display: inline-block;
   text-decoration: none;
   margin-right: 3px;
   font-weight: bold;
   font-size: 1.0em;
-  cursor: pointer;
-  padding: .6em 1.4em .5em 1.3em;
-  border: none;
+  line-height: 12px;
+  padding: 6px 16px 6px;
   color: #efefef;
-  &:hover { color: #fff; @include icon-color(#fff); @include shadow(0, 1px, 3px, #888) }
-  &:active { @include inset-shadow(0, 1px, 2px, #000); }
+  
+  &:hover {
+    color: #fff;
+    @include icon-color(#fff);
+  }
+  &:active {
+    @include inset-shadow(0, 1px, 2px, #000);
+  }
 }
 
 @mixin light-button {
   @include default-button;
-  @include gradient(#f9f9f9, #dddbdb);
+  @include gradient(#fdfdfd, #e8e8e8);
+  @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #FFF inset);
+  @include border-colors(#dbdbdb, #d2d2d2, #c5c5c5);
   @include text-shadow;
   color: #777;
-  &:hover { color: #444; @include icon-color(#444) }
-  &:active { @include inset-shadow; }
+  &:hover {
+    color: #444;
+    @include icon-color(#444);
+  }
+  &:active {
+    @include inset-shadow(0, 1px, 2px, rgba(0,0,0,0.30));
+  }
+  
+  &.disabled {
+    color: #777;
+    cursor: default;
+    opacity: 0.6;
+    
+    &:hover {
+      color: #777;
+    }
+    &:active {
+      @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #FFF inset);
+    }
+  }
 }
 
-@mixin dark-button { @include default-button; }
+@mixin dark-button {
+  @include default-button;
+  
+  &:hover {
+    color: #fff;
+    @include icon-color(#fff);
+    @include gradient(lighten($primary-color, 20%), darken($primary-color, 18%));
+  }
+}

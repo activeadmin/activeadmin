@@ -136,8 +136,6 @@ form {
       }
     }
 
-    &.hidden { display: none; }
-
     /* Errors */
     p.inline-errors { 
       text-transform:capitalize;
@@ -161,7 +159,11 @@ form {
 
   /* Buttons */
   
-  input[type=submit] { @include dark-button; }
+  input[type=submit] {
+    @include dark-button;
+    cursor: pointer;
+    
+  }
   
   .buttons { 
     margin-top: 15px; 
@@ -170,9 +172,13 @@ form {
   
   fieldset.buttons li { 
     float:left; 
-    padding-right:0.5em;
-    padding-top: 0;
-    &.cancel { margin-left: 0.3em; padding: 5px; a { @include light-button; @include icon(#777, 9px);} }
+    padding: 0;
+
+    &.cancel {
+      a {
+        @include light-button; @include icon(#777, 9px);
+      }
+    }
   }
 
 }
