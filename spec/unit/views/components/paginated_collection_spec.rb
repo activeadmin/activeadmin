@@ -39,7 +39,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, :param_name => :post_page) }
 
       it "should customize the page number parameter in pagination links" do
-        pagination.find_by_class('pagination_information').first.content.should match(/\/admin\/posts\?post_page=2/)
+        pagination.find_by_tag('div')[1].content.should match(/\/admin\/posts\?post_page=2/)
       end
     end
 
