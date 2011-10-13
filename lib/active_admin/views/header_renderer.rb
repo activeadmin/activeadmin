@@ -11,19 +11,30 @@ module ActiveAdmin
 
       protected
 
+      # Renders the title/branding area for the site
       def title
         if active_admin_application.site_title_image.blank?
-          if !active_admin_application.site_title_link || active_admin_application.site_title_link == ""
-            content_tag 'h1', active_admin_application.site_title, :id => 'site_title'
-          else
-            content_tag 'h1', link_to(active_admin_application.site_title, active_admin_application.site_title_link), :id => 'site_title'
-          end
+         title_text
         else
-          if !active_admin_application.site_title_link.blank?
-            content_tag "a", image_tag(active_admin_application.site_title_image, :id => "site_title_image", :alt => active_admin_application.site_title), :id => "site_title"
-          else
-            image_tag(active_admin_application.site_title_image, :id => "site_title_image", :alt => active_admin_application.site_title)
-          end
+          title_image
+        end
+      end
+      
+      # Renders an image for the site's header/branding area
+      def title_image
+        if !active_admin_application.site_title_link.blank?
+          content_tag 'h1', link_to( image_tag(active_admin_application.site_title_image, :id => "site_title_image", :alt => active_admin_application.site_title), active_admin_application.site_title_link ), :id => "site_title" 
+        else
+          content_tag 'h1', image_tag( active_admin_application.site_title_image, :id => "site_title_image", :alt => active_admin_application.site_title ), :id => "site_title"
+        end
+      end
+      
+      # Renders a the site's header/branding area as a string
+      def title_text
+        if !active_admin_application.site_title_link || active_admin_application.site_title_link == ""
+          content_tag 'h1', active_admin_application.site_title, :id => 'site_title'
+        else
+          content_tag 'h1', link_to(active_admin_application.site_title, active_admin_application.site_title_link), :id => 'site_title'
         end
       end
 
