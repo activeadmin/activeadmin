@@ -22,7 +22,9 @@ module ActiveAdmin
       # to your i18n files a key like "active_admin.scopes.scope_method".
       def scope(*args, &block)
         options = args.extract_options!
-        self.scopes << ActiveAdmin::Scope.new(*args, &block)
+        title = args[0] rescue nil
+        method = args[1] rescue nil
+        self.scopes << ActiveAdmin::Scope.new(title, method, options,  &block)
         if options[:default]
           @default_scope = scopes.last
         end
