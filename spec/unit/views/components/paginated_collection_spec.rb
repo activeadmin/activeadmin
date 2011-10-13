@@ -20,7 +20,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should set :collection as the passed in collection" do
-        pagination.find_by_tag('div').first.content.should == "Displaying <b>all 3</b> posts"
+        pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>all 3</b> posts"
       end
 
       it "should raise error if collection has no pagination scope" do
@@ -39,7 +39,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, :param_name => :post_page) }
 
       it "should customize the page number parameter in pagination links" do
-        pagination.find_by_tag('div').last.content.should match(/\/admin\/posts\?post_page=2/)
+        pagination.find_by_class('pagination_information').first.content.should match(/\/admin\/posts\?post_page=2/)
       end
     end
 
