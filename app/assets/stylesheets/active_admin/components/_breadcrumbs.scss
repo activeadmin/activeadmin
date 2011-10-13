@@ -1,0 +1,20 @@
+.breadcrumb {
+  display: block;
+  font-size: 0.9em;
+  font-weight: normal;
+  line-height: 1.0em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+
+  a, a:link, a:visited, a:active {
+    color: #8a949e ;
+    text-decoration: none;
+  }
+
+  a:hover { text-decoration: underline; }
+
+  .breadcrumb_sep {
+    margin: 0 2px;
+    color: #aab2ba;
+  }
+}

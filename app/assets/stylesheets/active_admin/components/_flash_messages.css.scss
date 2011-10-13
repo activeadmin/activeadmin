@@ -9,6 +9,8 @@ body.logged_in {
     line-height: 1.0em;
     margin-bottom: 10px;
     padding: 13px 30px 11px;
+    position: relative;
+    top: -15px;
 
     &.flash_notice {
       @include gradient(#dce9dd, #ccdfcd);

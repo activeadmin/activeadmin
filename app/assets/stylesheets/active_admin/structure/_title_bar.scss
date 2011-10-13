@@ -1,0 +1,40 @@
+#title_bar {
+  @include section-header;
+  @include clearfix;
+  @include box-sizing(border-box);
+  @include box-shadow(0 1px 3px rgba(0,0,0,0.12), 0 0 1px #FFF inset);
+  display: table;
+  border-bottom-color: #c4c4c4;
+  width: 100%;
+  position: relative; 
+  margin: 0; 
+  margin-bottom: 15px;
+  padding: 10px $horizontal-page-margin; 
+  z-index: 800;
+  
+  #titlebar_left, #titlebar_right {
+    height: 50px;
+    vertical-align: middle;
+    display: table-cell;
+  }
+  
+  #titlebar_right {
+    text-align: right;
+  }
+  
+  h2 { 
+    margin: 0;
+    padding: 0; 
+    font-size: 2.6em;
+    font-weight: bold;
+  }
+
+  .action_items { 
+    a { 
+      @include light-button; 
+      padding: 12px 17px 10px;
+      span.icon { vertical-align: bottom; margin-right: 4px;} 
+      &:hover{ @include icon-color(#000); }
+    }
+  }
+}
