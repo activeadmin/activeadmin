@@ -39,6 +39,15 @@ describe ActiveAdmin::Application do
     application.site_title_link = "http://www.mygreatsite.com"
     application.site_title_link.should == "http://www.mygreatsite.com"
   end
+  
+  it "should store the site's title image" do
+    application.site_title_image.should == ""
+  end
+  
+  it "should set the site's title image" do
+    application.site_title_image = "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+    application.site_title_image.should == "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+  end
 
   it "should have a view factory" do
     application.view_factory.should be_an_instance_of(ActiveAdmin::ViewFactory)
