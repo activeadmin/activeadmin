@@ -66,14 +66,21 @@ module ActiveAdmin
     # Returns the display if block. If the block was not explicitly defined
     # a default block always returning true will be returned.
     def display_if_block
-
       # determine the controller for this menu item
-      controller = Rails.application.routes.recognize_path(eval(@url.to_s))
+      path = case @url.class
+             when Symbol
+               eval(@url.to_s)
+             when String
+               @url
+             end
+
+      controller = Rails.application.routes.recognize_path(path)
       controller = controller[:controller] if controller
 
       # we need to both pass the user supplied @display_if_block and our
       # own authorization test
       (@display_if_block || proc{ |_| true }) && proc { |_|  ActiveAdmin.application.authorization_adapter.authorized?(:controller => controller, :current_user => send(ActiveAdmin.application.current_user_method), :action => :index) }
+
     end
 
   end
