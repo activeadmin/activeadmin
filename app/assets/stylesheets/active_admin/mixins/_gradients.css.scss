@@ -20,6 +20,14 @@ $secondary-gradient-stop: #dfe1e2;
   @include gradient($secondary-gradient-start, $secondary-gradient-stop);
 }
 
+@mixin highlight-gradient {
+  @include gradient(#75a1c2, #608cb4);
+}
+
+@mixin reverse-highlight-gradient {
+  @include gradient(#608cb4, #75a1c2);
+}
+
 @mixin no-gradient {
   background: none;
   // IE 6 & 7
