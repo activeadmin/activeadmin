@@ -6,6 +6,10 @@
             These two additions allow you to use the paginated_collection
             component multiple times on show screens. ([@samvincent][])
 
+### Dependencies
+
+* #527: Active Admin now requires Formtastic 2.0 or > @ebeigarts
+
 ## 0.3.2
 
 45 commits by 15 contributors
