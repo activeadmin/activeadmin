@@ -3,15 +3,19 @@
   @include primary-gradient;
   @include shadow;
   @include text-shadow(#000);
+  height: 20px;
   overflow: visible;
+  position: relative;
   padding: 9px $horizontal-page-margin;
   z-index: 900;
 
   h1 { 
     display: inline-block; 
     color: #cdcdcd;
+    float: left;
     margin-right: 20px; 
     margin-bottom: 0px;
+    padding-top: 3px;
     font-size: 1.3em; 
     font-weight: normal;
     
@@ -21,17 +25,28 @@
       &:hover {
         color: #fff;
       }
-      
     } 
+    
+    img {
+      position: relative;
+      top: -2px;
+    }
   }
 
   a, a:link { color: #cdcdcd; }
 
+  .header-item {
+    float: left;
+    top: 2px;
+    position: relative;
+    height: 20px
+  }
+
   ul#tabs {
-    margin: 0; 
-    padding: 0; 
     display: inline-block; 
     height: 100%;
+    margin: 0; 
+    padding: 0;
 
     & > li { 
       display: inline-block; 
@@ -108,8 +123,11 @@
   }
 
   #utility_nav { 
-    position: absolute; right: 25px; top: 10px; 
     color: #aaa;
+    float: right;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
     span, a { margin-left: 10px; }
 
     a { text-decoration: none; }
