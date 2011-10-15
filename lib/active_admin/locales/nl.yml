@@ -2,12 +2,12 @@ nl:
   active_admin:
     dashboard: Dashboard
     dashboard_welcome:
-      welcome: "Welkom bij Active Admin. Dit is de standaart dashboard pagina"
-      call_to_action: "Maak je dashboard op maat in het bestand 'app/admin/dashboards.rb'"
+      welcome: "Welkom bij Active Admin. Dit is het dashboard."
+      call_to_action: "Pas je dashboard aan in het bestand 'app/admin/dashboards.rb'"
     view: "Bekijk"
     edit: "Wijzig"
     delete: "Verwijder"
-    delete_confirmation: "Weet je zeker dat je dit wilt verwijderen?"
+    delete_confirmation: "Weet je zeker dat je dit item wilt verwijderen?"
     new_model: "Nieuwe %{model}"
     edit_model: "Wijzig %{model}"
     delete_model: "Verwijder %{model}"
@@ -20,7 +20,7 @@ nl:
     has_many_new: "Voeg nieuwe %{model} toe"
     has_many_delete: "Verwijderen"
     filter: "Filter"
-    clear_filters: "Maak Filters Ongedaan"
+    clear_filters: "Maak filters ongedaan"
     search_field: "Zoek %{field}"
     equal_to: "Gelijk aan"
     greater_than: "Groter dan"
@@ -31,10 +31,10 @@ nl:
       filters: "Filters"
     pagination:
       empty: "Geen %{model} gevonden"
-      one: "Geeft <b>1</b> %{model} weer"
-      one_page: "Geeft <b>%{n}</b> %{model} weer"
+      one: "Er is <b>1</b> %{model} gevonden"
+      one_page: "Er zijn <b>%{n}</b> %{model} gevonden"
       multiple: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> van de <b>%{total}</b> weer"
     any: "Alle"
     blank_slate:
-      content: "Er zijn geen %{resource_name} gevonden."
+      content: "Er zijn geen <b>%{resource_name}</b> gevonden."
       link: "Maak aan"
