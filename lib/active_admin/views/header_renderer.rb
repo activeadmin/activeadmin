@@ -43,11 +43,11 @@ module ActiveAdmin
       #
       # It uses the ActiveAdmin.tabs_renderer option
       def global_navigation
-        render view_factory.global_navigation, current_menu
+        render view_factory.global_navigation, current_menu, :class => 'header-item' 
       end
 
       def utility_navigation
-        content_tag 'p', :id => "utility_nav" do
+        content_tag 'p', :id => "utility_nav", :class => 'header-item' do
           if current_active_admin_user?
             html = content_tag(:span, display_name(current_active_admin_user), :class => "current_user")
 
