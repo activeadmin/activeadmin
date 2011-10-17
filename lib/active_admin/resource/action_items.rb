@@ -49,7 +49,7 @@ module ActiveAdmin
         # New Link on all actions except :new and :show
         add_action_item :except => [:new, :show] do
           if controller.action_methods.include?('new')
-            new_link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), active_admin_config.camelized_resource_name.constantize)
+            new_link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), (active_admin_config.camelized_resource_name.constantize).new)
           end
         end
 
