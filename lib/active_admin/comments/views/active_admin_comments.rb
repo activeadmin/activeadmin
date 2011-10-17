@@ -56,7 +56,11 @@ module ActiveAdmin
         end
 
         def comment_form_url
-          send(:"#{active_admin_namespace.name}_comments_path")
+          if active_admin_namespace.root?
+            comments_path
+          else
+            send(:"#{active_admin_namespace.name}_comments_path")
+          end
         end
 
         def build_comment_form

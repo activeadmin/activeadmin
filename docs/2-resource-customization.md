@@ -77,3 +77,38 @@ Menu items can be shown or hidden at runtime using the `:if` option.
 
 The `proc` will be called in the context of the view, so you have access to all
 your helpers and current user session information.
+
+## Scoping the queries
+
+If your administrators have different access levels, you may sometimes want to 
+scope what they have access to. Assuming your User model has the proper 
+has_many relationships, you can simply scope the listings and finders like so:
+
+    ActiveAdmin.register Post do
+      scope_to :current_user
+
+      # or if the association doesn't have the default name.
+      # scope_to :current_user, :association_method => :blog_posts
+    end
+
+That approach limits the posts an admin can access to ```current_user.posts```.
+
+If you want to do something fancier, for example override a default scope, you can 
+also use :association_method parameter with a normal method on your User model. 
+The only requirement is that your method returns an instance of ActiveRecord::Relation.
+
+    class Ad < ActiveRecord::Base
+      default_scope lambda { where :published => true }
+    end
+
+    class User < ActiveRecord::Base
+      def managed_ads
+        # Overrides Ad's default_scope
+        Ad.unscoped
+      end
+    end
+
+    ActiveAdmin.register Ad do
+      scope_to :current_user, :association_method => :managed_ads
+    end
+

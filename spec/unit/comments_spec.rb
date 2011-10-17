@@ -18,8 +18,7 @@ describe "Comments" do
       it { should belong_to :resource }
       it { should belong_to :author }
 
-      it { should validate_presence_of :resource_id }
-      it { should validate_presence_of :resource_type }
+      it { should validate_presence_of :resource }
       it { should validate_presence_of :body }
       it { should validate_presence_of :namespace }
     end

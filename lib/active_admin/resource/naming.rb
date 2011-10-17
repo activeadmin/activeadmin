@@ -33,14 +33,18 @@ module ActiveAdmin
         else
           # Check if we have a translation available otherwise pluralize
           begin
-            I18n.translate!("activerecord.models.#{resource.model_name.downcase}")
+            I18n.translate!("activerecord.models.#{resource.model_name.underscore}")
             resource.model_name.human(:count => 3)
           rescue I18n::MissingTranslationData
             resource_name.pluralize
           end
         end
       end
-
+      
+      # Returns the plural and underscored version of this resource. Useful for element id's.
+      def plural_underscored_resource_name
+        plural_resource_name.underscore.gsub(/\s/, '_')
+      end
     end
   end
 end

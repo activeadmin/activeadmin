@@ -7,10 +7,10 @@ module Arbre
       super - 1
     end
 
-    def length
-      cached_html.length
+    def bytesize
+      cached_html.bytesize
     end
-    alias :bytesize :length
+    alias :length :bytesize
 
     def respond_to?(method)
       super || cached_html.respond_to?(method)

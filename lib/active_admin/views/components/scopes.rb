@@ -8,7 +8,7 @@ module ActiveAdmin
 
       def build(scopes)
         scopes.each do |scope|
-          build_scope(scope)
+          build_scope(scope) if call_method_or_proc_on(self, scope.display_if_block)
         end
       end
 

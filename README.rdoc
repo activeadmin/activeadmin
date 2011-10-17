@@ -30,10 +30,10 @@ to implement beautiful and elegant interfaces with very little effort.
 Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby
 on Rails 3 application. To install, simply add the following to your Gemfile:
 
-  # Gemfile in Rails <= 3.1
+  # Gemfile in Rails < 3.1
   gem 'activeadmin'
 
-If you are using Rails >= 3.1, you must also include a beta version of MetaSearch and sass-rails:
+If you are using Rails >= 3.1, you must also have sass-rails in your Gemfile:
 
   # Gemfile in Rails >= 3.1
   gem 'activeadmin'

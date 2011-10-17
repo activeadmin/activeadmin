@@ -26,7 +26,30 @@ Feature: Index Scoping
     And I should see the scope "All" with the count 10
     And I should see 10 posts in the table
 
-  Scenario: Viewing resources with mulitple scopes as blocks
+  Scenario: Viewing resources with optional scopes
+	Given 10 posts exist
+	And an index configuration of:
+	 """
+	 ActiveAdmin.register Post do
+       scope :all, :if => proc { false }
+       scope "Shown", :if => proc { true } do |posts|
+         posts
+	   end
+	   scope "Default", :default => true do |posts|
+         posts
+       end
+       scope 'Today', :if => proc { false } do |posts|
+         posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day, ::Time.zone.now.end_of_day])
+       end
+	 end
+	 """
+	Then I should see the scope "Default" selected
+	And I should not see the scope "All"
+	And I should not see the scope "Today"
+	And I should see the scope "Shown"
+	And I should see the scope "Default" with the count of 10
+
+  Scenario: Viewing resources with multiple scopes as blocks
     Given 10 posts exist
     And an index configuration of:
       """

@@ -1,0 +1,17 @@
+@mixin clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    content: "";
+    clear: both;
+    height: 0;
+  }
+}
+
+@mixin box-sizing($value: border-box) {
+  -moz-box-sizing: $value;
+  -webkit-box-sizing: $value;
+  -o-box-sizing: $value;
+  -ms-box-sizing: $value;
+  box-sizing: $value;
+}

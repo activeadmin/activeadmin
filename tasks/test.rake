@@ -14,7 +14,8 @@ namespace :test do
       puts
       puts "== Using Rails #{version}"
       cmd "./script/use_rails #{version}"
-      cmd "bundle exec rspec spec"
+      cmd "bundle exec rspec spec/unit"
+      cmd "bundle exec rspec spec/integration"
       cmd "bundle exec cucumber features"
     end
     cmd "./script/use_rails #{current_version}" if current_version

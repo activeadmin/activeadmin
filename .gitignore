@@ -32,3 +32,4 @@ viewcumber
 test-rails*
 public
 .rvmrc
+.rspec

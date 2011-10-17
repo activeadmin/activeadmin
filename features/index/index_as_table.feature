@@ -79,3 +79,17 @@ Feature: Index as Table
     And I should not see a table header with "Body"
     And I should see "Hello World"
     And I should not see "From the body"
+
+  Scenario: Default Actions
+    Given a post with the title "Hello World" and body "From the body" exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        actions :index, :show, :edit, :update
+      end
+      """
+    Then I should see a member link to "View"
+    And I should see a member link to "Edit"
+    And I should not see a member link to "Delete"
+
+
