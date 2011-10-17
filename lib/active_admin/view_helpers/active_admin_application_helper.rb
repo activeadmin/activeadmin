@@ -38,6 +38,8 @@ module ActiveAdmin
         case action
         when :update
           edit_resource_path(resource)
+        when :create
+          new_resource_path
         else
           resource_path(resource)
         end
@@ -68,6 +70,10 @@ module ActiveAdmin
 
       def delete_link_to(*args)
         authorized_link_to(:destroy, *args)
+      end
+
+      def new_link_to(*args)
+        authorized_link_to(:create, *args)
       end
 
     end
