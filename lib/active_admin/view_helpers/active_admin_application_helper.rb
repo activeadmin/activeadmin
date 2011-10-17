@@ -36,7 +36,7 @@ module ActiveAdmin
       def default_authorized_path(resource, action)
 
         case action
-        when :edit
+        when :update
           edit_resource_path(resource)
         else
           resource_path(resource)
