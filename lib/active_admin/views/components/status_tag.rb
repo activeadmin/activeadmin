@@ -16,7 +16,7 @@ module ActiveAdmin
       #
       # @param [String] status the status to display. One of the span classes will be an underscored version of the status.
       # @param [Symbol] type type of status. Will become a class of the span. ActiveAdmin provide style for :ok, :warning and :error.
-      # @param [Hash] options such as :class, :id etc
+      # @param [Hash] options such as :class, :id and :label to override the default label
       #
       # @return [ActiveAdmin::Views::StatusTag]
       #
@@ -27,16 +27,17 @@ module ActiveAdmin
       #   status_tag('active', :ok)
       #   # => <span class='status active ok'>Active</span>
       #
-      #   status_tag('active', :ok, :class => 'important', :id => 'status_123')
-      #   # => <span class='status active ok important' id='status_123'>Active</span>
+      #   status_tag('active', :ok, :class => 'important', :id => 'status_123', :label => 'on')
+      #   # => <span class='status active ok important' id='status_123'>on</span>
       # 
       def build(*args)
         options = args.extract_options!
         status = args[0]
         type = args[1]
+        label = options.delete(:label)
         classes = options.delete(:class)
 
-        status = status.titleize if status
+        status = label || status.titleize if status
 
         super(status, options)
 
