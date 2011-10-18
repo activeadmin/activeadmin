@@ -37,9 +37,9 @@ module ActiveAdmin
         label = options.delete(:label)
         classes = options.delete(:class)
 
-        status = label || status.titleize if status
+        content = label || status.titleize if status
 
-        super(status, options)
+        super(content, options)
 
         add_class(status_to_class(status)) if status
         add_class(type.to_s) if type
