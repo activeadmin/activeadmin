@@ -84,19 +84,31 @@ module ActiveAdmin
 
       # modified from will_paginate
       def page_entries_info(options = {})
-        entry_name = options[:entry_name] ||
-          (collection.empty?? 'entry' : collection.first.class.name.underscore.sub('_', ' '))
+        if options[:entry_name]
+          entry_name = options[:entry_name]
+        elsif collection.empty?
+          entry_name = I18n.translate("active_admin.pagination.entry", :count => 1, :default => 'entry')
+          entries_name = I18n.translate("active_admin.pagination.entry", :count => 2, :default => 'entries')
+        else
+          begin
+            entry_name = I18n.translate!("activerecord.models.#{collection.first.class.name.i18n_key}", :count => 1)
+            entries_name = I18n.translate!("activerecord.models.#{collection.first.class.name.i18n_key}", :count => collection.size)
+          rescue I18n::MissingTranslationData
+            entry_name = collection.first.class.name.underscore.sub('_', ' ')
+          end
+        end
+        entries_name = entry_name.pluralize unless entries_name
 
         if collection.num_pages < 2
           case collection.size
-          when 0; I18n.t('active_admin.pagination.empty', :model => entry_name.pluralize)
+          when 0; I18n.t('active_admin.pagination.empty', :model => entries_name)
           when 1; I18n.t('active_admin.pagination.one', :model => entry_name)
-          else;   I18n.t('active_admin.pagination.one_page', :model => entry_name.pluralize, :n => collection.size)
+          else;   I18n.t('active_admin.pagination.one_page', :model => entries_name, :n => collection.size)
           end
         else
           offset = collection.current_page * active_admin_application.default_per_page
           total  = collection.total_count
-          I18n.t('active_admin.pagination.multiple', :model => entry_name.pluralize, :from => (offset - active_admin_application.default_per_page + 1), :to => offset > total ? total : offset, :total => total)
+          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => (offset - active_admin_application.default_per_page + 1), :to => offset > total ? total : offset, :total => total)
         end
       end
 
