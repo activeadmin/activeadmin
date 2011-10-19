@@ -62,7 +62,7 @@ module ActiveAdmin
         end
         
         def render_blank_slate
-          blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.resource_name.pluralize)
+          blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.plural_resource_name)
           if controller.action_methods.include?('new')
             blank_slate_content += " " + link_to(I18n.t("active_admin.blank_slate.link"), new_resource_path)
           end
@@ -77,7 +77,8 @@ module ActiveAdmin
         def render_index
           renderer_class = find_index_renderer_class(config[:as])
           
-          paginated_collection(collection, :entry_name => active_admin_config.resource_name) do
+          paginated_collection(collection, :entry_name   => active_admin_config.resource_name,
+                                           :entries_name => active_admin_config.plural_resource_name) do
             div :class => 'index_content' do
               insert_tag(renderer_class, config, collection)
             end
