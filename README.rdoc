@@ -8,13 +8,12 @@ to implement beautiful and elegant interfaces with very little effort.
 
 == Help / Support / Demo
 
+* Help & Advice: http://groups.google.com/group/activeadmin
+* Bug Reports & Feature Requests: https://github.com/gregbell/active_admin/issues
 * Documentation & Guides: http://activeadmin.info/documentation.html
-* Mailing list: http://groups.google.com/group/activeadmin
-* Bug reports: https://github.com/gregbell/active_admin/issues
 * RDoc: http://rubydoc.info/github/gregbell/active_admin/master/frames
 * Live demo: http://demo.activeadmin.info/admin
 * Website: http://www.activeadmin.info
-
 
 == Goals
 
