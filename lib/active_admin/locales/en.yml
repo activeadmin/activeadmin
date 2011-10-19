@@ -34,6 +34,9 @@ en:
       one: "Displaying <b>1</b> %{model}"
       one_page: "Displaying <b>all %{n}</b> %{model}"
       multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
+      entry:
+        one: "entry"
+        other: "entries"
     any: "Any"
     blank_slate:
       content: "There are no %{resource_name} yet."
