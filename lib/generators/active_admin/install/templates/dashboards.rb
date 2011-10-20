@@ -34,5 +34,11 @@ ActiveAdmin::Dashboards.build do
   #   section "Recent User", :priority => 1
   #
   # Will render the "Recent Users" then the "Recent Posts" sections on the dashboard.
+  
+  # == Conditionally Display
+  # Provide a method name or Proc object to conditionally render a section at run time.
+  #
+  # section "Membership Summary", :if => :memberships_enabled?
+  # section "Membership Summary", :if => Proc.new { current_admin_user.account.memberships.any? }
 
 end
