@@ -51,4 +51,5 @@ describe ActiveAdmin::Scope do
     end
 
   end
+
 end

@@ -17,7 +17,7 @@ module ActiveAdmin
       def build_scope(scope)
         span :class => classes_for_scope(scope) do
           begin
-            scope_name = I18n.t!("active_admin.scopes.#{scope.scope_method||'all'}")
+            scope_name = I18n.t!("active_admin.scopes.#{scope.id}")
           rescue I18n::MissingTranslationData
             scope_name = scope.name
           end
