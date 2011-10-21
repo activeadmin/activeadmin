@@ -69,16 +69,18 @@ module ActiveAdmin
           inputs options, &form_block
 
           # Capture the ADD JS
+          model_name = association.to_s.singularize.titlecase
+          place_holder = "NEW_#{model_name}_RECORD"
           js = with_new_form_buffer do
             inputs_for_nested_attributes  :for => [association, object.class.reflect_on_association(association).klass.new],
                                           :class => "inputs has_many_fields",
                                           :for_options => {
-                                            :child_index => "NEW_RECORD"
+                                            :child_index => place_holder
                                           }, &form_block
           end
 
           js = template.escape_javascript(js)
-          js = template.link_to I18n.t('active_admin.has_many_new', :model => association.to_s.singularize.titlecase), "#", :onclick => "$(this).before('#{js}'.replace(/NEW_RECORD/g, new Date().getTime())); return false;", :class => "button"
+          js = template.link_to I18n.t('active_admin.has_many_new', :model => model_name), "#", :onclick => "$(this).before('#{js}'.replace(/#{place_holder}/g, new Date().getTime())); return false;", :class => "button"
 
           form_buffers.last << js.html_safe
         end
