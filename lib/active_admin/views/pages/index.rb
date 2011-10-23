@@ -15,7 +15,16 @@ module ActiveAdmin
         # Render's the index configuration that was set in the
         # controller. Defaults to rendering the ActiveAdmin::Pages::Index::Table
         def main_content
-          build_scopes
+          div :class => "table_tools" do
+            a :class => 'table_tools_button disabled', :href => "#", :id => "batch_actions_button" do
+              text_node "Batch Actions"
+              span :class => "arrow"
+            end
+            
+            build_scopes
+          end
+
+          build_batch_action_popover
 
           if collection.any?
             render_index
@@ -29,6 +38,23 @@ module ActiveAdmin
         end
 
         protected
+        
+        
+        # TODO: Refactor to new HTML DSL
+        def build_download_format_links(formats = [:csv, :xml, :json])
+          links = formats.collect do |format|
+            link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format))
+          end
+          text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
+        end
+
+        def build_batch_action_popover
+          insert_tag view_factory.action_list_popover, :id => "batch_actions_popover" do
+            action "Delete Selected", "#"
+            action "Flag Selected", "#"
+            action "Export Selected", "#"
+          end
+        end
 
         def build_scopes
           if active_admin_config.scopes.any?
@@ -40,6 +66,7 @@ module ActiveAdmin
         # with each column displayed as well as all the default actions
         def default_index_config
           @default_index_config ||= ::ActiveAdmin::PageConfig.new(:as => :table) do |display|
+            selectable_column
             id_column
             resource_class.content_columns.each do |col|
               column col.name.to_sym
