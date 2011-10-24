@@ -1,0 +1,20 @@
+#collection_selection_toggle_panel {
+	@include clearfix;
+	>.resource_selection_toggle_cell {
+		float:left;
+	}
+	#collection_selection_toggle_explaination {  
+		float:left;
+		margin-left:5px;
+		font-style:italic;
+	}
+}
+
+table.index_grid {
+	.resource_selection_cell {
+		@include section-header;
+	  @include box-shadow(0 1px 3px rgba(0,0,0,0.12), 0 0 1px #FFF inset);
+	  border-bottom-color: #c4c4c4;
+		padding:3px 0px 3px 10px;
+	}
+}

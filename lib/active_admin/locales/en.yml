@@ -41,3 +41,4 @@ en:
     blank_slate:
       content: "There are no %{resource_name} yet."
       link: "Create one"
+    selection_toggle_explanation: "(Toggle Selection)"

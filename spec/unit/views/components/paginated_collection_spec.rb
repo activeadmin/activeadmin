@@ -39,7 +39,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, :param_name => :post_page) }
 
       it "should customize the page number parameter in pagination links" do
-        pagination.find_by_class('pagination_information').first.content.should match(/\/admin\/posts\?post_page=2/)
+        pagination.children.last.content.should match(/\/admin\/posts\?post_page=2/)
       end
     end
 
@@ -65,7 +65,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, :entry_name => "message") }
 
       it "should use :entry_name as the collection name" do
-        pagination.find_by_tag('div').first.content.should == "Displaying <b>1</b> message"
+        pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>1</b> message"
       end
     end
 
@@ -73,7 +73,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, :entry_name => "message") }
 
       it "should use :entry_name as the collection name" do
-        pagination.find_by_tag('div').first.content.should == "Displaying <b>all 3</b> messages"
+        pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>all 3</b> messages"
       end
     end
 
@@ -86,7 +86,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, :entry_name => "singular", :entries_name => "plural") }
 
       it "should use :entry_name as the collection name" do
-        pagination.find_by_tag('div').first.content.should == "Displaying <b>1</b> singular"
+        pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>1</b> singular"
       end
     end
 
@@ -94,7 +94,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, :entry_name => "singular", :entries_name => "plural") }
 
       it "should use :entries_name as the collection name" do
-        pagination.find_by_tag('div').first.content.should == "Displaying <b>all 3</b> plural"
+        pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>all 3</b> plural"
       end
     end
 
@@ -107,12 +107,12 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection) }
 
       it "should use 'post' as the collection name when there is no I18n translation" do
-        pagination.find_by_tag('div').first.content.should == "Displaying <b>1</b> post"
+        pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>1</b> post"
       end
 
       it "should use 'Singular' as the collection name when there is an I18n translation" do
         I18n.stub(:translate!) { "Singular" }
-        pagination.find_by_tag('div').first.content.should == "Displaying <b>1</b> Singular"
+        pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>1</b> Singular"
       end
     end
 
@@ -120,12 +120,12 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection) }
 
       it "should use 'posts' as the collection name when there is no I18n translation" do
-        pagination.find_by_tag('div').first.content.should == "Displaying <b>all 3</b> posts"
+        pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>all 3</b> posts"
       end
 
       it "should use 'Plural' as the collection name when there is an I18n translation" do
         I18n.stub(:translate!) { "Plural" }
-        pagination.find_by_tag('div').first.content.should == "Displaying <b>all 3</b> Plural"
+        pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>all 3</b> Plural"
       end
     end
 
@@ -138,7 +138,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection) }
 
       it "should display 'No entries found'" do
-        pagination.find_by_tag('div').first.content.should == "No entries found"
+        pagination.find_by_class('pagination_information').first.content.should == "No entries found"
       end
     end
   end

@@ -47,7 +47,7 @@ module ActiveAdmin
 
       # Register the resource
       register_resource_controller(config)
-      parse_registration_block(config, &block) if block_given?
+      parse_registration_block(config, &block || Proc.new {})
       register_with_menu(config) if config.include_in_menu?
 
       # Ensure that the dashboard is generated

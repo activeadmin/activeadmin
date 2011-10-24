@@ -26,6 +26,7 @@ module ActiveAdmin
       def build(page_config, collection)
         @page_config = page_config
         @collection = collection
+        add_class "index"
         build_table
       end
 
@@ -36,6 +37,7 @@ module ActiveAdmin
       protected
 
       def build_table
+        resource_selection_toggle_panel
         table :class => "index_grid" do
           collection.in_groups_of(number_of_columns).each do |group|
             build_row(group)

@@ -1,4 +1,5 @@
 require 'active_admin/resource/action_items'
+require 'active_admin/resource/batch_actions'
 require 'active_admin/resource/menu'
 require 'active_admin/resource/naming'
 require 'active_admin/resource/scopes'
@@ -65,6 +66,7 @@ module ActiveAdmin
 
     include Base
     include ActionItems
+    include BatchActions
     include Menu
     include Naming
     include Scopes
@@ -155,5 +157,6 @@ module ActiveAdmin
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource)
     end
+    
   end # class Resource
 end # module ActiveAdmin

@@ -67,7 +67,7 @@ describe 'defining new actions from registration blocks' do
         controller.public_instance_methods.collect(&:to_s).should include("comments")
       end
       it "should add itself to the member actions config" do
-        controller.active_admin_config.collection_actions.size.should == 1
+        controller.active_admin_config.collection_actions.size.should == 2  # There is a default collection_action for batch_action() support
       end
       it "should create a new named route" do
         Rails.application.routes.url_helpers.methods.collect(&:to_s).should include("comments_admin_posts_path")

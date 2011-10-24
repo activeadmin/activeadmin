@@ -17,10 +17,9 @@ module ActiveAdmin
       
       def action(title, url, *args)
         options = args.extract_options!
-        
         within @contents do
           li do
-            text_node link_to(title, url, options)
+            text_node link_to( title, url, options )
           end
         end
       end

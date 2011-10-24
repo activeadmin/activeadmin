@@ -9,6 +9,7 @@ module ActiveAdmin
     #
     #     index :as => :block do |product|
     #       div :for => product do
+    #         resource_selection_cell product
     #         h2 auto_link(product.title)
     #         div do
     #           simple_format product.description
@@ -19,6 +20,8 @@ module ActiveAdmin
     class IndexAsBlock < ActiveAdmin::Component
 
       def build(page_config, collection)
+        add_class "index"
+        resource_selection_toggle_panel
         collection.each do |obj|
           instance_exec(obj, &page_config.block)
         end

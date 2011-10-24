@@ -15,24 +15,26 @@ module ActiveAdmin
         # Render's the index configuration that was set in the
         # controller. Defaults to rendering the ActiveAdmin::Pages::Index::Table
         def main_content
-          div :class => "table_tools" do
-            a :class => 'table_tools_button disabled', :href => "#", :id => "batch_actions_button" do
-              text_node "Batch Actions"
-              span :class => "arrow"
-            end
+          batch_action_form do
+            div :class => "table_tools" do
+              a :class => 'table_tools_button disabled', :href => "#", :id => "batch_actions_button" do
+                text_node "Batch Actions"
+                span :class => "arrow"
+              end
             
-            build_scopes
-          end
+              build_scopes
+            end
 
-          build_batch_action_popover
+            build_batch_action_popover
 
-          if collection.any?
-            render_index
-          else
-            if params[:q]
-              render_empty_results
+            if collection.any?
+              render_index
             else
-              render_blank_slate
+              if params[:q]
+                render_empty_results
+              else
+                render_blank_slate
+              end
             end
           end
         end
@@ -49,10 +51,11 @@ module ActiveAdmin
         end
 
         def build_batch_action_popover
-          insert_tag view_factory.action_list_popover, :id => "batch_actions_popover" do
-            action "Delete Selected", "#"
-            action "Flag Selected", "#"
-            action "Export Selected", "#"
+          input(:name => :batch_action, :id => :batch_action, :type => :hidden)
+          insert_tag view_factory.batch_action_popover do
+            active_admin_config.batch_actions.each do |the_action|
+              action the_action if call_method_or_proc_on(self, the_action.display_if_block)
+            end
           end
         end
 

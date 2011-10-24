@@ -47,7 +47,7 @@ Feature: Index Scoping
 	And I should not see the scope "All"
 	And I should not see the scope "Today"
 	And I should see the scope "Shown"
-	And I should see the scope "Default" with the count of 10
+	And I should see the scope "Default" with the count 10
 
   Scenario: Viewing resources with multiple scopes as blocks
     Given 10 posts exist
