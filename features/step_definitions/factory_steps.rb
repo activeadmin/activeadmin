@@ -12,9 +12,9 @@ Given /^a post with the title "([^"]*)" written by "([^"]*)" exists$/ do |title,
   Post.create! :title => title, :author => author
 end
 
-Given /^(\d+) posts? exists?/ do |count|
+Given /^(\d+)( published)? posts? exists?$/ do |count, published|
   (0...count.to_i).each do |i|
-    Post.create! :title => "Hello World #{i}"
+    Post.create! :title => "Hello World #{i}", :published_at => (published ? Time.now : nil)
   end
 end
 
