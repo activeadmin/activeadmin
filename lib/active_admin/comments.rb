@@ -70,8 +70,8 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Namespace::RegisterEvent do |namespace
 
       # Display as a table
       index do
-        column("Resource"){|comment| auto_link(comment.resource) }
-        column("Author"){|comment| auto_link(comment.author) }
+        column("Resource"){|comment| auto_admin_link(comment.resource) }
+        column("Author"){|comment| auto_admin_link(comment.author) }
         column :body
       end
     end

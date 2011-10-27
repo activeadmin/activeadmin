@@ -8,7 +8,7 @@ resource.
 
     index :as => :block do |product|
       div :for => product do
-        h2 auto_link(product.title)
+        h2 auto_admin_link(product.title)
         div do
           simple_format product.description
         end
