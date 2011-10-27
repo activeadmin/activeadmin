@@ -40,7 +40,10 @@ module ActiveAdmin
             div :class => "active_admin_comment_meta" do
               user_name = comment.author ? auto_link(comment.author) : "Anonymous"
               h4(user_name, :class => "active_admin_comment_author")
-              span(pretty_format(comment.created_at))
+              span(pretty_format(comment.created_at)) 
+              div :class => "active_admin_comment_actions" do
+                link_to I18n.t('active_admin.delete'), admin_comment_path(comment), :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation')
+              end
             end
             div :class => "active_admin_comment_body" do
               simple_format(comment.body)

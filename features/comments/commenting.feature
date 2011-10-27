@@ -110,3 +110,13 @@ Feature: Commenting
     When I add a comment "Hello World"
     Then I should see a flash with "Comment was successfully created"
     And I should be in the resource section for users
+                                                         
+  Scenario: Delete a Comment
+    Given a show configuration of:
+      """
+        ActiveAdmin.register Post
+      """
+    When I add a comment "Hello from Comment"
+    Then I should see "Comments (1)" 
+    When I follow "Delete" 
+    Then I should see "Comments (0)" 
