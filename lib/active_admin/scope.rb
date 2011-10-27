@@ -20,7 +20,7 @@ module ActiveAdmin
     #   # => Scope with name 'Published' using a block to scope
     #
     def initialize(name, method = nil, options = {}, &block)
-      @name = name.to_s.titleize
+      @name = name.is_a?( String ) ? name : name.to_s.titleize
       @scope_method = method
       # Scope ':all' means no scoping
       @scope_method ||= name.to_sym unless name.to_sym == :all
