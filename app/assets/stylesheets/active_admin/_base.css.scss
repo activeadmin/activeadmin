@@ -151,6 +151,17 @@ a.button, input[type=submit] { @include dark-button; }
 // ----------------------------------- Sections & Panels
 // Helper class to apply to elements to make them sections
 .section, .panel{ @include section; }
+.panel.toggle {
+	h3 {
+		cursor: pointer;
+		&:hover {
+		  text-decoration: underline;
+		}
+	}
+	.panel_contents {
+	  display:none;
+	}
+}
 
 // ----------------------------------- Blank Slate
 

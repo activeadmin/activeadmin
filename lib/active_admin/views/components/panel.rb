@@ -9,6 +9,7 @@ module ActiveAdmin
         icn = icon_name ? icon(icon_name) : ""
         super(attributes)
         add_class "panel"
+        add_class "toggle" if attributes.include? :toggle
         @title = h3(icn + title.to_s)
         @contents = div(:class => "panel_contents")
       end

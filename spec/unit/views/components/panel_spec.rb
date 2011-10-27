@@ -13,7 +13,7 @@ describe ActiveAdmin::Views::Panel do
   it "should have a title h3" do
     the_panel.find_by_tag("h3").first.content.should == "My Title"
   end
-
+  
   it "should have a contents div" do
     the_panel.find_by_tag("div").first.class_list.should include("panel_contents")
   end
@@ -24,6 +24,16 @@ describe ActiveAdmin::Views::Panel do
 
   it "should set the icon" do
     panel("Title", :icon => :arrow_down).find_by_tag("h3").first.content.should include("span class=\"icon")
+  end
+  
+  context "when status is an empty string" do
+    subject do
+      panel "My Title", :toggle => true do
+        span "Hello World"
+      end
+    end
+
+    its(:class_list)  { should include('toggle') }
   end
 
 end
