@@ -26,7 +26,7 @@ describe ActiveAdmin::Views::Panel do
     panel("Title", :icon => :arrow_down).find_by_tag("h3").first.content.should include("span class=\"icon")
   end
   
-  context "when status is an empty string" do
+  context "toggling a panel" do
     subject do
       panel "My Title", :toggle => true do
         span "Hello World"
