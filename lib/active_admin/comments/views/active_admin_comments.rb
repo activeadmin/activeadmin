@@ -38,7 +38,7 @@ module ActiveAdmin
         def build_comment(comment)
           div :for => comment do
             div :class => "active_admin_comment_meta" do
-              user_name = comment.author ? auto_link(comment.author) : "Anonymous"
+              user_name = comment.author ? auto_admin_link(comment.author) : "Anonymous"
               h4(user_name, :class => "active_admin_comment_author")
               span(pretty_format(comment.created_at))
             end

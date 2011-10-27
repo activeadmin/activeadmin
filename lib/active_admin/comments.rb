@@ -69,8 +69,8 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent do |app|
 
         # Display as a table
         index do
-          column(I18n.t('active_admin.comments.resource')){|comment| auto_link(comment.resource) }
-          column(I18n.t('active_admin.comments.author')){|comment| auto_link(comment.author) }
+          column(I18n.t('active_admin.comments.resource')){|comment| auto_admin_link(comment.resource) }
+          column(I18n.t('active_admin.comments.author')){|comment| auto_admin_link(comment.author) }
           column(I18n.t('active_admin.comments.body')){|comment| comment.body }
         end
       end

@@ -22,7 +22,7 @@ describe "auto linking resources" do
 
   context "when the resource is not registered" do
     it "should return the display name of the object" do
-      auto_link(post).should == "Hello World"
+      auto_admin_link(post).should == "Hello World"
     end
   end
 
@@ -32,7 +32,7 @@ describe "auto linking resources" do
     end
     it "should return a link with the display name of the object" do
       self.should_receive(:link_to).with("Hello World", admin_post_path(post))
-      auto_link(post)
+      auto_admin_link(post)
     end
   end
 
