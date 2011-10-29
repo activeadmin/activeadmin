@@ -6,15 +6,20 @@ module ActiveAdmin
     # @param [String] rails_version
     #   The version of Rails we're using. We use this to switch between
     #   the correcr Rails reloader class.
-    def initialize(rails_version)
+    def initialize(app, rails_version)
+      @app = app
       @rails_version = rails_version.to_s
     end
 
     # Attach to Rails and perform the reload on each request.
     def attach!
-      reloader_class.to_prepare do
+      file_update_checker = ActiveSupport::FileUpdateChecker.new(@app.load_paths) do
         ActiveAdmin.application.unload!
         Rails.application.reload_routes!
+      end
+
+      reloader_class.to_prepare do
+        file_update_checker.execute_if_updated
       end
     end
 
