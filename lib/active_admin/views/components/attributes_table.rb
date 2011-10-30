@@ -20,7 +20,11 @@ module ActiveAdmin
       def row(attr, &block)
         @table << tr do
           th do
-            header_content_for(attr)
+            if attr.class == Symbol
+              I18n.t(attr, :scope => [:active_admin, :columns, :"#{@record.class.to_s.downcase.to_sym}"])
+            else
+              header_content_for(attr)
+            end
           end
           td do
             content_for(block || attr)
