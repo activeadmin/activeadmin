@@ -33,11 +33,12 @@ on Rails 3 application. To install, simply add the following to your Gemfile:
   # Gemfile in Rails < 3.1
   gem 'activeadmin'
 
-If you are using Rails >= 3.1, you must also have sass-rails in your Gemfile:
+If you are using Rails >= 3.1, you must also have sass-rails and meta_search in your Gemfile:
 
   # Gemfile in Rails >= 3.1
   gem 'activeadmin'
   gem 'sass-rails'
+  gem 'meta_search',    '>= 1.1.0.pre'
 
 After updating your bundle, run the installer
 
