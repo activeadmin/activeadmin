@@ -110,4 +110,4 @@ https://github.com/gregbell/active_admin/issues
 
 == Copyright
 
-Copyright (c) 2010 Greg Bell, VersaPay Corporation. See LICENSE for details.
+Copyright (c) 2011 Greg Bell, VersaPay Corporation. See LICENSE for details.
