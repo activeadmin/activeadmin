@@ -107,4 +107,24 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
+  
+  # == App paths and their reloading
+  # 
+  # Load paths for admin configurations. Add folders to this load path
+  # to load up other resources for administration. External gems can
+  # include their paths in this load path to provide active_admin UIs
+  #   
+  # Default:
+  #   config.load_paths = [File.expand_path('app/admin', Rails.root)]
+  #
+  # You can force paths reload on development environments that are.
+  # unable to correctly report file changes. This could be useful for
+  # instance if project is mounted within Vagrant box and is not.
+  # reacting on changes within app/admin.
+  # 
+  # Default:
+  #   config.always_reload_paths = false
+  #
+  # To make reloader Vagrant-aware:
+  #   config.always_reload_paths = true if ENV['LOGNAME'] == 'vagrant'
 end
