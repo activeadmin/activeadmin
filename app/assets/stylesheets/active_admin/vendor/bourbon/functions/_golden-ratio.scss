@@ -1,0 +1,32 @@
+@function golden-ratio($value, $increment) {
+  @if $increment > 0 {
+    @for $i from 1 through $increment {
+      $value: ($value * 1.618);
+    }
+  }
+  @if $increment < 0 {
+    $increment: abs($increment);
+    @for $i from 1 through $increment {
+      $value: ($value / 1.618);
+    }
+  }
+  @if $increment == 0 {
+    @warn "Increment value cannot be zero; must be ...-3, -2, -1, 1, 2, 3...";
+  }
+  @return $value;
+}
+
+//  div {
+//                      Increment Up GR with positive value
+//    font-size:        golden-ratio(14px,  1);    // returns: 22.652px
+//
+//                      Increment Down GR with negative value
+//    font-size:        golden-ratio(14px, -1);    // returns: 8.653px
+//
+//                     Can be used with ceil(round up) or floor(round down)
+//    font-size: floor( golden-ratio(14px,  1) );  // returns: 22px
+//    font-size:  ceil( golden-ratio(14px,  1) );  // returns: 23px
+//  }
+//
+// modularscale.com
+// goldenratiocalculator.com

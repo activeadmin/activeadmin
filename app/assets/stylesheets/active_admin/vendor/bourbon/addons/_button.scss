@@ -1,0 +1,169 @@
+@mixin button ($style: simple, $base-color: #4294f0) {
+
+  @if type-of($style) == color {
+    $base-color: $style;
+    $style: simple;
+  }
+
+  @if $style == simple {
+    @include simple($base-color);
+  }
+
+  @else if $style == shiny {
+    @include shiny($base-color);
+  }
+
+  @else if $style == pill {
+    @include pill($base-color);
+  }
+}
+
+@mixin simple ($base-color) {
+  $stop-gradient: adjust-color($base-color, $saturation: 9%, $lightness: -11%);
+  $border: adjust-color($base-color, $saturation: 9%, $lightness: -14%);
+  $color: hsl(0, 0, 100%);
+  $inset-shadow: adjust-color($base-color, $saturation: -8%, $lightness: 15%);
+  $text-shadow: adjust-color($base-color, $saturation: 15%, $lightness: -18%);
+
+  @if lightness($base-color) > 70% {
+    $color: hsl(0, 0, 20%);
+    $text-shadow: adjust-color($base-color, $saturation: 10%, $lightness: 4%);
+  }
+
+  border: 1px solid $border;
+  @include border-radius (3px);
+  @include box-shadow (inset 0 1px 0 0 $inset-shadow);
+  color: $color;
+  display: inline;
+  font: bold 11px 'lucida grande', helvetica neue, helvetica, arial, sans-serif;
+  @include linear-gradient ($base-color, $stop-gradient);
+  padding: 6px 18px 7px;
+  text-shadow: 0 1px 0 $text-shadow;
+  -webkit-background-clip: padding-box;
+
+  &:hover {
+    $base-color-hover: adjust-color($base-color, $saturation: -4%, $lightness: -5%);
+    $stop-gradient-hover: adjust-color($base-color, $saturation: 8%, $lightness: -14%);
+    $inset-shadow-hover: adjust-color($base-color, $saturation: -7%, $lightness: 5%);
+
+    @include box-shadow (inset 0 1px 0 0 $inset-shadow-hover);
+    cursor: pointer;
+    @include linear-gradient ($base-color-hover, $stop-gradient-hover);
+  }
+
+  &:active {
+    $border-active: adjust-color($base-color, $saturation: 9%, $lightness: -14%);
+    $inset-shadow-active: adjust-color($base-color, $saturation: 7%, $lightness: -17%);
+
+    border: 1px solid $border-active;
+    @include box-shadow (inset 0 0 8px 4px $inset-shadow-active, inset 0 0 8px 4px $inset-shadow-active, 0 1px 1px 0 #eee);
+  }
+}
+
+@mixin shiny($base-color) {
+  $second-stop: adjust-color($base-color, $red: -56, $green: -50, $blue: -33);
+  $third-stop: adjust-color($base-color, $red: -86, $green: -75, $blue: -48);
+  $fourth-stop: adjust-color($base-color, $red: -79, $green: -70, $blue: -46);
+  $border: adjust-color($base-color, $red: -117, $green: -111, $blue: -81);
+  $border-bottom: adjust-color($base-color, $red: -126, $green: -127, $blue: -122);
+  $color: hsl(0, 0, 100%);
+  $inset-shadow: adjust-color($base-color, $red: 37, $green: 29, $blue: 12);
+  $text-shadow: adjust-color($base-color, $red: -140, $green: -141, $blue: -114);
+
+  @if lightness($base-color) > 70% {
+    $color: hsl(0, 0, 20%);
+    $text-shadow: adjust-color($base-color, $saturation: 10%, $lightness: 4%);
+  }
+
+  @include linear-gradient(top, $base-color 0%, $second-stop 50%, $third-stop 50%, $fourth-stop 100%);
+  border: 1px solid $border;
+  border-bottom: 1px solid $border-bottom;
+  @include border-radius(5px);
+  @include box-shadow(inset 0 1px 0 0 $inset-shadow);
+  color: $color;
+  display: inline;
+  font: bold 14px "helvetica neue", helvetica, arial, sans-serif;
+  padding: 7px 20px 8px;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 0 -1px 1px $text-shadow;
+
+  &:hover {
+    $first-stop-hover: adjust-color($base-color, $red: -13, $green: -15, $blue: -18);
+    $second-stop-hover: adjust-color($base-color, $red: -66, $green: -62, $blue: -51);
+    $third-stop-hover: adjust-color($base-color, $red: -93, $green: -85, $blue: -66);
+    $fourth-stop-hover: adjust-color($base-color, $red: -86, $green: -80, $blue: -63);
+
+    @include linear-gradient(top, $first-stop-hover 0%, $second-stop-hover 50%, $third-stop-hover 50%, $fourth-stop-hover 100%);
+    cursor: pointer;
+  }
+
+  &:active {
+    $inset-shadow-active: adjust-color($base-color, $red: -111, $green: -116, $blue: -122);
+
+    @include box-shadow(inset 0 0 20px 0 $inset-shadow-active, 0 1px 0 #fff);
+  }
+}
+
+@mixin pill($base-color) {
+  $stop-gradient: adjust-color($base-color, $hue: 8, $saturation: 14%, $lightness: -10%);
+  $border-top: adjust-color($base-color, $hue: -1, $saturation: -30%, $lightness: -15%);
+  $border-sides: adjust-color($base-color, $hue: 4, $saturation: -21%, $lightness: -21%);
+  $border-bottom: adjust-color($base-color, $hue: 8, $saturation: -11%, $lightness: -26%);
+  $color: hsl(0, 0, 100%);
+  $inset-shadow: adjust-color($base-color, $hue: -1, $saturation: -1%, $lightness: 7%);
+  $text-shadow: adjust-color($base-color, $hue: 5, $saturation: -19%, $lightness: -15%);
+
+  @if lightness($base-color) > 70% {
+    $color: hsl(0, 0, 20%);
+    $text-shadow: adjust-color($base-color, $saturation: 10%, $lightness: 4%);
+  }
+
+  @include linear-gradient ($base-color, $stop-gradient);
+  border: 1px solid $border-top;
+  border-color: $border-top $border-sides $border-bottom;
+  @include border-radius(16px);
+  @include box-shadow(inset 0 1px 0 0 $inset-shadow, 0 1px 2px 0 #b3b3b3);
+  color: $color;
+  display: inline;
+  font-family: "lucida grande", sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 1;
+  padding: 3px 16px 5px;
+  text-align: center;
+  text-shadow: 0 -1px 1px $text-shadow;
+  -webkit-background-clip: padding-box;
+
+  &:hover {
+    $base-color-hover: adjust-color($base-color, $lightness: -4.5%);
+    $stop-gradient-hover: adjust-color($base-color, $hue: 8, $saturation: -4%, $lightness: -15.5%);
+    $border-top: adjust-color($base-color, $hue: -1, $saturation: -17%, $lightness: -21%);
+    $border-sides: adjust-color($base-color, $hue: 4, $saturation: -2%, $lightness: -27%);
+    $border-bottom: adjust-color($base-color, $hue: 8, $saturation: 13.5%, $lightness: -32%);
+    $inset-shadow-hover: adjust-color($base-color, $saturation: -1%, $lightness: 3%);
+    $text-shadow-hover: adjust-color($base-color, $hue: 5, $saturation: -5%, $lightness: -22%);
+
+    @include linear-gradient ($base-color-hover, $stop-gradient-hover);
+    border: 1px solid $border-top;
+    border-color: $border-top $border-sides $border-bottom;
+    @include box-shadow(inset 0 1px 0 0 $inset-shadow-hover);
+    cursor: pointer;
+    text-shadow: 0 -1px 1px $text-shadow-hover;
+    -webkit-background-clip: padding-box;
+  }
+
+  &:active {
+    $active-color: adjust-color($base-color, $hue: 4, $saturation: -12%, $lightness: -10%);
+    $border-active: adjust-color($base-color, $hue: 6, $saturation: -2.5%, $lightness: -30%);
+    $border-bottom-active: adjust-color($base-color, $hue: 11, $saturation: 6%, $lightness: -31%);
+    $inset-shadow-active: adjust-color($base-color, $hue: 9, $saturation: 2%, $lightness: -21.5%);
+    $text-shadow-active: adjust-color($base-color, $hue: 5, $saturation: -12%, $lightness: -21.5%);
+
+    background: $active-color;
+    border: 1px solid $border-active;
+    border-bottom: 1px solid $border-bottom-active;
+    @include box-shadow(inset 0 0 6px 3px $inset-shadow-active, 0 1px 0 0 #fff);
+    text-shadow: 0 -1px 1px $text-shadow-active;
+  }
+}

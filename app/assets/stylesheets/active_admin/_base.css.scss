@@ -1,7 +1,7 @@
 /* Active Admin CSS */
 
 // Bourbon and it's awesome mixins
-@import "bourbon";
+@import "vendor/bourbon/bourbon";
 
 // Reset Away!
 @include global-reset;
@@ -31,7 +31,7 @@
 @import "active_admin/structure/title_bar";
 
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  @include sans-family;
   line-height: 150%;
   font-size: 72%;
   background: #fff;

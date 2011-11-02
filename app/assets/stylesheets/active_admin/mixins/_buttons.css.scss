@@ -2,40 +2,47 @@
   @include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
   @include rounded(200px);
   @include text-shadow(#000);
-  @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #777d83 inset);
+  @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px rgba(255,255,255, 0.2) inset);
   border: solid 1px #484e53;
   @include border-colors(#616a71, #484e53, #363b3f);
+  color: #efefef;
   display: inline-block;
-  text-decoration: none;
-  margin-right: 3px;
   font-weight: bold;
   font-size: 1.0em;
+  @include sans-family;
   line-height: 12px;
-  padding: 6px 16px 6px;
-  color: #efefef;
+  margin-right: 3px;
+  padding: 7px 16px 6px;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
   
   &:hover {
-    color: #fff;
+    color: #FFF;
     @include icon-color(#fff);
+    @include gradient(lighten($primary-color, 18%), darken($primary-color, 9%));
   }
+  
   &:active {
-    @include box-shadow(0 1px 2px rgba(0,0,0,0.8) inset, 0 1px 0 0px #FFF);
+    @include box-shadow(0 1px 3px rgba(0,0,0,0.40) inset, 0 1px 0 0px #FFF);
+    @include gradient(lighten($primary-color, 13%), darken($primary-color, 14%));
   }
 }
 
 @mixin light-button {
   @include default-button;
   @include gradient(#fdfdfd, #e8e8e8);
-  @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #FFF inset);
-  @include border-colors(#dbdbdb, #d2d2d2, #c5c5c5);
+  @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px rgba(255,255,255, 0.8) inset);
+  @include border-colors(#d3d3d3, #c7c7c7, #c2c2c2);
   @include text-shadow;
   color: #777;
   &:hover {
-    color: #444;
     @include icon-color(#444);
+    color: #444;
+    @include gradient(#fdfdfd, #eaeaea);
   }
   &:active {
-    @include box-shadow(0 1px 2px rgba(0,0,0,0.4) inset, 0 1px 0 0px #FFF);
+    @include box-shadow(0 1px 3px rgba(0,0,0,0.18) inset, 0 1px 0 0px #EEE);
+    @include gradient(#fcfcfc, #e5e4e5);
   }
   
   &.disabled {
@@ -54,10 +61,4 @@
 
 @mixin dark-button {
   @include default-button;
-  
-  &:hover {
-    color: #fff;
-    @include icon-color(#fff);
-    @include gradient(lighten($primary-color, 20%), darken($primary-color, 18%));
-  }
 }
