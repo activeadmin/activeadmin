@@ -86,13 +86,13 @@ a.table_tools_button {
     
     &.selected {
       a {
-        background: #ededed;
-        @include box-shadow(0 1px 0px 0 rgba(0,0,0,0.06) inset);
-        color: #989ca0;
+        background: #F0F0F0;
+        @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.1) inset);
+        color: #8a8a8a;
         cursor: default;
         
         &:hover {
-          color: #989ca0;
+          color: #8a8a8a;
         }
       }
     }
