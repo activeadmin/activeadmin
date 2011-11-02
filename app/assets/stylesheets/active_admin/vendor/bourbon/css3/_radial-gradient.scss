@@ -1,0 +1,22 @@
+// Requires Sass 3.1+
+@mixin radial-gradient($pos, $shape-size,
+                       $G1,        $G2,
+                       $G3: false, $G4: false,
+                       $G5: false, $G6: false,
+                       $G7: false, $G8: false,
+                       $G9: false, $G10: false) {
+
+  $full: compact($G1, $G2, $G3, $G4, $G5, $G6, $G7, $G8, $G9, $G10);
+
+  background-color:  nth($G1, 1);
+  background-image:          deprecated-webkit-gradient(radial, $full); // Safari <= 5.0
+  background-image:  -webkit-radial-gradient($pos, $shape-size, $full);
+  background-image:     -moz-radial-gradient($pos, $shape-size, $full);
+  background-image:      -ms-radial-gradient($pos, $shape-size, $full);
+  background-image:       -o-radial-gradient($pos, $shape-size, $full);
+  background-image: unquote("radial-gradient(#{$pos}, #{$shape-size}, #{$full})");
+}
+
+//  Usage: Gradient position and shape-size are required. Color stops are optional.
+//  @include radial-gradient(50% 50%, circle cover, #1e5799, #efefef);
+//  @include radial-gradient(50% 50%, circle cover, #eee 10%, #1e5799 30%, #efefef);

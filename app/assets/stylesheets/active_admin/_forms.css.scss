@@ -79,7 +79,7 @@ form {
     border: 1px solid #c9d0d6;
     @include rounded;
     font-size: 0.95em;
-    font-family: Helvetica, Arial, sans-serif;
+    @include sans-family;
     outline: none;
     padding: 8px $text-input-horizontal-padding 7px;
     
