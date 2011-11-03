@@ -22,7 +22,7 @@ describe ActiveAdmin::Namespace do
     it "should have an empty menu" do
       namespace.menu.items.should be_empty
     end
-  end
+  end # context "when new"
 
   describe "settings" do
     let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
@@ -40,7 +40,6 @@ describe ActiveAdmin::Namespace do
   end
 
   describe "registering a resource" do
-
     let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
 
     context "with no configuration" do
@@ -61,7 +60,7 @@ describe ActiveAdmin::Namespace do
         namespace.menu["Categories"].should be_an_instance_of(ActiveAdmin::MenuItem)
         namespace.menu["Categories"].url.should == "/admin/categories"
       end
-    end
+    end # context "with no configuration"
 
     context "with a block configuration" do
       it "should be evaluated in the dsl" do
@@ -71,10 +70,9 @@ describe ActiveAdmin::Namespace do
           end
         }.should raise_error
       end
-    end
+    end # context "with a block configuration"
 
     context "with a resource that's namespaced" do
-
       before do
         module ::Mock; class Resource; def self.has_many(arg1, arg2); end; end; end
         namespace.register Mock::Resource
@@ -94,10 +92,9 @@ describe ActiveAdmin::Namespace do
         Admin::MockResourcesController.resource_class.should == Mock::Resource
       end
 
-    end
+    end # context "with a resource that's namespaced"
 
     describe "finding resource instances" do
-
       let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
 
       it "should return the resource when its been registered" do
@@ -120,10 +117,9 @@ describe ActiveAdmin::Namespace do
         namespace.resource_for(Publisher).should == publisher
       end
 
-    end
+    end # describe "finding resource instances"
 
     describe "adding to the menu" do
-
       describe "adding as a top level item" do
         before do
           namespace.register Category
@@ -132,7 +128,7 @@ describe ActiveAdmin::Namespace do
         it "should add a new menu item" do
           namespace.menu['Categories'].should_not be_nil
         end
-      end
+      end # describe "adding as a top level item"
 
       describe "adding as a child" do
         before do
@@ -147,7 +143,7 @@ describe ActiveAdmin::Namespace do
         it "should generate its own child item" do
           namespace.menu['Blog']['Categories'].should_not be_nil
         end
-      end
+      end # describe "adding as a child"
 
       describe "disabling the menu" do
         before do
@@ -159,7 +155,7 @@ describe ActiveAdmin::Namespace do
         it "should not create a menu item" do
           namespace.menu["Categories"].should be_nil
         end
-      end
+      end # describe "disabling the menu"
       
       describe "setting menu priority" do
         before do
@@ -171,7 +167,7 @@ describe ActiveAdmin::Namespace do
         it "should have a custom priority of 2" do
           namespace.menu["Categories"].priority.should == 2
         end
-      end
+      end # describe "setting menu priority"
       
       describe "setting a condition for displaying" do
         before do
@@ -184,7 +180,7 @@ describe ActiveAdmin::Namespace do
           namespace.menu["Categories"].display_if_block.should be_instance_of(Proc)
           namespace.menu["Categories"].display_if_block.call.should == false
         end
-      end
+      end # describe "setting a condition for displaying"
 
       describe "adding as a belongs to" do
         context "when not optional" do
@@ -208,7 +204,7 @@ describe ActiveAdmin::Namespace do
           end
         end
       end
-    end
+    end # describe "adding to the menu"
 
     describe "dashboard controller name" do
       context "when namespaced" do
@@ -223,7 +219,6 @@ describe ActiveAdmin::Namespace do
           namespace.dashboard_controller_name.should == "DashboardController"
         end
       end
-    end
-
-  end
+    end # describe "dashboard controller name"
+  end # describe "registering a resource"
 end
