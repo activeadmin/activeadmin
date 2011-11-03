@@ -6,14 +6,17 @@ to implement beautiful and elegant interfaces with very little effort.
 
 {<img src="http://travis-ci.org/gregbell/active_admin.png" />}[http://travis-ci.org/gregbell/active_admin]
 
-== Help / Support / Demo
+== Documentation & Support
 
-* Help & Advice: http://groups.google.com/group/activeadmin
-* Bug Reports & Feature Requests: https://github.com/gregbell/active_admin/issues
 * Documentation & Guides: http://activeadmin.info/documentation.html
 * RDoc: http://rubydoc.info/github/gregbell/active_admin/master/frames
 * Live demo: http://demo.activeadmin.info/admin
 * Website: http://www.activeadmin.info
+* <b>Need Support?</b> Ask the Mailing list: http://groups.google.com/group/activeadmin
+
+== Bugs & Feature Requests
+
+* Bug Reports & Feature Requests: https://github.com/gregbell/active_admin/issues
 * Want to Contribute? Read the Guide: https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md
 
 == Goals
