@@ -96,21 +96,6 @@ Iconic Icons::
   Excellent SVG icon set designed by P.J. Onori: http://somerandomdude.com/projects/iconic
 
 
-== Roadmap & Issue Tracking
-
-We are using the awesome Github issues! Please submit bugs or features to
-https://github.com/gregbell/active_admin/issues
-
-
-== Note on Patches/Pull Requests
-
-* Fork the project.
-* Make a NEW TOPIC BRANCH, then make your feature addition or bug fix
-* Add specs and cukes for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-* Send a pull request.
-
 == Copyright
 
 Copyright (c) 2011 Greg Bell, VersaPay Corporation. See LICENSE for details.
