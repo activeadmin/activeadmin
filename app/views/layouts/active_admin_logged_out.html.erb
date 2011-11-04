@@ -5,8 +5,8 @@
  
   <title><%= [@page_title, active_admin_application.site_title].compact.join(" | ") %></title>
 
-  <% ActiveAdmin.application.stylesheets.each do |path| %>
-    <%= stylesheet_link_tag path %>
+  <% ActiveAdmin.application.stylesheets.each do |style| %>
+    <%= stylesheet_link_tag style.path, style.options %>
   <% end %>
   <% ActiveAdmin.application.javascripts.each do |path| %>
     <%= javascript_include_tag path %>
