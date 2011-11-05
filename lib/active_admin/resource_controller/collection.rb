@@ -48,13 +48,17 @@ module ActiveAdmin
           params[:order] ||= active_admin_config.sort_order
           if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
             column = $1
-            order  = $2
-            table  = active_admin_config.resource_table_name
-            table_column = (column =~ /\./) ? column : "#{table}.#{column}"
-
-            chain.order("#{table_column} #{order}")
+            order = $2
+            table = active_admin_config.resource_table_name
+            if column =~ /\./
+              assoc_table_and_column = column.split(".")
+              column = assoc_table_and_column[0].pluralize+ "." + assoc_table_and_column[1]
+              chain.includes(assoc_table_and_column[0].to_sym).order("#{column} #{order}")
+            else
+              chain.order("#{table}.#{column} #{order}")
+            end
           else
-            chain # just return the chain
+            chain
           end
         end
       end
