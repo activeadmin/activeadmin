@@ -117,6 +117,10 @@ module ActiveAdmin
       controller.set_page_config :show, options, &block
     end
 
+    def content(options = {}, &block)
+      controller.set_page_config :index, options, &block
+    end
+
     def form(options = {}, &block)
       options[:block] = block
       controller.form_config = options

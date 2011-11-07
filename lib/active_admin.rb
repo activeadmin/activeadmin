@@ -31,7 +31,9 @@ module ActiveAdmin
   autoload :Menu,                     'active_admin/menu'
   autoload :MenuItem,                 'active_admin/menu_item'
   autoload :Namespace,                'active_admin/namespace'
+  autoload :Page,                     'active_admin/page'
   autoload :PageConfig,               'active_admin/page_config'
+  autoload :PageController,           'active_admin/page_controller'
   autoload :Reloader,                 'active_admin/reloader'
   autoload :Resource,                 'active_admin/resource'
   autoload :ResourceController,       'active_admin/resource_controller'
@@ -66,6 +68,7 @@ module ActiveAdmin
     end
 
     delegate :register, :to => :application
+    delegate :page,     :to => :application
     delegate :unload!,  :to => :application
     delegate :load!,    :to => :application
     delegate :routes,   :to => :application

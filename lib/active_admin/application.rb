@@ -116,6 +116,12 @@ module ActiveAdmin
 
     alias_method :namespace, :find_or_create_namespace
 
+    def page(name, options = {}, &block)
+      namespace_name = options.has_key?(:namespace) ? options[:namespace] : default_namespace
+      namespace = find_or_create_namespace(namespace_name)
+      namespace.page(name, options, &block)
+    end
+
     # Stores if everything has been loaded or we need to reload
     @@loaded = false
 
