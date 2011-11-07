@@ -60,6 +60,20 @@ module ActiveAdmin
       config
     end
 
+    def page(name, options = {}, &block)
+      config = build_page(name, options)
+
+      # Register the resource
+      register_page_controller(config)
+      parse_registration_block(config, &block) if block_given?
+      register_with_menu(config) if config.include_in_menu?
+
+      # Dispatch a registration event
+      ActiveAdmin::Event.dispatch ActiveAdmin::Resource::RegisterEvent, config
+
+      config
+    end
+
     def root?
       name == :root
     end
@@ -132,6 +146,19 @@ module ActiveAdmin
       end
 
       resource
+    end
+
+    def build_page(name, options)
+      page = Page.new(self, name, options)
+      @resources[page.camelized_resource_name] = page
+
+      page
+    end
+
+
+    def register_page_controller(config)
+      eval "class ::#{config.controller_name} < ActiveAdmin::PageController; end"
+      config.controller.active_admin_config = config
     end
 
     def unload_resources!
