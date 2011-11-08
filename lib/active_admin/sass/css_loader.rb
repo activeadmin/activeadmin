@@ -9,7 +9,7 @@ class Sass::Importers::Filesystem
 
   # We want to ensure that all *.css.scss files are loaded as scss files
   def extensions_with_css
-    extensions_without_css.merge('css.scss' => :scss)
+    extensions_without_css.merge('{css.,}scss' => :scss)
   end
   alias_method_chain :extensions, :css
 
