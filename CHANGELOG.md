@@ -10,6 +10,22 @@
 
 * #527: Active Admin now requires Formtastic 2.0 or > @ebeigarts
 
+## 0.3.4
+
+2 commits by 2 authors
+
+### Bug Fixes
+
+* Fix reloading issues across operating systems.
+* Fix issue where SASS was recompiling on every request. This can seriously
+  decrease the load time of applications when running in development mode.
+  Thanks @dhiemstra for tracking this one down!
+
+### Contributors
+
+* Danny Hiemstra
+* Greg Bell
+
 ## 0.3.3
 
 1 commit by 1 author
