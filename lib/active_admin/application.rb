@@ -208,7 +208,7 @@ module ActiveAdmin
     end
 
     def attach_reloader
-      ActiveAdmin::Reloader.new(self, Rails.version).attach!
+      ActiveAdmin::Reloader.new(Rails.application, self, Rails.version).attach!
     end
 
 
