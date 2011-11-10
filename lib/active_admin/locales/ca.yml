@@ -1,0 +1,44 @@
+#encoding: utf-8
+ca:
+  active_admin:
+    dashboard: Tauler
+    dashboard_welcome:
+      welcome: "Benvingut a Active Admin. Aquest és el tauler per defecte."
+      call_to_action: "Mira l'arxiu 'app/admin/dashboards.rb' per afegir seccions al tauler"
+    view: "Mostra"
+    edit: "Edita"
+    delete: "Elimina"
+    delete_confirmation: "Segur que vols eliminar-ho?"
+    new_model: "Crear %{model}"
+    edit_model: "Editar %{model}"
+    delete_model: "eliminar %{model}"
+    details: "Detalls de %{model}"
+    cancel: "Cancel·lar"
+    empty: "Buit"
+    previous: "Anterior"
+    next: "Següent"
+    download: "Descarregar:"
+    has_many_new: "Afegir %{model}"
+    has_many_delete: "Eliminar"
+    filter: "Filtrar"
+    clear_filters: "Treure filtres"
+    search_field: "Cercar %{field}"
+    equal_to: "Igual a"
+    greater_than: "Més gran que"
+    less_than: "Més petit que"
+    main_content: "Implementa %{model}#main_content per mostrar contingut."
+    logout: "Desconnecta't"
+    sidebars:
+      filters: "Filtres"
+    pagination:
+      empty: "No hi ha %{model}"
+      one: "S'està mostrant <b>1</b> %{model}"
+      one_page: "S'estan mostrant <b>tots %{n}</b> %{model}"
+      multiple: "S'estan mostrant %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> en total"
+      entry:
+        one: "entrada"
+        other: "entrades"
+    any: "Qualsevol"
+    blank_slate:
+      content: "Encara no hi ha cap %{resource_name}."
+      link: "Crea'n un/a"
