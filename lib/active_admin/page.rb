@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class Page
+  class Page < Config
     attr_reader :namespace, :name, :page_configs
 
     def initialize(namespace, name, options)
@@ -7,6 +7,12 @@ module ActiveAdmin
       @name = name
       @options = options
       @page_configs = {}
+    end
+
+    # Returns a properly formatted controller name for this
+    # resource within its namespace
+    def controller_name
+      [namespace.module_name, camelized_resource_name + "Controller"].compact.join('::')
     end
 
     # For Menu#include_in_menu?
@@ -21,6 +27,7 @@ module ActiveAdmin
 
     include ActiveAdmin::Resource::Menu
 
+    # ############## Naming ###################
     def underscored_resource_name
       name.gsub(' ', '').underscore
     end
@@ -29,48 +36,19 @@ module ActiveAdmin
     def camelized_resource_name
       underscored_resource_name.camelize
     end
+    # ############## Naming ###################
 
-    # From Resource.
-    def controller_name
-      [namespace.module_name, camelized_resource_name + "Controller"].compact.join('::')
-    end
-
-    # From Resource.
-    def controller
-      @controller ||= controller_name.constantize
-    end
-
-    # From Resource.
-    def route_prefix
-      namespace.module_name.try(:underscore)
-    end
-
-    # From Resource.
-    def route_collection_path
-      route = [route_prefix, controller.resources_configuration[:self][:route_collection_name]]
-
-      if controller.resources_configuration[:self][:route_collection_name] ==
-          controller.resources_configuration[:self][:route_instance_name]
-        route << "index"
-      end
-
-      route << 'path'
-      route.compact.join('_').to_sym
-    end
-
+    # ############# From Resource.
     def comments?
       false
     end
 
-    # Overwrite Resource::ActionItems
+    # From Resource::ActionItems
     def action_items_for(action)
       []
     end
 
-    def skip_sidebar?
-      true
-    end
-
+    # From Resource::Sidebars
     def sidebar_sections_for(action)
       []
     end

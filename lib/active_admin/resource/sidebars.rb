@@ -2,7 +2,7 @@ require 'active_admin/helpers/optional_display'
 
 module ActiveAdmin
 
-  class Resource
+  class Resource < Config
     module Sidebars
 
       def initialize(*args)
