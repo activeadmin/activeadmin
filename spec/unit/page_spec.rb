@@ -25,5 +25,40 @@ module ActiveAdmin
         end
       end
     end
+
+    describe "#resource_name" do
+      it "returns the name" do
+        config.resource_name.should == "Status"
+      end
+    end
+
+    describe "#plural_resource_name" do
+      it "returns the singular name" do
+        config.plural_resource_name.should == "Status"
+      end
+    end
+
+    describe "#underscored_resource_name" do
+      it "returns the underscored name" do
+        config.underscored_resource_name.should == "status"
+      end
+    end
+
+    it "should not belong_to anything" do
+      config.belongs_to?.should == false
+    end
+
+    it "should not have comments" do
+      config.comments?.should == false
+    end
+
+    it "should not have any action_items" do
+      config.action_items?.should == false
+    end
+
+    it "should not have any sidebar_sections" do
+      config.sidebar_sections?.should == false
+    end
+
   end
 end
