@@ -9,48 +9,21 @@ module ActiveAdmin
       @page_configs = {}
     end
 
-    # Returns a properly formatted controller name for this
-    # resource within its namespace
-    def controller_name
-      [namespace.module_name, camelized_resource_name + "Controller"].compact.join('::')
-    end
-
-    # For Menu#include_in_menu?
-    def belongs_to?
-      false
-    end
-
-    # For Menu#menu_item_name
+    # plural_resource_name is singular
     def plural_resource_name
       name
     end
 
-    include ActiveAdmin::Resource::Menu
+    # Overwrite Naming defaults as they require a resource object.
+    # @todo Refactor Naming to remove the dependency with Resources
+    def resource_name
+      name
+    end
 
-    # ############## Naming ###################
+    # Overwrite Naming defaults as they require a resource object.
+    # @todo Refactor Naming to remove the dependency with Resources
     def underscored_resource_name
-      name.gsub(' ', '').underscore
-    end
-
-    # From Naming.
-    def camelized_resource_name
-      underscored_resource_name.camelize
-    end
-    # ############## Naming ###################
-
-    # ############# From Resource.
-    def comments?
-      false
-    end
-
-    # From Resource::ActionItems
-    def action_items_for(action)
-      []
-    end
-
-    # From Resource::Sidebars
-    def sidebar_sections_for(action)
-      []
+      resource_name.underscore
     end
   end
 end

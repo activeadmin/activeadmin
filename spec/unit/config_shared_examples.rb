@@ -5,11 +5,14 @@ shared_examples_for "ActiveAdmin::Config" do
     end
   end
 
-  it { respond_to :belongs_to? }
-
   it { respond_to :controller_name }
   it { respond_to :controller }
   it { respond_to :route_prefix }
   it { respond_to :route_collection_path }
+  it { respond_to :comments? }
+  it { respond_to :belongs_to? }
+  it { respond_to :comments? }
+  it { respond_to :action_items? }
+  it { respond_to :sidebar_sections? }
 
 end

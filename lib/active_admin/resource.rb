@@ -1,5 +1,4 @@
 require 'active_admin/resource/action_items'
-require 'active_admin/resource/menu'
 require 'active_admin/resource/naming'
 require 'active_admin/resource/scopes'
 require 'active_admin/resource/sidebars'
@@ -65,7 +64,6 @@ module ActiveAdmin
 
     include Base
     include ActionItems
-    include Menu
     include Naming
     include Scopes
     include Sidebars
@@ -75,11 +73,6 @@ module ActiveAdmin
       resource.quoted_table_name
     end
 
-    # Returns a properly formatted controller name for this
-    # resource within its namespace
-    def controller_name
-      [namespace.module_name, camelized_resource_name.pluralize + "Controller"].compact.join('::')
-    end
 
     # Returns the named route for an instance of this resource
     def route_instance_path

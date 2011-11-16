@@ -1,7 +1,6 @@
 module ActiveAdmin
   class Resource < Config
     module Naming
-
       # An underscored safe representation internally for this resource
       def underscored_resource_name
         @underscored_resource_name ||= if @options[:as]
@@ -9,11 +8,6 @@ module ActiveAdmin
         else
           resource.name.gsub('::','').underscore
         end
-      end
-
-      # A camelized safe representation for this resource
-      def camelized_resource_name
-        underscored_resource_name.camelize
       end
 
       # Returns the name to call this resource.
@@ -39,11 +33,6 @@ module ActiveAdmin
             resource_name.pluralize
           end
         end
-      end
-      
-      # Returns the plural and underscored version of this resource. Useful for element id's.
-      def plural_underscored_resource_name
-        plural_resource_name.underscore.gsub(/\s/, '_')
       end
     end
   end

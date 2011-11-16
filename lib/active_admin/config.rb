@@ -1,9 +1,16 @@
 module ActiveAdmin
+  class Config; end
+end
+
+require 'active_admin/config/naming'
+require 'active_admin/config/menu'
+
+module ActiveAdmin
   class Config
     # Returns a properly formatted controller name for this
     # config within its namespace
     def controller_name
-      [namespace.module_name, camelized_resource_name + "Controller"].compact.join('::')
+      [namespace.module_name, plural_underscored_resource_name.camelize + "Controller"].compact.join('::')
     end
 
     # Returns the controller for this config
@@ -30,5 +37,23 @@ module ActiveAdmin
       route.compact.join('_').to_sym
     end
 
+    include Menu
+    include Naming
+
+    def belongs_to?
+      false
+    end
+
+    def comments?
+      false
+    end
+
+    def action_items?
+      !!@action_items && @action_items.any?
+    end
+
+    def sidebar_sections?
+      !!@sidebar_sections && @sidebar_sections.any?
+    end
   end
 end
