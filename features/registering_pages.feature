@@ -10,12 +10,12 @@ Feature: Registering Pages
     """ 
     ActiveAdmin.page "Status" do
       content do
-        h1 "Current Status"
+        para "I love chocolate."
       end
     end
     """
     When I go to the dashboard
-    Then I should see "Status"
-    When I follow "Status"
-    Then I should see "Current Status"
+    And I follow "Status"
+    Then I should see the page title "Status"
+    Then I should see "I love chocolate."
 

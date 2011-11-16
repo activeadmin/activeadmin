@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class ResourceController < ::InheritedResources::Base
+  class ResourceController < BaseController
 
     # This module deals with the retrieval of collections for resources
     # within the resource controller.

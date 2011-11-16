@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class ResourceController < ::InheritedResources::Base
+  class ResourceController < BaseController
 
     module Sidebars
 

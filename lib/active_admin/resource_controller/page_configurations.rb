@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class ResourceController < ::InheritedResources::Base
+  class ResourceController < BaseController
 
     module PageConfigurations
       extend ActiveSupport::Concern
