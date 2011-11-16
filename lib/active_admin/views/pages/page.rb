@@ -9,19 +9,9 @@ module ActiveAdmin
 
         protected
 
-        # Pages don't have sidebars
-        def build_sidebar; end
-
-        def build_action_items; end
-
-        def sidebar_sections_for_action; end
-
-        def skip_sidebar?; true; end
-
         def title
-          config.name
+          active_admin_config.name
         end
-
       end
     end
   end

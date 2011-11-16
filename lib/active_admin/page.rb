@@ -61,5 +61,18 @@ module ActiveAdmin
     def comments?
       false
     end
+
+    # Overwrite Resource::ActionItems
+    def action_items_for(action)
+      []
+    end
+
+    def skip_sidebar?
+      true
+    end
+
+    def sidebar_sections_for(action)
+      []
+    end
   end
 end
