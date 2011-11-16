@@ -14,7 +14,7 @@ module ActiveAdmin
   # The instance of the current resource is available in ResourceController and views
   # by calling the #active_admin_config method.
   #
-  class Resource
+  class Resource < Config
 
     # Event dispatched when a new resource is registered
     RegisterEvent = 'active_admin.resource.register'.freeze
@@ -81,30 +81,6 @@ module ActiveAdmin
       [namespace.module_name, camelized_resource_name.pluralize + "Controller"].compact.join('::')
     end
 
-    # Returns the controller for this resource
-    def controller
-      @controller ||= controller_name.constantize
-    end
-
-    # Returns the routes prefix for this resource
-    def route_prefix
-      namespace.module_name.try(:underscore)
-    end
-
-    # Returns a symbol for the route to use to get to the
-    # collection of this resource
-    def route_collection_path
-      route = [route_prefix, controller.resources_configuration[:self][:route_collection_name]]
-
-      if controller.resources_configuration[:self][:route_collection_name] ==
-          controller.resources_configuration[:self][:route_instance_name]
-        route << "index"
-      end
-
-      route << 'path'
-      route.compact.join('_').to_sym
-    end
-
     # Returns the named route for an instance of this resource
     def route_instance_path
       [route_prefix, controller.resources_configuration[:self][:route_instance_name], 'path'].compact.join('_').to_sym
@@ -155,5 +131,5 @@ module ActiveAdmin
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource)
     end
-  end # class Resource
+  end # class Resource < Config
 end # module ActiveAdmin

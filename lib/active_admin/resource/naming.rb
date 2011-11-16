@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class Resource
+  class Resource < Config
     module Naming
 
       # An underscored safe representation internally for this resource
