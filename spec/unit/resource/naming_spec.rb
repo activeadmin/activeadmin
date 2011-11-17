@@ -26,15 +26,15 @@ module ActiveAdmin
         end
       end
       context "when you pass the 'as' option" do
-        it "should underscore the passed through string and singulralize" do
-          config(:as => "Blog Categories").underscored_resource_name.should == "blog_category"
+        it "should underscore the passed through string" do
+          config(:as => "Blog Category").underscored_resource_name.should == "blog_category"
         end
       end
     end
 
     describe "camelized resource name" do
       it "should return a camelized version of the underscored resource name" do
-        config(:as => "Blog Categories").camelized_resource_name.should == "BlogCategory"
+        config(:as => "Blog Category").camelized_resource_name.should == "BlogCategory"
       end
     end
     
