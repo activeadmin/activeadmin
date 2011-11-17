@@ -48,10 +48,6 @@ module ActiveAdmin
       config.belongs_to?.should == false
     end
 
-    it "should not have comments" do
-      config.comments?.should == false
-    end
-
     it "should not have any action_items" do
       config.action_items?.should == false
     end

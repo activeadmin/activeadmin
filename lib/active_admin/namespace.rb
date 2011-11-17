@@ -71,9 +71,6 @@ module ActiveAdmin
       parse_registration_block(config, &block) if block_given?
       register_with_menu(config) if config.include_in_menu?
 
-      # Dispatch a registration event
-      ActiveAdmin::Event.dispatch ActiveAdmin::Resource::RegisterEvent, config
-
       config
     end
 
