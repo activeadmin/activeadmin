@@ -6,9 +6,6 @@ module ActiveAdmin
 
     actions :index
 
-    include ActiveAdmin::ResourceController::PageConfigurations
-    include ActiveAdmin::ResourceController::Menu
-
     def index(options={}, &block)
       arbre_block = index_config.block
       render "active_admin/page/index"

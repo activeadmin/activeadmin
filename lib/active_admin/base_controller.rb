@@ -1,4 +1,6 @@
 require 'inherited_resources'
+require 'active_admin/base_controller/menu'
+require 'active_admin/base_controller/page_configurations'
 
 module ActiveAdmin
   class BaseController < ::InheritedResources::Base
@@ -25,6 +27,8 @@ module ActiveAdmin
       raise AbstractController::ActionNotFound unless action_methods.include?(params[:action])
     end
 
+    include Menu
+    include PageConfigurations
 
     private
 

@@ -5,8 +5,6 @@ require 'active_admin/resource_controller/callbacks'
 require 'active_admin/resource_controller/collection'
 require 'active_admin/resource_controller/filters'
 require 'active_admin/resource_controller/form'
-require 'active_admin/resource_controller/menu'
-require 'active_admin/resource_controller/page_configurations'
 require 'active_admin/resource_controller/scoping'
 
 module ActiveAdmin
@@ -24,8 +22,6 @@ module ActiveAdmin
     include Collection
     include Filters
     include Form
-    include Menu
-    include PageConfigurations
     include Scoping
 
     class << self
