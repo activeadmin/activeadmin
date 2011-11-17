@@ -52,14 +52,12 @@ module ActiveAdmin
       false
     end
 
-    def comments?
-      false
-    end
-
+    # Used by active_admin Base view
     def action_items?
       !!@action_items && @action_items.any?
     end
 
+    # Used by active_admin Base view
     def sidebar_sections?
       !!@sidebar_sections && @sidebar_sections.any?
     end
