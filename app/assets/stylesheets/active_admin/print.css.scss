@@ -1,0 +1,115 @@
+/* Active Admin Print Stylesheet */
+
+// Set colors used elsewhere
+$primary-color: black;
+$text-color: black;
+
+// Reset
+@import "active_admin/mixins/reset";
+@include global-reset;
+
+// Partials
+@import "active_admin/typography";
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 150%;
+  font-size: 72%;
+  background: #fff;
+  width: 99%;
+  margin: 0;
+  padding: .5%;
+  color: $text-color;
+}
+
+a {
+  color: $text-color;
+}
+
+// Header
+#header {
+  float: left;
+
+  #tabs, #utility_nav {
+    display: none;
+  }
+
+  h1{
+    font-weight: bold;
+  }
+}
+
+#title_bar {
+  float: right;
+
+  .breadcrumb, #titlebar_right {
+    display: none;
+  }
+}
+
+// Content
+#active_admin_content {
+  border-top: thick solid black;
+  clear: both;
+  margin-top: 2em;
+  padding-top: 2em;
+}
+
+// Footer
+#footer {
+  border-top: thin solid black;
+  margin-top: 2em;
+  padding-top: 1em;
+
+  p {
+    margin-bottom: 0;
+    font-size: .8em;
+    text-align: right;
+  }
+}
+
+// Tables
+table {
+  text-align: left;
+  width: 100%;
+
+  thead {
+    display: table-header-group;
+
+    th {
+      background: none;
+      border-bottom: medium solid black;
+      font-weight: bold;
+
+      a{
+        text-decoration: none;
+      }
+    }
+  }
+
+  th, td {
+    padding: .5em 1em;
+
+    .member_link {
+      display: none;
+    }
+  }
+
+  td {
+    border-bottom: thin solid black;
+  }
+
+  tr{
+    page-break-inside: avoid;
+  }
+}
+
+// Indexes
+#index_footer {
+  display: none;
+}
+
+// Sidebars
+#filters_sidebar_section {
+  display: none;
+}
