@@ -100,6 +100,10 @@ module ActiveAdmin
       !belongs_to_config.nil?
     end
 
+    def include_in_menu?
+      super && !(belongs_to? && !belongs_to_config.optional?)
+    end
+
     # The csv builder for this resource
     def csv_builder
       @csv_builder || default_csv_builder
