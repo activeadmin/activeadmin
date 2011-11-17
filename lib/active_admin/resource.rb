@@ -20,15 +20,9 @@ module ActiveAdmin
 
     autoload :BelongsTo, 'active_admin/resource/belongs_to'
 
-    # The namespace this resource belongs to
-    attr_reader :namespace
-
     # The class this resource wraps. If you register the Post model, Resource#resource
     # will point to the Post class
     attr_reader :resource
-
-    # A hash of page configurations for the controller indexed by action name
-    attr_reader :page_configs
 
     # An array of member actions defined for this resource
     attr_reader :member_actions
@@ -57,7 +51,6 @@ module ActiveAdmin
         @resource = resource
         @options = default_options.merge(options)
         @sort_order = @options[:sort_order]
-        @page_configs = {}
         @member_actions, @collection_actions = [], []
       end
     end

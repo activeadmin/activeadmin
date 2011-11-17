@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class ResourceController < BaseController
+  class BaseController < ::InheritedResources::Base
     module Menu
       extend ActiveSupport::Concern
 

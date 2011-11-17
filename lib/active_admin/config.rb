@@ -7,6 +7,14 @@ require 'active_admin/config/menu'
 
 module ActiveAdmin
   class Config
+    # The namespace this config belongs to
+    attr_reader :namespace
+
+    # A hash of page configurations for the controller indexed by action name
+    def page_configs
+      @page_configs ||= {}
+    end
+
     # Returns a properly formatted controller name for this
     # config within its namespace
     def controller_name

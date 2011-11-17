@@ -5,6 +5,12 @@ shared_examples_for "ActiveAdmin::Config" do
     end
   end
 
+  describe "page_configs" do
+    it "should return an empty hash by default" do
+      config.page_configs.should == {}
+    end
+  end
+
   it { respond_to :controller_name }
   it { respond_to :controller }
   it { respond_to :route_prefix }
