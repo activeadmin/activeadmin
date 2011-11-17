@@ -13,16 +13,8 @@ module ActiveAdmin
       name
     end
 
-    # Overwrite Naming defaults as they require a resource object.
-    # @todo Refactor Naming to remove the dependency with Resources
     def resource_name
       name
-    end
-
-    # Overwrite Naming defaults as they require a resource object.
-    # @todo Refactor Naming to remove the dependency with Resources
-    def underscored_resource_name
-      resource_name.underscore
     end
   end
 end
