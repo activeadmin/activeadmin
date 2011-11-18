@@ -1,7 +1,3 @@
-module ActiveAdmin
-  class Config; end
-end
-
 require 'active_admin/config/naming'
 require 'active_admin/config/menu'
 
