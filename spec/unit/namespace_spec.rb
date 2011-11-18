@@ -303,5 +303,5 @@ describe ActiveAdmin::Namespace do
         end
       end # describe "setting a condition for displaying"
     end # describe "adding to the menu"
-  end
+  end # describe "registering a page"
 end

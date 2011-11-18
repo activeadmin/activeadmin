@@ -1,8 +1,10 @@
 module ActiveAdmin
-  # Note: I could try to just inherit from ResourceController
+
+  # All Pages controllers inherit from this controller.
   class PageController < BaseController
 
-    layout false # Page page is a subclass of Base page.
+    # Pages::Page subclasses Page::Base which implements the layout code
+    layout false
 
     actions :index
 
