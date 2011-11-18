@@ -6,6 +6,9 @@ require 'active_admin/config/naming'
 require 'active_admin/config/menu'
 
 module ActiveAdmin
+
+  # Config implements the common API to Page and Resource.
+  #
   class Config
     # The namespace this config belongs to
     attr_reader :namespace
