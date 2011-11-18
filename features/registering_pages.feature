@@ -17,5 +17,6 @@ Feature: Registering Pages
     When I go to the dashboard
     And I follow "Status"
     Then I should see the page title "Status"
-    Then I should see "I love chocolate."
+    And I should see the Active Admin layout
+    And I should see the content "I love chocolate."
 
