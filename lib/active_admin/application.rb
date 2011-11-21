@@ -31,6 +31,11 @@ module ActiveAdmin
     # to load up other resources for administration. External gems can
     # include their paths in this load path to provide active_admin UIs
     setting :load_paths, [File.expand_path('app/admin', Rails.root)]
+    
+    # Always reload paths on development environments that are unable to
+    # correctly report file changes. This could be useful for instance.
+    # if project is mounted within Vagrant box
+    setting :always_reload_paths, false
 
     # The view factory to use to generate all the view classes. Take
     # a look at ActiveAdmin::ViewFactory

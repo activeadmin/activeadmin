@@ -14,12 +14,11 @@ module ActiveAdmin
     # Attach to Rails and perform the reload on each request.
     def attach!
       file_update_checker = ActiveSupport::FileUpdateChecker.new(@app.load_paths) do
-        ActiveAdmin.application.unload!
-        Rails.application.reload_routes!
+        Reloader.do_reload
       end
 
       reloader_class.to_prepare do
-        file_update_checker.execute_if_updated
+        ActiveAdmin.application.always_reload_paths ? Reloader.do_reload : file_update_checker.execute_if_updated
       end
     end
 
@@ -29,6 +28,11 @@ module ActiveAdmin
       else
         ActionDispatch::Callbacks
       end
+    end
+    
+    def self.do_reload
+      ActiveAdmin.application.unload!
+      Rails.application.reload_routes!
     end
 
   end
