@@ -34,6 +34,9 @@
       one: "Exibindo <b>1</b> %{model}"
       one_page: "Exibindo <b>todos(as) os(as) %{n}</b> %{model}"
       multiple: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
+      entry:
+        one: "registro"
+        other: "registros"
     any: "Qualquer"
     blank_slate:
       content: "Não existem %{resource_name} ainda."
