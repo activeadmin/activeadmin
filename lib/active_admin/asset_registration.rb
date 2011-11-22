@@ -4,7 +4,7 @@ module ActiveAdmin
     # Stylesheets
 
     def register_stylesheet(*args)
-      stylesheets << ActiveAdmin::Stylesheet.new( *args )
+      stylesheets << ActiveAdmin::Stylesheet.new(*args)
     end
 
     def stylesheets

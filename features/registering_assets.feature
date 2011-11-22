@@ -23,7 +23,7 @@ Feature: Registering Assets
       ActiveAdmin.register Post
     """
     When I am on the index page for posts
-    Then I should see the css file "some-random-css.css" of media :print
+    Then I should see the css file "some-random-css.css" of media "print"
 
   Scenario: Registering a JS file
     Given a configuration of:
