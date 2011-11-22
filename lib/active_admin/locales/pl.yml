@@ -1,6 +1,9 @@
 pl:
   active_admin:
-    dashboard_welcome: "Witaj w Active Adminie. Znajdujesz się na domyślnym dashboardzie. Aby dodać sekcje do dashboarda sprawdź 'app/admin/dashboards.rb'"
+    dashboard: Pulpit
+    dashboard_welcome:
+      welcome: "Witaj w Active Adminie. To jest domyślny pulpit."
+      call_to_action: "Aby dodać sekcje do pulpitu, sprawdź 'app/admin/dashboards.rb'"
     view: "Podgląd"
     edit: "Edytuj"
     delete: "Usuń"
@@ -32,3 +35,6 @@ pl:
       one_page: "Wyświetlanie <b>wszystkich %{n}</b> %{model}"
       multiple: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
     any: "Jakikolwiek"
+    blank_slate:
+      content: "Nie ma jeszcze zasobu %{resource_name}."
+      link: "Utwórz go"
