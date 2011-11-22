@@ -1,8 +1,8 @@
 Then /^I should see the css file "([^"]*)"$/ do |path|
-  Then %{I should see the css file "#{path}" of media :screen}  
+  Then %{I should see the css file "#{path}" of media "screen"}  
 end
 
-Then /^I should see the css file "([^"]*)" of media :([^\s]*)$/ do |path, media|
+Then /^I should see the css file "([^"]*)" of media "([^"]*)"$/ do |path, media|
   page.should have_xpath("//link[contains(@href, /stylesheets/#{path}) and contains(@media, #{media})]")
 end
 
