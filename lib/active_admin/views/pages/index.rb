@@ -15,10 +15,7 @@ module ActiveAdmin
         # Render's the index configuration that was set in the
         # controller. Defaults to rendering the ActiveAdmin::Pages::Index::Table
         def main_content
-          div :class => "table_tools" do
-            build_scopes
-          end
-
+          build_scopes
 
           if collection.any?
             render_index
@@ -42,10 +39,11 @@ module ActiveAdmin
           text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
         end
 
-
         def build_scopes
           if active_admin_config.scopes.any?
-            scopes_renderer active_admin_config.scopes
+            div :class => "table_tools" do
+              scopes_renderer active_admin_config.scopes
+            end
           end
         end
 
