@@ -102,12 +102,13 @@ module ActiveAdmin
 
     # Returns the first registered ActiveAdmin::Resource instance for a given class
     def resource_for(klass)
-      actual = resources.values.find{|config| config.resource == klass }
+      klass_name = klass.to_s
+      actual = resources.values.find{|config| config.resource.to_s == klass_name }
       return actual if actual
 
       if klass.respond_to?(:base_class)
-        base_class = klass.base_class
-        resources.values.find{|config| config.resource == base_class }
+        base_class_name = klass.base_class.to_s
+        resources.values.find{|config| config.resource.to_s == base_class_name }
       else
         nil
       end
