@@ -1,4 +1,5 @@
 require 'meta_search'
+require 'bourbon'
 require 'devise'
 require 'kaminari'
 require 'formtastic'
