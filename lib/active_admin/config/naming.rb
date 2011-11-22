@@ -13,11 +13,11 @@ module ActiveAdmin
 
       # A camelized safe representation for this resource
       def camelized_resource_name
-        resource_name.gsub(' ', '')
+        resource_name.titleize.gsub(' ', '')
       end
 
       def plural_camelized_resource_name
-        plural_resource_name.gsub(' ', '')
+        plural_resource_name.titleize.gsub(' ', '')
       end
 
       # An underscored safe representation internally for this resource

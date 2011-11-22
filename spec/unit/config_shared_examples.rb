@@ -30,8 +30,8 @@ shared_examples_for "ActiveAdmin::Config" do
     end
 
     describe "#camelized_resource_name" do
-      it "returns the resource_name without spaces" do
-        config.should_receive(:resource_name).and_return "My Resource"
+      it "returns a camelized version of the resource_name" do
+        config.should_receive(:resource_name).and_return "My resource"
         config.camelized_resource_name.should == "MyResource"
       end
     end
