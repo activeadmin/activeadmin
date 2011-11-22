@@ -162,6 +162,11 @@ a.button, input[type=submit] { @include dark-button; }
 	  display:none;
 	}
 }
+.panel.toggle.on {
+	.panel_contents {
+		display:block;
+	}
+}
 
 // ----------------------------------- Blank Slate
 

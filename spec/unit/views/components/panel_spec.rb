@@ -26,7 +26,9 @@ describe ActiveAdmin::Views::Panel do
     panel("Title", :icon => :arrow_down).find_by_tag("h3").first.content.should include("span class=\"icon")
   end
   
+  # Panel toggling
   context "toggling a panel" do
+    
     subject do
       panel "My Title", :toggle => true do
         span "Hello World"
@@ -34,6 +36,18 @@ describe ActiveAdmin::Views::Panel do
     end
 
     its(:class_list)  { should include('toggle') }
+  end
+  
+  # Panel toggling with a proc
+  context "toggling a panel with a proc" do
+    
+    subject do
+      panel "My Title", :toggle => proc { true } do 
+        span "Hello World"
+      end
+    end
+    
+    its(:class_list) { should include('toggle') }
   end
 
 end
