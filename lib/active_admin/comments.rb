@@ -18,9 +18,8 @@ ActiveAdmin::Resource.send :include, ActiveAdmin::Comments::ResourceHelper
 ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comments::ShowPageHelper
 
 # Generate a Comment resource when namespaces are registered
-ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent,
-                             ActiveAdmin::Namespace::RegisterEvent do |_|
-  ActiveAdmin.application.namespaces.values.each do |namespace|
+ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent do |app|
+  app.namespaces.values.each do |namespace|
     if namespace.comments?
       namespace.register ActiveAdmin::Comment, :as => 'Comment' do
         actions :index, :show, :create
