@@ -20,10 +20,6 @@ module ActiveAdmin
 
     autoload :BelongsTo, 'active_admin/resource/belongs_to'
 
-    # The class this resource wraps. If you register the Post model, Resource#resource
-    # will point to the Post class
-    attr_reader :resource
-
     # An array of member actions defined for this resource
     attr_reader :member_actions
 
