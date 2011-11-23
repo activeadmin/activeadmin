@@ -56,5 +56,32 @@ module ActiveAdmin
       config.sidebar_sections?.should == false
     end
 
+    describe "route names" do
+      let(:config) { application.page "Status" }
+
+      it "should return the route prefix" do
+        config.route_prefix.should == "admin"
+      end
+
+      it "should return the route collection path" do
+        config.route_collection_path.should == :admin_status_path
+      end
+
+      context "when in the root namespace" do
+        let(:config) { application.page "Status", :namespace => false }
+
+        it "should have a nil route_prefix" do
+          config.route_prefix.should == nil
+        end
+      end
+
+      context "when singular page name" do
+        let(:config) { application.page "Log" }
+
+        it "should return the route collection path" do
+          config.route_collection_path.should == :admin_log_path
+        end
+      end
+    end
   end
 end
