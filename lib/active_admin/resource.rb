@@ -68,6 +68,20 @@ module ActiveAdmin
       [route_prefix, controller.resources_configuration[:self][:route_instance_name], 'path'].compact.join('_').to_sym
     end
 
+    # Returns a symbol for the route to use to get to the
+    # collection of this resource
+    def route_collection_path
+      route = super
+
+      # Handle plural resources.
+      if controller.resources_configuration[:self][:route_collection_name] ==
+            controller.resources_configuration[:self][:route_instance_name]
+        route = route.to_s.gsub('_path', '_index_path').to_sym
+      end
+
+      route
+    end
+
     # Clears all the member actions this resource knows about
     def clear_member_actions!
       @member_actions = []

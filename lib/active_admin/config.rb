@@ -39,14 +39,12 @@ module ActiveAdmin
     # Returns a symbol for the route to use to get to the
     # collection of this resource
     def route_collection_path
-      route = [route_prefix, controller.resources_configuration[:self][:route_collection_name]]
+      route = [
+        route_prefix, 
+        controller.resources_configuration[:self][:route_collection_name], 
+        'path'
+      ]
 
-      if controller.resources_configuration[:self][:route_collection_name] ==
-          controller.resources_configuration[:self][:route_instance_name]
-        route << "index"
-      end
-
-      route << 'path'
       route.compact.join('_').to_sym
     end
 
