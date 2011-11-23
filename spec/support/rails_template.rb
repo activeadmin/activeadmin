@@ -22,6 +22,14 @@ run "rm -r test"
 run "rm -r spec"
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
+# we need this routing path, named "logout_path", for testing
+route <<-EOS
+  devise_scope :user do
+    match '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
+  end
+EOS
+
 generate :'active_admin:install'
 
 # Setup a root path for devise

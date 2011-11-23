@@ -19,7 +19,7 @@ module ActiveAdmin
           title_image
         end
       end
-
+      
       # Renders an image for the site's header/branding area
       def title_image
         if !active_admin_namespace.site_title_link.blank?
@@ -28,7 +28,7 @@ module ActiveAdmin
           content_tag 'h1', image_tag( active_admin_namespace.site_title_image, :id => "site_title_image", :alt => active_admin_namespace.site_title ), :id => "site_title"
         end
       end
-
+      
       # Renders a the site's header/branding area as a string
       def title_text
         if !active_admin_namespace.site_title_link || active_admin_namespace.site_title_link == ""
@@ -52,14 +52,14 @@ module ActiveAdmin
             html = content_tag(:span, display_name(current_active_admin_user), :class => "current_user")
 
             if active_admin_namespace.logout_link_path
-              html << link_to(I18n.t('active_admin.logout'), logout_path, :method => logout_method)
+              html << link_to(I18n.t('active_admin.logout'), application_logout_path, :method => logout_method)
             end
           end
         end
       end
 
       # Returns the logout path from the application settings
-      def logout_path
+      def application_logout_path
         if active_admin_namespace.logout_link_path.is_a?(Symbol)
           send(active_admin_namespace.logout_link_path)
         else
