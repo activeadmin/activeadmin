@@ -9,6 +9,12 @@ module ActiveAdmin
     # The namespace this config belongs to
     attr_reader :namespace
 
+    # The class this resource wraps. If you register the Post model, Resource#resource
+    # will point to the Post class
+    #
+    # @todo Refactor Namespace so that it doesn't require a Config to have a resource.
+    attr_reader :resource
+
     # A hash of page configurations for the controller indexed by action name
     def page_configs
       @page_configs ||= {}

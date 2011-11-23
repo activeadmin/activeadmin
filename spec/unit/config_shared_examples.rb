@@ -15,6 +15,8 @@ shared_examples_for "ActiveAdmin::Config" do
   it { respond_to :controller }
   it { respond_to :route_prefix }
   it { respond_to :route_collection_path }
+  # Namespaces assume that all Config have a resource. This should be removed.
+  it { respond_to :resource }
   it { respond_to :comments? }
   it { respond_to :belongs_to? }
   it { respond_to :action_items? }
