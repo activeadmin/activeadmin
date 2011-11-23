@@ -65,7 +65,7 @@ module ActiveAdmin
 
       # Register the resource
       register_page_controller(config)
-      parse_registration_block(config, &block) if block_given?
+      parse_page_registration_block(config, &block) if block_given?
       register_with_menu(config) if config.include_in_menu?
 
       config
@@ -187,12 +187,20 @@ module ActiveAdmin
       config.controller.active_admin_config = config
     end
 
-    def dsl
-      @dsl ||= DSL.new
+    def resource_dsl
+      @resource_dsl ||= ResourceDSL.new
     end
 
     def parse_registration_block(config, &block)
-      dsl.run_registration_block(config, &block)
+      resource_dsl.run_registration_block(config, &block)
+    end
+
+    def page_dsl
+      @page_dsl ||= PageDSL.new
+    end
+
+    def parse_page_registration_block(config, &block)
+      page_dsl.run_registration_block(config, &block)
     end
 
     # Creates a dashboard controller for this config
