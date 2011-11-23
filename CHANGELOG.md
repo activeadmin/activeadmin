@@ -1,14 +1,21 @@
 ## Master
 
+### Deprecations
+
+* In the initializer `config.allow_comments_in = []` is now
+  `config.allow_comments = true`. Use the new namespace specific configurations
+  to allow or disallow configuration within a specific namespace.
+
 ### Enhancements
 
-* [#428][]: Paginated Collection now supports :param_name and :download_links.
+* [#428][]: Paginated Collection now supports `:param_name` and `:download_links`.
             These two additions allow you to use the paginated_collection
             component multiple times on show screens. ([@samvincent][])
+* Namespace specific configurations in the initializer ([@gregbell][])
 
 ### Dependencies
 
-* #527: Active Admin now requires Formtastic 2.0 or > @ebeigarts
+* #527: Active Admin now requires Formtastic 2.0 or greater ([@ebeigarts][])
 
 ## 0.3.4
 
