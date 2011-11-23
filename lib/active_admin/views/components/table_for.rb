@@ -63,7 +63,7 @@ module ActiveAdmin
         if sortable? && col.sortable?
           build_sortable_header_for(col.title, col.sort_key)
         else
-          th(col.title)
+          th(col.title, :class => (col.data.to_s.downcase.underscore if col.data.is_a?(Symbol)))
         end
       end
 
@@ -72,6 +72,10 @@ module ActiveAdmin
         if current_sort[0] == sort_key
           classes << "sorted-#{current_sort[1]}"
         end
+        
+        header_class = title.downcase.underscore
+        
+        classes << header_class
 
         th :class => classes do
           link_to(title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
@@ -86,7 +90,7 @@ module ActiveAdmin
       end
 
       def build_table_cell(col, item)
-        td do
+        td(:class => (col.data.to_s.downcase if col.data.is_a?(Symbol))) do
           rvalue = call_method_or_proc_on(item, col.data, :exec => false)
           if col.data.is_a?(Symbol)
             rvalue = pretty_format(rvalue)

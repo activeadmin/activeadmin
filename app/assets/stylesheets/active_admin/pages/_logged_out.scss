@@ -1,0 +1,44 @@
+body.logged_out {
+  background: #e8e9ea;
+
+  #content_wrapper{
+    width: 500px;
+    margin: 70px auto;
+    #active_admin_content {
+      @include shadow;
+      background: #fff;
+      padding: 13px 30px;
+    }
+  }
+
+  h2 {
+    @include section-header;
+    @include primary-gradient;
+    @include text-shadow(#000);
+    @include box-shadow(0 1px 3px rgba(0,0,0,0.3));
+    border: none;
+    color: #fff;
+    margin: -13px -30px 20px -30px;
+  }
+
+  #login {
+    /* Login Form */
+    form {
+      fieldset {
+        @include no-shadow;
+        background: none;
+        padding: 0;
+        li { padding: 10px 0; }
+
+        input[type=text], input[type=email], input[type=password] {
+          width: 70%;
+        }
+        &.buttons { margin-left: 20%; }
+        margin-bottom: 0;
+      }
+    }
+
+    a { float: right; margin-top: -32px; }
+  }
+
+}

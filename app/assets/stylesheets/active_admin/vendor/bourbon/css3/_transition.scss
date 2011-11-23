@@ -1,0 +1,104 @@
+// Shorthand mixin. Supports multiple parentheses-deliminated values for each variable.
+// Example: @include transition (all, 2.0s, ease-in-out);
+//          @include transition ((opacity, width), (1.0s, 2.0s), ease-in, (0, 2s));
+//          @include transition ($property:(opacity, width), $delay: (1.5s, 2.5s));
+
+@mixin transition ($property: all, $duration: 0.15s, $timing-function: ease-out, $delay: 0) {
+
+  // Detect # of args passed into each variable
+  $length-of-property:        length($property);
+  $length-of-duration:        length($duration);
+  $length-of-timing-function: length($timing-function);
+  $length-of-delay:           length($delay);
+
+  @if $length-of-property > 1 {
+    @include transition-property(zip($property)); }
+  @else {
+    @include transition-property(    $property);
+  }
+
+  @if $length-of-duration > 1 {
+    @include transition-duration(zip($duration)); }
+  @else {
+    @include transition-duration(    $duration);
+  }
+
+  @if $length-of-timing-function > 1 {
+    @include transition-timing-function(zip($timing-function)); }
+  @else {
+    @include transition-timing-function(    $timing-function);
+  }
+
+  @if $length-of-delay > 1 {
+    @include transition-delay(zip($delay)); }
+  @else {
+    @include transition-delay(    $delay);
+  }
+}
+
+
+@mixin transition-property ($prop-1: all,
+  $prop-2: false, $prop-3: false,
+  $prop-4: false, $prop-5: false,
+  $prop-6: false, $prop-7: false,
+  $prop-8: false, $prop-9: false)
+  {
+    $full: compact($prop-1, $prop-2, $prop-3, $prop-4, $prop-5,
+                   $prop-6, $prop-7, $prop-8, $prop-9);
+
+  -webkit-transition-property: $full;
+     -moz-transition-property: $full;
+      -ms-transition-property: $full;
+       -o-transition-property: $full;
+          transition-property: $full;
+}
+
+@mixin transition-duration ($time-1: 0,
+  $time-2: false, $time-3: false,
+  $time-4: false, $time-5: false,
+  $time-6: false, $time-7: false,
+  $time-8: false, $time-9: false)
+  {
+    $full: compact($time-1, $time-2, $time-3, $time-4, $time-5,
+                   $time-6, $time-7, $time-8, $time-9);
+
+  -webkit-transition-duration: $full;
+     -moz-transition-duration: $full;
+      -ms-transition-duration: $full;
+       -o-transition-duration: $full;
+          transition-duration: $full;
+}
+
+@mixin transition-timing-function ($motion-1: ease,
+  $motion-2: false, $motion-3: false,
+  $motion-4: false, $motion-5: false,
+  $motion-6: false, $motion-7: false,
+  $motion-8: false, $motion-9: false)
+  {
+    $full: compact($motion-1, $motion-2, $motion-3, $motion-4, $motion-5,
+                   $motion-6, $motion-7, $motion-8, $motion-9);
+
+// ease | linear | ease-in | ease-out | ease-in-out | cubic-bezier()
+  -webkit-transition-timing-function: $full;
+     -moz-transition-timing-function: $full;
+      -ms-transition-timing-function: $full;
+       -o-transition-timing-function: $full;
+          transition-timing-function: $full;
+}
+
+@mixin transition-delay ($time-1: 0,
+  $time-2: false, $time-3: false,
+  $time-4: false, $time-5: false,
+  $time-6: false, $time-7: false,
+  $time-8: false, $time-9: false)
+  {
+    $full: compact($time-1, $time-2, $time-3, $time-4, $time-5,
+                   $time-6, $time-7, $time-8, $time-9);
+
+  -webkit-transition-delay: $full;
+     -moz-transition-delay: $full;
+      -ms-transition-delay: $full;
+       -o-transition-delay: $full;
+          transition-delay: $full;
+}
+

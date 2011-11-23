@@ -16,6 +16,7 @@ table.index_table {
 
   th { 
     @include section-header;
+    border-right: none;
     text-align: left;
     padding-left: $cell-horizontal-padding;
     padding-right: $cell-horizontal-padding;
@@ -24,6 +25,7 @@ table.index_table {
       color: $section-header-text-color;
       text-decoration: none;
       display: block;
+      white-space: nowrap;
     }
 
     &.sortable a {
@@ -35,11 +37,19 @@ table.index_table {
 
     &.sorted-asc, &.sorted-desc {
       @include gradient(darken($secondary-gradient-start, 5%), darken($secondary-gradient-stop, 5%));
-      border-bottom: 1px solid $secondary-gradient-stop;
     }
+    
+    &:last-child {
+      border-right: solid 1px #d4d4d4;
+    }
+    
   }
 
   tr.even td { background: $table-stripe-color; }
+
+  tr.selected td {
+    background: $table-selected-color;
+  }
 
   td {
     padding: 10px $cell-horizontal-padding 8px $cell-horizontal-padding;
@@ -64,3 +74,34 @@ table.index_table {
   tr.odd td { background: darken($table-stripe-color, 3%); }
   tr.even td { background: $table-stripe-color; }
 }
+
+// -------------------------------------- Resource Attributes Table 
+.attributes_table { overflow: hidden; }
+
+.attributes_table table {
+  th, td {
+    padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
+    vertical-align: top;
+    border-bottom: 1px solid #e8e8e8; 
+  }
+  th {
+    @include no-shadow;
+    @include no-gradient;
+    width: 150px;
+    font-size: 0.9em;
+    padding-left: 0;
+    text-transform: uppercase;
+    color: $primary-color;
+    @include text-shadow;
+  }
+  td {
+    .empty {
+      color: #bbb;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+  }
+}
+
+.sidebar_section .attributes_table th { width: 50px; }

@@ -29,10 +29,21 @@ module ActiveAdmin
         end
 
         protected
+        
+        
+        # TODO: Refactor to new HTML DSL
+        def build_download_format_links(formats = [:csv, :xml, :json])
+          links = formats.collect do |format|
+            link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format))
+          end
+          text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
+        end
 
         def build_scopes
           if active_admin_config.scopes.any?
-            scopes_renderer active_admin_config.scopes
+            div :class => "table_tools" do
+              scopes_renderer active_admin_config.scopes
+            end
           end
         end
 
