@@ -24,7 +24,6 @@ group :development, :test do
   gem 'haml',           '~> 3.1.1', :require => false
   gem 'yard'
   gem 'rdiscount' # For yard
-  gem 'ruby-debug'
 end
 
 group :test do
