@@ -1,4 +1,3 @@
-require 'active_admin/comments/configuration'
 require 'active_admin/comments/comment'
 require 'active_admin/comments/views'
 require 'active_admin/comments/show_page_helper'
@@ -6,7 +5,7 @@ require 'active_admin/comments/namespace_helper'
 require 'active_admin/comments/resource_helper'
 
 # Add the comments configuration
-ActiveAdmin::Application.send :include, ActiveAdmin::Comments::Configuration
+ActiveAdmin::Application.inheritable_setting :allow_comments, true
 
 # Add the comments module to ActiveAdmin::Namespace
 ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper
@@ -88,3 +87,6 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Resource::RegisterEvent do |resource|
                                                        :dependent  => :destroy
   end
 end
+
+# @deprecated #allow_comments_on - Remove in 0.5.0
+ActiveAdmin::Application.deprecated_setting :allow_comments_in, [], 'The "allow_comments_in = []" setting is deprecated and will be remove by Active Admin 0.5.0. Please use "allow_comments = true|false" instead.'

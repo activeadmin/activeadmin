@@ -57,8 +57,8 @@ describe ActiveAdmin::Application do
     application.admin_notes.should be_nil
   end
 
-  it "should have admin notes in admin namespace by default" do
-    application.allow_comments_in.should == [:admin]
+  it "should allow comments by default" do
+    application.allow_comments.should == true
   end
 
   describe "authentication settings" do

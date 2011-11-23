@@ -5,7 +5,7 @@ module ActiveAdmin
 
       # Returns true of the namespace allows comments
       def comments?
-        application.allow_comments_in && application.allow_comments_in.include?(name)
+        allow_comments == true
       end
 
     end

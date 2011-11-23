@@ -1,7 +1,7 @@
 module ActiveAdminReloading
 
   def load_active_admin_configuration(configuration_content)
-    eval configuration_content
+    eval(configuration_content)
     ActiveAdmin::Event.dispatch ActiveAdmin::Application::LoadEvent, ActiveAdmin.application
     Rails.application.reload_routes!
     ActiveAdmin.application.namespaces.values.each{|n| n.load_menu! }
