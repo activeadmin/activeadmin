@@ -26,48 +26,53 @@ module ActiveAdmin
         end
       end
       context "when you pass the 'as' option" do
-        it "should underscore the passed through string and singulralize" do
-          config(:as => "Blog Categories").underscored_resource_name.should == "blog_category"
+        it "should underscore the passed through string" do
+          config(:as => "Blog Category").underscored_resource_name.should == "blog_category"
         end
       end
     end
 
     describe "camelized resource name" do
       it "should return a camelized version of the underscored resource name" do
-        config(:as => "Blog Categories").camelized_resource_name.should == "BlogCategory"
+        config(:as => "Blog category").camelized_resource_name.should == "BlogCategory"
       end
     end
     
-    describe "plural underscored resource name" do
-      before(:all) do
-        class ::CandyCane; end
-        @config = Resource.new(namespace, CandyCane, {})
-      end
-      
-      it "should return an underscored and pluralized resource name" do
-        config.plural_underscored_resource_name.should == "candy_canes"
-      end
-    end
-
     describe "resource name" do
       it "should return a pretty name" do
         config.resource_name.should == "Category"
       end
+
       it "should return the plural version" do
         config.plural_resource_name.should == "Categories"
       end
+
       context "when the :as option is given" do
         it "should return the custom name" do
           config(:as => "My Category").resource_name.should == "My Category"
         end
       end
-      context "I18n" do
-        before do
-          I18n.stub(:translate) { 'Categorie' }
+
+      describe "I18n integration" do
+        describe "singular name" do
+          it "should return the titleized model_name.human" do
+            Category.model_name.should_receive(:human).and_return "Da category"
+
+            config.resource_name.should == "Da Category"
+          end
         end
-        it "should return the plural version defined in the i18n if available" do
-          config.plural_resource_name.should == "Categorie"
+
+        describe "plural name" do
+          it "should return the titleized plural version defined by i18n if available" do
+            Category.model_name.should_receive(:underscore).and_return "category"
+            Category.model_name.should_not_receive(:i18n_key) # Not implemented in Rails 3.0.0
+            I18n.should_receive(:translate!).
+              with("activerecord.models.category.other").
+              and_return("Da categories")
+            config.plural_resource_name.should == "Da Categories"
+          end
         end
+
       end
     end
 

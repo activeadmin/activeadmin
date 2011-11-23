@@ -9,7 +9,7 @@ module ActiveAdmin
         render 'active_admin/dashboard/index.html.arb'
       end
 
-      protected
+      private
 
       def set_current_tab
         @current_tab = I18n.t("active_admin.dashboard")

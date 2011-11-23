@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class Resource
+  class Config
     module Menu
 
       # Set the menu options. To not add this resource to the menu, just
@@ -36,8 +36,7 @@ module ActiveAdmin
 
       # Should this resource be added to the menu system?
       def include_in_menu?
-        return false if menu_options[:display] == false
-        !(belongs_to? && !belongs_to_config.optional?)
+        menu_options[:display] != false
       end
 
     end

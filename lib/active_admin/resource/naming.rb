@@ -1,49 +1,37 @@
 module ActiveAdmin
-  class Resource
+  class Resource < Config
     module Naming
-
-      # An underscored safe representation internally for this resource
-      def underscored_resource_name
-        @underscored_resource_name ||= if @options[:as]
-          @options[:as].gsub(' ', '').underscore.singularize
-        else
-          resource.name.gsub('::','').underscore
-        end
-      end
-
-      # A camelized safe representation for this resource
-      def camelized_resource_name
-        underscored_resource_name.camelize
-      end
-
-      # Returns the name to call this resource.
-      # By default will use resource.model_name.human
+      # Returns the name to call this resource such as "Bank Account"
       def resource_name
-        @resource_name ||= if @options[:as] || !resource.respond_to?(:model_name)
-          underscored_resource_name.titleize
-        else
-          resource.model_name.human.titleize
-        end
+        @resource_name ||= @options[:as]
+        @resource_name ||= singular_human_name
+        @resource_name ||= resource.name.gsub('::',' ')
       end
 
-      # Returns the plural version of this resource
+      # Returns the plural version of this resource such as "Bank Accounts"
       def plural_resource_name
-        @plural_resource_name ||= if @options[:as] || !resource.respond_to?(:model_name)
-          resource_name.pluralize
-        else
-          # Check if we have a translation available otherwise pluralize
-          begin
-            I18n.translate!("activerecord.models.#{resource.model_name.underscore}")
-            resource.model_name.human(:count => 3)
-          rescue I18n::MissingTranslationData
-            resource_name.pluralize
-          end
-        end
+        @plural_resource_name ||= @options[:as].pluralize if @options[:as]
+        @plural_resource_name ||= plural_human_name
+        @plural_resource_name ||= resource_name.pluralize
       end
-      
-      # Returns the plural and underscored version of this resource. Useful for element id's.
-      def plural_underscored_resource_name
-        plural_resource_name.underscore.gsub(/\s/, '_')
+
+      private
+
+      # @return [String] Titleized human name via ActiveRecord I18n or nil
+      def singular_human_name
+        return nil unless resource.respond_to?(:model_name)
+        resource.model_name.human.titleize
+      end
+
+      # @return [String] Titleized plural human name via ActiveRecord I18n or nil
+      def plural_human_name
+        return nil unless resource.respond_to?(:model_name)
+
+        begin
+          I18n.translate!("activerecord.models.#{resource.model_name.underscore}.other").titleize
+        rescue I18n::MissingTranslationData
+          nil
+        end
       end
     end
   end

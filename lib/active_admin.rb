@@ -14,8 +14,10 @@ module ActiveAdmin
   autoload :Breadcrumbs,              'active_admin/breadcrumbs'
   autoload :Callbacks,                'active_admin/callbacks'
   autoload :Component,                'active_admin/component'
+  autoload :BaseController,           'active_admin/base_controller'
   autoload :ControllerAction,         'active_admin/controller_action'
   autoload :CSVBuilder,               'active_admin/csv_builder'
+  autoload :Config,                   'active_admin/config'
   autoload :Dashboards,               'active_admin/dashboards'
   autoload :DependencyChecker,        'active_admin/dependency_checker'
   autoload :Deprecation,              'active_admin/deprecation'
@@ -29,10 +31,14 @@ module ActiveAdmin
   autoload :Menu,                     'active_admin/menu'
   autoload :MenuItem,                 'active_admin/menu_item'
   autoload :Namespace,                'active_admin/namespace'
+  autoload :Page,                     'active_admin/page'
   autoload :PageConfig,               'active_admin/page_config'
+  autoload :PageController,           'active_admin/page_controller'
+  autoload :PageDSL,                  'active_admin/page_dsl'
   autoload :Reloader,                 'active_admin/reloader'
   autoload :Resource,                 'active_admin/resource'
   autoload :ResourceController,       'active_admin/resource_controller'
+  autoload :ResourceDSL,              'active_admin/resource_dsl'
   autoload :Renderer,                 'active_admin/renderer'
   autoload :Scope,                    'active_admin/scope'
   autoload :ScopeChain,               'active_admin/helpers/scope_chain'
@@ -60,10 +66,11 @@ module ActiveAdmin
       application.prepare!
     end
 
-    delegate :register, :to => :application
-    delegate :unload!,  :to => :application
-    delegate :load!,    :to => :application
-    delegate :routes,   :to => :application
+    delegate :register,      :to => :application
+    delegate :register_page, :to => :application
+    delegate :unload!,       :to => :application
+    delegate :load!,         :to => :application
+    delegate :routes,        :to => :application
 
     # Returns true if this rails application has the asset
     # pipeline enabled.

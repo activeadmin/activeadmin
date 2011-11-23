@@ -60,6 +60,17 @@ module ActiveAdmin
       config
     end
 
+    def register_page(name, options = {}, &block)
+      config = build_page(name, options)
+
+      # Register the resource
+      register_page_controller(config)
+      parse_page_registration_block(config, &block) if block_given?
+      register_with_menu(config) if config.include_in_menu?
+
+      config
+    end
+
     def root?
       name == :root
     end
@@ -134,6 +145,19 @@ module ActiveAdmin
       resource
     end
 
+    def build_page(name, options)
+      page = Page.new(self, name, options)
+      @resources[page.camelized_resource_name] = page
+
+      page
+    end
+
+
+    def register_page_controller(config)
+      eval "class ::#{config.controller_name} < ActiveAdmin::PageController; end"
+      config.controller.active_admin_config = config
+    end
+
     def unload_resources!
       resources.each do |name, config|
         parent = (module_name || 'Object').constantize
@@ -163,12 +187,20 @@ module ActiveAdmin
       config.controller.active_admin_config = config
     end
 
-    def dsl
-      @dsl ||= DSL.new
+    def resource_dsl
+      @resource_dsl ||= ResourceDSL.new
     end
 
     def parse_registration_block(config, &block)
-      dsl.run_registration_block(config, &block)
+      resource_dsl.run_registration_block(config, &block)
+    end
+
+    def page_dsl
+      @page_dsl ||= PageDSL.new
+    end
+
+    def parse_page_registration_block(config, &block)
+      page_dsl.run_registration_block(config, &block)
     end
 
     # Creates a dashboard controller for this config

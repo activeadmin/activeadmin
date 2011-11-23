@@ -85,4 +85,35 @@ describe ActiveAdmin, "Routing" do
     end
   end
 
+  describe "page" do
+    context "when default namespace" do
+      before(:each) do
+        load_resources { ActiveAdmin.register_page("Status") }
+      end
+
+      it "should route to the page under /admin" do
+        admin_status_path.should == "/admin/status"
+      end
+
+      context "when in the root namespace" do
+        before(:each) do
+          load_resources { ActiveAdmin.register_page("Status", :namespace => false) }
+        end
+
+        it "should route to page under /" do
+          status_path.should == "/status"
+        end
+      end
+
+      context "when singular page name" do
+        before(:each) do
+          load_resources { ActiveAdmin.register_page("Log") }
+        end
+
+        it "should not inject _index_ into the route name" do
+          admin_log_path.should == "/admin/log"
+        end
+      end
+    end
+  end
 end

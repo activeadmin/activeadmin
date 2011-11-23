@@ -1,7 +1,10 @@
 require 'spec_helper' 
+require File.expand_path('config_shared_examples', File.dirname(__FILE__))
 
 module ActiveAdmin
   describe Resource do
+
+    it_should_behave_like "ActiveAdmin::Config"
 
     before { load_defaults! }
 
@@ -20,12 +23,6 @@ module ActiveAdmin
         it "should return the resource's table name" do
           config(:as => "My Category").resource_table_name.should == '"categories"'
         end
-      end
-    end
-
-    describe "namespace" do
-      it "should return the namespace" do
-        config.namespace.should == namespace
       end
     end
 
@@ -106,7 +103,6 @@ module ActiveAdmin
     end
 
     describe "route names" do
-      let(:config){ application.register Category }
       it "should return the route prefix" do
         config.route_prefix.should == "admin"
       end

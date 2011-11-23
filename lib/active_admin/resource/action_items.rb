@@ -2,7 +2,7 @@ require 'active_admin/helpers/optional_display'
 
 module ActiveAdmin
 
-  class Resource
+  class Resource < Config
     module ActionItems
 
       # Add the default action items to a resource when it's
