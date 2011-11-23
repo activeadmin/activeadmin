@@ -21,7 +21,7 @@ ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comme
 ActiveAdmin::Event.subscribe ActiveAdmin::Namespace::RegisterEvent do |namespace|
   if namespace.comments?
     namespace.register ActiveAdmin::Comment, :as => 'Comment' do
-      actions :index, :show, :create
+      actions :index, :show, :create, :destroy
 
       # Don't display in the menu
       menu false
@@ -63,6 +63,12 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Namespace::RegisterEvent do |namespace
               flash[:error] = "Comment wasn't saved, text was empty."
               redirect_to send(resource_config.route_instance_path, @comment.resource)
             end
+          end
+        end
+        def destroy
+          destroy! do 
+            resource_config = active_admin_config.namespace.resource_for(@comment.resource.class)
+            send(resource_config.route_instance_path, @comment.resource)
           end
         end
       end
