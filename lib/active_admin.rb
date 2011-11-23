@@ -69,11 +69,11 @@ module ActiveAdmin
       application.prepare!
     end
 
-    delegate :register, :to => :application
-    delegate :page,     :to => :application
-    delegate :unload!,  :to => :application
-    delegate :load!,    :to => :application
-    delegate :routes,   :to => :application
+    delegate :register,      :to => :application
+    delegate :register_page, :to => :application
+    delegate :unload!,       :to => :application
+    delegate :load!,         :to => :application
+    delegate :routes,        :to => :application
 
     # Returns true if this rails application has the asset
     # pipeline enabled.

@@ -8,7 +8,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
 
   context "with no configuration" do
     before do
-      namespace.page "Status"
+      namespace.register_page "Status"
     end
 
     it "should store the namespaced registered configuration" do
@@ -28,7 +28,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
   context "with a block configuration" do
     it "should be evaluated in the dsl" do
       lambda {
-        namespace.page "Status" do
+        namespace.register_page "Status" do
           raise "Hello World"
         end
       }.should raise_error
@@ -38,7 +38,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
   describe "adding to the menu" do
     describe "adding as a top level item" do
       before do
-        namespace.page "Status"
+        namespace.register_page "Status"
         namespace.load_menu!
       end
 
@@ -49,7 +49,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
 
     describe "adding as a child" do
       before do
-        namespace.page "Status" do
+        namespace.register_page "Status" do
           menu :parent => 'Extra'
         end
         namespace.load_menu!
@@ -64,7 +64,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
 
     describe "disabling the menu" do
       before do
-        namespace.page "Status" do
+        namespace.register_page "Status" do
           menu false
         end
         namespace.load_menu!
@@ -76,7 +76,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
     
     describe "setting menu priority" do
       before do
-        namespace.page "Status" do
+        namespace.register_page "Status" do
           menu :priority => 2
         end
         namespace.load_menu!
@@ -88,7 +88,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
     
     describe "setting a condition for displaying" do
       before do
-        namespace.page "Status" do
+        namespace.register_page "Status" do
           menu :if => proc { false }
         end
         namespace.load_menu!

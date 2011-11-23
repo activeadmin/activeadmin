@@ -57,7 +57,7 @@ module ActiveAdmin
     end
 
     describe "route names" do
-      let(:config) { application.page "Status" }
+      let(:config) { application.register_page "Status" }
 
       it "should return the route prefix" do
         config.route_prefix.should == "admin"
@@ -68,7 +68,7 @@ module ActiveAdmin
       end
 
       context "when in the root namespace" do
-        let(:config) { application.page "Status", :namespace => false }
+        let(:config) { application.register_page "Status", :namespace => false }
 
         it "should have a nil route_prefix" do
           config.route_prefix.should == nil
@@ -76,7 +76,7 @@ module ActiveAdmin
       end
 
       context "when singular page name" do
-        let(:config) { application.page "Log" }
+        let(:config) { application.register_page "Log" }
 
         it "should return the route collection path" do
           config.route_collection_path.should == :admin_log_path

@@ -88,7 +88,7 @@ describe ActiveAdmin, "Routing" do
   describe "page" do
     context "when default namespace" do
       before(:each) do
-        load_resources { ActiveAdmin.page("Status") }
+        load_resources { ActiveAdmin.register_page("Status") }
       end
 
       it "should route to the page under /admin" do
