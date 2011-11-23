@@ -85,7 +85,7 @@ module ActiveAdmin
 
     # Registers a brand new configuration for the given resource.
     def register(resource, options = {}, &block)
-      namespace_name = options.has_key?(:namespace) ? options[:namespace] : default_namespace
+      namespace_name = extract_namespace_name(options)
       namespace = find_or_create_namespace(namespace_name)
       namespace.register(resource, options, &block)
     end
@@ -100,12 +100,17 @@ module ActiveAdmin
       namespace
     end
 
-    def page(name, options = {}, &block)
-      namespace_name = options.has_key?(:namespace) ? options[:namespace] : default_namespace
+    # Register a page
+    #
+    # @param name [String] The page name
+    # @options [Hash] Accepts option :namespace.
+    # @&block The registration block.
+    #
+    def register_page(name, options = {}, &block)
+      namespace_name = extract_namespace_name(options)
       namespace = find_or_create_namespace(namespace_name)
-      namespace.page(name, options, &block)
+      namespace.register_page(name, options, &block)
     end
-
 
     # Stores if everything has been loaded or we need to reload
     @@loaded = false
@@ -203,6 +208,10 @@ module ActiveAdmin
     def register_default_assets
       register_stylesheet 'active_admin.css'
       register_javascript 'active_admin.js'
+    end
+
+    def extract_namespace_name(options)
+      options.has_key?(:namespace) ? options[:namespace] : default_namespace
     end
 
     # Since we're dealing with all our own file loading, we need

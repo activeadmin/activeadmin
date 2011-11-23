@@ -8,7 +8,7 @@ Feature: Registering Pages
   Scenario: Registering a page
     Given a configuration of:
     """ 
-    ActiveAdmin.page "Status" do
+    ActiveAdmin.register_page "Status" do
       content do
         para "I love chocolate."
       end

@@ -60,7 +60,7 @@ module ActiveAdmin
       config
     end
 
-    def page(name, options = {}, &block)
+    def register_page(name, options = {}, &block)
       config = build_page(name, options)
 
       # Register the resource
