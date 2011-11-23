@@ -46,7 +46,7 @@ module ActiveAdmin
       end
 
       def active_admin_namespace
-        active_admin_application.namespace(namespace)
+        ActiveAdmin.application.namespace(namespace)
       end
 
     end
