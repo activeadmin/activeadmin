@@ -9,9 +9,9 @@ module ActiveAdmin
       # The default content in the link is returned from ActiveAdmin::ViewHelpers::DisplayHelper#display_name
       #
       # You can pass in the content to display
-      #   eg: auto_link(@post, "My Link Content")
+      #   eg: auto_admin_link(@post, "My Link Content")
       #
-      def auto_link(resource, link_content = nil)
+      def auto_admin_link(resource, link_content = nil)
         content = link_content || display_name(resource)
         if registration = active_admin_resource_for(resource.class)
           begin
