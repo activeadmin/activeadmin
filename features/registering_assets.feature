@@ -19,11 +19,11 @@ Feature: Registering Assets
   Scenario: Registering a CSS file
     Given a configuration of:
     """
-      ActiveAdmin.application.register_stylesheet "some-random-css.css"
+      ActiveAdmin.application.register_stylesheet "some-random-css.css", :media => :print
       ActiveAdmin.register Post
     """
     When I am on the index page for posts
-    Then I should see the css file "some-random-css.css"
+    Then I should see the css file "some-random-css.css" of media "print"
 
   Scenario: Registering a JS file
     Given a configuration of:
