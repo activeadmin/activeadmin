@@ -3,6 +3,7 @@ require 'devise'
 require 'kaminari'
 require 'formtastic'
 require 'sass'
+require 'jquery-rails'
 require 'active_admin/arbre'
 require 'active_admin/engine'
 
@@ -48,14 +49,17 @@ module ActiveAdmin
     I18n.load_path += Dir[File.expand_path('../active_admin/locales/*.yml', __FILE__)]
   end
 
-  # The instance of the configured application
-  @@application = ::ActiveAdmin::Application.new
-  mattr_accessor :application
-
   class << self
+
+    attr_accessor :application
+
+    def application
+      @application ||= ::ActiveAdmin::Application.new
+    end
 
     # Gets called within the initializer
     def setup
+      application.setup!
       yield(application)
       application.prepare!
     end
@@ -68,7 +72,7 @@ module ActiveAdmin
     # Returns true if this rails application has the asset
     # pipeline enabled.
     def use_asset_pipeline?
-      DependencyChecker.rails_3_1? && Rails.application.config.assets.enabled
+      DependencyChecker.rails_3_1? && Rails.application.config.try(:assets).try(:enabled)
     end
 
     # Migration MoveAdminNotesToComments generated with version 0.2.2 might reference
@@ -78,6 +82,7 @@ module ActiveAdmin
       "ActiveAdmin.default_namespace is deprecated. Please use ActiveAdmin.application.default_namespace"
 
   end
+
 end
 
 ActiveAdmin::DependencyChecker.check!
