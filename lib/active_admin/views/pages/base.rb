@@ -24,7 +24,7 @@ module ActiveAdmin
             meta :"http-equiv" => "Content-type", :content => "text/html; charset=utf-8"
             insert_tag Arbre::HTML::Title, [title, active_admin_application.site_title].join(" | ")
             active_admin_application.stylesheets.each do |path|
-              link :href => stylesheet_path(path), :media => "screen", :rel => "stylesheet", :type => "text/css"
+              link :href => stylesheet_path(path), :media => "all", :rel => "stylesheet", :type => "text/css"
             end
             active_admin_application.javascripts.each do |path|
               script :src => javascript_path(path), :type => "text/javascript"
