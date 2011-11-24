@@ -16,6 +16,9 @@
 ### Dependencies
 
 * #527: Active Admin now requires Formtastic 2.0 or greater ([@ebeigarts][])
+* #468: Removed vendored jQuery. Now depends on the jquery-rails gem. If you're 
+  running Rails 3.0.x (no asset pipeline), make sure to run 
+  `rails generate active_admin:assets` to generate the correct files. ([@gregbell][])
 
 ## 0.3.4
 
