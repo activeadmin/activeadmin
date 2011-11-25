@@ -52,14 +52,14 @@ module ActiveAdmin
             html = content_tag(:span, display_name(current_active_admin_user), :class => "current_user")
 
             if active_admin_namespace.logout_link_path
-              html << link_to(I18n.t('active_admin.logout'), application_logout_path, :method => logout_method)
+              html << link_to(I18n.t('active_admin.logout'), active_admin_logout_path, :method => logout_method)
             end
           end
         end
       end
 
       # Returns the logout path from the application settings
-      def application_logout_path
+      def active_admin_logout_path
         if active_admin_namespace.logout_link_path.is_a?(Symbol)
           send(active_admin_namespace.logout_link_path)
         else
