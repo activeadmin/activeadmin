@@ -8,7 +8,7 @@ module ActiveAdmin
      # index block.
      #
      #     index :as => :grid do |product|
-     #       link_to(image_tag(product.image_path), admin_products_path(product))
+     #       link_to(image_tag(product.image_path), admin_products_path(product.id))
      #     end
      #
      # The block is rendered within a cell in the grid once for each resource in the
@@ -18,7 +18,7 @@ module ActiveAdmin
      # option:
      #
      #     index :as => :grid, :columns => 5 do |product|
-     #       link_to(image_tag(product.image_path), admin_products_path(product))
+     #       link_to(image_tag(product.image_path), admin_products_path(product.id))
      #     end
      #
      class IndexAsGrid < ActiveAdmin::Component

@@ -109,7 +109,7 @@ module ActiveAdmin
       def build_title(post)
         if @title
           h3 do
-            link_to(call_method_or_proc_on(post, @title), resource_path(post))
+            link_to(call_method_or_proc_on(post, @title), resource_path(post.id))
           end
         else
           h3 do
