@@ -9,9 +9,15 @@
 ### Enhancements
 
 * [#428][]: Paginated Collection now supports `:param_name` and `:download_links`.
-            These two additions allow you to use the paginated_collection
-            component multiple times on show screens. ([@samvincent][])
+  These two additions allow you to use the `paginated_collection` component multiple 
+  times on show screens. ([@samvincent][])
 * Namespace specific configurations in the initializer ([@gregbell][])
+* [#741][]: Default media type of css is now "all" instead of "screen" ([@sftsang][])
+
+### Bug Fixes
+
+* [#780][]: Fix stack level too deep exception when logout path is setup to use
+  `:logout_path` named route. ([@george][])
 
 ### Dependencies
 
