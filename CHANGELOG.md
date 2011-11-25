@@ -1,5 +1,10 @@
 ## Master
 
+### Upgrade Notes
+
+If you're running on Rails 3.0.x, make sure to run `rails generate active_admin:assets` 
+since we've changed both the CSS and JS files.
+
 ### Deprecations
 
 * In the initializer `config.allow_comments_in = []` is now
@@ -13,6 +18,8 @@
   times on show screens. ([@samvincent][])
 * Namespace specific configurations in the initializer ([@gregbell][])
 * [#741][]: Default media type of css is now "all" instead of "screen" ([@sftsang][])
+* [#711][]: Styles update. Now sexier and more refined design. Redesigned Scopes. Split 
+  css into smaller files. ([@mattvague][])
 
 ### Bug Fixes
 
@@ -25,6 +32,9 @@
 * #468: Removed vendored jQuery. Now depends on the jquery-rails gem. If you're 
   running Rails 3.0.x (no asset pipeline), make sure to run 
   `rails generate active_admin:assets` to generate the correct files. ([@gregbell][])
+* #711: Active admin now depends on Bourbon > 1.0.0. If you're using Rails
+  3.0.x, make sure to run `rails generate active_admin:assets` to ensure you
+  have the correct css files ([@mattvague][])
 
 ## 0.3.4
 
