@@ -2,6 +2,12 @@ module ActiveAdmin
   module Generators
     class AssetsGenerator < Rails::Generators::Base
 
+      class_option :bourbon, :type => :boolean, :default => true,
+                   :desc => "Generate Bourbon scss files if using Rails 3.0.x"
+
+      class_option :jquery, :type => :boolean, :default => true,
+                   :desc => "Generate jQuery js files if using Rails 3.0.x"
+
       def self.source_root
         @_active_admin_source_root ||= File.expand_path("../templates", __FILE__)
       end
@@ -16,8 +22,16 @@ module ActiveAdmin
         else
           template '../../../../../app/assets/javascripts/active_admin/application.js', 'public/javascripts/active_admin.js'
           directory '../../../../../app/assets/images/active_admin', 'public/images/active_admin'
-          generate "jquery:install --ui"
+          generate "jquery:install --ui" if options.jquery?
+          install_bourbon if options.bourbon?
         end
+      end
+
+      private
+
+      def install_bourbon
+        rake "bourbon:install"
+        create_file "public/stylesheets/sass/_bourbon.scss", '@import "bourbon/bourbon"'
       end
 
     end
