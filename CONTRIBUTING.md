@@ -6,7 +6,7 @@ major steps to contributing code to the project.
 ### 1. Create an Issue on Github
 
 The first step to contributing to Active Admin is creating a ticket in our
-[ticketing system on Github][https://github.com/gregbell/active_admin/issues].
+[ticketing system on Github](https://github.com/gregbell/active_admin/issues).
 The community has been hard at work already, so please take a second to search
 for the issue or feature before creating a new one.
 
