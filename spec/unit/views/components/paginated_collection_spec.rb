@@ -9,6 +9,11 @@ describe ActiveAdmin::Views::PaginatedCollection do
       Kaminari.paginate_array(posts).page(1).per(5)
     end
 
+    before :all do
+      load_defaults!
+      reload_routes!
+    end
+
     before do
       request.stub!(:query_parameters).and_return({:controller => 'admin/posts', :action => 'index', :page => '1'})
       controller.params = {:controller => 'admin/posts', :action => 'index'}
