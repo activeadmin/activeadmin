@@ -75,6 +75,9 @@ To register your first model, run:
 This creates a file at <tt>app/admin/my_model_names.rb</tt> for configuring the resource.
 Refresh your web browser to see the interface.
 
+== Upgrading
+
+When upgrading to a new version of ActiveAdmin you may need to run `rails generate active_admin:assets`
 
 == Next Steps
 
