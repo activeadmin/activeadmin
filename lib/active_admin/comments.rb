@@ -67,7 +67,6 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent do |app|
           end
         end
 
-
         # Display as a table
         index do
           column("Resource"){|comment| auto_link(comment.resource) }
@@ -76,15 +75,6 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent do |app|
         end
       end
     end
-  end
-end
-
-# Register for comments when new resources are registered
-ActiveAdmin::Event.subscribe ActiveAdmin::Resource::RegisterEvent do |resource|
-  if resource.comments?
-    resource.resource.has_many :active_admin_comments, :class_name => "ActiveAdmin::Comment",
-                                                       :as         => :resource, 
-                                                       :dependent  => :destroy
   end
 end
 

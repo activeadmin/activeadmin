@@ -12,6 +12,30 @@ describe "Comments" do
       it { should validate_presence_of :body }
       it { should validate_presence_of :namespace }
     end
+
+    describe ".find_for_resource_in_namespace" do
+      let(:post){ Post.create!(:title => "Hello World") }
+      let(:namespace_name){ "admin" }
+
+      before do
+        @comment = ActiveAdmin::Comment.create! :resource => post,
+                                                :body => "A Comment",
+                                                :namespace => namespace_name
+      end
+
+      it "should return a comment for the resource in the same namespace" do
+        ActiveAdmin::Comment.find_for_resource_in_namespace(post, namespace_name).should == [@comment]
+      end
+
+      it "should not return a comment for the same resource in a different namespace" do
+        ActiveAdmin::Comment.find_for_resource_in_namespace(post, 'public').should == []
+      end
+
+      it "should not return a comment for a different resource" do
+        another_post = Post.create! :title => "Another Hello World"
+        ActiveAdmin::Comment.find_for_resource_in_namespace(another_post, namespace_name).should == []
+      end
+    end
   end
 
   describe ActiveAdmin::Comments::NamespaceHelper do
