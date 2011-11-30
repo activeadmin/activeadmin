@@ -47,9 +47,6 @@ module ActiveAdmin
     # If we're scoping resources, use this method on the parent to return the collection
     attr_accessor :scope_to_association_method
 
-    # Set to false to turn off admin notes
-    attr_accessor :admin_notes
-
     # Set the configuration for the CSV
     attr_writer :csv_builder
 
