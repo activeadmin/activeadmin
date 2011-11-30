@@ -28,7 +28,7 @@ module ActiveAdmin
 
       # Now define the routes for each resource
       router.instance_exec(@application.namespaces) do |namespaces|
-        resources = namespaces.values.collect{|n| n.resources.values }.flatten
+        resources = namespaces.values.collect{|n| n.resources.resources }.flatten
         resources.each do |config|
 
           # Define the block the will get eval'd within the namespace

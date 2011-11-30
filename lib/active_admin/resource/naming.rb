@@ -15,6 +15,11 @@ module ActiveAdmin
         @plural_resource_name ||= resource_name.pluralize
       end
 
+      # A name used internally to uniquely identify this resource
+      def resource_key
+        camelized_resource_name
+      end
+
       # A camelized safe representation for this resource
       def camelized_resource_name
         resource_name.titleize.gsub(' ', '')

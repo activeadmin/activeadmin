@@ -1,4 +1,5 @@
 require 'active_admin/helpers/settings'
+require 'active_admin/resource_collection'
 
 module ActiveAdmin
 
@@ -36,7 +37,7 @@ module ActiveAdmin
     def initialize(application, name)
       @application = application
       @name = name.to_s.underscore.to_sym
-      @resources = {}
+      @resources = ResourceCollection.new
       @menu = Menu.new
       register_module unless root?
       generate_dashboard_controller
@@ -106,23 +107,14 @@ module ActiveAdmin
     # loaded. This method gets called to register each resource with the menu system.
     def load_menu!
       register_dashboard
-      resources.values.each do |config|
-        register_with_menu(config) if config.include_in_menu?
+      resources.each do |resource|
+        register_with_menu(resource) if resource.include_in_menu?
       end
     end
 
     # Returns the first registered ActiveAdmin::Resource instance for a given class
     def resource_for(klass)
-      klass_name = klass.to_s
-      actual = resources.values.find{|config| config.resource.to_s == klass_name }
-      return actual if actual
-
-      if klass.respond_to?(:base_class)
-        base_class_name = klass.base_class.to_s
-        resources.values.find{|config| config.resource.to_s == base_class_name }
-      else
-        nil
-      end
+      resources.find_by_resource_class(klass)
     end
 
     # Override from ActiveAdmin::Settings to inherit default attributes
@@ -136,30 +128,11 @@ module ActiveAdmin
     # Either returns an existing Resource instance or builds a new
     # one for the resource and options
     def find_or_build_resource(resource_class, options)
-      resource = Resource.new(self, resource_class, options)
-
-      # If we've already registered this resource, use the existing
-      if @resources.has_key? resource.camelized_resource_name
-        existing_resource = @resources[resource.camelized_resource_name]
-
-        if existing_resource.resource != resource_class
-          raise ActiveAdmin::ResourceMismatchError, 
-            "Tried to register #{resource_class} as #{resource.camelized_resource_name} but already registered to #{resource.resource}"
-        end
-
-        resource = existing_resource
-      else
-        @resources[resource.camelized_resource_name] = resource
-      end
-
-      resource
+      resources.add Resource.new(self, resource_class, options)
     end
 
     def build_page(name, options)
-      page = Page.new(self, name, options)
-      @resources[page.camelized_resource_name] = page
-
-      page
+      resources.add Page.new(self, name, options)
     end
 
 
@@ -169,13 +142,13 @@ module ActiveAdmin
     end
 
     def unload_resources!
-      resources.each do |name, config|
+      resources.each do |resource|
         parent = (module_name || 'Object').constantize
-        const_name = config.controller_name.split('::').last
+        const_name = resource.controller_name.split('::').last
         # Remove the const if its been defined
         parent.send(:remove_const, const_name) if parent.const_defined?(const_name)
       end
-      @resources = {}
+      @resources = ResourceCollection.new
     end
 
     def unload_dashboard!
