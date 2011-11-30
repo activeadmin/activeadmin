@@ -29,9 +29,20 @@ shared_examples_for "ActiveAdmin::Config" do
       expect { config.plural_resource_name }.should_not raise_error
     end
 
+    it "implements #safe_resource_name" do
+      expect { config.safe_resource_name }.should_not raise_error
+    end
+
     describe "#camelized_resource_name" do
-      it "returns a camelized version of the resource_name" do
-        config.should_receive(:resource_name).and_return "My resource"
+      it "returns a camelized version of the safe_resource_name" do
+        config.should_receive(:safe_resource_name).and_return "My resource"
+        config.camelized_resource_name.should == "MyResource"
+      end
+    end
+
+    describe "#plural_camelized_resource_name" do
+      it "returns a camelized version of the plural_safe_resource_name" do
+        config.should_receive(:safe_resource_name).and_return "My resource"
         config.camelized_resource_name.should == "MyResource"
       end
     end
