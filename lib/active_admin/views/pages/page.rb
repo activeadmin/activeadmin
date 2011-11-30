@@ -4,7 +4,11 @@ module ActiveAdmin
       class Page < Base
 
         def main_content
-          instance_exec &index_config.block
+          if index_config && index_config.block
+            instance_exec &index_config.block
+          else
+            nil
+          end
         end
 
         protected
