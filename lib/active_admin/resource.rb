@@ -5,6 +5,7 @@ require 'active_admin/resource/page_configs'
 require 'active_admin/resource/naming'
 require 'active_admin/resource/scopes'
 require 'active_admin/resource/sidebars'
+require 'active_admin/resource/belongs_to'
 
 module ActiveAdmin
 
@@ -20,8 +21,6 @@ module ActiveAdmin
 
     # Event dispatched when a new resource is registered
     RegisterEvent = 'active_admin.resource.register'.freeze
-
-    autoload :BelongsTo, 'active_admin/resource/belongs_to'
 
     # The namespace this config belongs to
     attr_reader :namespace

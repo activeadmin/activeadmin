@@ -1,3 +1,5 @@
+require 'active_admin/resource'
+
 module ActiveAdmin
   class Resource
     class BelongsTo
