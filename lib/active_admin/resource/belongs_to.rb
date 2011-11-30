@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class Resource < Config
+  class Resource
     class BelongsTo
 
       class TargetNotFound < StandardError; end

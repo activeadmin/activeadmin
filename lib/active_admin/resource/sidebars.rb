@@ -2,7 +2,7 @@ require 'active_admin/helpers/optional_display'
 
 module ActiveAdmin
 
-  class Resource < Config
+  class Resource
     module Sidebars
 
       def initialize(*args)
@@ -20,6 +20,10 @@ module ActiveAdmin
 
       def sidebar_sections_for(action)
         sidebar_sections.select{|section| section.display_on?(action) }
+      end
+
+      def sidebar_sections?
+        !!@sidebar_sections && @sidebar_sections.any?
       end
 
       private

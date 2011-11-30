@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class Resource < Config
+  class Resource
     module Naming
       # Returns the name to call this resource such as "Bank Account"
       def resource_name
@@ -13,6 +13,25 @@ module ActiveAdmin
         @plural_resource_name ||= @options[:as].pluralize if @options[:as]
         @plural_resource_name ||= plural_human_name
         @plural_resource_name ||= resource_name.pluralize
+      end
+
+      # A camelized safe representation for this resource
+      def camelized_resource_name
+        resource_name.titleize.gsub(' ', '')
+      end
+
+      def plural_camelized_resource_name
+        plural_resource_name.titleize.gsub(' ', '')
+      end
+
+      # An underscored safe representation internally for this resource
+      def underscored_resource_name
+        camelized_resource_name.underscore
+      end
+
+      # Returns the plural and underscored version of this resource. Useful for element id's.
+      def plural_underscored_resource_name
+        plural_camelized_resource_name.underscore
       end
 
       private

@@ -8,10 +8,11 @@ shared_examples_for "BaseController" do
   describe "PageConfig" do
     [:index, :show].each do |page|
       describe "#{page} config" do
+        let(:active_admin_config){ ActiveAdmin::Resource.new(mock, mock) }
         before do
           # By pass #active_admin_config= because it requires Config to respond 
           # to #resource in ResourceController
-          controller_class.instance_variable_set(:@active_admin_config, ActiveAdmin::Config.new)
+          controller_class.instance_variable_set(:@active_admin_config, active_admin_config)
           controller_class.send(:"reset_#{page}_config!")
         end
 

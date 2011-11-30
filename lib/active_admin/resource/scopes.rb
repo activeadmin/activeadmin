@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class Resource < Config
+  class Resource
     module Scopes
 
       # Return an array of scopes for this resource

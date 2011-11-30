@@ -19,7 +19,6 @@ module ActiveAdmin
   autoload :BaseController,           'active_admin/base_controller'
   autoload :ControllerAction,         'active_admin/controller_action'
   autoload :CSVBuilder,               'active_admin/csv_builder'
-  autoload :Config,                   'active_admin/config'
   autoload :Dashboards,               'active_admin/dashboards'
   autoload :DependencyChecker,        'active_admin/dependency_checker'
   autoload :Deprecation,              'active_admin/deprecation'

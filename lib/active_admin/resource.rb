@@ -1,4 +1,7 @@
 require 'active_admin/resource/action_items'
+require 'active_admin/resource/controllers'
+require 'active_admin/resource/menu'
+require 'active_admin/resource/page_configs'
 require 'active_admin/resource/naming'
 require 'active_admin/resource/scopes'
 require 'active_admin/resource/sidebars'
@@ -13,12 +16,21 @@ module ActiveAdmin
   # The instance of the current resource is available in ResourceController and views
   # by calling the #active_admin_config method.
   #
-  class Resource < Config
+  class Resource
 
     # Event dispatched when a new resource is registered
     RegisterEvent = 'active_admin.resource.register'.freeze
 
     autoload :BelongsTo, 'active_admin/resource/belongs_to'
+
+    # The namespace this config belongs to
+    attr_reader :namespace
+
+    # The class this resource wraps. If you register the Post model, Resource#resource
+    # will point to the Post class
+    #
+    # @todo Refactor Namespace so that it doesn't require a Config to have a resource.
+    attr_reader :resource
 
     # An array of member actions defined for this resource
     attr_reader :member_actions
@@ -52,16 +64,17 @@ module ActiveAdmin
     end
 
     include Base
+    include Controllers
+    include PageConfigs
     include ActionItems
     include Naming
     include Scopes
     include Sidebars
-
+    include Menu
 
     def resource_table_name
       resource.quoted_table_name
     end
-
 
     # Returns the named route for an instance of this resource
     def route_instance_path
@@ -131,5 +144,5 @@ module ActiveAdmin
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource)
     end
-  end # class Resource < Config
+  end # class Resource
 end # module ActiveAdmin

@@ -2,7 +2,7 @@ require 'active_admin/helpers/optional_display'
 
 module ActiveAdmin
 
-  class Resource < Config
+  class Resource
     module ActionItems
 
       # Add the default action items to a resource when it's
@@ -40,6 +40,11 @@ module ActiveAdmin
       # Clears all the existing action items for this resource
       def clear_action_items!
         @action_items = []
+      end
+
+      # Used by active_admin Base view
+      def action_items?
+        !!@action_items && @action_items.any?
       end
 
       private
