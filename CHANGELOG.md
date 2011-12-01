@@ -27,8 +27,8 @@ since we've changed both the CSS and JS files.
 * [#527][]: Refactored all form helpers to use Formtastic 2([@ebeigarts][])
 * [#551][]: Dashboards can now be conditionally displayed using `:if` ([@samvincent][])
 * [#555][]: scopes now accept `:if`. They only get displayed if the proc returns true ([@macfanatic][])
-* [#601][]: Breadcrumbs are internationalized ([@vairix][]-ssierra)
-* [[#605][]]: Validations on ActiveAdmin::Comment should work with
+* [#601][]: Breadcrumbs are internationalized ([@vairix-ssierra][])
+* [#605][]: Validations on ActiveAdmin::Comment should work with
   `accepts_nested_attributes_for` ([@DMajrekar ][])
 * [#623][]: Index table can sort on any table using `:sort => 'table.column'` ([@ZequeZ][])
 * [#638][]: Add `:label` option to `status_tag` component ([@fbuenemann][])
@@ -56,6 +56,41 @@ since we've changed both the CSS and JS files.
 * [#711][]: Active admin now depends on Bourbon > 1.0.0. If you're using Rails
   3.0.x, make sure to run `rails generate active_admin:assets` to ensure you
   have the correct css files ([@mattvague][])
+
+### Contributors
+
+202 commits by 31 authors
+
+Bendik Lynghaug
+Dinesh Majrekar
+Douwe Homans
+Edgars Beigarts
+Eunsub Kim
+Felix Bünemann
+George Anderson
+Greg Bell
+Henrik Hodne
+Ivan Storck
+Jeff Dickey
+John Ferlito
+Jonathan Barket
+Josef Šimánek
+Juan E.
+Kieran Klaassen
+Marc Riera
+Matt Vague
+Matthew Brewer
+Philippe Creux
+Radan Skorić
+Rhys Powell
+Sam Vincent
+Sebastian Sierra
+Sherman Tsang
+Szymon Przybył
+Thomas Watson
+Yara Mayer
+Zequez 
+emmek 
 
 ## 0.3.4
 
@@ -387,5 +422,5 @@ of the highlights. 250 commits. Enough said.
 [@sftsang]: https://github.com/sftsang
 [@shayfrendt]: https://github.com/shayfrendt
 [@tricknotes]: https://github.com/tricknotes
-[@vairix]: https://github.com/vairix
+[@vairix]: https://github.com/vairix-ssierra
 [@watson]: https://github.com/watson
