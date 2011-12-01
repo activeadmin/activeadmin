@@ -8,15 +8,11 @@ module ActiveAdmin
   # by calling the #active_admin_config method.
   #
   class Page
+
     # The namespace this config belongs to
     attr_reader :namespace
 
-    # The class this resource wraps. If you register the Post model, Resource#resource
-    # will point to the Post class
-    #
-    # @todo Refactor Namespace so that it doesn't require a Config to have a resource.
-    attr_reader :resource
-
+    # The name of the page
     attr_reader :name
 
     module Base
