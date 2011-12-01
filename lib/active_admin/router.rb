@@ -66,7 +66,8 @@ module ActiveAdmin
               instance_eval &routes_for_belongs_to if config.belongs_to_config.optional?
 
               # Make the nested belongs_to routes
-              resources config.belongs_to_config.target.underscored_resource_name.pluralize do
+              # :only is set to nothing so that we don't clobber any existing routes on the resource
+              resources config.belongs_to_config.target.underscored_resource_name.pluralize, :only => [] do
                 instance_eval &routes_for_belongs_to
               end
             end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ActiveAdmin, "Routing" do
+describe ActiveAdmin, "Routing", :type => :routing do
 
   before :each do
     load_defaults!
@@ -82,6 +82,24 @@ describe ActiveAdmin, "Routing" do
 
     it "should route the nested edit path" do
       edit_admin_user_post_path(1,2).should == "/admin/users/1/posts/2/edit"
+    end
+
+    context "with collection action" do
+      before do
+        load_resources do
+          ActiveAdmin.register(Post) do
+            belongs_to :user, :optional => true
+          end
+          ActiveAdmin.register(User) do
+            collection_action "do_something"
+          end
+        end
+      end
+
+      it "should properly route the collection action" do
+        { :get => "/admin/users/do_something" }.
+          should route_to({ :controller => 'admin/users',:action => 'do_something'})
+      end
     end
   end
 
