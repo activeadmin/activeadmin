@@ -11,7 +11,7 @@ describe ActiveAdmin::Resource::PageConfigs do
 
   it "should add a page config" do
     page_config = ActiveAdmin::PageConfig.new
-    resource.add_page_config(:index, page_config)
+    resource.set_page_config(:index, page_config)
     resource.page_configs[:index].should == page_config
   end
 
@@ -19,7 +19,7 @@ describe ActiveAdmin::Resource::PageConfigs do
 
     it "should return a page config when set" do
       page_config = ActiveAdmin::PageConfig.new
-      resource.add_page_config(:index, page_config)
+      resource.set_page_config(:index, page_config)
       resource.get_page_config(:index).should == page_config
     end
 

@@ -9,10 +9,16 @@ module ActiveAdmin
 
       # Sets a page config for a given action
       #
-      def add_page_config(action, page_config)
+      # @param [String, Symbol] action The action to store this configuration for
+      # @param [PageConfig] page_config The instance of PageConfig to store
+      def set_page_config(action, page_config)
         page_configs[action.to_sym] = page_config
       end
 
+      # Returns a stored page config
+      #
+      # @param [Symbol, String] action The action to get the config for
+      # @returns [PageConfig, nil]
       def get_page_config(action)
         page_configs[action.to_sym]
       end

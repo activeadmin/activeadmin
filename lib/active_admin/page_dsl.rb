@@ -15,7 +15,7 @@ module ActiveAdmin
     #   end
     #
     def content(options = {}, &block)
-      config.add_page_config :index, ActiveAdmin::PageConfig.new(options, &block)
+      config.set_page_config :index, ActiveAdmin::PageConfig.new(options, &block)
     end
   end
 end
