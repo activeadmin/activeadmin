@@ -4,7 +4,6 @@ require 'active_admin/resource_controller/action_builder'
 require 'active_admin/resource_controller/callbacks'
 require 'active_admin/resource_controller/collection'
 require 'active_admin/resource_controller/filters'
-require 'active_admin/resource_controller/form'
 require 'active_admin/resource_controller/scoping'
 
 module ActiveAdmin
@@ -23,7 +22,6 @@ module ActiveAdmin
     include Callbacks
     include Collection
     include Filters
-    include Form
     include Scoping
 
     class << self

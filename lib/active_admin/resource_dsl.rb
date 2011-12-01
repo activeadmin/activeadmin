@@ -67,8 +67,7 @@ module ActiveAdmin
     end
 
     def form(options = {}, &block)
-      options[:block] = block
-      controller.form_config = options
+      config.set_page_presenter :form, ActiveAdmin::PagePresenter.new(options, &block)
     end
 
     def sidebar(name, options = {}, &block)

@@ -16,7 +16,7 @@ module ActiveAdmin
   #
   class PagePresenter
 
-    attr_reader :block
+    attr_reader :block, :options
 
     def initialize(options = {}, &block)
       @options, @block = options, block
