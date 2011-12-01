@@ -20,9 +20,9 @@ module ActiveAdmin
     # modify options:
     #
     # eg:
-    #   
+    # 
     #   ActiveAdmin.register Post do
-    #     config.admin_notes = false
+    #     config.sort_order = "id_desc"
     #   end
     #
     def config
@@ -33,7 +33,7 @@ module ActiveAdmin
     # block, it will be eval'd in the controller
     #
     # Example:
-    #   
+    #
     #   ActiveAdmin.register Post do
     #
     #     controller do
