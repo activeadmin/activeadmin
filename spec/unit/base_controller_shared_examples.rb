@@ -5,36 +5,6 @@
 shared_examples_for "BaseController" do
   let(:controller_class) { described_class }
 
-  describe "PageConfig" do
-    [:index, :show].each do |page|
-      describe "#{page} config" do
-        let(:active_admin_config){ ActiveAdmin::Resource.new(mock, mock) }
-        before do
-          # By pass #active_admin_config= because it requires Config to respond 
-          # to #resource in ResourceController
-          controller_class.instance_variable_set(:@active_admin_config, active_admin_config)
-          controller_class.send(:"reset_#{page}_config!")
-        end
-
-        it "should be set" do
-          controller_class.send(:set_page_config, page, {})
-          controller_class.send(:"#{page}_config").should be_an_instance_of(ActiveAdmin::PageConfig)
-        end
-
-        it "should store the block" do
-          block = Proc.new {}
-          controller_class.send(:set_page_config, page, {}, &block)
-          controller_class.send(:"#{page}_config").block.should == block
-        end
-
-        it "should be reset" do
-          controller_class.send(:"reset_#{page}_config!")
-          controller_class.send(:"#{page}_config").should == nil
-        end
-      end
-    end
-  end
-
   describe "Menu" do
     describe "setting the current tab" do
       before do 

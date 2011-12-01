@@ -9,7 +9,7 @@ module ActiveAdmin
         end
 
         def config
-          index_config || default_index_config
+          active_admin_config.get_page_config(:index) || default_index_config
         end
 
         # Render's the index configuration that was set in the

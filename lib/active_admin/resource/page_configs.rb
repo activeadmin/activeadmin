@@ -7,6 +7,16 @@ module ActiveAdmin
         @page_configs ||= {}
       end
 
+      # Sets a page config for a given action
+      #
+      def add_page_config(action, page_config)
+        page_configs[action.to_sym] = page_config
+      end
+
+      def get_page_config(action)
+        page_configs[action.to_sym]
+      end
+
     end
   end
 end

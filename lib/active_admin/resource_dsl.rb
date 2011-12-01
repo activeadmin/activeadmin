@@ -58,13 +58,12 @@ module ActiveAdmin
     # Configure the index page for the resource
     def index(options = {}, &block)
       options[:as] ||= :table
-      controller.set_page_config :index, options, &block
+      config.add_page_config :index, ActiveAdmin::PageConfig.new(options, &block)
     end
 
     # Configure the show page for the resource
     def show(options = {}, &block)
-      # TODO: controller.set_page_config just sets page_configs on the Resource (config) obj
-      controller.set_page_config :show, options, &block
+      config.add_page_config :show, ActiveAdmin::PageConfig.new(options, &block)
     end
 
     def form(options = {}, &block)

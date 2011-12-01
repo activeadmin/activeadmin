@@ -4,8 +4,10 @@ module ActiveAdmin
       class Page < Base
 
         def main_content
-          if index_config && index_config.block
-            instance_exec &index_config.block
+          page_config = active_admin_config.get_page_config(:index)
+
+          if page_config && page_config.block
+            instance_exec &page_config.block
           else
             nil
           end

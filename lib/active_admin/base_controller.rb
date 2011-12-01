@@ -1,6 +1,5 @@
 require 'inherited_resources'
 require 'active_admin/base_controller/menu'
-require 'active_admin/base_controller/page_configurations'
 
 module ActiveAdmin
   # BaseController for ActiveAdmin. 
@@ -30,7 +29,6 @@ module ActiveAdmin
     end
 
     include Menu
-    include PageConfigurations
 
     private
 
