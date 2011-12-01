@@ -11,27 +11,48 @@ since we've changed both the CSS and JS files.
   `config.allow_comments = true`. Use the new namespace specific configurations
   to allow or disallow configuration within a specific namespace.
 
+### New Features
+
+* Namespace specific configurations in the initializer ([@gregbell][])
+* [#624][]: Set an image as the site title using `config.site_title_image` in the
+  Active Admin initializer. ([@mattvague][])
+* [#758][]: Create a standalone page in Active Admin using
+  `ActiveAdmin.register_page` ([@pcreux][])
+
 ### Enhancements
 
 * [#428][]: Paginated Collection now supports `:param_name` and `:download_links`.
   These two additions allow you to use the `paginated_collection` component multiple 
   times on show screens. ([@samvincent][])
-* Namespace specific configurations in the initializer ([@gregbell][])
-* [#741][]: Default media type of css is now "all" instead of "screen" ([@sftsang][])
+* [#527][]: Refactored all form helpers to use Formtastic 2([@ebeigarts][])
+* [#551][]: Dashboards can now be conditionally displayed using `:if` ([@samvincent][])
+* [#555][]: scopes now accept `:if`. They only get displayed if the proc returns true ([@macfanatic][])
+* [#601][]: Breadcrumbs are internationalized ([@vairix][]-ssierra)
+* [[#605][]]: Validations on ActiveAdmin::Comment should work with
+  `accepts_nested_attributes_for` ([@DMajrekar ][])
+* [#623][]: Index table can sort on any table using `:sort => 'table.column'` ([@ZequeZ][])
+* [#638][]: Add `:label` option to `status_tag` component ([@fbuenemann][])
+* [#644][]: Added proper I18n support to pagination ([@fbuenemann][])
+* [#689][]: Scopes preserve title when provided as a string ([@macfanatic][])
 * [#711][]: Styles update. Now sexier and more refined design. Redesigned Scopes. Split 
   css into smaller files. ([@mattvague][])
+* [#741][]: Default media type of css is now "all" instead of "screen" ([@sftsang][])
+* [#751][]: Pagination numbers work with a custom `[@per_page][]` ([@DMajrekar][])
+* `default_actions` in an index table only display implemented actions ([@watson][])
 
 ### Bug Fixes
 
+* [#590][]: Comments now work in the default namespace ([@jbarket][])
 * [#780][]: Fix stack level too deep exception when logout path is setup to use
   `:logout_path` named route. ([@george][])
+* [#637][]: Fix scope all I18n ([@fbuenemann][])
 
 ### Dependencies
 
-* [#527][]: Active Admin now requires Formtastic 2.0 or greater ([@ebeigarts][])
 * [#468][]: Removed vendored jQuery. Now depends on the jquery-rails gem. If you're 
   running Rails 3.0.x (no asset pipeline), make sure to run 
   `rails generate active_admin:assets` to generate the correct files. ([@gregbell][])
+* [#527][]: Active Admin now requires Formtastic 2.0 or greater ([@ebeigarts][])
 * [#711][]: Active admin now depends on Bourbon > 1.0.0. If you're using Rails
   3.0.x, make sure to run `rails generate active_admin:assets` to ensure you
   have the correct css files ([@mattvague][])
@@ -326,24 +347,45 @@ of the highlights. 250 commits. Enough said.
 [#468]: https://github.com/gregbell/active_admin/issues/468
 [#505]: https://github.com/gregbell/active_admin/issues/505
 [#527]: https://github.com/gregbell/active_admin/issues/527
+[#551]: https://github.com/gregbell/active_admin/issues/551
+[#555]: https://github.com/gregbell/active_admin/issues/555
+[#590]: https://github.com/gregbell/active_admin/issues/590
+[#601]: https://github.com/gregbell/active_admin/issues/601
+[#605]: https://github.com/gregbell/active_admin/issues/605
+[#623]: https://github.com/gregbell/active_admin/issues/623
+[#624]: https://github.com/gregbell/active_admin/issues/624
+[#637]: https://github.com/gregbell/active_admin/issues/637
+[#638]: https://github.com/gregbell/active_admin/issues/638
+[#644]: https://github.com/gregbell/active_admin/issues/644
+[#689]: https://github.com/gregbell/active_admin/issues/689
 [#711]: https://github.com/gregbell/active_admin/issues/711
 [#741]: https://github.com/gregbell/active_admin/issues/741
+[#751]: https://github.com/gregbell/active_admin/issues/751
+[#758]: https://github.com/gregbell/active_admin/issues/758
 [#780]: https://github.com/gregbell/active_admin/issues/780
+[@DMajrekar]: https://github.com/DMajrekar
+[@ZequeZ]: https://github.com/ZequeZ
 [@dhiemstra]: https://github.com/dhiemstra
 [@doug316]: https://github.com/doug316
 [@ebeigarts]: https://github.com/ebeigarts
 [@emzeq]: https://github.com/emzeq
 [@fabiokr]: https://github.com/fabiokr
+[@fbuenemann]: https://github.com/fbuenemann
 [@george]: https://github.com/george
 [@gregbell]: https://github.com/gregbell
+[@jbarket]: https://github.com/jbarket
 [@knoopx]: https://github.com/knoopx
 [@krug]: https://github.com/krug
+[@macfanatic]: https://github.com/macfanatic
 [@mattvague]: https://github.com/mattvague
 [@mwindwer]: https://github.com/mwindwer
 [@page_title]: https://github.com/page_title
 [@pcreux]: https://github.com/pcreux
+[@per_page]: https://github.com/per_page
 [@rolfb]: https://github.com/rolfb
 [@samvincent]: https://github.com/samvincent
 [@sftsang]: https://github.com/sftsang
 [@shayfrendt]: https://github.com/shayfrendt
 [@tricknotes]: https://github.com/tricknotes
+[@vairix]: https://github.com/vairix
+[@watson]: https://github.com/watson
