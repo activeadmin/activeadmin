@@ -33,7 +33,7 @@ module ActiveAdmin
   autoload :MenuItem,                 'active_admin/menu_item'
   autoload :Namespace,                'active_admin/namespace'
   autoload :Page,                     'active_admin/page'
-  autoload :PageConfig,               'active_admin/page_config'
+  autoload :PagePresenter,            'active_admin/page_presenter'
   autoload :PageController,           'active_admin/page_controller'
   autoload :PageDSL,                  'active_admin/page_dsl'
   autoload :Reloader,                 'active_admin/reloader'

@@ -130,12 +130,12 @@ module ActiveAdmin
     describe "page configs" do
       context "when initialized" do
         it "should be empty" do
-          config.page_configs.should == {}
+          config.page_presenters.should == {}
         end
       end
       it "should be set-able" do
-        config.page_configs[:index] = "hello world"
-        config.page_configs[:index].should == "hello world"
+        config.page_presenters[:index] = "hello world"
+        config.page_presenters[:index].should == "hello world"
       end
     end
 

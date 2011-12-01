@@ -29,7 +29,7 @@ module ActiveAdmin
 
     include Base
     include Resource::Controllers
-    include Resource::PageConfigs
+    include Resource::PagePresenters
     include Resource::Sidebars
     include Resource::ActionItems
     include Resource::Menu

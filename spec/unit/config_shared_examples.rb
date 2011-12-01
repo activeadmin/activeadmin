@@ -5,9 +5,9 @@ shared_examples_for "ActiveAdmin::Config" do
     end
   end
 
-  describe "page_configs" do
+  describe "page_presenters" do
     it "should return an empty hash by default" do
-      config.page_configs.should == {}
+      config.page_presenters.should == {}
     end
   end
 

@@ -63,13 +63,13 @@ module ActiveAdmin
     #
     class IndexAsBlog < ActiveAdmin::Component
 
-      def build(page_config, collection)
-        @page_config = page_config
+      def build(page_presenter, collection)
+        @page_presenter = page_presenter
         @collection = collection
 
         # Call the block passed in. This will set the 
         # title and body methods
-        instance_eval &page_config.block if page_config.block
+        instance_eval &page_presenter.block if page_presenter.block
 
         build_posts
       end

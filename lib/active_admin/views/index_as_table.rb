@@ -92,7 +92,7 @@ module ActiveAdmin
     #
     class IndexAsTable < ActiveAdmin::Component
 
-      def build(page_config, collection)
+      def build(page_presenter, collection)
         table_options = {
           :id => active_admin_config.plural_underscored_resource_name,
           :sortable => true,
@@ -101,7 +101,7 @@ module ActiveAdmin
         }
 
         table_for collection, table_options do |t|
-          instance_exec(t, &page_config.block)
+          instance_exec(t, &page_presenter.block)
         end
       end
 

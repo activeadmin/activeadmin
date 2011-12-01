@@ -4,7 +4,7 @@ module ActiveAdmin
       class Show < Base
 
         def config
-          active_admin_config.get_page_config(:show) || ::ActiveAdmin::PageConfig.new
+          active_admin_config.get_page_presenter(:show) || ::ActiveAdmin::PagePresenter.new
         end
 
         def title
