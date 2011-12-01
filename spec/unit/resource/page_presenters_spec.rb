@@ -9,7 +9,7 @@ describe ActiveAdmin::Resource::PagePresenters do
     resource.page_presenters.should == {}
   end
 
-  it "should add a page config" do
+  it "should add a page presenter" do
     page_presenter = ActiveAdmin::PagePresenter.new
     resource.set_page_presenter(:index, page_presenter)
     resource.page_presenters[:index].should == page_presenter

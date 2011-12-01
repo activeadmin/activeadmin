@@ -127,18 +127,6 @@ module ActiveAdmin
       end
     end
 
-    describe "page configs" do
-      context "when initialized" do
-        it "should be empty" do
-          config.page_presenters.should == {}
-        end
-      end
-      it "should be set-able" do
-        config.page_presenters[:index] = "hello world"
-        config.page_presenters[:index].should == "hello world"
-      end
-    end
-
     describe "scoping" do
       context "when using a block" do
         before do
