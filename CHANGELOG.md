@@ -61,36 +61,36 @@ since we've changed both the CSS and JS files.
 
 202 commits by 31 authors
 
-Bendik Lynghaug
-Dinesh Majrekar
-Douwe Homans
-Edgars Beigarts
-Eunsub Kim
-Felix Bünemann
-George Anderson
-Greg Bell
-Henrik Hodne
-Ivan Storck
-Jeff Dickey
-John Ferlito
-Jonathan Barket
-Josef Šimánek
-Juan E.
-Kieran Klaassen
-Marc Riera
-Matt Vague
-Matthew Brewer
-Philippe Creux
-Radan Skorić
-Rhys Powell
-Sam Vincent
-Sebastian Sierra
-Sherman Tsang
-Szymon Przybył
-Thomas Watson
-Yara Mayer
-Zequez 
-emmek 
+* Bendik Lynghaug
+* Dinesh Majrekar
+* Douwe Homans
+* Edgars Beigarts
+* Eunsub Kim
+* Felix Bünemann
+* George Anderson
+* Greg Bell
+* Henrik Hodne
+* Ivan Storck
+* Jeff Dickey
+* John Ferlito
+* Jonathan Barket
+* Josef Šimánek
+* Juan E.
+* Kieran Klaassen
+* Marc Riera
+* Matt Vague
+* Matthew Brewer
+* Philippe Creux
+* Radan Skorić
+* Rhys Powell
+* Sam Vincent
+* Sebastian Sierra
+* Sherman Tsang
+* Szymon Przybył
+* Thomas Watson
+* Yara Mayer
+* Zequez 
+* emmek 
 
 ## 0.3.4
 
