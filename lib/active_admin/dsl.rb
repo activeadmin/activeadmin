@@ -49,6 +49,17 @@ module ActiveAdmin
       @config.controller
     end
 
+    # Add a new action item to the resource
+    #
+    # @param [Hash] options valid keys include:
+    #                 :only:  A single or array of controller actions to display
+    #                         this action item on.
+    #                 :except: A single or array of controller actions not to
+    #                          display this action item on.
+    def action_item(options = {}, &block)
+      config.add_action_item(options, &block)
+    end
+
     def menu(options = {})
       config.menu(options)
     end

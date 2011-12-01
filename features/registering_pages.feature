@@ -45,5 +45,22 @@ Feature: Registering Pages
     """
     When I go to the dashboard
     And I follow "Status"
-    Then show me the page
     Then I should see a sidebar titled "Help"
+
+
+  Scenario: Adding an action item to a page
+    Given a configuration of:
+    """
+    ActiveAdmin.register_page "Status" do
+      action_item do
+        link_to "Visit", "/"
+      end
+
+      content do
+        "I love chocolate."
+      end
+    end
+    """
+    When I go to the dashboard
+    And I follow "Status"
+    Then I should see an action item link to "Visit"
