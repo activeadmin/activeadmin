@@ -33,6 +33,48 @@ describe ActiveAdmin::Views::AttributesTable do
           row :body
         end
       },
+    }.each do |context_title, table_decleration|
+      context context_title do
+        let(:table) { instance_eval &table_decleration }
+
+        it "should render a div wrapper with the class '.attributes_table'" do
+          table.tag_name.should == 'div'
+          table.attr(:class).should include('attributes_table')
+        end
+        it "should add id and type class" do
+          table.class_names.should include("post")
+          table.id.should == "attributes_table_post_1"
+        end
+
+        it "should render 3 rows" do
+          table.find_by_tag("tr").size.should == 3
+        end
+
+        describe "rendering the rows" do
+          [
+            ["id" , "2"],
+            ["title" , "Hello World"],
+            ["body" , "<span class=\"empty\">Empty</span>"]
+          ].each_with_index do |set, i|
+            let(:title){ set[0] }
+            let(:content){ set[1] }
+            let(:current_row){ table.find_by_tag("tr")[i] }
+
+            describe "for #{set[0]}" do
+              it "should have the title '#{set[0]}'" do
+                current_row.find_by_tag("th").first.content.should == I18n.t(:"#{title}", :scope => [:active_admin, :columns, :post])
+              end
+              it "should have the content '#{set[1]}'" do
+                current_row.find_by_tag("td").first.content.chomp.strip.should == content
+              end
+            end
+          end
+        end # describe rendering rows
+      end
+    end
+
+    # Loop to test a custom title to row
+    {
       "when you create each row with a custom block" => proc {
         attributes_table_for post do
           row("Id")   { post.id }
