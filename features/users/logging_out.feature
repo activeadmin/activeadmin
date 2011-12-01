@@ -19,5 +19,6 @@ Feature: User Logging out
         config.logout_link_path = :logout_path
       end
       """
+    And I am logged in
     When I go to the dashboard
     Then I should see the default welcome message
