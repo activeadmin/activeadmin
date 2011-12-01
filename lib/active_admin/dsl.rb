@@ -52,5 +52,9 @@ module ActiveAdmin
     def menu(options = {})
       config.menu(options)
     end
+
+    def sidebar(name, options = {}, &block)
+      config.sidebar_sections << ActiveAdmin::SidebarSection.new(name, options, &block)
+    end
   end
 end

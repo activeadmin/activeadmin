@@ -70,10 +70,6 @@ module ActiveAdmin
       config.set_page_presenter :form, ActiveAdmin::PagePresenter.new(options, &block)
     end
 
-    def sidebar(name, options = {}, &block)
-      config.sidebar_sections << ActiveAdmin::SidebarSection.new(name, options, &block)
-    end
-
     # Configure the CSV format
     #
     # For example:
