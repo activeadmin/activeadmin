@@ -27,7 +27,7 @@ module ActiveAdmin
     class << self
       def active_admin_config=(config)
         @active_admin_config = config
-        defaults  :resource_class => config.resource,
+        defaults  :resource_class => config.resource_class,
                   :route_prefix => config.route_prefix,
                   :instance_name => config.underscored_resource_name
       end

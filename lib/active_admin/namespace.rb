@@ -46,8 +46,8 @@ module ActiveAdmin
     # Register a resource into this namespace. The preffered method to access this is to 
     # use the global registration ActiveAdmin.register which delegates to the proper 
     # namespace instance.
-    def register(resource, options = {}, &block)
-      config = find_or_build_resource(resource, options)
+    def register(resource_class, options = {}, &block)
+      config = find_or_build_resource(resource_class, options)
 
       # Register the resource
       register_resource_controller(config)

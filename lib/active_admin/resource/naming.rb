@@ -5,7 +5,7 @@ module ActiveAdmin
       def resource_name
         @resource_name ||= @options[:as]
         @resource_name ||= singular_human_name
-        @resource_name ||= resource.name.gsub('::',' ')
+        @resource_name ||= resource_class.name.gsub('::',' ')
       end
 
       # Returns the plural version of this resource such as "Bank Accounts"
@@ -43,16 +43,16 @@ module ActiveAdmin
 
       # @return [String] Titleized human name via ActiveRecord I18n or nil
       def singular_human_name
-        return nil unless resource.respond_to?(:model_name)
-        resource.model_name.human.titleize
+        return nil unless resource_class.respond_to?(:model_name)
+        resource_class.model_name.human.titleize
       end
 
       # @return [String] Titleized plural human name via ActiveRecord I18n or nil
       def plural_human_name
-        return nil unless resource.respond_to?(:model_name)
+        return nil unless resource_class.respond_to?(:model_name)
 
         begin
-          I18n.translate!("activerecord.models.#{resource.model_name.underscore}.other").titleize
+          I18n.translate!("activerecord.models.#{resource_class.model_name.underscore}.other").titleize
         rescue I18n::MissingTranslationData
           nil
         end

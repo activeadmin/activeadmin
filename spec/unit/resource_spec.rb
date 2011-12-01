@@ -15,6 +15,8 @@ module ActiveAdmin
       @config ||= Resource.new(namespace, Category, options)
     end
 
+    it { respond_to :resource_class }
+
     describe "#resource_table_name" do
       it "should return the resource's table name" do
         config.resource_table_name.should == '"categories"'

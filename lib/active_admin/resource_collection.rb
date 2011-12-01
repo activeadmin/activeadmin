@@ -58,12 +58,12 @@ module ActiveAdmin
     # a subclass of an Active Record class (ie: implementes base_class)
     def find_by_resource_class(resource_class)
       resource_class_name = resource_class.to_s
-      match = resources_with_a_resource_class.find{|r| r.resource.to_s == resource_class_name }
+      match = resources_with_a_resource_class.find{|r| r.resource_class.to_s == resource_class_name }
       return match if match
 
       if resource_class.respond_to?(:base_class)
         base_class_name = resource_class.base_class.to_s
-        resources_with_a_resource_class.find{|r| r.resource.to_s == base_class_name }
+        resources_with_a_resource_class.find{|r| r.resource_class.to_s == base_class_name }
       else
         nil
       end
@@ -72,15 +72,15 @@ module ActiveAdmin
     private
 
     def resources_with_a_resource_class
-      select{|resource| resource.respond_to?(:resource) }
+      select{|resource| resource.respond_to?(:resource_class) }
     end
 
     def ensure_resource_classes_match!(existing_resource, resource)
-      return unless existing_resource.respond_to?(:resource) && resource.respond_to?(:resource)
+      return unless existing_resource.respond_to?(:resource_class) && resource.respond_to?(:resource_class)
 
-      if existing_resource.resource != resource.resource
+      if existing_resource.resource_class != resource.resource_class
         raise ActiveAdmin::ResourceMismatchError, 
-          "Tried to register #{resource.resource} as #{resource.resource_key} but already registered to #{existing_resource.resource}"
+          "Tried to register #{resource.resource_class} as #{resource.resource_key} but already registered to #{existing_resource.resource_class}"
       end
     end
 

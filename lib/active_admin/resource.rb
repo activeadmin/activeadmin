@@ -27,9 +27,7 @@ module ActiveAdmin
 
     # The class this resource wraps. If you register the Post model, Resource#resource
     # will point to the Post class
-    #
-    # @todo Refactor Namespace so that it doesn't require a Config to have a resource.
-    attr_reader :resource
+    attr_reader :resource_class
 
     # An array of member actions defined for this resource
     attr_reader :member_actions
@@ -50,9 +48,9 @@ module ActiveAdmin
     attr_writer :csv_builder
 
     module Base
-      def initialize(namespace, resource, options = {})
+      def initialize(namespace, resource_class, options = {})
         @namespace = namespace
-        @resource = resource
+        @resource_class = resource_class
         @options = default_options.merge(options)
         @sort_order = @options[:sort_order]
         @member_actions, @collection_actions = [], []
@@ -69,7 +67,7 @@ module ActiveAdmin
     include Menu
 
     def resource_table_name
-      resource.quoted_table_name
+      resource_class.quoted_table_name
     end
 
     # Returns the named route for an instance of this resource
@@ -128,16 +126,23 @@ module ActiveAdmin
       @csv_builder || default_csv_builder
     end
 
+    # @deprecated
+    def resource
+      @resource_class
+    end
+    ActiveAdmin::Deprecation.deprecate self, :resource,
+      "ActiveAdmin::Resource#resource is deprecated. Please use #resource_class instead."
+
     private
 
     def default_options
       {
-        :sort_order => "#{resource.respond_to?(:primary_key) ? resource.primary_key : 'id'}_desc"
+        :sort_order => "#{resource_class.respond_to?(:primary_key) ? resource_class.primary_key : 'id'}_desc"
       }
     end
 
     def default_csv_builder
-      @default_csv_builder ||= CSVBuilder.default_for_resource(resource)
+      @default_csv_builder ||= CSVBuilder.default_for_resource(resource_class)
     end
   end # class Resource
 end # module ActiveAdmin
