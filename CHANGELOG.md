@@ -18,6 +18,7 @@ since we've changed both the CSS and JS files.
   Active Admin initializer. ([@mattvague][])
 * [#758][]: Create a standalone page in Active Admin using
   `ActiveAdmin.register_page` ([@pcreux][])
+* [#723][]: Register stylesheets with a media type ([@macfanatic][])
 
 ### Enhancements
 
