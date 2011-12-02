@@ -103,7 +103,7 @@ module ActiveAdmin
         table_options = {
           :id => active_admin_config.plural_underscored_resource_name,
           :sortable => true,
-          :class => "index_table",
+          :class => "index_table index",
           :i18n => active_admin_config.resource_class
         }
 
@@ -140,7 +140,7 @@ module ActiveAdmin
             :name => ""
           }.merge(options)
           column options[:name] do |resource|
-			links = ''.html_safe
+			      links = ''.html_safe
             if controller.action_methods.include?('show')
               links += link_to I18n.t('active_admin.view'), resource_path(resource), :class => "member_link view_link"
             end

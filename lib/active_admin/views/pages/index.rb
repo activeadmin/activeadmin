@@ -61,9 +61,7 @@ module ActiveAdmin
 
         def build_scopes
           if active_admin_config.scopes.any?
-            div :class => "table_tools" do
-              scopes_renderer active_admin_config.scopes
-            end
+            scopes_renderer active_admin_config.scopes
           end
         end
 
@@ -71,6 +69,7 @@ module ActiveAdmin
         # with each column displayed as well as all the default actions
         def default_index_config
           @default_index_config ||= ::ActiveAdmin::PagePresenter.new(:as => :table) do |display|
+            selectable_column
             id_column
             resource_class.content_columns.each do |col|
               column col.name.to_sym

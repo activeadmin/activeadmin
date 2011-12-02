@@ -11,7 +11,7 @@ module ActiveAdmin
     def run_registration_block(config, &block)
       @config = config
       instance_eval &block if block_given?
-      register_batch_action_handler
+      register_batch_action_handler unless self.is_a?(ActiveAdmin::PageDSL)
     end
     
     # Register the batch action path
