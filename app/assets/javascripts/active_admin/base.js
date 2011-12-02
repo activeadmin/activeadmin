@@ -1,4 +1,7 @@
-//= require "active_admin/vendor"
+//= require jquery
+//= require jquery-ui
+//= require jquery_ujs
+//= require active_admin/application
 
 /* Active Admin JS */
 

@@ -9,7 +9,7 @@ module ActiveAdmin
         render 'active_admin/dashboard/index.html.arb'
       end
 
-      protected
+      private
 
       def set_current_tab
         @current_tab = I18n.t("active_admin.dashboard")
@@ -42,7 +42,11 @@ module ActiveAdmin
 
       # Return the current menu for the view. This is a helper method
       def current_menu
-        ActiveAdmin.application.namespaces[namespace].menu
+        active_admin_namespace.menu
+      end
+
+      def active_admin_namespace
+        ActiveAdmin.application.namespace(namespace)
       end
 
     end

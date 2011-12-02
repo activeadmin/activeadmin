@@ -42,6 +42,11 @@ module ActiveAdmin
         @action_items = []
       end
 
+      # Used by active_admin Base view
+      def action_items?
+        !!@action_items && @action_items.any?
+      end
+
       private
 
       # Adds the default action items to each resource

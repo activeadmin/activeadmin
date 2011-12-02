@@ -1,3 +1,6 @@
+require 'active_admin/helpers/settings'
+require 'active_admin/resource_collection'
+
 module ActiveAdmin
 
   class ResourceMismatchError < StandardError; end
@@ -25,6 +28,7 @@ module ActiveAdmin
   # resource will be accessible from "/posts" and the controller will be PostsController.
   #
   class Namespace
+    include Settings
 
     RegisterEvent = 'active_admin.namespace.register'.freeze
 
@@ -33,7 +37,7 @@ module ActiveAdmin
     def initialize(application, name)
       @application = application
       @name = name.to_s.underscore.to_sym
-      @resources = {}
+      @resources = ResourceCollection.new
       @menu = Menu.new
       register_module unless root?
       generate_dashboard_controller
@@ -42,8 +46,8 @@ module ActiveAdmin
     # Register a resource into this namespace. The preffered method to access this is to 
     # use the global registration ActiveAdmin.register which delegates to the proper 
     # namespace instance.
-    def register(resource, options = {}, &block)
-      config = find_or_build_resource(resource, options)
+    def register(resource_class, options = {}, &block)
+      config = find_or_build_resource(resource_class, options)
 
       # Register the resource
       register_resource_controller(config)
@@ -57,6 +61,17 @@ module ActiveAdmin
       ActiveAdmin::Event.dispatch ActiveAdmin::Resource::RegisterEvent, config
 
       # Return the config
+      config
+    end
+
+    def register_page(name, options = {}, &block)
+      config = build_page(name, options)
+
+      # Register the resource
+      register_page_controller(config)
+      parse_page_registration_block(config, &block) if block_given?
+      register_with_menu(config) if config.include_in_menu?
+
       config
     end
 
@@ -92,22 +107,20 @@ module ActiveAdmin
     # loaded. This method gets called to register each resource with the menu system.
     def load_menu!
       register_dashboard
-      resources.values.each do |config|
-        register_with_menu(config) if config.include_in_menu?
+      resources.each do |resource|
+        register_with_menu(resource) if resource.include_in_menu?
       end
     end
 
     # Returns the first registered ActiveAdmin::Resource instance for a given class
     def resource_for(klass)
-      actual = resources.values.find{|config| config.resource == klass }
-      return actual if actual
+      resources.find_by_resource_class(klass)
+    end
 
-      if klass.respond_to?(:base_class)
-        base_class = klass.base_class
-        resources.values.find{|config| config.resource == base_class }
-      else
-        nil
-      end
+    # Override from ActiveAdmin::Settings to inherit default attributes
+    # from the application
+    def read_default_setting(name)
+      application.send(name)
     end
 
     protected
@@ -115,33 +128,27 @@ module ActiveAdmin
     # Either returns an existing Resource instance or builds a new
     # one for the resource and options
     def find_or_build_resource(resource_class, options)
-      resource = Resource.new(self, resource_class, options)
+      resources.add Resource.new(self, resource_class, options)
+    end
 
-      # If we've already registered this resource, use the existing
-      if @resources.has_key? resource.camelized_resource_name
-        existing_resource = @resources[resource.camelized_resource_name]
+    def build_page(name, options)
+      resources.add Page.new(self, name, options)
+    end
 
-        if existing_resource.resource != resource_class
-          raise ActiveAdmin::ResourceMismatchError, 
-            "Tried to register #{resource_class} as #{resource.camelized_resource_name} but already registered to #{resource.resource}"
-        end
 
-        resource = existing_resource
-      else
-        @resources[resource.camelized_resource_name] = resource
-      end
-
-      resource
+    def register_page_controller(config)
+      eval "class ::#{config.controller_name} < ActiveAdmin::PageController; end"
+      config.controller.active_admin_config = config
     end
 
     def unload_resources!
-      resources.each do |name, config|
+      resources.each do |resource|
         parent = (module_name || 'Object').constantize
-        const_name = config.controller_name.split('::').last
+        const_name = resource.controller_name.split('::').last
         # Remove the const if its been defined
         parent.send(:remove_const, const_name) if parent.const_defined?(const_name)
       end
-      @resources = {}
+      @resources = ResourceCollection.new
     end
 
     def unload_dashboard!
@@ -163,12 +170,20 @@ module ActiveAdmin
       config.controller.active_admin_config = config
     end
 
-    def dsl
-      @dsl ||= DSL.new
+    def resource_dsl
+      @resource_dsl ||= ResourceDSL.new
     end
 
     def parse_registration_block(config, &block)
-      dsl.run_registration_block(config, &block)
+      resource_dsl.run_registration_block(config, &block)
+    end
+
+    def page_dsl
+      @page_dsl ||= PageDSL.new
+    end
+
+    def parse_page_registration_block(config, &block)
+      page_dsl.run_registration_block(config, &block)
     end
 
     # Creates a dashboard controller for this config

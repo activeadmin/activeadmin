@@ -21,7 +21,7 @@ module ActiveAdmin
         end
 
         def record_comments
-          @record_comments ||= @record.active_admin_comments.where(:namespace => active_admin_namespace.name.to_s)
+          @record_comments ||= ActiveAdmin::Comment.find_for_resource_in_namespace(@record, active_admin_namespace.name)
         end
 
         def build_comments
@@ -66,7 +66,7 @@ module ActiveAdmin
         def build_comment_form
           self << active_admin_form_for(ActiveAdmin::Comment.new, :url => comment_form_url, :html => {:class => "inline_form"}) do |form|
             form.inputs do
-              form.input :resource_type, :value => @record.class.base_class.name.to_s, :as => :hidden
+              form.input :resource_type, :value => ActiveAdmin::Comment.resource_type(@record), :as => :hidden
               form.input :resource_id, :value => @record.id, :as => :hidden
               form.input :body, :input_html => {:size => "80x8"}, :label => false
             end

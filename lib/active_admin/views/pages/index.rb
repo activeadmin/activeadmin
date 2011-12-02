@@ -9,7 +9,7 @@ module ActiveAdmin
         end
 
         def config
-          index_config || default_index_config
+          active_admin_config.get_page_presenter(:index) || default_index_config
         end
 
         # Render's the index configuration that was set in the
@@ -61,15 +61,16 @@ module ActiveAdmin
 
         def build_scopes
           if active_admin_config.scopes.any?
-            scopes_renderer active_admin_config.scopes
+            div :class => "table_tools" do
+              scopes_renderer active_admin_config.scopes
+            end
           end
         end
 
         # Creates a default configuration for the resource class. This is a table
         # with each column displayed as well as all the default actions
         def default_index_config
-          @default_index_config ||= ::ActiveAdmin::PageConfig.new(:as => :table) do |display|
-            selectable_column
+          @default_index_config ||= ::ActiveAdmin::PagePresenter.new(:as => :table) do |display|
             id_column
             resource_class.content_columns.each do |col|
               column col.name.to_sym
@@ -79,7 +80,7 @@ module ActiveAdmin
         end
 
         # Returns the actual class for renderering the main content on the index
-        # page. To set this, use the :as option in the page_config block.
+        # page. To set this, use the :as option in the page_presenter block.
         def find_index_renderer_class(symbol_or_class)
           case symbol_or_class
           when Symbol

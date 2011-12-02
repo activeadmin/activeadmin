@@ -22,6 +22,10 @@ module ActiveAdmin
         sidebar_sections.select{|section| section.display_on?(action) }
       end
 
+      def sidebar_sections?
+        !!@sidebar_sections && @sidebar_sections.any?
+      end
+
       private
 
       def add_default_sidebar_sections

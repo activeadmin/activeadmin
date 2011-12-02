@@ -61,7 +61,7 @@ module ActiveAdmin
       end
 
       def scoping_class
-        assigns["before_scope_collection"] || active_admin_config.resource
+        assigns["before_scope_collection"] || active_admin_config.resource_class
       end
 
     end

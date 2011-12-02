@@ -25,6 +25,19 @@ module ActiveAdmin
         config.get_scope_by_id(:published).name.should == "Published"
       end
 
+      it "should not add a scope with the same name twice" do
+        config.scope :published
+        config.scope :published
+        config.scopes.size.should == 1
+      end
+
+      it "should update a scope with the same id" do
+        config.scope :published
+        config.scopes.first.scope_block.should be_nil
+        config.scope(:published){  }
+        config.scopes.first.scope_block.should_not be_nil
+      end
+
     end
   end
 end

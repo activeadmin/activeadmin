@@ -1,3 +1,5 @@
+require 'active_admin/resource'
+
 module ActiveAdmin
   class Resource
     class BelongsTo
@@ -14,8 +16,8 @@ module ActiveAdmin
 
       # Returns the target resource class or raises an exception if it doesn't exist
       def target
-        namespace.resources[@target_name.to_s.camelize] or 
-          raise TargetNotFound, "Could not find registered resource #{@target_name} in #{namespace.name} with #{namespace.resources.keys.inspect}"
+        namespace.resources.find_by_key(@target_name.to_s.camelize) or 
+          raise TargetNotFound, "Could not find registered resource #{@target_name} in #{namespace.name} with #{namespace.resources.inspect}"
       end
 
       def namespace
