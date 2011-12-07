@@ -23,10 +23,10 @@ describe ActiveAdmin::Scope do
     end
 
     context "when a name and scope method" do
-      let(:scope)        { ActiveAdmin::Scope.new "My Scope", :scope_method }
-      its(:name)         { should == "My Scope"}
-      its(:id)           { should == "my_scope"}
-      its(:scope_method) { should == :scope_method }
+      let(:scope)        { ActiveAdmin::Scope.new "With API Access", :with_api_access }
+      its(:name)         { should == "With API Access"}
+      its(:id)           { should == "with_api_access"}
+      its(:scope_method) { should == :with_api_access }
     end
 
     context "when a name and scope block" do
@@ -37,5 +37,19 @@ describe ActiveAdmin::Scope do
       its(:scope_block)  { should be_a(Proc)}
     end
   end # describe "creating a scope"
+
+  describe "#display_if_block" do
+
+    it "should return true by default" do
+      scope = ActiveAdmin::Scope.new(:default)
+      scope.display_if_block.call.should == true
+    end
+
+    it "should return the :if block if set" do
+      scope = ActiveAdmin::Scope.new(:with_block, nil, :if => proc{ false })
+      scope.display_if_block.call.should == false
+    end
+
+  end
 
 end

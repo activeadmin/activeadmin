@@ -1,0 +1,40 @@
+"no-NB":
+  active_admin:
+    dashboard: Oversikt
+    dashboard_welcome:
+      welcome: "Velkommen til Active Admin. Dette er standardoversiktssiden."
+      call_to_action: "Rediger 'app/admin/dashboards.rb' for at legge til elementer i oversikten."
+    view: "Vis"
+    edit: "Rediger"
+    delete: "Slett"
+    delete_confirmation: "Er du sikker på at du vil slette denne?"
+    new_model: "Ny %{model}"
+    edit_model: "Rediger %{model}"
+    delete_model: "Slett %{model}"
+    details: "%{model} Detaljer"
+    cancel: "Avbryt"
+    empty: "Tom"
+    previous: "Forrige"
+    next: "Neste"
+    download: "Last ned:"
+    has_many_new: "Legg til ny %{model}"
+    has_many_delete: "Slett"
+    filter: "Filter"
+    clear_filters: "Fjern filter"
+    search_field: "Søk %{field}"
+    equal_to: "Er lik"
+    greater_than: "Større enn"
+    less_than: "Mindre enn"
+    main_content: "Please implement %{model}#main_content to display content."
+    logout: "Logg ut"
+    sidebars:
+      filters: "Filtere"
+    pagination:
+      empty: "Fannt ingen %{model}"
+      one: "Viser <b>1</b> %{model}"
+      one_page: "Viser <b>alle %{n}</b> %{model}"
+      multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt"
+    any: "Noen"
+    blank_slate:
+      content: "Her er det ingen %{resource_name} enda."
+      link: "Opprett en"

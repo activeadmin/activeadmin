@@ -1,0 +1,40 @@
+lv:
+  active_admin:
+    dashboard: Panelis
+    dashboard_welcome:
+      welcome: "Laipni lūgti Active Admin."
+      call_to_action: "Izmantojiet 'app/admin/dashboards.rb', lai pievienotu sadaļas panelim."
+    view: "Apskatīt"
+    edit: "Labot"
+    delete: "Dzēst"
+    delete_confirmation: "Vai Tu tiešām vēlies dzēst?"
+    new_model: "Pievienot '%{model}' ierasktu"
+    edit_model: "Labot '%{model}' ierakstu"
+    delete_model: "Dzēst '%{model}' ierakstu"
+    details: "Apraksts"
+    cancel: "Atcelt"
+    empty: "Tukšs"
+    previous: "Iepriekšējā"
+    next: "Nākošā"
+    download: "Lejuplādēt:"
+    has_many_new: "Pievienot jaunu '%{model}' ierakstu"
+    has_many_delete: "Dzēst"
+    filter: "Filtrēt"
+    clear_filters: "Novākt filtrus"
+    search_field: "Meklēt '%{field}' laukā"
+    equal_to: "Vienāds ar"
+    greater_than: "Lielāks par"
+    less_than: "Mazāks par"
+    main_content: "Lūdzu implementēt %{model}#main_content, lai rādītos saturs."
+    logout: "Iziet"
+    sidebars:
+      filters: "Filtri"
+    pagination:
+      empty: "Nav ierakstu"
+      one: "<b>1</b> ieraksts"
+      one_page: "<b>%{n}</b> ieraksti"
+      multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> ieraksti no <b>%{total}</b> kopā"
+    any: "Any"
+    blank_slate:
+      content: "Sadaļā '%{resource_name}' nav neviena ieraksta."
+      link: "Izveidot jaunu"

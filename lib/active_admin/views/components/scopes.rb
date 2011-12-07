@@ -6,30 +6,36 @@ module ActiveAdmin
     class Scopes < ActiveAdmin::Component
       builder_method :scopes_renderer
 
+      def default_class_name
+        "scopes table_tools_segmented_control"
+      end
+      
+      def tag_name
+        'ul'
+      end
+
       def build(scopes)
         scopes.each do |scope|
-          build_scope(scope)
+          build_scope(scope) if call_method_or_proc_on(self, scope.display_if_block)
         end
       end
 
       protected
 
       def build_scope(scope)
-        span :class => classes_for_scope(scope) do
+        li :class => classes_for_scope(scope) do
           begin
-            scope_name = I18n.t!("active_admin.scopes.#{scope.scope_method}")
+            scope_name = I18n.t!("active_admin.scopes.#{scope.id}")
           rescue I18n::MissingTranslationData
             scope_name = scope.name
           end
 
-          if current_scope?(scope)
-            em(scope_name)
-          else
-            a(scope_name, :href => url_for(params.merge(:scope => scope.id, :page => 1)))
+          a :href => url_for(params.merge(:scope => scope.id, :page => 1)), :class => "table_tools_button" do
+            text_node scope_name
+            span :class => 'count' do
+              "(" + get_scope_count(scope).to_s + ")"
+            end
           end
-          text_node(" ")
-          scope_count(scope)
-          text_node(" ")
         end
       end
 
@@ -47,12 +53,6 @@ module ActiveAdmin
         end
       end
 
-      def scope_count(scope)
-        span :class => 'count' do
-          "(" + get_scope_count(scope).to_s + ")"
-        end
-      end
-
       include ActiveAdmin::ScopeChain
 
       # Return the count for the scope passed in.
@@ -61,7 +61,7 @@ module ActiveAdmin
       end
 
       def scoping_class
-        assigns["before_scope_collection"] || active_admin_config.resource
+        assigns["before_scope_collection"] || active_admin_config.resource_class
       end
 
     end

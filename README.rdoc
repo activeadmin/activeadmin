@@ -6,15 +6,18 @@ to implement beautiful and elegant interfaces with very little effort.
 
 {<img src="http://travis-ci.org/gregbell/active_admin.png" />}[http://travis-ci.org/gregbell/active_admin]
 
-== Help / Support / Demo
+== Documentation & Support
 
 * Documentation & Guides: http://activeadmin.info/documentation.html
-* Mailing list: http://groups.google.com/group/activeadmin
-* Bug reports: https://github.com/gregbell/active_admin/issues
 * RDoc: http://rubydoc.info/github/gregbell/active_admin/master/frames
 * Live demo: http://demo.activeadmin.info/admin
 * Website: http://www.activeadmin.info
+* <b>Need Support?</b> Ask the Mailing list: http://groups.google.com/group/activeadmin
 
+== Bugs & Feature Requests
+
+* Bug Reports & Feature Requests: https://github.com/gregbell/active_admin/issues
+* Want to Contribute? Read the Guide: https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md
 
 == Goals
 
@@ -33,11 +36,18 @@ on Rails 3 application. To install, simply add the following to your Gemfile:
   # Gemfile in Rails < 3.1
   gem 'activeadmin'
 
-If you are using Rails >= 3.1, you must also have sass-rails in your Gemfile:
+If you are using Rails >= 3.1, you must also have sass-rails and meta_search in your Gemfile (if sass-rails is already present in assets group, move it out):
 
   # Gemfile in Rails >= 3.1
   gem 'activeadmin'
   gem 'sass-rails'
+  gem 'meta_search',    '>= 1.1.0.pre'
+
+and add activeadmin assets into precompiling by adding the following line into your config/environments/production.rb:
+
+  config.assets.precompile += %w[active_admin.css active_admin.js]
+
+There is also some issue with precompiling activeadmin images in Rails 3.1.0, it is fixed in Rails 3.1.1.
 
 After updating your bundle, run the installer
 
@@ -65,6 +75,10 @@ To register your first model, run:
 This creates a file at <tt>app/admin/my_model_names.rb</tt> for configuring the resource.
 Refresh your web browser to see the interface.
 
+== Upgrading
+
+When upgrading to a new version of ActiveAdmin you may need to run
+  $> rails generate active_admin:assets
 
 == Next Steps
 
@@ -93,21 +107,6 @@ Iconic Icons::
   Excellent SVG icon set designed by P.J. Onori: http://somerandomdude.com/projects/iconic
 
 
-== Roadmap & Issue Tracking
-
-We are using the awesome Github issues! Please submit bugs or features to
-https://github.com/gregbell/active_admin/issues
-
-
-== Note on Patches/Pull Requests
-
-* Fork the project.
-* Make a NEW TOPIC BRANCH, then make your feature addition or bug fix
-* Add specs and cukes for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-* Send a pull request.
-
 == Copyright
 
-Copyright (c) 2010 Greg Bell, VersaPay Corporation. See LICENSE for details.
+Copyright (c) 2011 Greg Bell, VersaPay Corporation. See LICENSE for details.

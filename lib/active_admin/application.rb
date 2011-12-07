@@ -5,6 +5,13 @@ module ActiveAdmin
   class Application
     include Settings
 
+    # Adds settings to both the Application and the Namespace instance
+    # so that they can be configured independantly.
+    def self.inheritable_setting(name, default)
+      Namespace.setting name, nil
+      setting name, default
+    end
+
     # The default namespace to put controllers and routes inside. Set this
     # in config/initializers/active_admin.rb using:
     #
@@ -12,40 +19,43 @@ module ActiveAdmin
     #
     setting :default_namespace, :admin
 
-    # The default number of resources to display on index pages
-    setting :default_per_page, 30
-
     # A hash of all the registered namespaces
     setting :namespaces, {}
-
-    # The title which gets displayed in the main layout
-    setting :site_title, ""
-    
-    # Set the site title link href (defaults to AA dashboard)
-    setting :site_title_link, ""
 
     # Load paths for admin configurations. Add folders to this load path
     # to load up other resources for administration. External gems can
     # include their paths in this load path to provide active_admin UIs
     setting :load_paths, [File.expand_path('app/admin', Rails.root)]
 
+    # The default number of resources to display on index pages
+    inheritable_setting :default_per_page, 30
+
+    # The title which gets displayed in the main layout
+    inheritable_setting :site_title, ""
+
+    # Set the site title link href (defaults to AA dashboard)
+    inheritable_setting :site_title_link, ""
+
+    # Set the site title image displayed in the main layout (has precendence over :site_title)
+    inheritable_setting :site_title_image, ""
+
     # The view factory to use to generate all the view classes. Take
     # a look at ActiveAdmin::ViewFactory
-    setting :view_factory, ActiveAdmin::ViewFactory.new
+    inheritable_setting :view_factory, ActiveAdmin::ViewFactory.new
 
     # The method to call in controllers to get the current user
-    setting :current_user_method, false
+    inheritable_setting :current_user_method, false
 
     # The method to call in the controllers to ensure that there
     # is a currently authenticated admin user
-    setting :authentication_method, false
+    inheritable_setting :authentication_method, false
 
     # The path to log user's out with. If set to a symbol, we assume
     # that it's a method to call which returns the path
-    setting :logout_link_path, :destroy_admin_user_session_path
+    inheritable_setting :logout_link_path, :destroy_admin_user_session_path
 
     # The method to use when generating the link for user logout
-    setting :logout_link_method, :get
+    inheritable_setting :logout_link_method, :get
 
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
@@ -67,10 +77,12 @@ module ActiveAdmin
     # the #allow_comments_in option instead
     attr_accessor :admin_notes
 
-
     include AssetRegistration
 
-    def initialize
+    # Event that gets triggered on load of Active Admin
+    LoadEvent = 'active_admin.application.load'.freeze
+
+    def setup!
       register_default_assets
     end
 
@@ -82,21 +94,39 @@ module ActiveAdmin
 
     # Registers a brand new configuration for the given resource.
     def register(resource, options = {}, &block)
-      namespace_name = options.has_key?(:namespace) ? options[:namespace] : default_namespace
+      namespace_name = extract_namespace_name(options)
       namespace = find_or_create_namespace(namespace_name)
       namespace.register(resource, options, &block)
     end
 
     # Creates a namespace for the given name
+    #
+    # Yields the namespace if a block is given
+    #
+    # @returns [Namespace] the new or existing namespace
     def find_or_create_namespace(name)
       name ||= :root
       return namespaces[name] if namespaces[name]
       namespace = Namespace.new(self, name)
-      ActiveAdmin::Event.dispatch ActiveAdmin::Namespace::RegisterEvent, namespace
       namespaces[name] = namespace
+      ActiveAdmin::Event.dispatch ActiveAdmin::Namespace::RegisterEvent, namespace
+      yield(namespace) if block_given?
       namespace
     end
 
+    alias_method :namespace, :find_or_create_namespace
+
+    # Register a page
+    #
+    # @param name [String] The page name
+    # @options [Hash] Accepts option :namespace.
+    # @&block The registration block.
+    #
+    def register_page(name, options = {}, &block)
+      namespace_name = extract_namespace_name(options)
+      namespace = find_or_create_namespace(namespace_name)
+      namespace.register_page(name, options, &block)
+    end
 
     # Stores if everything has been loaded or we need to reload
     @@loaded = false
@@ -113,7 +143,6 @@ module ActiveAdmin
     # to allow for changes without having to restart the server.
     def unload!
       namespaces.values.each{|namespace| namespace.unload! }
-      self.namespaces = {}
       @@loaded = false
     end
 
@@ -136,6 +165,9 @@ module ActiveAdmin
 
       # Load Menus
       namespaces.values.each{|namespace| namespace.load_menu! }
+
+      # Dispatch an ActiveAdmin::Application::LoadEvent with the Application
+      ActiveAdmin::Event.dispatch LoadEvent, self
 
       @@loaded = true
     end
@@ -192,8 +224,19 @@ module ActiveAdmin
     private
 
     def register_default_assets
-      register_stylesheet 'active_admin.css'
+      register_stylesheet 'active_admin.css', :media => 'all'
+
+      if !ActiveAdmin.use_asset_pipeline?
+        register_javascript 'jquery.min.js'
+        register_javascript 'jquery-ui.min.js'
+        register_javascript 'jquery_ujs.js'
+      end
+
       register_javascript 'active_admin.js'
+    end
+
+    def extract_namespace_name(options)
+      options.has_key?(:namespace) ? options[:namespace] : default_namespace
     end
 
     # Since we're dealing with all our own file loading, we need

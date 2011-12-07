@@ -13,7 +13,7 @@ describe "auto linking resources" do
   include ActiveAdmin::ViewHelpers::DisplayHelper
 
   let(:active_admin_config) { AutoLinkMockResource.new(namespace) }
-  let(:namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
+  let(:active_admin_namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
   let(:post){ Post.create! :title => "Hello World" }
 
   def admin_post_path(post)
@@ -28,7 +28,7 @@ describe "auto linking resources" do
 
   context "when the resource is registered" do
     before do
-      namespace.register Post
+      active_admin_namespace.register Post
     end
     it "should return a link with the display name of the object" do
       self.should_receive(:link_to).with("Hello World", admin_post_path(post))

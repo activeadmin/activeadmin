@@ -18,9 +18,9 @@ module ActiveAdmin
     #
     class IndexAsBlock < ActiveAdmin::Component
 
-      def build(page_config, collection)
+      def build(page_presenter, collection)
         collection.each do |obj|
-          instance_exec(obj, &page_config.block)
+          instance_exec(obj, &page_presenter.block)
         end
       end
 

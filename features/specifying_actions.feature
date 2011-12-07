@@ -7,6 +7,11 @@ Feature: Specifying Actions
       """
         ActiveAdmin.register Post do
           actions :index
+          index do
+            column do |post|
+              link_to "View", admin_post_path(post)
+            end
+          end
         end
       """
 	And I am logged in

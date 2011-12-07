@@ -17,7 +17,7 @@ To add a collection action, use the collection_action method:
 
       collection_action :import_csv, :method => :post do
         # Do some CSV importing work here...
-        redirect_to :action => :index, :notice => "CSV imported successfully!"
+        redirect_to {:action => :index}, :notice => "CSV imported successfully!"
       end
 
     end
@@ -37,7 +37,7 @@ following:
       member_action :lock, :method => :put do
         user = User.find(params[:id])
         user.lock!
-        redirect_to :action => :show, :notice => "Locked!"
+        redirect_to {:action => :show}, :notice => "Locked!"
       end
 
     end
@@ -80,6 +80,16 @@ For example, create app/views/admin/posts/comments.html.arb with:
       column :body do |comment|
         simple_format comment.body
       end
+    end
+    
+### Custom Action Items
+
+To include your own action items (like the New, Edit and Delete buttons), add an 
+`action_item` block. For example, to add a "View on site" button to view a blog
+post:
+
+    action_item :only => :show do
+      link_to('View on site', post_path(post)) if post.published?
     end
 
 ### Page Titles

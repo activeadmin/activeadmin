@@ -28,27 +28,33 @@ module ActiveAdmin
 
       # Now define the routes for each resource
       router.instance_exec(@application.namespaces) do |namespaces|
-        resources = namespaces.values.collect{|n| n.resources.values }.flatten
+        resources = namespaces.values.collect{|n| n.resources.resources }.flatten
         resources.each do |config|
 
           # Define the block the will get eval'd within the namespace
           route_definition_block = Proc.new do
-            resources config.underscored_resource_name.pluralize do
+            case config
+            when Resource
+              resources config.underscored_resource_name.pluralize do
+                # Define any member actions
+                member do
+                  config.member_actions.each do |action|
+                    # eg: get :comment
+                    send(action.http_verb, action.name)
+                  end
+                end
 
-              # Define any member actions
-              member do
-                config.member_actions.each do |action|
-                  # eg: get :comment
-                  send(action.http_verb, action.name)
+                # Define any collection actions
+                collection do
+                  config.collection_actions.each do |action|
+                    send(action.http_verb, action.name)
+                  end
                 end
               end
-
-              # Define any collection actions
-              collection do
-                config.collection_actions.each do |action|
-                  send(action.http_verb, action.name)
-                end
-              end
+            when Page
+              match "/#{config.underscored_resource_name}" => "#{config.underscored_resource_name}#index"
+            else
+              raise "Unsupported config class: #{config.class}"
             end
           end
 
@@ -60,7 +66,8 @@ module ActiveAdmin
               instance_eval &routes_for_belongs_to if config.belongs_to_config.optional?
 
               # Make the nested belongs_to routes
-              resources config.belongs_to_config.target.underscored_resource_name.pluralize do
+              # :only is set to nothing so that we don't clobber any existing routes on the resource
+              resources config.belongs_to_config.target.underscored_resource_name.pluralize, :only => [] do
                 instance_eval &routes_for_belongs_to
               end
             end

@@ -1,0 +1,26 @@
+#wrapper {
+  display: table;
+  width: 100%;
+}
+
+#active_admin_content { 
+  margin: 0; 
+  padding: 25px $horizontal-page-margin; 
+  
+  #main_content_wrapper { 
+    float: left; 
+    width: 100%; 
+
+    #main_content{ 
+      margin-right: 300px; 
+    }
+  }
+
+  &.without_sidebar #main_content_wrapper #main_content{ margin-right: 0; }
+
+  #sidebar { 
+    float: left; 
+    width: $sidebar-width; 
+    margin-left: -$sidebar-width;
+  }
+}

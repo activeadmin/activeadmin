@@ -26,6 +26,10 @@ module ActiveAdmin
 
       # Add a new dashboard section to a namespace. If no namespace is given
       # it will be added to the default namespace.
+      #
+      # Options include:
+      #   :namespace => only display for specified namespace.
+      #   :if        => specify a method or block to determine whether the section is rendered at run time.
       def add_section(name, options = {}, &block)
         namespace = options.delete(:namespace) || ActiveAdmin.application.default_namespace || :root
         self.sections[namespace] ||= [] 

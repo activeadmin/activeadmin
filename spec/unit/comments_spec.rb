@@ -3,38 +3,68 @@ require 'spec_helper'
 describe "Comments" do
   let(:application){ ActiveAdmin::Application.new }
 
-  describe "Configuration" do
-    it "should have an array of namespaces which allow comments" do
-      application.allow_comments_in.should be_an_instance_of(Array)
-    end
-
-    it "should allow comments in the default namespace by default" do
-      application.allow_comments_in.should include(application.default_namespace)
-    end
-  end
-
   describe ActiveAdmin::Comment do
     describe "Associations and Validations" do
       it { should belong_to :resource }
       it { should belong_to :author }
 
-      it { should validate_presence_of :resource_id }
-      it { should validate_presence_of :resource_type }
+      it { should validate_presence_of :resource }
       it { should validate_presence_of :body }
       it { should validate_presence_of :namespace }
+    end
+
+    describe ".find_for_resource_in_namespace" do
+      let(:post){ Post.create!(:title => "Hello World") }
+      let(:namespace_name){ "admin" }
+
+      before do
+        @comment = ActiveAdmin::Comment.create! :resource => post,
+                                                :body => "A Comment",
+                                                :namespace => namespace_name
+      end
+
+      it "should return a comment for the resource in the same namespace" do
+        ActiveAdmin::Comment.find_for_resource_in_namespace(post, namespace_name).should == [@comment]
+      end
+
+      it "should not return a comment for the same resource in a different namespace" do
+        ActiveAdmin::Comment.find_for_resource_in_namespace(post, 'public').should == []
+      end
+
+      it "should not return a comment for a different resource" do
+        another_post = Post.create! :title => "Another Hello World"
+        ActiveAdmin::Comment.find_for_resource_in_namespace(another_post, namespace_name).should == []
+      end
     end
   end
 
   describe ActiveAdmin::Comments::NamespaceHelper do
     describe "#comments?" do
-      it "should have comments if the namespace is in the settings" do
+
+      it "should have comments when the namespace allows comments" do
+        ns = ActiveAdmin::Namespace.new(application, :admin)
+        ns.allow_comments = true
+        ns.comments?.should be_true
+      end
+
+      it "should not have comments when the namespace does not allow comments" do
+        ns = ActiveAdmin::Namespace.new(application, :admin)
+        ns.allow_comments = false
+        ns.comments?.should be_false
+      end
+
+      it "should have comments when the application allows comments and no local namespace config" do
+        application.allow_comments = true
         ns = ActiveAdmin::Namespace.new(application, :admin)
         ns.comments?.should be_true
       end
-      it "should not have comments if the namespace is not in the settings" do
-        ns = ActiveAdmin::Namespace.new(application, :not_in_comments)
+
+      it "should not have comments when the application does not allow commands and no local namespace config" do
+        application.allow_comments = false
+        ns = ActiveAdmin::Namespace.new(application, :admin)
         ns.comments?.should be_false
       end
+
     end
   end
 
