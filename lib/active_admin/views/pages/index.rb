@@ -5,7 +5,7 @@ module ActiveAdmin
       class Index < Base
 
         def title
-          active_admin_config.plural_resource_name
+          active_admin_config.plural_resource_label
         end
 
         def config
@@ -81,7 +81,7 @@ module ActiveAdmin
         end
         
         def render_blank_slate
-          blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.plural_resource_name)
+          blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.plural_resource_label)
           if controller.action_methods.include?('new')
             blank_slate_content += " " + link_to(I18n.t("active_admin.blank_slate.link"), new_resource_path)
           end
@@ -99,7 +99,7 @@ module ActiveAdmin
           download_links = config[:download_links].nil? ? true : config[:download_links]
           
           paginated_collection(collection, :entry_name     => active_admin_config.resource_name,
-                                           :entries_name   => active_admin_config.plural_resource_name,
+                                           :entries_name   => active_admin_config.plural_resource_label,
                                            :download_links => download_links,
                                            :paginator      => paginator) do
             div :class => 'index_content' do

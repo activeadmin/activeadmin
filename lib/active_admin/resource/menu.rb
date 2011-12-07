@@ -21,7 +21,7 @@ module ActiveAdmin
 
       # Returns the name to be displayed in the menu for this resource
       def menu_item_name
-        menu_options[:label] || plural_resource_name
+        menu_options[:label] || plural_resource_label
       end
 
       # Returns the items priority for altering the default sort order

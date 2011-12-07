@@ -21,51 +21,19 @@ shared_examples_for "ActiveAdmin::Config" do
   it { respond_to :sidebar_sections? }
 
   describe "Naming" do
-    it "implements #resource_name" do
-      expect { config.resource_name }.should_not raise_error
+    it "implements #resource_label" do
+      expect { config.resource_label }.should_not raise_error
     end
 
-    it "implements #plural_resource_name" do
-      expect { config.plural_resource_name }.should_not raise_error
-    end
-
-    it "implements #safe_resource_name" do
-      expect { config.safe_resource_name }.should_not raise_error
-    end
-
-    describe "#camelized_resource_name" do
-      it "returns a camelized version of the safe_resource_name" do
-        config.should_receive(:safe_resource_name).and_return "My resource"
-        config.camelized_resource_name.should == "MyResource"
-      end
-    end
-
-    describe "#plural_camelized_resource_name" do
-      it "returns a camelized version of the plural_safe_resource_name" do
-        config.should_receive(:safe_resource_name).and_return "My resource"
-        config.camelized_resource_name.should == "MyResource"
-      end
-    end
-
-    describe "#underscored_resource_name" do
-      it "returns the camelized_resource_name underscored" do
-        config.should_receive(:camelized_resource_name).and_return "MyResource"
-        config.underscored_resource_name.should == "my_resource"
-      end
-    end
-
-    describe "#plural_underscored_resource_name" do
-      it "returns the plural_camelized_resource_name underscored" do
-        config.should_receive(:plural_camelized_resource_name).and_return "MyResources"
-        config.plural_underscored_resource_name.should == "my_resources"
-      end
+    it "implements #plural_resource_label" do
+      expect { config.plural_resource_label }.should_not raise_error
     end
   end
 
   describe "Menu" do
     describe "menu item name" do
-      it "should be the plural resource name when not set" do
-        config.menu_item_name.should == config.plural_resource_name
+      it "should be the plural resource label when not set" do
+        config.menu_item_name.should == config.plural_resource_label
       end
       it "should be settable" do
         config.menu :label => "My Label"
