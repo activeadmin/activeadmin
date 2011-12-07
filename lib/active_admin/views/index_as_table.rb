@@ -97,7 +97,8 @@ module ActiveAdmin
           :id => active_admin_config.plural_underscored_resource_name,
           :sortable => true,
           :class => "index_table",
-          :i18n => active_admin_config.resource_class
+          :i18n => active_admin_config.resource_class,
+          :paginator => page_presenter[:paginator] != false
         }
 
         table_for collection, table_options do |t|
