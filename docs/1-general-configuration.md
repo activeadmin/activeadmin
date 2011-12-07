@@ -28,13 +28,15 @@ Both of these settings can be set to false to turn off authentication.
     config.authentication_method = false
     config.current_user_method   = false
 
-## Site Title
+## Site Title Options
 
-You can update the title used for the site in the initializer also. By default
-it is set to the name of your Rails.application class name.
+You can update the title or use an optional image in the initializer also. In addition you can set the link.  By default
+there is no link and the title is set to the name of your Rails.application class name.
 
     # config/initializers/active_admin.rb
     config.site_title = "My Admin Site"
+    config.site_title_link = "/"    ## Rails url helpers do not work here
+    config.site_title_image = "site_log_image.png"
 
 ## Internationalization (I18n)
 
