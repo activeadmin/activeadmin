@@ -1,0 +1,5 @@
+# Sample translations used to test ActiveAdmin's I18n integration.
+  activerecord:
+    models:
+      one: Bookstore
+      other: Bookstores

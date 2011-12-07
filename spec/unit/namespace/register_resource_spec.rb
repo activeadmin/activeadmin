@@ -43,7 +43,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
     end
 
     it "should store the namespaced registered configuration" do
-      namespace.resources.keys.should include('MockResource')
+      namespace.resources.keys.should include('Mock::Resource')
     end
     it "should create a new controller in the default namespace" do
       defined?(Admin::MockResourcesController).should be_true

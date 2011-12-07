@@ -32,7 +32,7 @@ module ActiveAdmin
 
         defaults  :resource_class => config.resource_class,
                   :route_prefix => config.route_prefix,
-                  :instance_name => config.underscored_resource_name
+                  :instance_name => config.resource_name.singular
       end
 
       # Inherited Resources uses the inherited(base) hook method to 
