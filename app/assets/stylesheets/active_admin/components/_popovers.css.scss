@@ -1,23 +1,11 @@
-//// TESTING
-//#list_popover {
-//  top: 25%;
-//  left: 2%;
-//}
-//
-//#content_popover {
-//  top: 25%;
-//  left: 14%;
-//}
-//
-
 .popover {
   display: inline-block;
   position: absolute;
   background-color: white;
   padding: 3px;
-  box-shadow: rgba(0,0,0,0.3) 0 1px 5px;
+  box-shadow: rgba(0,0,0,0.4) 0 1px 3px;
   background-color: $primary-color;
-  border-radius: 3px;
+  border-radius: 4px;
   
   &::after {
     content: "";
@@ -34,8 +22,9 @@
   .popover_contents {
     display: block;
     background-color: #FFF;
-    border-radius: 3px;
+    border-radius: 4px;
     margin: 0;
+    overflow: hidden;
     padding: 8px;
   }
   
@@ -54,14 +43,16 @@
     
       a {
         display: block;
-        font-size: 0.9em;
+        font-size: 0.95em;
         font-weight: bold;
-        padding: 7px 14px 5px;
+        padding: 7px 16px 5px;
         text-decoration: none;
         text-align: center;
-      
+        -webkit-font-smoothing: antialiased;
+        
         &:hover {
           @include highlight-gradient;
+          @include text-shadow(#5a83aa);
           color: #FFF;
         }
       
