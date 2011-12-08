@@ -2,12 +2,20 @@ jQuery(function($) {
 	
 	// Batch actions stuff
   
-  $('#batch_actions_button').toggle(function() {
+  $("#batch_actions_button").AAPopover({autoOpen: false});
+
+  // Batch actions stuff
+  
+  $('#batch_actions_button').click(function() {
     if (!$(this).hasClass("disabled")) {
-      $("#batch_actions_popover").fadeIn(50);
+      if ($("#batch_actions_popover").is(":hidden")) {
+        $(this).AAPopover("open");
+        return false;
+      } else {
+        $(this).AAPopover("close");
+        return false;
+      }
     };
-  }, function() {
-    $("#batch_actions_popover").fadeOut(100);
   });
   
   $('#collection_selection_toggle_all').click(function() {

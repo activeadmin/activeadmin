@@ -11,7 +11,7 @@
 #   - dist/**/*.js
 #
 src_files:
-  - app/assets/javascripts/active_admin/vendor.js
+  - spec/javascripts/support/jquery.min.js
   - app/assets/javascripts/active_admin/jquery.AAPopover.js
 
 # stylesheets
