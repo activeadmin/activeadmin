@@ -17,6 +17,8 @@
 
     this.options = $.extend( {}, defaults, options);
     
+    console.log(this.$element);
+    
     if ($(this.$element.attr("href")).length > 0) {
       this.$popoverContent = $(this.$element.attr("href"));
     }
