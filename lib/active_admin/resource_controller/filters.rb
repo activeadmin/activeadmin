@@ -15,8 +15,18 @@ module ActiveAdmin
           @filters << options.merge(:attribute => attribute)
         end
 
+        def default_filters
+          @default_filters_display = true
+        end
+
         def filters_config
-          @filters && @filters.any? ? @filters : default_filters_config
+          if @filters && @filters.any? && !@default_filters_display
+            @filters
+          elsif @filters && @filters.any?
+            @filters + default_filters_config
+          else
+            default_filters_config
+          end
         end
 
         def reset_filters!
