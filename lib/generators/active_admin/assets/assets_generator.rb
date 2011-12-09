@@ -17,8 +17,8 @@ module ActiveAdmin
         require 'active_admin'
 
         if ActiveAdmin.use_asset_pipeline?
-          template '3.1/active_admin.js', 'app/assets/javascripts/active_admin.js'
-          template '3.1/active_admin.css.scss', 'app/assets/stylesheets/active_admin.css.scss'
+          template '3.1/active_admin.js', 'vendor/assets/javascripts/active_admin.js'
+          template '3.1/active_admin.css.scss', 'vendor/assets/stylesheets/active_admin.css.scss'
         else
           template '../../../../../app/assets/javascripts/active_admin/application.js', 'public/javascripts/active_admin.js'
           directory '../../../../../app/assets/images/active_admin', 'public/images/active_admin'
