@@ -121,14 +121,33 @@ module ActiveAdmin
         end
 
         # Adds links to View, Edit and Delete
+        #
+        # To include or exclude specific actions, use the :only and :except options.
+        # Insert additional markup before or after the default actions by using the :before and :after optinos. If the
+        # :before or :after options is a Proc, it will be called, with the current resource applied as first argument.
+        # Sample Usage: default_actions :except => [:delete, :edit]
         def default_actions(options = {})
           options = {
-            :name => ""
+            :name => "",
+            :except => [],
+            :only => nil,
+            :before => "",
+            :after => ""
           }.merge(options)
+
+          # :except takes precedence over :only.
+          display = options[:only] || [:view, :edit, :delete]
+          display.delete_if do |item| options[:except].include?(item) end
+
+          # puts controller.action_methods
+
           column options[:name] do |resource|
             links = link_to I18n.t('active_admin.view'), resource_path(resource), :class => "member_link view_link"
-            links += link_to I18n.t('active_admin.edit'), edit_resource_path(resource), :class => "member_link edit_link"
-            links += link_to I18n.t('active_admin.delete'), resource_path(resource), :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'), :class => "member_link delete_link"
+            links += options[:before].is_a?(Proc) ? options[:before].call(resource) : options[:before]
+            links += link_to I18n.t('active_admin.view'), resource_path(resource), :class => "member_link view_link" if display.include?(:view)
+            links += link_to I18n.t('active_admin.edit'), edit_resource_path(resource), :class => "member_link edit_link" if display.include?(:edit) && controller.action_methods.include?("edit")
+            links += link_to I18n.t('active_admin.delete'), resource_path(resource), :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'), :class => "member_link delete_link" if display.include?(:delete) && controller.action_methods.include?("destroy")
+            links += options[:after].is_a?(Proc) ? options[:after].call(resource) : options[:after]
             links
           end
         end

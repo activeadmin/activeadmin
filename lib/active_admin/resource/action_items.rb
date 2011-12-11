@@ -49,14 +49,14 @@ module ActiveAdmin
         # New Link on all actions except :new and :show
         add_action_item :except => [:new, :show] do
           if controller.action_methods.include?('new')
-            link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), new_resource_path)
+            link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), new_resource_path, :class => "active_admin new_action")
           end
         end
 
         # Edit link on show
         add_action_item :only => :show do
           if controller.action_methods.include?('edit')
-            link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path(resource))
+            link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path(resource), :class => "active_admin edit_action")
           end
         end
 
@@ -64,7 +64,7 @@ module ActiveAdmin
         add_action_item :only => :show do
           if controller.action_methods.include?("destroy")
             link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name),
-              resource_path(resource),
+              resource_path(resource), :class => "active_admin delete_action",
               :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'))
           end
         end
