@@ -20,6 +20,10 @@ module ActiveAdmin
           sleep 1
         end
       end
+
+      def enable_comments
+        inject_into_file 'config/initializers/active_admin.rb', "\n  config.allow_comments = true\n", :after => "ActiveAdmin.setup do |config|\n"
+      end
     end
   end
 end
