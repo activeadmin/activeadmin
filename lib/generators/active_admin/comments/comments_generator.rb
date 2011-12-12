@@ -1,7 +1,7 @@
 module ActiveAdmin
   module Generators
     class CommentsGenerator < Rails::Generators::Base
-      desc "Generats the necessary migrations for ActiveAdmin comments"
+      desc "Generates the necessary migrations for ActiveAdmin comments"
 
       include Rails::Generators::Migration
 
