@@ -96,7 +96,7 @@ module ActiveAdmin
             scope_chain(current_scope, chain)
           elsif active_admin_config.scope_to
             @before_scope_collection = scoped_collection
-            scoped_collection
+            chain
           else
             chain
           end
