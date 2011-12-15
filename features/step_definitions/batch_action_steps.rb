@@ -58,8 +58,12 @@ Then /^I should see that the batch action button is disabled$/ do
   page.should have_css("#batch_actions_button.disabled")
 end
 
-Then /^I should see the batch action button$/ do 
-  page.should have_css("div.table_tools #batch_actions_button")
+Then /^I (should|should not) see the batch action button$/ do |should_not|
+  if should_not
+    page.should_not have_css("div.table_tools #batch_actions_button")    
+  else
+    page.should have_css("div.table_tools #batch_actions_button")
+  end
 end
 
 Then /^I should see the batch action popover exist$/ do

@@ -15,24 +15,40 @@ module ActiveAdmin
         # Render's the index configuration that was set in the
         # controller. Defaults to rendering the ActiveAdmin::Pages::Index::Table
         def main_content
-          batch_action_form do
-            div :class => "table_tools" do
-              a :class => 'table_tools_button dropdown_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
-                text_node "Batch Actions"
+          # TODO: Refactor to table tools component
+          
+          if active_admin_config.batch_actions.any? && collection.any?
+            batch_action_form do
+              div :class => "table_tools" do
+
+                a :class => 'table_tools_button dropdown_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
+                  text_node "Batch Actions"
+                end
+              
+                build_scopes
               end
-            
-              build_scopes
+
+              build_collection
+            end
+          else
+            if active_admin_config.scopes.any? && collection.any?
+              div :class => "table_tools" do
+                build_scopes
+              end
             end
 
-
-            if collection.any?
-              render_index
+            build_collection
+          end
+        end
+        
+        def build_collection
+          if collection.any?
+            render_index
+          else
+            if params[:q]
+              render_empty_results
             else
-              if params[:q]
-                render_empty_results
-              else
-                render_blank_slate
-              end
+              render_blank_slate
             end
           end
         end
@@ -53,7 +69,6 @@ module ActiveAdmin
         end
 
         def build_batch_action_popover
-          input(:name => :batch_action, :id => :batch_action, :type => :hidden)
           insert_tag view_factory.batch_action_popover do
             active_admin_config.batch_actions.each do |the_action|
               action the_action if call_method_or_proc_on(self, the_action.display_if_block)
@@ -62,9 +77,7 @@ module ActiveAdmin
         end
 
         def build_scopes
-          if active_admin_config.scopes.any?
-            scopes_renderer active_admin_config.scopes
-          end
+          scopes_renderer active_admin_config.scopes
         end
 
         # Creates a default configuration for the resource class. This is a table
