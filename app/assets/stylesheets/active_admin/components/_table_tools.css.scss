@@ -20,26 +20,54 @@
 
 a.table_tools_button {
   @include light-button;
+  @include gradient(#FFF, #F0F0F0);
+  @include border-colors(#d9d9d9, #d0d0d0, #c5c5c5);  
   font-size: 0.9em;
-  color: #777;
+  color: #555;
   text-decoration: none;
   padding: 4px 14px 4px;
   position: relative;
   -webkit-transition: all 0.08s ease-in;
 
-  &.dropdown_button {
-    padding-right: 20px;
-    
-    .arrow {
-      border-color: #777 transparent transparent;
-      border-style: solid;
-      border-width: 3px 3px 0;
-      height: 0;
-      position: absolute;
-      top: 8px;
-      right: 9px;
-      width: 0;
+  &:not(.disabled) {
+    &:hover {
+      @include gradient(#FFF, #F6F6F6);
     }
+
+    &:active {
+      @include border-colors(#d7d7d7, #c8c8c8, #c3c3c3);
+      @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.17) inset, 0 1px 0 0px #EEE);
+      @include gradient(#FFF, #E8E8E8);
+    }
+  }
+
+  &.dropdown_button {
+    padding-right: 22px;
+    
+    &:before {
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-width: 3px 3px 0;
+      border-style: solid;
+      border-color: #FFF transparent;
+      right: 9px;
+      top: 10px;
+    }
+
+    &:after {
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-width: 3px 3px 0;
+      border-style: solid;
+      border-color: #777 transparent;
+      right: 9px;
+      top: 9px;
+    }
+
   }
 
 }
@@ -76,8 +104,9 @@ a.table_tools_button {
         border-bottom-right-radius: 12px;
       }
     }
-    
+
     &.selected {
+
       a {
         background: #F0F0F0;
         @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.1) inset);
@@ -85,10 +114,12 @@ a.table_tools_button {
         cursor: default;
         
         &:hover {
+          background: #F0F0F0;
           color: #8a8a8a;
         }
       }
     }
+
   }
   
 }

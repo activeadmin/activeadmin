@@ -17,9 +17,8 @@ module ActiveAdmin
         def main_content
           batch_action_form do
             div :class => "table_tools" do
-              a :class => 'table_tools_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
+              a :class => 'table_tools_button dropdown_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
                 text_node "Batch Actions"
-                span :class => "arrow"
               end
             
               build_scopes
