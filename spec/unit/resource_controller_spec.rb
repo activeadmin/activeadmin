@@ -184,10 +184,19 @@ describe Admin::PostsController, :type => "controller" do
     describe "when params batch_action doesn't match a BatchAction" do
       it "should raise an error" do
         lambda {
-          post(:batch_action, :batch_action => "derp", :collection_selection => ["1"]).should raise_error("Couldn't find batch action \"derp\"")
-        }
+          post(:batch_action, :batch_action => "derp", :collection_selection => ["1"])
+        }.should raise_error("Couldn't find batch action \"derp\"")
       end
     end
+
+    describe "when params batch_action is blank" do
+      it "should raise an error" do
+        lambda {
+          post(:batch_action, :collection_selection => ["1"])
+        }.should raise_error("Couldn't find batch action \"\"")
+      end
+    end
+
   end
 
 end

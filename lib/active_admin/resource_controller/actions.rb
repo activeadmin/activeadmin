@@ -61,16 +61,14 @@ module ActiveAdmin
     alias :update! :update
 
     def batch_action
-      active_admin_config.batch_actions.each do |action|
-        if params[:batch_action].to_sym == action.sym
-          selected_ids = params[:collection_selection]
-          selected_ids ||= []
-          action.block.call(selected_ids)
-          redirect_to collection_path
-        else
-          raise StandardError, "Couldn't find batch action \"#{params[:batch_action]}\""
-          redirect_to collection_path
-        end
+      if selected_batch_action
+        selected_ids = params[:collection_selection]
+        selected_ids ||= []
+        selected_batch_action.block.call(selected_ids)
+        redirect_to collection_path
+      else
+        raise "Couldn't find batch action \"#{params[:batch_action]}\""
+        redirect_to collection_path
       end
     end
 
@@ -88,6 +86,11 @@ module ActiveAdmin
     # and current date such as 'my-articles-2011-06-24.csv'.
     def csv_filename
       "#{resource_collection_name.to_s.gsub('_', '-')}-#{Time.now.strftime("%Y-%m-%d")}.csv"
+    end
+
+    def selected_batch_action
+      return false unless params[:batch_action]
+      active_admin_config.batch_actions.select { |action| action.sym == params[:batch_action].to_sym }.first
     end
   end
 end
