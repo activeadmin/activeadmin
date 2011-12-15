@@ -24,7 +24,6 @@ module ActiveAdmin
               build_scopes
             end
 
-            build_batch_action_popover
 
             if collection.any?
               render_index
@@ -36,6 +35,10 @@ module ActiveAdmin
               end
             end
           end
+        end
+
+        def build_extra_content
+          build_batch_action_popover
         end
 
         protected

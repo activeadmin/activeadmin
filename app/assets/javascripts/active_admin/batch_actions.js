@@ -2,17 +2,23 @@ jQuery(function($) {
 	
 	// Batch actions stuff
   
-  $("#batch_actions_button").AAPopover({autoOpen: false});
+  $("#batch_actions_button").aaPopover({autoOpen: false,
+                                        onClickActionItemCallback: function() {
+                                          // Submit the batch action form, sending the request
+                                          var that = this;
+                                          $('#batch_action').val( $(that).attr("data-action") );
+                                          $('#collection_selection').submit();
+                                        }});
 
   // Batch actions stuff
   
   $('#batch_actions_button').click(function() {
     if (!$(this).hasClass("disabled")) {
       if ($("#batch_actions_popover").is(":hidden")) {
-        $(this).AAPopover("open");
+        $(this).aaPopover("open");
         return false;
       } else {
-        $(this).AAPopover("close");
+        $(this).aaPopover("close");
         return false;
       }
     };
@@ -68,24 +74,6 @@ jQuery(function($) {
       
     }
 
-  });
-
-  // Attach a click hanlder to each of the batch action items
-  $('#batch_actions_popover a.batch_action').click(function(e) {
-	
-		// Present optional confirmation prompt to user
-		var $target = $(e.target);
-		if ( $target.attr("data-request-confirm") ) {
-			if ( !confirm( $target.attr("data-request-confirm") ) ) {
-				$("#batch_actions_popover").fadeOut(100);
-				return false;
-			}
-		}
-	
-		// Submit the form, sending the request
-		$('#batch_action').val( $target.attr("data-action") );
-		$('#collection_selection').submit();
-	
   });
 	
 });

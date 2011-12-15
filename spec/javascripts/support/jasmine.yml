@@ -12,6 +12,7 @@
 #
 src_files:
   - spec/javascripts/support/jquery.min.js
+  - spec/javascripts/support/jquery-ui-1.8.16.custom.min.js
   - app/assets/javascripts/active_admin/components/jquery.aa.popover.js
 
 # stylesheets

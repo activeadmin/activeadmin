@@ -6,7 +6,7 @@ Then /^I (should|should not) be asked to confirm "([^"]*)" for "([^"]*)"$/ do |m
   within "#batch_actions_popover" do
     unless maybe == "should not"
       link = page.find "a.batch_action", :text => title
-      link["data-request-confirm"].should match( confirmation )
+      link["data-confirm"].should match( confirmation )
     else
       page.should_not have_css("a.batch_action", :text => title)
     end
