@@ -60,6 +60,20 @@ module ActiveAdmin
     end
     alias :update! :update
 
+    def batch_action
+      active_admin_config.batch_actions.each do |action|
+        if params[:batch_action].to_sym == action.sym
+          selected_ids = params[:collection_selection]
+          selected_ids ||= []
+          action.block.call(selected_ids)
+          redirect_to collection_path
+        else
+          raise StandardError, "Couldn't find batch action \"#{params[:batch_action]}\""
+          redirect_to collection_path
+        end
+      end
+    end
+
     # Make aliases protected
     protected :index!, :show!, :new!, :create!, :edit!, :update!
 

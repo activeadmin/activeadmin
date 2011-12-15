@@ -49,6 +49,8 @@ module ActiveAdmin
                   config.collection_actions.each do |action|
                     send(action.http_verb, action.name)
                   end
+
+                  post :batch_action
                 end
               end
             when Page

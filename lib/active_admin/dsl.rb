@@ -11,24 +11,8 @@ module ActiveAdmin
     def run_registration_block(config, &block)
       @config = config
       instance_eval &block if block_given?
-      register_batch_action_handler unless self.is_a?(ActiveAdmin::PageDSL)
     end
     
-    # Register the batch action path
-    def register_batch_action_handler
-      config = @config # required so that the block below can grab a reference to this
-      collection_action :batch_action, :method => :post do
-        config.batch_actions.each do |action|
-          if params[:batch_action].to_sym == action.sym
-            selected_ids = params[:collection_selection]
-            selected_ids ||= []
-            instance_exec selected_ids, &action.block
-            break
-          end
-        end
-      end
-    end
-
     private
 
     # The instance of ActiveAdmin::Config that's being registered
@@ -98,7 +82,7 @@ module ActiveAdmin
       end
       
       # Either add/remove the batch action
-      unless options == false     
+      unless options == false
         config.add_batch_action( sym, title, options, &block )
       else
         config.remove_batch_action sym
