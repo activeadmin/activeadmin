@@ -95,12 +95,6 @@
         return false;
       });
     };
-
-    this.$popover.find("a").bind('click', function() {
-      if (that.options.onClickActionItemCallback && typeof that.options.onClickActionItemCallback === 'function') {
-        that.options.onClickActionItemCallback.call(this);
-      }
-    });
   };
     
   // Register as a jQuery plugin

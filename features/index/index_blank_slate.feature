@@ -17,7 +17,6 @@ Feature: Index Blank Slate
     And I should not see ".index_table"
     And I should not see pagination
     And I should not see the batch action button
-    And I should not see ".table_tools"
     When I follow "Create one"
     Then I should be on the new post page
 

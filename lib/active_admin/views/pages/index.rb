@@ -17,12 +17,14 @@ module ActiveAdmin
         def main_content
           # TODO: Refactor to table tools component
           
-          if active_admin_config.batch_actions.any? && collection.any?
+          if active_admin_config.batch_actions.any? 
             batch_action_form do
               div :class => "table_tools" do
 
-                a :class => 'table_tools_button dropdown_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
-                  text_node "Batch Actions"
+                if collection.any?
+                  a :class => 'table_tools_button dropdown_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
+                    text_node "Batch Actions"
+                  end
                 end
               
                 build_scopes
