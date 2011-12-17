@@ -1,42 +1,64 @@
 Feature: Batch Actions
 
-  Scenario: Viewing resource with default batch action
+  Scenario: Use default (destroy) batch action
     Given 10 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post
       """
-
     Then I should see the batch action button
     And I should see that the batch action button is disabled
-    And I should see the batch action popover exist
-    And I should see the batch action :destroy "Delete Selected"
-    And I should be asked to confirm "Are you sure you want to delete?" for "Delete Selected"
+    And I should see the batch action popover exists
+    And I should see 10 posts in the table
+
+    When I check the 1st record
+    When I check the 2nd record
+    And I follow "Batch Actions"
+    Then I should see the batch action :destroy "Delete Selected"
+
+
+    Given I submit the batch action form with "destroy"
+    Then I should see a flash with "Successfully destroyed 1 post"
+    And I should see 9 posts in the table
+
+  Scenario: Using a custom batch action
+    Given 10 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+      batch_action( :flag ) do
+      redirect_to collection_path, :notice => "Successfully flagged 10 posts" 
+      end
+      end
+      """
+    When I check the 1st record
+    Given I submit the batch action form with "flag"
+    Then I should see a flash with "Successfully flagged 10 posts"
 
   # TODO: Integrate with JS testing 
   #@selenium
-  Scenario: Toggling records
-    Given 10 posts exist
-    And an index configuration of:
-      """
-      ActiveAdmin.register Post
-      """
-  
-    When I check the 1st record
-    Then I should see 1 record selected
-    
-    When I uncheck the 1st record
-    Then I should see 0 records selected
-    
-    # When I toggle the collection selection
-    # Then I should see 10 records selected
-    # 
-    # When I toggle the collection selection
-    # Then I should see 0 records selected
-    # 
-    # When I check the 1st record
-    # When I toggle the collection selection
-    # Then I should see 10 records selected
+  # Scenario: Toggling records
+  #   Given 10 posts exist
+  #   And an index configuration of:
+  #     """
+  #     ActiveAdmin.register Post
+  #     """
+  # 
+  #   When I check the 1st record
+  #   Then I should see 1 record selected
+  #   
+  #   When I uncheck the 1st record
+  #   Then I should see 0 records selected
+  #  
+  #   When I toggle the collection selection
+  #   Then I should see 10 records selected
+  #   
+  #   When I toggle the collection selection
+  #   Then I should see 0 records selected
+  #   
+  #   When I check the 1st record
+  #   When I toggle the collection selection
+  #   Then I should see 10 records selected
   
   Scenario: Disabling batch actions
     Given 10 posts exist

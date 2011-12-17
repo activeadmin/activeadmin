@@ -64,11 +64,9 @@ module ActiveAdmin
       if selected_batch_action
         selected_ids = params[:collection_selection]
         selected_ids ||= []
-        selected_batch_action.block.call(selected_ids)
-        redirect_to collection_path
+        instance_exec selected_ids, &selected_batch_action.block
       else
         raise "Couldn't find batch action \"#{params[:batch_action]}\""
-        redirect_to collection_path
       end
     end
 
@@ -89,7 +87,7 @@ module ActiveAdmin
     end
 
     def selected_batch_action
-      return false unless params[:batch_action]
+      return unless params[:batch_action].present?
       active_admin_config.batch_actions.select { |action| action.sym == params[:batch_action].to_sym }.first
     end
   end

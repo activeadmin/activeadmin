@@ -32,11 +32,11 @@ Then /^the (\d+)(?:st|nd|rd|th) batch action should be "([^"]*)"$/ do |index, ti
 end 
 
 When /^I check the (\d+)(?:st|nd|rd|th) record$/ do |index|
-  page.all( "table.index_table input[type=checkbox]" )[index.to_i - 1].set( true )
+  page.all( "table.index_table input[type=checkbox]" )[index.to_i].set( true )
 end
 
 When /^I uncheck the (\d+)(?:st|nd|rd|th) record$/ do |index|
-  page.all( "table.index_table input[type='checkbox']" )[index.to_i - 1].set( false )
+  page.all( "table.index_table input[type='checkbox']" )[index.to_i].set( false )
 end
 
 When /^I toggle the collection selection$/ do 
@@ -66,6 +66,21 @@ Then /^I (should|should not) see the batch action button$/ do |maybe|
   end
 end
 
-Then /^I should see the batch action popover exist$/ do
+Then /^I should see the batch action popover exists$/ do
   page.should have_css("#batch_actions_popover")
+end
+
+Given /^I submit the batch action form with "([^"]*)"$/ do |action|
+  page.find(:css, "#batch_action").set(action) 
+
+  within("#main_content") do
+    @params = page.all("input").reduce({}) do |acc, input|
+      acc.store(input['name'], input['value'])
+      acc
+    end
+  end
+
+  form = page.find("#collection_selection")
+
+  page.driver.submit(form['method'].to_sym, form['action'], @params)
 end
