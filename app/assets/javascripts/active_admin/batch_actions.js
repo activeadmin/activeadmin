@@ -1,17 +1,24 @@
 jQuery(function($) {
-	
-	// Batch actions stuff
-  
-  $("#batch_actions_button").aaPopover({autoOpen: false,
-                                        onClickActionItemCallback: function() {
-                                          // Submit the batch action form, sending the request
-                                          var that = this;
-                                          $('#batch_action').val( $(that).attr("data-action") );
-                                          $('#collection_selection').submit();
-                                        }});
 
-  // Batch actions stuff
+  //
+  // Init batch action popover
+  //
+
+  $("#batch_actions_button").aaPopover({autoOpen: false});
   
+  //
+  // Use Rails.js click handler to allow for confirm dialogs
+  //
+
+  $(document).delegate("#batch_actions_popover li a", 'click.rails', function() {
+    $('#batch_action').val( $(this).attr("data-action"));
+    $('#collection_selection').submit();
+  });
+
+  //
+  // Toggle showing / hiding the batch actions popover
+  //
+
   $('#batch_actions_button').click(function() {
     if (!$(this).hasClass("disabled")) {
       if ($("#batch_actions_popover").is(":hidden")) {
@@ -23,7 +30,12 @@ jQuery(function($) {
       }
     };
   });
-  
+
+  //
+  // Toggle selecting / deselecting an entire page of records
+  // @TODO Refactor into object
+  //
+
   $('#collection_selection_toggle_all').click(function() {
 	
 		var $this = $(this);
@@ -45,6 +57,11 @@ jQuery(function($) {
 			}
     }
   });
+
+  //
+  // Toggle selection of a individual record
+  // @TODO Refactor into object
+  //
   
   $('.collection_selection').click(function() {
 	
