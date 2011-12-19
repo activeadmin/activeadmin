@@ -9,16 +9,28 @@ module ActiveAdmin
         render 'active_admin/dashboard/index.html.arb'
       end
 
-      protected
+      private
 
       def set_current_tab
         @current_tab = I18n.t("active_admin.dashboard")
       end
 
       def find_sections
-        ActiveAdmin::Dashboards.sections_for_namespace(namespace)
+        sections = ActiveAdmin::Dashboards.sections_for_namespace(namespace)        
+        sections.select do |section|
+          if section.options.has_key?(:if)
+            symbol_or_proc = section.options[:if]
+            case symbol_or_proc
+            when Symbol, String then self.send(symbol_or_proc)
+            when Proc           then instance_exec(&symbol_or_proc)
+            else symbol_or_proc
+            end
+          else
+            true
+          end
+        end
       end
-
+      
       def namespace
         class_name = self.class.name
         if class_name.include?('::')
@@ -30,7 +42,11 @@ module ActiveAdmin
 
       # Return the current menu for the view. This is a helper method
       def current_menu
-        ActiveAdmin.application.namespaces[namespace].menu
+        active_admin_namespace.menu
+      end
+
+      def active_admin_namespace
+        ActiveAdmin.application.namespace(namespace)
       end
 
     end

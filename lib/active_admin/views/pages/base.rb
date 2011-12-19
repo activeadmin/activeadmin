@@ -23,8 +23,8 @@ module ActiveAdmin
           within @head do
             meta :"http-equiv" => "Content-type", :content => "text/html; charset=utf-8"
             insert_tag Arbre::HTML::Title, [title, active_admin_application.site_title].join(" | ")
-            active_admin_application.stylesheets.each do |path|
-              link :href => stylesheet_path(path), :media => "screen", :rel => "stylesheet", :type => "text/css"
+            active_admin_application.stylesheets.each do |style|
+              text_node(stylesheet_link_tag(style.path, style.options).html_safe)
             end
             active_admin_application.javascripts.each do |path|
               script :src => javascript_path(path), :type => "text/javascript"
@@ -86,7 +86,7 @@ module ActiveAdmin
         end
 
         def build_action_items
-          if active_admin_config
+          if active_admin_config && active_admin_config.action_items?
             items = active_admin_config.action_items_for(params[:action])
             insert_tag view_factory.action_items, items
           end
@@ -134,7 +134,7 @@ module ActiveAdmin
 
         # Returns the sidebar sections to render for the current action
         def sidebar_sections_for_action
-          if active_admin_config
+          if active_admin_config && active_admin_config.sidebar_sections?
             active_admin_config.sidebar_sections_for(params[:action])
           else
             []

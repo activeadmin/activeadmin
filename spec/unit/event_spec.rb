@@ -12,6 +12,12 @@ describe ActiveAdmin::EventDispatcher do
     dispatcher.subscribers(test_event).size.should == 1
   end
 
+  it "should add a subscriber for multiple events" do
+    dispatcher.subscribe(test_event, test_event + "1"){ true }
+    dispatcher.subscribers(test_event).size.should == 1
+    dispatcher.subscribers(test_event + "1").size.should == 1
+  end
+
   it "should call the dispatch block with no arguments" do
     dispatcher.subscribe(test_event){ raise StandardError, "From Event Handler" }
     lambda {

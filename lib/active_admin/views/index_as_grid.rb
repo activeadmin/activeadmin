@@ -23,14 +23,14 @@ module ActiveAdmin
      #
      class IndexAsGrid < ActiveAdmin::Component
 
-      def build(page_config, collection)
-        @page_config = page_config
+      def build(page_presenter, collection)
+        @page_presenter = page_presenter
         @collection = collection
         build_table
       end
 
       def number_of_columns
-        @page_config[:columns] || default_number_of_columns
+        @page_presenter[:columns] || default_number_of_columns
       end
 
       protected
@@ -53,7 +53,7 @@ module ActiveAdmin
 
       def build_item(item)
         td :for => item do
-          instance_exec(item, &@page_config.block)
+          instance_exec(item, &@page_presenter.block)
         end
       end
 

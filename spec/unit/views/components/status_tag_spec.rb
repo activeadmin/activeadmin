@@ -63,6 +63,15 @@ describe ActiveAdmin::Views::StatusTag do
       its(:class_list)  { should include('ok') }
     end
 
+    context "when status is 'Active' and label is 'on'" do
+      subject { status_tag('Active', :label => 'on') }
+
+      its(:content)     { should == 'on' }
+      its(:class_list)  { should include('status') }
+      its(:class_list)  { should include('active') }
+      its(:class_list)  { should_not include('on') }
+    end
+
     context "when status is 'So useless', type is :ok, class is 'woot awesome' and id is 'useless'" do
       subject { status_tag('So useless', :ok, :class => 'woot awesome', :id => 'useless') }
 

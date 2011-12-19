@@ -9,9 +9,11 @@ module ActiveAdmin
       @events = {}
     end
 
-    def subscribe(event, &block)
-      @events[event] ||= []
-      @events[event] << block
+    def subscribe(*event_names, &block)
+      event_names.each do |event|
+        @events[event] ||= []
+        @events[event] << block
+      end
     end
 
     def subscribers(event)

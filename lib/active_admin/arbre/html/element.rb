@@ -97,6 +97,16 @@ module Arbre
       end
       alias_method :find_by_tag, :get_elements_by_tag_name
 
+      def get_elements_by_class_name(class_name)
+        elements = Collection.new
+        children.each do |child|
+          elements << child if child.class_list =~ /#{class_name}/
+          elements.concat(child.get_elements_by_tag_name(tag_name))
+        end
+        elements
+      end
+      alias_method :find_by_class, :get_elements_by_class_name
+
       def content
         children.to_html
       end

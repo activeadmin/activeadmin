@@ -89,7 +89,7 @@ To include your own action items (like the New, Edit and Delete buttons), add an
 post:
 
     action_item :only => :show do
-      link_to 'View on site', post_path(params[:id])
+      link_to('View on site', post_path(post)) if post.published?
     end
 
 ### Page Titles

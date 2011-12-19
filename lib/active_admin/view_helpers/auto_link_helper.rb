@@ -24,17 +24,8 @@ module ActiveAdmin
 
       # Returns the ActiveAdmin::Resource instance for a class
       def active_admin_resource_for(klass)
+        return nil unless respond_to?(:active_admin_namespace)
         active_admin_namespace.resource_for(klass)
-      end
-
-      # Returns the current Active Admin namespace
-      def active_admin_namespace
-        if respond_to?(:active_admin_config) && active_admin_config
-          active_admin_config.namespace
-        else
-          # Return a default namespace if none exists
-          active_admin_application.find_or_create_namespace(active_admin_application.default_namespace)
-        end
       end
 
     end

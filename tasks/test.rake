@@ -5,53 +5,64 @@ task :setup do
   system "bundle exec rails new spec/rails/rails-#{Rails::VERSION::STRING} -m spec/support/rails_template.rb"
 end
 
+# Run specs and cukes
+desc "Run the full suite"
+task :test => ['spec:unit', 'spec:integration', 'cucumber']
+
 namespace :test do
-  desc "Run against the important versions of rails"
-  task :major_rails_versions do
+
+  desc "Run the full suite against the important versions of rails"
+  task :major_supported_rails do
     current_version = detect_rails_version if File.exists?("Gemfile.lock")
+
     ["3.0.10", "3.1.0"].each do |version|
       puts
-      puts
       puts "== Using Rails #{version}"
-      cmd "./script/use_rails #{version}"
-      cmd "bundle exec rspec spec/unit"
-      cmd "bundle exec rspec spec/integration"
-      cmd "bundle exec cucumber features"
+
+      if File.exists?("Gemfile.lock")
+        puts "Removing the current Gemfile.lock"
+        cmd "rm Gemfile.lock"
+      end
+
+      cmd "export RAILS=#{version} && ./script/use_rails #{version}"
+      cmd "export RAILS=#{version} && bundle exec rspec spec/unit"
+      cmd "export RAILS=#{version} && bundle exec rspec spec/integration"
+      cmd "export RAILS=#{version} && bundle exec cucumber features"
     end
     cmd "./script/use_rails #{current_version}" if current_version
   end
 
 end
 
-# Run specs and cukes
-task :test do
-  cmd "bundle exec rspec spec/unit"
-  cmd "bundle exec rspec spec/integration"
-  cmd "bundle exec cucumber features"
-end
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:spec)
 
 namespace :spec do
-  desc "Run specs for all versions of rails"
-  task :all do
-    (0..6).to_a.each do |v|
-      puts "Running for Rails 3.0.#{v}"
-      cmd "rm Gemfile.lock" if File.exists?("Gemfile.lock")
-      cmd "/usr/bin/env RAILS=3.0.#{v} bundle install"
-      cmd "/usr/bin/env RAILS=3.0.#{v} rake spec"
-    end
+
+  desc "Run the unit specs"
+  RSpec::Core::RakeTask.new(:unit) do |t|
+    t.pattern = "spec/unit/**/*_spec.rb"
   end
+
+  desc "Run the integration specs"
+  RSpec::Core::RakeTask.new(:integration) do |t|
+    t.pattern = "spec/integration/**/*_spec.rb"
+  end
+
 end
+
 
 require 'cucumber/rake/task'
 
-namespace :cucumber do
-  Cucumber::Rake::Task.new(:all) do |t|
-    t.profile = 'default'
-  end
-
-  Cucumber::Rake::Task.new(:wip) do |t|
-    t.profile = 'wip'
-  end
+Cucumber::Rake::Task.new(:cucumber) do |t|
+  t.profile = 'default'
 end
 
-task :cucumber => "cucumber:all"
+namespace :cucumber do
+
+  Cucumber::Rake::Task.new(:wip, "Run the cucumber scenarios with the @wip tag") do |t|
+    t.profile = 'wip'
+  end
+
+end

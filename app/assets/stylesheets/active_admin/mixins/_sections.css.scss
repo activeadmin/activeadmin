@@ -1,16 +1,18 @@
 @mixin section-header {
   @include secondary-gradient;
-  @include shadow;
   @include text-shadow;
-  border-bottom: 1px solid #ededed;
-  padding: 5px 10px 3px 10px; 
+  border: solid 1px #cdcdcd;
+  @include border-colors(#e6e6e6, #d4d4d4, #cdcdcd);  
+  @include box-shadow(0 1px 3px rgba(0,0,0,0.12), 0 0 1px #FFF inset);
+
   font-size: 1.0em;
   font-weight: bold;
-  line-height: 140%;
+  line-height: 18px;
   margin-bottom: 0.5em;
   color: $section-header-text-color;
   @include icon($section-header-text-color, 1.0em);
-  span.icon { margin-right: 5px; }
+  
+  padding: 5px 10px 3px 10px; 
 }
 
 @mixin section-background {
