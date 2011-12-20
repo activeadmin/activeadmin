@@ -45,7 +45,7 @@ module ActiveAdmin
       def content_for(attr_or_proc)
         value = case attr_or_proc
                 when Proc
-                  attr_or_proc.call
+                  attr_or_proc.call(@record)
                 else
                   content_for_attribute(attr_or_proc)
                 end
