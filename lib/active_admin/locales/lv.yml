@@ -34,7 +34,10 @@ lv:
       one: "<b>1</b> ieraksts"
       one_page: "<b>%{n}</b> ieraksti"
       multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> ieraksti no <b>%{total}</b> kopā"
-    any: "Any"
+      entry:
+        one: "ieraksts"
+        other: "ieraksti"
+    any: "Jebkurš"
     blank_slate:
       content: "Sadaļā '%{resource_name}' nav neviena ieraksta."
       link: "Izveidot jaunu"
