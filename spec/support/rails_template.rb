@@ -12,7 +12,7 @@ generate :model, "user type:string first_name:string last_name:string username:s
 inject_into_file 'app/models/user.rb', "  has_many :posts, :foreign_key => 'author_id'\n", :after => "class User < ActiveRecord::Base\n"
 generate :model, "publisher --migration=false --parent=User"
 generate :model, 'category name:string description:text'
-inject_into_file 'app/models/category.rb', "  has_many :posts\n", :after => "class Category < ActiveRecord::Base\n"
+inject_into_file 'app/models/category.rb', "  has_many :posts\n  accepts_nested_attributes_for :posts\n", :after => "class Category < ActiveRecord::Base\n"
 
 # Add our local Active Admin to the load path
 inject_into_file "config/environment.rb", "\n$LOAD_PATH.unshift('#{File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'lib'))}')\nrequire \"active_admin\"\n", :after => "require File.expand_path('../application', __FILE__)"
