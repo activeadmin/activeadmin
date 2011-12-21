@@ -117,7 +117,7 @@ module ActiveAdmin
 
         # Display a column for the id
         def id_column
-          column('ID', :sortable => :id){|resource| link_to resource.id, resource_path(resource.id), :class => "resource_id_link"}
+          column('ID', :sortable => :id){|resource| link_to resource.id, resource_path(:id => resource.id), :class => "resource_id_link"}
         end
 
         # Adds links to View, Edit and Delete
@@ -128,13 +128,13 @@ module ActiveAdmin
           column options[:name] do |resource|
             links = ''.html_safe
             if controller.action_methods.include?('show')
-              links += link_to I18n.t('active_admin.view'), resource_path(resource.id), :class => "member_link view_link"
+              links += link_to I18n.t('active_admin.view'), resource_path(resource, :id => resource.id), :class => "member_link view_link"
             end
             if controller.action_methods.include?('edit')
-              links += link_to I18n.t('active_admin.edit'), edit_resource_path(resource.id), :class => "member_link edit_link"
+              links += link_to I18n.t('active_admin.edit'), edit_resource_path(resource, :id => resource.id), :class => "member_link edit_link"
             end
             if controller.action_methods.include?('destroy')
-              links += link_to I18n.t('active_admin.delete'), resource_path(resource.id), :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'), :class => "member_link delete_link"
+              links += link_to I18n.t('active_admin.delete'), resource_path(resource, :id => resource.id), :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'), :class => "member_link delete_link"
             end
             links
           end
