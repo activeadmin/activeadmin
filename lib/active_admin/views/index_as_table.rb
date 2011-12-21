@@ -31,7 +31,7 @@ module ActiveAdmin
     #
     #     index do
     #       column "Title" do |post|
-    #         link_to post.title, admin_post_path(post.id)
+    #         link_to post.title, admin_post_path(post)
     #       end
     #     end
     #
@@ -50,7 +50,7 @@ module ActiveAdmin
     #     index do
     #       column :title
     #       column "Actions" do |post|
-    #         link_to "View", admin_post_path(post.id)
+    #         link_to "View", admin_post_path(post)
     #       end
     #     end
     #
@@ -66,7 +66,7 @@ module ActiveAdmin
     #
     #     index do
     #       column "Title", :sortable => :title do |post|
-    #         link_to post.title, admin_post_path(post.id)
+    #         link_to post.title, admin_post_path(post)
     #       end
     #     end
     #
