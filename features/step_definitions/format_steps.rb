@@ -14,6 +14,10 @@ Then /^I should see a link to download "([^"]*)"$/ do |format_type|
   page.should have_css("#index_footer a", :text => format_type)
 end
 
+Then /^I should not see a link to download "([^"]*)"$/ do |format_type|
+  page.should_not have_css("#index_footer a", :text => format_type)
+end
+
 # Check first rows of the displayed CSV.
 Then /^I should download a CSV file for "([^"]*)" containing:$/ do |resource_name, table|
   page.response_headers['Content-Type'].should == 'text/csv; charset=utf-8'
