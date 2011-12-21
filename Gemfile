@@ -20,7 +20,7 @@ end
 
 group :development, :test do
   gem 'sqlite3-ruby',   :require => 'sqlite3'
-  gem 'rake',           '0.8.7', :require => false
+  gem 'rake'
   gem 'haml',           '~> 3.1.1', :require => false
   gem 'yard'
   gem 'rdiscount' # For yard
