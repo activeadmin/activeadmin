@@ -104,6 +104,7 @@ module ActiveAdmin
           if flash.keys.any?
             div :class => 'flashes' do
               flash.each do |type, message|
+                message = raw(message) if active_admin_application.render_flash_as_raw
                 div message, :class => "flash flash_#{type}"
               end
             end
