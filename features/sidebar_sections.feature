@@ -76,6 +76,51 @@ Feature: Sidebar Sections
     When I follow "New Post"
     Then I should see a sidebar titled "Help"
 
+  Scenario: Create a sidebar for only one action with if clause that returns false
+    Given a configuration of:
+    """
+    ActiveAdmin.register Post do
+      sidebar :help, :only => :index, :if => proc{ current_active_admin_user.nil? } do
+        "Need help? Email us at help@example.com"
+      end
+    end
+    """
+    When I am on the index page for posts
+    Then I should not see a sidebar titled "Help"
+
+    When I follow "View"
+    Then I should not see a sidebar titled "Help"
+
+    When I follow "Edit Post"
+    Then I should not see a sidebar titled "Help"
+
+    When I am on the index page for posts
+    When I follow "New Post"
+    Then I should not see a sidebar titled "Help"
+
+  Scenario: Create a sidebar for only one action with if clause that returns true
+    Given a configuration of:
+    """
+    ActiveAdmin.register Post do
+      sidebar :help, :only => :show, :if => proc{ !current_active_admin_user.nil? } do
+        "Need help? Email us at help@example.com"
+      end
+    end
+    """
+    When I am on the index page for posts
+    Then I should not see a sidebar titled "Help"
+
+    When I follow "View"
+    Then I should see a sidebar titled "Help"
+    Then I should see /Need help/ within the "Help" sidebar
+
+    When I follow "Edit Post"
+    Then I should not see a sidebar titled "Help"
+
+    When I am on the index page for posts
+    When I follow "New Post"
+    Then I should not see a sidebar titled "Help"
+
   Scenario: Create a sidebar with deep content
     Given a configuration of:
     """
