@@ -275,4 +275,25 @@ describe ActiveAdmin::FormBuilder do
       
     end
   end
+
+  context "with sortable has_many" do
+    let :body do
+      build_form :model => Category do |f|
+        f.instance_eval do
+          @object.posts = [Post.new(:title => 'Oho!')]
+        end
+        
+        f.has_many :posts, :sortable => :sort do |post|
+          post.input :title
+        end
+      end
+    end
+    
+    it "should generate attributes for sortable" do
+      body.should have_tag("div", :attributes => {
+        :class => "has_many posts sortable",
+        'data-sortable-input' => "sort"
+      })
+    end
+  end
 end
