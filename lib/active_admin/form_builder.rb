@@ -44,7 +44,9 @@ module ActiveAdmin
     def has_many(association, options = {}, &block)
       options = { :for => association, :new_record => true }.merge(options)
       options[:class] ||= ""
-      options[:class] << "inputs has_many_fields"
+      options[:class] << " inputs has_many_fields"
+
+      sortable = options.delete :sortable
 
       # Add Delete Links
       form_block = proc do |has_many_form|
@@ -70,7 +72,12 @@ module ActiveAdmin
       end
 
       form_buffers.last << with_new_form_buffer do
-        template.content_tag :div, :class => "has_many #{association}" do
+        html_attributes = { :class => "has_many #{association}" }
+        unless sortable.nil?
+          html_attributes[:class] << " sortable"
+          html_attributes['data-sortable-input'] = sortable
+        end
+        template.content_tag :div, html_attributes do
           # Allow customization of the nested form heading
           unless options.key?(:heading) && !options[:heading]
             form_heading = options[:heading] ||

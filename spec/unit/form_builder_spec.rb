@@ -424,6 +424,25 @@ describe ActiveAdmin::FormBuilder do
       end
     end
 
+    context "with sortable" do
+      let :body do
+        build_form({:url => '/categories'}, Category.new) do |f|
+          f.object.posts.build
+
+          f.has_many :posts, :sortable => :sort do |post|
+            post.input :title
+          end
+        end
+      end
+
+      it "should generate attributes for sortable" do
+        body.should have_tag("div", :attributes => {
+          :class => "has_many posts sortable",
+          'data-sortable-input' => "sort"
+        })
+      end
+    end
+
     pending "should render the block if it returns nil" do
       body = build_form({:url => '/categories'}, Category.new) do |f|
         f.object.posts.build
@@ -475,4 +494,18 @@ describe ActiveAdmin::FormBuilder do
     end
   end
 
+  describe "inputs block with nil return value" do
+    let :body do
+      build_form do |f|
+        f.inputs do
+          f.input :title
+          nil
+        end
+      end
+    end
+
+    it "should generate a single input field" do
+      body.should have_tag("input", :attributes => { :type => "text", :name => "post[title]" })
+    end
+  end
 end
