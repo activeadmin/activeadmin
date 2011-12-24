@@ -80,3 +80,6 @@ Then /^I should see the content "([^"]*)"$/ do |content|
   page.should have_css("#active_admin_content", :text => content)
 end
 
+Then /^I should see a validation error "([^"]*)"$/ do |error_message|
+  page.should have_css(".inline-errors", :text => error_message)
+end

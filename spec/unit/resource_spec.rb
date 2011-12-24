@@ -200,17 +200,15 @@ module ActiveAdmin
 
       context "when resource class responds to primary_key" do
         it "should sort by primary key desc by default" do
-          mock_resource = mock
-          mock_resource.should_receive(:primary_key).and_return("pk")
-          config = Resource.new(namespace, mock_resource)
+          MockResource.should_receive(:primary_key).and_return("pk")
+          config = Resource.new(namespace, MockResource)
           config.sort_order.should == "pk_desc"
         end
       end
 
       context "when resource class does not respond to primary_key" do
         it "should default to id" do
-          mock_resource = mock
-          config = Resource.new(namespace, mock_resource)
+          config = Resource.new(namespace, MockResource)
           config.sort_order.should == "id_desc"
         end
       end

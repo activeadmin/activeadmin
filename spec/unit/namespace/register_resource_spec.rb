@@ -52,6 +52,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       namespace.load_menu!
       namespace.menu["Mock Resources"].should be_an_instance_of(ActiveAdmin::MenuItem)
     end
+
     it "should use the resource as the model in the controller" do
       Admin::MockResourcesController.resource_class.should == Mock::Resource
     end

@@ -90,6 +90,10 @@ module ActiveAdminIntegrationSpecHelper
   end  
   alias_method :action_view, :mock_action_view
 
+  # A mock resource to register
+  class MockResource
+  end
+
 end
 
 ENV['RAILS_ENV'] = 'test'

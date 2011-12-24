@@ -1,2 +1,3 @@
-default: --format 'progress' --require features/support/env.rb --require features/step_definitions features
+default: --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags ~@requires-reloading
 wip: --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags @wip:3 --wip features
+class-reloading: RAILS_ENV=cucumber_with_reloading --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags @requires-reloading
