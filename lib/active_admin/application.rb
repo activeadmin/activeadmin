@@ -19,6 +19,13 @@ module ActiveAdmin
     #
     setting :default_namespace, :admin
 
+    # The default is to escape the flash message
+    # Override this in config/initializers/active_admin.rb using:
+    #
+    #   config.render_flash_as_raw = true
+    #
+    setting :render_flash_as_raw, false
+
     # A hash of all the registered namespaces
     setting :namespaces, {}
 
