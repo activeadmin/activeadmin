@@ -58,19 +58,6 @@ module ActiveAdmin
         end
       end
 
-      context "for a class that does not include ActiveModel::Translation" do
-        # FIXME Discuss. I am happy with the current behaviour (ahx).
-        it "falls back to something else" do
-          pending
-          Resource.new(namespace, NoActiveModel::Resource).resource_label.should == "Mock Resource" # is "Resource"
-        end
-
-        it "falls back to something else plural" do
-          pending
-          Resource.new(namespace, NoActiveModel::Resource).plural_resource_label.should == "Mock Resources"  # is "Resource"
-        end
-      end
-
       describe "I18n integration" do
         describe "singular label" do
           it "should return the titleized model_name.human" do
