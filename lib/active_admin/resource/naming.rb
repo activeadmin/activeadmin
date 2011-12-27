@@ -1,6 +1,9 @@
 module ActiveAdmin
   class Resource
     module Naming
+      # Returns a name used to uniquely identify this resource
+      # this should be an instance of ActiveMode::Name, which responds to
+      # #singular, #plural, #route_key, #human etc.
       def resource_name
         custom_name = @options[:as] && @options[:as].gsub(/\s/,'')
         @resource_name ||= if custom_name || !resource_class.respond_to?(:model_name)
@@ -26,11 +29,6 @@ module ActiveAdmin
         else
           (@plural_resource_label ||= {})[::I18n.locale] ||= resource_name.human(:count => 3, :default => resource_label.pluralize).titleize
         end
-      end
-
-      # A name used internally to uniquely identify this resource
-      def resource_key
-        resource_name
       end
     end
   end
