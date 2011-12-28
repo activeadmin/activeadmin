@@ -164,8 +164,8 @@ module ActiveAdmin
           end
           add_column col
         end
-      end # TableBuilder
+      end # IndexTableFor
 
-    end # Table
+    end # IndexAsTable
   end
 end
