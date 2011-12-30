@@ -41,8 +41,11 @@ module ActiveAdmin
 
         def build_scopes
           if active_admin_config.scopes.any?
+            options = {}
+            options[:scope_count] = config[:scope_count].nil? ? true : config[:scope_count]
+            
             div :class => "table_tools" do
-              scopes_renderer active_admin_config.scopes
+              scopes_renderer active_admin_config.scopes, options
             end
           end
         end
