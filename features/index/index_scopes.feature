@@ -43,6 +43,21 @@ Feature: Index Scoping
     When I am on the index page for posts
     Then I should see the scope "All" selected
 
+  Scenario: Viewing resources with a scope but scope_count turned off
+    Given 10 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope :all, :default => true
+        index :as => :table, :scope_count => false do
+          column :id
+        end
+      end
+      """
+    Then I should see the scope "All" selected
+    And I should see the scope "All" with no count
+    And I should see 10 posts in the table
+
   Scenario: Viewing resources when scoping
     Given 6 posts exist
     And 4 published posts exist
