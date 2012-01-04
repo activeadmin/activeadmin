@@ -111,8 +111,9 @@ describe("aaPopover", function() {
     describe("when user clicks outside", function() {
       beforeEach(function() {
 				$button.aaPopover('open');
+ 
         $('#wrapper').trigger("click");
-      });
+     });
       
       it("should close", function() {
         expect($popover).toBeHidden();

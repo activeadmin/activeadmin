@@ -38,5 +38,6 @@ group :test do
   gem 'launchy'
   gem 'jslint_on_rails',    '~> 1.0.6'
   gem 'guard-rspec'
+  gem 'guard-coffeescript'  
   gem 'jasmine'
 end

@@ -7,7 +7,7 @@ jQuery(function($) {
   $("#batch_actions_button").aaPopover({autoOpen: false});
   
   //
-  // Use Rails.js click handler to allow for confirm dialogs
+  // Use Rails.js click handler to allow for Rails' confirm dialogs
   //
 
   $(document).delegate("#batch_actions_popover li a", 'click.rails', function() {
@@ -30,6 +30,7 @@ jQuery(function($) {
       }
     };
   });
+
 
   //
   // Toggle selecting / deselecting an entire page of records
