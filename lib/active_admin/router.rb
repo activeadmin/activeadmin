@@ -53,6 +53,9 @@ module ActiveAdmin
               end
             when Page
               match "/#{config.underscored_resource_name}" => "#{config.underscored_resource_name}#index"
+              config.page_actions.each do |action|
+                match "/#{config.underscored_resource_name}/#{action.name}" => "#{config.underscored_resource_name}##{action.name}", :via => action.http_verb
+              end
             else
               raise "Unsupported config class: #{config.class}"
             end
