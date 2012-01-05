@@ -31,67 +31,7 @@ jQuery(function($) {
     };
   });
 
-
-  //
-  // Toggle selecting / deselecting an entire page of records
-  // @TODO Refactor into object
-  //
-
-  $('#collection_selection_toggle_all').click(function() {
-	
-		var $this = $(this);
-		var isTable = $this.closest(".index").hasClass("index_table");
-	
-    if ($(this).attr('checked') == "checked") {
-      $('#batch_actions_button').removeClass("disabled");
-      $('#batch_actions_button').addClass("selected");
-			$('.collection_selection').attr('checked', 'checked');
-      if ( isTable ) {
-				$(this).parents(".index_table").find('tr').addClass("selected");
-			}
-    } else {
-      $('#batch_actions_button').addClass("disabled");
-      $('#batch_actions_button').removeClass("selected");
-			$('.collection_selection').attr('checked', false);
-      if ( isTable ) {
-				$(this).parents(".index_table").find('tr').removeClass("selected");
-			}
-    }
-  });
-
-  //
-  // Toggle selection of a individual record
-  // @TODO Refactor into object
-  //
-  
-  $('.collection_selection').click(function() {
-	
-		var $this = $(this);
-		var isTable = $this.closest(".index").hasClass("index_table");
-		
-    if ( $this.attr('checked') == "checked" ) {
-	
-      $('#batch_actions_button').removeClass("disabled");
-      $('#batch_actions_button').addClass("selected");
-      if ( isTable ) {
-				$this.parents('tr').addClass("selected");
-			}
-
-    } else {
-      
-			if ( $this.closest(".index").find("input:checked").length == 0) {
-        $('#batch_actions_button').addClass("disabled");
-        $('#batch_actions_button').removeClass("selected");
-      }
-      
-			if ( isTable ) {
-	      $this.parents('tr').removeClass("selected");
-			}
-      
-			$("#collection_selection_toggle_all").attr('checked', false);
-      
-    }
-
-  });
+  new CheckboxToggler($(".paginated_collection"));
 	
 });
+

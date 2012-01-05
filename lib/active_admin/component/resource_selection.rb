@@ -5,7 +5,7 @@ module ActiveAdmin
       # Creates the toggle checkbox used to toggle the collection selection on/off
       def resource_selection_toggle_cell
         div :class => "resource_selection_toggle_cell" do 
-          input( :type => "checkbox", :id => "collection_selection_toggle_all", :name => "collection_selection_toggle_all" )
+          input( :type => "checkbox", :id => "collection_selection_toggle_all", :name => "collection_selection_toggle_all", :class => "toggle_all" )
         end
       end
       
