@@ -26,7 +26,7 @@ module Arbre
         nil
       end
 
-      def to_html
+      def to_s
         ERB::Util.html_escape(@content.to_s)
       end
     end

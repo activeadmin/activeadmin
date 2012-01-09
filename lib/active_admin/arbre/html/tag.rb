@@ -65,14 +65,14 @@ module Arbre
 
       # Returns a string of classes
       def class_names
-        class_list.to_html
+        class_list.to_s
       end
 
       def class_list
         get_attribute(:class) || set_attribute(:class, ClassList.new)
       end
 
-      def to_html
+      def to_s
         indent("<#{tag_name}#{attributes_html}>", content, "</#{tag_name}>").html_safe
       end
 
@@ -118,7 +118,7 @@ module Arbre
 
 
       def attributes_html
-        attributes.any? ? " " + attributes.to_html : nil
+        attributes.any? ? " " + attributes.to_s : nil
       end
 
       def set_for_attribute(record)

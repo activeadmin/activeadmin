@@ -14,6 +14,10 @@ module ActiveAdmin
         calculate_columns!
       end
 
+      def to_s
+        super.to_s + "<div style=\"clear:both;\"></div>".html_safe
+      end
+
       protected
 
       def margin_size
@@ -33,10 +37,6 @@ module ActiveAdmin
           col.set_attribute :style, "width: #{column_width}%;"
           col.attr(:style) << " margin-right: #{margin_size}%;" unless i == (count - 1)
         end
-      end
-
-      def to_html
-        super.to_s + "<div style=\"clear:both;\"></div>".html_safe
       end
 
     end
