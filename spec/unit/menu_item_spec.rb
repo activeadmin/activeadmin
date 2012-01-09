@@ -1,4 +1,5 @@
-require 'spec_helper' 
+require 'spec_helper_without_rails'
+require 'active_admin/menu_item'
 
 module ActiveAdmin
   describe MenuItem do
@@ -7,27 +8,27 @@ module ActiveAdmin
       item = MenuItem.new("Dashboard", "/admin")
       item.name.should == "Dashboard"
     end
-    
+
     it "should have a url" do
       item = MenuItem.new("Dashboard", "/admin")
       item.url.should == "/admin"
     end
-    
+
     it "should have a priority of 10 by default" do
       item = MenuItem.new("Dashboard", "/admin")
       item.priority.should == 10
     end
-    
+
     it "should accept an optional options hash" do
       item = MenuItem.new("Dashboard", "/admin", 10, :if => lambda{ logged_in? } )
     end
-    
+
     it "should have a display if block" do
       block = lambda{ logged_in? }
       item = MenuItem.new("Dashboard", "/admin", 10, :if => block )
       item.display_if_block.should == block
     end
-    
+
     it "should have a default display if block always returning true" do
       item = MenuItem.new("Dashboard", "/admin")
       item.display_if_block.should be_instance_of(Proc)
@@ -36,20 +37,24 @@ module ActiveAdmin
 
     describe "url generation and caching" do
       it "should generate a url if it is a symbol" do
-        MenuItem.new("Posts", :admin_posts_path).url.should == "/admin/posts"
+        item = MenuItem.new("Posts", :admin_posts_path)
+        MenuItem.should_receive(:generate_url).with(:admin_posts_path).
+          and_return("/admin/posts")
+
+        item.url.should == "/admin/posts"
       end
 
       it "should generate a url if it is a string" do
         MenuItem.new("Posts", "/admin/posts").url.should == "/admin/posts"
       end
     end
-    
+
     context "with no children" do
       it "should be empty" do
         item = MenuItem.new("Blog", "/admin/blog")
         item.children.should == []
       end
-      
+
       it "should accept new children" do
         item = MenuItem.new("Blog", "/admin/blog")
         item.add "Dashboard", "/admin"
@@ -57,7 +62,7 @@ module ActiveAdmin
         item.children.first.name.should == "Dashboard"
       end
     end
-    
+
     context "with many children" do
       let(:item) do
         i = MenuItem.new("Dashboard", "/admin")
@@ -68,11 +73,11 @@ module ActiveAdmin
         i.add "Analytics", "/", 44
         i
       end
-      
+
       it "should give access to the menu item as an array" do
         item['Blog'].name.should == 'Blog'
       end
-      
+
       it "should sort items based on priority and name" do    
         item.children[0].name.should == 'Users'
         item.children[1].name.should == 'Settings'
@@ -80,12 +85,12 @@ module ActiveAdmin
         item.children[3].name.should == 'Cars'
         item.children[4].name.should == 'Analytics'
       end
-      
+
       it "children should hold a reference to their parent" do
         item["Blog"].parent.should == item
       end
     end
-    
+
     describe "building children using block syntax" do
       let(:item) do
         MenuItem.new("Blog", "/") do |blog|
@@ -95,25 +100,25 @@ module ActiveAdmin
           end
         end
       end
-      
+
       it "should have 2 children" do
         item.children.size.should == 2
       end
-      
+
       it "should have sub-sub items" do
         item["Comments"]["Approved"].name.should == 'Approved'
       end
     end
-    
+
     describe "accessing ancestory" do
       let(:item){ MenuItem.new "Blog", "/blog" }
-      
+
       context "with no parent" do
         it "should return an empty array" do
          item.ancestors.should == [] 
         end
       end
-      
+
       context "with one parent" do
         let(:sub_item) do 
           item.add "Create New", "/blog/new"
@@ -123,7 +128,7 @@ module ActiveAdmin
           sub_item.ancestors.should == [item]
         end
       end
-      
+
       context "with many parents" do
         before(:each) do
           item.add "C1", "/c1" do |c1|
