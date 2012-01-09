@@ -1,5 +1,4 @@
 require "active_admin/arbre/builder"
-require "active_admin/arbre/core_extensions"
 require "active_admin/arbre/context"
 require "active_admin/arbre/html/element"
 require "active_admin/arbre/html/attributes"
