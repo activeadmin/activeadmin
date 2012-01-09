@@ -7,8 +7,12 @@ unless defined?(RAILS_VERSION_FILE)
   RAILS_VERSION_FILE = File.expand_path("../../../.rails-version", __FILE__)
 end
 
+unless defined?(DEFAULT_RAILS_VERSION)
+  DEFAULT_RAILS_VERSION = "3.1.0"
+end
+
 def detect_rails_version
-  return nil unless File.exists?(RAILS_VERSION_FILE)
+  return DEFAULT_RAILS_VERSION unless File.exists?(RAILS_VERSION_FILE)
   File.read(RAILS_VERSION_FILE).chomp
 end
 

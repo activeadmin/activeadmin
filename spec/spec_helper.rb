@@ -88,7 +88,10 @@ module ActiveAdminIntegrationSpecHelper
 end
 
 ENV['RAILS_ENV'] = 'test'
-ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{ENV["RAILS"]}", __FILE__)
+
+require 'detect_rails_version'
+rails_version = detect_rails_version
+ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{rails_version}", __FILE__)
 
 # Create the test app if it doesn't exists
 unless File.exists?(ENV['RAILS_ROOT'])
