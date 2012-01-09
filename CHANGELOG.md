@@ -10,6 +10,8 @@ since we've changed both the CSS and JS files.
 * In the initializer `config.allow_comments_in = []` is now
   `config.allow_comments = true`. Use the new namespace specific configurations
   to allow or disallow configuration within a specific namespace.
+* Removed `Object#to_html` in favour of `to_s`. Any Arbre components
+  implementing a `to_html` method need to be updated to use `to_s` instead.
 
 ### New Features
 
@@ -47,6 +49,7 @@ since we've changed both the CSS and JS files.
 * [#780][]: Fix stack level too deep exception when logout path is setup to use
   `:logout_path` named route. ([@george][])
 * [#637][]: Fix scope all I18n ([@fbuenemann][])
+* [#496][]: Remove global `Object#to_html` [@ebeigarts][]
 
 ### Dependencies
 
@@ -381,6 +384,7 @@ of the highlights. 250 commits. Enough said.
 [#381]: https://github.com/gregbell/active_admin/issues/381
 [#428]: https://github.com/gregbell/active_admin/issues/428
 [#468]: https://github.com/gregbell/active_admin/issues/468
+[#496]: https://github.com/gregbell/active_admin/issues/496
 [#505]: https://github.com/gregbell/active_admin/issues/505
 [#527]: https://github.com/gregbell/active_admin/issues/527
 [#551]: https://github.com/gregbell/active_admin/issues/551
@@ -395,6 +399,7 @@ of the highlights. 250 commits. Enough said.
 [#644]: https://github.com/gregbell/active_admin/issues/644
 [#689]: https://github.com/gregbell/active_admin/issues/689
 [#711]: https://github.com/gregbell/active_admin/issues/711
+[#723]: https://github.com/gregbell/active_admin/issues/723
 [#741]: https://github.com/gregbell/active_admin/issues/741
 [#751]: https://github.com/gregbell/active_admin/issues/751
 [#758]: https://github.com/gregbell/active_admin/issues/758
@@ -423,5 +428,5 @@ of the highlights. 250 commits. Enough said.
 [@sftsang]: https://github.com/sftsang
 [@shayfrendt]: https://github.com/shayfrendt
 [@tricknotes]: https://github.com/tricknotes
-[@vairix]: https://github.com/vairix-ssierra
+[@vairix]: https://github.com/vairix
 [@watson]: https://github.com/watson
