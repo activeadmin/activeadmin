@@ -3,6 +3,8 @@
 # Switches the development environment to use the given
 # version of rails. Caches the Gemfile.locks so that 
 # switching it very fast.
+#
+require File.expand_path("../../spec/support/detect_rails_version", __FILE__)
 
 def cmd(command)
   puts command
@@ -34,13 +36,18 @@ if File.exists?(gem_lock_file) && ARGV.include?('--clobber')
   cmd "rm #{gem_lock_file}"
 end
 
-unless File.exists?(gem_lock_file)
-  # Generate it
-  cmd "rm Gemfile.lock" if file_or_symlink?("Gemfile.lock")
-  cmd "export RAILS=#{version} && bundle install"
-  cmd "mv Gemfile.lock #{gem_lock_file}"
-end
+write_rails_version(version)
 
-cmd("rm Gemfile.lock") if file_or_symlink?("Gemfile.lock")
-cmd("ln -s #{gem_lock_file} Gemfile.lock")
-cmd("bundle")
+# Ensure that bundler installs
+ENV['RUBYOPT'] = ''
+
+if File.exists?(gem_lock_file)
+  cmd("rm Gemfile.lock") if file_or_symlink?("Gemfile.lock")
+  cmd("ln -s #{gem_lock_file} Gemfile.lock")
+  cmd("bundle")
+else
+  cmd "rm Gemfile.lock" if file_or_symlink?("Gemfile.lock")
+  cmd "bundle install"
+  cmd "mv Gemfile.lock #{gem_lock_file}"
+  cmd("ln -s #{gem_lock_file} Gemfile.lock")
+end
