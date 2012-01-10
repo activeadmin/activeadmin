@@ -102,7 +102,9 @@ module Arbre
       def insert_text_node_if_string(tag)
         if tag.is_a?(String)
           current_dom_context << Arbre::HTML::TextNode.from_string(tag)
-        end
+        elsif tag.kind_of?(Numeric)
+          current_dom_context << Arbre::HTML::TextNode.from_string(tag.to_s)
+        end 
       end
     end
 
