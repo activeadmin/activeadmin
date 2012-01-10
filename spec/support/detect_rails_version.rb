@@ -12,8 +12,16 @@ unless defined?(DEFAULT_RAILS_VERSION)
 end
 
 def detect_rails_version
-  return DEFAULT_RAILS_VERSION unless File.exists?(RAILS_VERSION_FILE)
-  File.read(RAILS_VERSION_FILE).chomp
+  detected_version = if File.exists?(RAILS_VERSION_FILE)
+    version = File.read(RAILS_VERSION_FILE).chomp.strip
+    version != "" ? version : DEFAULT_RAILS_VERSION
+  else
+    DEFAULT_RAILS_VERSION
+  end
+
+  puts "Detected Rails: #{detected_version}"
+
+  detected_version
 end
 
 def write_rails_version(version)
