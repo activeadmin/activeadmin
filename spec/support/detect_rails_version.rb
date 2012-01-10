@@ -19,7 +19,7 @@ def detect_rails_version
     DEFAULT_RAILS_VERSION
   end
 
-  puts "Detected Rails: #{detected_version}"
+  puts "Detected Rails: #{detected_version}" if ENV['DEBUG']
 
   detected_version
 end
