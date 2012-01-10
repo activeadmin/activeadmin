@@ -46,16 +46,16 @@ end
 Given /^an index configuration of:$/ do |configuration_content|
   load_active_admin_configuration(configuration_content)
 
-  And 'I am logged in'
-  When "I am on the index page for posts"
+  step 'I am logged in'
+  step "I am on the index page for posts"
 end
 
 Given /^a show configuration of:$/ do |configuration_content|
   load_active_admin_configuration(configuration_content)
 
-  And 'I am logged in'
-  When "I am on the index page for posts"
-  And 'I follow "View"'
+  step 'I am logged in'
+  step "I am on the index page for posts"
+  step 'I follow "View"'
 end
 
 Given /^"([^"]*)" contains:$/ do |filename, contents|
