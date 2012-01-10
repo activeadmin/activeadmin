@@ -9,6 +9,7 @@ de:
     delete: "Löschen"
     delete_confirmation: "Wollen Sie dieses Element wirklich löschen?"
     new_model: "%{model} erstellen"
+    create_model: "%{model} erstellen"
     edit_model: "%{model} bearbeiten"
     delete_model: "%{model} löschen"
     details: "%{model} Details"
