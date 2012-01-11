@@ -50,6 +50,8 @@ since we've changed both the CSS and JS files.
   `:logout_path` named route. ([@george][])
 * [#637][]: Fix scope all I18n ([@fbuenemann][])
 * [#496][]: Remove global `Object#to_html` [@ebeigarts][]
+* [#470][], [#154][]: Arbre properly supports blocks that return Numeric values
+  ([@bobbytables][], [@utkarshkukreti][], [@gregbell][])
 
 ### Dependencies
 
@@ -372,6 +374,7 @@ of the highlights. 250 commits. Enough said.
 [#122]: https://github.com/gregbell/active_admin/issues/122
 [#131]: https://github.com/gregbell/active_admin/issues/131
 [#135]: https://github.com/gregbell/active_admin/issues/135
+[#154]: https://github.com/gregbell/active_admin/issues/154
 [#171]: https://github.com/gregbell/active_admin/issues/171
 [#186]: https://github.com/gregbell/active_admin/issues/186
 [#197]: https://github.com/gregbell/active_admin/issues/197
@@ -384,6 +387,7 @@ of the highlights. 250 commits. Enough said.
 [#381]: https://github.com/gregbell/active_admin/issues/381
 [#428]: https://github.com/gregbell/active_admin/issues/428
 [#468]: https://github.com/gregbell/active_admin/issues/468
+[#470]: https://github.com/gregbell/active_admin/issues/470
 [#496]: https://github.com/gregbell/active_admin/issues/496
 [#505]: https://github.com/gregbell/active_admin/issues/505
 [#527]: https://github.com/gregbell/active_admin/issues/527
@@ -406,6 +410,7 @@ of the highlights. 250 commits. Enough said.
 [#780]: https://github.com/gregbell/active_admin/issues/780
 [@DMajrekar]: https://github.com/DMajrekar
 [@ZequeZ]: https://github.com/ZequeZ
+[@bobbytables]: https://github.com/bobbytables
 [@dhiemstra]: https://github.com/dhiemstra
 [@doug316]: https://github.com/doug316
 [@ebeigarts]: https://github.com/ebeigarts
@@ -428,5 +433,6 @@ of the highlights. 250 commits. Enough said.
 [@sftsang]: https://github.com/sftsang
 [@shayfrendt]: https://github.com/shayfrendt
 [@tricknotes]: https://github.com/tricknotes
+[@utkarshkukreti]: https://github.com/utkarshkukreti
 [@vairix]: https://github.com/vairix
 [@watson]: https://github.com/watson
