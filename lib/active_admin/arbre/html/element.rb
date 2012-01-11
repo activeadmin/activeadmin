@@ -35,7 +35,7 @@ module Arbre
 
       def build(*args, &block)
         # Render the block passing ourselves in
-        insert_text_node_if_string(block.call(self)) if block
+        append_return_block(block.call(self)) if block
       end
 
       def add_child(child)

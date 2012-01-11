@@ -65,7 +65,7 @@ module Arbre
           # Render the blocks contents
           if block_given?
             with_current_dom_context tag do
-              insert_text_node_if_string(yield)
+              append_return_block(yield)
             end
           end
         end
@@ -98,10 +98,13 @@ module Arbre
       end
       alias_method :within, :with_current_dom_context
 
-      # Inserts a text node if the tag is a string
-      def insert_text_node_if_string(tag)
-        if tag.is_a?(String)
-          current_dom_context << Arbre::HTML::TextNode.from_string(tag)
+      # Appends the value to the current DOM element if there are no
+      # existing DOM Children and it responds to #to_s
+      def append_return_block(tag)
+        return nil if current_dom_context.children.any?
+
+        if !tag.is_a?(Arbre::HTML::Element) && tag.respond_to?(:to_s)
+          current_dom_context << Arbre::HTML::TextNode.from_string(tag.to_s)
         end
       end
     end
