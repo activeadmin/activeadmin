@@ -62,6 +62,9 @@ since we've changed both the CSS and JS files.
 * [#711][]: Active admin now depends on Bourbon > 1.0.0. If you're using Rails
   3.0.x, make sure to run `rails generate active_admin:assets` to ensure you
   have the correct css files ([@mattvague][])
+* [#869][]: Upgraded Kaminari to >= 0.13.0 and added support for
+  `Kaminari.config.page_method_name`. Active Admin should now be happy if
+  `will_paginate` is installed with it. ([@j][]-manu)
 
 ### Contributors
 
@@ -408,6 +411,7 @@ of the highlights. 250 commits. Enough said.
 [#751]: https://github.com/gregbell/active_admin/issues/751
 [#758]: https://github.com/gregbell/active_admin/issues/758
 [#780]: https://github.com/gregbell/active_admin/issues/780
+[#869]: https://github.com/gregbell/active_admin/issues/869
 [@DMajrekar]: https://github.com/DMajrekar
 [@ZequeZ]: https://github.com/ZequeZ
 [@bobbytables]: https://github.com/bobbytables
@@ -419,6 +423,7 @@ of the highlights. 250 commits. Enough said.
 [@fbuenemann]: https://github.com/fbuenemann
 [@george]: https://github.com/george
 [@gregbell]: https://github.com/gregbell
+[@j]: https://github.com/j
 [@jbarket]: https://github.com/jbarket
 [@knoopx]: https://github.com/knoopx
 [@krug]: https://github.com/krug
