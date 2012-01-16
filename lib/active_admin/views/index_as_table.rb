@@ -126,6 +126,7 @@ module ActiveAdmin
 
         # Display a column for checkbox
         def selectable_column
+          return unless active_admin_config.batch_actions.any?
           column( resource_selection_toggle_cell, { :class => "selectable" } ) { |resource| resource_selection_cell( resource ) }
         end
 

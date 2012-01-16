@@ -84,3 +84,7 @@ Given /^I submit the batch action form with "([^"]*)"$/ do |action|
 
   page.driver.submit(form['method'].to_sym, form['action'], @params)
 end
+
+Then /^I should not see checkboxes in the table$/ do
+  page.should_not have_css( ".paginated_collection table input[type=checkbox]" )
+end

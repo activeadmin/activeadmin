@@ -69,6 +69,7 @@ Feature: Batch Actions
       end
       """
     Then I should not see the batch action :destroy "Delete Selected"
+    And I should not see checkboxes in the table
   
   Scenario: Optional display of batch actions
     Given 10 posts exist
