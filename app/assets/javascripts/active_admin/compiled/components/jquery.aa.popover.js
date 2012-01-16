@@ -40,7 +40,7 @@
     };
 
     Popover.prototype.destroy = function() {
-      this.$element.removeData('aaPopover');
+      this.$element.removeData('popover');
       this.$element.unbind();
       this.$element = null;
       return this;

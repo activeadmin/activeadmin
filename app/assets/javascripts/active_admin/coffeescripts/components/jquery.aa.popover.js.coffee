@@ -44,7 +44,7 @@ window.AA.Popover = class AA.Popover
     return @
 
   destroy: ->
-    @$element.removeData('aaPopover');
+    @$element.removeData('popover');
     @$element.unbind();
     @$element = null;
     

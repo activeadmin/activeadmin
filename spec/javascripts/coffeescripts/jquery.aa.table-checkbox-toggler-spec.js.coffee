@@ -1,4 +1,4 @@
-describe "TableCheckboxToggler", ->
+describe "AA.TableCheckboxToggler", ->
   
   beforeEach ->
     loadFixtures('table_checkboxes.html');
@@ -8,7 +8,7 @@ describe "TableCheckboxToggler", ->
 
     @checkboxes = @collection.find(":checkbox").not(@toggle_all)
     
-    new TableCheckboxToggler(@collection)
+    new AA.TableCheckboxToggler({}, @collection)
 
   describe "'selected' class for table row", ->
     it "should add the class 'selected' to rows when their checkbox is checked ", ->

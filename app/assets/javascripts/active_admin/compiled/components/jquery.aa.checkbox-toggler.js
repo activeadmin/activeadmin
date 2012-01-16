@@ -18,7 +18,7 @@
       } else {
         this.$container = $(this.container);
       }
-      if (!this.$container.find(".toggle_all")) {
+      if (!this.$container.find(".toggle_all").length) {
         throw new Error("'toggle all' checkbox not found");
       } else {
         this.toggle_all_checkbox = this.$container.find(".toggle_all");

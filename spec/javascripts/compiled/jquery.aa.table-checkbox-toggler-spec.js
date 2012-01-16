@@ -1,12 +1,12 @@
 (function() {
 
-  describe("TableCheckboxToggler", function() {
+  describe("AA.TableCheckboxToggler", function() {
     beforeEach(function() {
       loadFixtures('table_checkboxes.html');
       this.collection = $("#collection");
       this.toggle_all = this.collection.find(".toggle_all");
       this.checkboxes = this.collection.find(":checkbox").not(this.toggle_all);
-      return new TableCheckboxToggler(this.collection);
+      return new AA.TableCheckboxToggler({}, this.collection);
     });
     describe("'selected' class for table row", function() {
       it("should add the class 'selected' to rows when their checkbox is checked ", function() {

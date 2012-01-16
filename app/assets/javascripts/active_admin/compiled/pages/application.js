@@ -1,7 +1,5 @@
 (function() {
 
-  window.AA = {};
-
   $(function() {
     $(".datepicker").datepicker({
       dateFormat: "yy-mm-dd"

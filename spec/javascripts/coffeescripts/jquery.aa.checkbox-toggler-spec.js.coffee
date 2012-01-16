@@ -1,4 +1,4 @@
-describe "CheckboxToggler", ->
+describe "AA.CheckboxToggler", ->
   
   beforeEach ->
     loadFixtures('checkboxes.html');
@@ -9,15 +9,15 @@ describe "CheckboxToggler", ->
     @checkboxes = @collection.find(":checkbox").not(@toggle_all)
     
     
-    new CheckboxToggler(@collection)
+    new AA.CheckboxToggler({}, @collection)
 
   describe "on init", ->
     it "should raise an error if container not found", ->
-      expect( => new CheckboxToggler() ).toThrow("Container element not found")
+      expect( => new AA.CheckboxToggler({}) ).toThrow("Container element not found")
 
     it "should raise an error if 'toggle all' checkbox not found", ->
       @toggle_all.remove()
-      expect( => new CheckboxToggler(@collection); ).toThrow("'toggle all' checkbox not found")
+      expect( => new AA.CheckboxToggler({}, @collection); ).toThrow("'toggle all' checkbox not found")
 
   describe "'toggle all' checkbox", ->
     it "should check all checkboxes when checked", ->
