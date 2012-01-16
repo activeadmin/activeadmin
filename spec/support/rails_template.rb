@@ -2,8 +2,11 @@
 
 # Create a cucumber database and environment
 copy_file File.expand_path('../templates/cucumber.rb', __FILE__), "config/environments/cucumber.rb"
+copy_file File.expand_path('../templates/cucumber_with_reloading.rb', __FILE__), "config/environments/cucumber_with_reloading.rb"
+
 gsub_file 'config/database.yml', /^test:.*\n/, "test: &test\n"
 gsub_file 'config/database.yml', /\z/, "\ncucumber:\n  <<: *test\n  database: db/cucumber.sqlite3"
+gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\n  database: db/cucumber.sqlite3"
 
 # Generate some test models
 generate :model, "post title:string body:text published_at:datetime author_id:integer category_id:integer"

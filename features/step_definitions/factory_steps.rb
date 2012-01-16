@@ -27,3 +27,10 @@ Given /^a (user|publisher) named "([^"]*)" exists$/ do |type, name|
   type = type.camelize.constantize
   type.create! :first_name => first, :last_name => last, :username => name
 end
+
+Given /^I create a new post with the title "([^"]*)"$/ do |title|
+  click_link "Posts"
+  click_link "New Post"
+  fill_in :title, :with => title
+  click_button "Create Post"
+end

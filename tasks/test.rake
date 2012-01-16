@@ -7,30 +7,33 @@ end
 
 # Run specs and cukes
 desc "Run the full suite"
-task :test => ['spec:unit', 'spec:integration', 'cucumber']
+task :test => ['spec:unit', 'spec:integration', 'cucumber', 'cucumber:class_reloading']
 
 namespace :test do
 
-  desc "Run the full suite against the important versions of rails"
-  task :major_supported_rails do
+  def run_tests_against(*versions)
     current_version = detect_rails_version if File.exists?("Gemfile.lock")
 
-    ["3.0.10", "3.1.0"].each do |version|
+    versions.each do |version|
       puts
       puts "== Using Rails #{version}"
 
-      if File.exists?("Gemfile.lock")
-        puts "Removing the current Gemfile.lock"
-        cmd "rm Gemfile.lock"
-      end
-
-      cmd "export RAILS=#{version} && ./script/use_rails #{version}"
-      cmd "export RAILS=#{version} && bundle exec rspec spec/unit"
-      cmd "export RAILS=#{version} && bundle exec rspec spec/integration"
-      cmd "export RAILS=#{version} && bundle exec cucumber features"
+      cmd "./script/use_rails #{version}"
+      cmd "bundle exec rspec spec"
+      cmd "bundle exec cucumber features"
+      cmd "bundle exec cucumber -p class-reloading features"
     end
+
     cmd "./script/use_rails #{current_version}" if current_version
   end
+
+  desc "Run the full suite against the important versions of rails"
+  task :major_supported_rails do
+    run_tests_against "3.0.11", "3.1.3"
+  end
+
+  desc "Alias for major_supported_rails"
+  task :all => :major_supported_rails
 
 end
 
@@ -63,6 +66,10 @@ namespace :cucumber do
 
   Cucumber::Rake::Task.new(:wip, "Run the cucumber scenarios with the @wip tag") do |t|
     t.profile = 'wip'
+  end
+
+  Cucumber::Rake::Task.new(:class_reloading, "Run the cucumber scenarios that test reloading") do |t|
+    t.profile = 'class-reloading'
   end
 
 end

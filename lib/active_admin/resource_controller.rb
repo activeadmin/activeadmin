@@ -5,6 +5,7 @@ require 'active_admin/resource_controller/callbacks'
 require 'active_admin/resource_controller/collection'
 require 'active_admin/resource_controller/filters'
 require 'active_admin/resource_controller/scoping'
+require 'active_admin/resource_controller/resource_class_methods'
 
 module ActiveAdmin
   # All Resources Controller inherits from this controller.
@@ -23,13 +24,23 @@ module ActiveAdmin
     include Collection
     include Filters
     include Scoping
+    extend  ResourceClassMethods
 
     class << self
       def active_admin_config=(config)
         @active_admin_config = config
+
         defaults  :resource_class => config.resource_class,
                   :route_prefix => config.route_prefix,
                   :instance_name => config.underscored_resource_name
+      end
+
+      # Inherited Resources uses the inherited(base) hook method to 
+      # add in the Base.resource_class class method. To override it, we
+      # need to install our resource_class method each time we're inherited from.
+      def inherited(base)
+        super(base)
+        base.override_resource_class_methods!
       end
 
       public :belongs_to

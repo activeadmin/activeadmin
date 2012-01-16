@@ -5,7 +5,7 @@ Given /^I am logged out$/ do
 end
 
 Given /^I am logged in$/ do
-  Given 'an admin user "admin@example.com" exists'
+  step 'an admin user "admin@example.com" exists'
 
   if page.all(:css, "a", :text => "Logout").size > 0
     click_link "Logout"

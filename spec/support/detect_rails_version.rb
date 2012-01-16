@@ -2,9 +2,28 @@
 #
 # You can pass it in as an ENV variable or it will use
 # the current Gemfile.lock to find it
-def detect_rails_version
-  return nil unless (File.exists?("Gemfile.lock") || File.symlink?("Gemfile.lock"))
 
-  File.read("Gemfile.lock").match(/^\W*rails \(([a-z\d.]*)\)/)
-  return $1
+unless defined?(RAILS_VERSION_FILE)
+  RAILS_VERSION_FILE = File.expand_path("../../../.rails-version", __FILE__)
+end
+
+unless defined?(DEFAULT_RAILS_VERSION)
+  DEFAULT_RAILS_VERSION = "3.1.3"
+end
+
+def detect_rails_version
+  detected_version = if File.exists?(RAILS_VERSION_FILE)
+    version = File.read(RAILS_VERSION_FILE).chomp.strip
+    version != "" ? version : DEFAULT_RAILS_VERSION
+  else
+    DEFAULT_RAILS_VERSION
+  end
+
+  puts "Detected Rails: #{detected_version}" if ENV['DEBUG']
+
+  detected_version
+end
+
+def write_rails_version(version)
+  File.open(RAILS_VERSION_FILE, "w+"){|f| f << version }
 end

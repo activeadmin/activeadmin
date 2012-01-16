@@ -15,10 +15,6 @@ module Arbre
       alias :<< :add
 
       def to_s
-        to_html
-      end
-
-      def to_html
         to_a.join(" ")
       end
 

@@ -35,7 +35,7 @@ module Arbre
 
       def build(*args, &block)
         # Render the block passing ourselves in
-        insert_text_node_if_string(block.call(self)) if block
+        append_return_block(block.call(self)) if block
       end
 
       def add_child(child)
@@ -108,11 +108,11 @@ module Arbre
       alias_method :find_by_class, :get_elements_by_class_name
 
       def content
-        children.to_html
+        children.to_s
       end
 
       def html_safe
-        to_html
+        to_s
       end
 
       def indent_level
@@ -120,18 +120,14 @@ module Arbre
       end
 
       def each(&block)
-        [to_html].each(&block)
-      end
-
-      def to_s
-        to_html
+        [to_s].each(&block)
       end
 
       def to_str
         to_s
       end
 
-      def to_html
+      def to_s
         content
       end
 

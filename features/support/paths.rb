@@ -28,6 +28,12 @@ module NavigationHelpers
     when /^the index page for (.*)$/
       send(:"admin_#{$1}_path")
 
+    when /^the last author's posts$/
+      admin_user_posts_path(User.last)
+
+    when /^the last author's last post page$/
+      admin_user_post_path(User.last, Post.where(:author_id => User.last.id).last)
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

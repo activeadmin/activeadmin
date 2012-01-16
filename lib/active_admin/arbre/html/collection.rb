@@ -16,9 +16,9 @@ module Arbre
         self.class.new(super)
       end
 
-      def to_html
+      def to_s
         self.collect do |element|
-          element.to_html
+          element.to_s
         end.join.html_safe
       end
     end

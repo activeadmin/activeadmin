@@ -1,22 +1,22 @@
 Then /^I should see the scope "([^"]*)"$/ do |name|
-  Then %{I should see "#{name}" within ".scopes"}
+  step %{I should see "#{name}" within ".scopes"}
 end
 
 Then /^I should not see the scope "([^"]*)"$/ do |name|
-  Then %{I should not see "#{name}" within ".scopes"}
+  step %{I should not see "#{name}" within ".scopes"}
 end
 
 Then /^I should see the scope "([^"]*)" selected$/ do |name|
-  Then %{I should see "#{name}" within ".scopes .selected"}
+  step %{I should see "#{name}" within ".scopes .selected"}
 end
 
 Then /^I should see the scope "([^"]*)" not selected$/ do |name|
-  Then %{I should see the scope "#{name}"}
+  step %{I should see the scope "#{name}"}
   page.should_not have_css('.scopes .selected', :text => name)
 end
 
 Then /^I should see the scope "([^"]*)" with the count (\d+)$/ do |name, count|
-  Then %{I should see "#{count}" within ".scopes .#{name.gsub(" ", "").underscore.downcase} .count"}
+  step %{I should see "#{count}" within ".scopes .#{name.gsub(" ", "").underscore.downcase} .count"}
 end
 
 Then /^I should see (\d+) ([\w]*) in the table$/ do |count, resource_type|

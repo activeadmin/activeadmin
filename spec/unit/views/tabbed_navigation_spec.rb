@@ -80,7 +80,8 @@ describe ActiveAdmin::Views::TabbedNavigation do
 
       it "should add the 'current' and 'has_nested' classes to the li and 'current' to the sub li" do
         assigns[:current_tab] = "Reports/A Sub Reports"
-        html.should have_tag("li", :attributes => { :id => "reports", :class => "current has_nested" })
+        html.should have_tag("li", :attributes => { :id => "reports", :class => /current/ })
+        html.should have_tag("li", :attributes => { :id => "reports", :class => /has_nested/ })
         html.should have_tag("li", :attributes => { :id => "a_sub_reports", :class => "current" })
       end
 

@@ -10,6 +10,8 @@ since we've changed both the CSS and JS files.
 * In the initializer `config.allow_comments_in = []` is now
   `config.allow_comments = true`. Use the new namespace specific configurations
   to allow or disallow configuration within a specific namespace.
+* Removed `Object#to_html` in favour of `to_s`. Any Arbre components
+  implementing a `to_html` method need to be updated to use `to_s` instead.
 
 ### New Features
 
@@ -47,6 +49,9 @@ since we've changed both the CSS and JS files.
 * [#780][]: Fix stack level too deep exception when logout path is setup to use
   `:logout_path` named route. ([@george][])
 * [#637][]: Fix scope all I18n ([@fbuenemann][])
+* [#496][]: Remove global `Object#to_html` [@ebeigarts][]
+* [#470][], [#154][]: Arbre properly supports blocks that return Numeric values
+  ([@bobbytables][], [@utkarshkukreti][], [@gregbell][])
 
 ### Dependencies
 
@@ -57,6 +62,9 @@ since we've changed both the CSS and JS files.
 * [#711][]: Active admin now depends on Bourbon > 1.0.0. If you're using Rails
   3.0.x, make sure to run `rails generate active_admin:assets` to ensure you
   have the correct css files ([@mattvague][])
+* [#869][]: Upgraded Kaminari to >= 0.13.0 and added support for
+  `Kaminari.config.page_method_name`. Active Admin should now be happy if
+  `will_paginate` is installed with it. ([@j][]-manu)
 
 ### Contributors
 
@@ -369,6 +377,7 @@ of the highlights. 250 commits. Enough said.
 [#122]: https://github.com/gregbell/active_admin/issues/122
 [#131]: https://github.com/gregbell/active_admin/issues/131
 [#135]: https://github.com/gregbell/active_admin/issues/135
+[#154]: https://github.com/gregbell/active_admin/issues/154
 [#171]: https://github.com/gregbell/active_admin/issues/171
 [#186]: https://github.com/gregbell/active_admin/issues/186
 [#197]: https://github.com/gregbell/active_admin/issues/197
@@ -381,6 +390,8 @@ of the highlights. 250 commits. Enough said.
 [#381]: https://github.com/gregbell/active_admin/issues/381
 [#428]: https://github.com/gregbell/active_admin/issues/428
 [#468]: https://github.com/gregbell/active_admin/issues/468
+[#470]: https://github.com/gregbell/active_admin/issues/470
+[#496]: https://github.com/gregbell/active_admin/issues/496
 [#505]: https://github.com/gregbell/active_admin/issues/505
 [#527]: https://github.com/gregbell/active_admin/issues/527
 [#551]: https://github.com/gregbell/active_admin/issues/551
@@ -395,12 +406,15 @@ of the highlights. 250 commits. Enough said.
 [#644]: https://github.com/gregbell/active_admin/issues/644
 [#689]: https://github.com/gregbell/active_admin/issues/689
 [#711]: https://github.com/gregbell/active_admin/issues/711
+[#723]: https://github.com/gregbell/active_admin/issues/723
 [#741]: https://github.com/gregbell/active_admin/issues/741
 [#751]: https://github.com/gregbell/active_admin/issues/751
 [#758]: https://github.com/gregbell/active_admin/issues/758
 [#780]: https://github.com/gregbell/active_admin/issues/780
+[#869]: https://github.com/gregbell/active_admin/issues/869
 [@DMajrekar]: https://github.com/DMajrekar
 [@ZequeZ]: https://github.com/ZequeZ
+[@bobbytables]: https://github.com/bobbytables
 [@dhiemstra]: https://github.com/dhiemstra
 [@doug316]: https://github.com/doug316
 [@ebeigarts]: https://github.com/ebeigarts
@@ -409,6 +423,7 @@ of the highlights. 250 commits. Enough said.
 [@fbuenemann]: https://github.com/fbuenemann
 [@george]: https://github.com/george
 [@gregbell]: https://github.com/gregbell
+[@j]: https://github.com/j
 [@jbarket]: https://github.com/jbarket
 [@knoopx]: https://github.com/knoopx
 [@krug]: https://github.com/krug
@@ -423,5 +438,6 @@ of the highlights. 250 commits. Enough said.
 [@sftsang]: https://github.com/sftsang
 [@shayfrendt]: https://github.com/shayfrendt
 [@tricknotes]: https://github.com/tricknotes
-[@vairix]: https://github.com/vairix-ssierra
+[@utkarshkukreti]: https://github.com/utkarshkukreti
+[@vairix]: https://github.com/vairix
 [@watson]: https://github.com/watson
