@@ -20,21 +20,14 @@ describe "CheckboxToggler", ->
       expect( => new CheckboxToggler(@collection); ).toThrow("'toggle all' checkbox not found")
 
   describe "'toggle all' checkbox", ->
-    describe "when checking", ->
-      
-      it "should check all unchecked checkboxes", ->
-        @toggle_all.trigger("click")
-        expect(@checkboxes).toHaveAttr("checked")
+    it "should check all checkboxes when checked", ->
+      @toggle_all.trigger("click")
+      expect(@checkboxes).toHaveAttr("checked")
 
-      it "should leave the 'toggle all' checkbox alone", ->
-        @toggle_all.trigger("click")
-        expect(@toggle_all).toHaveAttr("checked")
-
-    describe "when unchecking", ->
-      it "should uncheck all checkboxes", ->
-        @toggle_all.trigger("click")
-        @toggle_all.trigger("click")
-        expect(@checkboxes).not.toHaveAttr("checked")
+    it "should uncheck all checkboxes when unchecked", ->
+      @toggle_all.trigger("click")
+      @toggle_all.trigger("click")
+      expect(@checkboxes).not.toHaveAttr("checked")
 
   describe "individual checkboxes", ->
 

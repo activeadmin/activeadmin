@@ -24,22 +24,14 @@
       });
     });
     describe("'toggle all' checkbox", function() {
-      describe("when checking", function() {
-        it("should check all unchecked checkboxes", function() {
-          this.toggle_all.trigger("click");
-          return expect(this.checkboxes).toHaveAttr("checked");
-        });
-        return it("should leave the 'toggle all' checkbox alone", function() {
-          this.toggle_all.trigger("click");
-          return expect(this.toggle_all).toHaveAttr("checked");
-        });
+      it("should check all checkboxes when checked", function() {
+        this.toggle_all.trigger("click");
+        return expect(this.checkboxes).toHaveAttr("checked");
       });
-      return describe("when unchecking", function() {
-        return it("should uncheck all checkboxes", function() {
-          this.toggle_all.trigger("click");
-          this.toggle_all.trigger("click");
-          return expect(this.checkboxes).not.toHaveAttr("checked");
-        });
+      return it("should uncheck all checkboxes when unchecked", function() {
+        this.toggle_all.trigger("click");
+        this.toggle_all.trigger("click");
+        return expect(this.checkboxes).not.toHaveAttr("checked");
       });
     });
     return describe("individual checkboxes", function() {

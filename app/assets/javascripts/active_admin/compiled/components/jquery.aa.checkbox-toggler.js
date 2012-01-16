@@ -21,30 +21,29 @@
     };
 
     CheckboxToggler.prototype._bind = function() {
-      this._bindToggleAllCheckbox();
-      return this._bindAllCheckboxes();
-    };
-
-    CheckboxToggler.prototype._bindToggleAllCheckbox = function() {
       var _this = this;
-      return this.checkboxes.bind("change", function(e) {
-        if (_this.checkboxes.filter(":checked").length === _this.checkboxes.length - 1) {
-          return _this._uncheckToggleAllCheckbox();
-        } else if (_this.checkboxes.filter(":checked").length === _this.checkboxes.length) {
-          return _this._checkToggleAllCheckbox();
-        }
+      this.checkboxes.bind("change", function(e) {
+        return _this._didChangeCheckbox(e.target);
       });
-    };
-
-    CheckboxToggler.prototype._bindAllCheckboxes = function() {
-      var _this = this;
       return this.toggle_all_checkbox.bind("change", function(e) {
-        if (_this._toggleAllIsChecked() === false) {
-          return _this._uncheckAllCheckboxes();
-        } else {
-          return _this._checkAllCheckboxes();
-        }
+        return _this._didChangeToggleAllCheckbox();
       });
+    };
+
+    CheckboxToggler.prototype._didChangeCheckbox = function(checkbox) {
+      if (this.checkboxes.filter(":checked").length === this.checkboxes.length - 1) {
+        return this._uncheckToggleAllCheckbox();
+      } else if (this.checkboxes.filter(":checked").length === this.checkboxes.length) {
+        return this._checkToggleAllCheckbox();
+      }
+    };
+
+    CheckboxToggler.prototype._didChangeToggleAllCheckbox = function() {
+      if (this.toggle_all_checkbox.attr("checked") === "checked") {
+        return this._checkAllCheckboxes();
+      } else {
+        return this._uncheckAllCheckboxes();
+      }
     };
 
     CheckboxToggler.prototype._uncheckToggleAllCheckbox = function() {
@@ -55,16 +54,20 @@
       return this.toggle_all_checkbox.attr("checked", "checked");
     };
 
-    CheckboxToggler.prototype._toggleAllIsChecked = function() {
-      return this.toggle_all_checkbox.attr("checked") === "checked";
-    };
-
     CheckboxToggler.prototype._uncheckAllCheckboxes = function() {
-      return this.checkboxes.removeAttr("checked");
+      var _this = this;
+      return this.checkboxes.each(function(index, el) {
+        $(el).removeAttr("checked");
+        return _this._didChangeCheckbox(el);
+      });
     };
 
     CheckboxToggler.prototype._checkAllCheckboxes = function() {
-      return this.checkboxes.attr("checked", "checked");
+      var _this = this;
+      return this.checkboxes.each(function(index, el) {
+        $(el).attr("checked", "checked");
+        return _this._didChangeCheckbox(el);
+      });
     };
 
     return CheckboxToggler;

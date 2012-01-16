@@ -31,7 +31,7 @@ jQuery(function($) {
     };
   });
 
-  new CheckboxToggler($(".paginated_collection"));
+  new TableCheckboxToggler($(".paginated_collection table"));
 	
 });
 

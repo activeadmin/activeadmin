@@ -17,22 +17,23 @@ window.CheckboxToggler = class CheckboxToggler
     @checkboxes = @container.find(":checkbox").not(@toggle_all_checkbox)
 
   _bind: ->
-    @_bindToggleAllCheckbox()
-    @_bindAllCheckboxes()
-
-  _bindToggleAllCheckbox: ->
     @checkboxes.bind "change", (e) =>
-      if @checkboxes.filter(":checked").length == @checkboxes.length - 1
-        @_uncheckToggleAllCheckbox()
-      else if @checkboxes.filter(":checked").length == @checkboxes.length
-        @_checkToggleAllCheckbox()
-
-  _bindAllCheckboxes: ->
+      @_didChangeCheckbox(e.target)
+      
     @toggle_all_checkbox.bind "change", (e) =>
-      if @_toggleAllIsChecked() == false
-        @_uncheckAllCheckboxes()
-      else
-        @_checkAllCheckboxes()
+      @_didChangeToggleAllCheckbox()
+
+  _didChangeCheckbox: (checkbox) ->
+    if @checkboxes.filter(":checked").length == @checkboxes.length - 1
+      @_uncheckToggleAllCheckbox()
+    else if @checkboxes.filter(":checked").length == @checkboxes.length
+      @_checkToggleAllCheckbox()
+
+  _didChangeToggleAllCheckbox: ->
+    if @toggle_all_checkbox.attr("checked") == "checked"
+      @_checkAllCheckboxes()
+    else
+      @_uncheckAllCheckboxes()      
 
   _uncheckToggleAllCheckbox: ->
     @toggle_all_checkbox.removeAttr("checked")
@@ -40,14 +41,16 @@ window.CheckboxToggler = class CheckboxToggler
   _checkToggleAllCheckbox: ->
     @toggle_all_checkbox.attr("checked","checked")
 
-  _toggleAllIsChecked: ->
-    @toggle_all_checkbox.attr("checked") == "checked"
-
   _uncheckAllCheckboxes: ->
-    @checkboxes.removeAttr("checked")
+    @checkboxes.each (index, el) =>
+      $(el).removeAttr("checked")
+      @_didChangeCheckbox(el)
 
   _checkAllCheckboxes: ->
-    @checkboxes.attr("checked","checked")    
+    @checkboxes.each (index, el) =>
+      $(el).attr("checked","checked")
+      @_didChangeCheckbox(el)
+      
 
 ( ( $ ) ->
   $.widget.bridge 'aaToggleCheckboxes', CheckboxToggler
