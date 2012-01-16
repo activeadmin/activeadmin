@@ -1,11 +1,11 @@
-window.TableCheckboxToggler = class TableCheckboxToggler extends CheckboxToggler
+window.AA.TableCheckboxToggler = class AA.TableCheckboxToggler extends AA.CheckboxToggler
   _init: ->
     super
 
   _bind: ->
     super
 
-    @container.find("tbody").find("td").bind "click", (e) =>
+    @$container.find("tbody").find("td").bind "click", (e) =>
       if e.target.type != 'checkbox'
         @_didClickCell(e.target)
     
@@ -22,6 +22,8 @@ window.TableCheckboxToggler = class TableCheckboxToggler extends CheckboxToggler
   _didClickCell: (cell) ->
     $(cell).parent("tr").find(':checkbox').click()
     
-
+( ( $ ) ->
+  $.widget.bridge 'tableCheckboxToggler', AA.TableCheckboxToggler
+)( jQuery )
 
 

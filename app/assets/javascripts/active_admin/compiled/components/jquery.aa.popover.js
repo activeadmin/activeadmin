@@ -1,7 +1,6 @@
 (function() {
-  var Popover;
 
-  Popover = (function() {
+  window.AA.Popover = AA.Popover = (function() {
 
     function Popover(options, element) {
       var defaults;
@@ -17,7 +16,7 @@
       };
       this.options = $.extend({}, defaults, options);
       this.$popover = null;
-      this.sOpen = false;
+      this.isOpen = false;
       if ($(this.$element.attr("href")).length > 0) {
         this.$popover = $(this.$element.attr("href"));
       }
@@ -92,7 +91,7 @@
   })();
 
   (function($) {
-    return $.widget.bridge('aaPopover', Popover);
+    return $.widget.bridge('popover', AA.Popover);
   })(jQuery);
 
 }).call(this);

@@ -2,6 +2,10 @@
 # Active Admin JS
 #
 
+# Active Admin Namespace for plugins
+#
+window.AA = {}
+
 # Date picker
 
 $ ->

@@ -1,5 +1,5 @@
 
-class Popover
+window.AA.Popover = class AA.Popover
 
   constructor: (@options, @element) ->
 
@@ -16,8 +16,7 @@ class Popover
     @options = $.extend( {}, defaults, options );
 
     @$popover = null
-    @sOpen = false
-
+    @isOpen = false
     
     if $(@$element.attr("href")).length > 0
       @$popover = $(@$element.attr("href"))
@@ -92,5 +91,5 @@ class Popover
     $nipple.css "left", nippleLeftPos
 
 ( ( $ ) ->
-  $.widget.bridge 'aaPopover', Popover
+  $.widget.bridge 'popover', AA.Popover
 )( jQuery )

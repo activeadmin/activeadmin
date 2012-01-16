@@ -1,20 +1,27 @@
-window.CheckboxToggler = class CheckboxToggler
+window.AA.CheckboxToggler = class AA.CheckboxToggler
 
-  constructor: (@container, @options) ->
+  constructor: (@options, @container) ->
+
+    defaults = {}
+
+    @options = $.extend( {}, defaults, options );
+    
     @_init()
     @_bind()
-   
+
   _init: ->
-    
+
     if not @container
       throw new Error("Container element not found")
+    else
+      @$container = $(@container)
 
-    if not @container.find(".toggle_all").length
+    if not @$container.find(".toggle_all")
       throw new Error("'toggle all' checkbox not found")
     else
-      @toggle_all_checkbox = @container.find(".toggle_all")
+      @toggle_all_checkbox = @$container.find(".toggle_all")
 
-    @checkboxes = @container.find(":checkbox").not(@toggle_all_checkbox)
+    @checkboxes = @$container.find(":checkbox").not(@toggle_all_checkbox)
 
   _bind: ->
     @checkboxes.bind "change", (e) =>
@@ -53,5 +60,5 @@ window.CheckboxToggler = class CheckboxToggler
       
 
 ( ( $ ) ->
-  $.widget.bridge 'aaToggleCheckboxes', CheckboxToggler
+  $.widget.bridge 'checkboxToggler', AA.CheckboxToggler
 )( jQuery )

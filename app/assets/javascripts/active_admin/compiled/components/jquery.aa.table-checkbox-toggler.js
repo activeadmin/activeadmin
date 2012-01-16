@@ -1,9 +1,8 @@
 (function() {
-  var TableCheckboxToggler,
-    __hasProp = Object.prototype.hasOwnProperty,
+  var __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-  window.TableCheckboxToggler = TableCheckboxToggler = (function(_super) {
+  window.AA.TableCheckboxToggler = AA.TableCheckboxToggler = (function(_super) {
 
     __extends(TableCheckboxToggler, _super);
 
@@ -18,7 +17,7 @@
     TableCheckboxToggler.prototype._bind = function() {
       var _this = this;
       TableCheckboxToggler.__super__._bind.apply(this, arguments);
-      return this.container.find("tbody").find("td").bind("click", function(e) {
+      return this.$container.find("tbody").find("td").bind("click", function(e) {
         if (e.target.type !== 'checkbox') return _this._didClickCell(e.target);
       });
     };
@@ -40,6 +39,10 @@
 
     return TableCheckboxToggler;
 
-  })(CheckboxToggler);
+  })(AA.CheckboxToggler);
+
+  (function($) {
+    return $.widget.bridge('tableCheckboxToggler', AA.TableCheckboxToggler);
+  })(jQuery);
 
 }).call(this);
