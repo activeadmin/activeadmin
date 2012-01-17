@@ -15,7 +15,7 @@ module ActiveAdmin
       end
       
       # Override to_html to wrap the custom form stuff
-      def to_html
+      def to_s
         @prefix_html + content + text_node('</form>'.html_safe)
       end
 
