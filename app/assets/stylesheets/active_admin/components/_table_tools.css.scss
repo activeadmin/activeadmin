@@ -35,7 +35,7 @@ a.table_tools_button {
 
     &:active {
       @include border-colors(#d7d7d7, #c8c8c8, #c3c3c3);
-      @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.17) inset, 0 1px 0 0px #EEE);
+      @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.17) inset );
       @include gradient(#FFF, #E8E8E8);
     }
   }
@@ -107,14 +107,12 @@ a.table_tools_button {
     &.selected {
 
       a {
-        background: #F0F0F0;
+        @include gradient(#F0F0F0, #FDFDFD);
         @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.1) inset);
-        color: #8a8a8a;
         cursor: default;
         
         &:hover {
-          background: #F0F0F0;
-          color: #8a8a8a;
+          @include gradient(#F0F0F0, #FDFDFD);
         }
       }
     }
