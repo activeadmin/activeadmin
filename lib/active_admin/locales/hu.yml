@@ -4,8 +4,8 @@ en:
     dashboard_welcome:
       welcome: "Üdvözöljük az Active Admin felületén. Ez a vezérlőpult kezdőlapja"
       call_to_action: "Elemek hozzáadásához nézze meg a 'app/admin/dashboards.rb' fájlt"
-    view: "Megnéz"
-    edit: "Szerkeszt"
+    view: "Megtekintés"
+    edit: "Szerkesztés"
     delete: "Törlés"
     delete_confirmation: "Biztosan törli ezt az elemet?"
     new_model: "Új %{model}"
@@ -34,7 +34,7 @@ en:
     pagination:
       empty: "Nincs több %{model}"
       one: "<b>Egy</b> %{model} megjelenítése"
-      one_page: "<b>Mind a(z) %{n}</b> %{model} megjelenítése"
+      one_page: "<b>Az összes (%{n} db)</b> %{model} megjelenítése"
       multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
       entry:
         one: "elem"
