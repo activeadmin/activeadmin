@@ -146,5 +146,18 @@ describe ActiveAdmin::Views::PaginatedCollection do
         pagination.find_by_class('pagination_information').first.content.should == "No entries found"
       end
     end
+
+    context "when collection comes from find with GROUP BY" do
+      let(:collection) do
+        %w{Foo Foo Bar}.each {|title| Post.create(:title => title) }
+        Post.group(:title).page(1).per(5)
+      end
+
+      let(:pagination) { paginated_collection(collection) }
+
+      it "should display proper message (including number and not hash)" do
+        pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>all 2</b> posts"
+      end
+    end
   end
 end
