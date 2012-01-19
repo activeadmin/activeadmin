@@ -17,7 +17,7 @@ module ActiveAdmin
         def main_content
           build_scopes
 
-          if collection.any?
+          if collection.limit(1).exists?
             render_index
           else
             if params[:q]
@@ -41,8 +41,11 @@ module ActiveAdmin
 
         def build_scopes
           if active_admin_config.scopes.any?
+            options = {}
+            options[:scope_count] = config[:scope_count].nil? ? true : config[:scope_count]
+            
             div :class => "table_tools" do
-              scopes_renderer active_admin_config.scopes
+              scopes_renderer active_admin_config.scopes, options
             end
           end
         end
@@ -87,9 +90,13 @@ module ActiveAdmin
         
         def render_index
           renderer_class = find_index_renderer_class(config[:as])
+          paginator      = config[:paginator].nil?      ? true : config[:paginator]
+          download_links = config[:download_links].nil? ? true : config[:download_links]
           
-          paginated_collection(collection, :entry_name   => active_admin_config.resource_name,
-                                           :entries_name => active_admin_config.plural_resource_name) do
+          paginated_collection(collection, :entry_name     => active_admin_config.resource_name,
+                                           :entries_name   => active_admin_config.plural_resource_name,
+                                           :download_links => download_links,
+                                           :paginator      => paginator) do
             div :class => 'index_content' do
               insert_tag(renderer_class, config, collection)
             end
