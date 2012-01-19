@@ -38,15 +38,37 @@ module ActiveAdmin
 
 
       module Sorting
+        def self.included(base)
+          base.extend(ClassMethods)
+        end
+
+        module ClassMethods
+          attr_accessor :default_sort_attrs
+          def default_sort(name, options = {})
+            self.default_sort_attrs ||= []
+            self.default_sort_attrs << [ name, options ]
+          end
+
+        end
+
         protected
+        def default_sort_attr
+          return nil unless self.class.default_sort_attrs
+          self.class.default_sort_attrs.each do |attr, options|
+            next if options[:if] && !options[:if].call(self)
+            next if options[:unless] && options[:unless].call(self)
+            return attr
+          end
+          return nil
+        end
 
         def active_admin_collection
           sort_order(super)
         end
 
         def sort_order(chain)
-          params[:order] ||= active_admin_config.sort_order
-          if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
+          sort_attribute = params[:order] || self.default_sort_attr || active_admin_config.sort_order || ''
+          if sort_attribute.to_s =~ /^([\w\_\.]+)_(desc|asc)$/
             column = $1
             order  = $2
             table  = active_admin_config.resource_table_name
