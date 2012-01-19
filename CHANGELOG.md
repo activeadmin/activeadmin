@@ -52,6 +52,7 @@ since we've changed both the CSS and JS files.
 * [#496][]: Remove global `Object#to_html` [@ebeigarts][]
 * [#470][], [#154][]: Arbre properly supports blocks that return Numeric values
   ([@bobbytables][], [@utkarshkukreti][], [@gregbell][])
+* [#897][]: Fix count display for collections with GROUP BY [@comboy][]
 
 ### Dependencies
 
@@ -86,6 +87,7 @@ since we've changed both the CSS and JS files.
 * Josef Šimánek
 * Juan E.
 * Kieran Klaassen
+* Kacper Cieśla
 * Marc Riera
 * Matt Vague
 * Matthew Brewer
@@ -412,9 +414,11 @@ of the highlights. 250 commits. Enough said.
 [#758]: https://github.com/gregbell/active_admin/issues/758
 [#780]: https://github.com/gregbell/active_admin/issues/780
 [#869]: https://github.com/gregbell/active_admin/issues/869
+[#897]: https://github.com/gregbell/active_admin/issues/897
 [@DMajrekar]: https://github.com/DMajrekar
 [@ZequeZ]: https://github.com/ZequeZ
 [@bobbytables]: https://github.com/bobbytables
+[@comboy]: https://github.com/comboy
 [@dhiemstra]: https://github.com/dhiemstra
 [@doug316]: https://github.com/doug316
 [@ebeigarts]: https://github.com/ebeigarts
