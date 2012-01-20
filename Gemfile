@@ -10,7 +10,7 @@ gem 'rails',          rails_version
 case rails_version
 when /^3\.0/
   # Do nothing, bundler should figure it out
-when /^3\.1/
+when /^3\.(1|2)/
   # These are the gems you have to have for Rails 3.1 to be happy
   gem 'sass-rails'
   gem 'uglifier'
