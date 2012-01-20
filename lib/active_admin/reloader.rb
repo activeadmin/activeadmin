@@ -2,6 +2,10 @@ module ActiveAdmin
 
   class FileUpdateChecker < ::ActiveSupport::FileUpdateChecker
 
+    def paths
+      @files
+    end if !respond_to?(:paths)
+
     # Over-ride the default #updated_at to support the deletion of files
     def updated_at
       paths.map { |path| File.mtime(path) rescue Time.now }.max
