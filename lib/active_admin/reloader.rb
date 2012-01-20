@@ -3,8 +3,9 @@ module ActiveAdmin
   class FileUpdateChecker < ::ActiveSupport::FileUpdateChecker
 
     def paths
-      @files
-    end if !respond_to?(:paths)
+      # hack to support both Rails 3.1 and 3.2
+      @files || @paths
+    end
 
     # Over-ride the default #updated_at to support the deletion of files
     def updated_at
