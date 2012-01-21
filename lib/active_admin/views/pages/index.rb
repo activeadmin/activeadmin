@@ -118,7 +118,7 @@ module ActiveAdmin
         #       insert_tag(renderer_class, config, collection)
         #     end
         #   end
-        end
+        # end
 
       end
     end
