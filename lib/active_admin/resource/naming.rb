@@ -1,6 +1,16 @@
 module ActiveAdmin
   class Resource
     module Naming
+		
+	  def name_of_resource_class
+        tmp_resource_name ||= @options[:as]
+        tmp_resource_name ||= resource_class.name.gsub('::','')
+	  end
+
+  	  def plural_name_of_resource_class
+        name_of_resource_class.pluralize
+	  end
+
       # Returns the name to call this resource such as "Bank Account"
       def resource_name
         @resource_name ||= @options[:as]
@@ -22,11 +32,11 @@ module ActiveAdmin
 
       # A camelized safe representation for this resource
       def camelized_resource_name
-        resource_name.titleize.gsub(' ', '')
+        name_of_resource_class.titleize.gsub(' ', '')
       end
 
       def plural_camelized_resource_name
-        plural_resource_name.titleize.gsub(' ', '')
+        plural_name_of_resource_class.titleize.gsub(' ', '')
       end
 
       # An underscored safe representation internally for this resource
