@@ -92,15 +92,32 @@ module ActiveAdmin
           insert_tag(view_factory.blank_slate, empty_results_content)
         end
         
-        def render_index
+        def render_index_content
           renderer_class = find_index_renderer_class(config[:as])
-          
-          paginated_collection(collection, :entry_name   => active_admin_config.resource_name,
-                                           :entries_name => active_admin_config.plural_resource_name) do
-            div :class => 'index_content' do
-              insert_tag(renderer_class, config, collection)
+          div :class => 'index_content' do
+            insert_tag(renderer_class, config, collection)
+          end
+        end
+
+        def render_index
+          if config[:paginate] == false
+            render_index_content
+          else
+            paginated_collection(collection, :entry_name => active_admin_config.resource_name) do
+              render_index_content
             end
           end
+        end
+        
+        # def render_index
+        #   renderer_class = find_index_renderer_class(config[:as])
+        #   
+        #   paginated_collection(collection, :entry_name   => active_admin_config.resource_name,
+        #                                    :entries_name => active_admin_config.plural_resource_name) do
+        #     div :class => 'index_content' do
+        #       insert_tag(renderer_class, config, collection)
+        #     end
+        #   end
         end
 
       end
