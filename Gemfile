@@ -31,7 +31,7 @@ group :test do
   gem 'cucumber-rails', '1.2.1'
   gem 'capybara',       '1.1.2'
   gem 'database_cleaner'
-  gem 'shoulda',        '2.11.2',           :require => nil
+  gem 'shoulda-matchers', '1.0.0'
   gem 'launchy'
   gem 'jslint_on_rails',    '~> 1.0.6'
   gem 'guard-rspec'
