@@ -123,18 +123,18 @@ module ActiveAdmin
           @per_page = 10_000 if request.format == 'text/csv'
         end
 
-        # def paginate(chain)
-        #   chain.send(Kaminari.config.page_method_name, params[:page]).per(@per_page || active_admin_namespace.default_per_page)
-        # end
-        
         def paginate(chain)
-          config = index_config || ActiveAdmin::PageConfig.new
-          if config[:paginate] == false
-            chain
-          else
-            chain.page(params[:page]).per(@per_page || active_admin_application.default_per_page)
-          end
+          chain.send(Kaminari.config.page_method_name, params[:page]).per(@per_page || active_admin_namespace.default_per_page)
         end
+        
+        # def paginate(chain)
+        #   config = index_config || ActiveAdmin::PageConfig.new
+        #   if config[:paginate] == false
+        #     chain
+        #   else
+        #     chain.page(params[:page]).per(@per_page || active_admin_application.default_per_page)
+        #   end
+        # end
       end
 
       # Include all the Modules. BaseCollection must be first
