@@ -66,6 +66,7 @@ since we've changed both the CSS and JS files.
 * [#869][]: Upgraded Kaminari to >= 0.13.0 and added support for
   `Kaminari.config.page_method_name`. Active Admin should now be happy if
   `will_paginate` is installed with it. ([@j][]-manu)
+* #931: Support for Rails 3.2 added (@mperham)
 
 ### Contributors
 
