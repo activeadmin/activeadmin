@@ -94,7 +94,7 @@ Feature: Index Scoping
     And I should see a link to "Today"
     
   Scenario: Viewing resources with scopes when a filter is applied
-    Given 10 posts written by "Daft Punk" exist
+    Given 3 posts written by "Daft Punk" exist
     And a post with the title "Monkey Wrench" written by "Foo Fighters" exists
     And an index configuration of:
       """
@@ -111,8 +111,8 @@ Feature: Index Scoping
         end
       """
     Then I should see the scope "All" selected
-    And I should see the scope "All" with the count 10
+    And I should see the scope "All" with the count 3
     When I fill in "Search Title" with "Something"
     And I press "Filter"
     Then I should see the scope "All" not selected
-    And I should see the scope "All" with the count 10
+    And I should see the scope "All" with the count 3
