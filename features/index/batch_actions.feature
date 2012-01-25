@@ -34,31 +34,6 @@ Feature: Batch Actions
     When I check the 1st record
     Given I submit the batch action form with "flag"
     Then I should see a flash with "Successfully flagged 10 posts"
-
-  # TODO: Integrate with JS testing 
-  #@selenium
-  # Scenario: Toggling records
-  #   Given 10 posts exist
-  #   And an index configuration of:
-  #     """
-  #     ActiveAdmin.register Post
-  #     """
-  # 
-  #   When I check the 1st record
-  #   Then I should see 1 record selected
-  #   
-  #   When I uncheck the 1st record
-  #   Then I should see 0 records selected
-  #  
-  #   When I toggle the collection selection
-  #   Then I should see 10 records selected
-  #   
-  #   When I toggle the collection selection
-  #   Then I should see 0 records selected
-  #   
-  #   When I check the 1st record
-  #   When I toggle the collection selection
-  #   Then I should see 10 records selected
   
   Scenario: Disabling batch actions
     Given 10 posts exist
