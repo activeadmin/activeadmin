@@ -22,7 +22,7 @@ scopes = <<-EOF
   end
 
   scope :my_posts do |posts|
-    posts.where(:author_id => current_user.id)
+    posts.where(:author_id => current_admin_user.id)
   end
 EOF
 inject_into_file 'app/admin/posts.rb', scopes , :after => "ActiveAdmin.register Post do\n"
