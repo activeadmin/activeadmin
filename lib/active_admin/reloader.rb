@@ -2,6 +2,11 @@ module ActiveAdmin
 
   class FileUpdateChecker < ::ActiveSupport::FileUpdateChecker
 
+    def paths
+      # hack to support both Rails 3.1 and 3.2
+      @files || @paths
+    end
+
     # Over-ride the default #updated_at to support the deletion of files
     def updated_at
       paths.map { |path| File.mtime(path) rescue Time.now }.max

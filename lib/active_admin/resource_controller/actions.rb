@@ -10,11 +10,11 @@ module ActiveAdmin
     def index(options={}, &block)
       super(options) do |format|
         block.call(format) if block
-        format.html { render active_admin_template('index.html.arb') }
+        format.html { render active_admin_template('index') }
         format.csv do
           headers['Content-Type'] = 'text/csv; charset=utf-8'
           headers['Content-Disposition'] = %{attachment; filename="#{csv_filename}"}
-          render active_admin_template('index.csv.erb')
+          render active_admin_template('index')
         end
       end
     end
@@ -23,7 +23,7 @@ module ActiveAdmin
     def show(options={}, &block)
       super do |format|
         block.call(format) if block
-        format.html { render active_admin_template('show.html.arb') }
+        format.html { render active_admin_template('show') }
       end
     end
     alias :show! :show
@@ -31,7 +31,7 @@ module ActiveAdmin
     def new(options={}, &block)
       super do |format|
         block.call(format) if block
-        format.html { render active_admin_template('new.html.arb') }
+        format.html { render active_admin_template('new') }
       end
     end
     alias :new! :new
@@ -39,7 +39,7 @@ module ActiveAdmin
     def edit(options={}, &block)
       super do |format|
         block.call(format) if block
-        format.html { render active_admin_template('edit.html.arb') }
+        format.html { render active_admin_template('edit') }
       end
     end
     alias :edit! :edit
@@ -47,7 +47,7 @@ module ActiveAdmin
     def create(options={}, &block)
       super(options) do |success, failure|
         block.call(success, failure) if block
-        failure.html { render active_admin_template('new.html.arb') }
+        failure.html { render active_admin_template('new') }
       end
     end
     alias :create! :create
@@ -55,7 +55,7 @@ module ActiveAdmin
     def update(options={}, &block)
       super do |success, failure|
         block.call(success, failure) if block
-        failure.html { render active_admin_template('edit.html.arb') }
+        failure.html { render active_admin_template('edit') }
       end
     end
     alias :update! :update

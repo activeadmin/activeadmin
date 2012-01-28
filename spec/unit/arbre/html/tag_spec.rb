@@ -19,7 +19,7 @@ describe Arbre::HTML::Tag do
   end
 
   describe "creating a tag 'for' an object" do
-    let(:model_name){ mock(:singular => "resource_class")}
+    let(:model_name){ mock(:singular => "resource_class", :param_key => 'resource_class')}
     let(:resource_class){ mock(:model_name => model_name) }
     let(:resource){ mock(:class => resource_class, :to_key => ['5'])}
 
