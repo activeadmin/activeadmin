@@ -1,14 +1,14 @@
 module ActiveAdmin
   class Resource
     module Naming
-      # Returns the name to call this resource such as "Bank Account"
+      # Returns the user facing name. Example: "Bank Account"
       def resource_name
         @resource_name ||= @options[:as]
         @resource_name ||= singular_human_name
-        @resource_name ||= resource_class.name.gsub('::',' ')
+        @resource_name ||= safe_resource_name
       end
 
-      # Returns the plural version of this resource such as "Bank Accounts"
+      # Returns the plural version of the user facing name. Example: "Bank Accounts"
       def plural_resource_name
         @plural_resource_name ||= @options[:as].pluralize if @options[:as]
         @plural_resource_name ||= plural_human_name
@@ -20,13 +20,22 @@ module ActiveAdmin
         camelized_resource_name
       end
 
+      def safe_resource_name
+        @safe_resource_name ||= @options[:as]
+        @safe_resource_name ||= resource_class.name.gsub('::',' ')
+      end
+
+      def plural_safe_resource_name
+        safe_resource_name.pluralize
+      end
+
       # A camelized safe representation for this resource
       def camelized_resource_name
-        resource_name.titleize.gsub(' ', '')
+        safe_resource_name.titleize.gsub(' ', '')
       end
 
       def plural_camelized_resource_name
-        plural_resource_name.titleize.gsub(' ', '')
+        plural_safe_resource_name.titleize.gsub(' ', '')
       end
 
       # An underscored safe representation internally for this resource
@@ -38,6 +47,7 @@ module ActiveAdmin
       def plural_underscored_resource_name
         plural_camelized_resource_name.underscore
       end
+
 
       private
 

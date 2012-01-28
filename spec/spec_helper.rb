@@ -1,8 +1,5 @@
 require File.expand_path("../spec_helper_without_rails", __FILE__)
 
-require 'shoulda/active_record'
-include Shoulda::ActiveRecord::Macros
-
 module ActiveAdminIntegrationSpecHelper
   extend self
 

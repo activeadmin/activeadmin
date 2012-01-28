@@ -133,7 +133,7 @@ module ActiveAdmin
 
     # @deprecated
     def resource
-      @resource_class
+      resource_class
     end
     ActiveAdmin::Deprecation.deprecate self, :resource,
       "ActiveAdmin::Resource#resource is deprecated. Please use #resource_class instead."

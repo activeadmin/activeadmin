@@ -8,7 +8,7 @@ unless defined?(RAILS_VERSION_FILE)
 end
 
 unless defined?(DEFAULT_RAILS_VERSION)
-  DEFAULT_RAILS_VERSION = "3.1.3"
+  DEFAULT_RAILS_VERSION = "3.2.0"
 end
 
 def detect_rails_version

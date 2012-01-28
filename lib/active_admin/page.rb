@@ -32,11 +32,22 @@ module ActiveAdmin
     include Resource::Naming
 
     # plural_resource_name is singular
+    def resource_name
+      name
+    end
+
+    def safe_resource_name
+      name
+    end
+
+
+    # Force plural to be singular
     def plural_resource_name
       name
     end
 
-    def resource_name
+    # Force plural to be singular
+    def plural_safe_resource_name
       name
     end
 

@@ -26,6 +26,23 @@ Feature: Index Scoping
     And I should see the scope "All" with the count 10
     And I should see 10 posts in the table
 
+  Scenario: Viewing resources with one scope and no results
+    Given 10 posts exist
+    And an index configuration of:
+     """
+     ActiveAdmin.register Post do
+       scope :all, :default => true
+       filter :title
+     end
+     """
+
+    When I fill in "Search Title" with "Hello World 17"
+    And I press "Filter"
+    And I should not see the scope "All"
+
+    When I am on the index page for posts
+    Then I should see the scope "All" selected
+
   Scenario: Viewing resources when scoping
     Given 6 posts exist
     And 4 published posts exist
@@ -46,8 +63,8 @@ Feature: Index Scoping
     And I should see 4 posts in the table
 
   Scenario: Viewing resources with optional scopes
-  	Given 10 posts exist
-  	And an index configuration of:
+    Given 10 posts exist
+    And an index configuration of:
     """
     ActiveAdmin.register Post do
       scope :all, :if => proc { false }
@@ -62,11 +79,11 @@ Feature: Index Scoping
       end
     end
     """
-  	Then I should see the scope "Default" selected
-  	And I should not see the scope "All"
-  	And I should not see the scope "Today"
-  	And I should see the scope "Shown"
-  	And I should see the scope "Default" with the count 10
+    Then I should see the scope "Default" selected
+    And I should not see the scope "All"
+    And I should not see the scope "Today"
+    And I should see the scope "Shown"
+    And I should see the scope "Default" with the count 10
 
   Scenario: Viewing resources with mulitple scopes as blocks
     Given 10 posts exist

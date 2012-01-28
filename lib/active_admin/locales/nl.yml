@@ -3,11 +3,11 @@ nl:
     dashboard: Dashboard
     dashboard_welcome:
       welcome: "Welkom bij Active Admin. Dit is de standaard dashboard pagina"
-      call_to_action: "Maak je dashboard op maat in het bestand 'app/admin/dashboards.rb'"
+      call_to_action: "Pas je eigen dashboard aan in het bestand 'app/admin/dashboards.rb'"
     view: "Bekijk"
     edit: "Wijzig"
     delete: "Verwijder"
-    delete_confirmation: "Weet je zeker dat je dit wilt verwijderen?"
+    delete_confirmation: "Weet je zeker dat je dit item wilt verwijderen?"
     new_model: "Nieuwe %{model}"
     edit_model: "Wijzig %{model}"
     delete_model: "Verwijder %{model}"
@@ -16,7 +16,7 @@ nl:
     empty: "Leeg"
     previous: "Vorige"
     next: "Volgende"
-    download: "Download:"
+    download: "Download"
     has_many_new: "Voeg nieuwe %{model} toe"
     has_many_delete: "Verwijderen"
     filter: "Filter"
