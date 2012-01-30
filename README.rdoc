@@ -4,7 +4,7 @@ Active Admin is a framework for creating administration style interfaces. It
 abstracts common business application patterns to make it simple for developers
 to implement beautiful and elegant interfaces with very little effort.
 
-{<img src="http://travis-ci.org/gregbell/active_admin.png" />}[http://travis-ci.org/gregbell/active_admin]
+{<img src="https://secure.travis-ci.org/gregbell/active_admin.png" />}[http://travis-ci.org/gregbell/active_admin]
 
 == Documentation & Support
 
