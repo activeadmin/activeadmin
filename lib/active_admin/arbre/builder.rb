@@ -101,7 +101,7 @@ module Arbre
       # Appends the value to the current DOM element if there are no
       # existing DOM Children and it responds to #to_s
       def append_return_block(tag)
-        return nil if current_dom_context.children.any?
+        return nil if current_dom_context.children?
 
         if !tag.is_a?(Arbre::HTML::Element) && tag.respond_to?(:to_s)
           current_dom_context << Arbre::HTML::TextNode.from_string(tag.to_s)
