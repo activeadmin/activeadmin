@@ -25,7 +25,7 @@
   @include section-background;
   margin-bottom: 20px;
   
-  h3 { @include section-header; }
+  > h3 { @include section-header; }
   
   > div { padding: 3px $section-padding $section-padding $section-padding; }
   
