@@ -38,3 +38,19 @@ es:
     blank_slate:
       content: "No hay %{resource_name} aún."
       link: "Crea uno(a)"
+  views:
+      pagination:
+          truncate: "..."
+          first: "Inicio"
+          previous: "Anterior"
+          next: "Siguiente"
+          last: "Ultimo"
+  formtastic:
+    yes: "Sí"
+    no: "No"
+    create: "Guardar %{model}"
+    update: "Guardar %{model}"
+    submit: "Aceptar"
+    cancel: "Cancelar"
+    reset: "Resetear %{model}"
+    required: "requerido"
