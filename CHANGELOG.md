@@ -4,6 +4,10 @@
 
 * Columns component now supports column spans, max and min widths ([@gregbell][])
 
+### Bug Fixes
+
+* #101: Global nav now works with RackBaseURI ([@gregbell][])
+* #960: Global nav works when scoped in rails routes ([@gregbell][])
 
 ## 0.4.0
 
