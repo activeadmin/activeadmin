@@ -6,10 +6,6 @@ module ActiveAdmin
     module Collection
       extend ActiveSupport::Concern
 
-      included do
-        before_filter :setup_pagination_for_csv
-      end
-
       module BaseCollection
         protected
 
@@ -118,13 +114,23 @@ module ActiveAdmin
           paginate(super)
         end
 
-        # Allow more records for csv files
-        def setup_pagination_for_csv
-          @per_page = 10_000 if request.format == 'text/csv'
+        def paginate(chain)
+          chain.send(Kaminari.config.page_method_name, params[:page]).per(per_page)
         end
 
-        def paginate(chain)
-          chain.send(Kaminari.config.page_method_name, params[:page]).per(@per_page || active_admin_namespace.default_per_page)
+        def per_page
+          return max_csv_records if request.format == 'text/csv'
+          return max_per_page if active_admin_config.paginate == false
+
+          @per_page || active_admin_config.per_page
+        end
+
+        def max_csv_records
+          10_000
+        end
+
+        def max_per_page
+          10_000
         end
       end
 
