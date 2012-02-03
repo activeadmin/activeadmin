@@ -49,9 +49,7 @@ Feature: Index Scoping
       """
       ActiveAdmin.register Post do
         scope :all, :default => true
-        index :as => :table, :scope_count => false do
-          column :id
-        end
+        index :as => :table, :scope_count => false
       end
       """
     Then I should see the scope "All" selected

@@ -29,8 +29,7 @@ module ActiveAdmin
         end
 
         protected
-        
-        
+
         # TODO: Refactor to new HTML DSL
         def build_download_format_links(formats = [:csv, :xml, :json])
           links = formats.collect do |format|
@@ -41,11 +40,12 @@ module ActiveAdmin
 
         def build_scopes
           if active_admin_config.scopes.any?
-            options = {}
-            options[:scope_count] = config[:scope_count].nil? ? true : config[:scope_count]
-            
+            scope_options = {
+              :scope_count => config[:scope_count].nil? ? true : config[:scope_count]
+            }
+
             div :class => "table_tools" do
-              scopes_renderer active_admin_config.scopes, options
+              scopes_renderer active_admin_config.scopes, scope_options
             end
           end
         end
@@ -53,13 +53,7 @@ module ActiveAdmin
         # Creates a default configuration for the resource class. This is a table
         # with each column displayed as well as all the default actions
         def default_index_config
-          @default_index_config ||= ::ActiveAdmin::PagePresenter.new(:as => :table) do |display|
-            id_column
-            resource_class.content_columns.each do |col|
-              column col.name.to_sym
-            end
-            default_actions
-          end
+          @default_index_config ||= ::ActiveAdmin::PagePresenter.new(:as => :table)
         end
 
         # Returns the actual class for renderering the main content on the index
