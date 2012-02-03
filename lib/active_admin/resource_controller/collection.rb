@@ -132,6 +132,15 @@ module ActiveAdmin
         def max_per_page
           10_000
         end
+        
+        # def paginate(chain)
+        #   config = index_config || ActiveAdmin::PageConfig.new
+        #   if config[:paginate] == false
+        #     chain
+        #   else
+        #     chain.page(params[:page]).per(@per_page || active_admin_application.default_per_page)
+        #   end
+        # end
       end
 
       # Include all the Modules. BaseCollection must be first

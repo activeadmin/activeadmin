@@ -5,7 +5,14 @@ module ActiveAdmin
       class Index < Base
 
         def title
-          active_admin_config.plural_resource_name
+          case config[:title]
+          when Symbol, Proc
+            call_method_or_proc_on(resource, config[:title])
+          when String
+            config[:title]
+          else
+            active_admin_config.plural_resource_name
+          end
         end
 
         def config
@@ -81,6 +88,23 @@ module ActiveAdmin
           empty_results_content = I18n.t("active_admin.pagination.empty", :model => active_admin_config.resource_name.pluralize)
           insert_tag(view_factory.blank_slate, empty_results_content)
         end
+        
+        # def render_index_content
+        #   renderer_class = find_index_renderer_class(config[:as])
+        #   div :class => 'index_content' do
+        #     insert_tag(renderer_class, config, collection)
+        #   end
+        # end
+        # 
+        # def render_index
+        #   if config[:paginate] == false
+        #     render_index_content
+        #   else
+        #     paginated_collection(collection, :entry_name => active_admin_config.resource_name) do
+        #       render_index_content
+        #     end
+        #   end
+        # end
         
         def render_index
           renderer_class = find_index_renderer_class(config[:as])
