@@ -1,3 +1,10 @@
+## Master (unreleased)
+
+### Enhancements
+
+* Columns component now supports column spans, max and min widths ([@gregbell][])
+
+
 ## 0.4.0
 
 ### Upgrade Notes
