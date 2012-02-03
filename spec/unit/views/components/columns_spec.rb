@@ -20,8 +20,8 @@ describe ActiveAdmin::Views::Columns do
       cols.children.first.class_list.should include("column")
     end
 
-    it "should have one column with the width 100%" do
-      cols.children.first.attr(:style).should include("width: 100%")
+    it "should have one column with the width 100.0%" do
+      cols.children.first.attr(:style).should include("width: 100.0%")
     end
   end
 
@@ -38,11 +38,11 @@ describe ActiveAdmin::Views::Columns do
     end
 
     it "should have a first column with width 49% and margin 2%" do
-      cols.children.first.attr(:style).should == "width: 49%; margin-right: 2%;"
+      cols.children.first.attr(:style).should == "width: 49.0%; margin-right: 2%;"
     end
 
     it "should have a second column with width 49% and no right margin" do
-      cols.children.last.attr(:style).should == "width: 49%;"
+      cols.children.last.attr(:style).should == "width: 49.0%;"
     end
   end
 
@@ -70,6 +70,63 @@ describe ActiveAdmin::Views::Columns do
     it "should have column 4 with width 49% and no margin" do
       cols.children[3].attr(:style).should == "width: 23.5%;"
     end
+  end
+
+
+  describe "Column Spans" do
+    let(:cols) do
+      columns do
+        column(:span => 2){ "Hello World" }
+        column(){ "Hello World" }
+        column(){ "Hello World" }
+      end
+    end
+
+    it "should set the span when declared" do
+      cols.children.first.attr(:style).should == "width: 49.0%; margin-right: 2%;"
+    end
+
+    it "should default to 1 if not passed in" do
+      cols.children.last.attr(:style).should == "width: 23.5%;"
+    end
+  end
+
+  describe "Column max width" do
+
+    let(:cols) do
+      columns do
+        column(:max_width => "100px"){ "Hello World" }
+        column(){ "Hello World" }
+      end
+    end
+
+    it "should set the max with if passed in" do
+      cols.children.first.attr(:style).should == "width: 49.0%; max-width: 100px; margin-right: 2%;"
+    end
+
+    it "should omit the value if not presetn" do
+      cols.children.last.attr(:style).should == "width: 49.0%;"
+    end
+
+  end
+
+  describe "Column min width" do
+
+    let(:cols) do
+      columns do
+        column(:min_width => "100px"){ "Hello World" }
+        column(){ "Hello World" }
+      end
+    end
+
+    it "should set the min with if passed in" do
+      cols.children.first.attr(:style).should == "width: 49.0%; min-width: 100px; margin-right: 2%;"
+    end
+
+    it "should omit the value if not presetn" do
+      cols.children.last.attr(:style).should == "width: 49.0%;"
+    end
+
   end
 
 end
