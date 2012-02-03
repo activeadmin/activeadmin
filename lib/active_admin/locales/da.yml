@@ -1,6 +1,7 @@
 da:
   active_admin:
     dashboard_welcome:
+      dashboard: "Kontrolpanel"
       welcome: "Velkommen til Active Admin. Dette er standardoversigtssiden."
       call_to_action: "Rediger 'app/admin/dashboards.rb' for at tilføje nye elementer til oversigtssiden."
     view: "Vis"
@@ -26,3 +27,17 @@ da:
     less_than: "mindre end"
     main_content: "Implementer venligst %{model}#main_content for at vise noget indhold."
     logout: "Log ud"
+    sidebars:
+      filters: "Filtre"
+    pagination:
+      empty: "Ingen %{model} fundet"
+      one: "Viser <b>1</b> %{model}"
+      one_page: "Viser <b>alle %{n}</b> %{model}"
+      multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> af <b>%{total}</b> i alt"
+      entry:
+        one: "post"
+        other: "poster"
+    any: "Alle"
+    blank_slate:
+      content: "Der er ingen %{resource_name} endnu."
+      link: "Opret"
