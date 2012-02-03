@@ -11,7 +11,11 @@ module ActiveAdmin
     def inputs(*args, &block)
       # Store that we are creating inputs without a block
       @inputs_with_block = block_given? ? true : false
-      content = with_new_form_buffer { super }
+      content = with_new_form_buffer do
+        super
+        # Ensure the buffer is returned instead of the block result itself
+        form_buffers.last
+      end
       form_buffers.last << content.html_safe
     end
 
