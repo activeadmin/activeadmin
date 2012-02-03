@@ -10,9 +10,7 @@ module ActiveAdmin
       def build(collection, options = {})
         @sortable = options.delete(:sortable)
         @resource_class = options.delete(:i18n)
-        @paginator = options.delete(:paginator)
-        # Kaminari will call count(*) from <table_name> on non-paginated tables if we don't get rid of their scopes here
-        @collection = (@paginator || !collection.respond_to?(:except)) ? collection : collection.except(:page, :per).limit(collection.except(:page, :per).limit_value).offset(0)
+        @collection = collection
         @columns = []
         build_table
         super(options)
