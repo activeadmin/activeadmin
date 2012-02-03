@@ -70,7 +70,6 @@ module ActiveAdmin
 
       class FileUpdateChecker < ::ActiveSupport::FileUpdateChecker
         def paths
-          Rails.logger.info [@files, @paths].inspect
           # hack to support both Rails 3.1 and 3.2
           @files || @paths
         end
