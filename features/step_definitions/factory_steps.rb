@@ -6,10 +6,11 @@ Given /^a post with the title "([^"]*)" and body "([^"]*)" exists$/ do |title, b
   Post.create! :title => title, :body => body
 end
 
-Given /^a post with the title "([^"]*)" written by "([^"]*)" exists$/ do |title, author_name|
+Given /^a (published )?post with the title "([^"]*)" written by "([^"]*)" exists$/ do |published, title, author_name|
   first, last = author_name.split(' ')
   author = User.find_or_create_by_first_name_and_last_name(first, last, :username => author_name.gsub(' ', '').underscore)
-  Post.create! :title => title, :author => author
+  published_at = published ? Time.now : nil
+  Post.create! :title => title, :author => author, :published_at => published_at
 end
 
 Given /^(\d+)( published)? posts? exists?$/ do |count, published|
