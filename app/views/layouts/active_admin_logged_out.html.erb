@@ -12,6 +12,8 @@
     <%= javascript_include_tag path %>
   <% end %>
 
+  <%= favicon_link_tag ActiveAdmin.application.favicon unless ActiveAdmin.application.favicon.blank? %>
+
   <%= csrf_meta_tag %>
 </head>
 <body class="logged_out <%= controller.action_name %>">

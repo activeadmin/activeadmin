@@ -30,6 +30,11 @@ module ActiveAdmin
             active_admin_application.javascripts.each do |path|
               script :src => javascript_path(path), :type => "text/javascript"
             end
+
+            unless active_admin_application.favicon.blank?
+              text_node(favicon_link_tag(active_admin_application.favicon).html_safe)
+            end
+
             text_node csrf_meta_tag
           end
         end
