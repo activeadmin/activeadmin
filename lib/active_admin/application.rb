@@ -30,6 +30,9 @@ module ActiveAdmin
     # The default number of resources to display on index pages
     inheritable_setting :default_per_page, 30
 
+    # Set the sites favicon
+    inheritable_setting :favicon, ""
+
     # The title which gets displayed in the main layout
     inheritable_setting :site_title, ""
 

@@ -14,6 +14,8 @@ module NavigationHelpers
       "/admin"
     when /the new post page/
       "/admin/posts/new"
+    when /the login page/
+      "/admin/login"
 
     # the index page for posts in the root namespace
     # the index page for posts in the user_admin namespace
