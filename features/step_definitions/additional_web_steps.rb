@@ -11,7 +11,7 @@ Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
 end
 
 Then /^I should not see a sortable table header$/ do
-  Then "I should not see \"th.sortable\""
+  step "I should not see \"th.sortable\""
 end
 
 Then /^the table "([^"]*)" should have (\d+) rows/ do |selector, count|
@@ -48,7 +48,7 @@ end
 
 Then /^an "([^"]*)" exception should be raised when I follow "([^"]*)"$/ do |error, link|
   lambda {
-    When "I follow \"#{link}\""
+    step "I follow \"#{link}\""
   }.should raise_error(error.constantize)
 end
 
@@ -58,7 +58,7 @@ end
 
 Then /^I should wait and see "([^"]*)"(?: within "([^"]*)")?$/ do |text, selector|
   sleep 1
-  Then 'show me the page'
+  step 'show me the page'
   selector ||= "*"
   locate(:xpath, "//#{selector}[text()='#{text}']")
 end
@@ -80,3 +80,6 @@ Then /^I should see the content "([^"]*)"$/ do |content|
   page.should have_css("#active_admin_content", :text => content)
 end
 
+Then /^I should see a validation error "([^"]*)"$/ do |error_message|
+  page.should have_css(".inline-errors", :text => error_message)
+end

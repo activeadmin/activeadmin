@@ -1,4 +1,15 @@
-## Master
+## Master (unreleased)
+
+### Enhancements
+
+* Columns component now supports column spans, max and min widths ([@gregbell][])
+
+### Bug Fixes
+
+* #101: Global nav now works with RackBaseURI ([@gregbell][])
+* #960: Global nav works when scoped in rails routes ([@gregbell][])
+
+## 0.4.0
 
 ### Upgrade Notes
 
@@ -10,6 +21,8 @@ since we've changed both the CSS and JS files.
 * In the initializer `config.allow_comments_in = []` is now
   `config.allow_comments = true`. Use the new namespace specific configurations
   to allow or disallow configuration within a specific namespace.
+* Removed `Object#to_html` in favour of `to_s`. Any Arbre components
+  implementing a `to_html` method need to be updated to use `to_s` instead.
 
 ### New Features
 
@@ -47,6 +60,10 @@ since we've changed both the CSS and JS files.
 * [#780][]: Fix stack level too deep exception when logout path is setup to use
   `:logout_path` named route. ([@george][])
 * [#637][]: Fix scope all I18n ([@fbuenemann][])
+* [#496][]: Remove global `Object#to_html` [@ebeigarts][]
+* [#470][], [#154][]: Arbre properly supports blocks that return Numeric values
+  ([@bobbytables][], [@utkarshkukreti][], [@gregbell][])
+* [#897][]: Fix count display for collections with GROUP BY [@comboy][]
 
 ### Dependencies
 
@@ -57,41 +74,58 @@ since we've changed both the CSS and JS files.
 * [#711][]: Active admin now depends on Bourbon > 1.0.0. If you're using Rails
   3.0.x, make sure to run `rails generate active_admin:assets` to ensure you
   have the correct css files ([@mattvague][])
+* [#869][]: Upgraded Kaminari to >= 0.13.0 and added support for
+  `Kaminari.config.page_method_name`. Active Admin should now be happy if
+  `will_paginate` is installed with it. ([@j][]-manu)
+* #931: Support for Rails 3.2 added (@mperham)
 
 ### Contributors
 
-202 commits by 31 authors
+274 commits by 42 authors
 
-* Bendik Lynghaug
-* Dinesh Majrekar
-* Douwe Homans
-* Edgars Beigarts
-* Eunsub Kim
-* Felix Bünemann
-* George Anderson
-* Greg Bell
-* Henrik Hodne
-* Ivan Storck
-* Jeff Dickey
-* John Ferlito
-* Jonathan Barket
-* Josef Šimánek
-* Juan E.
-* Kieran Klaassen
-* Marc Riera
-* Matt Vague
-* Matthew Brewer
-* Philippe Creux
-* Radan Skorić
-* Rhys Powell
-* Sam Vincent
-* Sebastian Sierra
-* Sherman Tsang
-* Szymon Przybył
-* Thomas Watson
-* Yara Mayer
-* Zequez 
-* emmek 
+ * Greg Bell
+ * Philippe Creux
+ * Matt Vague
+ * Felix Bünemann
+ * Matthew Brewer
+ * Edgars Beigarts
+ * Mike Perham
+ * Sam Vincent
+ * Kieran Klaassen
+ * Jonathan Barket
+ * Ankur Sethi
+ * Dinesh Majrekar
+ * comboy
+ * Juan E. Pemberthy
+ * Leandro Moreira
+ * Manu
+ * Marc Riera
+ * Radan Skorić
+ * Rhys Powell
+ * Sebastian Sierra
+ * Sherman Tsang
+ * Szymon Przybył
+ * Thomas Watson Steen
+ * Tim Habermaas
+ * Yara Mayer
+ * Zequez
+ * asancio
+ * emmek
+ * Alexey Noskov
+ * igmizo
+ * Alli
+ * Bendik Lynghaug
+ * Douwe Homans
+ * Eric Koslow
+ * Eunsub Kim
+ * Garami Gábor
+ * George Anderson
+ * Henrik Hodne
+ * Ivan Storck
+ * Jeff Dickey
+ * John Ferlito
+ * Josef Šimánek
+
 
 ## 0.3.4
 
@@ -369,6 +403,7 @@ of the highlights. 250 commits. Enough said.
 [#122]: https://github.com/gregbell/active_admin/issues/122
 [#131]: https://github.com/gregbell/active_admin/issues/131
 [#135]: https://github.com/gregbell/active_admin/issues/135
+[#154]: https://github.com/gregbell/active_admin/issues/154
 [#171]: https://github.com/gregbell/active_admin/issues/171
 [#186]: https://github.com/gregbell/active_admin/issues/186
 [#197]: https://github.com/gregbell/active_admin/issues/197
@@ -381,6 +416,8 @@ of the highlights. 250 commits. Enough said.
 [#381]: https://github.com/gregbell/active_admin/issues/381
 [#428]: https://github.com/gregbell/active_admin/issues/428
 [#468]: https://github.com/gregbell/active_admin/issues/468
+[#470]: https://github.com/gregbell/active_admin/issues/470
+[#496]: https://github.com/gregbell/active_admin/issues/496
 [#505]: https://github.com/gregbell/active_admin/issues/505
 [#527]: https://github.com/gregbell/active_admin/issues/527
 [#551]: https://github.com/gregbell/active_admin/issues/551
@@ -395,12 +432,17 @@ of the highlights. 250 commits. Enough said.
 [#644]: https://github.com/gregbell/active_admin/issues/644
 [#689]: https://github.com/gregbell/active_admin/issues/689
 [#711]: https://github.com/gregbell/active_admin/issues/711
+[#723]: https://github.com/gregbell/active_admin/issues/723
 [#741]: https://github.com/gregbell/active_admin/issues/741
 [#751]: https://github.com/gregbell/active_admin/issues/751
 [#758]: https://github.com/gregbell/active_admin/issues/758
 [#780]: https://github.com/gregbell/active_admin/issues/780
+[#869]: https://github.com/gregbell/active_admin/issues/869
+[#897]: https://github.com/gregbell/active_admin/issues/897
 [@DMajrekar]: https://github.com/DMajrekar
 [@ZequeZ]: https://github.com/ZequeZ
+[@bobbytables]: https://github.com/bobbytables
+[@comboy]: https://github.com/comboy
 [@dhiemstra]: https://github.com/dhiemstra
 [@doug316]: https://github.com/doug316
 [@ebeigarts]: https://github.com/ebeigarts
@@ -409,6 +451,7 @@ of the highlights. 250 commits. Enough said.
 [@fbuenemann]: https://github.com/fbuenemann
 [@george]: https://github.com/george
 [@gregbell]: https://github.com/gregbell
+[@j]: https://github.com/j
 [@jbarket]: https://github.com/jbarket
 [@knoopx]: https://github.com/knoopx
 [@krug]: https://github.com/krug
@@ -423,5 +466,6 @@ of the highlights. 250 commits. Enough said.
 [@sftsang]: https://github.com/sftsang
 [@shayfrendt]: https://github.com/shayfrendt
 [@tricknotes]: https://github.com/tricknotes
-[@vairix]: https://github.com/vairix-ssierra
+[@utkarshkukreti]: https://github.com/utkarshkukreti
+[@vairix]: https://github.com/vairix
 [@watson]: https://github.com/watson

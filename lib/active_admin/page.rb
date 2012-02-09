@@ -15,11 +15,15 @@ module ActiveAdmin
     # The name of the page
     attr_reader :name
 
+    # An array of custom actions defined for this page
+    attr_reader :page_actions
+
     module Base
       def initialize(namespace, name, options)
         @namespace = namespace
         @name = name
         @options = options
+        @page_actions = []
       end
     end
 
@@ -32,11 +36,22 @@ module ActiveAdmin
     include Resource::Naming
 
     # plural_resource_name is singular
+    def resource_name
+      name
+    end
+
+    def safe_resource_name
+      name
+    end
+
+
+    # Force plural to be singular
     def plural_resource_name
       name
     end
 
-    def resource_name
+    # Force plural to be singular
+    def plural_safe_resource_name
       name
     end
 
@@ -48,6 +63,11 @@ module ActiveAdmin
     end
 
     def add_default_sidebar_sections
+    end
+    
+    # Clears all the custom actions this page knows about
+    def clear_page_actions!
+      @page_actions = []
     end
 
   end

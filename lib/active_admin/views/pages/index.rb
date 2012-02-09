@@ -17,7 +17,7 @@ module ActiveAdmin
         def main_content
           build_scopes
 
-          if collection.any?
+          if collection.limit(1).exists?
             render_index
           else
             if params[:q]
@@ -29,8 +29,7 @@ module ActiveAdmin
         end
 
         protected
-        
-        
+
         # TODO: Refactor to new HTML DSL
         def build_download_format_links(formats = [:csv, :xml, :json])
           links = formats.collect do |format|
@@ -41,8 +40,12 @@ module ActiveAdmin
 
         def build_scopes
           if active_admin_config.scopes.any?
+            scope_options = {
+              :scope_count => config[:scope_count].nil? ? true : config[:scope_count]
+            }
+
             div :class => "table_tools" do
-              scopes_renderer active_admin_config.scopes
+              scopes_renderer active_admin_config.scopes, scope_options
             end
           end
         end
@@ -50,13 +53,7 @@ module ActiveAdmin
         # Creates a default configuration for the resource class. This is a table
         # with each column displayed as well as all the default actions
         def default_index_config
-          @default_index_config ||= ::ActiveAdmin::PagePresenter.new(:as => :table) do |display|
-            id_column
-            resource_class.content_columns.each do |col|
-              column col.name.to_sym
-            end
-            default_actions
-          end
+          @default_index_config ||= ::ActiveAdmin::PagePresenter.new(:as => :table)
         end
 
         # Returns the actual class for renderering the main content on the index
@@ -87,9 +84,13 @@ module ActiveAdmin
         
         def render_index
           renderer_class = find_index_renderer_class(config[:as])
+          paginator      = config[:paginator].nil?      ? true : config[:paginator]
+          download_links = config[:download_links].nil? ? true : config[:download_links]
           
-          paginated_collection(collection, :entry_name   => active_admin_config.resource_name,
-                                           :entries_name => active_admin_config.plural_resource_name) do
+          paginated_collection(collection, :entry_name     => active_admin_config.resource_name,
+                                           :entries_name   => active_admin_config.plural_resource_name,
+                                           :download_links => download_links,
+                                           :paginator      => paginator) do
             div :class => 'index_content' do
               insert_tag(renderer_class, config, collection)
             end

@@ -87,7 +87,7 @@ module ActiveAdmin
 
         def build_action_items
           if active_admin_config && active_admin_config.action_items?
-            items = active_admin_config.action_items_for(params[:action])
+            items = active_admin_config.action_items_for(params[:action], self)
             insert_tag view_factory.action_items, items
           end
         end
@@ -135,7 +135,7 @@ module ActiveAdmin
         # Returns the sidebar sections to render for the current action
         def sidebar_sections_for_action
           if active_admin_config && active_admin_config.sidebar_sections?
-            active_admin_config.sidebar_sections_for(params[:action])
+            active_admin_config.sidebar_sections_for(params[:action], self)
           else
             []
           end

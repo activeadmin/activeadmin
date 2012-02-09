@@ -21,7 +21,7 @@ module Arbre
         '<!DOCTYPE html>'.html_safe
       end
 
-      def to_html
+      def to_s
         doctype + super
       end
 

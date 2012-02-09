@@ -16,7 +16,7 @@ describe ActiveAdmin::Views::TabbedNavigation do
   describe "rendering a menu" do
 
     before do
-      menu.add "Blog Posts", "/admin/blog-posts"
+      menu.add "Blog Posts", :admin_posts_path
       menu.add "Reports", "/admin/reports"
       reports = menu["Reports"]
       reports.add "A Sub Reports", "/admin/a-sub-reports"
@@ -39,7 +39,7 @@ describe ActiveAdmin::Views::TabbedNavigation do
     end
 
     it "should generate a link for each item" do
-      html.should have_tag("a", "Blog Posts", :attributes => { :href => '/admin/blog-posts' })
+      html.should have_tag("a", "Blog Posts", :attributes => { :href => '/admin/posts' })
     end
 
     it "should generate a nested list for children" do
@@ -80,7 +80,8 @@ describe ActiveAdmin::Views::TabbedNavigation do
 
       it "should add the 'current' and 'has_nested' classes to the li and 'current' to the sub li" do
         assigns[:current_tab] = "Reports/A Sub Reports"
-        html.should have_tag("li", :attributes => { :id => "reports", :class => "current has_nested" })
+        html.should have_tag("li", :attributes => { :id => "reports", :class => /current/ })
+        html.should have_tag("li", :attributes => { :id => "reports", :class => /has_nested/ })
         html.should have_tag("li", :attributes => { :id => "a_sub_reports", :class => "current" })
       end
 

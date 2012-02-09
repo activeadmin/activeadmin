@@ -33,3 +33,4 @@ test-rails*
 public
 .rvmrc
 .rspec
+.rails-version

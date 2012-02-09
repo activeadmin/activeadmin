@@ -6,7 +6,7 @@ describe Arbre do
 
   it "should render a single element" do
     content = span("Hello World")
-    content.to_html.should == <<-HTML
+    content.to_s.should == <<-HTML
 <span>Hello World</span>
 HTML
   end
@@ -15,7 +15,7 @@ HTML
     content = span do
       span "Hello World"
     end
-    content.to_html.should == <<-HTML
+    content.to_s.should == <<-HTML
 <span>
   <span>Hello World</span>
 </span>
@@ -28,7 +28,7 @@ HTML
       li "Second"
       li "Third"
     end
-    content.to_html.should == <<-HTML
+    content.to_s.should == <<-HTML
 <ul>
   <li>First</li>
   <li>Second</li>
@@ -51,7 +51,7 @@ HTML
       li first
       li second
     end
-    content.to_html.should == <<-EOS
+    content.to_s.should == <<-EOS
 <ul>
   <li>First</li>
   <li>Second</li>
@@ -66,7 +66,7 @@ EOS
         li
       end
     end
-    content.to_html.should == <<-HTML
+    content.to_s.should == <<-HTML
 <div>
   <ul></ul>
   <li>
@@ -82,7 +82,7 @@ HTML
         li
       end
     end
-    content.to_html.should == <<-HTML
+    content.to_s.should == <<-HTML
 <div>
   <ul>
     <li></li>
@@ -95,7 +95,7 @@ HTML
     content = div do
       span(ul(li))
     end
-    content.to_html.should == <<-HTML
+    content.to_s.should == <<-HTML
 <div>
   <span>
     <ul>
@@ -113,7 +113,7 @@ HTML
         li
       end
     end
-    content.to_html.should == <<-HTML
+    content.to_s.should == <<-HTML
 <div id="my-tag">
   <ul>
     <li></li>
@@ -131,12 +131,22 @@ HTML
     item.parent.should == list
   end
 
-  it "should set a string content return value with no children" do
-    li do
-      "Hello World"
-    end.to_html.should == <<-HTML
-<li>Hello World</li>
-HTML
+
+  ["Hello World", 1, 1.5].each do |value|
+    it "should append the return value of '#{value}' when no other children added to the DOM" do
+      li do
+        value
+      end.to_s.should == "<li>#{value}</li>\n"
+    end
+  end
+
+  ["Hello World", 1, 1.5].each do |value|
+    it "should not append the return value of '#{value}' when children have been added to the DOM" do
+      li do
+        text_node("Already Added")
+        value
+      end.to_s.should == "<li>Already Added</li>\n"
+    end
   end
 
   describe "text nodes" do
@@ -150,19 +160,19 @@ HTML
   describe "self-closing nodes" do
     it "should not self-close script tags" do
       tag = script :type => 'text/javascript'
-      tag.to_html.should == <<-HTML
+      tag.to_s.should == <<-HTML
 <script type="text/javascript"></script>
 HTML
     end
     it "should self-close meta tags" do
       tag = meta :content => "text/html; charset=utf-8"
-      tag.to_html.should == <<-HTML
+      tag.to_s.should == <<-HTML
 <meta content="text/html; charset=utf-8\"/>
 HTML
     end
     it "should self-close link tags" do
       tag = link :rel => "stylesheet"
-      tag.to_html.should == <<-HTML
+      tag.to_s.should == <<-HTML
 <link rel="stylesheet"/>
 HTML
     end
@@ -170,17 +180,17 @@ HTML
 
   describe "html safe" do
     it "should escape the contents" do
-      span("<br />").to_html.should == <<-HTML
+      span("<br />").to_s.should == <<-HTML
 <span>&lt;br /&gt;</span>
 HTML
     end
 
     it "should return html safe strings" do
-      span("<br />").to_html.should be_html_safe
+      span("<br />").to_s.should be_html_safe
     end
 
     it "should not escape html passed in" do
-      span(span("<br />")).to_html.should == <<-HTML
+      span(span("<br />")).to_s.should == <<-HTML
 <span>
   <span>&lt;br /&gt;</span>
 </span>
@@ -192,7 +202,7 @@ HTML
         span {
           "<br />"
         }
-      }.to_html.should == <<-HTML
+      }.to_s.should == <<-HTML
 <span>
   <span>&lt;br /&gt;</span>
 </span>
@@ -200,7 +210,7 @@ HTML
     end
 
     it "should escape the contents of attributes" do
-      span(:class => "<br />").to_html.should == <<-HTML
+      span(:class => "<br />").to_s.should == <<-HTML
 <span class="&lt;br /&gt;"></span>
 HTML
     end

@@ -251,9 +251,8 @@ module ActiveAdmin
     end
 
     def attach_reloader
-      ActiveAdmin::Reloader.new(Rails.application, self, Rails.version).attach!
+      ActiveAdmin::Reloader.build(Rails.application, self, Rails.version).attach!
     end
-
 
     def generate_stylesheets
       # This must be required after initialization

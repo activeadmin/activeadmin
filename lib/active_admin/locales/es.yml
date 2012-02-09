@@ -34,7 +34,23 @@ es:
       one: "Mostrando <b>1</b> %{model}"
       one_page: "Mostrando <b>todos(as) los(as) %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
-    any: "Todos"
+    any: "Cualquiera"
     blank_slate:
       content: "No hay %{resource_name} aún."
       link: "Crea uno(a)"
+  views:
+      pagination:
+          truncate: "..."
+          first: "Inicio"
+          previous: "Anterior"
+          next: "Siguiente"
+          last: "Ultimo"
+  formtastic:
+    yes: "Sí"
+    no: "No"
+    create: "Guardar %{model}"
+    update: "Guardar %{model}"
+    submit: "Aceptar"
+    cancel: "Cancelar"
+    reset: "Resetear %{model}"
+    required: "requerido"

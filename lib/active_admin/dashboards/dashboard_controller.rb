@@ -6,7 +6,7 @@ module ActiveAdmin
 
       def index
         @dashboard_sections = find_sections
-        render 'active_admin/dashboard/index.html.arb'
+        render 'active_admin/dashboard/index'
       end
 
       private

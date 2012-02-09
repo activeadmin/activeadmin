@@ -35,7 +35,7 @@ module Arbre
       if defined?(@cached_html)
         @cached_html
       else
-        html = to_html
+        html = to_s
         @cached_html = html if html.length > 0
         html
       end

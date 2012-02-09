@@ -97,16 +97,28 @@ module ActiveAdmin
           :id => active_admin_config.plural_underscored_resource_name,
           :sortable => true,
           :class => "index_table",
-          :i18n => active_admin_config.resource_class
+          :i18n => active_admin_config.resource_class,
+          :paginator => page_presenter[:paginator] != false
         }
 
         table_for collection, table_options do |t|
-          instance_exec(t, &page_presenter.block)
+          table_config_block = page_presenter.block || default_table
+          instance_exec(t, &table_config_block)
         end
       end
 
       def table_for(*args, &block)
         insert_tag IndexTableFor, *args, &block
+      end
+
+      def default_table
+        proc do
+          id_column
+          resource_class.content_columns.each do |col|
+            column col.name.to_sym
+          end
+          default_actions
+        end
       end
 
       #
