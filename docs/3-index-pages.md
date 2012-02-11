@@ -53,3 +53,26 @@ You can change the filter label by passing a label option:
     filter :author, :label => 'Author'
 
 By default, Active Admin will try to use ActiveModel I18n to determine the label.
+
+## Index default sort order
+
+You can define the default sort order for index pages:
+
+    ActiveAdmin.register Post do
+      config.sort_order = "name_asc"
+    end
+
+## Index pagination
+
+
+You can set the number of records per page per resources:
+
+    ActiveAdmin.register Post do
+      config.per_page = 10
+    end
+
+You can also disable pagination:
+
+    ActiveAdmin.register Post do
+      config.paginate = false
+    end

@@ -78,6 +78,19 @@ describe Arbre::HTML::Element do
     end
   end
 
+  describe "#children?" do
+
+    it "returns true when a child has been added" do
+      element.add_child Arbre::HTML::Element.new
+      element.children?.should == true
+    end
+
+    it "returns false when no children" do
+      element.children?.should == false
+    end
+
+  end
+
   describe "setting the content" do
 
     context "when a string" do

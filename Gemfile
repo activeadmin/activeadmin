@@ -10,7 +10,7 @@ gem 'rails',          rails_version
 case rails_version
 when /^3\.0/
   # Do nothing, bundler should figure it out
-when /^3\.1/
+when /^3\.(1|2)/
   # These are the gems you have to have for Rails 3.1 to be happy
   gem 'sass-rails'
   gem 'uglifier'
@@ -20,6 +20,7 @@ end
 
 group :development, :test do
   gem 'sqlite3-ruby',   :require => 'sqlite3'
+
   gem 'rake',           '~> 0.9.2.2', :require => false
   gem 'haml',           '~> 3.1.1', :require => false
   gem 'yard'
@@ -31,7 +32,7 @@ group :test do
   gem 'cucumber-rails', '1.2.1'
   gem 'capybara',       '1.1.2'
   gem 'database_cleaner'
-  gem 'shoulda',        '2.11.2',           :require => nil
+  gem 'shoulda-matchers', '1.0.0'
   gem 'launchy'
   gem 'jslint_on_rails',    '~> 1.0.6'
   gem 'guard-rspec'

@@ -15,7 +15,7 @@ module ActiveAdmin
 
     describe "underscored resource name" do
       context "when class" do
-        it "should be the underscored singular resource name" do
+        it "should be the underscored safe resource name" do
           config.underscored_resource_name.should == "category"
         end
       end

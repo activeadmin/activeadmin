@@ -26,4 +26,13 @@ describe ActiveAdmin::Views::Panel do
     panel("Title", :icon => :arrow_down).find_by_tag("h3").first.content.should include("span class=\"icon")
   end
 
+  describe "#children?" do
+
+    it "returns false if no children have been added to the panel" do
+      the_panel = panel("A Panel")
+      the_panel.children?.should == false
+    end
+
+  end
+
 end

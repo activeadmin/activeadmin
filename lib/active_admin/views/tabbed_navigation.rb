@@ -42,14 +42,26 @@ module ActiveAdmin
       def build_menu_item(item)
         li :id => item.dom_id do |li_element|
           li_element.add_class "current" if current?(item)
+          link_path = url_for_menu_item(item)
 
           if item.children.any?
             li_element.add_class "has_nested"
-            text_node link_to(item.name, item.url || "#")
+            text_node link_to(item.name, link_path)
             render_nested_menu(item)
           else
-            link_to item.name, item.url
+            link_to item.name, link_path
           end
+        end
+      end
+
+      def url_for_menu_item(menu_item)
+        case menu_item.url
+        when Symbol
+          send(menu_item.url)
+        when nil
+          "#"
+        else
+          menu_item.url
         end
       end
 

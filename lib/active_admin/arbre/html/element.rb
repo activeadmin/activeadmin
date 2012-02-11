@@ -70,6 +70,10 @@ module Arbre
         add_child(child)
       end
 
+      def children?
+        @children.any?
+      end
+
       def parent=(parent)
         @parent = parent
       end

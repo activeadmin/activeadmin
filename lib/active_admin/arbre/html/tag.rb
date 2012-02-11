@@ -73,10 +73,18 @@ module Arbre
       end
 
       def to_s
-        indent("<#{tag_name}#{attributes_html}>", content, "</#{tag_name}>").html_safe
+        indent(opening_tag, content, closing_tag).html_safe
       end
 
       private
+
+      def opening_tag
+        "<#{tag_name}#{attributes_html}>"
+      end
+
+      def closing_tag
+        "</#{tag_name}>"
+      end
 
       INDENT_SIZE = 2
       

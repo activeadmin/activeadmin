@@ -1,16 +1,6 @@
 module ActiveAdmin
   class MenuItem
 
-
-    # Generates a route using the rails application url helpers
-    #
-    # @param [Symbol] named_route
-    #
-    # @returns [String] The generated route
-    def self.generate_url(named_route)
-      Rails.application.routes.url_helpers.send(named_route)
-    end
-
     attr_accessor :name, :url, :priority, :parent, :display_if_block
 
     def initialize(name, url, priority = 10, options = {})
@@ -41,16 +31,6 @@ module ActiveAdmin
       name.downcase.gsub( " ", '_' ).gsub( /[^a-z0-9_]/, '' )
     end
 
-    def url
-      case @url
-      when Symbol
-        generated = self.class.generate_url(@url) # Call the named route
-      else
-        generated = @url
-      end
-      @cached_url[@url] ||= generated
-    end
-
     # Returns an array of the ancestory of this menu item
     # The first item is the immediate parent fo the item
     def ancestors
@@ -75,7 +55,6 @@ module ActiveAdmin
     def display_if_block
       @display_if_block || lambda { |_| true }
     end
-
 
   end
 end

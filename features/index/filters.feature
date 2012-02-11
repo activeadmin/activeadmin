@@ -1,35 +1,68 @@
-Feature: Index Pagination
+Feature: Index Filtering
 
-  Background:
-    Given an index configuration of:
+  Scenario: Default Resources Filters
+    Given 3 posts exist
+    And an index configuration of:
     """
       ActiveAdmin.register Post
     """
-  Scenario: Filtering posts
-    Given 20 posts exist
     When I am on the index page for posts
-    Then I should see "Displaying all 20 Posts"
-    And I should see "Author" within ".filter_form"
-    And I should see "Category" within ".filter_form"
-    And I should see "Search Title" within ".filter_form"
-    And I should see "Search Body" within ".filter_form"
-    And I should see "Published at" within ".filter_form"
-    And I should see "Created at" within ".filter_form"
-    And I should see "Updated at" within ".filter_form"
-    
-    When I fill in "Search Title" with "Hello World 17"
+    Then I should see "Displaying all 3 Posts"
+    And I should see the following filters:
+     | Author       | select     |
+     | Category     | select     |
+     | Title        | string     |
+     | Body         | string     |
+     | Published at | date range |
+     | Created at   | date range |
+     | Updated at   | date range |
+
+    When I fill in "Search Title" with "Hello World 2"
     And I press "Filter"
     And I should see 1 posts in the table
-    And I should see "Hello World 17" within ".index_table"
-    
+    And I should see "Hello World 2" within ".index_table"
+
   Scenario: Filtering posts with no results
-    Given 20 posts exist
+    Given 3 posts exist
+    And an index configuration of:
+    """
+      ActiveAdmin.register Post
+    """
     When I am on the index page for posts
-    Then I should see "Displaying all 20 Posts"
+    Then I should see "Displaying all 3 Posts"
+
     When I fill in "Search Title" with "THIS IS NOT AN EXISTING TITLE!!"
     And I press "Filter"
-    
-    And I should not see ".index_table"
-    Then I should not see a sortable table header
+    Then I should not see ".index_table"
+    And I should not see a sortable table header
     And I should not see pagination
     And I should see "No Posts found"
+
+  Scenario: Checkboxes - Filtering posts written by anyone
+    Given 1 post exists
+    And a post with the title "Hello World" written by "Jane Doe" exists
+    And an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        filter :author, :as => :check_boxes
+      end
+    """
+    When I press "Filter"
+    Then I should see 2 posts in the table
+    And I should see "Hello World" within ".index_table"
+    And the "jane_doe" checkbox should not be checked
+
+  Scenario: Checkboxes - Filtering posts written by Jane Doe
+    Given 1 post exists
+    And a post with the title "Hello World" written by "Jane Doe" exists
+    And an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        filter :author, :as => :check_boxes
+      end
+    """
+    When I check "jane_doe"
+    And I press "Filter"
+    Then I should see 1 posts in the table
+    And I should see "Hello World" within ".index_table"
+    And the "jane_doe" checkbox should be checked

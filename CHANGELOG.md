@@ -1,4 +1,15 @@
-## Master
+## Master (unreleased)
+
+### Enhancements
+
+* Columns component now supports column spans, max and min widths ([@gregbell][])
+
+### Bug Fixes
+
+* #101: Global nav now works with RackBaseURI ([@gregbell][])
+* #960: Global nav works when scoped in rails routes ([@gregbell][])
+
+## 0.4.0
 
 ### Upgrade Notes
 
@@ -66,42 +77,55 @@ since we've changed both the CSS and JS files.
 * [#869][]: Upgraded Kaminari to >= 0.13.0 and added support for
   `Kaminari.config.page_method_name`. Active Admin should now be happy if
   `will_paginate` is installed with it. ([@j][]-manu)
+* #931: Support for Rails 3.2 added (@mperham)
 
 ### Contributors
 
-202 commits by 31 authors
+274 commits by 42 authors
 
-* Bendik Lynghaug
-* Dinesh Majrekar
-* Douwe Homans
-* Edgars Beigarts
-* Eunsub Kim
-* Felix Bünemann
-* George Anderson
-* Greg Bell
-* Henrik Hodne
-* Ivan Storck
-* Jeff Dickey
-* John Ferlito
-* Jonathan Barket
-* Josef Šimánek
-* Juan E.
-* Kieran Klaassen
-* Kacper Cieśla
-* Marc Riera
-* Matt Vague
-* Matthew Brewer
-* Philippe Creux
-* Radan Skorić
-* Rhys Powell
-* Sam Vincent
-* Sebastian Sierra
-* Sherman Tsang
-* Szymon Przybył
-* Thomas Watson
-* Yara Mayer
-* Zequez 
-* emmek 
+ * Greg Bell
+ * Philippe Creux
+ * Matt Vague
+ * Felix Bünemann
+ * Matthew Brewer
+ * Edgars Beigarts
+ * Mike Perham
+ * Sam Vincent
+ * Kieran Klaassen
+ * Jonathan Barket
+ * Ankur Sethi
+ * Dinesh Majrekar
+ * comboy
+ * Juan E. Pemberthy
+ * Leandro Moreira
+ * Manu
+ * Marc Riera
+ * Radan Skorić
+ * Rhys Powell
+ * Sebastian Sierra
+ * Sherman Tsang
+ * Szymon Przybył
+ * Thomas Watson Steen
+ * Tim Habermaas
+ * Yara Mayer
+ * Zequez
+ * asancio
+ * emmek
+ * Alexey Noskov
+ * igmizo
+ * Alli
+ * Bendik Lynghaug
+ * Douwe Homans
+ * Eric Koslow
+ * Eunsub Kim
+ * Garami Gábor
+ * George Anderson
+ * Henrik Hodne
+ * Ivan Storck
+ * Jeff Dickey
+ * John Ferlito
+ * Josef Šimánek
+
 
 ## 0.3.4
 
