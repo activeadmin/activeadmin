@@ -98,6 +98,29 @@ Feature: Sidebar Sections
     When I follow "New Post"
     Then I should not see a sidebar titled "Help"
 
+  Scenario: Create a sidebar for only one action with if clause with method symbol
+    Given a configuration of:
+    """
+    ActiveAdmin.register Post do
+      controller { def can_sidebar?; false; end }
+      sidebar :help, :only => :index, :if => :can_sidebar? do
+        "Need help? Email us at help@example.com"
+      end
+    end
+    """
+    When I am on the index page for posts
+    Then I should not see a sidebar titled "Help"
+
+    When I follow "View"
+    Then I should not see a sidebar titled "Help"
+
+    When I follow "Edit Post"
+    Then I should not see a sidebar titled "Help"
+
+    When I am on the index page for posts
+    When I follow "New Post"
+    Then I should not see a sidebar titled "Help"
+
   Scenario: Create a sidebar for only one action with if clause that returns true
     Given a configuration of:
     """
