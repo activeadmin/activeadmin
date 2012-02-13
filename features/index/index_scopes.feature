@@ -135,14 +135,14 @@ Feature: Index Scoping
           
           controller do
             def current_user
-              User.find_by_username('daft_punk')
+              User.find_by_username('foo_fighters')
             end
           end
         end
       """
     Then I should see the scope "All" selected
-    And I should see the scope "All" with the count 3
-    When I fill in "Search Title" with "Something"
+    And I should see the scope "All" with the count 1
+    When I fill in "Search Title" with "Monkey"
     And I press "Filter"
     Then I should see the scope "All" not selected
-    And I should see the scope "All" with the count 3
+    And I should see the scope "All" with the count 1
