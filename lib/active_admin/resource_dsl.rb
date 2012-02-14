@@ -8,7 +8,7 @@ module ActiveAdmin
     end
 
     # Scope this controller to some object which has a relation
-    # to the resource. Can either accept a block or a symbol
+    # to the resource. Can either accept a block or a symbol 
     # of a method to call.
     #
     # Eg:
@@ -18,17 +18,17 @@ module ActiveAdmin
     #   end
     #
     # Then every time we instantiate and object, it would call
-    #
+    #   
     #   current_user.posts.build
     #
     # By default Active Admin will use the resource name to build a
-    # method to call as the association. If its different, you can
+    # method to call as the association. If its different, you can 
     # pass in the association_method as an option.
     #
     #   scope_to :current_user, :association_method => :blog_posts
     #
     # will result in the following
-    #
+    # 
     #   current_user.blog_posts.build
     #
     def scope_to(*args, &block)
@@ -90,7 +90,7 @@ module ActiveAdmin
     #
     # You can treat everything within the block as a standard Rails controller
     # action.
-    #
+    # 
     def member_action(name, options = {}, &block)
       config.member_actions << ControllerAction.new(name, options)
       controller do
@@ -145,7 +145,7 @@ module ActiveAdmin
     # Specify which actions to create in the controller
     #
     # Eg:
-    #
+    #   
     #   ActiveAdmin.register Post do
     #     actions :index, :show
     #   end
@@ -153,21 +153,5 @@ module ActiveAdmin
     # Will only create the index and show actions (no create, update or delete)
     delegate :actions, :to => :controller
 
-    # Default Sorting
-    #
-    # Allow a custom column to be slected for sorting. First argument is the
-    # column and the direction to sort by. The second (optional) argument allows the following:
-    # - if: sort by this attribute when the given proc returns true. The controller is passed to the proc
-    # - unless: sort by this attribute when the given proc returns false. The controller is passed to the proc
-    #
-    # If the order param is set, this will be ignored.
-    #
-    # Eg:
-    #
-    #   ActiveAdmin.register post do
-    #     default_sort :title_desc
-    #     default_sort :title_desc, :if => Proc.new{ |c| c.params.empty? }
-    #   end
-    delegate :default_sort, :to => :controller
   end
 end
