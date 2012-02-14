@@ -2,7 +2,14 @@
 
 ### Enhancements
 
+* #865: Pages support the `#page_action` to add custom controller actions
+        to a page (@BoboFraggins)
 * Columns component now supports column spans, max and min widths ([@gregbell][])
+* #497: Custom pagination settings per resource (@pcreux)
+* #993: Login form now focuses on email (@mattvague)
+* #865: Add `:if` support to sidebar sections (@BoboFraggins)
+* #865: Added `:scope_count => false` to the index to hide scope counts
+        in generated scopes (@BoboFraggins)
 
 ### Bug Fixes
 
@@ -10,6 +17,7 @@
 * #960: Global nav works when scoped in rails routes ([@gregbell][])
 * #994: Fix index page check collection.limit(1).exists? causes exception when
         ordering by virtual colum (@latortuga, @gregbell)
+* #971: Fix SQL when sorting tables with a column named "group" (@ggilder)
 
 ### Dependencies
 
