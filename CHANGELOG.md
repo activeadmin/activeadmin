@@ -8,6 +8,8 @@
 
 * #101: Global nav now works with RackBaseURI ([@gregbell][])
 * #960: Global nav works when scoped in rails routes ([@gregbell][])
+* #994: Fix index page check collection.limit(1).exists? causes exception when
+        ordering by virtual colum (@latortuga, @gregbell)
 
 ## 0.4.0
 

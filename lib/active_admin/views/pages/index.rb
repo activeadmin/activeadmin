@@ -17,7 +17,7 @@ module ActiveAdmin
         def main_content
           build_scopes
 
-          if collection.limit(1).exists?
+          if items_in_collection?
             render_index
           else
             if params[:q]
@@ -29,6 +29,17 @@ module ActiveAdmin
         end
 
         protected
+
+        def items_in_collection?
+          # Remove the order clause before limiting to 1. This ensures that
+          # any referenced columns in the order will not try to be accessed.
+          #
+          # When we call #exists?, the query's select statement is changed to "1".
+          #
+          # If we don't reorder, there may be some columns referenced in the order
+          # clause that requires the original select.
+          collection.reorder("").limit(1).exists?
+        end
 
         # TODO: Refactor to new HTML DSL
         def build_download_format_links(formats = [:csv, :xml, :json])
