@@ -7,7 +7,7 @@ Sometimes you want to display the index screen for a set of resources as a grid
 index block.
 
     index :as => :grid do |product|
-      link_to(image_tag(product.image_path), admin_products_path(product))
+      link_to(image_tag(product.image_path), admin_product_path(product))
     end
 
 The block is rendered within a cell in the grid once for each resource in the
@@ -17,5 +17,5 @@ You can customize the number of colums that are rendered using the columns
 option:
 
     index :as => :grid, :columns => 5 do |product|
-      link_to(image_tag(product.image_path), admin_products_path(product))
+      link_to(image_tag(product.image_path), admin_product_path(product))
     end
