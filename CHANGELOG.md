@@ -11,6 +11,10 @@
 * #994: Fix index page check collection.limit(1).exists? causes exception when
         ordering by virtual colum (@latortuga, @gregbell)
 
+### Dependencies
+
+* #978: Support for Inherited Resources 1.3.0 (@fabiormoura)
+
 ## 0.4.0
 
 ### Upgrade Notes
