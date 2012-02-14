@@ -1,7 +1,7 @@
 module ActiveAdmin
   class Scope
 
-    attr_reader :name, :scope_method, :id, :scope_block, :display_if_block
+    attr_reader :name, :scope_method, :id, :scope_block, :display_if_block, :show_count
 
     # Create a Scope
     #
@@ -30,6 +30,7 @@ module ActiveAdmin
         @scope_block = block
       end
 
+      @show_count = options[:show_count].nil? ? true : options[:show_count]
       @display_if_block = options[:if]
     end
 

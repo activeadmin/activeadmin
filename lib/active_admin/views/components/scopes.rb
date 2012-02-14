@@ -38,7 +38,7 @@ module ActiveAdmin
             text_node scope_name
             span :class => 'count' do
               "(" + get_scope_count(scope).to_s + ")"
-            end if options[:scope_count]
+            end if options[:scope_count] && scope.show_count
           end
         end
       end
