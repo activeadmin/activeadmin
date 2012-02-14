@@ -48,7 +48,6 @@ module ActiveAdmin
             self.default_sort_attrs ||= []
             self.default_sort_attrs << [ name, options ]
           end
-
         end
 
         protected
@@ -152,11 +151,15 @@ module ActiveAdmin
 
       # Include all the Modules. BaseCollection must be first
       # and pagination should be last
-      include BaseCollection
-      include Sorting
-      include Search
-      include Scoping
-      include Pagination
+      def self.included(base)
+        base.class_eval do
+          include BaseCollection
+          include Sorting
+          include Search
+          include Scoping
+          include Pagination
+        end
+      end
 
     end
   end
