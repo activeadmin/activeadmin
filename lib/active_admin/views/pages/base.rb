@@ -17,6 +17,7 @@ module ActiveAdmin
           @body.add_class(params[:action])
           @body.add_class(params[:controller].gsub('/', '_'))
           @body.add_class("logged_in")
+          @body.add_class(active_admin_namespace.name.to_s + "_namespace")
         end
 
         def build_active_admin_head
