@@ -20,7 +20,7 @@ ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comme
 ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent do |app|
   app.namespaces.values.each do |namespace|
     if namespace.comments?
-      namespace.register ActiveAdmin::Comment, :as => 'Comment' do
+      namespace.register ActiveAdmin::Comment, :as => "Comment" do
         actions :index, :show, :create
 
         # Don't display in the menu
@@ -60,7 +60,7 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent do |app|
             create! do |success, failure|
               failure.html do 
                 resource_config = active_admin_config.namespace.resource_for(@comment.resource.class)
-                flash[:error] = "Comment wasn't saved, text was empty."
+                flash[:error] = I18n.t('active_admin.comments.errors.empty_text')
                 redirect_to send(resource_config.route_instance_path, @comment.resource)
               end
             end
@@ -69,9 +69,9 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent do |app|
 
         # Display as a table
         index do
-          column("Resource"){|comment| auto_link(comment.resource) }
-          column("Author"){|comment| auto_link(comment.author) }
-          column :body
+          column(I18n.t('active_admin.comments.resource')){|comment| auto_link(comment.resource) }
+          column(I18n.t('active_admin.comments.author')){|comment| auto_link(comment.author) }
+          column(I18n.t('active_admin.comments.body')){|comment| comment.body }
         end
       end
     end
