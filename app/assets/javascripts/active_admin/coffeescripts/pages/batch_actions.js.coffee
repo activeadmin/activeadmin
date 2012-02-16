@@ -28,16 +28,18 @@ jQuery ($) ->
         return false
 
   #
-  # Add checkbox selection to resource tables
+  # Add checkbox selection to resource tables and lists if batch actions are enabled
   #
-  
-  if $(".paginated_collection").find("table").length
-    $(".paginated_collection table").tableCheckboxToggler()
-  else
-    $(".paginated_collection").checkboxToggler()
 
-  $(".paginated_collection").find(":checkbox").bind "change", ->
-    if $(".paginated_collection").find(":checkbox").filter(":checked").length > 0
-      $("#batch_actions_button").removeClass("disabled")
+  if $("#batch_actions_button").length && $(":checkbox.toggle_all").length
+  
+    if $(".paginated_collection").find("table").length
+      $(".paginated_collection table").tableCheckboxToggler()
     else
-      $("#batch_actions_button").addClass("disabled")
+      $(".paginated_collection").checkboxToggler()
+
+    $(".paginated_collection").find(":checkbox").bind "change", ->
+      if $(".paginated_collection").find(":checkbox").filter(":checked").length > 0
+        $("#batch_actions_button").removeClass("disabled")
+      else
+        $("#batch_actions_button").addClass("disabled")
