@@ -1,5 +1,7 @@
 ## Master (unreleased)
 
+## 0.4.1
+
 ### Enhancements
 
 * #865: Pages support the `#page_action` to add custom controller actions
@@ -22,6 +24,25 @@
 ### Dependencies
 
 * #978: Support for Inherited Resources 1.3.0 (@fabiormoura)
+
+### Contributors
+
+75 Commits by 12 authors
+
+* Bruno Bonamin
+* David Radcliffe
+* Dinesh Majrekar
+* Erik Michaels-Ober
+* Fábio Maia
+* Gabriel Gilder
+* Greg Bell
+* Kyle Macey
+* Matt Vague
+* Oldani Pablo
+* Peter Fry
+* Philippe Creux
+* Søren Houen
+
 
 ## 0.4.0
 
