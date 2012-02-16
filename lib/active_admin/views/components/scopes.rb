@@ -16,17 +16,17 @@ module ActiveAdmin
         'ul'
       end
 
-      def build(scopes)
+      def build(scopes, options = {})
         unless current_filter_search_empty?
           scopes.each do |scope|
-            build_scope(scope) if call_method_or_proc_on(self, scope.display_if_block)
+            build_scope(scope, options) if call_method_or_proc_on(self, scope.display_if_block)
           end
         end
       end
 
       protected
 
-      def build_scope(scope)
+      def build_scope(scope, options)
         li :class => classes_for_scope(scope) do
           begin
             scope_name = I18n.t!("active_admin.scopes.#{scope.id}")
@@ -38,7 +38,7 @@ module ActiveAdmin
             text_node scope_name
             span :class => 'count' do
               "(" + get_scope_count(scope).to_s + ")"
-            end
+            end if options[:scope_count] && scope.show_count
           end
         end
       end

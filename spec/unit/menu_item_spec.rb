@@ -35,20 +35,6 @@ module ActiveAdmin
       item.display_if_block.call(self).should == true
     end
 
-    describe "url generation and caching" do
-      it "should generate a url if it is a symbol" do
-        item = MenuItem.new("Posts", :admin_posts_path)
-        MenuItem.should_receive(:generate_url).with(:admin_posts_path).
-          and_return("/admin/posts")
-
-        item.url.should == "/admin/posts"
-      end
-
-      it "should generate a url if it is a string" do
-        MenuItem.new("Posts", "/admin/posts").url.should == "/admin/posts"
-      end
-    end
-
     context "with no children" do
       it "should be empty" do
         item = MenuItem.new("Blog", "/admin/blog")

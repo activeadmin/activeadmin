@@ -30,7 +30,19 @@ module ActiveAdmin
       end
 
       def update_resource(object, attributes)
-        object.attributes = attributes
+        # Inherited resources 1.3.0 calls the method passing an array instead of a parameters hash.
+        # The array contains in the first position the parameters which update the object and in the second position
+        # possibly contains the role, it's optional, to use in mass assignment. This feature is provided by Rails 3.1
+        if attributes.is_a?(Array)
+          if object.respond_to?(:assign_attributes)
+            object.assign_attributes(*attributes)
+          else
+            object.attributes = attributes[0]
+          end
+        else
+          object.attributes = attributes
+        end
+
         run_update_callbacks object do
           save_resource(object)
         end

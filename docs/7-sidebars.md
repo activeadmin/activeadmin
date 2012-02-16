@@ -25,6 +25,13 @@ options.
       "Need help? Email us at help@example.com"
     end
 
+If you want to conditionally display a sidebar section, use the :if option and
+pass it a proc which will be rendered within the context of the view.
+
+    sidebar :help, :if => proc{ current_admin_user.super_admin? }
+      "Only for super admins!"
+    end
+
 If you only pass a symbol, Active Admin will attempt to locate a partial to render.
 
     # Will render app/views/admin/posts/_help_sidebar.html.erb

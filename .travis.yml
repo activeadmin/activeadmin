@@ -2,3 +2,6 @@ script: bundle exec rake
 rvm:
   - ree
   - 1.9.2
+before_install:
+  - gem update --system
+  - gem --version

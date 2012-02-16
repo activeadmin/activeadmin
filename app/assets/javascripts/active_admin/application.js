@@ -269,18 +269,20 @@
         }
       }
     });
-    if ($(".paginated_collection").find("table").length) {
-      $(".paginated_collection table").tableCheckboxToggler();
-    } else {
-      $(".paginated_collection").checkboxToggler();
-    }
-    return $(".paginated_collection").find(":checkbox").bind("change", function() {
-      if ($(".paginated_collection").find(":checkbox").filter(":checked").length > 0) {
-        return $("#batch_actions_button").removeClass("disabled");
+    if ($("#batch_actions_button").length && $(":checkbox.toggle_all").length) {
+      if ($(".paginated_collection").find("table").length) {
+        $(".paginated_collection table").tableCheckboxToggler();
       } else {
-        return $("#batch_actions_button").addClass("disabled");
+        $(".paginated_collection").checkboxToggler();
       }
-    });
+      return $(".paginated_collection").find(":checkbox").bind("change", function() {
+        if ($(".paginated_collection").find(":checkbox").filter(":checked").length > 0) {
+          return $("#batch_actions_button").removeClass("disabled");
+        } else {
+          return $("#batch_actions_button").addClass("disabled");
+        }
+      });
+    }
   });
 
 }).call(this);

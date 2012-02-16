@@ -10,6 +10,19 @@ the <tt>:as</tt> option.
 
 The resource will then be available as /admin/articles
 
+## Customize the Namespace
+
+By default, resources live in the "admin" namespace.
+
+You can register resources in different namespaces:
+
+    # Available at /today/posts
+    ActiveAdmin.register Post, :namespace => "today"
+
+    # Available at /posts
+    ActiveAdmin.register Post, :namespace => false
+
+
 ## Customize the Menu
 
 The resource will be displayed in the global navigation by default. To disable

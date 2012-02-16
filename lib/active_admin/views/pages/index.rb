@@ -15,39 +15,39 @@ module ActiveAdmin
         # Render's the index configuration that was set in the
         # controller. Defaults to rendering the ActiveAdmin::Pages::Index::Table
         def main_content
-          # TODO: Refactor to table tools component
-          
           if active_admin_config.batch_actions.any? 
             batch_action_form do
-              div :class => "table_tools" do
-
-                if collection.any?
-                  a :class => 'table_tools_button dropdown_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
-                    text_node "Batch Actions"
-                  end
-                end
-              
-                build_scopes
-              end
-
+              build_table_tools
               build_collection
             end
           else
-            if active_admin_config.scopes.any? && collection.any?
-              div :class => "table_tools" do
-                build_scopes
-              end
-            end
-
+            build_table_tools
             build_collection
           end
         end
-        
+
+        protected
+
+        def build_extra_content
+          build_batch_action_popover
+        end
+
+        def items_in_collection?
+          # Remove the order clause before limiting to 1. This ensures that
+          # any referenced columns in the order will not try to be accessed.
+          #
+          # When we call #exists?, the query's select statement is changed to "1".
+          #
+          # If we don't reorder, there may be some columns referenced in the order
+          # clause that requires the original select.
+          collection.reorder("").limit(1).exists?
+        end
+
         def build_collection
-          if collection.any?
+          if items_in_collection?
             render_index
           else
-            if params[:q]
+            if params[:q] || params[:scope]
               render_empty_results
             else
               render_blank_slate
@@ -55,19 +55,25 @@ module ActiveAdmin
           end
         end
 
-        def build_extra_content
-          build_batch_action_popover
-        end
-
-        protected
-        
-        
         # TODO: Refactor to new HTML DSL
         def build_download_format_links(formats = [:csv, :xml, :json])
           links = formats.collect do |format|
             link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format))
           end
           text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
+        end
+
+        def build_table_tools
+          div :class => "table_tools" do
+
+            if active_admin_config.batch_actions.any?
+              a :class => 'table_tools_button dropdown_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
+                text_node I18n.t("active_admin.batch_actions.button_label")
+              end
+            end
+          
+            build_scopes
+          end
         end
 
         def build_batch_action_popover
@@ -79,7 +85,13 @@ module ActiveAdmin
         end
 
         def build_scopes
-          scopes_renderer active_admin_config.scopes
+          if active_admin_config.scopes.any?
+            scope_options = {
+              :scope_count => config[:scope_count].nil? ? true : config[:scope_count]
+            }
+
+            scopes_renderer active_admin_config.scopes, scope_options
+          end
         end
 
         # Creates a default configuration for the resource class. This is a table
@@ -123,9 +135,13 @@ module ActiveAdmin
         
         def render_index
           renderer_class = find_index_renderer_class(config[:as])
+          paginator      = config[:paginator].nil?      ? true : config[:paginator]
+          download_links = config[:download_links].nil? ? true : config[:download_links]
           
-          paginated_collection(collection, :entry_name   => active_admin_config.resource_name,
-                                           :entries_name => active_admin_config.plural_resource_name) do
+          paginated_collection(collection, :entry_name     => active_admin_config.resource_name,
+                                           :entries_name   => active_admin_config.plural_resource_name,
+                                           :download_links => download_links,
+                                           :paginator      => paginator) do
             div :class => 'index_content' do
               insert_tag(renderer_class, config, collection)
             end
