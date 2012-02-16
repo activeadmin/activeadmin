@@ -17,7 +17,7 @@ module ActiveAdmin
         protected
 
         def title_content
-          "Comments (#{record_comments.count})"
+          I18n.t('active_admin.comments.title_content', :count => record_comments.count)
         end
 
         def record_comments
@@ -51,7 +51,7 @@ module ActiveAdmin
 
         def build_empty_message
           span :class => "empty" do
-            "No comments yet."
+            I18n.t('active_admin.comments.no_comments_yet')
           end
         end
 
@@ -71,7 +71,7 @@ module ActiveAdmin
               form.input :body, :input_html => {:size => "80x8"}, :label => false
             end
             form.buttons do
-              form.commit_button 'Add Comment'
+              form.commit_button I18n.t('active_admin.comments.add')
             end
           end
         end
