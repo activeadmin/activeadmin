@@ -45,7 +45,7 @@ de:
     comments:
       body: "Inhalt"
       author: "Autor"
-      title: "Kommentare"
+      title: "Kommentar"
       resource: "Resource"
       add: "Kommentar hinzufügen"
       no_comments_yet: "Es gibt noch keine Kommentare."

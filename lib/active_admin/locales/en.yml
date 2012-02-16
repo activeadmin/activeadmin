@@ -46,7 +46,7 @@ en:
     comments:    
       body: "Body"
       author: "Author"
-      title: "Comments"
+      title: "Comment"
       add: "Add Comment"
       resource: "Resource"
       no_comments_yet: "No comments yet."

@@ -20,7 +20,7 @@ ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comme
 ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent do |app|
   app.namespaces.values.each do |namespace|
     if namespace.comments?
-      namespace.register ActiveAdmin::Comment, :as => "Comment" do
+      namespace.register ActiveAdmin::Comment, :as => I18n.t('active_admin.comments.title') do
         actions :index, :show, :create
 
         # Don't display in the menu
