@@ -105,4 +105,22 @@ describe ActiveAdmin::Renderer do
       renderer.send(:call_method_or_proc_on, obj, p).should == obj.size
     end
   end
+
+  describe "#render_or_call_method_or_proc_on" do
+    let(:renderer){ Renderer.new(action_view) }
+    let(:obj){ "Hello World" }
+    it "should return nil if no symbol or proc given" do
+      renderer.send(:render_or_call_method_or_proc_on, obj, 1).should == nil
+    end
+    it "should return the string if a string is given" do
+      renderer.send(:render_or_call_method_or_proc_on, obj, "Hello!").should == "Hello!"
+    end
+    it "should call the method if a symbol is given" do
+      renderer.send(:render_or_call_method_or_proc_on, obj, :size).should == obj.size
+    end
+    it "should call the proc with the object if a proc is given" do
+      p = Proc.new{|string| string.size }
+      renderer.send(:render_or_call_method_or_proc_on, obj, p).should == obj.size
+    end
+  end
 end
