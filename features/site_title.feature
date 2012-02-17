@@ -19,20 +19,29 @@ Feature: Site title
     Then I should see "Ruby on Rails: Welcome aboard"
 
   Scenario: Set the site title image
-	Given a configuration of:
-	"""
-	  ActiveAdmin.application.site_title_image = "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
-	"""
-	When I am on the dashboard
-	And I should not see the site title "My Great Site"
-	And I should see the site title image "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+    Given a configuration of:
+    """
+      ActiveAdmin.application.site_title_image = "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+    """
+    When I am on the dashboard
+    And I should not see the site title "My Great Site"
+    And I should see the site title image "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
 
   Scenario: Set the site title image with link
-	Given a configuration of:
-	"""
-	  ActiveAdmin.application.site_title_link = "http://www.google.com"
-	  ActiveAdmin.application.site_title_image = "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
-	"""
-	When I am on the dashboard
-	And I should see the site title image "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
-	And I should see the site title image linked to "http://www.google.com"
+    Given a configuration of:
+    """
+      ActiveAdmin.application.site_title_link = "http://www.google.com"
+      ActiveAdmin.application.site_title_image = "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+    """
+    When I am on the dashboard
+    And I should see the site title image "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+    And I should see the site title image linked to "http://www.google.com"
+
+  Scenario: Set the site title to a proc
+    Given a configuration of:
+    """
+      ActiveAdmin.application.site_title_image = nil # Configuration is not reset between scenarios
+      ActiveAdmin.application.site_title = proc { "Hello #{controller.current_admin_user.email}" }
+    """
+    When I am on the dashboard
+    And I should see the site title "Hello admin@example.com"

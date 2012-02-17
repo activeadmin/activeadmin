@@ -13,7 +13,7 @@ module ActiveAdmin
 
       # Renders the title/branding area for the site
       def title
-        content_tag('h1', link_to_site_title(title_image || title_text), :id => 'site_title')
+        content_tag('h1', link_to_site_title(title_image_tag || title_text), :id => 'site_title')
       end
 
       def link_to_site_title(title_tag)
@@ -26,17 +26,22 @@ module ActiveAdmin
       
       # @return [String] An HTML img tag with site_title_image. Return nil when
       # site_title_image is blank.
-      def title_image
+      def title_image_tag
         if active_admin_namespace.site_title_image.present?
-          image_tag(active_admin_namespace.site_title_image, 
+          image_tag(title_image, 
                     :id => "site_title_image", 
                     :alt => active_admin_namespace.site_title)
         end
       end
-      
+
+      # @return [String] The title image url
+      def title_image
+        render_or_call_method_or_proc_on(self, active_admin_namespace.site_title_image)
+      end
+
       # @return [String] The site title
       def title_text
-        active_admin_namespace.site_title
+        render_or_call_method_or_proc_on(self, active_admin_namespace.site_title)
       end
 
       # Renders the global navigation returned by
