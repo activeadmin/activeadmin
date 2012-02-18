@@ -44,7 +44,7 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent do |app|
           flash[:notice] = flash[:notice].dup if flash[:notice]
           comment = ActiveAdmin::Comment.find(params[:id])
           resource_config = active_admin_config.namespace.resource_for(comment.resource.class)
-          redirect_to send(resource_config.route_instance_path, comment.resource)
+          redirect_to send(resource_config.route_instance_path, :id => comment.resource.id)
         end
 
         # Store the author and namespace
@@ -61,7 +61,7 @@ ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent do |app|
               failure.html do 
                 resource_config = active_admin_config.namespace.resource_for(@comment.resource.class)
                 flash[:error] = "Comment wasn't saved, text was empty."
-                redirect_to send(resource_config.route_instance_path, @comment.resource)
+                redirect_to send(resource_config.route_instance_path, :id => @comment.resource.id)
               end
             end
           end
