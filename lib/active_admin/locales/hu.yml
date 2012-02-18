@@ -35,6 +35,7 @@ hu:
       empty: "Nincs több %{model}"
       one: "<b>Egy</b> %{model} megjelenítése"
       one_page: "<b>Az összes (%{n} db)</b> %{model} megjelenítése"
+      multiple_without_total: "%{model} listájának megjelenítése, <b>%{from}&nbsp;-&nbsp;%{to}</b> "
       multiple: "%{model} listájának megjelenítése, <b>%{from}&nbsp;-&nbsp;%{to}</b>/<b>%{total}</b> "
       entry:
         one: "elem"

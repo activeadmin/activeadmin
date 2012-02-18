@@ -33,6 +33,7 @@ pl:
       empty: "Nie znaleziono %{model}"
       one: "Wyświetlanie <b>1</b> %{model}"
       one_page: "Wyświetlanie <b>wszystkich %{n}</b> %{model}"
+      multiple_without_total: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       multiple: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
     any: "Jakikolwiek"
     blank_slate:

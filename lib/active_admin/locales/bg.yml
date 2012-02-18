@@ -33,6 +33,7 @@ bg:
       empty: "%{model} не е открит"
       one: "Показване на <b>1</b> %{model}"
       one_page: "Показване на <b>всички %{n}</b> %{model}"
+      multiple_without_total: "Показване на %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       multiple: "Показване на %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> от <b>%{total}</b> общо"
     any: "Всеки"
     blank_slate:

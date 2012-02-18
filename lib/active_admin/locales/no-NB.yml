@@ -33,6 +33,7 @@
       empty: "Fannt ingen %{model}"
       one: "Viser <b>1</b> %{model}"
       one_page: "Viser <b>alle %{n}</b> %{model}"
+      multiple_without_total: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt"
     any: "Noen"
     blank_slate:

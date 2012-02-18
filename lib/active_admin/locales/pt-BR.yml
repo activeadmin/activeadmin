@@ -35,6 +35,7 @@
       empty: "Nenhum(a) %{model} encontrado(a)"
       one: "Exibindo <b>1</b> %{model}"
       one_page: "Exibindo <b>todos(as) os(as) %{n}</b> %{model}"
+      multiple_without_total: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       multiple: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
       entry:
         one: "registro"
