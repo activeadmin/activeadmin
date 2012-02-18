@@ -101,7 +101,8 @@ module ActiveAdmin
           paginated_collection(collection, :entry_name     => active_admin_config.resource_name,
                                            :entries_name   => active_admin_config.plural_resource_name,
                                            :download_links => download_links,
-                                           :paginator      => paginator) do
+                                           :paginator      => paginator,
+                                           :unbounded      => config[:unbounded_paging]) do
             div :class => 'index_content' do
               insert_tag(renderer_class, config, collection)
             end
