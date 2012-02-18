@@ -10,14 +10,19 @@ module ActiveAdmin
       
       # @return [Hash] The set of batch actions for this resource
       def batch_actions_hash
-        @batch_actions_hash ||= { :destroy => default_batch_action }
+        @batch_actions_hash ||= controller.action_methods.include?('destroy') ? { :destroy => default_batch_action } : {}
       end
       
       # @return [ActiveAdmin::BatchAction] The default "delete" action
       def default_batch_action
         action = ActiveAdmin::BatchAction.new :destroy, I18n.t('active_admin.delete'), :priority => 100, :confirm => I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => plural_resource_name.downcase) do |selected_ids|
+
           active_admin_config.resource_class.find(selected_ids).each { |r| r.destroy }
-          redirect_to collection_path, :notice => I18n.t("active_admin.batch_actions.succesfully_destroyed", :count => selected_ids.count, :model => active_admin_config.resource_name.downcase, :plural_model => active_admin_config.plural_resource_name.downcase)
+
+          redirect_to collection_path, :notice => I18n.t("active_admin.batch_actions.succesfully_destroyed",
+                                                         :count => selected_ids.count,
+                                                         :model => active_admin_config.resource_name.downcase,
+                                                         :plural_model => active_admin_config.plural_resource_name.downcase)
         end
       end
       

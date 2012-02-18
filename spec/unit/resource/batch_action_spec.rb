@@ -7,11 +7,17 @@ describe ActiveAdmin::Resource::BatchActions do
     namespace.register(Post)
   end
   
-  describe "default action should be present" do
+  describe "default action" do
     
-    it "should have the default action" do
+    it "should have the default action by default" do
       resource.batch_actions.size.should == 1 and resource.batch_actions.first.sym == :destroy
     end
+
+    it "should not have the default action if destroy is not a controller action" do
+      resource.controller.actions :all, :except => [ :destroy ]
+      resource.batch_actions.size.should == 0
+    end
+
     
   end
   
