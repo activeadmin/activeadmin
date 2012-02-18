@@ -13,29 +13,35 @@ module ActiveAdmin
 
       # Renders the title/branding area for the site
       def title
-        if active_admin_namespace.site_title_image.blank?
-         title_text
+        content_tag('h1', link_to_site_title(title_image_tag || title_text), :id => 'site_title')
+      end
+
+      def link_to_site_title(title_tag)
+        if active_admin_namespace.site_title_link.present?
+          link_to(title_tag, active_admin_namespace.site_title_link)
         else
-          title_image
+          title_tag
         end
       end
       
-      # Renders an image for the site's header/branding area
+      # @return [String] An HTML img tag with site_title_image. Return nil when
+      # site_title_image is blank.
+      def title_image_tag
+        if active_admin_namespace.site_title_image.present?
+          image_tag(title_image, 
+                    :id => "site_title_image", 
+                    :alt => active_admin_namespace.site_title)
+        end
+      end
+
+      # @return [String] The title image url
       def title_image
-        if !active_admin_namespace.site_title_link.blank?
-          content_tag 'h1', link_to( image_tag(active_admin_namespace.site_title_image, :id => "site_title_image", :alt => active_admin_namespace.site_title), active_admin_namespace.site_title_link ), :id => "site_title" 
-        else
-          content_tag 'h1', image_tag( active_admin_namespace.site_title_image, :id => "site_title_image", :alt => active_admin_namespace.site_title ), :id => "site_title"
-        end
+        render_or_call_method_or_proc_on(self, active_admin_namespace.site_title_image)
       end
-      
-      # Renders a the site's header/branding area as a string
+
+      # @return [String] The site title
       def title_text
-        if !active_admin_namespace.site_title_link || active_admin_namespace.site_title_link == ""
-          content_tag 'h1', active_admin_namespace.site_title, :id => 'site_title'
-        else
-          content_tag 'h1', link_to(active_admin_namespace.site_title, active_admin_namespace.site_title_link), :id => 'site_title'
-        end
+        render_or_call_method_or_proc_on(self, active_admin_namespace.site_title)
       end
 
       # Renders the global navigation returned by
