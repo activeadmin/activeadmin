@@ -102,10 +102,10 @@ module ActiveAdmin
         end
 
         def build_flash_messages
-          if flash.keys.any?
+          if flash.keys.except(:timedout).any?
             div :class => 'flashes' do
-              flash.each do |type, message|
-                div message, :class => "flash flash_#{type}"
+              flash.keys.except(:timedout).each do |k|
+                div flash[k], :class => "flash flash_#{k}"
               end
             end
           end
