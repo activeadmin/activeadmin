@@ -103,9 +103,13 @@ module Arbre
       def append_return_block(tag)
         return nil if current_dom_context.children?
 
-        if !tag.is_a?(Arbre::HTML::Element) && tag.respond_to?(:to_s)
+        if appendable_return_block?(tag)
           current_dom_context << Arbre::HTML::TextNode.from_string(tag.to_s)
         end
+      end
+      
+      def appendable_return_block?(tag)
+        !tag.is_a?(Arbre::HTML::Element) && tag.respond_to?(:to_s) && !tag.blank?
       end
     end
 
