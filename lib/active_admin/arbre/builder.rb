@@ -109,7 +109,14 @@ module Arbre
       end
       
       def appendable_return_block?(tag)
-        !tag.is_a?(Arbre::HTML::Element) && tag.respond_to?(:to_s) && !tag.blank?
+        appendable = !tag.is_a?(Arbre::HTML::Element) && tag.respond_to?(:to_s) 
+        
+        # Ruby 1.9 returns empty array as "[]"
+        if tag.respond_to?(:empty?) && tag.empty? 
+          appendable = false
+        end
+        
+        appendable
       end
     end
 
