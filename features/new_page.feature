@@ -73,3 +73,26 @@ Feature: New Page
     Then I should see "Post was successfully created."
     And I should see the attribute "Title" with "Hello World"
     And I should see the attribute "Body" with "This is the body"
+
+  Scenario: Displaying fields at runtime
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        form do |f|
+          f.inputs "Your Post" do
+            if current_admin_user && false
+              f.input :title
+            end
+
+            f.input :body
+          end
+          f.inputs "Publishing" do
+            f.input :published_at
+          end
+          f.buttons
+        end
+      end
+    """
+    Given I follow "New Post"
+    Then I should not see "Title"
+    And I should see "Body"
