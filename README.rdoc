@@ -36,12 +36,6 @@ on Rails 3 application. To install, simply add the following to your Gemfile:
 
   gem 'activeadmin'
 
-and add activeadmin assets into precompiling by adding the following line into your config/environments/production.rb:
-
-  config.assets.precompile += %w[active_admin.css active_admin.js]
-
-There is also some issue with precompiling activeadmin images in Rails 3.1.0, it is fixed in Rails 3.1.1.
-
 After updating your bundle, run the installer
 
   $> rails generate active_admin:install
