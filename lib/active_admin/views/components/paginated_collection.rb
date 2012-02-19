@@ -71,20 +71,41 @@ module ActiveAdmin
 
       def build_pagination
         options = request.query_parameters.except(:commit, :format)
-
         options[:param_name] = @param_name if @param_name
-        if @unbounded
-          options[:num_pages] = collection.current_page
-          # If we are for sure not at the end, pretend like we have one extra page.
-          unless collection.size < collection.limit_value
-            # Unfortunately, we're not peeking ahead, so this might mean that the next page has
-            # zero items in it.  This also means that the Last page link will show up, pointing to
-            # the next page; but kaminari doesn't give us the option to hide it.
-            options[:num_pages] += 1
-          end
-        end
 
         text_node paginate(collection, options.symbolize_keys)
+      end
+
+      # For unscoped pagination, we need a bit more control over how kaminari sets up its paginator,
+      # so we override the helper.
+      #
+      # This is intentionally overly general, so that it is easy to diff between any changes
+      # kaminari might make in the future.
+      #
+      # Based off of https://github.com/amatsuda/kaminari/blob/v0.13.0/lib/kaminari/helpers/action_view_extension.rb#L17
+      def paginate(scope, options = {}, &block)
+        # If this is a regular paginatior, there's no reason to override this helper.
+        return super unless @unbounded
+
+        # Make sure that we *do not* reference scope.num_pages!
+        num_pages = collection.current_page
+        # If we are for sure not at the end, pretend like we have one extra page.
+        unless collection.size < collection.limit_value
+          # Unfortunately, we're not peeking ahead, so this might mean that the next page has
+          # zero items in it.  This also means that the Last page link will show up, pointing to
+          # the next page; but kaminari doesn't give us the option to hide it.
+          num_pages += 1
+        end
+
+        paginator = Kaminari::Helpers::Paginator.new self, options.reverse_merge(
+          :current_page => scope.current_page,
+          :num_pages    => num_pages,
+          :per_page     => scope.limit_value,
+          :param_name   => Kaminari.config.param_name,
+          :remote       => false
+        )
+
+        paginator.to_s
       end
 
       # TODO: Refactor to new HTML DSL
