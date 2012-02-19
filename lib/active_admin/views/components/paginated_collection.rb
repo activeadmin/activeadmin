@@ -105,6 +105,13 @@ module ActiveAdmin
           :remote       => false
         )
 
+        # And a total hack to disable the 'last >>' tag, since it is meaningless when unbounded
+        class << paginator
+          def last_page_tag
+            ''
+          end
+        end
+
         paginator.to_s
       end
 
