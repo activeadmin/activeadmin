@@ -101,8 +101,11 @@ Feature: Sidebar Sections
   Scenario: Create a sidebar for only one action with if clause with method symbol
     Given a configuration of:
     """
+    module SidebarHelper
+      def can_sidebar?; false; end
+    end
     ActiveAdmin.register Post do
-      controller { def can_sidebar?; false; end }
+      controller { helper SidebarHelper }
       sidebar :help, :only => :index, :if => :can_sidebar? do
         "Need help? Email us at help@example.com"
       end
