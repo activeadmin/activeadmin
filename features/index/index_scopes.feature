@@ -124,7 +124,7 @@ Feature: Index Scoping
     And I should see a link to "Today"
     
   Scenario: Viewing resources with scopes when a filter is applied
-    Given 3 posts written by "Daft Punk" exist
+    Given 2 posts written by "Daft Punk" exist
     And a post with the title "Monkey Wrench" written by "Foo Fighters" exists
     And an index configuration of:
       """
