@@ -311,6 +311,10 @@ describe ActiveAdmin::FormBuilder do
       end
     end
 
+    it "should use model name when there is no translation for given model in header" do
+      body.should have_tag('h3', 'Post')
+    end
+
     it "should translate the association name in has many new button" do
       begin
         I18n.backend.store_translations(:en, :activerecord => { :models => { :post => { :one => "Blog Post", :other => "Blog Posts" } } })
@@ -318,6 +322,10 @@ describe ActiveAdmin::FormBuilder do
       ensure
         I18n.backend.reload!
       end
+    end
+
+    it "should use model name when there is no translation for given model in has many new button" do
+      body.should have_tag('a', 'Add New Post')
     end
   end
 
