@@ -49,46 +49,9 @@ module ActiveAdmin
         end
 
         def build_title_bar
-          div :id => "title_bar" do
-            build_titlebar_left
-            build_titlebar_right
-          end
-        end
-        
-        def build_titlebar_left
-          div :id => "titlebar_left" do
-            build_breadcrumb
-            build_title_tag
-          end
-        end
-        
-        def build_titlebar_right
-          div :id => "titlebar_right" do
-            build_action_items
-          end
+          insert_tag view_factory.title_bar, title, action_items_for_action
         end
 
-        def build_breadcrumb(separator = "/")
-          links = breadcrumb_links
-          return if links.empty?
-          span :class => "breadcrumb" do
-            links.each do |link|
-              text_node link
-              span(separator, :class => "breadcrumb_sep")
-            end
-          end
-        end
-
-        def build_title_tag
-          h2(title, :id => 'page_title')
-        end
-
-        def build_action_items
-          if active_admin_config && active_admin_config.action_items?
-            items = active_admin_config.action_items_for(params[:action], self)
-            insert_tag view_factory.action_items, items
-          end
-        end
 
         def build_page_content
           build_flash_messages
@@ -129,11 +92,18 @@ module ActiveAdmin
           set_ivar_on_view "@page_title", title
         end
 
-
         # Returns the sidebar sections to render for the current action
         def sidebar_sections_for_action
           if active_admin_config && active_admin_config.sidebar_sections?
             active_admin_config.sidebar_sections_for(params[:action], self)
+          else
+            []
+          end
+        end
+
+        def action_items_for_action
+          if active_admin_config && active_admin_config.action_items?
+            active_admin_config.action_items_for(params[:action], self)
           else
             []
           end
