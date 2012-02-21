@@ -12,6 +12,7 @@
 * [#1032][]: The html body now includes a class for the namespace name ([@mattvague][])
 * [#1013][]: Hide the count from one specific scope using `:show_count => false`
          ([@latortuga][])
+* [#1023][]: Add localization support for comments ([@MoritzMoritz][])
 
 ### Bug Fixes
 
@@ -512,11 +513,13 @@ of the highlights. 250 commits. Enough said.
 [#994]: https://github.com/gregbell/active_admin/issues/994
 [#1013]: https://github.com/gregbell/active_admin/issues/1013
 [#1016]: https://github.com/gregbell/active_admin/issues/1016
+[#1023]: https://github.com/gregbell/active_admin/issues/1023
 [#1032]: https://github.com/gregbell/active_admin/issues/1032
 [#1033]: https://github.com/gregbell/active_admin/issues/1033
 [#1041]: https://github.com/gregbell/active_admin/issues/1041
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
+[@MoritzMoritz]: https://github.com/MoritzMoritz
 [@ZequeZ]: https://github.com/ZequeZ
 [@bobbytables]: https://github.com/bobbytables
 [@comboy]: https://github.com/comboy
