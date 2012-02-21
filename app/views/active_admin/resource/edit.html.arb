@@ -1,1 +1,1 @@
-render renderer_for(:edit)
+insert_tag renderer_for(:edit)

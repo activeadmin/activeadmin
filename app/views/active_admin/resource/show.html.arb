@@ -1,1 +1,1 @@
-render renderer_for(:show)
+insert_tag renderer_for(:show)
