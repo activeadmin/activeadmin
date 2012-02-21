@@ -12,7 +12,6 @@ module ActiveAdmin
 
         private
 
-
         def add_classes_to_body
           @body.add_class(params[:action])
           @body.add_class(params[:controller].gsub('/', '_'))
@@ -46,9 +45,7 @@ module ActiveAdmin
         end
 
         def build_header
-          div :id => "header" do
-            render view_factory.header
-          end
+          insert_tag view_factory.header, active_admin_namespace, current_menu
         end
 
         def build_title_bar
