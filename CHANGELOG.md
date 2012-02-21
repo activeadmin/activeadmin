@@ -1,5 +1,11 @@
 ## Master (unreleased)
 
+### Deprecations
+
+* Removed all references to ActiveAdmin::Renderer. If you were using these
+  please update code to use an Arbre component
+
+
 ## 0.4.2
 
 ### Enhancements
