@@ -28,6 +28,21 @@
 * [#983][]: Fixed compatibility with pry-rails ([@pcreux][])
 * [#409][]: Install generator handles custom class names for user ([@gregbell][])
 
+### Contributors
+
+42 Commits by 10 authors
+
+* Allen Huang
+* Daniel Lepage
+* Thibaut Barrère
+* Drew Ulmer
+* Juan Schwindt
+* Moritz Behr
+* Jeff Ancel
+* Matt Vague
+* Greg Bell
+* Philippe Creux
+
 
 ## 0.4.1
 
