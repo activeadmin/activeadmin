@@ -1,5 +1,10 @@
 ## Master (unreleased)
 
+### Enhancements
+
+* Created new view components (Footer, TitleBar, Header, UtilityNav) to more
+  easily customize the views in Active Admin and per namespace. (@gregbell)
+
 ### Deprecations
 
 * Removed all references to ActiveAdmin::Renderer. If you were using these
