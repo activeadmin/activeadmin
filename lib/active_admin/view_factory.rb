@@ -8,6 +8,7 @@ module ActiveAdmin
               :site_title         => ActiveAdmin::Views::SiteTitle,
               :utility_navigation => ActiveAdmin::Views::UtilityNav,
               :action_items       => ActiveAdmin::Views::ActionItems,
+              :title_bar          => ActiveAdmin::Views::TitleBar,
               :header             => ActiveAdmin::Views::Header,
               :dashboard_section  => ActiveAdmin::Views::DashboardSection,
               :index_scopes       => ActiveAdmin::Views::Scopes,
