@@ -258,10 +258,6 @@ module ActiveAdmin
     end
 
     def generate_stylesheets
-      # This must be required after initialization
-      require 'sass/plugin'
-      require 'active_admin/sass/helpers'
-
       # Create our own asset pipeline in Rails 3.0
       if ActiveAdmin.use_asset_pipeline?
         # Add our mixins to the load path for SASS
