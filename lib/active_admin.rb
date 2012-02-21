@@ -41,7 +41,6 @@ module ActiveAdmin
   autoload :Resource,                 'active_admin/resource'
   autoload :ResourceController,       'active_admin/resource_controller'
   autoload :ResourceDSL,              'active_admin/resource_dsl'
-  autoload :Renderer,                 'active_admin/renderer'
   autoload :Scope,                    'active_admin/scope'
   autoload :ScopeChain,               'active_admin/helpers/scope_chain'
   autoload :SidebarSection,           'active_admin/sidebar_section'
