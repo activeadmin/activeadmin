@@ -12,7 +12,7 @@ module ActiveAdmin
       end
 
       def method
-        super.to_s.gsub('_id','').to_sym
+        super.to_s.sub(/_id$/,'').to_sym
       end
 
       def extra_input_html_options
