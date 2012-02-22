@@ -38,7 +38,7 @@ module ActiveAdmin
           #
           # If we don't reorder, there may be some columns referenced in the order
           # clause that requires the original select.
-          collection.reorder("").limit(1).exists?
+          collection.reorder("").limit(1).count >= 1
         end
 
         # TODO: Refactor to new HTML DSL
