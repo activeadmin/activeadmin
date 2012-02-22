@@ -34,11 +34,11 @@ module ActiveAdmin
             :namespace => namespace.to_s)
     end
 
-    class << self
-      def resource_id_type
-        columns.select { |i| i.name == "resource_id" }.first.type
-      end
+  
+    def self.resource_id_type
+      columns.select { |i| i.name == "resource_id" }.first.type
     end
+
   end
 
 end
