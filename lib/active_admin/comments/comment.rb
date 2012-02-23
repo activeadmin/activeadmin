@@ -21,6 +21,7 @@ module ActiveAdmin
     end
     
     def self.resource_id_cast(record)
+      # Postgres adapters won't compare strings to numbers (issue 34)
       if resource_id_type == :string
         record.id.to_s
       else
