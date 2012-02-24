@@ -163,9 +163,6 @@ module ActiveAdmin
       # If no configurations, let's make sure you can still login
       load_default_namespace if namespaces.values.empty?
 
-      # Load Menus
-      namespaces.values.each{|namespace| namespace.load_menu! }
-
       # Dispatch an ActiveAdmin::Application::LoadEvent with the Application
       ActiveAdmin::Event.dispatch LoadEvent, self
 

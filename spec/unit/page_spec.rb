@@ -11,7 +11,7 @@ module ActiveAdmin
     let(:namespace){ Namespace.new(application, :admin) }
 
     def config(options = {})
-      @config ||= Page.new(namespace, "Status", options)
+      @config ||= namespace.register_page("Status", options)
     end
 
     describe "controller name" do

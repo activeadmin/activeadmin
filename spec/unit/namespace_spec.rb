@@ -19,8 +19,8 @@ describe ActiveAdmin::Namespace do
       namespace.resources.resources.should be_empty
     end
 
-    it "should have an empty menu" do
-      namespace.menu.items.should be_empty
+    it "should have one menu item (dashboard)" do
+      namespace.menu.items.size.should == 1
     end
   end # context "when new"
 
