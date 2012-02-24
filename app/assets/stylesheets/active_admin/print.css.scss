@@ -24,6 +24,7 @@ body {
 
 a {
   color: $text-color;
+  text-decoration: none;
 }
 
 h3 {
@@ -76,7 +77,36 @@ h3 {
 
 // Tables
 .table_tools {
-  display: none;
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+      display: none;
+      padding: 0;
+      margin-bottom: 1em;
+
+      &.scope.selected {
+        display: block;
+
+        &:before {
+          content: "Showing ";
+        }
+
+        a {
+          font-weight: bold;
+        }
+
+        span {
+          display: inline-block;
+          font-weight: normal;
+          font-size: .9em;
+        }
+      }
+    }
+
+  }
 }
 
 table {
@@ -118,31 +148,6 @@ table {
 // Index
 #index_footer, .pagination_information {
   display: none;
-}
-
-.scopes {
-  margin-bottom: 1em;
-
-  span {
-    display: none;
-
-    &.selected {
-      display: block;
-
-      &:before {
-        content: "Showing ";
-      }
-
-      span {
-        display: inline;
-      }
-
-      em {
-        font-style: normal;
-        font-weight: bold;
-      }
-    }
-  }
 }
 
 .index_grid {
