@@ -75,6 +75,10 @@ h3 {
 }
 
 // Tables
+.table_tools {
+  display: none;
+}
+
 table {
   margin-bottom: 1.5em;
   text-align: left;
@@ -159,6 +163,10 @@ table {
   margin-bottom: 3em;
   padding-bottom: 2em;
   page-break-inside: avoid;
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .comments {
@@ -226,6 +234,10 @@ form {
     border-top: thick solid #ccc;
     padding-top: 2em;
     margin-bottom: 2em;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   .buttons, abbr {
