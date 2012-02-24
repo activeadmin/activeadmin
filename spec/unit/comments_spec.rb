@@ -37,6 +37,24 @@ describe "Comments" do
       end
     end
     
+    describe ".resource_id_cast" do
+      let(:post) { Post.create!(:title => "Testing.") }
+      let(:namespace_name) { "admin" }
+      
+      it "should cast resource_id as string" do
+        comment = ActiveAdmin::Comment.create! :resource => post,
+                                                :body => "Another Comment",
+                                                :namespace => namespace_name
+        ActiveAdmin::Comment.resource_id_cast(comment).class.should eql String
+      end
+    end
+
+    describe ".resource_id_type" do
+      it "should be :string" do
+        ActiveAdmin::Comment.resource_id_type.should eql :string
+      end
+    end
+    
     describe "Commenting on resource with string id" do
       let(:tag){ Tag.create!(:name => "cooltags") }
       let(:namespace_name){ "admin" }
