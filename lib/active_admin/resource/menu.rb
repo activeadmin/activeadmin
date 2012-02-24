@@ -20,7 +20,7 @@ module ActiveAdmin
 
       def parent_menu_item_name
         return nil unless @parent_menu_item
-        ActiveModel::Name.new(nil, nil, @parent_menu_item)
+        ActiveAdmin::Resource::Name.new(nil, @parent_menu_item)
       end
 
       # The default menu options to pass through to MenuItem.new

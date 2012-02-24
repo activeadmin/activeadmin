@@ -61,7 +61,7 @@ module ActiveAdmin
       describe "I18n integration" do
         describe "singular label" do
           it "should return the titleized model_name.human" do
-            Category.model_name.should_receive(:human).and_return "Da category"
+            config.resource_name.should_receive(:human).and_return "Da category"
 
             config.resource_label.should == "Da Category"
           end
@@ -69,8 +69,6 @@ module ActiveAdmin
 
         describe "plural label" do
           it "should return the titleized plural version defined by i18n if available" do
-            Category.model_name.should_receive(:underscore).and_return("category") if Rails.version < "3.1.0"
-            Category.model_name.should_not_receive(:i18n_key) if Rails.version < "3.1.0" # Not implemented in Rails 3.0.0
             I18n.should_receive(:translate).at_least(:once).and_return("Da categories")
             config.plural_resource_label.should == "Da Categories"
           end

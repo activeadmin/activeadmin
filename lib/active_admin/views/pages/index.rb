@@ -89,7 +89,7 @@ module ActiveAdmin
         end
         
         def render_empty_results
-          empty_results_content = I18n.t("active_admin.pagination.empty", :model => active_admin_config.resource_name.pluralize)
+          empty_results_content = I18n.t("active_admin.pagination.empty", :model => active_admin_config.plural_resource_label)
           insert_tag(view_factory.blank_slate, empty_results_content)
         end
         
@@ -98,7 +98,7 @@ module ActiveAdmin
           paginator      = config[:paginator].nil?      ? true : config[:paginator]
           download_links = config[:download_links].nil? ? true : config[:download_links]
           
-          paginated_collection(collection, :entry_name     => active_admin_config.resource_name,
+          paginated_collection(collection, :entry_name     => active_admin_config.resource_label,
                                            :entries_name   => active_admin_config.plural_resource_label,
                                            :download_links => download_links,
                                            :paginator      => paginator) do

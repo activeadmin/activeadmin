@@ -41,7 +41,7 @@ module ActiveAdmin
     end
 
     def resource_name
-      @resource_name ||= ActiveModel::Name.new(nil, nil, name)
+      @resource_name ||= Resource::Name.new(nil, name)
     end
 
     def default_menu_options
