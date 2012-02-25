@@ -32,8 +32,9 @@ describe ActiveAdmin::FormBuilder do
   end
 
   def build_form(options = {}, &block)
+    model = options.delete(:model) || Post
     options.merge!({:url => posts_path})
-    active_admin_form_for Post.new, options, &block
+    active_admin_form_for model.new, options, &block
   end
 
   context "in general" do
@@ -252,4 +253,52 @@ describe ActiveAdmin::FormBuilder do
     end
   end
 
+  context "with has_many" do
+    let :body do
+      build_form :model => Category do |f|
+        f.instance_eval do
+          @object.posts = [Post.new(:title => 'Oho!')]
+        end
+        
+        f.has_many :posts do |post|
+          post.input :title
+        end
+      end
+    end
+    
+    it "should generate a nested text input once" do
+      # Should match each of these three times, once for each of:
+      # <li class="string input optional stringish" id="category_posts_attributes_0_title_input">
+      #   <label class=" label" for="category_posts_attributes_0_title">Title</label>
+      #   <input id="category_posts_attributes_0_title" maxlength="255" name="category[posts_attributes][0][title]" type="text" value="Oho!" />
+      # </li>
+      
+      # And similarly three times for the generated javascript on the "Add new <object>" link
+      
+      body.scan("category_posts_attributes_0_title").size.should == 3
+      body.scan("category_posts_attributes_NEW_RECORD_title").size.should == 3
+      
+    end
+  end
+
+  context "with sortable has_many" do
+    let :body do
+      build_form :model => Category do |f|
+        f.instance_eval do
+          @object.posts = [Post.new(:title => 'Oho!')]
+        end
+        
+        f.has_many :posts, :sortable => :sort do |post|
+          post.input :title
+        end
+      end
+    end
+    
+    it "should generate attributes for sortable" do
+      body.should have_tag("div", :attributes => {
+        :class => "has_many posts sortable",
+        'data-sortable-input' => "sort"
+      })
+    end
+  end
 end
