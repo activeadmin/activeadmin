@@ -224,7 +224,7 @@ module ActiveAdmin
     private
 
     def register_default_assets
-      register_stylesheet 'active_admin.css', :media => 'all'
+      register_stylesheet 'active_admin.css', :media => 'screen'
 
       if !ActiveAdmin.use_asset_pipeline?
         register_javascript 'jquery.min.js'
