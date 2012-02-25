@@ -8,7 +8,12 @@
 ### Deprecations
 
 * Removed all references to ActiveAdmin::Renderer. If you were using these
-  please update code to use an Arbre component
+  please update code to use an Arbre component. Removed
+  `ActiveAdmin:Views::HeaderRender` and replaced with
+  `ActiveAdmin::Views::Header` component.
+* ActiveAdmin::Menu and ActiveAdmin::MenuItem API has changed. If you were
+  creating custom menu items, the builder syntax has changed to. Menu#add now
+  accepts a MenuItem, instead of building the menu item for you.
 
 
 ## 0.4.2

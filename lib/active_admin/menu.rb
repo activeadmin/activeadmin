@@ -1,5 +1,17 @@
 module ActiveAdmin
 
+  # Each Namespace builds up it's own menu as the global navigation
+  #
+  # To build a new menu:
+  #
+  #   menu = Menu.new do |m|
+  #     m.add MenuItem.new(:label => "Dashboard", :url => "/")
+  #     m.add MenuItem.new(:label => "Admin", :url => "/admin")
+  #   end
+  #
+  # If you're interested in configuring a menu item, take a look at the
+  # options available in `ActiveAdmin::MenuItem`
+  #
   class Menu
 
     attr_accessor :children
