@@ -7,8 +7,8 @@ module ActiveAdmin
 
       # Add admin comments to the main content if they are
       # turned on for the current resource
-      def default_main_content
-        super
+      def default_main_content_with_admin_comments
+        default_main_content
         active_admin_comments if active_admin_config.comments?
       end
 
