@@ -17,6 +17,9 @@ module ActiveAdmin
 
     # An array of custom actions defined for this page
     attr_reader :page_actions
+    
+    # Set breadcrumb builder
+    attr_accessor :breadcrumb
 
     module Base
       def initialize(namespace, name, options)
