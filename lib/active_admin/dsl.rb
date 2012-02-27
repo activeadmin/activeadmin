@@ -130,7 +130,7 @@ module ActiveAdmin
     #
     #     breadcrumb do
     #       [
-    #         link_to 'my piece', '/my/link/to/piece'
+    #         link_to('my piece', '/my/link/to/piece')
     #       ]
     #     end
     #   end
