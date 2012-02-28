@@ -12,64 +12,65 @@ module ActiveAdmin
       @config ||= Resource.new(namespace, Category, options)
     end
 
+    module ::Mock class Resource < ActiveRecord::Base; end; end
+    module NoActiveModel class Resource; end; end
 
-    describe "underscored resource name" do
+    describe "singular resource name" do
       context "when class" do
-        it "should be the underscored safe resource name" do
-          config.underscored_resource_name.should == "category"
+        it "should be the underscored singular resource name" do
+          config.resource_name.singular.should == "category"
         end
       end
       context "when a class in a module" do
         it "should underscore the module and the class" do
-          module ::Mock; class Resource; end; end
-          Resource.new(namespace, Mock::Resource).underscored_resource_name.should == "mock_resource"
+          Resource.new(namespace, Mock::Resource).resource_name.singular.should == "mock_resource"
         end
       end
       context "when you pass the 'as' option" do
         it "should underscore the passed through string" do
-          config(:as => "Blog Category").underscored_resource_name.should == "blog_category"
+          config(:as => "Blog Category").resource_name.singular.should == "blog_category"
         end
       end
     end
 
-    describe "camelized resource name" do
-      it "should return a camelized version of the underscored resource name" do
-        config(:as => "Blog category").camelized_resource_name.should == "BlogCategory"
-      end
-    end
-    
-    describe "resource name" do
+    describe "resource label" do
       it "should return a pretty name" do
-        config.resource_name.should == "Category"
+        config.resource_label.should == "Category"
       end
 
       it "should return the plural version" do
-        config.plural_resource_name.should == "Categories"
+        config.plural_resource_label.should == "Categories"
       end
 
       context "when the :as option is given" do
         it "should return the custom name" do
-          config(:as => "My Category").resource_name.should == "My Category"
+          config(:as => "My Category").resource_label.should == "My Category"
+        end
+      end
+
+      context "when a class in a module" do
+        it "should include the module and the class" do
+          Resource.new(namespace, Mock::Resource).resource_label.should == "Mock Resource"
+        end
+
+        it "should include the module and the pluralized class" do
+          Resource.new(namespace, Mock::Resource).plural_resource_label.should == "Mock Resources"
         end
       end
 
       describe "I18n integration" do
-        describe "singular name" do
+        describe "singular label" do
           it "should return the titleized model_name.human" do
-            Category.model_name.should_receive(:human).and_return "Da category"
+            config.resource_name.should_receive(:human).and_return "Da category"
 
-            config.resource_name.should == "Da Category"
+            config.resource_label.should == "Da Category"
           end
         end
 
-        describe "plural name" do
+        describe "plural label" do
           it "should return the titleized plural version defined by i18n if available" do
-            Category.model_name.should_receive(:underscore).and_return "category"
-            Category.model_name.should_not_receive(:i18n_key) # Not implemented in Rails 3.0.0
-            I18n.should_receive(:translate!).
-              with("activerecord.models.category.other").
-              and_return("Da categories")
-            config.plural_resource_name.should == "Da Categories"
+            I18n.should_receive(:translate).at_least(:once).and_return("Da categories")
+            config.plural_resource_label.should == "Da Categories"
           end
         end
 

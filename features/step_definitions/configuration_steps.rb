@@ -4,7 +4,7 @@ module ActiveAdminReloading
     eval(configuration_content)
     ActiveAdmin::Event.dispatch ActiveAdmin::Application::LoadEvent, ActiveAdmin.application
     Rails.application.reload_routes!
-    ActiveAdmin.application.namespaces.values.each{|n| n.load_menu! }
+    ActiveAdmin.application.namespaces.values.each{|n| n.reset_menu! }
   end
 
 end
@@ -46,7 +46,6 @@ end
 
 Given /^a configuration of:$/ do |configuration_content|
   load_active_admin_configuration(configuration_content)
-  ActiveAdmin.application.namespaces.values.each{|n| n.load_menu! }
 end
 
 Given /^an index configuration of:$/ do |configuration_content|

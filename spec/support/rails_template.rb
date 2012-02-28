@@ -16,6 +16,7 @@ inject_into_file 'app/models/user.rb', "  has_many :posts, :foreign_key => 'auth
 generate :model, "publisher --migration=false --parent=User"
 generate :model, 'category name:string description:text'
 inject_into_file 'app/models/category.rb', "  has_many :posts\n", :after => "class Category < ActiveRecord::Base\n"
+generate :model, 'store name:string'
 
 # Generate a model with string ids
 generate :model, "tag name:string"
@@ -37,6 +38,12 @@ end
 
 # Add our local Active Admin to the load path
 inject_into_file "config/environment.rb", "\n$LOAD_PATH.unshift('#{File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'lib'))}')\nrequire \"active_admin\"\n", :after => "require File.expand_path('../application', __FILE__)"
+
+# Add some translations
+append_file "config/locales/en.yml", File.read(File.expand_path('../templates/en.yml', __FILE__))
+
+# Add predefined admin resources
+directory File.expand_path('../templates/admin', __FILE__), "app/admin"
 
 run "rm Gemfile"
 run "rm -r test"

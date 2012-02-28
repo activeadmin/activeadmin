@@ -5,38 +5,36 @@ module ActiveAdmin
       # Set the menu options. To not add this resource to the menu, just
       # call #menu(false)
       def menu(options = {})
-        options = options == false ? { :display => false } : options
-        @menu_options = options
+        if options == false
+          @display_menu = false
+        else
+          options = default_menu_options.merge(options)
+          @parent_menu_item = options.delete(:parent)
+          @menu_item = MenuItem.new(default_menu_options.merge(options))
+        end
       end
 
-      # The options to use for the menu
-      def menu_options
-        @menu_options ||= {}
+      def menu_item
+        @menu_item ||= MenuItem.new(default_menu_options)
       end
 
-      # Returns the name to put this resource under in the menu
       def parent_menu_item_name
-        menu_options[:parent]
+        return nil unless @parent_menu_item
+        ActiveAdmin::Resource::Name.new(nil, @parent_menu_item)
       end
 
-      # Returns the name to be displayed in the menu for this resource
-      def menu_item_name
-        menu_options[:label] || plural_resource_name
-      end
-
-      # Returns the items priority for altering the default sort order
-      def menu_item_priority
-        menu_options[:priority] || 10
-      end
-
-      # Returns a proc for deciding whether to display the menu item or not in the view
-      def menu_item_display_if
-        menu_options[:if] || proc { true }
+      # The default menu options to pass through to MenuItem.new
+      def default_menu_options
+        {
+          :id => resource_name.plural,
+          :label => proc{ plural_resource_label },
+          :url => route_collection_path
+        }
       end
 
       # Should this resource be added to the menu system?
       def include_in_menu?
-        menu_options[:display] != false
+        @display_menu != false
       end
 
     end

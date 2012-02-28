@@ -28,7 +28,6 @@ describe "Registering an object to administer" do
     end
     it "should generate a menu item for the dashboard" do
       application.register Category, :namespace => :hello_world
-      application.namespaces[:hello_world].load_menu!
       application.namespaces[:hello_world].menu['Dashboard'].instance_variable_get("@url").should == :hello_world_dashboard_path
     end
     it "should generate a Namespace::RegisterEvent and a Resource::RegisterEvent" do
@@ -49,7 +48,6 @@ describe "Registering an object to administer" do
 
     it "should generate a menu item for the dashboard" do
       application.register Category, :namespace => false  
-      application.namespaces[:root].load_menu!
       application.namespaces[:root].menu['Dashboard'].instance_variable_get("@url").should == :dashboard_path
     end
 

@@ -5,7 +5,7 @@ module ActiveAdmin
   # Holds on to a collection of Resources. Is an Enumerable object
   # so it has some Array like qualities.
   #
-  # Adding a resource assumes that the object responds to #resource_key
+  # Adding a resource assumes that the object responds to #resource_name
   class ResourceCollection
     include Enumerable
 
@@ -13,19 +13,19 @@ module ActiveAdmin
       @resource_hash = {}
     end
 
-    # Add a new resource to the collection. If the resource_key already
+    # Add a new resource to the collection. If the resource_name already
     # exists, the exiting resource is returned.
     #
     # @param [Resource, Page] resource The resource to add to the collection
     #
     # @returns [Resource, Page] Either the existing resource or the new one
     def add(resource)
-      if has_key?(resource.resource_key)
-        existing_resource = find_by_key(resource.resource_key)
+      if has_key?(resource.resource_name)
+        existing_resource = find_by_key(resource.resource_name)
         ensure_resource_classes_match!(existing_resource, resource)
         existing_resource
       else
-        @resource_hash[resource.resource_key] = resource
+        @resource_hash[resource.resource_name] = resource
       end
     end
 
@@ -45,13 +45,13 @@ module ActiveAdmin
     end
 
     # @returns [Boolean] If the key has been registered in the collection
-    def has_key?(resource_key)
-      @resource_hash.has_key?(resource_key)
+    def has_key?(resource_name)
+      @resource_hash.has_key?(resource_name)
     end
 
     # Finds a resource by a given key
-    def find_by_key(resource_key)
-      @resource_hash[resource_key]
+    def find_by_key(resource_name)
+      @resource_hash[resource_name]
     end
 
     # Finds a resource based on it's class. Looks up the class Heirarchy if its
@@ -80,7 +80,7 @@ module ActiveAdmin
 
       if existing_resource.resource_class != resource.resource_class
         raise ActiveAdmin::ResourceMismatchError, 
-          "Tried to register #{resource.resource_class} as #{resource.resource_key} but already registered to #{existing_resource.resource_class}"
+          "Tried to register #{resource.resource_class} as #{resource.resource_name} but already registered to #{existing_resource.resource_class}"
       end
     end
 

@@ -35,3 +35,7 @@ Given /^I create a new post with the title "([^"]*)"$/ do |title|
   fill_in :title, :with => title
   click_button "Create Post"
 end
+
+Given /^a store named "([^"]*)" exists$/ do |name|
+  Store.create! :name => name
+end
