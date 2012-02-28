@@ -55,6 +55,21 @@ describe ActiveAdmin::Resource::BatchActions do
     end
     
   end
+
+  describe "#batch_action_path" do
+    it "should not use a namespace if namespace is root" do
+      resource.namespace.stub!(:name).and_return(:root)
+      resource.batch_action_path.should == [:batch_action, nil, "posts"]
+    end
+
+    it "should add belongs_to resource name if resource belongs to another" do
+      resource.stub!(:belongs_to?).and_return(true)
+      resource.stub!(:belongs_to_config).and_return{ mock(:target => mock(:underscored_resource_name => "user")) }
+
+      resource.batch_action_path.should == [:batch_action, :admin, "user", "posts"]
+    end
+
+  end
   
   describe "#display_if_block" do
 

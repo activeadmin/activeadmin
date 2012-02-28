@@ -52,10 +52,13 @@ module ActiveAdmin
       
       # Path to the batch action itself
       def batch_action_path
+
+        namespace_name = namespace.name == :root ? nil : namespace.name
+
         if belongs_to?
-          [:batch_action, namespace.name, belongs_to_config.target.underscored_resource_name, plural_underscored_resource_name]          
+          [:batch_action, namespace_name, belongs_to_config.target.underscored_resource_name, plural_underscored_resource_name]          
         else
-          [:batch_action, namespace.name, plural_underscored_resource_name]
+          [:batch_action, namespace_name, plural_underscored_resource_name]
         end
         
       end
