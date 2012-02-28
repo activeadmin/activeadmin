@@ -15,7 +15,7 @@ module ActiveAdmin
       
       # @return [ActiveAdmin::BatchAction] The default "delete" action
       def default_batch_action
-        action = ActiveAdmin::BatchAction.new :destroy, I18n.t('active_admin.delete'), :priority => 100, :confirm => I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => plural_resource_name.downcase) do |selected_ids|
+        action = ActiveAdmin::BatchAction.new :destroy, I18n.t('active_admin.delete'), :priority => 100, :confirm => I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => plural_resource_label.downcase) do |selected_ids|
 
           active_admin_config.resource_class.find(selected_ids).each { |r| r.destroy }
 
@@ -56,9 +56,9 @@ module ActiveAdmin
         namespace_name = namespace.name == :root ? nil : namespace.name
 
         if belongs_to?
-          [:batch_action, namespace_name, belongs_to_config.target.underscored_resource_name, plural_underscored_resource_name]          
+          [:batch_action, namespace_name, belongs_to_config.target.resource_name.singular_route_key, resource_name.plural]          
         else
-          [:batch_action, namespace_name, plural_underscored_resource_name]
+          [:batch_action, namespace_name, resource_name.plural]
         end
         
       end
