@@ -1,3 +1,3 @@
-ActiveAdmin.register <%= class_name.singularize %> do
+ActiveAdmin.register <%= class_name %> do
   
 end

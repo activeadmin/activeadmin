@@ -224,7 +224,7 @@ module ActiveAdmin
     private
 
     def register_default_assets
-      register_stylesheet 'active_admin.css', :media => 'all'
+      register_stylesheet 'active_admin.css', :media => 'screen'
 
       if !ActiveAdmin.use_asset_pipeline?
         register_javascript 'jquery.min.js'
@@ -255,10 +255,6 @@ module ActiveAdmin
     end
 
     def generate_stylesheets
-      # This must be required after initialization
-      require 'sass/plugin'
-      require 'active_admin/sass/helpers'
-
       # Create our own asset pipeline in Rails 3.0
       if ActiveAdmin.use_asset_pipeline?
         # Add our mixins to the load path for SASS

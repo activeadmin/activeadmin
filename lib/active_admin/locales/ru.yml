@@ -9,7 +9,9 @@ ru:
     delete: "Удалить"
     delete_confirmation: "Вы уверены, что хотите удалить это?"
     new_model: "Создать"
+    create_model: "Создать %{model}"
     edit_model: "Изменить"
+    update_model: "Изменить %{model}"
     delete_model: "Удалить"
     details: "Подробнее"
     cancel: "Отмена"
@@ -23,8 +25,8 @@ ru:
     clear_filters: "Очистить"
     search_field: "Искать по %{field}"
     equal_to: "="
-    greater_than: ">"
-    less_than: "<"
+    greater_than: "больше"
+    less_than: "меньше"
     main_content: "Создайте %{model}#main_content для отображения содержимого."
     logout: "Выйти"
     sidebars:
@@ -34,7 +36,20 @@ ru:
       one: "Результат: <b>1</b> %{model}"
       one_page: "Результат: <b>%{n}</b> %{model}"
       multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{total}</b>"
+      entry:
+        one: "запись"
+        other: "записей"
     any: "Любой"
     blank_slate:
       content: "Пока нет %{resource_name}."
       link: "Создать"
+    comments:    
+      body: "Текст"
+      author: "Автор"
+      title: "Комментарий"
+      add: "Добавить Комментарий"
+      resource: "Ресурс"
+      no_comments_yet: "Пока нет комментариев."
+      title_content: "Комментарии (%{count})"
+      errors:
+        empty_text: "Комментарий не сохранен, текст не должен быть пустым."

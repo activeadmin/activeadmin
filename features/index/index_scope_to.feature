@@ -27,3 +27,6 @@ Feature: Index Scope To
     Then I should see the scope "All" selected
     And I should see the scope "All" with the count 2
     And I should see 2 posts in the table
+
+    When I follow "Published"
+    Then I should see 1 posts in the table

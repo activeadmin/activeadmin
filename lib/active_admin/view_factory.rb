@@ -4,22 +4,18 @@ module ActiveAdmin
   class ViewFactory < AbstractViewFactory
 
     # Register Helper Renderers
-    register  :global_navigation  	=> ActiveAdmin::Views::TabbedNavigation,
-              :action_items       	=> ActiveAdmin::Views::ActionItems,
-              :header             	=> ActiveAdmin::Views::HeaderRenderer,
-              :dashboard_section  	=> ActiveAdmin::Views::DashboardSection,
-              :index_scopes       	=> ActiveAdmin::Views::Scopes,
-              :blank_slate        	=> ActiveAdmin::Views::BlankSlate
     register  :global_navigation    => ActiveAdmin::Views::TabbedNavigation,
+              :site_title           => ActiveAdmin::Views::SiteTitle,
+              :utility_navigation   => ActiveAdmin::Views::UtilityNav,
               :action_items         => ActiveAdmin::Views::ActionItems,
-              :header               => ActiveAdmin::Views::HeaderRenderer,
+              :title_bar            => ActiveAdmin::Views::TitleBar,
+              :header               => ActiveAdmin::Views::Header,
+              :footer               => ActiveAdmin::Views::Footer,
               :dashboard_section    => ActiveAdmin::Views::DashboardSection,
               :index_scopes         => ActiveAdmin::Views::Scopes,
               :blank_slate          => ActiveAdmin::Views::BlankSlate,
-              :popover              => ActiveAdmin::Views::Popover,
               :action_list_popover  => ActiveAdmin::Views::ActionListPopover,
               :batch_action_popover => ActiveAdmin::Views::BatchActionPopover
-              
 
     # Register All The Pages
     register  :dashboard_page     	=> ActiveAdmin::Views::Pages::Dashboard,

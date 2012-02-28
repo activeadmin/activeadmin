@@ -215,5 +215,14 @@ HTML
 HTML
     end
   end
+  
+  it "should not render blank nodes" do
+    tbody = tbody do
+      []
+    end
+    tbody.to_s.should == <<-HTML
+<tbody></tbody>
+HTML
+  end
 
 end

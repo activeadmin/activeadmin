@@ -18,9 +18,12 @@ Given /^I am logged in$/ do
 end
 
 Given /^an admin user "([^"]*)" exists$/ do |admin_email|
-  unless AdminUser.find_by_email(admin_email)
-    AdminUser.create! :email => admin_email,
-                      :password => "password",
-                      :password_confirmation => "password"
+  user = AdminUser.find_or_create_by_email :email => admin_email,
+                                           :password => "password",
+                                           :password_confirmation => "password"
+
+  unless user.persisted?
+    puts "Coult not create an admin user #{admin_email}: #{user.errors.full_messages}"
+    raise "Could not create an admin user"
   end
 end

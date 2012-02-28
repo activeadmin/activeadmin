@@ -15,6 +15,13 @@ column method:
       column :title
     end
 
+For association columns we make an educated guess on what to display by
+calling the following methods in the following order:
+
+    :display_name, :full_name, :name, :username, :login, :title, :email, :to_s
+
+This can be customized in config/initializers/active_admin.rb.
+
 If the default title does not work for you, pass it as the first argument:
 
     index do
@@ -52,7 +59,6 @@ Alternatively, you can create a column with custom links:
         link_to "View", admin_post_path(post)
       end
     end
-
 
 ## Sorting
 

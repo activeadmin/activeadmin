@@ -24,6 +24,10 @@ describe ActiveAdmin::FormBuilder do
       end
     end
 
+    def view.a_helper_method
+      "A Helper Method"
+    end
+
     view
   end
 
@@ -179,6 +183,7 @@ describe ActiveAdmin::FormBuilder do
         body.scan(/type=\"radio\"/).size.should == 2
       end
     end
+
   end
 
   context "with inputs 'for'" do
