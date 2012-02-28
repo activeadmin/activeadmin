@@ -12,7 +12,7 @@ module ActiveAdmin
       # Creates the checkbox used to select a resource in the collection selection
       def resource_selection_cell( resource )
         div :class => "resource_selection_cell" do 
-          input :type => "checkbox", :id => "batch_action_item_%d" % resource.id, :value => resource.id, :class => "collection_selection", :name => "collection_selection[]" 
+          input :type => "checkbox", :id => "batch_action_item_#{resource.id}", :value => resource.id, :class => "collection_selection", :name => "collection_selection[]" 
         end
       end
       

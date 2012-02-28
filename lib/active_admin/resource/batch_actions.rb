@@ -22,7 +22,7 @@ module ActiveAdmin
           redirect_to collection_path, :notice => I18n.t("active_admin.batch_actions.succesfully_destroyed",
                                                          :count => selected_ids.count,
                                                          :model => active_admin_config.resource_name.downcase,
-                                                         :plural_model => active_admin_config.plural_resource_name.downcase)
+                                                         :plural_model => active_admin_config.plural_resource_label.downcase)
         end
       end
       
@@ -56,7 +56,7 @@ module ActiveAdmin
         namespace_name = namespace.name == :root ? nil : namespace.name
 
         if belongs_to?
-          [:batch_action, namespace_name, belongs_to_config.target.resource_name.singular_route_key, resource_name.plural]          
+          [:batch_action, namespace_name, belongs_to_config.target.resource_name.singular, resource_name.plural]          
         else
           [:batch_action, namespace_name, resource_name.plural]
         end
