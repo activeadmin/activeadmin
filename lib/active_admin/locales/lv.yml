@@ -8,8 +8,10 @@ lv:
     edit: "Labot"
     delete: "Dzēst"
     delete_confirmation: "Vai Tu tiešām vēlies dzēst?"
-    new_model: "Pievienot '%{model}' ierasktu"
+    new_model: "Pievienot '%{model}' ierakstu"
+    create_model: "Pievienot '%{model}' ierakstu"
     edit_model: "Labot '%{model}' ierakstu"
+    update_model: "Labot '%{model}' ierakstu"
     delete_model: "Dzēst '%{model}' ierakstu"
     details: "Apraksts"
     cancel: "Atcelt"
@@ -41,3 +43,13 @@ lv:
     blank_slate:
       content: "Sadaļā '%{resource_name}' nav neviena ieraksta."
       link: "Izveidot jaunu"
+    comments:    
+      body: "Saturs"
+      author: "Autors"
+      title: "Komentārs"
+      add: "Pievienot komentāru"
+      resource: "Resurss"
+      no_comments_yet: "Nav neviena komentāra."
+      title_content: "Komentāri (%{count})"
+      errors:
+        empty_text: "Komentārs netika saglabāts - nekas nav ierakstīts"
