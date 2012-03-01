@@ -19,14 +19,14 @@ module ActiveAdmin
       def resource_label
         I18n.translate!("activerecord.models.#{resource_class.model_name.underscore}.one").titleize
       rescue
-        (options[:as] || resource_name.gsub('::', ' ')).titleize
+        (@options[:as] || resource_name.gsub('::', ' ')).titleize
       end
 
       # Returns the plural version of this resource such as "Bank Accounts"
       def plural_resource_label
         I18n.translate!("activerecord.models.#{resource_class.model_name.underscore}.other").titleize
       rescue
-        (options[:as] || resource_name.gsub('::', ' ')).pluralize.titleize
+        (@options[:as] || resource_name.gsub('::', ' ')).pluralize.titleize
       end
     end
 

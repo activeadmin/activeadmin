@@ -114,9 +114,9 @@ module ActiveAdmin
       admin_notes.nil? ? ActiveAdmin.admin_notes : admin_notes
     end
 
-    def belongs_to(target, options = {})
-      @belongs_to = Resource::BelongsTo.new(self, target, options)
-      controller.belongs_to(target, options.dup)
+    def belongs_to(*symbols)
+      @belongs_to = Resource::BelongsTo.new(self, *symbols)
+      controller.belongs_to(*symbols)
     end
 
     def belongs_to_config
