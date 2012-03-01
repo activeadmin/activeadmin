@@ -50,6 +50,10 @@ module ActiveAdmin
     # Store a reference to the DSL so that we can dereference it during garbage collection.
     attr_accessor :dsl
 
+    # The string identifying a class to decorate our resource with for the view.
+    # nil to not decorate.
+    attr_accessor :decorator_class_name
+
     module Base
       def initialize(namespace, resource_class, options = {})
         @namespace = namespace
@@ -74,6 +78,10 @@ module ActiveAdmin
     # will point to the Post class
     def resource_class
       ActiveSupport::Dependencies.constantize(resource_class_name)
+    end
+
+    def decorator_class
+      ActiveSupport::Dependencies.constantize(decorator_class_name) if decorator_class_name
     end
 
     def resource_table_name
@@ -163,6 +171,6 @@ module ActiveAdmin
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource_class)
     end
-    
+
   end # class Resource
 end # module ActiveAdmin
