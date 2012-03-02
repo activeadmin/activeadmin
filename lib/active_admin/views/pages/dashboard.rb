@@ -22,7 +22,7 @@ module ActiveAdmin
 
         def render_sections(sections)
           table :class => "dashboard" do
-            sections.in_groups_of(3, false).each do |row|
+            sections.in_groups_of(ActiveAdmin.application.dashboard_columns.to_i, false).each do |row|
               tr do
                 row.each do |section|
                   td do

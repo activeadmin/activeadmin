@@ -57,6 +57,9 @@ module ActiveAdmin
     # The method to use when generating the link for user logout
     inheritable_setting :logout_link_method, :get
 
+    # Define how many columns to show on the dashboard
+    inheritable_setting :dashboard_columns, 3
+
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     setting :display_name_methods, [ :display_name,
