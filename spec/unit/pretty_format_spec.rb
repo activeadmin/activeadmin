@@ -18,9 +18,9 @@ describe "#pretty_format" do
   end
 
   context "when an ActiveRecord object is passed in" do
-    it "should delegate to auto_link" do
+    it "should delegate to auto_admin_link" do
       post = Post.new
-      self.should_receive(:auto_link).with(post) { "model name" }
+      self.should_receive(:auto_admin_link).with(post) { "model name" }
       pretty_format(post).should == "model name"
     end
   end

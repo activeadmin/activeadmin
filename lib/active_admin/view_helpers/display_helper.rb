@@ -16,7 +16,7 @@ module ActiveAdmin
 
       # Return a pretty string for any object
       # Date Time are formatted via #localize with :format => :long
-      # ActiveRecord objects are formatted via #auto_link
+      # ActiveRecord objects are formatted via #auto_admin_link
       # We attempt to #display_name of any other objects
       def pretty_format(object)
         case object
@@ -27,7 +27,7 @@ module ActiveAdmin
         when Date, Time
           localize(object, :format => :long)
         when ActiveRecord::Base
-          auto_link(object)
+          auto_admin_link(object)
         else
           display_name(object)
         end
