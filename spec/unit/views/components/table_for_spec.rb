@@ -90,6 +90,16 @@ describe ActiveAdmin::Views::TableFor do
         end
       end
     end
+    
+    context "when creating a table with an empty collection" do
+      let(:collection) { Post.page(nil).per(5) }
+      let(:table)      { table_for(collection) { column :title } }
+      
+      it "should have an empty body" do
+        collection.should be_empty
+        table.find_by_tag("tbody").first.content.should be_blank
+      end
+    end
   end
 
   describe "column sorting" do
