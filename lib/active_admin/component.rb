@@ -1,3 +1,5 @@
+require 'active_admin/component/resource_selection'
+
 module ActiveAdmin
   class Component < Arbre::HTML::Div
 
@@ -17,6 +19,8 @@ module ActiveAdmin
     def default_class_name
       self.class.name.demodulize.underscore
     end
+    
+    include ResourceSelection
 
   end
 end

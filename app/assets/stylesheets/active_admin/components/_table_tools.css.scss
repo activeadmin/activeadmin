@@ -20,33 +20,53 @@
 
 a.table_tools_button {
   @include light-button;
+  @include gradient(#FFF, #F0F0F0);
+  @include border-colors(#d9d9d9, #d0d0d0, #c5c5c5);  
   font-size: 0.9em;
-  color: #777;
   text-decoration: none;
   padding: 4px 14px 4px;
   position: relative;
-  
-  &.selected {
-    @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #FFF inset, 0 0 10px rgba(120,175,220,0.36));
-    
+  -webkit-transition: all 0.08s ease-in;
+
+  &:not(.disabled) {
+    &:hover {
+      @include gradient(#FFF, #F6F6F6);
+    }
+
     &:active {
-      @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #FFF inset, 0 0 10px rgba(120,175,220,0.36), 0, 1px, 2px, rgba(0,0,0,0.30));
+      @include border-colors(#d7d7d7, #c8c8c8, #c3c3c3);
+      @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.17) inset );
+      @include gradient(#FFF, #E8E8E8);
     }
   }
 
   &.dropdown_button {
-    padding-right: 20px;
+    padding-right: 22px;
     
-    .arrow {
-      border-color: #777 transparent transparent;
-      border-style: solid;
-      border-width: 3px 3px 0;
-      height: 0;
+    &:before {
+      content: ' ';
       position: absolute;
-      top: 8px;
-      right: 9px;
       width: 0;
+      height: 0;
+      border-width: 3px 3px 0;
+      border-style: solid;
+      border-color: #FFF transparent;
+      right: 9px;
+      top: 10px;
     }
+
+    &:after {
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-width: 3px 3px 0;
+      border-style: solid;
+      border-color: #777 transparent;
+      right: 9px;
+      top: 9px;
+    }
+
   }
 
 }
@@ -83,19 +103,20 @@ a.table_tools_button {
         border-bottom-right-radius: 12px;
       }
     }
-    
+
     &.selected {
+
       a {
-        background: #F0F0F0;
+        @include gradient(#F0F0F0, #FDFDFD);
         @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.1) inset);
-        color: #8a8a8a;
         cursor: default;
         
         &:hover {
-          color: #8a8a8a;
+          @include gradient(#F0F0F0, #FDFDFD);
         }
       }
     }
+
   }
   
 }

@@ -156,5 +156,46 @@ describe ActiveAdmin::ResourceController do
       end
     end
   end
+end
+
+describe Admin::PostsController, :type => "controller" do
+
+  describe "performing batch_action" do
+    let(:controller){ Admin::PostsController.new }
+    before do
+      batch_action = ActiveAdmin::BatchAction.new :flag, "Flag" do
+        redirect_to collection_path
+      end
+
+      controller.class.active_admin_config.stub!(:batch_actions).and_return([batch_action])
+    end
+    
+    describe "when params batch_action matches existing BatchAction" do
+      it "should call the block with args" do
+        pending # dont know how to check if the block was called
+      end
+    end
+
+    describe "when params batch_action doesn't match a BatchAction" do
+      it "should raise an error" do
+        pending # doesn't pass when running whole spec suite (WTF)
+        
+        lambda {
+          post(:batch_action, :batch_action => "derp", :collection_selection => ["1"])
+        }.should raise_error("Couldn't find batch action \"derp\"")
+      end
+    end
+
+    describe "when params batch_action is blank" do
+      it "should raise an error" do
+        pending # doesn't pass when running whole spec suite (WTF)
+       
+        lambda {
+          post(:batch_action, :collection_selection => ["1"])
+        }.should raise_error("Couldn't find batch action \"\"")
+      end
+    end
+
+  end
 
 end

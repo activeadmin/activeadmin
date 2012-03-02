@@ -1,0 +1,11 @@
+#collection_selection_toggle_panel {
+	@include clearfix;
+	>.resource_selection_toggle_cell {
+		float:left;
+	}
+	#collection_selection_toggle_explaination {  
+		float:left;
+		margin-left:5px;
+		font-style:italic;
+	}
+}

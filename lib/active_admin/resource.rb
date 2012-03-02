@@ -1,5 +1,6 @@
 require 'active_admin/resource/action_items'
 require 'active_admin/resource/controllers'
+require 'active_admin/resource/batch_actions'
 require 'active_admin/resource/menu'
 require 'active_admin/resource/page_presenters'
 require 'active_admin/resource/pagination'
@@ -62,6 +63,7 @@ module ActiveAdmin
     include PagePresenters
     include Pagination
     include ActionItems
+    include BatchActions
     include Naming
     include Scopes
     include Sidebars
@@ -155,5 +157,6 @@ module ActiveAdmin
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource_class)
     end
+    
   end # class Resource
 end # module ActiveAdmin

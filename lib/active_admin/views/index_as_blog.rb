@@ -71,6 +71,7 @@ module ActiveAdmin
         # title and body methods
         instance_eval &page_presenter.block if page_presenter.block
 
+        add_class "index"
         build_posts
       end
 
@@ -81,6 +82,7 @@ module ActiveAdmin
         end
         @title
       end
+
 
       # Setter method for the configuration of the body
       #
@@ -94,6 +96,7 @@ module ActiveAdmin
       private
 
       def build_posts
+        resource_selection_toggle_panel if active_admin_config.batch_actions.any?
         @collection.each do |post|
           build_post(post)
         end
@@ -101,6 +104,7 @@ module ActiveAdmin
 
       def build_post(post)
         div :for => post do
+          resource_selection_cell(post) if active_admin_config.batch_actions.any?
           build_title(post)
           build_body(post)
         end
