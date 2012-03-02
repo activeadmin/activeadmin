@@ -85,7 +85,9 @@ module ActiveAdmin
       def build_table_body
         @tbody = tbody do
           # Build enough rows for our collection
-          @collection.each{|_| tr(:class => cycle('odd', 'even'), :id => dom_id(_)) }
+          unless @collection.empty?
+            @collection.each{|_| tr(:class => cycle('odd', 'even'), :id => dom_id(_)) }
+          end
         end
       end
 
