@@ -27,7 +27,7 @@ describe Arbre::Context do
   end
 
   it "should use a cached version of the HTML for method delegation" do
-    current_dom_context.should_receive(:to_html).once.and_return("<h1>札幌市北区</h1>")
+    current_dom_context.should_receive(:to_s).once.and_return("<h1>札幌市北区</h1>")
     current_dom_context.index('<').should == 0
     current_dom_context.index('<').should == 0
   end

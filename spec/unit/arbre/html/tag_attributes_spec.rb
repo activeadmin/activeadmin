@@ -14,7 +14,7 @@ describe Arbre::HTML::Tag, "Attributes" do
     end
 
     it "should render the attributes to html" do
-      tag.to_html.should == <<-HTML
+      tag.to_s.should == <<-HTML
 <tag id="my_id"></tag>
 HTML
     end
@@ -47,13 +47,13 @@ HTML
   describe "rendering attributes" do
     it "should html safe the attribute values" do
       tag.set_attribute(:class, "\">bad things!")
-      tag.to_html.should == <<-HTML
+      tag.to_s.should == <<-HTML
 <tag class="&quot;&gt;bad things!"></tag>
 HTML
     end
     it "should should escape the attribute names" do
       tag.set_attribute(">bad", "things")
-      tag.to_html.should == <<-HTML
+      tag.to_s.should == <<-HTML
 <tag &gt;bad="things"></tag>
 HTML
     end

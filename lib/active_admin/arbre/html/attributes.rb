@@ -3,7 +3,7 @@ module Arbre
 
     class Attributes < Hash
 
-      def to_html
+      def to_s
         self.collect do |name, value|
           "#{html_escape(name)}=\"#{html_escape(value)}\""
         end.join(" ")

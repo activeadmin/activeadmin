@@ -24,12 +24,21 @@ Feature: Index Pagination
     Given an index configuration of:
     """
       ActiveAdmin.register Post do
-        before_filter :only => :index do |controller|
-          @per_page = 10
-        end
+        config.per_page = 2
       end
     """
-    Given 11 posts exist
+    Given 3 posts exist
     When I am on the index page for posts
     Then I should see pagination with 2 pages
-    And I should see "Displaying Posts 1 - 10 of 11 in total"
+    And I should see "Displaying Posts 1 - 2 of 3 in total"
+
+  Scenario: Viewing index with pagination disabled
+    Given an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        config.paginate = false
+      end
+    """
+    Given 31 posts exist
+    When I am on the index page for posts
+    Then I should not see pagination

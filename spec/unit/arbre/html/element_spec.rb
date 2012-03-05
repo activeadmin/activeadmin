@@ -73,9 +73,22 @@ describe Arbre::HTML::Element do
       let(:child){ "Hello World" }
       it "should add as a TextNode" do
         element.children.first.should be_instance_of(Arbre::HTML::TextNode)
-        element.children.first.to_html.should == "Hello World"
+        element.children.first.to_s.should == "Hello World"
       end
     end
+  end
+
+  describe "#children?" do
+
+    it "returns true when a child has been added" do
+      element.add_child Arbre::HTML::Element.new
+      element.children?.should == true
+    end
+
+    it "returns false when no children" do
+      element.children?.should == false
+    end
+
   end
 
   describe "setting the content" do
@@ -90,13 +103,13 @@ describe Arbre::HTML::Element do
       end
 
       it "should add the string as a child" do
-        element.children.first.to_html.should == "Goodbye"
+        element.children.first.to_s.should == "Goodbye"
       end
 
       it "should html escape the string" do
         string = "Goodbye <br />"
         element.content = string
-        element.content.to_html.should == "Goodbye &lt;br /&gt;"
+        element.to_s.should == "Goodbye &lt;br /&gt;"
       end
     end
 
@@ -146,8 +159,8 @@ describe Arbre::HTML::Element do
 
   describe "rendering to html" do
     it "should render the children collection" do
-      element.children.should_receive(:to_html).and_return("content")
-      element.to_html.should == "content"
+      element.children.should_receive(:to_s).and_return("content")
+      element.to_s.should == "content"
     end
   end
 

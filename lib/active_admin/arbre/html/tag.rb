@@ -65,18 +65,26 @@ module Arbre
 
       # Returns a string of classes
       def class_names
-        class_list.to_html
+        class_list.to_s
       end
 
       def class_list
         get_attribute(:class) || set_attribute(:class, ClassList.new)
       end
 
-      def to_html
-        indent("<#{tag_name}#{attributes_html}>", content, "</#{tag_name}>").html_safe
+      def to_s
+        indent(opening_tag, content, closing_tag).html_safe
       end
 
       private
+
+      def opening_tag
+        "<#{tag_name}#{attributes_html}>"
+      end
+
+      def closing_tag
+        "</#{tag_name}>"
+      end
 
       INDENT_SIZE = 2
       
@@ -118,7 +126,7 @@ module Arbre
 
 
       def attributes_html
-        attributes.any? ? " " + attributes.to_html : nil
+        attributes.any? ? " " + attributes.to_s : nil
       end
 
       def set_for_attribute(record)

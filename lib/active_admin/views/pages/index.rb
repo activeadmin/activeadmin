@@ -5,7 +5,7 @@ module ActiveAdmin
       class Index < Base
 
         def title
-          active_admin_config.plural_resource_name
+          active_admin_config.plural_resource_label
         end
 
         def config
@@ -17,7 +17,7 @@ module ActiveAdmin
         def main_content
           build_scopes
 
-          if collection.any?
+          if items_in_collection?
             render_index
           else
             if params[:q]
@@ -29,8 +29,18 @@ module ActiveAdmin
         end
 
         protected
-        
-        
+
+        def items_in_collection?
+          # Remove the order clause before limiting to 1. This ensures that
+          # any referenced columns in the order will not try to be accessed.
+          #
+          # When we call #exists?, the query's select statement is changed to "1".
+          #
+          # If we don't reorder, there may be some columns referenced in the order
+          # clause that requires the original select.
+          collection.reorder("").limit(1).exists?
+        end
+
         # TODO: Refactor to new HTML DSL
         def build_download_format_links(formats = [:csv, :xml, :json])
           links = formats.collect do |format|
@@ -41,8 +51,12 @@ module ActiveAdmin
 
         def build_scopes
           if active_admin_config.scopes.any?
+            scope_options = {
+              :scope_count => config[:scope_count].nil? ? true : config[:scope_count]
+            }
+
             div :class => "table_tools" do
-              scopes_renderer active_admin_config.scopes
+              scopes_renderer active_admin_config.scopes, scope_options
             end
           end
         end
@@ -50,13 +64,7 @@ module ActiveAdmin
         # Creates a default configuration for the resource class. This is a table
         # with each column displayed as well as all the default actions
         def default_index_config
-          @default_index_config ||= ::ActiveAdmin::PagePresenter.new(:as => :table) do |display|
-            id_column
-            resource_class.content_columns.each do |col|
-              column col.name.to_sym
-            end
-            default_actions
-          end
+          @default_index_config ||= ::ActiveAdmin::PagePresenter.new(:as => :table)
         end
 
         # Returns the actual class for renderering the main content on the index
@@ -73,7 +81,7 @@ module ActiveAdmin
         end
         
         def render_blank_slate
-          blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.plural_resource_name)
+          blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.plural_resource_label)
           if controller.action_methods.include?('new')
             blank_slate_content += " " + link_to(I18n.t("active_admin.blank_slate.link"), new_resource_path)
           end
@@ -81,15 +89,19 @@ module ActiveAdmin
         end
         
         def render_empty_results
-          empty_results_content = I18n.t("active_admin.pagination.empty", :model => active_admin_config.resource_name.pluralize)
+          empty_results_content = I18n.t("active_admin.pagination.empty", :model => active_admin_config.plural_resource_label)
           insert_tag(view_factory.blank_slate, empty_results_content)
         end
         
         def render_index
           renderer_class = find_index_renderer_class(config[:as])
+          paginator      = config[:paginator].nil?      ? true : config[:paginator]
+          download_links = config[:download_links].nil? ? true : config[:download_links]
           
-          paginated_collection(collection, :entry_name   => active_admin_config.resource_name,
-                                           :entries_name => active_admin_config.plural_resource_name) do
+          paginated_collection(collection, :entry_name     => active_admin_config.resource_label,
+                                           :entries_name   => active_admin_config.plural_resource_label,
+                                           :download_links => download_links,
+                                           :paginator      => paginator) do
             div :class => 'index_content' do
               insert_tag(renderer_class, config, collection)
             end

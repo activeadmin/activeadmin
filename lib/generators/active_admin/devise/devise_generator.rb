@@ -2,7 +2,6 @@ module ActiveAdmin
   module Generators
     class DeviseGenerator < Rails::Generators::NamedBase
       desc "Creates an admin user and uses Devise for authentication"
-
       argument :name, :type => :string, :default => "AdminUser"
 
       class_option  :registerable, :type => :boolean, :default => false,

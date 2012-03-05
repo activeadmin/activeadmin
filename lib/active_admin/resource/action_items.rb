@@ -33,8 +33,8 @@ module ActiveAdmin
       # @param [String, Symbol] action the action to retrieve action items for
       #
       # @return [Array] Array of ActionItems for the controller actions
-      def action_items_for(action)
-        action_items.select{|item| item.display_on?(action) }
+      def action_items_for(action, render_context = nil)
+        action_items.select{|item| item.display_on?(action, render_context) }
       end
 
       # Clears all the existing action items for this resource
@@ -54,21 +54,21 @@ module ActiveAdmin
         # New Link on all actions except :new and :show
         add_action_item :except => [:new, :show] do
           if controller.action_methods.include?('new')
-            link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), new_resource_path)
+            link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_label), new_resource_path)
           end
         end
 
         # Edit link on show
         add_action_item :only => :show do
           if controller.action_methods.include?('edit')
-            link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path(resource))
+            link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_label), edit_resource_path(resource))
           end
         end
 
         # Destroy link on show
         add_action_item :only => :show do
           if controller.action_methods.include?("destroy")
-            link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name),
+            link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_label),
               resource_path(resource),
               :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'))
           end

@@ -10,6 +10,19 @@ the <tt>:as</tt> option.
 
 The resource will then be available as /admin/articles
 
+## Customize the Namespace
+
+By default, resources live in the "admin" namespace.
+
+You can register resources in different namespaces:
+
+    # Available at /today/posts
+    ActiveAdmin.register Post, :namespace => "today"
+
+    # Available at /posts
+    ActiveAdmin.register Post, :namespace => false
+
+
 ## Customize the Menu
 
 The resource will be displayed in the global navigation by default. To disable
@@ -22,7 +35,8 @@ the resource from being displayed in the global navigation, pass `false` to the
 
 The menu method accepts a hash with the following options:
 
-* `:label` - The string label to display in the menu
+* `:label` - The string or proc label to display in the menu. If it's a proc, it
+  will be called each time the menu is rendered.
 * `:parent` - The string label of the parent to set for this menu
 * `:if` - A block or a symbol of a method to call to decide if the menu item
   should be displayed
@@ -37,6 +51,13 @@ To change the name of the label in the menu:
     end
 
 By default the menu uses a pluralized version of your resource name.
+
+If you wish to translate your label at runtime, store the label as a proc
+instead of a string. The proc will be called each time the menu is rendered.
+
+    ActiveAdmin.register Post do
+      menu :label => proc{ I18n.t("mypost") }
+    end
 
 ### Drop Down Menus
 

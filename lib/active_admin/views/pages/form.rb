@@ -6,7 +6,7 @@ module ActiveAdmin
 
         def title
           I18n.t("active_admin.#{params[:action]}_model",
-                 :model => active_admin_config.resource_name)
+                 :model => active_admin_config.resource_label)
         end
 
         def form_presenter
@@ -19,7 +19,9 @@ module ActiveAdmin
           if form_options[:partial]
             render(form_options[:partial])
           else
-            active_admin_form_for(resource, form_options, &form_presenter.block)
+            active_admin_form_for(resource, form_options) do |f|
+              instance_exec f, &form_presenter.block
+            end
           end
         end
 
@@ -28,7 +30,7 @@ module ActiveAdmin
         def default_form_options
           {
             :url => default_form_path,
-            :as => active_admin_config.underscored_resource_name
+            :as => active_admin_config.resource_name.singular
           }
         end
 

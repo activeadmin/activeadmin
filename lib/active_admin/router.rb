@@ -35,7 +35,7 @@ module ActiveAdmin
           route_definition_block = Proc.new do
             case config
             when Resource
-              resources config.underscored_resource_name.pluralize do
+              resources config.resource_name.route_key do
                 # Define any member actions
                 member do
                   config.member_actions.each do |action|
@@ -52,7 +52,11 @@ module ActiveAdmin
                 end
               end
             when Page
-              match "/#{config.underscored_resource_name}" => "#{config.underscored_resource_name}#index"
+
+              match "/#{config.resource_name.singular}" => "#{config.resource_name.singular}#index"
+              config.page_actions.each do |action|
+                match "/#{config.underscored_resource_name}/#{action.name}" => "#{config.underscored_resource_name}##{action.name}", :via => action.http_verb
+              end
             else
               raise "Unsupported config class: #{config.class}"
             end
@@ -67,7 +71,7 @@ module ActiveAdmin
 
               # Make the nested belongs_to routes
               # :only is set to nothing so that we don't clobber any existing routes on the resource
-              resources config.belongs_to_config.target.underscored_resource_name.pluralize, :only => [] do
+              resources config.belongs_to_config.target.resource_name.plural, :only => [] do
                 instance_eval &routes_for_belongs_to
               end
             end

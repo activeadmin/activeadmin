@@ -18,8 +18,8 @@ module ActiveAdmin
         @sidebar_sections = []
       end
 
-      def sidebar_sections_for(action)
-        sidebar_sections.select{|section| section.display_on?(action) }
+      def sidebar_sections_for(action, render_context = nil)
+        sidebar_sections.select{|section| section.display_on?(action, render_context) }
       end
 
       def sidebar_sections?

@@ -163,9 +163,6 @@ module ActiveAdmin
       # If no configurations, let's make sure you can still login
       load_default_namespace if namespaces.values.empty?
 
-      # Load Menus
-      namespaces.values.each{|namespace| namespace.load_menu! }
-
       # Dispatch an ActiveAdmin::Application::LoadEvent with the Application
       ActiveAdmin::Event.dispatch LoadEvent, self
 
@@ -224,7 +221,7 @@ module ActiveAdmin
     private
 
     def register_default_assets
-      register_stylesheet 'active_admin.css', :media => 'all'
+      register_stylesheet 'active_admin.css', :media => 'screen'
 
       if !ActiveAdmin.use_asset_pipeline?
         register_javascript 'jquery.min.js'
@@ -251,15 +248,10 @@ module ActiveAdmin
     end
 
     def attach_reloader
-      ActiveAdmin::Reloader.new(Rails.application, self, Rails.version).attach!
+      ActiveAdmin::Reloader.build(Rails.application, self, Rails.version).attach!
     end
 
-
     def generate_stylesheets
-      # This must be required after initialization
-      require 'sass/plugin'
-      require 'active_admin/sass/helpers'
-
       # Create our own asset pipeline in Rails 3.0
       if ActiveAdmin.use_asset_pipeline?
         # Add our mixins to the load path for SASS

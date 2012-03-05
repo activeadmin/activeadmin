@@ -3,7 +3,7 @@ module ActiveAdmin
     module ViewFactoryHelper
 
       def view_factory
-        active_admin_application.view_factory
+        active_admin_namespace.view_factory
       end
 
     end

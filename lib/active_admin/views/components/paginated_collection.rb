@@ -107,7 +107,7 @@ module ActiveAdmin
           case collection.size
           when 0; I18n.t('active_admin.pagination.empty', :model => entries_name)
           when 1; I18n.t('active_admin.pagination.one', :model => entry_name)
-          else;   I18n.t('active_admin.pagination.one_page', :model => entries_name, :n => collection.size)
+          else;   I18n.t('active_admin.pagination.one_page', :model => entries_name, :n => collection.total_count)
           end
         else
           offset = collection.current_page * collection.size

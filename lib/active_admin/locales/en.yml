@@ -9,7 +9,9 @@ en:
     delete: "Delete"
     delete_confirmation: "Are you sure you want to delete this?"
     new_model: "New %{model}"
+    create_model: "New %{model}"
     edit_model: "Edit %{model}"
+    update_model: "Edit %{model}"
     delete_model: "Delete %{model}"
     details: "%{model} Details"
     cancel: "Cancel"
@@ -41,3 +43,13 @@ en:
     blank_slate:
       content: "There are no %{resource_name} yet."
       link: "Create one"
+    comments:    
+      body: "Body"
+      author: "Author"
+      title: "Comment"
+      add: "Add Comment"
+      resource: "Resource"
+      no_comments_yet: "No comments yet."
+      title_content: "Comments (%{count})"
+      errors:
+        empty_text: "Comment wasn't saved, text was empty."

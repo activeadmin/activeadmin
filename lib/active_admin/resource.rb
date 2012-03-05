@@ -2,6 +2,7 @@ require 'active_admin/resource/action_items'
 require 'active_admin/resource/controllers'
 require 'active_admin/resource/menu'
 require 'active_admin/resource/page_presenters'
+require 'active_admin/resource/pagination'
 require 'active_admin/resource/naming'
 require 'active_admin/resource/scopes'
 require 'active_admin/resource/sidebars'
@@ -25,9 +26,8 @@ module ActiveAdmin
     # The namespace this config belongs to
     attr_reader :namespace
 
-    # The class this resource wraps. If you register the Post model, Resource#resource
-    # will point to the Post class
-    attr_reader :resource_class
+    # The name of the resource class
+    attr_reader :resource_class_name
 
     # An array of member actions defined for this resource
     attr_reader :member_actions
@@ -50,7 +50,7 @@ module ActiveAdmin
     module Base
       def initialize(namespace, resource_class, options = {})
         @namespace = namespace
-        @resource_class = resource_class
+        @resource_class_name = "::#{resource_class.name}"
         @options = default_options.merge(options)
         @sort_order = @options[:sort_order]
         @member_actions, @collection_actions = [], []
@@ -60,14 +60,25 @@ module ActiveAdmin
     include Base
     include Controllers
     include PagePresenters
+    include Pagination
     include ActionItems
     include Naming
     include Scopes
     include Sidebars
     include Menu
 
+    # The class this resource wraps. If you register the Post model, Resource#resource_class
+    # will point to the Post class
+    def resource_class
+      ActiveSupport::Dependencies.constantize(resource_class_name)
+    end
+
     def resource_table_name
       resource_class.quoted_table_name
+    end
+
+    def resource_quoted_column_name(column)
+      resource_class.connection.quote_column_name(column)
     end
 
     # Returns the named route for an instance of this resource
@@ -128,7 +139,7 @@ module ActiveAdmin
 
     # @deprecated
     def resource
-      @resource_class
+      resource_class
     end
     ActiveAdmin::Deprecation.deprecate self, :resource,
       "ActiveAdmin::Resource#resource is deprecated. Please use #resource_class instead."

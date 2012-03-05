@@ -1,5 +1,6 @@
 require 'active_admin/helpers/settings'
 require 'active_admin/resource_collection'
+require 'active_admin/menu_builder'
 
 module ActiveAdmin
 
@@ -38,7 +39,6 @@ module ActiveAdmin
       @application = application
       @name = name.to_s.underscore.to_sym
       @resources = ResourceCollection.new
-      @menu = Menu.new
       register_module unless root?
       generate_dashboard_controller
     end
@@ -52,7 +52,7 @@ module ActiveAdmin
       # Register the resource
       register_resource_controller(config)
       parse_registration_block(config, &block) if block_given?
-      register_with_menu(config) if config.include_in_menu?
+      reset_menu!
 
       # Ensure that the dashboard is generated
       generate_dashboard_controller
@@ -70,7 +70,7 @@ module ActiveAdmin
       # Register the resource
       register_page_controller(config)
       parse_page_registration_block(config, &block) if block_given?
-      register_with_menu(config) if config.include_in_menu?
+      reset_menu!
 
       config
     end
@@ -100,16 +100,7 @@ module ActiveAdmin
     def unload!
       unload_resources!
       unload_dashboard!
-      unload_menu!
-    end
-
-    # The menu gets built by Active Admin once all the resources have been
-    # loaded. This method gets called to register each resource with the menu system.
-    def load_menu!
-      register_dashboard
-      resources.each do |resource|
-        register_with_menu(resource) if resource.include_in_menu?
-      end
+      reset_menu!
     end
 
     # Returns the first registered ActiveAdmin::Resource instance for a given class
@@ -123,6 +114,14 @@ module ActiveAdmin
       application.send(name)
     end
 
+    def menu
+      @menu ||= MenuBuilder.build_for_namespace(self)
+    end
+
+    def reset_menu!
+      @menu = nil
+    end
+
     protected
 
     # Either returns an existing Resource instance or builds a new
@@ -134,7 +133,6 @@ module ActiveAdmin
     def build_page(name, options)
       resources.add Page.new(self, name, options)
     end
-
 
     def register_page_controller(config)
       eval "class ::#{config.controller_name} < ActiveAdmin::PageController; end"
@@ -154,10 +152,6 @@ module ActiveAdmin
     def unload_dashboard!
       # TODO: Only clear out my sections
       Dashboards.clear_all_sections!
-    end
-
-    def unload_menu!
-      @menu = Menu.new
     end
 
     # Creates a ruby module to namespace all the classes in if required
@@ -191,31 +185,5 @@ module ActiveAdmin
       eval "class ::#{dashboard_controller_name} < ActiveAdmin::Dashboards::DashboardController; end"
     end
 
-    # Adds the dashboard to the menu
-    def register_dashboard
-      dashboard_path = root? ? :dashboard_path : "#{name}_dashboard_path".to_sym
-      menu.add(I18n.t("active_admin.dashboard"), dashboard_path, 1) unless menu[I18n.t("active_admin.dashboard")]
-    end
-
-    # Does all the work of registernig a config with the menu system
-    def register_with_menu(config)
-      # The menu we're going to add this resource to
-      add_to = menu
-
-      # Adding as a child
-      if config.parent_menu_item_name
-        # Create the parent if it doesn't exist
-        menu.add(config.parent_menu_item_name, '#') unless menu[config.parent_menu_item_name]
-        add_to = menu[config.parent_menu_item_name]
-      end
-
-      # Check if this menu item has already been created
-      if add_to[config.menu_item_name]
-        # Update the url if it's already been created
-        add_to[config.menu_item_name].url = config.route_collection_path
-      else
-        add_to.add(config.menu_item_name, config.route_collection_path, config.menu_item_priority, { :if => config.menu_item_display_if })
-      end
-    end
   end
 end

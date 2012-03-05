@@ -1,0 +1,45 @@
+"zh-TW":
+  active_admin:
+    dashboard: 儀表板
+    dashboard_welcome:
+      welcome: "歡迎來到 Active Admin 這是預設的儀表板頁面。"
+      call_to_action: "To add dashboard sections, checkout 'app/admin/dashboards.rb'"
+    view: "檢視"
+    edit: "編輯"
+    delete: "刪除"
+    delete_confirmation: "你確定要刪除嗎？"
+    new_model: "新增 %{model}"
+    create_model: "新增 %{model}"
+    edit_model: "編輯 %{model}"
+    update_model: "編輯 %{model}"
+    delete_model: "刪除 %{model}"
+    details: "%{model} 明細"
+    cancel: "取消"
+    empty: "空的"
+    previous: "前一個"
+    next: "下一個"
+    download: "下載:"
+    has_many_new: "增加新的 %{model}"
+    has_many_delete: "刪除"
+    filter: "篩選"
+    clear_filters: "清除篩選條件"
+    search_field: "搜尋 %{field}"
+    equal_to: "等於"
+    greater_than: "大於"
+    less_than: "小於"
+    main_content: "請編寫 %{model}#main_content 以顯示內容。"
+    logout: "登出"
+    sidebars:
+      filters: "篩選條件"
+    pagination:
+      empty: "找不到 %{model} "
+      one: "顯示 <b>1</b> %{model}"
+      one_page: "顯示 <b>全部 %{n}</b> %{model}"
+      multiple: "總計 <b>%{total}</b> 顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆"
+      entry:
+        one: "筆"
+        other: "筆"
+    any: "任何"
+    blank_slate:
+      content: "尚無 %{resource_name}"
+      link: "建立一筆"

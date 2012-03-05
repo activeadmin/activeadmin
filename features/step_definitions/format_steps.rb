@@ -1,9 +1,21 @@
+CSVLib = if RUBY_VERSION =~ /^1.8/
+            require 'fastercsv'
+            FasterCSV
+          else
+            require 'csv'
+            CSV
+          end
+
 Then "I should see nicely formatted datetimes" do
   page.body.should =~ /\w+ \d{1,2}, \d{4} \d{2}:\d{2}/
 end
 
 Then /^I should see a link to download "([^"]*)"$/ do |format_type|
   page.should have_css("#index_footer a", :text => format_type)
+end
+
+Then /^I should not see a link to download "([^"]*)"$/ do |format_type|
+  page.should_not have_css("#index_footer a", :text => format_type)
 end
 
 # Check first rows of the displayed CSV.
@@ -14,7 +26,7 @@ Then /^I should download a CSV file for "([^"]*)" containing:$/ do |resource_nam
   body = page.driver.response.body
 
   begin
-    csv = CSV.parse(body)
+    csv = CSVLib.parse(body)
     table.raw.each_with_index do |expected_row, row_index|
       expected_row.each_with_index do |expected_cell, col_index|
         cell = csv.try(:[], row_index).try(:[], col_index)
