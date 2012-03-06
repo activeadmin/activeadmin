@@ -126,6 +126,7 @@ Feature: Index Scoping
   Scenario: Viewing resources with scopes when a filter is applied
     Given 2 posts written by "Daft Punk" exist
     And a post with the title "Monkey Wrench" written by "Foo Fighters" exists
+    And a post with the title "Everlong" written by "Foo Fighters" exists
     And an index configuration of:
       """
         ActiveAdmin.register Post do
@@ -141,7 +142,7 @@ Feature: Index Scoping
         end
       """
     Then I should see the scope "All" selected
-    And I should see the scope "All" with the count 1
+    And I should see the scope "All" with the count 2
     When I fill in "Search Title" with "Monkey"
     And I press "Filter"
     Then I should see the scope "All" not selected
