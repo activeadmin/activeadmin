@@ -26,7 +26,6 @@ group :development, :test do
   gem 'yard'
   gem 'rdiscount' # For yard
   gem 'rails-i18n' # Gives us default i18n for many languages
-  gem 'therubyracer'
 end
 
 group :test do
