@@ -6,6 +6,7 @@ require File.expand_path('../spec/support/detect_rails_version', __FILE__)
 
 rails_version = detect_rails_version
 gem 'rails',          rails_version
+gem 'bourbon'
 
 case rails_version
 when /^3\.0/
@@ -25,6 +26,7 @@ group :development, :test do
   gem 'haml',           '~> 3.1.1', :require => false
   gem 'yard'
   gem 'rdiscount' # For yard
+  gem "guard-sprockets"
   gem 'rails-i18n' # Gives us default i18n for many languages
 end
 
@@ -38,4 +40,6 @@ group :test do
   gem 'launchy'
   gem 'jslint_on_rails',    '~> 1.0.6'
   gem 'guard-rspec'
+  gem "guard-coffeescript"
+  gem 'jasmine'
 end
