@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rdiscount' # For yard
   gem "guard-sprockets"
   gem 'rails-i18n' # Gives us default i18n for many languages
+  gem 'therubyracer'
 end
 
 group :test do
