@@ -48,6 +48,7 @@ module ActiveAdmin
       @children.find_by_id(id)
     end
 
+    # @return Sorted [Array] of [MenuItem]
     def items
       @children.sort
     end
