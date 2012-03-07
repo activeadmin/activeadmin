@@ -54,11 +54,7 @@ module ActiveAdmin
         # New Link on all actions except :new and :show
         add_action_item :except => [:new, :show] do
           if controller.action_methods.include?('new')
-            if I18n.t(active_admin_config.resource_label)
-              link_to(I18n.t('active_admin.new_model', :model => I18n.t(active_admin_config.resource_label)), new_resource_path)
-            else
-              link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_label), new_resource_path)
-            end
+              link_to(I18n.t('active_admin.new_model', :model => I18n.t(active_admin_config.resource_label).to_s), new_resource_path)
           end
         end
 
