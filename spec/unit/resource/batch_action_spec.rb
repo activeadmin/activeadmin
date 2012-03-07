@@ -64,7 +64,7 @@ describe ActiveAdmin::Resource::BatchActions do
 
     it "should add belongs_to resource name if resource belongs to another" do
       resource.stub!(:belongs_to?).and_return(true)
-      resource.stub!(:belongs_to_config).and_return{ mock(:target => mock(:resource_name => mock(:singular_route_key => "user"))) }
+      resource.stub!(:belongs_to_config).and_return{ mock(:target => mock(:resource_name => mock(:singular => "user"))) }
 
       resource.batch_action_path.should == [:batch_action, :admin, "user", "posts"]
     end
