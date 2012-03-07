@@ -63,7 +63,7 @@ module ActiveAdmin
 
       # Return the count for the scope passed in.
       def get_scope_count(scope)
-        scope_chain(scope, scoping_class).count
+        scope_chain(scope, scoping_class).count(:distinct => true)
       end
 
       def scoping_class

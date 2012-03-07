@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe ActiveAdmin::Resource::BelongsTo do
 
@@ -22,14 +22,14 @@ describe ActiveAdmin::Resource::BelongsTo do
       before { user } # Ensure user is registered
 
       it "should return the target resource" do
-        belongs_to.target.should == user
+        belongs_to.targets.first.should == user
       end
     end
 
     context "when the resource has not been registered" do
       it "should raise a ActiveAdmin::BelongsTo::TargetNotFound" do
         lambda {
-          belongs_to.target
+          belongs_to.targets
         }.should raise_error(ActiveAdmin::Resource::BelongsTo::TargetNotFound)
       end
     end

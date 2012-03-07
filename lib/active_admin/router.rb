@@ -73,9 +73,9 @@ module ActiveAdmin
 
               # Make the nested belongs_to routes
               # :only is set to nothing so that we don't clobber any existing routes on the resource
-              resources config.belongs_to_config.target.resource_name.plural, :only => [] do
-                instance_eval &routes_for_belongs_to
-              end
+              (config.belongs_to_config.targets.reverse.inject(lambda { instance_eval &routes_for_belongs_to }) do |inner_block, target|
+                lambda { resources target.resource_name.plural, :only => [], &inner_block }
+              end)[]
             end
           end
 
