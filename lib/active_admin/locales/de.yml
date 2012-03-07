@@ -42,6 +42,14 @@ de:
     blank_slate:
       content: "Es gibt noch keine %{resource_name}."
       link: "Erstellen"
+      batch_actions:
+        button_label: "Batch Verarbeitung"
+        delete_confirmation: "Sind Sie sicher Sie wollen all dise %{plural_model} löschen? Widerruf ist nicht möglich."
+        succesfully_destroyed:
+          one: "1 %{model} wurde erfolgreich gelöscht"
+          other: "%{count} %{plural_model} wurden erfolgreich gelöscht"
+        selection_toggle_explanation: "(Auswahl umkehren)"
+        link: "Erstelle eins"
     comments:
       body: "Inhalt"
       author: "Autor"
