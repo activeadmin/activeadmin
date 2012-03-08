@@ -1,5 +1,11 @@
 ## Master (unreleased)
 
+## 0.4.3
+
+### Bug Fixes
+
+* [#1063][]: Fix comment issues when using postgres ([@jancel][])
+
 ## 0.4.2
 
 ### Enhancements
@@ -515,6 +521,7 @@ of the highlights. 250 commits. Enough said.
 [#1032]: https://github.com/gregbell/active_admin/issues/1032
 [#1033]: https://github.com/gregbell/active_admin/issues/1033
 [#1041]: https://github.com/gregbell/active_admin/issues/1041
+[#1063]: https://github.com/gregbell/active_admin/issues/1063
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
 [@ZequeZ]: https://github.com/ZequeZ
