@@ -36,8 +36,8 @@ module ActiveAdmin
         protected
 
         def default_title
-          if resource.respond_to?(:display_name)
-            resource.display_name
+          if display_name_method_for(resource) != :to_s
+            display_name(resource)
           else
             "#{active_admin_config.resource_label} ##{resource.id}"
           end
