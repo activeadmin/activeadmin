@@ -8,9 +8,7 @@ module ActiveAdmin
         'popover'
       end
       
-      def build(*args, &block)
-        
-        options = args.extract_options!
+      def build(options = {}, &block)
         
         self.id = options[:id]
         

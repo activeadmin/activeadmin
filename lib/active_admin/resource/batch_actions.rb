@@ -21,7 +21,7 @@ module ActiveAdmin
 
           redirect_to collection_path, :notice => I18n.t("active_admin.batch_actions.succesfully_destroyed",
                                                          :count => selected_ids.count,
-                                                         :model => active_admin_config.resource_name.downcase,
+                                                         :model => active_admin_config.resource_label.downcase,
                                                          :plural_model => active_admin_config.plural_resource_label.downcase)
         end
       end
@@ -52,7 +52,6 @@ module ActiveAdmin
       
       # Path to the batch action itself
       def batch_action_path
-
         namespace_name = namespace.name == :root ? nil : namespace.name
 
         if belongs_to?

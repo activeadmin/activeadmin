@@ -10,7 +10,6 @@ describe ActiveAdmin::Menu do
 
     it "should have an empty item collection" do
       menu = Menu.new
-      menu.items.should be_an_instance_of(Menu::ItemCollection)
       menu.items.should be_empty
     end
 

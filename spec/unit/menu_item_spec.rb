@@ -35,7 +35,6 @@ module ActiveAdmin
     context "with no children" do
       it "should be empty" do
         item = MenuItem.new
-        item.children.should be_an_instance_of(Menu::ItemCollection)
         item.children.should == []
       end
 
