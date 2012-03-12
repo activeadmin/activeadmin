@@ -22,7 +22,7 @@ module ActiveAdmin
       end
 
       def select_html
-        template.select_tag '', select_options, select_html_options
+        template.select_tag '', select_options, select_html_options.html_safe
       end
 
       def select_options
