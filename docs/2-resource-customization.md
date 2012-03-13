@@ -133,3 +133,13 @@ The only requirement is that your method returns an instance of ActiveRecord::Re
       scope_to :current_user, :association_method => :managed_ads
     end
 
+In case you just need to customize the query independently of the current user, you can 
+override the `scoped_collection` method on the controller:
+
+    ActiveAdmin.register Post do
+      controller do
+        def scoped_collection
+          Post.includes(:author)
+        end
+      end
+    end
