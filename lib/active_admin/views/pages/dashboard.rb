@@ -25,8 +25,10 @@ module ActiveAdmin
             sections.in_groups_of(3, false).each do |row|
               tr do
                 row.each do |section|
-                  td do
-                    render_section(section)
+                  if section.options[:width]
+                    td :width => section.options[:width] { render_section(section) }
+                  else
+                    td { render_section(section) }
                   end
                 end
               end
