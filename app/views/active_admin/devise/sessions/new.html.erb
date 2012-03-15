@@ -8,8 +8,8 @@
       f.input :password
       f.input :remember_me, :as => :boolean, :if =>  false  #devise_mapping.rememberable? }
     end
-    f.buttons do
-      f.commit_button "Login"
+    f.actions do
+      f.action :submit, :label => "Login", :button_html => { :value => "Login" }
     end
   end
   %>

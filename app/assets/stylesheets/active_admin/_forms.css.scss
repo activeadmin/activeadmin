@@ -165,12 +165,12 @@ form {
     
   }
   
-  .buttons { 
+  .buttons, .actions {
     margin-top: 15px; 
     input[type=submit] { margin-right: 10px; }
   }
   
-  fieldset.buttons li { 
+  fieldset.buttons li, fieldset.actions li {
     float:left; 
     padding: 0;
 
