@@ -41,7 +41,7 @@ module ActiveAdmin
         def default_form_config
           ActiveAdmin::PagePresenter.new do |f|
             f.inputs
-            f.buttons
+            f.actions
           end
         end
       end
