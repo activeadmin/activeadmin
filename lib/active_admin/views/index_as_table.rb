@@ -1,5 +1,3 @@
-require 'active_admin/component/resource_selection'
-
 module ActiveAdmin
   module Views
 
@@ -134,8 +132,6 @@ module ActiveAdmin
       #
       class IndexTableFor < ::ActiveAdmin::Views::TableFor
         
-        include ResourceSelection
-
         # Display a column for checkbox
         def selectable_column
           return unless active_admin_config.batch_actions.any?

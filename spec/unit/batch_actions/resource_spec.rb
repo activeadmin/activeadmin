@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ActiveAdmin::Resource::BatchActions do
+describe ActiveAdmin::BatchActions::ResourceExtension do
 
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)

@@ -80,7 +80,8 @@ module ActiveAdmin
     include AssetRegistration
 
     # Event that gets triggered on load of Active Admin
-    LoadEvent = 'active_admin.application.load'.freeze
+    BeforeLoadEvent = 'active_admin.application.before_load'.freeze
+    AfterLoadEvent = 'active_admin.application.after_load'.freeze
 
     def setup!
       register_default_assets
@@ -157,6 +158,8 @@ module ActiveAdmin
       # No work to do if we've already loaded
       return false if loaded?
 
+      ActiveAdmin::Event.dispatch BeforeLoadEvent, self
+
       # Load files
       files_in_load_path.each{|file| load file }
 
@@ -164,7 +167,7 @@ module ActiveAdmin
       load_default_namespace if namespaces.values.empty?
 
       # Dispatch an ActiveAdmin::Application::LoadEvent with the Application
-      ActiveAdmin::Event.dispatch LoadEvent, self
+      ActiveAdmin::Event.dispatch AfterLoadEvent, self
 
       @@loaded = true
     end

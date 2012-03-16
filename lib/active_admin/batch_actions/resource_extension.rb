@@ -1,7 +1,7 @@
 module ActiveAdmin
 
-  class Resource
-    module BatchActions
+  module BatchActions
+    module ResourceExtension
 
       def initialize(*)
         super
