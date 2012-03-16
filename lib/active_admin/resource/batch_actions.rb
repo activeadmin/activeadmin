@@ -40,13 +40,7 @@ module ActiveAdmin
 
       # Path to the batch action itself
       def batch_action_path
-        namespace_name = namespace.name == :root ? nil : namespace.name
-
-        if belongs_to?
-          [:batch_action, namespace_name, belongs_to_config.target.resource_name.singular, resource_name.plural]          
-        else
-          [:batch_action, namespace_name, resource_name.plural]
-        end
+        "batch_action_#{route_collection_path}".to_sym
       end
 
       private

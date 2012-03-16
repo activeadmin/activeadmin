@@ -9,7 +9,7 @@ module ActiveAdmin
       def build(options = {}, &block)
         options[:id] ||= "collection_selection"
         @contents = input(:name => :batch_action, :id => :batch_action, :type => :hidden)
-        @prefix_html = text_node(form_tag active_admin_config.batch_action_path, :id => options[:id])
+        @prefix_html = text_node(form_tag send(active_admin_config.batch_action_path), :id => options[:id])
         super(options)
       end
       
