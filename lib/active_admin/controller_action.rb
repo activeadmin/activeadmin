@@ -8,5 +8,9 @@ module ActiveAdmin
     def http_verb
       @options[:method] ||= :get
     end
+
+    def action_name
+      @options[:action] || @name
+    end
   end
 end
