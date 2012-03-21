@@ -92,9 +92,10 @@ module ActiveAdmin
     # action.
     # 
     def member_action(name, options = {}, &block)
-      config.member_actions << ControllerAction.new(name, options)
+      action = ControllerAction.new(name, options)
+      config.member_actions << action
       controller do
-        define_method(name, &block || Proc.new{})
+        define_method(action.action_name, &block || Proc.new{})
       end
     end
 
