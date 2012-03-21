@@ -40,14 +40,14 @@ module ActiveAdmin
                 member do
                   config.member_actions.each do |action|
                     # eg: get :comment
-                    send(action.http_verb, action.name)
+                    send(action.http_verb, action.name, action.options)
                   end
                 end
 
                 # Define any collection actions
                 collection do
                   config.collection_actions.each do |action|
-                    send(action.http_verb, action.name)
+                    send(action.http_verb, action.name, action.options)
                   end
                 end
               end

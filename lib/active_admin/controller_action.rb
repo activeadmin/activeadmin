@@ -1,6 +1,6 @@
 module ActiveAdmin
   class ControllerAction
-    attr_reader :name
+    attr_reader :name, :options
     def initialize(name, options = {})
       @name, @options = name, options
     end
