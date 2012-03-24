@@ -36,7 +36,7 @@ describe ActiveAdmin::FormBuilder do
     active_admin_form_for Post.new, options, &block
   end
 
-  context "in general" do
+  context "in general with buttons" do
     let :body do
       build_form do |f|
         f.inputs do
@@ -46,6 +46,38 @@ describe ActiveAdmin::FormBuilder do
         f.buttons do
           f.commit_button "Submit Me"
           f.commit_button "Another Button"
+        end
+      end
+    end
+
+   it "should generate a text input" do
+      body.should have_tag("input", :attributes => { :type => "text",
+                                                     :name => "post[title]" })
+    end
+    it "should generate a textarea" do
+      body.should have_tag("textarea", :attributes => { :name => "post[body]" })
+    end
+    it "should only generate the form once" do
+      body.scan(/Title/).size.should == 1
+    end
+    it "should generate buttons" do
+      body.should have_tag("input", :attributes => {  :type => "submit",
+                                                          :value => "Submit Me" })
+      body.should have_tag("input", :attributes => {  :type => "submit",
+                                                          :value => "Another Button" })
+    end
+  end
+
+  context "in general with actions" do
+    let :body do
+      build_form do |f|
+        f.inputs do
+          f.input :title
+          f.input :body
+        end
+        f.actions do
+          f.action :submit, :button_html => { :value => "Submit Me" }
+          f.action :submit, :button_html => { :value => "Another Button" }
         end
       end
     end
@@ -79,7 +111,7 @@ describe ActiveAdmin::FormBuilder do
     end
   end
 
-  describe "passing in options" do
+  describe "passing in options with buttons" do
     let :body do
       build_form :html => { :multipart => true } do |f|
         f.inputs :title
@@ -90,6 +122,19 @@ describe ActiveAdmin::FormBuilder do
       body.should have_tag("form", :attributes => { :enctype => "multipart/form-data" })
     end
   end
+
+  describe "passing in options with actions" do
+    let :body do
+      build_form :html => { :multipart => true } do |f|
+        f.inputs :title
+        f.actions
+      end
+    end
+    it "should pass the options on to the form" do
+      body.should have_tag("form", :attributes => { :enctype => "multipart/form-data" })
+    end
+  end
+
 
   context "with buttons" do
     it "should generate the form once" do
@@ -119,6 +164,35 @@ describe ActiveAdmin::FormBuilder do
       body.scan(/class=\"cancel\"/).size.should == 0
     end
 
+  end
+
+  context "with actons" do
+    it "should generate the form once" do
+      body = build_form do |f|
+        f.inputs do
+          f.input :title
+        end
+        f.actions
+      end
+      body.scan(/id=\"post_title\"/).size.should == 1
+    end
+    it "should generate one button and a cancel link" do
+      body = build_form do |f|
+        f.actions
+      end
+      body.scan(/type=\"submit\"/).size.should == 1
+      body.scan(/class=\"cancel\"/).size.should == 1
+    end
+    it "should generate multiple actions" do
+      body = build_form do |f|
+        f.actions do
+          f.action :submit, :label => "Create & Continue"
+          f.action :submit, :label => "Create & Edit"
+        end
+      end
+      body.scan(/type=\"submit\"/).size.should == 2
+      body.scan(/class=\"cancel\"/).size.should == 0
+    end
   end
 
   context "without passing a block to inputs" do
