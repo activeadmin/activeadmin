@@ -48,6 +48,23 @@ module ActiveAdmin
       content << cancel_link
     end
 
+    def actions(*args, &block)
+      content = with_new_form_buffer do
+        block_given? ? super : super { commit_action_with_cancel_link }
+      end
+      form_buffers.last << content.html_safe
+    end
+
+    def action(*args)
+      content = with_new_form_buffer { super }
+      form_buffers.last << content.html_safe
+    end
+
+    def commit_action_with_cancel_link
+      content = action(:submit)
+      content << cancel_link
+    end
+
     def has_many(association, options = {}, &block)
       options = { :for => association }.merge(options)
       options[:class] ||= ""

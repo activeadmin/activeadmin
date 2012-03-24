@@ -70,8 +70,10 @@ module ActiveAdmin
               form.input :resource_id, :value => @record.id, :as => :hidden
               form.input :body, :input_html => {:size => "80x8"}, :label => false
             end
-            form.buttons do
-              form.commit_button I18n.t('active_admin.comments.add')
+            #form.buttons do
+            form.actions do
+              #form.commit_button I18n.t('active_admin.comments.add')
+              form.action :submit, :label => I18n.t('active_admin.comments.add'), :button_html => { :value => I18n.t('active_admin.comments.add') }
             end
           end
         end
