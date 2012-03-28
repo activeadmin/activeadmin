@@ -1,0 +1,67 @@
+ro:
+  active_admin:
+    dashboard: "Pagina Principala"
+    dashboard_welcome:
+      welcome: "Bine ati venit pe Active Admin. Aceasta este pagina principala."
+      call_to_action: "Pentru a adauga sectiuni, vedeti 'app/admin/dashboards.rb'"
+    view: "Vizualizati"
+    edit: "Modificati"
+    delete: "Stergeti"
+    delete_confirmation: "Sigur vreti sa stergeti?"
+    new_model: "Un nou %{model}"
+    create_model: "Un nou %{model}"
+    edit_model: "Modificati %{model}"
+    update_model: "Modificati %{model}"
+    delete_model: "Stergeti %{model}"
+    details: "Detalii %{model}"
+    cancel: "Renuntati"
+    empty: "Gol"
+    previous: "Inapoi"
+    next: "Inainte"
+    download: "Descarcati:"
+    has_many_new: "Adaugati un nou %{model}"
+    has_many_delete: "Stergeti"
+    filter: "Cautati"
+    clear_filters: "Stergeti filtrele"
+    search_field: "Cautati dupa %{field}"
+    equal_to: "Egal Cu"
+    greater_than: "Mai Mare Decat"
+    less_than: "Mai Mic Decat"
+    main_content: "Va rugam sa implementati %{model}#main_content pentru a afisa continut."
+    logout: "Iesire"
+    sidebars:
+      filters: "Filtre"
+    pagination:
+      empty: "Nu am gasit nici un %{model}"
+      one: "Afisare <b>1</b> %{model}"
+      one_page: "Sunt afisate <b>toate %{n}</b> inregistrarile"
+      multiple: "Sunt afisate <b>%{from}&nbsp;-&nbsp;%{to}</b> din <b>%{total}</b> inregistrari"
+      entry:
+        one: "inregistrare"
+        other: "inregistrari"
+    any: "Oricare"
+    blank_slate:
+      content: "Momentan nu exista %{resource_name}."
+      link: "Creati un"
+    batch_actions:
+      button_label: "Grupare Actiuni"
+      delete_confirmation: "Sunteti sigur ca doriti sa stergeti aceste %{plural_model}?"
+      succesfully_destroyed:
+        one: "1 %{model} sters"
+        other: "%{count} %{plural_model} sterse"
+      selection_toggle_explanation: "(Modifica Selectia)"
+      link: "Creati unul"
+      action_label: "%{title} Selectat"
+      labels:
+        destroy: "Sterge"
+    comments:
+      body: "Text"
+      author: "Autor"
+      title: "Comentariu"
+      add: "Adaugati comentariu"
+      resource: "Resursa"
+      no_comments_yet: "Nu exista comentarii."
+      title_content: "Comentarii (%{count})"
+      errors:
+        empty_text: "Comentariul nu a fost salvat, textul lipseste."
+
