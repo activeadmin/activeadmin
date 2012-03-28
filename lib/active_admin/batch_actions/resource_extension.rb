@@ -1,31 +1,19 @@
 module ActiveAdmin
-  
-  class Resource
-    module BatchActions
-      
+
+  module BatchActions
+    module ResourceExtension
+
+      def initialize(*)
+        super
+        @batch_actions = {}
+        add_default_batch_actions
+      end
+
       # @return [Array] The set of batch actions for this resource
       def batch_actions
-        self.batch_actions_hash.values.sort
+        @batch_actions.values.sort
       end
-      
-      # @return [Hash] The set of batch actions for this resource
-      def batch_actions_hash
-        @batch_actions_hash ||= controller.action_methods.include?('destroy') ? { :destroy => default_batch_action } : {}
-      end
-      
-      # @return [ActiveAdmin::BatchAction] The default "delete" action
-      def default_batch_action
-        action = ActiveAdmin::BatchAction.new :destroy, I18n.t('active_admin.delete'), :priority => 100, :confirm => I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => plural_resource_label.downcase) do |selected_ids|
 
-          active_admin_config.resource_class.find(selected_ids).each { |r| r.destroy }
-
-          redirect_to collection_path, :notice => I18n.t("active_admin.batch_actions.succesfully_destroyed",
-                                                         :count => selected_ids.count,
-                                                         :model => active_admin_config.resource_label.downcase,
-                                                         :plural_model => active_admin_config.plural_resource_label.downcase)
-        end
-      end
-      
       # Add a new batch item to a resource
       # @param [String] title
       # @param [Hash] options
@@ -34,39 +22,52 @@ module ActiveAdmin
       # => :confirm is a string which the user will have to accept in order to process the action
       #
       def add_batch_action(sym, title, options = {}, &block)
-        self.batch_actions_hash.merge!( sym => ActiveAdmin::BatchAction.new( sym, title, options, &block ) )
+        @batch_actions[sym] = ActiveAdmin::BatchAction.new(sym, title, options, &block)
       end
-      
+
       # Remove a batch action
       # @param [Symbol] sym
       # @returns [ActiveAdmin::BatchAction] the batch action, if it was present
       #
       def remove_batch_action(sym)
-        self.batch_actions_hash.delete(sym.to_sym)
+        @batch_actions.delete(sym.to_sym)
       end
-      
+
       # Clears all the existing batch actions for this resource
       def clear_batch_actions!
-        @batch_actions_hash = {}
+        @batch_actions = {}
       end
-      
+
       # Path to the batch action itself
       def batch_action_path
-        namespace_name = namespace.name == :root ? nil : namespace.name
-
-        if belongs_to?
-          [:batch_action, namespace_name, belongs_to_config.target.resource_name.singular, resource_name.plural]          
-        else
-          [:batch_action, namespace_name, resource_name.plural]
-        end
-        
+        "batch_action_#{route_collection_path}".to_sym
       end
-      
+
+      private
+
+      # @return [ActiveAdmin::BatchAction] The default "delete" action
+      def add_default_batch_actions
+        destroy_options = {
+          :priority => 100,
+          :confirm => I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => plural_resource_label.downcase),
+          :if => proc{ controller.action_methods.include?('destroy') }
+        }
+
+        add_batch_action :destroy, I18n.t('active_admin.delete'), destroy_options do |selected_ids|
+          active_admin_config.resource_class.find(selected_ids).each { |r| r.destroy }
+
+          redirect_to collection_path, :notice => I18n.t("active_admin.batch_actions.succesfully_destroyed",
+                                                         :count => selected_ids.count,
+                                                         :model => active_admin_config.resource_label.downcase,
+                                                         :plural_model => active_admin_config.plural_resource_label.downcase)
+        end
+      end
+
     end
   end
-  
+
   class BatchAction
-    
+
     include Comparable
 
     attr_reader :block, :title, :sym, :confirm
@@ -91,23 +92,23 @@ module ActiveAdmin
       @sym, @title, @options, @block, @confirm = sym, title, options, block, options[:confirm]
       @block ||= proc {}
     end
-    
+
     # Returns the display if block. If the block was not explicitly defined
     # a default block always returning true will be returned.
     def display_if_block
       @options[:if] || proc { true }
     end
-    
+
     # Used for sorting
     def priority
       @options[:priority] || 10
     end
-    
+
     # sort operator
     def <=>(other)
       self.priority <=> other.priority
     end
 
   end
-  
+
 end

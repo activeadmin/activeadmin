@@ -15,7 +15,6 @@ describe ActiveAdmin::ViewFactory do
   it_should_have_view :header,               ActiveAdmin::Views::Header
   it_should_have_view :blank_slate,          ActiveAdmin::Views::BlankSlate
   it_should_have_view :action_list_popover,  ActiveAdmin::Views::ActionListPopover
-  it_should_have_view :batch_action_popover, ActiveAdmin::Views::BatchActionPopover
 
   it_should_have_view :dashboard_page,       ActiveAdmin::Views::Pages::Dashboard
   it_should_have_view :layout,               ActiveAdmin::Views::Pages::Layout

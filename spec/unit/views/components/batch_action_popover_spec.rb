@@ -1,6 +1,7 @@
 require 'spec_helper'
+require 'active_admin/batch_actions/views/batch_action_popover'
 
-describe ActiveAdmin::Views::BatchActionPopover do
+describe ActiveAdmin::BatchActions::BatchActionPopover do
 
   setup_arbre_context!
 

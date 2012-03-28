@@ -34,3 +34,4 @@ public
 .rvmrc
 .rspec
 .rails-version
+.rbenv-version

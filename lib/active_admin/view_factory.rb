@@ -14,8 +14,7 @@ module ActiveAdmin
               :dashboard_section    => ActiveAdmin::Views::DashboardSection,
               :index_scopes         => ActiveAdmin::Views::Scopes,
               :blank_slate          => ActiveAdmin::Views::BlankSlate,
-              :action_list_popover  => ActiveAdmin::Views::ActionListPopover,
-              :batch_action_popover => ActiveAdmin::Views::BatchActionPopover
+              :action_list_popover  => ActiveAdmin::Views::ActionListPopover
 
     # Register All The Pages
     register  :dashboard_page     	=> ActiveAdmin::Views::Pages::Dashboard,

@@ -43,6 +43,14 @@ fr:
     blank_slate:
       content: "Il n'y a pas encore de %{resource_name}."
       link: "Créez en un"
+    batch_actions:
+      button_label: "Actions groupées"
+      delete_confirmation: "Êtes-vous sur de vouloir supprimer ces %{plural_model}? Cette action est irréversible."
+      succesfully_destroyed:
+        one: "1 %{model} supprimé"
+        other: "%{count} %{plural_model} supprimés"
+      selection_toggle_explanation: "(Inverser la sélection)"
+      link: "Créer un"
     comments:    
       body: "Corps"
       author: "Auteur"
