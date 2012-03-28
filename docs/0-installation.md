@@ -47,3 +47,13 @@ run the assets generator:
 
 This command makes sure you have all the latest assets and your installation is
 up to date. Each time you upgrade Active Admin, you should run this command.
+
+## will_paginate compatibility
+
+If you use `will_paginate` in your app, you need to configure an initializer for
+Kaminari to avoid conflicts. Put this in `config/initializers/kaminari.rb`
+
+
+    Kaminari.configure do |config|
+      config.page_method_name = :per_page_kaminari
+    end
