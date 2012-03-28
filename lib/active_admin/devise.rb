@@ -1,4 +1,12 @@
-require 'devise'
+begin
+  require 'devise'
+rescue LoadError => e
+  $stderr.puts ["You don't have Devise installed in your application. Please add it to your",
+    "Gemfile and run bundle install. If you do not require Devise run the generator with",
+    "--skip-users option"].join(' ')
+  raise e
+end
+
 
 module ActiveAdmin
   module Devise
