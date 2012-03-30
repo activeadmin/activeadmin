@@ -34,10 +34,34 @@ es:
       one: "Mostrando <b>1</b> %{model}"
       one_page: "Mostrando <b>todos(as) los(as) %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
-    any: "Cualquiera"
     blank_slate:
       content: "No hay %{resource_name} aún."
       link: "Crea uno(a)"
+      entry:
+        one: "registro"
+        other: "registros"
+    any: "Cualquiera"
+    batch_actions:
+      button_label: "Batch Actions"
+      delete_confirmation: "¿Está seguro que quiere eliminar estos %{plural_model}? No podrás deshacer esta opción."
+      succesfully_destroyed:
+        one: "Se ha destruido 1 %{model} exitosamente"
+        other: "Se han destruido %{count} %{plural_model} exitosamente"
+      selection_toggle_explanation: "(Toggle Selection)"
+      link: "Crea 1"
+      action_label: "%{title} Seleccionado"
+      labels:
+        destroy: "Borrar"
+    comments:
+      body: "Cuerpo"
+      author: "Autor"
+      title: "Comentario"
+      add: "Comentar"
+      resource: "Resource"
+      no_comments_yet: "Sin comentarios todavía."
+      title_content: "Comentarios (%{count})"
+      errors:
+        empty_text: "El comentario no fue salvado, el texto estaba vacio."
   views:
       pagination:
           truncate: "..."
