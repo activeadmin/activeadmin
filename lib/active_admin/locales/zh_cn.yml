@@ -9,7 +9,9 @@ zh_cn:
     delete: "删除"
     delete_confirmation: "确定删除?"
     new_model: "新建%{model}"
+    create_model: "新建%{model}"
     edit_model: "编辑%{model}"
+    update_model: "编辑%{model}"
     delete_model: "删除%{model}"
     details: "%{model}详情"
     cancel: "取消"
@@ -34,7 +36,31 @@ zh_cn:
       one: "显示 <b>1</b> %{model}"
       one_page: "显示 <b>所有 %{n}</b> %{model}"
       multiple: "显示所有 <b>%{total}</b> %{model}中的<b>%{from}&nbsp;-&nbsp;%{to}</b> 条"
+      entry:
+        one: "条目"
+        other: "条目"
     any: "任何"
     blank_slate:
       content: "暂时还没有%{resource_name}."
       link: "新建一个"
+    batch_actions:
+      button_label: "批处理"
+      delete_confirmation: "你确定要删除所有%{plural_model}? 如果执行，将不可恢复."
+      succesfully_destroyed:
+        one: "成功删除 1 %{model}"
+        other: "成功删除 %{count} %{plural_model}"
+      selection_toggle_explanation: "(切换选择)"
+      link: "新建一个"
+      action_label: "%{title} 被选中"
+      labels:
+        destroy: "删除"
+    comments:
+      body: "内容"
+      author: "作者"
+      title: "评论"
+      add: "添加评论"
+      resource: "资源"
+      no_comments_yet: "暂时没有评论"
+      title_content: "(%{count})条评论"
+      errors:
+        empty_text: "评论保存失败，内空不能为空."
