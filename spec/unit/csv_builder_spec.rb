@@ -88,8 +88,7 @@ describe ActiveAdmin::CSVBuilder do
     end
 
     it "should have proper separator" do
-      builder.column_
-      separator.should == ";"
+      builder.column_separator.should == ";"
     end
   end
 
