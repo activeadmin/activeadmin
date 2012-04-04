@@ -6,6 +6,7 @@ module ActiveAdmin
   #   csv_builder = CSVBuilder.new
   #   csv_builder.column :id
   #   csv_builder.column("Name") { |resource| resource.full_name }
+  #   csv_builder.separator(",")
   #
   class CSVBuilder
 
@@ -21,7 +22,7 @@ module ActiveAdmin
       end
     end
 
-    attr_reader :columns
+    attr_reader :columns, :column_separator
 
     def initialize(&block)
       @columns = []
@@ -31,6 +32,10 @@ module ActiveAdmin
     # Add a column
     def column(name, &block)
       @columns << Column.new(name, block)
+    end
+
+    def separator(sign)
+      @column_separator = sign
     end
 
     class Column
