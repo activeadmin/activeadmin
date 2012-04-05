@@ -10,13 +10,17 @@ module ActiveAdmin
 				crumbs = []
 				parts.each_with_index do |part, index|
 					name = ""
-					if part =~ /^\d/ && parent = parts[index - 1]
-						begin
-							parent_class = parent.singularize.camelcase.constantize
-							obj = parent_class.find(part.to_i)
-							name = obj.display_name if obj.respond_to?(:display_name)
-						rescue
-						end
+					if parent = parts[index - 1]
+				            begin
+				              parent_class = parent.singularize.camelcase.constantize
+				              if parent_class.respond_to?(:default_finder)
+				                obj = parent_class.try(parent_class.default_finder, part)
+				              else
+				                obj = parent_class.find(part.to_i)
+				              end
+				              name = obj.display_name if obj.respond_to?(:display_name)
+				            rescue
+				            end					  
 					end
 					name = part.titlecase if name == ""
 					begin
