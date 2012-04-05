@@ -82,9 +82,7 @@ describe ActiveAdmin::CSVBuilder do
 
   context "with a separator" do
     let(:builder) do
-      ActiveAdmin::CSVBuilder.new do
-        separator ";"
-      end
+      ActiveAdmin::CSVBuilder.new :separator => ";"
     end
 
     it "should have proper separator" do

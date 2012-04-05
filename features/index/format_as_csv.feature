@@ -48,10 +48,9 @@ Feature: Format as CSV
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        csv do
+        csv :separator => ';' do
           column :title
           column :body
-          separator ";"
         end
       end
     """
