@@ -35,7 +35,7 @@ If you'd like to keep the default active_admin look, you can also use "attribute
       end
     end
 
-You can customize the title of the object in the show screen.  The default is the resouce name and the ID.  You can customize as follows:
+You can customize the title of the object in the show screen.  The default is the resource name and the ID.  You can customize as follows:
     
     show :title => :name do
     end
