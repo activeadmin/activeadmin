@@ -3,7 +3,7 @@
     dashboard: 儀表板
     dashboard_welcome:
       welcome: "歡迎來到 Active Admin 這是預設的儀表板頁面。"
-      call_to_action: "To add dashboard sections, checkout 'app/admin/dashboards.rb'"
+      call_to_action: "要新增儀表板內容，請查看 'app/admin/dashboards.rb'"
     view: "檢視"
     edit: "編輯"
     delete: "刪除"
@@ -43,3 +43,24 @@
     blank_slate:
       content: "尚無 %{resource_name}"
       link: "建立一筆"
+    batch_actions:
+      button_label: "批次作業"
+      delete_confirmation: "您確定要刪除這些 %{plural_model} 嗎？此動作無法復原。"
+      succesfully_destroyed:
+        one: "成功刪除 1 %{model}"
+        other: "成功刪除 %{count} %{plural_model}"
+      selection_toggle_explanation: "(切換選取)"
+      link: "建立一個"
+      action_label: "%{title} 已選取"
+      labels:
+        destroy: "刪除"
+    comments:
+      body: "內文"
+      author: "作者"
+      title: "評論"
+      add: "新增評論"
+      resource: "資源"
+      no_comments_yet: "尚無評論"
+      title_content: "(%{count}) 則評論"
+      errors:
+        empty_text: "評論儲存失敗，不允許空白的內容。"
