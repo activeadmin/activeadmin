@@ -35,6 +35,7 @@ ru:
       empty: "%{model} не найдено"
       one: "Результат: <b>1</b> %{model}"
       one_page: "Результат: <b>%{n}</b> %{model}"
+      multiple_without_total: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{total}</b>"
       entry:
         one: "запись"

@@ -34,16 +34,17 @@ module ActiveAdmin
       #                              :entry_name - The name to display for this resource collection
       #                              :param_name - Parameter name for page number in the links (:page by default)
       #                              :download_links - Set to false to skip download format links
+      #                              :unbounded - Don't calculate the total count & total pages
       def build(collection, options = {})
         @collection = collection
         @param_name     = options.delete(:param_name)
         @download_links = options.delete(:download_links)
+        @unbounded      = !!options.delete(:unbounded)
 
         unless collection.respond_to?(:num_pages)
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
         end
-        
-      
+
         @contents = div(:class => "paginated_collection_contents")
         build_pagination_with_formats(options)
         @built = true
@@ -69,10 +70,49 @@ module ActiveAdmin
       end
 
       def build_pagination
-        options =  request.query_parameters.except(:commit, :format)
+        options = request.query_parameters.except(:commit, :format)
         options[:param_name] = @param_name if @param_name
 
         text_node paginate(collection, options.symbolize_keys)
+      end
+
+      # For unscoped pagination, we need a bit more control over how kaminari sets up its paginator,
+      # so we override the helper.
+      #
+      # This is intentionally overly general, so that it is easy to diff between any changes
+      # kaminari might make in the future.
+      #
+      # Based off of https://github.com/amatsuda/kaminari/blob/v0.13.0/lib/kaminari/helpers/action_view_extension.rb#L17
+      def paginate(scope, options = {}, &block)
+        # If this is a regular paginatior, there's no reason to override this helper.
+        return super unless @unbounded
+
+        # Make sure that we *do not* reference scope.num_pages!
+        num_pages = collection.current_page
+        # If we are for sure not at the end, pretend like we have one extra page.
+        unless collection.size < collection.limit_value
+          # Unfortunately, we're not peeking ahead, so this might mean that the next page has
+          # zero items in it.  This also means that the Last page link will show up, pointing to
+          # the next page; but kaminari doesn't give us the option to hide it.
+          num_pages += 1
+        end
+
+        paginator = Kaminari::Helpers::Paginator.new self, options.reverse_merge(
+          :current_page => scope.current_page,
+          :num_pages    => num_pages,
+          :per_page     => scope.limit_value,
+          :param_name   => Kaminari.config.param_name,
+          :remote       => false
+        )
+
+        # And a total hack to disable the 'last >>' tag, since it is meaningless when unbounded
+        class << paginator
+          def last_page_tag
+            ''
+          end
+        end
+
+        paginator.to_s
       end
 
       # TODO: Refactor to new HTML DSL
@@ -87,6 +127,45 @@ module ActiveAdmin
 
       # modified from will_paginate
       def page_entries_info(options = {})
+        return unbounded_entries_info(options) if @unbounded
+
+        entry_name, entries_name = localized_entry_names(options)
+
+        if collection.num_pages < 2
+          case collection.size
+          when 0; I18n.t('active_admin.pagination.empty', :model => entries_name)
+          when 1; I18n.t('active_admin.pagination.one', :model => entry_name)
+          else;   I18n.t('active_admin.pagination.one_page', :model => entries_name, :n => collection.total_count)
+          end
+        else
+          offset = collection.current_page * collection.size
+          total  = collection.total_count
+          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => (offset - collection.size + 1), :to => offset > total ? total : offset, :total => total)
+        end
+      end
+
+      # We avoid all references to collection.num_pages and collection.total_count to avoid performing
+      # potentially expensive queries.
+      def unbounded_entries_info(options = {})
+        entry_name, entries_name = localized_entry_names(options)
+
+        # If we are on the first page and have run out, we can be consistent w/ paged_entries info
+        if collection.current_page == 1
+          if collection.size == 0
+            return I18n.t('active_admin.pagination.empty', :model => entries_name)
+          elsif collection.size == 1
+            return I18n.t('active_admin.pagination.one', :model => entry_name)
+          elsif collection.size < collection.limit_value
+            return I18n.t('active_admin.pagination.one_page', :model => entries_name, :n => collection.size)
+          end
+        end
+
+        # Otherwise, we are unsure of our bounds
+        start = (collection.current_page - 1) * collection.limit_value
+        I18n.t('active_admin.pagination.multiple_without_total', :model => entries_name, :from => (start + 1), :to => (start + collection.size))
+      end
+
+      def localized_entry_names(options)
         if options[:entry_name]
           entry_name = options[:entry_name]
           entries_name = options[:entries_name]
@@ -103,17 +182,7 @@ module ActiveAdmin
         end
         entries_name = entry_name.pluralize unless entries_name
 
-        if collection.num_pages < 2
-          case collection.size
-          when 0; I18n.t('active_admin.pagination.empty', :model => entries_name)
-          when 1; I18n.t('active_admin.pagination.one', :model => entry_name)
-          else;   I18n.t('active_admin.pagination.one_page', :model => entries_name, :n => collection.total_count)
-          end
-        else
-          offset = collection.current_page * collection.size
-          total  = collection.total_count
-          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => (offset - collection.size + 1), :to => offset > total ? total : offset, :total => total)
-        end
+        [entry_name, entries_name]
       end
 
     end

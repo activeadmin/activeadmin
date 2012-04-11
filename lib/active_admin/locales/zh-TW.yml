@@ -35,6 +35,7 @@
       empty: "找不到 %{model} "
       one: "顯示 <b>1</b> %{model}"
       one_page: "顯示 <b>全部 %{n}</b> %{model}"
+      multiple_without_total: "顯示 <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model}"
       multiple: "總計 <b>%{total}</b> 顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆"
       entry:
         one: "筆"

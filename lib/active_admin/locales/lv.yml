@@ -35,6 +35,7 @@ lv:
       empty: "Nav ierakstu"
       one: "<b>1</b> ieraksts"
       one_page: "<b>%{n}</b> ieraksti"
+      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> ieraksti"
       multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> ieraksti no <b>%{total}</b> kopā"
       entry:
         one: "ieraksts"

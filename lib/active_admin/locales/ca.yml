@@ -34,6 +34,7 @@ ca:
       empty: "No hi ha %{model}"
       one: "S'està mostrant <b>1</b> %{model}"
       one_page: "S'estan mostrant <b>tots %{n}</b> %{model}"
+      multiple_without_total: "S'estan mostrant %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       multiple: "S'estan mostrant %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> en total"
       entry:
         one: "entrada"

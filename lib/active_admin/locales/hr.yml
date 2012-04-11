@@ -33,6 +33,7 @@ hr:
       empty: "Nije pronađen niti jedan %{model}."
       one: "Prikazan <b>1</b> %{model}"
       one_page: "Prikazano <b>svih %{n}</b> %{model}"
+      multiple_without_total: "Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       multiple: "Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> od ukupno <b>%{total}</b>"
     any: "Bilo koji"
     blank_slate:

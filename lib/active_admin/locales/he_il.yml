@@ -35,6 +35,7 @@ he_il:
       empty: "אין %{model} בנמצא"
       one: "מציג <b>1</b> %{model}"
       one_page: "הצגת <b>כל %{n}</b> %{model}"
+      multiple_without_total: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       multiple: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> מתוך <b>%{total}</b> בסך הכל"
       entry:
         one: "רשומה בודדה"

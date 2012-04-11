@@ -159,5 +159,67 @@ describe ActiveAdmin::Views::PaginatedCollection do
         pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>all 2</b> posts"
       end
     end
+
+    context "when :unbounded is true" do
+      let(:pagination) { paginated_collection(collection, :param_name => :post_page, :unbounded => true) }
+
+      context "with an empty collection" do
+        let(:collection) do
+          Kaminari.paginate_array([]).page(1).per(5)
+        end
+
+        it "should display 'No entries found" do
+          pagination.find_by_class('pagination_information').first.content.should == "No entries found"
+        end
+      end
+
+      context "with a single item" do
+        let(:collection) do
+          posts = 1.times.inject([]) {|m, _| m << Post.new }
+          Kaminari.paginate_array(posts).page(1).per(5)
+        end
+
+        it "should display 'Displaying 1 entry'" do
+          pagination.find_by_class('pagination_information').first.content.should == 'Displaying <b>1</b> post'
+        end
+      end
+
+      context "with a single page worth of items" do
+        let(:collection) do
+          posts = 4.times.inject([]) {|m, _| m << Post.new }
+          Kaminari.paginate_array(posts).page(1).per(5)
+        end
+
+        it "should display 'Displaying all 4 entries'" do
+          pagination.find_by_class('pagination_information').first.content.should == 'Displaying <b>all 4</b> posts'
+        end
+      end
+
+      context "with a full page of items" do
+        let(:collection) do
+          posts = 8.times.inject([]) {|m, _| m << Post.new }
+          Kaminari.paginate_array(posts).page(1).per(5)
+        end
+
+        it "should allow you to page next, but not specify an end if there are items left to view" do
+          pagination.find_by_class('pagination_information').first.content.should == 'Displaying posts <b>1&nbsp;-&nbsp;5</b>'
+        end
+      end
+
+      context "with a next and final page of items" do
+        let(:collection) do
+          posts = 8.times.inject([]) {|m, _| m << Post.new }
+          Kaminari.paginate_array(posts).page(2).per(5)
+        end
+
+        it "should show the correct posts, but not have next/last links" do
+          pagination.find_by_class('pagination_information').first.content.should == 'Displaying posts <b>6&nbsp;-&nbsp;8</b>'
+
+          # Is there a better way of doing this?
+          pagination.to_s.should_not include('class="next"')
+          pagination.to_s.should_not include('class="last"')
+        end
+      end
+    end
   end
 end

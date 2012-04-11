@@ -33,6 +33,7 @@ ja:
       empty: "%{model} は見つかりませんでした"
       one: "<b>1</b> 件の %{model} を表示しています"
       one_page: "<b>全 %{n}</b> 件の %{model} を表示しています"
+      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
       multiple: "全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
     any: "任意"
     blank_slate:

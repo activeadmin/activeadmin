@@ -33,6 +33,7 @@ nl:
       empty: "Geen %{model} gevonden"
       one: "Geeft <b>1</b> %{model} weer"
       one_page: "Geeft <b>%{n}</b> %{model} weer"
+      multiple_without_total: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       multiple: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> van de <b>%{total}</b> weer"
     any: "Alle"
     blank_slate:

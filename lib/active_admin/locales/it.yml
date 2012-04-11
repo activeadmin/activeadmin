@@ -35,6 +35,7 @@ it:
       empty: "Nessun %{model} trovato"
       one: "Sto mostrando <b>1</b> %{model}"
       one_page: "Sto mostrando <b>%{n}</b> %{model}. Lista completa."
+      multiple_without_total: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       multiple: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{total}</b> in totale"
       entry:
         one: "voce"
