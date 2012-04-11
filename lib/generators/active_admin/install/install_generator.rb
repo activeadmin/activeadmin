@@ -1,7 +1,7 @@
 module ActiveAdmin
   module Generators
     class InstallGenerator < Rails::Generators::NamedBase
-      desc "Installs Active Admin and generats the necessary migrations"
+      desc "Installs Active Admin and generates the necessary migrations"
       argument :name, :type => :string, :default => "AdminUser"
 
       hook_for :users, :default => "devise", :desc => "Admin user generator to run. Skip with --skip-users"
