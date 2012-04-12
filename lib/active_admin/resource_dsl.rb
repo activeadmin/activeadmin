@@ -93,14 +93,20 @@ module ActiveAdmin
     # 
     def member_action(name, options = {}, &block)
       config.member_actions << ControllerAction.new(name, options)
+      title = options.delete(:title)
+
       controller do
+        before_filter :only => [name] { @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end
 
     def collection_action(name, options = {}, &block)
       config.collection_actions << ControllerAction.new(name, options)
+      title = options.delete(:title)
+
       controller do
+        before_filter :only => [name] { @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end
