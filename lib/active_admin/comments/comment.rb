@@ -11,7 +11,6 @@ module ActiveAdmin
     belongs_to :resource, :polymorphic => true
     belongs_to :author, :polymorphic => true
 
-    # Removes issue #1203
     attr_accessible :resource, :resource_id, :resource_type, :body, :namespace
 
     validates_presence_of :resource
