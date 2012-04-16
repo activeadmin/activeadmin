@@ -42,14 +42,25 @@
     any: "Qualquer"
     blank_slate:
       content: "Não existem %{resource_name} ainda."
-      link: "Crie uma"
-    comments:
-      body: "Mensagem"
+      link: "Novo"
+    batch_actions:
+      button_label: "Ações em lote"
+      delete_confirmation: "Tem certeza que deseja excluir estes %{plural_model}? Não é possível desfazer esta ação."
+      succesfully_destroyed:
+        one: "Excluiu com sucesso 1 %{model}"
+        other: "Excluiu com sucesso %{count} %{plural_model}"
+      selection_toggle_explanation: "(Alternar Seleção)"
+      link: "Novo"
+      action_label: "%{title} Selecionado"
+      labels:
+        destroy: "Excluído"
+    comments:    
+      body: "Conteúdo"
       author: "Autor"
-      title: "Commentário"
-      add: "Adicionar Commentário"
-      resource: "Recurso"
-      no_comments_yet: "Sem comentários."
-      title_content: "Comentários (%{count})"
+      title: "Comentário"
+      add: "Adicionar Comentário"
+      resource: "Objeto"
+      no_comments_yet: "Nenum comentário."
+      title_content: "Comentários: %{count}"
       errors:
-        empty_text: "O comentário não foi salvo, o texto está vazio."
+        empty_text: "O comentário não foi salvo porque o texto estava vazio."

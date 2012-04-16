@@ -49,7 +49,7 @@ module ActiveAdmin
             table_column = (column =~ /\./) ? column :
               "#{table}.#{active_admin_config.resource_quoted_column_name(column)}"
 
-            chain.order("#{table_column} #{order}")
+            chain.reorder("#{table_column} #{order}")
           else
             chain # just return the chain
           end
