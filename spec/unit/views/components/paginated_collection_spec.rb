@@ -150,7 +150,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
     context "when collection comes from find with GROUP BY" do
       let(:collection) do
         %w{Foo Foo Bar}.each {|title| Post.create(:title => title) }
-        Post.group(:title).page(1).per(5)
+        Post.select(:title).group(:title).page(1).per(5)
       end
 
       let(:pagination) { paginated_collection(collection) }
@@ -163,7 +163,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
     context "when collection with many pages comes from find with GROUP BY" do
       let(:collection) do
         %w{Foo Foo Bar Baz}.each {|title| Post.create(:title => title) }
-        Post.group(:title).page(1).per(2)
+        Post.select(:title).group(:title).page(1).per(2)
       end
 
       let(:pagination) { paginated_collection(collection) }
