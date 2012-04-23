@@ -43,3 +43,24 @@ it:
     blank_slate:
       content: "Non sono presenti %{resource_name}"
       link: "Crea nuovo/a"
+    batch_actions:
+      button_label: "Azioni Batch"
+      delete_confirmation: "Sei sicuro di volere cancellare %{plural_model}? Non sarà possibile annulare questa modifica."
+      succesfully_destroyed:
+        one: "Eliminato con successo 1 %{model}"
+        other: "Eliminati con successo %{count} %{plural_model}"
+      selection_toggle_explanation: "(Toggle Selection)"
+      link: "Crea uno"
+      action_label: "%{title} Selezionati"
+      labels:
+        destroy: "Elimina"
+    comments:
+      body: "Corpo"
+      author: "Autore"
+      title: "Commento"
+      add: "Aggiungi Commento"
+      resource: "Risorsa"
+      no_comments_yet: "Nessun commento."
+      title_content: "Commenti (%{count})"
+      errors:
+        empty_text: "Il commento non può essere salvato, il testo è vuoto."
