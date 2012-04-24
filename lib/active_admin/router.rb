@@ -76,6 +76,15 @@ module ActiveAdmin
               resources config.belongs_to_config.target.resource_name.plural, :only => [] do
                 instance_eval &routes_for_belongs_to
               end
+
+              # Batch action path is not nested.
+              if config.is_a?(Resource)
+                resources config.resource_name.route_key do
+                  collection do
+                    post :batch_action
+                  end
+                end
+              end
             end
           end
 
