@@ -36,7 +36,7 @@ module ActiveAdmin
         protected
 
         def default_title
-          "#{active_admin_config.resource_label} ##{resource.id}"
+          "#{active_admin_config.resource_label}: #{display_name(resource)}"
         end
 
         module DefaultMainContent
