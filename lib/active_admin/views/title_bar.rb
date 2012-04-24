@@ -6,7 +6,6 @@ module ActiveAdmin
         super(:id => "title_bar")
         @title = title
         @action_items = action_items
-
         build_titlebar_left
         build_titlebar_right
       end
@@ -27,8 +26,12 @@ module ActiveAdmin
       end
 
       def build_breadcrumb(separator = "/")
-        links = breadcrumb_links
-        return if links.empty?
+        links = if active_admin_config && active_admin_config.breadcrumb.present?
+          instance_exec(controller, &active_admin_config.breadcrumb)
+        else
+          breadcrumb_links
+        end
+        return unless links.present? && links.is_a?(::Array)
         span :class => "breadcrumb" do
           links.each do |link|
             text_node link
