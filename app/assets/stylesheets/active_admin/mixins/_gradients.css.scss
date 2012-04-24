@@ -6,7 +6,7 @@ $secondary-gradient-stop: #dfe1e2;
   background: -webkit-gradient(linear, left top, left bottom, from($start), to($end)); 
   background: -moz-linear-gradient(-90deg, $start, $end); 
   // IE 6 & 7
-  filter: "\"progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$start}, endColorstr=#{$end})\"";
+  filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$start}, endColorstr=#{$end})";
   // IE 8
   -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$start}, endColorstr=#{$end});
 }
