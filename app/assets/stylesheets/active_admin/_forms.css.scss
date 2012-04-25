@@ -74,7 +74,7 @@ form {
   }
 
   /* Text Fields */
-  input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
+  input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
     width: 76%;
     border: 1px solid #c9d0d6;
     @include rounded;
