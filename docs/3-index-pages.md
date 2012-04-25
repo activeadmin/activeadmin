@@ -76,3 +76,11 @@ You can also disable pagination:
     ActiveAdmin.register Post do
       config.paginate = false
     end
+
+## Disable CSV, XML and JSON export
+
+You can remove links to download CSV, XML and JSON exports:
+
+    index :download_links => false do
+    end
+

@@ -5,7 +5,7 @@ module ActiveAdmin
       class Index < Base
 
         def title
-          active_admin_config.plural_resource_name
+          active_admin_config.plural_resource_label
         end
 
         def config
@@ -15,20 +15,22 @@ module ActiveAdmin
         # Render's the index configuration that was set in the
         # controller. Defaults to rendering the ActiveAdmin::Pages::Index::Table
         def main_content
-          build_scopes
-
-          if items_in_collection?
-            render_index
-          else
-            if params[:q]
-              render_empty_results
-            else
-              render_blank_slate
+          if active_admin_config.batch_actions.any? 
+            batch_action_form do
+              build_table_tools
+              build_collection
             end
+          else
+            build_table_tools
+            build_collection
           end
         end
 
         protected
+
+        def build_extra_content
+          build_batch_action_popover
+        end
 
         def items_in_collection?
           # Remove the order clause before limiting to 1. This ensures that
@@ -41,6 +43,18 @@ module ActiveAdmin
           collection.reorder("").limit(1).exists?
         end
 
+        def build_collection
+          if items_in_collection?
+            render_index
+          else
+            if params[:q] || params[:scope]
+              render_empty_results
+            else
+              render_blank_slate
+            end
+          end
+        end
+
         # TODO: Refactor to new HTML DSL
         def build_download_format_links(formats = [:csv, :xml, :json])
           links = formats.collect do |format|
@@ -49,22 +63,48 @@ module ActiveAdmin
           text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
         end
 
+        def build_table_tools
+          div :class => "table_tools" do
+
+            if active_admin_config.batch_actions.any?
+              a :class => 'table_tools_button dropdown_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
+                text_node I18n.t("active_admin.batch_actions.button_label")
+              end
+            end
+          
+            build_scopes
+          end
+        end
+
+        def build_batch_action_popover
+          insert_tag view_factory.batch_action_popover do
+            active_admin_config.batch_actions.each do |the_action|
+              action the_action if call_method_or_proc_on(self, the_action.display_if_block)
+            end
+          end
+        end
+
         def build_scopes
           if active_admin_config.scopes.any?
             scope_options = {
               :scope_count => config[:scope_count].nil? ? true : config[:scope_count]
             }
 
-            div :class => "table_tools" do
-              scopes_renderer active_admin_config.scopes, scope_options
-            end
+            scopes_renderer active_admin_config.scopes, scope_options
           end
         end
 
         # Creates a default configuration for the resource class. This is a table
         # with each column displayed as well as all the default actions
         def default_index_config
-          @default_index_config ||= ::ActiveAdmin::PagePresenter.new(:as => :table)
+          @default_index_config ||= ::ActiveAdmin::PagePresenter.new(:as => :table) do |display|
+            selectable_column
+            id_column
+            resource_class.content_columns.each do |col|
+              column col.name.to_sym
+            end
+            default_actions
+          end
         end
 
         # Returns the actual class for renderering the main content on the index
@@ -81,7 +121,7 @@ module ActiveAdmin
         end
         
         def render_blank_slate
-          blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.plural_resource_name)
+          blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.plural_resource_label)
           if controller.action_methods.include?('new')
             blank_slate_content += " " + link_to(I18n.t("active_admin.blank_slate.link"), new_resource_path)
           end
@@ -89,7 +129,7 @@ module ActiveAdmin
         end
         
         def render_empty_results
-          empty_results_content = I18n.t("active_admin.pagination.empty", :model => active_admin_config.resource_name.pluralize)
+          empty_results_content = I18n.t("active_admin.pagination.empty", :model => active_admin_config.plural_resource_label)
           insert_tag(view_factory.blank_slate, empty_results_content)
         end
         
@@ -98,8 +138,8 @@ module ActiveAdmin
           paginator      = config[:paginator].nil?      ? true : config[:paginator]
           download_links = config[:download_links].nil? ? true : config[:download_links]
           
-          paginated_collection(collection, :entry_name     => active_admin_config.resource_name,
-                                           :entries_name   => active_admin_config.plural_resource_name,
+          paginated_collection(collection, :entry_name     => active_admin_config.resource_label,
+                                           :entries_name   => active_admin_config.plural_resource_label,
                                            :download_links => download_links,
                                            :paginator      => paginator) do
             div :class => 'index_content' do

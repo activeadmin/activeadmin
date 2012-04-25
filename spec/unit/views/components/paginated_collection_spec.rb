@@ -44,7 +44,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, :param_name => :post_page) }
 
       it "should customize the page number parameter in pagination links" do
-        pagination.find_by_tag('div')[1].content.should match(/\/admin\/posts\?post_page=2/)
+        pagination.children.last.content.should match(/\/admin\/posts\?post_page=2/)
       end
     end
 
@@ -150,7 +150,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
     context "when collection comes from find with GROUP BY" do
       let(:collection) do
         %w{Foo Foo Bar}.each {|title| Post.create(:title => title) }
-        Post.group(:title).page(1).per(5)
+        Post.select(:title).group(:title).page(1).per(5)
       end
 
       let(:pagination) { paginated_collection(collection) }
@@ -159,5 +159,21 @@ describe ActiveAdmin::Views::PaginatedCollection do
         pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>all 2</b> posts"
       end
     end
+
+    context "when collection with many pages comes from find with GROUP BY" do
+      let(:collection) do
+        %w{Foo Foo Bar Baz}.each {|title| Post.create(:title => title) }
+        Post.select(:title).group(:title).page(1).per(2)
+      end
+
+      let(:pagination) { paginated_collection(collection) }
+
+      it "should display proper message (including number and not hash)" do
+        pagination.find_by_class('pagination_information').first.content.
+          gsub('&nbsp;',' ').should == "Displaying posts <b>1 - 2</b> of <b>3</b> in total"
+      end
+    end
+
+
   end
 end

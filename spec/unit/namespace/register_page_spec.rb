@@ -20,7 +20,6 @@ describe ActiveAdmin::Namespace, "registering a page" do
     end
 
     it "should create a menu item" do
-      namespace.load_menu!
       namespace.menu["Status"].should be_an_instance_of(ActiveAdmin::MenuItem)
     end
   end # context "with no configuration"
@@ -39,7 +38,6 @@ describe ActiveAdmin::Namespace, "registering a page" do
     describe "adding as a top level item" do
       before do
         namespace.register_page "Status"
-        namespace.load_menu!
       end
 
       it "should add a new menu item" do
@@ -52,7 +50,6 @@ describe ActiveAdmin::Namespace, "registering a page" do
         namespace.register_page "Status" do
           menu :parent => 'Extra'
         end
-        namespace.load_menu!
       end
       it "should generate the parent menu item" do
         namespace.menu['Extra'].should_not be_nil
@@ -67,7 +64,6 @@ describe ActiveAdmin::Namespace, "registering a page" do
         namespace.register_page "Status" do
           menu false
         end
-        namespace.load_menu!
       end
       it "should not create a menu item" do
         namespace.menu["Status"].should be_nil
@@ -79,7 +75,6 @@ describe ActiveAdmin::Namespace, "registering a page" do
         namespace.register_page "Status" do
           menu :priority => 2
         end
-        namespace.load_menu!
       end
       it "should have a custom priority of 2" do
         namespace.menu["Status"].priority.should == 2
@@ -91,7 +86,6 @@ describe ActiveAdmin::Namespace, "registering a page" do
         namespace.register_page "Status" do
           menu :if => proc { false }
         end
-        namespace.load_menu!
       end
       it "should have a proc returning false" do
         namespace.menu["Status"].display_if_block.should be_instance_of(Proc)

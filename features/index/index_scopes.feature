@@ -111,7 +111,7 @@ Feature: Index Scoping
     And I should see the scope "Shown"
     And I should see the scope "Default" with the count 10
 
-  Scenario: Viewing resources with mulitple scopes as blocks
+  Scenario: Viewing resources with multiple scopes as blocks
     Given 10 posts exist
     And an index configuration of:
       """
@@ -135,3 +135,28 @@ Feature: Index Scoping
     Then I should see the scope "Tomorrow" selected
     And I should see the scope "Today" not selected
     And I should see a link to "Today"
+    
+  Scenario: Viewing resources with scopes when a filter is applied
+    Given 2 posts written by "Daft Punk" exist
+    And a post with the title "Monkey Wrench" written by "Foo Fighters" exists
+    And a post with the title "Everlong" written by "Foo Fighters" exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          scope_to :current_user
+          scope :all, :default => true
+          filter :title
+          
+          controller do
+            def current_user
+              User.find_by_username('foo_fighters')
+            end
+          end
+        end
+      """
+    Then I should see the scope "All" selected
+    And I should see the scope "All" with the count 2
+    When I fill in "Search Title" with "Monkey"
+    And I press "Filter"
+    Then I should see the scope "All" not selected
+    And I should see the scope "All" with the count 1

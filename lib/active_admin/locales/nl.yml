@@ -9,7 +9,9 @@ nl:
     delete: "Verwijder"
     delete_confirmation: "Weet je zeker dat je dit item wilt verwijderen?"
     new_model: "Nieuwe %{model}"
+    create_model: "Nieuwe %{model}"
     edit_model: "Wijzig %{model}"
+    update_model: "Wijzig %{model}"
     delete_model: "Verwijder %{model}"
     details: "%{model} details"
     cancel: "Annuleren"
@@ -34,7 +36,31 @@ nl:
       one: "Geeft <b>1</b> %{model} weer"
       one_page: "Geeft <b>%{n}</b> %{model} weer"
       multiple: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> van de <b>%{total}</b> weer"
+      entry:
+        one: "entry"
+        other: "entries"
     any: "Alle"
     blank_slate:
       content: "Er zijn geen %{resource_name} gevonden."
       link: "Maak aan"
+    batch_actions:
+      button_label: "Batch acties"
+      delete_confirmation: "Weet je zeker dat je deze %{plural_model} wilt verwijderen? Er is geen undo."
+      succesfully_destroyed:
+        one: "1 %{model} verwijderd."
+        other: "%{count} %{plural_model} verwijderd."
+      selection_toggle_explanation: "(Toggle selectie)"
+      link: "Maak aan"
+      action_label: "%{title} geselecteerde"
+      labels:
+        destroy: "Verwijder"
+    comments:
+      body: "Tekst"
+      author: "Auteur"
+      title: "Reactie"
+      add: "Voeg commentaar toe"
+      resource: "Resource"
+      no_comments_yet: "Nog geen reacties."
+      title_content: "Reacties (%{count})"
+      errors:
+        empty_text: "De reactie is niet opgeslagen, de tekst was leeg."

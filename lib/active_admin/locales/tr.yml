@@ -1,0 +1,66 @@
+tr:
+  active_admin:
+    dashboard: "Kontrol Paneli"
+    dashboard_welcome:
+      welcome: "Active Admin'e Hoşgeldiniz. Burası öntanımlı Kontrol Paneli sayfasıdır."
+      call_to_action: "Kontrol Paneline bölümler eklemek için 'app/admin/dashboards.rb' dosyasına bak."
+    view: "Görüntüle"
+    edit: "Değiştir"
+    delete: "Sil"
+    delete_confirmation: "Bu kaydı silmek istediğine emin misin?"
+    new_model: "Yeni %{model}"
+    create_model: "Yeni %{model}"
+    edit_model: "%{model} modelini düzenle"
+    update_model: "%{model} modelini düzenle"
+    delete_model: "%{model} modelini sil"
+    details: "%{model} ayrıntıları"
+    cancel: "İptal"
+    empty: "Boşalt"
+    previous: "Önceki"
+    next: "Sonraki"
+    download: "İndir:"
+    has_many_new: "Yeni %{model} kaydı ekle"
+    has_many_delete: "Sil"
+    filter: "Filtrele"
+    clear_filters: "Filtreleri Temizle"
+    search_field: "%{field} alanında ara"
+    equal_to: "Eşittir"
+    greater_than: "Büyükse"
+    less_than: "Küçükse"
+    main_content: "Please implement %{model}#main_content to display content."
+    logout: "Çıkış"
+    sidebars:
+      filters: "Filtreler"
+    pagination:
+      empty: "%{model} bulunamadı"
+      one: "<b>1</b> %{model} kaydı görüntüleniyor"
+      one_page: "<b>%{n}</b> kayıt %{model} modelinde görüntüleniyor"
+      multiple: "%{model} toplam %{total}. <b>%{from} ile %{to} arası</b> arası görüntüleniyor"
+      entry:
+        one: "Girdi"
+        other: "Girdiler"
+    any: "Herhangi"
+    blank_slate:
+      content: "%{resource_name} kaynak dosyası bulunamadı"
+      link: "Oluştur"
+    batch_actions:
+      button_label: "Toplu işlemler"
+      delete_confirmation: "%{plural_model} kayıtlarını silmek istediğinize emin misiniz? Dikkat bu işlemin geri dönüşü yoktur!"
+      succesfully_destroyed:
+        one: "1 %{model} kaydı başarıyla silindi."
+        other: "Toplam %{count} %{plural_model} modelinden silindi"
+      selection_toggle_explanation: "Seçimi Değiştir"
+      link: "Ekle"
+      action_label: "Seçilenleri %{title}"
+      labels:
+        destroy: "Sil"
+    comments:
+      body: "Ayrıntı"
+      author: "Yazar"
+      title: "Yorum"
+      add: "Yorum Ekle"
+      resource: "Kaynak"
+      no_comments_yet: "Henüz Yorum Yok"
+      title_content: "Yorumlar (%{count})"
+      errors:
+        empty_text: "Yorum boş olarak kaydedilemez."

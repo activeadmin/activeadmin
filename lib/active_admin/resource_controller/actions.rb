@@ -60,6 +60,7 @@ module ActiveAdmin
     end
     alias :update! :update
 
+
     # Make aliases protected
     protected :index!, :show!, :new!, :create!, :edit!, :update!
 
@@ -75,5 +76,6 @@ module ActiveAdmin
     def csv_filename
       "#{resource_collection_name.to_s.gsub('_', '-')}-#{Time.now.strftime("%Y-%m-%d")}.csv"
     end
+
   end
 end

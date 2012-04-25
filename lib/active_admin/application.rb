@@ -80,7 +80,8 @@ module ActiveAdmin
     include AssetRegistration
 
     # Event that gets triggered on load of Active Admin
-    LoadEvent = 'active_admin.application.load'.freeze
+    BeforeLoadEvent = 'active_admin.application.before_load'.freeze
+    AfterLoadEvent = 'active_admin.application.after_load'.freeze
 
     def setup!
       register_default_assets
@@ -157,17 +158,16 @@ module ActiveAdmin
       # No work to do if we've already loaded
       return false if loaded?
 
+      ActiveAdmin::Event.dispatch BeforeLoadEvent, self
+
       # Load files
       files_in_load_path.each{|file| load file }
 
       # If no configurations, let's make sure you can still login
       load_default_namespace if namespaces.values.empty?
 
-      # Load Menus
-      namespaces.values.each{|namespace| namespace.load_menu! }
-
       # Dispatch an ActiveAdmin::Application::LoadEvent with the Application
-      ActiveAdmin::Event.dispatch LoadEvent, self
+      ActiveAdmin::Event.dispatch AfterLoadEvent, self
 
       @@loaded = true
     end
@@ -224,7 +224,8 @@ module ActiveAdmin
     private
 
     def register_default_assets
-      register_stylesheet 'active_admin.css', :media => 'all'
+      register_stylesheet 'active_admin.css', :media => 'screen'
+      register_stylesheet 'active_admin/print.css', :media => 'print'
 
       if !ActiveAdmin.use_asset_pipeline?
         register_javascript 'jquery.min.js'
@@ -255,10 +256,6 @@ module ActiveAdmin
     end
 
     def generate_stylesheets
-      # This must be required after initialization
-      require 'sass/plugin'
-      require 'active_admin/sass/helpers'
-
       # Create our own asset pipeline in Rails 3.0
       if ActiveAdmin.use_asset_pipeline?
         # Add our mixins to the load path for SASS

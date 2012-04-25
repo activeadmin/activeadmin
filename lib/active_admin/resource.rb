@@ -155,5 +155,6 @@ module ActiveAdmin
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource_class)
     end
+    
   end # class Resource
 end # module ActiveAdmin

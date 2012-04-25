@@ -6,7 +6,7 @@ module ActiveAdmin
 
         def title
           I18n.t("active_admin.#{params[:action]}_model",
-                 :model => active_admin_config.resource_name)
+                 :model => active_admin_config.resource_label)
         end
 
         def form_presenter
@@ -30,7 +30,7 @@ module ActiveAdmin
         def default_form_options
           {
             :url => default_form_path,
-            :as => active_admin_config.underscored_resource_name
+            :as => active_admin_config.resource_name.singular
           }
         end
 

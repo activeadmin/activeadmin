@@ -2,7 +2,7 @@ Feature: Index as Table
 
   Viewing resources as a table on the index page
 
-  Scenario: Viewing the default table with no resources
+  Scenario: Viewing the default table with one resources
     Given an index configuration of:
       """
         ActiveAdmin.register Post
@@ -92,4 +92,21 @@ Feature: Index as Table
     And I should see a member link to "Edit"
     And I should not see a member link to "Delete"
 
+  Scenario: Sorting
+    Given a post with the title "Hello World" and body "From the body" exists
+    And a post with the title "Bye bye world" and body "Move your..." exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post
+      """
+    When I am on the index page for posts
+    Then I should see the "posts" table:
+      | [ ] | ID | Title        | Body | Published At | Created At | Updated At | |
+      | [ ] | 2 | Bye bye world | Move your...  |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 1 | Hello World   | From the body |  | /.*/ | /.*/ | ViewEditDelete |
+    When I follow "ID"
+    Then I should see the "posts" table:
+      | [ ] | ID | Title        | Body | Published At | Created At | Updated At | |
+      | [ ] | 1 | Hello World   | From the body |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 2 | Bye bye world | Move your...  |  | /.*/ | /.*/ | ViewEditDelete |
 
