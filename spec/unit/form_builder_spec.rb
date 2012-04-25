@@ -120,6 +120,64 @@ describe ActiveAdmin::FormBuilder do
     end
 
   end
+  
+  context "while transitioning from buttons to actions" do
+    it "should forward #buttons to #actions" do
+      body = build_form do |f|
+        f.should_receive(:actions).once
+        f.buttons
+      end
+    end
+    it "should forward #commit_button to #action(:submit)" do
+      body = build_form do |f|
+        f.should_receive(:action) do |arg1,arg2|
+          arg1.should == :submit
+          arg2[:label].should == "Create & Continue"
+        end
+        f.actions do
+          f.commit_button "Create & Continue"
+        end
+      end
+    end
+    it "should preserve a label over a string" do
+      body = build_form do |f|
+        f.actions do
+          f.commit_button "Not Valid", :label => "Valid"
+        end
+      end
+      body.should have_tag("input", :attributes => {  :type => "submit",
+                                                          :value => "Valid" })
+    end
+  end
+  
+  context "with actions instead of buttons" do
+    it "should generate the form once" do
+      body = build_form do |f|
+        f.inputs do
+          f.input :title
+        end
+        f.actions
+      end
+      body.scan(/id=\"post_title\"/).size.should == 1
+    end
+    it "should generate one button and a cancel link" do
+      body = build_form do |f|
+        f.actions
+      end
+      body.scan(/type=\"submit\"/).size.should == 1
+      body.scan(/class=\"cancel\"/).size.should == 1
+    end
+    it "should generate multiple buttons" do
+      body = build_form do |f|
+        f.actions do
+          f.action :submit, :label => "Create & Continue"
+          f.action :submit, :label => "Create & Edit"
+        end
+      end
+      body.scan(/type=\"submit\"/).size.should == 2
+      body.scan(/class=\"cancel\"/).size.should == 0
+    end
+  end
 
   context "without passing a block to inputs" do
     let :body do

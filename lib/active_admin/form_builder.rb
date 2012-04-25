@@ -26,15 +26,19 @@ module ActiveAdmin
 
     # The buttons method always needs to be wrapped in a new buffer
     def buttons(*args, &block)
-      content = with_new_form_buffer do
-        block_given? ? super : super { commit_button_with_cancel_link }
-      end
-      form_buffers.last << content.html_safe
+      # Formtastic has depreciated #buttons in favor of #actions
+      ::ActiveSupport::Deprecation.warn("f.buttons is deprecated in favour of f.actions")
+      actions args, &block
     end
 
     def commit_button(*args)
-      content = with_new_form_buffer{ super }
-      form_buffers.last << content.html_safe
+      # Formtastic has depreciated #commit_button in favor of #action(:submit)
+      ::ActiveSupport::Deprecation.warn("f.commit_button is deprecated in favour of f.action(:submit)")
+      options = args.extract_options!
+      if String === args.first
+        options[:label] = args.first unless options.has_key?(:label)
+      end
+      action(:submit, options)
     end
 
     def cancel_link(url = nil, html_options = {}, li_attributes = {})
@@ -44,7 +48,26 @@ module ActiveAdmin
     end
 
     def commit_button_with_cancel_link
-      content = commit_button
+      # Formtastic has depreciated #buttons in favor of #actions
+      ::ActiveSupport::Deprecation.warn("f.commit_button_with_cancel_link is deprecated in favour of f.commit_action_with_cancel_link")
+      commit_action_with_cancel_link
+    end
+
+    # The action methods always need to be wrapped in a new buffer
+    def actions(*args, &block)
+      content = with_new_form_buffer do
+        block_given? ? super : super { commit_action_with_cancel_link }
+      end
+      form_buffers.last << content.html_safe
+    end
+
+    def action(*args)
+      content = with_new_form_buffer { super }
+      form_buffers.last << content.html_safe
+    end
+
+    def commit_action_with_cancel_link
+      content = action(:submit)
       content << cancel_link
     end
 
