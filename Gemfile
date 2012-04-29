@@ -32,7 +32,6 @@ end
 
 group :test do
   gem 'rspec-rails',    '~> 2.9.0'
-  gem 'cucumber', '1.1.4'
   gem 'cucumber-rails', '1.2.1', :require => false
   gem 'capybara',       '1.1.2'
   gem 'database_cleaner'
