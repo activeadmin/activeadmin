@@ -11,7 +11,7 @@ Feature: Internationalization
     Then I should see "Hello words"
     When I follow "View"
     Then I should see "Bookstore Details"
-    And I should see "Bookstore #"
+    And I should see "Bookstore: Hello words"
     And I should see a link to "Delete Bookstore"
     When I follow "Edit Bookstore"
     Then I should see "Edit Bookstore"
