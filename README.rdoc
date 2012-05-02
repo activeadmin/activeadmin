@@ -15,6 +15,14 @@ to implement beautiful and elegant interfaces with very little effort.
 * Website: http://www.activeadmin.info
 * <b>Need Support?</b> Ask the Mailing list: http://groups.google.com/group/activeadmin
 
+== Goals
+
+1. Allow developers to quickly create gorgeous administration interfaces
+   <strong>(Not Just CRUD)</strong>
+2. Build a DSL for developers and an interface for businesses.
+3. Ensure that developers can easily customize every nook and cranny of the interface.
+4. Build common interfaces as shareable gems so that the entire community benefits.
+
 == Bugs Reports & Contributing
 
 * Bug Reports: https://github.com/gregbell/active_admin/issues
@@ -30,14 +38,6 @@ with your cause.
 
 If you are going to submit a pull request, please read the contributing guide: 
 https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md
-
-== Goals
-
-1. Allow developers to quickly create gorgeous administration interfaces
-   <strong>(Not Just CRUD)</strong>
-2. Build a DSL for developers and an interface for businesses.
-3. Ensure that developers can easily customize every nook and cranny of the interface.
-4. Build common interfaces as shareable gems so that the entire community benefits.
 
 
 == Getting Started
