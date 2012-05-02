@@ -15,10 +15,21 @@ to implement beautiful and elegant interfaces with very little effort.
 * Website: http://www.activeadmin.info
 * <b>Need Support?</b> Ask the Mailing list: http://groups.google.com/group/activeadmin
 
-== Bugs & Feature Requests
+== Bugs Reports & Contributing
 
-* Bug Reports & Feature Requests: https://github.com/gregbell/active_admin/issues
+* Bug Reports: https://github.com/gregbell/active_admin/issues
 * Want to Contribute? Read the Guide: https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md
+
+== Feature Requests
+
+Please don't put feature requests in Github Issues. They will be closed as soon as they
+are reviewed by one of the core team members. If you would like a feature in Active Admin,
+please submit a well tested pull request with the desired changes. If you're not a coder,
+then the mailing list may be a good place to try to convince someone to help you out
+with your cause.
+
+If you are going to submit a pull request, please read the contributing guide: 
+https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md
 
 == Goals
 
