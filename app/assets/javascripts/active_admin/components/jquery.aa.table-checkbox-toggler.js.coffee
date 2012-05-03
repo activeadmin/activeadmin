@@ -25,5 +25,3 @@ window.AA.TableCheckboxToggler = class AA.TableCheckboxToggler extends AA.Checkb
 ( ( $ ) ->
   $.widget.bridge 'tableCheckboxToggler', AA.TableCheckboxToggler
 )( jQuery )
-
-

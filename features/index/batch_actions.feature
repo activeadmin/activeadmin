@@ -40,10 +40,10 @@ Feature: Batch Actions
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-      batch_action :destroy, false
+        batch_action :destroy, false
       end
       """
-    Then I should not see the batch action :destroy "Delete Selected"
+    Then I should not see the batch actions selector
     And I should not see checkboxes in the table
   
   Scenario: Optional display of batch actions

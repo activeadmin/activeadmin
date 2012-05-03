@@ -13,13 +13,16 @@ window.AA.Popover = class AA.Popover
       onClickActionItemCallback: null
     }
 
-    @options = $.extend( {}, defaults, options );
+    @options = $.extend({}, defaults, options)
 
     @$popover = null
     @isOpen = false
-    
+
     if $(@$element.attr("href")).length > 0
       @$popover = $(@$element.attr("href"))
+    else
+      @$popover = @$element.next(".popover")
+
 
     @_buildPopover()
     @_bind()
@@ -40,39 +43,41 @@ window.AA.Popover = class AA.Popover
   close: ->
     @isOpen = false;
     @$popover.fadeOut this.options.fadeOutDuration;
-    
+
     return @
 
   destroy: ->
     @$element.removeData('popover');
     @$element.unbind();
     @$element = null;
-    
+
     return @
 
   option: ->
     # ??
 
   # Private
-  
+
   _buildPopover: ->
     @$popover.prepend("<div class=\"popover_nipple\"></div>")
-    
+
     @$popover.hide()
 
     @$popover.addClass "popover"
 
 
   _bind: ->
-
-
     $(@options.pageWrapperElement).bind 'click', (e) =>
       if @isOpen is true
         @close()
-    
+
     if @options.autoOpen is true
       @$element.bind 'click', () =>
-        @open()
+        if @isOpen is true
+          @close()
+        else
+          @open()
+
         false
 
   _positionPopover: ->
@@ -90,6 +95,6 @@ window.AA.Popover = class AA.Popover
     nippleLeftPos = centerOfPopoverFromLeft - centerOfnippleFromLeft
     $nipple.css "left", nippleLeftPos
 
-( ( $ ) ->
+(($) ->
   $.widget.bridge 'popover', AA.Popover
-)( jQuery )
+)(jQuery)

@@ -1,7 +1,7 @@
 describe "AA.CheckboxToggler", ->
   
   beforeEach ->
-    loadFixtures('checkboxes.html');
+    loadFixtures('checkboxes.html')
 
     @collection = $("#collection")
     @toggle_all = @collection.find(".toggle_all")
