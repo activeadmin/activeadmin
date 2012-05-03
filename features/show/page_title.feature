@@ -31,3 +31,11 @@ Feature: Show - Page Title
       end
     """
     Then I should see the page title "Title: Hello World"
+
+  Scenario: No configuration
+    Given a show configuration of:
+    """
+      ActiveAdmin.register Post do
+      end
+    """
+    Then I should see the page title "Post: Hello World"
