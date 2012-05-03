@@ -36,7 +36,11 @@ module ActiveAdmin
         protected
 
         def default_title
-          "#{active_admin_config.resource_label}: #{display_name(resource)}"
+          if display_name_method_for(resource) == :to_s
+            "#{active_admin_config.resource_label} ##{resource.id}"
+          else
+            display_name(resource)
+          end
         end
 
         module DefaultMainContent
