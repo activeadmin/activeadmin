@@ -5,9 +5,8 @@
   @include text-shadow(#000);
   height: 20px;
   overflow: visible;
-  position: relative;
+  position: inherit;
   padding: 9px $horizontal-page-margin;
-  position: relative;
   z-index: 900;
 
   h1 { 
