@@ -1,6 +1,13 @@
-// Active Admin CSS Styles
+// Variable overrides must be declared before loading up Active Admin's styles. The variables in 
+// question are defined in the gem at /app/assets/stylesheets/active_admin/mixins/_variables.css.scss
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+
+// Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
 
-// To customize the Active Admin interfaces, add your
-// styles here:
+// Overriding any non-variable SASS must be done after the fact.
+// For example, to change the default status-tag color:
+// .status { & { background: #6090DB;} }
+
