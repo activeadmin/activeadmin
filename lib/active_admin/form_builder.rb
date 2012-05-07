@@ -57,11 +57,14 @@ module ActiveAdmin
       options[:class] ||= ""
       options[:class] << "inputs has_many_fields"
 
+      add_label = options.include?(:add_label) ? options[:add_label] : I18n.t('active_admin.has_many_new', :model => association.to_s.singularize.titlecase)
+      delete_label = options.include?(:delete_label) ? options[:delete_label] : I18n.t('active_admin.has_many_delete')
+
       # Add Delete Links
       form_block = proc do |has_many_form|
         block.call(has_many_form) + if has_many_form.object.new_record?
                                       template.content_tag :li do
-                                        template.link_to I18n.t('active_admin.has_many_delete'), "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
+                                        template.link_to delete_label, "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
                                       end
                                     else
                                     end
@@ -82,7 +85,7 @@ module ActiveAdmin
           end
 
           js = template.escape_javascript(js)
-          js = template.link_to I18n.t('active_admin.has_many_new', :model => association.to_s.singularize.titlecase), "#", :onclick => "$(this).before('#{js}'.replace(/NEW_RECORD/g, new Date().getTime())); return false;", :class => "button"
+          js = template.link_to add_label, "#", :onclick => "$(this).before('#{js}'.replace(/NEW_RECORD/g, new Date().getTime())); return false;", :class => "button"
 
           form_buffers.last << js.html_safe
         end
