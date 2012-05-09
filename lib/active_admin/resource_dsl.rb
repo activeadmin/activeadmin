@@ -96,7 +96,7 @@ module ActiveAdmin
       title = options.delete(:title)
 
       controller do
-        before_filter :only => [name] { @page_title = title } if title
+        before_filter(:only => [name]) { @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end
@@ -106,7 +106,7 @@ module ActiveAdmin
       title = options.delete(:title)
 
       controller do
-        before_filter :only => [name] { @page_title = title } if title
+        before_filter(:only => [name]){ @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end
