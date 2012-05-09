@@ -15,6 +15,13 @@
   creating custom menu items, the builder syntax has changed to. Menu#add now
   accepts a MenuItem, instead of building the menu item for you.
 
+## 0.4.4
+
+### Dependencies
+
+* Use `formtastic` ~> 2.1.1 until AA 0.5.0 is released
+* Use `inherited_resources` >= 1.3.1 (ensure flash messages work)
+
 ## 0.4.3
 
 ### Bug Fixes
