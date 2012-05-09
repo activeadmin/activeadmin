@@ -20,8 +20,8 @@ Feature: Show - Default Content
   Scenario: Attributes should link when linked resource is registered
     Given a show configuration of:
       """
-        ActiveAdmin.register User
         ActiveAdmin.register Post
+        ActiveAdmin.register User
       """
     Then I should see the attribute "Author" with "jane_doe"
     And I should see a link to "jane_doe"
