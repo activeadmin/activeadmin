@@ -1,8 +1,6 @@
 # Detects the current version of Rails that is being used
 #
-# You can pass it in as an ENV variable or it will use
-# the current Gemfile.lock to find it
-
+#
 unless defined?(RAILS_VERSION_FILE)
   RAILS_VERSION_FILE = File.expand_path("../../../.rails-version", __FILE__)
 end
@@ -12,16 +10,24 @@ unless defined?(DEFAULT_RAILS_VERSION)
 end
 
 def detect_rails_version
-  detected_version = if File.exists?(RAILS_VERSION_FILE)
+  version = version_from_file || version_from_env || DEFAULT_RAILS_VERSION
+
+  puts "Detected Rails: #{version}" if ENV['DEBUG']
+
+  version
+end
+
+def version_from_file
+  if File.exists?(RAILS_VERSION_FILE)
     version = File.read(RAILS_VERSION_FILE).chomp.strip
-    version != "" ? version : DEFAULT_RAILS_VERSION
-  else
-    DEFAULT_RAILS_VERSION
+    version = nil if version == ""
+
+    version
   end
+end
 
-  puts "Detected Rails: #{detected_version}" if ENV['DEBUG']
-
-  detected_version
+def version_from_env
+  ENV['RAILS']
 end
 
 def write_rails_version(version)
