@@ -7,7 +7,7 @@
               CSV
             end
 
-  csv_output = csv_lib.generate do |csv|
+  csv_output = csv_lib.generate(:col_sep => active_admin_config.csv_builder.column_separator || ',') do |csv|
     columns = active_admin_config.csv_builder.columns
     csv << columns.map(&:name)
     collection.each do |resource|

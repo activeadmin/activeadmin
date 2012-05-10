@@ -1,1 +1,1 @@
-render view_factory.layout
+insert_tag view_factory.layout

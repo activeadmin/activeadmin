@@ -38,7 +38,7 @@ module ActiveAdmin
             text_node scope_name
             span :class => 'count' do
               "(" + get_scope_count(scope).to_s + ")"
-            end if options[:scope_count]
+            end if options[:scope_count] && scope.show_count
           end
         end
       end
@@ -63,7 +63,11 @@ module ActiveAdmin
 
       # Return the count for the scope passed in.
       def get_scope_count(scope)
-        scope_chain(scope, scoping_class).count
+        if params[:q]
+          search(scope_chain(scope, scoping_class)).relation.count
+        else 
+          scope_chain(scope, scoping_class).count
+        end
       end
 
       def scoping_class

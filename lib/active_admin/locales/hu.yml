@@ -43,3 +43,24 @@ hu:
     blank_slate:
       content: "Még nincs létrehozva %{resource_name}."
       link: "Létrehozás most"
+    batch_actions:
+      button_label: "Tömeges műveletek"
+      delete_confirmation: "Biztosan törli ezeket a %{plural_model}? Később nem lehet visszavonni."
+      succesfully_destroyed:
+        one: "1 %{model} sikeresen törölve"
+        other: "%{count} %{plural_model} sikeresen törölve"
+      selection_toggle_explanation: "(Kijelölés megfordítása)"
+      link: "Létrehozás"
+      action_label: "%{title} kiválasztva"
+      labels:
+        destroy: "Törlés"
+    comments:
+      body: "Törzs"
+      author: "Szerző"
+      title: "Hozzászólás"
+      add: "Új hozzászólás"
+      resource: "Erőforrás"
+      no_comments_yet: "Nincsenek hozzászólások."
+      title_content: "%{count} hozzászólás"
+      errors:
+        empty_text: "A hozzászólás nem lett mentve, a törzs nem lehet üres."

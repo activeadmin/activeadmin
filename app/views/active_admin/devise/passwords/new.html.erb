@@ -5,8 +5,8 @@
     f.inputs do
       f.input :email
     end
-    f.buttons do
-      f.commit_button "Reset My Password"
+    f.actions do
+      f.action :submit, :label => "Reset My Password", :button_html => { :value => "Reset My Password" }
     end
   end %>
 

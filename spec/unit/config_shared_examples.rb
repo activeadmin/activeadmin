@@ -21,56 +21,27 @@ shared_examples_for "ActiveAdmin::Config" do
   it { respond_to :sidebar_sections? }
 
   describe "Naming" do
-    it "implements #resource_name" do
-      expect { config.resource_name }.should_not raise_error
+    it "implements #resource_label" do
+      expect { config.resource_label }.should_not raise_error
     end
 
-    it "implements #plural_resource_name" do
-      expect { config.plural_resource_name }.should_not raise_error
-    end
-
-    it "implements #safe_resource_name" do
-      expect { config.safe_resource_name }.should_not raise_error
-    end
-
-    describe "#camelized_resource_name" do
-      it "returns a camelized version of the safe_resource_name" do
-        config.should_receive(:safe_resource_name).and_return "My resource"
-        config.camelized_resource_name.should == "MyResource"
-      end
-    end
-
-    describe "#plural_camelized_resource_name" do
-      it "returns a camelized version of the plural_safe_resource_name" do
-        config.should_receive(:safe_resource_name).and_return "My resource"
-        config.camelized_resource_name.should == "MyResource"
-      end
-    end
-
-    describe "#underscored_resource_name" do
-      it "returns the camelized_resource_name underscored" do
-        config.should_receive(:camelized_resource_name).and_return "MyResource"
-        config.underscored_resource_name.should == "my_resource"
-      end
-    end
-
-    describe "#plural_underscored_resource_name" do
-      it "returns the plural_camelized_resource_name underscored" do
-        config.should_receive(:plural_camelized_resource_name).and_return "MyResources"
-        config.plural_underscored_resource_name.should == "my_resources"
-      end
+    it "implements #plural_resource_label" do
+      expect { config.plural_resource_label }.should_not raise_error
     end
   end
 
   describe "Menu" do
-    describe "menu item name" do
-      it "should be the plural resource name when not set" do
-        config.menu_item_name.should == config.plural_resource_name
+    describe "menu item" do
+
+	  it "initializes a new menu item with defaults" do
+        config.menu_item.label.should == config.plural_resource_label
+	  end
+
+      it "initialize a new menu item with custom options" do
+		config.menu :label => "Hello"
+        config.menu_item.label.should == "Hello"
       end
-      it "should be settable" do
-        config.menu :label => "My Label"
-        config.menu_item_name.should == "My Label"
-      end
+
     end
 
     describe "#include_in_menu?" do
@@ -85,35 +56,17 @@ shared_examples_for "ActiveAdmin::Config" do
     end
 
     describe "parent menu item name" do
+
       it "should be nil when not set" do
         config.parent_menu_item_name.should == nil
       end
+
       it "should return the name if set" do
-        config.tap do |c|
-          c.menu :parent => "Blog"
-        end.parent_menu_item_name.should == "Blog"
+		config.menu :parent => "Blog"
+        config.parent_menu_item_name.should == "Blog"
       end
+
     end
 
-    describe "menu item priority" do
-      it "should be 10 when not set" do
-        config.menu_item_priority.should == 10
-      end
-      it "should be settable" do
-        config.menu :priority => 2
-        config.menu_item_priority.should == 2
-      end
-    end
-
-    describe "menu item display if" do
-      it "should be a proc always returning true if not set" do
-        config.menu_item_display_if.should be_instance_of(Proc)
-        config.menu_item_display_if.call.should == true
-      end
-      it "should be settable" do
-        config.menu :if => proc { false }
-        config.menu_item_display_if.call.should == false
-      end
-    end
   end
 end

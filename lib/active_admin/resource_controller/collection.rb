@@ -46,9 +46,10 @@ module ActiveAdmin
             column = $1
             order  = $2
             table  = active_admin_config.resource_table_name
-            table_column = (column =~ /\./) ? column : "#{table}.#{column}"
+            table_column = (column =~ /\./) ? column :
+              "#{table}.#{active_admin_config.resource_quoted_column_name(column)}"
 
-            chain.order("#{table_column} #{order}")
+            chain.reorder("#{table_column} #{order}")
           else
             chain # just return the chain
           end
@@ -90,6 +91,9 @@ module ActiveAdmin
           if current_scope
             @before_scope_collection = chain
             scope_chain(current_scope, chain)
+          elsif active_admin_config.scope_to
+            @before_scope_collection = scoped_collection
+            chain
           else
             chain
           end

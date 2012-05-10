@@ -23,4 +23,16 @@ module MethodOrProcHelper
     end
   end
 
+  # Many configuration options (Ex: site_title, title_image) could either be
+  # static (String), methods (Symbol) or procs (Proc). This helper takes care of
+  # returning the content when String or call call_method_or_proc_on when Symbol or Proc.
+  #
+  def render_or_call_method_or_proc_on(obj, string_symbol_or_proc, options = {})
+    case string_symbol_or_proc
+    when Symbol, Proc
+      call_method_or_proc_on(obj, string_symbol_or_proc, options)
+    when String
+      string_symbol_or_proc
+    end
+  end
 end

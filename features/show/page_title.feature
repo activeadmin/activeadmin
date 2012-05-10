@@ -31,3 +31,17 @@ Feature: Show - Page Title
       end
     """
     Then I should see the page title "Title: Hello World"
+
+  Scenario: Default title
+    Given a show configuration of:
+    """
+      ActiveAdmin.register Post
+    """
+    Then I should see the page title "Hello World"
+
+  Scenario: Default title with no display name method candidate
+    Given a show configuration of:
+    """
+      ActiveAdmin.register Tag
+    """
+    Then I should see the page title "Tag #"

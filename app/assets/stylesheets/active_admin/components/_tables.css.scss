@@ -26,6 +26,7 @@ table.index_table {
       text-decoration: none;
       display: block;
       white-space: nowrap;
+      -webkit-font-smoothing: antialiased;
     }
 
     &.sortable a {

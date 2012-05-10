@@ -1,11 +1,5 @@
-@mixin default-button {
-  @include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
+@mixin basic-button {
   @include rounded(200px);
-  @include text-shadow(#000);
-  @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px rgba(255,255,255, 0.2) inset);
-  border: solid 1px #484e53;
-  @include border-colors(#616a71, #484e53, #363b3f);
-  color: #efefef;
   display: inline-block;
   font-weight: bold;
   font-size: 1.0em;
@@ -15,48 +9,56 @@
   padding: 7px 16px 6px;
   text-decoration: none;
   -webkit-font-smoothing: antialiased;
-  
-  &:hover {
-    color: #FFF;
-    @include icon-color(#fff);
-    @include gradient(lighten($primary-color, 18%), darken($primary-color, 9%));
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: default;
   }
+
+}
+
+@mixin default-button {
+  @include basic-button;
+  @include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
+  @include text-shadow(#000);
+  @include box-shadow(0 1px 1px rgba(0,0,0,0.10), 0 1px 0 0px rgba(255,255,255, 0.2) inset);
+  border: solid 1px #484e53;
+  @include border-colors(#616a71, #484e53, #363b3f);
+  color: #efefef;
   
-  &:active {
-    @include box-shadow(0 1px 3px rgba(0,0,0,0.40) inset, 0 1px 0 0px #FFF);
-    @include gradient(lighten($primary-color, 13%), darken($primary-color, 14%));
+  &:not(.disabled) {
+    &:hover{
+      @include gradient(lighten($primary-color, 18%), darken($primary-color, 9%));
+    }
+    
+    &:active {
+      @include box-shadow(0 1px 3px rgba(0,0,0,0.40) inset, 0 1px 0 0px #FFF);
+      @include gradient(lighten($primary-color, 8%), darken($primary-color, 17%));
+    }
   }
 }
 
 @mixin light-button {
-  @include default-button;
-  @include gradient(#fdfdfd, #e8e8e8);
-  @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px rgba(255,255,255, 0.8) inset);
+  @include basic-button;  
+  @include gradient(#FFF, #E7E7E7);
+  @include box-shadow(0 1px 1px rgba(0,0,0,0.10), 0 1px 0 0 rgba(255,255,255, 0.8) inset);
+  border: solid 1px #c7c7c7;
   @include border-colors(#d3d3d3, #c7c7c7, #c2c2c2);
   @include text-shadow;
-  color: #777;
-  &:hover {
-    @include icon-color(#444);
-    color: #444;
-    @include gradient(#fdfdfd, #eaeaea);
-  }
-  &:active {
-    @include box-shadow(0 1px 3px rgba(0,0,0,0.18) inset, 0 1px 0 0px #EEE);
-    @include gradient(#fcfcfc, #e5e4e5);
-  }
-  
-  &.disabled {
-    color: #777;
-    cursor: default;
-    opacity: 0.6;
-    
+  color: $primary-color;
+
+  &:not(.disabled) {
     &:hover {
-      color: #777;
+      @include gradient(#FFF, #F1F1F1);
     }
+
     &:active {
-      @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #FFF inset);
+      @include box-shadow(0 1px 2px rgba(0,0,0,0.22) inset, 0 1px 0 0px #EEE);
+      @include border-colors(#c2c2c2, #b9b9b9, #b7b7b7);
+      @include gradient(#F3F3F3, #D8D8D8);
     }
   }
+
 }
 
 @mixin dark-button {

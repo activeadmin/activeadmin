@@ -77,6 +77,10 @@ module ActiveAdmin
       resource_class.quoted_table_name
     end
 
+    def resource_quoted_column_name(column)
+      resource_class.connection.quote_column_name(column)
+    end
+
     # Returns the named route for an instance of this resource
     def route_instance_path
       [route_prefix, controller.resources_configuration[:self][:route_instance_name], 'path'].compact.join('_').to_sym
@@ -151,5 +155,6 @@ module ActiveAdmin
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource_class)
     end
+    
   end # class Resource
 end # module ActiveAdmin

@@ -56,6 +56,19 @@ Feature: Index Scoping
     And I should see the scope "All" with no count
     And I should see 10 posts in the table
 
+  @scope
+  Scenario: Viewing resources with a scope and scope count turned off for a single scope
+    Given 10 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope :all, :default => true, :show_count => false
+      end
+      """
+    Then I should see the scope "All" selected
+    And I should see the scope "All" with no count
+    And I should see 10 posts in the table
+
   Scenario: Viewing resources when scoping
     Given 6 posts exist
     And 4 published posts exist
@@ -98,7 +111,7 @@ Feature: Index Scoping
     And I should see the scope "Shown"
     And I should see the scope "Default" with the count 10
 
-  Scenario: Viewing resources with mulitple scopes as blocks
+  Scenario: Viewing resources with multiple scopes as blocks
     Given 10 posts exist
     And an index configuration of:
       """
@@ -122,54 +135,28 @@ Feature: Index Scoping
     Then I should see the scope "Tomorrow" selected
     And I should see the scope "Today" not selected
     And I should see a link to "Today"
-
-  Scenario: Updating scope count in conjunction with index filters
-	Given a user named "Jane Doe" exists
-	And a user named "John Doe" exists
-  	And a post with the title "Post by Jane Doe" written by "Jane Doe" exists
-	And a post with the title "First Post by John Doe" written by "John Doe" exists
-	And a post with the title "Second Post by John Doe" written by "John Doe" exists
-	And an index configuration of:
-  	"""
-  	ActiveAdmin.register Post do
-      scope :all, :default => true
-	  scope 'Jane Doe' do |posts|
-	    posts.includes(:author).where(["users.first_name = ? and users.last_name = ?", "Jane", "Doe"])
-	  end
-	  scope 'John Doe' do |posts|
-	    posts.includes(:author).where(["users.first_name = ? and users.last_name = ?", "John", "Doe"])
-	  end
-	end
-	"""
-	
-    When I am on the index page for posts
-	Then I should see 3 posts in the table
-	And I should see the scope "All" selected
-	And I should see the scope "All" with the count 3
-	And I should see the scope "Jane Doe" with the count 1
-	And I should see the scope "John Doe" with the count 2
-
-	When I fill in "Search Title" with "First Post by John Doe"
+    
+  Scenario: Viewing resources with scopes when a filter is applied
+    Given 2 posts written by "Daft Punk" exist
+    And a post with the title "Monkey Wrench" written by "Foo Fighters" exists
+    And a post with the title "Everlong" written by "Foo Fighters" exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          scope_to :current_user
+          scope :all, :default => true
+          filter :title
+          
+          controller do
+            def current_user
+              User.find_by_username('foo_fighters')
+            end
+          end
+        end
+      """
+    Then I should see the scope "All" selected
+    And I should see the scope "All" with the count 2
+    When I fill in "Search Title" with "Monkey"
     And I press "Filter"
-    Then I should see 1 posts in the table
-    And I should see "First Post by John Doe" within ".index_table"
-	And I should see the scope "All" with the count 1
-	And I should see the scope "Jane Doe" with the count 0
-	And I should see the scope "John Doe" with the count 1
-	
-	When I follow "John Doe"
-	Then I should see the scope "John Doe" selected
-	And I should see 1 posts in the table
-	And I should see "First Post by John Doe" within ".index_table"
-	And I should see the scope "All" with the count 1
-	And I should see the scope "Jane Doe" with the count 0
-	And I should see the scope "John Doe" with the count 1
-	
-	When I follow "Clear Filters"
-	Then I follow "John Doe"
-	Then I should see the scope "John Doe" selected
-	Then I should see 2 posts in the table
-	And I should see the scope "John Doe" selected
-	And I should see the scope "All" with the count 3
-	And I should see the scope "Jane Doe" with the count 1
-	And I should see the scope "John Doe" with the count 2
+    Then I should see the scope "All" not selected
+    And I should see the scope "All" with the count 1

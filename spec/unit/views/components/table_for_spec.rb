@@ -46,6 +46,11 @@ describe ActiveAdmin::Views::TableFor do
         table.find_by_tag("th").first.content.should == "Title"
         table.find_by_tag("th").last.content.should == "Created At"
       end
+      
+      it "should add a class to each table header based on the col name" do
+        table.find_by_tag("th").first.class_list.should include("title")
+        table.find_by_tag("th").last.class_list.should  include("created_at")
+      end
 
       it "should create a table row for each element in the collection" do
         table.find_by_tag("tr").size.should == 4 # 1 for head, 3 for rows
@@ -53,6 +58,11 @@ describe ActiveAdmin::Views::TableFor do
 
       it "should create a cell for each column" do
         table.find_by_tag("td").size.should == 6
+      end
+      
+      it "should add a class for each cell based on the col name" do
+        table.find_by_tag("td").first.class_list.should include("title")
+        table.find_by_tag("td").last.class_list.should  include("created_at")
       end
     end
 

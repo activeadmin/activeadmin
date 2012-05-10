@@ -29,6 +29,13 @@ form {
       }
     }
 
+    ol > div.has_many {
+      padding: 20px 10px;
+      h3 {
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
 
     ol > li > li label { 
       line-height:100%; 
@@ -67,14 +74,14 @@ form {
 
         li {
           padding:0; 
-          border:0; 
+          border:0;
         }
       }
     }
   }
 
   /* Text Fields */
-  input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
+  input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
     width: 76%;
     border: 1px solid #c9d0d6;
     @include rounded;
@@ -127,7 +134,7 @@ form {
     &.boolean {
       height: 1.1em;
       label { 
-        width: 100%;
+        width: 80%;
         padding-left:20%; 
         padding-right: 10px; 
         text-transform: none !important;
@@ -165,12 +172,12 @@ form {
     
   }
   
-  .buttons { 
+  .buttons, .actions {
     margin-top: 15px; 
     input[type=submit] { margin-right: 10px; }
   }
   
-  fieldset.buttons li { 
+  fieldset.buttons li, fieldset.actions li {
     float:left; 
     padding: 0;
 

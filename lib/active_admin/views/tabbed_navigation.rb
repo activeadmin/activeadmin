@@ -46,10 +46,10 @@ module ActiveAdmin
 
           if item.children.any?
             li_element.add_class "has_nested"
-            text_node link_to(item.name, link_path)
+            text_node link_to(item.label, link_path)
             render_nested_menu(item)
           else
-            link_to item.name, link_path
+            link_to item.label, link_path
           end
         end
       end
@@ -79,7 +79,7 @@ module ActiveAdmin
 
       # Returns true if the menu item name is @current_tab (set in controller)
       def current?(menu_item)
-        assigns[:current_tab].split("/").include?(menu_item.name) unless assigns[:current_tab].blank?
+        assigns[:current_tab] == menu_item || menu_item.children.include?(assigns[:current_tab])
       end
 
       # Returns an Array of items to display

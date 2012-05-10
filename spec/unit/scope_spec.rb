@@ -52,4 +52,18 @@ describe ActiveAdmin::Scope do
 
   end
 
+  describe "show_count" do
+
+    it "should allow setting of show_count to prevent showing counts" do
+      scope = ActiveAdmin::Scope.new(:default, nil, :show_count => false)
+      scope.show_count.should == false
+    end
+
+    it "should set show_count to true if not passed in" do
+      scope = ActiveAdmin::Scope.new(:default)
+      scope.show_count.should == true
+    end
+
+  end
+
 end

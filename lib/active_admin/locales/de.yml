@@ -42,3 +42,13 @@ de:
     blank_slate:
       content: "Es gibt noch keine %{resource_name}."
       link: "Erstellen"
+    comments:
+      body: "Inhalt"
+      author: "Autor"
+      title: "Kommentar"
+      resource: "Resource"
+      add: "Kommentar hinzufügen"
+      no_comments_yet: "Es gibt noch keine Kommentare."
+      title_content: "Kommentare (%{count})"
+      errors:
+        empty_text: "Der Kommentar wurde nicht gespeichert, da der Text fehlt."

@@ -1,8 +1,8 @@
 require "bundler"
+require 'rake'
 Bundler.setup
 Bundler::GemHelper.install_tasks
 
-require 'rake'
 
 def cmd(command)
   puts command
@@ -16,3 +16,12 @@ FileList['tasks/**/*.rake'].each { |task| import task }
 
 # Run the specs & cukes
 task :default => :test
+
+begin
+  require 'jasmine'
+  load 'jasmine/tasks/jasmine.rake'
+rescue LoadError
+  task :jasmine do
+    abort "Jasmine is not available. In order to run jasmine, you must: (sudo) gem install jasmine"
+  end
+end
