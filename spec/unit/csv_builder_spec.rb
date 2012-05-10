@@ -80,4 +80,14 @@ describe ActiveAdmin::CSVBuilder do
     end
   end
 
+  context "with a separator" do
+    let(:builder) do
+      ActiveAdmin::CSVBuilder.new :separator => ";"
+    end
+
+    it "should have proper separator" do
+      builder.column_separator.should == ";"
+    end
+  end
+
 end
