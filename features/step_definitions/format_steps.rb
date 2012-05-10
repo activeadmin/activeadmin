@@ -45,3 +45,7 @@ Then /^I should download a CSV file with "([^"]*)" separator for "([^"]*)" conta
     raise $!
   end
 end
+
+Then /^I should download a CSV file for "([^"]*)" containing:$/ do |resource_name, table|
+  step "I should download a CSV file with \",\" separator for \"#{resource_name}\" containing:", table
+end
