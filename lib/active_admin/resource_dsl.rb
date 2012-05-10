@@ -68,8 +68,12 @@ module ActiveAdmin
     #     column("Author") { |post| post.author.full_name }
     #   end
     #
-    def csv(&block)
-      config.csv_builder = CSVBuilder.new(&block)
+    #   csv :separator => ";" do
+    #     column :name
+    #   end
+    #
+    def csv(options={}, &block)
+      config.csv_builder = CSVBuilder.new(options, &block)
     end
 
     # Member Actions give you the functionality of defining both the
