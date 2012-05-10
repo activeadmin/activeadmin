@@ -29,7 +29,7 @@ module ActiveAdmin
         if @options[:as]
           @options[:as].pluralize
         else
-          resource_name.human(:count => 3, :default => resource_label.pluralize).titleize
+          resource_name.human(:count => 1.1, :default => resource_label.pluralize).titleize
         end
       end
     end
