@@ -42,7 +42,7 @@ pl:
       link: "Utwórz go"
     batch_actions:
       button_label: "Akcje na partiach"
-      delete_confirmation: "Czy na pewno chcesz usunąć te #{plural_model}? Nie będziesz miał możliwości cofnięcia tego."
+      delete_confirmation: "Czy na pewno chcesz usunąć te %{plural_model}? Nie będziesz miał możliwości cofnięcia tego."
       succesfully_destroyed:
         one: "Poprawnie usunięto 1 %{model}"
         other: "Poprawnie usunięto %{count} %{plural_model}"
