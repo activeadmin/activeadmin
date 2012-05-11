@@ -21,7 +21,7 @@ module ActiveAdmin
           
           name = part.titlecase if name == ""
           begin
-            crumbs << link_to( I18n.translate!("activerecord.models.#{part.singularize}", :count => 2), "/" + parts[0..index].join('/'))
+            crumbs << link_to( I18n.translate!("activerecord.models.#{part.singularize}", :count => 1.1), "/" + parts[0..index].join('/'))
           rescue I18n::MissingTranslationData
             crumbs << link_to( name, "/" + parts[0..index].join('/'))
           end
