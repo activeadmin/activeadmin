@@ -9,7 +9,9 @@ pl:
     delete: "Usuń"
     delete_confirmation: "Jesteś pewien, że chcesz to usunąć?"
     new_model: "Nowy %{model}"
+    create_model: "Nowy %{model}"
     edit_model: "Edytuj %{model}"
+    update_model: "Edytuj %{model}"
     delete_model: "Usuń %{model}"
     details: "Detale %{model}"
     cancel: "Anuluj"
@@ -38,3 +40,24 @@ pl:
     blank_slate:
       content: "Nie ma jeszcze zasobu %{resource_name}."
       link: "Utwórz go"
+    batch_actions:
+      button_label: "Akcje na partiach"
+      delete_confirmation: "Czy na pewno chcesz usunąć te %{plural_model}? Nie będziesz miał możliwości cofnięcia tego."
+      succesfully_destroyed:
+        one: "Poprawnie usunięto 1 %{model}"
+        other: "Poprawnie usunięto %{count} %{plural_model}"
+      selection_toggle_explanation: "(Przełącz zaznaczenie)"
+      link: "Utwórz jeden"
+      action_label: "%{title} zaznaczone"
+      labels:
+        destroy: "Usuń"
+    comments:
+      body: "Treść"
+      author: "Autor"
+      title: "Komentarz"
+      add: "Dodaj komentarz"
+      resource: "Zasób"
+      no_comments_yet: "Nie ma jeszcze komentarzy."
+      title_content: "Komentarze (%{count})"
+      errors:
+        empty_text: "Komentarz nie został zapisany, zawartość była pusta."
