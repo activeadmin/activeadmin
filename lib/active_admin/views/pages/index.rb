@@ -5,7 +5,14 @@ module ActiveAdmin
       class Index < Base
 
         def title
-          active_admin_config.plural_resource_label
+          case config[:title]
+          when Symbol, Proc
+            call_method_or_proc_on(resource, config[:title])
+          when String
+            config[:title]
+          else
+            active_admin_config.plural_resource_label
+          end
         end
 
         def config
