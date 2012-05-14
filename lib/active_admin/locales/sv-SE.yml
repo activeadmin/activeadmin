@@ -44,7 +44,7 @@
       content: "Finns ingen %{resource_name} än."
       link: "Skapa en"
     batch_actions:
-      button_label: "Batch Actions"
+      button_label: "Batch Behandling"
       delete_confirmation: "Är du säker på att du vill radera dessa %{plural_model}? Du kan inte ångra detta."
       succesfully_destroyed:
         one: "Lyckades radera 1 %{model}"
