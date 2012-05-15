@@ -9,7 +9,9 @@
     delete: "Ta bort"
     delete_confirmation: "Är du säker att du vill ta bort denna?"
     new_model: "Ny %{model}"
+    create_model: "Ny %{model}"
     edit_model: "Editera %{model}"
+    update_model: "Editera %{model}"
     delete_model: "Ta bort %{model}"
     details: "Detaljvy för %{model}"
     cancel: "Avbryt"
@@ -34,7 +36,31 @@
       one: "Visar <b>1</b> utav %{model}"
       one_page: "Visar <b>alla %{n}</b> utav %{model}"
       multiple: "Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt"
+      entry:
+        one: "inlägg"
+        other: "inlägg"
     any: "Någon"
     blank_slate:
       content: "Finns ingen %{resource_name} än."
       link: "Skapa en"
+    batch_actions:
+      button_label: "Batch Behandling"
+      delete_confirmation: "Är du säker på att du vill radera dessa %{plural_model}? Du kan inte ångra detta."
+      succesfully_destroyed:
+        one: "Lyckades radera 1 %{model}"
+        other: "Lyckades radera %{count} %{plural_model}"
+      selection_toggle_explanation: "(Toggle Selection)"
+      link: "Skapa en"
+      action_label: "%{title} Markerad"
+      labels:
+        destroy: "Radera"
+    comments:
+      body: "Innehåll"
+      author: "Författare"
+      title: "Kommentar"
+      add: "Lägg till kommentar"
+      resource: "Resurs"
+      no_comments_yet: "Inga kommentarer än."
+      title_content: "Kommentarer (%{count})"
+      errors:
+        empty_text: "Kommentaren sparades inte, måste innehålla text."  
