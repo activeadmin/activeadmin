@@ -5,10 +5,7 @@ module ActiveAdmin
       class Index < Base
 
         def title
-          case config[:title]
-          when Symbol, Proc
-            call_method_or_proc_on(resource, config[:title])
-          when String
+          if config[:title].is_a? String
             config[:title]
           else
             active_admin_config.plural_resource_label
