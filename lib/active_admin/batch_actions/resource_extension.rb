@@ -2,7 +2,6 @@ module ActiveAdmin
 
   module BatchActions
     module ResourceExtension
-
       def initialize(*)
         super
         @batch_actions = {}
@@ -11,7 +10,20 @@ module ActiveAdmin
 
       # @return [Array] The set of batch actions for this resource
       def batch_actions
-        @batch_actions.values.sort
+        batch_actions_enabled? ? @batch_actions.values.sort : []
+      end
+
+      # @return [Boolean] If batch actions are enabled for this resource
+      def batch_actions_enabled?
+        # If the resource config has been set, use it. Otherwise
+        # return the namespace setting
+        @batch_actions_enabled.nil? ? namespace.batch_actions : @batch_actions_enabled
+      end
+
+      # Disable or Enable batch actions for this resource
+      # Set to `nil` to inherit the setting from the namespace
+      def batch_actions=(bool)
+        @batch_actions_enabled = bool
       end
 
       # Add a new batch item to a resource

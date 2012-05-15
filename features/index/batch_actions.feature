@@ -26,33 +26,45 @@ Feature: Batch Actions
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-      batch_action( :flag ) do
-      redirect_to collection_path, :notice => "Successfully flagged 10 posts" 
-      end
+        batch_action(:flag) do
+          redirect_to collection_path, :notice => "Successfully flagged 10 posts" 
+        end
       end
       """
     When I check the 1st record
     Given I submit the batch action form with "flag"
     Then I should see a flash with "Successfully flagged 10 posts"
+    
+  Scenario: Disabling batch actions for a resource
+    Given 10 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        config.batch_actions = false
+      end
+      """
+    Then I should not see the batch actions selector
+    And I should not see checkboxes in the table
   
-  Scenario: Disabling batch actions
+  Scenario: Disabling the default destroy batch action
     Given 10 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
         batch_action :destroy, false
+        batch_action(:flag) {}
       end
       """
-    Then I should not see the batch actions selector
-    And I should not see checkboxes in the table
+    Then I should see the batch action "Flag Selected"
+    And I should not see the batch action "Delete Selected"
   
   Scenario: Optional display of batch actions
     Given 10 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-      batch_action( :flag, :if => proc { true } ) {}
-      batch_action( :unflag, :if => proc { false } ) {}
+        batch_action(:flag, :if => proc { true }) {}
+        batch_action(:unflag, :if => proc { false }) {}
       end
       """
     Then I should see the batch action "Flag Selected"
@@ -63,9 +75,9 @@ Feature: Batch Actions
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-      batch_action( :test, :priority => 3 ) {}
-      batch_action( :flag, :priority => 2 ) {}
-      batch_action( :unflag, :priority => 1 ) {}
+        batch_action(:test, :priority => 3) {}
+        batch_action(:flag, :priority => 2) {}
+        batch_action(:unflag, :priority => 1) {}
       end
       """
     Then the 4th batch action should be "Delete Selected"
@@ -78,8 +90,8 @@ Feature: Batch Actions
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-      batch_action( "Very Complex and Time Consuming" ) {}
-      batch_action( :passing_a_symbol ) {}
+        batch_action("Very Complex and Time Consuming") {}
+        batch_action(:passing_a_symbol) {}
       end
       """
     Then I should see the batch action :very_complex_and_time_consuming "Very Complex and Time Consuming Selected"
