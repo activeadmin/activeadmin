@@ -5,10 +5,10 @@ module ActiveAdmin
     autoload :DatepickerInput
 
     autoload :FilterBase
-    autoload :FilterStringInput
+    autoload :FilterCheckBoxesInput
     autoload :FilterDateRangeInput
     autoload :FilterNumericInput
     autoload :FilterSelectInput
-    autoload :FilterCheckBoxesInput
+    autoload :FilterStringInput
   end
 end
