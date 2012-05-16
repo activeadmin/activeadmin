@@ -23,7 +23,7 @@ module ActiveAdmin
             f.submit(I18n.t('active_admin.filter')) +
               clear_link +
               hidden_field_tag("order", params[:order]) +
-              hidden_field_tag("scope", params[:scope])
+              hidden_field_tag("scope", params[:scope] || (active_admin_config.default_scope.id rescue nil))
           end
 
           f.form_buffers.last + buttons

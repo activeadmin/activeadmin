@@ -28,6 +28,8 @@ module ActiveAdmin
       if block_given?
         @scope_method = nil
         @scope_block = block
+      elsif name == :all
+        @scope_block = filtered_all_block
       end
 
       @show_count = options[:show_count].nil? ? true : options[:show_count]
@@ -38,6 +40,11 @@ module ActiveAdmin
     # a default block always returning true will be returned.
     def display_if_block
       @display_if_block || proc{ true }
+    end
+    
+    # Used instead of resouce_class.all, returns the chain scoped by the search criteria only
+    def filtered_all_block
+      proc { |chain| search(chain) }
     end
 
   end

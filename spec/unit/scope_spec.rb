@@ -19,7 +19,7 @@ describe ActiveAdmin::Scope do
       # :all does not return a chain but an array of active record
       # instances. We set the scope_method to nil then.
       its(:scope_method) { should == nil }
-      its(:scope_block)  { should == nil }
+      its(:scope_block)  { should be_a(Proc) }
     end
 
     context "when a name and scope method" do
