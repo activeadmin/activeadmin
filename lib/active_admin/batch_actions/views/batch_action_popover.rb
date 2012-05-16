@@ -18,7 +18,7 @@ module ActiveAdmin
                        "data-confirm" => batch_action.confirm
 
         title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", :default => batch_action.title)
-        label = I18n.t("active_admin.batch_actions.action_label", :title => title)
+        label = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", :title => title)
 
         super(label, "#", options)
       end
