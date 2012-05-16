@@ -14,7 +14,7 @@ jQuery ($) ->
 
   if $("#batch_actions_selector").length && $(":checkbox.toggle_all").length
 
-    if $(".paginated_collection").find("table").length
+    if $(".paginated_collection").find("table.index_table").length
       $(".paginated_collection table").tableCheckboxToggler()
     else
       $(".paginated_collection").checkboxToggler()
