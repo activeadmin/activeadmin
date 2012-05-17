@@ -29,7 +29,7 @@ namespace :test do
 
   desc "Run the full suite against the important versions of rails"
   task :major_supported_rails do
-    run_tests_against "3.0.11", "3.1.3", "3.2.0"
+    run_tests_against "3.0.12", "3.1.4", "3.2.3"
   end
 
   desc "Alias for major_supported_rails"

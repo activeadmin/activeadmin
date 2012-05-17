@@ -32,10 +32,16 @@ Feature: Show - Page Title
     """
     Then I should see the page title "Title: Hello World"
 
-  Scenario: No configuration
+  Scenario: Default title
     Given a show configuration of:
     """
-      ActiveAdmin.register Post do
-      end
+      ActiveAdmin.register Post
     """
-    Then I should see the page title "Post: Hello World"
+    Then I should see the page title "Hello World"
+
+  Scenario: Default title with no display name method candidate
+    Given a show configuration of:
+    """
+      ActiveAdmin.register Tag
+    """
+    Then I should see the page title "Tag #"

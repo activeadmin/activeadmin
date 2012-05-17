@@ -68,8 +68,12 @@ module ActiveAdmin
     #     column("Author") { |post| post.author.full_name }
     #   end
     #
-    def csv(&block)
-      config.csv_builder = CSVBuilder.new(&block)
+    #   csv :separator => ";" do
+    #     column :name
+    #   end
+    #
+    def csv(options={}, &block)
+      config.csv_builder = CSVBuilder.new(options, &block)
     end
 
     # Member Actions give you the functionality of defining both the
@@ -93,14 +97,20 @@ module ActiveAdmin
     # 
     def member_action(name, options = {}, &block)
       config.member_actions << ControllerAction.new(name, options)
+      title = options.delete(:title)
+
       controller do
+        before_filter(:only => [name]) { @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end
 
     def collection_action(name, options = {}, &block)
       config.collection_actions << ControllerAction.new(name, options)
+      title = options.delete(:title)
+
       controller do
+        before_filter(:only => [name]){ @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end

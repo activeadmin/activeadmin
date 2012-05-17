@@ -44,6 +44,18 @@ describe 'defining new actions from registration blocks' do
         controller.public_instance_methods.collect(&:to_s).should include("comment")
       end
     end
+
+    context "with :title" do
+      let(:action!) do 
+        ActiveAdmin.register Post do
+          member_action :comment, :title => "My Awesome Comment"
+        end
+      end
+
+      subject { find_before_filter controller, :comment }
+
+      it { should set_page_title_to "My Awesome Comment" }
+    end
   end
 
   describe "generate a new collection action" do
@@ -83,6 +95,32 @@ describe 'defining new actions from registration blocks' do
         controller.public_instance_methods.collect(&:to_s).should include("comments")
       end
     end
+    context "with :title" do
+      let(:action!) do 
+        ActiveAdmin.register Post do
+          collection_action :comments, :title => "My Awesome Comments"
+        end
+      end
+
+      subject { find_before_filter controller, :comments }
+
+      it { should set_page_title_to "My Awesome Comments" }
+    end
   end
 
+  def find_before_filter(controller, action)
+    controller._process_action_callbacks.detect { |f| f.kind == :before && f.options[:only] == [action] }
+  end
+
+  RSpec::Matchers.define :set_page_title_to do |expected|
+    match do |filter|
+      filter.raw_filter.call
+      @actual = filter.klass.instance_variable_get(:@page_title)
+      @actual == expected
+    end
+
+    failure_message_for_should do |filter|
+      message = "expected before_filter to set the @page_title to '#{expected}', but was '#{@actual}'"
+    end
+  end
 end

@@ -5,7 +5,11 @@ module ActiveAdmin
       class Index < Base
 
         def title
-          active_admin_config.plural_resource_label
+          if config[:title].is_a? String
+            config[:title]
+          else
+            active_admin_config.plural_resource_label
+          end
         end
 
         def config

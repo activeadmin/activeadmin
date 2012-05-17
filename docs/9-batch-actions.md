@@ -22,6 +22,30 @@ to operate on.  The array should contain at least one ID.
       end
     end
 
+### Disabling Batch Actions
+
+You can disable batch actions at the application or namespace level in
+`config/initializers/active_admin.rb`:
+
+    ActiveAdmin.setup do |config|
+
+      # Disable all batch actions
+      config.batch_actions = false
+
+
+      # Or disable for a given namespace
+      config.namespace :admin do |admin|
+        admin.batch_actions = false
+      end
+    end
+
+You can disable batch actions on any given resource using:
+
+    ActiveAdmin.register Post do
+      config.batch_actions = false
+    end
+
+
 ### Modifying a Previously Registered Batch Action
 
 If you wanted to modify the behavior of the provided "Delete" batch action, you can override by:
