@@ -25,7 +25,7 @@
 
 // Default font settings.  The font-size percentage is of 16px. (0.75 * 16px = 12px) */
 html { font-size:100.01%; }
-body { font-size: 75%; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; }
+& { font-size: 75%; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; }
 
 // Headings
 h1,h2,h3,h4,h5,h6 { 
