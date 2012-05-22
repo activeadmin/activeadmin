@@ -237,6 +237,7 @@ module ActiveAdmin
       end
 
       register_javascript 'active_admin.js'
+      register_javascript 'http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js'
     end
 
     def extract_namespace_name(options)
