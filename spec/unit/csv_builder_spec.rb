@@ -37,7 +37,7 @@ describe ActiveAdmin::CSVBuilder do
       end
     end
 
-    it "should have one colum" do
+    it "should have one column" do
       builder.columns.size.should == 1
     end
 
@@ -63,7 +63,7 @@ describe ActiveAdmin::CSVBuilder do
       end
     end
 
-    it "should have one colum" do
+    it "should have one column" do
       builder.columns.size.should == 1
     end
 
