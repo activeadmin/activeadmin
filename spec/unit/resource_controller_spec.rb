@@ -3,6 +3,8 @@ require File.expand_path('base_controller_shared_examples', File.dirname(__FILE_
 
 describe ActiveAdmin::ResourceController do
 
+  before(:all) { load_defaults! }
+
   let(:controller) { ActiveAdmin::ResourceController.new }
 
   it_should_behave_like "BaseController"
