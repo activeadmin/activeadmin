@@ -9,5 +9,13 @@
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
-// .status { & { background: #6090DB;} }
-
+// 
+//   body.active_admin {
+//      .status {
+//        background: #6090DB;
+//      }
+//   }
+//
+// Notice that active_admin SASS rules are nested within a
+// 'body.active_admin' selector to prevent them from affecting
+// other pages in the app.
