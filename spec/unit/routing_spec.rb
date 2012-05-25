@@ -9,10 +9,61 @@ describe ActiveAdmin, "Routing", :type => :routing do
 
   include Rails.application.routes.url_helpers
 
+  describe "root" do
+    context "when default configuration" do
+      context "when in admin namespace" do
+        it "should route the admin dashboard" do
+          get('/admin').should route_to('admin/dashboard#index')
+        end
+      end
+
+      context "when in root namespace" do
+        before(:each) do
+          load_resources { ActiveAdmin.register(Post, :namespace => false) }
+        end
+
+        it "should route the root dashboard" do
+          pending "Y U NO PASS?"
+
+          get('/').should route_to('dashboard#index')
+        end
+      end
+    end
+
+    context "when customized configuration to root to post#index" do
+      before do
+        ActiveAdmin.application.root = "posts#index"
+        reload_routes!
+      end
+
+      context "when in admin namespace" do
+        before do
+          load_resources { ActiveAdmin.register(Post) }
+        end
+
+        it "should route to admin/posts#index" do
+          get('/admin').should route_to('admin/posts#index')
+        end
+      end
+
+      context "when in root namespace" do
+        before(:each) do
+          load_resources { ActiveAdmin.register(Post, :namespace => false) }
+        end
+
+        it "should route to posts#index" do
+          pending "Y U NO PASS?"
+
+          get('/').should route_to('posts#index')
+        end
+      end
+    end
+  end
+
   describe "dashboard" do
     context "when in admin namespace" do
       it "should route the admin dashboard" do
-        admin_dashboard_path.should == "/admin"
+        admin_dashboard_path.should == "/admin/dashboard"
       end
     end
     context "when in root namespace" do
@@ -20,7 +71,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
         load_resources { ActiveAdmin.register(Post, :namespace => false) }
       end
       it "should route the root dashboard" do
-        dashboard_path.should == "/"
+        dashboard_path.should == "/dashboard"
       end
     end
   end
