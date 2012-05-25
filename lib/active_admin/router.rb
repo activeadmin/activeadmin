@@ -18,10 +18,16 @@ module ActiveAdmin
       router.instance_exec(@application.namespaces.values) do |namespaces|
         namespaces.each do |namespace|
           if namespace.root?
-            match '/' => 'dashboard#index', :as => 'dashboard'
+            match '/dashboard' => 'dashboard#index', :as => 'dashboard'
+
+            root :to => 'dashboard#index'
           else
             name = namespace.name
-            match name.to_s => "#{name}/dashboard#index", :as => "#{name.to_s}_dashboard"
+            match "#{name}/dashboard" => "#{name}/dashboard#index", :as => "#{name}_dashboard"
+
+            namespace name do
+              root :to => 'dashboard#index'
+            end
           end
         end
       end
