@@ -20,13 +20,13 @@ module ActiveAdmin
           if namespace.root?
             match '/dashboard' => 'dashboard#index', :as => 'dashboard'
 
-            root :to => 'dashboard#index'
+            root :to => namespace.root
           else
             name = namespace.name
             match "#{name}/dashboard" => "#{name}/dashboard#index", :as => "#{name}_dashboard"
 
             namespace name do
-              root :to => 'dashboard#index'
+              root :to => namespace.root
             end
           end
         end
@@ -108,6 +108,5 @@ module ActiveAdmin
         end
       end
     end
-
   end
 end
