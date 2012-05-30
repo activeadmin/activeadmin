@@ -19,4 +19,44 @@ describe ActiveAdmin::Views::Pages::Layout do
 
   end
 
+  describe "the body" do
+
+    let(:active_admin_namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :myspace) }
+    let(:active_admin_application){ ActiveAdmin.application }
+    let(:view_factory) { ActiveAdmin::ViewFactory.new }
+
+    before(:each) do 
+      @assigns = {}
+      @helpers = mock('Helpers',
+                      :active_admin_application => active_admin_application,
+                      :active_admin_config => mock('Config', :action_items? => nil, :sidebar_sections? => nil),
+                      :active_admin_namespace => active_admin_namespace,
+                      :breadcrumb_links => [],
+                      :content_for => "",
+                      :csrf_meta_tag => "",
+                      :current_active_admin_user => nil,
+                      :current_active_admin_user? => false,
+                      :current_menu => mock('Menu', :items => []),
+                      :flash => {},
+                      :javascript_path => "/dummy/",
+                      :link_to => "",
+                      :render_or_call_method_or_proc_on => "",
+                      :stylesheet_link_tag => mock(:html_safe => ""),
+                      :view_factory => view_factory,
+                      :params => {:controller => 'UsersController', :action => 'edit'})
+    end
+
+
+    it "should have class 'active_admin'" do
+      layout = ActiveAdmin::Views::Pages::Layout.new(@assigns, @helpers)
+      layout.build.class_list.should include 'active_admin'
+    end
+
+    it "should have namespace class" do
+      layout = ActiveAdmin::Views::Pages::Layout.new(@assigns, @helpers)
+      layout.build.class_list.should include "#{active_admin_namespace.name}_namespace"
+    end
+
+  end
+
 end
