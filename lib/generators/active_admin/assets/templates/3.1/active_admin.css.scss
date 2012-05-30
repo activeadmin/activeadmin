@@ -1,5 +1,9 @@
-// Variable overrides must be declared before loading up Active Admin's styles. The variables in 
-// question are defined in the gem at /app/assets/stylesheets/active_admin/mixins/_variables.css.scss
+// SASS variable overrides must be declared before loading up Active Admin's styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.css.scss` in the
+// Active Admin source.
+//
 // For example, to change the sidebar width:
 // $sidebar-width: 242px;
 
@@ -9,13 +13,17 @@
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
-// 
+//
 //   body.active_admin {
-//      .status {
-//        background: #6090DB;
-//      }
+//      .status { background: #6090DB; }
 //   }
 //
-// Notice that active_admin SASS rules are nested within a
-// 'body.active_admin' selector to prevent them from affecting
-// other pages in the app.
+// Notice that Active Admin CSS rules are nested within a
+// 'body.active_admin' selector to prevent conflicts with
+// other pages in the app. It is best to wrap your changes in a 
+// namespace so they are properly recognized. You have options
+// if you e.g. want different styles for different namespaces:
+//
+// .active_admin       applies to any Active Admin namespace
+// .admin_namespace    applies to the admin namespace (eg: /admin)
+// .other_namespace    applies to a custom namespace named other (eg: /other)
