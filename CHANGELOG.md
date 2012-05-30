@@ -4,6 +4,9 @@
 
 * Created new view components (Footer, TitleBar, Header, UtilityNav) to more
   easily customize the views in Active Admin and per namespace. (@gregbell)
+* All CSS is now encapsulated under the `body.active_admin` class. This may
+  change the precedence of styles that you created to override or use in
+  other areas of your application.
 
 ### Deprecations
 
