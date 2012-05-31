@@ -55,7 +55,6 @@ describe ActiveAdmin, "Routing", :type => :routing do
       context "when in root namespace" do
         before do
           load_resources { ActiveAdmin.register(Post, :namespace => false) }
-          reload_routes!
         end
 
         it "should route to posts#index" do
@@ -63,22 +62,6 @@ describe ActiveAdmin, "Routing", :type => :routing do
 
           get('/').should route_to('posts#index')
         end
-      end
-    end
-  end
-
-  describe "dashboard" do
-    context "when in admin namespace" do
-      it "should route the admin dashboard" do
-        admin_dashboard_path.should == "/admin/dashboard"
-      end
-    end
-    context "when in root namespace" do
-      before(:each) do
-        load_resources { ActiveAdmin.register(Post, :namespace => false) }
-      end
-      it "should route the root dashboard" do
-        dashboard_path.should == "/dashboard"
       end
     end
   end

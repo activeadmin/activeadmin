@@ -101,6 +101,17 @@ Before do
   end
 end
 
+After do
+  begin
+    add_default_dashboard
+  # I can't get cucumber to show errors when something wrong happen so I rescue
+  # and print out any error.
+  rescue
+    p $!
+    raise $!
+  end
+end
+
 def delete_default_dashboard
   dashboard_file = ENV['RAILS_ROOT'] + "/app/admin/dashboard.rb"
   File.delete(dashboard_file) if File.exists?(dashboard_file)
