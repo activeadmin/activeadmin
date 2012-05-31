@@ -61,7 +61,7 @@ module ActiveAdmin
     inheritable_setting :batch_actions, true
 
     # The namespace root.
-    inheritable_setting :root, 'dashboard#index'
+    inheritable_setting :root_to, 'dashboard#index'
 
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order

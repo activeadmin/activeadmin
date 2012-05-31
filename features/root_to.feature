@@ -8,10 +8,10 @@ Feature: Namespace root
     Given I am logged in
     Then I should be on the dashboard
 
-  Scenario: Set root to "posts#index"
+  Scenario: Set root to "stores#index"
     Given a configuration of:
     """
-      ActiveAdmin.application.root = 'stores#index'
+      ActiveAdmin.application.root_to = 'stores#index'
     """
     Given I am logged in
     Then I should see the page title "Bookstores"

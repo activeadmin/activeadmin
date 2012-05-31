@@ -18,7 +18,7 @@ module ActiveAdmin
       router.instance_exec(@application.namespaces.values) do |namespaces|
         namespaces.each do |namespace|
           root_and_dashboard_routes = Proc.new do
-            root :to => namespace.root
+            root :to => namespace.root_to
             match '/dashboard' => 'dashboard#index', :as => 'dashboard'
           end
 

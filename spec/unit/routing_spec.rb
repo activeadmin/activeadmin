@@ -33,12 +33,12 @@ describe ActiveAdmin, "Routing", :type => :routing do
 
     context "when customized configuration to root to post#index" do
       before do
-        @original_root = ActiveAdmin.application.root
-        ActiveAdmin.application.root = "posts#index"
+        @original_root = ActiveAdmin.application.root_to
+        ActiveAdmin.application.root_to = "posts#index"
       end
 
       after do
-        ActiveAdmin.application.root = @original_root
+        ActiveAdmin.application.root_to = @original_root
         reload_routes!
       end
 
