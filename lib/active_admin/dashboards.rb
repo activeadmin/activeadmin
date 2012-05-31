@@ -1,9 +1,6 @@
 module ActiveAdmin
   module Dashboards
 
-    autoload :DashboardController,  'active_admin/dashboards/dashboard_controller'
-    autoload :Section,              'active_admin/dashboards/section'
-
     @@sections = {}
     mattr_accessor :sections
 
@@ -21,7 +18,15 @@ module ActiveAdmin
       #   end
       #
       def build(&block)
+        require 'active_admin/dashboards/dashboard_controller'
+        require 'active_admin/dashboards/section'
+
+        @built = true
         module_eval(&block)
+      end
+
+      def built?
+        @built == true
       end
 
       # Add a new dashboard section to a namespace. If no namespace is given

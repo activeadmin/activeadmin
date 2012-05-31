@@ -23,7 +23,7 @@ module ActiveAdmin
 
       def setup_directory
         empty_directory "app/admin"
-        template 'dashboards.rb', 'app/admin/dashboards.rb'
+        template 'dashboard.rb', 'app/admin/dashboard.rb'
       end
 
       def setup_routes

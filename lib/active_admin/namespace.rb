@@ -182,6 +182,8 @@ module ActiveAdmin
 
     # Creates a dashboard controller for this config
     def generate_dashboard_controller
+      return unless ActiveAdmin::Dashboards.built?
+
       eval "class ::#{dashboard_controller_name} < ActiveAdmin::Dashboards::DashboardController; end"
     end
 
