@@ -1,5 +1,13 @@
 ActiveAdmin.register_page "Dashboard" do
+  menu :priority => 1
+
   content do
+    div :class => "blank_slate_container", :id => "dashboard_default_message" do
+      span :class => "blank_slate" do
+        span "Welcome to Active Admin. This is the default dashboard page."
+        small "To add dashboard sections, checkout 'app/admin/dashboards.rb'"
+      end
+    end
     # Define your dashboard sections here. Each block will be
     # rendered on the dashboard in the context of the view. So just
     # return the content which you would like to display.
