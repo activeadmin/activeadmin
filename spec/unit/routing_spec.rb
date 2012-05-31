@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ActiveAdmin, "Routing", :type => :routing do
 
-  before :each do
+  before do
     load_defaults!
     reload_routes!
   end
@@ -20,6 +20,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
       context "when in root namespace" do
         before(:each) do
           load_resources { ActiveAdmin.register(Post, :namespace => false) }
+          reload_routes!
         end
 
         it "should route the root dashboard" do
@@ -32,7 +33,12 @@ describe ActiveAdmin, "Routing", :type => :routing do
 
     context "when customized configuration to root to post#index" do
       before do
+        @original_root = ActiveAdmin.application.root
         ActiveAdmin.application.root = "posts#index"
+      end
+
+      after do
+        ActiveAdmin.application.root = @original_root
         reload_routes!
       end
 
@@ -47,8 +53,9 @@ describe ActiveAdmin, "Routing", :type => :routing do
       end
 
       context "when in root namespace" do
-        before(:each) do
+        before do
           load_resources { ActiveAdmin.register(Post, :namespace => false) }
+          reload_routes!
         end
 
         it "should route to posts#index" do
