@@ -1,6 +1,6 @@
 Feature: Dashboard
 
-  @wip
+  @dashboard
   Scenario: With default configuration
     Given a configuration of:
       """
@@ -15,6 +15,7 @@ Feature: Dashboard
     Then I should not see the default welcome message
     And I should see "Hello world from the dashboard page"
 
+  @dashboard @deprecated
   Scenario: DEPRECATED - With default configuration
     Given a configuration of:
       """
@@ -25,6 +26,7 @@ Feature: Dashboard
     When I go to the dashboard
     Then I should see the default welcome message
 
+  @dashboard @deprecated
   Scenario: DEPRECATED - Displaying a dashboard widget
     Given a configuration of:
       """
@@ -40,6 +42,7 @@ Feature: Dashboard
     And I should see a dashboard widget "Hello World"
     And I should see "Hello world from the content"
 
+  @dashboard @deprecated
   Scenario: DEPRECATED - Displaying a dashboard widget using the ':if' option
     Given a configuration of:
       """

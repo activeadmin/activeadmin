@@ -1,3 +1,4 @@
-default: --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags ~@requires-reloading --tags ~@wip
+default: --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags ~@requires-reloading --tags ~@wip --tags ~@deprecated
 wip: --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags @wip:3 --wip features
 class-reloading: RAILS_ENV=cucumber_with_reloading --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags @requires-reloading
+deprecated: --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags @deprecated

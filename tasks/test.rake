@@ -7,7 +7,7 @@ end
 
 # Run specs and cukes
 desc "Run the full suite"
-task :test => ['spec:unit', 'spec:integration', 'cucumber', 'cucumber:class_reloading']
+task :test => ['spec:unit', 'spec:integration', 'cucumber', 'cucumber:class_reloading', 'cucumber:deprecated']
 
 namespace :test do
 
@@ -22,6 +22,7 @@ namespace :test do
       cmd "bundle exec rspec spec"
       cmd "bundle exec cucumber features"
       cmd "bundle exec cucumber -p class-reloading features"
+      cmd "bundle exec cucumber -p deprecated features"
     end
 
     cmd "./script/use_rails #{current_version}" if current_version
@@ -70,6 +71,10 @@ namespace :cucumber do
 
   Cucumber::Rake::Task.new(:class_reloading, "Run the cucumber scenarios that test reloading") do |t|
     t.profile = 'class-reloading'
+  end
+
+  Cucumber::Rake::Task.new(:deprecated, "Run the cucumber scenarios that test deprecated behavior") do |t|
+    t.profile = 'deprecated'
   end
 
 end

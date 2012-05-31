@@ -79,18 +79,55 @@ if defined?(ActiveRecord::Base)
   end
 end
 
-# Create the test app if it doesn't exists
-unless File.exists?(ENV['RAILS_ROOT'])
-  system 'rake setup'  
+#require File.expand_path('../dashboard.rb', __FILE__)
+# Delete / Re-add dashboard.rb template
+#
+
+def add_default_dashboard
+  dashboard_file = ENV['RAILS_ROOT'] + "/app/admin/dashboard.rb"
+  dashboard_template = File.expand_path('../../../lib/generators/active_admin/install/templates/dashboard.rb', __FILE__)
+  cmd = "cp #{dashboard_template} #{dashboard_file}"
+  system cmd
+end
+
+Before do
+  begin
+    add_default_dashboard
+  # I can't get cucumber to show errors when something wrong happen so I rescue
+  # and print out any error.
+  rescue
+    p $!
+    raise $!
+  end
+end
+
+def delete_default_dashboard
+  dashboard_file = ENV['RAILS_ROOT'] + "/app/admin/dashboard.rb"
+  File.delete(dashboard_file) if File.exists?(dashboard_file)
+end
+
+Before '@dashboard' do
+  begin
+    delete_default_dashboard
+  rescue
+    p $!
+    raise $!
+  end
 end
 
 # Remove all our constants
 Before do
-  # We are cachine classes, but need to manually clear references to
-  # the controllers. If they aren't clear, the router stores references
-  ActiveSupport::Dependencies.clear
+  begin
+    # We are caching classes, but need to manually clear references to
+    # the controllers. If they aren't clear, the router stores references
+    ActiveSupport::Dependencies.clear
 
-  # Reload Active Admin
-  ActiveAdmin.unload!
-  ActiveAdmin.load!
+    # Reload Active Admin
+    ActiveAdmin.unload!
+    ActiveAdmin.load!
+  rescue
+    p $!
+    raise $!
+  end
 end
+
