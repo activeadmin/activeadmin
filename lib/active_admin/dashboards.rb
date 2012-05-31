@@ -21,12 +21,11 @@ module ActiveAdmin
         require 'active_admin/dashboards/dashboard_controller'
         require 'active_admin/dashboards/section'
 
-        @built = true
         module_eval(&block)
       end
 
       def built?
-        @built == true
+        defined?(ActiveAdmin::Dashboards::DashboardController)
       end
 
       # Add a new dashboard section to a namespace. If no namespace is given

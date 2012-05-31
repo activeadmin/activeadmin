@@ -19,7 +19,9 @@ module ActiveAdmin
         namespaces.each do |namespace|
           root_and_dashboard_routes = Proc.new do
             root :to => namespace.root_to
-            match '/dashboard' => 'dashboard#index', :as => 'dashboard'
+            if ActiveAdmin::Dashboards.built?
+              match '/dashboard' => 'dashboard#index', :as => 'dashboard'
+            end
           end
 
           if namespace.root?
