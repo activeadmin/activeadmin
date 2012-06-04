@@ -43,3 +43,38 @@ he:
     blank_slate:
       content: "כרגע אין עוד אף %{resource_name}."
       link: "צור אחד"
+    batch_actions:
+      button_label: "פעולות מרובות"
+      delete_confirmation: "האם הנך בטוח שאתה רוצה למרוח את %{plural_model}? לא תוכל לבטל את המחיקה."
+      succesfully_destroyed:
+        one: "1 %{model} נמחק בהצלחה"
+        other: "%{count} %{plural_model} נמחק בהצלחה"
+      selection_toggle_explanation: "(שינוי בחירה)"
+      link: "צור"
+      action_label: "%{title} נבחר"
+      labels:
+        destroy: "מחק"
+    comments:
+      body: "תוכן"
+      author: 'נוצר ע"י'
+      title: "תגובה"
+      add: "הוסף תגובה"
+      resource: "Resource"
+      no_comments_yet: "אין עדיין תגובות."
+      title_content: "תגובות (%{count})"
+      errors:
+        empty_text: "התגובה לא נשמרה, שדה התוכן ריק."
+    devise:
+      login:
+        title: "כניסה"
+        remember_me: "זכור אותי"
+        submit: "הכנס"
+      reset_password:
+        title: "שכחת סיסמא?"
+        submit: "אפס את הסיסמא שלי"
+      change_password:
+        title: "שנה את הסיסמא שלך"
+        submit: "שנה את הסיסמא שלי"
+      links:
+        sign_in: "כניסה"
+        forgot_your_password: "שכחת את הסיסמא שלך?"
