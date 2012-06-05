@@ -8,11 +8,8 @@ module ActiveAdmin
         end
 
         def title
-          case config[:title]
-          when Symbol, Proc
-            call_method_or_proc_on(resource, config[:title])
-          when String
-            config[:title]
+          if config[:title]
+            render_or_call_method_or_proc_on(resource, config[:title])
           else
             default_title
           end
