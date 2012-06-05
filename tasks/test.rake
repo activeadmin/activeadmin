@@ -7,7 +7,7 @@ end
 
 # Run specs and cukes
 desc "Run the full suite"
-task :test => ['spec:unit', 'spec:integration', 'spec:deprecated', 'cucumber', 'cucumber:class_reloading', 'cucumber:deprecated']
+task :test => ['spec:unit', 'spec:integration', 'cucumber', 'cucumber:class_reloading', 'cucumber:deprecated']
 
 namespace :test do
 
@@ -52,11 +52,6 @@ namespace :spec do
   desc "Run the integration specs"
   RSpec::Core::RakeTask.new(:integration) do |t|
     t.pattern = "spec/integration/**/*_spec.rb"
-  end
-
-  desc "Run the deprecated dashboard specs"
-  RSpec::Core::RakeTask.new(:deprecated) do |t|
-    t.pattern = "spec/deprecated-dashboard/**/*_spec.rb"
   end
 
 end
