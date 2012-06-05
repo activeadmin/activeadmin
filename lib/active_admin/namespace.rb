@@ -184,8 +184,9 @@ module ActiveAdmin
     def generate_dashboard_controller
       return unless ActiveAdmin::Dashboards.built?
 
-      eval "class ::#{dashboard_controller_name} < ActiveAdmin::Dashboards::DashboardController; end"
+      eval "class ::#{dashboard_controller_name} < ActiveAdmin::PageController
+              include ActiveAdmin::Dashboards::DashboardController
+            end"
     end
-
   end
 end

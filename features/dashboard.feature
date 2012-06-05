@@ -12,10 +12,11 @@ Feature: Dashboard
       """
     Given I am logged in
     When I go to the dashboard
-    Then I should not see the default welcome message
+    Then I should see the Active Admin layout
+    And I should not see the default welcome message
     And I should see "Hello world from the dashboard page"
 
-  @dashboard @deprecated
+  @dashboard
   Scenario: DEPRECATED - With default configuration
     Given a configuration of:
       """
@@ -24,9 +25,10 @@ Feature: Dashboard
       """
     Given I am logged in
     When I go to the dashboard
-    Then I should see the default welcome message
+    Then I should see the Active Admin layout
+    And I should see the default welcome message
 
-  @dashboard @deprecated
+  @dashboard
   Scenario: DEPRECATED - Displaying a dashboard widget
     Given a configuration of:
       """
@@ -38,11 +40,12 @@ Feature: Dashboard
       """
     Given I am logged in
     When I go to the dashboard
-    Then I should not see the default welcome message
+    Then I should see the Active Admin layout
+    And I should not see the default welcome message
     And I should see a dashboard widget "Hello World"
     And I should see "Hello world from the content"
 
-  @dashboard @deprecated
+  @dashboard
   Scenario: DEPRECATED - Displaying a dashboard widget using the ':if' option
     Given a configuration of:
       """
@@ -58,6 +61,7 @@ Feature: Dashboard
       """
     Given I am logged in
     When I go to the dashboard
-    Then I should not see the default welcome message
+    Then I should see the Active Admin layout
+    And I should not see the default welcome message
     And I should see a dashboard widget "Hello World"
     And I should not see a dashboard widget "Hidden by If"

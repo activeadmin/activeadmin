@@ -4,10 +4,14 @@ require 'active_admin/dashboards/dashboard_controller'
 require 'active_admin/dashboards/section'
 
 module Admin
-  class TestDashboardController < ActiveAdmin::Dashboards::DashboardController
+  class TestDashboardController < ActiveAdmin::PageController
+    include ActiveAdmin::Dashboards::DashboardController
   end
 end
-class TestDashboardController < ActiveAdmin::Dashboards::DashboardController; end
+
+class TestDashboardController < ActiveAdmin::PageController
+  include ActiveAdmin::Dashboards::DashboardController
+end
 
 describe ActiveAdmin::Dashboards::DashboardController do
 
