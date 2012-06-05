@@ -18,6 +18,7 @@ module ActiveAdmin
       #   end
       #
       def build(&block)
+        warn "DEPRECATION WARNING: ActiveAdmin::Dashboard is deprecated and will be removed in the next version"
         require 'active_admin/dashboards/dashboard_controller'
         require 'active_admin/dashboards/section'
 
