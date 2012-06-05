@@ -1,3 +1,6 @@
+require 'active_admin/dashboards/dashboard_controller'
+require 'active_admin/dashboards/section'
+
 module ActiveAdmin
   module Dashboards
 
@@ -19,14 +22,12 @@ module ActiveAdmin
       #
       def build(&block)
         warn "DEPRECATION WARNING: ActiveAdmin::Dashboard is deprecated and will be removed in the next version"
-        require 'active_admin/dashboards/dashboard_controller'
-        require 'active_admin/dashboards/section'
-
+        @built = true
         module_eval(&block)
       end
 
       def built?
-        defined?(ActiveAdmin::Dashboards::DashboardController)
+        !!@built
       end
 
       # Add a new dashboard section to a namespace. If no namespace is given
