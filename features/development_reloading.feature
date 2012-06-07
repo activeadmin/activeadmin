@@ -10,7 +10,7 @@ Feature: Development Reloading
     """
       ActiveAdmin.register Post
     """
-    And I am logged in
+    And I am logged in with capybara
     And I create a new post with the title ""
     Then I should see a successful create flash
     Given I add "validates_presence_of :title" to the "post" model

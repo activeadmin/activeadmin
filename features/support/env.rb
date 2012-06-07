@@ -94,3 +94,11 @@ Before do
   ActiveAdmin.unload!
   ActiveAdmin.load!
 end
+
+# Warden helpers to speed up login
+# See https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Capybara
+include Warden::Test::Helpers
+
+After do
+  Warden.test_reset!
+end
