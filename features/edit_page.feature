@@ -37,7 +37,7 @@ Feature: Edit Page
           f.inputs "Publishing" do
             f.input :published_at
           end
-          f.buttons
+          f.actions
         end
       end
     """
@@ -64,7 +64,7 @@ Feature: Edit Page
           f.inputs "Publishing" do
             f.input :published_at
           end
-          f.buttons
+          f.actions
         end
       end
     """
@@ -87,7 +87,7 @@ Feature: Edit Page
       <% url = @post.new_record? ? admin_posts_path : admin_post_path(@post) %>
       <%= active_admin_form_for @post, :url => url do |f|
             f.inputs :title, :body
-            f.buttons 
+            f.actions
           end %>
     """
     Given a configuration of:
