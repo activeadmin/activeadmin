@@ -36,16 +36,16 @@ describe ActiveAdmin::FormBuilder do
     active_admin_form_for Post.new, options, &block
   end
 
-  context "in general with buttons" do
+  context "in general with actions" do
     let :body do
       build_form do |f|
         f.inputs do
           f.input :title
           f.input :body
         end
-        f.buttons do
-          f.commit_button "Submit Me"
-          f.commit_button "Another Button"
+        f.actions do
+          f.action :submit, :label => "Submit Me"
+          f.action :submit, :label => "Another Button"
         end
       end
     end
@@ -60,7 +60,7 @@ describe ActiveAdmin::FormBuilder do
     it "should only generate the form once" do
       body.scan(/Title/).size.should == 1
     end
-    it "should generate buttons" do
+    it "should generate actions" do
       body.should have_tag("input", :attributes => {  :type => "submit",
                                                           :value => "Submit Me" })
       body.should have_tag("input", :attributes => {  :type => "submit",
@@ -92,7 +92,7 @@ describe ActiveAdmin::FormBuilder do
     it "should only generate the form once" do
       body.scan(/Title/).size.should == 1
     end
-    it "should generate buttons" do
+    it "should generate actions" do
       body.should have_tag("input", :attributes => {  :type => "submit",
                                                           :value => "Submit Me" })
       body.should have_tag("input", :attributes => {  :type => "submit",
@@ -111,11 +111,11 @@ describe ActiveAdmin::FormBuilder do
     end
   end
 
-  describe "passing in options with buttons" do
+  describe "passing in options with actions" do
     let :body do
       build_form :html => { :multipart => true } do |f|
         f.inputs :title
-        f.buttons
+        f.actions
       end
     end
     it "should pass the options on to the form" do
@@ -136,28 +136,28 @@ describe ActiveAdmin::FormBuilder do
   end
 
 
-  context "with buttons" do
+  context "with actions" do
     it "should generate the form once" do
       body = build_form do |f|
         f.inputs do
           f.input :title
         end
-        f.buttons
+        f.actions
       end
       body.scan(/id=\"post_title\"/).size.should == 1
     end
     it "should generate one button and a cancel link" do
       body = build_form do |f|
-        f.buttons
+        f.actions
       end
       body.scan(/type=\"submit\"/).size.should == 1
       body.scan(/class=\"cancel\"/).size.should == 1
     end
-    it "should generate multiple buttons" do
+    it "should generate multiple actions" do
       body = build_form do |f|
-        f.buttons do
-          f.commit_button "Create & Continue"
-          f.commit_button "Create & Edit"
+        f.actions do
+          f.action :submit, :label => "Create & Continue"
+          f.action :submit, :label => "Create & Edit"
         end
       end
       body.scan(/type=\"submit\"/).size.should == 2
