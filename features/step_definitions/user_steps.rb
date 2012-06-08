@@ -5,16 +5,27 @@ Given /^I am logged out$/ do
 end
 
 Given /^I am logged in$/ do
-  step 'an admin user "admin@example.com" exists'
+  create_admin_user_and_logout_if_needed
+  user = AdminUser.find_by_email "admin@example.com"
+  login_as(user)
+end
 
-  if page.all(:css, "a", :text => "Logout").size > 0
-    click_link "Logout"
-  end
+# only for @requires-reloading scenario
+Given /^I am logged in with capybara$/ do
+  create_admin_user_and_logout_if_needed
 
   visit new_admin_user_session_path
   fill_in "Email", :with => "admin@example.com"
   fill_in "Password", :with => "password"
   click_button "Login"
+end
+
+def create_admin_user_and_logout_if_needed
+  step 'an admin user "admin@example.com" exists'
+
+  if page.all(:css, "a", :text => "Logout").size > 0
+    click_link "Logout"
+  end
 end
 
 Given /^an admin user "([^"]*)" exists$/ do |admin_email|
