@@ -69,7 +69,7 @@ module ActiveAdmin
 
       content = with_new_form_buffer do
         template.content_tag :div, :class => "has_many #{association}" do
-          form_buffers.last << template.content_tag(:h3, association.to_s.titlecase)
+          form_buffers.last << template.content_tag(:h3, options.delete(:header) || association.to_s.titlecase)
           inputs options, &form_block
 
           # Capture the ADD JS
