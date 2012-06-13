@@ -160,3 +160,7 @@ RSpec::Matchers.define :have_tag do |*args|
     end
   end
 end
+
+# improve the performance of the specs suite by not logging anything
+# see http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
+Rails.logger.level = 4
