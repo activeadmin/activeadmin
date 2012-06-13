@@ -3,13 +3,13 @@ require 'active_admin/batch_actions/views/batch_action_popover'
 
 describe ActiveAdmin::BatchActions::BatchActionPopover do
 
-  setup_arbre_context!
-
   let(:the_popover) do
-    batch_action_popover do
-      action ActiveAdmin::BatchAction.new( :action_1, "Action 1" )
-      action ActiveAdmin::BatchAction.new( :action_2, "Action 2" )
-      action ActiveAdmin::BatchAction.new( :action_3, "Action 3" )
+    render_arbre_component do
+      batch_action_popover do
+        action ActiveAdmin::BatchAction.new( :action_1, "Action 1" )
+        action ActiveAdmin::BatchAction.new( :action_2, "Action 2" )
+        action ActiveAdmin::BatchAction.new( :action_3, "Action 3" )
+      end
     end
   end
   

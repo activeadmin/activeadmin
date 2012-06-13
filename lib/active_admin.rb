@@ -6,9 +6,9 @@ require 'formtastic'
 require 'sass'
 require 'inherited_resources'
 require 'jquery-rails'
+require 'arbre'
 require 'active_admin/dependency_checker' 
 require 'active_admin/sass/helpers'
-require 'active_admin/arbre'
 require 'active_admin/engine'
 
 module ActiveAdmin

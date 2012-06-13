@@ -2,10 +2,12 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::SiteTitle do
 
-  setup_arbre_context!
+  let(:helpers){ mock_action_view }
 
   def build_title(namespace)
-    insert_tag ActiveAdmin::Views::SiteTitle, namespace
+    render_arbre_component({:namespace => namespace}, helpers) do
+      insert_tag ActiveAdmin::Views::SiteTitle, assigns[:namespace]
+    end
   end
 
   context "when a value" do

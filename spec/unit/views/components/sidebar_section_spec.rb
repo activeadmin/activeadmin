@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::SidebarSection do
 
-  setup_arbre_context!
-
   let(:section) do
     ActiveAdmin::SidebarSection.new(:help) do
       span "Help Me"
@@ -11,7 +9,9 @@ describe ActiveAdmin::Views::SidebarSection do
   end
 
   let(:html) do
-    sidebar_section(section)
+    render_arbre_component :section => section do
+      sidebar_section(assigns[:section])
+    end
   end
 
   it "should have a title h3" do

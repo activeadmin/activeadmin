@@ -49,14 +49,12 @@ module ActiveAdminIntegrationSpecHelper
     end
   end
 
-  # Sets up an Arbre::Builder context
-  def setup_arbre_context!
-    include Arbre::Builder
-    let(:assigns){ {} }
-    let(:helpers){ mock_action_view }
-    before do
-      @_helpers = helpers
-    end
+  def arbre(assigns = {}, helpers = mock_action_view, &block)
+    Arbre::Context.new(assigns, helpers, &block)
+  end
+
+  def render_arbre_component(assigns = {}, helpers = mock_action_view, &block)
+    arbre(assigns, helpers, &block).children.first
   end
 
   # Setup a describe block which uses capybara and rails integration

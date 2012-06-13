@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe ActiveAdmin::FormBuilder do
 
-  setup_arbre_context!
-
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
   let(:helpers) do 
@@ -31,9 +29,12 @@ describe ActiveAdmin::FormBuilder do
     view
   end
 
-  def build_form(options = {}, &block)
-    options.merge!({:url => posts_path})
-    active_admin_form_for Post.new, options, &block
+  def build_form(options = {}, form_object = Post.new, &block)
+    options.merge!({:url => helpers.posts_path})
+
+    render_arbre_component({:form_object => form_object, :form_options => options, :form_block => block}, helpers)do
+      text_node active_admin_form_for(assigns[:form_object], assigns[:form_options], &assigns[:form_block])
+    end.to_s
   end
 
   context "in general with actions" do
@@ -104,7 +105,7 @@ describe ActiveAdmin::FormBuilder do
     it "should raise error" do
       lambda {
         comment = ActiveAdmin::Comment.new
-        active_admin_form_for comment, :url => "admins/comments" do |f|
+        build_form({:url => "admins/comments"}, comment) do |f|
           f.inputs :resource
         end
       }.should raise_error(Formtastic::PolymorphicInputWithoutCollectionError)
