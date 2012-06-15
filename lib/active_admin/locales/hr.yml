@@ -17,7 +17,7 @@ hr:
     cancel: "Odustani"
     empty: "Prazno"
     previous: "Prijašnji"
-    next: "Sljedeći"
+    next: "Slijedeći"
     download: "Spremi na računalo:"
     has_many_new: "Dodaj novi %{model}"
     has_many_delete: "Obriši"
