@@ -27,9 +27,9 @@ Feature: Internationalization
     When I set my locale to "fr"
     And I go to the dashboard
     Then I should see "Store"
-    And I should see "Tableau de Bord"
+    Then I should see "Déconnexion"
 
     When I set my locale to "en"
     And I go to the dashboard
     Then I should see "Bookstore"
-    And I should see "Dashboard"
+    Then I should see "Logout"
