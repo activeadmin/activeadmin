@@ -4,7 +4,7 @@ module ActiveAdmin
 
       DEFAULT_PRIORITY = 10
 
-      attr_accessor :name, :block
+      attr_accessor :block
       attr_reader :namespace, :options
 
       def initialize(namespace, name, options = {}, &block)
@@ -12,6 +12,10 @@ module ActiveAdmin
         @name = name
         @options = options
         @block = block
+      end
+
+      def name
+        @name.is_a?(Proc) ? @name.call : @name
       end
 
       def priority
