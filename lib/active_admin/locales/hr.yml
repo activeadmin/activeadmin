@@ -9,13 +9,15 @@ hr:
     delete: "Obriši"
     delete_confirmation: "Jeste li sigurni da želite ovo obrisati?"
     new_model: "Novi %{model}"
+    create_model: "Izradi %{model}"
     edit_model: "Uredi %{model}"
+    update_model: "Spremi %{model}"
     delete_model: "Obriši %{model}"
     details: "%{model} detalji"
     cancel: "Odustani"
     empty: "Prazno"
     previous: "Prijašnji"
-    next: "Sljedeći"
+    next: "Slijedeći"
     download: "Spremi na računalo:"
     has_many_new: "Dodaj novi %{model}"
     has_many_delete: "Obriši"
@@ -34,7 +36,45 @@ hr:
       one: "Prikazan <b>1</b> %{model}"
       one_page: "Prikazano <b>svih %{n}</b> %{model}"
       multiple: "Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> od ukupno <b>%{total}</b>"
+    entry:
+      one: "zapis"
+      other: "zapisa"
     any: "Bilo koji"
     blank_slate:
       content: "Još uvijek ne postoji niti jedan zapis tipa %{resource_name}."
-      link: "Kreiraj jedan"
+      link: "Izradi jedan"
+    batch_actions:
+      button_label: "Grupne akcije"
+      delete_confirmation: "Jeste li sigurni da želite obrisati %{plural_model}? Obrisano nije moguće poništiti."
+      succesfully_destroyed:
+        one: "Uspješno je obrisan 1 %{model}"
+        other: "Uspješno je obrisano %{count} %{plural_model}"
+      selection_toggle_explanation: "(Izmjeni odabir)"
+      link: "Izradi jedan"
+      action_label: "%{title} označene"
+      labels:
+        destroy: "Obriši"
+    comments:
+      body: "Sadržaj"
+      author: "Autor"
+      title: "Komentar"
+      add: "Dodaj komentar"
+      resource: "Resource"
+      no_comments_yet: "Još nema komentara."
+      title_content: "Komentari (%{count})"
+      errors:
+        empty_text: "Komentar nije spremljen, sadržaj je prazan."
+    devise:
+      login:
+        title: "Prijava"
+        remember_me: "Zapamti me"
+        submit: "Prijavi se"
+      reset_password:
+        title: "Zaboravljena lozinka?"
+        submit: "Resetiraj lozinku"
+      change_password:
+        title: "Izmjena lozinke"
+        submit: "Izmjeni lozinku"
+      links:
+        sign_in: "Prijavi se"
+        forgot_your_password: "Zaboravljena lozinka?"
