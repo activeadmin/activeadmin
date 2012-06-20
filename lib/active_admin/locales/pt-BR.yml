@@ -64,3 +64,17 @@
       title_content: "Comentários: %{count}"
       errors:
         empty_text: "O comentário não foi salvo porque o texto estava vazio."
+    devise:
+      login:
+        title: "Conta"
+        remember_me: "Lembrar da senha"
+        submit: "Entrar"
+      reset_password:
+        title: "Esqueceu sua senha?"
+        submit: "Reinicie minha senha"
+      change_password:
+        title: "Troque sua senha"
+        submit: "Troque minha senha"
+      links:
+        sign_in: "Entrar"
+        forgot_your_password: "Esqueceu sua senha?"
