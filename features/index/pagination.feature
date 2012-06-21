@@ -19,6 +19,17 @@ Feature: Index Pagination
     Given 31 posts exist
     When I am on the index page for posts
     Then I should see pagination with 2 pages
+    And I should see "Displaying Posts 1 - 30 of 31 in total"
+
+  Scenario: Viewing last page of index when multiple pages of resources exist
+    Given an index configuration of:
+    """
+      ActiveAdmin.register Post
+    """
+    Given 34 posts exist
+    And I am on the index page for posts
+    When I follow "Last »"
+    Then I should see "Displaying Posts 31 - 34 of 34 in total"
 
   Scenario: Viewing index with a custom per page set
     Given an index configuration of:
