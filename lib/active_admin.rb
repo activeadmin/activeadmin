@@ -130,5 +130,7 @@ end
 
 ActiveAdmin::DependencyChecker.check!
 
+# Require internal Plugins
 require 'active_admin/comments'
 require 'active_admin/batch_actions'
+require 'active_admin/filters'

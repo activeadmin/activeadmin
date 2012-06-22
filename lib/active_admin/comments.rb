@@ -23,6 +23,9 @@ ActiveAdmin.after_load do |app|
       namespace.register ActiveAdmin::Comment, :as => "Comment" do
         actions :index, :show, :create
 
+        # Ensure filters are turned on
+        config.filters = true
+
         # Don't display in the menu
         menu false
 
