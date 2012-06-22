@@ -1,7 +1,7 @@
 require 'spec_helper' 
 
 
-describe ActiveAdmin::ViewHelpers::FilterFormHelper do
+describe ActiveAdmin::Filters::ViewHelper do
 
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
