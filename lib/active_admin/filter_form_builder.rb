@@ -6,6 +6,7 @@ module ActiveAdmin
     def filter(method, options = {})
       return "" if method.nil? || method == ""
       options[:as] ||= default_input_type(method)
+      options[:label] ||= default_input_label(method)
       return "" unless options[:as]
       content = input(method, options)
       form_buffers.last << content.html_safe if content
@@ -13,6 +14,16 @@ module ActiveAdmin
 
     protected
 
+    # Returns the default label for a given attribute
+    def default_input_label(method, options = {})
+      if reflection = reflection_for(method)
+        if reflection.macro == :belongs_to && !reflection.options[:polymorphic]
+          return reflection.klass.model_name.human if !reflection.klass.nil?
+        end
+      end
+      return nil
+    end
+    
     # Returns the default filter type for a given attribute
     def default_input_type(method, options = {})
       if column = column_for(method)
