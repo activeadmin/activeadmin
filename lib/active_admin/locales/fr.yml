@@ -61,3 +61,17 @@ fr:
       title_content: "Commentaires (%{count})"
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
+    devise:
+      login:
+        title: "login"
+        remember_me: "Se souvenir de moi"
+        submit: "login"
+      reset_password:
+        title: "Vous avez oublié votre mot de passe?"
+        submit: "Réinitialiser mon mot de passe"
+      change_password:
+        title: "Changez votre mot de passe"
+        submit: "Changer mon mot de passe"
+      links:
+        sign_in: "Connectez-vous"
+        forgot_your_password: "Vous avez oublié votre mot de passe?"

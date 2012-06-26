@@ -52,3 +52,17 @@ de:
       title_content: "Kommentare (%{count})"
       errors:
         empty_text: "Der Kommentar wurde nicht gespeichert, da der Text fehlt."
+    devise:
+      login:
+        title: "Login"
+        remember_me: "erinnere dich an mich"
+        submit: "Login"
+      reset_password:
+        title: "Passwort vergessen?"
+        submit: "Mein Passwort zurücksetzen"
+      change_password:
+        title: "Ändern Sie Ihr Passwort"
+        submit: "Mein Passwort ändern"
+      links:
+        sign_in: "Anmeldung"
+        forgot_your_password: "Passwort vergessen?"

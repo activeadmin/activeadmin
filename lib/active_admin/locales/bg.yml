@@ -38,3 +38,39 @@ bg:
     blank_slate:
       content: "Няма %{resource_name} все още."
       link: "Създай връзка"
+    batch_actions:
+      button_label: "партиди Действия"
+      delete_confirmation: "Сигурни ли сте че искате да изтриете тези %{plural_model}? Вие няма да можете да отмените това."
+      succesfully_destroyed:
+        one: "Успешно унищожени 1 %{model}"
+        other: "Успешно унищожени %{count} %{plural_model}"
+      selection_toggle_explanation: "(Toggle Избор)"
+      link: "Създаване на една"
+      action_label: "%{title} Избрани"
+      labels:
+        destroy: "Изтриване"
+    comments:
+      body: "тяло"
+      author: "автор"
+      title: "коментар"
+      add: "Добавяне на коментар"
+      resource: "Resource"
+      no_comments_yet: "Все още няма коментари."
+      title_content: "Коментари (%{count})"
+      errors:
+        empty_text: "Коментар не е спасен, текст е празна."
+    devise:
+      login:
+        title: "Влез"
+        remember_me: "Запомни ме"
+        submit: "Влез"
+      reset_password:
+        title: "Забравена парола?"
+        submit: "Възстановите паролата си"
+      change_password:
+        title: "Промяна на паролата"
+        submit: "Промяна на паролата си"
+      links:
+        sign_in: "Влезте в профила си"
+        forgot_your_password: "Забравена парола?"
+
