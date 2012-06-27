@@ -14,7 +14,7 @@ module ActiveAdmin
             begin
               parent_class = parent.singularize.camelcase.constantize
               obj = parent_class.find(part.to_i)
-              name = obj.display_name if obj.respond_to?(:display_name)
+              name = display_name(obj)
             rescue
             end
           end
