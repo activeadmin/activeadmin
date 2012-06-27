@@ -28,7 +28,6 @@ module ActiveAdmin
   autoload :DSL,                      'active_admin/dsl'
   autoload :Event,                    'active_admin/event'
   autoload :FormBuilder,              'active_admin/form_builder'
-  autoload :FilterFormBuilder,        'active_admin/filter_form_builder'
   autoload :Inputs,                   'active_admin/inputs'
   autoload :Iconic,                   'active_admin/iconic'
   autoload :Menu,                     'active_admin/menu'
@@ -130,5 +129,7 @@ end
 
 ActiveAdmin::DependencyChecker.check!
 
+# Require internal Plugins
 require 'active_admin/comments'
 require 'active_admin/batch_actions'
+require 'active_admin/filters'

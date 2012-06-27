@@ -13,7 +13,6 @@ module ActiveAdmin
     include MethodOrProcHelper
     include SidebarHelper
     include FormHelper
-    include FilterFormHelper
     include TitleHelper
     include ViewFactoryHelper
 
