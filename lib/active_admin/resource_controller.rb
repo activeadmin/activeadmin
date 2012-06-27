@@ -3,7 +3,6 @@ require 'active_admin/resource_controller/actions'
 require 'active_admin/resource_controller/action_builder'
 require 'active_admin/resource_controller/callbacks'
 require 'active_admin/resource_controller/collection'
-require 'active_admin/resource_controller/filters'
 require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/resource_class_methods'
 
@@ -22,7 +21,6 @@ module ActiveAdmin
     include ActionBuilder
     include Callbacks
     include Collection
-    include Filters
     include Scoping
     extend  ResourceClassMethods
 

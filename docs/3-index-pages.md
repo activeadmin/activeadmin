@@ -54,6 +54,29 @@ You can change the filter label by passing a label option:
 
 By default, Active Admin will try to use ActiveModel I18n to determine the label.
 
+Filters can also be disabled for a resource, a namespace or the entire
+application.
+
+To disable for a specific resource:
+
+    ActiveAdmin.register Post do
+      config.filters = false
+    end
+
+To disable for a namespace, in the initializer:
+
+    ActiveAdmin.setup do |config|
+      config.namespace :my_namespace do |my_namespace|
+        my_namespace.filters = false
+      end
+    end
+
+Or to disable for the entire application:
+
+    ActiveAdmin.setup do |config|
+      config.filters = false
+    end
+
 ## Index default sort order
 
 You can define the default sort order for index pages:
