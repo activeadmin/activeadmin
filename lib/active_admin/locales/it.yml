@@ -64,3 +64,17 @@ it:
       title_content: "Commenti (%{count})"
       errors:
         empty_text: "Il commento non può essere salvato, il testo è vuoto."
+    devise:
+      login:
+        title: "Entra"
+        remember_me: "Ricordami"
+        submit: "Entra"
+      reset_password:
+        title: "Dimenticato la password?"
+        submit: "Reimposta la tua password"
+      change_password:
+        title: "Cambia la tua password"
+        submit: "Cambia la mia password"
+      links:
+        sign_in: "Entra"
+        forgot_your_password: "Dimenticato la password?"
