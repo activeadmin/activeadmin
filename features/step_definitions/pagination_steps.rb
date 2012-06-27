@@ -6,7 +6,3 @@ Then /^I should see pagination with (\d+) pages$/ do |count|
   step %{I should see "#{count}" within ".pagination a"}
   step %{I should not see "#{count.to_i + 1}" within ".pagination a"}
 end
-
-Then /^I should see that the current page is (\d+)$/ do |count|
-  step %{I should see "#{count}" within ".pagination .current"}
-end

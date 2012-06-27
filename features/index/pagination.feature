@@ -42,13 +42,3 @@ Feature: Index Pagination
     Given 31 posts exist
     When I am on the index page for posts
     Then I should not see pagination
-
-  Scenario: Viewing last page of a multi-page index
-    Given an index configuration of:
-      """
-        ActiveAdmin.register Post
-      """
-      Given 81 posts exist
-      When I am on page 3 of the index pages for posts
-      Then I should see that the current page is 3
-      And I should see "Displaying Posts 61 - 81 of 81 in total"

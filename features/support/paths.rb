@@ -28,9 +28,6 @@ module NavigationHelpers
     when /^the index page for (.*)$/
       send(:"admin_#{$1}_path")
 
-    when /^page (.*) of the index pages for (.*)$/
-      send(:"admin_#{$2}_path") + "?page=#{$1}"
-
     when /^the last author's posts$/
       admin_user_posts_path(User.last)
 
