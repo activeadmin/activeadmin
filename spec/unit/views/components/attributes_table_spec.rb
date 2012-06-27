@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::AttributesTable do
 
-  setup_arbre_context!
-
   describe "creating with the dsl" do
     let(:helpers) { action_view }
 
@@ -14,31 +12,40 @@ describe ActiveAdmin::Views::AttributesTable do
       post
     end
 
+    let(:assigns){ { :post => post } }
 
     # Loop through a few different ways to make the same table
     # and ensure that they produce the same results
     {
       "when attributes are passed in to the builder methods" => proc {
-        attributes_table_for post, :id, :title, :body
+        render_arbre_component(assigns) {
+          attributes_table_for post, :id, :title, :body
+        }
       },
       "when attributes are built using the block" => proc {
-        attributes_table_for post do
-          rows :id, :title, :body
-        end
+        render_arbre_component(assigns) {
+          attributes_table_for post do
+            rows :id, :title, :body
+          end
+        }
       },
       "when each attribute is passed in by itself" => proc {
-        attributes_table_for post do
-          row :id
-          row :title
-          row :body
-        end
+        render_arbre_component(assigns) {
+          attributes_table_for post do
+            row :id
+            row :title
+            row :body
+          end
+        }
       },
       "when you create each row with a custom block" => proc {
-        attributes_table_for post do
-          row("Id")   { post.id }
-          row("Title"){ post.title }
-          row("Body") { post.body }
-        end
+        render_arbre_component(assigns) {
+          attributes_table_for post do
+            row("Id")   { post.id }
+            row("Title"){ post.title }
+            row("Body") { post.body }
+          end
+        }
       }
 
     }.each do |context_title, table_decleration|
@@ -49,6 +56,7 @@ describe ActiveAdmin::Views::AttributesTable do
           table.tag_name.should == 'div'
           table.attr(:class).should include('attributes_table')
         end
+
         it "should add id and type class" do
           table.class_names.should include("post")
           table.id.should == "attributes_table_post_1"
@@ -83,15 +91,19 @@ describe ActiveAdmin::Views::AttributesTable do
     end # describe dsl styles
 
     it "should allow html content inside the attributes table" do
-      table = attributes_table_for(post) do
-        row("ID"){ span(post.id, :class => 'id') }
-      end
+      table = render_arbre_component(assigns) {
+        attributes_table_for(post) do
+          row("ID"){ span(post.id, :class => 'id') }
+        end
+      }
       table.find_by_tag("td").first.content.chomp.strip.should == "<span class=\"id\">1</span>"
     end
 
     it "should check if an association exists when an attribute has id in it" do
       post.author = User.new(:username => "john_doe")
-      table = attributes_table_for post, :author_id
+      table = render_arbre_component(assigns) {
+        attributes_table_for post, :author_id
+      }
       table.find_by_tag("td").first.content.should == "john_doe"
     end
 

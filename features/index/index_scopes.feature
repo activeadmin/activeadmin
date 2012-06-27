@@ -146,7 +146,7 @@ Feature: Index Scoping
           scope_to :current_user
           scope :all, :default => true
           filter :title
-          
+
           controller do
             def current_user
               User.find_by_username('foo_fighters')
