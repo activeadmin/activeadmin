@@ -112,9 +112,9 @@ module ActiveAdmin
         else
           size = collection.size
           size = size.size if size.kind_of? Hash # when GROUP BY is used, AR returns Hash instead of Fixnum for .size
-          offset = collection.current_page * size
-          total  = collection.total_count
-          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => (offset - size + 1), :to => offset > total ? total : offset, :total => total)
+          offset = (collection.current_page - 1) * collection.limit_value
+          total = collection.total_count
+          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => offset + 1, :to => offset + size, :total => total)
         end
       end
 
