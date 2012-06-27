@@ -37,8 +37,8 @@ module ActiveAdmin
     #
     #   module HelpSidebar
     #
-    #     def self.included(resource)
-    #       resouce.sidebar "Help" do
+    #     def self.included(dsl)
+    #       dsl.sidebar "Help" do
     #         "Call us for Help"
     #       end
     #     end
