@@ -174,9 +174,9 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
-    context "when view last page of collection that has multiple pages" do
+    context "when viewing the last page of a collection that has multiple pages" do
       let(:collection) do
-        posts = 81.times.inject([]) {|m, _| m << Post.new }
+        posts = [Post.new] * 81
         Kaminari.paginate_array(posts).page(3).per(30)
       end
 
