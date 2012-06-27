@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::PaginatedCollection do
   describe "creating with the dsl" do
-    setup_arbre_context!
 
     let(:collection) do
       posts = [Post.new(:title => "First Post"), Post.new(:title => "Second Post"), Post.new(:title => "Third Post")]
@@ -14,9 +13,18 @@ describe ActiveAdmin::Views::PaginatedCollection do
       reload_routes!
     end
 
-    before do
-      request.stub!(:query_parameters).and_return({:controller => 'admin/posts', :action => 'index', :page => '1'})
-      controller.params = {:controller => 'admin/posts', :action => 'index'}
+    let(:view) do
+      view = mock_action_view
+      view.request.stub!(:query_parameters).and_return({:controller => 'admin/posts', :action => 'index', :page => '1'})
+      view.controller.params = {:controller => 'admin/posts', :action => 'index'}
+      view
+    end
+
+    # Helper to render paginated collections within an arbre context
+    def paginated_collection(*args)
+      render_arbre_component({:paginated_collection_args => args}, view) do
+        paginated_collection(*paginated_collection_args)
+      end
     end
 
     context "when specifying collection" do
