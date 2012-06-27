@@ -18,7 +18,7 @@ to implement beautiful and elegant interfaces with very little effort.
 == Goals
 
 1. Allow developers to quickly create gorgeous administration interfaces
-   <strong>(Not Just CRUD)</strong>
+   <b>(Not Just CRUD)</b>
 2. Build a DSL for developers and an interface for businesses.
 3. Ensure that developers can easily customize every nook and cranny of the interface.
 4. Build common interfaces as shareable gems so that the entire community benefits.
