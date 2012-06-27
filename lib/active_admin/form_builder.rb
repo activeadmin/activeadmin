@@ -56,7 +56,7 @@ module ActiveAdmin
       options = { :for => association }.merge(options)
       options[:class] ||= ""
       options[:class] << "inputs has_many_fields"
-      options[:name] ||= association.to_s.titlecase
+      options[:name] = association.to_s.titlecase if not options.has_key?(:name)
       
       # Add Delete Links
       form_block = proc do |has_many_form|
@@ -70,7 +70,7 @@ module ActiveAdmin
 
       content = with_new_form_buffer do
         template.content_tag :div, :class => "has_many #{association}" do
-          form_buffers.last << template.content_tag(:h3, options[:name]) unless options[:name].blank?
+          form_buffers.last << template.content_tag(:h3, options[:name]) unless options[:name].nil?
           inputs options, &form_block
 
           # Capture the ADD JS
