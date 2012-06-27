@@ -60,7 +60,7 @@
       title: "Comentário"
       add: "Adicionar Comentário"
       resource: "Objeto"
-      no_comments_yet: "Nenum comentário."
+      no_comments_yet: "Nenhum comentário."
       title_content: "Comentários: %{count}"
       errors:
         empty_text: "O comentário não foi salvo porque o texto estava vazio."
