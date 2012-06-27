@@ -64,6 +64,20 @@ es:
       title_content: "Comentarios (%{count})"
       errors:
         empty_text: "El comentario no fue salvado, el texto estaba vacio."
+    devise:
+      login:
+        title: "iniciar sesión"
+        remember_me: "Recuérdame"
+        submit: "iniciar sesión"
+      reset_password:
+        title: "¿Olvidaste tu contraseña?"
+        submit: "Restablecer mi contraseña"
+      change_password:
+        title: "Cambie su contraseña"
+        submit: "Cambiar mi contraseña"
+      links:
+        sign_in: "registrarse"
+        forgot_your_password: "¿Olvidaste tu contraseña?"
   views:
       pagination:
           truncate: "..."
@@ -80,3 +94,4 @@ es:
     cancel: "Cancelar"
     reset: "Resetear %{model}"
     required: "requerido"
+

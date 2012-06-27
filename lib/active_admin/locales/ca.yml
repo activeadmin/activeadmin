@@ -42,3 +42,39 @@ ca:
     blank_slate:
       content: "Encara no hi ha cap %{resource_name}."
       link: "Crea'n un/a"
+    batch_actions:
+      button_label: "les accions per lots"
+      delete_confirmation: "¿Està segur que desitja eliminar aquests %{plural_model}? Vostè no serà capaç de desfer això."
+      succesfully_destroyed:
+        one: "Va destruir amb èxit 1 %{model}"
+        other: "Va destruir amb èxit %{count} %{plural_model}"
+      selection_toggle_explanation: "(Selecció de Canviar)"
+      link: "crear una"
+      action_label: "%{title} seleccionat"
+      labels:
+        destroy: "esborrar"
+    comments:
+      body: "Cos"
+      author: "autor"
+      title: "comentari"
+      add: "Afegeix comentari"
+      resource: "Recurs"
+      no_comments_yet: "No hi ha comentaris"
+      title_content: "comentaris (%{count})"
+      errors:
+        empty_text: "El comentari no es va salvar, el text estava buida."
+    devise:
+      login:
+        title: "iniciar sessió"
+        remember_me: "Recordar"
+        submit: "iniciar sessió"
+      reset_password:
+        title: "Heu perdut la contrasenya?"
+        submit: "Restablir la contrasenya"
+      change_password:
+        title: "Canvieu la contrasenya"
+        submit: "Canviar la contrasenya"
+      links:
+        sign_in: "Registrar"
+        forgot_your_password: "Heu perdut la contrasenya?"
+
