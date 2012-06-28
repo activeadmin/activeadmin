@@ -1,6 +1,10 @@
 module ActiveAdmin
   class FormBuilder < ::Formtastic::FormBuilder
 
+    class << self
+      attr_accessor :input_classes_cache
+    end
+
     attr_reader :form_buffers
 
     def initialize(*args)
@@ -131,8 +135,8 @@ module ActiveAdmin
     end
 
     def input_class(as)
-      @input_classes_cache ||= {}
-      @input_classes_cache[as] ||= begin
+      self.class.input_classes_cache ||= {}
+      self.class.input_classes_cache[as] ||= begin
         begin
           begin
             custom_input_class_name(as).constantize
