@@ -6,6 +6,7 @@ module ActiveAdmin
   ::ActiveRecord::Base.send :include, Kaminari::ActiveRecordExtension
 
   class Comment < ActiveRecord::Base
+    attr_accessible :resource_id, :resource_type, :body
     self.table_name = "active_admin_comments"
 
     belongs_to :resource, :polymorphic => true
