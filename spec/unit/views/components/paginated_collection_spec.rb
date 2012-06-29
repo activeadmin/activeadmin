@@ -182,6 +182,20 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
+    context "when viewing the last page of a collection that has multiple pages" do
+      let(:collection) do
+        posts = [Post.new] * 81
+        Kaminari.paginate_array(posts).page(3).per(30)
+      end
+
+      let(:pagination) { paginated_collection(collection) }
+
+      it "should show the proper item counts" do
+        pagination.find_by_class('pagination_information').first.content.
+            gsub('&nbsp;',' ').should == "Displaying posts <b>61 - 81</b> of <b>81</b> in total"
+      end
+    end
+
 
   end
 end
