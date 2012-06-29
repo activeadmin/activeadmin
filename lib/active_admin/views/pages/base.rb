@@ -22,7 +22,7 @@ module ActiveAdmin
 
         def build_active_admin_head
           within @head do
-            insert_tag Arbre::HTML::Title, [title, active_admin_application.site_title].join(" | ")
+            insert_tag Arbre::HTML::Title, [title, render_or_call_method_or_proc_on(self, active_admin_application.site_title)].join(" | ")
             active_admin_application.stylesheets.each do |style|
               text_node(stylesheet_link_tag(style.path, style.options).html_safe)
             end
