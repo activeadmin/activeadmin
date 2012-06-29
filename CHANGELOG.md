@@ -7,6 +7,8 @@
 * All CSS is now encapsulated under the `body.active_admin` class. This may
   change the precedence of styles that you created to override or use in
   other areas of your application.
+* Dashboards are now implemented as pages. For more details of how to configure
+  a page, checkout http://activeadmin.info/docs/9-custom-pages.html
 
 ### Deprecations
 
@@ -17,6 +19,8 @@
 * ActiveAdmin::Menu and ActiveAdmin::MenuItem API has changed. If you were
   creating custom menu items, the builder syntax has changed to. Menu#add now
   accepts a MenuItem, instead of building the menu item for you.
+* `ActiveAdmin::Dashboards.build` is deprecated in favour of generating a page
+  and using the new `config.root_to` option.
 
 ## 0.4.4
 

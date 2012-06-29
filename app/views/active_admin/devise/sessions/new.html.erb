@@ -2,14 +2,14 @@
   <h2><%= title "#{active_admin_application.site_title} #{t('active_admin.devise.login.title')}" %></h2>
 
   <% scope = Devise::Mapping.find_scope!(resource_name) %>
-  <%= active_admin_form_for(resource, :as => resource_name, :url => send(:"#{scope}_session_path"), :html => { :id => "session_new" }) do |f| 
+  <%= active_admin_form_for(resource, :as => resource_name, :url => send(:"#{scope}_session_path"), :html => { :id => "session_new" }) do |f|
     f.inputs do
-      Devise.authentication_keys.each { |key| f.input key, :input_html => {:autofocus => true}}
+      resource.class.authentication_keys.each { |key| f.input key, :input_html => {:autofocus => true}}
       f.input :password
       f.input :remember_me, :label => t('active_admin.devise.login.remember_me'), :as => :boolean, :if =>  false  #devise_mapping.rememberable? }
     end
     f.actions do
-      f.action :submit, :label => t('active_admin.devise.login.submit'), :button_html => { :value => "Login" }
+      f.action :submit, :label => t('active_admin.devise.login.submit'), :button_html => { :value => t('active_admin.devise.login.submit') }
     end
   end
   %>

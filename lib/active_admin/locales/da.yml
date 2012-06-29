@@ -41,3 +41,39 @@ da:
     blank_slate:
       content: "Der er ingen %{resource_name} endnu."
       link: "Opret"
+    batch_actions:
+      button_label: "Batch Handlinger"
+      delete_confirmation: "Er du sikker på du vil slette disse %{plural_model}? Du vil ikke være i stand til at fortryde dette."
+      succesfully_destroyed:
+        one: "Vellykket ødelagt 1 %{model}"
+        other: "Vellykket ødelagt %{count} %{plural_model}"
+      selection_toggle_explanation: "(Skift Selection)"
+      link: "Opret en"
+      action_label: "%{title} Valgte"
+      labels:
+        destroy: "Slet"
+    comments:
+      body: "krop"
+      author: "forfatter"
+      title: "Kommentar"
+      add: "Tilføj Kommentar"
+      resource: "Resource"
+      no_comments_yet: "Ingen kommentarer endnu."
+      title_content: "Kommentarer (%{count})"
+      errors:
+        empty_text: "Kommentar blev ikke gemt, tekst var tom."
+    devise:
+      login:
+        title: "Login"
+        remember_me: "Husk mig"
+        submit: "Login"
+      reset_password:
+        title: "Glemt din adgangskode?"
+        submit: "Nulstille min adgangskode"
+      change_password:
+        title: "Skift din adgangskode"
+        submit: "Skift min adgangskode"
+      links:
+        sign_in: "Log ind"
+        forgot_your_password: "Glemt din adgangskode?"
+

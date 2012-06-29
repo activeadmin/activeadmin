@@ -4,7 +4,7 @@ Active Admin is a framework for creating administration style interfaces. It
 abstracts common business application patterns to make it simple for developers
 to implement beautiful and elegant interfaces with very little effort.
 
-{<img src="https://secure.travis-ci.org/gregbell/active_admin.png?branch=master" />}[http://travis-ci.org/gregbell/active_admin]
+{<img src="https://secure.travis-ci.org/gregbell/active_admin.png?branch=master" />}[http://travis-ci.org/gregbell/active_admin] {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/gregbell/active_admin]
 
 == Documentation & Support
 
@@ -18,7 +18,7 @@ to implement beautiful and elegant interfaces with very little effort.
 == Goals
 
 1. Allow developers to quickly create gorgeous administration interfaces
-   <strong>(Not Just CRUD)</strong>
+   <b>(Not Just CRUD)</b>
 2. Build a DSL for developers and an interface for businesses.
 3. Ensure that developers can easily customize every nook and cranny of the interface.
 4. Build common interfaces as shareable gems so that the entire community benefits.
@@ -36,7 +36,7 @@ please submit a well tested pull request with the desired changes. If you're not
 then the mailing list may be a good place to try to convince someone to help you out
 with your cause.
 
-If you are going to submit a pull request, please read the contributing guide: 
+If you are going to submit a pull request, please read the contributing guide:
 https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md
 
 

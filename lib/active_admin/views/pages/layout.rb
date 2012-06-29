@@ -13,7 +13,7 @@ module ActiveAdmin
         # Render the content_for(:layout) into the main content area
         def main_content
           content_for_layout = content_for(:layout)
-          if content_for_layout.is_a?(Arbre::HTML::Element)
+          if content_for_layout.is_a?(Arbre::Element)
             current_dom_context.add_child content_for_layout.children
           else
             text_node content_for_layout

@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe ActiveAdmin::FormBuilder do
 
-  setup_arbre_context!
-
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
   let(:helpers) do 
@@ -31,21 +29,24 @@ describe ActiveAdmin::FormBuilder do
     view
   end
 
-  def build_form(options = {}, &block)
-    options.merge!({:url => posts_path})
-    active_admin_form_for Post.new, options, &block
+  def build_form(options = {}, form_object = Post.new, &block)
+    options.merge!({:url => helpers.posts_path})
+
+    render_arbre_component({:form_object => form_object, :form_options => options, :form_block => block}, helpers)do
+      text_node active_admin_form_for(assigns[:form_object], assigns[:form_options], &assigns[:form_block])
+    end.to_s
   end
 
-  context "in general with buttons" do
+  context "in general with actions" do
     let :body do
       build_form do |f|
         f.inputs do
           f.input :title
           f.input :body
         end
-        f.buttons do
-          f.commit_button "Submit Me"
-          f.commit_button "Another Button"
+        f.actions do
+          f.action :submit, :label => "Submit Me"
+          f.action :submit, :label => "Another Button"
         end
       end
     end
@@ -60,7 +61,7 @@ describe ActiveAdmin::FormBuilder do
     it "should only generate the form once" do
       body.scan(/Title/).size.should == 1
     end
-    it "should generate buttons" do
+    it "should generate actions" do
       body.should have_tag("input", :attributes => {  :type => "submit",
                                                           :value => "Submit Me" })
       body.should have_tag("input", :attributes => {  :type => "submit",
@@ -92,7 +93,7 @@ describe ActiveAdmin::FormBuilder do
     it "should only generate the form once" do
       body.scan(/Title/).size.should == 1
     end
-    it "should generate buttons" do
+    it "should generate actions" do
       body.should have_tag("input", :attributes => {  :type => "submit",
                                                           :value => "Submit Me" })
       body.should have_tag("input", :attributes => {  :type => "submit",
@@ -104,18 +105,18 @@ describe ActiveAdmin::FormBuilder do
     it "should raise error" do
       lambda {
         comment = ActiveAdmin::Comment.new
-        active_admin_form_for comment, :url => "admins/comments" do |f|
+        build_form({:url => "admins/comments"}, comment) do |f|
           f.inputs :resource
         end
       }.should raise_error(Formtastic::PolymorphicInputWithoutCollectionError)
     end
   end
 
-  describe "passing in options with buttons" do
+  describe "passing in options with actions" do
     let :body do
       build_form :html => { :multipart => true } do |f|
         f.inputs :title
-        f.buttons
+        f.actions
       end
     end
     it "should pass the options on to the form" do
@@ -136,28 +137,28 @@ describe ActiveAdmin::FormBuilder do
   end
 
 
-  context "with buttons" do
+  context "with actions" do
     it "should generate the form once" do
       body = build_form do |f|
         f.inputs do
           f.input :title
         end
-        f.buttons
+        f.actions
       end
       body.scan(/id=\"post_title\"/).size.should == 1
     end
     it "should generate one button and a cancel link" do
       body = build_form do |f|
-        f.buttons
+        f.actions
       end
       body.scan(/type=\"submit\"/).size.should == 1
       body.scan(/class=\"cancel\"/).size.should == 1
     end
-    it "should generate multiple buttons" do
+    it "should generate multiple actions" do
       body = build_form do |f|
-        f.buttons do
-          f.commit_button "Create & Continue"
-          f.commit_button "Create & Edit"
+        f.actions do
+          f.action :submit, :label => "Create & Continue"
+          f.action :submit, :label => "Create & Edit"
         end
       end
       body.scan(/type=\"submit\"/).size.should == 2

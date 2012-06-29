@@ -14,14 +14,22 @@ module ActiveAdmin
     #   end
     #
     def apply(router)
-      # Define any necessary dashboard routes
+      # Define any necessary dashboard routes and root
       router.instance_exec(@application.namespaces.values) do |namespaces|
         namespaces.each do |namespace|
+          root_and_dashboard_routes = Proc.new do
+            root :to => (namespace.root_to || "dashboard#index")
+            if ActiveAdmin::Dashboards.built?
+              match '/dashboard' => 'dashboard#index', :as => 'dashboard'
+            end
+          end
+
           if namespace.root?
-            match '/' => 'dashboard#index', :as => 'dashboard'
+            instance_eval &root_and_dashboard_routes
           else
-            name = namespace.name
-            match name.to_s => "#{name}/dashboard#index", :as => "#{name.to_s}_dashboard"
+            namespace(namespace.name) do
+              instance_eval &root_and_dashboard_routes
+            end
           end
         end
       end
@@ -102,6 +110,5 @@ module ActiveAdmin
         end
       end
     end
-
   end
 end

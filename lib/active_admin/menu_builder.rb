@@ -25,23 +25,13 @@ module ActiveAdmin
     def build_menu
       menu = Menu.new
 
-      add_dashboard_to_menu(menu)
+      Dashboards.add_to_menu(namespace, menu)
 
       namespace.resources.each do |resource|
         register_with_menu(menu, resource) if resource.include_in_menu?
       end
 
       menu
-    end
-
-    def add_dashboard_to_menu(menu)
-      dashboard_path = namespace.root? ? :dashboard_path : "#{@namespace.name}_dashboard_path".to_sym
-
-      item = MenuItem.new  :id => "dashboard", 
-                           :label => proc{ I18n.t("active_admin.dashboard") },
-                           :url => dashboard_path,
-                           :priority => 1
-      menu.add item
     end
 
     # Does all the work of registernig a config with the menu system

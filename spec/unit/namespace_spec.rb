@@ -19,8 +19,14 @@ describe ActiveAdmin::Namespace do
       namespace.resources.resources.should be_empty
     end
 
-    it "should have one menu item (dashboard)" do
-      namespace.menu.items.size.should == 1
+    it "should not have any menu item" do
+      if ActiveAdmin::Dashboards.built?
+        # DEPRECATED behavior. If a dashboard was built while running this
+        # spec, then an item gets added to the menu
+        namespace.menu.should have(1).item
+      else
+        namespace.menu.items.should be_empty
+      end
     end
   end # context "when new"
 

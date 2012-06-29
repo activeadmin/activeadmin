@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::Columns do
 
-  setup_arbre_context!
-
   describe "Rendering one column" do
     let(:cols) do
-      columns do
-        column { span "Hello World" }
+      render_arbre_component do
+        columns do
+          column { span "Hello World" }
+        end
       end
     end
 
@@ -27,9 +27,11 @@ describe ActiveAdmin::Views::Columns do
 
   describe "Rendering two columns" do
     let(:cols) do
-      columns do
-        column { span "Hello World" }
-        column { span "Hello World" }
+      render_arbre_component do
+        columns do
+          column { span "Hello World" }
+          column { span "Hello World" }
+        end
       end
     end
 
@@ -48,11 +50,13 @@ describe ActiveAdmin::Views::Columns do
 
   describe "Rendering four columns" do
     let(:cols) do
-      columns do
-        column { span "Hello World" }
-        column { span "Hello World" }
-        column { span "Hello World" }
-        column { span "Hello World" }
+      render_arbre_component do
+        columns do
+          column { span "Hello World" }
+          column { span "Hello World" }
+          column { span "Hello World" }
+          column { span "Hello World" }
+        end
       end
     end
 
@@ -75,10 +79,12 @@ describe ActiveAdmin::Views::Columns do
 
   describe "Column Spans" do
     let(:cols) do
-      columns do
-        column(:span => 2){ "Hello World" }
-        column(){ "Hello World" }
-        column(){ "Hello World" }
+      render_arbre_component do
+        columns do
+          column(:span => 2){ "Hello World" }
+          column(){ "Hello World" }
+          column(){ "Hello World" }
+        end
       end
     end
 
@@ -94,9 +100,11 @@ describe ActiveAdmin::Views::Columns do
   describe "Column max width" do
 
     let(:cols) do
-      columns do
-        column(:max_width => "100px"){ "Hello World" }
-        column(){ "Hello World" }
+      render_arbre_component do
+        columns do
+          column(:max_width => "100px"){ "Hello World" }
+          column(){ "Hello World" }
+        end
       end
     end
 
@@ -113,9 +121,11 @@ describe ActiveAdmin::Views::Columns do
   describe "Column min width" do
 
     let(:cols) do
-      columns do
-        column(:min_width => "100px"){ "Hello World" }
-        column(){ "Hello World" }
+      render_arbre_component do
+        columns do
+          column(:min_width => "100px"){ "Hello World" }
+          column(){ "Hello World" }
+        end
       end
     end
 

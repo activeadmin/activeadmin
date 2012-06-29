@@ -21,4 +21,5 @@ Feature: User Logging out
       """
     And I am logged in
     When I go to the dashboard
-    Then I should see the default welcome message
+    And I follow "Logout"
+    Then I should see "Login"

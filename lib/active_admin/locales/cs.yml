@@ -36,3 +36,39 @@ cs:
     blank_slate:
       content: "Zatím zde není žádný obsah."
       link: "Vytvořit"
+    batch_actions:
+      button_label: "dávkové Akce"
+      delete_confirmation: "Jste si jisti, že chcete odstranit tyto %{plural_model}? Nebudete moci vrátit zpět to."
+      succesfully_destroyed:
+        one: "úspěšně zničil 1 %{model}"
+        other: "úspěšně zničil %{count} %{plural_model}"
+      selection_toggle_explanation: "(Změnit výběr)"
+      link: "vytvořit jeden"
+      action_label: "%{title} vybraný"
+      labels:
+        destroy: "vymazat"
+    comments:
+      body: "tělo"
+      author: "autor"
+      title: "komentář"
+      add: "Přidat komentář"
+      resource: "zdroj"
+      no_comments_yet: "Žádný nový komentář"
+      title_content: "Komentáře (%{count})"
+      errors:
+        empty_text: "Komentář nebyl uložen, je prázdný."
+    devise:
+      login:
+        title: "přihlášení"
+        remember_me: "Zapamatuj si mě"
+        submit: "přihlášení"
+      reset_password:
+        title: "Zapomněli jste heslo?"
+        submit: "Obnovit heslo"
+      change_password:
+        title: "Změnit heslo"
+        submit: "Změnit své heslo"
+      links:
+        sign_in: "Přihlásit se"
+        forgot_your_password: "Zapomněli jste heslo?"
+
