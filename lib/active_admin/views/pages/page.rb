@@ -19,7 +19,7 @@ module ActiveAdmin
 
         def title
           if config[:title]
-            instance_exec resource, &config.block
+            render_or_call_method_or_proc_on self, config[:title]
           else
             active_admin_config.name
           end
