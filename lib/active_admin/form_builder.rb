@@ -59,7 +59,7 @@ module ActiveAdmin
 
       # Add Delete Links
       form_block = proc do |has_many_form|
-        block.call(has_many_form) + if has_many_form.object.new_record?
+        block.call(has_many_form).to_s + if has_many_form.object.new_record?
                                       template.content_tag :li do
                                         template.link_to I18n.t('active_admin.has_many_delete'), "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
                                       end
