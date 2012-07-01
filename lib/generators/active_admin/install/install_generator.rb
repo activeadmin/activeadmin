@@ -22,7 +22,7 @@ module ActiveAdmin
       end
 
       def copy_locale
-        copy_file "../../../active_admin/locales/en.yml", "config/locales/active_admin.en.yml"
+        copy_file "active_admin.en.yml", "config/locales/active_admin.en.yml"
       end
 
       def setup_directory
