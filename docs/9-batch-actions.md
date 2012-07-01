@@ -98,7 +98,7 @@ example:
 
 Can be translated with:
 
-    # config/locales/en.yml
+    # config/locales/active_admin.en.yml
     en:
       active_admin:
         batch_actions:

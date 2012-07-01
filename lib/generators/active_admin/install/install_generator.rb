@@ -21,6 +21,10 @@ module ActiveAdmin
         template 'active_admin.rb.erb', 'config/initializers/active_admin.rb'
       end
 
+      def copy_locale
+        copy_file "active_admin.en.yml", "config/locales/active_admin.en.yml"
+      end
+
       def setup_directory
         empty_directory "app/admin"
         template 'dashboard.rb', 'app/admin/dashboard.rb'
