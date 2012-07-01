@@ -1,0 +1,77 @@
+fr:
+  active_admin:
+    dashboard: "Tableau de Bord"
+    dashboard_welcome:
+      welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
+      call_to_action: "Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboards.rb'"
+    view: "Voir"
+    edit: "Modifier"
+    delete: "Supprimer"
+    delete_confirmation: "Êtes-vous certain de vouloir supprimer ceci ?"
+    new_model: "Nouveau %{model}"
+    create_model: "Nouveau %{model}"
+    edit_model: "Modifier %{model}"
+    update_model: "Modifier %{model}"
+    delete_model: "Supprimer %{model}"
+    details: "Détails de %{model}"
+    cancel: "Annuler"
+    empty: "Vide"
+    previous: "Précédent"
+    next: "Suivant"
+    download: "Télécharger:"
+    has_many_new: "Ajouter un nouveau %{model}"
+    has_many_delete: "Supprimer"
+    filter: "Filtrer"
+    clear_filters: "Supprimer les filtres"
+    search_field: "Rechercher %{field}"
+    equal_to: "Egal à"
+    greater_than: "Plus grand que"
+    less_than: "Plus petit que"
+    main_content: "Veuillez implémenter %{model}#main_content pour afficher le contenu."
+    logout: "Déconnexion"
+    sidebars:
+      filters: "Filtres"
+    pagination:
+      empty: "Aucun %{model} trouvé"
+      one: "Affichage de <b>1</b> %{model}"
+      one_page: "Affichage de <b>tous les %{n}</b> %{model}"
+      multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"
+      entry:
+        one: "entrée"
+        other: "entrées"
+    any: "N'importe lequel"
+    blank_slate:
+      content: "Il n'y a pas encore de %{resource_name}."
+      link: "Créez en un"
+    batch_actions:
+      button_label: "Actions groupées"
+      delete_confirmation: "Êtes-vous sur de vouloir supprimer ces %{plural_model}? Cette action est irréversible."
+      succesfully_destroyed:
+        one: "1 %{model} supprimé"
+        other: "%{count} %{plural_model} supprimés"
+      selection_toggle_explanation: "(Inverser la sélection)"
+      link: "Créer un"
+    comments:    
+      body: "Corps"
+      author: "Auteur"
+      title: "Commentaire"
+      add: "Ajouter un commentaire"
+      resource: "Ressource"
+      no_comments_yet: "Aucun commentaire actuellement"
+      title_content: "Commentaires (%{count})"
+      errors:
+        empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
+    devise:
+      login:
+        title: "login"
+        remember_me: "Se souvenir de moi"
+        submit: "login"
+      reset_password:
+        title: "Vous avez oublié votre mot de passe?"
+        submit: "Réinitialiser mon mot de passe"
+      change_password:
+        title: "Changez votre mot de passe"
+        submit: "Changer mon mot de passe"
+      links:
+        sign_in: "Connectez-vous"
+        forgot_your_password: "Vous avez oublié votre mot de passe?"

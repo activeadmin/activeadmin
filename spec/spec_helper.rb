@@ -94,7 +94,7 @@ end
 require 'rails'
 require 'active_admin'
 ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
-I18n.load_path << File.expand_path("../../lib/active_admin/locales/en.yml", __FILE__)
+I18n.load_path += Dir[File.expand_path("../../../spec/support/locales/*.yml", __FILE__)]
 
 require ENV['RAILS_ROOT'] + '/config/environment'
 
