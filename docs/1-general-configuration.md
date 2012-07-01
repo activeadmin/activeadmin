@@ -40,9 +40,10 @@ there is no link and the title is set to the name of your Rails.application clas
 
 ## Internationalization (I18n)
 
-To internationalize Active Admin or to change default strings, you can copy
-`lib/active_admin/locales/en.yml` to your application `config/locales` directory and
-change its content. You can contribute to the project with your translations too!
+To internationalize Active Admin or to change default strings, modify the
+`active_admin.en.yml` file that was copied to your application `config/locales`
+directory and change its content. You can contribute to the project with your
+translations too!
 
 ## Namespaces
 
