@@ -46,6 +46,8 @@ pl:
       succesfully_destroyed:
         one: "Poprawnie usunięto 1 %{model}"
         other: "Poprawnie usunięto %{count} %{plural_model}"
+        many: "Poprawnie usunięto %{count} %{plural_model}"
+        few: "Poprawnie usunięto %{count} %{plural_model}"
       selection_toggle_explanation: "(Przełącz zaznaczenie)"
       link: "Utwórz jeden"
       action_label: "%{title} zaznaczone"
