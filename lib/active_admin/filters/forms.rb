@@ -8,6 +8,7 @@ module ActiveAdmin
       def filter(method, options = {})
         return "" if method.blank?
         options[:as] ||= default_input_type(method)
+        return "" if (options[:if].is_a?(Proc) && !template.instance_eval(&options[:if])) || (options[:unless].is_a?(Proc) && template.instance_eval(&options[:unless]))
         return "" unless options[:as]
         content = input(method, options)
         form_buffers.last << content.html_safe if content
