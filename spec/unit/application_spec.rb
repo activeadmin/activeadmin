@@ -82,7 +82,7 @@ describe ActiveAdmin::Application do
 
   describe "files in load path" do
     it "should load files in the first level directory" do
-      application.files_in_load_path.should include(File.expand_path("app/admin/dashboards.rb", Rails.root))
+      application.files_in_load_path.should include(File.expand_path("app/admin/dashboard.rb", Rails.root))
     end
 
     it "should load files from subdirectories" do
