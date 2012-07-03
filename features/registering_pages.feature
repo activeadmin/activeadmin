@@ -64,3 +64,23 @@ Feature: Registering Pages
     When I go to the dashboard
     And I follow "Status"
     Then I should see an action item link to "Visit"
+
+  Scenario: Adding a page action to a page
+    Given a configuration of:
+    """
+    ActiveAdmin.register_page "Status" do
+      page_action :check do
+        redirect_to admin_status_path
+      end
+
+      content do
+        ("I love chocolate." + link_to("Check", admin_status_check_path)).html_safe
+      end
+    end
+    """
+    When I go to the dashboard
+    And I follow "Status"
+    And I follow "Check"
+    Then I should see the content "I love chocolate."
+
+
