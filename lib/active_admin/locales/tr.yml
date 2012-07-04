@@ -64,3 +64,17 @@ tr:
       title_content: "Yorumlar (%{count})"
       errors:
         empty_text: "Yorum boş olarak kaydedilemez."
+    devise:
+      login:
+        title: "giriş"
+        remember_me: "Remember me"
+        submit: "giriş"
+      reset_password:
+        title: "Şifreni mi unuttun?"
+        submit: "Benim Şifrenizi sıfırlayın"
+      change_password:
+        title: "Şifrenizi değiştirin"
+        submit: "Şifremi değiştir"
+      links:
+        sign_in: "yap"
+        forgot_your_password: "Şifreni mi unuttun?"
