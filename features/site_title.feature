@@ -41,7 +41,7 @@ Feature: Site title
     Given a configuration of:
     """
       ActiveAdmin.application.site_title_image = nil # Configuration is not reset between scenarios
-      ActiveAdmin.application.site_title = proc { "Hello #{controller.current_admin_user.email}" }
+      ActiveAdmin.application.site_title = proc { "Hello #{controller.current_admin_user.try(:email) || 'you!'}" }
     """
     When I am on the dashboard
     And I should see the site title "Hello admin@example.com"
