@@ -3,11 +3,13 @@ module ActiveAdmin
     module Pages
       class Page < Base
 
-        def main_content
-          page_presenter = active_admin_config.get_page_presenter(:index)
+        def config
+          active_admin_config.get_page_presenter(:index) || ::ActiveAdmin::PagePresenter.new
+        end
 
-          if page_presenter && page_presenter.block
-            instance_exec &page_presenter.block
+        def main_content
+          if config.block
+            instance_exec &config.block
           else
             nil
           end
@@ -16,7 +18,11 @@ module ActiveAdmin
         protected
 
         def title
-          active_admin_config.name
+          if config[:title]
+            render_or_call_method_or_proc_on self, config[:title]
+          else
+            active_admin_config.name
+          end
         end
       end
     end
