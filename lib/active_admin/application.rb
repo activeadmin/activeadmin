@@ -116,11 +116,17 @@ module ActiveAdmin
     # @returns [Namespace] the new or existing namespace
     def find_or_create_namespace(name)
       name ||= :root
-      return namespaces[name] if namespaces[name]
-      namespace = Namespace.new(self, name)
-      namespaces[name] = namespace
-      ActiveAdmin::Event.dispatch ActiveAdmin::Namespace::RegisterEvent, namespace
+
+      if namespaces[name]
+        namespace = namespaces[name]
+      else
+        namespace = Namespace.new(self, name)
+        namespaces[name] = namespace
+        ActiveAdmin::Event.dispatch ActiveAdmin::Namespace::RegisterEvent, namespace
+      end
+
       yield(namespace) if block_given?
+
       namespace
     end
 
