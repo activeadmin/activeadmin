@@ -39,7 +39,7 @@ module ActiveAdmin
       def build_table
         resource_selection_toggle_panel
         table :class => "index_grid" do
-          collection.in_groups_of(number_of_columns).each do |group|
+          @collection.in_groups_of(number_of_columns).each do |group|
             build_row(group)
           end
         end
