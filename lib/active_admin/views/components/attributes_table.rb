@@ -43,14 +43,15 @@ module ActiveAdmin
       end
 
       def content_for(attr_or_proc)
+        previous = current_arbre_element.to_s
         value = case attr_or_proc
                 when Proc
-                  attr_or_proc.call(@record) || content
+                  attr_or_proc.call(@record)
                 else
                   content_for_attribute(attr_or_proc)
                 end
         value = pretty_format(value)
-        value == "" || value == nil ? empty_value : value
+        (value == "" || value == nil) && previous == current_arbre_element.to_s ? empty_value : value
       end
 
       def content_for_attribute(attr)
