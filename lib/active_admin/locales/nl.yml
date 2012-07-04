@@ -64,3 +64,18 @@ nl:
       title_content: "Reacties (%{count})"
       errors:
         empty_text: "De reactie is niet opgeslagen, de tekst was leeg."
+    devise:
+      login:
+        title: "inloggen"
+        remember_me: "Onthoud mij"
+        submit: "inloggen"
+      reset_password:
+        title: "Wachtwoord vergeten?"
+        submit: "Reset mijn wachtwoord vergeten"
+      change_password:
+        title: "Wijzig uw wachtwoord"
+        submit: "Mijn wachtwoord wijzigen"
+      links:
+        sign_in: "Meld u aan"
+        forgot_your_password: "Wachtwoord vergeten?"
+
