@@ -30,6 +30,32 @@ Feature: Registering Pages
     Then I should see the page title "Status"
     And I should see the Active Admin layout
 
+  Scenario: Registering a page with a custom title as a string
+    Given a configuration of:
+    """
+    ActiveAdmin.register_page "Status" do
+      content :title => "Custom Page Title" do
+        "I love chocolate."
+      end
+    end
+    """
+    When I go to the dashboard
+    And I follow "Status"
+    Then I should see the page title "Custom Page Title"
+
+  Scenario: Registering a page with a custom title as a proc
+    Given a configuration of:
+    """
+    ActiveAdmin.register_page "Status" do
+      content :title => proc{ "Custom Page Title from Proc" } do
+        "I love chocolate."
+      end
+    end
+    """
+    When I go to the dashboard
+    And I follow "Status"
+    Then I should see the page title "Custom Page Title from Proc"
+
   Scenario: Adding a sidebar section to a page
     Given a configuration of:
     """
