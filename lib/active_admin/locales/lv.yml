@@ -53,3 +53,17 @@ lv:
       title_content: "Komentāri (%{count})"
       errors:
         empty_text: "Komentārs netika saglabāts - nekas nav ierakstīts"
+    devise:
+      login:
+        title: "Ielogojaties"
+        remember_me: "atcerēties mani"
+        submit: "Ielogojaties"
+      reset_password:
+        title: "Aizmirsāt savu paroli?"
+        submit: "Atjaunotu savu paroli"
+      change_password:
+        title: "Nomainīt paroli"
+        submit: "Nomainīt savu paroli"
+      links:
+        sign_in: "pierakstīties"
+        forgot_your_password: "Aizmirsāt savu paroli?"
