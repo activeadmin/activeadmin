@@ -74,13 +74,13 @@ Feature: Registering Pages
       end
 
       content do
-        ("I love chocolate." + link_to("Check", admin_status_check_path)).html_safe
+        ("Chocolate I lØve You!" + link_to("Check", admin_status_check_path)).html_safe
       end
     end
     """
     When I go to the dashboard
     And I follow "Status"
     And I follow "Check"
-    Then I should see the content "I love chocolate."
+    Then I should see the content "Chocolate I lØve You!"
 
 
