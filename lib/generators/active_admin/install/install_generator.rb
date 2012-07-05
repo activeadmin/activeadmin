@@ -20,6 +20,10 @@ module ActiveAdmin
       def setup_directory
         empty_directory "app/admin"
         template 'dashboard.rb', 'app/admin/dashboard.rb'
+        if options[:users].present?
+          @user_class = name
+          template 'admin_user.rb.erb', "app/admin/#{name.underscore}.rb"
+        end
       end
 
       def setup_routes
