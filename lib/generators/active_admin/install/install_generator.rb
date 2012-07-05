@@ -1,22 +1,18 @@
+require 'rails/generators/active_record'
+
 module ActiveAdmin
   module Generators
-    class InstallGenerator < Rails::Generators::NamedBase
+    class InstallGenerator < ActiveRecord::Generators::Base
       desc "Installs Active Admin and generates the necessary migrations"
       argument :name, :type => :string, :default => "AdminUser"
 
       hook_for :users, :default => "devise", :desc => "Admin user generator to run. Skip with --skip-users"
 
-      include Rails::Generators::Migration
-
       def self.source_root
         @_active_admin_source_root ||= File.expand_path("../templates", __FILE__)
-      end  
-
-      def self.next_migration_number(dirname)
-        Time.now.strftime("%Y%m%d%H%M%S")
       end
 
-      def copy_initializer
+			def copy_initializer
         @underscored_user_name = name.underscore
         template 'active_admin.rb.erb', 'config/initializers/active_admin.rb'
       end
