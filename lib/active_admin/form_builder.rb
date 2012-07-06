@@ -30,11 +30,6 @@ module ActiveAdmin
       form_buffers.last << template.content_tag(:li, (template.link_to I18n.t('active_admin.cancel'), url, html_options), li_attributes)
     end
 
-    def commit_action_with_cancel_link
-      content = action(:submit)
-      content << cancel_link
-    end
-
     def actions(*args, &block)
       content = with_new_form_buffer do
         block_given? ? super : super { commit_action_with_cancel_link }
