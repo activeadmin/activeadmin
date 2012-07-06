@@ -124,7 +124,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should use 'Singular' as the collection name when there is an I18n translation" do
-        I18n.stub(:translate!) { "Singular" }
+        I18n.stub(:translate) { "Singular" }
         pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>1</b> Singular"
       end
     end
@@ -137,7 +137,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should use 'Plural' as the collection name when there is an I18n translation" do
-        I18n.stub(:translate!) { "Plural" }
+        I18n.stub(:translate) { "Plural" }
         pagination.find_by_class('pagination_information').first.content.should == "Displaying <b>all 3</b> Plural"
       end
     end
