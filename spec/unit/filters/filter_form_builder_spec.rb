@@ -55,13 +55,13 @@ describe ActiveAdmin::Filters::ViewHelper do
 
   describe "conditional filters" do
     describe "if conditions" do
-      it "if true should render" do
+      it "should render when true" do
         body = filter(:title, :if => lambda { |_| true })
 
         body.should_not equal("")
       end
 
-      it "if false should not render" do
+      it "should not render when false" do
         body = filter(:title, :if => lambda { |_| false })
 
         body.should equal("")
@@ -69,14 +69,14 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     describe "unless conditions" do
-            it "if false should render" do
-        body = filter(:title, :if => lambda { |_| false })
+            it "should render when false" do
+        body = filter(:title, :unless => lambda { |_| false })
 
         body.should_not equal("")
       end
 
-      it "if true should not render" do
-        body = filter(:title, :if => lambda { |_| true })
+      it "should not render when true" do
+        body = filter(:title, :unless => lambda { |_| true })
 
         body.should equal("")
       end
