@@ -49,7 +49,7 @@ describe "Registering an object to administer" do
       config_1 = ActiveAdmin.register(Category) { filter :name }
       config_2 = ActiveAdmin.register(Category) { filter :id }
       config_1.should == config_2
-      config_1.controller.filters_config.size.should == 2
+      config_1.filters.size.should == 2
     end
 
     context "with different resource classes" do

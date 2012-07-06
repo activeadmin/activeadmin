@@ -38,3 +38,39 @@ ja:
     blank_slate:
       content: "%{resource_name} はまだありません。"
       link: "作成する"
+    batch_actions:
+      button_label: "バッチアクション"
+      delete_confirmation: "あなたはこれらを削除してもよろしいです %{plural_model}? あなたはこれを取り消すことはできません。"
+      succesfully_destroyed:
+        one: "首尾よく破壊された 1 %{model}"
+        other: "首尾よく破壊された %{count} %{plural_model}"
+      selection_toggle_explanation: "(トグルの選択)"
+      link: "作成する1"
+      action_label: "%{title} 選択した"
+      labels:
+        destroy: "削除する"
+    comments:
+      body: "ボディ"
+      author: "作成者"
+      title: "コメント"
+      add: "コメントを追加"
+      resource: "リソース"
+      no_comments_yet: "コメントはまだありません。"
+      title_content: "コメント (%{count})"
+      errors:
+        empty_text: "コメントが保存されていない、テキストは空でした。"
+    devise:
+      login:
+        title: "ログイン"
+        remember_me: "私を覚えている"
+        submit: "ログイン"
+      reset_password:
+        title: "パスワードをお忘れですか？"
+        submit: "私のパスワードをリセットする"
+      change_password:
+        title: "パスワードを変更する"
+        submit: "パスワードを変更する"
+      links:
+        sign_in: "サインイン"
+        forgot_your_password: "パスワードをお忘れですか？"
+

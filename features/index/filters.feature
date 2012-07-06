@@ -66,3 +66,13 @@ Feature: Index Filtering
     Then I should see 1 posts in the table
     And I should see "Hello World" within ".index_table"
     And the "jane_doe" checkbox should be checked
+
+  Scenario: Disabling filters
+    Given an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        config.filters = false
+      end
+    """
+    Then I should not see a sidebar titled "Filters"
+

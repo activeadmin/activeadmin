@@ -6,9 +6,9 @@ require 'formtastic'
 require 'sass'
 require 'inherited_resources'
 require 'jquery-rails'
+require 'arbre'
 require 'active_admin/dependency_checker' 
 require 'active_admin/sass/helpers'
-require 'active_admin/arbre'
 require 'active_admin/engine'
 
 module ActiveAdmin
@@ -28,7 +28,6 @@ module ActiveAdmin
   autoload :DSL,                      'active_admin/dsl'
   autoload :Event,                    'active_admin/event'
   autoload :FormBuilder,              'active_admin/form_builder'
-  autoload :FilterFormBuilder,        'active_admin/filter_form_builder'
   autoload :Inputs,                   'active_admin/inputs'
   autoload :Iconic,                   'active_admin/iconic'
   autoload :Menu,                     'active_admin/menu'
@@ -51,9 +50,11 @@ module ActiveAdmin
   autoload :Views,                    'active_admin/views'
 
   class Railtie < ::Rails::Railtie
-    # Add load paths straight to I18n, so engines and application can overwrite it.
-    require 'active_support/i18n'
-    I18n.load_path += Dir[File.expand_path('../active_admin/locales/*.yml', __FILE__)]
+    config.after_initialize do
+      # Add load paths straight to I18n, so engines and application can overwrite it.
+      require 'active_support/i18n'
+      I18n.load_path += Dir[File.expand_path('../active_admin/locales/*.yml', __FILE__)]
+    end
   end
 
   class << self
@@ -130,5 +131,7 @@ end
 
 ActiveAdmin::DependencyChecker.check!
 
+# Require internal Plugins
 require 'active_admin/comments'
 require 'active_admin/batch_actions'
+require 'active_admin/filters'

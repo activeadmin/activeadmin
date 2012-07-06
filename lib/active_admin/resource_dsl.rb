@@ -145,10 +145,6 @@ module ActiveAdmin
     delegate :before_save,    :after_save,    :to => :controller
     delegate :before_destroy, :after_destroy, :to => :controller
 
-    # Filters
-    delegate :filter, :to => :controller
-
-
     # Standard rails filters
     delegate :before_filter, :skip_before_filter, :after_filter, :around_filter, :to => :controller
 
