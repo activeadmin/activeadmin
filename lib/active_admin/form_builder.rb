@@ -125,14 +125,6 @@ module ActiveAdmin
       "ActiveAdmin::Inputs::#{as.to_s.camelize}Input"
     end
 
-    # Copy Formtastic 2.1.1's #input_class in case user has Formtastic 2.2
-    def input_class(as)
-      @input_classes_cache ||= {}
-      @input_classes_cache[as] ||= begin
-        Rails.application.config.cache_classes ? input_class_with_const_defined(as) : input_class_by_trying(as)
-      end
-    end
-
     # prevent exceptions in production environment for better performance
     def input_class_with_const_defined(as)
       input_class_name = custom_input_class_name(as)
