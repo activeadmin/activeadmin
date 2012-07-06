@@ -9,26 +9,29 @@ module ActiveAdmin
         parts.pop unless %w{ create update }.include?(params[:action])
         crumbs = []
         parts.each_with_index do |part, index|
-          name = ""
-          if part =~ /^\d|^[a-f0-9]{24}$/ && parent = parts[index - 1]
-            begin
-              parent_class = parent.singularize.camelcase.constantize
-              obj = parent_class.find(part[/^[a-f0-9]{24}$/] ? part : part.to_i)
-              name = display_name(obj)
-            rescue
+          name = nil
+
+          if part =~ /^\d|^[a-f0-9]{24}$/
+            config = if active_admin_config.belongs_to? && index <= 2
+              active_admin_config.belongs_to_config.target
+            else
+              active_admin_config
             end
+            # Rescue in case the part of the path was misidentified as an ID.
+            id = part[/^[a-f0-9]{24}$/] ? part : part.to_i
+            name = display_name(config.resource_class.find(id)) rescue nil
           end
-          
-          name = part.titlecase if name == ""
-          begin
-            crumbs << link_to( I18n.translate!("activerecord.models.#{part.singularize}", :count => 1.1), "/" + parts[0..index].join('/'))
+
+          name ||= begin
+            I18n.translate!("activerecord.models.#{part.singularize}", :count => 1.1)
           rescue I18n::MissingTranslationData
-            crumbs << link_to( name, "/" + parts[0..index].join('/'))
+            part.titlecase
           end
+
+          crumbs << link_to(name, '/' + parts[0..index].join('/'))
         end
         crumbs
       end
-
     end
   end
 end
