@@ -82,6 +82,39 @@ describe "Breadcrumbs" do
       end
     end
 
+    context "when path '/admin/posts/4e24d6249ccf967313000000/comments'" do
+      let(:path) { "/admin/posts/4e24d6249ccf967313000000/comments" }
+
+      it "should have 3 items" do
+        trail.size.should == 3
+      end
+      it "should have a link to /admin" do
+        trail[0][:name].should == "Admin"
+        trail[0][:path].should == "/admin"
+      end
+      it "should have a link to /admin/posts" do
+        trail[1][:name].should == "Posts"
+        trail[1][:path].should == "/admin/posts"
+      end
+
+      context "when Post.find(4e24d6249ccf967313000000) doesn't exist" do
+        it "should have a link to /admin/posts/4e24d6249ccf967313000000" do
+          trail[2][:name].should == "4e24d6249ccf967313000000"
+          trail[2][:path].should == "/admin/posts/4e24d6249ccf967313000000"
+        end
+      end
+
+      context "when Post.find(4e24d6249ccf967313000000) does exist" do
+        before do
+          Post.stub!(:find).with('4e24d6249ccf967313000000').and_return{ mock(:display_name => "Hello World") }
+        end
+        it "should have a link to /admin/posts/4e24d6249ccf967313000000 using display name" do
+          trail[2][:name].should == "Hello World"
+          trail[2][:path].should == "/admin/posts/4e24d6249ccf967313000000"
+        end
+      end
+    end
+
     context "when path '/admin/posts/1/coments/1'" do
       let(:path) { "/admin/posts/1/comments/1" }
 

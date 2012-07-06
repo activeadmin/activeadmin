@@ -10,10 +10,10 @@ module ActiveAdmin
         crumbs = []
         parts.each_with_index do |part, index|
           name = ""
-          if part =~ /^\d/ && parent = parts[index - 1]
+          if part =~ /^\d|^[a-f0-9]{24}$/ && parent = parts[index - 1]
             begin
               parent_class = parent.singularize.camelcase.constantize
-              obj = parent_class.find(part.to_i)
+              obj = parent_class.find(part[/^[a-f0-9]{24}$/] ? part : part.to_i)
               name = display_name(obj)
             rescue
             end
