@@ -118,6 +118,10 @@ ENV["RAILS_ASSET_ID"] = ''
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
+  # Use color in STDOUT
+  config.color_enabled = true
+  # Use the specified formatter
+  # config.formatter = :documentation # :progress, :html, :textmate
 end
 
 # All RSpec configuration needs to happen before any examples

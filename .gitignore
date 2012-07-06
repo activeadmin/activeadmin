@@ -13,6 +13,9 @@ tmtags
 ## VIM
 *.swp
 
+## RUBYMINE
+.idea/
+
 ## PROJECT::GENERAL
 tags
 coverage
