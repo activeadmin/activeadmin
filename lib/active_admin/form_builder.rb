@@ -152,6 +152,7 @@ module ActiveAdmin
             standard_input_class_name(as).constantize
           end
         end
+      end
     rescue NameError
       raise Formtastic::UnknownInputError
     end
