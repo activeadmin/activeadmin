@@ -53,6 +53,39 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
+<<<<<<< HEAD
+=======
+  describe "conditional filters" do
+    describe "if conditions" do
+      it "should render when true" do
+        body = filter(:title, :if => lambda { |_| true })
+
+        body.should_not equal("")
+      end
+
+      it "should not render when false" do
+        body = filter(:title, :if => lambda { |_| false })
+
+        body.should equal("")
+      end
+    end
+
+    describe "unless conditions" do
+            it "should render when false" do
+        body = filter(:title, :unless => lambda { |_| false })
+
+        body.should_not equal("")
+      end
+
+      it "should not render when true" do
+        body = filter(:title, :unless => lambda { |_| true })
+
+        body.should equal("")
+      end
+    end
+  end
+
+>>>>>>> Make test more RSpec-like
   describe "string attribute" do
     let(:body) { filter :title }
 
