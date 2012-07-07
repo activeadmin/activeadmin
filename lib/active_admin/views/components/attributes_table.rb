@@ -35,7 +35,11 @@ module ActiveAdmin
       end
 
       def header_content_for(attr)
-        @record.class.respond_to?(:human_attribute_name) ? @record.class.human_attribute_name(attr).titleize : attr.to_s.titleize
+        if @record.class.respond_to?(:human_attribute_name)
+          @record.class.human_attribute_name(attr, :default => attr.to_s.titleize)
+        else
+          attr.to_s.titleize
+        end
       end
 
       def empty_value
