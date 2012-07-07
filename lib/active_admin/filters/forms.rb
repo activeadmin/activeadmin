@@ -37,6 +37,10 @@ module ActiveAdmin
       end
 
       def custom_input_class_name(as)
+        "Filter#{as.to_s.camelize}Input"
+      end
+
+      def active_admin_input_class_name(as)
         "ActiveAdmin::Inputs::Filter#{as.to_s.camelize}Input"
       end
 
