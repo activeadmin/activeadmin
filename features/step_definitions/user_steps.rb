@@ -38,3 +38,18 @@ Given /^an admin user "([^"]*)" exists$/ do |admin_email|
     raise "Could not create an admin user"
   end
 end
+
+Given /^an admin user "([^"]*)" exists with (expired )?reset password token "(.*?)"$/ do |admin_email, expired, token|
+  user = AdminUser.find_or_create_by_email :email => admin_email,
+                                           :password => "password",
+                                           :password_confirmation => "password"
+
+  unless user.persisted?
+    puts "Coult not create an admin user #{admin_email}: #{user.errors.full_messages}"
+    raise "Could not create an admin user"
+  end
+
+  user.reset_password_token = token
+  user.reset_password_sent_at = 1.minute.ago unless expired
+  user.save
+end
