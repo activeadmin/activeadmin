@@ -20,6 +20,21 @@ Feature: Registering Pages
     And I should see the Active Admin layout
     And I should see the content "I love chocolate."
 
+  Scenario: Registering a page with a complex name
+    Given a configuration of:
+    """
+    ActiveAdmin.register_page "Chocolate I lØve You!" do
+      content do
+        "I love chocolate."
+      end
+    end
+    """
+    When I go to the dashboard
+    And I follow "Chocolate I lØve You!"
+    Then I should see the page title "Chocolate I lØve You!"
+    And I should see the Active Admin layout
+    And I should see the content "I love chocolate."
+
   Scenario: Registering an empty page
     Given a configuration of:
     """
