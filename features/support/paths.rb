@@ -14,6 +14,8 @@ module NavigationHelpers
       "/admin"
     when /the new post page/
       "/admin/posts/new"
+    when /the admin password reset form with reset password token "([^"]*)"/
+      "/admin/password/edit?reset_password_token=#{$1}"
 
     # the index page for posts in the root namespace
     # the index page for posts in the user_admin namespace
