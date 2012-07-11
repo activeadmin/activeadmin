@@ -63,14 +63,14 @@ module ActiveAdmin
           it "should return the titleized model_name.human" do
             config.resource_name.should_receive(:human).and_return "Da category"
 
-            config.resource_label.should == "Da Category"
+            config.resource_label.should == "Da category"
           end
         end
 
         describe "plural label" do
           it "should return the titleized plural version defined by i18n if available" do
             I18n.should_receive(:translate).at_least(:once).and_return("Da categories")
-            config.plural_resource_label.should == "Da Categories"
+            config.plural_resource_label.should == "Da categories"
           end
         end
 
