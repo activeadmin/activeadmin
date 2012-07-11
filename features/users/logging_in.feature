@@ -19,7 +19,7 @@ Feature: User Logging In
     And I should see "Logout"
     And I should see "admin@example.com"
 
-  Scenario: Attempting to log in with an incorrent email address
+  Scenario: Attempting to log in with an incorrect email address
     When I fill in "Email" with "not-an-admin@example.com"
     And I fill in "Password" with "not-my-password"
     And I press "Login"
