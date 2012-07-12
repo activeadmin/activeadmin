@@ -81,7 +81,7 @@ module ActiveAdmin
           link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format))
         end
         div :class => "download_links" do
-		  text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
+          text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
         end
       end
 
