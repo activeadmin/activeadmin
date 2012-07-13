@@ -30,7 +30,7 @@ describe ActiveAdmin::XlsxBuilder do
     end
 
     it "should be set up with a header style" do
-       builder.header_style.keys.sort.should == header_style.keys.sort 
+       header_style.each { |key , value| builder.header_style[key].should == value }
     end
   end
 end
