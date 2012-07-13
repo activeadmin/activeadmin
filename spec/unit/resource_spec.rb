@@ -192,6 +192,22 @@ module ActiveAdmin
       end
     end
 
+    describe "#xlsx_builder" do
+      context "when no xlsx_builder set" do
+        it "should return a default xlsx_builder with id and content columns" do
+          config.xlsx_builder.columns.size.should == Category.content_columns.size + 1
+        end
+      end
+
+      context "when xslx_builder set" do
+        it "should return the xlsx_builder we set" do
+          xlsx_builder = XlsxBuilder.new
+          config.xlsx_builder = xlsx_builder
+          config.xlsx_builder.should == xlsx_builder
+        end
+      end
+    end
+
     describe "#csv_builder" do
       context "when no csv builder set" do
         it "should return a default column builder with id and content columns" do

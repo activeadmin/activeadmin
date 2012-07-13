@@ -15,6 +15,7 @@ module ActiveAdmin
 
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
+    respond_to :xlsx, :only => :index
 
     ACTIVE_ADMIN_ACTIONS = [:index, :show, :new, :create, :edit, :update, :destroy]
 

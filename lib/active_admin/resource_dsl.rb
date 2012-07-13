@@ -76,6 +76,24 @@ module ActiveAdmin
       config.csv_builder = CSVBuilder.new(options, &block)
     end
 
+
+    # Configure the xlsx format
+    #
+    # For example:
+    #
+    #   xlsx do
+    #     i18n_scope = [:active_admin, :resources, :post]
+    #     column :name
+    #     column(:author) { |post| post.author.full_name }
+    #   end
+    #
+    #   xlsx :header_style => { :bg_color => "00", :fg_color => "FF" } do
+    #     column :name
+    #   end
+    def xlsx(options={}, &block)
+      config.xlsx_builder = XlsxBuilder.new(options, &block)
+    end
+
     # Member Actions give you the functionality of defining both the
     # action and the route directly from your ActiveAdmin registration
     # block.
