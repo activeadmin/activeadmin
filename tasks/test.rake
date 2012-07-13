@@ -20,8 +20,8 @@ namespace :test do
 
       cmd "./script/use_rails #{version}"
       cmd "bundle exec rspec spec"
-      cmd "bundle exec cucumber features"
-      cmd "bundle exec cucumber -p class-reloading features"
+      cmd "RAILS_ENV=cucumber bundle exec cucumber features"
+      cmd "RAILS_ENV=cucumber bundle exec cucumber -p class-reloading features"
     end
 
     cmd "./script/use_rails #{current_version}" if current_version
