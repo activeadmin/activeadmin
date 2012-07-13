@@ -1,4 +1,8 @@
-script: bundle exec rake
+before_script:
+  - bundle exec rake setup
+script:
+  - bundle exec rspec
+  - bundle exec cucumber
 rvm:
   - ree
   - 1.9.2
