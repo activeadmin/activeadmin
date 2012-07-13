@@ -1,10 +1,10 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe ActiveAdmin::FormBuilder do
 
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
-  let(:helpers) do 
+  let(:helpers) do
     view = action_view
     def view.posts_path
       "/posts"
@@ -294,12 +294,12 @@ describe ActiveAdmin::FormBuilder do
   end
 
 
-  { 
-    "input :title, :as => :string"        => /id\=\"post_title\"/,
-    "input :title, :as => :text"          => /id\=\"post_title\"/,
-    "input :created_at, :as => :time"     => /id\=\"post_created_at_2i\"/,
-    "input :created_at, :as => :datetime" => /id\=\"post_created_at_2i\"/,
-    "input :created_at, :as => :date"     => /id\=\"post_created_at_2i\"/,
+  {
+    "input :title, :as => :string"               => /id\=\"post_title\"/,
+    "input :title, :as => :text"                 => /id\=\"post_title\"/,
+    "input :created_at, :as => :time_select"     => /id\=\"post_created_at_2i\"/,
+    "input :created_at, :as => :datetime_select" => /id\=\"post_created_at_2i\"/,
+    "input :created_at, :as => :date_select"     => /id\=\"post_created_at_2i\"/,
   }.each do |source, regex|
    it "should properly buffer #{source}" do
      body = build_form do |f|
