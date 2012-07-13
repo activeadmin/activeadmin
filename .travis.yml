@@ -2,7 +2,7 @@ before_script:
   - bundle exec rake setup
 script:
   - bundle exec rspec
-  - bundle exec cucumber
+  - RAILS_ENV=cucumber bundle exec cucumber
 rvm:
   - ree
   - 1.9.2
