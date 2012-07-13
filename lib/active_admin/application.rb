@@ -58,7 +58,7 @@ module ActiveAdmin
     inheritable_setting :logout_link_method, :get
 
     # Whether the batch actions are enabled or not
-    inheritable_setting :batch_actions, true
+    inheritable_setting :batch_actions, false
 
     # Whether filters are enabled
     inheritable_setting :filters, true
