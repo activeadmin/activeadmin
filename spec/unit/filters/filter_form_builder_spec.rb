@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 
 describe ActiveAdmin::Filters::ViewHelper do
@@ -32,6 +32,10 @@ describe ActiveAdmin::Filters::ViewHelper do
     render_filter Post.search, name, options
   end
 
+  def have_title_tag?(body)
+    body.to_s.scan(/q\[title_contains\]/).size == 1
+  end
+
   describe "the form in general" do
     let(:body) { filter :title }
 
@@ -58,27 +62,27 @@ describe ActiveAdmin::Filters::ViewHelper do
       it "should render when true" do
         body = filter(:title, :if => lambda { |_| true })
 
-        body.should_not equal("")
+        have_title_tag?(body).should be true
       end
 
       it "should not render when false" do
         body = filter(:title, :if => lambda { |_| false })
 
-        body.should equal("")
+        have_title_tag?(body).should be false
       end
     end
 
     describe "unless conditions" do
-            it "should render when false" do
+      it "should render when false" do
         body = filter(:title, :unless => lambda { |_| false })
 
-        body.should_not equal("")
+        have_title_tag?(body).should be true
       end
 
       it "should not render when true" do
         body = filter(:title, :unless => lambda { |_| true })
 
-        body.should equal("")
+        have_title_tag?(body).should be false
       end
     end
   end
