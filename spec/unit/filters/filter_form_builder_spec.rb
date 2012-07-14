@@ -41,7 +41,7 @@ describe ActiveAdmin::Filters::ViewHelper do
 
     it "should generate a filter button" do
       body.should have_tag("input", :attributes => { :type => "submit",
-                                                        :value => "Filter" })
+                           :value => "Filter" })
     end
 
     it "should only generate the form once" do
@@ -53,8 +53,6 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
-<<<<<<< HEAD
-=======
   describe "conditional filters" do
     describe "if conditions" do
       it "should render when true" do
@@ -71,7 +69,7 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     describe "unless conditions" do
-            it "should render when false" do
+      it "should render when false" do
         body = filter(:title, :unless => lambda { |_| false })
 
         body.should_not equal("")
@@ -85,7 +83,6 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
->>>>>>> Make test more RSpec-like
   describe "string attribute" do
     let(:body) { filter :title }
 
@@ -147,7 +144,7 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
     it "should generate a text field for input" do
       body.should have_tag("input", :attributes => {
-                                          :name => /q\[(id_eq|id_equals)\]/ })
+        :name => /q\[(id_eq|id_equals)\]/ })
     end
     it "should select the option which is currently being filtered"
   end
@@ -163,13 +160,13 @@ describe ActiveAdmin::Filters::ViewHelper do
 
       it "should not render as an integer" do
         body.should_not have_tag("input", :attributes => {
-                                                :name => "q[author_id_eq]"})
+          :name => "q[author_id_eq]"})
       end
       it "should render as belongs to select" do
         body.should have_tag("select", :attributes => {
-                                            :name => "q[author_id_eq]"})
-        body.should have_tag("option", "jane_doe", :attributes => {
-                                                          :value => @jane.id })
+          :name => "q[author_id_eq]"})
+          body.should have_tag("option", "jane_doe", :attributes => {
+            :value => @jane.id })
       end
     end
 
@@ -178,17 +175,17 @@ describe ActiveAdmin::Filters::ViewHelper do
 
       it "should generate a select" do
         body.should have_tag("select", :attributes => {
-                                            :name => "q[author_id_eq]"})
+          :name => "q[author_id_eq]"})
       end
       it "should set the default text to 'Any'" do
         body.should have_tag("option", "Any", :attributes => {
-                                                    :value => "" })
+          :value => "" })
       end
       it "should create an option for each related object" do
         body.should have_tag("option", "john_doe", :attributes => {
-                                                          :value => @john.id })
-        body.should have_tag("option", "jane_doe", :attributes => {
-                                                          :value => @jane.id })
+          :value => @john.id })
+          body.should have_tag("option", "jane_doe", :attributes => {
+            :value => @jane.id })
       end
 
       context "with a proc" do
@@ -213,13 +210,13 @@ describe ActiveAdmin::Filters::ViewHelper do
 
       it "should create a check box for each related object" do
         body.should have_tag("input", :attributes => {
-                                            :name => "q[author_id_in][]",
-                                            :type => "checkbox",
-                                            :value => @john.id })
-        body.should have_tag("input", :attributes => {
-                                            :name => "q[author_id_in][]",
-                                            :type => "checkbox",          
-                                            :value => @jane.id })
+          :name => "q[author_id_in][]",
+          :type => "checkbox",
+          :value => @john.id })
+          body.should have_tag("input", :attributes => {
+            :name => "q[author_id_in][]",
+            :type => "checkbox",          
+            :value => @jane.id })
       end
     end
 
