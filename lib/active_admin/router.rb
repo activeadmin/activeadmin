@@ -43,7 +43,7 @@ module ActiveAdmin
           route_definition_block = Proc.new do
             case config
             when Resource
-              resources config.resource_name.route_key do
+              resources config.resource_name.route_key, :only => config.controller.instance_methods.map { |m| m.to_sym } & ResourceController::ACTIVE_ADMIN_ACTIONS do
                 # Define any member actions
                 member do
                   config.member_actions.each do |action|
@@ -87,7 +87,7 @@ module ActiveAdmin
 
               # Batch action path is not nested.
               if config.is_a?(Resource)
-                resources config.resource_name.route_key do
+                resources config.resource_name.route_key, :only => config.controller.instance_methods.map { |m| m.to_sym } & ResourceController::ACTIVE_ADMIN_ACTIONS do
                   collection do
                     post :batch_action
                   end

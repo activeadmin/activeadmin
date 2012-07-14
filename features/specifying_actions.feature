@@ -9,7 +9,7 @@ Feature: Specifying Actions
           actions :index
           index do
             column do |post|
-              link_to "View", admin_post_path(post)
+              link_to "View", "/admin/posts/1"
             end
           end
         end
@@ -17,7 +17,7 @@ Feature: Specifying Actions
 	And I am logged in
     And a post with the title "Hello World" exists
     When I am on the index page for posts
-    Then an "AbstractController::ActionNotFound" exception should be raised when I follow "View"
+    Then an "ActionController::RoutingError" exception should be raised when I follow "View"
 
   Scenario: Specify a custom collection action with template
     Given a configuration of:
