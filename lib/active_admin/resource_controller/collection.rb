@@ -119,8 +119,11 @@ module ActiveAdmin
         end
 
         def paginate(chain)
-          chain.send(Kaminari.config.page_method_name, params[:page]).per(per_page)
-        end
+          page_method_name = Kaminari.config.page_method_name
+          page = params[Kaminari.config.param_name]
+
+          chain.send(page_method_name, page).per(per_page)
+	end
 
         def per_page
           return max_csv_records if request.format == 'text/csv'
