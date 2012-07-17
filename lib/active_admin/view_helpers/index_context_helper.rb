@@ -30,7 +30,7 @@ module IndexContextHelper
     def filter_to_sentence(kv)
       k, v = kv
 
-      predicate = k[/(contains|greater_than|lower_than|equal_to)$/]
+      predicate = k[/(#{MetaSearch::DEFAULT_WHERES.map { |w| w.first }.join('|')})$/]
       attribute = k.sub(/_#{predicate}$/, '')
       value = v
 
