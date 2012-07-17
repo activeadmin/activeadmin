@@ -1,4 +1,4 @@
-zh_cn:
+"zh-CN":
   active_admin:
     dashboard: "控制面板"
     dashboard_welcome:
@@ -64,3 +64,17 @@ zh_cn:
       title_content: "(%{count})条评论"
       errors:
         empty_text: "评论保存失败，内空不能为空."
+    devise:
+      login:
+        title: "登录"
+        remember_me: "记住我"
+        submit: "登录"
+      reset_password:
+        title: "忘记密码？"
+        submit: "重置密码"
+      change_password:
+        title: "更改您的密码"
+        submit: "更改我的密码"
+      links:
+        sign_in: "登录"
+        forgot_your_password: "忘记密码？"

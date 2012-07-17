@@ -64,3 +64,17 @@
       title_content: "(%{count}) 則評論"
       errors:
         empty_text: "評論儲存失敗，不允許空白的內容。"
+    devise:
+      login:
+        title: "登錄"
+        remember_me: "記住我"
+        submit: "登錄"
+      reset_password:
+        title: "忘記密碼？"
+        submit: "重置密碼"
+      change_password:
+        title: "更改您的密碼"
+        submit: "更改我的密碼"
+      links:
+        sign_in: "登錄"
+        forgot_your_password: "忘記密碼？"

@@ -3,11 +3,17 @@ require 'spec_helper'
 include ActiveAdmin
 describe ActiveAdmin::Views::TabbedNavigation do
 
-  setup_arbre_context!
-  include ActiveAdmin::ViewHelpers
-
   let(:menu){ ActiveAdmin::Menu.new }
-  let(:tabbed_navigation){ insert_tag(ActiveAdmin::Views::TabbedNavigation, menu) }
+
+  let(:assigns){ { :active_admin_menu => menu } }
+  let(:helpers){ mock_action_view }
+
+  let(:tabbed_navigation) do 
+    arbre(assigns, helpers) {
+      insert_tag(ActiveAdmin::Views::TabbedNavigation, active_admin_menu)
+    }.children.first
+  end
+
   let(:html) { tabbed_navigation.to_s }
 
   before do

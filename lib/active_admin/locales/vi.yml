@@ -64,3 +64,17 @@ vi:
       title_content: "Bình luận (%{count})"
       errors:
         empty_text: "Lời bình luận chưa được lưu, vì nội dung còn trống."
+    devise:
+      login:
+        title: "Đăng nhập"
+        remember_me: "Ghi nhớ tôi"
+        submit: "Đăng nhập"
+      reset_password:
+        title: "Quên mật khẩu của bạn?"
+        submit: "Thiết lập lại mật khẩu của tôi"
+      change_password:
+        title: "Thay đổi mật khẩu của bạn"
+        submit: "Thay đổi mật khẩu của tôi"
+      links:
+        sign_in: "Đăng nhập"
+        forgot_your_password: "Quên mật khẩu của bạn?"

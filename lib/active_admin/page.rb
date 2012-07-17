@@ -44,12 +44,20 @@ module ActiveAdmin
       @resource_name ||= Resource::Name.new(nil, name)
     end
 
+    def underscored_resource_name
+      resource_name.parameterize.underscore
+    end
+
+    def camelized_resource_name
+      underscored_resource_name.camelize
+    end
+
     def default_menu_options
       super.merge(:id => resource_name)
     end
 
     def controller_name
-      [namespace.module_name, resource_name + "Controller"].compact.join('::')
+      [namespace.module_name, camelized_resource_name + "Controller"].compact.join('::')
     end
 
     def belongs_to?

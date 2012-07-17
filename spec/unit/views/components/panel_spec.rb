@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::Panel do
 
-  setup_arbre_context!
-
   let(:the_panel) do
-    panel "My Title" do
-      span("Hello World")
+    render_arbre_component do
+      panel "My Title" do
+        span("Hello World")
+      end
     end
   end
 
@@ -23,13 +23,18 @@ describe ActiveAdmin::Views::Panel do
   end
 
   it "should set the icon" do
-    panel("Title", :icon => :arrow_down).find_by_tag("h3").first.content.should include("span class=\"icon")
+    the_panel = render_arbre_component do
+      panel("Title", :icon => :arrow_down)
+    end
+    the_panel.find_by_tag("h3").first.content.should include("span class=\"icon")
   end
 
   describe "#children?" do
 
     it "returns false if no children have been added to the panel" do
-      the_panel = panel("A Panel")
+      the_panel = render_arbre_component do
+        panel("A Panel")
+      end
       the_panel.children?.should == false
     end
 

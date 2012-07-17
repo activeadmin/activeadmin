@@ -1,9 +1,7 @@
 require 'spec_helper' 
 
 
-describe ActiveAdmin::ViewHelpers::FilterFormHelper do
-
-  setup_arbre_context!
+describe ActiveAdmin::Filters::ViewHelper do
 
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
@@ -24,9 +22,14 @@ describe ActiveAdmin::ViewHelpers::FilterFormHelper do
     view
   end
 
+  def render_filter(search, name, options = {})
+    render_arbre_component({:filter_args => [search, [options.merge(:attribute => name)]]}, helpers) do
+      text_node active_admin_filters_form_for(*assigns[:filter_args])
+    end
+  end
+
   def filter(name, options = {})
-    search = Post.search
-    active_admin_filters_form_for(search, [options.merge(:attribute => name)])
+    render_filter Post.search, name, options
   end
 
   describe "the form in general" do
@@ -42,7 +45,7 @@ describe ActiveAdmin::ViewHelpers::FilterFormHelper do
     end
 
     it "should only generate the form once" do
-      body.scan(/q\[title_contains\]/).size.should == 1
+      body.to_s.scan(/q\[title_contains\]/).size.should == 1
     end
 
     it "should generate a clear filters link" do
@@ -190,7 +193,7 @@ describe ActiveAdmin::ViewHelpers::FilterFormHelper do
     context "when polymorphic relationship" do
       let(:body) do
         search = ActiveAdmin::Comment.search
-        active_admin_filters_form_for(search, [{ :attribute => :resource}])
+        render_filter(search, :resource)
       end
       it "should not generate any field" do
         body.should have_tag("form", :attributes => { :method => 'get' })

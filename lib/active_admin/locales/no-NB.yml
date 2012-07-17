@@ -38,3 +38,18 @@
     blank_slate:
       content: "Her er det ingen %{resource_name} enda."
       link: "Opprett en"
+    devise:
+      login:
+        title: "Logg inn"
+        remember_me: "Husk meg"
+        submit: "Logg inn"
+      reset_password:
+        title: "Glemt passord?"
+        submit: "Tilbakestille passordet mitt"
+      change_password:
+        title: "Endre passordet"
+        submit: "Endre mitt passord"
+      links:
+        sign_in: "Logg inn"
+        forgot_your_password: "Glemt passord?"
+

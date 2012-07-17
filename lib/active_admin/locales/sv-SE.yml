@@ -63,4 +63,18 @@
       no_comments_yet: "Inga kommentarer än."
       title_content: "Kommentarer (%{count})"
       errors:
-        empty_text: "Kommentaren sparades inte, måste innehålla text."  
+        empty_text: "Kommentaren sparades inte, måste innehålla text."
+    devise:
+      login:
+        title: "inloggning"
+        remember_me: "Kom ihåg mig"
+        submit: "inloggning"
+      reset_password:
+        title: "Glömt ditt lösenord?"
+        submit: "Återställa mitt lösenord"
+      change_password:
+        title: "Ändra ditt lösenord"
+        submit: "Ändra mitt lösenord"
+      links:
+        sign_in: "Logga in"
+        forgot_your_password: "Glömt ditt lösenord?"

@@ -53,3 +53,17 @@ ru:
       title_content: "Комментарии (%{count})"
       errors:
         empty_text: "Комментарий не сохранен, текст не должен быть пустым."
+    devise:
+      login:
+        title: "Войти"
+        remember_me: "Запомнить меня"
+        submit: "Войти"
+      reset_password:
+        title: "Забыли пароль?"
+        submit: "Сбросить пароль"
+      change_password:
+        title: "Изменение пароля"
+        submit: "Изменение пароля"
+      links:
+        sign_in: "Войти"
+        forgot_your_password: "Забыли пароль?"

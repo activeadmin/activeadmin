@@ -1,11 +1,17 @@
 require 'spec_helper' 
 
+require 'active_admin/dashboards/dashboard_controller'
+require 'active_admin/dashboards/section'
 
 module Admin
-  class DashboardController < ActiveAdmin::Dashboards::DashboardController
+  class TestDashboardController < ActiveAdmin::PageController
+    include ActiveAdmin::Dashboards::DashboardController
   end
 end
-class DashboardController < ActiveAdmin::Dashboards::DashboardController; end
+
+class TestDashboardController < ActiveAdmin::PageController
+  include ActiveAdmin::Dashboards::DashboardController
+end
 
 describe ActiveAdmin::Dashboards::DashboardController do
 
@@ -13,19 +19,19 @@ describe ActiveAdmin::Dashboards::DashboardController do
     subject{ controller.send :namespace }
 
     context "when admin namespace" do
-      let(:controller){ Admin::DashboardController.new }
+      let(:controller){ Admin::TestDashboardController.new }
       it { should == :admin }
     end
 
     context "when root namespace" do
-      let(:controller){ DashboardController.new }
+      let(:controller){ TestDashboardController.new }
       it { should == :root }
     end
   end
 
   describe "conditionally displaying sections" do
     before { ActiveAdmin::Dashboards.clear_all_sections! }
-    let(:controller){ Admin::DashboardController.new }
+    let(:controller){ Admin::TestDashboardController.new }
     
     context "when :if not specified" do
       before do

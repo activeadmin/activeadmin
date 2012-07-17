@@ -4,15 +4,12 @@ module ActiveAdmin
       class Show < Base
 
         def config
-          active_admin_config.get_page_presenter(:show) || ::ActiveAdmin::PagePresenter.new
+          active_admin_config.get_page_presenter(:show) || super
         end
 
         def title
-          case config[:title]
-          when Symbol, Proc
-            call_method_or_proc_on(resource, config[:title])
-          when String
-            config[:title]
+          if config[:title]
+            render_or_call_method_or_proc_on(resource, config[:title])
           else
             default_title
           end

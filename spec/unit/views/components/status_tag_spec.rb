@@ -2,10 +2,17 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::StatusTag do
 
-  setup_arbre_context!
-
   describe "#status_tag" do
+
+    # Helper method to build StatusTag objects in an Arbre context
+    def status_tag(*args)
+      render_arbre_component(:status_tag_args => args) do
+        status_tag(*assigns[:status_tag_args])
+      end
+    end
+
     subject { status_tag(nil) }
+
 
     its(:tag_name)    { should == 'span' }
     its(:class_list)  { should include('status') }

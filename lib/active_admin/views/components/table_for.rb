@@ -175,11 +175,11 @@ module ActiveAdmin
 
         def pretty_title(raw)
           if raw.is_a?(Symbol)
-            if @options[:i18n] && @options[:i18n].respond_to?(:human_attribute_name) && human_name = @options[:i18n].human_attribute_name(raw)
-              raw = human_name
+            if @options[:i18n] && @options[:i18n].respond_to?(:human_attribute_name)
+              raw = @options[:i18n].human_attribute_name(raw, :default => raw.to_s.titleize)
+            else
+              raw.to_s.titleize
             end
-
-            raw.to_s.titleize
           else
             raw
           end

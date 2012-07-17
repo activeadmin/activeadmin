@@ -7,13 +7,14 @@ module ActiveAdmin
   #
   class DSL
 
-    # Runs the registration block inside this object
-    def run_registration_block(config, &block)
+    def initialize(config)
       @config = config
+    end
+
+    # Runs the registration block inside this object
+    def run_registration_block(&block)
       instance_eval &block if block_given?
     end
-    
-    private
 
     # The instance of ActiveAdmin::Config that's being registered
     # currently. You can use this within your registration blocks to
@@ -27,6 +28,32 @@ module ActiveAdmin
     #
     def config
       @config
+    end
+
+    # Include a module with this resource. The modules's `included` method
+    # is called with the instance of the `ActiveAdmin::DSL` passed into it.
+    #
+    # eg:
+    #
+    #   module HelpSidebar
+    #
+    #     def self.included(dsl)
+    #       dsl.sidebar "Help" do
+    #         "Call us for Help"
+    #       end
+    #     end
+    #
+    #   end
+    #
+    #   ActiveAdmin.register Post do
+    #     include HelpSidebar
+    #   end
+    #
+    # @param [Module] mod A module to include
+    #
+    # @returns [Nil]
+    def include(mod)
+      mod.included(self)
     end
 
     # Returns the controller for this resource. If you pass a

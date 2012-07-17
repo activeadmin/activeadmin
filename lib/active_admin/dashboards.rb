@@ -1,8 +1,8 @@
+require 'active_admin/dashboards/dashboard_controller'
+require 'active_admin/dashboards/section'
+
 module ActiveAdmin
   module Dashboards
-
-    autoload :DashboardController,  'active_admin/dashboards/dashboard_controller'
-    autoload :Section,              'active_admin/dashboards/section'
 
     @@sections = {}
     mattr_accessor :sections
@@ -21,7 +21,13 @@ module ActiveAdmin
       #   end
       #
       def build(&block)
+        warn "DEPRECATION WARNING: ActiveAdmin::Dashboard is deprecated and will be removed in the next version"
+        @built = true
         module_eval(&block)
+      end
+
+      def built?
+        !!@built
       end
 
       # Add a new dashboard section to a namespace. If no namespace is given
@@ -46,7 +52,18 @@ module ActiveAdmin
         @@sections = {}
       end
 
-    end
+      # Called from MenuBuilder to register dashboard to menu.
+      def add_to_menu(namespace, menu)
+        return unless ActiveAdmin::Dashboards.built?
 
+        dashboard_path = namespace.root? ? :dashboard_path : "#{namespace.name}_dashboard_path".to_sym
+
+        item = MenuItem.new  :id => "dashboard", 
+                             :label => proc{ I18n.t("active_admin.dashboard") },
+                             :url => dashboard_path,
+                             :priority => 1
+        menu.add item
+      end
+    end
   end
 end

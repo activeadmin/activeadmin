@@ -1,17 +1,35 @@
 Feature: Dashboard
 
-  Background:
-    Given I am logged in
-
-
-  Scenario: With no configuration
+  @dashboard
+  Scenario: With default configuration
     Given a configuration of:
       """
+      ActiveAdmin.register_page "Dashboard" do
+        content do
+          para "Hello world from the dashboard page"
+        end
+      end
       """
+    Given I am logged in
     When I go to the dashboard
-    Then I should see the default welcome message
+    Then I should see the Active Admin layout
+    And I should not see the default welcome message
+    And I should see "Hello world from the dashboard page"
 
-  Scenario: Displaying a dashboard widget
+  @dashboard
+  Scenario: DEPRECATED - With default configuration
+    Given a configuration of:
+      """
+        ActiveAdmin::Dashboards.build do
+        end
+      """
+    Given I am logged in
+    When I go to the dashboard
+    Then I should see the Active Admin layout
+    And I should see the default welcome message
+
+  @dashboard
+  Scenario: DEPRECATED - Displaying a dashboard widget
     Given a configuration of:
       """
       ActiveAdmin::Dashboards.build do
@@ -20,12 +38,15 @@ Feature: Dashboard
         end
       end
       """
+    Given I am logged in
     When I go to the dashboard
-    Then I should not see the default welcome message
+    Then I should see the Active Admin layout
+    And I should not see the default welcome message
     And I should see a dashboard widget "Hello World"
     And I should see "Hello world from the content"
 
-  Scenario: Displaying a dashboard widget using the ':if' option
+  @dashboard
+  Scenario: DEPRECATED - Displaying a dashboard widget using the ':if' option
     Given a configuration of:
       """
       ActiveAdmin::Dashboards.build do
@@ -38,7 +59,9 @@ Feature: Dashboard
         end
       end
       """
+    Given I am logged in
     When I go to the dashboard
-    Then I should not see the default welcome message
+    Then I should see the Active Admin layout
+    And I should not see the default welcome message
     And I should see a dashboard widget "Hello World"
     And I should not see a dashboard widget "Hidden by If"
