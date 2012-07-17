@@ -21,6 +21,7 @@ module ActiveAdmin
         # Render's the index configuration that was set in the
         # controller. Defaults to rendering the ActiveAdmin::Pages::Index::Table
         def main_content
+          build_context_sentence
           wrap_with_batch_action_form do
             build_table_tools
             build_collection
@@ -61,6 +62,12 @@ module ActiveAdmin
             link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format))
           end
           text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
+        end
+
+        def build_context_sentence
+          div :class => "context_sentence" do
+            text_node index_context_sentence(self)
+          end
         end
 
         def build_table_tools
