@@ -37,7 +37,7 @@ module IndexContextHelper
       human_attribute = config.resource_class.human_attribute_name attribute
 
       human_predicate = case predicate
-                        when 'contains', 'equal_to'
+                        when 'contains', 'equals', nil # failed to extract predicate
                           nil
                         else
                           predicate.gsub('_', ' ')
