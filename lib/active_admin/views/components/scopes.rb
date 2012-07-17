@@ -33,7 +33,7 @@ module ActiveAdmin
           a :href => url_for(params.merge(:scope => scope.id, :page => 1)), :class => "table_tools_button" do
             text_node scope_name
             span :class => 'count' do
-              "(" + get_scope_count(scope).to_s + ")"
+              "(#{get_scope_count(scope)})"
             end if options[:scope_count] && scope.show_count
           end
         end
