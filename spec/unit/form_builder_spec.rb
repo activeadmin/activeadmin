@@ -293,6 +293,41 @@ describe ActiveAdmin::FormBuilder do
     end
   end
 
+  context "with has many inputs" do
+    let :body do
+      build_form({}, Category.new) do |f|
+        f.has_many :posts do |p|
+          p.input :title
+        end
+      end
+    end
+
+    it "should translate the association name in header" do
+      begin
+        I18n.backend.store_translations(:en, :activerecord => { :models => { :post => { :one => "Blog Post", :other => "Blog Posts" } } })
+        body.should have_tag('h3', 'Blog Posts')
+      ensure
+        I18n.backend.reload!
+      end
+    end
+
+    it "should use model name when there is no translation for given model in header" do
+      body.should have_tag('h3', 'Post')
+    end
+
+    it "should translate the association name in has many new button" do
+      begin
+        I18n.backend.store_translations(:en, :activerecord => { :models => { :post => { :one => "Blog Post", :other => "Blog Posts" } } })
+        body.should have_tag('a', 'Add New Blog Post')
+      ensure
+        I18n.backend.reload!
+      end
+    end
+
+    it "should use model name when there is no translation for given model in has many new button" do
+      body.should have_tag('a', 'Add New Post')
+    end
+  end
 
   {
     "input :title, :as => :string"               => /id\=\"post_title\"/,
