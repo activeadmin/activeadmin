@@ -6,7 +6,7 @@ module ActiveAdmin
     class FormBuilder < ::ActiveAdmin::FormBuilder
 
       def filter(method, options = {})
-        return "" if method.nil? || method == ""
+        return "" if method.blank?
         options[:as] ||= default_input_type(method)
         return "" unless options[:as]
         content = input(method, options)
