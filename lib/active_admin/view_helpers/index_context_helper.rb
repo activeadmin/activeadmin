@@ -34,7 +34,7 @@ module IndexContextHelper
       attribute = k.sub(/_#{predicate}$/, '')
       value = v
 
-      human_attribute = config.resource.human_attribute_name attribute
+      human_attribute = config.resource_class.human_attribute_name attribute
 
       human_predicate = case predicate
                         when 'contains', 'equal_to'
