@@ -1,21 +1,35 @@
 module ActiveAdmin
   module ViewHelpers
     module FormHelper
-      # @return [Array] of [Hash] with one element.
-      # Example: [ {"scope" => "all"} , {"user[]" => "greg"} ]
-      def fields_for_params(params, prefix=nil)
-        params.map do |k, v|
-          next if prefix.nil? && %w(controller action commit utf8).include?(k.to_s)
 
-          if prefix
-            k = "#{prefix}[#{k}]"
+      # Flatten a params Hash to an array of fields.
+      #
+      # @param params [Hash]
+      # @param options [Hash] :namespace and :except
+      #
+      # @return [Array] of [Hash] with one element.
+      #
+      # @example
+      #   fields_for_params(scope: "all", users: ["greg"])
+      #     => [ {"scope" => "all"} , {"users[]" => "greg"} ]
+      #
+      def fields_for_params(params, options = {})
+        namespace = options[:namespace]
+        except = options[:except]
+
+        params.map do |k, v|
+          next if namespace.nil? && %w(controller action commit utf8).include?(k.to_s)
+          next if except && k.to_s == except.to_s
+
+          if namespace
+            k = "#{namespace}[#{k}]"
           end
 
           case v
           when String
             { k => v }
           when Hash
-            fields_for_params(v, k)
+            fields_for_params(v, namespace: k)
           when Array
             v.map do |v|
               { "#{k}[]" => v }

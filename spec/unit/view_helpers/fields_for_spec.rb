@@ -9,6 +9,11 @@ describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
       should == [ { scope: "All" } ]
   end
 
+  it "should skip the except" do
+    fields_for_params({scope: "All", name: "Greg"}, except: :name).
+      should == [ { scope: "All" } ]
+  end
+
   it "should work with hashes" do
     fields_for_params(filters: { name: "John", age: "12" }).
       should == [ { "filters[name]" => "John" }, { "filters[age]" => "12" } ]
@@ -24,13 +29,5 @@ describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
       should == [ { "people[]" => "greg" }, 
                   { "people[]" => "emily" }, 
                   { "people[]" => "philippe" } ]
-  end
-
-  it "should work with nested arrays" do
-    pending "Not yet...."
-    fields_for_params(people: { names: ["greg", "emily", "philippe"] }).
-      should == [ { "people[names[]]" => "greg" }, 
-                  { "people[names[]]" => "emily" }, 
-                  { "people[names[]]" => "philippe" } ]
   end
 end
