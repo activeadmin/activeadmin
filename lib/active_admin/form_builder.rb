@@ -60,7 +60,7 @@ module ActiveAdmin
         else
           index = parent_child_index(options[:parent]) if options[:parent]
           block.call(has_many_form, index)
-        end.to_s
+        end
 
         if has_many_form.object.new_record?
           contents += template.content_tag(:li) do
