@@ -54,7 +54,7 @@ module ActiveAdmin
                   content_for_attribute(attr_or_proc)
                 end
         value = pretty_format(value)
-        value == "" || value == nil ? empty_value : value
+        value == "" || value.nil? ? empty_value : value
       end
 
       def content_for_attribute(attr)
