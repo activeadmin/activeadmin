@@ -140,7 +140,7 @@ module ActiveAdmin
 
         # Display a column for the id
         def id_column
-          column(active_admin_config.resource_class.primary_key.titlecase, :sortable => active_admin_config.resource_class.primary_key) do |resource| 
+          column("ID", :sortable => active_admin_config.resource_class.primary_key) do |resource| 
             link_to resource.id, resource_path(resource), :class => "resource_id_link"
           end
         end
