@@ -84,6 +84,7 @@ Feature: Index Filtering
     Then I should see 1 posts in the table
     And I should see "Hello World" within ".index_table"
     And the "jane_doe" checkbox should be checked
+    And I should see the context sentence 'All Posts with Author "jane_doe"'
 
   Scenario: Disabling filters
     Given an index configuration of:
