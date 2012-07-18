@@ -22,7 +22,7 @@ Feature: Index Filtering
     And I press "Filter"
     And I should see 1 posts in the table
     And I should see "Hello World 2" within ".index_table"
-    And I should see 'All Posts with Title "Hello World 2"' within ".context_sentence"
+    And I should see the context sentence 'All Posts with Title "Hello World 2"'
 
   Scenario: Filtering posts with no results
     Given 3 posts exist
