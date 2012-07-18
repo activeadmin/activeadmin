@@ -11,7 +11,7 @@ module IndexContextHelper
     end
 
     def to_sentence
-      [scope_sentence, plural_resource_name, filters_sentence].compact.join(' ') + "."
+      [scope_sentence, plural_resource_name, filters_sentence].compact.join(' ')
     end
 
     private

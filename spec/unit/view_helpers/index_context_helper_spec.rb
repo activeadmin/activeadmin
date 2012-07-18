@@ -25,14 +25,14 @@ describe IndexContextHelper, '#index_context_sentence' do
   subject { context_sentence.to_sentence }
 
   context "when no search" do
-    it { should == 'All Posts.' }
+    it { should == 'All Posts' }
   end
 
   context "when search for a title" do
     before do
       search.stub!(:search_attributes) { {"title_equals" => "Hello"} }
     end
-    it { should == 'All Posts with Title "Hello".' }
+    it { should == 'All Posts with Title "Hello"' }
   end
 
   context "when search for many names" do
@@ -41,7 +41,7 @@ describe IndexContextHelper, '#index_context_sentence' do
         { "name_in" => ["Greg", "Philippe"]}
       end
     end
-    it { should == 'All Posts with Name "Greg, Philippe".' }
+    it { should == 'All Posts with Name "Greg, Philippe"' }
   end
 
   context "when search for an association" do
@@ -52,7 +52,7 @@ describe IndexContextHelper, '#index_context_sentence' do
         { "author_id_equals" => user.id }
       end
     end
-    it { should == %{All Posts with Author "pcreux".} }
+    it { should == 'All Posts with Author "pcreux"' }
   end
 
   context "when search for a title and an association" do
@@ -67,7 +67,7 @@ describe IndexContextHelper, '#index_context_sentence' do
       end
     end
 
-    it { should == 'All Posts with Author "pcreux" and Title "Hello".' }
+    it { should == 'All Posts with Author "pcreux" and Title "Hello"' }
   end
 
   context "when scope" do
@@ -77,7 +77,7 @@ describe IndexContextHelper, '#index_context_sentence' do
       active_admin_config.scope :published
     end
 
-    it { should == 'Published Posts.' }
+    it { should == 'Published Posts' }
   end
 end
 
