@@ -1,4 +1,6 @@
 require 'inherited_resources'
+
+require 'active_admin/base_controller/authorization'
 require 'active_admin/base_controller/menu'
 
 module ActiveAdmin
@@ -29,6 +31,7 @@ module ActiveAdmin
     end
 
     include Menu
+    include Authorization
 
     private
 

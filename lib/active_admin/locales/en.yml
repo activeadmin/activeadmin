@@ -78,3 +78,5 @@ en:
       links:
         sign_in: "Sign in"
         forgot_your_password: "Forgot your password?"
+    access_denied:
+      message: "You are not authorized to perform this action."

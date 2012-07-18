@@ -116,6 +116,8 @@ ENV["RAILS_ASSET_ID"] = ''
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
+  config.include Devise::TestHelpers, :type => :controller
+  config.render_views = false
 end
 
 # All RSpec configuration needs to happen before any examples

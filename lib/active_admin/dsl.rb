@@ -86,7 +86,15 @@ module ActiveAdmin
     def action_item(options = {}, &block)
       config.add_action_item(options, &block)
     end
-    
+
+    def authorization(&block)
+      if config.authorization.respond_to?(:authorization_block=)
+        config.authorization.authorization_block = block
+      else
+        raise "The '#{config.authorization_adapter}' authorization adapter does not support a custom authorization bloc authorization adapter does not support a custom authorization block."
+      end
+    end
+
     # Add a new batch action item to the resource
     # Provide a symbol/string to register the action, options, & block to execute on request
     # 
