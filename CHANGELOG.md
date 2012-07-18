@@ -9,6 +9,8 @@
   other areas of your application.
 * Dashboards are now implemented as pages. For more details of how to configure
   a page, checkout http://activeadmin.info/docs/9-custom-pages.html
+* Batch Actions allows you to select entries on index page and perform
+  an action against them.
 
 ### Deprecations
 
@@ -21,6 +23,11 @@
   accepts a MenuItem, instead of building the menu item for you.
 * `ActiveAdmin::Dashboards.build` is deprecated in favour of generating a page
   and using the new `config.root_to` option.
+* Arbre is now a gem on its own.
+
+### Contributors
+
+456 commits (120 Pull Requests) by 72 contributors.
 
 ## 0.4.4
 
