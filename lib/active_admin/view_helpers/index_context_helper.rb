@@ -17,7 +17,17 @@ module IndexContextHelper
     private
 
     def scope_sentence
-      'All'
+      if view.params[:scope]
+        scope = config.get_scope_by_id(view.params[:scope])
+      else
+        scope = config.default_scope
+      end
+
+      if scope
+        I18n.t("active_admin.scopes.#{scope.id}", :default => scope.name)
+      else
+        'All'
+      end
     end
 
     def filters_sentence

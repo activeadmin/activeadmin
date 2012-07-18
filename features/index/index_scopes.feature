@@ -113,6 +113,7 @@ Feature: Index Scoping
     And I should see the scope "All" with the count 6
     And I should see the scope "Published" with the count 3
     And I should see 3 posts in the table
+    Then I should see the context sentence 'Published Posts'
 
     When I select "daft_punk" from "Author"
     And I press "Filter"

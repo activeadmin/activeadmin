@@ -8,7 +8,8 @@ describe IndexContextHelper, '#index_context_sentence' do
     mock(:view, 
          :active_admin_application => active_admin_application, 
          :active_admin_config => active_admin_config,
-         :assigns => {:search => search})
+         :assigns => {:search => search},
+         :params => params)
   end
 
   let(:active_admin_application) { ActiveAdmin::Application.new }
@@ -16,6 +17,8 @@ describe IndexContextHelper, '#index_context_sentence' do
     ns = ActiveAdmin::Namespace.new(active_admin_application, :admin)
     ActiveAdmin::Resource.new(ns, Post)
   end
+
+  let(:params) { {} }
 
   let(:search) { mock(:search_attributes => []) }
 
@@ -65,6 +68,16 @@ describe IndexContextHelper, '#index_context_sentence' do
     end
 
     it { should == 'All Posts with Author "pcreux" and Title "Hello".' }
+  end
+
+  context "when scope" do
+    let(:params) { {:scope => 'published'} }
+
+    before do
+      active_admin_config.scope :published
+    end
+
+    it { should == 'Published Posts.' }
   end
 end
 
