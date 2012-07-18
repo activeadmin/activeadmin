@@ -101,12 +101,12 @@ Feature: Index as Table
       """
     When I am on the index page for posts
     Then I should see the "posts" table:
-      | [ ] | ID | Title        | Body | Published At | Created At | Updated At | |
+      | [ ] | Id | Title        | Body | Published At | Created At | Updated At | |
       | [ ] | 2 | Bye bye world | Move your...  |  | /.*/ | /.*/ | ViewEditDelete |
       | [ ] | 1 | Hello World   | From the body |  | /.*/ | /.*/ | ViewEditDelete |
     When I follow "ID"
     Then I should see the "posts" table:
-      | [ ] | ID | Title        | Body | Published At | Created At | Updated At | |
+      | [ ] | Id | Title        | Body | Published At | Created At | Updated At | |
       | [ ] | 1 | Hello World   | From the body |  | /.*/ | /.*/ | ViewEditDelete |
       | [ ] | 2 | Bye bye world | Move your...  |  | /.*/ | /.*/ | ViewEditDelete |
 
