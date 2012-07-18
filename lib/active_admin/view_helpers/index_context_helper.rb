@@ -21,10 +21,9 @@ module IndexContextHelper
     end
 
     def filters_sentence
-      search = view.assigns[:search] 
-      return nil if search.nil? || search.search_attributes.empty?
+      return nil if search_attributes.empty?
 
-      filters_token = search.search_attributes.map do |kv|
+      filters_token = search_attributes.map do |kv|
         filter_sentence(kv)
       end
 
@@ -38,7 +37,7 @@ module IndexContextHelper
       attribute = k.sub(/_#{predicate}$/, '')
       value = v
 
-      human_attribute = config.resource_class.human_attribute_name attribute
+      human_attribute = resource_class.human_attribute_name attribute
 
       human_predicate = case predicate
                         when 'contains', 'equals', 'in', nil # failed to extract predicate
@@ -47,21 +46,18 @@ module IndexContextHelper
                           predicate.gsub('_', ' ')
                         end
 
-      human_value = value
-
       if attribute[/_id$/]
         # Association
         reflection_name = attribute.sub!(/_id$/, '').to_sym
-
-        reflection_class = config.resource_class.reflect_on_association(reflection_name).klass
-
+        reflection_class = resource_class.reflect_on_association(reflection_name).klass
         reflection_instances = Array(reflection_class.find(value))
 
-        human_value = reflection_instances.map do |instance|
+        value = reflection_instances.map do |instance|
           display_name(instance)
-        end.to_sentence
+        end
       end
 
+      human_value = value.is_a?(Array) ? value.join(', ') : value.to_s
 
       [human_attribute, human_predicate, %{"#{human_value}"}].compact.join ' '
     end
@@ -72,6 +68,14 @@ module IndexContextHelper
 
     def config
       view.active_admin_config
+    end
+
+    def resource_class
+      config.resource_class
+    end
+
+    def search_attributes
+      view.assigns[:search].try(:search_attributes) || []
     end
 
     # For #display_name
