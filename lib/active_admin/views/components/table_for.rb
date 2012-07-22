@@ -137,15 +137,17 @@ module ActiveAdmin
           @data  = args[1] || args[0]
           @data = block if block
           @resource_class = args[2]
-
-          @options.reverse_merge!(default_options)
         end
 
         def sortable?
           if @data.is_a?(Proc)
             [String, Symbol].include?(@options[:sortable].class)
-          else
+          elsif @options.has_key?(:sortable)
             @options[:sortable]
+          elsif @data.respond_to?(:to_sym) && @resource_class
+            !@resource_class.reflect_on_association(@data.to_sym)
+          else
+            true
           end
         end
 
@@ -168,7 +170,7 @@ module ActiveAdmin
         #   # => Sort key will be 'login'
         #
         def sort_key
-          if @options[:sortable] == true || @options[:sortable] == false
+          if @options[:sortable] == true || @options[:sortable] == false || @options[:sortable].nil?
             @data.to_s
           else
             @options[:sortable].to_s
@@ -188,19 +190,6 @@ module ActiveAdmin
             raw
           end
         end
-
-        def default_options
-          if @data.respond_to?(:to_sym)
-            {
-              :sortable => !@resource_class.reflect_on_association(@data.to_sym)
-            }
-          else
-            {
-              :sortable => true
-            }
-          end
-        end
-
       end
     end
   end
