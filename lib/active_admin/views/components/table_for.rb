@@ -72,9 +72,9 @@ module ActiveAdmin
         if current_sort[0] == sort_key
           classes << "sorted-#{current_sort[1]}"
         end
-        
+
         header_class = title.downcase.underscore
-        
+
         classes << header_class
 
         th :class => classes do

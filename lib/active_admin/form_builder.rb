@@ -132,9 +132,9 @@ module ActiveAdmin
       if ::Object.const_defined?(input_class_name)
         input_class_name.constantize
       elsif ActiveAdmin::Inputs.const_defined?(input_class_name)
-        active_admin_input_class_name(as).constantize 
+        active_admin_input_class_name(as).constantize
       elsif Formtastic::Inputs.const_defined?(input_class_name)
-        standard_input_class_name(as).constantize 
+        standard_input_class_name(as).constantize
       else
         raise Formtastic::UnknownInputError
       end

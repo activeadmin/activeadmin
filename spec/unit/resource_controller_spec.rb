@@ -171,7 +171,7 @@ describe Admin::PostsController, :type => "controller" do
 
       controller.class.active_admin_config.stub!(:batch_actions).and_return([batch_action])
     end
-    
+
     describe "when params batch_action matches existing BatchAction" do
       it "should call the block with args" do
         pending # dont know how to check if the block was called
@@ -181,7 +181,7 @@ describe Admin::PostsController, :type => "controller" do
     describe "when params batch_action doesn't match a BatchAction" do
       it "should raise an error" do
         pending # doesn't pass when running whole spec suite (WTF)
-        
+
         lambda {
           post(:batch_action, :batch_action => "derp", :collection_selection => ["1"])
         }.should raise_error("Couldn't find batch action \"derp\"")
@@ -191,7 +191,7 @@ describe Admin::PostsController, :type => "controller" do
     describe "when params batch_action is blank" do
       it "should raise an error" do
         pending # doesn't pass when running whole spec suite (WTF)
-       
+
         lambda {
           post(:batch_action, :collection_selection => ["1"])
         }.should raise_error("Couldn't find batch action \"\"")

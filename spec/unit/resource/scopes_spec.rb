@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 module ActiveAdmin
   describe Resource, "Scopes" do

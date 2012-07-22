@@ -18,7 +18,7 @@ module ActiveAdmin
             rescue
             end
           end
-          
+
           name ||= I18n.t("activerecord.models.#{part.singularize}", :count => 1.1, :default => part.titlecase)
 
           crumbs << link_to( name, "/" + parts[0..index].join('/'))

@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'active_admin/abstract_view_factory'
 
 describe ActiveAdmin::AbstractViewFactory do
-  
+
   let(:view_factory){ ActiveAdmin::AbstractViewFactory.new }
   let(:mock_view){ Class.new }
 

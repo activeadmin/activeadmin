@@ -15,7 +15,7 @@ module ActiveAdmin
     # Register a new view key with the view factory
     #
     # eg:
-    #   
+    #
     #   factory = AbstractViewFactory.new
     #   factory.register :my_view => SomeViewClass
     #

@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe "Registering an object to administer" do
   let(:application){ ActiveAdmin::Application.new }

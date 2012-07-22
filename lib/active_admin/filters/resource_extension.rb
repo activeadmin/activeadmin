@@ -34,7 +34,7 @@ module ActiveAdmin
       # will raise a RuntimeError
       #
       # @param [Symbol] attribute The attribute to filter on
-      # @param [Hash] options The set of options that are passed through to 
+      # @param [Hash] options The set of options that are passed through to
       #                       metasearch for the field definition.
       def add_filter(attribute, options = {})
         unless filters_enabled?

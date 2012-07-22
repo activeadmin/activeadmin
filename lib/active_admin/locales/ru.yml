@@ -43,7 +43,7 @@ ru:
     blank_slate:
       content: "Пока нет %{resource_name}."
       link: "Создать"
-    comments:    
+    comments:
       body: "Текст"
       author: "Автор"
       title: "Комментарий"

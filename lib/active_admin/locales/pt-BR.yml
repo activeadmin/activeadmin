@@ -54,7 +54,7 @@
       action_label: "%{title} Selecionado"
       labels:
         destroy: "Excluído"
-    comments:    
+    comments:
       body: "Conteúdo"
       author: "Autor"
       title: "Comentário"

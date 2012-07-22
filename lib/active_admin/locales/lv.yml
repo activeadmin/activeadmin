@@ -43,7 +43,7 @@ lv:
     blank_slate:
       content: "Sadaļā '%{resource_name}' nav neviena ieraksta."
       link: "Izveidot jaunu"
-    comments:    
+    comments:
       body: "Saturs"
       author: "Autors"
       title: "Komentārs"

@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe ActiveAdmin::Namespace, "registering a resource" do
 
@@ -116,7 +116,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         namespace.menu["Categories"].should be_nil
       end
     end # describe "disabling the menu"
-    
+
     describe "setting menu priority" do
       before do
         namespace.register Category do
@@ -127,7 +127,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         namespace.menu["Categories"].priority.should == 2
       end
     end # describe "setting menu priority"
-    
+
     describe "setting a condition for displaying" do
       before do
         namespace.register Category do

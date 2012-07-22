@@ -61,7 +61,7 @@ module ActiveAdmin
       def get_scope_count(scope)
         if params[:q]
           search(scope_chain(scope, scoping_class)).relation.count
-        else 
+        else
           scope_chain(scope, scoping_class).count
         end
       end

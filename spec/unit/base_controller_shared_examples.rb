@@ -7,7 +7,7 @@ shared_examples_for "BaseController" do
 
   describe "Menu" do
     describe "setting the current tab" do
-      before do 
+      before do
         controller.stub!(:active_admin_config => resource, :parent? => true)
         controller.send :set_current_tab # Run the before filter
       end

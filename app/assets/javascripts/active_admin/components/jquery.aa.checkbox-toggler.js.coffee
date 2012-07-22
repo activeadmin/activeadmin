@@ -5,7 +5,7 @@ window.AA.CheckboxToggler = class AA.CheckboxToggler
     defaults = {}
 
     @options = $.extend( {}, defaults, options );
-    
+
     @_init()
     @_bind()
 
@@ -26,7 +26,7 @@ window.AA.CheckboxToggler = class AA.CheckboxToggler
   _bind: ->
     @checkboxes.bind "change", (e) =>
       @_didChangeCheckbox(e.target)
-      
+
     @toggle_all_checkbox.bind "change", (e) =>
       @_didChangeToggleAllCheckbox()
 
@@ -40,7 +40,7 @@ window.AA.CheckboxToggler = class AA.CheckboxToggler
     if @toggle_all_checkbox.attr("checked") == "checked"
       @_checkAllCheckboxes()
     else
-      @_uncheckAllCheckboxes()      
+      @_uncheckAllCheckboxes()
 
   _uncheckToggleAllCheckbox: ->
     @toggle_all_checkbox.removeAttr("checked")
@@ -57,7 +57,7 @@ window.AA.CheckboxToggler = class AA.CheckboxToggler
     @checkboxes.each (index, el) =>
       $(el).attr("checked","checked")
       @_didChangeCheckbox(el)
-      
+
 
 ( ( $ ) ->
   $.widget.bridge 'checkboxToggler', AA.CheckboxToggler

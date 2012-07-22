@@ -1,28 +1,28 @@
-.paginated_collection_contents { 
+.paginated_collection_contents {
   clear: both;
 }
 
-.pagination { 
-  float: right; 
-  font-size: 0.9em; 
-  margin-left: 10px; 
+.pagination {
+  float: right;
+  font-size: 0.9em;
+  margin-left: 10px;
 
   a {
     @include light-button;
   }
-  
+
   span.page.current {
     @include default-button;
   }
-  
-  a, span.page.current { 
+
+  a, span.page.current {
     @include rounded(0px);
-    margin-right: 4px; 
+    margin-right: 4px;
     padding: 2px 5px;
   }
 }
 
-.pagination_information { 
+.pagination_information {
   float: right;
   margin-bottom: 5px;
   color: #b3bcc1;
