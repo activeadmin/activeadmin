@@ -17,11 +17,11 @@ module ActiveAdmin
       end
 
       def column(*args, &block)
-        options = default_options.merge(args.last.is_a?(::Hash) ? args.pop : {})
+        options = default_options.merge(args.extract_options!)
         title = args[0]
         data  = args[1] || args[0]
 
-        col = Column.new(title, data, options, &block)
+        col = Column.new(title, data, @resource_class, options, &block)
         @columns << col
 
         # Build our header item
@@ -72,9 +72,9 @@ module ActiveAdmin
         if current_sort[0] == sort_key
           classes << "sorted-#{current_sort[1]}"
         end
-        
+
         header_class = title.downcase.underscore
-        
+
         classes << header_class
 
         th :class => classes do
@@ -131,10 +131,14 @@ module ActiveAdmin
         attr_accessor :title, :data
 
         def initialize(*args, &block)
-          @options = default_options.merge(args.last.is_a?(::Hash) ? args.pop : {})
+          @options = args.extract_options!
+
           @title = pretty_title args[0]
           @data  = args[1] || args[0]
           @data = block if block
+          @resource_class = args[2]
+
+          @options.reverse_merge!(default_options)
         end
 
         def sortable?
@@ -186,9 +190,15 @@ module ActiveAdmin
         end
 
         def default_options
-          {
-            :sortable => true
-          }
+          if @data.respond_to?(:to_sym)
+            {
+              :sortable => !@resource_class.reflect_on_association(@data.to_sym)
+            }
+          else
+            {
+              :sortable => true
+            }
+          end
         end
 
       end
