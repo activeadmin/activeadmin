@@ -65,9 +65,9 @@ pl:
         empty_text: "Komentarz nie został zapisany, zawartość była pusta."
     devise:
       login:
-        title: "login"
+        title: "Logowanie"
         remember_me: "Zapamiętaj mnie"
-        submit: "login"
+        submit: "Zaloguj się"
       reset_password:
         title: "Nie pamiętasz hasła?"
         submit: "Zresetować hasło"
@@ -77,4 +77,8 @@ pl:
       links:
         sign_in: "Zaloguj się"
         forgot_your_password: "Nie pamiętasz hasła?"
+  formtastic:
+    actions:
+      update: "Aktualizuj %{model}"
+      create: "Utwórz %{model}"
 
