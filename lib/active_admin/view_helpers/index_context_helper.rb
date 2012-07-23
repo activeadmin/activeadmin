@@ -1,3 +1,5 @@
+require File.expand_path('../display_helper', __FILE__)
+
 module IndexContextHelper
   def index_context_sentence(view)
     ContextSentence.new(view).to_sentence
