@@ -77,4 +77,7 @@ pl:
       links:
         sign_in: "Zaloguj się"
         forgot_your_password: "Nie pamiętasz hasła?"
+  formtastic:
+    actions:
+      update: "Aktualizuj %{model}"
 
