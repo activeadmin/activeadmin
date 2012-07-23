@@ -4,13 +4,13 @@
  * @author Christian Johansen (christian@cjohansen.no)
  *
  * (The BSD License)
- * 
+ *
  * Copyright (c) 2010-2011, Christian Johansen, christian@cjohansen.no
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- * 
+ *
  *     * Redistributions of source code must retain the above copyright notice,
  *       this list of conditions and the following disclaimer.
  *     * Redistributions in binary form must reproduce the above copyright notice,
@@ -19,7 +19,7 @@
  *     * Neither the name of Christian Johansen nor the names of his contributors
  *       may be used to endorse or promote products derived from this software
  *       without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -808,7 +808,7 @@ if (typeof module == "object" && typeof require == "function") {
             } else {
                 this.exception = error;
             }
-            
+
             return this;
         }
 
@@ -1596,7 +1596,7 @@ sinon.clock = (function () {
                     if (!smallest || this.timeouts[id].callAt < smallest) {
                         originalTimer = this.timeouts[id];
                         smallest = this.timeouts[id].callAt;
-                        
+
                         timer = {
                             func: this.timeouts[id].func,
                             callAt: this.timeouts[id].callAt,
@@ -1606,7 +1606,7 @@ sinon.clock = (function () {
                     }
                 }
             }
-            
+
             return timer || null;
         },
 
@@ -1917,7 +1917,7 @@ sinon.FakeXMLHttpRequest = (function () {
             }
 
             if (this.requestHeaders[header]) {
-                this.requestHeaders[header] += "," + value; 
+                this.requestHeaders[header] += "," + value;
             } else {
                 this.requestHeaders[header] = value;
             }

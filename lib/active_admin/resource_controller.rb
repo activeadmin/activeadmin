@@ -35,7 +35,7 @@ module ActiveAdmin
                   :instance_name => config.resource_name.singular
       end
 
-      # Inherited Resources uses the inherited(base) hook method to 
+      # Inherited Resources uses the inherited(base) hook method to
       # add in the Base.resource_class class method. To override it, we
       # need to install our resource_class method each time we're inherited from.
       def inherited(base)

@@ -51,7 +51,7 @@ fr:
         other: "%{count} %{plural_model} supprimés"
       selection_toggle_explanation: "(Inverser la sélection)"
       link: "Créer un"
-    comments:    
+    comments:
       body: "Corps"
       author: "Auteur"
       title: "Commentaire"

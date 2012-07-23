@@ -1,5 +1,5 @@
 module ActiveAdmin
-  
+
   # Shareable module to give a #display_on?(action) method
   # which returns true or false depending on an options hash.
   #

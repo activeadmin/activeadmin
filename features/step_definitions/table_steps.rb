@@ -10,7 +10,7 @@ class HtmlTableToTextHelper
       row.css('th, td').map do |td|
         cell_to_string(td)
       end
-    end 
+    end
   end
 
   private

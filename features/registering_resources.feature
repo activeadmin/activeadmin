@@ -8,7 +8,7 @@ Feature: Registering Resources
 
   Scenario: Registering a resource with the defaults
     Given a configuration of:
-    """ 
+    """
       ActiveAdmin.register Post
     """
     When I go to the dashboard
@@ -21,7 +21,7 @@ Feature: Registering Resources
 
   Scenario: Registering a resource with another name
     Given a configuration of:
-    """ 
+    """
       ActiveAdmin.register Post, :as => "My Post"
     """
     When I go to the dashboard

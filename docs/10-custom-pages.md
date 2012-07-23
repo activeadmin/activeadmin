@@ -60,7 +60,7 @@ in Active Admin:
     end
 
 This configuration creates a sidebar section named "Help" with an unordered list
-in it. 
+in it.
 
 To view the full list of available sidebar section options visit
 ([Sidebars](7-sidebars.md))

@@ -1,4 +1,4 @@
-// ----------------------------------- Tables 
+// ----------------------------------- Tables
 
 table tr {
   td {
@@ -6,7 +6,7 @@ table tr {
   }
 }
 
-// --------- Index Tables 
+// --------- Index Tables
 
 table.index_table {
   width: 100%;
@@ -14,7 +14,7 @@ table.index_table {
   border: 0;
   border-spacing: 0;
 
-  th { 
+  th {
     @include section-header;
     border-right: none;
     text-align: left;
@@ -39,11 +39,11 @@ table.index_table {
     &.sorted-asc, &.sorted-desc {
       @include gradient(darken($secondary-gradient-start, 5%), darken($secondary-gradient-stop, 5%));
     }
-    
+
     &:last-child {
       border-right: solid 1px #d4d4d4;
     }
-    
+
   }
 
   tr.even td { background: $table-stripe-color; }
@@ -63,7 +63,7 @@ table.index_table {
 
 .panel_contents table {
   margin-top: 5px;
-  th { 
+  th {
     padding-top: 10px;
     background: none;
     color: $primary-color;
@@ -76,14 +76,14 @@ table.index_table {
   tr.even td { background: $table-stripe-color; }
 }
 
-// -------------------------------------- Resource Attributes Table 
+// -------------------------------------- Resource Attributes Table
 .attributes_table { overflow: hidden; }
 
 .attributes_table table {
   th, td {
     padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
     vertical-align: top;
-    border-bottom: 1px solid #e8e8e8; 
+    border-bottom: 1px solid #e8e8e8;
   }
   th {
     @include no-shadow;
