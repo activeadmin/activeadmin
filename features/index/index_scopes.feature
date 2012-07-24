@@ -3,7 +3,7 @@ Feature: Index Scoping
   Viewing resources and scoping them
 
   Scenario: Viewing resources with one scope and no default
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -11,11 +11,11 @@ Feature: Index Scoping
       end
       """
     Then I should see the scope "All" not selected
-    And I should see the scope "All" with the count 10
-    And I should see 10 posts in the table
+    And I should see the scope "All" with the count 3
+    And I should see 3 posts in the table
 
   Scenario: Viewing resources with one scope as the default
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -23,11 +23,11 @@ Feature: Index Scoping
       end
       """
     Then I should see the scope "All" selected
-    And I should see the scope "All" with the count 10
-    And I should see 10 posts in the table
+    And I should see the scope "All" with the count 3
+    And I should see 3 posts in the table
 
   Scenario: Viewing resources with one scope and no results
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
      """
      ActiveAdmin.register Post do
@@ -36,7 +36,7 @@ Feature: Index Scoping
      end
      """
 
-    When I fill in "Search Title" with "Hello World 17"
+    When I fill in "Search Title" with "Non Existing Post"
     And I press "Filter"
     And I should not see the scope "All"
 
@@ -44,7 +44,7 @@ Feature: Index Scoping
     Then I should see the scope "All" selected
 
   Scenario: Viewing resources with a scope but scope_count turned off
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -54,11 +54,11 @@ Feature: Index Scoping
       """
     Then I should see the scope "All" selected
     And I should see the scope "All" with no count
-    And I should see 10 posts in the table
+    And I should see 3 posts in the table
 
   @scope
   Scenario: Viewing resources with a scope and scope count turned off for a single scope
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -67,11 +67,11 @@ Feature: Index Scoping
       """
     Then I should see the scope "All" selected
     And I should see the scope "All" with no count
-    And I should see 10 posts in the table
+    And I should see 3 posts in the table
 
   Scenario: Viewing resources when scoping
-    Given 6 posts exist
-    And 4 published posts exist
+    Given 2 posts exist
+    And 3 published posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -81,15 +81,15 @@ Feature: Index Scoping
         end
       end
       """
-    Then I should see the scope "All" with the count 10
-    And I should see 10 posts in the table
-    Then I should see the scope "Published" with the count 4
+    Then I should see the scope "All" with the count 5
+    And I should see 5 posts in the table
+    And I should see the scope "Published" with the count 3
     When I follow "Published"
     Then I should see the scope "Published" selected
-    And I should see 4 posts in the table
+    And I should see 3 posts in the table
 
   Scenario: Viewing resources with optional scopes
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
     """
     ActiveAdmin.register Post do
@@ -109,10 +109,10 @@ Feature: Index Scoping
     And I should not see the scope "All"
     And I should not see the scope "Today"
     And I should see the scope "Shown"
-    And I should see the scope "Default" with the count 10
+    And I should see the scope "Default" with the count 3
 
   Scenario: Viewing resources with multiple scopes as blocks
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -126,9 +126,9 @@ Feature: Index Scoping
       """
     Then I should see the scope "Today" selected
     And I should see the scope "Tomorrow" not selected
-    And I should see the scope "Today" with the count 10
+    And I should see the scope "Today" with the count 3
     And I should see the scope "Tomorrow" with the count 0
-    And I should see 10 posts in the table
+    And I should see 3 posts in the table
     And I should see a link to "Tomorrow"
 
     When I follow "Tomorrow"
@@ -145,6 +145,7 @@ Feature: Index Scoping
         ActiveAdmin.register Post do
           scope_to :current_user
           scope :all, :default => true
+
           filter :title
 
           controller do
