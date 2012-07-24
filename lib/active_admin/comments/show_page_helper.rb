@@ -9,6 +9,9 @@ module ActiveAdmin
       # turned on for the current resource
       def default_main_content
         super
+        if !ActiveRecord::Base.connection.tables.include?("active_admin_comments")
+          active_admin_config.comments = false
+        end
         active_admin_comments if active_admin_config.comments?
       end
 
