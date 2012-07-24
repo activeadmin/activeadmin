@@ -29,7 +29,7 @@ module ActiveAdmin
           when String
             { k => v }
           when Hash
-            fields_for_params(v, namespace: k)
+            fields_for_params(v, :namespace => k)
           when Array
             v.map do |v|
               { "#{k}[]" => v }
