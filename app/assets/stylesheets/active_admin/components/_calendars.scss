@@ -1,0 +1,81 @@
+// -------------------------------------- Index as Calendar
+.index_as_calendar h2 {
+  float: left;
+}
+
+ul#index_calendar_nav {
+  list-style-type: none;
+  padding: 0;
+  margin: -2px 0 0 20px;
+  float: left;
+
+  li {
+    float: left;
+    margin-right: 1em;
+
+    a {
+      display: block;
+      padding: 2px 8px;
+      border: 1px solid #ddd;
+      text-decoration: none;
+      color: #222;
+      background-color: #eee;
+
+      &:hover {
+        border-color: #333;
+      }
+    }
+
+    &.prev {
+      margin: 0;
+    }
+  }
+}
+
+table#index_calendar {
+  clear: both;
+  border-collapse: collapse;
+
+  th, td {
+    line-height: 1.5em;
+    width: 14.286%;
+  }
+
+  thead th {
+    color: #555;
+    background-color: transparent;
+    font-weight: normal;
+    text-align: left;
+  }
+
+  tbody td {
+    height: 120px;
+    vertical-align: top;
+    border: 1px solid #ddd;
+
+    &.current_month {
+      color: #333;
+      background-color: transparent;
+    }
+
+    &.not_current_month {
+      color: #aaa;
+      background-color: transparent;
+    }
+
+    &.today {
+      color: #222;
+      background-color: #eee;
+
+      .day {
+        font-weight: bold;
+      }
+    }
+  }
+
+  ul, ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+}
