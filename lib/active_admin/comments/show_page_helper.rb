@@ -15,9 +15,10 @@ module ActiveAdmin
       # Display the comments for the resource. Same as calling
       # #active_admin_comments_for with the current resource
       def active_admin_comments(*args, &block)
-        active_admin_comments_for(resource, *args, &block)
+        if ActiveRecord::Base.connection.tables.include?("active_admin_comments")
+          active_admin_comments_for(resource, *args, &block)
+        end
       end
     end
-
   end
 end
