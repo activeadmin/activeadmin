@@ -12,6 +12,8 @@ tmtags
 
 ## VIM
 *.swp
+# IDEA / RUBYMINE
+.idea
 
 ## PROJECT::GENERAL
 tags
