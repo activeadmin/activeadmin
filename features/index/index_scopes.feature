@@ -88,6 +88,40 @@ Feature: Index Scoping
     Then I should see the scope "Published" selected
     And I should see 3 posts in the table
 
+  Scenario: Viewing resources when scoping and filtering
+    Given 2 posts written by "Daft Punk" exist
+    Given 1 published posts written by "Daft Punk" exist
+
+    Given 1 posts written by "Alfred" exist
+    Given 2 published posts written by "Alfred" exist
+
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope :all, :default => true
+        scope :published do |posts|
+          posts.where("published_at IS NOT NULL")
+        end
+      end
+      """
+    Then I should see the scope "All" with the count 6
+    And I should see the scope "Published" with the count 3
+    And I should see 6 posts in the table
+
+    When I follow "Published"
+    Then I should see the scope "Published" selected
+    And I should see the scope "All" with the count 6
+    And I should see the scope "Published" with the count 3
+    And I should see 3 posts in the table
+
+    When I select "daft_punk" from "Author"
+    And I press "Filter"
+
+    Then I should see the scope "Published" selected
+    And I should see the scope "All" with the count 3
+    And I should see the scope "Published" with the count 1
+    And I should see 1 posts in the table
+
   Scenario: Viewing resources with optional scopes
     Given 3 posts exist
     And an index configuration of:
@@ -136,7 +170,7 @@ Feature: Index Scoping
     And I should see the scope "Today" not selected
     And I should see a link to "Today"
     
-  Scenario: Viewing resources with scopes when a filter is applied
+  Scenario: Viewing resources with scopes when scoping to user
     Given 2 posts written by "Daft Punk" exist
     And a post with the title "Monkey Wrench" written by "Foo Fighters" exists
     And a post with the title "Everlong" written by "Foo Fighters" exists

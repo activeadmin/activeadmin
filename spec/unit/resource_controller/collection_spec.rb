@@ -31,17 +31,26 @@ describe ActiveAdmin::ResourceController::Collection do
     end
   end
   
-  describe ActiveAdmin::ResourceController::Collection::Scoping do
-    it "should assign @before_scope_collection if a scope_to is registered" do
-      chain = mock("ChainObj")
-      scoped_collection = mock('scoped_collection')
-      controller.stub(:current_scope).and_return(false)
-      controller.stub(:scoped_collection).and_return(scoped_collection)
-      controller.stub_chain(:active_admin_config, :scope_to).and_return(true)
-      
-      controller.send :scope_current_collection, chain
-      controller.instance_variable_get('@before_scope_collection').should == scoped_collection
+  describe ActiveAdmin::ResourceController::Collection::Scoping, "#scope_current_collection" do
+    context "when no current scope" do
+      it "should set collection_before_scope to the chain and return the chain" do
+        chain = mock("ChainObj")
+        controller.send(:scope_current_collection, chain).should == chain
+        controller.send(:collection_before_scope).should == chain
+      end
+    end
+
+    context "when current scope" do
+      it "should set collection_before_scope to the chain and return the scoped chain" do
+        chain = mock("ChainObj")
+        scoped_chain = mock("ScopedChain")
+        current_scope = mock("CurrentScope")
+        controller.stub!(:current_scope) { current_scope }
+
+        controller.should_receive(:scope_chain).with(current_scope, chain) { scoped_chain }
+        controller.send(:scope_current_collection, chain).should == scoped_chain
+        controller.send(:collection_before_scope).should == chain
+      end
     end
   end
-
 end
