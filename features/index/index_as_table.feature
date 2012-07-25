@@ -9,7 +9,7 @@ Feature: Index as Table
       """
     And 1 post exists
     When I am on the index page for posts
-    Then I should see a sortable table header with "ID"
+    Then I should see a sortable table header with "Id"
     And I should see a sortable table header with "Title"
 
   Scenario: Viewing the default table with a resource
@@ -101,12 +101,12 @@ Feature: Index as Table
       """
     When I am on the index page for posts
     Then I should see the "posts" table:
-      | [ ] | ID | Title        | Body | Published At | Created At | Updated At | |
+      | [ ] | Id | Title        | Body | Published At | Created At | Updated At | |
       | [ ] | 2 | Bye bye world | Move your...  |  | /.*/ | /.*/ | ViewEditDelete |
       | [ ] | 1 | Hello World   | From the body |  | /.*/ | /.*/ | ViewEditDelete |
-    When I follow "ID"
+    When I follow "Id"
     Then I should see the "posts" table:
-      | [ ] | ID | Title        | Body | Published At | Created At | Updated At | |
+      | [ ] | Id | Title        | Body | Published At | Created At | Updated At | |
       | [ ] | 1 | Hello World   | From the body |  | /.*/ | /.*/ | ViewEditDelete |
       | [ ] | 2 | Bye bye world | Move your...  |  | /.*/ | /.*/ | ViewEditDelete |
 
