@@ -22,7 +22,7 @@
 
 a.table_tools_button, .table_tools .dropdown_menu_button {
   @include light-button;
-  @include gradient(#FFF, #F0F0F0);
+  @include gradient(#FFFFFF, #F0F0F0);
   @include border-colors(#d9d9d9, #d0d0d0, #c5c5c5);  
   font-size: 0.9em;
   text-decoration: none;
@@ -32,13 +32,13 @@ a.table_tools_button, .table_tools .dropdown_menu_button {
 
   &:not(.disabled) {
     &:hover {
-      @include gradient(#FFF, #F6F6F6);
+      @include gradient(#FFFFFF, #F6F6F6);
     }
 
     &:active {
       @include border-colors(#d7d7d7, #c8c8c8, #c3c3c3);
       @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.17) inset );
-      @include gradient(#FFF, #E8E8E8);
+      @include gradient(#FFFFFF, #E8E8E8);
     }
   }
 }
