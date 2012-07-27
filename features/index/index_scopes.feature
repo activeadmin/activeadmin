@@ -195,3 +195,49 @@ Feature: Index Scoping
     And I press "Filter"
     Then I should see the scope "All" not selected
     And I should see the scope "All" with the count 1
+
+  Scenario: Viewing resources when scoping and filtering and group bys and stuff
+    Given 2 posts written by "Daft Punk" exist
+    Given 1 published posts written by "Daft Punk" exist
+
+    Given 1 posts written by "Alfred" exist
+
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope :all, :default => true
+        scope :published do |posts|
+          posts.where("published_at IS NOT NULL")
+        end
+
+        index do
+          column :author_id
+          column :count
+        end
+
+        config.sort_order = "author_id_asc"
+
+        controller do
+          def scoped_collection
+            Post.select("author_id, count(*) as count").group("author_id")
+          end
+        end
+      end
+      """
+    Then I should see the scope "All" with the count 2
+    And I should see the scope "Published" with the count 1
+    And I should see 2 posts in the table
+
+    When I follow "Published"
+    Then I should see the scope "Published" selected
+    And I should see the scope "All" with the count 2
+    And I should see the scope "Published" with the count 1
+    And I should see 1 posts in the table
+
+    When I select "daft_punk" from "Author"
+    And I press "Filter"
+
+    Then I should see the scope "Published" selected
+    And I should see the scope "All" with the count 1
+    And I should see the scope "Published" with the count 1
+    And I should see 1 posts in the table

@@ -3,11 +3,6 @@ require 'spec_helper'
 describe ActiveAdmin::Views::PaginatedCollection do
   describe "creating with the dsl" do
 
-    let(:collection) do
-      posts = [Post.new(:title => "First Post"), Post.new(:title => "Second Post"), Post.new(:title => "Third Post")]
-      Kaminari.paginate_array(posts).page(1).per(5)
-    end
-
     before :all do
       load_defaults!
       reload_routes!
@@ -25,6 +20,15 @@ describe ActiveAdmin::Views::PaginatedCollection do
       render_arbre_component({:paginated_collection_args => args}, view) do
         paginated_collection(*paginated_collection_args)
       end
+    end
+
+    let(:collection) do
+      posts = [Post.new(:title => "First Post"), Post.new(:title => "Second Post"), Post.new(:title => "Third Post")]
+      Kaminari.paginate_array(posts).page(1).per(5)
+    end
+
+    before do
+      collection.stub!(:reorder) { collection }
     end
 
     context "when specifying collection" do
