@@ -46,6 +46,9 @@ module ActiveAdmin
 
     # Set the configuration for the CSV
     attr_writer :csv_builder
+    
+    # Set the configuration for the Xlsx
+    attr_writer :xlsx_builder
 
     module Base
       def initialize(namespace, resource_class, options = {})
@@ -137,6 +140,10 @@ module ActiveAdmin
       @csv_builder || default_csv_builder
     end
 
+    def xlsx_builder
+      @xlsx_builder || default_xlsx_builder
+    end
+
     # @deprecated
     def resource
       resource_class
@@ -155,6 +162,10 @@ module ActiveAdmin
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource_class)
     end
-    
+
+    def default_xlsx_builder
+      @default_xlsx_builder ||= XlsxBuilder.default_for_resource(resource_class)
+    end
+
   end # class Resource
 end # module ActiveAdmin

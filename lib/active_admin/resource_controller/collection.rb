@@ -126,7 +126,7 @@ module ActiveAdmin
 	end
 
         def per_page
-          return max_csv_records if request.format == 'text/csv'
+          return max_csv_records if %w(text/csv application/vnd.openxmlformats-officedocument.spreadsheetml.sheet).include? request.format 
           return max_per_page if active_admin_config.paginate == false
 
           @per_page || active_admin_config.per_page

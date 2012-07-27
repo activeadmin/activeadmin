@@ -1,4 +1,5 @@
 module ActiveAdmin
+
   class ResourceController < BaseController
 
     # Override the InheritedResources actions to use the
@@ -15,6 +16,10 @@ module ActiveAdmin
           headers['Content-Type'] = 'text/csv; charset=utf-8'
           headers['Content-Disposition'] = %{attachment; filename="#{csv_filename}"}
           render active_admin_template('index')
+        end
+        format.xlsx do
+          xlsx = active_admin_config.xlsx_builder.serialize(collection)
+          send_data xlsx.to_stream.read, :filename => "#{xlsx_filename}", :type => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
         end
       end
     end
@@ -75,6 +80,12 @@ module ActiveAdmin
     # and current date such as 'my-articles-2011-06-24.csv'.
     def csv_filename
       "#{resource_collection_name.to_s.gsub('_', '-')}-#{Time.now.strftime("%Y-%m-%d")}.csv"
+    end
+
+    # Returns a filename for the xlsx file using the collection_name
+    # and current date such as 'my-articles-2011-06-24.xlsx'.
+    def xlsx_filename
+      "#{resource_collection_name.to_s.gsub('_', '-')}-#{Time.now.strftime("%Y-%m-%d")}.xlsx"
     end
 
   end

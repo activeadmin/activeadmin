@@ -11,6 +11,15 @@ require 'active_admin/dependency_checker'
 require 'active_admin/sass/helpers'
 require 'active_admin/engine'
 
+# declare the Mime::Type for xlsx
+begin
+  # The mime type to be used in respond_to |format| style web-services in rails
+  Mime::Type.register "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", :xlsx
+rescue NameError
+  puts "Mime module not defines. Skipping registration of xlsx"
+end
+
+
 module ActiveAdmin
 
   autoload :VERSION,                  'active_admin/version'
@@ -48,6 +57,7 @@ module ActiveAdmin
   autoload :ViewFactory,              'active_admin/view_factory'
   autoload :ViewHelpers,              'active_admin/view_helpers'
   autoload :Views,                    'active_admin/views'
+  autoload :XlsxBuilder,              'active_admin/xlsx_builder'
 
   class Railtie < ::Rails::Railtie
     config.after_initialize do

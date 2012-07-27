@@ -28,4 +28,5 @@ Gem::Specification.new do |s|
   s.add_dependency("sass", ">= 3.1.0")
   s.add_dependency("fastercsv", ">= 0")
   s.add_dependency("arbre", ">= 1.0.0.rc4")
+  s.add_dependency("axlsx", ">= 1.1.7")
 end

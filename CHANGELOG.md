@@ -1,7 +1,7 @@
 ## Master (unreleased)
 
 ### Enhancements
-
+* Added in suport for xlsx (excel) output of resources.
 * Created new view components (Footer, TitleBar, Header, UtilityNav) to more
   easily customize the views in Active Admin and per namespace. (@gregbell)
 * All CSS is now encapsulated under the `body.active_admin` class. This may
@@ -32,7 +32,7 @@
 ## 0.4.4
 
 ### Dependencies
-
+* Use `axlsx` => 1.1.7 until 1.1.8 is released with google docs inter-op
 * Use `formtastic` ~> 2.1.1 until AA 0.5.0 is released
 * Use `inherited_resources` >= 1.3.1 (ensure flash messages work)
 
@@ -78,7 +78,7 @@
 * Matt Vague
 * Greg Bell
 * Philippe Creux
-
+* Randy Morgan
 
 ## 0.4.1
 
