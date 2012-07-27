@@ -13,11 +13,11 @@ Given /^a (published )?post with the title "([^"]*)" written by "([^"]*)" exists
   Post.create! :title => title, :author => author, :published_at => published_at
 end
 
-Given /^(\d+) posts? written by "([^"]*)" exist$/ do |count, author_name|
+Given /^(\d+)( published)? posts? written by "([^"]*)" exist$/ do |count, published, author_name|
   first, last = author_name.split(' ')
   author = User.find_or_create_by_first_name_and_last_name(first, last, :username => author_name.gsub(' ', '').underscore)
   (0...count.to_i).each do |i|
-    Post.create! :title => "Hello World #{i}", :author => author
+    Post.create! :title => "Hello World #{i}", :author => author, :published_at => (published ? Time.now : nil)
   end
 end
 

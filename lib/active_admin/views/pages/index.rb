@@ -1,3 +1,5 @@
+require 'active_admin/helpers/collection'
+
 module ActiveAdmin
   module Views
     module Pages
@@ -35,16 +37,10 @@ module ActiveAdmin
           end
         end
 
-        def items_in_collection?
-          # Remove the order clause before limiting to 1. This ensures that
-          # any referenced columns in the order will not try to be accessed.
-          #
-          # When we call #exists?, the query's select statement is changed to "1".
-          #
-          # If we don't reorder, there may be some columns referenced in the order
-          # clause that requires the original select.
+        include ::ActiveAdmin::Helpers::Collection
 
-          !!collection.reorder("").first
+        def items_in_collection?
+          !collection_is_empty?
         end
 
         def build_collection

@@ -1,3 +1,5 @@
+require 'active_admin/helpers/collection'
+
 module ActiveAdmin
   module Views
 
@@ -85,12 +87,14 @@ module ActiveAdmin
         end
       end
 
+      include ::ActiveAdmin::Helpers::Collection
+
       # modified from will_paginate
       def page_entries_info(options = {})
         if options[:entry_name]
           entry_name = options[:entry_name]
           entries_name = options[:entries_name] || entry_name.pluralize
-        elsif collection.empty?
+        elsif collection_is_empty?
           entry_name = I18n.translate("active_admin.pagination.entry", :count => 1, :default => 'entry')
           entries_name = I18n.translate("active_admin.pagination.entry", :count => 2, :default => 'entries')
         else
@@ -99,17 +103,15 @@ module ActiveAdmin
         end
 
         if collection.num_pages < 2
-          case collection.size
+          case collection_size
           when 0; I18n.t('active_admin.pagination.empty', :model => entries_name)
           when 1; I18n.t('active_admin.pagination.one', :model => entry_name)
           else;   I18n.t('active_admin.pagination.one_page', :model => entries_name, :n => collection.total_count)
           end
         else
-          size = collection.size
-          size = size.size if size.kind_of? Hash # when GROUP BY is used, AR returns Hash instead of Fixnum for .size
           offset = (collection.current_page - 1) * collection.limit_value
           total = collection.total_count
-          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => offset + 1, :to => offset + size, :total => total)
+          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => offset + 1, :to => offset + collection_size, :total => total)
         end
       end
 
