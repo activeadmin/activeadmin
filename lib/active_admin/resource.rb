@@ -47,6 +47,9 @@ module ActiveAdmin
     # Set the configuration for the CSV
     attr_writer :csv_builder
 
+    # Workaround for memory leak.
+    attr_accessor :dsl
+
     module Base
       def initialize(namespace, resource_class, options = {})
         @namespace = namespace
