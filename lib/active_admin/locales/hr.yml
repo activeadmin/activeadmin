@@ -36,11 +36,11 @@ hr:
       one: "Prikazan <b>1</b> %{model}"
       one_page: "Prikazano <b>svih %{n}</b> %{model}"
       multiple: "Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> od ukupno <b>%{total}</b>"
-    entry:
-      one: "zapis"
-      few: "zapisa"
-      many: "zapisa"
-      other: "zapisa"
+      entry:
+        one: "zapis"
+        few: "zapisa"
+        many: "zapisa"
+        other: "zapisa"
     any: "Bilo koji"
     blank_slate:
       content: "Još uvijek ne postoji niti jedan zapis tipa %{resource_name}."
