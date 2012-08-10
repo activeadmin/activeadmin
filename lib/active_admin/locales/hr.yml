@@ -21,8 +21,8 @@ hr:
     download: "Spremi na računalo:"
     has_many_new: "Dodaj novi %{model}"
     has_many_delete: "Obriši"
-    filter: "Filter"
-    clear_filters: "Očisti Filtere"
+    filter: "Filtriraj"
+    clear_filters: "Očisti filtere"
     search_field: "Pretraži po %{field}"
     equal_to: "Jednako"
     greater_than: "Veće Od"
@@ -30,7 +30,7 @@ hr:
     main_content: "Molim Vas, implementirajte %{model}#main_content da bi ste prikazali sadržaj."
     logout: "Odjavi se"
     sidebars:
-      filters: "Filteri"
+      filters: "Filtriranje"
     pagination:
       empty: "Nije pronađen niti jedan %{model}."
       one: "Prikazan <b>1</b> %{model}"
