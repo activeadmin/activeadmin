@@ -21,13 +21,18 @@ module ActiveAdmin
         end
 
         def render_sections(sections)
+          cloned_sections = sections.clone
           table :class => "dashboard" do
-            sections.in_groups_of(3, false).each do |row|
+            while !cloned_sections.empty?
+              current_cols_number = 0
               tr do
-                row.each do |section|
-                  td do
-                    render_section(section)
+                while current_cols_number < 12 && !cloned_sections.empty?
+                  s       = cloned_sections.shift
+                  colspan = s.options[:colspan].nil? ? 4 : s.options[:colspan]
+                  td colspan: colspan do
+                    render_section(s)
                   end
+                  current_cols_number += colspan
                 end
               end
             end
