@@ -45,6 +45,9 @@ module ActiveAdmin
           if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
             column = $1
             order  = $2
+            if order == "desc" && ActiveRecord::Base.connection.instance_of?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
+              order = "desc nulls last"
+            end
             table  = active_admin_config.resource_table_name
             table_column = (column =~ /\./) ? column :
               "#{table}.#{active_admin_config.resource_quoted_column_name(column)}"
