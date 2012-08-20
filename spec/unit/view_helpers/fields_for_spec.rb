@@ -15,8 +15,11 @@ describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
   end
 
   it "should work with hashes" do
-    fields_for_params(:filters => { :name => "John", :age => "12" }).
-      should == [ { "filters[name]" => "John" }, { "filters[age]" => "12" } ]
+    params = fields_for_params(:filters => { :name => "John", :age => "12" })
+
+    params.size.should == 2
+    params.should include({"filters[name]" => "John" })
+    params.should include({ "filters[age]" => "12" })
   end
 
   it "should work with nested hashes" do
