@@ -2,7 +2,9 @@ source 'http://rubygems.org'
 
 gemspec
 
-require File.expand_path('../spec/support/detect_rails_version', __FILE__)
+ACTIVE_ADMIN_PATH = File.dirname(__FILE__) unless defined?(ACTIVE_ADMIN_PATH)
+
+require File.expand_path('spec/support/detect_rails_version', ACTIVE_ADMIN_PATH)
 
 rails_version = detect_rails_version
 gem 'rails',          rails_version

@@ -193,7 +193,7 @@ Feature: Index Scoping
     And I should see the scope "All" with the count 2
     When I fill in "Search Title" with "Monkey"
     And I press "Filter"
-    Then I should see the scope "All" not selected
+    Then I should see the scope "All" selected
     And I should see the scope "All" with the count 1
 
   Scenario: Viewing resources when scoping and filtering and group bys and stuff
