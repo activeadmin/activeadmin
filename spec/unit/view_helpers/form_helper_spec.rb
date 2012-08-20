@@ -10,7 +10,7 @@ describe ActiveAdmin::ViewHelpers::FormHelper do
     end
 
     it "should filter out the field passed via the option :except" do
-      view.hidden_field_tags_for({:scope => "All", :filter => "None"}, except: :filter).should == 
+      view.hidden_field_tags_for({:scope => "All", :filter => "None"}, :except => :filter).should == 
         %{<input id="scope" name="scope" type="hidden" value="All" />}
     end
   end
