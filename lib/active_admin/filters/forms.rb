@@ -17,7 +17,7 @@ module ActiveAdmin
 
       # Returns the default filter type for a given attribute
       def default_input_type(method, options = {})
-        if column = column_for(method)
+        if (column = column_for(method))
           case column.type
           when :date, :datetime
             return :date_range
@@ -31,7 +31,7 @@ module ActiveAdmin
           end
         end
 
-        if reflection = reflection_for(method)
+        if (reflection = reflection_for(method))
           return :select if reflection.macro == :belongs_to && !reflection.options[:polymorphic]
         end
       end
