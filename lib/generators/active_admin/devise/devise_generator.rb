@@ -38,7 +38,7 @@ module ActiveAdmin
         devise_migrations = Dir["db/migrate/*_devise_create_#{table_name}.rb"]
         if devise_migrations.size > 0
           inject_into_file  Dir["db/migrate/*_devise_create_#{table_name}.rb"].first, 
-                            "# Create a default user\n    #{class_name}.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')\n\n    ",
+                            "def migrate(direction)\n      super\n      # Create a default user\n      AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password') if direction == :up\n   end\n\n    ",
                             :before => "add_index :#{table_name}, :email"
         end
       end
