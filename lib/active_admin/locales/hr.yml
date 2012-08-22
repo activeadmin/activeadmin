@@ -21,8 +21,8 @@ hr:
     download: "Spremi na računalo:"
     has_many_new: "Dodaj novi %{model}"
     has_many_delete: "Obriši"
-    filter: "Filter"
-    clear_filters: "Očisti Filtere"
+    filter: "Filtriraj"
+    clear_filters: "Očisti filtere"
     search_field: "Pretraži po %{field}"
     equal_to: "Jednako"
     greater_than: "Veće Od"
@@ -30,15 +30,17 @@ hr:
     main_content: "Molim Vas, implementirajte %{model}#main_content da bi ste prikazali sadržaj."
     logout: "Odjavi se"
     sidebars:
-      filters: "Filteri"
+      filters: "Filtriranje"
     pagination:
       empty: "Nije pronađen niti jedan %{model}."
       one: "Prikazan <b>1</b> %{model}"
       one_page: "Prikazano <b>svih %{n}</b> %{model}"
       multiple: "Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> od ukupno <b>%{total}</b>"
-    entry:
-      one: "zapis"
-      other: "zapisa"
+      entry:
+        one: "zapis"
+        few: "zapisa"
+        many: "zapisa"
+        other: "zapisa"
     any: "Bilo koji"
     blank_slate:
       content: "Još uvijek ne postoji niti jedan zapis tipa %{resource_name}."
@@ -48,6 +50,8 @@ hr:
       delete_confirmation: "Jeste li sigurni da želite obrisati %{plural_model}? Obrisano nije moguće poništiti."
       succesfully_destroyed:
         one: "Uspješno je obrisan 1 %{model}"
+        few: "Uspješno su obrisana %{count} %{plural_model}"
+        many: "Uspješno je obrisano %{count} %{plural_model}"
         other: "Uspješno je obrisano %{count} %{plural_model}"
       selection_toggle_explanation: "(Izmjeni odabir)"
       link: "Izradi jedan"
