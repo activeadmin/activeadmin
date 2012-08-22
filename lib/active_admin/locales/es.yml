@@ -3,11 +3,11 @@ es:
     dashboard: Inicio
     dashboard_welcome:
       welcome: "Bienvenido a Active Admin. Esta es la página de inicio predeterminada."
-      call_to_action: "Para agregar secciones edita 'app/admin/dashboards.rb'"
+      call_to_action: "Para agregar secciones edite 'app/admin/dashboards.rb'"
     view: "Ver"
     edit: "Editar"
     delete: "Eliminar"
-    delete_confirmation: "¿Está seguro que quiere eliminar esto?"
+    delete_confirmation: "¿Está seguro de que quiere eliminar esto?"
     new_model: "Nuevo(a) %{model}"
     create_model: "Nuevo(a) %{model}"
     edit_model: "Editar %{model}"
@@ -44,12 +44,12 @@ es:
         other: "registros"
     any: "Cualquiera"
     batch_actions:
-      button_label: "Batch Actions"
-      delete_confirmation: "¿Está seguro que quiere eliminar estos %{plural_model}? No podrás deshacer esta opción."
+      button_label: "Acciones en masa"
+      delete_confirmation: "¿Está seguro de que quiere eliminar estos %{plural_model}? No podrá deshacer esta opción."
       succesfully_destroyed:
         one: "Se ha destruido 1 %{model} exitosamente"
         other: "Se han destruido %{count} %{plural_model} exitosamente"
-      selection_toggle_explanation: "(Toggle Selection)"
+      selection_toggle_explanation: "(Cambiar Selección)"
       link: "Crea 1"
       action_label: "%{title} Seleccionado"
       labels:
@@ -59,32 +59,32 @@ es:
       author: "Autor"
       title: "Comentario"
       add: "Comentar"
-      resource: "Resource"
+      resource: "Recurso"
       no_comments_yet: "Sin comentarios todavía."
       title_content: "Comentarios (%{count})"
       errors:
-        empty_text: "El comentario no fue salvado, el texto estaba vacio."
+        empty_text: "El comentario no fue guardado, el texto estaba vacío."
     devise:
       login:
         title: "iniciar sesión"
         remember_me: "Recuérdame"
         submit: "iniciar sesión"
       reset_password:
-        title: "¿Olvidaste tu contraseña?"
+        title: "¿Olvidó su contraseña?"
         submit: "Restablecer mi contraseña"
       change_password:
         title: "Cambie su contraseña"
         submit: "Cambiar mi contraseña"
       links:
         sign_in: "registrarse"
-        forgot_your_password: "¿Olvidaste tu contraseña?"
+        forgot_your_password: "¿Olvidó su contraseña?"
   views:
       pagination:
           truncate: "..."
           first: "Inicio"
           previous: "Anterior"
           next: "Siguiente"
-          last: "Ultimo"
+          last: "Último"
   formtastic:
     yes: "Sí"
     no: "No"
