@@ -97,7 +97,7 @@ module ActiveAdmin
           end
 
           # Add on the namespace if required
-          if !config.namespace.root?
+          unless config.namespace.root?
             routes_in_namespace = route_definition_block.dup
             route_definition_block = Proc.new do
               namespace config.namespace.name do

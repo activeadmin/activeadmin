@@ -242,7 +242,7 @@ module ActiveAdmin
       register_stylesheet 'active_admin.css', :media => 'screen'
       register_stylesheet 'active_admin/print.css', :media => 'print'
 
-      if !ActiveAdmin.use_asset_pipeline?
+      unless ActiveAdmin.use_asset_pipeline?
         register_javascript 'jquery.min.js'
         register_javascript 'jquery-ui.min.js'
         register_javascript 'jquery_ujs.js'
