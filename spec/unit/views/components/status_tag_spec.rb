@@ -15,13 +15,13 @@ describe ActiveAdmin::Views::StatusTag do
 
 
     its(:tag_name)    { should == 'span' }
-    its(:class_list)  { should include('status') }
+    its(:class_list)  { should include('status_tag') }
 
     context "when status is 'completed'" do
       subject { status_tag('completed') }
 
       its(:tag_name)    { should == 'span' }
-      its(:class_list)  { should include('status') }
+      its(:class_list)  { should include('status_tag') }
       its(:class_list)  { should include('completed') }
       its(:content)     { should == 'Completed' }
     end
@@ -43,21 +43,21 @@ describe ActiveAdmin::Views::StatusTag do
     context "when status is an empty string" do
       subject { status_tag('') }
 
-      its(:class_list)  { should include('status') }
+      its(:class_list)  { should include('status_tag') }
       its(:content)     { should == '' }
     end
 
     context "when status is nil" do
       subject { status_tag(nil) }
 
-      its(:class_list)  { should include('status') }
+      its(:class_list)  { should include('status_tag') }
       its(:content)     { should == '' }
     end
 
     context "when status is 'Active' and type is :ok" do
       subject { status_tag('Active', :ok) }
 
-      its(:class_list)  { should include('status') }
+      its(:class_list)  { should include('status_tag') }
       its(:class_list)  { should include('active') }
       its(:class_list)  { should include('ok') }
     end
@@ -65,7 +65,7 @@ describe ActiveAdmin::Views::StatusTag do
     context "when status is 'Active' and class is 'ok'" do
       subject { status_tag('Active', :class => 'ok') }
 
-      its(:class_list)  { should include('status') }
+      its(:class_list)  { should include('status_tag') }
       its(:class_list)  { should include('active') }
       its(:class_list)  { should include('ok') }
     end
@@ -74,7 +74,7 @@ describe ActiveAdmin::Views::StatusTag do
       subject { status_tag('Active', :label => 'on') }
 
       its(:content)     { should == 'on' }
-      its(:class_list)  { should include('status') }
+      its(:class_list)  { should include('status_tag') }
       its(:class_list)  { should include('active') }
       its(:class_list)  { should_not include('on') }
     end
@@ -83,7 +83,7 @@ describe ActiveAdmin::Views::StatusTag do
       subject { status_tag('So useless', :ok, :class => 'woot awesome', :id => 'useless') }
 
       its(:content)     { should == 'So Useless' }
-      its(:class_list)  { should include('status') }
+      its(:class_list)  { should include('status_tag') }
       its(:class_list)  { should include('ok') }
       its(:class_list)  { should include('so_useless') }
       its(:class_list)  { should include('woot') }
