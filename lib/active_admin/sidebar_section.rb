@@ -12,7 +12,7 @@ module ActiveAdmin
 
     # The id gets used for the div in the view
     def id
-      name.to_s.downcase.underscore + '_sidebar_section'
+      "#{name.to_s.downcase.underscore}_sidebar_section".parameterize
     end
 
     def icon?
