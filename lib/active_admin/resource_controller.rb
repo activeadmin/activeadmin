@@ -31,9 +31,7 @@ module ActiveAdmin
         @active_admin_config = config
 
         unless config.nil?
-          defaults  :resource_class => config.resource_class,
-                    :route_prefix => config.route_prefix,
-                    :instance_name => config.resource_name.singular
+          defaults :resource_class => config.resource_class, :route_prefix => config.route_prefix, :instance_name => config.resource_name.singular
         end
       end
 

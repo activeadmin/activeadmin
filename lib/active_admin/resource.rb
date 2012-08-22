@@ -47,7 +47,7 @@ module ActiveAdmin
     # Set the configuration for the CSV
     attr_writer :csv_builder
 
-    # Workaround for memory leak.
+    # Store a reference to the DSL so that we can dereference it during garbage collection.
     attr_accessor :dsl
 
     module Base

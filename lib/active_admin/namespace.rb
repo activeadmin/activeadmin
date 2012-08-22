@@ -146,7 +146,11 @@ module ActiveAdmin
         # Remove the const if its been defined
         parent.send(:remove_const, const_name) if parent.const_defined?(const_name)
 
-        clear_resource_bindings(resource)
+        # Remove circular references
+        resource.controller.active_admin_config = nil
+        if resource.is_a?(Resource) && resource.dsl
+          resource.dsl.run_registration_block { @config = nil }
+        end
       end
       @resources = ResourceCollection.new
     end
@@ -166,9 +170,6 @@ module ActiveAdmin
       config.controller.active_admin_config = config
     end
 
-    # Parses block in ResourceDSL instance context.
-    # This instance is remembered in resource object in order to be removed
-    # when resource will be released (see issue 170 - memory leak).
     def parse_registration_block(config, &block)
       config.dsl = ResourceDSL.new(config)
       config.dsl.run_registration_block(&block)
@@ -186,19 +187,5 @@ module ActiveAdmin
               include ActiveAdmin::Dashboards::DashboardController
             end"
     end
-
-    private
-
-    # Clear references to resource being unloaded:
-    # 1. Circular dependency in resource controller
-    # 2. Reference to resource in ResourceDSL instance (Resource instances only)
-    def clear_resource_bindings(resource)
-      resource.controller.active_admin_config = nil
-
-      if resource.is_a?(Resource) && resource.dsl
-        resource.dsl.run_registration_block { @config = nil }
-      end
-    end
-
   end
 end
