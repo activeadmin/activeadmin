@@ -27,10 +27,22 @@ module ActiveAdminContentsRollback
   def self.rollback!
     recorded_files.each do |filename, contents|
       # contents will be nil if the file didin't exist
-      if contents
-        File.open(filename, "w+") {|f| f << contents }
+      if contents.present?
+        File.open(filename, "w") {|f| f << contents }
       else
         File.delete(filename)
+
+        # Delete parent directories
+        begin
+          dir = File.dirname(filename)
+          until dir == Rails.root
+            Dir.rmdir(dir)
+            dir = dir.split('/')[0..-2].join('/')
+          end
+        rescue Errno::ENOTEMPTY
+          # Directory not empty
+        end
+
       end
     end
 
