@@ -170,6 +170,7 @@ module ActiveAdmin
         #   # => Sort key will be 'login'
         #
         def sort_key
+          # If boolean or nil, use the default sort key.
           if @options[:sortable] == true || @options[:sortable] == false || @options[:sortable].nil?
             @data.to_s
           else
