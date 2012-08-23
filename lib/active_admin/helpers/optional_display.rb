@@ -21,7 +21,7 @@ module ActiveAdmin
         symbol_or_proc = @options[:if]
         return case symbol_or_proc
         when Symbol, String
-          self.send(symbol_or_proc)
+          render_context ? render_context.send(symbol_or_proc) : self.send(symbol_or_proc)
         when Proc
             render_context ? render_context.instance_exec(&symbol_or_proc) : instance_exec(&symbol_or_proc)
         else symbol_or_proc
