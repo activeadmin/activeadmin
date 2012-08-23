@@ -17,7 +17,7 @@ generate :model, "user type:string first_name:string last_name:string username:s
 inject_into_file 'app/models/user.rb', "  has_many :posts, :foreign_key => 'author_id'\n", :after => "class User < ActiveRecord::Base\n"
 generate :model, "publisher --migration=false --parent=User"
 generate :model, 'category name:string description:text'
-inject_into_file 'app/models/category.rb', "  has_many :posts\n", :after => "class Category < ActiveRecord::Base\n"
+inject_into_file 'app/models/category.rb', "  has_many :posts\n  accepts_nested_attributes_for :posts\n", :after => "class Category < ActiveRecord::Base\n"
 generate :model, 'store name:string'
 
 # Generate a model with string ids
