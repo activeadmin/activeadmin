@@ -54,12 +54,21 @@ module ActiveAdmin
 
       # Add Delete Links
       form_block = proc do |has_many_form|
-        block.call(has_many_form) + if has_many_form.object.new_record?
-                                      template.content_tag :li do
-                                        template.link_to I18n.t('active_admin.has_many_delete'), "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
-                                      end
-                                    else
-                                    end
+        # @see https://github.com/justinfrench/formtastic/blob/2.2.1/lib/formtastic/helpers/inputs_helper.rb#L373
+        contents = if block.arity == 1  # for backwards compatibility with REE & Ruby 1.8.x
+          block.call(has_many_form)
+        else
+          index = parent_child_index(options[:parent]) if options[:parent]
+          block.call(has_many_form, index)
+        end
+
+        if has_many_form.object.new_record?
+          contents += template.content_tag(:li) do
+            template.link_to I18n.t('active_admin.has_many_delete'), "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
+          end
+        end
+
+        contents
       end
 
       content = with_new_form_buffer do

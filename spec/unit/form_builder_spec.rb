@@ -30,7 +30,7 @@ describe ActiveAdmin::FormBuilder do
   end
 
   def build_form(options = {}, form_object = Post.new, &block)
-    options.merge!({:url => helpers.posts_path})
+    options = {:url => helpers.posts_path}.merge(options)
 
     render_arbre_component({:form_object => form_object, :form_options => options, :form_block => block}, helpers)do
       text_node active_admin_form_for(assigns[:form_object], assigns[:form_options], &assigns[:form_block])
@@ -293,6 +293,57 @@ describe ActiveAdmin::FormBuilder do
     end
   end
 
+  context "with has many inputs" do
+    describe "with simple block" do
+      let :body do
+        build_form({:url => '/categories'}, Category.new) do |f|
+          f.object.posts.build
+          f.has_many :posts do |p|
+            p.input :title
+          end
+        end
+      end
+
+      it "should render the nested form" do
+        body.should have_tag("input", :attributes => {:name => "category[posts_attributes][0][title]"})
+      end
+
+      it "should add a link to remove new nested records" do
+        Capybara.string(body).should have_css(".has_many > fieldset > ol > li > a", :class => "button", :href => "#", :content => "Delete")
+      end
+
+      it "should add a link to add new nested records" do
+        Capybara.string(body).should have_css(".has_many > fieldset > ol > li > a", :class => "button", :href => "#", :content => "Add New Post")
+      end
+    end
+
+    describe "with complex block" do
+      let :body do
+        build_form({:url => '/categories'}, Category.new) do |f|
+          f.object.posts.build
+          f.has_many :posts do |p,i|
+            p.input :title, :label => "Title #{i}"
+          end
+        end
+      end
+
+      it "should accept a block with a second argument" do
+        body.should have_tag("label", "Title 1")
+      end
+    end
+
+    pending "should render the block if it returns nil" do
+      body = build_form({:url => '/categories'}, Category.new) do |f|
+        f.object.posts.build
+        f.has_many :posts do |p|
+          p.input :title
+          nil
+        end
+      end
+
+      body.should have_tag("input", :attributes => {:name => "category[posts_attributes][0][title]"})
+    end
+  end
 
   {
     "input :title, :as => :string"               => /id\=\"post_title\"/,
