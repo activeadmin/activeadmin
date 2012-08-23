@@ -112,6 +112,11 @@ module ActiveAdmin
       @collection_actions = []
     end
 
+    # Return only defined resource actions
+    def defined_actions
+      controller.instance_methods.map { |m| m.to_sym } & ResourceController::ACTIVE_ADMIN_ACTIONS
+    end
+
     # Are admin notes turned on for this resource
     def admin_notes?
       admin_notes.nil? ? ActiveAdmin.admin_notes : admin_notes
