@@ -92,6 +92,18 @@ Feature: Index as Table
     And I should see a member link to "Edit"
     And I should not see a member link to "Delete"
 
+  Scenario: Associations are not sortable
+    Given 1 post exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          index do
+            column :category
+          end
+        end
+      """
+    Then I should not see a sortable table header with "Category"
+
   Scenario: Sorting
     Given a post with the title "Hello World" and body "From the body" exists
     And a post with the title "Bye bye world" and body "Move your..." exists
@@ -109,4 +121,3 @@ Feature: Index as Table
       | [ ] | Id | Title        | Body | Published At | Created At | Updated At | |
       | [ ] | 1 | Hello World   | From the body |  | /.*/ | /.*/ | ViewEditDelete |
       | [ ] | 2 | Bye bye world | Move your...  |  | /.*/ | /.*/ | ViewEditDelete |
-

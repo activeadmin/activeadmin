@@ -143,5 +143,9 @@ describe ActiveAdmin::Views::TableFor do
       it { should_not be_sortable }
     end
 
+    context "when :sortable column is an association" do
+      let(:table_column){ build_column("Category", :category, Post) }
+      it { should_not be_sortable }
+    end
   end
 end
