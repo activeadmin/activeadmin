@@ -293,6 +293,22 @@ describe ActiveAdmin::FormBuilder do
     end
   end
 
+  context "with has many inputs" do
+    describe "with :header option" do
+      let :body do
+        build_form({:url => '/categories'}, Category.new) do |f|
+          f.object.posts.build
+          f.has_many :posts, :header => 'Blog Posts' do |p|
+            p.input :title
+          end
+        end
+      end
+
+      it "should use the custom header" do
+        body.should have_tag("h3", "Blog Posts")
+      end
+    end
+  end
 
   {
     "input :title, :as => :string"               => /id\=\"post_title\"/,
