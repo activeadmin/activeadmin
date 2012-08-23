@@ -20,7 +20,7 @@ module ActiveAdmin
             # Eval the show config from the controller
             instance_exec resource, &config.block
           else
-            default_main_content
+            default_main_content_with_admin_comments
           end
         end
 
