@@ -14,7 +14,7 @@ Feature: Specifying Actions
           end
         end
       """
-	And I am logged in
+    And I am logged in
     And a post with the title "Hello World" exists
     When I am on the index page for posts
     Then an "AbstractController::ActionNotFound" exception should be raised when I follow "View"
@@ -30,9 +30,9 @@ Feature: Specifying Actions
           collection_action :import
         end
       """
-    Given "app/views/admin/posts/import.html.erb" contains:
+    Given "app/views/admin/posts/import.html.arb" contains:
       """
-        <p>We are currently working on this feature...</p>
+        para "We are currently working on this feature..."
       """
     And I am logged in
     When I am on the index page for posts
@@ -46,7 +46,7 @@ Feature: Specifying Actions
           action_item(:only => :show) do
             link_to('Review', review_admin_post_path)
           end
-
+  
           member_action :review do
             @post = Post.find(params[:id])
           end
@@ -90,3 +90,4 @@ Feature: Specifying Actions
     Then I should see "Review: Hello World"
     And I should see the page title "Review"
     And I should see the Active Admin layout
+
