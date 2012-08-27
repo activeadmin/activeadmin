@@ -14,6 +14,11 @@ describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
       should == [ { :scope => "All" } ]
   end
 
+  it "should allow an array for the except" do
+    fields_for_params({:scope => "All", :name => "Greg", :age => "12"}, :except => [:name, :age]).
+      should == [ { :scope => "All" } ]
+  end
+
   it "should work with hashes" do
     params = fields_for_params(:filters => { :name => "John", :age => "12" })
 
@@ -29,8 +34,8 @@ describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
 
   it "should work with arrays" do
     fields_for_params(:people => ["greg", "emily", "philippe"]).
-      should == [ { "people[]" => "greg" }, 
-                  { "people[]" => "emily" }, 
+      should == [ { "people[]" => "greg" },
+                  { "people[]" => "emily" },
                   { "people[]" => "philippe" } ]
   end
 end
