@@ -67,7 +67,7 @@ module ActiveAdmin
     inheritable_setting :root_to, 'dashboard#index'
 
     # Default CSV separator
-    inheritable_setting :csv_column_separator, ","
+    inheritable_setting :csv_column_separator, ','
 
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order

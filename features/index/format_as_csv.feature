@@ -64,7 +64,7 @@ Feature: Format as CSV
   Scenario: With default CSV separator option
     Given a configuration of:
     """
-      ActiveAdmin.application.csv_column_separator = ";"
+      ActiveAdmin.application.csv_column_separator = ';'
       ActiveAdmin.register Post do
         csv do
           column :title
