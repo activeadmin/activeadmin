@@ -61,3 +61,21 @@ Feature: Format as CSV
       | Title        | Body |
       | Hello, World | (.*) |
 
+  Scenario: With default CSV separator option
+    Given a configuration of:
+    """
+      ActiveAdmin.application.csv_column_separator = ';'
+      ActiveAdmin.register Post do
+        csv do
+          column :title
+          column :body
+        end
+      end
+    """
+    And a post with the title "Hello, World" exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    And I should download a CSV file with ";" separator for "posts" containing:
+      | Title | Body |
+      | Hello, World | (.*) |
+
