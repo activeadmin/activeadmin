@@ -57,8 +57,8 @@ describe ActiveAdmin::Application do
     application.admin_notes.should be_nil
   end
 
-  it "should allow comments by default" do
-    application.allow_comments.should == true
+  it "should off comments by default" do
+    application.allow_comments.should == false
   end
 
   describe "authentication settings" do

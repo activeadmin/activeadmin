@@ -5,7 +5,7 @@ require 'active_admin/comments/namespace_helper'
 require 'active_admin/comments/resource_helper'
 
 # Add the comments configuration
-ActiveAdmin::Application.inheritable_setting :allow_comments, true
+ActiveAdmin::Application.inheritable_setting :allow_comments, false
 
 # Add the comments module to ActiveAdmin::Namespace
 ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper

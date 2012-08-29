@@ -64,6 +64,7 @@ route <<-EOS
 EOS
 
 generate :'active_admin:install'
+generate :'active_admin:comments'
 
 # Setup a root path for devise
 route "root :to => 'admin/dashboard#index'"
