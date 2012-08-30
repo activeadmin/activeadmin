@@ -25,9 +25,9 @@
   and using the new `config.root_to` option.
 * Arbre is now a gem on its own.
 
-### Contributors
+### Contributions
 
-456 commits (120 Pull Requests) by 72 contributors.
+552 commits (140 Pull Requests) by 88 contributors.
 
 ## 0.4.4
 
