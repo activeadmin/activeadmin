@@ -9,8 +9,11 @@
   other areas of your application.
 * Dashboards are now implemented as pages. For more details of how to configure
   a page, checkout http://activeadmin.info/docs/9-custom-pages.html
+* Root route can be set to any controller#action using `#root_to`.
 * Batch Actions allows you to select entries on index page and perform
   an action against them.
+* CSV separators are configurable.
+* Lot of bug fixes.
 
 ### Deprecations
 
