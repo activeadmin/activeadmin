@@ -90,4 +90,14 @@ describe ActiveAdmin::CSVBuilder do
     end
   end
 
+  context "with csv_options" do
+    let(:builder) do
+      ActiveAdmin::CSVBuilder.new :options => {:force_quotes => true}
+    end
+
+    it "should have proper separator" do
+      builder.options.should == {:force_quotes => true}
+    end
+  end
+
 end
