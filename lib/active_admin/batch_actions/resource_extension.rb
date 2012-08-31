@@ -61,11 +61,11 @@ module ActiveAdmin
       def add_default_batch_actions
         destroy_options = {
           :priority => 100,
-          :confirm => I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => plural_resource_label.downcase),
+          :confirm => proc { I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => active_admin_config.plural_resource_label.downcase) },
           :if => proc{ controller.action_methods.include?('destroy') }
         }
 
-        add_batch_action :destroy, I18n.t('active_admin.delete'), destroy_options do |selected_ids|
+        add_batch_action :destroy, proc { I18n.t('active_admin.delete') }, destroy_options do |selected_ids|
           active_admin_config.resource_class.find(selected_ids).each { |r| r.destroy }
 
           redirect_to collection_path, :notice => I18n.t("active_admin.batch_actions.succesfully_destroyed",
