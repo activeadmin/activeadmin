@@ -27,13 +27,16 @@ module ActiveAdmin
                       :id => "batch_actions_selector",
                       :button => { :class => "disabled" } do
           batch_actions_to_display.each do |batch_action|
+            confirmation_text = render_or_call_method_or_proc_on(self, batch_action.confirm)
+
             options = {
               :class => "batch_action",
               "data-action" => batch_action.sym,
-              "data-confirm" => batch_action.confirm
+              "data-confirm" => confirmation_text
             }
 
-            title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", :default => batch_action.title)
+            default_title = render_or_call_method_or_proc_on(self, batch_action.title)
+            title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", default_title)
             label = I18n.t("active_admin.batch_actions.action_label", :title => title)
 
             item label, "#", options
