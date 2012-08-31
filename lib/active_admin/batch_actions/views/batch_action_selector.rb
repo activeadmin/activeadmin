@@ -36,7 +36,7 @@ module ActiveAdmin
             }
 
             default_title = render_or_call_method_or_proc_on(self, batch_action.title)
-            title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", default_title)
+            title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", :default => default_title)
             label = I18n.t("active_admin.batch_actions.action_label", :title => title)
 
             item label, "#", options
