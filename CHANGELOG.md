@@ -1,5 +1,7 @@
 ## Master (unreleased)
 
+## 0.5.0
+
 ### Enhancements
 
 * Created new view components (Footer, TitleBar, Header, UtilityNav) to more
@@ -30,7 +32,7 @@
 
 ### Contributions
 
-552 commits (140 Pull Requests) by 88 contributors.
+561 commits (142 Pull Requests) by 88 contributors.
 
 ## 0.4.4
 
