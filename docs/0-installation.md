@@ -6,13 +6,6 @@ your Gemfile:
     # Gemfile
     gem 'activeadmin'
 
-If you are using Rails >= 3.1, you must also include a beta version of
-MetaSearch and sass-rails:
-
-    # Gemfile in Rails >= 3.1
-    gem 'activeadmin'
-    gem 'sass-rails'
-
 ## Running the Generator
 
 Once you have added the gem to your Gemfile (and any other dependencies), you
