@@ -28,6 +28,12 @@ describe ActiveAdmin::Filters::ResourceExtension do
     resource.filters.should be_empty
   end
 
+  it "should remove a filter" do
+    resource.filters.should include({:attribute => :author})
+    resource.remove_filter :author
+    resource.filters.should_not include({:attribute => :author})
+  end
+
   it "should add a filter" do
     resource.add_filter :title
     resource.filters.should == [{:attribute => :title}]
