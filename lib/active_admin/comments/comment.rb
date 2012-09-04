@@ -39,7 +39,6 @@ module ActiveAdmin
       columns.select { |i| i.name == "resource_id" }.first.type
     end
 
-    # Overwrite table_name so that proper name is used (issue #174)
     def self.table_name
       @table_name ||= ActiveRecord::Migrator.proper_table_name("active_admin_comments")
     end
