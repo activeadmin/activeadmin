@@ -6,8 +6,6 @@ module ActiveAdmin
   ::ActiveRecord::Base.send :include, Kaminari::ActiveRecordExtension
 
   class Comment < ActiveRecord::Base
-    self.table_name = "active_admin_comments"
-
     belongs_to :resource, :polymorphic => true
     belongs_to :author, :polymorphic => true
 
@@ -39,6 +37,10 @@ module ActiveAdmin
 
     def self.resource_id_type
       columns.select { |i| i.name == "resource_id" }.first.type
+    end
+
+    def self.table_name
+      @table_name ||= ActiveRecord::Migrator.proper_table_name("active_admin_comments")
     end
 
   end
