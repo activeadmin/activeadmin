@@ -6,7 +6,7 @@ ActiveAdmin.register_page "Dashboard" do
     div :class => "blank_slate_container", :id => "dashboard_default_message" do
       span :class => "blank_slate" do
         span "Welcome to Active Admin. This is the default dashboard page."
-        small "To add dashboard sections, checkout 'app/admin/dashboards.rb'"
+        small "To add dashboard sections, checkout 'app/admin/dashboard.rb'"
       end
     end
 
