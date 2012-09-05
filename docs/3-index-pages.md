@@ -77,6 +77,11 @@ Or to disable for the entire application:
       config.filters = false
     end
 
+You can also add a filter and still preserve the default filters:
+
+    preserve_default_filters!
+    filter :author
+
 ## Index default sort order
 
 You can define the default sort order for index pages:

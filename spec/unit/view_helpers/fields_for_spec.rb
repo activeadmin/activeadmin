@@ -38,4 +38,9 @@ describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
                   { "people[]" => "emily" },
                   { "people[]" => "philippe" } ]
   end
+
+  it "should work with symbols" do
+    fields_for_params(:filter => :id).
+      should == [ { :filter => "id" } ]
+  end
 end
