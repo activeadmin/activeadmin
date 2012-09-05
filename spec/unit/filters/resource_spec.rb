@@ -45,7 +45,7 @@ describe ActiveAdmin::Filters::ResourceExtension do
   end
 
   it "should preserve default filters" do
-    resource.preserve_default_filters
+    resource.preserve_default_filters!
     resource.add_filter :count, :as => :string
     resource.filters.map{|f| f[:attribute].to_s }.sort.should == %w{
       author body category count created_at published_at title updated_at
