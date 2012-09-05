@@ -11,6 +11,11 @@ module ActiveAdmin
       def remove_filter(attribute)
         config.remove_filter(attribute)
       end
+
+      # For docs, please see ActiveAdmin::Filters::ResourceExtension#preserve_default_filters!
+      def preserve_default_filters!(bool = true)
+        config.preserve_default_filters!(bool)
+      end
     end
   end
 end

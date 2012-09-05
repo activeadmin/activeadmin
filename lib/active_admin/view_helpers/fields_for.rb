@@ -28,6 +28,8 @@ module ActiveAdmin
           case v
           when String
             { k => v }
+          when Symbol
+            { k => v.to_s }
           when Hash
             fields_for_params(v, :namespace => k)
           when Array
