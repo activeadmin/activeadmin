@@ -16,7 +16,11 @@ module ActiveAdmin
         return [] unless filters_enabled?
 
         if @filters.present?
-          preserve_default_filters? ? @filters + default_filters : @filters
+          if preserve_default_filters?
+            @filters + default_filters
+          else
+            @filters
+          end
         else
           default_filters
         end
@@ -34,8 +38,12 @@ module ActiveAdmin
         @filters_enabled.nil? ? namespace.filters : @filters_enabled
       end
 
+      def preserve_default_filters!
+        @preserve_default_filters = true
+      end
+
       def preserve_default_filters?
-        @preserve_default_filters
+        @preserve_default_filters == true
       end
 
       # Remove a filter for this resource. If filters are not enabled, this method
@@ -71,10 +79,6 @@ module ActiveAdmin
       # Reset the filters to use defaults
       def reset_filters!
         @filters = nil
-      end
-
-      def preserve_default_filters!(bool = true)
-        @preserve_default_filters = bool
       end
 
       private

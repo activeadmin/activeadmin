@@ -13,8 +13,8 @@ module ActiveAdmin
       end
 
       # For docs, please see ActiveAdmin::Filters::ResourceExtension#preserve_default_filters!
-      def preserve_default_filters!(bool = true)
-        config.preserve_default_filters!(bool)
+      def preserve_default_filters!
+        config.preserve_default_filters!
       end
     end
   end
