@@ -21,7 +21,7 @@ module ActiveAdmin
 
       def build(page_presenter, collection)
         add_class "index"
-        resource_selection_toggle_panel
+        resource_selection_toggle_panel if active_admin_config.batch_actions.any?
         collection.each do |obj|
           instance_exec(obj, &page_presenter.block)
         end
