@@ -73,7 +73,7 @@ module ActiveAdmin
         @filters = nil
       end
 
-      def preserve_default_filters(bool = true)
+      def preserve_default_filters!(bool = true)
         @preserve_default_filters = bool
       end
 
