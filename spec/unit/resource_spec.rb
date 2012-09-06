@@ -28,6 +28,23 @@ module ActiveAdmin
       end
     end
 
+    describe '#decorator_class' do
+      it 'returns nil by default' do
+        config.decorator_class.should be_nil
+      end
+      context 'when a decorator is defined' do
+        let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
+        specify '#decorator_class_name should return PostDecorator' do
+          resource.decorator_class_name.should == '::PostDecorator'
+        end
+
+        it 'returns the decorator class' do
+          resource.decorator_class.should == PostDecorator
+        end
+      end
+    end
+
+
     describe "controller name" do
       it "should return a namespaced controller name" do
         config.controller_name.should == "Admin::CategoriesController"
