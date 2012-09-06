@@ -18,6 +18,8 @@ module ActiveAdmin
 
     attr_reader :block, :options
 
+    delegate :has_key?, :to => :options
+
     def initialize(options = {}, &block)
       @options, @block = options, block
     end
