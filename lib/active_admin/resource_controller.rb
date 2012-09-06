@@ -3,6 +3,7 @@ require 'active_admin/resource_controller/actions'
 require 'active_admin/resource_controller/action_builder'
 require 'active_admin/resource_controller/callbacks'
 require 'active_admin/resource_controller/collection'
+require 'active_admin/resource_controller/decorators'
 require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/sidebars'
 require 'active_admin/resource_controller/resource_class_methods'
@@ -22,6 +23,7 @@ module ActiveAdmin
     include ActionBuilder
     include Callbacks
     include Collection
+    include Decorators
     include Scoping
     include Sidebars
     extend  ResourceClassMethods
@@ -35,7 +37,7 @@ module ActiveAdmin
         end
       end
 
-      # Inherited Resources uses the inherited(base) hook method to 
+      # Inherited Resources uses the inherited(base) hook method to
       # add in the Base.resource_class class method. To override it, we
       # need to install our resource_class method each time we're inherited from.
       def inherited(base)

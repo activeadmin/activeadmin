@@ -11,6 +11,10 @@ gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\
 # Generate some test models
 generate :model, "post title:string body:text published_at:datetime author_id:integer category_id:integer"
 inject_into_file 'app/models/post.rb', "  belongs_to :author, :class_name => 'User'\n  belongs_to :category\n  accepts_nested_attributes_for :author\n", :after => "class Post < ActiveRecord::Base\n"
+
+# We'll put this basic delegator in app/models in order to simplify auto-loading.
+copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), "app/models/post_decorator.rb"
+
 # Rails 3.2.3 model generator declare attr_accessible
 inject_into_file 'app/models/post.rb', "  attr_accessible :author\n", :before => "end" if Rails::VERSION::STRING >= '3.2.3'
 generate :model, "user type:string first_name:string last_name:string username:string age:integer"
