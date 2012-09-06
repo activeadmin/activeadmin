@@ -191,6 +191,7 @@ describe Admin::PostsController, :type => "controller" do
   end
 
   describe 'retreiving the resource collection' do
+    let(:controller){ Admin::PostsController.new }
     before do
       Post.create!(:title => "An incledibly unique Post Title") if Post.count == 0
       controller.class_eval { public :collection }

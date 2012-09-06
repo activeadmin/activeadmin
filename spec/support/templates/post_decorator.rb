@@ -1,6 +1,13 @@
 # Minimal example of a decorator
 require_dependency 'post'
-class PostDecorator < DelegateClass(Post)
+
+# DelegateClass(Post) does not delegate attribute methods
+# in some environments:
+# http://travis-ci.org/#!/gregbell/active_admin/jobs/2021466
+#
+class PostDecorator < SimpleDelegator
+  delegate :id, :to => :__getobj__
+
   def self.decorate(collection_or_object)
     if collection_or_object.respond_to?(:to_ary)
       DecoratedEnumerableProxy.new(collection_or_object)
