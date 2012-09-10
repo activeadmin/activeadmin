@@ -39,18 +39,18 @@ ja:
       content: "%{resource_name} はまだありません。"
       link: "作成する"
     batch_actions:
-      button_label: "バッチアクション"
-      delete_confirmation: "あなたはこれらを削除してもよろしいです %{plural_model}? あなたはこれを取り消すことはできません。"
+      button_label: "一括操作"
+      delete_confirmation: "%{plural_model} を削除してもよろしいですか? この操作は取り消すことができません。"
       succesfully_destroyed:
-        one: "首尾よく破壊された 1 %{model}"
-        other: "首尾よく破壊された %{count} %{plural_model}"
-      selection_toggle_explanation: "(トグルの選択)"
-      link: "作成する1"
-      action_label: "%{title} 選択した"
+        one: "1件の %{model} を削除しました"
+        other: "%{count}件の %{plural_model} を削除しました"
+      selection_toggle_explanation: "(選択)"
+      link: "作成する"
+      action_label: "選択した行を%{title}"
       labels:
         destroy: "削除する"
     comments:
-      body: "ボディ"
+      body: "本文"
       author: "作成者"
       title: "コメント"
       add: "コメントを追加"
@@ -58,19 +58,18 @@ ja:
       no_comments_yet: "コメントはまだありません。"
       title_content: "コメント (%{count})"
       errors:
-        empty_text: "コメントが保存されていない、テキストは空でした。"
+        empty_text: "テキストが空のため、コメントは保存されませんでした。"
     devise:
       login:
         title: "ログイン"
-        remember_me: "私を覚えている"
+        remember_me: "次回から自動的にログイン"
         submit: "ログイン"
       reset_password:
         title: "パスワードをお忘れですか？"
-        submit: "私のパスワードをリセットする"
+        submit: "パスワードをリセットする"
       change_password:
         title: "パスワードを変更する"
         submit: "パスワードを変更する"
       links:
         sign_in: "サインイン"
         forgot_your_password: "パスワードをお忘れですか？"
-
