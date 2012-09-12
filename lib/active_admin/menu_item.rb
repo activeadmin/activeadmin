@@ -28,12 +28,18 @@ module ActiveAdmin
     # @option options [Proc] :if
     #         A block for the view to call to decide if this menu item should be displayed.
     #         The block should return true of false
+    #
+    # @option options [Proc] :parent
+    #         The parent label to display for this menu item. Menu item will be nested
+    #         under that label. It can either be a String or a Proc. If the option is Proc,
+    #         it is called each time the label is requested.
     def initialize(options = {})
       @label    = options[:label]
       @id       = MenuItem.generate_item_id(options[:id] || label)
       @url      = options[:url]
       @priority = options[:priority] || 10
       @children = Menu::ItemCollection.new
+      @parent   = options[:parent]
 
       @display_if_block = options[:if]
 

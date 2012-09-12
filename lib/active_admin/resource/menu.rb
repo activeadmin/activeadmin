@@ -9,7 +9,7 @@ module ActiveAdmin
           @display_menu = false
         else
           options = default_menu_options.merge(options)
-          @parent_menu_item = options.delete(:parent)
+          @parent_menu_item = value_or_proc(options.delete(:parent))
           @menu_item = MenuItem.new(default_menu_options.merge(options))
         end
       end
@@ -37,6 +37,13 @@ module ActiveAdmin
         @display_menu != false
       end
 
+      private
+
+      # Evaluates value if this is proc or return value if else
+      def value_or_proc(value)
+        return value.call if value.is_a? Proc
+        value
+      end
     end
   end
 end
