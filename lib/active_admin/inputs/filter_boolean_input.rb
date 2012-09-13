@@ -16,7 +16,7 @@ module ActiveAdmin
       end
 
       def search_method
-        method.match(metasearch_conditions) ? method : "#{method}_eq"
+        method.to_s.match(metasearch_conditions) ? method : "#{method}_eq"
       end
 
       def checked?
