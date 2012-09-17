@@ -12,16 +12,37 @@ describe ActiveAdmin::Devise::Controller do
   end
 
   let(:controller) { controller_class.new }
+  
+  context 'with a RAILS_RELATIVE_URL_ROOT set' do
+    
+    before { Rails.configuration.action_controller[:relative_url_root] = '/foo' }
+    
+    it "should set the root path to the default namespace" do
+      controller.root_path.should == "/foo/admin"
+    end
 
-  it "should set the root path to the default namespace" do
-    controller.root_path.should == "/admin"
+    it "should set the root path to '/' when no default namespace" do
+      ActiveAdmin.application.stub!(:default_namespace => false)
+      controller.root_path.should == "/foo/"
+    end
+    
   end
-
-  it "should set the root path to '/' when no default namespace" do
-    ActiveAdmin.application.stub!(:default_namespace => false)
-    controller.root_path.should == "/"
+  
+  context 'without a RAILS_RELATIVE_URL_ROOT set' do
+    
+    before { Rails.configuration.action_controller[:relative_url_root] = nil }
+    
+    it "should set the root path to the default namespace" do
+      controller.root_path.should == "/admin"
+    end
+    
+    it "should set the root path to '/' when no default namespace" do
+      ActiveAdmin.application.stub!(:default_namespace => false)
+      controller.root_path.should == "/"
+    end
+    
   end
-
+  
   describe "#config" do
     let(:config) { ActiveAdmin::Devise.config }
 
