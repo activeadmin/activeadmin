@@ -34,6 +34,7 @@ module ActiveAdmin
 
       # Redirect to the default namespace on logout
       def root_path
+        (Rails.configuration.action_controller[:relative_url_root] || '') +
         if ActiveAdmin.application.default_namespace
           "/#{ActiveAdmin.application.default_namespace}"
         else
