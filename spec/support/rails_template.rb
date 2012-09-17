@@ -9,7 +9,7 @@ gsub_file 'config/database.yml', /\z/, "\ncucumber:\n  <<: *test\n  database: db
 gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\n  database: db/cucumber.sqlite3"
 
 # Generate some test models
-generate :model, "post title:string body:text published_at:datetime author_id:integer category_id:integer"
+generate :model, "post title:string body:text published_at:datetime author_id:integer category_id:integer starred:boolean"
 inject_into_file 'app/models/post.rb', "  belongs_to :author, :class_name => 'User'\n  belongs_to :category\n  accepts_nested_attributes_for :author\n", :after => "class Post < ActiveRecord::Base\n"
 
 # We'll put this basic delegator in app/models in order to simplify auto-loading.

@@ -119,6 +119,28 @@ describe ActiveAdmin::Filters::ViewHelper do
     it "should select the option which is currently being filtered"
   end
 
+  describe "boolean attribute" do
+    context "boolean datatypes" do
+      let(:body) { filter :starred }
+
+      it "should create a check box for equals to" do
+        body.should have_tag("input", :attributes => {
+                                            :name => "q[starred_eq]",
+                                            :type => "checkbox" })
+      end
+    end
+
+    context "non-boolean data types" do
+      let(:body) { filter :title_is_present, :as => :boolean }
+
+      it "should create a check box for equals to" do
+        body.should have_tag("input", :attributes => {
+                                            :name => "q[title_is_present]",
+                                            :type => "checkbox" })
+      end
+    end
+  end
+
   describe "belong to" do
     before do
       @john = User.create :first_name => "John", :last_name => "Doe", :username => "john_doe"

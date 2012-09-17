@@ -9,7 +9,7 @@ describe ActiveAdmin::Filters::ResourceExtension do
 
   it "should return the defaults if no filters are set" do
     resource.filters.map{|f| f[:attribute].to_s }.sort.should == %w{
-      author body category created_at published_at title updated_at
+      author body category created_at published_at starred title updated_at
     }
   end
 
@@ -48,7 +48,7 @@ describe ActiveAdmin::Filters::ResourceExtension do
     resource.preserve_default_filters!
     resource.add_filter :count, :as => :string
     resource.filters.map{|f| f[:attribute].to_s }.sort.should == %w{
-      author body category count created_at published_at title updated_at
+      author body category count created_at published_at starred title updated_at
     }
   end
 
