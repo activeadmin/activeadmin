@@ -45,10 +45,10 @@ tr:
       link: "Bir tane oluşturun"
     batch_actions:
       button_label: "Toplu işlemler"
-      delete_confirmation: "%{singular_model} kayıtlarını silmek istediğinize emin misiniz? Dikkat bu işlemin geri dönüşü yoktur!"
+      delete_confirmation: "%{plural_model} kayıtlarını silmek istediğinize emin misiniz? Dikkat bu işlemin geri dönüşü yoktur!"
       succesfully_destroyed:
         one: "1 %{model} kaydı başarıyla silindi."
-        other: "Toplam %{count} kayıt %{singular_model} modelinden silindi"
+        other: "Toplam %{count} kayıt %{plural_model} modelinden silindi"
       selection_toggle_explanation: "Seçimi Değiştir"
       link: "Ekle"
       action_label: "%{title} Seçildi"
