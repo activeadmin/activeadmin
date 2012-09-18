@@ -212,7 +212,7 @@ module ActiveAdmin
     end
 
     #
-    # Add before, around and after filters to each registered resource.
+    # Add before, around and after filters to each registered resource and pages.
     #
     # eg:
     #
