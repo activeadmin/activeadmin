@@ -219,23 +219,19 @@ module ActiveAdmin
     #   ActiveAdmin.before_filter :authenticate_admin!
     #
     def before_filter(*args, &block)
-      ResourceController.before_filter(*args, &block)
-      PageController.before_filter(*args, &block)
+      BaseController.before_filter(*args, &block)
     end
 
     def skip_before_filter(*args, &block)
-      ResourceController.skip_before_filter(*args, &block)
-      PageController.skip_before_filter(*args, &block)
+      BaseController.skip_before_filter(*args, &block)
     end
 
     def after_filter(*args, &block)
-      ResourceController.after_filter(*args, &block)
-      PageController.after_filter(*args, &block)
+      BaseController.after_filter(*args, &block)
     end
 
     def around_filter(*args, &block)
-      ResourceController.around_filter(*args, &block)
-      PageController.after_filter(*args, &block)
+      BaseController.around_filter(*args, &block)
     end
 
     # Helper method to add a dashboard section
