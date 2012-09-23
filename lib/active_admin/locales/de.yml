@@ -51,9 +51,9 @@ de:
         other: "Erfolgreich %{count} %{plural_model} gelöscht"
       selection_toggle_explanation: "(Auswahl umschalten)"
       link: "erstellen"
-      action_label: "%{title} ausgewählt"
+      action_label: "%{title} ausgewählte"
       labels:
-        destroy: "Löschen"
+        destroy: "Lösche"
     comments:
       body: "Inhalt"
       author: "Autor"
