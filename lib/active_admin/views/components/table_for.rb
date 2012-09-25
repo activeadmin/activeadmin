@@ -63,13 +63,17 @@ module ActiveAdmin
         classes = Arbre::HTML::ClassList.new
         sort_key = sortable? && col.sortable? && col.sort_key
 
-        classes << 'sortable'                        if sort_key
-        classes << "sorted-#{current_sort[1]}"       if current_sort[0] == sort_key
-        classes << col.data.to_s.downcase.underscore if col.data.is_a?(Symbol)
-        classes << col.title.downcase.underscore
+        classes << 'sortable'                         if sort_key
+        classes << "sorted-#{current_sort[1]}"        if sort_key && current_sort[0] == sort_key
+        classes << col.data.to_s.downcase.underscore  if col.data.is_a?(Symbol)
+        classes << col.title.to_s.downcase.underscore if col.title.class.in? [Symbol, String]
 
-        th :class => classes do
-          sort_key ? link_to(col.title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page)) : col.title
+        if sort_key
+          th :class => classes do
+            link_to(col.title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
+          end
+        else
+          th(col.title, :class => classes.to_s)
         end
       end
 
