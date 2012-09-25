@@ -73,7 +73,7 @@ module ActiveAdmin
             link_to(col.title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
           end
         else
-          th(col.title, :class => classes.to_s)
+          th(col.title, :class => classes)
         end
       end
 
