@@ -26,7 +26,7 @@ generate :model, 'store name:string'
 
 # Generate a model with string ids
 generate :model, "tag name:string"
-gsub_file(Dir['db/migrate/*_create_tags.rb'][0], /\:tags\sdo\s.*/, ":tags, :id => false, :primary_key => :id do |t|\n\t\t\tt.string :id\n" )
+gsub_file(Dir['db/migrate/*_create_tags.rb'][0], /\:tags\sdo\s.*/, ":tags, :id => false, :primary_key => :id do |t|\n\t\t\tt.string :id\n")
 id_model_setup = <<-EOF
   self.primary_key = :id
   before_create :set_id
@@ -75,3 +75,38 @@ route "root :to => 'admin/dashboard#index'"
 rake "db:migrate"
 rake "db:test:prepare"
 run "/usr/bin/env RAILS_ENV=cucumber rake db:migrate"
+
+# Setup parallel_tests
+def setup_parallel_tests_database(after, force_insert_same_content = false)
+  inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", :after => after, :force => force_insert_same_content
+end
+
+setup_parallel_tests_database "test.sqlite3"
+setup_parallel_tests_database "cucumber.sqlite3", true
+
+# Note: this is hack!
+# Somehow, calling parallel_tests tasks from Rails generator using Thor does not work ...
+# RAILS_ENV variable never makes it to parallel_tests tasks.
+# We need to call these tasks in the after set up hook in order to creates cucumber DBs + run migrations on test & cucumber DBs
+create_file 'lib/tasks/parallel.rake' do
+  <<'RAKE'
+namespace :parallel do
+  def run_in_parallel(cmd, options)
+    count = "-n #{options[:count]}" if options[:count]
+    executable = 'parallel_test'
+    command = "#{executable} --exec '#{cmd}' #{count} #{'--non-parallel' if options[:non_parallel]}"
+    abort unless system(command)
+  end
+
+  desc "create cucumber databases via db:create --> parallel:create_cucumber_db[num_cpus]"
+  task :create_cucumber_db, :count do |t, args|
+    run_in_parallel("rake db:create RAILS_ENV=cucumber", args)
+  end
+
+  desc "load dumped schema for cucumber databases"
+  task :load_schema_cucumber_db, :count do |t,args|
+    run_in_parallel("rake db:schema:load RAILS_ENV=cucumber", args)
+  end
+end
+RAKE
+end

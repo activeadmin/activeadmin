@@ -3,10 +3,11 @@ task :setup do
   require 'rails/version'
   system("mkdir spec/rails") unless File.exists?("spec/rails")
   system "bundle exec rails new spec/rails/rails-#{Rails::VERSION::STRING} -m spec/support/rails_template.rb"
+  Rake::Task['parallel:after_setup_hook'].invoke
 end
 
 # Run specs and cukes
-desc "Run the full suite"
+desc "Run the full suite using 1 core"
 task :test => ['spec:unit', 'spec:integration', 'cucumber', 'cucumber:class_reloading']
 
 namespace :test do

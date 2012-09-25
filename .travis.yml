@@ -1,4 +1,4 @@
-script: bundle exec rake
+script: bundle exec rake test
 rvm:
   - ree
   - 1.9.2
