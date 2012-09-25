@@ -20,6 +20,13 @@ Feature: Un-Authorized Access
             true
           end
 
+        when ActiveAdmin::Page
+          if subject.name == "No Access"
+            false
+          else
+            true
+          end
+
         else
           true
         end
@@ -30,6 +37,9 @@ Feature: Un-Authorized Access
     ActiveAdmin.application.namespace(:admin).authorization_adapter = OnlyAuthorsAuthorization
 
     ActiveAdmin.register Post do
+    end
+
+    ActiveAdmin.register_page "No Access" do
     end
     """
     And I am on the index page for posts
@@ -42,3 +52,13 @@ Feature: Un-Authorized Access
   Scenario: Viewing the default action items
     When I follow "View"
     Then I should not see an action item link to "Edit"
+
+  @allow-rescue
+  Scenario: Attempting to visit a Page without authorization
+    When I go to the admin no access page
+    Then I should see "You are not authorized to perform this action"
+
+  @allow-rescue
+  Scenario: Viewing a page with authorization
+    When I go to the admin dashboard page
+    Then I should see "Dashboard"
