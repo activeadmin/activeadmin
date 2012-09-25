@@ -60,25 +60,20 @@ module ActiveAdmin
       end
 
       def build_table_header(col)
-        if sortable? && col.sortable?
-          build_sortable_header_for(col.title, col.sort_key)
+        classes = Arbre::HTML::ClassList.new
+        sort_key = sortable? && col.sortable? && col.sort_key
+
+        classes << 'sortable'                         if sort_key
+        classes << "sorted-#{current_sort[1]}"        if sort_key && current_sort[0] == sort_key
+        classes << col.data.to_s.downcase.underscore  if col.data.is_a?(Symbol)
+        classes << col.title.to_s.downcase.underscore if [Symbol, String].include?(col.title.class)
+
+        if sort_key
+          th :class => classes do
+            link_to(col.title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
+          end
         else
-          th(col.title, :class => (col.data.to_s.downcase.underscore if col.data.is_a?(Symbol)))
-        end
-      end
-
-      def build_sortable_header_for(title, sort_key)
-        classes = Arbre::HTML::ClassList.new(["sortable"])
-        if current_sort[0] == sort_key
-          classes << "sorted-#{current_sort[1]}"
-        end
-
-        header_class = title.downcase.underscore
-
-        classes << header_class
-
-        th :class => classes do
-          link_to(title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
+          th(col.title, :class => classes)
         end
       end
 
