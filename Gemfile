@@ -30,6 +30,7 @@ group :development, :test do
   gem 'rdiscount' # For yard
   gem "sprockets"
   gem 'rails-i18n' # Gives us default i18n for many languages
+  gem 'parallel_tests'
 end
 
 group :test do
