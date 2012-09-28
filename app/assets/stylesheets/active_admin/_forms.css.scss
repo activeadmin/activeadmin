@@ -107,7 +107,7 @@ form {
     }
 
     /* Date and Time Fields */
-    &.date, &.time, &.datetime {
+    &.date, &.time, &.datetime, &.date_select {
       fieldset ol li {
         float:left; width:auto; margin:0 0.5em 0 0; 
         label { display: none; }
