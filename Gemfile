@@ -40,7 +40,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', '1.3.0'
   gem 'launchy'
-  gem 'jslint_on_rails',    '~> 1.0.6'
+  gem 'jslint_on_rails',    '~> 1.0.7'
   gem 'guard-rspec'
   gem "guard-coffeescript"
   gem 'jasmine'
