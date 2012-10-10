@@ -79,6 +79,10 @@ describe ActiveAdmin::Views::TableFor do
         end
       end
 
+      it "should add a class to each table header based on the col name" do
+        table.find_by_tag("th").first.class_list.should include("title")
+      end
+
       [ "<span>First Post</span>", 
         "<span>Second Post</span>", 
         "<span>Third Post</span>" ].each_with_index do |content, index|

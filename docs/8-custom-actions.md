@@ -17,7 +17,7 @@ To add a collection action, use the collection_action method:
 
       collection_action :import_csv, :method => :post do
         # Do some CSV importing work here...
-        redirect_to {:action => :index}, :notice => "CSV imported successfully!"
+        redirect_to {:action => :index}, {:notice => "CSV imported successfully!"}
       end
 
     end
@@ -37,7 +37,7 @@ following:
       member_action :lock, :method => :put do
         user = User.find(params[:id])
         user.lock!
-        redirect_to {:action => :show}, :notice => "Locked!"
+        redirect_to {:action => :show}, {:notice => "Locked!"}
       end
 
     end

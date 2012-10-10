@@ -28,6 +28,8 @@ module ActiveAdmin
             return :numeric
           when :float, :decimal
             return :numeric
+          when :boolean
+            return :boolean
           end
         end
 
