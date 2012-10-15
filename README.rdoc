@@ -78,7 +78,7 @@ Refresh your web browser to see the interface.
 When upgrading to a new version of ActiveAdmin you may need to run
   $> rails generate active_admin:assets
 
-If you get +uninitialized+ +constant+ +Admin::DashboardController+ when trying to view the dashboard (at +/admin+), ensure +app/admin/dashboards.rb+ is using definition similar to the current {default}[https://raw.github.com/gregbell/active_admin/master/lib/generators/active_admin/install/templates/dashboard.rb].
+If you get +uninitialized\ constant\ Admin\:\:DashboardController+ when trying to view the dashboard (at +/admin+), ensure +app/admin/dashboards.rb+ is using definition similar to the current {default}[https://raw.github.com/gregbell/active_admin/master/lib/generators/active_admin/install/templates/dashboard.rb].
 
 
 == Next Steps
