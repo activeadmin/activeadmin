@@ -10,14 +10,19 @@ module ActiveAdmin
   Auth = Authorization
 
   class AuthorizationAdapter
-    attr_reader :resource
+    attr_reader :resource, :user
 
-    def initialize(resource)
+    def initialize(resource, user)
       @resource = resource
+      @user = user
     end
 
-    def authorized?(user, action, subject = nil)
+    def authorized?(action, subject = nil)
       return true
+    end
+
+    def scope_collection(collection)
+      collection
     end
 
   end

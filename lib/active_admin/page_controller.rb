@@ -21,7 +21,8 @@ module ActiveAdmin
     private
 
     def authorize_access!
-      authorize! params[:action], active_admin_config
+      permission = action_to_permission(params[:action])
+      authorize! permission, active_admin_config
     end
 
   end

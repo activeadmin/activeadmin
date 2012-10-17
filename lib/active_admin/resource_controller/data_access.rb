@@ -67,7 +67,12 @@ module ActiveAdmin
       # scope_to method from the Scoping module instead of overriding this
       # method.
       def scoped_collection
-        end_of_association_chain
+        scoped = end_of_association_chain
+        scoped = active_admin_authorization.scope_collection(scoped)
+
+        p scoped.to_sql
+
+        scoped
       end
 
 
@@ -127,6 +132,8 @@ module ActiveAdmin
         return resource if resource = get_resource_ivar
 
         resource = build_new_resource
+
+        p resource
 
         run_build_callbacks resource
         authorize_resource! resource

@@ -54,7 +54,7 @@ module ActiveAdmin
       #
       # @returns [ActiveAdmin::AuthorizationAdapter]
       def active_admin_authorization
-        @active_admin_authorization ||= active_admin_authorization_adapter.new(active_admin_config)
+        @active_admin_authorization ||= active_admin_authorization_adapter.new(active_admin_config, current_active_admin_user)
       end
 
       def active_admin_authorization_adapter
@@ -66,7 +66,7 @@ module ActiveAdmin
       end
 
       def authorized?(action, subject = nil)
-        active_admin_authorization.authorized?(current_active_admin_user, action, subject)
+        active_admin_authorization.authorized?(action, subject)
       end
 
       def authorize!(action, subject = nil)
