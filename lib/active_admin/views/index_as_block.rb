@@ -27,6 +27,10 @@ module ActiveAdmin
         end
       end
 
+      def name
+        "block"
+      end
+
     end
   end
 end
