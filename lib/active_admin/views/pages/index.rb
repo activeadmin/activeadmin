@@ -16,7 +16,7 @@ module ActiveAdmin
         end
 
         def config
-          active_admin_config.get_page_presenter(:index) || default_index_config
+          active_admin_config.get_page_presenter(:index, params[:as]) || default_index_config
         end
 
         # Render's the index configuration that was set in the
@@ -62,6 +62,7 @@ module ActiveAdmin
           div :class => "table_tools" do
             build_batch_actions_selector
             build_scopes
+            # build_index_views
           end
         end
 
@@ -78,6 +79,19 @@ module ActiveAdmin
             }
 
             scopes_renderer active_admin_config.scopes, scope_options
+          end
+        end
+
+        def build_index_views
+          indexes = active_admin_config.page_presenters[:index]
+
+          if indexes && indexes.length > 1
+            index_classes = []
+            active_admin_config.page_presenters[:index].each do |type, page_presenter|
+              index_classes << find_index_renderer_class(type)
+            end
+
+            index_views_renderer index_classes
           end
         end
 
@@ -121,7 +135,10 @@ module ActiveAdmin
         end
         
         def render_index
+          p "!!! in #render_index"
+          p config[:as]
           renderer_class = find_index_renderer_class(config[:as])
+          p renderer_class
           paginator      = config[:paginator].nil?      ? true : config[:paginator]
           download_links = config[:download_links].nil? ? active_admin_config.namespace.download_links : config[:download_links]
           
