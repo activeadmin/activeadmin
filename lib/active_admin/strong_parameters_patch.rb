@@ -4,7 +4,7 @@ module ActiveAdmin
     extend ActiveSupport::Concern
 
     def initialize
-      @instance_name = active_admin_config.resource_name.downcase
+      @instance_name = active_admin_config.resource_name.gsub(/(.)([A-Z])/,'\1_\2').downcase
       @klass = active_admin_config.resource_name.constantize
 
       @column_names = @klass.columns.map do |column|
