@@ -15,6 +15,7 @@ module ActiveAdmin
     include FormHelper
     include TitleHelper
     include ViewFactoryHelper
+    include IndexContextHelper
 
   end
 end

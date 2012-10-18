@@ -8,6 +8,7 @@ Feature: Index Filtering
     """
     When I am on the index page for posts
     Then I should see "Displaying all 3 Posts"
+    And I should see "All Posts"
     And I should see the following filters:
      | Author       | select     |
      | Category     | select     |
@@ -21,6 +22,7 @@ Feature: Index Filtering
     And I press "Filter"
     And I should see 1 posts in the table
     And I should see "Hello World 2" within ".index_table"
+    And I should see the context sentence 'All Posts with Title "Hello World 2"'
 
   Scenario: Filtering posts with no results
     Given 3 posts exist
@@ -82,6 +84,7 @@ Feature: Index Filtering
     Then I should see 1 posts in the table
     And I should see "Hello World" within ".index_table"
     And the "jane_doe" checkbox should be checked
+    And I should see the context sentence 'All Posts with Author "jane_doe"'
 
   Scenario: Disabling filters
     Given an index configuration of:

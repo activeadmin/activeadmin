@@ -63,10 +63,17 @@ module ActiveAdmin
           text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
         end
 
+        def build_context_sentence
+          div :class => "context_sentence" do
+            text_node index_context_sentence(self)
+          end
+        end
+
         def build_table_tools
           div :class => "table_tools" do
             build_batch_actions_selector
             build_scopes
+            build_context_sentence
           end
         end
 
