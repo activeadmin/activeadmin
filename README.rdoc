@@ -82,6 +82,10 @@ If you get:
   uninitialized constant Admin::DashboardController
 when trying to view the dashboard (at +/admin+), ensure +app/admin/dashboards.rb+ looks like the current {default}[https://raw.github.com/gregbell/active_admin/master/lib/generators/active_admin/install/templates/dashboard.rb].
 
+== Strong Parameters
+
+If you are an early adopter of strong_parameters which will be part in Rails 4, add `support_strong_parameters` to your controller definition.
+
 
 == Next Steps
 
