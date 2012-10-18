@@ -6,8 +6,10 @@ module ActiveAdmin
     class FormBuilder < ::ActiveAdmin::FormBuilder
 
       def filter(method, options = {})
-        return "" if method.blank?
+        return "" if method.nil? || method == ""
+        return "" if (options[:if].is_a?(Proc) && !template.instance_eval(&options[:if])) || (options[:unless].is_a?(Proc) && template.instance_eval(&options[:unless]))
         options[:as] ||= default_input_type(method)
+        return "" if (options[:if].is_a?(Proc) && !template.instance_eval(&options[:if])) || (options[:unless].is_a?(Proc) && template.instance_eval(&options[:unless]))
         return "" unless options[:as]
         content = input(method, options)
         form_buffers.last << content.html_safe if content
