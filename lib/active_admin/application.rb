@@ -69,6 +69,9 @@ module ActiveAdmin
     # Default CSV separator
     inheritable_setting :csv_column_separator, ','
 
+    # Strong Parameters patch behavior
+    inheritable_setting :strong_parameters_permit_all, false
+
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     setting :display_name_methods, [ :display_name,

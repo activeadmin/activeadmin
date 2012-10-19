@@ -9,24 +9,16 @@ module ActiveAdmin
 
     def initialize
       @instance_name = active_admin_config.resource_name.gsub(/(.)([A-Z])/,'\1_\2').downcase
-      @klass = active_admin_config.resource_name.constantize
-
-      @column_names = @klass.columns.map do |column|
-        unless [:id, :created_at, :updated_at].include?(column.name.to_sym)
-          case column.type
-          when :datetime, :date, :time
-            ([column.name.to_sym] + (1..5).inject([]) { |acc, x| acc << :"#{column.name}(#{x}i)" })
-          else
-            column.name.to_sym
-          end
-        end
-      end.flatten
+      @klass = active_admin_config.resource_class
 
       super
     end
 
     def create
-      resource_obj = instance_variable_set("@#{@instance_name}", @klass.new(params[@instance_name.to_sym].permit!))
+      # TODO: allow controller-specified attribute permits
+      instance_param = !!active_admin_config.options.strong_parameters_permit_all ? params[@instance_name.to_sym].permit! : params[@instance_name.to_sym]
+
+      resource_obj = instance_variable_set("@#{@instance_name}", @klass.new(instance_param))
 
       if resource_obj.save
         redirect_to send("admin_#{@instance_name}_path", resource_obj), notice: "Created #{@instance_name}."
@@ -36,9 +28,12 @@ module ActiveAdmin
     end
 
     def update
+      # TODO: allow controller-specified attribute permits
+      instance_param = !!active_admin_config.options.strong_parameters_permit_all ? params[@instance_name.to_sym].permit! : params[@instance_name.to_sym]
+
       resource_obj = instance_variable_set("@#{@instance_name}", @klass.find(params[:id]))
 
-      if resource_obj.update_attributes(params[@instance_name.to_sym].permit!)
+      if resource_obj.update_attributes(instance_param)
         redirect_to send("admin_#{@instance_name}_path", resource_obj), notice: "Updated #{@instance_name}."
       else
         render :edit
