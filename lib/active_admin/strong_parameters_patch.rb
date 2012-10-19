@@ -1,8 +1,9 @@
-# lib/active_admin_extentions/strong_admin.rb
 module ActiveAdmin
+  # See: https://github.com/gregbell/active_admin/issues/1731
   # The following contains code provided by
   # dpmccabe in https://gist.github.com/3718571
   # jasperkennis in https://gist.github.com/3907216
+  # mrbrdo in https://gist.github.com/3918135
   module StrongParametersPatch
 
     extend ActiveSupport::Concern
