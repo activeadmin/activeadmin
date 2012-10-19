@@ -84,7 +84,7 @@ when trying to view the dashboard (at +/admin+), ensure +app/admin/dashboards.rb
 
 == Strong Parameters
 
-If you are an early adopter of strong_parameters which will be part of Rails 4 and wish to permit all attributes, you may choose to add `permit_all` to your controller definition to permit all attributes.
+If you are an early adopter of strong_parameters which will be part of Rails 4 and wish to permit all attributes, you may choose to add `permit_all_parameters` to your controller definition to permit all attributes.
 
 
 == Next Steps
