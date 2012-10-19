@@ -1,6 +1,10 @@
+# lib/active_admin_extentions/strong_admin.rb
 module ActiveAdmin
-  # The following contains code provided by dpmccabe in https://gist.github.com/3718571
+  # The following contains code provided by
+  # dpmccabe in https://gist.github.com/3718571
+  # jasperkennis in https://gist.github.com/3907216
   module StrongParametersPatch
+
     extend ActiveSupport::Concern
 
     def initialize
@@ -8,11 +12,13 @@ module ActiveAdmin
       @klass = active_admin_config.resource_name.constantize
 
       @column_names = @klass.columns.map do |column|
-        case column.type
-        when :datetime, :date, :time
-          ([column.name.to_sym] + (1..5).inject([]) { |acc, x| acc << :"#{column.name}(#{x}i)" })
-        else
-          column.name.to_sym
+        unless [:id, :created_at, :updated_at].include?(column.name.to_sym)
+          case column.type
+          when :datetime, :date, :time
+            ([column.name.to_sym] + (1..5).inject([]) { |acc, x| acc << :"#{column.name}(#{x}i)" })
+          else
+            column.name.to_sym
+          end
         end
       end.flatten
 
@@ -20,7 +26,7 @@ module ActiveAdmin
     end
 
     def create
-      resource_obj = instance_variable_set("@#{@instance_name}", @klass.new(params[@instance_name.to_sym].permit(*@column_names)))
+      resource_obj = instance_variable_set("@#{@instance_name}", @klass.new(params[@instance_name.to_sym].permit!))
 
       if resource_obj.save
         redirect_to send("admin_#{@instance_name}_path", resource_obj), notice: "Created #{@instance_name}."
@@ -32,7 +38,7 @@ module ActiveAdmin
     def update
       resource_obj = instance_variable_set("@#{@instance_name}", @klass.find(params[:id]))
 
-      if resource_obj.update_attributes(params[@instance_name.to_sym].permit(*@column_names))
+      if resource_obj.update_attributes(params[@instance_name.to_sym].permit!)
         redirect_to send("admin_#{@instance_name}_path", resource_obj), notice: "Updated #{@instance_name}."
       else
         render :edit
