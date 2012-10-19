@@ -8,7 +8,7 @@ module ActiveAdmin
     extend ActiveSupport::Concern
 
     def initialize
-      @instance_name = active_admin_config.resource_name.gsub(/(.)([A-Z])/,'\1_\2').downcase
+      @instance_name = active_admin_config.resource_class.name.underscore.to_sym
       @klass = active_admin_config.resource_class
 
       super
@@ -16,9 +16,7 @@ module ActiveAdmin
 
     def create
       # TODO: allow controller-specified attribute permits
-      instance_param = !!active_admin_config.options.strong_parameters_permit_all ? params[@instance_name.to_sym].permit! : params[@instance_name.to_sym]
-
-      resource_obj = instance_variable_set("@#{@instance_name}", @klass.new(instance_param))
+      resource_obj = instance_variable_set("@#{@instance_name}", @klass.new(params[@instance_name].permit!))
 
       if resource_obj.save
         redirect_to send("admin_#{@instance_name}_path", resource_obj), notice: "Created #{@instance_name}."
@@ -28,12 +26,10 @@ module ActiveAdmin
     end
 
     def update
-      # TODO: allow controller-specified attribute permits
-      instance_param = !!active_admin_config.options.strong_parameters_permit_all ? params[@instance_name.to_sym].permit! : params[@instance_name.to_sym]
-
       resource_obj = instance_variable_set("@#{@instance_name}", @klass.find(params[:id]))
-
-      if resource_obj.update_attributes(instance_param)
+      
+      # TODO: allow controller-specified attribute permits
+      if resource_obj.update_attributes(params[@instance_name].permit!)
         redirect_to send("admin_#{@instance_name}_path", resource_obj), notice: "Updated #{@instance_name}."
       else
         render :edit

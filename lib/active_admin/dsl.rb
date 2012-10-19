@@ -15,7 +15,7 @@ module ActiveAdmin
 
     #TODO: replace this temporary hack for strong_parameters, part of Rails 4.0 support
     # include patch provided by dpmccabe in https://gist.github.com/3718571
-    def support_strong_parameters
+    def permit_all
       @config.controller.class_eval("include ActiveAdmin::StrongParametersPatch")
     end
 
