@@ -8,13 +8,11 @@ module ActiveAdmin
       @klass = active_admin_config.resource_name.constantize
 
       @column_names = @klass.columns.map do |column|
-        unless [:id, :created_at, :updated_at].include?(column.name.to_sym)
-          case column.type
-          when :datetime, :date, :time
-            ([column.name.to_sym] + (1..5).inject([]) { |acc, x| acc << :"#{column.name}(#{x}i)" })
-          else
-            column.name.to_sym
-          end
+        case column.type
+        when :datetime, :date, :time
+          ([column.name.to_sym] + (1..5).inject([]) { |acc, x| acc << :"#{column.name}(#{x}i)" })
+        else
+          column.name.to_sym
         end
       end.flatten
 
