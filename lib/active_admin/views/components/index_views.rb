@@ -21,19 +21,13 @@ module ActiveAdmin
       protected
 
       def build_index_view(index_view_class)
-        p "!!! in #build_index_view"
-        p index_view_class.name
-        #need the name
         #need the assets
         #need to create the url
-        # li :class => classes_for_index_view(index_view_class) do
-        #   a :href => url_for(params.merge(:as => type.to_)) do
-        #     text_node "hello"
-        #   end
-        # end
-      end
-
-      def classes_for_index_view(index_view)
+        li do
+          a :href => url_for(params.merge(:as => index_view_class.index_name)) do
+            text_node "#{index_view_class.index_name}"
+          end
+        end
       end
 
 		end

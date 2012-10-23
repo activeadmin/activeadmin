@@ -34,6 +34,10 @@ module ActiveAdmin
         @page_presenter[:columns] || default_number_of_columns
       end
 
+      def self.index_name
+        "grid"
+      end
+
       protected
 
       def build_table

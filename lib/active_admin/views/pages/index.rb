@@ -62,7 +62,7 @@ module ActiveAdmin
           div :class => "table_tools" do
             build_batch_actions_selector
             build_scopes
-            # build_index_views
+            build_index_views  # test
           end
         end
 
@@ -85,12 +85,12 @@ module ActiveAdmin
         def build_index_views
           indexes = active_admin_config.page_presenters[:index]
 
-          if indexes && indexes.length > 1
+          if indexes.kind_of?(Hash) && indexes.length > 1
             index_classes = []
             active_admin_config.page_presenters[:index].each do |type, page_presenter|
-              index_classes << find_index_renderer_class(type)
+              index_classes << find_index_renderer_class(page_presenter[:as])
             end
-
+            
             index_views_renderer index_classes
           end
         end
@@ -135,8 +135,6 @@ module ActiveAdmin
         end
         
         def render_index
-          p "!!! in #render_index"
-          p config[:as]
           renderer_class = find_index_renderer_class(config[:as])
           p renderer_class
           paginator      = config[:paginator].nil?      ? true : config[:paginator]
