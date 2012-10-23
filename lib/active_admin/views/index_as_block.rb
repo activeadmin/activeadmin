@@ -27,7 +27,7 @@ module ActiveAdmin
         end
       end
 
-      def name
+      def self.index_name
         "block"
       end
 

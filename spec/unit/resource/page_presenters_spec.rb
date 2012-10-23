@@ -16,7 +16,7 @@ describe ActiveAdmin::Resource::PagePresenters do
   end
 
   it "should add an index page presenter" do
-    page_presenter = ActiveAdmin::PagePresenter.new
+    page_presenter = ActiveAdmin::PagePresenter.new({:as => :table})
     resource.set_page_presenter(:index, page_presenter)
     resource.page_presenters[:index].default.should == page_presenter
   end

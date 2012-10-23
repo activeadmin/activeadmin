@@ -126,6 +126,10 @@ module ActiveAdmin
         end
       end
 
+      def self.index_name
+        "table"
+      end
+
       #
       # Extend the default ActiveAdmin::Views::TableFor with some
       # methods for quickly displaying items on the index page

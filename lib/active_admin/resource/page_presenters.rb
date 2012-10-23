@@ -13,21 +13,33 @@ module ActiveAdmin
       # @param [PagePresenter] page_presenter The instance of PagePresenter to store
       def set_page_presenter(action, page_presenter)
 
-        # if action is 'index' and the the caller is a resource
         if action.to_s == "index" && page_presenter[:as]
-          case page_presenter[:as]
-          when Symbol
-            index_class = ::ActiveAdmin::Views.const_get("IndexAs" + page_presenter[:as].to_s.camelcase)
-          when Class
-            index_class = page_presenter[:as]
-          end
-
-          set_index_presenter index_class, page_presenter
+          index_class = find_index_class(page_presenter[:as])
+          page_presenter_key = index_class.index_name.to_sym
+          set_index_presenter page_presenter_key, page_presenter
         else
-          # if action is anything other than index or if the caller is a page
           page_presenters[action.to_sym] = page_presenter
         end
+
       end
+
+      # Returns a stored page config
+      #
+      # @param [Symbol, String] action The action to get the config for
+      # @returns [PagePresenter, nil]
+      def get_page_presenter(action, type=nil)
+        
+        if action.to_s == "index" && type && page_presenters[:index].kind_of?(Hash)
+          page_presenters[:index][type.to_sym] 
+        elsif action.to_s == "index" && page_presenters[:index].kind_of?(Hash)
+          page_presenters[:index].default
+        else
+          page_presenters[action.to_sym]
+        end
+
+      end
+
+      protected
 
       # Stores a config for all index actions supplied
       #
@@ -44,22 +56,17 @@ module ActiveAdmin
         page_presenters[:index][index_as] = page_presenter
       end
 
-      # Returns a stored page config
+      # Returns the actual class for renderering the main content on the index
+      # page. To set this, use the :as option in the page_presenter block.
       #
-      # @param [Symbol, String] action The action to get the config for
-      # @returns [PagePresenter, nil]
-      def get_page_presenter(action, type=nil)
-        # have to convert the passed in type to the class so that i can 
-
-        # p "!!! in #get_page_presenter"
-        # p type
-        # p page_presenters[:index]
-        if action.to_s == "index" && type && page_presenters[:index].kind_of?(Hash)
-          page_presenters[:index][type.to_sym] 
-        elsif action.to_s == "index" && page_presenters[:index].kind_of?(Hash)
-          page_presenters[:index].default
-        else
-          page_presenters[action.to_sym]
+      # @param [Symbol, Class] symbol_or_class The component symbol or class
+      # @return [Class]
+      def find_index_class(symbol_or_class)
+        case symbol_or_class
+        when Symbol
+          ::ActiveAdmin::Views.const_get("IndexAs" + symbol_or_class.to_s.camelcase)
+        when Class
+          symbol_or_class
         end
       end
 
