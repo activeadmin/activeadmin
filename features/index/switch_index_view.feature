@@ -50,6 +50,7 @@ Feature: Switch Index View
         end
       end
       """
+    Then I should see "My body is hot" within ".index_as_table"
     When I click "block"
     Then I should not see "My body is hot" within ".index_as_block"
 
