@@ -62,7 +62,7 @@ module ActiveAdmin
           div :class => "table_tools" do
             build_batch_actions_selector
             build_scopes
-            build_index_views  # test
+            build_index_list
           end
         end
 
@@ -82,7 +82,7 @@ module ActiveAdmin
           end
         end
 
-        def build_index_views
+        def build_index_list
           indexes = active_admin_config.page_presenters[:index]
 
           if indexes.kind_of?(Hash) && indexes.length > 1
@@ -91,7 +91,7 @@ module ActiveAdmin
               index_classes << find_index_renderer_class(page_presenter[:as])
             end
             
-            index_views_renderer index_classes
+            index_list_renderer index_classes
           end
         end
 

@@ -2,6 +2,11 @@ module ActiveAdmin
   class Resource
     module PagePresenters
 
+      # for setting default css class in admin ui
+      def default_index_class
+        @default_index
+      end
+
       # A hash of page configurations for the controller indexed by action name
       def page_presenters
         @page_presenters ||= {}
@@ -51,6 +56,7 @@ module ActiveAdmin
         #set first index as default value or the index with default param set to to true
         if page_presenters[:index].empty? || page_presenter[:default] == true
           page_presenters[:index].default = page_presenter
+          @default_index = find_index_class(page_presenter[:as])
         end
 
         page_presenters[:index][index_as] = page_presenter

@@ -84,3 +84,8 @@ en:
         forgot_your_password: "Forgot your password?"
     access_denied:
       message: "You are not authorized to perform this action."
+    index_list:
+      table: "Table"
+      block: "List"
+      grid: "Grid"
+      blog: "Blog"
