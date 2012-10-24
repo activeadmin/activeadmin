@@ -136,7 +136,6 @@ module ActiveAdmin
         
         def render_index
           renderer_class = find_index_renderer_class(config[:as])
-          p renderer_class
           paginator      = config[:paginator].nil?      ? true : config[:paginator]
           download_links = config[:download_links].nil? ? active_admin_config.namespace.download_links : config[:download_links]
           
