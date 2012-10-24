@@ -49,7 +49,7 @@ Feature: Switch Index View
       """
     Then I should see "Hello World from Table" within ".index_as_table"
     And I should see a link to "Table"
-    And I should see a link to "Block"
+    And I should see a link to "List"
 
  	Scenario: Show change between page views
 		Given a post with the title "Hey from Table" and body "My body is awesome" exists
@@ -66,7 +66,7 @@ Feature: Switch Index View
       end
       """
     Then I should see "My body is awesome" within ".index_as_table"
-    When I click "Block"
+    When I click "List"
     Then I should not see "My body is awesome" within ".index_as_block"
 
 
