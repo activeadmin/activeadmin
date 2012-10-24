@@ -4,6 +4,21 @@ Feature: Switch Index View
 	As a user
 	I want to view links to views
 
+  Scenario: Show default Page Presenter
+  Given a post with the title "Hello World from Table" exists
+  And an index configuration of:
+    """
+    ActiveAdmin.register Post do
+      index :as => :table do
+        column :title
+      end
+      index :as => :block do |post|
+        span(link_to(post.title, admin_post_path(post)))
+      end
+    end
+    """
+  Then I should see "Hello World from Table" within ".index_as_table"
+
 	Scenario: Show default Page Presenter
 		Given a post with the title "Hello World from Table" exists
 		And an index configuration of:
@@ -33,11 +48,11 @@ Feature: Switch Index View
       end
       """
     Then I should see "Hello World from Table" within ".index_as_table"
-    And I should see a link to "table"
-    And I should see a link to "block"
+    And I should see a link to "Table"
+    And I should see a link to "Block"
 
  	Scenario: Show change between page views
-		Given a post with the title "Hey from Table" and body "My body is hot" exists
+		Given a post with the title "Hey from Table" and body "My body is awesome" exists
 		And an index configuration of:
 			"""
       ActiveAdmin.register Post do
@@ -50,9 +65,9 @@ Feature: Switch Index View
         end
       end
       """
-    Then I should see "My body is hot" within ".index_as_table"
-    When I click "block"
-    Then I should not see "My body is hot" within ".index_as_block"
+    Then I should see "My body is awesome" within ".index_as_table"
+    When I click "Block"
+    Then I should not see "My body is awesome" within ".index_as_block"
 
 
 

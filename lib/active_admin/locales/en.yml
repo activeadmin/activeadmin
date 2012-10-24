@@ -78,3 +78,8 @@ en:
       links:
         sign_in: "Sign in"
         forgot_your_password: "Forgot your password?"
+    index_list:
+      table: "Table"
+      block: "List"
+      grid: "Grid"
+      blog: "Blog"

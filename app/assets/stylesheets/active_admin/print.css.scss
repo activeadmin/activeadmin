@@ -91,7 +91,7 @@ h3 {
       padding: 0;
       margin-bottom: 1em;
 
-      &.scope.selected {
+      &.scope.selected, &.index.selected {
         display: block;
 
         &:before {
