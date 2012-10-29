@@ -23,7 +23,7 @@ module ActiveAdmin
           end
 
           def resource_params
-            return [] if request.get?
+            return [] if request.get? || !params[self.class.resource_class.name.underscore.to_sym]
             if active_admin_config.namespace.application.enforce_strong_parameters || (self.class.params_to_permit && self.class.params_to_permit.size > 0)
               # hack because couldn't get SP to work properly
               [ params[self.class.resource_class.name.underscore.to_sym].permit!.reject{|k,v|!self.class.params_to_permit.include?(k.to_sym)} ]
