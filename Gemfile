@@ -11,7 +11,7 @@ gem 'rails',          rails_version
 gem 'bourbon'
 
 case rails_version
-when /^3\.2)/
+when /^3\.2/
   # These are the gems you have to have for Rails 3.1 to be happy
   gem 'sass-rails'
   gem 'uglifier'
