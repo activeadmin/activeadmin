@@ -1,4 +1,12 @@
-## Master (unreleased)
+## ActiveAdmin for Rails 3.2.x with Strong Parameters (unreleased)
+
+## Patched 0.5.0 version (unreleased)
+
+### Enhancements
+
+Added Strong Parameters niceties:
+* Added `config.enforce_strong_parameters` config setting for allowing permit all params on assumed resource.
+* Added `permitted_params` method to explicitly define params to permit on assumed resource.
 
 ## 0.5.0
 

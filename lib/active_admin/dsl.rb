@@ -30,6 +30,22 @@ module ActiveAdmin
       @config
     end
 
+    # Specify which params to permit by strong_parameters.
+    #
+    # Allows a static list:
+    # permitted_params :a, :b, :c
+    # 
+    # or conditionally control access at runtime:
+    # permitted_params do
+    #   [:a, :b, :c]
+    # end
+    def permitted_params(*args)
+      ps = args.clone
+      ps << yield if block_given?
+      # @config.controller is the controller class
+      @config.controller.params_to_permit = ps.flatten
+    end
+
     # Include a module with this resource. The modules's `included` method
     # is called with the instance of the `ActiveAdmin::DSL` passed into it.
     #
