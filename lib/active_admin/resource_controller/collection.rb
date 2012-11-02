@@ -126,7 +126,7 @@ module ActiveAdmin
           page = params[Kaminari.config.param_name]
 
           chain.send(page_method_name, page).per(per_page)
-	end
+        end
 
         def per_page
           return max_csv_records if request.format == 'text/csv'
