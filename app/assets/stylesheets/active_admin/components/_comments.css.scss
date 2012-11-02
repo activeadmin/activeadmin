@@ -10,6 +10,7 @@
     .active_admin_comment_meta {
       width: 130px;
       float: left;
+      overflow: hidden;
       font-size: 0.9em;
       color: lighten($primary-color, 10%);
       .active_admin_comment_author {
