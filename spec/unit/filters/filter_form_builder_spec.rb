@@ -159,8 +159,8 @@ describe ActiveAdmin::Filters::ViewHelper do
                                             :name => "q[author_id_eq]"})
         body.should have_tag("option", "john_doe", :attributes => {
                                                            :value => @john.id })
-        #body.should have_tag("option", "jane_doe", :attributes => {
-        #                                                  :value => @jane.id })
+        body.should have_tag("option", "jane_doe", :attributes => {
+                                                          :value => @jane.id })
       end
     end
 
