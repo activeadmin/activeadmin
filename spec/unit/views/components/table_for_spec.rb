@@ -125,12 +125,12 @@ describe ActiveAdmin::Views::TableFor do
 
       it "should add a class to each table header  based on class option or the col name" do
         table.find_by_tag("th").first.class_list.should  include("my_custom_title")
-        table.find_by_tag("th").lasr.class_list.should  include("datetime")
+        table.find_by_tag("th").last.class_list.should  include("datetime")
       end
 
       it "should add a class to each cell based  on class option or the col name" do
         table.find_by_tag("td").first.class_list.should include("my_custom_title")
-        table.find_by_tag("td").lasr.class_list.should  include("datetime")
+        table.find_by_tag("td").last.class_list.should  include("datetime")
       end
 
 
