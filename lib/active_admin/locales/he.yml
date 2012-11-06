@@ -19,7 +19,7 @@ he:
     previous: "הקודם"
     next: "הבא"
     download: "הורד:"
-    has_many_new: "הוספת %{model חדש}"
+    has_many_new: "הוספת %{model} חדש"
     has_many_delete: "מחיקה"
     filter: "סינון"
     clear_filters: "איפוס שדות"
@@ -27,7 +27,7 @@ he:
     equal_to: "שווה ל"
     greater_than: "גדול מ"
     less_than: "פחות מ"
-    main_content: "יש ליישם את התוכן של %{כדי להציג אותו כאן content."
+    main_content: "Please implement %{model}#main_content to display content."
     logout: "התנתקות"
     sidebars:
       filters: "סינון"
