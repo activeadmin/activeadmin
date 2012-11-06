@@ -14,7 +14,7 @@ describe ActiveAdmin::CanCanAdapter do
 
         def initialize(user)
           can :read, Post
-          cannot :edit, Post
+          cannot :update, Post
         end
 
       end
@@ -27,7 +27,7 @@ describe ActiveAdmin::CanCanAdapter do
       auth = namespace.authorization_adapter.new(resource, mock)
 
       auth.authorized?(:read, Post).should == true
-      auth.authorized?(:edit, Post).should == false
+      auth.authorized?(:update, Post).should == false
     end
 
   end

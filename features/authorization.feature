@@ -1,4 +1,4 @@
-Feature: Un-Authorized Access
+Feature: Authorizing Access
 
   Ensure that access denied exceptions are managed
 
@@ -9,13 +9,13 @@ Feature: Un-Authorized Access
     """
     class OnlyAuthorsAuthorization < ActiveAdmin::AuthorizationAdapter
 
-      def authorized?(user, action, subject = nil)
+      def authorized?(action, subject = nil)
         case subject
 
         when Post
           case action
-          when :edit, :destroy
-            subject.author == user
+          when ActiveAdmin::Auth::UPDATE, ActiveAdmin::Auth::DESTROY
+            false
           else
             true
           end

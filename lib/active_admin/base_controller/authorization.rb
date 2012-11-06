@@ -1,5 +1,8 @@
 module ActiveAdmin
 
+  # Exception class to raise when there is an authorized access
+  # exception thrown. The exception has a few goodies that may 
+  # be useful for capturing / recognizing security issues.
   class AccessDenied < StandardError
     attr_reader :user, :action, :subject
 
@@ -17,6 +20,99 @@ module ActiveAdmin
   class BaseController < ::InheritedResources::Base
     module Authorization
       extend ActiveSupport::Concern
+
+      ACTIONS_DICTIONARY = {
+        :index   => ActiveAdmin::Authorization::READ,
+        :show    => ActiveAdmin::Authorization::READ,
+        :new     => ActiveAdmin::Authorization::CREATE,
+        :create  => ActiveAdmin::Authorization::CREATE,
+        :edit    => ActiveAdmin::Authorization::UPDATE,
+        :update  => ActiveAdmin::Authorization::UPDATE,
+        :destroy => ActiveAdmin::Authorization::DESTROY
+      }
+
+      protected
+
+      # Authorize the action and subject. Available in the controller
+      # as well as all the views. 
+      #
+      # @param [Symbol] action The action to check if the user has permission
+      #                 to perform on the subject.
+      #
+      # @param [any] subject The subject that the user is trying to perform
+      #                 the action on.
+      #
+      # @returns [Boolean]
+      #
+      def authorized?(action, subject = nil)
+        active_admin_authorization.authorized?(action, subject)
+      end
+
+
+      # Authorize the action and subject. Available in the controller
+      # as well as all the views. If the action is not allowd, it raises
+      # an ActiveAdmin::AccessDenied exception.
+      #
+      # @param [Symbol] action The action to check if the user has permission
+      #                 to perform on the subject.
+      #
+      # @param [any] subject The subject that the user is trying to perform
+      #                 the action on.
+      #
+      # @returns [Boolean] True if authorized, otherwise raises
+      #                 an ActiveAdmin::AccessDenied.
+      def authorize!(action, subject = nil)
+        unless authorized? action, subject
+          raise ActiveAdmin::AccessDenied.new(current_active_admin_user,
+                                              action,
+                                              subject)
+        end
+      end
+
+      # Performs authorization on the resource using the current controller
+      # action as the permission action.
+      #
+      def authorize_resource!(resource)
+        permission = action_to_permission(params[:action])
+        authorize! permission, resource
+      end
+
+      # Retrieve or instantiate the authorization instance for this resource
+      #
+      # @returns [ActiveAdmin::AuthorizationAdapter]
+      def active_admin_authorization
+        @active_admin_authorization ||= active_admin_authorization_adapter.new(active_admin_config, current_active_admin_user)
+      end
+
+      # Returns the class to be used as the authorization adapter
+      #
+      # @returns [Class]
+      def active_admin_authorization_adapter
+        if active_admin_namespace.authorization_adapter.is_a?(String)
+          ActiveSupport::Dependencies.constantize(active_admin_namespace.authorization_adapter)
+        else
+          active_admin_namespace.authorization_adapter
+        end
+      end
+
+      # Converts a controller action into one of the correct Active Admin
+      # authorization names. Uses the ACTIONS_DICTIONARY to convert the
+      # action name to permission.
+      #
+      # @param [String, Symbol] action The controller action name.
+      #
+      # @returns [Symbol] The permission name to use.
+      def action_to_permission(action)
+        return nil unless action
+
+        action = action.to_sym
+
+        if Authorization::ACTIONS_DICTIONARY.has_key?(action)
+          Authorization::ACTIONS_DICTIONARY[action]
+        else
+          action
+        end
+      end
 
       included do
         rescue_from ActiveAdmin::AccessDenied do |exception|
@@ -37,61 +133,6 @@ module ActiveAdmin
         helper_method :authorized?
         helper_method :authorize!
       end
-
-      ACTIONS_DICTIONARY = {
-        :index   => ActiveAdmin::Authorization::READ,
-        :show    => ActiveAdmin::Authorization::READ,
-        :new     => ActiveAdmin::Authorization::CREATE,
-        :create  => ActiveAdmin::Authorization::CREATE,
-        :edit    => ActiveAdmin::Authorization::UPDATE,
-        :update  => ActiveAdmin::Authorization::UPDATE,
-        :destroy => ActiveAdmin::Authorization::DESTROY
-      }
-
-      protected
-
-      # Retrieve or instantiate the authorization instance for this resource
-      #
-      # @returns [ActiveAdmin::AuthorizationAdapter]
-      def active_admin_authorization
-        @active_admin_authorization ||= active_admin_authorization_adapter.new(active_admin_config, current_active_admin_user)
-      end
-
-      def active_admin_authorization_adapter
-        if active_admin_namespace.authorization_adapter.is_a?(String)
-          ActiveSupport::Dependencies.constantize(active_admin_namespace.authorization_adapter)
-        else
-          active_admin_namespace.authorization_adapter
-        end
-      end
-
-      def authorized?(action, subject = nil)
-        active_admin_authorization.authorized?(action, subject)
-      end
-
-      def authorize!(action, subject = nil)
-        unless authorized? action, subject
-          raise ActiveAdmin::AccessDenied.new(current_active_admin_user, action, subject)
-        end
-      end
-
-      def authorize_resource!(resource)
-        permission = action_to_permission(params[:action])
-        authorize! permission, resource
-      end
-
-      def action_to_permission(action)
-        return nil unless action
-
-        action = action.to_sym
-
-        if Authorization::ACTIONS_DICTIONARY.has_key?(action)
-          Authorization::ACTIONS_DICTIONARY[action]
-        else
-          action
-        end
-      end
-
 
     end
 

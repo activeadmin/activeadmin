@@ -125,6 +125,7 @@ end
 require 'integration_example_group'
 RSpec.configure do |c|
   c.include RSpec::Rails::IntegrationExampleGroup, :example_group => { :file_path => /\bspec\/integration\// }
+  c.include Devise::TestHelpers, :type => :controller
 end
 
 # Ensure this is defined for Ruby 1.8

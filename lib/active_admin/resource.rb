@@ -1,5 +1,4 @@
 require 'active_admin/resource/action_items'
-require 'active_admin/resource/authorization'
 require 'active_admin/resource/controllers'
 require 'active_admin/resource/menu'
 require 'active_admin/resource/page_presenters'

@@ -67,14 +67,8 @@ module ActiveAdmin
       # scope_to method from the Scoping module instead of overriding this
       # method.
       def scoped_collection
-        scoped = end_of_association_chain
-        scoped = active_admin_authorization.scope_collection(scoped)
-
-        p scoped.to_sql
-
-        scoped
+        scope_for_authorization end_of_association_chain
       end
-
 
       # Retrieve, memoize and authorize a resource based on params[:id]. The 
       # actual work of finding the resource is done in #find_resource.
@@ -132,8 +126,6 @@ module ActiveAdmin
         return resource if resource = get_resource_ivar
 
         resource = build_new_resource
-
-        p resource
 
         run_build_callbacks resource
         authorize_resource! resource
@@ -206,6 +198,20 @@ module ActiveAdmin
       #
       # Collection Helper Methods
       #
+
+
+      # Gives the authorization library a change to pre-scope the collection.
+      #
+      # In the case of the CanCan adapter, it calls `#accessible_by` on 
+      # the collection.
+      #
+      # @param [ActiveRecord::Relation] collection The collection to scope
+      #
+      # @retruns [ActiveRecord::Relation] a scoped collection of query
+      def scope_for_authorization(collection)
+        active_admin_authorization.scope_collection(collection)
+      end
+
 
       def apply_sorting(chain)
         params[:order] ||= active_admin_config.sort_order
