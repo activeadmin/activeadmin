@@ -176,7 +176,6 @@ describe ActiveAdmin::Filters::ViewHelper do
                                                     :value => "" })
       end
       it "should create an option for each related object" do
-        
         body.should have_tag("option", "john_doe", :attributes => {
                                                           :value => @john.id })
         body.should have_tag("option", "jane_doe", :attributes => {
