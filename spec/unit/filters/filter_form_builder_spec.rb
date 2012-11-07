@@ -157,6 +157,8 @@ describe ActiveAdmin::Filters::ViewHelper do
       it "should render as belongs to select" do
         body.should have_tag("select", :attributes => {
                                             :name => "q[author_id_eq]"})
+        body.should have_tag("option", "john_doe", :attributes => {
+                                                           :value => @john.id })
         body.should have_tag("option", "jane_doe", :attributes => {
                                                           :value => @jane.id })
       end
