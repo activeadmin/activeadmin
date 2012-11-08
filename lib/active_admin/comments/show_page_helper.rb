@@ -12,10 +12,16 @@ module ActiveAdmin
         active_admin_comments if active_admin_config.comments?
       end
 
+      def comments_table_exists?
+         @val ||= ActiveRecord::Base.connection.tables.include?("active_admin_comments")
+      end
+
       # Display the comments for the resource. Same as calling
       # #active_admin_comments_for with the current resource
       def active_admin_comments(*args, &block)
-        active_admin_comments_for(resource, *args, &block)
+        if comments_table_exists?
+          active_admin_comments_for(resource, *args, &block)
+        end
       end
     end
 
