@@ -1,5 +1,90 @@
 ## Master (unreleased)
 
+## 0.5.0
+
+### Enhancements
+
+* Created new view components (Footer, TitleBar, Header, UtilityNav) to more
+  easily customize the views in Active Admin and per namespace. (@gregbell)
+* All CSS is now encapsulated under the `body.active_admin` class. This may
+  change the precedence of styles that you created to override or use in
+  other areas of your application.
+* Dashboards are now implemented as pages. For more details of how to configure
+  a page, checkout http://activeadmin.info/docs/9-custom-pages.html
+* Root route can be set to any controller#action using `#root_to`.
+* Batch Actions allows you to select entries on index page and perform
+  an action against them.
+* CSV separators are configurable.
+* Lot of bug fixes.
+
+### Deprecations
+
+* Removed all references to ActiveAdmin::Renderer. If you were using these
+  please update code to use an Arbre component. Removed
+  `ActiveAdmin:Views::HeaderRender` and replaced with
+  `ActiveAdmin::Views::Header` component.
+* ActiveAdmin::Menu and ActiveAdmin::MenuItem API has changed. If you were
+  creating custom menu items, the builder syntax has changed to. Menu#add now
+  accepts a MenuItem, instead of building the menu item for you.
+* `ActiveAdmin::Dashboards.build` is deprecated in favour of generating a page
+  and using the new `config.root_to` option.
+* Arbre is now a gem on its own.
+
+### Contributions
+
+561 commits (142 Pull Requests) by 88 contributors.
+
+## 0.4.4
+
+### Dependencies
+
+* Use `formtastic` ~> 2.1.1 until AA 0.5.0 is released
+* Use `inherited_resources` >= 1.3.1 (ensure flash messages work)
+
+## 0.4.3
+
+### Bug Fixes
+
+* [#1063][]: Fix comment issues when using postgres ([@jancel][])
+
+## 0.4.2
+
+### Enhancements
+
+* [#822][]: Automatically include js and css to precompile list ([@jschwindt][])
+* [#1033][]: Site title accepts a proc that is rendered in the context
+         of the view ([@pcreux][])
+* [#70][]: Form blocks are now rendered within the context of the view ([@gregbell][])
+* [#70][]: Filter's collections are now eval'd in the context of the view ([@gregbell][])
+* [#1032][]: The html body now includes a class for the namespace name ([@mattvague][])
+* [#1013][]: Hide the count from one specific scope using `:show_count => false`
+         ([@latortuga][])
+* [#1023][]: Add localization support for comments ([@MoritzMoritz][])
+
+### Bug Fixes
+
+* [#34][]: Comments now work with models using string ids ([@jancel][])
+* [#1041][]: When `table_for` collection is empty it no longer outputs
+         a blank array in Ruby 1.9 ([@jancel][], [#1016][])
+* [#983][]: Fixed compatibility with pry-rails ([@pcreux][])
+* [#409][]: Install generator handles custom class names for user ([@gregbell][])
+
+### Contributors
+
+42 Commits by 10 authors
+
+* Allen Huang
+* Daniel Lepage
+* Thibaut Barrère
+* Drew Ulmer
+* Juan Schwindt
+* Moritz Behr
+* Jeff Ancel
+* Matt Vague
+* Greg Bell
+* Philippe Creux
+
+
 ## 0.4.1
 
 ### Enhancements
@@ -421,6 +506,7 @@ of the highlights. 250 commits. Enough said.
 [#28]: https://github.com/gregbell/active_admin/issues/28
 [#31]: https://github.com/gregbell/active_admin/issues/31
 [#32]: https://github.com/gregbell/active_admin/issues/32
+[#34]: https://github.com/gregbell/active_admin/issues/34
 [#38]: https://github.com/gregbell/active_admin/issues/38
 [#42]: https://github.com/gregbell/active_admin/issues/42
 [#45]: https://github.com/gregbell/active_admin/issues/45
@@ -428,6 +514,7 @@ of the highlights. 250 commits. Enough said.
 [#52]: https://github.com/gregbell/active_admin/issues/52
 [#55]: https://github.com/gregbell/active_admin/issues/55
 [#69]: https://github.com/gregbell/active_admin/issues/69
+[#70]: https://github.com/gregbell/active_admin/issues/70
 [#77]: https://github.com/gregbell/active_admin/issues/77
 [#92]: https://github.com/gregbell/active_admin/issues/92
 [#95]: https://github.com/gregbell/active_admin/issues/95
@@ -450,6 +537,7 @@ of the highlights. 250 commits. Enough said.
 [#332]: https://github.com/gregbell/active_admin/issues/332
 [#369]: https://github.com/gregbell/active_admin/issues/369
 [#381]: https://github.com/gregbell/active_admin/issues/381
+[#409]: https://github.com/gregbell/active_admin/issues/409
 [#428]: https://github.com/gregbell/active_admin/issues/428
 [#468]: https://github.com/gregbell/active_admin/issues/468
 [#470]: https://github.com/gregbell/active_admin/issues/470
@@ -474,6 +562,7 @@ of the highlights. 250 commits. Enough said.
 [#751]: https://github.com/gregbell/active_admin/issues/751
 [#758]: https://github.com/gregbell/active_admin/issues/758
 [#780]: https://github.com/gregbell/active_admin/issues/780
+[#822]: https://github.com/gregbell/active_admin/issues/822
 [#865]: https://github.com/gregbell/active_admin/issues/865
 [#869]: https://github.com/gregbell/active_admin/issues/869
 [#897]: https://github.com/gregbell/active_admin/issues/897
@@ -481,10 +570,19 @@ of the highlights. 250 commits. Enough said.
 [#960]: https://github.com/gregbell/active_admin/issues/960
 [#971]: https://github.com/gregbell/active_admin/issues/971
 [#978]: https://github.com/gregbell/active_admin/issues/978
+[#983]: https://github.com/gregbell/active_admin/issues/983
 [#993]: https://github.com/gregbell/active_admin/issues/993
 [#994]: https://github.com/gregbell/active_admin/issues/994
+[#1013]: https://github.com/gregbell/active_admin/issues/1013
+[#1016]: https://github.com/gregbell/active_admin/issues/1016
+[#1023]: https://github.com/gregbell/active_admin/issues/1023
+[#1032]: https://github.com/gregbell/active_admin/issues/1032
+[#1033]: https://github.com/gregbell/active_admin/issues/1033
+[#1041]: https://github.com/gregbell/active_admin/issues/1041
+[#1063]: https://github.com/gregbell/active_admin/issues/1063
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
+[@MoritzMoritz]: https://github.com/MoritzMoritz
 [@ZequeZ]: https://github.com/ZequeZ
 [@bobbytables]: https://github.com/bobbytables
 [@comboy]: https://github.com/comboy
@@ -499,7 +597,9 @@ of the highlights. 250 commits. Enough said.
 [@ggilder]: https://github.com/ggilder
 [@gregbell]: https://github.com/gregbell
 [@j]: https://github.com/j
+[@jancel]: https://github.com/jancel
 [@jbarket]: https://github.com/jbarket
+[@jschwindt]: https://github.com/jschwindt
 [@knoopx]: https://github.com/knoopx
 [@krug]: https://github.com/krug
 [@latortuga]: https://github.com/latortuga

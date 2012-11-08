@@ -68,8 +68,12 @@ module ActiveAdmin
     #     column("Author") { |post| post.author.full_name }
     #   end
     #
-    def csv(&block)
-      config.csv_builder = CSVBuilder.new(&block)
+    #   csv :separator => ";" do
+    #     column :name
+    #   end
+    #
+    def csv(options={}, &block)
+      config.csv_builder = CSVBuilder.new(options, &block)
     end
 
     # Member Actions give you the functionality of defining both the
@@ -93,14 +97,20 @@ module ActiveAdmin
     # 
     def member_action(name, options = {}, &block)
       config.member_actions << ControllerAction.new(name, options)
+      title = options.delete(:title)
+
       controller do
+        before_filter(:only => [name]) { @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end
 
     def collection_action(name, options = {}, &block)
       config.collection_actions << ControllerAction.new(name, options)
+      title = options.delete(:title)
+
       controller do
+        before_filter(:only => [name]){ @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end
@@ -134,10 +144,6 @@ module ActiveAdmin
     delegate :before_update,  :after_update,  :to => :controller
     delegate :before_save,    :after_save,    :to => :controller
     delegate :before_destroy, :after_destroy, :to => :controller
-
-    # Filters
-    delegate :filter, :to => :controller
-
 
     # Standard rails filters
     delegate :before_filter, :skip_before_filter, :after_filter, :around_filter, :to => :controller

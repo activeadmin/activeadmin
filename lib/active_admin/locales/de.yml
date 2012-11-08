@@ -11,6 +11,7 @@ de:
     new_model: "%{model} erstellen"
     create_model: "%{model} erstellen"
     edit_model: "%{model} bearbeiten"
+    update_model: "%{model} bearbeiten"
     delete_model: "%{model} löschen"
     details: "%{model} Details"
     cancel: "Abbrechen"
@@ -42,6 +43,17 @@ de:
     blank_slate:
       content: "Es gibt noch keine %{resource_name}."
       link: "Erstellen"
+    batch_actions:
+      button_label: "Stapelverarbeitung"
+      delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen? Dies kann nicht rückgängig gemacht werden"
+      succesfully_destroyed:
+        one: "Erfolgreich 1 %{model} gelöscht"
+        other: "Erfolgreich %{count} %{plural_model} gelöscht"
+      selection_toggle_explanation: "(Auswahl umschalten)"
+      link: "erstellen"
+      action_label: "%{title} ausgewählte"
+      labels:
+        destroy: "Lösche"
     comments:
       body: "Inhalt"
       author: "Autor"
@@ -52,3 +64,45 @@ de:
       title_content: "Kommentare (%{count})"
       errors:
         empty_text: "Der Kommentar wurde nicht gespeichert, da der Text fehlt."
+    devise:
+      login:
+        title: "Login"
+        remember_me: "erinnere dich an mich"
+        submit: "Login"
+      reset_password:
+        title: "Passwort vergessen?"
+        submit: "Mein Passwort zurücksetzen"
+      change_password:
+        title: "Ändern Sie Ihr Passwort"
+        submit: "Mein Passwort ändern"
+      links:
+        sign_in: "Anmeldung"
+        forgot_your_password: "Passwort vergessen?"
+  activerecord:
+    attributes:
+      admin_user: 
+        id: ID
+        email: E-Mail
+        encrypted_Password: Verschlüsseltes Passwort
+        reset_password_token: Passwort Reset Token
+        reset_password_sent_at: Passwort Reset Anweisungen gesendet am
+        remember_created_at: Passwort merken seit
+        sign_in_count: Anzahl Logins
+        current_sign_in_at: Aktuell angemeldet seit
+        last_sign_in_at: Letzter Login am
+        current_sign_in_ip: Aktuelle IP-Adresse
+        last_sign_in_ip: Letzte IP-Adresse
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+    models:
+      admin_user:
+        one: Administrator
+        other: Administratoren  
+  devise:      
+    failure:
+      admin_user:
+        invalid: Benutzername oder Kennwort nicht korrekt.
+        unauthenticated: Bitte melden Sie sich als Administrator an.
+    sessions:
+      admin_user:
+        signed_in: Erfolgreich als Administrator angemeldet.

@@ -3,7 +3,7 @@ Feature: Index Scoping
   Viewing resources and scoping them
 
   Scenario: Viewing resources with one scope and no default
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -11,11 +11,11 @@ Feature: Index Scoping
       end
       """
     Then I should see the scope "All" not selected
-    And I should see the scope "All" with the count 10
-    And I should see 10 posts in the table
+    And I should see the scope "All" with the count 3
+    And I should see 3 posts in the table
 
   Scenario: Viewing resources with one scope as the default
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -23,11 +23,11 @@ Feature: Index Scoping
       end
       """
     Then I should see the scope "All" selected
-    And I should see the scope "All" with the count 10
-    And I should see 10 posts in the table
+    And I should see the scope "All" with the count 3
+    And I should see 3 posts in the table
 
   Scenario: Viewing resources with one scope and no results
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
      """
      ActiveAdmin.register Post do
@@ -36,7 +36,7 @@ Feature: Index Scoping
      end
      """
 
-    When I fill in "Search Title" with "Hello World 17"
+    When I fill in "Search Title" with "Non Existing Post"
     And I press "Filter"
     And I should not see the scope "All"
 
@@ -44,7 +44,7 @@ Feature: Index Scoping
     Then I should see the scope "All" selected
 
   Scenario: Viewing resources with a scope but scope_count turned off
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -54,11 +54,11 @@ Feature: Index Scoping
       """
     Then I should see the scope "All" selected
     And I should see the scope "All" with no count
-    And I should see 10 posts in the table
+    And I should see 3 posts in the table
 
   @scope
   Scenario: Viewing resources with a scope and scope count turned off for a single scope
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -67,11 +67,11 @@ Feature: Index Scoping
       """
     Then I should see the scope "All" selected
     And I should see the scope "All" with no count
-    And I should see 10 posts in the table
+    And I should see 3 posts in the table
 
   Scenario: Viewing resources when scoping
-    Given 6 posts exist
-    And 4 published posts exist
+    Given 2 posts exist
+    And 3 published posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -81,15 +81,49 @@ Feature: Index Scoping
         end
       end
       """
-    Then I should see the scope "All" with the count 10
-    And I should see 10 posts in the table
-    Then I should see the scope "Published" with the count 4
+    Then I should see the scope "All" with the count 5
+    And I should see 5 posts in the table
+    And I should see the scope "Published" with the count 3
     When I follow "Published"
     Then I should see the scope "Published" selected
-    And I should see 4 posts in the table
+    And I should see 3 posts in the table
+
+  Scenario: Viewing resources when scoping and filtering
+    Given 2 posts written by "Daft Punk" exist
+    Given 1 published posts written by "Daft Punk" exist
+
+    Given 1 posts written by "Alfred" exist
+    Given 2 published posts written by "Alfred" exist
+
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope :all, :default => true
+        scope :published do |posts|
+          posts.where("published_at IS NOT NULL")
+        end
+      end
+      """
+    Then I should see the scope "All" with the count 6
+    And I should see the scope "Published" with the count 3
+    And I should see 6 posts in the table
+
+    When I follow "Published"
+    Then I should see the scope "Published" selected
+    And I should see the scope "All" with the count 6
+    And I should see the scope "Published" with the count 3
+    And I should see 3 posts in the table
+
+    When I select "daft_punk" from "Author"
+    And I press "Filter"
+
+    Then I should see the scope "Published" selected
+    And I should see the scope "All" with the count 3
+    And I should see the scope "Published" with the count 1
+    And I should see 1 posts in the table
 
   Scenario: Viewing resources with optional scopes
-    Given 10 posts exist
+    Given 3 posts exist
     And an index configuration of:
     """
     ActiveAdmin.register Post do
@@ -109,10 +143,10 @@ Feature: Index Scoping
     And I should not see the scope "All"
     And I should not see the scope "Today"
     And I should see the scope "Shown"
-    And I should see the scope "Default" with the count 10
+    And I should see the scope "Default" with the count 3
 
-  Scenario: Viewing resources with mulitple scopes as blocks
-    Given 10 posts exist
+  Scenario: Viewing resources with multiple scopes as blocks
+    Given 3 posts exist
     And an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -126,12 +160,84 @@ Feature: Index Scoping
       """
     Then I should see the scope "Today" selected
     And I should see the scope "Tomorrow" not selected
-    And I should see the scope "Today" with the count 10
+    And I should see the scope "Today" with the count 3
     And I should see the scope "Tomorrow" with the count 0
-    And I should see 10 posts in the table
+    And I should see 3 posts in the table
     And I should see a link to "Tomorrow"
 
     When I follow "Tomorrow"
     Then I should see the scope "Tomorrow" selected
     And I should see the scope "Today" not selected
     And I should see a link to "Today"
+    
+  Scenario: Viewing resources with scopes when scoping to user
+    Given 2 posts written by "Daft Punk" exist
+    And a post with the title "Monkey Wrench" written by "Foo Fighters" exists
+    And a post with the title "Everlong" written by "Foo Fighters" exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          scope_to :current_user
+          scope :all, :default => true
+
+          filter :title
+
+          controller do
+            def current_user
+              User.find_by_username('foo_fighters')
+            end
+          end
+        end
+      """
+    Then I should see the scope "All" selected
+    And I should see the scope "All" with the count 2
+    When I fill in "Search Title" with "Monkey"
+    And I press "Filter"
+    Then I should see the scope "All" selected
+    And I should see the scope "All" with the count 1
+
+  Scenario: Viewing resources when scoping and filtering and group bys and stuff
+    Given 2 posts written by "Daft Punk" exist
+    Given 1 published posts written by "Daft Punk" exist
+
+    Given 1 posts written by "Alfred" exist
+
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope :all, :default => true
+        scope :published do |posts|
+          posts.where("published_at IS NOT NULL")
+        end
+
+        index do
+          column :author_id
+          column :count
+        end
+
+        config.sort_order = "author_id_asc"
+
+        controller do
+          def scoped_collection
+            Post.select("author_id, count(*) as count").group("author_id")
+          end
+        end
+      end
+      """
+    Then I should see the scope "All" with the count 2
+    And I should see the scope "Published" with the count 1
+    And I should see 2 posts in the table
+
+    When I follow "Published"
+    Then I should see the scope "Published" selected
+    And I should see the scope "All" with the count 2
+    And I should see the scope "Published" with the count 1
+    And I should see 1 posts in the table
+
+    When I select "daft_punk" from "Author"
+    And I press "Filter"
+
+    Then I should see the scope "Published" selected
+    And I should see the scope "All" with the count 1
+    And I should see the scope "Published" with the count 1
+    And I should see 1 posts in the table

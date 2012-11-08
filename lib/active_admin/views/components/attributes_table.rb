@@ -35,7 +35,11 @@ module ActiveAdmin
       end
 
       def header_content_for(attr)
-        @record.class.respond_to?(:human_attribute_name) ? @record.class.human_attribute_name(attr).titleize : attr.to_s.titleize
+        if @record.class.respond_to?(:human_attribute_name)
+          @record.class.human_attribute_name(attr, :default => attr.to_s.titleize)
+        else
+          attr.to_s.titleize
+        end
       end
 
       def empty_value
@@ -50,7 +54,7 @@ module ActiveAdmin
                   content_for_attribute(attr_or_proc)
                 end
         value = pretty_format(value)
-        value == "" || value == nil ? empty_value : value
+        value == "" || value.nil? ? empty_value : value
       end
 
       def content_for_attribute(attr)

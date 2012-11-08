@@ -2,20 +2,20 @@ require 'spec_helper'
 
 describe ActiveAdmin::Views::SidebarSection do
 
-  setup_arbre_context!
-
   let(:section) do
-    ActiveAdmin::SidebarSection.new(:help) do
+    ActiveAdmin::SidebarSection.new("Help Section") do
       span "Help Me"
     end
   end
 
   let(:html) do
-    sidebar_section(section)
+    render_arbre_component :section => section do
+      sidebar_section(assigns[:section])
+    end
   end
 
   it "should have a title h3" do
-    html.find_by_tag("h3").first.content.should == "Help"
+    html.find_by_tag("h3").first.content.should == "Help Section"
   end
 
   it "should have the class of 'sidebar_section'" do
@@ -23,7 +23,7 @@ describe ActiveAdmin::Views::SidebarSection do
   end
 
   it "should have an id based on the title" do
-    html.id.should == "help_sidebar_section"
+    html.id.should == "help-section_sidebar_section"
   end
 
   it "should have a contents div" do

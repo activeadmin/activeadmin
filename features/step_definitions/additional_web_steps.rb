@@ -10,6 +10,10 @@ Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
   page.should have_css('th.sortable', :text => content)
 end
 
+Then /^I should not see a sortable table header with "([^"]*)"$/ do |content|
+  page.should_not have_css('th.sortable', :text => content)
+end
+
 Then /^I should not see a sortable table header$/ do
   step "I should not see \"th.sortable\""
 end
@@ -64,7 +68,9 @@ Then /^I should wait and see "([^"]*)"(?: within "([^"]*)")?$/ do |text, selecto
 end
 
 Then /^I should see the page title "([^"]*)"$/ do |title|
-  page.should have_css('h2#page_title', :text => title)
+  within('h2#page_title') do
+    page.should have_content(title)
+  end
 end
 
 Then /^I should see a fieldset titled "([^"]*)"$/ do |title|

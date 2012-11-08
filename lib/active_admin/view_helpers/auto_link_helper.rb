@@ -13,10 +13,11 @@ module ActiveAdmin
       #
       def auto_link(resource, link_content = nil)
         content = link_content || display_name(resource)
-        if registration = active_admin_resource_for(resource.class)
+        if (registration = active_admin_resource_for(resource.class))
           begin
             content = link_to(content, send(registration.route_instance_path, resource))
           rescue
+            # ignored
           end
         end
         content

@@ -1,3 +1,5 @@
+require 'active_admin/helpers/collection'
+
 module ActiveAdmin
   module Views
 
@@ -75,44 +77,32 @@ module ActiveAdmin
         text_node paginate(collection, options.symbolize_keys)
       end
 
-      # TODO: Refactor to new HTML DSL
-      def build_download_format_links(formats = [:csv, :xml, :json])
-        links = formats.collect do |format|
-          link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format))
-        end
-        div :class => "download_links" do
-		  text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
-        end
-      end
-
+      include ::ActiveAdmin::Helpers::Collection
+      include ::ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper
+        
       # modified from will_paginate
       def page_entries_info(options = {})
         if options[:entry_name]
           entry_name = options[:entry_name]
-          entries_name = options[:entries_name]
-        elsif collection.empty?
+          entries_name = options[:entries_name] || entry_name.pluralize
+        elsif collection_is_empty?
           entry_name = I18n.translate("active_admin.pagination.entry", :count => 1, :default => 'entry')
           entries_name = I18n.translate("active_admin.pagination.entry", :count => 2, :default => 'entries')
         else
-          begin
-            entry_name = I18n.translate!("activerecord.models.#{collection.first.class.model_name.i18n_key}", :count => 1)
-            entries_name = I18n.translate!("activerecord.models.#{collection.first.class.model_name.i18n_key}", :count => collection.size)
-          rescue I18n::MissingTranslationData
-            entry_name = collection.first.class.name.underscore.sub('_', ' ')
-          end
+          entry_name = I18n.translate("activerecord.models.#{collection.first.class.model_name.i18n_key}", :count => 1, :default => collection.first.class.name.underscore.sub('_', ' '))
+          entries_name = I18n.translate("activerecord.models.#{collection.first.class.model_name.i18n_key}", :count => collection.size, :default => entry_name.pluralize)
         end
-        entries_name = entry_name.pluralize unless entries_name
 
         if collection.num_pages < 2
-          case collection.size
+          case collection_size
           when 0; I18n.t('active_admin.pagination.empty', :model => entries_name)
           when 1; I18n.t('active_admin.pagination.one', :model => entry_name)
           else;   I18n.t('active_admin.pagination.one_page', :model => entries_name, :n => collection.total_count)
           end
         else
-          offset = collection.current_page * collection.size
-          total  = collection.total_count
-          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => (offset - collection.size + 1), :to => offset > total ? total : offset, :total => total)
+          offset = (collection.current_page - 1) * collection.limit_value
+          total = collection.total_count
+          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => offset + 1, :to => offset + collection_size, :total => total)
         end
       end
 

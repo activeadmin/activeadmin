@@ -1,0 +1,80 @@
+"zh-CN":
+  active_admin:
+    dashboard: "控制面板"
+    dashboard_welcome:
+      welcome: "欢迎使用Active Admin. 这是默认的控制面板页."
+      call_to_action: "若要添加新的面板内容, 请修改 'app/admin/dashboards.rb'"
+    view: "查看"
+    edit: "编辑"
+    delete: "删除"
+    delete_confirmation: "确定删除?"
+    new_model: "新建%{model}"
+    create_model: "新建%{model}"
+    edit_model: "编辑%{model}"
+    update_model: "编辑%{model}"
+    delete_model: "删除%{model}"
+    details: "%{model}详情"
+    cancel: "取消"
+    empty: "清空"
+    previous: "上一个"
+    next: "下一个"
+    download: "下载:"
+    has_many_new: "新建一个%{model}"
+    has_many_delete: "删除"
+    filter: "过滤"
+    clear_filters: "清除条件"
+    search_field: "查找%{field}"
+    equal_to: "等于"
+    greater_than: "大于"
+    less_than: "小于"
+    main_content: "请执行 %{model}#main_content 来显示内容."
+    logout: "退出"
+    sidebars:
+      filters: "所有条件"
+    pagination:
+      empty: "暂时没有%{model}"
+      one: "显示 <b>1</b> %{model}"
+      one_page: "显示 <b>所有 %{n}</b> %{model}"
+      multiple: "显示所有 <b>%{total}</b> %{model}中的<b>%{from}&nbsp;-&nbsp;%{to}</b> 条"
+      entry:
+        one: "条目"
+        other: "条目"
+    any: "任何"
+    blank_slate:
+      content: "暂时还没有%{resource_name}."
+      link: "新建一个"
+    batch_actions:
+      button_label: "批处理"
+      delete_confirmation: "你确定要删除所有%{plural_model}? 如果执行，将不可恢复."
+      succesfully_destroyed:
+        one: "成功删除 1 %{model}"
+        other: "成功删除 %{count} %{plural_model}"
+      selection_toggle_explanation: "(切换选择)"
+      link: "新建一个"
+      action_label: "%{title} 被选中"
+      labels:
+        destroy: "删除"
+    comments:
+      body: "内容"
+      author: "作者"
+      title: "评论"
+      add: "添加评论"
+      resource: "资源"
+      no_comments_yet: "暂时没有评论"
+      title_content: "(%{count})条评论"
+      errors:
+        empty_text: "评论保存失败，内空不能为空."
+    devise:
+      login:
+        title: "登录"
+        remember_me: "记住我"
+        submit: "登录"
+      reset_password:
+        title: "忘记密码？"
+        submit: "重置密码"
+      change_password:
+        title: "更改您的密码"
+        submit: "更改我的密码"
+      links:
+        sign_in: "登录"
+        forgot_your_password: "忘记密码？"

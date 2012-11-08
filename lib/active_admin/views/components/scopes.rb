@@ -1,3 +1,5 @@
+require 'active_admin/helpers/collection'
+
 module ActiveAdmin
   module Views
 
@@ -7,6 +9,8 @@ module ActiveAdmin
       builder_method :scopes_renderer
 
       include ActiveAdmin::ScopeChain
+      include ::ActiveAdmin::Helpers::Collection
+
 
       def default_class_name
         "scopes table_tools_segmented_control"
@@ -28,16 +32,12 @@ module ActiveAdmin
 
       def build_scope(scope, options)
         li :class => classes_for_scope(scope) do
-          begin
-            scope_name = I18n.t!("active_admin.scopes.#{scope.id}")
-          rescue I18n::MissingTranslationData
-            scope_name = scope.name
-          end
+          scope_name = I18n.t("active_admin.scopes.#{scope.id}", :default => scope.name)
 
           a :href => url_for(params.merge(:scope => scope.id, :page => 1)), :class => "table_tools_button" do
             text_node scope_name
             span :class => 'count' do
-              "(" + get_scope_count(scope).to_s + ")"
+              "(#{get_scope_count(scope)})"
             end if options[:scope_count] && scope.show_count
           end
         end
@@ -58,18 +58,13 @@ module ActiveAdmin
       end
 
       def current_filter_search_empty?
-        collection.empty? && params.include?(:q)
+        params.include?(:q) && collection_is_empty?
       end
 
       # Return the count for the scope passed in.
       def get_scope_count(scope)
-        scope_chain(scope, scoping_class).count
+        collection_size(scope_chain(scope, collection_before_scope))
       end
-
-      def scoping_class
-        assigns["before_scope_collection"] || active_admin_config.resource_class
-      end
-
     end
   end
 end

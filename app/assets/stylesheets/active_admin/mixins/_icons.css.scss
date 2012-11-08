@@ -1,5 +1,7 @@
-span.icon { vertical-align: middle; display: inline-block; }
-span.icon svg { vertical-align: baseline; }
+body.active_admin {
+  span.icon { vertical-align: middle; display: inline-block; }
+  span.icon svg { vertical-align: baseline; }
+}
 
 @mixin icon-color ($color) {
   span.icon svg {
@@ -17,4 +19,6 @@ span.icon svg { vertical-align: baseline; }
   @include icon-size($size);
 }
 
-@include icon-size(0.8em);
+body.active_admin {
+  @include icon-size(0.8em);
+}

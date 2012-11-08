@@ -17,11 +17,11 @@ module ActiveAdmin
       end
 
       def column(*args, &block)
-        options = default_options.merge(args.last.is_a?(::Hash) ? args.pop : {})
+        options = default_options.merge(args.extract_options!)
         title = args[0]
         data  = args[1] || args[0]
 
-        col = Column.new(title, data, options, &block)
+        col = Column.new(title, data, @resource_class, options, &block)
         @columns << col
 
         # Build our header item
@@ -60,25 +60,19 @@ module ActiveAdmin
       end
 
       def build_table_header(col)
-        if sortable? && col.sortable?
-          build_sortable_header_for(col.title, col.sort_key)
+        classes = Arbre::HTML::ClassList.new
+        sort_key = sortable? && col.sortable? && col.sort_key
+
+        classes << 'sortable'                         if sort_key
+        classes << "sorted-#{current_sort[1]}"        if sort_key && current_sort[0] == sort_key
+        classes << col.html_class
+
+        if sort_key
+          th :class => classes do
+            link_to(col.pretty_title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
+          end
         else
-          th(col.title, :class => (col.data.to_s.downcase.underscore if col.data.is_a?(Symbol)))
-        end
-      end
-
-      def build_sortable_header_for(title, sort_key)
-        classes = Arbre::HTML::ClassList.new(["sortable"])
-        if current_sort[0] == sort_key
-          classes << "sorted-#{current_sort[1]}"
-        end
-        
-        header_class = title.downcase.underscore
-        
-        classes << header_class
-
-        th :class => classes do
-          link_to(title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
+          th(col.pretty_title, :class => classes)
         end
       end
 
@@ -90,7 +84,7 @@ module ActiveAdmin
       end
 
       def build_table_cell(col, item)
-        td(:class => (col.data.to_s.downcase if col.data.is_a?(Symbol))) do
+        td(:class =>  col.html_class) do
           rvalue = call_method_or_proc_on(item, col.data, :exec => false)
           if col.data.is_a?(Symbol)
             rvalue = pretty_format(rvalue)
@@ -128,20 +122,27 @@ module ActiveAdmin
 
       class Column
 
-        attr_accessor :title, :data
+        attr_accessor :title, :data , :html_class
 
         def initialize(*args, &block)
-          @options = default_options.merge(args.last.is_a?(::Hash) ? args.pop : {})
-          @title = pretty_title args[0]
+          @options = args.extract_options!
+
+          @title = args[0]
+          @html_class = @options.delete(:class) || @title.to_s.downcase.underscore.gsub(/ +/,'_')
           @data  = args[1] || args[0]
           @data = block if block
+          @resource_class = args[2]
         end
 
         def sortable?
           if @data.is_a?(Proc)
             [String, Symbol].include?(@options[:sortable].class)
-          else
+          elsif @options.has_key?(:sortable)
             @options[:sortable]
+          elsif @data.respond_to?(:to_sym) && @resource_class
+            !@resource_class.reflect_on_association(@data.to_sym)
+          else
+            true
           end
         end
 
@@ -164,33 +165,26 @@ module ActiveAdmin
         #   # => Sort key will be 'login'
         #
         def sort_key
-          if @options[:sortable] == true || @options[:sortable] == false
+          # If boolean or nil, use the default sort key.
+          if @options[:sortable] == true || @options[:sortable] == false || @options[:sortable].nil?
             @data.to_s
           else
             @options[:sortable].to_s
           end
         end
 
-        private
-
-        def pretty_title(raw)
-          if raw.is_a?(Symbol)
-            if @options[:i18n] && @options[:i18n].respond_to?(:human_attribute_name) && human_name = @options[:i18n].human_attribute_name(raw)
-              raw = human_name
+        def pretty_title
+          if @title.is_a?(Symbol)
+            default_title =  @title.to_s.titleize
+            if @options[:i18n] && @options[:i18n].respond_to?(:human_attribute_name)
+              @title = @options[:i18n].human_attribute_name(@title, :default => default_title)
+            else
+              default_title
             end
-
-            raw.to_s.titleize
           else
-            raw
+            @title
           end
         end
-
-        def default_options
-          {
-            :sortable => true
-          }
-        end
-
       end
     end
   end

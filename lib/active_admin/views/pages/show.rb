@@ -4,15 +4,12 @@ module ActiveAdmin
       class Show < Base
 
         def config
-          active_admin_config.get_page_presenter(:show) || ::ActiveAdmin::PagePresenter.new
+          active_admin_config.get_page_presenter(:show) || super
         end
 
         def title
-          case config[:title]
-          when Symbol, Proc
-            call_method_or_proc_on(resource, config[:title])
-          when String
-            config[:title]
+          if config[:title]
+            render_or_call_method_or_proc_on(resource, config[:title])
           else
             default_title
           end
@@ -28,7 +25,7 @@ module ActiveAdmin
         end
 
         def attributes_table(*args, &block)
-          panel(I18n.t('active_admin.details', :model => active_admin_config.resource_name)) do
+          panel(I18n.t('active_admin.details', :model => active_admin_config.resource_label)) do
             attributes_table_for resource, *args, &block
           end
         end
@@ -36,7 +33,13 @@ module ActiveAdmin
         protected
 
         def default_title
-          "#{active_admin_config.resource_name} ##{resource.id}"
+          title = display_name(resource)
+
+          if title.nil? || title.empty? || title == resource.to_s
+            title = "#{active_admin_config.resource_label} ##{resource.id}"
+          end
+
+          title
         end
 
         module DefaultMainContent

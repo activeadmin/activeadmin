@@ -51,7 +51,8 @@ append_file "db/seeds.rb", <<-EOF
                 :body => "Blog post \#{i} is written by \#{user.username} about \#{cat.name}",
                 :category => cat,
                 :published_at => published_at,
-                :author => user
+                :author => user,
+                :starred => true
   end
 EOF
 

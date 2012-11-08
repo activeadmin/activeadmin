@@ -4,18 +4,17 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+ENV["RAILS_ENV"] ||= "cucumber"
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../../../Gemfile', __FILE__)
+require "rubygems"
+require "bundler"
+Bundler.setup
 
 require File.expand_path('../../../spec/support/detect_rails_version', __FILE__)
 ENV["RAILS"] = detect_rails_version
 
-ENV["RAILS_ENV"] ||= "cucumber"
 ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{ENV["RAILS"]}", __FILE__)
 
-
-require 'rubygems'
-require "bundler"
-Bundler.setup
 
 # Create the test app if it doesn't exists
 unless File.exists?(ENV['RAILS_ROOT'])
@@ -79,18 +78,58 @@ if defined?(ActiveRecord::Base)
   end
 end
 
-# Create the test app if it doesn't exists
-unless File.exists?(ENV['RAILS_ROOT'])
-  system 'rake setup'  
+def add_default_dashboard
+  begin
+    dashboard_file = ENV['RAILS_ROOT'] + "/app/admin/dashboard.rb"
+    dashboard_template = File.expand_path('../../../lib/generators/active_admin/install/templates/dashboard.rb', __FILE__)
+    cmd = "cp #{dashboard_template} #{dashboard_file}"
+    system cmd
+  rescue
+    p $!
+    raise $!
+  end
 end
 
-# Remove all our constants
+def delete_default_dashboard
+  begin
+    dashboard_file = ENV['RAILS_ROOT'] + "/app/admin/dashboard.rb"
+    File.delete(dashboard_file) if File.exists?(dashboard_file)
+  rescue
+    p $!
+    raise $!
+  end
+end
+
+# Warden helpers to speed up login
+# See https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Capybara
+include Warden::Test::Helpers
+
+After do
+  add_default_dashboard
+  Warden.test_reset!
+end
+
+Before '@dashboard' do
+  delete_default_dashboard
+end
+
 Before do
-  # We are cachine classes, but need to manually clear references to
-  # the controllers. If they aren't clear, the router stores references
-  ActiveSupport::Dependencies.clear
+  add_default_dashboard
 
-  # Reload Active Admin
-  ActiveAdmin.unload!
-  ActiveAdmin.load!
+  begin
+    # We are caching classes, but need to manually clear references to
+    # the controllers. If they aren't clear, the router stores references
+    ActiveSupport::Dependencies.clear
+
+    # Reload Active Admin
+    ActiveAdmin.unload!
+    ActiveAdmin.load!
+  rescue
+    p $!
+    raise $!
+  end
 end
+
+# improve the performance of the specs suite by not logging anything
+# see http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
+Rails.logger.level = 4

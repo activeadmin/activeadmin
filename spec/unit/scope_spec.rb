@@ -22,6 +22,13 @@ describe ActiveAdmin::Scope do
       its(:scope_block)  { should == nil }
     end
 
+    context 'when a name and scope method is :all' do
+      let(:scope)        { ActiveAdmin::Scope.new 'Tous', :all }
+      its(:name)         { should eq 'Tous' }
+      its(:scope_method) { should be_nil }
+      its(:scope_block)  { should be_nil }
+    end
+
     context "when a name and scope method" do
       let(:scope)        { ActiveAdmin::Scope.new "With API Access", :with_api_access }
       its(:name)         { should == "With API Access"}

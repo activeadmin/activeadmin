@@ -40,11 +40,4 @@ describe ActiveAdmin::Resource::Sidebars do
 
   end
 
-  describe "default sidebar sections" do
-
-    it "should have a filters section by default" do
-      resource.sidebar_sections.first.name.should == :filters
-    end
-
-  end
 end

@@ -12,7 +12,7 @@ module ActiveAdmin
 
     # The id gets used for the div in the view
     def id
-      name.to_s.downcase.underscore + '_sidebar_section'
+      "#{name.to_s.downcase.underscore}_sidebar_section".parameterize
     end
 
     def icon?
@@ -25,11 +25,7 @@ module ActiveAdmin
 
     # The title gets displayed within the section in the view
     def title
-      begin
-        I18n.t!("active_admin.sidebars.#{name.to_s}")
-      rescue I18n::MissingTranslationData
-        name.to_s.titlecase
-      end
+      I18n.t("active_admin.sidebars.#{name.to_s}", :default => name.to_s.titlecase)
     end
 
     # If a block is not passed in, the name of the partial to render

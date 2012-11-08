@@ -16,12 +16,15 @@ ActiveAdmin::Resource.send :include, ActiveAdmin::Comments::ResourceHelper
 # Add the module to the show page
 ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comments::ShowPageHelper
 
-# Generate a Comment resource when namespaces are registered
-ActiveAdmin::Event.subscribe ActiveAdmin::Application::LoadEvent do |app|
+# Walk through all the loaded resources after they are loaded
+ActiveAdmin.after_load do |app|
   app.namespaces.values.each do |namespace|
     if namespace.comments?
       namespace.register ActiveAdmin::Comment, :as => "Comment" do
         actions :index, :show, :create
+
+        # Ensure filters are turned on
+        config.filters = true
 
         # Don't display in the menu
         menu false

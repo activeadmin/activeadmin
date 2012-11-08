@@ -42,4 +42,39 @@
     any: "Qualquer"
     blank_slate:
       content: "Não existem %{resource_name} ainda."
-      link: "Crie uma"
+      link: "Novo"
+    batch_actions:
+      button_label: "Ações em lote"
+      delete_confirmation: "Tem certeza que deseja excluir estes %{plural_model}? Não é possível desfazer esta ação."
+      succesfully_destroyed:
+        one: "Excluiu com sucesso 1 %{model}"
+        other: "Excluiu com sucesso %{count} %{plural_model}"
+      selection_toggle_explanation: "(Alternar Seleção)"
+      link: "Novo"
+      action_label: "%{title} Selecionado"
+      labels:
+        destroy: "Excluído"
+    comments:    
+      body: "Conteúdo"
+      author: "Autor"
+      title: "Comentário"
+      add: "Adicionar Comentário"
+      resource: "Objeto"
+      no_comments_yet: "Nenhum comentário."
+      title_content: "Comentários: %{count}"
+      errors:
+        empty_text: "O comentário não foi salvo porque o texto estava vazio."
+    devise:
+      login:
+        title: "Conta"
+        remember_me: "Lembrar da senha"
+        submit: "Entrar"
+      reset_password:
+        title: "Esqueceu sua senha?"
+        submit: "Reinicie minha senha"
+      change_password:
+        title: "Troque sua senha"
+        submit: "Troque minha senha"
+      links:
+        sign_in: "Entrar"
+        forgot_your_password: "Esqueceu sua senha?"

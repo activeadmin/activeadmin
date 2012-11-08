@@ -22,7 +22,7 @@ module ActiveAdmin
         case object
         when String
           object
-        when Arbre::HTML::Element
+        when Arbre::Element
           object
         when Date, Time
           localize(object, :format => :long)

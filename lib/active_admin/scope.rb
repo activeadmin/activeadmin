@@ -24,6 +24,7 @@ module ActiveAdmin
       @scope_method = method
       # Scope ':all' means no scoping
       @scope_method ||= name.to_sym unless name.to_sym == :all
+      @scope_method = nil if method && method.to_s == 'all'
       @id = @name.gsub(' ', '').underscore
       if block_given?
         @scope_method = nil

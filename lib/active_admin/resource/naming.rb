@@ -1,72 +1,82 @@
 module ActiveAdmin
   class Resource
+
     module Naming
-      # Returns the user facing name. Example: "Bank Account"
+
+      # Returns a name used to uniquely identify this resource
+      # this should be an instance of ActiveAdmin:Resource::Name, which responds to
+      # #singular, #plural, #route_key, #human etc.
       def resource_name
-        @resource_name ||= @options[:as]
-        @resource_name ||= singular_human_name
-        @resource_name ||= safe_resource_name
+        custom_name = @options[:as] && @options[:as].gsub(/\s/,'')
+        @resource_name ||= if custom_name || !resource_class.respond_to?(:model_name)
+            Resource::Name.new(resource_class, custom_name)
+          else
+            Resource::Name.new(resource_class)
+          end
       end
 
-      # Returns the plural version of the user facing name. Example: "Bank Accounts"
-      def plural_resource_name
-        @plural_resource_name ||= @options[:as].pluralize if @options[:as]
-        @plural_resource_name ||= plural_human_name
-        @plural_resource_name ||= resource_name.pluralize
+      # Returns the name to call this resource such as "Bank Account"
+      def resource_label
+        if @options[:as]
+          @options[:as]
+        else
+           resource_name.human(:default => resource_name.gsub('::', ' ').titleize)
+         end
       end
 
-      # A name used internally to uniquely identify this resource
-      def resource_key
-        camelized_resource_name
-      end
-
-      def safe_resource_name
-        @safe_resource_name ||= @options[:as]
-        @safe_resource_name ||= resource_class.name.gsub('::',' ')
-      end
-
-      def plural_safe_resource_name
-        safe_resource_name.pluralize
-      end
-
-      # A camelized safe representation for this resource
-      def camelized_resource_name
-        safe_resource_name.titleize.gsub(' ', '')
-      end
-
-      def plural_camelized_resource_name
-        plural_safe_resource_name.titleize.gsub(' ', '')
-      end
-
-      # An underscored safe representation internally for this resource
-      def underscored_resource_name
-        camelized_resource_name.underscore
-      end
-
-      # Returns the plural and underscored version of this resource. Useful for element id's.
-      def plural_underscored_resource_name
-        plural_camelized_resource_name.underscore
-      end
-
-
-      private
-
-      # @return [String] Titleized human name via ActiveRecord I18n or nil
-      def singular_human_name
-        return nil unless resource_class.respond_to?(:model_name)
-        resource_class.model_name.human.titleize
-      end
-
-      # @return [String] Titleized plural human name via ActiveRecord I18n or nil
-      def plural_human_name
-        return nil unless resource_class.respond_to?(:model_name)
-
-        begin
-          I18n.translate!("activerecord.models.#{resource_class.model_name.underscore}.other").titleize
-        rescue I18n::MissingTranslationData
-          nil
+      # Returns the plural version of this resource such as "Bank Accounts"
+      def plural_resource_label
+        if @options[:as]
+          @options[:as].pluralize
+        else
+          resource_name.human(:count => 1.1, :default => resource_label.pluralize.titleize)
         end
       end
     end
+
+    # A subclass of ActiveModel::Name which supports the different APIs presented
+    # in Rails < 3.1 and > 3.1.
+    class Name < ActiveModel::Name
+
+      def initialize(klass, name = nil)
+        if ActiveModel::Name.instance_method(:initialize).arity == 1
+          super(proxy_for_initializer(klass, name))
+        else
+          super(klass, nil, name)
+        end
+      end
+
+      def proxy_for_initializer(klass, name)
+        return klass unless name
+        return StringClassProxy.new(klass, name) if klass
+
+        StringProxy.new(name)
+      end
+
+      def route_key
+        plural
+      end
+
+      class StringProxy
+        def initialize(name)
+          @name = name
+        end
+
+        def name
+          @name
+        end
+      end
+
+      class StringClassProxy < StringProxy
+        delegate :lookup_ancestors, :i18n_scope, :to => :"@klass"
+
+        def initialize(klass, name)
+          @klass = klass || name
+          super(name)
+        end
+      end
+
+    end
+
   end
 end

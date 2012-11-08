@@ -38,3 +38,38 @@ ko:
     blank_slate:
       content: "아직 %{resource_name} 이/가 없습니다."
       link: "만들기"
+    batch_actions:
+      button_label: "배치 작업"
+      delete_confirmation: "당신은 이들을 삭제하시겠습니까 %{plural_model}? 당신은 이것을 취소할 수 없습니다."
+      succesfully_destroyed:
+        one: "성공적으로 파괴 1 %{model}"
+        other: "성공적으로 파괴 %{count} %{plural_model}"
+      selection_toggle_explanation: "(전환 선택)"
+      link: "만들기 한"
+      action_label: "%{title} 선택된"
+      labels:
+        destroy: "삭제"
+    comments:
+      body: "몸"
+      author: "저자"
+      title: "논평"
+      add: "코멘트를 추가"
+      resource: "자원"
+      no_comments_yet: "아직 코멘트가 없습니다."
+      title_content: "댓글 (%{count})"
+      errors:
+        empty_text: "댓글이 저장되지 않았습니다, ​​텍스트가 비어 있었어."
+    devise:
+      login:
+        title: "로그인"
+        remember_me: "내 계정 정보 기억"
+        submit: "로그인"
+      reset_password:
+        title: "비밀 번호를 잊으 셨나요?"
+        submit: "비밀 번호를 재설정"
+      change_password:
+        title: "비밀 번호를 변경"
+        submit: "내 비밀 번호 변경"
+      links:
+        sign_in: "로그인"
+        forgot_your_password: "비밀 번호를 잊으 셨나요?"

@@ -6,7 +6,6 @@ module ActiveAdmin
 
     include AssignsWithIndifferentAccessHelper
     include ActiveAdminApplicationHelper
-    include RendererHelper
     include AutoLinkHelper
     include BreadcrumbHelper
     include DisplayHelper
@@ -14,7 +13,6 @@ module ActiveAdmin
     include MethodOrProcHelper
     include SidebarHelper
     include FormHelper
-    include FilterFormHelper
     include TitleHelper
     include ViewFactoryHelper
 

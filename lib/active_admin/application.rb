@@ -57,6 +57,18 @@ module ActiveAdmin
     # The method to use when generating the link for user logout
     inheritable_setting :logout_link_method, :get
 
+    # Whether the batch actions are enabled or not
+    inheritable_setting :batch_actions, false
+
+    # Whether filters are enabled
+    inheritable_setting :filters, true
+
+    # The namespace root.
+    inheritable_setting :root_to, 'dashboard#index'
+
+    # Default CSV separator
+    inheritable_setting :csv_column_separator, ','
+
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     setting :display_name_methods, [ :display_name,
@@ -80,7 +92,8 @@ module ActiveAdmin
     include AssetRegistration
 
     # Event that gets triggered on load of Active Admin
-    LoadEvent = 'active_admin.application.load'.freeze
+    BeforeLoadEvent = 'active_admin.application.before_load'.freeze
+    AfterLoadEvent = 'active_admin.application.after_load'.freeze
 
     def setup!
       register_default_assets
@@ -106,11 +119,17 @@ module ActiveAdmin
     # @returns [Namespace] the new or existing namespace
     def find_or_create_namespace(name)
       name ||= :root
-      return namespaces[name] if namespaces[name]
-      namespace = Namespace.new(self, name)
-      namespaces[name] = namespace
-      ActiveAdmin::Event.dispatch ActiveAdmin::Namespace::RegisterEvent, namespace
+
+      if namespaces[name]
+        namespace = namespaces[name]
+      else
+        namespace = Namespace.new(self, name)
+        namespaces[name] = namespace
+        ActiveAdmin::Event.dispatch ActiveAdmin::Namespace::RegisterEvent, namespace
+      end
+
       yield(namespace) if block_given?
+
       namespace
     end
 
@@ -157,17 +176,16 @@ module ActiveAdmin
       # No work to do if we've already loaded
       return false if loaded?
 
+      ActiveAdmin::Event.dispatch BeforeLoadEvent, self
+
       # Load files
       files_in_load_path.each{|file| load file }
 
       # If no configurations, let's make sure you can still login
       load_default_namespace if namespaces.values.empty?
 
-      # Load Menus
-      namespaces.values.each{|namespace| namespace.load_menu! }
-
       # Dispatch an ActiveAdmin::Application::LoadEvent with the Application
-      ActiveAdmin::Event.dispatch LoadEvent, self
+      ActiveAdmin::Event.dispatch AfterLoadEvent, self
 
       @@loaded = true
     end
@@ -194,26 +212,26 @@ module ActiveAdmin
     end
 
     #
-    # Add before, around and after filters to each registered resource.
+    # Add before, around and after filters to each registered resource and pages.
     #
     # eg:
     #
     #   ActiveAdmin.before_filter :authenticate_admin!
     #
     def before_filter(*args, &block)
-      ResourceController.before_filter(*args, &block)
+      BaseController.before_filter(*args, &block)
     end
 
     def skip_before_filter(*args, &block)
-      ResourceController.skip_before_filter(*args, &block)
+      BaseController.skip_before_filter(*args, &block)
     end
 
     def after_filter(*args, &block)
-      ResourceController.after_filter(*args, &block)
+      BaseController.after_filter(*args, &block)
     end
 
     def around_filter(*args, &block)
-      ResourceController.around_filter(*args, &block)
+      BaseController.around_filter(*args, &block)
     end
 
     # Helper method to add a dashboard section
@@ -224,9 +242,10 @@ module ActiveAdmin
     private
 
     def register_default_assets
-      register_stylesheet 'active_admin.css', :media => 'all'
+      register_stylesheet 'active_admin.css', :media => 'screen'
+      register_stylesheet 'active_admin/print.css', :media => 'print'
 
-      if !ActiveAdmin.use_asset_pipeline?
+      unless ActiveAdmin.use_asset_pipeline?
         register_javascript 'jquery.min.js'
         register_javascript 'jquery-ui.min.js'
         register_javascript 'jquery_ujs.js'
@@ -255,10 +274,6 @@ module ActiveAdmin
     end
 
     def generate_stylesheets
-      # This must be required after initialization
-      require 'sass/plugin'
-      require 'active_admin/sass/helpers'
-
       # Create our own asset pipeline in Rails 3.0
       if ActiveAdmin.use_asset_pipeline?
         # Add our mixins to the load path for SASS

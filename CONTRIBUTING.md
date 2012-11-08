@@ -3,17 +3,15 @@
 This is a guide to contributing to Active Admin. It should walk you through the
 major steps to contributing code to the project.
 
-### 1. Create an Issue on Github
+### 1. Create an Issue on GitHub
 
 The first step to contributing to Active Admin is creating a ticket in our
-[ticketing system on Github](https://github.com/gregbell/active_admin/issues).
+[ticketing system on GitHub](https://github.com/gregbell/active_admin/issues).
 The community has been hard at work already, so please take a second to search
 for the issue or feature before creating a new one.
 
-All features or bug fixes should have a ticket. This makes it easy for everyone
-to discuss the code and know if a fix is already in progress for an issue. If
-it's a feature, the team can prioritize what it should work on based on these
-tickets.
+All bug fixes should have a ticket. This makes it easy for everyone
+to discuss the code and know if a fix is already in progress for an issue.
 
 
 ### 2. Fork & Create a Feature Branch
@@ -109,5 +107,5 @@ up to date with Active Admin's master branch. If there were any changes, you
 should rebase your feature branch and make sure that it will merge correctly. If
 there are any merge conflicts, your pull request will not be merged in.
 
-Now push your changes up to your feature branch on github and make a pull request!
+Now push your changes up to your feature branch on GitHub and make a pull request!
 We will pull your changes, run the test suite, review the code and merge it in.

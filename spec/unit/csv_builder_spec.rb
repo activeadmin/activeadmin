@@ -37,7 +37,7 @@ describe ActiveAdmin::CSVBuilder do
       end
     end
 
-    it "should have one colum" do
+    it "should have one column" do
       builder.columns.size.should == 1
     end
 
@@ -63,7 +63,7 @@ describe ActiveAdmin::CSVBuilder do
       end
     end
 
-    it "should have one colum" do
+    it "should have one column" do
       builder.columns.size.should == 1
     end
 
@@ -77,6 +77,16 @@ describe ActiveAdmin::CSVBuilder do
       it "should have the data :title" do
         column.data.should be_an_instance_of(Proc)
       end
+    end
+  end
+
+  context "with a separator" do
+    let(:builder) do
+      ActiveAdmin::CSVBuilder.new :separator => ";"
+    end
+
+    it "should have proper separator" do
+      builder.column_separator.should == ";"
     end
   end
 

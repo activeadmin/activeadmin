@@ -1,0 +1,80 @@
+vi:
+  active_admin:
+    dashboard: Dashboard
+    dashboard_welcome:
+      welcome: "Chào mừng bạn đến với Active Admin. Đây là trang Dashboard mặc định."
+      call_to_action: "Để thêm phần phần cho trang Dashboar hãy chỉnh sửa 'app/admin/dashboards.rb'"
+    view: "Xem"
+    edit: "Chỉnh sửa"
+    delete: "Xóa"
+    delete_confirmation: "Bạn có chắc chắn rằng mình muốn xóa cái này?"
+    new_model: "Tạo mới %{model}"
+    create_model: "Tạo mới %{model}"
+    edit_model: "Chỉnh sửa %{model}"
+    update_model: "Chỉnh sửa %{model}"
+    delete_model: "Xóa %{model}"
+    details: "%{model} Chi tiết"
+    cancel: "Hủy"
+    empty: "Trống"
+    previous: "Trước"
+    next: "Tiếp"
+    download: "Download:"
+    has_many_new: "Thêm mới %{model}"
+    has_many_delete: "Xóa"
+    filter: "Lọc"
+    clear_filters: "Xóa dữ liệu lọc"
+    search_field: "Tìm kiếm %{field}"
+    equal_to: "Bằng"
+    greater_than: "Lớn hơn"
+    less_than: "Nhỏ hơn"
+    main_content: "Xin bổ sung %{model}#main_content để hiển thị nội dung."
+    logout: "Đăng xuất"
+    sidebars:
+      filters: "Bộ Lọc"
+    pagination:
+      empty: "Không có %{model} nào được tìm thấy"
+      one: "Đang hiển thị <b>1</b> %{model}"
+      one_page: "Đang hiển thị <b>tất cả %{n}</b> %{model}"
+      multiple: "Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> trong tất cả."
+      entry:
+        one: "entry"
+        other: "entries"
+    any: "Bất kỳ"
+    blank_slate:
+      content: "Chưa có %{resource_name}."
+      link: "Tạo mới"
+    batch_actions:
+      button_label: "Hành động hàng loạt"
+      delete_confirmation: "Bạn có chắc chắn muốn xóa những %{plural_model}? Bạn sẽ không thể lấy lại được dữ liệu."
+      succesfully_destroyed:
+        one: "Đã xóa thành công 1 %{model}"
+        other: "Đã xóa thành công %{count} %{plural_model}"
+      selection_toggle_explanation: "(Thay đổi lựa chọn)"
+      link: "Tạo mới"
+      action_label: "%{title} được chọn"
+      labels:
+        destroy: "Xóa"
+    comments:
+      body: "Nội dung"
+      author: "Tác giả"
+      title: "Bình luận"
+      add: "Thêm bình luận"
+      resource: "Tài nguyên"
+      no_comments_yet: "Chưa có bình luận."
+      title_content: "Bình luận (%{count})"
+      errors:
+        empty_text: "Lời bình luận chưa được lưu, vì nội dung còn trống."
+    devise:
+      login:
+        title: "Đăng nhập"
+        remember_me: "Ghi nhớ tôi"
+        submit: "Đăng nhập"
+      reset_password:
+        title: "Quên mật khẩu của bạn?"
+        submit: "Thiết lập lại mật khẩu của tôi"
+      change_password:
+        title: "Thay đổi mật khẩu của bạn"
+        submit: "Thay đổi mật khẩu của tôi"
+      links:
+        sign_in: "Đăng nhập"
+        forgot_your_password: "Quên mật khẩu của bạn?"

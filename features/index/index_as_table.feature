@@ -2,14 +2,14 @@ Feature: Index as Table
 
   Viewing resources as a table on the index page
 
-  Scenario: Viewing the default table with no resources
+  Scenario: Viewing the default table with one resources
     Given an index configuration of:
       """
         ActiveAdmin.register Post
       """
     And 1 post exists
     When I am on the index page for posts
-    Then I should see a sortable table header with "ID"
+    Then I should see a sortable table header with "Id"
     And I should see a sortable table header with "Title"
 
   Scenario: Viewing the default table with a resource
@@ -92,4 +92,32 @@ Feature: Index as Table
     And I should see a member link to "Edit"
     And I should not see a member link to "Delete"
 
+  Scenario: Associations are not sortable
+    Given 1 post exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          index do
+            column :category
+          end
+        end
+      """
+    Then I should not see a sortable table header with "Category"
 
+  Scenario: Sorting
+    Given a post with the title "Hello World" and body "From the body" exists
+    And a post with the title "Bye bye world" and body "Move your..." exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post
+      """
+    When I am on the index page for posts
+    Then I should see the "posts" table:
+      | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
+      | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | ViewEditDelete |
+    When I follow "Id"
+    Then I should see the "posts" table:
+      | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
+      | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | ViewEditDelete |

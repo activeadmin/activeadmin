@@ -1,14 +1,14 @@
-$secondary-gradient-start: #efefef;
-$secondary-gradient-stop: #dfe1e2;
+$secondary-gradient-start: #efefef !default;
+$secondary-gradient-stop: #dfe1e2 !default;
 
 @mixin gradient($start, $end){ 
   background: $start; 
   background: -webkit-gradient(linear, left top, left bottom, from($start), to($end)); 
   background: -moz-linear-gradient(-90deg, $start, $end); 
   // IE 6 & 7
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$start}, endColorstr=#{$end});
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start}', endColorstr='#{$end}');
   // IE 8
-  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$start}, endColorstr=#{$end});
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start}', endColorstr='#{$end}');
 }
 
 @mixin primary-gradient { 

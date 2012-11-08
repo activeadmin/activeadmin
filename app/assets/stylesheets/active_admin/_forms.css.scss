@@ -29,6 +29,13 @@ form {
       }
     }
 
+    ol > div.has_many {
+      padding: 20px 10px;
+      h3 {
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
 
     ol > li > li label { 
       line-height:100%; 
@@ -67,14 +74,14 @@ form {
 
         li {
           padding:0; 
-          border:0; 
+          border:0;
         }
       }
     }
   }
 
   /* Text Fields */
-  input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
+  input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
     width: 76%;
     border: 1px solid #c9d0d6;
     @include rounded;
@@ -100,7 +107,7 @@ form {
     }
 
     /* Date and Time Fields */
-    &.date, &.time, &.datetime {
+    &.date, &.time, &.datetime, &.date_select {
       fieldset ol li {
         float:left; width:auto; margin:0 0.5em 0 0; 
         label { display: none; }
@@ -127,7 +134,7 @@ form {
     &.boolean {
       height: 1.1em;
       label { 
-        width: 100%;
+        width: 80%;
         padding-left:20%; 
         padding-right: 10px; 
         text-transform: none !important;
@@ -138,7 +145,6 @@ form {
 
     /* Errors */
     p.inline-errors { 
-      text-transform:capitalize;
       color: $error-color;
       font-weight: bold;
       margin:0.3em 0 0 20%; 
@@ -157,6 +163,18 @@ form {
     }
   }
 
+  /* semantic_errors */
+  ul.errors { 
+    background: lighten($error-color, 60%);
+    @include rounded(4px);
+    color: $error-color;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 10px;
+    list-style:square; 
+    li { margin-left:15px; padding:0; border:none; display:list-item; }
+  }
+
   /* Buttons */
   
   input[type=submit] {
@@ -165,12 +183,12 @@ form {
     
   }
   
-  .buttons { 
+  .buttons, .actions {
     margin-top: 15px; 
     input[type=submit] { margin-right: 10px; }
   }
   
-  fieldset.buttons li { 
+  fieldset.buttons li, fieldset.actions li {
     float:left; 
     padding: 0;
 

@@ -47,6 +47,13 @@ module ActiveAdmin
     # Set the configuration for the CSV
     attr_writer :csv_builder
 
+    # Store a reference to the DSL so that we can dereference it during garbage collection.
+    attr_accessor :dsl
+
+    # The string identifying a class to decorate our resource with for the view.
+    # nil to not decorate.
+    attr_accessor :decorator_class_name
+
     module Base
       def initialize(namespace, resource_class, options = {})
         @namespace = namespace
@@ -71,6 +78,10 @@ module ActiveAdmin
     # will point to the Post class
     def resource_class
       ActiveSupport::Dependencies.constantize(resource_class_name)
+    end
+
+    def decorator_class
+      ActiveSupport::Dependencies.constantize(decorator_class_name) if decorator_class_name
     end
 
     def resource_table_name
@@ -107,6 +118,11 @@ module ActiveAdmin
 
     def clear_collection_actions!
       @collection_actions = []
+    end
+
+    # Return only defined resource actions
+    def defined_actions
+      controller.instance_methods.map { |m| m.to_sym } & ResourceController::ACTIVE_ADMIN_ACTIONS
     end
 
     # Are admin notes turned on for this resource
@@ -155,5 +171,6 @@ module ActiveAdmin
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource_class)
     end
+
   end # class Resource
 end # module ActiveAdmin

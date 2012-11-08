@@ -77,3 +77,12 @@ individually.
 
 Each setting available in the Active Admin setup block is configurable on a per
 namespace basis.
+
+## Load paths
+
+By default Active Admin files go under '/app/admin'. You can change this
+directory in the initializer file:
+
+    ActiveAdmin.setup do |config|
+      config.load_paths = [File.join(Rails.root, "app", "ui")]
+    end

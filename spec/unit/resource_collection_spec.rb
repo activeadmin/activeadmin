@@ -12,19 +12,19 @@ describe ActiveAdmin::ResourceCollection do
   end
 
   it "should be enumerable" do
-    resource = mock(:resource_key => "MyResource")
+    resource = mock(:resource_name => "MyResource")
     collection.add(resource)
     collection.each{|r| r.should == resource }
   end
 
   it "should return the available keys" do
-    resource = mock(:resource_key => "MyResource")
+    resource = mock(:resource_name => "MyResource")
     collection.add resource
-    collection.keys.should == [resource.resource_key]
+    collection.keys.should == [resource.resource_name]
   end
 
   describe "adding a new resource" do
-    let(:resource){ mock(:resource_key => "MyResource") }
+    let(:resource){ mock(:resource_name => "MyResource") }
 
     it "should return the resource" do
       collection.add(resource).should == resource
@@ -37,13 +37,13 @@ describe ActiveAdmin::ResourceCollection do
 
     it "should be available by name" do
       collection.add(resource)
-      collection.find_by_key(resource.resource_key).should == resource
+      collection.find_by_key(resource.resource_name).should == resource
     end
   end
 
   describe "adding a new resource when the key already exists" do
-    let(:stored_resource){ mock(:resource_key => "MyResource") }
-    let(:resource){ mock(:resource_key => "MyResource") }
+    let(:stored_resource){ mock(:resource_name => "MyResource") }
+    let(:resource){ mock(:resource_name => "MyResource") }
 
     before do
       collection.add(stored_resource)
@@ -60,8 +60,8 @@ describe ActiveAdmin::ResourceCollection do
   end
 
   describe "adding an existing resource key with a different resource class" do
-    let(:stored_resource){ mock(:resource_key => "MyResource", :resource_class => mock) }
-    let(:resource){ mock(:resource_key => "MyResource", :resource_class => mock) }
+    let(:stored_resource){ mock(:resource_name => "MyResource", :resource_class => mock) }
+    let(:resource){ mock(:resource_name => "MyResource", :resource_class => mock) }
 
     it "should raise a ActiveAdmin::ResourceMismatchError" do
       collection.add(stored_resource)
@@ -75,9 +75,9 @@ describe ActiveAdmin::ResourceCollection do
   describe "#find_by_resource_class" do
 
     let(:base_class){ mock(:to_s => "BaseClass")}
-    let(:resource_from_base_class){ mock(:resource_key => "MyBaseClassResource", :resource_class => base_class )}
+    let(:resource_from_base_class){ mock(:resource_name => "MyBaseClassResource", :resource_class => base_class )}
     let(:resource_class){ mock(:base_class => base_class, :to_s => "ResourceClass") }
-    let(:resource){ mock(:resource_key => "MyResource", :resource_class => resource_class) }
+    let(:resource){ mock(:resource_name => "MyResource", :resource_class => resource_class) }
 
     it "should find a resource when it's in the collection" do
       collection.add resource

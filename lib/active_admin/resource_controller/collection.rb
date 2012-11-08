@@ -49,7 +49,7 @@ module ActiveAdmin
             table_column = (column =~ /\./) ? column :
               "#{table}.#{active_admin_config.resource_quoted_column_name(column)}"
 
-            chain.order("#{table_column} #{order}")
+            chain.reorder("#{table_column} #{order}")
           else
             chain # just return the chain
           end
@@ -88,13 +88,19 @@ module ActiveAdmin
         end
 
         def scope_current_collection(chain)
+          @collection_before_scope = chain
+
           if current_scope
-            @before_scope_collection = chain
             scope_chain(current_scope, chain)
           else
             chain
           end
         end
+
+        def collection_before_scope
+          @collection_before_scope
+        end
+
 
         include ActiveAdmin::ScopeChain
 
@@ -116,7 +122,10 @@ module ActiveAdmin
         end
 
         def paginate(chain)
-          chain.send(Kaminari.config.page_method_name, params[:page]).per(per_page)
+          page_method_name = Kaminari.config.page_method_name
+          page = params[Kaminari.config.param_name]
+
+          chain.send(page_method_name, page).per(per_page)
         end
 
         def per_page

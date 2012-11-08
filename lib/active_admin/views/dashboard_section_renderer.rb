@@ -11,7 +11,7 @@ module ActiveAdmin
       protected
 
       def title
-        @section.name.to_s.titleize
+        I18n.t("active_admin.sections.#{@section.name.to_s}", :default => @section.name.to_s.titleize)
       end
 
     end

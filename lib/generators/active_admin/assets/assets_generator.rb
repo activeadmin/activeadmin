@@ -20,7 +20,7 @@ module ActiveAdmin
           template '3.1/active_admin.js', 'app/assets/javascripts/active_admin.js'
           template '3.1/active_admin.css.scss', 'app/assets/stylesheets/active_admin.css.scss'
         else
-          template '../../../../../app/assets/javascripts/active_admin/application.js', 'public/javascripts/active_admin.js'
+          template '3.0/active_admin.js', 'public/javascripts/active_admin.js'
           directory '../../../../../app/assets/images/active_admin', 'public/images/active_admin'
           generate "jquery:install --ui" if options.jquery?
           install_bourbon if options.bourbon?
