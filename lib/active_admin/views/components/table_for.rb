@@ -154,12 +154,14 @@ module ActiveAdmin
         #   column :username
         #   # => Sort key will be set to 'username'
         #
-        # You can set the sort key by passing a string or symbol
+        # You can set the sort key by passing a string or symbol or an array
         # to the sortable option:
         #   column :username, :sortable => 'other_column_to_sort_on'
+        #   or
+        #   column :fullname, :sortable => [:first_name, :last_name]
         #
         # If you pass a block to be rendered for this column, the column
-        # will not be sortable unless you pass a string to sortable to
+        # will not be sortable unless you pass a string or an array to sortable to
         # sort the column on:
         #
         #   column('Username', :sortable => 'login'){ @user.pretty_name }
