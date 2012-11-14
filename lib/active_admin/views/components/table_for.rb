@@ -169,10 +169,11 @@ module ActiveAdmin
         #
         def sort_key
           # If boolean or nil, use the default sort key.
-          if @options[:sortable] == true || @options[:sortable] == false || @options[:sortable].nil? || @options[:sortable].empty?
+          if @options[:sortable] == true || @options[:sortable] == false || @options[:sortable].nil?
             @data.to_s
           elsif @options[:sortable].is_a?(Array)
-            @options[:sortable].map {|s| s.to_s.strip }.join(',')
+            #fallback to empty string for an empty array, to support REE
+            @options[:sortable].empty? ? '' : @options[:sortable].map {|s| s.to_s.strip }.join(',')
           else
             @options[:sortable].to_s.split(/,/).map {|s| s.strip }.join(',')
           end
