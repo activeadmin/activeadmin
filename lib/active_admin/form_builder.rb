@@ -87,7 +87,7 @@ module ActiveAdmin
           end
 
           js = template.escape_javascript(js)
-          js = template.link_to I18n.t('active_admin.has_many_new', :model => object.class.reflect_on_association(association).klass.model_name.human), "#", :onclick => "$(this).before('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;", :class => "button"
+          js = template.link_to I18n.t('active_admin.has_many_new', :model => object.class.reflect_on_association(association).klass.model_name.human), "#", :onclick => "$(this).siblings('li.input').append('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;", :class => "button"
 
           form_buffers.last << js.html_safe
         end
