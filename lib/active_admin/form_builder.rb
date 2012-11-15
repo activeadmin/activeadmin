@@ -90,6 +90,19 @@ module ActiveAdmin
           js = template.link_to I18n.t('active_admin.has_many_new', :model => object.class.reflect_on_association(association).klass.model_name.human), "#", :onclick => "$(this).siblings('li.input').append('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;", :class => "button"
 
           js = js_for_has_many(association, form_block, template)
+          # Capture the ADD JS
+          placeholder = "NEW_#{object.class.reflect_on_association(association).klass.model_name.human.upcase}_RECORD"
+          js = with_new_form_buffer do
+            inputs_for_nested_attributes  :for => [association, object.class.reflect_on_association(association).klass.new],
+                                          :class => "inputs has_many_fields",
+                                          :for_options => {
+                                            :child_index => placeholder
+                                          }, &form_block
+          end
+
+          js = template.escape_javascript(js)
+          js = template.link_to I18n.t('active_admin.has_many_new', :model => object.class.reflect_on_association(association).klass.model_name.human), "#", :onclick => "$(this).siblings('li.input').append('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;", :class => "button"
+
           form_buffers.last << js.html_safe
         end
       end
