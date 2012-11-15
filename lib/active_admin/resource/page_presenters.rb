@@ -31,6 +31,7 @@ module ActiveAdmin
       # Returns a stored page config
       #
       # @param [Symbol, String] action The action to get the config for
+      # @param [String] type The string specified in the presenters index_name method
       # @returns [PagePresenter, nil]
       def get_page_presenter(action, type=nil)
         

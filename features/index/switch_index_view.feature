@@ -19,7 +19,7 @@ Feature: Switch Index View
     """
   Then I should see "Hello World from Table" within ".index_as_table"
 
-	Scenario: Show default Page Presenter
+	Scenario: Show default Page Presenter when default is specified
 		Given a post with the title "Hello World from Table" exists
 		And an index configuration of:
 			"""

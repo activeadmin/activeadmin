@@ -1,5 +1,3 @@
-<!-- Please don't edit this file. It will be clobbered. -->
-
 # Create an Index
 
 If the supplied Active Admin index components are insufficient for your project
