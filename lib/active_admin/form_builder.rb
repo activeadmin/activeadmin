@@ -185,7 +185,7 @@ module ActiveAdmin
       js = template.escape_javascript(js)
 
       text = I18n.t 'active_admin.has_many_new', :model => association_human_name
-      onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
+      onclick = "$(this).siblings('li.input').append('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
 
       template.link_to text, "#",
                        :onclick => onclick,
