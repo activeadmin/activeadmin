@@ -4,3 +4,5 @@
       store:
         one: Bookstore
         other: Bookstores
+  active_admin:
+    download: "Download this:"
