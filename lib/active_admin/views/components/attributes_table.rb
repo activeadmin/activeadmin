@@ -6,10 +6,16 @@ module ActiveAdmin
 
       attr_reader :resource
 
+      def tag_name
+        'table'
+      end
+
       def build(record, *attrs)
         @record = record
         super(:for => @record)
-        @table = table
+
+        add_class "table"
+
         rows(*attrs)
       end
 
@@ -18,7 +24,7 @@ module ActiveAdmin
       end
 
       def row(attr, &block)
-        @table << tr do
+        tr do
           th do
             header_content_for(attr)
           end

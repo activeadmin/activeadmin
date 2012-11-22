@@ -14,6 +14,8 @@ module ActiveAdmin
         @columns = []
         build_table
         super(options)
+
+        add_class "table table-striped"
       end
 
       def column(*args, &block)

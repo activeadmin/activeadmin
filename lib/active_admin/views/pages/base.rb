@@ -30,6 +30,9 @@ module ActiveAdmin
             active_admin_application.javascripts.each do |path|
               script :src => javascript_path(path), :type => "text/javascript"
             end
+
+            meta :name => "viewport", :content => "width=device-width, initial-scale=1.0"
+
             text_node csrf_meta_tag
           end
         end
@@ -39,8 +42,11 @@ module ActiveAdmin
             div :id => "wrapper" do
               build_header
               build_title_bar
-              build_page_content
-              build_footer
+
+              div :class => "container-fluid" do
+                build_page_content
+                build_footer
+              end
             end
           end
         end
@@ -56,7 +62,7 @@ module ActiveAdmin
 
         def build_page_content
           build_flash_messages
-          div :id => "active_admin_content", :class => (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
+          div :id => "active_admin_content", :class => (skip_sidebar? ? "without_sidebar row-fluid" : "with_sidebar row-fluid") do
             build_main_content_wrapper
             build_sidebar unless skip_sidebar?
           end
@@ -66,14 +72,15 @@ module ActiveAdmin
           if active_admin_flash_messages.any?
             div :class => 'flashes' do
               active_admin_flash_messages.each do |type, message|
-                div message, :class => "flash flash_#{type}"
+                div message, :class => "flash flash_#{type} alert alert-#{type}"
               end
             end
           end
         end
 
         def build_main_content_wrapper
-          div :id => "main_content_wrapper" do
+          class_name = skip_sidebar? ? "span12" : "span9"
+          div :id => "main_content_wrapper", :class => class_name do
             div :id => "main_content" do
               main_content
             end
@@ -112,7 +119,7 @@ module ActiveAdmin
 
         # Renders the sidebar
         def build_sidebar
-          div :id => "sidebar" do
+          div :id => "sidebar", :class => "span3" do
             sidebar_sections_for_action.collect do |section|
               sidebar_section(section)
             end

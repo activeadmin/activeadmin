@@ -33,6 +33,10 @@ module ActiveAdmin
 
       private
 
+      def default_class_name
+        'nav'
+      end
+
       def build_menu
         menu_items.each do |item|
           build_menu_item(item)
@@ -41,12 +45,17 @@ module ActiveAdmin
 
       def build_menu_item(item)
         li :id => item.dom_id do |li_element|
-          li_element.add_class "current" if current?(item)
+          li_element.add_class "active" if current?(item)
           link_path = url_for_menu_item(item)
 
           if item.children.any?
-            li_element.add_class "has_nested"
-            text_node link_to(item.label, link_path)
+            li_element.add_class "dropdown"
+
+            a :href => link_path, :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
+              text_node item.label
+              b :class => "caret"
+            end
+
             render_nested_menu(item)
           else
             link_to item.label, link_path
@@ -66,7 +75,7 @@ module ActiveAdmin
       end
 
       def render_nested_menu(item)
-        ul do
+        ul :class => "dropdown-menu" do
           displayable_items(item.children).each do |child|
             build_menu_item child
           end

@@ -1,0 +1,91 @@
+// Typography
+$baseFontSize: 12px !default;
+
+@import "active_admin/mixins/variables";
+@import "bootstrap-without-forms";
+@import "formtastic-plus-bootstrap";
+
+body.active_admin {
+  padding-top: $navbarHeight + 20;
+  padding-bottom: 40px;
+
+  #titlebar_left { float: left; }
+  #titlebar_right { float: right; }
+
+  // -------------------------------------- Sidebar Filter Forms
+  $sidebar-inner-content-width: 270px - ($section-padding * 2);
+  $filter-field-seperator-width: 12px;
+
+  $side-by-side-filter-input-width: ($sidebar-inner-content-width / 2) - ($text-input-horizontal-padding * 2) - $filter-field-seperator-width;
+  $side-by-side-filter-select-width: ($sidebar-inner-content-width / 2) - $filter-field-seperator-width;
+
+  $date-range-filter-input-right-padding: 27px;
+  $date-range-filter-input-horizontal-padding: $date-range-filter-input-right-padding + $text-input-horizontal-padding;
+  $date-range-filter-input-width: ($sidebar-inner-content-width / 2) - $filter-field-seperator-width - $date-range-filter-input-horizontal-padding;
+
+  .sidebar_section {
+
+    label.label {
+      display: block;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      text-shadow: none;
+      background-color: transparent;
+
+      color: $grayDark;
+
+      @include font-shorthand($baseFontSize, normal, $baseLineHeight);
+      @include required-abbr(2px);
+    }
+
+    select { width: $sidebar-inner-content-width; }
+
+    input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
+      width: $sidebar-inner-content-width - ($text-input-horizontal-padding * 2);
+    }
+
+  }
+
+  form.filter_form {
+    .filter_form_field {
+      margin-bottom: 10px;
+      clear: both;
+
+      &.filter_numeric {
+        input[type=text] {
+          margin-left: $filter-field-seperator-width + 4;
+          width: $side-by-side-filter-input-width;
+        }
+        select {
+          width: $side-by-side-filter-select-width;
+        }
+      }
+
+      &.filter_check_boxes {
+        label { margin-bottom: 3px; }
+        .check_boxes_wrapper label { 
+          font-weight: normal; 
+          margin-bottom: 3px;
+          text-transform: none;
+          font-size: 1.0em;
+          input { vertical-align: baseline; }
+        }
+      }
+
+      &.filter_date_range {
+        .seperator {
+          display: inline-block;
+          text-align: center;
+          width: $filter-field-seperator-width;
+        }
+
+        input[type=text] {
+          background: #fff url(active_admin_image_path('datepicker/datepicker-input-icon.png')) no-repeat 100% 7px;
+          padding-right: $date-range-filter-input-right-padding;
+          width: $date-range-filter-input-width;
+        }
+      }
+    }
+  }
+}

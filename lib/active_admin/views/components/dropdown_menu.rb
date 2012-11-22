@@ -47,27 +47,30 @@ module ActiveAdmin
 
       def build_button(name, button_options)
         button_options[:class] ||= ""
-        button_options[:class] << " dropdown_menu_button"
+        button_options[:class] << " btn dropdown-toggle"
 
+        button_options[:"data-toggle"] = "dropdown"
         button_options[:href] = "#"
 
-        a name, button_options
+        a button_options do
+          text_node name
+          span "", :class => "caret"
+        end
       end
 
       def build_menu(options)
         options[:class] ||= ""
-        options[:class] << " dropdown_menu_list"
+        options[:class] << " dropdown-menu"
 
-        menu_list = nil
+        ul(options)
+      end
 
-        div :class => "dropdown_menu_list_wrapper", :style => "display:none;" do
-          menu_list = ul(options)
-        end
-
-        menu_list
+      def default_class_name
+        "btn-group"
       end
 
     end
+
 
   end
 end

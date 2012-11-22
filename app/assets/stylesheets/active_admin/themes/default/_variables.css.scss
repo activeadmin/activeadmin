@@ -1,0 +1,11 @@
+// Colors
+$blue: #38678B;
+
+// Links
+$linkColor: $blue;
+
+// Navbar
+$navbarInverseBackground: darken($primary-color, 7%);
+$navbarInverseBackgroundHighlight: lighten($primary-color, 5%);
+$navbarInverseText: #AAAAAA;
+$navbarInverseLinkColor: #CDCDCD;

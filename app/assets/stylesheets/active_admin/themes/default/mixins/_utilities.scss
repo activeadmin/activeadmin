@@ -1,0 +1,26 @@
+@mixin clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    content: "";
+    clear: both;
+    height: 0;
+  }
+}
+
+@mixin box-sizing($value: border-box) {
+  -moz-box-sizing: $value;
+  -webkit-box-sizing: $value;
+  -o-box-sizing: $value;
+  -ms-box-sizing: $value;
+  box-sizing: $value;
+}
+
+
+@mixin border-colors($top, $sides, $bottom) {
+  border-color: $sides;
+  border-top-color: $top;
+  border-right-color: $sides;
+  border-bottom-color: $bottom;
+  border-left-color: $sides;
+}

@@ -8,9 +8,13 @@ module ActiveAdmin
         @namespace = namespace
         @menu = menu
 
-        build_site_title
-        build_global_navigation
-        build_utility_navigation
+        div :class => "navbar-inner" do
+          div :class => "container-fluid" do
+            build_site_title
+            build_utility_navigation
+            build_global_navigation
+          end
+        end
       end
 
 
@@ -19,11 +23,15 @@ module ActiveAdmin
       end
 
       def build_global_navigation
-        insert_tag view_factory.global_navigation, @menu, :class => 'header-item' 
+        insert_tag view_factory.global_navigation, @menu, :class => 'nav header-item' 
       end
 
       def build_utility_navigation
         insert_tag view_factory.utility_navigation, @namespace
+      end
+
+      def default_class_name
+        "navbar navbar-inverse navbar-fixed-top"
       end
 
     end

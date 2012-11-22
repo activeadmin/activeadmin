@@ -20,7 +20,8 @@ jQuery ($) ->
       $(".paginated_collection").checkboxToggler()
 
     $(".paginated_collection").find(":checkbox").bind "change", ->
+
       if $(".paginated_collection").find(":checkbox").filter(":checked").length > 0
-        $("#batch_actions_selector").aaDropdownMenu("enable")
+        $("#batch_actions_selector > a").removeClass "disabled"
       else
-        $("#batch_actions_selector").aaDropdownMenu("disable")
+        $("#batch_actions_selector > a").addClass "disabled"

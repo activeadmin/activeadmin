@@ -58,7 +58,7 @@ module ActiveAdmin
         include ::ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper
 
         def build_table_tools
-          div :class => "table_tools" do
+          div :class => "btn-toolbar table_tools" do
             build_batch_actions_selector
             build_scopes
           end

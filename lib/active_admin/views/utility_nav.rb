@@ -6,7 +6,7 @@ module ActiveAdmin
       end
 
       def build(namespace)
-        super(:id => "utility_nav", :class => "header-item")
+        super(:id => "utility_nav", :class => "header-item navbar-text pull-right")
         @namespace = namespace
 
         if current_active_admin_user?
