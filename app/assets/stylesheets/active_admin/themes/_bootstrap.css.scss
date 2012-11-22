@@ -47,6 +47,8 @@ body.active_admin {
 
   }
 
+  @import "active_admin/themes/bootstrap/components/tables";
+
   form.filter_form {
     .filter_form_field {
       margin-bottom: 10px;

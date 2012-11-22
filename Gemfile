@@ -7,10 +7,10 @@ ACTIVE_ADMIN_PATH = File.dirname(__FILE__) unless defined?(ACTIVE_ADMIN_PATH)
 require File.expand_path('spec/support/detect_rails_version', ACTIVE_ADMIN_PATH)
 
 rails_version = detect_rails_version
-gem 'rails',          rails_version
+gem 'rails', rails_version
 gem 'bourbon'
-gem 'bootstrap-sass', :path => "../aa-deps/bootstrap-sass"
-gem 'formtastic-plus-bootstrap', :path => "../aa-deps/formtastic-plus-bootstrap"
+gem 'bootstrap-sass'
+gem 'formtastic-plus-bootstrap'
 
 case rails_version
 when /^3\.0/
@@ -30,7 +30,7 @@ group :development, :test do
   gem 'haml',           '~> 3.1.7', :require => false
   gem 'yard'
   gem 'rdiscount' # For yard
-  gem "sprockets"
+  gem 'sprockets'
   gem 'rails-i18n' # Gives us default i18n for many languages
   gem 'parallel_tests'
 end
