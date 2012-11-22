@@ -1,5 +1,5 @@
 //= require jquery
-//= require jquery-ui
+//= require jquery.ui.widget
 //= require jquery_ujs
 
 //= require active_admin/application
