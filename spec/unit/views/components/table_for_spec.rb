@@ -110,6 +110,33 @@ describe ActiveAdmin::Views::TableFor do
         end
       end
     end
+
+
+    context "when creating many columns with symbols, blocks and strings" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection) do
+            column "My Custom Title", :title
+            column :created_at , :class=>"datetime"
+          end
+        end
+      end
+
+
+      it "should add a class to each table header  based on class option or the col name" do
+        table.find_by_tag("th").first.class_list.should  include("my_custom_title")
+        table.find_by_tag("th").last.class_list.should  include("datetime")
+      end
+
+      it "should add a class to each cell based  on class option or the col name" do
+        table.find_by_tag("td").first.class_list.should include("my_custom_title")
+        table.find_by_tag("td").last.class_list.should  include("datetime")
+      end
+
+
+    end
+
+
   end
 
   describe "column sorting" do

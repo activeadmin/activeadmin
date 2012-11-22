@@ -18,8 +18,8 @@
 <div id="wrapper">
 
   <div id="content_wrapper">
-    <% if flash.keys.any? %>
-      <% flash.each do |type, message| %>
+    <% if active_admin_flash_messages.any? %>
+      <% active_admin_flash_messages.each do |type, message| %>
         <%= content_tag :div, message, :class => "flash flash_#{type}" %>
       <% end %>
     <% end %>

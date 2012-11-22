@@ -46,6 +46,9 @@ module ActiveAdmin
 
     # Set the configuration for the CSV
     attr_writer :csv_builder
+    
+    # Set breadcrumb builder
+    attr_accessor :breadcrumb
 
     # Store a reference to the DSL so that we can dereference it during garbage collection.
     attr_accessor :dsl

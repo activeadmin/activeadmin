@@ -12,7 +12,11 @@ module ActiveAdmin
       end
 
       def method
-        super.to_s.sub(/_id$/,'').to_sym
+        if super.to_s.scan(/_id/).count('_id') == 1
+          super.to_s.sub(/_id$/, '').to_sym
+        else
+          super.to_s.to_sym
+        end
       end
 
       def extra_input_html_options

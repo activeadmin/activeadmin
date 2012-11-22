@@ -120,6 +120,24 @@ module ActiveAdmin
     def menu(options = {})
       config.menu(options)
     end
+    
+    # Rewrite breadcrumb links.
+    # Block will be executed inside controller.
+    # Block must return an array if you want to rewrite breadcrumb links.
+    #
+    # Example:
+    #   ActiveAdmin.register Post do
+    #
+    #     breadcrumb do
+    #       [
+    #         link_to('my piece', '/my/link/to/piece')
+    #       ]
+    #     end
+    #   end
+    #
+    def breadcrumb(&block)
+      config.breadcrumb = block
+    end
 
     def sidebar(name, options = {}, &block)
       config.sidebar_sections << ActiveAdmin::SidebarSection.new(name, options, &block)

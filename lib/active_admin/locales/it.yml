@@ -13,12 +13,12 @@ it:
     edit_model: "Modifica %{model}"
     update_model: "Modifica %{model}"
     delete_model: "Rimuovi %{model}"
-    details: "%{model} Dettagli"
+    details: "Dettagli %{model}"
     cancel: "Annulla"
     empty: "Vuoto"
     previous: "Precedente"
     next: "Prossimo"
-    download: "Download:"
+    download: "Scarica:"
     has_many_new: "Aggiungi nuovo/a %{model}"
     has_many_delete: "Rimuovi"
     filter: "Filtra"
@@ -44,7 +44,7 @@ it:
       content: "Non sono presenti %{resource_name}"
       link: "Crea nuovo/a"
     batch_actions:
-      button_label: "Azioni Batch"
+      button_label: "Azioni multiple"
       delete_confirmation: "Sei sicuro di volere cancellare %{plural_model}? Non sarà possibile annulare questa modifica."
       succesfully_destroyed:
         one: "Eliminato con successo 1 %{model}"

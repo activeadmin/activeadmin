@@ -77,18 +77,9 @@ module ActiveAdmin
         text_node paginate(collection, options.symbolize_keys)
       end
 
-      # TODO: Refactor to new HTML DSL
-      def build_download_format_links(formats = [:csv, :xml, :json])
-        links = formats.collect do |format|
-          link_to format.to_s.upcase, { :format => format}.merge(request.query_parameters.except(:commit, :format))
-        end
-        div :class => "download_links" do
-          text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
-        end
-      end
-
       include ::ActiveAdmin::Helpers::Collection
-
+      include ::ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper
+        
       # modified from will_paginate
       def page_entries_info(options = {})
         if options[:entry_name]

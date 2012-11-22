@@ -86,3 +86,31 @@ directory in the initializer file:
     ActiveAdmin.setup do |config|
       config.load_paths = [File.join(Rails.root, "app", "ui")]
     end
+
+## Comments
+
+By default Active Admin includes comments on resources. Sometimes, this is
+undesired. To disable comments for the entire application:
+
+    ActiveAdmin.setup do |config|
+
+      config.allow_comments = false
+
+    end
+
+If you would like to enable / disable comments for just a namespace, do the
+following:
+
+    ActiveAdmin.setup do |config|
+
+      config.namespace :admin do |admin|
+        admin.allow_comments = false
+      end
+
+    end
+
+You can also disable comments for a specific resource:
+
+    ActiveAdmin.register Post do
+      config.comments = false
+    end

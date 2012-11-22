@@ -65,15 +65,14 @@ module ActiveAdmin
 
         classes << 'sortable'                         if sort_key
         classes << "sorted-#{current_sort[1]}"        if sort_key && current_sort[0] == sort_key
-        classes << col.data.to_s.downcase.underscore  if col.data.is_a?(Symbol)
-        classes << col.title.to_s.downcase.underscore if [Symbol, String].include?(col.title.class)
+        classes << col.html_class
 
         if sort_key
           th :class => classes do
-            link_to(col.title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
+            link_to(col.pretty_title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
           end
         else
-          th(col.title, :class => classes)
+          th(col.pretty_title, :class => classes)
         end
       end
 
@@ -85,7 +84,7 @@ module ActiveAdmin
       end
 
       def build_table_cell(col, item)
-        td(:class => (col.data.to_s.downcase if col.data.is_a?(Symbol))) do
+        td(:class =>  col.html_class) do
           rvalue = call_method_or_proc_on(item, col.data, :exec => false)
           if col.data.is_a?(Symbol)
             rvalue = pretty_format(rvalue)
@@ -123,12 +122,13 @@ module ActiveAdmin
 
       class Column
 
-        attr_accessor :title, :data
+        attr_accessor :title, :data , :html_class
 
         def initialize(*args, &block)
           @options = args.extract_options!
 
-          @title = pretty_title args[0]
+          @title = args[0]
+          @html_class = @options.delete(:class) || @title.to_s.downcase.underscore.gsub(/ +/,'_')
           @data  = args[1] || args[0]
           @data = block if block
           @resource_class = args[2]
@@ -173,17 +173,16 @@ module ActiveAdmin
           end
         end
 
-        private
-
-        def pretty_title(raw)
-          if raw.is_a?(Symbol)
+        def pretty_title
+          if @title.is_a?(Symbol)
+            default_title =  @title.to_s.titleize
             if @options[:i18n] && @options[:i18n].respond_to?(:human_attribute_name)
-              raw = @options[:i18n].human_attribute_name(raw, :default => raw.to_s.titleize)
+              @title = @options[:i18n].human_attribute_name(@title, :default => default_title)
             else
-              raw.to_s.titleize
+              default_title
             end
           else
-            raw
+            @title
           end
         end
       end
