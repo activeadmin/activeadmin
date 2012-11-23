@@ -25,6 +25,7 @@ cs:
     less_than: "Menší než"
     main_content: "Prosím implementujte %{model}#main_content pro zobrazení obsahu."
     logout: "Odhlášení"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtr"
     pagination:
