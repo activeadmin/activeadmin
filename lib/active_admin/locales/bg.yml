@@ -27,6 +27,7 @@ bg:
     less_than: "По-малко от"
     main_content: "Моля, приложи %{model}#main_content за визуализация на съдържанието."
     logout: "Изход"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Филтри"
     pagination:

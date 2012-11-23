@@ -29,6 +29,7 @@ fr:
     less_than: "Plus petit que"
     main_content: "Veuillez implémenter %{model}#main_content pour afficher le contenu."
     logout: "Déconnexion"
+    powered_by: "Propulsé par %{active_admin} %{version}"
     sidebars:
       filters: "Filtres"
     pagination:
@@ -54,7 +55,7 @@ fr:
       action_label: "%{title} les éléments sélectionnés"
       labels:
         destroy: "Supprimer"
-    comments:    
+    comments:
       body: "Corps"
       author: "Auteur"
       title: "Commentaire"
