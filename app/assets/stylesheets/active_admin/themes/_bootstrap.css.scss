@@ -50,6 +50,7 @@ body.active_admin {
   @import "active_admin/themes/bootstrap/header";
   @import "active_admin/themes/bootstrap/components/tables";
   @import "active_admin/themes/bootstrap/components/datepicker";
+  @import "active_admin/themes/bootstrap/components/scopes";
 
   form.filter_form {
     .filter_form_field {
