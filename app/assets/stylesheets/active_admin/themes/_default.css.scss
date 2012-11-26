@@ -2,11 +2,12 @@
 @import "active_admin/themes/twitter_bootstrap";
 @import "active_admin/themes/default/variables";
 
-// body.active_admin {
-//   padding-top: $navbarHeight;
+body.active_admin {
+  padding-top: $navbarHeight;
+  .container-fluid {padding: 0 $horizontal-page-margin;}
 
-//   @import "active_admin/themes/default/mixins/all";
-//   @import "active_admin/themes/default/header";
-//   @import "active_admin/themes/default/title_bar";
-// }
-// 
+  @import "active_admin/themes/default/mixins/all";
+  @import "active_admin/themes/default/header";
+  @import "active_admin/themes/default/title_bar";
+  @import "active_admin/themes/default/components/breadcrumbs";
+}
