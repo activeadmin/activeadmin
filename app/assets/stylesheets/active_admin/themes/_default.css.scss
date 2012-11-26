@@ -10,4 +10,7 @@ body.active_admin {
   @import "active_admin/themes/default/header";
   @import "active_admin/themes/default/title_bar";
   @import "active_admin/themes/default/components/breadcrumbs";
+  @import "active_admin/themes/default/components/panels";
+  @import "active_admin/themes/default/components/tables";
+  @import "active_admin/themes/default/components/flash_messages";
 }
