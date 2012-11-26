@@ -2,8 +2,7 @@
 $baseFontSize: 12px !default;
 
 @import "active_admin/mixins/variables";
-@import "bootstrap-without-forms";
-@import "formtastic-plus-bootstrap";
+@import "bootstrap";
 
 body.active_admin {
   padding-top: $navbarHeight + 20;
@@ -36,7 +35,6 @@ body.active_admin {
       color: $grayDark;
 
       @include font-shorthand($baseFontSize, normal, $baseLineHeight);
-      @include required-abbr(2px);
     }
 
     select { width: $sidebar-inner-content-width; }
@@ -47,11 +45,11 @@ body.active_admin {
 
   }
 
-  @import "active_admin/themes/bootstrap/header";
-  @import "active_admin/themes/bootstrap/components/tables";
-  @import "active_admin/themes/bootstrap/components/datepicker";
-  @import "active_admin/themes/bootstrap/components/scopes";
-  @import "active_admin/themes/bootstrap/components/status_tags";
+  @import "active_admin/themes/twitter_bootstrap/header";
+  @import "active_admin/themes/twitter_bootstrap/components/tables";
+  @import "active_admin/themes/twitter_bootstrap/components/datepicker";
+  @import "active_admin/themes/twitter_bootstrap/components/scopes";
+  @import "active_admin/themes/twitter_bootstrap/components/status_tags";
 
   form.filter_form {
     .filter_form_field {
