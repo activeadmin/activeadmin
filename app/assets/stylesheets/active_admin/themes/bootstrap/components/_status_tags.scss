@@ -1,0 +1,5 @@
+span.label {
+  &.ok, &.published, &.complete, &.completed, &.green { background: #468847; }
+  &.warn, &.warning, &.orange { background: #F89406; }
+  &.error, &.errored, &.red { background: #B94A48; }
+}

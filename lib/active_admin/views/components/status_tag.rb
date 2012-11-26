@@ -9,7 +9,7 @@ module ActiveAdmin
       end
 
       def default_class_name
-        'status_tag'
+        'label status_tag'
       end
 
       # @method status_tag(status, type = nil, options = {})
@@ -28,8 +28,8 @@ module ActiveAdmin
       #   # => <span class='status_tag active ok'>Active</span>
       #
       #   status_tag('active', :ok, :class => 'important', :id => 'status_123', :label => 'on')
-      #   # => <span class='status_tag active ok important' id='status_123'>on</span>
-      # 
+      #   # => <span class='label status_tag active ok important' id='status_123'>on</span>
+      #
       def build(*args)
         options = args.extract_options!
         status = args[0]
