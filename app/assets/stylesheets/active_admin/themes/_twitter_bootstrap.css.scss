@@ -50,6 +50,7 @@ body.active_admin {
   @import "active_admin/themes/twitter_bootstrap/components/datepicker";
   @import "active_admin/themes/twitter_bootstrap/components/scopes";
   @import "active_admin/themes/twitter_bootstrap/components/status_tags";
+  @import "active_admin/themes/twitter_bootstrap/components/comments";
   @import "active_admin/themes/twitter_bootstrap/pages/logged_out";
 
   form.filter_form {
@@ -94,3 +95,5 @@ body.active_admin {
     }
   }
 }
+
+@import "formtastic-plus-bootstrap";
