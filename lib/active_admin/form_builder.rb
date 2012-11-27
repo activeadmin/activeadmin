@@ -77,7 +77,7 @@ module ActiveAdmin
           inputs options, &form_block
 
           # Capture the ADD JS
-          placeholder = "NEW_#{object.class.reflect_on_association(association).klass.model_name.human.upcase}_RECORD"
+          placeholder = "NEW_#{object.class.reflect_on_association(association).klass.model_name.human.upcase.split(' ').join('_')}_RECORD"
           js = with_new_form_buffer do
             inputs_for_nested_attributes  :for => [association, object.class.reflect_on_association(association).klass.new],
                                           :class => "inputs has_many_fields",
