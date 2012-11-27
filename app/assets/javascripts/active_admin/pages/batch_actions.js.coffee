@@ -1,4 +1,6 @@
 jQuery ($) ->
+  $(".disabled").live 'click', ->
+    return false;
 
   #
   # Use Rails.js click handler to allow for Rails' confirm dialogs
