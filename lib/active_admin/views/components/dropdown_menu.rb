@@ -1,5 +1,3 @@
-require 'active_admin/views/components/popover'
-
 module ActiveAdmin
   module Views
 
