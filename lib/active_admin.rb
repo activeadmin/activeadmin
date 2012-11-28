@@ -49,11 +49,26 @@ module ActiveAdmin
   autoload :ViewHelpers,              'active_admin/view_helpers'
   autoload :Views,                    'active_admin/views'
 
-  class Railtie < ::Rails::Railtie
-    config.after_initialize do
-      # Add load paths straight to I18n, so engines and application can overwrite it.
-      require 'active_support/i18n'
-      I18n.load_path += Dir[File.expand_path('../active_admin/locales/*.yml', __FILE__)]
+  # @see https://github.com/svenfuchs/rails-i18n/blob/master/lib/rails_i18n/railtie.rb
+  class Railtie < ::Rails::Railtie #:nodoc:
+    initializer 'active_admin-i18n' do |app|
+      ActiveAdmin::Railtie.instance_eval do
+        pattern = pattern_from app.config.i18n.available_locales
+
+        add("active_admin/locales/#{pattern}.yml")
+      end
+    end
+
+    protected
+
+    def self.add(pattern)
+      files = Dir[File.join(File.dirname(__FILE__), pattern)]
+      I18n.load_path.concat(files)
+    end
+
+    def self.pattern_from(args)
+      array = Array(args || [])
+      array.blank? ? '*' : "{#{array.join ','}}"
     end
   end
 
