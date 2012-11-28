@@ -182,7 +182,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
       it "should display proper message (including number and not hash)" do
         pagination.find_by_class('pagination_information').first.content.
-          gsub('&nbsp;',' ').should == "Displaying posts <b>1 - 2</b> of <b>3</b> in total"
+          gsub('&nbsp;',' ').should == "Displaying posts <b>1 &ndash; 2</b> of <b>3</b> in total"
       end
     end
 
@@ -196,7 +196,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
       it "should show the proper item counts" do
         pagination.find_by_class('pagination_information').first.content.
-            gsub('&nbsp;',' ').should == "Displaying posts <b>61 - 81</b> of <b>81</b> in total"
+            gsub('&nbsp;',' ').should == "Displaying posts <b>61 &ndash; 81</b> of <b>81</b> in total"
       end
     end
 
