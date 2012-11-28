@@ -49,7 +49,7 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should generate a clear filters link" do
-      body.should have_tag("a", "Clear Filters", :attributes => { :class => "clear_filters_btn" })
+      body.should have_tag("a", "Clear Filters", :attributes => { :class => "clear_filters_btn btn" })
     end
   end
 
