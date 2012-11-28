@@ -26,7 +26,7 @@ module ActiveAdmin
           end
 
           case v
-          when String
+          when String, nil
             { k => v }
           when Symbol
             { k => v.to_s }
