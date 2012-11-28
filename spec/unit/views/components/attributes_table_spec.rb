@@ -52,8 +52,8 @@ describe ActiveAdmin::Views::AttributesTable do
       context context_title do
         let(:table) { instance_eval &table_decleration }
 
-        it "should render a div wrapper with the class '.attributes_table'" do
-          table.tag_name.should == 'div'
+        it "should render a table with the class '.attributes_table'" do
+          table.tag_name.should == 'table'
           table.attr(:class).should include('attributes_table')
         end
 
