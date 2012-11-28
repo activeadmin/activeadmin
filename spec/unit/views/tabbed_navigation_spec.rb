@@ -75,7 +75,7 @@ describe ActiveAdmin::Views::TabbedNavigation do
     end
 
     it "should generate the administration parent menu" do
-      html.should have_tag("a", "Administration", :attributes => { :href => '/admin/administration' })
+      html.should have_tag("a", /Administration/, :attributes => { :href => '/admin/administration' })
     end
 
     it "should not generate a link for order management" do
@@ -92,16 +92,16 @@ describe ActiveAdmin::Views::TabbedNavigation do
 
     describe "marking current item" do
 
-      it "should add the 'current' class to the li" do
+      it "should add the 'active' class to the li" do
         assigns[:current_tab] = menu["Blog Posts"]
-        html.should have_tag("li", :attributes => { :class => "current" })
+        html.should have_tag("li", :attributes => { :class => "active" })
       end
 
-      it "should add the 'current' and 'has_nested' classes to the li and 'current' to the sub li" do
+      it "should add the 'active' and 'has_nested' classes to the li and 'active' to the sub li" do
         assigns[:current_tab] = menu["Reports"]["A Sub Reports"]
-        html.should have_tag("li", :attributes => { :id => "reports", :class => /current/ })
-        html.should have_tag("li", :attributes => { :id => "reports", :class => /has_nested/ })
-        html.should have_tag("li", :attributes => { :id => "a_sub_reports", :class => "current" })
+        html.should have_tag("li", :attributes => { :id => "reports", :class => /active/ })
+        html.should have_tag("li", :attributes => { :id => "reports", :class => /dropdown/ })
+        html.should have_tag("li", :attributes => { :id => "a_sub_reports", :class => "active" })
       end
 
     end
