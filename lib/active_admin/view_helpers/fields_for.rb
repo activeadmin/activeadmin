@@ -27,7 +27,7 @@ module ActiveAdmin
 
           case v
           when String, nil
-            { k => v }
+            { k => v.nil? ? '' : v }
           when Symbol
             { k => v.to_s }
           when Hash
