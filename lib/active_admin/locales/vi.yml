@@ -29,6 +29,7 @@ vi:
     less_than: "Nhỏ hơn"
     main_content: "Xin bổ sung %{model}#main_content để hiển thị nội dung."
     logout: "Đăng xuất"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Bộ Lọc"
     pagination:

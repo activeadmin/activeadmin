@@ -29,6 +29,7 @@ lt:
     less_than: 'mažiau nei'
     main_content: 'Prašome realizuoti %{model}#main_content turiniui vaizduoti.'
     logout: 'Išeiti'
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: 'Filtrai'
     pagination:

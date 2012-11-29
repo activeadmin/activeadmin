@@ -27,6 +27,7 @@ ja:
     less_than: "より小さい"
     main_content: "内容を表示するために %{model}#main_content を実装してください。"
     logout: "ログアウト"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "検索条件"
     pagination:

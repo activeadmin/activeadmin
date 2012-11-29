@@ -29,6 +29,7 @@ nl:
     less_than: "Kleiner dan"
     main_content: "Implementeer %{model}#main_content om de content weer te geven."
     logout: "Uitloggen"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filters"
     pagination:
