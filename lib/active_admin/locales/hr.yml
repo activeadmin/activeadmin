@@ -29,6 +29,7 @@ hr:
     less_than: "Manje Od"
     main_content: "Molim Vas, implementirajte %{model}#main_content da bi ste prikazali sadržaj."
     logout: "Odjavi se"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtriranje"
     pagination:

@@ -29,6 +29,7 @@ ro:
     less_than: "Mai Mic Decat"
     main_content: "Va rugam sa implementati %{model}#main_content pentru a afisa continut."
     logout: "Iesire"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtre"
     pagination:

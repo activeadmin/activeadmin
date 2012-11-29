@@ -29,6 +29,7 @@ ru:
     less_than: "меньше"
     main_content: "Создайте %{model}#main_content для отображения содержимого."
     logout: "Выйти"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Фильтры"
     pagination:
@@ -54,7 +55,7 @@ ru:
       action_label: "%{title} выбранное"
       labels:
         destroy: "Удалить"
-    comments:    
+    comments:
       body: "Текст"
       author: "Автор"
       title: "Комментарий"

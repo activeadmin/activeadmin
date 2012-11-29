@@ -29,6 +29,7 @@ lv:
     less_than: "Mazāks par"
     main_content: "Lūdzu implementēt %{model}#main_content, lai rādītos saturs."
     logout: "Iziet"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtri"
     pagination:
@@ -43,7 +44,7 @@ lv:
     blank_slate:
       content: "Sadaļā '%{resource_name}' nav neviena ieraksta."
       link: "Izveidot jaunu"
-    comments:    
+    comments:
       body: "Saturs"
       author: "Autors"
       title: "Komentārs"
