@@ -43,8 +43,7 @@ module ActiveAdmin
       if resource.parent_menu_item_name
         # Create the parent if it doesn't exist
         unless menu[resource.parent_menu_item_name]
-          item = MenuItem.new(:label => resource.parent_menu_item_name, :url => "#", :id => resource.parent_menu_item_name)
-          add_to.add(item)
+          add_to.add MenuItem.new resource.parent_menu_item
         end
 
         add_to = menu[resource.parent_menu_item_name]
