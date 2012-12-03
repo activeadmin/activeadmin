@@ -12,6 +12,11 @@ module ActiveAdmin
       setting name, default
     end
 
+    def self.deprecated_inheritable_setting(name, default)
+      Namespace.deprecated_setting name, nil
+      deprecated_setting name, default
+    end
+
     # The default namespace to put controllers and routes inside. Set this
     # in config/initializers/active_admin.rb using:
     #
@@ -66,8 +71,8 @@ module ActiveAdmin
     # The namespace root.
     inheritable_setting :root_to, 'dashboard#index'
 
-    # Default CSV separator
-    inheritable_setting :csv_column_separator, ','
+    # Default CSV options
+    inheritable_setting :csv_options, {}
 
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
@@ -81,6 +86,9 @@ module ActiveAdmin
                                       :to_s ]
 
     # == Deprecated Settings
+
+    # @deprecated Default CSV separator will be removed in 0.6.0. Use `csv_options = { :col_sep => ',' }` instead.
+    deprecated_inheritable_setting :csv_column_separator, ','
 
     # @deprecated The default sort order for index pages
     deprecated_setting :default_sort_order, 'id_desc'
