@@ -146,4 +146,9 @@ ActiveAdmin.setup do |config|
   #
   # Set the CSV builder separator (default is ",")
   # config.csv_column_separator = ','
+
+  # Whether or not to enforce strong parameters. Default is false, which will call permit!
+  # on the resource in params in the controller for update and create, if strong_parameters gem is found.
+  # If true then it will not do that, and the user will need to explicitly define the params to be permitted.
+  config.enforce_strong_parameters = false
 end

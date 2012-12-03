@@ -69,6 +69,11 @@ module ActiveAdmin
     # Default CSV separator
     inheritable_setting :csv_column_separator, ','
 
+    # Whether or not to enforce strong parameters. Default is false, which will call permit!
+    # on the resource in params in the controller for update and create, if strong_parameters gem is found.
+    # If true then it will not do that, and the user will need to explicitly define the params to be permitted.
+    inheritable_setting :enforce_strong_parameters, false
+
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     setting :display_name_methods, [ :display_name,

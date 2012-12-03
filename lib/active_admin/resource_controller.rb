@@ -6,7 +6,7 @@ require 'active_admin/resource_controller/collection'
 require 'active_admin/resource_controller/decorators'
 require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/sidebars'
-require 'active_admin/resource_controller/resource_class_methods'
+require 'active_admin/resource_controller/inherited_resources_overrides'
 
 module ActiveAdmin
   # All Resources Controller inherits from this controller.
@@ -26,7 +26,7 @@ module ActiveAdmin
     include Decorators
     include Scoping
     include Sidebars
-    extend  ResourceClassMethods
+    extend  InheritedResourcesOverrides
 
     class << self
       def active_admin_config=(config)
@@ -42,7 +42,7 @@ module ActiveAdmin
       # need to install our resource_class method each time we're inherited from.
       def inherited(base)
         super(base)
-        base.override_resource_class_methods!
+        base.override_inherited_resources_methods!
       end
 
       public :belongs_to

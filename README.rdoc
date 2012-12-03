@@ -43,9 +43,15 @@ https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md
 == Getting Started
 
 Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby
-on Rails 3 application. To install, simply add the following to your Gemfile:
+on Rails 3 application.
 
-  gem 'activeadmin'
+This is a special branch of ActiveAdmin just for those that are early adopters of Strong Parameters which will be included in Rails 4:
+
+To install it, add the following to your Gemfile:
+
+  gem 'activeadmin', git: 'https://github.com/gregbell/active_admin.git', branch: 'rails-3_2-with-strong-parameters'
+
+Note: you don't *need* to be using this branch just to use ActiveAdmin in Rails 3.2 with Strong Parameters. See the Strong Parameters section for more details.
 
 After updating your bundle, run the installer
 
@@ -108,6 +114,28 @@ Kaminari::
   Pagination for rails apps
 Iconic Icons::
   Excellent SVG icon set designed by P.J. Onori: http://somerandomdude.com/projects/iconic
+
+
+== Strong Parameters
+
+In config:
+
+    # Whether or not to enforce strong parameters. Default is false, which will call permit!
+    # on the resource in params in the controller for update and create, if strong_parameters gem is found.
+    # If true then it will not do that, and the user will need to explicitly define the params to be permitted.
+    config.enforce_strong_parameters = false
+
+In controller config, optionally specify permitted params:
+
+    ActiveAdmin.register Post do
+      # Allow static list
+      permitted_params :a, :b, :c
+
+      # Conditionally control access at runtime
+      permitted_params do
+        [:a, :b, :c]
+      end
+    end
 
 
 == Copyright
