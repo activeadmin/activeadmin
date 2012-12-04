@@ -29,14 +29,6 @@ form {
       }
     }
 
-    ol > div.has_many {
-      padding: 20px 10px;
-      h3 {
-        font-size: 12px;
-        font-weight: bold;
-      }
-    }
-
     ol > li > li label { 
       line-height:100%; 
       padding-top:0; 
@@ -45,6 +37,14 @@ form {
         vertical-align:middle; 
         margin-top:-0.1em;
       }
+    }
+  }
+
+  div.has_many {
+    padding: 20px 10px;
+    h3 {
+      font-size: 12px;
+      font-weight: bold;
     }
   }
 
