@@ -6,9 +6,8 @@ module ActiveAdmin
     class FormBuilder < ::ActiveAdmin::FormBuilder
 
       def filter(method, options = {})
-        return "" if method.blank?
-        options[:as] ||= default_input_type(method)
-        return "" unless options[:as]
+        return "" if method.blank? ||
+                     (options[:as] ||= default_input_type(method)).nil?
         content = input(method, options)
         form_buffers.last << content.html_safe if content
       end
@@ -73,10 +72,13 @@ module ActiveAdmin
         options[:as] = :q
         clear_link = link_to(I18n.t('active_admin.clear_filters'), "#", :class => "clear_filters_btn")
         form_for search, options do |f|
-          filters.each do |filter_options|
-            filter_options = filter_options.dup
-            attribute = filter_options.delete(:attribute)
-            f.filter attribute, filter_options
+          filters.group_by{ |o| o[:attribute] }.each do |attribute, array|
+            options      = array.last # grab last-defined `filter` call from DSL
+            if_block     = options[:if]     || proc{ true }
+            unless_block = options[:unless] || proc{ false }
+            if call_method_or_proc_on(self, if_block) && !call_method_or_proc_on(self, unless_block)
+              f.filter options[:attribute], options.except(:attribute, :if, :unless)
+            end
           end
 
           buttons = content_tag :div, :class => "buttons" do
