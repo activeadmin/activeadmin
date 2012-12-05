@@ -91,7 +91,7 @@ module ActiveAdmin
       if config.authorization.respond_to?(:authorization_block=)
         config.authorization.authorization_block = block
       else
-        raise "The '#{config.authorization_adapter}' authorization adapter does not support a custom authorization bloc authorization adapter does not support a custom authorization block."
+        raise "The '#{config.authorization_adapter}' authorization adapter does not support a custom authorization block."
       end
     end
 
