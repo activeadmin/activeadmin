@@ -1,5 +1,7 @@
 ## Master (unreleased)
 
+## 0.5.1
+
 ### Enhancements
 
 * Developer can pass options for CSV generation. [#1626][] by [@rheaton][]
