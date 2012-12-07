@@ -26,21 +26,17 @@ Feature: Index Scoping
     And I should see the scope "All" with the count 3
     And I should see 3 posts in the table
 
-  Scenario: Viewing resources with one scope and no results
+  Scenario: Viewing resources with a scope and no results
     Given 3 posts exist
     And an index configuration of:
-     """
-     ActiveAdmin.register Post do
-       scope :all, :default => true
-       filter :title
-     end
-     """
-
+      """
+      ActiveAdmin.register Post do
+        scope :all, :default => true
+        filter :title
+      end
+      """
     When I fill in "Search Title" with "Non Existing Post"
     And I press "Filter"
-    And I should not see the scope "All"
-
-    When I am on the index page for posts
     Then I should see the scope "All" selected
 
   Scenario: Viewing resources with a scope but scope_count turned off
