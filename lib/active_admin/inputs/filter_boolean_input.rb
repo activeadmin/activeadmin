@@ -32,7 +32,7 @@ module ActiveAdmin
       end
 
       def metasearch_conditions
-        /is_true|is_false|is_present/
+        /true|false|present/
       end
 
     end

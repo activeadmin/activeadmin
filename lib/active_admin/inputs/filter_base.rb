@@ -39,7 +39,7 @@ module ActiveAdmin
 
       # Returns the association reflection for the method if it exists
       def reflection_for(method)
-        @object.base.reflect_on_association(method) if @object.base.respond_to?(:reflect_on_association)
+        @object.object.reflect_on_association(method) if @object.object.respond_to?(:reflect_on_association)
       end
     end
   end

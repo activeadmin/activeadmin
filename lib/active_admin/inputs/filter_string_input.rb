@@ -15,7 +15,7 @@ module ActiveAdmin
       end
 
       def input_name
-        "#{super}_contains"
+        "#{super}_cont"
       end
     end
   end
