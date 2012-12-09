@@ -66,7 +66,7 @@ module ActiveAdmin
 
         def search(chain)
           @search = chain.search(clean_search_params(params[:q]))
-          @search.result(:distinct => true)
+          @search.result
         end
 
         def clean_search_params(search_params)
