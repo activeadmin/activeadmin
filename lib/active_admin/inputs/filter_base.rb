@@ -30,8 +30,8 @@ module ActiveAdmin
       # Returns the default label for a given attribute
       # Will use ActiveModel I18n if possible
       def humanized_method_name
-        if object.base.respond_to?(:human_attribute_name)
-          object.base.human_attribute_name(method)
+        if object.object.respond_to?(:human_attribute_name)
+          object.object.human_attribute_name(method)
         else
           method.to_s.send(builder.label_str_method)
         end
