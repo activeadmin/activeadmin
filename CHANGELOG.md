@@ -1,5 +1,8 @@
 ## Master (unreleased)
 
+* Fix conflict with Redcloth [#1805][] by [@adrienkohlbecker][]
+* Add missing batch actions translations. [#1788][] by [@EtienneDepaulis][]
+
 ## 0.5.1
 
 ### Enhancements
@@ -656,10 +659,14 @@ of the highlights. 250 commits. Enough said.
 [#1775]: https://github.com/gregbell/active_admin/issues/1775
 [#1782]: https://github.com/gregbell/active_admin/issues/1782
 [#1783]: https://github.com/gregbell/active_admin/issues/1783
+[#1788]: https://github.com/gregbell/active_admin/issues/1788
+[#1805]: https://github.com/gregbell/active_admin/issues/1805
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
+[@EtienneDepaulis]: https://github.com/EtienneDepaulis
 [@MoritzMoritz]: https://github.com/MoritzMoritz
 [@ZequeZ]: https://github.com/ZequeZ
+[@adrienkohlbecker]: https://github.com/adrienkohlbecker
 [@amiel]: https://github.com/amiel
 [@bobbytables]: https://github.com/bobbytables
 [@caifara]: https://github.com/caifara
