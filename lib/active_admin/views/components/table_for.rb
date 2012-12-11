@@ -69,7 +69,8 @@ module ActiveAdmin
 
         if sort_key
           th :class => classes do
-            link_to(col.pretty_title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
+            sort_order = sort_key.split(',').map {|sk| "#{sk}_#{order_for_sort_key(sort_key)}" }.join(',')
+            link_to(col.pretty_title, params.merge(:order => "#{sort_order}").except(:page))
           end
         else
           th(col.pretty_title, :class => classes)
@@ -97,8 +98,8 @@ module ActiveAdmin
       #   current_sort[0] #=> sort_key
       #   current_sort[1] #=> asc | desc
       def current_sort
-        @current_sort ||= if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
-          [$1,$2]
+        @current_sort ||= if params[:order] && params[:order] =~ /^(([\w\_\.]+)_(desc|asc))+(,(([\w\_\.]+)_(desc|asc)))*$/
+          [$3,params[:order].gsub(/_(desc|asc)/, '')]
         else
           []
         end
@@ -109,7 +110,7 @@ module ActiveAdmin
       # Default is to use 'desc'. If the current sort key is
       # 'desc' it will return 'asc'
       def order_for_sort_key(sort_key)
-        current_key, current_order = current_sort
+        current_order, current_key = current_sort
         return 'desc' unless current_key == sort_key
         current_order == 'desc' ? 'asc' : 'desc'
       end
@@ -136,7 +137,7 @@ module ActiveAdmin
 
         def sortable?
           if @data.is_a?(Proc)
-            [String, Symbol].include?(@options[:sortable].class)
+            [String, Symbol, Array].include?(@options[:sortable].class)
           elsif @options.has_key?(:sortable)
             @options[:sortable]
           elsif @data.respond_to?(:to_sym) && @resource_class
@@ -153,12 +154,14 @@ module ActiveAdmin
         #   column :username
         #   # => Sort key will be set to 'username'
         #
-        # You can set the sort key by passing a string or symbol
+        # You can set the sort key by passing a string or symbol or an array
         # to the sortable option:
         #   column :username, :sortable => 'other_column_to_sort_on'
+        #   or
+        #   column :fullname, :sortable => [:first_name, :last_name]
         #
         # If you pass a block to be rendered for this column, the column
-        # will not be sortable unless you pass a string to sortable to
+        # will not be sortable unless you pass a string or an array to sortable to
         # sort the column on:
         #
         #   column('Username', :sortable => 'login'){ @user.pretty_name }
@@ -168,8 +171,11 @@ module ActiveAdmin
           # If boolean or nil, use the default sort key.
           if @options[:sortable] == true || @options[:sortable] == false || @options[:sortable].nil?
             @data.to_s
+          elsif @options[:sortable].is_a?(Array)
+            #fallback to empty string for an empty array, to support REE
+            @options[:sortable].empty? ? '' : @options[:sortable].map {|s| s.to_s.strip }.join(',')
           else
-            @options[:sortable].to_s
+            @options[:sortable].to_s.split(/,/).map {|s| s.strip }.join(',')
           end
         end
 

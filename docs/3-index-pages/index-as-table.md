@@ -75,6 +75,14 @@ is the attribute which gets used to sort objects using Active Record.
       end
     end
 
+You can sort a column using multiple keys as well.
+
+    index do
+      column "Full Name", :sortable => [:first_name, :last_name] do |user|
+        "#{user.first_name} #{user.last_name}"
+      end
+    end
+
 You can turn off sorting on any column by passing false:
 
     index do

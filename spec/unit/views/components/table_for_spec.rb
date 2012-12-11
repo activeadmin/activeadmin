@@ -164,6 +164,18 @@ describe ActiveAdmin::Views::TableFor do
       its(:sort_key){ should == "username" }
     end
 
+    context "when a block given with multiple sort keys as array of symbols" do
+      let(:table_column){ build_column("Fullname", :sortable => [:first_name, :last_name]){ } }
+      it { should be_sortable }
+      its(:sort_key){ should == "first_name,last_name" }
+    end
+
+    context "when a block given with multiple sort keys as a string" do
+      let(:table_column){ build_column("Fullname", :sortable => "first_name, last_name"){ } }
+      it { should be_sortable }
+      its(:sort_key){ should == "first_name,last_name" }
+    end
+
     context "when :sortable => false with a symbol" do
       let(:table_column){ build_column(:username, :sortable => false) }
       it { should_not be_sortable }
