@@ -49,3 +49,8 @@ end
 Then /^I should download a CSV file for "([^"]*)" containing:$/ do |resource_name, table|
   step "I should download a CSV file with \",\" separator for \"#{resource_name}\" containing:", table
 end
+
+Then /^the CSV file should contain "([^"]*)" in quotes$/ do |text|
+  body = page.driver.response.body
+  body.should match(/\"#{text}\"/)
+end

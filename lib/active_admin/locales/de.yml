@@ -29,6 +29,7 @@ de:
     less_than: "Kleiner als"
     main_content: "Bitte implementieren Sie %{model}#main_content, um Inhalte anzuzeigen."
     logout: "Abmelden"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filter"
     pagination:
@@ -80,7 +81,7 @@ de:
         forgot_your_password: "Passwort vergessen?"
   activerecord:
     attributes:
-      admin_user: 
+      admin_user:
         id: ID
         email: E-Mail
         encrypted_Password: Verschlüsseltes Passwort
@@ -97,8 +98,8 @@ de:
     models:
       admin_user:
         one: Administrator
-        other: Administratoren  
-  devise:      
+        other: Administratoren
+  devise:
     failure:
       admin_user:
         invalid: Benutzername oder Kennwort nicht korrekt.

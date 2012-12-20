@@ -25,11 +25,12 @@ module ActiveAdmin
       end
     end
 
-    attr_reader :columns, :column_separator
+    attr_reader :columns, :column_separator, :options
 
     def initialize(options={}, &block)
       @columns          = []
       @column_separator = options.delete(:separator)
+      @options          = options.delete(:options)
       instance_eval &block if block_given?
     end
 

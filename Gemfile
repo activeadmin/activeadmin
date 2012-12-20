@@ -26,7 +26,7 @@ end
 group :development, :test do
   gem 'sqlite3'
 
-  gem 'rake',           '~> 0.9.2.2', :require => false
+  gem 'rake',           '~> 10.0.2', :require => false
   gem 'haml',           '~> 3.1.7', :require => false
   gem 'yard'
   gem 'rdiscount' # For yard
@@ -40,7 +40,7 @@ group :test do
   gem 'cucumber-rails', '1.3.0', :require => false
   gem 'capybara',       '1.1.2'
   gem 'database_cleaner'
-  gem 'shoulda-matchers', '1.3.0'
+  gem 'shoulda-matchers'
   gem 'launchy'
   gem 'jslint_on_rails',    '~> 1.1.1'
   gem 'guard-rspec'

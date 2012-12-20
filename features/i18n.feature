@@ -33,3 +33,10 @@ Feature: Internationalization
     And I go to the dashboard
     Then I should see "Bookstore"
     Then I should see "Logout"
+
+  Scenario: Overriding translations
+    Given I am logged in
+    And a store named "Hello words" exists
+    When I go to the dashboard
+    When I follow "Bookstores"
+    Then I should see "Download this:"

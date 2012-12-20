@@ -13,16 +13,20 @@ Customizing the CSV format is as simple as customizing the index page.
       end
     end
 
-You can choose custom separator:
+You can set custom csv options:
 
     ActiveAdmin.register Post do
-      csv :separator => ';' do
+      csv :options => { :force_quotes => true } do
         column :title
         column("Author") { |post| post.author.full_name }
       end
     end
 
-You can also set the custom separator system-wide:
+You can set options for the CSV format system-wide:
 
     # config/initializers/active_admin.rb
-    config.csv_column_separator = ";"
+    # Set the CSV builder separator (default is ",")
+    config.csv_column_separator = ';'
+
+    # Set the CSV builder options (default is {})
+    config.csv_options = { :force_quotes => true }

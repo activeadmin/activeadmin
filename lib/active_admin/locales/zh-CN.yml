@@ -29,6 +29,7 @@
     less_than: "小于"
     main_content: "请执行 %{model}#main_content 来显示内容."
     logout: "退出"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "所有条件"
     pagination:

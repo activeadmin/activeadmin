@@ -1,11 +1,76 @@
 ## Master (unreleased)
 
+* Fix conflict with Redcloth [#1805][] by [@adrienkohlbecker][]
+* Add missing batch actions translations. [#1788][] by [@EtienneDepaulis][]
+
+## 0.5.1
+
+### Enhancements
+
+* Developer can pass options for CSV generation. [#1626][] by [@rheaton][]
+```ruby
+    ActiveAdmin.register Post do
+      csv options: {force_quotes: true} do
+        column :title
+      end
+    end
+```
+
+* Breadcrumb links can be customized by [@simonoff][]
+```ruby
+    ActiveAdmin.register Post do
+      breadcrumb do
+        [
+          link_to("My account", account_path(current_user))
+        ]
+      end
+    end
+```
+
+* Support proc for parent options on menus [#1664][] by [@shell][]
+```ruby
+    ActiveAdmin.register Post do
+      menu parent: proc { I18n.t("admin") }
+    end
+```
+
+* Support automatic use of Decorators. [#1117][] by [@amiel][] and [#1647][] by [@dapi][]
+```ruby
+    ActiveAdmin.register Post do
+      decorate_with PostDecorator
+    end
+```
+
+* Allow blacklisting of filters with 'remove_filter' [#1609][] by [@tracedwax][]
+```ruby
+    ActiveAdmin.register Post do
+      remove_filter :author
+    end
+```
+
+* ActiveAdmin i18n translations can be overwritten in your rails
+application locales. [#1775][] by [@caifara][]
+* Add "Powered by" to translations. [#1783][] by [@sunny][]
+* Forms accept two level deeps has_many. [#1699][] by [@kerberoS][] and tests in [#1782][] by [@ptn][]
+* Extract download_format_links into helper [#1752][] by [@randym][]
+* Add support for semantic errors [#905][] by [@robdiciuccio][]
+* Add support for boolean inputs [#1668][] by [@orendon][]
+* Support subURI on logout [#1681][] by [@yawn][]
+
+### Bug fix
+* Apply before_filter to BaseController [#1683][] by [@yorch][]
+* ... and much more.
+
+### Contributions
+
+156 commits (49 Pull Requests) by 51 contributors.
+
 ## 0.5.0
 
 ### Enhancements
 
 * Created new view components (Footer, TitleBar, Header, UtilityNav) to more
-  easily customize the views in Active Admin and per namespace. (@gregbell)
+  easily customize the views in Active Admin and per namespace. ([@gregbell][])
 * All CSS is now encapsulated under the `body.active_admin` class. This may
   change the precedence of styles that you created to override or use in
   other areas of your application.
@@ -566,6 +631,7 @@ of the highlights. 250 commits. Enough said.
 [#865]: https://github.com/gregbell/active_admin/issues/865
 [#869]: https://github.com/gregbell/active_admin/issues/869
 [#897]: https://github.com/gregbell/active_admin/issues/897
+[#905]: https://github.com/gregbell/active_admin/issues/905
 [#931]: https://github.com/gregbell/active_admin/issues/931
 [#960]: https://github.com/gregbell/active_admin/issues/960
 [#971]: https://github.com/gregbell/active_admin/issues/971
@@ -580,12 +646,32 @@ of the highlights. 250 commits. Enough said.
 [#1033]: https://github.com/gregbell/active_admin/issues/1033
 [#1041]: https://github.com/gregbell/active_admin/issues/1041
 [#1063]: https://github.com/gregbell/active_admin/issues/1063
+[#1117]: https://github.com/gregbell/active_admin/issues/1117
+[#1609]: https://github.com/gregbell/active_admin/issues/1609
+[#1626]: https://github.com/gregbell/active_admin/issues/1626
+[#1647]: https://github.com/gregbell/active_admin/issues/1647
+[#1664]: https://github.com/gregbell/active_admin/issues/1664
+[#1668]: https://github.com/gregbell/active_admin/issues/1668
+[#1681]: https://github.com/gregbell/active_admin/issues/1681
+[#1683]: https://github.com/gregbell/active_admin/issues/1683
+[#1699]: https://github.com/gregbell/active_admin/issues/1699
+[#1752]: https://github.com/gregbell/active_admin/issues/1752
+[#1775]: https://github.com/gregbell/active_admin/issues/1775
+[#1782]: https://github.com/gregbell/active_admin/issues/1782
+[#1783]: https://github.com/gregbell/active_admin/issues/1783
+[#1788]: https://github.com/gregbell/active_admin/issues/1788
+[#1805]: https://github.com/gregbell/active_admin/issues/1805
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
+[@EtienneDepaulis]: https://github.com/EtienneDepaulis
 [@MoritzMoritz]: https://github.com/MoritzMoritz
 [@ZequeZ]: https://github.com/ZequeZ
+[@adrienkohlbecker]: https://github.com/adrienkohlbecker
+[@amiel]: https://github.com/amiel
 [@bobbytables]: https://github.com/bobbytables
+[@caifara]: https://github.com/caifara
 [@comboy]: https://github.com/comboy
+[@dapi]: https://github.com/dapi
 [@dhiemstra]: https://github.com/dhiemstra
 [@doug316]: https://github.com/doug316
 [@ebeigarts]: https://github.com/ebeigarts
@@ -600,6 +686,7 @@ of the highlights. 250 commits. Enough said.
 [@jancel]: https://github.com/jancel
 [@jbarket]: https://github.com/jbarket
 [@jschwindt]: https://github.com/jschwindt
+[@kerberoS]: https://github.com/kerberoS
 [@knoopx]: https://github.com/knoopx
 [@krug]: https://github.com/krug
 [@latortuga]: https://github.com/latortuga
@@ -607,14 +694,25 @@ of the highlights. 250 commits. Enough said.
 [@mattvague]: https://github.com/mattvague
 [@mperham]: https://github.com/mperham
 [@mwindwer]: https://github.com/mwindwer
+[@orendon]: https://github.com/orendon
 [@page_title]: https://github.com/page_title
 [@pcreux]: https://github.com/pcreux
 [@per_page]: https://github.com/per_page
+[@ptn]: https://github.com/ptn
+[@randym]: https://github.com/randym
+[@rheaton]: https://github.com/rheaton
+[@robdiciuccio]: https://github.com/robdiciuccio
 [@rolfb]: https://github.com/rolfb
 [@samvincent]: https://github.com/samvincent
 [@sftsang]: https://github.com/sftsang
 [@shayfrendt]: https://github.com/shayfrendt
+[@shell]: https://github.com/shell
+[@simonoff]: https://github.com/simonoff
+[@sunny]: https://github.com/sunny
+[@tracedwax]: https://github.com/tracedwax
 [@tricknotes]: https://github.com/tricknotes
 [@utkarshkukreti]: https://github.com/utkarshkukreti
 [@vairix]: https://github.com/vairix
 [@watson]: https://github.com/watson
+[@yawn]: https://github.com/yawn
+[@yorch]: https://github.com/yorch

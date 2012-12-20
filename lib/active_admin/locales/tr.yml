@@ -29,6 +29,7 @@ tr:
     less_than: "Küçükse"
     main_content: "İçeriği görüntülemek için lütfen %{model}#main_content metodunu ekleyin."
     logout: "Oturumu Sonlandır"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtreler"
     pagination:
