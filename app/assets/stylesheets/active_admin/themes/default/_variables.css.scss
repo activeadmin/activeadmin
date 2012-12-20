@@ -5,7 +5,26 @@ $blue: #38678B;
 $linkColor: $blue;
 
 // Navbar
+$navbarHeight: 39px;
 $navbarInverseBackground: darken($primary-color, 7%);
 $navbarInverseBackgroundHighlight: lighten($primary-color, 5%);
+$navbarInverseLinkBackgroundActive: darken($primary-color, 10%);
+$navbarInverseLinkBackgroundHover: darken($primary-color, 5%);
 $navbarInverseText: #AAAAAA;
 $navbarInverseLinkColor: #CDCDCD;
+
+// Typography
+$baseFontSize: 12px;
+$textColor: $text-color;
+$headingsColor: $primary-color;
+
+$linkColor: $link-color
+
+$btnBackground: #ffffff;
+$btnBackgroundHighlight: #E7E7E7;
+$btnPrimaryBackground: lighten($primary-color, 15%);
+$btnPrimaryBackgroundHighlight: darken($primary-color, 12%);
+$btnBorderRadius: 400px;
+
+// Drop Downs
+$dropdownLinkBackgroundHover: $primary-color;

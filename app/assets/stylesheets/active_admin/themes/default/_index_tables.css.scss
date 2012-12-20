@@ -1,0 +1,18 @@
+table.index_table {
+  @include border-radius(0);
+  border: none;
+
+  th, 
+  &> thead:first-child th:first-child,
+  &> thead:first-child th:last-child {
+    @include border-radius(0);
+    @include panel-header;
+    border-right: none;
+  }
+
+  td {
+    border-left: none;
+    border-right: none;
+  }
+
+}

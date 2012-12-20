@@ -13,7 +13,7 @@ module ActiveAdmin
 
 
       def default_class_name
-        "scopes btn-group"
+        "scopes btn-group btn-small"
       end
 
       def build(scopes, options = {})
@@ -39,7 +39,7 @@ module ActiveAdmin
       end
 
       def classes_for_scope(scope)
-        classes = ["scope", scope.id, "btn"]
+        classes = ["scope", scope.id, "btn", "btn-mini"]
         classes << "active" if current_scope?(scope)
         classes.join(" ")
       end

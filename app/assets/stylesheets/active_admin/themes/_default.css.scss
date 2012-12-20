@@ -1,16 +1,62 @@
 @import "active_admin/mixins/variables";
-@import "active_admin/themes/twitter_bootstrap";
 @import "active_admin/themes/default/variables";
+@import "active_admin/themes/twitter_bootstrap";
+
+// Mixins
+@mixin border-colors($top, $sides, $bottom) {
+  border-color: $sides;
+  border-top-color: $top;
+  border-right-color: $sides;
+  border-bottom-color: $bottom;
+  border-left-color: $sides;
+}
+
+@mixin panel-header {
+  @include gradient-vertical(#efefef, #dfe1e2);
+  text-shadow: #fff 0px 1px 0px;
+  border: solid 1px #cdcdcd;
+  @include border-colors(#e6e6e6, #d4d4d4, #cdcdcd);  
+  //@include box-shadow(0 1px 3px rgba(0,0,0,0.12), 0 0 1px #FFF inset);
+  @include box-shadow(0 1px 3px rgba(0,0,0,0.12));
+
+  font-size: 1.0em;
+  font-weight: bold;
+  line-height: 18px;
+  margin-bottom: 0.5em;
+  color: $section-header-text-color;
+
+  padding: 5px 10px 3px 10px; 
+}
+
+@mixin panel-background {
+  background: #f4f4f4;
+  @include border-radius(4px);
+  @include box-shadow(inset 0 1px 4px #ddd);
+}
+
+@mixin panel {
+  @include panel-background;
+  margin-bottom: 20px;
+
+  > h3 { @include panel-header; }
+
+  > div { padding: 3px $section-padding $section-padding $section-padding; }
+
+  hr {
+    border: none;
+    border-bottom: 1px solid #E8E8E8;
+  }
+}
 
 body.active_admin {
-  padding-top: $navbarHeight;
-  .container-fluid {padding: 0 $horizontal-page-margin;}
+  padding-top: 39px;
 
-  @import "active_admin/themes/default/mixins/all";
-  @import "active_admin/themes/default/header";
+  .container-fluid {
+    padding-left: $horizontal-page-margin;
+    padding-right: $horizontal-page-margin;
+  }
+
   @import "active_admin/themes/default/title_bar";
-  @import "active_admin/themes/default/components/breadcrumbs";
-  @import "active_admin/themes/default/components/panels";
-  @import "active_admin/themes/default/components/tables";
-  @import "active_admin/themes/default/components/flash_messages";
+  @import "active_admin/themes/default/index_tables";
+
 }
