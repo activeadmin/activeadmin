@@ -12,7 +12,7 @@ Feature: Authorizing Access
       def authorized?(action, subject = nil)
         case subject
 
-        when Post
+        when normalized(Post)
           case action
           when ActiveAdmin::Auth::UPDATE, ActiveAdmin::Auth::DESTROY
             false
@@ -28,7 +28,7 @@ Feature: Authorizing Access
           end
 
         else
-          true
+          false
         end
       end
 

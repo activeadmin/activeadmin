@@ -42,8 +42,12 @@ module ActiveAdmin
     # @param [Symbol] action The name of the action to perform. Usually this will be
     #        one of the `ActiveAdmin::Auth::*` symbols.
     #
-    # @param [any] subject The subject the action is being performed on Usually this
-    #        is a model object.
+    # @param [any] subject The subject the action is being performed on usually this
+    #        is a model object. Note, that this is NOT always in instance, it can be 
+    #        the class of the subject also. For example, Active Admin uses the class
+    #        of the resource to decide if the resource should be displayed in the 
+    #        global navigation. To deal with this nicely in a case statement, take
+    #        a look at `#normalized(klasss)`
     #
     # @returns [Boolean]
     def authorized?(action, subject = nil)
@@ -62,6 +66,51 @@ module ActiveAdmin
     #          objects that the current user has access to.
     def scope_collection(collection)
       collection
+    end
+
+    private
+
+    # The `#authorized?` method's subject can be set to both instances as well
+    # as classes of objects. This can make it much difficult to create simple
+    # case statements for authorization since you have to handle both the 
+    # class level match and the instance level match.
+    #
+    # For example:
+    #
+    #     class MyAuthAdapter < ActiveAdmin::AuthorizationAdapter
+    #
+    #       def authorized?(action, subject = nil)
+    #         case subject
+    #         when Post
+    #           true
+    #         when Class
+    #           if subject == Post
+    #             true
+    #           end
+    #         end
+    #       end
+    #
+    #     end
+    #
+    # To handle this, the normalized method takes care of returning a lambda
+    # which implements `===` to be matched in a case statement.
+    #
+    # The above now becomes:
+    #
+    #     class MyAuthAdapter < ActiveAdmin::AuthorizationAdapter
+    #
+    #       def authorized?(action, subject = nil)
+    #         case subject
+    #         when normalized(Post)
+    #           true
+    #         end
+    #       end
+    #
+    #     end
+    def normalized(klass)
+      lambda do |obj|
+        obj == klass || obj.is_a?(klass)
+      end
     end
 
   end
