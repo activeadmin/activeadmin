@@ -1,13 +1,17 @@
 cs:
   active_admin:
     dashboard: Úvod
-    dashboard_welcome: "Vítejte v Active Admin. Toto je nástěnka. Pro přidání sekcí nástěnky se podívejte do 'app/admin/dashboards.rb'"
+    dashboard_welcome:
+      welcome: "Vítejte v Active Admin. Toto je nástěnka."
+      call_to_action: "Pro přidání sekcí nástěnky se podívejte do 'app/admin/dashboards.rb'"
     view: "Zobrazit"
     edit: "Upravit"
     delete: "Smazat"
     delete_confirmation: "Jste si jistí, že chcete tuto položku smazat?"
     new_model: "Nový"
+    create_model: "Nový"
     edit_model: "Upravit"
+    update_model: "Upravit"
     delete_model: "Smazat"
     details: "Detaily"
     cancel: "Zrušit"
@@ -25,6 +29,7 @@ cs:
     less_than: "Menší než"
     main_content: "Prosím implementujte %{model}#main_content pro zobrazení obsahu."
     logout: "Odhlášení"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtr"
     pagination:
@@ -32,6 +37,9 @@ cs:
       one: "Zobrazena  <b>1</b> položka"
       one_page: "Počet zobrazených položek %{n}"
       multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
+      entry:
+        one: "položka"
+        other: "položky"
     any: "Kterákoliv"
     blank_slate:
       content: "Zatím zde není žádný obsah."

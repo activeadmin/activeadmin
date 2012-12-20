@@ -29,6 +29,7 @@ hu:
     less_than: "Kisebb, mint"
     main_content: "Kérem, implementálja a %{model}#main_content metódust a tartalom megjelenítéséhez."
     logout: "Kilépés"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Szűrők"
     pagination:

@@ -27,6 +27,7 @@ da:
     less_than: "mindre end"
     main_content: "Implementer venligst %{model}#main_content for at vise noget indhold."
     logout: "Log ud"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtre"
     pagination:

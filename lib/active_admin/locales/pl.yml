@@ -29,6 +29,7 @@ pl:
     less_than: "Mniejsze niż"
     main_content: "Zaimplementuj %{model}#main_content aby wyświetlić treść."
     logout: "Wyloguj"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtry"
     pagination:

@@ -338,6 +338,10 @@ describe ActiveAdmin::FormBuilder do
         Capybara.string(body).should have_css(".has_many > fieldset > ol > li > a", :class => "button", :href => "#", :content => "Delete")
       end
 
+      it "should include the nested record's class name in the js" do
+        body.should have_tag("a", :attributes => { :onclick => /NEW_POST_RECORD/ })
+      end
+
       it "should add a link to add new nested records" do
         Capybara.string(body).should have_css(".has_many > fieldset > ol > li > a", :class => "button", :href => "#", :content => "Add New Post")
       end

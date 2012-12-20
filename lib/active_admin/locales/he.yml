@@ -29,6 +29,7 @@ he:
     less_than: "פחות מ"
     main_content: "Please implement %{model}#main_content to display content."
     logout: "התנתקות"
+    powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "סינון"
     pagination:
