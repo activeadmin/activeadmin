@@ -55,14 +55,14 @@ Then /^I should see (\d+) record(?:s)? selected$/ do |count|
 end
 
 Then /^I should see that the batch action button is disabled$/ do
-  page.should have_css("#batch_actions_selector .dropdown_menu_button.disabled")
+  page.should have_css("#batch_actions_selector .btn.disabled")
 end
 
 Then /^I (should|should not) see the batch action button$/ do |maybe|
   if maybe == "should not"
-    page.should_not have_css("div.table_tools #batch_actions_selector .dropdown_menu_button")    
+    page.should_not have_css("div.table_tools #batch_actions_selector .btn")    
   else
-    page.should have_css("div.table_tools #batch_actions_selector .dropdown_menu_button")
+    page.should have_css("div.table_tools #batch_actions_selector .btn")
   end
 end
 

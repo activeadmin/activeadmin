@@ -47,7 +47,7 @@ Feature: Index Filtering
       end
     """
     When I follow "2"
-    Then I should see "Displaying Posts 6 - 9 of 9 in total"
+    Then I should see "Displaying Posts 6 – 9 of 9 in total"
 
     When I fill in "Search Title" with "Hello World 2"
     And I press "Filter"

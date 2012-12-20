@@ -114,10 +114,10 @@ Feature: Index as Table
     When I am on the index page for posts
     Then I should see the "posts" table:
       | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
-      | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | ViewEditDelete |
-      | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | View Edit Delete |
+      | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | View Edit Delete |
     When I follow "Id"
     Then I should see the "posts" table:
       | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
-      | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | ViewEditDelete |
-      | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | View Edit Delete |
+      | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | View Edit Delete |

@@ -30,7 +30,7 @@ Feature: Index Pagination
     Given 3 posts exist
     When I am on the index page for posts
     Then I should see pagination with 2 pages
-    And I should see "Displaying Posts 1 - 2 of 3 in total"
+    And I should see "Displaying Posts 1 – 2 of 3 in total"
 
   Scenario: Viewing index with pagination disabled
     Given an index configuration of:

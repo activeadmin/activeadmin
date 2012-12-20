@@ -1,18 +1,18 @@
 Then /^I should see the scope "([^"]*)"$/ do |name|
-  step %{I should see "#{name}" within ".scopes"}
+  page.should have_css(".scopes .scope", :text => name)
 end
 
 Then /^I should not see the scope "([^"]*)"$/ do |name|
-  step %{I should not see "#{name}" within ".scopes"}
+  page.should_not have_css(".scopes .scope", :text => name)
 end
 
 Then /^I should see the scope "([^"]*)" selected$/ do |name|
-  step %{I should see "#{name}" within ".scopes .selected"}
+  page.should have_css(".scopes .scope.active", :text => name)
 end
 
 Then /^I should see the scope "([^"]*)" not selected$/ do |name|
-  step %{I should see the scope "#{name}"}
-  page.should_not have_css('.scopes .selected', :text => name)
+  page.should have_css(".scopes .scope", :text => name)
+  page.should_not have_css('.scopes .active', :text => name)
 end
 
 Then /^I should see the scope "([^"]*)" with the count (\d+)$/ do |name, count|
