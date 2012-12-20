@@ -1,110 +1,132 @@
 # Authorization Adapter
 
-ActiveAdmin now offers the ability to define and use your own authorization 
+Active Admin offers the ability to define and use your own authorization 
 adapter. If implemented, the '#authorized?' will be called when an action is 
 taken. By default, '#authorized?' returns true.
 
 ## Setting up your own AuthorizationAdapter
 
-Setting up your own AuthorizationAdapter is easy! The following example shows 
-how to set up and tie your authorization adapter class to ActiveAdmin:
+Setting up your own `AuthorizationAdapter` is easy! The following example shows 
+how to set up and tie your authorization adapter class to Active Admin:
 
-module ActiveAdmin
-	class OnlyAuthorsAuthorization < ActiveAdmin::AuthorizationAdapter
+    # app/models/only_authors_authorization.rb
+    class OnlyAuthorsAuthorization < ActiveAdmin::AuthorizationAdapter
 
-		def authorized?(action, subject = nil)
-			case subject
-			when Post
-				case action
-				when ActiveAdmin::Authorization::UPDATE, 
-          ActiveAdmin::Authorization::DESTROY
-					false
-				else
-					true
-				end
+        def authorized?(action, subject = nil)
+          case subject
+          when normalize(Post)
 
-			when ActiveAdmin::Page
-				if subject.name == "No Access"
-					false
-				else
-					true
-				end
+            # Only let the author update and delete posts
+            if action == :update || action == :destroy
+              subject.author == user
 
-			else
-				true
-			end
-		end
+            # If it's not an update or destroy, anyone can view it
+            else
+              true
+            end
 
-	end
-end
+          else
+            true
+          end
+        end
 
-In order to tie OnlyAuthorsAuthorization to ActiveAdmin, go to your 
-application's config/initializers/active_admin.rb and add/modify the line:
+    end
 
-config.authorization_adapter = "ActiveAdmin::OnlyAuthorsAuthorization"
+In order to hook up `OnlyAuthorsAuthorization` to Active Admin, go to your 
+application's `config/initializers/active_admin.rb` and add/modify the line:
+
+    config.authorization_adapter = "OnlyAuthorsAuthorization"
 
 The authorization adapter can also be set without going through config by 
 using the following line:
 
-ActiveAdmin.application.namespace(:admin).authorization_adapter = 
-  OnlyAuthorAuthorization
+Now, whenever a controller action is performed, the `OnlyAuthorsAuthorization`'s
+`#authorized?` method will be called.
 
-Now, whenever a controller action is performed, the OnlyAuthorsAuthorization's
-'#authorized?' method will be called.
+## Getting Access to the Current User
 
-## Use an Existing Authorization Library
+From within your authorization adapter, you can call the `#user` method to 
+retrieve the current user.
 
-Integrating an existing authorization library is even simpler than defining 
-your own. The following example lets ActiveAdmin use CanCan's existing 
-authorization library.
+    class OnlyAdmins < ActiveAdmin::AuthorizationAdapter
 
-ActiveAdmin::Application.inheritable_setting :cancan_ability_class, "Ability"
+      def authorized?(action, subject = nil)
+        user.admin?
+      end
 
-module ActiveAdmin
-	class CanCanAdapter < AuthorizationAdapter
-		
-		def authorized?(action, subject=nil)
-			cancan_ability.can?(action, subject)
-		end
-		
-		def cancan_ability
-			@cancan_ability ||= initialize_cancan_ability
-		end
+    end
 
-		def scope_collection(collection)
-			collection.accessible_by(cancan_ability)
-		end
+## Scoping Collections in Authorization Adapters
 
-		private
+`ActiveAdmin::AuthorizationAdapter` also provides a hook method (`#scope_collection`) 
+for the adapter to scope the resource's collection. For example, you may want to 
+centralize the scoping:
 
-		def initialize_cancan_ability
-			ability_class_name = resource.namespace.cancan_ability_class
+    class OnlyMyAccount < ActiveAdmin::AuthorizationAdapter
 
-			if ability_class_name.is_a?(String)
-				ability_class = 
-					ActiveSupport::Dependencies.constantize(ability_class_name)
-			else
-				ability_class = ability_class_name
-			end
+      def authorized?(action, subject = nil)
+        subject.account == user.account
+      end
 
-			ability_class.new(user)
-		end
-	end
-end
+      def scope_collection(collection)
+        collection.where(:account_id => user.account_id)
+      end
 
-In the case of this example, CanCan would require an Ability class to define 
-access rules. The 'user' that is passed into the ability_class' initializer is 
-whatever is returned from the '#current_active_admin_user' method in the 
-controllor.
+    end
 
-## Scoping Collections Using Authorization Libraries
+All collections presented on Index Screens will be passed through this method
+and will be scoped accordingly.
 
-By default, '#scoped_collection' returns the collection passed to it, but, if 
-overridden, allows for the returning of all items in a collection that the 
-calling user has access too. If we were using CanCan as our authorization 
-library, we could do the following:
+## Managing Access to Pages
 
-def scope_collection(collection)
-	collection.accessible_by(cancan_ability)
-end 
+Pages, just like resources, get authorized also. When authorization a page, the
+subject will be an instance of `ActiveAdmin::Page`.
 
+    class OnlyDashboard < ActiveAdmin::AuthorizationAdapter
+      def authorized?(action, subject = nil)
+        case subject
+        when ActiveAdmin::Page
+          if action == :read && subject.name == "Dashboard"
+            true
+          else
+            false
+          end
+        else
+          false
+        end
+      end
+    end
+
+## Using the CanCan Adapter
+
+Sub-classing `ActiveAdmin::AuthorizationAdapter` is fairly low level. Many times
+it's nicer to have a simpler DSL for managing authorization. Active Admin
+provides and adapter out of the box for CanCan.
+
+To use the CanCan adapter, simply update the configuration in the Active Admin
+initializer:
+
+    config.authorization_adapter = ActiveAdmin::CanCanAdapter
+
+By default this will use the ability class named "Ability". This can also be
+changed from the initializer:
+
+    config.cancan_ability_class = "MyCustomAbility"
+
+Now you can simply use CanCan the way that you would expect and Active Admin
+will use it for authorization:
+
+    # app/models/ability.rb
+    class Ability
+      include CanCan::Ability
+
+      def intialize(user)
+        can :manage, Post
+        can :read, User
+        can :manage, User, :id => user.id
+        can :read, ActiveAdmin::Page, :name => "Dashboard"
+      end
+
+    end
+
+To view more details about the CanCan API, visit https://github.com/ryanb/cancan
