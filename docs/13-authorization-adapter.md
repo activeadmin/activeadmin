@@ -4,6 +4,7 @@ Active Admin offers the ability to define and use your own authorization
 adapter. If implemented, the '#authorized?' will be called when an action is 
 taken. By default, '#authorized?' returns true.
 
+
 ## Setting up your own AuthorizationAdapter
 
 Setting up your own `AuthorizationAdapter` is easy! The following example shows 
@@ -43,6 +44,7 @@ using the following line:
 Now, whenever a controller action is performed, the `OnlyAuthorsAuthorization`'s
 `#authorized?` method will be called.
 
+
 ## Getting Access to the Current User
 
 From within your authorization adapter, you can call the `#user` method to 
@@ -55,6 +57,7 @@ retrieve the current user.
       end
 
     end
+
 
 ## Scoping Collections in Authorization Adapters
 
@@ -77,6 +80,7 @@ centralize the scoping:
 All collections presented on Index Screens will be passed through this method
 and will be scoped accordingly.
 
+
 ## Managing Access to Pages
 
 Pages, just like resources, get authorized also. When authorization a page, the
@@ -96,6 +100,68 @@ subject will be an instance of `ActiveAdmin::Page`.
         end
       end
     end
+
+
+## Action Types
+
+By default Active Admin simplifies the controller actions into 4 actions: 
+
+  * `:read` - This controls if the user can view the menu item as well as the
+    index and show screens.
+  * `:create` - This controls if the user can view the new screen and submit
+    the form to the create action.
+  * `:update` - This controls if the user can view the edit screen and submit
+    the form to the update action.
+  * `:destroy` - This controls if the user can delete a resource.
+
+Each of these actions is available as a constant. Eg: `:read` is available as
+`ActiveAdmin::Authorization::READ`.
+
+
+## Checking for Authorization in Controllers and Views
+
+Active Admin provides a helper method to check if the current user is
+authorized to perform an action on a subject.
+
+Simply use the `#authorized?(action, subject) method to check.
+
+    ActiveAdmin.register Post do
+
+      index do
+        column :title
+        column "" do |post|
+          if authorized?(:update, post)
+            link_to("Edit", admin_post_path(post))
+          end
+        end
+
+      end
+
+    end
+
+If you are implementing a custom controller action, you can use the
+`#authorize!` method to raise an `ActiveAdmin::AccessDenied` exception.
+
+    ActiveAdmin.register Post do
+
+      member_action :publish, :method => :post do
+        post = Post.find(params[:id])
+
+        authorize! :publish, post
+        post.publish!
+
+        flash[:notice] = "Post has been published"
+        redirect_to [:admin, post]
+      end
+
+      action_item :only => :show do
+        if !post.published? && authorized?(:publish, post)
+          link_to("Publish", publish_admin_post_path(post), :method => :post)
+        end
+      end
+
+    end
+
 
 ## Using the CanCan Adapter
 
