@@ -92,7 +92,7 @@ module ActiveAdmin
     #
     #     end
     #
-    # To handle this, the normalized method takes care of returning a lambda
+    # To handle this, the normalized method takes care of returning a object
     # which implements `===` to be matched in a case statement.
     #
     # The above now becomes:
@@ -108,9 +108,19 @@ module ActiveAdmin
     #
     #     end
     def normalized(klass)
-      lambda do |obj|
-        obj == klass || obj.is_a?(klass)
+      NormalizedMatcher.new(klass)
+    end
+
+    class NormalizedMatcher
+
+      def initialize(klass)
+        @klass = klass
       end
+
+      def ===(other)
+        @klass == other || other.is_a?(@klass)
+      end
+
     end
 
   end
