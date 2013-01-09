@@ -45,9 +45,9 @@ module ActiveAdmin
           if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
             column = $1
             order  = $2
-            table  = active_admin_config.resource_table_name
+            table  = active_admin_config.resource_column_names.include?(column) ? active_admin_config.resource_table_name : nil
             table_column = (column =~ /\./) ? column :
-              "#{table}.#{active_admin_config.resource_quoted_column_name(column)}"
+              [table, active_admin_config.resource_quoted_column_name(column)].compact.join(".")
 
             chain.reorder("#{table_column} #{order}")
           else
