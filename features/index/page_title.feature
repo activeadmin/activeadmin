@@ -10,3 +10,12 @@ Feature: Index - Page Title
       end
     """
     Then I should see the page title "Awesome Title"
+
+  Scenario: Set a string as the title
+    Given an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        index :title => proc{ 'Custom title from proc' }
+      end
+    """
+    Then I should see the page title "Custom title from proc"
