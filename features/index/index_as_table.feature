@@ -121,3 +121,34 @@ Feature: Index as Table
       | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
       | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | ViewEditDelete |
       | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | ViewEditDelete |
+
+  Scenario: Sorting by a virtual column
+    Given a post with the title "Hello World" exists
+    And a post with the title "Bye bye world" exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          controller do
+            def scoped_collection
+              Post.select("id, title, length(title) as title_length")
+            end
+          end
+
+          index do
+            column :id
+            column :title
+            column("Title Length", :sortable => :title_length) { |post| post.title_length }
+          end
+        end
+      """
+    When I am on the index page for posts
+    And I follow "Title Length"
+    Then I should see the "posts" table:
+      | Id | Title        | Title Length |
+      | 2 | Bye bye world | 13 |
+      | 1 | Hello World   | 11 |    
+    When I follow "Title Length"
+    Then I should see the "posts" table:
+      | Id | Title        | Title Length |
+      | 1 | Hello World   | 11 |
+      | 2 | Bye bye world | 13 |
