@@ -1,5 +1,5 @@
 module ActiveAdmin
-  
+
   # Shareable module to give a #display_on?(action) method
   # which returns true or false depending on an options hash.
   #
@@ -23,7 +23,7 @@ module ActiveAdmin
         when Symbol, String
           render_context ? render_context.send(symbol_or_proc) : self.send(symbol_or_proc)
         when Proc
-            render_context ? render_context.instance_exec(&symbol_or_proc) : instance_exec(&symbol_or_proc)
+          render_context ? render_context.instance_exec(&symbol_or_proc) : instance_exec(&symbol_or_proc)
         else symbol_or_proc
         end
       end
@@ -33,12 +33,8 @@ module ActiveAdmin
     private
 
     def normalize_display_options!
-      if @options[:only]
-        @options[:only] = @options[:only].is_a?(Array) ? @options[:only] : [@options[:only]]
-      end
-      if @options[:except]
-        @options[:except] = @options[:except].is_a?(Array) ? @options[:except] : [@options[:except]]
-      end
+      @options[:only] = Array(@options[:only]) if @options[:only]
+      @options[:except] = Array(@options[:except]) if @options[:except]
     end
   end
 end
