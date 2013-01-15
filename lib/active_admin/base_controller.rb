@@ -7,7 +7,7 @@ module ActiveAdmin
   class BaseController < ::InheritedResources::Base
     helper ::ActiveAdmin::ViewHelpers
 
-    layout 'active_admin'
+    layout :determine_active_admin_layout
 
     before_filter :only_render_implemented_actions
     before_filter :authenticate_active_admin_user
@@ -56,6 +56,20 @@ module ActiveAdmin
       active_admin_config.namespace
     end
     helper_method :active_admin_namespace
+
+
+    ACTIVE_ADMIN_ACTIONS = [:index, :show, :new, :create, :edit, :update, :destroy]
+
+    # Determine which layout to use.
+    #
+    #   1.  If we're rendering a standard Active Admin action, we want layout(false)
+    #       because these actions are subclasses of the Base page (which implements
+    #       all the required layout code)
+    #   2.  If we're rendering a custom action, we'll use the active_admin layout so
+    #       that users can render any template inside Active Admin.
+    def determine_active_admin_layout
+      ACTIVE_ADMIN_ACTIONS.include?(params[:action].to_sym) ? false : 'active_admin'
+    end
 
   end
 end
