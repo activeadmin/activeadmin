@@ -28,6 +28,12 @@ module ActiveAdmin
       end
     end
 
+    describe "#resource_column_names" do
+      it "should return the resource's column names" do
+        config.resource_column_names.should == Category.column_names
+      end
+    end
+
     describe '#decorator_class' do
       it 'returns nil by default' do
         config.decorator_class.should be_nil

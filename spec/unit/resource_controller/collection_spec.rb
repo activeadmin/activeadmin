@@ -23,11 +23,22 @@ describe ActiveAdmin::ResourceController::Collection do
   end
 
   describe ActiveAdmin::ResourceController::Collection::Sorting do
-    let(:params){ {:order => "id_asc" }}
-    it "should prepend the table name" do
-      chain = mock("ChainObj")
-      chain.should_receive(:reorder).with("\"posts\".\"id\" asc").once.and_return(Post.search)
-      controller.send :sort_order, chain
+    context "for table columns" do
+      let(:params){ {:order => "id_asc" }}
+      it "should prepend the table name" do
+        chain = mock("ChainObj")
+        chain.should_receive(:reorder).with("\"posts\".\"id\" asc").once.and_return(Post.search)
+        controller.send :sort_order, chain
+      end
+    end
+
+    context "for virtual columns" do
+      let(:params){ {:order => "virtual_id_asc" }}
+      it "should not prepend the table name" do
+        chain = mock("ChainObj")
+        chain.should_receive(:reorder).with("\"virtual_id\" asc").once.and_return(Post.search)
+        controller.send :sort_order, chain
+      end
     end
   end
   
