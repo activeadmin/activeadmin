@@ -91,6 +91,10 @@ module ActiveAdmin
       resource_class.quoted_table_name
     end
 
+    def resource_column_names
+      resource_class.column_names
+    end
+
     def resource_quoted_column_name(column)
       resource_class.connection.quote_column_name(column)
     end

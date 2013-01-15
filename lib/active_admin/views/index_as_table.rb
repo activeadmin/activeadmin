@@ -69,10 +69,20 @@ module ActiveAdmin
     # If a column is defined using a block, you must pass the key to turn on sorting. The key
     # is the attribute which gets used to sort objects using Active Record.
     #
+    # By default, this is the column on the resource's table that the attribute corresponds to. 
+    # Otherwise, any attribute that the resource collection responds to can be used.
+    #
     #     index do
     #       column "Title", :sortable => :title do |post|
     #         link_to post.title, admin_post_path(post)
     #       end
+    #     end
+    #
+    # You can also sort using an attribute on another table by passing the table name
+    # and the attribute separated by a dot:
+    #
+    #     index do
+    #       column :title, :sortable => 'categories.name'
     #     end
     #
     # You can turn off sorting on any column by passing false:
