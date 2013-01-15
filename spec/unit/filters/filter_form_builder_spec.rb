@@ -22,15 +22,18 @@ describe ActiveAdmin::Filters::ViewHelper do
     view
   end
 
-  def render_filter(search, name, options = {})
-    render_arbre_component({:filter_args => [search, [options.merge(:attribute => name)]]}, helpers) do
+  def render_filter(search, filters)
+    render_arbre_component({:filter_args => [search, filters]}, helpers) do
       text_node active_admin_filters_form_for(*assigns[:filter_args])
     end
   end
 
   def filter(name, options = {})
-    render_filter Post.search, name, options
+    render_filter Post.search, @filters.push(options.merge(:attribute => name))
   end
+
+  before(:each) { @filters = [] }
+
 
   describe "the form in general" do
     let(:body) { filter :title }
@@ -217,11 +220,46 @@ describe ActiveAdmin::Filters::ViewHelper do
     context "when polymorphic relationship" do
       let(:body) do
         search = ActiveAdmin::Comment.search
-        render_filter(search, :resource)
+        render_filter(search, [{:attribute => :resource}])
       end
       it "should not generate any field" do
         body.should have_tag("form", :attributes => { :method => 'get' })
       end
     end
   end # belongs to
+
+
+  describe "conditional display" do
+
+    context "with :if block" do
+      let(:body) do
+        filter :body,   :if => proc{true}
+        filter :author, :if => proc{false}
+      end
+
+      it "should be displayed if true" do
+        body.should have_tag("input", :attributes => { :name => "q[body_contains]"})
+      end
+
+      it "should NOT be displayed if false" do
+        body.should_not have_tag("input", :attributes => { :name => "q[author_id_eq]"})
+      end
+    end
+
+    context "with :unless block" do
+      let(:body) do
+        filter :created_at, :unless => proc{false}
+        filter :updated_at, :unless => proc{true}
+      end
+
+      it "should be displayed if false" do
+        body.should have_tag("input", :attributes => { :name => "q[created_at_gte]"})
+      end
+
+      it "should NOT be displayed if true" do
+        body.should_not have_tag("input", :attributes => { :name => "q[updated_at_gte]"})
+      end
+    end
+  end
+
 end

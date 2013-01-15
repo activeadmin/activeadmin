@@ -15,23 +15,39 @@ describe ActiveAdmin::ResourceController::DataAccess do
 
   describe "searching" do
     let(:params){ {:q => {} }}
+
     it "should call the metasearch method" do
       chain = mock("ChainObj")
       chain.should_receive(:metasearch).with(params[:q]).once.and_return(Post.search)
       controller.send :apply_filtering, chain
     end
+
   end
 
-  describe "filtering" do
-    let(:params){ {:order => "id_asc" }}
-    it "should prepend the table name" do
-      chain = mock("ChainObj")
-      chain.should_receive(:reorder).with("\"posts\".\"id\" asc").once.and_return(Post.search)
-      controller.send :apply_sorting, chain
+  describe "sorting" do
+
+    context "for table columns" do
+      let(:params){ {:order => "id_asc" }}
+      it "should prepend the table name" do
+        chain = mock("ChainObj")
+        chain.should_receive(:reorder).with("\"posts\".\"id\" asc").once.and_return(Post.search)
+        controller.send :apply_sorting, chain
+      end
     end
+
+    context "for virtual columns" do
+      let(:params){ {:order => "virtual_id_asc" }}
+      it "should not prepend the table name" do
+        chain = mock("ChainObj")
+        chain.should_receive(:reorder).with("\"virtual_id\" asc").once.and_return(Post.search)
+        controller.send :apply_sorting, chain
+      end
+    end
+
   end
-  
-  describe "#scope_current_collection" do
+
+  describe "scoping" do
+
     context "when no current scope" do
       it "should set collection_before_scope to the chain and return the chain" do
         chain = mock("ChainObj")
@@ -52,5 +68,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
         controller.send(:collection_before_scope).should == chain
       end
     end
+
   end
+
 end

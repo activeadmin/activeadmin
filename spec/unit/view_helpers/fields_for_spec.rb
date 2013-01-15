@@ -43,4 +43,8 @@ describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
     fields_for_params(:filter => :id).
       should == [ { :filter => "id" } ]
   end
+
+  it "should work with booleans" do
+    fields_for_params(:booleantest => false).should == [ { :booleantest => false } ]
+  end
 end

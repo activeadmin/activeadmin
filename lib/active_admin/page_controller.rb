@@ -3,8 +3,8 @@ module ActiveAdmin
   # All Pages controllers inherit from this controller.
   class PageController < BaseController
 
-    # Pages::Page subclasses Page::Base which implements the layout code
-    layout false
+    # Active admin actions don't require layout.  All custom actions do.
+    ACTIVE_ADMIN_ACTIONS = [:index]
 
     actions :index
 
