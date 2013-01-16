@@ -11,7 +11,7 @@ Feature: Index - Page Title
     """
     Then I should see the page title "Awesome Title"
 
-  Scenario: Set a string as the title
+  Scenario: Set the title using a proc
     Given an index configuration of:
     """
       ActiveAdmin.register Post do
