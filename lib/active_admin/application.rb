@@ -77,6 +77,9 @@ module ActiveAdmin
     # The authorization adapter to use
     inheritable_setting :authorization_adapter, ActiveAdmin::AuthorizationAdapter
 
+    # A proc to be used when a user is not authorized to view the current resource
+    inheritable_setting :on_unauthorized_access, :rescue_active_admin_access_denied
+
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     setting :display_name_methods, [ :display_name,

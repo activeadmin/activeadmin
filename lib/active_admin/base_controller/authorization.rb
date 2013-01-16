@@ -17,8 +17,10 @@ module ActiveAdmin
     end
   end
 
+
   class BaseController < ::InheritedResources::Base
     module Authorization
+      include MethodOrProcHelper
       extend ActiveSupport::Concern
 
       ACTIONS_DICTIONARY = {
@@ -30,6 +32,13 @@ module ActiveAdmin
         :update  => ActiveAdmin::Authorization::UPDATE,
         :destroy => ActiveAdmin::Authorization::DESTROY
       }
+
+      included do
+        rescue_from ActiveAdmin::AccessDenied, :with => :dispatch_active_admin_access_denied
+
+        helper_method :authorized?
+        helper_method :authorize!
+      end
 
       protected
 
@@ -114,27 +123,31 @@ module ActiveAdmin
         end
       end
 
-      included do
-        rescue_from ActiveAdmin::AccessDenied do |exception|
-          respond_to do |format|
-            format.html do
-              flash[:error] = exception.message
+      def dispatch_active_admin_access_denied(exception)
+        call_method_or_exec_proc active_admin_namespace.on_unauthorized_access, exception
+      end
 
-              if request.headers.keys.include?("HTTP_REFERER")
-                redirect_to :back
-              else
-                controller, action = active_admin_namespace.root_to.split("#")
-                redirect_to :controller => controller, :action => action
-              end
+      def rescue_active_admin_access_denied(exception)
+        error_message = exception.message
+
+        respond_to do |format|
+          format.html do
+            flash[:error] = error_message
+
+            if request.headers.keys.include?("HTTP_REFERER")
+              redirect_to :back
+            else
+              controller, action = active_admin_namespace.root_to.split("#")
+              redirect_to :controller => controller, :action => action
             end
           end
-        end
 
-        helper_method :authorized?
-        helper_method :authorize!
+          format.csv { render :text => error_message, :status => :unauthorized}
+          format.json { render :json => { :error => error_message }, :status => :unauthorized}
+          format.xml { render :xml => "<error>#{error_message}</error>", :status => :unauthorized}
+        end
       end
 
     end
-
   end
 end
