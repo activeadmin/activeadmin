@@ -39,7 +39,7 @@ module ActiveAdmin
       end
 
       def classes_for_scope(scope)
-        classes = ["scope", scope.id, "btn", "btn-mini"]
+        classes = ["scope", "scope-#{scope.id}", "btn", "btn-mini"]
         classes << "active" if current_scope?(scope)
         classes.join(" ")
       end
