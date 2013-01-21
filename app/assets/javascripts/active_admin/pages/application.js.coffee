@@ -11,3 +11,5 @@ $ ->
     false
 
   $(".dropdown_button").popover()
+
+$(document).on('page:load',datepicker)
