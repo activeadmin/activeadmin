@@ -14,7 +14,7 @@ the fabulous DSL created by Formtastic (http://github.com/justinfrench/formtasti
         f.inputs "Content" do
           f.input :body
         end
-        f.buttons
+        f.actions
       end
 
     end
@@ -35,5 +35,5 @@ Then implement app/views/admin/posts/_form.html.erb:
 
     <%= semantic_form_for [:admin, @post] do |f| %>
       <%= f.inputs :title, :body %>
-      <%= f.buttons :commit %>
+      <%= f.actions :commit %>
     <% end %>
