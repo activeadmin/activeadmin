@@ -8,7 +8,7 @@ module ActiveAdmin
         if options == false
           @display_menu = false
         else
-          @parent  = value_or_proc options.delete(:parent)
+          @parent  = options.delete(:parent)
           @options = options
         end
       end
@@ -23,19 +23,15 @@ module ActiveAdmin
       # #                           :url => 'wherever', :id => '...?' }
       def parent_menu_item
         case @parent
-        when String
+        when String, Proc
           { :label => @parent, :url => '#' }
         when Hash
           { :label    => @parent[:label],
             :priority => @parent[:priority],
             :url      => @parent[:url],
             :id       => @parent[:id]
-          }.delete_if{ |key,val| val.nil? }
+          }.delete_if{ |_,val| val.nil? }
         end
-      end
-
-      def parent_menu_item_name
-        ActiveAdmin::Resource::Name.new(nil, parent_menu_item[:label]) if @parent
       end
 
       # The default menu options to pass through to MenuItem.new
@@ -50,13 +46,6 @@ module ActiveAdmin
       # Should this resource be added to the menu system?
       def include_in_menu?
         @display_menu != false
-      end
-
-      private
-
-      # Returns the intended value, even if the object is a proc
-      def value_or_proc(value)
-        value.is_a?(Proc) ? value.call : value
       end
     end
   end

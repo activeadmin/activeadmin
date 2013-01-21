@@ -40,13 +40,10 @@ module ActiveAdmin
       add_to = menu
 
       # Adding as a child
-      if resource.parent_menu_item_name
-        # Create the parent if it doesn't exist
-        unless menu[resource.parent_menu_item_name]
-          add_to.add MenuItem.new resource.parent_menu_item
-        end
-
-        add_to = menu[resource.parent_menu_item_name]
+      if resource.parent_menu_item
+        parent = MenuItem.new resource.parent_menu_item
+        add_to.add parent unless menu[parent.id] # Create the parent if it doesn't exist
+        add_to = menu[parent.id]                 # Scope the code below to nest child inside
       end
 
       if add_to[resource.menu_item.id]
