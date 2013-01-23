@@ -3,7 +3,7 @@ hr:
     dashboard: "Upravljačka ploča"
     dashboard_welcome:
       welcome: "Dobrodošli u Active Admin. Ovo je početna upravljačka ploča."
-      call_to_action: "Da bi ste dodali nove odjeljke na upravljačku ploču, pogledajte 'app/admin/dashboards.rb'"
+      call_to_action: "Da bi ste dodali nove odjeljke na upravljačku ploču, pogledajte 'app/admin/dashboard.rb'"
     view: "Pregledaj"
     edit: "Uredi"
     delete: "Obriši"

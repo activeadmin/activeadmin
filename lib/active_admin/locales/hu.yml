@@ -3,7 +3,7 @@ hu:
     dashboard: Vezérlőpult
     dashboard_welcome:
       welcome: "Üdvözöljük az Active Admin felületén. Ez a vezérlőpult kezdőlapja"
-      call_to_action: "Elemek hozzáadásához nézze meg a 'app/admin/dashboards.rb' fájlt"
+      call_to_action: "Elemek hozzáadásához nézze meg a 'app/admin/dashboard.rb' fájlt"
     view: "Megtekintés"
     edit: "Szerkesztés"
     delete: "Törlés"

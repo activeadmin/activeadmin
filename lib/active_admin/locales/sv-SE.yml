@@ -3,7 +3,7 @@
     dashboard: Skrivbord
     dashboard_welcome:
       welcome: "Välkommen till Active Admin. Detta är ditt standardskrivbord."
-      call_to_action: "För att lägga till sektioner, gör en checkout på 'app/admin/dashboards.rb'"
+      call_to_action: "För att lägga till sektioner, gör en checkout på 'app/admin/dashboard.rb'"
     view: "Visa"
     edit: "Editera"
     delete: "Ta bort"

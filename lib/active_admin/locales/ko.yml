@@ -3,7 +3,7 @@ ko:
     dashboard: "대시보드"
     dashboard_welcome:
       welcome: "Active Admin 에 오신 것을 환영합니다. 이것은 디폴트 대시보드 페이지 입니다."
-      call_to_action: "대시보드에 섹션을 추가하시려면 'app/admin/dashboards.rb' 소스를 확인해 주세요."
+      call_to_action: "대시보드에 섹션을 추가하시려면 'app/admin/dashboard.rb' 소스를 확인해 주세요."
     view: "보기"
     edit: "수정"
     delete: "삭제"
