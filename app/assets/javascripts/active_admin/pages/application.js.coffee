@@ -1,13 +1,16 @@
-#
-# Active Admin JS
-#
-
-
+# Initializers
 $ ->
-  # Date picker
-  $(".datepicker").datepicker dateFormat: "yy-mm-dd"
-  $(".clear_filters_btn").click ->
-    window.location.search = ""
-    false
+  # jQuery datepickers (also evaluates dynamically added HTML)
+  $(document).on 'focus', '.datepicker:not(.hasDatepicker)', ->
+    $(@).datepicker dateFormat: 'yy-mm-dd'
 
-  $(".dropdown_button").popover()
+  # Clear Filters button
+  $('.clear_filters_btn').click ->
+    window.location.search = ''
+
+  # Batch Actions dropdown
+  $('.dropdown_button').popover()
+
+  # Filter form: don't send any inputs that are empty
+  $('#q_search').submit ->
+    $(@).find(':input[value=""]').attr 'disabled', 'disabled'
