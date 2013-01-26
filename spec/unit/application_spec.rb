@@ -95,18 +95,18 @@ describe ActiveAdmin::Application do
 
   describe "files in load path" do
     it "should load files in the first level directory" do
-      application.files_in_load_path.should include(File.expand_path("app/admin/dashboard.rb", Rails.root))
+      application.files.should include(File.expand_path("app/admin/dashboard.rb", Rails.root))
     end
 
     it "should load files from subdirectories" do
       FileUtils.mkdir_p(File.expand_path("app/admin/public", Rails.root))
       test_file = File.expand_path("app/admin/public/posts.rb", Rails.root)
       FileUtils.touch(test_file)
-      application.files_in_load_path.should include(test_file)
+      application.files.should include(test_file)
     end
   end
 
-  describe "#namespace (or #find_or_create_namespace)" do
+  describe "#namespace" do
 
     it "should yield a new namespace" do
       application.namespace :new_namespace do |ns|
@@ -115,7 +115,7 @@ describe ActiveAdmin::Application do
     end
 
     it "should return an instantiated namespace" do
-      admin = application.find_or_create_namespace :admin
+      admin = application.namespace :admin
       admin.should == application.namespaces[:admin]
     end
 
@@ -132,7 +132,7 @@ describe ActiveAdmin::Application do
   describe "#register_page" do
     it "finds or create the namespace and register the page to it" do
       namespace = mock
-      application.should_receive(:find_or_create_namespace).with("public").and_return namespace
+      application.should_receive(:namespace).with("public").and_return namespace
       namespace.should_receive(:register_page).with("My Page", {:namespace => "public"})
 
       application.register_page("My Page", :namespace => "public")

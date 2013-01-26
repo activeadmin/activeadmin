@@ -124,9 +124,7 @@ module ActiveAdmin
 
     # Registers a brand new configuration for the given resource.
     def register(resource, options = {}, &block)
-      namespace_name = extract_namespace_name(options)
-      namespace = find_or_create_namespace(namespace_name)
-      namespace.register(resource, options, &block)
+      namespace(options[:namespace]).register resource, options, &block
     end
 
     # Creates a namespace for the given name
@@ -134,14 +132,12 @@ module ActiveAdmin
     # Yields the namespace if a block is given
     #
     # @returns [Namespace] the new or existing namespace
-    def find_or_create_namespace(name)
-      name ||= :root
-
+    def namespace(name)
+      name ||= name == false ? :root : default_namespace
       if namespaces[name]
         namespace = namespaces[name]
       else
-        namespace = Namespace.new(self, name)
-        namespaces[name] = namespace
+        namespace = namespaces[name] = Namespace.new(self, name)
         ActiveAdmin::Event.dispatch ActiveAdmin::Namespace::RegisterEvent, namespace
       end
 
@@ -150,8 +146,6 @@ module ActiveAdmin
       namespace
     end
 
-    alias_method :namespace, :find_or_create_namespace
-
     # Register a page
     #
     # @param name [String] The page name
@@ -159,96 +153,56 @@ module ActiveAdmin
     # @&block The registration block.
     #
     def register_page(name, options = {}, &block)
-      namespace_name = extract_namespace_name(options)
-      namespace = find_or_create_namespace(namespace_name)
-      namespace.register_page(name, options, &block)
+      namespace(options[:namespace]).register_page name, options, &block
     end
 
-    # Stores if everything has been loaded or we need to reload
-    @@loaded = false
-
-    # Returns true if all the configuration files have been loaded.
+    # Whether all configuration files have been loaded
     def loaded?
-      @@loaded
+      @@loaded ||= false
     end
 
-    # Removes all the controllers that were defined by registering
-    # resources for administration.
-    #
-    # We remove them, then load them on each request in development
-    # to allow for changes without having to restart the server.
+    # Removes all defined controllers from memory. Useful in
+    # development, where they are reloaded on each request.
     def unload!
-      namespaces.values.each{|namespace| namespace.unload! }
+      namespaces.values.each{ |namespace| namespace.unload! }
       @@loaded = false
     end
 
-    # Loads all of the ruby files that are within the load path of
-    # ActiveAdmin.load_paths. This should load all of the administration
-    # UIs so that they are available for the router to proceed.
-    #
-    # The files are only loaded if we haven't already loaded all the files
-    # and they aren't marked for re-loading. To mark the files for re-loading
-    # you must first call ActiveAdmin.unload!
+    # Loads all ruby files that are within the load_paths setting.
+    # To reload everything simply call `ActiveAdmin.unload!`
     def load!
-      # No work to do if we've already loaded
-      return false if loaded?
-
-      ActiveAdmin::Event.dispatch BeforeLoadEvent, self
-
-      # Load files
-      files_in_load_path.each{|file| load file }
-
-      # If no configurations, let's make sure you can still login
-      load_default_namespace if namespaces.values.empty?
-
-      # Dispatch an ActiveAdmin::Application::LoadEvent with the Application
-      ActiveAdmin::Event.dispatch AfterLoadEvent, self
-
-      @@loaded = true
+      unless loaded?
+        ActiveAdmin::Event.dispatch BeforeLoadEvent, self # before_load hook
+        files.each{ |file| load file }                    # load files
+        namespace(nil)                                    # init AA resources
+        ActiveAdmin::Event.dispatch AfterLoadEvent, self  # after_load hook
+        @@loaded = true
+      end
     end
 
-    # Returns ALL the files to load from all the load paths
-    def files_in_load_path
-      load_paths.flatten.compact.uniq.collect{|path| Dir["#{path}/**/*.rb"] }.flatten
+    # Returns ALL the files to be loaded
+    def files
+      load_paths.flatten.compact.uniq.map{ |path| Dir["#{path}/**/*.rb"] }.flatten
     end
 
     def router
       @router ||= Router.new(self)
     end
 
+    # One-liner called by user's config/routes.rb file
     def routes(rails_router)
-      # Ensure that all the configurations (which define the routes)
-      # are all loaded
       load!
-
       router.apply(rails_router)
     end
 
-    def load_default_namespace
-      find_or_create_namespace(default_namespace)
-    end
-
-    #
     # Add before, around and after filters to each registered resource and pages.
-    #
-    # eg:
-    #
+    # For example:
     #   ActiveAdmin.before_filter :authenticate_admin!
     #
-    def before_filter(*args, &block)
-      BaseController.before_filter(*args, &block)
-    end
-
-    def skip_before_filter(*args, &block)
-      BaseController.skip_before_filter(*args, &block)
-    end
-
-    def after_filter(*args, &block)
-      BaseController.after_filter(*args, &block)
-    end
-
-    def around_filter(*args, &block)
-      BaseController.around_filter(*args, &block)
+    %w(before_filter skip_before_filter after_filter around_filter).each do |name|
+      define_method name do |*args, &block|
+        BaseController.send name, *args, &block
+      end
     end
 
     # Helper method to add a dashboard section
@@ -269,10 +223,6 @@ module ActiveAdmin
       end
 
       register_javascript 'active_admin.js'
-    end
-
-    def extract_namespace_name(options)
-      options.has_key?(:namespace) ? options[:namespace] : default_namespace
     end
 
     # Since we're dealing with all our own file loading, we need
