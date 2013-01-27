@@ -74,6 +74,28 @@ module ActiveAdmin
           end
         end
 
+        context "when the :as option is given" do
+          describe "singular label" do
+            it "should return the translated custom name" do
+              as_option = 'My Category'
+              custom_config = config(:as => as_option)
+
+              I18n.should_receive(:t).with(custom_config.resource_name.i18n_key, :scope => [ :activerecord, :models ], :default => as_option, :count => 1).and_return("Translated category")
+              config(:as => as_option).resource_label.should == "Translated category"
+            end
+          end
+
+          describe "plural label" do
+            it "should return the translated custom pluralized name if available" do
+              as_option = 'My Category'
+              custom_config = config(:as => as_option)
+
+              I18n.should_receive(:t).with(custom_config.resource_name.i18n_key, :scope => [ :activerecord, :models ], :default => as_option.pluralize, :count => 1.1).and_return("Translated categories")
+              config(:as => as_option).plural_resource_label.should == "Translated categories"
+            end
+          end
+        end
+
       end
     end
 
