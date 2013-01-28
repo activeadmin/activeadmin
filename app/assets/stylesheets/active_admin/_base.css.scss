@@ -1,8 +1,6 @@
 /* Active Admin CSS */
 // Reset Away!
-body.active_admin {
-  @include global-reset;
-}
+@include global-reset;
 
 // Partials
 body.active_admin {
