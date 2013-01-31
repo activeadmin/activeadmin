@@ -23,9 +23,9 @@ describe ActiveAdmin::Namespace do
       if ActiveAdmin::Dashboards.built?
         # DEPRECATED behavior. If a dashboard was built while running this
         # spec, then an item gets added to the menu
-        namespace.menu.should have(1).item
+        namespace.fetch_menu(:default).should have(1).item
       else
-        namespace.menu.items.should be_empty
+        namespace.fetch_menu(:default).items.should be_empty
       end
     end
   end # context "when new"
@@ -45,4 +45,19 @@ describe ActiveAdmin::Namespace do
     end
   end
 
+
+  describe "#fetch_menu" do
+    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+
+    it "returns the menu" do
+      namespace.fetch_menu(:default).should be_an_instance_of(ActiveAdmin::Menu)
+    end
+
+    it "should raise an exception if the menu doesn't exist" do
+      expect {
+        namespace.fetch_menu(:nomenu)
+      }.to raise_error(KeyError)
+    end
+
+  end
 end

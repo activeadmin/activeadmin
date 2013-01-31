@@ -5,6 +5,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
   let(:application){ ActiveAdmin::Application.new }
 
   let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+  let(:menu){ namespace.fetch_menu(:default) }
 
   context "with no configuration" do
     before do
@@ -20,7 +21,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
     end
 
     it "should create a menu item" do
-      namespace.menu["Status"].should be_an_instance_of(ActiveAdmin::MenuItem)
+      menu["Status"].should be_an_instance_of(ActiveAdmin::MenuItem)
     end
   end # context "with no configuration"
 
@@ -41,7 +42,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
       end
 
       it "should add a new menu item" do
-        namespace.menu['Status'].should_not be_nil
+        menu['Status'].should_not be_nil
       end
     end # describe "adding as a top level item"
 
@@ -52,10 +53,10 @@ describe ActiveAdmin::Namespace, "registering a page" do
         end
       end
       it "should generate the parent menu item" do
-        namespace.menu['Extra'].should_not be_nil
+        menu['Extra'].should_not be_nil
       end
       it "should generate its own child item" do
-        namespace.menu['Extra']['Status'].should_not be_nil
+        menu['Extra']['Status'].should_not be_nil
       end
     end # describe "adding as a child"
 
@@ -66,7 +67,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
         end
       end
       it "should not create a menu item" do
-        namespace.menu["Status"].should be_nil
+        menu["Status"].should be_nil
       end
     end # describe "disabling the menu"
     
@@ -77,7 +78,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
         end
       end
       it "should have a custom priority of 2" do
-        namespace.menu["Status"].priority.should == 2
+        menu["Status"].priority.should == 2
       end
     end # describe "setting menu priority"
     
@@ -88,8 +89,8 @@ describe ActiveAdmin::Namespace, "registering a page" do
         end
       end
       it "should have a proc returning false" do
-        namespace.menu["Status"].display_if_block.should be_instance_of(Proc)
-        namespace.menu["Status"].display_if_block.call.should == false
+        menu["Status"].display_if_block.should be_instance_of(Proc)
+        menu["Status"].display_if_block.call.should == false
       end
     end # describe "setting a condition for displaying"
   end # describe "adding to the menu"

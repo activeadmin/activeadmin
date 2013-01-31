@@ -33,12 +33,13 @@ module ActiveAdmin
 
     RegisterEvent = 'active_admin.namespace.register'.freeze
 
-    attr_reader :application, :resources, :name, :menu
+    attr_reader :application, :resources, :name
 
     def initialize(application, name)
       @application = application
       @name = name.to_s.underscore.to_sym
       @resources = ResourceCollection.new
+      reset_menu!
       register_module unless root?
       generate_dashboard_controller
     end
@@ -114,12 +115,13 @@ module ActiveAdmin
       application.send(name)
     end
 
-    def menu
-      @menu ||= MenuBuilder.build_for_namespace(self)
+    def fetch_menu(name)
+      @menus.fetch(name.to_sym)
     end
 
     def reset_menu!
-      @menu = nil
+      @menus = {}
+      @menus[:default] = MenuBuilder.build_for_namespace(self)
     end
 
     protected

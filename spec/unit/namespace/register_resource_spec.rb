@@ -6,6 +6,8 @@ describe ActiveAdmin::Namespace, "registering a resource" do
 
   let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
 
+  let(:menu){ namespace.fetch_menu(:default) }
+
   context "with no configuration" do
     before do
       namespace.register Category
@@ -20,8 +22,8 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       defined?(Admin::DashboardController).should be_true
     end
     it "should create a menu item" do
-      namespace.menu["Categories"].should be_an_instance_of(ActiveAdmin::MenuItem)
-      namespace.menu["Categories"].url.should == :admin_categories_path
+      menu["Categories"].should be_an_instance_of(ActiveAdmin::MenuItem)
+      menu["Categories"].url.should == :admin_categories_path
     end
   end # context "with no configuration"
 
@@ -48,7 +50,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       defined?(Admin::MockResourcesController).should be_true
     end
     it "should create a menu item" do
-      namespace.menu["Mock Resources"].should be_an_instance_of(ActiveAdmin::MenuItem)
+      menu["Mock Resources"].should be_an_instance_of(ActiveAdmin::MenuItem)
     end
 
     it "should use the resource as the model in the controller" do
@@ -88,7 +90,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         namespace.register Category
       end
       it "should add a new menu item" do
-        namespace.menu['Categories'].should_not be_nil
+        menu['Categories'].should_not be_nil
       end
     end # describe "adding as a top level item"
 
@@ -99,10 +101,10 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         end
       end
       it "should generate the parent menu item" do
-        namespace.menu['Blog'].should_not be_nil
+        menu['Blog'].should_not be_nil
       end
       it "should generate its own child item" do
-        namespace.menu['Blog']['Categories'].should_not be_nil
+        menu['Blog']['Categories'].should_not be_nil
       end
     end # describe "adding as a child"
 
@@ -113,7 +115,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         end
       end
       it "should not create a menu item" do
-        namespace.menu["Categories"].should be_nil
+        menu["Categories"].should be_nil
       end
     end # describe "disabling the menu"
     
@@ -124,7 +126,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         end
       end
       it "should have a custom priority of 2" do
-        namespace.menu["Categories"].priority.should == 2
+        menu["Categories"].priority.should == 2
       end
     end # describe "setting menu priority"
     
@@ -135,8 +137,8 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         end
       end
       it "should have a proc returning false" do
-        namespace.menu["Categories"].display_if_block.should be_instance_of(Proc)
-        namespace.menu["Categories"].display_if_block.call.should == false
+        menu["Categories"].display_if_block.should be_instance_of(Proc)
+        menu["Categories"].display_if_block.call.should == false
       end
     end # describe "setting a condition for displaying"
 
@@ -148,7 +150,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
           end
         end
         it "should not show up in the menu" do
-          namespace.menu["Posts"].should be_nil
+          menu["Posts"].should be_nil
         end
       end
       context "when optional" do
@@ -158,7 +160,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
           end
         end
         it "should show up in the menu" do
-          namespace.menu["Posts"].should_not be_nil
+          menu["Posts"].should_not be_nil
         end
       end
     end
