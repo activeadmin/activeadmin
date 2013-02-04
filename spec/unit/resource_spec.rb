@@ -71,18 +71,27 @@ module ActiveAdmin
         let(:resource){ namespace.register(Post) }
         it { should be_include_in_menu }
       end
-      context "when belongs to" do
-        let(:resource){ namespace.register(Post){ belongs_to :author } }
-        it { should_not be_include_in_menu }
-      end
-      context "when belongs to optional" do
-        let(:resource){ namespace.register(Post){ belongs_to :author, :optional => true} }
-        it { should be_include_in_menu }
-      end
+
       context "when menu set to false" do
         let(:resource){ namespace.register(Post){ menu false } }
         it { should_not be_include_in_menu }
       end
+    end
+
+    describe "#belongs_to" do
+
+      it "should build a belongs to configuration" do
+        config.belongs_to_config.should be_nil
+        config.belongs_to :posts
+        config.belongs_to_config.should_not be_nil
+      end
+
+      it "should set the target menu to the belongs to target" do
+        config.menu_item_menu_name.should == ActiveAdmin::DEFAULT_MENU
+        config.belongs_to :posts
+        config.menu_item_menu_name.should == :posts
+      end
+
     end
 
     describe "route names" do
@@ -90,7 +99,7 @@ module ActiveAdmin
         config.route_prefix.should == "admin"
       end
       it "should return the route collection path" do
-        config.route_collection_path.should == :admin_categories_path
+        config.route_collection_path.should == "/admin/categories"
       end
 
       context "when in the root namespace" do
@@ -103,9 +112,10 @@ module ActiveAdmin
       context "when registering a plural resource" do
         class ::News; def self.has_many(*); end end
 
-        let(:config){ application.register News }
         it "should return the plurali route with _index" do
-          config.route_collection_path.should == :admin_news_index_path
+          config = application.register News
+          reload_routes!
+          config.route_collection_path.should == "/admin/news"
         end
       end
     end

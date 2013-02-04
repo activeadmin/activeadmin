@@ -23,7 +23,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
     end
     it "should create a menu item" do
       menu["Categories"].should be_an_instance_of(ActiveAdmin::MenuItem)
-      menu["Categories"].url.should == :admin_categories_path
+      menu["Categories"].url.should be_an_instance_of(Proc)
     end
   end # context "with no configuration"
 
@@ -115,7 +115,9 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         end
       end
       it "should not create a menu item" do
-        menu["Categories"].should be_nil
+        expect {
+          menu["Categories"]
+        }.to raise_error(KeyError)
       end
     end # describe "disabling the menu"
     
@@ -150,7 +152,9 @@ describe ActiveAdmin::Namespace, "registering a resource" do
           end
         end
         it "should not show up in the menu" do
-          menu["Posts"].should be_nil
+          expect {
+            menu["Posts"]
+          }.to raise_error(KeyError)
         end
       end
       context "when optional" do

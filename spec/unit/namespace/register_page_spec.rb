@@ -67,7 +67,9 @@ describe ActiveAdmin::Namespace, "registering a page" do
         end
       end
       it "should not create a menu item" do
-        menu["Status"].should be_nil
+        expect {
+          menu["Status"]
+        }.to raise_error(KeyError)
       end
     end # describe "disabling the menu"
     

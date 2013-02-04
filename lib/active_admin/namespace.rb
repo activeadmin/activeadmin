@@ -1,6 +1,5 @@
 require 'active_admin/helpers/settings'
 require 'active_admin/resource_collection'
-require 'active_admin/menu_builder'
 
 module ActiveAdmin
 
@@ -33,13 +32,13 @@ module ActiveAdmin
 
     RegisterEvent = 'active_admin.namespace.register'.freeze
 
-    attr_reader :application, :resources, :name
+    attr_reader :application, :resources, :name, :menus
 
     def initialize(application, name)
       @application = application
       @name = name.to_s.underscore.to_sym
       @resources = ResourceCollection.new
-      reset_menu!
+      @menus = MenuCollection.new
       register_module unless root?
       generate_dashboard_controller
     end
@@ -116,12 +115,27 @@ module ActiveAdmin
     end
 
     def fetch_menu(name)
-      @menus.fetch(name.to_sym)
+      build_menus!
+
+      @menus.fetch(name)
     end
 
     def reset_menu!
-      @menus = {}
-      @menus[:default] = MenuBuilder.build_for_namespace(self)
+      @menus.clear!
+      @menus_built = false
+    end
+
+    def build_menus!
+      return if @menus_built
+
+      # Support for deprecated dashboards...
+      Dashboards.add_to_menu(self, @menus.fetch(DEFAULT_MENU))
+
+      resources.each do |resource|
+        resource.add_to_menu(@menus)
+      end
+
+      @menus_built = true
     end
 
     protected

@@ -55,7 +55,7 @@ describe ActiveAdmin::Namespace do
 
     it "should raise an exception if the menu doesn't exist" do
       expect {
-        namespace.fetch_menu(:nomenu)
+        namespace.fetch_menu(:not_a_menu_that_exists)
       }.to raise_error(KeyError)
     end
 
