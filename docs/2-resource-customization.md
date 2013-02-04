@@ -160,3 +160,64 @@ If you need to completely replace the record retrieving code (e.g., you have a c
 In fact, the controllers use [Inherited Resource](https://github.com/josevalim/inherited_resources),
 so you can use all the
 [customization features in Inherited Resource](https://github.com/josevalim/inherited_resources#overwriting-defaults).
+
+
+## Belongs To
+
+It's common to want to scope a series of resources to a relationship. For
+example a Project may have many Milestones and Tickets. To nest the resource
+within another, you can use the `belongs_to` method:
+
+    ActiveAdmin.register Project do
+    end
+
+    ActiveAdmin.register Ticket do
+      belongs_to :project
+    end
+
+Projects will be available as usual and tickets will be availble by visiting
+"/admin/projects/1/tickets" assuming that a Project with the id of 1 exists.
+Active Admin does not add "Tickets" to the global navigation because the routes
+can only be generated when there is a project id.
+
+To create links to the resource, you can add them to a sidebar (one of the many
+possibilities for how you may with to handle your user interface):
+
+    ActiveAdmin.register Project do
+
+      sidebar "Project Details" do
+        ul do
+          li link_to("Tickets", admin_project_tickets_path(project))
+          li link_to("Milestones", admin_project_milestones_path(project))
+        end
+      end
+
+    end
+
+    ActiveAdmin.register Ticket do
+      belongs_to :project
+    end
+
+    ActiveAdmin.register Milestone do
+      belongs_to :project
+    end
+
+
+In some cases (like Projects), there are many sub resources and you would
+actually like the global navigation to switch when the user navigates "into" a
+project. To accomplish this, Active Admin stores the `belongs_to` resources in a
+seperate menu which you can use if you so wish. To use:
+
+    ActiveAdmin.register Ticket do
+      belongs_to   :project
+      display_menu :project
+    end
+
+    ActiveAdmin.register Milestone do
+      belongs_to   :project
+      display_menu :project
+    end
+
+Now, when you navigate to the tickets section, the global navigation will
+only display "Tickets" and "Milestones". When you navigate back to a
+non-belongs_to resource, it will switch back to the default menu.
