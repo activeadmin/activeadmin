@@ -29,7 +29,7 @@ module ActiveAdmin
 
         route << (route_uncountable? ? 'index_path' : 'path')
 
-        route_name = route.join("_").to_sym
+        route_name = route.compact.join("_").to_sym
 
         route_params = params.values_at(*required_params)
         routes.send(route_name, *route_params)

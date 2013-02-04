@@ -38,7 +38,7 @@ shared_examples_for "ActiveAdmin::Config" do
       end
 
       it "initialize a new menu item with custom options" do
-        config.menu :label => "Hello"
+        config.menu_item_options = { :label => "Hello" }
         config.menu_item_options[:label].should == "Hello"
       end
 
@@ -50,7 +50,7 @@ shared_examples_for "ActiveAdmin::Config" do
       end
 
       it "should not be included in menu when menu set to false" do
-        config.menu false
+        config.menu_item_options = false
         config.include_in_menu?.should == false
       end
     end

@@ -107,6 +107,12 @@ module ActiveAdmin
         it "should have a nil route_prefix" do
           config.route_prefix.should == nil
         end
+
+        it "should generate a correct route" do
+          config
+          reload_routes!
+          config.route_collection_path.should == "/categories"
+        end
       end
 
       context "when registering a plural resource" do
