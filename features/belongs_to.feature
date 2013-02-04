@@ -48,3 +48,16 @@ Feature: Belongs To
 
     When I follow "Posts"
     Then the "Posts" tab should be selected
+
+  Scenario: Displaying belongs to resources in main menu
+    Given a configuration of:
+    """
+      ActiveAdmin.register User
+      ActiveAdmin.register Post do
+        belongs_to :user
+        display_menu :user
+      end
+    """
+    When I go to the last author's posts
+    And I follow "View"
+    Then the "Posts" tab should be selected

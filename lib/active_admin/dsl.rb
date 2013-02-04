@@ -99,7 +99,6 @@ module ActiveAdmin
     # => :confirm is a string which the user will have to accept in order to process the action
     #
     def batch_action(title, options = {}, &block)
-      
       # Create symbol & title information
       if title.is_a?( String )
         sym = title.titleize.gsub(' ', '').underscore.to_sym
@@ -114,13 +113,24 @@ module ActiveAdmin
       else
         config.remove_batch_action sym
       end
-      
     end
 
+    # Set the options that are available for the item that will be placed in the global
+    # navigation of the menu.
     def menu(options = {})
-      config.menu(options)
+      config.menu_item_options = options
     end
-    
+
+    # Set the name of the menu to display. This is mainly used in conjuction with the
+    # `#belongs_to` functionality.
+    #
+    # @param [Symbol] menu_name The name of the menu to display as the global navigation
+    #                 when viewing this resource. Defaults to a menu named `:default`.
+    #
+    def display_menu(menu_name)
+      config.display_menu_name = menu_name
+    end
+
     # Rewrite breadcrumb links.
     # Block will be executed inside controller.
     # Block must return an array if you want to rewrite breadcrumb links.

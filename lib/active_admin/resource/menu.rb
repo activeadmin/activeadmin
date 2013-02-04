@@ -5,9 +5,10 @@ module ActiveAdmin
 
       # Set the menu options. To not add this resource to the menu, just
       # call #menu(false)
-      def menu(options = {})
+      def menu_item_options=(options)
         if options == false
           @display_menu = false
+          @menu_item_options = {}
         else
           self.menu_item_menu_name = options[:menu_name]
           @menu_item_options = default_menu_options.merge(options)
