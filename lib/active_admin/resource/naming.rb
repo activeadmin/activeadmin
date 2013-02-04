@@ -20,7 +20,7 @@ module ActiveAdmin
         if @options[:as]
           @options[:as]
         else
-           resource_name.human(:default => resource_name.gsub('::', ' ').titleize)
+           resource_name.human(:default => resource_name.gsub('::', ' ').titleize.singularize)
          end
       end
 
