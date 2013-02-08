@@ -1,0 +1,21 @@
+.ui-widget-overlay { position: fixed; }
+.ui-dialog {
+  position: fixed;
+  padding: 20px;
+  @include box-shadow(rgba(0,0,0,0.5) 0 0px 10px inset);
+  @include gradient(lighten($primary-color, 40%), darken($secondary-color, 55%));
+
+  .ui-dialog-title { font-size: 1.8em; }
+  .ui-dialog-titlebar-close { float: right; }
+  p { font-size: 1.3em;
+      margin: 10px;
+  }
+  ul { list-style-type: none; }
+  li { margin: 10px; }
+  label { font-size: 1.2em; }
+
+  .ui-dialog-buttonpane button {
+    &:first-child { @include dark-button; } // OK
+    &:last-child { @include light-button; } // Cancel
+  }
+}

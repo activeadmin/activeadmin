@@ -31,7 +31,8 @@ module ActiveAdmin
       # @param [Hash] options
       # => :if is a proc that will be called to determine if the BatchAction should be displayed
       # => :sort_order is used to sort the batch actions ascending
-      # => :confirm is a string which the user will have to accept in order to process the action
+      # => :confirm is a string to prompt the user with (or a boolean to use the default message)
+      # => :form is a Hash of form fields you want the user to fill out
       #
       def add_batch_action(sym, title, options = {}, &block)
         @batch_actions[sym] = ActiveAdmin::BatchAction.new(sym, title, options, &block)
@@ -61,8 +62,8 @@ module ActiveAdmin
       def add_default_batch_actions
         destroy_options = {
           :priority => 100,
-          :confirm => proc { I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => active_admin_config.plural_resource_label.downcase) },
-          :if => proc{ controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, active_admin_config.resource_class) }
+          :confirm => proc{ I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => active_admin_config.plural_resource_label.downcase) },
+          :if      => proc{ controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, active_admin_config.resource_class) }
         }
 
         add_batch_action :destroy, proc { I18n.t('active_admin.delete') }, destroy_options do |selected_ids|
@@ -83,7 +84,9 @@ module ActiveAdmin
 
     include Comparable
 
-    attr_reader :block, :title, :sym, :confirm
+    attr_reader :block, :title, :sym
+
+    DEFAULT_CONFIRM_MESSAGE = proc { I18n.t 'active_admin.batch_actions.default_confirmation' }
 
     # Create a Batch Action
     #
@@ -99,17 +102,31 @@ module ActiveAdmin
     # => You can create batch actions with a title instead of a Symbol
     #
     #   BatchAction.new( :flag, :if => proc { can? :flag, AdminUser  } ) { |selection| }
-    # => You can provide an optional :if proc to optionally display the batch action
+    # => You can provide an optional `:if` proc to optionally display the batch action
+    #
+    #   BatchAction.new( :flag, :confirm => "Are you sure?" ) { |selection| }
+    # => You can pass `true` to use the default confirm message, or pass a string to set your own.
+    #
+    #   BatchAction.new( :flag, :confirm => true, :form => {:foo => :text, :bar => :checkbox} ) { |selection, inputs| }
+    # => You can pass a hash of options to `:form` that will be rendered as form input fields for the user to fill out.
     #
     def initialize(sym, title, options = {}, &block)
       @sym, @title, @options, @block, @confirm = sym, title, options, block, options[:confirm]
       @block ||= proc {}
     end
 
+    def confirm
+      @confirm == true ? DEFAULT_CONFIRM_MESSAGE : @confirm
+    end
+
+    def inputs
+      HashWithIndifferentAccess.new @options[:form] || {}
+    end
+
     # Returns the display if block. If the block was not explicitly defined
     # a default block always returning true will be returned.
     def display_if_block
-      @options[:if] || proc { true }
+      @options[:if] || proc{ true }
     end
 
     # Used for sorting
