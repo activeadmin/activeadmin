@@ -99,6 +99,29 @@ Menu items can be shown or hidden at runtime using the `:if` option.
 The `proc` will be called in the context of the view, so you have access to all
 your helpers and current user session information.
 
+### Adding Custom Menu Items
+
+Sometimes it's not enough to just customize the menu label. In this case, you
+can customize the menu for the namespace within the Active Admin initializer.
+
+    # config/initializers/active_admin.rb
+    ActiveAdmin.setup do |config|
+      config.namespace :admin do |admin|
+        admin.build_menu do |menu|
+          menu.add :label => "The Application", :url => "/", :priority => 0
+
+          menu.add :label => "Sites" do |sites|
+            sites.add :label => "Google", :url => "http://google.com"
+            sites.add :label => "Facebook", :url => "http://facebook.com"
+            sites.add :label => "Github", :url => "http://github.com"
+          end
+        end
+      end
+    end
+
+This block will be run once on application startup to build the menu before each
+of the resources are added to it.
+
 ## Scoping the queries
 
 If your administrators have different access levels, you may sometimes want to

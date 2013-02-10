@@ -1,4 +1,4 @@
-require 'spec_helper_without_rails'
+require 'spec_helper'
 require 'active_admin/menu'
 require 'active_admin/menu_item'
 
@@ -43,7 +43,13 @@ describe ActiveAdmin::Menu do
       menu["Admin"]["Users"].should be_an_instance_of(ActiveAdmin::MenuItem)
     end
 
-    it "should add a child to a parent if it exists"
+    it "should add a child to a parent if it exists" do
+      menu = Menu.new
+      menu.add :parent => "Admin", :label  => "Users"
+      menu.add :parent => "Admin", :label  => "Projects"
+
+      menu["Admin"]["Projects"].should be_an_instance_of(ActiveAdmin::MenuItem)
+    end
   end
 
 end

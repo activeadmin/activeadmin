@@ -38,9 +38,9 @@ module ActiveAdmin
       @application = application
       @name = name.to_s.underscore.to_sym
       @resources = ResourceCollection.new
-      @menus = MenuCollection.new
       register_module unless root?
       generate_dashboard_controller
+      build_menu_collection
     end
 
     # Register a resource into this namespace. The preffered method to access this is to 
@@ -115,30 +115,41 @@ module ActiveAdmin
     end
 
     def fetch_menu(name)
-      build_menus!
-
       @menus.fetch(name)
     end
 
     def reset_menu!
       @menus.clear!
-      @menus_built = false
     end
 
-    def build_menus!
-      return if @menus_built
-
-      # Support for deprecated dashboards...
-      Dashboards.add_to_menu(self, @menus.fetch(DEFAULT_MENU))
-
-      resources.each do |resource|
-        resource.add_to_menu(@menus)
+    # Add a callback to be ran when we build the menu
+    #
+    # @param [Symbol] name The name of the menu. Default: :default
+    # @param [Proc] block The block to be ran when the menu is built
+    #
+    # @returns [void]
+    def build_menu(name = DEFAULT_MENU, &block)
+      @menus.before_build do |menus|
+        menus.menu name do |menu|
+          block.call(menu)
+        end
       end
-
-      @menus_built = true
     end
 
     protected
+
+    def build_menu_collection
+      @menus = MenuCollection.new
+
+      @menus.on_build do |menus|
+        # Support for deprecated dashboards...
+        Dashboards.add_to_menu(self, menus.menu(DEFAULT_MENU))
+
+        resources.each do |resource|
+          resource.add_to_menu(@menus)
+        end
+      end
+    end
 
     # Either returns an existing Resource instance or builds a new
     # one for the resource and options

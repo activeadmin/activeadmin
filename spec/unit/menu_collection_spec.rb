@@ -6,7 +6,6 @@ describe ActiveAdmin::MenuCollection do
 
   describe "#add" do
 
-
     it "should initialize a new menu when first item" do
       menus.add :default, :label => "Hello World"
 
@@ -34,6 +33,28 @@ describe ActiveAdmin::MenuCollection do
         menus.fetch(:non_default_menu)
       }.to raise_error(ActiveAdmin::MenuCollection::NoMenuError)
 
+    end
+
+  end
+
+  describe "#on_build" do
+
+    it "runs a callback when fetching a menu" do
+      menus.on_build do |m|
+        m.add :default, :label => "Hello World"
+      end
+
+      menus.fetch(:default)["Hello World"].should_not be_nil
+    end
+
+    it "re-runs the callbacks when the menu is cleared" do
+      menus.on_build do |m|
+        m.add :default, :label => "Hello World"
+      end
+
+      menus.fetch(:default)["Hello World"].should_not be_nil
+      menus.clear!
+      menus.fetch(:default)["Hello World"].should_not be_nil
     end
 
   end

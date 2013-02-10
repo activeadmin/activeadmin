@@ -58,6 +58,26 @@ describe ActiveAdmin::Namespace do
         namespace.fetch_menu(:not_a_menu_that_exists)
       }.to raise_error(KeyError)
     end
-
   end
+
+  describe "#build_menu" do
+    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+
+    it "should set the block as a menu build callback" do
+      namespace.build_menu do |menu|
+        menu.add :label => "menu item"
+      end
+
+      namespace.fetch_menu(:default)["menu item"].should_not be_nil
+    end
+
+    it "should set a block on a custom menu" do
+      namespace.build_menu :test do |menu|
+        menu.add :label => "menu item"
+      end
+
+      namespace.fetch_menu(:test)["menu item"].should_not be_nil
+    end
+  end
+
 end
