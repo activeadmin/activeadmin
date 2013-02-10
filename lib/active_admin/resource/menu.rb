@@ -21,10 +21,12 @@ module ActiveAdmin
 
       # The default menu options to pass through to MenuItem.new
       def default_menu_options
+        the_resource = self # Make it available in the proc
+
         {
           :id => resource_name.plural,
           :label => proc{ plural_resource_label },
-          :url => proc{|params| route_collection_path(params) }
+          :url => proc{ the_resource.route_collection_path(params) }
         }
       end
 
