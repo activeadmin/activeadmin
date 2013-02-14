@@ -46,12 +46,16 @@ a.table_tools_button, .table_tools .dropdown_menu_button {
 
 .table_tools_segmented_control {
   display: inline-block;
+  *display: inline;
+  zoom: 1;
   list-style-type: none;
   margin: 0;
   padding: 0;
   
   li {
     display: inline-block;
+    *display: inline;
+    zoom: 1;
     list-style-image: none;
     list-style-type: none;
     margin-left: -7px;

@@ -50,6 +50,8 @@
 
     & > li { 
       display: inline-block; 
+      *display: inline;
+      zoom: 1;
       margin-right: 4px; 
       font-size: 1.0em; 
       position: relative; 
