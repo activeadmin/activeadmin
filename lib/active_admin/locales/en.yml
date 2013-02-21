@@ -76,6 +76,9 @@ en:
       change_password:
         title: "Change your password"
         submit: "Change my password"
+      unlock:
+        title: "Resend unlock instructions"
+        submit: "Resend unlock instructions"
       links:
         sign_in: "Sign in"
         forgot_your_password: "Forgot your password?"
