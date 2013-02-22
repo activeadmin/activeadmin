@@ -59,6 +59,8 @@ inject_into_file "config/environment.rb", "\n$LOAD_PATH.unshift('#{File.expand_p
 # Add some translations
 append_file "config/locales/en.yml", File.read(File.expand_path('../templates/en.yml', __FILE__))
 
+generate :'active_admin:install'
+
 # Add predefined admin resources
 directory File.expand_path('../templates/admin', __FILE__), "app/admin"
 
@@ -74,8 +76,6 @@ route %q{
     match '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
   end
 }
-
-generate :'active_admin:install'
 
 # Setup a root path for devise
 route "root :to => 'admin/dashboard#index'"
