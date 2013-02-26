@@ -27,7 +27,7 @@ window.AA.Popover = class AA.Popover
     @_buildPopover()
     @_bind()
 
-    return @
+    @
 
 
   open: ->
@@ -37,21 +37,21 @@ window.AA.Popover = class AA.Popover
     @_positionPopover()
     @_positionNipple()
 
-    return @
+    @
 
 
   close: ->
     @isOpen = false;
     @$popover.fadeOut this.options.fadeOutDuration;
 
-    return @
+    @
 
   destroy: ->
     @$element.removeData('popover');
     @$element.unbind();
     @$element = null;
 
-    return @
+    @
 
   option: ->
     # ??
