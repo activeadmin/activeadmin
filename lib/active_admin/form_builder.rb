@@ -76,7 +76,7 @@ module ActiveAdmin
           form_buffers.last << template.content_tag(:h3, object.class.reflect_on_association(association).klass.model_name.human(:count => 1.1)) unless options[:title] == false
           inputs options, &form_block
 
-          js = js_for_has_many(association, form_block, template)
+          js = options[:new_record] == false ? "" : js_for_has_many(association, form_block, template) 
           form_buffers.last << js.html_safe
         end
       end

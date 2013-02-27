@@ -351,7 +351,7 @@ describe ActiveAdmin::FormBuilder do
       let :body do
         build_form({:url => '/categories'}, Category.new) do |f|
           f.object.posts.build
-          f.has_many :posts, :title => false do |p,i|
+          f.has_many :posts, :title => false, :new_record => false do |p,i|
             p.input :title, :label => "Title #{i}"
           end
         end
@@ -363,7 +363,12 @@ describe ActiveAdmin::FormBuilder do
 
       it "should not add a header" do
         body.should_not have_tag('h3', 'Post')
-      end      
+      end  
+
+      it "should not add link to new nested records" do
+        body.should_not have_tag('a', 'Add New Post')
+      end 
+
     end
 
     pending "should render the block if it returns nil" do
