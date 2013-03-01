@@ -75,6 +75,22 @@ describe ActiveAdmin::Filters::ViewHelper do
         I18n.backend.reload!
       end
     end
+
+    context "using starts_with and as" do
+      let(:body) { filter :title_starts_with, :as => :string }
+
+      it "should generate a search field for a string attribute with query starts_with" do
+        body.should have_tag("input", :attributes => { :name => "q[title_starts_with]" })
+      end
+    end
+
+    context "using ends_with and as" do
+      let(:body) { filter :title_ends_with, :as => :string }
+
+      it "should generate a search field for a string attribute with query starts_with" do
+        body.should have_tag("input", :attributes => { :name => "q[title_ends_with]" })
+      end
+    end
   end
 
   describe "text attribute" do

@@ -15,7 +15,11 @@ module ActiveAdmin
       end
 
       def input_name
-        "#{super}_contains"
+        method.to_s.match(metasearch_conditions) ? method : "#{method}_contains"
+      end
+
+      def metasearch_conditions
+        /starts_with|ends_with/
       end
     end
   end
