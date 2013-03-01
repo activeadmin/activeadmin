@@ -36,6 +36,12 @@ module ActiveAdmin
 
       def display_menu_name
         @display_menu_name ||= DEFAULT_MENU
+        case @display_menu_name
+        when Proc
+          controller.instance_eval(&@display_menu_name).to_sym
+        else
+          @display_menu_name
+        end
       end
 
       def display_menu

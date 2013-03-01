@@ -244,3 +244,13 @@ seperate menu which you can use if you so wish. To use:
 Now, when you navigate to the tickets section, the global navigation will
 only display "Tickets" and "Milestones". When you navigate back to a
 non-belongs_to resource, it will switch back to the default menu.
+
+You can also defer the menu lookup until runtime so that you can dynamically show
+different menus, say perhaps on user permissions or level.  For example:
+
+    ActiveAdmin.register Ticket do
+      belongs_to:   :project
+      display_menu do
+        authorized?(:manage, SomeResource) ? :project : :restricted_menu
+      end
+    end

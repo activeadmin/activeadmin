@@ -9,6 +9,9 @@ end
 describe ActiveAdmin::DSL do
 
   let(:config){ mock }
+  let(:application) { ActiveAdmin::Application.new }
+  let(:namespace) { ActiveAdmin::Namespace.new application, :admin }
+  let(:resource_config) { ActiveAdmin::Resource.new namespace, Post }
   let(:dsl){ ActiveAdmin::DSL.new(config) }
 
   describe "#include" do
@@ -40,6 +43,17 @@ describe ActiveAdmin::DSL do
       dsl.run_registration_block do
         display_menu :admin
       end
+    end
+
+    it "should accept a block" do
+
+      dsl = ActiveAdmin::DSL.new(resource_config)
+      dsl.run_registration_block do
+        display_menu { :dynamic_menu }
+      end
+
+      resource_config.display_menu_name.should == :dynamic_menu
+
     end
 
   end

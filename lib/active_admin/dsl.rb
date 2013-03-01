@@ -127,8 +127,11 @@ module ActiveAdmin
     # @param [Symbol] menu_name The name of the menu to display as the global navigation
     #                 when viewing this resource. Defaults to a menu named `:default`.
     #
-    def display_menu(menu_name)
-      config.display_menu_name = menu_name
+    # Pass a block returning the name of a menu you want rendered for the request, being
+    # executed in the context of the controller
+    #
+    def display_menu(menu_name=nil, &block)
+      config.display_menu_name = menu_name || block
     end
 
     # Rewrite breadcrumb links.
