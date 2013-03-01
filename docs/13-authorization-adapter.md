@@ -38,8 +38,16 @@ application's `config/initializers/active_admin.rb` and add/modify the line:
 
     config.authorization_adapter = "OnlyAuthorsAuthorization"
 
-The authorization adapter can also be set without going through config by 
-using the following line:
+Authorization adapters can be configured per ActiveAdmin namespace as well, for example:
+
+    ActiveAdmin.setup do |config|
+      config.namespace :admin do |ns|
+        ns.authorization_adapter = "AdminAuthorization"
+      end
+      config.namespace :my do |ns|
+        ns.authorization_adapter = "DashboardAuthorization"
+      end
+    end
 
 Now, whenever a controller action is performed, the `OnlyAuthorsAuthorization`'s
 `#authorized?` method will be called.
@@ -167,7 +175,7 @@ If you are implementing a custom controller action, you can use the
 
 Sub-classing `ActiveAdmin::AuthorizationAdapter` is fairly low level. Many times
 it's nicer to have a simpler DSL for managing authorization. Active Admin
-provides and adapter out of the box for CanCan.
+provides an adapter out of the box for [CanCan](https://github.com/ryanb/cancan).
 
 To use the CanCan adapter, simply update the configuration in the Active Admin
 initializer:
@@ -195,4 +203,4 @@ will use it for authorization:
 
     end
 
-To view more details about the CanCan API, visit https://github.com/ryanb/cancan
+To view more details about the CanCan API, visit [https://github.com/ryanb/cancan](https://github.com/ryanb/cancan).
