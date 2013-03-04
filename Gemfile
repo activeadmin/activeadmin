@@ -44,4 +44,5 @@ group :test do
   gem 'guard-rspec'
   gem "guard-coffeescript"
   gem 'jasmine'
+  gem 'cancan'
 end

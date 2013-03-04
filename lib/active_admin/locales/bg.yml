@@ -3,7 +3,7 @@ bg:
     dashboard: Табло
     dashboard_welcome:
       welcome: "Добре дошли в Active Admin. Това е таблото по подразбиране."
-      call_to_action: "За да добавите секции, проверете 'app/admin/dashboards.rb'"
+      call_to_action: "За да добавите секции, проверете 'app/admin/dashboard.rb'"
     view: "Преглед"
     edit: "Редакция"
     delete: "Изтриване"

@@ -4,7 +4,7 @@ ca:
     dashboard: Tauler
     dashboard_welcome:
       welcome: "Benvingut a Active Admin. Aquest és el tauler per defecte."
-      call_to_action: "Mira l'arxiu 'app/admin/dashboards.rb' per afegir seccions al tauler"
+      call_to_action: "Mira l'arxiu 'app/admin/dashboard.rb' per afegir seccions al tauler"
     view: "Mostra"
     edit: "Edita"
     delete: "Elimina"

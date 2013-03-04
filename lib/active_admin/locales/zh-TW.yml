@@ -3,7 +3,7 @@
     dashboard: 儀表板
     dashboard_welcome:
       welcome: "歡迎來到 Active Admin 這是預設的儀表板頁面。"
-      call_to_action: "要新增儀表板內容，請查看 'app/admin/dashboards.rb'"
+      call_to_action: "要新增儀表板內容，請查看 'app/admin/dashboard.rb'"
     view: "檢視"
     edit: "編輯"
     delete: "刪除"

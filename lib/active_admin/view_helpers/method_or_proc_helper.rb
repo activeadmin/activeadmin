@@ -1,24 +1,64 @@
 module MethodOrProcHelper
 
-  # Many times throughout the views we want to either call a method on an object
-  # or instance_exec a proc passing in the object as the first parameter. This
-  # method takes care of this functionality.
+  # This method will either call the symbol on self or instance_exec the Proc
+  # within self. Any args will be passed along to the method dispatch.
   #
-  #   call_method_or_proc_on(@my_obj, :size) same as @my_obj.size
-  # OR
-  #   proc = Proc.new{|s| s.size }
-  #   call_method_or_proc_on(@my_obj, proc)
+  # Calling with a Symbol:
   #
-  def call_method_or_proc_on(obj, symbol_or_proc, options = {})
-    exec = options[:exec].nil? ? true : options[:exec]
+  #     call_method_or_exec_proc(:to_s) #=> will call #to_s
+  #
+  # Calling with a Proc
+  #
+  #     my_proc = Proc.new{ to_s }
+  #     call_method_or_exec_proc(my_proc) #=> will instance_exec in self
+  #
+  def call_method_or_exec_proc(symbol_or_proc, *args)
     case symbol_or_proc
     when Symbol, String
-      obj.send(symbol_or_proc.to_sym)
+      send(symbol_or_proc, *args)
     when Proc
-      if exec
-        instance_exec(obj, &symbol_or_proc)
+      instance_exec(*args, &symbol_or_proc)
+    end
+  end
+
+  # Many times throughout the views we want to either call a method on an object
+  # or instance_exec a proc passing in the object as the first parameter. This
+  # method wraps that pattern.
+  #
+  # Calling with a Symbol:
+  #
+  #     call_method_or_proc_on(@my_obj, :size) same as @my_obj.size
+  #
+  # Calling with a Proc:
+  #
+  #     proc = Proc.new{|s| s.size }
+  #     call_method_or_proc_on(@my_obj, proc)
+  #
+  # By default, the Proc will be instance_exec'd within self. If you would rather
+  # not instance exec, but just call the Proc, then pass along `:exec => false` in
+  # the options hash.
+  #
+  #     proc = Proc.new{|s| s.size }
+  #     call_method_or_proc_on(@my_obj, proc, :exec => false)
+  #
+  # You can pass along any necessary arguments to the method / Proc as arguments. For 
+  # example:
+  #
+  #     call_method_or_proc_on(@my_obj, :find, 1) #=> @my_obj.find(1)
+  #
+  def call_method_or_proc_on(receiver, *args)
+    options = { :exec => true }.merge(args.extract_options!)
+
+    symbol_or_proc = args.shift
+
+    case symbol_or_proc
+    when Symbol, String
+      receiver.send(symbol_or_proc.to_sym, *args)
+    when Proc
+      if options[:exec]
+        instance_exec(receiver, *args, &symbol_or_proc)
       else
-        symbol_or_proc.call(obj)
+        symbol_or_proc.call(receiver, *args)
       end
     end
   end

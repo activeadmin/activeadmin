@@ -7,8 +7,9 @@ module ActiveAdmin
       class Index < Base
 
         def title
-          if config[:title].is_a? String
-            config[:title]
+          case config[:title]
+          when Proc then controller.instance_eval(&config[:title])
+          when String then config[:title]
           else
             active_admin_config.plural_resource_label
           end

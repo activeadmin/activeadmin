@@ -115,10 +115,10 @@ describe ActiveAdmin::ResourceController do
     describe "performing update" do
       let(:controller){ Admin::PostsController.new }
       let(:resource){ mock("Resource", :attributes= => true, :save => true) }
-      let(:attributes){ {} }
+      let(:attributes){ [{}] }
 
       before do
-        resource.should_receive(:attributes=).with(attributes)
+        resource.should_receive(:attributes=).with(attributes[0])
         resource.should_receive(:save)
       end
 
@@ -166,6 +166,7 @@ describe Admin::PostsController, :type => "controller" do
   describe 'retreiving the resource' do
     let(:controller){ Admin::PostsController.new }
     let(:post) { Post.new :title => "An incledibly unique Post Title" }
+
     before do
       Post.stub(:find).and_return(post)
       controller.class_eval { public :resource }
@@ -173,6 +174,7 @@ describe Admin::PostsController, :type => "controller" do
     end
 
     subject { controller.resource }
+
     it "returns a Post" do
       subject.should be_kind_of(Post)
     end

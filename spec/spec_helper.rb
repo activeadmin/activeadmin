@@ -116,6 +116,8 @@ ENV["RAILS_ASSET_ID"] = ''
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
+  config.include Devise::TestHelpers, :type => :controller
+  config.render_views = false
 end
 
 # All RSpec configuration needs to happen before any examples
@@ -123,6 +125,7 @@ end
 require 'integration_example_group'
 RSpec.configure do |c|
   c.include RSpec::Rails::IntegrationExampleGroup, :example_group => { :file_path => /\bspec\/integration\// }
+  c.include Devise::TestHelpers, :type => :controller
 end
 
 # Ensure this is defined for Ruby 1.8
