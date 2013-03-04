@@ -59,20 +59,20 @@ shared_examples_for "ActiveAdmin::Config" do
       end
     end
 
-    describe "parent menu item name" do
+    describe "parent menu item" do
 
       it "should be nil when not set" do
-        config.parent_menu_item_name.should == nil
+        config.parent_menu_item.should == nil
       end
 
       it "should return the name if set" do
         config.menu :parent => "Blog"
-        config.parent_menu_item_name.should == "Blog"
+        config.parent_menu_item[:label].should == "Blog"
       end
 
       it "initialize a new parent menu item with label as Proc object" do
         config.menu :parent => proc{ "Blog" }
-        config.parent_menu_item_name.should == "Blog"
+        config.parent_menu_item[:label].call.should == "Blog"
       end
     end
 

@@ -39,16 +39,16 @@ module ActiveAdmin
       end
 
       it "should accept new children" do
-        item = MenuItem.new
-        item.add MenuItem.new(:label => "Dashboard")
+        item = MenuItem.new(:label => "Administration")
+        item.add MenuItem.new(:label => "Users")
         item.children.first.should be_an_instance_of(MenuItem)
-        item.children.first.label.should == "Dashboard"
+        item.children.first.label.should == "Users"
       end
     end
 
     context "with many children" do
       let(:item) do
-        i = MenuItem.new(:label => "Dashboard")
+        i = MenuItem.new(:label => "Administration")
         i.add MenuItem.new(:label => "Blog")
         i.add MenuItem.new(:label => "Cars")
         i.add MenuItem.new(:label => "Users", :priority => 1)
@@ -79,7 +79,7 @@ module ActiveAdmin
 
       context "with no parent" do
         it "should return an empty array" do
-         item.ancestors.should == [] 
+         item.ancestors.should == []
         end
       end
 
