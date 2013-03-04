@@ -3,7 +3,7 @@
     dashboard: "控制面板"
     dashboard_welcome:
       welcome: "欢迎使用Active Admin. 这是默认的控制面板页."
-      call_to_action: "若要添加新的面板内容, 请修改 'app/admin/dashboards.rb'"
+      call_to_action: "若要添加新的面板内容, 请修改 'app/admin/dashboard.rb'"
     view: "查看"
     edit: "编辑"
     delete: "删除"

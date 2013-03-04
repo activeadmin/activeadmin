@@ -3,7 +3,7 @@ ja:
     dashboard: "ダッシュボード"
     dashboard_welcome:
       welcome: "Active Admin へようこそ。ダッシュボードの初期ページを表示しています。"
-      call_to_action: "ダッシュボードに項目を追加するために 'app/admin/dashboards.rb' を編集してください。"
+      call_to_action: "ダッシュボードに項目を追加するために 'app/admin/dashboard.rb' を編集してください。"
     view: "閲覧"
     edit: "編集"
     delete: "削除"
