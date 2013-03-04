@@ -14,6 +14,7 @@ module ActiveAdmin
         collection = super
         decorator ? decorator.decorate_collection(collection) : collection
       end
+
     end
   end
 end

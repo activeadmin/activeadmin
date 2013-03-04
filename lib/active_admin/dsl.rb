@@ -86,7 +86,7 @@ module ActiveAdmin
     def action_item(options = {}, &block)
       config.add_action_item(options, &block)
     end
-    
+
     # Add a new batch action item to the resource
     # Provide a symbol/string to register the action, options, & block to execute on request
     # 

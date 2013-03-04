@@ -25,10 +25,13 @@ module ActiveAdmin
 
       # The default menu options to pass through to MenuItem.new
       def default_menu_options
+        menu_resource_class = respond_to?(:resource_class) ? resource_class : self
+
         {
           :id => resource_name.plural,
           :label => proc{ plural_resource_label },
-          :url => route_collection_path
+          :url => route_collection_path,
+          :if => proc { authorized?(:read, menu_resource_class)  }
         }
       end
 
