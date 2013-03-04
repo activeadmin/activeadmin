@@ -3,7 +3,7 @@ es:
     dashboard: Inicio
     dashboard_welcome:
       welcome: "Bienvenido a Active Admin. Esta es la página de inicio predeterminada."
-      call_to_action: "Para agregar secciones edite 'app/admin/dashboards.rb'"
+      call_to_action: "Para agregar secciones edite 'app/admin/dashboard.rb'"
     view: "Ver"
     edit: "Editar"
     delete: "Eliminar"

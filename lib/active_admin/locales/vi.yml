@@ -3,7 +3,7 @@ vi:
     dashboard: Dashboard
     dashboard_welcome:
       welcome: "Chào mừng bạn đến với Active Admin. Đây là trang Dashboard mặc định."
-      call_to_action: "Để thêm phần phần cho trang Dashboar hãy chỉnh sửa 'app/admin/dashboards.rb'"
+      call_to_action: "Để thêm phần phần cho trang Dashboar hãy chỉnh sửa 'app/admin/dashboard.rb'"
     view: "Xem"
     edit: "Chỉnh sửa"
     delete: "Xóa"
