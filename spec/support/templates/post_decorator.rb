@@ -8,12 +8,12 @@ require_dependency 'post'
 class PostDecorator < SimpleDelegator
   delegate :id, :to => :__getobj__
 
-  def self.decorate(collection_or_object)
-    if collection_or_object.respond_to?(:to_ary)
-      DecoratedEnumerableProxy.new(collection_or_object)
-    else
-      new(collection_or_object)
-    end
+  def self.decorate(object)
+    new(object)
+  end
+
+  def self.decorate_collection(collection)
+    DecoratedEnumerableProxy.new(collection)
   end
 
   def self.model_name
