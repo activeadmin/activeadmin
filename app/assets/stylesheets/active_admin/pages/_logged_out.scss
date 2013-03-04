@@ -15,7 +15,7 @@
     @include section-header;
     @include primary-gradient;
     @include text-shadow(#000);
-    @include box-shadow(0 1px 3px rgba(0,0,0,0.3));
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
     border: none;
     color: #fff;
     margin: -13px -30px 20px -30px;
