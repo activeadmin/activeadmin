@@ -36,6 +36,9 @@ module NavigationHelpers
     when /^the last author's last post page$/
       admin_user_post_path(User.last, Post.where(:author_id => User.last.id).last)
 
+    when /^the last post's edit page$/
+      edit_admin_post_path(Post.last)
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

@@ -68,14 +68,15 @@ module ActiveAdmin
     end
 
     include Base
+    include ActionItems
+    include Authorization
     include Controllers
+    include Menu
+    include Naming
     include PagePresenters
     include Pagination
-    include ActionItems
-    include Naming
     include Scopes
     include Sidebars
-    include Menu
 
     # The class this resource wraps. If you register the Post model, Resource#resource_class
     # will point to the Post class

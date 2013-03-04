@@ -53,21 +53,21 @@ module ActiveAdmin
       def add_default_action_items
         # New Link on all actions except :new and :show
         add_action_item :except => [:new, :show] do
-          if controller.action_methods.include?('new')
+          if controller.action_methods.include?('new') && authorized?(ActiveAdmin::Auth::CREATE, active_admin_config.resource_class)
             link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_label), new_resource_path)
           end
         end
 
         # Edit link on show
         add_action_item :only => :show do
-          if controller.action_methods.include?('edit')
+          if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
             link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_label), edit_resource_path(resource))
           end
         end
 
         # Destroy link on show
         add_action_item :only => :show do
-          if controller.action_methods.include?("destroy")
+          if controller.action_methods.include?("destroy") && authorized?(ActiveAdmin::Auth::DESTROY, resource)
             link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_label),
               resource_path(resource),
               :method => :delete, :data => {:confirm => I18n.t('active_admin.delete_confirmation')})
