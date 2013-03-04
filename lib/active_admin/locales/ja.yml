@@ -9,7 +9,9 @@ ja:
     delete: "削除"
     delete_confirmation: "本当に削除しますか?"
     new_model: "%{model} を作成する"
+    create_model: "%{model} を作成する"
     edit_model: "%{model} を編集する"
+    update_model: "%{model} を更新する"
     delete_model: "%{model} を削除する"
     details: "%{model} の詳細"
     cancel: "取り消す"
@@ -35,6 +37,7 @@ ja:
       one: "<b>1</b> 件の %{model} を表示しています"
       one_page: "<b>全 %{n}</b> 件の %{model} を表示しています"
       multiple: "全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
+      entry: レコード
     any: "任意"
     blank_slate:
       content: "%{resource_name} はまだありません。"
