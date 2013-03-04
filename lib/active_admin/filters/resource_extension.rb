@@ -65,7 +65,7 @@ module ActiveAdmin
       #
       # @param [Symbol] attribute The attribute to filter on
       # @param [Hash] options The set of options that are passed through to
-      #                       metasearch for the field definition.
+      #                       ransack for the field definition.
       def add_filter(attribute, options = {})
         unless filters_enabled?
           raise RuntimeError, "Can't add a filter when filters are disabled. Enable filters with 'config.filters = true'"

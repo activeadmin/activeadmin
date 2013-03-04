@@ -6,16 +6,17 @@ describe ActiveAdmin::Sass::Helpers do
 
   context "when not using the asset pipeline" do
 
-    before(:all)do
-      @actual_rails_version = Rails::VERSION::MINOR
-      silence_warnings { Rails::VERSION::MINOR = 0 }
+    before(:each) do
+      @orig_rails_app = Rails.application.dup
     end
 
-    after(:all) do
-      silence_warnings { Rails::VERSION::MINOR = @actual_rails_version }
+    after(:each) do
+      Rails.application = @orig_rails_app
     end
 
     it "should generate an image asset path to /images/active_admin" do
+      assets = mock(:enabled => false)
+      Rails.application.config.stub!(:assets => assets)
       active_admin_image_path(Sass::Script::String.new('test.jpg')).should ==
           Sass::Script::String.new("/images/active_admin/test.jpg", true)
     end
@@ -23,21 +24,17 @@ describe ActiveAdmin::Sass::Helpers do
   end
 
   context "when using the asset pipeline" do
-    before(:all)do
-      @actual_rails_version = Rails::VERSION::MINOR
-      silence_warnings { Rails::VERSION::MINOR = 1 }
+    before(:each) do
+      @orig_rails_app = Rails.application.dup
     end
 
-    after(:all) do
-      silence_warnings { Rails::VERSION::MINOR = @actual_rails_version }
-    end
-
-    before do
-      assets = mock(:enabled => true)
-      Rails.application.config.stub!(:assets => assets)
+    after(:each) do
+      Rails.application = @orig_rails_app
     end
 
     it "should call the sass-rails asset helper" do
+      assets = mock(:enabled => true)
+      Rails.application.config.stub!(:assets => assets)
       self.should_receive(:asset_path).with(Sass::Script::String.new("active_admin/test.jpg"), Sass::Script::String.new('image'))
       active_admin_image_path(::Sass::Script::String.new('test.jpg'))
     end
