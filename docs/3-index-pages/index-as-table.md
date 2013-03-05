@@ -44,18 +44,27 @@ within the context of the view for each of the objects in the collection.
 The block gets called once for each resource in the collection. The resource gets passed into
 the block as an argument.
 
-To setup links to View, Edit and Delete a resource, use the default_actions method:
+To setup links to View, Edit and Delete a resource, use the actions method:
 
     index do
       column :title
-      default_actions
+      actions
     end
 
-Alternatively, you can create a column with custom links:
+You can also append custom links to the default links:
 
     index do
       column :title
-      column "Actions" do |post|
+      actions do |post|
+        link_to "Preview", admin_preview_post_path(post)
+      end
+    end
+
+Or forego the default links entirely:
+
+    index do
+      column :title
+      actions :defaults => false do |post|
         link_to "View", admin_post_path(post)
       end
     end
