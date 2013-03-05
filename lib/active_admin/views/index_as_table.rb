@@ -108,8 +108,9 @@ module ActiveAdmin
     class IndexAsTable < ActiveAdmin::Component
 
       def build(page_presenter, collection)
+        debugger
         table_options = {
-          :id => active_admin_config.resource_name.plural,
+          :id => "index_table_#{active_admin_config.resource_name.plural}",
           :sortable => true,
           :class => "index_table index",
           :i18n => active_admin_config.resource_class,
