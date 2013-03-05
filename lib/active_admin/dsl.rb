@@ -121,7 +121,7 @@ module ActiveAdmin
       config.menu_item_options = options
     end
 
-    # Set the name of the menu to display. This is mainly used in conjuction with the
+    # Set the name of the navigation menu to display. This is mainly used in conjuction with the
     # `#belongs_to` functionality.
     #
     # @param [Symbol] menu_name The name of the menu to display as the global navigation
@@ -130,8 +130,8 @@ module ActiveAdmin
     # Pass a block returning the name of a menu you want rendered for the request, being
     # executed in the context of the controller
     #
-    def display_menu(menu_name=nil, &block)
-      config.display_menu_name = menu_name || block
+    def navigation_menu(menu_name=nil, &block)
+      config.navigation_menu_name = menu_name || block
     end
 
     # Rewrite breadcrumb links.

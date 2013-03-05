@@ -7,7 +7,7 @@ module ActiveAdmin
       # call #menu(false)
       def menu_item_options=(options)
         if options == false
-          @display_menu = false
+          @navigation_menu = false
           @menu_item_options = {}
         else
           self.menu_item_menu_name = options[:menu_name]
@@ -30,22 +30,22 @@ module ActiveAdmin
         }
       end
 
-      def display_menu_name=(menu_name)
-        @display_menu_name = menu_name
+      def navigation_menu_name=(menu_name)
+        @navigation_menu_name = menu_name
       end
 
-      def display_menu_name
-        @display_menu_name ||= DEFAULT_MENU
-        case @display_menu_name
+      def navigation_menu_name
+        @navigation_menu_name ||= DEFAULT_MENU
+        case @navigation_menu_name
         when Proc
-          controller.instance_eval(&@display_menu_name).to_sym
+          controller.instance_eval(&@navigation_menu_name).to_sym
         else
-          @display_menu_name
+          @navigation_menu_name
         end
       end
 
-      def display_menu
-        namespace.fetch_menu(display_menu_name)
+      def navigation_menu
+        namespace.fetch_menu(navigation_menu_name)
       end
 
       def menu_item_menu_name=(menu_name)
@@ -68,7 +68,7 @@ module ActiveAdmin
 
       # Should this resource be added to the menu system?
       def include_in_menu?
-        @display_menu != false
+        @navigation_menu != false
       end
 
     end

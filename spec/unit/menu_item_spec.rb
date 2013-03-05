@@ -32,6 +32,16 @@ module ActiveAdmin
       item.display_if_block.call(self).should == true
     end
 
+    it "should default to an empty hash for html_options" do
+      item = MenuItem.new
+      item.html_options.should be_empty
+    end
+
+    it "should accept an options hash for link_to" do
+      item = MenuItem.new html_options: { target: :blank }
+      item.html_options.should include(target: :blank)
+    end
+
     context "with no items" do
       it "should be empty" do
         item = MenuItem.new
@@ -119,6 +129,10 @@ module ActiveAdmin
 
       it "should set underscore any spaces" do
         MenuItem.new(:id => "An Id").id.should == "an_id"
+      end
+
+      it "should return a proc if label was a proc" do
+        MenuItem.new(:label => proc{ "Dynamic" }).id.should be_an_instance_of(Proc)
       end
 
     end

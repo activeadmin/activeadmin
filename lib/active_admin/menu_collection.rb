@@ -26,6 +26,10 @@ module ActiveAdmin
       @built = false
     end
 
+    def exists?(menu_name)
+      @menus.keys.include? menu_name
+    end
+
     def fetch(menu_name)
       build_menus!
 

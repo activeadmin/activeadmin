@@ -11,7 +11,7 @@ module ActiveAdmin
       protected
 
       def current_menu
-        active_admin_config.display_menu
+        active_admin_config.navigation_menu
       end
 
       # Set's @current_tab to be name of the tab to mark as current

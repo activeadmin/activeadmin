@@ -136,6 +136,27 @@ module ActiveAdmin
       end
     end
 
+    # Add the default logout button to the menu, using the ActiveAdmin configuration settings
+    #
+    # @param [ActiveAdmin::MenuItem] menu The menu to add the logout link to
+    # @param [Fixnum] priority Override the default priority of 100 to position the logout button where you want
+    # @param [Hash] html_options An options hash to pass along to link_to
+    #
+    # @returns [void]
+    def add_logout_button_to_menu(menu, priority=100, html_options={})
+      if logout_link_path
+        logout_method = logout_link_method || :get
+        menu_options = {
+          label: I18n.t('active_admin.logout'),
+          url: proc{ render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
+          priority: priority,
+          html_options: { method: logout_method }.merge(html_options),
+          if: proc{ current_active_admin_user? }
+        }
+        menu.add menu_options
+      end
+    end
+
     protected
 
     def build_menu_collection
@@ -145,9 +166,21 @@ module ActiveAdmin
         # Support for deprecated dashboards...
         Dashboards.add_to_menu(self, menus.menu(DEFAULT_MENU))
 
+        # Build the default utility navigation
+        build_default_utility_nav
+
         resources.each do |resource|
           resource.add_to_menu(@menus)
         end
+      end
+    end
+
+    # Builds the default utility navigation in top right header with current user & logout button
+    def build_default_utility_nav
+      return if @menus.exists? :utility_navigation
+      @menus.menu :utility_navigation do |menu|
+        menu.add label: proc{ display_name current_active_admin_user }, url: '#', id: 'current_user', if: proc{ current_active_admin_user? }
+        add_logout_button_to_menu menu
       end
     end
 

@@ -40,18 +40,44 @@ module ActiveAdmin
       end
 
       def build_menu_item(item)
-        li :id => item.dom_id do |li_element|
+        dom_id = case item.dom_id
+        when Proc,Symbol
+          normalize_id call_method_or_proc_on(self, item.dom_id)
+        else
+          item.dom_id
+        end
+
+        li :id => dom_id do |li_element|
           li_element.add_class "current" if current?(item)
-          link_path = url_for_menu_item(item)
 
           if item.items.any?
             li_element.add_class "has_nested"
-            text_node link_to(item.label, link_path)
+            actual_item_link item
             render_nested_menu(item)
           else
-            text_node(link_to(item.label, link_path))
+            actual_item_link item
           end
         end
+      end
+
+      def normalize_id(string)
+        string.to_s.downcase.gsub(" ", "_").gsub(/[^a-z0-9_]/, '')
+      end
+
+      def actual_item_link(item)
+
+        label = case item.label
+        when Symbol
+          send item.label
+        when Proc
+          item.label.call rescue instance_exec(&item.label)
+        else
+          item.label.to_s
+        end
+
+        link_path = url_for_menu_item(item)
+        text_node link_to(label, link_path, item.html_options)
+
       end
 
       def url_for_menu_item(menu_item)
@@ -94,7 +120,8 @@ module ActiveAdmin
       # Returns true if the item should be displayed
       def display_item?(item)
         return false unless call_method_or_proc_on(self, item.display_if_block)
-        return false if (!item.url || item.url == "#") && !displayable_children?(item)
+        return true if (item.url.nil? or item.url == '#') && item.items.empty?
+        return false if (item.url.nil? or item.url == '#') && !displayable_children?(item)
         true
       end
 

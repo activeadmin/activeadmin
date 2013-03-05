@@ -76,7 +76,12 @@ module ActiveAdmin
       end
 
       def normalize_id(string)
-        string.to_s.downcase.gsub(" ", "_")
+        case string
+        when Proc
+          string
+        else
+          string.to_s.downcase.gsub(" ", "_")
+        end
       end
 
     end

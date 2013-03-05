@@ -3,7 +3,7 @@ module ActiveAdmin
   class MenuItem
     include Menu::MenuNode
 
-    attr_accessor :id, :label, :url, :priority, :display_if_block
+    attr_accessor :id, :label, :url, :priority, :display_if_block, :html_options
     attr_reader :parent
 
     # Build a new menu item
@@ -31,27 +31,22 @@ module ActiveAdmin
     #         A block for the view to call to decide if this menu item should be displayed.
     #         The block should return true of false
     #
+    # @option options [Hash] :html_options
+    #         A hash of options to pass to `link_to` when rendering the item
+    #
     # @param [ActiveAdmin::MenuItem] parent The parent menu item of this item
     #
     def initialize(options = {}, parent = nil)
-      @label    = options[:label]
-      @id       = normalize_id(options[:id] || label)
-      @url      = options[:url] || "#"
-      @priority = options[:priority] || 10
-      @parent   = parent
+      @label        = options[:label]
+      @id           = normalize_id(options[:id] || label)
+      @url          = options[:url] || "#"
+      @priority     = options[:priority] || 10
+      @html_options = options[:html_options] || {}
+      @parent       = parent
 
       @display_if_block = options[:if]
 
       yield(self) if block_given? # Builder style syntax
-    end
-
-    def label
-      case @label
-      when Proc
-        @label.call
-      else
-        @label.to_s
-      end
     end
 
     def parent?
@@ -59,7 +54,12 @@ module ActiveAdmin
     end
 
     def dom_id
-      id.gsub( " ", '_' ).gsub( /[^a-z0-9_]/, '' )
+      case id
+      when Proc
+        id
+      else
+        id.to_s.gsub( " ", '_' ).gsub( /[^a-z0-9_]/, '' )
+      end
     end
 
     # Returns an array of the ancestory of this menu item
@@ -71,7 +71,7 @@ module ActiveAdmin
 
     def <=>(other)
       result = priority <=> other.priority
-      result = label <=> other.label if result == 0
+      result = label.to_s <=> other.label.to_s if result == 0
       result
     end
 

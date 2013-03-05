@@ -55,7 +55,7 @@ Feature: Belongs To
       ActiveAdmin.register User
       ActiveAdmin.register Post do
         belongs_to :user
-        display_menu :user
+        navigation_menu :user
       end
     """
     When I go to the last author's posts

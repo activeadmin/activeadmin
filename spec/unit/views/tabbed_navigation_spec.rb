@@ -28,6 +28,7 @@ describe ActiveAdmin::Views::TabbedNavigation do
       menu.add :label => "Reports",	:url => "/admin/reports" do |reports|
         reports.add :label => "A Sub Reports", :url => "/admin/a-sub-reports"
         reports.add :label => "B Sub Reports", :url => "/admin/b-sub-reports"
+        reports.add :label => proc{ "Label Proc Sub Reports" }, :url => "/admin/label-proc-sub-reports"
       end
 
       menu.add :label => "Administration", :url => "/admin/administration" do |administration|
@@ -72,6 +73,10 @@ describe ActiveAdmin::Views::TabbedNavigation do
       html.should have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "b_sub_reports"})
     end
 
+    it "should generate a valid dom_id from a label proc" do
+      html.should have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "label_proc_sub_reports"})
+    end
+
     it "should not generate a link for user administration" do
       html.should_not have_tag("a", "User administration", :attributes => { :href => '/admin/user-administration' })
     end
@@ -112,12 +117,12 @@ describe ActiveAdmin::Views::TabbedNavigation do
 
   describe "returning the menu items to display" do
 
-    it "should be reture one item with no if block" do
+    it "should return one item with no if block" do
       menu.add :label => "Hello World", :url => "/"
       tabbed_navigation.menu_items.should == menu.items
     end
 
-    it "should not include a menu items with an if block that returns false" do
+    it "should not include menu items with an if block that returns false" do
       menu.add :label => "Don't Show", :url => "/", :priority => 10, :if => proc{ false }
       tabbed_navigation.menu_items.should == []
     end
@@ -128,14 +133,14 @@ describe ActiveAdmin::Views::TabbedNavigation do
     end
 
     it "should not display any items that have no children to display" do
-	  menu.add :label => "Parent", :url => "#" do |p|
+      menu.add :label => "Parent", :url => "#" do |p|
         p.add :label => "Child", :url => "/", :priority => 10, :if => proc{ false }
       end
       tabbed_navigation.menu_items.should == []
     end
 
     it "should display a parent that has a child to display" do
-	  menu.add :label => "Parent", :url => "#" do |p|
+      menu.add :label => "Parent", :url => "#" do |p|
         p.add :label => "Hidden Child", :url => "/", :priority => 10, :if => proc{ false }
         p.add :label => "Child", :url => "/"
       end

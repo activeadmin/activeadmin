@@ -111,7 +111,7 @@ can customize the menu for the namespace within the Active Admin initializer.
           menu.add :label => "The Application", :url => "/", :priority => 0
 
           menu.add :label => "Sites" do |sites|
-            sites.add :label => "Google", :url => "http://google.com"
+            sites.add :label => "Google", :url => "http://google.com", html_options: { target: :blank }
             sites.add :label => "Facebook", :url => "http://facebook.com"
             sites.add :label => "Github", :url => "http://github.com"
           end
@@ -233,12 +233,12 @@ seperate menu which you can use if you so wish. To use:
 
     ActiveAdmin.register Ticket do
       belongs_to   :project
-      display_menu :project
+      navigation_menu :project
     end
 
     ActiveAdmin.register Milestone do
       belongs_to   :project
-      display_menu :project
+      navigation_menu :project
     end
 
 Now, when you navigate to the tickets section, the global navigation will
@@ -250,7 +250,7 @@ different menus, say perhaps on user permissions or level.  For example:
 
     ActiveAdmin.register Ticket do
       belongs_to:   :project
-      display_menu do
+      navigation_menu do
         authorized?(:manage, SomeResource) ? :project : :restricted_menu
       end
     end

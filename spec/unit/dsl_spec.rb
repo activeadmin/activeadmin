@@ -36,12 +36,12 @@ describe ActiveAdmin::DSL do
 
   end
 
-  describe "#display_menu" do
+  describe "#navigation_menu" do
 
-    it "should set the display_menu_name on the configuration" do
-      config.should_receive(:display_menu_name=).with(:admin)
+    it "should set the navigation_menu_name on the configuration" do
+      config.should_receive(:navigation_menu_name=).with(:admin)
       dsl.run_registration_block do
-        display_menu :admin
+        navigation_menu :admin
       end
     end
 
@@ -49,10 +49,10 @@ describe ActiveAdmin::DSL do
 
       dsl = ActiveAdmin::DSL.new(resource_config)
       dsl.run_registration_block do
-        display_menu { :dynamic_menu }
+        navigation_menu { :dynamic_menu }
       end
 
-      resource_config.display_menu_name.should == :dynamic_menu
+      resource_config.navigation_menu_name.should == :dynamic_menu
 
     end
 
