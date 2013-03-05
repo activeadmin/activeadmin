@@ -11,6 +11,7 @@ Feature: Index as Table
     When I am on the index page for posts
     Then I should see a sortable table header with "Id"
     And I should see a sortable table header with "Title"
+    And I should see a table with id "index_table_posts"
 
   Scenario: Viewing the default table with a resource
     Given a post with the title "Hello World" exists
@@ -152,12 +153,12 @@ Feature: Index as Table
       ActiveAdmin.register Post
       """
     When I am on the index page for posts
-    Then I should see the "posts" table:
+    Then I should see the "index_table_posts" table:
       | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
       | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | ViewEditDelete |
       | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | ViewEditDelete |
     When I follow "Id"
-    Then I should see the "posts" table:
+    Then I should see the "index_table_posts" table:
       | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
       | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | ViewEditDelete |
       | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | ViewEditDelete |
@@ -183,12 +184,12 @@ Feature: Index as Table
       """
     When I am on the index page for posts
     And I follow "Title Length"
-    Then I should see the "posts" table:
+    Then I should see the "index_table_posts" table:
       | Id | Title        | Title Length |
       | 2 | Bye bye world | 13 |
       | 1 | Hello World   | 11 |    
     When I follow "Title Length"
-    Then I should see the "posts" table:
+    Then I should see the "index_table_posts" table:
       | Id | Title        | Title Length |
       | 1 | Hello World   | 11 |
       | 2 | Bye bye world | 13 |
