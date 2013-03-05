@@ -111,7 +111,7 @@ can customize the menu for the namespace within the Active Admin initializer.
           menu.add :label => "The Application", :url => "/", :priority => 0
 
           menu.add :label => "Sites" do |sites|
-            sites.add :label => "Google", :url => "http://google.com", html_options: { target: :blank }
+            sites.add :label => "Google", :url => "http://google.com", :html_options => { :target => :blank }
             sites.add :label => "Facebook", :url => "http://facebook.com"
             sites.add :label => "Github", :url => "http://github.com"
           end

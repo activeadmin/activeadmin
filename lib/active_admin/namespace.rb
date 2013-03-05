@@ -146,14 +146,11 @@ module ActiveAdmin
     def add_logout_button_to_menu(menu, priority=100, html_options={})
       if logout_link_path
         logout_method = logout_link_method || :get
-        menu_options = {
-          label: I18n.t('active_admin.logout'),
-          url: proc{ render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
-          priority: priority,
-          html_options: { method: logout_method }.merge(html_options),
-          if: proc{ current_active_admin_user? }
-        }
-        menu.add menu_options
+        menu.add  priority:     priority,
+                  label:        I18n.t('active_admin.logout'),
+                  html_options: html_options.reverse_merge(:method => logout_method),
+                  url:          proc{ render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
+                  if:           proc{ current_active_admin_user? }
       end
     end
 
@@ -179,7 +176,10 @@ module ActiveAdmin
     def build_default_utility_nav
       return if @menus.exists? :utility_navigation
       @menus.menu :utility_navigation do |menu|
-        menu.add label: proc{ display_name current_active_admin_user }, url: '#', id: 'current_user', if: proc{ current_active_admin_user? }
+        menu.add  label: proc{ display_name current_active_admin_user },
+                  url: '#',
+                  id: 'current_user',
+                  if: proc{ current_active_admin_user? }
         add_logout_button_to_menu menu
       end
     end
