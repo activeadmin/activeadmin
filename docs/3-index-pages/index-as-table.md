@@ -56,7 +56,7 @@ You can also append custom links to the default links:
     index do
       column :title
       actions do |post|
-        link_to "Preview", admin_preview_post_path(post)
+        link_to "Preview", admin_preview_post_path(post), :class => "member_link"
       end
     end
 
