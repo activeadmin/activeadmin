@@ -74,6 +74,9 @@ module ActiveAdmin
     # Default CSV options
     inheritable_setting :csv_options, {}
 
+    # Default Download Links options
+    inheritable_setting :download_links, true
+
     # The authorization adapter to use
     inheritable_setting :authorization_adapter, ActiveAdmin::AuthorizationAdapter
 

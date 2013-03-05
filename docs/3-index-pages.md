@@ -112,3 +112,17 @@ You can remove links to download CSV, XML and JSON exports:
     index :download_links => false do
     end
 
+## Disable Download Links
+
+You can remove links to download CSV, XML and JSON exports:
+
+    index :download_links => false do
+    end
+
+You can also remove the links for all pages:
+
+    ActiveAdmin.register Post do
+      config.download_links = false
+    end
+
+This can be overwritten by a local index setting as shown above.
