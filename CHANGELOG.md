@@ -2,6 +2,19 @@
 
 * Fix conflict with Redcloth [#1805][] by [@adrienkohlbecker][]
 * Add missing batch actions translations. [#1788][] by [@EtienneDepaulis][]
+* New "actions" DSL for customizing actions on index listing [#1834][] by [@ejholmes][]
+* Updated documentation for formtastic deprecated f.buttons [#1867][] by [@ericcumbee][]
+* Rubinis compatability change over block variables [#1871][] by [@dbussin][]
+* Authorization DSL including a default CanCan adapter [#1817][] by [@pcreux][]
+* Fix for [#1960][], pluralize the example admin_users model to be consistent [#1961][] by [@rmw][]
+* Compatability with Draper 1.0 release [#1896][] by [@hakanensari][]
+* Fixed references to "dashboards.rb" in locales, since file doesn't exist [#1873][] by [@ryansch][]
+* Removing deprecated bourbon box-shadow mixin [#1913][] by [@stereoscott][]
+* More Japanese localizations [#1929][] by [@johnnyshields][]
+* Devise lockable module now supported by default [#1933][] by [@Bishop][]
+* Index title can now be set via a proc [#1861][] by [@jamesalmond][]
+* Copyright updated for 2013 [#1937][] by [@snapapps][]
+* JS fix for batch actions checkbox toggling [#1947][] by [@ai][]
 
 ## 0.5.1
 
