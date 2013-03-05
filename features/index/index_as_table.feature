@@ -92,6 +92,46 @@ Feature: Index as Table
     And I should see a member link to "Edit"
     And I should not see a member link to "Delete"
 
+  Scenario: Actions with defaults and custom actions
+    Given a post with the title "Hello World" and body "From the body" exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        actions :index, :show, :edit, :update
+
+        index do
+          column :category
+          actions do |resource|
+            link_to 'Custom Action', edit_admin_post_path(resource), :class => 'member_link'
+          end
+        end
+      end
+      """
+    Then I should see a member link to "View"
+    And I should see a member link to "Edit"
+    And I should not see a member link to "Delete"
+    And I should see a member link to "Custom Action"
+
+  Scenario: Actions without default actions
+    Given a post with the title "Hello World" and body "From the body" exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        actions :index, :show, :edit, :update
+
+        index do
+          column :category
+          actions :defaults => false do |resource|
+            link_to 'Custom Action', edit_admin_post_path(resource), :class => 'member_link'
+          end
+        end
+      end
+      """
+    Then I should not see a member link to "View"
+    And I should not see a member link to "Edit"
+    And I should not see a member link to "Delete"
+    And I should see a member link to "Custom Action"
+
   Scenario: Associations are not sortable
     Given 1 post exists
     And an index configuration of:
