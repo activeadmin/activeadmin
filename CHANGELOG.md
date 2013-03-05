@@ -15,6 +15,7 @@
 * Index title can now be set via a proc [#1861][] by [@jamesalmond][]
 * Copyright updated for 2013 [#1937][] by [@snapapps][]
 * JS fix for batch actions checkbox toggling [#1947][] by [@ai][]
+* Can now disable download_links per resource, index collection or globally throughout AA [#1908][] by [@TBAA][]
 
 ## 0.5.1
 
