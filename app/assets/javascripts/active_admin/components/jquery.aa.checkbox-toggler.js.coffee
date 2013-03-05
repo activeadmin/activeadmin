@@ -37,7 +37,7 @@ window.AA.CheckboxToggler = class AA.CheckboxToggler
       @_checkToggleAllCheckbox()
 
   _didChangeToggleAllCheckbox: ->
-    if @toggle_all_checkbox.attr("checked") == "checked"
+    if @toggle_all_checkbox.prop("checked")
       @_checkAllCheckboxes()
     else
       @_uncheckAllCheckboxes()      
@@ -46,7 +46,7 @@ window.AA.CheckboxToggler = class AA.CheckboxToggler
     @toggle_all_checkbox.removeAttr("checked")
 
   _checkToggleAllCheckbox: ->
-    @toggle_all_checkbox.attr("checked","checked")
+    @toggle_all_checkbox.prop("checked", true)
 
   _uncheckAllCheckboxes: ->
     @checkboxes.each (index, el) =>
@@ -55,7 +55,7 @@ window.AA.CheckboxToggler = class AA.CheckboxToggler
 
   _checkAllCheckboxes: ->
     @checkboxes.each (index, el) =>
-      $(el).attr("checked","checked")
+      $(el).prop("checked", true)
       @_didChangeCheckbox(el)
       
 
