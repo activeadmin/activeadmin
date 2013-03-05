@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe ActiveAdmin::Namespace, "registering a page" do
 
@@ -69,7 +69,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
         namespace.menu["Status"].should be_nil
       end
     end # describe "disabling the menu"
-    
+
     describe "setting menu priority" do
       before do
         namespace.register_page "Status" do
@@ -80,7 +80,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
         namespace.menu["Status"].priority.should == 2
       end
     end # describe "setting menu priority"
-    
+
     describe "setting a condition for displaying" do
       before do
         namespace.register_page "Status" do

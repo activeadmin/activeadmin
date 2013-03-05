@@ -10,9 +10,9 @@ Feature: Action Item
     Given a configuration of:
     """
     ActiveAdmin.register Post do
-      action_item do 
+      action_item do
         link_to "Embiggen", '/'
-      end  
+      end
     end
     """
     When I am on the index page for posts
@@ -32,9 +32,9 @@ Feature: Action Item
     Given a configuration of:
     """
     ActiveAdmin.register Post do
-      action_item :if => proc{ !current_active_admin_user.nil? } do 
+      action_item :if => proc{ !current_active_admin_user.nil? } do
         link_to "Embiggen", '/'
-      end  
+      end
     end
     """
     When I am on the index page for posts
@@ -54,9 +54,9 @@ Feature: Action Item
     Given a configuration of:
     """
     ActiveAdmin.register Post do
-      action_item :if => proc{ current_active_admin_user.nil? } do 
+      action_item :if => proc{ current_active_admin_user.nil? } do
         link_to "Embiggen", '/'
-      end  
+      end
     end
     """
     When I am on the index page for posts

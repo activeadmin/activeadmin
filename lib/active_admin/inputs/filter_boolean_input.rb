@@ -4,7 +4,7 @@ module ActiveAdmin
       include FilterBase
 
       def to_html
-        input_wrapping do 
+        input_wrapping do
           [ label_html,
             check_box_html
           ].join("\n").html_safe

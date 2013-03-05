@@ -41,7 +41,7 @@ module ActiveAdmin
 
     class Column
       attr_reader :name, :data
-      
+
       def initialize(name, block = nil)
         @name = name.is_a?(Symbol) ? name.to_s.titleize : name
         @data = block || name.to_sym

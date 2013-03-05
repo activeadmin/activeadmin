@@ -9,11 +9,11 @@
   .table_tools_button + .table_tools_button {
     margin-left: 6px;
   }
-  
+
   .table_tools_button + .table_tools_segmented_control {
     margin-left: 6px;
   }
-  
+
   .table_tools_segmented_control + .table_tools_button {
     margin-left: 6px;
   }
@@ -24,7 +24,7 @@
 a.table_tools_button, .table_tools .dropdown_menu_button {
   @include light-button;
   @include gradient(#FFFFFF, #F0F0F0);
-  @include border-colors(#d9d9d9, #d0d0d0, #c5c5c5);  
+  @include border-colors(#d9d9d9, #d0d0d0, #c5c5c5);
   font-size: 0.9em;
   text-decoration: none;
   padding: 4px 14px 4px;
@@ -49,27 +49,27 @@ a.table_tools_button, .table_tools .dropdown_menu_button {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  
+
   li {
     display: inline-block;
     list-style-image: none;
     list-style-type: none;
     margin-left: -7px;
     white-space: nowrap;
-    
+
     a {
       border-radius: 0px;
     }
-    
+
     &:first-child {
       margin-left: 0;
-      
+
       a {
         border-top-left-radius: 12px;
         border-bottom-left-radius: 12px;
       }
     }
-    
+
     &:last-child {
       a {
         border-top-right-radius: 12px;
@@ -83,7 +83,7 @@ a.table_tools_button, .table_tools .dropdown_menu_button {
         @include gradient(#F0F0F0, #FDFDFD);
         box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1) inset;
         cursor: default;
-        
+
         &:hover {
           @include gradient(#F0F0F0, #FDFDFD);
         }
@@ -91,5 +91,5 @@ a.table_tools_button, .table_tools .dropdown_menu_button {
     }
 
   }
-  
+
 }

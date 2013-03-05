@@ -22,8 +22,8 @@ module ActiveAdmin
       # collection of this resource
       def route_collection_path
         route = [
-          route_prefix, 
-          controller.resources_configuration[:self][:route_collection_name], 
+          route_prefix,
+          controller.resources_configuration[:self][:route_collection_name],
           'path'
         ]
 

@@ -105,7 +105,7 @@ Can be translated with:
           labels:
             publish: "Publish"
 
-### Batch Action Confirmation   
+### Batch Action Confirmation
 
 You can also request that the user confirm the action, before the action is performed:
 

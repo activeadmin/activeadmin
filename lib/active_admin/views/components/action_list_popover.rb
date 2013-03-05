@@ -5,16 +5,16 @@ module ActiveAdmin
     # Build an ActionListPopover
     class ActionListPopover < ActiveAdmin::Views::Popover
       builder_method :action_list_popover
-      
-      
+
+
       def build(*args, &block)
         @contents = ul :class => "popover_contents"
-        
+
         options = args.extract_options!
-        
+
         super(options)
       end
-      
+
       def action(title, url, *args)
         options = args.extract_options!
         within @contents do

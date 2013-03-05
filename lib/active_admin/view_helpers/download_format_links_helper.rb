@@ -13,10 +13,10 @@ module ActiveAdmin
           @formats ||= [:csv, :xml, :json]
           @formats.clone
         end
-        
+
         # Adds a mime type extension to the list of available formats.
         # You must register the extension prior to adding it to the list
-        # of avilable formats. This should be used by plugins that want 
+        # of avilable formats. This should be used by plugins that want
         # to add additional formats to the download format links.
         # @param [Symbol] extension the mime extension to add
         # @return [Array] A copy of the updated formats array.

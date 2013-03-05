@@ -24,7 +24,7 @@ describe ActiveAdmin::AuthorizationAdapter do
   describe "using #normalized in a subclass" do
 
     let(:auth_class) do
-      Class.new(ActiveAdmin::AuthorizationAdapter) do 
+      Class.new(ActiveAdmin::AuthorizationAdapter) do
 
         def authorized?(action, subject = nil)
           case subject

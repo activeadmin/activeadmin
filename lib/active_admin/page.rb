@@ -17,7 +17,7 @@ module ActiveAdmin
 
     # An array of custom actions defined for this page
     attr_reader :page_actions
-    
+
     # Set breadcrumb builder
     attr_accessor :breadcrumb
 
@@ -72,7 +72,7 @@ module ActiveAdmin
 
     def add_default_sidebar_sections
     end
-    
+
     # Clears all the custom actions this page knows about
     def clear_page_actions!
       @page_actions = []

@@ -19,7 +19,7 @@ module ActiveAdmin
       end
 
       def build_global_navigation
-        insert_tag view_factory.global_navigation, @menu, :class => 'header-item' 
+        insert_tag view_factory.global_navigation, @menu, :class => 'header-item'
       end
 
       def build_utility_navigation

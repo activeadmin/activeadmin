@@ -8,7 +8,7 @@ module ActiveAdmin
     end
 
     # Scope this controller to some object which has a relation
-    # to the resource. Can either accept a block or a symbol 
+    # to the resource. Can either accept a block or a symbol
     # of a method to call.
     #
     # Eg:
@@ -22,7 +22,7 @@ module ActiveAdmin
     #   current_user.posts.build
     #
     # By default Active Admin will use the resource name to build a
-    # method to call as the association. If its different, you can 
+    # method to call as the association. If its different, you can
     # pass in the association_method as an option.
     #
     #   scope_to :current_user, :association_method => :blog_posts

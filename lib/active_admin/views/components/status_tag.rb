@@ -29,7 +29,7 @@ module ActiveAdmin
       #
       #   status_tag('active', :ok, :class => 'important', :id => 'status_123', :label => 'on')
       #   # => <span class='status_tag active ok important' id='status_123'>on</span>
-      # 
+      #
       def build(*args)
         options = args.extract_options!
         status = args[0]

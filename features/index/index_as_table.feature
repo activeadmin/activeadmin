@@ -186,7 +186,7 @@ Feature: Index as Table
     Then I should see the "posts" table:
       | Id | Title        | Title Length |
       | 2 | Bye bye world | 13 |
-      | 1 | Hello World   | 11 |    
+      | 1 | Hello World   | 11 |
     When I follow "Title Length"
     Then I should see the "posts" table:
       | Id | Title        | Title Length |

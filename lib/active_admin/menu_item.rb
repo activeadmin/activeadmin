@@ -9,11 +9,11 @@ module ActiveAdmin
     # @param [Hash] options The options for the menu
     #
     # @option options [String, Proc] :label
-    #         The label to display for this menu item. It can either be a String or a 
+    #         The label to display for this menu item. It can either be a String or a
     #         Proc. If the option is Proc, it is called each time the label is requested.
     #
     # @option options [String] :id
-    #         A custom id to reference this menu item with. If empty an id is automatically 
+    #         A custom id to reference this menu item with. If empty an id is automatically
     #         generated for you.
     #
     # @option options [String, Symbol] :url
@@ -21,7 +21,7 @@ module ActiveAdmin
     #         view will automatically call the method for you.
     #
     # @option options [Integer] :priority
-    #         MenuItems are sorted by priority then by label. The lower the priority, the 
+    #         MenuItems are sorted by priority then by label. The lower the priority, the
     #         earlier in the menu the item will be displayed.
     #         Default: 10
     #

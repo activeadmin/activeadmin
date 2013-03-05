@@ -50,7 +50,7 @@ in Active Admin:
       end
     end
 
-This creates a sidebar section named "Help" containing an unordered list. 
+This creates a sidebar section named "Help" containing an unordered list.
 To view the full customization options, visit [Sidebars](7-sidebars.md).
 
 ## Add an Action Item
@@ -81,11 +81,11 @@ and is the functional equivalent of `collection_action`.
         # do stuff here
         redirect_to admin_my_page_path, :notice => "You did stuff!"
       end
-      
+
       action_item do
         link_to "Do Stuff", admin_my_page_ex_path, :method => :post
       end
-      
+
       content do
         para "Hello World"
       end
