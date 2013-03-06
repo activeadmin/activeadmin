@@ -47,6 +47,36 @@ module ActiveAdmin
       cancel_link
     end
 
+    def datepicker_input(method, options)
+      options = options.dup
+      options[:input_html] ||= {}
+      options[:input_html][:class] = [options[:input_html][:class], "datepicker"].compact.join(' ')
+      options[:input_html][:size] ||= "10"
+      string_input(method, options)
+    end
+
+    def belongs_to(association, options = {}, &block)
+      options = { :for => association }.merge(options)
+      options[:class] ||= ""
+      options[:class] << "inputs belongs_to_fields"
+
+      # This proc doesn't do anything, but it's here to mirror has_many
+      # and allow future appending of magic, as below.
+      form_block = proc do |has_many_form|
+        block.call(has_many_form)
+      end
+
+      content = with_new_form_buffer do
+        template.content_tag :div, :class => "belongs_to #{association}" do
+          form_buffers.last << template.content_tag(:h3, association.to_s.titlecase)
+          inputs options, &form_block
+          form_buffers.last
+        end
+      end
+
+      form_buffers.last << content.html_safe
+    end
+
     def has_many(association, options = {}, &block)
       options = { :for => association }.merge(options)
       options[:class] ||= ""

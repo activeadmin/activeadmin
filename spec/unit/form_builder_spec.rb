@@ -408,4 +408,34 @@ describe ActiveAdmin::FormBuilder do
     end
   end
 
+  
+  context "with belongs_to" do
+    let :body do
+      build_form do |f|
+        f.instance_eval do
+          @object.author = User.new
+        end
+        
+        f.belongs_to :author do |author|
+          author.inputs :first_name, :last_name
+        end
+      end
+    end
+    
+    it "should generate a nested text input once" do
+      # Should match:
+      # <ol><li class="string input optional stringish" id="post_author_attributes_first_name_input">
+      #   <label class=" label" for="post_author_attributes_first_name">First name</label>
+      #   <input id="post_author_attributes_first_name" maxlength="255" name="post[author_attributes][first_name]" type="text" />
+      # </li>
+      # <li class="string input optional stringish" id="post_author_attributes_last_name_input">
+      #   <label class=" label" for="post_author_attributes_last_name">Last name</label>
+      #   <input id="post_author_attributes_last_name" maxlength="255" name="post[author_attributes][last_name]" type="text" />
+      # </li></ol>
+      
+      body.scan("post_author_attributes_first_name").size.should == 3
+      body.scan("post_author_attributes_last_name").size.should == 3
+      
+    end
+  end
 end
