@@ -16,6 +16,10 @@
 * Copyright updated for 2013 [#1937][] by [@snapapps][]
 * JS fix for batch actions checkbox toggling [#1947][] by [@ai][]
 * Can now disable download_links per resource, index collection or globally throughout AA [#1908][] by [@TBAA][]
+* IndexTableFor component now returns a unique DOM id, ie "index_table_posts" instead of just "posts" [#1966][] by [@TiagoCardoso1983][]
+* Coffeescript 1.5 compatability as constructors no longer return a value [#1940][] by [@ronen][]
+* Filters: add ability to search for blank/null fields with boolean search [#1893][] by [@whatcould][]
+* Allow options to be passed to the Abre element for rows in attributes_table [#1439][] by [@Daxter][]
 
 ## 0.5.1
 
