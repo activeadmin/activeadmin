@@ -36,7 +36,7 @@ Feature: Index as Blog
       """
       ActiveAdmin.register Post do
         index :as => :blog do
-          title do |post| 
+          title do |post|
             post.title + " From Block"
           end
           body do |post|

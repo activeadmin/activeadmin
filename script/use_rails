@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # Switches the development environment to use the given
-# version of rails. Caches the Gemfile.locks so that 
+# version of rails. Caches the Gemfile.locks so that
 # switching it very fast.
 #
 require File.expand_path("../../spec/support/detect_rails_version", __FILE__)

@@ -61,7 +61,7 @@ ActiveAdmin.after_load do |app|
         controller do
           def create
             create! do |success, failure|
-              failure.html do 
+              failure.html do
                 resource_config = active_admin_config.namespace.resource_for(@comment.resource.class)
                 flash[:error] = I18n.t('active_admin.comments.errors.empty_text')
                 redirect_to send(resource_config.route_instance_path, @comment.resource)

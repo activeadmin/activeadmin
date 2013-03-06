@@ -15,7 +15,7 @@ controller functions.
 			panel "Post Details" do
 				row("") { post.id }
 				row("Tags") do
-					text_node link_to "#{tag}", 
+					text_node link_to "#{tag}",
 						admin_post_path( q: { tagged_with_contains: tag } )
 					text_node "&nbsp".html_safe
 				end
@@ -57,11 +57,11 @@ To create simple columnns, use the #columns method. Within the block, call the
 #column method to create a new column.
 
 	columns do
-	  
+	
 	  column do
 		span "Column #1"
 	  end
-	  
+	
 	  column do
 		span "Column #2"
 	  end
@@ -105,7 +105,7 @@ In the above example, the first column will not grow larger than 200px and will
 not shrink less than 100px.
 
 ### Table For Component
- 
+
 Table For provides the ability to create tables like those present in
 #index_as_table. table_for takes a collection and a hash of options and then
 uses #column to build the fields to show with the table.
@@ -131,15 +131,15 @@ status_tag will generate html markup that Active Admin css uses in styling.
 
     status_tag('In Progress')
     # => <span class='status_tag in_progress'>In Progress</span>
-  
+
     status_tag('active', :ok)
     # => <span class='status_tag active ok'>Active</span>
-  
+
     status_tag (
-      'active', 
-      :ok, 
-      :class => 'important', 
-      :id => 'status_123', 
+      'active',
+      :ok,
+      :class => 'important',
+      :id => 'status_123',
       :label => 'on'
     )
     # => <span class='status_tag active ok important' id='status_123'>on</span>

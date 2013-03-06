@@ -11,7 +11,7 @@ Feature: Breadcrumb
     """
     When I am on the new post page
     Then I should see a link to "Post" in the breadcrumb
-    
+
   Scenario: Rewritten breadcrumb links
     Given a configuration of:
     """

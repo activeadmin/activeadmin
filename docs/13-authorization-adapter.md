@@ -1,13 +1,13 @@
 # Authorization Adapter
 
-Active Admin offers the ability to define and use your own authorization 
-adapter. If implemented, the '#authorized?' will be called when an action is 
+Active Admin offers the ability to define and use your own authorization
+adapter. If implemented, the '#authorized?' will be called when an action is
 taken. By default, '#authorized?' returns true.
 
 
 ## Setting up your own AuthorizationAdapter
 
-Setting up your own `AuthorizationAdapter` is easy! The following example shows 
+Setting up your own `AuthorizationAdapter` is easy! The following example shows
 how to set up and tie your authorization adapter class to Active Admin:
 
     # app/models/only_authors_authorization.rb
@@ -33,7 +33,7 @@ how to set up and tie your authorization adapter class to Active Admin:
 
     end
 
-In order to hook up `OnlyAuthorsAuthorization` to Active Admin, go to your 
+In order to hook up `OnlyAuthorsAuthorization` to Active Admin, go to your
 application's `config/initializers/active_admin.rb` and add/modify the line:
 
     config.authorization_adapter = "OnlyAuthorsAuthorization"
@@ -55,7 +55,7 @@ Now, whenever a controller action is performed, the `OnlyAuthorsAuthorization`'s
 
 ## Getting Access to the Current User
 
-From within your authorization adapter, you can call the `#user` method to 
+From within your authorization adapter, you can call the `#user` method to
 retrieve the current user.
 
     class OnlyAdmins < ActiveAdmin::AuthorizationAdapter
@@ -69,8 +69,8 @@ retrieve the current user.
 
 ## Scoping Collections in Authorization Adapters
 
-`ActiveAdmin::AuthorizationAdapter` also provides a hook method (`#scope_collection`) 
-for the adapter to scope the resource's collection. For example, you may want to 
+`ActiveAdmin::AuthorizationAdapter` also provides a hook method (`#scope_collection`)
+for the adapter to scope the resource's collection. For example, you may want to
 centralize the scoping:
 
     class OnlyMyAccount < ActiveAdmin::AuthorizationAdapter
@@ -112,7 +112,7 @@ subject will be an instance of `ActiveAdmin::Page`.
 
 ## Action Types
 
-By default Active Admin simplifies the controller actions into 4 actions: 
+By default Active Admin simplifies the controller actions into 4 actions:
 
   * `:read` - This controls if the user can view the menu item as well as the
     index and show screens.

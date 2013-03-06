@@ -52,7 +52,7 @@ module ActiveAdmin
       #       # runs after save
       #     end
       #   end
-      #     
+      #
       def define_active_admin_callbacks(*names)
         names.each do |name|
           [:before, :after].each do |type|

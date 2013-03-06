@@ -8,10 +8,10 @@ window.AA.TableCheckboxToggler = class AA.TableCheckboxToggler extends AA.Checkb
     @$container.find("tbody").find("td").bind "click", (e) =>
       if e.target.type != 'checkbox'
         @_didClickCell(e.target)
-    
+
   _didChangeCheckbox: (checkbox) ->
     super
-    
+
     $row = $(checkbox).parents("tr")
 
     if checkbox.checked
@@ -21,7 +21,7 @@ window.AA.TableCheckboxToggler = class AA.TableCheckboxToggler extends AA.Checkb
 
   _didClickCell: (cell) ->
     $(cell).parent("tr").find(':checkbox').click()
-    
+
 ( ( $ ) ->
   $.widget.bridge 'tableCheckboxToggler', AA.TableCheckboxToggler
 )( jQuery )

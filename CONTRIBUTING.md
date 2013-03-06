@@ -28,7 +28,7 @@ working on):
 
 ### 3. Get the test suite running
 
-Active Admin is a gem that many people and businesses rely on for managing data 
+Active Admin is a gem that many people and businesses rely on for managing data
 in their production applications. Bugs are not cool. Although we're not perfect,
 we pride ourselves on writing well tested code. I hope you do too :)
 
@@ -96,7 +96,7 @@ browser, you're ready to test it against multiple versions of Rails.
     $> rake test:major_supported_rails
 
 This command runs the cukes and specs against a couple of major versions of
-Rails.  We will run this command when we review your pull request, if this 
+Rails.  We will run this command when we review your pull request, if this
 rake task isn't passing, the pull request will not be merged in.
 
 

@@ -42,11 +42,11 @@ describe "Comments" do
         ActiveAdmin::Comment.find_for_resource_in_namespace(another_post, namespace_name).should == []
       end
     end
-    
+
     describe ".resource_id_cast" do
       let(:post) { Post.create!(:title => "Testing.") }
       let(:namespace_name) { "admin" }
-      
+
       it "should cast resource_id as string" do
         comment = ActiveAdmin::Comment.create! :resource => post,
                                                 :body => "Another Comment",
@@ -60,16 +60,16 @@ describe "Comments" do
         ActiveAdmin::Comment.resource_id_type.should eql :string
       end
     end
-    
+
     describe "Commenting on resource with string id" do
       let(:tag){ Tag.create!(:name => "cooltags") }
       let(:namespace_name){ "admin" }
-      
+
       it "should allow commenting" do
-        comment = ActiveAdmin::Comment.create! :resource => tag, 
-                                                :body => "Another Comment", 
+        comment = ActiveAdmin::Comment.create! :resource => tag,
+                                                :body => "Another Comment",
                                                 :namespace => namespace_name
-                                                
+
         ActiveAdmin::Comment.find_for_resource_in_namespace(tag, namespace_name).should == [comment]
       end
     end

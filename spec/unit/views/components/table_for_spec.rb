@@ -48,7 +48,7 @@ describe ActiveAdmin::Views::TableFor do
         table.find_by_tag("th").first.content.should == "Title"
         table.find_by_tag("th").last.content.should == "Created At"
       end
-      
+
       it "should add a class to each table header based on the col name" do
         table.find_by_tag("th").first.class_list.should include("title")
         table.find_by_tag("th").last.class_list.should  include("created_at")
@@ -61,7 +61,7 @@ describe ActiveAdmin::Views::TableFor do
       it "should create a cell for each column" do
         table.find_by_tag("td").size.should == 6
       end
-      
+
       it "should add a class for each cell based on the col name" do
         table.find_by_tag("td").first.class_list.should include("title")
         table.find_by_tag("td").last.class_list.should  include("created_at")
@@ -83,8 +83,8 @@ describe ActiveAdmin::Views::TableFor do
         table.find_by_tag("th").first.class_list.should include("title")
       end
 
-      [ "<span>First Post</span>", 
-        "<span>Second Post</span>", 
+      [ "<span>First Post</span>",
+        "<span>Second Post</span>",
         "<span>Third Post</span>" ].each_with_index do |content, index|
         it "should create a cell with #{content}" do
           table.find_by_tag("td")[index].content.strip.should == content
