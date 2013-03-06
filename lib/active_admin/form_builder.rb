@@ -74,7 +74,7 @@ module ActiveAdmin
       content = with_new_form_buffer do
         template.content_tag :div, :class => "has_many #{association}" do
           if options[:title] 
-            title = template.content_tag(:h3, object.class.reflect_on_association(association).klass.model_name.human(:count => 1.1)) unless options[:title] == false
+            title = template.content_tag(:h3, object.class.reflect_on_association(association).klass.model_name.human(:count => 1.1))
             form_buffers.last << title
           end
 
