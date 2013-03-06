@@ -146,11 +146,12 @@ module ActiveAdmin
     def add_logout_button_to_menu(menu, priority=100, html_options={})
       if logout_link_path
         logout_method = logout_link_method || :get
-        menu.add  :priority     => priority,
-                  :label        => I18n.t('active_admin.logout'),
-                  :html_options => html_options.reverse_merge(:method => logout_method),
-                  :url          => proc{ render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
-                  :if           => proc{ current_active_admin_user? }
+        menu.add :id           => 'logout',
+                 :priority     => priority,
+                 :label        => proc{ I18n.t('active_admin.logout') },
+                 :html_options => html_options.reverse_merge(:method => logout_method),
+                 :url          => proc{ render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
+                 :if           => proc{ current_active_admin_user? }
       end
     end
 
