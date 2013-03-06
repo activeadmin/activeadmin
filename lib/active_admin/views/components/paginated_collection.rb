@@ -29,13 +29,12 @@ module ActiveAdmin
 
       # Builds a new paginated collection component
       #
-      # @param [Array] collection  A "paginated" collection from kaminari
-      # @param [Hash]  options     These options will be passed on to the page_entries_info
-      #                            method.
-      #                            Useful keys:
-      #                              :entry_name - The name to display for this resource collection
-      #                              :param_name - Parameter name for page number in the links (:page by default)
-      #                              :download_links - Set to false to skip download format links
+      # collection => A paginated collection from kaminari
+      # options    => These options will be passed to `page_entries_info`
+      #   entry_name     => The name to display for this resource collection
+      #   param_name     => Parameter name for page number in the links (:page by default)
+      #   download_links => Download links override (false or [:csv, :pdf])
+      #
       def build(collection, options = {})
         @collection = collection
         @param_name     = options.delete(:param_name)
@@ -45,7 +44,6 @@ module ActiveAdmin
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
         end
         
-      
         @contents = div(:class => "paginated_collection_contents")
         build_pagination_with_formats(options)
         @built = true
@@ -66,7 +64,13 @@ module ActiveAdmin
         div :id => "index_footer" do
           build_pagination
           div(page_entries_info(options).html_safe, :class => "pagination_information")
-          build_download_format_links unless @download_links == false
+
+          if @download_links.is_a?(Array) && !@download_links.empty?
+            build_download_format_links @download_links
+          else
+            build_download_format_links unless @download_links == false
+          end
+
         end
       end
 
