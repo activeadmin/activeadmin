@@ -82,7 +82,7 @@ module ActiveAdmin
       end
       form_buffers.last << content.html_safe
     end
-    
+
     def semantic_errors(*args)
       content = with_new_form_buffer { super }
       form_buffers.last << content.html_safe unless content.nil?
@@ -135,9 +135,9 @@ module ActiveAdmin
       if ::Object.const_defined?(input_class_name)
         input_class_name.constantize
       elsif ActiveAdmin::Inputs.const_defined?(input_class_name)
-        active_admin_input_class_name(as).constantize 
+        active_admin_input_class_name(as).constantize
       elsif Formtastic::Inputs.const_defined?(input_class_name)
-        standard_input_class_name(as).constantize 
+        standard_input_class_name(as).constantize
       else
         raise Formtastic::UnknownInputError
       end
@@ -185,7 +185,7 @@ module ActiveAdmin
       js = template.escape_javascript(js)
 
       text = I18n.t 'active_admin.has_many_new', :model => association_human_name
-      onclick = "$(this).siblings('li.input').append('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
+      onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
 
       template.link_to text, "#",
                        :onclick => onclick,
