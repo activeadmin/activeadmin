@@ -8,8 +8,8 @@ es:
     edit: "Editar"
     delete: "Eliminar"
     delete_confirmation: "¿Está seguro de que quiere eliminar esto?"
-    new_model: "Nuevo(a) %{model}"
-    create_model: "Nuevo(a) %{model}"
+    new_model: "Añadir %{model}"
+    create_model: "Añadir %{model}"
     edit_model: "Editar %{model}"
     update_model: "Editar %{model}"
     delete_model: "Eliminar %{model}"
@@ -19,7 +19,7 @@ es:
     previous: "Anterior"
     next: "Siguiente"
     download: "Descargar:"
-    has_many_new: "Agregar nuevo(a) %{model}"
+    has_many_new: "Agregar Añadir %{model}"
     has_many_delete: "Eliminar"
     filter: "Filtrar"
     clear_filters: "Quitar Filtros"
@@ -33,26 +33,26 @@ es:
     sidebars:
       filters: "Filtros"
     pagination:
-      empty: "Ningún(a) %{model} encontrado"
+      empty: "No se han encontrado %{model}"
       one: "Mostrando <b>1</b> %{model}"
-      one_page: "Mostrando <b>todos(as) los(as) %{n}</b> %{model}"
+      one_page: "Mostrando <b>un total de %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
     blank_slate:
       content: "No hay %{resource_name} aún."
-      link: "Crea uno(a)"
+      link: "Añadir"
       entry:
         one: "registro"
         other: "registros"
     any: "Cualquiera"
     batch_actions:
       button_label: "Acciones en masa"
-      delete_confirmation: "¿Está seguro de que quiere eliminar estos %{plural_model}? No podrá deshacer esta opción."
+      delete_confirmation: "Eliminar %{plural_model}: ¿Está seguro? No podrá deshacer esta acción."
       succesfully_destroyed:
-        one: "Se ha destruido 1 %{model} exitosamente"
-        other: "Se han destruido %{count} %{plural_model} exitosamente"
-      selection_toggle_explanation: "(Cambiar Selección)"
-      link: "Crea 1"
-      action_label: "%{title} Seleccionado"
+        one: "Se ha destruido 1 %{model} con éxito"
+        other: "Se han destruido %{count} %{plural_model} con éxito"
+      selection_toggle_explanation: "(Cambiar selección)"
+      link: "Añadir"
+      action_label: "%{title} seleccionado"
       labels:
         destroy: "Borrar"
     comments:
@@ -61,14 +61,14 @@ es:
       title: "Comentario"
       add: "Comentar"
       resource: "Recurso"
-      no_comments_yet: "Sin comentarios todavía."
+      no_comments_yet: "Aún sin comentarios."
       title_content: "Comentarios (%{count})"
       errors:
         empty_text: "El comentario no fue guardado, el texto estaba vacío."
     devise:
       login:
         title: "iniciar sesión"
-        remember_me: "Recuérdame"
+        remember_me: "Recordarme"
         submit: "iniciar sesión"
       reset_password:
         title: "¿Olvidó su contraseña?"
@@ -93,6 +93,6 @@ es:
     update: "Guardar %{model}"
     submit: "Aceptar"
     cancel: "Cancelar"
-    reset: "Resetear %{model}"
+    reset: "Restablecer %{model}"
     required: "requerido"
 
