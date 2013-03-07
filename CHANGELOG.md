@@ -20,6 +20,9 @@
 * Coffeescript 1.5 compatability as constructors no longer return a value [#1940][] by [@ronen][]
 * Filters: add ability to search for blank/null fields with boolean search [#1893][] by [@whatcould][]
 * Allow options to be passed to the Abre element for rows in attributes_table [#1439][] by [@Daxter][]
+* New `navigation_menu` DSL for menu system [#1967][] by [@macfanatic][] and [@gregbell][]
+* Gender neutral Spanish translations [#1973][] by [@laffinkippah][]
+* Adds the ability to use starts_with and ends_with in string filters [#1962][] by [@rmw][]
 
 ## 0.5.1
 
