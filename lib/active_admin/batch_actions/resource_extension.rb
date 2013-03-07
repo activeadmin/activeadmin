@@ -51,8 +51,8 @@ module ActiveAdmin
       end
 
       # Path to the batch action itself
-      def batch_action_path
-        "batch_action_#{route_collection_path}".to_sym
+      def batch_action_path(params = {})
+        [route_collection_path(params), "batch_action"].join("/")
       end
 
       private

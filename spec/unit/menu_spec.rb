@@ -1,4 +1,4 @@
-require 'spec_helper_without_rails'
+require 'spec_helper'
 require 'active_admin/menu'
 require 'active_admin/menu_item'
 
@@ -15,9 +15,8 @@ describe ActiveAdmin::Menu do
 
     it "should accept new items" do
       menu = Menu.new
-      item = MenuItem.new
-      menu.add item
-      menu.items.first.should == item
+      menu.add :label => "Dashboard"
+      menu.items.first.label.should == "Dashboard"
     end
 
   end
@@ -25,8 +24,8 @@ describe ActiveAdmin::Menu do
   context "with many item" do
     let(:menu) do
       Menu.new do |m|
-        m.add MenuItem.new(:label => "Dashboard")
-        m.add MenuItem.new(:label => "Blog")
+        m.add :label => "Dashboard"
+        m.add :label => "Blog"
       end
     end
 
@@ -35,32 +34,22 @@ describe ActiveAdmin::Menu do
     end
   end
 
-  describe Menu::ItemCollection do
+  describe "adding items with children" do
 
-    let(:collection) { Menu::ItemCollection.new }
+    it "should add an empty item if the parent does not exist" do
+      menu = Menu.new
+      menu.add :parent => "Admin", :label  => "Users"
 
-    it "should initialize" do
-      collection.should be_empty
+      menu["Admin"]["Users"].should be_an_instance_of(ActiveAdmin::MenuItem)
     end
 
-    describe "#find_by_id" do
-      let(:menu_item) { MenuItem.new(:id => "an_id") }
+    it "should add a child to a parent if it exists" do
+      menu = Menu.new
+      menu.add :parent => "Admin", :label  => "Users"
+      menu.add :parent => "Admin", :label  => "Projects"
 
-      before do
-        collection.push menu_item
-      end
-
-      it "retrieve an item id" do
-        MenuItem.should_receive(:generate_item_id).with("an_id").and_return("an_id")
-        collection.find_by_id("an_id").should == menu_item
-      end
-
-      it "returns nil when no matching ids" do
-        collection.find_by_id("not matching").should == nil
-      end
-
+      menu["Admin"]["Projects"].should be_an_instance_of(ActiveAdmin::MenuItem)
     end
-
   end
 
 end

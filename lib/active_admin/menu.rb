@@ -5,8 +5,8 @@ module ActiveAdmin
   # To build a new menu:
   #
   #   menu = Menu.new do |m|
-  #     m.add MenuItem.new(:label => "Dashboard", :url => "/")
-  #     m.add MenuItem.new(:label => "Admin", :url => "/admin")
+  #     m.add :label => "Dashboard", :url => "/"
+  #     m.add :label => "Admin", :url => "/admin"
   #   end
   #
   # If you're interested in configuring a menu item, take a look at the
@@ -14,54 +14,81 @@ module ActiveAdmin
   #
   class Menu
 
-    attr_accessor :children
-
     def initialize
-      @children = Menu::ItemCollection.new
-
       yield(self) if block_given?
     end
 
-    # Add a new MenuItem to the menu
-    #
-    # Example:
-    #   menu = Menu.new
-    #   dash = MenuItem.new :label => "Dashboard"
-    #   menu.add dash
-    #
-    # Accepts as many menu items as you wish to add:
-    #
-    #   menu = Menu.new
-    #   dash = MenuItem.new :label => "Dashboard"
-    #   admin = MenuItem.new :label => "Admin"
-    #   menu.add dash, admin
-    #
-    # @param [MenuItem] menu_items Add as many menu items as you pass in
-    def add(*menu_items)
-      menu_items.each do |menu_item|
-        menu_item.parent = nil
-        @children << menu_item
-      end
-    end
+    module MenuNode
 
-    def [](id)
-      @children.find_by_id(id)
-    end
+      # Add a new MenuItem to the menu
+      #
+      # Example:
+      #   menu = Menu.new
+      #   menu.add :label => "Dashboard" do |dash|
+      #     dash.add :label => "My Child Dashboard"
+      #   end
+      #
+      # @param [Hash] menu_items Add as many menu items as you pass in
+      def add(item_options)
+        parent_label = item_options[:parent]
 
-    # @return Sorted [Array] of [MenuItem]
-    def items
-      @children.sort
-    end
+        if parent_label
+          child_options = item_options.except(:parent)
+          menu_item = add_with_parent(parent_label, child_options)
+        else
+          menu_item = add_without_parent(item_options)
+        end
 
-    class ItemCollection < Array
+        yield(menu_item) if block_given?
 
-      def find_by_id(id)
-        id = MenuItem.generate_item_id(id)
-        find{ |i| i.id == id }
+        menu_item
       end
 
+      def [](id)
+        children.fetch(normalize_id(id))
+      end
+
+      def include?(item)
+        items.include?(item)
+      end
+
+      # @return Sorted [Array] of [MenuItem]
+      def items
+        children.values.sort
+      end
+
+      private
+
+      def add_without_parent(item_options)
+        menu_item = ActiveAdmin::MenuItem.new(item_options, self)
+        children[menu_item.id] = menu_item
+      end
+
+      def add_with_parent(parent, item_options)
+        parent_id = normalize_id(parent)
+        parent = children.fetch(parent_id){ add(:label => parent) }
+
+        parent.add(item_options)
+      end
+
+      def children
+        @children ||= {}
+      end
+
+      def normalize_id(string)
+        case string
+        when Proc
+          string
+        else
+          string.to_s.downcase.gsub(" ", "_")
+        end
+      end
+
     end
+
+    include MenuNode
 
   end
+
 
 end

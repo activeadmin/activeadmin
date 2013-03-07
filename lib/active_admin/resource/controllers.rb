@@ -13,23 +13,6 @@ module ActiveAdmin
         @controller ||= controller_name.constantize
       end
 
-      # Returns the routes prefix for this config
-      def route_prefix
-        namespace.module_name.try(:underscore)
-      end
-
-      # Returns a symbol for the route to use to get to the
-      # collection of this resource
-      def route_collection_path
-        route = [
-          route_prefix, 
-          controller.resources_configuration[:self][:route_collection_name], 
-          'path'
-        ]
-
-        route.compact.join('_').to_sym
-      end
-
     end
   end
 end

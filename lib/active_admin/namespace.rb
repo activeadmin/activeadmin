@@ -1,6 +1,5 @@
 require 'active_admin/helpers/settings'
 require 'active_admin/resource_collection'
-require 'active_admin/menu_builder'
 
 module ActiveAdmin
 
@@ -33,7 +32,7 @@ module ActiveAdmin
 
     RegisterEvent = 'active_admin.namespace.register'.freeze
 
-    attr_reader :application, :resources, :name, :menu
+    attr_reader :application, :resources, :name, :menus
 
     def initialize(application, name)
       @application = application
@@ -41,6 +40,7 @@ module ActiveAdmin
       @resources = ResourceCollection.new
       register_module unless root?
       generate_dashboard_controller
+      build_menu_collection
     end
 
     # Register a resource into this namespace. The preffered method to access this is to 
@@ -114,15 +114,76 @@ module ActiveAdmin
       application.send(name)
     end
 
-    def menu
-      @menu ||= MenuBuilder.build_for_namespace(self)
+    def fetch_menu(name)
+      @menus.fetch(name)
     end
 
     def reset_menu!
-      @menu = nil
+      @menus.clear!
+    end
+
+    # Add a callback to be ran when we build the menu
+    #
+    # @param [Symbol] name The name of the menu. Default: :default
+    # @param [Proc] block The block to be ran when the menu is built
+    #
+    # @returns [void]
+    def build_menu(name = DEFAULT_MENU, &block)
+      @menus.before_build do |menus|
+        menus.menu name do |menu|
+          block.call(menu)
+        end
+      end
+    end
+
+    # Add the default logout button to the menu, using the ActiveAdmin configuration settings
+    #
+    # @param [ActiveAdmin::MenuItem] menu The menu to add the logout link to
+    # @param [Fixnum] priority Override the default priority of 100 to position the logout button where you want
+    # @param [Hash] html_options An options hash to pass along to link_to
+    #
+    # @returns [void]
+    def add_logout_button_to_menu(menu, priority=100, html_options={})
+      if logout_link_path
+        logout_method = logout_link_method || :get
+        menu.add  :priority     => priority,
+                  :label        => I18n.t('active_admin.logout'),
+                  :html_options => html_options.reverse_merge(:method => logout_method),
+                  :url          => proc{ render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
+                  :if           => proc{ current_active_admin_user? }
+      end
     end
 
     protected
+
+    def build_menu_collection
+      @menus = MenuCollection.new
+
+      @menus.on_build do |menus|
+        # Support for deprecated dashboards...
+        Dashboards.add_to_menu(self, menus.menu(DEFAULT_MENU))
+
+        # Build the default utility navigation
+        build_default_utility_nav
+
+        resources.each do |resource|
+          resource.add_to_menu(@menus)
+        end
+      end
+    end
+
+    # Builds the default utility navigation in top right header with current user & logout button
+    def build_default_utility_nav
+      return if @menus.exists? :utility_navigation
+      @menus.menu :utility_navigation do |menu|
+        menu.add  :label  => proc{ display_name current_active_admin_user },
+                  :url    => '#',
+                  :id     => 'current_user',
+                  :if     => proc{ current_active_admin_user? }
+                  
+        add_logout_button_to_menu menu
+      end
+    end
 
     # Either returns an existing Resource instance or builds a new
     # one for the resource and options

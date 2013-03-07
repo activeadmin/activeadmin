@@ -32,28 +32,38 @@ module ActiveAdmin
       item.display_if_block.call(self).should == true
     end
 
-    context "with no children" do
+    it "should default to an empty hash for html_options" do
+      item = MenuItem.new
+      item.html_options.should be_empty
+    end
+
+    it "should accept an options hash for link_to" do
+      item = MenuItem.new html_options: { :target => :blank }
+      item.html_options.should include(:target => :blank)
+    end
+
+    context "with no items" do
       it "should be empty" do
         item = MenuItem.new
-        item.children.should == []
+        item.items.should == []
       end
 
       it "should accept new children" do
         item = MenuItem.new
-        item.add MenuItem.new(:label => "Dashboard")
-        item.children.first.should be_an_instance_of(MenuItem)
-        item.children.first.label.should == "Dashboard"
+        item.add :label => "Dashboard"
+        item.items.first.should be_an_instance_of(MenuItem)
+        item.items.first.label.should == "Dashboard"
       end
     end
 
     context "with many children" do
       let(:item) do
         i = MenuItem.new(:label => "Dashboard")
-        i.add MenuItem.new(:label => "Blog")
-        i.add MenuItem.new(:label => "Cars")
-        i.add MenuItem.new(:label => "Users", :priority => 1)
-        i.add MenuItem.new(:label => "Settings", :priority => 2)
-        i.add MenuItem.new(:label => "Analytics", :priority => 44)
+        i.add :label => "Blog"
+        i.add :label => "Cars"
+        i.add :label => "Users", :priority => 1
+        i.add :label => "Settings", :priority => 2
+        i.add :label => "Analytics", :priority => 44
         i
       end
 
@@ -62,11 +72,11 @@ module ActiveAdmin
       end
 
       it "should sort items based on priority and name" do    
-        item.children[0].label.should == 'Users'
-        item.children[1].label.should == 'Settings'
-        item.children[2].label.should == 'Blog'
-        item.children[3].label.should == 'Cars'
-        item.children[4].label.should == 'Analytics'
+        item.items[0].label.should == 'Users'
+        item.items[1].label.should == 'Settings'
+        item.items[2].label.should == 'Blog'
+        item.items[3].label.should == 'Cars'
+        item.items[4].label.should == 'Analytics'
       end
 
       it "children should hold a reference to their parent" do
@@ -85,7 +95,7 @@ module ActiveAdmin
 
       context "with one parent" do
         let(:sub_item) do 
-          item.add MenuItem.new(:label => "Create New")
+          item.add :label => "Create New"
           item["Create New"]
         end
         it "should return an array with the parent" do
@@ -95,13 +105,11 @@ module ActiveAdmin
 
       context "with many parents" do
         before(:each) do
-          c1 = MenuItem.new(:label => "C1")
-          c2 = MenuItem.new(:label => "C2")
-          c3 = MenuItem.new(:label => "C3")
+          c1 = {:label => "C1"}
+          c2 = {:label => "C2"}
+          c3 = {:label => "C3"}
 
-          item.add(c1)
-          c1.add c2
-          c2.add c3
+          item.add(c1).add(c2).add(c3)
 
           item
         end
@@ -116,11 +124,15 @@ module ActiveAdmin
     describe ".generate_item_id" do
 
       it "downcases the id" do
-        MenuItem.generate_item_id("Identifier").should == "identifier"
+        MenuItem.new(:id => "Identifier").id.should == "identifier"
       end
 
       it "should set underscore any spaces" do
-        MenuItem.generate_item_id("An Id").should == "an_id"
+        MenuItem.new(:id => "An Id").id.should == "an_id"
+      end
+
+      it "should return a proc if label was a proc" do
+        MenuItem.new(:label => proc{ "Dynamic" }).id.should be_an_instance_of(Proc)
       end
 
     end
