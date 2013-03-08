@@ -38,7 +38,7 @@ module ActiveAdmin
     end
 
     it "should accept an options hash for link_to" do
-      item = MenuItem.new html_options: { :target => :blank }
+      item = MenuItem.new :html_options => { :target => :blank }
       item.html_options.should include(:target => :blank)
     end
 
