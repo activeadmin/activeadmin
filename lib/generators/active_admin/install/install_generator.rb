@@ -22,7 +22,7 @@ module ActiveAdmin
         template 'dashboard.rb', 'app/admin/dashboard.rb'
         if options[:users].present?
           @user_class = name
-          template 'admin_user.rb.erb', "app/admin/#{name.underscore.pluralize}.rb"
+          template 'admin_user.rb.erb', "app/admin/#{name.underscore}.rb"
         end
       end
 
