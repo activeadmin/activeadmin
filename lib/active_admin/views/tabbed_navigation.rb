@@ -40,11 +40,11 @@ module ActiveAdmin
       end
 
       def build_menu_item(item)
-        dom_id = case item.dom_id
+        dom_id = case item.id
         when Proc,Symbol
-          normalize_id call_method_or_proc_on(self, item.dom_id)
+          normalize_id call_method_or_proc_on(self, item.id)
         else
-          item.dom_id
+          item.id
         end
 
         li :id => dom_id do |li_element|
