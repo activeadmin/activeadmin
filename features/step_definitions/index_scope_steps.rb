@@ -26,11 +26,11 @@ end
 
 Then /^I should see (\d+) ([\w]*) in the table$/ do |count, resource_type|
   begin
-    page.should have_css("table##{resource_type} tr > td:first", :count => count.to_i)
+    page.should have_css("table#index_table_#{resource_type} tr > td:first", :count => count.to_i)
   rescue
     current_count = 0
-    
-    all("table##{resource_type} tr > td:first").each { current_count += 1 }
+
+    all("table#index_table_#{resource_type} tr > td:first").each { current_count += 1 }
 
     raise "There were #{current_count} rows in the table not #{count}"
   end

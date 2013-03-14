@@ -288,7 +288,7 @@ module ActiveAdmin
 
       def apply_decorator(chain)
         if decorator?
-          decorator_class.decorate(chain)
+          decorator_class.decorate_collection(chain)
         else
           chain
         end
