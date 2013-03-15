@@ -16,7 +16,7 @@ inject_into_file 'app/models/post.rb', "  belongs_to :author, :class_name => 'Us
 copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), "app/models/post_decorator.rb"
 
 # Rails 3.2.3 model generator declare attr_accessible
-inject_into_file 'app/models/post.rb', "  attr_accessible :author\n", :before => "end" if Rails::VERSION::STRING >= '3.2.3'
+inject_into_file 'app/models/post.rb', "  attr_accessible :author\n", :before => "end" if Rails::VERSION::STRING >= '3.2'
 generate :model, "user type:string first_name:string last_name:string username:string age:integer"
 inject_into_file 'app/models/user.rb', "  has_many :posts, :foreign_key => 'author_id'\n", :after => "class User < ActiveRecord::Base\n"
 generate :model, "publisher --migration=false --parent=User"
