@@ -46,6 +46,19 @@ describe ActiveAdmin::ResourceController::DataAccess do
       end
     end
 
+    context "with the former associate column format" do
+      let(:params){ {:order => "puppies.eye_colour_asc" }}
+
+      # https://github.com/gregbell/active_admin/pull/1766#issuecomment-12934911
+      it "should be backwards-compatible" do
+        chain = mock("ChainObj")
+        chain.should_receive(:select_values).once.and_return(['*'])
+        chain.should_receive(:metasearch).with(:meta_sort => "puppy_eye_colour.asc").once.and_return(Post.search)
+        ActiveAdmin::Deprecation.should_receive(:warn)
+        controller.send :apply_sorting, chain
+      end
+    end
+
   end
 
   describe "scoping" do
