@@ -78,12 +78,35 @@ module ActiveAdmin
     #       end
     #     end
     #
-    # You can also sort using an attribute on another table by passing the table name
-    # and the attribute separated by a dot:
+    # You can also sort using an attribute on another table by passing the
+    # association name and the attribute separated by an underscore:
     #
     #     index do
-    #       column :title, :sortable => 'categories.name'
+    #       column :title, :sortable => 'category_name'
     #     end
+    #
+    # And you can also sort on multiple columns, either of this resource or
+    # of associated ones, joining conditions using _and_:
+    #
+    #     index do
+    #       column :title, :sortable => 'author_first_name_and_category_name_and_title'
+    #     end
+    #
+    # For complex sorting schemes, this definition may become cumbersome: in
+    # these cases, define two scopes in your model, and refer to them in the
+    # :sortable option:
+    #
+    #     class Post
+    #       scope :sort_by_custom_name_asc,  proc { joins(...).order(...)... }
+    #       scope :sort_by_custom_name_desc, proc { joins(...).order(...)... }
+    #     end
+    #
+    #     index to
+    #       column :title, :sortable => 'custom_name'
+    #     end
+    #
+    # This leverages the [meta_sort feature](https://github.com/ernie/meta_search/#sorting-columns)
+    # in meta_search.
     #
     # You can turn off sorting on any column by passing false:
     #
