@@ -9,37 +9,31 @@ module ActiveAdmin
     end
 
     def inputs(*args, &block)
-      # Store that we are creating inputs without a block
-      @inputs_with_block = block_given? ? true : false
-      content = with_new_form_buffer { super }
-      form_buffers.last << content.html_safe
+      @inputs_with_block = block_given?
+      form_buffers.last << with_new_form_buffer{ super }
     end
 
-    # The input method returns a properly formatted string for
-    # its contents, so we want to skip the internal buffering
-    # while building up its contents
+    # If this `input` call is inside a `inputs` block, add the content
+    # to the form buffer. Else, return it directly.
     def input(method, *args)
-      content = with_new_form_buffer { super }
-      return content.html_safe unless @inputs_with_block
-      form_buffers.last << content.html_safe
+      content = with_new_form_buffer{ super }
+      @inputs_with_block ? form_buffers.last << content : content
     end
 
-    def cancel_link(url = nil, html_options = {}, li_attributes = {})
-      li_attributes[:class] ||= "cancel"
-      url ||= {:action => "index"}
-      form_buffers.last << template.content_tag(:li, (template.link_to I18n.t('active_admin.cancel'), url, html_options), li_attributes)
+    def cancel_link(url = {:action => "index"}, html_options = {}, li_attrs = {})
+      li_attrs[:class] ||= "cancel"
+      li_content = template.link_to I18n.t('active_admin.cancel'), url, html_options
+      form_buffers.last << template.content_tag(:li, li_content, li_attrs)
     end
 
     def actions(*args, &block)
-      content = with_new_form_buffer do
-        block_given? ? super : super { commit_action_with_cancel_link }
+      form_buffers.last << with_new_form_buffer do
+        block_given? ? super : super{ commit_action_with_cancel_link }
       end
-      form_buffers.last << content.html_safe
     end
 
     def action(*args)
-      content = with_new_form_buffer { super }
-      form_buffers.last << content.html_safe
+      form_buffers.last << with_new_form_buffer{ super }
     end
 
     def commit_action_with_cancel_link
@@ -76,16 +70,16 @@ module ActiveAdmin
           form_buffers.last << template.content_tag(:h3, object.class.reflect_on_association(association).klass.model_name.human(:count => 1.1))
           inputs options, &form_block
 
-          js = js_for_has_many(association, form_block, template)
-          form_buffers.last << js.html_safe
+          form_buffers.last << js_for_has_many(association, form_block, template)
         end
       end
-      form_buffers.last << content.html_safe
+      form_buffers.last << content
     end
 
+    # BTW: the fact that this *could* return nil might currently be causing problems
     def semantic_errors(*args)
-      content = with_new_form_buffer { super }
-      form_buffers.last << content.html_safe unless content.nil?
+      content = with_new_form_buffer{ super }
+      form_buffers.last << content if content
     end
 
     # These methods are deprecated and removed from Formtastic, however are
@@ -164,7 +158,7 @@ module ActiveAdmin
 
     def with_new_form_buffer
       form_buffers << "".html_safe
-      return_value = yield
+      return_value = yield.html_safe
       form_buffers.pop
       return_value
     end
@@ -187,9 +181,7 @@ module ActiveAdmin
       text = I18n.t 'active_admin.has_many_new', :model => association_human_name
       onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
 
-      template.link_to text, "#",
-                       :onclick => onclick,
-                       :class => "button"
+      template.link_to(text, "#", :onclick => onclick, :class => "button").html_safe
     end
 
   end
