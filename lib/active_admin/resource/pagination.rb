@@ -12,7 +12,12 @@ module ActiveAdmin
       def initialize(*args)
         super
         @paginate = true
-        @per_page = namespace.default_per_page
+        if self.resource_class.respond_to?(:default_per_page) 
+          @per_page =  self.resource_class.default_per_page
+        end
+         if @per_page.nil? || @per_page == 0
+           @per_page = namespace.default_per_page
+         end
       end
     end
   end
