@@ -154,6 +154,14 @@ module ActiveAdmin
       raise Formtastic::UnknownInputError
     end
 
+    # This method calls the block it's passed (in our case, the `f.inputs` block)
+    # and wraps the resulting HTML in a fieldset. If your block happens to return
+    # nil (but it otherwise built the form correctly), the below override passes
+    # the most recent part of the Active Admin form buffer.
+    def field_set_and_list_wrapping(*args, &block)
+      block_given? ? super{ yield || form_buffers.last } : super
+    end
+
     private
 
     def with_new_form_buffer
