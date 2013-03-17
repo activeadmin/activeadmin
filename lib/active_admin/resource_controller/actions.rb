@@ -45,17 +45,25 @@ module ActiveAdmin
     alias :edit! :edit
 
     def create(options={}, &block)
-      super(options) do |success, failure|
-        block.call(success, failure) if block
-        failure.html { render active_admin_template('new') }
+      if block && block.arity == 0
+        super(options, &block)
+      else
+        super(options) do |success, failure|
+          block.call(success, failure) if block
+          failure.html { render active_admin_template('new') }
+        end
       end
     end
     alias :create! :create
 
     def update(options={}, &block)
-      super do |success, failure|
-        block.call(success, failure) if block
-        failure.html { render active_admin_template('edit') }
+      if block && block.arity == 0
+        super(options, &block)
+      else
+        super do |success, failure|
+          block.call(success, failure) if block
+          failure.html { render active_admin_template('edit') }
+        end
       end
     end
     alias :update! :update
