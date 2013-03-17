@@ -111,6 +111,58 @@ describe ActiveAdmin, "Routing", :type => :routing do
         edit_post_path(1).should == "/posts/1/edit"
       end
     end
+
+    context "with member action" do
+      context "without http verb" do
+        before(:each) do
+          load_resources do 
+            ActiveAdmin.register(Post) do
+              member_action "do_something"
+            end
+          end
+        end
+
+        it "should properly route the member action for GET only" do
+          { :get => "/admin/posts/1/do_something" }.
+            should route_to({ :controller => 'admin/posts', :action => 'do_something', :id => "1" })
+        end
+      end
+
+      context "with one http verb" do
+        before(:each) do
+          load_resources do 
+            ActiveAdmin.register(Post) do
+              member_action "do_something", :method => :post
+            end
+          end
+        end
+
+        it "should properly route the member action for the specified http verb" do
+          { :post => "/admin/posts/1/do_something" }.
+            should route_to({ :controller => 'admin/posts', :action => 'do_something', :id => "1" })
+        end
+      end
+
+      context "with two http verbs" do
+        before(:each) do
+          load_resources do 
+            ActiveAdmin.register(Post) do
+              member_action "do_something", :method => [:get, :post]
+            end
+          end
+        end
+
+        it "should properly route the member action for the first http verb" do
+          { :get => "/admin/posts/1/do_something" }.
+            should route_to({ :controller => 'admin/posts', :action => 'do_something', :id => "1" })
+        end
+
+        it "should properly route the member action for the second http verb" do        
+          { :post => "/admin/posts/1/do_something" }.
+            should route_to({ :controller => 'admin/posts', :action => 'do_something', :id => "1" })        
+        end
+      end
+    end
   end
 
   describe "belongs to resource" do
