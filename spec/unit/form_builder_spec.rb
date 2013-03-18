@@ -408,4 +408,19 @@ describe ActiveAdmin::FormBuilder do
     end
   end
 
+  describe "inputs block with nil return value" do
+    let :body do
+      build_form do |f|
+        f.inputs do
+          f.input :title
+          nil
+        end
+      end
+    end
+
+    it "should generate a single input field" do
+      body.should have_tag("input", :attributes => { :type => "text", :name => "post[title]" })
+    end
+  end
+
 end
