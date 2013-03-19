@@ -35,12 +35,21 @@ module ActiveAdmin
 
       # Redirect to the default namespace on logout
       def root_path
-        (Rails.configuration.action_controller[:relative_url_root] || '') +
-        if ActiveAdmin.application.default_namespace
-          "/#{ActiveAdmin.application.default_namespace}"
-        else
-          "/"
-        end
+        namespace = ActiveAdmin.application.default_namespace.presence
+        root_path_method = [*namespace, :root_path].join('_')
+        url_helpers = Rails.application.routes.url_helpers
+
+        path = if url_helpers.respond_to? root_path_method
+                 url_helpers.send root_path_method
+               else
+                 # Guess a root_path when url_helpers not helpful
+                 "/#{namespace}"
+               end
+
+        # NOTE: `relative_url_root` is deprecated by rails.
+        #       Remove prefix here if it is removed completely.
+        prefix = Rails.configuration.action_controller[:relative_url_root] || ''
+        prefix + path
       end
     end
 
