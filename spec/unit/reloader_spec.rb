@@ -23,13 +23,13 @@ describe ActiveAdmin::Reloader do
   let(:reloader){ ActiveAdmin::Reloader.build(rails_app, mock_app, rails_version) }
 
   context "when Rails version < 3.2" do
-    let(:rails_version){ "3.1.0" }
+    let(:rails_version){ "3.1.12" }
 
     describe "initialization" do
 
       it "should initialize a new file update checker" do
         ActiveSupport::FileUpdateChecker.should_receive(:new).with(mock_app.load_paths).and_return(mock(:execute_if_updated => true))
-        ActiveAdmin::Reloader.build(rails_app, mock_app, '3.1.0')
+        ActiveAdmin::Reloader.build(rails_app, mock_app, '3.1.12')
       end
 
       it "should build a RailsLessThan31Reloader" do
@@ -41,12 +41,12 @@ describe ActiveAdmin::Reloader do
     describe "#reloader_class" do
 
       it "should use ActionDispatch::Reloader if rails 3.1" do
-        reloader = ActiveAdmin::Reloader.build rails_app, mock_app, '3.1.0'
+        reloader = ActiveAdmin::Reloader.build rails_app, mock_app, '3.1.12'
         reloader.reloader_class.should == ActionDispatch::Reloader
       end
 
       it "should use ActionDispatch::Callbacks if rails 3.0" do
-        reloader = ActiveAdmin::Reloader.build rails_app, mock_app, '3.0.0'
+        reloader = ActiveAdmin::Reloader.build rails_app, mock_app, '3.0.20'
         reloader.reloader_class.should == ActionDispatch::Callbacks
       end
 
@@ -94,7 +94,7 @@ describe ActiveAdmin::Reloader do
   end
 
   context "when Rails >= 3.2" do
-    let(:rails_version){ "3.2.0" }
+    let(:rails_version){ "3.2.13" }
 
     describe "initialization" do
 
