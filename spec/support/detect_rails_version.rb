@@ -1,12 +1,19 @@
 # Detects the current version of Rails that is being used
 #
 #
-unless defined?(RAILS_VERSION_FILE)
+unless defined? RAILS_VERSION_FILE
   RAILS_VERSION_FILE = File.expand_path("../../../.rails-version", __FILE__)
 end
 
-unless defined?(DEFAULT_RAILS_VERSION)
-  DEFAULT_RAILS_VERSION = "3.2.13"
+unless defined? TRAVIS_CONFIG
+  require 'psych'
+  filename = File.exists?('.travis.yml') ? '.travis.yml' : '../../../.travis.yml'
+  TRAVIS_CONFIG = Psych.load File.read filename
+  TRAVIS_RAILS_VERSIONS = TRAVIS_CONFIG['env'].grep(/RAILS=(.*)/){ $1 }.sort
+end
+
+unless defined? DEFAULT_RAILS_VERSION
+  DEFAULT_RAILS_VERSION = TRAVIS_RAILS_VERSIONS.last
 end
 
 def detect_rails_version
