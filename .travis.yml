@@ -8,8 +8,8 @@ before_install:
   - gem install bundler
 env:
   - RAILS=3.0.20
-  - RAILS=3.1.11
-  - RAILS=3.2.12
+  - RAILS=3.1.12
+  - RAILS=3.2.13
 matrix:
   allow_failures:
     - rvm: 2.0.0
