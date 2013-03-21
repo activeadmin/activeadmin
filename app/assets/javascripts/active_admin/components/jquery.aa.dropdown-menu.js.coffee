@@ -83,14 +83,14 @@ window.AA.DropdownMenu = class AA.DropdownMenu
       false
 
   _positionMenuList: ->
-    centerOfButtonFromLeft = @$menuButton.offset().left + @$menuButton.outerWidth() / 2
+    centerOfButtonFromLeft = @$menuButton.position().left + @$menuButton.outerWidth() / 2
     centerOfmenuListFromLeft = @$menuList.outerWidth() / 2
     menuListLeftPos = centerOfButtonFromLeft - centerOfmenuListFromLeft
     @$menuList.css "left", menuListLeftPos
 
   _positionNipple: ->
     centerOfmenuListFromLeft = @$menuList.outerWidth() / 2
-    bottomOfButtonFromTop = @$menuButton.offset().top + @$menuButton.outerHeight() + 10
+    bottomOfButtonFromTop = @$menuButton.position().top + @$menuButton.outerHeight() + 10
     @$menuList.css "top", bottomOfButtonFromTop
     $nipple = @$menuList.find(".dropdown_menu_nipple")
     centerOfnippleFromLeft = $nipple.outerWidth() / 2
