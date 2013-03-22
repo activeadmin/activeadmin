@@ -12,8 +12,9 @@ module ActiveAdmin
       def active_admin_collection
         decorator = active_admin_config.decorator_class
         collection = super
-        decorator ? decorator.decorate(collection) : collection
+        decorator ? decorator.decorate_collection(collection) : collection
       end
+
     end
   end
 end

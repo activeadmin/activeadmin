@@ -3,7 +3,7 @@ he:
     dashboard: פנל ניהול
     dashboard_welcome:
       welcome: "ברוכים הבאים לאקטיב אדמין. זהו פנל הניהול"
-      call_to_action: "כדי להוסיף אזורים בפנל הניהול, אנא בדוק את,  'app/admin/dashboards.rb'"
+      call_to_action: "כדי להוסיף אזורים בפנל הניהול, אנא בדוק את,  'app/admin/dashboard.rb'"
     view: "צפייה"
     edit: "עריכה"
     delete: "מחיקה"

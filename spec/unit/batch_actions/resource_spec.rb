@@ -54,7 +54,7 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
   describe "#batch_action_path" do
 
     it "returns the path as a symbol" do
-      resource.batch_action_path.should == :batch_action_admin_posts_path
+      resource.batch_action_path.should == "/admin/posts/batch_action"
     end
 
   end

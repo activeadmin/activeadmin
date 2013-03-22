@@ -51,8 +51,8 @@ module ActiveAdmin
       end
 
       # Path to the batch action itself
-      def batch_action_path
-        "batch_action_#{route_collection_path}".to_sym
+      def batch_action_path(params = {})
+        [route_collection_path(params), "batch_action"].join("/")
       end
 
       private
@@ -62,7 +62,7 @@ module ActiveAdmin
         destroy_options = {
           :priority => 100,
           :confirm => proc { I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => active_admin_config.plural_resource_label.downcase) },
-          :if => proc{ controller.action_methods.include?('destroy') }
+          :if => proc{ controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, active_admin_config.resource_class) }
         }
 
         add_batch_action :destroy, proc { I18n.t('active_admin.delete') }, destroy_options do |selected_ids|

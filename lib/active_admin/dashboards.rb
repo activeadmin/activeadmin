@@ -58,11 +58,10 @@ module ActiveAdmin
 
         dashboard_path = namespace.root? ? :dashboard_path : "#{namespace.name}_dashboard_path".to_sym
 
-        item = MenuItem.new  :id => "dashboard", 
-                             :label => proc{ I18n.t("active_admin.dashboard") },
-                             :url => dashboard_path,
-                             :priority => 1
-        menu.add item
+        menu.add :id => "dashboard", 
+                 :label => proc{ I18n.t("active_admin.dashboard") },
+                 :url => dashboard_path,
+                 :priority => 1
       end
     end
   end

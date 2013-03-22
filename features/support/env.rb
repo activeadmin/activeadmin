@@ -107,6 +107,10 @@ include Warden::Test::Helpers
 After do
   add_default_dashboard
   Warden.test_reset!
+
+  # Reset back to the default auth adapter
+  ActiveAdmin.application.namespace(:admin).
+    authorization_adapter = ActiveAdmin::AuthorizationAdapter
 end
 
 Before '@dashboard' do

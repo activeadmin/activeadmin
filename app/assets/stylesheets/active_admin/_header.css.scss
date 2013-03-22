@@ -42,7 +42,7 @@
     height: 20px
   }
 
-  ul#tabs {
+  ul.tabs {
     display: inline-block; 
     height: 100%;
     margin: 0; 
@@ -128,10 +128,13 @@
     display: inline-block;
     margin: 0;
     padding: 0;
-    span, a { margin-left: 10px; }
 
     a { text-decoration: none; }
     a:hover { color: #fff; }
+
+    li {
+      display:inline;
+    }
   }
 
 }

@@ -31,22 +31,18 @@ shared_examples_for "ActiveAdmin::Config" do
   end
 
   describe "Menu" do
-    describe "menu item" do
+    describe "#menu_item_options" do
 
-    it "initializes a new menu item with defaults" do
-        config.menu_item.label.should == config.plural_resource_label
-    end
+      it "initializes a new menu item with defaults" do
+          config.menu_item_options[:label].call.should == config.plural_resource_label
+      end
 
-    it "initialize a new menu item with custom options" do
-      config.menu :label => "Hello"
-      config.menu_item.label.should == "Hello"
-    end
+      it "initialize a new menu item with custom options" do
+        config.menu_item_options = { :label => "Hello" }
+        config.menu_item_options[:label].should == "Hello"
+      end
 
-    it "initialize a new menu item with label as Proc object" do
-      config.menu :label => proc { "Hello" }
-      config.menu_item.label.should == "Hello"
     end
-  end
 
     describe "#include_in_menu?" do
       it "should be included in menu by default" do
@@ -54,25 +50,8 @@ shared_examples_for "ActiveAdmin::Config" do
       end
 
       it "should not be included in menu when menu set to false" do
-        config.menu false
+        config.menu_item_options = false
         config.include_in_menu?.should == false
-      end
-    end
-
-    describe "parent menu item name" do
-
-      it "should be nil when not set" do
-        config.parent_menu_item_name.should == nil
-      end
-
-      it "should return the name if set" do
-        config.menu :parent => "Blog"
-        config.parent_menu_item_name.should == "Blog"
-      end
-
-      it "initialize a new parent menu item with label as Proc object" do
-        config.menu :parent => proc{ "Blog" }
-        config.parent_menu_item_name.should == "Blog"
       end
     end
 

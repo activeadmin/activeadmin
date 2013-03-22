@@ -23,30 +23,33 @@ describe ActiveAdmin::Views::TabbedNavigation do
   describe "rendering a menu" do
 
     before do
-      menu.add MenuItem.new(:label => "Blog Posts",		:url => :admin_posts_path)
-      menu.add MenuItem.new(:label => "Reports",		:url => "/admin/reports")
-      menu.add MenuItem.new(:label => "Administration", :url => "/admin/administration")
-      menu.add MenuItem.new(:label => "Management",		:url => "#")
+      menu.add :label => "Blog Posts", :url => :admin_posts_path
 
-      reports = menu["Reports"]
-      reports.add MenuItem.new(:label => "A Sub Reports", :url => "/admin/a-sub-reports")
-      reports.add MenuItem.new(:label => "B Sub Reports", :url => "/admin/b-sub-reports")
+      menu.add :label => "Reports",	:url => "/admin/reports" do |reports|
+        reports.add :label => "A Sub Reports", :url => "/admin/a-sub-reports"
+        reports.add :label => "B Sub Reports", :url => "/admin/b-sub-reports"
+        reports.add :label => proc{ "Label Proc Sub Reports" }, :url => "/admin/label-proc-sub-reports"
+      end
 
-      administration = menu["Administration"]
-      administration.add MenuItem.new(:label => "User administration", 
-									  :url => '/admin/user-administration', 
-									  :priority => 10, 
-									  :if => proc { false })
+      menu.add :label => "Administration", :url => "/admin/administration" do |administration|
+        administration.add :label => "User administration", 
+                           :url => '/admin/user-administration', 
+                           :priority => 10, 
+                           :if => proc { false }
+      end
 
-      management = menu["Management"]
-      management.add MenuItem.new(:label => "Order management", 
-								  :url => '/admin/order-management', 
-								  :priority => 10, 
-								  :if => proc { false })
-      management.add MenuItem.new(:label => "Bill management", 
-								  :url => '/admin/bill-management', 
-								  :priority => 10, 
-								  :if => :admin_logged_in?)
+      menu.add :label => "Management", :url => "#" do |management|
+        management.add :label => "Order management", 
+                       :url => '/admin/order-management', 
+                       :priority => 10, 
+                       :if => proc { false }
+        management.add :label => "Bill management", 
+                       :url => '/admin/bill-management', 
+                       :priority => 10, 
+                       :if => :admin_logged_in?
+      end
+
+
     end
 
     it "should generate a ul" do
@@ -68,6 +71,10 @@ describe ActiveAdmin::Views::TabbedNavigation do
     it "should generate a nested list with li for each child" do
       html.should have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "a_sub_reports"})
       html.should have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "b_sub_reports"})
+    end
+
+    it "should generate a valid dom_id from a label proc" do
+      html.should have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "label_proc_sub_reports"})
     end
 
     it "should not generate a link for user administration" do
@@ -110,35 +117,33 @@ describe ActiveAdmin::Views::TabbedNavigation do
 
   describe "returning the menu items to display" do
 
-    it "should be reture one item with no if block" do
-      menu.add MenuItem.new(:label => "Hello World", :url => "/")
+    it "should return one item with no if block" do
+      menu.add :label => "Hello World", :url => "/"
       tabbed_navigation.menu_items.should == menu.items
     end
 
-    it "should not include a menu items with an if block that returns false" do
-      menu.add MenuItem.new(:label => "Don't Show", :url => "/", :priority => 10, :if => proc{ false })
+    it "should not include menu items with an if block that returns false" do
+      menu.add :label => "Don't Show", :url => "/", :priority => 10, :if => proc{ false }
       tabbed_navigation.menu_items.should == []
     end
 
     it "should not include menu items with an if block that calls a method that returns false" do
-      menu.add MenuItem.new(:label => "Don't Show", :url => "/", :priority => 10, :if => :admin_logged_in?)
+      menu.add :label => "Don't Show", :url => "/", :priority => 10, :if => :admin_logged_in?
       tabbed_navigation.menu_items.should == []
     end
 
     it "should not display any items that have no children to display" do
-      item = MenuItem.new(:label => "Parent", :url => "#") do |p|
-        p.add MenuItem.new(:label => "Child", :url => "/", :priority => 10, :if => proc{ false })
+      menu.add :label => "Parent", :url => "#" do |p|
+        p.add :label => "Child", :url => "/", :priority => 10, :if => proc{ false }
       end
-	  menu.add item
       tabbed_navigation.menu_items.should == []
     end
 
     it "should display a parent that has a child to display" do
-      item = MenuItem.new(:label => "Parent", :url => "#") do |p|
-        p.add MenuItem.new(:label => "Hidden Child", :url => "/", :priority => 10, :if => proc{ false })
-        p.add MenuItem.new(:label => "Child", :url => "/")
+      menu.add :label => "Parent", :url => "#" do |p|
+        p.add :label => "Hidden Child", :url => "/", :priority => 10, :if => proc{ false }
+        p.add :label => "Child", :url => "/"
       end
-	  menu.add item
       tabbed_navigation.should have(1).menu_items
     end
 

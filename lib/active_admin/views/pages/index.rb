@@ -7,8 +7,9 @@ module ActiveAdmin
       class Index < Base
 
         def title
-          if config[:title].is_a? String
-            config[:title]
+          case config[:title]
+          when Proc then controller.instance_eval(&config[:title])
+          when String then config[:title]
           else
             active_admin_config.plural_resource_label
           end
@@ -122,7 +123,7 @@ module ActiveAdmin
         def render_index
           renderer_class = find_index_renderer_class(config[:as])
           paginator      = config[:paginator].nil?      ? true : config[:paginator]
-          download_links = config[:download_links].nil? ? true : config[:download_links]
+          download_links = config[:download_links].nil? ? active_admin_config.namespace.download_links : config[:download_links]
           
           paginated_collection(collection, :entry_name     => active_admin_config.resource_label,
                                            :entries_name   => active_admin_config.plural_resource_label,

@@ -21,7 +21,8 @@ module ActiveAdmin
     def self.controllers
       {
         :sessions => "active_admin/devise/sessions",
-        :passwords => "active_admin/devise/passwords"
+        :passwords => "active_admin/devise/passwords",
+        :unlocks => "active_admin/devise/unlocks"
       }
     end
 
@@ -48,6 +49,10 @@ module ActiveAdmin
     end
 
     class PasswordsController < ::Devise::PasswordsController
+      include ::ActiveAdmin::Devise::Controller
+    end
+
+    class UnlocksController < ::Devise::UnlocksController
       include ::ActiveAdmin::Devise::Controller
     end
 

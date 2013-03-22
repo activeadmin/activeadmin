@@ -79,7 +79,7 @@ module ActiveAdmin
       def build_table_body
         @tbody = tbody do
           # Build enough rows for our collection
-          @collection.each{|_| tr(:class => cycle('odd', 'even'), :id => dom_id(_)) }
+          @collection.each{|elem| tr(:class => cycle('odd', 'even'), :id => dom_id(elem)) }
         end
       end
 

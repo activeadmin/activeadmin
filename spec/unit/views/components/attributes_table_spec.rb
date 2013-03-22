@@ -90,6 +90,17 @@ describe ActiveAdmin::Views::AttributesTable do
       end
     end # describe dsl styles
 
+    it "should allow html options for the row itself" do
+      table = render_arbre_component(assigns) {
+        attributes_table_for(post) do
+          row("Wee", :class => "custom_row", :style => "custom_style") { }
+        end
+      }
+      table.find_by_tag("tr").first.to_s.
+        split("\n").first.lstrip.
+          should == '<tr class="custom_row" style="custom_style">'
+    end
+
     it "should allow html content inside the attributes table" do
       table = render_arbre_component(assigns) {
         attributes_table_for(post) do

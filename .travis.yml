@@ -1,12 +1,15 @@
 script: bundle exec rake test
 rvm:
-  - ree
-  - 1.9.2
   - 1.9.3
+  - 2.0.0
 before_install:
   - gem update --system
   - gem --version
+  - gem install bundler
 env:
-  - RAILS=3.0.12
-  - RAILS=3.1.4
-  - RAILS=3.2.3
+  - RAILS=3.0.20
+  - RAILS=3.1.12
+  - RAILS=3.2.13
+matrix:
+  allow_failures:
+    - rvm: 2.0.0

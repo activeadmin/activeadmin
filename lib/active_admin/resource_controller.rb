@@ -1,8 +1,7 @@
 require 'inherited_resources'
 require 'active_admin/resource_controller/actions'
 require 'active_admin/resource_controller/action_builder'
-require 'active_admin/resource_controller/callbacks'
-require 'active_admin/resource_controller/collection'
+require 'active_admin/resource_controller/data_access'
 require 'active_admin/resource_controller/decorators'
 require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/sidebars'
@@ -19,9 +18,8 @@ module ActiveAdmin
 
     include Actions
     include ActionBuilder
-    include Callbacks
-    include Collection
     include Decorators
+    include DataAccess
     include Scoping
     include Sidebars
     extend  ResourceClassMethods

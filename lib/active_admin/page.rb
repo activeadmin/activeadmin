@@ -37,6 +37,7 @@ module ActiveAdmin
     include Resource::ActionItems
     include Resource::Menu
     include Resource::Naming
+    include Resource::Routes
 
     # label is singular
     def plural_resource_label
@@ -61,6 +62,11 @@ module ActiveAdmin
 
     def controller_name
       [namespace.module_name, camelized_resource_name + "Controller"].compact.join('::')
+    end
+
+    # Override from `ActiveAdmin::Resource::Controllers`
+    def route_uncountable?
+      false
     end
 
     def belongs_to?

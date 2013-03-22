@@ -3,7 +3,7 @@ tr:
     dashboard: "Kontrol Paneli"
     dashboard_welcome:
       welcome: "Active Admin'e Hoşgeldiniz. Burası öntanımlı Kontrol Paneli sayfasıdır."
-      call_to_action: "Kontrol Paneline bölümler eklemek için 'app/admin/dashboards.rb' dosyasına bakabilirsin."
+      call_to_action: "Kontrol Paneline bölümler eklemek için 'app/admin/dashboard.rb' dosyasına bakabilirsin."
     view: "Görüntüle"
     edit: "Değiştir"
     delete: "Sil"
