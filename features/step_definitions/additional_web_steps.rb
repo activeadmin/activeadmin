@@ -34,20 +34,11 @@ Then /^there should be (\d+) "([^"]*)" tags$/ do |count, tag|
 end
 
 Then /^I should see a link to "([^"]*)"$/ do |link|
-  if page.respond_to? :should
-    page.should have_xpath('//a', :text => link)
-  else
-    assert page.has_xpath?('//a', :text => link)
-  end
+  page.should have_xpath('//a', :text => link)
 end
 
 Then /^I should see a link to \/([^\/]*)\/$/ do |regexp|
-  regexp = Regexp.new(regexp)
-  if page.respond_to? :should
-    page.should have_xpath('//a', :text => regexp)
-  else
-    assert page.has_xpath?('//a', :text => regexp)
-  end
+  page.should have_xpath('//a', :text => /#{regexp}/)
 end
 
 Then /^an "([^"]*)" exception should be raised when I follow "([^"]*)"$/ do |error, link|
