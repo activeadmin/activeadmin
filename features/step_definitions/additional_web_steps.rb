@@ -37,10 +37,6 @@ Then /^I should see a link to "([^"]*)"$/ do |link|
   page.should have_xpath('//a', :text => link)
 end
 
-Then /^I should see a link to \/([^\/]*)\/$/ do |regexp|
-  page.should have_xpath('//a', :text => /#{regexp}/)
-end
-
 Then /^an "([^"]*)" exception should be raised when I follow "([^"]*)"$/ do |error, link|
   lambda {
     step "I follow \"#{link}\""
