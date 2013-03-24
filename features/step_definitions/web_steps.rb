@@ -118,33 +118,18 @@ Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   page.should have_no_xpath('//*', :text => /#{regexp}/)
 end
 
-Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field, parent, value|
+Then /^the "([^"]*)" field(?: within (.*))? should( not)? contain "([^"]*)"$/ do |field, parent, negate, value|
   with_scope(parent) do
     field = find_field(field)
     field_value = (field.tag_name == 'textarea') ? field.text : field.value
-    field_value.should =~ /#{value}/
+    negate ? field_value.should_not =~ /#{value}/ : field_value.should =~ /#{value}/
   end
 end
 
-Then /^the "([^"]*)" field(?: within (.*))? should not contain "([^"]*)"$/ do |field, parent, value|
-  with_scope(parent) do
-    field = find_field(field)
-    field_value = (field.tag_name == 'textarea') ? field.text : field.value
-    field_value.should_not =~ /#{value}/
-  end
-end
-
-Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, parent|
+Then /^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/ do |label, parent, negate|
   with_scope(parent) do
     field_checked = find_field(label)['checked']
-    field_checked.should be_true
-  end
-end
-
-Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label, parent|
-  with_scope(parent) do
-    field_checked = find_field(label)['checked']
-    field_checked.should be_false
+    field_checked.should negate ? be_false : be_true
   end
 end
 
