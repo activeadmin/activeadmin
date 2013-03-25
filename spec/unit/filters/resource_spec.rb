@@ -34,6 +34,12 @@ describe ActiveAdmin::Filters::ResourceExtension do
     resource.filters.should_not include({:attribute => :author})
   end
 
+  it "should lazily remove a filter" do
+    # Removed filters should be cached until render so the DB isn't hit prematurely.
+    resource.should_not_receive :default_content_filters
+    resource.remove_filter :author
+  end
+
   it "should add a filter" do
     resource.add_filter :title
     resource.filters.should == [{:attribute => :title}]
@@ -69,6 +75,5 @@ describe ActiveAdmin::Filters::ResourceExtension do
   it "should add a sidebar section for the filters" do
     resource.sidebar_sections.first.name.should == :filters
   end
-
 
 end
