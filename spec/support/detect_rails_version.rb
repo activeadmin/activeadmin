@@ -7,7 +7,7 @@ end
 
 unless defined? TRAVIS_CONFIG
   require 'psych'
-  filename = File.exists?('.travis.yml') ? '.travis.yml' : '../../../.travis.yml'
+  filename = File.expand_path("../../../.travis.yml", __FILE__)
   TRAVIS_CONFIG = Psych.load File.read filename
   TRAVIS_RAILS_VERSIONS = TRAVIS_CONFIG['env'].grep(/RAILS=(.*)/){ $1 }.sort
 end
