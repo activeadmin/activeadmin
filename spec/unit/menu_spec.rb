@@ -52,5 +52,19 @@ describe ActiveAdmin::Menu do
     end
   end
 
+  describe "sorting items" do
+    def build_label_proc(label)
+      proc {|label| label }
+    end
+
+    it "should sort children by the result of their label proc" do
+      menu = Menu.new
+      blog_post_menu = menu.add :label => build_label_proc("Blog posts")
+      user_menu = menu.add :label => build_label_proc("Users")
+      projects_menu = menu.add :label => build_label_proc("Projects")
+
+      menu.items.should == [blog_post_menu, user_menu, projects_menu]
+    end
+  end
 end
 

@@ -69,9 +69,10 @@ module ActiveAdmin
       [parent, parent.ancestors].flatten
     end
 
+    # Sort menu items first by their priority attribute, then by their labels.
     def <=>(other)
       result = priority <=> other.priority
-      result = label.to_s <=> other.label.to_s if result == 0
+      result = label_value <=> other.label_value if result == 0
       result
     end
 
@@ -79,6 +80,13 @@ module ActiveAdmin
     # a default block always returning true will be returned.
     def display_if_block
       @display_if_block || lambda { |_| true }
+    end
+
+    def label_value
+      case label
+      when String then label
+      when Proc then label.call.to_s
+      end
     end
 
   end
