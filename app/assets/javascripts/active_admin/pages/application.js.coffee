@@ -9,7 +9,7 @@ $ ->
     window.location.search = ''
 
   # Batch Actions dropdown
-  $('.dropdown_button').popover()
+  $('.dropdown_menu').aaDropdownMenu()
 
   # Filter form: don't send any inputs that are empty
   $('#q_search').submit ->
