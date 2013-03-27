@@ -13,8 +13,7 @@ module ActiveAdmin
       #
       # @return [Array] Filters that apply for this resource
       def filters
-        return []              unless filters_enabled?
-        return default_filters unless filters_customized?
+        return [] unless filters_enabled?
         filter_lookup
       end
 
@@ -28,11 +27,6 @@ module ActiveAdmin
       # @return [Boolean] If filters are enabled for this resource
       def filters_enabled?
         @filters_enabled.nil? ? namespace.filters : @filters_enabled
-      end
-
-      # @return [Boolean] If any filter calls have been made for this resource
-      def filters_customized?
-        !!(@filters || @filters_to_remove)
       end
 
       def preserve_default_filters!
@@ -82,8 +76,8 @@ module ActiveAdmin
       # Collapses the waveform, if you will, of which filters should be displayed.
       # Removes filters and adds in default filters as desired.
       def filter_lookup
-        filters = @filters || []
-        filters.push *default_filters if preserve_default_filters?
+        filters = @filters.try(:dup) || []
+        filters.push *default_filters if filters.empty? || preserve_default_filters?
 
         if @filters_to_remove
           @filters_to_remove.each do |attr|
