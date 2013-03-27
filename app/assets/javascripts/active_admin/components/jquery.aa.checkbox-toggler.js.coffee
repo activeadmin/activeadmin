@@ -1,64 +1,37 @@
 window.AA.CheckboxToggler = class AA.CheckboxToggler
-
-  constructor: (@options, @container) ->
-
+  constructor: (@options, @container)->
     defaults = {}
-
-    @options = $.extend( {}, defaults, options );
-    
+    @options = $.extend {}, defaults, options
     @_init()
     @_bind()
 
   _init: ->
-
     if not @container
-      throw new Error("Container element not found")
+      throw new Error('Container element not found')
     else
       @$container = $(@container)
 
-    if not @$container.find(".toggle_all").length
-      throw new Error("'toggle all' checkbox not found")
+    if not @$container.find('.toggle_all').length
+      throw new Error('"toggle all" checkbox not found')
     else
-      @toggle_all_checkbox = @$container.find(".toggle_all")
+      @toggle_all_checkbox = @$container.find '.toggle_all'
 
-    @checkboxes = @$container.find(":checkbox").not(@toggle_all_checkbox)
+    @checkboxes = @$container.find(':checkbox').not @toggle_all_checkbox
 
   _bind: ->
-    @checkboxes.bind "change", (e) =>
-      @_didChangeCheckbox(e.target)
-      
-    @toggle_all_checkbox.bind "change", (e) =>
-      @_didChangeToggleAllCheckbox()
+    @checkboxes.change       (e)=> @_didChangeCheckbox e.target
+    @toggle_all_checkbox.change => @_didChangeToggleAllCheckbox()
 
-  _didChangeCheckbox: (checkbox) ->
-    if @checkboxes.filter(":checked").length == @checkboxes.length - 1
-      @_uncheckToggleAllCheckbox()
-    else if @checkboxes.filter(":checked").length == @checkboxes.length
-      @_checkToggleAllCheckbox()
+  _didChangeCheckbox: (checkbox)->
+    switch @checkboxes.filter(':checked').length
+      when @checkboxes.length - 1 then @toggle_all_checkbox.prop checked: null
+      when @checkboxes.length     then @toggle_all_checkbox.prop checked: true
 
   _didChangeToggleAllCheckbox: ->
-    if @toggle_all_checkbox.prop("checked")
-      @_checkAllCheckboxes()
-    else
-      @_uncheckAllCheckboxes()      
-
-  _uncheckToggleAllCheckbox: ->
-    @toggle_all_checkbox.removeAttr("checked")
-
-  _checkToggleAllCheckbox: ->
-    @toggle_all_checkbox.prop("checked", true)
-
-  _uncheckAllCheckboxes: ->
-    @checkboxes.each (index, el) =>
-      $(el).removeAttr("checked")
+    setting = if @toggle_all_checkbox.prop 'checked' then true else null
+    @checkboxes.each (index, el)=>
+      $(el).prop checked: setting
       @_didChangeCheckbox(el)
 
-  _checkAllCheckboxes: ->
-    @checkboxes.each (index, el) =>
-      $(el).prop("checked", true)
-      @_didChangeCheckbox(el)
-      
-
-( ( $ ) ->
+jQuery ($)->
   $.widget.bridge 'checkboxToggler', AA.CheckboxToggler
-)( jQuery )
