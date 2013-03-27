@@ -13,4 +13,4 @@ $ ->
 
   # Filter form: don't send any inputs that are empty
   $('#q_search').submit ->
-    $(@).find(':input[value=""]').attr 'disabled', 'disabled'
+    $(@).find(':input').filter(-> @value is '').prop 'disabled', true

@@ -5,7 +5,7 @@ jQuery ($) ->
   #
 
   $(document).delegate "#batch_actions_selector li a", "click.rails", ->
-    $("#batch_action").val $(this).attr("data-action")
+    $("#batch_action").val $(@).attr("data-action")
     $("#collection_selection").submit()
 
   #
