@@ -1,7 +1,7 @@
 module ActiveAdmin
   class Scope
 
-    attr_reader :name, :scope_method, :id, :scope_block, :display_if_block, :show_count
+    attr_reader :scope_method, :id, :scope_block, :display_if_block, :show_count
 
     # Create a Scope
     #
@@ -13,32 +13,42 @@ module ActiveAdmin
     #   Scope.new('Published', :public)
     #   # => Scope with name 'Published' and scope method :public
     #
-    #   Scope.new('Published', :public, :if => proc { current_admin_user.can?( :manage, active_admin_config.resource_class ) } ) { |articles| articles.where(:published => true) }
-    #   # => Scope with name 'Published' and scope method :public, optionally displaying the scope per the :if block, using a block
+    #   Scope.new 'Published', :public, :if => proc { current_admin_user.can? :manage, resource_class } do |articles| 
+    #     articles.where :published => true
+    #   end
+    #   # => Scope with name 'Published' and scope method :public, optionally displaying the scope per the :if block
     #
     #   Scope.new('Published') { |articles| articles.where(:published => true) }
     #   # => Scope with name 'Published' using a block to scope
     #
+    #   Scope.new ->{Date.today.strftime '%A'}, :published_today
+    #   # => Scope with dynamic title using the :published_today scope method
+    #
     def initialize(name, method = nil, options = {}, &block)
-      @name = name.is_a?( String ) ? name : name.to_s.titleize
-      @scope_method = method
-      # Scope ':all' means no scoping
-      @scope_method ||= name.to_sym unless name.to_sym == :all
-      @scope_method = nil if method && method.to_s == 'all'
-      @id = @name.gsub(' ', '').underscore
-      if block_given?
-        @scope_method = nil
-        @scope_block = block
+      @name, @scope_method = name, method.try(:to_sym)
+
+      if name.is_a? Proc
+        raise "A string/symbol is required as the second argument if your label is a proc." unless method
+        @id = method.to_s.gsub(' ', '').underscore
+      else
+        @scope_method ||= name.to_sym
+        @id = name.to_s.gsub(' ', '').underscore
       end
 
-      @show_count = options[:show_count].nil? ? true : options[:show_count]
-      @display_if_block = options[:if]
+      @scope_method               = nil        if @scope_method == :all
+      @scope_method, @scope_block = nil, block if block_given?
+
+      @show_count       = options[:show_count].nil? ? true : options[:show_count]
+      @display_if_block = options[:if] || proc{ true }
     end
 
-    # Returns the display if block. If the block was not explicitly defined
-    # a default block always returning true will be returned.
-    def display_if_block
-      @display_if_block || proc{ true }
+    def name
+      case @name
+        when Proc   then @name.call.to_s
+        when String then @name
+        when Symbol then @name.to_s.titleize
+        else             @name.to_s
+      end
     end
 
   end
