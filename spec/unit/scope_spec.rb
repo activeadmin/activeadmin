@@ -43,6 +43,19 @@ describe ActiveAdmin::Scope do
       its(:scope_method) { should == nil }
       its(:scope_block)  { should be_a(Proc)}
     end
+
+    context "with a proc as the label" do
+      it "should raise an exception if a second argument isn't provided" do
+        expect{ ActiveAdmin::Scope.new proc{ Date.today.strftime '%A' }
+        }.to raise_error
+      end
+
+      it "should properly render the proc" do
+        scope = ActiveAdmin::Scope.new proc{ Date.today.strftime '%A' }, :foobar
+        scope.name.should eq Date.today.strftime '%A'
+      end
+    end
+
   end # describe "creating a scope"
 
   describe "#display_if_block" do
