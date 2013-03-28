@@ -15,7 +15,7 @@ Then /^I should not see a sortable table header with "([^"]*)"$/ do |content|
 end
 
 Then /^I should not see a sortable table header$/ do
-  step "I should not see \"th.sortable\""
+  step %{I should not see "th.sortable"}
 end
 
 Then /^the table "([^"]*)" should have (\d+) rows/ do |selector, count|
@@ -44,7 +44,7 @@ Then /^an "([^"]*)" exception should be raised when I follow "([^"]*)"$/ do |err
 end
 
 Then /^I should be in the resource section for (.+)$/ do |resource_name|
-  current_url.should include(resource_name.gsub(' ', '').underscore.pluralize)
+  current_url.should include resource_name.gsub(' ', '').underscore.pluralize
 end
 
 Then /^I should wait and see "([^"]*)"(?: within "([^"]*)")?$/ do |text, selector|
