@@ -8,7 +8,7 @@ module ActiveAdmin
       builder_method :resource_selection_toggle_cell
 
       def build
-        input( :type => "checkbox", :id => "collection_selection_toggle_all", :name => "collection_selection_toggle_all", :class => "toggle_all" )
+        input :type => "checkbox", :id => "collection_selection_toggle_all", :name => "collection_selection_toggle_all", :class => "toggle_all"
       end
     end
 

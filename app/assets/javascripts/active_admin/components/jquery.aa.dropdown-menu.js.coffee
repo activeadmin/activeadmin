@@ -99,7 +99,4 @@ window.AA.DropdownMenu = class AA.DropdownMenu
 
 (($) ->
   $.widget.bridge 'aaDropdownMenu', AA.DropdownMenu
-
-  $ ->
-    $(".dropdown_menu").aaDropdownMenu()
 )(jQuery)
