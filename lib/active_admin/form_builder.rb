@@ -170,21 +170,19 @@ module ActiveAdmin
 
     # Capture the ADD JS
     def js_for_has_many(association, form_block, template)
-      association_reflection = object.class.reflect_on_association(association)
-      association_human_name = association_reflection.klass.model_name.human
-      placeholder = "NEW_#{association_human_name.upcase.split(' ').join('_')}_RECORD"
+      assoc_reflection = object.class.reflect_on_association(association)
+      assoc_name       = assoc_reflection.klass.model_name
+      placeholder      = "NEW_#{assoc_name.upcase.split(' ').join('_')}_RECORD"
+      opts = {
+        :for         => [association, assoc_reflection.klass.new],
+        :class       => "inputs has_many_fields",
+        :for_options => { :child_index => placeholder }
+      }
+      js = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
+      js = template.escape_javascript js
 
-      js = with_new_form_buffer do
-        inputs_for_nested_attributes :for => [association, association_reflection.klass.new],
-                                     :class => "inputs has_many_fields",
-                                     :for_options => { :child_index => placeholder },
-                                     &form_block
-      end
-
-      js = template.escape_javascript(js)
-
-      text = I18n.t 'active_admin.has_many_new', :model => association_human_name
       onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
+      text    = I18n.t 'active_admin.has_many_new', :model => assoc_name.human
 
       template.link_to(text, "#", :onclick => onclick, :class => "button").html_safe
     end
