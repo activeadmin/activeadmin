@@ -67,6 +67,10 @@ module ActiveAdmin
         i
       end
 
+      it "should contain 5 submenu items" do
+        item.items.count.should == 5
+      end
+
       it "should give access to the menu item as an array" do
         item['Blog'].label.should == 'Blog'
       end
@@ -121,7 +125,7 @@ module ActiveAdmin
     end # accessing ancestory
 
 
-    describe ".generate_item_id" do
+    describe "#id" do
 
       it "downcases the id" do
         MenuItem.new(:id => "Identifier").id.should == "identifier"
@@ -131,8 +135,12 @@ module ActiveAdmin
         MenuItem.new(:id => "An Id").id.should == "an_id"
       end
 
-      it "should return a proc if label was a proc" do
-        MenuItem.new(:label => proc{ "Dynamic" }).id.should be_an_instance_of(Proc)
+      it "should render a proc if label was a proc" do
+        MenuItem.new(:label => proc{ "Dynamic Id" }).id.should == "dynamic_id"
+      end
+
+      it "should preserve the ID that was set if the label was a proc" do
+        MenuItem.new(:label => proc{ "Dynamic Id" }, :id => "static_id").id.should == "static_id"
       end
 
     end

@@ -50,6 +50,16 @@ describe ActiveAdmin::Menu do
 
       menu["Admin"]["Projects"].should be_an_instance_of(ActiveAdmin::MenuItem)
     end
+
+    it "should assign children regardless of resource file load order" do
+      menu = Menu.new
+      menu.add :parent => "Users", :label => "Posts"
+      menu.add :label => "Users", :url => '/some/url'
+
+      menu["Users"].url.should == '/some/url'
+      menu["Users"]["Posts"].should be_an_instance_of(ActiveAdmin::MenuItem)
+    end
+
   end
 
 end

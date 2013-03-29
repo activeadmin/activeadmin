@@ -61,7 +61,22 @@ module ActiveAdmin
 
       def add_without_parent(item_options)
         menu_item = ActiveAdmin::MenuItem.new(item_options, self)
+
+        #
+        # Depending on load order, might have an "empty" parent item already
+        # in the menu, that is just a label.  We want to allow you to customize that if
+        # you are registering a resource that comes later, such as "Users" parent and
+        # "Posts" child.  The "Users" menu is registered after posts, but posts said it 
+        # already was a sub menu of users.
+        #
+        # This will correct that by assigning existing children to this new menu item.
+        #
+        if children.has_key? menu_item.id
+          menu_item.send :children=, self[menu_item.id].send(:children)
+        end
+
         children[menu_item.id] = menu_item
+        
       end
 
       def add_with_parent(parent, item_options)
@@ -75,13 +90,18 @@ module ActiveAdmin
         @children ||= {}
       end
 
+      def children=(kids)
+        @children = kids
+      end
+
       def normalize_id(string)
-        case string
+        raw_id = case string
         when Proc
-          string
+          string.call rescue string
         else
-          string.to_s.downcase.gsub(" ", "_")
+          string.to_s
         end
+        raw_id.downcase.gsub( " ", '_' ).gsub( /[^a-z0-9_]/, '' )
       end
 
     end

@@ -53,15 +53,6 @@ module ActiveAdmin
       !parent.nil?
     end
 
-    def dom_id
-      case id
-      when Proc
-        id
-      else
-        id.to_s.gsub( " ", '_' ).gsub( /[^a-z0-9_]/, '' )
-      end
-    end
-
     # Returns an array of the ancestory of this menu item
     # The first item is the immediate parent fo the item
     def ancestors
