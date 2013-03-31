@@ -19,15 +19,15 @@ module ActiveAdmin
         @menu_item_options ||= default_menu_options
       end
 
-      # The default menu options to pass through to MenuItem.new
       def default_menu_options
+        # These local variables are accessible to the procs.
         menu_resource_class = respond_to?(:resource_class) ? resource_class : self
-        the_resource = self # Make it available in the proc
+        resource = self
         {
-          :id     => resource_name.plural,
-          :label  => proc{ plural_resource_label },
-          :url    => proc{ the_resource.route_collection_path(params) },
-          :if     => proc { authorized?(:read, menu_resource_class)  }
+          :id    => resource_name.plural,
+          :label => proc{ resource.plural_resource_label },
+          :url   => proc{ resource.route_collection_path(params) },
+          :if    => proc{ authorized?(:read, menu_resource_class) }
         }
       end
 

@@ -1,84 +1,96 @@
-module ActiveAdmin
+require 'active_admin/view_helpers/method_or_proc_helper'
 
+module ActiveAdmin
   class MenuItem
     include Menu::MenuNode
+    include MethodOrProcHelper
 
-    attr_accessor :id, :label, :url, :priority, :display_if_block, :html_options
-    attr_reader :parent
+    attr_reader :html_options, :parent, :priority
 
-    # Build a new menu item
+    # Builds a new menu item
     #
     # @param [Hash] options The options for the menu
     #
-    # @option options [String, Proc] :label
-    #         The label to display for this menu item. It can either be a String or a 
-    #         Proc. If the option is Proc, it is called each time the label is requested.
+    # @option options [String, Symbol, Proc] :label
+    #         The label to display for this menu item.
+    #         Default: Titleized Resource Name
     #
     # @option options [String] :id
-    #         A custom id to reference this menu item with. If empty an id is automatically 
-    #         generated for you.
+    #         A custom id to reference this menu item with.
+    #         Default: underscored_resource_name
     #
-    # @option options [String, Symbol] :url
-    #         A string or symbol representing the url for this item. If it's a symbol, the
-    #         view will automatically call the method for you.
+    # @option options [String, Symbol, Proc] :url
+    #         The URL this item will link to.
     #
     # @option options [Integer] :priority
-    #         MenuItems are sorted by priority then by label. The lower the priority, the 
-    #         earlier in the menu the item will be displayed.
+    #         The lower the priority, the earlier in the menu the item will be displayed.
     #         Default: 10
     #
-    # @option options [Proc] :if
-    #         A block for the view to call to decide if this menu item should be displayed.
-    #         The block should return true of false
+    # @option options [Symbol, Proc] :if
+    #         This decides whether the menu item will be displayed. Evaluated on each request.
     #
     # @option options [Hash] :html_options
     #         A hash of options to pass to `link_to` when rendering the item
     #
-    # @param [ActiveAdmin::MenuItem] parent The parent menu item of this item
+    # @option [ActiveAdmin::MenuItem] :parent
+    #         This menu item's parent. It will be displayed nested below its parent.
     #
-    def initialize(options = {}, parent = nil)
-      @label        = options[:label]
-      @id           = normalize_id(options[:id] || label)
-      @url          = options[:url] || "#"
-      @priority     = options[:priority] || 10
-      @html_options = options[:html_options] || {}
-      @parent       = parent
-
-      @display_if_block = options[:if]
+    # NOTE: for :label, :url, and :if
+    # These options are evaluated in the view context at render time. Symbols are called
+    # as methods on `self`, and Procs are exec'd within `self`.
+    # Here are some examples of what you can do:
+    #
+    #   menu if:  :admin?
+    #   menu url: :new_book_path
+    #   menu url: :awesome_helper_you_defined
+    #   menu label: ->{ User.some_method }
+    #   menu label: ->{ I18n.t 'menus.user' }
+    #
+    def initialize(options = {})
+      super() # MenuNode
+      @label          = options[:label]
+      @dirty_id       = options[:id]           || options[:label]
+      @url            = options[:url]          || '#'
+      @priority       = options[:priority]     || 10
+      @html_options   = options[:html_options] || {}
+      @should_display = options[:if]           || proc{true}
+      @parent         = options[:parent]
 
       yield(self) if block_given? # Builder style syntax
     end
 
-    def parent?
-      !parent.nil?
+    def id
+      @id ||= normalize_id @dirty_id
     end
 
-    def dom_id
-      case id
-      when Proc
-        id
-      else
-        id.to_s.gsub( " ", '_' ).gsub( /[^a-z0-9_]/, '' )
-      end
+    def label(context = nil)
+      render_in_context context, @label
     end
 
-    # Returns an array of the ancestory of this menu item
-    # The first item is the immediate parent fo the item
+    def url(context = nil)
+      render_in_context context, @url
+    end
+
+    # Don't display if the :if option passed says so
+    # Don't display if the link isn't real, we have children, and none of the children are being displayed.
+    def display?(context = nil)
+      return false unless render_in_context(context, @should_display)
+      return false if     !real_url?(context) && @children.any? && !items(context).any?
+      true
+    end
+
+    # Returns an array of the ancestory of this menu item.
+    # The first item is the immediate parent of the item.
     def ancestors
-      return [] unless parent?
-      [parent, parent.ancestors].flatten
+      parent ? [parent, parent.ancestors].flatten : []
     end
 
-    def <=>(other)
-      result = priority <=> other.priority
-      result = label.to_s <=> other.label.to_s if result == 0
-      result
-    end
+    private
 
-    # Returns the display if block. If the block was not explicitly defined
-    # a default block always returning true will be returned.
-    def display_if_block
-      @display_if_block || lambda { |_| true }
+    # URL is not nil, empty, or '#'
+    def real_url?(context = nil)
+      url = url context
+      url.present? && url != '#'
     end
 
   end
