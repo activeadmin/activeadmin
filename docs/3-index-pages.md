@@ -126,6 +126,9 @@ Customizing the download links per resource:
       # only show a PDF export
       index :download_links => [:pdf]
 
+      # hide/show links based on block
+      index :download_links => proc { current_admin_user.can_view_download_links? }
+
     end
 
 If you want to customize download links for every resource throughout the application, configure that in the `active_admin` initializer.
@@ -137,5 +140,8 @@ If you want to customize download links for every resource throughout the applic
 
       # Want PDF added to default download links
       config.download_links = [:csv, :xml, :json, :pdf]
+
+      # hide/show links based on block
+      index :download_links => proc { current_admin_user.can_view_download_links? }
 
     end

@@ -6,6 +6,11 @@ apply File.expand_path("../rails_template.rb", __FILE__)
   generate :'active_admin:resource', type
 end
 
+categories_index = <<-RUBY
+  index :download_links => proc { current_admin_user.email != 'restricted@example.com' }
+RUBY
+inject_into_file 'app/admin/categories.rb', categories_index, :after => "ActiveAdmin.register Category do\n"
+
 scopes = <<-EOF
   scope :all, :default => true
 
@@ -29,6 +34,10 @@ inject_into_file 'app/admin/posts.rb', scopes , :after => "ActiveAdmin.register 
 
 # Setup some default data
 append_file "db/seeds.rb", <<-EOF
+  AdminUser.create! :email => 'restricted@example.com',
+                    :password => 'password',
+                    :password_confirmation => 'password'
+
   users = ["Jimi Hendrix", "Jimmy Page", "Yngwie Malmsteen", "Eric Clapton", "Kirk Hammett"].collect do |name|
     first, last = name.split(" ")
     User.create!  :first_name => first,
