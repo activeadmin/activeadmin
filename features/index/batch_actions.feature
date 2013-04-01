@@ -12,14 +12,38 @@ Feature: Batch Actions
     And I should see 10 posts in the table
 
     When I check the 1st record
-    When I check the 2nd record
+    And I check the 2nd record
     And I follow "Batch Actions"
     Then I should see the batch action :destroy "Delete Selected"
 
+    Given I submit the batch action form with "destroy"
+    Then I should see a flash with "Successfully destroyed 2 posts"
+    And I should see 8 posts in the table
+
+  Scenario: Use default (destroy) batch action on a nested resource
+    Given I am logged in
+    And 5 posts written by "John Doe" exist
+    And a configuration of:
+    """
+      ActiveAdmin.register User
+      ActiveAdmin.register Post do
+        belongs_to :user
+      end
+    """
+    When I go to the last author's posts
+    Then I should see the batch action button
+    And I should see that the batch action button is disabled
+    And I should see the batch action popover exists
+    And I should see 5 posts in the table
+
+    When I check the 2nd record
+    And I check the 4th record
+    And I follow "Batch Actions"
+    Then I should see the batch action :destroy "Delete Selected"
 
     Given I submit the batch action form with "destroy"
-    Then I should see a flash with "Successfully destroyed 1 post"
-    And I should see 9 posts in the table
+    Then I should see a flash with "Successfully destroyed 2 posts"
+    And I should see 3 posts in the table
 
   Scenario: Using a custom batch action
     Given 10 posts exist
