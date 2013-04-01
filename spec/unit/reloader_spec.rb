@@ -23,13 +23,13 @@ describe ActiveAdmin::Reloader do
   let(:reloader){ ActiveAdmin::Reloader.build(rails_app, mock_app, rails_version) }
 
   context "when Rails version < 3.2" do
-    let(:rails_version){ TRAVIS_RAILS_VERSIONS.grep(/3.1/).first }
+    let(:rails_version){ TRAVIS_RAILS_VERSIONS.grep(/^3.1/).first }
 
     describe "initialization" do
 
       it "should initialize a new file update checker" do
         ActiveSupport::FileUpdateChecker.should_receive(:new).with(mock_app.load_paths).and_return(mock(:execute_if_updated => true))
-        ActiveAdmin::Reloader.build(rails_app, mock_app, TRAVIS_RAILS_VERSIONS.grep(/3.1/).first)
+        ActiveAdmin::Reloader.build(rails_app, mock_app, TRAVIS_RAILS_VERSIONS.grep(/^3.1/).first)
       end
 
       it "should build a RailsLessThan31Reloader" do
@@ -41,12 +41,12 @@ describe ActiveAdmin::Reloader do
     describe "#reloader_class" do
 
       it "should use ActionDispatch::Reloader if rails 3.1" do
-        reloader = ActiveAdmin::Reloader.build rails_app, mock_app, TRAVIS_RAILS_VERSIONS.grep(/3.1/).first
+        reloader = ActiveAdmin::Reloader.build rails_app, mock_app, TRAVIS_RAILS_VERSIONS.grep(/^3.1/).first
         reloader.reloader_class.should == ActionDispatch::Reloader
       end
 
       it "should use ActionDispatch::Callbacks if rails 3.0" do
-        reloader = ActiveAdmin::Reloader.build rails_app, mock_app, TRAVIS_RAILS_VERSIONS.grep(/3.0/).first
+        reloader = ActiveAdmin::Reloader.build rails_app, mock_app, TRAVIS_RAILS_VERSIONS.grep(/^3.0/).first
         reloader.reloader_class.should == ActionDispatch::Callbacks
       end
 
@@ -94,7 +94,7 @@ describe ActiveAdmin::Reloader do
   end
 
   context "when Rails >= 3.2" do
-    let(:rails_version){ TRAVIS_RAILS_VERSIONS.grep(/3.2/).first }
+    let(:rails_version){ TRAVIS_RAILS_VERSIONS.grep(/^3.2/).first }
 
     describe "initialization" do
 
