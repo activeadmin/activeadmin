@@ -55,7 +55,7 @@ Feature: Index Formats
     Given an index configuration of:
     """
       ActiveAdmin.register Post do
-        index :download_links => proc { [:csv] }
+        index :download_links => -> { [:csv] }
       end
     """
     And 1 post exists
