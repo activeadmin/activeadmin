@@ -19,7 +19,7 @@ module ActiveAdmin
       end
 
       def search_conditions
-        /starts_with|ends_with/
+        /start|not_start|end|not_end/
       end
     end
   end
