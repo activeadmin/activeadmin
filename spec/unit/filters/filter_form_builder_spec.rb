@@ -76,19 +76,19 @@ describe ActiveAdmin::Filters::ViewHelper do
       end
     end
 
-    context "using starts_with and as" do
-      let(:body) { filter :title_starts_with, :as => :string }
+    context 'using "start" and "as"' do
+      let(:body) { filter :title_start, :as => :string }
 
-      it "should generate a search field for a string attribute with query starts_with" do
-        body.should have_tag("input", :attributes => { :name => "q[title_starts_with]" })
+      it "should generate a search field for a string attribute with query start" do
+        body.should have_tag("input", :attributes => { :name => "q[title_start]" })
       end
     end
 
     context "using ends_with and as" do
-      let(:body) { filter :title_ends_with, :as => :string }
+      let(:body) { filter :title_end, :as => :string }
 
-      it "should generate a search field for a string attribute with query starts_with" do
-        body.should have_tag("input", :attributes => { :name => "q[title_ends_with]" })
+      it "should generate a search field for a string attribute with query end" do
+        body.should have_tag("input", :attributes => { :name => "q[title_end]" })
       end
     end
   end
@@ -132,8 +132,7 @@ describe ActiveAdmin::Filters::ViewHelper do
       body.should have_tag("option", "Less Than")
     end
     it "should generate a text field for input" do
-      body.should have_tag("input", :attributes => {
-                                          :name => /q\[(id_eq|id_equals)\]/ })
+      body.should have_tag("input", :attributes => { :name => "q[id_eq]" })
     end
     it "should select the option which is currently being filtered"
   end
@@ -254,7 +253,7 @@ describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should be displayed if true" do
-        body.should have_tag("input", :attributes => { :name => "q[body_contains]"})
+        body.should have_tag("input", :attributes => { :name => "q[body_cont]"})
       end
 
       it "should NOT be displayed if false" do
@@ -269,11 +268,11 @@ describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should be displayed if false" do
-        body.should have_tag("input", :attributes => { :name => "q[created_at_gte]"})
+        body.should have_tag("input", :attributes => { :name => "q[created_at_gteq]"})
       end
 
       it "should NOT be displayed if true" do
-        body.should_not have_tag("input", :attributes => { :name => "q[updated_at_gte]"})
+        body.should_not have_tag("input", :attributes => { :name => "q[updated_at_gteq]"})
       end
     end
   end
