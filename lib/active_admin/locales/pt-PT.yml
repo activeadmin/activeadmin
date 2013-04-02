@@ -1,0 +1,81 @@
+"pt-PT":
+  active_admin:
+    dashboard: "Painel de Administração"
+    dashboard_welcome:
+      welcome: "Bem-vindo ao Active Admin. Esta é a página padrão."
+      call_to_action: "Se pretende adicionar seções ao painel, consulte 'app/admin/dashboard.rb'"
+    view: "Visualizar"
+    edit: "Editar"
+    delete: "Remover"
+    delete_confirmation: "Não tem a certeza de que deseja remover este ítem?"
+    new_model: "Novo(a) %{model}"
+    create_model: "Novo(a) %{model}"
+    edit_model: "Editar %{model}"
+    update_model: "Atualizar %{model}"
+    delete_model: "Remover %{model}"
+    details: "Detalhes do(a) %{model}"
+    cancel: "Cancelar"
+    empty: "Vazio"
+    previous: "Anterior"
+    next: "Próximo"
+    download: "Baixar:"
+    has_many_new: "Adicionar Novo(a) %{model}"
+    has_many_delete: "Remover"
+    filter: "Filtrar"
+    clear_filters: "Limpar Filtros"
+    search_field: "Pesquisar %{field}"
+    equal_to: "Igual A"
+    greater_than: "Maior Que"
+    less_than: "Menor Que"
+    main_content: "Por favor implemente %{model}#main_content para mostrar o conteúdo."
+    logout: "Sair"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Filtros"
+    pagination:
+      empty: "Nenhum(a) %{model} encontrado(a)"
+      one: "Mostrando <b>1</b> %{model}"
+      one_page: "Mostrando <b>todos(as) os(as) %{n}</b> %{model}"
+      multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
+      entry:
+        one: "registro"
+        other: "registros"
+    any: "Qualquer"
+    blank_slate:
+      content: "Ainda não existem %{resource_name}."
+      link: "Novo"
+    batch_actions:
+      button_label: "Ações em quantidade"
+      delete_confirmation: "Tem a certeza de que deseja excluir estes %{plural_model}? Não é possível voltar atrás."
+      succesfully_destroyed:
+        one: "Excluiu com sucesso 1 %{model}"
+        other: "Excluiu com sucesso %{count} %{plural_model}"
+      selection_toggle_explanation: "(Alternar Seleção)"
+      link: "Novo"
+      action_label: "%{title} Selecionado"
+      labels:
+        destroy: "Excluído"
+    comments:
+      body: "Conteúdo"
+      author: "Autor"
+      title: "Comentário"
+      add: "Adicionar Comentário"
+      resource: "Objeto"
+      no_comments_yet: "Nenhum comentário."
+      title_content: "Comentários: %{count}"
+      errors:
+        empty_text: "O comentário não foi guardado porque o texto estava vazio."
+    devise:
+      login:
+        title: "Conta"
+        remember_me: "Lembrar-me"
+        submit: "Entrar"
+      reset_password:
+        title: "Esqueceu-de da sua senha?"
+        submit: "Reiniciar a minha senha"
+      change_password:
+        title: "Troque a sua senha"
+        submit: "Trocar a minha senha"
+      links:
+        sign_in: "Entrar"
+        forgot_your_password: "Esqueceu-se da sua senha?"
