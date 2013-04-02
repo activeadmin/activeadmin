@@ -22,8 +22,8 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       defined?(Admin::DashboardController).should be_true
     end
     it "should create a menu item" do
-      menu["Categories"].should be_an_instance_of(ActiveAdmin::MenuItem)
-      menu["Categories"].url.should be_an_instance_of(Proc)
+      menu["Categories"].should be_a ActiveAdmin::MenuItem
+      menu["Categories"].instance_variable_get(:@url).should be_a Proc
     end
   end # context "with no configuration"
 
@@ -56,7 +56,6 @@ describe ActiveAdmin::Namespace, "registering a resource" do
     it "should use the resource as the model in the controller" do
       Admin::MockResourcesController.resource_class.should == Mock::Resource
     end
-
   end # context "with a resource that's namespaced"
 
   describe "finding resource instances" do
@@ -81,7 +80,6 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       publisher = namespace.register Publisher
       namespace.resource_for(Publisher).should == publisher
     end
-
   end # describe "finding resource instances"
 
   describe "adding to the menu" do
@@ -115,34 +113,9 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         end
       end
       it "should not create a menu item" do
-        expect {
-          menu["Categories"]
-        }.to raise_error(KeyError)
+        menu["Categories"].should be_nil
       end
     end # describe "disabling the menu"
-    
-    describe "setting menu priority" do
-      before do
-        namespace.register Category do
-          menu :priority => 2
-        end
-      end
-      it "should have a custom priority of 2" do
-        menu["Categories"].priority.should == 2
-      end
-    end # describe "setting menu priority"
-    
-    describe "setting a condition for displaying" do
-      before do
-        namespace.register Category do
-          menu :if => proc { false }
-        end
-      end
-      it "should have a proc returning false" do
-        menu["Categories"].display_if_block.should be_instance_of(Proc)
-        menu["Categories"].display_if_block.call.should == false
-      end
-    end # describe "setting a condition for displaying"
 
     describe "adding as a belongs to" do
       context "when not optional" do
@@ -152,9 +125,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
           end
         end
         it "should not show up in the menu" do
-          expect {
-            menu["Posts"]
-          }.to raise_error(KeyError)
+          menu["Posts"].should be_nil
         end
       end
       context "when optional" do
