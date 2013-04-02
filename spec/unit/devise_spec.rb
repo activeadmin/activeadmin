@@ -42,6 +42,35 @@ describe ActiveAdmin::Devise::Controller do
     end
     
   end
+
+  context "within a scoped route" do
+
+    SCOPE = '/aa_scoped'
+
+    before do
+      # Remove existing routes
+      routes = Rails.application.routes
+      routes.clear!
+
+      # Add scoped routes
+      routes.draw do
+        scope :path => SCOPE do
+          ActiveAdmin.routes(self)
+          devise_for :admin_users, ActiveAdmin::Devise.config
+        end
+      end
+    end
+
+    after do
+      # Resume default routes
+      reload_routes!
+    end
+
+    it "should include scope path in root_path" do
+      controller.root_path.should == "#{SCOPE}/admin"
+    end
+
+  end
   
   describe "#config" do
     let(:config) { ActiveAdmin::Devise.config }
