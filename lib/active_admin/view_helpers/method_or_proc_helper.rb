@@ -75,4 +75,19 @@ module MethodOrProcHelper
       string_symbol_or_proc
     end
   end
+
+  # This method is different from the others in that it calls `instance_eval` on the reciever,
+  # passing it the proc. This evaluates the proc in the context of the reciever, thus changing
+  # what `self` means inside the proc.
+  def render_in_context(context, obj)
+    context ||= self # default to `self`
+    case obj
+    when Proc
+      context.instance_exec &obj
+    when Symbol
+      context.send obj
+    else
+      obj
+    end
+  end
 end

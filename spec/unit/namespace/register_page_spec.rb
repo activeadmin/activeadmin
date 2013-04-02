@@ -67,33 +67,8 @@ describe ActiveAdmin::Namespace, "registering a page" do
         end
       end
       it "should not create a menu item" do
-        expect {
-          menu["Status"]
-        }.to raise_error(KeyError)
+        menu["Status"].should be_nil
       end
     end # describe "disabling the menu"
-    
-    describe "setting menu priority" do
-      before do
-        namespace.register_page "Status" do
-          menu :priority => 2
-        end
-      end
-      it "should have a custom priority of 2" do
-        menu["Status"].priority.should == 2
-      end
-    end # describe "setting menu priority"
-    
-    describe "setting a condition for displaying" do
-      before do
-        namespace.register_page "Status" do
-          menu :if => proc { false }
-        end
-      end
-      it "should have a proc returning false" do
-        menu["Status"].display_if_block.should be_instance_of(Proc)
-        menu["Status"].display_if_block.call.should == false
-      end
-    end # describe "setting a condition for displaying"
   end # describe "adding to the menu"
 end

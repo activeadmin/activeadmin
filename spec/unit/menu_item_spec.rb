@@ -20,16 +20,20 @@ module ActiveAdmin
       item.priority.should == 10
     end
 
-    it "should have a display if block" do
-      block = lambda{ logged_in? }
-      item = MenuItem.new(:if => block )
-      item.display_if_block.should == block
-    end
+    context "conditional display" do
+      it "should store a Proc internally and evaluate it when requested" do
+        item = MenuItem.new
+        item.instance_variable_get(:@should_display).should be_a Proc
+        item.display?.should_not be_a Proc
+      end
 
-    it "should have a default display if block always returning true" do
-      item = MenuItem.new
-      item.display_if_block.should be_instance_of(Proc)
-      item.display_if_block.call(self).should == true
+      it "should show the item by default" do
+        MenuItem.new.display?.should == true
+      end
+
+      it "should hide the item" do
+        MenuItem.new(:if => proc{false}).display?.should == false
+      end
     end
 
     it "should default to an empty hash for html_options" do
@@ -45,14 +49,14 @@ module ActiveAdmin
     context "with no items" do
       it "should be empty" do
         item = MenuItem.new
-        item.items.should == []
+        item.items.should be_empty
       end
 
       it "should accept new children" do
-        item = MenuItem.new
-        item.add :label => "Dashboard"
-        item.items.first.should be_an_instance_of(MenuItem)
-        item.items.first.label.should == "Dashboard"
+        item = MenuItem.new :label => "Dashboard"
+        item.add            :label => "My Child Dashboard"
+        item.items.first.should be_a MenuItem
+        item.items.first.label.should == "My Child Dashboard"
       end
     end
 
@@ -65,6 +69,10 @@ module ActiveAdmin
         i.add :label => "Settings", :priority => 2
         i.add :label => "Analytics", :priority => 44
         i
+      end
+
+      it "should contain 5 submenu items" do
+        item.items.count.should == 5
       end
 
       it "should give access to the menu item as an array" do
@@ -121,20 +129,14 @@ module ActiveAdmin
     end # accessing ancestory
 
 
-    describe ".generate_item_id" do
-
-      it "downcases the id" do
-        MenuItem.new(:id => "Identifier").id.should == "identifier"
+    describe "#id" do
+      it "should be normalized" do
+        MenuItem.new(:id => "Foo Bar").id.should == "foo_bar"
       end
 
-      it "should set underscore any spaces" do
-        MenuItem.new(:id => "An Id").id.should == "an_id"
+      it "should not accept Procs" do
+        expect{ MenuItem.new(:id => proc{"Dynamic"}).id }.to raise_error TypeError
       end
-
-      it "should return a proc if label was a proc" do
-        MenuItem.new(:label => proc{ "Dynamic" }).id.should be_an_instance_of(Proc)
-      end
-
     end
 
   end
