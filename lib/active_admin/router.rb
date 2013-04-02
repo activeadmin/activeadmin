@@ -88,8 +88,10 @@ module ActiveAdmin
             # Define any member actions
             member do
               config.member_actions.each do |action|
-                # eg: get :comment
-                send(action.http_verb, action.name)
+                [*action.http_verb].each do |http_verb|
+                  # eg: get :comment
+                  send(http_verb, action.name)
+                end
               end
             end
 
