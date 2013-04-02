@@ -113,53 +113,44 @@ describe ActiveAdmin, "Routing", :type => :routing do
     end
 
     context "with member action" do
-      context "without http verb" do
-        before(:each) do
+      context "without an http verb" do
+        before do
           load_resources do 
-            ActiveAdmin.register(Post) do
-              member_action "do_something"
-            end
+            ActiveAdmin.register(Post){ member_action "do_something" }
           end
         end
 
-        it "should properly route the member action for GET only" do
-          { :get => "/admin/posts/1/do_something" }.
-            should route_to({ :controller => 'admin/posts', :action => 'do_something', :id => "1" })
+        it "should default to GET" do
+          {:get  => "/admin/posts/1/do_something"}.should     be_routable
+          {:post => "/admin/posts/1/do_something"}.should_not be_routable
         end
       end
 
       context "with one http verb" do
-        before(:each) do
+        before do
           load_resources do 
-            ActiveAdmin.register(Post) do
-              member_action "do_something", :method => :post
-            end
+            ActiveAdmin.register(Post){ member_action "do_something", :method => :post }
           end
         end
 
-        it "should properly route the member action for the specified http verb" do
-          { :post => "/admin/posts/1/do_something" }.
-            should route_to({ :controller => 'admin/posts', :action => 'do_something', :id => "1" })
+        it "should properly route" do
+          {:post => "/admin/posts/1/do_something"}.should be_routable
         end
       end
 
       context "with two http verbs" do
-        before(:each) do
+        before do
           load_resources do 
-            ActiveAdmin.register(Post) do
-              member_action "do_something", :method => [:get, :post]
-            end
+            ActiveAdmin.register(Post){ member_action "do_something", :method => [:put, :delete] }
           end
         end
 
-        it "should properly route the member action for the first http verb" do
-          { :get => "/admin/posts/1/do_something" }.
-            should route_to({ :controller => 'admin/posts', :action => 'do_something', :id => "1" })
+        it "should properly route the first verb" do
+          {:put => "/admin/posts/1/do_something"}.should be_routable
         end
 
-        it "should properly route the member action for the second http verb" do        
-          { :post => "/admin/posts/1/do_something" }.
-            should route_to({ :controller => 'admin/posts', :action => 'do_something', :id => "1" })        
+        it "should properly route the second verb" do        
+          {:delete => "/admin/posts/1/do_something"}.should be_routable     
         end
       end
     end
