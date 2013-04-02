@@ -45,11 +45,6 @@ describe ActiveAdmin::Reloader do
         reloader.reloader_class.should == ActionDispatch::Reloader
       end
 
-      it "should use ActionDispatch::Callbacks if rails 3.0" do
-        reloader = ActiveAdmin::Reloader.build rails_app, mock_app, TRAVIS_RAILS_VERSIONS.grep(/^3.0/).first
-        reloader.reloader_class.should == ActionDispatch::Callbacks
-      end
-
     end
 
     describe "#reload!" do

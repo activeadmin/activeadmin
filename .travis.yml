@@ -7,9 +7,10 @@ before_install:
   - gem --version
   - gem install bundler
 env:
-  - RAILS=3.0.20
   - RAILS=3.1.12
   - RAILS=3.2.13
+  - RAILS=4.0.0.beta1
 matrix:
   allow_failures:
     - rvm: 2.0.0
+    - env: RAILS=4.0.0.beta1
