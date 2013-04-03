@@ -17,20 +17,12 @@ module ActiveAdmin
 
       # Returns the name to call this resource such as "Bank Account"
       def resource_label
-        if @options[:as]
-          @options[:as]
-        else
-           resource_name.human(:default => resource_name.gsub('::', ' ').titleize)
-         end
+        resource_name.translate :count => 1,  :default => resource_name.gsub('::', ' ').titleize
       end
 
       # Returns the plural version of this resource such as "Bank Accounts"
       def plural_resource_label
-        if @options[:as]
-          @options[:as].pluralize
-        else
-          resource_name.human(:count => 1.1, :default => resource_label.pluralize.titleize)
-        end
+        resource_name.translate :count => 1.1, :default => resource_label.pluralize.titleize
       end
     end
 
@@ -44,6 +36,10 @@ module ActiveAdmin
         else
           super(klass, nil, name)
         end
+      end
+
+      def translate(options = {})
+        I18n.t i18n_key, {:scope => [:activerecord, :models]}.merge(options)
       end
 
       def proxy_for_initializer(klass, name)
