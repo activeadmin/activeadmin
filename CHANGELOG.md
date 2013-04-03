@@ -6,6 +6,8 @@
 * Add missing batch actions translations. [#1788][] by [@EtienneDepaulis][]
 * Fix for [#1960][], pluralize the example `admin_users` model to be consistent [#1961][] by [@rmw][]
 * JS fix for batch actions checkbox toggling [#1947][] by [@ai][]
+* Fixed routing bug when using `config.default_namespace = false` in initializer [#2043][]
+  by [@Daxter][] and [@gregbell][]
 
 ### Enhancements
 
@@ -20,8 +22,6 @@
 * Allow options to be passed to the Abre element for rows in `attributes_table` [#1439][] by [@Daxter][]
 * Gender neutral Spanish translations [#1973][] by [@laffinkippah][]
 * Adds the ability to use `starts_with` and `ends_with` in string filters [#1962][] by [@rmw][]
-* Added support for `config.default_namespace = false` in initializer [#2043][]
-  by [@Daxter][] and [@gregbell][]
 
 ### New Features
 
