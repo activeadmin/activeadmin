@@ -18,7 +18,7 @@ module ActiveAdmin
       # Returns the name to call this resource such as "Bank Account"
       def resource_label
         if @options[:as]
-          @options[:as]
+          I18n.t resource_name.i18n_key, :scope => [:activerecord, :models], :default => @options[:as], :count => 1
         else
            resource_name.human(:default => resource_name.gsub('::', ' ').titleize)
          end
@@ -27,7 +27,7 @@ module ActiveAdmin
       # Returns the plural version of this resource such as "Bank Accounts"
       def plural_resource_label
         if @options[:as]
-          @options[:as].pluralize
+          I18n.t resource_name.i18n_key, :scope => [:activerecord, :models], :default => @options[:as].pluralize, :count => 1.1
         else
           resource_name.human(:count => 1.1, :default => resource_label.pluralize.titleize)
         end
