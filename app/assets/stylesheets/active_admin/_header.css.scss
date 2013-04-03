@@ -3,18 +3,17 @@
   @include primary-gradient;
   @include shadow;
   @include text-shadow(#000);
-  height: 20px;
-  overflow: visible;
+  min-height: 20px;
+  overflow: hidden;
   position: inherit;
-  padding: 9px $horizontal-page-margin;
+  padding: 0 $horizontal-page-margin;
   z-index: 900;
 
   h1 { 
     display: inline-block; 
     color: #cdcdcd;
     float: left;
-    margin-right: 20px; 
-    margin-bottom: 0px;
+    margin: 9px 20px 9px 0;
     padding-top: 3px;
     font-size: 1.3em; 
     font-weight: normal;
@@ -50,7 +49,7 @@
 
     & > li { 
       display: inline-block; 
-      margin-right: 4px; 
+      margin: 9px 4px 9px 0;
       font-size: 1.0em; 
       position: relative; 
 
@@ -126,7 +125,7 @@
     color: #aaa;
     float: right;
     display: inline-block;
-    margin: 0;
+    margin: 9px 0;
     padding: 0;
 
     a { text-decoration: none; }
