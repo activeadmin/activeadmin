@@ -124,7 +124,8 @@ module ActiveAdmin
 
     # Registers a brand new configuration for the given resource.
     def register(resource, options = {}, &block)
-      namespace(options[:namespace]).register resource, options, &block
+      ns_name = namespace_name(options)
+      namespace(ns_name).register resource, options, &block
     end
 
     # Creates a namespace for the given name
@@ -133,7 +134,7 @@ module ActiveAdmin
     #
     # @returns [Namespace] the new or existing namespace
     def namespace(name)
-      name = normalize_namespace_name(name)
+      name ||= :root
 
       if namespaces[name]
         namespace = namespaces[name]
@@ -154,7 +155,8 @@ module ActiveAdmin
     # @&block The registration block.
     #
     def register_page(name, options = {}, &block)
-      namespace(options[:namespace]).register_page name, options, &block
+      ns_name = namespace_name(options)
+      namespace(ns_name).register_page name, options, &block
     end
 
     # Whether all configuration files have been loaded
@@ -213,21 +215,9 @@ module ActiveAdmin
 
     private
 
-    # Normalizes the namespace name.
-    #
-    # `normalize_namespace_name(nil)` results in the default_namesapce or :root
-    # `normalize_namespace_name(:admin)` results in :admin
-    # `normalize_namespace_name(false)` results in :root
-    #
-    # @params [Symbil, nil, false] name The name of the namespace
-    #
-    # @returns [Symbol] The normalized name of the namespace. Will always return
-    #                   a symbol. Ie: nil and false will not be returned.
-    def normalize_namespace_name(name)
-      return name if name
-      return :root if name == false
-
-      default_namespace || :root
+    # Return either the passed in namespace or the default
+    def namespace_name(options)
+      options.fetch(:namespace){ default_namespace }
     end
 
     def register_default_assets
