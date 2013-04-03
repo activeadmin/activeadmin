@@ -6,6 +6,7 @@
 * Updated documentation for formtastic deprecated f.buttons [#1867][] by [@ericcumbee][]
 * Rubinis compatability change over block variables [#1871][] by [@dbussin][]
 * Authorization DSL including a default CanCan adapter [#1817][] by [@pcreux][]
+  and [@gregbell][]
 * Fix for [#1960][], pluralize the example admin_users model to be consistent [#1961][] by [@rmw][]
 * Compatability with Draper 1.0 release [#1896][] by [@hakanensari][]
 * Fixed references to "dashboards.rb" in locales, since file doesn't exist [#1873][] by [@ryansch][]
@@ -668,6 +669,7 @@ of the highlights. 250 commits. Enough said.
 [#1041]: https://github.com/gregbell/active_admin/issues/1041
 [#1063]: https://github.com/gregbell/active_admin/issues/1063
 [#1117]: https://github.com/gregbell/active_admin/issues/1117
+[#1439]: https://github.com/gregbell/active_admin/issues/1439
 [#1609]: https://github.com/gregbell/active_admin/issues/1609
 [#1626]: https://github.com/gregbell/active_admin/issues/1626
 [#1647]: https://github.com/gregbell/active_admin/issues/1647
@@ -682,34 +684,67 @@ of the highlights. 250 commits. Enough said.
 [#1783]: https://github.com/gregbell/active_admin/issues/1783
 [#1788]: https://github.com/gregbell/active_admin/issues/1788
 [#1805]: https://github.com/gregbell/active_admin/issues/1805
+[#1817]: https://github.com/gregbell/active_admin/issues/1817
+[#1834]: https://github.com/gregbell/active_admin/issues/1834
+[#1861]: https://github.com/gregbell/active_admin/issues/1861
+[#1867]: https://github.com/gregbell/active_admin/issues/1867
+[#1871]: https://github.com/gregbell/active_admin/issues/1871
+[#1873]: https://github.com/gregbell/active_admin/issues/1873
+[#1893]: https://github.com/gregbell/active_admin/issues/1893
+[#1896]: https://github.com/gregbell/active_admin/issues/1896
+[#1908]: https://github.com/gregbell/active_admin/issues/1908
+[#1913]: https://github.com/gregbell/active_admin/issues/1913
+[#1929]: https://github.com/gregbell/active_admin/issues/1929
+[#1933]: https://github.com/gregbell/active_admin/issues/1933
+[#1937]: https://github.com/gregbell/active_admin/issues/1937
+[#1940]: https://github.com/gregbell/active_admin/issues/1940
+[#1947]: https://github.com/gregbell/active_admin/issues/1947
+[#1960]: https://github.com/gregbell/active_admin/issues/1960
+[#1961]: https://github.com/gregbell/active_admin/issues/1961
+[#1962]: https://github.com/gregbell/active_admin/issues/1962
+[#1966]: https://github.com/gregbell/active_admin/issues/1966
+[#1967]: https://github.com/gregbell/active_admin/issues/1967
+[#1973]: https://github.com/gregbell/active_admin/issues/1973
+[@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
+[@Daxter]: https://github.com/Daxter
 [@EtienneDepaulis]: https://github.com/EtienneDepaulis
 [@MoritzMoritz]: https://github.com/MoritzMoritz
+[@TBAA]: https://github.com/TBAA
+[@TiagoCardoso1983]: https://github.com/TiagoCardoso1983
 [@ZequeZ]: https://github.com/ZequeZ
 [@adrienkohlbecker]: https://github.com/adrienkohlbecker
+[@ai]: https://github.com/ai
 [@amiel]: https://github.com/amiel
 [@bobbytables]: https://github.com/bobbytables
 [@caifara]: https://github.com/caifara
 [@comboy]: https://github.com/comboy
 [@dapi]: https://github.com/dapi
+[@dbussin]: https://github.com/dbussin
 [@dhiemstra]: https://github.com/dhiemstra
 [@doug316]: https://github.com/doug316
 [@ebeigarts]: https://github.com/ebeigarts
+[@ejholmes]: https://github.com/ejholmes
 [@emzeq]: https://github.com/emzeq
+[@ericcumbee]: https://github.com/ericcumbee
 [@fabiokr]: https://github.com/fabiokr
 [@fabiormoura]: https://github.com/fabiormoura
 [@fbuenemann]: https://github.com/fbuenemann
 [@george]: https://github.com/george
 [@ggilder]: https://github.com/ggilder
 [@gregbell]: https://github.com/gregbell
+[@hakanensari]: https://github.com/hakanensari
 [@j]: https://github.com/j
+[@jamesalmond]: https://github.com/jamesalmond
 [@jancel]: https://github.com/jancel
 [@jbarket]: https://github.com/jbarket
+[@johnnyshields]: https://github.com/johnnyshields
 [@jschwindt]: https://github.com/jschwindt
 [@kerberoS]: https://github.com/kerberoS
 [@knoopx]: https://github.com/knoopx
 [@krug]: https://github.com/krug
+[@laffinkippah]: https://github.com/laffinkippah
 [@latortuga]: https://github.com/latortuga
 [@macfanatic]: https://github.com/macfanatic
 [@mattvague]: https://github.com/mattvague
@@ -722,18 +757,25 @@ of the highlights. 250 commits. Enough said.
 [@ptn]: https://github.com/ptn
 [@randym]: https://github.com/randym
 [@rheaton]: https://github.com/rheaton
+[@rmw]: https://github.com/rmw
 [@robdiciuccio]: https://github.com/robdiciuccio
 [@rolfb]: https://github.com/rolfb
+[@ronen]: https://github.com/ronen
+[@ryansch]: https://github.com/ryansch
 [@samvincent]: https://github.com/samvincent
 [@sftsang]: https://github.com/sftsang
 [@shayfrendt]: https://github.com/shayfrendt
 [@shell]: https://github.com/shell
 [@simonoff]: https://github.com/simonoff
+[@snapapps]: https://github.com/snapapps
+[@stereoscott]: https://github.com/stereoscott
 [@sunny]: https://github.com/sunny
 [@tracedwax]: https://github.com/tracedwax
 [@tricknotes]: https://github.com/tricknotes
 [@utkarshkukreti]: https://github.com/utkarshkukreti
 [@vairix]: https://github.com/vairix
+[@vairix-ssierra]: https://github.com/vairix-ssierra
 [@watson]: https://github.com/watson
+[@whatcould]: https://github.com/whatcould
 [@yawn]: https://github.com/yawn
 [@yorch]: https://github.com/yorch
