@@ -22,12 +22,18 @@
 * Allow options to be passed to the Abre element for rows in `attributes_table` [#1439][] by [@Daxter][]
 * Gender neutral Spanish translations [#1973][] by [@laffinkippah][]
 * Adds the ability to use `starts_with` and `ends_with` in string filters [#1962][] by [@rmw][]
+* Added support for translating resources when registered with `:as` [#2044][]
+  by [@Daxter]
+* Scopes are no longer hidden when empty filter results [#1804][] by [@Daxter][]
+* Dynamic scope names with procs [#2018][] by [@Daxter][]
+* Filters no support the `:if` optional argument [#1801][] by [@Daxter][]
+* Member & collection actions support multiple HTTP methods for the same action [#2000][] by [@rdsoze][]
 
 ### New Features
 
-* New "actions" DSL for customizing actions on index listing [#1834][] by [@ejholmes][]
 * Authorization DSL including a default CanCan adapter [#1817][] by [@pcreux][]
   and [@gregbell][]
+* New "actions" DSL for customizing actions on index listing [#1834][] by [@ejholmes][]
 * Index title can now be set via a proc [#1861][] by [@jamesalmond][]
 * Can now disable `download_links` per resource, index collection or globally throughout AA [#1908][] by [@TBAA][]
 * Filters: add ability to search for blank/null fields with boolean search [#1893][] by [@whatcould][]
@@ -40,6 +46,52 @@
 * Updated documentation for formtastic deprecated f.buttons [#1867][] by [@ericcumbee][]
 * Copyright updated for 2013 [#1937][] by [@snapapps][]
 
+### Contributors
+
+327 Commits by 42 authors
+
+*  Adrien Kohlbecker
+*  Alexandr Prudnikov
+*  Andrew Pietsch
+*  Andrey A.I. Sitnik
+*  Andrey Rozhkovsky
+*  Anthony Zacharakis
+*  Bartlomiej Niemtur
+*  David DIDIER
+*  David Reese
+*  Daxter
+*  Dirkjan Bussink
+*  Dominik Masur
+*  Eric Cumbee
+*  Eric J. Holmes
+*  Etienne Depaulis
+*  Gosha Arinich
+*  Greg Bell
+*  Ian Carroll
+*  James Almond
+*  Johnny Shields
+*  Joshua Collins
+*  Kieran Klaassen
+*  Luís Ramalho
+*  Matt Brewer
+*  Nathaniel Bibler
+*  Olek Janiszewski
+*  Philippe Creux
+*  Raison Dsouza
+*  Rebecca Miller-Webster
+*  Roman Sklenar
+*  Roman Sklenář
+*  Ryan Schlesinger
+*  Scott Meves
+*  Sean Ian Linsley
+*  Sergey Pchelincev
+*  Simon Menke
+*  Tiago Cardoso
+*  Travis Pew
+*  WU Jun
+*  laffinkippah
+*  ronen barzel
+*  тιηуηυмвєяѕ
 
 ## 0.5.1
 
@@ -700,6 +752,8 @@ of the highlights. 250 commits. Enough said.
 [#1782]: https://github.com/gregbell/active_admin/issues/1782
 [#1783]: https://github.com/gregbell/active_admin/issues/1783
 [#1788]: https://github.com/gregbell/active_admin/issues/1788
+[#1801]: https://github.com/gregbell/active_admin/issues/1801
+[#1804]: https://github.com/gregbell/active_admin/issues/1804
 [#1805]: https://github.com/gregbell/active_admin/issues/1805
 [#1817]: https://github.com/gregbell/active_admin/issues/1817
 [#1834]: https://github.com/gregbell/active_admin/issues/1834
@@ -722,7 +776,10 @@ of the highlights. 250 commits. Enough said.
 [#1966]: https://github.com/gregbell/active_admin/issues/1966
 [#1967]: https://github.com/gregbell/active_admin/issues/1967
 [#1973]: https://github.com/gregbell/active_admin/issues/1973
+[#2000]: https://github.com/gregbell/active_admin/issues/2000
+[#2018]: https://github.com/gregbell/active_admin/issues/2018
 [#2043]: https://github.com/gregbell/active_admin/issues/2043
+[#2044]: https://github.com/gregbell/active_admin/issues/2044
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
@@ -775,6 +832,7 @@ of the highlights. 250 commits. Enough said.
 [@per_page]: https://github.com/per_page
 [@ptn]: https://github.com/ptn
 [@randym]: https://github.com/randym
+[@rdsoze]: https://github.com/rdsoze
 [@rheaton]: https://github.com/rheaton
 [@rmw]: https://github.com/rmw
 [@robdiciuccio]: https://github.com/robdiciuccio
