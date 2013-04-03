@@ -59,21 +59,6 @@ instead of a string. The proc will be called each time the menu is rendered.
       menu :label => proc{ I18n.t("mypost") }
     end
 
-### Drop Down Menus
-
-In many cases, a single level navigation will not be enough for the
-administration of a production application. In that case, you can categorize
-your resources and creating drop down menus to access them.
-
-To add the menu as a child of another menu:
-
-    ActiveAdmin.register Post do
-      menu :parent => "Blog"
-    end
-
-Note, the "Blog" menu does not even have to exist yet. It will be generated on
-the fly as a drop down list for you.
-
 ### Menu Priority
 
 By default Active Admin sorts menus alphabetically. Some times you want specific
@@ -98,6 +83,42 @@ Menu items can be shown or hidden at runtime using the `:if` option.
 
 The `proc` will be called in the context of the view, so you have access to all
 your helpers and current user session information.
+
+### Drop Down Menus
+
+In many cases, a single level navigation will not be enough for the
+administration of a production application. In that case, you can categorize
+your resources and creating drop down menus to access them.
+
+To add the menu as a child of another menu:
+
+    ActiveAdmin.register Post do
+      menu :parent => "Blog"
+    end
+
+Note, the "Blog" menu does not even have to exist yet. It will be generated on
+the fly as a drop down list for you.
+
+### Customizing Parent Menu Items
+
+All of the options given to a standard menu item are also available to the
+parent menu items. You can customize their attributes in the Active Admin
+initializer.
+
+    # config/initializers/active_admin.rb
+    ActiveAdmin.setup do |config|
+      config.namespace :admin do |admin|
+
+        # This block will edit the default menu
+        admin.build_menu do |menu|
+          menu.add :label => "Blog", :priority => 0
+        end
+
+      end
+    end
+
+Now, if you use `menu :parent => "Blog"`, your resource menu item will be a
+child of the Blog menu item with the priority of 0.
 
 ### Adding Custom Menu Items
 
