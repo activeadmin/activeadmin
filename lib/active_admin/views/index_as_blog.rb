@@ -93,6 +93,10 @@ module ActiveAdmin
         @body
       end
 
+      def self.index_name
+        "blog"
+      end
+
       private
 
       def build_posts

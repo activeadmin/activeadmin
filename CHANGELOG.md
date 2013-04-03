@@ -30,6 +30,8 @@
 * Can now disable `download_links` per resource, index collection or globally throughout AA [#1908][] by [@TBAA][]
 * Filters: add ability to search for blank/null fields with boolean search [#1893][] by [@whatcould][]
 * New `navigation_menu` DSL for menu system [#1967][] by [@macfanatic][] and [@gregbell][]
+* Support segmented control switch between different index styles [#1745][] by
+  [@joshuacollins85][]
 
 ### Other
 
@@ -690,6 +692,7 @@ of the highlights. 250 commits. Enough said.
 [#1681]: https://github.com/gregbell/active_admin/issues/1681
 [#1683]: https://github.com/gregbell/active_admin/issues/1683
 [#1699]: https://github.com/gregbell/active_admin/issues/1699
+[#1745]: https://github.com/gregbell/active_admin/issues/1745
 [#1752]: https://github.com/gregbell/active_admin/issues/1752
 [#1775]: https://github.com/gregbell/active_admin/issues/1775
 [#1782]: https://github.com/gregbell/active_admin/issues/1782
@@ -752,6 +755,7 @@ of the highlights. 250 commits. Enough said.
 [@jancel]: https://github.com/jancel
 [@jbarket]: https://github.com/jbarket
 [@johnnyshields]: https://github.com/johnnyshields
+[@joshuacollins85]: https://github.com/joshuacollins85
 [@jschwindt]: https://github.com/jschwindt
 [@kerberoS]: https://github.com/kerberoS
 [@knoopx]: https://github.com/knoopx

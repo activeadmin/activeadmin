@@ -27,6 +27,10 @@ module ActiveAdmin
         end
       end
 
+      def self.index_name
+        "block"
+      end
+
     end
   end
 end
