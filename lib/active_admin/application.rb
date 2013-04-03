@@ -133,7 +133,7 @@ module ActiveAdmin
     #
     # @returns [Namespace] the new or existing namespace
     def namespace(name)
-      name ||= name == false ? :root : default_namespace
+      name ||= default_namespace || :root
       if namespaces[name]
         namespace = namespaces[name]
       else
