@@ -20,6 +20,8 @@
 * Allow options to be passed to the Abre element for rows in `attributes_table` [#1439][] by [@Daxter][]
 * Gender neutral Spanish translations [#1973][] by [@laffinkippah][]
 * Adds the ability to use `starts_with` and `ends_with` in string filters [#1962][] by [@rmw][]
+* Added support for `config.default_namespace = false` in initializer [#2043][]
+  by [@Daxter][] and [@gregbell][]
 
 ### New Features
 
@@ -720,6 +722,7 @@ of the highlights. 250 commits. Enough said.
 [#1966]: https://github.com/gregbell/active_admin/issues/1966
 [#1967]: https://github.com/gregbell/active_admin/issues/1967
 [#1973]: https://github.com/gregbell/active_admin/issues/1973
+[#2043]: https://github.com/gregbell/active_admin/issues/2043
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
