@@ -133,7 +133,8 @@ module ActiveAdmin
     #
     # @returns [Namespace] the new or existing namespace
     def namespace(name)
-      name ||= name == false ? :root : default_namespace
+      name = normalize_namespace_name(name)
+
       if namespaces[name]
         namespace = namespaces[name]
       else
@@ -211,6 +212,23 @@ module ActiveAdmin
     end
 
     private
+
+    # Normalizes the namespace name.
+    #
+    # `normalize_namespace_name(nil)` results in the default_namesapce or :root
+    # `normalize_namespace_name(:admin)` results in :admin
+    # `normalize_namespace_name(false)` results in :root
+    #
+    # @params [Symbil, nil, false] name The name of the namespace
+    #
+    # @returns [Symbol] The normalized name of the namespace. Will always return
+    #                   a symbol. Ie: nil and false will not be returned.
+    def normalize_namespace_name(name)
+      return name if name
+      return :root if name == false
+
+      default_namespace || :root
+    end
 
     def register_default_assets
       register_stylesheet 'active_admin.css', :media => 'screen'

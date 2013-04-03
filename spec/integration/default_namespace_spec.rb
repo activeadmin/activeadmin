@@ -21,14 +21,6 @@ describe ActiveAdmin::Application do
         ActiveAdmin.application = @__original_application
       end
 
-      it "should generate a dashboard controller" do
-        defined?(::DashboardController).should be_true
-      end
-
-      it "should generate a dashboard route" do
-        dashboard_path.should == "/"
-      end
-
       it "should generate a log out path" do
         destroy_admin_user_session_path.should == "/admin_users/logout"
       end
@@ -54,14 +46,6 @@ describe ActiveAdmin::Application do
 
       after(:all) do
         ActiveAdmin.application = @__original_application
-      end
-
-      it "should generate a dashboard controller" do
-        defined?(::Test::DashboardController).should be_true
-      end
-
-      it "should generate a dashboard route" do
-        test_dashboard_path.should == "/test"
       end
 
       it "should generate a log out path" do
