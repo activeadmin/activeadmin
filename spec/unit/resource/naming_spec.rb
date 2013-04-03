@@ -61,7 +61,7 @@ module ActiveAdmin
       describe "I18n integration" do
         describe "singular label" do
           it "should return the titleized model_name.human" do
-            config.resource_name.should_receive(:human).and_return "Da category"
+            config.resource_name.should_receive(:translate).and_return "Da category"
 
             config.resource_label.should == "Da category"
           end
@@ -69,8 +69,26 @@ module ActiveAdmin
 
         describe "plural label" do
           it "should return the titleized plural version defined by i18n if available" do
-            I18n.should_receive(:translate).at_least(:once).and_return("Da categories")
+            config.resource_name.should_receive(:translate).at_least(:once).and_return "Da categories"
             config.plural_resource_label.should == "Da categories"
+          end
+        end
+
+        context "when the :as option is given" do
+          describe "singular label" do
+            it "should translate the custom name" do
+              config = config(:as => 'My Category')
+              config.resource_name.should_receive(:translate).and_return "Translated category"
+              config.resource_label.should == "Translated category"
+            end
+          end
+
+          describe "plural label" do
+            it "should translate the custom name" do
+              config = config(:as => 'My Category')
+              config.resource_name.should_receive(:translate).at_least(:once).and_return "Translated categories"
+              config.plural_resource_label.should == "Translated categories"
+            end
           end
         end
 
