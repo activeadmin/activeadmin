@@ -36,7 +36,8 @@ module ActiveAdmin
       # Redirect to the default namespace on logout
       def root_path
         namespace = ActiveAdmin.application.default_namespace.presence
-        root_path_method = [*namespace, :root_path].join('_')
+        root_path_method = [namespace, :root_path].compact.join('_')
+
         url_helpers = Rails.application.routes.url_helpers
 
         path = if url_helpers.respond_to? root_path_method
