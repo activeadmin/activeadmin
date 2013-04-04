@@ -1,5 +1,9 @@
 ## Master (unreleased)
 
+None yet
+
+## 0.6.0
+
 ### Bug Fixes
 
 * Fix conflict with Redcloth [#1805][] by [@adrienkohlbecker][]
