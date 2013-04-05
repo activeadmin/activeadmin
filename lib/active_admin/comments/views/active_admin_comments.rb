@@ -59,7 +59,7 @@ module ActiveAdmin
           if active_admin_namespace.root?
             comments_path
           else
-            send(:"#{active_admin_namespace.name}_comments_path")
+            send(:"#{active_admin_namespace.name}_admin_comments_path")
           end
         end
 
