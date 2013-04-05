@@ -21,7 +21,7 @@ Feature: Commenting
         ActiveAdmin.register Post
       """
     When I add a comment "Hello from Comment"
-    Then I should see a flash with "Comment was successfully created"
+    Then I should see a flash with "Admin comment was successfully created"
     And I should be in the resource section for posts
     And I should see "Comments (1)"
     And I should see "Hello from Comment"
@@ -77,7 +77,7 @@ Feature: Commenting
     When I am on the index page for articles
     And I follow "View"
     When I add a comment "Hello from Comment"
-    Then I should see a flash with "Comment was successfully created"
+    Then I should see a flash with "Admin comment was successfully created"
     And I should be in the resource section for articles
 
   Scenario: Create an empty comment
@@ -95,7 +95,7 @@ Feature: Commenting
         ActiveAdmin.register Post
       """
     When I add a comment "Hello from Comment"
-    When I am on the index page for comments
+    When I am on the index page for admin comments
     Then I should see a table header with "Body"
     And I should see "Hello from Comment"
 
@@ -109,7 +109,7 @@ Feature: Commenting
     When I am on the index page for users
     And I follow "View"
     When I add a comment "Hello World"
-    Then I should see a flash with "Comment was successfully created"
+    Then I should see a flash with "Admin comment was successfully created"
     And I should be in the resource section for users
 
   Scenario: Commenting on a class with string id
@@ -122,5 +122,5 @@ Feature: Commenting
 		When I am on the index page for tags
 		And I follow "View"
 		When I add a comment "Tag Comment"
-		Then I should see a flash with "Comment was successfully created"
+		Then I should see a flash with "Admin comment was successfully created"
 		And I should be in the resource section for tags

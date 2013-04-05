@@ -1,11 +1,11 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 
 describe ActiveAdmin::Filters::ViewHelper do
 
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
-  let(:helpers) do 
+  let(:helpers) do
     view = action_view
     def view.collection_path
       "/posts"
@@ -228,14 +228,14 @@ describe ActiveAdmin::Filters::ViewHelper do
                                             :value => @john.id })
         body.should have_tag("input", :attributes => {
                                             :name => "q[author_id_in][]",
-                                            :type => "checkbox",          
+                                            :type => "checkbox",
                                             :value => @jane.id })
       end
     end
 
     context "when polymorphic relationship" do
       let(:body) do
-        search = ActiveAdmin::Comment.search
+        search = ActiveAdmin::AdminComment.search
         render_filter(search, [{:attribute => :resource}])
       end
       it "should not generate any field" do

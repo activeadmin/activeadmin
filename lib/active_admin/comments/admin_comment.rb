@@ -5,7 +5,7 @@ module ActiveAdmin
   # manually initialize kaminari for this model
   ::ActiveRecord::Base.send :include, Kaminari::ActiveRecordExtension
 
-  class Comment < ActiveRecord::Base
+  class AdminComment < ActiveRecord::Base
     belongs_to :resource, :polymorphic => true
     belongs_to :author, :polymorphic => true
 

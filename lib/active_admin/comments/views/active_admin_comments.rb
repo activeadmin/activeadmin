@@ -21,7 +21,7 @@ module ActiveAdmin
         end
 
         def record_comments
-          @record_comments ||= ActiveAdmin::Comment.find_for_resource_in_namespace(@record, active_admin_namespace.name)
+          @record_comments ||= ActiveAdmin::AdminComment.find_for_resource_in_namespace(@record, active_admin_namespace.name)
         end
 
         def build_comments
@@ -37,12 +37,12 @@ module ActiveAdmin
 
         def build_comment(comment)
           div :for => comment do
-            div :class => "active_admin_comment_meta" do
+            div :class => "active_admin_admin_comment_meta" do
               user_name = comment.author ? auto_link(comment.author) : "Anonymous"
-              h4(user_name, :class => "active_admin_comment_author")
+              h4(user_name, :class => "active_admin_admin_comment_author")
               span(pretty_format(comment.created_at))
             end
-            div :class => "active_admin_comment_body" do
+            div :class => "active_admin_admin_comment_body" do
               simple_format(comment.body)
             end
             div :style => "clear:both;"
@@ -59,14 +59,14 @@ module ActiveAdmin
           if active_admin_namespace.root?
             comments_path
           else
-            send(:"#{active_admin_namespace.name}_comments_path")
+            send(:"#{active_admin_namespace.name}_admin_comments_path")
           end
         end
 
         def build_comment_form
-          self << active_admin_form_for(ActiveAdmin::Comment.new, :url => comment_form_url, :html => {:class => "inline_form"}) do |form|
+          self << active_admin_form_for(ActiveAdmin::AdminComment.new, :url => comment_form_url, :html => {:class => "inline_form"}) do |form|
             form.inputs do
-              form.input :resource_type, :input_html => { :value => ActiveAdmin::Comment.resource_type(@record) }, :as => :hidden
+              form.input :resource_type, :input_html => { :value => ActiveAdmin::AdminComment.resource_type(@record) }, :as => :hidden
               form.input :resource_id, :input_html => { :value => @record.id }, :as => :hidden
               form.input :body, :input_html => { :size => "80x8" }, :label => false
             end
