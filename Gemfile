@@ -42,6 +42,6 @@ group :test do
   gem 'launchy'
   gem 'parallel_tests'
   gem 'rspec-rails',     '~> 2.9.0'
-  gem 'shoulda-matchers', '1.5.0' # See active_admin#2004
+  gem 'shoulda-matchers'
   gem 'sqlite3'
 end
