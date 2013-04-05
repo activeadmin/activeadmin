@@ -104,7 +104,7 @@ describe ActiveAdmin::FormBuilder do
   context "when polymorphic relationship" do
     it "should raise error" do
       lambda {
-        comment = ActiveAdmin::Comment.new
+        comment = ActiveAdmin::AdminComment.new
         build_form({:url => "admins/comments"}, comment) do |f|
           f.inputs :resource
         end

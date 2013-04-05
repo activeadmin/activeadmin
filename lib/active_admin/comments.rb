@@ -1,4 +1,4 @@
-require 'active_admin/comments/comment'
+require 'active_admin/comments/admin_comment'
 require 'active_admin/comments/views'
 require 'active_admin/comments/show_page_helper'
 require 'active_admin/comments/namespace_helper'
@@ -20,7 +20,7 @@ ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comme
 ActiveAdmin.after_load do |app|
   app.namespaces.values.each do |namespace|
     if namespace.comments?
-      namespace.register ActiveAdmin::Comment, :as => "Comment" do
+      namespace.register ActiveAdmin::AdminComment, :as => "AdminComment" do
         actions :index, :show, :create
 
         # Ensure filters are turned on
@@ -45,7 +45,7 @@ ActiveAdmin.after_load do |app|
         # Always redirect to the resource on show
         before_filter :only => :show do
           flash[:notice] = flash[:notice].dup if flash[:notice]
-          comment = ActiveAdmin::Comment.find(params[:id])
+          comment = ActiveAdmin::AdminComment.find(params[:id])
           resource_config = active_admin_config.namespace.resource_for(comment.resource.class)
           redirect_to send(resource_config.route_instance_path, comment.resource)
         end
@@ -61,10 +61,10 @@ ActiveAdmin.after_load do |app|
         controller do
           def create
             create! do |success, failure|
-              failure.html do 
-                resource_config = active_admin_config.namespace.resource_for(@comment.resource.class)
+              failure.html do
+                resource_config = active_admin_config.namespace.resource_for(@admin_comment.resource.class)
                 flash[:error] = I18n.t('active_admin.comments.errors.empty_text')
-                redirect_to send(resource_config.route_instance_path, @comment.resource)
+                redirect_to send(resource_config.route_instance_path, @admin_comment.resource)
               end
             end
           end

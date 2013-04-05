@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "Comments" do
   let(:application){ ActiveAdmin::Application.new }
 
-  describe ActiveAdmin::Comment do
-    subject { ActiveAdmin::Comment }
+  describe ActiveAdmin::AdminComment do
+    subject { ActiveAdmin::AdminComment }
 
     describe "Associations and Validations" do
       before do
@@ -24,53 +24,53 @@ describe "Comments" do
       let(:namespace_name){ "admin" }
 
       before do
-        @comment = ActiveAdmin::Comment.create! :resource => post,
-                                                :body => "A Comment",
-                                                :namespace => namespace_name
+        @comment = ActiveAdmin::AdminComment.create! :resource => post,
+                                                     :body => "A Comment",
+                                                     :namespace => namespace_name
       end
 
       it "should return a comment for the resource in the same namespace" do
-        ActiveAdmin::Comment.find_for_resource_in_namespace(post, namespace_name).should == [@comment]
+        ActiveAdmin::AdminComment.find_for_resource_in_namespace(post, namespace_name).should == [@comment]
       end
 
       it "should not return a comment for the same resource in a different namespace" do
-        ActiveAdmin::Comment.find_for_resource_in_namespace(post, 'public').should == []
+        ActiveAdmin::AdminComment.find_for_resource_in_namespace(post, 'public').should == []
       end
 
       it "should not return a comment for a different resource" do
         another_post = Post.create! :title => "Another Hello World"
-        ActiveAdmin::Comment.find_for_resource_in_namespace(another_post, namespace_name).should == []
+        ActiveAdmin::AdminComment.find_for_resource_in_namespace(another_post, namespace_name).should == []
       end
     end
-    
+
     describe ".resource_id_cast" do
       let(:post) { Post.create!(:title => "Testing.") }
       let(:namespace_name) { "admin" }
-      
+
       it "should cast resource_id as string" do
-        comment = ActiveAdmin::Comment.create! :resource => post,
-                                                :body => "Another Comment",
-                                                :namespace => namespace_name
-        ActiveAdmin::Comment.resource_id_cast(comment).class.should eql String
+        comment = ActiveAdmin::AdminComment.create! :resource => post,
+                                                    :body => "Another Comment",
+                                                    :namespace => namespace_name
+        ActiveAdmin::AdminComment.resource_id_cast(comment).class.should eql String
       end
     end
 
     describe ".resource_id_type" do
       it "should be :string" do
-        ActiveAdmin::Comment.resource_id_type.should eql :string
+        ActiveAdmin::AdminComment.resource_id_type.should eql :string
       end
     end
-    
+
     describe "Commenting on resource with string id" do
       let(:tag){ Tag.create!(:name => "cooltags") }
       let(:namespace_name){ "admin" }
-      
+
       it "should allow commenting" do
-        comment = ActiveAdmin::Comment.create! :resource => tag, 
-                                                :body => "Another Comment", 
-                                                :namespace => namespace_name
-                                                
-        ActiveAdmin::Comment.find_for_resource_in_namespace(tag, namespace_name).should == [comment]
+        comment = ActiveAdmin::AdminComment.create! :resource => tag,
+                                                    :body => "Another Comment",
+                                                    :namespace => namespace_name
+
+        ActiveAdmin::AdminComment.find_for_resource_in_namespace(tag, namespace_name).should == [comment]
       end
     end
   end

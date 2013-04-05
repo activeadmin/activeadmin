@@ -1,30 +1,30 @@
-// -------------------------------------- Admin Notes 
+// -------------------------------------- Admin Notes
 .comments {
 
-  .active_admin_comment {
+  .active_admin_admin_comment {
     clear: both;
     margin-top: 10px;
     margin-bottom: 40px;
     max-width: 700px;
 
-    .active_admin_comment_meta {
+    .active_admin_admin_comment_meta {
       width: 130px;
       float: left;
       overflow: hidden;
       font-size: 0.9em;
       color: lighten($primary-color, 10%);
-      .active_admin_comment_author {
+      .active_admin_admin_comment_author {
         font-size: 1.2em;
         font-weight: bold;
         margin: 0;
         color: $primary-color;
       }
     }
-    .active_admin_comment_body {
+    .active_admin_admin_comment_body {
       margin-left: 150px;
     }
   }
-  form.active_admin_comment {
+  form.active_admin_admin_comment {
     margin: 0;
     padding: 0;
     margin-left: 150px;

@@ -21,14 +21,14 @@ module NavigationHelpers
     # the index page for posts in the user_admin namespace
     when /^the index page for (.*) in the (.*) namespace$/
       if $2 != 'root'
-        send(:"#{$2}_#{$1}_path")
+        send(:"#{$2}_#{$1.gsub(' ','_')}_path")
       else
-        send(:"#{$1}_path")
+        send(:"#{$1.gsub(' ','_')}_path")
       end
 
     # same as above, except defaults to admin namespace
     when /^the index page for (.*)$/
-      send(:"admin_#{$1}_path")
+      send(:"admin_#{$1.gsub(' ','_')}_path")
 
     when /^the last author's posts$/
       admin_user_posts_path(User.last)
