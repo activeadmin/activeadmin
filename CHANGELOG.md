@@ -30,7 +30,7 @@ None yet
   by [@Daxter]
 * Scopes are no longer hidden when empty filter results [#1804][] by [@Daxter][]
 * Dynamic scope names with procs [#2018][] by [@Daxter][]
-* Filters no support the `:if` optional argument [#1801][] by [@Daxter][]
+* Filters now support the `:if` optional argument [#1801][] by [@Daxter][]
 * Member & collection actions support multiple HTTP methods for the same action [#2000][] by [@rdsoze][]
 
 ### New Features
@@ -84,7 +84,7 @@ None yet
 *  Raison Dsouza
 *  Rebecca Miller-Webster
 *  Roman Sklenar
-*  Roman Sklenář
+*  Roman Sklenář
 *  Ryan Schlesinger
 *  Scott Meves
 *  Sean Ian Linsley
@@ -234,7 +234,7 @@ application locales. [#1775][] by [@caifara][]
 
 * Allen Huang
 * Daniel Lepage
-* Thibaut Barrère
+* Thibaut Barrère
 * Drew Ulmer
 * Juan Schwindt
 * Moritz Behr
@@ -277,7 +277,7 @@ application locales. [#1775][] by [@caifara][]
 * David Radcliffe
 * Dinesh Majrekar
 * Erik Michaels-Ober
-* Fábio Maia
+* Fábio Maia
 * Gabriel Gilder
 * Greg Bell
 * Kyle Macey
@@ -365,7 +365,7 @@ since we've changed both the CSS and JS files.
  * Greg Bell
  * Philippe Creux
  * Matt Vague
- * Felix Bünemann
+ * Felix Bünemann
  * Matthew Brewer
  * Edgars Beigarts
  * Mike Perham
