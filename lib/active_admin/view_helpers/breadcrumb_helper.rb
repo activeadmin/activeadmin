@@ -11,7 +11,7 @@ module ActiveAdmin
           # If an object (users/23), look it up via ActiveRecord and capture its name.
           # If name is nil, look up the model translation, using `titlecase` as the backup.
           if part =~ /^\d|^[a-f0-9]{24}$/ && parent = parts[index-1]
-            klass = parent.singularize.camelcase.constantize rescue nil
+            klass=Application.default_settings[:namespaces][Application.default_settings[:default_namespace]].resources.find_by_key(parent.singularize.camelcase).resource_class_name.constantize rescue nil
             obj   = klass.find_by_id(part) if klass
             name  = display_name(obj)      if obj
           end
