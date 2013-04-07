@@ -11,7 +11,7 @@ module ActiveAdmin
     #
     # @returns A concrete subclass of AbstractReloader
     def self.build(rails_app, active_admin_app, rails_version)
-      reloader_class = rails_version[0..2] == "3.2" ? Rails32Reloader : RailsLessThan31Reloader
+      reloader_class = rails_version[0..2].to_f >= 3.2 ? Rails32Reloader : RailsLessThan31Reloader
       reloader_class.new(rails_app, active_admin_app, rails_version)
     end
 
@@ -75,7 +75,7 @@ module ActiveAdmin
         end
 
         # Over-ride the default #updated_at to support the deletion of files
-        def updated_at(paths)
+        def updated_at
           paths.map { |path| File.mtime(path) rescue Time.now }.max
         end
 
