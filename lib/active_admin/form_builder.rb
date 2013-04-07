@@ -60,6 +60,10 @@ module ActiveAdmin
           contents += template.content_tag(:li) do
             template.link_to I18n.t('active_admin.has_many_delete'), "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
           end
+        elsif options[:allow_destroy]
+          has_many_form.input :_destroy, :as => :boolean, :wrapper_html => {:class => "has_many_remove"},
+                                                          :label => I18n.t('active_admin.has_many_remove')
+
         end
 
         contents

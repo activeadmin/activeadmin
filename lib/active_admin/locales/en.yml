@@ -21,6 +21,7 @@ en:
     download: "Download:"
     has_many_new: "Add New %{model}"
     has_many_delete: "Delete"
+    has_many_remove: "Remove"
     filter: "Filter"
     clear_filters: "Clear Filters"
     search_field: "Search %{field}"
