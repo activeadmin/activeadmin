@@ -21,6 +21,7 @@
     download: "Baixar:"
     has_many_new: "Adicionar Novo(a) %{model}"
     has_many_delete: "Remover"
+    has_many_remove: "Remover"
     filter: "Filtrar"
     clear_filters: "Limpar Filtros"
     search_field: "Pesquisar %{field}"

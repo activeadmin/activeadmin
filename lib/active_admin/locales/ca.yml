@@ -20,6 +20,7 @@ ca:
     download: "Descarregar:"
     has_many_new: "Afegir %{model}"
     has_many_delete: "Eliminar"
+    has_many_remove: "Treure"
     filter: "Filtrar"
     clear_filters: "Treure filtres"
     search_field: "Cercar %{field}"

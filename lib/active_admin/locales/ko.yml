@@ -19,6 +19,7 @@ ko:
     download: "다운로드:"
     has_many_new: "%{model} 추가"
     has_many_delete: "삭제"
+    has_many_remove: "삭제"
     filter: "필터"
     clear_filters: "필터 초기화"
     search_field: "%{field} 검색"

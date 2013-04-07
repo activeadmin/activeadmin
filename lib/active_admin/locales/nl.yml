@@ -21,6 +21,7 @@ nl:
     download: "Download"
     has_many_new: "Voeg nieuwe %{model} toe"
     has_many_delete: "Verwijderen"
+    has_many_remove: "Verwijderen"
     filter: "Filter"
     clear_filters: "Maak Filters Ongedaan"
     search_field: "Zoek %{field}"

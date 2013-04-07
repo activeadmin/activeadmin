@@ -21,6 +21,7 @@
     download: "Herunterladen:"
     has_many_new: "%{model} hinzufügen"
     has_many_delete: "Löschen"
+    has_many_remove: "Entfernen"
     filter: "Filtern"
     clear_filters: "Filter entfernen"
     search_field: "Durchsuche %{field}"

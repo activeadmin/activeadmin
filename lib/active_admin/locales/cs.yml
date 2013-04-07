@@ -21,6 +21,7 @@ cs:
     download: "Stáhnout:"
     has_many_new: "Přidat nový"
     has_many_delete: "Odstranit"
+    has_many_remove: "Odstranit"
     filter: "Filtrovat"
     clear_filters: "Vyčistit filtry"
     search_field: "Prohledat %{field}"

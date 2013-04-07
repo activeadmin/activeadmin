@@ -21,6 +21,7 @@ hu:
     download: "Letöltés:"
     has_many_new: "Új %{model} hozzáadása"
     has_many_delete: "Törlés"
+    has_many_remove: "Eltávolít"
     filter: "Szűrés"
     clear_filters: "Feltételek törlése"
     search_field: "Keresés %{field} alapján"

@@ -19,6 +19,7 @@
     download: "Last ned:"
     has_many_new: "Legg til ny %{model}"
     has_many_delete: "Slett"
+    has_many_remove: "Fjern"
     filter: "Filter"
     clear_filters: "Fjern filter"
     search_field: "Søk %{field}"

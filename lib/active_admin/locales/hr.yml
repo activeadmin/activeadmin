@@ -21,6 +21,7 @@ hr:
     download: "Spremi na računalo:"
     has_many_new: "Dodaj novi %{model}"
     has_many_delete: "Obriši"
+    has_many_remove: "Ukloniti"
     filter: "Filtriraj"
     clear_filters: "Očisti filtere"
     search_field: "Pretraži po %{field}"

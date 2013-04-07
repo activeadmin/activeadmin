@@ -21,6 +21,7 @@ vi:
     download: "Download:"
     has_many_new: "Thêm mới %{model}"
     has_many_delete: "Xóa"
+    has_many_remove: "Hủy bỏ"
     filter: "Lọc"
     clear_filters: "Xóa dữ liệu lọc"
     search_field: "Tìm kiếm %{field}"
