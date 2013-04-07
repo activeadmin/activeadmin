@@ -177,7 +177,7 @@ module ActiveAdmin
       unless loaded?
         ActiveAdmin::Event.dispatch BeforeLoadEvent, self # before_load hook
         files.each{ |file| load file }                    # load files
-        namespace(nil)                                    # init AA resources
+        namespace(default_namespace)                      # init AA resources
         ActiveAdmin::Event.dispatch AfterLoadEvent, self  # after_load hook
         @@loaded = true
       end
