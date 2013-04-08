@@ -110,17 +110,11 @@ module ActiveAdmin
 
         # Returns the actual class for renderering the main content on the index
         # page. To set this, use the :as option in the page_presenter block.
-        def find_index_renderer_class(symbol_or_class)
-          case symbol_or_class
-          when Symbol
-            ::ActiveAdmin::Views.const_get("IndexAs" + symbol_or_class.to_s.camelcase)
-          when Class
-            symbol_or_class
-          else
-            raise ArgumentError, "'as' requires a class or a symbol"
-          end
+        def find_index_renderer_class(klass)
+          klass.is_a?(Class) ? klass :
+            ::ActiveAdmin::Views.const_get("IndexAs" + klass.to_s.camelcase)
         end
-        
+
         def render_blank_slate
           blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.plural_resource_label)
           if controller.action_methods.include?('new')
@@ -128,12 +122,12 @@ module ActiveAdmin
           end
           insert_tag(view_factory.blank_slate, blank_slate_content)
         end
-        
+
         def render_empty_results
           empty_results_content = I18n.t("active_admin.pagination.empty", :model => active_admin_config.plural_resource_label)
           insert_tag(view_factory.blank_slate, empty_results_content)
         end
-        
+
         def render_index
           renderer_class = find_index_renderer_class(config[:as])
           paginator      = config[:paginator].nil?      ? true : config[:paginator]
