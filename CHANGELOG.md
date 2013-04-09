@@ -30,7 +30,7 @@ None yet
   by [@Daxter]
 * Scopes are no longer hidden when empty filter results [#1804][] by [@Daxter][]
 * Dynamic scope names with procs [#2018][] by [@Daxter][]
-* Filters no support the `:if` optional argument [#1801][] by [@Daxter][]
+* Filters now support the `:if` optional argument [#1801][] by [@Daxter][]
 * Member & collection actions support multiple HTTP methods for the same action [#2000][] by [@rdsoze][]
 
 ### New Features
