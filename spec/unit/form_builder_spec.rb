@@ -167,7 +167,7 @@ describe ActiveAdmin::FormBuilder do
 
   end
 
-  context "with actons" do
+  context "with actions" do
     it "should generate the form once" do
       body = build_form do |f|
         f.inputs do
@@ -351,7 +351,7 @@ describe ActiveAdmin::FormBuilder do
       let :body do
         build_form({:url => '/categories'}, Category.new) do |f|
           f.object.posts.build
-          f.has_many :posts do |p,i|
+          f.has_many :posts, :title => false, :new_record => false do |p,i|
             p.input :title, :label => "Title #{i}"
           end
         end
@@ -360,6 +360,15 @@ describe ActiveAdmin::FormBuilder do
       it "should accept a block with a second argument" do
         body.should have_tag("label", "Title 1")
       end
+
+      it "should not add a header" do
+        body.should_not have_tag('h3', 'Post')
+      end  
+
+      it "should not add link to new nested records" do
+        body.should_not have_tag('a', 'Add New Post')
+      end 
+
     end
 
     pending "should render the block if it returns nil" do
