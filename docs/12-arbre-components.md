@@ -10,18 +10,18 @@ non-breaking space or some text. The text_node method can be used to insert
 these elements into the page inside of other Arbre components or resource
 controller functions.
 
-	ActiveAdmin.register Post do
-		show do
-			panel "Post Details" do
-				row("") { post.id }
-				row("Tags") do
-					text_node link_to "#{tag}", 
-						admin_post_path( q: { tagged_with_contains: tag } )
-					text_node "&nbsp".html_safe
-				end
-			end
-		end
-	end
+    ActiveAdmin.register Post do
+      show do
+        panel "Post Details" do
+          row("") { post.id }
+          row("Tags") do
+            text_node link_to "#{tag}",
+              admin_post_path( q: { tagged_with_contains: tag } )
+            text_node "&nbsp".html_safe
+          end
+        end
+      end
+    end
 
 ## Common Components
 
@@ -52,28 +52,28 @@ need to do is define the number of columns and the component will take care of
 the rest.
 
 #### Simple Columns
-	
+
 To create simple columnns, use the #columns method. Within the block, call the
 #column method to create a new column.
 
-	columns do
-	  
-	  column do
-		span "Column #1"
-	  end
-	  
-	  column do
-		span "Column #2"
-	  end
+    columns do
 
-	end
+      column do
+        span "Column #1"
+      end
+
+      column do
+        span "Column #2"
+      end
+
+    end
 
 #### Multiple Span Columns
 
 To create columns that have multiple spans, pass the :span option to the column
 method.
 
-	columns do
+    columns do
       column :span => 2 do
         span "Column # 1
       end
@@ -105,17 +105,17 @@ In the above example, the first column will not grow larger than 200px and will
 not shrink less than 100px.
 
 ### Table For Component
- 
+
 Table For provides the ability to create tables like those present in
 #index_as_table. table_for takes a collection and a hash of options and then
 uses #column to build the fields to show with the table.
 
-	table_for order.payments do
-	  column "Payment Type" { |payment| payment.payment_type.titleize }
-	  column "Received On", :created_at
-	  column "Payment Details & Notes", :payment_details
-	  column "Amount" { |payment| payment.amount_in_dollars }
-	end
+    table_for order.payments do
+      column "Payment Type" { |payment| payment.payment_type.titleize }
+      column "Received On", :created_at
+      column "Payment Details & Notes", :payment_details
+      column "Amount" { |payment| payment.amount_in_dollars }
+    end
 
 the #column method can take a title as its first argument and data
 (:your_method) as its second (or first if no title provided). Column also
@@ -131,15 +131,15 @@ status_tag will generate html markup that Active Admin css uses in styling.
 
     status_tag('In Progress')
     # => <span class='status_tag in_progress'>In Progress</span>
-  
+
     status_tag('active', :ok)
     # => <span class='status_tag active ok'>Active</span>
-  
+
     status_tag (
-      'active', 
-      :ok, 
-      :class => 'important', 
-      :id => 'status_123', 
+      'active',
+      :ok,
+      :class => 'important',
+      :id => 'status_123',
       :label => 'on'
     )
     # => <span class='status_tag active ok important' id='status_123'>on</span>
