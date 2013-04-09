@@ -4,7 +4,7 @@ module ActiveAdmin
     class SidebarSection < Panel
       builder_method :sidebar_section
 
-      # Takes a ActiveAdmin::Sidebar::Section instance
+      # Takes a ActiveAdmin::SidebarSection instance
       def build(section)
         @section = section
         super(@section.title, :icon => @section.icon)

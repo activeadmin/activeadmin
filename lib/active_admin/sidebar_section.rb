@@ -16,7 +16,7 @@ module ActiveAdmin
     end
 
     def icon?
-      options[:icon]
+      !!options[:icon]
     end
 
     def icon

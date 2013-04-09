@@ -26,29 +26,28 @@ module ActiveAdmin
       end
 
       def select_options
-        template.options_for_select(filters, current_filter)
+        template.options_for_select filters, current_filter
       end
 
       def select_html_options
         { :onchange => "document.getElementById('#{method}_numeric').name = 'q[' + this.value + ']';" }
       end
 
-      # Returns the scope for which we are currently searching. If no search is available
-      # it returns the first scope
+      # Returns the filter currently in use, or the first one available
       def current_filter
-        filters[1..-1].inject(filters.first){|a,b| @object.send(b[1].to_sym) ? b : a }[1]
+        ( filters.detect{ |(_,query)| @object.send query } || filters.first )[1]
       end
 
       def filters
-        (options[:filters] || default_filters).collect do |scope|
-          [scope[0], [method, scope[1]].join("_")]
+        (options[:filters] || default_filters).collect do |(translation,scope)|
+          [translation, "#{method}_#{scope}"]
         end
       end
 
       def default_filters
-        [ [I18n.t('active_admin.equal_to'), 'eq'],
+        [ [I18n.t('active_admin.equal_to'),     'eq'],
           [I18n.t('active_admin.greater_than'), 'gt'],
-          [I18n.t('active_admin.less_than'), 'lt'] ]
+          [I18n.t('active_admin.less_than'),    'lt'] ]
       end
     end
   end

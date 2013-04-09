@@ -78,7 +78,7 @@ module ActiveAdmin
 
     def add_default_sidebar_sections
     end
-    
+
     # Clears all the custom actions this page knows about
     def clear_page_actions!
       @page_actions = []
