@@ -112,7 +112,7 @@ module ActiveAdmin
 
     # Return only defined resource actions
     def defined_actions
-      controller.instance_methods.map { |m| m.to_sym } & ResourceController::ACTIVE_ADMIN_ACTIONS
+      controller.instance_methods.map(&:to_sym) & ResourceController::ACTIVE_ADMIN_ACTIONS
     end
 
     def belongs_to(target, options = {})
@@ -125,9 +125,9 @@ module ActiveAdmin
       @belongs_to
     end
 
-    # Do we belong to another resource
+    # Do we belong to another resource?
     def belongs_to?
-      !belongs_to_config.nil?
+      !!belongs_to_config
     end
 
     # The csv builder for this resource
@@ -146,7 +146,7 @@ module ActiveAdmin
 
     def default_options
       {
-        :sort_order => "#{resource_class.respond_to?(:primary_key) ? resource_class.primary_key : 'id'}_desc"
+        :sort_order => (resource_class.respond_to?(:primary_key) ? resource_class.primary_key : 'id') + '_desc'
       }
     end
 

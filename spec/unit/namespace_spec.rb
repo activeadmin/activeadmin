@@ -16,7 +16,7 @@ describe ActiveAdmin::Namespace do
     end
 
     it "should have no resources" do
-      namespace.resources.resources.should be_empty
+      namespace.resources.should be_empty
     end
 
     it "should not have any menu item" do
