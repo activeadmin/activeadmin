@@ -79,3 +79,4 @@ lt:
       links:
         sign_in: 'Prisijungti'
         forgot_your_password: 'Pamiršote slaptažodį?'
+        sign_in_with_omniauth_provider: "Prisijunkite su %{provider}"

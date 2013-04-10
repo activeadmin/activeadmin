@@ -65,4 +65,21 @@ ro:
       title_content: "Comentarii (%{count})"
       errors:
         empty_text: "Comentariul nu a fost salvat, textul lipseste."
-
+    devise:
+      login:
+        title: "Autentificare"
+        remember_me: "Tine-ma minte"
+        submit: "Autentificare"
+      reset_password:
+        title: "Ați uitat parola?"
+        submit: "Reseta parola"
+      change_password:
+        title: "Schimbați parola"
+        submit: "Schimbă parola"
+      unlock:
+        title: "Retrimite instrucțiunile de deblocare"
+        submit: "Retrimite instrucțiunile de deblocare"
+      links:
+        sign_in: "Autentificare"
+        forgot_your_password: "Ați uitat parola?"
+        sign_in_with_omniauth_provider: "Conectați-vă cu %{provider}"

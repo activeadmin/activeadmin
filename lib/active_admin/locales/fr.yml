@@ -79,3 +79,4 @@ fr:
       links:
         sign_in: "Connectez-vous"
         forgot_your_password: "Vous avez oublié votre mot de passe?"
+        sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"

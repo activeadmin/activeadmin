@@ -79,3 +79,4 @@ lv:
       links:
         sign_in: "pierakstīties"
         forgot_your_password: "Aizmirsāt savu paroli?"
+        sign_in_with_omniauth_provider: "Pierakstieties ar %{provider}"

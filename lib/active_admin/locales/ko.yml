@@ -74,3 +74,4 @@ ko:
       links:
         sign_in: "로그인"
         forgot_your_password: "비밀 번호를 잊으 셨나요?"
+        sign_in_with_omniauth_provider: "%{provider} 으로 로그인"
