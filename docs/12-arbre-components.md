@@ -23,9 +23,8 @@ controller functions.
       end
     end
 
-## Common Components
 
-### Panel Component
+## Panels
 
 A panel is a component that takes up all available horizontal space and takes a
 title and a hash of attributes as arguments. If a sidebar is present, a panel
@@ -45,7 +44,7 @@ The following code will create two stacked panels:
 
     end
 
-### Columns Component
+## Columns
 
 The Columns component allows you draw content into scalable columns. All you
 need to do is define the number of columns and the component will take care of
@@ -68,7 +67,7 @@ the #column method to create a new column.
 
     end
 
-#### Multiple Span Columns
+### Spannig Multiple Columns
 
 To create columns that have multiple spans, pass the :span option to the column
 method.
@@ -85,7 +84,7 @@ method.
 By default, each column spans 1 column. The above layout would have 2 columns,
 the first being twice as large as the second.
 
-#### Max and Mix Column Sizes
+### Custom Column Widths
 
 Active Admin uses a fluid width layout, causing column width to be defined
 using percentages. Due to using this style of layout, columns can shrink or
@@ -104,7 +103,7 @@ columns provide :max_width and :min_width options.
 In the above example, the first column will not grow larger than 200px and will
 not shrink less than 100px.
 
-### Table For Component
+## Table For
 
 Table For provides the ability to create tables like those present
 in #index_as_table. table_for takes a collection and a hash of options and then
@@ -121,7 +120,7 @@ the #column method can take a title as its first argument and data
 (:your_method) as its second (or first if no title provided). Column also
 takes a block.
 
-### Status tag
+## Status tag
 
 Status tags provide convenient syntactic sugar for styling items that have
 status. A common example of where the status tag could be useful is for orders
