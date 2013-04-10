@@ -1,10 +1,15 @@
 module ActiveAdmin
   module ViewHelpers
     module FormHelper
-      
+
       def active_admin_form_for(resource, options = {}, &block)
         options = Marshal.load( Marshal.dump(options) )
         options[:builder] ||= ActiveAdmin::FormBuilder
+
+        if ! options.fetch(:decorate, true)
+          resource = resource.model
+        end
+
         semantic_form_for resource, options, &block
       end
 

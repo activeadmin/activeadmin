@@ -53,32 +53,14 @@ Then the following is possible
 
 Note that the resource proveded to form_for also gets decorated.
 
-In most cases this will work as expected. However, it can have some unexpected
-results. Here's an example gotcha:
+In most cases this will work as expected. However, it is possible to disable
+automatic decoration in the form with the `decorate` option:
 
-```ruby
-class UserDecorator < Draper::Base
-  decorates :user
+    ActiveAdmin.register Post do
+      decorate_with PostDecorator
 
-  def self.status_options_for_select
-    User.status_options.map { |s| [s.humanize, s] }
-  end
-
-  def status
-    model.status.titleize
-  end
-end
-
-ActiveAdmin.register User do
-  form do
-    f.inputs do
-      f.input :status, collection: UserDecorator.status_options_for_select
+      form decorate: false do
+        # ...
+      end
     end
-  end
-end
-```
-
-In this example, `f.object.status` now returns "Submitted", which does not match
-the actual status option: "submitted". Because of this, the `<select>` will not
-have the correct status selected.
 
