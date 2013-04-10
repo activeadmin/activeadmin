@@ -11,6 +11,12 @@ describe "Breadcrumbs" do
     # Mock link to and return a hash
     def link_to(name, url); {:name => name, :path => url}; end
 
+    let :active_admin_config do
+      m = mock
+      m.stub_chain(:belongs_to_config, :target, :resource_class).and_return Post
+      m
+    end
+
     let(:trail) { breadcrumb_links(path) }
 
     context "when request '/admin'" do
