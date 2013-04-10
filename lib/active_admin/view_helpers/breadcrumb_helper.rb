@@ -11,7 +11,7 @@ module ActiveAdmin
           # If an object (users/23), look it up via ActiveRecord and capture its name.
           # If name is nil, look up the model translation, using `titlecase` as the backup.
           if part =~ /^\d|^[a-f0-9]{24}$/ && parent = parts[index-1]
-            klass = parent.singularize.camelcase.constantize rescue nil
+            klass = active_admin_config.belongs_to_config.target.resource_class
             obj   = klass.find_by_id(part) if klass
             name  = display_name(obj)      if obj
           end
