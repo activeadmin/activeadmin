@@ -30,3 +30,27 @@ Feature: Index Scope To
 
     When I follow "Published"
     Then I should see 1 posts in the table
+
+  Scenario: Viewing the index with conditional scope :if
+    Given an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope_to :if => proc{ false } do
+          User.find_by_first_name_and_last_name("John", "Doe")
+        end
+      end
+      """
+    When I am on the index page for posts
+    Then I should see 12 posts in the table
+
+  Scenario: Viewing the index with conditional scope :unless
+    Given an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope_to :unless => proc{ true } do
+          User.find_by_first_name_and_last_name("John", "Doe")
+        end
+      end
+      """
+    When I am on the index page for posts
+    Then I should see 12 posts in the table

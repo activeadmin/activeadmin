@@ -155,19 +155,6 @@ module ActiveAdmin
         end
       end
 
-      context "when not using a block or symbol" do
-        before do
-          @resource = application.register Category do
-            scope_to "Some string"
-          end
-        end
-        it "should raise and exception" do
-          lambda {
-            @resource.controller.new.send(:begin_of_association_chain)
-          }.should raise_error(ArgumentError)
-        end
-      end
-
       describe "getting the method for the association chain" do
         context "when a simple registration" do
           before do

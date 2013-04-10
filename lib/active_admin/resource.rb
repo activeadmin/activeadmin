@@ -6,6 +6,7 @@ require 'active_admin/resource/pagination'
 require 'active_admin/resource/routes'
 require 'active_admin/resource/naming'
 require 'active_admin/resource/scopes'
+require 'active_admin/resource/scope_to'
 require 'active_admin/resource/sidebars'
 require 'active_admin/resource/belongs_to'
 
@@ -38,12 +39,6 @@ module ActiveAdmin
 
     # The default sort order to use in the controller
     attr_accessor :sort_order
-
-    # Scope this resource to an association in the controller
-    attr_accessor :scope_to
-
-    # If we're scoping resources, use this method on the parent to return the collection
-    attr_accessor :scope_to_association_method
 
     # Set the configuration for the CSV
     attr_writer :csv_builder
@@ -79,6 +74,7 @@ module ActiveAdmin
     include PagePresenters
     include Pagination
     include Scopes
+    include ScopeTo
     include Sidebars
     include Menu
     include Routes

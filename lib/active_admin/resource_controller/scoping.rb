@@ -11,16 +11,11 @@ module ActiveAdmin
       # the scope to be defined in the active admin configuration.
       #
       # If scope_to is a proc, we eval it, otherwise we call the method on the controller.
+      #
+      # Collection can be scoped conditionally with an :if or :unless proc.
       def begin_of_association_chain
-        return nil unless active_admin_config.scope_to
-        case active_admin_config.scope_to
-        when Proc
-          instance_eval &active_admin_config.scope_to
-        when Symbol
-          send active_admin_config.scope_to
-        else
-          raise ArgumentError, "#scope_to accepts a symbol or a block"
-        end
+        return nil unless active_admin_config.scope_to?(self)
+        render_in_context(self, active_admin_config.scope_to_method)
       end
 
       # Overriding from InheritedResources::BaseHelpers
