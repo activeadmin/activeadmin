@@ -53,8 +53,8 @@ the rest.
 
 #### Simple Columns
 
-To create simple columnns, use the #columns method. Within the block, call the
-#column method to create a new column.
+To create simple columnns, use the #columns method. Within the block, call
+the #column method to create a new column.
 
     columns do
 
@@ -106,8 +106,8 @@ not shrink less than 100px.
 
 ### Table For Component
 
-Table For provides the ability to create tables like those present in
-#index_as_table. table_for takes a collection and a hash of options and then
+Table For provides the ability to create tables like those present
+in #index_as_table. table_for takes a collection and a hash of options and then
 uses #column to build the fields to show with the table.
 
     table_for order.payments do
