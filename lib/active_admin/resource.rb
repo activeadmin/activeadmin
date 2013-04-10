@@ -68,6 +68,8 @@ module ActiveAdmin
       end
     end
 
+    include MethodOrProcHelper
+
     include Base
     include ActionItems
     include Authorization

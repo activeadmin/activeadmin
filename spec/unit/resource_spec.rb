@@ -229,6 +229,13 @@ module ActiveAdmin
         config.scope :published
         config.get_scope_by_id(:published).name.should == "Published"
       end
+
+      it "should retrieve the default scope by proc" do
+        config.scope :published, :default => proc{ true }
+        config.scope :all
+        config.default_scope.name.should == "Published"
+      end
+
     end
 
     describe "#csv_builder" do

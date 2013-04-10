@@ -26,6 +26,18 @@ Feature: Index Scoping
     And I should see the scope "All" with the count 3
     And I should see 3 posts in the table
 
+  Scenario: Viewing resources with one scope that is set as not default
+    Given 3 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope :all, :default => proc{ false }
+      end
+      """
+    Then I should see the scope "All" not selected
+    And I should see the scope "All" with the count 3
+    And I should see 3 posts in the table
+
   Scenario: Viewing resources with a scope and no results
     Given 3 posts exist
     And an index configuration of:
