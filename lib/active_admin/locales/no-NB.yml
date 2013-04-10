@@ -74,4 +74,5 @@
       links:
         sign_in: "Logg inn"
         forgot_your_password: "Glemt passord?"
+        sign_in_with_omniauth_provider: "Logg på med %{provider}"
 

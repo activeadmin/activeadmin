@@ -78,4 +78,5 @@ ca:
       links:
         sign_in: "Registrar"
         forgot_your_password: "Heu perdut la contrasenya?"
+        sign_in_with_omniauth_provider: "Connecta't amb %{provider}"
 

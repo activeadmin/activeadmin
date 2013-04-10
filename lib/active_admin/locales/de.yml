@@ -79,6 +79,7 @@ de:
       links:
         sign_in: "Anmeldung"
         forgot_your_password: "Passwort vergessen?"
+        sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
   activerecord:
     attributes:
       admin_user:

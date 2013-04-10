@@ -65,3 +65,21 @@ hu:
       title_content: "%{count} hozzászólás"
       errors:
         empty_text: "A hozzászólás nem lett mentve, a törzs nem lehet üres."
+    devise:
+      login:
+        title: "Bejelentkezés"
+        remember_me: "Emlékezz rám"
+        submit: "Belépés"
+      reset_password:
+        title: "Elfelejtette a jelszavát?"
+        submit: "Visszaállítása a jelszót"
+      change_password:
+        title: "A jelszó módosítása"
+        submit: "Jelszó módosítása"
+      unlock:
+        title: "Újraküldés unlock utasítások"
+        submit: "Újraküldés unlock utasítások"
+      links:
+        sign_in: "Bejelentkezés"
+        forgot_your_password: "Elfelejtette a jelszavát?"
+        sign_in_with_omniauth_provider: "Jelentkezzen be a %{provider}"

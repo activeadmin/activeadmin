@@ -83,3 +83,4 @@ hr:
       links:
         sign_in: "Prijavi se"
         forgot_your_password: "Zaboravljena lozinka?"
+        sign_in_with_omniauth_provider: "Prijavite se za %{provider}"

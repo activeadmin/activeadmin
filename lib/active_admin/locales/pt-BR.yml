@@ -79,3 +79,4 @@
       links:
         sign_in: "Entrar"
         forgot_your_password: "Esqueceu sua senha?"
+        sign_in_with_omniauth_provider: "Entre com o %{provider}"
