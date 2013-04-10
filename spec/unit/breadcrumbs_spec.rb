@@ -6,6 +6,12 @@ describe "Breadcrumbs" do
 
   describe "generating a trail from paths" do
 
+    let :active_admin_config do
+      m = mock
+      m.stub_chain(:belongs_to_config, :target, :resource_class).and_return Post
+      m
+    end
+
     # Mock our params
     def params; {}; end
     # Mock link to and return a hash
