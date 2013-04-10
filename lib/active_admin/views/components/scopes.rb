@@ -1,4 +1,5 @@
 require 'active_admin/helpers/collection'
+require 'active_admin/view_helpers/method_or_proc_helper'
 
 module ActiveAdmin
   module Views
@@ -51,7 +52,7 @@ module ActiveAdmin
         if params[:scope]
           params[:scope] == scope.id
         else
-          active_admin_config.default_scope == scope
+          active_admin_config.default_scope(self) == scope
         end
       end
 
