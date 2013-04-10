@@ -77,3 +77,4 @@ ja:
       links:
         sign_in: "サインイン"
         forgot_your_password: "パスワードをお忘れですか？"
+        sign_in_with_omniauth_provider: "%{provider}のアカウントを使ってログイン"

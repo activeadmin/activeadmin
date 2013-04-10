@@ -79,3 +79,4 @@ ru:
       links:
         sign_in: "Войти"
         forgot_your_password: "Забыли пароль?"
+        sign_in_with_omniauth_provider: "Войти на приложения %{provider}"
