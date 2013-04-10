@@ -260,7 +260,7 @@ module ActiveAdmin
         @current_scope ||= if params[:scope]
           active_admin_config.get_scope_by_id(params[:scope]) if params[:scope]
         else
-          active_admin_config.default_scope
+          active_admin_config.default_scope(self)
         end
       end
 

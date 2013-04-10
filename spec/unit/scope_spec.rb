@@ -72,6 +72,25 @@ describe ActiveAdmin::Scope do
 
   end
 
+  describe "#default" do
+
+    it "should accept a boolean" do
+      scope = ActiveAdmin::Scope.new(:method, nil, :default => true)
+      scope.default_block.should == true
+    end
+
+    it "should default to a false #default_block" do
+      scope = ActiveAdmin::Scope.new(:method, nil)
+      scope.default_block.call.should == false
+    end
+
+    it "should store the :default proc" do
+      scope = ActiveAdmin::Scope.new(:with_block, nil, :default => proc{ true })
+      scope.default_block.call.should == true
+    end
+
+  end
+
   describe "show_count" do
 
     it "should allow setting of show_count to prevent showing counts" do
