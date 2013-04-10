@@ -79,3 +79,5 @@
       links:
         sign_in: "登錄"
         forgot_your_password: "忘記密碼？"
+        sign_in_with_omniauth_provider: "登入%{provider}"
+        

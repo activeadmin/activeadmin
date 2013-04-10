@@ -74,4 +74,5 @@ bg:
       links:
         sign_in: "Влезте в профила си"
         forgot_your_password: "Забравена парола?"
+        sign_in_with_omniauth_provider: "Влезте с %{provider}"
 

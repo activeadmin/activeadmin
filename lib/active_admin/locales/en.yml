@@ -82,6 +82,7 @@ en:
       links:
         sign_in: "Sign in"
         forgot_your_password: "Forgot your password?"
+        sign_in_with_omniauth_provider: "Sign in with %{provider}"
     access_denied:
       message: "You are not authorized to perform this action."
     index_list:

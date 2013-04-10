@@ -81,3 +81,5 @@ cs:
       links:
         sign_in: "Přihlásit se"
         forgot_your_password: "Zapomněli jste heslo?"
+        sign_in_with_omniauth_provider: "Přihlásit se %{provider}"
+        

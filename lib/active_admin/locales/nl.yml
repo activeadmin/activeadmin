@@ -79,4 +79,5 @@ nl:
       links:
         sign_in: "Meld u aan"
         forgot_your_password: "Wachtwoord vergeten?"
+        sign_in_with_omniauth_provider: "Log in met %{provider}"
 

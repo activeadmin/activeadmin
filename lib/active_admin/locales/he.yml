@@ -79,3 +79,4 @@ he:
       links:
         sign_in: "כניסה"
         forgot_your_password: "שכחת את הסיסמא שלך?"
+        sign_in_with_omniauth_provider: "%{provider} היכנס עם"
