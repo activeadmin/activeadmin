@@ -1,5 +1,4 @@
-require 'spec_helper' 
-
+require 'spec_helper'
 
 describe ActiveAdmin::Filters::ViewHelper do
 
@@ -170,16 +169,12 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :author_id }
 
       it "should not render as an integer" do
-        body.should_not have_tag("input", :attributes => {
-                                                :name => "q[author_id_eq]"})
+        body.should_not have_tag "input",          :attributes => { :name => "q[author_id_eq]" }
       end
       it "should render as belongs to select" do
-        body.should have_tag("select", :attributes => {
-                                            :name => "q[author_id_eq]"})
-        body.should have_tag("option", "john_doe", :attributes => {
-                                                           :value => @john.id })
-        body.should have_tag("option", "jane_doe", :attributes => {
-                                                          :value => @jane.id })
+        body.should have_tag "select",             :attributes => { :name => "q[author_id_eq]" }
+        body.should have_tag "option", "John Doe", :attributes => { :value => @john.id }
+        body.should have_tag "option", "Jane Doe", :attributes => { :value => @jane.id }
       end
     end
 
@@ -187,18 +182,14 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :author }
 
       it "should generate a select" do
-        body.should have_tag("select", :attributes => {
-                                            :name => "q[author_id_eq]"})
+        body.should have_tag "select",             :attributes => { :name => "q[author_id_eq]" }
       end
       it "should set the default text to 'Any'" do
-        body.should have_tag("option", "Any", :attributes => {
-                                                    :value => "" })
+        body.should have_tag "option", "Any",      :attributes => { :value => "" }
       end
       it "should create an option for each related object" do
-        body.should have_tag("option", "john_doe", :attributes => {
-                                                          :value => @john.id })
-        body.should have_tag("option", "jane_doe", :attributes => {
-                                                          :value => @jane.id })
+        body.should have_tag "option", "John Doe", :attributes => { :value => @john.id }
+        body.should have_tag "option", "Jane Doe", :attributes => { :value => @jane.id }
       end
 
       context "with a proc" do

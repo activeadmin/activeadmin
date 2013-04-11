@@ -1,3 +1,8 @@
+Then /^I should see (\d+) ([\w]*) in the table$/ do |count, resource_type|
+  all("table.index_table tr > td:first").count.should eq count.to_i
+end
+
+# TODO: simplify this, if possible?
 class HtmlTableToTextHelper
   def initialize(html, table_css_selector = "table")
     @html = html

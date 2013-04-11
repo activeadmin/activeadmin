@@ -111,11 +111,11 @@ describe ActiveAdmin::Views::AttributesTable do
     end
 
     it "should check if an association exists when an attribute has id in it" do
-      post.author = User.new(:username => "john_doe")
+      post.author = User.new :username => 'john_doe', :first_name => 'John', :last_name => 'Doe'
       table = render_arbre_component(assigns) {
         attributes_table_for post, :author_id
       }
-      table.find_by_tag("td").first.content.should == "john_doe"
+      table.find_by_tag('td').first.content.should == 'John Doe'
     end
 
   end

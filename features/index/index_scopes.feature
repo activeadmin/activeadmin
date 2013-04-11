@@ -122,7 +122,7 @@ Feature: Index Scoping
     And I should see the scope "Published" with the count 3
     And I should see 3 posts in the table
 
-    When I select "daft_punk" from "Author"
+    When I select "Daft Punk" from "Author"
     And I press "Filter"
 
     Then I should see the scope "Published" selected
@@ -242,7 +242,7 @@ Feature: Index Scoping
     And I should see the scope "Published" with the count 1
     And I should see 1 posts in the table
 
-    When I select "daft_punk" from "Author"
+    When I select "Daft Punk" from "Author"
     And I press "Filter"
 
     Then I should see the scope "Published" selected
