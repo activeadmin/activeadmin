@@ -12,6 +12,6 @@ end
 
 Then /^I should see the following filters:$/ do |table|
   table.rows_hash.each do |label, type|
-    step "I should see a #{type} filter for \"#{label}\""
+    step %{I should see a #{type} filter for "#{label}"}
   end
 end

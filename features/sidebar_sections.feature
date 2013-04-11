@@ -17,7 +17,7 @@ Feature: Sidebar Sections
     """
     When I am on the index page for posts
     Then I should see a sidebar titled "Help"
-    Then I should see /Need help/ within the "Help" sidebar
+    Then I should see "Need help" within the "Help" sidebar
 
     When I follow "View"
     Then I should see a sidebar titled "Help"
@@ -41,7 +41,7 @@ Feature: Sidebar Sections
     """
     When I am on the index page for posts
     Then I should see a sidebar titled "Help"
-    Then I should see /Need help/ within the "Help" sidebar
+    Then I should see "Need help" within the "Help" sidebar
 
     When I follow "View"
     Then I should not see a sidebar titled "Help"
@@ -138,7 +138,7 @@ Feature: Sidebar Sections
 
     When I follow "View"
     Then I should see a sidebar titled "Help"
-    Then I should see /Need help/ within the "Help" sidebar
+    Then I should see "Need help" within the "Help" sidebar
 
     When I follow "Edit Post"
     Then I should not see a sidebar titled "Help"

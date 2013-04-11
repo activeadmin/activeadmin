@@ -67,7 +67,7 @@ Feature: Batch Actions
         config.batch_actions = false
       end
       """
-    Then I should not see the batch actions selector
+    Then I should not see the batch action selector
     And I should not see checkboxes in the table
 
   Scenario: Disabling the default destroy batch action
@@ -79,8 +79,8 @@ Feature: Batch Actions
         batch_action(:flag) {}
       end
       """
-    Then I should see the batch action "Flag Selected"
-    And I should not see the batch action "Delete Selected"
+    Then I should see the batch action :flag "Flag Selected"
+    And I should not see the batch action :destroy "Delete Selected"
 
   Scenario: Optional display of batch actions
     Given 10 posts exist
@@ -91,8 +91,8 @@ Feature: Batch Actions
         batch_action(:unflag, :if => proc { false }) {}
       end
       """
-    Then I should see the batch action "Flag Selected"
-    And I should not see the batch action "Unflag Selected"
+    Then I should see the batch action :flag "Flag Selected"
+    And I should not see the batch action :unflag "Unflag Selected"
 
   Scenario: Sort order priority
     Given 10 posts exist
