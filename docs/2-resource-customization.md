@@ -158,6 +158,21 @@ has_many relationships, you can simply scope the listings and finders like so:
 
 That approach limits the posts an admin can access to ```current_user.posts```.
 
+If you want to conditionally apply the scope, then there are options for that as well:
+
+    ActiveAdmin.register Post do
+      # Only scope the query if there is a user to scope to, helper provided via Devise
+      scope_to :current_user, :if => proc{ admin_user_signed_in? }
+
+      # Don't scope the query if the user is an admin
+      scope_to :current_user, :unless => proc{ current_admin_user.admin? }
+
+      # Get fancy and can combine with block syntax
+      scope_to :if => proc{ admin_user_signed_in? } do
+        User.most_popular
+      end
+    end
+
 If you want to do something fancier, for example override a default scope, you can
 also use :association_method parameter with a normal method on your User model.
 The only requirement is that your method returns an instance of ActiveRecord::Relation.
