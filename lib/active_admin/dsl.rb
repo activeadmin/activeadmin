@@ -1,3 +1,5 @@
+require 'active_admin/strong_parameters_patch'
+
 module ActiveAdmin
 
   #
@@ -9,6 +11,12 @@ module ActiveAdmin
 
     def initialize(config)
       @config = config
+    end
+
+    #TODO: replace this temporary hack for strong_parameters, part of Rails 4.0 support
+    # include patch provided by dpmccabe in https://gist.github.com/3718571
+    def permit_all_parameters
+      @config.controller.class_eval("include ActiveAdmin::StrongParametersPatch")
     end
 
     # Runs the registration block inside this object
