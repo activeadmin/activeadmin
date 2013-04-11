@@ -9,7 +9,7 @@ Feature: Viewing Index of Comments
 
   Scenario: Viewing all commments for a namespace
     When I add a comment "Hello from Comment"
-    When I am on the index page for comments
+    When I am on the index page for admin_comments
     Then I should see a table header with "Body"
     And I should see a table header with "Resource"
     And I should see a table header with "Author"
