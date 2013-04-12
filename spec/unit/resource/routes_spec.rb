@@ -42,6 +42,20 @@ module ActiveAdmin
           config.route_collection_path.should == "/admin/news"
         end
       end
+
+      context "when the resource belongs to another resource" do
+        before do
+          namespace.register User
+        end
+
+        it "should nest the collection path" do
+          config = namespace.register Post do
+            belongs_to :user
+          end
+
+          config.route_collection_path(user_id: 1).should == "/admin/users/1/posts"
+        end
+      end
     end
   end
 end
