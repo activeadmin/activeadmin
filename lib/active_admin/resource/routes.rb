@@ -20,6 +20,12 @@ module ActiveAdmin
         namespace.module_name.try(:underscore)
       end
 
+      def route_uncountable?
+        config = controller.resources_configuration[:self]
+
+        config[:route_collection_name] == config[:route_instance_name]
+      end
+
       private
 
       class RouteBuilder
@@ -30,7 +36,7 @@ module ActiveAdmin
         def collection_path(params)
           route_name = route_name(
             resource.controller.resources_configuration[:self][:route_collection_name],
-            (route_uncountable? ? 'index_path' : 'path')
+            (resource.route_uncountable? ? 'index_path' : 'path')
           )
 
           routes.send(route_name, *route_collection_params(params))
@@ -82,12 +88,6 @@ module ActiveAdmin
 
         def belongs_to_name
           resource.belongs_to_config.target.resource_name.singular if nested?
-        end
-
-        def route_uncountable?
-          config = resource.controller.resources_configuration[:self]
-
-          config[:route_collection_name] == config[:route_instance_name]
         end
 
         def routes
