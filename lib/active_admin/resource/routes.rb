@@ -12,8 +12,8 @@ module ActiveAdmin
               controller.resources_configuration[:self][:route_instance_name]
       end
 
-      # Returns a symbol for the route to use to get to the
-      # collection of this resource
+      # @return [String] the path to this resource collection page
+      # @example "/admin/posts"
       def route_collection_path(params = {})
         route, required_params = [], []
 
@@ -34,6 +34,16 @@ module ActiveAdmin
         route_params = params.values_at(*required_params)
         routes.send(route_name, *route_params)
       end
+
+      # @return [String] the path to this resource collection page
+      # @param resource [ActiveRecord::Base] the instance we want the path of
+      # @example "/admin/posts/1"
+      def route_instance_path(resource)
+        route_name = [route_prefix, controller.resources_configuration[:self][:route_instance_name], 'path'].compact.join('_').to_sym
+
+        routes.send(route_name, resource)
+      end
+
 
       private
 
