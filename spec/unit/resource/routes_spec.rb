@@ -50,16 +50,23 @@ module ActiveAdmin
       end
 
       context "when the resource belongs to another resource" do
-        before do
-          namespace.register User
+        let(:config) do
+          config = ActiveAdmin.register Post do
+            belongs_to :category
+          end
+
+          reload_routes!
+
+          config
         end
 
         it "should nest the collection path" do
-          config = namespace.register Post do
-            belongs_to :user
-          end
+          config.route_collection_path(category_id: 1).should == "/admin/categories/1/posts"
+        end
 
-          config.route_collection_path(user_id: 1).should == "/admin/users/1/posts"
+        it "should nest the instance path" do
+          post = Post.new { |p| p.id = 3; p.category = Category.new { |c| c.id = 1 } }
+          config.route_instance_path(post).should == "/admin/categories/1/posts/3"
         end
       end
     end

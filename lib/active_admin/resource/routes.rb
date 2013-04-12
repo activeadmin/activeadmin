@@ -39,9 +39,27 @@ module ActiveAdmin
       # @param resource [ActiveRecord::Base] the instance we want the path of
       # @example "/admin/posts/1"
       def route_instance_path(resource)
-        route_name = [route_prefix, controller.resources_configuration[:self][:route_instance_name], 'path'].compact.join('_').to_sym
+        route = []
+        route << route_prefix
 
-        routes.send(route_name, resource)
+        if belongs_to? && !belongs_to_config.optional?
+          belongs_to_name = belongs_to_config.target.resource_name.singular
+          route << belongs_to_name
+        end
+
+        route << controller.resources_configuration[:self][:route_instance_name]
+        route << 'path'
+
+        route_name = route.compact.join('_').to_sym
+
+        route_param = if belongs_to? && !belongs_to_config.optional?
+                        belongs_to_name = belongs_to_config.target.resource_name.singular
+                        [resource.send(belongs_to_name).id, resource.id]
+                      else
+                        resource.id
+                      end
+
+        routes.send(route_name, *route_param)
       end
 
 
