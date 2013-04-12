@@ -15,7 +15,7 @@ module ActiveAdmin
         content = link_content || display_name(resource)
         if (registration = active_admin_resource_for(resource.class))
           begin
-            content = link_to(content, send(registration.route_instance_path, resource))
+            content = link_to(content, registration.route_instance_path(resource))
           rescue
             # ignored
           end
