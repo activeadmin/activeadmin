@@ -16,8 +16,14 @@ module ActiveAdmin
       it "should return the route prefix" do
         config.route_prefix.should == "admin"
       end
+
       it "should return the route collection path" do
         config.route_collection_path.should == "/admin/categories"
+      end
+
+      it "should return the route instance path" do
+        category = Category.new { |c| c.id = 123 }
+        config.route_instance_path(category).should == "/admin/categories/123"
       end
 
       context "when in the root namespace" do
