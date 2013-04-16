@@ -37,9 +37,9 @@ end
 
 group :test do
   gem 'cancan'
-  gem 'capybara',        '1.1.2'
+  gem 'capybara',        '~> 2.1.0'
   gem 'coveralls',       '~> 0.6.7', require: false # Test coverage tool: www.coveralls.io
-  gem 'cucumber-rails',  '1.3.0', :require => false
+  gem 'cucumber-rails',  '~> 1.3.1', require: false
   gem 'database_cleaner', '<= 1.0.1'
   gem 'guard-coffeescript'
   gem 'guard-rspec'
@@ -47,7 +47,7 @@ group :test do
   gem 'jslint_on_rails', '~> 1.1.1'
   gem 'launchy'
   gem 'parallel_tests'
-  gem 'rspec-rails',     '~> 2.9.0'
+  gem 'rspec-rails',     '~> 2.13.0'
   gem 'shoulda-matchers'
   gem 'sqlite3'
 end

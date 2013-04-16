@@ -312,7 +312,7 @@ describe ActiveAdmin::FormBuilder do
       end
 
       it "should add a link to remove new nested records" do
-        Capybara.string(body).should have_css(".has_many > fieldset > ol > li.has_many_delete > a", :class => "button", :href => "#", :content => "Delete")
+        Capybara.string(body).should have_css(".has_many > fieldset > ol > li.has_many_delete > a.button[href='#']", :text => "Delete")
       end
 
       it "should include the nested record's class name in the js" do
@@ -320,7 +320,7 @@ describe ActiveAdmin::FormBuilder do
       end
 
       it "should add a link to add new nested records" do
-        Capybara.string(body).should have_css(".has_many > fieldset > ol > li > a", :class => "button", :href => "#", :content => "Add New Post")
+        Capybara.string(body).should have_css(".has_many a.button[href='#']", :text => "Add New Post")
       end
     end
 
