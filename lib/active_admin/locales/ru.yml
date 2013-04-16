@@ -21,6 +21,7 @@ ru:
     download: "Загрузка:"
     has_many_new: "Добавить %{model}"
     has_many_delete: "Удалить"
+    has_many_remove: "удаление"
     filter: "Фильтровать"
     clear_filters: "Очистить"
     search_field: "Искать по %{field}"

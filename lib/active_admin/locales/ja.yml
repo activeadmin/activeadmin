@@ -21,6 +21,7 @@ ja:
     download: "ダウンロード:"
     has_many_new: "新規に %{model} を追加する"
     has_many_delete: "削除する"
+    has_many_remove: "削除する"
     filter: "絞り込む"
     clear_filters: "条件を削除する"
     search_field: "%{field} で絞り込む"

@@ -21,6 +21,7 @@
     download: "下载:"
     has_many_new: "新建一个%{model}"
     has_many_delete: "删除"
+    has_many_remove: "清除"
     filter: "过滤"
     clear_filters: "清除条件"
     search_field: "查找%{field}"

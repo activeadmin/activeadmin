@@ -21,6 +21,7 @@ he:
     download: "הורד:"
     has_many_new: "הוספת %{model} חדש"
     has_many_delete: "מחיקה"
+    has_many_remove: "להסיר"
     filter: "סינון"
     clear_filters: "איפוס שדות"
     search_field: "חיפוש %{field}"

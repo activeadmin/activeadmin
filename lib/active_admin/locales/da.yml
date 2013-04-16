@@ -19,6 +19,7 @@ da:
     download: "Download:"
     has_many_new: "Tilføj ny(t) %{model}"
     has_many_delete: "Slet"
+    has_many_remove: "Fjern"
     filter: "Filtrer"
     clear_filters: "Ryd filtre"
     search_field: "Søg %{field}"
