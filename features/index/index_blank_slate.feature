@@ -28,7 +28,7 @@ Feature: Index Blank Slate
       """
     And I should see "There are no Posts yet."
     And I should not see "Create one"
-  
+
   Scenario: Viewing a index using a grid with no resources
     Given an index configuration of:
       """
@@ -39,7 +39,7 @@ Feature: Index Blank Slate
       end
       """
     And I should see "There are no Posts yet. Create one"
-    
+
   Scenario: Viewing a index using blocks with no resources
     Given an index configuration of:
       """
@@ -50,7 +50,7 @@ Feature: Index Blank Slate
       end
       """
     And I should see "There are no Posts yet. Create one"
-    
+
   Scenario: Viewing a blog with no resources
     Given an index configuration of:
       """

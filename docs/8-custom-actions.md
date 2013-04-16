@@ -56,7 +56,7 @@ your action will use the :get verb.
 ## Rendering in Custom Actions
 
 Custom controller actions support rendering within the standard Active Admin
-layout. 
+layout.
 
     ActiveAdmin.register Post do
 
@@ -81,10 +81,10 @@ For example, create app/views/admin/posts/comments.html.arb with:
         simple_format comment.body
       end
     end
-    
+
 ### Custom Action Items
 
-To include your own action items (like the New, Edit and Delete buttons), add an 
+To include your own action items (like the New, Edit and Delete buttons), add an
 `action_item` block. For example, to add a "View on site" button to view a blog
 post:
 

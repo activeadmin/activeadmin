@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe ActiveAdmin::Namespace do
 
@@ -86,7 +86,7 @@ describe ActiveAdmin::Namespace do
 
   describe "utility navigation" do
     let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
-    let(:menu) do 
+    let(:menu) do
       namespace.build_menu :utility_navigation do |menu|
         menu.add :label => "ActiveAdmin.info", :url => "http://www.activeadmin.info", :html_options => { :target => :blank }
         namespace.add_logout_button_to_menu menu, 1, :class => "matt"

@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe ActiveAdmin, "filters" do
   let(:application){ ActiveAdmin::Application.new }
@@ -9,7 +9,7 @@ describe ActiveAdmin, "filters" do
       application.before_filter :my_filter, :only => :show
     end
   end
-  
+
   describe "skip before filters" do
     it "should add a new skip before filter to ActiveAdmin::BaseController" do
       ActiveAdmin::BaseController.should_receive(:skip_before_filter).and_return(true)

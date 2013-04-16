@@ -20,7 +20,7 @@ module ActiveAdmin
 
       # Builds the links for presenting different index views to the user
       #
-      # @param [Array] index_classes The class constants that represent index page presenters 
+      # @param [Array] index_classes The class constants that represent index page presenters
       def build(index_classes)
         unless current_filter_search_empty?
           index_classes.each do |index_class|

@@ -81,4 +81,4 @@
         sign_in: "登录"
         forgot_your_password: "忘记密码？"
         sign_in_with_omniauth_provider: "登入%{provider}"
-        
+

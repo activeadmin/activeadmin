@@ -2,7 +2,7 @@ module ActiveAdmin
 
   #
   # The Active Admin DSL. This class is where all the registration blocks
-  # are instance eval'd. This is the central place for the API given to 
+  # are instance eval'd. This is the central place for the API given to
   # users of Active Admin
   #
   class DSL
@@ -21,7 +21,7 @@ module ActiveAdmin
     # modify options:
     #
     # eg:
-    # 
+    #
     #   ActiveAdmin.register Post do
     #     config.sort_order = "id_desc"
     #   end
@@ -89,7 +89,7 @@ module ActiveAdmin
 
     # Add a new batch action item to the resource
     # Provide a symbol/string to register the action, options, & block to execute on request
-    # 
+    #
     # To unregister an existing action, just provide the symbol & pass false as the second param
     #
     # @param [Symbol or String] title
@@ -106,7 +106,7 @@ module ActiveAdmin
         sym = title
         title = sym.to_s.titleize
       end
-      
+
       # Either add/remove the batch action
       unless options == false
         config.add_batch_action( sym, title, options, &block )

@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe 'defining new actions from registration blocks' do
 
@@ -13,7 +13,7 @@ describe 'defining new actions from registration blocks' do
     after(:each) do
       controller.clear_member_actions!
     end
-    
+
     context "with a block" do
       let(:action!) do
         ActiveAdmin.register Post do
@@ -22,7 +22,7 @@ describe 'defining new actions from registration blocks' do
           end
         end
       end
-        
+
       it "should create a new public instance method" do
         controller.public_instance_methods.collect(&:to_s).should include("comment")
       end
@@ -35,7 +35,7 @@ describe 'defining new actions from registration blocks' do
     end
 
     context "without a block" do
-      let(:action!) do 
+      let(:action!) do
         ActiveAdmin.register Post do
           member_action :comment
         end
@@ -46,7 +46,7 @@ describe 'defining new actions from registration blocks' do
     end
 
     context "with :title" do
-      let(:action!) do 
+      let(:action!) do
         ActiveAdmin.register Post do
           member_action :comment, :title => "My Awesome Comment"
         end
@@ -86,7 +86,7 @@ describe 'defining new actions from registration blocks' do
       end
     end
     context "without a block" do
-      let(:action!) do 
+      let(:action!) do
         ActiveAdmin.register Post do
           collection_action :comments
         end
@@ -96,7 +96,7 @@ describe 'defining new actions from registration blocks' do
       end
     end
     context "with :title" do
-      let(:action!) do 
+      let(:action!) do
         ActiveAdmin.register Post do
           collection_action :comments, :title => "My Awesome Comments"
         end

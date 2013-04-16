@@ -4,7 +4,7 @@ module ActiveAdmin
 
       def display_name_method_for(resource)
         @@display_name_methods_cache ||= {}
-        @@display_name_methods_cache[resource.class] ||= 
+        @@display_name_methods_cache[resource.class] ||=
           active_admin_application.display_name_methods.find{|method| resource.respond_to? method }
       end
 
