@@ -43,6 +43,10 @@ module ActiveAdmin
       @table_name ||= ActiveRecord::Migrator.proper_table_name("active_admin_comments")
     end
 
+    def self.ransackable_associations(auth_obj)
+      [] # removes commentable and author
+    end
+
   end
 
 end
