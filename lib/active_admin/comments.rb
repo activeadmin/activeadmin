@@ -5,7 +5,9 @@ require 'active_admin/comments/namespace_helper'
 require 'active_admin/comments/resource_helper'
 
 # Add the comments configuration
-ActiveAdmin::Application.inheritable_setting :allow_comments, true
+ActiveAdmin::Application.inheritable_setting :allow_comments,             true
+ActiveAdmin::Application.inheritable_setting :show_comments_in_menu,      true
+ActiveAdmin::Application.inheritable_setting :comments_registration_name, 'Comment'
 
 # Add the comments module to ActiveAdmin::Namespace
 ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper
@@ -20,66 +22,64 @@ ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comme
 ActiveAdmin.after_load do |app|
   app.namespaces.values.each do |namespace|
     if namespace.comments?
-      namespace.register ActiveAdmin::Comment, :as => "AdminComment" do
+      namespace.register ActiveAdmin::Comment, :as => namespace.comments_registration_name do
         actions :index, :show, :create
 
-        # Ensure filters are turned on
-        config.filters = true
+        menu false unless namespace.show_comments_in_menu
 
-        # Don't display in the menu
-        menu false
+        config.comments      = false # Don't allow comments on comments
+        config.batch_actions = false # The default destroy batch action isn't showing up anyway...
 
-        # Don't allow comments on comments
-        config.comments = false
-
-        # Filter Comments by date
-        filter :resource_type
+        if Rails::VERSION::STRING >= '3.2'
+          filter :resource_type, :as => :select, :collection => proc{ ActiveAdmin::Comment.uniq.pluck :resource_type }
+          filter :author_type,   :as => :select, :collection => proc{ ActiveAdmin::Comment.uniq.pluck :author_type }
+        else
+          filter :resource_type
+          filter :author_type
+        end
         filter :body
         filter :created_at
 
-        # Only view comments in this namespace
-        scope :all, :default => true do |comments|
-          comments.where(:namespace => active_admin_config.namespace.name.to_s)
-        end
-
-        # Always redirect to the resource on show
-        before_filter :only => :show do
-          flash[:notice] = flash[:notice].dup if flash[:notice]
-          comment = ActiveAdmin::Comment.find(params[:id])
-          resource_config = active_admin_config.namespace.resource_for(comment.resource.class)
-          redirect_to resource_config.route_instance_path(comment.resource)
+        scope :all, :show_count => false
+        # Register a scope for every namespace that exists.
+        # The current namespace will be the default scope.
+        app.namespaces.values.map(&:name).each do |name|
+          scope name, :default => namespace.name == name do
+            resource_class.where :namespace => name
+          end
         end
 
         # Store the author and namespace
         before_save do |comment|
           comment.namespace = active_admin_config.namespace.name
-          comment.author = current_active_admin_user
+          comment.author    = current_active_admin_user
         end
 
-        # Redirect to the resource show page when failing to add a comment
-        # TODO: Provide helpers to make such kind of customization much simpler
+        # Redirect to the resource show page after comment creation
         controller do
           def create
             create! do |success, failure|
+              # FYI: below we call `resource.resource`. First is the comment, second is the associated resource.
+              resource_config = active_admin_config.namespace.resource_for resource.resource.class
+              resource_url    = resource_config.route_instance_path        resource.resource
+              success.html{ redirect_to resource_url }
               failure.html do
-                resource_config = active_admin_config.namespace.resource_for(@admin_comment.resource.class)
                 flash[:error] = I18n.t('active_admin.comments.errors.empty_text')
-                redirect_to resource_config.route_instance_path(@admin_comment.resource)
+                redirect_to resource_url
               end
             end
           end
         end
 
-        # Display as a table
         index do
-          column(I18n.t('active_admin.comments.resource')){|comment| auto_link(comment.resource) }
-          column(I18n.t('active_admin.comments.author')){|comment| auto_link(comment.author) }
-          column(I18n.t('active_admin.comments.body')){|comment| comment.body }
+          column I18n.t('active_admin.comments.resource_type'), :resource_type
+          column I18n.t('active_admin.comments.author_type'),   :author_type
+          column I18n.t('active_admin.comments.resource'),      :resource
+          column I18n.t('active_admin.comments.author'),        :author
+          column I18n.t('active_admin.comments.body'),          :body
+          actions
         end
       end
     end
   end
 end
-
-# @deprecated #allow_comments_on - Remove in 0.5.0
-ActiveAdmin::Application.deprecated_setting :allow_comments_in, [], 'The "allow_comments_in = []" setting is deprecated and will be remove by Active Admin 0.5.0. Please use "allow_comments = true|false" instead.'

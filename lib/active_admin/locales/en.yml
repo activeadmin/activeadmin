@@ -57,6 +57,8 @@ en:
       labels:
         destroy: "Delete"
     comments:
+      resource_type: "Resource Type"
+      author_type: "Author Type"
       body: "Body"
       author: "Author"
       title: "Comment"

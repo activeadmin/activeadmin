@@ -102,10 +102,6 @@ module ActiveAdmin
     # @deprecated The default sort order for index pages
     deprecated_setting :default_sort_order, 'id_desc'
 
-    # DEPRECATED: This option is deprecated and will be removed. Use
-    # the #allow_comments_in option instead
-    attr_accessor :admin_notes
-
     include AssetRegistration
 
     # Event that gets triggered on load of Active Admin

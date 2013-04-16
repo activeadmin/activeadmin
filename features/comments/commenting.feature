@@ -34,7 +34,7 @@ Feature: Commenting
         config.comments = false
       end
     """
-    Then I should not see "Comments"
+    Then I should not see the element "div.comments.panel"
 
   Scenario: View a resource in a namespace that doesn't have comments
     Given a configuration of:
@@ -95,7 +95,7 @@ Feature: Commenting
         ActiveAdmin.register Post
       """
     When I add a comment "Hello from Comment"
-    When I am on the index page for admin_comments
+    When I am on the index page for comments
     Then I should see a table header with "Body"
     And I should see "Hello from Comment"
 
