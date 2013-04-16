@@ -1,7 +1,7 @@
 da:
   active_admin:
+    dashboard: "Kontrolpanel"
     dashboard_welcome:
-      dashboard: "Kontrolpanel"
       welcome: "Velkommen til Active Admin. Dette er standardoversigtssiden."
       call_to_action: "Rediger 'app/admin/dashboard.rb' for at tilføje nye elementer til oversigtssiden."
     view: "Vis"
