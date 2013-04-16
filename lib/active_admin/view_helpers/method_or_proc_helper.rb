@@ -41,7 +41,7 @@ module MethodOrProcHelper
   #     proc = Proc.new{|s| s.size }
   #     call_method_or_proc_on(@my_obj, proc, :exec => false)
   #
-  # You can pass along any necessary arguments to the method / Proc as arguments. For 
+  # You can pass along any necessary arguments to the method / Proc as arguments. For
   # example:
   #
   #     call_method_or_proc_on(@my_obj, :find, 1) #=> @my_obj.find(1)

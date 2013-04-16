@@ -34,25 +34,25 @@
 
   .dropdown_menu_nipple {
 
-    // The nipple's border    
+    // The nipple's border
     content: "";
     position: absolute;
     top: -6px;
     display: block;
-    width: 0;  
-    height: 0;  
+    width: 0;
+    height: 0;
     border-width: 0 6px 6px;
     border-style: solid;
-    border-color: darken($primary-color, 4%) transparent; 
+    border-color: darken($primary-color, 4%) transparent;
     z-index: 100;
 
-    // The nipple's inner shadow 
+    // The nipple's inner shadow
 
     &:before {
-      content: ' ';  
-      position: absolute;  
-      width: 0;  
-      height: 0;  
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
       border-width: 0 5px 5px;
       border-style: solid;
       border-color: lighten($primary-color, 15%) transparent;
@@ -63,10 +63,10 @@
     // The nipple's background color
 
     &:after {
-      content: ' ';  
-      position: absolute;  
-      width: 0;  
-      height: 0;  
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
       border-width: 0 5px 5px;
       border-style: solid;
       border-color: lighten($primary-color, 4%) transparent;
@@ -92,8 +92,8 @@
     .dropdown_menu_list {
       display: block;
       background-color: #FFF;
-      border: solid 1px darken($primary-color, 10%);    
-      box-shadow: lighten($primary-color, 5%) 0px 1px 0px 0px;    
+      border: solid 1px darken($primary-color, 10%);
+      box-shadow: lighten($primary-color, 5%) 0px 1px 0px 0px;
       border-radius: 3px;
       margin: 0;
       overflow: hidden;
@@ -109,7 +109,7 @@
 
         a {
           display: block;
-          @include box-sizing(padding-box);        
+          @include box-sizing(padding-box);
           font-size: 0.95em;
           font-weight: bold;
           padding: 7px 16px 5px;

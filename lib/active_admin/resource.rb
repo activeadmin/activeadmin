@@ -42,7 +42,7 @@ module ActiveAdmin
 
     # Set the configuration for the CSV
     attr_writer :csv_builder
-    
+
     # Set breadcrumb builder
     attr_accessor :breadcrumb
 

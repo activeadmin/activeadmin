@@ -4,10 +4,10 @@ describe ActiveAdmin::Views::IndexList do
 
   describe "#index_list_renderer" do
 
-    
+
     let(:index_classes) { [ActiveAdmin::Views::IndexAsTable, ActiveAdmin::Views::IndexAsBlock] }
 
-    let(:helpers) do 
+    let(:helpers) do
       helpers = mock_action_view
       helpers.stub! :url_for => "/"
       helpers.stub!(:params).and_return({:as => "table"})

@@ -46,7 +46,7 @@ Feature: Specifying Actions
           action_item(:only => :show) do
             link_to('Review', review_admin_post_path)
           end
-  
+
           member_action :review do
             @post = Post.find(params[:id])
           end

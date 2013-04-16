@@ -177,7 +177,7 @@ Feature: Index Scoping
     Then I should see the scope "Tomorrow" selected
     And I should see the scope "Today" not selected
     And I should see a link to "Today"
-    
+
   Scenario: Viewing resources with scopes when scoping to user
     Given 2 posts written by "Daft Punk" exist
     And a post with the title "Monkey Wrench" written by "Foo Fighters" exists

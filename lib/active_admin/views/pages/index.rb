@@ -90,7 +90,7 @@ module ActiveAdmin
             active_admin_config.page_presenters[:index].each do |type, page_presenter|
               index_classes << find_index_renderer_class(page_presenter[:as])
             end
-            
+
             index_list_renderer index_classes
           end
         end
@@ -132,7 +132,7 @@ module ActiveAdmin
           renderer_class = find_index_renderer_class(config[:as])
           paginator      = config[:paginator].nil?      ? true : config[:paginator]
           download_links = config[:download_links].nil? ? active_admin_config.namespace.download_links : config[:download_links]
-          
+
           paginated_collection(collection, :entry_name     => active_admin_config.resource_label,
                                            :entries_name   => active_admin_config.plural_resource_label,
                                            :download_links => download_links,

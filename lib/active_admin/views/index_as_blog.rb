@@ -67,7 +67,7 @@ module ActiveAdmin
         @page_presenter = page_presenter
         @collection = collection
 
-        # Call the block passed in. This will set the 
+        # Call the block passed in. This will set the
         # title and body methods
         instance_eval &page_presenter.block if page_presenter.block
 

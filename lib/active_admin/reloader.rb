@@ -7,7 +7,7 @@ module ActiveAdmin
     #
     # @param [Rails::Application] rails_app The current rails application
     # @param [ActiveAdmin::Application] active_admin_app The current Active Admin app
-    # @param [String] rails_version The version of Rails we're using. 
+    # @param [String] rails_version The version of Rails we're using.
     #
     # @returns A concrete subclass of AbstractReloader
     def self.build(rails_app, active_admin_app, rails_version)
@@ -64,7 +64,7 @@ module ActiveAdmin
 
     end
 
-    # Deals with reloading Active Admin on each request in 
+    # Deals with reloading Active Admin on each request in
     # development and once in production in Rails < 3.2.
     class RailsLessThan31Reloader < AbstractReloader
 

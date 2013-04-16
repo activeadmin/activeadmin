@@ -79,7 +79,7 @@ module ActiveAdmin
         item['Blog'].label.should == 'Blog'
       end
 
-      it "should sort items based on priority and name" do    
+      it "should sort items based on priority and name" do
         item.items[0].label.should == 'Users'
         item.items[1].label.should == 'Settings'
         item.items[2].label.should == 'Blog'
@@ -97,12 +97,12 @@ module ActiveAdmin
 
       context "with no parent" do
         it "should return an empty array" do
-         item.ancestors.should == [] 
+         item.ancestors.should == []
         end
       end
 
       context "with one parent" do
-        let(:sub_item) do 
+        let(:sub_item) do
           item.add :label => "Create New"
           item["Create New"]
         end

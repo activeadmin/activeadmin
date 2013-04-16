@@ -20,11 +20,11 @@ module ActiveAdmin
       end
 
       def build_global_navigation
-        insert_tag view_factory.global_navigation, @menu, :class => 'header-item tabs' 
+        insert_tag view_factory.global_navigation, @menu, :class => 'header-item tabs'
       end
 
       def build_utility_navigation
-        insert_tag view_factory.global_navigation, @utility_menu, :id => "utility_nav", :class => 'header-item tabs' 
+        insert_tag view_factory.global_navigation, @utility_menu, :id => "utility_nav", :class => 'header-item tabs'
       end
 
     end

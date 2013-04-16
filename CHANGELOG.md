@@ -292,7 +292,7 @@ application locales. [#1775][] by [@caifara][]
 
 ### Upgrade Notes
 
-If you're running on Rails 3.0.x, make sure to run `rails generate active_admin:assets` 
+If you're running on Rails 3.0.x, make sure to run `rails generate active_admin:assets`
 since we've changed both the CSS and JS files.
 
 ### Deprecations
@@ -315,7 +315,7 @@ since we've changed both the CSS and JS files.
 ### Enhancements
 
 * [#428][]: Paginated Collection now supports `:param_name` and `:download_links`.
-  These two additions allow you to use the `paginated_collection` component multiple 
+  These two additions allow you to use the `paginated_collection` component multiple
   times on show screens. ([@samvincent][])
 * [#527][]: Refactored all form helpers to use Formtastic 2([@ebeigarts][])
 * [#551][]: Dashboards can now be conditionally displayed using `:if` ([@samvincent][])
@@ -327,7 +327,7 @@ since we've changed both the CSS and JS files.
 * [#638][]: Add `:label` option to `status_tag` component ([@fbuenemann][])
 * [#644][]: Added proper I18n support to pagination ([@fbuenemann][])
 * [#689][]: Scopes preserve title when provided as a string ([@macfanatic][])
-* [#711][]: Styles update. Now sexier and more refined design. Redesigned Scopes. Split 
+* [#711][]: Styles update. Now sexier and more refined design. Redesigned Scopes. Split
   css into smaller files. ([@mattvague][])
 * [#741][]: Default media type of css is now "all" instead of "screen" ([@sftsang][])
 * [#751][]: Pagination numbers work with a custom `[@per_page][]` ([@DMajrekar][])
@@ -346,8 +346,8 @@ since we've changed both the CSS and JS files.
 
 ### Dependencies
 
-* [#468][]: Removed vendored jQuery. Now depends on the jquery-rails gem. If you're 
-  running Rails 3.0.x (no asset pipeline), make sure to run 
+* [#468][]: Removed vendored jQuery. Now depends on the jquery-rails gem. If you're
+  running Rails 3.0.x (no asset pipeline), make sure to run
   `rails generate active_admin:assets` to generate the correct files. ([@gregbell][])
 * [#527][]: Active Admin now requires Formtastic 2.0 or greater ([@ebeigarts][])
 * [#711][]: Active admin now depends on Bourbon > 1.0.0. If you're using Rails
