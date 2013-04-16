@@ -47,7 +47,7 @@ ActiveAdmin.after_load do |app|
           flash[:notice] = flash[:notice].dup if flash[:notice]
           comment = ActiveAdmin::Comment.find(params[:id])
           resource_config = active_admin_config.namespace.resource_for(comment.resource.class)
-          redirect_to send(resource_config.route_instance_path, comment.resource)
+          redirect_to resource_config.route_instance_path(comment.resource)
         end
 
         # Store the author and namespace
@@ -64,7 +64,7 @@ ActiveAdmin.after_load do |app|
               failure.html do
                 resource_config = active_admin_config.namespace.resource_for(@admin_comment.resource.class)
                 flash[:error] = I18n.t('active_admin.comments.errors.empty_text')
-                redirect_to send(resource_config.route_instance_path, @admin_comment.resource)
+                redirect_to resource_config.route_instance_path(@admin_comment.resource)
               end
             end
           end

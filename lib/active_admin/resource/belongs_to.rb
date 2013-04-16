@@ -28,6 +28,9 @@ module ActiveAdmin
         @options[:optional]
       end
 
+      def required?
+        !optional?
+      end
     end
   end
 end
