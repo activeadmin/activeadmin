@@ -37,3 +37,32 @@ Then implement app/views/admin/posts/_form.html.erb:
       <%= f.inputs :title, :body %>
       <%= f.actions :commit %>
     <% end %>
+
+## Nested Resources
+
+You can create forms with nested models using the `has_many` method:
+
+    ActiveAdmin.register Post do
+
+      form do |f|
+        f.inputs "Details" do
+          f.input :title
+          f.input :published_at, :label => "Publish Post At"
+        end
+        f.inputs "Content" do
+          f.input :body
+        end
+        f.inputs do
+          f.has_many :categories, :allow_destroy => true do |cf|
+            cf.input :title
+          end
+        end
+        f.actions
+      end
+
+    end
+
+The `:allow_destroy` option will add a checkbox to the end of the nested form allowing
+removal of the child object upon submission. Be sure to set `:allow_destroy => true`
+on the association to use this option.
+

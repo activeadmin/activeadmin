@@ -21,6 +21,7 @@
     download: "Ladda ner:"
     has_many_new: "Skapa en ny %{model}"
     has_many_delete: "Ta bort"
+    has_many_remove: "Ta bort"
     filter: "Filter"
     clear_filters: "Töm dina filters"
     search_field: "Sök %{field}"

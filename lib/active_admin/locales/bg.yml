@@ -19,6 +19,7 @@ bg:
     download: "Свали:"
     has_many_new: "Добави нов %{model}"
     has_many_delete: "Изтрий"
+    has_many_remove: "Премахнете"
     filter: "Филтър"
     clear_filters: "Изчисти филтрите"
     search_field: "Търси %{field}"

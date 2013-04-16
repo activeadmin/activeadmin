@@ -21,6 +21,7 @@ it:
     download: "Scarica:"
     has_many_new: "Aggiungi nuovo/a %{model}"
     has_many_delete: "Rimuovi"
+    has_many_remove: "Rimuovi"
     filter: "Filtra"
     clear_filters: "Rimuovi filtri"
     search_field: "Cerca %{field}"

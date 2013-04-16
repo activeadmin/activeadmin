@@ -21,6 +21,7 @@ ro:
     download: "Descarcati:"
     has_many_new: "Adaugati un nou %{model}"
     has_many_delete: "Stergeti"
+    has_many_remove: "Scoate"
     filter: "Cautati"
     clear_filters: "Stergeti filtrele"
     search_field: "Cautati dupa %{field}"
