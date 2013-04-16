@@ -9,8 +9,8 @@ module ActiveAdmin
 
     class << self
 
-      # Eval an entire block in the context of this module to build 
-      # dashboards quicker. 
+      # Eval an entire block in the context of this module to build
+      # dashboards quicker.
       #
       # Example:
       #
@@ -38,7 +38,7 @@ module ActiveAdmin
       #   :if        => specify a method or block to determine whether the section is rendered at run time.
       def add_section(name, options = {}, &block)
         namespace = options.delete(:namespace) || ActiveAdmin.application.default_namespace || :root
-        self.sections[namespace] ||= [] 
+        self.sections[namespace] ||= []
         self.sections[namespace] << Section.new(namespace, name, options, &block)
         self.sections[namespace].sort!
       end
@@ -58,7 +58,7 @@ module ActiveAdmin
 
         dashboard_path = namespace.root? ? :dashboard_path : "#{namespace.name}_dashboard_path".to_sym
 
-        menu.add :id => "dashboard", 
+        menu.add :id => "dashboard",
                  :label => proc{ I18n.t("active_admin.dashboard") },
                  :url => dashboard_path,
                  :priority => 1

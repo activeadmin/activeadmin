@@ -13,7 +13,7 @@ describe ActiveAdmin::Views::SiteTitle do
   context "when a value" do
 
     it "renders the string when a string is passed in" do
-      namespace = mock :site_title => "Hello World", 
+      namespace = mock :site_title => "Hello World",
                        :site_title_image => nil,
                        :site_title_link => nil
 
@@ -63,7 +63,7 @@ describe ActiveAdmin::Views::SiteTitle do
   context "when a link is present" do
 
     it "renders the string when a string is passed in" do
-      namespace = mock :site_title => "Hello World", 
+      namespace = mock :site_title => "Hello World",
                        :site_title_image => nil,
                        :site_title_link => "/"
 

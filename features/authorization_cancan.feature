@@ -7,7 +7,7 @@ Feature: Authorizing Access using CanCan
     """
     require 'cancan'
 
-    class ::Ability 
+    class ::Ability
       include ::CanCan::Ability
 
       def initialize(user)

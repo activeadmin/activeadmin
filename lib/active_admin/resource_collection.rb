@@ -79,7 +79,7 @@ module ActiveAdmin
       return unless existing_resource.respond_to?(:resource_class) && resource.respond_to?(:resource_class)
 
       if existing_resource.resource_class != resource.resource_class
-        raise ActiveAdmin::ResourceMismatchError, 
+        raise ActiveAdmin::ResourceMismatchError,
           "Tried to register #{resource.resource_class} as #{resource.resource_name} but already registered to #{existing_resource.resource_class}"
       end
     end

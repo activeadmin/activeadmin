@@ -14,7 +14,7 @@ module ActiveAdmin
       end
 
       def default_scope(context = nil)
-        scopes.detect do |scope| 
+        scopes.detect do |scope|
           if scope.default_block.is_a?(Proc)
             render_in_context(context, scope.default_block)
           else

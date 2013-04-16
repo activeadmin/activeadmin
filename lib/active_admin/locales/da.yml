@@ -79,4 +79,4 @@ da:
         sign_in: "Log ind"
         forgot_your_password: "Glemt din adgangskode?"
         sign_in_with_omniauth_provider: "Log ind med %{provider}"
-        
+

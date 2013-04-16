@@ -9,7 +9,7 @@ module ActiveAdmin
     #
     # == Simple Columns
     #
-    # To display columns, use the #columns method. Within the block, call the 
+    # To display columns, use the #columns method. Within the block, call the
     # #column method to create a new column.
     #
     # To createa a two column layout:

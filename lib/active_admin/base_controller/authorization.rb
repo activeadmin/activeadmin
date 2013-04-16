@@ -1,7 +1,7 @@
 module ActiveAdmin
 
   # Exception class to raise when there is an authorized access
-  # exception thrown. The exception has a few goodies that may 
+  # exception thrown. The exception has a few goodies that may
   # be useful for capturing / recognizing security issues.
   class AccessDenied < StandardError
     attr_reader :user, :action, :subject
@@ -43,7 +43,7 @@ module ActiveAdmin
       protected
 
       # Authorize the action and subject. Available in the controller
-      # as well as all the views. 
+      # as well as all the views.
       #
       # @param [Symbol] action The action to check if the user has permission
       #                 to perform on the subject.

@@ -69,7 +69,7 @@ module ActiveAdmin
     # If a column is defined using a block, you must pass the key to turn on sorting. The key
     # is the attribute which gets used to sort objects using Active Record.
     #
-    # By default, this is the column on the resource's table that the attribute corresponds to. 
+    # By default, this is the column on the resource's table that the attribute corresponds to.
     # Otherwise, any attribute that the resource collection responds to can be used.
     #
     #     index do
@@ -154,7 +154,7 @@ module ActiveAdmin
 
         # Display a column for the id
         def id_column
-          column(resource_class.human_attribute_name(resource_class.primary_key), :sortable => resource_class.primary_key) do |resource| 
+          column(resource_class.human_attribute_name(resource_class.primary_key), :sortable => resource_class.primary_key) do |resource|
             link_to resource.id, resource_path(resource), :class => "resource_id_link"
           end
         end

@@ -83,7 +83,7 @@ module ActiveAdmin
 
       include ::ActiveAdmin::Helpers::Collection
       include ::ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper
-        
+
       # modified from will_paginate
       def page_entries_info(options = {})
         if options[:entry_name]

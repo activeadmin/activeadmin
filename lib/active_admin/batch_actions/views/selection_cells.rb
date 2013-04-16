@@ -17,7 +17,7 @@ module ActiveAdmin
       builder_method :resource_selection_cell
 
       def build(resource)
-        input :type => "checkbox", :id => "batch_action_item_#{resource.id}", :value => resource.id, :class => "collection_selection", :name => "collection_selection[]" 
+        input :type => "checkbox", :id => "batch_action_item_#{resource.id}", :value => resource.id, :class => "collection_selection", :name => "collection_selection[]"
       end
     end
 

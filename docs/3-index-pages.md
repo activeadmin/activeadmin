@@ -50,7 +50,7 @@ class of the index component you created.
     index :as => ActiveAdmin::Views::IndexAsTable do
       column :image_title
       default_actions
-    end     
+    end
 
 ## Index Filters
 

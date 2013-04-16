@@ -22,7 +22,7 @@ module ActiveAdmin
       options[:as] ||= :table
       config.set_page_presenter :index, ActiveAdmin::PagePresenter.new(options, &block)
     end
-    
+
     # Configure the show page for the resource
     def show(options = {}, &block)
       config.set_page_presenter :show, ActiveAdmin::PagePresenter.new(options, &block)

@@ -31,17 +31,17 @@ module ActiveAdmin
     end
 
   end
-  
+
   # Wrapper class for stylesheet registration
   class Stylesheet
-    
+
     attr_reader :options, :path
-    
+
     def initialize(*args)
       @options = args.extract_options!
       @path = args.first if args.first
     end
-    
+
   end
-  
+
 end

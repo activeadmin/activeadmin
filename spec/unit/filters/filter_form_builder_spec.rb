@@ -4,7 +4,7 @@ describe ActiveAdmin::Filters::ViewHelper do
 
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
-  let(:helpers) do 
+  let(:helpers) do
     view = action_view
     def view.collection_path
       "/posts"
@@ -219,7 +219,7 @@ describe ActiveAdmin::Filters::ViewHelper do
                                             :value => @john.id })
         body.should have_tag("input", :attributes => {
                                             :name => "q[author_id_in][]",
-                                            :type => "checkbox",          
+                                            :type => "checkbox",
                                             :value => @jane.id })
       end
     end

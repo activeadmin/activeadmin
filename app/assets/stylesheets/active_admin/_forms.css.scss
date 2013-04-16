@@ -4,8 +4,8 @@ form {
   ul, ol, li, fieldset, legend, input, textarea, select, p { margin:0; padding:0; }
   ol, ul { list-style: none }
 
-  fieldset { 
-    border: 0; 
+  fieldset {
+    border: 0;
     padding: 10px 0;
     margin-bottom: 20px;
 
@@ -37,12 +37,12 @@ form {
       }
     }
 
-    ol > li > li label { 
-      line-height:100%; 
-      padding-top:0; 
-      input { 
-        line-height:100%; 
-        vertical-align:middle; 
+    ol > li > li label {
+      line-height:100%;
+      padding-top:0;
+      input {
+        line-height:100%;
+        vertical-align:middle;
         margin-top:-0.1em;
       }
     }
@@ -50,30 +50,30 @@ form {
 
   /* Nested Fieldsets and Legends */
   fieldset > ol > li {
-    fieldset { 
-      position:relative; 
+    fieldset {
+      position:relative;
       padding: 0;
       margin-bottom: 0;
 
-      legend { 
-        position:absolute; 
-        width:95%; 
-        padding-top:0.1em; 
-        left: 0px; 
-        font-size: 100%; 
+      legend {
+        position:absolute;
+        width:95%;
+        padding-top:0.1em;
+        left: 0px;
+        font-size: 100%;
         font-weight: normal;
         span { position:absolute; }
         &.label label { position:absolute; }
       }
 
-      ol { 
-        float:left; 
-        width:74%; 
-        margin:0; 
-        padding:0 0 0 20%; 
+      ol {
+        float:left;
+        width:74%;
+        margin:0;
+        padding:0 0 0 20%;
 
         li {
-          padding:0; 
+          padding:0;
           border:0;
         }
       }
@@ -89,7 +89,7 @@ form {
     @include sans-family;
     outline: none;
     padding: 8px $text-input-horizontal-padding 7px;
-    
+
     &:focus {
       border: 1px solid #99a2aa;
       @include shadow(0,0,4px,#99a2aa);
@@ -99,17 +99,17 @@ form {
   fieldset > ol > li {
 
     /* Hints */
-    p.inline-hints { 
+    p.inline-hints {
       font-size: 0.95em;
       font-style: italic;
-      color:#666; 
-      margin: 0.5em 0 0 20%;  
+      color:#666;
+      margin: 0.5em 0 0 20%;
     }
 
     /* Date and Time Fields */
     &.date, &.time, &.datetime, &.date_select {
       fieldset ol li {
-        float:left; width:auto; margin:0 0.5em 0 0; 
+        float:left; width:auto; margin:0 0.5em 0 0;
         label { display: none; }
         input { display:inline; margin:0; padding:0;  }
       }
@@ -117,13 +117,13 @@ form {
 
     /* Check Boxes or Radio fields */
     &.check_boxes, &.radio {
-      fieldset ol { 
+      fieldset ol {
         margin-bottom:-0.6em;
-        li { 
-          margin:0.1em 0 0.5em 0; 
-          label { 
-            float:none; 
-            width:100%; 
+        li {
+          margin:0.1em 0 0.5em 0;
+          label {
+            float:none;
+            width:100%;
             input { margin-right:0.2em; }
           }
         }
@@ -133,10 +133,10 @@ form {
     /* Boolean Field */
     &.boolean {
       height: 1.1em;
-      label { 
+      label {
         width: 80%;
-        padding-left:20%; 
-        padding-right: 10px; 
+        padding-left:20%;
+        padding-right: 10px;
         text-transform: none !important;
         font-weight: normal;
         input { margin:0 0.5em 0 0.2em; }
@@ -144,15 +144,15 @@ form {
     }
 
     /* Errors */
-    p.inline-errors { 
+    p.inline-errors {
       color: $error-color;
       font-weight: bold;
-      margin:0.3em 0 0 20%; 
+      margin:0.3em 0 0 20%;
     }
-    ul.errors { 
+    ul.errors {
       color: $error-color;
-      margin:0.5em 0 0 20%; 
-      list-style:square; 
+      margin:0.5em 0 0 20%;
+      list-style:square;
       li { padding:0; border:none; display:list-item; }
     }
 
@@ -164,32 +164,32 @@ form {
   }
 
   /* semantic_errors */
-  ul.errors { 
+  ul.errors {
     background: lighten($error-color, 60%);
     @include rounded(4px);
     color: $error-color;
     font-weight: bold;
     margin-bottom: 10px;
     padding: 10px;
-    list-style:square; 
+    list-style:square;
     li { margin-left:15px; padding:0; border:none; display:list-item; }
   }
 
   /* Buttons */
-  
+
   input[type=submit] {
     @include dark-button;
     cursor: pointer;
-    
+
   }
-  
+
   .buttons, .actions {
-    margin-top: 15px; 
+    margin-top: 15px;
     input[type=submit] { margin-right: 10px; }
   }
-  
+
   fieldset.buttons li, fieldset.actions li {
-    float:left; 
+    float:left;
     padding: 0;
 
     &.cancel {
@@ -201,11 +201,11 @@ form {
 
 }
 
-// -------------------------------------- Sidebar Forms 
+// -------------------------------------- Sidebar Forms
 
 $sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
 
-.sidebar_section { 
+.sidebar_section {
 
   label {
     display: block;
@@ -218,7 +218,7 @@ $sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
   select {
     width: $sidebar-inner-content-width;
   }
-  
+
   input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
     width: $sidebar-inner-content-width - ($text-input-horizontal-padding * 2);
   }
@@ -238,9 +238,9 @@ $date-range-filter-input-width: ($sidebar-inner-content-width / 2) - $filter-fie
 
 form.filter_form {
   .filter_form_field {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     clear: both;
-    
+
     &.filter_numeric {
       input[type=text] {
         margin-left: $filter-field-seperator-width + 4;
@@ -250,11 +250,11 @@ form.filter_form {
         width: $side-by-side-filter-select-width;
       }
     }
-    
+
     &.filter_check_boxes {
       label { margin-bottom: 3px; }
-      .check_boxes_wrapper label { 
-        font-weight: normal; 
+      .check_boxes_wrapper label {
+        font-weight: normal;
         margin-bottom: 3px;
         text-transform: none;
         font-size: 1.0em;
@@ -268,7 +268,7 @@ form.filter_form {
         text-align: center;
         width: $filter-field-seperator-width;
       }
-    
+
       input[type=text] {
         background: #fff url(active_admin_image_path('datepicker/datepicker-input-icon.png')) no-repeat 100% 7px;
         padding-right: $date-range-filter-input-right-padding;
