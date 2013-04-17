@@ -154,14 +154,14 @@ Feature: Index as Table
       """
     When I am on the index page for posts
     Then I should see the "index_table_posts" table:
-      | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
-      | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | ViewEditDelete |
-      | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | Id | Title        | Body | Published At | Sort Order | Starred | Created At | Updated At | |
+      | [ ] | 2 | Bye bye world | Move your...  |  |  |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 1 | Hello World   | From the body |  |  |  | /.*/ | /.*/ | ViewEditDelete |
     When I follow "Id"
     Then I should see the "index_table_posts" table:
-      | [ ] | Id | Title        | Body | Published At | Starred | Created At | Updated At | |
-      | [ ] | 1 | Hello World   | From the body |  |  | /.*/ | /.*/ | ViewEditDelete |
-      | [ ] | 2 | Bye bye world | Move your...  |  |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | Id | Title        | Body | Published At | Sort Order | Starred | Created At | Updated At | |
+      | [ ] | 1 | Hello World   | From the body |  |  |  | /.*/ | /.*/ | ViewEditDelete |
+      | [ ] | 2 | Bye bye world | Move your...  |  |  |  | /.*/ | /.*/ | ViewEditDelete |
 
   Scenario: Sorting by a virtual column
     Given a post with the title "Hello World" exists
