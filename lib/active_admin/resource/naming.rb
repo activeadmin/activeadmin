@@ -17,7 +17,7 @@ module ActiveAdmin
 
       # Returns the name to call this resource such as "Bank Account"
       def resource_label
-        resource_name.translate :count => 1,  :default => resource_name.gsub('::', ' ').titleize
+        resource_name.translate :count => 1,  :default => resource_name.to_s.gsub('::', ' ').titleize
       end
 
       # Returns the plural version of this resource such as "Bank Accounts"

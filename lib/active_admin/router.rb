@@ -36,7 +36,7 @@ module ActiveAdmin
       Proc.new do
         root :to => (namespace.root_to || "dashboard#index")
         if ActiveAdmin::Dashboards.built?
-          match '/dashboard' => 'dashboard#index', :as => 'dashboard'
+          get '/dashboard' => 'dashboard#index', :as => 'dashboard'
         end
       end
     end
@@ -105,7 +105,7 @@ module ActiveAdmin
             end
           end
         when Page
-          match "/#{config.underscored_resource_name}" => "#{config.underscored_resource_name}#index"
+          get "/#{config.underscored_resource_name}" => "#{config.underscored_resource_name}#index"
           config.page_actions.each do |action|
             match "/#{config.underscored_resource_name}/#{action.name}" => "#{config.underscored_resource_name}##{action.name}", :via => action.http_verb
           end
