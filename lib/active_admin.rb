@@ -11,6 +11,8 @@ require 'active_admin/dependency_checker'
 require 'active_admin/sass/helpers'
 require 'active_admin/engine'
 
+require 'gem_ext'
+
 module ActiveAdmin
 
   autoload :VERSION,                  'active_admin/version'
