@@ -54,12 +54,6 @@ Then /^I should wait and see "([^"]*)"(?: within "([^"]*)")?$/ do |text, selecto
   locate(:xpath, "//#{selector}[text()='#{text}']")
 end
 
-Then /^I should see the page title "([^"]*)"$/ do |title|
-  within('h2#page_title') do
-    page.should have_content(title)
-  end
-end
-
 Then /^I should see a fieldset titled "([^"]*)"$/ do |title|
   page.should have_css('fieldset legend', :text => title)
 end

@@ -35,8 +35,8 @@ When /^(?:I )follow "([^"]*)"$/ do |link|
   first(:link, link).click
 end
 
-When /^(?:I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field, :with => value)
+When /^(?:I )fill in "([^"]*)" with "([^"]*)"$/ do |selector, value|
+  find(selector).set value
 end
 
 When /^(?:I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
