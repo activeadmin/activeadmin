@@ -6,7 +6,7 @@ module ActiveAdmin
   module Sass
     module Helpers
 
-      include ::Sass::Rails::Helpers
+      include Sprockets::SassFunctions
 
       # Provides a helper in SASS to ensure that the paths to image
       # assets are always correct across Rails versions.

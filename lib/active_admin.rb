@@ -87,7 +87,7 @@ module ActiveAdmin
     # Returns true if this rails application has the asset
     # pipeline enabled.
     def use_asset_pipeline?
-      Rails.application.config.try(:assets).try(:enabled)
+      Rails.application.config.try(:assets).try(:compile)
     end
 
     # Migration MoveAdminNotesToComments generated with version 0.2.2 might reference

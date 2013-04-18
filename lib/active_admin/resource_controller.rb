@@ -16,7 +16,7 @@ module ActiveAdmin
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
 
-    include Actions
+    #Not sure why Actions is included here when actions.rb doesn't have Actions module
     include ActionBuilder
     include Decorators
     include DataAccess
