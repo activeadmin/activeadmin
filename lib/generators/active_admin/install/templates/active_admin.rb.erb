@@ -86,6 +86,7 @@ ActiveAdmin.setup do |config|
   # Default:
   # config.logout_link_method = :get
 
+
   # == Root
   #
   # Set the action to call for the root path. You can set different
@@ -94,21 +95,19 @@ ActiveAdmin.setup do |config|
   # Default:
   # config.root_to = 'dashboard#index'
 
+
   # == Admin Comments
   #
-  # Admin comments allow you to add comments to any model for admin use.
-  # Admin comments are enabled by default.
+  # This allows your users to comment on any resource registered with Active Admin.
   #
-  # Default:
-  # config.allow_comments = true
+  # You can completely disable comments:
+  # config.allow_comments = false
   #
-  # You can turn them on and off for any given namespace by using a
-  # namespace config block.
+  # You can disable the menu item for the comments index page:
+  # config.show_comments_in_menu = false
   #
-  # Eg:
-  #   config.namespace :without_comments do |without_comments|
-  #     without_comments.allow_comments = false
-  #   end
+  # You can change the name under which comments are registered:
+  # config.comments_registration_name = 'AdminComment'
 
 
   # == Batch Actions
@@ -134,7 +133,7 @@ ActiveAdmin.setup do |config|
   #
   # To load a stylesheet:
   #   config.register_stylesheet 'my_stylesheet.css'
-
+  #
   # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
   #   config.register_stylesheet 'my_print_stylesheet.css', :media => :print
   #
@@ -144,7 +143,7 @@ ActiveAdmin.setup do |config|
 
   # == CSV options
   #
-  # Set the CSV builder separator (default is ",")
+  # Set the CSV builder separator (default is ',')
   # config.csv_column_separator = ','
   #
   # Set the CSV builder options (default is {})
@@ -171,6 +170,7 @@ ActiveAdmin.setup do |config|
   #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
   #     end
   #   end
+
 
   # == Download Links
   #
@@ -205,6 +205,5 @@ ActiveAdmin.setup do |config|
   # You can enable or disable them for all resources here.
   #
   # config.filters = true
-
 
 end

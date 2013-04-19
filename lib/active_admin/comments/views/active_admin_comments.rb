@@ -56,11 +56,11 @@ module ActiveAdmin
         end
 
         def comment_form_url
-          if active_admin_namespace.root?
-            comments_path
-          else
-            send(:"#{active_admin_namespace.name}_admin_comments_path")
-          end
+          parts = []
+          parts << active_admin_namespace.name unless active_admin_namespace.root?
+          parts << active_admin_namespace.comments_registration_name.underscore.pluralize
+          parts << 'path'
+          send parts.join '_'
         end
 
         def build_comment_form

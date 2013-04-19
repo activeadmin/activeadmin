@@ -51,8 +51,10 @@ When /^(?:I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
   attach_file(field, File.expand_path(path))
 end
 
-Then /^(?:I )should( not)? see "([^"]*)"$/ do |negate, text|
-  page.should negate ? have_no_content(text) : have_content(text)
+Then /^(?:I )should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|
+  should = negate ? :should_not    : :should
+  have   = is_css ? have_css(text) : have_content(text)
+  page.send should, have
 end
 
 Then /^the "([^"]*)" field(?: within (.*))? should( not)? contain "([^"]*)"$/ do |field, parent, negate, value|
