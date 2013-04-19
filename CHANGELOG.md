@@ -1,17 +1,50 @@
-## Master (unreleased)
+## Master (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...master)
 
-None yet
+### Features
 
-## 0.6.0
+* OmniAuth provider links now automatically appear on the login page [#2088][] by [@henrrrik][]
+
+### Bug Fixes
+
+* Fixes problem where extra `/` route was being generated [#2062][] by [@jbhannah][]
+* `IndexAsBlog` now renders title/body procs in the view context [#2087][] by [@macfanatic][]
+* Fixes `route_instance_path` for `belongs_to` resources [#2099][] by [@pcreux][]
+* Fixes breadcrumb links for `belongs_to` resources [#2090][] by [@Daxter][]
+* Forces a `I18n.reload!` to ensure translations are loaded in production [#2072][] [@ericpromislow][]
+
+### Enhancements
+
+* Scopes now support blocks for the `:default` option [#2084][] by [@macfanatic][]
+* `:if` and `:unless` options added to `scope_to` [#2089][] by [@macfanatic][]
+* Menu items can now properly overflow [#2046][] by [@maax][]; later updated in [#2125][] by [@ball-hayden][]
+* Renames Comment to AdminComment [#2060][] by [@jbhannah][]; later replaced by [#2113][]
+* Improves Comments UI and adds config settings [#2113][] by [@Daxter][]
+```ruby
+    config.show_comments_in_menu      = false          # Defaults to true
+    config.comments_registration_name = 'AdminComment' # Defaults to 'Comment'
+```
+
+* `has_many` forms
+  * Adds 'has_many_delete' CSS class to `li` elements [#2054][] by [@shekibobo][]
+  * Adds `:heading` option to customize the heading displayed [#2068][] by [@coreyward][]
+  * Adds `:allow_destroy` option to add in a checkbox to the form to delete records [#2071][] by [@shekibobo][]
+* Adds option to "undecorate" resource when building forms [#2085][] by [@amiel][]
+
+### Cleanup
+
+* Cucumber step definitions refactor [#2015][] by [@Daxter][]
+* Misc cleanup in [#2075][] and [#2107][] by [@Daxter][]
+* Removes messy spacing from `AdminUser` generator file [#2058][] by [@lupinglade][]
+* Fixes documentation formatting [#2083][] by [@amiel][]
+
+## 0.6.0 - [compare](https://github.com/gregbell/active_admin/compare/v0.5.1...v0.6.0)
 
 ### Bug Fixes
 
 * Fix conflict with Redcloth [#1805][] by [@adrienkohlbecker][]
 * Add missing batch actions translations. [#1788][] by [@EtienneDepaulis][]
-* Fix for [#1960][], pluralize the example `admin_users` model to be consistent [#1961][] by [@rmw][]
 * JS fix for batch actions checkbox toggling [#1947][] by [@ai][]
-* Fixed routing bug when using `config.default_namespace = false` in initializer [#2043][]
-  by [@Daxter][] and [@gregbell][]
+* Fixed routing bug for root namespace [#2043][] by [@Daxter][] and [@gregbell][]
 
 ### Enhancements
 
@@ -21,29 +54,26 @@ None yet
 * Removing deprecated bourbon box-shadow mixin [#1913][] by [@stereoscott][]
 * More Japanese localizations [#1929][] by [@johnnyshields][]
 * Devise lockable module now supported by default [#1933][] by [@Bishop][]
-* `IndexTableFor` component now returns a unique DOM id, ie `"index_table_posts"` instead of just `"posts"` [#1966][] by [@TiagoCardoso1983][]
+* Index table now uses a unique DOM id (`#index_table_posts` instead of `#posts`) [#1966][] by [@TiagoCardoso1983][]
 * Coffeescript 1.5 compatability as constructors no longer return a value [#1940][] by [@ronen][]
 * Allow options to be passed to the Abre element for rows in `attributes_table` [#1439][] by [@Daxter][]
 * Gender neutral Spanish translations [#1973][] by [@laffinkippah][]
 * Adds the ability to use `starts_with` and `ends_with` in string filters [#1962][] by [@rmw][]
-* Added support for translating resources when registered with `:as` [#2044][]
-  by [@Daxter]
+* Adds support for translating resources when registered with `:as` [#2044][] by [@Daxter][]
 * Scopes are no longer hidden when empty filter results [#1804][] by [@Daxter][]
 * Dynamic scope names with procs [#2018][] by [@Daxter][]
 * Filters now support the `:if` optional argument [#1801][] by [@Daxter][]
 * Member & collection actions support multiple HTTP methods for the same action [#2000][] by [@rdsoze][]
 
-### New Features
+### Features
 
-* Authorization DSL including a default CanCan adapter [#1817][] by [@pcreux][]
-  and [@gregbell][]
+* Authorization DSL including a default CanCan adapter [#1817][] by [@pcreux][] and [@gregbell][]
 * New "actions" DSL for customizing actions on index listing [#1834][] by [@ejholmes][]
 * Index title can now be set via a proc [#1861][] by [@jamesalmond][]
 * Can now disable `download_links` per resource, index collection or globally throughout AA [#1908][] by [@TBAA][]
 * Filters: add ability to search for blank/null fields with boolean search [#1893][] by [@whatcould][]
 * New `navigation_menu` DSL for menu system [#1967][] by [@macfanatic][] and [@gregbell][]
-* Support segmented control switch between different index styles [#1745][] by
-  [@joshuacollins85][]
+* Support segmented control switch between different index styles [#1745][] by [@joshuacollins85][]
 
 ### Other
 
@@ -97,7 +127,7 @@ None yet
 *  ronen barzel
 *  тιηуηυмвєяѕ
 
-## 0.5.1
+## 0.5.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.5.0...v0.5.1)
 
 ### Enhancements
 
@@ -159,7 +189,7 @@ application locales. [#1775][] by [@caifara][]
 
 156 commits (49 Pull Requests) by 51 contributors.
 
-## 0.5.0
+## 0.5.0 - [compare](https://github.com/gregbell/active_admin/compare/v0.4.4...v0.5.0)
 
 ### Enhancements
 
@@ -193,20 +223,20 @@ application locales. [#1775][] by [@caifara][]
 
 561 commits (142 Pull Requests) by 88 contributors.
 
-## 0.4.4
+## 0.4.4 - [compare](https://github.com/gregbell/active_admin/compare/v0.4.3...v0.4.4)
 
 ### Dependencies
 
 * Use `formtastic` ~> 2.1.1 until AA 0.5.0 is released
 * Use `inherited_resources` >= 1.3.1 (ensure flash messages work)
 
-## 0.4.3
+## 0.4.3 - [compare](https://github.com/gregbell/active_admin/compare/v0.4.2...v0.4.3)
 
 ### Bug Fixes
 
 * [#1063][]: Fix comment issues when using postgres ([@jancel][])
 
-## 0.4.2
+## 0.4.2 - [compare](https://github.com/gregbell/active_admin/compare/v0.4.1...v0.4.2)
 
 ### Enhancements
 
@@ -244,7 +274,7 @@ application locales. [#1775][] by [@caifara][]
 * Philippe Creux
 
 
-## 0.4.1
+## 0.4.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.4.0...v0.4.1)
 
 ### Enhancements
 
@@ -288,7 +318,7 @@ application locales. [#1775][] by [@caifara][]
 * Søren Houen
 
 
-## 0.4.0
+## 0.4.0 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.4...v0.4.0)
 
 ### Upgrade Notes
 
@@ -406,7 +436,7 @@ since we've changed both the CSS and JS files.
  * Josef Šimánek
 
 
-## 0.3.4
+## 0.3.4 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.4...v0.4.0)
 
 2 commits by 2 authors
 
@@ -422,7 +452,7 @@ since we've changed both the CSS and JS files.
 * Danny Hiemstra
 * Greg Bell
 
-## 0.3.3
+## 0.3.3 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.2...v0.3.3)
 
 1 commit by 1 author
 
@@ -436,7 +466,7 @@ since we've changed both the CSS and JS files.
 
 * Greg Bell
 
-## 0.3.2
+## 0.3.2 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.1...v0.3.2)
 
 45 commits by 15 contributors
 
@@ -481,11 +511,11 @@ since we've changed both the CSS and JS files.
 * Tsvetan Roustchev
 * l4u
 
-## 0.3.1
+## 0.3.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.0...v0.3.1)
 
 * Only support InheritedResources up to 1.2.2
 
-## 0.3.0
+## 0.3.0 - [compare](https://github.com/gregbell/active_admin/compare/v0.2.2...v0.3.0)
 
 326 commits by 35 contributors
 
@@ -582,7 +612,7 @@ since we've changed both the CSS and JS files.
 * Łukasz Anwajler
 
 
-## 0.2.2 (2011-05-26)
+## 0.2.2 (2011-05-26) - [compare](https://github.com/gregbell/active_admin/compare/v0.2.1...v0.2.2)
 
 68 Commits by 13 Contributors
 
@@ -628,12 +658,12 @@ since we've changed both the CSS and JS files.
 * Paul Annesley
 * Philippe Creux
 
-## 0.2.1 (2011-05-12)
+## 0.2.1 (2011-05-12) - [compare](https://github.com/gregbell/active_admin/compare/v0.2.0...v0.2.1)
 
 ### Bug Fixes
 * Fixed issue with dashboard rendering a sidebar
 
-## 0.2.0 (2011-05-12)
+## 0.2.0 (2011-05-12) - [compare](https://github.com/gregbell/active_admin/compare/v0.1.1...v0.2.0)
 
 0.2.0 is essentially an entire re-write of Active Admin. Here are some
 of the highlights. 250 commits. Enough said.
@@ -649,7 +679,7 @@ of the highlights. 250 commits. Enough said.
 
 * Too many to list! Been in production for close to a year
 
-## 0.1.1 (2010-09-15)
+## 0.1.1 (2010-09-15) - [compare](https://github.com/gregbell/active_admin/compare/v0.1.0...v0.1.1)
 
 ### Bug Fixes
 
