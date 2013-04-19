@@ -8,11 +8,13 @@
   width: 100%;
   overflow: visible;
   position: inherit;
-  padding: 9px 0;
+  padding: 5px 0;
   z-index: 900;
 
   h1 {
     display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
     color: #cdcdcd;
     margin-right: 20px;
     margin-bottom: 0px;
@@ -45,6 +47,7 @@
 
   ul.tabs {
     display: table-cell;
+    vertical-align: middle;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -52,7 +55,8 @@
     & > li {
       display: inline-block;
       margin-right: 4px;
-      margin-bottom: 10px;
+      margin-top: 5px;
+      margin-bottom: 5px;
       font-size: 1.0em;
       position: relative;
 
@@ -124,11 +128,18 @@
 
   }
 
+  #tabs {
+    width: 100%;
+  }
+
   #utility_nav {
     color: #aaa;
     display: table-cell;
+    white-space: nowrap;
     margin: 0;
     padding: 0;
+    padding-right: 26px;
+    text-align: right;
 
     a { text-decoration: none; }
     a:hover { color: #fff; }
