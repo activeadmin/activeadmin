@@ -115,11 +115,6 @@ module ActiveAdmin
       controller.instance_methods.map { |m| m.to_sym } & ResourceController::ACTIVE_ADMIN_ACTIONS
     end
 
-    # Are admin notes turned on for this resource
-    def admin_notes?
-      admin_notes.nil? ? ActiveAdmin.admin_notes : admin_notes
-    end
-
     def belongs_to(target, options = {})
       @belongs_to = Resource::BelongsTo.new(self, target, options)
       self.menu_item_menu_name = target unless @belongs_to.optional?
