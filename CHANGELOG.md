@@ -3,6 +3,7 @@
 ### Features
 
 * OmniAuth provider links now automatically appear on the login page [#2088][] by [@henrrrik][]
+* Menu items can now properly overflow [#2046][] by [@maax][]; later updated in [#2125][] by [@ball-hayden][]
 
 ### Bug Fixes
 
@@ -14,9 +15,11 @@
 
 ### Enhancements
 
+* Adds option to "undecorate" resource when building forms [#2085][] by [@amiel][]
+* Adds [better_errors](https://github.com/charliesome/better_errors) gem for a better AA development experience [#2095][] by [@Daxter][]
 * Scopes now support blocks for the `:default` option [#2084][] by [@macfanatic][]
 * `:if` and `:unless` options added to `scope_to` [#2089][] by [@macfanatic][]
-* Menu items can now properly overflow [#2046][] by [@maax][]; later updated in [#2125][] by [@ball-hayden][]
+* German (Switzerland), English (UK) locales added [#1916][] by [@psy-q][]
 * Renames Comment to AdminComment [#2060][] by [@jbhannah][]; later replaced by [#2113][]
 * Improves Comments UI and adds config settings [#2113][] by [@Daxter][]
 ```ruby
@@ -28,7 +31,6 @@
   * Adds 'has_many_delete' CSS class to `li` elements [#2054][] by [@shekibobo][]
   * Adds `:heading` option to customize the heading displayed [#2068][] by [@coreyward][]
   * Adds `:allow_destroy` option to add in a checkbox to the form to delete records [#2071][] by [@shekibobo][]
-* Adds option to "undecorate" resource when building forms [#2085][] by [@amiel][]
 
 ### Cleanup
 
