@@ -8,6 +8,20 @@ gsub_file 'config/database.yml', /^test:.*\n/, "test: &test\n"
 gsub_file 'config/database.yml', /\z/, "\ncucumber:\n  <<: *test\n  database: db/cucumber.sqlite3"
 gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\n  database: db/cucumber.sqlite3"
 
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
+# we need this routing path, named "logout_path", for testing
+route %q{
+  devise_scope :user do
+    match '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
+  end
+}
+
+generate :'active_admin:install'
+
+# Setup a root path for devise
+route "root :to => 'admin/dashboard#index'"
+
 generate :model, "post title:string body:text published_at:datetime author_id:integer category_id:integer starred:boolean"
 inject_into_file 'app/models/post.rb', %q{
   belongs_to :category
@@ -59,26 +73,8 @@ inject_into_file "config/environment.rb", "\n$LOAD_PATH.unshift('#{File.expand_p
 # Add some translations
 append_file "config/locales/en.yml", File.read(File.expand_path('../templates/en.yml', __FILE__))
 
-generate :'active_admin:install'
-
 # Add predefined admin resources
 directory File.expand_path('../templates/admin', __FILE__), "app/admin"
-
-run "rm Gemfile"
-run "rm -r test"
-run "rm -r spec"
-
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-
-# we need this routing path, named "logout_path", for testing
-route %q{
-  devise_scope :user do
-    match '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
-  end
-}
-
-# Setup a root path for devise
-route "root :to => 'admin/dashboard#index'"
 
 rake "db:migrate"
 rake "db:test:prepare"
