@@ -8,20 +8,6 @@ gsub_file 'config/database.yml', /^test:.*\n/, "test: &test\n"
 gsub_file 'config/database.yml', /\z/, "\ncucumber:\n  <<: *test\n  database: db/cucumber.sqlite3"
 gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\n  database: db/cucumber.sqlite3"
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-
-# we need this routing path, named "logout_path", for testing
-route %q{
-  devise_scope :user do
-    match '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
-  end
-}
-
-generate :'active_admin:install'
-
-# Setup a root path for devise
-route "root :to => 'admin/dashboard#index'"
-
 generate :model, "post title:string body:text published_at:datetime author_id:integer category_id:integer starred:boolean"
 inject_into_file 'app/models/post.rb', %q{
   belongs_to :category
@@ -64,6 +50,20 @@ if Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR == 1 #Rails 3.1 Gotcha
   gsub_file 'app/models/tag.rb', /self\.primary_key.*$/, "define_attr_method :primary_key, :id"
 end
 
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
+# we need this routing path, named "logout_path", for testing
+route %q{
+  devise_scope :user do
+    match '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
+  end
+}
+
+# Setup a root path for devise
+route "root :to => 'admin/dashboard#index'"
+
+generate :'active_admin:install'
+
 # Configure default_url_options in test environment
 inject_into_file "config/environments/test.rb", "  config.action_mailer.default_url_options = { :host => 'example.com' }\n", :after => "config.cache_classes = true\n"
 
@@ -75,6 +75,10 @@ append_file "config/locales/en.yml", File.read(File.expand_path('../templates/en
 
 # Add predefined admin resources
 directory File.expand_path('../templates/admin', __FILE__), "app/admin"
+
+run "rm Gemfile"
+run "rm -r test"
+run "rm -r spec"
 
 rake "db:migrate"
 rake "db:test:prepare"

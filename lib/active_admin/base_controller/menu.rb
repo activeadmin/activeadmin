@@ -1,5 +1,5 @@
 module ActiveAdmin
-  class BaseController < ::Admin::ApplicationController
+  class BaseController < ::ActiveAdmin::ApplicationController
     inherit_resources
 
     module Menu

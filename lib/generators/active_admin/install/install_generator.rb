@@ -18,8 +18,8 @@ module ActiveAdmin
       end
 
       def setup_controllers
-        empty_directory "app/controllers/admin"
-        template 'application_controller.rb', 'app/controllers/admin/application_controller.rb'
+        empty_directory "app/controllers/active_admin"
+        template 'application_controller.rb', 'app/controllers/active_admin/application_controller.rb'
       end
 
       def setup_directory
