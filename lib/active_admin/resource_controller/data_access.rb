@@ -47,6 +47,7 @@ module ActiveAdmin
       def find_collection
         collection = scoped_collection
 
+        collection = apply_authorization_scope(collection)
         collection = apply_sorting(collection)
         collection = apply_filtering(collection)
         collection = apply_scoping(collection)
@@ -67,7 +68,7 @@ module ActiveAdmin
       # scope_to method from the Scoping module instead of overriding this
       # method.
       def scoped_collection
-        scope_for_authorization end_of_association_chain
+        end_of_association_chain
       end
 
       # Retrieve, memoize and authorize a resource based on params[:id]. The
@@ -208,9 +209,9 @@ module ActiveAdmin
       # @param [ActiveRecord::Relation] collection The collection to scope
       #
       # @retruns [ActiveRecord::Relation] a scoped collection of query
-      def scope_for_authorization(collection)
-        permission = action_to_permission(params[:action])
-        active_admin_authorization.scope_collection(collection, permission)
+      def apply_authorization_scope(collection)
+        action_name = action_to_permission(params[:action])
+        active_admin_authorization.scope_collection(collection, action_name)
       end
 
 
