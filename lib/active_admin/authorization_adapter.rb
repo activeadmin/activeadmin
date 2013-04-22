@@ -62,9 +62,13 @@ module ActiveAdmin
     # @param [ActiveRecord::Relation] collection The collection the user is
     #        attempting to view.
     #
+    # @param [Symbol] action The name of the action to perform. Usually this will be
+    #        one of the `ActiveAdmin::Auth::*` symbols. Defaults to `Auth::READ` if
+    #        no action passed in.
+    #
     # @returns [ActiveRecord::Relation] A new collection, scoped to the
     #          objects that the current user has access to.
-    def scope_collection(collection)
+    def scope_collection(collection, action = Auth::READ)
       collection
     end
 

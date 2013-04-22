@@ -16,7 +16,7 @@ describe ActiveAdmin::AuthorizationAdapter do
 
     it "should return the collection unscoped" do
       collection = stub
-      adapter.scope_collection(collection).should == collection
+      adapter.scope_collection(collection, ActiveAdmin::Auth::READ).should == collection
     end
 
   end
