@@ -209,7 +209,8 @@ module ActiveAdmin
       #
       # @retruns [ActiveRecord::Relation] a scoped collection of query
       def scope_for_authorization(collection)
-        active_admin_authorization.scope_collection(collection)
+        permission = action_to_permission(params[:action])
+        active_admin_authorization.scope_collection(collection, permission)
       end
 
 

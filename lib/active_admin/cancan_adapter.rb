@@ -15,8 +15,8 @@ module ActiveAdmin
       @cancan_ability ||= initialize_cancan_ability
     end
 
-    def scope_collection(collection)
-      collection.accessible_by(cancan_ability)
+    def scope_collection(collection, action = ActiveAdmin::Auth::READ)
+      collection.accessible_by(cancan_ability, action)
     end
 
     private
