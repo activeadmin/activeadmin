@@ -20,14 +20,22 @@ describe ActiveAdmin::CanCanAdapter do
       end
     end
 
-    it "should initialize the ability stored in the namespace configuration" do
+    let(:auth) { namespace.authorization_adapter.new(resource, mock) }
+
+    before do
       namespace.authorization_adapter = ActiveAdmin::CanCanAdapter
       namespace.cancan_ability_class = mock_ability_class
+    end
 
-      auth = namespace.authorization_adapter.new(resource, mock)
-
+    it "should initialize the ability stored in the namespace configuration" do
       auth.authorized?(:read, Post).should == true
       auth.authorized?(:update, Post).should == false
+    end
+
+    it "should scope the collection with accessible_by" do
+      collection = mock
+      collection.should_receive(:accessible_by).with(auth.cancan_ability, :edit)
+      auth.scope_collection(collection, :edit)
     end
 
   end
