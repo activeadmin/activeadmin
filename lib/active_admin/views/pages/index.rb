@@ -134,7 +134,7 @@ module ActiveAdmin
           download_links = config[:download_links].nil? ? active_admin_config.namespace.download_links : config[:download_links]
 
           paginated_collection(collection, :entry_name     => active_admin_config.resource_label,
-                                           :entries_name   => active_admin_config.plural_resource_label,
+                                           :entries_name   => active_admin_config.plural_resource_label(:count => collection_size),
                                            :download_links => download_links,
                                            :paginator      => paginator) do
             div :class => 'index_content' do
