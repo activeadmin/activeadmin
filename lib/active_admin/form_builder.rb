@@ -42,7 +42,7 @@ module ActiveAdmin
     end
 
     def has_many(association, options = {}, &block)
-      options = { :for => association }.merge(options)
+      options = { :for => association, :new_record => true }.merge(options)
       options[:class] ||= ""
       options[:class] << "inputs has_many_fields"
 
@@ -80,7 +80,8 @@ module ActiveAdmin
 
           inputs options, &form_block
 
-          form_buffers.last << js_for_has_many(association, form_block, template)
+          js = options[:new_record] ? js_for_has_many(association, form_block, template) : ""
+          form_buffers.last << js.html_safe
         end
       end
     end
