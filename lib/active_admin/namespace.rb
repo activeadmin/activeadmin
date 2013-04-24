@@ -3,8 +3,6 @@ require 'active_admin/resource_collection'
 
 module ActiveAdmin
 
-  class ResourceMismatchError < StandardError; end
-
   # Namespaces are the basic organizing principle for resources within Active Admin
   #
   # Each resource is registered into a namespace which defines:
@@ -105,7 +103,7 @@ module ActiveAdmin
 
     # Returns the first registered ActiveAdmin::Resource instance for a given class
     def resource_for(klass)
-      resources.find_by_resource_class(klass)
+      resources[klass]
     end
 
     # Override from ActiveAdmin::Settings to inherit default attributes
