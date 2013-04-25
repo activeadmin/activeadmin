@@ -53,7 +53,7 @@ You can create forms with nested models using the `has_many` method:
           f.input :body
         end
         f.inputs do
-          f.has_many :categories, :allow_destroy => true do |cf|
+          f.has_many :categories, :allow_destroy => true, :heading => 'Themes', :new_record => false do |cf|
             cf.input :title
           end
         end
@@ -65,4 +65,8 @@ You can create forms with nested models using the `has_many` method:
 The `:allow_destroy` option will add a checkbox to the end of the nested form allowing
 removal of the child object upon submission. Be sure to set `:allow_destroy => true`
 on the association to use this option.
+
+The `:heading` option will add a custom heading to has_many form. You can hide a heading by setting `:heading => false`.
+
+The `:new_record` option will show or hide new record link at the bottom of has_many form. It is set as true by default.
 
