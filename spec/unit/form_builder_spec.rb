@@ -167,7 +167,7 @@ describe ActiveAdmin::FormBuilder do
 
   end
 
-  context "with actons" do
+  context "with actions" do
     it "should generate the form once" do
       body = build_form do |f|
         f.inputs do
@@ -360,7 +360,48 @@ describe ActiveAdmin::FormBuilder do
       it "should accept a block with a second argument" do
         body.should have_tag("label", "Title 1")
       end
+
+      it "should add a custom header" do
+        body.should have_tag('h3', 'Post')
+      end 
+
     end
+
+    describe "without heading and new record link" do
+      let :body do
+        build_form({:url => '/categories'}, Category.new) do |f|
+          f.object.posts.build
+          f.has_many :posts, :heading => false, :new_record => false do |p|
+            p.input :title
+          end
+        end
+      end
+
+      it "should not add a header" do
+        body.should_not have_tag('h3', 'Post')
+      end 
+
+      it "should not add link to new nested records" do
+        body.should_not have_tag('a', 'Add New Post')
+      end 
+
+    end  
+
+    describe "with custom heading" do
+      let :body do
+        build_form({:url => '/categories'}, Category.new) do |f|
+          f.object.posts.build
+          f.has_many :posts, :heading => "Test heading" do |p|
+            p.input :title
+          end
+        end
+      end
+
+      it "should add a custom header" do
+        body.should have_tag('h3', 'Test heading')
+      end       
+
+    end  
 
     describe "with allow destroy" do
       context "with an existing post" do
