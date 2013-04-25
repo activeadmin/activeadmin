@@ -4,7 +4,8 @@ module ActiveAdmin
     # Stylesheets
 
     def register_stylesheet(*args)
-      stylesheets << ActiveAdmin::Stylesheet.new(*args)
+      tmp = ActiveAdmin::Stylesheet.new(*args)
+      stylesheets << tmp unless stylesheets.include? tmp
     end
 
     def stylesheets
@@ -19,7 +20,7 @@ module ActiveAdmin
     # Javascripts
 
     def register_javascript(name)
-      javascripts << name
+      javascripts << name unless javascripts.include? name
     end
 
     def javascripts
