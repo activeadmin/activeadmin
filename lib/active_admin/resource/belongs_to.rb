@@ -15,8 +15,9 @@ module ActiveAdmin
 
       # Returns the target resource class or raises an exception if it doesn't exist
       def target
-        namespace.resources[@target_name.to_s.camelize] or raise TargetNotFound,
-          "Could not find resource #{@target_name} in #{namespace.name} with #{namespace.resources}"
+        key = @target_name.to_s.camelize
+        namespace.resources[key] or raise TargetNotFound, "Could not find #{key} in" +
+          " #{namespace.name} with #{namespace.resources.map(&:resource_name)}"
       end
 
       def namespace
