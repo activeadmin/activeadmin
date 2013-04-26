@@ -203,7 +203,9 @@ module ActiveAdmin
 
     # Creates a ruby module to namespace all the classes in if required
     def register_module
-      eval "module ::#{module_name}; end"
+      unless Object.const_defined? module_name
+        Object.const_set module_name, Module.new
+      end
     end
 
     def register_resource_controller(config)

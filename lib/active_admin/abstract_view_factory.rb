@@ -62,19 +62,10 @@ module ActiveAdmin
       key = key_from_method_name(method)
       if has_key?(key)
         if method.to_s.include?('=')
-          self.class_eval <<-EOS
-            def #{key}=(value)
-              set_view_for_key(:#{key}, value)
-            end
-          EOS
+          set_view_for_key key, args.first
         else
-          self.class_eval <<-EOS
-            def #{key}
-              get_view_for_key(:#{key})
-            end
-          EOS
+          get_view_for_key key
         end
-        self.send(method, *args)
       else
         super
       end
