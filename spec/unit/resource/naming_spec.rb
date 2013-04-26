@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 require 'spec_helper'
 
 module ActiveAdmin
@@ -71,6 +73,13 @@ module ActiveAdmin
           it "should return the titleized plural version defined by i18n if available" do
             config.resource_name.should_receive(:translate).at_least(:once).and_return "Da categories"
             config.plural_resource_label.should == "Da categories"
+          end
+        end
+
+        describe "plural label with not default locale" do
+          it "should return the titleized plural version defined by i18n with custom :count if available" do
+            config.resource_name.should_receive(:translate).at_least(:once).and_return "Категории"
+            config.plural_resource_label(:count => 3).should == "Категории"
           end
         end
 
