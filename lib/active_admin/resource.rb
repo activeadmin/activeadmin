@@ -117,7 +117,7 @@ module ActiveAdmin
 
     def belongs_to(target, options = {})
       @belongs_to = Resource::BelongsTo.new(self, target, options)
-      self.menu_item_menu_name = target unless @belongs_to.optional?
+      self.navigation_menu_name = target unless @belongs_to.optional?
       controller.belongs_to(target, options.dup)
     end
 
