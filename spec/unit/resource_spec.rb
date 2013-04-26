@@ -87,9 +87,9 @@ module ActiveAdmin
       end
 
       it "should set the target menu to the belongs to target" do
-        config.menu_item_menu_name.should == ActiveAdmin::DEFAULT_MENU
+        config.navigation_menu_name.should == ActiveAdmin::DEFAULT_MENU
         config.belongs_to :posts
-        config.menu_item_menu_name.should == :posts
+        config.navigation_menu_name.should == :posts
       end
 
     end

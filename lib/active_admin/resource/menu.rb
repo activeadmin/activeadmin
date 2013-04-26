@@ -3,15 +3,15 @@ module ActiveAdmin
 
     module Menu
 
-      # Set the menu options. To not add this resource to the menu, just
-      # call #menu(false)
+      # Set the menu options.
+      # To disable this menu item, call `menu(false)` from the DSL
       def menu_item_options=(options)
         if options == false
-          @navigation_menu = false
+          @include_in_menu   = false
           @menu_item_options = {}
         else
-          self.menu_item_menu_name = options[:menu_name]
-          @menu_item_options = default_menu_options.merge(options)
+          @navigation_menu_name = options[:menu_name]
+          @menu_item_options    = default_menu_options.merge options
         end
       end
 
@@ -31,13 +31,10 @@ module ActiveAdmin
         }
       end
 
-      def navigation_menu_name=(menu_name)
-        @navigation_menu_name = menu_name
-      end
+      attr_writer :navigation_menu_name
 
       def navigation_menu_name
-        @navigation_menu_name ||= DEFAULT_MENU
-        case @navigation_menu_name
+        case @navigation_menu_name ||= DEFAULT_MENU
         when Proc
           controller.instance_eval(&@navigation_menu_name).to_sym
         else
@@ -49,27 +46,17 @@ module ActiveAdmin
         namespace.fetch_menu(navigation_menu_name)
       end
 
-      def menu_item_menu_name=(menu_name)
-        @menu_item_menu_name = menu_name
-      end
-
-      def menu_item_menu_name
-        @menu_item_menu_name ||= DEFAULT_MENU
-      end
-
       def add_to_menu(menu_collection)
         if include_in_menu?
-          @menu_item = menu_collection.add(menu_item_menu_name, menu_item_options)
+          @menu_item = menu_collection.add navigation_menu_name, menu_item_options
         end
       end
 
-      def menu_item
-        @menu_item
-      end
+      attr_reader :menu_item
 
       # Should this resource be added to the menu system?
       def include_in_menu?
-        @navigation_menu != false
+        @include_in_menu != false
       end
 
     end
