@@ -75,7 +75,7 @@ module ActiveAdmin
 
         # Call the block passed in. This will set the
         # title and body methods
-        instance_eval &page_presenter.block if page_presenter.block
+        instance_exec &page_presenter.block if page_presenter.block
 
         add_class "index"
         build_posts

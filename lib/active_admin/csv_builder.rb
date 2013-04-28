@@ -29,7 +29,7 @@ module ActiveAdmin
 
     def initialize(options={}, &block)
       @columns, @options = [], options
-      instance_eval &block if block_given?
+      instance_exec &block if block_given?
     end
 
     # Add a column

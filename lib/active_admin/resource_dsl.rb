@@ -1,5 +1,5 @@
 module ActiveAdmin
-  # This is the class where all the register blocks are instance eval'd
+  # This is the class where all the register blocks are evaluated.
   class ResourceDSL < DSL
     private
 

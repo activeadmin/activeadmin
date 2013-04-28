@@ -1,9 +1,8 @@
 module ActiveAdmin
 
-  #
   # The Active Admin DSL. This class is where all the registration blocks
-  # are instance eval'd. This is the central place for the API given to
-  # users of Active Admin
+  # are evaluated. This is the central place for the API given to
+  # users of Active Admin.
   #
   class DSL
 
@@ -13,7 +12,7 @@ module ActiveAdmin
 
     # Runs the registration block inside this object
     def run_registration_block(&block)
-      instance_eval &block if block_given?
+      instance_exec &block if block_given?
     end
 
     # The instance of ActiveAdmin::Config that's being registered
@@ -57,7 +56,7 @@ module ActiveAdmin
     end
 
     # Returns the controller for this resource. If you pass a
-    # block, it will be eval'd in the controller
+    # block, it will be evaluated in the controller.
     #
     # Example:
     #
@@ -72,7 +71,7 @@ module ActiveAdmin
     #   end
     #
     def controller(&block)
-      @config.controller.class_eval(&block) if block_given?
+      @config.controller.class_exec(&block) if block_given?
       @config.controller
     end
 

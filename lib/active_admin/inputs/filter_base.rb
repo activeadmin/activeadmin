@@ -22,7 +22,7 @@ module ActiveAdmin
       # Override the standard finder to accept a proc
       def collection_from_options
         if options[:collection].is_a?(Proc)
-          template.instance_eval(&options[:collection])
+          template.instance_exec(&options[:collection])
         else
           super
         end

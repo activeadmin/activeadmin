@@ -1,5 +1,5 @@
 module ActiveAdmin
-  # This is the class where all the register_page blocks are instance eval'd
+  # This is the class where all the register_page blocks are evaluated.
   class PageDSL < DSL
 
     # Page content.
