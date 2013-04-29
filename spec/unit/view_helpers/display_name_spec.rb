@@ -5,7 +5,7 @@ describe "display names" do
   include ActiveAdmin::ViewHelpers
 
   [:display_name, :full_name, :name, :username, :login, :title, :email, :to_s].each do |m|
-    it "should return #{m} if defined" do
+    it "should return #{m} when defined" do
       r = Class.new do
         define_method m do
           m.to_s
@@ -16,14 +16,20 @@ describe "display names" do
   end
 
   it "should memeoize the result for the class" do
-    c = Class.new do
-      def name
-        "My Name"
-      end
-    end
-    display_name(c.new).should == "My Name"
+    subject { Class.new.new }
+    subject.should_receive(:name).twice.and_return "My Name"
+    display_name(subject).should == "My Name"
     ActiveAdmin.application.should_not_receive(:display_name_methods)
-    display_name(c.new).should == "My Name"
+    display_name(subject).should == "My Name"
+  end
+
+  it "should not call a method if it's an association" do
+    subject { Class.new.new }
+    subject.stub_chain(:class, :reflect_on_all_associations).and_return [ mock(:name => :login) ]
+    subject.stub :login
+    subject.should_not_receive :login
+    subject.stub(:email).and_return 'foo@bar.baz'
+    display_name(subject).should == 'foo@bar.baz'
   end
 
 end
