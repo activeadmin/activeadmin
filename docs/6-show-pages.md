@@ -1,6 +1,6 @@
-# Customizing the Show Screen
+# Customize the Show Page
 
-Customizing the show screen is as simple as implementing the show block:
+Customize the show page is as simple as implementing the show block:
 
     ActiveAdmin.register Post do
       show do
