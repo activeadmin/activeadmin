@@ -1,37 +1,38 @@
-# Installation
+# Install
 
-Installing Active Admin in a Rails application is as easy as adding the gem to
-your Gemfile:
+## Gemfile
 
-    # Gemfile
+First add the gem to your Gemfile:
+
     gem 'activeadmin'
 
-## Running the Generator
+## Initialize Active Admin
 
-Once you have added the gem to your Gemfile (and any other dependencies), you
-need to run the Active Admin install generator.
+Use the command below to initialize Active Admin. It would also create a user model 
+ named AdminUser.
 
     $> rails generate active_admin:install
 
-This will install Active Admin the default settings. By default it will create a
-new Devise user / model called AdminUser. To change the name of the user class,
-simply pass the class as the last argument:
+To create a user model with a different name, pass it as the last parameter:
 
     $> rails generate active_admin:install User
 
-Instead of generating an AdminUser class, this command will create a User class.
-
-You can skip the Devise user class all together by using the `skip-users` flag:
+You could also skip the creation of this user model. But note that in this case, you
+ need to make additional changes in `config/intializers/active_admin.rb`.
 
     $> rails generate active_admin:install --skip-users
 
-NOTE: If you don't use the default user settings, you will need to configure the
-settings in `config/intializers/active_admin.rb` to suite your needs.
+After the generator finishes, you need to migrate the database:
 
-After running the installer, run `rake db:migrate` to ensure that all db tables
-are created.
+    $> rake db:migrate
 
-## Upgrading
+## Register your models with Active Admin
+
+This creates a file in `app/admin/` to hold any resource-specific configuration.
+
+    $> rails generate active_admin:resource Post
+
+# Upgrade
 
 To upgrade Active Admin, simply update the version number in your Gemfile, then
 run the assets generator:
@@ -40,6 +41,9 @@ run the assets generator:
 
 This command makes sure you have all the latest assets and your installation is
 up to date. Each time you upgrade Active Admin, you should run this command.
+
+
+# Gem compatibility
 
 ## will_paginate compatibility
 
