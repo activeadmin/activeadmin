@@ -2,16 +2,17 @@ module ActiveAdmin
   module ViewHelpers
     module DisplayHelper
 
+      # Attempts to call any known display name methods on the resource.
+      # See the setting in `application.rb` for the list of methods and their priority.
+      def display_name(resource)
+        resource.send display_name_method_for resource
+      end
+
+      # Looks up and caches the first available display name method.
       def display_name_method_for(resource)
         @@display_name_methods_cache ||= {}
         @@display_name_methods_cache[resource.class] ||=
           active_admin_application.display_name_methods.find{|method| resource.respond_to? method }
-      end
-
-      # Tries to display an object with as friendly of output
-      # as possible.
-      def display_name(resource)
-        resource.send(display_name_method_for(resource))
       end
 
       # Return a pretty string for any object
