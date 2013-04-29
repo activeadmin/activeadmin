@@ -14,8 +14,8 @@ Feature: New Page
 
   Scenario: Default form with no config
     Given I follow "New Post"
-    When I fill in "Title" with "Hello World"
-    And I fill in "Body" with "This is the body"
+    When I fill in "#post_title" with "Hello World"
+    And I fill in "#post_body" with "This is the body"
     And I select "Music" from "Category"
     And I select "John Doe" from "Author"
     And I press "Create Post"
@@ -44,8 +44,8 @@ Feature: New Page
     Given I follow "New Post"
     Then I should see a fieldset titled "Your Post"
     And I should see a fieldset titled "Publishing"
-    When I fill in "Title" with "Hello World"
-    And I fill in "Body" with "This is the body"
+    When I fill in "#post_title" with "Hello World"
+    And I fill in "#post_body" with "This is the body"
     And I press "Create Post"
     Then I should see "Post was successfully created."
     And I should see the attribute "Title" with "Hello World"
@@ -67,8 +67,8 @@ Feature: New Page
       end
     """
     Given I follow "New Post"
-    When I fill in "Title" with "Hello World"
-    And I fill in "Body" with "This is the body"
+    When I fill in "#post_title" with "Hello World"
+    And I fill in "#post_body" with "This is the body"
     And I press "Create Post"
     Then I should see "Post was successfully created."
     And I should see the attribute "Title" with "Hello World"
