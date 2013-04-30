@@ -9,7 +9,9 @@ da:
     delete: "Slet"
     delete_confirmation: "Er du sikker på at du ønsker at slette?"
     new_model: "Ny(t) %{model}"
+    create_model: "Opret %{model}"
     edit_model: "Rediger %{model}"
+    update_model: "Opdater %{model}"
     delete_model: "Slet %{model}"
     details: "%{model} detaljer"
     cancel: "Fortryd"
@@ -55,6 +57,8 @@ da:
       labels:
         destroy: "Slet"
     comments:
+      resource_type: "resource type"
+      author_type: "forfatter type"
       body: "krop"
       author: "forfatter"
       title: "Kommentar"
@@ -75,8 +79,18 @@ da:
       change_password:
         title: "Skift din adgangskode"
         submit: "Skift min adgangskode"
+      unlock:
+        title: "Send oplåsnings instruktioner igen"
+        submit: "Send oplåsnings instruktioner igen"
       links:
         sign_in: "Log ind"
         forgot_your_password: "Glemt din adgangskode?"
         sign_in_with_omniauth_provider: "Log ind med %{provider}"
+    access_denied:
+      message: "Du har ikke rettigheder til at udføre denne handling."
+    index_list:
+      table: "Tabel"
+      block: "Liste"
+      grid: "Gitter"
+      blog: "Blog"
 
