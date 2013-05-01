@@ -25,6 +25,9 @@ lt:
     filter: 'Filtras'
     clear_filters: 'Išvalyti filtrus'
     search_field: 'Paieškos %{field}'
+    contains: "Sudėtyje yra"
+    starts_with: "Prasideda nuo"
+    ends_with: "Baigiasi"
     equal_to: 'lygus'
     greater_than: 'didesnis nei'
     less_than: 'mažiau nei'
