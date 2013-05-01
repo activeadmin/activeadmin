@@ -1,21 +1,26 @@
-.ui-widget-overlay { position: fixed; }
+.ui-widget-overlay { position: fixed; background: rgba(0,0,0,.2); top: 0; left: 0; }
 .ui-dialog {
   position: fixed;
-  padding: 20px;
-  @include box-shadow(rgba(0,0,0,0.5) 0 0px 10px inset);
-  @include gradient(lighten($primary-color, 40%), darken($secondary-color, 55%));
+  @include section-background;
+  @include box-shadow(rgba(0,0,0,0.5) 0 0px 10px);
 
-  .ui-dialog-title { font-size: 1.8em; }
+  .ui-dialog-titlebar { @include section-header; }
+
+  form { padding: 20px; }
+
   .ui-dialog-titlebar-close { float: right; }
   p { font-size: 1.3em;
       margin: 10px;
   }
   ul { list-style-type: none; }
-  li { margin: 10px; }
-  label { font-size: 1.2em; }
+  li { margin: 10px 0; }
+  label { margin-right: 10px; }
 
-  .ui-dialog-buttonpane button {
-    &:first-child { @include dark-button; } // OK
-    &:last-child { @include light-button; } // Cancel
+  .ui-dialog-buttonpane {
+    padding: 20px;
+    button {
+      &:first-child { @include dark-button; } // OK
+      &:last-child { @include light-button; } // Cancel
+    }
   }
 }

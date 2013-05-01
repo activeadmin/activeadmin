@@ -1,5 +1,5 @@
 window.AA.modalDialog = (message, inputs, callback)->
-  html = """<form id="dialog_confirm" title="Please confirm..."><p>#{message}</p><ul>"""
+  html = """<form id="dialog_confirm" title="#{message}"><ul>"""
   for name, type of inputs
     if /^datepicker|checkbox|text$/.test type
       wrapper = 'input'
@@ -11,7 +11,7 @@ window.AA.modalDialog = (message, inputs, callback)->
       console.warn "Unsupported input type: {#{name}: #{type}}"
 
     klass = if type is 'datepicker' then type else ''
-    html += """<li><label>#{name}</label><#{wrapper} name="#{name}" class="#{klass}" type="#{type}">""" +
+    html += """<li><label>#{name.charAt(0).toUpperCase() + name.slice(1)}</label><#{wrapper} name="#{name}" class="#{klass}" type="#{type}">""" +
       (if opts then ("<#{elem}>#{v}</#{elem}>" for v in opts).join '' else '') +
       "</#{wrapper}></li>"
 
