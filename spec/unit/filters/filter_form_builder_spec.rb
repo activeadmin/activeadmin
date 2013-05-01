@@ -58,10 +58,23 @@ describe ActiveAdmin::Filters::ViewHelper do
   describe "string attribute" do
     let(:body) { filter :title }
 
-    it "should generate a search field for a string attribute" do
-      body.should have_tag("input", :attributes => { :name => "q[title_contains]"})
+    it "should generate a select option for starts with" do
+      body.should have_tag("option", "Starts with", :attributes => { :value => 'title_starts_with' })
     end
 
+    it "should generate a select option for ends with" do
+      body.should have_tag("option", "Ends with", :attributes => { :value => 'title_ends_with' })
+    end
+
+    it "should generate a select option for contains" do
+      body.should have_tag("option", "Contains", :attributes => { :value => 'title_contains' })
+    end
+
+    it "should generate a text field for input" do
+      body.should have_tag("input", :attributes => {
+                                          :name => /q\[(title_starts_with|title_ends_with|title_contains)\]/ })
+    end
+    
     it "should label a text field with search" do
       body.should have_tag('label', 'Search Title')
     end
@@ -73,6 +86,21 @@ describe ActiveAdmin::Filters::ViewHelper do
       ensure
         I18n.backend.reload!
       end
+    end
+
+    it "should select the option which is currently being filtered"
+
+  end
+
+  describe "string attribute with sub filters", :subfilters => true do
+    let(:body) { filter :title_contains, :as => :string }
+    
+    it "should generate a search field for a string attribute with query contains" do
+      body.should have_tag("input", :attributes => { :name => "q[title_contains]"})
+    end
+
+    it "should NOT generate a select option for contains" do
+      body.should_not have_tag("option", "Contains", :attributes => { :value => 'title_contains' })
     end
 
     context "using starts_with and as" do
@@ -90,8 +118,16 @@ describe ActiveAdmin::Filters::ViewHelper do
         body.should have_tag("input", :attributes => { :name => "q[title_ends_with]" })
       end
     end
-  end
+    
+    context "using contains and NO AS defined" do
+      let(:body) { filter :title_contains }
 
+      it "should generate a search field for a string attribute with query contains" do
+        body.should have_tag("input", :attributes => { :name => "q[title_contains]" })
+      end
+    end
+  end
+  
   describe "text attribute" do
     let(:body) { filter :body }
 
