@@ -11,7 +11,7 @@ module ActiveAdmin
       end
 
       def label_text
-        I18n.t('active_admin.search_field', :field => super)
+        translation_per_search_field(super)
       end
 
       def input_name
