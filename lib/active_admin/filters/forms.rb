@@ -77,6 +77,7 @@ module ActiveAdmin
             if_block     = options[:if]     || proc{ true }
             unless_block = options[:unless] || proc{ false }
             if call_method_or_proc_on(self, if_block) && !call_method_or_proc_on(self, unless_block)
+              options[:as] = :string if options[:attribute].to_s.match /contains|starts_with|ends_with/
               f.filter options[:attribute], options.except(:attribute, :if, :unless)
             end
           end
