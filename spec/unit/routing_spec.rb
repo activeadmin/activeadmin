@@ -12,9 +12,6 @@ describe ActiveAdmin, "Routing", :type => :routing do
   include Rails.application.routes.url_helpers
 
   describe "root" do
-    before do
-      pending "Y U NO PASS?"
-    end
     context "when default configuration" do
       context "when in admin namespace" do
         it "should route the admin dashboard" do
@@ -151,6 +148,31 @@ describe ActiveAdmin, "Routing", :type => :routing do
 
         it "should properly route the second verb" do
           {:delete => "/admin/posts/1/do_something"}.should be_routable
+        end
+      end
+
+      context "with routing constraint" do
+        before do
+          ActiveAdmin.setup do |config|
+            config.routing_constraint = { :subdomain => 'admin' }
+          end
+        end
+
+        after do
+          ActiveAdmin.setup do |config|
+            config.routing_constraint = nil
+          end
+        end
+
+        let(:url)     { "http://admin.domain.com"   }
+        let(:bad_url) { "http://bad_url.domain.com" }
+
+        it "does map :admin namespace to the specified subdomain" do
+          get(url).should route_to('admin/dashboard#index')
+        end
+
+        it "should not route unrecongized constraint" do
+          get(bad_url).should_not be_routable
         end
       end
     end

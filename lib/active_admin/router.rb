@@ -21,7 +21,13 @@ module ActiveAdmin
     def define_basic_routes(router)
       router.instance_exec(@application.namespaces.values, self) do |namespaces, aa_router|
         namespaces.each do |namespace|
-          if namespace.root?
+          if namespace.routing_constraint.present?
+            constraints namespace.routing_constraint do
+              scope :module => namespace.name, :as => namespace.name do
+                instance_eval &aa_router.root_and_dashboard_routes(namespace)
+              end
+            end
+          elsif namespace.root?
             instance_eval &aa_router.root_and_dashboard_routes(namespace)
           else
             namespace(namespace.name) do
@@ -65,8 +71,16 @@ module ActiveAdmin
             end
           end
 
-          # Add on the namespace if required
-          unless config.namespace.root?
+          if config.namespace.routing_constraint.present?
+            routes_in_namespace = route_definition_block.dup
+            route_definition_block = Proc.new do
+              constraints config.namespace.routing_constraint do
+                scope :module => config.namespace.name, :as => config.namespace.name do
+                  instance_eval(&routes_in_namespace)
+                end
+              end
+            end
+          elsif !config.namespace.root?
             routes_in_namespace = route_definition_block.dup
             route_definition_block = Proc.new do
               namespace config.namespace.name do

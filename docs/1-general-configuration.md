@@ -78,6 +78,47 @@ individually.
 Each setting available in the Active Admin setup block is configurable on a per
 namespace basis.
 
+### Namespace Routing Constraints
+
+If you want to customize the routing behavior even further, you can pass a 
+constraint object to ActiveAdmin to use when generating the routes for the namespace.
+
+For example, to have the namespace "admin" served up at "admin.example.com" instead of
+"example.com/admin", you could use the following constraint class:
+
+    class Constraint::Subdomain
+      def initialize(*subdomains)
+        @subdomains = subdomains
+      end
+
+      def matches?(request)
+        request.subdomain.present? && @subdomains.include? request.subdomain
+      end
+    end
+
+And pair that with the following config for the "admin" namespace:
+
+    ActiveAdmin.setup do |config|
+      config.namespace :admin do |admin|
+        admin.routing_constraint = Constraint::Subdomain.new('admin')
+      end
+    end
+
+Note that according to Rails routing documentation, a proc could also be passed here, as
+we only need an object that responds to the '#matches?' method.  Passing a Hash is also valid.
+
+    ActiveAdmin.setup do |config|
+      config.namespace :admin do |admin|
+
+        # Can pass in a Proc object that accepts the request, returning true/false
+        admin.routing_constraint = proc { |request| request.host == 'myapp.example.com' }
+
+        # Can also pass in a Hash of options that is provided directly to the router
+        admin.routing_constraint = { :subdomain => "admin" }
+        
+      end
+    end
+
 ## Load paths
 
 By default Active Admin files go under '/app/admin'. You can change this
