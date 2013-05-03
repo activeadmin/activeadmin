@@ -441,6 +441,10 @@ describe ActiveAdmin::FormBuilder do
           'data-sortable-input' => "sort"
         })
       end
+
+      it "generates handles for each sortable fieldset" do
+        Capybara.string(body).should have_css(".has_many > fieldset .handle")
+      end
     end
 
     pending "should render the block if it returns nil" do

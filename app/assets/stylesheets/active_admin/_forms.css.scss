@@ -4,6 +4,13 @@ form {
   ul, ol, li, fieldset, legend, input, textarea, select, p { margin:0; padding:0; }
   ol, ul { list-style: none }
 
+  div.has_many {
+    fieldset li.handle {
+      @include rounded;
+      @include primary-gradient;
+    }
+  }
+
   fieldset {
     border: 0;
     padding: 10px 0;

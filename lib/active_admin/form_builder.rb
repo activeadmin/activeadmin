@@ -44,7 +44,7 @@ module ActiveAdmin
     def has_many(association, options = {}, &block)
       options = { :for => association, :new_record => true }.merge(options)
       options[:class] ||= ""
-      options[:class] << " inputs has_many_fields"
+      options[:class] << "inputs has_many_fields"
 
       sortable = options.delete :sortable
 
@@ -65,7 +65,11 @@ module ActiveAdmin
         elsif options[:allow_destroy]
           has_many_form.input :_destroy, :as => :boolean, :wrapper_html => {:class => "has_many_remove"},
                                                           :label => I18n.t('active_admin.has_many_remove')
+        end
 
+        if sortable
+          contents = template.content_tag(:li, I18n.t('active_admin.has_many_sortable_handle'), :class => 'handle') + contents
+          puts contents
         end
 
         contents
