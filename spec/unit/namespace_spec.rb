@@ -20,13 +20,7 @@ describe ActiveAdmin::Namespace do
     end
 
     it "should not have any menu item" do
-      if ActiveAdmin::Dashboards.built?
-        # DEPRECATED behavior. If a dashboard was built while running this
-        # spec, then an item gets added to the menu
-        namespace.fetch_menu(:default).children.should_not be_empty
-      else
-        namespace.fetch_menu(:default).children.should be_empty
-      end
+      namespace.fetch_menu(:default).children.should be_empty
     end
   end # context "when new"
 

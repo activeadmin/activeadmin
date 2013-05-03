@@ -21,22 +21,10 @@ module ActiveAdmin
     def define_basic_routes(router)
       router.instance_exec(@application.namespaces.values, self) do |namespaces, aa_router|
         namespaces.each do |namespace|
-          if namespace.root?
-            instance_eval &aa_router.root_and_dashboard_routes(namespace)
-          else
-            namespace(namespace.name) do
-              instance_eval &aa_router.root_and_dashboard_routes(namespace)
-            end
+          name = namespace.root? ? nil : namespace.name
+          namespace name, :module => name do
+            root :to => namespace.root_to
           end
-        end
-      end
-    end
-
-    def root_and_dashboard_routes(namespace)
-      Proc.new do
-        root :to => (namespace.root_to || "dashboard#index")
-        if ActiveAdmin::Dashboards.built?
-          match '/dashboard' => 'dashboard#index', :as => 'dashboard'
         end
       end
     end
