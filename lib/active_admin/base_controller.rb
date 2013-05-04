@@ -31,6 +31,7 @@ module ActiveAdmin
       raise AbstractController::ActionNotFound unless action_methods.include?(params[:action])
     end
 
+    include Translation
     include Menu
     include Authorization
     #include Translation
