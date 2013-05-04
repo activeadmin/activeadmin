@@ -13,13 +13,13 @@ describe Admin::PostsController, "Controller Authorization", :type => :controlle
 
   it "should authorize the index action" do
     authorization.should_receive(:authorized?).with(Auth::READ, Post).and_return true
-    get :index
+    get :index, :use_route => :active_admin
     response.should be_success
   end
 
   it "should authorize the new action" do
     authorization.should_receive(:authorized?).with(Auth::CREATE, an_instance_of(Post)).and_return true
-    get :new
+    get :new, :use_route => :active_admin
     response.should be_success
   end
 
@@ -36,7 +36,7 @@ describe Admin::PostsController, "Controller Authorization", :type => :controlle
 
   it "should redirect when the user isn't authorized" do
     authorization.should_receive(:authorized?).with(Auth::READ, Post).and_return false
-    get :index
+    get :index, :use_route => :active_admin
     response.body.should eq '<html><body>You are being <a href="http://test.host/">redirected</a>.</body></html>'
     response.should redirect_to '/'
   end

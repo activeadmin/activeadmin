@@ -24,13 +24,13 @@ describe 'defining new actions from registration blocks' do
       end
 
       it "should create a new public instance method" do
-        controller.public_instance_methods.collect(&:to_s).should include("comment")
+        controller.public_instance_methods.should include(:comment)
       end
       it "should add itself to the member actions config" do
         controller.active_admin_config.member_actions.size.should == 1
       end
       it "should create a new named route" do
-        Rails.application.routes.url_helpers.methods.collect(&:to_s).should include("comment_admin_post_path")
+        ActiveAdmin::Engine.routes.set.named_routes.keys.should include("comment_admin_post")
       end
     end
 
@@ -82,7 +82,7 @@ describe 'defining new actions from registration blocks' do
         controller.active_admin_config.collection_actions.size.should == 1
       end
       it "should create a new named route" do
-        Rails.application.routes.url_helpers.methods.collect(&:to_s).should include("comments_admin_posts_path")
+        ActiveAdmin::Engine.routes.set.named_routes.keys.should include("comments_admin_posts")
       end
     end
     context "without a block" do

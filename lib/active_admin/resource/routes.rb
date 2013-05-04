@@ -91,7 +91,7 @@ module ActiveAdmin
         end
 
         def routes
-          Rails.application.routes.url_helpers
+          ActiveAdmin::Engine.routes.url_helpers
         end
       end
     end
