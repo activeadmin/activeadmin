@@ -25,6 +25,8 @@ en:
     filter: "Filter"
     clear_filters: "Clear Filters"
     search_field: "Search %{field}"
+    search_fields:
+      name: "Search by name"
     equal_to: "Equal To"
     greater_than: "Greater Than"
     less_than: "Less Than"
