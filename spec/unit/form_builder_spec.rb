@@ -330,6 +330,16 @@ describe ActiveAdmin::FormBuilder do
         body.should have_tag('a', 'Add New Post')
       end
 
+      it "should use action item translations per model" do
+        begin
+          translation = "Nowy post"
+          I18n.backend.store_translations(:en, :active_admin => { :post => { :new_model => translation } })
+          body.should have_tag('a', translation)
+        ensure
+          I18n.backend.reload!
+        end
+      end
+
       it "should render the nested form" do
         body.should have_tag("input", :attributes => {:name => "category[posts_attributes][0][title]"})
       end

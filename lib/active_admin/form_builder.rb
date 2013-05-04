@@ -193,7 +193,8 @@ module ActiveAdmin
       js = template.escape_javascript js
 
       onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
-      text    = I18n.t 'active_admin.has_many_new', :model => assoc_name.human
+      text    = I18n.t("active_admin.#{assoc_name.to_s.downcase}.new_model",
+                  :default => proc{ I18n.t 'active_admin.has_many_new', :model => assoc_name.human })
 
       template.link_to(text, "#", :onclick => onclick, :class => "button").html_safe
     end

@@ -2,6 +2,7 @@ require 'inherited_resources'
 
 require 'active_admin/base_controller/authorization'
 require 'active_admin/base_controller/menu'
+require 'active_admin/base_controller/translation'
 
 module ActiveAdmin
   # BaseController for ActiveAdmin.
@@ -30,6 +31,7 @@ module ActiveAdmin
       raise AbstractController::ActionNotFound unless action_methods.include?(params[:action])
     end
 
+    include Translation
     include Menu
     include Authorization
 
