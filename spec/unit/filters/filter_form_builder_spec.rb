@@ -75,6 +75,16 @@ describe ActiveAdmin::Filters::ViewHelper do
       end
     end
 
+    it "should translate the label for text field using translated per field values" do
+      begin
+        I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => "Name" } } })
+        I18n.backend.store_translations(:en, :active_admin =>  { :search_fields => { :name => "Search by name" } })
+        body.should have_tag('label', 'Search by name')
+      ensure
+        I18n.backend.reload!
+      end
+    end
+
     context "using starts_with and as" do
       let(:body) { filter :title_starts_with, :as => :string }
 
