@@ -7,9 +7,7 @@ module ActiveAdmin
       autoload :SearchMethodSelect
 
       def input_wrapping(&block)
-        template.content_tag :div,
-          template.capture(&block),
-          wrapper_html_options
+        template.content_tag :div, template.capture(&block), wrapper_html_options
       end
 
       def required?
@@ -28,6 +26,10 @@ module ActiveAdmin
           super
         end
       end
+
+      #
+      # The below overrides force Formtastic to use `base` instead of `class`
+      #
 
       # Returns the default label for a given attribute
       # Will use ActiveModel I18n if possible
