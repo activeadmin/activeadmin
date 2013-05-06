@@ -16,6 +16,7 @@ module ActiveAdmin
 
       # Returns the default filter type for a given attribute
       def default_input_type(method, options = {})
+        return :string if method =~ /contains|starts_with|ends_with/
         if (column = column_for(method))
           case column.type
           when :date, :datetime
@@ -77,7 +78,6 @@ module ActiveAdmin
             if_block     = options[:if]     || proc{ true }
             unless_block = options[:unless] || proc{ false }
             if call_method_or_proc_on(self, if_block) && !call_method_or_proc_on(self, unless_block)
-              options[:as] = :string if options[:attribute].to_s.match /contains|starts_with|ends_with/
               f.filter options[:attribute], options.except(:attribute, :if, :unless)
             end
           end
