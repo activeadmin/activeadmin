@@ -88,12 +88,6 @@ module ActiveAdmin
       DependencyChecker.rails_3_1? && Rails.application.config.try(:assets).try(:enabled)
     end
 
-    # Migration MoveAdminNotesToComments generated with version 0.2.2 might reference
-    # to ActiveAdmin.default_namespace.
-    delegate :default_namespace, :to => :application
-    ActiveAdmin::Deprecation.deprecate self, :default_namespace,
-      "ActiveAdmin.default_namespace is deprecated. Please use ActiveAdmin.application.default_namespace"
-
     # A callback is triggered each time (before) Active Admin loads the configuration files.
     # In development mode, this will happen whenever the user changes files. In production
     # it only happens on boot.
