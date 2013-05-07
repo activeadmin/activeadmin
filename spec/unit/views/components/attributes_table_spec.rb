@@ -46,8 +46,16 @@ describe ActiveAdmin::Views::AttributesTable do
             row("Body") { post.body }
           end
         }
-      }
-
+      },
+      "when you create each row with a custom block that returns nil" => proc {
+        render_arbre_component(assigns) {
+          attributes_table_for post do
+            row("Id")   { text_node post.id; nil }
+            row("Title"){ text_node post.title; nil }
+            row("Body") { text_node post.body; nil }
+          end
+        }
+      },
     }.each do |context_title, table_decleration|
       context context_title do
         let(:table) { instance_eval &table_decleration }
@@ -68,15 +76,15 @@ describe ActiveAdmin::Views::AttributesTable do
 
         describe "rendering the rows" do
           [
-            ["Id" , "2"],
+            ["Id" , "1"],
             ["Title" , "Hello World"],
             ["Body" , "<span class=\"empty\">Empty</span>"]
           ].each_with_index do |set, i|
-            let(:title){ set[0] }
-            let(:content){ set[1] }
-            let(:current_row){ table.find_by_tag("tr")[i] }
-
             describe "for #{set[0]}" do
+              let(:title){ set[0] }
+              let(:content){ set[1] }
+              let(:current_row){ table.find_by_tag("tr")[i] }
+
               it "should have the title '#{set[0]}'" do
                 current_row.find_by_tag("th").first.content.should == title
               end
