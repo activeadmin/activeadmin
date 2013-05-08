@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
   s.add_dependency("sass", ">= 3.1.0")
   s.add_dependency("fastercsv", ">= 0")
   s.add_dependency("arbre", ">= 1.0.1")
+  s.add_dependency("coffee-script", ">= 2.2.0")
 end
