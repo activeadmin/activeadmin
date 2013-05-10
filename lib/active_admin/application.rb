@@ -194,13 +194,16 @@ module ActiveAdmin
       router.apply(rails_router)
     end
 
-    # Add before, around and after filters to each registered resource and pages.
-    # For example:
+    # Adds before, around and after filters to all controllers.
+    # Example usage:
     #   ActiveAdmin.before_filter :authenticate_admin!
     #
     %w(before_filter skip_before_filter after_filter around_filter).each do |name|
       define_method name do |*args, &block|
-        BaseController.send name, *args, &block
+        ActiveAdmin::BaseController.send              name, *args, &block
+        ActiveAdmin::Devise::PasswordsController.send name, *args, &block
+        ActiveAdmin::Devise::SessionsController.send  name, *args, &block
+        ActiveAdmin::Devise::UnlocksController.send   name, *args, &block
       end
     end
 
