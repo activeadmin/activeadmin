@@ -42,3 +42,13 @@ ca:
     blank_slate:
       content: "Encara no hi ha cap %{resource_name}."
       link: "Crea'n un/a"
+    comments:    
+      body: "Cos"
+      author: "Autor"
+      title: "Comentari"
+      add: "Afegir comentari"
+      resource: "Recurs"
+      no_comments_yet: "No hi ha cap comentari."
+      title_content: "(%{count}) comentari/s."
+      errors:
+        empty_text: "El comentari no s'ha desat, el text estava buit."
