@@ -1,42 +1,42 @@
 # Sidebar Sections
 
-To add a sidebar section to all the screen within a section, use the sidebar method:
+To add a sidebar section to all pages for that resource:
+```ruby
+sidebar(:help){ 'Need help? Email us at help@example.com' }
+```
 
-    sidebar :help do
-      "Need help? Email us at help@example.com"
-    end
+You can also use Arbre syntax to define the content:
+```ruby
+sidebar :help do
+  ul do
+    li 'First Item'
+    li 'Second Item'
+  end
+end
+```
 
-This will generate a sidebar section on each screen of the resource. With the block as
-the contents of the section. The first argument is the section title.
-
-You can also use Arbre syntax to define the content.
-
-    sidebar :help do
-      ul do
-        li "Second List First Item"
-        li "Second List Second Item"
-      end
-    end
-
-Sidebar sections can be rendered on a specific action by using the :only or :except
-options.
-
-    sidebar :help, :only => :index do
-      "Need help? Email us at help@example.com"
-    end
+Sidebars can be rendered on a specific action by setting `only` or `except`:
+```ruby
+sidebar :help, only: :index do
+  'Need help? Email us at help@example.com'
+end
+```
 
 If you want to conditionally display a sidebar section, use the :if option and
 pass it a proc which will be rendered within the context of the view.
+```ruby
+sidebar :help, if: ->{ current_admin_user.super_admin? }
+  'Only for super admins!'
+end
+```
 
-    sidebar :help, :if => proc{ current_admin_user.super_admin? }
-      "Only for super admins!"
-    end
-
-If you only pass a symbol, Active Admin will attempt to locate a partial to render.
-
-    # Will render app/views/admin/posts/_help_sidebar.html.erb
-    sidebar :help
+If you don't pass a block, Active Admin will attempt to render a partial.
+```ruby
+# Will render app/views/admin/posts/_help_sidebar.html.erb
+sidebar :help
+```
 
 Or you can pass your own custom partial to render.
-
-    sidebar :help, :partial => "custom_help_partial"
+```ruby
+sidebar :help, partial: 'custom_help_partial'
+```
