@@ -194,7 +194,7 @@ will use it for authorization:
     class Ability
       include CanCan::Ability
 
-      def intialize(user)
+      def initialize(user)
         can :manage, Post
         can :read, User
         can :manage, User, :id => user.id
