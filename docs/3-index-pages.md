@@ -155,15 +155,6 @@ ActiveAdmin.register Post do
 end
 ```
 
-## Disable CSV, XML and JSON export
-
-You can remove links to download CSV, XML and JSON export links:
-```ruby
-index download_links: false do
-  # ...
-end
-```
-
 ## Download Links
 
 There are multiple ways to either remove the download links per resource
@@ -173,13 +164,13 @@ passing an array of symbols, or pass false to hide entirely.
 Customizing the download links per resource:
 ```ruby
 ActiveAdmin.register Post do
-  index download_links: false   # hide the links entirely
-  index download_links: [:json] # only show JSON export link
+  index download_links: false   # hide all download links
+  index download_links: [:json] # only show the JSON link
 end
 ```
 
 If you want to customize download links for every resource throughout the
-application, configure that in the `active_admin` initializer.
+application, configure that in the AA initializer.
 ```ruby
 ActiveAdmin.setup do |config|
   config.download_links = false                     # Disable entirely
