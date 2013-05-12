@@ -173,7 +173,7 @@ If you want to customize download links for every resource throughout the
 application, configure that in the AA initializer.
 ```ruby
 ActiveAdmin.setup do |config|
-  config.download_links = false                     # Disable entirely
+  config.download_links = false                     # disable entirely
   config.download_links = [:csv, :xml, :json, :pdf] # add PDF to the list
 end
 ```

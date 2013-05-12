@@ -1,32 +1,30 @@
 # Customizing the CSV format
 
-Active Admin provides CSV file downloads on the index screen for each Resource.
-By default it will render a CSV file with all the content columns of your
-registered model.
-
-Customizing the CSV format is as simple as customizing the index page.
-
-    ActiveAdmin.register Post do
-      csv do
-        column :title
-        column("Author") { |post| post.author.full_name }
-      end
-    end
+Active Admin provides CSV file downloads on the index page for each resource.
+By default the CSV file will include every database attribute of the object,
+but there's a familar DSL to customize the CSV export format.
+```ruby
+ActiveAdmin.register Post do
+  csv do
+    column :title
+    column('Author') { |post| post.author.full_name }
+  end
+end
+```
 
 You can set custom csv options:
+```ruby
+ActiveAdmin.register Post do
+  csv options: { force_quotes: true } do
+    column :title
+    column('Author') { |post| post.author.full_name }
+  end
+end
+```
 
-    ActiveAdmin.register Post do
-      csv :options => { :force_quotes => true } do
-        column :title
-        column("Author") { |post| post.author.full_name }
-      end
-    end
-
-You can set options for the CSV format system-wide:
-
-    # config/initializers/active_admin.rb
-    # Set the CSV builder separator (default is ",")
-    config.csv_column_separator = ';'
-
-    # Set the CSV builder options (default is {})
-    config.csv_options = { :force_quotes => true }
+They can also be set system-wide:
+```ruby
+# config/initializers/active_admin.rb
+config.csv_column_separator = ';'              # change the separator used
+config.csv_options = { :force_quotes => true } # force the use of quotes
+```
