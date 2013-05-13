@@ -30,16 +30,6 @@ ActiveAdmin.after_load do |app|
         config.comments      = false # Don't allow comments on comments
         config.batch_actions = false # The default destroy batch action isn't showing up anyway...
 
-        if Rails::VERSION::STRING >= '3.2'
-          filter :resource_type, :as => :select, :collection => proc{ ActiveAdmin::Comment.uniq.pluck :resource_type }
-          filter :author_type,   :as => :select, :collection => proc{ ActiveAdmin::Comment.uniq.pluck :author_type }
-        else
-          filter :resource_type
-          filter :author_type
-        end
-        filter :body
-        filter :created_at
-
         scope :all, :show_count => false
         # Register a scope for every namespace that exists.
         # The current namespace will be the default scope.

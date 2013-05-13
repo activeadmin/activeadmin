@@ -2,6 +2,7 @@ module ActiveAdmin
   module Inputs
     module FilterBase
       include ::Formtastic::Inputs::Base
+      include ::ActiveAdmin::Filters::FormtasticAddons
 
       extend ::ActiveSupport::Autoload
       autoload :SearchMethodSelect
@@ -27,24 +28,6 @@ module ActiveAdmin
         end
       end
 
-      #
-      # The below overrides force Formtastic to use `base` instead of `class`
-      #
-
-      # Returns the default label for a given attribute
-      # Will use ActiveModel I18n if possible
-      def humanized_method_name
-        if object.base.respond_to?(:human_attribute_name)
-          object.base.human_attribute_name(method)
-        else
-          method.to_s.send(builder.label_str_method)
-        end
-      end
-
-      # Returns the association reflection for the method if it exists
-      def reflection_for(method)
-        @object.base.reflect_on_association(method) if @object.base.respond_to?(:reflect_on_association)
-      end
     end
   end
 end

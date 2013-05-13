@@ -177,13 +177,9 @@ describe ActiveAdmin::Filters::ViewHelper do
     context "when given as the _id attribute name" do
       let(:body) { filter :author_id }
 
-      it "should not render as an integer" do
-        body.should_not have_tag "input",          :attributes => { :name => "q[author_id_in]" }
-      end
-      it "should render as belongs to select" do
-        body.should have_tag "select",             :attributes => { :name => "q[author_id_in]" }
-        body.should have_tag "option", "John Doe", :attributes => { :value => @john.id }
-        body.should have_tag "option", "Jane Doe", :attributes => { :value => @jane.id }
+      it "should generate a numeric filter" do
+        body.should have_tag "label",              :attributes => { :for => "author_id_numeric" }
+        body.should have_tag "input",              :attributes => { :id  => "author_id_numeric" }
       end
     end
 
