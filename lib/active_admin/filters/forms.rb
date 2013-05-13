@@ -5,13 +5,16 @@ module ActiveAdmin
     # as the one found in the sidebar of the index page of a standard resource.
     class FormBuilder < ::ActiveAdmin::FormBuilder
 
+      def initialize(*args)
+        @use_form_buffer = true # force ActiveAdmin::FormBuilder to use the form buffer
+        super
+      end
+
       def filter(method, options = {})
         method = method.to_s.sub(/_id\z/,'').to_sym
 
         if method.present? && options[:as] ||= default_input_type(method)
-          form_buffers.last << input(method, options)
-        else
-          ''
+          input(method, options)
         end
       end
 
