@@ -56,7 +56,13 @@ module ActiveAdmin
       end
 
       def find_attr_value(attr)
-        attr.is_a?(Proc) ? attr.call(@record) : @record.send(attr.to_s.gsub(/_id\z/,''))
+        if attr.is_a?(Proc)
+          attr.call(@record)
+        elsif attr.to_s[/\A(.+)_id\z/] && @record.respond_to?($1.to_sym)
+          @record.send($1.to_sym)
+        else
+          @record.send(attr.to_sym)
+        end
       end
     end
 
