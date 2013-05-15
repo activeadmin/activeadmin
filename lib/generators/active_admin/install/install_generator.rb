@@ -17,6 +17,11 @@ module ActiveAdmin
         template 'active_admin.rb.erb', 'config/initializers/active_admin.rb'
       end
 
+      def setup_controllers
+        empty_directory "app/controllers/active_admin"
+        template 'application_controller.rb', 'app/controllers/active_admin/application_controller.rb'
+      end
+
       def setup_directory
         empty_directory "app/admin"
         template 'dashboard.rb', 'app/admin/dashboard.rb'

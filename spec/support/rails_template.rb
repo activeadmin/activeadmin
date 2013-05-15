@@ -50,6 +50,20 @@ if Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR == 1 #Rails 3.1 Gotcha
   gsub_file 'app/models/tag.rb', /self\.primary_key.*$/, "define_attr_method :primary_key, :id"
 end
 
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
+# we need this routing path, named "logout_path", for testing
+route %q{
+  devise_scope :user do
+    match '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
+  end
+}
+
+# Setup a root path for devise
+route "root :to => 'admin/dashboard#index'"
+
+generate :'active_admin:install'
+
 # Configure default_url_options in test environment
 inject_into_file "config/environments/test.rb", "  config.action_mailer.default_url_options = { :host => 'example.com' }\n", :after => "config.cache_classes = true\n"
 
@@ -65,20 +79,6 @@ directory File.expand_path('../templates/admin', __FILE__), "app/admin"
 run "rm Gemfile"
 run "rm -r test"
 run "rm -r spec"
-
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-
-# we need this routing path, named "logout_path", for testing
-route %q{
-  devise_scope :user do
-    match '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
-  end
-}
-
-generate :'active_admin:install'
-
-# Setup a root path for devise
-route "root :to => 'admin/dashboard#index'"
 
 rake "db:migrate"
 rake "db:test:prepare"
