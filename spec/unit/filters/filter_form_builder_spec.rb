@@ -146,6 +146,15 @@ describe ActiveAdmin::Filters::ViewHelper do
                                             :name => "q[starred_eq]",
                                             :type => "checkbox" })
       end
+
+      it "should translate the label for boolean field" do
+        begin
+          I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :starred => "Faved" } } })
+          body.should have_tag('label', 'Faved')
+        ensure
+          I18n.backend.reload!
+        end
+      end
     end
 
     context "non-boolean data types" do
