@@ -64,9 +64,9 @@ module ActiveAdmin
       end
 
       def default_filters
-        [ [I18n.t('active_admin.contains'),     'contains'],
+        [ [I18n.t('active_admin.contains'),    'contains'],
           [I18n.t('active_admin.starts_with'), 'starts_with'],
-          [I18n.t('active_admin.ends_with'),    'ends_with'] ]
+          [I18n.t('active_admin.ends_with'),   'ends_with'] ]
       end
 
     end
