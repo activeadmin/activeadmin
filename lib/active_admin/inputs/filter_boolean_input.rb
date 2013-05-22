@@ -11,12 +11,16 @@ module ActiveAdmin
         end
       end
 
-      def label_text
-        super.sub(/_eq\z/, '') + '?'
+      def search_method
+        method.to_s.match(search_conditions) ? method : "#{method}_eq"
       end
 
-      def method
-        super.to_s =~ search_conditions ? super : "#{super}_eq"
+      def checked?
+        object && boolean_checked?(object.send(search_method), checked_value)
+      end
+
+      def input_html_options
+        { :name => "q[#{ search_method }]" }
       end
 
       def search_conditions
