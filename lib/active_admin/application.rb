@@ -201,9 +201,6 @@ module ActiveAdmin
     %w(before_filter skip_before_filter after_filter around_filter).each do |name|
       define_method name do |*args, &block|
         ActiveAdmin::BaseController.send              name, *args, &block
-        ActiveAdmin::Devise::PasswordsController.send name, *args, &block
-        ActiveAdmin::Devise::SessionsController.send  name, *args, &block
-        ActiveAdmin::Devise::UnlocksController.send   name, *args, &block
       end
     end
 

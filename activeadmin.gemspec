@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency("jquery-rails", ">= 1.0.0")
   s.add_dependency("bourbon", ">= 1.0.0")
   s.add_dependency("meta_search", ">= 0.9.2")
-  s.add_dependency("devise", ">= 1.1.2")
   s.add_dependency("formtastic", ">= 2.0.0")
   s.add_dependency("inherited_resources", ">= 1.3.1")
   s.add_dependency("kaminari", ">= 0.13.0")
