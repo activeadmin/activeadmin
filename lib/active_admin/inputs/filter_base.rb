@@ -3,11 +3,13 @@ module ActiveAdmin
     module FilterBase
       include ::Formtastic::Inputs::Base
 
+      extend ::ActiveSupport::Autoload
+      autoload :SearchMethodSelect
+
       def input_wrapping(&block)
-        template.content_tag(:div,
+        template.content_tag :div,
           template.capture(&block),
           wrapper_html_options
-        )
       end
 
       def required?

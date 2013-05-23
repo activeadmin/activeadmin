@@ -130,7 +130,7 @@ module ActiveAdmin
       "ActiveAdmin::Inputs::#{as.to_s.camelize}Input"
     end
 
-    # prevent exceptions in production environment for better performance
+    # Overrides Formtastic's version to include ActiveAdmin::Inputs::*
     def input_class_with_const_defined(as)
       input_class_name = custom_input_class_name(as)
 
@@ -141,7 +141,7 @@ module ActiveAdmin
       elsif Formtastic::Inputs.const_defined?(input_class_name)
         standard_input_class_name(as).constantize
       else
-        raise Formtastic::UnknownInputError
+        raise Formtastic::UnknownInputError, "Unable to find input class #{input_class_name}"
       end
     end
 
