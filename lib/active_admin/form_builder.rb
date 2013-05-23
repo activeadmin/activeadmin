@@ -140,6 +140,9 @@ module ActiveAdmin
         active_admin_input_class_name(as).constantize
       elsif Formtastic::Inputs.const_defined?(input_class_name)
         standard_input_class_name(as).constantize
+      elsif Rails.application.config.cache_classes == true and input_class_name.include?("Filter")
+        # in production this is needed or custom filters like autocomplete filters will crash
+        input_class_by_trying(as)
       else
         raise Formtastic::UnknownInputError
       end
