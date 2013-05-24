@@ -5,7 +5,7 @@ module ActiveAdmin
       include FilterBase::SearchMethodSelect
 
       def to_html
-        if method.to_s.match(metasearch_conditions)
+        if method.to_s.match(search_conditions)
           input_wrapping do
             label_html <<
             builder.text_field(input_name_simple, input_html_options)
