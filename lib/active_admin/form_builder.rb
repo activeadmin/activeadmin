@@ -9,7 +9,7 @@ module ActiveAdmin
     end
 
     def inputs(*args, &block)
-      @inputs_with_block = block_given?
+      @use_form_buffer = block_given?
       form_buffers.last << with_new_form_buffer{ super }
     end
 
@@ -17,7 +17,7 @@ module ActiveAdmin
     # to the form buffer. Else, return it directly.
     def input(method, *args)
       content = with_new_form_buffer{ super }
-      @inputs_with_block ? form_buffers.last << content : content
+      @use_form_buffer ? form_buffers.last << content : content
     end
 
     def cancel_link(url = {:action => "index"}, html_options = {}, li_attrs = {})

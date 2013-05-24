@@ -4,36 +4,36 @@ module ActiveAdmin
     # This form builder defines methods to build filter forms such
     # as the one found in the sidebar of the index page of a standard resource.
     class FormBuilder < ::ActiveAdmin::FormBuilder
+      include ::ActiveAdmin::Filters::FormtasticAddons
+
+      def initialize(*args)
+        @use_form_buffer = true # force ActiveAdmin::FormBuilder to use the form buffer
+        super
+      end
 
       def filter(method, options = {})
-        return "" if method.blank? ||
-                     (options[:as] ||= default_input_type(method)).nil?
-        content = input(method, options)
-        form_buffers.last << content.html_safe if content
+        if method.present? && options[:as] ||= default_input_type(method)
+          input(method, options)
+        end
       end
 
       protected
 
       # Returns the default filter type for a given attribute
       def default_input_type(method, options = {})
-        if (column = column_for(method))
+        if reflection_for(method) || polymorphic_foreign_type?(method)
+          :select
+        elsif column = column_for(method)
           case column.type
           when :date, :datetime
-            return :date_range
+            :date_range
           when :string, :text
-            return :string
-          when :integer
-            return :select if reflection_for(method.to_s.gsub('_id','').to_sym)
-            return :numeric
-          when :float, :decimal
-            return :numeric
+            :string
+          when :integer, :float, :decimal
+            :numeric
           when :boolean
-            return :boolean
+            :boolean
           end
-        end
-
-        if (reflection = reflection_for(method))
-          return :select if reflection.macro == :belongs_to && !reflection.options[:polymorphic]
         end
       end
 
@@ -45,17 +45,6 @@ module ActiveAdmin
         "ActiveAdmin::Inputs::Filter#{as.to_s.camelize}Input"
       end
 
-      # Returns the column for an attribute on the object being searched
-      # if it exists. Otherwise returns nil
-      def column_for(method)
-        @object.base.columns_hash[method.to_s] if @object.base.respond_to?(:columns_hash)
-      end
-
-      # Returns the association reflection for the method if it exists
-      def reflection_for(method)
-        @object.base.reflect_on_association(method) if @object.base.respond_to?(:reflect_on_association)
-      end
-
     end
 
 
@@ -64,26 +53,27 @@ module ActiveAdmin
 
       # Helper method to render a filter form
       def active_admin_filters_form_for(search, filters, options = {})
-        options[:builder] ||= ActiveAdmin::Filters::FormBuilder
-        options[:url] ||= collection_path
-        options[:html] ||= {}
-        options[:html][:method] = :get
-        options[:html][:class] ||= "filter_form"
-        options[:as] = :q
-        clear_link = link_to(I18n.t('active_admin.clear_filters'), "#", :class => "clear_filters_btn")
+        defaults = { :builder => ActiveAdmin::Filters::FormBuilder,
+                     :url     => collection_path,
+                     :html    => {:class  => 'filter_form'} }
+        required = { :html    => {:method => :get},
+                     :as      => :q }
+        options  = defaults.deep_merge(options).deep_merge(required)
+
         form_for search, options do |f|
           filters.group_by{ |o| o[:attribute] }.each do |attribute, array|
-            options      = array.last # grab last-defined `filter` call from DSL
-            if_block     = options[:if]     || proc{ true }
-            unless_block = options[:unless] || proc{ false }
-            if call_method_or_proc_on(self, if_block) && !call_method_or_proc_on(self, unless_block)
-              f.filter options[:attribute], options.except(:attribute, :if, :unless)
+            opts     = array.last # grab last-defined `filter` call from DSL
+            should   = opts.delete(:if)     || proc{ true }
+            shouldnt = opts.delete(:unless) || proc{ false }
+
+            if call_method_or_proc_on(self, should) && !call_method_or_proc_on(self, shouldnt)
+              f.filter attribute, opts
             end
           end
 
           buttons = content_tag :div, :class => "buttons" do
             f.submit(I18n.t('active_admin.filter')) +
-              clear_link +
+              link_to(I18n.t('active_admin.clear_filters'), "#", :class => "clear_filters_btn") +
               hidden_field_tags_for(params, :except => [:q, :page])
           end
 
