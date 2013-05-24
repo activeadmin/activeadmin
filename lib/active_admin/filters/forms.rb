@@ -16,6 +16,7 @@ module ActiveAdmin
 
       # Returns the default filter type for a given attribute
       def default_input_type(method, options = {})
+        return :string if method =~ /_(contains|starts_with|ends_with)\z/
         if (column = column_for(method))
           case column.type
           when :date, :datetime
