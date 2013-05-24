@@ -168,7 +168,7 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
-  describe "belong to" do
+  describe "belongs_to" do
     before do
       @john = User.create :first_name => "John", :last_name => "Doe", :username => "john_doe"
       @jane = User.create :first_name => "Jane", :last_name => "Doe", :username => "jane_doe"
@@ -177,13 +177,9 @@ describe ActiveAdmin::Filters::ViewHelper do
     context "when given as the _id attribute name" do
       let(:body) { filter :author_id }
 
-      it "should not render as an integer" do
-        body.should_not have_tag "input",          :attributes => { :name => "q[author_id_eq]" }
-      end
-      it "should render as belongs to select" do
-        body.should have_tag "select",             :attributes => { :name => "q[author_id_eq]" }
-        body.should have_tag "option", "John Doe", :attributes => { :value => @john.id }
-        body.should have_tag "option", "Jane Doe", :attributes => { :value => @jane.id }
+      it "should generate a numeric filter" do
+        body.should have_tag "label",              :attributes => { :for => "author_id_numeric" }
+        body.should have_tag "input",              :attributes => { :id  => "author_id_numeric" }
       end
     end
 
@@ -191,7 +187,7 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :author }
 
       it "should generate a select" do
-        body.should have_tag "select",             :attributes => { :name => "q[author_id_eq]" }
+        body.should have_tag "select",             :attributes => { :name => "q[author_id_in]" }
       end
       it "should set the default text to 'Any'" do
         body.should have_tag "option", "Any",      :attributes => { :value => "" }
@@ -234,16 +230,18 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "when polymorphic relationship" do
-      let(:body) do
-        search = ActiveAdmin::Comment.search
-        render_filter(search, [{:attribute => :resource}])
-      end
-      it "should not generate any field" do
-        body.should have_tag("form", :attributes => { :method => 'get' })
+      it "should raise an error if a collection isn't provided" do
+        expect {
+          search = ActiveAdmin::Comment.search
+          render_filter(search, [{:attribute => :resource}])
+        }.to raise_error Formtastic::PolymorphicInputWithoutCollectionError
       end
     end
   end # belongs to
 
+  describe "has_and_belongs_to_many" do
+    pending "add HABTM models so this can be mocked out"
+  end
 
   describe "conditional display" do
 
