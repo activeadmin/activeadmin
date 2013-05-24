@@ -294,6 +294,15 @@ describe ActiveAdmin::FormBuilder do
         end
       end
 
+      it "should translate the attribute name" do
+        begin
+          I18n.backend.store_translations :en, :activerecord => { :attributes => { :post => { :title => 'A very nice title' } } }
+          body.should have_tag 'label', 'A very nice title'
+        ensure
+          I18n.backend.reload!
+        end
+      end
+
       it "should use model name when there is no translation for given model in has many new button" do
         body.should have_tag('a', 'Add New Post')
       end
