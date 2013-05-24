@@ -183,7 +183,7 @@ module ActiveAdmin
     def js_for_has_many(association, form_block, template)
       assoc_reflection = object.class.reflect_on_association(association)
       assoc_name       = assoc_reflection.klass.model_name
-      placeholder      = "NEW_#{assoc_name.upcase.split(' ').join('_')}_RECORD"
+      placeholder      = "NEW_#{assoc_name.to_s.upcase.split(' ').join('_')}_RECORD"
       opts = {
         :for         => [association, assoc_reflection.klass.new],
         :class       => "inputs has_many_fields",
