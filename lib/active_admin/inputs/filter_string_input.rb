@@ -16,11 +16,11 @@ module ActiveAdmin
       end
 
       def input_name_simple
-        method.to_s.match(metasearch_conditions) ? method : "#{method}_contains"
+        method.to_s.match(search_conditions) ? method : "#{method}_contains"
       end
 
-      def metasearch_conditions
-        /contains|starts_with|ends_with/
+      def search_conditions
+        /_(contains|starts_with|ends_with)\z/
       end
 
       def label_text
