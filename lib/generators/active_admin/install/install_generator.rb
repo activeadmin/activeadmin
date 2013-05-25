@@ -19,7 +19,7 @@ module ActiveAdmin
 
       def setup_directory
         empty_directory "app/admin"
-        template 'dashboard.rb', 'app/admin/dashboard.rb'
+        copy_file 'dashboard.rb', 'app/admin/dashboard.rb'
         if options[:users].present?
           @user_class = name
           template 'admin_user.rb.erb', "app/admin/#{name.underscore}.rb"
@@ -34,8 +34,9 @@ module ActiveAdmin
         end
       end
 
-      def create_assets
-        generate "active_admin:assets"
+      def add_assets
+        copy_file 'assets/active_admin.js.coffee', 'app/assets/javascripts/active_admin.js.coffee'
+        copy_file 'assets/active_admin.css.scss',  'app/assets/stylesheets/active_admin.css.scss'
       end
 
       def create_migrations
