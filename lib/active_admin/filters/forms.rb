@@ -21,7 +21,9 @@ module ActiveAdmin
 
       # Returns the default filter type for a given attribute
       def default_input_type(method, options = {})
-        if reflection_for(method) || polymorphic_foreign_type?(method)
+        if method =~ /_(contains|starts_with|ends_with)\z/
+          :string
+        elsif reflection_for(method) || polymorphic_foreign_type?(method)
           :select
         elsif column = column_for(method)
           case column.type
