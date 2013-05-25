@@ -13,7 +13,7 @@ module ActiveAdmin
 
       # Add whitespace before label
       def choice_label(choice)
-        " #{super(choice)}"
+        ' ' + super
       end
 
       # Don't wrap in UL tag
