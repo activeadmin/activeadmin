@@ -11,7 +11,7 @@ module ActiveAdmin
       end
 
       def label_text
-        I18n.t('active_admin.search_field', :field => super)
+        translation_per_search_field(super)
       end
 
       def input_name
@@ -20,6 +20,12 @@ module ActiveAdmin
 
       def metasearch_conditions
         /starts_with|ends_with/
+      end
+
+      def translation_per_search_field(field)
+        I18n.t "active_admin.search_fields.#{field.to_s.gsub(' ','_').downcase}",
+          :field   => field,
+          :default => proc{ I18n.t 'active_admin.search_field', :field => field }
       end
     end
   end
