@@ -63,7 +63,13 @@ module ActiveAdmin
             build_batch_actions_selector
             build_scopes
             build_index_list
-          end
+          end if any_table_tools?
+        end
+
+        def any_table_tools?
+          active_admin_config.batch_actions.any? ||
+          active_admin_config.scopes.any? ||
+          active_admin_config.page_presenters[:index].try(:size).try(:>, 1)
         end
 
         def build_batch_actions_selector
