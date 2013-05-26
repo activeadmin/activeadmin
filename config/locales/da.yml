@@ -24,7 +24,6 @@ da:
     has_many_remove: "Fjern"
     filter: "Filtrer"
     clear_filters: "Ryd filtre"
-    search_field: "Søg %{field}"
     contains: "Indeholder"
     starts_with: "Begynder med"
     ends_with: "Slutter med"

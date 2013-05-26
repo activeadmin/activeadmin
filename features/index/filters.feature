@@ -17,7 +17,7 @@ Feature: Index Filtering
      | Created at   | date range |
      | Updated at   | date range |
 
-    When I fill in "Search Title" with "Hello World 2"
+    When I fill in "Title" with "Hello World 2"
     And I press "Filter"
     And I should see 1 posts in the table
     And I should see "Hello World 2" within ".index_table"
@@ -31,7 +31,7 @@ Feature: Index Filtering
     When I am on the index page for posts
     Then I should see "Displaying all 3 Posts"
 
-    When I fill in "Search Title" with "THIS IS NOT AN EXISTING TITLE!!"
+    When I fill in "Title" with "THIS IS NOT AN EXISTING TITLE!!"
     And I press "Filter"
     Then I should not see ".index_table"
     And I should not see a sortable table header
@@ -49,7 +49,7 @@ Feature: Index Filtering
     When I follow "2"
     Then I should see "Displaying Posts 6 - 9 of 9 in total"
 
-    When I fill in "Search Title" with "Hello World 2"
+    When I fill in "Title" with "Hello World 2"
     And I press "Filter"
     And I should see 1 posts in the table
     And I should see "Hello World 2" within ".index_table"

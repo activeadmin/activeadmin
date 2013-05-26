@@ -24,7 +24,6 @@ hr:
     has_many_remove: "Ukloniti"
     filter: "Filtriraj"
     clear_filters: "Očisti filtere"
-    search_field: "Pretraži po %{field}"
     contains: "Sadrži"
     starts_with: "počinje s"
     ends_with: "Završava sa"

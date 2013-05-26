@@ -24,7 +24,6 @@ ja:
     has_many_remove: "削除する"
     filter: "絞り込む"
     clear_filters: "条件を削除する"
-    search_field: "%{field} で絞り込む"
     contains: "含まれています"
     starts_with: "で始まる"
     ends_with: "で終わる"

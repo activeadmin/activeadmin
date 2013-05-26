@@ -47,7 +47,7 @@ Feature: Index Scoping
         filter :title
       end
       """
-    When I fill in "Search Title" with "Non Existing Post"
+    When I fill in "Title" with "Non Existing Post"
     And I press "Filter"
     Then I should see the scope "All" selected
 
@@ -199,7 +199,7 @@ Feature: Index Scoping
       """
     Then I should see the scope "All" selected
     And I should see the scope "All" with the count 2
-    When I fill in "Search Title" with "Monkey"
+    When I fill in "Title" with "Monkey"
     And I press "Filter"
     Then I should see the scope "All" selected
     And I should see the scope "All" with the count 1

@@ -24,7 +24,6 @@ ro:
     has_many_remove: "Scoate"
     filter: "Cautati"
     clear_filters: "Stergeti filtrele"
-    search_field: "Cautati dupa %{field}"
     contains: "Conține"
     starts_with: "începe cu"
     ends_with: "se termină cu"

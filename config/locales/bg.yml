@@ -24,7 +24,6 @@ bg:
     has_many_remove: "Премахване"
     filter: "Филтриране"
     clear_filters: "Изчистване"
-    search_field: "Търсене по %{field}"
     contains: "съдържа"
     starts_with: "Започва с"
     ends_with: "Завършва с"

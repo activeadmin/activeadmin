@@ -24,11 +24,10 @@ module ActiveAdmin
     module FilterBase
       module SearchMethodSelect
 
-        # Active Admin filters are normally named like this: FilterSelectInput.
-        # Formtastic normally removes "Input" off of the end, but it doesn't remove
-        # "Filter". We remove it here so the data type (select/numeric/string) is usable.
-        def type
-          as.sub /\Afilter_/, ''
+        def wrapper_html_options
+          opts = super
+          (opts[:class] ||= '') << ' select_and_search'
+          opts
         end
 
         def to_html
@@ -43,20 +42,12 @@ module ActiveAdmin
           builder.text_field current_filter, input_html_options
         end
 
-        def input_html_options
-          { :size => 10, :id => "#{method}_#{type}" }
-        end
-
         def select_html
-          template.select_tag '', select_options, select_html_options
+          template.select_tag '', select_options
         end
 
         def select_options
           template.options_for_select filters, current_filter
-        end
-
-        def select_html_options
-          { :onchange => "document.getElementById('#{method}_#{type}').name = 'q[' + this.value + ']';" }
         end
 
         # Returns the filter currently in use, or the first one available

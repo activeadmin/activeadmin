@@ -24,7 +24,6 @@ ru:
     has_many_remove: "Удалить"
     filter: "Фильтровать"
     clear_filters: "Очистить"
-    search_field: "Искать по %{field}"
     contains: "Содержит"
     starts_with: "Начинается с"
     ends_with: "Заканчивается"

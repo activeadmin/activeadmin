@@ -24,7 +24,6 @@ pl:
     has_many_remove: "Usuń"
     filter: "Filtruj"
     clear_filters: "Wyczyść Filtry"
-    search_field: "Szukaj %{field}"
     contains: "Zawiera"
     starts_with: "Zaczyna się"
     ends_with: "Kończy się"
