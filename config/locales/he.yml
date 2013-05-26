@@ -24,7 +24,6 @@ he:
     has_many_remove: "להסיר"
     filter: "סינון"
     clear_filters: "איפוס שדות"
-    search_field: "חיפוש %{field}"
     contains: "מכיל"
     starts_with: "מתחיל עם"
     ends_with: "מסתיים ב"

@@ -24,7 +24,6 @@ es:
     has_many_remove: "Quitar"
     filter: "Filtrar"
     clear_filters: "Quitar Filtros"
-    search_field: "Buscar %{field}"
     contains: "Contiene"
     starts_with: "Empieza con"
     ends_with: "Termina con"

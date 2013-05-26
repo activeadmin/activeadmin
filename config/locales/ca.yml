@@ -23,7 +23,6 @@ ca:
     has_many_remove: "Treure"
     filter: "Filtrar"
     clear_filters: "Treure filtres"
-    search_field: "Cercar %{field}"
     contains: "Conté"
     starts_with: "Comença amb"
     ends_with: "Acaba amb"

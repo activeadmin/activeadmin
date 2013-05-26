@@ -24,7 +24,6 @@
     has_many_remove: "清除"
     filter: "过滤"
     clear_filters: "清除条件"
-    search_field: "查找%{field}"
     contains: "包含"
     starts_with: "开头"
     ends_with: "完与"

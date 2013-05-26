@@ -24,7 +24,6 @@ tr:
     has_many_remove: "Çıkarmak"
     filter: "Filtrele"
     clear_filters: "Filtreleri Temizle"
-    search_field: "%{field} alanında ara"
     contains: "içerir"
     starts_with: "ile başlar"
     ends_with: "ile biter"

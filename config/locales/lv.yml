@@ -24,7 +24,6 @@ lv:
     has_many_remove: "Noņemt"
     filter: "Filtrēt"
     clear_filters: "Novākt filtrus"
-    search_field: "Meklēt '%{field}' laukā"
     contains: "Satur"
     starts_with: "Sākas ar"
     ends_with: "Beidzas ar"

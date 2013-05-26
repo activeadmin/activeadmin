@@ -241,7 +241,7 @@ form.filter_form {
     margin-bottom: 10px;
     clear: both;
 
-    &.filter_numeric {
+    &.select_and_search {
       input[type=text] {
         margin-left: $filter-field-seperator-width + 4;
         width: $side-by-side-filter-input-width;

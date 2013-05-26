@@ -24,7 +24,6 @@ vi:
     has_many_remove: "Hủy bỏ"
     filter: "Lọc"
     clear_filters: "Xóa dữ liệu lọc"
-    search_field: "Tìm kiếm %{field}"
     contains: "Thông tin"
     starts_with: "Bắt đầu với"
     ends_with: "Kết thúc với việc"

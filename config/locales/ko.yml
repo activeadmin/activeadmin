@@ -22,7 +22,6 @@ ko:
     has_many_remove: "삭제"
     filter: "필터"
     clear_filters: "필터 초기화"
-    search_field: "%{field} 검색"
     contains: "포함"
     starts_with: "로 시작"
     ends_with: "로 종료"

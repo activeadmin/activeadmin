@@ -75,14 +75,14 @@ describe ActiveAdmin::Filters::ViewHelper do
                                           :name => /q\[(title_starts_with|title_ends_with|title_contains)\]/ })
     end
     
-    it "should label a text field with search" do
-      body.should have_tag('label', 'Search Title')
+    it "should have a proper label" do
+      body.should have_tag('label', 'Title')
     end
 
     it "should translate the label for text field" do
       begin
         I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => "Name" } } })
-        body.should have_tag('label', 'Search Name')
+        body.should have_tag('label', 'Name')
       ensure
         I18n.backend.reload!
       end
@@ -92,11 +92,12 @@ describe ActiveAdmin::Filters::ViewHelper do
 
   end
 
-  describe "string attribute with sub filters", :subfilters => true do
-    let(:body) { filter :title_contains, :as => :string }
+  describe "string attribute with sub filters" do
+    let(:body) { filter :title_contains }
     
     it "should generate a search field for a string attribute with query contains" do
       body.should have_tag("input", :attributes => { :name => "q[title_contains]"})
+      body.should have_tag('label', 'Title contains')
     end
 
     it "should NOT generate a select option for contains" do
@@ -104,7 +105,7 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "using starts_with and as" do
-      let(:body) { filter :title_starts_with, :as => :string }
+      let(:body) { filter :title_starts_with }
 
       it "should generate a search field for a string attribute with query starts_with" do
         body.should have_tag("input", :attributes => { :name => "q[title_starts_with]" })
@@ -112,7 +113,7 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "using ends_with and as" do
-      let(:body) { filter :title_ends_with, :as => :string }
+      let(:body) { filter :title_ends_with }
 
       it "should generate a search field for a string attribute with query starts_with" do
         body.should have_tag("input", :attributes => { :name => "q[title_ends_with]" })
@@ -135,8 +136,8 @@ describe ActiveAdmin::Filters::ViewHelper do
       body.should have_tag("input", :attributes => { :name => "q[body_contains]"})
     end
 
-    it "should label a text field with search" do
-      body.should have_tag('label', 'Search Body')
+    it "should have a proper label" do
+      body.should have_tag('label', 'Body')
     end
   end
 
@@ -214,8 +215,9 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :author_id }
 
       it "should generate a numeric filter" do
-        body.should have_tag "label",              :attributes => { :for => "author_id_numeric" }
-        body.should have_tag "input",              :attributes => { :id  => "author_id_numeric" }
+        body.should have_tag 'label', 'Author' # really this should be Author ID :/
+        body.should have_tag 'option', :attributes => { :value => 'author_id_lt' }
+        body.should have_tag 'input',  :attributes => { :id => 'q_author_id', :name => 'q[author_id_eq]'}
       end
     end
 
