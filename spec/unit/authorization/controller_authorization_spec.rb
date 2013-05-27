@@ -37,8 +37,8 @@ describe Admin::PostsController, "Controller Authorization", :type => :controlle
   it "should redirect when the user isn't authorized" do
     authorization.should_receive(:authorized?).with(Auth::READ, Post).and_return false
     get :index
-    response.body.should eq '<html><body>You are being <a href="http://test.host/">redirected</a>.</body></html>'
-    response.should redirect_to '/'
+    response.body.should eq '<html><body>You are being <a href="http://test.host/admin">redirected</a>.</body></html>'
+    response.should redirect_to '/admin'
   end
 
 end
