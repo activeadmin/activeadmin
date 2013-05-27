@@ -24,7 +24,6 @@ nl:
     has_many_remove: "Verwijderen"
     filter: "Filter"
     clear_filters: "Maak Filters Ongedaan"
-    search_field: "Zoek %{field}"
     contains: "Bevat"
     starts_with: "Begint met"
     ends_with: "Eindigt op"

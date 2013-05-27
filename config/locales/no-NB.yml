@@ -22,7 +22,6 @@
     has_many_remove: "Fjern"
     filter: "Filter"
     clear_filters: "Fjern filter"
-    search_field: "Søk %{field}"
     contains: "Inneholder"
     starts_with: "Starter med"
     ends_with: "Slutter med"

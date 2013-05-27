@@ -24,7 +24,6 @@ hu:
     has_many_remove: "Eltávolít"
     filter: "Szűrés"
     clear_filters: "Feltételek törlése"
-    search_field: "Keresés %{field} alapján"
     equal_to: "Pontosan"
     greater_than: "Nagyobb, mint"
     less_than: "Kisebb, mint"

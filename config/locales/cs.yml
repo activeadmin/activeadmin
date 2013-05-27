@@ -24,7 +24,6 @@ cs:
     has_many_remove: "Odstranit"
     filter: "Filtrovat"
     clear_filters: "Vyčistit filtry"
-    search_field: "Prohledat %{field}"
     contains: "Obsahuje"
     starts_with: "Začíná se"
     ends_with: "Končí"

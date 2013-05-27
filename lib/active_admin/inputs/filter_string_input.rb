@@ -21,10 +21,6 @@ module ActiveAdmin
         /_(contains|starts_with|ends_with)\z/
       end
 
-      def label_text
-        I18n.t('active_admin.search_field', :field => super)
-      end
-
       def default_filters
         [ [I18n.t('active_admin.contains'),    'contains'],
           [I18n.t('active_admin.starts_with'), 'starts_with'],
