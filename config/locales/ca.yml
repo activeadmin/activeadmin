@@ -78,8 +78,17 @@ ca:
       change_password:
         title: "Canvieu la contrasenya"
         submit: "Canviar la contrasenya"
+      unlock:
+        title: "Reenvia instruccions per a desbloquejar"
+        submit: "Reenvia instruccions per a desbloquejar"
       links:
         sign_in: "Registrar"
         forgot_your_password: "Heu perdut la contrasenya?"
         sign_in_with_omniauth_provider: "Connecta't amb %{provider}"
-
+    access_denied:
+      message: "No esta autoritzat a realitzar aquesta acció."
+    index_list:
+      table: "Taula"
+      block: "Llista"
+      grid: "Graella"
+      blog: "Bloc"
