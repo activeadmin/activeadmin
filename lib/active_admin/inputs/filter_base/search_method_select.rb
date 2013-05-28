@@ -1,28 +1,32 @@
 # This is a common set of Formtastic overrides needed to build a filter form
 # that lets you select from a set of search methods for a given attribute.
 #
-# For example, FilterNumericInput uses this to let users choose from ==, >, and <.
-#
-# The `default_filters` method must be defined in your input class for this module to work.
-# This method must return a nested array, with each child array's first element being a
-# translation and the second being a search method that Metasearch recognizes.
-# For example:
+# Your class must declare available filters for this module to work.
+# Those filters must be recognizable by Metasearch. For example:
 #
 #   class FilterNumericInput < ::Formtastic::Inputs::NumberInput
 #     include FilterBase
 #     include FilterBase::SearchMethodSelect
 #
-#     def default_filters
-#       [ [I18n.t('active_admin.equal_to'),     'eq'],
-#         [I18n.t('active_admin.greater_than'), 'gt'],
-#         [I18n.t('active_admin.less_than'),    'lt'] ]
-#     end
+#     filter :equals, :greater_than, :less_than
 #   end
 #
 module ActiveAdmin
   module Inputs
     module FilterBase
       module SearchMethodSelect
+
+        def self.included(base)
+          base.extend ClassMethods
+        end
+
+        module ClassMethods
+          attr_reader :filters
+
+          def filter(*filters)
+            (@filters ||= []).push *filters
+          end
+        end
 
         def wrapper_html_options
           opts = super
@@ -43,22 +47,23 @@ module ActiveAdmin
         end
 
         def select_html
-          template.select_tag '', select_options
+          template.select_tag '', template.options_for_select(filter_options, current_filter)
         end
 
-        def select_options
-          template.options_for_select filters, current_filter
-        end
-
-        # Returns the filter currently in use, or the first one available
-        def current_filter
-          ( filters.detect{ |(_,query)| @object.send query } || filters.first )[1]
-        end
-
-        # TODO: document what can be done with `options[:filters]`
         def filters
-          (options[:filters] || default_filters).collect do |(translation,scope)|
-            [translation, "#{method}_#{scope}"]
+          options[:filters] || self.class.filters
+        end
+
+        def current_filter
+          @current_filter ||= begin
+            methods = filters.map{ |f| "#{method}_#{f}" }
+            methods.detect{ |m| @object.send m } || methods.first
+          end
+        end
+
+        def filter_options
+          filters.collect do |filter|
+            [I18n.t("active_admin.filters.queries.#{filter}"), "#{method}_#{filter}"]
           end
         end
 
