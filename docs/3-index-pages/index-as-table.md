@@ -74,6 +74,9 @@ Active Admin a hint for how to sort the table.
 If a column is defined using a block, you must pass the key to turn on sorting. The key
 is the attribute which gets used to sort objects using Active Record.
 
+By default, this is the column on the resource's table that the attribute corresponds to.
+Otherwise, any attribute that the resource collection responds to can be used.
+
     index do
       column "Title", :sortable => :title do |post|
         link_to post.title, admin_post_path(post)
