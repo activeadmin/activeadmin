@@ -193,6 +193,9 @@ module ActiveAdmin
         #   # Add default links.
         #   actions
         #
+        #   # Customize the column name
+        #   actions :name => "Operations"
+        #
         #   # Append some actions onto the end of the default actions.
         #   actions do |admin_user|
         #     link_to 'Grant Admin', grant_admin_admin_user_path(admin_user)
