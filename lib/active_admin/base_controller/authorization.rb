@@ -134,7 +134,7 @@ module ActiveAdmin
           format.html do
             flash[:error] = error_message
 
-            if request.headers.keys.include?("HTTP_REFERER")
+            if request.headers.key?("HTTP_REFERER")
               redirect_to :back
             else
               controller, action = active_admin_namespace.root_to.split("#")
