@@ -48,16 +48,20 @@ Make sure you have a recent version of bundler:
 
     $> gem install bundler
 
-Then install the development the development dependencies:
+Then install the development dependencies:
 
     $> bundle install
 
+Active Admin uses Appraisal to test against multiple versions of Rails.
+
+    $> rake appraisal:install
+
 Now you should be able to run the entire suite using:
 
-    $> rake test
+    $> rake appraisal test
 
 `rake test` runs the unit specs, integration specs and cucumber scenarios. The
-test suite will generate a rails application in `spec/rails` to run the tests
+test suite will generate rails applications in `test-rails` to run the tests
 against.
 
 
@@ -103,9 +107,9 @@ Or to migrate the database:
 Once you've implemented your code, got the tests passing, previewed it in a
 browser, you're ready to test it against multiple versions of Rails.
 
-    $> rake test:major_supported_rails
+    $> rake appraisal test
 
-This command runs the cukes and specs against a couple of major versions of
+This command runs the cukes and specs against the most recent major versions of
 Rails.  We will run this command when we review your pull request, if this
 rake task isn't passing, the pull request will not be merged in.
 

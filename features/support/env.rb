@@ -5,28 +5,8 @@
 # files.
 
 ENV["RAILS_ENV"] ||= "cucumber"
-ENV['BUNDLE_GEMFILE'] = File.expand_path('../../../Gemfile', __FILE__)
-require "rubygems"
-require "bundler"
-Bundler.setup
 
-require File.expand_path('../../../spec/support/detect_rails_version', __FILE__)
-ENV["RAILS"] = detect_rails_version
-
-ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{ENV["RAILS"]}", __FILE__)
-
-
-# Create the test app if it doesn't exists
-unless File.exists?(ENV['RAILS_ROOT'])
-  system 'rake setup'
-end
-
-# Ensure the Active Admin load path is happy
-require 'rails'
-require 'active_admin'
-ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
-
-require ENV['RAILS_ROOT'] + '/config/environment'
+require File.expand_path('../../../spec/support/rails_setup.rb', __FILE__)
 
 # Setup autoloading of ActiveAdmin and the load path
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))

@@ -1,4 +1,4 @@
-require 'active_support/core_ext/class/attribute' # needed for Ransack
+require 'active_support/core_ext' # needed for Ransack
 require 'ransack'
 require 'ransack_ext'
 require 'bourbon'

@@ -3,9 +3,9 @@ script: bundle exec rake test
 rvm:
   - 1.9.3
   - 2.0.0
-env:
-  - RAILS=3.2.13
-  - RAILS=4.0.0.rc2
+gemfile:
+  - gemfiles/rails_3_2.gemfile
+  - gemfiles/rails_4_0.gemfile
 matrix:
   allow_failures:
-    - env: RAILS=4.0.0.rc2
+    - gemfile: gemfiles/rails_4_0.gemfile
