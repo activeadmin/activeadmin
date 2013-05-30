@@ -24,9 +24,9 @@ describe ActiveAdmin::BatchActions::BatchActionPopover do
 
     its(:tag_name) { should eql("ul") }
 
-    its(:content){ should include("<li><a href=\"#\" class=\"batch_action\" data-action=\"action_1\">Action 1 Selected</a></li>") }
-    its(:content){ should include("<li><a href=\"#\" class=\"batch_action\" data-action=\"action_2\">Action 2 Selected</a></li>") }
-    its(:content){ should include("<li><a href=\"#\" class=\"batch_action\" data-action=\"action_3\">Action 3 Selected</a></li>") }
+    its(:content){ should include("class=\"batch_action\" data-action=\"action_1\"") }
+    its(:content){ should include("class=\"batch_action\" data-action=\"action_2\"") }
+    its(:content){ should include("class=\"batch_action\" data-action=\"action_3\"") }
 
   end
 
