@@ -71,12 +71,12 @@ describe ActiveAdmin::FormBuilder do
 
   context "when polymorphic relationship" do
     it "should raise error" do
-      lambda {
+      expect {
         comment = ActiveAdmin::Comment.new
         build_form({:url => "admins/comments"}, comment) do |f|
           f.inputs :resource
         end
-      }.should raise_error(Formtastic::PolymorphicInputWithoutCollectionError)
+      }.to raise_error(Formtastic::PolymorphicInputWithoutCollectionError)
     end
   end
 
@@ -340,7 +340,7 @@ describe ActiveAdmin::FormBuilder do
 
       it "should add a custom header" do
         body.should have_tag('h3', 'Post')
-      end 
+      end
 
     end
 
@@ -356,13 +356,13 @@ describe ActiveAdmin::FormBuilder do
 
       it "should not add a header" do
         body.should_not have_tag('h3', 'Post')
-      end 
+      end
 
       it "should not add link to new nested records" do
         body.should_not have_tag('a', 'Add New Post')
-      end 
+      end
 
-    end  
+    end
 
     describe "with custom heading" do
       let :body do
@@ -376,9 +376,9 @@ describe ActiveAdmin::FormBuilder do
 
       it "should add a custom header" do
         body.should have_tag('h3', 'Test heading')
-      end       
+      end
 
-    end  
+    end
 
     describe "with allow destroy" do
       context "with an existing post" do
