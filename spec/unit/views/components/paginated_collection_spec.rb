@@ -41,9 +41,9 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should raise error if collection has no pagination scope" do
-        lambda {
+        expect {
           paginated_collection([Post.new, Post.new])
-        }.should raise_error(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
+        }.to raise_error(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
       end
     end
 
