@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "jasmine"
   s.add_development_dependency "jslint_on_rails", "~> 1.1.1"
   s.add_development_dependency "launchy"
-  s.add_development_dependency "rspec-rails", "~> 2.9.0"
+  s.add_development_dependency "rspec-rails", "~> 2.13"
   s.add_development_dependency "shoulda-matchers"
   s.add_development_dependency "sqlite3"
 end

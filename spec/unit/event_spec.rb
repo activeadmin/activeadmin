@@ -20,9 +20,9 @@ describe ActiveAdmin::EventDispatcher do
 
   it "should call the dispatch block with no arguments" do
     dispatcher.subscribe(test_event){ raise StandardError, "From Event Handler" }
-    lambda {
+    expect {
       dispatcher.dispatch(test_event)
-    }.should raise_error(StandardError, "From Event Handler")
+    }.to raise_error(StandardError, "From Event Handler")
   end
 
   it "should call the dispatch block with one argument" do
