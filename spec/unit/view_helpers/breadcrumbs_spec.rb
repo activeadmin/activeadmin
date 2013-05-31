@@ -79,7 +79,7 @@ describe "Breadcrumbs" do
 
       context "when Post.find(1) does exist" do
         before do
-          Post.stub!(:find_by_id).and_return{ mock(:display_name => "Hello World") }
+          Post.stub!(:where).and_return{ [mock(:display_name => "Hello World")] }
         end
         it "should have a link to /admin/posts/1 using display name" do
           trail[2][:name].should == "Hello World"
@@ -112,7 +112,7 @@ describe "Breadcrumbs" do
 
       context "when Post.find(4e24d6249ccf967313000000) does exist" do
         before do
-          Post.stub!(:find_by_id).with('4e24d6249ccf967313000000').and_return{ mock(:display_name => "Hello World") }
+          Post.stub!(:where).with('id' => '4e24d6249ccf967313000000').and_return{ [mock(:display_name => "Hello World")] }
         end
         it "should have a link to /admin/posts/4e24d6249ccf967313000000 using display name" do
           trail[2][:name].should == "Hello World"
