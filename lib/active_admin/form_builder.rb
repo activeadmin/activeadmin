@@ -148,14 +148,12 @@ module ActiveAdmin
     # use auto-loading in development environment
     def input_class_by_trying(as)
       begin
+        custom_input_class_name(as).constantize
+      rescue NameError
         begin
-          custom_input_class_name(as).constantize
+          active_admin_input_class_name(as).constantize
         rescue NameError
-          begin
-            active_admin_input_class_name(as).constantize
-          rescue NameError
-            standard_input_class_name(as).constantize
-          end
+          standard_input_class_name(as).constantize
         end
       end
     rescue NameError
