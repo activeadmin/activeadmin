@@ -22,11 +22,17 @@ hu:
     has_many_new: "Új %{model} hozzáadása"
     has_many_delete: "Törlés"
     has_many_remove: "Eltávolít"
-    filter: "Szűrés"
-    clear_filters: "Feltételek törlése"
-    equal_to: "Pontosan"
-    greater_than: "Nagyobb, mint"
-    less_than: "Kisebb, mint"
+    filters:
+      buttons:
+        filter: "Szűrés"
+        clear: "Feltételek törlése"
+      queries:
+        contains: "Tartalmazza"
+        equals: "Pontosan"
+        starts_with: "kezdődik"
+        ends_with: "végződik"
+        greater_than: "Nagyobb, mint"
+        less_than: "Kisebb, mint"
     main_content: "Kérem, implementálja a %{model}#main_content metódust a tartalom megjelenítéséhez."
     logout: "Kilépés"
     powered_by: "Powered by %{active_admin} %{version}"

@@ -22,14 +22,17 @@ lt:
     has_many_new: 'Pridėti naują %{model}'
     has_many_delete: 'Šalinti'
     has_many_remove: 'Pašalinti'
-    filter: 'Filtras'
-    clear_filters: 'Išvalyti filtrus'
-    contains: "Sudėtyje yra"
-    starts_with: "Prasideda nuo"
-    ends_with: "Baigiasi"
-    equal_to: 'lygus'
-    greater_than: 'didesnis nei'
-    less_than: 'mažiau nei'
+    filters:
+      buttons:
+        filter: 'Filtras'
+        clear: 'Išvalyti filtrus'
+      queries:
+        contains: "Sudėtyje yra"
+        equals: 'lygus'
+        starts_with: "Prasideda nuo"
+        ends_with: "Baigiasi"
+        greater_than: 'didesnis nei'
+        less_than: 'mažiau nei'
     main_content: 'Prašome realizuoti %{model}#main_content turiniui vaizduoti.'
     logout: 'Išeiti'
     powered_by: "Powered by %{active_admin} %{version}"
