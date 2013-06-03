@@ -13,6 +13,11 @@ module ActiveAdmin
 
     before_filter :only_render_implemented_actions
     before_filter :authenticate_active_admin_user
+    before_filter :run_delayed_code, :only => :index
+
+    def run_delayed_code
+      active_admin_config.dsl.delayed_run!
+    end
 
     class << self
       # Ensure that this method is available for the DSL
