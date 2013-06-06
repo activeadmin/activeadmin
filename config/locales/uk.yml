@@ -1,0 +1,99 @@
+uk:
+  active_admin:
+    dashboard: "Панель керування"
+    dashboard_welcome:
+      welcome: "Ласкаво просимо в Active Admin. Це стандартна сторінка керування сайтом."
+      call_to_action: "Щоб додати сюди що-небудь загляніть в 'app/admin/dashboard.rb'"
+    view: "Переглянути"
+    edit: "Змінити"
+    delete: "Видалити"
+    delete_confirmation: "Ви впевнені, що хочете це видалити?"
+    new_model: "Створити %{model}"
+    create_model: "Створити %{model}"
+    edit_model: "Змінити %{model}"
+    update_model: "Змінити %{model}"
+    delete_model: "Видалити %{model}"
+    details: "%{model} детальніше"
+    cancel: "Відміна"
+    empty: "Пусто"
+    previous: "Поперед."
+    next: "Наст."
+    download: "Завантаження:"
+    has_many_new: "Додати %{model}"
+    has_many_delete: "Прибрати"
+    has_many_remove: "Видалити"
+    filter: "Фільтрувати"
+    clear_filters: "Очистити"
+    contains: "Містить"
+    starts_with: "Починається з"
+    ends_with: "Закінчується"
+    equal_to: "="
+    greater_than: "більше"
+    less_than: "менше"
+    main_content: "Створіть %{model}#main_content для відображення вмісту."
+    logout: "Вийти"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Фільтри"
+    pagination:
+      empty: "%{model} не знайдено"
+      one: "Результат: <b>1</b> %{model}"
+      one_page: "Результат: <b>%{n}</b> %{model}"
+      multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> з <b>%{total}</b>"
+      entry:
+        one: "запис"
+        other: "записів"
+    any: "Будь-який"
+    blank_slate:
+      content: "Покищо немає %{resource_name}."
+      link: "Створити"
+    batch_actions:
+      button_label: "Групові операції"
+      delete_confirmation: "Ви впевнені, що хочете видалити %{plural_model}? Ви не зможете це відмінити."
+      succesfully_destroyed:
+        one: "Успішно видалено: 1 %{model}"
+        few: "Успішно видалено: %{count} %{plural_model}"
+        many: "Успішно видалено: %{count} %{plural_model}"        
+        other: "Успішно видалено: %{count} %{plural_model}"
+      selection_toggle_explanation: "(Відмінити все / Зняти виділення)"
+      link: "Створити"
+      action_label: "%{title} вибране"
+      labels:
+        destroy: "Видалити"
+    comments:
+      resource_type: "Тип ресурса"
+      author_type: "Тип автора"
+      body: "Текст"
+      author: "Автор"
+      title: "Коментар"
+      add: "Додати Коментар"
+      resource: "Ресурс"
+      no_comments_yet: "Покищо немає коментарів."
+      title_content: "Коментарі (%{count})"
+      errors:
+        empty_text: "Коментар не збережено, текст не повинен бути пустим."
+    devise:
+      login:
+        title: "Вхід"
+        remember_me: "Запам'ятати мене"
+        submit: "Увійти"
+      reset_password:
+        title: "Забули пароль?"
+        submit: "Скинути пароль"
+      change_password:
+        title: "Зміна паролю"
+        submit: "Змінити пароль"
+      unlock:
+        title: "Відправити повторно інструкції з розблокування"
+        submit: "Відправити повторно інструкції з розблокування"
+      links:
+        sign_in: "Увійти"
+        forgot_your_password: "Забули пароль?"
+        sign_in_with_omniauth_provider: "Увійти з допомогою %{provider}"
+    access_denied:
+      message: "Ви не авторизовані для виконання даної дії."
+    index_list:
+      table: "Таблиця"
+      block: "Список"
+      grid: "Сітка"
+      blog: "Блог"
