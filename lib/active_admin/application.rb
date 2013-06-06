@@ -44,6 +44,9 @@ module ActiveAdmin
     # Set the site title image displayed in the main layout (has precendence over :site_title)
     inheritable_setting :site_title_image, ""
 
+    # Set an optional Constraint object to be used when creating routes for this namespace
+    inheritable_setting :routing_constraint, nil
+
     # The view factory to use to generate all the view classes. Take
     # a look at ActiveAdmin::ViewFactory
     inheritable_setting :view_factory, ActiveAdmin::ViewFactory.new
