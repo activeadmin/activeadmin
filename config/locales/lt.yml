@@ -52,6 +52,7 @@ lt:
       delete_confirmation: 'Ar jūs tikrai norite pašalinti šiuos %{plural_model}? Pašalinus negalėsite atstatyti?'
       succesfully_destroyed:
         one: 'Sėkmingai pašalintas 1 %{model}'
+        few: 'Sėkmingai pašalinti %{count} %{plural_model}'
         other: 'Sėkmingai pašalinti %{count} %{plural_model}'
       selection_toggle_explanation: '(Žymėti)'
       link: 'Sukurti'
