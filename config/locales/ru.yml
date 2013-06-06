@@ -52,6 +52,8 @@ ru:
       delete_confirmation: "Вы уверены, что хотите удалить %{plural_model}? Вы не сможете это отменить."
       succesfully_destroyed:
         one: "Успешно удалено: 1 %{model}"
+        few: "Успешно удалено: %{count} %{plural_model}"
+        many: "Успешно удалено: %{count} %{plural_model}"
         other: "Успешно удалено: %{count} %{plural_model}"
       selection_toggle_explanation: "(Отметить всё / Снять выделение)"
       link: "Создать"

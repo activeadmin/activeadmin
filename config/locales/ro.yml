@@ -52,6 +52,7 @@ ro:
       delete_confirmation: "Sunteti sigur ca doriti sa stergeti aceste %{plural_model}?"
       succesfully_destroyed:
         one: "1 %{model} sters"
+        few: "%{count} %{plural_model} sterse"
         other: "%{count} %{plural_model} sterse"
       selection_toggle_explanation: "(Modifica Selectia)"
       link: "Creati unul"

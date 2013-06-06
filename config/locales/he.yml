@@ -52,6 +52,8 @@ he:
       delete_confirmation: "האם הנך בטוח שאתה רוצה למרוח את %{plural_model}? לא תוכל לבטל את המחיקה."
       succesfully_destroyed:
         one: "1 %{model} נמחק בהצלחה"
+        few: "%{count} %{plural_model} נמחק בהצלחה"
+        many: "%{count} %{plural_model} נמחק בהצלחה"
         other: "%{count} %{plural_model} נמחק בהצלחה"
       selection_toggle_explanation: "(שינוי בחירה)"
       link: "צור"
