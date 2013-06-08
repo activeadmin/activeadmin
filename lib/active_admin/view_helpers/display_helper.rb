@@ -5,7 +5,7 @@ module ActiveAdmin
       # Attempts to call any known display name methods on the resource.
       # See the setting in `application.rb` for the list of methods and their priority.
       def display_name(resource)
-        resource.send display_name_method_for resource
+        resource.send display_name_method_for resource if resource
       end
 
       # Looks up and caches the first available display name method.

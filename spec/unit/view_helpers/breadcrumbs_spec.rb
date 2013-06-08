@@ -79,7 +79,7 @@ describe "Breadcrumbs" do
 
       context "when Post.find(1) does exist" do
         before do
-          Post.stub!(:find_by_id).and_return{ mock(:display_name => "Hello World") }
+          Post.stub(:where).with('id' => '1').and_return{ [ mock(:display_name => 'Hello World') ] }
         end
         it "should have a link to /admin/posts/1 using display name" do
           trail[2][:name].should == "Hello World"
@@ -112,10 +112,10 @@ describe "Breadcrumbs" do
 
       context "when Post.find(4e24d6249ccf967313000000) does exist" do
         before do
-          Post.stub!(:find_by_id).with('4e24d6249ccf967313000000').and_return{ mock(:display_name => "Hello World") }
+          Post.stub(:where).with('id' => '4e24d6249ccf967313000000').and_return{ [ mock(:display_name => 'Hello :)') ] }
         end
         it "should have a link to /admin/posts/4e24d6249ccf967313000000 using display name" do
-          trail[2][:name].should == "Hello World"
+          trail[2][:name].should == "Hello :)"
           trail[2][:path].should == "/admin/posts/4e24d6249ccf967313000000"
         end
       end
@@ -142,6 +142,18 @@ describe "Breadcrumbs" do
       it "should have a link to /admin/posts/1/comments" do
         trail[3][:name].should == "Comments"
         trail[3][:path].should == "/admin/posts/1/comments"
+      end
+    end
+
+    context 'when using a nonstandard primary key' do
+      let(:path) { '/admin/posts/55555/comments' }
+      before do
+        Post.stub(:primary_key).and_return 'something_else'
+        Post.stub(:where).with('something_else' => '55555').and_return{ [ mock(:display_name => 'Hello Hello!') ] }
+      end
+      it 'should link to /admin/posts/55555 using display name' do
+        trail[2][:name].should == 'Hello Hello!'
+        trail[2][:path].should == '/admin/posts/55555'
       end
     end
 
