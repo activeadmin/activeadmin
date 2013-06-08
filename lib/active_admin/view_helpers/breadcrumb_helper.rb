@@ -12,8 +12,8 @@ module ActiveAdmin
           # If name is nil, look up the model translation, using `titlecase` as the backup.
           if part =~ /^\d|^[a-f0-9]{24}$/ && parent = parts[index-1]
             config = active_admin_config.belongs_to_config.try(:target) || active_admin_config
-            obj    = config.resource_class.find_by_id(part) if config
-            name   = display_name(obj)                      if obj
+            obj    = config.resource_class.where(config.resource_class.primary_key => part).first if config
+            name   = display_name(obj)  if obj
           end
           name ||= I18n.t "activerecord.models.#{part.singularize}", :count => 1.1, :default => part.titlecase
 
