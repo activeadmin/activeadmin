@@ -17,11 +17,6 @@ To create a user model with a different name, pass it as the last parameter:
 
     $> rails generate active_admin:install User
 
-You could also skip the creation of this user model. But note that in this case, you
- need to make additional changes in `config/intializers/active_admin.rb`.
-
-    $> rails generate active_admin:install --skip-users
-
 After the generator finishes, you need to migrate the database:
 
     $> rake db:migrate

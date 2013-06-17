@@ -71,7 +71,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 # we need this routing path, named "logout_path", for testing
 route %q{
   devise_scope :user do
-    match '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
+    delete '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
   end
 }
 

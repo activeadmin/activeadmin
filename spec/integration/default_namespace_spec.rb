@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ActiveAdmin::Application do
 
-  include Rails.application.routes.url_helpers
+  include ActiveAdmin::Engine.routes.url_helpers
 
   [false, nil].each do |value|
 

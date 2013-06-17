@@ -5,13 +5,6 @@ module ActiveAdmin
     end
 
     # Creates all the necessary routes for the ActiveAdmin configurations
-    #
-    # Use this within the routes.rb file:
-    #
-    #   Application.routes.draw do |map|
-    #     ActiveAdmin.routes(self)
-    #   end
-    #
     def apply(router)
       define_basic_routes router
       define_resource_routes router
@@ -34,9 +27,10 @@ module ActiveAdmin
 
     def root_and_dashboard_routes(namespace)
       Proc.new do
-        root :to => (namespace.root_to || "dashboard#index")
+        get '/', :to => namespace.root_to
+
         if ActiveAdmin::Dashboards.built?
-          match '/dashboard' => 'dashboard#index', :as => 'dashboard'
+          get 'dashboard' => 'admin/dashboard#index', :as => 'dashboard'
         end
       end
     end

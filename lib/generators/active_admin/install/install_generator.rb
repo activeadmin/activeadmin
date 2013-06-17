@@ -26,14 +26,6 @@ module ActiveAdmin
         end
       end
 
-      def setup_routes
-        if ARGV.include? "--skip-users"
-          route "ActiveAdmin.routes(self)"
-        else # Ensure Active Admin routes occur after Devise routes so that Devise has higher priority
-          inject_into_file "config/routes.rb", "\n  ActiveAdmin.routes(self)", :after => /devise_for.*/
-        end
-      end
-
       def create_assets
         generate "active_admin:assets"
       end

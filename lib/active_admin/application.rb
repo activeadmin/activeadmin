@@ -69,7 +69,7 @@ module ActiveAdmin
     inheritable_setting :filters, true
 
     # The namespace root.
-    inheritable_setting :root_to, 'dashboard#index'
+    inheritable_setting :root_to, "admin/dashboard#index"
 
     # Default CSV options
     inheritable_setting :csv_options, {}

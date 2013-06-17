@@ -38,7 +38,7 @@ module ActiveAdmin
         namespace = ActiveAdmin.application.default_namespace.presence
         root_path_method = [namespace, :root_path].compact.join('_')
 
-        url_helpers = Rails.application.routes.url_helpers
+        url_helpers = ActiveAdmin::Engine.routes.url_helpers
 
         path = if url_helpers.respond_to? root_path_method
                  url_helpers.send root_path_method
