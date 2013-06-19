@@ -11,7 +11,7 @@
   text-align: center;
   width: 160px;
 
-  background: url(active_admin_image_path('datepicker/datepicker-nipple.png')) no-repeat 0 -40px;
+  background: image-url('active_admin/datepicker/datepicker-nipple.png') no-repeat 0 -40px;
 
   a {
     text-decoration: none;
@@ -21,7 +21,7 @@
   }
 
   .ui-datepicker-header {
-    background: url(active_admin_image_path('datepicker/datepicker-header-bg.png')) no-repeat 0px 0px;
+    background: image-url('active_admin/datepicker/datepicker-header-bg.png') no-repeat 0px 0px;
     height: 12px;
     padding: 16px 7px 8px;
     position: relative;
@@ -46,11 +46,11 @@
 
       &.ui-datepicker-prev {
         float: left;
-        background: url(active_admin_image_path('datepicker/datepicker-prev-link-icon.png')) no-repeat 2px 5px;
+        background: image-url('active_admin/datepicker/datepicker-prev-link-icon.png') no-repeat 2px 5px;
       }
       &.ui-datepicker-next {
         float: right;
-        background: url(active_admin_image_path('datepicker/datepicker-next-link-icon.png')) no-repeat 12px 5px;
+        background: image-url('active_admin/datepicker/datepicker-next-link-icon.png') no-repeat 12px 5px;
       }
       &:active {
         margin-top: -3px;
