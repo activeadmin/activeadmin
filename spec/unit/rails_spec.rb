@@ -12,11 +12,6 @@ describe ActiveAdmin do
       silence_warnings { Rails::VERSION::MINOR = @orig_rails_version }
     end
 
-    it "should be false when using rails 3.0.x" do
-      silence_warnings { Rails::VERSION::MINOR = 0 }
-      ActiveAdmin.use_asset_pipeline?.should be_false
-    end
-
     context "when rails 3.1.x" do
       before(:each) do
         @orig_rails_app = Rails.application.dup

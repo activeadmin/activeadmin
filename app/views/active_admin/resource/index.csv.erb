@@ -1,17 +1,11 @@
 <%-
-  csv_lib = if RUBY_VERSION =~ /^1.8/
-              require 'fastercsv'
-              FasterCSV
-            else
-              require 'csv'
-              CSV
-            end
+  require 'csv'
 
   default = active_admin_application.csv_options
   options = default.merge active_admin_config.csv_builder.options
   columns = active_admin_config.csv_builder.columns
 
-  csv_output = csv_lib.generate(options) do |csv|
+  csv_output = CSV.generate(options) do |csv|
     csv << columns.map(&:name)
     collection.each do |resource|
       csv << columns.map do |column|
