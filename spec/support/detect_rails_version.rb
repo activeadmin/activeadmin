@@ -9,11 +9,11 @@ unless defined? TRAVIS_CONFIG
   require 'yaml'
   filename = File.expand_path("../../../.travis.yml", __FILE__)
   TRAVIS_CONFIG = YAML.load_file filename
-  TRAVIS_RAILS_VERSIONS = TRAVIS_CONFIG['env'].grep(/RAILS=(.*)/){ $1 }.sort
+  TRAVIS_RAILS_VERSIONS = TRAVIS_CONFIG['env'].grep(/RAILS=(.*)/){ $1 }
 end
 
 unless defined? DEFAULT_RAILS_VERSION
-  DEFAULT_RAILS_VERSION = TRAVIS_RAILS_VERSIONS.last
+  DEFAULT_RAILS_VERSION = TRAVIS_RAILS_VERSIONS.first
 end
 
 def detect_rails_version

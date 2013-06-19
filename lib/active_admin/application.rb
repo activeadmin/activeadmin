@@ -98,16 +98,17 @@ module ActiveAdmin
 
     # Event that gets triggered on load of Active Admin
     BeforeLoadEvent = 'active_admin.application.before_load'.freeze
-    AfterLoadEvent = 'active_admin.application.after_load'.freeze
+    AfterLoadEvent  = 'active_admin.application.after_load'.freeze
 
+    # Runs before the app's AA initializer
     def setup!
       register_default_assets
     end
 
+    # Runs after the app's AA initializer
     def prepare!
-      remove_active_admin_load_paths_from_rails_autoload_and_eager_load
+      remove_active_admin_load_paths_from_rails_autoload
       attach_reloader
-      generate_stylesheets
     end
 
     # Registers a brand new configuration for the given resource.
@@ -212,42 +213,32 @@ module ActiveAdmin
     end
 
     def register_default_assets
-      register_stylesheet 'active_admin.css', :media => 'screen'
-      register_stylesheet 'active_admin/print.css', :media => 'print'
-
-      unless ActiveAdmin.use_asset_pipeline?
-        register_javascript 'jquery.min.js'
-        register_javascript 'jquery-ui.min.js'
-        register_javascript 'jquery_ujs.js'
-      end
+      register_stylesheet 'active_admin.css',       media: 'screen'
+      register_stylesheet 'active_admin/print.css', media: 'print'
 
       register_javascript 'active_admin.js'
     end
 
-    # Since we're dealing with all our own file loading, we need
-    # to remove our paths from the ActiveSupport autoload paths.
-    # If not, file naming becomes very important and can cause clashes.
-    def remove_active_admin_load_paths_from_rails_autoload_and_eager_load
-      ActiveSupport::Dependencies.autoload_paths.reject!{|path| load_paths.include?(path) }
-      # Don't eagerload our configs, we'll deal with them ourselves
-      Rails.application.config.eager_load_paths = Rails.application.config.eager_load_paths.reject do |path|
-        load_paths.include?(path)
-      end
+    # Since the default load path, app/admin, is alphabetically before app/models, we have
+    # to remove it from the host app's +autoload_paths+ to prevent missing constant errors.
+    def remove_active_admin_load_paths_from_rails_autoload
+      ActiveSupport::Dependencies.autoload_paths.reject!{ |path| load_paths.include? path }
     end
 
+    # Hooks the app/admin directory into our Rails Engine's +watchable_dirs+, so the
+    # files are automatically reloaded in your development environment.
+    #
+    # If files have changed on disk, we forcibly unload all AA configurations, and
+    # tell the host application to redraw routes (triggering AA itself to reload).
     def attach_reloader
-      ActiveAdmin::Reloader.build(Rails.application, self, Rails.version).attach!
-    end
+      load_paths.each do |path|
+        ActiveAdmin::Engine.config.watchable_dirs[path] = [:rb]
+      end
 
-    def generate_stylesheets
-      # Create our own asset pipeline in Rails 3.0
-      if ActiveAdmin.use_asset_pipeline?
-        # Add our mixins to the load path for SASS
-        ::Sass::Engine::DEFAULT_OPTIONS[:load_paths] <<  File.expand_path("../../../app/assets/stylesheets", __FILE__)
-      else
-        require 'active_admin/sass/css_loader'
-        ::Sass::Plugin.add_template_location(File.expand_path("../../../app/assets/stylesheets", __FILE__))
-        ::Sass::Plugin.add_template_location(File.expand_path("../sass", __FILE__))
+      app = self
+      ActionDispatch::Reloader.to_prepare do
+        app.unload!
+        Rails.application.reload_routes!
       end
     end
   end
