@@ -74,8 +74,8 @@ module ActiveAdmin
           end
 
           buttons = content_tag :div, :class => "buttons" do
-            f.submit(I18n.t('active_admin.filter')) +
-              link_to(I18n.t('active_admin.clear_filters'), "#", :class => "clear_filters_btn") +
+            f.submit(I18n.t('active_admin.filters.buttons.filter')) +
+              link_to(I18n.t('active_admin.filters.buttons.clear'), '#', :class => 'clear_filters_btn') +
               hidden_field_tags_for(params, :except => [:q, :page])
           end
 
