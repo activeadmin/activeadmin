@@ -71,8 +71,7 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should generate a text field for input" do
-      body.should have_tag("input", :attributes => {
-                                          :name => /q\[(title_starts_with|title_ends_with|title_contains)\]/ })
+      body.should have_tag("input", :attributes => { :name => 'q[title_contains]' })
     end
     
     it "should have a proper label" do
@@ -159,17 +158,16 @@ describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :id }
 
     it "should generate a select option for equal to" do
-      body.should have_tag("option", "Equal To", :attributes => { :value => 'id_eq' })
+      body.should have_tag("option", "Equals", :attributes => { :value => 'id_equals' })
     end
     it "should generate a select option for greater than" do
-      body.should have_tag("option", "Greater Than")
+      body.should have_tag("option", "Greater than")
     end
     it "should generate a select option for less than" do
-      body.should have_tag("option", "Less Than")
+      body.should have_tag("option", "Less than")
     end
     it "should generate a text field for input" do
-      body.should have_tag("input", :attributes => {
-                                          :name => /q\[(id_eq|id_equals)\]/ })
+      body.should have_tag("input", :attributes => { :name => 'q[id_equals]' })
     end
     it "should select the option which is currently being filtered"
   end
@@ -216,8 +214,8 @@ describe ActiveAdmin::Filters::ViewHelper do
 
       it "should generate a numeric filter" do
         body.should have_tag 'label', 'Author' # really this should be Author ID :/
-        body.should have_tag 'option', :attributes => { :value => 'author_id_lt' }
-        body.should have_tag 'input',  :attributes => { :id => 'q_author_id', :name => 'q[author_id_eq]'}
+        body.should have_tag 'option', :attributes => { :value => 'author_id_less_than' }
+        body.should have_tag 'input',  :attributes => { :id => 'q_author_id', :name => 'q[author_id_equals]'}
       end
     end
 
