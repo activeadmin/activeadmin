@@ -96,14 +96,8 @@ module ActiveAdmin
       # Returns a default set of filters for the associations
       def default_association_filters
         if resource_class.respond_to?(:reflections)
-          block = if Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR == 0
-            proc{ |_,r| [r.options[:foreign_type], r.primary_key_name] }
-          else
-            proc{ |_,r| [r.foreign_type, r.foreign_key] }
-          end
-
           poly, not_poly = resource_class.reflections.partition{ |_,r| r.macro == :belongs_to && r.options[:polymorphic] }
-          filters        = poly.map(&block).flatten + not_poly.map(&:first)
+          filters        = not_poly.map(&:first) + poly.map{ |_,r| [r.foreign_type, r.foreign_key] }.flatten
           filters.collect{ |name| { :attribute => name.to_sym } }
         else
           []
@@ -113,7 +107,7 @@ module ActiveAdmin
       # Returns a default set of filters for the content columns
       def default_content_filters
         if resource_class.respond_to?(:content_columns)
-          resource_class.content_columns.collect{|c| { :attribute => c.name.to_sym } }
+          resource_class.content_columns.collect{ |c| { :attribute => c.name.to_sym } }
         else
           []
         end
