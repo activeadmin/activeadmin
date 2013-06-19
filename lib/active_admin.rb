@@ -7,9 +7,8 @@ require 'sass'
 require 'inherited_resources'
 require 'jquery-rails'
 require 'jquery-ui-rails'
+require 'coffee-rails'
 require 'arbre'
-require 'active_admin/dependency_checker'
-require 'active_admin/sass/helpers'
 require 'active_admin/engine'
 
 module ActiveAdmin
@@ -77,7 +76,7 @@ module ActiveAdmin
     # Returns true if this rails application has the asset
     # pipeline enabled.
     def use_asset_pipeline?
-      DependencyChecker.rails_3_1? && Rails.application.config.try(:assets).try(:enabled)
+      Rails.application.config.try(:assets).try(:enabled)
     end
 
     # A callback is triggered each time (before) Active Admin loads the configuration files.
@@ -118,8 +117,6 @@ module ActiveAdmin
   end
 
 end
-
-ActiveAdmin::DependencyChecker.check!
 
 # Require internal Plugins
 require 'active_admin/comments'

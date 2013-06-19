@@ -14,12 +14,12 @@ describe ActiveAdmin::Application do
     application.load_paths.should == [File.expand_path('app/admin', Rails.root)]
   end
 
-  it "should remove app/admin from the autoload path to remove the possibility of conflicts" do
+  it "should remove app/admin from the autoload paths (Active Admin deals with loading)" do
     ActiveSupport::Dependencies.autoload_paths.should_not include(File.join(Rails.root, "app/admin"))
   end
 
-  it "should remove app/admin from the eager load paths (Active Admin deals with loading)" do
-    Rails.application.config.eager_load_paths.should_not include(File.join(Rails.root, "app/admin"))
+  it "should add app/admin to the Engine's watchable directories (loaded after the app itself)" do
+    ActiveAdmin::Engine.config.watchable_dirs.should have_key File.join(Rails.root, "app/admin")
   end
 
   it "should store the site's title" do
