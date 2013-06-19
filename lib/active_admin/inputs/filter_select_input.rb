@@ -29,10 +29,11 @@ module ActiveAdmin
 
       # Provides an efficient default lookup query if the attribute is a DB column.
       def collection
-        unless Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR < 2
-          return @object.base.uniq.pluck method if !options[:collection] && column_for(method)
+        if !options[:collection] && column
+          @object.base.uniq.pluck method
+        else
+          super
         end
-        super
       end
 
     end
