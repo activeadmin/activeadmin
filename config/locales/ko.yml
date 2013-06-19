@@ -24,7 +24,7 @@ ko:
       buttons:
         filter: "필터"
         clear: "필터 초기화"
-      queries:
+      predicates:
         contains: "포함"
         equals: "같다"
         starts_with: "로 시작"

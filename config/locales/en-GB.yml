@@ -26,7 +26,7 @@
       buttons:
         filter: "Filter"
         clear: "Clear Filters"
-      queries:
+      predicates:
         contains: "Contains"
         equals: "Equals"
         starts_with: "Starts with"

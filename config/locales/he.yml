@@ -26,7 +26,7 @@ he:
       buttons:
         filter: "סינון"
         clear: "איפוס שדות"
-      queries:
+      predicates:
         contains: "מכיל"
         equals: "שווה ל"
         starts_with: "מתחיל עם"

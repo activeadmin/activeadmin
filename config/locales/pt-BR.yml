@@ -26,7 +26,7 @@
       buttons:
         filter: "Filtrar"
         clear: "Limpar Filtros"
-      queries:
+      predicates:
         contains: "Contém"
         equals: "Igual A"
         starts_with: "Começa com"

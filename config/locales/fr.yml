@@ -26,7 +26,7 @@ fr:
       buttons:
         filter: "Filtrer"
         clear: "Supprimer les filtres"
-      queries:
+      predicates:
         contains: "Contient"
         equals: "Egal à"
         starts_with: "Commence par"

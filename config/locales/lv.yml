@@ -26,7 +26,7 @@ lv:
       buttons:
         filter: "Filtrēt"
         clear: "Novākt filtrus"
-      queries:
+      predicates:
         contains: "Satur"
         equals: "Vienāds ar"
         starts_with: "Sākas ar"

@@ -26,7 +26,7 @@ hr:
       buttons:
         filter: "Filtriraj"
         clear: "Očisti filtere"
-      queries:
+      predicates:
         contains: "Sadrži"
         equals: "Jednako"
         starts_with: "počinje s"

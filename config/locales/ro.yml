@@ -26,7 +26,7 @@ ro:
       buttons:
         filter: "Cautati"
         clear: "Stergeti filtrele"
-      queries:
+      predicates:
         contains: "Conține"
         equals: "Egal Cu"
         starts_with: "începe cu"

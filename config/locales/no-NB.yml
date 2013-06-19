@@ -24,7 +24,7 @@
       buttons:
         filter: "Filter"
         clear: "Fjern filter"
-      queries:
+      predicates:
         contains: "Inneholder"
         equals: "Er lik"
         starts_with: "Starter med"

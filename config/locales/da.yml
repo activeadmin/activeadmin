@@ -26,7 +26,7 @@ da:
       buttons:
         filter: "Filtrer"
         clear: "Ryd filtre"
-      queries:
+      predicates:
         contains: "Indeholder"
         equals: "lig"
         starts_with: "Begynder med"

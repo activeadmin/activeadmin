@@ -26,7 +26,7 @@
       buttons:
         filter: "过滤"
         clear: "清除条件"
-      queries:
+      predicates:
         contains: "包含"
         equals: "等于"
         starts_with: "开头"

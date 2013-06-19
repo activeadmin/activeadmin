@@ -26,7 +26,7 @@ tr:
       buttons:
         filter: "Filtrele"
         clear: "Filtreleri Temizle"
-      queries:
+      predicates:
         contains: "içerir"
         equals: "Eşittir"
         starts_with: "ile başlar"

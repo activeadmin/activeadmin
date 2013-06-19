@@ -26,7 +26,7 @@ bg:
       buttons:
         filter: "Филтриране"
         clear: "Изчистване"
-      queries:
+      predicates:
         contains: "съдържа"
         equals: "равно на"
         starts_with: "Започва с"

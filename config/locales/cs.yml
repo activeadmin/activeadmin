@@ -26,7 +26,7 @@ cs:
       buttons:
         filter: "Filtrovat"
         clear: "Vyčistit filtry"
-      queries:
+      predicates:
         contains: "Obsahuje"
         equals: "Přesně"
         starts_with: "Začíná se"

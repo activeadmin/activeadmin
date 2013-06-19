@@ -25,7 +25,7 @@ ca:
       buttons:
         filter: "Filtrar"
         clear: "Treure filtres"
-      queries:
+      predicates:
         contains: "Conté"
         equals: "Igual a"
         starts_with: "Comença amb"

@@ -26,7 +26,7 @@ nl:
       buttons:
         filter: "Filter"
         clear: "Maak Filters Ongedaan"
-      queries:
+      predicates:
         contains: "Bevat"
         equals: "Gelijk aan"
         starts_with: "Begint met"

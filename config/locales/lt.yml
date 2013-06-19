@@ -26,7 +26,7 @@ lt:
       buttons:
         filter: 'Filtras'
         clear: 'Išvalyti filtrus'
-      queries:
+      predicates:
         contains: "Sudėtyje yra"
         equals: 'lygus'
         starts_with: "Prasideda nuo"
