@@ -9,7 +9,7 @@ module ActiveAdmin
     belongs_to :resource, :polymorphic => true
     belongs_to :author,   :polymorphic => true
 
-    attr_accessible :resource, :resource_id, :resource_type, :body, :namespace
+    attr_accessible :resource, :resource_id, :resource_type, :body, :namespace if self.respond_to?(:attr_accessible)
 
     validates_presence_of :body, :namespace, :resource
 
