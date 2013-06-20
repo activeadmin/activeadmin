@@ -231,8 +231,8 @@ module ActiveAdmin
       end
 
       def apply_filtering(chain)
-        @search = chain.metasearch(clean_search_params(params[:q]))
-        @search.relation
+        @search = chain.search clean_search_params params[:q]
+        @search.result
       end
 
       def clean_search_params(search_params)

@@ -42,7 +42,7 @@ module ActiveAdmin
       end
 
       def pluck_column
-        @object.base.reorder("#{method} asc").uniq.pluck method
+        klass.reorder("#{method} asc").uniq.pluck method
       end
 
     end
