@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails",        ">= 3.0.0"
   s.add_dependency "jquery-ui-rails",     ">= 4.0.0"
   s.add_dependency "kaminari",            ">= 0.13.0"
-  s.add_dependency "meta_search",         ">= 0.9.2"
   s.add_dependency "rails",               ">= 3.2.0"
+  s.add_dependency "ransack",             ">= 0.7.0"
   s.add_dependency "sass-rails",          ">= 3.2.0"
 end

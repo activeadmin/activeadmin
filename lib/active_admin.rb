@@ -1,4 +1,6 @@
-require 'meta_search'
+require 'active_support/core_ext/class/attribute' # needed for Ransack
+require 'ransack'
+require 'ransack_ext'
 require 'bourbon'
 require 'devise'
 require 'kaminari'
