@@ -49,6 +49,13 @@ module ActiveAdmin
         end
       end
 
+      def add_attr_accessible_if_needed
+        unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+          model_file = File.join(destination_root, "app", "models", "#{file_path}.rb")
+          inject_into_file model_file, "  attr_accessible :email, :password, :password_confirmation, :remember_me\n", before: /end\n*\z/
+        end
+      end
+
       def set_namespace_for_path
         routes_file = File.join(destination_root, "config", "routes.rb")
         gsub_file routes_file, /devise_for :#{plural_table_name}/, "devise_for :#{plural_table_name}, ActiveAdmin::Devise.config"
