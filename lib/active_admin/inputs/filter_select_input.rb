@@ -30,7 +30,7 @@ module ActiveAdmin
       # Provides an efficient default lookup query if the attribute is a DB column.
       def collection
         if !options[:collection] && column
-          @object.base.uniq.pluck method
+          klass.uniq.pluck method
         else
           super
         end
