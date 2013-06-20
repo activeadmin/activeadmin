@@ -12,7 +12,7 @@ $ ->
   $('.dropdown_button').popover()
 
   # Filter form: don't send any inputs that are empty
-  $('#q_search').submit ->
+  $('.filter_form').submit ->
     $(@).find(':input').filter(-> @value is '').prop 'disabled', true
 
   # Filter form: for filters that let you choose the query method from
