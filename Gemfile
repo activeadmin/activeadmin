@@ -8,17 +8,12 @@ require File.expand_path('spec/support/detect_rails_version', ACTIVE_ADMIN_PATH)
 
 rails_version = detect_rails_version
 gem 'rails', rails_version
-gem 'bourbon'
 
-case rails_version
-when /^3\.0/
-  # Do nothing, bundler should figure it out
-when /^3\.(1|2)/
-  # These are the gems you have to have for Rails 3.1 to be happy
-  gem 'sass-rails'
-  gem 'uglifier'
-else
-  raise "Rails #{rails_version} is not supported yet"
+# Temporary additions until these gems have proper support for Rails 4
+if rails_version =~ /\A4/
+  gem 'sass-rails', '~> 4.0.0.rc2'
+  gem 'inherited_resources', github: 'josevalim/inherited_resources'
+  gem 'ransack',             github: 'ernie/ransack', branch: 'rails-4'
 end
 
 group :development do
@@ -27,7 +22,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'haml', '~> 3.1.7',  :require => false
   gem 'rake', '~> 10.0.2', :require => false
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rdiscount'  # Markdown implementation (for yard)
