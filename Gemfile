@@ -9,13 +9,19 @@ require File.expand_path('spec/support/detect_rails_version', ACTIVE_ADMIN_PATH)
 rails_version = detect_rails_version
 gem 'rails', rails_version
 
+# Temporary additions until these gems have proper support for Rails 4
+if rails_version =~ /\A4/
+  gem 'sass-rails', '~> 4.0.0.rc2'
+  gem 'inherited_resources', github: 'josevalim/inherited_resources'
+  gem 'ransack',             github: 'ernie/ransack', branch: 'rails-4'
+end
+
 group :development do
   gem 'better_errors',     '~> 0.9.0' # Web UI to debug exceptions. Go to /__better_errors to access the latest one
   gem 'binding_of_caller', '~> 0.7.1' # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 end
 
 group :development, :test do
-  gem 'haml', '~> 3.1.7',  :require => false
   gem 'rake', '~> 10.0.2', :require => false
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rdiscount'  # Markdown implementation (for yard)
