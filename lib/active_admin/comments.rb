@@ -9,11 +9,9 @@ ActiveAdmin::Application.inheritable_setting :allow_comments,             true
 ActiveAdmin::Application.inheritable_setting :show_comments_in_menu,      true
 ActiveAdmin::Application.inheritable_setting :comments_registration_name, 'Comment'
 
-# Add the comments module to ActiveAdmin::Namespace
+# Insert helper modules
 ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper
-
-# Add the comments module to ActiveAdmin::Resource
-ActiveAdmin::Resource.send :include, ActiveAdmin::Comments::ResourceHelper
+ActiveAdmin::Resource.send  :include, ActiveAdmin::Comments::ResourceHelper
 
 # Add the module to the show page
 ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comments::ShowPageHelper
@@ -45,12 +43,13 @@ ActiveAdmin.after_load do |app|
           comment.author    = current_active_admin_user
         end
 
-        # Redirect to the resource show page after comment creation
         controller do
           # Prevent N+1 queries
           def scoped_collection
             resource_class.includes :author, :resource
-          end unless Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR == 0
+          end
+
+          # Redirect to the resource show page after comment creation
           def create
             create! do |success, failure|
               # FYI: below we call `resource.resource`. First is the comment, second is the associated resource.
@@ -63,6 +62,11 @@ ActiveAdmin.after_load do |app|
               end
             end
           end
+
+          # Define the permitted params in case the app is using Strong Parameters
+          def permitted_params
+            params.permit active_admin_comment: [:body, :namespace, :resource_id, :resource_type]
+          end unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
         end
 
         index do
