@@ -12,7 +12,7 @@ module ActiveAdmin
       end
 
       def search_method
-        method.to_s.match(search_conditions) ? method : "#{method}_eq"
+        method =~ search_conditions ? method : "#{method}_eq"
       end
 
       def checked?
@@ -24,7 +24,7 @@ module ActiveAdmin
       end
 
       def search_conditions
-        /(is_true|is_false|is_present|is_blank|is_null|is_not_null)\z/
+        /_(true|false|present|blank|null|not_null)\z/
       end
 
     end
