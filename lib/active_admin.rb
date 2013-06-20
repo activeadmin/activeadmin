@@ -1,4 +1,3 @@
-require 'meta_search'
 require 'bourbon'
 require 'devise'
 require 'kaminari'
@@ -77,7 +76,7 @@ module ActiveAdmin
     # Returns true if this rails application has the asset
     # pipeline enabled.
     def use_asset_pipeline?
-      Rails.application.config.try(:assets).try(:enabled)
+      true
     end
 
     # Migration MoveAdminNotesToComments generated with version 0.2.2 might reference

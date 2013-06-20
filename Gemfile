@@ -12,6 +12,7 @@ gem 'rails', rails_version
 # Temporary additions until these gems have proper support for Rails 4
 if rails_version =~ /\A4/
   gem 'sass-rails', '~> 4.0.0.rc2'
+  gem 'responders',          github: 'plataformatec/responders'
   gem 'inherited_resources', github: 'josevalim/inherited_resources'
   gem 'ransack',             github: 'ernie/ransack', branch: 'rails-4'
 end
