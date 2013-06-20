@@ -47,6 +47,10 @@ ActiveAdmin.after_load do |app|
 
         # Redirect to the resource show page after comment creation
         controller do
+          # Prevent N+1 queries
+          def scoped_collection
+            resource_class.includes :author, :resource
+          end
           def create
             create! do |success, failure|
               # FYI: below we call `resource.resource`. First is the comment, second is the associated resource.
