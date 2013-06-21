@@ -75,12 +75,6 @@ module ActiveAdmin
     delegate :load!,         :to => :application
     delegate :routes,        :to => :application
 
-    # Returns true if this rails application has the asset
-    # pipeline enabled.
-    def use_asset_pipeline?
-      Rails.application.config.try(:assets).try(:enabled)
-    end
-
     # A callback is triggered each time (before) Active Admin loads the configuration files.
     # In development mode, this will happen whenever the user changes files. In production
     # it only happens on boot.
