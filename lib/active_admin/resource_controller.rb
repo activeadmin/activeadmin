@@ -16,7 +16,6 @@ module ActiveAdmin
     respond_to :html, :xml, :json
     respond_to :csv, :only => :index
 
-    include Actions
     include ActionBuilder
     include Decorators
     include DataAccess
