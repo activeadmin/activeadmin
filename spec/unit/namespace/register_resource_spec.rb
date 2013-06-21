@@ -29,11 +29,11 @@ describe ActiveAdmin::Namespace, "registering a resource" do
 
   context "with a block configuration" do
     it "should be evaluated in the dsl" do
-      lambda {
+      expect {
         namespace.register Category do
           raise "Hello World"
         end
-      }.should raise_error
+      }.to raise_error
     end
   end # context "with a block configuration"
 

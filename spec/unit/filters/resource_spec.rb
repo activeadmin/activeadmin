@@ -69,7 +69,7 @@ describe ActiveAdmin::Filters::ResourceExtension do
     resource.filters = false
     expect {
       resource.add_filter :title
-    }.should raise_error(RuntimeError)
+    }.to raise_error(RuntimeError)
   end
 
   it "should reset filters" do

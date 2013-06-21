@@ -25,7 +25,7 @@ pkg
 
 ## PROJECT::SPECIFIC
 .bundle
-spec/rails
+test-rails
 *.sqlite3-journal
 Gemfile.lock
 Gemfile-*.lock
@@ -33,6 +33,7 @@ capybara*
 viewcumber
 test-rails*
 public
+.ruby-*
 .rvmrc
 .rspec
 .rails-version
