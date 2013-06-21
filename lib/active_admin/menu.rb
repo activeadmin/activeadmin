@@ -93,6 +93,8 @@ module ActiveAdmin
         case id
         when String, Symbol
           id.to_s.downcase.gsub ' ', '_'
+        when ActiveAdmin::Resource::Name
+          id.param_key
         else
           raise TypeError, "#{id.class} isn't supported as a Menu ID"
         end
