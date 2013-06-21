@@ -49,7 +49,7 @@ module ActiveAdmin
     end
 
     def underscored_resource_name
-      resource_name.parameterize.underscore
+      resource_name.param_key
     end
 
     def camelized_resource_name
