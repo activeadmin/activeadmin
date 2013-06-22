@@ -76,19 +76,6 @@ describe ActiveAdmin::Application do
     end
   end
 
-  describe "inheritable settings" do
-    it "should set csv_options" do
-      application.csv_options.should == {}
-    end
-
-    context "when deprecated" do
-      it "should set and warn csv_column_separator" do
-        ActiveAdmin::Deprecation.should_receive(:warn)
-        application.csv_column_separator.should == ','
-      end
-    end
-  end
-
   describe "files in load path" do
     it "should load files in the first level directory" do
       application.files.should include(File.expand_path("app/admin/dashboard.rb", Rails.root))

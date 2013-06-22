@@ -41,7 +41,7 @@ module ActiveAdmin
     #     column("Author") { |post| post.author.full_name }
     #   end
     #
-    #   csv :separator => ";", :options => { :force_quotes => true } do
+    #   csv :col_sep => ";", :force_quotes => true do
     #     column :name
     #   end
     #

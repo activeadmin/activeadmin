@@ -82,17 +82,17 @@ describe ActiveAdmin::CSVBuilder do
 
   context "with a separator" do
     let(:builder) do
-      ActiveAdmin::CSVBuilder.new :separator => ";"
+      ActiveAdmin::CSVBuilder.new :col_sep => ";"
     end
 
     it "should have proper separator" do
-      builder.column_separator.should == ";"
+      builder.options.should == {:col_sep => ";"}
     end
   end
 
   context "with csv_options" do
     let(:builder) do
-      ActiveAdmin::CSVBuilder.new :options => {:force_quotes => true}
+      ActiveAdmin::CSVBuilder.new :force_quotes => true
     end
 
     it "should have proper separator" do
