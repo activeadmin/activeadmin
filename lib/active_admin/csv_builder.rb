@@ -7,7 +7,7 @@ module ActiveAdmin
   #   csv_builder.column :id
   #   csv_builder.column("Name") { |resource| resource.full_name }
   #
-  #   csv_builder = CSVBuilder.new :separator => ";"
+  #   csv_builder = CSVBuilder.new :col_sep => ";"
   #   csv_builder.column :id
   #
   #
@@ -25,12 +25,10 @@ module ActiveAdmin
       end
     end
 
-    attr_reader :columns, :column_separator, :options
+    attr_reader :columns, :options
 
     def initialize(options={}, &block)
-      @columns          = []
-      @column_separator = options.delete(:separator)
-      @options          = options.delete(:options)
+      @columns, @options = [], options
       instance_eval &block if block_given?
     end
 

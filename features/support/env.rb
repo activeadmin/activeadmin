@@ -78,34 +78,11 @@ if defined?(ActiveRecord::Base)
   end
 end
 
-def add_default_dashboard
-  begin
-    dashboard_file = ENV['RAILS_ROOT'] + "/app/admin/dashboard.rb"
-    dashboard_template = File.expand_path('../../../lib/generators/active_admin/install/templates/dashboard.rb', __FILE__)
-    cmd = "cp #{dashboard_template} #{dashboard_file}"
-    system cmd
-  rescue
-    p $!
-    raise $!
-  end
-end
-
-def delete_default_dashboard
-  begin
-    dashboard_file = ENV['RAILS_ROOT'] + "/app/admin/dashboard.rb"
-    File.delete(dashboard_file) if File.exists?(dashboard_file)
-  rescue
-    p $!
-    raise $!
-  end
-end
-
 # Warden helpers to speed up login
 # See https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Capybara
 include Warden::Test::Helpers
 
 After do
-  add_default_dashboard
   Warden.test_reset!
 
   # Reset back to the default auth adapter
@@ -113,12 +90,7 @@ After do
     authorization_adapter = ActiveAdmin::AuthorizationAdapter
 end
 
-Before '@dashboard' do
-  delete_default_dashboard
-end
-
 Before do
-  add_default_dashboard
 
   begin
     # We are caching classes, but need to manually clear references to

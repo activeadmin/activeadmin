@@ -72,7 +72,7 @@ module ActiveAdmin
     inheritable_setting :root_to, 'dashboard#index'
 
     # Default CSV options
-    inheritable_setting :csv_options, {}
+    inheritable_setting :csv_options, {:col_sep => ','}
 
     # Default Download Links options
     inheritable_setting :download_links, true
@@ -96,11 +96,7 @@ module ActiveAdmin
 
     # == Deprecated Settings
 
-    # @deprecated Default CSV separator will be removed in 0.6.0. Use `csv_options = { :col_sep => ',' }` instead.
-    deprecated_inheritable_setting :csv_column_separator, ','
-
-    # @deprecated The default sort order for index pages
-    deprecated_setting :default_sort_order, 'id_desc'
+    # (none currently)
 
     include AssetRegistration
 

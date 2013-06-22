@@ -68,17 +68,7 @@ run "rm -r spec"
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-# we need this routing path, named "logout_path", for testing
-route %q{
-  devise_scope :user do
-    match '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
-  end
-}
-
 generate :'active_admin:install'
-
-# Setup a root path for devise
-route "root :to => 'admin/dashboard#index'"
 
 rake "db:migrate"
 rake "db:test:prepare"

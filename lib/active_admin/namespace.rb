@@ -37,7 +37,6 @@ module ActiveAdmin
       @name = name.to_s.underscore.to_sym
       @resources = ResourceCollection.new
       register_module unless root?
-      generate_dashboard_controller
       build_menu_collection
     end
 
@@ -51,9 +50,6 @@ module ActiveAdmin
       register_resource_controller(config)
       parse_registration_block(config, &block) if block_given?
       reset_menu!
-
-      # Ensure that the dashboard is generated
-      generate_dashboard_controller
 
       # Dispatch a registration event
       ActiveAdmin::Event.dispatch ActiveAdmin::Resource::RegisterEvent, config
@@ -89,15 +85,9 @@ module ActiveAdmin
       @module_name ||= name.to_s.camelize
     end
 
-    # Returns the name of the dashboard controller for this namespace
-    def dashboard_controller_name
-      [module_name, "DashboardController"].compact.join("::")
-    end
-
     # Unload all the registered resources for this namespace
     def unload!
       unload_resources!
-      unload_dashboard!
       reset_menu!
     end
 
@@ -159,10 +149,6 @@ module ActiveAdmin
       @menus = MenuCollection.new
 
       @menus.on_build do |menus|
-        # Support for deprecated dashboards...
-        Dashboards.add_to_menu(self, menus.menu(DEFAULT_MENU))
-
-        # Build the default utility navigation
         build_default_utility_nav
 
         resources.each do |resource|
@@ -215,11 +201,6 @@ module ActiveAdmin
       @resources = ResourceCollection.new
     end
 
-    def unload_dashboard!
-      # TODO: Only clear out my sections
-      Dashboards.clear_all_sections!
-    end
-
     # Creates a ruby module to namespace all the classes in if required
     def register_module
       eval "module ::#{module_name}; end"
@@ -239,13 +220,5 @@ module ActiveAdmin
       PageDSL.new(config).run_registration_block(&block)
     end
 
-    # Creates a dashboard controller for this config
-    def generate_dashboard_controller
-      return unless ActiveAdmin::Dashboards.built?
-
-      eval "class ::#{dashboard_controller_name} < ActiveAdmin::PageController
-              include ActiveAdmin::Dashboards::DashboardController
-            end"
-    end
   end
 end
