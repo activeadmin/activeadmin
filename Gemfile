@@ -22,7 +22,7 @@ else
 end
 
 group :development do
-  gem 'better_errors',     '~> 0.8.0' # Web UI to debug exceptions. Go to /__better_errors to access the latest one
+  gem 'better_errors',     '~> 0.9.0' # Web UI to debug exceptions. Go to /__better_errors to access the latest one
   gem 'binding_of_caller', '~> 0.7.1' # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 end
 
