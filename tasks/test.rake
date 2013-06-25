@@ -7,8 +7,11 @@ task :setup do
 end
 
 # Run specs and cukes
+# If run by Travis, submit test coverage data to www.coveralls.io
 desc "Run the full suite using 1 core"
-task :test => ['spec:unit', 'spec:integration', 'cucumber', 'cucumber:class_reloading']
+task test: ['spec:unit', 'spec:integration', 'cucumber', 'cucumber:class_reloading'] do
+  require 'coveralls' and Coveralls.push! if ENV['TRAVIS']
+end
 
 namespace :test do
 
