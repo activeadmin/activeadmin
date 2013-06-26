@@ -39,7 +39,7 @@ group :test do
   gem 'cancan'
   gem 'capybara',        '1.1.2'
   gem 'coveralls',       '~> 0.6.7', require: false # Test coverage tool: www.coveralls.io
-  gem 'cucumber-rails',  '1.3.1', :require => false
+  gem 'cucumber-rails',  '~> 1.3.1', :require => false
   gem 'database_cleaner'
   gem 'guard-coffeescript'
   gem 'guard-rspec'
