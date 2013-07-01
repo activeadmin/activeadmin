@@ -62,10 +62,12 @@ de:
       labels:
         destroy: "Lösche"
     comments:
+      resource_type: "Res­sour­cen-Typ"
+      author_type: "Autor-Typ"
       body: "Inhalt"
       author: "Autor"
       title: "Kommentar"
-      resource: "Resource"
+      resource: "Res­sour­ce"
       add: "Kommentar hinzufügen"
       no_comments_yet: "Es gibt noch keine Kommentare."
       title_content: "Kommentare (%{count})"
