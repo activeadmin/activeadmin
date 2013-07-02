@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe "Registering an object to administer" do
-  let(:application){ ActiveAdmin::Application.new }
+  application = ActiveAdmin::Application.new
 
   context "with no configuration" do
-    let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
+    namespace = ActiveAdmin::Namespace.new(application, :admin)
     it "should call register on the namespace" do
       application.namespaces[namespace.name] = namespace
       namespace.should_receive(:register)

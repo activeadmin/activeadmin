@@ -39,7 +39,7 @@ module ActiveAdmin
         let!(:config) { ActiveAdmin.register News }
         before{ reload_routes! }
 
-        it "should return the plurali route with _index" do
+        it "should return the plural route with _index" do
           config.route_collection_path.should == "/admin/news"
         end
       end

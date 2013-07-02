@@ -1,4 +1,3 @@
-require 'active_admin/helpers/settings'
 require 'active_admin/resource_collection'
 
 module ActiveAdmin
@@ -26,8 +25,6 @@ module ActiveAdmin
   # resource will be accessible from "/posts" and the controller will be PostsController.
   #
   class Namespace
-    include Settings
-
     RegisterEvent = 'active_admin.namespace.register'.freeze
 
     attr_reader :application, :resources, :name, :menus
