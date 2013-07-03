@@ -9,8 +9,8 @@ describe ActiveAdmin, "Routing", :type => :routing do
     reload_routes!
   end
 
-  pending "should only have the (default) admin namespace registered" do
-    ActiveAdmin.application.namespaces.keys.should eq [:admin]
+  it "should only have the namespaces necessary for route testing" do
+    ActiveAdmin.application.namespaces.keys.should eq [:admin, :root]
   end
 
   it "should route to the admin dashboard" do

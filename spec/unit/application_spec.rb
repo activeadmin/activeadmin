@@ -110,6 +110,13 @@ describe ActiveAdmin::Application do
         end
       }.to raise_error("found")
     end
+
+    it "should not pollute the global app" do
+      application.namespaces.keys.should be_empty
+      application.namespace(:brand_new_ns)
+      application.namespaces.keys.should eq [:brand_new_ns]
+      ActiveAdmin.application.namespaces.keys.should eq [:admin]
+    end
   end
 
   describe "#register_page" do
