@@ -5,7 +5,7 @@ abstracts common business application patterns to make it simple for developers
 to implement beautiful and elegant interfaces with very little effort.
 
 {<img src="https://secure.travis-ci.org/gregbell/active_admin.png?branch=master" />}[http://travis-ci.org/gregbell/active_admin]
-{<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/gregbell/active_admin]
+{<img src="https://codeclimate.com/github/gregbell/active_admin.png" />}[https://codeclimate.com/github/gregbell/active_admin]
 {<img src="https://gemnasium.com/gregbell/active_admin.png" />}[https://gemnasium.com/gregbell/active_admin]
 {<img src="https://coveralls.io/repos/gregbell/active_admin/badge.png?branch=master" />}[https://coveralls.io/r/gregbell/active_admin?branch=master]
 
