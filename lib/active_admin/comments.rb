@@ -34,8 +34,8 @@ ActiveAdmin.after_load do |app|
         # Register a scope for every namespace that exists.
         # The current namespace will be the default scope.
         app.namespaces.values.map(&:name).each do |name|
-          scope name, :default => namespace.name == name do
-            resource_class.where :namespace => name
+          scope name, :default => namespace.name == name do |scope|
+            scope.where :namespace => name.to_s
           end
         end
 
@@ -50,7 +50,7 @@ ActiveAdmin.after_load do |app|
           # Prevent N+1 queries
           def scoped_collection
             resource_class.includes :author, :resource
-          end
+          end unless Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR == 0
           def create
             create! do |success, failure|
               # FYI: below we call `resource.resource`. First is the comment, second is the associated resource.
