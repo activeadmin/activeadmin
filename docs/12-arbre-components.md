@@ -74,10 +74,10 @@ method.
 
     columns do
       column :span => 2 do
-        span "Column # 1
+        span "Column # 1"
       end
       column do
-        span "Column # 2
+        span "Column # 2"
       end
     end
 
@@ -93,10 +93,10 @@ columns provide :max_width and :min_width options.
 
     columns do
       column :max_width => "200px", :min_width => "100px" do
-        span "Column # 1
+        span "Column # 1"
       end
       column do
-        span "Column # 2
+        span "Column # 2"
       end
     end
 
