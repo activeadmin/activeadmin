@@ -223,7 +223,7 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :author }
 
       it "should generate a select" do
-        body.should have_tag "select",             :attributes => { :name => "q[author_id_in]" }
+        body.should have_tag "select",             :attributes => { :name => "q[author_id_eq]" }
       end
       it "should set the default text to 'Any'" do
         body.should have_tag "option", "Any",      :attributes => { :value => "" }
