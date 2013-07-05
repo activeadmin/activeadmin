@@ -28,8 +28,10 @@ describe ActiveAdmin::Filters::ViewHelper do
   end
 
   def filter(name, options = {})
-    render_filter Post.search, @filters.push(options.merge(:attribute => name))
+    render_filter scope, @filters.push(options.merge(:attribute => name))
   end
+
+  let(:scope) { Post.search }
 
   before(:each) { @filters = [] }
 
@@ -147,6 +149,15 @@ describe ActiveAdmin::Filters::ViewHelper do
     context "when loading collection from DB" do
       it "should use pluck for efficiency" do
         builder.any_instance.should_receive(:pluck_column) { [] }
+        body
+      end
+
+      it "should remove original ordering to prevent PostgreSQL error" do
+        scope.base.should_receive(:reorder).with('title asc') {
+          m = mock uniq: mock(pluck: ['A Title'])
+          m.uniq.should_receive(:pluck).with :title
+          m
+        }
         body
       end
     end
