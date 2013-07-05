@@ -17,7 +17,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
     let(:params){ {:q => {} }}
     it "should call the search method" do
       chain = mock("ChainObj")
-      chain.should_receive(:search).with(params[:q]).once.and_return(Post.search)
+      chain.should_receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
       controller.send :apply_filtering, chain
     end
 
