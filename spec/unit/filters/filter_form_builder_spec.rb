@@ -140,6 +140,18 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
+  describe "text attribute, as a select" do
+    let(:body) { filter :title, as: :select }
+    let(:builder) { ActiveAdmin::Inputs::FilterSelectInput }
+
+    context "when loading collection from DB" do
+      it "should use pluck for efficiency" do
+        builder.any_instance.should_receive(:pluck_column) { [] }
+        body
+      end
+    end
+  end unless Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR < 2
+
   describe "datetime attribute" do
     let(:body) { filter :created_at }
 
