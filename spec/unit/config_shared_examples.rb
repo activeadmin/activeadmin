@@ -22,11 +22,11 @@ shared_examples_for "ActiveAdmin::Config" do
 
   describe "Naming" do
     it "implements #resource_label" do
-      expect { config.resource_label }.should_not raise_error
+      expect { config.resource_label }.to_not raise_error
     end
 
     it "implements #plural_resource_label" do
-      expect { config.plural_resource_label }.should_not raise_error
+      expect { config.plural_resource_label }.to_not raise_error
     end
   end
 
