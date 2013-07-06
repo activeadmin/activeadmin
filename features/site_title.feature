@@ -11,12 +11,12 @@ Feature: Site title
     Given a configuration of:
     """
       ActiveAdmin.application.site_title = "My Great Site"
-      ActiveAdmin.application.site_title_link = "/"
+      ActiveAdmin.application.site_title_link = "/admin"
     """
     When I am on the dashboard
     And I should see the site title "My Great Site"
     When I follow "My Great Site"
-    Then I should see "Ruby on Rails: Welcome aboard"
+    Then I should see the site title "My Great Site"
 
   Scenario: Set the site title image
     Given a configuration of:
