@@ -161,11 +161,13 @@ module ActiveAdmin
     end
 
     # This method calls the block it's passed (in our case, the `f.inputs` block)
-    # and wraps the resulting HTML in a fieldset. If your block happens to return
-    # nil (but it otherwise built the form correctly), the below override passes
+    # and wraps the resulting HTML in a fieldset. If your block doesn't have a
+    # valid return value but it was otherwise built correctly, we instead use
     # the most recent part of the Active Admin form buffer.
     def field_set_and_list_wrapping(*args, &block)
-      block_given? ? super{ yield || form_buffers.last } : super
+      block_given? ? super{
+        (val = yield).is_a?(String) ? val : form_buffers.last
+      } : super
     end
 
     private
