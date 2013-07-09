@@ -1,4 +1,4 @@
-window.AA.CheckboxToggler = class AA.CheckboxToggler
+window.ActiveAdmin.CheckboxToggler = class ActiveAdmin.CheckboxToggler
   constructor: (@options, @container)->
     defaults = {}
     @options = $.extend {}, defaults, options
@@ -34,4 +34,4 @@ window.AA.CheckboxToggler = class AA.CheckboxToggler
       @_didChangeCheckbox(el)
 
 jQuery ($)->
-  $.widget.bridge 'checkboxToggler', AA.CheckboxToggler
+  $.widget.bridge 'checkboxToggler', ActiveAdmin.CheckboxToggler
