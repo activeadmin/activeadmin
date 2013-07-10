@@ -43,6 +43,7 @@ ru:
       one: "Результат: <b>1</b> %{model}"
       one_page: "Результат: <b>%{n}</b> %{model}"
       multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> из <b>%{total}</b>"
+      multiple_without_total: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "запись"
         other: "записей"

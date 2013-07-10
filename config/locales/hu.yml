@@ -43,6 +43,7 @@ hu:
       one: "<b>Egy</b> %{model} megjelenítése"
       one_page: "<b>Az összes (%{n} db)</b> %{model} megjelenítése"
       multiple: "%{model} listájának megjelenítése, <b>%{from}&nbsp;-&nbsp;%{to}</b>/<b>%{total}</b> "
+      multiple_without_total: "%{model} listájának megjelenítése, <b>%{from}&nbsp;-&nbsp;%{to}</b> "
       entry:
         one: "elem"
         other: "elem"

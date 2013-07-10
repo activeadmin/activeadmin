@@ -43,6 +43,7 @@
       one: "Visar <b>1</b> utav %{model}"
       one_page: "Visar <b>alla %{n}</b> utav %{model}"
       multiple: "Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt"
+      multiple_without_total: "Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "inlägg"
         other: "inlägg"

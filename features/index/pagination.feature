@@ -42,3 +42,18 @@ Feature: Index Pagination
     Given 31 posts exist
     When I am on the index page for posts
     Then I should not see pagination
+
+    Scenario: Viewing index with pagination_total set to false
+      Given an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          index :pagination_total => false do
+          end
+        end
+      """
+      Given 100 posts exist
+      When I am on the index page for posts
+      Then I should see pagination with 2 pages
+      Then I should see "Displaying Posts 1 - 30"
+      And I should not see "Displaying Posts 1 - 30 of 100 in total"
+

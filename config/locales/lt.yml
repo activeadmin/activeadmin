@@ -43,6 +43,7 @@ lt:
       one: 'Rodoma <B> 1 </ b> %{model}'
       one_page: 'Rodoma <b>visi %{n} </ b> %{model}'
       multiple: 'Rodomi %{model} <b>%{iš}&nbsp;-&nbsp;%{to} </ b> iš<b>%{total} </ b> iš viso'
+      multiple_without_total: 'Rodomi %{model} <b>%{iš}&nbsp;-&nbsp;%{to} </ b> '
       entry:
         one: 'įrašas'
         other: 'įrašai'
