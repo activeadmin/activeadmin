@@ -17,4 +17,11 @@ ActiveAdmin.register <%= @user_class %> do
     end
     f.actions
   end
+<% unless Rails::VERSION::MAJOR < 4 -%>
+  controller do
+    def permitted_params
+      params.permit admin_user: [:email, :password, :password_confirmation]
+    end
+  end
+<% end -%>
 end
