@@ -30,6 +30,11 @@ module ActiveAdmin
             active_admin_application.javascripts.each do |path|
               text_node(javascript_include_tag(path))
             end
+            
+            if active_admin_application.favicon
+              text_node(favicon_link_tag(active_admin_application.favicon))
+            end
+            
             text_node csrf_meta_tag
           end
         end
