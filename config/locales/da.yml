@@ -43,6 +43,7 @@ da:
       one: "Viser <b>1</b> %{model}"
       one_page: "Viser <b>alle %{n}</b> %{model}"
       multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> af <b>%{total}</b> i alt"
+      multiple_without_total: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "post"
         other: "poster"

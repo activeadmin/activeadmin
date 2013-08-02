@@ -43,6 +43,7 @@ lv:
       one: "<b>1</b> ieraksts"
       one_page: "<b>%{n}</b> ieraksti"
       multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> ieraksti no <b>%{total}</b> kopā"
+      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "ieraksts"
         other: "ieraksti"

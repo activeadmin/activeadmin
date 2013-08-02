@@ -43,6 +43,7 @@ de:
       one: "Zeige <b>1</b> %{model}"
       one_page: "Zeige <b>alle %{n}</b> %{model}"
       multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
+      multiple_without_total: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
       entry:
         one: "Eintrag"
         other: "Einträge"

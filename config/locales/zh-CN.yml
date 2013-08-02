@@ -43,6 +43,7 @@
       one: "显示 <b>1</b> %{model}"
       one_page: "显示 <b>所有 %{n}</b> %{model}"
       multiple: "显示所有 <b>%{total}</b> %{model}中的<b>%{from}&nbsp;-&nbsp;%{to}</b> 条"
+      multiple_without_total: "%{model}中的<b>%{from}&nbsp;-&nbsp;%{to}</b> 条"
       entry:
         one: "条目"
         other: "条目"

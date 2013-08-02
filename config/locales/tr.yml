@@ -43,6 +43,7 @@ tr:
       one: "<b>1</b> %{model} kaydı görüntüleniyor"
       one_page: "<b>%{n}</b> kayıt %{model} modelinde görüntüleniyor"
       multiple: "%{model} toplam %{total} kayıt bulundu. <b>%{from} ile %{to} arası</b> arası görüntüleniyor"
+      multiple_without_total: "%{model}. <b>%{from} ile %{to} arası</b> arası görüntüleniyor"
       entry:
         one: "Girdi"
         other: "Girdiler"

@@ -43,6 +43,7 @@ bg:
       one: "Показване на <b>1</b> %{model}"
       one_page: "Показване на <b>всички %{n}</b> %{model}"
       multiple: "Показване %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> от общо <b>%{total}</b>"
+      multiple_without_total: "Показване %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "запис"
         other: "записи"

@@ -43,6 +43,7 @@ es:
       one: "Mostrando <b>1</b> %{model}"
       one_page: "Mostrando <b>un total de %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
+      multiple_without_total: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
     blank_slate:
       content: "No hay %{resource_name} aún."
       link: "Añadir"

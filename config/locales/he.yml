@@ -43,6 +43,7 @@ he:
       one: "מציג <b>1</b> %{model}"
       one_page: "הצגת <b>כל %{n}</b> %{model}"
       multiple: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> מתוך <b>%{total}</b> בסך הכל"
+      multiple_without_total: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "רשומה בודדה"
         other: "רשומות"

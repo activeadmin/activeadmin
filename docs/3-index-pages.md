@@ -143,6 +143,17 @@ You can also disable pagination:
       config.paginate = false
     end
 
+If you have a very large database, you might want to disable SELECT COUNT(*) queries caused by the pagination info at the bottom of the page:
+
+    ActiveAdmin.register Post do
+
+      # disable pagination total
+      index :pagination_total => false do
+        #...
+      end
+
+    end
+
 ## Disable CSV, XML and JSON export
 
 You can remove links to download CSV, XML and JSON exports:
@@ -177,3 +188,4 @@ If you want to customize download links for every resource throughout the applic
       config.download_links = [:csv, :xml, :json, :pdf]
 
     end
+
