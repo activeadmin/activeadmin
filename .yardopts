@@ -1,7 +1,6 @@
 lib/**/*.rb
 --protected
 --no-private
---asset docs/images:images
 -
 README.rdoc
 CHANGELOG.md
