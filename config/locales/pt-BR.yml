@@ -43,6 +43,7 @@
       one: "Exibindo <b>1</b> %{model}"
       one_page: "Exibindo <b>todos(as) os(as) %{n}</b> %{model}"
       multiple: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
+      multiple_without_total: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "registro"
         other: "registros"

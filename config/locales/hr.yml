@@ -43,6 +43,7 @@ hr:
       one: "Prikazan <b>1</b> %{model}"
       one_page: "Prikazano <b>svih %{n}</b> %{model}"
       multiple: "Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> od ukupno <b>%{total}</b>"
+      multiple_without_total: "Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "zapis"
         few: "zapisa"

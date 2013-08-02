@@ -43,6 +43,7 @@ nl:
       one: "Geeft <b>1</b> %{model} weer"
       one_page: "Geeft <b>%{n}</b> %{model} weer"
       multiple: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> van de <b>%{total}</b> weer"
+      multiple_without_total: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "entry"
         other: "entries"
