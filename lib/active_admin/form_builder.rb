@@ -157,7 +157,7 @@ module ActiveAdmin
         end
       end
     rescue NameError
-      raise Formtastic::UnknownInputError
+      raise Formtastic::UnknownInputError, "Unable to find input class for #{as}"
     end
 
     # This method calls the block it's passed (in our case, the `f.inputs` block)
