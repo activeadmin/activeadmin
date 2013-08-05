@@ -39,8 +39,9 @@ Feature: Commenting
   Scenario: View a resource in a namespace that doesn't have comments
     Given a configuration of:
     """
-      post_config = ActiveAdmin.register Post, :namespace => :new_namespace
-      post_config.namespace.allow_comments = false
+      ActiveAdmin.application.namespace(:new_namespace).allow_comments = false
+      ActiveAdmin.register Post,      :namespace => :new_namespace
+      ActiveAdmin.register AdminUser, :namespace => :new_namespace
     """
     Given I am logged in
     When I am on the index page for posts in the new_namespace namespace
@@ -51,7 +52,8 @@ Feature: Commenting
     Given a show configuration of:
     """
       ActiveAdmin.register Post
-      ActiveAdmin.register Post, :namespace => :public
+      ActiveAdmin.register Post,      :namespace => :public
+      ActiveAdmin.register AdminUser, :namespace => :public
     """
     When I add a comment "Hello world in admin namespace"
     Then I should see "Hello world in admin namespace"

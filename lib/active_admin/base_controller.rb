@@ -46,7 +46,7 @@ module ActiveAdmin
     helper_method :current_active_admin_user
 
     def current_active_admin_user?
-      !current_active_admin_user.nil?
+      !!current_active_admin_user
     end
     helper_method :current_active_admin_user?
 
