@@ -5,8 +5,14 @@ module ActiveAdmin
       class Form < Base
 
         def title
-          I18n.t("active_admin.#{params[:action]}_model",
+          form_options = form_presenter.options
+          
+          if form_options[:title]
+            form_options[:title].is_a?(Hash) ? form_options[:title][params[:action].to_sym] : form_options[:title]
+          else
+            I18n.t("active_admin.#{params[:action]}_model",
                  :model => active_admin_config.resource_label)
+          end
         end
 
         def form_presenter
