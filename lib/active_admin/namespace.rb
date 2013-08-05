@@ -159,7 +159,7 @@ module ActiveAdmin
       return if @menus.exists? :utility_navigation
       @menus.menu :utility_navigation do |menu|
         menu.add  :label  => proc{ display_name current_active_admin_user },
-                  :url    => '#',
+                  :url    => proc{ url_for [active_admin_namespace.name, current_active_admin_user] },
                   :id     => 'current_user',
                   :if     => proc{ current_active_admin_user? }
 
