@@ -11,16 +11,20 @@ describe "Breadcrumbs" do
     # Mock link to and return a hash
     def link_to(name, url); {:name => name, :path => url}; end
 
+    let(:post) { mock(:display_name => 'Hello World') }
+
+    let(:post_config) { stub(find_resource: post) }
+
     let :active_admin_config do
-      m = mock
-      m.stub_chain(:belongs_to_config, :target, :resource_class).and_return Post
-      m
+      active_admin_config = stub
+      active_admin_config.stub_chain(:belongs_to_config, :target).and_return post_config
+      active_admin_config
     end
 
     let(:trail) { breadcrumb_links(path) }
 
     context "when request '/admin'" do
-      let(:path){ "/admin" }
+      let(:path) { "/admin" }
 
       it "should not have any items" do
         trail.size.should == 0
@@ -71,6 +75,7 @@ describe "Breadcrumbs" do
       end
 
       context "when Post.find(1) doesn't exist" do
+        before { post_config.stub(find_resource: nil) }
         it "should have a link to /admin/posts/1" do
           trail[2][:name].should == "1"
           trail[2][:path].should == "/admin/posts/1"
@@ -78,9 +83,6 @@ describe "Breadcrumbs" do
       end
 
       context "when Post.find(1) does exist" do
-        before do
-          Post.stub(:where).with('id' => '1').and_return{ [ mock(:display_name => 'Hello World') ] }
-        end
         it "should have a link to /admin/posts/1 using display name" do
           trail[2][:name].should == "Hello World"
           trail[2][:path].should == "/admin/posts/1"
@@ -104,6 +106,7 @@ describe "Breadcrumbs" do
       end
 
       context "when Post.find(4e24d6249ccf967313000000) doesn't exist" do
+        before { post_config.stub(find_resource: nil) }
         it "should have a link to /admin/posts/4e24d6249ccf967313000000" do
           trail[2][:name].should == "4e24d6249ccf967313000000"
           trail[2][:path].should == "/admin/posts/4e24d6249ccf967313000000"
@@ -112,7 +115,7 @@ describe "Breadcrumbs" do
 
       context "when Post.find(4e24d6249ccf967313000000) does exist" do
         before do
-          Post.stub(:where).with('id' => '4e24d6249ccf967313000000').and_return{ [ mock(:display_name => 'Hello :)') ] }
+          post_config.stub(:find_resource => mock(:display_name => 'Hello :)'))
         end
         it "should have a link to /admin/posts/4e24d6249ccf967313000000 using display name" do
           trail[2][:name].should == "Hello :)"
@@ -136,24 +139,12 @@ describe "Breadcrumbs" do
         trail[1][:path].should == "/admin/posts"
       end
       it "should have a link to /admin/posts/1" do
-        trail[2][:name].should == "1"
+        trail[2][:name].should == "Hello World"
         trail[2][:path].should == "/admin/posts/1"
       end
       it "should have a link to /admin/posts/1/comments" do
         trail[3][:name].should == "Comments"
         trail[3][:path].should == "/admin/posts/1/comments"
-      end
-    end
-
-    context 'when using a nonstandard primary key' do
-      let(:path) { '/admin/posts/55555/comments' }
-      before do
-        Post.stub(:primary_key).and_return 'something_else'
-        Post.stub(:where).with('something_else' => '55555').and_return{ [ mock(:display_name => 'Hello Hello!') ] }
-      end
-      it 'should link to /admin/posts/55555 using display name' do
-        trail[2][:name].should == 'Hello Hello!'
-        trail[2][:path].should == '/admin/posts/55555'
       end
     end
 

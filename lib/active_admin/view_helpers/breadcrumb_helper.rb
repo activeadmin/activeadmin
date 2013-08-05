@@ -13,8 +13,7 @@ module ActiveAdmin
           # 3. default to calling `titlecase` on the URL fragment
           if part =~ /\A(\d+|[a-f0-9]{24})\z/ && parts[index-1]
             config = active_admin_config.belongs_to_config.try(:target) || active_admin_config
-            obj    = config.resource_class.where( config.resource_class.primary_key => part ).first
-            name   = display_name obj
+            name   = display_name config.find_resource(part)
           end
           name ||= I18n.t "activerecord.models.#{part.singularize}", :count => 1.1, :default => part.titlecase
 
