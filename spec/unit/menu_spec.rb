@@ -56,6 +56,13 @@ describe ActiveAdmin::Menu do
       menu["Users"].url.should == "/some/url"
       menu["Users"]["Posts"].should be_a ActiveAdmin::MenuItem
     end
+
+    it "should accept a proc object as parent label" do
+      menu = Menu.new
+      menu.add :parent => proc{ "Admin" }, :label => "Users"
+
+      menu["Admin"]["Users"].should be_an_instance_of(ActiveAdmin::MenuItem)
+    end
   end
 
   describe "sorting items" do
