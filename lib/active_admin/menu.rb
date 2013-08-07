@@ -95,6 +95,8 @@ module ActiveAdmin
           id.to_s.downcase.gsub ' ', '_'
         when ActiveAdmin::Resource::Name
           id.param_key
+        when Proc
+          normalize_id(id.call)
         else
           raise TypeError, "#{id.class} isn't supported as a Menu ID"
         end
