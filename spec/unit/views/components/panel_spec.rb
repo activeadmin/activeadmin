@@ -29,6 +29,14 @@ describe ActiveAdmin::Views::Panel do
     the_panel.find_by_tag("h3").first.content.should include("span class=\"icon")
   end
 
+  it "should allow a html_safe title (without icon)" do
+    title_with_html = %q[Title with <abbr>HTML</abbr>].html_safe
+    the_panel = render_arbre_component do
+      panel(title_with_html)
+    end
+    the_panel.find_by_tag("h3").first.content.should eq(title_with_html)
+  end
+
   describe "#children?" do
 
     it "returns false if no children have been added to the panel" do
