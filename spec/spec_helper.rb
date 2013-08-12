@@ -9,10 +9,6 @@ module ActiveAdminIntegrationSpecHelper
     ActiveAdmin.register(Category)
     ActiveAdmin.register(User)
     ActiveAdmin.register(Post){ belongs_to :user, :optional => true }
-    ActiveAdmin.register(Store){ 
-      index :pagination_total => false do
-      end
-    }
     reload_menus!
   end
 
