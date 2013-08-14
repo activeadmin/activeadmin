@@ -24,4 +24,9 @@ describe ActiveAdmin::Application do
     controllers.each{ |c| c.should_receive(:around_filter).and_return(true) }
     application.around_filter :my_filter, :only => :show
   end
+  
+  it 'skip_filter' do
+    controllers.each{ |c| c.should_receive(:skip_filter).and_return(true) }
+    application.skip_filter :my_filter, :only => :show
+  end
 end
