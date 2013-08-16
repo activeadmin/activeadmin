@@ -44,7 +44,9 @@ ja:
       one_page: "<b>全 %{n}</b> 件の %{model} を表示しています"
       multiple: "全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
-      entry: レコード
+      entry: 
+        one: "レコード"
+        other: "レコード"
     any: "任意"
     blank_slate:
       content: "%{resource_name} はまだありません。"
@@ -61,6 +63,8 @@ ja:
       labels:
         destroy: "削除する"
     comments:
+      resource_type: "リソース種別"
+      author_type: "作成者種別"
       body: "本文"
       author: "作成者"
       title: "コメント"
@@ -81,7 +85,20 @@ ja:
       change_password:
         title: "パスワードを変更する"
         submit: "パスワードを変更する"
+      unlock:
+        title: "ロックの解除方法を送る"
+        submit: "ロックの解除方法を送る"
       links:
         sign_in: "サインイン"
+        sign_up: "ユーザ登録"
         forgot_your_password: "パスワードをお忘れですか？"
         sign_in_with_omniauth_provider: "%{provider}のアカウントを使ってログイン"
+        resend_confirmation_instructions: "ユーザ確認手順を再送する"
+        resend_unlock_instructions: "ロックの解除方法を再送する"
+    access_denied:
+      message: "アクションを実行する権限がありません"
+    index_list:
+      table: "テーブル"
+      block: "リスト"
+      grid: "グリッド"
+      blog: "ブログ"
