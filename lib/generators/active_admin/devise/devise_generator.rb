@@ -1,11 +1,16 @@
 module ActiveAdmin
   module Generators
+    class Error < Rails::Generators::Error
+    end
+
     class DeviseGenerator < Rails::Generators::NamedBase
       desc "Creates an admin user and uses Devise for authentication"
       argument :name, :type => :string, :default => "AdminUser"
 
       class_option  :registerable, :type => :boolean, :default => false,
                     :desc => "Should the generated resource be registerable?"
+
+      RESERVED_NAMES = [:active_admin_user]
 
       def install_devise
         require 'devise'
@@ -18,6 +23,9 @@ module ActiveAdmin
       end
 
       def create_admin_user
+        if RESERVED_NAMES.include?(name.underscore)
+          raise Error, "The name #{name} is reserved by Active Admin"
+        end
         invoke "devise", [name]
       end
 
