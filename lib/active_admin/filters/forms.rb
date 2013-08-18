@@ -19,7 +19,8 @@ module ActiveAdmin
 
       protected
 
-      # Returns the default filter type for a given attribute
+      # Returns the default filter type for a given attribute. If you want
+      # to use a custom search method, you have to specify the type yourself.
       def default_input_type(method, options = {})
         if method =~ /_(contains|starts_with|ends_with)\z/
           :string
