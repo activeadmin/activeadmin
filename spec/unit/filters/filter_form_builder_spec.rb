@@ -1,5 +1,10 @@
 require 'spec_helper'
 
+class Post
+  scope :custom_searcher, ->stuff { where(body: stuff) }
+  search_method :custom_searcher
+end
+
 describe ActiveAdmin::Filters::ViewHelper do
 
   # Setup an ActionView::Base object which can be used for
@@ -332,6 +337,19 @@ describe ActiveAdmin::Filters::ViewHelper do
       it "should NOT be displayed if true" do
         body.should_not have_tag("input", :attributes => { :name => "q[updated_at_gte]"})
       end
+    end
+  end
+
+  describe "custom search methods" do
+
+    it "should work as select" do
+      body = filter :custom_searcher, as: :select, collection: ['foo']
+      body.should have_tag "select", attributes: { name: "q[custom_searcher]" }
+    end
+
+    pending "should work as string" do
+      body = filter :custom_searcher, as: :string
+      body.should have_tag "input", attributes: { name: "q[custom_searcher]" }
     end
   end
 
