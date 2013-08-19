@@ -52,10 +52,12 @@ describe ActiveAdmin::ResourceCollection do
 
   describe "#[]" do
 
-    let(:base_class){      mock :to_s => "BaseClass" }
-    let(:resource_class){  mock :to_s => "ResourceClass", :base_class => base_class }
-    let(:resource){        mock :resource_name => "MyResource",          :resource_class => resource_class }
-    let(:from_base_class){ mock :resource_name => "MyBaseClassResource", :resource_class => base_class }
+    let(:base_class){               mock :to_s => "BaseClass" }
+    let(:resource_class){           mock :to_s => "ResourceClass", :base_class => base_class }
+    let(:resource_name){            mock :name => "MyResource", :to_s => "MyResource" }
+    let(:base_class_resource_name){ mock :name => "MyBaseClassResource", :to_s => "MyBaseClassResource" }
+    let(:resource){                 mock :resource_name => resource_name, :resource_class => resource_class }
+    let(:from_base_class){          mock :resource_name => base_class_resource_name, :resource_class => base_class }
 
     it "should find a resource when it's in the collection" do
       collection.add resource
@@ -73,6 +75,11 @@ describe ActiveAdmin::ResourceCollection do
 
     it "should return nil the resource_class does not repond to base_class and it's not in the collection" do
       collection[mock].should == nil
+    end
+
+    it "should find a resource when it's looked up by a resource name string" do
+      collection.add resource
+      collection["MyResource"].should == resource
     end
   end
 
