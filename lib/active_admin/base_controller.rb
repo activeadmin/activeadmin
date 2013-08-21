@@ -22,6 +22,10 @@ module ActiveAdmin
       # Reference to the Resource object which initialized
       # this controller
       attr_accessor :active_admin_config
+
+      def run_hooks
+        active_admin_config.namespace.contoller_hooks.each { |p| class_eval(&p) }
+      end
     end
 
     # By default Rails will render un-implemented actions when the view exists. Becuase Active

@@ -197,6 +197,7 @@ module ActiveAdmin
     def register_page_controller(config)
       eval "class ::#{config.controller_name} < ActiveAdmin::PageController; end"
       config.controller.active_admin_config = config
+      config.controller.run_hooks
     end
 
     def unload_resources!
@@ -228,6 +229,7 @@ module ActiveAdmin
     def register_resource_controller(config)
       eval "class ::#{config.controller_name} < ActiveAdmin::ResourceController; end"
       config.controller.active_admin_config = config
+      config.controller.run_hooks
     end
 
     def parse_registration_block(config, &block)
