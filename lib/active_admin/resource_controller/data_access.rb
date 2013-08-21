@@ -217,17 +217,24 @@ module ActiveAdmin
 
       def apply_sorting(chain)
         params[:order] ||= active_admin_config.sort_order
-        if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
+        return chain unless params[:order]
+        sort_fields = params[:order].split(",").map { |field| field.strip }
+        sort_fields.each_with_index do |field, i|
+          next unless field =~ /^([\w\_\.]+)_(desc|asc)$/
           column = $1
           order  = $2
           table  = active_admin_config.resource_column_names.include?(column) ? active_admin_config.resource_table_name : nil
           table_column = (column =~ /\./) ? column :
             [table, active_admin_config.resource_quoted_column_name(column)].compact.join(".")
 
-          chain.reorder("#{table_column} #{order}")
-        else
-          chain # just return the chain
+          if i == 0
+            chain = chain.reorder("#{table_column} #{order}")
+          else
+            chain = chain.order("#{table_column} #{order}")
+          end
         end
+
+        chain
       end
 
       def apply_filtering(chain)
