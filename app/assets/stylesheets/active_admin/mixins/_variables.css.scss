@@ -13,6 +13,7 @@ $hover-menu-item-background: lighten($primary-color, 12%) !default;
 $table-stripe-color: lighten($primary-color, 57%) !default;
 $table-selected-color: #d9e4ec !default;
 $error-color: #932419 !default;
+$blank-slate-primary-color: #AAA;
 
 // Sizes
 $horizontal-page-margin: 30px !default;
@@ -22,3 +23,4 @@ $cell-horizontal-padding: 12px !default;
 $section-padding: 15px !default;
 $text-input-horizontal-padding: 10px !default;
 
+$blank-slate-border: 1px dashed #DADADA
