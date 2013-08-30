@@ -83,4 +83,34 @@ describe ActiveAdmin::ResourceCollection do
     end
   end
 
+  describe ".add" do
+    let(:application)      { ActiveAdmin::Application.new }
+    let(:namespace)        { ActiveAdmin::Namespace.new(application, :admin) }
+
+    let(:resource)         { ActiveAdmin::Resource.new(namespace, Category) }
+    let(:resource_renamed) { ActiveAdmin::Resource.new(namespace, Category, as: "SubCategory") }
+
+    context "when renamed resource is added first" do
+      before do
+        collection.add(resource_renamed)
+        collection.add(resource)
+      end
+
+      it "contains both resources" do
+        collection.values.should include(resource, resource_renamed)
+      end
+    end
+
+    context "when resource is added first" do
+      before do
+        collection.add(resource)
+        collection.add(resource_renamed)
+      end
+
+      it "contains both resources" do
+        collection.values.should include(resource, resource_renamed)
+      end
+    end
+  end
+
 end
