@@ -90,7 +90,7 @@ module ActiveAdmin
 
     # Returns the first registered ActiveAdmin::Resource instance for a given class
     def resource_for(klass)
-      resources[klass]
+      resources.find_matching_resource(klass)
     end
 
     # Override from ActiveAdmin::Settings to inherit default attributes

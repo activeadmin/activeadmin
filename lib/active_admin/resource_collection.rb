@@ -4,7 +4,7 @@ module ActiveAdmin
   class ResourceCollection
     include Enumerable
     extend Forwardable
-    def_delegators :@resources, :empty?, :has_key?, :keys, :values, :[]=
+    def_delegators :@resources, :empty?, :has_key?, :keys, :values, :[]=, :[]
 
     def initialize
       @resources = {}
@@ -19,14 +19,18 @@ module ActiveAdmin
       values.each &block
     end
 
-    # Finds a resource based on the resource name, the resource class, or the base class.
-    def [](klass)
-      if match = @resources[klass]
+    # Find a resource by Resource::Name, resource's class, or resource's base class.
+    def find_matching_resource(name_or_class)
+      klass, name = name_or_class, name_or_class.to_s
+
+      if match = self[klass]
         match
-      elsif match = real_resources.detect{ |r| [r.resource_name.to_s, r.resource_class.to_s].include? klass.to_s }
+      elsif match = real_resources.detect{ |r| r.resource_name.to_s == name }
+        match
+      elsif match = real_resources.detect{ |r| r.resource_class == klass }
         match
       elsif klass.respond_to? :base_class
-        real_resources.detect{ |r| r.resource_class.to_s == klass.base_class.to_s }
+        real_resources.detect{ |r| r.resource_class == klass.base_class }
       end
     end
 

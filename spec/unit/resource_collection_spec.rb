@@ -50,36 +50,45 @@ describe ActiveAdmin::ResourceCollection do
     end
   end
 
-  describe "#[]" do
+  describe ".find_matching_resource" do
+    let(:base_class)               { mock :to_s => "BaseClass" }
+    let(:resource_class)           { mock :to_s => "ResourceClass", :base_class => base_class }
+    let(:resource_name)            { mock :name => "MyResource", :to_s => "MyResource" }
+    let(:base_class_resource_name) { mock :name => "MyBaseClassResource", :to_s => "MyBaseClassResource" }
+    let(:resource)                 { mock :resource_name => resource_name, :resource_class => resource_class }
+    let(:from_base_class)          { mock :resource_name => base_class_resource_name, :resource_class => base_class }
 
-    let(:base_class){               mock :to_s => "BaseClass" }
-    let(:resource_class){           mock :to_s => "ResourceClass", :base_class => base_class }
-    let(:resource_name){            mock :name => "MyResource", :to_s => "MyResource" }
-    let(:base_class_resource_name){ mock :name => "MyBaseClassResource", :to_s => "MyBaseClassResource" }
-    let(:resource){                 mock :resource_name => resource_name, :resource_class => resource_class }
-    let(:from_base_class){          mock :resource_name => base_class_resource_name, :resource_class => base_class }
+    subject { collection.find_matching_resource(resource_class) }
 
     it "should find a resource when it's in the collection" do
       collection.add resource
-      collection[resource_class].should == resource
+      subject.should == resource
     end
 
     it "should return nil when the resource class is not in the collection" do
-      collection[resource_class].should == nil
+      subject.should == nil
     end
 
     it "should return the resource when it and it's base class is in the collection" do
       collection.add from_base_class
-      collection[resource_class].should == from_base_class
+      subject.should == from_base_class
     end
 
-    it "should return nil the resource_class does not repond to base_class and it's not in the collection" do
-      collection[mock].should == nil
+    context "when the resource_class does not repond to base_class and it's not in the collection" do
+      subject { collection.find_matching_resource(mock) }
+
+      it "should return nil" do
+        subject.should == nil
+      end
     end
 
-    it "should find a resource when it's looked up by a resource name string" do
-      collection.add resource
-      collection["MyResource"].should == resource
+    context "when it's looked up by a resource name string" do
+      subject { collection.find_matching_resource("MyResource") }
+
+      it "should find a resource" do
+        collection.add resource
+        subject.should == resource
+      end
     end
   end
 
