@@ -24,8 +24,11 @@ form {
         float: left;
         font-size: 1.0em;
         font-weight: bold;
-        color: $section-header-text-color;
-        abbr { border: none; color: #aaa; }
+        color: $form-label-color;
+        abbr {
+          border: none;
+          color:  $required-field-marker-color;
+        }
       }
     }
 
@@ -210,7 +213,7 @@ $sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
   label {
     display: block;
     text-transform: uppercase;
-    color: $section-header-text-color;
+    color:  $form-label-color;
     font-size: 0.9em;
     font-weight: bold;
   }

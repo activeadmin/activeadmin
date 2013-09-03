@@ -3,6 +3,7 @@
 // to 'app/assets/stylesheets/active_admin.css.scss'.
 
 // Colors
+$body-background-color: #FFF;
 $primary-color: #5E6469 !default;
 $secondary-color: #f0f0f0 !default;
 $text-color: #323537 !default;
@@ -13,6 +14,12 @@ $hover-menu-item-background: lighten($primary-color, 12%) !default;
 $table-stripe-color: lighten($primary-color, 57%) !default;
 $table-selected-color: #d9e4ec !default;
 $error-color: #932419 !default;
+$blank-slate-primary-color: #AAA;
+$breadcrumbs-color: #8a949e;
+$breadcrumbs-separator-color: #aab2ba;
+$required-field-marker-color: #aaa;
+$form-label-color: $section-header-text-color;
+$page-header-text-color: #cdcdcd;
 
 // Sizes
 $horizontal-page-margin: 30px !default;
@@ -22,3 +29,4 @@ $cell-horizontal-padding: 12px !default;
 $section-padding: 15px !default;
 $text-input-horizontal-padding: 10px !default;
 
+$blank-slate-border: 1px dashed #DADADA
