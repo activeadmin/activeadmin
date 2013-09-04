@@ -4,6 +4,8 @@ require 'active_admin/resource_collection'
 include ActiveAdmin
 
 describe ActiveAdmin::ResourceCollection do
+  let(:application) { ActiveAdmin::Application.new }
+  let(:namespace)   { ActiveAdmin::Namespace.new(application, :admin) }
 
   let(:collection){ ResourceCollection.new }
 
@@ -51,44 +53,79 @@ describe ActiveAdmin::ResourceCollection do
   end
 
   describe "#[]" do
+    let(:resource)              { Resource.new(namespace, resource_class) }
+    let(:inherited_resource)    { Resource.new(namespace, inherited_resource_class) }
 
-    let(:base_class){               mock :to_s => "BaseClass" }
-    let(:resource_class){           mock :to_s => "ResourceClass", :base_class => base_class }
-    let(:resource_name){            mock :name => "MyResource", :to_s => "MyResource" }
-    let(:base_class_resource_name){ mock :name => "MyBaseClassResource", :to_s => "MyBaseClassResource" }
-    let(:resource){                 mock :resource_name => resource_name, :resource_class => resource_class }
-    let(:from_base_class){          mock :resource_name => base_class_resource_name, :resource_class => base_class }
+    let(:resource_class)           { User }
+    let(:inherited_resource_class) { Publisher }
+    let(:unregistered_class)       { Category }
 
-    it "should find a resource when it's in the collection" do
-      collection.add resource
-      collection[resource_class].should == resource
+    context "with resources" do
+      before do
+        collection.add resource
+        collection.add inherited_resource
+      end
+
+      it "should find resource by class" do
+        collection[resource_class].should == resource
+      end
+
+      it "should find resource by class string" do
+        collection[resource_class.to_s].should == resource
+      end
+
+      it "should find inherited resource by class" do
+        collection[inherited_resource_class].should == inherited_resource
+      end
+
+      it "should find inherited resource by class string" do
+        collection[inherited_resource_class.to_s].should == inherited_resource
+      end
+
+      it "should return nil when the resource_class does not respond to base_class and it is not in the collection" do
+        collection[mock].should == nil
+      end
+
+      it "should return nil when a resource class is NOT in the collection" do
+        collection[unregistered_class].should == nil
+      end
     end
 
-    it "should return nil when the resource class is not in the collection" do
-      collection[resource_class].should == nil
+    context "without inherited resources" do
+      before do
+        collection.add resource
+      end
+
+      it "should find resource by inherited class" do
+        collection[inherited_resource_class].should == resource
+      end
     end
 
-    it "should return the resource when it and it's base class is in the collection" do
-      collection.add from_base_class
-      collection[resource_class].should == from_base_class
-    end
+    context "with a renamed resource" do
+      let(:renamed_resource) { Resource.new(namespace, resource_class, :as => name) }
+      let(:name)             { "Administrators" }
 
-    it "should return nil the resource_class does not repond to base_class and it's not in the collection" do
-      collection[mock].should == nil
-    end
+      before do
+        collection.add renamed_resource
+      end
 
-    it "should find a resource when it's looked up by a resource name string" do
-      collection.add resource
-      collection["MyResource"].should == resource
+      it "should find resource by class" do
+        collection[resource_class].should == renamed_resource
+      end
+
+      it "should find resource by class string" do
+        collection[resource_class.to_s].should == renamed_resource
+      end
+
+      it "should find resource by name" do
+        collection[name].should == renamed_resource
+      end
     end
   end
 
   describe ".add" do
-    let(:application)      { ActiveAdmin::Application.new }
-    let(:namespace)        { ActiveAdmin::Namespace.new(application, :admin) }
-
-    let(:resource)         { ActiveAdmin::Resource.new(namespace, Category) }
-    let(:resource_renamed) { ActiveAdmin::Resource.new(namespace, Category, as: "SubCategory") }
+    let(:resource)         { Resource.new(namespace, Category) }
+    let(:resource_renamed) { Resource.new(namespace, Category, as: "Subcategory") }
 
     context "when renamed resource is added first" do
       before do
