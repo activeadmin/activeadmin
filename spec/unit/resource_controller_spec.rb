@@ -54,10 +54,9 @@ describe ActiveAdmin::ResourceController do
 
 
   describe "callbacks" do
-    let(:application){ ::ActiveAdmin::Application.new }
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
-
     before :all do
+      application = ActiveAdmin::Application.new
+      namespace   = ActiveAdmin::Namespace.new(application, :admin)
       namespace.register Post do
         after_build :call_after_build
         before_save :call_before_save

@@ -13,15 +13,15 @@ Feature: STI Resource
   Scenario: Create, update and delete a child STI resource
     Given I am on the index page for publishers
     When I follow "New Publisher"
-    And I fill in "First name" with "Terry"
-    And I fill in "Last name" with "Fox"
-    And I fill in "Username" with "terry_fox"
+    And I fill in "#publisher_first_name" with "Terry"
+    And I fill in "#publisher_last_name" with "Fox"
+    And I fill in "#publisher_username" with "terry_fox"
     And I press "Create Publisher"
     Then I should see "Publisher was successfully created"
     And I should see "Terry"
 
     When I follow "Edit Publisher"
-    And I fill in "First name" with "Joe"
+    And I fill in "#publisher_first_name" with "Joe"
     And I press "Update Publisher"
     Then I should see "Publisher was successfully updated"
     And I should see "Joe"
@@ -32,15 +32,15 @@ Feature: STI Resource
   Scenario: Create, update and delete a parent STI resource
     Given I am on the index page for users
     When I follow "New User"
-    And I fill in "First name" with "Terry"
-    And I fill in "Last name" with "Fox"
-    And I fill in "Username" with "terry_fox"
+    And I fill in "#user_first_name" with "Terry"
+    And I fill in "#user_last_name" with "Fox"
+    And I fill in "#user_username" with "terry_fox"
     And I press "Create User"
     Then I should see "User was successfully created"
     And I should see "Terry"
 
     When I follow "Edit User"
-    And I fill in "First name" with "Joe"
+    And I fill in "#user_first_name" with "Joe"
     And I press "Update User"
     Then I should see "User was successfully updated"
     And I should see "Joe"
@@ -52,7 +52,7 @@ Feature: STI Resource
     Given a publisher named "Terry Fox" exists
     And I am on the index page for users
     When I follow "Edit"
-    And I fill in "First name" with "Joe"
+    And I fill in "#user_first_name" with "Joe"
     And I press "Update Publisher"
     Then I should see "Publisher was successfully updated"
     And I should see "Joe"

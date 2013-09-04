@@ -12,23 +12,23 @@ Feature: User Logging In
     When I go to the dashboard
 
   Scenario: Logging in Successfully
-    When I fill in "Email" with "admin@example.com"
-    And I fill in "Password" with "password"
+    When I fill in "#admin_user_email" with "admin@example.com"
+    And I fill in "#admin_user_password" with "password"
     And I press "Login"
     Then I should be on the the dashboard
     And I should see the element "a[href='/admin/logout'       ]:contains('Logout')"
     And I should see the element "a[href='/admin/admin_users/1']:contains('admin@example.com')"
 
   Scenario: Attempting to log in with an incorrect email address
-    When I fill in "Email" with "not-an-admin@example.com"
-    And I fill in "Password" with "not-my-password"
+    When I fill in "#admin_user_email" with "not-an-admin@example.com"
+    And I fill in "#admin_user_password" with "not-my-password"
     And I press "Login"
     Then I should see "Login"
     And I should see "Invalid email or password."
 
   Scenario: Attempting to log in with an incorrect password
-    When I fill in "Email" with "admin@example.com"
-    And I fill in "Password" with "not-my-password"
+    When I fill in "#admin_user_email" with "admin@example.com"
+    And I fill in "#admin_user_password" with "not-my-password"
     And I press "Login"
     Then I should see "Login"
     And I should see "Invalid email or password."
