@@ -15,7 +15,7 @@
     display: table-cell;
     vertical-align: middle;
     white-space: nowrap;
-    color: #cdcdcd;
+    color:  $page-header-text-color;
     margin-right: 20px;
     margin-bottom: 0px;
     padding: 3px $horizontal-page-margin 0 $horizontal-page-margin;
@@ -37,7 +37,7 @@
     }
   }
 
-  a, a:link { color: #cdcdcd; }
+  a, a:link { color: $page-header-text-color; }
 
   .header-item {
     top: 2px;
