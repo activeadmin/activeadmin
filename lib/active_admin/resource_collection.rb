@@ -11,7 +11,7 @@ module ActiveAdmin
     end
 
     def add(resource)
-      self[resource.resource_name] ||= resource
+      @resources[resource.resource_name] ||= resource
     end
 
     # Changes `each` to pass in the value, instead of both the key and value.
