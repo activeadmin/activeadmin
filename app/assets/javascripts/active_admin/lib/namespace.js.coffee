@@ -1,3 +1,4 @@
 # Make a namespace for ActiveAdmin plugins
 
-window.AA = {}
+window.ActiveAdmin = {}
+window.AA = window.ActiveAdmin unless window.AA
