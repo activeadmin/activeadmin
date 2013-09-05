@@ -1,7 +1,7 @@
 # Customizing the Form
 
 Active Admin gives complete control over the output of the form by creating a thin DSL on top of
-the fabulous DSL created by Formtastic (http://github.com/justinfrench/formtastic).
+the fabulous DSL created by [Formtastic](http://github.com/justinfrench/formtastic).
 
     ActiveAdmin.register Post do
 
@@ -19,8 +19,8 @@ the fabulous DSL created by Formtastic (http://github.com/justinfrench/formtasti
 
     end
 
-Please view the documentation for Formtastic to see all the wonderful things you can do:
-http://github.com/justinfrench/formtastic
+Please view [the documentation](http://github.com/justinfrench/formtastic)
+for Formtastic to see all the wonderful things you can do.
 
 If you require a more custom form than can be provided through the DSL, you can pass
 a partial in to render the form yourself.
