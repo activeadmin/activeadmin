@@ -5,16 +5,17 @@
 * OmniAuth provider links now automatically appear on the login page [#2088][] by [@henrrrik][]
 * Menu items can now properly overflow [#2046][] by [@maax][]; later updated in [#2125][] by [@ball-hayden][]
 * Favicon support [#2348][] by [@stereoscott][]
-* Advanced string filters [#2096][] by [@joseluistorres][]; later updated in [#2228][] by [@Daxter][]
-* Select filters now respect custom MetaSerch search methods [#2420][] by [@Daxter][]
-* The navbar now links to the current user's profile [#2395][] by [@Daxter][]
 * HABTM filters [#1928][] by [@Daxter][]
-````ruby
+```ruby
     # (assuming Foo HABTM Bars)
     ActiveAdmin.register Foo do
       filter :bars
     end
 ```
+
+* Advanced string filters [#2096][] by [@joseluistorres][]; later updated in [#2228][] by [@Daxter][]
+* Select filters now respect custom MetaSerch search methods [#2420][] by [@Daxter][]
+* The navbar now links to the current user's profile [#2395][] by [@Daxter][]
 
 ### Bug Fixes
 
