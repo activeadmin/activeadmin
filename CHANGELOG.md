@@ -4,22 +4,39 @@
 
 * OmniAuth provider links now automatically appear on the login page [#2088][] by [@henrrrik][]
 * Menu items can now properly overflow [#2046][] by [@maax][]; later updated in [#2125][] by [@ball-hayden][]
+* Favicon support [#2348][] by [@stereoscott][]
+* Advanced string filters [#2096][] by [@joseluistorres][]; later updated in [#2228][] by [@Daxter][]
+* Select filters now respect custom MetaSerch search methods [#2420][] by [@Daxter][]
+* The navbar now links to the current user's profile [#2395][] by [@Daxter][]
+* HABTM filters [#1928][] by [@Daxter][]
+````ruby
+    # (assuming Foo HABTM Bars)
+    ActiveAdmin.register Foo do
+      filter :bars
+    end
+```
 
 ### Bug Fixes
 
+* The CSS encapsulation from 0.6.0 has been rolled back [#1952][] by [@tinynumbers][]
 * Fixes problem where extra `/` route was being generated [#2062][] by [@jbhannah][]
 * `IndexAsBlog` now renders title/body procs in the view context [#2087][] by [@macfanatic][]
 * Fixes `route_instance_path` for `belongs_to` resources [#2099][] by [@pcreux][]
 * Fixes breadcrumb links for `belongs_to` resources [#2090][] by [@Daxter][]
-* Forces a `I18n.reload!` to ensure translations are loaded in production [#2072][] [@ericpromislow][]
+* Fixes ID regression, again using `to_param` [#2175][] by [@cknoxrun][]
+* Fixes `check_box_checked?` bug [#2186][] by [@Daxter][]; later updated in [#2221][] by [@dmfrancisco][]
+* Ensures that assets can only be registered once [#2139][] by [@Daxter][]
+* Makes breadcrumbs respect the decorator [#2315][] by [@amiel][]
+* CSV download links now respect pagination [#2419][] by [@Daxter][]
+* Panels no longer escape html-safe entities [#2403][] by [@zorab47][]
 
 ### Enhancements
 
 * Adds option to "undecorate" resource when building forms [#2085][] by [@amiel][]
+* Adds `:pagination_total` option to index to hide count for large databases [#2333][] by [@joseluistorres][]
 * Adds [better_errors](https://github.com/charliesome/better_errors) gem for a better AA development experience [#2095][] by [@Daxter][]
 * Scopes now support blocks for the `:default` option [#2084][] by [@macfanatic][]
 * `:if` and `:unless` options added to `scope_to` [#2089][] by [@macfanatic][]
-* German (Switzerland), English (UK) locales added [#1916][] by [@psy-q][]
 * Renames Comment to AdminComment [#2060][] by [@jbhannah][]; later replaced by [#2113][]
 * Improves Comments UI and adds config settings [#2113][] by [@Daxter][]
 ```ruby
@@ -31,6 +48,21 @@
   * Adds 'has_many_delete' CSS class to `li` elements [#2054][] by [@shekibobo][]
   * Adds `:heading` option to customize the heading displayed [#2068][] by [@coreyward][]
   * Adds `:allow_destroy` option to add in a checkbox to the form to delete records [#2071][] by [@shekibobo][]
+  * Adds `:new_record` option to hide "new" button [#2134][] by [@developer88][]
+* translations
+  * German (Switzerland), English (UK) locales added [#1916][] by [@psy-q][]
+  * Danish locale updated [#2154][] by [@jokklan][]
+  * Bulgarian locale updated [#2150][] by [@mitio][]
+  * Ukrainian locale added [#2258][] by [@valdemarua][]
+  * Mexican Spanish locale added [#2319][] by [@neoriddle][]
+  * Japanese locale updated [#2416][] by [@nappa][]
+  * move filter translation into `SearchMethodSelect` [#2231][] by [@Daxter][]
+  * fix plural translations for default `batch_action` [#2255][] by [@mindhalt][]
+* In development, load each individual AA JS file [#2215][] by [@tank-bohr][]
+* Removes Railtie, only using Rails Engine [#2162][] by [@jherdman][]
+* Excludes associations from `display_name` helper [#2147][] by [@Daxter][]
+* Prevents new AA::Application instances from using the same `namespace` hash [#2313][] by [@Daxter][]
+* Moves hard-coded SASS colors into variables [#2454][] by [@ilyakatz][]
 
 ### Cleanup
 
@@ -38,6 +70,7 @@
 * Misc cleanup in [#2075][] and [#2107][] by [@Daxter][]
 * Removes messy spacing from `AdminUser` generator file [#2058][] by [@lupinglade][]
 * Fixes documentation formatting [#2083][] by [@amiel][]
+* Deprecated settings & code removed [#2165][] by [@Daxter][]
 
 ## 0.6.0 - [compare](https://github.com/gregbell/active_admin/compare/v0.5.1...v0.6.0)
 
@@ -802,11 +835,13 @@ of the highlights. 250 commits. Enough said.
 [#1908]: https://github.com/gregbell/active_admin/issues/1908
 [#1913]: https://github.com/gregbell/active_admin/issues/1913
 [#1916]: https://github.com/gregbell/active_admin/issues/1916
+[#1928]: https://github.com/gregbell/active_admin/issues/1928
 [#1929]: https://github.com/gregbell/active_admin/issues/1929
 [#1933]: https://github.com/gregbell/active_admin/issues/1933
 [#1937]: https://github.com/gregbell/active_admin/issues/1937
 [#1940]: https://github.com/gregbell/active_admin/issues/1940
 [#1947]: https://github.com/gregbell/active_admin/issues/1947
+[#1952]: https://github.com/gregbell/active_admin/issues/1952
 [#1960]: https://github.com/gregbell/active_admin/issues/1960
 [#1961]: https://github.com/gregbell/active_admin/issues/1961
 [#1962]: https://github.com/gregbell/active_admin/issues/1962
@@ -835,10 +870,37 @@ of the highlights. 250 commits. Enough said.
 [#2089]: https://github.com/gregbell/active_admin/issues/2089
 [#2090]: https://github.com/gregbell/active_admin/issues/2090
 [#2095]: https://github.com/gregbell/active_admin/issues/2095
+[#2096]: https://github.com/gregbell/active_admin/issues/2096
 [#2099]: https://github.com/gregbell/active_admin/issues/2099
 [#2107]: https://github.com/gregbell/active_admin/issues/2107
 [#2113]: https://github.com/gregbell/active_admin/issues/2113
 [#2125]: https://github.com/gregbell/active_admin/issues/2125
+[#2134]: https://github.com/gregbell/active_admin/issues/2134
+[#2139]: https://github.com/gregbell/active_admin/issues/2139
+[#2147]: https://github.com/gregbell/active_admin/issues/2147
+[#2150]: https://github.com/gregbell/active_admin/issues/2150
+[#2154]: https://github.com/gregbell/active_admin/issues/2154
+[#2162]: https://github.com/gregbell/active_admin/issues/2162
+[#2165]: https://github.com/gregbell/active_admin/issues/2165
+[#2175]: https://github.com/gregbell/active_admin/issues/2175
+[#2186]: https://github.com/gregbell/active_admin/issues/2186
+[#2215]: https://github.com/gregbell/active_admin/issues/2215
+[#2221]: https://github.com/gregbell/active_admin/issues/2221
+[#2228]: https://github.com/gregbell/active_admin/issues/2228
+[#2231]: https://github.com/gregbell/active_admin/issues/2231
+[#2255]: https://github.com/gregbell/active_admin/issues/2255
+[#2258]: https://github.com/gregbell/active_admin/issues/2258
+[#2313]: https://github.com/gregbell/active_admin/issues/2313
+[#2315]: https://github.com/gregbell/active_admin/issues/2315
+[#2319]: https://github.com/gregbell/active_admin/issues/2319
+[#2333]: https://github.com/gregbell/active_admin/issues/2333
+[#2348]: https://github.com/gregbell/active_admin/issues/2348
+[#2395]: https://github.com/gregbell/active_admin/issues/2395
+[#2403]: https://github.com/gregbell/active_admin/issues/2403
+[#2416]: https://github.com/gregbell/active_admin/issues/2416
+[#2419]: https://github.com/gregbell/active_admin/issues/2419
+[#2420]: https://github.com/gregbell/active_admin/issues/2420
+[#2454]: https://github.com/gregbell/active_admin/issues/2454
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
@@ -854,11 +916,14 @@ of the highlights. 250 commits. Enough said.
 [@ball-hayden]: https://github.com/ball-hayden
 [@bobbytables]: https://github.com/bobbytables
 [@caifara]: https://github.com/caifara
+[@cknoxrun]: https://github.com/cknoxrun
 [@comboy]: https://github.com/comboy
 [@coreyward]: https://github.com/coreyward
 [@dapi]: https://github.com/dapi
 [@dbussin]: https://github.com/dbussin
+[@developer88]: https://github.com/developer88
 [@dhiemstra]: https://github.com/dhiemstra
+[@dmfrancisco]: https://github.com/dmfrancisco
 [@doug316]: https://github.com/doug316
 [@ebeigarts]: https://github.com/ebeigarts
 [@ejholmes]: https://github.com/ejholmes
@@ -873,12 +938,16 @@ of the highlights. 250 commits. Enough said.
 [@gregbell]: https://github.com/gregbell
 [@hakanensari]: https://github.com/hakanensari
 [@henrrrik]: https://github.com/henrrrik
+[@ilyakatz]: https://github.com/ilyakatz
 [@j]: https://github.com/j
 [@jamesalmond]: https://github.com/jamesalmond
 [@jancel]: https://github.com/jancel
 [@jbarket]: https://github.com/jbarket
 [@jbhannah]: https://github.com/jbhannah
+[@jherdman]: https://github.com/jherdman
 [@johnnyshields]: https://github.com/johnnyshields
+[@jokklan]: https://github.com/jokklan
+[@joseluistorres]: https://github.com/joseluistorres
 [@joshuacollins85]: https://github.com/joshuacollins85
 [@jschwindt]: https://github.com/jschwindt
 [@kerberoS]: https://github.com/kerberoS
@@ -890,8 +959,12 @@ of the highlights. 250 commits. Enough said.
 [@maax]: https://github.com/maax
 [@macfanatic]: https://github.com/macfanatic
 [@mattvague]: https://github.com/mattvague
+[@mindhalt]: https://github.com/mindhalt
+[@mitio]: https://github.com/mitio
 [@mperham]: https://github.com/mperham
 [@mwindwer]: https://github.com/mwindwer
+[@nappa]: https://github.com/nappa
+[@neoriddle]: https://github.com/neoriddle
 [@orendon]: https://github.com/orendon
 [@page_title]: https://github.com/page_title
 [@pcreux]: https://github.com/pcreux
@@ -915,12 +988,16 @@ of the highlights. 250 commits. Enough said.
 [@snapapps]: https://github.com/snapapps
 [@stereoscott]: https://github.com/stereoscott
 [@sunny]: https://github.com/sunny
+[@tank-bohr]: https://github.com/tank-bohr
+[@tinynumbers]: https://github.com/tinynumbers
 [@tracedwax]: https://github.com/tracedwax
 [@tricknotes]: https://github.com/tricknotes
 [@utkarshkukreti]: https://github.com/utkarshkukreti
 [@vairix]: https://github.com/vairix
 [@vairix-ssierra]: https://github.com/vairix-ssierra
+[@valdemarua]: https://github.com/valdemarua
 [@watson]: https://github.com/watson
 [@whatcould]: https://github.com/whatcould
 [@yawn]: https://github.com/yawn
 [@yorch]: https://github.com/yorch
+[@zorab47]: https://github.com/zorab47
