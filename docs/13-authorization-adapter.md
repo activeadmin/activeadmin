@@ -181,6 +181,27 @@ To use the CanCan adapter, simply update the configuration in the Active Admin
 initializer:
 
     config.authorization_adapter = ActiveAdmin::CanCanAdapter
+    
+You can also specify a method to be called on unauthorized access. This is necessary
+in order to prevent a redirect loop that can happen if a user tries to access a page
+they don't have permissions for (see [issue281](https://github.com/gregbell/active_admin/issues/2081)).
+```ruby
+config.on_unauthorized_access = :access_denied
+```    
+The method `access_denied` would be defined in `application_controller.rb`. Here is one
+example that redirects the user from the page they don't have permissions to
+access to a resource they have permissions to access (organizations in this case), and
+also displays the error message in the browser:
+
+```ruby
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+  
+  def access_denied(exception)
+    redirect_to admin_organizations_path, :alert => exception.message
+  end
+end
+```
 
 By default this will use the ability class named "Ability". This can also be
 changed from the initializer:
