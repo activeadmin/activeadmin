@@ -217,7 +217,9 @@ module ActiveAdmin
 
       def apply_sorting(chain)
         params[:order] ||= active_admin_config.sort_order
-        if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
+        if params[:order] && chain.respond_to?("sort_by_#{params[:order]}")
+          chain.send("sort_by_#{params[:order]}")
+        elsif params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
           column = $1
           order  = $2
           table  = active_admin_config.resource_column_names.include?(column) ? active_admin_config.resource_table_name : nil
