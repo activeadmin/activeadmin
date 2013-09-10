@@ -43,7 +43,7 @@ group :test do
   gem 'database_cleaner', '<= 1.0.1'
   gem 'guard-coffeescript'
   gem 'guard-rspec'
-  gem 'jasmine'
+  gem 'jasmine',         '~> 2.0.0.rc2'
   gem 'jslint_on_rails', '~> 1.1.1'
   gem 'launchy'
   gem 'parallel_tests'
