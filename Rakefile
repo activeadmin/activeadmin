@@ -3,7 +3,6 @@ require 'rake'
 Bundler.setup
 Bundler::GemHelper.install_tasks
 
-
 def cmd(command)
   puts command
   raise unless system command
