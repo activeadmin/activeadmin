@@ -3,7 +3,7 @@ cs:
     dashboard: Úvod
     dashboard_welcome:
       welcome: "Vítejte v Active Admin. Toto je nástěnka."
-      call_to_action: "Pro přidání sekcí nástěnky se podívejte do 'app/admin/dashboard.rb'"
+      call_to_action: "Pro přidání sekcí na nástěnku se podívejte do souboru 'app/admin/dashboard.rb'"
     view: "Zobrazit"
     edit: "Upravit"
     delete: "Smazat"
@@ -16,11 +16,11 @@ cs:
     details: "Detaily"
     cancel: "Zrušit"
     empty: "Prázdné"
-    previous: "Předešlé"
+    previous: "Předchozí"
     next: "Následující"
     download: "Stáhnout:"
     has_many_new: "Přidat nový"
-    has_many_delete: "Odstranit"
+    has_many_delete: "Smazat"
     has_many_remove: "Odstranit"
     filters:
       buttons:
@@ -28,13 +28,13 @@ cs:
         clear: "Vyčistit filtry"
       predicates:
         contains: "Obsahuje"
-        equals: "Přesně"
-        starts_with: "Začíná se"
-        ends_with: "Končí"
+        equals: "Odpovídá"
+        starts_with: "Začíná na"
+        ends_with: "Končí na"
         greater_than: "Větší než"
         less_than: "Menší než"
-    main_content: "Prosím implementujte %{model}#main_content pro zobrazení obsahu."
-    logout: "Odhlášení"
+    main_content: "Implementujte prosím %{model}#main_content pro zobrazení obsahu."
+    logout: "Odhlásit"
     powered_by: "%{active_admin} %{version}"
     sidebars:
       filters: "Filtry"
@@ -54,8 +54,9 @@ cs:
       link: "Vytvořit"
     batch_actions:
       button_label: "Hromadné akce"
-      delete_confirmation: "Jste si jisti, že chcete odstranit tyto %{plural_model}?"
+      delete_confirmation: "Jste si jisti, že chcete smazat tyto %{plural_model}?"
       succesfully_destroyed:
+        zero: "Nebyl smazán žádný %{model}"
         one: "Úspěšně smazán %{model}"
         few: "Úspěšně smazány %{count} %{plural_model}"
         other: "Úspěšně smazáno %{count} %{plural_model}"
@@ -65,6 +66,8 @@ cs:
       labels:
         destroy: "Vymazat"
     comments:
+      resource_type: "Typ zdroje"
+      author_type: "Typ autora"
       body: "Tělo"
       author: "Autor"
       title: "Komentář"
@@ -85,8 +88,18 @@ cs:
       change_password:
         title: "Změnit heslo"
         submit: "Změnit své heslo"
+      unlock:
+        title: "Zaslání instrukcí k odemčení účtu"
+        submit: "Zaslat instrukce k odemčení účtu"
       links:
         sign_in: "Přihlásit se"
+        sign_up: "Registrovat se"
         forgot_your_password: "Zapomněli jste heslo?"
-        sign_in_with_omniauth_provider: "Přihlásit se %{provider}"
-
+        sign_in_with_omniauth_provider: "Přihlásit se přes %{provider}"
+    access_denied:
+      message: "Nemáte oprávnění k provedení této akce."
+    index_list:
+      table: "Tabulka"
+      block: "Seznam"
+      grid: "Tabulka"
+      blog: "Blog"
