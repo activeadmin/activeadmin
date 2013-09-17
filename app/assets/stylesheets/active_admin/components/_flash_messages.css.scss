@@ -1,26 +1,28 @@
 body.logged_in {
-  .flash {
-    @include gradient(#f7f1d3, #f5edc5);
-    @include text-shadow(#fafafa);
-    border-bottom: 1px solid #eee098;
-    color: #cb9810;
-    font-weight: bold;
-    font-size: 1.1em;
-    line-height: 1.0em;
-    margin-bottom: 10px;
-    padding: 13px 30px 11px;
-    position: relative;
-    top: -15px;
+  .flashes{
+    .flash {
+      @include gradient(#f7f1d3, #f5edc5);
+      @include text-shadow(#fafafa);
+      border-bottom: 1px solid #eee098;
+      color: #cb9810;
+      font-weight: bold;
+      font-size: 1.1em;
+      line-height: 1.0em;
+      margin-bottom: 10px;
+      padding: 13px 30px 11px;
+      position: relative;
+      top: -15px;
 
-    &.flash_notice {
-      @include gradient(#dce9dd, #ccdfcd);
-      border-bottom: 1px solid #adcbaf;
-      color: #416347;
-    }
-    &.flash_error {
-      @include gradient(#f5e4e4, #f1dcdc);
-      border-bottom: 1px solid #e0c2c0;
-      color: #b33c33;
+      &.flash_notice {
+        @include gradient(#dce9dd, #ccdfcd);
+        border-bottom: 1px solid #adcbaf;
+        color: #416347;
+      }
+      &.flash_error {
+        @include gradient(#f5e4e4, #f1dcdc);
+        border-bottom: 1px solid #e0c2c0;
+        color: #b33c33;
+      }
     }
   }
 }
