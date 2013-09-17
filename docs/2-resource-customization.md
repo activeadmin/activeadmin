@@ -244,7 +244,7 @@ possibilities for how you may with to handle your user interface):
 
     ActiveAdmin.register Project do
 
-      sidebar "Project Details" do
+      sidebar "Project Details", only: [:show, :edit] do
         ul do
           li link_to("Tickets", admin_project_tickets_path(project))
           li link_to("Milestones", admin_project_milestones_path(project))
