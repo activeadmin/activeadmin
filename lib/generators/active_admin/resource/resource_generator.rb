@@ -8,7 +8,7 @@ module ActiveAdmin
       end
 
       def generate_config_file
-        template "admin.rb", "app/admin/#{file_path.gsub('/', '_').pluralize}.rb"
+        template "admin.rb", "app/admin/#{file_path.gsub('/', '_')}.rb"
       end
 
     end

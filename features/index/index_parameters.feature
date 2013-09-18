@@ -34,11 +34,8 @@ Feature: Index Parameters
   Scenario: Viewing index when download_links disabled only in one namespace
     Given a configuration of:
       """
-      ActiveAdmin.setup do |config|
-        config.namespace :superadmin do |namespace|
-          namespace.download_links = false
-        end
-      end
+      ActiveAdmin.application.namespace(:superadmin).download_links = false
+      ActiveAdmin.register AdminUser, :namespace => :superadmin
       """
     Given an index configuration of:
       """
@@ -60,11 +57,8 @@ Feature: Index Parameters
   Scenario: Viewing index when download_links enabled only for a resource
     Given a configuration of:
       """
-      ActiveAdmin.setup do |config|
-        config.namespace :superadmin do |namespace|
-          namespace.download_links = false
-        end
-      end
+      ActiveAdmin.application.namespace(:superadmin).download_links = false
+      ActiveAdmin.register AdminUser, :namespace => :superadmin
       """
     Given an index configuration of:
       """

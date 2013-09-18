@@ -5,8 +5,8 @@ module ActiveAdmin
       class Form < Base
 
         def title
-          I18n.t("active_admin.#{params[:action]}_model",
-                 :model => active_admin_config.resource_label)
+          assigns[:page_title] || I18n.t("active_admin.#{params[:action]}_model",
+                                         :model => active_admin_config.resource_label)
         end
 
         def form_presenter

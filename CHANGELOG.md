@@ -438,7 +438,7 @@ since we've changed both the CSS and JS files.
  * Josef Šimánek
 
 
-## 0.3.4 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.4...v0.4.0)
+## 0.3.4 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.3...v0.3.4)
 
 2 commits by 2 authors
 

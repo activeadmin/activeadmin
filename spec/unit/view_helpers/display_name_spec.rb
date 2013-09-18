@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "display names" do
+describe "display_name" do
 
   include ActiveAdmin::ViewHelpers
 
@@ -30,6 +30,12 @@ describe "display names" do
     subject.should_not_receive :login
     subject.stub(:email).and_return 'foo@bar.baz'
     display_name(subject).should == 'foo@bar.baz'
+  end
+
+  [nil, false].each do |type|
+    it "should return nil when the passed object is #{type.inspect}" do
+      display_name(type).should eq nil
+    end
   end
 
 end

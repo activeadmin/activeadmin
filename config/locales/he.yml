@@ -22,12 +22,17 @@ he:
     has_many_new: "הוספת %{model} חדש"
     has_many_delete: "מחיקה"
     has_many_remove: "להסיר"
-    filter: "סינון"
-    clear_filters: "איפוס שדות"
-    search_field: "חיפוש %{field}"
-    equal_to: "שווה ל"
-    greater_than: "גדול מ"
-    less_than: "פחות מ"
+    filters:
+      buttons:
+        filter: "סינון"
+        clear: "איפוס שדות"
+      predicates:
+        contains: "מכיל"
+        equals: "שווה ל"
+        starts_with: "מתחיל עם"
+        ends_with: "מסתיים ב"
+        greater_than: "גדול מ"
+        less_than: "פחות מ"
     main_content: "Please implement %{model}#main_content to display content."
     logout: "התנתקות"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -38,6 +43,7 @@ he:
       one: "מציג <b>1</b> %{model}"
       one_page: "הצגת <b>כל %{n}</b> %{model}"
       multiple: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> מתוך <b>%{total}</b> בסך הכל"
+      multiple_without_total: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "רשומה בודדה"
         other: "רשומות"
@@ -50,6 +56,8 @@ he:
       delete_confirmation: "האם הנך בטוח שאתה רוצה למרוח את %{plural_model}? לא תוכל לבטל את המחיקה."
       succesfully_destroyed:
         one: "1 %{model} נמחק בהצלחה"
+        few: "%{count} %{plural_model} נמחק בהצלחה"
+        many: "%{count} %{plural_model} נמחק בהצלחה"
         other: "%{count} %{plural_model} נמחק בהצלחה"
       selection_toggle_explanation: "(שינוי בחירה)"
       link: "צור"

@@ -15,6 +15,11 @@ tmtags
 # IDEA / RUBYMINE
 .idea
 
+## RVM
+.rvmrc
+.ruby-version
+.ruby-gemset
+
 ## PROJECT::GENERAL
 tags
 coverage
@@ -33,7 +38,6 @@ capybara*
 viewcumber
 test-rails*
 public
-.rvmrc
 .rspec
 .rails-version
 .rbenv-version

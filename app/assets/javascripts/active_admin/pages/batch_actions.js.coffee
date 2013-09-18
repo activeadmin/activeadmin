@@ -1,12 +1,24 @@
-jQuery ($) ->
+jQuery ($)->
 
   #
-  # Use Rails.js click handler to allow for Rails' confirm dialogs
+  # Use AA.modalDialog to prompt user if confirmation is required for current Batch Action
   #
+  $('#batch_actions_selector li a').click (event)->
+    event.stopPropagation() # prevent Rails UJS click event
+    if message = $(@).data 'confirm'
+      AA.modalDialog message, $(@).data('inputs'), (inputs)=>
+        $(@).trigger 'confirm:complete', inputs
+    else
+      $(@).trigger 'confirm:complete'
 
-  $(document).delegate "#batch_actions_selector li a", "click.rails", ->
-    $("#batch_action").val $(@).attr("data-action")
-    $("#collection_selection").submit()
+  $('#batch_actions_selector li a').on 'confirm:complete', (event, inputs)->
+    if val = JSON.stringify inputs
+      $('#batch_action_inputs').val val
+    else
+      $('#batch_action_inputs').attr 'disabled', 'disabled'
+
+    $('#batch_action').val $(@).data('action')
+    $('#collection_selection').submit()
 
   #
   # Add checkbox selection to resource tables and lists if batch actions are enabled
@@ -19,8 +31,8 @@ jQuery ($) ->
     else
       $(".paginated_collection").checkboxToggler()
 
-    $(".paginated_collection").find(":checkbox").bind "change", ->
-      if $(".paginated_collection").find(":checkbox").filter(":checked").length > 0
+    $(".paginated_collection :checkbox").change ->
+      if $(".paginated_collection :checkbox:checked").length
         $("#batch_actions_selector").aaDropdownMenu("enable")
       else
         $("#batch_actions_selector").aaDropdownMenu("disable")

@@ -118,7 +118,7 @@ module ActiveAdmin
     def belongs_to(target, options = {})
       @belongs_to = Resource::BelongsTo.new(self, target, options)
       self.navigation_menu_name = target unless @belongs_to.optional?
-      controller.belongs_to(target, options.dup)
+      controller.send :belongs_to, target, options.dup
     end
 
     def belongs_to_config
@@ -133,6 +133,11 @@ module ActiveAdmin
     # The csv builder for this resource
     def csv_builder
       @csv_builder || default_csv_builder
+    end
+
+    def find_resource(id)
+      resource = resource_class.where(resource_class.primary_key => id).first
+      decorator_class ? decorator_class.new(resource) : resource
     end
 
     # @deprecated

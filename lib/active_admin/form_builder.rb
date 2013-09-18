@@ -9,7 +9,7 @@ module ActiveAdmin
     end
 
     def inputs(*args, &block)
-      @inputs_with_block = block_given?
+      @use_form_buffer = block_given?
       form_buffers.last << with_new_form_buffer{ super }
     end
 
@@ -17,7 +17,7 @@ module ActiveAdmin
     # to the form buffer. Else, return it directly.
     def input(method, *args)
       content = with_new_form_buffer{ super }
-      @inputs_with_block ? form_buffers.last << content : content
+      @use_form_buffer ? form_buffers.last << content : content
     end
 
     def cancel_link(url = {:action => "index"}, html_options = {}, li_attrs = {})
@@ -130,7 +130,7 @@ module ActiveAdmin
       "ActiveAdmin::Inputs::#{as.to_s.camelize}Input"
     end
 
-    # prevent exceptions in production environment for better performance
+    # Overrides Formtastic's version to include ActiveAdmin::Inputs::*
     def input_class_with_const_defined(as)
       input_class_name = custom_input_class_name(as)
 
@@ -144,33 +144,33 @@ module ActiveAdmin
         # in production this is needed or custom filters like autocomplete filters will crash
         input_class_by_trying(as)
       else
-        raise Formtastic::UnknownInputError
+        raise Formtastic::UnknownInputError, "Unable to find input class #{input_class_name}"
       end
     end
 
     # use auto-loading in development environment
     def input_class_by_trying(as)
       begin
+        custom_input_class_name(as).constantize
+      rescue NameError
         begin
-          custom_input_class_name(as).constantize
+          active_admin_input_class_name(as).constantize
         rescue NameError
-          begin
-            active_admin_input_class_name(as).constantize
-          rescue NameError
-            standard_input_class_name(as).constantize
-          end
+          standard_input_class_name(as).constantize
         end
       end
     rescue NameError
-      raise Formtastic::UnknownInputError
+      raise Formtastic::UnknownInputError, "Unable to find input class for #{as}"
     end
 
     # This method calls the block it's passed (in our case, the `f.inputs` block)
-    # and wraps the resulting HTML in a fieldset. If your block happens to return
-    # nil (but it otherwise built the form correctly), the below override passes
+    # and wraps the resulting HTML in a fieldset. If your block doesn't have a
+    # valid return value but it was otherwise built correctly, we instead use
     # the most recent part of the Active Admin form buffer.
     def field_set_and_list_wrapping(*args, &block)
-      block_given? ? super{ yield || form_buffers.last } : super
+      block_given? ? super{
+        (val = yield).is_a?(String) ? val : form_buffers.last
+      } : super
     end
 
     private
@@ -186,7 +186,7 @@ module ActiveAdmin
     def js_for_has_many(association, form_block, template)
       assoc_reflection = object.class.reflect_on_association(association)
       assoc_name       = assoc_reflection.klass.model_name
-      placeholder      = "NEW_#{assoc_name.upcase.split(' ').join('_')}_RECORD"
+      placeholder      = "NEW_#{assoc_name.to_s.upcase.split(' ').join('_')}_RECORD"
       opts = {
         :for         => [association, assoc_reflection.klass.new],
         :class       => "inputs has_many_fields",

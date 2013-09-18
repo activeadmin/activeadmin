@@ -208,5 +208,36 @@ module ActiveAdmin
         end
       end
     end
+
+    describe '#find_resource' do
+      let(:resource) { namespace.register(Post) }
+      let(:post) { stub }
+      before do
+        Post.stub(:where).with('id' => '12345').and_return { [post] }
+      end
+
+      it 'can find the resource' do
+        resource.find_resource('12345').should == post
+      end
+
+      context 'with a decorator' do
+        let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
+        it 'decorates the resource' do
+          resource.find_resource('12345').should == PostDecorator.new(post)
+        end
+      end
+
+      context 'when using a nonstandard primary key' do
+        let(:different_post) { stub }
+        before do
+          Post.stub(:primary_key).and_return 'something_else'
+          Post.stub(:where).with('something_else' => '55555').and_return { [different_post] }
+        end
+
+        it 'can find the post by the custom primary key' do
+          resource.find_resource('55555').should == different_post
+        end
+      end
+    end
   end
 end

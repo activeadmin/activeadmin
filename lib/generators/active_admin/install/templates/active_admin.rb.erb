@@ -123,6 +123,11 @@ ActiveAdmin.setup do |config|
   # Active Admin resources and pages from here.
   #
   # config.before_filter :do_something_awesome
+  
+  
+  # == Setting a Favicon
+  #
+  # config.favicon = '/assets/favicon.ico'
 
 
   # == Register Stylesheets & Javascripts
@@ -143,11 +148,11 @@ ActiveAdmin.setup do |config|
 
   # == CSV options
   #
-  # Set the CSV builder separator (default is ',')
-  # config.csv_column_separator = ','
+  # Set the CSV builder separator
+  # config.csv_options = { :col_sep => ';' }
   #
-  # Set the CSV builder options (default is {})
-  # config.csv_options = {}
+  # Force the use of quotes
+  # config.csv_options = { :force_quotes => true }
 
 
   # == Menu System

@@ -1,5 +1,10 @@
 require 'spec_helper'
 
+class Post
+  scope :custom_searcher, ->stuff { where(body: stuff) }
+  search_method :custom_searcher
+end
+
 describe ActiveAdmin::Filters::ViewHelper do
 
   # Setup an ActionView::Base object which can be used for
@@ -28,8 +33,10 @@ describe ActiveAdmin::Filters::ViewHelper do
   end
 
   def filter(name, options = {})
-    render_filter Post.search, @filters.push(options.merge(:attribute => name))
+    render_filter scope, @filters.push(options.merge(:attribute => name))
   end
+
+  let(:scope) { Post.search }
 
   before(:each) { @filters = [] }
 
@@ -58,25 +65,53 @@ describe ActiveAdmin::Filters::ViewHelper do
   describe "string attribute" do
     let(:body) { filter :title }
 
-    it "should generate a search field for a string attribute" do
-      body.should have_tag("input", :attributes => { :name => "q[title_contains]"})
+    it "should generate a select option for starts with" do
+      body.should have_tag("option", "Starts with", :attributes => { :value => 'title_starts_with' })
     end
 
-    it "should label a text field with search" do
-      body.should have_tag('label', 'Search Title')
+    it "should generate a select option for ends with" do
+      body.should have_tag("option", "Ends with", :attributes => { :value => 'title_ends_with' })
+    end
+
+    it "should generate a select option for contains" do
+      body.should have_tag("option", "Contains", :attributes => { :value => 'title_contains' })
+    end
+
+    it "should generate a text field for input" do
+      body.should have_tag("input", :attributes => { :name => 'q[title_contains]' })
+    end
+    
+    it "should have a proper label" do
+      body.should have_tag('label', 'Title')
     end
 
     it "should translate the label for text field" do
       begin
         I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => "Name" } } })
-        body.should have_tag('label', 'Search Name')
+        body.should have_tag('label', 'Name')
       ensure
         I18n.backend.reload!
       end
     end
 
+    it "should select the option which is currently being filtered"
+
+  end
+
+  describe "string attribute with sub filters" do
+    let(:body) { filter :title_contains }
+    
+    it "should generate a search field for a string attribute with query contains" do
+      body.should have_tag("input", :attributes => { :name => "q[title_contains]"})
+      body.should have_tag('label', 'Title contains')
+    end
+
+    it "should NOT generate a select option for contains" do
+      body.should_not have_tag("option", "Contains", :attributes => { :value => 'title_contains' })
+    end
+
     context "using starts_with and as" do
-      let(:body) { filter :title_starts_with, :as => :string }
+      let(:body) { filter :title_starts_with }
 
       it "should generate a search field for a string attribute with query starts_with" do
         body.should have_tag("input", :attributes => { :name => "q[title_starts_with]" })
@@ -84,14 +119,22 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "using ends_with and as" do
-      let(:body) { filter :title_ends_with, :as => :string }
+      let(:body) { filter :title_ends_with }
 
       it "should generate a search field for a string attribute with query starts_with" do
         body.should have_tag("input", :attributes => { :name => "q[title_ends_with]" })
       end
     end
-  end
+    
+    context "using contains and NO AS defined" do
+      let(:body) { filter :title_contains }
 
+      it "should generate a search field for a string attribute with query contains" do
+        body.should have_tag("input", :attributes => { :name => "q[title_contains]" })
+      end
+    end
+  end
+  
   describe "text attribute" do
     let(:body) { filter :body }
 
@@ -99,10 +142,31 @@ describe ActiveAdmin::Filters::ViewHelper do
       body.should have_tag("input", :attributes => { :name => "q[body_contains]"})
     end
 
-    it "should label a text field with search" do
-      body.should have_tag('label', 'Search Body')
+    it "should have a proper label" do
+      body.should have_tag('label', 'Body')
     end
   end
+
+  describe "text attribute, as a select" do
+    let(:body) { filter :title, as: :select }
+    let(:builder) { ActiveAdmin::Inputs::FilterSelectInput }
+
+    context "when loading collection from DB" do
+      it "should use pluck for efficiency" do
+        builder.any_instance.should_receive(:pluck_column) { [] }
+        body
+      end
+
+      it "should remove original ordering to prevent PostgreSQL error" do
+        scope.base.should_receive(:reorder).with('title asc') {
+          m = mock uniq: mock(pluck: ['A Title'])
+          m.uniq.should_receive(:pluck).with :title
+          m
+        }
+        body
+      end
+    end
+  end unless Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR < 2
 
   describe "datetime attribute" do
     let(:body) { filter :created_at }
@@ -122,17 +186,16 @@ describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :id }
 
     it "should generate a select option for equal to" do
-      body.should have_tag("option", "Equal To", :attributes => { :value => 'id_eq' })
+      body.should have_tag("option", "Equals", :attributes => { :value => 'id_equals' })
     end
     it "should generate a select option for greater than" do
-      body.should have_tag("option", "Greater Than")
+      body.should have_tag("option", "Greater than")
     end
     it "should generate a select option for less than" do
-      body.should have_tag("option", "Less Than")
+      body.should have_tag("option", "Less than")
     end
     it "should generate a text field for input" do
-      body.should have_tag("input", :attributes => {
-                                          :name => /q\[(id_eq|id_equals)\]/ })
+      body.should have_tag("input", :attributes => { :name => 'q[id_equals]' })
     end
     it "should select the option which is currently being filtered"
   end
@@ -145,6 +208,15 @@ describe ActiveAdmin::Filters::ViewHelper do
         body.should have_tag("input", :attributes => {
                                             :name => "q[starred_eq]",
                                             :type => "checkbox" })
+      end
+
+      it "should translate the label for boolean field" do
+        begin
+          I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :starred => "Faved" } } })
+          body.should have_tag('label', 'Faved')
+        ensure
+          I18n.backend.reload!
+        end
       end
     end
 
@@ -159,7 +231,7 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
-  describe "belong to" do
+  describe "belongs_to" do
     before do
       @john = User.create :first_name => "John", :last_name => "Doe", :username => "john_doe"
       @jane = User.create :first_name => "Jane", :last_name => "Doe", :username => "jane_doe"
@@ -168,13 +240,10 @@ describe ActiveAdmin::Filters::ViewHelper do
     context "when given as the _id attribute name" do
       let(:body) { filter :author_id }
 
-      it "should not render as an integer" do
-        body.should_not have_tag "input",          :attributes => { :name => "q[author_id_eq]" }
-      end
-      it "should render as belongs to select" do
-        body.should have_tag "select",             :attributes => { :name => "q[author_id_eq]" }
-        body.should have_tag "option", "John Doe", :attributes => { :value => @john.id }
-        body.should have_tag "option", "Jane Doe", :attributes => { :value => @jane.id }
+      it "should generate a numeric filter" do
+        body.should have_tag 'label', 'Author' # really this should be Author ID :/
+        body.should have_tag 'option', :attributes => { :value => 'author_id_less_than' }
+        body.should have_tag 'input',  :attributes => { :id => 'q_author_id', :name => 'q[author_id_equals]'}
       end
     end
 
@@ -225,16 +294,18 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "when polymorphic relationship" do
-      let(:body) do
-        search = ActiveAdmin::Comment.search
-        render_filter(search, [{:attribute => :resource}])
-      end
-      it "should not generate any field" do
-        body.should have_tag("form", :attributes => { :method => 'get' })
+      it "should raise an error if a collection isn't provided" do
+        expect {
+          search = ActiveAdmin::Comment.search
+          render_filter(search, [{:attribute => :resource}])
+        }.to raise_error Formtastic::PolymorphicInputWithoutCollectionError
       end
     end
   end # belongs to
 
+  describe "has_and_belongs_to_many" do
+    pending "add HABTM models so this can be mocked out"
+  end
 
   describe "conditional display" do
 
@@ -266,6 +337,19 @@ describe ActiveAdmin::Filters::ViewHelper do
       it "should NOT be displayed if true" do
         body.should_not have_tag("input", :attributes => { :name => "q[updated_at_gte]"})
       end
+    end
+  end
+
+  describe "custom search methods" do
+
+    it "should work as select" do
+      body = filter :custom_searcher, as: :select, collection: ['foo']
+      body.should have_tag "select", attributes: { name: "q[custom_searcher]" }
+    end
+
+    pending "should work as string" do
+      body = filter :custom_searcher, as: :string
+      body.should have_tag "input", attributes: { name: "q[custom_searcher]" }
     end
   end
 

@@ -4,18 +4,9 @@ require 'active_admin/helpers/settings'
 module ActiveAdmin
   class Application
     include Settings
+    include Settings::Inheritance
 
-    # Adds settings to both the Application and the Namespace instance
-    # so that they can be configured independantly.
-    def self.inheritable_setting(name, default)
-      Namespace.setting name, nil
-      setting name, default
-    end
-
-    def self.deprecated_inheritable_setting(name, default)
-      Namespace.deprecated_setting name, nil
-      deprecated_setting name, default
-    end
+    settings_inherited_by Namespace
 
     # The default namespace to put controllers and routes inside. Set this
     # in config/initializers/active_admin.rb using:
@@ -24,8 +15,10 @@ module ActiveAdmin
     #
     setting :default_namespace, :admin
 
-    # A hash of all the registered namespaces
-    setting :namespaces, {}
+    attr_reader :namespaces
+    def initialize
+      @namespaces = {}
+    end
 
     # Load paths for admin configurations. Add folders to this load path
     # to load up other resources for administration. External gems can
@@ -43,6 +36,9 @@ module ActiveAdmin
 
     # Set the site title image displayed in the main layout (has precendence over :site_title)
     inheritable_setting :site_title_image, ""
+    
+    # Set a favicon
+    inheritable_setting :favicon, false
 
     # The view factory to use to generate all the view classes. Take
     # a look at ActiveAdmin::ViewFactory
@@ -72,7 +68,7 @@ module ActiveAdmin
     inheritable_setting :root_to, 'dashboard#index'
 
     # Default CSV options
-    inheritable_setting :csv_options, {}
+    inheritable_setting :csv_options, {:col_sep => ','}
 
     # Default Download Links options
     inheritable_setting :download_links, true
@@ -98,11 +94,7 @@ module ActiveAdmin
 
     # == Deprecated Settings
 
-    # @deprecated Default CSV separator will be removed in 0.6.0. Use `csv_options = { :col_sep => ',' }` instead.
-    deprecated_inheritable_setting :csv_column_separator, ','
-
-    # @deprecated The default sort order for index pages
-    deprecated_setting :default_sort_order, 'id_desc'
+    # (none currently)
 
     include AssetRegistration
 
@@ -200,7 +192,7 @@ module ActiveAdmin
     # Example usage:
     #   ActiveAdmin.before_filter :authenticate_admin!
     #
-    %w(before_filter skip_before_filter after_filter around_filter).each do |name|
+    %w(before_filter skip_before_filter after_filter around_filter skip_filter).each do |name|
       define_method name do |*args, &block|
         ActiveAdmin::BaseController.send              name, *args, &block
       end

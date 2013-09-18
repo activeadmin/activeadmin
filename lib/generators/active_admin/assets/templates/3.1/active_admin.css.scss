@@ -14,16 +14,4 @@
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
-//   body.active_admin {
-//      .status_tag { background: #6090DB; }
-//   }
-//
-// Notice that Active Admin CSS rules are nested within a
-// 'body.active_admin' selector to prevent conflicts with
-// other pages in the app. It is best to wrap your changes in a
-// namespace so they are properly recognized. You have options
-// if you e.g. want different styles for different namespaces:
-//
-// .active_admin       applies to any Active Admin namespace
-// .admin_namespace    applies to the admin namespace (eg: /admin)
-// .other_namespace    applies to a custom namespace named other (eg: /other)
+//   .status_tag { background: #6090DB; }

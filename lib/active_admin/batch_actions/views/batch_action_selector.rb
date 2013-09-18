@@ -30,9 +30,10 @@ module ActiveAdmin
             confirmation_text = render_or_call_method_or_proc_on(self, batch_action.confirm)
 
             options = {
-              :class => "batch_action",
-              "data-action" => batch_action.sym,
-              "data-confirm" => confirmation_text
+              :class         => "batch_action",
+              "data-action"  => batch_action.sym,
+              "data-confirm" => confirmation_text,
+              "data-inputs"  => batch_action.inputs.to_json
             }
 
             default_title = render_or_call_method_or_proc_on(self, batch_action.title)
@@ -50,15 +51,6 @@ module ActiveAdmin
           call_method_or_proc_on(self, batch_action.display_if_block)
         end
       end
-
-      # def build_batch_action_button
-      #   a :class => 'table_tools_button dropdown_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
-      #     text_node I18n.t("active_admin.batch_actions.button_label")
-      #   end
-      # end
-
-      # def build_batch_action_popover
-      # end
 
     end
 

@@ -22,12 +22,17 @@ nl:
     has_many_new: "Voeg nieuwe %{model} toe"
     has_many_delete: "Verwijderen"
     has_many_remove: "Verwijderen"
-    filter: "Filter"
-    clear_filters: "Maak Filters Ongedaan"
-    search_field: "Zoek %{field}"
-    equal_to: "Gelijk aan"
-    greater_than: "Groter dan"
-    less_than: "Kleiner dan"
+    filters:
+      buttons:
+        filter: "Filter"
+        clear: "Maak Filters Ongedaan"
+      predicates:
+        contains: "Bevat"
+        equals: "Gelijk aan"
+        starts_with: "Begint met"
+        ends_with: "Eindigt op"
+        greater_than: "Groter dan"
+        less_than: "Kleiner dan"
     main_content: "Implementeer %{model}#main_content om de content weer te geven."
     logout: "Uitloggen"
     powered_by: "Mogelijk gemaakt door %{active_admin} %{version}"
@@ -38,6 +43,7 @@ nl:
       one: "Geeft <b>1</b> %{model} weer"
       one_page: "Geeft <b>%{n}</b> %{model} weer"
       multiple: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> van de <b>%{total}</b> weer"
+      multiple_without_total: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "entry"
         other: "entries"

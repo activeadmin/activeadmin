@@ -22,12 +22,17 @@
     has_many_new: "Add New %{model}"
     has_many_delete: "Delete"
     has_many_remove: "Remove"
-    filter: "Filter"
-    clear_filters: "Clear Filters"
-    search_field: "Search %{field}"
-    equal_to: "Equal To"
-    greater_than: "Greater Than"
-    less_than: "Less Than"
+    filters:
+      buttons:
+        filter: "Filter"
+        clear: "Clear Filters"
+      predicates:
+        contains: "Contains"
+        equals: "Equals"
+        starts_with: "Starts with"
+        ends_with: "Ends with"
+        greater_than: "Greater than"
+        less_than: "Less than"
     main_content: "Please implement %{model}#main_content to display content."
     logout: "Logout"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -38,6 +43,7 @@
       one: "Displaying <b>1</b> %{model}"
       one_page: "Displaying <b>all %{n}</b> %{model}"
       multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
+      multiple_without_total: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "entry"
         other: "entries"

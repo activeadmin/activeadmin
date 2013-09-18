@@ -3,7 +3,7 @@ Then /^I should see a select filter for "([^"]*)"$/ do |label|
 end
 
 Then /^I should see a string filter for "([^"]*)"$/ do |label|
-  page.should have_css(".filter_string label", :text => "Search #{label}")
+  page.should have_css(".filter_string label", :text => label)
 end
 
 Then /^I should see a date range filter for "([^"]*)"$/ do |label|

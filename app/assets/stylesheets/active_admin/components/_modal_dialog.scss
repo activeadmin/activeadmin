@@ -1,0 +1,29 @@
+.ui-widget-overlay {
+  position: fixed;
+  background: rgba(0,0,0,.2);
+  top: 0;
+}
+
+.ui-dialog {
+  position: fixed;
+  @include section-background;
+  @include box-shadow(rgba(0,0,0,0.5) 0 0 10px);
+
+  .ui-dialog-titlebar {
+    @include section-header;
+    span { font-size: 1.1em; }
+    a    { float: right; }
+  }
+
+  ul { list-style-type: none; }
+  li { margin: 10px 0; }
+  label { margin-right: 10px; }
+
+  .ui-dialog-buttonpane, form {
+    padding: 7px 15px 13px;
+  }
+  .ui-dialog-buttonpane button {
+    &:first-child { @include dark-button; } // OK
+    &:last-child { @include light-button; } // Cancel
+  }
+}

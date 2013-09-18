@@ -23,7 +23,7 @@ module ActiveAdmin
     def [](klass)
       if match = @resources[klass]
         match
-      elsif match = real_resources.detect{ |r| r.resource_class.to_s == klass.to_s }
+      elsif match = real_resources.detect{ |r| [r.resource_name.to_s, r.resource_class.to_s].include? klass.to_s }
         match
       elsif klass.respond_to? :base_class
         real_resources.detect{ |r| r.resource_class.to_s == klass.base_class.to_s }

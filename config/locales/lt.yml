@@ -22,12 +22,17 @@ lt:
     has_many_new: 'Pridėti naują %{model}'
     has_many_delete: 'Šalinti'
     has_many_remove: 'Pašalinti'
-    filter: 'Filtras'
-    clear_filters: 'Išvalyti filtrus'
-    search_field: 'Paieškos %{field}'
-    equal_to: 'lygus'
-    greater_than: 'didesnis nei'
-    less_than: 'mažiau nei'
+    filters:
+      buttons:
+        filter: 'Filtras'
+        clear: 'Išvalyti filtrus'
+      predicates:
+        contains: "Sudėtyje yra"
+        equals: 'lygus'
+        starts_with: "Prasideda nuo"
+        ends_with: "Baigiasi"
+        greater_than: 'didesnis nei'
+        less_than: 'mažiau nei'
     main_content: 'Prašome realizuoti %{model}#main_content turiniui vaizduoti.'
     logout: 'Išeiti'
     powered_by: "Powered by %{active_admin} %{version}"
@@ -38,6 +43,7 @@ lt:
       one: 'Rodoma <B> 1 </ b> %{model}'
       one_page: 'Rodoma <b>visi %{n} </ b> %{model}'
       multiple: 'Rodomi %{model} <b>%{iš}&nbsp;-&nbsp;%{to} </ b> iš<b>%{total} </ b> iš viso'
+      multiple_without_total: 'Rodomi %{model} <b>%{iš}&nbsp;-&nbsp;%{to} </ b> '
       entry:
         one: 'įrašas'
         other: 'įrašai'
@@ -50,6 +56,7 @@ lt:
       delete_confirmation: 'Ar jūs tikrai norite pašalinti šiuos %{plural_model}? Pašalinus negalėsite atstatyti?'
       succesfully_destroyed:
         one: 'Sėkmingai pašalintas 1 %{model}'
+        few: 'Sėkmingai pašalinti %{count} %{plural_model}'
         other: 'Sėkmingai pašalinti %{count} %{plural_model}'
       selection_toggle_explanation: '(Žymėti)'
       link: 'Sukurti'

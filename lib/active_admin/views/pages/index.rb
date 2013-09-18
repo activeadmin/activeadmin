@@ -63,7 +63,13 @@ module ActiveAdmin
             build_batch_actions_selector
             build_scopes
             build_index_list
-          end
+          end if any_table_tools?
+        end
+
+        def any_table_tools?
+          active_admin_config.batch_actions.any? ||
+          active_admin_config.scopes.any? ||
+          active_admin_config.page_presenters[:index].try(:size).try(:>, 1)
         end
 
         def build_batch_actions_selector
@@ -132,11 +138,13 @@ module ActiveAdmin
           renderer_class = find_index_renderer_class(config[:as])
           paginator      = config[:paginator].nil?      ? true : config[:paginator]
           download_links = config[:download_links].nil? ? active_admin_config.namespace.download_links : config[:download_links]
+          pagination_total = config[:pagination_total].nil? ? true : config[:pagination_total]
 
           paginated_collection(collection, :entry_name     => active_admin_config.resource_label,
                                            :entries_name   => active_admin_config.plural_resource_label(:count => collection_size),
                                            :download_links => download_links,
-                                           :paginator      => paginator) do
+                                           :paginator      => paginator,
+                                           :pagination_total => pagination_total) do
             div :class => 'index_content' do
               insert_tag(renderer_class, config, collection)
             end

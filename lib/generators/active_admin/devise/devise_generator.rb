@@ -1,11 +1,16 @@
 module ActiveAdmin
   module Generators
+    class Error < Rails::Generators::Error
+    end
+
     class DeviseGenerator < Rails::Generators::NamedBase
       desc "Creates an admin user and uses Devise for authentication"
       argument :name, :type => :string, :default => "AdminUser"
 
       class_option  :registerable, :type => :boolean, :default => false,
                     :desc => "Should the generated resource be registerable?"
+
+      RESERVED_NAMES = [:active_admin_user]
 
       def install_devise
         require 'devise'
@@ -18,6 +23,9 @@ module ActiveAdmin
       end
 
       def create_admin_user
+        if RESERVED_NAMES.include?(name.underscore)
+          raise Error, "The name #{name} is reserved by Active Admin"
+        end
         invoke "devise", [name]
       end
 
@@ -25,6 +33,19 @@ module ActiveAdmin
         unless options[:registerable]
           model_file = File.join(destination_root, "app", "models", "#{file_path}.rb")
           gsub_file model_file, /\:registerable([.]*,)?/, ""
+        end
+      end
+
+      # This fixes a bug in the 3.0.0 release of Devise. For more info:
+      # https://github.com/plataformatec/devise/issues/2515
+      def add_attr_accessible_if_missing
+        require 'devise/version'
+        if ::Devise::VERSION == '3.0.0'
+          if Rails::VERSION::MAJOR == 3 && !defined?(ActionController::StrongParameters)
+            model = File.join(destination_root, "app", "models", "#{file_path}.rb")
+            inject_into_file model, "\n  attr_accessible :email, :password, :password_confirmation, :remember_me\n",
+                             :before => /end\s*\z/
+          end
         end
       end
 

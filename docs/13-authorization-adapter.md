@@ -15,7 +15,7 @@ how to set up and tie your authorization adapter class to Active Admin:
 
         def authorized?(action, subject = nil)
           case subject
-          when normalize(Post)
+          when normalized(Post)
 
             # Only let the author update and delete posts
             if action == :update || action == :destroy
