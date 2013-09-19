@@ -70,3 +70,13 @@ The `:heading` option will add a custom heading to has_many form. You can hide a
 
 The `:new_record` option will show or hide new record link at the bottom of has_many form. It is set as true by default.
 
+## Displaying Errors
+
+To display a list of all errors, include `semantic_errors` at top of form. Particularly useful to display errors on the base or virtual attributes.
+
+    form do |f|
+      f.semantic_errors *f.object.errors.keys
+      f.inputs
+      f.buttons
+    end
+
