@@ -106,3 +106,9 @@ namespace :parallel do
   end
 end
 }
+
+# If using Devise after 3.1, this is required for the tests to pass:
+require 'devise/version'
+if Devise::VERSION.to_f >= 3.1
+  inject_into_file 'config/initializers/devise.rb', "\n  config.allow_insecure_token_lookup = true", after: 'Devise.setup do |config|'
+end
