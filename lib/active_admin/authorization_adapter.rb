@@ -6,6 +6,8 @@ module ActiveAdmin
     CREATE  = :create
     UPDATE  = :update
     DESTROY = :destroy
+
+    BATCH_DESTROY = :batch_destroy
   end
 
   Auth = Authorization
