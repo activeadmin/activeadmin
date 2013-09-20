@@ -107,7 +107,7 @@ module ActiveAdmin
 
     # Runs after the app's AA initializer
     def prepare!
-      remove_active_admin_load_paths_from_rails_autoload
+      remove_active_admin_load_paths_from_rails_autoload_and_eager_load
       attach_reloader
     end
 
@@ -219,10 +219,17 @@ module ActiveAdmin
       register_javascript 'active_admin.js'
     end
 
-    # Since the default load path, app/admin, is alphabetically before app/models, we have
-    # to remove it from the host app's +autoload_paths+ to prevent missing constant errors.
-    def remove_active_admin_load_paths_from_rails_autoload
+    # Since app/admin is alphabetically before app/models, we have to remove it
+    # from the host app's +autoload_paths+ to prevent missing constant errors.
+    #
+    # As well, we have to remove it from +eager_load_paths+ to prevent the
+    # files from being loaded twice in production.
+    def remove_active_admin_load_paths_from_rails_autoload_and_eager_load
       ActiveSupport::Dependencies.autoload_paths.reject!{ |path| load_paths.include? path }
+      Rails.application.config.eager_load_paths = # the array is frozen :/
+      Rails.application.config.eager_load_paths.reject do |path|
+        load_paths.include?(path) 
+      end
     end
 
     # Hooks the app/admin directory into our Rails Engine's +watchable_dirs+, so the
