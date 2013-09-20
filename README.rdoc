@@ -77,7 +77,7 @@ You should also sync these files with their counterparts in the AA source code:
 We try not to reinvent the wheel, so Active Admin is built using many other open source projects:
 
 {Inherited Resources}[https://github.com/josevalim/inherited_resources]::
-  Simplifies controllers with default actions that can be customized through inheritance
+  Simplifies controllers with pre-built RESTful controller actions
 {Formtastic}[https://github.com/justinfrench/formtastic]::
   A Rails form builder plugin with semantically rich and accessible markup
 {Devise}[https://github.com/plataformatec/devise]::
