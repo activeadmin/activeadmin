@@ -43,6 +43,23 @@ describe ActiveAdmin::ResourceController::DataAccess do
       end
     end
 
+    context "for custom sorting methods" do
+      let(:params){ {:order => "custom_field_asc" }}
+      context "when the methods exist on the model" do
+        it "should call the model's sort methods" do
+          chain = mock("ChainObj", sort_by_custom_field_asc: :sorted)
+          controller.send(:apply_sorting, chain).should == :sorted
+        end
+      end
+
+      context "when the methods do not exist on the model" do
+        it "should call reorder" do
+          chain = mock("ChainObj")
+          chain.should_receive(:reorder).once
+          controller.send :apply_sorting, chain
+        end
+      end
+    end
   end
 
   describe "scoping" do
