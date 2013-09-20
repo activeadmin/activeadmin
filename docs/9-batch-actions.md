@@ -159,3 +159,11 @@ You can easily use `batch_action` in the other index views, *Grid*, *Block*, and
       end
 
     end
+
+### Batch Actions and Custom Actions 
+
+In order to perform the batch action, the entire *Table*, *Grid*, etc. is wrapped in a form that submits the id's of the selected rows to your batch_action.
+
+Since nested `<form>` tags in HTML often results in unexpected behavior, you may need to modify custom actions or forms you are using on your page with batch actions enabled. 
+
+Specifically, if you are using HTTP methods like `PUT` or `PATCH` with a custom form on your index page this may result in your batch action being `PUT`ed instead of `POST`ed which in turn will create a routing error. You can get around this by either moving the nested form to another page (ie. the Object's show page) or, if possible, changing the method of the custom action to `POST` so that it doesn't override the batch action. Remember, behavior may vary by browser.
