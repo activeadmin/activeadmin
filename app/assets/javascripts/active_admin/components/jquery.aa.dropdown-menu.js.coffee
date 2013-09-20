@@ -1,4 +1,4 @@
-window.AA.DropdownMenu = class AA.DropdownMenu
+window.ActiveAdmin.DropdownMenu = class ActiveAdmin.DropdownMenu
 
   constructor: (@options, @element) ->
 
@@ -98,7 +98,7 @@ window.AA.DropdownMenu = class AA.DropdownMenu
     $nipple.css "left", nippleLeftPos
 
 (($) ->
-  $.widget.bridge 'aaDropdownMenu', AA.DropdownMenu
+  $.widget.bridge 'aaDropdownMenu', ActiveAdmin.DropdownMenu
 
   $ ->
     $(".dropdown_menu").aaDropdownMenu()
