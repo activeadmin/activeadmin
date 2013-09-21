@@ -15,10 +15,9 @@ describe ActiveAdmin::ResourceController::DataAccess do
 
   describe "searching" do
     let(:params){ {:q => {} }}
-
-    it "should call the metasearch method" do
+    it "should call the search method" do
       chain = mock("ChainObj")
-      chain.should_receive(:metasearch).with(params[:q]).once.and_return(Post.search)
+      chain.should_receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
       controller.send :apply_filtering, chain
     end
 
@@ -30,7 +29,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
       let(:params){ {:order => "id_asc" }}
       it "should prepend the table name" do
         chain = mock("ChainObj")
-        chain.should_receive(:reorder).with("\"posts\".\"id\" asc").once.and_return(Post.search)
+        chain.should_receive(:reorder).with('"posts"."id" asc').once.and_return(Post.search)
         controller.send :apply_sorting, chain
       end
     end
@@ -39,7 +38,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
       let(:params){ {:order => "virtual_id_asc" }}
       it "should not prepend the table name" do
         chain = mock("ChainObj")
-        chain.should_receive(:reorder).with("\"virtual_id\" asc").once.and_return(Post.search)
+        chain.should_receive(:reorder).with('"virtual_id" asc').once.and_return(Post.search)
         controller.send :apply_sorting, chain
       end
     end

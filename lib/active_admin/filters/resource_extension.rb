@@ -55,7 +55,7 @@ module ActiveAdmin
       #
       # @param [Symbol] attribute The attribute to filter on
       # @param [Hash] options The set of options that are passed through to
-      #                       metasearch for the field definition.
+      #                       ransack for the field definition.
       def add_filter(attribute, options = {})
         unless filters_enabled?
           raise RuntimeError, "Can't add a filter when filters are disabled. Enable filters with 'config.filters = true'"
@@ -96,14 +96,8 @@ module ActiveAdmin
       # Returns a default set of filters for the associations
       def default_association_filters
         if resource_class.respond_to?(:reflections)
-          block = if Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR == 0
-            proc{ |_,r| [r.options[:foreign_type], r.primary_key_name] }
-          else
-            proc{ |_,r| [r.foreign_type, r.foreign_key] }
-          end
-
           poly, not_poly = resource_class.reflections.partition{ |_,r| r.macro == :belongs_to && r.options[:polymorphic] }
-          filters        = poly.map(&block).flatten + not_poly.map(&:first)
+          filters        = poly.map{ |_,r| r.foreign_type } + not_poly.map(&:first)
           filters.collect{ |name| { :attribute => name.to_sym } }
         else
           []
@@ -113,7 +107,7 @@ module ActiveAdmin
       # Returns a default set of filters for the content columns
       def default_content_filters
         if resource_class.respond_to?(:content_columns)
-          resource_class.content_columns.collect{|c| { :attribute => c.name.to_sym } }
+          resource_class.content_columns.collect{ |c| { :attribute => c.name.to_sym } }
         else
           []
         end

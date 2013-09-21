@@ -1,6 +1,6 @@
 def create_user(name, type = 'User')
-  type.camelize.constantize.
-    find_or_create_by_first_name_and_last_name *name.split(' '), :username => name.gsub(' ', '').underscore
+  first_name, last_name = name.split(' ')
+  user = type.camelize.constantize.where(:first_name => first_name, :last_name => last_name).first_or_create(:username => name.gsub(' ', '').underscore)
 end
 
 Given /^(a|\d+)( published)? posts?(?: with the title "([^"]*)")?(?: and body "([^"]*)")?(?: written by "([^"]*)")? exists?$/ do |count, published, title, body, user|
