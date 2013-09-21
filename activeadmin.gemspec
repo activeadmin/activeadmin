@@ -18,14 +18,14 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "rails",               ">= 3.0.0"
-  s.add_dependency "jquery-rails",        ">= 1.0.0", "< 3.0.0"
-  s.add_dependency "bourbon",             ">= 1.0.0"
-  s.add_dependency "meta_search",         ">= 0.9.2"
-  s.add_dependency "devise",              ">= 1.1.2"
-  s.add_dependency "formtastic",          ">= 2.0.0"
-  s.add_dependency "inherited_resources", ">= 1.3.1"
-  s.add_dependency "kaminari",            ">= 0.13.0"
-  s.add_dependency "sass",                ">= 3.1.0"
-  s.add_dependency "arbre",               ">= 1.0.1"
+  s.add_dependency "rails",               ">= 3.0.0", "< 4"
+  s.add_dependency "jquery-rails",        ">= 1.0.0", "< 3"
+  s.add_dependency "bourbon",             ">= 1.0.0", "< 4"
+  s.add_dependency "meta_search",         "~> 1.0"
+  s.add_dependency "devise",              ">= 1.5.4", "< 4"
+  s.add_dependency "formtastic",          "~> 2.0"
+  s.add_dependency "inherited_resources", "~> 1.3"
+  s.add_dependency "kaminari",            "~> 0.13"
+  s.add_dependency "sass",                "~> 3.1"
+  s.add_dependency "arbre",               "~> 1.0"
 end
