@@ -37,6 +37,10 @@ module ActiveAdmin
           false
         end
       end
+
+      def cancan?
+        !!Gem.loaded_specs['cancan']
+      end
     end
   end
 end
