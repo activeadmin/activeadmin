@@ -147,7 +147,7 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
-  describe "text attribute, as a select" do
+  describe "string attribute, as a select" do
     let(:body) { filter :title, as: :select }
     let(:builder) { ActiveAdmin::Inputs::FilterSelectInput }
 
@@ -347,9 +347,29 @@ describe ActiveAdmin::Filters::ViewHelper do
       body.should have_tag "select", attributes: { name: "q[custom_searcher]" }
     end
 
-    pending "should work as string" do
+    it "should work as string" do
       body = filter :custom_searcher, as: :string
       body.should have_tag "input", attributes: { name: "q[custom_searcher]" }
+    end
+  end
+
+  describe "blank option" do
+    context "for a select filter" do
+      it "should be there by default" do
+        filter(:author).should have_tag "option", "Any"
+      end
+      it "should be able to be disabled" do
+        filter(:author, include_blank: false).should_not have_tag "option", "Any"
+      end
+    end
+
+    context "for a multi-select filter" do
+      it "should not be there by default" do
+        filter(:author, multiple: true).should_not have_tag "option", "Any"
+      end
+      it "should be able to be enabled" do
+        filter(:author, multiple: true, include_blank: true).should have_tag "option", "Any"
+      end
     end
   end
 
