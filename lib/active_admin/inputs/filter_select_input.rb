@@ -16,9 +16,9 @@ module ActiveAdmin
         name.concat multiple? ? '_in' : '_eq'
       end
 
-      # Include the "Any" option if it's a dropdown, but not if it's a multi-select.
-      def input_options
-        super.merge :include_blank => multiple? ? false : I18n.t('active_admin.any')
+      # Provide the AA translation to the blank input field.
+      def include_blank
+        I18n.t 'active_admin.any' if super
       end
 
       # was "#{object_name}[#{association_primary_key}]"
