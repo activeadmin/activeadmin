@@ -24,6 +24,7 @@ to operate on.  The array should contain at least one ID.
         Post.find(selection).each do |post|
           post.flag! :hot
         end
+        redirect_to collection_path, :alert => "The posts have been flagged."
       end
     end
 
