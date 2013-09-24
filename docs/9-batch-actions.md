@@ -2,7 +2,12 @@
 
 By default, the index view includes a way to quickly delete records from the listing,
 as well as an API for you to easily create your own "Batch Action" for handling a request to operate
-on multiple records at once.
+on multiple records at once.  If you override the default index, `selectable_column` must be used as the first column to enable batch actions:
+
+    index do
+      selectable_column
+      # add other columns here...
+    end
 
 ## Provided Batch Action
 
@@ -114,26 +119,6 @@ You can also request that the user confirm the action, before the action is perf
         # Do some deleting...
       end
     end
-
-### Customizing Table Columns
-
-To include the column with checkboxes in after overriding the list of columns for the `index` block in the *Table* listing, use the following helper as seen below:
-
-    ActiveAdmin.register Post do
-
-      batch_action :flag do |selection|
-        Post.find(selection).each { |p| p.flag! }
-        redirect_to collection_path, :notice => "Posts flagged!"
-      end
-
-      index do
-        selectable_column
-        column :title
-        default_actions
-      end
-
-    end
-
 
 ### Support for Other Index Types
 
