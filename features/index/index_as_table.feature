@@ -133,7 +133,7 @@ Feature: Index as Table
     And I should not see a member link to "Delete"
     And I should see a member link to "Custom Action"
 
-  Scenario: Associations are not sortable
+  Scenario: Associations are not sortable by default
     Given 1 post exists
     And an index configuration of:
       """
@@ -144,6 +144,63 @@ Feature: Index as Table
         end
       """
     Then I should not see a sortable table header with "Category"
+
+  Scenario: Sorting by associated columns
+    Given a post with the title "A history of time" written by "Stephen Hawking" exists
+    And a post with the title "On uncertainity" written by "Werner Heisenberg" exists
+    And a post with the title "Renormalization" written by "Richard Feynman" exists
+    And a post with the title "Quantum Loop Gravity" written by "Carlo Rovelli" exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          config.sort_order = 'id_asc'
+          index do
+            column :id
+            column :title
+            column :author, :sortable => 'author_first_name' do |post|
+              [post.author.first_name, post.author.last_name].join(' ')
+            end
+            column :citation, :sortable => 'author_last_name_and_title' do |post|
+              "%s, %s.: %s" % [post.author.last_name, post.author.first_name[0], post.title]
+            end
+          end
+        end
+      """
+    When I am on the index page for posts
+    Then I should see the "index_table_posts" table:
+      | Id | Title                | Author            | Citation                          |
+      | 1  | A history of time    | Stephen Hawking   | Hawking, S.: A history of time    |
+      | 2  | On uncertainity      | Werner Heisenberg | Heisenberg, W.: On uncertainity   |
+      | 3  | Renormalization      | Richard Feynman   | Feynman, R.: Renormalization      |
+      | 4  | Quantum Loop Gravity | Carlo Rovelli     | Rovelli, C.: Quantum Loop Gravity |
+    When I follow "Author"
+    Then I should see the "index_table_posts" table:
+      | Id | Title                | Author            | Citation                          |
+      | 2  | On uncertainity      | Werner Heisenberg | Heisenberg, W.: On uncertainity   |
+      | 1  | A history of time    | Stephen Hawking   | Hawking, S.: A history of time    |
+      | 3  | Renormalization      | Richard Feynman   | Feynman, R.: Renormalization      |
+      | 4  | Quantum Loop Gravity | Carlo Rovelli     | Rovelli, C.: Quantum Loop Gravity |
+    When I follow "Author"
+    Then I should see the "index_table_posts" table:
+      | Id | Title                | Author            | Citation                          |
+      | 4  | Quantum Loop Gravity | Carlo Rovelli     | Rovelli, C.: Quantum Loop Gravity |
+      | 3  | Renormalization      | Richard Feynman   | Feynman, R.: Renormalization      |
+      | 1  | A history of time    | Stephen Hawking   | Hawking, S.: A history of time    |
+      | 2  | On uncertainity      | Werner Heisenberg | Heisenberg, W.: On uncertainity   |
+    When I follow "Citation"
+    Then I should see the "index_table_posts" table:
+      | Id | Title                | Author            | Citation                          |
+      | 4  | Quantum Loop Gravity | Carlo Rovelli     | Rovelli, C.: Quantum Loop Gravity |
+      | 2  | On uncertainity      | Werner Heisenberg | Heisenberg, W.: On uncertainity   |
+      | 1  | A history of time    | Stephen Hawking   | Hawking, S.: A history of time    |
+      | 3  | Renormalization      | Richard Feynman   | Feynman, R.: Renormalization      |
+    When I follow "Citation"
+    Then I should see the "index_table_posts" table:
+      | Id | Title                | Author            | Citation                          |
+      | 3  | Renormalization      | Richard Feynman   | Feynman, R.: Renormalization      |
+      | 1  | A history of time    | Stephen Hawking   | Hawking, S.: A history of time    |
+      | 2  | On uncertainity      | Werner Heisenberg | Heisenberg, W.: On uncertainity   |
+      | 4  | Quantum Loop Gravity | Carlo Rovelli     | Rovelli, C.: Quantum Loop Gravity |
 
   Scenario: Sorting
     Given a post with the title "Hello World" and body "From the body" exists

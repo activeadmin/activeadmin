@@ -215,19 +215,86 @@ module ActiveAdmin
       end
 
 
+      # Adds the sorting clause to the chain, building from the `:order`
+      # param, that embeds the columns to sort on and the sort direction.
+      #
+      # Format:
+      #
+      #   order ::= <column> "_" <direction>
+      #   direction ::= "asc" | "desc"
+      #
+      # The "column" term can be either a column alias or a metasearch
+      # `meta_sort` expression. See +ActiveAdmin::Views::IndexAsTable+ and
+      # https://github.com/ernie/meta_search/blob/c7f0844/lib/meta_search/builder.rb#L162
+      # for details on `meta_sort`.
+      #
+      # If the `:order` param matches the format, and the column is detected
+      # as an alias, then it is copied verbatim in the order clause with the
+      # sorting direction.
+      #
+      # Else, the param is assumed to be a meta_sort expression, and forwarded
+      # to the `.metasearch` method. The backwards compatibility is required
+      # for applications that are using the former syntax for sorting on
+      # associated models' columns.
+      #
+      # @param [ActiveRecord::Relation] chain The collection to sort
+      #
+      # @returns [ActiveRecord::Relation] the collection with the sorting clause
+      #
       def apply_sorting(chain)
         params[:order] ||= active_admin_config.sort_order
-        if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
-          column = $1
-          order  = $2
-          table  = active_admin_config.resource_column_names.include?(column) ? active_admin_config.resource_table_name : nil
-          table_column = (column =~ /\./) ? column :
-            [table, active_admin_config.resource_quoted_column_name(column)].compact.join(".")
 
-          chain.reorder("#{table_column} #{order}")
+        if matches = /^([\w\.]+)_(desc|asc)$/.match(params[:order])
+          _, column, order = matches.to_a
+
+          if sorting_column_is_virtual?(column, chain)
+            column = active_admin_config.resource_quoted_column_name(column)
+            chain.reorder([column, order].join(' '))
+          else
+            column = reformat_former_associated_columns_syntax(column)
+
+            chain.metasearch(:meta_sort => [column, order].join('.')).relation
+          end
+
         else
           chain # just return the chain
         end
+      end
+
+      # Determines whether the given column is defined as an alias
+      # in the SQL select list, by looking for "AS $column".
+      #
+      # A `.respond_to?` check is made because +chain+ can also be
+      # a plain model instance instead of an `ActiveRecord::Relation`.
+      #
+      # @param [String] column The column name
+      # @param [ActiveRecord::Relation] chain The collection to check
+      #
+      def sorting_column_is_virtual?(column, chain)
+        chain.respond_to?(:select_values) && chain.select_values.any? {|s| s =~ /[aA][sS] [\['"]?#{column}/ }
+      end
+
+      # Before using `meta_search` for associated columns' sorting, a custom
+      # implementation was present in `apply_sorting`, that used the format
+      # "table_name.column_name". This method reformats it according to the
+      # `meta_search` format and emits a deprecation warning.
+      #
+      # WARNING: this method blindly follows Rails' standard, where a table
+      # name is the pluralized name of the `belongs_to` association name
+      # this model references. If this assumption is broken, the conversion
+      # will not work.
+      #
+      # Ref: https://github.com/gregbell/active_admin/pull/1766#issuecomment-12934911
+      #
+      def reformat_former_associated_columns_syntax(column)
+        if column =~ /\A(\w+)\.(\w+)\Z/
+          column = [$1.singularize, $2].join('_')
+          ActiveAdmin::Deprecation.warn("sorting on associated column as " \
+            "#$1.#$2 is deprecated, please use #{column} "                 \
+            "(see https://github.com/gregbell/active_admin/pull/1994)")
+        end
+
+        column
       end
 
       def apply_filtering(chain)

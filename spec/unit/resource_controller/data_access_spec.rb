@@ -27,10 +27,11 @@ describe ActiveAdmin::ResourceController::DataAccess do
   describe "sorting" do
 
     context "for table columns" do
-      let(:params){ {:order => "id_asc" }}
-      it "should prepend the table name" do
+      let(:params){ {:order => "foo_column_asc" }}
+      it "should delegate to metasearch" do
         chain = mock("ChainObj")
-        chain.should_receive(:reorder).with("\"posts\".\"id\" asc").once.and_return(Post.search)
+        chain.should_receive(:select_values).once.and_return(['*'])
+        chain.should_receive(:metasearch).with(:meta_sort => "foo_column.asc").once.and_return(Post.search)
         controller.send :apply_sorting, chain
       end
     end
@@ -39,7 +40,21 @@ describe ActiveAdmin::ResourceController::DataAccess do
       let(:params){ {:order => "virtual_id_asc" }}
       it "should not prepend the table name" do
         chain = mock("ChainObj")
+        chain.should_receive(:select_values).once.and_return(['foo AS virtual_id'])
         chain.should_receive(:reorder).with("\"virtual_id\" asc").once.and_return(Post.search)
+        controller.send :apply_sorting, chain
+      end
+    end
+
+    context "with the former associate column format" do
+      let(:params){ {:order => "puppies.eye_colour_asc" }}
+
+      # https://github.com/gregbell/active_admin/pull/1766#issuecomment-12934911
+      it "should be backwards-compatible" do
+        chain = mock("ChainObj")
+        chain.should_receive(:select_values).once.and_return(['*'])
+        chain.should_receive(:metasearch).with(:meta_sort => "puppy_eye_colour.asc").once.and_return(Post.search)
+        ActiveAdmin::Deprecation.should_receive(:warn)
         controller.send :apply_sorting, chain
       end
     end

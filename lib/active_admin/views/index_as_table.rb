@@ -13,52 +13,58 @@ module ActiveAdmin
     # column method:
     #
     #     index do
-    #       selectable_column
     #       column :title
     #     end
+    #
+    # For association columns we make an educated guess on what to display by
+    # calling the following methods in the following order:
+    #
+    #     :display_name, :full_name, :name, :username, :login, :title, :email, :to_s
+    #
+    # This can be customized in config/initializers/active_admin.rb.
     #
     # If the default title does not work for you, pass it as the first argument:
     #
     #     index do
-    #       selectable_column
     #       column "My Custom Title", :title
     #     end
     #
-    # Sometimes calling methods just isn't enough and you need to write some view
-    # specific code. For example, say we wanted a colum called Title which holds a
-    # link to the posts admin screen.
+    # Sometimes that just isn't enough and you need to write some view-specific code.
+    # For example, say we wanted a "Title" column that links to the posts admin screen.
     #
-    # The column method accepts a block as an argument which will then be rendered
-    # within the context of the view for each of the objects in the collection.
+    # `column` accepts a block that will be rendered for each of the objects in the collection.
+    # The block is called once for each resource, which is passed as an argument to the block.
     #
     #     index do
-    #       selectable_column
     #       column "Title" do |post|
     #         link_to post.title, admin_post_path(post)
     #       end
     #     end
     #
-    # The block gets called once for each resource in the collection. The resource gets passed into
-    # the block as an argument.
-    #
-    # To setup links to View, Edit and Delete a resource, use the default_actions method:
+    # To setup links to View, Edit and Delete a resource, use the `actions` method:
     #
     #     index do
-    #       selectable_column
     #       column :title
-    #       default_actions
+    #       actions
     #     end
     #
-    # Alternatively, you can create a column with custom links:
+    # You can also append custom links to the default links:
     #
     #     index do
-    #       selectable_column
     #       column :title
-    #       column "Actions" do |post|
-    #         link_to "View", admin_post_path(post)
+    #       actions do |post|
+    #         link_to "Preview", admin_preview_post_path(post), :class => "member_link"
     #       end
     #     end
     #
+    # Or forego the default links entirely:
+    #
+    #     index do
+    #       column :title
+    #       actions :defaults => false do |post|
+    #         link_to "View", admin_post_path(post)
+    #       end
+    #     end
     #
     # == Sorting
     #
@@ -78,12 +84,35 @@ module ActiveAdmin
     #       end
     #     end
     #
-    # You can also sort using an attribute on another table by passing the table name
-    # and the attribute separated by a dot:
+    # You can also sort using an attribute on another table by passing the
+    # association name and the attribute separated by an underscore:
     #
     #     index do
-    #       column :title, :sortable => 'categories.name'
+    #       column :title, :sortable => 'category_name'
     #     end
+    #
+    # And you can also sort on multiple columns, either of this resource or
+    # of associated ones, joining conditions using _and_:
+    #
+    #     index do
+    #       column :title, :sortable => 'author_first_name_and_category_name_and_title'
+    #     end
+    #
+    # For complex sorting schemes, this definition may become cumbersome: in
+    # these cases, define two scopes in your model, and refer to them in the
+    # :sortable option:
+    #
+    #     class Post
+    #       scope :sort_by_custom_name_asc,  proc { joins(...).order(...)... }
+    #       scope :sort_by_custom_name_desc, proc { joins(...).order(...)... }
+    #     end
+    #
+    #     index to
+    #       column :title, :sortable => 'custom_name'
+    #     end
+    #
+    # This leverages the [meta_sort feature](https://github.com/ernie/meta_search/#sorting-columns)
+    # in meta_search.
     #
     # You can turn off sorting on any column by passing false:
     #
@@ -164,6 +193,9 @@ module ActiveAdmin
         #   # Add default links.
         #   actions
         #
+        #   # Customize the column name
+        #   actions :name => "Operations"
+        #
         #   # Append some actions onto the end of the default actions.
         #   actions do |admin_user|
         #     link_to 'Grant Admin', grant_admin_admin_user_path(admin_user)
@@ -209,16 +241,16 @@ module ActiveAdmin
 
         # Display A Status Tag Column
         #
-        #   index do |i|
-        #     i.status_tag :state
+        #   index do
+        #     status_tag :state
         #   end
         #
-        #   index do |i|
-        #     i.status_tag "State", :status_name
+        #   index do
+        #     status_tag "State", :status_name
         #   end
         #
-        #   index do |i|
-        #     i.status_tag do |post|
+        #   index do
+        #     status_tag do |post|
         #       post.published? ? 'published' : 'draft'
         #     end
         #   end
