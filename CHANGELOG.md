@@ -1,4 +1,4 @@
-## Master (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...master)
+## Master (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...master)
 
 ## 0.6.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...v0.6.1)
 
