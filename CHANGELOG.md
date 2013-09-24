@@ -1,5 +1,7 @@
 ## Master (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...master)
 
+## 0.6.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...v0.6.1)
+
 ### Features
 
 * OmniAuth provider links now automatically appear on the login page [#2088][] by [@henrrrik][]
