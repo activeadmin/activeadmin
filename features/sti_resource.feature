@@ -6,8 +6,20 @@ Feature: STI Resource
     Given I am logged in
     And a configuration of:
     """
-      ActiveAdmin.register Publisher
-      ActiveAdmin.register User
+      ActiveAdmin.register Publisher do
+        controller do
+          def permitted_params
+            params.permit publisher: [:first_name, :last_name, :username, :age]
+          end if Rails::VERSION::MAJOR == 4
+        end
+      end
+      ActiveAdmin.register User do
+        controller do
+          def permitted_params
+            params.permit user: [:first_name, :last_name, :username, :age]
+          end if Rails::VERSION::MAJOR == 4
+        end
+      end
     """
 
   Scenario: Create, update and delete a child STI resource

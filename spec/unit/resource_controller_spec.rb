@@ -54,10 +54,9 @@ describe ActiveAdmin::ResourceController do
 
 
   describe "callbacks" do
-    let(:application){ ::ActiveAdmin::Application.new }
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
-
     before :all do
+      application = ::ActiveAdmin::Application.new
+      namespace = ActiveAdmin::Namespace.new(application, :admin)
       namespace.register Post do
         after_build :call_after_build
         before_save :call_before_save
@@ -245,9 +244,9 @@ describe Admin::PostsController, :type => "controller" do
       it "should raise an error" do
         pending # doesn't pass when running whole spec suite (WTF)
 
-        lambda {
+        expect {
           post(:batch_action, :batch_action => "derp", :collection_selection => ["1"])
-        }.should raise_error("Couldn't find batch action \"derp\"")
+        }.to raise_error("Couldn't find batch action \"derp\"")
       end
     end
 
@@ -255,9 +254,9 @@ describe Admin::PostsController, :type => "controller" do
       it "should raise an error" do
         pending # doesn't pass when running whole spec suite (WTF)
 
-        lambda {
+        expect {
           post(:batch_action, :collection_selection => ["1"])
-        }.should raise_error("Couldn't find batch action \"\"")
+        }.to raise_error("Couldn't find batch action \"\"")
       end
     end
 

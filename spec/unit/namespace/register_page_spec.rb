@@ -27,11 +27,11 @@ describe ActiveAdmin::Namespace, "registering a page" do
 
   context "with a block configuration" do
     it "should be evaluated in the dsl" do
-      lambda {
+      expect {
         namespace.register_page "Status" do
           raise "Hello World"
         end
-      }.should raise_error
+      }.to raise_error
     end
   end # context "with a block configuration"
 

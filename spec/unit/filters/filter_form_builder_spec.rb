@@ -121,7 +121,7 @@ describe ActiveAdmin::Filters::ViewHelper do
     context "using ends_with and as" do
       let(:body) { filter :title_ends_with }
 
-      it "should generate a search field for a string attribute with query starts_with" do
+      it "should generate a search field for a string attribute with query ends_with" do
         body.should have_tag("input", :attributes => { :name => "q[title_ends_with]" })
       end
     end
@@ -158,7 +158,7 @@ describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should remove original ordering to prevent PostgreSQL error" do
-        scope.base.should_receive(:reorder).with('title asc') {
+        scope.object.klass.should_receive(:reorder).with('title asc') {
           m = mock uniq: mock(pluck: ['A Title'])
           m.uniq.should_receive(:pluck).with :title
           m
@@ -172,13 +172,13 @@ describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :created_at }
 
     it "should generate a date greater than" do
-      body.should have_tag("input", :attributes => { :name => "q[created_at_gte]", :class => "datepicker"})
+      body.should have_tag("input", :attributes => { :name => "q[created_at_gteq]", :class => "datepicker"})
     end
     it "should generate a seperator" do
       body.should have_tag("span", :attributes => { :class => "seperator"})
     end
     it "should generate a date less than" do
-      body.should have_tag("input", :attributes => { :name => "q[created_at_lte]", :class => "datepicker"})
+      body.should have_tag("input", :attributes => { :name => "q[created_at_lteq]", :class => "datepicker"})
     end
   end
 
@@ -221,11 +221,11 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "non-boolean data types" do
-      let(:body) { filter :title_is_present, :as => :boolean }
+      let(:body) { filter :title_present, :as => :boolean }
 
       it "should create a check box for equals to" do
         body.should have_tag("input", :attributes => {
-                                            :name => "q[title_is_present]",
+                                            :name => "q[title_present]",
                                             :type => "checkbox" })
       end
     end
@@ -331,11 +331,11 @@ describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should be displayed if false" do
-        body.should have_tag("input", :attributes => { :name => "q[created_at_gte]"})
+        body.should have_tag("input", :attributes => { :name => "q[created_at_gteq]"})
       end
 
       it "should NOT be displayed if true" do
-        body.should_not have_tag("input", :attributes => { :name => "q[updated_at_gte]"})
+        body.should_not have_tag("input", :attributes => { :name => "q[updated_at_gteq]"})
       end
     end
   end
