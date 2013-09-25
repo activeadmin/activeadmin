@@ -2,7 +2,7 @@
 # that lets you select from a set of search methods for a given attribute.
 #
 # Your class must declare available filters for this module to work.
-# Those filters must be recognizable by Metasearch. For example:
+# Those filters must be recognizable by Ransack. For example:
 #
 #   class FilterNumericInput < ::Formtastic::Inputs::NumberInput
 #     include FilterBase

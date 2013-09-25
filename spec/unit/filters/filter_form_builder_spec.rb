@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 class Post
-  scope :custom_searcher, ->stuff { where(body: stuff) }
-  search_method :custom_searcher
+  ransacker :custom_searcher do
+    # nothing to see here
+  end
 end
 
 describe ActiveAdmin::Filters::ViewHelper do

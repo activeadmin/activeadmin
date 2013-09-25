@@ -3,13 +3,13 @@ module ActiveAdmin
     class FilterSelectInput < ::Formtastic::Inputs::SelectInput
       include FilterBase
 
-      # If MetaSearch already responds to the given method, just use it.
+      # If Ransack will likely respond to the given method, use it.
       #
       # Otherwise:
       # When it's a HABTM or has_many association, Formtastic builds "object_ids".
       # That doesn't fit our scenario, so we override it here.
       def input_name
-        return method if @object.respond_to? method
+        return method if seems_searchable?
 
         name = method.to_s
         name.concat '_id' if reflection
