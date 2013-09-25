@@ -3,10 +3,10 @@ module ActiveAdmin
     module FormtasticAddons
 
       #
-      # The below are Formtastic overrides to inspect Ransack's search object
+      # The below are Formtastic method overrides that jump inside of the Ransack
+      # search object to get at the object being searched upon.
       #
 
-      # Returns the default label for a given attribute. Uses ActiveModel I18n if available.
       def humanized_method_name
         if klass.respond_to?(:human_attribute_name)
           klass.human_attribute_name(method)
@@ -15,18 +15,14 @@ module ActiveAdmin
         end
       end
 
-      # Returns the association reflection for the method if it exists
       def reflection_for(method)
         klass.reflect_on_association(method) if klass.respond_to? :reflect_on_association
       end
 
-      # Returns the column for an attribute on the object being searched if it exists.
       def column_for(method)
         klass.columns_hash[method.to_s] if klass.respond_to? :columns_hash
       end
 
-      # An override to the built-in method, that respects Ransack.
-      # Since this is corrected, `column?` will also work.
       def column
         column_for method
       end
