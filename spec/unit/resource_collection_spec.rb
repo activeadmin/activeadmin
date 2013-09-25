@@ -148,6 +148,19 @@ describe ActiveAdmin::ResourceCollection do
         collection.values.should include(resource, resource_renamed)
       end
     end
+
+    context "when a duplicate resource is added" do
+      let(:resource_duplicate) { Resource.new(namespace, Category) }
+
+      before do
+        collection.add(resource)
+        collection.add(resource_duplicate)
+      end
+
+      it "the collection contains one instance of that resource" do
+        collection.values.should eq([resource])
+      end
+    end
   end
 
 end

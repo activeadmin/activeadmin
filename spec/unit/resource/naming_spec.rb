@@ -104,5 +104,19 @@ module ActiveAdmin
       end
     end
 
+    describe "duplicate resource names" do
+      let(:resource_name) { config.resource_name }
+      let(:duplicate_resource_name) { Resource.new(namespace, Category).resource_name }
+
+      [:==, :===, :eql?].each do |method|
+        it "are equivalent when compared with #{method}" do
+          resource_name.public_send(method, duplicate_resource_name).should be_true
+        end
+      end
+
+      it "have identical hash values" do
+        resource_name.hash.should == duplicate_resource_name.hash
+      end
+    end
   end
 end
