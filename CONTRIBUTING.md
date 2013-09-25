@@ -5,13 +5,16 @@ major steps to contributing code to the project.
 
 ### 0. 'The test suite is failing locally!'
 
-If your test suite is failing locally and the 
-[Travis build](https://secure.travis-ci.org/gregbell/active_admin.png?branch=master)
- is passing, you've likely already generated the rails app that is used by 
-ActiveAdmin's test suite and the generated rails app has erroneous files.
+If you've previously run the test suite, refresh it:
 
-To fix this, remove the generated rails app by deleting the directory and its 
-contents (`rm -rf spec/rails`) and then re-running the test suite.
+```sh
+rm -rf spec/rails
+```
+
+If there is some sort of gem conflict, remove the lockfile:
+```sh
+rm Gemfile.lock
+```
 
 ### 1. Create an Issue on GitHub
 
