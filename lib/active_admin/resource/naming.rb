@@ -30,6 +30,8 @@ module ActiveAdmin
     # in Rails < 3.1 and > 3.1.
     class Name < ActiveModel::Name
 
+      delegate :hash, :to => :to_str
+
       def initialize(klass, name = nil)
         if ActiveModel::Name.instance_method(:initialize).arity == 1
           super(proxy_for_initializer(klass, name))
@@ -51,6 +53,10 @@ module ActiveAdmin
 
       def route_key
         plural
+      end
+
+      def eql?(other)
+        to_str.eql?(other.to_str)
       end
 
       class StringProxy
