@@ -1,5 +1,18 @@
 ## Master (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...master)
 
+* Allow IR shorthand for redirection #2001 by @Daxter
+```ruby
+    controller do
+      # Redirects to index page instead of rendering udpated resource
+      def update
+        update!{ collection_path }
+      end
+    end
+```
+
+* Migration from Metasearch to Ransack #1979 by @Daxter
+* Rails 4 support #2326 by many people :heart:
+
 ## 0.6.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...v0.6.1)
 
 ### Features
