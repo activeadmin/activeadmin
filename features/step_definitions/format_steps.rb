@@ -13,8 +13,7 @@ end
 Then /^I should download a CSV file with "([^"]*)" separator for "([^"]*)" containing:$/ do |sep, resource_name, table|
   body    = page.driver.response.body
   headers = page.response_headers
-  headers['Content-Type'].should        eq 'text/csv; charset=utf-8'
-  headers['Content-Disposition'].should eq %{attachment; filename="#{resource_name}-#{Time.now.strftime("%Y-%m-%d")}.csv"}
+  headers['Content-Type'].should eq 'text/csv; charset=utf-8'
 
   begin
     csv = CSV.parse(body, :col_sep => sep)
