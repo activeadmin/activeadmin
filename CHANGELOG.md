@@ -1,6 +1,6 @@
 ## Master (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...master)
 
-* Allow IR shorthand for redirection #2001 by @Daxter
+* Allow Inherited Resources shorthand for redirection #2001 by @Daxter
 ```ruby
     controller do
       # Redirects to index page instead of rendering udpated resource
