@@ -1,6 +1,12 @@
 module ActiveAdmin
   module Filters
 
+    class Disabled < RuntimeError
+      def initialize
+        super "Can't remove a filter when filters are disabled. Enable filters with 'config.filters = true'"
+      end
+    end
+
     module ResourceExtension
 
       def initialize(*)
@@ -42,12 +48,9 @@ module ActiveAdmin
       #
       # @param [Symbol] attribute The attribute to not filter on
       def remove_filter(attribute)
-        unless filters_enabled?
-          raise RuntimeError, "Can't remove a filter when filters are disabled. Enable filters with 'config.filters = true'"
-        end
+        raise Disabled unless filters_enabled?
 
-        @filters_to_remove ||= []
-        @filters_to_remove << attribute
+        (@filters_to_remove ||= []) << attribute
       end
 
       # Add a filter for this resource. If filters are not enabled, this method
@@ -57,12 +60,9 @@ module ActiveAdmin
       # @param [Hash] options The set of options that are passed through to
       #                       ransack for the field definition.
       def add_filter(attribute, options = {})
-        unless filters_enabled?
-          raise RuntimeError, "Can't add a filter when filters are disabled. Enable filters with 'config.filters = true'"
-        end
+        raise Disabled unless filters_enabled?
 
-        @filters ||= []
-        @filters << options.merge({ :attribute => attribute })
+        (@filters ||= []) << options.merge(attribute: attribute)
       end
 
       # Reset the filters to use defaults

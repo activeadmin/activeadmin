@@ -28,7 +28,7 @@ describe ActiveAdmin::Filters::ResourceExtension do
     resource.filters.should be_empty
   end
 
-  context "filter removal" do
+  describe "removing a filter" do
     it "should work" do
       resource.filters.should include :attribute => :author
       resource.remove_filter :author
@@ -44,9 +44,14 @@ describe ActiveAdmin::Filters::ResourceExtension do
       resource.remove_filter :author
       resource.filters.should_not be_empty
     end
+
+    it "should raise an exception when filters are disabled" do
+      resource.filters = false
+      expect{ resource.remove_filter :author }.to raise_error ActiveAdmin::Filters::Disabled
+    end
   end
 
-  context "adding a filter" do
+  describe "adding a filter" do
     it "should work" do
       resource.add_filter :title
       resource.filters.should == [{:attribute => :title}]
@@ -67,9 +72,7 @@ describe ActiveAdmin::Filters::ResourceExtension do
 
     it "should raise an exception when filters are disabled" do
       resource.filters = false
-      expect {
-        resource.add_filter :title
-      }.to raise_error(RuntimeError)
+      expect{ resource.add_filter :title }.to raise_error ActiveAdmin::Filters::Disabled
     end
   end
 
