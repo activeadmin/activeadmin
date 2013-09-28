@@ -16,8 +16,7 @@ module ActiveAdmin
               :action_list_popover  => ActiveAdmin::Views::ActionListPopover
 
     # Register All The Pages
-    register  :dashboard_page     	=> ActiveAdmin::Views::Pages::Dashboard,
-              :index_page         	=> ActiveAdmin::Views::Pages::Index,
+    register  :index_page         	=> ActiveAdmin::Views::Pages::Index,
               :show_page          	=> ActiveAdmin::Views::Pages::Show,
               :new_page           	=> ActiveAdmin::Views::Pages::Form,
               :edit_page          	=> ActiveAdmin::Views::Pages::Form,
