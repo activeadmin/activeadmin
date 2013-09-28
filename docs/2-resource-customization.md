@@ -1,4 +1,36 @@
-# Customize The Resource
+# Working with Resources
+
+Every Active Admin resource corresponds to a Rails model. So before creating a 
+resource you must first create a regular Rails model.
+
+## Create a Resource
+
+The basic command for creating a resource is `rails generate active_admin:resource Post`. 
+The resource's name uses CamelCase and must correspond to the model name. The generator 
+will produce an empty `app/admin/post.rb` file with the following content:
+
+    ActiveAdmin.register Post do
+    
+    end
+
+All additional methods goes within the body of the `register` method.
+
+## Enable CRUD Operations on a Resource
+
+In Rails 4, to enable creating and updating records via the admin interface, add this to
+`post.rb`:
+
+    ActiveAdmin.register Post do
+      controller do
+        def permitted_params
+          params.permit post: [:title, :content, :author]
+        end
+      end
+    end
+
+Due to the newly introduced [Strong Parameters](https://github.com/rails/strong_parameters) 
+plug-in in Rails 4 you are required to explicitly allow attributes for mass updating and thus 
+prevent them from accidentally being exposed.
 
 ## Rename the Resource
 
@@ -8,7 +40,7 @@ the <tt>:as</tt> option.
 
     ActiveAdmin.register Post, :as => "Article"
 
-The resource will then be available as /admin/articles
+The resource will then be available as /admin/articles.
 
 ## Customize the Namespace
 
