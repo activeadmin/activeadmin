@@ -11,7 +11,7 @@ When you need a standalone page on your site, Custom Pages will be there with a 
 
 ## Create a new Page
 
-Creating a page is a simple as calling the `register_page` method:
+Creating a page is as simple as calling the `register_page` method and saving it under `/admin/my_page.rb`:
 
     ActiveAdmin.register_page "My Page" do
       content do
@@ -19,9 +19,7 @@ Creating a page is a simple as calling the `register_page` method:
       end
     end
 
-In the above example, a new page will be created at `/admin/my_page` with the
-title "My Page" and the content of "Hello World". Anything rendered within
-`content` will be the main content on the page.
+In the above example, a new page with the title "My Page" and the content of "Hello World" will be displayed. Anything rendered within `content` will be the main content on the page. To use partials, create the folder under `app/views/admin/my_page` and save your partials there. Then use `render "partial"` within `content`.
 
 ## Page Title & I18n
 
