@@ -28,19 +28,16 @@ describe ActiveAdmin::Filters::ViewHelper do
   end
 
   def render_filter(search, filters)
-    render_arbre_component({:filter_args => [search, filters]}, helpers) do
-      text_node active_admin_filters_form_for(*assigns[:filter_args])
+    render_arbre_component({filter_args: [search, filters]}, helpers) do
+      text_node active_admin_filters_form_for *assigns[:filter_args]
     end
   end
 
   def filter(name, options = {})
-    render_filter scope, @filters.push(options.merge(:attribute => name))
+    render_filter scope, name => options
   end
 
   let(:scope) { Post.search }
-
-  before(:each) { @filters = [] }
-
 
   describe "the form in general" do
     let(:body) { filter :title }
@@ -295,11 +292,10 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "when polymorphic relationship" do
+      let(:scope) { ActiveAdmin::Comment.search }
       it "should raise an error if a collection isn't provided" do
-        expect {
-          search = ActiveAdmin::Comment.search
-          render_filter(search, [{:attribute => :resource}])
-        }.to raise_error Formtastic::PolymorphicInputWithoutCollectionError
+        expect { filter :resource }.to raise_error \
+          Formtastic::PolymorphicInputWithoutCollectionError
       end
     end
   end # belongs to
@@ -309,34 +305,27 @@ describe ActiveAdmin::Filters::ViewHelper do
   end
 
   describe "conditional display" do
-
     context "with :if block" do
-      let(:body) do
-        filter :body,   :if => proc{true}
-        filter :author, :if => proc{false}
-      end
-
       it "should be displayed if true" do
-        body.should have_tag("input", :attributes => { :name => "q[body_contains]"})
+        body = filter :body,   if: proc{true}
+        body.should     have_tag "input", attributes: {name: "q[body_contains]"}
       end
 
       it "should NOT be displayed if false" do
-        body.should_not have_tag("input", :attributes => { :name => "q[author_id_eq]"})
+        body = filter :author, if: proc{false}
+        body.should_not have_tag "input", attributes: {name: "q[author_id_eq]"}
       end
     end
 
     context "with :unless block" do
-      let(:body) do
-        filter :created_at, :unless => proc{false}
-        filter :updated_at, :unless => proc{true}
-      end
-
       it "should be displayed if false" do
-        body.should have_tag("input", :attributes => { :name => "q[created_at_gteq]"})
+        body = filter :created_at, unless: proc{false}
+        body.should     have_tag "input", attributes: {name: "q[created_at_gteq]"}
       end
 
       it "should NOT be displayed if true" do
-        body.should_not have_tag("input", :attributes => { :name => "q[updated_at_gteq]"})
+        body = filter :updated_at, unless: proc{true}
+        body.should_not have_tag "input", attributes: {name: "q[updated_at_gteq]"}
       end
     end
   end
