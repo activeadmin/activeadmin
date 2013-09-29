@@ -130,7 +130,7 @@ describe ActiveAdmin::Application do
 
   describe "#register_page" do
     it "finds or create the namespace and register the page to it" do
-      namespace = mock
+      namespace = double
       application.should_receive(:namespace).with("public").and_return namespace
       namespace.should_receive(:register_page).with("My Page", {:namespace => "public"})
 

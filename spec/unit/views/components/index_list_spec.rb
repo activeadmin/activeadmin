@@ -9,8 +9,8 @@ describe ActiveAdmin::Views::IndexList do
 
     let(:helpers) do
       helpers = mock_action_view
-      helpers.stub! :url_for => "/"
-      helpers.stub!(:params).and_return({:as => "table"})
+      helpers.stub url_for: "/"
+      helpers.stub(:params).and_return as: "table"
       helpers
     end
 

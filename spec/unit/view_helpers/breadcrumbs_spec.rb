@@ -6,17 +6,14 @@ describe "Breadcrumbs" do
 
   describe "generating a trail from paths" do
 
-    # Mock our params
     def params; {}; end
-    # Mock link to and return a hash
     def link_to(name, url); {:name => name, :path => url}; end
 
-    let(:post) { mock(:display_name => 'Hello World') }
-
-    let(:post_config) { stub(find_resource: post) }
+    let(:post)        { double display_name: 'Hello World' }
+    let(:post_config) { double find_resource: post }
 
     let :active_admin_config do
-      active_admin_config = stub
+      active_admin_config = double
       active_admin_config.stub_chain(:belongs_to_config, :target).and_return post_config
       active_admin_config
     end
@@ -115,7 +112,7 @@ describe "Breadcrumbs" do
 
       context "when Post.find(4e24d6249ccf967313000000) does exist" do
         before do
-          post_config.stub(:find_resource => mock(:display_name => 'Hello :)'))
+          post_config.stub find_resource: double(display_name: 'Hello :)')
         end
         it "should have a link to /admin/posts/4e24d6249ccf967313000000 using display name" do
           trail[2][:name].should == "Hello :)"

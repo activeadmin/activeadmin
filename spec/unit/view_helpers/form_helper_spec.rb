@@ -4,7 +4,7 @@ describe ActiveAdmin::ViewHelpers::FormHelper do
 
   describe '.active_admin_form_for' do
     let(:view) { action_view }
-    let(:resource) { stub('resource') }
+    let(:resource) { double 'resource' }
     let(:default_options) { { builder: ActiveAdmin::FormBuilder } }
 
     it 'calls semantic_form_for with the ActiveAdmin form builder' do
@@ -21,7 +21,7 @@ describe ActiveAdmin::ViewHelpers::FormHelper do
     end
 
     context 'with a decorated resource' do
-      let(:decorated) { stub('decorated_resource', model: resource) }
+      let(:decorated) { double 'decorated_resource', model: resource }
 
       it 'can disable automatic decoration' do
         view.should_receive(:semantic_form_for).with(resource, default_options.merge(decorate: false))

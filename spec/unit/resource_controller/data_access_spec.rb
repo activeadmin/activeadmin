@@ -7,7 +7,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
 
   let(:controller) do
     rc = Admin::PostsController.new
-    rc.stub!(:params) do
+    rc.stub(:params) do
       params
     end
     rc
@@ -16,7 +16,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
   describe "searching" do
     let(:params){ {:q => {} }}
     it "should call the search method" do
-      chain = mock("ChainObj")
+      chain = double "ChainObj"
       chain.should_receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
       controller.send :apply_filtering, chain
     end
@@ -28,7 +28,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
     context "for table columns" do
       let(:params){ {:order => "id_asc" }}
       it "should prepend the table name" do
-        chain = mock("ChainObj")
+        chain = double "ChainObj"
         chain.should_receive(:reorder).with('"posts"."id" asc').once.and_return(Post.search)
         controller.send :apply_sorting, chain
       end
@@ -37,7 +37,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
     context "for virtual columns" do
       let(:params){ {:order => "virtual_id_asc" }}
       it "should not prepend the table name" do
-        chain = mock("ChainObj")
+        chain = double "ChainObj"
         chain.should_receive(:reorder).with('"virtual_id" asc').once.and_return(Post.search)
         controller.send :apply_sorting, chain
       end
@@ -49,7 +49,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
 
     context "when no current scope" do
       it "should set collection_before_scope to the chain and return the chain" do
-        chain = mock("ChainObj")
+        chain = double "ChainObj"
         controller.send(:apply_scoping, chain).should == chain
         controller.send(:collection_before_scope).should == chain
       end
@@ -57,10 +57,10 @@ describe ActiveAdmin::ResourceController::DataAccess do
 
     context "when current scope" do
       it "should set collection_before_scope to the chain and return the scoped chain" do
-        chain = mock("ChainObj")
-        scoped_chain = mock("ScopedChain")
-        current_scope = mock("CurrentScope")
-        controller.stub!(:current_scope) { current_scope }
+        chain         = double "ChainObj"
+        scoped_chain  = double "ScopedChain"
+        current_scope = double "CurrentScope"
+        controller.stub(:current_scope) { current_scope }
 
         controller.should_receive(:scope_chain).with(current_scope, chain) { scoped_chain }
         controller.send(:apply_scoping, chain).should == scoped_chain

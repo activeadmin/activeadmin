@@ -10,7 +10,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     let(:view) do
       view = mock_action_view
-      view.request.stub!(:query_parameters).and_return({:controller => 'admin/posts', :action => 'index', :page => '1'})
+      view.request.stub(:query_parameters).and_return({:controller => 'admin/posts', :action => 'index', :page => '1'})
       view.controller.params = {:controller => 'admin/posts', :action => 'index'}
       view
     end
@@ -28,7 +28,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
     end
 
     before do
-      collection.stub!(:reorder) { collection }
+      collection.stub(:reorder) { collection }
     end
 
     context "when specifying collection" do
@@ -203,7 +203,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
     context "when having the param :pagination_total set to true " do
       let(:view) do
         view = mock_action_view
-        view.request.stub!(:query_parameters).and_return({:controller => 'admin/stores', :action => 'index', :page => '1'})
+        view.request.stub(:query_parameters).and_return({:controller => 'admin/stores', :action => 'index', :page => '1'})
         view.controller.params = {:controller => 'admin/stores', :action => 'index'}
         view
       end
@@ -225,7 +225,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
     context "when having the param :pagination_total set to false " do
       let(:view) do
         view = mock_action_view
-        view.request.stub!(:query_parameters).and_return({:controller => 'admin/stores', :action => 'index', :page => '1'})
+        view.request.stub(:query_parameters).and_return({:controller => 'admin/stores', :action => 'index', :page => '1'})
         view.controller.params = {:controller => 'admin/stores', :action => 'index'}
         view
       end

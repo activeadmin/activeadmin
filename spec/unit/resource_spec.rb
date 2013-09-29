@@ -211,7 +211,7 @@ module ActiveAdmin
 
     describe '#find_resource' do
       let(:resource) { namespace.register(Post) }
-      let(:post) { stub }
+      let(:post) { double }
       before do
         Post.stub(:where).with('id' => '12345').and_return { [post] }
       end
@@ -228,7 +228,7 @@ module ActiveAdmin
       end
 
       context 'when using a nonstandard primary key' do
-        let(:different_post) { stub }
+        let(:different_post) { double }
         before do
           Post.stub(:primary_key).and_return 'something_else'
           Post.stub(:where).with('something_else' => '55555').and_return { [different_post] }

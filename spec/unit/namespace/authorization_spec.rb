@@ -4,7 +4,7 @@ describe ActiveAdmin::Resource, "authorization" do
 
   let(:app){ ActiveAdmin::Application.new }
   let(:namespace){ ActiveAdmin::Namespace.new(app, :admin) }
-  let(:mock_auth){ mock }
+  let(:auth){ double }
 
   describe "authorization_adapter" do
 
@@ -14,13 +14,13 @@ describe ActiveAdmin::Resource, "authorization" do
     end
 
     it "should be settable on the namespace" do
-      namespace.authorization_adapter = mock_auth
-      namespace.authorization_adapter.should eq mock_auth
+      namespace.authorization_adapter = auth
+      namespace.authorization_adapter.should eq auth
     end
 
     it "should be settable on the application" do
-      app.authorization_adapter = mock_auth
-      app.authorization_adapter.should eq mock_auth
+      app.authorization_adapter = auth
+      app.authorization_adapter.should eq auth
     end
 
   end
