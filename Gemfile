@@ -26,7 +26,8 @@ group :test do
   gem 'capybara',         '=  1.1.2'
   gem 'simplecov',                    require: false
   gem 'coveralls',        '~> 0.7.0', require: false # Test coverage tool: www.coveralls.io
-  gem 'cucumber-rails',   '=  1.3.0', require: false
+  # Move to next stable version including: https://github.com/cucumber/cucumber-rails/pull/253
+  gem 'cucumber-rails',   github: 'cucumber/cucumber-rails', require: false
   gem 'database_cleaner', '<= 1.0.1'
   gem 'guard-rspec'
   gem 'jasmine'
