@@ -5,16 +5,10 @@
 # files.
 
 ENV["RAILS_ENV"] ||= "cucumber"
-ENV['BUNDLE_GEMFILE'] = File.expand_path('../../../Gemfile', __FILE__)
-require "rubygems"
-require "bundler"
-Bundler.setup
 
-require File.expand_path('../../../spec/support/detect_rails_version', __FILE__)
-ENV["RAILS"] = detect_rails_version
+require File.expand_path('../../../spec/spec_helper_without_rails', __FILE__)
 
 ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{ENV["RAILS"]}", __FILE__)
-
 
 # Create the test app if it doesn't exists
 unless File.exists?(ENV['RAILS_ROOT'])

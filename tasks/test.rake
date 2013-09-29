@@ -6,12 +6,12 @@ task :setup do
   Rake::Task['parallel:after_setup_hook'].invoke
 end
 
-# Run specs and cukes
-# If run by Travis, submit test coverage data to www.coveralls.io
 desc "Run the full suite using 1 core"
-task test: ['spec:unit', 'spec:integration', 'cucumber', 'cucumber:class_reloading'] do
-  require 'coveralls' and Coveralls.push! if ENV['TRAVIS']
-end
+task test: ['spec:unit', 'spec:integration', 'cucumber', 'cucumber:class_reloading']
+
+require 'coveralls/rake/task'
+Coveralls::RakeTask.new
+task test_with_coveralls: [:test, 'coveralls:push']
 
 namespace :test do
 
