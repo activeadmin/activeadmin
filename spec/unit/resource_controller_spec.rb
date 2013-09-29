@@ -40,7 +40,7 @@ describe ActiveAdmin::ResourceController do
     end
 
     it "should call the current_user_method when set" do
-      user = mock
+      user = double
       namespace = controller.class.active_admin_config.namespace
 
       namespace.should_receive(:current_user_method).twice.
@@ -84,7 +84,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing create" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ mock("Resource", :save => true) }
+      let(:resource){ double("Resource", :save => true) }
 
       before do
         resource.should_receive(:save)
@@ -110,7 +110,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing update" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ mock("Resource", :attributes= => true, :save => true) }
+      let(:resource){ double("Resource", :attributes= => true, :save => true) }
       let(:attributes){ [{}] }
 
       before do
@@ -138,7 +138,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing destroy" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ mock("Resource", :destroy => true) }
+      let(:resource){ double("Resource", :destroy => true) }
 
       before do
         resource.should_receive(:destroy)

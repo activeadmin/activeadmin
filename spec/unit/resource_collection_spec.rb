@@ -9,25 +9,23 @@ describe ActiveAdmin::ResourceCollection do
 
   let(:collection){ ResourceCollection.new }
 
+  let(:resource){ double resource_name: "MyResource" }
+
   it "should have no resources when new" do
     collection.should be_empty
   end
 
   it "should be enumerable" do
-    resource = mock :resource_name => "MyResource"
     collection.add(resource)
     collection.each{ |r| r.should == resource }
   end
 
   it "should return the available keys" do
-    resource = mock :resource_name => "MyResource"
     collection.add resource
     collection.keys.should == [resource.resource_name]
   end
 
   describe "adding a new resource" do
-    let(:resource){ mock :resource_name => "MyResource" }
-
     it "should return the resource" do
       collection.add(resource).should == resource
     end
@@ -41,12 +39,8 @@ describe ActiveAdmin::ResourceCollection do
       collection.add(resource)
       collection[resource.resource_name].should == resource
     end
-  end
 
-  describe "adding a new resource when the key already exists" do
-    let(:resource){ mock :resource_name => "MyResource" }
-
-    it "should not add a new resource" do
+    it "shouldn't happen twice" do
       collection.add(resource); collection.add(resource)
       collection.values.should == [resource]
     end
@@ -83,7 +77,7 @@ describe ActiveAdmin::ResourceCollection do
       end
 
       it "should return nil when the resource_class does not respond to base_class and it is not in the collection" do
-        collection[mock].should == nil
+        collection[double].should == nil
       end
 
       it "should return nil when a resource class is NOT in the collection" do

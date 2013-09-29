@@ -157,7 +157,7 @@ describe ActiveAdmin::Filters::ViewHelper do
 
       it "should remove original ordering to prevent PostgreSQL error" do
         scope.object.klass.should_receive(:reorder).with('title asc') {
-          m = mock uniq: mock(pluck: ['A Title'])
+          m = double uniq: double(pluck: ['A Title'])
           m.uniq.should_receive(:pluck).with :title
           m
         }
@@ -301,7 +301,7 @@ describe ActiveAdmin::Filters::ViewHelper do
   end # belongs to
 
   describe "has_and_belongs_to_many" do
-    pending "add HABTM models so this can be mocked out"
+    pending "add HABTM models so this can be tested"
   end
 
   describe "conditional display" do
