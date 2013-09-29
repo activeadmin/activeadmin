@@ -231,7 +231,7 @@ describe Admin::PostsController, :type => "controller" do
         redirect_to collection_path
       end
 
-      controller.class.active_admin_config.stub!(:batch_actions).and_return([batch_action])
+      controller.class.active_admin_config.stub(:batch_actions).and_return([batch_action])
     end
 
     describe "when params batch_action matches existing BatchAction" do

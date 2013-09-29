@@ -7,7 +7,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
 
   let(:controller) do
     rc = Admin::PostsController.new
-    rc.stub!(:params) do
+    rc.stub(:params) do
       params
     end
     rc
@@ -60,7 +60,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
         chain = mock("ChainObj")
         scoped_chain = mock("ScopedChain")
         current_scope = mock("CurrentScope")
-        controller.stub!(:current_scope) { current_scope }
+        controller.stub(:current_scope) { current_scope }
 
         controller.should_receive(:scope_chain).with(current_scope, chain) { scoped_chain }
         controller.send(:apply_scoping, chain).should == scoped_chain

@@ -22,7 +22,7 @@ describe ActiveAdmin::Devise::Controller do
     end
 
     it "should set the root path to '/' when no default namespace" do
-      ActiveAdmin.application.stub!(:default_namespace => false)
+      ActiveAdmin.application.stub default_namespace: false
       controller.root_path.should == "/foo/"
     end
 
@@ -37,7 +37,7 @@ describe ActiveAdmin::Devise::Controller do
     end
 
     it "should set the root path to '/' when no default namespace" do
-      ActiveAdmin.application.stub!(:default_namespace => false)
+      ActiveAdmin.application.stub default_namespace: false
       controller.root_path.should == "/"
     end
 
@@ -92,7 +92,7 @@ describe ActiveAdmin::Devise::Controller do
       context "when Devise implements sign_out_via (version >= 1.2)" do
         before do
           ::Devise.should_receive(:respond_to?).with(:sign_out_via).and_return(true)
-          ::Devise.stub!(:sign_out_via) { :delete }
+          ::Devise.stub(:sign_out_via) { :delete }
         end
 
         it "should contain the application.logout_link_method" do

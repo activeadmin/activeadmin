@@ -384,7 +384,7 @@ describe ActiveAdmin::FormBuilder do
       context "with an existing post" do
         let :body do
           build_form({:url => '/categories'}, Category.new) do |f|
-            f.object.posts.build.stub!(:new_record? => false)
+            f.object.posts.build.stub(:new_record? => false)
             f.has_many :posts, :allow_destroy => true do |p|
               p.input :title
             end
