@@ -132,6 +132,28 @@
 
   }
 
+  div.navigation {
+    margin-bottom: 5px;
+  }
+
+  div.subnav {
+    background-color: lighten(#53595D, 20%);
+    padding: 5px 20px 2px;
+    margin-bottom: -5px;
+
+    ul.tabs {
+      & > li {
+        &.has_nested > a {
+          z-index: 1009;
+        }
+        ul {
+          z-index: 1008;
+        }
+      }
+    }
+  }
+
+
   #tabs {
     width: 100%;
   }

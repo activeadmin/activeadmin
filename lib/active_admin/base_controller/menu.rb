@@ -6,12 +6,17 @@ module ActiveAdmin
       included do
         before_filter :set_current_tab
         helper_method :current_menu
+        helper_method :sub_menu
       end
 
       protected
 
       def current_menu
         active_admin_config.navigation_menu
+      end
+
+      def sub_menu
+        active_admin_config.sub_navigation_menu
       end
 
       # Set's @current_tab to be name of the tab to mark as current

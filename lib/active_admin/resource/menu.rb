@@ -31,7 +31,7 @@ module ActiveAdmin
         }
       end
 
-      attr_writer :navigation_menu_name
+      attr_writer :navigation_menu_name, :sub_navigation_menu_name
 
       def navigation_menu_name
         case @navigation_menu_name ||= DEFAULT_MENU
@@ -46,9 +46,19 @@ module ActiveAdmin
         namespace.fetch_menu(navigation_menu_name)
       end
 
+      def sub_navigation_menu
+        namespace.sub_menus.fetch(@sub_navigation_menu_name)
+      end
+
       def add_to_menu(menu_collection)
-        if include_in_menu?
+        if include_in_menu? && !sub_menu_item?
           @menu_item = menu_collection.add navigation_menu_name, menu_item_options
+        end
+      end
+
+      def add_to_sub_menu(menu_collection)
+        if include_in_menu? && sub_menu_item?
+          @menu_item = menu_collection.add @sub_navigation_menu_name, menu_item_options
         end
       end
 
@@ -57,6 +67,10 @@ module ActiveAdmin
       # Should this resource be added to the menu system?
       def include_in_menu?
         @include_in_menu != false
+      end
+
+      def sub_menu_item?
+        !@sub_navigation_menu_name.nil?
       end
 
     end
