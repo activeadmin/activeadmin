@@ -76,7 +76,7 @@ module ActiveAdmin
       # Collapses the waveform, if you will, of which filters should be displayed.
       # Removes filters and adds in default filters as desired.
       def filter_lookup
-        filters = @filters.try(:dup) || {}
+        filters = @filters.try(:deep_dup) || {}
 
         if filters.empty? || preserve_default_filters?
           default_filters.each do |f|

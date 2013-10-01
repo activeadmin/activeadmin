@@ -80,6 +80,16 @@ describe ActiveAdmin::Filters::ResourceExtension do
       resource.filters.should eq title: {three: :four}
     end
 
+    it "should keep specified options" do
+      resource.add_filter :title, one: :two
+
+      resource.filters.each do |attribute, opts|
+        opts.delete(:one)
+      end
+
+      resource.filters.should eq title: {one: :two}
+    end
+
     it "should preserve default filters" do
       resource.preserve_default_filters!
       resource.add_filter :count, as: :string
