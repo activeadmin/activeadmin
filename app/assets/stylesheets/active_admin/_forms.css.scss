@@ -146,6 +146,11 @@ form {
       }
     }
 
+    /* Hidden fields */
+    &.hidden {
+      padding: 0;
+    }
+
     /* Errors */
     p.inline-errors {
       color: $error-color;
