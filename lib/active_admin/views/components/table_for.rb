@@ -128,7 +128,7 @@ module ActiveAdmin
           @options = args.extract_options!
 
           @title = args[0]
-          @html_class = @options.delete(:class) || @title.present? && "col-#{@title.to_s.downcase.underscore.gsub(/ +/,'_')}" || ''
+          @html_class = @options.delete(:class) || @title.present? && "col-#{@title.to_s.parameterize('_')}" || ''
           @data  = args[1] || args[0]
           @data = block if block
           @resource_class = args[2]
