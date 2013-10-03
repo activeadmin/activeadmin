@@ -200,11 +200,6 @@ module ActiveAdmin
       end
     end
 
-    # Helper method to add a dashboard section
-    def dashboard_section(name, options = {}, &block)
-      ActiveAdmin::Dashboards.add_section(name, options, &block)
-    end
-
     private
 
     # Return either the passed in namespace or the default
