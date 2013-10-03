@@ -17,8 +17,9 @@ end
 group :development, :test do
   gem 'rake', '~> 10.1.0', require: false
   gem 'rails-i18n' # Provides default i18n for many languages
-  gem 'rdiscount'  # Markdown implementation (for yard)
+  gem 'redcarpet'  # Markdown implementation (for yard)
   gem 'yard'
+  gem 'yard-redcarpet-ext' # Enables Markdown tables, which are disabled by default
 end
 
 group :test do
