@@ -47,7 +47,12 @@ module ActiveAdmin
       end
 
       def sub_navigation_menu
-        namespace.sub_menus.fetch(@sub_navigation_menu_name)
+        if has_nested_resources? && !sub_menu_item?
+          menu = resource_name.to_s.underscore.to_sym
+          namespace.sub_menus.fetch(menu)
+        else
+          namespace.sub_menus.fetch(@sub_navigation_menu_name)
+        end
       end
 
       def add_to_menu(menu_collection)

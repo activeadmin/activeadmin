@@ -41,7 +41,7 @@ module ActiveAdmin
 
       def build_menu_item(item)
         li id: item.id do |li|
-          li.add_class "current" if item.current? assigns[:current_tab]
+          li.add_class "current" if item.current?(assigns[:current_tab]) || item.current?(assigns[:current_sub_tab])
 
           text_node link_to item.label(self), item.url(self), item.html_options
 
