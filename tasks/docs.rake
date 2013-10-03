@@ -1,13 +1,6 @@
 namespace :docs do
 
-  def rdoc_to_markdown(content)
-    content.gsub(/^ ?(=+) /) do |m|
-      m.gsub('=', '#')
-    end
-  end
-
   def prepare_docstring(content)
-    content = rdoc_to_markdown(content)
     "<!-- Please don't edit this file. It will be clobbered. -->\n\n#{content}"
   end
 
