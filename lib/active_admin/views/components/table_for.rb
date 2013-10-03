@@ -124,11 +124,11 @@ module ActiveAdmin
 
         attr_accessor :title, :data , :html_class
 
-        def initialize(*args, &block)
+        def initialize(*args, &block) 
           @options = args.extract_options!
 
           @title = args[0]
-          @html_class = @options.delete(:class) || @title.to_s.downcase.underscore.gsub(/ +/,'_')
+          @html_class = @options.delete(:class) || @title.present? && "col-#{@title.to_s.downcase.underscore.gsub(/ +/,'_')}" || ''
           @data  = args[1] || args[0]
           @data = block if block
           @resource_class = args[2]
