@@ -98,6 +98,22 @@ describe ActiveAdmin::Views::AttributesTable do
       end
     end # describe dsl styles
 
+    it "should add a class for each row based on the col name" do
+      table = render_arbre_component(assigns) {
+        attributes_table_for(post) do
+          row :title
+          row :created_at
+        end
+      }
+      table.find_by_tag("tr").first.to_s.
+        split("\n").first.lstrip.
+          should == '<tr class="row-title">'
+
+      table.find_by_tag("tr").last.to_s.
+        split("\n").first.lstrip.
+          should == '<tr class="row-created_at">'
+    end
+
     it "should allow html options for the row itself" do
       table = render_arbre_component(assigns) {
         attributes_table_for(post) do

@@ -20,7 +20,7 @@ module ActiveAdmin
       def row(*args, &block)
         title   = args[0]
         options = args.extract_options!
-        options[:class] ||= :row
+        options[:class] ||= title.present? && "row-#{title.to_s.downcase.underscore.gsub(/ +/,'_')}" || ''
         @table << tr(options) do
           th do
             header_content_for(title)
