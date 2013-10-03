@@ -164,7 +164,7 @@ describe ActiveAdmin::Filters::ViewHelper do
         body
       end
     end
-  end unless Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR < 2
+  end
 
   describe "datetime attribute" do
     let(:body) { filter :created_at }
