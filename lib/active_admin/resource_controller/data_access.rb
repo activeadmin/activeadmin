@@ -272,7 +272,12 @@ module ActiveAdmin
         page_method = Kaminari.config.page_method_name
         page_param  = params[Kaminari.config.param_name]
 
-        chain.send(page_method, page_param).per(per_page)
+        unless chain.empty?
+          chain.send(page_method, page_param).per(per_page)
+        else 
+          chain
+        end
+
       end
 
       def per_page
