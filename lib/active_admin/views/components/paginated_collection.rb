@@ -78,7 +78,7 @@ module ActiveAdmin
       end
 
       def build_pagination
-        options =  request.query_parameters.except(:commit, :format)
+        options = request.path_parameters
         options[:param_name] = @param_name if @param_name
 
         text_node paginate(collection, options.symbolize_keys)
