@@ -60,19 +60,20 @@ module ActiveAdmin
       end
 
       def build_table_header(col)
-        classes = Arbre::HTML::ClassList.new
+        classes  = Arbre::HTML::ClassList.new
         sort_key = sortable? && col.sortable? && col.sort_key
+        params   = request.query_parameters.except :page, :order, :commit, :format
 
         classes << 'sortable'                         if sort_key
         classes << "sorted-#{current_sort[1]}"        if sort_key && current_sort[0] == sort_key
         classes << col.html_class
 
         if sort_key
-          th :class => classes do
-            link_to(col.pretty_title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
+          th class: classes do
+            link_to col.pretty_title, params: params, order: "#{sort_key}_#{order_for_sort_key(sort_key)}"
           end
         else
-          th(col.pretty_title, :class => classes)
+          th col.pretty_title, class: classes
         end
       end
 
