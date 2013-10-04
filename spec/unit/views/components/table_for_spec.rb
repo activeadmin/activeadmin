@@ -50,8 +50,10 @@ describe ActiveAdmin::Views::TableFor do
       end
 
       it "should add a class to each table header based on the col name" do
-        table.find_by_tag("th").first.class_list.should include("col-title")
-        table.find_by_tag("th").last.class_list.should  include("col-created_at")
+        table.find_by_tag("th").first
+          .class_list.to_a.join(' ').should == "col col-title"
+        table.find_by_tag("th").last
+          .class_list.to_a.join(' ').should  == "col col-created_at"
       end
 
       it "should create a table row for each element in the collection" do
@@ -63,8 +65,10 @@ describe ActiveAdmin::Views::TableFor do
       end
 
       it "should add a class for each cell based on the col name" do
-        table.find_by_tag("td").first.class_list.should include("col-title")
-        table.find_by_tag("td").last.class_list.should  include("col-created_at")
+        table.find_by_tag("td").first
+          .class_list.to_a.join(' ').should  == "col col-title"
+        table.find_by_tag("td").last
+          .class_list.to_a.join(' ').should  == "col col-created_at"
       end
     end
 
@@ -124,13 +128,17 @@ describe ActiveAdmin::Views::TableFor do
 
 
       it "should add a class to each table header  based on class option or the col name" do
-        table.find_by_tag("th").first.class_list.should  include("col-my_custom_title")
-        table.find_by_tag("th").last.class_list.should  include("datetime")
+        table.find_by_tag("th").first
+          .class_list.to_a.join(' ').should  == "col col-my_custom_title"
+        table.find_by_tag("th").last
+          .class_list.to_a.join(' ').should  == "col datetime"
       end
 
       it "should add a class to each cell based  on class option or the col name" do
-        table.find_by_tag("td").first.class_list.should include("col-my_custom_title")
-        table.find_by_tag("td").last.class_list.should  include("datetime")
+        table.find_by_tag("td").first
+          .class_list.to_a.join(' ').should  == "col col-my_custom_title"
+        table.find_by_tag("td").last
+          .class_list.to_a.join(' ').should  == "col datetime"
       end
 
 
