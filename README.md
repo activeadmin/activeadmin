@@ -31,13 +31,13 @@ Check out [the docs](https://github.com/gregbell/active_admin/blob/master/docs/0
 ## Need help?
 
 Ask the [mailing list](http://groups.google.com/group/activeadmin) or
-[Stack Overflow](http://stackoverflow.com/questions/tagged/activeadmin)
+[Stack Overflow](http://stackoverflow.com/questions/tagged/activeadmin).
 
 ## Want to contribute?
 
 The [contributing guide](https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md)
 is a good place to start. If you have questions, feel free to ask
-[@seanlinsley](https://twitter.com/seanlinsley) on Twitter.
+[@seanlinsley](https://twitter.com/seanlinsley).
 
 ## Dependencies
 
