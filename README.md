@@ -8,14 +8,14 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 [![](https://coveralls.io/repos/gregbell/active_admin/badge.png)](https://coveralls.io/r/gregbell/active_admin)
 [![](http://badgr.co/gittip/activeadmin.png)](https://www.gittip.com/activeadmin)
 
-## Documentation & Support
+## Links
 
-* Guides: <http://activeadmin.info/documentation.html>
-* Documentation: <http://rubydoc.info/gems/activeadmin/frames>
-* Wiki: <https://github.com/gregbell/active_admin/wiki>
-* Live demo: <http://demo.activeadmin.info/admin>
 * Website: <http://www.activeadmin.info>
-* __Need Support?__ Ask the mailing list: <http://groups.google.com/group/activeadmin>
+* Live demo: <http://demo.activeadmin.info/admin>
+* Documentation
+  * Guides: <http://activeadmin.info/documentation.html>
+  * YARD: <http://rubydoc.info/gems/activeadmin/frames>
+  * Wiki: <https://github.com/gregbell/active_admin/wiki>
 
 ## Goals
 
@@ -24,70 +24,24 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 3. Ensure that developers can easily customize every nook and cranny of the interface.
 4. Build common interfaces as shareable gems so that the entire community benefits.
 
-## Getting Started
+## Getting started
 
-Active Admin is a Ruby Gem.
+Check out [the docs](https://github.com/gregbell/active_admin/blob/master/docs/0-installation.md)!
 
-```ruby
-gem 'activeadmin'
-```
+## Need help?
 
-More accurately, it's a [Rails Engine](http://guides.rubyonrails.org/engines.html)
-that can be injected into your existing Ruby on Rails application.
+Ask the [mailing list](http://groups.google.com/group/activeadmin) or
+[Stack Overflow](http://stackoverflow.com/questions/tagged/activeadmin)
 
-```sh
-rails generate active_admin:install
-```
+## Want to contribute?
 
-The generator adds these core files, among others:
-
-```
-app/admin/dashboard.rb
-app/assets/javascripts/active_admin.js.coffee
-app/assets/stylesheets/active_admin.css.scss
-config/initializers/active_admin.rb
-```
-
-Migrate your database and start the server:
-
-```sh
-rake db:migrate
-rails server
-```
-
-Visit `http://localhost:3000/admin` and log in as the default user:
-
-* __User__: admin@example.com
-* __Password__: password
-
-Voila! You're on your brand new Active Admin dashboard.
-
-To register an existing model with Active Admin:
-
-```sh
-rails generate active_admin:resource MyModel
-```
-
-This creates a file at `app/admin/my_model.rb` to set up the UI; refresh your browser to see it.
-
-## Upgrading
-
-When upgrading to a new version, it's a good idea to check the [CHANGELOG].
-
-To update the JS & CSS assets:
-
-```sh
-rails generate active_admin:assets
-```
-
-You should also sync these files with their counterparts in the AA source code:
-
-* app/admin/dashboard.rb [~>][dashboard.rb]
-* config/initializers/active_admin.rb [~>][active_admin.rb]
+The [contributing guidelines](https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md)
+are a good place to start. If you still have questions, feel free to ping
+[@seanlinsley](https://twitter.com/seanlinsley) on Twitter.
 
 ## Dependencies
 
-We try not to reinvent the wheel, so Active Admin is built using many other open source projects:
+We try not to reinvent the wheel, so Active Admin is built with other open source projects:
 
 Tool                  | Description
 --------------------- | -----------
@@ -96,12 +50,7 @@ Tool                  | Description
 [Devise]              | Powerful, extensible user authentication
 [Iconic Icons]        | An excellent SVG icon set designed by P.J. Onori
 
-[CHANGELOG]: https://github.com/gregbell/active_admin/blob/master/CHANGELOG.md
-[dashboard.rb]: https://github.com/gregbell/active_admin/blob/master/lib/generators/active_admin/install/templates/dashboard.rb
-[active_admin.rb]: https://github.com/gregbell/active_admin/blob/master/lib/generators/active_admin/install/templates/active_admin.rb.erb
-
 [Inherited Resources]: https://github.com/josevalim/inherited_resources
 [Formtastic]: https://github.com/justinfrench/formtastic
 [Devise]: https://github.com/plataformatec/devise
 [Iconic Icons]: http://somerandomdude.com/projects/iconic
-
