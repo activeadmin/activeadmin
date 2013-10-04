@@ -1,4 +1,5 @@
 require 'meta_search'
+require 'meta_search_ext'
 require 'bourbon'
 require 'devise'
 require 'kaminari'
