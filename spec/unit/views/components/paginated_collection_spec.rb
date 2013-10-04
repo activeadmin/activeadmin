@@ -10,8 +10,8 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     let(:view) do
       view = mock_action_view
-      view.request.stub(:query_parameters).and_return({:controller => 'admin/posts', :action => 'index', :page => '1'})
-      view.controller.params = {:controller => 'admin/posts', :action => 'index'}
+      view.request.stub(:query_parameters).and_return page: '1'
+      view.request.stub(:path_parameters).and_return  controller: 'admin/posts', action: 'index'
       view
     end
 
@@ -49,7 +49,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying :param_name option" do
       let(:collection) do
-        posts = 10.times.inject([]) {|m, _| m << Post.new }
+        posts = 10.times.map{ Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -62,7 +62,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying :download_links => false option" do
       let(:collection) do
-        posts = 10.times.inject([]) {|m, _| m << Post.new }
+        posts = 10.times.map{ Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -188,8 +188,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when viewing the last page of a collection that has multiple pages" do
       let(:collection) do
-        posts = [Post.new] * 81
-        Kaminari.paginate_array(posts).page(3).per(30)
+        Kaminari.paginate_array([Post.new] * 81).page(3).per(30)
       end
 
       let(:pagination) { paginated_collection(collection) }
@@ -200,48 +199,29 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
-    context "when having the param :pagination_total set to true " do
-      let(:view) do
-        view = mock_action_view
-        view.request.stub(:query_parameters).and_return({:controller => 'admin/stores', :action => 'index', :page => '1'})
-        view.controller.params = {:controller => 'admin/stores', :action => 'index'}
-        view
-      end
-
+    context "with :pagination_total" do
       let(:collection) do
-        stores = [Store.new] * 1000
-        Kaminari.paginate_array(stores).page(1).per(30)
+        Kaminari.paginate_array([Post.new] * 256).page(1).per(30)
       end
 
-      let(:pagination) { paginated_collection(collection, :pagination_total => true) }
+      describe "set to false" do
+        let(:pagination) { paginated_collection(collection, pagination_total: false) }
 
-      it "should show the total item counts" do
-        info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')
-        info.should eq "Displaying Bookstores <b>1 - 30</b> of <b>1000</b> in total"
+        it "should not show the total item counts" do
+          info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')
+          info.should eq "Displaying posts <b>1 - 30</b>"
+        end
       end
 
+      describe "set to true" do
+        let(:pagination) { paginated_collection(collection, pagination_total: true) }
+
+        it "should show the total item counts" do
+          info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')
+          info.should eq "Displaying posts <b>1 - 30</b> of <b>256</b> in total"
+        end
+      end
     end
-    
-    context "when having the param :pagination_total set to false " do
-      let(:view) do
-        view = mock_action_view
-        view.request.stub(:query_parameters).and_return({:controller => 'admin/stores', :action => 'index', :page => '1'})
-        view.controller.params = {:controller => 'admin/stores', :action => 'index'}
-        view
-      end
 
-      let(:collection) do
-        stores = [Store.new] * 1000
-        Kaminari.paginate_array(stores).page(1).per(30)
-      end
-
-      let(:pagination) { paginated_collection(collection, :pagination_total => false) }
-
-      it "should not show the total item counts" do
-        info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')
-        info.should eq "Displaying Bookstores <b>1 - 30</b>"
-      end
-
-    end
   end
 end
