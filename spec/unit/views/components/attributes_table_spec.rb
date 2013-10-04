@@ -107,11 +107,11 @@ describe ActiveAdmin::Views::AttributesTable do
       }
       table.find_by_tag("tr").first.to_s.
         split("\n").first.lstrip.
-          should == '<tr class="row-title">'
+          should == '<tr class="row row-title">'
 
       table.find_by_tag("tr").last.to_s.
         split("\n").first.lstrip.
-          should == '<tr class="row-created_at">'
+          should == '<tr class="row row-created_at">'
     end
 
     it "should allow html options for the row itself" do
@@ -122,7 +122,7 @@ describe ActiveAdmin::Views::AttributesTable do
       }
       table.find_by_tag("tr").first.to_s.
         split("\n").first.lstrip.
-          should == '<tr class="custom_row" style="custom_style">'
+          should == '<tr class="row custom_row" style="custom_style">'
     end
 
     it "should allow html content inside the attributes table" do
