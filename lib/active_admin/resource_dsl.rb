@@ -1,7 +1,42 @@
 module ActiveAdmin
   # This is the class where all the register blocks are instance eval'd
   class ResourceDSL < DSL
+    def initialize(*args)
+      @jail = Jail.new(self)
+      super
+    end
+
+    class Jail
+      def initialize(dsl)
+        @dsl, @blocks = dsl, []
+      end
+      delegate :<<, :to => :@blocks
+
+      def delayed_run!
+        @blocks.each{ |b| instance_exec &b }
+      end
+
+      delegate :filter, :to => :@dsl
+      delegate :scope,  :to => :@dsl
+    end
+
+    delegate :delayed_run!, :to => :@jail
+
+    # Runs the registration block inside this object
+    def run_registration_block(*args)
+      super
+    rescue ActiveRecord::StatementInvalid => e
+      puts "\033[31mYou ran a DB query inside an Active Admin registration block, which errored out.\033[0m"
+      puts "\033[33mIf this is for dynamic filters or scopes, please wrap the code in a `delay` block.\033[0m"
+      puts "\033[32mPlease fix this code: " + e.backtrace.grep(/app\/admin/).first[/(app\/admin.+:\d+)/] + "\033[0m"
+      exit!
+    end
+
     private
+
+    def delay(&block)
+      @jail << block
+    end
 
     def belongs_to(target, options = {})
       config.belongs_to(target, options)
