@@ -24,6 +24,13 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 3. Ensure that developers can easily customize every nook and cranny of the interface.
 4. Build common interfaces as shareable gems so that the entire community benefits.
 
+## Rails 4
+
+There isn't yet an official relase that supports Rails 4. For now, you'll have to use master:
+```ruby
+gem 'activeadmin', github: 'gregbell/active_admin'
+```
+
 ## Getting started
 
 Check out [the docs](https://github.com/gregbell/active_admin/blob/master/docs/0-installation.md)!
