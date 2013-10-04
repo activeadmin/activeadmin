@@ -35,8 +35,8 @@ Ask the [mailing list](http://groups.google.com/group/activeadmin) or
 
 ## Want to contribute?
 
-The [contributing guidelines](https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md)
-are a good place to start. If you still have questions, feel free to ping
+The [contributing guide](https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md)
+is a good place to start. If you have questions, feel free to ask
 [@seanlinsley](https://twitter.com/seanlinsley) on Twitter.
 
 ## Dependencies
