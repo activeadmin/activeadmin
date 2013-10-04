@@ -114,7 +114,7 @@ module ActiveAdmin
 end
 
 # Require internal Plugins
-require 'active_admin/comments'
+require 'active_admin/comments' if defined?(::ActiveRecord)
 require 'active_admin/batch_actions'
 require 'active_admin/filters'
 
