@@ -20,7 +20,13 @@ module ActiveAdmin
       def row(*args, &block)
         title   = args[0]
         options = args.extract_options!
-        options[:class] ||= :row
+        classes = [:row]
+        if options[:class]
+          classes << options[:class]
+        elsif title.present?
+          classes << "row-#{title.to_s.parameterize('_')}"
+        end
+        options[:class] = classes.join(' ')
         @table << tr(options) do
           th do
             header_content_for(title)
