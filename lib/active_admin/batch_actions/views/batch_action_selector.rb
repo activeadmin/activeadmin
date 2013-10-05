@@ -30,9 +30,10 @@ module ActiveAdmin
             confirmation_text = render_or_call_method_or_proc_on(self, batch_action.confirm)
 
             options = {
-              :class => "batch_action",
-              "data-action" => batch_action.sym,
-              "data-confirm" => confirmation_text
+              :class         => "batch_action",
+              "data-action"  => batch_action.sym,
+              "data-confirm" => confirmation_text,
+              "data-inputs"  => batch_action.inputs.to_json
             }
 
             default_title = render_or_call_method_or_proc_on(self, batch_action.title)
