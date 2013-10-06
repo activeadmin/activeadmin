@@ -98,9 +98,9 @@ module ActiveAdmin
 
       # Returns a default set of filters for the associations
       def default_association_filters
-        if resource_class.respond_to?(:reflections)
-          poly, not_poly = resource_class.reflections.partition{ |_,r| r.macro == :belongs_to && r.options[:polymorphic] }
-          filters        = poly.map{ |_,r| r.foreign_type } + not_poly.map(&:first)
+        if resource_class.respond_to?(:reflect_on_all_associations)
+          poly, not_poly = resource_class.reflect_on_all_associations.partition{ |r| r.macro == :belongs_to && r.options[:polymorphic] }
+          filters        = poly.map(&:foreign_type) + not_poly.map(&:name)
           filters.map &:to_sym
         else
           []
