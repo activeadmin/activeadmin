@@ -31,6 +31,10 @@ module ActiveAdmin
       def required?
         !optional?
       end
+
+      def chain
+        [owner] + (target.belongs_to? && target.belongs_to_config.chain || [target])
+      end
     end
   end
 end
