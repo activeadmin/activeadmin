@@ -6,10 +6,13 @@ module ActiveAdmin
 
       attr_reader :resource
 
-      def build(record, *attrs)
-        @record = record
-        super(:for => @record)
+      def build(record_or_collection, *attrs)
+        @collection = Array(record_or_collection)
+        options = { }
+        options[:for] = @collection.first if single_record?
+        super(options)
         @table = table
+        build_colgroups
         rows(*attrs)
       end
 
@@ -27,12 +30,15 @@ module ActiveAdmin
           classes << "row-#{title.to_s.parameterize('_')}"
         end
         options[:class] = classes.join(' ')
+
         @table << tr(options) do
           th do
             header_content_for(title)
           end
-          td do
-            content_for(block || title)
+          @collection.each do |record|
+            td do
+              content_for(record, block || title)
+            end
           end
         end
       end
@@ -41,6 +47,23 @@ module ActiveAdmin
 
       def default_id_for_prefix
         'attributes_table'
+      end
+
+      # Build Colgroups
+      #
+      # Colgroups are only necessary for a collection of records; not
+      # a single record.
+      def build_colgroups
+        return if single_record?
+        within @table do
+          col # column for row headers
+          @collection.each do |record|
+            classes = Arbre::HTML::ClassList.new
+            classes << cycle(:even, :odd)
+            classes << dom_class_name_for(record)
+            col(:id => dom_id_for(record), :class => classes)
+          end
+        end
       end
 
       def header_content_for(attr)
@@ -55,20 +78,24 @@ module ActiveAdmin
         span I18n.t('active_admin.empty'), :class => "empty"
       end
 
-      def content_for(attr)
+      def content_for(record, attr)
         previous = current_arbre_element.to_s
-        value    = pretty_format find_attr_value attr
+        value    = pretty_format find_attr_value(record, attr)
         value.blank? && previous == current_arbre_element.to_s ? empty_value : value
       end
 
-      def find_attr_value(attr)
+      def find_attr_value(record, attr)
         if attr.is_a?(Proc)
-          attr.call(@record)
-        elsif attr.to_s[/\A(.+)_id\z/] && @record.respond_to?($1.to_sym)
-          @record.send($1.to_sym)
+          attr.call(record)
+        elsif attr.to_s[/\A(.+)_id\z/] && record.respond_to?($1.to_sym)
+          record.send($1.to_sym)
         else
-          @record.send(attr.to_sym)
+          record.send(attr.to_sym)
         end
+      end
+
+      def single_record?
+        @single_record ||= @collection.size == 1
       end
     end
 

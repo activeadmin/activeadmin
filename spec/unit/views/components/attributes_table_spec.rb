@@ -142,6 +142,78 @@ describe ActiveAdmin::Views::AttributesTable do
       table.find_by_tag('td').first.content.should == 'John Doe'
     end
 
+    context "with a collection" do
+      let(:posts) do
+        [Post.new(:title => "Hello World", :id => 1), Post.new(:title => "Multi Column", :id => 2)].each_with_index do |post, index|
+          post.stub(:id => index + 1, :new_record? => false)
+        end
+      end
+
+      let(:assigns) { { :posts => posts } }
+
+      let(:table) do
+        render_arbre_component(assigns) do
+          attributes_table_for posts, :id, :title
+        end
+      end
+
+      it "does not set id on the table" do
+        table.attr(:id).should be_nil
+      end
+
+      context "colgroup" do
+        let(:cols) { table.find_by_tag "col" }
+
+        it "contains a col for each record (plus headers)" do
+          cols.size.should == (2 + 1)
+        end
+
+        it "assigns an id to each col" do
+          cols[1..-1].each_with_index do |col, index|
+            col.id.should == "attributes_table_post_#{index + 1}"
+          end
+        end
+
+        it "assigns a class to each col" do
+          cols[1..-1].each_with_index do |col, index|
+            col.class_names.should include("post")
+          end
+        end
+
+        it "assigns alternation classes to each col" do
+          cols[1..-1].each_with_index do |col, index|
+            col.class_names.should include(["even", "odd"][index % 2])
+          end
+        end
+      end
+
+      context "when rendering the rows" do
+        it "should contain 3 columns" do
+          table.find_by_tag("tr").first.children.size.should == 3
+        end
+
+        [
+          ["Id" , "1", "2"],
+          ["Title", "Hello World", "Multi Column"],
+        ].each_with_index do |set, i|
+          describe "for #{set[0]}" do
+            let(:title){ set[0] }
+            let(:content){ set[1] }
+            let(:current_row){ table.find_by_tag("tr")[i] }
+
+            it "should have the title '#{set[0]}'" do
+              current_row.find_by_tag("th").first.content.should == title
+            end
+
+            set[1..-1].each_with_index do |content, index|
+              it "column #{index} should have the content '#{content}'" do
+                current_row.find_by_tag("td")[index].content.chomp.strip.should == content
+              end
+            end
+          end
+        end
+      end # describe rendering rows
+    end # with a collection
   end
 
 end
