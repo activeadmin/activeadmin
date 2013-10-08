@@ -80,6 +80,8 @@ table.index_table {
 .attributes_table { overflow: hidden; }
 
 .attributes_table table {
+  col.even { background: $table-stripe-color; }
+  col.odd  { background: darken($table-stripe-color, 3%); }
   th, td {
     padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
     vertical-align: top;
