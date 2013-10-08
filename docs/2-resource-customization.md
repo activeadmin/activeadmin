@@ -248,9 +248,9 @@ If you need to completely replace the record retrieving code (e.g., you have a c
       end
     end
 
-In fact, the controllers use [Inherited Resource](https://github.com/josevalim/inherited_resources),
+In fact, the controllers use [Inherited Resources](https://github.com/josevalim/inherited_resources),
 so you can use all the
-[customization features in Inherited Resource](https://github.com/josevalim/inherited_resources#overwriting-defaults).
+[customization features in Inherited Resources](https://github.com/josevalim/inherited_resources#overwriting-defaults).
 
 
 ## Belongs To
