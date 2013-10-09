@@ -4,11 +4,19 @@ module ActiveAdmin
       include FilterBase
 
       def input_name
-        "#{object_name}[#{association_primary_key || method}_in][]"
+        "#{object_name}[#{searchable_method_name}_in][]"
       end
 
       def selected_values
-        @object.send("#{association_primary_key || method}_in") || []
+        @object.send("#{searchable_method_name}_in") || []
+      end
+
+      def searchable_method_name
+        if through_association?
+          [reflection.through_reflection.name, reflection.source_reflection.foreign_key].join('_')
+        else
+          association_primary_key || method
+        end
       end
 
       # Add whitespace before label
