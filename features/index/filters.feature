@@ -92,3 +92,47 @@ Feature: Index Filtering
     """
     Then I should not see a sidebar titled "Filters"
 
+  Scenario: Select - Filtering categories with posts written by Jane Doe
+    Given a category named "Mystery" exists
+    And 1 post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists
+    And an index configuration of:
+    """
+      ActiveAdmin.register Category
+    """
+    When I select "Jane Doe" from "Authors"
+    And I press "Filter"
+    Then I should see 1 categories in the table
+    And I should see "Non-Fiction" within ".index_table"
+    And I should not see "Mystery" within ".index_table"
+
+  Scenario: Checkboxes - Filtering categories via posts written by anyone
+    Given a category named "Mystery" exists
+    And a post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists
+    And an index configuration of:
+    """
+      ActiveAdmin.register Category do
+        filter :authors, :as => :check_boxes
+      end
+    """
+    When I press "Filter"
+    Then I should see 2 posts in the table
+    And I should see "Mystery" within ".index_table"
+    And I should see "Non-Fiction" within ".index_table"
+    And the "Jane Doe" checkbox should not be checked
+
+  Scenario: Checkboxes - Filtering categories via posts written by Jane Doe
+    Given a category named "Mystery" exists
+    And a post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists
+    And an index configuration of:
+    """
+      ActiveAdmin.register Category do
+        filter :authors, :as => :check_boxes
+      end
+    """
+    When I check "Jane Doe"
+    And I press "Filter"
+    Then I should see 1 categories in the table
+    And I should see "Non-Fiction" within ".index_table"
+    And the "Jane Doe" checkbox should be checked
+
+
