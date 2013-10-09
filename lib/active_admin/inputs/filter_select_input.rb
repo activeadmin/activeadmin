@@ -21,8 +21,9 @@ module ActiveAdmin
         if searchable_through_association?
           name = [reflection.through_reflection.name, reflection.foreign_key].join('_')
         else
-          name = method.to_s
-          name.concat '_id' if reflection
+          polymorphic = reflection && reflection.macro == :belongs_to && reflection.options[:polymorphic]
+          key = polymorphic ? nil : reflection.try(:association_primary_key)
+          name = [method, key].compact.join('_')
         end
         name
       end
