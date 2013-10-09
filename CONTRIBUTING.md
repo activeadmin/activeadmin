@@ -3,19 +3,6 @@
 This is a guide to contributing to Active Admin. It should walk you through the
 major steps to contributing code to the project.
 
-### 0. 'The test suite is failing locally!'
-
-If you've previously run the test suite, refresh it:
-
-```sh
-rm -rf spec/rails
-```
-
-If there is some sort of gem conflict, remove the lockfile:
-```sh
-rm Gemfile.lock
-```
-
 ### 1. Create an Issue on GitHub
 
 The first step to contributing to Active Admin is creating a ticket in our
@@ -53,6 +40,11 @@ rake test
 ```
 
 Which will generate a rails application in `spec/rails` to run the tests against.
+
+If your tests are passing locally but they're failing on Travis, reset test your environment:
+```sh
+rm -rf spec/rails && bundle update
+```
 
 ### 4. Implement your fix or feature
 
