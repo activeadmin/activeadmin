@@ -29,7 +29,7 @@ group :test do
   gem 'coveralls',        '~> 0.7.0', require: false # Test coverage tool: www.coveralls.io
   # Move to next stable version including: https://github.com/cucumber/cucumber-rails/pull/253
   gem 'cucumber-rails',   github: 'cucumber/cucumber-rails', require: false
-  gem 'database_cleaner', '<= 1.0.1'
+  gem 'database_cleaner', '~> 1.2.0'
   gem 'guard-rspec'
   gem 'jasmine'
   gem 'jslint_on_rails',  '~> 1.1.1'
