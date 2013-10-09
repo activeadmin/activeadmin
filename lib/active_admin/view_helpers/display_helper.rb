@@ -29,20 +29,18 @@ module ActiveAdmin
       # We attempt to #display_name of any other objects
       def pretty_format(object)
         case object
-          when String
-            object
-          when Arbre::Element
-            object
-          when Date, Time
-            localize(object, :format => :long)
-          else
-            if defined?(::ActiveRecord) && object.is_a?(ActiveRecord::Base)
-              auto_link(object)
-            elsif defined?(::Mongoid) && object.class.included_modules.include?(Mongoid::Document)
-              auto_link(object)
-            else
-              display_name(object)
-            end
+        when String
+          object
+        when Arbre::Element
+          object
+        when Date, Time
+          localize(object, :format => :long)
+        when ->(obj){defined?(::ActiveRecord) && obj.is_a?(ActiveRecord::Base)}
+          auto_link(object)
+        when ->(obj){defined?(::Mongoid) && obj.class.included_modules.include?(Mongoid::Document)}
+          auto_link(object)
+        else
+          display_name(object)
         end
       end
 
