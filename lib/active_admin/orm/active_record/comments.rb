@@ -1,8 +1,8 @@
-require 'active_admin/comments/comment'
-require 'active_admin/comments/views'
-require 'active_admin/comments/show_page_helper'
-require 'active_admin/comments/namespace_helper'
-require 'active_admin/comments/resource_helper'
+require 'active_admin/orm/active_record/comments/comment'
+require 'active_admin/orm/active_record/comments/views'
+require 'active_admin/orm/active_record/comments/show_page_helper'
+require 'active_admin/orm/active_record/comments/namespace_helper'
+require 'active_admin/orm/active_record/comments/resource_helper'
 
 # Add the comments configuration
 ActiveAdmin::Application.inheritable_setting :allow_comments,             true
