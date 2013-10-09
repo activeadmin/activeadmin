@@ -344,6 +344,21 @@ describe ActiveAdmin::Filters::ViewHelper do
         body.should have_tag "option", "Jane Doe", :attributes => { :value => jane.id }
       end
     end
+
+    context "as check boxes" do
+      let(:body) { filter :authors, :as => :check_boxes }
+
+      it "should create a check box for each related object" do
+        body.should have_tag("input", :attributes => {
+                                            :name => "q[posts_author_id_in][]",
+                                            :type => "checkbox",
+                                            :value => john.id })
+        body.should have_tag("input", :attributes => {
+                                            :name => "q[posts_author_id_in][]",
+                                            :type => "checkbox",
+                                            :value => jane.id })
+      end
+    end
   end
 
   describe "conditional display" do
