@@ -304,6 +304,48 @@ describe ActiveAdmin::Filters::ViewHelper do
     pending "add HABTM models so this can be tested"
   end
 
+  describe "has_many :through" do
+    # Setup an ActionView::Base object which can be used for
+    # generating the form for.
+    let(:helpers) do
+      view = action_view
+      def view.collection_path
+        "/categories"
+      end
+
+      def view.protect_against_forgery?
+        false
+      end
+
+      def view.a_helper_method
+        "A Helper Method"
+      end
+
+      view
+    end
+    let(:scope) { Category.search }
+
+    let!(:john) { User.create :first_name => "John", :last_name => "Doe", :username => "john_doe" }
+    let!(:jane) { User.create :first_name => "Jane", :last_name => "Doe", :username => "jane_doe" }
+
+    context "when given as the name of the relationship" do
+      let(:body) { filter :authors }
+
+      it "should generate a select" do
+        body.should have_tag 'select', :attributes => { :name => "q[posts_author_id_eq]" }
+      end
+
+      it "should set the default text to 'Any'" do
+        body.should have_tag "option", "Any", :attributes => { :value => "" }
+      end
+
+      it "should create an option for each related object" do
+        body.should have_tag "option", "John Doe", :attributes => { :value => john.id }
+        body.should have_tag "option", "Jane Doe", :attributes => { :value => jane.id }
+      end
+    end
+  end
+
   describe "conditional display" do
     context "with :if block" do
       it "should be displayed if true" do

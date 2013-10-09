@@ -12,6 +12,7 @@
 
 * Migration from Metasearch to Ransack #1979 by @Daxter
 * Rails 4 support #2326 by many people :heart:
+* Automatically build filters for `has_many :through` relationships [#2541][] by [@shekibobo][]
 
 ## 0.6.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...v0.6.1)
 

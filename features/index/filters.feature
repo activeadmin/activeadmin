@@ -92,3 +92,16 @@ Feature: Index Filtering
     """
     Then I should not see a sidebar titled "Filters"
 
+  Scenario: Select - Filtering categories with posts written by Jane Doe
+    Given a category named "Mystery" exists
+    And 1 post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists
+    And an index configuration of:
+    """
+      ActiveAdmin.register Category
+    """
+    When I select "Jane Doe" from "Authors"
+    And I press "Filter"
+    Then I should see 1 categories in the table
+    And I should see "Non-Fiction" within ".index_table"
+    And I should not see "Mystery" within ".index_table"
+

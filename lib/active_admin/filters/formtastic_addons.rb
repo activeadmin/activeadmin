@@ -41,6 +41,10 @@ module ActiveAdmin
           .map(&:foreign_type).include? method.to_s
       end
 
+      def through_association?(method = method)
+        reflection_for(method).options[:through] if reflection_for(method)
+      end
+
       #
       # These help figure out whether the given method will be recognized by Ransack.
       #

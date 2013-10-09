@@ -33,6 +33,7 @@ generate :model, 'publisher --migration=false --parent=User'
 generate :model, 'category name:string description:text'
 inject_into_file 'app/models/category.rb', %q{
   has_many :posts
+  has_many :authors, through: :posts
   accepts_nested_attributes_for :posts
 }, :after => 'class Category < ActiveRecord::Base'
 generate :model, 'store name:string'
