@@ -52,13 +52,10 @@ ActiveAdmin.after_load do |app|
           # Redirect to the resource show page after comment creation
           def create
             create! do |success, failure|
-              # FYI: below we call `resource.resource`. First is the comment, second is the associated resource.
-              resource_config = active_admin_config.namespace.resource_for resource.resource.class
-              resource_url    = resource_config.route_instance_path        resource.resource
-              success.html{ redirect_to resource_url }
+              success.html{ redirect_to :back }
               failure.html do
-                flash[:error] = I18n.t('active_admin.comments.errors.empty_text')
-                redirect_to resource_url
+                flash[:error] = I18n.t 'active_admin.comments.errors.empty_text'
+                redirect_to :back
               end
             end
           end
