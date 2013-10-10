@@ -52,12 +52,16 @@ We try not to reinvent the wheel, so Active Admin is built with other open sourc
 
 Tool                  | Description
 --------------------- | -----------
-[Inherited Resources] | Simplifies controllers with pre-built RESTful controller actions
-[Formtastic]          | A Rails form builder plugin with semantically rich and accessible markup
+[Arbre]               | Ruby -> HTML, just like that.
 [Devise]              | Powerful, extensible user authentication
+[Formtastic]          | A Rails form builder plugin with semantically rich and accessible markup
 [Iconic Icons]        | An excellent SVG icon set designed by P.J. Onori
+[Inherited Resources] | Simplifies controllers with pre-built RESTful controller actions
+[Kaminari]            | Elegant pagination for any sort of collection
 
-[Inherited Resources]: https://github.com/josevalim/inherited_resources
-[Formtastic]: https://github.com/justinfrench/formtastic
+[Arbre]: https://github.com/gregbell/arbre
 [Devise]: https://github.com/plataformatec/devise
+[Formtastic]: https://github.com/justinfrench/formtastic
 [Iconic Icons]: http://somerandomdude.com/projects/iconic
+[Inherited Resources]: https://github.com/josevalim/inherited_resources
+[Kaminari]: https://github.com/amatsuda/kaminari
