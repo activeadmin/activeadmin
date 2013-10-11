@@ -15,8 +15,10 @@ module ActiveAdmin
           end
         end
 
+        # Retreives the given page presenter, or uses the default.
         def config
-          active_admin_config.get_page_presenter(:index, params[:as]) || default_index_config
+          active_admin_config.get_page_presenter(:index, params[:as]) ||
+          ActiveAdmin::PagePresenter.new(as: :table)
         end
 
         # Render's the index configuration that was set in the
@@ -98,19 +100,6 @@ module ActiveAdmin
             end
 
             index_list_renderer index_classes
-          end
-        end
-
-        # Creates a default configuration for the resource class. This is a table
-        # with each column displayed as well as all the default actions
-        def default_index_config
-          @default_index_config ||= ::ActiveAdmin::PagePresenter.new(:as => :table) do |display|
-            selectable_column
-            id_column
-            resource_class.content_columns.each do |col|
-              column col.name.to_sym
-            end
-            default_actions
           end
         end
 

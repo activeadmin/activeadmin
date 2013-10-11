@@ -128,6 +128,7 @@ module ActiveAdmin
 
       def default_table
         proc do
+          selectable_column
           id_column
           resource_class.content_columns.each do |col|
             column col.name.to_sym
@@ -209,16 +210,16 @@ module ActiveAdmin
 
         # Display A Status Tag Column
         #
-        #   index do |i|
-        #     i.status_tag :state
+        #   index do
+        #     status_tag :state
         #   end
         #
-        #   index do |i|
-        #     i.status_tag "State", :status_name
+        #   index do
+        #     status_tag "State", :status_name
         #   end
         #
-        #   index do |i|
-        #     i.status_tag do |post|
+        #   index do
+        #     status_tag do |post|
         #       post.published? ? 'published' : 'draft'
         #     end
         #   end
