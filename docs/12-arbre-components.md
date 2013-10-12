@@ -67,7 +67,7 @@ the #column method to create a new column.
 
     end
 
-### Spannig Multiple Columns
+### Spanning Multiple Columns
 
 To create columns that have multiple spans, pass the :span option to the column
 method.
