@@ -67,8 +67,9 @@ module ActiveAdmin
       end
 
       def header_content_for(attr)
-        if @record.class.respond_to?(:human_attribute_name)
-          @record.class.human_attribute_name(attr, :default => attr.to_s.titleize)
+        resource_class = @record ? @record.class : @collection.first.class
+        if resource_class.respond_to?(:human_attribute_name)
+          resource_class.human_attribute_name(attr, :default => attr.to_s.titleize)
         else
           attr.to_s.titleize
         end
