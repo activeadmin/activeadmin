@@ -71,6 +71,7 @@ en:
       add: "Add Comment"
       resource: "Resource"
       no_comments_yet: "No comments yet."
+      author_missing: "Anonymous"
       title_content: "Comments (%{count})"
       errors:
         empty_text: "Comment wasn't saved, text was empty."
