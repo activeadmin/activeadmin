@@ -150,7 +150,9 @@ module ActiveAdmin
         # Display a column for checkbox
         def selectable_column
           return unless active_admin_config.batch_actions.any?
-          column( resource_selection_toggle_cell, { :class => "selectable" } ) { |resource| resource_selection_cell( resource ) }
+          column resource_selection_toggle_cell, class: 'selectable' do |resource|
+            resource_selection_cell resource
+          end
         end
 
         # Display a column for the id
@@ -207,33 +209,8 @@ module ActiveAdmin
             links.call(args.first)
           end
         end
+      end # IndexTableFor
 
-        # Display A Status Tag Column
-        #
-        #   index do
-        #     status_tag :state
-        #   end
-        #
-        #   index do
-        #     status_tag "State", :status_name
-        #   end
-        #
-        #   index do
-        #     status_tag do |post|
-        #       post.published? ? 'published' : 'draft'
-        #     end
-        #   end
-        #
-        def status_tag(*args, &block)
-          col = Column.new(*args, &block)
-          data = col.data
-          col.data = proc do |resource|
-            status_tag call_method_or_proc_on(resource, data)
-          end
-          add_column col
-        end
-      end # TableBuilder
-
-    end # Table
+    end # IndexAsTable
   end
 end
