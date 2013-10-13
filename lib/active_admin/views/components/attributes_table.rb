@@ -4,10 +4,9 @@ module ActiveAdmin
     class AttributesTable < ActiveAdmin::Component
       builder_method :attributes_table_for
 
-      attr_reader :resource
-
       def build(record_or_collection, *attrs)
         @collection = Array(record_or_collection)
+        @resource_class = @collection.first.class
         options = { }
         options[:for] = @collection.first if single_record?
         super(options)
@@ -67,9 +66,8 @@ module ActiveAdmin
       end
 
       def header_content_for(attr)
-        resource_class = @record ? @record.class : @collection.first.class
-        if resource_class.respond_to?(:human_attribute_name)
-          resource_class.human_attribute_name(attr, :default => attr.to_s.titleize)
+        if @resource_class.respond_to?(:human_attribute_name)
+          @resource_class.human_attribute_name(attr, :default => attr.to_s.titleize)
         else
           attr.to_s.titleize
         end
