@@ -205,6 +205,17 @@ describe ActiveAdmin::Views::AttributesTable do
               current_row.find_by_tag("th").first.content.should == title
             end
 
+            context "with defined attribute name translation" do
+              it "should have the translated attribute name in the title" do
+                begin
+                  I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => 'Translated Title', :id => 'Translated Id' } } })
+                  current_row.find_by_tag("th").first.content.should == "Translated #{title}"
+                ensure
+                  I18n.backend.reload!
+                end
+              end
+            end
+
             set[1..-1].each_with_index do |content, index|
               it "column #{index} should have the content '#{content}'" do
                 current_row.find_by_tag("td")[index].content.chomp.strip.should == content
