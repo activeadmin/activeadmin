@@ -8,7 +8,7 @@ module ActiveAdmin
       end
 
       def build(collection, options = {})
-        @sortable = options.delete(:sortable)
+        @sortable       = options.delete(:sortable)
         @resource_class = options.delete(:i18n)
         @collection = collection
         @columns = []
@@ -32,18 +32,13 @@ module ActiveAdmin
         # Add a table cell for each item
         @collection.each_with_index do |item, i|
           within @tbody.children[i] do
-            build_table_cell(col, item)
+            build_table_cell col, item
           end
         end
       end
 
       def sortable?
-        @sortable
-      end
-
-      # Returns the columns to display based on the conditional block
-      def visible_columns
-        @visible_columns ||= @columns.select{|col| col.display_column? }
+        !!@sortable
       end
 
       protected
@@ -85,12 +80,10 @@ module ActiveAdmin
       end
 
       def build_table_cell(col, item)
-        td(:class =>  col.html_class) do
-          rvalue = call_method_or_proc_on(item, col.data, :exec => false)
-          if col.data.is_a?(Symbol)
-            rvalue = pretty_format(rvalue)
-          end
-          rvalue
+        td class: col.html_class do
+          value = call_method_or_proc_on item, col.data, exec: false
+          value = pretty_format(value) if col.data.is_a?(Symbol)
+          value
         end
       end
 
@@ -98,7 +91,7 @@ module ActiveAdmin
       #   current_sort[0] #=> sort_key
       #   current_sort[1] #=> asc | desc
       def current_sort
-        @current_sort ||= if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
+        @current_sort ||= if params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
           [$1,$2]
         else
           []
@@ -136,7 +129,7 @@ module ActiveAdmin
             html_classes << "col-#{@title.to_s.parameterize('_')}"
           end
           @html_class = html_classes.join(' ')
-          @data  = args[1] || args[0]
+          @data = args[1] || args[0]
           @data = block if block
           @resource_class = args[2]
         end
@@ -181,12 +174,12 @@ module ActiveAdmin
         end
 
         def pretty_title
-          if @title.is_a?(Symbol)
-            default_title =  @title.to_s.titleize
-            if @options[:i18n] && @options[:i18n].respond_to?(:human_attribute_name)
-              @title = @options[:i18n].human_attribute_name(@title, :default => default_title)
+          if @title.is_a? Symbol
+            default = @title.to_s.titleize
+            if @options[:i18n].respond_to? :human_attribute_name
+              @title = @options[:i18n].human_attribute_name @title, default: default
             else
-              default_title
+              default
             end
           else
             @title
