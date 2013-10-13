@@ -12,7 +12,24 @@
 
 * Migration from Metasearch to Ransack #1979 by @Daxter
 * Rails 4 support #2326 by many people :heart:
-* Automatically build filters for `has_many :through` relationships [#2541][] by [@shekibobo][]
+* Accept block for download links #2040 by @potatosalad
+```ruby
+index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
+```
+* Make AA ORM-agnostic #2545 by @johnnyshields
+* Add multi-record support to `attributes_table_for` #2544 by @zorab47
+* Table CSS classes are now prefixed to prevent clashes #2532 by @TimPetricola
+
+### Security Fixes
+
+* Prevents potential DOS attack via Ruby symbols #1926 by @Daxter
+
+### Bug Fixes
+
+* Fixes filters for `has_many :through` relationships [#2541][] by [@shekibobo][]
+* "New" action item now only shows up on the index page bf659bc by @Daxter
+* Fixes comment creation bug with aliased resources 9a082486 by @Daxter
+* Fixes the deletion of `:if` and `:unless` from filters #2523 by @PChambino
 
 ## 0.6.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...v0.6.1)
 
