@@ -143,13 +143,6 @@ module ActiveAdmin
       decorator_class ? decorator_class.new(resource) : resource
     end
 
-    # @deprecated
-    def resource
-      resource_class
-    end
-    ActiveAdmin::Deprecation.deprecate self, :resource,
-      "ActiveAdmin::Resource#resource is deprecated. Please use #resource_class instead."
-
     private
 
     def default_csv_builder
