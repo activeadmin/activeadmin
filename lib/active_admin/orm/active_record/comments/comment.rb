@@ -1,11 +1,6 @@
-require 'kaminari/models/active_record_extension'
-
 module ActiveAdmin
-
-  # manually initialize kaminari for this model
-  ::ActiveRecord::Base.send :include, Kaminari::ActiveRecordExtension
-
   class Comment < ActiveRecord::Base
+
     belongs_to :resource, :polymorphic => true
     belongs_to :author,   :polymorphic => true
 
@@ -20,13 +15,9 @@ module ActiveAdmin
       record.class.base_class.name.to_s
     end
 
+    # Postgres adapters won't compare strings to numbers (issue 34)
     def self.resource_id_cast(record)
-      # Postgres adapters won't compare strings to numbers (issue 34)
-      if resource_id_type == :string
-        record.id.to_s
-      else
-        record.id
-      end
+      resource_id_type == :string ? record.id.to_s : record.id
     end
 
     def self.find_for_resource_in_namespace(resource, namespace)
@@ -44,6 +35,5 @@ module ActiveAdmin
     end
 
   end
-
 end
 

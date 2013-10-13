@@ -118,8 +118,8 @@ require 'active_admin/batch_actions'
 require 'active_admin/filters'
 
 # Require ORM-specific plugins
-require 'active_admin/orm/active_record' if defined?(::ActiveRecord)
-require 'active_admin/orm/mongoid' if defined?(::Mongoid)
+require 'active_admin/orm/active_record' if defined? ActiveRecord
+require 'active_admin/orm/mongoid'       if defined? Mongoid
 
 # Load gem-specific code only if that gem is being used
 require 'active_admin/cancan_adapter' if Gem.loaded_specs['cancan']
