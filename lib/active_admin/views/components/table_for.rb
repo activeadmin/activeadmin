@@ -7,10 +7,10 @@ module ActiveAdmin
         'table'
       end
 
-      def build(collection, options = {})
+      def build(record_or_collection, options = {})
         @sortable       = options.delete(:sortable)
         @resource_class = options.delete(:i18n)
-        @collection = collection
+        @collection     = Array(record_or_collection)
         @columns = []
         build_table
         super(options)

@@ -140,8 +140,19 @@ describe ActiveAdmin::Views::TableFor do
         table.find_by_tag("td").last
           .class_list.to_a.join(' ').should  == "col datetime"
       end
+    end
 
-
+    context "when using a single record instead of a collection" do
+      let(:table) do
+        render_arbre_component nil, helpers do
+          table_for Post.new do
+            column :title
+          end
+        end
+      end
+      it "should render" do
+        table.find_by_tag("th").first.content.should == "Title"
+      end
     end
 
 
