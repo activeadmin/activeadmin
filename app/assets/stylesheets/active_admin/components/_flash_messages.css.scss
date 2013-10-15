@@ -8,10 +8,8 @@ body.logged_in {
       font-weight: bold;
       font-size: 1.1em;
       line-height: 1.0em;
-      margin-bottom: 10px;
       padding: 13px 30px 11px;
       position: relative;
-      top: -15px;
 
       &.flash_notice {
         @include gradient(#dce9dd, #ccdfcd);
@@ -35,7 +33,6 @@ body.logged_out {
     color: #666;
     font-weight: bold;
     line-height: 1.0em;
-    margin-bottom: 10px;
     padding: 0;
   }
 }
