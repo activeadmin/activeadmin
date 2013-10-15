@@ -68,6 +68,7 @@ module ActiveAdmin
         end
 
         if sortable
+          # contents += template.content_tag(:li, "+", :class => 'handle')
           contents = template.content_tag(:li, I18n.t('active_admin.has_many_sortable_handle'), :class => 'handle') + contents
           puts contents
         end

@@ -436,10 +436,7 @@ describe ActiveAdmin::FormBuilder do
       end
 
       it "should generate attributes for sortable" do
-        body.should have_tag("div", :attributes => {
-          :class => "has_many posts sortable",
-          'data-sortable-input' => "sort"
-        })
+        body.should have_tag("div", :attributes => { :class => "has_many posts sortable", 'data-sortable-input' => "sort" })
       end
 
       it "generates handles for each sortable fieldset" do

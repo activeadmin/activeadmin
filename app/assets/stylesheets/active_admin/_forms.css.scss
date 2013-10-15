@@ -39,11 +39,19 @@ form {
       }
     }
 
-    ol > div.has_many {
+    ol > div.has_many, div.has_many {
       padding: 20px 10px;
       h3 {
         font-size: 12px;
         font-weight: bold;
+      }
+
+      fieldset li.handle {
+        border: 1px solid black;
+        background-color: red;
+        display: block;
+        height: 40px;
+        width: 40px;
       }
     }
 
