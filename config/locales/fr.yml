@@ -41,7 +41,7 @@ fr:
     pagination:
       empty: "Aucun %{model} trouvé"
       one: "Affichage de <b>1</b> %{model}"
-      one_page: "Affichage de <b>tous les %{n}</b> %{model}"
+      one_page: "Affichage des <b>%{n}</b> %{model}"
       multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"
       multiple_without_total: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
@@ -53,7 +53,7 @@ fr:
       link: "Créez en un"
     batch_actions:
       button_label: "Actions groupées"
-      delete_confirmation: "Êtes-vous sur de vouloir supprimer ces %{plural_model}? Cette action est irréversible."
+      delete_confirmation: "Êtes-vous sur de vouloir supprimer ces %{plural_model} ? Cette action est irréversible."
       succesfully_destroyed:
         one: "1 %{model} supprimé"
         other: "%{count} %{plural_model} supprimés"
@@ -68,6 +68,8 @@ fr:
       title: "Commentaire"
       add: "Ajouter un commentaire"
       resource: "Ressource"
+      resource_type: "Type de ressource"
+      author_type: "Profil de l'auteur"
       no_comments_yet: "Aucun commentaire actuellement"
       title_content: "Commentaires (%{count})"
       errors:
@@ -78,12 +80,18 @@ fr:
         remember_me: "Se souvenir de moi"
         submit: "login"
       reset_password:
-        title: "Vous avez oublié votre mot de passe?"
+        title: "Vous avez oublié votre mot de passe ?"
         submit: "Réinitialiser mon mot de passe"
       change_password:
         title: "Changez votre mot de passe"
         submit: "Changer mon mot de passe"
       links:
         sign_in: "Connectez-vous"
-        forgot_your_password: "Vous avez oublié votre mot de passe?"
+        forgot_your_password: "Vous avez oublié votre mot de passe ?"
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
+    access_denied: "Vous n'êtes pas autorisé à executer cette action"
+    index_list:
+      table: "Tableau"
+      block: "Liste"
+      grid: "Grille"
+      blog: "Blog"
