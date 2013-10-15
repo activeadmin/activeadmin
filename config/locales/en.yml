@@ -76,6 +76,14 @@ en:
       errors:
         empty_text: "Comment wasn't saved, text was empty."
     devise:
+      username:
+        title: "Username"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Subdomain"
+      password: 
+        title: "Password"
       login:
         title: "Login"
         remember_me: "Remember me"
