@@ -1,5 +1,13 @@
-## Master (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...master)
+## 1.0.0 (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...master)
 
+### Major Changes
+* Migration from Metasearch to Ransack #1979 by @Daxter
+* Rails 4 support #2326 by many people :heart:
+
+### Enhancements
+* Make AA ORM-agnostic #2545 by @johnnyshields
+* Add multi-record support to `attributes_table_for` #2544 by @zorab47
+* Table CSS classes are now prefixed to prevent clashes #2532 by @TimPetricola
 * Allow Inherited Resources shorthand for redirection #2001 by @Daxter
 ```ruby
     controller do
@@ -10,15 +18,10 @@
     end
 ```
 
-* Migration from Metasearch to Ransack #1979 by @Daxter
-* Rails 4 support #2326 by many people :heart:
 * Accept block for download links #2040 by @potatosalad
 ```ruby
 index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 ```
-* Make AA ORM-agnostic #2545 by @johnnyshields
-* Add multi-record support to `attributes_table_for` #2544 by @zorab47
-* Table CSS classes are now prefixed to prevent clashes #2532 by @TimPetricola
 
 ### Security Fixes
 
