@@ -474,17 +474,40 @@ describe ActiveAdmin::FormBuilder do
   end
 
   describe "datepicker input" do
-    let :body do
-      build_form do |f|
-        f.inputs do
-          f.input :created_at, :as => :datepicker
+    context 'with default options' do
+      let :body do
+        build_form do |f|
+          f.inputs do
+            f.input :created_at, :as => :datepicker
+          end
         end
       end
+      it "should generate a text input with the class of datepicker" do
+        body.should have_tag("input", :attributes => {  :type => "text",
+                                                            :class => "datepicker",
+                                                            :name => "post[created_at]" })
+      end
     end
-    it "should generate a text input with the class of datepicker" do
-      body.should have_tag("input", :attributes => {  :type => "text",
-                                                          :class => "datepicker",
-                                                          :name => "post[created_at]" })
+
+    context 'with date range options' do
+      let :body do
+        build_form do |f|
+          f.inputs do
+            f.input :created_at, :as => :datepicker,
+                                  :datepicker_options => {
+                                    :min_date => Date.new(2013, 10, 18),
+                                    :max_date => "2013-12-31" }
+          end
+        end
+        it 'should generate a datepicker text input with data min and max dates' do
+          body.should have_tag("input", :attributes => { :type => "text",
+                                                            :class => "datepicker",
+                                                            :name => "post[created_at]",
+                                                            :data => { :datepicker_options => {
+                                                              :minDate => "2013-10-18",
+                                                              :maxDate => "2013-12-31" }.to_json }})
+        end
+      end
     end
   end
 

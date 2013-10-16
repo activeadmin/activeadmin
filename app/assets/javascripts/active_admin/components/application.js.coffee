@@ -2,7 +2,9 @@
 $ ->
   # jQuery datepickers (also evaluates dynamically added HTML)
   $(document).on 'focus', '.datepicker:not(.hasDatepicker)', ->
-    $(@).datepicker dateFormat: 'yy-mm-dd'
+    defaults = dateFormat: 'yy-mm-dd'
+    options = $(@).data 'datepicker-options'
+    $(@).datepicker $.extend(defaults, options)
 
   # Clear Filters button
   $('.clear_filters_btn').click ->
