@@ -32,6 +32,14 @@ Due to the newly introduced [Strong Parameters](https://github.com/rails/strong_
 plug-in in Rails 4 you are required to explicitly allow attributes for mass updating and thus 
 prevent them from accidentally being exposed.
 
+## Disabling Actions on a Resource
+
+All default CRUD actions are enabled by default. These can be disabled for a given resource:
+
+    ActiveAdmin.register Post do
+      actions :all, except: [:update, :destroy]
+    end
+
 ## Rename the Resource
 
 By default, any references to the resource (menu, routes, buttons, etc) in the
