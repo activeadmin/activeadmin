@@ -77,6 +77,6 @@ To display a list of all errors, include `semantic_errors` at top of form. Parti
     form do |f|
       f.semantic_errors *f.object.errors.keys
       f.inputs
-      f.buttons
+      f.actions
     end
 
