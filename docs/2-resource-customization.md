@@ -42,6 +42,8 @@ the <tt>:as</tt> option.
 
 The resource will then be available as /admin/articles.
 
+This will also change the key of the resource params passed to the controller. In Rails 4, the `permitted_params` key will need to be changed from `:post` to `:article`.
+
 ## Customize the Namespace
 
 By default, resources live in the "admin" namespace.
