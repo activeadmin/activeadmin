@@ -2,6 +2,10 @@
   width: 100%;
 }
 
+.index #wrapper {
+  display: table;
+}
+
 #active_admin_content {
   margin: 0;
   padding: $horizontal-page-margin;
