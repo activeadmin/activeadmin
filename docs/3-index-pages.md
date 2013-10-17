@@ -23,6 +23,7 @@ multiple views is simple and requires creating multiple index components in
 your resource.
 
     index do
+      id_column
       column :image_title
       default_actions
     end
