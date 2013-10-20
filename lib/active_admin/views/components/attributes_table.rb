@@ -54,11 +54,12 @@ module ActiveAdmin
       # a single record.
       def build_colgroups
         return if single_record?
+        reset_cycle(self.class.to_s)
         within @table do
           col # column for row headers
           @collection.each do |record|
             classes = Arbre::HTML::ClassList.new
-            classes << cycle(:even, :odd)
+            classes << cycle(:even, :odd, :name => self.class.to_s)
             classes << dom_class_name_for(record)
             col(:id => dom_id_for(record), :class => classes)
           end
