@@ -261,6 +261,10 @@ form.filter_form {
 
     &.filter_check_boxes {
       label { margin-bottom: 3px; }
+      fieldset {
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+      }
       .check_boxes_wrapper label {
         font-weight: normal;
         margin-bottom: 3px;
