@@ -1,14 +1,14 @@
 ## 1.0.0 (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...master)
 
 ### Major Changes
-* Migration from Metasearch to Ransack #1979 by @seanlinsley
-* Rails 4 support #2326 by many people :heart:
+* Migration from Metasearch to Ransack [#1979][] by [@seanlinsley][]
+* Rails 4 support [#2326][] by many people :heart:
 
 ### Enhancements
-* Make AA ORM-agnostic #2545 by @johnnyshields
-* Add multi-record support to `attributes_table_for` #2544 by @zorab47
-* Table CSS classes are now prefixed to prevent clashes #2532 by @TimPetricola
-* Allow Inherited Resources shorthand for redirection #2001 by @seanlinsley
+* Make AA ORM-agnostic [#2545][] by [@johnnyshields][]
+* Add multi-record support to `attributes_table_for` [#2544][] by [@zorab47][]
+* Table CSS classes are now prefixed to prevent clashes [#2532][] by [@TimPetricola][]
+* Allow Inherited Resources shorthand for redirection [#2001][] by [@seanlinsley][]
 ```ruby
     controller do
       # Redirects to index page instead of rendering udpated resource
@@ -18,25 +18,25 @@
     end
 ```
 
-* Accept block for download links #2040 by @potatosalad
+* Accept block for download links [#2040][] by [@potatosalad][]
 ```ruby
 index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 ```
 
 ### Security Fixes
 
-* Prevents potential DOS attack via Ruby symbols #1926 by @seanlinsley
+* Prevents potential DOS attack via Ruby symbols [#1926][] by [@seanlinsley][]
 
 ### Bug Fixes
 
 * Fixes filters for `has_many :through` relationships [#2541][] by [@shekibobo][]
-* "New" action item now only shows up on the index page bf659bc by @seanlinsley
-* Fixes comment creation bug with aliased resources 9a082486 by @seanlinsley
-* Fixes the deletion of `:if` and `:unless` from filters #2523 by @PChambino
+* "New" action item now only shows up on the index page bf659bc by [@seanlinsley][]
+* Fixes comment creation bug with aliased resources 9a082486 by [@seanlinsley][]
+* Fixes the deletion of `:if` and `:unless` from filters [#2523][] by [@PChambino][]
 
 ## 0.6.2 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...0-6-stable)
 
-* Patches MetaSearch bug for attributes ending in "ne" d5db9ff4 by @seanlinsley
+* Patches MetaSearch bug for attributes ending in "ne" d5db9ff4 by [@seanlinsley][]
 
 ## 0.6.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...v0.6.1)
 
@@ -875,6 +875,7 @@ of the highlights. 250 commits. Enough said.
 [#1908]: https://github.com/gregbell/active_admin/issues/1908
 [#1913]: https://github.com/gregbell/active_admin/issues/1913
 [#1916]: https://github.com/gregbell/active_admin/issues/1916
+[#1926]: https://github.com/gregbell/active_admin/issues/1926
 [#1928]: https://github.com/gregbell/active_admin/issues/1928
 [#1929]: https://github.com/gregbell/active_admin/issues/1929
 [#1933]: https://github.com/gregbell/active_admin/issues/1933
@@ -888,9 +889,12 @@ of the highlights. 250 commits. Enough said.
 [#1966]: https://github.com/gregbell/active_admin/issues/1966
 [#1967]: https://github.com/gregbell/active_admin/issues/1967
 [#1973]: https://github.com/gregbell/active_admin/issues/1973
+[#1979]: https://github.com/gregbell/active_admin/issues/1979
 [#2000]: https://github.com/gregbell/active_admin/issues/2000
+[#2001]: https://github.com/gregbell/active_admin/issues/2001
 [#2015]: https://github.com/gregbell/active_admin/issues/2015
 [#2018]: https://github.com/gregbell/active_admin/issues/2018
+[#2040]: https://github.com/gregbell/active_admin/issues/2040
 [#2043]: https://github.com/gregbell/active_admin/issues/2043
 [#2044]: https://github.com/gregbell/active_admin/issues/2044
 [#2046]: https://github.com/gregbell/active_admin/issues/2046
@@ -933,6 +937,7 @@ of the highlights. 250 commits. Enough said.
 [#2313]: https://github.com/gregbell/active_admin/issues/2313
 [#2315]: https://github.com/gregbell/active_admin/issues/2315
 [#2319]: https://github.com/gregbell/active_admin/issues/2319
+[#2326]: https://github.com/gregbell/active_admin/issues/2326
 [#2333]: https://github.com/gregbell/active_admin/issues/2333
 [#2348]: https://github.com/gregbell/active_admin/issues/2348
 [#2395]: https://github.com/gregbell/active_admin/issues/2395
@@ -941,14 +946,20 @@ of the highlights. 250 commits. Enough said.
 [#2419]: https://github.com/gregbell/active_admin/issues/2419
 [#2420]: https://github.com/gregbell/active_admin/issues/2420
 [#2454]: https://github.com/gregbell/active_admin/issues/2454
+[#2523]: https://github.com/gregbell/active_admin/issues/2523
+[#2532]: https://github.com/gregbell/active_admin/issues/2532
+[#2541]: https://github.com/gregbell/active_admin/issues/2541
+[#2544]: https://github.com/gregbell/active_admin/issues/2544
+[#2545]: https://github.com/gregbell/active_admin/issues/2545
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
-[@seanlinsley]: https://github.com/seanlinsley
 [@EtienneDepaulis]: https://github.com/EtienneDepaulis
 [@MoritzMoritz]: https://github.com/MoritzMoritz
+[@PChambino]: https://github.com/PChambino
 [@TBAA]: https://github.com/TBAA
 [@TiagoCardoso1983]: https://github.com/TiagoCardoso1983
+[@TimPetricola]: https://github.com/TimPetricola
 [@ZequeZ]: https://github.com/ZequeZ
 [@adrienkohlbecker]: https://github.com/adrienkohlbecker
 [@ai]: https://github.com/ai
@@ -1009,6 +1020,7 @@ of the highlights. 250 commits. Enough said.
 [@page_title]: https://github.com/page_title
 [@pcreux]: https://github.com/pcreux
 [@per_page]: https://github.com/per_page
+[@potatosalad]: https://github.com/potatosalad
 [@psy-q]: https://github.com/psy-q
 [@ptn]: https://github.com/ptn
 [@randym]: https://github.com/randym
@@ -1020,6 +1032,7 @@ of the highlights. 250 commits. Enough said.
 [@ronen]: https://github.com/ronen
 [@ryansch]: https://github.com/ryansch
 [@samvincent]: https://github.com/samvincent
+[@seanlinsley]: https://github.com/seanlinsley
 [@sftsang]: https://github.com/sftsang
 [@shayfrendt]: https://github.com/shayfrendt
 [@shekibobo]: https://github.com/shekibobo
