@@ -1,14 +1,14 @@
 ## 1.0.0 (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...master)
 
 ### Major Changes
-* Migration from Metasearch to Ransack #1979 by @Daxter
+* Migration from Metasearch to Ransack #1979 by @seanlinsley
 * Rails 4 support #2326 by many people :heart:
 
 ### Enhancements
 * Make AA ORM-agnostic #2545 by @johnnyshields
 * Add multi-record support to `attributes_table_for` #2544 by @zorab47
 * Table CSS classes are now prefixed to prevent clashes #2532 by @TimPetricola
-* Allow Inherited Resources shorthand for redirection #2001 by @Daxter
+* Allow Inherited Resources shorthand for redirection #2001 by @seanlinsley
 ```ruby
     controller do
       # Redirects to index page instead of rendering udpated resource
@@ -25,18 +25,18 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 
 ### Security Fixes
 
-* Prevents potential DOS attack via Ruby symbols #1926 by @Daxter
+* Prevents potential DOS attack via Ruby symbols #1926 by @seanlinsley
 
 ### Bug Fixes
 
 * Fixes filters for `has_many :through` relationships [#2541][] by [@shekibobo][]
-* "New" action item now only shows up on the index page bf659bc by @Daxter
-* Fixes comment creation bug with aliased resources 9a082486 by @Daxter
+* "New" action item now only shows up on the index page bf659bc by @seanlinsley
+* Fixes comment creation bug with aliased resources 9a082486 by @seanlinsley
 * Fixes the deletion of `:if` and `:unless` from filters #2523 by @PChambino
 
 ## 0.6.2 (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...0-6-stable)
 
-* Patches MetaSearch bug for attributes ending in "ne" d5db9ff4 by @Daxter
+* Patches MetaSearch bug for attributes ending in "ne" d5db9ff4 by @seanlinsley
 
 ## 0.6.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...v0.6.1)
 
@@ -45,7 +45,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 * OmniAuth provider links now automatically appear on the login page [#2088][] by [@henrrrik][]
 * Menu items can now properly overflow [#2046][] by [@maax][]; later updated in [#2125][] by [@ball-hayden][]
 * Favicon support [#2348][] by [@stereoscott][]
-* HABTM filters [#1928][] by [@Daxter][]
+* HABTM filters [#1928][] by [@seanlinsley][]
 ```ruby
     # (assuming Foo HABTM Bars)
     ActiveAdmin.register Foo do
@@ -53,9 +53,9 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
     end
 ```
 
-* Advanced string filters [#2096][] by [@joseluistorres][]; later updated in [#2228][] by [@Daxter][]
-* Select filters now respect custom MetaSerch search methods [#2420][] by [@Daxter][]
-* The navbar now links to the current user's profile [#2395][] by [@Daxter][]
+* Advanced string filters [#2096][] by [@joseluistorres][]; later updated in [#2228][] by [@seanlinsley][]
+* Select filters now respect custom MetaSerch search methods [#2420][] by [@seanlinsley][]
+* The navbar now links to the current user's profile [#2395][] by [@seanlinsley][]
 
 ### Bug Fixes
 
@@ -63,23 +63,23 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 * Fixes problem where extra `/` route was being generated [#2062][] by [@jbhannah][]
 * `IndexAsBlog` now renders title/body procs in the view context [#2087][] by [@macfanatic][]
 * Fixes `route_instance_path` for `belongs_to` resources [#2099][] by [@pcreux][]
-* Fixes breadcrumb links for `belongs_to` resources [#2090][] by [@Daxter][]
+* Fixes breadcrumb links for `belongs_to` resources [#2090][] by [@seanlinsley][]
 * Fixes ID regression, again using `to_param` [#2175][] by [@cknoxrun][]
-* Fixes `check_box_checked?` bug [#2186][] by [@Daxter][]; later updated in [#2221][] by [@dmfrancisco][]
-* Ensures that assets can only be registered once [#2139][] by [@Daxter][]
+* Fixes `check_box_checked?` bug [#2186][] by [@seanlinsley][]; later updated in [#2221][] by [@dmfrancisco][]
+* Ensures that assets can only be registered once [#2139][] by [@seanlinsley][]
 * Makes breadcrumbs respect the decorator [#2315][] by [@amiel][]
-* CSV download links now respect pagination [#2419][] by [@Daxter][]
+* CSV download links now respect pagination [#2419][] by [@seanlinsley][]
 * Panels no longer escape html-safe entities [#2403][] by [@zorab47][]
 
 ### Enhancements
 
 * Adds option to "undecorate" resource when building forms [#2085][] by [@amiel][]
 * Adds `:pagination_total` option to index to hide count for large databases [#2333][] by [@joseluistorres][]
-* Adds [better_errors](https://github.com/charliesome/better_errors) gem for a better AA development experience [#2095][] by [@Daxter][]
+* Adds [better_errors](https://github.com/charliesome/better_errors) gem for a better AA development experience [#2095][] by [@seanlinsley][]
 * Scopes now support blocks for the `:default` option [#2084][] by [@macfanatic][]
 * `:if` and `:unless` options added to `scope_to` [#2089][] by [@macfanatic][]
 * Renames Comment to AdminComment [#2060][] by [@jbhannah][]; later replaced by [#2113][]
-* Improves Comments UI and adds config settings [#2113][] by [@Daxter][]
+* Improves Comments UI and adds config settings [#2113][] by [@seanlinsley][]
 ```ruby
     config.show_comments_in_menu      = false          # Defaults to true
     config.comments_registration_name = 'AdminComment' # Defaults to 'Comment'
@@ -97,21 +97,21 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
   * Ukrainian locale added [#2258][] by [@valdemarua][]
   * Mexican Spanish locale added [#2319][] by [@neoriddle][]
   * Japanese locale updated [#2416][] by [@nappa][]
-  * move filter translation into `SearchMethodSelect` [#2231][] by [@Daxter][]
+  * move filter translation into `SearchMethodSelect` [#2231][] by [@seanlinsley][]
   * fix plural translations for default `batch_action` [#2255][] by [@mindhalt][]
 * In development, load each individual AA JS file [#2215][] by [@tank-bohr][]
 * Removes Railtie, only using Rails Engine [#2162][] by [@jherdman][]
-* Excludes associations from `display_name` helper [#2147][] by [@Daxter][]
-* Prevents new AA::Application instances from using the same `namespace` hash [#2313][] by [@Daxter][]
+* Excludes associations from `display_name` helper [#2147][] by [@seanlinsley][]
+* Prevents new AA::Application instances from using the same `namespace` hash [#2313][] by [@seanlinsley][]
 * Moves hard-coded SASS colors into variables [#2454][] by [@ilyakatz][]
 
 ### Cleanup
 
-* Cucumber step definitions refactor [#2015][] by [@Daxter][]
-* Misc cleanup in [#2075][] and [#2107][] by [@Daxter][]
+* Cucumber step definitions refactor [#2015][] by [@seanlinsley][]
+* Misc cleanup in [#2075][] and [#2107][] by [@seanlinsley][]
 * Removes messy spacing from `AdminUser` generator file [#2058][] by [@lupinglade][]
 * Fixes documentation formatting [#2083][] by [@amiel][]
-* Deprecated settings & code removed [#2165][] by [@Daxter][]
+* Deprecated settings & code removed [#2165][] by [@seanlinsley][]
 
 ## 0.6.0 - [compare](https://github.com/gregbell/active_admin/compare/v0.5.1...v0.6.0)
 
@@ -120,7 +120,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 * Fix conflict with Redcloth [#1805][] by [@adrienkohlbecker][]
 * Add missing batch actions translations. [#1788][] by [@EtienneDepaulis][]
 * JS fix for batch actions checkbox toggling [#1947][] by [@ai][]
-* Fixed routing bug for root namespace [#2043][] by [@Daxter][] and [@gregbell][]
+* Fixed routing bug for root namespace [#2043][] by [@seanlinsley][] and [@gregbell][]
 
 ### Enhancements
 
@@ -132,13 +132,13 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 * Devise lockable module now supported by default [#1933][] by [@Bishop][]
 * Index table now uses a unique DOM id (`#index_table_posts` instead of `#posts`) [#1966][] by [@TiagoCardoso1983][]
 * Coffeescript 1.5 compatability as constructors no longer return a value [#1940][] by [@ronen][]
-* Allow options to be passed to the Abre element for rows in `attributes_table` [#1439][] by [@Daxter][]
+* Allow options to be passed to the Abre element for rows in `attributes_table` [#1439][] by [@seanlinsley][]
 * Gender neutral Spanish translations [#1973][] by [@laffinkippah][]
 * Adds the ability to use `starts_with` and `ends_with` in string filters [#1962][] by [@rmw][]
-* Adds support for translating resources when registered with `:as` [#2044][] by [@Daxter][]
-* Scopes are no longer hidden when empty filter results [#1804][] by [@Daxter][]
-* Dynamic scope names with procs [#2018][] by [@Daxter][]
-* Filters now support the `:if` optional argument [#1801][] by [@Daxter][]
+* Adds support for translating resources when registered with `:as` [#2044][] by [@seanlinsley][]
+* Scopes are no longer hidden when empty filter results [#1804][] by [@seanlinsley][]
+* Dynamic scope names with procs [#2018][] by [@seanlinsley][]
+* Filters now support the `:if` optional argument [#1801][] by [@seanlinsley][]
 * Member & collection actions support multiple HTTP methods for the same action [#2000][] by [@rdsoze][]
 
 ### Features
@@ -169,7 +169,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 *  Bartlomiej Niemtur
 *  David DIDIER
 *  David Reese
-*  Daxter
+*  Sean Linsley
 *  Dirkjan Bussink
 *  Dominik Masur
 *  Eric Cumbee
@@ -193,7 +193,6 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 *  Roman Sklenář
 *  Ryan Schlesinger
 *  Scott Meves
-*  Sean Ian Linsley
 *  Sergey Pchelincev
 *  Simon Menke
 *  Tiago Cardoso
@@ -945,7 +944,7 @@ of the highlights. 250 commits. Enough said.
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
-[@Daxter]: https://github.com/Daxter
+[@seanlinsley]: https://github.com/seanlinsley
 [@EtienneDepaulis]: https://github.com/EtienneDepaulis
 [@MoritzMoritz]: https://github.com/MoritzMoritz
 [@TBAA]: https://github.com/TBAA
