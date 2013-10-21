@@ -34,7 +34,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 * Fixes comment creation bug with aliased resources 9a082486 by [@seanlinsley][]
 * Fixes the deletion of `:if` and `:unless` from filters [#2523][] by [@PChambino][]
 
-## 0.6.2 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...0-6-stable)
+## 0.6.2 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...v0.6.2)
 
 * Patches MetaSearch bug for attributes ending in "ne" d5db9ff4 by [@seanlinsley][]
 
