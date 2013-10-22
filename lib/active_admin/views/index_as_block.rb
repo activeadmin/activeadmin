@@ -1,7 +1,7 @@
 module ActiveAdmin
   module Views
 
-    # = Index as a Block
+    # # Index as a Block
     #
     # If you want to fully customize the display of your resources on the index
     # screen, Index as a Block allows you to render a block of content for each

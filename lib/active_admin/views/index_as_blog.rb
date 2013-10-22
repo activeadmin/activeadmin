@@ -1,7 +1,7 @@
 module ActiveAdmin
   module Views
 
-    # = Index as Blog
+    # # Index as Blog
     #
     # Render your index page as a set of posts. The post has two main options:
     # title and body.
@@ -11,7 +11,7 @@ module ActiveAdmin
     #       body  :my_body  # Calls #my_body on each resource
     #     end
     #
-    # == Post Title
+    # ## Post Title
     #
     # The title is the content that will be rendered within a link to the
     # resource. There are two main ways to set the content for the title
@@ -37,7 +37,7 @@ module ActiveAdmin
     #       end
     #     end
     #
-    # == Post Body
+    # ## Post Body
     #
     # The body is rendered underneath the title of each post. The same two
     # style of options work as the Post Title above.

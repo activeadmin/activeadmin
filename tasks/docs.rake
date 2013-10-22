@@ -1,7 +1,7 @@
 namespace :docs do
 
   def prepare_docstring(content)
-    "<!-- Please don't edit this file. It will be clobbered. -->\n\n#{content}"
+    "<!-- Please don't edit this file. It will be clobbered. -->\n\n#{content}\n"
   end
 
   def filename_from_module(mod)

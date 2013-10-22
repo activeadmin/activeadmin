@@ -12,6 +12,7 @@ To display an attribute or a method on a resource, simply pass a symbol into the
 column method:
 
     index do
+      selectable_column
       column :title
     end
 
@@ -25,6 +26,7 @@ This can be customized in config/initializers/active_admin.rb.
 If the default title does not work for you, pass it as the first argument:
 
     index do
+      selectable_column
       column "My Custom Title", :title
     end
 
@@ -35,6 +37,7 @@ For example, say we wanted a "Title" column that links to the posts admin screen
 The block is called once for each resource, which is passed as an argument to the block.
 
     index do
+      selectable_column
       column "Title" do |post|
         link_to post.title, admin_post_path(post)
       end
@@ -43,6 +46,7 @@ The block is called once for each resource, which is passed as an argument to th
 To setup links to View, Edit and Delete a resource, use the `actions` method:
 
     index do
+      selectable_column
       column :title
       actions
     end
@@ -50,6 +54,7 @@ To setup links to View, Edit and Delete a resource, use the `actions` method:
 You can also append custom links to the default links:
 
     index do
+      selectable_column
       column :title
       actions do |post|
         link_to "Preview", admin_preview_post_path(post), :class => "member_link"
@@ -74,10 +79,20 @@ Active Admin a hint for how to sort the table.
 If a column is defined using a block, you must pass the key to turn on sorting. The key
 is the attribute which gets used to sort objects using Active Record.
 
+By default, this is the column on the resource's table that the attribute corresponds to.
+Otherwise, any attribute that the resource collection responds to can be used.
+
     index do
       column "Title", :sortable => :title do |post|
         link_to post.title, admin_post_path(post)
       end
+    end
+
+You can also sort using an attribute on another table by passing the table name
+and the attribute separated by a dot:
+
+    index do
+      column :title, :sortable => 'categories.name'
     end
 
 You can turn off sorting on any column by passing false:
