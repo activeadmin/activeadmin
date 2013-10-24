@@ -30,11 +30,14 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
   addFieldset: ->
     re = new RegExp(@templatePlaceholder, 'g')
     html = @templateHtml.replace(re, new Date().getTime())
+    $fieldset = $(html)
 
-    @$fieldsetContainer.append(html)
+    @$fieldsetContainer.append($fieldset)
+    @$container.trigger('fieldsAdded', $fieldset)
 
   removeFieldset: (fieldset) ->
     fieldset.remove()
+    @$container.trigger('fieldsRemoved', fieldset)
 
 jQuery ($)->
   $.widget.bridge 'hasMany', ActiveAdmin.HasMany
