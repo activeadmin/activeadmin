@@ -15,6 +15,7 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
     @templateHtml = @$template.html()
     @templatePlaceholder = @$template.data('placeholder')
 
+    @$fieldsetContainer = @$container.children('.input:eq(0)')
 
   _bind: ->
     @$container.on 'click', '.has_many_add', () =>
@@ -30,7 +31,7 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
     re = new RegExp(@templatePlaceholder, 'g')
     html = @templateHtml.replace(re, new Date().getTime())
 
-    @$template.before(html)
+    @$fieldsetContainer.append(html)
 
   removeFieldset: (fieldset) ->
     fieldset.remove()
