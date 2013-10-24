@@ -19,3 +19,6 @@ $ ->
   # a dropdown, apply that choice to the filter input field.
   $('.filter_form_field.select_and_search select').change ->
     $(@).siblings('input').prop name: "q[#{@value}]"
+
+  # New/Edit form: for dynamically adding/removing fieldsets
+  $('.has_many').hasMany();
