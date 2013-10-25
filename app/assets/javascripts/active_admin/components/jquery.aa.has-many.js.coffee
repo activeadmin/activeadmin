@@ -20,6 +20,7 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
     if @sortableInputName = @$container.data('hasManySortableInput')
       @sortableInputSel = ":input[name$='[#{@sortableInputName}]']"
       @$fieldsetContainer.find(@sortableInputSel).hide()
+      @sortFields()
 
 
   _bind: ->
@@ -41,6 +42,28 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
 
       @$fieldsetContainer.on 'change', '[name$="[_destroy]"]', (event) =>
         @recomputePositions()
+
+
+  # sort the fields to match their positions
+  sortFields: ->
+    $fields = @$fieldsetContainer.children('.has_many_fields')
+    # sort the fields in memory
+    fieldsWithPosition = []
+    $fields.each (index, el) =>
+      position = parseInt $(@sortableInputSel, el).val() || "#{index + $fields.length}"
+      fieldsWithPosition.push [el, position]
+
+    outOfOrder = false
+
+    fieldsWithPosition = fieldsWithPosition.sort (a, b) ->
+      c = a[1] - b[1]
+      outOfOrder = true if c < 0
+      c
+
+    # sort in the DOM only if necessary
+    if outOfOrder
+      for [el, position] in fieldsWithPosition
+        @$fieldsetContainer.append el
 
 
   addFieldset: ->
