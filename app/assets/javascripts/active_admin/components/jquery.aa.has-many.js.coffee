@@ -19,7 +19,7 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
 
     if @sortableInputName = @$container.data('hasManySortableInput')
       @sortableInputSel = ":input[name$='[#{@sortableInputName}]']"
-      @$fieldsetContainer.find(@sortableInputSel).hide()
+      @$fieldsetContainer.find(@sortableInputSel).closest('.input').hide()
       @sortFields()
 
 
@@ -73,7 +73,7 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
 
     @$fieldsetContainer.append($fieldset)
     @recomputePositions()
-    $fieldset.find(@sortableInputSel).hide()
+    $fieldset.find(@sortableInputSel).closest('.input').hide()
     @$container.trigger('fieldsAdded', $fieldset)
 
 
