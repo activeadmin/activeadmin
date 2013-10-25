@@ -70,7 +70,14 @@ module ActiveAdmin
       end
 
       form_buffers.last << with_new_form_buffer do
-        template.content_tag :div, :class => "has_many #{association}" do
+        html_opts = { :class => "has_many #{association}" }
+      
+        if sortable_input = options[:sortable]
+          html_opts[:class] << ' sortable'
+          html_opts['data-has-many-sortable-input'] = sortable_input
+        end
+
+        template.content_tag :div, html_opts do
           # Allow customization of the nested form heading
           unless options.key?(:heading) && !options[:heading]
             form_heading = options[:heading] ||
