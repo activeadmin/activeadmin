@@ -148,19 +148,31 @@ parent menu items. You can customize their attributes in the Active Admin
 initializer.
 
     # config/initializers/active_admin.rb
-    ActiveAdmin.setup do |config|
-      config.namespace :admin do |admin|
-
-        # This block will edit the default menu
-        admin.build_menu do |menu|
-          menu.add :label => "Blog", :priority => 0
-        end
-
+    config.namespace :admin do |admin|
+      admin.build_menu do |menu|
+        menu.add :label => "Blog", :priority => 0
       end
     end
 
 Now, if you use `menu :parent => "Blog"`, your resource menu item will be a
 child of the Blog menu item with the priority of 0.
+
+### Dynamic Parent Menu Items
+
+While the above works fine, what if you want a parent menu item with a dynamic
+name? Well, you have to refer to it by its `:id`.
+
+    # config/initializers/active_admin.rb
+    config.namespace :admin do |admin
+      admin.build_menu do |menu|
+        menu.add id: 'blog', label: proc{"Something dynamic"}, priority: 0
+      end
+    end
+
+    # app/admin/post.rb
+    ActiveAdmin.register Post do
+      menu parent: 'blog'
+    end
 
 ### Adding Custom Menu Items
 
