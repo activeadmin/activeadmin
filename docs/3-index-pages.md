@@ -22,36 +22,42 @@ automatically build links at the top of the default index page. Including
 multiple views is simple and requires creating multiple index components in
 your resource.
 
-    index do
-      id_column
-      column :image_title
-      default_actions
-    end
+```ruby
+index do
+  id_column
+  column :image_title
+  default_actions
+end
 
-    index :as => :grid do |product|
-      link_to(image_tag(product.image_path), admin_product_path(product))
-    end
+index as: :grid do |product|
+  link_to image_tag(product.image_path), admin_product_path(product)
+end
+```
 
 The first index component will be the default index page unless you indicate
 otherwise by setting :default to true.
 
-    index do
-      column :image_title
-      default_actions
-    end
+```ruby
+index do
+  column :image_title
+  default_actions
+end
 
-    index :as => :grid, :default => true do |product|
-      link_to(image_tag(product.image_path), admin_product_path(product))
-    end
+index as: :grid, default: true do |product|
+  link_to image_tag(product.image_path), admin_product_path(product)
+end
+```
 
 Active Admin does not limit the index page to be a table, block, blog or grid.
-If you've [created your own index page](3-index-pages/create-an-index.md) it can be included by setting :as to the
-class of the index component you created.
+If you've [created your own index page](3-index-pages/create-an-index.md) it
+can be included by setting :as to the class of the index component you created.
 
-    index :as => ActiveAdmin::Views::IndexAsTable do
-      column :image_title
-      default_actions
-    end
+```ruby
+index as: ActiveAdmin::Views::IndexAsTable do
+  column :image_title
+  default_actions
+end
+```
 
 ## Index Filters
 
@@ -61,9 +67,11 @@ filters that are displayed as well as the type of widgets they use.
 
 To display a filter for an attribute, use the filter method
 
-    ActiveAdmin.register Post do
-      filter :title
-    end
+```ruby
+ActiveAdmin.register Post do
+  filter :title
+end
+```
 
 Out of the box, Active Admin supports the following filter types:
 
@@ -78,18 +86,23 @@ Out of the box, Active Admin supports the following filter types:
 By default, Active Admin will pick the most relevant filter based on the
 attribute type. You can force the type by passing the :as option.
 
-    filter :author, :as => :check_boxes
+```ruby
+filter :author, as: :check_boxes
+```
 
 The :check_boxes and :select types accept options for the collection. By default
 it attempts to create a collection based on an association. But you can pass in
 the collection as a proc to be called at render time.
 
-    # Will call available
-    filter :author, :as => :check_boxes, :collection => proc { Author.all }
+```ruby
+filter :author, as: :check_boxes, collection: proc { Author.all }
+```
 
 You can change the filter label by passing a label option:
 
-    filter :author, :label => 'Author'
+```ruby
+filter :author, label: 'Something else'
+```
 
 By default, Active Admin will try to use ActiveModel I18n to determine the label.
 
@@ -98,101 +111,96 @@ application.
 
 To disable for a specific resource:
 
-    ActiveAdmin.register Post do
-      config.filters = false
-    end
+```ruby
+ActiveAdmin.register Post do
+  config.filters = false
+end
+```
 
 To disable for a namespace, in the initializer:
 
-    ActiveAdmin.setup do |config|
-      config.namespace :my_namespace do |my_namespace|
-        my_namespace.filters = false
-      end
-    end
+```ruby
+ActiveAdmin.setup do |config|
+  config.namespace :my_namespace do |my_namespace|
+    my_namespace.filters = false
+  end
+end
+```
 
 Or to disable for the entire application:
 
-    ActiveAdmin.setup do |config|
-      config.filters = false
-    end
+```ruby
+ActiveAdmin.setup do |config|
+  config.filters = false
+end
+```
 
 You can also add a filter and still preserve the default filters:
 
-    preserve_default_filters!
-    filter :author
+```ruby
+preserve_default_filters!
+filter :author
+```
 
 ## Index default sort order
 
 You can define the default sort order for index pages:
 
-    ActiveAdmin.register Post do
-      config.sort_order = "name_asc"
-    end
+```ruby
+ActiveAdmin.register Post do
+  config.sort_order = 'name asc'
+end
+```
 
 ## Index pagination
 
-
 You can set the number of records per page per resources:
 
-    ActiveAdmin.register Post do
-      config.per_page = 10
-    end
+```ruby
+ActiveAdmin.register Post do
+  config.per_page = 10
+end
+```
 
 You can also disable pagination:
 
-    ActiveAdmin.register Post do
-      config.paginate = false
-    end
+```ruby
+ActiveAdmin.register Post do
+  config.paginate = false
+end
+```
 
-If you have a very large database, you might want to disable SELECT COUNT(*) queries caused by the pagination info at the bottom of the page:
+If you have a very large database, you might want to disable SELECT COUNT(*)
+queries caused by the pagination info at the bottom of the page:
 
-    ActiveAdmin.register Post do
-
-      # disable pagination total
-      index :pagination_total => false do
-        #...
-      end
-
-    end
-
-## Disable CSV, XML and JSON export
-
-You can remove links to download CSV, XML and JSON exports:
-
-    index :download_links => false do
-    end
+```ruby
+ActiveAdmin.register Post do
+  index pagination_total: false do
+    # ...
+  end
+end
+```
 
 ## Customizing Download Links
 
-There are multiple ways to either remove the download links per resource listing, or customize the formats that are shown.  Customize the formats by passing an array of symbols, or pass false to hide entirely.
+You can easily remove or customize the download links you want displayed:
 
-Customizing the download links per resource:
+```ruby
+# Per resource:
+ActiveAdmin.register Post do
 
-    ActiveAdmin.register Post do
+  index download_links: false
+  index download_links: [:pdf]
+  index download_links: proc{ current_user.can_view_download_links? }
 
-      # hide the links entirely
-      index :download_links => false
+end
 
-      # only show a PDF export
-      index :download_links => [:pdf]
+# For the entire application:
+ActiveAdmin.setup do |config|
 
-      # hide/show links based on block
-      index :download_links => proc { current_admin_user.can_view_download_links? }
+  config.download_links = false
+  config.download_links = [:csv, :xml, :json, :pdf]
+  config.download_links = proc { current_user.can_view_download_links? }
 
-    end
-
-If you want to customize download links for every resource throughout the application, configure that in the `active_admin` initializer.
-
-    ActiveAdmin.setup do |config|
-
-      # Disable entirely
-      config.download_links = false
-
-      # Want PDF added to default download links
-      config.download_links = [:csv, :xml, :json, :pdf]
-
-      # hide/show links based on block
-      index :download_links => proc { current_admin_user.can_view_download_links? }
-
-    end
-
+end
+```
