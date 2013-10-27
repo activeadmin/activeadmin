@@ -124,7 +124,7 @@ end
 Menu items can be shown or hidden at runtime using the `:if` option.
 ```ruby
 ActiveAdmin.register Post do
-  menu if: proc{ current_admin_user.can_edit_posts? }
+  menu if: proc{ current_user.can_edit_posts? }
 end
 ```
 
@@ -214,66 +214,40 @@ has_many relationships, you can simply scope the listings and finders like so:
 
 ```ruby
 ActiveAdmin.register Post do
-  scope_to :current_user
+  scope_to :current_user # limits the accessible posts to `current_user.posts`
 
   # Or if the association doesn't have the default name:
   scope_to :current_user, association_method: :blog_posts
+
+  # Finally, you can pass a block to be called:
+  scope_to do
+    User.most_popular_posts
+  end
 end
 ```
 
-That approach limits the posts an admin can access to `current_user.posts`.
-
-If you want to conditionally apply the scope, then there are options for that as well:
+You can also conditionally apply the scope:
 
 ```ruby
 ActiveAdmin.register Post do
-  # Only scope the query if there is a user to scope to, helper provided via Devise
-  scope_to :current_user, if: proc{ admin_user_signed_in? }
-
-  # Don't scope the query if the user is an admin
-  scope_to :current_user, unless: proc{ current_admin_user.admin? }
-
-  # Get fancy and can combine with block syntax
-  scope_to if: proc{ admin_user_signed_in? } do
-    User.most_popular
-  end
+  scope_to :current_user, if:     proc{ current_user.limited_access? }
+  scope_to :current_user, unless: proc{ current_user.admin? }
 end
 ```
 
-If you want to do something fancier, for example override a default scope, you
-can also use `:association_method`. The only requirement here is that your
-method returns an instance of ActiveRecord::Relation.
+## Customizing resource retrieval
 
-```ruby
-class Ad < ActiveRecord::Base
-  default_scope ->{ where published: true }
-end
-
-class User < ActiveRecord::Base
-  def managed_ads
-    Ad.unscoped
-  end
-end
-
-ActiveAdmin.register Ad do
-  scope_to :current_user, association_method: :managed_ads
-end
-```
-
-In case you just need to customize the query independently of the current user, you can
-override the `scoped_collection` method on the controller:
+A common way to increase page performance is to elimate N+1 queries by eager loading associations:
 
 ```ruby
 ActiveAdmin.register Post do
   controller do
     def scoped_collection
-      Post.includes :author
+      super.includes :author, :categories
     end
   end
 end
 ```
-
-## Customizing resource retrieval
 
 If you need to completely replace the record retrieving code (e.g., you have a custom
 `to_param` implementation in your models), override the `resource` method on the controller:
