@@ -46,6 +46,8 @@ module ActiveAdmin
       options[:class] ||= ""
       options[:class] << "inputs has_many_fields"
 
+      sortable = options.delete :sortable
+
       # Add Delete Links
       form_block = proc do |has_many_form|
         # @see https://github.com/justinfrench/formtastic/blob/2.2.1/lib/formtastic/helpers/inputs_helper.rb#L373
@@ -63,14 +65,24 @@ module ActiveAdmin
         elsif options[:allow_destroy]
           has_many_form.input :_destroy, :as => :boolean, :wrapper_html => {:class => "has_many_remove"},
                                                           :label => I18n.t('active_admin.has_many_remove')
+        end
 
+        if sortable
+          # contents += template.content_tag(:li, "+", :class => 'handle')
+          contents = template.content_tag(:li, I18n.t('active_admin.has_many_sortable_handle'), :class => 'handle') + contents
+          puts contents
         end
 
         contents
       end
 
       form_buffers.last << with_new_form_buffer do
-        template.content_tag :div, :class => "has_many #{association}" do
+        html_attributes = { :class => "has_many #{association}" }
+        unless sortable.nil?
+          html_attributes[:class] << " sortable"
+          html_attributes['data-sortable-input'] = sortable
+        end
+        template.content_tag :div, html_attributes do
           # Allow customization of the nested form heading
           unless options.key?(:heading) && !options[:heading]
             form_heading = options[:heading] ||

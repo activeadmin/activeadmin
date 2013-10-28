@@ -22,6 +22,7 @@ en:
     has_many_new: "Add New %{model}"
     has_many_delete: "Delete"
     has_many_remove: "Remove"
+    has_many_sortable_handle: "Drag to Reorder"
     filters:
       buttons:
         filter: "Filter"
