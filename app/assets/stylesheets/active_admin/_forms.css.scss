@@ -165,7 +165,7 @@ form {
     }
 
     &.error {
-      input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
+      input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
         border: 1px solid $error-color;
       }
     }
