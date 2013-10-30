@@ -58,7 +58,7 @@ module ActiveAdmin
 
         if has_many_form.object.new_record?
           contents += template.content_tag(:li, :class => 'has_many_delete') do
-            template.link_to I18n.t('active_admin.has_many_delete'), "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
+            template.link_to I18n.t('active_admin.has_many_delete'), "#", :class => "button has_many_delete"
           end
         elsif options[:allow_destroy]
           has_many_form.input :_destroy, :as => :boolean, :wrapper_html => {:class => "has_many_remove"},
@@ -70,7 +70,14 @@ module ActiveAdmin
       end
 
       form_buffers.last << with_new_form_buffer do
-        template.content_tag :div, :class => "has_many #{association}" do
+        html_opts = { :class => "has_many #{association}" }
+      
+        if sortable_input = options[:sortable]
+          html_opts[:class] << ' sortable'
+          html_opts['data-has-many-sortable-input'] = sortable_input
+        end
+
+        template.content_tag :div, html_opts do
           # Allow customization of the nested form heading
           unless options.key?(:heading) && !options[:heading]
             form_heading = options[:heading] ||
@@ -171,18 +178,23 @@ module ActiveAdmin
       assoc_reflection = object.class.reflect_on_association(association)
       assoc_name       = assoc_reflection.klass.model_name
       placeholder      = "NEW_#{assoc_name.to_s.upcase.split(' ').join('_')}_RECORD"
-      opts = {
-        :for         => [association, assoc_reflection.klass.new],
-        :class       => "inputs has_many_fields",
-        :for_options => { :child_index => placeholder }
-      }
-      js = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
-      js = template.escape_javascript js
+      content          = ''.html_safe
 
-      onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
-      text    = I18n.t 'active_admin.has_many_new', :model => assoc_name.human
+      # create a script tag w. the fieldset html
+      content << template.content_tag(:script, :type => 'text/x-aa-has-many-tmpl', :class => 'has_many_template', 'data-placeholder' => placeholder) do
+        opts = {
+          :for         => [association, assoc_reflection.klass.new],
+          :class       => "inputs has_many_fields",
+          :for_options => { :child_index => placeholder }
+        }
 
-      template.link_to(text, "#", :onclick => onclick, :class => "button").html_safe
+        with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
+      end
+
+
+      text = I18n.t 'active_admin.has_many_new', :model => assoc_name.human
+
+      content << template.link_to(text, "#", :class => "button has_many_add").html_safe
     end
 
   end

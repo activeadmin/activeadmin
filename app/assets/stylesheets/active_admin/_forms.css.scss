@@ -38,6 +38,12 @@ form {
         font-size: 12px;
         font-weight: bold;
       }
+      &.sortable fieldset {
+        background-image: image-url('active_admin/has_many_sortable.png');
+        background-position: right 50%;
+        background-repeat: no-repeat;
+        cursor: move;
+      }
     }
 
     ol > li > li label {
