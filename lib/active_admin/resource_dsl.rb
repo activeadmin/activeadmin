@@ -36,15 +36,13 @@ module ActiveAdmin
     #   end
     #
     def permit_params(*args, &block)
-      permitted_params = *args
-      permitted_params += instance_eval(&block) if block_given?
-      permitted_params.uniq!
+      resource_sym = config.resource_name.singular.to_sym
 
-      whitelist = {}
-      whitelist[config.resource_name.singular.to_sym] = permitted_params
-
-      config.controller.instance_eval do
-        define_method(:permitted_params) { params.permit(whitelist) }
+      controller do
+        define_method :permitted_params do
+          params.permit resource_sym =>
+                        block ? instance_exec(&block) : args
+        end
       end
     end
 
