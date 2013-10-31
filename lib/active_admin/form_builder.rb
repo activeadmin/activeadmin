@@ -80,7 +80,7 @@ module ActiveAdmin
 
           inputs options, &form_block
 
-          js = options[:new_record] ? js_for_has_many(association, form_block, template) : ""
+          js = options[:new_record] ? js_for_has_many(association, form_block, template, options[:new_record]) : ""
           form_buffers.last << js.html_safe
         end
       end
@@ -167,7 +167,7 @@ module ActiveAdmin
     end
 
     # Capture the ADD JS
-    def js_for_has_many(association, form_block, template)
+    def js_for_has_many(association, form_block, template, new_record_link_text)
       assoc_reflection = object.class.reflect_on_association(association)
       assoc_name       = assoc_reflection.klass.model_name
       placeholder      = "NEW_#{assoc_name.to_s.upcase.split(' ').join('_')}_RECORD"
@@ -180,7 +180,7 @@ module ActiveAdmin
       js = template.escape_javascript js
 
       onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
-      text    = I18n.t 'active_admin.has_many_new', :model => assoc_name.human
+      text    = new_record_link_text.is_a?(String) ? new_record_link_text : I18n.t('active_admin.has_many_new', :model => assoc_name.human)
 
       template.link_to(text, "#", :onclick => onclick, :class => "button").html_safe
     end

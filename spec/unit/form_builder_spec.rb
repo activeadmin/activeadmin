@@ -380,6 +380,22 @@ describe ActiveAdmin::FormBuilder do
 
     end
 
+    describe "with custom new record link" do
+      let :body do
+        build_form({:url => '/categories'}, Category.new) do |f|
+          f.object.posts.build
+          f.has_many :posts, :new_record => 'My Custom New Post' do |p|
+            p.input :title
+          end
+        end
+      end
+
+      it "should add a custom new record link" do
+        body.should have_tag('a', 'My Custom New Post')
+      end
+
+    end
+
     describe "with allow destroy" do
       context "with an existing post" do
         let :body do
