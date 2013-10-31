@@ -6,8 +6,6 @@ module ActiveAdmin
 
       class Index < Base
 
-        include ::ActiveAdmin::ViewHelpers::ExportDialogHelper
-
         def title
           case config[:title]
           when Proc then controller.instance_eval(&config[:title])
@@ -30,8 +28,6 @@ module ActiveAdmin
             build_table_tools
             build_collection
           end
-
-          build_export_dialog
         end
 
         protected

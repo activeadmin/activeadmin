@@ -4,24 +4,21 @@ jQuery ($) ->
     e.preventDefault()
 
     $btn = $(this)
-    $export_dialog = $("#export_dialog")
-    $export_dialog.dialog
-      autoOpen: true
-      modal:    true
-      buttons:
-        "Cancel": ->
-          $(this).dialog("close");
-        "Export": ->
-          $export_form = $export_dialog.find("form")
-          target = $btn.attr("href")
 
-          if target.indexOf("?") == -1
-            append = "?"
-          else
-            append = "&"
+    inputs =
+      "export[start]": "text"
+      "export[end]":   "text"
 
-          append += $export_form.serialize()
+    ActiveAdmin.modalDialog "Export Data", inputs, (inputs)=>
+      target = $btn.attr("href")
 
-          window.location = target + append
+      if target.indexOf("?") == -1
+        append = "?"
+      else
+        append = "&"
+
+      append += $.param(inputs)
+
+      window.location = target + append
 
     return false
