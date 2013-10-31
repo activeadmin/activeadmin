@@ -57,6 +57,11 @@ You can create forms with nested models using the `has_many` method:
             cf.input :title
           end
         end
+        f.inputs do
+          f.has_many :comment, :new_record => 'Leave Comment' do |cf|
+            cf.input :body
+          end
+        end
         f.actions
       end
 
@@ -69,6 +74,7 @@ on the association to use this option.
 The `:heading` option will add a custom heading to has_many form. You can hide a heading by setting `:heading => false`.
 
 The `:new_record` option will show or hide new record link at the bottom of has_many form. It is set as true by default.
+You can also customize the text for the new record link by setting the `:new_record` option to a string.
 
 ## Displaying Errors
 
