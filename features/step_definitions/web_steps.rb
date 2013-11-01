@@ -61,6 +61,10 @@ Then /^(?:I )should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, te
   page.send should, have
 end
 
+Then /^I should see a dialog$/ do
+  page.should have_css(".ui-dialog")
+end
+
 Then /^the "([^"]*)" field(?: within (.*))? should( not)? contain "([^"]*)"$/ do |field, parent, negate, value|
   with_scope(parent) do
     field = find_field(field)

@@ -32,9 +32,11 @@ module ActiveAdmin
       end
 
       # TODO: Refactor to new HTML DSL
-      def build_download_format_links(formats = self.class.formats)
+      def build_download_format_links(export_behaviour, formats = self.class.formats)
         params = request.query_parameters.except :format, :commit
-        links = formats.map { |format| link_to format.to_s.upcase, params: params, format: format }
+
+        link_options = { data: { "export-modal" => true } } if export_behaviour == :modal
+        links = formats.map { |format| link_to format.to_s.upcase, { params: params, format: format, export: { exporting: true } }, link_options || {} }
         div :class => "download_links" do
           text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
         end

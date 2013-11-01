@@ -36,10 +36,11 @@ module ActiveAdmin
       #   download_links => Download links override (false or [:csv, :pdf])
       #
       def build(collection, options = {})
-        @collection     = collection
-        @param_name     = options.delete(:param_name)
-        @download_links = options.delete(:download_links)
-        @display_total  = options.delete(:pagination_total) { true }
+        @collection       = collection
+        @param_name       = options.delete(:param_name)
+        @download_links   = options.delete(:download_links)
+        @export_behaviour = options.delete(:export_behaviour)
+        @display_total    = options.delete(:pagination_total) { true }
 
         unless collection.respond_to?(:num_pages)
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
@@ -69,9 +70,9 @@ module ActiveAdmin
           download_links = @download_links.is_a?(Proc) ? instance_exec(&@download_links) : @download_links
 
           if download_links.is_a?(Array) && !download_links.empty?
-            build_download_format_links download_links
+            build_download_format_links @export_behaviour, download_links
           else
-            build_download_format_links unless download_links == false
+            build_download_format_links @export_behaviour unless download_links == false
           end
 
         end

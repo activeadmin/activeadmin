@@ -280,9 +280,13 @@ module ActiveAdmin
       # Applies pagination based on start and end parameters.
       # If only start is given, assume the last record is the end.
       def apply_export_pagination(chain, page_method, page_param)
-        start = params[:export][:start]
-        count = (params[:export][:end] || chain.size).to_i
-        count -= start.to_i unless start.nil?
+        if active_admin_config.export_behaviour == :all
+          count = chain.size
+        else
+          start = params[:export][:start]
+          count = (params[:export][:end] || chain.size).to_i
+          count -= start.to_i unless start.nil?
+        end
 
         chain = chain.send(page_method, page_param).per(count)
         chain = chain.padding(start) unless start.nil?

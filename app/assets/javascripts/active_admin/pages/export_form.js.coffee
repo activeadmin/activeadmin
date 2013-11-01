@@ -1,6 +1,6 @@
 jQuery ($) ->
 
-  $('.download_links a').click (e) ->
+  $('[data-export-modal]').click (e) ->
     e.preventDefault()
 
     $btn = $(this)
