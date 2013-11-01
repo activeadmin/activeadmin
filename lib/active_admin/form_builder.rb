@@ -41,8 +41,8 @@ module ActiveAdmin
       cancel_link
     end
 
-    def has_many(association, options = {}, &block)
-      options = { :for => association, :new_record => true }.merge(options)
+    def has_many(assoc, options = {}, &block)
+      options = {for: assoc, new_record: true}.merge options
       options[:class] ||= ""
       options[:class] << "inputs has_many_fields"
 
@@ -57,31 +57,28 @@ module ActiveAdmin
         end
 
         if has_many_form.object.new_record?
-          contents += template.content_tag(:li, :class => 'has_many_delete') do
-            template.link_to I18n.t('active_admin.has_many_delete'), "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
+          contents << template.content_tag(:li, class: 'has_many_delete') do
+            template.link_to I18n.t('active_admin.has_many_delete'), "#", class: 'button',
+              onclick: "$(this).closest('.has_many_fields').remove(); return false;"
           end
         elsif options[:allow_destroy]
-          has_many_form.input :_destroy, :as => :boolean, :wrapper_html => {:class => "has_many_remove"},
-                                                          :label => I18n.t('active_admin.has_many_remove')
-
+          has_many_form.input :_destroy, as: :boolean, wrapper_html: {class: 'has_many_remove'},
+                                                       label: I18n.t('active_admin.has_many_remove')
         end
-
         contents
       end
 
       form_buffers.last << with_new_form_buffer do
-        template.content_tag :div, :class => "has_many #{association}" do
-          # Allow customization of the nested form heading
+        template.content_tag :div, class: "has_many #{assoc}" do
           unless options.key?(:heading) && !options[:heading]
-            form_heading = options[:heading] ||
-              object.class.reflect_on_association(association).klass.model_name.human(:count => 1.1)
-            form_buffers.last << template.content_tag(:h3, form_heading)
+            form_buffers.last << template.content_tag(:h3) do
+              options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: 1.1)
+            end
           end
 
           inputs options, &form_block
 
-          js = options[:new_record] ? js_for_has_many(association, form_block, template, options[:new_record]) : ""
-          form_buffers.last << js.html_safe
+          form_buffers.last << js_for_has_many(assoc, form_block, template, options[:new_record]) if options[:new_record]
         end
       end
     end
@@ -167,22 +164,22 @@ module ActiveAdmin
     end
 
     # Capture the ADD JS
-    def js_for_has_many(association, form_block, template, new_record_link_text)
-      assoc_reflection = object.class.reflect_on_association(association)
+    def js_for_has_many(assoc, form_block, template, new_record)
+      assoc_reflection = object.class.reflect_on_association assoc
       assoc_name       = assoc_reflection.klass.model_name
       placeholder      = "NEW_#{assoc_name.to_s.upcase.split(' ').join('_')}_RECORD"
       opts = {
-        :for         => [association, assoc_reflection.klass.new],
+        :for         => [assoc, assoc_reflection.klass.new],
         :class       => "inputs has_many_fields",
-        :for_options => { :child_index => placeholder }
+        :for_options => { child_index: placeholder }
       }
       js = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
       js = template.escape_javascript js
 
       onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
-      text    = new_record_link_text.is_a?(String) ? new_record_link_text : I18n.t('active_admin.has_many_new', :model => assoc_name.human)
+      text    = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
-      template.link_to(text, "#", :onclick => onclick, :class => "button").html_safe
+      template.link_to(text, "#", onclick: onclick, class: "button").html_safe
     end
 
   end
