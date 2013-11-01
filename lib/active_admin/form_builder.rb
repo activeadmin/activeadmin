@@ -1,3 +1,10 @@
+# Note for posterity:
+#
+# Here we have two core customizations on top of Formtastic. First, this allows
+# you to build forms in the AA DSL without dealing with the HTML return value of
+# individual form methods (hence the +form_buffers+ object). Second, this provides
+# an intuitive way to build has_many associated records in the same form.
+#
 module ActiveAdmin
   class FormBuilder < ::Formtastic::FormBuilder
 
