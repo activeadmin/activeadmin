@@ -1,3 +1,10 @@
+# Note for posterity:
+#
+# Here we have two core customizations on top of Formtastic. First, this allows
+# you to build forms in the AA DSL without dealing with the HTML return value of
+# individual form methods (hence the +form_buffers+ object). Second, this provides
+# an intuitive way to build has_many associated records in the same form.
+#
 module ActiveAdmin
   class FormBuilder < ::Formtastic::FormBuilder
 
@@ -41,47 +48,39 @@ module ActiveAdmin
       cancel_link
     end
 
-    def has_many(association, options = {}, &block)
-      options = { :for => association, :new_record => true }.merge(options)
+    def has_many(assoc, options = {}, &block)
+      options = {for: assoc, new_record: true}.merge options
       options[:class] ||= ""
       options[:class] << "inputs has_many_fields"
 
       # Add Delete Links
       form_block = proc do |has_many_form|
-        # @see https://github.com/justinfrench/formtastic/blob/2.2.1/lib/formtastic/helpers/inputs_helper.rb#L373
-        contents = if block.arity == 1  # for backwards compatibility with REE & Ruby 1.8.x
-          block.call(has_many_form)
-        else
-          index = parent_child_index(options[:parent]) if options[:parent]
-          block.call(has_many_form, index)
-        end
+        index    = parent_child_index options[:parent] if options[:parent]
+        contents = block.call has_many_form, index
 
         if has_many_form.object.new_record?
-          contents += template.content_tag(:li, :class => 'has_many_delete') do
-            template.link_to I18n.t('active_admin.has_many_delete'), "#", :onclick => "$(this).closest('.has_many_fields').remove(); return false;", :class => "button"
+          contents << template.content_tag(:li, class: 'has_many_delete') do
+            template.link_to I18n.t('active_admin.has_many_delete'), "#", class: 'button',
+              onclick: "$(this).closest('.has_many_fields').remove(); return false;"
           end
         elsif options[:allow_destroy]
-          has_many_form.input :_destroy, :as => :boolean, :wrapper_html => {:class => "has_many_remove"},
-                                                          :label => I18n.t('active_admin.has_many_remove')
-
+          has_many_form.input :_destroy, as: :boolean, wrapper_html: {class: 'has_many_remove'},
+                                                       label: I18n.t('active_admin.has_many_remove')
         end
-
         contents
       end
 
       form_buffers.last << with_new_form_buffer do
-        template.content_tag :div, :class => "has_many #{association}" do
-          # Allow customization of the nested form heading
+        template.content_tag :div, class: "has_many #{assoc}" do
           unless options.key?(:heading) && !options[:heading]
-            form_heading = options[:heading] ||
-              object.class.reflect_on_association(association).klass.model_name.human(:count => 1.1)
-            form_buffers.last << template.content_tag(:h3, form_heading)
+            form_buffers.last << template.content_tag(:h3) do
+              options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: 1.1)
+            end
           end
 
           inputs options, &form_block
 
-          js = options[:new_record] ? js_for_has_many(association, form_block, template, options[:new_record]) : ""
-          form_buffers.last << js.html_safe
+          form_buffers.last << js_for_has_many(assoc, form_block, template, options[:new_record]) if options[:new_record]
         end
       end
     end
@@ -89,40 +88,6 @@ module ActiveAdmin
     def semantic_errors(*args)
       form_buffers.last << with_new_form_buffer{ super }
     end
-
-    # These methods are deprecated and removed from Formtastic, however are
-    # supported here to help with transition.
-    module DeprecatedMethods
-
-      # Formtastic has depreciated #commit_button in favor of #action(:submit)
-      def commit_button(*args)
-        ::ActiveSupport::Deprecation.warn("f.commit_button is deprecated in favour of f.action(:submit)")
-
-        options = args.extract_options!
-        if String === args.first
-          options[:label] = args.first unless options.has_key?(:label)
-        end
-
-        action(:submit, options)
-      end
-
-      def commit_button_with_cancel_link
-        # Formtastic has depreciated #buttons in favor of #actions
-        ::ActiveSupport::Deprecation.warn("f.commit_button_with_cancel_link is deprecated in favour of f.commit_action_with_cancel_link")
-
-        commit_action_with_cancel_link
-      end
-
-      # The buttons method always needs to be wrapped in a new buffer
-      def buttons(*args, &block)
-        # Formtastic has depreciated #buttons in favor of #actions
-        ::ActiveSupport::Deprecation.warn("f.buttons is deprecated in favour of f.actions")
-
-        actions args, &block
-      end
-
-    end
-    include DeprecatedMethods
 
     protected
 
@@ -167,22 +132,22 @@ module ActiveAdmin
     end
 
     # Capture the ADD JS
-    def js_for_has_many(association, form_block, template, new_record_link_text)
-      assoc_reflection = object.class.reflect_on_association(association)
+    def js_for_has_many(assoc, form_block, template, new_record)
+      assoc_reflection = object.class.reflect_on_association assoc
       assoc_name       = assoc_reflection.klass.model_name
       placeholder      = "NEW_#{assoc_name.to_s.upcase.split(' ').join('_')}_RECORD"
       opts = {
-        :for         => [association, assoc_reflection.klass.new],
+        :for         => [assoc, assoc_reflection.klass.new],
         :class       => "inputs has_many_fields",
-        :for_options => { :child_index => placeholder }
+        :for_options => { child_index: placeholder }
       }
       js = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
       js = template.escape_javascript js
 
-      onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
-      text    = new_record_link_text.is_a?(String) ? new_record_link_text : I18n.t('active_admin.has_many_new', :model => assoc_name.human)
+      onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, $(this).siblings('fieldset').length)); return false;"
+      text    = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
-      template.link_to(text, "#", :onclick => onclick, :class => "button").html_safe
+      template.link_to(text, "#", onclick: onclick, class: "button").html_safe
     end
 
   end
