@@ -144,7 +144,7 @@ module ActiveAdmin
       js = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
       js = template.escape_javascript js
 
-      onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, new Date().getTime())); return false;"
+      onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, $(this).siblings('fieldset').length)); return false;"
       text    = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
       template.link_to(text, "#", onclick: onclick, class: "button").html_safe
