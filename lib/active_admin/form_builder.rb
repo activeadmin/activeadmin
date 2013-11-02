@@ -59,13 +59,12 @@ module ActiveAdmin
         contents = block.call has_many_form, index
 
         if has_many_form.object.new_record?
-          contents << template.content_tag(:li, class: 'has_many_delete') do
-            template.link_to I18n.t('active_admin.has_many_delete'), "#", class: 'button',
-              onclick: "$(this).closest('.has_many_fields').remove(); return false;"
+          contents << template.content_tag(:li) do
+            template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
           end
         elsif options[:allow_destroy]
-          has_many_form.input :_destroy, as: :boolean, wrapper_html: {class: 'has_many_remove'},
-                                                       label: I18n.t('active_admin.has_many_remove')
+          has_many_form.input :_destroy, as: :boolean, wrapper_html: {class: 'has_many_delete'},
+                                                       label: I18n.t('active_admin.has_many_delete')
         end
         contents
       end
@@ -141,13 +140,12 @@ module ActiveAdmin
         :class       => "inputs has_many_fields",
         :for_options => { child_index: placeholder }
       }
-      js = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
-      js = template.escape_javascript js
+      html = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
+      text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
-      onclick = "$(this).before('#{js}'.replace(/#{placeholder}/g, $(this).siblings('fieldset').length)); return false;"
-      text    = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
-
-      template.link_to(text, "#", onclick: onclick, class: "button").html_safe
+      template.link_to text, '#', class: "button has_many_add", data: {
+        html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
+      }
     end
 
   end

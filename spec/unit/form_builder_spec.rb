@@ -312,11 +312,8 @@ describe ActiveAdmin::FormBuilder do
       end
 
       it "should add a link to remove new nested records" do
-        Capybara.string(body).should have_css(".has_many > fieldset > ol > li.has_many_delete > a", :class => "button", :href => "#", :content => "Delete")
-      end
-
-      it "should include the nested record's class name in the js" do
-        body.should have_tag("a", :attributes => { :onclick => /NEW_POST_RECORD/ })
+        Capybara.string(body).should have_css '.has_many > fieldset > ol > li > a', href: '#',
+          content: 'Remove', class: 'button has_many_remove', data: {placeholder: 'NEW_POST_RECORD'}
       end
 
       it "should add a link to add new nested records" do
@@ -412,11 +409,11 @@ describe ActiveAdmin::FormBuilder do
         end
 
         it "should have a check box with 'Remove' as its label" do
-          body.should have_tag("label", :attributes => {:for => "category_posts_attributes_0__destroy"}, :content => "Remove")
+          body.should have_tag("label", :attributes => {:for => "category_posts_attributes_0__destroy"}, :content => "Delete")
         end
 
-        it "should wrap the destroy field in an li with class 'has_many_remove'" do
-          Capybara.string(body).should have_css(".has_many > fieldset > ol > li.has_many_remove > input")
+        it "should wrap the destroy field in an li with class 'has_many_delete'" do
+          Capybara.string(body).should have_css(".has_many > fieldset > ol > li.has_many_delete > input")
         end
       end
 
