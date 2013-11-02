@@ -69,6 +69,21 @@ describe "Comments" do
         ActiveAdmin::Comment.find_for_resource_in_namespace(tag, namespace_name).should == [comment]
       end
     end
+
+    describe "Commenting on child of STI resource" do
+      let(:publisher) { Publisher.create!(:username => "tenderlove") }
+      let(:namespace_name) { "admin" }
+
+      it "should assign child class as commented resource" do
+        comment = ActiveAdmin::Comment.create!(
+          :resource => publisher,
+          :body => "Lorem Ipsum",
+          :namespace => namespace_name)
+
+        ActiveAdmin::Comment.find_for_resource_in_namespace(publisher, namespace_name).last.resource_type.
+          should == 'Publisher'
+      end
+    end
   end
 
   describe ActiveAdmin::Comments::NamespaceHelper do
