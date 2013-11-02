@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Comments" do
-  let(:application){ ActiveAdmin::Application.new }
+  let(:application) { ActiveAdmin::Application.new }
 
   describe ActiveAdmin::Comment do
     subject { ActiveAdmin::Comment.new }
@@ -15,8 +15,8 @@ describe "Comments" do
     end
 
     describe ".find_for_resource_in_namespace" do
-      let(:post){ Post.create!(:title => "Hello World") }
-      let(:namespace_name){ "admin" }
+      let(:post) { Post.create!(:title => "Hello World") }
+      let(:namespace_name) { "admin" }
 
       before do
         @comment = ActiveAdmin::Comment.create! :resource => post,
@@ -57,13 +57,14 @@ describe "Comments" do
     end
 
     describe "Commenting on resource with string id" do
-      let(:tag){ Tag.create!(:name => "cooltags") }
-      let(:namespace_name){ "admin" }
+      let(:tag) { Tag.create!(:name => "cooltags") }
+      let(:namespace_name) { "admin" }
 
       it "should allow commenting" do
-        comment = ActiveAdmin::Comment.create! :resource => tag,
-                                                :body => "Another Comment",
-                                                :namespace => namespace_name
+        comment = ActiveAdmin::Comment.create!(
+          :resource => tag,
+          :body => "Another Comment",
+          :namespace => namespace_name)
 
         ActiveAdmin::Comment.find_for_resource_in_namespace(tag, namespace_name).should == [comment]
       end
@@ -84,7 +85,6 @@ describe "Comments" do
         ns.allow_comments = false
         ns.comments?.should be_false
       end
-
     end
   end
 
