@@ -15,11 +15,10 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
     @templateHtml = @$template.html()
     @templatePlaceholder = @$template.data('placeholder')
 
-    @$fieldsetContainer = @$container.children('.input:eq(0)')
 
     if @sortableInputName = @$container.data('hasManySortableInput')
       @sortableInputSel = ":input[name$='[#{@sortableInputName}]']"
-      @$fieldsetContainer.find(@sortableInputSel).closest('.input').hide()
+      @$container.find(@sortableInputSel).closest('.input').hide()
       @sortFields()
 
 
@@ -34,19 +33,19 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
       false
 
     if @sortableInputName
-      @$fieldsetContainer.sortable({
+      @$container.sortable({
         items: '> .has_many_fields',
         stop: (event, ui) =>
           @recomputePositions()
       })
 
-      @$fieldsetContainer.on 'change', '[name$="[_destroy]"]', (event) =>
+      @$container.on 'change', '[name$="[_destroy]"]', (event) =>
         @recomputePositions()
 
 
   # sort the fields to match their positions
   sortFields: ->
-    $fields = @$fieldsetContainer.children('.has_many_fields')
+    $fields = @$container.children('.has_many_fields')
     # sort the fields in memory
     fieldsWithPosition = []
     $fields.each (index, el) =>
@@ -62,8 +61,10 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
 
     # sort in the DOM only if necessary
     if outOfOrder
-      for [el, position] in fieldsWithPosition
-        @$fieldsetContainer.append el
+      previous = fieldsWithPosition[0]
+      for [el, position] in fieldsWithPosition[1..]
+        previous.after el
+        previous = el
 
 
   addFieldset: ->
@@ -71,7 +72,7 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
     html = @templateHtml.replace(re, new Date().getTime())
     $fieldset = $(html)
 
-    @$fieldsetContainer.append($fieldset)
+    @$template.before($fieldset)
     @recomputePositions()
     $fieldset.find(@sortableInputSel).closest('.input').hide()
     @$container.trigger('fieldsAdded', $fieldset)
@@ -86,7 +87,7 @@ window.ActiveAdmin.HasMany = class ActiveAdmin.HasMany
   recomputePositions: ->
     position = 0
     
-    @$fieldsetContainer.children('.has_many_fields').each (index, el)=>
+    @$container.children('.has_many_fields').each (index, el)=>
       $fieldset = $(el)
       $destroy = $fieldset.find(':input[name$="[_destroy]"]')
       $sortableInput = $fieldset.find(@sortableInputSel);
