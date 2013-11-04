@@ -36,6 +36,7 @@ If you want, you can customize it.
 config.site_title       = "My Admin Site"
 config.site_title_link  = "/"
 config.site_title_image = "site_image.png"
+config.site_title_image = "http://www.google.com/images/logos/google_logo_41.png"
 ```
 
 ## Internationalization (I18n)
