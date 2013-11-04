@@ -8,7 +8,7 @@ $ ->
   $(document).on 'click', 'a.button.has_many_remove', (e)->
     e.preventDefault()
     parent    = $(@).closest '.has_many'
-    to_remove = parent.children 'fieldset:last'
+    to_remove = $(@).closest 'fieldset'
 
     parent.trigger 'has_many_remove:before', [ to_remove ]
     to_remove.remove()
