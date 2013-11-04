@@ -8,6 +8,7 @@ form {
     border: 0;
     padding: 10px 0;
     margin-bottom: 20px;
+    position: relative; // required for the absolutely positioned sortable .handle 
 
     &.inputs { @include section-background; }
 
@@ -51,12 +52,31 @@ form {
     }
   }
 
+  .has_many_container .handle {
+    position: absolute;
+    @include icon-size(3em);
+    top: calc(50% - 3em / 2);
+    right: 2px;
+    padding: 0;
+    cursor: move;
+  }
+
+  .ui-sortable {
+    // give the handle space!
+    input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
+      width: calc(80% - #{$text-input-total-padding} - 2em - 1px);
+    }
+    // If a sortable is nested in a sortable, give the parent handle space!
+    .ui-sortable .has_many_fields {
+      margin-right: 2em;
+    }
+  }
+
   /* Nested Fieldsets and Legends */
   li.has_many_container {
     fieldset.has_many_fields {
       margin: 10px 0;
     }
-
   }
 
   fieldset > ol > li {
@@ -87,8 +107,8 @@ form {
 
   /* Text Fields */
   input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
-    width: 76%;
-    border: 1px solid #c9d0d6;
+    width: calc(80% - #{$text-input-total-padding});
+    border: $border-width solid #c9d0d6;
     @include rounded;
     font-size: 0.95em;
     @include sans-family;
@@ -96,7 +116,7 @@ form {
     padding: 8px $text-input-horizontal-padding 7px;
 
     &:focus {
-      border: 1px solid #99a2aa;
+      border: $border-width solid #99a2aa;
       @include shadow(0,0,4px,#99a2aa);
     }
   }
@@ -168,7 +188,7 @@ form {
 
     &.error {
       input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
-        border: 1px solid $error-color;
+        border: $border-width solid $error-color;
       }
     }
   }
