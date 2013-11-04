@@ -204,3 +204,17 @@ ActiveAdmin.setup do |config|
 
 end
 ```
+
+## Customizing Export Behaviour
+
+You can choose what you want to do when the user uses a download link:
+
+```ruby
+# Per resource:
+ActiveAdmin.register Post do
+
+  config.export_bahaviour = :modal
+  config.export_bahaviour = :paginate
+  config.export_bahaviour = :all
+
+end

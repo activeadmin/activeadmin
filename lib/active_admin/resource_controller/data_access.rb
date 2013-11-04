@@ -272,7 +272,26 @@ module ActiveAdmin
         page_method = Kaminari.config.page_method_name
         page_param  = params[Kaminari.config.param_name]
 
+        return apply_export_pagination(chain, page_method, page_param) if params.keys.include? "export"
+
         chain.send(page_method, page_param).per(per_page)
+      end
+
+      # Applies pagination based on start and end parameters.
+      # If only start is given, assume the last record is the end.
+      def apply_export_pagination(chain, page_method, page_param)
+        if active_admin_config.export_behaviour == :all
+          count = chain.size
+        else
+          start = params[:export][:start]
+          count = (params[:export][:end] || chain.size).to_i
+          count -= start.to_i unless start.nil?
+        end
+
+        chain = chain.send(page_method, page_param).per(count)
+        chain = chain.padding(start) unless start.nil?
+
+        chain
       end
 
       def per_page
