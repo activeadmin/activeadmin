@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "active_admin/version"
 
 Gem::Specification.new do |s|
-  s.name          = %q{activeadmin}
+  s.name          = %q{yousty-activeadmin}
   s.license       = "MIT"
   s.version       = ActiveAdmin::VERSION
   s.platform      = Gem::Platform::RUBY
