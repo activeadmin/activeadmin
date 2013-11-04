@@ -82,6 +82,19 @@ The `:heading` option adds a custom heading. You can hide it entirely by passing
 The `:new_record` option controls the visibility of the new record button (shown by default).
 If you pass a string, it will be used as the text for the new record button.
 
+## DatePicker
+
+ActiveAdmin offers the `datepicker` input, which uses the [jQueryUI Datepicker](http://jqueryui.com/datepicker/).
+The datepicker input accepts any of the options available to the standard
+jQueryUI Datepicker, e.g.
+
+```ruby
+form do |f|
+  f.input :starts_at, as: :datepicker, datepicker_options: { min_date: "2013-10-8", max_date: 3.days.from_now.to_date }
+  f.input :ends_at, as: :datepicker, datepicker_options: { min_date: 3.days.ago.to_date, max_date: "+1W +5D" }
+end
+```
+
 ## Displaying Errors
 
 To display a list of all validation errors:
