@@ -2,7 +2,6 @@ require 'active_support/core_ext/class/attribute' # needed for Ransack
 require 'ransack'
 require 'ransack_ext'
 require 'bourbon'
-require 'devise'
 require 'kaminari'
 require 'formtastic'
 require 'sass-rails'
@@ -27,7 +26,7 @@ module ActiveAdmin
   autoload :ControllerAction,         'active_admin/controller_action'
   autoload :CSVBuilder,               'active_admin/csv_builder'
   autoload :Deprecation,              'active_admin/deprecation'
-  autoload :Devise,                   'active_admin/devise'
+  autoload :Devise,                   'active_admin/devise' if defined?(Devise)
   autoload :DSL,                      'active_admin/dsl'
   autoload :Event,                    'active_admin/event'
   autoload :FormBuilder,              'active_admin/form_builder'
