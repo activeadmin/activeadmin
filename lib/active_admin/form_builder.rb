@@ -49,6 +49,7 @@ module ActiveAdmin
     end
 
     def has_many(assoc, options = {}, &block)
+      raise "Nesting a `has_many` in an `inputs` block is unsupported. To replicate the old behavior, try `f.has_many :#{assoc}, display: :panel do |a|`" if @already_in_an_inputs_block
       options = {for: assoc, new_record: true}.merge options
       display_style = options.delete(:display)
       options[:class] ||= ""
