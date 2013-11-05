@@ -76,7 +76,7 @@ form {
   }
 
   div.has_many.panel {
-    h3 {
+    > h3 {
       font-size: 12px;
       font-weight: bold;
     }
@@ -86,6 +86,10 @@ form {
     }
 
     a.button.has_many_add {
+      margin: 10px 10px 20px;
+    }
+
+    div.has_many {
       margin: 10px 10px 20px;
     }
   }
