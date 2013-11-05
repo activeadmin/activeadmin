@@ -32,14 +32,6 @@ form {
       }
     }
 
-    ol > div.has_many {
-      padding: 20px 10px;
-      h3 {
-        font-size: 12px;
-        font-weight: bold;
-      }
-    }
-
     ol > li > li label {
       line-height:100%;
       padding-top:0;
@@ -80,6 +72,21 @@ form {
           border:0;
         }
       }
+    }
+  }
+
+  div.has_many.panel {
+    h3 {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    fieldset {
+      margin: 10px 10px 20px;
+    }
+
+    a.button.has_many_add {
+      margin: 10px 10px 20px;
     }
   }
 
