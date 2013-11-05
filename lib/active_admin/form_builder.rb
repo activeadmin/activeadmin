@@ -49,7 +49,8 @@ module ActiveAdmin
     end
 
     def has_many(assoc, options = {}, &block)
-      raise "Nesting a `has_many` in an `inputs` block is unsupported. To replicate the old behavior, try `f.has_many :#{assoc}, display: :panel do |a|`" if @already_in_an_inputs_block
+      # raise "Nesting a `has_many` in an `inputs` block is unsupported. To replicate the old behavior, try `f.has_many :#{assoc}, display: :panel do |a|`" if @already_in_an_inputs_block
+
       options = {for: assoc, new_record: true}.merge options
       display_style = options.delete(:display)
       options[:class] ||= ""
@@ -72,7 +73,7 @@ module ActiveAdmin
       end
 
       form_buffers.last << with_new_form_buffer do
-        template.content_tag :div, class: ["has_many #{assoc}", display_style].compact.join(" ") do
+        html = template.content_tag (@already_in_an_inputs_block ? :li : :div), class: ["has_many #{assoc}", display_style].compact.join(" ") do
           unless options.key?(:heading) && !options[:heading]
             form_buffers.last << template.content_tag(:h3) do
               options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: 1.1)
@@ -143,6 +144,7 @@ module ActiveAdmin
         :for_options => { child_index: placeholder }
       }
       html = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
+      html = template.content_tag(:li, html, class: 'input') if @already_in_an_inputs_block
       text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
       template.link_to text, '#', class: "button has_many_add", data: {
