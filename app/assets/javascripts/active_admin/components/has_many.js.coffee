@@ -32,7 +32,10 @@ $ ->
     parent.trigger before_add = $.Event 'has_many_add:before'
 
     unless before_add.isDefaultPrevented()
-      index = parent.data('has_many_index') || parent.children('fieldset').length - 1
+      # because FormBuilder's `has_many` method can render/add fieldsets that may
+      # be nested in an `inputs` block, we need to account for both situations
+      # when calculating the has_many_index.
+      index = parent.data('has_many_index') || parent.children('fieldset.has_many_fields').length + parent.find('> li > fieldset.has_many_fields').length - 1
       parent.data has_many_index: ++index
 
       regex = new RegExp elem.data('placeholder'), 'g'
