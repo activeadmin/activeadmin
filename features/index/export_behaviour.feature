@@ -8,7 +8,6 @@ Feature: Export Behaviour
     And a post with the title "Hello World 2" exists
     And I am logged in
 
-  @javascript
   Scenario: Default should show a modal
     Given a configuration of:
     """
@@ -17,10 +16,8 @@ Feature: Export Behaviour
       end
     """
     When I am on the index page for posts
-    And I click "CSV"
-    Then I should see a dialog
+    Then the "CSV" link should have the "data-export-modal" attribute
 
-  @javascript
   Scenario: Show a modal dialog
     Given a configuration of:
     """
@@ -29,8 +26,7 @@ Feature: Export Behaviour
       end
     """
     When I am on the index page for posts
-    And I click "CSV"
-    Then I should see a dialog
+    Then the "CSV" link should have the "data-export-modal" attribute
 
   Scenario: Export all
     Given a configuration of:
@@ -42,7 +38,9 @@ Feature: Export Behaviour
       end
     """
     When I am on the index page for posts
-    And I click "CSV"
+    Then the "CSV" link should not have the "data-export-modal" attribute
+
+    When I click "CSV"
     And I should download a CSV file for "posts" containing:
     | Id  | Title         | Body | Published At | Starred | Created At | Updated At |
     | \d+ | Hello World 2 |      |              |         | (.*)       | (.*)       |
@@ -58,7 +56,9 @@ Feature: Export Behaviour
       end
     """
     When I am on the index page for posts
-    And I click "CSV"
+    Then the "CSV" link should not have the "data-export-modal" attribute
+
+    When I click "CSV"
     And I should download a CSV file for "posts" containing:
     | Id  | Title         | Body | Published At | Starred | Created At | Updated At |
     | \d+ | Hello World 2 |      |              |         | (.*)       | (.*)       |

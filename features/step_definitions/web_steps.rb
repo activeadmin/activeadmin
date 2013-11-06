@@ -85,6 +85,13 @@ Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path.should == path_to(page_name)
 end
 
+Then /^the "(.*?)" link should( not)? have the "(.*?)" attribute$/ do |link_name, negate, attribute|
+  should = negate ? :should_not : :should
+
+  link = find_link(link_name)
+  link[attribute].send should, nil
+end
+
 Then /^show me the page$/ do
   save_and_open_page
 end
