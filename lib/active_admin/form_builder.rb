@@ -69,7 +69,8 @@ module ActiveAdmin
         contents
       end
 
-      form_buffers.last << with_new_form_buffer do
+      
+      html = with_new_form_buffer do
         template.content_tag :div, class: "has_many #{assoc}" do
           unless options.key?(:heading) && !options[:heading]
             form_buffers.last << template.content_tag(:h3) do
@@ -77,11 +78,19 @@ module ActiveAdmin
             end
           end
 
-          inputs options, &form_block
+          inputs_html = with_new_form_buffer { inputs options, &form_block }
+          inputs_html = template.content_tag(:ol, inputs_html, class: 'moo2') if @already_in_an_inputs_block
 
+          form_buffers.last << inputs_html
           form_buffers.last << js_for_has_many(assoc, form_block, template, options[:new_record]) if options[:new_record]
         end
       end
+
+      # when the has_many is nested in an inputs block, wrap it in an li to keep the mark up valid
+      # see https://github.com/justinfrench/formtastic/blob/2.3.0.rc2/lib/formtastic/helpers/inputs_helper.rb#L302
+      html = template.content_tag(:li, html, class: 'input moo') if @already_in_an_inputs_block
+
+      form_buffers.last << html
     end
 
     def semantic_errors(*args)
