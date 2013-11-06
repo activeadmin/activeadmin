@@ -1,11 +1,11 @@
 # Working with Resources
 
-Every Active Admin resource corresponds to a Rails model. So before creating a 
+Every Active Admin resource corresponds to a Rails model. So before creating a
 resource you must first create a Rails model for it.
 
 ## Create a Resource
 
-The basic command for creating a resource is `rails g active_admin:resource Post`. 
+The basic command for creating a resource is `rails g active_admin:resource Post`.
 The generator will produce an empty `app/admin/post.rb` file like so:
 
 ```ruby
@@ -17,15 +17,27 @@ end
 ## Setting up Strong Parameters
 
 Rails 4 replaces `attr_accessible` with [Strong Parameters](https://github.com/rails/strong_parameters),
-which moves attribute whitelisting from the model to the controller. There are
-talks ([#2594](https://github.com/gregbell/active_admin/issues/2594)) on providing a
-cleaner DSL, but for now you do so like this:
+which moves attribute whitelisting from the model to the controller.
+
+Use the `permit_params` method to define which attributes may be changed:
 
 ```ruby
 ActiveAdmin.register Post do
-  controller do
-    def permitted_params
-      params.permit post: [:title, :content, :author]
+  permit_params :title, :content, :author
+end
+```
+
+Alternatively, you can change which parameters may be changed at runtime
+by passing a block to permit_params:
+
+```ruby
+ActiveAdmin.register Post do
+  permit_params do
+    defaults = [:title, :content]
+    if current_user.admin?
+      defaults + [:author]
+    else
+      defaults
     end
   end
 end
