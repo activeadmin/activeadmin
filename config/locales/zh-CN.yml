@@ -87,4 +87,12 @@
         sign_in: "登录"
         forgot_your_password: "忘记密码？"
         sign_in_with_omniauth_provider: "登入%{provider}"
-
+  formtastic:
+    yes: "YES"
+    no: "NO"
+    create: "新建%{model}"
+    update: "更新%{model}"
+    submit: "确认"
+    cancel: "取消"
+    reset: "重置%{model}"
+    required: "必须的"
