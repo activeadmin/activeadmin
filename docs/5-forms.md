@@ -22,8 +22,9 @@ end
 Please view [the documentation](http://github.com/justinfrench/formtastic)
 for Formtastic to see all the wonderful things you can do.
 
-If you require a more custom form than can be provided through the DSL, you can
-user a partial instead:
+## Partials
+
+If you require a more custom form than the DSL can provide, use a partial instead:
 
 ```ruby
 ActiveAdmin.register Post do
