@@ -1,4 +1,4 @@
-"pt-BR":
+pt-BR:
   active_admin:
     dashboard: "Painel Administrativo"
     dashboard_welcome:
@@ -63,6 +63,8 @@
       labels:
         destroy: "Excluído"
     comments:
+      resource_type: "Tipo de Objeto"
+      author_type: "Tipo de Autor"
       body: "Conteúdo"
       author: "Autor"
       title: "Comentário"
@@ -74,6 +76,14 @@
       errors:
         empty_text: "O comentário não foi salvo porque o texto estava vazio."
     devise:
+      username:
+        title: "Nome de Usuário"
+      email:
+        title: "E-mail"
+      subdomain:
+        title: "Subdomínio"
+      password:
+        title: "Senha"
       login:
         title: "Conta"
         remember_me: "Lembrar da senha"
@@ -84,7 +94,17 @@
       change_password:
         title: "Troque sua senha"
         submit: "Troque minha senha"
+      unlock:
+        title: "Reenviar instruções de desbloqueio"
+        submit: "Reenviar instruções de desbloqueio"
       links:
         sign_in: "Entrar"
         forgot_your_password: "Esqueceu sua senha?"
         sign_in_with_omniauth_provider: "Entre com o %{provider}"
+    access_denied:
+      message: "Você não tem permissão para realizar o solicitado"
+    index_list:
+      table: "Tabela"
+      block: "Lista"
+      grid: "Grid"
+      blog: "Blog"
