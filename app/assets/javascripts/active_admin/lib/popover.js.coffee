@@ -93,9 +93,9 @@ window.ActiveAdmin.Popover = class ActiveAdmin.Popover
     $nipple.css "left", nippleLeftPos
 
 (($) ->
-  $.widget.bridge 'aaPopover', ActiveAdmin.Popover
+  $.widget.bridge 'popover', ActiveAdmin.Popover
 
   $ ->
-    $('.dropdown_button').aaPopover()
+    $('.dropdown_button').popover()
 
 )(jQuery)
