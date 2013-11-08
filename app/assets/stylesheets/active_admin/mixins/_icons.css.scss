@@ -10,7 +10,6 @@ span.icon svg { vertical-align: baseline; }
 
 @mixin icon-size ($size) {
   span.icon { width: $size; height: $size; }
-  span.icon svg { width: $size; height: $size; }
 }
 
 @mixin icon($color, $size) {
