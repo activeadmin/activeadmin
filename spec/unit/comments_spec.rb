@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'active_admin/orm/active_record/comments'
 
 describe "Comments" do
   let(:application){ ActiveAdmin::Application.new }
