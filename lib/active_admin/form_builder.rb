@@ -50,6 +50,7 @@ module ActiveAdmin
 
     def has_many(assoc, options = {}, &block)
       options = {for: assoc, new_record: true}.merge options
+      display_style = options.delete(:display)
       options[:class] ||= ""
       options[:class] << "inputs has_many_fields"
 
@@ -70,7 +71,7 @@ module ActiveAdmin
       end
 
       form_buffers.last << with_new_form_buffer do
-        template.content_tag :div, class: "has_many #{assoc}" do
+        template.content_tag :div, class: ["has_many #{assoc}", display_style].compact.join(" ") do
           unless options.key?(:heading) && !options[:heading]
             form_buffers.last << template.content_tag(:h3) do
               options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: 1.1)
