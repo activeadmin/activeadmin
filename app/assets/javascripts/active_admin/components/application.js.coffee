@@ -10,9 +10,6 @@ $ ->
   $('.clear_filters_btn').click ->
     window.location.search = ''
 
-  # Batch Actions dropdown
-  $('.dropdown_button').popover()
-
   # Filter form: don't send any inputs that are empty
   $('.filter_form').submit ->
     $(@).find(':input').filter(-> @value is '').prop 'disabled', true
