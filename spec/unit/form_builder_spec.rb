@@ -312,12 +312,12 @@ describe ActiveAdmin::FormBuilder do
       end
 
       it "should add a link to remove new nested records" do
-        Capybara.string(body).should have_css '.has_many > fieldset > ol > li > a', href: '#',
+        Capybara.string(body).should have_css '.has_many_container > fieldset > ol > li > a', href: '#',
           content: 'Remove', class: 'button has_many_remove', data: {placeholder: 'NEW_POST_RECORD'}
       end
 
       it "should add a link to add new nested records" do
-        Capybara.string(body).should have_css(".has_many > fieldset > ol > li > a", :class => "button", :href => "#", :content => "Add New Post")
+        Capybara.string(body).should have_css(".has_many_container > fieldset > ol > li > a", :class => "button", :href => "#", :content => "Add New Post")
       end
     end
 
@@ -413,7 +413,7 @@ describe ActiveAdmin::FormBuilder do
         end
 
         it "should wrap the destroy field in an li with class 'has_many_delete'" do
-          Capybara.string(body).should have_css(".has_many > fieldset > ol > li.has_many_delete > input")
+          Capybara.string(body).should have_css(".has_many_container > fieldset > ol > li.has_many_delete > input")
         end
       end
 
@@ -433,6 +433,55 @@ describe ActiveAdmin::FormBuilder do
 
         it "should not have a check box with 'Remove' as its label" do
           body.should_not have_tag("label", :attributes => {:for => "category_posts_attributes_0__destroy"}, :content => "Remove")
+        end
+      end
+    end
+
+    describe "with nesting" do
+      context "in an inputs block" do
+        let :body do
+          build_form({:url => '/categories'}, Category.new) do |f|
+            f.inputs "Field Wrapper" do
+              f.object.posts.build
+              f.has_many :posts do |p|
+                p.input :title
+              end
+            end
+          end
+        end
+
+        it "should wrap the has_many fieldset in an li" do
+          Capybara.string(body).should have_css("ol > li.has_many_container")
+        end
+
+        it "should have a direct fieldset child" do
+          Capybara.string(body).should have_css("li.has_many_container > fieldset")
+        end
+
+        it "should not contain invalid li children" do
+          Capybara.string(body).should_not have_css("div.has_many_container > li")
+        end
+      end
+
+      context "in another has_many block" do
+        let :body do
+          build_form({:url => '/categories'}, Category.new) do |f|
+            f.object.posts.build
+            f.has_many :posts do |p|
+              p.object.taggings.build
+              p.has_many :taggings do |t|
+                t.input :tag
+              end
+            end
+          end
+        end
+
+        it "should wrap the inner has_many fieldset in an ol > li" do
+          Capybara.string(body).should have_css(".has_many_container ol > li.has_many_container > fieldset")
+        end
+
+        it "should not contain invalid li children" do
+          Capybara.string(body).should_not have_css(".has_many_container div.has_many_container > li")
         end
       end
     end

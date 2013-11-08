@@ -71,18 +71,22 @@ module ActiveAdmin
         contents
       end
 
-      form_buffers.last << with_new_form_buffer do
-        template.content_tag :div, class: "has_many #{assoc}" do
-          unless builder_options.key?(:heading) && !builder_options[:heading]
-            form_buffers.last << template.content_tag(:h3) do
-              builder_options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: 1.1)
-            end
+      html = without_wrapper do
+        unless builder_options.key?(:heading) && !builder_options[:heading]
+          form_buffers.last << template.content_tag(:h3) do
+            builder_options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: 1.1)
           end
-
-          inputs options, &form_block
-
-          form_buffers.last << js_for_has_many(assoc, form_block, template, builder_options[:new_record]) if builder_options[:new_record]
         end
+
+        inputs options, &form_block
+
+        form_buffers.last << js_for_has_many(assoc, form_block, template, builder_options[:new_record]) if builder_options[:new_record]
+      end
+
+      form_buffers.last << if @already_in_an_inputs_block
+        template.content_tag :li,  html, class: "has_many_container #{assoc}"
+      else
+        template.content_tag :div, html, class: "has_many_container #{assoc}"
       end
     end
 
@@ -130,6 +134,16 @@ module ActiveAdmin
       return_value = (yield || '').html_safe
       form_buffers.pop
       return_value
+    end
+
+    def without_wrapper
+      is_being_wrapped = @already_in_an_inputs_block
+      @already_in_an_inputs_block = false
+
+      html = with_new_form_buffer{ yield }
+
+      @already_in_an_inputs_block = is_being_wrapped
+      html
     end
 
     # Capture the ADD JS

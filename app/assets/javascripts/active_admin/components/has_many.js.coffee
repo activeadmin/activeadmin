@@ -7,7 +7,7 @@ $ ->
   #
   $(document).on 'click', 'a.button.has_many_remove', (e)->
     e.preventDefault()
-    parent    = $(@).closest '.has_many'
+    parent    = $(@).closest '.has_many_container'
     to_remove = $(@).closest 'fieldset'
 
     parent.trigger 'has_many_remove:before', [ to_remove ]
@@ -28,7 +28,7 @@ $ ->
   $(document).on 'click', 'a.button.has_many_add', (e)->
     e.preventDefault()
     elem   = $(@)
-    parent = elem.closest '.has_many'
+    parent = elem.closest '.has_many_container'
     parent.trigger before_add = $.Event 'has_many_add:before'
 
     unless before_add.isDefaultPrevented()
