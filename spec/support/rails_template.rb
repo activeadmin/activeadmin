@@ -16,7 +16,9 @@ generate :model, "post title:string body:text published_at:datetime author_id:in
 inject_into_file 'app/models/post.rb', %q{
   belongs_to :category
   belongs_to :author, :class_name => 'User'
+  has_many :taggings
   accepts_nested_attributes_for :author
+  accepts_nested_attributes_for :taggings
   attr_accessible :author unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
 }, :after => 'class Post < ActiveRecord::Base'
 copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), "app/models/post_decorator.rb"
@@ -50,6 +52,12 @@ inject_into_file 'app/models/tag.rb', %q{
     self.id = 8.times.inject("") { |s,e| s << (i = Kernel.rand(62); i += ((i < 10) ? 48 : ((i < 36) ? 55 : 61 ))).chr }
   end
 }, :after => 'class Tag < ActiveRecord::Base'
+
+generate :model, "tagging post_id:integer tag_id:integer"
+inject_into_file 'app/models/tagging.rb', %q{
+  belongs_to :post
+  belongs_to :tag
+}, :after => 'class Tagging < ActiveRecord::Base'
 
 # Configure default_url_options in test environment
 inject_into_file "config/environments/test.rb", "  config.action_mailer.default_url_options = { :host => 'example.com' }\n", :after => "config.cache_classes = true\n"

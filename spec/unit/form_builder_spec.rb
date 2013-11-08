@@ -437,6 +437,59 @@ describe ActiveAdmin::FormBuilder do
       end
     end
 
+    describe "with nesting" do
+      context "in an inputs block" do
+        let :body do
+          build_form({:url => '/categories'}, Category.new) do |f|
+            f.inputs "Field Wrapper" do
+              f.object.posts.build
+              f.has_many :posts do |p|
+                p.input :title
+              end
+            end
+          end
+        end
+
+        it "should wrap the has_many div in an li" do
+          Capybara.string(body).should have_css("li.input > .has_many")
+        end
+
+        it "should have a direct fieldset child" do
+          Capybara.string(body).should have_css(".has_many > fieldset")
+        end
+
+        it "should not contain invalid li children" do
+          Capybara.string(body).should_not have_css(".has_many > li")
+        end
+      end
+
+      context "in another has_many block" do
+        let :body do
+          build_form({:url => '/categories'}, Category.new) do |f|
+            f.object.posts.build
+            f.has_many :posts do |p|
+              p.object.taggings.build
+              p.has_many :taggings do |t|
+                t.input :tag
+              end
+            end
+          end
+        end
+
+        it "should wrap the inner has_many div in an li" do
+          Capybara.string(body).should have_css(".has_many li.input > .has_many")
+        end
+
+        it "should have a direct fieldset child" do
+          Capybara.string(body).should have_css(".has_many .has_many > fieldset")
+        end
+
+        it "should not contain invalid li children" do
+          Capybara.string(body).should_not have_css(".has_many .has_many > li")
+        end
+      end
+    end
+
     pending "should render the block if it returns nil" do
       body = build_form({:url => '/categories'}, Category.new) do |f|
         f.object.posts.build

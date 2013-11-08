@@ -69,7 +69,11 @@ module ActiveAdmin
         contents
       end
 
-      form_buffers.last << with_new_form_buffer do
+      # Prevent Formtastic from auto wrapping the inputs block in this div
+      # See https://github.com/justinfrench/formtastic/blob/2.3.0.rc2/lib/formtastic/helpers/inputs_helper.rb#L302
+      @already_in_an_inputs_block, was_in_an_inputs_block = false, @already_in_an_inputs_block
+
+      html = with_new_form_buffer do
         template.content_tag :div, class: "has_many #{assoc}" do
           unless options.key?(:heading) && !options[:heading]
             form_buffers.last << template.content_tag(:h3) do
@@ -82,6 +86,14 @@ module ActiveAdmin
           form_buffers.last << js_for_has_many(assoc, form_block, template, options[:new_record]) if options[:new_record]
         end
       end
+
+      # Now that we prevented Formtastic from autowrapping the nested inputs block,
+      # We check if we should be wrapped in an li: if we are inside an inputs block (which generated an ol), 
+      # then we will wrap the entire widget in an li to keep the html valid
+      @already_in_an_inputs_block = was_in_an_inputs_block
+      html = template.content_tag :li, html, class: "input" if was_in_an_inputs_block
+
+      form_buffers.last << html
     end
 
     def semantic_errors(*args)
