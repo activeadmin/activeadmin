@@ -23,7 +23,7 @@ module NavigationHelpers
       "/admin/posts/1"
     when /the first post edit page/
       "/admin/posts/1/edit"
-    when /the admin password reset form with reset password token "([^"]*)"/
+    when /the admin password reset form with token "([^"]*)"/
       "/admin/password/edit?reset_password_token=#{$1}"
 
     # the index page for posts in the root namespace
