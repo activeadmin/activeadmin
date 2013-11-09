@@ -32,7 +32,7 @@ $ ->
     parent.trigger before_add = $.Event 'has_many_add:before'
 
     unless before_add.isDefaultPrevented()
-      index = parent.data('has_many_index') || parent.children('fieldset').length - 1
+      index = parent.data('has_many_index') || parent.find('fieldset').length - 1
       parent.data has_many_index: ++index
 
       regex = new RegExp elem.data('placeholder'), 'g'
