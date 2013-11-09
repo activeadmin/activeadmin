@@ -8,9 +8,11 @@ $ ->
   $(document).on 'click', 'a.button.has_many_remove', (e)->
     e.preventDefault()
     parent    = $(@).closest '.has_many'
-    to_remove = $(@).closest 'fieldset'
+    index     = parent.data('has_many_index')
+    to_remove = $(@).closest 'fieldset.has_many_fields'
 
     parent.trigger 'has_many_remove:before', [ to_remove ]
+    parent.data has_many_index: --index
     to_remove.remove()
 
   # Provides before and after creation hooks:
@@ -32,7 +34,7 @@ $ ->
     parent.trigger before_add = $.Event 'has_many_add:before'
 
     unless before_add.isDefaultPrevented()
-      index = parent.data('has_many_index') || parent.children('fieldset').length - 1
+      index = parent.data('has_many_index') || parent.find('fieldset.has_many_fields').length - 1
       parent.data has_many_index: ++index
 
       regex = new RegExp elem.data('placeholder'), 'g'
