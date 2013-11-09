@@ -73,19 +73,27 @@
       errors:
         empty_text: "评论保存失败，内空不能为空."
     devise:
+      username:
+        title: "用户名"
+      email:
+        title: "邮箱"
+      subdomain:
+        title: "子域"
+      password:
+        title: "密码"
       login:
         title: "登录"
         remember_me: "记住我"
         submit: "登录"
       reset_password:
-        title: "忘记密码？"
-        submit: "重置密码"
-      change_password:
-        title: "更改您的密码"
-        submit: "更改我的密码"
+        title: "忘记了密码？"
+        submit: "重置我的密码"
+      unlock:
+        title: "重新发送送解锁命令"
+        submit: "重新发送送解锁命令"
       links:
         sign_in: "登录"
-        forgot_your_password: "忘记密码？"
+        forgot_your_password: "忘记了密码？"
         sign_in_with_omniauth_provider: "登入%{provider}"
   formtastic:
     yes: "YES"
