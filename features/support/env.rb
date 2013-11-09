@@ -34,6 +34,8 @@ autoload :ActiveAdmin, 'active_admin'
 
 require 'cucumber/rails'
 
+require 'cucumber/rspec/doubles'
+
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'

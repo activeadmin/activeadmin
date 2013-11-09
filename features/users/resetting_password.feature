@@ -18,16 +18,16 @@ Feature: User Resetting Password
     Then I should see "You will receive an email with instructions about how to reset your password in a few minutes."
 
   Scenario: Changing password after resetting
-    Given an admin user "admin@example.com" exists with reset password token "123reset"
-    When I go to the admin password reset form with reset password token "123reset"
+    When "admin@example.com" requests a pasword reset with token "foobarbaz"
+    When I go to the admin password reset form with token "foobarbaz"
     And I fill in "Password" with "password"
     And I fill in "Password confirmation" with "password"
     And I press "Change my password"
     Then I should see "success"
 
   Scenario: Changing password after resetting with errors
-    Given an admin user "admin@example.com" exists with expired reset password token "123reset"
-    When I go to the admin password reset form with reset password token "123reset"
+    When "admin@example.com" requests a pasword reset with token "foobarbaz" but it expires
+    When I go to the admin password reset form with token "foobarbaz"
     And I fill in "Password" with "password"
     And I fill in "Password confirmation" with "wrong"
     And I press "Change my password"

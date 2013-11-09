@@ -32,9 +32,11 @@ Given /^an admin user "([^"]*)" exists$/ do |email|
   ensure_user_created(email)
 end
 
-Given /^an admin user "([^"]*)" exists with( expired)? reset password token "(.*?)"$/ do |email, expired, token|
-  user = ensure_user_created(email)
-  user.reset_password_token   = token
-  user.reset_password_sent_at = 1.minute.ago unless expired
-  user.save
+Given /^"([^"]*)" requests a pasword reset with token "([^"]*)"( but it expires)?$/ do |email, token, expired|
+  visit new_admin_user_password_path
+  fill_in 'Email', with: email
+  Devise.stub(:friendly_token){ token }
+  click_button "Reset My Password"
+
+  AdminUser.where(email: email).first.update_attribute :reset_password_sent_at, 1.month.ago if expired
 end
