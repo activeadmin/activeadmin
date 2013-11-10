@@ -94,4 +94,8 @@ window.ActiveAdmin.Popover = class ActiveAdmin.Popover
 
 (($) ->
   $.widget.bridge 'popover', ActiveAdmin.Popover
+
+  $ ->
+    $('.dropdown_button').popover()
+
 )(jQuery)
