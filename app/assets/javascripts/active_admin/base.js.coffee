@@ -1,5 +1,6 @@
 #= require jquery
-#= require jquery.ui.all
+#= require jquery.ui.widget
+#= require jquery.ui.datepicker
 #= require jquery_ujs
 #
 #= require_self
