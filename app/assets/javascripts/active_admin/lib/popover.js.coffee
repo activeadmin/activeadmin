@@ -1,8 +1,6 @@
-
-window.ActiveAdmin.Popover = class ActiveAdmin.Popover
+class ActiveAdmin.Popover
 
   constructor: (@options, @element) ->
-
     @$element = $(@element)
 
     defaults = {
@@ -13,16 +11,11 @@ window.ActiveAdmin.Popover = class ActiveAdmin.Popover
       onClickActionItemCallback: null
     }
 
-    @options = $.extend({}, defaults, options)
+    @options = $.extend defaults, options
+    @isOpen  = false
 
-    @$popover = null
-    @isOpen = false
-
-    if $(@$element.attr("href")).length > 0
-      @$popover = $(@$element.attr("href"))
-    else
-      @$popover = @$element.next(".popover")
-
+    unless (@$popover = $ @$element.attr 'href').length
+      @$popover = @$element.next '.popover'
 
     @_buildPopover()
     @_bind()
@@ -30,68 +23,46 @@ window.ActiveAdmin.Popover = class ActiveAdmin.Popover
   open: ->
     @isOpen = true
     @$popover.fadeIn @options.fadeInDuration
-
     @_positionPopover()
     @_positionNipple()
-
-    return @
-
+    @
 
   close: ->
-    @isOpen = false;
-    @$popover.fadeOut this.options.fadeOutDuration;
-
-    return @
+    @isOpen = false
+    @$popover.fadeOut this.options.fadeOutDuration
+    @
 
   destroy: ->
-    @$element.removeData('popover');
-    @$element.unbind();
-    @$element = null;
-
-    return @
-
-  option: ->
-    # ??
+    @$element.removeData 'popover'
+    @$element.unbind()
+    @$element = null
+    @
 
   # Private
 
   _buildPopover: ->
-    @$popover.prepend("<div class=\"popover_nipple\"></div>")
-
+    @$nipple = $('<div class="popover_nipple"></div>')
+    @$popover.prepend @$nipple
     @$popover.hide()
-
-    @$popover.addClass "popover"
+    @$popover.addClass 'popover'
 
 
   _bind: ->
-    $(@options.pageWrapperElement).bind 'click', (e) =>
-      if @isOpen is true
-        @close()
+    $(@options.pageWrapperElement).click =>
+      @close() if @isOpen
 
-    if @options.autoOpen is true
-      @$element.bind 'click', () =>
-        if @isOpen is true
-          @close()
-        else
-          @open()
-
-        false
+    if @options.autoOpen
+      @$element.click (e)=>
+        e.stopPropagation()
+        if @isOpen then @close() else @open()
 
   _positionPopover: ->
-    centerOfButtonFromLeft = @$element.offset().left + @$element.outerWidth() / 2
-    centerOfPopoverFromLeft = @$popover.outerWidth() / 2
-    popoverLeftPos = centerOfButtonFromLeft - centerOfPopoverFromLeft
-    @$popover.css "left", popoverLeftPos
+    button_center = @$element.offset().left + @$element.outerWidth() / 2
+    popover_center = @$popover.outerWidth() / 2
+    @$popover.css 'left', button_center - popover_center
 
   _positionNipple: ->
-    centerOfPopoverFromLeft = @$popover.outerWidth() / 2
-    bottomOfButtonFromTop = @$element.offset().top + @$element.outerHeight() + 10
-    @$popover.css "top", bottomOfButtonFromTop
-    $nipple = @$popover.find(".popover_nipple")
-    centerOfnippleFromLeft = $nipple.outerWidth() / 2
-    nippleLeftPos = centerOfPopoverFromLeft - centerOfnippleFromLeft
-    $nipple.css "left", nippleLeftPos
+    @$popover.css 'top', @$element.offset().top     + @$element.outerHeight() + 10
+    @$nipple.css 'left', @$popover.outerWidth() / 2 - @$nipple.outerWidth() / 2
 
-(($) ->
-  $.widget.bridge 'popover', ActiveAdmin.Popover
-)(jQuery)
+$.widget.bridge 'popover', ActiveAdmin.Popover
