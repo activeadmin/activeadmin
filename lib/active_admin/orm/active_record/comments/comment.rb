@@ -10,9 +10,11 @@ module ActiveAdmin
 
     validates_presence_of :body, :namespace, :resource
 
+    before_create :set_resource_type
+
     # @returns [String] The name of the record to use for the polymorphic relationship
     def self.resource_type(record)
-      record.class.base_class.name.to_s
+      record.class.name.to_s
     end
 
     # Postgres adapters won't compare strings to numbers (issue 34)
@@ -32,6 +34,10 @@ module ActiveAdmin
 
     def self.table_name
       @table_name ||= ActiveRecord::Migrator.proper_table_name("active_admin_comments")
+    end
+
+    def set_resource_type
+      self.resource_type = self.class.resource_type(resource)
     end
 
   end
