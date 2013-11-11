@@ -20,6 +20,9 @@ Feature: Belongs To
     And I should not see a menu item for "Users"
     And I should see "Displaying 1 Post"
     And I should see a link to "Users" in the breadcrumb
+    And I should see a link to "Jane Doe" in the breadcrumb
+    When I follow "Edit"
+    Then I should see a link to "Hello World" in the breadcrumb
 
   Scenario: Viewing a child resource page
     Given a configuration of:
