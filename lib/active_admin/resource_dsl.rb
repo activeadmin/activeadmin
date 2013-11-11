@@ -17,6 +17,35 @@ module ActiveAdmin
       config.scope(*args, &block)
     end
 
+    #
+    # Rails 4 Strong Parameters Support
+    #
+    # Either
+    #
+    #   permit_params :title, :author, :body
+    #
+    # Or
+    #
+    #   permit_params do
+    #     defaults = [:title, :body]
+    #     if current_user.admin?
+    #       defaults + [:author]
+    #     else
+    #       defaults
+    #     end
+    #   end
+    #
+    def permit_params(*args, &block)
+      resource_sym = config.resource_name.singular.to_sym
+
+      controller do
+        define_method :permitted_params do
+          params.permit resource_sym =>
+                        block ? instance_exec(&block) : args
+        end
+      end
+    end
+
     # Configure the index page for the resource
     def index(options = {}, &block)
       options[:as] ||= :table
