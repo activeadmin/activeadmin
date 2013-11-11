@@ -22,12 +22,17 @@ da:
     has_many_new: "Tilføj ny(t) %{model}"
     has_many_delete: "Slet"
     has_many_remove: "Fjern"
-    filter: "Filtrer"
-    clear_filters: "Ryd filtre"
-    search_field: "Søg %{field}"
-    equal_to: "lig"
-    greater_than: "større end"
-    less_than: "mindre end"
+    filters:
+      buttons:
+        filter: "Filtrer"
+        clear: "Ryd filtre"
+      predicates:
+        contains: "Indeholder"
+        equals: "lig"
+        starts_with: "Begynder med"
+        ends_with: "Slutter med"
+        greater_than: "større end"
+        less_than: "mindre end"
     main_content: "Implementer venligst %{model}#main_content for at vise noget indhold."
     logout: "Log ud"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -38,6 +43,7 @@ da:
       one: "Viser <b>1</b> %{model}"
       one_page: "Viser <b>alle %{n}</b> %{model}"
       multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> af <b>%{total}</b> i alt"
+      multiple_without_total: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "post"
         other: "poster"

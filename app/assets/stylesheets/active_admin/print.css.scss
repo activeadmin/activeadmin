@@ -9,11 +9,9 @@ $text-color: black;
 @include global-reset;
 
 // Partials
-body.active_admin {
-  @import "active_admin/typography";
-}
+@import "active_admin/typography";
 
-body.active_admin {
+body {
   font-family: Helvetica, Arial, sans-serif;
   line-height: 150%;
   font-size: 72%;
@@ -23,8 +21,6 @@ body.active_admin {
   padding: .5%;
   color: $text-color;
 }
-
-body.active_admin {
 
 a {
   color: $text-color;
@@ -285,6 +281,4 @@ form {
 
     }
   }
-}
-
 }

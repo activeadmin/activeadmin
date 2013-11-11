@@ -20,10 +20,6 @@ Feature: Internationalization
 
   Scenario: Switching language at runtime
     Given I am logged in
-    And a configuration of:
-    """
-      ActiveAdmin.register Store
-    """
     When I set my locale to "fr"
     And I go to the dashboard
     Then I should see "Store"

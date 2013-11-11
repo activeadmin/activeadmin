@@ -8,9 +8,9 @@ describe ActiveAdmin::Filters::ResourceExtension do
   end
 
   it "should return the defaults if no filters are set" do
-    resource.filters.map{|f| f[:attribute].to_s }.sort.should == %w{
-      author body category created_at published_at starred title updated_at
-    }
+    resource.filters.keys.sort.should == [
+      :author, :body, :category, :created_at, :published_at, :starred, :taggings, :title, :updated_at
+    ]
   end
 
   it "should not have defaults when filters are disabled on the resource" do
@@ -28,11 +28,17 @@ describe ActiveAdmin::Filters::ResourceExtension do
     resource.filters.should be_empty
   end
 
-  context "filter removal" do
+  describe "removing a filter" do
     it "should work" do
-      resource.filters.should include :attribute => :author
+      resource.filters.keys.should include :author
       resource.remove_filter :author
-      resource.filters.should_not include :attribute => :author
+      resource.filters.keys.should_not include :author
+    end
+
+    it "should work as a string" do
+      resource.filters.keys.should include :author
+      resource.remove_filter 'author'
+      resource.filters.keys.should_not include :author
     end
 
     it "should be lazy" do
@@ -44,32 +50,59 @@ describe ActiveAdmin::Filters::ResourceExtension do
       resource.remove_filter :author
       resource.filters.should_not be_empty
     end
+
+    it "should raise an exception when filters are disabled" do
+      resource.filters = false
+      expect{ resource.remove_filter :author }.to raise_error ActiveAdmin::Filters::Disabled
+    end
   end
 
-  # TODO: wrap the below in a context like "filter removal" was above
-  it "should add a filter" do
-    resource.add_filter :title
-    resource.filters.should == [{:attribute => :title}]
-  end
-
-  it "should add a filter with options" do
-    resource.add_filter :title, :as => :string
-    resource.filters.should == [{:attribute => :title, :as => :string}]
-  end
-
-  it "should preserve default filters" do
-    resource.preserve_default_filters!
-    resource.add_filter :count, :as => :string
-    resource.filters.map{|f| f[:attribute].to_s }.sort.should == %w{
-      author body category count created_at published_at starred title updated_at
-    }
-  end
-
-  it "should raise an exception if trying to add a filter when they are disabled" do
-    resource.filters = false
-    expect {
+  describe "adding a filter" do
+    it "should work" do
       resource.add_filter :title
-    }.should raise_error(RuntimeError)
+      resource.filters.should eq title: {}
+    end
+
+    it "should work as a string" do
+      resource.add_filter 'title'
+      resource.filters.should eq title: {}
+    end
+
+    it "should work with specified options" do
+      resource.add_filter :title, as: :string
+      resource.filters.should eq title: {as: :string}
+    end
+
+    it "should override an existing filter" do
+      resource.add_filter :title, one: :two
+      resource.add_filter :title, three: :four
+
+      resource.filters.should eq title: {three: :four}
+    end
+
+    it "should keep specified options" do
+      resource.add_filter :title, one: :two
+
+      resource.filters.each do |attribute, opts|
+        opts.delete(:one)
+      end
+
+      resource.filters.should eq title: {one: :two}
+    end
+
+    it "should preserve default filters" do
+      resource.preserve_default_filters!
+      resource.add_filter :count, as: :string
+
+      resource.filters.keys.sort.should == [
+        :author, :body, :category, :count, :created_at, :published_at, :starred, :taggings, :title, :updated_at
+      ]
+    end
+
+    it "should raise an exception when filters are disabled" do
+      resource.filters = false
+      expect{ resource.add_filter :title }.to raise_error ActiveAdmin::Filters::Disabled
+    end
   end
 
   it "should reset filters" do

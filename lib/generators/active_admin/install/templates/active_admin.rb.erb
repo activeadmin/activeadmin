@@ -15,9 +15,9 @@ ActiveAdmin.setup do |config|
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
   #
-  # Note: Recommended image height is 21px to properly fit in the header
+  # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "/images/logo.png"
+  # config.site_title_image = "logo.png"
 
   # == Default Namespace
   #
@@ -57,6 +57,23 @@ ActiveAdmin.setup do |config|
   # within the controller.
   config.authentication_method = :authenticate_<%= @underscored_user_name %>!
 
+  # == User Authorization
+  #
+  # Active Admin will automatically call an authorization
+  # method in a before filter of all controller actions to
+  # ensure that there is a user with proper rights. You can use
+  # CanCanAdapter or make your own. Please refer to documentation.
+  # config.authorization_adapter = ActiveAdmin::CanCanAdapter
+
+  # You can customize your CanCan Ability class name here.
+  # config.cancan_ability_class = "Ability"
+
+  # You can specify a method to be called on unauthorized access.
+  # This is necessary in order to prevent a redirect loop which happens
+  # because, by default, user gets redirected to Dashboard. If user
+  # doesn't have access to Dashboard, he'll end up in a redirect loop.
+  # Method provided here should be defined in application_controller.rb.
+  # config.on_unauthorized_access = :access_denied
 
   # == Current User
   #
@@ -123,6 +140,11 @@ ActiveAdmin.setup do |config|
   # Active Admin resources and pages from here.
   #
   # config.before_filter :do_something_awesome
+  
+  
+  # == Setting a Favicon
+  #
+  # config.favicon = '/assets/favicon.ico'
 
 
   # == Register Stylesheets & Javascripts
@@ -143,11 +165,11 @@ ActiveAdmin.setup do |config|
 
   # == CSV options
   #
-  # Set the CSV builder separator (default is ',')
-  # config.csv_column_separator = ','
+  # Set the CSV builder separator
+  # config.csv_options = { :col_sep => ';' }
   #
-  # Set the CSV builder options (default is {})
-  # config.csv_options = {}
+  # Force the use of quotes
+  # config.csv_options = { :force_quotes => true }
 
 
   # == Menu System
@@ -186,6 +208,10 @@ ActiveAdmin.setup do |config|
   #
   #     # Only show XML & PDF options
   #     admin.download_links = [:xml, :pdf]
+  #
+  #     # Enable/disable the links based on block
+  #     #   (for example, with cancan)
+  #     admin.download_links = proc { can?(:view_download_links) }
   #
   #   end
 

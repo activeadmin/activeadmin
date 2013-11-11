@@ -230,9 +230,11 @@ module ActiveAdmin
         end
       end
 
+      # Applies any Ransack search methods to the currently scoped collection.
+      # Both `search` and `ransack` are provided, but we use `ransack` to prevent conflicts.
       def apply_filtering(chain)
-        @search = chain.metasearch(clean_search_params(params[:q]))
-        @search.relation
+        @search = chain.ransack clean_search_params params[:q]
+        @search.result
       end
 
       def clean_search_params(search_params)
@@ -267,21 +269,16 @@ module ActiveAdmin
       end
 
       def apply_pagination(chain)
-        page_method_name = Kaminari.config.page_method_name
-        page = params[Kaminari.config.param_name]
+        page_method = Kaminari.config.page_method_name
+        page_param  = params[Kaminari.config.param_name]
 
-        chain.send(page_method_name, page).per(per_page)
+        chain.send(page_method, page_param).per(per_page)
       end
 
       def per_page
-        return max_csv_records if request.format == 'text/csv'
         return max_per_page if active_admin_config.paginate == false
 
         @per_page || active_admin_config.per_page
-      end
-
-      def max_csv_records
-        10_000
       end
 
       def max_per_page

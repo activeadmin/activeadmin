@@ -5,8 +5,8 @@
   .blank_slate {
     @include rounded;
     -webkit-font-smoothing: antialiased;
-    border: 1px dashed #DADADA;
-    color: #AAA;
+    border:  $blank-slate-border;
+    color: $blank-slate-primary-color;
     display: inline-block;
     font-size: 1.2em;
     font-weight: bold;

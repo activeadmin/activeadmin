@@ -48,7 +48,7 @@ Feature: Format as CSV
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        csv :separator => ';' do
+        csv :col_sep => ';' do
           column :title
           column :body
         end
@@ -65,7 +65,7 @@ Feature: Format as CSV
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        csv :options => {:force_quotes => true} do
+        csv :force_quotes => true do
           column :title
           column :body
         end
@@ -82,7 +82,7 @@ Feature: Format as CSV
   Scenario: With default CSV separator option
     Given a configuration of:
     """
-      ActiveAdmin.application.csv_column_separator = ';'
+      ActiveAdmin.application.csv_options = { :col_sep => ';' }
       ActiveAdmin.register Post do
         csv do
           column :title
@@ -100,8 +100,7 @@ Feature: Format as CSV
   Scenario: With default CSV options
     Given a configuration of:
     """
-      ActiveAdmin.application.csv_options = {:force_quotes => true}
-      ActiveAdmin.application.csv_column_separator = ','
+      ActiveAdmin.application.csv_options = {:col_sep => ',', :force_quotes => true}
       ActiveAdmin.register Post do
         csv do
           column :title

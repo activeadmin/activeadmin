@@ -17,6 +17,35 @@ module ActiveAdmin
       config.scope(*args, &block)
     end
 
+    #
+    # Rails 4 Strong Parameters Support
+    #
+    # Either
+    #
+    #   permit_params :title, :author, :body
+    #
+    # Or
+    #
+    #   permit_params do
+    #     defaults = [:title, :body]
+    #     if current_user.admin?
+    #       defaults + [:author]
+    #     else
+    #       defaults
+    #     end
+    #   end
+    #
+    def permit_params(*args, &block)
+      resource_sym = config.resource_name.singular.to_sym
+
+      controller do
+        define_method :permitted_params do
+          params.permit resource_sym =>
+                        block ? instance_exec(&block) : args
+        end
+      end
+    end
+
     # Configure the index page for the resource
     def index(options = {}, &block)
       options[:as] ||= :table
@@ -41,7 +70,7 @@ module ActiveAdmin
     #     column("Author") { |post| post.author.full_name }
     #   end
     #
-    #   csv :separator => ";", :options => { :force_quotes => true } do
+    #   csv :col_sep => ";", :force_quotes => true do
     #     column :name
     #   end
     #
@@ -117,7 +146,7 @@ module ActiveAdmin
     delegate :before_destroy, :after_destroy, :to => :controller
 
     # Standard rails filters
-    delegate :before_filter, :skip_before_filter, :after_filter, :around_filter, :to => :controller
+    delegate :before_filter, :skip_before_filter, :after_filter, :around_filter, :skip_filter, :to => :controller
 
     # Specify which actions to create in the controller
     #

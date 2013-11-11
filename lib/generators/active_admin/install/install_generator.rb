@@ -39,11 +39,7 @@ module ActiveAdmin
       end
 
       def create_migrations
-        Dir["#{self.class.source_root}/migrations/*.rb"].sort.each do |filepath|
-          name = File.basename(filepath)
-          migration_template "migrations/#{name}", "db/migrate/#{name.gsub(/^\d+_/,'')}"
-          sleep 1
-        end
+        migration_template 'migrations/create_active_admin_comments.rb', 'db/migrate/create_active_admin_comments.rb'
       end
     end
   end

@@ -8,6 +8,11 @@ Then /^I should see the attribute "([^"]*)" with a nicely formatted datetime$/ d
   text.should match /\w+ \d{1,2}, \d{4} \d{2}:\d{2}/
 end
 
+Then /^the attribute "([^"]*)" should be empty$/ do |title|
+  elems = all ".attributes_table th:contains('#{title}') ~ td > span.empty"
+  elems.first.should_not be_nil, 'attribute not empty'
+end
+
 Then /^I should not see the attribute "([^"]*)"$/ do |title|
   page.should_not have_css('.attributes_table th', :text => title)
 end
