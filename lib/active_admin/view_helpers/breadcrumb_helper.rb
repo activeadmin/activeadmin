@@ -12,8 +12,9 @@ module ActiveAdmin
           # 2. try using the model name translation
           # 3. default to calling `titlecase` on the URL fragment
           if part =~ /\A(\d+|[a-f0-9]{24})\z/ && parts[index-1]
-            config = active_admin_config.belongs_to_config.try(:target) || active_admin_config
-            name   = display_name config.find_resource(part)
+            parent = active_admin_config.belongs_to_config.try :target
+            config = parent && parent.resource_name.route_key == parts[index-1] ? parent : active_admin_config
+            name   = display_name config.find_resource part
           end
           name ||= I18n.t "activerecord.models.#{part.singularize}", :count => 1.1, :default => part.titlecase
 
