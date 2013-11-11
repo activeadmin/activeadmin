@@ -17,7 +17,7 @@ describe ActiveAdmin::Views::TabbedNavigation do
   let(:html) { tabbed_navigation.to_s }
 
   before do
-    helpers.stub!(:admin_logged_in?).and_return(false)
+    helpers.stub(:admin_logged_in?).and_return(false)
   end
 
   describe "rendering a menu" do

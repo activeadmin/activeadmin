@@ -1,5 +1,9 @@
 # Rails template to build the sample app for specs
 
+run "rm Gemfile"
+run "rm -r test"
+run "rm -r spec"
+
 # Create a cucumber database and environment
 copy_file File.expand_path('../templates/cucumber.rb', __FILE__),                "config/environments/cucumber.rb"
 copy_file File.expand_path('../templates/cucumber_with_reloading.rb', __FILE__), "config/environments/cucumber_with_reloading.rb"
@@ -12,8 +16,10 @@ generate :model, "post title:string body:text published_at:datetime author_id:in
 inject_into_file 'app/models/post.rb', %q{
   belongs_to :category
   belongs_to :author, :class_name => 'User'
+  has_many :taggings
   accepts_nested_attributes_for :author
-  attr_accessible :author if Rails::VERSION::STRING >= '3.2'
+  accepts_nested_attributes_for :taggings
+  attr_accessible :author unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
 }, :after => 'class Post < ActiveRecord::Base'
 copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), "app/models/post_decorator.rb"
 
@@ -29,6 +35,7 @@ generate :model, 'publisher --migration=false --parent=User'
 generate :model, 'category name:string description:text'
 inject_into_file 'app/models/category.rb', %q{
   has_many :posts
+  has_many :authors, through: :posts
   accepts_nested_attributes_for :posts
 }, :after => 'class Category < ActiveRecord::Base'
 generate :model, 'store name:string'
@@ -46,9 +53,11 @@ inject_into_file 'app/models/tag.rb', %q{
   end
 }, :after => 'class Tag < ActiveRecord::Base'
 
-if Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR == 1 #Rails 3.1 Gotcha
-  gsub_file 'app/models/tag.rb', /self\.primary_key.*$/, "define_attr_method :primary_key, :id"
-end
+generate :model, "tagging post_id:integer tag_id:integer"
+inject_into_file 'app/models/tagging.rb', %q{
+  belongs_to :post
+  belongs_to :tag
+}, :after => 'class Tagging < ActiveRecord::Base'
 
 # Configure default_url_options in test environment
 inject_into_file "config/environments/test.rb", "  config.action_mailer.default_url_options = { :host => 'example.com' }\n", :after => "config.cache_classes = true\n"
@@ -62,23 +71,9 @@ append_file "config/locales/en.yml", File.read(File.expand_path('../templates/en
 # Add predefined admin resources
 directory File.expand_path('../templates/admin', __FILE__), "app/admin"
 
-run "rm Gemfile"
-run "rm -r test"
-run "rm -r spec"
-
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-# we need this routing path, named "logout_path", for testing
-route %q{
-  devise_scope :user do
-    match '/admin/logout' => 'active_admin/devise/sessions#destroy', :as => :logout
-  end
-}
-
 generate :'active_admin:install'
-
-# Setup a root path for devise
-route "root :to => 'admin/dashboard#index'"
 
 rake "db:migrate"
 rake "db:test:prepare"
@@ -116,3 +111,4 @@ namespace :parallel do
   end
 end
 }
+

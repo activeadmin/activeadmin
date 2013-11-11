@@ -7,10 +7,10 @@ module ActiveAdmin
         'table'
       end
 
-      def build(collection, options = {})
-        @sortable = options.delete(:sortable)
+      def build(record_or_collection, options = {})
+        @sortable       = options.delete(:sortable)
         @resource_class = options.delete(:i18n)
-        @collection = collection
+        @collection     = Array(record_or_collection)
         @columns = []
         build_table
         super(options)
@@ -32,18 +32,13 @@ module ActiveAdmin
         # Add a table cell for each item
         @collection.each_with_index do |item, i|
           within @tbody.children[i] do
-            build_table_cell(col, item)
+            build_table_cell col, item
           end
         end
       end
 
       def sortable?
-        @sortable
-      end
-
-      # Returns the columns to display based on the conditional block
-      def visible_columns
-        @visible_columns ||= @columns.select{|col| col.display_column? }
+        !!@sortable
       end
 
       protected
@@ -60,19 +55,20 @@ module ActiveAdmin
       end
 
       def build_table_header(col)
-        classes = Arbre::HTML::ClassList.new
+        classes  = Arbre::HTML::ClassList.new
         sort_key = sortable? && col.sortable? && col.sort_key
+        params   = request.query_parameters.except :page, :order, :commit, :format
 
         classes << 'sortable'                         if sort_key
         classes << "sorted-#{current_sort[1]}"        if sort_key && current_sort[0] == sort_key
         classes << col.html_class
 
         if sort_key
-          th :class => classes do
-            link_to(col.pretty_title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
+          th class: classes do
+            link_to col.pretty_title, params: params, order: "#{sort_key}_#{order_for_sort_key(sort_key)}"
           end
         else
-          th(col.pretty_title, :class => classes)
+          th col.pretty_title, class: classes
         end
       end
 
@@ -84,12 +80,10 @@ module ActiveAdmin
       end
 
       def build_table_cell(col, item)
-        td(:class =>  col.html_class) do
-          rvalue = call_method_or_proc_on(item, col.data, :exec => false)
-          if col.data.is_a?(Symbol)
-            rvalue = pretty_format(rvalue)
-          end
-          rvalue
+        td class: col.html_class do
+          value = call_method_or_proc_on item, col.data, exec: false
+          value = pretty_format(value) if col.data.is_a?(Symbol)
+          value
         end
       end
 
@@ -97,7 +91,7 @@ module ActiveAdmin
       #   current_sort[0] #=> sort_key
       #   current_sort[1] #=> asc | desc
       def current_sort
-        @current_sort ||= if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
+        @current_sort ||= if params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
           [$1,$2]
         else
           []
@@ -124,12 +118,18 @@ module ActiveAdmin
 
         attr_accessor :title, :data , :html_class
 
-        def initialize(*args, &block)
+        def initialize(*args, &block) 
           @options = args.extract_options!
 
           @title = args[0]
-          @html_class = @options.delete(:class) || @title.to_s.downcase.underscore.gsub(/ +/,'_')
-          @data  = args[1] || args[0]
+          html_classes = [:col]
+          if @options.has_key?(:class)
+            html_classes << @options.delete(:class)
+          elsif @title.present?
+            html_classes << "col-#{@title.to_s.parameterize('_')}"
+          end
+          @html_class = html_classes.join(' ')
+          @data = args[1] || args[0]
           @data = block if block
           @resource_class = args[2]
         end
@@ -174,12 +174,12 @@ module ActiveAdmin
         end
 
         def pretty_title
-          if @title.is_a?(Symbol)
-            default_title =  @title.to_s.titleize
-            if @options[:i18n] && @options[:i18n].respond_to?(:human_attribute_name)
-              @title = @options[:i18n].human_attribute_name(@title, :default => default_title)
+          if @title.is_a? Symbol
+            default = @title.to_s.titleize
+            if @options[:i18n].respond_to? :human_attribute_name
+              @title = @options[:i18n].human_attribute_name @title, default: default
             else
-              default_title
+              default
             end
           else
             @title

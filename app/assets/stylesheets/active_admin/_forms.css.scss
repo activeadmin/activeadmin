@@ -24,12 +24,15 @@ form {
         float: left;
         font-size: 1.0em;
         font-weight: bold;
-        color: $section-header-text-color;
-        abbr { border: none; color: #aaa; }
+        color: $form-label-color;
+        abbr {
+          border: none;
+          color:  $required-field-marker-color;
+        }
       }
     }
 
-    ol > div.has_many {
+    ol > li.has_many_container {
       padding: 20px 10px;
       h3 {
         font-size: 12px;
@@ -49,6 +52,13 @@ form {
   }
 
   /* Nested Fieldsets and Legends */
+  li.has_many_container {
+    fieldset.has_many_fields {
+      margin: 10px 0;
+    }
+
+  }
+
   fieldset > ol > li {
     fieldset {
       position:relative;
@@ -67,15 +77,10 @@ form {
       }
 
       ol {
-        float:left;
-        width:74%;
-        margin:0;
-        padding:0 0 0 20%;
-
-        li {
-          padding:0;
-          border:0;
-        }
+        float: left;
+        width: 100%;
+        margin: 0;
+        padding: 0;
       }
     }
   }
@@ -143,6 +148,11 @@ form {
       }
     }
 
+    /* Hidden fields */
+    &.hidden {
+      padding: 0;
+    }
+
     /* Errors */
     p.inline-errors {
       color: $error-color;
@@ -157,7 +167,7 @@ form {
     }
 
     &.error {
-      input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
+      input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
         border: 1px solid $error-color;
       }
     }
@@ -210,7 +220,7 @@ $sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
   label {
     display: block;
     text-transform: uppercase;
-    color: $section-header-text-color;
+    color:  $form-label-color;
     font-size: 0.9em;
     font-weight: bold;
   }
@@ -241,7 +251,7 @@ form.filter_form {
     margin-bottom: 10px;
     clear: both;
 
-    &.filter_numeric {
+    &.select_and_search {
       input[type=text] {
         margin-left: $filter-field-seperator-width + 4;
         width: $side-by-side-filter-input-width;
@@ -253,6 +263,10 @@ form.filter_form {
 
     &.filter_check_boxes {
       label { margin-bottom: 3px; }
+      fieldset {
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+      }
       .check_boxes_wrapper label {
         font-weight: normal;
         margin-bottom: 3px;
@@ -270,7 +284,7 @@ form.filter_form {
       }
 
       input[type=text] {
-        background: #fff url(active_admin_image_path('datepicker/datepicker-input-icon.png')) no-repeat 100% 7px;
+        background: #fff image-url('active_admin/datepicker/datepicker-input-icon.png') no-repeat 100% 7px;
         padding-right: $date-range-filter-input-right-padding;
         width: $date-range-filter-input-width;
       }

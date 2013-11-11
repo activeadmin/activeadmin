@@ -40,7 +40,7 @@ describe ActiveAdmin::ResourceController do
     end
 
     it "should call the current_user_method when set" do
-      user = mock
+      user = double
       namespace = controller.class.active_admin_config.namespace
 
       namespace.should_receive(:current_user_method).twice.
@@ -54,10 +54,9 @@ describe ActiveAdmin::ResourceController do
 
 
   describe "callbacks" do
-    let(:application){ ::ActiveAdmin::Application.new }
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
-
     before :all do
+      application = ::ActiveAdmin::Application.new
+      namespace = ActiveAdmin::Namespace.new(application, :admin)
       namespace.register Post do
         after_build :call_after_build
         before_save :call_before_save
@@ -85,7 +84,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing create" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ mock("Resource", :save => true) }
+      let(:resource){ double("Resource", :save => true) }
 
       before do
         resource.should_receive(:save)
@@ -111,7 +110,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing update" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ mock("Resource", :attributes= => true, :save => true) }
+      let(:resource){ double("Resource", :attributes= => true, :save => true) }
       let(:attributes){ [{}] }
 
       before do
@@ -139,7 +138,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing destroy" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ mock("Resource", :destroy => true) }
+      let(:resource){ double("Resource", :destroy => true) }
 
       before do
         resource.should_receive(:destroy)
@@ -232,7 +231,7 @@ describe Admin::PostsController, :type => "controller" do
         redirect_to collection_path
       end
 
-      controller.class.active_admin_config.stub!(:batch_actions).and_return([batch_action])
+      controller.class.active_admin_config.stub(:batch_actions).and_return([batch_action])
     end
 
     describe "when params batch_action matches existing BatchAction" do
@@ -245,9 +244,9 @@ describe Admin::PostsController, :type => "controller" do
       it "should raise an error" do
         pending # doesn't pass when running whole spec suite (WTF)
 
-        lambda {
+        expect {
           post(:batch_action, :batch_action => "derp", :collection_selection => ["1"])
-        }.should raise_error("Couldn't find batch action \"derp\"")
+        }.to raise_error("Couldn't find batch action \"derp\"")
       end
     end
 
@@ -255,9 +254,9 @@ describe Admin::PostsController, :type => "controller" do
       it "should raise an error" do
         pending # doesn't pass when running whole spec suite (WTF)
 
-        lambda {
+        expect {
           post(:batch_action, :collection_selection => ["1"])
-        }.should raise_error("Couldn't find batch action \"\"")
+        }.to raise_error("Couldn't find batch action \"\"")
       end
     end
 

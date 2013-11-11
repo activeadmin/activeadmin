@@ -11,6 +11,8 @@
   <% ActiveAdmin.application.javascripts.each do |path| %>
     <%= javascript_include_tag path %>
   <% end %>
+  
+  <%= favicon_link_tag ActiveAdmin.application.favicon if ActiveAdmin.application.favicon %>
 
   <%= csrf_meta_tag %>
 </head>

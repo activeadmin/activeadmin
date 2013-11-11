@@ -70,9 +70,9 @@ module ActiveAdmin
         # @return params to pass to instance path
         def route_instance_params(instance)
           if nested?
-            [instance.send(belongs_to_name).id, instance.id]
+            [instance.send(belongs_to_name).to_param, instance.to_param]
           else
-            instance.id
+            instance.to_param
           end
         end
 

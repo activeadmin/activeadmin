@@ -5,7 +5,7 @@ describe ActiveAdmin::ScopeChain do
   include ActiveAdmin::ScopeChain
 
   describe "#scope_chain" do
-    let(:relation) { mock }
+    let(:relation) { double }
 
     context "when Scope has a scope method" do
       let(:scope) { ActiveAdmin::Scope.new :published }

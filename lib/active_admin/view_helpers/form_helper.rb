@@ -6,8 +6,8 @@ module ActiveAdmin
         options = Marshal.load( Marshal.dump(options) )
         options[:builder] ||= ActiveAdmin::FormBuilder
 
-        if ! options.fetch(:decorate, true)
-          resource = resource.model
+        if !options.fetch(:decorate, true)
+          resource = resource.model if resource.respond_to? :model
         end
 
         semantic_form_for resource, options, &block

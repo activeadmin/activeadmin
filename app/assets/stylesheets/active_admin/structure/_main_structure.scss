@@ -1,11 +1,14 @@
 #wrapper {
-  display: table;
   width: 100%;
+}
+
+.index #wrapper {
+  display: table;
 }
 
 #active_admin_content {
   margin: 0;
-  padding: 25px $horizontal-page-margin;
+  padding: $horizontal-page-margin;
 
   #main_content_wrapper {
     float: left;

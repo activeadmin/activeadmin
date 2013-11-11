@@ -30,7 +30,7 @@ table.index_table {
     }
 
     &.sortable a {
-      background: url(active_admin_image_path('orderable.png')) no-repeat 0 4px; padding-left: 13px;
+      background: image-url('active_admin/orderable.png') no-repeat 0 4px; padding-left: 13px;
     }
 
     &.sorted-asc a { background-position: 0 -27px; }
@@ -80,6 +80,8 @@ table.index_table {
 .attributes_table { overflow: hidden; }
 
 .attributes_table table {
+  col.even { background: $table-stripe-color; }
+  col.odd  { background: darken($table-stripe-color, 3%); }
   th, td {
     padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
     vertical-align: top;

@@ -1,18 +1,11 @@
 require 'spec_helper'
 
-class AutoLinkMockResource
-  attr_accessor :namespace
-  def initialize(namespace)
-    @namespace = namespace
-  end
-end
-
 describe "auto linking resources" do
   include ActiveAdmin::ViewHelpers::ActiveAdminApplicationHelper
   include ActiveAdmin::ViewHelpers::AutoLinkHelper
   include ActiveAdmin::ViewHelpers::DisplayHelper
 
-  let(:active_admin_config) { AutoLinkMockResource.new(namespace) }
+  let(:active_admin_config)   { double namespace: namespace }
   let(:active_admin_namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
   let(:post){ Post.create! :title => "Hello World" }
 

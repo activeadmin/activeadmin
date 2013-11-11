@@ -1,10 +1,4 @@
-CSVLib = if RUBY_VERSION =~ /^1.8/
-            require 'fastercsv'
-            FasterCSV
-          else
-            require 'csv'
-            CSV
-          end
+require 'csv'
 
 Then "I should see nicely formatted datetimes" do
   page.body.should =~ /\w+ \d{1,2}, \d{4} \d{2}:\d{2}/
@@ -19,11 +13,10 @@ end
 Then /^I should download a CSV file with "([^"]*)" separator for "([^"]*)" containing:$/ do |sep, resource_name, table|
   body    = page.driver.response.body
   headers = page.response_headers
-  headers['Content-Type'].should        eq 'text/csv; charset=utf-8'
-  headers['Content-Disposition'].should eq %{attachment; filename="#{resource_name}-#{Time.now.strftime("%Y-%m-%d")}.csv"}
+  headers['Content-Type'].should eq 'text/csv; charset=utf-8'
 
   begin
-    csv = CSVLib.parse(body, :col_sep => sep)
+    csv = CSV.parse(body, :col_sep => sep)
     table.raw.each_with_index do |expected_row, row_index|
       expected_row.each_with_index do |expected_cell, col_index|
         cell = csv.try(:[], row_index).try(:[], col_index)

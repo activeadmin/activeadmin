@@ -15,7 +15,7 @@
     display: table-cell;
     vertical-align: middle;
     white-space: nowrap;
-    color: #cdcdcd;
+    color:  $page-header-text-color;
     margin-right: 20px;
     margin-bottom: 0px;
     padding: 3px $horizontal-page-margin 0 $horizontal-page-margin;
@@ -37,7 +37,7 @@
     }
   }
 
-  a, a:link { color: #cdcdcd; }
+  a, a:link { color: $page-header-text-color; }
 
   .header-item {
     top: 2px;
@@ -73,13 +73,13 @@
       }
 
       &.has_nested > a {
-        background: url(active_admin_image_path('nested_menu_arrow.gif')) no-repeat 89% 50%;
+        background: image-url('active_admin/nested_menu_arrow.gif') no-repeat 89% 50%;
         padding-right: 20px;
         z-index: 1050;
       }
 
       &.has_nested.current > a {
-        background: $current-menu-item-background url(active_admin_image_path('nested_menu_arrow_dark.gif')) no-repeat 89% 50%;
+        background: $current-menu-item-background image-url('active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%;
         padding-right: 20px;
       }
 
@@ -91,7 +91,7 @@
       &.has_nested:hover > a {
         @include rounded-top(10px);
         border-bottom: 5px solid $hover-menu-item-background;
-        background: $hover-menu-item-background url(active_admin_image_path('nested_menu_arrow_dark.gif')) no-repeat 89% 50%;
+        background: $hover-menu-item-background image-url('active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%;
       }
 
 

@@ -22,12 +22,17 @@ ja:
     has_many_new: "新規に %{model} を追加する"
     has_many_delete: "削除する"
     has_many_remove: "削除する"
-    filter: "絞り込む"
-    clear_filters: "条件を削除する"
-    search_field: "%{field} で絞り込む"
-    equal_to: "等しい"
-    greater_than: "より大きい"
-    less_than: "より小さい"
+    filters:
+      buttons:
+        filter: "絞り込む"
+        clear: "条件を削除する"
+      predicates:
+        contains: "含まれています"
+        equals: "等しい"
+        starts_with: "で始まる"
+        ends_with: "で終わる"
+        greater_than: "より大きい"
+        less_than: "より小さい"
     main_content: "内容を表示するために %{model}#main_content を実装してください。"
     logout: "ログアウト"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -38,7 +43,10 @@ ja:
       one: "<b>1</b> 件の %{model} を表示しています"
       one_page: "<b>全 %{n}</b> 件の %{model} を表示しています"
       multiple: "全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
-      entry: レコード
+      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
+      entry: 
+        one: "レコード"
+        other: "レコード"
     any: "任意"
     blank_slate:
       content: "%{resource_name} はまだありません。"
@@ -55,6 +63,8 @@ ja:
       labels:
         destroy: "削除する"
     comments:
+      resource_type: "リソース種別"
+      author_type: "作成者種別"
       body: "本文"
       author: "作成者"
       title: "コメント"
@@ -75,7 +85,20 @@ ja:
       change_password:
         title: "パスワードを変更する"
         submit: "パスワードを変更する"
+      unlock:
+        title: "ロックの解除方法を送る"
+        submit: "ロックの解除方法を送る"
       links:
         sign_in: "サインイン"
+        sign_up: "ユーザ登録"
         forgot_your_password: "パスワードをお忘れですか？"
         sign_in_with_omniauth_provider: "%{provider}のアカウントを使ってログイン"
+        resend_confirmation_instructions: "ユーザ確認手順を再送する"
+        resend_unlock_instructions: "ロックの解除方法を再送する"
+    access_denied:
+      message: "アクションを実行する権限がありません"
+    index_list:
+      table: "テーブル"
+      block: "リスト"
+      grid: "グリッド"
+      blog: "ブログ"

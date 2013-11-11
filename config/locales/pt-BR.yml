@@ -1,4 +1,4 @@
-"pt-BR":
+pt-BR:
   active_admin:
     dashboard: "Painel Administrativo"
     dashboard_welcome:
@@ -22,12 +22,17 @@
     has_many_new: "Adicionar Novo(a) %{model}"
     has_many_delete: "Remover"
     has_many_remove: "Remover"
-    filter: "Filtrar"
-    clear_filters: "Limpar Filtros"
-    search_field: "Pesquisar %{field}"
-    equal_to: "Igual A"
-    greater_than: "Maior Que"
-    less_than: "Menor Que"
+    filters:
+      buttons:
+        filter: "Filtrar"
+        clear: "Limpar Filtros"
+      predicates:
+        contains: "Contém"
+        equals: "Igual A"
+        starts_with: "Começa com"
+        ends_with: "Termina com"
+        greater_than: "Maior Que"
+        less_than: "Menor Que"
     main_content: "Por favor implemente %{model}#main_content para exibir conteúdo."
     logout: "Sair"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -38,6 +43,7 @@
       one: "Exibindo <b>1</b> %{model}"
       one_page: "Exibindo <b>todos(as) os(as) %{n}</b> %{model}"
       multiple: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
+      multiple_without_total: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "registro"
         other: "registros"
@@ -57,16 +63,27 @@
       labels:
         destroy: "Excluído"
     comments:
+      resource_type: "Tipo de Objeto"
+      author_type: "Tipo de Autor"
       body: "Conteúdo"
       author: "Autor"
       title: "Comentário"
       add: "Adicionar Comentário"
       resource: "Objeto"
       no_comments_yet: "Nenhum comentário."
+      author_missing: "Anônimo"
       title_content: "Comentários: %{count}"
       errors:
         empty_text: "O comentário não foi salvo porque o texto estava vazio."
     devise:
+      username:
+        title: "Nome de Usuário"
+      email:
+        title: "E-mail"
+      subdomain:
+        title: "Subdomínio"
+      password:
+        title: "Senha"
       login:
         title: "Conta"
         remember_me: "Lembrar da senha"
@@ -77,7 +94,17 @@
       change_password:
         title: "Troque sua senha"
         submit: "Troque minha senha"
+      unlock:
+        title: "Reenviar instruções de desbloqueio"
+        submit: "Reenviar instruções de desbloqueio"
       links:
         sign_in: "Entrar"
         forgot_your_password: "Esqueceu sua senha?"
         sign_in_with_omniauth_provider: "Entre com o %{provider}"
+    access_denied:
+      message: "Você não tem permissão para realizar o solicitado"
+    index_list:
+      table: "Tabela"
+      block: "Lista"
+      grid: "Grid"
+      blog: "Blog"

@@ -39,6 +39,7 @@ module ActiveAdmin
         @collection     = collection
         @param_name     = options.delete(:param_name)
         @download_links = options.delete(:download_links)
+        @display_total  = options.delete(:pagination_total) { true }
 
         unless collection.respond_to?(:num_pages)
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
@@ -65,17 +66,19 @@ module ActiveAdmin
           build_pagination
           div(page_entries_info(options).html_safe, :class => "pagination_information")
 
-          if @download_links.is_a?(Array) && !@download_links.empty?
-            build_download_format_links @download_links
+          download_links = @download_links.is_a?(Proc) ? instance_exec(&@download_links) : @download_links
+
+          if download_links.is_a?(Array) && !download_links.empty?
+            build_download_format_links download_links
           else
-            build_download_format_links unless @download_links == false
+            build_download_format_links unless download_links == false
           end
 
         end
       end
 
       def build_pagination
-        options =  request.query_parameters.except(:commit, :format)
+        options = request.path_parameters
         options[:param_name] = @param_name if @param_name
 
         text_node paginate(collection, options.symbolize_keys)
@@ -106,8 +109,14 @@ module ActiveAdmin
           end
         else
           offset = (collection.current_page - 1) * collection.limit_value
-          total  = collection.total_count
-          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => offset + 1, :to => offset + collection_size, :total => total)
+          if @display_total
+            total  = collection.total_count
+            I18n.t 'active_admin.pagination.multiple', :model => entries_name, :total => total,
+              :from => offset + 1, :to => offset + collection_size
+          else
+            I18n.t 'active_admin.pagination.multiple_without_total', :model => entries_name,
+              :from => offset + 1, :to => offset + collection_size
+          end
         end
       end
 

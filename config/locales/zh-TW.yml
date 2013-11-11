@@ -22,12 +22,17 @@
     has_many_new: "增加新的 %{model}"
     has_many_delete: "刪除"
     has_many_remove: "清除"
-    filter: "篩選"
-    clear_filters: "清除篩選條件"
-    search_field: "搜尋 %{field}"
-    equal_to: "等於"
-    greater_than: "大於"
-    less_than: "小於"
+    filters:
+      buttons:
+        filter: "篩選"
+        clear: "清除篩選條件"
+      predicates:
+        contains: "包含"
+        equals: "等於"
+        starts_with: "开头"
+        ends_with: "完与"
+        greater_than: "大於"
+        less_than: "小於"
     main_content: "請編寫 %{model}#main_content 以顯示內容。"
     logout: "登出"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -38,6 +43,7 @@
       one: "顯示 <b>1</b> %{model}"
       one_page: "顯示 <b>全部 %{n}</b> %{model}"
       multiple: "總計 <b>%{total}</b> 顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆"
+      multiple_without_total: "顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆"
       entry:
         one: "筆"
         other: "筆"
