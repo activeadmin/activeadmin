@@ -23,7 +23,7 @@ module ActiveAdmin
     # eg:
     #
     #   ActiveAdmin.register Post do
-    #     config.sort_order = "id_desc"
+    #     config.sort_order = "id desc"
     #   end
     #
     def config

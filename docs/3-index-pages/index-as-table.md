@@ -135,7 +135,7 @@ Then it's simple to sort by any Publisher attribute from within the index table:
 
 ```ruby
 index do
-  column :publisher, sortable: 'publishers.name'
+  column :publisher, sortable: :publisher_name
 end
 ```
 

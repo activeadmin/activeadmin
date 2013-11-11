@@ -57,15 +57,18 @@ module ActiveAdmin
       def build_table_header(col)
         classes  = Arbre::HTML::ClassList.new
         sort_key = sortable? && col.sortable? && col.sort_key
+        order    = Array(params[:order]).first =~ / desc\z/ ? 'asc' : 'desc'
         params   = request.query_parameters.except :page, :order, :commit, :format
 
-        classes << 'sortable'                         if sort_key
-        classes << "sorted-#{current_sort[1]}"        if sort_key && current_sort[0] == sort_key
-        classes << col.html_class
+        # classes << 'sortable'                         if sort_key
+        # classes << "sorted-#{current_sort[1]}"        if sort_key && current_sort[0] == sort_key
+        # classes << col.html_class
 
         if sort_key
+          
+          sorts = Array(sort_key).map{ |k| "#{k} #{order}" }
           th class: classes do
-            link_to col.pretty_title, params: params, order: "#{sort_key}_#{order_for_sort_key(sort_key)}"
+            link_to col.pretty_title, params: params, order: sorts.one? ? sorts.first : sorts
           end
         else
           th col.pretty_title, class: classes
@@ -91,7 +94,7 @@ module ActiveAdmin
       #   current_sort[0] #=> sort_key
       #   current_sort[1] #=> asc | desc
       def current_sort
-        @current_sort ||= if params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
+        @current_sort ||= if params[:order] =~ /^([\w\_\.]+) (desc|asc)$/
           [$1,$2]
         else
           []
@@ -167,9 +170,9 @@ module ActiveAdmin
         def sort_key
           # If boolean or nil, use the default sort key.
           if @options[:sortable] == true || @options[:sortable] == false || @options[:sortable].nil?
-            @data.to_s
+            @data
           else
-            @options[:sortable].to_s
+            @options[:sortable]
           end
         end
 
