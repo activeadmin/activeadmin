@@ -49,9 +49,11 @@ module ActiveAdmin
     end
 
     def has_many(assoc, options = {}, &block)
-      options = {for: assoc, new_record: true}.merge options
-      options[:class] ||= ""
-      options[:class] << "inputs has_many_fields"
+      # remove options that should not render as attributes
+      custom_settings = :new_record, :allow_destroy, :heading
+      builder_options = {new_record: true}.merge! options.slice  *custom_settings
+      options         = {for: assoc      }.merge! options.except *custom_settings
+      options[:class] = [options[:class], "inputs has_many_fields"].compact.join(' ')
 
       # Add Delete Links
       form_block = proc do |has_many_form|
@@ -62,25 +64,29 @@ module ActiveAdmin
           contents << template.content_tag(:li) do
             template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
           end
-        elsif options[:allow_destroy]
+        elsif builder_options[:allow_destroy]
           has_many_form.input :_destroy, as: :boolean, wrapper_html: {class: 'has_many_delete'},
                                                        label: I18n.t('active_admin.has_many_delete')
         end
         contents
       end
 
-      form_buffers.last << with_new_form_buffer do
-        template.content_tag :div, class: "has_many #{assoc}" do
-          unless options.key?(:heading) && !options[:heading]
-            form_buffers.last << template.content_tag(:h3) do
-              options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: 1.1)
-            end
+      html = without_wrapper do
+        unless builder_options.key?(:heading) && !builder_options[:heading]
+          form_buffers.last << template.content_tag(:h3) do
+            builder_options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: 1.1)
           end
-
-          inputs options, &form_block
-
-          form_buffers.last << js_for_has_many(assoc, form_block, template, options[:new_record]) if options[:new_record]
         end
+
+        inputs options, &form_block
+
+        form_buffers.last << js_for_has_many(assoc, form_block, template, builder_options[:new_record]) if builder_options[:new_record]
+      end
+
+      form_buffers.last << if @already_in_an_inputs_block
+        template.content_tag :li,  html, class: "has_many_container #{assoc}"
+      else
+        template.content_tag :div, html, class: "has_many_container #{assoc}"
       end
     end
 
@@ -128,6 +134,16 @@ module ActiveAdmin
       return_value = (yield || '').html_safe
       form_buffers.pop
       return_value
+    end
+
+    def without_wrapper
+      is_being_wrapped = @already_in_an_inputs_block
+      @already_in_an_inputs_block = false
+
+      html = with_new_form_buffer{ yield }
+
+      @already_in_an_inputs_block = is_being_wrapped
+      html
     end
 
     # Capture the ADD JS

@@ -32,7 +32,7 @@ form {
       }
     }
 
-    ol > div.has_many {
+    ol > li.has_many_container {
       padding: 20px 10px;
       h3 {
         font-size: 12px;
@@ -52,6 +52,13 @@ form {
   }
 
   /* Nested Fieldsets and Legends */
+  li.has_many_container {
+    fieldset.has_many_fields {
+      margin: 10px 0;
+    }
+
+  }
+
   fieldset > ol > li {
     fieldset {
       position:relative;
@@ -70,15 +77,10 @@ form {
       }
 
       ol {
-        float:left;
-        width:74%;
-        margin:0;
-        padding:0 0 0 20%;
-
-        li {
-          padding:0;
-          border:0;
-        }
+        float: left;
+        width: 100%;
+        margin: 0;
+        padding: 0;
       }
     }
   }
