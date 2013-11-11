@@ -1,5 +1,11 @@
 #= require jquery
-#= require jquery.ui.all
+#= require jquery.ui.widget
+#= require jquery.ui.datepicker
 #= require jquery_ujs
 #
-#= require active_admin/application
+#= require_self
+#= require_tree ./lib/
+#= require ./application
+
+window.ActiveAdmin = {}
+window.AA = window.ActiveAdmin unless window.AA

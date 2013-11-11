@@ -1,4 +1,4 @@
-jQuery ($) ->
+$ ->
 
   #
   # Use Rails.js click handler to allow for Rails' confirm dialogs
@@ -19,8 +19,8 @@ jQuery ($) ->
     else
       $(".paginated_collection").checkboxToggler()
 
-    $(".paginated_collection").find(":checkbox").bind "change", ->
-      if $(".paginated_collection").find(":checkbox").filter(":checked").length > 0
+    $(".paginated_collection :checkbox").change ->
+      if $(".paginated_collection :checkbox:checked").length > 0
         $("#batch_actions_selector").aaDropdownMenu("enable")
       else
         $("#batch_actions_selector").aaDropdownMenu("disable")
