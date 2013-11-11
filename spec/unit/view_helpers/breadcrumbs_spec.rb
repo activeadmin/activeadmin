@@ -9,13 +9,16 @@ describe "Breadcrumbs" do
     def params; {}; end
     def link_to(name, url); {:name => name, :path => url}; end
 
-    let(:post)        { double display_name: 'Hello World' }
-    let(:post_config) { double find_resource: post }
+    let(:user)        { double  display_name: 'Jane Doe' }
+    let(:user_config) { double  find_resource: user,
+                                resource_name: double(route_key: 'users') }
+    let(:post)        { double  display_name: 'Hello World' }
+    let(:post_config) { double  find_resource: post,
+                                belongs_to_config: double(target: user_config),
+                                resource_name: double(route_key: 'posts') }
 
     let :active_admin_config do
-      active_admin_config = double
-      active_admin_config.stub_chain(:belongs_to_config, :target).and_return post_config
-      active_admin_config
+      post_config
     end
 
     let(:trail) { breadcrumb_links(path) }
@@ -28,8 +31,8 @@ describe "Breadcrumbs" do
       end
     end
 
-    context "when path '/admin/posts'" do
-      let(:path) { "/admin/posts" }
+    context "when path '/admin/users'" do
+      let(:path) { "/admin/users" }
 
       it "should have one item" do
         trail.size.should == 1
@@ -40,8 +43,8 @@ describe "Breadcrumbs" do
       end
     end
 
-    context "when path '/admin/posts/1'" do
-      let(:path) { "/admin/posts/1" }
+    context "when path '/admin/users/1'" do
+      let(:path) { "/admin/users/1" }
 
       it "should have 2 items" do
         trail.size.should == 2
@@ -50,14 +53,14 @@ describe "Breadcrumbs" do
         trail[0][:name].should == "Admin"
         trail[0][:path].should == "/admin"
       end
-      it "should have a link to /admin/posts" do
-        trail[1][:name].should == "Posts"
-        trail[1][:path].should == "/admin/posts"
+      it "should have a link to /admin/users" do
+        trail[1][:name].should == "Users"
+        trail[1][:path].should == "/admin/users"
       end
     end
 
-    context "when path '/admin/posts/1/comments'" do
-      let(:path) { "/admin/posts/1/comments" }
+    context "when path '/admin/users/1/posts'" do
+      let(:path) { "/admin/users/1/posts" }
 
       it "should have 3 items" do
         trail.size.should == 3
@@ -66,29 +69,29 @@ describe "Breadcrumbs" do
         trail[0][:name].should == "Admin"
         trail[0][:path].should == "/admin"
       end
-      it "should have a link to /admin/posts" do
-        trail[1][:name].should == "Posts"
-        trail[1][:path].should == "/admin/posts"
+      it "should have a link to /admin/users" do
+        trail[1][:name].should == "Users"
+        trail[1][:path].should == "/admin/users"
       end
 
-      context "when Post.find(1) doesn't exist" do
-        before { post_config.stub(find_resource: nil) }
-        it "should have a link to /admin/posts/1" do
+      context "when User.find(1) doesn't exist" do
+        before { user_config.stub(find_resource: nil) }
+        it "should have a link to /admin/users/1" do
           trail[2][:name].should == "1"
-          trail[2][:path].should == "/admin/posts/1"
+          trail[2][:path].should == "/admin/users/1"
         end
       end
 
-      context "when Post.find(1) does exist" do
-        it "should have a link to /admin/posts/1 using display name" do
-          trail[2][:name].should == "Hello World"
-          trail[2][:path].should == "/admin/posts/1"
+      context "when User.find(1) does exist" do
+        it "should have a link to /admin/users/1 using display name" do
+          trail[2][:name].should == "Jane Doe"
+          trail[2][:path].should == "/admin/users/1"
         end
       end
     end
 
-    context "when path '/admin/posts/4e24d6249ccf967313000000/comments'" do
-      let(:path) { "/admin/posts/4e24d6249ccf967313000000/comments" }
+    context "when path '/admin/users/4e24d6249ccf967313000000/posts'" do
+      let(:path) { "/admin/users/4e24d6249ccf967313000000/posts" }
 
       it "should have 3 items" do
         trail.size.should == 3
@@ -97,32 +100,32 @@ describe "Breadcrumbs" do
         trail[0][:name].should == "Admin"
         trail[0][:path].should == "/admin"
       end
-      it "should have a link to /admin/posts" do
-        trail[1][:name].should == "Posts"
-        trail[1][:path].should == "/admin/posts"
+      it "should have a link to /admin/users" do
+        trail[1][:name].should == "Users"
+        trail[1][:path].should == "/admin/users"
       end
 
-      context "when Post.find(4e24d6249ccf967313000000) doesn't exist" do
-        before { post_config.stub(find_resource: nil) }
-        it "should have a link to /admin/posts/4e24d6249ccf967313000000" do
+      context "when User.find(4e24d6249ccf967313000000) doesn't exist" do
+        before { user_config.stub(find_resource: nil) }
+        it "should have a link to /admin/users/4e24d6249ccf967313000000" do
           trail[2][:name].should == "4e24d6249ccf967313000000"
-          trail[2][:path].should == "/admin/posts/4e24d6249ccf967313000000"
+          trail[2][:path].should == "/admin/users/4e24d6249ccf967313000000"
         end
       end
 
-      context "when Post.find(4e24d6249ccf967313000000) does exist" do
+      context "when User.find(4e24d6249ccf967313000000) does exist" do
         before do
-          post_config.stub find_resource: double(display_name: 'Hello :)')
+          user_config.stub find_resource: double(display_name: 'Hello :)')
         end
-        it "should have a link to /admin/posts/4e24d6249ccf967313000000 using display name" do
+        it "should have a link to /admin/users/4e24d6249ccf967313000000 using display name" do
           trail[2][:name].should == "Hello :)"
-          trail[2][:path].should == "/admin/posts/4e24d6249ccf967313000000"
+          trail[2][:path].should == "/admin/users/4e24d6249ccf967313000000"
         end
       end
     end
 
-    context "when path '/admin/posts/1/coments/1'" do
-      let(:path) { "/admin/posts/1/comments/1" }
+    context "when path '/admin/users/1/coments/1'" do
+      let(:path) { "/admin/users/1/posts/1" }
 
       it "should have 4 items" do
         trail.size.should == 4
@@ -131,17 +134,45 @@ describe "Breadcrumbs" do
         trail[0][:name].should == "Admin"
         trail[0][:path].should == "/admin"
       end
-      it "should have a link to /admin/posts" do
-        trail[1][:name].should == "Posts"
-        trail[1][:path].should == "/admin/posts"
+      it "should have a link to /admin/users" do
+        trail[1][:name].should == "Users"
+        trail[1][:path].should == "/admin/users"
       end
-      it "should have a link to /admin/posts/1" do
-        trail[2][:name].should == "Hello World"
-        trail[2][:path].should == "/admin/posts/1"
+      it "should have a link to /admin/users/1" do
+        trail[2][:name].should == "Jane Doe"
+        trail[2][:path].should == "/admin/users/1"
       end
-      it "should have a link to /admin/posts/1/comments" do
-        trail[3][:name].should == "Comments"
-        trail[3][:path].should == "/admin/posts/1/comments"
+      it "should have a link to /admin/users/1/posts" do
+        trail[3][:name].should == "Posts"
+        trail[3][:path].should == "/admin/users/1/posts"
+      end
+    end
+
+    context "when path '/admin/users/1/coments/1/edit'" do
+      let(:path) { "/admin/users/1/posts/1/edit" }
+
+      it "should have 5 items" do
+        trail.size.should == 5
+      end
+      it "should have a link to /admin" do
+        trail[0][:name].should == "Admin"
+        trail[0][:path].should == "/admin"
+      end
+      it "should have a link to /admin/users" do
+        trail[1][:name].should == "Users"
+        trail[1][:path].should == "/admin/users"
+      end
+      it "should have a link to /admin/users/1" do
+        trail[2][:name].should == "Jane Doe"
+        trail[2][:path].should == "/admin/users/1"
+      end
+      it "should have a link to /admin/users/1/posts" do
+        trail[3][:name].should == "Posts"
+        trail[3][:path].should == "/admin/users/1/posts"
+      end
+      it "should have a link to /admin/users/1/posts/1" do
+        trail[4][:name].should == "Hello World"
+        trail[4][:path].should == "/admin/users/1/posts/1"
       end
     end
 
