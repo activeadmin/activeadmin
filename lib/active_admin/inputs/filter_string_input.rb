@@ -28,7 +28,7 @@ module ActiveAdmin
       end
 
       def metasearch_conditions
-        /starts_with|ends_with/
+        /starts_with|ends_with|contains/
       end
     end
   end
