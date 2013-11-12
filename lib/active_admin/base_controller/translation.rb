@@ -9,7 +9,7 @@ module ActiveAdmin
         unless t_per_field.blank?
           return t_per_field
         else
-          return I18n.t('active_admin.search_field', :field => field)
+          return field
         end            
       end
     end

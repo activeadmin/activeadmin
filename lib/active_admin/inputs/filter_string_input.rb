@@ -30,6 +30,12 @@ module ActiveAdmin
       def metasearch_conditions
         /starts_with|ends_with|contains/
       end
+
+      def translation_per_search_field(field)
+        I18n.t "active_admin.search_fields.#{field.to_s.gsub(' ','_').downcase}",
+          :field   => field,
+          :default => proc{ I18n.t 'active_admin.search_field', :field => field }
+      end
     end
   end
 end
