@@ -32,12 +32,12 @@ For nested associations in your form, this is how you define their attributes:
 ```ruby
 ActiveAdmin.register Post do
   permit_params :title, :content, :publisher_id,
-    tags_attributes: [:id, :name, :description]
+    tags_attributes: [:id, :name, :description, :_destroy]
 end
 
 # Note that `accepts_nested_attributes_for` is still required:
 class Post < ActiveRecord::Base
-  accepts_nested_attributes_for :tags
+  accepts_nested_attributes_for :tags, allow_destroy: true
 end
 ```
 
