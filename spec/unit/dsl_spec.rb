@@ -17,7 +17,7 @@ describe ActiveAdmin::DSL do
   describe "#include" do
 
     it "should call the included class method on the module that is included" do
-      MockModuleToInclude.should_receive(:included).with(dsl)
+      expect(MockModuleToInclude).to receive(:included).with(dsl)
       dsl.run_registration_block do
         include MockModuleToInclude
       end
@@ -28,7 +28,7 @@ describe ActiveAdmin::DSL do
   describe "#menu" do
 
     it "should set the menu_item_options on the configuration" do
-      config.should_receive(:menu_item_options=).with({:parent => "Admin"})
+      expect(config).to receive(:menu_item_options=).with({:parent => "Admin"})
       dsl.run_registration_block do
         menu :parent => "Admin"
       end
@@ -39,7 +39,7 @@ describe ActiveAdmin::DSL do
   describe "#navigation_menu" do
 
     it "should set the navigation_menu_name on the configuration" do
-      config.should_receive(:navigation_menu_name=).with(:admin)
+      expect(config).to receive(:navigation_menu_name=).with(:admin)
       dsl.run_registration_block do
         navigation_menu :admin
       end
@@ -52,7 +52,7 @@ describe ActiveAdmin::DSL do
         navigation_menu { :dynamic_menu }
       end
 
-      resource_config.navigation_menu_name.should == :dynamic_menu
+      expect(resource_config.navigation_menu_name).to eq :dynamic_menu
 
     end
 

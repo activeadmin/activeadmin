@@ -19,7 +19,7 @@ describe "Memory Leak" do
 
       GC.start
       GC.disable if previously_disabled
-      count_instances_of(klass).should <= count
+      expect(count_instances_of(klass)).to be <= count
     end
   end
 

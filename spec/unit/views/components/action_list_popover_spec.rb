@@ -12,7 +12,7 @@ describe ActiveAdmin::Views::ActionListPopover do
   end
 
   it "should have an id" do
-    the_popover.id.should == "my_awesome_action_list_popover"
+    expect(the_popover.id).to eq "my_awesome_action_list_popover"
   end
 
   describe "the action list" do
@@ -21,7 +21,6 @@ describe ActiveAdmin::Views::ActionListPopover do
     end
 
     its(:tag_name) { should eql("ul") }
-
     its(:content){ should include("<li><a href=\"#\">My First Great Action</a></li>") }
     its(:content){ should include("<li><a href=\"http://www.google.com\">My Second Great Action</a></li>") }
 

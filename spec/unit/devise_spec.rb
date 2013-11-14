@@ -18,12 +18,12 @@ describe ActiveAdmin::Devise::Controller do
     before { Rails.configuration.action_controller[:relative_url_root] = '/foo' }
 
     it "should set the root path to the default namespace" do
-      controller.root_path.should == "/foo/admin"
+      expect(controller.root_path).to eq "/foo/admin"
     end
 
     it "should set the root path to '/' when no default namespace" do
       ActiveAdmin.application.stub default_namespace: false
-      controller.root_path.should == "/foo/"
+      expect(controller.root_path).to eq "/foo/"
     end
 
   end
@@ -33,12 +33,12 @@ describe ActiveAdmin::Devise::Controller do
     before { Rails.configuration.action_controller[:relative_url_root] = nil }
 
     it "should set the root path to the default namespace" do
-      controller.root_path.should == "/admin"
+      expect(controller.root_path).to eq "/admin"
     end
 
     it "should set the root path to '/' when no default namespace" do
       ActiveAdmin.application.stub default_namespace: false
-      controller.root_path.should == "/"
+      expect(controller.root_path).to eq "/"
     end
 
   end
@@ -67,7 +67,7 @@ describe ActiveAdmin::Devise::Controller do
     end
 
     it "should include scope path in root_path" do
-      controller.root_path.should == "#{SCOPE}/admin"
+      expect(controller.root_path).to eq "#{SCOPE}/admin"
     end
 
   end
@@ -81,32 +81,32 @@ describe ActiveAdmin::Devise::Controller do
 
       context "when Devise does not implement sign_out_via (version < 1.2)" do
         before do
-          ::Devise.should_receive(:respond_to?).with(:sign_out_via).and_return(false)
+          expect(::Devise).to receive(:respond_to?).with(:sign_out_via).and_return(false)
         end
 
         it "should not contain any customization for sign_out_via" do
-          config.should_not have_key(:sign_out_via)
+          expect(config).to_not have_key(:sign_out_via)
         end
       end
 
       context "when Devise implements sign_out_via (version >= 1.2)" do
         before do
-          ::Devise.should_receive(:respond_to?).with(:sign_out_via).and_return(true)
+         expect(::Devise).to receive(:respond_to?).with(:sign_out_via).and_return(true)
           ::Devise.stub(:sign_out_via) { :delete }
         end
 
         it "should contain the application.logout_link_method" do
-            ::Devise.should_receive(:sign_out_via).and_return(:delete)
-            ActiveAdmin.application.should_receive(:logout_link_method).and_return(:get)
+            expect(::Devise).to receive(:sign_out_via).and_return(:delete)
+            expect(ActiveAdmin.application).to receive(:logout_link_method).and_return(:get)
 
-            config[:sign_out_via].should include(:get)
+            expect(config[:sign_out_via]).to include(:get)
         end
 
         it "should contain Devise's logout_via_method(s)" do
-            ::Devise.should_receive(:sign_out_via).and_return([:delete, :post])
-            ActiveAdmin.application.should_receive(:logout_link_method).and_return(:get)
+            expect(::Devise).to receive(:sign_out_via).and_return([:delete, :post])
+            expect(ActiveAdmin.application).to receive(:logout_link_method).and_return(:get)
 
-            config[:sign_out_via].should == [:delete, :post, :get]
+            expect(config[:sign_out_via]).to eq [:delete, :post, :get]
         end
       end
 

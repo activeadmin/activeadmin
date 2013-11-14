@@ -9,11 +9,11 @@ describe ActiveAdmin::Resource::BelongsTo do
   let(:belongs_to){ ActiveAdmin::Resource::BelongsTo.new(post, :user) }
 
   it "should have an owner" do
-    belongs_to.owner.should == post
+    expect(belongs_to.owner).to eq post
   end
 
   it "should have a namespace" do
-    belongs_to.namespace.should == namespace
+    expect(belongs_to.namespace).to eq namespace
   end
 
   describe "finding the target" do
@@ -22,7 +22,7 @@ describe ActiveAdmin::Resource::BelongsTo do
       before { user } # Ensure user is registered
 
       it "should return the target resource" do
-        belongs_to.target.should == user
+        expect(belongs_to.target).to eq user
       end
     end
 
@@ -37,6 +37,6 @@ describe ActiveAdmin::Resource::BelongsTo do
 
   it "should be optional" do
     belongs_to = ActiveAdmin::Resource::BelongsTo.new post, :user, :optional => true
-    belongs_to.should be_optional
+    expect(belongs_to).to be_optional
   end
 end

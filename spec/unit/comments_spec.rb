@@ -4,14 +4,14 @@ describe "Comments" do
   let(:application) { ActiveAdmin::Application.new }
 
   describe ActiveAdmin::Comment do
-    subject { ActiveAdmin::Comment.new }
+    subject(:comment){ ActiveAdmin::Comment.new }
 
-    describe "Associations and Validations" do
-      it { should belong_to :resource }
-      it { should belong_to :author }
-      it { should validate_presence_of :resource }
-      it { should validate_presence_of :body }
-      it { should validate_presence_of :namespace }
+    it "Has valid Associations and Validations" do
+      expect(comment).to belong_to :resource
+      expect(comment).to belong_to :author
+      expect(comment).to validate_presence_of :resource
+      expect(comment).to validate_presence_of :body
+      expect(comment).to validate_presence_of :namespace
     end
 
     describe ".find_for_resource_in_namespace" do
@@ -25,16 +25,16 @@ describe "Comments" do
       end
 
       it "should return a comment for the resource in the same namespace" do
-        ActiveAdmin::Comment.find_for_resource_in_namespace(post, namespace_name).should == [@comment]
+        expect(ActiveAdmin::Comment.find_for_resource_in_namespace(post, namespace_name)).to eq [@comment]
       end
 
       it "should not return a comment for the same resource in a different namespace" do
-        ActiveAdmin::Comment.find_for_resource_in_namespace(post, 'public').should == []
+        expect(ActiveAdmin::Comment.find_for_resource_in_namespace(post, 'public')).to eq []
       end
 
       it "should not return a comment for a different resource" do
         another_post = Post.create! :title => "Another Hello World"
-        ActiveAdmin::Comment.find_for_resource_in_namespace(another_post, namespace_name).should == []
+        expect(ActiveAdmin::Comment.find_for_resource_in_namespace(another_post, namespace_name)).to eq []
       end
     end
 
@@ -46,13 +46,13 @@ describe "Comments" do
         comment = ActiveAdmin::Comment.create! :resource => post,
                                                 :body => "Another Comment",
                                                 :namespace => namespace_name
-        ActiveAdmin::Comment.resource_id_cast(comment).class.should eql String
+        expect(ActiveAdmin::Comment.resource_id_cast(comment).class).to eql String
       end
     end
 
     describe ".resource_id_type" do
       it "should be :string" do
-        ActiveAdmin::Comment.resource_id_type.should eql :string
+        expect(ActiveAdmin::Comment.resource_id_type).to eql :string
       end
     end
 
@@ -66,7 +66,7 @@ describe "Comments" do
           :body => "Another Comment",
           :namespace => namespace_name)
 
-        ActiveAdmin::Comment.find_for_resource_in_namespace(tag, namespace_name).should == [comment]
+        expect(ActiveAdmin::Comment.find_for_resource_in_namespace(tag, namespace_name)).to eq [comment]
       end
     end
 
@@ -92,13 +92,13 @@ describe "Comments" do
       it "should have comments when the namespace allows comments" do
         ns = ActiveAdmin::Namespace.new(application, :admin)
         ns.allow_comments = true
-        ns.comments?.should be_true
+        expect(ns.comments?).to be_true
       end
 
       it "should not have comments when the namespace does not allow comments" do
         ns = ActiveAdmin::Namespace.new(application, :admin)
         ns.allow_comments = false
-        ns.comments?.should be_false
+        expect(ns.comments?).to be_false
       end
     end
   end
@@ -107,15 +107,15 @@ describe "Comments" do
     it "should add an attr_accessor :comments to ActiveAdmin::Resource" do
       ns = ActiveAdmin::Namespace.new(application, :admin)
       resource = ActiveAdmin::Resource.new(ns, Post)
-      resource.comments.should be_nil
+      expect(resource.comments).to be_nil
       resource.comments = true
-      resource.comments.should be_true
+      expect(resource.comments).to be_true
     end
     it "should disable comments if set to false" do
       ns = ActiveAdmin::Namespace.new(application, :admin)
       resource = ActiveAdmin::Resource.new(ns, Post)
       resource.comments = false
-      resource.comments?.should be_false
+      expect(resource.comments?).to be_false
     end
   end
 end

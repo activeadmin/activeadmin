@@ -12,13 +12,11 @@ describe MethodOrProcHelper do
   describe "#call_method_or_exec_proc" do
 
     it "should call the method in the context when a symbol" do
-      context.call_method_or_exec_proc(:receiver_in_context).
-        should == receiver
+      expect(context.call_method_or_exec_proc(:receiver_in_context)).to eq receiver
     end
 
     it "should call the method in the context when a string" do
-      context.call_method_or_exec_proc("receiver_in_context").
-        should == receiver
+      expect(context.call_method_or_exec_proc("receiver_in_context")).to eq receiver
     end
 
     it "should exec a proc in the context" do
@@ -36,17 +34,15 @@ describe MethodOrProcHelper do
     context "when a symbol" do
 
       it 'should call the method on the receiver' do
-        receiver.should_receive(:hello).and_return("hello")
+        expect(receiver).to receive(:hello).and_return("hello")
 
-        context.call_method_or_proc_on(receiver, "hello").
-          should == "hello"
+        expect(context.call_method_or_proc_on(receiver, "hello")).to eq "hello"
       end
 
       it "should receive additional arguments" do
-        receiver.should_receive(:hello).with("world").and_return("hello world")
+        expect(receiver).to receive(:hello).with("world").and_return("hello world")
 
-        context.call_method_or_proc_on(receiver, :hello, "world").
-          should == "hello world"
+        expect(context.call_method_or_proc_on(receiver, :hello, "world")).to eq "hello world"
       end
 
     end

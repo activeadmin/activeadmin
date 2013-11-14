@@ -22,11 +22,11 @@ describe ActiveAdmin::Application do
       end
 
       it "should generate a log out path" do
-        destroy_admin_user_session_path.should == "/admin_users/logout"
+        expect(destroy_admin_user_session_path).to eq "/admin_users/logout"
       end
 
       it "should generate a log in path" do
-        new_admin_user_session_path.should == "/admin_users/login"
+        expect(new_admin_user_session_path).to eq "/admin_users/login"
       end
 
     end
@@ -49,11 +49,11 @@ describe ActiveAdmin::Application do
       end
 
       it "should generate a log out path" do
-        destroy_admin_user_session_path.should == "/test/logout"
+        expect(destroy_admin_user_session_path).to eq "/test/logout"
       end
 
       it "should generate a log in path" do
-        new_admin_user_session_path.should == "/test/login"
+        expect(new_admin_user_session_path).to eq "/test/login"
       end
 
     end

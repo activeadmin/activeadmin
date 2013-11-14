@@ -11,22 +11,22 @@ describe ActiveAdmin::Views::Panel do
   end
 
   it "should have a title h3" do
-    the_panel.find_by_tag("h3").first.content.should == "My Title"
+    expect(the_panel.find_by_tag("h3").first.content).to eq "My Title"
   end
 
   it "should have a contents div" do
-    the_panel.find_by_tag("div").first.class_list.should include("panel_contents")
+    expect(the_panel.find_by_tag("div").first.class_list).to include("panel_contents")
   end
 
   it "should add children to the contents div" do
-    the_panel.find_by_tag("span").first.parent.should == the_panel.find_by_tag("div").first
+    expect(the_panel.find_by_tag("span").first.parent).to eq the_panel.find_by_tag("div").first
   end
 
   it "should set the icon" do
     the_panel = render_arbre_component do
       panel("Title", :icon => :arrow_down)
     end
-    the_panel.find_by_tag("h3").first.content.should include("span class=\"icon")
+    expect(the_panel.find_by_tag("h3").first.content).to include("span class=\"icon")
   end
 
   it "should allow a html_safe title (without icon)" do
@@ -34,7 +34,7 @@ describe ActiveAdmin::Views::Panel do
     the_panel = render_arbre_component do
       panel(title_with_html)
     end
-    the_panel.find_by_tag("h3").first.content.should eq(title_with_html)
+    expect(the_panel.find_by_tag("h3").first.content).to eq(title_with_html)
   end
 
   describe "#children?" do
@@ -43,7 +43,7 @@ describe ActiveAdmin::Views::Panel do
       the_panel = render_arbre_component do
         panel("A Panel")
       end
-      the_panel.children?.should == false
+      expect(the_panel.children?).to eq false
     end
 
   end

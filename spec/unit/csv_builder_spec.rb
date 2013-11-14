@@ -6,18 +6,18 @@ describe ActiveAdmin::CSVBuilder do
     let(:csv_builder) { ActiveAdmin::CSVBuilder.default_for_resource(Post) }
 
     it "should return a default csv_builder for Post" do
-      csv_builder.should be_a(ActiveAdmin::CSVBuilder)
+      expect(csv_builder).to be_a(ActiveAdmin::CSVBuilder)
     end
 
     specify "the first column should be Id" do
-      csv_builder.columns.first.name.should == 'Id'
-      csv_builder.columns.first.data.should == :id
+      expect(csv_builder.columns.first.name).to eq 'Id'
+      expect(csv_builder.columns.first.data).to eq :id
     end
 
     specify "the following columns should be content_column" do
       csv_builder.columns[1..-1].each_with_index do |column, index|
-        column.name.should == Post.content_columns[index].name.titleize
-        column.data.should == Post.content_columns[index].name.to_sym
+        expect(column.name).to eq Post.content_columns[index].name.titleize
+        expect(column.data).to eq Post.content_columns[index].name.to_sym
       end
     end
   end
@@ -26,7 +26,7 @@ describe ActiveAdmin::CSVBuilder do
     let(:builder){ ActiveAdmin::CSVBuilder.new }
 
     it "should have no columns" do
-      builder.columns.should == []
+      expect(builder.columns).to eq []
     end
   end
 
@@ -38,18 +38,18 @@ describe ActiveAdmin::CSVBuilder do
     end
 
     it "should have one column" do
-      builder.columns.size.should == 1
+      expect(builder.columns.size).to eq 1
     end
 
     describe "the column" do
       let(:column){ builder.columns.first }
 
       it "should have a name of 'Title'" do
-        column.name.should == "Title"
+        expect(column.name).to eq "Title"
       end
 
       it "should have the data :title" do
-        column.data.should == :title
+        expect(column.data).to eq :title
       end
     end
   end
@@ -64,18 +64,18 @@ describe ActiveAdmin::CSVBuilder do
     end
 
     it "should have one column" do
-      builder.columns.size.should == 1
+      expect(builder.columns.size).to eq 1
     end
 
     describe "the column" do
       let(:column){ builder.columns.first }
 
       it "should have a name of 'My title'" do
-        column.name.should == "My title"
+        expect(column.name).to eq "My title"
       end
 
       it "should have the data :title" do
-        column.data.should be_an_instance_of(Proc)
+        expect(column.data).to be_an_instance_of(Proc)
       end
     end
   end
@@ -86,7 +86,7 @@ describe ActiveAdmin::CSVBuilder do
     end
 
     it "should have proper separator" do
-      builder.options.should == {:col_sep => ";"}
+      expect(builder.options).to eq({:col_sep => ";"})
     end
   end
 
@@ -96,7 +96,7 @@ describe ActiveAdmin::CSVBuilder do
     end
 
     it "should have proper separator" do
-      builder.options.should == {:force_quotes => true}
+      expect(builder.options).to eq({:force_quotes => true})
     end
   end
 

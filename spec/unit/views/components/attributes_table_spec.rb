@@ -61,17 +61,17 @@ describe ActiveAdmin::Views::AttributesTable do
         let(:table) { instance_eval &table_decleration }
 
         it "should render a div wrapper with the class '.attributes_table'" do
-          table.tag_name.should == 'div'
-          table.attr(:class).should include('attributes_table')
+          expect(table.tag_name).to eq 'div'
+          expect(table.attr(:class)).to include('attributes_table')
         end
 
         it "should add id and type class" do
-          table.class_names.should include("post")
-          table.id.should == "attributes_table_post_1"
+          expect(table.class_names).to include("post")
+          expect(table.id).to eq "attributes_table_post_1"
         end
 
         it "should render 3 rows" do
-          table.find_by_tag("tr").size.should == 3
+          expect(table.find_by_tag("tr").size).to eq 3
         end
 
         describe "rendering the rows" do
@@ -86,10 +86,10 @@ describe ActiveAdmin::Views::AttributesTable do
               let(:current_row){ table.find_by_tag("tr")[i] }
 
               it "should have the title '#{set[0]}'" do
-                current_row.find_by_tag("th").first.content.should == title
+                expect(current_row.find_by_tag("th").first.content).to eq title
               end
               it "should have the content '#{set[1]}'" do
-                current_row.find_by_tag("td").first.content.chomp.strip.should == content
+                expect(current_row.find_by_tag("td").first.content.chomp.strip).to eq content
               end
             end
           end
@@ -105,13 +105,13 @@ describe ActiveAdmin::Views::AttributesTable do
           row :created_at
         end
       }
-      table.find_by_tag("tr").first.to_s.
-        split("\n").first.lstrip.
-          should == '<tr class="row row-title">'
+      expect(table.find_by_tag("tr").first.to_s.
+        split("\n").first.lstrip).
+          to eq '<tr class="row row-title">'
 
-      table.find_by_tag("tr").last.to_s.
-        split("\n").first.lstrip.
-          should == '<tr class="row row-created_at">'
+      expect(table.find_by_tag("tr").last.to_s.
+        split("\n").first.lstrip).
+          to eq '<tr class="row row-created_at">'
     end
 
     it "should allow html options for the row itself" do
@@ -120,9 +120,8 @@ describe ActiveAdmin::Views::AttributesTable do
           row("Wee", :class => "custom_row", :style => "custom_style") { }
         end
       }
-      table.find_by_tag("tr").first.to_s.
-        split("\n").first.lstrip.
-          should == '<tr class="row custom_row" style="custom_style">'
+      expect(table.find_by_tag("tr").first.to_s.split("\n").first.lstrip).
+        to eq '<tr class="row custom_row" style="custom_style">'
     end
 
     it "should allow html content inside the attributes table" do
@@ -131,7 +130,7 @@ describe ActiveAdmin::Views::AttributesTable do
           row("ID"){ span(post.id, :class => 'id') }
         end
       }
-      table.find_by_tag("td").first.content.chomp.strip.should == "<span class=\"id\">1</span>"
+      expect(table.find_by_tag("td").first.content.chomp.strip).to eq "<span class=\"id\">1</span>"
     end
 
     it "should check if an association exists when an attribute has id in it" do
@@ -139,7 +138,7 @@ describe ActiveAdmin::Views::AttributesTable do
       table = render_arbre_component(assigns) {
         attributes_table_for post, :author_id
       }
-      table.find_by_tag('td').first.content.should == 'John Doe'
+      expect(table.find_by_tag('td').first.content).to eq 'John Doe'
     end
 
     context "with a collection" do
@@ -158,38 +157,38 @@ describe ActiveAdmin::Views::AttributesTable do
       end
 
       it "does not set id on the table" do
-        table.attr(:id).should be_nil
+        expect(table.attr(:id)).to be_nil
       end
 
       context "colgroup" do
         let(:cols) { table.find_by_tag "col" }
 
         it "contains a col for each record (plus headers)" do
-          cols.size.should == (2 + 1)
+          expect(cols.size).to eq (2 + 1)
         end
 
         it "assigns an id to each col" do
           cols[1..-1].each_with_index do |col, index|
-            col.id.should == "attributes_table_post_#{index + 1}"
+            expect(col.id).to eq "attributes_table_post_#{index + 1}"
           end
         end
 
         it "assigns a class to each col" do
           cols[1..-1].each_with_index do |col, index|
-            col.class_names.should include("post")
+            expect(col.class_names).to include("post")
           end
         end
 
         it "assigns alternation classes to each col" do
           cols[1..-1].each_with_index do |col, index|
-            col.class_names.should include(["even", "odd"][index % 2])
+            expect(col.class_names).to include(["even", "odd"][index % 2])
           end
         end
       end
 
       context "when rendering the rows" do
         it "should contain 3 columns" do
-          table.find_by_tag("tr").first.children.size.should == 3
+          expect(table.find_by_tag("tr").first.children.size).to eq 3
         end
 
         [
@@ -202,14 +201,14 @@ describe ActiveAdmin::Views::AttributesTable do
             let(:current_row){ table.find_by_tag("tr")[i] }
 
             it "should have the title '#{set[0]}'" do
-              current_row.find_by_tag("th").first.content.should == title
+              expect(current_row.find_by_tag("th").first.content).to eq title
             end
 
             context "with defined attribute name translation" do
               it "should have the translated attribute name in the title" do
                 begin
                   I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => 'Translated Title', :id => 'Translated Id' } } })
-                  current_row.find_by_tag("th").first.content.should == "Translated #{title}"
+                  expect(current_row.find_by_tag("th").first.content).to eq "Translated #{title}"
                 ensure
                   I18n.backend.reload!
                 end
@@ -218,7 +217,7 @@ describe ActiveAdmin::Views::AttributesTable do
 
             set[1..-1].each_with_index do |content, index|
               it "column #{index} should have the content '#{content}'" do
-                current_row.find_by_tag("td")[index].content.chomp.strip.should == content
+                expect(current_row.find_by_tag("td")[index].content.chomp.strip).to eq content
               end
             end
           end

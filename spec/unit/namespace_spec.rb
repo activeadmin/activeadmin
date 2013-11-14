@@ -8,19 +8,19 @@ describe ActiveAdmin::Namespace do
     let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
 
     it "should have an application instance" do
-      namespace.application.should == application
+      expect(namespace.application).to eq application
     end
 
     it "should have a name" do
-      namespace.name.should == :admin
+      expect(namespace.name).to eq :admin
     end
 
     it "should have no resources" do
-      namespace.resources.should be_empty
+      expect(namespace.resources).to be_empty
     end
 
     it "should not have any menu item" do
-      namespace.fetch_menu(:default).children.should be_empty
+      expect(namespace.fetch_menu(:default).children).to be_empty
     end
   end # context "when new"
 
@@ -29,13 +29,13 @@ describe ActiveAdmin::Namespace do
 
     it "should inherit the site title from the application" do
       ActiveAdmin::Namespace.setting :site_title, "Not the Same"
-      namespace.site_title.should == application.site_title
+      expect(namespace.site_title).to eq application.site_title
     end
 
     it "should be able to override the site title" do
-      namespace.site_title.should == application.site_title
+      expect(namespace.site_title).to eq application.site_title
       namespace.site_title = "My Site Title"
-      namespace.site_title.should_not == application.site_title
+      expect(namespace.site_title).to_not eq application.site_title
     end
   end
 
@@ -44,11 +44,11 @@ describe ActiveAdmin::Namespace do
     let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
 
     it "returns the menu" do
-      namespace.fetch_menu(:default).should be_an_instance_of(ActiveAdmin::Menu)
+      expect(namespace.fetch_menu(:default)).to be_an_instance_of(ActiveAdmin::Menu)
     end
 
     it "should have utility nav menu" do
-      namespace.fetch_menu(:utility_navigation).should be_an_instance_of(ActiveAdmin::Menu)
+      expect(namespace.fetch_menu(:utility_navigation)).to be_an_instance_of(ActiveAdmin::Menu)
     end
 
     it "should raise an exception if the menu doesn't exist" do
@@ -66,7 +66,7 @@ describe ActiveAdmin::Namespace do
         menu.add :label => "menu item"
       end
 
-      namespace.fetch_menu(:default)["menu item"].should_not be_nil
+      expect(namespace.fetch_menu(:default)["menu item"]).to_not be_nil
     end
 
     it "should set a block on a custom menu" do
@@ -74,7 +74,7 @@ describe ActiveAdmin::Namespace do
         menu.add :label => "menu item"
       end
 
-      namespace.fetch_menu(:test)["menu item"].should_not be_nil
+      expect(namespace.fetch_menu(:test)["menu item"]).to_not be_nil
     end
   end
 
@@ -89,13 +89,13 @@ describe ActiveAdmin::Namespace do
     end
 
     it "should have a logout button to the far left" do
-      menu["Logout"].should_not be_nil
-      menu["Logout"].priority.should == 1
+      expect(menu["Logout"]).to_not be_nil
+      expect(menu["Logout"].priority).to eq 1
     end
 
     it "should have a static link with a target of :blank" do
-      menu["ActiveAdmin.info"].should_not be_nil
-      menu["ActiveAdmin.info"].html_options.should include(:target => :blank)
+      expect(menu["ActiveAdmin.info"]).to_not be_nil
+      expect(menu["ActiveAdmin.info"].html_options).to include(:target => :blank)
     end
 
   end

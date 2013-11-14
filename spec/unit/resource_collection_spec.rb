@@ -12,37 +12,37 @@ describe ActiveAdmin::ResourceCollection do
   let(:resource){ double resource_name: "MyResource" }
 
   it "should have no resources when new" do
-    collection.should be_empty
+    expect(collection).to be_empty
   end
 
   it "should be enumerable" do
     collection.add(resource)
-    collection.each{ |r| r.should == resource }
+    collection.each{ |r| expect(r).to eq resource }
   end
 
   it "should return the available keys" do
     collection.add resource
-    collection.keys.should == [resource.resource_name]
+    expect(collection.keys).to eq [resource.resource_name]
   end
 
   describe "adding a new resource" do
     it "should return the resource" do
-      collection.add(resource).should == resource
+      expect(collection.add(resource)).to eq resource
     end
 
     it "should add a new resource" do
       collection.add(resource)
-      collection.values.should == [resource]
+      expect(collection.values).to eq [resource]
     end
 
     it "should be available by name" do
       collection.add(resource)
-      collection[resource.resource_name].should == resource
+      expect(collection[resource.resource_name]).to eq resource
     end
 
     it "shouldn't happen twice" do
       collection.add(resource); collection.add(resource)
-      collection.values.should == [resource]
+      expect(collection.values).to eq [resource]
     end
   end
 
@@ -61,27 +61,27 @@ describe ActiveAdmin::ResourceCollection do
       end
 
       it "should find resource by class" do
-        collection[resource_class].should == resource
+        expect(collection[resource_class]).to eq resource
       end
 
       it "should find resource by class string" do
-        collection[resource_class.to_s].should == resource
+        expect(collection[resource_class.to_s]).to eq resource
       end
 
       it "should find inherited resource by class" do
-        collection[inherited_resource_class].should == inherited_resource
+        expect(collection[inherited_resource_class]).to eq inherited_resource
       end
 
       it "should find inherited resource by class string" do
-        collection[inherited_resource_class.to_s].should == inherited_resource
+        expect(collection[inherited_resource_class.to_s]).to eq inherited_resource
       end
 
       it "should return nil when the resource_class does not respond to base_class and it is not in the collection" do
-        collection[double].should == nil
+        expect(collection[double]).to eq nil
       end
 
       it "should return nil when a resource class is NOT in the collection" do
-        collection[unregistered_class].should == nil
+        expect(collection[unregistered_class]).to eq nil
       end
     end
 
@@ -91,7 +91,7 @@ describe ActiveAdmin::ResourceCollection do
       end
 
       it "should find resource by inherited class" do
-        collection[inherited_resource_class].should == resource
+        expect(collection[inherited_resource_class]).to eq resource
       end
     end
 
@@ -104,15 +104,15 @@ describe ActiveAdmin::ResourceCollection do
       end
 
       it "should find resource by class" do
-        collection[resource_class].should == renamed_resource
+        expect(collection[resource_class]).to eq renamed_resource
       end
 
       it "should find resource by class string" do
-        collection[resource_class.to_s].should == renamed_resource
+        expect(collection[resource_class.to_s]).to eq renamed_resource
       end
 
       it "should find resource by name" do
-        collection[name].should == renamed_resource
+        expect(collection[name]).to eq renamed_resource
       end
     end
   end
@@ -128,7 +128,7 @@ describe ActiveAdmin::ResourceCollection do
       end
 
       it "contains both resources" do
-        collection.values.should include(resource, resource_renamed)
+        expect(collection.values).to include(resource, resource_renamed)
       end
     end
 
@@ -139,7 +139,7 @@ describe ActiveAdmin::ResourceCollection do
       end
 
       it "contains both resources" do
-        collection.values.should include(resource, resource_renamed)
+        expect(collection.values).to include(resource, resource_renamed)
       end
     end
 
@@ -152,7 +152,7 @@ describe ActiveAdmin::ResourceCollection do
       end
 
       it "the collection contains one instance of that resource" do
-        collection.values.should eq([resource])
+        expect(collection.values).to eq([resource])
       end
     end
   end
