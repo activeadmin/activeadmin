@@ -79,7 +79,7 @@ centralize the scoping:
         subject.account == user.account
       end
 
-      def scope_collection(collection)
+      def scope_collection(collection, action = Auth::READ)
         collection.where(:account_id => user.account_id)
       end
 
