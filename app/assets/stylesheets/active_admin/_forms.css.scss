@@ -76,7 +76,19 @@ form {
         &.label label { position:absolute; }
       }
 
-      ol {
+      &:not(.has_many_fields) ol {
+        float: left;
+        width: 74%;
+        margin: 0;
+        padding: 0 0 0 20%;
+
+        li {
+          padding: 0;
+          border: 0;
+        }
+      }
+
+      &.has_many_fields ol {
         float: left;
         width: 100%;
         margin: 0;
