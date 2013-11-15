@@ -101,7 +101,7 @@
       ul {
         background: $hover-menu-item-background;
         @include rounded-all(0,10px,10px,10px);
-        @include shadow(0, 1px, 3px, #444);
+        @include shadow(0, 1px, 2px, #444);
         position: absolute;
         width: 175px;
         margin-top: 5px;
@@ -109,7 +109,7 @@
         display: none;
         padding: 3px 0px 5px 0;
         list-style: none;
-        z-index: 1010;
+        z-index: 1060;
 
         li {
           margin: 0px;
