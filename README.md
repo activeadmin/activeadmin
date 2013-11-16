@@ -37,7 +37,8 @@ Check out [the docs](https://github.com/gregbell/active_admin/blob/master/docs/0
 
 ## Need help?
 
-Ask the [mailing list](http://groups.google.com/group/activeadmin) or
+Ask us in IRC ([#activeadmin](https://webchat.freenode.net/?channels=activeadmin)), on the
+[mailing list](http://groups.google.com/group/activeadmin), or on
 [Stack Overflow](http://stackoverflow.com/questions/tagged/activeadmin).
 
 ## Want to contribute?
