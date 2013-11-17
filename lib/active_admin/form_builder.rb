@@ -173,7 +173,8 @@ module ActiveAdmin
         :for_options => { child_index: placeholder }
       }
       html = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
-      text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
+      text = new_record.is_a?(String) ? new_record : (I18n.t("active_admin.#{assoc_name.to_s.downcase}.new_model",
+                :default => proc{ I18n.t 'active_admin.has_many_new', :model => assoc_name.human }))
 
       template.link_to text, '#', class: "button has_many_add", data: {
         html: CGI.escapeHTML(html).html_safe, placeholder: placeholder

@@ -78,6 +78,16 @@ describe ActiveAdmin::Filters::ViewHelper do
     it "should generate a text field for input" do
       body.should have_tag("input", :attributes => { :name => 'q[title_contains]' })
     end
+
+    it "should translate the label for text field using translated per field values" do
+      begin
+        I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => "Name" } } })
+        I18n.backend.store_translations(:en, :active_admin =>  { :search_fields => { :name => "Search by name" } })
+        body.should have_tag('label', 'Search by name')
+      ensure
+        I18n.backend.reload!
+      end
+    end
     
     it "should have a proper label" do
       body.should have_tag('label', 'Title')
@@ -396,7 +406,7 @@ describe ActiveAdmin::Filters::ViewHelper do
 
     it "should work as string" do
       body = filter :custom_searcher, as: :string
-      body.should have_tag "input", attributes: { name: "q[custom_searcher]" }
+      body.should have_tag "input", attributes: { name: "q[custom_searcher_contains]" }
     end
   end
 
