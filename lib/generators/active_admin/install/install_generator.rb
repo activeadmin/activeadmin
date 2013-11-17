@@ -12,7 +12,7 @@ module ActiveAdmin
         @_active_admin_source_root ||= File.expand_path("../templates", __FILE__)
       end
 
-			def copy_initializer
+      def copy_initializer
         @underscored_user_name = name.underscore
         template 'active_admin.rb.erb', 'config/initializers/active_admin.rb'
       end

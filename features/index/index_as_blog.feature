@@ -10,7 +10,7 @@ Feature: Index as Blog
         index :as => :blog
       end
       """
-	And I am logged in
+    And I am logged in
     When I am on the index page for posts
     Then I should see "Hello World" within "h3"
     And I should see a link to "Hello World"
