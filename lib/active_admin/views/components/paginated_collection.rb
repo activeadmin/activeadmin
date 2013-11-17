@@ -80,6 +80,7 @@ module ActiveAdmin
       def build_pagination
         options = request.path_parameters
         options[:param_name] = @param_name if @param_name
+        options[:theme] = "active_admin"
 
         text_node paginate(collection, options.symbolize_keys)
       end
