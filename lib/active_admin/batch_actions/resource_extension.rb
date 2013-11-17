@@ -62,7 +62,7 @@ module ActiveAdmin
         destroy_options = {
           :priority => 100,
           :confirm => proc { I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => active_admin_config.plural_resource_label.downcase) },
-          :if => proc{ controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, active_admin_config.resource_class) }
+          :if => proc{ controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::BATCH_DESTROY, active_admin_config.resource_class) }
         }
 
         add_batch_action :destroy, proc { I18n.t('active_admin.delete') }, destroy_options do |selected_ids|
