@@ -50,7 +50,7 @@ module ActiveAdmin
 
     def has_many(assoc, options = {}, &block)
       # remove options that should not render as attributes
-      custom_settings = :new_record, :allow_destroy, :heading
+      custom_settings = :new_record, :allow_destroy, :heading, :sortable
       builder_options = {new_record: true}.merge! options.slice  *custom_settings
       options         = {for: assoc      }.merge! options.except *custom_settings
       options[:class] = [options[:class], "inputs has_many_fields"].compact.join(' ')
@@ -68,7 +68,23 @@ module ActiveAdmin
           has_many_form.input :_destroy, as: :boolean, wrapper_html: {class: 'has_many_delete'},
                                                        label: I18n.t('active_admin.has_many_delete')
         end
+
+        if builder_options[:sortable]
+          has_many_form.input builder_options[:sortable], as: :hidden
+
+          contents << template.content_tag(:li, class: 'handle') do
+            Iconic.icon :move_vertical
+          end
+        end
+
         contents
+      end
+
+      # make sure that the sortable children sorted in stable ascending order
+      if column = builder_options[:sortable]
+        children = object.send(assoc)
+        children = children.reorder("#{column}, id")
+        options[:for] = [assoc,  children]
       end
 
       html = without_wrapper do
@@ -84,9 +100,9 @@ module ActiveAdmin
       end
 
       form_buffers.last << if @already_in_an_inputs_block
-        template.content_tag :li,  html, class: "has_many_container #{assoc}"
+        template.content_tag :li,  html, class: "has_many_container #{assoc}", 'data-sortable' => builder_options[:sortable]
       else
-        template.content_tag :div, html, class: "has_many_container #{assoc}"
+        template.content_tag :div, html, class: "has_many_container #{assoc}", 'data-sortable' => builder_options[:sortable]
       end
     end
 

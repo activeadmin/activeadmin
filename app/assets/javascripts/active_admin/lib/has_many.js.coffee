@@ -9,6 +9,7 @@ $ ->
     e.preventDefault()
     parent    = $(@).closest '.has_many_container'
     to_remove = $(@).closest 'fieldset'
+    recompute_positions parent
 
     parent.trigger 'has_many_remove:before', [ to_remove ]
     to_remove.remove()
@@ -38,4 +39,37 @@ $ ->
       regex = new RegExp elem.data('placeholder'), 'g'
       html  = elem.data('html').replace regex, index
 
-      parent.trigger 'has_many_add:after', [ $(html).insertBefore(@) ]
+      fieldset = $(html).insertBefore(@)
+      recompute_positions parent
+      parent.trigger 'has_many_add:after', [ fieldset ]
+
+  $(document).on 'change','.has_many_container[data-sortable] :input[name$="[_destroy]"]', ->
+    recompute_positions $(@).closest '.has_many'
+
+  init_sortable()
+  $(document).on 'has_many_add:after', '.has_many_container', init_sortable
+
+
+# Helpers
+init_sortable = ->
+  elems = $('.has_many_container[data-sortable]:not(.ui-sortable)')
+  elems.sortable \
+    items: '> fieldset',
+    handle: '> ol > .handle',
+    stop:    recompute_positions
+  elems.each recompute_positions
+
+recompute_positions = (parent)->
+  parent     = if parent instanceof jQuery then parent else $(@)
+  input_name = parent.data 'sortable'
+  position   = 0
+
+  parent.children('fieldset').each ->
+    fieldset = $(@)
+    # when looking for inputs, we ignore inputs from the possibly nested inputs
+    # so, when defining your has_many, make sure to keep the sortable input at the root of the has_many block
+    destroy_input  = fieldset.find "> ol > .input > :input[name$='[_destroy]']"
+    sortable_input = fieldset.find "> ol > .input > :input[name$='[#{input_name}]']"
+
+    if sortable_input.length
+      sortable_input.val if destroy_input.is ':checked' then '' else position++
