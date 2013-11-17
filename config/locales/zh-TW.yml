@@ -1,0 +1,90 @@
+"zh-TW":
+  active_admin:
+    dashboard: 儀表板
+    dashboard_welcome:
+      welcome: "歡迎來到 Active Admin 這是預設的儀表板頁面。"
+      call_to_action: "要新增儀表板內容，請查看 'app/admin/dashboard.rb'"
+    view: "檢視"
+    edit: "編輯"
+    delete: "刪除"
+    delete_confirmation: "你確定要刪除嗎？"
+    new_model: "新增 %{model}"
+    create_model: "新增 %{model}"
+    edit_model: "編輯 %{model}"
+    update_model: "編輯 %{model}"
+    delete_model: "刪除 %{model}"
+    details: "%{model} 明細"
+    cancel: "取消"
+    empty: "空的"
+    previous: "前一個"
+    next: "下一個"
+    download: "下載:"
+    has_many_new: "增加新的 %{model}"
+    has_many_delete: "刪除"
+    has_many_remove: "清除"
+    filters:
+      buttons:
+        filter: "篩選"
+        clear: "清除篩選條件"
+      predicates:
+        contains: "包含"
+        equals: "等於"
+        starts_with: "开头"
+        ends_with: "完与"
+        greater_than: "大於"
+        less_than: "小於"
+    main_content: "請編寫 %{model}#main_content 以顯示內容。"
+    logout: "登出"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "篩選條件"
+    pagination:
+      empty: "找不到 %{model} "
+      one: "顯示 <b>1</b> %{model}"
+      one_page: "顯示 <b>全部 %{n}</b> %{model}"
+      multiple: "總計 <b>%{total}</b> 顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆"
+      multiple_without_total: "顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆"
+      entry:
+        one: "筆"
+        other: "筆"
+    any: "任何"
+    blank_slate:
+      content: "尚無 %{resource_name}"
+      link: "建立一筆"
+    batch_actions:
+      button_label: "批次作業"
+      delete_confirmation: "您確定要刪除這些 %{plural_model} 嗎？此動作無法復原。"
+      succesfully_destroyed:
+        one: "成功刪除 1 %{model}"
+        other: "成功刪除 %{count} %{plural_model}"
+      selection_toggle_explanation: "(切換選取)"
+      link: "建立一個"
+      action_label: "%{title} 已選取"
+      labels:
+        destroy: "刪除"
+    comments:
+      body: "內文"
+      author: "作者"
+      title: "評論"
+      add: "新增評論"
+      resource: "資源"
+      no_comments_yet: "尚無評論"
+      title_content: "(%{count}) 則評論"
+      errors:
+        empty_text: "評論儲存失敗，不允許空白的內容。"
+    devise:
+      login:
+        title: "登錄"
+        remember_me: "記住我"
+        submit: "登錄"
+      reset_password:
+        title: "忘記密碼？"
+        submit: "重置密碼"
+      change_password:
+        title: "更改您的密碼"
+        submit: "更改我的密碼"
+      links:
+        sign_in: "登錄"
+        forgot_your_password: "忘記密碼？"
+        sign_in_with_omniauth_provider: "登入%{provider}"
+

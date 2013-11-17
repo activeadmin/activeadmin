@@ -1,0 +1,89 @@
+lv:
+  active_admin:
+    dashboard: Panelis
+    dashboard_welcome:
+      welcome: "Laipni lūgti Active Admin."
+      call_to_action: "Izmantojiet 'app/admin/dashboard.rb', lai pievienotu sadaļas panelim."
+    view: "Apskatīt"
+    edit: "Labot"
+    delete: "Dzēst"
+    delete_confirmation: "Vai Tu tiešām vēlies dzēst?"
+    new_model: "Pievienot '%{model}' ierakstu"
+    create_model: "Pievienot '%{model}' ierakstu"
+    edit_model: "Labot '%{model}' ierakstu"
+    update_model: "Labot '%{model}' ierakstu"
+    delete_model: "Dzēst '%{model}' ierakstu"
+    details: "Apraksts"
+    cancel: "Atcelt"
+    empty: "Tukšs"
+    previous: "Iepriekšējā"
+    next: "Nākošā"
+    download: "Lejuplādēt:"
+    has_many_new: "Pievienot jaunu '%{model}' ierakstu"
+    has_many_delete: "Dzēst"
+    has_many_remove: "Noņemt"
+    filters:
+      buttons:
+        filter: "Filtrēt"
+        clear: "Novākt filtrus"
+      predicates:
+        contains: "Satur"
+        equals: "Vienāds ar"
+        starts_with: "Sākas ar"
+        ends_with: "Beidzas ar"
+        greater_than: "Lielāks par"
+        less_than: "Mazāks par"
+    main_content: "Lūdzu implementēt %{model}#main_content, lai rādītos saturs."
+    logout: "Iziet"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Filtri"
+    pagination:
+      empty: "Nav ierakstu"
+      one: "<b>1</b> ieraksts"
+      one_page: "<b>%{n}</b> ieraksti"
+      multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> ieraksti no <b>%{total}</b> kopā"
+      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "ieraksts"
+        other: "ieraksti"
+    any: "Jebkurš"
+    blank_slate:
+      content: "Sadaļā '%{resource_name}' nav neviena ieraksta."
+      link: "Izveidot jaunu"
+    batch_actions:
+      button_label: "Batch Actions"
+      delete_confirmation: "Are you sure you want to delete these %{plural_model}? You won't be able to undo this."
+      succesfully_destroyed:
+        one: "Successfully destroyed 1 %{model}"
+        other: "Successfully destroyed %{count} %{plural_model}"
+      selection_toggle_explanation: "(Toggle Selection)"
+      link: "Create one"
+      action_label: "%{title} Selected"
+      labels:
+        destroy: "Delete"
+    comments:
+      body: "Saturs"
+      author: "Autors"
+      title: "Komentārs"
+      add: "Pievienot komentāru"
+      resource: "Resurss"
+      no_comments_yet: "Nav neviena komentāra."
+      title_content: "Komentāri (%{count})"
+      errors:
+        empty_text: "Komentārs netika saglabāts - nekas nav ierakstīts"
+    devise:
+      login:
+        title: "Ielogojaties"
+        remember_me: "atcerēties mani"
+        submit: "Ielogojaties"
+      reset_password:
+        title: "Aizmirsāt savu paroli?"
+        submit: "Atjaunotu savu paroli"
+      change_password:
+        title: "Nomainīt paroli"
+        submit: "Nomainīt savu paroli"
+      links:
+        sign_in: "pierakstīties"
+        forgot_your_password: "Aizmirsāt savu paroli?"
+        sign_in_with_omniauth_provider: "Pierakstieties ar %{provider}"

@@ -41,7 +41,7 @@ module MethodOrProcHelper
   #     proc = Proc.new{|s| s.size }
   #     call_method_or_proc_on(@my_obj, proc, :exec => false)
   #
-  # You can pass along any necessary arguments to the method / Proc as arguments. For 
+  # You can pass along any necessary arguments to the method / Proc as arguments. For
   # example:
   #
   #     call_method_or_proc_on(@my_obj, :find, 1) #=> @my_obj.find(1)
@@ -76,16 +76,16 @@ module MethodOrProcHelper
     end
   end
 
-  # This method is different from the others in that it calls `instance_eval` on the reciever,
+  # This method is different from the others in that it calls `instance_exec` on the reciever,
   # passing it the proc. This evaluates the proc in the context of the reciever, thus changing
   # what `self` means inside the proc.
-  def render_in_context(context, obj)
+  def render_in_context(context, obj, *args)
     context ||= self # default to `self`
     case obj
     when Proc
-      context.instance_exec &obj
+      context.instance_exec *args, &obj
     when Symbol
-      context.send obj
+      context.send obj, *args
     else
       obj
     end

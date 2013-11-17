@@ -1,52 +1,84 @@
 # Installation
 
-Installing Active Admin in a Rails application is as easy as adding the gem to
-your Gemfile:
+Active Admin is a Ruby Gem.
 
-    # Gemfile
-    gem 'activeadmin'
+```ruby
+gem 'activeadmin'
+```
 
-## Running the Generator
+More accurately, it's a [Rails Engine](http://guides.rubyonrails.org/engines.html)
+that can be injected into your existing Ruby on Rails application.
 
-Once you have added the gem to your Gemfile (and any other dependencies), you
-need to run the Active Admin install generator.
+## Setting up Active Admin
 
-    $> rails generate active_admin:install
+After installing the gem, you need to run the generator:
 
-This will install Active Admin the default settings. By default it will create a
-new Devise user / model called AdminUser. To change the name of the user class,
-simply pass the class as the last argument:
+```sh
+rails g active_admin:install              # creates the AdminUser class
+rails g active_admin:install User         # uses an existing class
+rails g active_admin:install --skip-users # skips user authentication entirely
+```
 
-    $> rails generate active_admin:install User
+The generator adds these core files, among others:
 
-Instead of generating an AdminUser class, this command will create a User class.
+```
+app/admin/dashboard.rb
+app/assets/javascripts/active_admin.js.coffee
+app/assets/stylesheets/active_admin.css.scss
+config/initializers/active_admin.rb
+```
 
-You can skip the Devise user class all together by using the `skip-users` flag:
+Now, migrate your database and start the server:
 
-    $> rails generate active_admin:install --skip-users
+```sh
+rake db:migrate
+rails server
+```
 
-NOTE: If you don't use the default user settings, you will need to configure the
-settings in `config/intializers/active_admin.rb` to suite your needs.
+Visit `http://localhost:3000/admin` and log in as the default user:
 
-After running the installer, run `rake db:migrate` to ensure that all db tables
-are created.
+* __User__: admin@example.com
+* __Password__: password
 
-## Upgrading
+Voila! You're on your brand new Active Admin dashboard.
 
-To upgrade Active Admin, simply update the version number in your Gemfile, then
-run the assets generator:
+To register an existing model with Active Admin:
 
-    $> rails generate active_admin:assets
+```sh
+rails generate active_admin:resource MyModel
+```
 
-This command makes sure you have all the latest assets and your installation is
-up to date. Each time you upgrade Active Admin, you should run this command.
+This creates a file at `app/admin/my_model.rb` to set up the UI; refresh your browser to see it.
 
-## will_paginate compatibility
+# Upgrading
+
+When upgrading to a new version, it's a good idea to check the [CHANGELOG].
+
+To update the JS & CSS assets:
+
+```sh
+rails generate active_admin:assets
+```
+
+You should also sync these files with their counterparts in the AA source code:
+
+* app/admin/dashboard.rb [~>][dashboard.rb]
+* config/initializers/active_admin.rb [~>][active_admin.rb]
+
+# Gem compatibility
+
+## will_paginate
 
 If you use `will_paginate` in your app, you need to configure an initializer for
-Kaminari to avoid conflicts. Put this in `config/initializers/kaminari.rb`
+Kaminari to avoid conflicts.
 
+```ruby
+# config/initializers/kaminari.rb
+Kaminari.configure do |config|
+  config.page_method_name = :per_page_kaminari
+end
+```
 
-    Kaminari.configure do |config|
-      config.page_method_name = :per_page_kaminari
-    end
+[CHANGELOG]: https://github.com/gregbell/active_admin/blob/master/CHANGELOG.md
+[dashboard.rb]: https://github.com/gregbell/active_admin/blob/master/lib/generators/active_admin/install/templates/dashboard.rb
+[active_admin.rb]: https://github.com/gregbell/active_admin/blob/master/lib/generators/active_admin/install/templates/active_admin.rb.erb

@@ -1,8 +1,9 @@
-lib/**/*.rb 
+lib/**/*.rb
 --protected
 --no-private
---asset docs/images:images
+--exclude features
+--plugin redcarpet-ext
 -
-README.rdoc 
+README.md
 CHANGELOG.md
 docs/**/*.md

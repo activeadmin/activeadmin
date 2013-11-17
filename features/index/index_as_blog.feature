@@ -36,7 +36,7 @@ Feature: Index as Blog
       """
       ActiveAdmin.register Post do
         index :as => :blog do
-          title do |post| 
+          title do |post|
             post.title + " From Block"
           end
           body do |post|
@@ -48,3 +48,22 @@ Feature: Index as Blog
     Then I should see "Hello World From Block" within "h3"
     And I should see a link to "Hello World From Block"
     And I should see "My great post body From Block" within ".post"
+
+  Scenario: Viewing a blog with a resource as a block configuration should render Abre components
+    Given a post with the title "Hello World" and body "My great post body" exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        index :as => :blog do
+          title do |post|
+            span(:class => :title_span) { post.title + " From Block " }
+          end
+          body do |post|
+            span(:class => :body_span) { post.body + " From Block" }
+          end
+        end
+      end
+      """
+      Then I should see "Hello World From Block" within "span.title_span"
+      And I should see a link to "Hello World From Block"
+      And I should see "My great post body From Block" within ".post span.body_span"

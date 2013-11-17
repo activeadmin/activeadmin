@@ -1,13 +1,13 @@
 # Authorization Adapter
 
-Active Admin offers the ability to define and use your own authorization 
-adapter. If implemented, the '#authorized?' will be called when an action is 
+Active Admin offers the ability to define and use your own authorization
+adapter. If implemented, the '#authorized?' will be called when an action is
 taken. By default, '#authorized?' returns true.
 
 
 ## Setting up your own AuthorizationAdapter
 
-Setting up your own `AuthorizationAdapter` is easy! The following example shows 
+Setting up your own `AuthorizationAdapter` is easy! The following example shows
 how to set up and tie your authorization adapter class to Active Admin:
 
     # app/models/only_authors_authorization.rb
@@ -15,7 +15,7 @@ how to set up and tie your authorization adapter class to Active Admin:
 
         def authorized?(action, subject = nil)
           case subject
-          when normalize(Post)
+          when normalized(Post)
 
             # Only let the author update and delete posts
             if action == :update || action == :destroy
@@ -33,7 +33,7 @@ how to set up and tie your authorization adapter class to Active Admin:
 
     end
 
-In order to hook up `OnlyAuthorsAuthorization` to Active Admin, go to your 
+In order to hook up `OnlyAuthorsAuthorization` to Active Admin, go to your
 application's `config/initializers/active_admin.rb` and add/modify the line:
 
     config.authorization_adapter = "OnlyAuthorsAuthorization"
@@ -55,7 +55,7 @@ Now, whenever a controller action is performed, the `OnlyAuthorsAuthorization`'s
 
 ## Getting Access to the Current User
 
-From within your authorization adapter, you can call the `#user` method to 
+From within your authorization adapter, you can call the `#user` method to
 retrieve the current user.
 
     class OnlyAdmins < ActiveAdmin::AuthorizationAdapter
@@ -69,8 +69,8 @@ retrieve the current user.
 
 ## Scoping Collections in Authorization Adapters
 
-`ActiveAdmin::AuthorizationAdapter` also provides a hook method (`#scope_collection`) 
-for the adapter to scope the resource's collection. For example, you may want to 
+`ActiveAdmin::AuthorizationAdapter` also provides a hook method (`#scope_collection`)
+for the adapter to scope the resource's collection. For example, you may want to
 centralize the scoping:
 
     class OnlyMyAccount < ActiveAdmin::AuthorizationAdapter
@@ -79,7 +79,7 @@ centralize the scoping:
         subject.account == user.account
       end
 
-      def scope_collection(collection)
+      def scope_collection(collection, action = Auth::READ)
         collection.where(:account_id => user.account_id)
       end
 
@@ -112,7 +112,7 @@ subject will be an instance of `ActiveAdmin::Page`.
 
 ## Action Types
 
-By default Active Admin simplifies the controller actions into 4 actions: 
+By default Active Admin simplifies the controller actions into 4 actions:
 
   * `:read` - This controls if the user can view the menu item as well as the
     index and show screens.
@@ -181,6 +181,27 @@ To use the CanCan adapter, simply update the configuration in the Active Admin
 initializer:
 
     config.authorization_adapter = ActiveAdmin::CanCanAdapter
+    
+You can also specify a method to be called on unauthorized access. This is necessary
+in order to prevent a redirect loop that can happen if a user tries to access a page
+they don't have permissions for (see [#2081](https://github.com/gregbell/active_admin/issues/2081)).
+```ruby
+config.on_unauthorized_access = :access_denied
+```    
+The method `access_denied` would be defined in `application_controller.rb`. Here is one
+example that redirects the user from the page they don't have permission to
+access to a resource they have permission to access (organizations in this case), and
+also displays the error message in the browser:
+
+```ruby
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+  
+  def access_denied(exception)
+    redirect_to admin_organizations_path, :alert => exception.message
+  end
+end
+```
 
 By default this will use the ability class named "Ability". This can also be
 changed from the initializer:
@@ -194,7 +215,7 @@ will use it for authorization:
     class Ability
       include CanCan::Ability
 
-      def intialize(user)
+      def initialize(user)
         can :manage, Post
         can :read, User
         can :manage, User, :id => user.id

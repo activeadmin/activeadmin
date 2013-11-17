@@ -1,0 +1,90 @@
+nl:
+  active_admin:
+    dashboard: Dashboard
+    dashboard_welcome:
+      welcome: "Welkom bij Active Admin. Dit is de standaard dashboard pagina"
+      call_to_action: "Pas je eigen dashboard aan in het bestand 'app/admin/dashboard.rb'"
+    view: "Bekijk"
+    edit: "Wijzig"
+    delete: "Verwijder"
+    delete_confirmation: "Weet je zeker dat je dit item wilt verwijderen?"
+    new_model: "Nieuwe %{model}"
+    create_model: "Nieuwe %{model}"
+    edit_model: "Wijzig %{model}"
+    update_model: "Wijzig %{model}"
+    delete_model: "Verwijder %{model}"
+    details: "%{model} details"
+    cancel: "Annuleren"
+    empty: "Leeg"
+    previous: "Vorige"
+    next: "Volgende"
+    download: "Download"
+    has_many_new: "Voeg nieuwe %{model} toe"
+    has_many_delete: "Verwijderen"
+    has_many_remove: "Verwijderen"
+    filters:
+      buttons:
+        filter: "Filter"
+        clear: "Maak Filters Ongedaan"
+      predicates:
+        contains: "Bevat"
+        equals: "Gelijk aan"
+        starts_with: "Begint met"
+        ends_with: "Eindigt op"
+        greater_than: "Groter dan"
+        less_than: "Kleiner dan"
+    main_content: "Implementeer %{model}#main_content om de content weer te geven."
+    logout: "Uitloggen"
+    powered_by: "Mogelijk gemaakt door %{active_admin} %{version}"
+    sidebars:
+      filters: "Filters"
+    pagination:
+      empty: "Geen %{model} gevonden"
+      one: "Geeft <b>1</b> %{model} weer"
+      one_page: "Geeft <b>%{n}</b> %{model} weer"
+      multiple: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> van de <b>%{total}</b> weer"
+      multiple_without_total: "Geeft %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "entry"
+        other: "entries"
+    any: "Alle"
+    blank_slate:
+      content: "Er zijn geen %{resource_name} gevonden."
+      link: "Maak aan"
+    batch_actions:
+      button_label: "Batch acties"
+      delete_confirmation: "Weet je zeker dat je deze %{plural_model} wilt verwijderen? Er is geen undo."
+      succesfully_destroyed:
+        one: "1 %{model} verwijderd."
+        other: "%{count} %{plural_model} verwijderd."
+      selection_toggle_explanation: "(Toggle selectie)"
+      link: "Maak aan"
+      action_label: "%{title} geselecteerde"
+      labels:
+        destroy: "Verwijder"
+    comments:
+      body: "Tekst"
+      author: "Auteur"
+      title: "Reactie"
+      add: "Voeg commentaar toe"
+      resource: "Resource"
+      no_comments_yet: "Nog geen reacties."
+      title_content: "Reacties (%{count})"
+      errors:
+        empty_text: "De reactie is niet opgeslagen, de tekst was leeg."
+    devise:
+      login:
+        title: "inloggen"
+        remember_me: "Onthoud mij"
+        submit: "inloggen"
+      reset_password:
+        title: "Wachtwoord vergeten?"
+        submit: "Reset mijn wachtwoord vergeten"
+      change_password:
+        title: "Wijzig uw wachtwoord"
+        submit: "Mijn wachtwoord wijzigen"
+      links:
+        sign_in: "Meld u aan"
+        forgot_your_password: "Wachtwoord vergeten?"
+        sign_in_with_omniauth_provider: "Log in met %{provider}"
+

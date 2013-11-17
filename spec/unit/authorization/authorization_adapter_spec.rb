@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ActiveAdmin::AuthorizationAdapter do
 
-  let(:adapter) { ActiveAdmin::AuthorizationAdapter.new(stub, stub) }
+  let(:adapter) { ActiveAdmin::AuthorizationAdapter.new(double, double) }
 
   describe "#authorized?" do
 
@@ -15,8 +15,8 @@ describe ActiveAdmin::AuthorizationAdapter do
   describe "#scope_collection" do
 
     it "should return the collection unscoped" do
-      collection = stub
-      adapter.scope_collection(collection).should == collection
+      collection = double
+      adapter.scope_collection(collection, ActiveAdmin::Auth::READ).should == collection
     end
 
   end
@@ -24,7 +24,7 @@ describe ActiveAdmin::AuthorizationAdapter do
   describe "using #normalized in a subclass" do
 
     let(:auth_class) do
-      Class.new(ActiveAdmin::AuthorizationAdapter) do 
+      Class.new(ActiveAdmin::AuthorizationAdapter) do
 
         def authorized?(action, subject = nil)
           case subject
@@ -38,9 +38,9 @@ describe ActiveAdmin::AuthorizationAdapter do
       end
     end
 
-    let(:adapter) { auth_class.new(stub, stub) }
+    let(:adapter) { auth_class.new(double, double) }
 
-    it "should match agains a class" do
+    it "should match against a class" do
       adapter.authorized?(:read, String).should == true
     end
 

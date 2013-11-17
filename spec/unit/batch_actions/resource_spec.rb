@@ -7,7 +7,7 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
     namespace.batch_actions = true
     namespace.register(Post)
   end
-  
+
   describe "default action" do
 
     it "should have the default action by default" do
@@ -15,7 +15,7 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
     end
 
   end
-  
+
   describe "adding a new batch action" do
 
     before do
@@ -38,17 +38,17 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
     end
 
   end
-  
+
   describe "removing batch action" do
-    
+
     before do
       resource.remove_batch_action :destroy
     end
-    
+
     it "should allow for batch action removal" do
       resource.batch_actions.size.should == 0
     end
-    
+
   end
 
   describe "#batch_action_path" do
@@ -67,25 +67,25 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
     end
 
     it "should return the :if block if set" do
-      action = ActiveAdmin::BatchAction.new :with_block, "With Block", :if => proc { false } 
+      action = ActiveAdmin::BatchAction.new :with_block, "With Block", :if => proc { false }
       action.display_if_block.call.should == false
     end
 
   end
-  
+
   describe "batch action priority" do
-    
+
     it "should have a default priority" do
       action = ActiveAdmin::BatchAction.new :default, "Default"
       action.priority.should == 10
     end
-    
+
     it "should correctly order two actions" do
       priority_one = ActiveAdmin::BatchAction.new :one, "One", :priority => 1
       priority_ten = ActiveAdmin::BatchAction.new :ten, "Ten", :priority => 10
       priority_one.should be < priority_ten
     end
-    
+
   end
 
 end

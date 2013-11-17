@@ -12,35 +12,35 @@ describe ActiveAdmin::Devise::Controller do
   end
 
   let(:controller) { controller_class.new }
-  
+
   context 'with a RAILS_RELATIVE_URL_ROOT set' do
-    
+
     before { Rails.configuration.action_controller[:relative_url_root] = '/foo' }
-    
+
     it "should set the root path to the default namespace" do
       controller.root_path.should == "/foo/admin"
     end
 
     it "should set the root path to '/' when no default namespace" do
-      ActiveAdmin.application.stub!(:default_namespace => false)
+      ActiveAdmin.application.stub default_namespace: false
       controller.root_path.should == "/foo/"
     end
-    
+
   end
-  
+
   context 'without a RAILS_RELATIVE_URL_ROOT set' do
-    
+
     before { Rails.configuration.action_controller[:relative_url_root] = nil }
-    
+
     it "should set the root path to the default namespace" do
       controller.root_path.should == "/admin"
     end
-    
+
     it "should set the root path to '/' when no default namespace" do
-      ActiveAdmin.application.stub!(:default_namespace => false)
+      ActiveAdmin.application.stub default_namespace: false
       controller.root_path.should == "/"
     end
-    
+
   end
 
   context "within a scoped route" do
@@ -71,7 +71,7 @@ describe ActiveAdmin::Devise::Controller do
     end
 
   end
-  
+
   describe "#config" do
     let(:config) { ActiveAdmin::Devise.config }
 
@@ -92,7 +92,7 @@ describe ActiveAdmin::Devise::Controller do
       context "when Devise implements sign_out_via (version >= 1.2)" do
         before do
           ::Devise.should_receive(:respond_to?).with(:sign_out_via).and_return(true)
-          ::Devise.stub!(:sign_out_via) { :delete }
+          ::Devise.stub(:sign_out_via) { :delete }
         end
 
         it "should contain the application.logout_link_method" do

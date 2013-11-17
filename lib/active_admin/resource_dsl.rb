@@ -7,36 +7,9 @@ module ActiveAdmin
       config.belongs_to(target, options)
     end
 
-    # Scope this controller to some object which has a relation
-    # to the resource. Can either accept a block or a symbol 
-    # of a method to call.
-    #
-    # Eg:
-    #
-    #   ActiveAdmin.register Post do
-    #     scope_to :current_user
-    #   end
-    #
-    # Then every time we instantiate and object, it would call
-    #
-    #   current_user.posts.build
-    #
-    # By default Active Admin will use the resource name to build a
-    # method to call as the association. If its different, you can 
-    # pass in the association_method as an option.
-    #
-    #   scope_to :current_user, :association_method => :blog_posts
-    #
-    # will result in the following
-    #
-    #   current_user.blog_posts.build
-    #
+    # Scope collection to a relation
     def scope_to(*args, &block)
-      options = args.extract_options!
-      method = args.first
-
-      config.scope_to = block_given? ? block : method
-      config.scope_to_association_method = options[:association_method]
+      config.scope_to(*args, &block)
     end
 
     # Create a scope
@@ -44,12 +17,41 @@ module ActiveAdmin
       config.scope(*args, &block)
     end
 
+    #
+    # Rails 4 Strong Parameters Support
+    #
+    # Either
+    #
+    #   permit_params :title, :author, :body
+    #
+    # Or
+    #
+    #   permit_params do
+    #     defaults = [:title, :body]
+    #     if current_user.admin?
+    #       defaults + [:author]
+    #     else
+    #       defaults
+    #     end
+    #   end
+    #
+    def permit_params(*args, &block)
+      resource_sym = config.resource_name.singular.to_sym
+
+      controller do
+        define_method :permitted_params do
+          params.permit resource_sym =>
+                        block ? instance_exec(&block) : args
+        end
+      end
+    end
+
     # Configure the index page for the resource
     def index(options = {}, &block)
       options[:as] ||= :table
       config.set_page_presenter :index, ActiveAdmin::PagePresenter.new(options, &block)
     end
-    
+
     # Configure the show page for the resource
     def show(options = {}, &block)
       config.set_page_presenter :show, ActiveAdmin::PagePresenter.new(options, &block)
@@ -68,7 +70,7 @@ module ActiveAdmin
     #     column("Author") { |post| post.author.full_name }
     #   end
     #
-    #   csv :separator => ";", :options => { :force_quotes => true } do
+    #   csv :col_sep => ";", :force_quotes => true do
     #     column :name
     #   end
     #
@@ -144,7 +146,7 @@ module ActiveAdmin
     delegate :before_destroy, :after_destroy, :to => :controller
 
     # Standard rails filters
-    delegate :before_filter, :skip_before_filter, :after_filter, :around_filter, :to => :controller
+    delegate :before_filter, :skip_before_filter, :after_filter, :around_filter, :skip_filter, :to => :controller
 
     # Specify which actions to create in the controller
     #

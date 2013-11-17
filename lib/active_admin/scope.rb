@@ -1,7 +1,7 @@
 module ActiveAdmin
   class Scope
 
-    attr_reader :scope_method, :id, :scope_block, :display_if_block, :show_count
+    attr_reader :scope_method, :id, :scope_block, :display_if_block, :show_count, :default_block
 
     # Create a Scope
     #
@@ -13,7 +13,7 @@ module ActiveAdmin
     #   Scope.new('Published', :public)
     #   # => Scope with name 'Published' and scope method :public
     #
-    #   Scope.new 'Published', :public, :if => proc { current_admin_user.can? :manage, resource_class } do |articles| 
+    #   Scope.new 'Published', :public, :if => proc { current_admin_user.can? :manage, resource_class } do |articles|
     #     articles.where :published => true
     #   end
     #   # => Scope with name 'Published' and scope method :public, optionally displaying the scope per the :if block
@@ -39,7 +39,9 @@ module ActiveAdmin
       @scope_method, @scope_block = nil, block if block_given?
 
       @show_count       = options[:show_count].nil? ? true : options[:show_count]
-      @display_if_block = options[:if] || proc{ true }
+      @display_if_block = options[:if]      || proc{ true }
+      @default_block    = options[:default] || proc{ false }
+
     end
 
     def name

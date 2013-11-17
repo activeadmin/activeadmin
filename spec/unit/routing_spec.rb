@@ -9,66 +9,12 @@ describe ActiveAdmin, "Routing", :type => :routing do
     reload_routes!
   end
 
-  include Rails.application.routes.url_helpers
+  it "should only have the namespaces necessary for route testing" do
+    ActiveAdmin.application.namespaces.keys.should eq [:admin, :root]
+  end
 
-  describe "root" do
-    before do
-      pending "Y U NO PASS?"
-    end
-    context "when default configuration" do
-      context "when in admin namespace" do
-        it "should route the admin dashboard" do
-          get('/admin').should route_to('admin/dashboard#index')
-        end
-      end
-
-      context "when in root namespace" do
-        before(:each) do
-          load_resources { ActiveAdmin.register(Post, :namespace => false) }
-          reload_routes!
-        end
-
-        it "should route the root dashboard" do
-          pending "Y U NO PASS?"
-
-          get('/').should route_to('dashboard#index')
-        end
-      end
-    end
-
-    context "when customized configuration to root to post#index" do
-      before do
-        @original_root = ActiveAdmin.application.root_to
-        ActiveAdmin.application.root_to = "posts#index"
-      end
-
-      after do
-        ActiveAdmin.application.root_to = @original_root
-        reload_routes!
-      end
-
-      context "when in admin namespace" do
-        before do
-          load_resources { ActiveAdmin.register(Post) }
-        end
-
-        it "should route to admin/posts#index" do
-          get('/admin').should route_to('admin/posts#index')
-        end
-      end
-
-      context "when in root namespace" do
-        before do
-          load_resources { ActiveAdmin.register(Post, :namespace => false) }
-        end
-
-        it "should route to posts#index" do
-          pending "Y U NO PASS?"
-
-          get('/').should route_to('posts#index')
-        end
-      end
-    end
+  it "should route to the admin dashboard" do
+    get('/admin').should route_to 'admin/dashboard#index'
   end
 
   describe "standard resources" do
@@ -115,7 +61,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
     context "with member action" do
       context "without an http verb" do
         before do
-          load_resources do 
+          load_resources do
             ActiveAdmin.register(Post){ member_action "do_something" }
           end
         end
@@ -128,7 +74,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
 
       context "with one http verb" do
         before do
-          load_resources do 
+          load_resources do
             ActiveAdmin.register(Post){ member_action "do_something", :method => :post }
           end
         end
@@ -140,7 +86,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
 
       context "with two http verbs" do
         before do
-          load_resources do 
+          load_resources do
             ActiveAdmin.register(Post){ member_action "do_something", :method => [:put, :delete] }
           end
         end
@@ -149,8 +95,8 @@ describe ActiveAdmin, "Routing", :type => :routing do
           {:put => "/admin/posts/1/do_something"}.should be_routable
         end
 
-        it "should properly route the second verb" do        
-          {:delete => "/admin/posts/1/do_something"}.should be_routable     
+        it "should properly route the second verb" do
+          {:delete => "/admin/posts/1/do_something"}.should be_routable
         end
       end
     end

@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 require 'spec_helper'
 
 module ActiveAdmin
@@ -74,6 +76,13 @@ module ActiveAdmin
           end
         end
 
+        describe "plural label with not default locale" do
+          it "should return the titleized plural version defined by i18n with custom :count if available" do
+            config.resource_name.should_receive(:translate).at_least(:once).and_return "Категории"
+            config.plural_resource_label(:count => 3).should == "Категории"
+          end
+        end
+
         context "when the :as option is given" do
           describe "singular label" do
             it "should translate the custom name" do
@@ -95,5 +104,19 @@ module ActiveAdmin
       end
     end
 
+    describe "duplicate resource names" do
+      let(:resource_name) { config.resource_name }
+      let(:duplicate_resource_name) { Resource.new(namespace, Category).resource_name }
+
+      [:==, :===, :eql?].each do |method|
+        it "are equivalent when compared with #{method}" do
+          resource_name.public_send(method, duplicate_resource_name).should be_true
+        end
+      end
+
+      it "have identical hash values" do
+        resource_name.hash.should == duplicate_resource_name.hash
+      end
+    end
   end
 end

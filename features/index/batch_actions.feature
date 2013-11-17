@@ -51,14 +51,14 @@ Feature: Batch Actions
       """
       ActiveAdmin.register Post do
         batch_action(:flag) do
-          redirect_to collection_path, :notice => "Successfully flagged 10 posts" 
+          redirect_to collection_path, :notice => "Successfully flagged 10 posts"
         end
       end
       """
     When I check the 1st record
     Given I submit the batch action form with "flag"
     Then I should see a flash with "Successfully flagged 10 posts"
-    
+
   Scenario: Disabling batch actions for a resource
     Given 10 posts exist
     And an index configuration of:
@@ -67,9 +67,9 @@ Feature: Batch Actions
         config.batch_actions = false
       end
       """
-    Then I should not see the batch actions selector
+    Then I should not see the batch action selector
     And I should not see checkboxes in the table
-  
+
   Scenario: Disabling the default destroy batch action
     Given 10 posts exist
     And an index configuration of:
@@ -79,9 +79,9 @@ Feature: Batch Actions
         batch_action(:flag) {}
       end
       """
-    Then I should see the batch action "Flag Selected"
-    And I should not see the batch action "Delete Selected"
-  
+    Then I should see the batch action :flag "Flag Selected"
+    And I should not see the batch action :destroy "Delete Selected"
+
   Scenario: Optional display of batch actions
     Given 10 posts exist
     And an index configuration of:
@@ -91,9 +91,9 @@ Feature: Batch Actions
         batch_action(:unflag, :if => proc { false }) {}
       end
       """
-    Then I should see the batch action "Flag Selected"
-    And I should not see the batch action "Unflag Selected"
-    
+    Then I should see the batch action :flag "Flag Selected"
+    And I should not see the batch action :unflag "Unflag Selected"
+
   Scenario: Sort order priority
     Given 10 posts exist
     And an index configuration of:
@@ -108,7 +108,7 @@ Feature: Batch Actions
     And the 3rd batch action should be "Test Selected"
     And the 2nd batch action should be "Flag Selected"
     And the 1st batch action should be "Unflag Selected"
-    
+
   Scenario: Complex naming
     Given 10 posts exist
     And an index configuration of:
@@ -120,3 +120,4 @@ Feature: Batch Actions
       """
     Then I should see the batch action :very_complex_and_time_consuming "Very Complex and Time Consuming Selected"
     And I should see the batch action :passing_a_symbol "Passing A Symbol Selected"
+

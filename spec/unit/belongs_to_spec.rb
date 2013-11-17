@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 describe ActiveAdmin::Resource::BelongsTo do
 
@@ -28,9 +28,9 @@ describe ActiveAdmin::Resource::BelongsTo do
 
     context "when the resource has not been registered" do
       it "should raise a ActiveAdmin::BelongsTo::TargetNotFound" do
-        lambda {
+        expect {
           belongs_to.target
-        }.should raise_error(ActiveAdmin::Resource::BelongsTo::TargetNotFound)
+        }.to raise_error(ActiveAdmin::Resource::BelongsTo::TargetNotFound)
       end
     end
   end

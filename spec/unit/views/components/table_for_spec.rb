@@ -48,10 +48,12 @@ describe ActiveAdmin::Views::TableFor do
         table.find_by_tag("th").first.content.should == "Title"
         table.find_by_tag("th").last.content.should == "Created At"
       end
-      
+
       it "should add a class to each table header based on the col name" do
-        table.find_by_tag("th").first.class_list.should include("title")
-        table.find_by_tag("th").last.class_list.should  include("created_at")
+        table.find_by_tag("th").first
+          .class_list.to_a.join(' ').should == "col col-title"
+        table.find_by_tag("th").last
+          .class_list.to_a.join(' ').should  == "col col-created_at"
       end
 
       it "should create a table row for each element in the collection" do
@@ -61,10 +63,12 @@ describe ActiveAdmin::Views::TableFor do
       it "should create a cell for each column" do
         table.find_by_tag("td").size.should == 6
       end
-      
+
       it "should add a class for each cell based on the col name" do
-        table.find_by_tag("td").first.class_list.should include("title")
-        table.find_by_tag("td").last.class_list.should  include("created_at")
+        table.find_by_tag("td").first
+          .class_list.to_a.join(' ').should  == "col col-title"
+        table.find_by_tag("td").last
+          .class_list.to_a.join(' ').should  == "col col-created_at"
       end
     end
 
@@ -80,11 +84,11 @@ describe ActiveAdmin::Views::TableFor do
       end
 
       it "should add a class to each table header based on the col name" do
-        table.find_by_tag("th").first.class_list.should include("title")
+        table.find_by_tag("th").first.class_list.should include("col-title")
       end
 
-      [ "<span>First Post</span>", 
-        "<span>Second Post</span>", 
+      [ "<span>First Post</span>",
+        "<span>Second Post</span>",
         "<span>Third Post</span>" ].each_with_index do |content, index|
         it "should create a cell with #{content}" do
           table.find_by_tag("td")[index].content.strip.should == content
@@ -124,16 +128,31 @@ describe ActiveAdmin::Views::TableFor do
 
 
       it "should add a class to each table header  based on class option or the col name" do
-        table.find_by_tag("th").first.class_list.should  include("my_custom_title")
-        table.find_by_tag("th").last.class_list.should  include("datetime")
+        table.find_by_tag("th").first
+          .class_list.to_a.join(' ').should  == "col col-my_custom_title"
+        table.find_by_tag("th").last
+          .class_list.to_a.join(' ').should  == "col datetime"
       end
 
       it "should add a class to each cell based  on class option or the col name" do
-        table.find_by_tag("td").first.class_list.should include("my_custom_title")
-        table.find_by_tag("td").last.class_list.should  include("datetime")
+        table.find_by_tag("td").first
+          .class_list.to_a.join(' ').should  == "col col-my_custom_title"
+        table.find_by_tag("td").last
+          .class_list.to_a.join(' ').should  == "col datetime"
       end
+    end
 
-
+    context "when using a single record instead of a collection" do
+      let(:table) do
+        render_arbre_component nil, helpers do
+          table_for Post.new do
+            column :title
+          end
+        end
+      end
+      it "should render" do
+        table.find_by_tag("th").first.content.should == "Title"
+      end
     end
 
 

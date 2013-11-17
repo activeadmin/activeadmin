@@ -1,65 +1,71 @@
 module ActiveAdmin
   module Views
 
-    # = Index as Blog
+    # # Index as Blog
     #
     # Render your index page as a set of posts. The post has two main options:
     # title and body.
     #
-    #     index :as => :blog do
-    #       title :my_title # Calls #my_title on each resource
-    #       body  :my_body  # Calls #my_body on each resource
-    #     end
+    # ```ruby
+    # index as: :blog do
+    #   title :my_title # Calls #my_title on each resource
+    #   body  :my_body  # Calls #my_body on each resource
+    # end
+    # ```
     #
-    # == Post Title
+    # ## Post Title
     #
     # The title is the content that will be rendered within a link to the
     # resource. There are two main ways to set the content for the title
     #
-    # First, you can pass in a method to be called on your
-    # resource. For example:
+    # First, you can pass in a method to be called on your resource. For example:
     #
-    #     index :as => :blog do
-    #       title :a_method_to_call
-    #     end
-    #
-    # This will result in the title of the post being the return value of
-    # Resource#a_method_to_call
+    # ```ruby
+    # index as: :blog do
+    #   title :a_method_to_call
+    # end
+    # ```
     #
     # Second, you can pass a block to the tile option which will then be
     # used as the contents fo the title. The resource being rendered
     # is passed in to the block. For Example:
     #
-    #     index :as => :blog do
-    #       title do |post|
-    #         span post.title, :class => 'title'
-    #         span post.created_at, :class => 'created_at'
-    #       end
-    #     end
+    # ```ruby
+    # index as: :blog do
+    #   title do |post|
+    #     span post.title,      class: 'title'
+    #     span post.created_at, class: 'created_at'
+    #   end
+    # end
+    # ```
     #
-    # == Post Body
+    # ## Post Body
     #
     # The body is rendered underneath the title of each post. The same two
     # style of options work as the Post Title above.
     #
     # Call a method on the resource as the body:
     #
-    #     index :as => :blog do
-    #       title :my_title
-    #       body :my_body # Return value of #my_body will be the body
-    #     end
+    # ```ruby
+    # index as: :blog do
+    #   title :my_title
+    #   body :my_body
+    # end
+    # ```
     #
     # Or, render a block as the body:
     #
-    #     index :as => :blog do
-    #       title :my_title
-    #       body do |post|
-    #         div truncate(post.title)
-    #         div :class => 'meta' do
-    #           span "Post in #{post.categories.join(', ')}"
-    #         end
-    #       end
+    # ```ruby
+    # index as: :blog do
+    #   title :my_title
+    #   body do |post|
+    #     div truncate post.title
+    #     div class: 'meta' do
+    #       span "Post in #{post.categories.join(', ')}"
     #     end
+    #   end
+    # end
+    # ```
     #
     class IndexAsBlog < ActiveAdmin::Component
 
@@ -67,7 +73,7 @@ module ActiveAdmin
         @page_presenter = page_presenter
         @collection = collection
 
-        # Call the block passed in. This will set the 
+        # Call the block passed in. This will set the
         # title and body methods
         instance_eval &page_presenter.block if page_presenter.block
 
@@ -117,7 +123,9 @@ module ActiveAdmin
       def build_title(post)
         if @title
           h3 do
-            link_to(call_method_or_proc_on(post, @title), resource_path(post))
+            a(:href => resource_path(post)) do
+             render_method_on_post_or_call_proc post, @title
+            end
           end
         else
           h3 do
@@ -128,7 +136,18 @@ module ActiveAdmin
 
       def build_body(post)
         if @body
-          div(call_method_or_proc_on(post, @body), :class => 'content')
+          div :class => 'content' do
+            render_method_on_post_or_call_proc post, @body
+          end
+        end
+      end
+
+      def render_method_on_post_or_call_proc(post, proc)
+        case proc
+        when String,Symbol
+          post.send proc
+        else
+          instance_exec post, &proc
         end
       end
 

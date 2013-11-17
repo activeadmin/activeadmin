@@ -1,7 +1,7 @@
 module ActiveAdmin
 
   # Exception class to raise when there is an authorized access
-  # exception thrown. The exception has a few goodies that may 
+  # exception thrown. The exception has a few goodies that may
   # be useful for capturing / recognizing security issues.
   class AccessDenied < StandardError
     attr_reader :user, :action, :subject
@@ -16,7 +16,6 @@ module ActiveAdmin
       I18n.t("active_admin.access_denied.message")
     end
   end
-
 
   class BaseController < ::InheritedResources::Base
     module Authorization
@@ -43,7 +42,7 @@ module ActiveAdmin
       protected
 
       # Authorize the action and subject. Available in the controller
-      # as well as all the views. 
+      # as well as all the views.
       #
       # @param [Symbol] action The action to check if the user has permission
       #                 to perform on the subject.
@@ -90,17 +89,19 @@ module ActiveAdmin
       #
       # @returns [ActiveAdmin::AuthorizationAdapter]
       def active_admin_authorization
-        @active_admin_authorization ||= active_admin_authorization_adapter.new(active_admin_config, current_active_admin_user)
+        @active_admin_authorization ||=
+         active_admin_authorization_adapter.new active_admin_config, current_active_admin_user
       end
 
       # Returns the class to be used as the authorization adapter
       #
       # @returns [Class]
       def active_admin_authorization_adapter
-        if active_admin_namespace.authorization_adapter.is_a?(String)
-          ActiveSupport::Dependencies.constantize(active_admin_namespace.authorization_adapter)
+        adapter = active_admin_namespace.authorization_adapter
+        if adapter.is_a? String
+          ActiveSupport::Dependencies.constantize adapter
         else
-          active_admin_namespace.authorization_adapter
+          adapter
         end
       end
 
@@ -112,14 +113,8 @@ module ActiveAdmin
       #
       # @returns [Symbol] The permission name to use.
       def action_to_permission(action)
-        return nil unless action
-
-        action = action.to_sym
-
-        if Authorization::ACTIONS_DICTIONARY.has_key?(action)
-          Authorization::ACTIONS_DICTIONARY[action]
-        else
-          action
+        if action && action = action.to_sym
+          Authorization::ACTIONS_DICTIONARY[action] || action
         end
       end
 
@@ -128,23 +123,26 @@ module ActiveAdmin
       end
 
       def rescue_active_admin_access_denied(exception)
-        error_message = exception.message
+        error = exception.message
 
         respond_to do |format|
           format.html do
-            flash[:error] = error_message
-
-            if request.headers.keys.include?("HTTP_REFERER")
-              redirect_to :back
-            else
-              controller, action = active_admin_namespace.root_to.split("#")
-              redirect_to :controller => controller, :action => action
-            end
+            flash[:error] = error
+            redirect_backwards_or_to_root
           end
 
-          format.csv { render :text => error_message, :status => :unauthorized}
-          format.json { render :json => { :error => error_message }, :status => :unauthorized}
-          format.xml { render :xml => "<error>#{error_message}</error>", :status => :unauthorized}
+          format.csv  { render text:          error,           status: :unauthorized }
+          format.json { render json: { error: error },         status: :unauthorized }
+          format.xml  { render xml: "<error>#{error}</error>", status: :unauthorized }
+        end
+      end
+
+      def redirect_backwards_or_to_root
+        if request.headers.key? "HTTP_REFERER"
+          redirect_to :back
+        else
+          controller, action = active_admin_namespace.root_to.split '#'
+          redirect_to controller: controller, action: action
         end
       end
 

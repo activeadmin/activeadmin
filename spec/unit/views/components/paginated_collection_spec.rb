@@ -10,8 +10,8 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     let(:view) do
       view = mock_action_view
-      view.request.stub!(:query_parameters).and_return({:controller => 'admin/posts', :action => 'index', :page => '1'})
-      view.controller.params = {:controller => 'admin/posts', :action => 'index'}
+      view.request.stub(:query_parameters).and_return page: '1'
+      view.request.stub(:path_parameters).and_return  controller: 'admin/posts', action: 'index'
       view
     end
 
@@ -28,7 +28,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
     end
 
     before do
-      collection.stub!(:reorder) { collection }
+      collection.stub(:reorder) { collection }
     end
 
     context "when specifying collection" do
@@ -41,15 +41,15 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should raise error if collection has no pagination scope" do
-        lambda {
+        expect {
           paginated_collection([Post.new, Post.new])
-        }.should raise_error(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
+        }.to raise_error(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
       end
     end
 
     context "when specifying :param_name option" do
       let(:collection) do
-        posts = 10.times.inject([]) {|m, _| m << Post.new }
+        posts = 10.times.map{ Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -62,7 +62,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying :download_links => false option" do
       let(:collection) do
-        posts = 10.times.inject([]) {|m, _| m << Post.new }
+        posts = 10.times.map{ Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -188,8 +188,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when viewing the last page of a collection that has multiple pages" do
       let(:collection) do
-        posts = [Post.new] * 81
-        Kaminari.paginate_array(posts).page(3).per(30)
+        Kaminari.paginate_array([Post.new] * 81).page(3).per(30)
       end
 
       let(:pagination) { paginated_collection(collection) }
@@ -200,6 +199,29 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
+    context "with :pagination_total" do
+      let(:collection) do
+        Kaminari.paginate_array([Post.new] * 256).page(1).per(30)
+      end
+
+      describe "set to false" do
+        let(:pagination) { paginated_collection(collection, pagination_total: false) }
+
+        it "should not show the total item counts" do
+          info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')
+          info.should eq "Displaying posts <b>1 - 30</b>"
+        end
+      end
+
+      describe "set to true" do
+        let(:pagination) { paginated_collection(collection, pagination_total: true) }
+
+        it "should show the total item counts" do
+          info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')
+          info.should eq "Displaying posts <b>1 - 30</b> of <b>256</b> in total"
+        end
+      end
+    end
 
   end
 end

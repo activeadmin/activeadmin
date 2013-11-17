@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 
 module ActiveAdmin
   describe Resource, "Pagination" do
@@ -28,7 +28,7 @@ module ActiveAdmin
         namespace.should_receive(:default_per_page).and_return(5)
         config.per_page.should == 5
       end
-      
+
       it "should be settable" do
         config.per_page = 5
         config.per_page.should == 5

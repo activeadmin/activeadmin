@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gemspec
 
@@ -8,40 +8,34 @@ require File.expand_path('spec/support/detect_rails_version', ACTIVE_ADMIN_PATH)
 
 rails_version = detect_rails_version
 gem 'rails', rails_version
-gem 'bourbon'
 
-case rails_version
-when /^3\.0/
-  # Do nothing, bundler should figure it out
-when /^3\.(1|2)/
-  # These are the gems you have to have for Rails 3.1 to be happy
-  gem 'sass-rails'
-  gem 'uglifier'
-else
-  raise "Rails #{rails_version} is not supported yet"
+group :development do
+  gem 'better_errors',     '~> 1.0.0' # Web UI to debug exceptions. Go to /__better_errors to access the latest one
+  gem 'binding_of_caller', '~> 0.7.1' # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 end
 
 group :development, :test do
-  gem 'haml', '~> 3.1.7',  :require => false
-  gem 'rake', '~> 10.0.2', :require => false
+  gem 'rake', '~> 10.1.0', require: false
   gem 'rails-i18n' # Provides default i18n for many languages
-  gem 'rdiscount'  # Markdown implementation (for yard)
-  gem 'sprockets'
+  gem 'redcarpet'  # Markdown implementation (for yard)
   gem 'yard'
+  gem 'yard-redcarpet-ext' # Enables Markdown tables, which are disabled by default
 end
 
 group :test do
   gem 'cancan'
-  gem 'capybara',        '1.1.2'
-  gem 'cucumber-rails',  '1.3.0', :require => false
-  gem 'database_cleaner'
-  gem 'guard-coffeescript'
+  gem 'capybara',         '=  1.1.2'
+  gem 'simplecov',                    require: false
+  gem 'coveralls',        '~> 0.7.0', require: false # Test coverage tool: www.coveralls.io
+  # Move to next stable version including: https://github.com/cucumber/cucumber-rails/pull/253
+  gem 'cucumber-rails',   github: 'cucumber/cucumber-rails', require: false
+  gem 'database_cleaner', '~> 1.2.0'
   gem 'guard-rspec'
   gem 'jasmine'
-  gem 'jslint_on_rails', '~> 1.1.1'
+  gem 'jslint_on_rails',  '~> 1.1.1'
   gem 'launchy'
   gem 'parallel_tests'
-  gem 'rspec-rails',     '~> 2.9.0'
-  gem 'shoulda-matchers', '1.5.0' # See active_admin#2004
+  gem 'rspec-rails',      '~> 2.14.0'
+  gem 'shoulda-matchers'
   gem 'sqlite3'
 end

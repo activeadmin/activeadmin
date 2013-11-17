@@ -1,14 +1,16 @@
-require 'meta_search'
+require 'active_support/core_ext/class/attribute' # needed for Ransack
+require 'ransack'
+require 'ransack_ext'
 require 'bourbon'
 require 'devise'
 require 'kaminari'
 require 'formtastic'
-require 'sass'
+require 'sass-rails'
 require 'inherited_resources'
 require 'jquery-rails'
+require 'jquery-ui-rails'
+require 'coffee-rails'
 require 'arbre'
-require 'active_admin/dependency_checker' 
-require 'active_admin/sass/helpers'
 require 'active_admin/engine'
 
 module ActiveAdmin
@@ -19,13 +21,11 @@ module ActiveAdmin
   autoload :Authorization,            'active_admin/authorization_adapter'
   autoload :AuthorizationAdapter,     'active_admin/authorization_adapter'
   autoload :Breadcrumbs,              'active_admin/breadcrumbs'
-  autoload :CanCanAdapter,            'active_admin/cancan_adapter'
   autoload :Callbacks,                'active_admin/callbacks'
   autoload :Component,                'active_admin/component'
   autoload :BaseController,           'active_admin/base_controller'
   autoload :ControllerAction,         'active_admin/controller_action'
   autoload :CSVBuilder,               'active_admin/csv_builder'
-  autoload :Dashboards,               'active_admin/dashboards'
   autoload :Deprecation,              'active_admin/deprecation'
   autoload :Devise,                   'active_admin/devise'
   autoload :DSL,                      'active_admin/dsl'
@@ -53,14 +53,6 @@ module ActiveAdmin
   autoload :ViewHelpers,              'active_admin/view_helpers'
   autoload :Views,                    'active_admin/views'
 
-  class Railtie < ::Rails::Railtie
-    config.after_initialize do
-      # Add load paths straight to I18n, so engines and application can overwrite it.
-      require 'active_support/i18n'
-      I18n.load_path.unshift *Dir[File.expand_path('../active_admin/locales/*.yml', __FILE__)]
-    end
-  end
-
   class << self
 
     attr_accessor :application
@@ -81,18 +73,6 @@ module ActiveAdmin
     delegate :unload!,       :to => :application
     delegate :load!,         :to => :application
     delegate :routes,        :to => :application
-
-    # Returns true if this rails application has the asset
-    # pipeline enabled.
-    def use_asset_pipeline?
-      DependencyChecker.rails_3_1? && Rails.application.config.try(:assets).try(:enabled)
-    end
-
-    # Migration MoveAdminNotesToComments generated with version 0.2.2 might reference
-    # to ActiveAdmin.default_namespace.
-    delegate :default_namespace, :to => :application
-    ActiveAdmin::Deprecation.deprecate self, :default_namespace, 
-      "ActiveAdmin.default_namespace is deprecated. Please use ActiveAdmin.application.default_namespace"
 
     # A callback is triggered each time (before) Active Admin loads the configuration files.
     # In development mode, this will happen whenever the user changes files. In production
@@ -133,9 +113,13 @@ module ActiveAdmin
 
 end
 
-ActiveAdmin::DependencyChecker.check!
-
-# Require internal Plugins
-require 'active_admin/comments'
+# Require internal plugins
 require 'active_admin/batch_actions'
 require 'active_admin/filters'
+
+# Require ORM-specific plugins
+require 'active_admin/orm/active_record' if defined? ActiveRecord
+require 'active_admin/orm/mongoid'       if defined? Mongoid
+
+# Load gem-specific code only if that gem is being used
+require 'active_admin/cancan_adapter' if Gem.loaded_specs['cancan']

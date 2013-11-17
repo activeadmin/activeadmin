@@ -1,4 +1,7 @@
-require 'spec_helper' 
+require 'spec_helper'
+
+# TODO: refactor this file so it doesn't depend on the Admin namespace in such a broken way.
+#       Specifically, the dashboard is already defined and we do let(:namespace) multiple times.
 
 describe ActiveAdmin::Namespace, "registering a resource" do
 
@@ -18,8 +21,8 @@ describe ActiveAdmin::Namespace, "registering a resource" do
     it "should create a new controller in the default namespace" do
       defined?(Admin::CategoriesController).should be_true
     end
-    it "should create the dashboard controller" do
-      defined?(Admin::DashboardController).should be_true
+    pending "should not create the dashboard controller" do
+      defined?(Admin::DashboardController).should_not be_true
     end
     it "should create a menu item" do
       menu["Categories"].should be_a ActiveAdmin::MenuItem
@@ -29,11 +32,11 @@ describe ActiveAdmin::Namespace, "registering a resource" do
 
   context "with a block configuration" do
     it "should be evaluated in the dsl" do
-      lambda {
+      expect {
         namespace.register Category do
           raise "Hello World"
         end
-      }.should raise_error
+      }.to raise_error
     end
   end # context "with a block configuration"
 
@@ -144,14 +147,16 @@ describe ActiveAdmin::Namespace, "registering a resource" do
   describe "dashboard controller name" do
     context "when namespaced" do
       it "should be namespaced" do
-        namespace = ActiveAdmin::Namespace.new(application, :admin)
-        namespace.dashboard_controller_name.should == "Admin::DashboardController"
+        namespace = ActiveAdmin::Namespace.new(application, :one)
+        namespace.register Category
+        defined?(One::CategoriesController).should be_true
       end
     end
     context "when not namespaced" do
       it "should not be namespaced" do
-        namespace = ActiveAdmin::Namespace.new(application, :root)
-        namespace.dashboard_controller_name.should == "DashboardController"
+        namespace = ActiveAdmin::Namespace.new(application, :two)
+        namespace.register Category
+        defined?(Two::CategoriesController).should be_true
       end
     end
   end # describe "dashboard controller name"

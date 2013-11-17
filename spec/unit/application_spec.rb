@@ -14,12 +14,12 @@ describe ActiveAdmin::Application do
     application.load_paths.should == [File.expand_path('app/admin', Rails.root)]
   end
 
-  it "should remove app/admin from the autoload path to remove the possibility of conflicts" do
+  it "should remove app/admin from the autoload paths (Active Admin deals with loading)" do
     ActiveSupport::Dependencies.autoload_paths.should_not include(File.join(Rails.root, "app/admin"))
   end
 
-  it "should remove app/admin from the eager load paths (Active Admin deals with loading)" do
-    Rails.application.config.eager_load_paths.should_not include(File.join(Rails.root, "app/admin"))
+  it "should add app/admin to the Engine's watchable directories (loaded after the app itself)" do
+    ActiveAdmin::Engine.config.watchable_dirs.should have_key File.join(Rails.root, "app/admin")
   end
 
   it "should store the site's title" do
@@ -48,13 +48,18 @@ describe ActiveAdmin::Application do
     application.site_title_image = "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
     application.site_title_image.should == "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
   end
+  
+  it "should store the site's favicon" do
+    application.favicon.should == false
+  end
+
+  it "should set the site's favicon" do
+    application.favicon = "/a/favicon.ico"
+    application.favicon.should == "/a/favicon.ico"
+  end
 
   it "should have a view factory" do
     application.view_factory.should be_an_instance_of(ActiveAdmin::ViewFactory)
-  end
-
-  it "should have deprecated admin notes by default" do
-    application.admin_notes.should be_nil
   end
 
   it "should allow comments by default" do
@@ -77,19 +82,6 @@ describe ActiveAdmin::Application do
 
     it "should have a logout link method (Devise's default)" do
       application.logout_link_method.should == :get
-    end
-  end
-
-  describe "inheritable settings" do
-    it "should set csv_options" do
-      application.csv_options.should == {}
-    end
-
-    context "when deprecated" do
-      it "should set and warn csv_column_separator" do
-        ActiveAdmin::Deprecation.should_receive(:warn)
-        application.csv_column_separator.should == ','
-      end
     end
   end
 
@@ -127,11 +119,18 @@ describe ActiveAdmin::Application do
         end
       }.to raise_error("found")
     end
+
+    it "should not pollute the global app" do
+      application.namespaces.keys.should be_empty
+      application.namespace(:brand_new_ns)
+      application.namespaces.keys.should eq [:brand_new_ns]
+      ActiveAdmin.application.namespaces.keys.should eq [:admin]
+    end
   end
 
   describe "#register_page" do
     it "finds or create the namespace and register the page to it" do
-      namespace = mock
+      namespace = double
       application.should_receive(:namespace).with("public").and_return namespace
       namespace.should_receive(:register_page).with("My Page", {:namespace => "public"})
 

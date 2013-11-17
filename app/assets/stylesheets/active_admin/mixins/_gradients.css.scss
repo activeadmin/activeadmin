@@ -1,8 +1,8 @@
 $secondary-gradient-start: #efefef !default;
 $secondary-gradient-stop: #dfe1e2 !default;
 
-@mixin gradient($start, $end){ 
-  background: $start; 
+@mixin gradient($start, $end){
+  background: $start;
   background: -webkit-linear-gradient(-90deg, $start, $end);
   background: -moz-linear-gradient(-90deg, $start, $end);
   background: linear-gradient(-90deg, $start, $end);
@@ -12,12 +12,12 @@ $secondary-gradient-stop: #dfe1e2 !default;
   -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start)}', endColorstr='#{ie-hex-str($end)}');
 }
 
-@mixin primary-gradient { 
+@mixin primary-gradient {
   @include gradient(lighten($primary-color, 5%), darken($primary-color, 7%));
   border-bottom: 1px solid darken($primary-color, 11%);
 }
 
-@mixin secondary-gradient { 
+@mixin secondary-gradient {
   @include gradient($secondary-gradient-start, $secondary-gradient-stop);
 }
 

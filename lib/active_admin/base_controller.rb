@@ -4,7 +4,7 @@ require 'active_admin/base_controller/authorization'
 require 'active_admin/base_controller/menu'
 
 module ActiveAdmin
-  # BaseController for ActiveAdmin. 
+  # BaseController for ActiveAdmin.
   # It implements ActiveAdmin controllers core features.
   class BaseController < ::InheritedResources::Base
     helper ::ActiveAdmin::ViewHelpers
@@ -46,7 +46,7 @@ module ActiveAdmin
     helper_method :current_active_admin_user
 
     def current_active_admin_user?
-      !current_active_admin_user.nil?
+      !!current_active_admin_user
     end
     helper_method :current_active_admin_user?
 

@@ -1,0 +1,101 @@
+bg:
+  active_admin:
+    dashboard: Табло
+    dashboard_welcome:
+      welcome: "Добре дошли в Active Admin. Това е таблото по подразбиране."
+      call_to_action: "За да добавите секции, редактирайте 'app/admin/dashboard.rb'"
+    view: "Преглед"
+    edit: "Редакция"
+    delete: "Изтриване"
+    delete_confirmation: "Сигурни ли сте, че искате да изтриете това?"
+    new_model: "Създаване на %{model}"
+    create_model: "Създаване на %{model}"
+    edit_model: "Редакция на %{model}"
+    update_model: "Обновяване на %{model}"
+    delete_model: "Изтриване на %{model}"
+    details: "%{model} детайли"
+    cancel: "Отказ"
+    empty: "Празно"
+    previous: "Предишно"
+    next: "Следващо"
+    download: "Изтегляне:"
+    has_many_new: "Добавяне на %{model}"
+    has_many_delete: "Изтриване"
+    has_many_remove: "Премахване"
+    filters:
+      buttons:
+        filter: "Филтриране"
+        clear: "Изчистване"
+      predicates:
+        contains: "съдържа"
+        equals: "равно на"
+        starts_with: "Започва с"
+        ends_with: "Завършва с"
+        greater_than: "по-голямо от"
+        less_than: "по-малко от"
+    main_content: "Добавете %{model}#main_content за да видите съдържание."
+    logout: "Изход"
+    powered_by: "Задвижва се от %{active_admin} %{version}"
+    sidebars:
+      filters: "Филтри"
+    pagination:
+      empty: "Не са намерени %{model}"
+      one: "Показване на <b>1</b> %{model}"
+      one_page: "Показване на <b>всички %{n}</b> %{model}"
+      multiple: "Показване %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> от общо <b>%{total}</b>"
+      multiple_without_total: "Показване %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "запис"
+        other: "записи"
+    any: "Без значение"
+    blank_slate:
+      content: "Все още няма добавени %{resource_name}."
+      link: "Създаване"
+    batch_actions:
+      button_label: "Масови действия"
+      delete_confirmation: "Сигурни ли сте, че искате да изтриете тези %{plural_model}? Това действие не може да бъде върнато назад."
+      succesfully_destroyed:
+        one: "Успешно изтриване на 1 %{model}"
+        other: "Успешно изтриване на %{count} %{plural_model}"
+      selection_toggle_explanation: "(Инвертиране на маркирането)"
+      link: "Създаване"
+      action_label: "%{title} избран"
+      labels:
+        destroy: "Изтриване"
+    comments:
+      resource_type: "Тип ресурс"
+      author_type: "Тип автор"
+      body: "Текст"
+      author: "Автор"
+      title: "Коментар"
+      add: "Добавяне на коментар"
+      resource: "Ресурс"
+      no_comments_yet: "Все още няма коментари."
+      title_content: "Коментари (%{count})"
+      errors:
+        empty_text: "Коментарът с празен текст не беше запазен."
+    devise:
+      login:
+        title: "Вход"
+        remember_me: "Запомни ме"
+        submit: "Вход"
+      reset_password:
+        title: "Забравена парола?"
+        submit: "Изпращане на нова парола"
+      change_password:
+        title: "Промяна на моята парола"
+        submit: "Промяна на паролата"
+      unlock:
+        title: "Изпрати отново инструкциите за отключване"
+        submit: "Изпрати инструкциите повторно"
+      links:
+        sign_in: "Вход"
+        forgot_your_password: "Забравена парола?"
+        sign_in_with_omniauth_provider: "Вход с %{provider}"
+    access_denied:
+      message: "Нямате права да извършите това действие."
+    index_list:
+      table: "Таблица"
+      block: "Списък"
+      grid: "Грид"
+      blog: "Блог"

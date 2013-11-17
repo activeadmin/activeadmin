@@ -8,7 +8,7 @@ describe ActiveAdmin::Views::TabbedNavigation do
   let(:assigns){ { :active_admin_menu => menu } }
   let(:helpers){ mock_action_view }
 
-  let(:tabbed_navigation) do 
+  let(:tabbed_navigation) do
     arbre(assigns, helpers) {
       insert_tag(ActiveAdmin::Views::TabbedNavigation, active_admin_menu)
     }.children.first
@@ -17,7 +17,7 @@ describe ActiveAdmin::Views::TabbedNavigation do
   let(:html) { tabbed_navigation.to_s }
 
   before do
-    helpers.stub!(:admin_logged_in?).and_return(false)
+    helpers.stub(:admin_logged_in?).and_return(false)
   end
 
   describe "rendering a menu" do
@@ -32,20 +32,20 @@ describe ActiveAdmin::Views::TabbedNavigation do
       end
 
       menu.add :label => "Administration", :url => "/admin/administration" do |administration|
-        administration.add :label => "User administration", 
-                           :url => '/admin/user-administration', 
-                           :priority => 10, 
+        administration.add :label => "User administration",
+                           :url => '/admin/user-administration',
+                           :priority => 10,
                            :if => proc { false }
       end
 
       menu.add :label => "Management", :url => "#" do |management|
-        management.add :label => "Order management", 
-                       :url => '/admin/order-management', 
-                       :priority => 10, 
+        management.add :label => "Order management",
+                       :url => '/admin/order-management',
+                       :priority => 10,
                        :if => proc { false }
-        management.add :label => "Bill management", 
-                       :url => '/admin/bill-management', 
-                       :priority => 10, 
+        management.add :label => "Bill management",
+                       :url => '/admin/bill-management',
+                       :priority => 10,
                        :if => :admin_logged_in?
       end
     end

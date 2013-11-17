@@ -17,18 +17,20 @@ module ActiveAdmin
 
       # Returns the name to call this resource such as "Bank Account"
       def resource_label
-        resource_name.translate :count => 1,  :default => resource_name.gsub('::', ' ').titleize
+        resource_name.translate :count => 1, :default => resource_name.to_s.gsub('::', ' ').titleize
       end
 
       # Returns the plural version of this resource such as "Bank Accounts"
-      def plural_resource_label
-        resource_name.translate :count => 1.1, :default => resource_label.pluralize.titleize
+      def plural_resource_label(options = {})
+        resource_name.translate ({:count => 1.1, :default => resource_label.pluralize.titleize}).merge(options)
       end
     end
 
     # A subclass of ActiveModel::Name which supports the different APIs presented
     # in Rails < 3.1 and > 3.1.
     class Name < ActiveModel::Name
+
+      delegate :hash, :to => :to_str
 
       def initialize(klass, name = nil)
         if ActiveModel::Name.instance_method(:initialize).arity == 1
@@ -51,6 +53,10 @@ module ActiveAdmin
 
       def route_key
         plural
+      end
+
+      def eql?(other)
+        to_str.eql?(other.to_str)
       end
 
       class StringProxy

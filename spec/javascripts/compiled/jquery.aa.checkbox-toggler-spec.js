@@ -1,25 +1,25 @@
 (function() {
 
-  describe("AA.CheckboxToggler", function() {
+  describe("ActiveAdmin.CheckboxToggler", function() {
     beforeEach(function() {
       loadFixtures('checkboxes.html');
       this.collection = $("#collection");
       this.toggle_all = this.collection.find(".toggle_all");
       this.checkboxes = this.collection.find(":checkbox").not(this.toggle_all);
-      return new AA.CheckboxToggler({}, this.collection);
+      return new ActiveAdmin.CheckboxToggler({}, this.collection);
     });
     describe("on init", function() {
       it("should raise an error if container not found", function() {
         var _this = this;
         return expect(function() {
-          return new AA.CheckboxToggler({});
+          return new ActiveAdmin.CheckboxToggler({});
         }).toThrow("Container element not found");
       });
       return it("should raise an error if 'toggle all' checkbox not found", function() {
         var _this = this;
         this.toggle_all.remove();
         return expect(function() {
-          return new AA.CheckboxToggler({}, _this.collection);
+          return new ActiveAdmin.CheckboxToggler({}, _this.collection);
         }).toThrow("'toggle all' checkbox not found");
       });
     });

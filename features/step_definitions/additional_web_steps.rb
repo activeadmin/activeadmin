@@ -15,7 +15,7 @@ Then /^I should not see a sortable table header with "([^"]*)"$/ do |content|
 end
 
 Then /^I should not see a sortable table header$/ do
-  step "I should not see \"th.sortable\""
+  step %{I should not see "th.sortable"}
 end
 
 Then /^the table "([^"]*)" should have (\d+) rows/ do |selector, count|
@@ -34,30 +34,17 @@ Then /^there should be (\d+) "([^"]*)" tags$/ do |count, tag|
 end
 
 Then /^I should see a link to "([^"]*)"$/ do |link|
-  if page.respond_to? :should
-    page.should have_xpath('//a', :text => link)
-  else
-    assert page.has_xpath?('//a', :text => link)
-  end
-end
-
-Then /^I should see a link to \/([^\/]*)\/$/ do |regexp|
-  regexp = Regexp.new(regexp)
-  if page.respond_to? :should
-    page.should have_xpath('//a', :text => regexp)
-  else
-    assert page.has_xpath?('//a', :text => regexp)
-  end
+  page.should have_xpath('//a', :text => link)
 end
 
 Then /^an "([^"]*)" exception should be raised when I follow "([^"]*)"$/ do |error, link|
-  lambda {
+  expect {
     step "I follow \"#{link}\""
-  }.should raise_error(error.constantize)
+  }.to raise_error(error.constantize)
 end
 
 Then /^I should be in the resource section for (.+)$/ do |resource_name|
-  current_url.should include(resource_name.gsub(' ', '').underscore.pluralize)
+  current_url.should include resource_name.gsub(' ', '').underscore.pluralize
 end
 
 Then /^I should wait and see "([^"]*)"(?: within "([^"]*)")?$/ do |text, selector|

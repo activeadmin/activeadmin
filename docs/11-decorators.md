@@ -1,50 +1,53 @@
 # Decorators
 
-Active Admin supports the use of decorators for resources. Resources will be
-be decorated for the index and show blocks. The
-[draper](https://github.com/drapergem/draper) gem is recommended but not required 
-(more on requirements below). Note, that Active Admin works out of the box with
-Draper `>= 1.0.0`.
+Active Admin allows you to use the decorator pattern to provide view-specific
+versions of a resource. [Draper](https://github.com/drapergem/draper) is
+recommended but not required.
 
-## Configuration
+## Example usage
 
-    ActiveAdmin.register Post do
-      decorate_with PostDecorator
-    end
+```ruby
+# app/models/post.rb
+class Post < ActiveRecord::Base
+  # has title, content, and image_url
+end
 
-## Example Usage
+# app/decorators/post_decorator.rb
+class PostDecorator < ApplicationDecorator
+  delegate_all
 
-This example uses [draper](https://github.com/drapergem/draper).
+  def image
+    h.image_tag model.image_url
+  end
+end
 
-    # Gemfile
-    gem 'draper', '>= 1.0.0'
+# app/admin/post.rb
+ActiveAdmin.register Post do
+  decorate_with PostDecorator
 
-Assuming a post and a post decorator
+  index do
+    column :title
+    column :image
+    actions
+  end
+end
+```
 
-    class Post < ActiveRecord::Base; end
+## Forms
 
-    class PostDecorator < ApplicationDecorator
-      decorates :post
+If you decorate an AA resource, the form will also be docrated.
 
-      def image
-        h.image_tag model.image_url
-      end
-    end
+In most cases this will work as expected, but if your decorator uses the same
+method name as an attribute and it returns a modified version of the attribute's
+value, you'll want to set `decorate: false` to make sure that the population of
+existing values happens correctly:
 
-Then the following is possible
+```ruby
+ActiveAdmin.register Post do
+  decorate_with PostDecorator
 
-    ActiveAdmin.register Post do
-      decorate_with PostDecorator
-
-      index do
-        column(:title)
-        column(:image)
-      end
-
-      show do
-        attributes_table do
-          row(:title)
-          row(:image)
-        end
-      end
-    end
+  form decorate: false do
+    # ...
+  end
+end
+```

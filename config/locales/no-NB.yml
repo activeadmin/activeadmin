@@ -1,0 +1,85 @@
+"no-NB":
+  active_admin:
+    dashboard: Oversikt
+    dashboard_welcome:
+      welcome: "Velkommen til Active Admin. Dette er standardoversiktssiden."
+      call_to_action: "Rediger 'app/admin/dashboard.rb' for at legge til elementer i oversikten."
+    view: "Vis"
+    edit: "Rediger"
+    delete: "Slett"
+    delete_confirmation: "Er du sikker på at du vil slette denne?"
+    new_model: "Ny %{model}"
+    edit_model: "Rediger %{model}"
+    delete_model: "Slett %{model}"
+    details: "%{model} Detaljer"
+    cancel: "Avbryt"
+    empty: "Tom"
+    previous: "Forrige"
+    next: "Neste"
+    download: "Last ned:"
+    has_many_new: "Legg til ny %{model}"
+    has_many_delete: "Slett"
+    has_many_remove: "Fjern"
+    filters:
+      buttons:
+        filter: "Filter"
+        clear: "Fjern filter"
+      predicates:
+        contains: "Inneholder"
+        equals: "Er lik"
+        starts_with: "Starter med"
+        ends_with: "Slutter med"
+        greater_than: "Større enn"
+        less_than: "Mindre enn"
+    main_content: "Please implement %{model}#main_content to display content."
+    logout: "Logg ut"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Filtere"
+    pagination:
+      empty: "Fannt ingen %{model}"
+      one: "Viser <b>1</b> %{model}"
+      one_page: "Viser <b>alle %{n}</b> %{model}"
+      multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt"
+      multiple_without_total: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+    any: "Noen"
+    blank_slate:
+      content: "Her er det ingen %{resource_name} enda."
+      link: "Opprett en"
+    batch_actions:
+      button_label: "Batch Actions"
+      delete_confirmation: "Are you sure you want to delete these %{plural_model}? You won't be able to undo this."
+      succesfully_destroyed:
+        one: "Successfully destroyed 1 %{model}"
+        other: "Successfully destroyed %{count} %{plural_model}"
+      selection_toggle_explanation: "(Toggle Selection)"
+      link: "Create one"
+      action_label: "%{title} Selected"
+      labels:
+        destroy: "Delete"
+    comments:
+      body: "Body"
+      author: "Author"
+      title: "Comment"
+      add: "Add Comment"
+      resource: "Resource"
+      no_comments_yet: "No comments yet."
+      title_content: "Comments (%{count})"
+      errors:
+        empty_text: "Comment wasn't saved, text was empty."
+    devise:
+      login:
+        title: "Logg inn"
+        remember_me: "Husk meg"
+        submit: "Logg inn"
+      reset_password:
+        title: "Glemt passord?"
+        submit: "Tilbakestille passordet mitt"
+      change_password:
+        title: "Endre passordet"
+        submit: "Endre mitt passord"
+      links:
+        sign_in: "Logg inn"
+        forgot_your_password: "Glemt passord?"
+        sign_in_with_omniauth_provider: "Logg på med %{provider}"
+

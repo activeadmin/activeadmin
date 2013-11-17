@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'spec_helper'
 require File.expand_path('config_shared_examples', File.dirname(__FILE__))
 
 module ActiveAdmin
@@ -87,43 +87,11 @@ module ActiveAdmin
       end
 
       it "should set the target menu to the belongs to target" do
-        config.menu_item_menu_name.should == ActiveAdmin::DEFAULT_MENU
+        config.navigation_menu_name.should == ActiveAdmin::DEFAULT_MENU
         config.belongs_to :posts
-        config.menu_item_menu_name.should == :posts
+        config.navigation_menu_name.should == :posts
       end
 
-    end
-
-    describe "route names" do
-      it "should return the route prefix" do
-        config.route_prefix.should == "admin"
-      end
-      it "should return the route collection path" do
-        config.route_collection_path.should == "/admin/categories"
-      end
-
-      context "when in the root namespace" do
-        let(:config){ application.register Category, :namespace => false}
-        it "should have a nil route_prefix" do
-          config.route_prefix.should == nil
-        end
-
-        it "should generate a correct route" do
-          config
-          reload_routes!
-          config.route_collection_path.should == "/categories"
-        end
-      end
-
-      context "when registering a plural resource" do
-        class ::News; def self.has_many(*); end end
-
-        it "should return the plurali route with _index" do
-          config = application.register News
-          reload_routes!
-          config.route_collection_path.should == "/admin/news"
-        end
-      end
     end
 
     describe "scoping" do
@@ -152,19 +120,6 @@ module ActiveAdmin
           controller.should_receive(:current_user).and_return(true)
           begin_of_association_chain = controller.send(:begin_of_association_chain)
           begin_of_association_chain.should == true
-        end
-      end
-
-      context "when not using a block or symbol" do
-        before do
-          @resource = application.register Category do
-            scope_to "Some string"
-          end
-        end
-        it "should raise and exception" do
-          lambda {
-            @resource.controller.new.send(:begin_of_association_chain)
-          }.should raise_error(ArgumentError)
         end
       end
 
@@ -229,6 +184,13 @@ module ActiveAdmin
         config.scope :published
         config.get_scope_by_id(:published).name.should == "Published"
       end
+
+      it "should retrieve the default scope by proc" do
+        config.scope :published, :default => proc{ true }
+        config.scope :all
+        config.default_scope.name.should == "Published"
+      end
+
     end
 
     describe "#csv_builder" do
@@ -243,6 +205,37 @@ module ActiveAdmin
           csv_builder = CSVBuilder.new
           config.csv_builder = csv_builder
           config.csv_builder.should == csv_builder
+        end
+      end
+    end
+
+    describe '#find_resource' do
+      let(:resource) { namespace.register(Post) }
+      let(:post) { double }
+      before do
+        Post.stub(:where).with('id' => '12345').and_return { [post] }
+      end
+
+      it 'can find the resource' do
+        resource.find_resource('12345').should == post
+      end
+
+      context 'with a decorator' do
+        let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
+        it 'decorates the resource' do
+          resource.find_resource('12345').should == PostDecorator.new(post)
+        end
+      end
+
+      context 'when using a nonstandard primary key' do
+        let(:different_post) { double }
+        before do
+          Post.stub(:primary_key).and_return 'something_else'
+          Post.stub(:where).with('something_else' => '55555').and_return { [different_post] }
+        end
+
+        it 'can find the post by the custom primary key' do
+          resource.find_resource('55555').should == different_post
         end
       end
     end

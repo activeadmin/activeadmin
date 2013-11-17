@@ -1,0 +1,90 @@
+lt:
+  active_admin:
+    dashboard: Valdymo skydelis
+    dashboard_welcome:
+      welcome: "Sveiki atvykę į Active Admin. Tai yra numatytasis valdymo skydelis."
+      call_to_action: 'Norėdami pridėti skydelyje skyrius, žiūrėkite app/admin/dashboard.rb'
+    view: 'Žiūrėti'
+    edit: 'Redaguoti'
+    delete: 'Šalinti'
+    delete_confirmation: 'Ar jūs tikrai norite tai pašalinti?'
+    new_model: 'Naujas %{model}'
+    create_model: 'Naujas %{model}'
+    edit_model: 'Redaguoti %{model}'
+    update_model: 'Redaguoti %{model}'
+    delete_model: 'Pašalinti %{model}'
+    details: '%{model} Informacija'
+    cancel: 'Atšaukti'
+    empty: 'Tuščia'
+    previous: 'Atgal'
+    next: 'Toliau'
+    download: 'Atsisiųsti'
+    has_many_new: 'Pridėti naują %{model}'
+    has_many_delete: 'Šalinti'
+    has_many_remove: 'Pašalinti'
+    filters:
+      buttons:
+        filter: 'Filtras'
+        clear: 'Išvalyti filtrus'
+      predicates:
+        contains: "Sudėtyje yra"
+        equals: 'lygus'
+        starts_with: "Prasideda nuo"
+        ends_with: "Baigiasi"
+        greater_than: 'didesnis nei'
+        less_than: 'mažiau nei'
+    main_content: 'Prašome realizuoti %{model}#main_content turiniui vaizduoti.'
+    logout: 'Išeiti'
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: 'Filtrai'
+    pagination:
+      empty: '%{model} nerastas'
+      one: 'Rodoma <B> 1 </ b> %{model}'
+      one_page: 'Rodoma <b>visi %{n} </ b> %{model}'
+      multiple: 'Rodomi %{model} <b>%{iš}&nbsp;-&nbsp;%{to} </ b> iš<b>%{total} </ b> iš viso'
+      multiple_without_total: 'Rodomi %{model} <b>%{iš}&nbsp;-&nbsp;%{to} </ b> '
+      entry:
+        one: 'įrašas'
+        other: 'įrašai'
+    any: 'Bet kokia'
+    blank_slate:
+      content: 'Nėra %{resource_name}.'
+      link: 'Sukurti'
+    batch_actions:
+      button_label: 'Veiksmai su pažymėtais'
+      delete_confirmation: 'Ar jūs tikrai norite pašalinti šiuos %{plural_model}? Pašalinus negalėsite atstatyti?'
+      succesfully_destroyed:
+        one: 'Sėkmingai pašalintas 1 %{model}'
+        few: 'Sėkmingai pašalinti %{count} %{plural_model}'
+        other: 'Sėkmingai pašalinti %{count} %{plural_model}'
+      selection_toggle_explanation: '(Žymėti)'
+      link: 'Sukurti'
+      action_label: '%{title} Pasirinkta'
+      labels:
+        destroy: 'Šalinti'
+    comments:
+      body: 'Kūno'
+      author: 'Autorius'
+      title: 'Komentaras'
+      add: 'Pridėti komentarą'
+      resource: 'Išteklių'
+      no_comments_yet: 'Dar nėra komentarų.'
+      title_content: 'Komentarai (%{count})'
+      errors:
+        empty_text: 'komentaras neišsaugotas, tekstas buvo tuščias.'
+    devise:
+      login:
+        title: 'Prisijungti'
+        remember_me: 'Prisimink mane'
+        submit: 'Prisijungti'
+      reset_password:
+        title: 'Pamiršote slaptažodį?'
+        submit: 'Vėl nustatykite savo slaptažodį'
+      change_password:
+        title: 'Keisti slaptažodį'
+        submit: 'Keisti slaptažodį'
+      links:
+        sign_in: 'Prisijungti'
+        forgot_your_password: 'Pamiršote slaptažodį?'
+        sign_in_with_omniauth_provider: "Prisijunkite su %{provider}"

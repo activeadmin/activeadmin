@@ -1,0 +1,90 @@
+tr:
+  active_admin:
+    dashboard: "Kontrol Paneli"
+    dashboard_welcome:
+      welcome: "Active Admin'e Hoşgeldiniz. Burası öntanımlı Kontrol Paneli sayfasıdır."
+      call_to_action: "Kontrol Paneline bölümler eklemek için 'app/admin/dashboard.rb' dosyasına bakabilirsin."
+    view: "Görüntüle"
+    edit: "Değiştir"
+    delete: "Sil"
+    delete_confirmation: "Bu kaydı silmek istediğine emin misin?"
+    new_model: "Yeni %{model}"
+    create_model: "Yeni %{model}"
+    edit_model: "%{model} modelini düzenle"
+    update_model: "%{model} modelini düzenle"
+    delete_model: "%{model} modelini sil"
+    details: "%{model} ayrıntıları"
+    cancel: "İptal"
+    empty: "Boş"
+    previous: "Önceki"
+    next: "Sonraki"
+    download: "İndir:"
+    has_many_new: "Yeni %{model} kaydı ekle"
+    has_many_delete: "Sil"
+    has_many_remove: "Çıkarmak"
+    filters:
+      buttons:
+        filter: "Filtrele"
+        clear: "Filtreleri Temizle"
+      predicates:
+        contains: "içerir"
+        equals: "Eşittir"
+        starts_with: "ile başlar"
+        ends_with: "ile biter"
+        greater_than: "Büyükse"
+        less_than: "Küçükse"
+    main_content: "İçeriği görüntülemek için lütfen %{model}#main_content metodunu ekleyin."
+    logout: "Oturumu Sonlandır"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Filtreler"
+    pagination:
+      empty: "%{model} boş"
+      one: "<b>1</b> %{model} kaydı görüntüleniyor"
+      one_page: "<b>%{n}</b> kayıt %{model} modelinde görüntüleniyor"
+      multiple: "%{model} toplam %{total} kayıt bulundu. <b>%{from} ile %{to} arası</b> arası görüntüleniyor"
+      multiple_without_total: "%{model}. <b>%{from} ile %{to} arası</b> arası görüntüleniyor"
+      entry:
+        one: "Girdi"
+        other: "Girdiler"
+    any: "Herhangi"
+    blank_slate:
+      content: "Herhangi bir %{resource_name} kaydı bulunamadı"
+      link: "Bir tane oluşturun"
+    batch_actions:
+      button_label: "Toplu işlemler"
+      delete_confirmation: "%{plural_model} kayıtlarını silmek istediğinize emin misiniz? Dikkat bu işlemin geri dönüşü yoktur!"
+      succesfully_destroyed:
+        one: "1 %{model} kaydı başarıyla silindi."
+        other: "Toplam %{count} kayıt %{plural_model} modelinden silindi"
+      selection_toggle_explanation: "Seçimi Değiştir"
+      link: "Ekle"
+      action_label: "%{title} Seçildi"
+      labels:
+        destroy: "Sil"
+    comments:
+      body: "Ayrıntı"
+      author: "Yazar"
+      title: "Yorum"
+      add: "Yorum Ekle"
+      resource: "Kaynak"
+      no_comments_yet: "Henüz Yorum Yok"
+      title_content: "Yorumlar (%{count})"
+      errors:
+        empty_text: "Yorum boş olarak kaydedilemez."
+    devise:
+      login:
+        title: "Oturum aç"
+        remember_me: "Beni Hatırla"
+        submit: "Gönder"
+      reset_password:
+        title: "Şifreni mi unuttun?"
+        submit: "Şifremi sıfırla"
+      change_password:
+        title: "Şifrenizi değiştirin"
+        submit: "Şifremi değiştir"
+      links:
+        sign_in: "Oturum aç"
+        forgot_your_password: "Şifreni mi unuttun?"
+        sign_in_with_omniauth_provider: "%{provider} ile giriş yapın"
+

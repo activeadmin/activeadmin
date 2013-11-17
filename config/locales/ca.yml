@@ -1,0 +1,98 @@
+#encoding: utf-8
+ca:
+  active_admin:
+    dashboard: Tauler
+    dashboard_welcome:
+      welcome: "Benvingut a Active Admin. Aquest és el tauler per defecte."
+      call_to_action: "Mira l'arxiu 'app/admin/dashboard.rb' per afegir seccions al tauler"
+    view: "Mostra"
+    edit: "Edita"
+    delete: "Elimina"
+    delete_confirmation: "Segur que vols eliminar-ho?"
+    new_model: "Crear %{model}"
+    edit_model: "Editar %{model}"
+    delete_model: "eliminar %{model}"
+    details: "Detalls de %{model}"
+    cancel: "Cancel·lar"
+    empty: "Buit"
+    previous: "Anterior"
+    next: "Següent"
+    download: "Descarregar:"
+    has_many_new: "Afegir %{model}"
+    has_many_delete: "Eliminar"
+    has_many_remove: "Treure"
+    filters:
+      buttons:
+        filter: "Filtrar"
+        clear: "Treure filtres"
+      predicates:
+        contains: "Conté"
+        equals: "Igual a"
+        starts_with: "Comença amb"
+        ends_with: "Acaba amb"
+        greater_than: "Més gran que"
+        less_than: "Més petit que"
+    main_content: "Implementa %{model}#main_content per mostrar contingut."
+    logout: "Desconnecta't"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Filtres"
+    pagination:
+      empty: "No hi ha %{model}"
+      one: "S'està mostrant <b>1</b> %{model}"
+      one_page: "S'estan mostrant <b>tots %{n}</b> %{model}"
+      multiple: "S'estan mostrant %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> en total"
+      multiple_without_total: "S'estan mostrant %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "entrada"
+        other: "entrades"
+    any: "Qualsevol"
+    blank_slate:
+      content: "Encara no hi ha cap %{resource_name}."
+      link: "Crea'n un/a"
+    batch_actions:
+      button_label: "les accions per lots"
+      delete_confirmation: "¿Està segur que desitja eliminar aquests %{plural_model}? Vostè no serà capaç de desfer això."
+      succesfully_destroyed:
+        one: "Va destruir amb èxit 1 %{model}"
+        other: "Va destruir amb èxit %{count} %{plural_model}"
+      selection_toggle_explanation: "(Selecció de Canviar)"
+      link: "crear una"
+      action_label: "%{title} seleccionat"
+      labels:
+        destroy: "esborrar"
+    comments:
+      body: "Cos"
+      author: "autor"
+      title: "comentari"
+      add: "Afegeix comentari"
+      resource: "Recurs"
+      no_comments_yet: "No hi ha comentaris"
+      title_content: "comentaris (%{count})"
+      errors:
+        empty_text: "El comentari no es va salvar, el text estava buida."
+    devise:
+      login:
+        title: "iniciar sessió"
+        remember_me: "Recordar"
+        submit: "iniciar sessió"
+      reset_password:
+        title: "Heu perdut la contrasenya?"
+        submit: "Restablir la contrasenya"
+      change_password:
+        title: "Canvieu la contrasenya"
+        submit: "Canviar la contrasenya"
+      unlock:
+        title: "Reenvia instruccions per a desbloquejar"
+        submit: "Reenvia instruccions per a desbloquejar"
+      links:
+        sign_in: "Registrar"
+        forgot_your_password: "Heu perdut la contrasenya?"
+        sign_in_with_omniauth_provider: "Connecta't amb %{provider}"
+    access_denied:
+      message: "No esta autoritzat a realitzar aquesta acció."
+    index_list:
+      table: "Taula"
+      block: "Llista"
+      grid: "Graella"
+      blog: "Bloc"

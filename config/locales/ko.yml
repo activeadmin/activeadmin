@@ -1,0 +1,84 @@
+ko:
+  active_admin:
+    dashboard: "대시보드"
+    dashboard_welcome:
+      welcome: "Active Admin 에 오신 것을 환영합니다. 이것은 디폴트 대시보드 페이지 입니다."
+      call_to_action: "대시보드에 섹션을 추가하시려면 'app/admin/dashboard.rb' 소스를 확인해 주세요."
+    view: "보기"
+    edit: "수정"
+    delete: "삭제"
+    delete_confirmation: "정말로 삭제 하시겠습니까?"
+    new_model: "새 %{model}"
+    edit_model: "%{model} 수정"
+    delete_model: "%{model} 삭제"
+    details: "%{model} 상세보기"
+    cancel: "취소"
+    empty: "비었음"
+    previous: "이전"
+    next: "다음"
+    download: "다운로드:"
+    has_many_new: "%{model} 추가"
+    has_many_delete: "삭제"
+    has_many_remove: "삭제"
+    filters:
+      buttons:
+        filter: "필터"
+        clear: "필터 초기화"
+      predicates:
+        contains: "포함"
+        equals: "같다"
+        starts_with: "로 시작"
+        ends_with: "로 종료"
+        greater_than: "크다"
+        less_than: "작다"
+    main_content: "내용을 보시려면 %{model}#main_content 를 구현해 주시기 바랍니다."
+    logout: "로그아웃"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "필터 목록"
+    pagination:
+      empty: "%{model} 이/가 없습니다."
+      one: "<b>1</b> %{model} 표시중"
+      one_page: "<b>전체 %{n}</b> %{model} 표시중"
+      multiple: "전체 <b>%{total}</b> 중 <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} 표시중"
+      multiple_without_total: "중 <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} 표시중"
+    any: "어떤"
+    blank_slate:
+      content: "아직 %{resource_name} 이/가 없습니다."
+      link: "만들기"
+    batch_actions:
+      button_label: "배치 작업"
+      delete_confirmation: "당신은 이들을 삭제하시겠습니까 %{plural_model}? 당신은 이것을 취소할 수 없습니다."
+      succesfully_destroyed:
+        one: "성공적으로 파괴 1 %{model}"
+        other: "성공적으로 파괴 %{count} %{plural_model}"
+      selection_toggle_explanation: "(전환 선택)"
+      link: "만들기 한"
+      action_label: "%{title} 선택된"
+      labels:
+        destroy: "삭제"
+    comments:
+      body: "몸"
+      author: "저자"
+      title: "논평"
+      add: "코멘트를 추가"
+      resource: "자원"
+      no_comments_yet: "아직 코멘트가 없습니다."
+      title_content: "댓글 (%{count})"
+      errors:
+        empty_text: "댓글이 저장되지 않았습니다, ​​텍스트가 비어 있었어."
+    devise:
+      login:
+        title: "로그인"
+        remember_me: "내 계정 정보 기억"
+        submit: "로그인"
+      reset_password:
+        title: "비밀 번호를 잊으 셨나요?"
+        submit: "비밀 번호를 재설정"
+      change_password:
+        title: "비밀 번호를 변경"
+        submit: "내 비밀 번호 변경"
+      links:
+        sign_in: "로그인"
+        forgot_your_password: "비밀 번호를 잊으 셨나요?"
+        sign_in_with_omniauth_provider: "%{provider} 으로 로그인"

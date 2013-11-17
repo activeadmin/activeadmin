@@ -4,16 +4,17 @@ module ActiveAdmin
 
       # Returns an array of links to use in a breadcrumb
       def breadcrumb_links(path = request.path)
-        parts = path[1..-1].split('/')                        # remove leading "/" and split up URL path
-        parts.pop unless params[:action] =~ /^create|update$/ # remove last if not create/update
+        parts = path[1..-1].split('/') # remove leading "/" and split up the URL
+        parts.pop                      # remove last since it's used as the page title
 
         parts.each_with_index.map do |part, index|
-          # If an object (users/23), look it up via ActiveRecord and capture its name.
-          # If name is nil, look up the model translation, using `titlecase` as the backup.
-          if part =~ /^\d|^[a-f0-9]{24}$/ && parent = parts[index-1]
-            klass = parent.singularize.camelcase.constantize rescue nil
-            obj   = klass.find_by_id(part) if klass
-            name  = display_name(obj)      if obj
+          # 1. try using `display_name` if we can locate a DB object
+          # 2. try using the model name translation
+          # 3. default to calling `titlecase` on the URL fragment
+          if part =~ /\A(\d+|[a-f0-9]{24})\z/ && parts[index-1]
+            parent = active_admin_config.belongs_to_config.try :target
+            config = parent && parent.resource_name.route_key == parts[index-1] ? parent : active_admin_config
+            name   = display_name config.find_resource part
           end
           name ||= I18n.t "activerecord.models.#{part.singularize}", :count => 1.1, :default => part.titlecase
 
