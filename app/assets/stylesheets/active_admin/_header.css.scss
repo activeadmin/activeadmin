@@ -75,7 +75,6 @@
       &.has_nested > a {
         background: image-url('active_admin/nested_menu_arrow.gif') no-repeat 89% 50%;
         padding-right: 20px;
-        z-index: 1050;
       }
 
       &.has_nested.current > a {
@@ -92,6 +91,7 @@
         @include rounded-top(10px);
         border-bottom: 5px solid $hover-menu-item-background;
         background: $hover-menu-item-background image-url('active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%;
+        z-index: 1020;
       }
 
 
