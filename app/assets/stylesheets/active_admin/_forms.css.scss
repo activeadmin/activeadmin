@@ -62,8 +62,9 @@ form {
       cursor: move;
     }
 
+    // If a sortable is nested in a sortable, give the parent handle space!
     &.ui-sortable .has_many_container {
-      margin-right: 30px;
+      margin-right: 2em;
     }
   }
 
@@ -71,10 +72,6 @@ form {
     // give the handle space!
     input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
       width: calc(80% - #{$text-input-total-padding} - 2em - 1px);
-    }
-    // If a sortable is nested in a sortable, give the parent handle space!
-    .ui-sortable .has_many_fields {
-      margin-right: 2em;
     }
   }
 
