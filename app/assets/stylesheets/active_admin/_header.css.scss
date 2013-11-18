@@ -73,12 +73,12 @@
       }
 
       &.has_nested > a {
-        background: image-url('active_admin/nested_menu_arrow.gif') no-repeat 89% 50%;
+        background: image-url('active_admin/nested_menu_arrow.gif') no-repeat calc(100% - 7px) 50%;
         padding-right: 20px;
       }
 
       &.has_nested.current > a {
-        background: $current-menu-item-background image-url('active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%;
+        background: $current-menu-item-background image-url('active_admin/nested_menu_arrow_dark.gif') no-repeat calc(100% - 7px) 50%;
         padding-right: 20px;
       }
 
@@ -90,7 +90,7 @@
       &.has_nested:hover > a {
         @include rounded-top(10px);
         border-bottom: 5px solid $hover-menu-item-background;
-        background: $hover-menu-item-background image-url('active_admin/nested_menu_arrow_dark.gif') no-repeat 89% 50%;
+        background: $hover-menu-item-background image-url('active_admin/nested_menu_arrow_dark.gif') no-repeat calc(100% - 7px) 50%;
         z-index: 1020;
       }
 
@@ -103,7 +103,9 @@
         @include rounded-all(0,10px,10px,10px);
         @include shadow(0, 1px, 3px, #444);
         position: absolute;
-        width: 175px;
+        width: 120%;
+        min-width: 175px;
+        max-width: calc(100% + 20px);
         margin-top: 5px;
         float: left;
         display: none;
