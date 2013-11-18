@@ -8,7 +8,7 @@ form {
     border: 0;
     padding: 10px 0;
     margin-bottom: 20px;
-    position: relative; // required for the absolutely positioned sortable .handle 
+    position: relative; // required for the absolutely positioned sortable .handle
 
     &.inputs { @include section-background; }
 
@@ -52,13 +52,19 @@ form {
     }
   }
 
-  .has_many_container .handle {
-    position: absolute;
-    @include icon-size(3em);
-    top: calc(50% - 3em / 2);
-    right: 2px;
-    padding: 0;
-    cursor: move;
+  .has_many_container {
+    .handle {
+      position: absolute;
+      @include icon-size(3em);
+      top: calc(50% - 3em / 2);
+      right: 2px;
+      padding: 0;
+      cursor: move;
+    }
+
+    &.ui-sortable .has_many_container {
+      margin-right: 30px;
+    }
   }
 
   .ui-sortable {
