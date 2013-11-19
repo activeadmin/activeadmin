@@ -10,7 +10,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
 
     subject { find_before_filter controller, :skip_sidebar! }
 
-    it { should set_skip_sidebar_to nil }
+    it {should set_skip_sidebar_to nil}
   end
 
   describe '#skip_sidebar!' do
@@ -36,7 +36,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
       object = klass.new
       object.send filter.raw_filter if filter
       @actual = object.instance_variable_get(:@skip_sidebar)
-      @actual == expected
+      expect(@actual).to eq expected
     end
 
     failure_message_for_should do |filter|

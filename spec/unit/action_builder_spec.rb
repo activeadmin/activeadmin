@@ -24,13 +24,13 @@ describe 'defining new actions from registration blocks' do
       end
 
       it "should create a new public instance method" do
-        controller.public_instance_methods.collect(&:to_s).should include("comment")
+        expect(controller.public_instance_methods.collect(&:to_s)).to include("comment")
       end
       it "should add itself to the member actions config" do
-        controller.active_admin_config.member_actions.size.should == 1
+        expect(controller.active_admin_config.member_actions.size).to eq 1
       end
       it "should create a new named route" do
-        Rails.application.routes.url_helpers.methods.collect(&:to_s).should include("comment_admin_post_path")
+        expect(Rails.application.routes.url_helpers.methods.collect(&:to_s)).to include("comment_admin_post_path")
       end
     end
 
@@ -41,7 +41,7 @@ describe 'defining new actions from registration blocks' do
         end
       end
       it "should still generate a new empty action" do
-        controller.public_instance_methods.collect(&:to_s).should include("comment")
+        expect(controller.public_instance_methods.collect(&:to_s)).to include("comment")
       end
     end
 
@@ -76,13 +76,13 @@ describe 'defining new actions from registration blocks' do
         end
       end
       it "should create a new public instance method" do
-        controller.public_instance_methods.collect(&:to_s).should include("comments")
+        expect(controller.public_instance_methods.collect(&:to_s)).to include("comments")
       end
       it "should add itself to the member actions config" do
-        controller.active_admin_config.collection_actions.size.should == 1
+        expect(controller.active_admin_config.collection_actions.size).to eq 1
       end
       it "should create a new named route" do
-        Rails.application.routes.url_helpers.methods.collect(&:to_s).should include("comments_admin_posts_path")
+        expect(Rails.application.routes.url_helpers.methods.collect(&:to_s)).to include("comments_admin_posts_path")
       end
     end
     context "without a block" do
@@ -92,7 +92,7 @@ describe 'defining new actions from registration blocks' do
         end
       end
       it "should still generate a new empty action" do
-        controller.public_instance_methods.collect(&:to_s).should include("comments")
+        expect(controller.public_instance_methods.collect(&:to_s)).to include("comments")
       end
     end
     context "with :title" do
@@ -116,7 +116,7 @@ describe 'defining new actions from registration blocks' do
     match do |filter|
       filter.raw_filter.call
       @actual = filter.klass.instance_variable_get(:@page_title)
-      @actual == expected
+      expect(@actual).to eq expected
     end
 
     failure_message_for_should do |filter|

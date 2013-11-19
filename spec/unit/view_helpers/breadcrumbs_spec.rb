@@ -27,7 +27,7 @@ describe "Breadcrumbs" do
       let(:path) { "/admin" }
 
       it "should not have any items" do
-        trail.size.should == 0
+        expect(trail.size).to eq 0
       end
     end
 
@@ -35,11 +35,11 @@ describe "Breadcrumbs" do
       let(:path) { "/admin/users" }
 
       it "should have one item" do
-        trail.size.should == 1
+        expect(trail.size).to eq 1
       end
       it "should have a link to /admin" do
-        trail[0][:name].should == "Admin"
-        trail[0][:path].should == "/admin"
+        expect(trail[0][:name]).to eq "Admin"
+        expect(trail[0][:path]).to eq "/admin"
       end
     end
 
@@ -47,15 +47,15 @@ describe "Breadcrumbs" do
       let(:path) { "/admin/users/1" }
 
       it "should have 2 items" do
-        trail.size.should == 2
+        expect(trail.size).to eq 2
       end
       it "should have a link to /admin" do
-        trail[0][:name].should == "Admin"
-        trail[0][:path].should == "/admin"
+        expect(trail[0][:name]).to eq "Admin"
+        expect(trail[0][:path]).to eq "/admin"
       end
       it "should have a link to /admin/users" do
-        trail[1][:name].should == "Users"
-        trail[1][:path].should == "/admin/users"
+        expect(trail[1][:name]).to eq "Users"
+        expect(trail[1][:path]).to eq "/admin/users"
       end
     end
 
@@ -63,29 +63,29 @@ describe "Breadcrumbs" do
       let(:path) { "/admin/users/1/posts" }
 
       it "should have 3 items" do
-        trail.size.should == 3
+        expect(trail.size).to eq 3
       end
       it "should have a link to /admin" do
-        trail[0][:name].should == "Admin"
-        trail[0][:path].should == "/admin"
+        expect(trail[0][:name]).to eq "Admin"
+        expect(trail[0][:path]).to eq "/admin"
       end
       it "should have a link to /admin/users" do
-        trail[1][:name].should == "Users"
-        trail[1][:path].should == "/admin/users"
+        expect(trail[1][:name]).to eq "Users"
+        expect(trail[1][:path]).to eq "/admin/users"
       end
 
       context "when User.find(1) doesn't exist" do
         before { user_config.stub(find_resource: nil) }
         it "should have a link to /admin/users/1" do
-          trail[2][:name].should == "1"
-          trail[2][:path].should == "/admin/users/1"
+          expect(trail[2][:name]).to eq "1"
+          expect(trail[2][:path]).to eq "/admin/users/1"
         end
       end
 
       context "when User.find(1) does exist" do
         it "should have a link to /admin/users/1 using display name" do
-          trail[2][:name].should == "Jane Doe"
-          trail[2][:path].should == "/admin/users/1"
+          expect(trail[2][:name]).to eq "Jane Doe"
+          expect(trail[2][:path]).to eq "/admin/users/1"
         end
       end
     end
@@ -94,22 +94,22 @@ describe "Breadcrumbs" do
       let(:path) { "/admin/users/4e24d6249ccf967313000000/posts" }
 
       it "should have 3 items" do
-        trail.size.should == 3
+        expect(trail.size).to eq 3
       end
       it "should have a link to /admin" do
-        trail[0][:name].should == "Admin"
-        trail[0][:path].should == "/admin"
+        expect(trail[0][:name]).to eq "Admin"
+        expect(trail[0][:path]).to eq "/admin"
       end
       it "should have a link to /admin/users" do
-        trail[1][:name].should == "Users"
-        trail[1][:path].should == "/admin/users"
+        expect(trail[1][:name]).to eq "Users"
+        expect(trail[1][:path]).to eq "/admin/users"
       end
 
       context "when User.find(4e24d6249ccf967313000000) doesn't exist" do
         before { user_config.stub(find_resource: nil) }
         it "should have a link to /admin/users/4e24d6249ccf967313000000" do
-          trail[2][:name].should == "4e24d6249ccf967313000000"
-          trail[2][:path].should == "/admin/users/4e24d6249ccf967313000000"
+          expect(trail[2][:name]).to eq "4e24d6249ccf967313000000"
+          expect(trail[2][:path]).to eq "/admin/users/4e24d6249ccf967313000000"
         end
       end
 
@@ -118,8 +118,8 @@ describe "Breadcrumbs" do
           user_config.stub find_resource: double(display_name: 'Hello :)')
         end
         it "should have a link to /admin/users/4e24d6249ccf967313000000 using display name" do
-          trail[2][:name].should == "Hello :)"
-          trail[2][:path].should == "/admin/users/4e24d6249ccf967313000000"
+          expect(trail[2][:name]).to eq "Hello :)"
+          expect(trail[2][:path]).to eq "/admin/users/4e24d6249ccf967313000000"
         end
       end
     end
@@ -128,23 +128,23 @@ describe "Breadcrumbs" do
       let(:path) { "/admin/users/1/posts/1" }
 
       it "should have 4 items" do
-        trail.size.should == 4
+        expect(trail.size).to eq 4
       end
       it "should have a link to /admin" do
-        trail[0][:name].should == "Admin"
-        trail[0][:path].should == "/admin"
+        expect(trail[0][:name]).to eq "Admin"
+        expect(trail[0][:path]).to eq "/admin"
       end
       it "should have a link to /admin/users" do
-        trail[1][:name].should == "Users"
-        trail[1][:path].should == "/admin/users"
+        expect(trail[1][:name]).to eq "Users"
+        expect(trail[1][:path]).to eq "/admin/users"
       end
       it "should have a link to /admin/users/1" do
-        trail[2][:name].should == "Jane Doe"
-        trail[2][:path].should == "/admin/users/1"
+        expect(trail[2][:name]).to eq "Jane Doe"
+        expect(trail[2][:path]).to eq "/admin/users/1"
       end
       it "should have a link to /admin/users/1/posts" do
-        trail[3][:name].should == "Posts"
-        trail[3][:path].should == "/admin/users/1/posts"
+        expect(trail[3][:name]).to eq "Posts"
+        expect(trail[3][:path]).to eq "/admin/users/1/posts"
       end
     end
 
@@ -152,27 +152,27 @@ describe "Breadcrumbs" do
       let(:path) { "/admin/users/1/posts/1/edit" }
 
       it "should have 5 items" do
-        trail.size.should == 5
+        expect(trail.size).to eq 5
       end
       it "should have a link to /admin" do
-        trail[0][:name].should == "Admin"
-        trail[0][:path].should == "/admin"
+        expect(trail[0][:name]).to eq "Admin"
+        expect(trail[0][:path]).to eq "/admin"
       end
       it "should have a link to /admin/users" do
-        trail[1][:name].should == "Users"
-        trail[1][:path].should == "/admin/users"
+        expect(trail[1][:name]).to eq "Users"
+        expect(trail[1][:path]).to eq "/admin/users"
       end
       it "should have a link to /admin/users/1" do
-        trail[2][:name].should == "Jane Doe"
-        trail[2][:path].should == "/admin/users/1"
+        expect(trail[2][:name]).to eq "Jane Doe"
+        expect(trail[2][:path]).to eq "/admin/users/1"
       end
       it "should have a link to /admin/users/1/posts" do
-        trail[3][:name].should == "Posts"
-        trail[3][:path].should == "/admin/users/1/posts"
+        expect(trail[3][:name]).to eq "Posts"
+        expect(trail[3][:path]).to eq "/admin/users/1/posts"
       end
       it "should have a link to /admin/users/1/posts/1" do
-        trail[4][:name].should == "Hello World"
-        trail[4][:path].should == "/admin/users/1/posts/1"
+        expect(trail[4][:name]).to eq "Hello World"
+        expect(trail[4][:path]).to eq "/admin/users/1/posts/1"
       end
     end
 

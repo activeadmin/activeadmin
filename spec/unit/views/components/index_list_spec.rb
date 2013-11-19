@@ -20,13 +20,13 @@ describe ActiveAdmin::Views::IndexList do
       end
     end
 
-    its(:tag_name) { should == 'ul' }
+    its(:tag_name) { should eq 'ul'}
 
     it "should contain the names of available indexes in links" do
       a_tags = subject.find_by_tag("a")
-      a_tags.size.should == 2
-      a_tags.first.to_s.should include("Table")
-      a_tags.last.to_s.should include("List")
+      expect(a_tags.size).to eq 2
+      expect(a_tags.first.to_s).to include("Table")
+      expect(a_tags.last.to_s).to include("List")
     end
   end
 end

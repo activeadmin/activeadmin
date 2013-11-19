@@ -11,30 +11,30 @@ describe "display_name" do
           m.to_s
         end
       end.new
-      display_name(r).should eq m.to_s
+      expect(display_name(r)).to eq m.to_s
     end
   end
 
   it "should memeoize the result for the class" do
     subject { Class.new.new }
-    subject.should_receive(:name).twice.and_return "My Name"
-    display_name(subject).should eq "My Name"
-    ActiveAdmin.application.should_not_receive(:display_name_methods)
-    display_name(subject).should eq "My Name"
+    expect(subject).to receive(:name).twice.and_return "My Name"
+    expect(display_name(subject)).to eq "My Name"
+    expect(ActiveAdmin.application).to_not receive(:display_name_methods)
+    expect(display_name(subject)).to eq "My Name"
   end
 
   it "should not call a method if it's an association" do
     subject { Class.new.new }
     subject.stub_chain(:class, :reflect_on_all_associations).and_return [ double(name: :login) ]
     subject.stub :login
-    subject.should_not_receive :login
+    expect(subject).to_not receive :login
     subject.stub(:email).and_return 'foo@bar.baz'
-    display_name(subject).should eq 'foo@bar.baz'
+    expect(display_name(subject)).to eq 'foo@bar.baz'
   end
 
   [nil, false].each do |type|
     it "should return nil when the passed object is #{type.inspect}" do
-      display_name(type).should eq nil
+      expect(display_name(type)).to eq nil
     end
   end
 

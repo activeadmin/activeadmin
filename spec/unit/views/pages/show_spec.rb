@@ -11,7 +11,7 @@ describe ActiveAdmin::Views::Pages::Show do
 
       it "normally returns the resource" do
         page = ActiveAdmin::Views::Pages::Show.new(arbre_context)
-        page.resource.should == 'Test Resource'
+        expect(page.resource).to eq 'Test Resource'
       end
     end
 

@@ -51,62 +51,62 @@ describe ActiveAdmin::Views::TabbedNavigation do
     end
 
     it "should generate a ul" do
-      html.should have_tag("ul")
+      expect(html).to have_tag("ul")
     end
 
     it "should generate an li for each item" do
-      html.should have_tag("li", :parent => { :tag => "ul" })
+      expect(html).to have_tag("li", :parent => { :tag => "ul" })
     end
 
     it "should generate a link for each item" do
-      html.should have_tag("a", "Blog Posts", :attributes => { :href => '/admin/posts' })
+      expect(html).to have_tag("a", "Blog Posts", :attributes => { :href => '/admin/posts' })
     end
 
     it "should generate a nested list for children" do
-      html.should have_tag("ul", :parent => { :tag => "li" })
+      expect(html).to have_tag("ul", :parent => { :tag => "li" })
     end
 
     it "should generate a nested list with li for each child" do
-      html.should have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "a_sub_reports"})
-      html.should have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "b_sub_reports"})
+      expect(html).to have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "a_sub_reports"})
+      expect(html).to have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "b_sub_reports"})
     end
 
     it "should generate a valid id from a label proc" do
-      html.should have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "label_proc_sub_reports"})
+      expect(html).to have_tag("li", :parent => { :tag => "ul" }, :attributes => {:id => "label_proc_sub_reports"})
     end
 
     it "should not generate a link for user administration" do
-      html.should_not have_tag("a", "User administration", :attributes => { :href => '/admin/user-administration' })
+      expect(html).to_not have_tag("a", "User administration", :attributes => { :href => '/admin/user-administration' })
     end
 
     it "should generate the administration parent menu" do
-      html.should have_tag("a", "Administration", :attributes => { :href => '/admin/administration' })
+      expect(html).to have_tag("a", "Administration", :attributes => { :href => '/admin/administration' })
     end
 
     it "should not generate a link for order management" do
-      html.should_not have_tag("a", "Order management", :attributes => { :href => '/admin/order-management' })
+      expect(html).to_not have_tag("a", "Order management", :attributes => { :href => '/admin/order-management' })
     end
 
     it "should not generate a link for bill management" do
-      html.should_not have_tag("a", "Bill management", :attributes => { :href => '/admin/bill-management' })
+      expect(html).to_not have_tag("a", "Bill management", :attributes => { :href => '/admin/bill-management' })
     end
 
     it "should not generate the management parent menu" do
-      html.should_not have_tag("a", "Management", :attributes => { :href => '#' })
+      expect(html).to_not have_tag("a", "Management", :attributes => { :href => '#' })
     end
 
     describe "marking current item" do
 
       it "should add the 'current' class to the li" do
         assigns[:current_tab] = menu["Blog Posts"]
-        html.should have_tag("li", :attributes => { :class => "current" })
+        expect(html).to have_tag("li", :attributes => { :class => "current" })
       end
 
       it "should add the 'current' and 'has_nested' classes to the li and 'current' to the sub li" do
         assigns[:current_tab] = menu["Reports"]["A Sub Reports"]
-        html.should have_tag("li", :attributes => { :id => "reports", :class => /current/ })
-        html.should have_tag("li", :attributes => { :id => "reports", :class => /has_nested/ })
-        html.should have_tag("li", :attributes => { :id => "a_sub_reports", :class => "current" })
+        expect(html).to have_tag("li", :attributes => { :id => "reports", :class => /current/ })
+        expect(html).to have_tag("li", :attributes => { :id => "reports", :class => /has_nested/ })
+        expect(html).to have_tag("li", :attributes => { :id => "a_sub_reports", :class => "current" })
       end
 
     end
@@ -117,24 +117,24 @@ describe ActiveAdmin::Views::TabbedNavigation do
 
     it "should return one item with no if block" do
       menu.add :label => "Hello World", :url => "/"
-      tabbed_navigation.menu_items.should == menu.items
+      expect(tabbed_navigation.menu_items).to eq menu.items
     end
 
     it "should not include menu items with an if block that returns false" do
       menu.add :label => "Don't Show", :url => "/", :priority => 10, :if => proc{ false }
-      tabbed_navigation.menu_items.should be_empty
+      expect(tabbed_navigation.menu_items).to be_empty
     end
 
     it "should not include menu items with an if block that calls a method that returns false" do
       menu.add :label => "Don't Show", :url => "/", :priority => 10, :if => :admin_logged_in?
-      tabbed_navigation.menu_items.should be_empty
+      expect(tabbed_navigation.menu_items).to be_empty
     end
 
     it "should not display any items that have no children to display" do
       menu.add :label => "Parent", :url => "#" do |p|
         p.add :label => "Child", :url => "/", :priority => 10, :if => proc{ false }
       end
-      tabbed_navigation.menu_items.should be_empty
+      expect(tabbed_navigation.menu_items).to be_empty
     end
 
     it "should display a parent that has a child to display" do
@@ -142,7 +142,7 @@ describe ActiveAdmin::Views::TabbedNavigation do
         p.add :label => "Hidden Child", :url => "/", :priority => 10, :if => proc{ false }
         p.add :label => "Child", :url => "/"
       end
-      tabbed_navigation.should have(1).menu_items
+      expect(tabbed_navigation).to have(1).menu_items
     end
 
   end

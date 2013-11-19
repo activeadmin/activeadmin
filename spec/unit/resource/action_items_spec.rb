@@ -17,15 +17,15 @@ describe ActiveAdmin::Resource::ActionItems do
     end
 
     it "should add an action item" do
-      resource.action_items.size.should == 1
+      expect(resource.action_items.size).to eq 1
     end
 
     it "should store an instance of ActionItem" do
-      resource.action_items.first.should be_an_instance_of(ActiveAdmin::ActionItem)
+      expect(resource.action_items.first).to be_an_instance_of(ActiveAdmin::ActionItem)
     end
 
     it "should store the block in the action item" do
-      resource.action_items.first.block.should_not be_nil
+      expect(resource.action_items.first.block).to_not be_nil
     end
 
   end
@@ -43,7 +43,7 @@ describe ActiveAdmin::Resource::ActionItems do
     end
 
     it "should return only relevant action items" do
-      resource.action_items_for(:index).size.should == 1
+      expect(resource.action_items_for(:index).size).to eq 1
       expect {
         resource.action_items_for(:index).first.call
       }.to raise_exception(StandardError)
@@ -54,7 +54,7 @@ describe ActiveAdmin::Resource::ActionItems do
   describe "default action items" do
 
     it "should have 3 action items" do
-      resource.action_items.size.should == 3
+      expect(resource.action_items.size).to eq 3
     end
 
   end

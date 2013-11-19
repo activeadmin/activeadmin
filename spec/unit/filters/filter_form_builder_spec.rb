@@ -43,20 +43,20 @@ describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :title }
 
     it "should generate a form which submits via get" do
-      body.should have_tag("form", :attributes => { :method => 'get', :class => 'filter_form' })
+      expect(body).to have_tag("form", :attributes => { :method => 'get', :class => 'filter_form' })
     end
 
     it "should generate a filter button" do
-      body.should have_tag("input", :attributes => { :type => "submit",
+      expect(body).to have_tag("input", :attributes => { :type => "submit",
                                                         :value => "Filter" })
     end
 
     it "should only generate the form once" do
-      body.to_s.scan(/q\[title_contains\]/).size.should == 1
+      expect(body.to_s.scan(/q\[title_contains\]/).size).to eq 1
     end
 
     it "should generate a clear filters link" do
-      body.should have_tag("a", "Clear Filters", :attributes => { :class => "clear_filters_btn" })
+      expect(body).to have_tag("a", "Clear Filters", :attributes => { :class => "clear_filters_btn" })
     end
   end
 
@@ -64,29 +64,29 @@ describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :title }
 
     it "should generate a select option for starts with" do
-      body.should have_tag("option", "Starts with", :attributes => { :value => 'title_starts_with' })
+      expect(body).to have_tag("option", "Starts with", :attributes => { :value => 'title_starts_with' })
     end
 
     it "should generate a select option for ends with" do
-      body.should have_tag("option", "Ends with", :attributes => { :value => 'title_ends_with' })
+      expect(body).to have_tag("option", "Ends with", :attributes => { :value => 'title_ends_with' })
     end
 
     it "should generate a select option for contains" do
-      body.should have_tag("option", "Contains", :attributes => { :value => 'title_contains' })
+      expect(body).to have_tag("option", "Contains", :attributes => { :value => 'title_contains' })
     end
 
     it "should generate a text field for input" do
-      body.should have_tag("input", :attributes => { :name => 'q[title_contains]' })
+      expect(body).to have_tag("input", :attributes => { :name => 'q[title_contains]' })
     end
-    
+
     it "should have a proper label" do
-      body.should have_tag('label', 'Title')
+      expect(body).to have_tag('label', 'Title')
     end
 
     it "should translate the label for text field" do
       begin
         I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => "Name" } } })
-        body.should have_tag('label', 'Name')
+        expect(body).to have_tag('label', 'Name')
       ensure
         I18n.backend.reload!
       end
@@ -98,21 +98,21 @@ describe ActiveAdmin::Filters::ViewHelper do
 
   describe "string attribute with sub filters" do
     let(:body) { filter :title_contains }
-    
+
     it "should generate a search field for a string attribute with query contains" do
-      body.should have_tag("input", :attributes => { :name => "q[title_contains]"})
-      body.should have_tag('label', 'Title contains')
+      expect(body).to have_tag("input", :attributes => { :name => "q[title_contains]"})
+      expect(body).to have_tag('label', 'Title contains')
     end
 
     it "should NOT generate a select option for contains" do
-      body.should_not have_tag("option", "Contains", :attributes => { :value => 'title_contains' })
+      expect(body).to_not have_tag("option", "Contains", :attributes => { :value => 'title_contains' })
     end
 
     context "using starts_with and as" do
       let(:body) { filter :title_starts_with }
 
       it "should generate a search field for a string attribute with query starts_with" do
-        body.should have_tag("input", :attributes => { :name => "q[title_starts_with]" })
+        expect(body).to have_tag("input", :attributes => { :name => "q[title_starts_with]" })
       end
     end
 
@@ -120,28 +120,28 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :title_ends_with }
 
       it "should generate a search field for a string attribute with query ends_with" do
-        body.should have_tag("input", :attributes => { :name => "q[title_ends_with]" })
+        expect(body).to have_tag("input", :attributes => { :name => "q[title_ends_with]" })
       end
     end
-    
+
     context "using contains and NO AS defined" do
       let(:body) { filter :title_contains }
 
       it "should generate a search field for a string attribute with query contains" do
-        body.should have_tag("input", :attributes => { :name => "q[title_contains]" })
+        expect(body).to have_tag("input", :attributes => { :name => "q[title_contains]" })
       end
     end
   end
-  
+
   describe "text attribute" do
     let(:body) { filter :body }
 
     it "should generate a search field for a text attribute" do
-      body.should have_tag("input", :attributes => { :name => "q[body_contains]"})
+      expect(body).to have_tag("input", :attributes => { :name => "q[body_contains]"})
     end
 
     it "should have a proper label" do
-      body.should have_tag('label', 'Body')
+      expect(body).to have_tag('label', 'Body')
     end
   end
 
@@ -156,9 +156,9 @@ describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should remove original ordering to prevent PostgreSQL error" do
-        scope.object.klass.should_receive(:reorder).with('title asc') {
+        expect(scope.object.klass).to receive(:reorder).with('title asc') {
           m = double uniq: double(pluck: ['A Title'])
-          m.uniq.should_receive(:pluck).with :title
+          expect(m.uniq).to receive(:pluck).with :title
           m
         }
         body
@@ -170,13 +170,13 @@ describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :created_at }
 
     it "should generate a date greater than" do
-      body.should have_tag("input", :attributes => { :name => "q[created_at_gteq]", :class => "datepicker"})
+      expect(body).to have_tag("input", :attributes => { :name => "q[created_at_gteq]", :class => "datepicker"})
     end
     it "should generate a seperator" do
-      body.should have_tag("span", :attributes => { :class => "seperator"})
+      expect(body).to have_tag("span", :attributes => { :class => "seperator"})
     end
     it "should generate a date less than" do
-      body.should have_tag("input", :attributes => { :name => "q[created_at_lteq]", :class => "datepicker"})
+      expect(body).to have_tag("input", :attributes => { :name => "q[created_at_lteq]", :class => "datepicker"})
     end
   end
 
@@ -184,16 +184,16 @@ describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :id }
 
     it "should generate a select option for equal to" do
-      body.should have_tag("option", "Equals", :attributes => { :value => 'id_equals' })
+      expect(body).to have_tag("option", "Equals", :attributes => { :value => 'id_equals' })
     end
     it "should generate a select option for greater than" do
-      body.should have_tag("option", "Greater than")
+      expect(body).to have_tag("option", "Greater than")
     end
     it "should generate a select option for less than" do
-      body.should have_tag("option", "Less than")
+      expect(body).to have_tag("option", "Less than")
     end
     it "should generate a text field for input" do
-      body.should have_tag("input", :attributes => { :name => 'q[id_equals]' })
+      expect(body).to have_tag("input", :attributes => { :name => 'q[id_equals]' })
     end
     it "should select the option which is currently being filtered"
   end
@@ -203,7 +203,7 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :starred }
 
       it "should create a check box for equals to" do
-        body.should have_tag("input", :attributes => {
+        expect(body).to have_tag("input", :attributes => {
                                             :name => "q[starred_eq]",
                                             :type => "checkbox" })
       end
@@ -211,7 +211,7 @@ describe ActiveAdmin::Filters::ViewHelper do
       it "should translate the label for boolean field" do
         begin
           I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :starred => "Faved" } } })
-          body.should have_tag('label', 'Faved')
+          expect(body).to have_tag('label', 'Faved')
         ensure
           I18n.backend.reload!
         end
@@ -222,7 +222,7 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :title_present, :as => :boolean }
 
       it "should create a check box for equals to" do
-        body.should have_tag("input", :attributes => {
+        expect(body).to have_tag("input", :attributes => {
                                             :name => "q[title_present]",
                                             :type => "checkbox" })
       end
@@ -239,9 +239,9 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :author_id }
 
       it "should generate a numeric filter" do
-        body.should have_tag 'label', 'Author' # really this should be Author ID :/
-        body.should have_tag 'option', :attributes => { :value => 'author_id_less_than' }
-        body.should have_tag 'input',  :attributes => { :id => 'q_author_id', :name => 'q[author_id_equals]'}
+        expect(body).to have_tag 'label', 'Author' # really this should be Author ID :/
+        expect(body).to have_tag 'option', :attributes => { :value => 'author_id_less_than' }
+        expect(body).to have_tag 'input',  :attributes => { :id => 'q_author_id', :name => 'q[author_id_equals]'}
       end
     end
 
@@ -249,14 +249,14 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :author }
 
       it "should generate a select" do
-        body.should have_tag "select",             :attributes => { :name => "q[author_id_eq]" }
+        expect(body).to have_tag "select",             :attributes => { :name => "q[author_id_eq]" }
       end
       it "should set the default text to 'Any'" do
-        body.should have_tag "option", "Any",      :attributes => { :value => "" }
+        expect(body).to have_tag "option", "Any",      :attributes => { :value => "" }
       end
       it "should create an option for each related object" do
-        body.should have_tag "option", "John Doe", :attributes => { :value => @john.id }
-        body.should have_tag "option", "Jane Doe", :attributes => { :value => @jane.id }
+        expect(body).to have_tag "option", "John Doe", :attributes => { :value => @john.id }
+        expect(body).to have_tag "option", "Jane Doe", :attributes => { :value => @jane.id }
       end
 
       context "with a proc" do
@@ -265,13 +265,13 @@ describe ActiveAdmin::Filters::ViewHelper do
         end
 
         it "should use call the proc as the collection" do
-          body.should have_tag("option", "Title One")
-          body.should have_tag("option", "Title Two")
+          expect(body).to have_tag("option", "Title One")
+          expect(body).to have_tag("option", "Title Two")
         end
 
         it "should render the collection in the context of the view" do
           body = filter(:title, :as => :select, :collection => proc{[a_helper_method]})
-          body.should have_tag("option", "A Helper Method")
+          expect(body).to have_tag("option", "A Helper Method")
         end
       end
     end
@@ -280,11 +280,11 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :author, :as => :check_boxes }
 
       it "should create a check box for each related object" do
-        body.should have_tag("input", :attributes => {
+        expect(body).to have_tag("input", :attributes => {
                                             :name => "q[author_id_in][]",
                                             :type => "checkbox",
                                             :value => @john.id })
-        body.should have_tag("input", :attributes => {
+        expect(body).to have_tag("input", :attributes => {
                                             :name => "q[author_id_in][]",
                                             :type => "checkbox",
                                             :value => @jane.id })
@@ -332,16 +332,16 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :authors }
 
       it "should generate a select" do
-        body.should have_tag 'select', :attributes => { :name => "q[posts_author_id_eq]" }
+        expect(body).to have_tag 'select', :attributes => { :name => "q[posts_author_id_eq]" }
       end
 
       it "should set the default text to 'Any'" do
-        body.should have_tag "option", "Any", :attributes => { :value => "" }
+        expect(body).to have_tag "option", "Any", :attributes => { :value => "" }
       end
 
       it "should create an option for each related object" do
-        body.should have_tag "option", "John Doe", :attributes => { :value => john.id }
-        body.should have_tag "option", "Jane Doe", :attributes => { :value => jane.id }
+        expect(body).to have_tag "option", "John Doe", :attributes => { :value => john.id }
+        expect(body).to have_tag "option", "Jane Doe", :attributes => { :value => jane.id }
       end
     end
 
@@ -349,11 +349,11 @@ describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :authors, :as => :check_boxes }
 
       it "should create a check box for each related object" do
-        body.should have_tag("input", :attributes => {
+        expect(body).to have_tag("input", :attributes => {
                                             :name => "q[posts_author_id_in][]",
                                             :type => "checkbox",
                                             :value => john.id })
-        body.should have_tag("input", :attributes => {
+        expect(body).to have_tag("input", :attributes => {
                                             :name => "q[posts_author_id_in][]",
                                             :type => "checkbox",
                                             :value => jane.id })
@@ -365,24 +365,24 @@ describe ActiveAdmin::Filters::ViewHelper do
     context "with :if block" do
       it "should be displayed if true" do
         body = filter :body,   if: proc{true}
-        body.should     have_tag "input", attributes: {name: "q[body_contains]"}
+        expect(body).to have_tag "input", attributes: {name: "q[body_contains]"}
       end
 
       it "should NOT be displayed if false" do
         body = filter :author, if: proc{false}
-        body.should_not have_tag "input", attributes: {name: "q[author_id_eq]"}
+        expect(body).to_not have_tag "input", attributes: {name: "q[author_id_eq]"}
       end
     end
 
     context "with :unless block" do
       it "should be displayed if false" do
         body = filter :created_at, unless: proc{false}
-        body.should     have_tag "input", attributes: {name: "q[created_at_gteq]"}
+        expect(body).to     have_tag "input", attributes: {name: "q[created_at_gteq]"}
       end
 
       it "should NOT be displayed if true" do
         body = filter :updated_at, unless: proc{true}
-        body.should_not have_tag "input", attributes: {name: "q[updated_at_gteq]"}
+        expect(body).to_not have_tag "input", attributes: {name: "q[updated_at_gteq]"}
       end
     end
   end
@@ -391,31 +391,31 @@ describe ActiveAdmin::Filters::ViewHelper do
 
     it "should work as select" do
       body = filter :custom_searcher, as: :select, collection: ['foo']
-      body.should have_tag "select", attributes: { name: "q[custom_searcher]" }
+      expect(body).to have_tag "select", attributes: { name: "q[custom_searcher]" }
     end
 
     it "should work as string" do
       body = filter :custom_searcher, as: :string
-      body.should have_tag "input", attributes: { name: "q[custom_searcher]" }
+      expect(body).to have_tag "input", attributes: { name: "q[custom_searcher]" }
     end
   end
 
   describe "blank option" do
     context "for a select filter" do
       it "should be there by default" do
-        filter(:author).should have_tag "option", "Any"
+        expect(filter(:author)).to have_tag "option", "Any"
       end
       it "should be able to be disabled" do
-        filter(:author, include_blank: false).should_not have_tag "option", "Any"
+        expect(filter(:author, include_blank: false)).to_not have_tag "option", "Any"
       end
     end
 
     context "for a multi-select filter" do
       it "should not be there by default" do
-        filter(:author, multiple: true).should_not have_tag "option", "Any"
+        expect(filter(:author, multiple: true)).to_not have_tag "option", "Any"
       end
       it "should be able to be enabled" do
-        filter(:author, multiple: true, include_blank: true).should have_tag "option", "Any"
+        expect(filter(:author, multiple: true, include_blank: true)).to have_tag "option", "Any"
       end
     end
   end

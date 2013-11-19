@@ -9,13 +9,13 @@ describe ActiveAdmin::Menu do
   context "with no items" do
     it "should have an empty item collection" do
       menu = Menu.new
-      menu.items.should be_empty
+      expect(menu.items).to be_empty
     end
 
     it "should accept new items" do
       menu = Menu.new
       menu.add :label => "Dashboard"
-      menu.items.first.label.should == "Dashboard"
+      expect(menu.items.first.label).to eq "Dashboard"
     end
   end
 
@@ -28,7 +28,7 @@ describe ActiveAdmin::Menu do
     end
 
     it "should give access to the menu item as an array" do
-      menu['Dashboard'].label.should == 'Dashboard'
+      expect(menu['Dashboard'].label).to eq 'Dashboard'
     end
   end
 
@@ -37,7 +37,7 @@ describe ActiveAdmin::Menu do
       menu = Menu.new
       menu.add :parent => "Admin", :label => "Users"
 
-      menu["Admin"]["Users"].should be_an_instance_of(ActiveAdmin::MenuItem)
+      expect(menu["Admin"]["Users"]).to be_an_instance_of(ActiveAdmin::MenuItem)
     end
 
     it "should add a child to a parent if it exists" do
@@ -45,7 +45,7 @@ describe ActiveAdmin::Menu do
       menu.add :parent => "Admin", :label => "Users"
       menu.add :parent => "Admin", :label => "Projects"
 
-      menu["Admin"]["Projects"].should be_an_instance_of(ActiveAdmin::MenuItem)
+      expect(menu["Admin"]["Projects"]).to be_an_instance_of(ActiveAdmin::MenuItem)
     end
 
     it "should assign children regardless of resource file load order" do
@@ -53,8 +53,8 @@ describe ActiveAdmin::Menu do
       menu.add :parent => "Users", :label => "Posts"
       menu.add :label  => "Users", :url   => "/some/url"
 
-      menu["Users"].url.should == "/some/url"
-      menu["Users"]["Posts"].should be_a ActiveAdmin::MenuItem
+      expect(menu["Users"].url).to eq "/some/url"
+      expect(menu["Users"]["Posts"]).to be_a ActiveAdmin::MenuItem
     end
   end
 
@@ -65,7 +65,7 @@ describe ActiveAdmin::Menu do
       menu.add :label => proc{ "B" }, :id => "not related 2"
       menu.add :label => proc{ "A" }, :id => "not related 3"
 
-      menu.items.map(&:label).should == %w[A B G]
+      expect(menu.items.map(&:label)).to eq %w[A B G]
     end
   end
 end

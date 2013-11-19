@@ -28,13 +28,13 @@ describe ActiveAdmin::CanCanAdapter do
     end
 
     it "should initialize the ability stored in the namespace configuration" do
-      auth.authorized?(:read, Post).should == true
-      auth.authorized?(:update, Post).should == false
+      expect(auth.authorized?(:read, Post)).to eq true
+      expect(auth.authorized?(:update, Post)).to eq false
     end
 
     it "should scope the collection with accessible_by" do
       collection = double
-      collection.should_receive(:accessible_by).with(auth.cancan_ability, :edit)
+      expect(collection).to receive(:accessible_by).with(auth.cancan_ability, :edit)
       auth.scope_collection(collection, :edit)
     end
 

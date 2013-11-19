@@ -14,25 +14,25 @@ describe ActiveAdmin, "Routing", :type => :routing do
   end
 
   it "should route to the admin dashboard" do
-    get('/admin').should route_to 'admin/dashboard#index'
+    expect(get('/admin')).to route_to 'admin/dashboard#index'
   end
 
   describe "standard resources" do
     context "when in admin namespace" do
       it "should route the index path" do
-        admin_posts_path.should == "/admin/posts"
+        expect(admin_posts_path).to eq "/admin/posts"
       end
 
       it "should route the show path" do
-        admin_post_path(1).should == "/admin/posts/1"
+        expect(admin_post_path(1)).to eq "/admin/posts/1"
       end
 
       it "should route the new path" do
-        new_admin_post_path.should == "/admin/posts/new"
+        expect(new_admin_post_path).to eq "/admin/posts/new"
       end
 
       it "should route the edit path" do
-        edit_admin_post_path(1).should == "/admin/posts/1/edit"
+        expect(edit_admin_post_path(1)).to eq "/admin/posts/1/edit"
       end
     end
 
@@ -42,19 +42,19 @@ describe ActiveAdmin, "Routing", :type => :routing do
       end
 
       it "should route the index path" do
-        posts_path.should == "/posts"
+        expect(posts_path).to eq "/posts"
       end
 
       it "should route the show path" do
-        post_path(1).should == "/posts/1"
+        expect(post_path(1)).to eq "/posts/1"
       end
 
       it "should route the new path" do
-        new_post_path.should == "/posts/new"
+        expect(new_post_path).to eq "/posts/new"
       end
 
       it "should route the edit path" do
-        edit_post_path(1).should == "/posts/1/edit"
+        expect(edit_post_path(1)).to eq "/posts/1/edit"
       end
     end
 
@@ -67,8 +67,8 @@ describe ActiveAdmin, "Routing", :type => :routing do
         end
 
         it "should default to GET" do
-          {:get  => "/admin/posts/1/do_something"}.should     be_routable
-          {:post => "/admin/posts/1/do_something"}.should_not be_routable
+          expect({:get  => "/admin/posts/1/do_something"}).to     be_routable
+          expect({:post => "/admin/posts/1/do_something"}).to_not be_routable
         end
       end
 
@@ -80,7 +80,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
         end
 
         it "should properly route" do
-          {:post => "/admin/posts/1/do_something"}.should be_routable
+          expect({:post => "/admin/posts/1/do_something"}).to be_routable
         end
       end
 
@@ -92,11 +92,11 @@ describe ActiveAdmin, "Routing", :type => :routing do
         end
 
         it "should properly route the first verb" do
-          {:put => "/admin/posts/1/do_something"}.should be_routable
+          expect({:put => "/admin/posts/1/do_something"}).to be_routable
         end
 
         it "should properly route the second verb" do
-          {:delete => "/admin/posts/1/do_something"}.should be_routable
+          expect({:delete => "/admin/posts/1/do_something"}).to be_routable
         end
       end
     end
@@ -104,19 +104,19 @@ describe ActiveAdmin, "Routing", :type => :routing do
 
   describe "belongs to resource" do
     it "should route the nested index path" do
-      admin_user_posts_path(1).should == "/admin/users/1/posts"
+      expect(admin_user_posts_path(1)).to eq "/admin/users/1/posts"
     end
 
     it "should route the nested show path" do
-      admin_user_post_path(1,2).should == "/admin/users/1/posts/2"
+      expect(admin_user_post_path(1,2)).to eq "/admin/users/1/posts/2"
     end
 
     it "should route the nested new path" do
-      new_admin_user_post_path(1).should == "/admin/users/1/posts/new"
+      expect(new_admin_user_post_path(1)).to eq "/admin/users/1/posts/new"
     end
 
     it "should route the nested edit path" do
-      edit_admin_user_post_path(1,2).should == "/admin/users/1/posts/2/edit"
+      expect(edit_admin_user_post_path(1,2)).to eq "/admin/users/1/posts/2/edit"
     end
 
     context "with collection action" do
@@ -132,8 +132,8 @@ describe ActiveAdmin, "Routing", :type => :routing do
       end
 
       it "should properly route the collection action" do
-        { :get => "/admin/users/do_something" }.
-          should route_to({ :controller => 'admin/users',:action => 'do_something'})
+        expect({ get: "/admin/users/do_something" }).to \
+          route_to({ controller: 'admin/users', action: 'do_something'})
       end
     end
   end
@@ -145,7 +145,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
       end
 
       it "should route to the page under /admin" do
-        admin_chocolate_i_love_you_path.should == "/admin/chocolate_i_love_you"
+        expect(admin_chocolate_i_love_you_path).to eq "/admin/chocolate_i_love_you"
       end
 
       context "when in the root namespace" do
@@ -154,7 +154,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
         end
 
         it "should route to page under /" do
-          chocolate_i_love_you_path.should == "/chocolate_i_love_you"
+          expect(chocolate_i_love_you_path).to eq "/chocolate_i_love_you"
         end
       end
 
@@ -164,7 +164,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
         end
 
         it "should not inject _index_ into the route name" do
-          admin_log_path.should == "/admin/log"
+          expect(admin_log_path).to eq "/admin/log"
         end
       end
     end

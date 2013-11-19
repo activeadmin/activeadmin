@@ -2,7 +2,7 @@ require 'spec_helper'
 
 def it_should_have_view(key, value)
   it "should have #{value} for view key '#{key}'" do
-    subject.send(key).should  == value
+    expect(subject.send(key)).to  eq value
   end
 end
 

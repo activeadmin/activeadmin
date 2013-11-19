@@ -7,56 +7,56 @@ module ActiveAdmin
 
     it "should have a label" do
       item = MenuItem.new(:label => "Dashboard")
-      item.label.should == "Dashboard"
+      expect(item.label).to eq "Dashboard"
     end
 
     it "should have a url" do
       item = MenuItem.new(:url => "/admin")
-      item.url.should == "/admin"
+      expect(item.url).to eq "/admin"
     end
 
     it "should have a priority of 10 by default" do
       item = MenuItem.new
-      item.priority.should == 10
+      expect(item.priority).to eq 10
     end
 
     context "conditional display" do
       it "should store a Proc internally and evaluate it when requested" do
         item = MenuItem.new
-        item.instance_variable_get(:@should_display).should be_a Proc
-        item.display?.should_not be_a Proc
+        expect(item.instance_variable_get(:@should_display)).to be_a Proc
+        expect(item.display?).to_not be_a Proc
       end
 
       it "should show the item by default" do
-        MenuItem.new.display?.should == true
+        expect(MenuItem.new.display?).to eq true
       end
 
       it "should hide the item" do
-        MenuItem.new(:if => proc{false}).display?.should == false
+        expect(MenuItem.new(:if => proc{false}).display?).to eq false
       end
     end
 
     it "should default to an empty hash for html_options" do
       item = MenuItem.new
-      item.html_options.should be_empty
+      expect(item.html_options).to be_empty
     end
 
     it "should accept an options hash for link_to" do
       item = MenuItem.new :html_options => { :target => :blank }
-      item.html_options.should include(:target => :blank)
+      expect(item.html_options).to include(:target => :blank)
     end
 
     context "with no items" do
       it "should be empty" do
         item = MenuItem.new
-        item.items.should be_empty
+        expect(item.items).to be_empty
       end
 
       it "should accept new children" do
         item = MenuItem.new :label => "Dashboard"
         item.add            :label => "My Child Dashboard"
-        item.items.first.should be_a MenuItem
-        item.items.first.label.should == "My Child Dashboard"
+        expect(item.items.first).to be_a MenuItem
+        expect(item.items.first.label).to eq "My Child Dashboard"
       end
     end
 
@@ -72,23 +72,23 @@ module ActiveAdmin
       end
 
       it "should contain 5 submenu items" do
-        item.items.count.should == 5
+        expect(item.items.count).to eq 5
       end
 
       it "should give access to the menu item as an array" do
-        item['Blog'].label.should == 'Blog'
+        expect(item['Blog'].label).to eq 'Blog'
       end
 
       it "should sort items based on priority and name" do
-        item.items[0].label.should == 'Users'
-        item.items[1].label.should == 'Settings'
-        item.items[2].label.should == 'Blog'
-        item.items[3].label.should == 'Cars'
-        item.items[4].label.should == 'Analytics'
+        expect(item.items[0].label).to eq 'Users'
+        expect(item.items[1].label).to eq 'Settings'
+        expect(item.items[2].label).to eq 'Blog'
+        expect(item.items[3].label).to eq 'Cars'
+        expect(item.items[4].label).to eq 'Analytics'
       end
 
       it "children should hold a reference to their parent" do
-        item["Blog"].parent.should == item
+        expect(item["Blog"].parent).to eq item
       end
     end
 
@@ -97,7 +97,7 @@ module ActiveAdmin
 
       context "with no parent" do
         it "should return an empty array" do
-         item.ancestors.should == []
+         expect(item.ancestors).to eq []
         end
       end
 
@@ -107,7 +107,7 @@ module ActiveAdmin
           item["Create New"]
         end
         it "should return an array with the parent" do
-          sub_item.ancestors.should == [item]
+          expect(sub_item.ancestors).to eq [item]
         end
       end
 
@@ -123,7 +123,7 @@ module ActiveAdmin
         end
         let(:sub_item){ item["C1"]["C2"]["C3"] }
         it "should return an array with the parents in reverse order" do
-          sub_item.ancestors.should == [item["C1"]["C2"], item["C1"], item]
+          expect(sub_item.ancestors).to eq [item["C1"]["C2"], item["C1"], item]
         end
       end
     end # accessing ancestory
@@ -131,7 +131,7 @@ module ActiveAdmin
 
     describe "#id" do
       it "should be normalized" do
-        MenuItem.new(:id => "Foo Bar").id.should == "foo_bar"
+        expect(MenuItem.new(:id => "Foo Bar").id).to eq "foo_bar"
       end
 
       it "should not accept Procs" do

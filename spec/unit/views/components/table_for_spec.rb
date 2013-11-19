@@ -20,16 +20,16 @@ describe ActiveAdmin::Views::TableFor do
       end
 
       it "should create a table header based on the symbol" do
-        table.find_by_tag("th").first.content.should == "Title"
+        expect(table.find_by_tag("th").first.content).to eq "Title"
       end
 
       it "should create a table row for each element in the collection" do
-        table.find_by_tag("tr").size.should == 4 # 1 for head, 3 for rows
+        expect(table.find_by_tag("tr").size).to eq 4 # 1 for head, 3 for rows
       end
 
       ["First Post", "Second Post", "Third Post"].each_with_index do |content, index|
         it "should create a cell with #{content}" do
-          table.find_by_tag("td")[index].content.should == content
+          expect(table.find_by_tag("td")[index].content).to eq content
         end
       end
     end
@@ -45,30 +45,26 @@ describe ActiveAdmin::Views::TableFor do
       end
 
       it "should create a table header based on the symbol" do
-        table.find_by_tag("th").first.content.should == "Title"
-        table.find_by_tag("th").last.content.should == "Created At"
+        expect(table.find_by_tag("th").first.content).to eq "Title"
+        expect(table.find_by_tag("th").last.content).to eq "Created At"
       end
 
       it "should add a class to each table header based on the col name" do
-        table.find_by_tag("th").first
-          .class_list.to_a.join(' ').should == "col col-title"
-        table.find_by_tag("th").last
-          .class_list.to_a.join(' ').should  == "col col-created_at"
+        expect(table.find_by_tag("th").first.class_list.to_a.join(' ')).to eq "col col-title"
+        expect(table.find_by_tag("th").last.class_list.to_a.join(' ')).to eq "col col-created_at"
       end
 
       it "should create a table row for each element in the collection" do
-        table.find_by_tag("tr").size.should == 4 # 1 for head, 3 for rows
+        expect(table.find_by_tag("tr").size).to eq 4 # 1 for head, 3 for rows
       end
 
       it "should create a cell for each column" do
-        table.find_by_tag("td").size.should == 6
+        expect(table.find_by_tag("td").size).to eq 6
       end
 
       it "should add a class for each cell based on the col name" do
-        table.find_by_tag("td").first
-          .class_list.to_a.join(' ').should  == "col col-title"
-        table.find_by_tag("td").last
-          .class_list.to_a.join(' ').should  == "col col-created_at"
+        expect(table.find_by_tag("td").first.class_list.to_a.join(' ')).to eq "col col-title"
+        expect(table.find_by_tag("td").last.class_list.to_a.join(' ')).to eq "col col-created_at"
       end
     end
 
@@ -84,14 +80,14 @@ describe ActiveAdmin::Views::TableFor do
       end
 
       it "should add a class to each table header based on the col name" do
-        table.find_by_tag("th").first.class_list.should include("col-title")
+        expect(table.find_by_tag("th").first.class_list).to include("col-title")
       end
 
       [ "<span>First Post</span>",
         "<span>Second Post</span>",
         "<span>Third Post</span>" ].each_with_index do |content, index|
         it "should create a cell with #{content}" do
-          table.find_by_tag("td")[index].content.strip.should == content
+          expect(table.find_by_tag("td")[index].content.strip).to eq content
         end
       end
     end
@@ -110,7 +106,7 @@ describe ActiveAdmin::Views::TableFor do
 
       3.times do |index|
         it "should create a cell with multiple elements in row #{index}" do
-          table.find_by_tag("td")[index].find_by_tag("span").size.should == 2
+          expect(table.find_by_tag("td")[index].find_by_tag("span").size).to eq 2
         end
       end
     end
@@ -128,17 +124,13 @@ describe ActiveAdmin::Views::TableFor do
 
 
       it "should add a class to each table header  based on class option or the col name" do
-        table.find_by_tag("th").first
-          .class_list.to_a.join(' ').should  == "col col-my_custom_title"
-        table.find_by_tag("th").last
-          .class_list.to_a.join(' ').should  == "col datetime"
+        expect(table.find_by_tag("th").first.class_list.to_a.join(' ')).to eq "col col-my_custom_title"
+        expect(table.find_by_tag("th").last.class_list.to_a.join(' ')).to eq "col datetime"
       end
 
       it "should add a class to each cell based  on class option or the col name" do
-        table.find_by_tag("td").first
-          .class_list.to_a.join(' ').should  == "col col-my_custom_title"
-        table.find_by_tag("td").last
-          .class_list.to_a.join(' ').should  == "col datetime"
+        expect(table.find_by_tag("td").first.class_list.to_a.join(' ')).to eq "col col-my_custom_title"
+        expect(table.find_by_tag("td").last.class_list.to_a.join(' ')).to eq "col datetime"
       end
     end
 
@@ -151,7 +143,7 @@ describe ActiveAdmin::Views::TableFor do
         end
       end
       it "should render" do
-        table.find_by_tag("th").first.content.should == "Title"
+        expect(table.find_by_tag("th").first.content).to eq "Title"
       end
     end
 
@@ -197,5 +189,6 @@ describe ActiveAdmin::Views::TableFor do
       let(:table_column){ build_column("Category", :category, Post) }
       it { should_not be_sortable }
     end
+
   end
 end

@@ -17,7 +17,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
     let(:params){ {:q => {} }}
     it "should call the search method" do
       chain = double "ChainObj"
-      chain.should_receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
+      expect(chain).to receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
       controller.send :apply_filtering, chain
     end
 
@@ -29,7 +29,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
       let(:params){ {:order => "id_asc" }}
       it "should prepend the table name" do
         chain = double "ChainObj"
-        chain.should_receive(:reorder).with('"posts"."id" asc').once.and_return(Post.search)
+        expect(chain).to receive(:reorder).with('"posts"."id" asc').once.and_return(Post.search)
         controller.send :apply_sorting, chain
       end
     end
@@ -38,7 +38,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
       let(:params){ {:order => "virtual_id_asc" }}
       it "should not prepend the table name" do
         chain = double "ChainObj"
-        chain.should_receive(:reorder).with('"virtual_id" asc').once.and_return(Post.search)
+        expect(chain).to receive(:reorder).with('"virtual_id" asc').once.and_return(Post.search)
         controller.send :apply_sorting, chain
       end
     end
@@ -50,8 +50,8 @@ describe ActiveAdmin::ResourceController::DataAccess do
     context "when no current scope" do
       it "should set collection_before_scope to the chain and return the chain" do
         chain = double "ChainObj"
-        controller.send(:apply_scoping, chain).should == chain
-        controller.send(:collection_before_scope).should == chain
+        expect(controller.send(:apply_scoping, chain)).to eq chain
+        expect(controller.send(:collection_before_scope)).to eq chain
       end
     end
 
@@ -62,9 +62,9 @@ describe ActiveAdmin::ResourceController::DataAccess do
         current_scope = double "CurrentScope"
         controller.stub(:current_scope) { current_scope }
 
-        controller.should_receive(:scope_chain).with(current_scope, chain) { scoped_chain }
-        controller.send(:apply_scoping, chain).should == scoped_chain
-        controller.send(:collection_before_scope).should == chain
+        expect(controller).to receive(:scope_chain).with(current_scope, chain) { scoped_chain }
+        expect(controller.send(:apply_scoping, chain)).to eq scoped_chain
+        expect(controller.send(:collection_before_scope)).to eq chain
       end
     end
 

@@ -14,7 +14,7 @@ describe ActiveAdmin::BatchActions::BatchActionPopover do
   end
 
   it "should have an id" do
-    the_popover.id.should == "batch_actions_popover"
+    expect(the_popover.id).to eq "batch_actions_popover"
   end
 
   describe "the action list" do

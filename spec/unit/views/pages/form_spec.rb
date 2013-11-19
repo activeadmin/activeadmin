@@ -21,14 +21,14 @@ describe ActiveAdmin::Views::Pages::Form do
       it "should show the set page title" do
         arbre_context.assigns[:page_title] = "My Page Title"
         page = ActiveAdmin::Views::Pages::Form.new(arbre_context)
-        page.title.should eq "My Page Title"
+        expect(page.title).to eq "My Page Title"
       end
     end
 
     context "when page_title is not assigned" do
       it "should show the correct I18n text" do
         page = ActiveAdmin::Views::Pages::Form.new(arbre_context)
-        page.title.should eq "Edit Post"
+        expect(page.title).to eq "Edit Post"
       end
     end
   end
