@@ -35,7 +35,7 @@ end
 
 ## Forms
 
-If you decorate an AA resource, the form will also be docrated.
+If you decorate an AA resource, the form will also be decorated.
 
 In most cases this will work as expected, but if your decorator uses the same
 method name as an attribute and it returns a modified version of the attribute's
@@ -46,7 +46,7 @@ existing values happens correctly:
 ActiveAdmin.register Post do
   decorate_with PostDecorator
 
-  form decorate: false do
+  form decorate: false do |f|
     # ...
   end
 end
