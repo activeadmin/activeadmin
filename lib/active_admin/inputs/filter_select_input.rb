@@ -3,11 +3,6 @@ module ActiveAdmin
     class FilterSelectInput < ::Formtastic::Inputs::SelectInput
       include FilterBase
 
-      # If Ransack will likely respond to the given method, use it.
-      #
-      # Otherwise:
-      # When it's a HABTM or has_many association, Formtastic builds "object_ids".
-      # That doesn't fit our scenario, so we override it here.
       def input_name
         return method if seems_searchable?
 
@@ -15,16 +10,13 @@ module ActiveAdmin
       end
 
       def searchable_method_name
-        # Deal with has_many :through relationships in filters
-        # If the relationship is a HMT, we set the search logic to be something
-        # like :#{through_association}_#{end_association_id}.
-        if searchable_through_association?
-          name = [reflection.through_reflection.name, reflection.foreign_key].join('_')
+        if searchable_has_many_through?
+          "#{reflection.through_reflection.name}_#{reflection.foreign_key}"
         else
           name = method.to_s
           name.concat '_id' if reflection
+          name
         end
-        name
       end
 
       # Provide the AA translation to the blank input field.

@@ -41,14 +41,17 @@ module ActiveAdmin
           .map(&:foreign_type).include? method.to_s
       end
 
-      def searchable_through_association?(method = method)
-        ref = reflection_for(method)
-        ref.options[:through] && ref.through_reflection.klass.ransackable_attributes.include?(ref.foreign_key) if ref
-      end
+      #
+      # These help figure out whether the given method or association will be recognized by Ransack.
+      #
 
-      #
-      # These help figure out whether the given method will be recognized by Ransack.
-      #
+      def searchable_has_many_through?
+        if reflection && reflection.options[:through]
+          reflection.through_reflection.klass.ransackable_attributes.include? reflection.foreign_key
+        else
+          false
+        end
+      end
 
       def seems_searchable?
         has_predicate? || ransacker?

@@ -12,11 +12,8 @@ module ActiveAdmin
       end
 
       def searchable_method_name
-        # Deal with has_many :through relationships in filters
-        # If the relationship is a HMT, we set the search logic to be something
-        # like :#{through_association}_#{end_association_id}.
-        if searchable_through_association?
-          [reflection.through_reflection.name, reflection.foreign_key].join('_')
+        if searchable_has_many_through?
+          "#{reflection.through_reflection.name}_#{reflection.foreign_key}"
         else
           association_primary_key || method
         end
