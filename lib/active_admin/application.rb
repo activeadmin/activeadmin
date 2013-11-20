@@ -190,7 +190,7 @@ module ActiveAdmin
     # Example usage:
     #   ActiveAdmin.before_filter :authenticate_admin!
     #
-    %w(before_filter skip_before_filter after_filter around_filter skip_filter).each do |name|
+    %w(before_filter skip_before_filter after_filter skip_after_filter around_filter skip_filter).each do |name|
       define_method name do |*args, &block|
         ActiveAdmin::BaseController.send              name, *args, &block
         ActiveAdmin::Devise::PasswordsController.send name, *args, &block

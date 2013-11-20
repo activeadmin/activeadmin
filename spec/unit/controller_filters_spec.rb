@@ -20,6 +20,11 @@ describe ActiveAdmin::Application do
     application.after_filter :my_filter, :only => :show
   end
 
+  it 'skip after_filter' do
+    controllers.each{ |c| expect(c).to receive(:skip_after_filter).and_return(true) }
+    application.skip_after_filter :my_filter, :only => :show
+  end
+
   it 'around_filter' do
     controllers.each{ |c| c.should_receive(:around_filter).and_return(true) }
     application.around_filter :my_filter, :only => :show

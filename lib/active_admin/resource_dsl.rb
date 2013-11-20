@@ -117,7 +117,8 @@ module ActiveAdmin
     delegate :before_destroy, :after_destroy, :to => :controller
 
     # Standard rails filters
-    delegate :before_filter, :skip_before_filter, :after_filter, :around_filter, :skip_filter, :to => :controller
+    delegate :before_filter, :skip_before_filter, :after_filter, :skip_after_filter, :around_filter, :skip_filter,
+             :to => :controller
 
     # Specify which actions to create in the controller
     #
