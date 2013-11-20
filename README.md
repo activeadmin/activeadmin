@@ -59,6 +59,7 @@ Tool                  | Description
 [Iconic Icons]        | An excellent SVG icon set designed by P.J. Onori
 [Inherited Resources] | Simplifies controllers with pre-built RESTful controller actions
 [Kaminari]            | Elegant pagination for any sort of collection
+[Ransack]             | Provides a simple search API to query your data
 
 [Arbre]: https://github.com/gregbell/arbre
 [Devise]: https://github.com/plataformatec/devise
@@ -66,3 +67,4 @@ Tool                  | Description
 [Iconic Icons]: http://somerandomdude.com/projects/iconic
 [Inherited Resources]: https://github.com/josevalim/inherited_resources
 [Kaminari]: https://github.com/amatsuda/kaminari
+[Ransack]: https://github.com/activerecord-hackery/ransack
