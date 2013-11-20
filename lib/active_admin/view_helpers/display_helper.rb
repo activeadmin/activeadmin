@@ -1,6 +1,7 @@
 module ActiveAdmin
   module ViewHelpers
     module DisplayHelper
+      include ActionView::Helpers::TranslationHelper
 
       # Attempts to call any known display name methods on the resource.
       # See the setting in `application.rb` for the list of methods and their priority.
