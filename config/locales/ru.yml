@@ -20,8 +20,8 @@ ru:
     next: "След."
     download: "Загрузка:"
     has_many_new: "Добавить %{model}"
-    has_many_delete: "Убрать"
-    has_many_remove: "Удалить"
+    has_many_delete: "Удалить"
+    has_many_remove: "Убрать"
     filters:
       buttons:
         filter: "Фильтровать"
