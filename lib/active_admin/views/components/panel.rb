@@ -28,7 +28,13 @@ module ActiveAdmin
         @contents.children?
       end
 
-    end
+      def header_action(*args)
+        action = args[0]
 
+        @title << div(class: 'header_action') do
+          action
+        end
+      end
+    end
   end
 end

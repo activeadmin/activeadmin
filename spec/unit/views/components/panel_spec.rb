@@ -5,21 +5,30 @@ describe ActiveAdmin::Views::Panel do
   let(:the_panel) do
     render_arbre_component do
       panel "My Title" do
+        header_action link_to("My Link", "https://www.github.com/gregbell/active_admin")
         span("Hello World")
       end
     end
   end
 
   it "should have a title h3" do
-    expect(the_panel.find_by_tag("h3").first.content).to eq "My Title"
+    expect(the_panel.find_by_tag("h3").first.content).to include "My Title"
+  end
+
+  it "should add panel actions to the panel header" do
+    expect(the_panel.find_by_tag("h3").first.content).to include(%|div class="header_action"|)
+  end
+
+  it "adds the header action content into the header" do
+    expect(the_panel.find_by_tag("h3").first.content).to include(%|<a href="https://www.github.com/gregbell/active_admin">My Link</a>|)
   end
 
   it "should have a contents div" do
-    expect(the_panel.find_by_tag("div").first.class_list).to include("panel_contents")
+    expect(the_panel.find_by_tag("div").last.class_list).to include("panel_contents")
   end
 
   it "should add children to the contents div" do
-    expect(the_panel.find_by_tag("span").first.parent).to eq the_panel.find_by_tag("div").first
+    expect(the_panel.find_by_tag("span").first.parent).to eq the_panel.find_by_tag("div").last
   end
 
   it "should set the icon" do
