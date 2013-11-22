@@ -51,16 +51,6 @@ module ActiveAdmin
         end
       end
 
-      # def build_batch_action_button
-      #   a :class => 'table_tools_button dropdown_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
-      #     text_node I18n.t("active_admin.batch_actions.button_label")
-      #   end
-      # end
-
-      # def build_batch_action_popover
-      # end
-
     end
-
   end
 end
