@@ -48,7 +48,8 @@ ko:
       link: "만들기"
     batch_actions:
       button_label: "배치 작업"
-      delete_confirmation: "당신은 이들을 삭제하시겠습니까 %{plural_model}? 당신은 이것을 취소할 수 없습니다."
+      default_confirmation: "당신은이 작업을 수행 하 시겠습니까?"
+      delete_confirmation: "당신은 이들을 삭제하시겠습니까 %{plural_model}?"
       succesfully_destroyed:
         one: "성공적으로 파괴 1 %{model}"
         other: "성공적으로 파괴 %{count} %{plural_model}"

@@ -53,7 +53,8 @@
       link: "Skapa en"
     batch_actions:
       button_label: "Batch Behandling"
-      delete_confirmation: "Är du säker på att du vill radera dessa %{plural_model}? Du kan inte ångra detta."
+      default_confirmation: "Är du säker på att du vill göra detta?"
+      delete_confirmation: "Är du säker på att du vill radera dessa %{plural_model}?"
       succesfully_destroyed:
         one: "Lyckades radera 1 %{model}"
         other: "Lyckades radera %{count} %{plural_model}"

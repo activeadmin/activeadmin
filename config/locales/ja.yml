@@ -53,7 +53,8 @@ ja:
       link: "作成する"
     batch_actions:
       button_label: "一括操作"
-      delete_confirmation: "%{plural_model} を削除してもよろしいですか? この操作は取り消すことができません。"
+      default_confirmation: "これを行うにしてもよろしいですか。"
+      delete_confirmation: "%{plural_model} を削除してもよろしいですか?"
       succesfully_destroyed:
         one: "1件の %{model} を削除しました"
         other: "%{count}件の %{plural_model} を削除しました"

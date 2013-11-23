@@ -53,7 +53,8 @@ tr:
       link: "Bir tane oluşturun"
     batch_actions:
       button_label: "Toplu işlemler"
-      delete_confirmation: "%{plural_model} kayıtlarını silmek istediğinize emin misiniz? Dikkat bu işlemin geri dönüşü yoktur!"
+      default_confirmation: "Bunu yapmak istediğinden emin misin?"
+      delete_confirmation: "%{plural_model} kayıtlarını silmek istediğinize emin misiniz?"
       succesfully_destroyed:
         one: "1 %{model} kaydı başarıyla silindi."
         other: "Toplam %{count} kayıt %{plural_model} modelinden silindi"

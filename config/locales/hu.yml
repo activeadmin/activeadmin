@@ -53,7 +53,8 @@ hu:
       link: "Létrehozás most"
     batch_actions:
       button_label: "Tömeges műveletek"
-      delete_confirmation: "Biztosan törli ezeket a %{plural_model}? Később nem lehet visszavonni."
+      default_confirmation: "Biztos vagy benne, hogy a ön akar-hoz csinál ez?"
+      delete_confirmation: "Biztosan törli ezeket a %{plural_model}?"
       succesfully_destroyed:
         one: "1 %{model} sikeresen törölve"
         other: "%{count} %{plural_model} sikeresen törölve"

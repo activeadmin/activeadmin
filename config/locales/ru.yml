@@ -53,7 +53,8 @@ ru:
       link: "Создать"
     batch_actions:
       button_label: "Групповые операции"
-      delete_confirmation: "Вы уверены, что хотите удалить %{plural_model}? Вы не сможете это отменить."
+      default_confirmation: "Вы уверены, что вы хотите это сделать?"
+      delete_confirmation: "Вы уверены, что хотите удалить %{plural_model}?"
       succesfully_destroyed:
         one: "Успешно удалено: 1 %{model}"
         few: "Успешно удалено: %{count} %{plural_model}"

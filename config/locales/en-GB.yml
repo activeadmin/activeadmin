@@ -53,7 +53,8 @@
       link: "Create one"
     batch_actions:
       button_label: "Batch Actions"
-      delete_confirmation: "Are you sure you want to delete these %{plural_model}? You won't be able to undo this."
+      default_confirmation: "Are you sure you want to do this?"
+      delete_confirmation: "Are you sure you want to delete these %{plural_model}?"
       succesfully_destroyed:
         one: "Successfully destroyed 1 %{model}"
         other: "Successfully destroyed %{count} %{plural_model}"

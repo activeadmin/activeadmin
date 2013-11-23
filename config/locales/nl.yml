@@ -53,7 +53,8 @@ nl:
       link: "Maak aan"
     batch_actions:
       button_label: "Batch acties"
-      delete_confirmation: "Weet je zeker dat je deze %{plural_model} wilt verwijderen? Er is geen undo."
+      default_confirmation: "Weet u zeker dat u dit wilt doen?"
+      delete_confirmation: "Weet je zeker dat je deze %{plural_model} wilt verwijderen?"
       succesfully_destroyed:
         one: "1 %{model} verwijderd."
         other: "%{count} %{plural_model} verwijderd."

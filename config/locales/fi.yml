@@ -53,7 +53,8 @@ fi:
       link: "Luo ensimmäinen"
     batch_actions:
       button_label: "Aja joukolle"
-      delete_confirmation: "Oletko varma, että haluat poistaa nämä %{plural_model}:t? Toimintoa ei voi peruuttaa."
+      default_confirmation: "Oletko varma, että haluat tehdä tämän?"
+      delete_confirmation: "Oletko varma, että haluat poistaa nämä %{plural_model}:t?"
       succesfully_destroyed:
         one: "1 %{model} poistettu"
         other: "%{count} %{plural_model}:a poistettu"

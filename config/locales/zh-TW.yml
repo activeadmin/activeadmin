@@ -53,7 +53,8 @@
       link: "建立一筆"
     batch_actions:
       button_label: "批次作業"
-      delete_confirmation: "您確定要刪除這些 %{plural_model} 嗎？此動作無法復原。"
+      default_confirmation: "你確定你要這樣做？"
+      delete_confirmation: "您確定要刪除這些 %{plural_model} 嗎？"
       succesfully_destroyed:
         one: "成功刪除 1 %{model}"
         other: "成功刪除 %{count} %{plural_model}"

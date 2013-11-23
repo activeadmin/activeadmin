@@ -53,7 +53,8 @@ fr:
       link: "Créez en un"
     batch_actions:
       button_label: "Actions groupées"
-      delete_confirmation: "Êtes-vous sur de vouloir supprimer ces %{plural_model} ? Cette action est irréversible."
+      default_confirmation: "Êtes-vous sûr de que vouloir faire cela ?"
+      delete_confirmation: "Êtes-vous sur de vouloir supprimer ces %{plural_model} ?"
       succesfully_destroyed:
         one: "1 %{model} supprimé"
         other: "%{count} %{plural_model} supprimés"

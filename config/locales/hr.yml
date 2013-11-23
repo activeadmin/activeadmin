@@ -55,7 +55,8 @@ hr:
       link: "Izradi jedan"
     batch_actions:
       button_label: "Grupne akcije"
-      delete_confirmation: "Jeste li sigurni da želite obrisati %{plural_model}? Obrisano nije moguće poništiti."
+      default_confirmation: "Jeste li sigurni da želite to učiniti?"
+      delete_confirmation: "Jeste li sigurni da želite obrisati %{plural_model}?"
       succesfully_destroyed:
         one: "Uspješno je obrisan 1 %{model}"
         few: "Uspješno su obrisana %{count} %{plural_model}"
