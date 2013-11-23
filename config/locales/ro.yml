@@ -53,7 +53,8 @@ ro:
       link: "Creati un"
     batch_actions:
       button_label: "Grupare Actiuni"
-      delete_confirmation: "Sunteti sigur ca doriti sa stergeti aceste %{plural_model}?"
+      default_confirmation: "Sunteţi sigur că doriţi să faceţi acest lucru?"
+      delete_confirmation: "Sunteţi sigur că doriţi să stergeţi aceste %{plural_model}?"
       succesfully_destroyed:
         one: "1 %{model} sters"
         few: "%{count} %{plural_model} sterse"

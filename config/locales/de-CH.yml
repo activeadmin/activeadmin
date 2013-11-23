@@ -53,7 +53,8 @@
       link: "Erstellen"
     batch_actions:
       button_label: "Stapelverarbeitung"
-      delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen? Dies kann nicht rückgängig gemacht werden"
+      default_confirmation: "Bist du sicher, dass Sie dies tun wollen?"
+      delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen?"
       succesfully_destroyed:
         one: "Erfolgreich 1 %{model} gelöscht"
         other: "Erfolgreich %{count} %{plural_model} gelöscht"

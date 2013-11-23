@@ -53,7 +53,8 @@ lv:
       link: "Izveidot jaunu"
     batch_actions:
       button_label: "Batch Actions"
-      delete_confirmation: "Are you sure you want to delete these %{plural_model}? You won't be able to undo this."
+      default_confirmation: "Vai tiešām vēlaties to darīt?"
+      delete_confirmation: "Vai tiešām vēlaties dzēst šos %{plural_model}?"
       succesfully_destroyed:
         one: "Successfully destroyed 1 %{model}"
         other: "Successfully destroyed %{count} %{plural_model}"

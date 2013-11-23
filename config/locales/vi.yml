@@ -53,7 +53,8 @@ vi:
       link: "Tạo mới"
     batch_actions:
       button_label: "Hành động hàng loạt"
-      delete_confirmation: "Bạn có chắc chắn muốn xóa những %{plural_model}? Bạn sẽ không thể lấy lại được dữ liệu."
+      default_confirmation: "Bạn có chắc bạn muốn làm điều này?"
+      delete_confirmation: "Bạn có chắc chắn muốn xóa những %{plural_model}?"
       succesfully_destroyed:
         one: "Đã xóa thành công 1 %{model}"
         other: "Đã xóa thành công %{count} %{plural_model}"

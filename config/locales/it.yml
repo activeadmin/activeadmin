@@ -53,7 +53,8 @@ it:
       link: "Crea nuovo/a"
     batch_actions:
       button_label: "Azioni multiple"
-      delete_confirmation: "Sei sicuro di volere cancellare %{plural_model}? Non sarà possibile annulare questa modifica."
+      default_confirmation: "Sei sicuro di che voler fare questo?"
+      delete_confirmation: "Sei sicuro di volere cancellare %{plural_model}?"
       succesfully_destroyed:
         one: "Eliminato con successo 1 %{model}"
         other: "Eliminati con successo %{count} %{plural_model}"

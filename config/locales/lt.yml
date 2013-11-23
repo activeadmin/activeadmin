@@ -53,7 +53,8 @@ lt:
       link: 'Sukurti'
     batch_actions:
       button_label: 'Veiksmai su pažymėtais'
-      delete_confirmation: 'Ar jūs tikrai norite pašalinti šiuos %{plural_model}? Pašalinus negalėsite atstatyti?'
+      default_confirmation: 'Ar jūs tikrai norite tai padaryti?'
+      delete_confirmation: 'Ar jūs tikrai norite pašalinti šiuos %{plural_model}?'
       succesfully_destroyed:
         one: 'Sėkmingai pašalintas 1 %{model}'
         few: 'Sėkmingai pašalinti %{count} %{plural_model}'

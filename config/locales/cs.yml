@@ -54,6 +54,7 @@ cs:
       link: "Vytvořit"
     batch_actions:
       button_label: "Hromadné akce"
+      default_confirmation: "Jste si jisti, že chcete provést?"
       delete_confirmation: "Jste si jisti, že chcete smazat tyto %{plural_model}?"
       succesfully_destroyed:
         zero: "Nebyl smazán žádný %{model}"

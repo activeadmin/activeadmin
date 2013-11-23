@@ -53,7 +53,8 @@ he:
       link: "צור אחד"
     batch_actions:
       button_label: "פעולות מרובות"
-      delete_confirmation: "האם הנך בטוח שאתה רוצה למרוח את %{plural_model}? לא תוכל לבטל את המחיקה."
+      default_confirmation: "אתה בטוח שאתה רוצה לעשות את זה?"
+      delete_confirmation: "האם הנך בטוח שאתה רוצה למרוח את %{plural_model}?"
       succesfully_destroyed:
         one: "1 %{model} נמחק בהצלחה"
         few: "%{count} %{plural_model} נמחק בהצלחה"
