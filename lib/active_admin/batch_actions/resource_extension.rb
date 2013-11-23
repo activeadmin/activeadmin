@@ -98,16 +98,19 @@ module ActiveAdmin
     #   BatchAction.new(:flag) { |selection| redirect_to collection_path, notice: "#{selection.length} users flagged" }
     # => Will create an action that uses a block to process the request (which receives one paramater of the selected objects)
     #
-    #   BatchAction.new("Perform Long Operation on the") { |selection| }
+    #   BatchAction.new("Perform Long Operation on") { |selection| }
     # => You can create batch actions with a title instead of a Symbol
     #
-    #   BatchAction.new(:flag, if: proc { can? :flag, AdminUser }) { |selection| }
+    #   BatchAction.new(:flag, if: proc{ can? :flag, AdminUser }) { |selection| }
     # => You can provide an `:if` proc to choose when the batch action should be displayed
     #
-    #   BatchAction.new(:flag, confirm: "Are you sure?" ) { |selection| }
-    # => You can pass `true` to use the default confirm message, or pass a string to set your own.
+    #   BatchAction.new :flag, confirm: true
+    # => You can pass `true` to `:confirm` to use the default confirm message.
     #
-    #   BatchAction.new(:flag, confirm: true, form: {foo: :text, bar: :checkbox} ) { |selection, inputs| }
+    #   BatchAction.new(:flag, confirm: "Are you sure?") { |selection| }
+    # => You can pass a custom confirmation message through `:confirm`
+    #
+    #   BatchAction.new(:flag, form: {foo: :text, bar: :checkbox}) { |selection, inputs| }
     # => You can pass a hash of options to `:form` that will be rendered as form input fields for the user to fill out.
     #
     def initialize(sym, title, options = {}, &block)
@@ -116,7 +119,13 @@ module ActiveAdmin
     end
 
     def confirm
-      @confirm == true ? DEFAULT_CONFIRM_MESSAGE : @confirm
+      if @confirm == true
+        DEFAULT_CONFIRM_MESSAGE
+      elsif !@confirm && @options[:form]
+        DEFAULT_CONFIRM_MESSAGE
+      else
+        @confirm
+      end
     end
 
     def inputs

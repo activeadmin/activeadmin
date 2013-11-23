@@ -1,4 +1,4 @@
-ActiveAdmin.modalDialog = (message, inputs, callback)->
+ActiveAdmin.modal_dialog = (message, inputs, callback)->
   html = """<form id="dialog_confirm" title="#{message}"><ul>"""
   for name, type of inputs
     if /^(datepicker|checkbox|text)$/.test type
@@ -8,7 +8,7 @@ ActiveAdmin.modalDialog = (message, inputs, callback)->
     else if $.isArray type
       [wrapper, elem, opts, type] = ['select', 'option', type, '']
     else
-      console.warn "Unsupported input type: {#{name}: #{type}}"
+      throw new Error "Unsupported input type: {#{name}: #{type}}"
 
     klass = if type is 'datepicker' then type else ''
     html += """<li>

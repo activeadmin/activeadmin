@@ -1,12 +1,12 @@
 $ ->
 
   #
-  # Use ActiveAdmin.modalDialog to prompt user if confirmation is required for current Batch Action
+  # Use ActiveAdmin.modal_dialog to prompt user if confirmation is required for current Batch Action
   #
   $('#batch_actions_selector li a').click (e)->
     e.stopPropagation() # prevent Rails UJS click event
     if message = $(@).data 'confirm'
-      ActiveAdmin.modalDialog message, $(@).data('inputs'), (inputs)=>
+      ActiveAdmin.modal_dialog message, $(@).data('inputs'), (inputs)=>
         $(@).trigger 'confirm:complete', inputs
     else
       $(@).trigger 'confirm:complete'
