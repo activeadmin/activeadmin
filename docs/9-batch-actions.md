@@ -116,7 +116,7 @@ end
 ### Batch Action forms
 
 If you want to capture input from the user as they perform a batch action,
-Active Admin has just the thing for you: a dynamic jQuery UI modal form:
+Active Admin has just the thing for you:
 
 ```ruby
 batch_action :flag, form: {
@@ -126,6 +126,7 @@ batch_action :flag, form: {
   hide:   :checkbox,
   date:   :datepicker
 } do |ids, inputs|
+  # inputs is a hash of all the form fields you requested
   redirect_to collection_path, notice: [ids, inputs].to_s
 end
 ```
