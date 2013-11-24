@@ -64,16 +64,27 @@ it:
       labels:
         destroy: "Elimina"
     comments:
+      resource_type: "Tipo di risorsa"
+      author_type: "Tipo di Autore"
       body: "Corpo"
       author: "Autore"
       title: "Commento"
       add: "Aggiungi Commento"
       resource: "Risorsa"
       no_comments_yet: "Nessun commento."
+      author_missing: "Anonimo"
       title_content: "Commenti (%{count})"
       errors:
         empty_text: "Il commento non può essere salvato, il testo è vuoto."
     devise:
+      username:
+        title: "Nome Utente"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Sottodominio"
+      password:
+        title: "Password"
       login:
         title: "Entra"
         remember_me: "Ricordami"
@@ -84,7 +95,17 @@ it:
       change_password:
         title: "Cambia la tua password"
         submit: "Cambia la mia password"
+      unlock:
+        title: "Invia di nuovo le istruzioni per sbloccare"
+        submit: "Invia di nuovo le istruzioni per sbloccare"
       links:
         sign_in: "Entra"
         forgot_your_password: "Dimenticato la password?"
         sign_in_with_omniauth_provider: "Collegati a %{provider}"
+    access_denied:
+      message: "Non hai le autorizzazioni necessarie per eseguire questa azione."
+    index_list:
+      table: "Tabella"
+      block: "Lista"
+      grid: "Griglia"
+      blog: "Blog"
