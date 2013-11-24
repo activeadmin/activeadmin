@@ -36,7 +36,7 @@ module ActiveAdmin
       def navigation_menu_name
         case @navigation_menu_name ||= DEFAULT_MENU
         when Proc
-          controller.instance_eval(&@navigation_menu_name).to_sym
+          controller.instance_exec(&@navigation_menu_name).to_sym
         else
           @navigation_menu_name
         end

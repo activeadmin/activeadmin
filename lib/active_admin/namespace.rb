@@ -170,8 +170,7 @@ module ActiveAdmin
       end
     end
 
-    # Either returns an existing Resource instance or builds a new
-    # one for the resource and options
+    # Either returns an existing Resource instance or builds a new one.
     def find_or_build_resource(resource_class, options)
       resources.add Resource.new(self, resource_class, options)
     end
@@ -180,6 +179,7 @@ module ActiveAdmin
       resources.add Page.new(self, name, options)
     end
 
+    # TODO: replace `eval` with `Class.new`
     def register_page_controller(config)
       eval "class ::#{config.controller_name} < ActiveAdmin::PageController; end"
       config.controller.active_admin_config = config
@@ -188,9 +188,8 @@ module ActiveAdmin
     def unload_resources!
       resources.each do |resource|
         parent = (module_name || 'Object').constantize
-        const_name = resource.controller_name.split('::').last
-        # Remove the const if its been defined
-        parent.send(:remove_const, const_name) if parent.const_defined?(const_name)
+        name   = resource.controller_name.split('::').last
+        parent.send(:remove_const, name) if parent.const_defined? name
 
         # Remove circular references
         resource.controller.active_admin_config = nil
@@ -203,9 +202,12 @@ module ActiveAdmin
 
     # Creates a ruby module to namespace all the classes in if required
     def register_module
-      eval "module ::#{module_name}; end"
+      unless Object.const_defined? module_name
+        Object.const_set module_name, Module.new
+      end
     end
 
+    # TODO replace `eval` with `Class.new`
     def register_resource_controller(config)
       eval "class ::#{config.controller_name} < ActiveAdmin::ResourceController; end"
       config.controller.active_admin_config = config
