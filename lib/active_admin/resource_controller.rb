@@ -16,10 +16,10 @@ module ActiveAdmin
     respond_to :csv, :only => :index
 
     include ActionBuilder
-    include Decorators
     include DataAccess
     include Scoping
     include Sidebars
+    include Decorators
     extend  ResourceClassMethods
 
     def self.active_admin_config=(config)

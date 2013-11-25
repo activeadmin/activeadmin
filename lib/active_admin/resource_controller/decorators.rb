@@ -9,9 +9,18 @@ module ActiveAdmin
         decorator ? decorator.new(resource) : resource
       end
 
-      def active_admin_collection
-        collection = super
-        decorator ? collection_decorator.decorate(collection) : collection
+      def collection
+        @_decorated_collection ||= begin
+          collection = super
+
+          # WHY IS THE COLLECTION COMING IN ALREADY DECORATED?
+          if collection.decorated?
+            collection = collection.send(:object)
+          end
+
+          puts "collection: #{collection.inspect}"
+          collection_decorator ? collection_decorator.decorate(collection) : collection
+        end
       end
 
       private
@@ -23,14 +32,19 @@ module ActiveAdmin
         delegate_collection_methods(decorator)
       end
 
-      def collection_decorator_class
+      def collection_decorator_class_for(decorator)
+        puts "attempting to figure out what decorator class to use"
+
         if decorator.respond_to?(:collection_decorator_class)
+          puts "using decorator.collection_decorator_class=#{decorator.collection_decorator_class.inspect}"
           # Draper >= 1.3.0
           decorator.collection_decorator_class
-        elsif defined?(draper_collection_decorator) && decorator < draper_collection_decorator
+        elsif decorator && defined?(draper_collection_decorator) && decorator <= draper_collection_decorator
+          puts "using draper_collection_decorator=#{draper_collection_decorator.inspect}"
           # Draper < 1.3.0
           draper_collection_decorator
         else
+          puts "using the decorator itself: #{decorator.inspect}"
           # Not draper, probably really old versions of draper
           decorator
         end
@@ -42,11 +56,17 @@ module ActiveAdmin
       #
       # TODO: This generated class should probably be cached.
       def delegate_collection_methods(decorator)
-        return decorator unless decorator < draper_collection_decorator
+        puts "Attempting to delegate collection methods for #{decorator.inspect}"
+        return decorator unless decorator && decorator <= draper_collection_decorator
+        puts " YEP, we are using a custom class"
 
         Class.new(decorator) do
           delegate :reorder, :page, :current_page, :total_pages,
                    :limit_value, :total_count, :num_pages, :to_key
+
+          def self.name
+            "THIS IS A CUSTOM DECORATOR"
+          end
         end
       end
 
