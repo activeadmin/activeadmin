@@ -19,7 +19,7 @@ jQuery ($) ->
     else
       $(".paginated_collection").checkboxToggler()
 
-    $(".paginated_collection").find(":checkbox").bind "change", ->
+    $(document).delegate ".paginated_collection :checkbox", "change", ->
       if $(".paginated_collection").find(":checkbox").filter(":checked").length > 0
         $("#batch_actions_selector").aaDropdownMenu("enable")
       else
