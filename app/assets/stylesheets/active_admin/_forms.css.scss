@@ -8,7 +8,6 @@ form {
     border: 0;
     padding: 10px 0;
     margin-bottom: 20px;
-    position: relative; // required for the absolutely positioned sortable .handle
 
     &.inputs { @include section-background; }
 
@@ -39,6 +38,7 @@ form {
         font-size: 12px;
         font-weight: bold;
       }
+      .has_many_fields { margin: 10px 0 }
     }
 
     ol > li > li label {
@@ -51,6 +51,9 @@ form {
       }
     }
   }
+
+  // relative so the absolutely-positioned handle will fit
+  .has_many_fields { position: relative }
 
   .has_many_container {
     .handle {
@@ -76,11 +79,6 @@ form {
   }
 
   /* Nested Fieldsets and Legends */
-  li.has_many_container {
-    fieldset.has_many_fields {
-      margin: 10px 0;
-    }
-  }
 
   fieldset > ol > li {
     fieldset {
