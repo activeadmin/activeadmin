@@ -79,7 +79,6 @@ module ActiveAdmin
     include Scopes
     include ScopeTo
     include Sidebars
-    include Menu
     include Routes
 
     # The class this resource wraps. If you register the Post model, Resource#resource_class
