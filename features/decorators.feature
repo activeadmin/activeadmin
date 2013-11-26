@@ -37,5 +37,5 @@ Feature: Decorators
     """
     When I am on the index page for posts
     And I follow "View"
-    And I should see the attribute "Decorator Method" with "A method only available on the decorator and stuff"
+    And I should see the attribute "Decorator Method" with "A method only available on the decorator"
     And I should see the attribute "Title" with "A very unique post"

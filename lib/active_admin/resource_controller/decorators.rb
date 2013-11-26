@@ -3,49 +3,39 @@ module ActiveAdmin
     module Decorators
       protected
 
-      def resource
-        decorator = active_admin_config.decorator_class
-        resource = super
-        decorator ? decorator.new(resource) : resource
+      def apply_decorator(resource)
+        decorator_class ? decorator_class.new(resource) : resource
       end
 
-      def collection
-        @_decorated_collection ||= begin
-          collection = super
-
-          # WHY IS THE COLLECTION COMING IN ALREADY DECORATED?
-          if collection.decorated?
-            collection = collection.send(:object)
-          end
-
-          puts "collection: #{collection.inspect}"
-          collection_decorator ? collection_decorator.decorate(collection) : collection
+      def apply_collection_decorator(collection)
+        if (decorator = collection_decorator)
+          decorator.decorate(collection, with: decorator_class)
+        else
+          collection
         end
       end
 
       private
 
-      def collection_decorator
-        decorator = active_admin_config.decorator_class
-        decorator = collection_decorator_class_for(decorator)
+      def decorator_class
+        active_admin_config.decorator_class
+      end
 
-        delegate_collection_methods(decorator)
+      def collection_decorator
+        collection_decorator = collection_decorator_class_for(decorator_class)
+
+        delegate_collection_methods_for_draper(collection_decorator, decorator_class)
       end
 
       def collection_decorator_class_for(decorator)
-        puts "attempting to figure out what decorator class to use"
-
         if decorator.respond_to?(:collection_decorator_class)
-          puts "using decorator.collection_decorator_class=#{decorator.collection_decorator_class.inspect}"
           # Draper >= 1.3.0
           decorator.collection_decorator_class
         elsif decorator && defined?(draper_collection_decorator) && decorator <= draper_collection_decorator
-          puts "using draper_collection_decorator=#{draper_collection_decorator.inspect}"
           # Draper < 1.3.0
           draper_collection_decorator
         else
-          puts "using the decorator itself: #{decorator.inspect}"
-          # Not draper, probably really old versions of draper
+          # Not draper or maybe a really old version of draper
           decorator
         end
       end
@@ -55,19 +45,34 @@ module ActiveAdmin
       # active_admin needs to render the table.
       #
       # TODO: This generated class should probably be cached.
-      def delegate_collection_methods(decorator)
-        puts "Attempting to delegate collection methods for #{decorator.inspect}"
-        return decorator unless decorator && decorator <= draper_collection_decorator
-        puts " YEP, we are using a custom class"
+      def delegate_collection_methods_for_draper(collection_decorator, resource_decorator)
+        return collection_decorator unless is_draper_collection_decorator?(collection_decorator)
 
-        Class.new(decorator) do
+        decorator_name = "#{collection_decorator.name} of #{resource_decorator} with ActiveAdmin extensions"
+
+        cached = collection_decorator_class_cache[decorator_name]
+        return cached if cached
+
+        k = Class.new(collection_decorator) do
           delegate :reorder, :page, :current_page, :total_pages,
                    :limit_value, :total_count, :num_pages, :to_key
-
-          def self.name
-            "THIS IS A CUSTOM DECORATOR"
-          end
         end
+
+        k.define_singleton_method :name do
+          decorator_name
+        end
+
+        collection_decorator_class_cache[decorator_name] = k
+
+        k
+      end
+
+      def collection_decorator_class_cache
+        @@collection_decorator_class_cache ||= {}
+      end
+
+      def is_draper_collection_decorator?(decorator)
+        decorator && decorator <= draper_collection_decorator
       end
 
       def draper_collection_decorator
