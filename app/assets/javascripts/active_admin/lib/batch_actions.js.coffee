@@ -31,7 +31,7 @@ $ ->
     else
       $(".paginated_collection").checkboxToggler()
 
-    $(".paginated_collection :checkbox").change ->
+    $(document).on 'change', '.paginated_collection :checkbox', ->
       if $(".paginated_collection :checkbox:checked").length
         $("#batch_actions_selector").aaDropdownMenu("enable")
       else
