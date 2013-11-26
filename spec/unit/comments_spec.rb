@@ -6,7 +6,7 @@ describe "Comments" do
   describe ActiveAdmin::Comment do
     subject(:comment){ ActiveAdmin::Comment.new }
 
-    it "Has valid Associations and Validations" do
+    it "has valid Associations and Validations" do
       expect(comment).to belong_to :resource
       expect(comment).to belong_to :author
       expect(comment).to validate_presence_of :resource
@@ -50,6 +50,29 @@ describe "Comments" do
       end
     end
 
+    describe ".resource_type" do
+      let(:post) { Post.create!(:title => "Testing.") }
+      let(:post_decorator) { double 'PostDecorator' }
+
+      before { post_decorator.stub :model => post, :decorated? => true }
+
+      context "when a decorated object is passed" do
+        let(:resource) { post_decorator }
+
+        it "returns undeorated object class string" do
+          expect(ActiveAdmin::Comment.resource_type resource).to eql 'Post'
+        end
+      end
+
+      context "when an undecorated object is passed" do
+        let(:resource) { post }
+
+        it "returns object class string" do
+          expect(ActiveAdmin::Comment.resource_type resource).to eql 'Post'
+        end
+      end
+    end
+
     describe ".resource_id_type" do
       it "should be :string" do
         expect(ActiveAdmin::Comment.resource_id_type).to eql :string
@@ -70,7 +93,7 @@ describe "Comments" do
       end
     end
 
-    describe "Commenting on child of STI resource" do
+    describe "commenting on child of STI resource" do
       let(:publisher) { Publisher.create!(:username => "tenderlove") }
       let(:namespace_name) { "admin" }
 
