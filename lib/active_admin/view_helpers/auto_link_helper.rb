@@ -13,14 +13,17 @@ module ActiveAdmin
       #
       def auto_link(resource, link_content = nil)
         content = link_content || display_name(resource)
-        if (registration = active_admin_resource_for(resource.class))
-          begin
-            content = link_to(content, registration.route_instance_path(resource))
-          rescue
-            # ignored
-          end
+        if url = auto_url_for(resource)
+          content = link_to(content, url)
         end
         content
+      end
+
+      # Like `auto_link`, except that it only returns a URL instead of a full <a> tag
+      def auto_url_for(resource)
+        if config = active_admin_resource_for(resource.class)
+          url_for config.route_instance_path resource
+        end
       end
 
       # Returns the ActiveAdmin::Resource instance for a class
