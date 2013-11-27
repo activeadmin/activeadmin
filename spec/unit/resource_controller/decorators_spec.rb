@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ActiveAdmin::ResourceController::DataAccess do
+describe ActiveAdmin::ResourceController::Decorators do
   let(:controller_class) do
     Class.new do
       include ActiveAdmin::ResourceController::Decorators
