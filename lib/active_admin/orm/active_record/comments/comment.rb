@@ -13,7 +13,8 @@ module ActiveAdmin
     before_create :set_resource_type
 
     # @returns [String] The name of the record to use for the polymorphic relationship
-    def self.resource_type(record)
+    def self.resource_type(resource)
+      record = resource.respond_to?(:decorated?) && resource.decorated? ? resource.model : resource
       record.class.name.to_s
     end
 
