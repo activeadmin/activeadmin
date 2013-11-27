@@ -40,35 +40,31 @@ module ActiveAdmin
         end
       end
 
-      # Create a new class that inherits from the collection decorator we are
-      # using. We use this class to delegate collection scoping methods that
-      # active_admin needs to render the table.
-      #
-      # TODO: This generated class should probably be cached.
       def delegate_collection_methods_for_draper(collection_decorator, resource_decorator)
         return collection_decorator unless is_draper_collection_decorator?(collection_decorator)
 
         decorator_name = "#{collection_decorator.name} of #{resource_decorator} with ActiveAdmin extensions"
+        decorator_class_cache[decorator_name] ||= create_collection_decorator(collection_decorator, decorator_name)
+      end
 
-        cached = collection_decorator_class_cache[decorator_name]
-        return cached if cached
-
-        k = Class.new(collection_decorator) do
+      # Create a new class that inherits from the collection decorator we are
+      # using. We use this class to delegate collection scoping methods that
+      # active_admin needs to render the table.
+      def create_collection_decorator(parent, name)
+        k = Class.new(parent) do
           delegate :reorder, :page, :current_page, :total_pages,
                    :limit_value, :total_count, :num_pages, :to_key
         end
 
-        k.define_singleton_method :name do
-          decorator_name
-        end
-
-        collection_decorator_class_cache[decorator_name] = k
+        k.define_singleton_method(:name) { name }
 
         k
       end
 
-      def collection_decorator_class_cache
-        @@collection_decorator_class_cache ||= {}
+
+
+      def decorator_class_cache
+        @@decorator_class_cache ||= {}
       end
 
       def is_draper_collection_decorator?(decorator)
