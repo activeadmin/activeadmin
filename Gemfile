@@ -9,9 +9,16 @@ require File.expand_path('spec/support/detect_rails_version', ACTIVE_ADMIN_PATH)
 rails_version = detect_rails_version
 gem 'rails', rails_version
 
+gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an official release
+
 group :development do
-  gem 'better_errors',     '~> 1.0.0' # Web UI to debug exceptions. Go to /__better_errors to access the latest one
-  gem 'binding_of_caller', '~> 0.7.1' # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
+  # Debugging
+  gem 'better_errors'      # Web UI to debug exceptions. Go to /__better_errors to access the latest one
+  gem 'binding_of_caller'  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
+
+  # Performance
+  gem 'rack-mini-profiler' # Inline app profiler. See ?pp=help for options.
+  gem 'flamegraph'         # Flamegraph visualiztion: ?pp=flamegraph
 end
 
 group :development, :test do
