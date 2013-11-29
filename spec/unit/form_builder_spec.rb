@@ -437,6 +437,24 @@ describe ActiveAdmin::FormBuilder do
       end
     end
 
+    describe "sortable" do
+      context "with a new post" do
+        let :body do
+          build_form({:url => '/categories'}, Category.new) do |f|
+            f.object.posts.build
+            f.has_many :posts, sortable: :category_id do |p|
+              p.input :title
+            end
+          end
+        end
+
+        it "shows the nested fields for unsaved records" do
+          body.should have_tag("fieldset", :attributes => {:class => "inputs has_many_fields"})
+        end
+
+      end
+    end
+
     describe "with nesting" do
       context "in an inputs block" do
         let :body do

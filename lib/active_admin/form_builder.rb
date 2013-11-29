@@ -83,7 +83,7 @@ module ActiveAdmin
       # make sure that the sortable children sorted in stable ascending order
       if column = builder_options[:sortable]
         children = object.send(assoc)
-        children = children.reorder("#{column}, id")
+        children = children.sort_by {|o| [o.send(column), o.id]}
         options[:for] = [assoc,  children]
       end
 
