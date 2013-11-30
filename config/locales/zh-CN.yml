@@ -96,6 +96,8 @@
         sign_in: "登录"
         forgot_your_password: "忘记了密码？"
         sign_in_with_omniauth_provider: "登入%{provider}"
+    access_denied:
+      message: "您无权处理此操作"
   formtastic:
     yes: "YES"
     no: "NO"
