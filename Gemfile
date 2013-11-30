@@ -11,6 +11,9 @@ gem 'rails', rails_version
 
 gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an official release
 
+gem 'rake', require: false
+gem 'rails-i18n' # Provides default i18n for many languages
+
 group :development do
   # Debugging
   gem 'better_errors'      # Web UI to debug exceptions. Go to /__better_errors to access the latest one
@@ -19,30 +22,27 @@ group :development do
   # Performance
   gem 'rack-mini-profiler' # Inline app profiler. See ?pp=help for options.
   gem 'flamegraph'         # Flamegraph visualiztion: ?pp=flamegraph
-end
 
-group :development, :test do
-  gem 'rake', '~> 10.1.0', require: false
-  gem 'rails-i18n' # Provides default i18n for many languages
-  gem 'redcarpet'  # Markdown implementation (for yard)
-  gem 'yard'
+  # Documentation
+  gem 'yard'               # Documentation generator
   gem 'yard-redcarpet-ext' # Enables Markdown tables, which are disabled by default
+  gem 'redcarpet'          # Markdown implementation (for yard)
 end
 
 group :test do
   gem 'cancan'
-  gem 'capybara',         '=  1.1.2'
-  gem 'simplecov',                    require: false
-  gem 'coveralls',        '~> 0.7.0', require: false # Test coverage tool: www.coveralls.io
+  gem 'capybara', '= 1.1.2'
+  gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
+  gem 'coveralls', require: false # Test coverage website. Go to https://coveralls.io
   # Move to next stable version including: https://github.com/cucumber/cucumber-rails/pull/253
-  gem 'cucumber-rails',   github: 'cucumber/cucumber-rails', require: false
-  gem 'database_cleaner', '~> 1.2.0'
+  gem 'cucumber-rails', github: 'cucumber/cucumber-rails', require: false
+  gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'jasmine'
-  gem 'jslint_on_rails',  '~> 1.1.1'
+  gem 'jslint_on_rails'
   gem 'launchy'
   gem 'parallel_tests'
-  gem 'rspec-rails',      '~> 2.14.0'
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'sqlite3'
 end
