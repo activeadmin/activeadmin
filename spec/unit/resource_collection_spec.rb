@@ -1,13 +1,19 @@
 require 'spec_helper'
 require 'active_admin/resource_collection'
 
-include ActiveAdmin
-
 describe ActiveAdmin::ResourceCollection do
   let(:application) { ActiveAdmin::Application.new }
-  let(:namespace)   { ActiveAdmin::Namespace.new(application, :admin) }
+  let(:namespace)   { ActiveAdmin::Namespace.new application, :admin }
+  let(:collection)  { ActiveAdmin::ResourceCollection.new }
 
-  let(:collection){ ResourceCollection.new }
+  it { should respond_to :[]       }
+  it { should respond_to :add      }
+  it { should respond_to :each     }
+  it { should respond_to :has_key? }
+  it { should respond_to :keys     }
+  it { should respond_to :values   }
+  it { should respond_to :size     }
+  it { should respond_to :to_a     }
 
   it "should have no resources when new" do
     collection.should be_empty
@@ -25,7 +31,7 @@ describe ActiveAdmin::ResourceCollection do
     collection.keys.should == [resource.resource_name]
   end
 
-  describe "adding a new resource" do
+  describe "#add" do
     let(:resource){ mock :resource_name => "MyResource" }
 
     it "should return the resource" do
@@ -50,11 +56,42 @@ describe ActiveAdmin::ResourceCollection do
       collection.add(resource); collection.add(resource)
       collection.values.should == [resource]
     end
+
+    it "shouldn't allow a resource name mismatch to occur" do
+      expect {
+        ActiveAdmin.register Category
+        ActiveAdmin.register Post, as: "Category"
+      }.to raise_error ActiveAdmin::ResourceCollection::ConfigMismatch
+    end
+
+    it "shouldn't allow a Page/Resource mismatch to occur" do
+      expect {
+        ActiveAdmin.register User
+        ActiveAdmin.register_page 'User'
+      }.to raise_error ActiveAdmin::ResourceCollection::IncorrectClass
+    end
+
+    describe "should store both renamed and non-renamed resources" do
+      let(:resource) { ActiveAdmin::Resource.new namespace, Category }
+      let(:renamed)  { ActiveAdmin::Resource.new namespace, Category, as: "Subcategory" }
+
+      it "when the renamed version is added first" do
+        collection.add renamed
+        collection.add resource
+        collection.values.should include(resource, renamed)
+      end
+
+      it "when the renamed version is added last" do
+        collection.add resource
+        collection.add renamed
+        collection.values.should include(resource, renamed)
+      end
+    end
   end
 
   describe "#[]" do
-    let(:resource)              { Resource.new(namespace, resource_class) }
-    let(:inherited_resource)    { Resource.new(namespace, inherited_resource_class) }
+    let(:resource)              { ActiveAdmin::Resource.new namespace, resource_class }
+    let(:inherited_resource)    { ActiveAdmin::Resource.new namespace, inherited_resource_class }
 
     let(:resource_class)           { User }
     let(:inherited_resource_class) { Publisher }
@@ -102,7 +139,7 @@ describe ActiveAdmin::ResourceCollection do
     end
 
     context "with a renamed resource" do
-      let(:renamed_resource) { Resource.new(namespace, resource_class, :as => name) }
+      let(:renamed_resource) { ActiveAdmin::Resource.new namespace, resource_class, as: name }
       let(:name)             { "Administrators" }
 
       before do
@@ -123,31 +160,6 @@ describe ActiveAdmin::ResourceCollection do
     end
   end
 
-  describe ".add" do
-    let(:resource)         { Resource.new(namespace, Category) }
-    let(:resource_renamed) { Resource.new(namespace, Category, as: "Subcategory") }
-
-    context "when renamed resource is added first" do
-      before do
-        collection.add(resource_renamed)
-        collection.add(resource)
-      end
-
-      it "contains both resources" do
-        collection.values.should include(resource, resource_renamed)
-      end
-    end
-
-    context "when resource is added first" do
-      before do
-        collection.add(resource)
-        collection.add(resource_renamed)
-      end
-
-      it "contains both resources" do
-        collection.values.should include(resource, resource_renamed)
-      end
-    end
-  end
+  pending "specs for subclasses of Page and Resource"
 
 end
