@@ -83,9 +83,17 @@ module ActiveAdmin
         td class: col.html_class do
           value = call_method_or_proc_on item, col.data, exec: false
           value = pretty_format(value) if col.data.is_a?(Symbol)
-          value
+          value = status_tag(value) if is_boolean?(col, item)
+          value 
         end
       end
+     
+      # Returns true or false depending on the attr being boolean 
+      def is_boolean?(col, item)
+        attr = item.column_for_attribute(col.data)
+        attr.present? && attr.type == :boolean 
+      end
+
 
       # Returns an array for the current sort order
       #   current_sort[0] #=> sort_key
