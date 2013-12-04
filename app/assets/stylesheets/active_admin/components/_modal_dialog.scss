@@ -9,7 +9,7 @@
   position: fixed;
   z-index: 1002;
   @include section-background;
-  @include box-shadow(rgba(0,0,0,0.5) 0 0 10px);
+  box-shadow: rgba(0,0,0,0.5) 0 0 10px;
 
   .ui-dialog-titlebar {
     @include section-header;
