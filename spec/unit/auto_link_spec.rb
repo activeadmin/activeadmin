@@ -10,10 +10,6 @@ describe "auto linking resources" do
   let(:active_admin_namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
   let(:post){ Post.create! title: "Hello World" }
 
-  def admin_post_path(post)
-    "/admin/posts/#{post.id}"
-  end
-
   def authorized?(*)
     true
   end
@@ -29,8 +25,10 @@ describe "auto linking resources" do
       active_admin_namespace.register Post
     end
     it "should return a link with the display name of the object" do
+      url_path = "/admin/posts/#{post.id}?locale=en"
+      expect(self).to receive(:url_options).and_return(locale: 'en')
       expect(self).to receive(:url_for) { |url| url }
-      expect(self).to receive(:link_to).with "Hello World", admin_post_path(post)
+      expect(self).to receive(:link_to).with "Hello World", url_path
       auto_link(post)
     end
 
@@ -47,7 +45,8 @@ describe "auto linking resources" do
       end
 
       it "should fallback to edit" do
-        url_path = "/admin/posts/#{post.id}/edit"
+        url_path = "/admin/posts/#{post.id}/edit?locale=en"
+        expect(self).to receive(:url_options).and_return(locale: 'en')
         expect(self).to receive(:url_for) { |url| url }
         expect(self).to receive(:link_to).with "Hello World", url_path
         auto_link(post)

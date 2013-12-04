@@ -52,12 +52,15 @@ module ActiveAdmin
       end
 
       # Path to the batch action itself
-      def batch_action_path(params = {})
-        path = [route_collection_path(params), "batch_action"].join("/")
+      def batch_action_path(params = {}, url_options = {})
+        uri = URI(route_collection_path(params, url_options))
+        uri.path += "/batch_action"
+
         query = params.slice(:q, :scope)
         query = query.permit! if query.respond_to? :permit!
         query = query.to_h if Rails::VERSION::MAJOR >= 5
-        [path, query.to_param].reject(&:blank?).join("?")
+        uri.query = [uri.query, query.to_param].compact.join('&') if query.present?
+        uri.to_s
       end
 
       private

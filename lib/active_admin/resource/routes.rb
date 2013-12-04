@@ -4,19 +4,19 @@ module ActiveAdmin
       # @param params [Hash] of params: { study_id: 3 }
       # @return [String] the path to this resource collection page
       # @example "/admin/posts"
-      def route_collection_path(params = {})
-        RouteBuilder.new(self).collection_path(params)
+      def route_collection_path(params = {}, additional_params = {})
+        RouteBuilder.new(self).collection_path(params, additional_params)
       end
 
       # @param resource [ActiveRecord::Base] the instance we want the path of
       # @return [String] the path to this resource collection page
       # @example "/admin/posts/1"
-      def route_instance_path(resource)
-        RouteBuilder.new(self).instance_path(resource)
+      def route_instance_path(resource, additional_params = {})
+        RouteBuilder.new(self).instance_path(resource, additional_params)
       end
 
-      def route_edit_instance_path(resource)
-        RouteBuilder.new(self).edit_instance_path(resource)
+      def route_edit_instance_path(resource, additional_params = {})
+        RouteBuilder.new(self).edit_instance_path(resource, additional_params)
       end
 
       # Returns the routes prefix for this config
@@ -37,32 +37,32 @@ module ActiveAdmin
           @resource = resource
         end
 
-        def collection_path(params)
+        def collection_path(params, additional_params = {})
           route_name = route_name(
             resource.resources_configuration[:self][:route_collection_name],
             suffix: (resource.route_uncountable? ? "index_path" : "path")
           )
 
-          routes.public_send route_name, *route_collection_params(params)
+          routes.public_send route_name, *route_collection_params(params), additional_params
         end
 
         # @return [String] the path to this resource collection page
         # @param instance [ActiveRecord::Base] the instance we want the path of
         # @example "/admin/posts/1"
-        def instance_path(instance)
+        def instance_path(instance, additional_params = {})
           route_name = route_name(resource.resources_configuration[:self][:route_instance_name])
 
-          routes.public_send route_name, *route_instance_params(instance)
+          routes.public_send route_name, *route_instance_params(instance), additional_params
         end
 
         # @return [String] the path to the edit page of this resource
         # @param instance [ActiveRecord::Base] the instance we want the path of
         # @example "/admin/posts/1/edit"
-        def edit_instance_path(instance)
+        def edit_instance_path(instance, additional_params = {})
           path = resource.resources_configuration[:self][:route_instance_name]
           route_name = route_name(path, action: :edit)
 
-          routes.public_send route_name, *route_instance_params(instance)
+          routes.public_send route_name, *route_instance_params(instance), additional_params
         end
 
         private
