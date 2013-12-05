@@ -51,6 +51,8 @@ ro:
     blank_slate:
       content: "Momentan nu exista %{resource_name}."
       link: "Creati un"
+    dropdown_actions:
+      button_label: "Actiuni"
     batch_actions:
       button_label: "Grupare Actiuni"
       default_confirmation: "Sunteţi sigur că doriţi să faceţi acest lucru?"

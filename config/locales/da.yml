@@ -51,6 +51,8 @@ da:
     blank_slate:
       content: "Der er ingen %{resource_name} endnu."
       link: "Opret"
+    dropdown_actions:
+      button_label: "Handlinger"
     batch_actions:
       button_label: "Batch Handlinger"
       default_confirmation: "Er du sikker på du vil gøre dette?"

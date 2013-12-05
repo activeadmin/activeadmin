@@ -51,6 +51,8 @@ vi:
     blank_slate:
       content: "Chưa có %{resource_name}."
       link: "Tạo mới"
+    dropdown_actions:
+      button_label: "Hành động"
     batch_actions:
       button_label: "Hành động hàng loạt"
       default_confirmation: "Bạn có chắc bạn muốn làm điều này?"

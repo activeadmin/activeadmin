@@ -51,6 +51,8 @@
     blank_slate:
       content: "尚無 %{resource_name}"
       link: "建立一筆"
+    dropdown_actions:
+      button_label: "操作"
     batch_actions:
       button_label: "批次作業"
       default_confirmation: "你確定你要這樣做？"
