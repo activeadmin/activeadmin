@@ -60,7 +60,7 @@ module ActiveAdmin
 
         menu_list = nil
 
-        div :class => "dropdown_menu_list_wrapper", :style => "display:none;" do
+        div :class => "dropdown_menu_list_wrapper", :style => "display:none;z-index:999;" do
           menu_list = ul(options)
         end
 
