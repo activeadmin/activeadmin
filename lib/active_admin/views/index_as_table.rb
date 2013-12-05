@@ -238,13 +238,49 @@ module ActiveAdmin
         # actions defaults: false do |admin_user|
         #   link_to 'Grant Admin', grant_admin_admin_user_path(admin_user)
         # end
-        # ```
         #
+        # # Append some actions onto the end of the default actions displayed in a Dropdown Menu
+        # actions dropdown: true do |admin_user|
+        #   item 'Grant Admin', grant_admin_admin_user_path(admin_user)
+        # end
+        #
+        # # Custom actions without the defaults displayed in a Dropdown Menu.
+        # actions defaults: false, dropdown: true, dropdown_name: 'Additional actions' do |admin_user|
+        #   item 'Grant Admin', grant_admin_admin_user_path(admin_user)
+        # end
+        #
+        # ```
         def actions(options = {}, &block)
-          show_default_links = options.delete(:defaults) { true }
-          column options.delete(:name), options do |resource|
-            text_node default_actions(resource) if show_default_links
-            text_node instance_exec(resource, &block) if block_given?
+          options = {
+            :name => '',
+            :defaults => true,
+            :dropdown => false,
+            :dropdown_name => I18n.t('active_admin.dropdown_actions.button_label', default: 'Actions')
+          }.merge(options)
+
+          column_options = options.except(:name, :defaults, :dropdown, :dropdown_name)
+          column options[:name], column_options do |resource|
+            if options[:dropdown]
+              dropdown_menu options[:dropdown_name] do
+                items_default_actions(resource) if options[:defaults]
+                instance_exec(resource, &block) if block_given?
+              end
+            else
+              text_node default_actions(resource) if options[:defaults]
+              text_node instance_exec(resource, &block) if block_given?
+            end
+          end
+        end
+
+        def items_default_actions(resource)
+          if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
+            item(I18n.t('active_admin.view'), resource_path(resource), :class => "view_link")
+          end
+          if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
+            item(I18n.t('active_admin.edit'), edit_resource_path(resource), :class => "edit_link")
+          end
+          if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
+            item(I18n.t('active_admin.delete'), resource_path(resource), :method => :delete, :data => {:confirm => I18n.t('active_admin.delete_confirmation')}, :class => "delete_link")
           end
         end
 

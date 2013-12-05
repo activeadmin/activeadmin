@@ -51,6 +51,8 @@ es:
     blank_slate:
       content: "No hay %{resource_name} aún."
       link: "Añadir"
+    dropdown_actions:
+      button_label: "Acciones"
     batch_actions:
       button_label: "Acciones en masa"
       default_confirmation: "¿Seguro que quieres hacer esto?"

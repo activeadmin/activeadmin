@@ -51,8 +51,10 @@ fi:
     blank_slate:
       content: "Järjestelmässä ei ole yhtään %{resource_name}:ia vielä."
       link: "Luo ensimmäinen"
+    dropdown_actions:
+      button_label: "Acciones"
     batch_actions:
-      button_label: "Aja joukolle"
+      button_label: "Toimet"
       default_confirmation: "Oletko varma, että haluat tehdä tämän?"
       delete_confirmation: "Oletko varma, että haluat poistaa nämä %{plural_model}:t?"
       succesfully_destroyed:
@@ -82,7 +84,7 @@ fi:
         title: "Sähköposti"
       subdomain:
         title: "Subdomain"
-      password: 
+      password:
         title: "Salasana"
       login:
         title: "Sisäänkirjautuminen"

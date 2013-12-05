@@ -86,8 +86,9 @@
     border: solid 1px darken($primary-color, 10%);
     border-top-color: darken($primary-color, 4%);
     border-bottom-color: darken($primary-color, 17%);
-
     border-radius: 4px;
+    z-index: 2000;
+    display: none;
 
     .dropdown_menu_list {
       display: block;
