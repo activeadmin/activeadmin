@@ -111,6 +111,27 @@ describe ActiveAdmin::Views::TableFor do
       end
     end
 
+    context "when ignore_undefined_method_for_nil = true" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection) do
+            column :title do |post|
+              nil.something
+            end
+          end
+        end
+      end
+
+      it "should not raise exception" do
+        expect{ table }.to raise_error
+      end
+
+      it "should not raise exception" do
+        ActiveAdmin.application.ignore_undefined_method_for_nil = true
+        expect{ table }.to_not raise_error
+        ActiveAdmin.application.ignore_undefined_method_for_nil = false
+      end
+    end
 
     context "when creating many columns with symbols, blocks and strings" do
       let(:table) do

@@ -36,7 +36,7 @@ module ActiveAdmin
 
     # Set the site title image displayed in the main layout (has precendence over :site_title)
     inheritable_setting :site_title_image, ""
-    
+
     # Set a favicon
     inheritable_setting :favicon, false
 
@@ -78,6 +78,9 @@ module ActiveAdmin
 
     # A proc to be used when a user is not authorized to view the current resource
     inheritable_setting :on_unauthorized_access, :rescue_active_admin_access_denied
+
+    # Whether show exception in-line "undefined method for nil" in tables' cells
+    inheritable_setting :ignore_undefined_method_for_nil, false
 
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
@@ -218,7 +221,7 @@ module ActiveAdmin
       ActiveSupport::Dependencies.autoload_paths.reject!{ |path| load_paths.include? path }
       Rails.application.config.eager_load_paths = # the array is frozen :/
       Rails.application.config.eager_load_paths.reject do |path|
-        load_paths.include?(path) 
+        load_paths.include?(path)
       end
     end
 
