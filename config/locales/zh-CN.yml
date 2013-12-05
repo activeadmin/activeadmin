@@ -51,6 +51,8 @@
     blank_slate:
       content: "暂时还没有%{resource_name}."
       link: "新建一个"
+    dropdown_actions:
+      button_label: "行动"
     batch_actions:
       button_label: "批处理"
       default_confirmation: "你确定你要这样做？"

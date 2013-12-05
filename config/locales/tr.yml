@@ -51,6 +51,8 @@ tr:
     blank_slate:
       content: "Herhangi bir %{resource_name} kaydı bulunamadı"
       link: "Bir tane oluşturun"
+    dropdown_actions:
+      button_label: "Işlemler"
     batch_actions:
       button_label: "Toplu işlemler"
       default_confirmation: "Bunu yapmak istediğinden emin misin?"

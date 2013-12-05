@@ -51,6 +51,8 @@ lt:
     blank_slate:
       content: 'Nėra %{resource_name}.'
       link: 'Sukurti'
+    dropdown_actions:
+      button_label: "Veiksmai"
     batch_actions:
       button_label: 'Veiksmai su pažymėtais'
       default_confirmation: 'Ar jūs tikrai norite tai padaryti?'

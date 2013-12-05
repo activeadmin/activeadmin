@@ -48,6 +48,8 @@ pl:
     blank_slate:
       content: "Nie ma jeszcze zasobu %{resource_name}."
       link: "Utwórz go"
+    dropdown_actions:
+      button_label: "Akcje"
     batch_actions:
       button_label: "Akcje na partiach"
       default_confirmation: "Czy na pewno chcesz to zrobić?"

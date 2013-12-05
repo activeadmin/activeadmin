@@ -51,6 +51,8 @@ it:
     blank_slate:
       content: "Non sono presenti %{resource_name}"
       link: "Crea nuovo/a"
+    dropdown_actions:
+      button_label: "Azioni"
     batch_actions:
       button_label: "Azioni multiple"
       default_confirmation: "Sei sicuro di che voler fare questo?"

@@ -52,6 +52,8 @@ cs:
     blank_slate:
       content: "Zatím zde není žádný obsah."
       link: "Vytvořit"
+    dropdown_actions:
+      button_label: "Akce"
     batch_actions:
       button_label: "Hromadné akce"
       default_confirmation: "Jste si jisti, že chcete provést?"

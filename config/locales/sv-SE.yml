@@ -51,6 +51,8 @@
     blank_slate:
       content: "Finns ingen %{resource_name} än."
       link: "Skapa en"
+    dropdown_actions:
+      button_label: "Behandling"
     batch_actions:
       button_label: "Batch Behandling"
       default_confirmation: "Är du säker på att du vill göra detta?"

@@ -50,6 +50,8 @@ ca:
     blank_slate:
       content: "Encara no hi ha cap %{resource_name}."
       link: "Crea'n un/a"
+    dropdown_actions:
+      button_label: "accions"
     batch_actions:
       button_label: "les accions per lots"
       default_confirmation: "¿Esteu segur que voleu fer-ho?"
