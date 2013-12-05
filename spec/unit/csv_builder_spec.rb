@@ -16,8 +16,22 @@ describe ActiveAdmin::CSVBuilder do
 
     specify "the following columns should be content_column" do
       csv_builder.columns[1..-1].each_with_index do |column, index|
-        expect(column.name).to eq Post.content_columns[index].name.titleize
+        expect(column.name).to eq Post.content_columns[index].name.humanize
         expect(column.data).to eq Post.content_columns[index].name.to_sym
+      end
+    end
+
+    context 'when column has a localized name' do
+      let(:localized_name) { 'Titulo' }
+
+      before do
+        Post.stub(:human_attribute_name).and_call_original
+        Post.stub(:human_attribute_name).with(:title){ localized_name }
+      end
+
+      it 'gets name from I18n' do
+        title_index = Post.content_columns.map(&:name).index('title') + 1 # First col is always id
+        expect(csv_builder.columns[title_index].name).to eq localized_name
       end
     end
   end
