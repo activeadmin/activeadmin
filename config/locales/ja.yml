@@ -44,7 +44,7 @@ ja:
       one_page: "<b>全 %{n}</b> 件の %{model} を表示しています"
       multiple: "全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
-      entry: 
+      entry:
         one: "レコード"
         other: "レコード"
     any: "任意"
@@ -53,7 +53,7 @@ ja:
       link: "作成する"
     batch_actions:
       button_label: "一括操作"
-      default_confirmation: "これを行うにしてもよろしいですか。"
+      default_confirmation: "本当によろしいですか。"
       delete_confirmation: "%{plural_model} を削除してもよろしいですか?"
       succesfully_destroyed:
         one: "1件の %{model} を削除しました"
@@ -72,10 +72,19 @@ ja:
       add: "コメントを追加"
       resource: "リソース"
       no_comments_yet: "コメントはまだありません。"
+      author_missing: "匿名ユーザ"
       title_content: "コメント (%{count})"
       errors:
         empty_text: "テキストが空のため、コメントは保存されませんでした。"
     devise:
+      username:
+        title: "ユーザ名"
+      email:
+        title: "メールアドレス"
+      subdomain:
+        title: "サブドメイン"
+      password:
+        title: "パスワード"
       login:
         title: "ログイン"
         remember_me: "次回から自動的にログイン"
