@@ -44,7 +44,7 @@ ja:
       one_page: "<b>全 %{n}</b> 件の %{model} を表示しています"
       multiple: "全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
-      entry: 
+      entry:
         one: "レコード"
         other: "レコード"
     any: "任意"
@@ -75,6 +75,14 @@ ja:
       errors:
         empty_text: "テキストが空のため、コメントは保存されませんでした。"
     devise:
+      username:
+        title: "ユーザ名"
+      email:
+        title: "メールアドレス"
+      subdomain:
+        title: "サブドメイン"
+      password:
+        title: "パスワード"
       login:
         title: "ログイン"
         remember_me: "次回から自動的にログイン"
