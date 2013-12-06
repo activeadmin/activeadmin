@@ -27,15 +27,16 @@ module ActiveAdmin
         delegate_collection_methods_for_draper(collection_decorator, decorator_class)
       end
 
+      # Draper::CollectionDecorator was introduced in 1.0.0
+      # Draper::Decorator#collection_decorator_class was introduced in 1.3.0
       def collection_decorator_class_for(decorator)
-        if decorator.respond_to?(:collection_decorator_class)
-          # Draper >= 1.3.0
-          decorator.collection_decorator_class
-        elsif decorator && defined?(draper_collection_decorator) && decorator <= draper_collection_decorator
-          # Draper < 1.3.0
-          draper_collection_decorator
+        if Dependencies.draper? :>=, '1.0.0'
+          if Dependencies.draper? :>=, '1.3.0'
+            decorator && decorator.collection_decorator_class
+          else
+            draper_collection_decorator
+          end
         else
-          # Not draper or maybe a really old version of draper
           decorator
         end
       end
