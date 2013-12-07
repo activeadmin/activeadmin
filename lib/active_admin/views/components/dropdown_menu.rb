@@ -49,7 +49,7 @@ module ActiveAdmin
         button_options[:class] ||= ""
         button_options[:class] << " dropdown_menu_button"
 
-        button_options[:href] = "#"
+        button_options[:href] = "javascript:;"
 
         a name, button_options
       end
