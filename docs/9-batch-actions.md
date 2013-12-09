@@ -131,6 +131,18 @@ batch_action :flag, form: {
 end
 ```
 
+When the type is array, you can give singal string or another array.If you give array `type: [['item1', 0],['item2', 1], ['item3', 2]]`, html is 
+
+```
+<select name="type" class="" type="">
+	<option value="0">item1</option>
+	<option value="1">item2</option>
+	<option value="2">item3</option>
+</select>
+```
+
+
+
 Under the covers this is powered by the JS `ActiveAdmin.modal_dialog` which you can use yourself:
 
 ```coffee
