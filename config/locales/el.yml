@@ -1,0 +1,111 @@
+el:
+  active_admin:
+    dashboard: "Σελίδα διαχείρισης"
+    dashboard_welcome:
+      welcome: "Καλωσορίσατε στο Active Admin. Αυτή είναι η αρχική σελίδα διαχείρισης."
+      call_to_action: "Για να προσθέσετε ενότητες, ανατρέξτε στο αρχείο 'app/admin/dashboard.rb'"
+    view: "Προβολή"
+    edit: "Επεξεργασία"
+    delete: "Διαγραφή"
+    delete_confirmation: "Είστε σίγουρος πως θέλετε να το διαγράψετε;"
+    new_model: "Δημιουργία %{model}"
+    create_model: "Δημιουργία %{model}"
+    edit_model: "Επεξεργασία %{model}"
+    update_model: "Επεξεργασία %{model}"
+    delete_model: "Διαγραφή %{model}"
+    details: "Λεπτομέρειες %{model}"
+    cancel: "Ακύρωση"
+    empty: "Άδειο"
+    previous: "Προηγούμενη"
+    next: "Επόμενη"
+    download: "Κατέβασμα:"
+    has_many_new: "Προσθήκη Νέου %{model}"
+    has_many_delete: "Διαγραφή"
+    has_many_remove: "Αφαίρεση"
+    filters:
+      buttons:
+        filter: "Φίλτρα"
+        clear: "Καθαρισμός Φίλτρων"
+      predicates:
+        contains: "Περιέχει"
+        equals: "Είναι ίσο με"
+        starts_with: "Αρχίζει με"
+        ends_with: "Καταλήγει σε"
+        greater_than: "Μεγαλύτερο από"
+        less_than: "Μικρότερο από"
+    main_content: "Παρακαλώ υλοποιήστε την %{model}#main_content για να εμφανίσετε περιεχόμενο."
+    logout: "Αποσύνδεση"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Φίλτρα"
+    pagination:
+      empty: "Δε βρέθηκαν %{model}"
+      one: "Εμφάνιζεται <b>1</b> %{model}"
+      one_page: "Εμφανίζονται <b>όλες οι %{n}</b> εγγραφές %{model}"
+      multiple: "Εμφανίζονται %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> από <b>%{total}</b> συνολικά"
+      multiple_without_total: "Εμφανίζονται %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "εγγραφή"
+        other: "εγγραφές"
+    any: "Όλες οι εγγραφές"
+    blank_slate:
+      content: "Δεν υπάρχουν %{resource_name} ακόμα."
+      link: "Δημιουργήστε μία εγγραφή"
+    batch_actions:
+      button_label: "Μαζικές Ενέργειες"
+      default_confirmation: "Είστε σίγουρος πως θέλετε να το κάνετε αυτό;"
+      delete_confirmation: "Είστε σίγουρος πως θέλετε να διαγράψετε αυτά τα %{plural_model}?"
+      succesfully_destroyed:
+        one: "Διαγράφηκε επιτυχώς 1 %{model}"
+        other: "Διαγράφηκαν επιτυχώς %{count} %{plural_model}"
+      selection_toggle_explanation: "(Αντιστροφή επιλογών)"
+      link: "Δημιουργήστε ένα"
+      action_label: "%{title} επιλεγμένων"
+      labels:
+        destroy: "Διαγραφή"
+    comments:
+      resource_type: "Τύπος Εγγραφής"
+      author_type: "Τύπος Συγγραφέα"
+      body: "Κείμενο"
+      author: "Συγγραφέας"
+      title: "Σχόλιο"
+      add: "Προσθήκη Σχολίου"
+      resource: "Εγγραφή"
+      no_comments_yet: "Δεν υπάρχει κανένα σχόλιο."
+      author_missing: "Ανώνυμος"
+      title_content: "Σχόλια (%{count})"
+      errors:
+        empty_text: "Το σχόλιο δε σώθηκε, το κείμενο ήταν κενό."
+    devise:
+      username:
+        title: "Όνομα χρήστη"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Subdomain"
+      password:
+        title: "Κωδικός"
+      login:
+        title: "Σύνδεση"
+        remember_me: "Να με θυμάσαι"
+        submit: "Σύνδεση"
+      reset_password:
+        title: "Ξεχάσατε τον κωδικό σας;"
+        submit: "Επαναφορά κωδικού"
+      change_password:
+        title: "Αλλάξτε τον κωδικό σας"
+        submit: "Αλλαγή του κωδικού"
+      unlock:
+        title: "Αποστολή οδηγιών ξεκλειδώματος"
+        submit: "Αποστολή οδηγιών ξεκλειδώματος"
+      links:
+        sign_in: "Σύνδεση"
+        forgot_your_password: "Ξεχάσατε τον κωδικό σας;"
+        sign_in_with_omniauth_provider: "Σύνδεση με %{provider}"
+    access_denied:
+      message: "Δεν έχετε πρόσβαση για αυτή την ενέργεια."
+    index_list:
+      table: "Πίνακας"
+      block: "Λίστα"
+      grid: "Πλέγμα"
+      blog: "Blog"
