@@ -129,7 +129,16 @@ module ActiveAdmin
     end
 
     def inputs
-      HashWithIndifferentAccess.new @options[:form] || {}
+      case @options[:form]
+        when Hash
+          form = @options[:form]
+        when Proc
+          form = @options[:form].call
+        else
+          form = {}
+      end
+
+      HashWithIndifferentAccess.new form
     end
 
     # Returns the display if block. If the block was not explicitly defined
