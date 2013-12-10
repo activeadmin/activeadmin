@@ -28,7 +28,7 @@ If you require a more custom form than the DSL can provide, use a partial instea
 
 ```ruby
 ActiveAdmin.register Post do
-  form partial: 'form'
+  form partial: 'admin/posts/form'
 end
 ```
 
