@@ -86,6 +86,11 @@ es_MX:
         sign_in: "registrarse"
         forgot_your_password: "¿Olvidó su contraseña?"
         sign_in_with_omniauth_provider: "Conéctate con %{provider}"
+    index_list:
+      table: "Tabla"
+      block: "Lista"
+      grid: "Cuadrícula"
+      blog: "Blog"
   views:
       pagination:
           truncate: "..."
