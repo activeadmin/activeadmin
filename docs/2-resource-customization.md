@@ -75,9 +75,6 @@ ActiveAdmin.register Post, as: "Article"
 
 The resource will then be available at `/admin/articles`.
 
-This will also change the key of the resource params passed to the controller.
-In Rails 4, the `permitted_params` key will need to be changed from `:post` to `:article`.
-
 ## Customize the Namespace
 
 We use the `admin` namespace by default, but you can use anything:
