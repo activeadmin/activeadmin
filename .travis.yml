@@ -6,3 +6,13 @@ rvm:
 env:
   - RAILS=3.2.16
   - RAILS=4.0.2
+notifications:
+  email: false
+  irc:
+    channels:
+      - "irc.freenode.org#activeadmin"
+    on_success: change
+    on_failure: always
+    skip_join: true
+    template:
+      - "(%{branch}/%{commit} by %{author}): %{message} (%{build_url})"
