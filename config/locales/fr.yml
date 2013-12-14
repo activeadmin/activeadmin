@@ -73,17 +73,31 @@ fr:
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
     devise:
+      username:
+        title: "Nom d'utilisateur"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Sous-domaine"
+      password:
+        title: "Mot de passe"
       login:
-        title: "login"
+        title: "Connection"
         remember_me: "Se souvenir de moi"
-        submit: "login"
+        submit: "Se connecter"
       reset_password:
-        title: "Vous avez oublié votre mot de passe?"
+        title: "Vous avez oublié votre mot de passe ?"
         submit: "Réinitialiser mon mot de passe"
       change_password:
         title: "Changez votre mot de passe"
         submit: "Changer mon mot de passe"
       links:
         sign_in: "Connectez-vous"
-        forgot_your_password: "Vous avez oublié votre mot de passe?"
+        forgot_your_password: "Vous avez oublié votre mot de passe ?"
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
+    access_denied: "Vous n'êtes pas autorisé à executer cette action"
+    index_list:
+      table: "Tableau"
+      block: "Liste"
+      grid: "Grille"
+      blog: "Blog"
