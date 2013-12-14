@@ -22,7 +22,7 @@ module ActiveAdmin
 
       # Returns the plural version of this resource such as "Bank Accounts"
       def plural_resource_label(options = {})
-        resource_name.translate ({:count => 1.1, :default => resource_label.pluralize.titleize}).merge(options)
+        resource_name.translate ({:count => 3, :default => resource_label.pluralize.titleize}).merge(options)
       end
     end
 
