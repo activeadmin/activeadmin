@@ -1,4 +1,4 @@
-require "bundler"
+require 'bundler'
 require 'rake'
 Bundler.setup
 Bundler::GemHelper.install_tasks
@@ -22,4 +22,12 @@ rescue LoadError
   task :jasmine do
     abort "Jasmine is not available. In order to run jasmine, you must: (sudo) gem install jasmine"
   end
+end
+
+task :console do
+  require 'irb'
+  require 'irb/completion'
+
+  ARGV.clear
+  IRB.start
 end
