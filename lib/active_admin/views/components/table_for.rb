@@ -12,6 +12,8 @@ module ActiveAdmin
         @resource_class = options.delete(:i18n)
         @collection     = Array(record_or_collection)
         @columns = []
+        @row_class = options.delete(:row_class)
+
         build_table
         super(options)
       end
@@ -75,7 +77,15 @@ module ActiveAdmin
       def build_table_body
         @tbody = tbody do
           # Build enough rows for our collection
-          @collection.each{|elem| tr(:class => cycle('odd', 'even'), :id => dom_id(elem)) }
+          @collection.each do |elem|
+            classes = [cycle('odd', 'even')]
+
+            if @row_class
+              classes << @row_class.call(elem)
+            end
+
+            tr(:class => classes.flatten.join(' '), :id => dom_id(elem))
+          end
         end
       end
 
