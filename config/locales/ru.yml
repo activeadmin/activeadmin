@@ -46,6 +46,8 @@ ru:
       multiple_without_total: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "запись"
+        few: "записи"
+        many: "записей"
         other: "записей"
     any: "Любой"
     blank_slate:
