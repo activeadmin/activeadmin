@@ -57,3 +57,16 @@ shared_examples_for "ActiveAdmin::Resource" do
 
   end
 end
+
+shared_examples_for "ActiveAdmin::Localizers::ResourceLocalizer" do
+  it "should use proper translation" do
+    string = ActiveAdmin::Localizers::ResourceLocalizer.t(action, model: model, model_name: model_name)
+    expect(string).to eq translation
+  end
+
+  it "should accessible via ActiveAdmin::Localizers" do
+    resource = double(resource_label: model, resource_name: double(i18n_key: model_name))
+    localizer = ActiveAdmin::Localizers.resource(resource)
+    expect(localizer.t(action)).to eq translation
+  end
+end

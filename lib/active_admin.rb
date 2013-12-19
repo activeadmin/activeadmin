@@ -36,6 +36,7 @@ module ActiveAdmin
   autoload :Event,                    'active_admin/event'
   autoload :FormBuilder,              'active_admin/form_builder'
   autoload :Inputs,                   'active_admin/inputs'
+  autoload :Localizers,               'active_admin/localizers'
   autoload :Menu,                     'active_admin/menu'
   autoload :MenuCollection,           'active_admin/menu_collection'
   autoload :MenuItem,                 'active_admin/menu_item'

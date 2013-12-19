@@ -8,8 +8,7 @@ module ActiveAdmin
           if form_presenter[:title]
             render_or_call_method_or_proc_on(resource, form_presenter[:title])
           else
-            assigns[:page_title] || I18n.t("active_admin.#{normalized_action}_model",
-                                      model: active_admin_config.resource_label)
+            assigns[:page_title] || ActiveAdmin::Localizers.resource(active_admin_config).t("#{normalized_action}_model")
           end
         end
 

@@ -31,11 +31,10 @@ module ActiveAdmin
 
       def build_scope(scope, options)
         li class: classes_for_scope(scope) do
-          scope_name = I18n.t "active_admin.scopes.#{scope.id}", default: scope.name
-          params     = request.query_parameters.except :page, :scope, :commit, :format
+          params = request.query_parameters.except :page, :scope, :commit, :format
 
           a href: url_for(scope: scope.id, params: params), class: 'table_tools_button' do
-            text_node scope_name
+            text_node scope.name
             span class: 'count' do
               "(#{get_scope_count(scope)})"
             end if options[:scope_count] && scope.show_count
