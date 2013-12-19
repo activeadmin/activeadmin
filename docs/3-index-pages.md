@@ -148,7 +148,7 @@ You can define the default sort order for index pages:
 
 ```ruby
 ActiveAdmin.register Post do
-  config.sort_order = 'name asc'
+  config.sort_order = 'name_asc'
 end
 ```
 
