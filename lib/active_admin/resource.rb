@@ -40,7 +40,7 @@ module ActiveAdmin
     # The default sort order to use in the controller
     attr_writer :sort_order
     def sort_order
-      @sort_order ||= (resource_class.respond_to?(:primary_key) ? resource_class.primary_key.to_s : 'id') + '_desc'
+      @sort_order ||= (resource_class.respond_to?(:primary_key) ? resource_class.primary_key.to_s : 'id') + ' desc'
     end
 
     # Set the configuration for the CSV

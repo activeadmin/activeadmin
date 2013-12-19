@@ -1,6 +1,22 @@
 module ActiveAdmin
   class ResourceController < BaseController
 
+    class BadAssociationSort < StandardError
+      def initialize(bad_sort)
+        super "'#{bad_sort}' is using an old, unsupported sort style; " +
+          "periods are no longer used in association sorts.\nAs an example, " +
+          "'authors.first_name_desc' would be changed to 'author_first_name desc'."
+      end
+    end
+
+    class BadSortOrder < StandardError
+      def initialize(bad_sort)
+        super "'#{bad_sort}' is using an old, unsupported sort style; " +
+          "underscores are no longer used to delimit the sort order.\n" +
+          "As an example, 'title_asc' would be changed to 'title asc'."
+      end
+    end
+
     # This module overrides most of the data access methods in Inherited
     # Resources to provide Active Admin with it's data.
     #
@@ -214,19 +230,22 @@ module ActiveAdmin
         active_admin_authorization.scope_collection(collection, action_name)
       end
 
-
+      # Delegates sorting to Ransack.
+      # If no sort order is specified, we use the default.
       def apply_sorting(chain)
         params[:order] ||= active_admin_config.sort_order
-        if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
-          column = $1
-          order  = $2
-          table  = active_admin_config.resource_column_names.include?(column) ? active_admin_config.resource_table_name : nil
-          table_column = (column =~ /\./) ? column :
-            [table, active_admin_config.resource_quoted_column_name(column)].compact.join(".")
+        raise_if_old_sort_style!
+        chain.ransack(s: params[:order]).result
+      end
 
-          chain.reorder("#{table_column} #{order}")
-        else
-          chain # just return the chain
+      # 
+      def raise_if_old_sort_style!
+        Array(params[:order]).each do |s|
+          if s =~ /_(desc|asc)\z/
+            raise BadSortOrder.new s
+          elsif s =~ /\./
+            raise BadAssociationSort.new s
+          end
         end
       end
 
@@ -237,13 +256,8 @@ module ActiveAdmin
         @search.result
       end
 
-      def clean_search_params(search_params)
-        return {} unless search_params.is_a?(Hash)
-        search_params = search_params.dup
-        search_params.delete_if do |key, value|
-          value == ""
-        end
-        search_params
+      def clean_search_params(params)
+        params.is_a?(Hash) ? params.reject{ |k,v| v.blank? } : {}
       end
 
       def apply_scoping(chain)

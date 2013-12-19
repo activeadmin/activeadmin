@@ -132,7 +132,7 @@ module ActiveAdmin
     #
     # ```ruby
     # index do
-    #   column :publisher, sortable: 'publishers.name'
+    #   column :publisher, sortable: :publisher_name
     # end
     # ```
     #

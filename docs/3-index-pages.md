@@ -59,7 +59,7 @@ index as: ActiveAdmin::Views::IndexAsTable do
 end
 ```
 
-## Index Filters
+## Filters
 
 By default the index screen includes a "Filters" sidebar on the right hand side
 with a filter for each attribute of the registered model. You can customize the
@@ -142,17 +142,19 @@ preserve_default_filters!
 filter :author
 ```
 
-## Index default sort order
+## Default sort order
 
 You can define the default sort order for index pages:
 
 ```ruby
 ActiveAdmin.register Post do
-  config.sort_order = 'name asc'
+  config.sort_order = 'name asc'                 # Simple
+  config.sort_order = ['name asc', 'title desc'] # Complex
+  config.sort_order = 'author_last_name desc'    # Association
 end
 ```
 
-## Index pagination
+## Pagination
 
 You can set the number of records per page per resources:
 
