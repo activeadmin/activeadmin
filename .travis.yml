@@ -7,7 +7,6 @@ env:
   - RAILS=3.2.16
   - RAILS=4.0.2
 notifications:
-  email: false
   irc:
     channels:
       - "irc.freenode.org#activeadmin"
