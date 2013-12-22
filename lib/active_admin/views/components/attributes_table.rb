@@ -4,8 +4,8 @@ module ActiveAdmin
     class AttributesTable < ActiveAdmin::Component
       builder_method :attributes_table_for
 
-      def build(record_or_collection, *attrs)
-        @collection = Array(record_or_collection)
+      def build(obj, *attrs)
+        @collection = obj.is_a?(Array) || obj.is_a?(ActiveRecord::Relation) ? obj : [obj]
         @resource_class = @collection.first.class
         options = { }
         options[:for] = @collection.first if single_record?
@@ -87,10 +87,12 @@ module ActiveAdmin
       def find_attr_value(record, attr)
         if attr.is_a?(Proc)
           attr.call(record)
-        elsif attr.to_s[/\A(.+)_id\z/] && record.respond_to?($1.to_sym)
-          record.send($1.to_sym)
-        else
-          record.send(attr.to_sym)
+        elsif attr.to_s[/\A(.+)_id\z/] && record.respond_to?($1)
+          record.send($1)
+        elsif record.respond_to? attr
+          record.send(attr)
+        elsif record.respond_to? :[]
+          record[attr]
         end
       end
 

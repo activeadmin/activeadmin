@@ -25,9 +25,14 @@ module MethodOrProcHelper
   # or instance_exec a proc passing in the object as the first parameter. This
   # method wraps that pattern.
   #
-  # Calling with a Symbol:
+  # Calling with a String or Symbol:
   #
   #     call_method_or_proc_on(@my_obj, :size) same as @my_obj.size
+  #
+  # The above will only occur if that object responds to the given method. If the
+  # object responds to `[]`, it will instead be used.
+  #
+  #     call_method_or_proc_on({foo: :bar}, :abc) will try {foo: :bar}[:abc]
   #
   # Calling with a Proc:
   #
@@ -53,7 +58,11 @@ module MethodOrProcHelper
 
     case symbol_or_proc
     when Symbol, String
-      receiver.send(symbol_or_proc.to_sym, *args)
+      if receiver.respond_to? symbol_or_proc
+        receiver.send symbol_or_proc, *args
+      elsif receiver.respond_to? :[]
+        receiver[symbol_or_proc]
+      end
     when Proc
       if options[:exec]
         instance_exec(receiver, *args, &symbol_or_proc)

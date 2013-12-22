@@ -31,20 +31,26 @@ describe MethodOrProcHelper do
 
   describe "#call_method_or_proc_on" do
 
-    context "when a symbol" do
+    [:hello, 'hello'].each do |key|
+      context "when a #{key.class}" do
+        it "should call the method on the receiver" do
+          expect(receiver).to receive(key).and_return 'hello'
 
-      it 'should call the method on the receiver' do
-        expect(receiver).to receive(:hello).and_return("hello")
+          expect(context.call_method_or_proc_on(receiver, key)).to eq 'hello'
+        end
 
-        expect(context.call_method_or_proc_on(receiver, "hello")).to eq "hello"
+        it "should receive additional arguments" do
+          expect(receiver).to receive(key).with(:world).and_return 'hello world'
+
+          expect(context.call_method_or_proc_on(receiver, key, :world)).to eq 'hello world'
+        end
+
+        it "should use `[]` if available" do
+          expect(receiver).to receive(:[]).with(key).and_return 'world'
+
+          expect(context.call_method_or_proc_on(receiver, key)).to eq 'world'
+        end
       end
-
-      it "should receive additional arguments" do
-        expect(receiver).to receive(:hello).with("world").and_return("hello world")
-
-        expect(context.call_method_or_proc_on(receiver, :hello, "world")).to eq "hello world"
-      end
-
     end
 
     context "when a proc" do

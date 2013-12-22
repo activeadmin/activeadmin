@@ -7,11 +7,11 @@ module ActiveAdmin
         'table'
       end
 
-      def build(record_or_collection, options = {})
+      def build(obj, options = {})
         @sortable       = options.delete(:sortable)
         @resource_class = options.delete(:i18n)
-        @collection     = Array(record_or_collection)
-        @columns = []
+        @collection     = obj.is_a?(Array) || obj.is_a?(ActiveRecord::Relation) ? obj : [obj]
+        @columns        = []
         build_table
         super(options)
       end
@@ -75,7 +75,7 @@ module ActiveAdmin
       def build_table_body
         @tbody = tbody do
           # Build enough rows for our collection
-          @collection.each{|elem| tr(:class => cycle('odd', 'even'), :id => dom_id(elem)) }
+          @collection.each{ |elem| tr class: cycle('odd', 'even'), id: dom_id_for(elem) }
         end
       end
 
