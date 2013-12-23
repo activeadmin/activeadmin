@@ -65,8 +65,7 @@ class ActiveAdmin.DropdownMenu
     $('body').click =>
       @close() if @isOpen
 
-    @$menuButton.click (e)=>
-      e.stopPropagation()
+    @$menuButton.click =>
       unless @isDisabled()
         if @isOpen then @close() else @open()
       false
