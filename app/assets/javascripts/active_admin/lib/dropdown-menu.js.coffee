@@ -69,6 +69,7 @@ class ActiveAdmin.DropdownMenu
       e.stopPropagation()
       unless @isDisabled()
         if @isOpen then @close() else @open()
+      false
 
   _positionMenuList: ->
     button_center = @$menuButton.position().left + @$menuButton.outerWidth() / 2
