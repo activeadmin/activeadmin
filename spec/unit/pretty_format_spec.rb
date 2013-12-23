@@ -3,6 +3,10 @@ require 'spec_helper'
 describe "#pretty_format" do
   include ActiveAdmin::ViewHelpers::DisplayHelper
 
+  def method_missing(*args, &block)
+    mock_action_view.send *args, &block
+  end
+
   context "when a String is passed in" do
     it "should return the String passed in" do
       expect(pretty_format("hello")).to eq "hello"
