@@ -36,6 +36,7 @@ module ActiveAdmin
         type = args[1]
         label = options.delete(:label)
         classes = options.delete(:class)
+        status = convert_to_boolean_status(status) 
 
         content = label || status.titleize if status
 
@@ -47,6 +48,16 @@ module ActiveAdmin
       end
 
       protected
+
+      def convert_to_boolean_status(status)
+        if status == 'true'
+          'Yes'
+        elsif ['false', nil].include?(status)
+          'No'
+        else
+          status
+        end
+      end
 
       def status_to_class(status)
         status.titleize.gsub(/\s/, '').underscore
