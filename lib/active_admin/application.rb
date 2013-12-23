@@ -235,7 +235,6 @@ module ActiveAdmin
       app = self
       ActionDispatch::Reloader.to_prepare do
         app.unload!
-        Rails.application.reload_routes!
       end
     end
   end
