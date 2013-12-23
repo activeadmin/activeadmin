@@ -15,6 +15,27 @@ describe "#pretty_format" do
       expect(self).to receive(:localize).with(t, {:format => :long}) { "Just Now!" }
       expect(pretty_format(t)).to eq "Just Now!"
     end
+
+    context "actually do the formatting" do
+      it "should actually do the formatting" do
+        t = Time.utc(1985,"feb",28,20,15,1)
+        expect(pretty_format(t)).to eq "February 28, 1985 20:15"
+      end
+
+      context "with non-English locale" do
+        before(:all) do
+          @previous_locale = I18n.locale.to_s
+          I18n.locale = "es"
+        end
+        after(:all) do
+          I18n.locale = @previous_locale
+        end
+        it "should return a localized Date or Time with long format for non-english locale" do
+          t = Time.utc(1985,"feb",28,20,15,1)
+          expect(pretty_format(t)).to eq "28 de febrero de 1985 20:15"
+        end
+      end
+    end
   end
 
   context "when an ActiveRecord object is passed in" do
