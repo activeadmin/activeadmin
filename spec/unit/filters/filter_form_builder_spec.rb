@@ -58,6 +58,14 @@ describe ActiveAdmin::Filters::ViewHelper do
     it "should generate a clear filters link" do
       expect(body).to have_tag("a", "Clear Filters", :attributes => { :class => "clear_filters_btn" })
     end
+
+    describe "label as proc" do
+      let(:body) { filter :title, label: proc { 'Title from proc' } }
+
+      it "should render proper label" do
+        expect(body).to have_tag('label', 'Title from proc')
+      end
+    end
   end
 
   describe "string attribute" do
