@@ -60,13 +60,12 @@ module ActiveAdmin
         index    = parent_child_index options[:parent] if options[:parent]
         contents = block.call has_many_form, index
 
-        if has_many_form.object.new_record?
-          contents << template.content_tag(:li) do
-            template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
-          end
-        elsif builder_options[:allow_destroy]
-          has_many_form.input :_destroy, as: :boolean, wrapper_html: {class: 'has_many_delete'},
-                                                       label: I18n.t('active_admin.has_many_delete')
+        contents << template.content_tag(:li) do
+          template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
+        end
+
+        if !has_many_form.object.new_record? && builder_options[:allow_destroy]
+          has_many_form.input :_destroy, as: :hidden
         end
 
         if builder_options[:sortable]

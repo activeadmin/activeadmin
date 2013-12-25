@@ -9,10 +9,17 @@ $ ->
     e.preventDefault()
     parent    = $(@).closest '.has_many_container'
     to_remove = $(@).closest 'fieldset'
-    recompute_positions parent
 
     parent.trigger 'has_many_remove:before', [ to_remove ]
-    to_remove.remove()
+
+    destroy_input = to_remove.find '> ol > .input > :input[name$="[_destroy]"]'
+    if destroy_input.length > 0
+      destroy_input.attr 'value', true
+      to_remove.hide()
+    else
+      to_remove.remove()
+
+    recompute_positions parent
 
   # Provides before and after creation hooks:
   # $ ->
@@ -72,4 +79,4 @@ recompute_positions = (parent)->
     sortable_input = fieldset.find "> ol > .input > :input[name$='[#{input_name}]']"
 
     if sortable_input.length
-      sortable_input.val if destroy_input.is ':checked' then '' else position++
+      sortable_input.val if destroy_input.val() == 'true' then '' else position++

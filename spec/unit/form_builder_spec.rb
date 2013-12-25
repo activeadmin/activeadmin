@@ -404,16 +404,12 @@ describe ActiveAdmin::FormBuilder do
           end
         end
 
-        it "should include a boolean field for _destroy" do
-          body.should have_tag("input", :attributes => {:name => "category[posts_attributes][0][_destroy]"})
+        it "should include a hidden field for _destroy" do
+          body.should have_tag("input", :attributes => {:name => "category[posts_attributes][0][_destroy]", :type => "hidden"})
         end
 
-        it "should have a check box with 'Remove' as its label" do
-          body.should have_tag("label", :attributes => {:for => "category_posts_attributes_0__destroy"}, :content => "Delete")
-        end
-
-        it "should wrap the destroy field in an li with class 'has_many_delete'" do
-          Capybara.string(body).should have_css(".has_many_container > fieldset > ol > li.has_many_delete > input")
+        it "should have a link with class 'has_many_remove' and text 'Remove'" do
+          body.should have_tag("a", :attributes => {:class => "button has_many_remove", :href => "#"}, :content => "Remove")
         end
       end
 
@@ -427,12 +423,12 @@ describe ActiveAdmin::FormBuilder do
           end
         end
 
-        it "should not have a boolean field for _destroy" do
-          body.should_not have_tag("input", :attributes => {:name => "category[posts_attributes][0][_destroy]"})
+        it "should not have a hidden field for _destroy" do
+          body.should_not have_tag("input", :attributes => {:name => "category[posts_attributes][0][_destroy]", :type => "hidden"})
         end
 
-        it "should not have a check box with 'Remove' as its label" do
-          body.should_not have_tag("label", :attributes => {:for => "category_posts_attributes_0__destroy"}, :content => "Remove")
+        it "should have a link with class 'has_many_remove' and text 'Remove'" do
+          body.should have_tag("a", :attributes => {:class => "button has_many_remove", :href => "#"}, :content => "Remove")
         end
       end
     end
