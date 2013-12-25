@@ -5,7 +5,7 @@ module ActiveAdmin
       builder_method :attributes_table_for
 
       def build(obj, *attrs)
-        @collection = obj.is_a?(Array) || obj.is_a?(ActiveRecord::Relation) ? obj : [obj]
+        @collection     = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
         @resource_class = @collection.first.class
         options = { }
         options[:for] = @collection.first if single_record?

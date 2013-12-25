@@ -10,7 +10,7 @@ module ActiveAdmin
       def build(obj, options = {})
         @sortable       = options.delete(:sortable)
         @resource_class = options.delete(:i18n)
-        @collection     = obj.is_a?(Array) || obj.is_a?(ActiveRecord::Relation) ? obj : [obj]
+        @collection     = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
         @columns        = []
         build_table
         super(options)
@@ -81,10 +81,20 @@ module ActiveAdmin
 
       def build_table_cell(col, item)
         td class: col.html_class do
-          value = call_method_or_proc_on item, col.data, exec: false
-          value = pretty_format(value) if col.data.is_a?(Symbol)
-          value
+          render_data col.data, item
         end
+      end
+
+      def render_data(data, item)
+        value = if data.is_a? Proc
+          data.call item
+        elsif item.respond_to? data
+          item.send data
+        elsif item.respond_to? :[]
+          item[data]
+        end
+        value = pretty_format(value) if data.is_a?(Symbol)
+        value
       end
 
       # Returns an array for the current sort order

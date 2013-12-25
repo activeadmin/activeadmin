@@ -44,12 +44,6 @@ describe MethodOrProcHelper do
 
           expect(context.call_method_or_proc_on(receiver, key, :world)).to eq 'hello world'
         end
-
-        it "should use `[]` if available" do
-          expect(receiver).to receive(:[]).with(key).and_return 'world'
-
-          expect(context.call_method_or_proc_on(receiver, key)).to eq 'world'
-        end
       end
     end
 
