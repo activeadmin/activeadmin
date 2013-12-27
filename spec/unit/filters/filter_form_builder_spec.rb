@@ -378,7 +378,7 @@ describe ActiveAdmin::Filters::ViewHelper do
 
       it "should NOT be displayed if false" do
         body = filter :author, if: proc{false}
-        expect(body).to_not have_tag "input", attributes: {name: "q[author_id_eq]"}
+        expect(body).to_not have_tag "select", attributes: {name: "q[author_id_eq]"}
       end
     end
 
