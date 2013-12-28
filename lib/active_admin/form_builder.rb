@@ -97,6 +97,7 @@ module ActiveAdmin
         inputs options, &form_block
 
         form_buffers.last << js_for_has_many(assoc, form_block, template, builder_options[:new_record]) if builder_options[:new_record]
+        form_buffers.last
       end
 
       form_buffers.last << if @already_in_an_inputs_block
