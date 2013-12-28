@@ -1,5 +1,7 @@
 language: ruby
 script: bundle exec rake test_with_coveralls
+before_install:
+  - gem install bundler # use the latest bundler, since Travis doesn't update for us
 rvm:
   - 1.9.3
   - 2.1.0
