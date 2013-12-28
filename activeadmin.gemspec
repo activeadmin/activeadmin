@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "formtastic",          "~> 2.0"
   s.add_dependency "inherited_resources", "~> 1.3"
   s.add_dependency "jquery-rails",        ">= 1.0.0", "< 3"
-  s.add_dependency "kaminari",            "~> 0.13"
+  s.add_dependency "kaminari",            "~> 0.13", "!= 0.15.0"
   s.add_dependency "meta_search",         "~> 1.0"
   s.add_dependency "rails",               ">= 3.0.0", "< 4"
   s.add_dependency "sass",                "~> 3.1"
