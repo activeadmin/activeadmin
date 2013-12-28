@@ -392,6 +392,12 @@ describe ActiveAdmin::Filters::ViewHelper do
         body = filter :updated_at, unless: proc{true}
         expect(body).to_not have_tag "input", attributes: {name: "q[updated_at_gteq]"}
       end
+
+      it "should keep if and unless options" do
+         options =  {unless: proc{true}, if: proc{true} }
+         body = filter :updated_at,  options
+         expect(options).to eq({unless: proc{true}, if: proc{true} })
+      end
     end
   end
 

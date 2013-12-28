@@ -65,8 +65,8 @@ module ActiveAdmin
 
         form_for search, options do |f|
           filters.each do |attribute, opts|
-            should   = opts.delete(:if)     || proc{ true }
-            shouldnt = opts.delete(:unless) || proc{ false }
+            should   = opts[:if]     || proc{ true }
+            shouldnt = opts[:unless] || proc{ false }
 
             if call_method_or_proc_on(self, should) && !call_method_or_proc_on(self, shouldnt)
               f.filter attribute, opts
