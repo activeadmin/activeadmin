@@ -308,34 +308,26 @@ describe ActiveAdmin::Filters::ViewHelper do
   end
 
   describe "conditional display" do
-
-    context "with :if block" do
-      let(:body) do
-        filter :body,   :if => proc{true}
-        filter :author, :if => proc{false}
-      end
-
-      it "should be displayed if true" do
-        body.should have_tag("input", :attributes => { :name => "q[body_contains]"})
-      end
-
-      it "should NOT be displayed if false" do
-        body.should_not have_tag("input", :attributes => { :name => "q[author_id_eq]"})
-      end
-    end
-
-    context "with :unless block" do
-      let(:body) do
-        filter :created_at, :unless => proc{false}
-        filter :updated_at, :unless => proc{true}
-      end
-
-      it "should be displayed if false" do
-        body.should have_tag("input", :attributes => { :name => "q[created_at_gte]"})
-      end
-
-      it "should NOT be displayed if true" do
-        body.should_not have_tag("input", :attributes => { :name => "q[updated_at_gte]"})
+    [:if, :unless].each do |verb|
+      should   = verb == :if ? "should"     : "shouldn't"
+      if_true  = verb == :if ? :should      : :should_not
+      if_false = verb == :if ? :should_not  : :should
+      context "with #{verb.inspect} proc" do
+        it "#{should} be displayed if true" do
+          body = filter :body, verb => proc{ true }
+          body.send if_true, have_tag("input", attributes: {name: "q[body_contains]"})
+        end
+        it "#{should} be displayed if false" do
+          body = filter :body, verb => proc{ false }
+          body.send if_false, have_tag("input", attributes: {name: "q[body_contains]"})
+        end
+        it "should still be hidden on the second render" do
+          filters = [attribute: :body, verb => proc{ verb == :unless }]
+          2.times do
+            body = render_filter scope, filters
+            body.should_not have_tag "input", attributes: {name: "q[body_contains]"}
+          end
+        end
       end
     end
   end

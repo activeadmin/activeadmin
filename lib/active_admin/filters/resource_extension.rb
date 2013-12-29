@@ -13,8 +13,7 @@ module ActiveAdmin
       #
       # @return [Array] Filters that apply for this resource
       def filters
-        return [] unless filters_enabled?
-        filter_lookup
+        filters_enabled? ? filter_lookup : []
       end
 
       # Setter to enable / disable filters on this resource.
