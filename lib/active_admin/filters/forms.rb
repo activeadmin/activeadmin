@@ -65,12 +65,10 @@ module ActiveAdmin
 
         form_for search, options do |f|
           filters.each do |attribute, opts|
-            should   = opts.delete(:if)     || proc{ true }
-            shouldnt = opts.delete(:unless) || proc{ false }
+            return if opts.key?(:if)     && !call_method_or_proc_on(self, opts[:if])
+            return if opts.key?(:unless) &&  call_method_or_proc_on(self, opts[:unless])
 
-            if call_method_or_proc_on(self, should) && !call_method_or_proc_on(self, shouldnt)
-              f.filter attribute, opts
-            end
+            f.filter attribute, opts.except(:if, :unless)
           end
 
           buttons = content_tag :div, :class => "buttons" do
