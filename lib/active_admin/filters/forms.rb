@@ -65,8 +65,8 @@ module ActiveAdmin
 
         form_for search, options do |f|
           filters.each do |attribute, opts|
-            return if opts.key?(:if)     && !call_method_or_proc_on(self, opts[:if])
-            return if opts.key?(:unless) &&  call_method_or_proc_on(self, opts[:unless])
+            next if opts.key?(:if)     && !call_method_or_proc_on(self, opts[:if])
+            next if opts.key?(:unless) &&  call_method_or_proc_on(self, opts[:unless])
 
             f.filter attribute, opts.except(:if, :unless)
           end

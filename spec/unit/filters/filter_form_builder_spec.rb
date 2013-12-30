@@ -390,6 +390,12 @@ describe ActiveAdmin::Filters::ViewHelper do
             expect(body).not_to have_tag "input", attributes: {name: "q[body_contains]"}
           end
         end
+        it "should successfully keep rendering other filters after one is hidden" do
+          filters = {body: { verb => proc{ verb == :unless }}, author: {}}
+          body    = render_filter scope, filters
+          expect(body).not_to have_tag "input",  attributes: {name: "q[body_contains]"}
+          expect(body).to     have_tag "select", attributes: {name: "q[author_id_eq]"}
+        end
       end
     end
   end
