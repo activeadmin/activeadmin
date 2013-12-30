@@ -13,7 +13,7 @@ $ ->
     parent.trigger 'has_many_remove:before', [ to_remove ]
 
     destroy_input = to_remove.find '> ol > .input > :input[name$="[_destroy]"]'
-    if destroy_input.length > 0
+    if destroy_input.length
       destroy_input.attr 'value', true
       to_remove.hide()
     else

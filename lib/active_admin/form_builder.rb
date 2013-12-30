@@ -64,7 +64,7 @@ module ActiveAdmin
           template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
         end
 
-        if !has_many_form.object.new_record? && builder_options[:allow_destroy]
+        if has_many_form.object.persisted? && builder_options[:allow_destroy]
           has_many_form.input :_destroy, as: :hidden
         end
 
