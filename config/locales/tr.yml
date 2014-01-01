@@ -20,7 +20,6 @@ tr:
     next: "Sonraki"
     download: "İndir:"
     has_many_new: "Yeni %{model} kaydı ekle"
-    has_many_delete: "Sil"
     has_many_remove: "Çıkarmak"
     filters:
       buttons:

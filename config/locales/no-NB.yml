@@ -18,7 +18,6 @@
     next: "Neste"
     download: "Last ned:"
     has_many_new: "Legg til ny %{model}"
-    has_many_delete: "Slett"
     has_many_remove: "Fjern"
     filters:
       buttons:

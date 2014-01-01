@@ -20,7 +20,6 @@ el:
     next: "Επόμενη"
     download: "Κατέβασμα:"
     has_many_new: "Προσθήκη Νέου %{model}"
-    has_many_delete: "Διαγραφή"
     has_many_remove: "Αφαίρεση"
     filters:
       buttons:

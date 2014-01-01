@@ -20,7 +20,6 @@ lv:
     next: "Nākošā"
     download: "Lejuplādēt:"
     has_many_new: "Pievienot jaunu '%{model}' ierakstu"
-    has_many_delete: "Dzēst"
     has_many_remove: "Noņemt"
     filters:
       buttons:

@@ -20,7 +20,6 @@ uk:
     next: "Наст."
     download: "Завантаження:"
     has_many_new: "Додати %{model}"
-    has_many_delete: "Прибрати"
     has_many_remove: "Видалити"
     filter: "Фільтрувати"
     clear_filters: "Очистити"

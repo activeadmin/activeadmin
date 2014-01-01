@@ -20,7 +20,6 @@
     next: "Nästa"
     download: "Ladda ner:"
     has_many_new: "Skapa en ny %{model}"
-    has_many_delete: "Ta bort"
     has_many_remove: "Ta bort"
     filters:
       buttons:

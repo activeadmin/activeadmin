@@ -20,7 +20,6 @@ pl:
     next: "Następna"
     download: "Pobierz:"
     has_many_new: "Dodaj nowy %{model}"
-    has_many_delete: "Usuń"
     has_many_remove: "Usuń"
     filters:
       buttons:

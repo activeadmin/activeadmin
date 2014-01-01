@@ -20,7 +20,6 @@
     next: "下一個"
     download: "下載:"
     has_many_new: "增加新的 %{model}"
-    has_many_delete: "刪除"
     has_many_remove: "清除"
     filters:
       buttons:

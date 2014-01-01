@@ -20,7 +20,6 @@ cs:
     next: "Následující"
     download: "Stáhnout:"
     has_many_new: "Přidat nový"
-    has_many_delete: "Smazat"
     has_many_remove: "Odstranit"
     filters:
       buttons:

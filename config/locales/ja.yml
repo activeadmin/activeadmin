@@ -20,7 +20,6 @@ ja:
     next: "次"
     download: "ダウンロード:"
     has_many_new: "新規に %{model} を追加する"
-    has_many_delete: "削除する"
     has_many_remove: "削除する"
     filters:
       buttons:
