@@ -21,6 +21,7 @@ ja:
     download: "ダウンロード:"
     has_many_new: "新規に %{model} を追加する"
     has_many_remove: "削除する"
+    has_many_undo_remove: "削除した %{model} を復活する"
     filters:
       buttons:
         filter: "絞り込む"

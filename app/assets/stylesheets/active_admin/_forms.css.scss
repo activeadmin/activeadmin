@@ -39,7 +39,13 @@ form {
         font-size: 12px;
         font-weight: bold;
       }
-      .has_many_fields { margin: 10px 0 }
+      .has_many_fields {
+        margin: 10px 0;
+
+        &.has_many_removed {
+          display: none;
+        }
+      }
     }
 
     ol > li > li label {

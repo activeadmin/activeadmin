@@ -11,14 +11,7 @@ $ ->
     to_remove = $(@).closest 'fieldset'
 
     parent.trigger 'has_many_remove:before', [ to_remove ]
-
-    destroy_input = to_remove.find '> ol > .input > :input[name$="[_destroy]"]'
-    if destroy_input.length
-      destroy_input.attr 'value', true
-      to_remove.hide()
-    else
-      to_remove.remove()
-
+    toggle_remove to_remove, true
     recompute_positions parent
 
   # Provides before and after creation hooks:
@@ -50,6 +43,17 @@ $ ->
       recompute_positions parent
       parent.trigger 'has_many_add:after', [ fieldset ]
 
+  $(document).on 'click', 'a.button.has_many_undo_remove', (e) ->
+    e.preventDefault()
+    return if $(@).hasClass 'disabled'
+    parent = $(@).closest '.has_many_container'
+    $to_unremove = last_removed parent
+
+    if $to_unremove?
+      toggle_remove $to_unremove, false
+      parent.trigger 'has_many_add:after', [ $to_unremove ]
+      recompute_positions parent
+
   $(document).on 'change','.has_many_container[data-sortable] :input[name$="[_destroy]"]', ->
     recompute_positions $(@).closest '.has_many'
 
@@ -79,4 +83,27 @@ recompute_positions = (parent)->
     sortable_input = fieldset.find "> ol > .input > :input[name$='[#{input_name}]']"
 
     if sortable_input.length
-      sortable_input.val if destroy_input.val() == 'true' then '' else position++
+      sortable_input.val if fieldset.hasClass('has_many_removed') then '' else position++
+
+last_removed = (parent) ->
+  sorted_removed = parent.children('fieldset:data(has-many-removed)').sort (a, b) ->
+    $(b).data('has-many-removed') - $(a).data('has-many-removed')
+  $ sorted_removed[0]
+
+toggle_remove = ($item, remove) ->
+  $item         = if $item instanceof jQuery then $item else $(@)
+  $parent       = $item.closest '.has_many_container'
+  destroy_input = $item.find '> ol > .input > :input[name$="[_destroy]"]'
+
+  destroy_input.attr 'value', remove if destroy_input.length
+  $item.toggleClass 'has_many_removed', remove
+
+  if remove
+    $last_removed = last_removed $parent
+    index = if $last_removed? then $last_removed.data('has-many-removed') + 1 else 1
+    $item.data 'has-many-removed', index
+  else
+    index = $item.data('has-many-removed') - 1
+    $item.removeData 'has-many-removed'
+
+  $parent.children('.button.has_many_undo_remove').toggleClass 'disabled', !index

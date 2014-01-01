@@ -21,6 +21,7 @@ en:
     download: "Download:"
     has_many_new: "Add New %{model}"
     has_many_remove: "Remove"
+    has_many_undo_remove: "Undo Remove %{model}"
     filters:
       buttons:
         filter: "Filter"

@@ -60,12 +60,15 @@ module ActiveAdmin
         index    = parent_child_index options[:parent] if options[:parent]
         contents = block.call has_many_form, index
 
-        contents << template.content_tag(:li) do
-          template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
-        end
 
-        if has_many_form.object.persisted? && builder_options[:allow_destroy]
-          has_many_form.input :_destroy, as: :hidden
+        show_remove = has_many_form.object.persisted? && builder_options[:allow_destroy]
+        show_remove |= has_many_form.object.new_record?
+
+        if show_remove
+          contents << template.content_tag(:li) do
+            template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
+          end
+          has_many_form.input :_destroy, as: :hidden if has_many_form.object.persisted?
         end
 
         if builder_options[:sortable]
@@ -172,11 +175,12 @@ module ActiveAdmin
         :for_options => { child_index: placeholder }
       }
       html = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
-      text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
+      add_text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
+      undo_text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_undo_remove')
 
-      template.link_to text, '#', class: "button has_many_add", data: {
+      template.link_to(add_text, '#', class: "button has_many_add", data: {
         html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
-      }
+      }) + template.link_to(undo_text, '#', class: "button has_many_undo_remove disabled", model: assoc_name.human)
     end
 
   end
