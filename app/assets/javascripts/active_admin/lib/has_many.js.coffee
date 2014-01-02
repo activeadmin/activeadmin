@@ -99,9 +99,6 @@ toggle_remove = ($item, remove) ->
   $parent       = $item.closest '.has_many_container'
   destroy_input = $item.find '> ol > .input > :input[name$="[_destroy]"]'
 
-  destroy_input.attr 'value', remove if destroy_input.length
-  $item.toggleClass 'has_many_removed', remove
-
   if remove
     $last_removed = last_removed $parent
     index = if $last_removed? then $last_removed.data('has_many_removed_index') + 1 else 1
@@ -109,5 +106,8 @@ toggle_remove = ($item, remove) ->
   else
     index = $item.data('has_many_removed_index') - 1
     $item.removeData 'has_many_removed_index'
+
+  destroy_input.attr 'value', remove if destroy_input.length
+  $item.toggleClass 'has_many_removed', remove
 
   $parent.children('.button.has_many_undo_remove').toggleClass 'disabled', !index
