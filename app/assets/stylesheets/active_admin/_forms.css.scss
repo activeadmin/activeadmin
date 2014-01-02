@@ -42,6 +42,10 @@ form {
       .has_many_fields {
         margin: 10px 0;
 
+        &.has_many_new {
+          background: $section-background-alternate-color;
+        }
+
         &.has_many_removed {
           display: none;
         }
