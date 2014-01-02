@@ -86,8 +86,8 @@ recompute_positions = (parent)->
       sortable_input.val if fieldset.hasClass('has_many_removed') then '' else position++
 
 last_removed = (parent) ->
-  sorted_removed = parent.children('fieldset:data(has-many-removed)').sort (a, b) ->
-    $(b).data('has-many-removed') - $(a).data('has-many-removed')
+  sorted_removed = parent.children('fieldset.has_many_removed').sort (a, b) ->
+    $(b).data('has_many_removed_index') - $(a).data('has_many_removed_index')
   $ sorted_removed[0]
 
 toggle_remove = ($item, remove) ->
@@ -100,10 +100,10 @@ toggle_remove = ($item, remove) ->
 
   if remove
     $last_removed = last_removed $parent
-    index = if $last_removed? then $last_removed.data('has-many-removed') + 1 else 1
-    $item.data 'has-many-removed', index
+    index = if $last_removed? then $last_removed.data('has_many_removed_index') + 1 else 1
+    $item.data 'has_many_removed_index', index
   else
-    index = $item.data('has-many-removed') - 1
-    $item.removeData 'has-many-removed'
+    index = $item.data('has_many_removed_index') - 1
+    $item.removeData 'has_many_removed_index'
 
   $parent.children('.button.has_many_undo_remove').toggleClass 'disabled', !index
