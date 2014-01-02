@@ -16,7 +16,7 @@
 }
 
 @mixin section-background {
-  background: #f4f4f4;
+  background: $section-background-color;
   @include rounded(4px);
   @include inset-shadow(0,1px,4px, #ddd);
 }
