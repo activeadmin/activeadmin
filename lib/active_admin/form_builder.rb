@@ -176,11 +176,11 @@ module ActiveAdmin
       }
       html = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
       add_text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
-      undo_text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_undo_remove')
+      undo_text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_undo_remove', model: assoc_name.human)
 
       template.link_to(add_text, '#', class: "button has_many_add", data: {
         html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
-      }) + template.link_to(undo_text, '#', class: "button has_many_undo_remove disabled", model: assoc_name.human)
+      }) + template.link_to(undo_text, '#', class: "button has_many_undo_remove disabled")
     end
 
   end
