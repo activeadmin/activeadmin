@@ -60,6 +60,10 @@ $ ->
   init_sortable()
   $(document).on 'has_many_add:after', '.has_many_container', init_sortable
 
+  $(document).on 'submit', 'form', (e) ->
+    # Clean the form of all removed new nested records
+    $('.has_many_new.has_many_removed').remove()
+
 
 # Helpers
 init_sortable = ->
