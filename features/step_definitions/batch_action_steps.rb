@@ -5,13 +5,13 @@ Then /^I (should|should not) be asked to confirm "([^"]*)" for "([^"]*)"$/ do |m
 end
 
 Then /^I (should|should not) see the batch action :([^\s]*) "([^"]*)"$/ do |maybe, sym, title|
-  selector = "#batch_actions_selector a.batch_action:contains('#{title}')"
+  selector = ".batch_actions_selector a.batch_action:contains('#{title}')"
   selector << "[href='#'][data-action='#{sym}']" if maybe == 'should'
   page.send maybe.sub(' ', '_'), have_css(selector)
 end
 
 Then /^the (\d+)(?:st|nd|rd|th) batch action should be "([^"]*)"$/ do |index, title|
-  page.all("#batch_actions_selector a.batch_action")[index.to_i - 1].text.should match title
+  page.all(".batch_actions_selector a.batch_action")[index.to_i - 1].text.should match title
 end
 
 When /^I check the (\d+)(?:st|nd|rd|th) record$/ do |index|
@@ -23,17 +23,17 @@ When /^I toggle the collection selection$/ do
 end
 
 Then /^I should see that the batch action button is disabled$/ do
-  page.should have_css "#batch_actions_selector .dropdown_menu_button.disabled"
+  page.should have_css ".batch_actions_selector .dropdown_menu_button.disabled"
 end
 
 Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe, type|
-  selector = "div.table_tools #batch_actions_selector"
+  selector = "div.table_tools .batch_actions_selector"
   selector << ' .dropdown_menu_button' if maybe == 'should' && type == 'button'
   page.send maybe.sub(' ', '_'), have_css(selector)
 end
 
 Then /^I should see the batch action popover exists$/ do
-  page.should have_css "#batch_actions_selector"
+  page.should have_css ".batch_actions_selector"
 end
 
 Given /^I submit the batch action form with "([^"]*)"$/ do |action|
