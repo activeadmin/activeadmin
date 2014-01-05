@@ -214,17 +214,13 @@ module ActiveAdmin
         active_admin_authorization.scope_collection(collection, action_name)
       end
 
-
       def apply_sorting(chain)
         params[:order] ||= active_admin_config.sort_order
-        if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
-          column = $1
-          order  = $2
-          table  = active_admin_config.resource_column_names.include?(column) ? active_admin_config.resource_table_name : nil
-          table_column = (column =~ /\./) ? column :
-            [table, active_admin_config.resource_quoted_column_name(column)].compact.join(".")
+        
+        order_clause = OrderClause.new params[:order]
 
-          chain.reorder("#{table_column} #{order}")
+        if order_clause.valid?
+          chain.reorder(order_clause.to_sql(active_admin_config))
         else
           chain # just return the chain
         end

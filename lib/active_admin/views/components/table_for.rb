@@ -101,10 +101,14 @@ module ActiveAdmin
       #   current_sort[0] #=> sort_key
       #   current_sort[1] #=> asc | desc
       def current_sort
-        @current_sort ||= if params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
-          [$1,$2]
-        else
-          []
+        @current_sort ||= begin
+          order_clause = OrderClause.new params[:order]
+          
+          if order_clause.valid?
+            [order_clause.field, order_clause.order]
+          else
+            []
+          end
         end
       end
 
