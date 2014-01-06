@@ -15,6 +15,13 @@ module ActiveAdmin
         false
       end
 
+      # Can pass proc to filter label option
+      def label_from_options
+        res = super
+        res = res.call if res.is_a? Proc
+        res
+      end
+
       def wrapper_html_options
         { :class => "filter_form_field #{as}" }
       end

@@ -359,6 +359,9 @@ describe ActiveAdmin::FormBuilder do
         body.should_not have_tag('a', 'Add New Post')
       end
 
+      it "should render the nested form" do
+        body.should have_tag("input", :attributes => {:name => "category[posts_attributes][0][title]"})
+      end
     end
 
     describe "with custom heading" do

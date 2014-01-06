@@ -131,6 +131,20 @@ batch_action :flag, form: {
 end
 ```
 
+If you pass a nested array, it will behave just like Formtastic would, with the first
+element being the value and the second element being the text displayed.
+
+```ruby
+batch_action :foo, form: {
+  bar: [[2,'Jake'], [45,'Mary']],
+  baz: User.pluck(:id, :name) # multi-pluck new to Rails 4
+} do |ids, inputs|
+  Bar.find(inputs[:bar])
+  User.find(inputs[:baz])
+  # ...
+end
+```
+
 Under the covers this is powered by the JS `ActiveAdmin.modal_dialog` which you can use yourself:
 
 ```coffee

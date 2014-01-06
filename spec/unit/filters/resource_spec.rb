@@ -7,6 +7,10 @@ describe ActiveAdmin::Filters::ResourceExtension do
     namespace.register(Post)
   end
 
+  it "should return a Hash" do
+    expect(resource.filters).to be_a Hash
+  end
+
   it "should return the defaults if no filters are set" do
     expect(resource.filters.keys).to match_array([
       :author, :body, :category, :created_at, :published_at, :starred, :taggings, :title, :updated_at
@@ -78,16 +82,6 @@ describe ActiveAdmin::Filters::ResourceExtension do
       resource.add_filter :title, three: :four
 
       expect(resource.filters).to eq title: {three: :four}
-    end
-
-    it "should keep specified options" do
-      resource.add_filter :title, one: :two
-
-      resource.filters.each do |attribute, opts|
-        opts.delete(:one)
-      end
-
-      expect(resource.filters).to eq title: {one: :two}
     end
 
     it "should preserve default filters" do

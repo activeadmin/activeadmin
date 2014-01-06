@@ -76,10 +76,18 @@ fr:
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
     devise:
+      username:
+        title: "Nom d'utilisateur"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Sous-domaine"
+      password:
+        title: "Mot de passe"
       login:
-        title: "login"
+        title: "Connection"
         remember_me: "Se souvenir de moi"
-        submit: "login"
+        submit: "Se connecter"
       reset_password:
         title: "Vous avez oublié votre mot de passe ?"
         submit: "Réinitialiser mon mot de passe"

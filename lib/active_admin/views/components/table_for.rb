@@ -7,11 +7,11 @@ module ActiveAdmin
         'table'
       end
 
-      def build(record_or_collection, options = {})
+      def build(obj, options = {})
         @sortable       = options.delete(:sortable)
         @resource_class = options.delete(:i18n)
-        @collection     = Array(record_or_collection)
-        @columns = []
+        @collection     = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
+        @columns        = []
         build_table
         super(options)
       end
@@ -75,7 +75,7 @@ module ActiveAdmin
       def build_table_body
         @tbody = tbody do
           # Build enough rows for our collection
-          @collection.each{|elem| tr(:class => cycle('odd', 'even'), :id => dom_id(elem)) }
+          @collection.each{ |elem| tr class: cycle('odd', 'even'), id: dom_id_for(elem) }
         end
       end
 
@@ -83,8 +83,7 @@ module ActiveAdmin
         td class: col.html_class do
           value = nil
           begin
-            value = call_method_or_proc_on item, col.data, exec: false
-            value = pretty_format(value) if col.data.is_a?(Symbol)
+            value = render_data col.data, item
           rescue => e
             if ActiveAdmin.application.ignore_undefined_method_for_nil
               value = div(:class => 'table-cell-exception') do
@@ -105,6 +104,18 @@ module ActiveAdmin
           end
           value
         end
+      end
+
+      def render_data(data, item)
+        value = if data.is_a? Proc
+          data.call item
+        elsif item.respond_to? data
+          item.send data
+        elsif item.respond_to? :[]
+          item[data]
+        end
+        value = pretty_format(value) if data.is_a?(Symbol)
+        value
       end
 
       # Returns an array for the current sort order

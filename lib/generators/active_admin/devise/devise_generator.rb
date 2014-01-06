@@ -36,26 +36,6 @@ module ActiveAdmin
         end
       end
 
-      # This fixes a bug in the 3.0.0 release of Devise. For more info:
-      # https://github.com/plataformatec/devise/issues/2515
-      def add_attr_accessible_if_missing
-        require 'devise/version'
-        if ::Devise::VERSION == '3.0.0'
-          if Rails::VERSION::MAJOR == 3 && !defined?(ActionController::StrongParameters)
-            model = File.join(destination_root, "app", "models", "#{file_path}.rb")
-            inject_into_file model, "\n  attr_accessible :email, :password, :password_confirmation, :remember_me\n",
-                             :before => /end\s*\z/
-          end
-        end
-      end
-
-      def add_attr_accessible_if_needed
-        unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
-          model_file = File.join(destination_root, "app", "models", "#{file_path}.rb")
-          inject_into_file model_file, "  attr_accessible :email, :password, :password_confirmation, :remember_me\n", before: /end\n*\z/
-        end
-      end
-
       def set_namespace_for_path
         routes_file = File.join(destination_root, "config", "routes.rb")
         gsub_file routes_file, /devise_for :#{plural_table_name}$/, "devise_for :#{plural_table_name}, ActiveAdmin::Devise.config"

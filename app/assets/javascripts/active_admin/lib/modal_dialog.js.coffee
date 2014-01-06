@@ -14,7 +14,13 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
     html += """<li>
       <label>#{name.charAt(0).toUpperCase() + name.slice(1)}</label>
       <#{wrapper} name="#{name}" class="#{klass}" type="#{type}">""" +
-        (if opts then ("<#{elem}>#{v}</#{elem}>" for v in opts).join '' else '') +
+        (if opts then (
+          for v in opts
+            if $.isArray v
+              "<#{elem} value=#{v[1]}>#{v[0]}</#{elem}>"
+            else
+              "<#{elem}>#{v}</#{elem}>"
+        ).join '' else '') +
       "</#{wrapper}>" +
     "</li>"
     [wrapper, elem, opts, type, klass] = [] # unset any temporary variables

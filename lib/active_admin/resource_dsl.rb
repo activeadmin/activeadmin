@@ -1,6 +1,11 @@
 module ActiveAdmin
   # This is the class where all the register blocks are evaluated.
   class ResourceDSL < DSL
+    def initialize(config, resource_class)
+      @resource = resource_class
+      super(config)
+    end
+
     private
 
     def belongs_to(target, options = {})
@@ -75,6 +80,8 @@ module ActiveAdmin
     #   end
     #
     def csv(options={}, &block)
+      options[:resource] = @resource
+
       config.csv_builder = CSVBuilder.new(options, &block)
     end
 
