@@ -46,10 +46,10 @@ module ActiveAdmin
       # will raise a RuntimeError
       #
       # @param [Symbol] attribute The attribute to not filter on
-      def remove_filter(attribute)
+      def remove_filter(*attributes)
         raise Disabled unless filters_enabled?
 
-        (@filters_to_remove ||= []) << attribute.to_sym
+        attributes.each { |attribute| (@filters_to_remove ||= []) << attribute.to_sym }
       end
 
       # Add a filter for this resource. If filters are not enabled, this method

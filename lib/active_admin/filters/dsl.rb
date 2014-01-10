@@ -9,7 +9,7 @@ module ActiveAdmin
 
       # For docs, please see ActiveAdmin::Filters::ResourceExtension#remove_filter
       def remove_filter(*attributes)
-        attributes.each { |attribute| config.remove_filter(attribute) }
+        config.remove_filter(*attributes)
       end
 
       # For docs, please see ActiveAdmin::Filters::ResourceExtension#preserve_default_filters!

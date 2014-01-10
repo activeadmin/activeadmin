@@ -61,6 +61,14 @@ describe ActiveAdmin::Filters::ResourceExtension do
     end
   end
 
+  describe "removing a multiple filters inline" do
+    it "should work" do
+      expect(resource.filters.keys).to include :author, :body
+      resource.remove_filter :author, :body
+      expect(resource.filters.keys).to_not include :author, :body
+    end
+  end
+
   describe "adding a filter" do
     it "should work" do
       resource.add_filter :title
