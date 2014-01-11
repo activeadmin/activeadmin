@@ -85,6 +85,9 @@ en:
         title: "Subdomain"
       password: 
         title: "Password"
+      sign_up:
+        title: "Sign up"
+        submit: "Sign up"
       login:
         title: "Login"
         remember_me: "Remember me"

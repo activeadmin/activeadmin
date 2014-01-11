@@ -73,6 +73,9 @@ pl:
       errors:
         empty_text: "Komentarz nie został zapisany, zawartość była pusta."
     devise:
+      sign_up:
+        title: "Rejestracja"
+        submit: "Zarejestruj się"
       login:
         title: "Logowanie"
         remember_me: "Zapamiętaj mnie"
