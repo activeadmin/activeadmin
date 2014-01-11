@@ -135,24 +135,18 @@ If you pass a nested array, it will behave just like Formtastic would, with the 
 element being the text displayed and the second element being the value.
 
 ```ruby
-batch_action :foo, form: {
-  bar: [['Jake',2], ['Mary',3]],
-  baz: User.pluck(:id, :name) # multi-pluck new to Rails 4
-} do |ids, inputs|
-  Bar.find(inputs[:bar])
-  User.find(inputs[:baz])
+batch_action :doit, form: {user: [['Jake',2], ['Mary',3]]} do |ids, inputs|
+  User.find(inputs[:user])
   # ...
 end
 ```
 
-If your array is dynamic, you should make a proc pair form.
+When you have dynamic form inputs you can pass a proc instead:
 
 ```ruby
-batch_action :foo, form: proc {
-  {baz: User.pluck(:id, :name)} # multi-pluck new to Rails 4
-} do |ids, inputs|
-  Bar.find(inputs[:bar])
-  User.find(inputs[:baz])
+# NOTE: multi-pluck is new to Rails 4
+batch_action :doit, form: ->{{user: User.pluck(:name, :id)}} do |ids, inputs|
+  User.find(inputs[:user])
   # ...
 end
 ```
