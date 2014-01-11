@@ -51,6 +51,8 @@ he:
     blank_slate:
       content: "כרגע אין עוד אף %{resource_name}."
       link: "צור אחד"
+    dropdown_actions:
+      button_label: "פעולו"
     batch_actions:
       button_label: "פעולות מרובות"
       default_confirmation: "אתה בטוח שאתה רוצה לעשות את זה?"

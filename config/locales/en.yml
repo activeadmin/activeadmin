@@ -51,6 +51,8 @@ en:
     blank_slate:
       content: "There are no %{resource_name} yet."
       link: "Create one"
+    dropdown_actions:
+      button_label: "Actions"
     batch_actions:
       button_label: "Batch Actions"
       default_confirmation: "Are you sure you want to do this?"
@@ -83,7 +85,7 @@ en:
         title: "Email"
       subdomain:
         title: "Subdomain"
-      password: 
+      password:
         title: "Password"
       sign_up:
         title: "Sign up"

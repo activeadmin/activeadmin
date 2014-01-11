@@ -51,6 +51,8 @@ hu:
     blank_slate:
       content: "Még nincs létrehozva %{resource_name}."
       link: "Létrehozás most"
+    dropdown_actions:
+      button_label: "Műveletek"
     batch_actions:
       button_label: "Tömeges műveletek"
       default_confirmation: "Biztos vagy benne, hogy a ön akar-hoz csinál ez?"

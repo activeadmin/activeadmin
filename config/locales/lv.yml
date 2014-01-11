@@ -51,6 +51,8 @@ lv:
     blank_slate:
       content: "Sadaļā '%{resource_name}' nav neviena ieraksta."
       link: "Izveidot jaunu"
+    dropdown_actions:
+      button_label: "Actions"
     batch_actions:
       button_label: "Batch Actions"
       default_confirmation: "Vai tiešām vēlaties to darīt?"

@@ -88,6 +88,19 @@ index do
 end
 ```
 
+In case you prefer to list actions links in a dropdown menu:
+
+```ruby
+index do
+  selectable_column
+  column :title
+  actions dropdown: true do |post|
+    item "Preview", admin_preview_post_path(post)
+  end
+end
+```
+
+
 ## Sorting
 
 When a column is generated from an Active Record attribute, the table is

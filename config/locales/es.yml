@@ -51,6 +51,8 @@ es:
         one: "registro"
         other: "registros"
     any: "Cualquiera"
+    dropdown_actions:
+      button_label: "Acciones"
     batch_actions:
       button_label: "Acciones en masa"
       default_confirmation: "¿Seguro que quieres hacer esto?"
