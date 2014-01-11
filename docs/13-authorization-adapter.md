@@ -225,3 +225,7 @@ will use it for authorization:
     end
 
 To view more details about the CanCan API, visit [https://github.com/ryanb/cancan](https://github.com/ryanb/cancan).
+
+## Using the Pundit Adapter
+
+TODO!
