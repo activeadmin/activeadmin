@@ -21,3 +21,7 @@ $ ->
   # a dropdown, apply that choice to the filter input field.
   $('.filter_form_field.select_and_search select').change ->
     $(@).siblings('input').prop name: "q[#{@value}]"
+
+  # toggle in-table-cell exceptions description
+  $('.table-cell-exception .exception-icon').click ->
+    $(@).parent().toggleClass('shown');

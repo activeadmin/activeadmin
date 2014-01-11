@@ -1,0 +1,46 @@
+.table-cell-exception {
+  .exception-icon {
+    display: inline-block;
+    background: #ebb;
+    position: relative;
+    height: 1.5em;
+    width: 47px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+  .exception-icon:before {
+    content: attr(data-label);
+    //content: 'Error';
+    display: block;
+    width: 47px;
+    text-align: center;
+    height: 1.5em;
+    margin-right: -40px;
+  }
+
+  .exception-message {
+    display: none;
+  }
+
+  .exception-trace {
+    display: none;
+  }
+}
+
+.table-cell-exception.shown {
+  .exception-icon {
+    margin-right: 5px;
+  }
+
+  .exception-message {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .exception-trace {
+    display: block;
+    color: #666;
+  }
+}
