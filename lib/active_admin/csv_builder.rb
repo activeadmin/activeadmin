@@ -10,6 +10,14 @@ module ActiveAdmin
   #   csv_builder = CSVBuilder.new :col_sep => ";"
   #   csv_builder.column :id
   #
+  # Note that by passing a :context to the CSV builder that will be used in
+  # `method_missing` calls. This is used by Active Admin so you have access to the
+  # full AA config object from within the CSV block. For example, it allows you to do this:
+  #
+  #    csv do
+  #      controller.parent
+  #      # ...
+  #    end
   #
   class CSVBuilder
 
@@ -17,10 +25,10 @@ module ActiveAdmin
     # The CSVBuilder's columns would be Id followed by this
     # resource's content columns
     def self.default_for_resource(resource)
-      new(resource: resource).tap do |csv_builder|
-        csv_builder.column(:id)
+      new(resource: resource).tap do |builder|
+        builder.column :id
         resource.content_columns.each do |content_column|
-          csv_builder.column(content_column.name.to_sym)
+          builder.column content_column.name.to_sym
         end
       end
     end
@@ -28,7 +36,8 @@ module ActiveAdmin
     attr_reader :columns, :options
 
     def initialize(options={}, &block)
-      @resource = options.delete(:resource)
+      @context           = options.delete :context
+      @resource          = options.delete :resource
       @columns, @options = [], options
       instance_exec &block if block_given?
     end
@@ -36,6 +45,14 @@ module ActiveAdmin
     # Add a column
     def column(name, &block)
       @columns << Column.new(name, @resource, block)
+    end
+
+    def method_missing(*args, &block)
+      if @context
+        @context.send *args, &block
+      else
+        super
+      end
     end
 
     class Column
