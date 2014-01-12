@@ -12,6 +12,8 @@ script:
 rvm:
   - 1.9.3
   - 2.1.2
+  - rbx-2
+  - jruby
 env:
   matrix:
     - RAILS=3.2.19
