@@ -39,6 +39,7 @@ module ActiveAdmin
   autoload :MenuCollection,           'active_admin/menu_collection'
   autoload :MenuItem,                 'active_admin/menu_item'
   autoload :Namespace,                'active_admin/namespace'
+  autoload :OrderClause,              'active_admin/order_clause'
   autoload :Page,                     'active_admin/page'
   autoload :PagePresenter,            'active_admin/page_presenter'
   autoload :PageController,           'active_admin/page_controller'

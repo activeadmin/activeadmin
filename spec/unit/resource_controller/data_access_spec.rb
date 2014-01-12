@@ -25,21 +25,23 @@ describe ActiveAdmin::ResourceController::DataAccess do
 
   describe "sorting" do
 
-    context "for table columns" do
+    context "valid clause" do
       let(:params){ {:order => "id_asc" }}
-      it "should prepend the table name" do
+
+      it "reorders chain" do
         chain = double "ChainObj"
         expect(chain).to receive(:reorder).with('"posts"."id" asc').once.and_return(Post.search)
         controller.send :apply_sorting, chain
       end
     end
 
-    context "for virtual columns" do
-      let(:params){ {:order => "virtual_id_asc" }}
-      it "should not prepend the table name" do
+    context "invalid clause" do
+      let(:params){ {:order => "_asc" }}
+      
+      it "returns chain untouched" do
         chain = double "ChainObj"
-        expect(chain).to receive(:reorder).with('"virtual_id" asc').once.and_return(Post.search)
-        controller.send :apply_sorting, chain
+        expect(chain).not_to receive(:reorder)
+        expect(controller.send(:apply_sorting, chain)).to eq chain
       end
     end
 
