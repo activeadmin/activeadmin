@@ -102,41 +102,20 @@ describe ActiveAdmin::Filters::ViewHelper do
 
     it "should select the option which is currently being filtered"
 
-  end
 
-  describe "string attribute with sub filters" do
-    let(:body) { filter :title_contains }
+    context "with predicate" do
+      %w[equals contains starts_with ends_with].each do |predicate|
+        describe '"'+predicate+'"' do
+          let(:body) { filter :"title_#{predicate}" }
 
-    it "should generate a search field for a string attribute with query contains" do
-      expect(body).to have_tag("input", :attributes => { :name => "q[title_contains]"})
-      expect(body).to have_tag('label', 'Title contains')
-    end
+          it "shouldn't include a select field" do
+            expect(body).not_to have_tag "select"
+          end
 
-    it "should NOT generate a select option for contains" do
-      expect(body).to_not have_tag("option", "Contains", :attributes => { :value => 'title_contains' })
-    end
-
-    context "using starts_with and as" do
-      let(:body) { filter :title_starts_with }
-
-      it "should generate a search field for a string attribute with query starts_with" do
-        expect(body).to have_tag("input", :attributes => { :name => "q[title_starts_with]" })
-      end
-    end
-
-    context "using ends_with and as" do
-      let(:body) { filter :title_ends_with }
-
-      it "should generate a search field for a string attribute with query ends_with" do
-        expect(body).to have_tag("input", :attributes => { :name => "q[title_ends_with]" })
-      end
-    end
-
-    context "using contains and NO AS defined" do
-      let(:body) { filter :title_contains }
-
-      it "should generate a search field for a string attribute with query contains" do
-        expect(body).to have_tag("input", :attributes => { :name => "q[title_contains]" })
+          it "should build correctly" do
+            expect(body).to have_tag("input", attributes: { name: "q[title_#{predicate}]" })
+          end
+        end
       end
     end
   end
