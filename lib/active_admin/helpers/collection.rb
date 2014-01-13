@@ -47,7 +47,7 @@ module ActiveAdmin
       #   So we should only use this work around if the #group method was called on the
       #   ActiveRecord::Relation. Or else proceed as normal.
       def collection_size(collection=collection)
-        if collection.grouped_values.present?
+        if collection.group_values.present?
           size = collection.reorder("").count
           # when GROUP BY is used, AR returns Hash instead of Fixnum for .size
           size = size.size if size.kind_of?(Hash)
