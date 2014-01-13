@@ -8,11 +8,17 @@ module ActiveAdmin
       #
       # We remove the ORDER statement to work around this issue.
       def collection_size(collection=collection)
-        size = collection.reorder("").count
-        # when GROUP BY is used, AR returns Hash instead of Fixnum for .size
-        size = size.size if size.kind_of?(Hash)
+        collection = collection.scoped
+        
+        if collection.group_values.present?
+          size = collection.reorder("").count
+          # when GROUP BY is used, AR returns Hash instead of Fixnum for .size
+          size = size.size if size.kind_of?(Hash)
 
-        size
+          size
+        else
+          collection.count
+        end
       end
 
       def collection_is_empty?(collection=collection)
