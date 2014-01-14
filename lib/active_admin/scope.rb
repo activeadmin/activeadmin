@@ -29,10 +29,10 @@ module ActiveAdmin
 
       if name.is_a? Proc
         raise "A string/symbol is required as the second argument if your label is a proc." unless method
-        @id = method.to_s.gsub(' ', '').underscore
+        @id = method.to_s.parameterize("_")
       else
         @scope_method ||= name.to_sym
-        @id = name.to_s.gsub(' ', '').underscore
+        @id = name.to_s.parameterize("_")
       end
 
       @scope_method               = nil        if @scope_method == :all

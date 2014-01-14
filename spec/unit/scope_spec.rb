@@ -44,6 +44,12 @@ describe ActiveAdmin::Scope do
       its(:scope_block)  { should be_a(Proc)}
     end
 
+    context "when a name has a space and lowercase" do
+      let(:scope)        { ActiveAdmin::Scope.new("my scope") }
+      its(:name)         { should == "my scope"}
+      its(:id)           { should == "my_scope"}
+    end
+
     context "with a proc as the label" do
       it "should raise an exception if a second argument isn't provided" do
         expect{ ActiveAdmin::Scope.new proc{ Date.today.strftime '%A' }
