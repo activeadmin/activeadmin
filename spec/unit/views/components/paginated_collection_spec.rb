@@ -29,6 +29,8 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     before do
       collection.stub(:reorder) { collection }
+      collection.stub(:scoped) { collection }
+      collection.stub(:group_values) { [] } unless collection.respond_to?(:group_values)
     end
 
     context "when specifying collection" do
