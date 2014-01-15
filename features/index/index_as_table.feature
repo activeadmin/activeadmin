@@ -133,6 +133,19 @@ Feature: Index as Table
     And I should not see a member link to "Delete"
     And I should see a member link to "Custom Action"
 
+  Scenario: Index page without show action
+    Given a post with the title "Hello World" and body "From the body" exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        actions :index
+      end
+      """
+    Then I should not see a member link to "View"
+    And I should not see a member link to "Edit"
+    And I should not see a member link to "Delete"
+    And I should see "Hello World"
+
   Scenario: Associations are not sortable
     Given 1 post exists
     And an index configuration of:
