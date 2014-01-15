@@ -203,7 +203,11 @@ module ActiveAdmin
         # Display a column for the id
         def id_column
           column(resource_class.human_attribute_name(resource_class.primary_key), :sortable => resource_class.primary_key) do |resource|
-            link_to resource.id, resource_path(resource), :class => "resource_id_link"
+            if controller.action_methods.include?('show')
+              link_to resource.id, resource_path(resource), :class => "resource_id_link"
+            else
+              resource.id
+            end
           end
         end
 
