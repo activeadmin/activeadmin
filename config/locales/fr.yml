@@ -1,6 +1,6 @@
 fr:
   active_admin:
-    dashboard: "Tableau de Bord"
+    dashboard: "Tableau de bord"
     dashboard_welcome:
       welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
       call_to_action: "Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboard.rb'"
@@ -18,7 +18,7 @@ fr:
     empty: "Vide"
     previous: "Précédent"
     next: "Suivant"
-    download: "Télécharger:"
+    download: "Télécharger :"
     has_many_new: "Ajouter un nouveau %{model}"
     has_many_delete: "Supprimer"
     has_many_remove: "Enlever"
@@ -50,11 +50,11 @@ fr:
     any: "N'importe lequel"
     blank_slate:
       content: "Il n'y a pas encore de %{resource_name}."
-      link: "Créez en un"
+      link: "Créez-en un"
     batch_actions:
       button_label: "Actions groupées"
       default_confirmation: "Êtes-vous sûr de que vouloir faire cela ?"
-      delete_confirmation: "Êtes-vous sur de vouloir supprimer ces %{plural_model} ?"
+      delete_confirmation: "Êtes-vous sûr de vouloir supprimer ces %{plural_model} ?"
       succesfully_destroyed:
         one: "1 %{model} supprimé"
         other: "%{count} %{plural_model} supprimés"
@@ -86,7 +86,7 @@ fr:
         title: "Mot de passe"
       login:
         title: "Connection"
-        remember_me: "Se souvenir de moi"
+        remember_me: "Garder ma session ouverte"
         submit: "Se connecter"
       reset_password:
         title: "Vous avez oublié votre mot de passe ?"
