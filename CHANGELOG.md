@@ -1,4 +1,4 @@
-## 1.0.0 (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...master)
+## 1.0.0 [☰](https://github.com/gregbell/active_admin/compare/v0.6.1...master) (unreleased)
 
 ### Major Changes
 * Migration from Metasearch to Ransack [#1979][] by [@seanlinsley][]
@@ -34,11 +34,11 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 * Fixes comment creation bug with aliased resources 9a082486 by [@seanlinsley][]
 * Fixes the deletion of `:if` and `:unless` from filters [#2523][] by [@PChambino][]
 
-## 0.6.2 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...v0.6.2)
+## 0.6.2 [☰](https://github.com/gregbell/active_admin/compare/v0.6.1...v0.6.2)
 
 * Patches MetaSearch bug for attributes ending in "ne" d5db9ff4 by [@seanlinsley][]
 
-## 0.6.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...v0.6.1)
+## 0.6.1 [☰](https://github.com/gregbell/active_admin/compare/v0.6.0...v0.6.1)
 
 ### Features
 
@@ -113,7 +113,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 * Fixes documentation formatting [#2083][] by [@amiel][]
 * Deprecated settings & code removed [#2165][] by [@seanlinsley][]
 
-## 0.6.0 - [compare](https://github.com/gregbell/active_admin/compare/v0.5.1...v0.6.0)
+## 0.6.0 [☰](https://github.com/gregbell/active_admin/compare/v0.5.1...v0.6.0)
 
 ### Bug Fixes
 
@@ -202,7 +202,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 *  ronen barzel
 *  тιηуηυмвєяѕ
 
-## 0.5.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.5.0...v0.5.1)
+## 0.5.1 [☰](https://github.com/gregbell/active_admin/compare/v0.5.0...v0.5.1)
 
 ### Enhancements
 
@@ -264,7 +264,7 @@ application locales. [#1775][] by [@caifara][]
 
 156 commits (49 Pull Requests) by 51 contributors.
 
-## 0.5.0 - [compare](https://github.com/gregbell/active_admin/compare/v0.4.4...v0.5.0)
+## 0.5.0 [☰](https://github.com/gregbell/active_admin/compare/v0.4.4...v0.5.0)
 
 ### Enhancements
 
@@ -298,20 +298,20 @@ application locales. [#1775][] by [@caifara][]
 
 561 commits (142 Pull Requests) by 88 contributors.
 
-## 0.4.4 - [compare](https://github.com/gregbell/active_admin/compare/v0.4.3...v0.4.4)
+## 0.4.4 [☰](https://github.com/gregbell/active_admin/compare/v0.4.3...v0.4.4)
 
 ### Dependencies
 
 * Use `formtastic` ~> 2.1.1 until AA 0.5.0 is released
 * Use `inherited_resources` >= 1.3.1 (ensure flash messages work)
 
-## 0.4.3 - [compare](https://github.com/gregbell/active_admin/compare/v0.4.2...v0.4.3)
+## 0.4.3 [☰](https://github.com/gregbell/active_admin/compare/v0.4.2...v0.4.3)
 
 ### Bug Fixes
 
 * [#1063][]: Fix comment issues when using postgres ([@jancel][])
 
-## 0.4.2 - [compare](https://github.com/gregbell/active_admin/compare/v0.4.1...v0.4.2)
+## 0.4.2 [☰](https://github.com/gregbell/active_admin/compare/v0.4.1...v0.4.2)
 
 ### Enhancements
 
@@ -349,7 +349,7 @@ application locales. [#1775][] by [@caifara][]
 * Philippe Creux
 
 
-## 0.4.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.4.0...v0.4.1)
+## 0.4.1 [☰](https://github.com/gregbell/active_admin/compare/v0.4.0...v0.4.1)
 
 ### Enhancements
 
@@ -393,7 +393,7 @@ application locales. [#1775][] by [@caifara][]
 * Søren Houen
 
 
-## 0.4.0 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.4...v0.4.0)
+## 0.4.0 [☰](https://github.com/gregbell/active_admin/compare/v0.3.4...v0.4.0)
 
 ### Upgrade Notes
 
@@ -511,7 +511,7 @@ since we've changed both the CSS and JS files.
  * Josef Šimánek
 
 
-## 0.3.4 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.3...v0.3.4)
+## 0.3.4 [☰](https://github.com/gregbell/active_admin/compare/v0.3.3...v0.3.4)
 
 2 commits by 2 authors
 
@@ -527,7 +527,7 @@ since we've changed both the CSS and JS files.
 * Danny Hiemstra
 * Greg Bell
 
-## 0.3.3 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.2...v0.3.3)
+## 0.3.3 [☰](https://github.com/gregbell/active_admin/compare/v0.3.2...v0.3.3)
 
 1 commit by 1 author
 
@@ -541,7 +541,7 @@ since we've changed both the CSS and JS files.
 
 * Greg Bell
 
-## 0.3.2 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.1...v0.3.2)
+## 0.3.2 [☰](https://github.com/gregbell/active_admin/compare/v0.3.1...v0.3.2)
 
 45 commits by 15 contributors
 
@@ -586,11 +586,11 @@ since we've changed both the CSS and JS files.
 * Tsvetan Roustchev
 * l4u
 
-## 0.3.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.3.0...v0.3.1)
+## 0.3.1 [☰](https://github.com/gregbell/active_admin/compare/v0.3.0...v0.3.1)
 
 * Only support InheritedResources up to 1.2.2
 
-## 0.3.0 - [compare](https://github.com/gregbell/active_admin/compare/v0.2.2...v0.3.0)
+## 0.3.0 [☰](https://github.com/gregbell/active_admin/compare/v0.2.2...v0.3.0)
 
 326 commits by 35 contributors
 
@@ -687,7 +687,7 @@ since we've changed both the CSS and JS files.
 * Łukasz Anwajler
 
 
-## 0.2.2 (2011-05-26) - [compare](https://github.com/gregbell/active_admin/compare/v0.2.1...v0.2.2)
+## 0.2.2 [☰](https://github.com/gregbell/active_admin/compare/v0.2.1...v0.2.2)
 
 68 Commits by 13 Contributors
 
@@ -733,12 +733,12 @@ since we've changed both the CSS and JS files.
 * Paul Annesley
 * Philippe Creux
 
-## 0.2.1 (2011-05-12) - [compare](https://github.com/gregbell/active_admin/compare/v0.2.0...v0.2.1)
+## 0.2.1 [☰](https://github.com/gregbell/active_admin/compare/v0.2.0...v0.2.1)
 
 ### Bug Fixes
 * Fixed issue with dashboard rendering a sidebar
 
-## 0.2.0 (2011-05-12) - [compare](https://github.com/gregbell/active_admin/compare/v0.1.1...v0.2.0)
+## 0.2.0 [☰](https://github.com/gregbell/active_admin/compare/v0.1.1...v0.2.0)
 
 0.2.0 is essentially an entire re-write of Active Admin. Here are some
 of the highlights. 250 commits. Enough said.
@@ -754,7 +754,7 @@ of the highlights. 250 commits. Enough said.
 
 * Too many to list! Been in production for close to a year
 
-## 0.1.1 (2010-09-15) - [compare](https://github.com/gregbell/active_admin/compare/v0.1.0...v0.1.1)
+## 0.1.1 [☰](https://github.com/gregbell/active_admin/compare/v0.1.0...v0.1.1)
 
 ### Bug Fixes
 
