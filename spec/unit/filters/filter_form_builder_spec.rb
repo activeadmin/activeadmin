@@ -285,6 +285,15 @@ describe ActiveAdmin::Filters::ViewHelper do
           Formtastic::PolymorphicInputWithoutCollectionError
       end
     end
+
+    context "when using a custom foreign key" do
+      let(:scope) { Post.search }
+      let(:body)  { filter :category }
+      it "should should ignore that foreign key and let Ransack handle it" do
+        expect(Post.reflections[:category].foreign_key).to eq :custom_category_id
+        expect(body).to have_tag "select", attributes: { name: "q[category_id_eq]" }
+      end
+    end
   end # belongs to
 
   describe "has_and_belongs_to_many" do

@@ -441,11 +441,12 @@ describe ActiveAdmin::FormBuilder do
     end
 
     describe "sortable" do
+      # TODO: it doesn't make any sense to use your foreign key as something that's sortable (and therefore editable)
       context "with a new post" do
         let :body do
           build_form({:url => '/categories'}, Category.new) do |f|
             f.object.posts.build
-            f.has_many :posts, sortable: :category_id do |p|
+            f.has_many :posts, sortable: :custom_category_id do |p|
               p.input :title
             end
           end
