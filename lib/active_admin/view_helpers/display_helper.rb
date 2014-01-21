@@ -5,7 +5,7 @@ module ActiveAdmin
       # Attempts to call any known display name methods on the resource.
       # See the setting in `application.rb` for the list of methods and their priority.
       def display_name(resource)
-        resource.send display_name_method_for resource if resource
+        render_in_context resource, display_name_method_for(resource) if resource
       end
 
       # Looks up and caches the first available display name method.
@@ -13,7 +13,14 @@ module ActiveAdmin
         @@display_name_methods_cache ||= {}
         @@display_name_methods_cache[resource.class] ||= begin
           methods = active_admin_application.display_name_methods - association_methods_for(resource)
-          methods.detect{ |method| resource.respond_to? method }
+          method  = methods.detect{ |method| resource.respond_to? method }
+
+          # If we're scraping the bottom of the barrel, try to provide a nicer `to_s`
+          if method != :to_s || resource.method(method).source_location
+            method
+          else
+            ->{ "#{self.class.model_name.human} ##{self.id}" rescue send(method) }
+          end
         end
       end
 
