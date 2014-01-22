@@ -53,8 +53,8 @@ module ActiveAdmin
       # active_admin needs to render the table.
       def generate_collection_decorator(parent, name)
         klass = Class.new(parent) do
-          delegate :reorder, :page, :current_page, :total_pages,
-                   :limit_value, :total_count, :num_pages, :to_key
+          delegate :reorder, :page, :current_page, :total_pages, :limit_value,
+                   :total_count, :num_pages, :to_key, :group_values
         end
 
         klass.define_singleton_method(:name) { name }
