@@ -68,6 +68,8 @@ module ActiveAdmin
 
       def is_draper_collection_decorator?(decorator)
         decorator && decorator <= draper_collection_decorator
+      rescue NameError
+        false
       end
 
       def draper_collection_decorator
