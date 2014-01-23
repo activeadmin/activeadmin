@@ -23,7 +23,8 @@ module ActiveAdmin
         :sessions => "active_admin/devise/sessions",
         :passwords => "active_admin/devise/passwords",
         :unlocks => "active_admin/devise/unlocks",
-        :registrations => "active_admin/devise/registrations"
+        :registrations => "active_admin/devise/registrations",
+        :confirmations => "active_admin/devise/confirmations"
       }
     end
 
@@ -68,6 +69,10 @@ module ActiveAdmin
     end
 
     class RegistrationsController < ::Devise::RegistrationsController
+       include ::ActiveAdmin::Devise::Controller
+    end
+    
+    class ConfirmationsController < ::Devise::ConfirmationsController
        include ::ActiveAdmin::Devise::Controller
     end
 
