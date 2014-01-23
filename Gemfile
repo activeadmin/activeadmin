@@ -30,6 +30,7 @@ group :development do
 end
 
 group :test do
+  gem 'draper'
   gem 'cancan'
   gem 'capybara', '= 1.1.2'
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
