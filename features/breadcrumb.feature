@@ -25,3 +25,14 @@ Feature: Breadcrumb
     """
     When I am on the new post page
     Then I should see a link to "test" in the breadcrumb
+
+  Scenario: No Breadcrumbs configuration
+    Given a configuration of:
+    """
+      ActiveAdmin.application.breadcrumb = false
+      ActiveAdmin.register Post do
+      end
+    """
+    When I am on the new post page
+    Then I should see "Post"
+    And I should not see the element ".breadcrumb"

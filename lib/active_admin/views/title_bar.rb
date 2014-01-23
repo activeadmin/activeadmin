@@ -26,6 +26,8 @@ module ActiveAdmin
       end
 
       def build_breadcrumb(separator = "/")
+        return unless active_admin_namespace.breadcrumb
+
         links = if active_admin_config && active_admin_config.breadcrumb.present?
           instance_exec(controller, &active_admin_config.breadcrumb)
         else
