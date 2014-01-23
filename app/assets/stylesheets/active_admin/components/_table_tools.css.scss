@@ -28,7 +28,7 @@ a.table_tools_button, .table_tools .dropdown_menu_button {
 // overflow, they don't appear directly below the Batch Action selector itself.
 .table_tools .batch_actions_selector + .table_tools_segmented_control {
   float: right;
-  width: calc(100% - 125px);
+  width: calc(100% - 150px);
 }
 
 .table_tools_segmented_control {
