@@ -13,6 +13,8 @@ require 'coffee-rails'
 require 'arbre'
 require 'active_admin/engine'
 
+require 'active_admin/helpers/i18n'
+
 module ActiveAdmin
 
   autoload :VERSION,                  'active_admin/version'

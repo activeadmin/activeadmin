@@ -90,7 +90,7 @@ module ActiveAdmin
       html = without_wrapper do
         unless builder_options.key?(:heading) && !builder_options[:heading]
           form_buffers.last << template.content_tag(:h3) do
-            builder_options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: 1.1)
+            builder_options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
           end
         end
 
