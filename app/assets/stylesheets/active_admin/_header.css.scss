@@ -6,7 +6,7 @@
   @include shadow;
   @include text-shadow(#000);
   display: table;
-  height: 20px;
+  height: auto;
   width: 100%;
   overflow: visible;
   position: inherit;
@@ -48,7 +48,7 @@
   }
 
   ul.tabs {
-    display: table-cell;
+    display: block;
     vertical-align: middle;
     height: 100%;
     margin: 0;
@@ -61,6 +61,7 @@
       margin-bottom: 5px;
       font-size: 1.0em;
       position: relative;
+      line-height: 15px;
 
       a {
         text-decoration: none;
