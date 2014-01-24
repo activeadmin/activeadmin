@@ -84,6 +84,9 @@
       change_password:
         title: "更改您的密碼"
         submit: "更改我的密碼"
+      resend_confirmation_instructions:
+        title: '重新發送確認信'
+        submit: '重新發送確認信'
       links:
         sign_in: "登錄"
         forgot_your_password: "忘記密碼？"

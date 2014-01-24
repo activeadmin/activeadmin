@@ -98,6 +98,9 @@ pt-BR:
       unlock:
         title: "Reenviar instruções de desbloqueio"
         submit: "Reenviar instruções de desbloqueio"
+      resend_confirmation_instructions:
+        title: "Reenviar instruções de confirmação"
+        submit: "Reenviar instruções de confirmação"
       links:
         sign_in: "Entrar"
         forgot_your_password: "Esqueceu sua senha?"

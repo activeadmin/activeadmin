@@ -84,6 +84,9 @@ nl:
       change_password:
         title: "Wijzig uw wachtwoord"
         submit: "Mijn wachtwoord wijzigen"
+      resend_confirmation_instructions:
+        title: "Verstuur bevestiging-instructies opnieuw"
+        submit: "Verstuur bevestiging-instructies opnieuw"
       links:
         sign_in: "Meld u aan"
         forgot_your_password: "Wachtwoord vergeten?"
