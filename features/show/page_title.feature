@@ -45,3 +45,14 @@ Feature: Show - Page Title
       ActiveAdmin.register Tag
     """
     Then I should see the page title "Tag #"
+
+  Scenario: Set the title in controller
+    Given a show configuration of:
+    """
+      ActiveAdmin.register Post do
+        controller do
+          before_filter { @page_title = "List of #{resource_class.model_name.plural}" }
+        end
+      end
+    """
+    Then I should see the page title "List of posts"
