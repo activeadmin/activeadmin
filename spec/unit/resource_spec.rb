@@ -209,6 +209,26 @@ module ActiveAdmin
       end
     end
 
+    describe "#breadcrumb" do
+      subject { config.breadcrumb }
+
+      context "when no breadcrumb is set" do
+        it { should == namespace.breadcrumb }
+      end
+
+      context "when breadcrumb is set" do
+        context "when set to true" do
+          before { config.breadcrumb = true }
+          it { should be_true }
+        end
+
+        context "when set to false" do
+          before { config.breadcrumb = false }
+          it { should be_false }
+        end
+      end
+    end
+
     describe '#find_resource' do
       let(:resource) { namespace.register(Post) }
       let(:post) { double }
