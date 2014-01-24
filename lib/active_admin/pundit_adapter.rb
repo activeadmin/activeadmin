@@ -5,21 +5,36 @@ module ActiveAdmin
   class PunditAdapter < AuthorizationAdapter
 
     def authorized?(action, subject = nil)
-      case subject
-      when nil
-        scope_collection(resource).any?
-      when Class
-        scope_collection(subject).any?
-      else
-        action = :show if action == ActiveAdmin::Auth::READ
-        Pundit.policy!(user, subject).send("#{action}?")
-      end
+      policy = retreive_policy(subject)
+      action = format_action(action, subject)
+
+      policy.class.method_defined?(action) && policy.send(action)
     end
 
-    def scope_collection(collection, action = ActiveAdmin::Auth::READ)
+    def scope_collection(collection, action = Auth::READ)
       # scoping is appliable only to read/index action
       # which means there is no way how to scope other actions
       Pundit.policy_scope!(user, collection)
+    end
+
+
+    def retreive_policy(subject)
+      case subject
+      when nil   then Pundit.policy!(user, resource)
+      when Class then Pundit.policy!(user, subject.new)
+      else Pundit.policy!(user, subject)
+      end
+    end
+
+    def format_action(action, subject)
+      # https://github.com/elabs/pundit/blob/master/lib/generators/pundit/install/templates/application_policy.rb
+      case action
+      when Auth::CREATE  then :create?
+      when Auth::UPDATE  then :update?
+      when Auth::READ    then subject.is_a?(Class) ? :index? : :show?
+      when Auth::DESTROY then subject.is_a?(Class) ? :destroy_all? : :destroy?
+      else "#{action}?"
+      end
     end
 
   end

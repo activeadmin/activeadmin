@@ -71,6 +71,9 @@ append_file "config/locales/en.yml", File.read(File.expand_path('../templates/en
 # Add predefined admin resources
 directory File.expand_path('../templates/admin', __FILE__), "app/admin"
 
+# Add predefined policies
+directory File.expand_path('../templates/policies', __FILE__), 'app/policies'
+
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 generate :'active_admin:install'

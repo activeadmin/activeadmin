@@ -7,58 +7,6 @@ Feature: Authorizing Access using Pundit
     """
     require 'pundit'
 
-    class ::MockPolicy
-      attr_reader :user, :record
-
-      def initialize(user, record)
-        @user = user
-        @record = record
-      end
-
-      def index?  ; false   ; end
-      def show?   ; true    ; end
-      def new?    ; create? ; end
-      def create? ; false   ; end
-      def edit?   ; update? ; end
-      def update? ; false   ; end
-      def destroy?; false   ; end
-
-      def scope
-        Pundit.policy_scope!(user, record.class)
-      end
-
-      class Scope < Struct.new(:user, :scope)
-        def resolve
-          scope
-        end
-      end
-    end
-
-    class ::PostPolicy < ::MockPolicy
-      def create?
-        true
-      end
-
-      def update?
-        record.author == user
-      end
-
-      def destroy?
-        record.author == user
-      end
-    end
-
-    class ::ActiveAdmin::PagePolicy < ::MockPolicy
-      def show?
-        case record.name
-        when "Dashboard"
-          true
-        when "No Access"
-          false
-        end
-      end
-    end
-
     ActiveAdmin.application.namespace(:admin).authorization_adapter = ActiveAdmin::PunditAdapter
 
     ActiveAdmin.register Post do
