@@ -1,0 +1,14 @@
+<div id="login">
+  <%= content_tag :h2, t('active_admin.devise.resend_confirmation_instructions.title') %>
+
+  <%= active_admin_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+    f.inputs do
+      f.input :email
+    end
+    f.actions do
+      f.action :submit, :label => t('active_admin.devise.resend_confirmation_instructions.submit'), :button_html => { :value => t('active_admin.devise.resend_confirmation_instructions.submit') }
+    end
+  end %>
+
+  <%= render :partial => "active_admin/devise/shared/links" %>
+</div>
