@@ -24,15 +24,10 @@ a.table_tools_button, .table_tools .dropdown_menu_button {
   }
 }
 
-// If the Batch Action selector is present, offset the scopes so that if they
-// overflow, they don't appear directly below the Batch Action selector itself.
-.table_tools .batch_actions_selector + .table_tools_segmented_control {
-  float: right;
-  width: calc(100% - 125px);
-}
-
 .table_tools_segmented_control {
   list-style-type: none;
+  padding: 0;
+  margin: 0;
 
   li {
     float: left;
