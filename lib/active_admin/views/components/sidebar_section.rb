@@ -8,6 +8,7 @@ module ActiveAdmin
       def build(section)
         @section = section
         super(@section.title, :icon => @section.icon)
+        add_class @section.custom_class if @section.custom_class
         self.id = @section.id
         build_sidebar_content
       end

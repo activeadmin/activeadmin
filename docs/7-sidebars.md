@@ -45,3 +45,10 @@ You can also render a partial:
 sidebar :help                    # app/views/admin/posts/_help_sidebar.html.erb
 sidebar :help, partial: 'custom' # app/views/admin/posts/_custom.html.erb
 ```
+
+It's possible to add custom class name to the sidebar parent element by passing
+`class` option:
+
+```ruby
+sidebar :help, class: 'custom_class'
+```
