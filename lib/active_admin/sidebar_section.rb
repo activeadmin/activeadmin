@@ -36,6 +36,10 @@ module ActiveAdmin
     def custom_class
       options[:class]
     end
+
+    def priority
+      options[:priority] || 10
+    end
   end
 
 end
