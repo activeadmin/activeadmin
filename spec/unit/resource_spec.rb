@@ -196,7 +196,7 @@ module ActiveAdmin
     describe "#csv_builder" do
       context "when no csv builder set" do
         it "should return a default column builder with id and content columns" do
-          expect(config.csv_builder.columns.size).to eq Category.content_columns.size + 1
+          expect(config.csv_builder.render_columns.size).to eq Category.content_columns.size + 1
         end
       end
 
