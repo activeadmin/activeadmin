@@ -47,7 +47,7 @@ module ActiveAdmin
     attr_writer :csv_builder
 
     # Set breadcrumb builder
-    attr_accessor :breadcrumb
+    attr_writer :breadcrumb
 
     # Store a reference to the DSL so that we can dereference it during garbage collection.
     attr_accessor :dsl
@@ -135,6 +135,10 @@ module ActiveAdmin
     # The csv builder for this resource
     def csv_builder
       @csv_builder || default_csv_builder
+    end
+
+    def breadcrumb
+      instance_variable_defined?(:@breadcrumb) ? @breadcrumb : namespace.breadcrumb
     end
 
     def find_resource(id)

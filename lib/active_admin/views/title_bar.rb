@@ -26,9 +26,11 @@ module ActiveAdmin
       end
 
       def build_breadcrumb(separator = "/")
-        links = if active_admin_config && active_admin_config.breadcrumb.present?
+        breadcrumb_config = active_admin_config && active_admin_config.breadcrumb
+
+        links = if breadcrumb_config.is_a?(Proc)
           instance_exec(controller, &active_admin_config.breadcrumb)
-        else
+        elsif breadcrumb_config.present?
           breadcrumb_links
         end
         return unless links.present? && links.is_a?(::Array)
