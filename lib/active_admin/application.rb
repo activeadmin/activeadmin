@@ -197,7 +197,7 @@ module ActiveAdmin
         ActiveAdmin::Devise::PasswordsController.send name, *args, &block
         ActiveAdmin::Devise::SessionsController.send  name, *args, &block
         ActiveAdmin::Devise::UnlocksController.send   name, *args, &block
-        ActiveAdmin::Devise::RegistrationsController.send   name, *args, &block
+        ActiveAdmin::Devise::RegistrationsController.send name, *args, &block
       end
     end
 

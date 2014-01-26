@@ -13,7 +13,6 @@ require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'coffee-rails'
 require 'arbre'
-require 'active_admin/engine'
 
 require 'active_admin/helpers/i18n'
 
@@ -118,6 +117,9 @@ module ActiveAdmin
   end
 
 end
+
+# Require things that don't support autoload
+require 'active_admin/engine'
 
 # Require internal plugins
 require 'active_admin/batch_actions'
