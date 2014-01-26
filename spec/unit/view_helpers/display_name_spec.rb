@@ -36,4 +36,36 @@ describe "display_name" do
     end
   end
 
+  it "should default to `to_s`" do
+    subject = Class.new.new
+    expect(display_name subject).to eq subject.to_s
+  end
+
+  context "when no display name method is defined" do
+    context "on a Rails model" do
+      it "should show the model name" do
+        class ThisModel
+          extend ActiveModel::Naming
+        end
+        subject = ThisModel.new
+        expect(display_name subject).to eq "This model"
+      end
+
+      it "should show the model name, plus the ID if in use" do
+        subject = Tagging.create!
+        expect(display_name subject).to eq "Tagging #1"
+      end
+
+      it "should translate the model name" do
+        begin
+          I18n.backend.store_translations :en, activerecord: { models: { tagging: { one: "Different" }}}
+          subject = Tagging.create!
+          expect(display_name subject).to eq "Different #1"
+        ensure
+          I18n.backend.reload!
+        end
+      end
+    end
+  end
+
 end
