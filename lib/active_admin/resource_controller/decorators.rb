@@ -22,9 +22,11 @@ module ActiveAdmin
       end
 
       def collection_decorator
-        collection_decorator = collection_decorator_class_for(decorator_class)
+        if decorator_class
+          collection_decorator = collection_decorator_class_for(decorator_class)
 
-        delegate_collection_methods_for_draper(collection_decorator, decorator_class)
+          delegate_collection_methods_for_draper(collection_decorator, decorator_class)
+        end
       end
 
       # Draper::CollectionDecorator was introduced in 1.0.0
