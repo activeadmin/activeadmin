@@ -86,6 +86,9 @@ ca:
       unlock:
         title: "Reenvia instruccions per a desbloquejar"
         submit: "Reenvia instruccions per a desbloquejar"
+      resend_confirmation_instructions:
+        title: "Reenviar instruccions de confirmació"
+        submit: "Reenviar instruccions de confirmació"
       links:
         sign_in: "Registrar"
         forgot_your_password: "Heu perdut la contrasenya?"

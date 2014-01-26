@@ -84,6 +84,9 @@ es:
       change_password:
         title: "Cambie su contraseña"
         submit: "Cambiar mi contraseña"
+      resend_confirmation_instructions:
+          title: "Reenviar instrucciones de confirmación"
+          submit: "Reenviar instrucciones de confirmación"
       links:
         sign_in: "registrarse"
         forgot_your_password: "¿Olvidó su contraseña?"

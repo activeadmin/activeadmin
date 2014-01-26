@@ -101,6 +101,9 @@ en:
       unlock:
         title: "Resend unlock instructions"
         submit: "Resend unlock instructions"
+      resend_confirmation_instructions:
+        title: "Resend confirmation instructions"
+        submit: "Resend confirmation instructions"
       links:
         sign_in: "Sign in"
         forgot_your_password: "Forgot your password?"

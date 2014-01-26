@@ -98,6 +98,9 @@ it:
       unlock:
         title: "Invia di nuovo le istruzioni per sbloccare"
         submit: "Invia di nuovo le istruzioni per sbloccare"
+      resend_confirmation_instructions:
+        title: "Invia di nuovo le istruzioni per la conferma"
+        submit: "Invia di nuovo le istruzioni per la conferma"
       links:
         sign_in: "Entra"
         forgot_your_password: "Dimenticato la password?"

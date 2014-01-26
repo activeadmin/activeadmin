@@ -92,6 +92,9 @@
       unlock:
         title: "重新发送送解锁命令"
         submit: "重新发送送解锁命令"
+      resend_confirmation_instructions:
+        title: " 重新发送确认指示"
+        submit: " 重新发送确认指示"
       links:
         sign_in: "登录"
         forgot_your_password: "忘记了密码？"

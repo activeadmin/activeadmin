@@ -86,6 +86,9 @@ de:
       change_password:
         title: "Ändern Sie Ihr Passwort"
         submit: "Mein Passwort ändern"
+      resend_confirmation_instructions:
+        title: "Anleitung zur Bestätigung noch mal schicken"
+        submit: "Anleitung zur Bestätigung noch mal schicken"
       links:
         sign_in: "Anmeldung"
         forgot_your_password: "Passwort vergessen?"

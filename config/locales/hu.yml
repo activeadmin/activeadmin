@@ -87,6 +87,9 @@ hu:
       unlock:
         title: "Újraküldés unlock utasítások"
         submit: "Újraküldés unlock utasítások"
+      resend_confirmation_instructions:
+        title: "Megerősítő levél újraküldése"
+        submit: "Megerősítő levél újraküldése"
       links:
         sign_in: "Bejelentkezés"
         forgot_your_password: "Elfelejtette a jelszavát?"

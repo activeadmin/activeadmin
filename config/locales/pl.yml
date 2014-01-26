@@ -86,6 +86,9 @@ pl:
       change_password:
         title: "Zmień hasło"
         submit: "Zmień hasło"
+      resend_confirmation_instructions:
+        title: "Wyślij ponownie instrukcje aktywacji"
+        submit: "Wyślij ponownie instrukcje aktywacji"
       links:
         sign_in: "Zaloguj się"
         forgot_your_password: "Nie pamiętasz hasła?"

@@ -84,6 +84,9 @@ tr:
       change_password:
         title: "Şifrenizi değiştirin"
         submit: "Şifremi değiştir"
+      resend_confirmation_instructions:
+        title: "Onaylama talimatlarını tekrar gönder"
+        submit: "Onaylama talimatlarını tekrar gönder"
       links:
         sign_in: "Oturum aç"
         forgot_your_password: "Şifreni mi unuttun?"

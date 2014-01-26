@@ -94,6 +94,9 @@ fr:
       change_password:
         title: "Changez votre mot de passe"
         submit: "Changer mon mot de passe"
+      resend_confirmation_instructions:
+        title: "Renvoyer les instructions de confirmation"
+        submit: "Renvoyer les instructions de confirmation"
       links:
         sign_in: "Connectez-vous"
         forgot_your_password: "Vous avez oublié votre mot de passe ?"
