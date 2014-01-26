@@ -193,10 +193,15 @@ describe ActiveAdmin::Filters::ViewHelper do
     context "boolean datatypes" do
       let(:body) { filter :starred }
 
-      it "should create a check box for equals to" do
-        expect(body).to have_tag("input", attributes: {
-                                            name: "q[starred_eq]",
-                                            type: "checkbox" })
+      it "should generate a select" do
+        expect(body).to have_tag "select", attributes: { name: "q[starred_eq]" }
+      end
+      it "should set the default text to 'Any'" do
+        expect(body).to have_tag "option", "Any", attributes: { value: "" }
+      end
+      it "should create an option for true and false" do
+        expect(body).to have_tag "option", "Yes", attributes: { value: "true" }
+        expect(body).to have_tag "option", "No", attributes: { value: "false" }
       end
 
       it "should translate the label for boolean field" do
@@ -209,10 +214,15 @@ describe ActiveAdmin::Filters::ViewHelper do
     context "non-boolean data types" do
       let(:body) { filter :title_present, as: :boolean }
 
-      it "should create a check box for equals to" do
-        expect(body).to have_tag("input", attributes: {
-                                            name: "q[title_present]",
-                                            type: "checkbox" })
+      it "should generate a select" do
+        expect(body).to have_tag "select", attributes: { name: "q[title_present]" }
+      end
+      it "should set the default text to 'Any'" do
+        expect(body).to have_tag "option", "Any", attributes: { value: "" }
+      end
+      it "should create an option for true and false" do
+        expect(body).to have_tag "option", "Yes", attributes: { value: "true" }
+        expect(body).to have_tag "option", "No", attributes: { value: "false" }
       end
     end
   end
