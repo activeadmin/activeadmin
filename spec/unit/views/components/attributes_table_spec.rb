@@ -206,11 +206,8 @@ describe ActiveAdmin::Views::AttributesTable do
 
             context "with defined attribute name translation" do
               it "should have the translated attribute name in the title" do
-                begin
-                  I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => 'Translated Title', :id => 'Translated Id' } } })
+                with_translation activerecord: {attributes: {post: {title: 'Translated Title', id: 'Translated Id'}}} do
                   expect(current_row.find_by_tag("th").first.content).to eq "Translated #{title}"
-                ensure
-                  I18n.backend.reload!
                 end
               end
             end

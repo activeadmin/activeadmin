@@ -92,11 +92,8 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should translate the label for text field" do
-      begin
-        I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => "Name" } } })
+      with_translation activerecord: {attributes: {post: {title: 'Name'}}} do
         expect(body).to have_tag('label', 'Name')
-      ensure
-        I18n.backend.reload!
       end
     end
 
@@ -196,11 +193,8 @@ describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should translate the label for boolean field" do
-        begin
-          I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :starred => "Faved" } } })
+        with_translation activerecord: {attributes: {post: {starred: 'Faved'}}} do
           expect(body).to have_tag('label', 'Faved')
-        ensure
-          I18n.backend.reload!
         end
       end
     end

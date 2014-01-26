@@ -57,12 +57,9 @@ describe "display_name" do
       end
 
       it "should translate the model name" do
-        begin
-          I18n.backend.store_translations :en, activerecord: { models: { tagging: { one: "Different" }}}
+        with_translation activerecord: {models: {tagging: {one: "Different"}}} do
           subject = Tagging.create!
           expect(display_name subject).to eq "Different #1"
-        ensure
-          I18n.backend.reload!
         end
       end
     end
