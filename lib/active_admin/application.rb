@@ -172,6 +172,12 @@ module ActiveAdmin
       end
     end
 
+    def load(file)
+      super
+    rescue ActiveRecord::StatementInvalid => exception
+      raise DatabaseHitDuringLoad.new exception
+    end
+
     # Returns ALL the files to be loaded
     def files
       load_paths.flatten.compact.uniq.map{ |path| Dir["#{path}/**/*.rb"] }.flatten
