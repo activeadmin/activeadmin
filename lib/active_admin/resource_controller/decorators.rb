@@ -8,7 +8,7 @@ module ActiveAdmin
       end
 
       def apply_collection_decorator(collection)
-        if (decorator = collection_decorator)
+        if decorator = collection_decorator
           decorator.decorate(collection, with: decorator_class)
         else
           collection
@@ -32,12 +32,10 @@ module ActiveAdmin
       # Draper::CollectionDecorator was introduced in 1.0.0
       # Draper::Decorator#collection_decorator_class was introduced in 1.3.0
       def collection_decorator_class_for(decorator)
-        if Dependencies.draper? :>=, '1.0.0'
-          if Dependencies.draper? :>=, '1.3.0'
-            decorator && decorator.collection_decorator_class
-          else
-            draper_collection_decorator
-          end
+        if Dependencies.draper?    :>=, '1.3.0'
+          decorator.collection_decorator_class
+        elsif Dependencies.draper? :>=, '1.0.0'
+          draper_collection_decorator
         else
           decorator
         end
