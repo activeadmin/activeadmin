@@ -1,12 +1,13 @@
 require 'inherited_resources'
 
-require 'active_admin/base_controller/authorization'
-require 'active_admin/base_controller/menu'
+require 'active_admin/controllers/base/menu'
+require 'active_admin/controllers/base/authorization'
 
 module ActiveAdmin
   # BaseController for ActiveAdmin.
   # It implements ActiveAdmin controllers core features.
   class BaseController < ::InheritedResources::Base
+
     helper ::ActiveAdmin::ViewHelpers
 
     layout :determine_active_admin_layout
@@ -30,8 +31,8 @@ module ActiveAdmin
       raise AbstractController::ActionNotFound unless action_methods.include?(params[:action])
     end
 
-    include Menu
-    include Authorization
+    include Controllers::Base::Menu
+    include Controllers::Base::Authorization
 
     private
 

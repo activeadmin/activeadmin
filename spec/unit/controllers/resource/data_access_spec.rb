@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ActiveAdmin::ResourceController::DataAccess do
+describe ActiveAdmin::Controllers::Resource::DataAccess do
   let(:params) do
     {}
   end
