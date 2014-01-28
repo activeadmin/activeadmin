@@ -113,7 +113,7 @@ describe ActiveAdmin::Views::Columns do
     end
 
     it "should omit the value if not present" do
-      cols.children.last.attr(:style).should == "width: 49.0%;"
+      expect(cols.children.last.attr(:style)).to eq "width: 49.0%;"
     end
 
     context "when passed an integer value" do
@@ -127,7 +127,7 @@ describe ActiveAdmin::Views::Columns do
       end
 
       it "should be treated as pixels" do
-        cols.children.first.attr(:style).should == "width: 49.0%; max-width: 100px; margin-right: 2%;"
+        expect(cols.children.first.attr(:style)).to eq "width: 49.0%; max-width: 100px; margin-right: 2%;"
       end
     end
 
@@ -149,7 +149,7 @@ describe ActiveAdmin::Views::Columns do
     end
 
     it "should omit the value if not present" do
-      cols.children.last.attr(:style).should == "width: 49.0%;"
+      expect(cols.children.last.attr(:style)).to eq "width: 49.0%;"
     end
 
     context "when passed an integer value" do
@@ -163,7 +163,7 @@ describe ActiveAdmin::Views::Columns do
       end
 
       it "should be treated as pixels" do
-        cols.children.first.attr(:style).should == "width: 49.0%; min-width: 100px; margin-right: 2%;"
+        expect(cols.children.first.attr(:style)).to eq "width: 49.0%; min-width: 100px; margin-right: 2%;"
       end
     end
 
