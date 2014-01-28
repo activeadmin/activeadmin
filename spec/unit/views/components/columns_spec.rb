@@ -112,8 +112,23 @@ describe ActiveAdmin::Views::Columns do
       expect(cols.children.first.attr(:style)).to eq "width: 49.0%; max-width: 100px; margin-right: 2%;"
     end
 
-    it "should omit the value if not presetn" do
-      expect(cols.children.last.attr(:style)).to eq "width: 49.0%;"
+    it "should omit the value if not present" do
+      cols.children.last.attr(:style).should == "width: 49.0%;"
+    end
+
+    context "when passed an integer value" do
+      let(:cols) do
+        render_arbre_component do
+          columns do
+            column(:max_width => 100){ "Hello World" }
+            column(){ "Hello World" }
+          end
+        end
+      end
+
+      it "should be treated as pixels" do
+        cols.children.first.attr(:style).should == "width: 49.0%; max-width: 100px; margin-right: 2%;"
+      end
     end
 
   end
@@ -133,8 +148,23 @@ describe ActiveAdmin::Views::Columns do
       expect(cols.children.first.attr(:style)).to eq "width: 49.0%; min-width: 100px; margin-right: 2%;"
     end
 
-    it "should omit the value if not presetn" do
-      expect(cols.children.last.attr(:style)).to eq "width: 49.0%;"
+    it "should omit the value if not present" do
+      cols.children.last.attr(:style).should == "width: 49.0%;"
+    end
+
+    context "when passed an integer value" do
+      let(:cols) do
+        render_arbre_component do
+          columns do
+            column(:min_width => 100){ "Hello World" }
+            column(){ "Hello World" }
+          end
+        end
+      end
+
+      it "should be treated as pixels" do
+        cols.children.first.attr(:style).should == "width: 49.0%; min-width: 100px; margin-right: 2%;"
+      end
     end
 
   end
