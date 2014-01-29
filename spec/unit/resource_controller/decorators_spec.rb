@@ -3,11 +3,15 @@ require 'spec_helper'
 describe ActiveAdmin::ResourceController::Decorators do
   let(:controller_class) do
     Class.new do
-      include ActiveAdmin::ResourceController::Decorators
-
       def self.name
         "Test Controller using Decorators"
       end
+
+      def self.helper_method(method)
+        # STUB
+      end
+
+      include ActiveAdmin::ResourceController::Decorators
 
       public :apply_decorator, :apply_collection_decorator
     end

@@ -1,6 +1,12 @@
 module ActiveAdmin
   class ResourceController < BaseController
     module Decorators
+      extend ActiveSupport::Concern
+
+      included do
+        helper_method :undecorate_resource
+      end
+
       protected
 
       def apply_decorator(resource)
@@ -12,6 +18,14 @@ module ActiveAdmin
           decorator.decorate(collection, with: decorator_class)
         else
           collection
+        end
+      end
+
+      def undecorate_resource(resource)
+        if resource.respond_to?(:decorated?) && resource.decorated?
+          resource.model
+        else
+          resource
         end
       end
 

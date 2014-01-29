@@ -7,7 +7,7 @@ module ActiveAdmin
         options[:builder] ||= ActiveAdmin::FormBuilder
 
         if !options.fetch(:decorate, false)
-          resource = resource.model if resource.respond_to? :model
+          resource = undecorate_resource(resource)
         end
 
         semantic_form_for resource, options, &block
