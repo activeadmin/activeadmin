@@ -34,6 +34,17 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 * Fixes comment creation bug with aliased resources 9a082486 by [@seanlinsley][]
 * Fixes the deletion of `:if` and `:unless` from filters [#2523][] by [@PChambino][]
 
+## 0.6.3 [☰](https://github.com/gregbell/active_admin/compare/v0.6.2...v0.6.3)
+
+* __Reinstitutes the 10k limit for CSV exports__ [#2847][] by [@seanlinsley][]
+* Blacklists Devise versions vulnerable to CVE-2013-0233 [#2744][] by [@jjarmoc][]
+* Autoloads the Comments model so it respects user's Kaminari config 77c97d27 by [@seanlinsley][]
+* Hides the blank slate link if user doesn't have permissions [#2588][] by [@seanlinsley][]
+* Fixes incorrect breadcrumb on edit pages [#2601][] by [@shekibobo][]
+* Resurrects `ResourceMismatchError` b1c28cdb by [@seanlinsley][]
+* Keeps filter conditions from being deleted fa0edec4 by [@seanlinsley][]
+* Translations by [@teoulas][], [@tricknotes][], [@givanse][], and [@pcreux][] :heart:
+
 ## 0.6.2 [☰](https://github.com/gregbell/active_admin/compare/v0.6.1...v0.6.2)
 
 * Patches MetaSearch bug for attributes ending in "ne" d5db9ff4 by [@seanlinsley][]
@@ -951,6 +962,10 @@ of the highlights. 250 commits. Enough said.
 [#2541]: https://github.com/gregbell/active_admin/issues/2541
 [#2544]: https://github.com/gregbell/active_admin/issues/2544
 [#2545]: https://github.com/gregbell/active_admin/issues/2545
+[#2588]: https://github.com/gregbell/active_admin/issues/2588
+[#2601]: https://github.com/gregbell/active_admin/issues/2601
+[#2744]: https://github.com/gregbell/active_admin/issues/2744
+[#2847]: https://github.com/gregbell/active_admin/issues/2847
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
@@ -986,6 +1001,7 @@ of the highlights. 250 commits. Enough said.
 [@fbuenemann]: https://github.com/fbuenemann
 [@george]: https://github.com/george
 [@ggilder]: https://github.com/ggilder
+[@givanse]: https://github.com/givanse
 [@gregbell]: https://github.com/gregbell
 [@hakanensari]: https://github.com/hakanensari
 [@henrrrik]: https://github.com/henrrrik
@@ -996,6 +1012,7 @@ of the highlights. 250 commits. Enough said.
 [@jbarket]: https://github.com/jbarket
 [@jbhannah]: https://github.com/jbhannah
 [@jherdman]: https://github.com/jherdman
+[@jjarmoc]: https://github.com/jjarmoc
 [@johnnyshields]: https://github.com/johnnyshields
 [@jokklan]: https://github.com/jokklan
 [@joseluistorres]: https://github.com/joseluistorres
@@ -1042,6 +1059,7 @@ of the highlights. 250 commits. Enough said.
 [@stereoscott]: https://github.com/stereoscott
 [@sunny]: https://github.com/sunny
 [@tank-bohr]: https://github.com/tank-bohr
+[@teoulas]: https://github.com/teoulas
 [@tinynumbers]: https://github.com/tinynumbers
 [@tracedwax]: https://github.com/tracedwax
 [@tricknotes]: https://github.com/tricknotes
