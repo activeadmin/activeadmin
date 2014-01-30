@@ -14,9 +14,11 @@ module ActiveAdmin
 
     # @returns [String] The name of the record to use for the polymorphic relationship
     def self.resource_type(resource)
-      # TODO: Use ActiveAdmin::ResourceController::Decorators#undecorate_resource
-      record = resource.respond_to?(:decorated?) && resource.decorated? ? resource.model : resource
-      record.class.name.to_s
+      undecorate_resource(resource).class.name.to_s
+    end
+
+    def self.undecorate_resource(resource)
+      ActiveAdmin::ResourceController::Decorators.undecorate_resource(resource)
     end
 
     # Postgres adapters won't compare strings to numbers (issue 34)

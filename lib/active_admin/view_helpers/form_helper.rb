@@ -6,9 +6,7 @@ module ActiveAdmin
         options = Marshal.load( Marshal.dump(options) )
         options[:builder] ||= ActiveAdmin::FormBuilder
 
-        if !options.fetch(:decorate, false)
-          resource = undecorate_resource(resource)
-        end
+        resource = undecorate_resource(resource) unless options[:decorate]
 
         semantic_form_for resource, options, &block
       end
@@ -18,6 +16,12 @@ module ActiveAdmin
           k, v = kv.first
           hidden_field_tag k, v, :id => sanitize_to_id("hidden_active_admin_#{k}")
         end.join("\n").html_safe
+      end
+
+      private
+
+      def undecorate_resource(resource)
+        ActiveAdmin::ResourceController::Decorators.undecorate_resource(resource)
       end
     end
   end

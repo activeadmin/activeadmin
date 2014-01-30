@@ -21,7 +21,7 @@ describe ActiveAdmin::ViewHelpers::FormHelper do
     end
 
     context 'with a decorated resource' do
-      let(:decorated) { double 'decorated_resource', model: resource }
+      let(:decorated) { double 'decorated_resource', model: resource, decorated?: true }
 
       it 'can disable automatic decoration' do
         expect(view).to receive(:semantic_form_for).with(resource, default_options.merge(decorate: false))
