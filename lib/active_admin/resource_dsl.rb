@@ -81,6 +81,7 @@ module ActiveAdmin
     #
     def csv(options={}, &block)
       options[:resource] = @resource
+      options[:context]  = self
 
       config.csv_builder = CSVBuilder.new(options, &block)
     end

@@ -114,4 +114,35 @@ describe ActiveAdmin::CSVBuilder do
     end
   end
 
+  describe "method lookup" do
+    it "should raise a NoMethodError by default" do
+      expect {
+        ActiveAdmin::CSVBuilder.new do
+          one
+        end
+      }.to raise_error
+    end
+
+    it "should delegate to the passed :context when a method is missing" do
+      context = double one: 42
+      expect(context).to receive :one
+      expect {
+        ActiveAdmin::CSVBuilder.new context: context do
+          one
+        end
+      }.to_not raise_error
+    end
+
+    it "should still raise a NoMethodError when the :context doesn't have the method" do
+      context = double one: 42
+      expect(context).to receive :one
+      expect {
+        ActiveAdmin::CSVBuilder.new context: context do
+          one
+          two
+        end
+      }.to raise_error
+    end
+  end
+
 end
