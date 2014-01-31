@@ -17,25 +17,45 @@ module ActiveAdmin
     # The CSVBuilder's columns would be Id followed by this
     # resource's content columns
     def self.default_for_resource(resource)
-      new(resource: resource).tap do |csv_builder|
-        csv_builder.column(:id)
+      new(resource: resource) do
+        column(:id)
         resource.content_columns.each do |content_column|
-          csv_builder.column(content_column.name.to_sym)
+          column(content_column.name.to_sym)
         end
       end
     end
 
-    attr_reader :columns, :options
+    attr_reader :columns, :options, :view_context
 
     def initialize(options={}, &block)
       @resource = options.delete(:resource)
-      @columns, @options = [], options
-      instance_exec &block if block_given?
+      @columns, @options, @block = [], options, block
     end
 
     # Add a column
     def column(name, &block)
       @columns << Column.new(name, @resource, block)
+    end
+
+    # Runs the `csv` dsl block and render our columns
+    # Called from `index.csv.erb`, which passes in the current view context.
+    # This provides methods that could be called in the views to be called within
+    # the CSV block. Any method not defined on the CSV builder will instead be
+    # sent to the view context in order to emulate the capabilities of the `index`
+    # DSL.
+    def render_columns(view_context = nil)
+      @view_context = view_context
+      @columns = [] # we want to re-render these every instance
+      instance_eval &@block if @block.present?
+      columns
+    end
+
+    def method_missing(method, *args, &block)
+      if @view_context.respond_to?(method)
+        @view_context.send(method, *args, &block)
+      else
+        super
+      end
     end
 
     class Column
