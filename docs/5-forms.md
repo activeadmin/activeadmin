@@ -91,16 +91,15 @@ If you pass a string, it will be used as the text for the new record button.
 The `:sortable` option adds a hidden field and will enable drag & drop sorting of the children. It 
 expects the name of the column that will store the index of each child.
 
-## DatePicker
+## Datepicker
 
-ActiveAdmin offers the `datepicker` input, which uses the [jQueryUI Datepicker](http://jqueryui.com/datepicker/).
-The datepicker input accepts any of the options available to the standard
-jQueryUI Datepicker, e.g.
+ActiveAdmin offers the `datepicker` input, which uses the [jQueryUI datepicker](http://jqueryui.com/datepicker/).
+The datepicker input accepts any of the options available to the standard jQueryUI Datepicker. For example:
 
 ```ruby
 form do |f|
-  f.input :starts_at, as: :datepicker, datepicker_options: { min_date: "2013-10-8", max_date: 3.days.from_now.to_date }
-  f.input :ends_at, as: :datepicker, datepicker_options: { min_date: 3.days.ago.to_date, max_date: "+1W +5D" }
+  f.input :starts_at, as: :datepicker, datepicker_options: { min_date: "2013-10-8",        max_date: "+3D" }
+  f.input :ends_at,   as: :datepicker, datepicker_options: { min_date: 3.days.ago.to_date, max_date: "+1W +5D" }
 end
 ```
 
