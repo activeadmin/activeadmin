@@ -85,6 +85,9 @@ pt-BR:
         title: "Subdomínio"
       password:
         title: "Senha"
+      sign_up:
+        title: "Cadastre-se"
+        submit: "Continuar"
       login:
         title: "Conta"
         remember_me: "Lembrar da senha"
