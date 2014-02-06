@@ -6,8 +6,6 @@ module ActiveAdmin
         options = Marshal.load( Marshal.dump(options) )
         options[:builder] ||= ActiveAdmin::FormBuilder
 
-        resource = undecorate_resource(resource) unless options[:decorate]
-
         semantic_form_for resource, options, &block
       end
 
@@ -18,11 +16,6 @@ module ActiveAdmin
         end.join("\n").html_safe
       end
 
-      private
-
-      def undecorate_resource(resource)
-        ActiveAdmin::ResourceController::Decorators.undecorate_resource(resource)
-      end
     end
   end
 end
