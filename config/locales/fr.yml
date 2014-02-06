@@ -50,7 +50,9 @@ fr:
     any: "N'importe lequel"
     blank_slate:
       content: "Il n'y a pas encore de %{resource_name}."
-      link: "Créez-en un"
+      link: "Créez en un"
+    dropdown_actions:
+      button_label: "Actions"
     batch_actions:
       button_label: "Actions groupées"
       default_confirmation: "Êtes-vous sûr de que vouloir faire cela ?"

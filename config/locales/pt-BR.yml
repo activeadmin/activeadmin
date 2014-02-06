@@ -51,6 +51,8 @@ pt-BR:
     blank_slate:
       content: "Não existem %{resource_name} ainda."
       link: "Novo"
+    dropdown_actions:
+      button_label: "Ações"
     batch_actions:
       button_label: "Ações em lote"
       default_confirmation: "Tem certeza que quer fazer isso?"

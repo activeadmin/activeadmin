@@ -51,6 +51,8 @@
     blank_slate:
       content: "Es gibt noch keine %{resource_name}."
       link: "Erstellen"
+    dropdown_actions:
+      button_label: "Aktionen"
     batch_actions:
       button_label: "Stapelverarbeitung"
       default_confirmation: "Bist du sicher, dass Sie dies tun wollen?"

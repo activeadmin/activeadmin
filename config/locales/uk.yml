@@ -48,6 +48,8 @@ uk:
     blank_slate:
       content: "Покищо немає %{resource_name}."
       link: "Створити"
+    dropdown_actions:
+      button_label: "Oперації"
     batch_actions:
       button_label: "Групові операції"
       default_confirmation: "Ви справді бажаєте це зробити?"
@@ -55,7 +57,7 @@ uk:
       succesfully_destroyed:
         one: "Успішно видалено: 1 %{model}"
         few: "Успішно видалено: %{count} %{plural_model}"
-        many: "Успішно видалено: %{count} %{plural_model}"        
+        many: "Успішно видалено: %{count} %{plural_model}"
         other: "Успішно видалено: %{count} %{plural_model}"
       selection_toggle_explanation: "(Відмінити все / Зняти виділення)"
       link: "Створити"
