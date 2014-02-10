@@ -54,7 +54,7 @@ module ActiveAdmin
       # @returns [Boolean]
       #
       def authorized?(action, subject = nil)
-        active_admin_authorization.authorized?(action, subject)
+        active_admin_authorization.authorized?(action, subject, params)
       end
 
 
