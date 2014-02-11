@@ -113,6 +113,15 @@ module ActiveAdmin
     # end
     # ```
     #
+    # It's also possible to sort by PostgreSQL's hstore column key. You should set `sortable`
+    # option to a `column->'key'` value:
+    #
+    # ```ruby
+    # index do
+    #   column :keywords, sortable: "meta->'keywords'"
+    # end
+    # ```
+    #
     # ## Associated Sorting
     #
     # You're normally able to sort columns alphabetically, but by default you
