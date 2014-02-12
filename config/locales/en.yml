@@ -20,8 +20,8 @@ en:
     next: "Next"
     download: "Download:"
     has_many_new: "Add New %{model}"
-    has_many_remove: "Remove"
-    has_many_undo_remove: "Undo Remove %{model}"
+    has_many_remove: "Remove %{model}"
+    has_many_undo_remove: "Undo %{action}"
     filters:
       buttons:
         filter: "Filter"

@@ -20,8 +20,8 @@ ja:
     next: "次"
     download: "ダウンロード:"
     has_many_new: "新規に %{model} を追加する"
-    has_many_remove: "削除する"
-    has_many_undo_remove: "削除した %{model} を復元する"
+    has_many_remove: "%{model} を削除する"
+    has_many_undo_remove: "「%{action}」 をキャンセルする"
     filters:
       buttons:
         filter: "絞り込む"
