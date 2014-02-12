@@ -62,7 +62,7 @@ pt-BR:
       link: "Novo"
       action_label: "%{title} Selecionado"
       labels:
-        destroy: "Excluído"
+        destroy: "Excluir"
     comments:
       resource_type: "Tipo de Objeto"
       author_type: "Tipo de Autor"
