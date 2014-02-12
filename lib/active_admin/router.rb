@@ -87,7 +87,7 @@ module ActiveAdmin
 
             collection do
               config.collection_actions.each &build_action
-              post :batch_action
+              post :batch_action if config.batch_actions_enabled?
             end
           end
         when ::ActiveAdmin::Page
