@@ -6,7 +6,7 @@ module ActiveAdmin
         options = Marshal.load( Marshal.dump(options) )
         options[:builder] ||= ActiveAdmin::FormBuilder
 
-        if !options.fetch(:decorate, true)
+        if !options.fetch(:decorate, false)
           resource = resource.model if resource.respond_to? :model
         end
 

@@ -25,7 +25,7 @@ module MethodOrProcHelper
   # or instance_exec a proc passing in the object as the first parameter. This
   # method wraps that pattern.
   #
-  # Calling with a Symbol:
+  # Calling with a String or Symbol:
   #
   #     call_method_or_proc_on(@my_obj, :size) same as @my_obj.size
   #

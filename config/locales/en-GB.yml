@@ -85,6 +85,9 @@
       change_password:
         title: "Change your password"
         submit: "Change my password"
+      resend_confirmation_instructions:
+        title: "Resend confirmation instructions"
+        submit: "Resend confirmation instructions"
       links:
         sign_in: "Sign in"
         forgot_your_password: "Forgot your password?"

@@ -80,6 +80,13 @@ module ActiveAdminIntegrationSpecHelper
   class MockResource
   end
 
+  def with_translation(translation)
+    I18n.backend.store_translations :en, translation
+    yield
+  ensure
+    I18n.backend.reload!
+  end
+
 end
 
 ENV['RAILS_ENV'] = 'test'

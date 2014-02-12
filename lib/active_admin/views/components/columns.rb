@@ -133,16 +133,23 @@ module ActiveAdmin
         styles << "width: #{column_with_span_width}%;"
 
         if max_width
-          styles << "max-width: #{max_width};"
+          styles << "max-width: #{safe_width(max_width)};"
         end
 
         if min_width
-          styles << "min-width: #{min_width};"
+          styles << "min-width: #{safe_width(min_width)};"
         end
 
         styles << "margin-right: #{margin_width}%;" unless is_last_column
 
         set_attribute :style, styles.join(" ")
+      end
+
+      private
+
+      # Converts values without a '%' or 'px' suffix to a pixel value
+      def safe_width(width)
+        width.to_s.gsub(/\A(\d+)\z/, '\1px')
       end
 
     end

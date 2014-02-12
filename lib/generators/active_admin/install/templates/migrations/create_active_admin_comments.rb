@@ -4,7 +4,7 @@ class CreateActiveAdminComments < ActiveRecord::Migration
       t.string :namespace
       t.text   :body
       t.string :resource_id,   :null => false
-      t.string :resource_type, :null => false 
+      t.string :resource_type, :null => false
       t.references :author, :polymorphic => true
       t.timestamps
     end

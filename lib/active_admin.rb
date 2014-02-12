@@ -13,7 +13,8 @@ require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'coffee-rails'
 require 'arbre'
-require 'active_admin/engine'
+
+require 'active_admin/helpers/i18n'
 
 module ActiveAdmin
 
@@ -28,6 +29,7 @@ module ActiveAdmin
   autoload :BaseController,           'active_admin/base_controller'
   autoload :ControllerAction,         'active_admin/controller_action'
   autoload :CSVBuilder,               'active_admin/csv_builder'
+  autoload :Dependencies,             'active_admin/dependencies'
   autoload :Deprecation,              'active_admin/deprecation'
   autoload :Devise,                   'active_admin/devise'
   autoload :DSL,                      'active_admin/dsl'
@@ -39,6 +41,7 @@ module ActiveAdmin
   autoload :MenuCollection,           'active_admin/menu_collection'
   autoload :MenuItem,                 'active_admin/menu_item'
   autoload :Namespace,                'active_admin/namespace'
+  autoload :OrderClause,              'active_admin/order_clause'
   autoload :Page,                     'active_admin/page'
   autoload :PagePresenter,            'active_admin/page_presenter'
   autoload :PageController,           'active_admin/page_controller'
@@ -114,6 +117,10 @@ module ActiveAdmin
   end
 
 end
+
+# Require things that don't support autoload
+require 'active_admin/engine'
+require 'active_admin/error'
 
 # Require internal plugins
 require 'active_admin/batch_actions'

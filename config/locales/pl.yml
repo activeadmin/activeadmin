@@ -72,6 +72,9 @@ pl:
       errors:
         empty_text: "Komentarz nie został zapisany, zawartość była pusta."
     devise:
+      sign_up:
+        title: "Rejestracja"
+        submit: "Zarejestruj się"
       login:
         title: "Logowanie"
         remember_me: "Zapamiętaj mnie"
@@ -82,6 +85,9 @@ pl:
       change_password:
         title: "Zmień hasło"
         submit: "Zmień hasło"
+      resend_confirmation_instructions:
+        title: "Wyślij ponownie instrukcje aktywacji"
+        submit: "Wyślij ponownie instrukcje aktywacji"
       links:
         sign_in: "Zaloguj się"
         forgot_your_password: "Nie pamiętasz hasła?"

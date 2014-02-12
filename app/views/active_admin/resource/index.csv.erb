@@ -3,7 +3,7 @@
 
   default = active_admin_application.csv_options
   options = default.merge active_admin_config.csv_builder.options
-  columns = active_admin_config.csv_builder.columns
+  columns = active_admin_config.csv_builder.render_columns(self)
 
   csv_output = CSV.generate(options) do |csv|
     csv << columns.map(&:name)

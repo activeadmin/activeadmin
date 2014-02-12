@@ -206,11 +206,8 @@ describe ActiveAdmin::Views::AttributesTable do
 
             context "with defined attribute name translation" do
               it "should have the translated attribute name in the title" do
-                begin
-                  I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => 'Translated Title', :id => 'Translated Id' } } })
+                with_translation activerecord: {attributes: {post: {title: 'Translated Title', id: 'Translated Id'}}} do
                   expect(current_row.find_by_tag("th").first.content).to eq "Translated #{title}"
-                ensure
-                  I18n.backend.reload!
                 end
               end
             end
@@ -224,6 +221,39 @@ describe ActiveAdmin::Views::AttributesTable do
         end
       end # describe rendering rows
     end # with a collection
+
+
+    context "when using a single Hash" do
+      let(:table) do
+        render_arbre_component nil, helpers do
+          attributes_table_for foo: 1, bar: 2 do
+            row :foo
+            row :bar
+          end
+        end
+      end
+      it "should render" do
+        expect(table.find_by_tag("th")[0].content).to eq "Foo"
+        expect(table.find_by_tag("th")[1].content).to eq "Bar"
+        expect(table.find_by_tag("td")[0].content).to eq "1"
+        expect(table.find_by_tag("td")[1].content).to eq "2"
+      end
+    end
+
+    context "when using an Array of Hashes" do
+      let(:table) do
+        render_arbre_component nil, helpers do
+          attributes_table_for [{foo: 1},{foo: 2}] do
+            row :foo
+          end
+        end
+      end
+      it "should render" do
+        expect(table.find_by_tag("th")[0].content).to eq "Foo"
+        expect(table.find_by_tag("td")[0].content).to eq "1"
+        expect(table.find_by_tag("td")[1].content).to eq "2"
+      end
+    end
   end
 
 end

@@ -92,7 +92,7 @@ module ActiveAdmin
       html = without_wrapper do
         unless builder_options.key?(:heading) && !builder_options[:heading]
           form_buffers.last << template.content_tag(:h3) do
-            builder_options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: 1.1)
+            builder_options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
           end
         end
 
@@ -100,6 +100,7 @@ module ActiveAdmin
 
         form_buffers.last << js_for_has_many_add(assoc, form_block, template, builder_options[:new_record]) if builder_options[:new_record]
         form_buffers.last << js_for_has_many_destroy(assoc, form_block, template, builder_options[:allow_destroy]) if builder_options[:allow_destroy]
+        form_buffers.last
       end
 
       form_buffers.last << if @already_in_an_inputs_block

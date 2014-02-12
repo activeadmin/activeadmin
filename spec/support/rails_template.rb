@@ -12,9 +12,9 @@ gsub_file 'config/database.yml', /^test:.*\n/, "test: &test\n"
 gsub_file 'config/database.yml', /\z/, "\ncucumber:\n  <<: *test\n  database: db/cucumber.sqlite3"
 gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\n  database: db/cucumber.sqlite3"
 
-generate :model, "post title:string body:text published_at:datetime author_id:integer category_id:integer starred:boolean"
+generate :model, "post title:string body:text published_at:datetime author_id:integer custom_category_id:integer starred:boolean"
 inject_into_file 'app/models/post.rb', %q{
-  belongs_to :category
+  belongs_to :category, foreign_key: :custom_category_id
   belongs_to :author, :class_name => 'User'
   has_many :taggings
   accepts_nested_attributes_for :author
@@ -34,7 +34,7 @@ inject_into_file 'app/models/user.rb', %q{
 generate :model, 'publisher --migration=false --parent=User'
 generate :model, 'category name:string description:text'
 inject_into_file 'app/models/category.rb', %q{
-  has_many :posts
+  has_many :posts, foreign_key: :custom_category_id
   has_many :authors, through: :posts
   accepts_nested_attributes_for :posts
 }, :after => 'class Category < ActiveRecord::Base'

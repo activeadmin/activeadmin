@@ -2,11 +2,34 @@
 
 Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
 
-[![Travis CI   ](https://api.travis-ci.org/gregbell/active_admin.png)       ](https://travis-ci.org/gregbell/active_admin)
-[![Code Climate](https://codeclimate.com/github/gregbell/active_admin.png)  ](https://codeclimate.com/github/gregbell/active_admin)
-[![Gemnasium   ](https://gemnasium.com/gregbell/active_admin.png)           ](https://gemnasium.com/gregbell/active_admin)
-[![Coveralls   ](https://coveralls.io/repos/gregbell/active_admin/badge.png)](https://coveralls.io/r/gregbell/active_admin)
-[![Gittip      ](https://img.shields.io/gittip/activeadmin.png)             ](https://www.gittip.com/activeadmin)
+[![Version     ](https://badge.fury.io/rb/activeadmin.png)                         ](http://badge.fury.io/rb/activeadmin)
+[![Dependencies](https://gemnasium.com/gregbell/active_admin.png)                  ](https://gemnasium.com/gregbell/active_admin)
+[![Travis CI   ](https://api.travis-ci.org/gregbell/active_admin.png?branch=master)](https://travis-ci.org/gregbell/active_admin)
+[![Quality     ](https://codeclimate.com/github/gregbell/active_admin.png)         ](https://codeclimate.com/github/gregbell/active_admin)
+[![Coverage    ](http://img.shields.io/coveralls/gregbell/active_admin.png)        ](https://coveralls.io/r/gregbell/active_admin)
+[![Gittip      ](http://img.shields.io/gittip/activeadmin.png)                     ](https://gittip.com/activeadmin)
+[![License     ](http://img.shields.io/license/MIT.png?color=green)                ](https://github.com/gregbell/active_admin/blob/master/LICENSE)
+
+## State of the project
+
+We're [currently working on 1.0.0](https://github.com/gregbell/active_admin/issues?milestone=18),
+which as far as dependencies, moves us from meta_search to Ransack and adds Rails 4 support.
+Until it's ready, you can get Rails 4 support today by tracking master:
+
+```ruby
+gem 'activeadmin', github: 'gregbell/active_admin'
+```
+
+The plan is to follow [semantic versioning](http://semver.org/) as of 1.0.0. The 0.6.x line will
+still be maintained, and we will backport bug fixes into future 0.6.x releases. If you don't want
+to have to wait for a release, you can track the branch instead:
+
+```ruby
+gem 'activeadmin', github: 'gregbell/active_admin', branch: '0-6-stable'
+```
+
+Please note that <http://activeadmin.info> is out of date. For the latest docs, check out the
+Github repo itself.
 
 ## Links
 
@@ -23,13 +46,6 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 2. Build a DSL for developers and an interface for businesses.
 3. Ensure that developers can easily customize every nook and cranny of the interface.
 4. Build common interfaces as shareable gems so that the entire community benefits.
-
-## Rails 4
-
-There isn't yet an official release that supports Rails 4. For now, you'll have to use master:
-```ruby
-gem 'activeadmin', github: 'gregbell/active_admin'
-```
 
 ## Getting started
 

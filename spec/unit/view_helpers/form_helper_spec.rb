@@ -32,6 +32,11 @@ describe ActiveAdmin::ViewHelpers::FormHelper do
         expect(view).to receive(:semantic_form_for).with(decorated, default_options.merge(decorate: true))
         view.active_admin_form_for(decorated, decorate: true)
       end
+
+      it 'defaults to not decorating' do
+        expect(view).to receive(:semantic_form_for).with(resource, default_options)
+        view.active_admin_form_for(decorated)
+      end
     end
   end
 

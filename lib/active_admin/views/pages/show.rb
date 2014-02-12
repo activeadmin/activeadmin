@@ -11,7 +11,7 @@ module ActiveAdmin
           if config[:title]
             render_or_call_method_or_proc_on(resource, config[:title])
           else
-            default_title
+            assigns[:page_title] || default_title
           end
         end
 

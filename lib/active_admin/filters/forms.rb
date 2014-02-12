@@ -22,7 +22,7 @@ module ActiveAdmin
       # Returns the default filter type for a given attribute. If you want
       # to use a custom search method, you have to specify the type yourself.
       def default_input_type(method, options = {})
-        if method =~ /_(contains|starts_with|ends_with)\z/
+        if method =~ /_(equals|contains|starts_with|ends_with)\z/
           :string
         elsif reflection_for(method) || polymorphic_foreign_type?(method)
           :select
@@ -65,12 +65,10 @@ module ActiveAdmin
 
         form_for search, options do |f|
           filters.each do |attribute, opts|
-            should   = opts.delete(:if)     || proc{ true }
-            shouldnt = opts.delete(:unless) || proc{ false }
+            next if opts.key?(:if)     && !call_method_or_proc_on(self, opts[:if])
+            next if opts.key?(:unless) &&  call_method_or_proc_on(self, opts[:unless])
 
-            if call_method_or_proc_on(self, should) && !call_method_or_proc_on(self, shouldnt)
-              f.filter attribute, opts
-            end
+            f.filter attribute, opts.except(:if, :unless)
           end
 
           buttons = content_tag :div, :class => "buttons" do

@@ -52,7 +52,7 @@ module ActiveAdmin
         collection = apply_filtering(collection)
         collection = apply_scoping(collection)
         collection = apply_pagination(collection)
-        collection = apply_decorator(collection)
+        collection = apply_collection_decorator(collection)
 
         collection
       end
@@ -90,21 +90,10 @@ module ActiveAdmin
         _resource = find_resource
         authorize_resource! _resource
 
-        if decorator?
-          _resource = decorator_class.new(_resource)
-        end
+        _resource = apply_decorator(_resource)
 
         set_resource_ivar(_resource)
       end
-
-      def decorator?
-        !!active_admin_config.decorator_class
-      end
-
-      def decorator_class
-        active_admin_config.decorator_class
-      end
-
 
       # Does the actual work of finding a resource in the database. This
       # method uses the finder method as defined in InheritedResources.
@@ -214,17 +203,13 @@ module ActiveAdmin
         active_admin_authorization.scope_collection(collection, action_name)
       end
 
-
       def apply_sorting(chain)
         params[:order] ||= active_admin_config.sort_order
-        if params[:order] && params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
-          column = $1
-          order  = $2
-          table  = active_admin_config.resource_column_names.include?(column) ? active_admin_config.resource_table_name : nil
-          table_column = (column =~ /\./) ? column :
-            [table, active_admin_config.resource_quoted_column_name(column)].compact.join(".")
+        
+        order_clause = OrderClause.new params[:order]
 
-          chain.reorder("#{table_column} #{order}")
+        if order_clause.valid?
+          chain.reorder(order_clause.to_sql(active_admin_config))
         else
           chain # just return the chain
         end
@@ -269,28 +254,25 @@ module ActiveAdmin
       end
 
       def apply_pagination(chain)
-        page_method = Kaminari.config.page_method_name
-        page_param  = params[Kaminari.config.param_name]
+        page_method_name = Kaminari.config.page_method_name
+        page = params[Kaminari.config.param_name]
 
-        chain.send(page_method, page_param).per(per_page)
+        chain.send(page_method_name, page).per(per_page)
       end
 
       def per_page
+        return max_csv_records if request.format == 'text/csv'
         return max_per_page if active_admin_config.paginate == false
 
         @per_page || active_admin_config.per_page
       end
 
-      def max_per_page
+      def max_csv_records
         10_000
       end
 
-      def apply_decorator(chain)
-        if decorator?
-          decorator_class.decorate_collection(chain)
-        else
-          chain
-        end
+      def max_per_page
+        10_000
       end
 
     end

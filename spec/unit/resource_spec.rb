@@ -196,7 +196,7 @@ module ActiveAdmin
     describe "#csv_builder" do
       context "when no csv builder set" do
         it "should return a default column builder with id and content columns" do
-          expect(config.csv_builder.columns.size).to eq Category.content_columns.size + 1
+          expect(config.csv_builder.render_columns.size).to eq Category.content_columns.size + 1
         end
       end
 
@@ -205,6 +205,26 @@ module ActiveAdmin
           csv_builder = CSVBuilder.new
           config.csv_builder = csv_builder
           expect(config.csv_builder).to eq csv_builder
+        end
+      end
+    end
+
+    describe "#breadcrumb" do
+      subject { config.breadcrumb }
+
+      context "when no breadcrumb is set" do
+        it { should == namespace.breadcrumb }
+      end
+
+      context "when breadcrumb is set" do
+        context "when set to true" do
+          before { config.breadcrumb = true }
+          it { should be_true }
+        end
+
+        context "when set to false" do
+          before { config.breadcrumb = false }
+          it { should be_false }
         end
       end
     end
