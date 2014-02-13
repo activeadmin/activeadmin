@@ -98,8 +98,13 @@ module ActiveAdmin
 
         inputs options, &form_block
 
-        form_buffers.last << js_for_has_many_add(assoc, form_block, template, builder_options[:new_record]) if builder_options[:new_record]
-        form_buffers.last << js_for_has_many_destroy(assoc, form_block, template, builder_options[:allow_destroy]) if builder_options[:allow_destroy]
+        buttons = ''.html_safe
+        buttons << js_for_has_many_add(assoc, form_block, template, builder_options[:new_record]) if builder_options[:new_record]
+        buttons << js_for_has_many_destroy(assoc, form_block, template, builder_options[:allow_destroy]) if builder_options[:allow_destroy]
+        form_buffers.last << if buttons.present?
+          template.content_tag :div, buttons, class: "has_many_buttons"
+        end
+
         form_buffers.last
       end
 
