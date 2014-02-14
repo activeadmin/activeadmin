@@ -189,12 +189,10 @@ describe ActiveAdmin::Views::TableFor do
       end
       
       it "should render boolean attribute within status tag" do
-        table.find_by_tag("span").first
-          .class_list.to_a.join(' ').should == "status_tag yes"
-        table.find_by_tag("span").first.content.should == "Yes"
-        table.find_by_tag("span").last
-          .class_list.to_a.join(' ').should == "status_tag no"
-        table.find_by_tag("span").last.content.should == "No"
+        expect(table.find_by_tag("span").first.class_list.to_a.join(' ')).to eq "status_tag yes"
+        expect(table.find_by_tag("span").first.content).to eq "Yes"
+        expect(table.find_by_tag("span").last.class_list.to_a.join(' ')).to eq "status_tag no"
+        expect(table.find_by_tag("span").last.content).to eq "No"
       end
     end
 
