@@ -9,4 +9,8 @@
   &.ok, &.published, &.complete, &.completed, &.green { background: #8daa92; }
   &.warn, &.warning, &.orange { background: #e29b20; }
   &.error, &.errored, &.red { background: #d45f53; }
+
+  &.yes { background: #6090DB }
+  &.no  { background: grey }
+
 }
