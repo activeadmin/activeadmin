@@ -20,7 +20,6 @@
     next: "Próximo"
     download: "Baixar:"
     has_many_new: "Adicionar Novo(a) %{model}"
-    has_many_delete: "Remover"
     has_many_remove: "Remover"
     filters:
       buttons:

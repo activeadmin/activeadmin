@@ -20,7 +20,6 @@ hu:
     next: "Következő"
     download: "Letöltés:"
     has_many_new: "Új %{model} hozzáadása"
-    has_many_delete: "Törlés"
     has_many_remove: "Eltávolít"
     filters:
       buttons:

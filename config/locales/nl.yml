@@ -20,7 +20,6 @@ nl:
     next: "Volgende"
     download: "Download"
     has_many_new: "Voeg nieuwe %{model} toe"
-    has_many_delete: "Verwijderen"
     has_many_remove: "Verwijderen"
     filters:
       buttons:

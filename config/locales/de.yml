@@ -20,7 +20,6 @@ de:
     next: "Weiter"
     download: "Herunterladen:"
     has_many_new: "%{model} hinzufügen"
-    has_many_delete: "Löschen"
     has_many_remove: "Entfernen"
     filters:
       buttons:

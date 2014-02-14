@@ -18,7 +18,6 @@ ko:
     next: "다음"
     download: "다운로드:"
     has_many_new: "%{model} 추가"
-    has_many_delete: "삭제"
     has_many_remove: "삭제"
     filters:
       buttons:

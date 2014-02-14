@@ -60,13 +60,15 @@ module ActiveAdmin
         index    = parent_child_index options[:parent] if options[:parent]
         contents = block.call has_many_form, index
 
-        if has_many_form.object.new_record?
+
+        show_remove = has_many_form.object.persisted? && builder_options[:allow_destroy]
+        show_remove ||= has_many_form.object.new_record?
+
+        if show_remove
           contents << template.content_tag(:li) do
-            template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
+            template.link_to _destroy_button_text(assoc, builder_options[:allow_destroy]), "#", class: 'button has_many_remove'
           end
-        elsif builder_options[:allow_destroy]
-          has_many_form.input :_destroy, as: :boolean, wrapper_html: {class: 'has_many_delete'},
-                                                       label: I18n.t('active_admin.has_many_delete')
+          has_many_form.input :_destroy, as: :hidden if has_many_form.object.persisted?
         end
 
         if builder_options[:sortable]
@@ -96,7 +98,13 @@ module ActiveAdmin
 
         inputs options, &form_block
 
-        form_buffers.last << js_for_has_many(assoc, form_block, template, builder_options[:new_record]) if builder_options[:new_record]
+        buttons = ''.html_safe
+        buttons << js_for_has_many_add(assoc, form_block, template, builder_options[:new_record]) if builder_options[:new_record]
+        buttons << js_for_has_many_destroy(assoc, form_block, template, builder_options[:allow_destroy]) if builder_options[:allow_destroy]
+        form_buffers.last << if buttons.present?
+          template.content_tag :div, buttons, class: "has_many_buttons"
+        end
+
         form_buffers.last
       end
 
@@ -164,9 +172,9 @@ module ActiveAdmin
     end
 
     # Capture the ADD JS
-    def js_for_has_many(assoc, form_block, template, new_record)
+    def js_for_has_many_add(assoc, form_block, template, new_record)
       assoc_reflection = object.class.reflect_on_association assoc
-      assoc_name       = assoc_reflection.klass.model_name
+      assoc_name       = _assoc_name(assoc)
       placeholder      = "NEW_#{assoc_name.to_s.upcase.split(' ').join('_')}_RECORD"
       opts = {
         :for         => [assoc, assoc_reflection.klass.new],
@@ -174,11 +182,32 @@ module ActiveAdmin
         :for_options => { child_index: placeholder }
       }
       html = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
-      text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
+      add_text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
-      template.link_to text, '#', class: "button has_many_add", data: {
+      template.link_to(add_text, '#', class: "button has_many_add", data: {
         html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
-      }
+      })
+    end
+
+    def js_for_has_many_destroy(assoc, form_block, template, destroy)
+      assoc_name = _assoc_name(assoc)
+      undo_text = I18n.t('active_admin.has_many_undo_remove', action: _destroy_button_text(assoc, destroy))
+
+      template.link_to(undo_text, '#', class: "button has_many_undo_remove disabled")
+    end
+
+    private
+
+    def _assoc_name assoc
+      object.class.reflect_on_association(assoc).klass.model_name
+    end
+
+    def _destroy_button_text assoc, option
+      if option.is_a?(String)
+        destroy_text = option
+      else
+        destroy_text = I18n.t('active_admin.has_many_remove', model: _assoc_name(assoc).human)
+      end
     end
 
   end

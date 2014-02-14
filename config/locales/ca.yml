@@ -19,7 +19,6 @@ ca:
     next: "Següent"
     download: "Descarregar:"
     has_many_new: "Afegir %{model}"
-    has_many_delete: "Eliminar"
     has_many_remove: "Treure"
     filters:
       buttons:

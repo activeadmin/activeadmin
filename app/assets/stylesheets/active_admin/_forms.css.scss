@@ -53,8 +53,12 @@ form {
     }
   }
 
-  // relative so the absolutely-positioned handle will fit
-  .has_many_fields { position: relative }
+  .has_many_fields {
+    // relative so the absolutely-positioned handle will fit
+    position: relative;
+    &.has_many_new { background: $section-background-alternate-color }
+    &.has_many_removed { display: none }
+  }
 
   .has_many_container {
     .handle {

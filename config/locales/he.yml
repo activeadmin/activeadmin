@@ -20,7 +20,6 @@ he:
     next: "הבא"
     download: "הורד:"
     has_many_new: "הוספת %{model} חדש"
-    has_many_delete: "מחיקה"
     has_many_remove: "להסיר"
     filters:
       buttons:
