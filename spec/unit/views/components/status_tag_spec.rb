@@ -46,12 +46,19 @@ describe ActiveAdmin::Views::StatusTag do
       its(:class_list)  { should include('status_tag') }
       its(:content)     { should eq '' }
     end
+    
+    context "when status is false" do
+      subject { status_tag('false') }
+
+      its(:class_list)  { should include('status_tag') }
+      its(:content)     { should == 'No' }
+    end
 
     context "when status is nil" do
       subject { status_tag(nil) }
 
       its(:class_list)  { should include('status_tag') }
-      its(:content)     { should eq '' }
+      its(:content)     { should == 'No' }
     end
 
     context "when status is 'Active' and type is :ok" do
