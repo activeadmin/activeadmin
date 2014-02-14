@@ -98,10 +98,10 @@ module ActiveAdmin
         value
       end
 
-      # Returns true or false depending on the attr being boolean 
       def is_boolean?(data, item)
-        attr = item.column_for_attribute data
-        attr.present? && attr.type == :boolean 
+        if item.respond_to? :column_for_attribute
+          attr = item.column_for_attribute(data) and attr.type == :boolean 
+        end
       end
 
       # Returns an array for the current sort order
