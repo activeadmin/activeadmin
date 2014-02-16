@@ -66,7 +66,7 @@ member_action :foo, method: [:get, :post] do
 end
 ```
 
-## Rendering in Custom Actions
+## Rendering
 
 Custom controller actions support rendering within the standard Active Admin
 layout.
@@ -98,27 +98,7 @@ table_for assigns[:post].comments do
 end
 ```
 
-### Custom Action Items
-
-To include your own action items (like the New, Edit and Delete buttons), add an
-`action_item` block. For example, to add a "View on site" button to view a blog
-post:
-
-```ruby
-action_item only: :show do
-  link_to 'View on site', post_path(post) if post.published?
-end
-```
-
-Actions items also accept the `:if` option to conditionally display them:
-
-```ruby
-action_item only: :show, if: proc{ current_admin_user.super_admin? } do
-  "Only display this to super admins on the show screen"
-end
-```
-
-### Page Titles
+## Page Titles
 
 The page title for the custom action will be the translated version of
 the controller action name. For example, a member_action named "upload_csv" will
@@ -139,7 +119,27 @@ ActiveAdmin.register Post do
 end
 ```
 
-## Modifying the Controller
+# Action Items
+
+To include your own action items (like the New, Edit and Delete buttons), add an
+`action_item` block. For example, to add a "View on site" button to view a blog
+post:
+
+```ruby
+action_item only: :show do
+  link_to 'View on site', post_path(post) if post.published?
+end
+```
+
+Actions items also accept the `:if` option to conditionally display them:
+
+```ruby
+action_item only: :show, if: proc{ current_admin_user.super_admin? } do
+  "Only display this to super admins on the show screen"
+end
+```
+
+# Modifying the Controller
 
 The generated controller is available to you within the registration block by
 using the `controller` method.
