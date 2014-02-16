@@ -47,13 +47,24 @@ end
 This will generate a route at `/admin/users/:id/lock` pointing to the
 `Admin::UserController#lock` controller action.
 
-## Controller Action HTTP Verb
+## HTTP Verbs
 
-The `collection_action` and `member_actions` methods both accept the `:method`
+The `collection_action` and `member_action` methods both accept the `:method`
 argument to set the HTTP verb for the controller action and route.
 
-The generated routes will be scoped to the given method you pass in. By default
-your action will use the GET verb.
+Sometimes you want to create an action with the same name, that handles multiple
+HTTP verbs. In that case, this is the suggested approach:
+
+```ruby
+member_action :foo, method: [:get, :post] do
+  if request.post?
+    resource.update_attributes! foo: params[:foo] || {}
+    head :ok
+  else
+    render :foo
+  end
+end
+```
 
 ## Rendering in Custom Actions
 
