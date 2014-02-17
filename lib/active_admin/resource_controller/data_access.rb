@@ -113,14 +113,18 @@ module ActiveAdmin
       #
       # @returns [ActiveRecord::Base] An un-saved active record base object
       def build_resource
-        return resource if resource = get_resource_ivar
+        _resource = get_resource_ivar
 
-        resource = build_new_resource
+        return _resource if _resource
 
-        run_build_callbacks resource
-        authorize_resource! resource
+        _resource = build_new_resource
 
-        set_resource_ivar(resource)
+        run_build_callbacks _resource
+        authorize_resource! _resource
+
+        _resource = apply_decorator(_resource)
+
+        set_resource_ivar(_resource)
       end
 
       # Builds a new resource. This method uses the method_for_build provided
@@ -205,7 +209,7 @@ module ActiveAdmin
 
       def apply_sorting(chain)
         params[:order] ||= active_admin_config.sort_order
-        
+
         order_clause = OrderClause.new params[:order]
 
         if order_clause.valid?

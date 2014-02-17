@@ -4,18 +4,37 @@ module ActiveAdmin
       protected
 
       def apply_decorator(resource)
-        decorator_class ? decorator_class.new(resource) : resource
+        decorate? ? decorator_class.new(resource) : resource
       end
 
       def apply_collection_decorator(collection)
-        if decorator = collection_decorator
-          decorator.decorate(collection, with: decorator_class)
+        if decorate?
+          collection_decorator.decorate(collection, with: decorator_class)
         else
           collection
         end
       end
 
+      # TODO: find a more suitable place for this
+      def self.undecorate_resource(resource)
+        if resource.respond_to?(:decorated?) && resource.decorated?
+          resource.model
+        else
+          resource
+        end
+      end
+
       private
+
+      def decorate?
+        case action_name
+        when 'new', 'edit'
+          form = active_admin_config.get_page_presenter :form
+          form && form.options[:decorate] && decorator_class.present?
+        else
+          decorator_class.present?
+        end
+      end
 
       def decorator_class
         active_admin_config.decorator_class

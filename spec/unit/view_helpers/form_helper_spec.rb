@@ -19,25 +19,6 @@ describe ActiveAdmin::ViewHelpers::FormHelper do
       expect(view).to receive(:semantic_form_for).with(resource, builder: custom_builder)
       view.active_admin_form_for(resource, builder: custom_builder)
     end
-
-    context 'with a decorated resource' do
-      let(:decorated) { double 'decorated_resource', model: resource }
-
-      it 'can disable automatic decoration' do
-        expect(view).to receive(:semantic_form_for).with(resource, default_options.merge(decorate: false))
-        view.active_admin_form_for(decorated, decorate: false)
-      end
-
-      it 'can enable automatic decoration' do
-        expect(view).to receive(:semantic_form_for).with(decorated, default_options.merge(decorate: true))
-        view.active_admin_form_for(decorated, decorate: true)
-      end
-
-      it 'defaults to not decorating' do
-        expect(view).to receive(:semantic_form_for).with(resource, default_options)
-        view.active_admin_form_for(decorated)
-      end
-    end
   end
 
   describe ".hidden_field_tags_for" do

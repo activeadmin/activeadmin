@@ -3,21 +3,28 @@ require 'spec_helper'
 describe ActiveAdmin::ResourceController::Decorators do
   let(:controller_class) do
     Class.new do
-      include ActiveAdmin::ResourceController::Decorators
-
       def self.name
         "Test Controller using Decorators"
       end
+
+      def self.helper_method(method)
+        # STUB
+      end
+
+      include ActiveAdmin::ResourceController::Decorators
 
       public :apply_decorator, :apply_collection_decorator
     end
   end
 
   let(:controller) { controller_class.new }
-  before { controller.stub(active_admin_config: double(decorator_class: decorator_class)) }
+  let(:active_admin_config) { double(decorator_class: decorator_class) }
+  before { controller.stub(active_admin_config: active_admin_config) }
+  before { controller.stub(action_name: action) }
 
 
   describe '#apply_decorator' do
+    let(:action) { 'show' }
     let(:resource) { Post.new }
     subject(:applied) { controller.apply_decorator(resource) }
 
@@ -34,6 +41,7 @@ describe ActiveAdmin::ResourceController::Decorators do
 
   describe '#apply_collection_decorator' do
     before { Post.create! }
+    let(:action) { 'index' }
     let(:collection) { Post.scoped }
     subject(:applied) { controller.apply_collection_decorator(collection) }
 
@@ -53,5 +61,26 @@ describe ActiveAdmin::ResourceController::Decorators do
 
       end
     end
+  end
+
+  describe 'form actions' do
+    let(:action) { 'edit' }
+    let(:resource) { Post.new }
+    let(:form_presenter) { double options: { decorate: decorate_form } }
+    let(:decorator_class) { PostDecorator }
+    before { active_admin_config.stub(:get_page_presenter).with(:form).and_return form_presenter }
+
+    subject(:applied) { controller.apply_decorator(resource) }
+
+    context 'when the form is not configured to decorate' do
+      let(:decorate_form) { false }
+      it { should be_kind_of(Post) }
+    end
+
+    context 'when the form is configured to decorate' do
+      let(:decorate_form) { true }
+      it { should be_kind_of(PostDecorator) }
+    end
+
   end
 end
