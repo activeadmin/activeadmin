@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 describe ActiveAdmin::OrderClause do
-  subject { described_class.new clause }
+  subject { described_class.new clause, order }
 
   let(:application) { ActiveAdmin::Application.new }
   let(:namespace)   { ActiveAdmin::Namespace.new application, :admin }
   let(:config)      { ActiveAdmin::Resource.new namespace, Post }
 
   describe 'id_asc (existing column)' do
-    let(:clause) { 'id_asc' }
+    let(:clause) { 'id' }
+    let(:order) { 'asc' }
 
     it { should be_valid }
     its(:field) { should == 'id' }
@@ -20,7 +21,8 @@ describe ActiveAdmin::OrderClause do
   end
 
   describe 'virtual_column_asc' do
-    let(:clause) { 'virtual_column_asc' }
+    let(:clause) { 'virtual_column' }
+    let(:order) { 'asc' }
 
     it { should be_valid }
     its(:field) { should == 'virtual_column' }
@@ -32,7 +34,8 @@ describe ActiveAdmin::OrderClause do
   end
 
   describe "hstore_col->'field'_desc" do
-    let(:clause) { "hstore_col->'field'_desc" }
+    let(:clause) { "hstore_col->'field'" }
+    let(:order) { 'desc' }
 
     it { should be_valid }
     its(:field) { should == "hstore_col->'field'" }
@@ -44,13 +47,15 @@ describe ActiveAdmin::OrderClause do
   end
 
   describe '_asc' do
-    let(:clause) { '_asc' }
+    let(:clause) { '' }
+    let(:order) { 'asc' }
 
     it { should_not be_valid }
   end
 
   describe 'nil' do
     let(:clause) { nil }
+    let(:order) { nil }
 
     it { should_not be_valid }
   end

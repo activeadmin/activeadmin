@@ -205,13 +205,26 @@ module ActiveAdmin
 
       def apply_sorting(chain)
         params[:order] ||= active_admin_config.sort_order
-        
-        order_clause = OrderClause.new params[:order]
+
+        match = params[:order].match(/([\w\.->']+)_(asc|desc)\z/)
+        @field, @direction = match.captures if match
+
+        apply_custom_sort(chain) || apply_order_clause(chain) || chain
+      end
+
+      def apply_custom_sort(chain)
+        sort_method = "sort_by_#{@field}".to_sym
+
+        if chain.respond_to?(sort_method)
+          chain.send sort_method, @direction.to_sym
+        end
+      end
+
+      def apply_order_clause(chain)
+        order_clause = OrderClause.new @field, @direction
 
         if order_clause.valid?
           chain.reorder(order_clause.to_sql(active_admin_config))
-        else
-          chain # just return the chain
         end
       end
 

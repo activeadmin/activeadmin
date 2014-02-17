@@ -2,11 +2,11 @@ module ActiveAdmin
   class OrderClause
     attr_reader :field, :order
 
-    def initialize(clause)
-      clause =~ /^([\w\_\.]+)(->'\w+')?_(desc|asc)$/
+    def initialize(clause, order)
+      clause =~ /^([\w\_\.]+)(->'\w+')?$/
       @column = $1
       @op = $2
-      @order = $3
+      @order = order
 
       @field = [@column, @op].compact.join
     end

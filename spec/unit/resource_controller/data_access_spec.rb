@@ -37,11 +37,39 @@ describe ActiveAdmin::ResourceController::DataAccess do
 
     context "invalid clause" do
       let(:params){ {:order => "_asc" }}
-      
+
       it "returns chain untouched" do
         chain = double "ChainObj"
         expect(chain).not_to receive(:reorder)
         expect(controller.send(:apply_sorting, chain)).to eq chain
+      end
+    end
+
+    context "custom sorting methods" do
+      context "when the method exists on the model" do
+        let!(:params){ {:order => "custom_field_asc" }}
+
+        it "should call the model's sort method" do
+          chain = double("ChainObj", sort_by_custom_field: :sorted)
+          expect(chain).to receive(:sort_by_custom_field)
+          expect(controller.send(:apply_sorting, chain)).to eql :sorted
+        end
+
+        it "should pass the sort direction to the sort method" do
+          chain = double("ChainObj", sort_by_custom_field: :sorted)
+          expect(chain).to receive(:sort_by_custom_field).with(:asc)
+          controller.send :apply_sorting, chain
+        end
+      end
+
+      context "when the methods do not exist on the model" do
+        let!(:params){ {:order => "id_asc" }}
+
+        it "falls back to standard sorting" do
+          chain = double("ChainObj")
+          expect(chain).to receive(:reorder).with('"posts"."id" asc')
+          controller.send :apply_sorting, chain
+        end
       end
     end
 
