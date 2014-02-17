@@ -45,3 +45,19 @@ You can also render a partial:
 sidebar :help                    # app/views/admin/posts/_help_sidebar.html.erb
 sidebar :help, partial: 'custom' # app/views/admin/posts/_custom.html.erb
 ```
+
+It's possible to add custom class name to the sidebar parent element by passing
+`class` option:
+
+```ruby
+sidebar :help, class: 'custom_class'
+```
+
+By default sidebars are positioned in the same order as they defined, but it's also
+possible to specify their position manually:
+
+```ruby
+sidebar :help, priority: 0 # will push Help section to the top (above default Filters section)
+```
+
+Default sidebar priority is `10`.

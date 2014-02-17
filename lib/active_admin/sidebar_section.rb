@@ -32,6 +32,14 @@ module ActiveAdmin
     def partial_name
       options[:partial] || "#{name.to_s.downcase.gsub(' ', '_')}_sidebar"
     end
+
+    def custom_class
+      options[:class]
+    end
+
+    def priority
+      options[:priority] || 10
+    end
   end
 
 end
