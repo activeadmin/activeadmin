@@ -239,10 +239,11 @@ module ActiveAdmin
         ActiveAdmin::Engine.config.watchable_dirs[path] = [:rb]
       end
 
-      app = self
-      ActionDispatch::Reloader.to_prepare do
-        app.unload!
-        Rails.application.reload_routes!
+      Rails.application.config.after_initialize do
+        ActionDispatch::Reloader.to_prepare do
+          ActiveAdmin.application.unload!
+          Rails.application.reload_routes!
+        end
       end
     end
   end
