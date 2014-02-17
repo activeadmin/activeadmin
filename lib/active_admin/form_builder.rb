@@ -96,7 +96,7 @@ module ActiveAdmin
 
         inputs options, &form_block
 
-        form_buffers.last << js_for_has_many(assoc, form_block, template, builder_options[:new_record]) if builder_options[:new_record]
+        form_buffers.last << js_for_has_many(assoc, form_block, template, builder_options[:new_record], options[:class]) if builder_options[:new_record]
         form_buffers.last
       end
 
@@ -164,13 +164,13 @@ module ActiveAdmin
     end
 
     # Capture the ADD JS
-    def js_for_has_many(assoc, form_block, template, new_record)
+    def js_for_has_many(assoc, form_block, template, new_record, class_string)
       assoc_reflection = object.class.reflect_on_association assoc
       assoc_name       = assoc_reflection.klass.model_name
       placeholder      = "NEW_#{assoc_name.to_s.upcase.split(' ').join('_')}_RECORD"
       opts = {
         :for         => [assoc, assoc_reflection.klass.new],
-        :class       => "inputs has_many_fields",
+        :class       => class_string,
         :for_options => { child_index: placeholder }
       }
       html = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
