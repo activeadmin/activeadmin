@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ActiveAdmin::ResourceController::Sidebars do
+describe ActiveAdmin::Controllers::Resource::Sidebars do
   let(:controller){ Admin::PostsController }
 
   context 'without before_filter' do
@@ -26,7 +26,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
   end
 
   def find_before_filter(controller, filter)
-    #raise controller._process_action_callbacks.map(&:filter).inspect
+    # raise controller._process_action_callbacks.map(&:filter).inspect
     controller._process_action_callbacks.detect { |f| f.raw_filter == filter.to_sym }
   end
 

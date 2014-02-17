@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe ActiveAdmin::ResourceController::Decorators do
+describe ActiveAdmin::Controllers::Resource::Decorators do
   let(:controller_class) do
     Class.new do
-      include ActiveAdmin::ResourceController::Decorators
+      include ActiveAdmin::Controllers::Resource::Decorators
 
       def self.name
         "Test Controller using Decorators"
