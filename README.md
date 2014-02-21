@@ -8,7 +8,6 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 [![Quality     ](http://img.shields.io/codeclimate/github/gregbell/active_admin.svg)](https://codeclimate.com/github/gregbell/active_admin)
 [![Coverage    ](http://img.shields.io/coveralls/gregbell/active_admin.svg)         ](https://coveralls.io/r/gregbell/active_admin)
 [![Gittip      ](http://img.shields.io/gittip/activeadmin.svg)                      ](https://gittip.com/activeadmin)
-[![License     ](http://img.shields.io/badge/license-MIT-blue.svg)                  ](https://github.com/gregbell/active_admin/blob/master/LICENSE)
 
 ## State of the project
 
