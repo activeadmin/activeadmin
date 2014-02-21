@@ -76,10 +76,22 @@ ru:
       add: "Добавить Комментарий"
       resource: "Ресурс"
       no_comments_yet: "Пока нет комментариев."
+      author_missing: "Аноним"
       title_content: "Комментарии (%{count})"
       errors:
         empty_text: "Комментарий не сохранен, текст не должен быть пустым."
     devise:
+      username:
+        title: "Имя пользователя"
+      email:
+        title: "Эл. почта"
+      subdomain:
+        title: "Поддомен"
+      password:
+        title: "Пароль"
+      sign_up:
+        title: "Зарегистрироваться"
+        submit: "Зарегистрироваться"
       login:
         title: "Войти"
         remember_me: "Запомнить меня"
