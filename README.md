@@ -2,13 +2,13 @@
 
 Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
 
-[![Version     ](https://badge.fury.io/rb/activeadmin.png)                         ](http://badge.fury.io/rb/activeadmin)
-[![Dependencies](https://gemnasium.com/gregbell/active_admin.png)                  ](https://gemnasium.com/gregbell/active_admin)
-[![Travis CI   ](https://api.travis-ci.org/gregbell/active_admin.png?branch=master)](https://travis-ci.org/gregbell/active_admin)
-[![Quality     ](https://codeclimate.com/github/gregbell/active_admin.png)         ](https://codeclimate.com/github/gregbell/active_admin)
-[![Coverage    ](http://img.shields.io/coveralls/gregbell/active_admin.png)        ](https://coveralls.io/r/gregbell/active_admin)
-[![Gittip      ](http://img.shields.io/gittip/activeadmin.png)                     ](https://gittip.com/activeadmin)
-[![License     ](http://img.shields.io/license/MIT.png?color=green)                ](https://github.com/gregbell/active_admin/blob/master/LICENSE)
+[![Version     ](http://img.shields.io/gem/v/activeadmin.svg)                       ](https://rubygems.org/gems/activeadmin)
+[![Dependencies](http://img.shields.io/gemnasium/gregbell/active_admin.svg)         ](https://gemnasium.com/gregbell/active_admin)
+[![Travis CI   ](http://img.shields.io/travis/gregbell/active_admin/master.svg)     ](https://travis-ci.org/gregbell/active_admin)
+[![Quality     ](http://img.shields.io/codeclimate/github/gregbell/active_admin.svg)](https://codeclimate.com/github/gregbell/active_admin)
+[![Coverage    ](http://img.shields.io/coveralls/gregbell/active_admin.svg)         ](https://coveralls.io/r/gregbell/active_admin)
+[![Gittip      ](http://img.shields.io/gittip/activeadmin.svg)                      ](https://gittip.com/activeadmin)
+[![License     ](http://img.shields.io/badge/license-MIT-blue.svg)                  ](https://github.com/gregbell/active_admin/blob/master/LICENSE)
 
 ## State of the project
 
