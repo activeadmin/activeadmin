@@ -110,4 +110,4 @@ toggle_remove = ($item, remove) ->
   destroy_input.attr 'value', remove if destroy_input.length
   $item.toggleClass 'has_many_removed', remove
 
-  $parent.children('.button.has_many_undo_remove').toggleClass 'disabled', !index
+  $parent.find('.button.has_many_undo_remove').toggleClass 'disabled', !index
