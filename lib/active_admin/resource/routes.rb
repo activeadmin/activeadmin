@@ -7,7 +7,7 @@ module ActiveAdmin
       def route_collection_path(params = {})
         RouteBuilder.new(self).collection_path(params)
       end
-      
+
       # @param resource [ActiveRecord::Base] the instance we want the path of
       # @return [String] the path to this resource collection page
       # @example "/admin/posts/1"
@@ -70,7 +70,9 @@ module ActiveAdmin
         # @return params to pass to instance path
         def route_instance_params(instance)
           if nested?
-            [instance.send(belongs_to_name).to_param, instance.to_param]
+            chain = resource.belongs_to_config.chain
+            chain.shift
+            chain.inject([instance]) { |i_params, target| i_params << i_params.last.send(target.resource_name.singular) }.reverse.map(&:to_param)
           else
             instance.to_param
           end
@@ -78,7 +80,9 @@ module ActiveAdmin
 
         def route_collection_params(params)
           if nested?
-            params[:"#{belongs_to_name}_id"]
+            chain = resource.belongs_to_config.chain
+            chain.shift
+            chain.inject([]) { |r_params, target| r_params << params[:"#{target.resource_name.singular}_id"] }.reverse
           end
         end
 
@@ -87,7 +91,9 @@ module ActiveAdmin
         end
 
         def belongs_to_name
-          resource.belongs_to_config.target.resource_name.singular if nested?
+          chain = resource.belongs_to_config.chain
+          chain.shift
+          chain.inject([]) { |route, target| route << target.resource_name.singular }.reverse.join('_')
         end
 
         def routes

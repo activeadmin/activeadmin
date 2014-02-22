@@ -47,9 +47,11 @@ module ActiveAdmin
 
               # Make the nested belongs_to routes
               # :only is set to nothing so that we don't clobber any existing routes on the resource
-              resources config.belongs_to_config.target.resource_name.plural, :only => [] do
-                instance_exec &belongs_to
-              end
+              chain = config.belongs_to_config.chain
+              chain.shift
+              current = proc { instance_exec &belongs_to }
+              nested = chain.reduce(current) { |blk, resource| proc { resources resource.resource_name.plural, :only => [], &blk } }
+              instance_exec &nested
             end
           end
 
