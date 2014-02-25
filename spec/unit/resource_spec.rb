@@ -23,7 +23,7 @@ module ActiveAdmin
       end
       context "when the :as option is given" do
         it "should return the resource's table name" do
-          expect(config(:as => "My Category").resource_table_name).to eq '"categories"'
+          expect(config(as: "My Category").resource_table_name).to eq '"categories"'
         end
       end
     end
@@ -137,7 +137,7 @@ module ActiveAdmin
         context "when passing in the method as an option" do
           before do
             @resource = application.register Category do
-              scope_to :current_user, :association_method => :blog_categories
+              scope_to :current_user, association_method: :blog_categories
             end
           end
           it "should return the method from the option" do
@@ -186,7 +186,7 @@ module ActiveAdmin
       end
 
       it "should retrieve the default scope by proc" do
-        config.scope :published, :default => proc{ true }
+        config.scope :published, default: proc{ true }
         config.scope :all
         expect(config.default_scope.name).to eq "Published"
       end

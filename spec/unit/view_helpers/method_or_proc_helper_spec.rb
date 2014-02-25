@@ -71,7 +71,7 @@ describe MethodOrProcHelper do
 
     end
 
-    context "when a proc and :exec => false" do
+    context "when a proc and exec: false" do
 
       it "should call the proc and pass in the receiver" do
         obj_not_in_context = double
@@ -81,7 +81,7 @@ describe MethodOrProcHelper do
         end
 
         expect {
-          context.call_method_or_proc_on(receiver,test_proc, :exec => false)
+          context.call_method_or_proc_on(receiver,test_proc, exec: false)
         }.to raise_error("Success!")
       end
 

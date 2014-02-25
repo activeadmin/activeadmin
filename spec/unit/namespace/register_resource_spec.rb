@@ -98,7 +98,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
     describe "adding as a child" do
       before do
         namespace.register Category do
-          menu :parent => 'Blog'
+          menu parent: 'Blog'
         end
       end
       it "should generate the parent menu item" do
@@ -134,7 +134,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       context "when optional" do
         before do
           namespace.register Post do
-            belongs_to :author, :optional => true
+            belongs_to :author, optional: true
           end
         end
         it "should show up in the menu" do

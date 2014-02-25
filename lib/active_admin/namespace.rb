@@ -11,7 +11,7 @@ module ActiveAdmin
   #
   # For example:
   #
-  #   ActiveAdmin.register Post, :namespace => :admin
+  #   ActiveAdmin.register Post, namespace: :admin
   #
   # Will register the Post model into the "admin" namespace. This will namespace the
   # urls for the resource to "/admin/posts" and will set the controller to
@@ -19,7 +19,7 @@ module ActiveAdmin
   #
   # You can also register to the "root" namespace, which is to say no namespace at all.
   #
-  #   ActiveAdmin.register Post, :namespace => false
+  #   ActiveAdmin.register Post, namespace: false
   #
   # This will register the resource to an instantiated namespace called :root. The
   # resource will be accessible from "/posts" and the controller will be PostsController.

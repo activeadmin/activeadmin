@@ -21,10 +21,10 @@ module ActiveAdmin
       router.instance_exec @application.namespaces.values do |namespaces|
         namespaces.each do |namespace|
           if namespace.root?
-            root :to => namespace.root_to
+            root to: namespace.root_to
           else
             namespace namespace.name do
-              root :to => namespace.root_to
+              root to: namespace.root_to
             end
           end
         end
@@ -47,7 +47,7 @@ module ActiveAdmin
 
               # Make the nested belongs_to routes
               # :only is set to nothing so that we don't clobber any existing routes on the resource
-              resources config.belongs_to_config.target.resource_name.plural, :only => [] do
+              resources config.belongs_to_config.target.resource_name.plural, only: [] do
                 instance_exec &belongs_to
               end
             end
@@ -80,7 +80,7 @@ module ActiveAdmin
         }
         case config
         when ::ActiveAdmin::Resource
-          resources config.resource_name.route_key, :only => config.defined_actions do
+          resources config.resource_name.route_key, only: config.defined_actions do
             member do
               config.member_actions.each &build_action
             end

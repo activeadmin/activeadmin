@@ -14,8 +14,8 @@ module ActiveAdmin
     # NOTE: you can omit the dimensions if they are specified in css
     def self.icon(name, options = {})
       options = {
-        :color => default_color,
-        :id => ""
+        color: default_color,
+        id: ""
       }.merge(options)
 
       options[:style] = "fill:#{options[:color]};"

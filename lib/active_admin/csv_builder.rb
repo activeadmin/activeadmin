@@ -7,7 +7,7 @@ module ActiveAdmin
   #   csv_builder.column :id
   #   csv_builder.column("Name") { |resource| resource.full_name }
   #
-  #   csv_builder = CSVBuilder.new :col_sep => ";"
+  #   csv_builder = CSVBuilder.new col_sep: ";"
   #   csv_builder.column :id
   #
   #

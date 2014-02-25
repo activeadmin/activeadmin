@@ -81,7 +81,7 @@ describe ActiveAdmin::Views::Columns do
     let(:cols) do
       render_arbre_component do
         columns do
-          column(:span => 2){ "Hello World" }
+          column(span: 2){ "Hello World" }
           column(){ "Hello World" }
           column(){ "Hello World" }
         end
@@ -102,7 +102,7 @@ describe ActiveAdmin::Views::Columns do
     let(:cols) do
       render_arbre_component do
         columns do
-          column(:max_width => "100px"){ "Hello World" }
+          column(max_width: "100px"){ "Hello World" }
           column(){ "Hello World" }
         end
       end
@@ -120,7 +120,7 @@ describe ActiveAdmin::Views::Columns do
       let(:cols) do
         render_arbre_component do
           columns do
-            column(:max_width => 100){ "Hello World" }
+            column(max_width: 100){ "Hello World" }
             column(){ "Hello World" }
           end
         end
@@ -138,7 +138,7 @@ describe ActiveAdmin::Views::Columns do
     let(:cols) do
       render_arbre_component do
         columns do
-          column(:min_width => "100px"){ "Hello World" }
+          column(min_width: "100px"){ "Hello World" }
           column(){ "Hello World" }
         end
       end
@@ -156,7 +156,7 @@ describe ActiveAdmin::Views::Columns do
       let(:cols) do
         render_arbre_component do
           columns do
-            column(:min_width => 100){ "Hello World" }
+            column(min_width: 100){ "Hello World" }
             column(){ "Hello World" }
           end
         end

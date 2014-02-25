@@ -72,7 +72,7 @@ describe ActiveAdmin::Scope do
     end
 
     it "should return the :if block if set" do
-      scope = ActiveAdmin::Scope.new(:with_block, nil, :if => proc{ false })
+      scope = ActiveAdmin::Scope.new(:with_block, nil, if: proc{ false })
       expect(scope.display_if_block.call).to eq false
     end
 
@@ -81,7 +81,7 @@ describe ActiveAdmin::Scope do
   describe "#default" do
 
     it "should accept a boolean" do
-      scope = ActiveAdmin::Scope.new(:method, nil, :default => true)
+      scope = ActiveAdmin::Scope.new(:method, nil, default: true)
       expect(scope.default_block).to eq true
     end
 
@@ -91,7 +91,7 @@ describe ActiveAdmin::Scope do
     end
 
     it "should store the :default proc" do
-      scope = ActiveAdmin::Scope.new(:with_block, nil, :default => proc{ true })
+      scope = ActiveAdmin::Scope.new(:with_block, nil, default: proc{ true })
       expect(scope.default_block.call).to eq true
     end
 
@@ -100,7 +100,7 @@ describe ActiveAdmin::Scope do
   describe "show_count" do
 
     it "should allow setting of show_count to prevent showing counts" do
-      scope = ActiveAdmin::Scope.new(:default, nil, :show_count => false)
+      scope = ActiveAdmin::Scope.new(:default, nil, show_count: false)
       expect(scope.show_count).to eq false
     end
 

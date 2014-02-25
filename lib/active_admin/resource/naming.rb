@@ -17,12 +17,12 @@ module ActiveAdmin
 
       # Returns the name to call this resource such as "Bank Account"
       def resource_label
-        resource_name.translate :count => 1, :default => resource_name.to_s.gsub('::', ' ').titleize
+        resource_name.translate count: 1, default: resource_name.to_s.gsub('::', ' ').titleize
       end
 
       # Returns the plural version of this resource such as "Bank Accounts"
       def plural_resource_label(options = {})
-        resource_name.translate ({:count => ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT, :default => resource_label.pluralize.titleize}).merge(options)
+        resource_name.translate ({count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT, default: resource_label.pluralize.titleize}).merge(options)
       end
     end
 
@@ -30,7 +30,7 @@ module ActiveAdmin
     # in Rails < 3.1 and > 3.1.
     class Name < ActiveModel::Name
 
-      delegate :hash, :to => :to_str
+      delegate :hash, to: :to_str
 
       def initialize(klass, name = nil)
         if ActiveModel::Name.instance_method(:initialize).arity == 1
@@ -41,7 +41,7 @@ module ActiveAdmin
       end
 
       def translate(options = {})
-        I18n.t i18n_key, {:scope => [:activerecord, :models]}.merge(options)
+        I18n.t i18n_key, {scope: [:activerecord, :models]}.merge(options)
       end
 
       def proxy_for_initializer(klass, name)
@@ -70,7 +70,7 @@ module ActiveAdmin
       end
 
       class StringClassProxy < StringProxy
-        delegate :lookup_ancestors, :i18n_scope, :to => :"@klass"
+        delegate :lookup_ancestors, :i18n_scope, to: :"@klass"
 
         def initialize(klass, name)
           @klass = klass || name

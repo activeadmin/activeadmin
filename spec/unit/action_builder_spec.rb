@@ -48,7 +48,7 @@ describe 'defining new actions from registration blocks' do
     context "with :title" do
       let(:action!) do
         ActiveAdmin.register Post do
-          member_action :comment, :title => "My Awesome Comment"
+          member_action :comment, title: "My Awesome Comment"
         end
       end
 
@@ -98,7 +98,7 @@ describe 'defining new actions from registration blocks' do
     context "with :title" do
       let(:action!) do
         ActiveAdmin.register Post do
-          collection_action :comments, :title => "My Awesome Comments"
+          collection_action :comments, title: "My Awesome Comments"
         end
       end
 

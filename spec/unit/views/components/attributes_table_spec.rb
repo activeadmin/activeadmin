@@ -6,13 +6,13 @@ describe ActiveAdmin::Views::AttributesTable do
     let(:helpers) { action_view }
 
     let(:post) do
-      post = Post.new :title => "Hello World", :body => nil
+      post = Post.new title: "Hello World", body: nil
       post.stub(:id){ 1 }
       post.stub(:new_record?){ false }
       post
     end
 
-    let(:assigns){ { :post => post } }
+    let(:assigns){ { post: post } }
 
     # Loop through a few different ways to make the same table
     # and ensure that they produce the same results
@@ -117,7 +117,7 @@ describe ActiveAdmin::Views::AttributesTable do
     it "should allow html options for the row itself" do
       table = render_arbre_component(assigns) {
         attributes_table_for(post) do
-          row("Wee", :class => "custom_row", :style => "custom_style") { }
+          row("Wee", class: "custom_row", style: "custom_style") { }
         end
       }
       expect(table.find_by_tag("tr").first.to_s.split("\n").first.lstrip).
@@ -127,14 +127,14 @@ describe ActiveAdmin::Views::AttributesTable do
     it "should allow html content inside the attributes table" do
       table = render_arbre_component(assigns) {
         attributes_table_for(post) do
-          row("ID"){ span(post.id, :class => 'id') }
+          row("ID"){ span(post.id, class: 'id') }
         end
       }
       expect(table.find_by_tag("td").first.content.chomp.strip).to eq "<span class=\"id\">1</span>"
     end
 
     it "should check if an association exists when an attribute has id in it" do
-      post.author = User.new :username => 'john_doe', :first_name => 'John', :last_name => 'Doe'
+      post.author = User.new username: 'john_doe', first_name: 'John', last_name: 'Doe'
       table = render_arbre_component(assigns) {
         attributes_table_for post, :author_id
       }
@@ -143,12 +143,12 @@ describe ActiveAdmin::Views::AttributesTable do
 
     context "with a collection" do
       let(:posts) do
-        [Post.new(:title => "Hello World", :id => 1), Post.new(:title => "Multi Column", :id => 2)].each_with_index do |post, index|
-          post.stub(:id => index + 1, :new_record? => false)
+        [Post.new(title: "Hello World", id: 1), Post.new(title: "Multi Column", id: 2)].each_with_index do |post, index|
+          post.stub(id: index + 1, :new_record? => false)
         end
       end
 
-      let(:assigns) { { :posts => posts } }
+      let(:assigns) { { posts: posts } }
 
       let(:table) do
         render_arbre_component(assigns) do

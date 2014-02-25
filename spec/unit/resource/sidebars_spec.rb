@@ -24,8 +24,8 @@ describe ActiveAdmin::Resource::Sidebars do
 
   describe "retrieving sections for a controller action" do
 
-    let(:only_index){ ActiveAdmin::SidebarSection.new(:help, :only => :index) }
-    let(:only_show){ ActiveAdmin::SidebarSection.new(:help, :only => :show) }
+    let(:only_index){ ActiveAdmin::SidebarSection.new(:help, only: :index) }
+    let(:only_show){ ActiveAdmin::SidebarSection.new(:help, only: :show) }
 
     before do
       resource.clear_sidebar_sections!

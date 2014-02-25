@@ -35,7 +35,7 @@ module ActiveAdmin
       def build_download_format_links(formats = self.class.formats)
         params = request.query_parameters.except :format, :commit
         links = formats.map { |format| link_to format.to_s.upcase, params: params, format: format }
-        div :class => "download_links" do
+        div class: "download_links" do
           text_node [I18n.t('active_admin.download'), links].flatten.join("&nbsp;").html_safe
         end
       end

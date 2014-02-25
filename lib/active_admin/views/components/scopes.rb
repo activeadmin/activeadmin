@@ -30,7 +30,7 @@ module ActiveAdmin
       protected
 
       def build_scope(scope, options)
-        li :class => classes_for_scope(scope) do
+        li class: classes_for_scope(scope) do
           scope_name = I18n.t "active_admin.scopes.#{scope.id}", default: scope.name
           params     = request.query_parameters.except :page, :scope, :commit, :format
 

@@ -4,10 +4,10 @@ describe ActiveAdmin::Views::TableFor do
   describe "creating with the dsl" do
 
     let(:collection) do
-      [Post.new(:title => "First Post", :starred => true), Post.new(:title => "Second Post"), Post.new(:title => "Third Post", :starred => false)]
+      [Post.new(title: "First Post", starred: true), Post.new(title: "Second Post"), Post.new(title: "Third Post", starred: false)]
     end
 
-    let(:assigns){ { :collection => collection } }
+    let(:assigns){ { collection: collection } }
     let(:helpers){ mock_action_view }
 
     context "when creating a column with a symbol" do
@@ -117,7 +117,7 @@ describe ActiveAdmin::Views::TableFor do
         render_arbre_component assigns, helpers do
           table_for(collection) do
             column "My Custom Title", :title
-            column :created_at , :class=>"datetime"
+            column :created_at , class:"datetime"
           end
         end
       end
@@ -218,18 +218,18 @@ describe ActiveAdmin::Views::TableFor do
     end
 
     context "when a block given with a sort key" do
-      let(:table_column){ build_column("Username", :sortable => :username){ } }
+      let(:table_column){ build_column("Username", sortable: :username){ } }
       it { should be_sortable }
       its(:sort_key){ should == "username" }
     end
 
-    context "when :sortable => false with a symbol" do
-      let(:table_column){ build_column(:username, :sortable => false) }
+    context "when sortable: false with a symbol" do
+      let(:table_column){ build_column(:username, sortable: false) }
       it { should_not be_sortable }
     end
 
-    context "when :sortable => false with a symbol and string" do
-      let(:table_column){ build_column("Username", :username, :sortable => false) }
+    context "when sortable: false with a symbol and string" do
+      let(:table_column){ build_column("Username", :username, sortable: false) }
       it { should_not be_sortable }
     end
 

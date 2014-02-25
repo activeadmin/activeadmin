@@ -14,7 +14,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
   end
 
   describe "searching" do
-    let(:params) {{ :q => {} }}
+    let(:params) {{ q: {} }}
     it "should call the search method" do
       chain = double "ChainObj"
       expect(chain).to receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
@@ -25,7 +25,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
   describe "sorting" do
 
     context "valid clause" do
-      let(:params) {{ :order => "id_asc" }}
+      let(:params) {{ order: "id_asc" }}
 
       it "reorders chain" do
         chain = double "ChainObj"
@@ -35,7 +35,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
     end
 
     context "invalid clause" do
-      let(:params) {{ :order => "_asc" }}
+      let(:params) {{ order: "_asc" }}
 
       it "returns chain untouched" do
         chain = double "ChainObj"

@@ -6,6 +6,6 @@ ActiveAdmin.register Store do
     end if Rails::VERSION::MAJOR == 4
   end
 
-  index :pagination_total => false
+  index pagination_total: false
 
 end

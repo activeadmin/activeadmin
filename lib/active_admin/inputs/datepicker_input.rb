@@ -13,7 +13,7 @@ module ActiveAdmin
         def datepicker_options
           options = self.options.fetch(:datepicker_options, {})
           options = Hash[options.map{ |k, v| [k.to_s.camelcase(:lower), v] }]
-          { :datepicker_options => options }
+          { datepicker_options: options }
         end
     end
   end

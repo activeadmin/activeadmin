@@ -84,7 +84,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing create" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ double("Resource", :save => true) }
+      let(:resource){ double("Resource", save: true) }
 
       before do
         expect(resource).to receive(:save)
@@ -110,7 +110,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing update" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ double("Resource", :attributes= => true, :save => true) }
+      let(:resource){ double("Resource", :attributes= => true, save: true) }
       let(:attributes){ [{}] }
 
       before do
@@ -138,7 +138,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing destroy" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ double("Resource", :destroy => true) }
+      let(:resource){ double("Resource", destroy: true) }
 
       before do
         expect(resource).to receive(:destroy)
@@ -157,16 +157,16 @@ describe ActiveAdmin::ResourceController do
   end
 end
 
-describe Admin::PostsController, :type => "controller" do
+describe Admin::PostsController, type: "controller" do
 
   describe 'retreiving the resource' do
     let(:controller){ Admin::PostsController.new }
-    let(:post) { Post.new :title => "An incledibly unique Post Title" }
+    let(:post) { Post.new title: "An incledibly unique Post Title" }
 
     before do
       Post.stub(:find).and_return(post)
       controller.class_eval { public :resource }
-      controller.stub(:params).and_return({ :id => '1' })
+      controller.stub(:params).and_return({ id: '1' })
     end
 
     subject { controller.resource }
@@ -191,7 +191,7 @@ describe Admin::PostsController, :type => "controller" do
   describe 'retreiving the resource collection' do
     let(:controller){ Admin::PostsController.new }
     before do
-      Post.create!(:title => "An incledibly unique Post Title") if Post.count == 0
+      Post.create!(title: "An incledibly unique Post Title") if Post.count == 0
       controller.class_eval { public :collection }
     end
 
@@ -245,7 +245,7 @@ describe Admin::PostsController, :type => "controller" do
         pending # doesn't pass when running whole spec suite (WTF)
 
         expect {
-          post(:batch_action, :batch_action => "derp", :collection_selection => ["1"])
+          post(:batch_action, batch_action: "derp", collection_selection: ["1"])
         }.to raise_error("Couldn't find batch action \"derp\"")
       end
     end
@@ -255,7 +255,7 @@ describe Admin::PostsController, :type => "controller" do
         pending # doesn't pass when running whole spec suite (WTF)
 
         expect {
-          post(:batch_action, :collection_selection => ["1"])
+          post(:batch_action, collection_selection: ["1"])
         }.to raise_error("Couldn't find batch action \"\"")
       end
     end
