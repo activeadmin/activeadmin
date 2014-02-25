@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe ActiveAdmin, "Routing", :type => :routing do
+describe ActiveAdmin, "Routing", type: :routing do
 
   before do
     load_defaults!
@@ -38,7 +38,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
 
     context "when in root namespace" do
       before(:each) do
-        load_resources { ActiveAdmin.register(Post, :namespace => false) }
+        load_resources { ActiveAdmin.register(Post, namespace: false) }
       end
 
       it "should route the index path" do
@@ -67,36 +67,36 @@ describe ActiveAdmin, "Routing", :type => :routing do
         end
 
         it "should default to GET" do
-          expect({:get  => "/admin/posts/1/do_something"}).to     be_routable
-          expect({:post => "/admin/posts/1/do_something"}).to_not be_routable
+          expect({get: "/admin/posts/1/do_something"}).to      be_routable
+          expect({post: "/admin/posts/1/do_something"}).to_not be_routable
         end
       end
 
       context "with one http verb" do
         before do
           load_resources do
-            ActiveAdmin.register(Post){ member_action "do_something", :method => :post }
+            ActiveAdmin.register(Post){ member_action "do_something", method: :post }
           end
         end
 
         it "should properly route" do
-          expect({:post => "/admin/posts/1/do_something"}).to be_routable
+          expect({post: "/admin/posts/1/do_something"}).to be_routable
         end
       end
 
       context "with two http verbs" do
         before do
           load_resources do
-            ActiveAdmin.register(Post){ member_action "do_something", :method => [:put, :delete] }
+            ActiveAdmin.register(Post){ member_action "do_something", method: [:put, :delete] }
           end
         end
 
         it "should properly route the first verb" do
-          expect({:put => "/admin/posts/1/do_something"}).to be_routable
+          expect({put: "/admin/posts/1/do_something"}).to be_routable
         end
 
         it "should properly route the second verb" do
-          expect({:delete => "/admin/posts/1/do_something"}).to be_routable
+          expect({delete: "/admin/posts/1/do_something"}).to be_routable
         end
       end
     end
@@ -123,7 +123,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
       before do
         load_resources do
           ActiveAdmin.register(Post) do
-            belongs_to :user, :optional => true
+            belongs_to :user, optional: true
           end
           ActiveAdmin.register(User) do
             collection_action "do_something"
@@ -150,7 +150,7 @@ describe ActiveAdmin, "Routing", :type => :routing do
 
       context "when in the root namespace" do
         before(:each) do
-          load_resources { ActiveAdmin.register_page("Chocolate I lØve You!", :namespace => false) }
+          load_resources { ActiveAdmin.register_page("Chocolate I lØve You!", namespace: false) }
         end
 
         it "should route to page under /" do

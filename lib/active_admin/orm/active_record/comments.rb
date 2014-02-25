@@ -24,7 +24,7 @@ end
 ActiveAdmin.after_load do |app|
   app.namespaces.values.each do |namespace|
     if namespace.comments?
-      namespace.register ActiveAdmin::Comment, :as => namespace.comments_registration_name do
+      namespace.register ActiveAdmin::Comment, as: namespace.comments_registration_name do
         actions :index, :show, :create
 
         menu false unless namespace.show_comments_in_menu
@@ -32,12 +32,12 @@ ActiveAdmin.after_load do |app|
         config.comments      = false # Don't allow comments on comments
         config.batch_actions = false # The default destroy batch action isn't showing up anyway...
 
-        scope :all, :show_count => false
+        scope :all, show_count: false
         # Register a scope for every namespace that exists.
         # The current namespace will be the default scope.
         app.namespaces.values.map(&:name).each do |name|
-          scope name, :default => namespace.name == name do |scope|
-            scope.where :namespace => name.to_s
+          scope name, default: namespace.name == name do |scope|
+            scope.where namespace: name.to_s
           end
         end
 

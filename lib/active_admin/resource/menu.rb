@@ -24,10 +24,10 @@ module ActiveAdmin
         menu_resource_class = respond_to?(:resource_class) ? resource_class : self
         resource = self
         {
-          :id    => resource_name.plural,
-          :label => proc{ resource.plural_resource_label },
-          :url   => proc{ resource.route_collection_path(params) },
-          :if    => proc{ authorized?(:read, menu_resource_class) }
+          id: resource_name.plural,
+          label: proc{ resource.plural_resource_label },
+          url:   proc{ resource.route_collection_path(params) },
+          if:    proc{ authorized?(:read, menu_resource_class) }
         }
       end
 

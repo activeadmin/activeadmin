@@ -7,7 +7,7 @@ describe "Breadcrumbs" do
   describe "generating a trail from paths" do
 
     def params; {}; end
-    def link_to(name, url); {:name => name, :path => url}; end
+    def link_to(name, url); {name: name, path: url}; end
 
     let(:user)        { double  display_name: 'Jane Doe' }
     let(:user_config) { double  find_resource: user,

@@ -40,7 +40,7 @@ module ActiveAdmin
       end
 
       def build_menu_item(item)
-        li :id => item.id do |li|
+        li id: item.id do |li|
           li.add_class "current" if item.current? assigns[:current_tab]
 
           text_node link_to item.label(self), item.url(self), item.html_options
@@ -55,7 +55,7 @@ module ActiveAdmin
       end
 
       def default_options
-        { :id => "tabs" }
+        { id: "tabs" }
       end
     end
   end

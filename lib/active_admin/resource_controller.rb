@@ -13,7 +13,7 @@ module ActiveAdmin
     layout :determine_active_admin_layout
 
     respond_to :html, :xml, :json
-    respond_to :csv, :only => :index
+    respond_to :csv, only: :index
 
     include ActionBuilder
     include Decorators
@@ -24,9 +24,9 @@ module ActiveAdmin
 
     def self.active_admin_config=(config)
       if @active_admin_config = config
-        defaults :resource_class => config.resource_class,
-                 :route_prefix   => config.route_prefix,
-                 :instance_name  => config.resource_name.singular
+        defaults resource_class: config.resource_class,
+                 route_prefix:   config.route_prefix,
+                 instance_name:  config.resource_name.singular
       end
     end
 

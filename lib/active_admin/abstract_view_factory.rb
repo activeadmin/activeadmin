@@ -17,12 +17,12 @@ module ActiveAdmin
     # eg:
     #
     #   factory = AbstractViewFactory.new
-    #   factory.register :my_view => SomeViewClass
+    #   factory.register my_view: SomeViewClass
     #
     # You can setup many at the same time:
     #
-    #   factory.register  :my_view => SomeClass,
-    #                     :another_view => OtherViewClass
+    #   factory.register  my_view: SomeClass,
+    #                     another_view: OtherViewClass
     #
     def register(view_hash)
       view_hash.each do |view_key, view_class|

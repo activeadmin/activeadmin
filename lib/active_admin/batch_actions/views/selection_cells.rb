@@ -8,7 +8,7 @@ module ActiveAdmin
       builder_method :resource_selection_toggle_cell
 
       def build
-        input( :type => "checkbox", :id => "collection_selection_toggle_all", :name => "collection_selection_toggle_all", :class => "toggle_all" )
+        input type: "checkbox", id: "collection_selection_toggle_all", name: "collection_selection_toggle_all", class: "toggle_all"
       end
     end
 
@@ -17,7 +17,7 @@ module ActiveAdmin
       builder_method :resource_selection_cell
 
       def build(resource)
-        input :type => "checkbox", :id => "batch_action_item_#{resource.id}", :value => resource.id, :class => "collection_selection", :name => "collection_selection[]"
+        input type: "checkbox", id: "batch_action_item_#{resource.id}", value: resource.id, class: "collection_selection", name: "collection_selection[]"
       end
     end
 
@@ -26,9 +26,9 @@ module ActiveAdmin
       builder_method :resource_selection_toggle_panel
 
       def build
-        super(:id => "collection_selection_toggle_panel")
+        super(id: "collection_selection_toggle_panel")
         resource_selection_toggle_cell
-        div(:id => "collection_selection_toggle_explaination" ) { I18n.t('active_admin.batch_actions.selection_toggle_explanation', :default => "(Toggle Selection)") }
+        div(id: "collection_selection_toggle_explaination" ) { I18n.t('active_admin.batch_actions.selection_toggle_explanation', default: "(Toggle Selection)") }
       end
 
     end

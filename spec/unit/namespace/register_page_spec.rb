@@ -49,7 +49,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
     describe "adding as a child" do
       before do
         namespace.register_page "Status" do
-          menu :parent => 'Extra'
+          menu parent: 'Extra'
         end
       end
       it "should generate the parent menu item" do

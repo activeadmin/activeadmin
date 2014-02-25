@@ -27,7 +27,7 @@ module ActiveAdmin
       @use_form_buffer ? form_buffers.last << content : content
     end
 
-    def cancel_link(url = {:action => "index"}, html_options = {}, li_attrs = {})
+    def cancel_link(url = {action: "index"}, html_options = {}, li_attrs = {})
       li_attrs[:class] ||= "cancel"
       li_content = template.link_to I18n.t('active_admin.cancel'), url, html_options
       form_buffers.last << template.content_tag(:li, li_content, li_attrs)
@@ -169,9 +169,9 @@ module ActiveAdmin
       assoc_name       = assoc_reflection.klass.model_name
       placeholder      = "NEW_#{assoc_name.to_s.upcase.split(' ').join('_')}_RECORD"
       opts = {
-        :for         => [assoc, assoc_reflection.klass.new],
-        :class       => class_string,
-        :for_options => { child_index: placeholder }
+        for: [assoc, assoc_reflection.klass.new],
+        class: class_string,
+        for_options: { child_index: placeholder }
       }
       html = with_new_form_buffer{ inputs_for_nested_attributes opts, &form_block }
       text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)

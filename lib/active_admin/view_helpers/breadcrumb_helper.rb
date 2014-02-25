@@ -16,7 +16,7 @@ module ActiveAdmin
             config = parent && parent.resource_name.route_key == parts[index-1] ? parent : active_admin_config
             name   = display_name config.find_resource part
           end
-          name ||= I18n.t "activerecord.models.#{part.singularize}", :count => ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT, :default => part.titlecase
+          name ||= I18n.t "activerecord.models.#{part.singularize}", count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT, default: part.titlecase
 
           link_to name, '/' + parts[0..index].join('/')
         end

@@ -5,10 +5,10 @@ module ActiveAdmin
 
     class DeviseGenerator < Rails::Generators::NamedBase
       desc "Creates an admin user and uses Devise for authentication"
-      argument :name, :type => :string, :default => "AdminUser"
+      argument :name, type: :string, default: "AdminUser"
 
-      class_option  :registerable, :type => :boolean, :default => false,
-                    :desc => "Should the generated resource be registerable?"
+      class_option  :registerable, type: :boolean, default: false,
+                    desc: "Should the generated resource be registerable?"
 
       RESERVED_NAMES = [:active_admin_user]
 
@@ -50,12 +50,12 @@ module ActiveAdmin
 
         if devise_migration_content["def change"]
           inject_into_file  devise_migration_file,
-                            "def migrate(direction)\n    super\n    # Create a default user\n    #{class_name}.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password') if direction == :up\n  end\n\n  ",
-                            :before => "def change"
+                            "def migrate(direction)\n    super\n    # Create a default user\n    #{class_name}.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if direction == :up\n  end\n\n  ",
+                            before: "def change"
         elsif devise_migration_content[/def (self.)?up/]
           inject_into_file  devise_migration_file,
-                            "# Create a default user\n    #{class_name}.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')\n\n    ",
-                            :before => "add_index :#{table_name}, :email"
+                            "# Create a default user\n    #{class_name}.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')\n\n    ",
+                            before: "add_index :#{table_name}, :email"
         else
           puts devise_migration_content
           raise "Failed to add default admin user to migration."

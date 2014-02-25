@@ -23,7 +23,7 @@ module ActiveAdmin
       end
 
       def wrapper_html_options
-        { :class => "filter_form_field #{as}" }
+        { class: "filter_form_field #{as}" }
       end
 
       # Override the standard finder to accept a proc

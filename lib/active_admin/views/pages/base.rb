@@ -41,7 +41,7 @@ module ActiveAdmin
 
         def build_page
           within @body do
-            div :id => "wrapper" do
+            div id: "wrapper" do
               build_header
               build_title_bar
               build_page_content
@@ -61,7 +61,7 @@ module ActiveAdmin
 
         def build_page_content
           build_flash_messages
-          div :id => "active_admin_content", :class => (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
+          div id: "active_admin_content", class: (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
             build_main_content_wrapper
             build_sidebar unless skip_sidebar?
           end
@@ -69,24 +69,24 @@ module ActiveAdmin
 
         def build_flash_messages
           if active_admin_flash_messages.any?
-            div :class => 'flashes' do
+            div class: 'flashes' do
               active_admin_flash_messages.each do |type, message|
-                div message, :class => "flash flash_#{type}"
+                div message, class: "flash flash_#{type}"
               end
             end
           end
         end
 
         def build_main_content_wrapper
-          div :id => "main_content_wrapper" do
-            div :id => "main_content" do
+          div id: "main_content_wrapper" do
+            div id: "main_content" do
               main_content
             end
           end
         end
 
         def main_content
-          I18n.t('active_admin.main_content', :model => self.class.name).html_safe
+          I18n.t('active_admin.main_content', model: self.class.name).html_safe
         end
 
         def title
@@ -117,7 +117,7 @@ module ActiveAdmin
 
         # Renders the sidebar
         def build_sidebar
-          div :id => "sidebar" do
+          div id: "sidebar" do
             sidebar_sections_for_action.collect do |section|
               sidebar_section(section)
             end

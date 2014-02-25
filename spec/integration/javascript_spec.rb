@@ -6,9 +6,9 @@ if $? == 0 # Only run the JS Lint test if Java is installed
   describe "Javascript" do
     before do
       @lint = JSLint::Lint.new(
-        :paths => ['public/javascripts/**/*.js'],
-        :exclude_paths => ['public/javascripts/vendor/**/*.js'],
-        :config_path => 'spec/support/jslint.yml'
+        paths: ['public/javascripts/**/*.js'],
+        exclude_paths: ['public/javascripts/vendor/**/*.js'],
+        config_path: 'spec/support/jslint.yml'
       )
     end
 

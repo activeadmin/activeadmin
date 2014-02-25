@@ -4,9 +4,9 @@ module ActiveAdmin
   module Generators
     class InstallGenerator < ActiveRecord::Generators::Base
       desc "Installs Active Admin and generates the necessary migrations"
-      argument :name, :type => :string, :default => "AdminUser"
+      argument :name, type: :string, default: "AdminUser"
 
-      hook_for :users, :default => "devise", :desc => "Admin user generator to run. Skip with --skip-users"
+      hook_for :users, default: "devise", desc: "Admin user generator to run. Skip with --skip-users"
 
       def self.source_root
         @_active_admin_source_root ||= File.expand_path("../templates", __FILE__)
@@ -30,7 +30,7 @@ module ActiveAdmin
         if ARGV.include? "--skip-users"
           route "ActiveAdmin.routes(self)"
         else # Ensure Active Admin routes occur after Devise routes so that Devise has higher priority
-          inject_into_file "config/routes.rb", "\n  ActiveAdmin.routes(self)", :after => /devise_for .*, ActiveAdmin::Devise\.config/
+          inject_into_file "config/routes.rb", "\n  ActiveAdmin.routes(self)", after: /devise_for .*, ActiveAdmin::Devise\.config/
         end
       end
 

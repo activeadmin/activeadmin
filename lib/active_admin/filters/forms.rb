@@ -56,11 +56,11 @@ module ActiveAdmin
 
       # Helper method to render a filter form
       def active_admin_filters_form_for(search, filters, options = {})
-        defaults = { :builder => ActiveAdmin::Filters::FormBuilder,
-                     :url     => collection_path,
-                     :html    => {:class  => 'filter_form'} }
-        required = { :html    => {:method => :get},
-                     :as      => :q }
+        defaults = { builder: ActiveAdmin::Filters::FormBuilder,
+                     url: collection_path,
+                     html: {class: 'filter_form'} }
+        required = { html: {method: :get},
+                     as: :q }
         options  = defaults.deep_merge(options).deep_merge(required)
 
         form_for search, options do |f|
@@ -71,10 +71,10 @@ module ActiveAdmin
             f.filter attribute, opts.except(:if, :unless)
           end
 
-          buttons = content_tag :div, :class => "buttons" do
+          buttons = content_tag :div, class: "buttons" do
             f.submit(I18n.t('active_admin.filters.buttons.filter')) +
-              link_to(I18n.t('active_admin.filters.buttons.clear'), '#', :class => 'clear_filters_btn') +
-              hidden_field_tags_for(params, :except => [:q, :page])
+              link_to(I18n.t('active_admin.filters.buttons.clear'), '#', class: 'clear_filters_btn') +
+              hidden_field_tags_for(params, except: [:q, :page])
           end
 
           f.form_buffers.last + buttons

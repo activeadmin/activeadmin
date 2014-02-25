@@ -1,8 +1,8 @@
 module ActiveAdmin
   class Comment < ActiveRecord::Base
 
-    belongs_to :resource, :polymorphic => true
-    belongs_to :author,   :polymorphic => true
+    belongs_to :resource, polymorphic: true
+    belongs_to :author,   polymorphic: true
 
     unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
       attr_accessible :resource, :resource_id, :resource_type, :body, :namespace
@@ -27,9 +27,9 @@ module ActiveAdmin
     end
 
     def self.find_for_resource_in_namespace(resource, namespace)
-      where :resource_type => resource_type(resource),
-            :resource_id   => resource_id_cast(resource),
-            :namespace     => namespace.to_s
+      where resource_type: resource_type(resource),
+            resource_id:   resource_id_cast(resource),
+            namespace:     namespace.to_s
     end
 
     def self.resource_id_type
