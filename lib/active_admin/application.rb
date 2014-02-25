@@ -177,7 +177,7 @@ module ActiveAdmin
 
     def load(file)
       super
-    rescue ActiveRecord:StatementInvalid: exception
+    rescue ActiveRecord::StatementInvalid => exception
       raise DatabaseHitDuringLoad.new exception
     end
 
