@@ -20,7 +20,7 @@ module ActiveAdmin
       end
 
       def input_html_options
-        { :name => "q[#{ search_method }]" }
+        { name: "q[#{ search_method }]" }
       end
 
       def search_conditions

@@ -6,7 +6,7 @@ end
 
 Then /^I should see the scope "([^"]*)" not selected$/ do |name|
   step %{I should see the scope "#{name}"}
-  page.should_not have_css('.scopes .selected', :text => name)
+  page.should_not have_css('.scopes .selected', text: name)
 end
 
 Then /^I should see the scope "([^"]*)" with the count (\d+)$/ do |name, count|

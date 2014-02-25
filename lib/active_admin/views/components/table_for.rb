@@ -131,7 +131,7 @@ module ActiveAdmin
 
       def default_options
         {
-          :i18n => @resource_class
+          i18n: @resource_class
         }
       end
 
@@ -176,13 +176,13 @@ module ActiveAdmin
         #
         # You can set the sort key by passing a string or symbol
         # to the sortable option:
-        #   column :username, :sortable => 'other_column_to_sort_on'
+        #   column :username, sortable: 'other_column_to_sort_on'
         #
         # If you pass a block to be rendered for this column, the column
         # will not be sortable unless you pass a string to sortable to
         # sort the column on:
         #
-        #   column('Username', :sortable => 'login'){ @user.pretty_name }
+        #   column('Username', sortable: 'login'){ @user.pretty_name }
         #   # => Sort key will be 'login'
         #
         def sort_key

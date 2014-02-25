@@ -24,7 +24,7 @@ describe ActiveAdmin::Views::Panel do
 
   it "should set the icon" do
     the_panel = render_arbre_component do
-      panel("Title", :icon => :arrow_down)
+      panel("Title", icon: :arrow_down)
     end
     expect(the_panel.find_by_tag("h3").first.content).to include("span class=\"icon")
   end

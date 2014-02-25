@@ -38,7 +38,7 @@ shared_examples_for "ActiveAdmin::Config" do
       end
 
       it "initialize a new menu item with custom options" do
-        config.menu_item_options = { :label => "Hello" }
+        config.menu_item_options = { label: "Hello" }
         config.menu_item_options[:label].should == "Hello"
       end
 

@@ -4,7 +4,7 @@ describe ActiveAdmin::Views::ActionListPopover do
 
   let(:the_popover) do
     arbre {
-      action_list_popover :id => "my_awesome_action_list_popover" do
+      action_list_popover id: "my_awesome_action_list_popover" do
         action "My First Great Action", "#"
         action "My Second Great Action", "http://www.google.com"
       end

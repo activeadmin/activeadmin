@@ -113,7 +113,7 @@ module ActiveAdmin
       end
 
       def build_post(post)
-        div :for => post do
+        div for: post do
           resource_selection_cell(post) if active_admin_config.batch_actions.any?
           build_title(post)
           build_body(post)
@@ -123,7 +123,7 @@ module ActiveAdmin
       def build_title(post)
         if @title
           h3 do
-            a(:href => resource_path(post)) do
+            a(href: resource_path(post)) do
              render_method_on_post_or_call_proc post, @title
             end
           end
@@ -136,7 +136,7 @@ module ActiveAdmin
 
       def build_body(post)
         if @body
-          div :class => 'content' do
+          div class: 'content' do
             render_method_on_post_or_call_proc post, @body
           end
         end

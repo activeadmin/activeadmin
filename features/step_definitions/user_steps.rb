@@ -1,5 +1,5 @@
 def ensure_user_created(email)
-  user = AdminUser.where(:email => email).first_or_create(:password => 'password', :password_confirmation => 'password')
+  user = AdminUser.where(email: email).first_or_create(password: 'password', password_confirmation: 'password')
 
   unless user.persisted?
     raise "Could not create user #{email}: #{user.errors.full_messages}"
@@ -8,7 +8,7 @@ def ensure_user_created(email)
 end
 
 Given /^(?:I am logged|log) out$/ do
-  click_link 'Logout' if page.all(:css, "a", :text => 'Logout').any?
+  click_link 'Logout' if page.all(:css, "a", text: 'Logout').any?
 end
 
 Given /^I am logged in$/ do
@@ -22,8 +22,8 @@ Given /^I am logged in with capybara$/ do
   step 'log out'
 
   visit new_admin_user_session_path
-  fill_in 'Email',    :with => 'admin@example.com'
-  fill_in 'Password', :with => 'password'
+  fill_in 'Email',    with: 'admin@example.com'
+  fill_in 'Password', with: 'password'
   click_button 'Login'
 end
 

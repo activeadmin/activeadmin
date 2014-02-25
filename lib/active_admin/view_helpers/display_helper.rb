@@ -41,7 +41,7 @@ module ActiveAdmin
       end
 
       # Return a pretty string for any object
-      # Date Time are formatted via #localize with :format => :long
+      # Date Time are formatted via #localize with format: :long
       # ActiveRecord and Mongoid objects are formatted via #auto_link
       # We attempt to #display_name of any other objects
       def pretty_format(object)
@@ -51,7 +51,7 @@ module ActiveAdmin
         when Arbre::Element
           object
         when Date, Time
-          localize(object, :format => :long)
+          localize(object, format: :long)
         when ->(obj){defined?(::ActiveRecord) && obj.is_a?(ActiveRecord::Base)}
           auto_link(object)
         when ->(obj){defined?(::Mongoid) && obj.class.included_modules.include?(Mongoid::Document)}

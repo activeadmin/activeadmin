@@ -68,7 +68,7 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
     end
 
     it "should return the :if block if set" do
-      action = ActiveAdmin::BatchAction.new :with_block, "With Block", :if => proc { false }
+      action = ActiveAdmin::BatchAction.new :with_block, "With Block", if: proc { false }
       expect(action.display_if_block.call).to eq false
     end
 
@@ -82,8 +82,8 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
     end
 
     it "should correctly order two actions" do
-      priority_one = ActiveAdmin::BatchAction.new :one, "One", :priority => 1
-      priority_ten = ActiveAdmin::BatchAction.new :ten, "Ten", :priority => 10
+      priority_one = ActiveAdmin::BatchAction.new :one, "One", priority: 1
+      priority_ten = ActiveAdmin::BatchAction.new :ten, "Ten", priority: 10
       expect(priority_one).to be < priority_ten
     end
 

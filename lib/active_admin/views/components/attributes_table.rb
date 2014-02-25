@@ -59,23 +59,23 @@ module ActiveAdmin
           col # column for row headers
           @collection.each do |record|
             classes = Arbre::HTML::ClassList.new
-            classes << cycle(:even, :odd, :name => self.class.to_s)
+            classes << cycle(:even, :odd, name: self.class.to_s)
             classes << dom_class_name_for(record)
-            col(:id => dom_id_for(record), :class => classes)
+            col(id: dom_id_for(record), class: classes)
           end
         end
       end
 
       def header_content_for(attr)
         if @resource_class.respond_to?(:human_attribute_name)
-          @resource_class.human_attribute_name(attr, :default => attr.to_s.titleize)
+          @resource_class.human_attribute_name(attr, default: attr.to_s.titleize)
         else
           attr.to_s.titleize
         end
       end
 
       def empty_value
-        span I18n.t('active_admin.empty'), :class => "empty"
+        span I18n.t('active_admin.empty'), class: "empty"
       end
 
       def content_for(record, attr)

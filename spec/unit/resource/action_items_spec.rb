@@ -34,10 +34,10 @@ describe ActiveAdmin::Resource::ActionItems do
 
     before do
       resource.clear_action_items!
-      resource.add_action_item :only => :index do
+      resource.add_action_item only: :index do
         raise StandardError
       end
-      resource.add_action_item :only => :show do
+      resource.add_action_item only: :show do
         # Empty ...
       end
     end

@@ -23,17 +23,17 @@ module ActiveAdmin
       extend ActiveSupport::Concern
 
       ACTIONS_DICTIONARY = {
-        :index   => ActiveAdmin::Authorization::READ,
-        :show    => ActiveAdmin::Authorization::READ,
-        :new     => ActiveAdmin::Authorization::CREATE,
-        :create  => ActiveAdmin::Authorization::CREATE,
-        :edit    => ActiveAdmin::Authorization::UPDATE,
-        :update  => ActiveAdmin::Authorization::UPDATE,
-        :destroy => ActiveAdmin::Authorization::DESTROY
+        index:   ActiveAdmin::Authorization::READ,
+        show:    ActiveAdmin::Authorization::READ,
+        new:     ActiveAdmin::Authorization::CREATE,
+        create:  ActiveAdmin::Authorization::CREATE,
+        edit:    ActiveAdmin::Authorization::UPDATE,
+        update:  ActiveAdmin::Authorization::UPDATE,
+        destroy: ActiveAdmin::Authorization::DESTROY
       }
 
       included do
-        rescue_from ActiveAdmin::AccessDenied, :with => :dispatch_active_admin_access_denied
+        rescue_from ActiveAdmin::AccessDenied, with: :dispatch_active_admin_access_denied
 
         helper_method :authorized?
         helper_method :authorize!

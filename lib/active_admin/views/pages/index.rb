@@ -61,7 +61,7 @@ module ActiveAdmin
         include ::ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper
 
         def build_table_tools
-          div :class => "table_tools" do
+          div class: "table_tools" do
             build_batch_actions_selector
             build_scopes
             build_index_list
@@ -83,7 +83,7 @@ module ActiveAdmin
         def build_scopes
           if active_admin_config.scopes.any?
             scope_options = {
-              :scope_count => config[:scope_count].nil? ? true : config[:scope_count]
+              scope_count: config[:scope_count].nil? ? true : config[:scope_count]
             }
 
             scopes_renderer active_admin_config.scopes, scope_options
@@ -111,7 +111,7 @@ module ActiveAdmin
         end
 
         def render_blank_slate
-          blank_slate_content = I18n.t("active_admin.blank_slate.content", :resource_name => active_admin_config.plural_resource_label)
+          blank_slate_content = I18n.t("active_admin.blank_slate.content", resource_name: active_admin_config.plural_resource_label)
           if controller.action_methods.include?('new') && authorized?(ActiveAdmin::Auth::CREATE, active_admin_config.resource_class)
             blank_slate_content += " " + link_to(I18n.t("active_admin.blank_slate.link"), new_resource_path)
           end
@@ -119,7 +119,7 @@ module ActiveAdmin
         end
 
         def render_empty_results
-          empty_results_content = I18n.t("active_admin.pagination.empty", :model => active_admin_config.plural_resource_label)
+          empty_results_content = I18n.t("active_admin.pagination.empty", model: active_admin_config.plural_resource_label)
           insert_tag(view_factory.blank_slate, empty_results_content)
         end
 
@@ -129,12 +129,12 @@ module ActiveAdmin
           download_links = config[:download_links].nil? ? active_admin_config.namespace.download_links : config[:download_links]
           pagination_total = config[:pagination_total].nil? ? true : config[:pagination_total]
 
-          paginated_collection(collection, :entry_name     => active_admin_config.resource_label,
-                                           :entries_name   => active_admin_config.plural_resource_label(:count => collection_size),
-                                           :download_links => download_links,
-                                           :paginator      => paginator,
-                                           :pagination_total => pagination_total) do
-            div :class => 'index_content' do
+          paginated_collection(collection, entry_name:       active_admin_config.resource_label,
+                                           entries_name:     active_admin_config.plural_resource_label(count: collection_size),
+                                           download_links:   download_links,
+                                           paginator:        paginator,
+                                           pagination_total: pagination_total) do
+            div class: 'index_content' do
               insert_tag(renderer_class, config, collection)
             end
           end
