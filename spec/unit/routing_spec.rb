@@ -67,7 +67,7 @@ describe ActiveAdmin, "Routing", type: :routing do
         end
 
         it "should default to GET" do
-          expect({get: "/admin/posts/1/do_something"}).to     be_routable
+          expect({get: "/admin/posts/1/do_something"}).to      be_routable
           expect({post: "/admin/posts/1/do_something"}).to_not be_routable
         end
       end
