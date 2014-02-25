@@ -161,7 +161,7 @@ RSpec::Matchers.define :have_tag do |*args|
       end
     # In Ruby 1.9, MiniTest::Assertion get's raised, so we'll
     # handle raising a Test::Unit::AssertionFailedError
-    rescue MiniTest:Assertion: e
+    rescue MiniTest::Assertion => e
       raise Test::Unit::AssertionFailedError, e.message
     end
   end
