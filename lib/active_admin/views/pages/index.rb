@@ -129,10 +129,10 @@ module ActiveAdmin
           download_links = config[:download_links].nil? ? active_admin_config.namespace.download_links : config[:download_links]
           pagination_total = config[:pagination_total].nil? ? true : config[:pagination_total]
 
-          paginated_collection(collection, entry_name: active_admin_config.resource_label,
-                                           entries_name: active_admin_config.plural_resource_label(count: collection_size),
-                                           download_links: download_links,
-                                           paginator: paginator,
+          paginated_collection(collection, entry_name:       active_admin_config.resource_label,
+                                           entries_name:     active_admin_config.plural_resource_label(count: collection_size),
+                                           download_links:   download_links,
+                                           paginator:        paginator,
                                            pagination_total: pagination_total) do
             div class: 'index_content' do
               insert_tag(renderer_class, config, collection)
