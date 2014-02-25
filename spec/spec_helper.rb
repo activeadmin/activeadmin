@@ -8,7 +8,7 @@ module ActiveAdminIntegrationSpecHelper
     ActiveAdmin.load!
     ActiveAdmin.register(Category)
     ActiveAdmin.register(User)
-    ActiveAdmin.register(Post){ belongs_to :user, :optional => true }
+    ActiveAdmin.register(Post){ belongs_to :user, optional: true }
     reload_menus!
   end
 
@@ -123,7 +123,7 @@ ENV["RAILS_ASSET_ID"] = ''
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
-  config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, type: :controller
   config.render_views = false
 end
 
@@ -131,8 +131,8 @@ end
 # or else it whines.
 require 'integration_example_group'
 RSpec.configure do |c|
-  c.include RSpec::Rails::IntegrationExampleGroup, :example_group => { :file_path => /\bspec\/integration\// }
-  c.include Devise::TestHelpers, :type => :controller
+  c.include RSpec::Rails::IntegrationExampleGroup, example_group: { file_path: /\bspec\/integration\// }
+  c.include Devise::TestHelpers, type: :controller
 end
 
 # Ensure this is defined for Ruby 1.8
@@ -145,7 +145,7 @@ RSpec::Matchers.define :have_tag do |*args|
     content = args.first.is_a?(Hash) ? nil : args.shift
 
     options = {
-      :tag => tag.to_s
+      tag: tag.to_s
     }.merge(args[0] || {})
 
     options[:content] = content if content

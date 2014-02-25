@@ -6,7 +6,7 @@ end
 
 Then /^I should( not)? see a link to download "([^"]*)"$/ do |negate, format|
   method = negate ? :should_not : :should
-  page.send method, have_css("#index_footer a", :text => format)
+  page.send method, have_css("#index_footer a", text: format)
 end
 
 # Check first rows of the displayed CSV.
@@ -16,7 +16,7 @@ Then /^I should download a CSV file with "([^"]*)" separator for "([^"]*)" conta
   headers['Content-Type'].should eq 'text/csv; charset=utf-8'
 
   begin
-    csv = CSV.parse(body, :col_sep => sep)
+    csv = CSV.parse(body, col_sep: sep)
     table.raw.each_with_index do |expected_row, row_index|
       expected_row.each_with_index do |expected_cell, col_index|
         cell = csv.try(:[], row_index).try(:[], col_index)

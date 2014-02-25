@@ -20,7 +20,7 @@ module ActiveAdmin
       # method to call as the association. If its different, you can
       # pass in the association_method as an option.
       #
-      #   scope_to :current_user, :association_method => :blog_posts
+      #   scope_to :current_user, association_method: :blog_posts
       #
       # will result in the following
       #
@@ -28,11 +28,11 @@ module ActiveAdmin
       #
       # To conditionally use this scope, you can use conditional procs
       #
-      #   scope_to :current_user, :if => proc{ admin_user_signed_in? }
+      #   scope_to :current_user, if: proc{ admin_user_signed_in? }
       #
       # or
       #
-      #   scope_to :current_user, :unless => proc{ current_user.admin? }
+      #   scope_to :current_user, unless: proc{ current_user.admin? }
       #
       def scope_to(*args, &block)
         options = args.extract_options!
@@ -55,10 +55,10 @@ module ActiveAdmin
 
       def scope_to_config
         @scope_to_config ||= {
-          :method               => nil,
-          :association_method   => nil,
-          :if                   => nil,
-          :unless               => nil
+          method:             nil,
+          association_method: nil,
+          if:                 nil,
+          unless:             nil
         }
       end
 

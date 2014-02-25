@@ -36,7 +36,7 @@ describe ActiveAdmin::Resource::BelongsTo do
   end
 
   it "should be optional" do
-    belongs_to = ActiveAdmin::Resource::BelongsTo.new post, :user, :optional => true
+    belongs_to = ActiveAdmin::Resource::BelongsTo.new post, :user, optional: true
     expect(belongs_to).to be_optional
   end
 end

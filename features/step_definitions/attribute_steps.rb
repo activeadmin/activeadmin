@@ -14,5 +14,5 @@ Then /^the attribute "([^"]*)" should be empty$/ do |title|
 end
 
 Then /^I should not see the attribute "([^"]*)"$/ do |title|
-  page.should_not have_css('.attributes_table th', :text => title)
+  page.should_not have_css('.attributes_table th', text: title)
 end

@@ -11,7 +11,7 @@ describe ActiveAdmin::Views::SidebarSection do
   end
 
   let(:html) do
-    render_arbre_component :section => section do
+    render_arbre_component section: section do
       sidebar_section(assigns[:section])
     end
   end

@@ -8,7 +8,7 @@ describe "auto linking resources" do
 
   let(:active_admin_config)   { double namespace: namespace }
   let(:active_admin_namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
-  let(:post){ Post.create! :title => "Hello World" }
+  let(:post){ Post.create! title: "Hello World" }
 
   def admin_post_path(post)
     "/admin/posts/#{post.id}"

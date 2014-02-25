@@ -1,17 +1,17 @@
 Then /^I should see a table header with "([^"]*)"$/ do |content|
-  page.should have_xpath('//th', :text => content)
+  page.should have_xpath('//th', text: content)
 end
 
 Then /^I should not see a table header with "([^"]*)"$/ do |content|
-  page.should_not have_xpath('//th', :text => content)
+  page.should_not have_xpath('//th', text: content)
 end
 
 Then /^I should see a sortable table header with "([^"]*)"$/ do |content|
-  page.should have_css('th.sortable', :text => content)
+  page.should have_css('th.sortable', text: content)
 end
 
 Then /^I should not see a sortable table header with "([^"]*)"$/ do |content|
-  page.should_not have_css('th.sortable', :text => content)
+  page.should_not have_css('th.sortable', text: content)
 end
 
 Then /^I should not see a sortable table header$/ do
@@ -34,7 +34,7 @@ Then /^there should be (\d+) "([^"]*)" tags$/ do |count, tag|
 end
 
 Then /^I should see a link to "([^"]*)"$/ do |link|
-  page.should have_xpath('//a', :text => link)
+  page.should have_xpath('//a', text: link)
 end
 
 Then /^an "([^"]*)" exception should be raised when I follow "([^"]*)"$/ do |error, link|
@@ -61,22 +61,22 @@ Then /^I should see the page title "([^"]*)"$/ do |title|
 end
 
 Then /^I should see a fieldset titled "([^"]*)"$/ do |title|
-  page.should have_css('fieldset legend', :text => title)
+  page.should have_css('fieldset legend', text: title)
 end
 
 Then /^the "([^"]*)" field should contain the option "([^"]*)"$/ do |field, option|
   field = find_field(field)
-  field.should have_css("option", :text => option)
+  field.should have_css("option", text: option)
 end
 
 Then /^I should see the content "([^"]*)"$/ do |content|
-  page.should have_css("#active_admin_content", :text => content)
+  page.should have_css("#active_admin_content", text: content)
 end
 
 Then /^I should see a validation error "([^"]*)"$/ do |error_message|
-  page.should have_css(".inline-errors", :text => error_message)
+  page.should have_css(".inline-errors", text: error_message)
 end
 
 Then /^I should see a table with id "([^"]*)"$/ do |dom_id|
-  page.should have_css('table', :id => dom_id)
+  page.should have_css('table', id: dom_id)
 end

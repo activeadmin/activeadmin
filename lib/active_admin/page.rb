@@ -57,7 +57,7 @@ module ActiveAdmin
     end
 
     def default_menu_options
-      super.merge(:id => resource_name)
+      super.merge(id: resource_name)
     end
 
     def controller_name

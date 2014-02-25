@@ -54,7 +54,7 @@ describe ActiveAdmin::Devise::Controller do
 
       # Add scoped routes
       routes.draw do
-        scope :path => SCOPE do
+        scope path: SCOPE do
           ActiveAdmin.routes(self)
           devise_for :admin_users, ActiveAdmin::Devise.config
         end

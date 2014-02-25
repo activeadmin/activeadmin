@@ -71,7 +71,7 @@ module ActiveAdmin
     inheritable_setting :breadcrumb, true
 
     # Default CSV options
-    inheritable_setting :csv_options, {:col_sep => ','}
+    inheritable_setting :csv_options, {col_sep: ','}
 
     # Default Download Links options
     inheritable_setting :download_links, true

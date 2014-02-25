@@ -96,21 +96,21 @@ describe ActiveAdmin::CSVBuilder do
 
   context "with a separator" do
     let(:builder) do
-      ActiveAdmin::CSVBuilder.new(:col_sep => ";").tap(&:render_columns)
+      ActiveAdmin::CSVBuilder.new(col_sep: ";").tap(&:render_columns)
     end
 
     it "should have proper separator" do
-      expect(builder.options).to eq({:col_sep => ";"})
+      expect(builder.options).to eq({col_sep: ";"})
     end
   end
 
   context "with csv_options" do
     let(:builder) do
-      ActiveAdmin::CSVBuilder.new(:force_quotes => true).tap(&:render_columns)
+      ActiveAdmin::CSVBuilder.new(force_quotes: true).tap(&:render_columns)
     end
 
     it "should have proper separator" do
-      expect(builder.options).to eq({:force_quotes => true})
+      expect(builder.options).to eq({force_quotes: true})
     end
   end
 

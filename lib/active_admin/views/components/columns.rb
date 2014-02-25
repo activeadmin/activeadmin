@@ -29,7 +29,7 @@ module ActiveAdmin
     # To make a column span multiple, pass the :span option to the column method:
     #
     #     colums do
-    #       column :span => 2 do
+    #       column span: 2 do
     #         span "Column # 1
     #       end
     #       column do
@@ -50,7 +50,7 @@ module ActiveAdmin
     # To overcome this, columns include a :max_width and :min_width option.
     #
     #     colums do
-    #       column :max_width => "200px", :min_width => "100px" do
+    #       column max_width: "200px", min_width: "100px" do
     #         span "Column # 1
     #       end
     #       column do
