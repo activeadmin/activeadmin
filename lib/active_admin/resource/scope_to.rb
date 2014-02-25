@@ -55,10 +55,10 @@ module ActiveAdmin
 
       def scope_to_config
         @scope_to_config ||= {
-          method: nil,
+          method:             nil,
           association_method: nil,
-          if: nil,
-          unless: nil
+          if:                 nil,
+          unless:             nil
         }
       end
 
