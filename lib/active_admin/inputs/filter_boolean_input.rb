@@ -27,6 +27,10 @@ module ActiveAdmin
         /(is_true|is_false|is_present|is_blank|is_null|is_not_null)\z/
       end
 
+      def boolean_checked?(value, checked_value)
+        defined?(super) ? super : ActionView::Helpers::InstanceTag.check_box_checked?(value, checked_value)
+      end
+
     end
   end
 end
