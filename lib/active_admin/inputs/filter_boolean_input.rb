@@ -15,10 +15,6 @@ module ActiveAdmin
         method =~ search_conditions ? method : "#{method}_eq"
       end
 
-      def checked?
-        object && boolean_checked?(object.send(search_method), checked_value)
-      end
-
       def input_html_options
         { name: "q[#{ search_method }]" }
       end
