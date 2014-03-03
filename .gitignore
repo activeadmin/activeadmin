@@ -1,6 +1,9 @@
 ## MAC OS
 .DS_Store
 
+## WINDOWS
+.Thumbs.db
+
 ## TEXTMATE
 *.tmproj
 tmtags
