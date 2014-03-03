@@ -6,8 +6,8 @@ rvm:
   - 1.9.3
   - 2.1.0
 env:
-  - RAILS=3.2.16
-  - RAILS=4.0.2
+  - RAILS=3.2.17
+  - RAILS=4.0.3
 notifications:
   irc:
     channels:
