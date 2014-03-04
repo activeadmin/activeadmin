@@ -7,13 +7,13 @@ describe "#pretty_format" do
     mock_action_view.send *args, &block
   end
 
-  context "when a String is passed in" do
-    it "should return the String passed in" do
+  context "given a String" do
+    it "should return the String" do
       expect(pretty_format("hello")).to eq "hello"
     end
   end
 
-  context "when a Date or a Time is passed in" do
+  context "given a Date or a Time" do
     it "should return a localized Date or Time with long format" do
       t = Time.now
       expect(self).to receive(:localize).with(t, {format: :long}) { "Just Now!" }
@@ -42,7 +42,7 @@ describe "#pretty_format" do
     end
   end
 
-  context "when an ActiveRecord object is passed in" do
+  context "given an ActiveRecord object" do
     it "should delegate to auto_link" do
       post = Post.new
       expect(self).to receive(:auto_link).with(post) { "model name" }
@@ -50,8 +50,8 @@ describe "#pretty_format" do
     end
   end
 
-  context "when something else is passed in" do
-    it "should delegate to display_name" do
+  context "given an arbitrary object" do
+    it "should delegate to `display_name`" do
       something = Class.new.new
       expect(self).to receive(:display_name).with(something) { "I'm not famous" }
       expect(pretty_format(something)).to eq "I'm not famous"
