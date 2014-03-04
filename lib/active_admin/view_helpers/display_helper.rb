@@ -46,10 +46,8 @@ module ActiveAdmin
       # We attempt to #display_name of any other objects
       def pretty_format(object)
         case object
-        when String
-          object
-        when Arbre::Element
-          object
+        when String, Numeric, Arbre::Element
+          object.to_s
         when Date, Time
           localize(object, format: :long)
         when ->(obj){defined?(::ActiveRecord) && obj.is_a?(ActiveRecord::Base)}

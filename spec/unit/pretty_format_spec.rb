@@ -7,9 +7,12 @@ describe "#pretty_format" do
     mock_action_view.send *args, &block
   end
 
-  context "given a String" do
-    it "should return the String" do
-      expect(pretty_format("hello")).to eq "hello"
+  {String: 'hello', Fixnum: 23, Float: 5.67, Bignum: 10**30,
+    'Arbre::Element' => Arbre::Element.new.br(:foo)
+  }.each do |klass, obj|
+    it "should call `to_s` on #{klass}s" do
+      expect(obj).to be_a klass.to_s.constantize # safeguard for Bignum
+      expect(pretty_format(obj)).to eq obj.to_s
     end
   end
 
