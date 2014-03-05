@@ -47,6 +47,8 @@ uk:
       entry:
         one: "запис"
         other: "записів"
+        many: "записів"
+        few: "записи"
     any: "Будь-який"
     blank_slate:
       content: "Покищо немає %{resource_name}."
@@ -57,6 +59,8 @@ uk:
       delete_confirmation: "Ви впевнені, що хочете видалити %{plural_model}?"
       succesfully_destroyed:
         one: "Успішно видалено: 1 %{model}"
+        few: "Успішно видалено: %{count} %{plural_model}"
+        many: "Успішно видалено: %{count} %{plural_model}"
         other: "Успішно видалено: %{count} %{plural_model}"
       selection_toggle_explanation: "(Відмінити все / Зняти виділення)"
       link: "Створити"
