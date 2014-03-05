@@ -274,7 +274,7 @@ If you need to completely replace the record retrieving code (e.g., you have a c
 ```ruby
 ActiveAdmin.register Post do
   controller do
-    def resource
+    def find_resource
       Post.where(id: params[:id]).first!
     end
   end
