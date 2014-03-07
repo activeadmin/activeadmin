@@ -3,6 +3,10 @@
   margin-bottom: 16px;
 }
 
+.table_tools .dropdown_menu {
+  float: left;
+}
+
 a.table_tools_button, .table_tools .dropdown_menu_button {
   @include light-button;
   @include gradient(#FFFFFF, #F0F0F0);
