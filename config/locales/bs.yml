@@ -1,4 +1,4 @@
-hr:
+bs:
   active_admin:
     dashboard: "Upravljačka ploča"
     dashboard_welcome:
@@ -16,7 +16,7 @@ hr:
     details: "%{model} detalji"
     cancel: "Odustani"
     empty: "Prazno"
-    previous: "Prijašnji"
+    previous: "Prethodni"
     next: "Sljedeći"
     download: "Spremi na računalo:"
     has_many_new: "Dodaj novi %{model}"
@@ -25,7 +25,7 @@ hr:
     filters:
       buttons:
         filter: "Filtriraj"
-        clear: "Očisti filtere"
+        clear: "Ukloni filtere"
       predicates:
         contains: "Sadrži"
         equals: "Jednako"
