@@ -113,7 +113,7 @@ module ActiveAdmin
         def render_blank_slate
           blank_slate_content = I18n.t("active_admin.blank_slate.content", resource_name: active_admin_config.plural_resource_label)
           if controller.action_methods.include?('new') && authorized?(ActiveAdmin::Auth::CREATE, active_admin_config.resource_class)
-            blank_slate_content += " " + link_to(I18n.t("active_admin.blank_slate.link"), new_resource_path)
+            blank_slate_content = [blank_slate_content, blank_slate_link].compact.join(" ")
           end
           insert_tag(view_factory.blank_slate, blank_slate_content)
         end
@@ -140,6 +140,22 @@ module ActiveAdmin
           end
         end
 
+        private
+
+        def blank_slate_link
+          if config.options.has_key?(:blank_slate_link)
+            blank_slate_link = config.options[:blank_slate_link]
+            if blank_slate_link.is_a?(Proc)
+              instance_exec(&blank_slate_link)
+            end
+          else
+            default_blank_slate_link
+          end
+        end
+
+        def default_blank_slate_link
+          link_to(I18n.t("active_admin.blank_slate.link"), new_resource_path)
+        end
       end
     end
   end
