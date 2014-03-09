@@ -68,16 +68,30 @@ hr:
       labels:
         destroy: "Obriši"
     comments:
+      resource_type: "Tip objekta"
+      author_type: "Tip autora"
       body: "Sadržaj"
       author: "Autor"
       title: "Komentar"
       add: "Dodaj komentar"
-      resource: "Resource"
+      resource: "Objekt"
       no_comments_yet: "Još nema komentara."
+      author_missing: "Anoniman"
       title_content: "Komentari (%{count})"
       errors:
         empty_text: "Komentar nije spremljen, sadržaj je prazan."
     devise:
+      username:
+        title: "Korisničko ime"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Poddomena"
+      password: 
+        title: "Lozinka"
+      sign_up:
+        title: "Registracija"
+        submit: "Registruj"
       login:
         title: "Prijava"
         remember_me: "Zapamti me"
@@ -88,7 +102,20 @@ hr:
       change_password:
         title: "Izmjena lozinke"
         submit: "Izmijeni lozinku"
+      unlock:
+        title: "Ponovno slanje uputstva za otključavanje"
+        submit: "Pošalji"
+      resend_confirmation_instructions:
+        title: "Ponovno slanje uputstva za potvrdu"
+        submit: "Pošalji"
       links:
         sign_in: "Prijavi se"
         forgot_your_password: "Zaboravljena lozinka?"
         sign_in_with_omniauth_provider: "Prijavite se za %{provider}"
+    access_denied:
+      message: "Nemaš dopuštenja."
+    index_list:
+      table: "Tabela"
+      block: "Lista"
+      grid: "Rešetka"
+      blog: "Blog"
