@@ -114,6 +114,20 @@ form do |f|
 end
 ```
 
+## Combined DateTime Picker
+
+ActiveAdmin also offers the `combined_date_time_picker` input, which uses the [XDSoft DateTime Picker gem](https://github.com/shekibobo/xdan-datetimepicker-rails).
+The `combined_date_time_picker` input accepts many of the options available to the standard jQueryUI Datepicker. For example:
+
+```ruby
+form do |f|
+  f.input :starts_at, as: :datepicker, datepicker_options: { min_date: "2013-10-8",        max_date: "+3D" }
+  f.input :ends_at,   as: :datepicker, datepicker_options: { min_date: 3.days.ago.to_date, max_date: "+1W +5D" }
+end
+```
+
+See [the datetimepicker documentation for more details](http://xdsoft.net/jqplugins/datetimepicker/).
+
 ## Displaying Errors
 
 To display a list of all validation errors:
