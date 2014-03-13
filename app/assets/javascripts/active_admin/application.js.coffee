@@ -6,10 +6,10 @@ $ ->
     options = $(@).data 'datepicker-options'
     $(@).datepicker $.extend(defaults, options)
 
-  $(document).on 'focus', '.xdan-datetime-picker:not(.hasDatepicker)', ->
-    defaults = formatDate: 'y-m-d', format: 'Y-m-d H:i'
+  $(document).on 'focus', '.combined-date-time-picker', ->
+    defaults = formatDate: 'y-m-d', format: 'Y-m-d H:i', allowBlank: true
     options = $(@).data 'datepicker-options'
-    $(@).datetimepicker $.extend(defaults, options)
+    $(@).datetimepicker($.extend(defaults, options)).trigger('open.xdsoft')
 
   # Clear Filters button
   $('.clear_filters_btn').click ->

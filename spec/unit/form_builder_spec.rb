@@ -575,6 +575,7 @@ describe ActiveAdmin::FormBuilder do
           end
         end
       end
+
       it "should generate a text input with the class of datepicker" do
         expect(body).to have_tag("input", attributes: {  type: "text",
                                                             class: "datepicker",
@@ -601,6 +602,46 @@ describe ActiveAdmin::FormBuilder do
                                                         "data-datepicker-options" => CGI::escapeHTML({
                                                           minDate: "2013-10-18",
                                                           maxDate: "2013-12-31" }.to_json) })
+      end
+    end
+  end
+
+  describe "combined_date_time_picker input" do
+    context 'with default options' do
+      let :body do
+        build_form do |f|
+          f.inputs do
+            f.input :created_at, as: :combined_date_time_picker
+          end
+        end
+      end
+
+      it "should generate a text input with the class of combined-date-time-picker" do
+        expect(body).to have_tag("input", attributes: { type: "text",
+                                                        class: "combined-date-time-picker",
+                                                        name: "post[created_at]" })
+      end
+    end
+
+    context 'with date range options' do
+      let :body do
+        build_form do |f|
+          f.inputs do
+            f.input :created_at, as: :combined_date_time_picker,
+                                  datepicker_options: {
+                                    min_date: Date.new(2013, 10, 18),
+                                    max_date: "2013-12-31" }
+          end
+        end
+      end
+
+      it 'should generate a combined_date_time_picker text input with data min and max dates' do
+        expect(body).to have_tag("input", attributes: { type: "text",
+                                                        class: "combined-date-time-picker",
+                                                        name: "post[created_at]",
+                                                        data: { datepicker_options: {
+                                                          minDate: "2013-10-18",
+                                                          maxDate: "2013-12-31" }.to_json }})
       end
     end
   end

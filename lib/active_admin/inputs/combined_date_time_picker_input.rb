@@ -1,9 +1,9 @@
 module ActiveAdmin
   module Inputs
-    class DatetimePickerInput < ::Formtastic::Inputs::StringInput
+    class CombinedDateTimePickerInput < ::Formtastic::Inputs::StringInput
       def input_html_options
         super.tap do |options|
-          options[:class] = [options[:class], "xdan-datetime-picker"].compact.join(' ')
+          options[:class] = [options[:class], "combined-date-time-picker"].compact.join(' ')
           options[:data] ||= {}
           options[:data].merge! datepicker_options
           options[:value] ||= value
