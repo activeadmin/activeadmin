@@ -6,6 +6,11 @@ $ ->
     options = $(@).data 'datepicker-options'
     $(@).datepicker $.extend(defaults, options)
 
+  $(document).on 'focus', '.xdan-datetime-picker:not(.hasDatepicker)', ->
+    defaults = formatDate: 'y-m-d', format: 'Y-m-d H:i'
+    options = $(@).data 'datepicker-options'
+    $(@).datetimepicker $.extend(defaults, options)
+
   # Clear Filters button
   $('.clear_filters_btn').click ->
     window.location.search = ''

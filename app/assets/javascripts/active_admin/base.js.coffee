@@ -4,6 +4,7 @@
 #= require jquery-ui/sortable
 #= require jquery-ui/widget
 #= require jquery_ujs
+#= require jquery.xdan.datetimepicker
 #
 #= require_self
 #= require_tree ./lib
