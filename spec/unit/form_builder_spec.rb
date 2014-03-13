@@ -639,9 +639,9 @@ describe ActiveAdmin::FormBuilder do
         expect(body).to have_tag("input", attributes: { type: "text",
                                                         class: "combined-date-time-picker",
                                                         name: "post[created_at]",
-                                                        data: { datepicker_options: {
+                                                        "data-datepicker-options" => CGI::escapeHTML({
                                                           minDate: "2013-10-18",
-                                                          maxDate: "2013-12-31" }.to_json }})
+                                                          maxDate: "2013-12-31" }.to_json) })
       end
     end
   end
