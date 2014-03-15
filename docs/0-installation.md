@@ -11,7 +11,7 @@ that can be injected into your existing Ruby on Rails application.
 
 ## Setting up Active Admin
 
-After installing the gem, you need to run the generator:
+After installing the gem, you need to run the generator (one of the following):
 
 ```sh
 rails g active_admin:install              # creates the AdminUser class
