@@ -239,3 +239,7 @@ ActiveAdmin.setup do |config|
 
 end
 ```
+
+Note: you have to actually implement PDF rendering for your action, ActiveAdmin does not provide this feature. This setting just allows you to specify formats that you want to show up under the index collection.
+
+You'll need to use a PDF rendering library like PDFKit or WickedPDF to get the PDF generation you want.
