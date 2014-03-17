@@ -132,3 +132,4 @@ require 'active_admin/orm/mongoid'       if defined? Mongoid
 
 # Load gem-specific code only if that gem is being used
 require 'active_admin/cancan_adapter' if Gem.loaded_specs['cancan']
+require 'active_admin/pundit_adapter' if Gem.loaded_specs['pundit']

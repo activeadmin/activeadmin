@@ -32,6 +32,7 @@ end
 group :test do
   gem 'draper'
   gem 'cancan'
+  gem 'pundit'
   gem 'capybara', '= 1.1.2'
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'coveralls', require: false # Test coverage website. Go to https://coveralls.io
