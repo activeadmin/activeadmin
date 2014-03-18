@@ -1,4 +1,4 @@
-## 1.0.0 [☰](https://github.com/gregbell/active_admin/compare/v0.6.1...master) (unreleased)
+## 1.0.0 [☰](https://github.com/gregbell/active_admin/compare/v0.6.3...master) (unreleased)
 
 ### Major Changes
 * Migration from Metasearch to Ransack [#1979][] by [@seanlinsley][]
