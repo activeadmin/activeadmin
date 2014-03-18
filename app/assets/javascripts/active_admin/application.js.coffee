@@ -1,4 +1,19 @@
 # Initializers
+@setupDateTimePicker = (container) ->
+  defaults = {
+    formatDate: 'y-m-d',
+    format: 'Y-m-d H:i',
+    allowBlank: true,
+    defaultSelect: false,
+    validateOnBlur: false
+  }
+
+  entries = $(container).find('.combined-date-time-picker')
+  entries.each (index, entry) ->
+    options = $(entry).data 'datepicker-options'
+    $(entry).datetimepicker $.extend(defaults, options)
+
+
 $ ->
   # jQuery datepickers (also evaluates dynamically added HTML)
   $(document).on 'focus', '.datepicker:not(.hasDatepicker)', ->
@@ -6,10 +21,9 @@ $ ->
     options = $(@).data 'datepicker-options'
     $(@).datepicker $.extend(defaults, options)
 
-  $(document).on 'focus', '.combined-date-time-picker', ->
-    defaults = formatDate: 'y-m-d', format: 'Y-m-d H:i', allowBlank: true
-    options = $(@).data 'datepicker-options'
-    $(@).datetimepicker($.extend(defaults, options)).trigger('open.xdsoft')
+  setupDateTimePicker $('body')
+  $(document).on 'has_many_add:after', '.has_many_container', (e, fieldset) ->
+    setupDateTimePicker fieldset
 
   # Clear Filters button
   $('.clear_filters_btn').click ->
