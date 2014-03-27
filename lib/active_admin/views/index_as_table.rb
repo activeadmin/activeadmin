@@ -237,13 +237,12 @@ module ActiveAdmin
         # end
         # ```
         #
-        def actions(options = {}, &block)
-          options = {
-            name: "",
-            defaults: true
-          }.merge(options)
-          column options[:name] do |resource|
-            text_node default_actions(resource) if options[:defaults]
+        def actions(*args, &block)
+          options = args.extract_options!
+          show_default_links = options.delete(:defaults) { true }
+          name = options.delete(:name) { "" }
+          column args.unshift(name), options do |resource|
+            text_node default_actions(resource) if show_default_links
             text_node instance_exec(resource, &block) if block_given?
           end
         end
