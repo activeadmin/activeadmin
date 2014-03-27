@@ -25,7 +25,7 @@ ActiveAdmin.after_load do |app|
   app.namespaces.values.each do |namespace|
     if namespace.comments?
       namespace.register ActiveAdmin::Comment, as: namespace.comments_registration_name do
-        actions :index, :show, :create
+        actions :all
 
         menu false unless namespace.show_comments_in_menu
 
