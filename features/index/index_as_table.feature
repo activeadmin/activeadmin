@@ -93,6 +93,19 @@ Feature: Index as Table
     And I should see a member link to "Edit"
     And I should not see a member link to "Delete"
 
+  Scenario: Actions with custom column options
+    Given a post with the title "Hello World" and body "From the body" exists
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        index do
+          column :category
+          actions class: 'custom-column-class', name: 'That text'
+        end
+      end
+      """
+    Then I should see the actions column with the class "custom-column-class" and the title "That text"
+
   Scenario: Actions with defaults and custom actions
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:

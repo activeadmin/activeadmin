@@ -226,6 +226,9 @@ module ActiveAdmin
         # # Add default links.
         # actions
         #
+        # # Add default links with a custom column title (empty by default).
+        # actions name: 'A title!'
+        #
         # # Append some actions onto the end of the default actions.
         # actions do |admin_user|
         #   link_to 'Grant Admin', grant_admin_admin_user_path(admin_user)
@@ -237,11 +240,9 @@ module ActiveAdmin
         # end
         # ```
         #
-        def actions(*args, &block)
-          options = args.extract_options!
+        def actions(options = {}, &block)
           show_default_links = options.delete(:defaults) { true }
-          name = options.delete(:name) { "" }
-          column args.unshift(name), options do |resource|
+          column options.delete(:name), options do |resource|
             text_node default_actions(resource) if show_default_links
             text_node instance_exec(resource, &block) if block_given?
           end
