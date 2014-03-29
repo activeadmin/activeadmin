@@ -5,7 +5,7 @@ module ActiveAdmin
   class PunditAdapter < AuthorizationAdapter
 
     def authorized?(action, subject = nil)
-      policy = retreive_policy(subject)
+      policy = retrieve_policy(subject)
       action = format_action(action, subject)
 
       policy.class.method_defined?(action) && policy.send(action)
@@ -18,7 +18,7 @@ module ActiveAdmin
     end
 
 
-    def retreive_policy(subject)
+    def retrieve_policy(subject)
       case subject
       when nil   then Pundit.policy!(user, resource)
       when Class then Pundit.policy!(user, subject.new)
