@@ -5,11 +5,13 @@
   options = default.merge active_admin_config.csv_builder.options
   columns = active_admin_config.csv_builder.render_columns(self)
 
+  options[:encoding] = options[:encoding] || Encoding.default_external.name
+
   csv_output = CSV.generate(options) do |csv|
-    csv << columns.map(&:name)
+    csv << columns.map(&:name).map{|c| c.encode(options[:encoding]) }
     collection.each do |resource|
       csv << columns.map do |column|
-        call_method_or_proc_on resource, column.data
+        call_method_or_proc_on(resource, column.data).to_s.encode(options[:encoding])
       end
     end
   end
