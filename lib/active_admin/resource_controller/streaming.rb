@@ -14,6 +14,12 @@ module ActiveAdmin
 
       module CSVStream
 
+        def index
+          super { |format| format.csv { stream_csv collection } }
+        end
+
+        protected
+
         def csv_line(resource, columns)
           columns.map do |column|
             call_method_or_proc_on resource, column.data
@@ -31,10 +37,6 @@ module ActiveAdmin
               csv << CSV.generate_line(csv_line(resource, columns), options)
             end
           end
-        end
-
-        def index
-          super { |format| format.csv { stream_csv collection } }
         end
       end
     end
