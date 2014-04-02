@@ -1,5 +1,6 @@
 module ActiveAdmin
   module Dependencies
+    DEVISE_VERSION_REQUIREMENT = '~> 3.2.0'
 
     # Provides a simple query interface to check for gem dependencies
     #
@@ -36,6 +37,6 @@ module ActiveAdmin
 
     check_for :draper
     check_for :rails
-
+    check_for :devise, DEVISE_VERSION_REQUIREMENT
   end
 end
