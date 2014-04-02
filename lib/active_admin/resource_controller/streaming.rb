@@ -26,9 +26,9 @@ module ActiveAdmin
           columns = active_admin_config.csv_builder.render_columns(self)
 
           self.response_body = Enumerator.new do |csv|
-            csv << CSV.generate_line(columns.map(&:name))
+            csv << CSV.generate_line(columns.map(&:name), options)
             collection.find_each do |resource|
-              csv << CSV.generate_line(csv_line(resource, columns))
+              csv << CSV.generate_line(csv_line(resource, columns), options)
             end
           end
         end
