@@ -31,6 +31,7 @@ module ActiveAdmin
           options = default.merge active_admin_config.csv_builder.options
           columns = active_admin_config.csv_builder.render_columns(self)
 
+          headers['X-Accel-Buffering'] = 'no'
           headers['Cache-Control'] = 'no-cache'
 
           self.response_body = Enumerator.new do |csv|
