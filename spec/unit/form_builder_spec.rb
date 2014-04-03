@@ -437,13 +437,52 @@ describe ActiveAdmin::FormBuilder do
         let :body do
           build_form({url: '/categories'}, Category.new) do |f|
             f.object.posts.build
-            f.has_many :posts, sortable: :custom_category_id do |p|
+            f.has_many :posts, sortable: :position do |p|
               p.input :title
             end
           end
         end
 
         it "shows the nested fields for unsaved records" do
+          body.should have_tag("fieldset", attributes: {class: "inputs has_many_fields"})
+        end
+
+      end
+      
+      context "with post returning nil for the sortable attribute" do
+        let :body do
+          build_form({url: '/categories'}, Category.new) do |f|
+            f.object.posts.build position: 3
+            f.object.posts.build
+            f.has_many :posts, sortable: :position do |p|
+              p.input :title
+            end
+          end
+        end
+
+        it "shows the nested fields for unsaved records" do
+          body.should have_tag("fieldset", attributes: {class: "inputs has_many_fields"})
+        end
+
+      end
+      
+      context "with existing and new posts" do
+        let! :category do
+          Category.create name: 'Name'
+        end
+        let! :post do
+          category.posts.create
+        end
+        let :body do
+          build_form({url: '/categories'}, category) do |f|
+            f.object.posts.build
+            f.has_many :posts, sortable: :position do |p|
+              p.input :title
+            end
+          end
+        end
+
+        it "shows the nested fields for saved and unsaved records" do
           body.should have_tag("fieldset", attributes: {class: "inputs has_many_fields"})
         end
 
