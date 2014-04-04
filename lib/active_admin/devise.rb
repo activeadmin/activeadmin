@@ -5,7 +5,7 @@ module ActiveAdmin
 
     def self.config
       config = {
-        path: ActiveAdmin.application.default_namespace,
+        path: ActiveAdmin.application.default_namespace || "/",
         controllers: ActiveAdmin::Devise.controllers,
         path_names: { sign_in: 'login', sign_out: "logout" }
       }
