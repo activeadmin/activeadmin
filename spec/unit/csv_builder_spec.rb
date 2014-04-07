@@ -25,8 +25,8 @@ describe ActiveAdmin::CSVBuilder do
       let(:localized_name) { 'Titulo' }
 
       before do
-        Post.stub(:human_attribute_name).and_call_original
-        Post.stub(:human_attribute_name).with(:title){ localized_name }
+        allow(Post).to receive(:human_attribute_name).and_call_original
+        allow(Post).to receive(:human_attribute_name).with(:title){ localized_name }
       end
 
       it 'gets name from I18n' do

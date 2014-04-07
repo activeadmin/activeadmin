@@ -164,22 +164,22 @@ describe Admin::PostsController, type: "controller" do
     let(:post) { Post.new title: "An incledibly unique Post Title" }
 
     before do
-      Post.stub(:find).and_return(post)
+      allow(Post).to receive(:find).and_return(post)
       controller.class_eval { public :resource }
-      controller.stub(:params).and_return({ id: '1' })
+      allow(controller).to receive(:params).and_return({ id: '1' })
     end
 
     subject { controller.resource }
 
     it "returns a Post" do
-      subject.should be_kind_of(Post)
+      expect(subject).to be_kind_of(Post)
     end
 
     context 'with a decorator' do
       let(:config) { controller.class.active_admin_config }
       before { config.decorator_class_name = '::PostDecorator' }
       it 'returns a PostDecorator' do
-        subject.should be_kind_of(PostDecorator)
+        expect(subject).to be_kind_of(PostDecorator)
       end
 
       it 'returns a PostDecorator that wraps the post' do
@@ -231,7 +231,7 @@ describe Admin::PostsController, type: "controller" do
         redirect_to collection_path
       end
 
-      controller.class.active_admin_config.stub(:batch_actions).and_return([batch_action])
+      allow(controller.class.active_admin_config).to receive(:batch_actions).and_return([batch_action])
     end
 
     describe "when params batch_action matches existing BatchAction" do

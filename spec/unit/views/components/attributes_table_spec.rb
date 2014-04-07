@@ -7,8 +7,8 @@ describe ActiveAdmin::Views::AttributesTable do
 
     let(:post) do
       post = Post.new title: "Hello World", body: nil
-      post.stub(:id){ 1 }
-      post.stub(:new_record?){ false }
+      allow(post).to receive(:id){ 1 }
+      allow(post).to receive(:new_record?){ false }
       post
     end
 

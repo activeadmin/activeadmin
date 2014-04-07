@@ -10,8 +10,8 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     let(:view) do
       view = mock_action_view
-      view.request.stub(:query_parameters).and_return page: '1'
-      view.request.stub(:path_parameters).and_return  controller: 'admin/posts', action: 'index'
+      allow(view.request).to receive(:query_parameters).and_return page: '1'
+      allow(view.request).to receive(:path_parameters).and_return  controller: 'admin/posts', action: 'index'
       view
     end
 
@@ -28,9 +28,9 @@ describe ActiveAdmin::Views::PaginatedCollection do
     end
 
     before do
-      collection.stub(:reorder) { collection }
-      collection.stub(:scoped) { collection }
-      collection.stub(:group_values) { [] } unless collection.respond_to?(:group_values)
+      allow(collection).to receive(:reorder) { collection }
+      allow(collection).to receive(:scoped) { collection }
+      allow(collection).to receive(:group_values) { [] } unless collection.respond_to?(:group_values)
     end
 
     context "when specifying collection" do
@@ -130,7 +130,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should use 'Singular' as the collection name when there is an I18n translation" do
-        I18n.stub(:translate) { "Singular" }
+        allow(I18n).to receive(:translate) { "Singular" }
         expect(pagination.find_by_class('pagination_information').first.content).to eq "Displaying <b>1</b> Singular"
       end
     end
@@ -143,7 +143,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should use 'Plural' as the collection name when there is an I18n translation" do
-        I18n.stub(:translate) { "Plural" }
+        allow(I18n).to receive(:translate) { "Plural" }
         expect(pagination.find_by_class('pagination_information').first.content).to eq "Displaying <b>all 3</b> Plural"
       end
     end
