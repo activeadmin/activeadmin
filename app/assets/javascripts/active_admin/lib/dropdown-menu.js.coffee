@@ -22,8 +22,7 @@ class ActiveAdmin.DropdownMenu
     @isOpen = true
     @$menuList.fadeIn @options.fadeInDuration
 
-    @_positionMenuList()
-    @_positionNipple()
+    @_position()
     @
 
 
@@ -70,14 +69,24 @@ class ActiveAdmin.DropdownMenu
         if @isOpen then @close() else @open()
       false
 
-  _positionMenuList: ->
-    button_center = @$menuButton.position().left + @$menuButton.outerWidth() / 2
-    menu_center   = @$menuList.outerWidth() / 2
-    @$menuList.css 'left', button_center - menu_center
+  _position: ->
+    @$menuList.css 'top', @$menuButton.position().top + @$menuButton.outerHeight() + 10
 
-  _positionNipple: ->
-    @$menuList.css 'top',  @$menuButton.position().top + @$menuButton.outerHeight() + 10
-    @$nipple.css   'left', @$menuList.outerWidth() / 2 - @$nipple.outerWidth() / 2
+    button_left = @$menuButton.position().left
+    button_center =  @$menuButton.outerWidth() / 2
+    menu_center = @$menuList.outerWidth() / 2
+    nipple_center = @$nipple.outerWidth() / 2
+
+    centered_menu_left = button_left + button_center - menu_center
+
+    if centered_menu_left < 0
+      # Left align with button
+      @$menuList.css 'left', button_left
+      @$nipple.css   'left', button_center - nipple_center
+    else
+      # Center align under button
+      @$menuList.css 'left', centered_menu_left
+      @$nipple.css   'left', menu_center - nipple_center
 
 $.widget.bridge 'aaDropdownMenu', ActiveAdmin.DropdownMenu
 
