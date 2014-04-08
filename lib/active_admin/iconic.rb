@@ -32,7 +32,6 @@ module ActiveAdmin
       css_str = css.map {|k,v| "#{k}:#{v}"}.join(";")
       css_str = "style=\"#{css_str}\"" if css_str.present?
 
-      
       # make the svg itself expand to its parent
       options[:width] = options[:height] = "100%"
 

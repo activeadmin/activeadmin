@@ -71,7 +71,7 @@ module ActiveAdmin
     class RegistrationsController < ::Devise::RegistrationsController
        include ::ActiveAdmin::Devise::Controller
     end
-    
+
     class ConfirmationsController < ::Devise::ConfirmationsController
        include ::ActiveAdmin::Devise::Controller
     end
