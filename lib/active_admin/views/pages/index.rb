@@ -7,11 +7,10 @@ module ActiveAdmin
       class Index < Base
 
         def title
-          case config[:title]
-          when Proc   then controller.instance_exec &config[:title]
-          when String then config[:title]
+          if Proc === config[:title]
+            controller.instance_exec &config[:title]
           else
-            assigns[:page_title] || active_admin_config.plural_resource_label
+            config[:title] || assigns[:page_title] || active_admin_config.plural_resource_label
           end
         end
 
