@@ -9,9 +9,19 @@ describe ActiveAdmin::Views::BlankSlate do
       end
     end
 
-    its(:tag_name)    { should eql 'div' }
-    its(:class_list)  { should include('blank_slate_container') }
+    describe '#tag_name' do
+      subject { super().tag_name }
+      it    { should eql 'div' }
+    end
 
-    its(:content)     { should include '<span class="blank_slate">There are no Posts yet. <a href="/posts/new">Create one</a></span>' }
+    describe '#class_list' do
+      subject { super().class_list }
+      it  { should include('blank_slate_container') }
+    end
+
+    describe '#content' do
+      subject { super().content }
+      it     { should include '<span class="blank_slate">There are no Posts yet. <a href="/posts/new">Create one</a></span>' }
+    end
   end
 end

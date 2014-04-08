@@ -7,47 +7,123 @@ describe ActiveAdmin::Scope do
 
     context "when just a scope method" do
       let(:scope)        { ActiveAdmin::Scope.new :published }
-      its(:name)         { should == "Published"}
-      its(:id)           { should == "published"}
-      its(:scope_method) { should == :published }
+
+      describe '#name' do
+        subject { super().name }
+        it         { should == "Published"}
+      end
+
+      describe '#id' do
+        subject { super().id }
+        it           { should == "published"}
+      end
+
+      describe '#scope_method' do
+        subject { super().scope_method }
+        it { should == :published }
+      end
     end
 
     context "when scope method is :all" do
       let(:scope)        { ActiveAdmin::Scope.new :all }
-      its(:name)         { should == "All"}
-      its(:id)           { should == "all"}
+
+      describe '#name' do
+        subject { super().name }
+        it         { should == "All"}
+      end
+
+      describe '#id' do
+        subject { super().id }
+        it           { should == "all"}
+      end
       # :all does not return a chain but an array of active record
       # instances. We set the scope_method to nil then.
-      its(:scope_method) { should == nil }
-      its(:scope_block)  { should == nil }
+
+      describe '#scope_method' do
+        subject { super().scope_method }
+        it { should == nil }
+      end
+
+      describe '#scope_block' do
+        subject { super().scope_block }
+        it  { should == nil }
+      end
     end
 
     context 'when a name and scope method is :all' do
       let(:scope)        { ActiveAdmin::Scope.new 'Tous', :all }
-      its(:name)         { should eq 'Tous' }
-      its(:scope_method) { should be_nil }
-      its(:scope_block)  { should be_nil }
+
+      describe '#name' do
+        subject { super().name }
+        it         { should eq 'Tous' }
+      end
+
+      describe '#scope_method' do
+        subject { super().scope_method }
+        it { should be_nil }
+      end
+
+      describe '#scope_block' do
+        subject { super().scope_block }
+        it  { should be_nil }
+      end
     end
 
     context "when a name and scope method" do
       let(:scope)        { ActiveAdmin::Scope.new "With API Access", :with_api_access }
-      its(:name)         { should == "With API Access"}
-      its(:id)           { should == "with_api_access"}
-      its(:scope_method) { should == :with_api_access }
+
+      describe '#name' do
+        subject { super().name }
+        it         { should == "With API Access"}
+      end
+
+      describe '#id' do
+        subject { super().id }
+        it           { should == "with_api_access"}
+      end
+
+      describe '#scope_method' do
+        subject { super().scope_method }
+        it { should == :with_api_access }
+      end
     end
 
     context "when a name and scope block" do
       let(:scope)        { ActiveAdmin::Scope.new("My Scope"){|s| s } }
-      its(:name)         { should == "My Scope"}
-      its(:id)           { should == "my_scope"}
-      its(:scope_method) { should == nil }
-      its(:scope_block)  { should be_a(Proc)}
+
+      describe '#name' do
+        subject { super().name }
+        it         { should == "My Scope"}
+      end
+
+      describe '#id' do
+        subject { super().id }
+        it           { should == "my_scope"}
+      end
+
+      describe '#scope_method' do
+        subject { super().scope_method }
+        it { should == nil }
+      end
+
+      describe '#scope_block' do
+        subject { super().scope_block }
+        it  { should be_a(Proc)}
+      end
     end
 
     context "when a name has a space and lowercase" do
       let(:scope)        { ActiveAdmin::Scope.new("my scope") }
-      its(:name)         { should == "my scope"}
-      its(:id)           { should == "my_scope"}
+
+      describe '#name' do
+        subject { super().name }
+        it         { should == "my scope"}
+      end
+
+      describe '#id' do
+        subject { super().id }
+        it           { should == "my_scope"}
+      end
     end
 
     context "with a proc as the label" do

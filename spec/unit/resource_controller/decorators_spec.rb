@@ -68,7 +68,7 @@ describe ActiveAdmin::ResourceController::Decorators do
     let(:resource) { Post.new }
     let(:form_presenter) { double options: { decorate: decorate_form } }
     let(:decorator_class) { PostDecorator }
-    before { active_admin_config.stub(:get_page_presenter).with(:form).and_return form_presenter }
+    before { allow(active_admin_config).to receive(:get_page_presenter).with(:form).and_return form_presenter }
 
     subject(:applied) { controller.apply_decorator(resource) }
 

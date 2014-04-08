@@ -7,7 +7,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
 
   let(:controller) do
     rc = Admin::PostsController.new
-    rc.stub(:params) do
+    allow(rc).to receive(:params) do
       params
     end
     rc
@@ -61,7 +61,7 @@ describe ActiveAdmin::ResourceController::DataAccess do
         chain         = double "ChainObj"
         scoped_chain  = double "ScopedChain"
         current_scope = double "CurrentScope"
-        controller.stub(:current_scope) { current_scope }
+        allow(controller).to receive(:current_scope) { current_scope }
 
         expect(controller).to receive(:scope_chain).with(current_scope, chain) { scoped_chain }
         expect(controller.send(:apply_scoping, chain)).to eq scoped_chain

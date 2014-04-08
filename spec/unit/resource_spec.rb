@@ -233,7 +233,7 @@ module ActiveAdmin
       let(:resource) { namespace.register(Post) }
       let(:post) { double }
       before do
-        Post.stub(:where).with('id' => '12345').and_return { [post] }
+        allow(Post).to receive(:where).with('id' => '12345') { [post] }
       end
 
       it 'can find the resource' do
@@ -250,8 +250,8 @@ module ActiveAdmin
       context 'when using a nonstandard primary key' do
         let(:different_post) { double }
         before do
-          Post.stub(:primary_key).and_return 'something_else'
-          Post.stub(:where).with('something_else' => '55555').and_return { [different_post] }
+          allow(Post).to receive(:primary_key).and_return 'something_else'
+          allow(Post).to receive(:where).with('something_else' => '55555') { [different_post] }
         end
 
         it 'can find the post by the custom primary key' do

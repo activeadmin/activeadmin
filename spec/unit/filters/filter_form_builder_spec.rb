@@ -135,7 +135,7 @@ describe ActiveAdmin::Filters::ViewHelper do
 
     context "when loading collection from DB" do
       it "should use pluck for efficiency" do
-        builder.any_instance.should_receive(:pluck_column) { [] }
+        expect_any_instance_of(builder).to receive(:pluck_column) { [] }
         body
       end
 

@@ -92,7 +92,7 @@ describe ActiveAdmin::Devise::Controller do
       context "when Devise implements sign_out_via (version >= 1.2)" do
         before do
          expect(::Devise).to receive(:respond_to?).with(:sign_out_via).and_return(true)
-          ::Devise.stub(:sign_out_via) { :delete }
+          allow(::Devise).to receive(:sign_out_via) { :delete }
         end
 
         it "should contain the application.logout_link_method" do

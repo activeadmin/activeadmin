@@ -10,7 +10,7 @@ describe ActiveAdmin::Views::IndexList do
     let(:helpers) do
       helpers = mock_action_view
       helpers.stub url_for: "/"
-      helpers.stub(:params).and_return as: "table"
+      allow(helpers).to receive(:params).and_return as: "table"
       helpers
     end
 
@@ -20,7 +20,10 @@ describe ActiveAdmin::Views::IndexList do
       end
     end
 
-    its(:tag_name) { should eq 'ul'}
+    describe '#tag_name' do
+      subject { super().tag_name }
+      it { should eq 'ul'}
+    end
 
     it "should contain the names of available indexes in links" do
       a_tags = subject.find_by_tag("a")

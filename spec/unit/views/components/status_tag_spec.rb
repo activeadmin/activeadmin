@@ -14,88 +14,209 @@ describe ActiveAdmin::Views::StatusTag do
     subject { status_tag(nil) }
 
 
-    its(:tag_name)    { should eq 'span' }
-    its(:class_list)  { should include('status_tag') }
+    describe '#tag_name' do
+      subject { super().tag_name }
+      it    { should eq 'span' }
+    end
+
+    describe '#class_list' do
+      subject { super().class_list }
+      it  { should include('status_tag') }
+    end
 
     context "when status is 'completed'" do
       subject { status_tag('completed') }
 
-      its(:tag_name)    { should eq 'span' }
-      its(:class_list)  { should include('status_tag') }
-      its(:class_list)  { should include('completed') }
-      its(:content)     { should eq 'Completed' }
+      describe '#tag_name' do
+        subject { super().tag_name }
+        it    { should eq 'span' }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('status_tag') }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('completed') }
+      end
+
+      describe '#content' do
+        subject { super().content }
+        it     { should eq 'Completed' }
+      end
     end
 
     context "when status is 'in_progress'" do
       subject { status_tag('in_progress') }
 
-      its(:class_list)  { should include('in_progress') }
-      its(:content)     { should eq 'In Progress' }
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('in_progress') }
+      end
+
+      describe '#content' do
+        subject { super().content }
+        it     { should eq 'In Progress' }
+      end
     end
 
     context "when status is 'In progress'" do
       subject { status_tag('In progress') }
 
-      its(:class_list)  { should include('in_progress') }
-      its(:content)     { should eq 'In Progress' }
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('in_progress') }
+      end
+
+      describe '#content' do
+        subject { super().content }
+        it     { should eq 'In Progress' }
+      end
     end
 
     context "when status is an empty string" do
       subject { status_tag('') }
 
-      its(:class_list)  { should include('status_tag') }
-      its(:content)     { should eq '' }
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('status_tag') }
+      end
+
+      describe '#content' do
+        subject { super().content }
+        it     { should eq '' }
+      end
     end
     
     context "when status is false" do
       subject { status_tag('false') }
 
-      its(:class_list)  { should include('status_tag') }
-      its(:content)     { should == 'No' }
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('status_tag') }
+      end
+
+      describe '#content' do
+        subject { super().content }
+        it     { should == 'No' }
+      end
     end
 
     context "when status is nil" do
       subject { status_tag(nil) }
 
-      its(:class_list)  { should include('status_tag') }
-      its(:content)     { should == 'No' }
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('status_tag') }
+      end
+
+      describe '#content' do
+        subject { super().content }
+        it     { should == 'No' }
+      end
     end
 
     context "when status is 'Active' and type is :ok" do
       subject { status_tag('Active', :ok) }
 
-      its(:class_list)  { should include('status_tag') }
-      its(:class_list)  { should include('active') }
-      its(:class_list)  { should include('ok') }
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('status_tag') }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('active') }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('ok') }
+      end
     end
 
     context "when status is 'Active' and class is 'ok'" do
       subject { status_tag('Active', class: 'ok') }
 
-      its(:class_list)  { should include('status_tag') }
-      its(:class_list)  { should include('active') }
-      its(:class_list)  { should include('ok') }
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('status_tag') }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('active') }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('ok') }
+      end
     end
 
     context "when status is 'Active' and label is 'on'" do
       subject { status_tag('Active', label: 'on') }
 
-      its(:content)     { should eq 'on' }
-      its(:class_list)  { should include('status_tag') }
-      its(:class_list)  { should include('active') }
-      its(:class_list)  { should_not include('on') }
+      describe '#content' do
+        subject { super().content }
+        it     { should eq 'on' }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('status_tag') }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('active') }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should_not include('on') }
+      end
     end
 
     context "when status is 'So useless', type is :ok, class is 'woot awesome' and id is 'useless'" do
       subject { status_tag('So useless', :ok, class: 'woot awesome', id: 'useless') }
 
-      its(:content)     { should eq 'So Useless' }
-      its(:class_list)  { should include('status_tag') }
-      its(:class_list)  { should include('ok') }
-      its(:class_list)  { should include('so_useless') }
-      its(:class_list)  { should include('woot') }
-      its(:class_list)  { should include('awesome') }
-      its(:id)          { should eq 'useless' }
+      describe '#content' do
+        subject { super().content }
+        it     { should eq 'So Useless' }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('status_tag') }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('ok') }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('so_useless') }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('woot') }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it  { should include('awesome') }
+      end
+
+      describe '#id' do
+        subject { super().id }
+        it          { should eq 'useless' }
+      end
     end
 
   end # describe "#status_tag"

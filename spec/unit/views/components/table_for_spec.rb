@@ -209,7 +209,11 @@ describe ActiveAdmin::Views::TableFor do
     context "when default" do
       let(:table_column){ build_column(:username) }
       it { should be_sortable }
-      its(:sort_key){ should == "username" }
+
+      describe '#sort_key' do
+        subject { super().sort_key }
+        it{ should == "username" }
+      end
     end
 
     context "when a block given with no sort key" do
@@ -220,7 +224,11 @@ describe ActiveAdmin::Views::TableFor do
     context "when a block given with a sort key" do
       let(:table_column){ build_column("Username", sortable: :username){ } }
       it { should be_sortable }
-      its(:sort_key){ should == "username" }
+
+      describe '#sort_key' do
+        subject { super().sort_key }
+        it{ should == "username" }
+      end
     end
 
     context "when sortable: false with a symbol" do

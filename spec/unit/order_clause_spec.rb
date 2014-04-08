@@ -11,8 +11,16 @@ describe ActiveAdmin::OrderClause do
     let(:clause) { 'id_asc' }
 
     it { should be_valid }
-    its(:field) { should == 'id' }
-    its(:order) { should == 'asc' }
+
+    describe '#field' do
+      subject { super().field }
+      it { should == 'id' }
+    end
+
+    describe '#order' do
+      subject { super().order }
+      it { should == 'asc' }
+    end
 
     specify '#to_sql prepends table name' do
       expect(subject.to_sql(config)).to eq '"posts"."id" asc'
@@ -23,8 +31,16 @@ describe ActiveAdmin::OrderClause do
     let(:clause) { 'virtual_column_asc' }
 
     it { should be_valid }
-    its(:field) { should == 'virtual_column' }
-    its(:order) { should == 'asc' }
+
+    describe '#field' do
+      subject { super().field }
+      it { should == 'virtual_column' }
+    end
+
+    describe '#order' do
+      subject { super().order }
+      it { should == 'asc' }
+    end
 
     specify '#to_sql' do
       expect(subject.to_sql(config)).to eq '"virtual_column" asc'
@@ -35,8 +51,16 @@ describe ActiveAdmin::OrderClause do
     let(:clause) { "hstore_col->'field'_desc" }
 
     it { should be_valid }
-    its(:field) { should == "hstore_col->'field'" }
-    its(:order) { should == 'desc' }
+
+    describe '#field' do
+      subject { super().field }
+      it { should == "hstore_col->'field'" }
+    end
+
+    describe '#order' do
+      subject { super().order }
+      it { should == 'desc' }
+    end
 
     it 'converts to sql' do
       expect(subject.to_sql(config)).to eq %Q("hstore_col"->'field' desc)

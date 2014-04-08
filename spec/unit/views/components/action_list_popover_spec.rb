@@ -20,9 +20,20 @@ describe ActiveAdmin::Views::ActionListPopover do
       the_popover.find_by_class("popover_contents").first
     end
 
-    its(:tag_name) { should eql("ul") }
-    its(:content){ should include("<li><a href=\"#\">My First Great Action</a></li>") }
-    its(:content){ should include("<li><a href=\"http://www.google.com\">My Second Great Action</a></li>") }
+    describe '#tag_name' do
+      subject { super().tag_name }
+      it { should eql("ul") }
+    end
+
+    describe '#content' do
+      subject { super().content }
+      it{ should include("<li><a href=\"#\">My First Great Action</a></li>") }
+    end
+
+    describe '#content' do
+      subject { super().content }
+      it{ should include("<li><a href=\"http://www.google.com\">My Second Great Action</a></li>") }
+    end
 
   end
 

@@ -103,8 +103,8 @@ describe "Comments" do
           body: "Lorem Ipsum",
           namespace: namespace_name)
 
-        ActiveAdmin::Comment.find_for_resource_in_namespace(publisher, namespace_name).last.resource_type.
-          should == 'Publisher'
+        expect(ActiveAdmin::Comment.find_for_resource_in_namespace(publisher, namespace_name).last.resource_type).
+          to eq('Publisher')
       end
     end
   end
