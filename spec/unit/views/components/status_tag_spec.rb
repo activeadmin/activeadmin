@@ -89,7 +89,7 @@ describe ActiveAdmin::Views::StatusTag do
         it     { should eq '' }
       end
     end
-    
+
     context "when status is false" do
       subject { status_tag('false') }
 

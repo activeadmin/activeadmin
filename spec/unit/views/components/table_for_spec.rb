@@ -187,7 +187,7 @@ describe ActiveAdmin::Views::TableFor do
           end
         end
       end
-      
+
       it "should render boolean attribute within status tag" do
         expect(table.find_by_tag("span").first.class_list.to_a.join(' ')).to eq "status_tag yes"
         expect(table.find_by_tag("span").first.content).to eq "Yes"

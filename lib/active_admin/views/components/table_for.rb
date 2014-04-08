@@ -110,7 +110,7 @@ module ActiveAdmin
       def current_sort
         @current_sort ||= begin
           order_clause = OrderClause.new params[:order]
-          
+
           if order_clause.valid?
             [order_clause.field, order_clause.order]
           else
