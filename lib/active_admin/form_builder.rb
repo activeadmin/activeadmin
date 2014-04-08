@@ -103,11 +103,8 @@ module ActiveAdmin
         form_buffers.last
       end
 
-      form_buffers.last << if @already_in_an_inputs_block
-        template.content_tag :li,  html, class: "has_many_container #{assoc}", 'data-sortable' => builder_options[:sortable]
-      else
-        template.content_tag :div, html, class: "has_many_container #{assoc}", 'data-sortable' => builder_options[:sortable]
-      end
+      tag = @already_in_an_inputs_block ? :li : :div
+      template.content_tag tag,  html, class: "has_many_container #{assoc}", 'data-sortable' => builder_options[:sortable]
     end
 
     def semantic_errors(*args)
