@@ -176,9 +176,7 @@ module ActiveAdmin
     end
 
     def load(file)
-      super
-    rescue ActiveRecord::StatementInvalid => exception
-      raise DatabaseHitDuringLoad.new exception
+      DatabaseHitDuringLoad.capture{ super }
     end
 
     # Returns ALL the files to be loaded
