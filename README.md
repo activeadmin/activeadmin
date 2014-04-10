@@ -19,6 +19,13 @@ Until it's ready, you can get Rails 4 support today by tracking master:
 gem 'activeadmin', github: 'gregbell/active_admin'
 ```
 
+On Rails 4.1, you'll also need to declare the following dependencies:
+```ruby
+gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
+gem 'formtastic', github: 'justinfrench/formtastic'
+```
+
 The plan is to follow [semantic versioning](http://semver.org/) as of 1.0.0. The 0.6.x line will
 still be maintained, and we will backport bug fixes into future 0.6.x releases. If you don't want
 to have to wait for a release, you can track the branch instead:
