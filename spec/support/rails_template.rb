@@ -8,6 +8,10 @@ run "rm -r spec"
 copy_file File.expand_path('../templates/cucumber.rb', __FILE__),                "config/environments/cucumber.rb"
 copy_file File.expand_path('../templates/cucumber_with_reloading.rb', __FILE__), "config/environments/cucumber_with_reloading.rb"
 
+# Devise master doesn't set up its secret key on Rails 4.1
+# https://github.com/plataformatec/devise/issues/2554
+gsub_file 'config/initializers/devise.rb', /# config.secret_key =/, 'config.secret_key ='
+
 gsub_file 'config/database.yml', /^test:.*\n/, "test: &test\n"
 gsub_file 'config/database.yml', /\z/, "\ncucumber:\n  <<: *test\n  database: db/cucumber.sqlite3"
 gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\n  database: db/cucumber.sqlite3"
