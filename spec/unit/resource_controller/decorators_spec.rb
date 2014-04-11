@@ -42,7 +42,7 @@ describe ActiveAdmin::ResourceController::Decorators do
   describe '#apply_collection_decorator' do
     before { Post.create! }
     let(:action) { 'index' }
-    let(:collection) { Post.scoped }
+    let(:collection) { Post.where nil }
     subject(:applied) { controller.apply_collection_decorator(collection) }
 
     context 'when a decorator is configured' do

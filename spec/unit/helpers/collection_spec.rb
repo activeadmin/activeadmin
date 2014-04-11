@@ -17,7 +17,7 @@ describe ActiveAdmin::Helpers::Collection do
 
   describe "#collection_size" do
     it "should return the collection size for an ActiveRecord class" do
-      expect(collection_size(Post.scoped)).to eq 3
+      expect(collection_size(Post.where(nil))).to eq 3
     end
 
     it "should return the collection size for an ActiveRecord::Relation" do
@@ -33,7 +33,7 @@ describe ActiveAdmin::Helpers::Collection do
     end
 
     it "should take the defined collection by default" do
-      def collection; Post.scoped; end
+      def collection; Post.where(nil); end
 
       expect(collection_size).to eq 3
 
@@ -53,7 +53,7 @@ describe ActiveAdmin::Helpers::Collection do
     end
 
     it "should take the defined collection by default" do
-      def collection; Post.scoped; end
+      def collection; Post.where(nil); end
 
       expect(collection_is_empty?).to be_false
 
