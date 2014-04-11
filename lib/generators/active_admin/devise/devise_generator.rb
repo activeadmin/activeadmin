@@ -48,13 +48,15 @@ module ActiveAdmin
 
         devise_migration_content = File.read(devise_migration_file)
 
+        create_user_code = "#{class_name}.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')"
+
         if devise_migration_content["def change"]
           inject_into_file  devise_migration_file,
-                            "def migrate(direction)\n    super\n    # Create a default user\n    #{class_name}.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if direction == :up\n  end\n\n  ",
+                            "def migrate(direction)\n    super\n    # Create a default user\n    #{create_user_code} if direction == :up\n  end\n\n  ",
                             before: "def change"
         elsif devise_migration_content[/def (self.)?up/]
           inject_into_file  devise_migration_file,
-                            "# Create a default user\n    #{class_name}.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')\n\n    ",
+                            "# Create a default user\n    #{create_user_code}\n\n    ",
                             before: "add_index :#{table_name}, :email"
         else
           puts devise_migration_content
