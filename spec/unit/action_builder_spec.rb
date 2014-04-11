@@ -54,7 +54,7 @@ describe 'defining new actions from registration blocks' do
 
       subject { find_before_filter controller, :comment }
 
-      it { should set_page_title_to "My Awesome Comment" }
+      it { should set_page_title_to "My Awesome Comment", for: controller }
     end
   end
 
@@ -104,18 +104,24 @@ describe 'defining new actions from registration blocks' do
 
       subject { find_before_filter controller, :comments }
 
-      it { should set_page_title_to "My Awesome Comments" }
+      it { should set_page_title_to "My Awesome Comments", for: controller }
     end
   end
 
   def find_before_filter(controller, action)
-    controller._process_action_callbacks.detect { |f| f.kind == :before && f.options[:only] == [action] }
+    finder = if ActiveAdmin::Dependencies.rails? :>=, '4.1.0'
+      ->c { c.kind == :before && c.instance_variable_get(:@if) == ["action_name == '#{action}'"] }
+    else
+      ->c { c.kind == :before && c.options[:only] == [action] }
+    end
+
+    controller._process_action_callbacks.detect &finder
   end
 
-  RSpec::Matchers.define :set_page_title_to do |expected|
+  RSpec::Matchers.define :set_page_title_to do |expected, options|
     match do |filter|
       filter.raw_filter.call
-      @actual = filter.klass.instance_variable_get(:@page_title)
+      @actual = options[:for].instance_variable_get(:@page_title)
       expect(@actual).to eq expected
     end
 

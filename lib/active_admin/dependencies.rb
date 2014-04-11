@@ -33,6 +33,7 @@ module ActiveAdmin
     end
 
     check_for :draper
+    check_for :rails
 
   end
 end
