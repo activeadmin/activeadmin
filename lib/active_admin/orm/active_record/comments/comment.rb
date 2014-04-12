@@ -1,6 +1,8 @@
 module ActiveAdmin
   class Comment < ActiveRecord::Base
 
+    self.table_name = 'active_admin_comments'
+
     belongs_to :resource, polymorphic: true
     belongs_to :author,   polymorphic: true
 
@@ -34,10 +36,6 @@ module ActiveAdmin
 
     def self.resource_id_type
       columns.detect{ |i| i.name == "resource_id" }.type
-    end
-
-    def self.table_name
-      @table_name ||= ActiveRecord::Migrator.proper_table_name("active_admin_comments")
     end
 
     def set_resource_type
