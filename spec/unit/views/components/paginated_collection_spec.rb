@@ -28,9 +28,8 @@ describe ActiveAdmin::Views::PaginatedCollection do
     end
 
     before do
-      allow(collection).to receive(:reorder) { collection }
-      allow(collection).to receive(:scoped) { collection }
-      allow(collection).to receive(:group_values) { [] } unless collection.respond_to?(:group_values)
+      allow(collection).to receive(:except) { collection } unless collection.respond_to? :except
+      allow(collection).to receive(:group_values) { [] }   unless collection.respond_to? :group_values
     end
 
     context "when specifying collection" do
