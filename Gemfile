@@ -22,6 +22,8 @@ gem 'rails-i18n' # Provides default i18n for many languages
 
 gem 'sprockets', '<= 2.11.0' # Hold back sprockets, ref: #3005
 
+gem 'pry' # elegant debugging anywhere with `binding.pry`
+
 group :development do
   # Debugging
   gem 'better_errors'      # Web UI to debug exceptions. Go to /__better_errors to access the latest one
