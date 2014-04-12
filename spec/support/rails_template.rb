@@ -2,7 +2,6 @@
 
 run "rm Gemfile"
 run "rm -r test"
-run "rm -r spec"
 
 # Create a cucumber database and environment
 copy_file File.expand_path('../templates/cucumber.rb', __FILE__),                "config/environments/cucumber.rb"
