@@ -20,10 +20,11 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 ```
 
 On Rails 4.1, you'll also need to declare the following dependencies:
+
 ```ruby
 gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
-gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
-gem 'formtastic', github: 'justinfrench/formtastic'
+gem 'ransack',     github: 'activerecord-hackery/ransack'
+gem 'formtastic',  github: 'justinfrench/formtastic'
 ```
 
 The plan is to follow [semantic versioning](http://semver.org/) as of 1.0.0. The 0.6.x line will

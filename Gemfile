@@ -10,10 +10,9 @@ rails_version = detect_rails_version
 gem 'rails', rails_version
 
 if rails_version.start_with? '4.1'
-  gem 'devise',      github: 'plataformatec/devise'
   gem 'formtastic',  github: 'justinfrench/formtastic'
   gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
-  gem 'ransack',     github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
+  gem 'ransack',     github: 'activerecord-hackery/ransack'
 end
 
 gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an official release
