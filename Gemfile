@@ -53,7 +53,6 @@ group :test do
   gem 'launchy'
   gem 'parallel_tests'
   gem 'rspec-rails'
-  gem 'minitest'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', ref: 'fcbb5c48' # before #473 
   gem 'sqlite3'
 end
