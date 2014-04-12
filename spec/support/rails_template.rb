@@ -11,6 +11,10 @@ gsub_file 'config/database.yml', /^test:.*\n/, "test: &test\n"
 gsub_file 'config/database.yml', /\z/, "\ncucumber:\n  <<: *test\n  database: db/cucumber.sqlite3"
 gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\n  database: db/cucumber.sqlite3"
 
+if File.exists? 'config/secrets.yml'
+  gsub_file 'config/secrets.yml', /\z/, "\ncucumber:\n  secret_key_base: #{'o' * 128}"
+end
+
 generate :model, "post title:string body:text published_at:datetime author_id:integer position:integer custom_category_id:integer starred:boolean"
 inject_into_file 'app/models/post.rb', %q{
   belongs_to :category, foreign_key: :custom_category_id
