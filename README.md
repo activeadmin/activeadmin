@@ -27,6 +27,8 @@ gem 'ransack',     github: 'activerecord-hackery/ransack'
 gem 'formtastic',  github: 'justinfrench/formtastic'
 ```
 
+Note that the comments index page is broken on Rails 4.1 ([#3067](https://github.com/gregbell/active_admin/issues/3067))
+
 The plan is to follow [semantic versioning](http://semver.org/) as of 1.0.0. The 0.6.x line will
 still be maintained, and we will backport bug fixes into future 0.6.x releases. If you don't want
 to have to wait for a release, you can track the branch instead:
