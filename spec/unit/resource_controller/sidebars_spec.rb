@@ -10,7 +10,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
 
     subject { find_before_filter controller, :skip_sidebar! }
 
-    it {should set_skip_sidebar_to nil}
+    it { should set_skip_sidebar_to nil, for: controller }
   end
 
   describe '#skip_sidebar!' do
@@ -22,7 +22,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
 
     subject { find_before_filter controller, :skip_sidebar! }
 
-    it { should set_skip_sidebar_to true }
+    it { should set_skip_sidebar_to true, for: controller }
   end
 
   def find_before_filter(controller, filter)
@@ -30,10 +30,9 @@ describe ActiveAdmin::ResourceController::Sidebars do
     controller._process_action_callbacks.detect { |f| f.raw_filter == filter.to_sym }
   end
 
-  RSpec::Matchers.define :set_skip_sidebar_to do |expected|
+  RSpec::Matchers.define :set_skip_sidebar_to do |expected, options|
     match do |filter|
-      klass = filter && filter.klass || controller
-      object = klass.new
+      object = options[:for].new
       object.send filter.raw_filter if filter
       @actual = object.instance_variable_get(:@skip_sidebar)
       expect(@actual).to eq expected

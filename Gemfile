@@ -9,12 +9,20 @@ require File.expand_path('spec/support/detect_rails_version', ACTIVE_ADMIN_PATH)
 rails_version = detect_rails_version
 gem 'rails', rails_version
 
+if rails_version.start_with? '4.1'
+  gem 'formtastic',  github: 'justinfrench/formtastic'
+  gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
+  gem 'ransack',     github: 'activerecord-hackery/ransack'
+end
+
 gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an official release
 
 gem 'rake', require: false
 gem 'rails-i18n' # Provides default i18n for many languages
 
 gem 'sprockets', '<= 2.11.0' # Hold back sprockets, ref: #3005
+
+gem 'pry' # elegant debugging anywhere with `binding.pry`
 
 group :development do
   # Debugging
@@ -47,6 +55,6 @@ group :test do
   gem 'launchy'
   gem 'parallel_tests'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
   gem 'sqlite3'
 end

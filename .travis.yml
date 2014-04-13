@@ -7,7 +7,11 @@ rvm:
   - 2.1.1
 env:
   - RAILS=3.2.17
+  - RAILS=4.0.4
   - RAILS=4.1.0
+matrix:
+  allow_failures:
+    - env: RAILS=4.1.0
 notifications:
   irc:
     channels:
