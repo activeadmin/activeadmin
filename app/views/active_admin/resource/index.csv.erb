@@ -12,7 +12,7 @@
     collection.each do |resource|
       csv << columns.map do |column|
         output = call_method_or_proc_on(resource, column.data)
-        output.class <= String ? output.encode(options[:encoding]) : output
+        output.class <= String ? output.encode(options[:encoding], { :invalid => :replace, :undef => :replace, :replace => '?' }) : output
       end
     end
   end
