@@ -50,7 +50,9 @@ ActiveAdmin.after_load do |app|
         controller do
           # Prevent N+1 queries
           def scoped_collection
-            resource_class.includes :author, :resource
+            super.includes *( # rails/rails#14734
+              ActiveAdmin::Dependencies.rails?(:==, '4.1.0') ? [:author] : [:author, :resource]
+            )
           end
 
           # Redirect to the resource show page after comment creation

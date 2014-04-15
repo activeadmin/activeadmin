@@ -13,6 +13,7 @@ gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\
 
 if File.exists? 'config/secrets.yml'
   gsub_file 'config/secrets.yml', /\z/, "\ncucumber:\n  secret_key_base: #{'o' * 128}"
+  gsub_file 'config/secrets.yml', /\z/, "\ncucumber_with_reloading:\n  secret_key_base: #{'o' * 128}"
 end
 
 generate :model, "post title:string body:text published_at:datetime author_id:integer position:integer custom_category_id:integer starred:boolean"
