@@ -116,6 +116,7 @@
           text-decoration: none;
           text-align: center;
           -webkit-font-smoothing: antialiased;
+          white-space: nowrap;
 
           &:hover {
             @include highlight-gradient;
