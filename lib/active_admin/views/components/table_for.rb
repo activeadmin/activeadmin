@@ -89,7 +89,7 @@ module ActiveAdmin
         value = if data.is_a? Proc
           data.call item
         elsif item.respond_to? data
-          item.send data
+          item.public_send data
         elsif item.respond_to? :[]
           item[data]
         end

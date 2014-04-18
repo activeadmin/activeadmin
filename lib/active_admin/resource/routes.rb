@@ -39,7 +39,7 @@ module ActiveAdmin
             (resource.route_uncountable? ? 'index_path' : 'path')
           )
 
-          routes.send(route_name, *route_collection_params(params))
+          routes.public_send route_name, *route_collection_params(params)
         end
 
         # @return [String] the path to this resource collection page
@@ -48,7 +48,7 @@ module ActiveAdmin
         def instance_path(instance)
           route_name = route_name(resource.controller.resources_configuration[:self][:route_instance_name])
 
-          routes.send(route_name, *route_instance_params(instance))
+          routes.public_send route_name, *route_instance_params(instance)
         end
 
         private
@@ -70,7 +70,7 @@ module ActiveAdmin
         # @return params to pass to instance path
         def route_instance_params(instance)
           if nested?
-            [instance.send(belongs_to_name).to_param, instance.to_param]
+            [instance.public_send(belongs_to_name).to_param, instance.to_param]
           else
             instance.to_param
           end

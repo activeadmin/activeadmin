@@ -100,7 +100,7 @@ module ActiveAdmin
       #
       # @returns [ActiveRecord::Base] An active record object.
       def find_resource
-        scoped_collection.send(method_for_find, params[:id])
+        scoped_collection.public_send method_for_find, params[:id]
       end
 
 
@@ -132,7 +132,7 @@ module ActiveAdmin
       #
       # @returns [ActiveRecord::Base] An un-saved active record base object
       def build_new_resource
-        scoped_collection.send(method_for_build, *resource_params)
+        scoped_collection.public_send method_for_build, *resource_params
       end
 
       # Calls all the appropriate callbacks and then creates the new resource.
@@ -261,7 +261,7 @@ module ActiveAdmin
         page_method_name = Kaminari.config.page_method_name
         page = params[Kaminari.config.param_name]
 
-        chain.send(page_method_name, page).per(per_page)
+        chain.public_send(page_method_name, page).per(per_page)
       end
 
       def per_page

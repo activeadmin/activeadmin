@@ -96,7 +96,7 @@ module ActiveAdmin
     # Override from ActiveAdmin::Settings to inherit default attributes
     # from the application
     def read_default_setting(name)
-      application.send(name)
+      application.public_send name
     end
 
     def fetch_menu(name)
