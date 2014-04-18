@@ -159,6 +159,17 @@ module ActiveAdmin
     # end
     # ```
     #
+    # ## Custom row class
+    #
+    # In order to add special class to table rows pass the proc object as a `:row_class` option
+    # of the `index` method.
+    #
+    # ```ruby
+    # index row_class: -> (element) { 'active' if element.active? } do
+    #   # columns
+    # end
+    # ```
+    #
     class IndexAsTable < ActiveAdmin::Component
 
       def build(page_presenter, collection)
@@ -167,7 +178,8 @@ module ActiveAdmin
           sortable: true,
           class: "index_table index",
           i18n: active_admin_config.resource_class,
-          paginator: page_presenter[:paginator] != false
+          paginator: page_presenter[:paginator] != false,
+          row_class: page_presenter[:row_class]
         }
 
         table_for collection, table_options do |t|

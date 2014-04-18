@@ -196,6 +196,25 @@ describe ActiveAdmin::Views::TableFor do
       end
     end
 
+    context 'when row_class' do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection, row_class: -> e { 'starred' if e.starred }) do
+            column :starred
+          end
+        end
+      end
+
+      it 'should render boolean attribute within status tag' do
+        trs = table.find_by_tag('tr')
+        expect(trs.size).to eq 4
+        expect(trs.first.class_list.to_a.join(' ')).to eq ''
+        expect(trs.second.class_list.to_a.join(' ')).to eq 'odd starred'
+        expect(trs.third.class_list.to_a.join(' ')).to eq 'even'
+        expect(trs.fourth.class_list.to_a.join(' ')).to eq 'odd'
+      end
+    end
+
   end
 
   describe "column sorting" do
