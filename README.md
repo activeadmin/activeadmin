@@ -15,23 +15,11 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 
 We're [currently working on 1.0.0](https://github.com/gregbell/active_admin/issues?milestone=18),
 which as far as dependencies, moves us from meta_search to Ransack and adds Rails 4 support.
-Until it's ready, you can get Rails 4 support today by tracking master:
+You can get Rails 4 and 4.1 support by tracking master:
 
 ```ruby
 gem 'activeadmin', github: 'gregbell/active_admin'
 ```
-
-### Rails 4.1
-
-On Rails 4.1, you'll also need to declare the following dependencies:
-
-```ruby
-gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
-gem 'ransack',     github: 'activerecord-hackery/ransack'
-gem 'formtastic',  github: 'justinfrench/formtastic'
-```
-
-Note that the comments index page is broken on Rails 4.1 ([#3067](https://github.com/gregbell/active_admin/issues/3067))
 
 ### 0.6.x
 

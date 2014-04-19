@@ -9,12 +9,6 @@ require File.expand_path('spec/support/detect_rails_version', ACTIVE_ADMIN_PATH)
 rails_version = detect_rails_version
 gem 'rails', rails_version
 
-if rails_version.start_with? '4.1'
-  gem 'formtastic',  github: 'justinfrench/formtastic'
-  gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
-  gem 'ransack',     github: 'activerecord-hackery/ransack'
-end
-
 gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an official release
 
 gem 'rake', require: false
