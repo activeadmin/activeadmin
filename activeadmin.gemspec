@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bourbon'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'devise',              '~> 3.2'
-  s.add_dependency 'formtastic',          '~> 2.3.0.rc2' # change to 2.3 when stable is released
+  s.add_dependency 'formtastic',          '~> 2.3.0.rc3' # change to 2.3 when stable is released
   s.add_dependency 'inherited_resources', '~> 1.3'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
