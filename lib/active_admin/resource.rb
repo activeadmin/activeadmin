@@ -141,12 +141,17 @@ module ActiveAdmin
       instance_variable_defined?(:@breadcrumb) ? @breadcrumb : namespace.breadcrumb
     end
 
+
     def find_resource(id)
-      resource = resource_class.where(resource_class.primary_key => id).first
+      resource = resource_class.public_send(method_for_find, id)
       decorator_class ? decorator_class.new(resource) : resource
     end
 
     private
+
+    def method_for_find
+      controller.resources_configuration[:self][:finder] || :"find_by_#{resource_class.primary_key}"
+    end
 
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource_class)
