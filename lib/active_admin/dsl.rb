@@ -77,13 +77,21 @@ module ActiveAdmin
 
     # Add a new action item to the resource
     #
+    # @param [Symbol] name
     # @param [Hash] options valid keys include:
     #                 :only:  A single or array of controller actions to display
     #                         this action item on.
     #                 :except: A single or array of controller actions not to
     #                          display this action item on.
-    def action_item(options = {}, &block)
-      config.add_action_item(options, &block)
+    def action_item(name = nil, options = {}, &block)
+      if name.is_a?(Hash)
+        options = name
+        name = nil
+      end
+
+      Deprecation.warn "using `action_item` without a name is deprecated! Use `action_item(:edit)`." unless name
+
+      config.add_action_item(name, options, &block)
     end
 
     # Add a new batch action item to the resource

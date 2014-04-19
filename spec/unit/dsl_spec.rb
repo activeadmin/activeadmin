@@ -26,17 +26,35 @@ describe ActiveAdmin::DSL do
 
 
   describe '#action_item' do
-    before { @default_items_count = resource_config.action_items.size }
+    before do
+      @default_items_count = resource_config.action_items.size
 
-    it "add action_item to the action_items of config" do
       dsl.run_registration_block do
-        action_item only: :show do
+        action_item :awesome, only: :show do
           "Awesome ActionItem"
         end
       end
+    end
+
+    it "adds action_item to the action_items of config" do
       expect(resource_config.action_items.size).to eq(@default_items_count + 1)
     end
 
+    context 'DEPRECATED: when used without a name' do
+      before do
+        dsl.run_registration_block do
+          action_item only: :edit do
+            "Awesome ActionItem"
+          end
+        end
+      end
+
+      it "is configured for only the show action" do
+        item = resource_config.action_items.last
+        expect(item.display_on?(:edit)).to be true
+        expect(item.display_on?(:index)).to be false
+      end
+    end
   end
 
   describe "#menu" do

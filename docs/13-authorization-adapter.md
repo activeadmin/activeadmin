@@ -161,7 +161,7 @@ ActiveAdmin.register Post do
     redirect_to [:admin, post]
   end
 
-  action_item :only => :show do
+  action_item :publish, :only => :show do
     if !post.published? && authorized?(:publish, post)
       link_to "Publish", publish_admin_post_path(post), method: :post
     end
