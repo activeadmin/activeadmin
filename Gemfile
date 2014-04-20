@@ -29,7 +29,6 @@ group :development do
   gem 'yard'               # Documentation generator
   gem 'yard-redcarpet-ext' # Enables Markdown tables, which are disabled by default
   gem 'redcarpet'          # Markdown implementation (for yard)
-  gem 'rails-i18n'         # Provides default i18n for many languages
 end
 
 group :test do
@@ -47,6 +46,7 @@ group :test do
   gem 'jslint_on_rails'
   gem 'launchy'
   gem 'parallel_tests'
+  gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'sqlite3'
