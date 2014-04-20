@@ -1,10 +1,10 @@
 language: ruby
-script: time bundle exec rake test_with_coveralls
-before_install:
-  - date
-  - gem install bundler # use the latest bundler, since Travis doesn't update for us
-after_install:
-  - date
+script:
+  - time bundle exec rake setup
+  - time bundle exec rake test_with_coveralls
+install:
+  - time gem install bundler # use the very latest bundler
+  - time bundle install --without development
 rvm:
   - 1.9.3
   - 2.1.1

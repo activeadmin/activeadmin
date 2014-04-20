@@ -12,14 +12,12 @@ gem 'rails', rails_version
 gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an official release
 
 gem 'rake', require: false
-gem 'rails-i18n' # Provides default i18n for many languages
 
 gem 'sprockets', '<= 2.11.0' # Hold back sprockets, ref: #3005
 
-gem 'pry' # elegant debugging anywhere with `binding.pry`
-
 group :development do
   # Debugging
+  gem 'pry'                # Easily debug from your console with `binding.pry`
   gem 'better_errors'      # Web UI to debug exceptions. Go to /__better_errors to access the latest one
   gem 'binding_of_caller'  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 
@@ -31,6 +29,7 @@ group :development do
   gem 'yard'               # Documentation generator
   gem 'yard-redcarpet-ext' # Enables Markdown tables, which are disabled by default
   gem 'redcarpet'          # Markdown implementation (for yard)
+  gem 'rails-i18n'         # Provides default i18n for many languages
 end
 
 group :test do
