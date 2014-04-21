@@ -1,0 +1,84 @@
+#!/usr/bin/env ruby
+
+require 'base64'
+require 'digest'
+require 'openssl'
+require 'shellwords'
+
+FILE = "#{ENV.fetch 'RAILS'}.tgz"
+
+ID     = ENV.fetch 'AWS_S3_ID'
+SECRET = ENV.fetch 'AWS_S3_SECRET'
+
+def download
+  s3 :save, file: FILE,           as: "remote_#{FILE}", untar: true
+  s3 :save, file: "#{FILE}.sha2", as: "remote_#{FILE}.sha2"
+end
+
+def upload
+  lockfile        = File.join File.expand_path(ENV['TRAVIS_BUILD_DIR']), 'Gemfile.lock'
+  new_digest_file = File.expand_path "~/#{FILE}.sha2"
+  old_digest_file = File.expand_path "~/remote_#{FILE}.sha2"
+
+  puts "Checking for changes"
+  new_digest = Digest::SHA2.file(lockfile).hexdigest
+  old_digest = File.read old_digest_file if File.exists? old_digest_file
+
+  File.write new_digest_file, new_digest
+
+  if new_digest == old_digest
+    puts "=> There were no changes, doing nothing"
+  else
+    if old_digest
+      puts "=> There were changes, uploading a new version of the archive"
+      puts "  => Old checksum: #{old_digest}"
+      puts "  => New checksum: #{new_digest}"
+    else
+      puts "=> There was no existing digest, uploading a new version of the archive"
+    end
+
+    puts "=> Preparing bundle archive"
+    `cd ~ && tar -cjf #{FILE} .bundle`
+
+    puts "=> Uploading the bundle"
+
+    s3 :upload, file: FILE
+    s3 :upload, file: "#{FILE}.sha2"
+  end
+
+  puts "All done now."
+end
+
+def sign(secret, to_sign, digest = 'sha1')
+  Base64.strict_encode64 OpenSSL::HMAC.digest OpenSSL::Digest.new(digest), secret, to_sign
+end
+
+# s3 :list
+# s3 :upload, file: 'foo'
+# s3 :find,   file: 'bar'
+# s3 :save,   file: 'baz', as: 'ttt', untar: true
+def s3(action, options = {})
+  verb      = {list: :get, upload: :put, find: :get, save: :get}.fetch action
+  file      = options.fetch :file unless action == :list
+  extra_arg = {
+    upload: ->{ %[-T "#{file}"] },
+    save:   ->{ %[-o "#{options[:as]}"] if options[:as] }
+              }[action].call
+  do_after  = %[&& tar -xf "#{options[:as] || file}"] if options[:untar]
+
+  url       = 'https://s3.amazonaws.com/ActiveAdmin'
+  now       = Time.now.strftime "%a, %d %b %Y %H:%M:%S %z"
+  signature = sign SECRET, "#{verb.upcase}\n\n\n#{now}\n/ActiveAdmin/#{file}"
+  headers   = ["Authorization: AWS #{ID}:#{signature}", "Date: #{now}"].map do |h|
+    "-H #{Shellwords.escape h}"
+  end.join ' '
+
+  output = `cd ~ && curl -f #{headers} #{extra_arg} #{url}/#{file} #{do_after}`
+  [$?.success?, output]
+end
+
+if %w[download upload].include? ARGV[0]
+  send ARGV[0]
+else
+  raise "unexpected argument(s): #{ARGV}"
+end
