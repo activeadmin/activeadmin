@@ -43,3 +43,7 @@ end
 Then /^the CSV file should contain "([^"]*)" in quotes$/ do |text|
   page.driver.response.body.should match /"#{text}"/
 end
+
+Then /^the encoding of the CSV file should be "([^"]*)"$/ do |text|
+  page.driver.response.body.encoding.should be Encoding.find(Encoding.aliases[text] || text)
+end
