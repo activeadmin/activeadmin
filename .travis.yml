@@ -1,7 +1,6 @@
 language: ruby
 install:
   - time ./script/bundle_cache download
-  - time gem install bundler # use the very latest bundler
   - time bundle install --without development --path=~/.bundle
   - time ./script/bundle_cache upload
 script:
