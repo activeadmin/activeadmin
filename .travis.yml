@@ -1,10 +1,11 @@
 language: ruby
 install:
-  - time ./script/bundle_cache download
-  - time bundle install --without development --path=~/.bundle
-  - time ./script/bundle_cache upload
-script:
+  - time ./script/travis_cache download_bundle
+  - time bundle install --without development --path=./bundle
+  - time ./script/travis_cache download_app
   - time bundle exec rake setup
+  - time ./script/travis_cache upload
+script:
   - time bundle exec rake test_with_coveralls
 rvm:
   - 1.9.3
