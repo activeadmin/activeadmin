@@ -20,7 +20,7 @@ def download_app
   s3 :save, file: 'app.sha2', as: 'remote_app.sha2'
   if !digest_changed?('Gemfile.lock', 'remote_bundle.sha2', 'bundle.sha2') &&
      !digest_changed?('spec/support', 'remote_app.sha2',    'app.sha2')
-    s3 :save, file: 'app.tgz', as: 'remote_app.tgz', untar: 'spec'
+    s3 :save, file: 'app.tgz', as: 'remote_app.tgz', untar: true
   end
 end
 
@@ -69,7 +69,6 @@ end
 # s3 :find,   file: 'foo'
 # s3 :save,   file: 'foo', as: 'bar'
 # s3 :save,   file: 'foo', untar: true
-# s3 :save,   file: 'foo', untar: 'another_directory'
 def s3(action, options = {})
   verb      = {list: :get, upload: :put, find: :get, save: :get}.fetch action
   file      = PREFIX + options.fetch(:file) unless action == :list
@@ -77,10 +76,7 @@ def s3(action, options = {})
     upload: ->{ %[-T "#{file}"] },
     save:   ->{ %[-o "#{options[:as]}"] if options[:as] }
               }[action].call
-  if options[:untar]
-    do_after = "&& tar -xf #{options[:as] || file}"
-    do_after << " -C #{options[:untar]}" if options[:untar].is_a? String
-  end
+  do_after  = "&& tar -xf #{options[:as] || file}" if options[:untar]
 
   now       = Time.now.strftime "%a, %d %b %Y %H:%M:%S %z"
   signature = sign SECRET, "#{verb.upcase}\n\n\n#{now}\n/ActiveAdmin/#{file}"
