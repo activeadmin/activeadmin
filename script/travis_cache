@@ -75,10 +75,10 @@ URL    = 'https://s3.amazonaws.com/ActiveAdmin'
 def s3(action, options = {})
   verb      = {list: :get, upload: :put, find: :get, save: :get}.fetch action
   file      = options.fetch(:file) unless action == :list
-  extra_arg = {
-    upload: ->{ %[-T "#{file}"] },
-    save:   ->{ %[-o "#{options[:as]}"] if options[:as] }
-              }[action].call
+  extra_arg =  case action
+  when :upload then "-T #{file}"
+  when :save   then options[:as] ? "-o #{options[:as]}" : '-O'
+  end
   do_after  = "&& tar -xf #{options[:as] || file}" if options[:untar]
 
   now       = Time.now.strftime "%a, %d %b %Y %H:%M:%S %z"
