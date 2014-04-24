@@ -25,7 +25,7 @@ end
 
 def upload
   [ ['Gemfile.lock', BUNDLE, 'bundle'],
-    ['spec/support', APP,    'spec/rails']
+    ['spec/support', APP,    'spec']
   ].each do |to_check, name, to_save|
     puts "=> Checking #{to_check} for changes"
     if digest_changed? to_check, "remote-#{name}.sha2", "#{name}.sha2"
