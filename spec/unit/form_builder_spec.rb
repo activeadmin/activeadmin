@@ -32,7 +32,7 @@ describe ActiveAdmin::FormBuilder do
   def build_form(options = {}, form_object = Post.new, &block)
     options = {url: helpers.posts_path}.merge(options)
 
-    render_arbre_component({form_object: form_object, form_options: options, form_block: block}, helpers)do
+    render_arbre_component({form_object: form_object, form_options: options, form_block: block}, helpers) do
       text_node active_admin_form_for(assigns[:form_object], assigns[:form_options], &assigns[:form_block])
     end.to_s
   end
@@ -91,19 +91,6 @@ describe ActiveAdmin::FormBuilder do
       expect(body).to have_tag("form", attributes: { enctype: "multipart/form-data" })
     end
   end
-
-  describe "passing in options with actions" do
-    let :body do
-      build_form html: { multipart: true } do |f|
-        f.inputs :title
-        f.actions
-      end
-    end
-    it "should pass the options on to the form" do
-      expect(body).to have_tag("form", attributes: { enctype: "multipart/form-data" })
-    end
-  end
-
 
   context "with actions" do
     it "should generate the form once" do
@@ -448,7 +435,7 @@ describe ActiveAdmin::FormBuilder do
         end
 
       end
-      
+
       context "with post returning nil for the sortable attribute" do
         let :body do
           build_form({url: '/categories'}, Category.new) do |f|
@@ -465,7 +452,7 @@ describe ActiveAdmin::FormBuilder do
         end
 
       end
-      
+
       context "with existing and new posts" do
         let! :category do
           Category.create name: 'Name'
