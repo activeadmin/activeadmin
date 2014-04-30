@@ -16,7 +16,7 @@ module ActiveAdmin
       end
 
       def checked?
-        object && boolean_checked?(object.send(search_method), checked_value)
+        object and boolean_checked? object.public_send(search_method), checked_value
       end
 
       def input_html_options

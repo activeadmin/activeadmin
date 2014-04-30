@@ -53,7 +53,7 @@ module MethodOrProcHelper
 
     case symbol_or_proc
     when Symbol, String
-      receiver.send(symbol_or_proc.to_sym, *args)
+      receiver.public_send symbol_or_proc.to_sym, *args
     when Proc
       if options[:exec]
         instance_exec(receiver, *args, &symbol_or_proc)
@@ -85,7 +85,7 @@ module MethodOrProcHelper
     when Proc
       context.instance_exec *args, &obj
     when Symbol
-      context.send obj, *args
+      context.public_send obj, *args
     else
       obj
     end

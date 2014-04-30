@@ -88,9 +88,9 @@ module ActiveAdmin
         if attr.is_a?(Proc)
           attr.call(record)
         elsif attr.to_s[/\A(.+)_id\z/] && record.respond_to?($1)
-          record.send($1)
+          record.public_send $1
         elsif record.respond_to? attr
-          record.send(attr)
+          record.public_send attr
         elsif record.respond_to? :[]
           record[attr]
         end

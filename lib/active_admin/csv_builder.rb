@@ -51,8 +51,8 @@ module ActiveAdmin
     end
 
     def method_missing(method, *args, &block)
-      if @view_context.respond_to?(method)
-        @view_context.send(method, *args, &block)
+      if @view_context.respond_to? method
+        @view_context.public_send method, *args, &block
       else
         super
       end

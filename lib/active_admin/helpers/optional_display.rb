@@ -20,7 +20,7 @@ module ActiveAdmin
 
       case condition = @options[:if]
       when Symbol, String
-        render_context.send condition
+        render_context.public_send condition
       when Proc
         render_context.instance_exec &condition
       else

@@ -11,7 +11,7 @@ module ActiveAdmin
         if klass.respond_to?(:human_attribute_name)
           klass.human_attribute_name(method)
         else
-          method.to_s.send(builder.label_str_method)
+          method.to_s.public_send(builder.label_str_method)
         end
       end
 

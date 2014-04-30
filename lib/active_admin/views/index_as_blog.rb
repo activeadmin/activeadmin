@@ -144,8 +144,8 @@ module ActiveAdmin
 
       def render_method_on_post_or_call_proc(post, proc)
         case proc
-        when String,Symbol
-          post.send proc
+        when String, Symbol
+          post.public_send proc
         else
           instance_exec post, &proc
         end
