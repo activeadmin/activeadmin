@@ -3,15 +3,15 @@ $LOAD_PATH << File.expand_path('../lib', __FILE__)
 require 'active_admin/version'
 
 Gem::Specification.new do |s|
-  s.name          = %q{activeadmin}
+  s.name          = 'activeadmin'
   s.license       = 'MIT'
   s.version       = ActiveAdmin::VERSION
   s.platform      = Gem::Platform::RUBY
-  s.homepage      = %q{http://activeadmin.info}
+  s.homepage      = 'http://activeadmin.info'
   s.authors       = ['Greg Bell']
   s.email         = ['gregdbell@gmail.com']
-  s.description   = %q{The administration framework for Ruby on Rails.}
-  s.summary       = %q{The administration framework for Ruby on Rails.}
+  s.description   = 'The administration framework for Ruby on Rails.'
+  s.summary       = 'The administration framework for Ruby on Rails.'
 
   s.files         = `git ls-files`.split("\n").sort
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
