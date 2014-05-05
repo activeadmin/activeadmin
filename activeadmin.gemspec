@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary       = 'The administration framework for Ruby on Rails.'
 
   s.files         = `git ls-files`.split("\n").sort
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.test_files    = `git ls-files -- {spec,features}/*`.split("\n")
 
   s.add_dependency 'arbre',               '~> 1.0'
   s.add_dependency 'bourbon'
