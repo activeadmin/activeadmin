@@ -51,6 +51,8 @@ ja:
     blank_slate:
       content: "%{resource_name} はまだありません。"
       link: "作成する"
+    dropdown_actions:
+      button_label: "操作"
     batch_actions:
       button_label: "一括操作"
       default_confirmation: "本当によろしいですか。"

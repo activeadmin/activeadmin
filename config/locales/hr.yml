@@ -53,6 +53,8 @@ hr:
     blank_slate:
       content: "Još uvijek ne postoji niti jedan zapis tipa %{resource_name}."
       link: "Izradi jedan"
+    dropdown_actions:
+      button_label: "Ukrepi"
     batch_actions:
       button_label: "Grupne akcije"
       default_confirmation: "Jeste li sigurni da želite to učiniti?"

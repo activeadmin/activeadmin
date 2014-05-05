@@ -51,6 +51,8 @@ bg:
     blank_slate:
       content: "Все още няма добавени %{resource_name}."
       link: "Създаване"
+    dropdown_actions:
+      button_label: "действия"
     batch_actions:
       button_label: "Масови действия"
       default_confirmation: "Наистина ли искате да направите това?"
