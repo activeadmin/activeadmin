@@ -6,7 +6,6 @@ Gem::Specification.new do |s|
   s.name          = 'activeadmin'
   s.license       = 'MIT'
   s.version       = ActiveAdmin::VERSION
-  s.platform      = Gem::Platform::RUBY
   s.homepage      = 'http://activeadmin.info'
   s.authors       = ['Greg Bell']
   s.email         = ['gregdbell@gmail.com']
@@ -15,8 +14,6 @@ Gem::Specification.new do |s|
 
   s.files         = `git ls-files`.split("\n").sort
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
-  s.require_paths = ['lib']
 
   s.add_dependency 'arbre',               '~> 1.0'
   s.add_dependency 'bourbon'
