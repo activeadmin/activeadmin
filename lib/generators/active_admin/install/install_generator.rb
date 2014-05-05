@@ -35,11 +35,43 @@ module ActiveAdmin
       end
 
       def create_assets
-        generate "active_admin:assets"
+        js_app_file_path = 'app/assets/javascript/application.js'
+        css_app_file_path = 'app/assets/stylesheets/application.css'
+
+        if File.exist?(js_app_file_path) or File.exist?(css_app_file_path)
+          js_size, match_js = match_in_file(js_app_file_path, /\/\/= require_tree \./)
+          css_size, match_css = match_in_file(css_app_file_path, / \*= require_tree \./)
+          if (js_size + css_size) > 0
+            say(match_js.first.to_s + ' directive found into ' + js_app_file_path) if js_size > 0
+            say(match_css.first.to_s + ' directive found into ' + css_app_file_path) if css_size > 0
+            say('This means that you are using a Rails version with the require_tree directive')
+            if ask('Deploy assets under vendor/assets? [yes]/no', :default => 'yes') == 'yes'
+              generate 'active_admin:vendor'
+            else
+              say('Ok falling back to app/assets')
+              generate 'active_admin:assets'
+            end
+          else
+            generate 'active_admin:assets'
+          end
+        end
       end
 
       def create_migrations
         migration_template 'migrations/create_active_admin_comments.rb', 'db/migrate/create_active_admin_comments.rb'
+      end
+
+      private
+
+      def match_in_file(file_path, regexpr)
+        size = 0
+        begin
+          string_matched = open(file_path) { |f| f.grep(regexpr) }
+          size = string_matched.size
+        rescue Errno::ENOENT
+          #do nothing
+        end
+        [size, string_matched]
       end
     end
   end
