@@ -27,7 +27,7 @@ module ActiveAdmin
         { size: 12,
           class: "datepicker",
           max: 10,
-          value: current_value.respond_to?(:strftime) ? current_value.strftime("%Y-%m-%d") : "" }
+          value: current_value.respond_to?(:strftime) ? current_value.strftime(I18n.t('date.formats.default')) : "" }
       end
     end
   end
