@@ -6,6 +6,10 @@ module ActiveAdmin
           options[:class] = [options[:class], "datepicker"].compact.join(' ')
           options[:data] ||= {}
           options[:data].merge! datepicker_options
+
+          #set date to language format
+          current_value = @object.send("#{method}")
+          options[:value] = current_value.respond_to?(:strftime) ? current_value.strftime(I18n.t('date.formats.default')) : ""
         end
       end
 
