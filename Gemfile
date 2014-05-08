@@ -8,6 +8,7 @@ require File.expand_path('spec/support/detect_rails_version', ACTIVE_ADMIN_PATH)
 
 rails_version = detect_rails_version
 gem 'rails', rails_version
+gem 'devise', '~> 3.2'
 
 gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an official release
 
