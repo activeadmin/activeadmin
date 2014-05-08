@@ -71,8 +71,8 @@ de:
       body: "Inhalt"
       author: "Autor"
       title: "Kommentar"
-      resource: "Res­sour­ce"
       add: "Kommentar hinzufügen"
+      resource: "Res­sour­ce"
       no_comments_yet: "Es gibt noch keine Kommentare."
       title_content: "Kommentare (%{count})"
       errors:
