@@ -71,9 +71,10 @@ de:
       body: "Inhalt"
       author: "Autor"
       title: "Kommentar"
-      resource: "Res­sour­ce"
       add: "Kommentar hinzufügen"
+      resource: "Res­sour­ce"
       no_comments_yet: "Es gibt noch keine Kommentare."
+      author_missing: "Unbekannt"
       title_content: "Kommentare (%{count})"
       errors:
         empty_text: "Der Kommentar wurde nicht gespeichert, da der Text fehlt."
@@ -106,6 +107,8 @@ de:
         sign_in: "Anmeldung"
         forgot_your_password: "Passwort vergessen?"
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
+    access_denied:
+      message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."
   activerecord:
     attributes:
       admin_user:
