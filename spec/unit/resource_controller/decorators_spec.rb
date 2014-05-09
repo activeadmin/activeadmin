@@ -7,10 +7,6 @@ describe ActiveAdmin::ResourceController::Decorators do
         "Test Controller using Decorators"
       end
 
-      def self.helper_method(method)
-        # STUB
-      end
-
       include ActiveAdmin::ResourceController::Decorators
 
       public :apply_decorator, :apply_collection_decorator
@@ -56,7 +52,7 @@ describe ActiveAdmin::ResourceController::Decorators do
         end
 
         it 'has a good description for the generated class' do
-          expect(applied.class.name).to eq "Draper::CollectionDecorator of PostDecorator with ActiveAdmin extensions"
+          expect(applied.class.name).to eq "Draper::CollectionDecorator of PostDecorator + ActiveAdmin"
         end
 
       end
