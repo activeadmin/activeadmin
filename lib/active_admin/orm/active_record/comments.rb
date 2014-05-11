@@ -51,7 +51,7 @@ ActiveAdmin.after_load do |app|
           # Prevent N+1 queries
           def scoped_collection
             super.includes *( # rails/rails#14734
-              ActiveAdmin::Dependencies.rails?(:between?, '4.1.0', '4.1.1') ?
+              ActiveAdmin::Dependencies.rails?('>= 4.1.0', '<= 4.1.1') ?
                 [:author] : [:author, :resource]
             )
           end

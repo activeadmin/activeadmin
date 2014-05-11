@@ -68,6 +68,7 @@ inject_into_file "config/environments/test.rb", "  config.action_mailer.default_
 
 # Add our local Active Admin to the load path
 inject_into_file "config/environment.rb", "\n$LOAD_PATH.unshift('#{File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'lib'))}')\nrequire \"active_admin\"\n", after: "require File.expand_path('../application', __FILE__)"
+inject_into_file "config/application.rb", "\nrequire 'devise'\n", after: "require 'rails/all'"
 
 # Add some translations
 append_file "config/locales/en.yml", File.read(File.expand_path('../templates/en.yml', __FILE__))
