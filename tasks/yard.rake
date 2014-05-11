@@ -1,4 +1,4 @@
-begin
+if Gem.loaded_specs['yard']
   require 'yard'
   require 'yard/rake/yardoc_task'
 
@@ -6,5 +6,4 @@ begin
     t.after = ->{ Rake::Task['docs:build'].invoke }
     t.files = ['lib/**/*.rb']
   end
-rescue LoadError
 end
