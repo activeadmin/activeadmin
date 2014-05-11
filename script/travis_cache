@@ -49,7 +49,7 @@ def digest_changed?(to_check, old_digest_file, new_digest_file)
   else
     # Supports a single file, as well as a folder
     files   = Dir[to_check, "#{to_check}/**/*"].reject{ |f| File.directory? f }
-    content = files.map{ |f| File.read f }.join
+    content = files.sort!.map{ |f| File.read f }.join
     digest  = Digest::SHA2.hexdigest content
     File.write new_digest_file, digest
   end
