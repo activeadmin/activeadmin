@@ -28,8 +28,8 @@ def upload
     ['spec/support', APP,    'spec/rails']
   ].each do |to_check, name, to_save|
     puts "=> Checking #{to_check} for changes"
-    if digest_changed? to_check, "remote-#{name}.sha2", "#{name}.sha2"
-      puts "  => Changes found"
+    if ret = digest_changed?(to_check, "remote-#{name}.sha2", "#{name}.sha2")
+      puts "  => Changes found: #{ret[:old]} -> #{ret[:new]}"
 
       puts "  => Creating an archive"
       `tar -cjf #{name}.tgz #{to_save}`
@@ -56,7 +56,7 @@ def digest_changed?(to_check, old_digest_file, new_digest_file)
 
   old_digest = File.read old_digest_file if File.exists? old_digest_file
 
-  digest != old_digest
+  {old: old_digest, new: digest} if digest != old_digest
 end
 
 def sign(secret, to_sign, digest = 'sha1')
