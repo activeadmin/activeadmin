@@ -9,7 +9,7 @@ unless defined? TRAVIS_CONFIG
   require 'yaml'
   filename = File.expand_path("../../../.travis.yml", __FILE__)
   TRAVIS_CONFIG = YAML.load_file filename
-  TRAVIS_RAILS_VERSIONS = TRAVIS_CONFIG['env'].grep(/RAILS=(.*)/){ $1 }
+  TRAVIS_RAILS_VERSIONS = TRAVIS_CONFIG['env']['matrix'].grep(/RAILS=(.*)/){ $1 }
 end
 
 unless defined? DEFAULT_RAILS_VERSION
@@ -22,6 +22,10 @@ def detect_rails_version
   puts "Detected Rails: #{version}" if ENV['DEBUG']
 
   version
+end
+
+def detect_rails_version!
+  detect_rails_version or raise "can't find a version of Rails to use!"
 end
 
 def version_from_file
