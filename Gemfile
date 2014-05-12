@@ -2,12 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-ACTIVE_ADMIN_PATH = File.dirname(__FILE__) unless defined?(ACTIVE_ADMIN_PATH)
-
-require File.expand_path('spec/support/detect_rails_version', ACTIVE_ADMIN_PATH)
-
-rails_version = detect_rails_version
-gem 'rails', rails_version
+gem 'rails', '>= 4.1.0'
 
 group :development do
   gem 'better_errors',     '~> 1.0.0' # Web UI to debug exceptions. Go to /__better_errors to access the latest one
