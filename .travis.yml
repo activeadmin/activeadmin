@@ -5,4 +5,4 @@ rvm:
   - 2.0.0
 env:
   - RAILS=3.2.15
-  - RAILS=4.0.1
+  - RAILS=4.1.0
