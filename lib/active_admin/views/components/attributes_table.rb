@@ -87,13 +87,17 @@ module ActiveAdmin
       def find_attr_value(record, attr)
         if attr.is_a?(Proc)
           attr.call(record)
-        elsif attr.to_s[/\A(.+)_id\z/] && record.respond_to?($1)
+        elsif attr =~ /\A(.+)_id\z/ && reflection_for(record.class, $1.to_sym)
           record.public_send $1
         elsif record.respond_to? attr
           record.public_send attr
         elsif record.respond_to? :[]
           record[attr]
         end
+      end
+
+      def reflection_for(klass, method)
+        klass.reflect_on_association method if klass.respond_to? :reflect_on_association
       end
 
       def single_record?

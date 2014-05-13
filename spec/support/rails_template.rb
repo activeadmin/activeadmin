@@ -16,7 +16,7 @@ if File.exists? 'config/secrets.yml'
   gsub_file 'config/secrets.yml', /\z/, "\ncucumber_with_reloading:\n  secret_key_base: #{'o' * 128}"
 end
 
-generate :model, "post title:string body:text published_at:datetime author_id:integer position:integer custom_category_id:integer starred:boolean"
+generate :model, "post title:string body:text published_at:datetime author_id:integer position:integer custom_category_id:integer starred:boolean foo_id:integer"
 inject_into_file 'app/models/post.rb', %q{
   belongs_to :category, foreign_key: :custom_category_id
   belongs_to :author, class_name: 'User'

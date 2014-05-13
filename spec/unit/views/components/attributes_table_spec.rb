@@ -133,12 +133,25 @@ describe ActiveAdmin::Views::AttributesTable do
       expect(table.find_by_tag("td").first.content.chomp.strip).to eq "<span class=\"id\">1</span>"
     end
 
-    it "should check if an association exists when an attribute has id in it" do
-      post.author = User.new username: 'john_doe', first_name: 'John', last_name: 'Doe'
-      table = render_arbre_component(assigns) {
-        attributes_table_for post, :author_id
-      }
-      expect(table.find_by_tag('td').first.content).to eq 'John Doe'
+    context 'an attribute ending in _id' do
+      before do
+        post.foo_id = 23
+        post.author = User.new username: 'john_doe', first_name: 'John', last_name: 'Doe'
+      end
+      it 'should call the association if one exists' do
+        table = render_arbre_component assigns do
+          attributes_table_for post, :author_id
+        end
+        expect(table.find_by_tag('th').first.content).to eq 'Author'
+        expect(table.find_by_tag('td').first.content).to eq 'John Doe'
+      end
+      it 'should not attempt to call a nonexistant association' do
+        table = render_arbre_component assigns do
+          attributes_table_for post, :foo_id
+        end
+        expect(table.find_by_tag('th').first.content).to eq 'Foo'
+        expect(table.find_by_tag('td').first.content).to eq '23'
+      end
     end
 
     context "with a collection" do
