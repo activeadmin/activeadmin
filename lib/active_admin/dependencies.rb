@@ -28,35 +28,36 @@ module ActiveAdmin
     # ActiveAdmin::Dependencies.devise!
     # -> ActiveAdmin::Dependencies::Error: To use devise you need to specify it in your Gemfile.
     #
-    def self.check_for(gem_name)
-      gem_name = gem_name.to_s
-
-      singleton_class.send :define_method, gem_name do
-        Gem.loaded_specs[gem_name]
-      end
-
-      singleton_class.send :define_method, gem_name+'?' do |*args|
-        spec = send gem_name
-        !!spec && Gem::Requirement.create(args).satisfied_by?(spec.version)
-      end
-
-      singleton_class.send :define_method, gem_name+'!' do |*args|
-        unless send gem_name
-          raise Error, "To use #{gem_name} you need to specify it in your Gemfile."
-        end
-
-        unless send gem_name+'?', *args
-          raise Error, "You provided #{gem_name} #{send(gem_name).version} but we need: #{args.join ', '}."
-        end
+    def self.method_missing(name, *args)
+      if name[-1] == '?'
+        Matcher.match? name[0...-1], args
+      elsif name[-1] == '!'
+        Matcher.match! name[0...-1], args
+      else
+        Matcher.find_spec name.to_s
       end
     end
 
-    check_for :cancan
-    check_for :cancancan
-    check_for :devise
-    check_for :draper
-    check_for :pundit
-    check_for :rails
+    module Matcher
+      def self.find_spec(name)
+        Gem.loaded_specs[name]
+      end
+
+      def self.match?(name, reqs)
+        spec = find_spec name
+        !!spec && Gem::Requirement.create(reqs).satisfied_by?(spec.version)
+      end
+
+      def self.match!(name, reqs)
+        unless find_spec name
+          raise Error, "To use #{name} you need to specify it in your Gemfile."
+        end
+
+        unless match? name, reqs
+          raise Error, "You provided #{name} #{find_spec(name).version} but we need: #{reqs.join ', '}."
+        end
+      end
+    end
 
     class Error < ::ActiveAdmin::ErrorLoading; end
 
