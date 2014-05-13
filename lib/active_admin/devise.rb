@@ -1,8 +1,6 @@
-require 'devise'
+ActiveAdmin::Dependencies.devise! ActiveAdmin::Dependencies::DEVISE
 
-unless ActiveAdmin::Dependencies.devise?
-  raise "You don't have a proper version of Devise (#{ActiveAdmin::Dependencies::DEVISE_VERSION_REQUIREMENT}) installed in your application."
-end
+require 'devise'
 
 module ActiveAdmin
   module Devise

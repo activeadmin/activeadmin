@@ -16,14 +16,12 @@ module ActiveAdmin
                     :desc => "Should a default user be created inside the migration?"
 
       def install_devise
-        unless Dependencies.devise?
-          $stderr.puts <<-eos.strip_heredoc
-            You don't have Devise (#{ActiveAdmin::Dependencies::DEVISE_VERSION_REQUIREMENT}) installed in your application. Please add it to
-            your Gemfile and run bundle install. If you do not want to use Devise, run the
-            generator with --skip-users option.
-          eos
-          exit
+        begin
+          Dependencies.devise! Dependencies::DEVISE
+        rescue Dependencies::Error => e
+          raise Error, "#{e.message} If you don't want to use devise, run the generator with --skip-users."
         end
+
         require 'devise'
 
         if File.exists?(File.join(destination_root, "config", "initializers", "devise.rb"))

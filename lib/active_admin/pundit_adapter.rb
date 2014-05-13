@@ -1,3 +1,5 @@
+ActiveAdmin::Dependencies.pundit!
+
 require 'pundit'
 
 module ActiveAdmin

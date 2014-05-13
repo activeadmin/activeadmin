@@ -1,6 +1,6 @@
 module ActiveAdmin
   module Dependencies
-    DEVISE_VERSION_REQUIREMENT = '~> 3.2.0'
+    DEVISE = '~> 3.2.0'
 
     # Provides a simple query interface to check for gem dependencies
     #
@@ -22,7 +22,13 @@ module ActiveAdmin
     # ActiveAdmin::Dependencies.rails? '>= 4.1.0', '<= 4.1.1'
     # => true
     #
-    def self.check_for(gem_name, *version_requirements)
+    # ActiveAdmin::Dependencies.rails! '2'
+    # -> ActiveAdmin::Dependencies::Error: You provided rails 3.2.18 but we need: 2.
+    #
+    # ActiveAdmin::Dependencies.devise!
+    # -> ActiveAdmin::Dependencies::Error: To use devise you need to specify it in your Gemfile.
+    #
+    def self.check_for(gem_name)
       gem_name = gem_name.to_s
 
       singleton_class.send :define_method, gem_name do
@@ -31,12 +37,28 @@ module ActiveAdmin
 
       singleton_class.send :define_method, gem_name+'?' do |*args|
         spec = send gem_name
-        !!spec && Gem::Requirement.create(version_requirements + args).satisfied_by?(spec.version)
+        !!spec && Gem::Requirement.create(args).satisfied_by?(spec.version)
+      end
+
+      singleton_class.send :define_method, gem_name+'!' do |*args|
+        unless send gem_name
+          raise Error, "To use #{gem_name} you need to specify it in your Gemfile."
+        end
+
+        unless send gem_name+'?', *args
+          raise Error, "You provided #{gem_name} #{send(gem_name).version} but we need: #{args.join ', '}."
+        end
       end
     end
 
+    check_for :cancan
+    check_for :cancancan
+    check_for :devise
     check_for :draper
+    check_for :pundit
     check_for :rails
-    check_for :devise, DEVISE_VERSION_REQUIREMENT
+
+    class Error < ::ActiveAdmin::ErrorLoading; end
+
   end
 end

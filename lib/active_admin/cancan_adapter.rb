@@ -1,3 +1,7 @@
+unless ActiveAdmin::Dependencies.cancan? || ActiveAdmin::Dependencies.cancancan?
+  ActiveAdmin::Dependencies.cancan!
+end
+
 require 'cancan'
 
 # Add a setting to the application to configure the ability
