@@ -1,32 +1,32 @@
 module ActiveAdmin
-  module Dependencies
+  module Dependency
     DEVISE = '~> 3.2.0'
 
-    # Provides a simple query interface to check for gem dependencies
+    # Provides a clean interface to check for gem dependencies at runtime.
     #
-    # ActiveAdmin::Dependencies.draper
+    # ActiveAdmin::Dependency.draper
     # => #<Gem::Specification:0x3ffb89c49ae0 draper-1.2.1>
     #
-    # ActiveAdmin::Dependencies.draper?
+    # ActiveAdmin::Dependency.draper?
     # => true
     #
-    # ActiveAdmin::Dependencies.draper? '>= 1.1.0'
+    # ActiveAdmin::Dependency.draper? '>= 1.1.0'
     # => false
     #
-    # ActiveAdmin::Dependencies.draper? '= 1.2.1'
+    # ActiveAdmin::Dependency.draper? '= 1.2.1'
     # => true
     #
-    # ActiveAdmin::Dependencies.draper? '~> 1.2.0'
+    # ActiveAdmin::Dependency.draper? '~> 1.2.0'
     # => true
     #
-    # ActiveAdmin::Dependencies.rails? '>= 4.1.0', '<= 4.1.1'
+    # ActiveAdmin::Dependency.rails? '>= 4.1.0', '<= 4.1.1'
     # => true
     #
-    # ActiveAdmin::Dependencies.rails! '2'
-    # -> ActiveAdmin::Dependencies::Error: You provided rails 3.2.18 but we need: 2.
+    # ActiveAdmin::Dependency.rails! '2'
+    # -> ActiveAdmin::Dependency::Error: You provided rails 3.2.18 but we need: 2.
     #
-    # ActiveAdmin::Dependencies.devise!
-    # -> ActiveAdmin::Dependencies::Error: To use devise you need to specify it in your Gemfile.
+    # ActiveAdmin::Dependency.devise!
+    # -> ActiveAdmin::Dependency::Error: To use devise you need to specify it in your Gemfile.
     #
     def self.method_missing(name, *args)
       if name[-1] == '?'

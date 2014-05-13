@@ -29,7 +29,7 @@ module ActiveAdmin
   autoload :CanCanAdapter,            'active_admin/cancan_adapter'
   autoload :ControllerAction,         'active_admin/controller_action'
   autoload :CSVBuilder,               'active_admin/csv_builder'
-  autoload :Dependencies,             'active_admin/dependencies'
+  autoload :Dependency,               'active_admin/dependency'
   autoload :Deprecation,              'active_admin/deprecation'
   autoload :Devise,                   'active_admin/devise'
   autoload :DSL,                      'active_admin/dsl'

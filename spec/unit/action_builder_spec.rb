@@ -109,7 +109,7 @@ describe 'defining new actions from registration blocks' do
   end
 
   def find_before_filter(controller, action)
-    finder = if ActiveAdmin::Dependencies.rails? '>= 4.1.0'
+    finder = if ActiveAdmin::Dependency.rails? '>= 4.1.0'
       ->c { c.kind == :before && c.instance_variable_get(:@if) == ["action_name == '#{action}'"] }
     else
       ->c { c.kind == :before && c.options[:only] == [action] }

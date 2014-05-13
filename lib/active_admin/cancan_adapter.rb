@@ -1,5 +1,5 @@
-unless ActiveAdmin::Dependencies.cancan? || ActiveAdmin::Dependencies.cancancan?
-  ActiveAdmin::Dependencies.cancan!
+unless ActiveAdmin::Dependency.cancan? || ActiveAdmin::Dependency.cancancan?
+  ActiveAdmin::Dependency.cancan!
 end
 
 require 'cancan'

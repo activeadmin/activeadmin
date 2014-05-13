@@ -1,4 +1,4 @@
-ActiveAdmin::Dependencies.pundit!
+ActiveAdmin::Dependency.pundit!
 
 require 'pundit'
 
