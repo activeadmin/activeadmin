@@ -2,8 +2,15 @@ require 'spec_helper'
 
 describe ActiveAdmin::Application do
   let(:application){ ActiveAdmin::Application.new }
-  let(:controllers){ [ActiveAdmin::BaseController,            ActiveAdmin::Devise::SessionsController,
-                      ActiveAdmin::Devise::UnlocksController, ActiveAdmin::Devise::PasswordsController] }
+  let(:controllers){ application.controllers_for_filters }
+
+  it 'controllers_for_filters' do
+    expect(application.controllers_for_filters).to eq [
+      ActiveAdmin::BaseController, ActiveAdmin::Devise::SessionsController,
+      ActiveAdmin::Devise::PasswordsController, ActiveAdmin::Devise::UnlocksController,
+      ActiveAdmin::Devise::RegistrationsController, ActiveAdmin::Devise::ConfirmationsController
+    ]
+  end
 
   it 'before_filter' do
     controllers.each{ |c| expect(c).to receive(:before_filter).and_return(true) }

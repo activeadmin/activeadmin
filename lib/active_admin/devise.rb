@@ -78,5 +78,11 @@ module ActiveAdmin
        include ::ActiveAdmin::Devise::Controller
     end
 
+    def self.controllers_for_filters
+      [SessionsController, PasswordsController, UnlocksController,
+        RegistrationsController, ConfirmationsController
+      ]
+    end
+
   end
 end
