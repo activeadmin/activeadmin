@@ -24,6 +24,8 @@ def download_app
 end
 
 def upload
+  raise "S3 credentials missing" unless ID && SECRET
+
   [ ['Gemfile.lock', BUNDLE, 'bundle'],
     ['spec/support', APP,    'spec/rails']
   ].each do |to_check, name, to_save|
@@ -63,8 +65,8 @@ def sign(secret, to_sign, digest = 'sha1')
   Base64.strict_encode64 OpenSSL::HMAC.digest OpenSSL::Digest.new(digest), secret, to_sign
 end
 
-ID     = ENV.fetch 'AWS_S3_ID'
-SECRET = ENV.fetch 'AWS_S3_SECRET'
+ID     = ENV['AWS_S3_ID']
+SECRET = ENV['AWS_S3_SECRET']
 URL    = 'https://s3.amazonaws.com/ActiveAdmin'
 
 # s3 :list
@@ -81,11 +83,13 @@ def s3(action, options = {})
   end
   do_after  = "&& tar -xf #{options[:as] || file}" if options[:untar]
 
-  now       = Time.now.strftime "%a, %d %b %Y %H:%M:%S %z"
-  signature = sign SECRET, "#{verb.upcase}\n\n\n#{now}\n/ActiveAdmin/#{file}"
-  headers   = ["Authorization: AWS #{ID}:#{signature}", "Date: #{now}"].map do |h|
-    "-H #{Shellwords.escape h}"
-  end.join ' '
+  if ID && SECRET
+    now       = Time.now.strftime "%a, %d %b %Y %H:%M:%S %z"
+    signature = sign SECRET, "#{verb.upcase}\n\n\n#{now}\n/ActiveAdmin/#{file}"
+    headers   = ["Authorization: AWS #{ID}:#{signature}", "Date: #{now}"].map do |h|
+      "-H #{Shellwords.escape h}"
+    end.join ' '
+  end
 
   output = `curl -f #{headers} #{extra_arg} #{URL}/#{file} #{do_after}`
   [$?.success?, output]
