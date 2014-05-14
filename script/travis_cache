@@ -14,12 +14,13 @@ def download_bundle
   s3 :save, file: "#{BUNDLE}.tgz",  as: "remote-#{BUNDLE}.tgz", untar: true
 end
 
-# Don't use an existing archive if the Gemfile.lock changed
 def download_app
-  s3 :save, file: "#{APP}.sha2",  as: "remote-#{APP}.sha2"
-  if !digest_changed?('Gemfile.lock', "remote-#{BUNDLE}.sha2", "#{BUNDLE}.sha2") &&
-     !digest_changed?('spec/support', "remote-#{APP}.sha2",    "#{APP}.sha2")
-    s3 :save, file: "#{APP}.tgz", as: "remote-#{APP}.tgz", untar: true
+  # Don't use an existing test app archive if any dependencies were updated
+  unless digest_changed? 'Gemfile.lock',   "remote-#{BUNDLE}.sha2", "#{BUNDLE}.sha2"
+    s3 :save,   file: "#{APP}.sha2",   as: "remote-#{APP}.sha2"
+    unless digest_changed? 'spec/support', "remote-#{APP}.sha2",    "#{APP}.sha2"
+      s3 :save, file: "#{APP}.tgz",    as: "remote-#{APP}.tgz", untar: true
+    end
   end
 end
 
