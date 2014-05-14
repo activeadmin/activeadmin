@@ -25,7 +25,10 @@ def download_app
 end
 
 def upload
-  raise "S3 credentials missing" unless ID && SECRET
+  unless ID && SECRET
+    puts "S3 credentials missing"
+    return
+  end
 
   [ ['Gemfile.lock', BUNDLE, 'bundle'],
     ['spec/support', APP,    'spec/rails']
