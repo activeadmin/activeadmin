@@ -588,7 +588,7 @@ describe ActiveAdmin::FormBuilder do
           end
         end
         it 'should generate a datepicker text input with data min and max dates' do
-          body.should have_tag("input", attributes: { type: "text",
+          expect(body).to have_tag("input", attributes: { type: "text",
                                                             class: "datepicker",
                                                             name: "post[created_at]",
                                                             data: { datepicker_options: {

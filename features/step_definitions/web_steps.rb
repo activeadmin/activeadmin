@@ -64,21 +64,20 @@ end
 Then /^the "([^"]*)" field(?: within (.*))? should( not)? contain "([^"]*)"$/ do |field, parent, negate, value|
   with_scope(parent) do
     field = find_field(field)
-    field_value = (field.tag_name == 'textarea') ? field.text : field.value
-    negate ? field_value.should_not =~ /#{value}/ : field_value.should =~ /#{value}/
+    value = field.tag_name == 'textarea' ? field.text : field.value
+
+    expect(value).send negate ? :to_not : :to, match(/#{value}/)
   end
 end
 
 Then /^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/ do |label, parent, negate|
   with_scope(parent) do
-    field_checked = find_field(label)['checked']
-    field_checked.should negate ? be_false : be_true
+    expect(find_field(label)['checked']).to negate ? be_false : be_true
   end
 end
 
 Then /^(?:|I )should be on (.+)$/ do |page_name|
-  current_path = URI.parse(current_url).path
-  current_path.should == path_to(page_name)
+  expect(URI.parse(current_url).path).to eq path_to page_name
 end
 
 Then /^show me the page$/ do

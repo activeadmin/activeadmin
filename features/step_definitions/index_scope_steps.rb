@@ -6,7 +6,7 @@ end
 
 Then /^I should see the scope "([^"]*)" not selected$/ do |name|
   step %{I should see the scope "#{name}"}
-  page.should_not have_css('.scopes .selected', text: name)
+  expect(page).to_not have_css '.scopes .selected', text: name
 end
 
 Then /^I should see the scope "([^"]*)" with the count (\d+)$/ do |name, count|
@@ -16,6 +16,6 @@ end
 
 Then /^I should see the scope "([^"]*)" with no count$/ do |name|
   name = name.gsub(" ", "").underscore.downcase
-  page.should     have_css(".scopes .#{name}")
-  page.should_not have_css(".scopes .#{name} .count")
+  expect(page).to     have_css ".scopes .#{name}"
+  expect(page).to_not have_css ".scopes .#{name} .count"
 end
