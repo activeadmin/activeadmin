@@ -263,22 +263,19 @@ module ActiveAdmin
         #
         # ```
         def actions(options = {}, &block)
-          options = {
-            :name => '',
-            :defaults => true,
-            :dropdown => false,
-            :dropdown_name => I18n.t('active_admin.dropdown_actions.button_label', default: 'Actions')
-          }.merge(options)
+          name          = options.delete(:name)     { '' }
+          defaults      = options.delete(:defaults) { true }
+          dropdown      = options.delete(:dropdown) { false }
+          dropdown_name = options.delete(:dropdown_name) { I18n.t 'active_admin.dropdown_actions.button_label', default: 'Actions' }
 
-          column_options = options.except(:name, :defaults, :dropdown, :dropdown_name)
-          column options[:name], column_options do |resource|
-            if options[:dropdown]
-              dropdown_menu options[:dropdown_name] do
-                items_default_actions(resource) if options[:defaults]
+          column name, options do |resource|
+            if dropdown
+              dropdown_menu dropdown_name do
+                items_default_actions(resource) if defaults
                 instance_exec(resource, &block) if block_given?
               end
             else
-              text_node default_actions(resource) if options[:defaults]
+              text_node default_actions(resource) if defaults
               text_node instance_exec(resource, &block) if block_given?
             end
           end
