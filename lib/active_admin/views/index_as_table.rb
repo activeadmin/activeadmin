@@ -199,7 +199,7 @@ module ActiveAdmin
           resource_class.content_columns.each do |col|
             column col.name.to_sym
           end
-          default_actions
+          actions
         end
       end
 
@@ -281,6 +281,8 @@ module ActiveAdmin
           end
         end
 
+      private
+
         def items_default_actions(resource)
           if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
             item I18n.t('active_admin.view'), resource_path(resource), class: 'view_link'
@@ -294,28 +296,19 @@ module ActiveAdmin
           end
         end
 
-        def default_actions(*args)
-          links = proc do |resource|
-            links = ''.html_safe
-            if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
-              links << link_to(I18n.t('active_admin.view'), resource_path(resource), class: 'member_link view_link')
-            end
-            if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
-              links << link_to(I18n.t('active_admin.edit'), edit_resource_path(resource), class: 'member_link edit_link')
-            end
-            if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
-              links << link_to(I18n.t('active_admin.delete'), resource_path(resource), class: 'member_link delete_link',
-                method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')})
-            end
-            links
+        def default_actions(resource)
+          links = ''.html_safe
+          if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
+            links << link_to(I18n.t('active_admin.view'), resource_path(resource), class: 'member_link view_link')
           end
-
-          options = args.extract_options!
-          if options.present? || args.empty?
-            actions options
-          else
-            links.call(args.first)
+          if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
+            links << link_to(I18n.t('active_admin.edit'), edit_resource_path(resource), class: 'member_link edit_link')
           end
+          if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
+            links << link_to(I18n.t('active_admin.delete'), resource_path(resource), class: 'member_link delete_link',
+              method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')})
+          end
+          links
         end
       end # IndexTableFor
 

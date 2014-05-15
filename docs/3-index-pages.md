@@ -26,7 +26,7 @@ your resource.
 index do
   id_column
   column :image_title
-  default_actions
+  actions
 end
 
 index as: :grid do |product|
@@ -40,7 +40,7 @@ otherwise by setting `:default` to true.
 ```ruby
 index do
   column :image_title
-  default_actions
+  actions
 end
 
 index as: :grid, default: true do |product|
@@ -55,7 +55,7 @@ can be included by setting `:as` to the class of the index component you created
 ```ruby
 index as: ActiveAdmin::Views::IndexAsTable do
   column :image_title
-  default_actions
+  actions
 end
 ```
 
