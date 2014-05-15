@@ -448,7 +448,7 @@ describe ActiveAdmin::FormBuilder do
         end
 
         it "shows the nested fields for unsaved records" do
-          body.should have_tag("fieldset", attributes: {class: "inputs has_many_fields"})
+          expect(body).to have_tag("fieldset", attributes: {class: "inputs has_many_fields"})
         end
 
       end
@@ -470,7 +470,7 @@ describe ActiveAdmin::FormBuilder do
         end
 
         it "shows the nested fields for saved and unsaved records" do
-          body.should have_tag("fieldset", attributes: {class: "inputs has_many_fields"})
+          expect(body).to have_tag("fieldset", attributes: {class: "inputs has_many_fields"})
         end
 
       end
