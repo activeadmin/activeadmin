@@ -13,7 +13,7 @@ module ActiveAdmin
 
       def action(batch_action, options = {})
         options[:class] ||= []
-        options[:class] += %w(batch_action)
+        options[:class] << "batch_action"
         options.merge! "data-action" => batch_action.sym,
                        "data-confirm" => batch_action.confirm
 
