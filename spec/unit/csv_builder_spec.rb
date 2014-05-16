@@ -138,6 +138,22 @@ describe ActiveAdmin::CSVBuilder do
     end
   end
 
+  context "with humanize_name option" do
+    let(:builder) do
+      ActiveAdmin::CSVBuilder.new(humanize_name: false) do
+        column :my_title
+      end.tap(&:render_columns)
+    end
+
+    describe "the column" do
+      let(:column){ builder.columns.first }
+
+      it "should have humanize_name option set" do
+        expect(column.options[:humanize_name]).to be_false
+      end
+    end
+  end
+
   context "with csv_options" do
     let(:builder) do
       ActiveAdmin::CSVBuilder.new(force_quotes: true).tap(&:render_columns)

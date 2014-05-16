@@ -10,6 +10,7 @@ module ActiveAdmin
   #   csv_builder.column("name", humanize: false) { |resource| resource.full_name }
   #
   #   csv_builder = CSVBuilder.new col_sep: ";"
+  #   csv_builder = CSVBuilder.new humanize_name: false
   #   csv_builder.column :id
   #
   #
@@ -29,6 +30,8 @@ module ActiveAdmin
 
     attr_reader :columns, :options, :view_context
 
+    COLUMN_TRANSITIVE_OPTIONS = [:humanize_name].freeze
+
     def initialize(options={}, &block)
       @resource = options.delete(:resource)
       @columns, @options, @block = [], options, block
@@ -36,7 +39,7 @@ module ActiveAdmin
 
     # Add a column
     def column(name, options={}, &block)
-      @columns << Column.new(name, @resource, options, block)
+      @columns << Column.new(name, @resource, column_transitive_options.merge(options), block)
     end
 
     # Runs the `csv` dsl block and render our columns
@@ -78,6 +81,12 @@ module ActiveAdmin
           name.to_s
         end
       end
+    end
+
+    private
+
+    def column_transitive_options
+      @column_transitive_options ||= @options.slice(*COLUMN_TRANSITIVE_OPTIONS)
     end
   end
 end
