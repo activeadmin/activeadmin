@@ -101,7 +101,7 @@ describe ActiveAdmin::Filters::ViewHelper do
 
 
     context "with predicate" do
-      %w[equals contains starts_with ends_with].each do |predicate|
+      %w[eq equals cont contains start starts_with end ends_with].each do |predicate|
         describe '"'+predicate+'"' do
           let(:body) { filter :"title_#{predicate}" }
 
