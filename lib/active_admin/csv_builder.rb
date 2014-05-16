@@ -6,6 +6,8 @@ module ActiveAdmin
   #   csv_builder = CSVBuilder.new
   #   csv_builder.column :id
   #   csv_builder.column("Name") { |resource| resource.full_name }
+  #   csv_builder.column(:name, humanize: false)
+  #   csv_builder.column("name", humanize: false) { |resource| resource.full_name }
   #
   #   csv_builder = CSVBuilder.new col_sep: ";"
   #   csv_builder.column :id
@@ -33,8 +35,8 @@ module ActiveAdmin
     end
 
     # Add a column
-    def column(name, &block)
-      @columns << Column.new(name, @resource, block)
+    def column(name, options={}, &block)
+      @columns << Column.new(name, @resource, options, block)
     end
 
     # Runs the `csv` dsl block and render our columns
@@ -59,11 +61,22 @@ module ActiveAdmin
     end
 
     class Column
-      attr_reader :name, :data
+      attr_reader :name, :data, :options
 
-      def initialize(name, resource = nil, block = nil)
-        @name = name.is_a?(Symbol) && resource.present? ? resource.human_attribute_name(name) : name.to_s.humanize
+      DEFAULT_OPTIONS = { humanize_name: true }
+
+      def initialize(name, resource = nil, options = {}, block = nil)
+        @options = options.reverse_merge(DEFAULT_OPTIONS)
+        @name = humanize_name(name, resource, @options[:humanize_name])
         @data = block || name.to_sym
+      end
+
+      def humanize_name(name, resource, humanize_name_option)
+        if humanize_name_option
+          name.is_a?(Symbol) && resource.present? ? resource.human_attribute_name(name) : name.to_s.humanize
+        else
+          name.to_s
+        end
       end
     end
   end

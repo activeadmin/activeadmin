@@ -94,6 +94,40 @@ describe ActiveAdmin::CSVBuilder do
     end
   end
 
+  context "with a humanize_name column option" do
+    context "with symbol column name" do
+      let(:builder) do
+        ActiveAdmin::CSVBuilder.new do
+          column :my_title, humanize_name: false
+        end.tap(&:render_columns)
+      end
+
+      describe "the column" do
+        let(:column){ builder.columns.first }
+
+        it "should have a name of 'my_title'" do
+          expect(column.name).to eq "my_title"
+        end
+      end
+    end
+
+    context "with string column name" do
+      let(:builder) do
+        ActiveAdmin::CSVBuilder.new do
+          column "my_title", humanize_name: false
+        end.tap(&:render_columns)
+      end
+
+      describe "the column" do
+        let(:column){ builder.columns.first }
+
+        it "should have a name of 'my_title'" do
+          expect(column.name).to eq "my_title"
+        end
+      end
+    end
+  end
+
   context "with a separator" do
     let(:builder) do
       ActiveAdmin::CSVBuilder.new(col_sep: ";").tap(&:render_columns)
