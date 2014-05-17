@@ -41,12 +41,11 @@ module ActiveAdmin
     #   end
     #
     def permit_params(*args, &block)
-      resource_sym = config.resource_name.singular.to_sym
+      param_key = config.param_key.to_sym
 
       controller do
         define_method :permitted_params do
-          params.permit resource_sym =>
-                        block ? instance_exec(&block) : args
+          params.permit param_key => block ? instance_exec(&block) : args
         end
       end
     end

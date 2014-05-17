@@ -24,6 +24,16 @@ module ActiveAdmin
       def plural_resource_label(options = {})
         resource_name.translate ({count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT, default: resource_label.pluralize.titleize}).merge(options)
       end
+
+      # Helper method for forms. Forms still use a model's param_key, even if
+      # the model has been renamed, so we can't use our custom `resource_name` above.
+      def param_key
+        if resource_class.respond_to? :model_name
+          resource_class.model_name.param_key
+        else
+          resource_name.param_key
+        end
+      end
     end
 
     # A subclass of ActiveModel::Name which supports the different APIs presented
