@@ -7,26 +7,32 @@ module ActiveAdmin
       # this should be an instance of ActiveAdmin:Resource::Name, which responds to
       # #singular, #plural, #route_key, #human etc.
       def resource_name
-        custom_name = @options[:as] && @options[:as].gsub(/\s/,'')
-        @resource_name ||= if custom_name || !resource_class.respond_to?(:model_name)
-            Resource::Name.new(resource_class, custom_name)
+        @resource_name ||= begin
+          as = @options[:as].gsub /\s/, '' if @options[:as]
+
+          if as || !resource_class.respond_to?(:model_name)
+            Name.new resource_class, as
           else
-            Resource::Name.new(resource_class)
+            Name.new resource_class
           end
+        end
       end
 
       # Returns the name to call this resource such as "Bank Account"
       def resource_label
-        resource_name.translate count: 1, default: resource_name.to_s.gsub('::', ' ').titleize
+        resource_name.translate count: 1,
+          default: resource_name.to_s.gsub('::', ' ').titleize
       end
 
       # Returns the plural version of this resource such as "Bank Accounts"
       def plural_resource_label(options = {})
-        resource_name.translate ({count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT, default: resource_label.pluralize.titleize}).merge(options)
+        defaults = {count:   Helpers::I18n::PLURAL_MANY_COUNT,
+                    default: resource_label.pluralize.titleize}
+        resource_name.translate defaults.merge options
       end
 
-      # Helper method for forms. Forms still use a model's param_key, even if
-      # the model has been renamed, so we can't use our custom `resource_name` above.
+      # Forms use the model's original `param_key`, so we can't use our
+      # custom `resource_name` when the model's been renamed in ActiveAdmin.
       def param_key
         if resource_class.respond_to? :model_name
           resource_class.model_name.param_key
@@ -80,7 +86,7 @@ module ActiveAdmin
       end
 
       class StringClassProxy < StringProxy
-        delegate :lookup_ancestors, :i18n_scope, to: :"@klass"
+        delegate :lookup_ancestors, :i18n_scope, to: :@klass
 
         def initialize(klass, name)
           @klass = klass || name
