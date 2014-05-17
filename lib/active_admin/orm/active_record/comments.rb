@@ -66,11 +66,11 @@ ActiveAdmin.after_load do |app|
               end
             end
           end
+        end
 
-          # Define the permitted params in case the app is using Strong Parameters
-          def permitted_params
-            params.permit active_admin_comment: [:body, :namespace, :resource_id, :resource_type]
-          end unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
+        # Set up permitted params in case the app is using Strong Parameters
+        unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
+          permit_params :body, :namespace, :resource_id, :resource_type
         end
 
         index do

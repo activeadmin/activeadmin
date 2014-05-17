@@ -12,10 +12,8 @@ Feature: Development Reloading
     When "app/admin/posts.rb" contains:
     """
       ActiveAdmin.register Post do
-        controller do
-          def permitted_params
-            params.permit post: [:category, :author, :title, :body, :published_at, :starred]
-          end if Rails::VERSION::MAJOR == 4
+        if Rails::VERSION::MAJOR == 4
+          permit_params :category, :author, :title, :body, :published_at, :starred
         end
       end
     """
