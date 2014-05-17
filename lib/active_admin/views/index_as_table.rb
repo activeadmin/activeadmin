@@ -232,6 +232,10 @@ module ActiveAdmin
           end
         end
 
+        def default_actions
+          raise '`default_actions` is no longer provided in ActiveAdmin 1.x. Use `actions` instead.'
+        end
+
         # Add links to perform actions.
         #
         # ```ruby
@@ -271,11 +275,11 @@ module ActiveAdmin
           column name, options do |resource|
             if dropdown
               dropdown_menu dropdown_name do
-                items_default_actions(resource) if defaults
+                dropdown_defaults(resource) if defaults
                 instance_exec(resource, &block) if block_given?
               end
             else
-              text_node default_actions(resource) if defaults
+              text_node defaults(resource) if defaults
               text_node instance_exec(resource, &block) if block_given?
             end
           end
@@ -283,7 +287,7 @@ module ActiveAdmin
 
       private
 
-        def items_default_actions(resource)
+        def dropdown_defaults(resource)
           if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
             item I18n.t('active_admin.view'), resource_path(resource), class: 'view_link'
           end
@@ -296,7 +300,7 @@ module ActiveAdmin
           end
         end
 
-        def default_actions(resource)
+        def defaults(resource)
           links = ''.html_safe
           if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
             links << link_to(I18n.t('active_admin.view'), resource_path(resource), class: 'member_link view_link')
