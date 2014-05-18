@@ -29,7 +29,7 @@ module ActiveAdmin
           batch_actions_to_display.each do |batch_action|
             confirmation_text = render_or_call_method_or_proc_on(self, batch_action.confirm)
             inputs = batch_action.inputs.each_with_object({}) do |(key, value), inputs|
-              inputs[key] = value.respond_to?(:call) ? value.call : value
+              inputs[key] = return_call_response_or_object value
             end
 
             options = {

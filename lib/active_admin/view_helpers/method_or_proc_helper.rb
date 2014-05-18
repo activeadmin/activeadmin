@@ -21,6 +21,27 @@ module MethodOrProcHelper
     end
   end
 
+  # This method will return the #call returns of a proc (or a other object that respond to #call)
+  # or returns the object. This mehthod can be used to prevent caching and get dynamic values.
+  #
+  # Calling with a Proc:
+  #
+  #     my_proc = Proc.new { Time.now }
+  #     return_call_response_or_object(my_proc) #=> will return the current Time
+  #
+  # Calling with a Object
+  #
+  #     my_object = "a static String"
+  #     return_call_response_or_object(my_object) #=> will return the String
+  #
+  def return_call_response_or_object(proc_or_object)
+    if proc_or_object.respond_to? :call
+      proc_or_object.call
+    else
+      proc_or_object
+    end
+  end
+
   # Many times throughout the views we want to either call a method on an object
   # or instance_exec a proc passing in the object as the first parameter. This
   # method wraps that pattern.
