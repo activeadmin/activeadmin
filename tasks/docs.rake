@@ -31,7 +31,7 @@ EOD
 
     # Index Types
     index_types = views.children.select{|obj| obj.name.to_s =~ /^IndexAs/ }
-    write_docstrings_to "docs/3-index-pages", index_types
+    write_docstrings_to "docs/03-index-pages", index_types
   end
 
 end
