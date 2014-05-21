@@ -9,7 +9,7 @@ script:
   - time bundle exec rake test_with_coveralls
 rvm:
   - 1.9.3
-  - 2.1.1
+  - 2.1.2
 env:
   matrix:
     - RAILS=3.2.18
