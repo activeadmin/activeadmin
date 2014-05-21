@@ -29,6 +29,22 @@ describe MethodOrProcHelper do
 
   end
 
+  describe "#return_call_response_or_object" do
+    context "when a string" do
+      it "should return the string" do
+        expect(context.return_call_response_or_object("string")).to eq "string"
+      end
+    end
+
+    context "when a proc" do
+      it "should call the proc and return the result" do
+        expect(receiver).to receive(:call).and_return("string")
+
+        expect(context.return_call_response_or_object(receiver)).to eq "string"
+      end
+    end
+  end
+
   describe "#call_method_or_proc_on" do
 
     [:hello, 'hello'].each do |key|
