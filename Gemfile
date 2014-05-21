@@ -39,8 +39,7 @@ group :test do
   gem 'capybara', '= 1.1.2'
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'coveralls', require: false # Test coverage website. Go to https://coveralls.io
-  # Move to next stable version including: https://github.com/cucumber/cucumber-rails/pull/253
-  gem 'cucumber-rails', github: 'cucumber/cucumber-rails', require: false
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'jasmine'
