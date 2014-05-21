@@ -108,6 +108,32 @@ describe MethodOrProcHelper do
     end
   end
 
-  pending "#render_in_context"
+  describe "#render_in_context" do
+    let(:args) { [1, 2, 3] }
+
+    context "when a Proc" do
+      let(:object) { Proc.new { } }
+
+      it "should instance_exec the Proc" do
+        expect(receiver).to receive(:instance_exec).with(args, &object)
+        context.render_in_context(receiver, object, args)
+      end
+    end
+
+    context "when a Symbol" do
+      it "should send the symbol" do
+        expect(receiver).to receive(:public_send).with(:symbol, args)
+        context.render_in_context(receiver, :symbol, args)
+      end
+    end
+
+    context "when a Object (not Proc or String)" do
+      let(:object) { Object.new }
+
+      it "should return the Object" do
+        expect(context.render_in_context(receiver, object)).to eq object
+      end
+    end
+  end
 
 end
