@@ -13,7 +13,7 @@ gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an
 
 gem 'rake', require: false
 
-gem 'sass-rails', '4.0.3' # #3005, #3093
+gem 'sass-rails', '4.0.3' if rails_version[0] == '4' # #3005, #3093
 
 # Optional dependencies
 gem 'cancan'
