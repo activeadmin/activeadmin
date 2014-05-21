@@ -8,13 +8,18 @@ require File.expand_path('spec/support/detect_rails_version', ACTIVE_ADMIN_PATH)
 
 rails_version = detect_rails_version
 gem 'rails', rails_version
-gem 'devise', '~> 3.2'
 
 gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an official release
 
 gem 'rake', require: false
 
 gem 'sprockets', '<= 2.11.0' # Hold back sprockets, ref: #3005
+
+# Optional dependencies
+gem 'cancan'
+gem 'devise', '~> 3.2'
+gem 'draper'
+gem 'pundit'
 
 group :development do
   # Debugging
@@ -33,9 +38,6 @@ group :development do
 end
 
 group :test do
-  gem 'draper'
-  gem 'cancan'
-  gem 'pundit'
   gem 'capybara', '= 1.1.2'
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'coveralls', require: false # Test coverage website. Go to https://coveralls.io
