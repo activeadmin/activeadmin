@@ -17,7 +17,7 @@ gem 'sprockets', '<= 2.11.0' # Hold back sprockets, ref: #3005
 
 # Optional dependencies
 gem 'cancan'
-gem 'devise', '~> 3.2'
+gem 'devise'
 gem 'draper'
 gem 'pundit'
 
