@@ -90,7 +90,23 @@ describe MethodOrProcHelper do
 
   end
 
-  pending "#render_or_call_method_or_proc_on"
+  describe "#render_or_call_method_or_proc_on" do
+    [ :symbol, Proc.new{} ].each do |key|
+      context "when a #{key.class}" do
+        it "should call #call_method_or_proc_on" do
+          options = { foo: :bar }
+          expect(context).to receive(:call_method_or_proc_on).with(receiver, key, options)
+          context.render_or_call_method_or_proc_on(receiver, key, options)
+        end
+      end
+    end
+
+    context "when a string" do
+      it "should return the string" do
+        expect(context.render_or_call_method_or_proc_on(receiver, "string")).to eq "string"
+      end
+    end
+  end
 
   pending "#render_in_context"
 
