@@ -121,10 +121,11 @@ Active Admin has just the thing for you:
 ```ruby
 batch_action :flag, form: {
   type: %w[Offensive Spam Other],
-  reason: :text,
-  notes:  :textarea,
-  hide:   :checkbox,
-  date:   :datepicker
+  reason:  :text,
+  notes:   :textarea,
+  hide:    :checkbox,
+  date:    :datepicker
+  dynamic: -> { (1..10).to_a.shuffle }
 } do |ids, inputs|
   # inputs is a hash of all the form fields you requested
   redirect_to collection_path, notice: [ids, inputs].to_s
