@@ -27,6 +27,17 @@ inject_into_file 'app/models/post.rb', %q{
 }, after: 'class Post < ActiveRecord::Base'
 copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), "app/models/post_decorator.rb"
 
+generate :model, "blog/post title:string body:text published_at:datetime author_id:integer position:integer custom_category_id:integer starred:boolean foo_id:integer"
+inject_into_file 'app/models/blog/post.rb', %q{
+  belongs_to :category, foreign_key: :custom_category_id
+  belongs_to :author, class_name: 'User'
+  has_many :taggings
+  accepts_nested_attributes_for :author
+  accepts_nested_attributes_for :taggings
+  attr_accessible :author, :position unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+}, after: 'class Blog::Post < ActiveRecord::Base'
+
+
 generate :model, "user type:string first_name:string last_name:string username:string age:integer"
 inject_into_file 'app/models/user.rb', %q{
   has_many :posts, foreign_key: 'author_id'

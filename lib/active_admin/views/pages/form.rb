@@ -30,7 +30,7 @@ module ActiveAdmin
         def default_form_options
           {
             url: default_form_path,
-            as: active_admin_config.resource_name.singular
+            as: active_admin_config.param_key
           }
         end
 
