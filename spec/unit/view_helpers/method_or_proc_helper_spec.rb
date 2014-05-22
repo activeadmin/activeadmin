@@ -95,8 +95,8 @@ describe MethodOrProcHelper do
       context "when a #{key.class}" do
         it "should call #call_method_or_proc_on" do
           options = { foo: :bar }
-          expect(context).to receive(:call_method_or_proc_on).with(receiver, key, options)
-          context.render_or_call_method_or_proc_on(receiver, key, options)
+          expect(context).to receive(:call_method_or_proc_on).with(receiver, key, options).and_return("data")
+          expect(context.render_or_call_method_or_proc_on(receiver, key, options)).to eq "data"
         end
       end
     end
@@ -115,15 +115,15 @@ describe MethodOrProcHelper do
       let(:object) { Proc.new { } }
 
       it "should instance_exec the Proc" do
-        expect(receiver).to receive(:instance_exec).with(args, &object)
-        context.render_in_context(receiver, object, args)
+        expect(receiver).to receive(:instance_exec).with(args, &object).and_return("data")
+        expect(context.render_in_context(receiver, object, args)).to eq "data"
       end
     end
 
     context "when a Symbol" do
       it "should send the symbol" do
-        expect(receiver).to receive(:public_send).with(:symbol, args)
-        context.render_in_context(receiver, :symbol, args)
+        expect(receiver).to receive(:public_send).with(:symbol, args).and_return("data")
+        expect(context.render_in_context(receiver, :symbol, args)).to eq "data"
       end
     end
 
