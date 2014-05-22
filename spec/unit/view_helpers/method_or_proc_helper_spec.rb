@@ -90,8 +90,50 @@ describe MethodOrProcHelper do
 
   end
 
-  pending "#render_or_call_method_or_proc_on"
+  describe "#render_or_call_method_or_proc_on" do
+    [ :symbol, Proc.new{} ].each do |key|
+      context "when a #{key.class}" do
+        it "should call #call_method_or_proc_on" do
+          options = { foo: :bar }
+          expect(context).to receive(:call_method_or_proc_on).with(receiver, key, options).and_return("data")
+          expect(context.render_or_call_method_or_proc_on(receiver, key, options)).to eq "data"
+        end
+      end
+    end
 
-  pending "#render_in_context"
+    context "when a string" do
+      it "should return the string" do
+        expect(context.render_or_call_method_or_proc_on(receiver, "string")).to eq "string"
+      end
+    end
+  end
+
+  describe "#render_in_context" do
+    let(:args) { [1, 2, 3] }
+
+    context "when a Proc" do
+      let(:object) { Proc.new { } }
+
+      it "should instance_exec the Proc" do
+        expect(receiver).to receive(:instance_exec).with(args, &object).and_return("data")
+        expect(context.render_in_context(receiver, object, args)).to eq "data"
+      end
+    end
+
+    context "when a Symbol" do
+      it "should send the symbol" do
+        expect(receiver).to receive(:public_send).with(:symbol, args).and_return("data")
+        expect(context.render_in_context(receiver, :symbol, args)).to eq "data"
+      end
+    end
+
+    context "when a Object (not Proc or String)" do
+      let(:object) { Object.new }
+
+      it "should return the Object" do
+        expect(context.render_in_context(receiver, object)).to eq object
+      end
+    end
+  end
 
 end
