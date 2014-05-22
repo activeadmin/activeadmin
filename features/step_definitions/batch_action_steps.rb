@@ -60,3 +60,13 @@ end
 Then /^I should not see checkboxes in the table$/ do
   expect(page).to_not have_css '.paginated_collection table input[type=checkbox]'
 end
+
+Then /^I should be show a input with name "([^"]*)" and type "([^"]*)"$/ do |name, type|
+  selector = ".batch_actions_selector a.batch_action:first"
+  expect(page.find(selector)["data-inputs"]).to eq "{\"#{name}\":\"#{type}\"}"
+end
+
+Then /^I should be show a select with name "([^"]*)" with the values "([^"]*)"$/ do |name, values|
+  selector = ".batch_actions_selector a.batch_action:first"
+  expect(JSON[page.find(selector)["data-inputs"]]).to eq Hash[name, values.split(', ')]
+end
