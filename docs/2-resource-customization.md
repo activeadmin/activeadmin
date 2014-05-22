@@ -27,7 +27,17 @@ ActiveAdmin.register Post do
 end
 ```
 
-For nested associations in your form, this is how you define their attributes:
+Any form field that sends multiple values (such as a HABTM association, or an array attribute)
+needs to pass an empty array to `permit_params`:
+
+```ruby
+ActiveAdmin.register Post do
+  permit_params :title, :content, :publisher_id, roles: []
+end
+```
+
+Nested associations in the same form also require an array, but it
+needs to be filled with any attributes used.
 
 ```ruby
 ActiveAdmin.register Post do
