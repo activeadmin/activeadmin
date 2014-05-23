@@ -9,11 +9,15 @@
   encoding_options = options.delete(:encoding_options) || {}
 
   csv_output = CSV.generate(options) do |csv|
-    csv << columns.map(&:name)
+    csv << columns.map do |column|
+      s = column.name
+      s = String(s).encode(encoding, encoding_options) if !encoding.nil?
+      s
+    end
     collection.each do |resource|
       csv << columns.map do |column|
         s = call_method_or_proc_on resource, column.data
-        s.encode!(encoding, encoding_options) if !encoding.nil? && s.respond_to?(:encode!)
+        s = String(s).encode(encoding, encoding_options) if !encoding.nil?
         s
       end
     end
