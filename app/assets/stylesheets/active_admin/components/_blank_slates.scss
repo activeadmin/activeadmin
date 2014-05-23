@@ -28,4 +28,8 @@
 
 .with_sidebar .blank_slate_container .blank_slate {
   margin-top: 80px;
+
+  @include responsive {
+    margin-top: 20px;
+  }
 }

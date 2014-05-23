@@ -1,0 +1,10 @@
+$active-admin-responsive: true !default;
+$active-admin-responsive-width: 768px !default;
+
+@mixin responsive {
+  @if $active-admin-responsive == true {
+    @media only screen and (max-width: $active-admin-responsive-width) {
+      @content;
+    }
+  }
+}

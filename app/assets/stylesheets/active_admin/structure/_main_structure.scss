@@ -4,6 +4,10 @@
 
 .index #wrapper {
   display: table;
+
+  @include responsive {
+    display: block;
+  }
 }
 
 #active_admin_content {
@@ -17,6 +21,14 @@
     #main_content{
       margin-right: 300px;
     }
+
+    @include responsive {
+      float: none;
+
+      #main_content {
+        margin-right: inherit;
+      }
+    }
   }
 
   &.without_sidebar #main_content_wrapper #main_content{ margin-right: 0; }
@@ -25,5 +37,13 @@
     float: left;
     width: $sidebar-width;
     margin-left: -$sidebar-width;
+
+    @include responsive {
+      float: none;
+      width: 100%;
+
+      margin-top:  20px;
+      margin-left: inherit;
+    }
   }
 }

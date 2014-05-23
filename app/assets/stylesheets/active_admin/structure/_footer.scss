@@ -9,6 +9,14 @@
 }
 
 // -------------------------------------- Index Footer (Under Table)
-#index_footer { padding-top: 5px; text-align: right; font-size: 0.85em; }
+#index_footer {
+  padding-top: 5px;
+  text-align: right;
+  font-size: 0.85em;
+
+  @include responsive {
+    text-align: left;
+  }
+}
 
 .index_content { clear: both; }
