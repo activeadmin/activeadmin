@@ -29,7 +29,7 @@ namespace :parallel do
       puts "parallel_tests is not set up. (Re)building spec/rails/rails-#{Rails::VERSION::STRING} App. Please wait."
       require 'rails/version'
       system("rm -Rf spec/rails/rails-#{Rails::VERSION::STRING}")
-      Rake::Task['setup'].invoke
+      Rake::Task['setup'].invoke true
     end
   end
 

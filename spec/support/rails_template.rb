@@ -92,29 +92,24 @@ directory File.expand_path('../templates/policies', __FILE__), 'app/policies'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-generate :'active_admin:install'
+generate 'active_admin:install'
 
 # Devise master doesn't set up its secret key on Rails 4.1
 # https://github.com/plataformatec/devise/issues/2554
 gsub_file 'config/initializers/devise.rb', /# config.secret_key =/, 'config.secret_key ='
 
-rake "db:migrate"
-rake "db:test:prepare"
+rake "db:migrate db:test:prepare"
 run "/usr/bin/env RAILS_ENV=cucumber rake db:migrate"
 
-# Setup parallel_tests
-def setup_parallel_tests_database(after, force_insert_same_content = false)
-  inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: after, force: force_insert_same_content
-end
+if ENV['INSTALL_PARALLEL']
+  inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'test.sqlite3'
+  inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'cucumber.sqlite3', force: true
 
-setup_parallel_tests_database "test.sqlite3"
-setup_parallel_tests_database "cucumber.sqlite3", true
-
-# Note: this is hack!
-# Somehow, calling parallel_tests tasks from Rails generator using Thor does not work ...
-# RAILS_ENV variable never makes it to parallel_tests tasks.
-# We need to call these tasks in the after set up hook in order to creates cucumber DBs + run migrations on test & cucumber DBs
-create_file 'lib/tasks/parallel.rake', %q{
+  # Note: this is hack!
+  # Somehow, calling parallel_tests tasks from Rails generator using Thor does not work ...
+  # RAILS_ENV variable never makes it to parallel_tests tasks.
+  # We need to call these tasks in the after set up hook in order to creates cucumber DBs + run migrations on test & cucumber DBs
+  create_file 'lib/tasks/parallel.rake', %q{
 namespace :parallel do
   def run_in_parallel(cmd, options)
     count = "-n #{options[:count]}" if options[:count]
@@ -134,4 +129,4 @@ namespace :parallel do
   end
 end
 }
-
+end
