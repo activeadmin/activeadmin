@@ -5,7 +5,7 @@ task :setup do
     puts "test app #{dir} already exists; skipping"
   else
     system("mkdir spec/rails") unless File.exists?("spec/rails")
-    system "bundle exec rails new #{dir} -m spec/support/rails_template.rb"
+    system "bundle exec rails new #{dir} -m spec/support/rails_template.rb --skip-bundle"
     Rake::Task['parallel:after_setup_hook'].invoke
   end
 end

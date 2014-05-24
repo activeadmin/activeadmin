@@ -29,7 +29,7 @@ system "mkdir #{test_app_dir}" unless File.exists?(test_app_dir)
 
 # Create the sample rails app if it doesn't already exist
 unless File.exists? test_app_path
-  system "RAILS='#{rails_version}' bundle exec rails new #{test_app_path} -m spec/support/rails_template_with_data.rb"
+  system "RAILS='#{rails_version}' bundle exec rails new #{test_app_path} -m spec/support/rails_template_with_data.rb --skip-bundle"
 end
 
 # Link this rails app
