@@ -21,6 +21,8 @@ gem 'devise'
 gem 'draper'
 gem 'pundit'
 
+gem 'parallel_tests', group: [:development, :test] # #3162
+
 group :development do
   # Debugging
   gem 'pry'                # Easily debug from your console with `binding.pry`
@@ -47,7 +49,6 @@ group :test do
   gem 'jasmine'
   gem 'jslint_on_rails'
   gem 'launchy'
-  gem 'parallel_tests'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
   gem 'shoulda-matchers'
