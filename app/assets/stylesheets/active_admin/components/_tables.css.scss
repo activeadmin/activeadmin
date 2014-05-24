@@ -19,7 +19,7 @@ table.index_table {
     @include section-header;
     border-right: none;
     text-align: left;
-    padding-left: $cell-horizontal-padding;
+    padding-left:  $cell-horizontal-padding;
     padding-right: $cell-horizontal-padding;
 
     a, a:link, a:visited {
@@ -57,6 +57,78 @@ table.index_table {
     padding: 10px $cell-horizontal-padding 8px $cell-horizontal-padding;
     border-bottom: 1px solid #e8e8e8;
     vertical-align: top;
+  }
+
+  @if $active-admin-flip-table {
+    // Based around: http://elvery.net/demo/responsive-tables/#flip-scroll
+    @include responsive {
+      display: block;
+      position: relative;
+
+      th, td {
+        margin: 0;
+        vertical-align: top;
+
+        border-left: 0;
+        border-top:  solid 1px #e6e6e6;
+
+        height:  1.5em;
+        padding: 5px 10px 3px 10px;
+      }
+
+      th {
+        display: block;
+        text-align: right;
+
+        & > * {
+          text-overflow: ellipsis;
+          overflow:      hidden;
+        }
+      }
+
+      td {
+        display: block;
+
+        text-align: left;
+        border-right: 0;
+      }
+
+      thead {
+        display: block;
+        float: left;
+
+        max-width: 40%;
+
+        tr {
+          display: block;
+        }
+      }
+
+      tbody {
+        display: block;
+
+        width: auto;
+        position: relative;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        white-space: nowrap;
+
+        font-size: 0; /* remove space between rows */
+
+        tr {
+          font-size: 11.5px;
+
+          display:        inline-block;
+          vertical-align: top;
+        }
+      }
+
+      th:last-child, td:last-child {
+        border-bottom: 1px solid #d4d4d4;
+      }
+    }
   }
 }
 
