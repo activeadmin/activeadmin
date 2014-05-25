@@ -9,37 +9,19 @@ module ActiveAdmin
     module Streaming
 
       def index
-        super { |format| format.csv { stream_csv collection } }
+        super { |format| format.csv { stream_csv } }
       end
 
       protected
 
-      def csv_line(resource, columns, options)
-        columns.map do |column|
-          s = call_method_or_proc_on resource, column.data
-
-          if options[:encoding] && s.respond_to?(:encode!)
-            s.encode! options[:encoding], options[:encoding_options]
-          else
-            s
-          end
-        end
-      end
-
-      def stream_csv(collection)
-        default = ActiveAdmin.application.csv_options
-        options = default.merge active_admin_config.csv_builder.options
-        columns = active_admin_config.csv_builder.render_columns(self)
-
+      def stream_resource(&block)
         headers['X-Accel-Buffering'] = 'no'
         headers['Cache-Control'] = 'no-cache'
+        self.response_body = Enumerator.new &block
+      end
 
-        self.response_body = Enumerator.new do |csv|
-          csv << CSV.generate_line(columns.map(&:name), options)
-          collection.find_each do |resource|
-            csv << CSV.generate_line(csv_line(resource, columns, options), options)
-          end
-        end
+      def stream_csv
+        stream_resource &active_admin_config.csv_builder.method(:build).to_proc.curry[self]
       end
 
     end
