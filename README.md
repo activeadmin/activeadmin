@@ -31,8 +31,10 @@ to have to wait for a release, you can track the branch instead:
 gem 'activeadmin', github: 'gregbell/active_admin', branch: '0-6-stable'
 ```
 
+## Documentation
+
 Please note that <http://activeadmin.info> is out of date. For the latest docs, check out the
-Github repo itself.
+Github [docs folder](https://github.com/gregbell/active_admin/tree/master/docs) and the [wiki](https://github.com/gregbell/active_admin/wiki).
 
 ## Links
 
