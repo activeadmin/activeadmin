@@ -25,7 +25,7 @@
     padding: 7px 15px 13px
   }
   .ui-dialog-buttonpane button {
-    &:first-child { @include dark-button } // OK
+    & { @include dark-button } // OK
     &:last-child { @include light-button } // Cancel
   }
 }
