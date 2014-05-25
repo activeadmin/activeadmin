@@ -11,8 +11,6 @@ gem 'rails', rails_version
 
 gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an official release
 
-gem 'rake', require: false
-
 gem 'sass-rails', '4.0.3' if rails_version[0] == '4' # #3005, #3093
 
 # Optional dependencies
@@ -21,7 +19,9 @@ gem 'devise'
 gem 'draper'
 gem 'pundit'
 
-gem 'parallel_tests', group: [:development, :test] # #3162
+# Utility gems used in both development & test environments
+gem 'rake', require: false
+gem 'parallel_tests'
 
 group :development do
   # Debugging
