@@ -144,6 +144,32 @@ describe ActiveAdmin, "Routing", type: :routing do
           route_to({ controller: 'admin/users', action: 'do_something'})
       end
     end
+
+    context 'singular child resource' do
+      before do
+        load_resources do
+          ActiveAdmin.register(Post) do
+            belongs_to :user, singleton: true
+            collection_action :collection
+            member_action :member
+          end
+          ActiveAdmin.register(User) do
+          end
+        end
+      end
+
+      it 'should properly route to resource' do
+        expect(admin_user_post_path(1)).to eq "/admin/users/1/post"
+      end
+
+      it 'should property route to member action' do
+        expect(member_admin_user_post_path(1)).to eq "/admin/users/1/post/member"
+      end
+
+      it 'should property route to collection action' do
+        expect(collection_admin_user_post_path(1)).to eq "/admin/users/1/post/collection"
+      end
+    end
   end
 
   describe "page" do

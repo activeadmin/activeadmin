@@ -28,6 +28,10 @@ module ActiveAdmin
         @options[:optional]
       end
 
+      def singleton?
+        @options[:singleton]
+      end
+
       def required?
         !optional?
       end
