@@ -5,7 +5,7 @@
   z-index: 1001;
 }
 
-.ui-dialog {
+.active_admin_dialog.ui-dialog {
   position: fixed;
   z-index: 1002;
   @include section-background;
