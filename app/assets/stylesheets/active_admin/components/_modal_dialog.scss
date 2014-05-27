@@ -5,7 +5,7 @@
   z-index: 1001;
 }
 
-.active_admin_dialog.ui-dialog {
+.ui-dialog {
   position: fixed;
   z-index: 1002;
   @include section-background;
@@ -15,7 +15,6 @@
     @include section-header;
     span { font-size: 1.1em }
   }
-  .ui-dialog-titlebar-close { display: none }
 
   ul { list-style-type: none }
   li { margin: 10px 0 }
@@ -28,4 +27,8 @@
     &:first-child { @include dark-button } // OK
     &:last-child { @include light-button } // Cancel
   }
+}
+
+.active_admin_dialog.ui-dialog {
+  .ui-dialog-titlebar-close { display: none }
 }
