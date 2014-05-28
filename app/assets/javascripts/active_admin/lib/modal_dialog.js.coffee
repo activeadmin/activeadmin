@@ -28,6 +28,7 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
   html += "</ul></form>"
   $(html).appendTo('body').dialog
     modal: true
+    dialogClass: 'active_admin_dialog'
     buttons:
       OK: ->
         callback $(@).serializeObject()
