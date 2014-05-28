@@ -272,6 +272,8 @@ module ActiveAdmin
           dropdown      = options.delete(:dropdown) { false }
           dropdown_name = options.delete(:dropdown_name) { I18n.t 'active_admin.dropdown_actions.button_label', default: 'Actions' }
 
+          options[:class] ||= 'col-actions'
+
           column name, options do |resource|
             if dropdown
               dropdown_menu dropdown_name do
