@@ -15,9 +15,10 @@ describe ActiveAdmin::ResourceController::Decorators do
 
   let(:controller) { controller_class.new }
   let(:active_admin_config) { double(decorator_class: decorator_class) }
-  before { controller.stub(active_admin_config: active_admin_config) }
-  before { controller.stub(action_name: action) }
-
+  before do
+    allow(controller).to receive(:active_admin_config).and_return(active_admin_config)
+    allow(controller).to receive(:action_name).and_return(action)
+  end
 
   describe '#apply_decorator' do
     let(:action) { 'show' }

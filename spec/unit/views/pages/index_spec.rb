@@ -7,9 +7,8 @@ describe ActiveAdmin::Views::Pages::Index do
     let!(:params){ { controller: "UsersController", action: "edit" } }
     let(:helpers) do
       helpers = mock_action_view
-      helpers.stub active_admin_config: namespace.register(Post),
-                   params: params
-
+      allow(helpers).to receive(:active_admin_config).and_return(namespace.register(Post))
+      allow(helpers).to receive(:params).and_return(params)
       helpers
     end
 
@@ -21,7 +20,7 @@ describe ActiveAdmin::Views::Pages::Index do
       context "with a Proc" do
         it "should return the value of the assigned Proc" do
           page = ActiveAdmin::Views::Pages::Index.new(arbre_context)
-          page.stub config: { title: ->{ "My Page Title" } }
+          allow(page).to receive(:config).and_return(title: ->{ "My Page Title" })
           expect(page.title).to eq "My Page Title"
         end
       end
@@ -29,7 +28,7 @@ describe ActiveAdmin::Views::Pages::Index do
       context "with a String" do
         it "should return the assigned String" do
           page = ActiveAdmin::Views::Pages::Index.new(arbre_context)
-          page.stub config: { title: "My Page Title" }
+          allow(page).to receive(:config).and_return(title: ->{ "My Page Title" })
           expect(page.title).to eq "My Page Title"
         end
       end
@@ -37,7 +36,7 @@ describe ActiveAdmin::Views::Pages::Index do
       context "with a Integer" do
         it "should return the Integer" do
           page = ActiveAdmin::Views::Pages::Index.new(arbre_context)
-          page.stub config: { title: 1 }
+          allow(page).to receive(:config).and_return(title: 1)
           expect(page.title).to eq 1
         end
       end
