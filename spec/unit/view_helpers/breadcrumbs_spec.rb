@@ -76,7 +76,7 @@ describe "Breadcrumbs" do
       end
 
       context "when User.find(1) doesn't exist" do
-        before { user_config.stub(find_resource: nil) }
+        before { allow(user_config).to receive(:find_resource) }
         it "should have a link to /admin/users/1" do
           expect(trail[2][:name]).to eq "1"
           expect(trail[2][:path]).to eq "/admin/users/1"
@@ -107,7 +107,7 @@ describe "Breadcrumbs" do
       end
 
       context "when User.find(4e24d6249ccf967313000000) doesn't exist" do
-        before { user_config.stub(find_resource: nil) }
+        before { allow(user_config).to receive(:find_resource) }
         it "should have a link to /admin/users/4e24d6249ccf967313000000" do
           expect(trail[2][:name]).to eq "4e24d6249ccf967313000000"
           expect(trail[2][:path]).to eq "/admin/users/4e24d6249ccf967313000000"
@@ -116,7 +116,8 @@ describe "Breadcrumbs" do
 
       context "when User.find(4e24d6249ccf967313000000) does exist" do
         before do
-          user_config.stub find_resource: double(display_name: 'Hello :)')
+          display_name = double(display_name: 'Hello :)')
+          allow(user_config).to receive(:find_resource).and_return(display_name) 
         end
         it "should have a link to /admin/users/4e24d6249ccf967313000000 using display name" do
           expect(trail[2][:name]).to eq "Hello :)"

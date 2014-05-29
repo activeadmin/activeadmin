@@ -9,7 +9,7 @@ describe ActiveAdmin::Views::IndexList do
 
     let(:helpers) do
       helpers = mock_action_view
-      helpers.stub url_for: "/"
+      allow(helpers).to receive(:url_for).and_return("/")
       allow(helpers).to receive(:params).and_return as: "table"
       helpers
     end

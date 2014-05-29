@@ -157,7 +157,8 @@ describe ActiveAdmin::Views::AttributesTable do
     context "with a collection" do
       let(:posts) do
         [Post.new(title: "Hello World", id: 1), Post.new(title: "Multi Column", id: 2)].each_with_index do |post, index|
-          post.stub(id: index + 1, :new_record? => false)
+          allow(post).to receive(:id).and_return(index + 1)
+          allow(post).to receive(:new_record?).and_return(false)
         end
       end
 
