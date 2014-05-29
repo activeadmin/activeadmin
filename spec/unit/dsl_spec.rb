@@ -58,20 +58,4 @@ describe ActiveAdmin::DSL do
 
   end
 
-  describe "#sidebar" do
-
-    before do
-      allow(config).to receive(:sidebar_sections).and_return([])
-      dsl.config.sidebar_sections << ActiveAdmin::SidebarSection.new(:email)
-    end
-
-    it "add sidebar_section to the sidebar_sections on the configuration" do
-      dsl.run_registration_block do
-        sidebar :help
-      end
-      expect(config.sidebar_sections.map(&:name)).to match_array([:email, :help])
-    end
-
-  end
-
 end
