@@ -42,7 +42,7 @@ module ActiveAdmin
 
       receiver << CSV.generate_line(columns.map{ |c| encode c.name, options }, options)
 
-      view_context.public_send(:collection).find_each do |resource|
+      view_context.send(:collection).find_each do |resource|
         receiver << CSV.generate_line(build_row(resource, columns, options), options)
       end
     end
