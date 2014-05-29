@@ -38,31 +38,33 @@ module ActiveAdmin
 
     def build(view_context, receiver)
       options = ActiveAdmin.application.csv_options.merge self.options
-      columns = build_columns view_context
+      columns = exec_columns view_context
 
-      receiver << CSV.generate_line(columns.map(&:name), options)
+      receiver << CSV.generate_line(columns.map{ |c| encode c.name, options }, options)
 
       view_context.public_send(:collection).find_each do |resource|
         receiver << CSV.generate_line(build_row(resource, columns, options), options)
       end
     end
 
-    def build_columns(view_context = nil)
+    def exec_columns(view_context = nil)
       @view_context = view_context
       @columns = [] # we want to re-render these every instance
-      instance_eval &@block if @block.present?
+      instance_exec &@block if @block.present?
       columns
     end
 
     def build_row(resource, columns, options)
       columns.map do |column|
-        s = call_method_or_proc_on resource, column.data
+        encode call_method_or_proc_on(resource, column.data), options
+      end
+    end
 
-        if options[:encoding] && s.respond_to?(:encode!)
-          s.encode! options[:encoding], options[:encoding_options]
-        else
-          s
-        end
+    def encode(content, options)
+      if options[:encoding]
+        content.to_s.encode! options[:encoding], options[:encoding_options]
+      else
+        content
       end
     end
 
