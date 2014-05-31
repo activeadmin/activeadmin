@@ -1,4 +1,4 @@
-shared_examples_for "ActiveAdmin::Config" do
+shared_examples_for "ActiveAdmin::Resource" do
   describe "namespace" do
     it "should return the namespace" do
       expect(config.namespace).to eq(namespace)
