@@ -265,5 +265,14 @@ describe ActiveAdmin::Views::TableFor do
       it { should_not be_sortable }
     end
 
+    context "when a block given with a sort key order" do
+      let(:table_column){ build_column("Username", sort_key_order: :asc){ } }
+      it { should_not be_sortable }
+
+      describe '#sort_key_order' do
+        subject { super().sort_key_order }
+        it{ should == "asc" }
+      end
+    end
   end
 end
