@@ -15,7 +15,7 @@ module ActiveAdmin
       instance_exec &block if block_given?
     end
 
-    # The instance of ActiveAdmin::Config that's being registered
+    # The instance of ActiveAdmin::Resource that's being registered
     # currently. You can use this within your registration blocks to
     # modify options:
     #
