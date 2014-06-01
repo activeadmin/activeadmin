@@ -100,7 +100,6 @@ index do
 end
 ```
 
-
 ## Sorting
 
 When a column is generated from an Active Record attribute, the table is
@@ -172,5 +171,16 @@ For example, if you were using CanCan:
 index do
   column :title, sortable: false
   column :secret_data if can? :manage, Post
+end
+```
+
+## Custom row class
+
+In order to add special class to table rows pass the proc object as a `:row_class` option
+of the `index` method.
+
+```ruby
+index row_class: ->elem { 'active' if elem.active? } do
+  # columns
 end
 ```
