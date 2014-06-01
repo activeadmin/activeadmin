@@ -34,8 +34,7 @@ group :development do
   gem 'flamegraph'         # Flamegraph visualiztion: ?pp=flamegraph
 
   # Documentation
-  gem 'yard'               # Documentation generator
-  gem 'yard-redcarpet-ext' # Enables Markdown tables, which are disabled by default
+  gem 'yard', github: 'lsegal/yard' # Documentation generator (until lsegal/yard#765 is in a release)
   gem 'redcarpet'          # Markdown implementation (for yard)
 end
 
