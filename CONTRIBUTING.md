@@ -18,7 +18,7 @@ If this is something you think you can fix, then
 [fork Active Admin](https://help.github.com/articles/fork-a-repo)
 and create a branch with a descriptive name.
 
-A great branch name would be (where issue #325 is the ticket you're working on):
+A good branch name would be (where issue #325 is the ticket you're working on):
 
 ```sh
 git checkout -b 325-add-japanese-translations
@@ -49,20 +49,21 @@ rm -rf spec/rails && bundle update
 ### 4. Implement your fix or feature
 
 At this point, you should be ready to make your changes! Don't hesitate to ask for help;
-everyone is a beginner at first :)
+everyone is a beginner at first :smile_cat:
 
 ### 5. View your changes in a Rails application
 
 Active Admin is meant to be used by humans, not cucumbers. So make sure to take
 a look at your changes in a browser.
 
-To boot up a test rails application, use the provided script:
+To boot up a test Rails app:
 
 ```sh
 script/local server
 ```
 
-This will generate a Rails application at `test-rails-app/` that uses your copy of Active Admin.
+This will automatically create a Rails app if none already exists, and store it in the
+`.test-rails-apps` folder. The currently active app is symlinked to `test-rails-app`.
 
 If you have any Bundler issues, call the `use_rails` script then prepend
 the version of rails you would like to use in an environment variable:
@@ -72,8 +73,7 @@ script/use_rails 4.0.0
 RAILS=4.0.0 script/local server
 ```
 
-You should now be able to open `http://localhost:3000/admin` and view a test
-environment.
+You should now be able to open <http://localhost:3000/admin> in your browser.
 
 If you need to perform any other commands on the test application, use the
 `local` script. For example to boot the rails console:
