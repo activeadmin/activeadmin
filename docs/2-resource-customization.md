@@ -220,7 +220,7 @@ name? Well, you have to refer to it by its `:id`.
 
 ```ruby
 # config/initializers/active_admin.rb
-config.namespace :admin do |admin
+config.namespace :admin do |admin|
   admin.build_menu do |menu|
     menu.add id: 'blog', label: proc{"Something dynamic"}, priority: 0
   end
