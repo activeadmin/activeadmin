@@ -47,10 +47,9 @@ Github [docs folder](https://github.com/gregbell/active_admin/tree/master/docs) 
 
 ## Goals
 
-1. Allow developers to quickly create gorgeous administration interfaces __(Not Just CRUD)__
+1. Enable developers to quickly create good-looking administration interfaces.
 2. Build a DSL for developers and an interface for businesses.
-3. Ensure that developers can easily customize every nook and cranny of the interface.
-4. Build common interfaces as shareable gems so that the entire community benefits.
+3. Ensure that developers can easily customize every nook and cranny.
 
 ## Getting started
 
