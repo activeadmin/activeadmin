@@ -53,7 +53,7 @@ Feature: Index Pagination
       """
       Given 100 posts exist
       When I am on the index page for posts
-      Then I should see pagination with 2 pages
+      Then I should see pagination with 4 pages
       Then I should see "Displaying Posts 1 - 30"
       And I should not see "Displaying Posts 1 - 30 of 100 in total"
 

@@ -13,11 +13,13 @@ describe ActiveAdmin::Views::Panel do
   let(:panel_html) { Capybara.string(arbre_panel.to_s) }
 
   it "should have a title h3" do
-    expect(panel_html).to have_css 'h3', content: "My Title"
+    expect(panel_html).to have_css 'h3', text: "My Title"
   end
 
   it "should add panel actions to the panel header" do
-    expect(panel_html).to have_css 'h3 > div.header_action a', content: 'My Link', href: "https://www.github.com/gregbell/active_admin"
+    link = panel_html.find('h3 > div.header_action a')
+    expect(link.text).to eq('My Link')
+    expect(link[:href]).to eq("https://www.github.com/gregbell/active_admin")
   end
 
   it "should have a contents div" do
@@ -25,7 +27,7 @@ describe ActiveAdmin::Views::Panel do
   end
 
   it "should add children to the contents div" do
-    expect(panel_html).to have_css 'div.panel_contents > span', content: "Hello World"
+    expect(panel_html).to have_css 'div.panel_contents > span', text: "Hello World"
   end
 
   it "should set the icon" do
@@ -41,8 +43,8 @@ describe ActiveAdmin::Views::Panel do
     end
 
     it "should allow a html_safe title" do
-      expect(panel_html).to have_css "h3", content: "Title with HTML"
-      expect(panel_html).to have_css "h3 > abbr", content: "HTML"
+      expect(panel_html).to have_css "h3", text: "Title with HTML"
+      expect(panel_html).to have_css "h3 > abbr", text: "HTML"
     end
   end
 
