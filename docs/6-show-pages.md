@@ -70,7 +70,7 @@ ActiveAdmin.register Book do
       row :title
       row :author
       row :publisher
-      row('Published?') { |b| status_tag b.published? ? 'Yes' : 'No' }
+      row('Published?') { |b| status_tag b.published? }
     end
   end
 end
