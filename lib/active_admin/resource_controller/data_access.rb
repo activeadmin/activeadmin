@@ -7,13 +7,14 @@ module ActiveAdmin
     # The module also deals with authorization and resource callbacks.
     #
     module DataAccess
-      extend ActiveSupport::Concern
 
-      include ActiveAdmin::Callbacks
-      include ActiveAdmin::ScopeChain
+      def self.included(base)
+        base.class_exec do
+          include Callbacks
+          include ScopeChain
 
-      included do
-        define_active_admin_callbacks :build, :create, :update, :save, :destroy
+          define_active_admin_callbacks :build, :create, :update, :save, :destroy
+        end
       end
 
       protected
@@ -27,14 +28,11 @@ module ActiveAdmin
       #
       # @returns [ActiveRecord::Relation] The collection for the index
       def collection
-        _collection = get_collection_ivar
-
-        return _collection if _collection
-
-        _collection = find_collection
-        authorize! ActiveAdmin::Authorization::READ, active_admin_config.resource_class
-
-        set_collection_ivar _collection
+        get_collection_ivar || begin
+          collection = find_collection
+          authorize! Authorization::READ, active_admin_config.resource_class
+          set_collection_ivar collection
+        end
       end
 
 
@@ -87,16 +85,13 @@ module ActiveAdmin
       #
       # @returns [ActiveRecord::Base] An active record object
       def resource
-        _resource = get_resource_ivar
+        get_resource_ivar || begin
+          resource = find_resource
+          authorize_resource! resource
 
-        return _resource if _resource
-
-        _resource = find_resource
-        authorize_resource! _resource
-
-        _resource = apply_decorator(_resource)
-
-        set_resource_ivar(_resource)
+          resource = apply_decorator resource
+          set_resource_ivar resource
+        end
       end
 
       # Does the actual work of finding a resource in the database. This
@@ -121,18 +116,14 @@ module ActiveAdmin
       #
       # @returns [ActiveRecord::Base] An un-saved active record base object
       def build_resource
-        _resource = get_resource_ivar
+        get_resource_ivar || begin
+          resource = build_new_resource
+          run_build_callbacks resource
+          authorize_resource! resource
 
-        return _resource if _resource
-
-        _resource = build_new_resource
-
-        run_build_callbacks _resource
-        authorize_resource! _resource
-
-        _resource = apply_decorator(_resource)
-
-        set_resource_ivar(_resource)
+          resource = apply_decorator resource
+          set_resource_ivar resource
+        end
       end
 
       # Builds a new resource. This method uses the method_for_build provided
@@ -234,13 +225,12 @@ module ActiveAdmin
         @search.result
       end
 
-      def clean_search_params(search_params)
-        return {} unless search_params.is_a?(Hash)
-        search_params = search_params.dup
-        search_params.delete_if do |key, value|
-          value == ""
+      def clean_search_params(params)
+        if params.is_a? Hash
+          params.dup.delete_if{ |key, value| value.blank? }
+        else
+          {}
         end
-        search_params
       end
 
       def apply_scoping(chain)
@@ -273,9 +263,11 @@ module ActiveAdmin
       end
 
       def per_page
-        return max_per_page if active_admin_config.paginate == false
-
-        @per_page || active_admin_config.per_page
+        if active_admin_config.paginate
+          @per_page || active_admin_config.per_page
+        else
+          max_per_page
+        end
       end
 
       def max_per_page
