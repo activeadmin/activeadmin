@@ -19,7 +19,6 @@ module ActiveAdmin
       Pundit.policy_scope!(user, collection)
     end
 
-
     def retrieve_policy(subject)
       case subject
       when nil   then Pundit.policy!(user, resource)
