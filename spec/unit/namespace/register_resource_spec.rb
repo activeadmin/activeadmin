@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 # TODO: refactor this file so it doesn't depend on the Admin namespace in such a broken way.
 #       Specifically, the dashboard is already defined and we do let(:namespace) multiple times.

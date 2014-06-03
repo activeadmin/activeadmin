@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::ResourceController::Sidebars do
   let(:controller){ Admin::PostsController }

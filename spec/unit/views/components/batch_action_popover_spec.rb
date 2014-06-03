@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'active_admin/batch_actions/views/batch_action_popover'
 
 describe ActiveAdmin::BatchActions::BatchActionPopover do

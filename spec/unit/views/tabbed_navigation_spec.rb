@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 include ActiveAdmin
 describe ActiveAdmin::Views::TabbedNavigation do

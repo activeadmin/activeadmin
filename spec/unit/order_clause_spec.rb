@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::OrderClause do
   subject { described_class.new clause }

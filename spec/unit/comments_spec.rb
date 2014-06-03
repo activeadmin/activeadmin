@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Comments" do
   let(:application) { ActiveAdmin::Application.new }

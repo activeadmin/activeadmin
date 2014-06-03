@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "#pretty_format" do
   include ActiveAdmin::ViewHelpers::DisplayHelper

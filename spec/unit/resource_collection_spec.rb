@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'active_admin/resource_collection'
 
 describe ActiveAdmin::ResourceCollection do

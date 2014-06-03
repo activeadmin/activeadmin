@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'active_admin/event'
 
 describe ActiveAdmin::EventDispatcher do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Registering an object to administer" do
   application = ActiveAdmin::Application.new
