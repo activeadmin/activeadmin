@@ -290,12 +290,17 @@ describe ActiveAdmin::FormBuilder do
       end
 
       it "should add a link to remove new nested records" do
-        expect(Capybara.string(body)).to have_css '.has_many_container > fieldset > ol > li > a', href: '#',
-          content: 'Remove', class: 'button has_many_remove', data: {placeholder: 'NEW_POST_RECORD'}
+        link = Capybara.string(body).find('.has_many_container > fieldset > ol > li > a.button.has_many_remove', text: 'Remove')
+        expect(link[:class]).to eq('button has_many_remove')
+        expect(link.text).to eq('Remove')
+        expect(link[:href]).to eq('#')
       end
 
       it "should add a link to add new nested records" do
-        expect(Capybara.string(body)).to have_css(".has_many_container > fieldset > ol > li > a", class: "button", href: "#", content: "Add New Post")
+        link = Capybara.string(body).find('.has_many_container > a.button.has_many_add')
+        expect(link[:class]).to eq('button has_many_add')
+        expect(link.text).to eq('Add New Post')
+        expect(link[:href]).to eq('#')
       end
     end
 

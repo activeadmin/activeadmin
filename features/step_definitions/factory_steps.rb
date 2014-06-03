@@ -27,8 +27,8 @@ Given /^a store named "([^"]*)" exists$/ do |name|
 end
 
 Given /^I create a new post with the title "([^"]*)"$/ do |title|
-  click_link "Posts"
+  first(:link, 'Posts').click
   click_link "New Post"
-  fill_in :title, with: title
+  fill_in 'post_title', with: title
   click_button "Create Post"
 end
