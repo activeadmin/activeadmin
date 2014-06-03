@@ -38,7 +38,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
       expect(@actual).to eq expected
     end
 
-    failure_message_for_should do |filter|
+    failure_message do |filter|
       message = "expected before_filter to set @skip_sidebar to '#{expected}', but was '#{@actual}'"
     end
   end

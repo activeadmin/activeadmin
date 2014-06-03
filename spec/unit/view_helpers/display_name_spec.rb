@@ -22,8 +22,9 @@ describe "display_name" do
   end
 
   it "should not call a method if it's an association" do
-    subject = Class.new.new
-    subject.stub_chain(:class, :reflect_on_all_associations).and_return [ double(name: :login) ]
+    klass = Class.new
+    subject = klass.new
+    allow(klass).to receive(:reflect_on_all_associations).and_return [ double(name: :login) ]
     allow(subject).to receive :login
     expect(subject).to_not receive :login
     allow(subject).to receive(:email).and_return 'foo@bar.baz'

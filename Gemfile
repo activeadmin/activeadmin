@@ -51,7 +51,7 @@ group :test do
   gem 'jslint_on_rails'
   gem 'launchy'
   gem 'rails-i18n' # Provides default i18n for many languages
-  gem 'rspec', '~> 2.99'
+  gem 'rspec'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'sqlite3'

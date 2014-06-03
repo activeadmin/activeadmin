@@ -56,9 +56,9 @@ When /^(?:I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
 end
 
 Then /^(?:I )should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|
-  should = negate ? :should_not    : :should
+  should = negate ? :not_to    : :to
   have   = is_css ? have_css(text) : have_content(text)
-  page.send should, have
+  expect(page).send should, have
 end
 
 Then /^the "([^"]*)" field(?: within (.*))? should( not)? contain "([^"]*)"$/ do |field, parent, negate, value|
@@ -66,13 +66,13 @@ Then /^the "([^"]*)" field(?: within (.*))? should( not)? contain "([^"]*)"$/ do
     field = find_field(field)
     value = field.tag_name == 'textarea' ? field.text : field.value
 
-    expect(value).send negate ? :to_not : :to, match(/#{value}/)
+    expect(value).send negate ? :not_to : :to, match(/#{value}/)
   end
 end
 
 Then /^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/ do |label, parent, negate|
   with_scope(parent) do
-    expect(find_field(label)['checked']).to negate ? be_false : be_true
+    expect(find_field(label)['checked']).to negate ? eq(false) : eq(true)
   end
 end
 
