@@ -124,7 +124,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       context "when not optional" do
         before do
           namespace.register Post do
-            belongs_to :author
+            belongs_to :author, parent_class: User
           end
         end
         it "should not show up in the menu" do
@@ -134,7 +134,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       context "when optional" do
         before do
           namespace.register Post do
-            belongs_to :author, optional: true
+            belongs_to :author, parent_class: User, optional: true
           end
         end
         it "should show up in the menu" do
