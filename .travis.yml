@@ -2,6 +2,7 @@ language: ruby
 install:
   - time ./script/travis_cache download_bundle
   - time bundle install --without development --path=./bundle
+  - bundle clean # delete now-outdated gems
   - time ./script/travis_cache download_app
   - time bundle exec rake setup
   - time ./script/travis_cache upload
