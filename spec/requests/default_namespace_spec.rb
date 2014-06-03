@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ActiveAdmin::Application do
+describe ActiveAdmin::Application, :type => :request do
 
   include Rails.application.routes.url_helpers
 

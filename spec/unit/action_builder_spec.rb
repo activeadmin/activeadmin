@@ -54,7 +54,7 @@ describe 'defining new actions from registration blocks' do
 
       subject { find_before_filter controller, :comment }
 
-      it { should set_page_title_to "My Awesome Comment", for: controller }
+      it { is_expected.to set_page_title_to "My Awesome Comment", for: controller }
     end
   end
 
@@ -104,7 +104,7 @@ describe 'defining new actions from registration blocks' do
 
       subject { find_before_filter controller, :comments }
 
-      it { should set_page_title_to "My Awesome Comments", for: controller }
+      it { is_expected.to set_page_title_to "My Awesome Comments", for: controller }
     end
   end
 

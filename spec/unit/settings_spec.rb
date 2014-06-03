@@ -4,9 +4,9 @@ describe ActiveAdmin::Settings do
 
   subject{ Class.new{ include ActiveAdmin::Settings } }
 
-  it{ should respond_to :setting }
-  it{ should respond_to :deprecated_setting }
-  it{ should respond_to :default_settings }
+  it{ is_expected.to respond_to :setting }
+  it{ is_expected.to respond_to :deprecated_setting }
+  it{ is_expected.to respond_to :default_settings }
 
   describe "class API" do
     it "should create settings" do
@@ -55,9 +55,9 @@ describe ActiveAdmin::Settings::Inheritance do
     end
   end
 
-  it{ should respond_to :settings_inherited_by }
-  it{ should respond_to :inheritable_setting }
-  it{ should respond_to :deprecated_inheritable_setting }
+  it{ is_expected.to respond_to :settings_inherited_by }
+  it{ is_expected.to respond_to :inheritable_setting }
+  it{ is_expected.to respond_to :deprecated_inheritable_setting }
 
   let(:heir) { Class.new }
 

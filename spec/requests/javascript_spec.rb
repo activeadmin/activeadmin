@@ -3,7 +3,7 @@ require 'jslint'
 
 %x[which java]
 if $? == 0 # Only run the JS Lint test if Java is installed
-  describe "Javascript" do
+  describe "Javascript", :type => :request do
     before do
       @lint = JSLint::Lint.new(
         paths: ['public/javascripts/**/*.js'],

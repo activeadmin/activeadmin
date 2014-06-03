@@ -10,17 +10,17 @@ describe ActiveAdmin::Scope do
 
       describe '#name' do
         subject { super().name }
-        it         { should == "Published"}
+        it         { is_expected.to eq("Published")}
       end
 
       describe '#id' do
         subject { super().id }
-        it           { should == "published"}
+        it           { is_expected.to eq("published")}
       end
 
       describe '#scope_method' do
         subject { super().scope_method }
-        it { should == :published }
+        it { is_expected.to eq(:published) }
       end
     end
 
@@ -29,24 +29,24 @@ describe ActiveAdmin::Scope do
 
       describe '#name' do
         subject { super().name }
-        it         { should == "All"}
+        it         { is_expected.to eq("All")}
       end
 
       describe '#id' do
         subject { super().id }
-        it           { should == "all"}
+        it           { is_expected.to eq("all")}
       end
       # :all does not return a chain but an array of active record
       # instances. We set the scope_method to nil then.
 
       describe '#scope_method' do
         subject { super().scope_method }
-        it { should == nil }
+        it { is_expected.to eq(nil) }
       end
 
       describe '#scope_block' do
         subject { super().scope_block }
-        it  { should == nil }
+        it  { is_expected.to eq(nil) }
       end
     end
 
@@ -55,17 +55,17 @@ describe ActiveAdmin::Scope do
 
       describe '#name' do
         subject { super().name }
-        it         { should eq 'Tous' }
+        it         { is_expected.to eq 'Tous' }
       end
 
       describe '#scope_method' do
         subject { super().scope_method }
-        it { should be_nil }
+        it { is_expected.to be_nil }
       end
 
       describe '#scope_block' do
         subject { super().scope_block }
-        it  { should be_nil }
+        it  { is_expected.to be_nil }
       end
     end
 
@@ -74,17 +74,17 @@ describe ActiveAdmin::Scope do
 
       describe '#name' do
         subject { super().name }
-        it         { should == "With API Access"}
+        it         { is_expected.to eq("With API Access")}
       end
 
       describe '#id' do
         subject { super().id }
-        it           { should == "with_api_access"}
+        it           { is_expected.to eq("with_api_access")}
       end
 
       describe '#scope_method' do
         subject { super().scope_method }
-        it { should == :with_api_access }
+        it { is_expected.to eq(:with_api_access) }
       end
     end
 
@@ -93,22 +93,22 @@ describe ActiveAdmin::Scope do
 
       describe '#name' do
         subject { super().name }
-        it         { should == "My Scope"}
+        it         { is_expected.to eq("My Scope")}
       end
 
       describe '#id' do
         subject { super().id }
-        it           { should == "my_scope"}
+        it           { is_expected.to eq("my_scope")}
       end
 
       describe '#scope_method' do
         subject { super().scope_method }
-        it { should == nil }
+        it { is_expected.to eq(nil) }
       end
 
       describe '#scope_block' do
         subject { super().scope_block }
-        it  { should be_a(Proc)}
+        it  { is_expected.to be_a(Proc)}
       end
     end
 
@@ -117,12 +117,12 @@ describe ActiveAdmin::Scope do
 
       describe '#name' do
         subject { super().name }
-        it         { should == "my scope"}
+        it         { is_expected.to eq("my scope")}
       end
 
       describe '#id' do
         subject { super().id }
-        it           { should == "my_scope"}
+        it           { is_expected.to eq("my_scope")}
       end
     end
 

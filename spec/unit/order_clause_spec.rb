@@ -10,16 +10,16 @@ describe ActiveAdmin::OrderClause do
   describe 'id_asc (existing column)' do
     let(:clause) { 'id_asc' }
 
-    it { should be_valid }
+    it { is_expected.to be_valid }
 
     describe '#field' do
       subject { super().field }
-      it { should == 'id' }
+      it { is_expected.to eq('id') }
     end
 
     describe '#order' do
       subject { super().order }
-      it { should == 'asc' }
+      it { is_expected.to eq('asc') }
     end
 
     specify '#to_sql prepends table name' do
@@ -30,16 +30,16 @@ describe ActiveAdmin::OrderClause do
   describe 'virtual_column_asc' do
     let(:clause) { 'virtual_column_asc' }
 
-    it { should be_valid }
+    it { is_expected.to be_valid }
 
     describe '#field' do
       subject { super().field }
-      it { should == 'virtual_column' }
+      it { is_expected.to eq('virtual_column') }
     end
 
     describe '#order' do
       subject { super().order }
-      it { should == 'asc' }
+      it { is_expected.to eq('asc') }
     end
 
     specify '#to_sql' do
@@ -50,16 +50,16 @@ describe ActiveAdmin::OrderClause do
   describe "hstore_col->'field'_desc" do
     let(:clause) { "hstore_col->'field'_desc" }
 
-    it { should be_valid }
+    it { is_expected.to be_valid }
 
     describe '#field' do
       subject { super().field }
-      it { should == "hstore_col->'field'" }
+      it { is_expected.to eq("hstore_col->'field'") }
     end
 
     describe '#order' do
       subject { super().order }
-      it { should == 'desc' }
+      it { is_expected.to eq('desc') }
     end
 
     it 'converts to sql' do
@@ -70,12 +70,12 @@ describe ActiveAdmin::OrderClause do
   describe '_asc' do
     let(:clause) { '_asc' }
 
-    it { should_not be_valid }
+    it { is_expected.not_to be_valid }
   end
 
   describe 'nil' do
     let(:clause) { nil }
 
-    it { should_not be_valid }
+    it { is_expected.not_to be_valid }
   end
 end

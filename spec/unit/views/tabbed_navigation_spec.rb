@@ -142,7 +142,7 @@ describe ActiveAdmin::Views::TabbedNavigation do
         p.add label: "Hidden Child", url: "/", priority: 10, if: proc{ false }
         p.add label: "Child", url: "/"
       end
-      expect(tabbed_navigation).to have(1).menu_items
+      expect(tabbed_navigation.menu_items.size).to eq(1)
     end
 
   end

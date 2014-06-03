@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Memory Leak" do
+describe "Memory Leak", :type => :request do
 
   def count_instances_of(klass)
     ObjectSpace.each_object(klass) { }

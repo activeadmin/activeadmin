@@ -10,7 +10,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
 
     subject { find_before_filter controller, :skip_sidebar! }
 
-    it { should set_skip_sidebar_to nil, for: controller }
+    it { is_expected.to set_skip_sidebar_to nil, for: controller }
   end
 
   describe '#skip_sidebar!' do
@@ -22,7 +22,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
 
     subject { find_before_filter controller, :skip_sidebar! }
 
-    it { should set_skip_sidebar_to true, for: controller }
+    it { is_expected.to set_skip_sidebar_to true, for: controller }
   end
 
   def find_before_filter(controller, filter)

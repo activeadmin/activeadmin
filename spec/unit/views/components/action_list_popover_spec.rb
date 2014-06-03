@@ -22,17 +22,17 @@ describe ActiveAdmin::Views::ActionListPopover do
 
     describe '#tag_name' do
       subject { super().tag_name }
-      it { should eql("ul") }
+      it { is_expected.to eql("ul") }
     end
 
     describe '#content' do
       subject { super().content }
-      it{ should include("<li><a href=\"#\">My First Great Action</a></li>") }
+      it{ is_expected.to include("<li><a href=\"#\">My First Great Action</a></li>") }
     end
 
     describe '#content' do
       subject { super().content }
-      it{ should include("<li><a href=\"http://www.google.com\">My Second Great Action</a></li>") }
+      it{ is_expected.to include("<li><a href=\"http://www.google.com\">My Second Great Action</a></li>") }
     end
 
   end

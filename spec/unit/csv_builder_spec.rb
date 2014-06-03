@@ -131,10 +131,10 @@ describe ActiveAdmin::CSVBuilder do
     end
   end
 
-  pending '#build'
-  pending '#exec_columns'
+  skip '#build'
+  skip '#exec_columns'
 
-  pending '#build_row' do
+  skip '#build_row' do
     it 'renders non-strings'
     it 'encodes values correctly'
     it 'passes custom encoding options to String#encode!'
