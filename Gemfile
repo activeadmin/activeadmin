@@ -13,6 +13,8 @@ gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an
 
 gem 'sass-rails', '4.0.3' if rails_version[0] == '4' # #3005, #3093
 
+gem 'inherited_resources', '~> 1.4.0'
+
 # Optional dependencies
 gem 'cancan'
 gem 'devise'
