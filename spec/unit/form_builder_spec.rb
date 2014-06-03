@@ -592,16 +592,16 @@ describe ActiveAdmin::FormBuilder do
                                     max_date: "2013-12-31" }
           end
         end
-        it 'should generate a datepicker text input with data min and max dates' do
-          expect(body).to have_tag("input", attributes: { type: "text",
-                                                            class: "datepicker",
-                                                            name: "post[created_at]",
-                                                            data: { datepicker_options: {
-                                                              minDate: "2013-10-18",
-                                                              maxDate: "2013-12-31" }.to_json }})
-        end
+      end
+
+      it 'should generate a datepicker text input with data min and max dates' do
+        expect(body).to have_tag("input", attributes: { type: "text",
+                                                        class: "datepicker",
+                                                        name: "post[created_at]",
+                                                        "data-datepicker-options" => CGI::escapeHTML({
+                                                          minDate: "2013-10-18",
+                                                          maxDate: "2013-12-31" }.to_json) })
       end
     end
   end
-
 end
