@@ -16,7 +16,7 @@ module ActiveAdmin
         end
       end
 
-      def self.undecorate_resource(resource)
+      def self.undecorate(resource)
         if resource.respond_to?(:decorated?) && resource.decorated?
           resource.model
         else

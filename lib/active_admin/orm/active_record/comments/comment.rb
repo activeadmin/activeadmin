@@ -16,11 +16,7 @@ module ActiveAdmin
 
     # @returns [String] The name of the record to use for the polymorphic relationship
     def self.resource_type(resource)
-      undecorate_resource(resource).class.name.to_s
-    end
-
-    def self.undecorate_resource(resource)
-      ActiveAdmin::ResourceController::Decorators.undecorate_resource(resource)
+      ResourceController::Decorators.undecorate(resource).class.name.to_s
     end
 
     # Postgres adapters won't compare strings to numbers (issue 34)
