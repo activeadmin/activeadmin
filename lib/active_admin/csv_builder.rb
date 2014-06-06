@@ -43,6 +43,7 @@ module ActiveAdmin
       receiver << CSV.generate_line(columns.map{ |c| encode c.name, options }, options)
 
       view_context.send(:collection).find_each do |resource|
+        resource = view_context.send :apply_decorator, resource
         receiver << CSV.generate_line(build_row(resource, columns, options), options)
       end
     end

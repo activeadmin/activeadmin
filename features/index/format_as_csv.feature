@@ -147,3 +147,22 @@ Feature: Format as CSV
     And I follow "CSV"
     And the encoding of the CSV file should be "SJIS"
 
+  Scenario: With decorator
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        decorate_with PostDecorator
+
+        csv do
+          column :id
+          column :title
+          column :decorator_method
+        end
+      end
+    """
+    And a post with the title "Hello World" exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    And I should download a CSV file for "posts" containing:
+    | Id  | Title       | Decorator method                         |
+    | \d+ | Hello World | A method only available on the decorator |
