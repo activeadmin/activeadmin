@@ -1,4 +1,4 @@
-# Customizing the Form
+# Forms
 
 Active Admin gives you complete control over the output of the form by creating
 a thin DSL on top of [Formtastic](https://github.com/justinfrench/formtastic):
@@ -19,8 +19,19 @@ ActiveAdmin.register Post do
 end
 ```
 
-Please view [the documentation](http://github.com/justinfrench/formtastic)
-for Formtastic to see all the wonderful things you can do.
+For more details, please see Formtastic's documentation.
+
+## Default
+
+Resources come with a default form defined as such:
+
+```ruby
+form do |f|
+  f.semantic_errors # shows errors on :base
+  f.inputs          # builds an input field for every attribute
+  f.actions         # adds the 'Submit' and 'Cancel' buttons
+end
+```
 
 ## Partials
 
@@ -93,7 +104,7 @@ expects the name of the column that will store the index of each child.
 
 ## Datepicker
 
-ActiveAdmin offers the `datepicker` input, which uses the [jQueryUI datepicker](http://jqueryui.com/datepicker/).
+ActiveAdmin offers the `datepicker` input, which uses the [jQuery UI datepicker](http://jqueryui.com/datepicker/).
 The datepicker input accepts any of the options available to the standard jQueryUI Datepicker. For example:
 
 ```ruby
@@ -110,8 +121,7 @@ To display a list of all validation errors:
 ```ruby
 form do |f|
   f.semantic_errors *f.object.errors.keys
-  f.inputs
-  f.actions
+  # ...
 end
 ```
 
