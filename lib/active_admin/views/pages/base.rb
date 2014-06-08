@@ -35,6 +35,8 @@ module ActiveAdmin
               text_node(favicon_link_tag(active_admin_application.favicon))
             end
 
+            meta name: 'viewport', content: 'width=device-width, initial-scale=1'
+
             text_node csrf_meta_tag
           end
         end

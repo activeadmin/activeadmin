@@ -2,6 +2,9 @@
 // Reset Away!
 @include global-reset;
 
+// Let's be responsive...
+@import "active_admin/responsive";
+
 // Partials
 @import "active_admin/typography";
 @import "active_admin/header";

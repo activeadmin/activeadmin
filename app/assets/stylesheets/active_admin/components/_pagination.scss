@@ -27,8 +27,16 @@
   margin-bottom: 5px;
   color: #b3bcc1;
   b { color: #5c6469; }
+
+  @include responsive {
+    float: none;
+  }
 }
 
 .download_links {
   float: left;
+
+  @include responsive {
+    float: none;
+  }
 }

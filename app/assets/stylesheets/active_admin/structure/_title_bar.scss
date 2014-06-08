@@ -15,10 +15,19 @@
     height: 50px;
     vertical-align: middle;
     display: table-cell;
+
+    @include responsive {
+      display: block;
+    }
   }
 
   #titlebar_right {
     text-align: right;
+
+    @include responsive {
+      text-align: left;
+      margin-top: 10px;
+    }
   }
 
   h2 {

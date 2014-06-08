@@ -1,0 +1,11 @@
+$active-admin-responsive: true !default;
+$active-admin-responsive-width: 480px !default;
+$active-admin-flip-table: true !default;
+
+@mixin responsive {
+  @if $active-admin-responsive {
+    @media only screen and (max-width: $active-admin-responsive-width) {
+      @content;
+    }
+  }
+}

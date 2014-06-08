@@ -13,6 +13,15 @@
   padding: 5px 0;
   z-index: 900;
 
+  @include responsive {
+    box-sizing: border-box;
+
+    display: block;
+    height:  auto;
+
+    padding: 10px 22px;
+  }
+
   h1 {
     display: table-cell;
     vertical-align: middle;
@@ -54,6 +63,10 @@
     margin: 0;
     padding: 0;
 
+    @include responsive {
+      display: block;
+    }
+
     & > li {
       display: inline-block;
       margin-right: 4px;
@@ -61,6 +74,10 @@
       margin-bottom: 5px;
       font-size: 1.0em;
       position: relative;
+
+      @include responsive {
+        display: block;
+      }
 
       a {
         text-decoration: none;
@@ -145,11 +162,19 @@
     padding-right: 26px;
     text-align: right;
 
+    @include responsive {
+      text-align: left;
+    }
+
     a { text-decoration: none; }
     a:hover { color: #fff; }
 
     li {
       display:inline;
+
+      @include responsive {
+        display: block;
+      }
     }
   }
 

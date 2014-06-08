@@ -26,6 +26,11 @@ form {
         font-size: 1.0em;
         font-weight: bold;
         color: $form-label-color;
+
+        @include responsive {
+          width: 100%;
+        }
+
         abbr {
           border: none;
           color:  $required-field-marker-color;
@@ -95,7 +100,20 @@ form {
         font-size: 100%;
         font-weight: normal;
         span { position:absolute; }
-        &.label label { position:absolute; }
+
+        @include responsive {
+          position: static;
+          width:    100%;
+        }
+
+        &.label label {
+          position:absolute;
+
+          @include responsive {
+            position: static;
+            float:    none;
+          }
+        }
       }
 
       &:not(.has_many_fields) ol {
@@ -103,6 +121,10 @@ form {
         width: 74%;
         margin: 0;
         padding: 0 0 0 20%;
+
+        @include responsive {
+          width: 80%;
+        }
 
         li {
           padding: 0;
@@ -132,6 +154,16 @@ form {
     &:focus {
       border: $border-width solid #99a2aa;
       @include shadow(0,0,4px,#99a2aa);
+    }
+
+    @include responsive {
+      width: calc(100% - #{$text-input-total-padding});
+    }
+  }
+
+  select {
+    @include responsive {
+      width: 100%;
     }
   }
 
@@ -326,4 +358,3 @@ form.filter_form {
   }
   a.clear_filters_btn { @include light-button; }
 }
-
