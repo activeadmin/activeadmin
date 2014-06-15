@@ -13,8 +13,12 @@ module ActiveAdmin
       @stylesheets = {}
     end
 
-    def register_javascript(name)
-      javascripts.add name
+    def register_javascript(names)
+      if names.is_a?Array
+        javascripts.merge names
+      else
+        javascripts.add names
+      end
     end
 
     def javascripts

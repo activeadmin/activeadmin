@@ -37,6 +37,12 @@ describe ActiveAdmin::AssetRegistration do
     expect(javascripts).to eq ["active_admin.js"].to_set
   end
 
+  it "should register an array of javascript files" do
+    register_javascript ["active_admin.js", 'active_admin_again.js' ]
+    expect(javascripts).to include "active_admin.js"
+    expect(javascripts).to include "active_admin_again.js"
+  end
+
   it "should clear all existing javascripts" do
     register_javascript "active_admin.js"
     expect(javascripts).to eq ["active_admin.js"].to_set
