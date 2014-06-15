@@ -1,8 +1,13 @@
 module ActiveAdmin
   module AssetRegistration
 
-    def register_stylesheet(path, options = {})
-      stylesheets[path] = options
+    def register_stylesheet(paths, options = {})
+      if paths.is_a? Array
+        paths.each { |path| stylesheets[path] = options } 
+      else
+        stylesheets[paths] = options
+      end
+      
     end
 
     def stylesheets
@@ -14,7 +19,7 @@ module ActiveAdmin
     end
 
     def register_javascript(names)
-      if names.is_a?Array
+      if names.is_a? Array
         javascripts.merge names
       else
         javascripts.add names

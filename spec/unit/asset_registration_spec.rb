@@ -14,6 +14,13 @@ describe ActiveAdmin::AssetRegistration do
     expect(stylesheets.keys.first).to eq "active_admin.css"
   end
 
+  it "should register an array of stylesheet files" do
+    register_stylesheet ["active_admin.css", 'active_admin_other.css' ]
+    expect(stylesheets.length).to eq 2
+    expect(stylesheets.keys).to include "active_admin.css"
+    expect(stylesheets.keys).to include "active_admin_other.css"
+  end
+
   it "should clear all existing stylesheets" do
     register_stylesheet "active_admin.css"
     expect(stylesheets.length).to eq 1
@@ -38,9 +45,9 @@ describe ActiveAdmin::AssetRegistration do
   end
 
   it "should register an array of javascript files" do
-    register_javascript ["active_admin.js", 'active_admin_again.js' ]
+    register_javascript ["active_admin.js", 'active_admin_other.js' ]
     expect(javascripts).to include "active_admin.js"
-    expect(javascripts).to include "active_admin_again.js"
+    expect(javascripts).to include "active_admin_other.js"
   end
 
   it "should clear all existing javascripts" do
