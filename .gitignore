@@ -5,6 +5,7 @@
 .Thumbs.db
 
 ## TEXTMATE
+*.tm_project
 *.tmproj
 tmtags
 
