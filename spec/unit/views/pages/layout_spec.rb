@@ -6,22 +6,17 @@ describe ActiveAdmin::Views::Pages::Layout do
   let(:helpers) do
     helpers = mock_action_view
 
-    allow(helpers).to receive(:active_admin_application).and_return(active_admin_application)
-    allow(helpers).to receive(:active_admin_config).and_return(double('Config', action_items?: nil, breadcrumb: nil, sidebar_sections?: nil))
-    allow(helpers).to receive(:active_admin_namespace).and_return(active_admin_namespace)
-    allow(helpers).to receive(:breadcrumb_links).and_return([])
-    allow(helpers).to receive(:content_for).and_return("")
-    allow(helpers).to receive(:csrf_meta_tag).and_return("")
-    allow(helpers).to receive(:current_active_admin_user).and_return(nil)
-    allow(helpers).to receive(:current_active_admin_user?).and_return(false)
-    allow(helpers).to receive(:current_menu).and_return(double('Menu', items: []))
-    allow(helpers).to receive(:flash).and_return({})
-    allow(helpers).to receive(:javascript_path).and_return("/dummy/")
-    allow(helpers).to receive(:link_to).and_return("")
-    allow(helpers).to receive(:render_or_call_method_or_proc_on).and_return("")
-    allow(helpers).to receive(:stylesheet_link_tag).and_return(double(html_safe: ""))
-    allow(helpers).to receive(:view_factory).and_return(view_factory)
-    allow(helpers).to receive(:params).and_return({controller: 'UsersController', action: 'edit'})
+    { active_admin_application:   active_admin_application,
+      active_admin_config:        double('Config', action_items?: nil, breadcrumb: nil, sidebar_sections?: nil),
+      active_admin_namespace:     active_admin_namespace,
+      csrf_meta_tag:              '',
+      current_active_admin_user:  nil,
+      current_active_admin_user?: false,
+      current_menu:               double('Menu', items: []),
+      params:                     {controller: 'UsersController', action: 'edit'}
+    }.each do |method, returns|
+      allow(helpers).to receive(method).and_return returns
+    end
 
     helpers
   end
