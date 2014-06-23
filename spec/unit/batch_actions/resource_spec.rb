@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::BatchActions::ResourceExtension do
 
@@ -12,7 +12,7 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
 
     it "should have the default action by default" do
       expect(resource.batch_actions.size).to eq 1
-      expect(resource.batch_actions.first.sym == :destroy).to be_true
+      expect(resource.batch_actions.first.sym == :destroy).to be_truthy
     end
 
   end

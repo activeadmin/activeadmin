@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Batch Actions Settings" do
   let(:app) { ActiveAdmin::Application.new }
@@ -8,42 +8,42 @@ describe "Batch Actions Settings" do
   it "should be disabled globally by default" do
     # Note: the default initializer would set it to true
 
-    expect(app.batch_actions).to be_false
-    expect(ns.batch_actions).to be_false
-    expect(post_resource.batch_actions_enabled?).to be_false
+    expect(app.batch_actions).to be_falsey
+    expect(ns.batch_actions).to be_falsey
+    expect(post_resource.batch_actions_enabled?).to be_falsey
   end
 
   it "should be settable to true" do
     app.batch_actions = true
-    expect(app.batch_actions).to be_true
+    expect(app.batch_actions).to be_truthy
   end
 
   it "should be an inheritable_setting" do
     app.batch_actions = true
-    expect(ns.batch_actions).to be_true
+    expect(ns.batch_actions).to be_truthy
   end
 
   it "should be settable at the namespace level" do
     app.batch_actions = true
     ns.batch_actions = false
 
-    expect(app.batch_actions).to be_true
-    expect(ns.batch_actions).to be_false
+    expect(app.batch_actions).to be_truthy
+    expect(ns.batch_actions).to be_falsey
   end
 
   it "should be settable at the resource level" do
-    expect(post_resource.batch_actions_enabled?).to be_false
+    expect(post_resource.batch_actions_enabled?).to be_falsey
     post_resource.batch_actions = true
-    expect(post_resource.batch_actions_enabled?).to be_true
+    expect(post_resource.batch_actions_enabled?).to be_truthy
   end
 
   it "should inherit the setting on the resource from the namespace" do
     ns.batch_actions = false
-    expect(post_resource.batch_actions_enabled?).to be_false
+    expect(post_resource.batch_actions_enabled?).to be_falsey
     expect(post_resource.batch_actions).to be_empty
 
     post_resource.batch_actions = true
-    expect(post_resource.batch_actions_enabled?).to be_true
+    expect(post_resource.batch_actions_enabled?).to be_truthy
     expect(post_resource.batch_actions).to_not be_empty
   end
 
@@ -51,11 +51,11 @@ describe "Batch Actions Settings" do
     ns.batch_actions = true
 
     post_resource.batch_actions = true
-    expect(post_resource.batch_actions_enabled?).to be_true
+    expect(post_resource.batch_actions_enabled?).to be_truthy
     expect(post_resource.batch_actions).to_not be_empty
 
     post_resource.batch_actions = nil
-    expect(post_resource.batch_actions_enabled?).to be_true # inherited from namespace
+    expect(post_resource.batch_actions_enabled?).to be_truthy # inherited from namespace
     expect(post_resource.batch_actions).to_not be_empty
   end
 end

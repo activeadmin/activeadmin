@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'active_admin/resource_collection'
 
 describe ActiveAdmin::ResourceCollection do
@@ -7,14 +7,14 @@ describe ActiveAdmin::ResourceCollection do
   let(:collection)  { ActiveAdmin::ResourceCollection.new }
   let(:resource)    { double resource_name: "MyResource" }
 
-  it { should respond_to :[]       }
-  it { should respond_to :add      }
-  it { should respond_to :each     }
-  it { should respond_to :has_key? }
-  it { should respond_to :keys     }
-  it { should respond_to :values   }
-  it { should respond_to :size     }
-  it { should respond_to :to_a     }
+  it { is_expected.to respond_to :[]       }
+  it { is_expected.to respond_to :add      }
+  it { is_expected.to respond_to :each     }
+  it { is_expected.to respond_to :has_key? }
+  it { is_expected.to respond_to :keys     }
+  it { is_expected.to respond_to :values   }
+  it { is_expected.to respond_to :size     }
+  it { is_expected.to respond_to :to_a     }
 
   it "should have no resources when new" do
     expect(collection).to be_empty
@@ -153,6 +153,6 @@ describe ActiveAdmin::ResourceCollection do
     end
   end
 
-  pending "specs for subclasses of Page and Resource"
+  skip "specs for subclasses of Page and Resource"
 
 end

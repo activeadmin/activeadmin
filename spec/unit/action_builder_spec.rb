@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'defining new actions from registration blocks' do
 
@@ -54,7 +54,7 @@ describe 'defining new actions from registration blocks' do
 
       subject { find_before_filter controller, :comment }
 
-      it { should set_page_title_to "My Awesome Comment", for: controller }
+      it { is_expected.to set_page_title_to "My Awesome Comment", for: controller }
     end
   end
 
@@ -104,7 +104,7 @@ describe 'defining new actions from registration blocks' do
 
       subject { find_before_filter controller, :comments }
 
-      it { should set_page_title_to "My Awesome Comments", for: controller }
+      it { is_expected.to set_page_title_to "My Awesome Comments", for: controller }
     end
   end
 
@@ -125,7 +125,7 @@ describe 'defining new actions from registration blocks' do
       expect(@actual).to eq expected
     end
 
-    failure_message_for_should do |filter|
+    failure_message do |filter|
       message = "expected before_filter to set the @page_title to '#{expected}', but was '#{@actual}'"
     end
   end

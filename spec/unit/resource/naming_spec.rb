@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-require 'spec_helper'
+require 'rails_helper'
 
 module ActiveAdmin
   describe Resource, "Naming" do
@@ -110,7 +110,7 @@ module ActiveAdmin
 
       [:==, :===, :eql?].each do |method|
         it "are equivalent when compared with #{method}" do
-          expect(resource_name.public_send(method, duplicate_resource_name)).to be_true
+          expect(resource_name.public_send(method, duplicate_resource_name)).to be_truthy
         end
       end
 

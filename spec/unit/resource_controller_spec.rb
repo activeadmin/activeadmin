@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::ResourceController do
 
@@ -198,12 +198,12 @@ describe Admin::PostsController, type: "controller" do
     subject { controller.collection }
 
     it {
-      pending # doesn't pass when running whole spec suite (WTF)
-      should be kind_of(ActiveRecord::Relation)
+      skip # doesn't pass when running whole spec suite (WTF)
+      is_expected.to be kind_of(ActiveRecord::Relation)
     }
 
     it "returns a collection of posts" do
-      pending # doesn't pass when running whole spec suite (WTF)
+      skip # doesn't pass when running whole spec suite (WTF)
       expect(subject.first).to be_kind_of(Post)
     end
 
@@ -212,12 +212,12 @@ describe Admin::PostsController, type: "controller" do
       before { config.decorator_class_name = '::PostDecorator' }
 
       it 'returns a PostDecorator' do
-        pending # doesn't pass when running whole spec suite (WTF)
+        skip # doesn't pass when running whole spec suite (WTF)
         expect(subject).to be_kind_of(PostDecorator::DecoratedEnumerableProxy)
       end
 
       it 'returns a PostDecorator that wraps the post' do
-        pending # doesn't pass when running whole spec suite (WTF)
+        skip # doesn't pass when running whole spec suite (WTF)
         expect(subject.first.title).to eq Post.first.title
       end
     end
@@ -236,13 +236,13 @@ describe Admin::PostsController, type: "controller" do
 
     describe "when params batch_action matches existing BatchAction" do
       it "should call the block with args" do
-        pending # dont know how to check if the block was called
+        skip # dont know how to check if the block was called
       end
     end
 
     describe "when params batch_action doesn't match a BatchAction" do
       it "should raise an error" do
-        pending # doesn't pass when running whole spec suite (WTF)
+        skip # doesn't pass when running whole spec suite (WTF)
 
         expect {
           post(:batch_action, batch_action: "derp", collection_selection: ["1"])
@@ -252,7 +252,7 @@ describe Admin::PostsController, type: "controller" do
 
     describe "when params batch_action is blank" do
       it "should raise an error" do
-        pending # doesn't pass when running whole spec suite (WTF)
+        skip # doesn't pass when running whole spec suite (WTF)
 
         expect {
           post(:batch_action, collection_selection: ["1"])

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Views::TableFor do
   describe "creating with the dsl" do
@@ -227,42 +227,42 @@ describe ActiveAdmin::Views::TableFor do
 
     context "when default" do
       let(:table_column){ build_column(:username) }
-      it { should be_sortable }
+      it { is_expected.to be_sortable }
 
       describe '#sort_key' do
         subject { super().sort_key }
-        it{ should == "username" }
+        it{ is_expected.to eq("username") }
       end
     end
 
     context "when a block given with no sort key" do
       let(:table_column){ build_column("Username"){ } }
-      it { should_not be_sortable }
+      it { is_expected.not_to be_sortable }
     end
 
     context "when a block given with a sort key" do
       let(:table_column){ build_column("Username", sortable: :username){ } }
-      it { should be_sortable }
+      it { is_expected.to be_sortable }
 
       describe '#sort_key' do
         subject { super().sort_key }
-        it{ should == "username" }
+        it{ is_expected.to eq("username") }
       end
     end
 
     context "when sortable: false with a symbol" do
       let(:table_column){ build_column(:username, sortable: false) }
-      it { should_not be_sortable }
+      it { is_expected.not_to be_sortable }
     end
 
     context "when sortable: false with a symbol and string" do
       let(:table_column){ build_column("Username", :username, sortable: false) }
-      it { should_not be_sortable }
+      it { is_expected.not_to be_sortable }
     end
 
     context "when :sortable column is an association" do
       let(:table_column){ build_column("Category", :category, Post) }
-      it { should_not be_sortable }
+      it { is_expected.not_to be_sortable }
     end
 
   end

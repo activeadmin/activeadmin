@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class Post
   ransacker :custom_searcher do
@@ -291,7 +291,7 @@ describe ActiveAdmin::Filters::ViewHelper do
   end # belongs to
 
   describe "has_and_belongs_to_many" do
-    pending "add HABTM models so this can be tested"
+    skip "add HABTM models so this can be tested"
   end
 
   describe "has_many :through" do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::ResourceController::Sidebars do
   let(:controller){ Admin::PostsController }
@@ -10,7 +10,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
 
     subject { find_before_filter controller, :skip_sidebar! }
 
-    it { should set_skip_sidebar_to nil, for: controller }
+    it { is_expected.to set_skip_sidebar_to nil, for: controller }
   end
 
   describe '#skip_sidebar!' do
@@ -22,7 +22,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
 
     subject { find_before_filter controller, :skip_sidebar! }
 
-    it { should set_skip_sidebar_to true, for: controller }
+    it { is_expected.to set_skip_sidebar_to true, for: controller }
   end
 
   def find_before_filter(controller, filter)
@@ -38,7 +38,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
       expect(@actual).to eq expected
     end
 
-    failure_message_for_should do |filter|
+    failure_message do |filter|
       message = "expected before_filter to set @skip_sidebar to '#{expected}', but was '#{@actual}'"
     end
   end

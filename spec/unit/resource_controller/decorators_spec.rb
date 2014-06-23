@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::ResourceController::Decorators do
   let(:controller_class) do
@@ -27,12 +27,12 @@ describe ActiveAdmin::ResourceController::Decorators do
 
     context 'with a decorator configured' do
       let(:decorator_class) { PostDecorator }
-      it { should be_kind_of(PostDecorator) }
+      it { is_expected.to be_kind_of(PostDecorator) }
     end
 
     context 'with no decorator configured' do
       let(:decorator_class) { nil }
-      it { should be_kind_of(Post) }
+      it { is_expected.to be_kind_of(Post) }
     end
   end
 
@@ -71,12 +71,12 @@ describe ActiveAdmin::ResourceController::Decorators do
 
     context 'when the form is not configured to decorate' do
       let(:decorate_form) { false }
-      it { should be_kind_of(Post) }
+      it { is_expected.to be_kind_of(Post) }
     end
 
     context 'when the form is configured to decorate' do
       let(:decorate_form) { true }
-      it { should be_kind_of(PostDecorator) }
+      it { is_expected.to be_kind_of(PostDecorator) }
     end
 
   end

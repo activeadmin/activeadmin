@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'active_admin/batch_actions/views/batch_action_popover'
 
 describe ActiveAdmin::BatchActions::BatchActionPopover do
@@ -24,22 +24,22 @@ describe ActiveAdmin::BatchActions::BatchActionPopover do
 
     describe '#tag_name' do
       subject { super().tag_name }
-      it { should eql("ul") }
+      it { is_expected.to eql("ul") }
     end
 
     describe '#content' do
       subject { super().content }
-      it{ should include("class=\"batch_action\" data-action=\"action_1\"") }
+      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_1\"") }
     end
 
     describe '#content' do
       subject { super().content }
-      it{ should include("class=\"batch_action\" data-action=\"action_2\"") }
+      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_2\"") }
     end
 
     describe '#content' do
       subject { super().content }
-      it{ should include("class=\"batch_action\" data-action=\"action_3\"") }
+      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_3\"") }
     end
 
   end

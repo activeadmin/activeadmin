@@ -34,7 +34,7 @@ end
 Given /^"([^"]*)" requests a password reset with token "([^"]*)"( but it expires)?$/ do |email, token, expired|
   visit new_admin_user_password_path
   fill_in 'Email', with: email
-  Devise.stub(:friendly_token){ token }
+  allow(Devise).to receive(:friendly_token).and_return(token)
   click_button "Reset My Password"
 
   AdminUser.where(email: email).first.update_attribute :reset_password_sent_at, 1.month.ago if expired
