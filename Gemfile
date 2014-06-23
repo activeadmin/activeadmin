@@ -29,15 +29,15 @@ group :development do
   # Debugging
   gem 'pry'                # Easily debug from your console with `binding.pry`
   gem 'better_errors'      # Web UI to debug exceptions. Go to /__better_errors to access the latest one
-  gem 'binding_of_caller'  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
+  gem 'binding_of_caller', platforms: [:ruby]  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 
   # Performance
-  gem 'rack-mini-profiler' # Inline app profiler. See ?pp=help for options.
-  gem 'flamegraph'         # Flamegraph visualiztion: ?pp=flamegraph
+  gem 'rack-mini-profiler', platforms: [:ruby] # Inline app profiler. See ?pp=help for options.
+  gem 'flamegraph', platforms: [:ruby]         # Flamegraph visualiztion: ?pp=flamegraph
 
   # Documentation
-  gem 'yard', github: 'lsegal/yard' # Documentation generator (until lsegal/yard#765 is in a release)
-  gem 'redcarpet'          # Markdown implementation (for yard)
+  gem 'yard', github: 'lsegal/yard', platforms: [:ruby] # Documentation generator (until lsegal/yard#765 is in a release)
+  gem 'redcarpet', platforms: [:ruby]          # Markdown implementation (for yard)
 end
 
 group :test do
@@ -54,5 +54,7 @@ group :test do
   gem 'rspec', '~> 2.99'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem 'sqlite3'
+  gem 'sqlite3', platforms: [:ruby]
+  gem 'activerecord-jdbcsqlite3-adapter', platforms: [:jruby]
+
 end

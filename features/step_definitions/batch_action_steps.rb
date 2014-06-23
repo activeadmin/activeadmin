@@ -28,7 +28,8 @@ When /^I toggle the collection selection$/ do
 end
 
 Then /^I should see that the batch action button is disabled$/ do
-  expect(page).to have_css ".batch_actions_selector .dropdown_menu_button.disabled"
+  dropdown = page.find(".batch_actions_selector .dropdown_menu_button")
+  expect(dropdown[:class]).to eq('disabled dropdown_menu_button')
 end
 
 Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe, type|
