@@ -11,7 +11,7 @@ $ ->
     to_remove = $(@).closest 'fieldset'
     recompute_positions parent
 
-    parent.trigger 'has_many_remove:before', [ to_remove ]
+    parent.trigger 'has_many_remove:before', [to_remove]
     to_remove.remove()
 
   # Provides before and after creation hooks:
@@ -28,20 +28,19 @@ $ ->
   #
   $(document).on 'click', 'a.button.has_many_add', (e)->
     e.preventDefault()
-    elem   = $(@)
-    parent = elem.closest '.has_many_container'
+    parent = $(@).closest '.has_many_container'
     parent.trigger before_add = $.Event 'has_many_add:before'
 
     unless before_add.isDefaultPrevented()
       index = parent.data('has_many_index') || parent.children('fieldset').length - 1
       parent.data has_many_index: ++index
 
-      regex = new RegExp elem.data('placeholder'), 'g'
-      html  = elem.data('html').replace regex, index
+      regex = new RegExp $(@).data('placeholder'), 'g'
+      html  = $(@).data('html').replace regex, index
 
       fieldset = $(html).insertBefore(@)
       recompute_positions parent
-      parent.trigger 'has_many_add:after', [ fieldset ]
+      parent.trigger 'has_many_add:after', [fieldset]
 
   $(document).on 'change','.has_many_container[data-sortable] :input[name$="[_destroy]"]', ->
     recompute_positions $(@).closest '.has_many'
@@ -50,7 +49,6 @@ $ ->
   $(document).on 'has_many_add:after', '.has_many_container', init_sortable
 
 
-# Helpers
 init_sortable = ->
   elems = $('.has_many_container[data-sortable]:not(.ui-sortable)')
   elems.sortable \
@@ -65,11 +63,10 @@ recompute_positions = (parent)->
   position   = 0
 
   parent.children('fieldset').each ->
-    fieldset = $(@)
-    # when looking for inputs, we ignore inputs from the possibly nested inputs
-    # so, when defining your has_many, make sure to keep the sortable input at the root of the has_many block
-    destroy_input  = fieldset.find "> ol > .input > :input[name$='[_destroy]']"
-    sortable_input = fieldset.find "> ol > .input > :input[name$='[#{input_name}]']"
+    # We ignore nested inputs, so when defining your has_many, be sure to keep
+    # your sortable input at the root of the has_many block.
+    destroy_input  = $(@).find "> ol > .input > :input[name$='[_destroy]']"
+    sortable_input = $(@).find "> ol > .input > :input[name$='[#{input_name}]']"
 
     if sortable_input.length
       sortable_input.val if destroy_input.is ':checked' then '' else position++
