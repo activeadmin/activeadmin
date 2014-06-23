@@ -139,9 +139,6 @@ RSpec.configure do |c|
   c.include Devise::TestHelpers, type: :controller
 end
 
-# Ensure this is defined for Ruby 1.8
-module MiniTest; class Assertion < Exception; end; end
-
 RSpec::Matchers.define :have_tag do |*args|
 
   match_unless_raises Test::Unit::AssertionFailedError do |response|
