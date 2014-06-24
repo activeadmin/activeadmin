@@ -34,7 +34,7 @@ module ActiveAdmin
       build_menus!
 
       @menus[menu_name] or
-        raise NoMenuError, "No menu by the name of #{menu_name.inspect} in availble menus: #{@menus.keys.join(", ")}"
+        raise NoMenuError, "No menu by the name of #{menu_name.inspect} in available menus: #{@menus.keys.join(", ")}"
     end
 
     # Add callbacks that will be run when the menu is going to be built. This
