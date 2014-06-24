@@ -135,7 +135,7 @@ end
 # or else it whines.
 require 'integration_example_group'
 RSpec.configure do |c|
-  c.include RSpec::Rails::IntegrationExampleGroup, example_group: { file_path: /\bspec\/requests\// }
+  c.include RSpec::Rails::IntegrationExampleGroup, file_path: /\bspec\/requests\//
   c.include Devise::TestHelpers, type: :controller
 end
 
