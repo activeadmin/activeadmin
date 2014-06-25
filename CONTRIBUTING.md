@@ -73,7 +73,10 @@ script/use_rails 4.0.0
 RAILS=4.0.0 script/local server
 ```
 
-You should now be able to open <http://localhost:3000/admin> in your browser.
+You should now be able to open <http://localhost:3000/admin> in your browser. You can log in using:
+
+	User: admin@example.com
+	Password: password
 
 If you need to perform any other commands on the test application, use the
 `local` script. For example to boot the rails console:
