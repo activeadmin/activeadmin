@@ -190,25 +190,29 @@ describe Admin::PostsController, type: "controller" do
 
   describe 'retreiving the resource collection' do
     let(:controller){ Admin::PostsController.new }
+    let(:config) { controller.class.active_admin_config }
     before do
       Post.create!(title: "An incledibly unique Post Title") if Post.count == 0
       controller.class_eval { public :collection }
+      config.instance_variable_set "@decorator_class_name", nil 
+      request = double('Request', :format => "application/json")
+      allow(controller).to receive(:params){{}}
+      allow(controller).to receive(:request){request}
     end
 
     subject { controller.collection }
 
     it {
-      skip # doesn't pass when running whole spec suite (WTF)
-      is_expected.to be kind_of(ActiveRecord::Relation)
+      # skip # doesn't pass when running whole spec suite (WTF)
+       expect(subject).to be_kind_of(ActiveRecord::Relation)
     }
 
     it "returns a collection of posts" do
-      skip # doesn't pass when running whole spec suite (WTF)
+      # skip # doesn't pass when running whole spec suite (WTF)
       expect(subject.first).to be_kind_of(Post)
     end
 
     context 'with a decorator' do
-      let(:config) { controller.class.active_admin_config }
       before { config.decorator_class_name = '::PostDecorator' }
 
       it 'returns a PostDecorator' do
@@ -217,7 +221,7 @@ describe Admin::PostsController, type: "controller" do
       end
 
       it 'returns a PostDecorator that wraps the post' do
-        skip # doesn't pass when running whole spec suite (WTF)
+        # skip # doesn't pass when running whole spec suite (WTF)
         expect(subject.first.title).to eq Post.first.title
       end
     end
