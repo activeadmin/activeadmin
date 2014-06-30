@@ -219,5 +219,13 @@ describe ActiveAdmin::Views::StatusTag do
       end
     end
 
+    context "when status set to a Fixnum" do
+      subject { status_tag(1) }
+
+      describe '#content' do
+        subject { super().content }
+        it     { is_expected.to eq '1' }
+      end
+    end
   end # describe "#status_tag"
 end

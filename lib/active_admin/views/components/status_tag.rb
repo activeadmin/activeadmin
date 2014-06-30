@@ -36,9 +36,9 @@ module ActiveAdmin
         type = args[1]
         label = options.delete(:label)
         classes = options.delete(:class)
-        status = convert_to_boolean_status(status) 
+        status = convert_to_boolean_status(status)
 
-        content = label || status.titleize if status
+        content = label || status.to_s.titleize if status
 
         super(content, options)
 
@@ -60,7 +60,7 @@ module ActiveAdmin
       end
 
       def status_to_class(status)
-        status.titleize.gsub(/\s/, '').underscore
+        status.to_s.titleize.gsub(/\s/, '').underscore
       end
     end
   end
