@@ -66,61 +66,52 @@ module ActiveAdmin
     end
 
     context "with belongs to config" do
-      let!(:post_registration) { namespace.register Post }
-      let!(:page_registration) {
+      let!(:post_config) { namespace.register Post }
+      let!(:page_config) {
         namespace.register_page page_name do
           belongs_to :post
         end
       }
 
-      subject { page_registration }
+      it "configures page with belongs_to" do
+        expect(page_config.belongs_to?).to be true
+      end
 
-      its(:belongs_to?)          { should be_true }
-      its(:navigation_menu_name) { should eq(:post) }
+      it "sets navigation menu to parent" do
+        expect(page_config.navigation_menu_name).to eq :post
+      end
 
-      describe "#belongs_to_config" do
-        subject { page_registration.belongs_to_config }
+      it "builds a belongs_to relationship" do
+        belongs_to = page_config.belongs_to_config
 
-        it              { should_not be_nil }
-        its(:target)    { should eq(post_registration) }
-        its(:owner)     { should eq(page_registration) }
-        its(:optional?) { should be_false }
+        expect(belongs_to.target).to eq(post_config)
+        expect(belongs_to.owner).to eq(page_config)
+        expect(belongs_to.optional?).to be_falsy
       end
 
       it "forwards belongs_to call to controller" do
         options = { :optional => true }
-        subject.controller.should_receive(:belongs_to).with(:post, options)
-        subject.belongs_to :post, options
+        expect(page_config.controller).to receive(:belongs_to).with(:post, options)
+
+        page_config.belongs_to :post, options
       end
     end # context "with belongs to config" do
 
     context "with optional belongs to config" do
-      let!(:post_registration) { namespace.register Post }
-      let!(:page_registration) {
+      let!(:post_config) { namespace.register Post }
+      let!(:page_config) {
         namespace.register_page page_name do
           belongs_to :post, :optional => true
         end
       }
 
-      subject { page_registration }
-
-      its(:navigation_menu_name) { should eq(:default) }
-
-      describe "#belongs_to_config" do
-        subject { page_registration.belongs_to_config }
-
-        it              { should_not be_nil }
-        its(:target)    { should eq(post_registration) }
-        its(:owner)     { should eq(page_registration) }
-        its(:optional?) { should be_true }
+      it "does not override default navigation menu" do
+        expect(page_config.navigation_menu_name).to eq(:default)
       end
     end # context "with optional belongs to config" do
 
-    context "without belongs to config" do
-      subject { config }
-
-      its(:belongs_to?)       { should be_false }
-      its(:belongs_to_config) { should be_nil }
-    end # context "without belongs to config" do
+    it "has no belongs_to by default" do
+      expect(config.belongs_to?).to be_falsy
+    end
   end
 end
