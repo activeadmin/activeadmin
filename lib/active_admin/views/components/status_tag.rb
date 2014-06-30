@@ -60,7 +60,12 @@ module ActiveAdmin
       end
 
       def status_to_class(status)
-        status.to_s.titleize.gsub(/\s/, '').underscore
+        case status
+        when String, Symbol
+          status.to_s.titleize.gsub(/\s/, '').underscore
+        else
+          ''
+        end
       end
     end
   end
