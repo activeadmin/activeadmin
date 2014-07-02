@@ -8,7 +8,7 @@ Here are a few common configurations:
 Active Admin requires two settings to authenticate and use the current user
 within your application.
 
-+ the method controllers use to force authentication
++ the method controllers used to force authentication
 
 ```ruby
 config.authentication_method = :authenticate_admin_user!
