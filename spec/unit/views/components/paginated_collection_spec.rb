@@ -44,6 +44,13 @@ describe ActiveAdmin::Views::PaginatedCollection do
       }.to raise_error(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
     end
 
+    it 'should preserve custom query params' do
+      allow(view.request).to receive(:query_parameters).and_return page: '1', something: 'else'
+      expect(pagination).to include '/admin/posts.csv?page=1&amp;something=else'
+      expect(pagination).to include '/admin/posts.xml?page=1&amp;something=else'
+      expect(pagination).to include '/admin/posts.json?page=1&amp;something=else'
+    end
+
     context "when specifying :param_name option" do
       let(:collection) do
         posts = 10.times.map{ Post.new }

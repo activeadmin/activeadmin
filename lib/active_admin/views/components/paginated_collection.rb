@@ -73,14 +73,14 @@ module ActiveAdmin
           else
             build_download_format_links unless download_links == false
           end
-
         end
       end
 
       def build_pagination
         options = {theme: 'active_admin'}
         options[:param_name] = @param_name if @param_name
-        text_node paginate(collection, options.symbolize_keys)
+
+        text_node paginate collection, options
       end
 
       include ::ActiveAdmin::Helpers::Collection
