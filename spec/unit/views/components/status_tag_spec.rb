@@ -219,5 +219,20 @@ describe ActiveAdmin::Views::StatusTag do
       end
     end
 
+    context "when status is set to a Fixnum" do
+      subject { status_tag(42) }
+
+      describe '#content' do
+        subject { super().content }
+        it     { is_expected.to eq '42' }
+      end
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it {
+          is_expected.not_to include('42')
+        }
+      end
+    end
   end # describe "#status_tag"
 end
