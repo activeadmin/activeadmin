@@ -151,6 +151,10 @@ describe ActiveAdmin::CSVBuilder do
       it "should have humanize_name option set" do
         expect(column.options[:humanize_name]).to be_false
       end
+
+      it "should have a name of 'my_title'" do
+        expect(column.name).to eq "my_title"
+      end
     end
   end
 
