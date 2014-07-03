@@ -32,20 +32,16 @@ describe ActiveAdmin::Views::PaginatedCollection do
       allow(collection).to receive(:group_values) { [] }   unless collection.respond_to? :group_values
     end
 
-    context "when specifying collection" do
-      let(:pagination) do
-        paginated_collection(collection)
-      end
+    let(:pagination){ paginated_collection collection }
 
-      it "should set :collection as the passed in collection" do
-        expect(pagination.find_by_class('pagination_information').first.content).to eq "Displaying <b>all 3</b> posts"
-      end
+    it "should set :collection as the passed in collection" do
+      expect(pagination.find_by_class('pagination_information').first.content).to eq "Displaying <b>all 3</b> posts"
+    end
 
-      it "should raise error if collection has no pagination scope" do
-        expect {
-          paginated_collection([Post.new, Post.new])
-        }.to raise_error(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
-      end
+    it "should raise error if collection has no pagination scope" do
+      expect {
+        paginated_collection([Post.new, Post.new])
+      }.to raise_error(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
     end
 
     context "when specifying :param_name option" do
@@ -122,8 +118,6 @@ describe ActiveAdmin::Views::PaginatedCollection do
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
-      let(:pagination) { paginated_collection(collection) }
-
       it "should use 'post' as the collection name when there is no I18n translation" do
         expect(pagination.find_by_class('pagination_information').first.content).to eq "Displaying <b>1</b> post"
       end
@@ -135,8 +129,6 @@ describe ActiveAdmin::Views::PaginatedCollection do
     end
 
     context "when omitting :entry_name with multiple items" do
-      let(:pagination) { paginated_collection(collection) }
-
       it "should use 'posts' as the collection name when there is no I18n translation" do
         expect(pagination.find_by_class('pagination_information').first.content).to eq "Displaying <b>all 3</b> posts"
       end
@@ -153,8 +145,6 @@ describe ActiveAdmin::Views::PaginatedCollection do
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
-      let(:pagination) { paginated_collection(collection) }
-
       it "should display 'No entries found'" do
         expect(pagination.find_by_class('pagination_information').first.content).to eq "No entries found"
       end
@@ -165,8 +155,6 @@ describe ActiveAdmin::Views::PaginatedCollection do
         %w{Foo Foo Bar}.each {|title| Post.create(title: title) }
         Post.select(:title).group(:title).page(1).per(5)
       end
-
-      let(:pagination) { paginated_collection(collection) }
 
       it "should display proper message (including number and not hash)" do
         expect(pagination.find_by_class('pagination_information').first.content).to eq "Displaying <b>all 2</b> posts"
@@ -179,8 +167,6 @@ describe ActiveAdmin::Views::PaginatedCollection do
         Post.select(:title).group(:title).page(1).per(2)
       end
 
-      let(:pagination) { paginated_collection(collection) }
-
       it "should display proper message (including number and not hash)" do
         expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')).
           to eq "Displaying posts <b>1 - 2</b> of <b>3</b> in total"
@@ -191,8 +177,6 @@ describe ActiveAdmin::Views::PaginatedCollection do
       let(:collection) do
         Kaminari.paginate_array([Post.new] * 81).page(3).per(30)
       end
-
-      let(:pagination) { paginated_collection(collection) }
 
       it "should show the proper item counts" do
         expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')).
