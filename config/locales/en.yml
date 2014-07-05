@@ -117,3 +117,5 @@ en:
       block: "List"
       grid: "Grid"
       blog: "Blog"
+    datepickers:
+      date_format: "mm/dd/yy"
