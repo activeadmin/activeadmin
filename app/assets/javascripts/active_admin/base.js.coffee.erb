@@ -1,10 +1,16 @@
 #= require jquery
+<% if Gem.loaded_specs["jquery-ui-rails"].version >= Gem::Version.create("5.0.0") %>
+#= require jquery-ui/datepicker
+#= require jquery-ui/dialog
+#= require jquery-ui/sortable
+#= require jquery-ui/widget
+<% else %>
 #= require jquery.ui.datepicker
 #= require jquery.ui.dialog
 #= require jquery.ui.sortable
 #= require jquery.ui.widget
 #= require jquery_ujs
-#
+<% end %>
 #= require_self
 #= require_tree ./lib
 #= require_tree ./ext
