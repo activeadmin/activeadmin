@@ -93,4 +93,20 @@ nl:
         sign_in: "Meld u aan"
         forgot_your_password: "Wachtwoord vergeten?"
         sign_in_with_omniauth_provider: "Log in met %{provider}"
-
+# Locales for the kaminari gem
+  views:
+    pagination:
+      first: "&laquo; Eerste"
+      last: "Laatste &raquo;"
+      previous: "&lsaquo; Vorige"
+      next: "Volgende &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Geen %{entry_name} gevonden"
+          one: "Toon <b>1</b> %{entry_name}"
+          other: "Toon <b>alle %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Toon %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> van <b>%{total}</b> in totaal"
