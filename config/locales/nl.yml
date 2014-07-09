@@ -180,3 +180,13 @@ nl:
       blank: "is afwezig"
       'null': "is null"
       not_null: "is niet null"
+# Locales for the formtastic gem
+  formtastic:
+    :yes: 'Ja'
+    :no: 'Nee'
+    :create: 'Creëer %{model}'
+    :update: 'Wijzig %{model}'
+    :submit: 'Verzend %{model}'
+    :cancel: 'Annuleer %{model}'
+    :reset: 'Herstel %{model}'
+    :required: 'verplicht'
