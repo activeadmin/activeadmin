@@ -4,8 +4,8 @@
   <% scope = Devise::Mapping.find_scope!(resource_name) %>
   <%= active_admin_form_for(resource, :as => resource_name, :url => send(:"#{scope}_session_path"), :html => { :id => "session_new" }) do |f|
     f.inputs do
-      resource.class.authentication_keys.each { |key| 
-        f.input key, :label => t('active_admin.devise.'+key.to_s+'.title'), :input_html => {:autofocus => true}
+      resource.class.authentication_keys.each_with_index { |key, index|
+        f.input key, :label => t('active_admin.devise.'+key.to_s+'.title'), :input_html => {:autofocus => index.zero?}
       }
       f.input :password, :label => t('active_admin.devise.password.title')
       f.input :remember_me, :label => t('active_admin.devise.login.remember_me'), :as => :boolean if devise_mapping.rememberable?
