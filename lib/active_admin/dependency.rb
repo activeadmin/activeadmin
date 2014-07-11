@@ -5,12 +5,12 @@ module ActiveAdmin
     # Provides a clean interface to check for gem dependencies at runtime.
     #
     # ActiveAdmin::Dependency.draper
-    # => #<Gem::Specification:0x3ffb89c49ae0 draper-1.2.1>
+    # => #<ActiveAdmin::Dependency::Matcher for draper 1.2.1>
     #
     # ActiveAdmin::Dependency.draper?
     # => true
     #
-    # ActiveAdmin::Dependency.draper? '>= 1.1.0'
+    # ActiveAdmin::Dependency.draper? '>= 1.5.0'
     # => false
     #
     # ActiveAdmin::Dependency.draper? '= 1.2.1'
@@ -28,34 +28,65 @@ module ActiveAdmin
     # ActiveAdmin::Dependency.devise!
     # -> ActiveAdmin::Dependency::Error: To use devise you need to specify it in your Gemfile.
     #
+    #
+    # All but the pessimistic operator (~>) can also be run using Ruby's comparison syntax.
+    #
+    # ActiveAdmin::Dependency.rails >= '3.2.18'
+    # => true
+    #
+    # Which is especially useful if you're looking up a gem with dashes in the name.
+    #
+    # ActiveAdmin::Dependency['jquery-ui-rails'] < 5
+    # => false
+    #
     def self.method_missing(name, *args)
       if name[-1] == '?'
-        Matcher.match? name[0...-1], args
+        Matcher.new(name[0..-2]).match? args
       elsif name[-1] == '!'
-        Matcher.match! name[0...-1], args
+        Matcher.new(name[0..-2]).match! args
       else
-        Matcher.find_spec name.to_s
+        Matcher.new name.to_s
       end
     end
 
-    module Matcher
-      def self.find_spec(name)
-        Gem.loaded_specs[name]
+    def self.[](name)
+      Matcher.new name.to_s
+    end
+
+    class Matcher
+      def initialize(name)
+        @name, @spec = name, Gem.loaded_specs[name]
       end
 
-      def self.match?(name, reqs)
-        spec = find_spec name
-        !!spec && Gem::Requirement.create(reqs).satisfied_by?(spec.version)
+      def match?(*reqs)
+        !!@spec && Gem::Requirement.create(reqs).satisfied_by?(@spec.version)
       end
 
-      def self.match!(name, reqs)
-        unless find_spec name
-          raise Error, "To use #{name} you need to specify it in your Gemfile."
+      def match!(*reqs)
+        unless @spec
+          raise Error, "To use #{@name} you need to specify it in your Gemfile."
         end
 
-        unless match? name, reqs
-          raise Error, "You provided #{name} #{find_spec(name).version} but we need: #{reqs.join ', '}."
+        unless match? reqs
+          raise Error, "You provided #{@spec.name} #{@spec.version} but we need: #{reqs.join ', '}."
         end
+      end
+
+      include Comparable
+
+      def <=>(other)
+        if @spec
+          @spec.version <=> Gem::Version.create(other)
+        else
+          # you'd otherwise get an unhelpful error message:
+          # ArgumentError: comparison of ActiveAdmin::Dependency::Matcher with 2 failed
+          raise Error, "To use #{@name} you need to specify it in your Gemfile."
+        end
+      end
+
+      def inspect
+        info = @spec ? "#{@spec.name} #{@spec.version}" : '(missing)'
+        "<ActiveAdmin::Dependency::Matcher for #{info}>"
       end
     end
 
