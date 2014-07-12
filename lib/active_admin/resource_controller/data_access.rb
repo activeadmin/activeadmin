@@ -129,9 +129,12 @@ module ActiveAdmin
       # Builds a new resource. This method uses the method_for_build provided
       # by Inherited Resources.
       #
+      # Note that public_send can't be used here w/ Rails 3.2 & a belongs_to
+      # config, or you'll get undefined method `build' for []:Array.
+      #
       # @returns [ActiveRecord::Base] An un-saved active record base object
       def build_new_resource
-        scoped_collection.public_send method_for_build, *resource_params
+        scoped_collection.send method_for_build, *resource_params
       end
 
       # Calls all the appropriate callbacks and then creates the new resource.
