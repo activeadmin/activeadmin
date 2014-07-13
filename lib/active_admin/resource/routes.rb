@@ -69,23 +69,17 @@ module ActiveAdmin
 
         # @return params to pass to instance path
         def route_instance_params(instance)
-          if nested?
-            belongs_to_names.reverse.reduce([instance]) do |arr,name| 
-              arr + [arr.last.public_send(name)]
-            end.map{|i| i.to_param }.reverse
-          else
-            instance.to_param
-          end
+          belongs_to_names.reverse.reduce([instance]) do |arr,name| 
+            arr + [arr.last.public_send(name)]
+          end.map{|i| i.to_param }.reverse
         end
 
         def route_collection_params(params)
-          if nested?
-            belongs_to_names.map{|name| params[:"#{name}_id"]}
-          end
+          belongs_to_names.map{|name| params[:"#{name}_id"]}
         end
 
         def nested?
-          resource.belongs_to? && !required_belongs_to.empty?
+          !required_belongs_to.empty?
         end
 
         def belongs_to_names
@@ -93,7 +87,11 @@ module ActiveAdmin
         end
 
         def required_belongs_to
-          resource.belongs_to_config.select{|bc| bc.required?}
+          if resource.belongs_to?
+            resource.belongs_to_config.select{|bc| bc.required?} 
+          else
+            []
+          end
         end
 
         def routes
