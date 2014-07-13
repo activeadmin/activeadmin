@@ -48,6 +48,9 @@ module NavigationHelpers
     when /^the last post's show page$/
       admin_post_path(Post.last)
 
+    when /^the last author's last post's taggings$/
+      admin_user_post_taggings_path(User.last, Post.where(author_id: User.last.id).last)
+
     when /^the last post's edit page$/
       edit_admin_post_path(Post.last)
 

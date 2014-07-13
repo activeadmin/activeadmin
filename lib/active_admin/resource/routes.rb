@@ -75,7 +75,7 @@ module ActiveAdmin
 
           route << options[:action]           # "edit" or "new"
           route << resource.route_prefix      # "admin"
-          route << belongs_to_name if nested? # "category"
+          route += belongs_to_names
           route << resource_path_name         # "posts" or "post"
           route << suffix                     # "path" or "index path"
 
@@ -85,25 +85,25 @@ module ActiveAdmin
 
         # @return params to pass to instance path
         def route_instance_params(instance)
-          if nested?
-            [instance.public_send(belongs_to_name).to_param, instance.to_param]
-          else
-            instance.to_param
-          end
+          belongs_to_names.reverse.reduce([instance]) do |arr,name| 
+            arr + [arr.last.public_send(name)]
+          end.map{|i| i.to_param }.reverse
         end
 
         def route_collection_params(params)
-          if nested?
-            params[:"#{belongs_to_name}_id"]
+          belongs_to_names.map{|name| params[:"#{name}_id"]}
+        end
+
+        def belongs_to_names
+          required_belongs_to.map{|bc| bc.target.resource_name.singular }
+        end
+
+        def required_belongs_to
+          if resource.belongs_to?
+            resource.belongs_to_config.select{|bc| bc.required?} 
+          else
+            []
           end
-        end
-
-        def nested?
-          resource.belongs_to? && resource.belongs_to_config.required?
-        end
-
-        def belongs_to_name
-          resource.belongs_to_config.target.resource_name.singular if nested?
         end
 
         def routes

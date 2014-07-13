@@ -1,9 +1,9 @@
-require 'rails_helper' 
+require 'rails_helper'
 
 module ActiveAdmin
   describe Resource::Routes do
 
-    after :all do
+    after do
       load_defaults!
       reload_routes!
     end
@@ -70,6 +70,35 @@ module ActiveAdmin
 
         it "should nest the instance path" do
           expect(config.route_instance_path(post)).to eq "/admin/categories/1/posts/3"
+        end
+      end
+
+      context "when the resources belongs to two other resources" do
+        let! :config do
+          ActiveAdmin.register Tagging do
+            belongs_to :category
+            belongs_to :post
+          end
+        end
+
+        let :tagging do
+          Tagging.new do |t|
+            t.id = 4
+            t.post = Post.new do |p|
+              p.id = 3
+              p.category = Category.new{ |c| c.id = 1 }
+            end
+          end
+        end
+
+        before{ reload_routes! }
+
+        it "should nest the collection path" do
+          expect(config.route_collection_path(category_id: 1, post_id: 3)).to eq "/admin/categories/1/posts/3/taggings"
+        end
+
+        it "should nest the instance path" do
+          expect(config.route_instance_path(tagging)).to eq "/admin/categories/1/posts/3/taggings/4"
         end
       end
     end
