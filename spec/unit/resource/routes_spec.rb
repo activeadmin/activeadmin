@@ -68,6 +68,35 @@ module ActiveAdmin
           expect(config.route_instance_path(post)).to eq "/admin/categories/1/posts/3"
         end
       end
+
+      context "when the resources belongs to two other resources" do
+        let! :config do
+          ActiveAdmin.register PostComment do
+            belongs_to :category
+            belongs_to :post
+          end
+        end
+
+        let :comment do
+          PostComment.new do |c|
+            c.id = 4
+            c.post = Post.new do |p|
+              p.id = 3
+              p.category = Category.new{ |c| c.id = 1 }
+            end
+          end
+        end
+
+        before{ reload_routes! }
+
+        it "should nest the collection path" do
+          expect(config.route_collection_path(category_id: 1, post_id: 3)).to eq "/admin/categories/1/posts/3/post_comments"
+        end
+
+        it "should nest the instance path" do
+          expect(config.route_instance_path(comment)).to eq "/admin/categories/1/posts/3/post_comments/4"
+        end
+      end
     end
   end
 end
