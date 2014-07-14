@@ -13,7 +13,7 @@ end
 DEFAULT_RAILS_VERSION ||= TRAVIS_RAILS_VERSIONS.first
 
 def detect_rails_version
-  version_from_file || ENV['RAILS'] || DEFAULT_RAILS_VERSION
+  version = version_from_file || ENV['RAILS'] || DEFAULT_RAILS_VERSION
 ensure
   puts "Detected Rails: #{version}" if ENV['DEBUG']
 end
