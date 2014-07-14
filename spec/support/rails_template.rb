@@ -30,7 +30,7 @@ copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), "app/mod
 generate :model, "post_comment message:string post_id:integer"
 inject_into_file 'app/models/post_comment.rb', %q{
   belongs_to :post
-  attr_accessible :message, :post
+  attr_accessible :message, :post unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
 }, after: 'class PostComment < ActiveRecord::Base'
 
 generate :model, "blog/post title:string body:text published_at:datetime author_id:integer position:integer custom_category_id:integer starred:boolean foo_id:integer"
