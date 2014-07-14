@@ -11,14 +11,10 @@ ActiveAdmin::Application.inheritable_setting :comments_registration_name, 'Comme
 # Insert helper modules
 ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper
 ActiveAdmin::Resource.send  :include, ActiveAdmin::Comments::ResourceHelper
-
-# Add the module to the show page
 ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comments::ShowPageHelper
 
 # Load the model as soon as it's referenced. By that point, Rails & Kaminari will be ready
-module ActiveAdmin
-  autoload :Comment, 'active_admin/orm/active_record/comments/comment'
-end
+ActiveAdmin.autoload :Comment, 'active_admin/orm/active_record/comments/comment'
 
 # Walk through all the loaded namespaces after they're loaded
 ActiveAdmin.after_load do |app|
