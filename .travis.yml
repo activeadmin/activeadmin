@@ -1,6 +1,7 @@
 language: ruby
 install:
   - time ./script/travis_cache download_bundle
+  - time gem install bundler # use the very latest Bundler
   - time bundle install --without development --path=./bundle
   - bundle clean # delete now-outdated gems
   - time ./script/travis_cache download_app
