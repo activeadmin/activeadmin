@@ -14,7 +14,7 @@ module ActiveAdmin
       def initialize(*)
         super
         add_filters_sidebar_section
-        add_filter_summary_sidebar_section
+        add_current_filters_sidebar_section
       end
 
       # Returns the filters for this resource. If filters are not enabled,
@@ -132,12 +132,12 @@ module ActiveAdmin
         end
       end
 
-      def add_filter_summary_sidebar_section
-        self.sidebar_sections << filter_summary_section
+      def add_current_filters_sidebar_section
+        self.sidebar_sections << current_filters_section
       end
 
-      def filter_summary_section
-        ActiveAdmin::SidebarSection.new :filter_summary, only: :index, if: -> { params[:q] } do
+      def current_filters_section
+        ActiveAdmin::SidebarSection.new :current_filters, only: :index, if: -> { params[:q] } do
           active = ActiveAdmin::Filters::Active.new(resource_class, params)
 
           span do
