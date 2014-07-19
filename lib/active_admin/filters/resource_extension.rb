@@ -147,7 +147,12 @@ module ActiveAdmin
             div style: "margin-top: 10px" do
               h4 "Current filters:", style: 'margin-bottom: 10px'
               ul do
-                active.filters.each { |p| li p}
+                active.filters.each do |filter|
+                  li do
+                    span filter[:description]
+                    b filter[:value]
+                  end
+                end
               end
             end
           end
