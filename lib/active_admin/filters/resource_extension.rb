@@ -1,3 +1,5 @@
+require 'active_admin/filters/active'
+
 module ActiveAdmin
   module Filters
 
@@ -135,23 +137,17 @@ module ActiveAdmin
       end
 
       def filter_summary_section
-        ActiveAdmin::SidebarSection.new :filter_summary, only: :index, if: -> { params[:q].present? } do
-          humanized_scope = params[:scope].presence
-          humanized_scope = humanized_scope ? humanized_scope.humanize : "All"
-
-          # Ransack param parsing
-          ransack = Ransack::Search.new(resource_class, params)
-          translated_params = params[:q]
-            .map { |param| "#{ransack.base.translate(param[0])} #{param[1]}" }
+        ActiveAdmin::SidebarSection.new :filter_summary, only: :index, if: -> { params[:q] } do
+          active = ActiveAdmin::Filters::Active.new(resource_class, params)
 
           span do
             h4 "Scope:", style: 'display: inline'
-            b humanized_scope, style: "display: inline"
+            b active.scope, style: "display: inline"
 
             div style: "margin-top: 10px" do
               h4 "Current filters:", style: 'margin-bottom: 10px'
               ul do
-                translated_params.each { |p| li p}
+                active.filters.each { |p| li p}
               end
             end
           end
