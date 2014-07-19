@@ -97,7 +97,7 @@ describe ActiveAdmin::DSL do
       dsl.run_registration_block do
         sidebar :help
       end
-      expect(dsl.config.sidebar_sections.map(&:name)).to match_array([:filters, :email, :help])
+      expect(dsl.config.sidebar_sections.map(&:name)).to match_array([:filters, :filter_summary, :email, :help])
     end
 
   end
