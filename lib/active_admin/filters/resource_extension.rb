@@ -149,8 +149,8 @@ module ActiveAdmin
               ul do
                 active.filters.each do |filter|
                   li do
-                    span filter[:description]
-                    b filter[:value]
+                    span "#{filter.attribute_name} #{filter.description}"
+                    b filter.value
                   end
                 end
               end
