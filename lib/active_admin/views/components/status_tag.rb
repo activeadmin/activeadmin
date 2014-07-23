@@ -38,7 +38,7 @@ module ActiveAdmin
         classes = options.delete(:class)
         status = convert_to_boolean_status(status)
 
-        content = label || status.to_s.titleize if status
+        content = label || I18n.t(status.to_s.downcase, scope: 'active_admin.status_tag', default: status.to_s.titleize) if status
 
         super(content, options)
 

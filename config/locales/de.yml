@@ -33,6 +33,9 @@ de:
         ends_with: "Endet mit"
         greater_than: "Größer als"
         less_than: "Kleiner als"
+    status_tag:
+      "yes": "Ja"
+      "no": "Nein"
     main_content: "Bitte implementieren Sie %{model}#main_content, um Inhalte anzuzeigen."
     logout: "Abmelden"
     powered_by: "Powered by %{active_admin} %{version}"
