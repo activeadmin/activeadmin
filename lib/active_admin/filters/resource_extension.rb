@@ -149,7 +149,7 @@ module ActiveAdmin
               ul do
                 active.filters.each do |filter|
                   li do
-                    span "#{filter.attribute_name} #{filter.description}"
+                    span filter.body
                     b filter.value
                   end
                 end
