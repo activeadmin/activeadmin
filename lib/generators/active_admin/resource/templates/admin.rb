@@ -1,6 +1,6 @@
 ActiveAdmin.register <%= class_name %> do
 
-  <% if Rails::VERSION::MAJOR == 4 || defined?(ActionController::StrongParameters) %>
+<% if Rails::VERSION::MAJOR == 4 || defined?(ActionController::StrongParameters) %>
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -13,5 +13,6 @@ ActiveAdmin.register <%= class_name %> do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  <% end %>
+<% end %>
+
 end

@@ -83,7 +83,7 @@ module ActiveAdmin
         end
 
         def main_content
-          I18n.t('active_admin.main_content', model: self.class.name).html_safe
+          I18n.t('active_admin.main_content', model: title).html_safe
         end
 
         def title

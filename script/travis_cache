@@ -15,9 +15,10 @@ def download_bundle
 end
 
 def download_app
-  # Don't use an existing test app archive if any dependencies were updated
+  # Force test app re-build if dependencies were updated
   unless digest_changed? 'Gemfile.lock',   "remote-#{BUNDLE}.sha2", "#{BUNDLE}.sha2"
     s3 :save,   file: "#{APP}.sha2",   as: "remote-#{APP}.sha2"
+    # Force test app re-build if spec/support changed
     unless digest_changed? 'spec/support', "remote-#{APP}.sha2",    "#{APP}.sha2"
       s3 :save, file: "#{APP}.tgz",    as: "remote-#{APP}.tgz", untar: true
     end
@@ -65,8 +66,8 @@ def digest_changed?(to_check, old_digest_file, new_digest_file)
   {old: old_digest, new: digest} if digest != old_digest
 end
 
-def sign(secret, to_sign, digest = 'sha1')
-  Base64.strict_encode64 OpenSSL::HMAC.digest OpenSSL::Digest.new(digest), secret, to_sign
+def sign(secret, to_sign)
+  Base64.strict_encode64 OpenSSL::HMAC.digest OpenSSL::Digest::SHA1.new, secret, to_sign
 end
 
 ID     = ENV['AWS_S3_ID']
