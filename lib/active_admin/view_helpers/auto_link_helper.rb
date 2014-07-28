@@ -9,14 +9,14 @@ module ActiveAdmin
       # The default content in the link is returned from ActiveAdmin::ViewHelpers::DisplayHelper#display_name
       #
       # You can pass in the content to display
-      #   eg: auto_link(@post, "My Link Content")
+      #   eg: auto_link(@post, "My Link")
       #
-      def auto_link(resource, link_content = nil)
-        content = link_content || display_name(resource)
+      def auto_link(resource, content = display_name(resource))
         if url = auto_url_for(resource)
-          content = link_to(content, url)
+          link_to content, url
+        else
+          content
         end
-        content
       end
 
       # Like `auto_link`, except that it only returns a URL instead of a full <a> tag
@@ -28,8 +28,9 @@ module ActiveAdmin
 
       # Returns the ActiveAdmin::Resource instance for a class
       def active_admin_resource_for(klass)
-        return nil unless respond_to?(:active_admin_namespace)
-        active_admin_namespace.resource_for(klass)
+        if respond_to? :active_admin_namespace
+          active_admin_namespace.resource_for klass
+        end
       end
 
     end
