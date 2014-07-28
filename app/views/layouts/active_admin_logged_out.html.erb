@@ -20,10 +20,8 @@
 <div id="wrapper">
 
   <div id="content_wrapper">
-    <% if active_admin_flash_messages.any? %>
-      <% active_admin_flash_messages.each do |type, message| %>
-        <%= content_tag :div, message, :class => "flash flash_#{type}" %>
-      <% end %>
+    <% flash.each do |type, message| %>
+      <%= content_tag :div, message, class: "flash flash_#{type}" %>
     <% end %>
     <div id="active_admin_content">
       <%= yield %>
