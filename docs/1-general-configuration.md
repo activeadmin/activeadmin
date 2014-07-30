@@ -44,7 +44,8 @@ config.site_title_image = "http://www.google.com/images/logos/google_logo_41.png
 To translate Active Admin to a new language or customize an existing translation, you can copy
 [config/locales/en.yml](https://github.com/gregbell/active_admin/blob/master/config/locales/en.yml)
 to your application's `config/locales` folder and update it. We welcome new/updated translations,
-so feel free to [contribute!](https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md)
+so feel free to [contribute!](https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md).
+To translate third party gems like devise, use for example devise-i18n.
 
 ## Namespaces
 
