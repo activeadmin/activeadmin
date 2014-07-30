@@ -40,22 +40,20 @@ module ActiveAdmin
         resource.class.reflect_on_all_associations.map(&:name)
       end
 
-      # Return a pretty string for any object
-      # Date Time are formatted via #localize with format: :long
-      # ActiveRecord and Mongoid objects are formatted via #auto_link
-      # We attempt to #display_name of any other objects
+      # Attempts to create a human-readable string for any object
       def pretty_format(object)
         case object
         when String, Numeric, Arbre::Element
           object.to_s
         when Date, Time
-          localize(object, format: :long)
-        when ->(obj){defined?(::ActiveRecord) && obj.is_a?(ActiveRecord::Base)}
-          auto_link(object)
-        when ->(obj){defined?(::Mongoid) && obj.class.included_modules.include?(Mongoid::Document)}
-          auto_link(object)
+          localize object, format: :long
         else
-          display_name(object)
+          if defined?(::ActiveRecord) && object.is_a?(ActiveRecord::Base) ||
+             defined?(::Mongoid)      && object.class.include?(Mongoid::Document)
+            auto_link object
+          else
+            display_name object
+          end
         end
       end
 
