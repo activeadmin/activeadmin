@@ -110,11 +110,3 @@
       admin_user:
         one: Administrator
         other: Administratoren
-  devise:
-    failure:
-      admin_user:
-        invalid: Benutzername oder Kennwort nicht korrekt.
-        unauthenticated: Bitte melden Sie sich als Administrator an.
-    sessions:
-      admin_user:
-        signed_in: Erfolgreich als Administrator angemeldet.
