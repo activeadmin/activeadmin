@@ -320,7 +320,9 @@ example a Project may have many Milestones and Tickets. To nest the resource
 within another, you can use the `belongs_to` method:
 
 ```ruby
-ActiveAdmin.register Project
+ActiveAdmin.register Project do
+end
+
 ActiveAdmin.register Ticket do
   belongs_to :project
 end
