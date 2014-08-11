@@ -9,7 +9,10 @@ module ActiveAdmin
     module Streaming
 
       def index
-        super { |format| format.csv { stream_csv } }
+        super do |format|
+          format.csv { stream_csv }
+          yield(format) if block_given?
+        end
       end
 
       protected
