@@ -13,12 +13,12 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 
 ### 1.0.0
 
-We're [currently working on 1.0.0](https://github.com/gregbell/active_admin/issues?milestone=18),
+We're [currently working on 1.0.0](https://github.com/activeadmin/active_admin/issues?milestone=18),
 which as far as dependencies, moves us from meta_search to Ransack and adds Rails 4 support.
 You can get Rails 4 and 4.1 support by tracking master:
 
 ```ruby
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'activeadmin/active_admin'
 ```
 
 ### 0.6.x
@@ -28,13 +28,13 @@ still be maintained, and we will backport bug fixes into future 0.6.x releases. 
 to have to wait for a release, you can track the branch instead:
 
 ```ruby
-gem 'activeadmin', github: 'gregbell/active_admin', branch: '0-6-stable'
+gem 'activeadmin', github: 'activeadmin/active_admin', branch: '0-6-stable'
 ```
 
 ## Documentation
 
 Please note that <http://activeadmin.info> is out of date. For the latest docs, check out the
-Github [docs folder](https://github.com/gregbell/active_admin/tree/master/docs) and the [wiki](https://github.com/gregbell/active_admin/wiki).
+Github [docs folder](https://github.com/activeadmin/active_admin/tree/master/docs) and the [wiki](https://github.com/activeadmin/active_admin/wiki).
 
 ## Links
 
@@ -43,7 +43,7 @@ Github [docs folder](https://github.com/gregbell/active_admin/tree/master/docs) 
 * Documentation
   * Guides: <http://activeadmin.info/documentation.html>
   * YARD: <http://rubydoc.info/gems/activeadmin/frames>
-  * Wiki: <https://github.com/gregbell/active_admin/wiki>
+  * Wiki: <https://github.com/activeadmin/active_admin/wiki>
 
 ## Goals
 
@@ -53,7 +53,7 @@ Github [docs folder](https://github.com/gregbell/active_admin/tree/master/docs) 
 
 ## Getting started
 
-Check out [the docs](https://github.com/gregbell/active_admin/blob/master/docs/0-installation.md)!
+Check out [the docs](https://github.com/activeadmin/active_admin/blob/master/docs/0-installation.md)!
 
 ## Need help?
 
@@ -63,7 +63,7 @@ Ask us in IRC ([#activeadmin](https://webchat.freenode.net/?channels=activeadmin
 
 ## Want to contribute?
 
-The [contributing guide](https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md)
+The [contributing guide](https://github.com/activeadmin/active_admin/blob/master/CONTRIBUTING.md)
 is a good place to start. If you have questions, feel free to ask
 [@seanlinsley](https://twitter.com/seanlinsley).
 
