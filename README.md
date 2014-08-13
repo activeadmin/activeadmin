@@ -3,11 +3,11 @@
 Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
 
 [![Version     ](http://img.shields.io/gem/v/activeadmin.svg)                       ](https://rubygems.org/gems/activeadmin)
-[![Travis CI   ](http://img.shields.io/travis/gregbell/active_admin/master.svg)     ](https://travis-ci.org/gregbell/active_admin)
-[![Quality     ](http://img.shields.io/codeclimate/github/gregbell/active_admin.svg)](https://codeclimate.com/github/gregbell/active_admin)
-[![Coverage    ](http://img.shields.io/coveralls/gregbell/active_admin.svg)         ](https://coveralls.io/r/gregbell/active_admin)
+[![Travis CI   ](http://img.shields.io/travis/activeadmin/active_admin/master.svg)     ](https://travis-ci.org/activeadmin/active_admin)
+[![Quality     ](http://img.shields.io/codeclimate/github/activeadmin/active_admin.svg)](https://codeclimate.com/github/activeadmin/active_admin)
+[![Coverage    ](http://img.shields.io/coveralls/activeadmin/active_admin.svg)         ](https://coveralls.io/r/activeadmin/active_admin)
 [![Gittip      ](http://img.shields.io/gittip/activeadmin.svg)                      ](https://gittip.com/activeadmin)
-[![Inline docs ](http://inch-ci.org/github/gregbell/active_admin.svg?branch=master) ](http://inch-ci.org/github/gregbell/active_admin)
+[![Inline docs ](http://inch-ci.org/github/activeadmin/active_admin.svg?branch=master) ](http://inch-ci.org/github/activeadmin/active_admin)
 
 ## State of the project
 
