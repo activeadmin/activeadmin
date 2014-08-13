@@ -92,7 +92,7 @@ de:
         submit: "Registrieren"
       login:
         title: "Login"
-        remember_me: "erinnere dich an mich"
+        remember_me: "Angemeldet bleiben"
         submit: "Login"
       reset_password:
         title: "Passwort vergessen?"
