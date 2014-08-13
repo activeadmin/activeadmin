@@ -46,9 +46,10 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     it 'should preserve custom query params' do
       allow(view.request).to receive(:query_parameters).and_return page: '1', something: 'else'
-      expect(pagination).to include '/admin/posts.csv?page=1&amp;something=else'
-      expect(pagination).to include '/admin/posts.xml?page=1&amp;something=else'
-      expect(pagination).to include '/admin/posts.json?page=1&amp;something=else'
+      pagination_content = pagination.content
+      expect(pagination_content).to include '/admin/posts.csv?page=1&amp;something=else'
+      expect(pagination_content).to include '/admin/posts.xml?page=1&amp;something=else'
+      expect(pagination_content).to include '/admin/posts.json?page=1&amp;something=else'
     end
 
     context "when specifying :param_name option" do
