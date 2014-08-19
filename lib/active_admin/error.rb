@@ -51,6 +51,10 @@ module ActiveAdmin
     end
   end
 
+  class DependencyError < ErrorLoading
+  end
+
   class NoMenuError < KeyError
   end
+
 end
