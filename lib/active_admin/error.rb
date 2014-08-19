@@ -50,4 +50,7 @@ module ActiveAdmin
       classes
     end
   end
+
+  class NoMenuError < KeyError
+  end
 end

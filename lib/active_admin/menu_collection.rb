@@ -5,9 +5,6 @@ module ActiveAdmin
   # A MenuCollection stores multiple menus for any given namespace. Namespaces delegate
   # the addition of menu items to this class.
   class MenuCollection
-
-    NoMenuError = Class.new(KeyError)
-
     def initialize
       @menus = {}
       @build_callbacks = []

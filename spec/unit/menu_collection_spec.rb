@@ -31,7 +31,7 @@ describe ActiveAdmin::MenuCollection do
 
       expect {
         menus.fetch(:non_default_menu)
-      }.to raise_error(ActiveAdmin::MenuCollection::NoMenuError)
+      }.to raise_error(ActiveAdmin::NoMenuError)
 
     end
 
