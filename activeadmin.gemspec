@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n").sort
   s.test_files    = `git ls-files -- {spec,features}/*`.split("\n")
 
-  s.add_dependency 'arbre',               '~> 1.0'
+  s.add_dependency 'arbre',               '~> 1.0', '>= 1.0.2'
   s.add_dependency 'bourbon'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'formtastic',          '~> 2.3.0.rc3' # change to 2.3 when stable is released
