@@ -4,7 +4,7 @@ describe ActiveAdmin::Views::Panel do
   let(:arbre_panel) do
     render_arbre_component do
       panel "My Title", icon: :arrow_down do
-        header_action link_to("My Link", "https://www.github.com/gregbell/active_admin")
+        header_action link_to("My Link", "https://www.github.com/activeadmin/activeadmin")
         span("Hello World")
       end
     end
@@ -19,7 +19,7 @@ describe ActiveAdmin::Views::Panel do
   it "should add panel actions to the panel header" do
     link = panel_html.find('h3 > div.header_action a')
     expect(link.text).to eq('My Link')
-    expect(link[:href]).to eq("https://www.github.com/gregbell/active_admin")
+    expect(link[:href]).to eq("https://www.github.com/activeadmin/activeadmin")
   end
 
   it "should have a contents div" do

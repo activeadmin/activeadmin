@@ -1,6 +1,6 @@
 # Customize the Show Page
 
-The show block is rendered within the context of the view and uses [Arbre](https://github.com/gregbell/arbre) syntax.
+The show block is rendered within the context of the view and uses [Arbre](https://github.com/activeadmin/arbre) syntax.
 
 With the `show` block, you can render anything you want.
 

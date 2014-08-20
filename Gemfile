@@ -7,7 +7,7 @@ require File.expand_path 'spec/support/detect_rails_version', File.dirname(__FIL
 rails_version = detect_rails_version
 gem 'rails', rails_version
 
-gem 'arbre', github: 'gregbell/arbre' # until gregbell/arbre#16 makes it into an official release
+gem 'arbre', github: 'activeadmin/arbre' # until activeadmin/arbre#16 makes it into an official release
 
 # Optional dependencies
 gem 'cancan'

@@ -8,9 +8,9 @@ like you that make Active Admin such a great tool.
 If you've noticed a bug or have a question that doesn't belong on the
 [mailing list](http://groups.google.com/group/activeadmin) or
 [Stack Overflow](http://stackoverflow.com/questions/tagged/activeadmin),
-the first step is to [do a quick search](https://github.com/gregbell/active_admin/search?q=something&type=Issues)
+the first step is to [do a quick search](https://github.com/activeadmin/activeadmin/search?q=something&type=Issues)
 to see if someone else in the community has already created a ticket.
-If not, then go ahead and [make one](https://github.com/gregbell/active_admin/issues/new)!
+If not, then go ahead and [make one](https://github.com/activeadmin/activeadmin/issues/new)!
 
 ### 2. Fork & create a branch
 
@@ -110,7 +110,7 @@ At this point, you should switch back to your master branch and make sure it's
 up to date with Active Admin's master branch:
 
 ```sh
-git remote add upstream git@github.com:gregbell/active_admin.git
+git remote add upstream git@github.com:activeadmin/activeadmin.git
 git checkout master
 git pull upstream master
 ```
