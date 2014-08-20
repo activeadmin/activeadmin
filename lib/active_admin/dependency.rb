@@ -23,10 +23,10 @@ module ActiveAdmin
     # => true
     #
     # ActiveAdmin::Dependency.rails! '2'
-    # -> ActiveAdmin::Dependency::Error: You provided rails 3.2.18 but we need: 2.
+    # -> ActiveAdmin::DependencyError: You provided rails 3.2.18 but we need: 2.
     #
     # ActiveAdmin::Dependency.devise!
-    # -> ActiveAdmin::Dependency::Error: To use devise you need to specify it in your Gemfile.
+    # -> ActiveAdmin::DependencyError: To use devise you need to specify it in your Gemfile.
     #
     #
     # All but the pessimistic operator (~>) can also be run using Ruby's comparison syntax.
@@ -64,11 +64,11 @@ module ActiveAdmin
 
       def match!(*reqs)
         unless @spec
-          raise Error, "To use #{@name} you need to specify it in your Gemfile."
+          raise DependencyError, "To use #{@name} you need to specify it in your Gemfile."
         end
 
         unless match? reqs
-          raise Error, "You provided #{@spec.name} #{@spec.version} but we need: #{reqs.join ', '}."
+          raise DependencyError, "You provided #{@spec.name} #{@spec.version} but we need: #{reqs.join ', '}."
         end
       end
 
@@ -80,7 +80,7 @@ module ActiveAdmin
         else
           # you'd otherwise get an unhelpful error message:
           # ArgumentError: comparison of ActiveAdmin::Dependency::Matcher with 2 failed
-          raise Error, "To use #{@name} you need to specify it in your Gemfile."
+          raise DependencyError, "To use #{@name} you need to specify it in your Gemfile."
         end
       end
 
@@ -89,8 +89,5 @@ module ActiveAdmin
         "<ActiveAdmin::Dependency::Matcher for #{info}>"
       end
     end
-
-    class Error < ::ActiveAdmin::ErrorLoading; end
-
   end
 end
