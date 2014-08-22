@@ -1,5 +1,3 @@
-require 'inherited_resources'
-
 require 'active_admin/base_controller/authorization'
 require 'active_admin/base_controller/menu'
 
