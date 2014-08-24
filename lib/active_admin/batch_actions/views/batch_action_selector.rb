@@ -28,12 +28,15 @@ module ActiveAdmin
                       button: { class: "disabled" } do
           batch_actions_to_display.each do |batch_action|
             confirmation_text = render_or_call_method_or_proc_on(self, batch_action.confirm)
+            inputs = batch_action.inputs.each_with_object({}) do |(key, value), inputs|
+              inputs[key] = return_call_response_or_object value
+            end
 
             options = {
               :class         => "batch_action",
               "data-action"  => batch_action.sym,
               "data-confirm" => confirmation_text,
-              "data-inputs"  => batch_action.inputs.to_json
+              "data-inputs"  => inputs.to_json
             }
 
             default_title = render_or_call_method_or_proc_on(self, batch_action.title)
