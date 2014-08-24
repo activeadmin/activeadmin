@@ -8,7 +8,7 @@ like you that make Active Admin such a great tool.
 If you've noticed a bug or have a question that doesn't belong on the
 [mailing list](http://groups.google.com/group/activeadmin) or
 [Stack Overflow](http://stackoverflow.com/questions/tagged/activeadmin),
-[search the issue tracker](https://github.com/activeadmin/activeadmin/search?q=something&type=Issues)
+[search the issue tracker](https://github.com/activeadmin/activeadmin/issues?q=something)
 to see if someone else in the community has already created a ticket.
 If not, go ahead and [make one](https://github.com/activeadmin/activeadmin/issues/new)!
 
