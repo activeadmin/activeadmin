@@ -95,7 +95,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 generate 'active_admin:install'
 
 inject_into_file "config/routes.rb", "\n  root to: redirect('/admin')", after: /.*::Application.routes.draw do/
-remove_file "public/index.html"
+remove_file "public/index.html" if File.exists? "public/index.html"
 
 # Devise master doesn't set up its secret key on Rails 4.1
 # https://github.com/plataformatec/devise/issues/2554
