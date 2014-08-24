@@ -8,9 +8,9 @@ like you that make Active Admin such a great tool.
 If you've noticed a bug or have a question that doesn't belong on the
 [mailing list](http://groups.google.com/group/activeadmin) or
 [Stack Overflow](http://stackoverflow.com/questions/tagged/activeadmin),
-the first step is to [do a quick search](https://github.com/activeadmin/activeadmin/search?q=something&type=Issues)
+[search the issue tracker](https://github.com/activeadmin/activeadmin/search?q=something&type=Issues)
 to see if someone else in the community has already created a ticket.
-If not, then go ahead and [make one](https://github.com/activeadmin/activeadmin/issues/new)!
+If not, go ahead and [make one](https://github.com/activeadmin/activeadmin/issues/new)!
 
 ### 2. Fork & create a branch
 
@@ -48,7 +48,7 @@ rm -rf spec/rails && bundle update
 
 ### 4. Implement your fix or feature
 
-At this point, you should be ready to make your changes! Don't hesitate to ask for help;
+At this point, you're ready to make your changes! Feel free to ask for help;
 everyone is a beginner at first :smile_cat:
 
 ### 5. View your changes in a Rails application
@@ -79,7 +79,9 @@ You should now be able to open <http://localhost:3000/admin> in your browser. Yo
 	Password: password
 
 If you need to perform any other commands on the test application, use the
-`local` script. For example to boot the rails console:
+`local` script. For example:
+
+To boot the rails console:
 
 ```sh
 script/local console
