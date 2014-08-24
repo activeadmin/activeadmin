@@ -14,9 +14,9 @@ that can be injected into your existing Ruby on Rails application.
 After installing the gem, you need to run the generator (one of the following):
 
 ```sh
-rails g active_admin:install              # creates the AdminUser class
-rails g active_admin:install User         # uses an existing class
-rails g active_admin:install --skip-users # skips user authentication entirely
+rails g active_admin:install              # generate migration for creating Devise(dependency of active_admin) user class named AdminUser by default
+rails g active_admin:install User         # generate migration for creating Devise user class named User(Customized)
+rails g active_admin:install --skip-users # in case you have installed Devise before
 ```
 
 The generator adds these core files, among others:
