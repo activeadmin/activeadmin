@@ -13,15 +13,14 @@ describe ActiveAdmin::Views::StatusTag do
 
     subject { status_tag(nil) }
 
-
     describe '#tag_name' do
       subject { super().tag_name }
-      it    { is_expected.to eq 'span' }
+      it      { is_expected.to eq 'span' }
     end
 
     describe '#class_list' do
       subject { super().class_list }
-      it  { is_expected.to include('status_tag') }
+      it      { is_expected.to include('status_tag') }
     end
 
     context "when status is 'completed'" do
@@ -29,22 +28,22 @@ describe ActiveAdmin::Views::StatusTag do
 
       describe '#tag_name' do
         subject { super().tag_name }
-        it    { is_expected.to eq 'span' }
+        it      { is_expected.to eq 'span' }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('status_tag') }
+        it      { is_expected.to include('status_tag') }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('completed') }
+        it      { is_expected.to include('completed') }
       end
 
       describe '#content' do
         subject { super().content }
-        it     { is_expected.to eq 'Completed' }
+        it      { is_expected.to eq 'Completed' }
       end
     end
 
@@ -53,12 +52,12 @@ describe ActiveAdmin::Views::StatusTag do
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('in_progress') }
+        it      { is_expected.to include('in_progress') }
       end
 
       describe '#content' do
         subject { super().content }
-        it     { is_expected.to eq 'In Progress' }
+        it      { is_expected.to eq 'In Progress' }
       end
     end
 
@@ -67,12 +66,12 @@ describe ActiveAdmin::Views::StatusTag do
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('in_progress') }
+        it      { is_expected.to include('in_progress') }
       end
 
       describe '#content' do
         subject { super().content }
-        it     { is_expected.to eq 'In Progress' }
+        it      { is_expected.to eq 'In Progress' }
       end
     end
 
@@ -81,12 +80,12 @@ describe ActiveAdmin::Views::StatusTag do
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('status_tag') }
+        it      { is_expected.to include('status_tag') }
       end
 
       describe '#content' do
         subject { super().content }
-        it     { is_expected.to eq '' }
+        it      { is_expected.to eq '' }
       end
     end
 
@@ -95,12 +94,12 @@ describe ActiveAdmin::Views::StatusTag do
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('status_tag') }
+        it      { is_expected.to include('status_tag') }
       end
 
       describe '#content' do
         subject { super().content }
-        it     { is_expected.to eq('No') }
+        it      { is_expected.to eq('No') }
       end
     end
 
@@ -109,12 +108,12 @@ describe ActiveAdmin::Views::StatusTag do
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('status_tag') }
+        it      { is_expected.to include('status_tag') }
       end
 
       describe '#content' do
         subject { super().content }
-        it     { is_expected.to eq('No') }
+        it      { is_expected.to eq('No') }
       end
     end
 
@@ -123,17 +122,17 @@ describe ActiveAdmin::Views::StatusTag do
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('status_tag') }
+        it      { is_expected.to include('status_tag') }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('active') }
+        it      { is_expected.to include('active') }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('ok') }
+        it      { is_expected.to include('ok') }
       end
     end
 
@@ -142,17 +141,17 @@ describe ActiveAdmin::Views::StatusTag do
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('status_tag') }
+        it      { is_expected.to include('status_tag') }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('active') }
+        it      { is_expected.to include('active') }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('ok') }
+        it      { is_expected.to include('ok') }
       end
     end
 
@@ -161,22 +160,22 @@ describe ActiveAdmin::Views::StatusTag do
 
       describe '#content' do
         subject { super().content }
-        it     { is_expected.to eq 'on' }
+        it      { is_expected.to eq 'on' }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('status_tag') }
+        it      { is_expected.to include('status_tag') }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('active') }
+        it      { is_expected.to include('active') }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.not_to include('on') }
+        it      { is_expected.not_to include('on') }
       end
     end
 
@@ -185,37 +184,37 @@ describe ActiveAdmin::Views::StatusTag do
 
       describe '#content' do
         subject { super().content }
-        it     { is_expected.to eq 'So Useless' }
+        it      { is_expected.to eq 'So Useless' }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('status_tag') }
+        it      { is_expected.to include('status_tag') }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('ok') }
+        it      { is_expected.to include('ok') }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('so_useless') }
+        it      { is_expected.to include('so_useless') }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('woot') }
+        it      { is_expected.to include('woot') }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it  { is_expected.to include('awesome') }
+        it      { is_expected.to include('awesome') }
       end
 
       describe '#id' do
         subject { super().id }
-        it          { is_expected.to eq 'useless' }
+        it      { is_expected.to eq 'useless' }
       end
     end
 
@@ -224,15 +223,13 @@ describe ActiveAdmin::Views::StatusTag do
 
       describe '#content' do
         subject { super().content }
-        it     { is_expected.to eq '42' }
+        it      { is_expected.to eq '42' }
       end
 
       describe '#class_list' do
         subject { super().class_list }
-        it {
-          is_expected.not_to include('42')
-        }
+        it      { is_expected.not_to include('42') }
       end
     end
-  end # describe "#status_tag"
+  end
 end
