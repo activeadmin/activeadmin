@@ -43,8 +43,8 @@ module ActiveAdmin
         end
 
         module DefaultMainContent
-          def default_main_content
-            attributes_table *default_attribute_table_rows
+          def default_main_content(&block)
+            attributes_table(*default_attribute_table_rows, &block)
           end
 
           def default_attribute_table_rows
