@@ -97,8 +97,11 @@ describe ActiveAdmin::Filters::ViewHelper do
       end
     end
 
-    it "should select the option which is currently being filtered"
-
+    it "should select the option which is currently being filtered" do
+      scope = Post.search title_starts_with: "foo"
+      body = render_filter scope, title: {}
+      expect(body).to have_tag("option", "Starts with", attributes: { value: "title_starts_with", selected: "selected" })
+    end
 
     context "with predicate" do
       %w[eq equals cont contains start starts_with end ends_with].each do |predicate|
