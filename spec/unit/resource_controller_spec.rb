@@ -240,20 +240,18 @@ describe Admin::PostsController, type: "controller" do
 
     describe "when params batch_action doesn't match a BatchAction" do
       it "should raise an error" do
-        skip # doesn't pass when running whole spec suite (WTF)
-
+        allow(controller).to receive(:params) { { batch_action: "derp", collection_selection: ["1"] } }
         expect {
-          post(:batch_action, batch_action: "derp", collection_selection: ["1"])
+          controller.batch_action
         }.to raise_error("Couldn't find batch action \"derp\"")
       end
     end
 
     describe "when params batch_action is blank" do
       it "should raise an error" do
-        skip # doesn't pass when running whole spec suite (WTF)
-
+        allow(controller).to receive(:params) { { collection_selection: ["1"] } }
         expect {
-          post(:batch_action, collection_selection: ["1"])
+          controller.batch_action
         }.to raise_error("Couldn't find batch action \"\"")
       end
     end
