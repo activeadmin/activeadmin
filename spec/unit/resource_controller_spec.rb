@@ -225,7 +225,7 @@ describe Admin::PostsController, type: "controller" do
   describe "performing batch_action" do
     let(:controller){ Admin::PostsController.new }
     let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", &batch_action_block }
-    let(:batch_action_block) { -> (*) {  } }
+    let(:batch_action_block) { lambda { |*| } }
     before do
       allow(controller.class.active_admin_config).to receive(:batch_actions).and_return([batch_action])
     end
