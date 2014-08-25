@@ -224,17 +224,17 @@ describe Admin::PostsController, type: "controller" do
 
   describe "performing batch_action" do
     let(:controller){ Admin::PostsController.new }
+    let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", &batch_action_block }
+    let(:batch_action_block) { -> (*) {  } }
     before do
-      batch_action = ActiveAdmin::BatchAction.new :flag, "Flag" do
-        redirect_to collection_path
-      end
-
       allow(controller.class.active_admin_config).to receive(:batch_actions).and_return([batch_action])
     end
 
     describe "when params batch_action matches existing BatchAction" do
       it "should call the block with args" do
-        skip # dont know how to check if the block was called
+        allow(controller).to receive(:params) { { batch_action: "flag", collection_selection: ["1"] } }
+        expect(controller).to receive(:instance_exec).with(["1"], {})
+        controller.batch_action
       end
     end
 
