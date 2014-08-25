@@ -182,7 +182,11 @@ describe ActiveAdmin::Filters::ViewHelper do
     it "should generate a text field for input" do
       expect(body).to have_tag("input", attributes: { name: 'q[id_equals]' })
     end
-    it "should select the option which is currently being filtered"
+    it "should select the option which is currently being filtered" do
+      scope = Post.search id_greater_than: 1
+      body = render_filter scope, id: {}
+      expect(body).to have_tag("option", "Greater than", attributes: { value: "id_greater_than", selected: "selected" })
+    end
   end
 
   describe "boolean attribute" do
