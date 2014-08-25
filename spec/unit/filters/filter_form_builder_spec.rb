@@ -97,12 +97,15 @@ describe ActiveAdmin::Filters::ViewHelper do
       end
     end
 
-    it "should select the option which is currently being filtered"
-
+    it "should select the option which is currently being filtered" do
+      scope = Post.search title_starts_with: "foo"
+      body = render_filter scope, title: {}
+      expect(body).to have_tag("option", "Starts with", attributes: { value: "title_starts_with", selected: "selected" })
+    end
 
     context "with predicate" do
       %w[eq equals cont contains start starts_with end ends_with].each do |predicate|
-        describe '"'+predicate+'"' do
+        describe "'#{predicate}'" do
           let(:body) { filter :"title_#{predicate}" }
 
           it "shouldn't include a select field" do
@@ -179,7 +182,11 @@ describe ActiveAdmin::Filters::ViewHelper do
     it "should generate a text field for input" do
       expect(body).to have_tag("input", attributes: { name: 'q[id_equals]' })
     end
-    it "should select the option which is currently being filtered"
+    it "should select the option which is currently being filtered" do
+      scope = Post.search id_greater_than: 1
+      body = render_filter scope, id: {}
+      expect(body).to have_tag("option", "Greater than", attributes: { value: "id_greater_than", selected: "selected" })
+    end
   end
 
   describe "boolean attribute" do
