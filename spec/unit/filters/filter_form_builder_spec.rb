@@ -102,7 +102,7 @@ describe ActiveAdmin::Filters::ViewHelper do
 
     context "with predicate" do
       %w[eq equals cont contains start starts_with end ends_with].each do |predicate|
-        describe '"'+predicate+'"' do
+        describe "'#{predicate}'" do
           let(:body) { filter :"title_#{predicate}" }
 
           it "shouldn't include a select field" do
