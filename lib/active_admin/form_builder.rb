@@ -13,6 +13,11 @@ end
 
 module ActiveAdmin
   class FormBuilder < ::Formtastic::FormBuilder
+    self.input_namespaces = [::Object, ::ActiveAdmin::Inputs, ::Formtastic::Inputs]
+
+    # TODO: remove both class finders after formtastic 4 (where it will be default)
+    self.input_class_finder = ::Formtastic::InputClassFinder
+    self.action_class_finder = ::Formtastic::ActionClassFinder
 
     def cancel_link(url = {action: "index"}, html_options = {}, li_attrs = {})
       li_attrs[:class] ||= "cancel"
@@ -97,27 +102,6 @@ module ActiveAdmin
       object.public_send(assoc).sort_by do |o|
         attribute = o.public_send column
         [attribute.nil? ? Float::INFINITY : attribute, o.id || Float::INFINITY]
-      end
-    end
-
-    def active_admin_input_class_name(as)
-      "ActiveAdmin::Inputs::#{as.to_s.camelize}Input"
-    end
-
-    def input_class(as)
-      @input_classes_cache ||= {}
-      @input_classes_cache[as] ||= begin
-        begin
-          custom_input_class_name(as).constantize
-        rescue NameError
-          begin
-            active_admin_input_class_name(as).constantize
-          rescue NameError
-            standard_input_class_name(as).constantize
-          end
-        end
-      rescue NameError
-        raise Formtastic::UnknownInputError, "Unable to find input class for #{as}"
       end
     end
 
