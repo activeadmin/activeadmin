@@ -33,6 +33,9 @@ ru:
         ends_with: "Заканчивается"
         greater_than: "больше"
         less_than: "меньше"
+    status_tag:
+      "yes": "Да"
+      "no": "Нет"
     main_content: "Создайте %{model}#main_content для отображения содержимого."
     logout: "Выйти"
     powered_by: "Powered by %{active_admin} %{version}"
