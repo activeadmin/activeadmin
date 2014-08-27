@@ -7,7 +7,8 @@ module ActiveAdmin
     module Helpers
 
       if ActiveAdmin::DependencyChecker.rails_3_1?
-        include ::Sass::Rails::Helpers
+        # Use this line when back-porting Sprockets from rails 4.  Original line below is: include ::Sass::Rails::Helpers
+        include Sprockets::SassFunctions
       end
 
       # Provides a helper in SASS to ensure that the paths to image
