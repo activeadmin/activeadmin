@@ -33,6 +33,9 @@
         ends_with: "Termina com"
         greater_than: "Maior Que"
         less_than: "Menor Que"
+    status_tag:
+      "yes": "Sim"
+      "no": "Não"
     main_content: "Por favor implemente %{model}#main_content para mostrar o conteúdo."
     logout: "Sair"
     powered_by: "Powered by %{active_admin} %{version}"
