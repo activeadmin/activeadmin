@@ -8,9 +8,7 @@ module ActiveAdmin
 
       hook_for :users, default: "devise", desc: "Admin user generator to run. Skip with --skip-users"
 
-      def self.source_root
-        @_active_admin_source_root ||= File.expand_path("../templates", __FILE__)
-      end
+      source_root File.expand_path("../templates", __FILE__)
 
       def copy_initializer
         @underscored_user_name = name.underscore
