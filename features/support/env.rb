@@ -129,5 +129,5 @@ end
 
 # Don't run @rails4 tagged features for versions before Rails 4.
 Before('@rails4') do |scenario|
-  scenario.skip_invoke! if Rails::VERSION::MAJOR < 4
+  scenario.skip_invoke! if ActiveAdmin::Dependency.rails < 4
 end

@@ -65,7 +65,7 @@ ActiveAdmin.after_load do |app|
         end
 
         # Set up permitted params in case the app is using Strong Parameters
-        unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
+        unless ActiveAdmin::Dependency.rails == 3 && !defined? StrongParameters
           permit_params :body, :namespace, :resource_id, :resource_type
         end
 
