@@ -1,5 +1,5 @@
 ActiveAdmin.register <%= @user_class %> do
-<% unless Rails::VERSION::MAJOR < 4 -%>
+<% unless ActiveAdmin::Dependency.rails < 4 -%>
   permit_params :email, :password, :password_confirmation
 
 <% end -%>

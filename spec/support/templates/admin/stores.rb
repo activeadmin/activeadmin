@@ -1,6 +1,6 @@
 ActiveAdmin.register Store do
 
-  if Rails::VERSION::MAJOR == 4
+  if ActiveAdmin::Dependency.rails == 4
     permit_params :name
   end
 

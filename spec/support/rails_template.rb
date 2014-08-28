@@ -23,7 +23,7 @@ inject_into_file 'app/models/post.rb', %q{
   has_many :taggings
   accepts_nested_attributes_for :author
   accepts_nested_attributes_for :taggings
-  attr_accessible :author, :position unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+  attr_accessible :author, :position unless ActiveAdmin::Dependency.rails > 3 && !defined? ProtectedAttributes
 }, after: 'class Post < ActiveRecord::Base'
 copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), "app/models/post_decorator.rb"
 
@@ -34,7 +34,7 @@ inject_into_file 'app/models/blog/post.rb', %q{
   has_many :taggings
   accepts_nested_attributes_for :author
   accepts_nested_attributes_for :taggings
-  attr_accessible :author, :position unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+  attr_accessible :author, :position unless ActiveAdmin::Dependency.rails > 3 && !defined? ProtectedAttributes
 }, after: 'class Blog::Post < ActiveRecord::Base'
 
 
