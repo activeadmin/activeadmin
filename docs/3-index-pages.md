@@ -68,7 +68,7 @@ filters that are displayed as well as the type of widgets they use.
 To display a filter for an attribute, use the `filter` method
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   filter :title
 end
 ```
@@ -120,7 +120,7 @@ application.
 To disable for a specific resource:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   config.filters = false
 end
 ```
@@ -182,7 +182,7 @@ end
 You can define the default sort order for index pages:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   config.sort_order = 'name_asc'
 end
 ```
@@ -192,7 +192,7 @@ end
 You can set the number of records per page per resources:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   config.per_page = 10
 end
 ```
@@ -200,7 +200,7 @@ end
 You can also disable pagination:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   config.paginate = false
 end
 ```
@@ -209,7 +209,7 @@ If you have a very large database, you might want to disable `SELECT COUNT(*)`
 queries caused by the pagination info at the bottom of the page:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   index pagination_total: false do
     # ...
   end
@@ -222,7 +222,7 @@ You can easily remove or customize the download links you want displayed:
 
 ```ruby
 # Per resource:
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
 
   index download_links: false
   index download_links: [:pdf]

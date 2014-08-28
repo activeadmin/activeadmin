@@ -9,7 +9,7 @@ The basic command for creating a resource is `rails g active_admin:resource Post
 The generator will produce an empty `app/admin/post.rb` file like so:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   # everything happens here :D
 end
 ```
@@ -22,7 +22,7 @@ which moves attribute whitelisting from the model to the controller.
 Use the `permit_params` method to define which attributes may be changed:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   permit_params :title, :content, :publisher_id
 end
 ```
@@ -31,7 +31,7 @@ Any form field that sends multiple values (such as a HABTM association, or an ar
 needs to pass an empty array to `permit_params`:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   permit_params :title, :content, :publisher_id, roles: []
 end
 ```
@@ -40,7 +40,7 @@ Nested associations in the same form also require an array, but it
 needs to be filled with any attributes used.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   permit_params :title, :content, :publisher_id,
     tags_attributes: [:id, :name, :description, :_destroy]
 end
@@ -54,7 +54,7 @@ end
 If you want to dynamically choose which attributes can be set, pass a block:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   permit_params do
     params = [:title, :content, :publisher_id]
     params.push :author_id if current_user.admin?
@@ -66,7 +66,7 @@ end
 The `permit_params` call creates a method called `permitted_params`. You should use this method when overriding `create` or `update` actions:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   controller do
     def create
       # Good
@@ -87,7 +87,7 @@ end
 All CRUD actions are enabled by default. These can be disabled for a given resource:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   actions :all, except: [:update, :destroy]
 end
 ```
@@ -99,7 +99,7 @@ interface will use the name of the class. You can rename the resource by using
 the `:as` option.
 
 ```ruby
-ActiveAdmin.register Post, as: "Article"
+ActiveAdmin.register_resource Post, as: "Article"
 ```
 
 The resource will then be available at `/admin/articles`.
@@ -110,10 +110,10 @@ We use the `admin` namespace by default, but you can use anything:
 
 ```ruby
 # Available at /today/posts
-ActiveAdmin.register Post, namespace: :today
+ActiveAdmin.register_resource Post, namespace: :today
 
 # Available at /posts
-ActiveAdmin.register Post, namespace: false
+ActiveAdmin.register_resource Post, namespace: false
 ```
 
 ## Customize the Menu
@@ -122,7 +122,7 @@ The resource will be displayed in the global navigation by default. To disable
 the resource from being displayed in the global navigation:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   menu false
 end
 ```
@@ -141,7 +141,7 @@ The menu method accepts a hash with the following options:
 To change the name of the label in the menu:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   menu label: "My Posts"
 end
 ```
@@ -149,7 +149,7 @@ end
 If you want something more dynamic, pass a proc instead:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   menu label: proc{ I18n.t "mypost" }
 end
 ```
@@ -162,7 +162,7 @@ every menu by default has a priority of `10`, the menu is normally alphabetical.
 You can easily customize this:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   menu priority: 1 # so it's on the very left
 end
 ```
@@ -171,7 +171,7 @@ end
 
 Menu items can be shown or hidden at runtime using the `:if` option.
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   menu if: proc{ current_user.can_edit_posts? }
 end
 ```
@@ -185,7 +185,7 @@ In many cases, a single level navigation will not be enough to manage a large
 application. In that case, you can group your menu items under a parent menu item.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   menu parent: "Blog"
 end
 ```
@@ -208,7 +208,7 @@ config.namespace :admin do |admin|
 end
 
 # app/admin/post.rb
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   menu parent: 'Blog'
 end
 ```
@@ -227,7 +227,7 @@ config.namespace :admin do |admin|
 end
 
 # app/admin/post.rb
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   menu parent: 'blog'
 end
 ```
@@ -261,7 +261,7 @@ scope what they have access to. Assuming your User model has the proper
 has_many relationships, you can simply scope the listings and finders like so:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   scope_to :current_user # limits the accessible posts to `current_user.posts`
 
   # Or if the association doesn't have the default name:
@@ -277,7 +277,7 @@ end
 You can also conditionally apply the scope:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   scope_to :current_user, if:     proc{ current_user.limited_access? }
   scope_to :current_user, unless: proc{ current_user.admin? }
 end
@@ -288,7 +288,7 @@ end
 A common way to increase page performance is to elimate N+1 queries by eager loading associations:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   controller do
     def scoped_collection
       super.includes :author, :categories
@@ -301,7 +301,7 @@ If you need to completely replace the record retrieving code (e.g., you have a c
 `to_param` implementation in your models), override the `resource` method on the controller:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   controller do
     def find_resource
       Post.where(id: params[:id]).first!
@@ -320,8 +320,8 @@ example a Project may have many Milestones and Tickets. To nest the resource
 within another, you can use the `belongs_to` method:
 
 ```ruby
-ActiveAdmin.register Project
-ActiveAdmin.register Ticket do
+ActiveAdmin.register_resource Project
+ActiveAdmin.register_resource Ticket do
   belongs_to :project
 end
 ```
@@ -335,7 +335,7 @@ To create links to the resource, you can add them to a sidebar (one of the many
 possibilities for how you may with to handle your user interface):
 
 ```ruby
-ActiveAdmin.register Project do
+ActiveAdmin.register_resource Project do
 
   sidebar "Project Details", only: [:show, :edit] do
     ul do
@@ -345,11 +345,11 @@ ActiveAdmin.register Project do
   end
 end
 
-ActiveAdmin.register Ticket do
+ActiveAdmin.register_resource Ticket do
   belongs_to :project
 end
 
-ActiveAdmin.register Milestone do
+ActiveAdmin.register_resource Milestone do
   belongs_to :project
 end
 ```
@@ -360,12 +360,12 @@ project. To accomplish this, Active Admin stores the `belongs_to` resources in a
 seperate menu which you can use if you so wish. To use:
 
 ```ruby
-ActiveAdmin.register Ticket do
+ActiveAdmin.register_resource Ticket do
   belongs_to :project
   navigation_menu :project
 end
 
-ActiveAdmin.register Milestone do
+ActiveAdmin.register_resource Milestone do
   belongs_to :project
   navigation_menu :project
 end
@@ -379,7 +379,7 @@ You can also defer the menu lookup until runtime so that you can dynamically sho
 different menus, say perhaps based on user permissions. For example:
 
 ```ruby
-ActiveAdmin.register Ticket do
+ActiveAdmin.register_resource Ticket do
   belongs_to :project
   navigation_menu do
     authorized?(:manage, SomeResource) ? :project : :restricted_menu

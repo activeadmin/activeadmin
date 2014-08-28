@@ -11,7 +11,7 @@ these elements into the page inside of other Arbre components or resource
 controller functions.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   show do
     panel "Post Details" do
       attributes_table_for post do

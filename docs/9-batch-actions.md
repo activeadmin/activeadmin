@@ -19,7 +19,7 @@ is passed an array of the record IDs that the user selected, so you can perform
 your desired batch action on all of them:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   batch_action :flag do |ids|
     Post.find(ids).each do |post|
       post.flag! :hot
@@ -47,7 +47,7 @@ ActiveAdmin.setup do |config|
 end
 
 # app/admin/post.rb
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   
   # Resource level:
   config.batch_actions = false
@@ -59,7 +59,7 @@ end
 If you want, you can override the default batch action to do whatever you want:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   batch_action :destroy do |ids|
     redirect_to collection_path, alert: "Didn't really delete these!"
   end
@@ -71,7 +71,7 @@ end
 You can remove batch actions by simply passing false as the second parameter:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   batch_action :destroy, false
 end
 ```
@@ -82,7 +82,7 @@ You can control whether or not the batch action is available via the `:if`
 option, which is executed in the view context.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   batch_action :flag, if: proc{ can? :flag, Post } do |ids|
     # ...
   end
@@ -94,7 +94,7 @@ end
 You can change the order of batch actions through the `:priority` option:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   batch_action :destroy, priority: 1 do |ids|
     # ...
   end
@@ -106,7 +106,7 @@ end
 You can pass a custom string to prompt the user with:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   batch_action :destroy, confirm: "Are you sure??" do |ids|
     # ...
   end
@@ -172,7 +172,7 @@ menu. It will lookup in `active_admin.batch_actions.labels.#{your_batch_action}`
 So this:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   batch_action :publish do |ids|
     # ...
   end
@@ -196,7 +196,7 @@ You can easily use `batch_action` in the other index views, *Grid*, *Block*,
 and *Blog*; however, these will require custom styling to fit your needs.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
 
   # By default, the "Delete" batch action is provided
 

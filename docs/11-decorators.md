@@ -22,7 +22,7 @@ class PostDecorator < ApplicationDecorator
 end
 
 # app/admin/post.rb
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   decorate_with PostDecorator
 
   index do
@@ -40,7 +40,7 @@ If you need ActiveAdmin to decorate the forms, you can pass `decorate: true` to 
 form block.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   decorate_with PostDecorator
 
   form decorate: true do |f|

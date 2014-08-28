@@ -7,7 +7,7 @@ registered model.
 Customizing the CSV format is as simple as customizing the index page.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   csv do
     column :title
     column(:author) { |post| post.author.full_name }
@@ -18,7 +18,7 @@ end
 You can also set custom CSV settings for an individual resource:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   csv force_quotes: true, col_sep: ';' do
     column :title
     column(:author) { |post| post.author.full_name }

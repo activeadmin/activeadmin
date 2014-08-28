@@ -13,7 +13,7 @@ generating a route for you.
 To add a collection action, use the collection_action method:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
 
   collection_action :import_csv, method: :post do
     # Do some CSV importing work here...
@@ -34,7 +34,7 @@ For example, to add a lock action to a user resource, you would do the
 following:
 
 ```ruby
-ActiveAdmin.register User do
+ActiveAdmin.register_resource User do
 
   member_action :lock, method: :put do
     resource.lock!
@@ -72,7 +72,7 @@ Custom controller actions support rendering within the standard Active Admin
 layout.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
 
   # /admin/posts/:id/comments
   member_action :comments do
@@ -109,7 +109,7 @@ If this doesn't work for you, you can always set the `@page_title` instance
 variable in your controller action to customize the page title.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
 
   member_action :comments do
     @comments   = resource.comments
@@ -145,7 +145,7 @@ The generated controller is available to you within the registration block by
 using the `controller` method.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
 
   controller do
     # This code is evaluated within the controller class
