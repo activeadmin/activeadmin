@@ -74,6 +74,7 @@ module ActiveAdmin
     end
 
     delegate :register_resource, to: :application
+    delegate :register,          to: :application # deprecated
     delegate :register_page,     to: :application
     delegate :unload!,           to: :application
     delegate :load!,             to: :application
