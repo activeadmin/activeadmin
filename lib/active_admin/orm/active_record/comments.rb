@@ -20,7 +20,7 @@ ActiveAdmin.autoload :Comment, 'active_admin/orm/active_record/comments/comment'
 ActiveAdmin.after_load do |app|
   app.namespaces.values.each do |namespace|
     if namespace.comments?
-      namespace.register ActiveAdmin::Comment, as: namespace.comments_registration_name do
+      namespace.register_resource ActiveAdmin::Comment, as: namespace.comments_registration_name do
         actions :index, :show, :create
 
         menu false unless namespace.show_comments_in_menu

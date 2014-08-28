@@ -115,9 +115,9 @@ module ActiveAdmin
     end
 
     # Registers a brand new configuration for the given resource.
-    def register(resource, options = {}, &block)
+    def register_resource(resource, options = {}, &block)
       ns = options.fetch(:namespace){ default_namespace }
-      namespace(ns).register resource, options, &block
+      namespace(ns).register_resource resource, options, &block
     end
 
     # Creates a namespace for the given name

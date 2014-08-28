@@ -8,7 +8,7 @@ Feature: Index Scope To
     And a published post with the title "Hello World" written by "John Doe" exists
     Given an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         # Scope section to a specific author
         scope_to do
           User.find_by_first_name_and_last_name "John", "Doe"
@@ -34,7 +34,7 @@ Feature: Index Scope To
   Scenario: Viewing the index with conditional scope :if
     Given an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope_to :if => proc{ false } do
           User.find_by_first_name_and_last_name("John", "Doe")
         end
@@ -46,7 +46,7 @@ Feature: Index Scope To
   Scenario: Viewing the index with conditional scope :unless
     Given an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope_to :unless => proc{ true } do
           User.find_by_first_name_and_last_name("John", "Doe")
         end

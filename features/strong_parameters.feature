@@ -11,7 +11,7 @@ Feature: Strong Params
     And I am logged in
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
       end
     """
     When I am on the index page for posts
@@ -19,7 +19,7 @@ Feature: Strong Params
   Scenario: Static permitted parameters
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         permit_params :author, :title, :starred
       end
     """
@@ -36,7 +36,7 @@ Feature: Strong Params
   Scenario: Dynamic permitted parameters
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         permit_params do
           allow = [:author, :title]
           allow << :starred
@@ -57,7 +57,7 @@ Feature: Strong Params
   Scenario: Should not update parameters that are not declared as permitted
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         permit_params :author, :title
       end
     """

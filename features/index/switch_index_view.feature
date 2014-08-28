@@ -8,7 +8,7 @@ Feature: Switch Index View
   Given a post with the title "Hello World from Table" exists
   And an index configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       index :as => :table do
         column :title
       end
@@ -23,7 +23,7 @@ Feature: Switch Index View
     Given a post with the title "Hello World from Table" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :block do |post|
           span(link_to(post.title, admin_post_path(post)))
         end
@@ -38,7 +38,7 @@ Feature: Switch Index View
     Given a post with the title "Hello World from Table" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :block do |post|
           span(link_to(post.title, admin_post_path(post)))
         end
@@ -55,7 +55,7 @@ Feature: Switch Index View
     Given a post with the title "Hey from Table" and body "My body is awesome" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :block do |post|
           span(link_to(post.title, admin_post_path(post)))
         end

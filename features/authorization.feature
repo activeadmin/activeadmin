@@ -36,7 +36,7 @@ Feature: Authorizing Access
 
     ActiveAdmin.application.namespace(:admin).authorization_adapter = OnlyAuthorsAuthorization
 
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
     end
 
     ActiveAdmin.register_page "No Access" do

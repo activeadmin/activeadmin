@@ -6,7 +6,7 @@ Feature: Breadcrumb
   Scenario: Default breadcrumb links
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
       end
     """
     When I am on the new post page
@@ -15,7 +15,7 @@ Feature: Breadcrumb
   Scenario: Rewritten breadcrumb links
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         breadcrumb do
           [
             link_to('test', '/admin/test/url')
@@ -30,7 +30,7 @@ Feature: Breadcrumb
     Given a configuration of:
     """
       ActiveAdmin.application.breadcrumb = false
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
       end
     """
     When I am on the new post page
@@ -41,7 +41,7 @@ Feature: Breadcrumb
     Given a configuration of:
     """
       ActiveAdmin.application.breadcrumb = false
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         config.breadcrumb = true
       end
     """
@@ -52,7 +52,7 @@ Feature: Breadcrumb
     Given a configuration of:
     """
       ActiveAdmin.application.breadcrumb = false
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         breadcrumb do
           [
             link_to('test', '/admin/test/url')
@@ -67,7 +67,7 @@ Feature: Breadcrumb
     Given a configuration of:
     """
       ActiveAdmin.application.breadcrumb = true
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         config.breadcrumb = false
       end
     """

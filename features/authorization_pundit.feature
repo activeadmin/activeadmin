@@ -9,7 +9,7 @@ Feature: Authorizing Access using Pundit
 
     ActiveAdmin.application.namespace(:admin).authorization_adapter = ActiveAdmin::PunditAdapter
 
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
     end
 
     ActiveAdmin.register_page "No Access" do

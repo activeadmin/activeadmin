@@ -17,11 +17,11 @@ module ActiveAdmin
     # eg:
     #
     #   factory = AbstractViewFactory.new
-    #   factory.register my_view: SomeViewClass
+    #   factory.register_resource my_view: SomeViewClass
     #
     # You can setup many at the same time:
     #
-    #   factory.register  my_view: SomeClass,
+    #   factory.register_resource  my_view: SomeClass,
     #                     another_view: OtherViewClass
     #
     def register(view_hash)

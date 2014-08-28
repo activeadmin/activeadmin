@@ -3,7 +3,7 @@ Feature: Index Parameters
   Scenario: Viewing index when download_links disabled
     Given an index configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       index :as => :table, :download_links => false
     end
     """
@@ -18,7 +18,7 @@ Feature: Index Parameters
       """
     Given an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :table
       end
       """
@@ -35,14 +35,14 @@ Feature: Index Parameters
     Given a configuration of:
       """
       ActiveAdmin.application.namespace(:superadmin).download_links = false
-      ActiveAdmin.register AdminUser, :namespace => :superadmin
+      ActiveAdmin.register_resource AdminUser, :namespace => :superadmin
       """
     Given an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :table
       end
-      ActiveAdmin.register Post, :namespace => :superadmin do
+      ActiveAdmin.register_resource Post, :namespace => :superadmin do
         index :as => :table
       end
       """
@@ -58,14 +58,14 @@ Feature: Index Parameters
     Given a configuration of:
       """
       ActiveAdmin.application.namespace(:superadmin).download_links = false
-      ActiveAdmin.register AdminUser, :namespace => :superadmin
+      ActiveAdmin.register_resource AdminUser, :namespace => :superadmin
       """
     Given an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :table
       end
-      ActiveAdmin.register Post, :namespace => :superadmin do
+      ActiveAdmin.register_resource Post, :namespace => :superadmin do
         index :as => :table, :download_links => true
       end
       """

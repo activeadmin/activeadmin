@@ -9,7 +9,7 @@ Feature: Action Item
   Scenario: Create an member action
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       action_item do
         link_to "Embiggen", '/'
       end
@@ -31,7 +31,7 @@ Feature: Action Item
   Scenario: Create an member action with if clause that returns true
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       action_item :if => proc{ !current_active_admin_user.nil? } do
         link_to "Embiggen", '/'
       end
@@ -53,7 +53,7 @@ Feature: Action Item
   Scenario: Create an member action with if clause that returns false
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       action_item :if => proc{ current_active_admin_user.nil? } do
         link_to "Embiggen", '/'
       end

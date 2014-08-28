@@ -38,7 +38,7 @@ module ActiveAdmin
         expect(config.decorator_class).to be_nil
       end
       context 'when a decorator is defined' do
-        let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
+        let(:resource) { namespace.register_resource(Post) { decorate_with PostDecorator } }
         specify '#decorator_class_name should return PostDecorator' do
           expect(resource.decorator_class_name).to eq '::PostDecorator'
         end
@@ -67,12 +67,12 @@ module ActiveAdmin
       subject{ resource }
 
       context "when regular resource" do
-        let(:resource){ namespace.register(Post) }
+        let(:resource){ namespace.register_resource(Post) }
         it { is_expected.to be_include_in_menu }
       end
 
       context "when menu set to false" do
-        let(:resource){ namespace.register(Post){ menu false } }
+        let(:resource){ namespace.register_resource(Post){ menu false } }
         it { is_expected.not_to be_include_in_menu }
       end
     end
@@ -96,7 +96,7 @@ module ActiveAdmin
     describe "scoping" do
       context "when using a block" do
         before do
-          @resource = application.register Category do
+          @resource = application.register_resource Category do
             scope_to do
               "scoped"
             end
@@ -110,7 +110,7 @@ module ActiveAdmin
 
       context "when using a symbol" do
         before do
-          @resource = application.register Category do
+          @resource = application.register_resource Category do
             scope_to :current_user
           end
         end
@@ -125,7 +125,7 @@ module ActiveAdmin
       describe "getting the method for the association chain" do
         context "when a simple registration" do
           before do
-            @resource = application.register Category do
+            @resource = application.register_resource Category do
               scope_to :current_user
             end
           end
@@ -135,7 +135,7 @@ module ActiveAdmin
         end
         context "when passing in the method as an option" do
           before do
-            @resource = application.register Category do
+            @resource = application.register_resource Category do
               scope_to :current_user, association_method: :blog_categories
             end
           end
@@ -229,7 +229,7 @@ module ActiveAdmin
     end
 
     describe '#find_resource' do
-      let(:resource) { namespace.register(Post) }
+      let(:resource) { namespace.register_resource(Post) }
       let(:post) { double }
       before do
         allow(Post).to receive(:find_by_id).with('12345') { post }
@@ -240,7 +240,7 @@ module ActiveAdmin
       end
 
       context 'with a decorator' do
-        let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
+        let(:resource) { namespace.register_resource(Post) { decorate_with PostDecorator } }
         it 'decorates the resource' do
           expect(resource.find_resource('12345')).to eq PostDecorator.new(post)
         end
@@ -260,7 +260,7 @@ module ActiveAdmin
 
       context 'when using controller finder' do
         let(:resource) do
-          namespace.register(Post) do
+          namespace.register_resource(Post) do
             controller do
               defaults finder: :find_by_title!
             end

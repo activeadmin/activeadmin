@@ -5,7 +5,7 @@ Feature: Index as Table
   Scenario: Viewing the default table with one resources
     Given an index configuration of:
       """
-        ActiveAdmin.register Post
+        ActiveAdmin.register_resource Post
       """
     And 1 post exists
     When I am on the index page for posts
@@ -17,7 +17,7 @@ Feature: Index as Table
     Given a post with the title "Hello World" exists
     And an index configuration of:
       """
-        ActiveAdmin.register Post
+        ActiveAdmin.register_resource Post
       """
     Then I should see "Hello World"
     Then I should see nicely formatted datetimes
@@ -29,7 +29,7 @@ Feature: Index as Table
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index do
           column :title
           column :body
@@ -45,7 +45,7 @@ Feature: Index as Table
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index do
           column("My Title") do |post|
             post.title
@@ -65,7 +65,7 @@ Feature: Index as Table
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index do
           if current_active_admin_user
             column :title
@@ -85,7 +85,7 @@ Feature: Index as Table
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         actions :index, :show, :edit, :update
       end
       """
@@ -97,7 +97,7 @@ Feature: Index as Table
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index do
           column :category
           actions class: 'custom-column-class', name: 'That text'
@@ -110,7 +110,7 @@ Feature: Index as Table
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         actions :index, :show, :edit, :update
 
         index do
@@ -130,7 +130,7 @@ Feature: Index as Table
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         actions :index, :show, :edit, :update
 
         index do
@@ -150,7 +150,7 @@ Feature: Index as Table
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         actions :index, :show, :edit, :update
 
         index do
@@ -170,7 +170,7 @@ Feature: Index as Table
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         actions :index, :show, :edit, :update
 
         index do
@@ -190,7 +190,7 @@ Feature: Index as Table
     Given a post with the title "Hello World" and body "From the body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         actions :index
       end
       """
@@ -203,7 +203,7 @@ Feature: Index as Table
     Given 1 post exists
     And an index configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           index do
             column :category
           end
@@ -216,7 +216,7 @@ Feature: Index as Table
     And a post with the title "Bye bye world" and body "Move your..." exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
       """
     When I am on the index page for posts
     Then I should see the "index_table_posts" table:
@@ -234,7 +234,7 @@ Feature: Index as Table
     And a post with the title "Bye bye world" exists
     And an index configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           controller do
             def scoped_collection
               Post.select("id, title, length(title) as title_length")

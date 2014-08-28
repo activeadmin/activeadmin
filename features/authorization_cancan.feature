@@ -24,7 +24,7 @@ Feature: Authorizing Access using CanCan
 
     ActiveAdmin.application.namespace(:admin).authorization_adapter = ActiveAdmin::CanCanAdapter
 
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
     end
 
     ActiveAdmin.register_page "No Access" do

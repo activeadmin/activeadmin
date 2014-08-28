@@ -5,7 +5,7 @@ Feature: Index Blank Slate
   Scenario: Viewing the default table with no resources
     Given an index configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           batch_action :favourite do
             # nothing
           end
@@ -22,7 +22,7 @@ Feature: Index Blank Slate
   Scenario: Viewing the default table with no resources and no 'new' action
     Given an index configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           actions :index, :show
         end
       """
@@ -32,7 +32,7 @@ Feature: Index Blank Slate
   Scenario: Viewing a index using a grid with no resources
     Given an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :grid do |post|
           h2 auto_link(post)
         end
@@ -43,7 +43,7 @@ Feature: Index Blank Slate
   Scenario: Viewing a index using blocks with no resources
     Given an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :block do |post|
           span(link_to(post.title, admin_post_path(post)))
         end
@@ -54,7 +54,7 @@ Feature: Index Blank Slate
   Scenario: Viewing a blog with no resources
     Given an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :blog
       end
       """
@@ -63,7 +63,7 @@ Feature: Index Blank Slate
   Scenario: Customizing the default table with no resources
     Given an index configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           index blank_slate_link: ->{link_to("Go to dashboard", admin_root_path)} do |post|
           end
         end
@@ -74,7 +74,7 @@ Feature: Index Blank Slate
   Scenario: Customizing the default table with no blank slate link
     Given an index configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           index blank_slate_link: false do |post|
           end
         end

@@ -8,7 +8,7 @@ module ActiveAdmin
     #
     # Example:
     #
-    #   ActiveAdmin.register "My Page" do
+    #   ActiveAdmin.register_resource "My Page" do
     #     content do
     #       para "Sweet!"
     #     end

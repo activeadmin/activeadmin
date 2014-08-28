@@ -9,7 +9,7 @@ Feature: Sidebar Sections
   Scenario: Create a sidebar for all actions
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       sidebar :help do
         "Need help? Email us at help@example.com"
       end
@@ -33,7 +33,7 @@ Feature: Sidebar Sections
   Scenario: Create a sidebar for only one action
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       sidebar :help, :only => :index do
         "Need help? Email us at help@example.com"
       end
@@ -57,7 +57,7 @@ Feature: Sidebar Sections
   Scenario: Create a sidebar for all except one action
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       sidebar :help, :except => :index do
         "Need help? Email us at help@example.com"
       end
@@ -79,7 +79,7 @@ Feature: Sidebar Sections
   Scenario: Create a sidebar for only one action with if clause that returns false
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       sidebar :help, :only => :index, :if => proc{ current_active_admin_user.nil? } do
         "Need help? Email us at help@example.com"
       end
@@ -104,7 +104,7 @@ Feature: Sidebar Sections
     module SidebarHelper
       def can_sidebar?; false; end
     end
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       controller { helper SidebarHelper }
       sidebar :help, :only => :index, :if => :can_sidebar? do
         "Need help? Email us at help@example.com"
@@ -127,7 +127,7 @@ Feature: Sidebar Sections
   Scenario: Create a sidebar for only one action with if clause that returns true
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       sidebar :help, :only => :show, :if => proc{ !current_active_admin_user.nil? } do
         "Need help? Email us at help@example.com"
       end
@@ -150,7 +150,7 @@ Feature: Sidebar Sections
   Scenario: Create a sidebar with deep content
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       sidebar :help do
         ul do
           li "First List First Item"
@@ -175,7 +175,7 @@ Feature: Sidebar Sections
     """
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       sidebar :help
     end
     """
@@ -189,7 +189,7 @@ Feature: Sidebar Sections
     """
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       sidebar :help, :partial => "custom_help_partial"
     end
     """
@@ -200,7 +200,7 @@ Feature: Sidebar Sections
   Scenario: Position sidebar at the top using priority option
     Given a configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       sidebar :help, priority: 0 do
         "Need help? Email us at help@example.com"
       end

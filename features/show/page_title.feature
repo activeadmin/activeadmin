@@ -8,7 +8,7 @@ Feature: Show - Page Title
   Scenario: Set a method to be called on the resource as the title
     Given a show configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         show :title => :title
       end
     """
@@ -17,7 +17,7 @@ Feature: Show - Page Title
   Scenario: Set a string as the title
     Given a show configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         show :title => "Title From String"
       end
     """
@@ -26,7 +26,7 @@ Feature: Show - Page Title
   Scenario: Set a proc as the title
     Given a show configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         show :title => proc{|post| "Title: " + post.title }
       end
     """
@@ -35,21 +35,21 @@ Feature: Show - Page Title
   Scenario: Default title
     Given a show configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     Then I should see the page title "Hello World"
 
   Scenario: Default title with no display name method candidate
     Given a show configuration of:
     """
-      ActiveAdmin.register Tag
+      ActiveAdmin.register_resource Tag
     """
     Then I should see the page title "Tag #"
 
   Scenario: Set the title in controller
     Given a show configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         controller do
           before_filter { @page_title = "List of #{resource_class.model_name.plural}" }
         end

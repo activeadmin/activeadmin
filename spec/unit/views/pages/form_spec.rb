@@ -7,7 +7,7 @@ describe ActiveAdmin::Views::Pages::Form do
     let!(:params){ { controller: "UsersController", action: "edit" } }
     let(:helpers) do
       helpers = mock_action_view
-      allow(helpers).to receive(:active_admin_config).and_return(namespace.register(Post))
+      allow(helpers).to receive(:active_admin_config).and_return(namespace.register_resource(Post))
       allow(helpers).to receive(:params).and_return(params)
       helpers
     end

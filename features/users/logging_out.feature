@@ -5,7 +5,7 @@ Feature: User Logging out
   Scenario: Logging out successfully
     Given a configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     And I am logged in
     When I go to the dashboard

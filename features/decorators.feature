@@ -10,7 +10,7 @@ Feature: Decorators
   Scenario: Index page with decorator
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         decorate_with PostDecorator
 
         index do
@@ -27,7 +27,7 @@ Feature: Decorators
   Scenario: Show page with decorator
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         decorate_with PostDecorator
 
         show do

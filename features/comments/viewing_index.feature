@@ -4,7 +4,7 @@ Feature: Viewing Index of Comments
     Given a post with the title "Hello World" written by "Jane Doe" exists
     Given a show configuration of:
       """
-        ActiveAdmin.register Post
+        ActiveAdmin.register_resource Post
       """
 
   Scenario: Viewing all commments for a namespace

@@ -73,11 +73,11 @@ module ActiveAdmin
       application.prepare!
     end
 
-    delegate :register,      to: :application
-    delegate :register_page, to: :application
-    delegate :unload!,       to: :application
-    delegate :load!,         to: :application
-    delegate :routes,        to: :application
+    delegate :register_resource, to: :application
+    delegate :register_page,     to: :application
+    delegate :unload!,           to: :application
+    delegate :load!,             to: :application
+    delegate :routes,            to: :application
 
     # A callback is triggered each time (before) Active Admin loads the configuration files.
     # In development mode, this will happen whenever the user changes files. In production

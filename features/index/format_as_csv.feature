@@ -6,7 +6,7 @@ Feature: Format as CSV
   Scenario: Default
     Given a configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     And a post with the title "Hello World" exists
     When I am on the index page for posts
@@ -18,7 +18,7 @@ Feature: Format as CSV
   Scenario: Default with alias
     Given a configuration of:
     """
-      ActiveAdmin.register Post, :as => "MyArticle"
+      ActiveAdmin.register_resource Post, :as => "MyArticle"
     """
     And 1 post exists
     When I am on the index page for my_articles
@@ -29,7 +29,7 @@ Feature: Format as CSV
   Scenario: With CSV format customization
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         csv do
           column :title
           column("Last update") { |post| post.updated_at }
@@ -47,7 +47,7 @@ Feature: Format as CSV
   Scenario: With CSV format customization
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         csv :col_sep => ';' do
           column :title
           column :body
@@ -64,7 +64,7 @@ Feature: Format as CSV
   Scenario: With CSV option customization
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         csv :force_quotes => true do
           column :title
           column :body
@@ -83,7 +83,7 @@ Feature: Format as CSV
     Given a configuration of:
     """
       ActiveAdmin.application.csv_options = { :col_sep => ';' }
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         csv do
           column :title
           column :body
@@ -101,7 +101,7 @@ Feature: Format as CSV
     Given a configuration of:
     """
       ActiveAdmin.application.csv_options = {:col_sep => ',', :force_quotes => true}
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         csv do
           column :title
           column :body
@@ -119,7 +119,7 @@ Feature: Format as CSV
   Scenario: With encoding CSV options
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         csv :encoding => 'SJIS' do
           column :title
           column :body
@@ -135,7 +135,7 @@ Feature: Format as CSV
     Given a configuration of:
     """
       ActiveAdmin.application.csv_options = { :encoding => 'SJIS' }
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         csv do
           column :title
           column :body
@@ -150,7 +150,7 @@ Feature: Format as CSV
   Scenario: With decorator
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         decorate_with PostDecorator
 
         csv do

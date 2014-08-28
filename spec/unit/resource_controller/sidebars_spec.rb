@@ -5,7 +5,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
 
   context 'without before_filter' do
     before do
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     end
 
     subject { find_before_filter controller, :skip_sidebar! }
@@ -15,7 +15,7 @@ describe ActiveAdmin::ResourceController::Sidebars do
 
   describe '#skip_sidebar!' do
     before do
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         before_filter :skip_sidebar!
       end
     end

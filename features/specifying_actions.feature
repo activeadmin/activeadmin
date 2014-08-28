@@ -5,7 +5,7 @@ Feature: Specifying Actions
   Scenario: Only creating the index action
     Given a configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           actions :index
           index do
             column do |post|
@@ -22,7 +22,7 @@ Feature: Specifying Actions
   Scenario: Specify a custom collection action with template
     Given a configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           action_item(:only => :index) do
             link_to('Import Posts', import_admin_posts_path)
           end
@@ -42,7 +42,7 @@ Feature: Specifying Actions
   Scenario: Specify a custom member action with template
     Given a configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           action_item(:only => :show) do
             link_to('Review', review_admin_post_path)
           end
@@ -68,7 +68,7 @@ Feature: Specifying Actions
   Scenario: Specify a custom member action with template using arb
     Given a configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           action_item(:only => :show) do
             link_to('Review', review_admin_post_path)
           end

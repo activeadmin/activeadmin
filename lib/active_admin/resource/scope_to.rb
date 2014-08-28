@@ -8,7 +8,7 @@ module ActiveAdmin
       #
       # Eg:
       #
-      #   ActiveAdmin.register Post do
+      #   ActiveAdmin.register_resource Post do
       #     scope_to :current_user
       #   end
       #

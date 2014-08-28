@@ -1,4 +1,4 @@
-ActiveAdmin.register Store do
+ActiveAdmin.register_resource Store do
 
   if Rails::VERSION::MAJOR == 4
     permit_params :name

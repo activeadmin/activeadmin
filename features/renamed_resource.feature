@@ -8,7 +8,7 @@ Feature: Renamed Resource
     And I am logged in
     Given a configuration of:
     """
-      ActiveAdmin.register Blog::Post, as: 'Post' do
+      ActiveAdmin.register_resource Blog::Post, as: 'Post' do
         permit_params :custom_category_id, :author_id, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
       end
     """

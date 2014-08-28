@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "Batch Actions Settings" do
   let(:app) { ActiveAdmin::Application.new }
   let(:ns) { ActiveAdmin::Namespace.new(app, "Admin") }
-  let(:post_resource) { ns.register Post }
+  let(:post_resource) { ns.register_resource Post }
 
   it "should be disabled globally by default" do
     # Note: the default initializer would set it to true

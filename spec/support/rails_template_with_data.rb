@@ -25,7 +25,7 @@ scopes = <<-EOF
     posts.where(author_id: current_admin_user.id)
   end
 EOF
-inject_into_file 'app/admin/posts.rb', scopes , after: "ActiveAdmin.register Post do\n"
+inject_into_file 'app/admin/posts.rb', scopes , after: "ActiveAdmin.register_resource Post do\n"
 
 # Setup some default data
 append_file "db/seeds.rb", <<-EOF

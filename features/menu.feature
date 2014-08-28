@@ -6,7 +6,7 @@ Feature: Menu
   Scenario: Hide the menu item
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         menu false
       end
     """
@@ -16,7 +16,7 @@ Feature: Menu
   Scenario: Set the menu item label
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         menu :label => "Articles"
       end
     """
@@ -41,8 +41,8 @@ Feature: Menu
   Scenario: Adding a resource as a sub menu item
     Given a configuration of:
     """
-      ActiveAdmin.register User
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource User
+      ActiveAdmin.register_resource Post do
         menu :parent => 'User'
       end
     """

@@ -1,4 +1,4 @@
-ActiveAdmin.register <%= class_name %> do
+ActiveAdmin.register_resource <%= class_name %> do
 
 <% if Rails::VERSION::MAJOR == 4 || defined?(ActionController::StrongParameters) %>
   # See permitted parameters documentation:

@@ -52,14 +52,14 @@ describe ActiveAdmin::ResourceCollection do
 
     it "shouldn't allow a resource name mismatch to occur" do
       expect {
-        ActiveAdmin.register Category
-        ActiveAdmin.register Post, as: "Category"
+        ActiveAdmin.register_resource Category
+        ActiveAdmin.register_resource Post, as: "Category"
       }.to raise_error ActiveAdmin::ResourceCollection::ConfigMismatch
     end
 
     it "shouldn't allow a Page/Resource mismatch to occur" do
       expect {
-        ActiveAdmin.register User
+        ActiveAdmin.register_resource User
         ActiveAdmin.register_page 'User'
       }.to raise_error ActiveAdmin::ResourceCollection::IncorrectClass
     end

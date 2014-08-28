@@ -4,7 +4,7 @@ describe ActiveAdmin::Resource::Sidebars do
 
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
-    namespace.register(Post)
+    namespace.register_resource(Post)
   end
 
   let(:sidebar) { ActiveAdmin::SidebarSection.new(:help) }
