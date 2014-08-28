@@ -3,6 +3,7 @@
 ### Major Changes
 * Migration from Metasearch to Ransack [#1979][] by [@seanlinsley][]
 * Rails 4 support [#2326][] by many people :heart:
+* deprecate ActiveAdmin.register, in favor of ActiveAdmin.register_resource [#3378][] by [@timoschilling][]
 
 ### Enhancements
 * Make AA ORM-agnostic [#2545][] by [@johnnyshields][]
