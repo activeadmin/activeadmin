@@ -30,6 +30,8 @@ group :development do
   # Documentation
   gem 'yard', github: 'lsegal/yard' # Documentation generator (until lsegal/yard#765 is in a release)
   gem 'redcarpet'          # Markdown implementation (for yard)
+
+  gem 'i18n-tasks'
 end
 
 group :test do

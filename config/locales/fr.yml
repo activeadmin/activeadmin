@@ -1,114 +1,125 @@
+---
 fr:
   active_admin:
-    dashboard: "Tableau de bord"
+    dashboard: Tableau de bord
     dashboard_welcome:
-      welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
-      call_to_action: "Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboard.rb'"
-    view: "Voir"
-    edit: "Modifier"
-    delete: "Supprimer"
+      welcome: Bienvenue dans Active Admin. Ceci est la page par défaut.
+      call_to_action: Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboard.rb'
+    view: Voir
+    edit: Modifier
+    delete: Supprimer
     delete_confirmation: "Êtes-vous certain de vouloir supprimer ceci ?"
-    new_model: "Créer %{model}"
-    create_model: "Créer %{model}"
-    edit_model: "Modifier %{model}"
-    update_model: "Modifier %{model}"
-    delete_model: "Supprimer %{model}"
-    details: "Détails de %{model}"
-    cancel: "Annuler"
-    empty: "Vide"
-    previous: "Précédent"
-    next: "Suivant"
-    download: "Télécharger :"
-    has_many_new: "Ajouter un nouveau %{model}"
-    has_many_delete: "Supprimer"
-    has_many_remove: "Enlever"
+    new_model: Créer %{model}
+    create_model: Créer %{model}
+    edit_model: Modifier %{model}
+    update_model: Modifier %{model}
+    delete_model: Supprimer %{model}
+    details: Détails de %{model}
+    cancel: Annuler
+    empty: Vide
+    previous: Précédent
+    next: Suivant
+    download: 'Télécharger :'
+    has_many_new: Ajouter un nouveau %{model}
+    has_many_delete: Supprimer
+    has_many_remove: Enlever
     filters:
       buttons:
-        filter: "Filtrer"
-        clear: "Supprimer les filtres"
+        filter: Filtrer
+        clear: Supprimer les filtres
       predicates:
-        contains: "Contient"
-        equals: "Egal à"
-        starts_with: "Commence par"
-        ends_with: "Se termine par"
-        greater_than: "Plus grand que"
-        less_than: "Plus petit que"
+        contains: Contient
+        equals: Egal à
+        starts_with: Commence par
+        ends_with: Se termine par
+        greater_than: Plus grand que
+        less_than: Plus petit que
     status_tag:
-      "yes": "Oui"
-      "no": "Non"
-    main_content: "Veuillez implémenter %{model}#main_content pour afficher le contenu."
-    logout: "Déconnexion"
-    powered_by: "Propulsé par %{active_admin} %{version}"
+      'yes': Oui
+      'no': Non
+    main_content: Veuillez implémenter %{model}#main_content pour afficher le contenu.
+    logout: Déconnexion
+    powered_by: Propulsé par %{active_admin} %{version}
     sidebars:
-      filters: "Filtres"
+      filters: Filtres
     pagination:
-      empty: "Aucun %{model} trouvé"
-      one: "Affichage de <b>1</b> %{model}"
-      one_page: "Affichage des <b>%{n}</b> %{model}"
-      multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"
-      multiple_without_total: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: Aucun %{model} trouvé
+      one: Affichage de <b>1</b> %{model}
+      one_page: Affichage des <b>%{n}</b> %{model}
+      multiple: Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total
+        de <b>%{total}</b>
+      multiple_without_total: Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
       entry:
-        one: "entrée"
-        other: "entrées"
-    any: "N'importe lequel"
+        one: entrée
+        other: entrées
+    any: N'importe lequel
     blank_slate:
-      content: "Il n'y a pas encore de %{resource_name}."
-      link: "Créez en un"
+      content: Il n'y a pas encore de %{resource_name}.
+      link: Créez en un
     dropdown_actions:
-      button_label: "Actions"
+      button_label: Actions
     batch_actions:
-      button_label: "Actions groupées"
+      button_label: Actions groupées
       default_confirmation: "Êtes-vous sûr de que vouloir faire cela ?"
-      delete_confirmation: "Êtes-vous sûr de vouloir supprimer ces %{plural_model} ?"
+      delete_confirmation: "Êtes-vous sûr de vouloir supprimer ces %{plural_model}
+        ?"
       succesfully_destroyed:
-        one: "1 %{model} supprimé"
+        one: 1 %{model} supprimé
         other: "%{count} %{plural_model} supprimés"
       selection_toggle_explanation: "(Inverser la sélection)"
-      link: "Créer un"
+      link: Créer un
       action_label: "%{title} les éléments sélectionnés"
       labels:
-        destroy: "Supprimer"
+        destroy: Supprimer
     comments:
-      body: "Corps"
-      author: "Auteur"
-      title: "Commentaire"
-      add: "Ajouter un commentaire"
-      resource: "Ressource"
-      resource_type: "Type de ressource"
-      author_type: "Profil de l'auteur"
-      no_comments_yet: "Aucun commentaire actuellement"
-      title_content: "Commentaires (%{count})"
+      body: Corps
+      author: Auteur
+      title: Commentaire
+      add: Ajouter un commentaire
+      resource: Ressource
+      resource_type: Type de ressource
+      author_type: Profil de l'auteur
+      no_comments_yet: Aucun commentaire actuellement
+      title_content: Commentaires (%{count})
       errors:
-        empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
+        empty_text: Le commentaire n'a pas été enregistré puisque le texte était vide.
+      author_missing: Anonymous
     devise:
       username:
-        title: "Nom d'utilisateur"
+        title: Nom d'utilisateur
       email:
-        title: "Email"
+        title: Email
       subdomain:
-        title: "Sous-domaine"
+        title: Sous-domaine
       password:
-        title: "Mot de passe"
+        title: Mot de passe
       login:
-        title: "Connection"
-        remember_me: "Garder ma session ouverte"
-        submit: "Se connecter"
+        title: Connection
+        remember_me: Garder ma session ouverte
+        submit: Se connecter
       reset_password:
-        title: "Vous avez oublié votre mot de passe ?"
-        submit: "Réinitialiser mon mot de passe"
+        title: Vous avez oublié votre mot de passe ?
+        submit: Réinitialiser mon mot de passe
       change_password:
-        title: "Changez votre mot de passe"
-        submit: "Changer mon mot de passe"
+        title: Changez votre mot de passe
+        submit: Changer mon mot de passe
       resend_confirmation_instructions:
-        title: "Renvoyer les instructions de confirmation"
-        submit: "Renvoyer les instructions de confirmation"
+        title: Renvoyer les instructions de confirmation
+        submit: Renvoyer les instructions de confirmation
       links:
-        sign_in: "Connectez-vous"
-        forgot_your_password: "Vous avez oublié votre mot de passe ?"
-        sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
-    access_denied: "Vous n'êtes pas autorisé à executer cette action"
+        sign_in: Connectez-vous
+        forgot_your_password: Vous avez oublié votre mot de passe ?
+        sign_in_with_omniauth_provider: Connectez-vous avec %{provider}
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      unlock:
+        title: Resend unlock instructions
+        submit: Resend unlock instructions
+    access_denied:
+      message: You are not authorized to perform this action.
     index_list:
-      table: "Tableau"
-      block: "Liste"
-      grid: "Grille"
-      blog: "Blog"
+      table: Tableau
+      block: Liste
+      grid: Grille
+      blog: Blog

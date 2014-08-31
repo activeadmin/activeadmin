@@ -1,6 +1,7 @@
+---
 he:
   active_admin:
-    dashboard: פנל ניהול
+    dashboard: "פנל ניהול"
     dashboard_welcome:
       welcome: "ברוכים הבאים לאקטיב אדמין. זהו פנל הניהול"
       call_to_action: "כדי להוסיף אזורים בפנל הניהול, אנא בדוק את,  'app/admin/dashboard.rb'"
@@ -34,23 +35,24 @@ he:
         greater_than: "גדול מ"
         less_than: "פחות מ"
     status_tag:
-      "yes": "כן"
-      "no": "לא"
-    main_content: "Please implement %{model}#main_content to display content."
+      'yes': "כן"
+      'no': "לא"
+    main_content: Please implement %{model}#main_content to display content.
     logout: "התנתקות"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
       filters: "סינון"
     pagination:
       empty: "אין %{model} בנמצא"
       one: "מציג <b>1</b> %{model}"
       one_page: "הצגת <b>כל %{n}</b> %{model}"
-      multiple: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> מתוך <b>%{total}</b> בסך הכל"
+      multiple: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> מתוך <b>%{total}</b>
+        בסך הכל"
       multiple_without_total: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "רשומה בודדה"
         other: "רשומות"
-    any: "Any"
+    any: Any
     blank_slate:
       content: "כרגע אין עוד אף %{resource_name}."
       link: "צור אחד"
@@ -61,7 +63,7 @@ he:
       default_confirmation: "אתה בטוח שאתה רוצה לעשות את זה?"
       delete_confirmation: "האם הנך בטוח שאתה רוצה למרוח את %{plural_model}?"
       succesfully_destroyed:
-        one: "1 %{model} נמחק בהצלחה"
+        one: 1 %{model} נמחק בהצלחה
         few: "%{count} %{plural_model} נמחק בהצלחה"
         many: "%{count} %{plural_model} נמחק בהצלחה"
         other: "%{count} %{plural_model} נמחק בהצלחה"
@@ -72,14 +74,17 @@ he:
         destroy: "מחק"
     comments:
       body: "תוכן"
-      author: 'נוצר ע"י'
+      author: נוצר ע"י
       title: "תגובה"
       add: "הוסף תגובה"
-      resource: "Resource"
+      resource: Resource
       no_comments_yet: "אין עדיין תגובות."
       title_content: "תגובות (%{count})"
       errors:
         empty_text: "התגובה לא נשמרה, שדה התוכן ריק."
+      resource_type: Resource Type
+      author_type: Author Type
+      author_missing: Anonymous
     devise:
       login:
         title: "כניסה"
@@ -95,3 +100,27 @@ he:
         sign_in: "כניסה"
         forgot_your_password: "שכחת את הסיסמא שלך?"
         sign_in_with_omniauth_provider: "%{provider} היכנס עם"
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      unlock:
+        title: Resend unlock instructions
+        submit: Resend unlock instructions
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
+    access_denied:
+      message: You are not authorized to perform this action.
+    index_list:
+      table: Table
+      block: List
+      grid: Grid
+      blog: Blog

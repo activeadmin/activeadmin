@@ -1,95 +1,124 @@
+---
 lv:
   active_admin:
     dashboard: Panelis
     dashboard_welcome:
-      welcome: "Laipni lūgti Active Admin."
-      call_to_action: "Izmantojiet 'app/admin/dashboard.rb', lai pievienotu sadaļas panelim."
-    view: "Apskatīt"
-    edit: "Labot"
-    delete: "Dzēst"
-    delete_confirmation: "Vai Tu tiešām vēlies dzēst?"
-    new_model: "Pievienot '%{model}' ierakstu"
-    create_model: "Pievienot '%{model}' ierakstu"
-    edit_model: "Labot '%{model}' ierakstu"
-    update_model: "Labot '%{model}' ierakstu"
-    delete_model: "Dzēst '%{model}' ierakstu"
-    details: "Apraksts"
-    cancel: "Atcelt"
-    empty: "Tukšs"
-    previous: "Iepriekšējā"
-    next: "Nākošā"
-    download: "Lejuplādēt:"
-    has_many_new: "Pievienot jaunu '%{model}' ierakstu"
-    has_many_delete: "Dzēst"
-    has_many_remove: "Noņemt"
+      welcome: Laipni lūgti Active Admin.
+      call_to_action: Izmantojiet 'app/admin/dashboard.rb', lai pievienotu sadaļas
+        panelim.
+    view: Apskatīt
+    edit: Labot
+    delete: Dzēst
+    delete_confirmation: Vai Tu tiešām vēlies dzēst?
+    new_model: Pievienot '%{model}' ierakstu
+    create_model: Pievienot '%{model}' ierakstu
+    edit_model: Labot '%{model}' ierakstu
+    update_model: Labot '%{model}' ierakstu
+    delete_model: Dzēst '%{model}' ierakstu
+    details: Apraksts
+    cancel: Atcelt
+    empty: Tukšs
+    previous: Iepriekšējā
+    next: Nākošā
+    download: 'Lejuplādēt:'
+    has_many_new: Pievienot jaunu '%{model}' ierakstu
+    has_many_delete: Dzēst
+    has_many_remove: Noņemt
     filters:
       buttons:
-        filter: "Filtrēt"
-        clear: "Novākt filtrus"
+        filter: Filtrēt
+        clear: Novākt filtrus
       predicates:
-        contains: "Satur"
-        equals: "Vienāds ar"
-        starts_with: "Sākas ar"
-        ends_with: "Beidzas ar"
-        greater_than: "Lielāks par"
-        less_than: "Mazāks par"
+        contains: Satur
+        equals: Vienāds ar
+        starts_with: Sākas ar
+        ends_with: Beidzas ar
+        greater_than: Lielāks par
+        less_than: Mazāks par
     status_tag:
-      "yes": "Jā"
-      "no": "Nē"
-    main_content: "Lūdzu implementēt %{model}#main_content, lai rādītos saturs."
-    logout: "Iziet"
-    powered_by: "Powered by %{active_admin} %{version}"
+      'yes': Jā
+      'no': Nē
+    main_content: Lūdzu implementēt %{model}#main_content, lai rādītos saturs.
+    logout: Iziet
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
-      filters: "Filtri"
+      filters: Filtri
     pagination:
-      empty: "Nav ierakstu"
+      empty: Nav ierakstu
       one: "<b>1</b> ieraksts"
       one_page: "<b>%{n}</b> ieraksti"
       multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> ieraksti no <b>%{total}</b> kopā"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
-        one: "ieraksts"
-        other: "ieraksti"
-    any: "Jebkurš"
+        one: ieraksts
+        other: ieraksti
+    any: Jebkurš
     blank_slate:
-      content: "Sadaļā '%{resource_name}' nav neviena ieraksta."
-      link: "Izveidot jaunu"
+      content: Sadaļā '%{resource_name}' nav neviena ieraksta.
+      link: Izveidot jaunu
     dropdown_actions:
-      button_label: "Actions"
+      button_label: Actions
     batch_actions:
-      button_label: "Batch Actions"
-      default_confirmation: "Vai tiešām vēlaties to darīt?"
-      delete_confirmation: "Vai tiešām vēlaties dzēst šos %{plural_model}?"
+      button_label: Batch Actions
+      default_confirmation: Vai tiešām vēlaties to darīt?
+      delete_confirmation: Vai tiešām vēlaties dzēst šos %{plural_model}?
       succesfully_destroyed:
-        one: "Successfully destroyed 1 %{model}"
-        other: "Successfully destroyed %{count} %{plural_model}"
+        one: Successfully destroyed 1 %{model}
+        other: Successfully destroyed %{count} %{plural_model}
       selection_toggle_explanation: "(Toggle Selection)"
-      link: "Create one"
+      link: Create one
       action_label: "%{title} Selected"
       labels:
-        destroy: "Delete"
+        destroy: Delete
     comments:
-      body: "Saturs"
-      author: "Autors"
-      title: "Komentārs"
-      add: "Pievienot komentāru"
-      resource: "Resurss"
-      no_comments_yet: "Nav neviena komentāra."
-      title_content: "Komentāri (%{count})"
+      body: Saturs
+      author: Autors
+      title: Komentārs
+      add: Pievienot komentāru
+      resource: Resurss
+      no_comments_yet: Nav neviena komentāra.
+      title_content: Komentāri (%{count})
       errors:
-        empty_text: "Komentārs netika saglabāts - nekas nav ierakstīts"
+        empty_text: Komentārs netika saglabāts - nekas nav ierakstīts
+      resource_type: Resource Type
+      author_type: Author Type
+      author_missing: Anonymous
     devise:
       login:
-        title: "Ielogojaties"
-        remember_me: "atcerēties mani"
-        submit: "Ielogojaties"
+        title: Ielogojaties
+        remember_me: atcerēties mani
+        submit: Ielogojaties
       reset_password:
-        title: "Aizmirsāt savu paroli?"
-        submit: "Atjaunotu savu paroli"
+        title: Aizmirsāt savu paroli?
+        submit: Atjaunotu savu paroli
       change_password:
-        title: "Nomainīt paroli"
-        submit: "Nomainīt savu paroli"
+        title: Nomainīt paroli
+        submit: Nomainīt savu paroli
       links:
-        sign_in: "pierakstīties"
-        forgot_your_password: "Aizmirsāt savu paroli?"
-        sign_in_with_omniauth_provider: "Pierakstieties ar %{provider}"
+        sign_in: pierakstīties
+        forgot_your_password: Aizmirsāt savu paroli?
+        sign_in_with_omniauth_provider: Pierakstieties ar %{provider}
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      unlock:
+        title: Resend unlock instructions
+        submit: Resend unlock instructions
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
+    access_denied:
+      message: You are not authorized to perform this action.
+    index_list:
+      table: Table
+      block: List
+      grid: Grid
+      blog: Blog

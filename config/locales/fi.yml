@@ -1,115 +1,123 @@
+---
 fi:
   active_admin:
     dashboard: Etusivu
     dashboard_welcome:
-      welcome: "Tervetuloa! Tämä on Active Adminin oletusetusivu."
-      call_to_action: "Lisätäksesi etusivun osioita katso: 'app/admin/dashboard.rb'"
-    view: "Katso"
-    edit: "Muokkaa"
-    delete: "Poista"
-    delete_confirmation: "Oletko varma, että haluat poistaa tämän?"
-    new_model: "Uusi %{model}"
-    create_model: "Uusi %{model}"
-    edit_model: "Muokaa %{model}"
-    update_model: "Muokkaa %{model}"
-    delete_model: "Poista %{model}"
+      welcome: Tervetuloa! Tämä on Active Adminin oletusetusivu.
+      call_to_action: 'Lisätäksesi etusivun osioita katso: ''app/admin/dashboard.rb'''
+    view: Katso
+    edit: Muokkaa
+    delete: Poista
+    delete_confirmation: Oletko varma, että haluat poistaa tämän?
+    new_model: Uusi %{model}
+    create_model: Uusi %{model}
+    edit_model: Muokaa %{model}
+    update_model: Muokkaa %{model}
+    delete_model: Poista %{model}
     details: "%{model} Tiedot"
-    cancel: "Peruuta"
-    empty: "Tyhjä"
-    previous: "Edellinen"
-    next: "Seuraava"
-    download: "Lataa:"
-    has_many_new: "Lisää uusi %{model}"
-    has_many_delete: "Poista"
-    has_many_remove: "Poista"
+    cancel: Peruuta
+    empty: Tyhjä
+    previous: Edellinen
+    next: Seuraava
+    download: 'Lataa:'
+    has_many_new: Lisää uusi %{model}
+    has_many_delete: Poista
+    has_many_remove: Poista
     filters:
       buttons:
-        filter: "Hae"
-        clear: "Tyhjennä valinnat"
+        filter: Hae
+        clear: Tyhjennä valinnat
       predicates:
-        contains: "Sisältää"
-        equals: "On yhtä kuin"
-        starts_with: "Alkaa"
-        ends_with: "Päättyy"
-        greater_than: "Suurempi kuin"
-        less_than: "Pienempi kuin"
+        contains: Sisältää
+        equals: On yhtä kuin
+        starts_with: Alkaa
+        ends_with: Päättyy
+        greater_than: Suurempi kuin
+        less_than: Pienempi kuin
     status_tag:
-      "yes": "Kyllä"
-      "no": "Ei"
-    main_content: "Ole hyvä, käytä %{model}#main_content:ia nähdäksesi jotain."
-    logout: "Kirjaudu ulos"
-    powered_by: "Käyttää %{active_admin} %{version}:ia"
+      'yes': Kyllä
+      'no': Ei
+    main_content: Ole hyvä, käytä %{model}#main_content:ia nähdäksesi jotain.
+    logout: Kirjaudu ulos
+    powered_by: Käyttää %{active_admin} %{version}:ia
     sidebars:
-      filters: "Haku"
+      filters: Haku
     pagination:
       empty: "%{model}:ia ei löytynyt"
-      one: "Näytetään <b>1</b> %{model}"
-      one_page: "Näytetään <b>kaikki %{n}</b> %{model}:it"
-      multiple: "Näytetään %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> (yhteensä <b>%{total}</b>)"
-      multiple_without_total: "Näytetään %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      one: Näytetään <b>1</b> %{model}
+      one_page: Näytetään <b>kaikki %{n}</b> %{model}:it
+      multiple: Näytetään %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> (yhteensä <b>%{total}</b>)
+      multiple_without_total: Näytetään %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
       entry:
-        one: "syöte"
-        other: "syötteet"
-    any: "mikä vain"
+        one: syöte
+        other: syötteet
+    any: mikä vain
     blank_slate:
-      content: "Järjestelmässä ei ole yhtään %{resource_name}:ia vielä."
-      link: "Luo ensimmäinen"
+      content: Järjestelmässä ei ole yhtään %{resource_name}:ia vielä.
+      link: Luo ensimmäinen
     dropdown_actions:
-      button_label: "Acciones"
+      button_label: Acciones
     batch_actions:
-      button_label: "Toimet"
-      default_confirmation: "Oletko varma, että haluat tehdä tämän?"
-      delete_confirmation: "Oletko varma, että haluat poistaa nämä %{plural_model}:t?"
+      button_label: Toimet
+      default_confirmation: Oletko varma, että haluat tehdä tämän?
+      delete_confirmation: Oletko varma, että haluat poistaa nämä %{plural_model}:t?
       succesfully_destroyed:
-        one: "1 %{model} poistettu"
+        one: 1 %{model} poistettu
         other: "%{count} %{plural_model}:a poistettu"
       selection_toggle_explanation: "(Vaihda valintaa)"
-      link: "Luo"
+      link: Luo
       action_label: "%{title} Valittu"
       labels:
-        destroy: "Poista"
+        destroy: Poista
     comments:
-      resource_type: "Resurssityyppi"
-      author_type: "Luoja-tyyppi"
-      body: "Runko"
-      author: "Luoja"
-      title: "Kommentti"
-      add: "Lisää kommentti"
-      resource: "Resurssi"
-      no_comments_yet: "Ei kommentteja."
-      title_content: "Kommentteja (%{count})"
+      resource_type: Resurssityyppi
+      author_type: Luoja-tyyppi
+      body: Runko
+      author: Luoja
+      title: Kommentti
+      add: Lisää kommentti
+      resource: Resurssi
+      no_comments_yet: Ei kommentteja.
+      title_content: Kommentteja (%{count})
       errors:
-        empty_text: "Kommenttia ei pystytty tallentamaan, et kirjoittanut kommenttitekstiä."
+        empty_text: Kommenttia ei pystytty tallentamaan, et kirjoittanut kommenttitekstiä.
+      author_missing: Anonymous
     devise:
       username:
-        title: "Käyttäjänimi"
+        title: Käyttäjänimi
       email:
-        title: "Sähköposti"
+        title: Sähköposti
       subdomain:
-        title: "Subdomain"
+        title: Subdomain
       password:
-        title: "Salasana"
+        title: Salasana
       login:
-        title: "Sisäänkirjautuminen"
-        remember_me: "Muista minut"
-        submit: "Kirjaudu sisään"
+        title: Sisäänkirjautuminen
+        remember_me: Muista minut
+        submit: Kirjaudu sisään
       reset_password:
-        title: "Unohtunut salasana?"
-        submit: "Resetoi salasana"
+        title: Unohtunut salasana?
+        submit: Resetoi salasana
       change_password:
-        title: "Vaihda salasana"
-        submit: "Vaihda salasana"
+        title: Vaihda salasana
+        submit: Vaihda salasana
       unlock:
-        title: "Lähetä ohjeet lukituksen poistoon"
-        submit: "Lähetä ohjeet lukituksen poistoon"
+        title: Lähetä ohjeet lukituksen poistoon
+        submit: Lähetä ohjeet lukituksen poistoon
       links:
-        sign_in: "Kirjaudu sisään"
-        forgot_your_password: "Unohtunut salasana?"
-        sign_in_with_omniauth_provider: "Kirjaudu sisään %{provider}:ia käyttäen"
+        sign_in: Kirjaudu sisään
+        forgot_your_password: Unohtunut salasana?
+        sign_in_with_omniauth_provider: Kirjaudu sisään %{provider}:ia käyttäen
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
     access_denied:
-      message: "Sinulla ei ole oikeuksia suorittaa yrittämääsi toimintoa."
+      message: Sinulla ei ole oikeuksia suorittaa yrittämääsi toimintoa.
     index_list:
-      table: "Taulukko"
-      block: "Lista"
-      grid: "Ruudukko"
-      blog: "Blogi"
+      table: Taulukko
+      block: Lista
+      grid: Ruudukko
+      blog: Blogi

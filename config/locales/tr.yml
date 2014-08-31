@@ -1,88 +1,95 @@
+---
 tr:
   active_admin:
-    dashboard: "Kontrol Paneli"
+    dashboard: Kontrol Paneli
     dashboard_welcome:
-      welcome: "Active Admin'e Hoşgeldiniz. Burası öntanımlı Kontrol Paneli sayfasıdır."
-      call_to_action: "Kontrol Paneline bölümler eklemek için 'app/admin/dashboard.rb' dosyasına bakabilirsin."
-    view: "Görüntüle"
-    edit: "Değiştir"
-    delete: "Sil"
-    delete_confirmation: "Bu kaydı silmek istediğine emin misin?"
-    new_model: "Yeni %{model}"
-    create_model: "Yeni %{model}"
+      welcome: Active Admin'e Hoşgeldiniz. Burası öntanımlı Kontrol Paneli sayfasıdır.
+      call_to_action: Kontrol Paneline bölümler eklemek için 'app/admin/dashboard.rb'
+        dosyasına bakabilirsin.
+    view: Görüntüle
+    edit: Değiştir
+    delete: Sil
+    delete_confirmation: Bu kaydı silmek istediğine emin misin?
+    new_model: Yeni %{model}
+    create_model: Yeni %{model}
     edit_model: "%{model} modelini düzenle"
     update_model: "%{model} modelini düzenle"
     delete_model: "%{model} modelini sil"
     details: "%{model} ayrıntıları"
     cancel: "İptal"
-    empty: "Boş"
+    empty: Boş
     previous: "Önceki"
-    next: "Sonraki"
+    next: Sonraki
     download: "İndir:"
-    has_many_new: "Yeni %{model} kaydı ekle"
-    has_many_delete: "Sil"
+    has_many_new: Yeni %{model} kaydı ekle
+    has_many_delete: Sil
     has_many_remove: "Çıkarmak"
     filters:
       buttons:
-        filter: "Filtrele"
-        clear: "Filtreleri Temizle"
+        filter: Filtrele
+        clear: Filtreleri Temizle
       predicates:
-        contains: "içerir"
-        equals: "Eşittir"
-        starts_with: "ile başlar"
-        ends_with: "ile biter"
-        greater_than: "Büyükse"
-        less_than: "Küçükse"
+        contains: içerir
+        equals: Eşittir
+        starts_with: ile başlar
+        ends_with: ile biter
+        greater_than: Büyükse
+        less_than: Küçükse
     status_tag:
-      "yes": "Evet"
-      "no": "Hayır"
-    main_content: "İçeriği görüntülemek için lütfen %{model}#main_content metodunu ekleyin."
-    logout: "Oturumu Sonlandır"
-    powered_by: "Powered by %{active_admin} %{version}"
+      'yes': Evet
+      'no': Hayır
+    main_content: "İçeriği görüntülemek için lütfen %{model}#main_content metodunu
+      ekleyin."
+    logout: Oturumu Sonlandır
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
-      filters: "Filtreler"
+      filters: Filtreler
     pagination:
       empty: "%{model} boş"
       one: "<b>1</b> %{model} kaydı görüntüleniyor"
       one_page: "<b>%{n}</b> kayıt %{model} modelinde görüntüleniyor"
-      multiple: "%{model} toplam %{total} kayıt bulundu. <b>%{from} ile %{to} arası</b> arası görüntüleniyor"
+      multiple: "%{model} toplam %{total} kayıt bulundu. <b>%{from} ile %{to} arası</b>
+        arası görüntüleniyor"
       multiple_without_total: "%{model}. <b>%{from} ile %{to} arası</b> arası görüntüleniyor"
       entry:
-        one: "Girdi"
-        other: "Girdiler"
-    any: "Herhangi"
+        one: Girdi
+        other: Girdiler
+    any: Herhangi
     blank_slate:
-      content: "Herhangi bir %{resource_name} kaydı bulunamadı"
-      link: "Bir tane oluşturun"
+      content: Herhangi bir %{resource_name} kaydı bulunamadı
+      link: Bir tane oluşturun
     dropdown_actions:
-      button_label: "Işlemler"
+      button_label: Işlemler
     batch_actions:
-      button_label: "Toplu işlemler"
-      default_confirmation: "Bunu yapmak istediğinden emin misin?"
+      button_label: Toplu işlemler
+      default_confirmation: Bunu yapmak istediğinden emin misin?
       delete_confirmation: "%{plural_model} kayıtlarını silmek istediğinize emin misiniz?"
       succesfully_destroyed:
-        one: "1 %{model} kaydı başarıyla silindi."
-        other: "Toplam %{count} kayıt %{plural_model} modelinden silindi"
-      selection_toggle_explanation: "Seçimi Değiştir"
-      link: "Ekle"
+        one: 1 %{model} kaydı başarıyla silindi.
+        other: Toplam %{count} kayıt %{plural_model} modelinden silindi
+      selection_toggle_explanation: Seçimi Değiştir
+      link: Ekle
       action_label: "%{title} Seçildi"
       labels:
-        destroy: "Sil"
+        destroy: Sil
     comments:
-      body: "Ayrıntı"
-      author: "Yazar"
-      title: "Yorum"
-      add: "Yorum Ekle"
-      resource: "Kaynak"
-      no_comments_yet: "Henüz Yorum Yok"
-      title_content: "Yorumlar (%{count})"
+      body: Ayrıntı
+      author: Yazar
+      title: Yorum
+      add: Yorum Ekle
+      resource: Kaynak
+      no_comments_yet: Henüz Yorum Yok
+      title_content: Yorumlar (%{count})
       errors:
-        empty_text: "Yorum boş olarak kaydedilemez."
+        empty_text: Yorum boş olarak kaydedilemez.
+      resource_type: Resource Type
+      author_type: Author Type
+      author_missing: Anonymous
     devise:
       login:
-        title: "Oturum aç"
-        remember_me: "Beni Hatırla"
-        submit: "Gönder"
+        title: Oturum aç
+        remember_me: Beni Hatırla
+        submit: Gönder
       reset_password:
         title: "Şifreni mi unuttun?"
         submit: "Şifremi sıfırla"
@@ -90,10 +97,30 @@ tr:
         title: "Şifrenizi değiştirin"
         submit: "Şifremi değiştir"
       resend_confirmation_instructions:
-        title: "Onaylama talimatlarını tekrar gönder"
-        submit: "Onaylama talimatlarını tekrar gönder"
+        title: Onaylama talimatlarını tekrar gönder
+        submit: Onaylama talimatlarını tekrar gönder
       links:
-        sign_in: "Oturum aç"
+        sign_in: Oturum aç
         forgot_your_password: "Şifreni mi unuttun?"
         sign_in_with_omniauth_provider: "%{provider} ile giriş yapın"
-
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      unlock:
+        title: Resend unlock instructions
+        submit: Resend unlock instructions
+    access_denied:
+      message: You are not authorized to perform this action.
+    index_list:
+      table: Table
+      block: List
+      grid: Grid
+      blog: Blog

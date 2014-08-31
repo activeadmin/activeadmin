@@ -1,112 +1,127 @@
+---
 cs:
   active_admin:
-    dashboard: Úvod
+    dashboard: "Úvod"
     dashboard_welcome:
-      welcome: "Vítejte v Active Admin. Toto je nástěnka."
-      call_to_action: "Pro přidání sekcí na nástěnku se podívejte do souboru 'app/admin/dashboard.rb'"
-    view: "Zobrazit"
-    edit: "Upravit"
-    delete: "Smazat"
-    delete_confirmation: "Jste si jistí, že chcete tuto položku smazat?"
-    new_model: "Vytvořit"
-    create_model: "Vytvořit %{model}"
-    edit_model: "Upravit"
-    update_model: "Upravit %{model}"
-    delete_model: "Smazat"
-    details: "Detaily"
-    cancel: "Zrušit"
-    empty: "Prázdné"
-    previous: "Předchozí"
-    next: "Následující"
-    download: "Stáhnout:"
-    has_many_new: "Přidat nový"
-    has_many_delete: "Smazat"
-    has_many_remove: "Odstranit"
+      welcome: Vítejte v Active Admin. Toto je nástěnka.
+      call_to_action: Pro přidání sekcí na nástěnku se podívejte do souboru 'app/admin/dashboard.rb'
+    view: Zobrazit
+    edit: Upravit
+    delete: Smazat
+    delete_confirmation: Jste si jistí, že chcete tuto položku smazat?
+    new_model: Vytvořit
+    create_model: Vytvořit %{model}
+    edit_model: Upravit
+    update_model: Upravit %{model}
+    delete_model: Smazat
+    details: Detaily
+    cancel: Zrušit
+    empty: Prázdné
+    previous: Předchozí
+    next: Následující
+    download: 'Stáhnout:'
+    has_many_new: Přidat nový
+    has_many_delete: Smazat
+    has_many_remove: Odstranit
     filters:
       buttons:
-        filter: "Filtrovat"
-        clear: "Vyčistit filtry"
+        filter: Filtrovat
+        clear: Vyčistit filtry
       predicates:
-        contains: "Obsahuje"
-        equals: "Odpovídá"
-        starts_with: "Začíná na"
-        ends_with: "Končí na"
-        greater_than: "Větší než"
-        less_than: "Menší než"
+        contains: Obsahuje
+        equals: Odpovídá
+        starts_with: Začíná na
+        ends_with: Končí na
+        greater_than: Větší než
+        less_than: Menší než
     status_tag:
-      "yes": "Ano"
-      "no": "Ne"
-    main_content: "Implementujte prosím %{model}#main_content pro zobrazení obsahu."
-    logout: "Odhlásit"
+      'yes': Ano
+      'no': Ne
+    main_content: Implementujte prosím %{model}#main_content pro zobrazení obsahu.
+    logout: Odhlásit
     powered_by: "%{active_admin} %{version}"
     sidebars:
-      filters: "Filtry"
+      filters: Filtry
     pagination:
-      empty: "Nenalezen."
-      one: "Zobrazena  <b>1</b> položka"
-      one_page: "Počet zobrazených položek %{n}"
+      empty: Nenalezen.
+      one: Zobrazena  <b>1</b> položka
+      one_page: Počet zobrazených položek %{n}
       multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
-        one: "položka"
-        few: "položky"
-        other: "položky"
-    any: "Kterákoliv"
+        one: položka
+        few: položky
+        other: položky
+    any: Kterákoliv
     blank_slate:
-      content: "Zatím zde není žádný obsah."
-      link: "Vytvořit"
+      content: Zatím zde není žádný obsah.
+      link: Vytvořit
     dropdown_actions:
-      button_label: "Akce"
+      button_label: Akce
     batch_actions:
-      button_label: "Hromadné akce"
-      default_confirmation: "Jste si jisti, že chcete provést?"
-      delete_confirmation: "Jste si jisti, že chcete smazat tyto %{plural_model}?"
+      button_label: Hromadné akce
+      default_confirmation: Jste si jisti, že chcete provést?
+      delete_confirmation: Jste si jisti, že chcete smazat tyto %{plural_model}?
       succesfully_destroyed:
-        zero: "Nebyl smazán žádný %{model}"
+        zero: Nebyl smazán žádný %{model}
         one: "Úspěšně smazán %{model}"
         few: "Úspěšně smazány %{count} %{plural_model}"
         other: "Úspěšně smazáno %{count} %{plural_model}"
       selection_toggle_explanation: "(Změnit výběr)"
-      link: "Vytvořit"
+      link: Vytvořit
       action_label: "%{title}"
       labels:
-        destroy: "Vymazat"
+        destroy: Vymazat
     comments:
-      resource_type: "Typ zdroje"
-      author_type: "Typ autora"
-      body: "Tělo"
-      author: "Autor"
-      title: "Komentář"
-      add: "Přidat komentář"
-      resource: "Zdroj"
+      resource_type: Typ zdroje
+      author_type: Typ autora
+      body: Tělo
+      author: Autor
+      title: Komentář
+      add: Přidat komentář
+      resource: Zdroj
       no_comments_yet: "Žádný komentář"
-      author_missing: "Anonymní"
-      title_content: "Komentáře administrátorů (%{count})"
+      author_missing: Anonymní
+      title_content: Komentáře administrátorů (%{count})
       errors:
-        empty_text: "Komentář nebyl uložen, je prázdný."
+        empty_text: Komentář nebyl uložen, je prázdný.
     devise:
       login:
-        title: "Přihlášení"
-        remember_me: "Zapamatovat si mě"
-        submit: "Přihlásit"
+        title: Přihlášení
+        remember_me: Zapamatovat si mě
+        submit: Přihlásit
       reset_password:
-        title: "Zapomněli jste heslo?"
-        submit: "Obnovit heslo"
+        title: Zapomněli jste heslo?
+        submit: Obnovit heslo
       change_password:
-        title: "Změnit heslo"
-        submit: "Změnit své heslo"
+        title: Změnit heslo
+        submit: Změnit své heslo
       unlock:
-        title: "Zaslání instrukcí k odemčení účtu"
-        submit: "Zaslat instrukce k odemčení účtu"
+        title: Zaslání instrukcí k odemčení účtu
+        submit: Zaslat instrukce k odemčení účtu
       links:
-        sign_in: "Přihlásit se"
-        sign_up: "Registrovat se"
-        forgot_your_password: "Zapomněli jste heslo?"
-        sign_in_with_omniauth_provider: "Přihlásit se přes %{provider}"
+        sign_in: Přihlásit se
+        sign_up: Registrovat se
+        forgot_your_password: Zapomněli jste heslo?
+        sign_in_with_omniauth_provider: Přihlásit se přes %{provider}
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
     access_denied:
-      message: "Nemáte oprávnění k provedení této akce."
+      message: Nemáte oprávnění k provedení této akce.
     index_list:
-      table: "Tabulka"
-      block: "Seznam"
-      grid: "Tabulka"
-      blog: "Blog"
+      table: Tabulka
+      block: Seznam
+      grid: Tabulka
+      blog: Blog
