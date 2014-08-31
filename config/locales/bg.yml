@@ -77,10 +77,22 @@ bg:
       add: "Добавяне на коментар"
       resource: "Ресурс"
       no_comments_yet: "Все още няма коментари."
+      author_missing: "Анонимен"
       title_content: "Коментари (%{count})"
       errors:
         empty_text: "Коментарът с празен текст не беше запазен."
     devise:
+      username:
+        title: "Потребителско име"
+      email:
+        title: "Поща"
+      subdomain:
+        title: "Поддомейн"
+      password:
+        title: "Парола"
+      sign_up:
+        title: "Регистрация"
+        submit: "Регистрация"
       login:
         title: "Вход"
         remember_me: "Запомни ме"
@@ -89,15 +101,18 @@ bg:
         title: "Забравена парола?"
         submit: "Изпращане на нова парола"
       change_password:
-        title: "Промяна на моята парола"
+        title: "Промяна на паролата"
         submit: "Промяна на паролата"
       unlock:
         title: "Изпрати отново инструкциите за отключване"
-        submit: "Изпрати инструкциите повторно"
+        submit: "Изпрати отново инструкциите за отключване"
+      resend_confirmation_instructions:
+        title: "Изпрати отново инструкциите за потвърждаване"
+        submit: "Изпрати отново инструкциите за потвърждаване"
       links:
         sign_in: "Вход"
         forgot_your_password: "Забравена парола?"
-        sign_in_with_omniauth_provider: "Вход с %{provider}"
+        sign_in_with_omniauth_provider: "Влез с %{provider}"
     access_denied:
       message: "Нямате права да извършите това действие."
     index_list:
@@ -105,3 +120,4 @@ bg:
       block: "Списък"
       grid: "Грид"
       blog: "Блог"
+
