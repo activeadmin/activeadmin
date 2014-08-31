@@ -31,6 +31,9 @@ ko:
         ends_with: "로 종료"
         greater_than: "크다"
         less_than: "작다"
+    status_tag:
+      "yes": "예"
+      "no": "없음"
     main_content: "내용을 보시려면 %{model}#main_content 를 구현해 주시기 바랍니다."
     logout: "로그아웃"
     powered_by: "Powered by %{active_admin} %{version}"

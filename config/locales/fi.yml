@@ -33,6 +33,9 @@ fi:
         ends_with: "Päättyy"
         greater_than: "Suurempi kuin"
         less_than: "Pienempi kuin"
+    status_tag:
+      "yes": "Kyllä"
+      "no": "Ei"
     main_content: "Ole hyvä, käytä %{model}#main_content:ia nähdäksesi jotain."
     logout: "Kirjaudu ulos"
     powered_by: "Käyttää %{active_admin} %{version}:ia"

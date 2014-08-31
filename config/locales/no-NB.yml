@@ -31,6 +31,9 @@
         ends_with: "Slutter med"
         greater_than: "Større enn"
         less_than: "Mindre enn"
+    status_tag:
+      "yes": "Ja"
+      "no": "Nei"
     main_content: "Vennligst implementer %{model}#main_content for å vise innhold."
     logout: "Logg ut"
     powered_by: "Powered by %{active_admin} %{version}"

@@ -33,6 +33,9 @@ fa:
         ends_with: "پایان با"
         greater_than: "بزرگتر از"
         less_than: "کوچکتر از"
+    status_tag:
+      "yes": "بله"
+      "no": "بدون"
     main_content: "لطفا %{model}#main_content را پیاده سازی کنید تا محتوی نمایش داده شود."
     logout: "خروج"
     powered_by: "قدرت گرفته از %{active_admin} %{version}"

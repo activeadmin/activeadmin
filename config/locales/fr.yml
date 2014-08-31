@@ -33,6 +33,9 @@ fr:
         ends_with: "Se termine par"
         greater_than: "Plus grand que"
         less_than: "Plus petit que"
+    status_tag:
+      "yes": "Oui"
+      "no": "Non"
     main_content: "Veuillez implémenter %{model}#main_content pour afficher le contenu."
     logout: "Déconnexion"
     powered_by: "Propulsé par %{active_admin} %{version}"
