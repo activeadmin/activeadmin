@@ -32,6 +32,9 @@ ca:
         ends_with: "Acaba amb"
         greater_than: "Més gran que"
         less_than: "Més petit que"
+    status_tag:
+      "yes": "Sí"
+      "no": "No"
     main_content: "Implementa %{model}#main_content per mostrar contingut."
     logout: "Desconnecta't"
     powered_by: "Powered by %{active_admin} %{version}"

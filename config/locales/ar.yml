@@ -33,6 +33,9 @@ ar:
         ends_with: "ينتهي ب"
         greater_than: "اكثر من"
         less_than: "اقل من"
+    status_tag:
+      "yes": "نعم"
+      "no": "لا"
     main_content: "الرجاء التنفيذ %{model}#main_content لعرض المحتويات."
     logout: "تسجيل الخروج"
     powered_by: "تنفيذ %{active_admin} %{version}"

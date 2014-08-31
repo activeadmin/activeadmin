@@ -33,6 +33,9 @@ vi:
         ends_with: "Kết thúc với việc"
         greater_than: "Lớn hơn"
         less_than: "Nhỏ hơn"
+    status_tag:
+      "yes": "Có"
+      "no": "Không Có"
     main_content: "Xin bổ sung %{model}#main_content để hiển thị nội dung."
     logout: "Đăng xuất"
     powered_by: "Powered by %{active_admin} %{version}"

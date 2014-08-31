@@ -33,6 +33,9 @@ bg:
         ends_with: "Завършва с"
         greater_than: "по-голямо от"
         less_than: "по-малко от"
+    status_tag:
+      "yes": "Да"
+      "no": "не"
     main_content: "Добавете %{model}#main_content за да видите съдържание."
     logout: "Изход"
     powered_by: "Задвижва се от %{active_admin} %{version}"
