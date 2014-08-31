@@ -1,32 +1,23 @@
 module ActiveAdmin
   module Inputs
-    class FilterBooleanInput < ::Formtastic::Inputs::BooleanInput
+    class FilterBooleanInput < ::Formtastic::Inputs::SelectInput
       include FilterBase
 
-      def to_html
-        input_wrapping do
-          [ label_html,
-            check_box_html
-          ].join("\n").html_safe
-        end
+      def input_name
+        return method if seems_searchable?
+
+        "#{method}_eq"
       end
 
-      def search_method
-        method =~ search_conditions ? method : "#{method}_eq"
+      # was "#{object_name}[#{association_primary_key}]"
+      def input_html_options_name
+        "#{object_name}[#{input_name}]"
       end
 
-      def checked?
-        object and boolean_checked? object.public_send(search_method), checked_value
+      # Provide the AA translation to the blank input field.
+      def include_blank
+        I18n.t 'active_admin.any' if super
       end
-
-      def input_html_options
-        { name: "q[#{ search_method }]" }
-      end
-
-      def search_conditions
-        /_(true|false|present|blank|null|not_null)\z/
-      end
-
     end
   end
 end
