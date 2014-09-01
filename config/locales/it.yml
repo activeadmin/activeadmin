@@ -1,119 +1,124 @@
+---
 it:
   active_admin:
     dashboard: Dashboard
     dashboard_welcome:
-      welcome: "Benvenuti in Active Admin. Questa è la pagina dashboard di default."
-      call_to_action: "Per aggiungere sezioni alla dashboard controlla il file 'app/admin/dashboard.rb'"
-    view: "Mostra"
-    edit: "Modifica"
-    delete: "Rimuovi"
-    delete_confirmation: "Sei sicuro di volerlo rimuovere?"
-    new_model: "Aggiungi %{model}"
-    create_model: "Aggiungi %{model}"
-    edit_model: "Modifica %{model}"
-    update_model: "Modifica %{model}"
-    delete_model: "Rimuovi %{model}"
-    details: "Dettagli %{model}"
-    cancel: "Annulla"
-    empty: "Vuoto"
-    previous: "Precedente"
-    next: "Prossimo"
-    download: "Scarica:"
-    has_many_new: "Aggiungi nuovo/a %{model}"
-    has_many_delete: "Rimuovi"
-    has_many_remove: "Rimuovi"
+      welcome: Benvenuti in Active Admin. Questa è la pagina dashboard di default.
+      call_to_action: Per aggiungere sezioni alla dashboard controlla il file 'app/admin/dashboard.rb'
+    view: Mostra
+    edit: Modifica
+    delete: Rimuovi
+    delete_confirmation: Sei sicuro di volerlo rimuovere?
+    new_model: Aggiungi %{model}
+    create_model: Aggiungi %{model}
+    edit_model: Modifica %{model}
+    update_model: Modifica %{model}
+    delete_model: Rimuovi %{model}
+    details: Dettagli %{model}
+    cancel: Annulla
+    empty: Vuoto
+    previous: Precedente
+    next: Prossimo
+    download: 'Scarica:'
+    has_many_new: Aggiungi nuovo/a %{model}
+    has_many_delete: Rimuovi
+    has_many_remove: Rimuovi
     filters:
       buttons:
-        filter: "Filtra"
-        clear: "Rimuovi filtri"
+        filter: Filtra
+        clear: Rimuovi filtri
       predicates:
-        contains: "Contiene"
-        equals: "Uguale a"
-        starts_with: "Inizia con"
-        ends_with: "Finisce con"
-        greater_than: "Maggiore di"
-        less_than: "Minore di"
+        contains: Contiene
+        equals: Uguale a
+        starts_with: Inizia con
+        ends_with: Finisce con
+        greater_than: Maggiore di
+        less_than: Minore di
     status_tag:
-      "yes": "Sì"
-      "no": "No"
-    main_content: "Devi implemetare %{model}#main_content per mostrarne il contenuto."
-    logout: "Esci"
-    powered_by: "Powered by %{active_admin} %{version}"
+      'yes': Sì
+      'no': 'No'
+    main_content: Devi implemetare %{model}#main_content per mostrarne il contenuto.
+    logout: Esci
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
-      filters: "Filtri"
+      filters: Filtri
     pagination:
-      empty: "Nessun %{model} trovato"
-      one: "Sto mostrando <b>1</b> %{model}"
-      one_page: "Sto mostrando <b>%{n}</b> %{model}. Lista completa."
-      multiple: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{total}</b> in totale"
-      multiple_without_total: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: Nessun %{model} trovato
+      one: Sto mostrando <b>1</b> %{model}
+      one_page: Sto mostrando <b>%{n}</b> %{model}. Lista completa.
+      multiple: Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{total}</b>
+        in totale
+      multiple_without_total: Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
       entry:
-        one: "voce"
-        other: "voci"
-    any: "Qualsiasi"
+        one: voce
+        other: voci
+    any: Qualsiasi
     blank_slate:
-      content: "Non sono presenti %{resource_name}"
-      link: "Crea nuovo/a"
+      content: Non sono presenti %{resource_name}
+      link: Crea nuovo/a
     dropdown_actions:
-      button_label: "Azioni"
+      button_label: Azioni
     batch_actions:
-      button_label: "Azioni multiple"
-      default_confirmation: "Sei sicuro di che voler fare questo?"
-      delete_confirmation: "Sei sicuro di volere cancellare %{plural_model}?"
+      button_label: Azioni multiple
+      default_confirmation: Sei sicuro di che voler fare questo?
+      delete_confirmation: Sei sicuro di volere cancellare %{plural_model}?
       succesfully_destroyed:
-        one: "Eliminato con successo 1 %{model}"
-        other: "Eliminati con successo %{count} %{plural_model}"
+        one: Eliminato con successo 1 %{model}
+        other: Eliminati con successo %{count} %{plural_model}
       selection_toggle_explanation: "(Toggle Selection)"
-      link: "Crea uno"
+      link: Crea uno
       action_label: "%{title} Selezionati"
       labels:
-        destroy: "Elimina"
+        destroy: Elimina
     comments:
-      resource_type: "Tipo di risorsa"
-      author_type: "Tipo di Autore"
-      body: "Corpo"
-      author: "Autore"
-      title: "Commento"
-      add: "Aggiungi Commento"
-      resource: "Risorsa"
-      no_comments_yet: "Nessun commento."
-      author_missing: "Anonimo"
-      title_content: "Commenti (%{count})"
+      resource_type: Tipo di risorsa
+      author_type: Tipo di Autore
+      body: Corpo
+      author: Autore
+      title: Commento
+      add: Aggiungi Commento
+      resource: Risorsa
+      no_comments_yet: Nessun commento.
+      author_missing: Anonimo
+      title_content: Commenti (%{count})
       errors:
-        empty_text: "Il commento non può essere salvato, il testo è vuoto."
+        empty_text: Il commento non può essere salvato, il testo è vuoto.
     devise:
       username:
-        title: "Nome Utente"
+        title: Nome Utente
       email:
-        title: "Email"
+        title: Email
       subdomain:
-        title: "Sottodominio"
+        title: Sottodominio
       password:
-        title: "Password"
+        title: Password
       login:
-        title: "Entra"
-        remember_me: "Ricordami"
-        submit: "Entra"
+        title: Entra
+        remember_me: Ricordami
+        submit: Entra
       reset_password:
-        title: "Dimenticato la password?"
-        submit: "Reimposta la tua password"
+        title: Dimenticato la password?
+        submit: Reimposta la tua password
       change_password:
-        title: "Cambia la tua password"
-        submit: "Cambia la mia password"
+        title: Cambia la tua password
+        submit: Cambia la mia password
       unlock:
-        title: "Invia di nuovo le istruzioni per sbloccare"
-        submit: "Invia di nuovo le istruzioni per sbloccare"
+        title: Invia di nuovo le istruzioni per sbloccare
+        submit: Invia di nuovo le istruzioni per sbloccare
       resend_confirmation_instructions:
-        title: "Invia di nuovo le istruzioni per la conferma"
-        submit: "Invia di nuovo le istruzioni per la conferma"
+        title: Invia di nuovo le istruzioni per la conferma
+        submit: Invia di nuovo le istruzioni per la conferma
       links:
-        sign_in: "Entra"
-        forgot_your_password: "Dimenticato la password?"
-        sign_in_with_omniauth_provider: "Collegati a %{provider}"
+        sign_in: Entra
+        forgot_your_password: Dimenticato la password?
+        sign_in_with_omniauth_provider: Collegati a %{provider}
+      sign_up:
+        title: Sign up
+        submit: Sign up
     access_denied:
-      message: "Non hai le autorizzazioni necessarie per eseguire questa azione."
+      message: Non hai le autorizzazioni necessarie per eseguire questa azione.
     index_list:
-      table: "Tabella"
-      block: "Lista"
-      grid: "Griglia"
-      blog: "Blog"
+      table: Tabella
+      block: Lista
+      grid: Griglia
+      blog: Blog

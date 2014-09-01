@@ -1,105 +1,129 @@
+---
 pl:
   active_admin:
     dashboard: Pulpit
     dashboard_welcome:
-      welcome: "Witaj w Active Adminie. To jest domyślny pulpit."
-      call_to_action: "Aby dodać sekcje do pulpitu, sprawdź 'app/admin/dashboard.rb'"
-    view: "Podgląd"
-    edit: "Edytuj"
-    delete: "Usuń"
-    delete_confirmation: "Jesteś pewien, że chcesz to usunąć?"
-    new_model: "Nowy %{model}"
-    create_model: "Nowy %{model}"
-    edit_model: "Edytuj %{model}"
-    update_model: "Edytuj %{model}"
-    delete_model: "Usuń %{model}"
-    details: "Detale %{model}"
-    cancel: "Anuluj"
-    empty: "Pusty"
-    previous: "Poprzednia"
-    next: "Następna"
-    download: "Pobierz:"
-    has_many_new: "Dodaj nowy %{model}"
-    has_many_delete: "Usuń"
-    has_many_remove: "Usuń"
+      welcome: Witaj w Active Adminie. To jest domyślny pulpit.
+      call_to_action: Aby dodać sekcje do pulpitu, sprawdź 'app/admin/dashboard.rb'
+    view: Podgląd
+    edit: Edytuj
+    delete: Usuń
+    delete_confirmation: Jesteś pewien, że chcesz to usunąć?
+    new_model: Nowy %{model}
+    create_model: Nowy %{model}
+    edit_model: Edytuj %{model}
+    update_model: Edytuj %{model}
+    delete_model: Usuń %{model}
+    details: Detale %{model}
+    cancel: Anuluj
+    empty: Pusty
+    previous: Poprzednia
+    next: Następna
+    download: 'Pobierz:'
+    has_many_new: Dodaj nowy %{model}
+    has_many_delete: Usuń
+    has_many_remove: Usuń
     filters:
       buttons:
-        filter: "Filtruj"
-        clear: "Wyczyść Filtry"
+        filter: Filtruj
+        clear: Wyczyść Filtry
       predicates:
-        contains: "Zawiera"
-        equals: "Równe"
-        starts_with: "Zaczyna się"
-        ends_with: "Kończy się"
-        greater_than: "Większe niż"
-        less_than: "Mniejsze niż"
+        contains: Zawiera
+        equals: Równe
+        starts_with: Zaczyna się
+        ends_with: Kończy się
+        greater_than: Większe niż
+        less_than: Mniejsze niż
     status_tag:
-      "yes": "Tak"
-      "no": "Nie"
-    main_content: "Zaimplementuj %{model}#main_content aby wyświetlić treść."
-    logout: "Wyloguj"
-    powered_by: "Powered by %{active_admin} %{version}"
+      'yes': Tak
+      'no': Nie
+    main_content: Zaimplementuj %{model}#main_content aby wyświetlić treść.
+    logout: Wyloguj
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
-      filters: "Filtry"
+      filters: Filtry
     pagination:
-      empty: "Nie znaleziono %{model}"
-      one: "Wyświetlanie <b>1</b> %{model}"
-      one_page: "Wyświetlanie <b>wszystkich %{n}</b> %{model}"
-      multiple: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
-      multiple_without_total: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-    any: "Jakikolwiek"
+      empty: Nie znaleziono %{model}
+      one: Wyświetlanie <b>1</b> %{model}
+      one_page: Wyświetlanie <b>wszystkich %{n}</b> %{model}
+      multiple: Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>
+      multiple_without_total: Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
+      entry:
+        one: entry
+        other: entries
+    any: Jakikolwiek
     blank_slate:
-      content: "Nie ma jeszcze zasobu %{resource_name}."
-      link: "Utwórz go"
+      content: Nie ma jeszcze zasobu %{resource_name}.
+      link: Utwórz go
     dropdown_actions:
-      button_label: "Akcje"
+      button_label: Akcje
     batch_actions:
-      button_label: "Akcje na partiach"
-      default_confirmation: "Czy na pewno chcesz to zrobić?"
-      delete_confirmation: "Czy na pewno chcesz usunąć te %{plural_model}?"
+      button_label: Akcje na partiach
+      default_confirmation: Czy na pewno chcesz to zrobić?
+      delete_confirmation: Czy na pewno chcesz usunąć te %{plural_model}?
       succesfully_destroyed:
-        one: "Poprawnie usunięto 1 %{model}"
-        other: "Poprawnie usunięto %{count} %{plural_model}"
-        many: "Poprawnie usunięto %{count} %{plural_model}"
-        few: "Poprawnie usunięto %{count} %{plural_model}"
+        one: Poprawnie usunięto 1 %{model}
+        other: Poprawnie usunięto %{count} %{plural_model}
+        many: Poprawnie usunięto %{count} %{plural_model}
+        few: Poprawnie usunięto %{count} %{plural_model}
       selection_toggle_explanation: "(Przełącz zaznaczenie)"
-      link: "Utwórz jeden"
+      link: Utwórz jeden
       action_label: "%{title} zaznaczone"
       labels:
-        destroy: "Usuń"
+        destroy: Usuń
     comments:
-      body: "Treść"
-      author: "Autor"
-      title: "Komentarz"
-      add: "Dodaj komentarz"
-      resource: "Zasób"
-      no_comments_yet: "Nie ma jeszcze komentarzy."
-      title_content: "Komentarze (%{count})"
+      body: Treść
+      author: Autor
+      title: Komentarz
+      add: Dodaj komentarz
+      resource: Zasób
+      no_comments_yet: Nie ma jeszcze komentarzy.
+      title_content: Komentarze (%{count})
       errors:
-        empty_text: "Komentarz nie został zapisany, zawartość była pusta."
+        empty_text: Komentarz nie został zapisany, zawartość była pusta.
+      resource_type: Resource Type
+      author_type: Author Type
+      author_missing: Anonymous
     devise:
       sign_up:
-        title: "Rejestracja"
-        submit: "Zarejestruj się"
+        title: Rejestracja
+        submit: Zarejestruj się
       login:
-        title: "Logowanie"
-        remember_me: "Zapamiętaj mnie"
-        submit: "Zaloguj się"
+        title: Logowanie
+        remember_me: Zapamiętaj mnie
+        submit: Zaloguj się
       reset_password:
-        title: "Nie pamiętasz hasła?"
-        submit: "Zresetować hasło"
+        title: Nie pamiętasz hasła?
+        submit: Zresetować hasło
       change_password:
-        title: "Zmień hasło"
-        submit: "Zmień hasło"
+        title: Zmień hasło
+        submit: Zmień hasło
       resend_confirmation_instructions:
-        title: "Wyślij ponownie instrukcje aktywacji"
-        submit: "Wyślij ponownie instrukcje aktywacji"
+        title: Wyślij ponownie instrukcje aktywacji
+        submit: Wyślij ponownie instrukcje aktywacji
       links:
-        sign_in: "Zaloguj się"
-        forgot_your_password: "Nie pamiętasz hasła?"
-        sign_in_with_omniauth_provider: "Zaloguj się z %{provider}"
+        sign_in: Zaloguj się
+        forgot_your_password: Nie pamiętasz hasła?
+        sign_in_with_omniauth_provider: Zaloguj się z %{provider}
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      unlock:
+        title: Resend unlock instructions
+        submit: Resend unlock instructions
+    access_denied:
+      message: You are not authorized to perform this action.
+    index_list:
+      table: Table
+      block: List
+      grid: Grid
+      blog: Blog
   formtastic:
     actions:
-      update: "Aktualizuj %{model}"
-      create: "Utwórz %{model}"
-
+      update: Aktualizuj %{model}
+      create: Utwórz %{model}

@@ -1,8 +1,9 @@
+---
 ko:
   active_admin:
     dashboard: "대시보드"
     dashboard_welcome:
-      welcome: "Active Admin 에 오신 것을 환영합니다. 이것은 디폴트 대시보드 페이지 입니다."
+      welcome: Active Admin 에 오신 것을 환영합니다. 이것은 디폴트 대시보드 페이지 입니다.
       call_to_action: "대시보드에 섹션을 추가하시려면 'app/admin/dashboard.rb' 소스를 확인해 주세요."
     view: "보기"
     edit: "수정"
@@ -32,11 +33,11 @@ ko:
         greater_than: "크다"
         less_than: "작다"
     status_tag:
-      "yes": "예"
-      "no": "없음"
+      'yes': "예"
+      'no': "없음"
     main_content: "내용을 보시려면 %{model}#main_content 를 구현해 주시기 바랍니다."
     logout: "로그아웃"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
       filters: "필터 목록"
     pagination:
@@ -45,6 +46,9 @@ ko:
       one_page: "<b>전체 %{n}</b> %{model} 표시중"
       multiple: "전체 <b>%{total}</b> 중 <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} 표시중"
       multiple_without_total: "중 <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} 표시중"
+      entry:
+        one: entry
+        other: entries
     any: "어떤"
     blank_slate:
       content: "아직 %{resource_name} 이/가 없습니다."
@@ -73,6 +77,9 @@ ko:
       title_content: "댓글 (%{count})"
       errors:
         empty_text: "댓글이 저장되지 않았습니다, ​​텍스트가 비어 있었어."
+      resource_type: Resource Type
+      author_type: Author Type
+      author_missing: Anonymous
     devise:
       login:
         title: "로그인"
@@ -88,3 +95,29 @@ ko:
         sign_in: "로그인"
         forgot_your_password: "비밀 번호를 잊으 셨나요?"
         sign_in_with_omniauth_provider: "%{provider} 으로 로그인"
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      unlock:
+        title: Resend unlock instructions
+        submit: Resend unlock instructions
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
+    create_model: New %{model}
+    update_model: Edit %{model}
+    access_denied:
+      message: You are not authorized to perform this action.
+    index_list:
+      table: Table
+      block: List
+      grid: Grid
+      blog: Blog

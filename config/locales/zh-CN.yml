@@ -1,4 +1,5 @@
-"zh-CN":
+---
+zh-CN:
   active_admin:
     dashboard: "控制面板"
     dashboard_welcome:
@@ -34,11 +35,11 @@
         greater_than: "大于"
         less_than: "小于"
     status_tag:
-      "yes": "是的"
-      "no": "无"
+      'yes': "是的"
+      'no': "无"
     main_content: "请执行 %{model}#main_content 来显示内容."
     logout: "退出"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
       filters: "所有条件"
     pagination:
@@ -78,6 +79,9 @@
       title_content: "(%{count})条评论"
       errors:
         empty_text: "评论保存失败，内空不能为空."
+      resource_type: Resource Type
+      author_type: Author Type
+      author_missing: Anonymous
     devise:
       username:
         title: "用户名"
@@ -104,11 +108,22 @@
         sign_in: "登录"
         forgot_your_password: "忘记了密码？"
         sign_in_with_omniauth_provider: "登入%{provider}"
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      change_password:
+        title: Change your password
+        submit: Change my password
     access_denied:
       message: "您无权处理此操作"
+    index_list:
+      table: Table
+      block: List
+      grid: Grid
+      blog: Blog
   formtastic:
-    yes: "YES"
-    no: "NO"
+    'true': 'YES'
+    'false': 'NO'
     create: "新建%{model}"
     update: "更新%{model}"
     submit: "确认"

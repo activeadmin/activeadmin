@@ -1,101 +1,124 @@
+---
 hu:
   active_admin:
     dashboard: Vezérlőpult
     dashboard_welcome:
       welcome: "Üdvözöljük az Active Admin felületén. Ez a vezérlőpult kezdőlapja"
-      call_to_action: "Elemek hozzáadásához nézze meg a 'app/admin/dashboard.rb' fájlt"
-    view: "Megtekintés"
-    edit: "Szerkesztés"
-    delete: "Törlés"
-    delete_confirmation: "Biztosan törli ezt az elemet?"
+      call_to_action: Elemek hozzáadásához nézze meg a 'app/admin/dashboard.rb' fájlt
+    view: Megtekintés
+    edit: Szerkesztés
+    delete: Törlés
+    delete_confirmation: Biztosan törli ezt az elemet?
     new_model: "Új %{model}"
     create_model: "%{model} létrehozása"
     edit_model: "%{model} módosítása"
     update_model: "%{model} módosítása"
     delete_model: "%{model} törlése"
     details: "%{model} részletei"
-    cancel: "Mégsem"
+    cancel: Mégsem
     empty: "Üres"
-    previous: "Előző"
-    next: "Következő"
-    download: "Letöltés:"
+    previous: Előző
+    next: Következő
+    download: 'Letöltés:'
     has_many_new: "Új %{model} hozzáadása"
-    has_many_delete: "Törlés"
-    has_many_remove: "Eltávolít"
+    has_many_delete: Törlés
+    has_many_remove: Eltávolít
     filters:
       buttons:
-        filter: "Szűrés"
-        clear: "Feltételek törlése"
+        filter: Szűrés
+        clear: Feltételek törlése
       predicates:
-        contains: "Tartalmazza"
-        equals: "Pontosan"
-        starts_with: "kezdődik"
-        ends_with: "végződik"
-        greater_than: "Nagyobb, mint"
-        less_than: "Kisebb, mint"
+        contains: Tartalmazza
+        equals: Pontosan
+        starts_with: kezdődik
+        ends_with: végződik
+        greater_than: Nagyobb, mint
+        less_than: Kisebb, mint
     status_tag:
-      "yes": "Igen"
-      "no": "Nem"
-    main_content: "Kérem, implementálja a %{model}#main_content metódust a tartalom megjelenítéséhez."
-    logout: "Kilépés"
-    powered_by: "Powered by %{active_admin} %{version}"
+      'yes': Igen
+      'no': Nem
+    main_content: Kérem, implementálja a %{model}#main_content metódust a tartalom
+      megjelenítéséhez.
+    logout: Kilépés
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
-      filters: "Szűrők"
+      filters: Szűrők
     pagination:
-      empty: "Nincs több %{model}"
+      empty: Nincs több %{model}
       one: "<b>Egy</b> %{model} megjelenítése"
       one_page: "<b>Az összes (%{n} db)</b> %{model} megjelenítése"
       multiple: "%{model} listájának megjelenítése, <b>%{from}&nbsp;-&nbsp;%{to}</b>/<b>%{total}</b> "
       multiple_without_total: "%{model} listájának megjelenítése, <b>%{from}&nbsp;-&nbsp;%{to}</b> "
       entry:
-        one: "elem"
-        other: "elem"
+        one: elem
+        other: elem
     any: "Összes"
     blank_slate:
-      content: "Még nincs létrehozva %{resource_name}."
-      link: "Létrehozás most"
+      content: Még nincs létrehozva %{resource_name}.
+      link: Létrehozás most
     dropdown_actions:
-      button_label: "Műveletek"
+      button_label: Műveletek
     batch_actions:
-      button_label: "Tömeges műveletek"
-      default_confirmation: "Biztos vagy benne, hogy a ön akar-hoz csinál ez?"
-      delete_confirmation: "Biztosan törli ezeket a %{plural_model}?"
+      button_label: Tömeges műveletek
+      default_confirmation: Biztos vagy benne, hogy a ön akar-hoz csinál ez?
+      delete_confirmation: Biztosan törli ezeket a %{plural_model}?
       succesfully_destroyed:
-        one: "1 %{model} sikeresen törölve"
+        one: 1 %{model} sikeresen törölve
         other: "%{count} %{plural_model} sikeresen törölve"
       selection_toggle_explanation: "(Kijelölés megfordítása)"
-      link: "Létrehozás"
+      link: Létrehozás
       action_label: "%{title} kiválasztva"
       labels:
-        destroy: "Törlés"
+        destroy: Törlés
     comments:
-      body: "Törzs"
-      author: "Szerző"
-      title: "Hozzászólás"
+      body: Törzs
+      author: Szerző
+      title: Hozzászólás
       add: "Új hozzászólás"
-      resource: "Erőforrás"
-      no_comments_yet: "Nincsenek hozzászólások."
+      resource: Erőforrás
+      no_comments_yet: Nincsenek hozzászólások.
       title_content: "%{count} hozzászólás"
       errors:
-        empty_text: "A hozzászólás nem lett mentve, a törzs nem lehet üres."
+        empty_text: A hozzászólás nem lett mentve, a törzs nem lehet üres.
+      resource_type: Resource Type
+      author_type: Author Type
+      author_missing: Anonymous
     devise:
       login:
-        title: "Bejelentkezés"
-        remember_me: "Emlékezz rám"
-        submit: "Belépés"
+        title: Bejelentkezés
+        remember_me: Emlékezz rám
+        submit: Belépés
       reset_password:
-        title: "Elfelejtette a jelszavát?"
-        submit: "Visszaállítása a jelszót"
+        title: Elfelejtette a jelszavát?
+        submit: Visszaállítása a jelszót
       change_password:
-        title: "A jelszó módosítása"
-        submit: "Jelszó módosítása"
+        title: A jelszó módosítása
+        submit: Jelszó módosítása
       unlock:
         title: "Újraküldés unlock utasítások"
         submit: "Újraküldés unlock utasítások"
       resend_confirmation_instructions:
-        title: "Megerősítő levél újraküldése"
-        submit: "Megerősítő levél újraküldése"
+        title: Megerősítő levél újraküldése
+        submit: Megerősítő levél újraküldése
       links:
-        sign_in: "Bejelentkezés"
-        forgot_your_password: "Elfelejtette a jelszavát?"
-        sign_in_with_omniauth_provider: "Jelentkezzen be a %{provider}"
+        sign_in: Bejelentkezés
+        forgot_your_password: Elfelejtette a jelszavát?
+        sign_in_with_omniauth_provider: Jelentkezzen be a %{provider}
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+    access_denied:
+      message: You are not authorized to perform this action.
+    index_list:
+      table: Table
+      block: List
+      grid: Grid
+      blog: Blog

@@ -1,115 +1,143 @@
+---
 es-MX:
   active_admin:
     dashboard: Inicio
     dashboard_welcome:
-      welcome: "Bienvenido a Active Admin. Esta es la página de inicio predeterminada."
-      call_to_action: "Para agregar secciones edite 'app/admin/dashboard.rb'"
-    view: "Ver"
-    edit: "Editar"
-    delete: "Eliminar"
+      welcome: Bienvenido a Active Admin. Esta es la página de inicio predeterminada.
+      call_to_action: Para agregar secciones edite 'app/admin/dashboard.rb'
+    view: Ver
+    edit: Editar
+    delete: Eliminar
     delete_confirmation: "¿Está seguro de que quiere eliminar esto?"
-    new_model: "Añadir %{model}"
-    create_model: "Añadir %{model}"
-    edit_model: "Editar %{model}"
-    update_model: "Editar %{model}"
-    delete_model: "Eliminar %{model}"
-    details: "Detalles de %{model}"
-    cancel: "Cancelar"
-    empty: "Vacío"
-    previous: "Anterior"
-    next: "Siguiente"
-    download: "Descargar:"
-    has_many_new: "Agregar Añadir %{model}"
-    has_many_delete: "Eliminar"
-    has_many_remove: "Quitar"
+    new_model: Añadir %{model}
+    create_model: Añadir %{model}
+    edit_model: Editar %{model}
+    update_model: Editar %{model}
+    delete_model: Eliminar %{model}
+    details: Detalles de %{model}
+    cancel: Cancelar
+    empty: Vacío
+    previous: Anterior
+    next: Siguiente
+    download: 'Descargar:'
+    has_many_new: Agregar Añadir %{model}
+    has_many_delete: Eliminar
+    has_many_remove: Quitar
     filters:
       buttons:
-        filter: "Filtrar"
-        clear: "Quitar Filtros"
+        filter: Filtrar
+        clear: Quitar Filtros
       predicates:
-        contains: "Contiene"
-        equals: "Igual a"
-        starts_with: "Empieza con"
-        ends_with: "Termina con"
-        greater_than: "Mayor que"
-        less_than: "Menor que"
+        contains: Contiene
+        equals: Igual a
+        starts_with: Empieza con
+        ends_with: Termina con
+        greater_than: Mayor que
+        less_than: Menor que
     status_tag:
-      "yes": "Sí"
-      "no": "No"
-    main_content: "Por favor implemente %{model}#main_content para mostrar contenido."
-    logout: "Salir"
-    powered_by: "Powered by %{active_admin} %{version}"
+      'yes': Sí
+      'no': 'No'
+    main_content: Por favor implemente %{model}#main_content para mostrar contenido.
+    logout: Salir
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
-      filters: "Filtros"
+      filters: Filtros
     pagination:
-      empty: "No se han encontrado %{model}"
-      one: "Mostrando <b>1</b> %{model}"
-      one_page: "Mostrando <b>un total de %{n}</b> %{model}"
-      multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
-    blank_slate:
-      content: "No hay %{resource_name} aún."
-      link: "Añadir"
+      empty: No se han encontrado %{model}
+      one: Mostrando <b>1</b> %{model}
+      one_page: Mostrando <b>un total de %{n}</b> %{model}
+      multiple: Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de
+        <b>%{total}</b>
+      multiple_without_total: Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
       entry:
-        one: "registro"
-        other: "registros"
-    any: "Cualquiera"
+        one: entry
+        other: entries
+    blank_slate:
+      content: No hay %{resource_name} aún.
+      link: Añadir
+      entry:
+        one: registro
+        other: registros
+    any: Cualquiera
     dropdown_actions:
-      button_label: "Acciones"
+      button_label: Acciones
     batch_actions:
-      button_label: "Acciones en masa"
+      button_label: Acciones en masa
       default_confirmation: "¿Seguro que quieres hacer esto?"
-      delete_confirmation: "Eliminar %{plural_model}: ¿Está seguro?"
+      delete_confirmation: 'Eliminar %{plural_model}: ¿Está seguro?'
       succesfully_destroyed:
-        one: "Se ha destruido 1 %{model} con éxito"
-        other: "Se han destruido %{count} %{plural_model} con éxito"
+        one: Se ha destruido 1 %{model} con éxito
+        other: Se han destruido %{count} %{plural_model} con éxito
       selection_toggle_explanation: "(Cambiar selección)"
-      link: "Añadir"
+      link: Añadir
       action_label: "%{title} seleccionado"
       labels:
-        destroy: "Borrar"
+        destroy: Borrar
     comments:
-      body: "Cuerpo"
-      author: "Autor"
-      title: "Comentario"
-      add: "Comentar"
-      resource: "Recurso"
-      no_comments_yet: "Aún sin comentarios."
-      title_content: "Comentarios (%{count})"
+      body: Cuerpo
+      author: Autor
+      title: Comentario
+      add: Comentar
+      resource: Recurso
+      no_comments_yet: Aún sin comentarios.
+      title_content: Comentarios (%{count})
       errors:
-        empty_text: "El comentario no fue guardado, el texto estaba vacío."
+        empty_text: El comentario no fue guardado, el texto estaba vacío.
+      resource_type: Resource Type
+      author_type: Author Type
+      author_missing: Anonymous
     devise:
       login:
-        title: "iniciar sesión"
-        remember_me: "Recordarme"
-        submit: "iniciar sesión"
+        title: iniciar sesión
+        remember_me: Recordarme
+        submit: iniciar sesión
       reset_password:
         title: "¿Olvidó su contraseña?"
-        submit: "Restablecer mi contraseña"
+        submit: Restablecer mi contraseña
       change_password:
-        title: "Cambie su contraseña"
-        submit: "Cambiar mi contraseña"
+        title: Cambie su contraseña
+        submit: Cambiar mi contraseña
       links:
-        sign_in: "registrarse"
+        sign_in: registrarse
         forgot_your_password: "¿Olvidó su contraseña?"
-        sign_in_with_omniauth_provider: "Conéctate con %{provider}"
+        sign_in_with_omniauth_provider: Conéctate con %{provider}
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      unlock:
+        title: Resend unlock instructions
+        submit: Resend unlock instructions
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
     index_list:
-      table: "Tabla"
-      block: "Lista"
-      grid: "Cuadrícula"
-      blog: "Blog"
+      table: Tabla
+      block: Lista
+      grid: Cuadrícula
+      blog: Blog
+    access_denied:
+      message: You are not authorized to perform this action.
   views:
-      pagination:
-          truncate: "..."
-          first: "Inicio"
-          previous: "Anterior"
-          next: "Siguiente"
-          last: "Último"
+    pagination:
+      truncate: "..."
+      first: Inicio
+      previous: Anterior
+      next: Siguiente
+      last: "Último"
   formtastic:
-    yes: "Sí"
-    no: "No"
-    create: "Guardar %{model}"
-    update: "Guardar %{model}"
-    submit: "Aceptar"
-    cancel: "Cancelar"
-    reset: "Restablecer %{model}"
-    required: "requerido"
+    'true': Sí
+    'false': 'No'
+    create: Guardar %{model}
+    update: Guardar %{model}
+    submit: Aceptar
+    cancel: Cancelar
+    reset: Restablecer %{model}
+    required: requerido

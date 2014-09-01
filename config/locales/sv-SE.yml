@@ -1,95 +1,124 @@
-"sv-SE":
+---
+sv-SE:
   active_admin:
     dashboard: Skrivbord
     dashboard_welcome:
-      welcome: "Välkommen till Active Admin. Detta är ditt standardskrivbord."
-      call_to_action: "För att lägga till sektioner, gör en checkout på 'app/admin/dashboard.rb'"
-    view: "Visa"
-    edit: "Redigera"
-    delete: "Ta bort"
+      welcome: Välkommen till Active Admin. Detta är ditt standardskrivbord.
+      call_to_action: För att lägga till sektioner, gör en checkout på 'app/admin/dashboard.rb'
+    view: Visa
+    edit: Redigera
+    delete: Ta bort
     delete_confirmation: "Är du säker att du vill ta bort denna?"
-    new_model: "Ny %{model}"
-    create_model: "Ny %{model}"
-    edit_model: "Redigera %{model}"
-    update_model: "Redigera %{model}"
-    delete_model: "Ta bort %{model}"
-    details: "Detaljvy för %{model}"
-    cancel: "Avbryt"
-    empty: "Tom"
-    previous: "Föregående"
-    next: "Nästa"
-    download: "Ladda ner:"
-    has_many_new: "Skapa en ny %{model}"
-    has_many_delete: "Ta bort"
-    has_many_remove: "Ta bort"
+    new_model: Ny %{model}
+    create_model: Ny %{model}
+    edit_model: Redigera %{model}
+    update_model: Redigera %{model}
+    delete_model: Ta bort %{model}
+    details: Detaljvy för %{model}
+    cancel: Avbryt
+    empty: Tom
+    previous: Föregående
+    next: Nästa
+    download: 'Ladda ner:'
+    has_many_new: Skapa en ny %{model}
+    has_many_delete: Ta bort
+    has_many_remove: Ta bort
     filters:
       buttons:
-        filter: "Filter"
-        clear: "Töm dina filters"
+        filter: Filter
+        clear: Töm dina filters
       predicates:
-        contains: "Innehåller"
-        equals: "Lika med"
-        starts_with: "Börjar med"
-        ends_with: "Slutar med"
-        greater_than: "Större än"
-        less_than: "Mindre än"
+        contains: Innehåller
+        equals: Lika med
+        starts_with: Börjar med
+        ends_with: Slutar med
+        greater_than: Större än
+        less_than: Mindre än
     status_tag:
-      "yes": "Ja"
-      "no": "Ingen"
-    main_content: "Implementera %{model}#main_content för att kunna visa något."
-    logout: "Logga ut"
-    powered_by: "Powered by %{active_admin} %{version}"
+      'yes': Ja
+      'no': Ingen
+    main_content: Implementera %{model}#main_content för att kunna visa något.
+    logout: Logga ut
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
-      filters: "Filter"
+      filters: Filter
     pagination:
-      empty: "Ingen %{model} funnen"
-      one: "Visar <b>1</b> utav %{model}"
-      one_page: "Visar <b>alla %{n}</b> utav %{model}"
-      multiple: "Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt"
-      multiple_without_total: "Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: Ingen %{model} funnen
+      one: Visar <b>1</b> utav %{model}
+      one_page: Visar <b>alla %{n}</b> utav %{model}
+      multiple: Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b>
+        totalt
+      multiple_without_total: Visar %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
       entry:
-        one: "inlägg"
-        other: "inlägg"
-    any: "Någon"
+        one: inlägg
+        other: inlägg
+    any: Någon
     blank_slate:
-      content: "Finns ingen %{resource_name} än."
-      link: "Skapa en"
+      content: Finns ingen %{resource_name} än.
+      link: Skapa en
     dropdown_actions:
-      button_label: "Behandling"
+      button_label: Behandling
     batch_actions:
-      button_label: "Batch Behandling"
+      button_label: Batch Behandling
       default_confirmation: "Är du säker på att du vill göra detta?"
       delete_confirmation: "Är du säker på att du vill radera dessa %{plural_model}?"
       succesfully_destroyed:
-        one: "Lyckades radera 1 %{model}"
-        other: "Lyckades radera %{count} %{plural_model}"
+        one: Lyckades radera 1 %{model}
+        other: Lyckades radera %{count} %{plural_model}
       selection_toggle_explanation: "(Toggle Selection)"
-      link: "Skapa en"
+      link: Skapa en
       action_label: "%{title} Markerad"
       labels:
-        destroy: "Radera"
+        destroy: Radera
     comments:
-      body: "Innehåll"
-      author: "Författare"
-      title: "Kommentar"
-      add: "Lägg till kommentar"
-      resource: "Resurs"
-      no_comments_yet: "Inga kommentarer än."
-      title_content: "Kommentarer (%{count})"
+      body: Innehåll
+      author: Författare
+      title: Kommentar
+      add: Lägg till kommentar
+      resource: Resurs
+      no_comments_yet: Inga kommentarer än.
+      title_content: Kommentarer (%{count})
       errors:
-        empty_text: "Kommentaren sparades inte, måste innehålla text."
+        empty_text: Kommentaren sparades inte, måste innehålla text.
+      resource_type: Resource Type
+      author_type: Author Type
+      author_missing: Anonymous
     devise:
       login:
-        title: "inloggning"
-        remember_me: "Kom ihåg mig"
-        submit: "inloggning"
+        title: inloggning
+        remember_me: Kom ihåg mig
+        submit: inloggning
       reset_password:
-        title: "Glömt ditt lösenord?"
+        title: Glömt ditt lösenord?
         submit: "Återställa mitt lösenord"
       change_password:
         title: "Ändra ditt lösenord"
         submit: "Ändra mitt lösenord"
       links:
-        sign_in: "Logga in"
-        forgot_your_password: "Glömt ditt lösenord?"
-        sign_in_with_omniauth_provider: "Logga in med %{provider}"
+        sign_in: Logga in
+        forgot_your_password: Glömt ditt lösenord?
+        sign_in_with_omniauth_provider: Logga in med %{provider}
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      unlock:
+        title: Resend unlock instructions
+        submit: Resend unlock instructions
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
+    access_denied:
+      message: You are not authorized to perform this action.
+    index_list:
+      table: Table
+      block: List
+      grid: Grid
+      blog: Blog

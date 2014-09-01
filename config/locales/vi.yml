@@ -1,96 +1,124 @@
+---
 vi:
   active_admin:
     dashboard: Dashboard
     dashboard_welcome:
-      welcome: "Chào mừng bạn đến với Active Admin. Đây là trang Dashboard mặc định."
+      welcome: Chào mừng bạn đến với Active Admin. Đây là trang Dashboard mặc định.
       call_to_action: "Để thêm phần phần cho trang Dashboar hãy chỉnh sửa 'app/admin/dashboard.rb'"
-    view: "Xem"
-    edit: "Chỉnh sửa"
-    delete: "Xóa"
-    delete_confirmation: "Bạn có chắc chắn rằng mình muốn xóa cái này?"
-    new_model: "Tạo mới %{model}"
-    create_model: "Tạo mới %{model}"
-    edit_model: "Chỉnh sửa %{model}"
-    update_model: "Chỉnh sửa %{model}"
-    delete_model: "Xóa %{model}"
+    view: Xem
+    edit: Chỉnh sửa
+    delete: Xóa
+    delete_confirmation: Bạn có chắc chắn rằng mình muốn xóa cái này?
+    new_model: Tạo mới %{model}
+    create_model: Tạo mới %{model}
+    edit_model: Chỉnh sửa %{model}
+    update_model: Chỉnh sửa %{model}
+    delete_model: Xóa %{model}
     details: "%{model} Chi tiết"
-    cancel: "Hủy"
-    empty: "Trống"
-    previous: "Trước"
-    next: "Tiếp"
-    download: "Download:"
-    has_many_new: "Thêm mới %{model}"
-    has_many_delete: "Xóa"
-    has_many_remove: "Hủy bỏ"
+    cancel: Hủy
+    empty: Trống
+    previous: Trước
+    next: Tiếp
+    download: 'Download:'
+    has_many_new: Thêm mới %{model}
+    has_many_delete: Xóa
+    has_many_remove: Hủy bỏ
     filters:
       buttons:
-        filter: "Lọc"
-        clear: "Xóa dữ liệu lọc"
+        filter: Lọc
+        clear: Xóa dữ liệu lọc
       predicates:
-        contains: "Thông tin"
-        equals: "Bằng"
-        starts_with: "Bắt đầu với"
-        ends_with: "Kết thúc với việc"
-        greater_than: "Lớn hơn"
-        less_than: "Nhỏ hơn"
+        contains: Thông tin
+        equals: Bằng
+        starts_with: Bắt đầu với
+        ends_with: Kết thúc với việc
+        greater_than: Lớn hơn
+        less_than: Nhỏ hơn
     status_tag:
-      "yes": "Có"
-      "no": "Không Có"
-    main_content: "Xin bổ sung %{model}#main_content để hiển thị nội dung."
+      'yes': Có
+      'no': Không Có
+    main_content: Xin bổ sung %{model}#main_content để hiển thị nội dung.
     logout: "Đăng xuất"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
-      filters: "Bộ Lọc"
+      filters: Bộ Lọc
     pagination:
-      empty: "Không có %{model} nào được tìm thấy"
+      empty: Không có %{model} nào được tìm thấy
       one: "Đang hiển thị <b>1</b> %{model}"
       one_page: "Đang hiển thị <b>tất cả %{n}</b> %{model}"
-      multiple: "Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> trong tất cả."
+      multiple: "Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b>
+        trong tất cả."
       multiple_without_total: "Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>."
       entry:
-        one: "entry"
-        other: "entries"
-    any: "Bất kỳ"
+        one: entry
+        other: entries
+    any: Bất kỳ
     blank_slate:
-      content: "Chưa có %{resource_name}."
-      link: "Tạo mới"
+      content: Chưa có %{resource_name}.
+      link: Tạo mới
     dropdown_actions:
-      button_label: "Hành động"
+      button_label: Hành động
     batch_actions:
-      button_label: "Hành động hàng loạt"
-      default_confirmation: "Bạn có chắc bạn muốn làm điều này?"
-      delete_confirmation: "Bạn có chắc chắn muốn xóa những %{plural_model}?"
+      button_label: Hành động hàng loạt
+      default_confirmation: Bạn có chắc bạn muốn làm điều này?
+      delete_confirmation: Bạn có chắc chắn muốn xóa những %{plural_model}?
       succesfully_destroyed:
         one: "Đã xóa thành công 1 %{model}"
         other: "Đã xóa thành công %{count} %{plural_model}"
       selection_toggle_explanation: "(Thay đổi lựa chọn)"
-      link: "Tạo mới"
+      link: Tạo mới
       action_label: "%{title} được chọn"
       labels:
-        destroy: "Xóa"
+        destroy: Xóa
     comments:
-      body: "Nội dung"
-      author: "Tác giả"
-      title: "Bình luận"
-      add: "Thêm bình luận"
-      resource: "Tài nguyên"
-      no_comments_yet: "Chưa có bình luận."
-      title_content: "Bình luận (%{count})"
+      body: Nội dung
+      author: Tác giả
+      title: Bình luận
+      add: Thêm bình luận
+      resource: Tài nguyên
+      no_comments_yet: Chưa có bình luận.
+      title_content: Bình luận (%{count})
       errors:
-        empty_text: "Lời bình luận chưa được lưu, vì nội dung còn trống."
+        empty_text: Lời bình luận chưa được lưu, vì nội dung còn trống.
+      resource_type: Resource Type
+      author_type: Author Type
+      author_missing: Anonymous
     devise:
       login:
         title: "Đăng nhập"
-        remember_me: "Ghi nhớ tôi"
+        remember_me: Ghi nhớ tôi
         submit: "Đăng nhập"
       reset_password:
-        title: "Quên mật khẩu của bạn?"
-        submit: "Thiết lập lại mật khẩu của tôi"
+        title: Quên mật khẩu của bạn?
+        submit: Thiết lập lại mật khẩu của tôi
       change_password:
-        title: "Thay đổi mật khẩu của bạn"
-        submit: "Thay đổi mật khẩu của tôi"
+        title: Thay đổi mật khẩu của bạn
+        submit: Thay đổi mật khẩu của tôi
       links:
         sign_in: "Đăng nhập"
-        forgot_your_password: "Quên mật khẩu của bạn?"
+        forgot_your_password: Quên mật khẩu của bạn?
         sign_in_with_omniauth_provider: "Đăng nhập với %{provider}"
-
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      unlock:
+        title: Resend unlock instructions
+        submit: Resend unlock instructions
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
+    access_denied:
+      message: You are not authorized to perform this action.
+    index_list:
+      table: Table
+      block: List
+      grid: Grid
+      blog: Blog

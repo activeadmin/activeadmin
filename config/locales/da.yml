@@ -1,108 +1,125 @@
+---
 da:
   active_admin:
-    dashboard: "Kontrolpanel"
+    dashboard: Kontrolpanel
     dashboard_welcome:
-      welcome: "Velkommen til Active Admin. Dette er standardoversigtssiden."
-      call_to_action: "Rediger 'app/admin/dashboard.rb' for at tilføje nye elementer til oversigtssiden."
-    view: "Vis"
-    edit: "Rediger"
-    delete: "Slet"
-    delete_confirmation: "Er du sikker på at du ønsker at slette?"
-    new_model: "Ny(t) %{model}"
-    create_model: "Opret %{model}"
-    edit_model: "Rediger %{model}"
-    update_model: "Opdater %{model}"
-    delete_model: "Slet %{model}"
+      welcome: Velkommen til Active Admin. Dette er standardoversigtssiden.
+      call_to_action: Rediger 'app/admin/dashboard.rb' for at tilføje nye elementer
+        til oversigtssiden.
+    view: Vis
+    edit: Rediger
+    delete: Slet
+    delete_confirmation: Er du sikker på at du ønsker at slette?
+    new_model: Ny(t) %{model}
+    create_model: Opret %{model}
+    edit_model: Rediger %{model}
+    update_model: Opdater %{model}
+    delete_model: Slet %{model}
     details: "%{model} detaljer"
-    cancel: "Fortryd"
-    empty: "Tom"
-    previous: "Forrige"
-    next: "Næste"
-    download: "Download:"
-    has_many_new: "Tilføj ny(t) %{model}"
-    has_many_delete: "Slet"
-    has_many_remove: "Fjern"
+    cancel: Fortryd
+    empty: Tom
+    previous: Forrige
+    next: Næste
+    download: 'Download:'
+    has_many_new: Tilføj ny(t) %{model}
+    has_many_delete: Slet
+    has_many_remove: Fjern
     filters:
       buttons:
-        filter: "Filtrer"
-        clear: "Ryd filtre"
+        filter: Filtrer
+        clear: Ryd filtre
       predicates:
-        contains: "Indeholder"
-        equals: "lig"
-        starts_with: "Begynder med"
-        ends_with: "Slutter med"
-        greater_than: "større end"
-        less_than: "mindre end"
+        contains: Indeholder
+        equals: lig
+        starts_with: Begynder med
+        ends_with: Slutter med
+        greater_than: større end
+        less_than: mindre end
     status_tag:
-      "yes": "Ja"
-      "no": "Nej"
-    main_content: "Implementer venligst %{model}#main_content for at vise noget indhold."
-    logout: "Log ud"
-    powered_by: "Powered by %{active_admin} %{version}"
+      'yes': Ja
+      'no': Nej
+    main_content: Implementer venligst %{model}#main_content for at vise noget indhold.
+    logout: Log ud
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
-      filters: "Filtre"
+      filters: Filtre
     pagination:
-      empty: "Ingen %{model} fundet"
-      one: "Viser <b>1</b> %{model}"
-      one_page: "Viser <b>alle %{n}</b> %{model}"
-      multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> af <b>%{total}</b> i alt"
-      multiple_without_total: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: Ingen %{model} fundet
+      one: Viser <b>1</b> %{model}
+      one_page: Viser <b>alle %{n}</b> %{model}
+      multiple: Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> af <b>%{total}</b>
+        i alt
+      multiple_without_total: Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>
       entry:
-        one: "post"
-        other: "poster"
-    any: "Alle"
+        one: post
+        other: poster
+    any: Alle
     blank_slate:
-      content: "Der er ingen %{resource_name} endnu."
-      link: "Opret"
+      content: Der er ingen %{resource_name} endnu.
+      link: Opret
     dropdown_actions:
-      button_label: "Handlinger"
+      button_label: Handlinger
     batch_actions:
-      button_label: "Batch Handlinger"
-      default_confirmation: "Er du sikker på du vil gøre dette?"
-      delete_confirmation: "Er du sikker på du vil slette disse %{plural_model}?"
+      button_label: Batch Handlinger
+      default_confirmation: Er du sikker på du vil gøre dette?
+      delete_confirmation: Er du sikker på du vil slette disse %{plural_model}?
       succesfully_destroyed:
-        one: "Vellykket ødelagt 1 %{model}"
-        other: "Vellykket ødelagt %{count} %{plural_model}"
+        one: Vellykket ødelagt 1 %{model}
+        other: Vellykket ødelagt %{count} %{plural_model}
       selection_toggle_explanation: "(Skift Selection)"
-      link: "Opret en"
+      link: Opret en
       action_label: "%{title} Valgte"
       labels:
-        destroy: "Slet"
+        destroy: Slet
     comments:
-      resource_type: "resource type"
-      author_type: "forfatter type"
-      body: "krop"
-      author: "forfatter"
-      title: "Kommentar"
-      add: "Tilføj Kommentar"
-      resource: "Resource"
-      no_comments_yet: "Ingen kommentarer endnu."
-      title_content: "Kommentarer (%{count})"
+      resource_type: resource type
+      author_type: forfatter type
+      body: krop
+      author: forfatter
+      title: Kommentar
+      add: Tilføj Kommentar
+      resource: Resource
+      no_comments_yet: Ingen kommentarer endnu.
+      title_content: Kommentarer (%{count})
       errors:
-        empty_text: "Kommentar blev ikke gemt, tekst var tom."
+        empty_text: Kommentar blev ikke gemt, tekst var tom.
+      author_missing: Anonymous
     devise:
       login:
-        title: "Login"
-        remember_me: "Husk mig"
-        submit: "Login"
+        title: Login
+        remember_me: Husk mig
+        submit: Login
       reset_password:
-        title: "Glemt din adgangskode?"
-        submit: "Nulstille min adgangskode"
+        title: Glemt din adgangskode?
+        submit: Nulstille min adgangskode
       change_password:
-        title: "Skift din adgangskode"
-        submit: "Skift min adgangskode"
+        title: Skift din adgangskode
+        submit: Skift min adgangskode
       unlock:
-        title: "Send oplåsnings instruktioner igen"
-        submit: "Send oplåsnings instruktioner igen"
+        title: Send oplåsnings instruktioner igen
+        submit: Send oplåsnings instruktioner igen
       links:
-        sign_in: "Log ind"
-        forgot_your_password: "Glemt din adgangskode?"
-        sign_in_with_omniauth_provider: "Log ind med %{provider}"
+        sign_in: Log ind
+        forgot_your_password: Glemt din adgangskode?
+        sign_in_with_omniauth_provider: Log ind med %{provider}
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
     access_denied:
-      message: "Du har ikke rettigheder til at udføre denne handling."
+      message: Du har ikke rettigheder til at udføre denne handling.
     index_list:
-      table: "Tabel"
-      block: "Liste"
-      grid: "Gitter"
-      blog: "Blog"
-
+      table: Tabel
+      block: Liste
+      grid: Gitter
+      blog: Blog

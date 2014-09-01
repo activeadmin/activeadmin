@@ -1,8 +1,9 @@
+---
 ja:
   active_admin:
     dashboard: "ダッシュボード"
     dashboard_welcome:
-      welcome: "Active Admin へようこそ。ダッシュボードの初期ページを表示しています。"
+      welcome: Active Admin へようこそ。ダッシュボードの初期ページを表示しています。
       call_to_action: "ダッシュボードに項目を追加するために 'app/admin/dashboard.rb' を編集してください。"
     view: "閲覧"
     edit: "編集"
@@ -34,18 +35,19 @@ ja:
         greater_than: "より大きい"
         less_than: "より小さい"
     status_tag:
-      "yes": "はい"
-      "no": "いいえ"
+      'yes': "はい"
+      'no': "いいえ"
     main_content: "内容を表示するために %{model}#main_content を実装してください。"
     logout: "ログアウト"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
       filters: "検索条件"
     pagination:
       empty: "%{model} は見つかりませんでした"
       one: "<b>1</b> 件の %{model} を表示しています"
       one_page: "<b>全 %{n}</b> 件の %{model} を表示しています"
-      multiple: "全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
+      multiple: "全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model}
+        を表示しています"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
       entry:
         one: "レコード"
@@ -61,7 +63,7 @@ ja:
       default_confirmation: "本当によろしいですか。"
       delete_confirmation: "%{plural_model} を削除してもよろしいですか?"
       succesfully_destroyed:
-        one: "1件の %{model} を削除しました"
+        one: 1件の %{model} を削除しました
         other: "%{count}件の %{plural_model} を削除しました"
       selection_toggle_explanation: "(選択)"
       link: "作成する"
@@ -110,6 +112,12 @@ ja:
         sign_in_with_omniauth_provider: "%{provider}のアカウントを使ってログイン"
         resend_confirmation_instructions: "ユーザ確認手順を再送する"
         resend_unlock_instructions: "ロックの解除方法を再送する"
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
     access_denied:
       message: "アクションを実行する権限がありません"
     index_list:

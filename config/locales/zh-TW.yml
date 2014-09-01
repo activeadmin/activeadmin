@@ -1,6 +1,7 @@
-"zh-TW":
+---
+zh-TW:
   active_admin:
-    dashboard: 儀表板
+    dashboard: "儀表板"
     dashboard_welcome:
       welcome: "歡迎來到 Active Admin 這是預設的儀表板頁面。"
       call_to_action: "要新增儀表板內容，請查看 'app/admin/dashboard.rb'"
@@ -34,18 +35,19 @@
         greater_than: "大於"
         less_than: "小於"
     status_tag:
-      "yes": "是的"
-      "no": "無"
+      'yes': "是的"
+      'no': "無"
     main_content: "請編寫 %{model}#main_content 以顯示內容。"
     logout: "登出"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
       filters: "篩選條件"
     pagination:
       empty: "找不到 %{model} "
       one: "顯示 <b>1</b> %{model}"
       one_page: "顯示 <b>全部 %{n}</b> %{model}"
-      multiple: "總計 <b>%{total}</b> 顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆"
+      multiple: "總計 <b>%{total}</b> 顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b>
+        筆"
       multiple_without_total: "顯示 %{model} 中<b>%{from}&nbsp;-&nbsp;%{to}</b> 筆"
       entry:
         one: "筆"
@@ -78,6 +80,9 @@
       title_content: "(%{count}) 則評論"
       errors:
         empty_text: "評論儲存失敗，不允許空白的內容。"
+      resource_type: Resource Type
+      author_type: Author Type
+      author_missing: Anonymous
     devise:
       login:
         title: "登錄"
@@ -90,10 +95,30 @@
         title: "更改您的密碼"
         submit: "更改我的密碼"
       resend_confirmation_instructions:
-        title: '重新發送確認信'
-        submit: '重新發送確認信'
+        title: "重新發送確認信"
+        submit: "重新發送確認信"
       links:
         sign_in: "登錄"
         forgot_your_password: "忘記密碼？"
         sign_in_with_omniauth_provider: "登入%{provider}"
-
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      unlock:
+        title: Resend unlock instructions
+        submit: Resend unlock instructions
+    access_denied:
+      message: You are not authorized to perform this action.
+    index_list:
+      table: Table
+      block: List
+      grid: Grid
+      blog: Blog

@@ -1,6 +1,7 @@
+---
 bg:
   active_admin:
-    dashboard: Табло
+    dashboard: "Табло"
     dashboard_welcome:
       welcome: "Добре дошли в Active Admin. Това е таблото по подразбиране."
       call_to_action: "За да добавите секции, редактирайте 'app/admin/dashboard.rb'"
@@ -34,8 +35,8 @@ bg:
         greater_than: "по-голямо от"
         less_than: "по-малко от"
     status_tag:
-      "yes": "Да"
-      "no": "не"
+      'yes': "Да"
+      'no': "не"
     main_content: "Добавете %{model}#main_content за да видите съдържание."
     logout: "Изход"
     powered_by: "Задвижва се от %{active_admin} %{version}"
@@ -80,6 +81,7 @@ bg:
       title_content: "Коментари (%{count})"
       errors:
         empty_text: "Коментарът с празен текст не беше запазен."
+      author_missing: Anonymous
     devise:
       login:
         title: "Вход"
@@ -98,6 +100,20 @@ bg:
         sign_in: "Вход"
         forgot_your_password: "Забравена парола?"
         sign_in_with_omniauth_provider: "Вход с %{provider}"
+      username:
+        title: Username
+      email:
+        title: Email
+      subdomain:
+        title: Subdomain
+      password:
+        title: Password
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
     access_denied:
       message: "Нямате права да извършите това действие."
     index_list:

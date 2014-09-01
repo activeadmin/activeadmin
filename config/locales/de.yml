@@ -1,117 +1,127 @@
+---
 de:
   active_admin:
-    dashboard: Übersicht
+    dashboard: "Übersicht"
     dashboard_welcome:
-      welcome: "Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite."
-      call_to_action: "Siehe 'app/admin/dashboard.rb', um Übersichts-Bereiche hinzuzufügen."
-    view: "Anzeigen"
-    edit: "Bearbeiten"
-    delete: "Löschen"
-    delete_confirmation: "Wollen Sie dieses Element wirklich löschen?"
+      welcome: Willkommen in Active Admin. Dies ist die Standard-Übersichtsseite.
+      call_to_action: Siehe 'app/admin/dashboard.rb', um Übersichts-Bereiche hinzuzufügen.
+    view: Anzeigen
+    edit: Bearbeiten
+    delete: Löschen
+    delete_confirmation: Wollen Sie dieses Element wirklich löschen?
     new_model: "%{model} erstellen"
     create_model: "%{model} erstellen"
     edit_model: "%{model} bearbeiten"
     update_model: "%{model} bearbeiten"
     delete_model: "%{model} löschen"
     details: "%{model} Details"
-    cancel: "Abbrechen"
-    empty: "Leer"
-    previous: "Zurück"
-    next: "Weiter"
-    download: "Herunterladen:"
+    cancel: Abbrechen
+    empty: Leer
+    previous: Zurück
+    next: Weiter
+    download: 'Herunterladen:'
     has_many_new: "%{model} hinzufügen"
-    has_many_delete: "Löschen"
-    has_many_remove: "Entfernen"
+    has_many_delete: Löschen
+    has_many_remove: Entfernen
     filters:
       buttons:
-        filter: "Filtern"
-        clear: "Filter entfernen"
+        filter: Filtern
+        clear: Filter entfernen
       predicates:
-        contains: "Enthält"
-        equals: "Gleich"
-        starts_with: "Beginnt mit"
-        ends_with: "Endet mit"
-        greater_than: "Größer als"
-        less_than: "Kleiner als"
+        contains: Enthält
+        equals: Gleich
+        starts_with: Beginnt mit
+        ends_with: Endet mit
+        greater_than: Größer als
+        less_than: Kleiner als
     status_tag:
-      "yes": "Ja"
-      "no": "Nein"
-    main_content: "Bitte implementieren Sie %{model}#main_content, um Inhalte anzuzeigen."
-    logout: "Abmelden"
-    powered_by: "Powered by %{active_admin} %{version}"
+      'yes': Ja
+      'no': Nein
+    main_content: Bitte implementieren Sie %{model}#main_content, um Inhalte anzuzeigen.
+    logout: Abmelden
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
-      filters: "Filter"
+      filters: Filter
     pagination:
-      empty: "Keine %{model} gefunden"
-      one: "Zeige <b>1</b> %{model}"
-      one_page: "Zeige <b>alle %{n}</b> %{model}"
-      multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
-      multiple_without_total: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
+      empty: Keine %{model} gefunden
+      one: Zeige <b>1</b> %{model}
+      one_page: Zeige <b>alle %{n}</b> %{model}
+      multiple: Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>
+      multiple_without_total: Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>
       entry:
-        one: "Eintrag"
-        other: "Einträge"
-    any: "Alle"
+        one: Eintrag
+        other: Einträge
+    any: Alle
     blank_slate:
-      content: "Es gibt noch keine %{resource_name}."
-      link: "Erstellen"
+      content: Es gibt noch keine %{resource_name}.
+      link: Erstellen
     dropdown_actions:
-      button_label: "Aktionen"
+      button_label: Aktionen
     batch_actions:
-      button_label: "Stapelverarbeitung"
-      default_confirmation: "Bist du sicher, dass Sie dies tun wollen?"
-      delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen?"
+      button_label: Stapelverarbeitung
+      default_confirmation: Bist du sicher, dass Sie dies tun wollen?
+      delete_confirmation: Sind Sie sicher dass sie diese %{plural_model} löschen
+        wollen?
       succesfully_destroyed:
-        one: "Erfolgreich 1 %{model} gelöscht"
-        other: "Erfolgreich %{count} %{plural_model} gelöscht"
+        one: Erfolgreich 1 %{model} gelöscht
+        other: Erfolgreich %{count} %{plural_model} gelöscht
       selection_toggle_explanation: "(Auswahl umschalten)"
-      link: "erstellen"
+      link: erstellen
       action_label: "%{title} ausgewählte"
       labels:
-        destroy: "Lösche"
+        destroy: Lösche
     comments:
-      resource_type: "Res­sour­cen-Typ"
-      author_type: "Autor-Typ"
-      body: "Inhalt"
-      author: "Autor"
-      title: "Kommentar"
-      add: "Kommentar hinzufügen"
-      resource: "Res­sour­ce"
-      no_comments_yet: "Es gibt noch keine Kommentare."
-      author_missing: "Unbekannt"
-      title_content: "Kommentare (%{count})"
+      resource_type: Res­sour­cen-Typ
+      author_type: Autor-Typ
+      body: Inhalt
+      author: Autor
+      title: Kommentar
+      add: Kommentar hinzufügen
+      resource: Res­sour­ce
+      no_comments_yet: Es gibt noch keine Kommentare.
+      author_missing: Unbekannt
+      title_content: Kommentare (%{count})
       errors:
-        empty_text: "Der Kommentar wurde nicht gespeichert, da der Text fehlt."
+        empty_text: Der Kommentar wurde nicht gespeichert, da der Text fehlt.
     devise:
       username:
-        title: "Benutzername"
+        title: Benutzername
       email:
-        title: "E-Mail-Adresse"
+        title: E-Mail-Adresse
       subdomain:
-        title: "Subdomain"
+        title: Subdomain
       password:
-        title: "Passwort"
+        title: Passwort
       sign_up:
-        title: "Registrieren"
-        submit: "Registrieren"
+        title: Registrieren
+        submit: Registrieren
       login:
-        title: "Login"
-        remember_me: "Angemeldet bleiben"
-        submit: "Login"
+        title: Login
+        remember_me: Angemeldet bleiben
+        submit: Login
       reset_password:
-        title: "Passwort vergessen?"
-        submit: "Mein Passwort zurücksetzen"
+        title: Passwort vergessen?
+        submit: Mein Passwort zurücksetzen
       change_password:
         title: "Ändern Sie Ihr Passwort"
-        submit: "Mein Passwort ändern"
+        submit: Mein Passwort ändern
       resend_confirmation_instructions:
-        title: "Anleitung zur Bestätigung noch mal schicken"
-        submit: "Anleitung zur Bestätigung noch mal schicken"
+        title: Anleitung zur Bestätigung noch mal schicken
+        submit: Anleitung zur Bestätigung noch mal schicken
       links:
-        sign_in: "Anmeldung"
-        forgot_your_password: "Passwort vergessen?"
-        sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
+        sign_in: Anmeldung
+        forgot_your_password: Passwort vergessen?
+        sign_in_with_omniauth_provider: Anmeldung mit %{provider}
+      unlock:
+        title: Resend unlock instructions
+        submit: Resend unlock instructions
     access_denied:
-      message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."
+      message: Sie haben nicht die Berechtigung um diese Aktion auszuführen.
+    index_list:
+      table: Table
+      block: List
+      grid: Grid
+      blog: Blog
   activerecord:
     attributes:
       admin_user:
@@ -133,11 +143,11 @@ de:
         one: Administrator
         other: Administratoren
   formtastic:
-    yes: "Ja"
-    no: "Nein"
+    'true': Ja
+    'false': Nein
     create: "%{model} anlegen"
     update: "%{model} aktualisieren"
-    submit: "Abschicken"
-    cancel: "Abbrechen"
+    submit: Abschicken
+    cancel: Abbrechen
     reset: "%{model} zurücksetzen"
-    required: "Pflichtfeld"
+    required: Pflichtfeld

@@ -1,3 +1,4 @@
+---
 el:
   active_admin:
     dashboard: "Σελίδα διαχείρισης"
@@ -34,18 +35,20 @@ el:
         greater_than: "Μεγαλύτερο από"
         less_than: "Μικρότερο από"
     status_tag:
-      "yes": "Ναι"
-      "no": "Δεν"
-    main_content: "Παρακαλώ υλοποιήστε την %{model}#main_content για να εμφανίσετε περιεχόμενο."
+      'yes': "Ναι"
+      'no': "Δεν"
+    main_content: "Παρακαλώ υλοποιήστε την %{model}#main_content για να εμφανίσετε
+      περιεχόμενο."
     logout: "Αποσύνδεση"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: Powered by %{active_admin} %{version}
     sidebars:
       filters: "Φίλτρα"
     pagination:
       empty: "Δε βρέθηκαν %{model}"
       one: "Εμφάνιζεται <b>1</b> %{model}"
       one_page: "Εμφανίζονται <b>όλες οι %{n}</b> εγγραφές %{model}"
-      multiple: "Εμφανίζονται %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> από <b>%{total}</b> συνολικά"
+      multiple: "Εμφανίζονται %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> από <b>%{total}</b>
+        συνολικά"
       multiple_without_total: "Εμφανίζονται %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "εγγραφή"
@@ -83,9 +86,9 @@ el:
       username:
         title: "Όνομα χρήστη"
       email:
-        title: "Email"
+        title: Email
       subdomain:
-        title: "Subdomain"
+        title: Subdomain
       password:
         title: "Κωδικός"
       login:
@@ -105,10 +108,18 @@ el:
         sign_in: "Σύνδεση"
         forgot_your_password: "Ξεχάσατε τον κωδικό σας;"
         sign_in_with_omniauth_provider: "Σύνδεση με %{provider}"
+      sign_up:
+        title: Sign up
+        submit: Sign up
+      resend_confirmation_instructions:
+        title: Resend confirmation instructions
+        submit: Resend confirmation instructions
     access_denied:
       message: "Δεν έχετε πρόσβαση για αυτή την ενέργεια."
     index_list:
       table: "Πίνακας"
       block: "Λίστα"
       grid: "Πλέγμα"
-      blog: "Blog"
+      blog: Blog
+    dropdown_actions:
+      button_label: Actions
