@@ -59,6 +59,7 @@ module ActiveAdmin
       def build_table_header(col)
         classes  = Arbre::HTML::ClassList.new
         sort_key = sortable? && col.sortable? && col.sort_key
+        sort_key_order = col.sort_key_order
         params   = request.query_parameters.except :page, :order, :commit, :format
 
         classes << 'sortable'                         if sort_key
@@ -67,7 +68,7 @@ module ActiveAdmin
 
         if sort_key
           th class: classes do
-            link_to col.pretty_title, params: params, order: "#{sort_key}_#{order_for_sort_key(sort_key)}"
+            link_to col.pretty_title, params: params, order: "#{sort_key}_#{order_for_sort_key(sort_key, sort_key_order)}"
           end
         else
           th col.pretty_title, class: classes
@@ -133,9 +134,9 @@ module ActiveAdmin
       #
       # Default is to use 'desc'. If the current sort key is
       # 'desc' it will return 'asc'
-      def order_for_sort_key(sort_key)
+      def order_for_sort_key(sort_key, sort_key_order)
         current_key, current_order = current_sort
-        return 'desc' unless current_key == sort_key
+        return sort_key_order unless current_key == sort_key
         current_order == 'desc' ? 'asc' : 'desc'
       end
 
@@ -201,6 +202,14 @@ module ActiveAdmin
             @data.to_s
           else
             @options[:sortable].to_s
+          end
+        end
+
+        def sort_key_order
+          if @options[:sort_key_order].nil?
+            @options[:sort_key_order] = :desc
+          else
+            @options[:sort_key_order].to_s
           end
         end
 
