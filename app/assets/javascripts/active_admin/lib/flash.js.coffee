@@ -10,3 +10,5 @@ ActiveAdmin.flash =
       @reference = jQuery("<div>").addClass("flash flash_#{type}").text(message)
       jQuery ".flashes"
         .append @reference
+    close: ->
+      @reference.remove()
