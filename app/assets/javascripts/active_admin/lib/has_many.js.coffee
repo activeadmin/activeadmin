@@ -13,6 +13,7 @@ $ ->
 
     parent.trigger 'has_many_remove:before', [to_remove]
     to_remove.remove()
+    parent.trigger 'has_many_remove:after', [ to_remove ]
 
   # Provides before and after creation hooks:
   # $ ->
