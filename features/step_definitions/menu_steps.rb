@@ -2,6 +2,10 @@ Then /^I should see a menu item for "([^"]*)"$/ do |name|
   expect(page).to have_css '#tabs li a', text: name
 end
 
+Then /^I should see a secondary menu item for "([^"]*)"$/ do |name|
+  expect(page).to_not have_css '.subnav ul#tabs li a', text: name
+end
+
 Then /^I should not see a menu item for "([^"]*)"$/ do |name|
   expect(page).to_not have_css '#tabs li a', text: name
 end
