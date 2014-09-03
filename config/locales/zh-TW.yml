@@ -29,8 +29,8 @@
       predicates:
         contains: "包含"
         equals: "等於"
-        starts_with: "开头"
-        ends_with: "完与"
+        starts_with: "開頭為"
+        ends_with: "結尾為"
         greater_than: "大於"
         less_than: "小於"
     status_tag:
