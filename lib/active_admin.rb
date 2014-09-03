@@ -46,7 +46,6 @@ module ActiveAdmin
   autoload :PageController,           'active_admin/page_controller'
   autoload :PageDSL,                  'active_admin/page_dsl'
   autoload :PunditAdapter,            'active_admin/pundit_adapter'
-  autoload :Reloader,                 'active_admin/reloader'
   autoload :Resource,                 'active_admin/resource'
   autoload :ResourceController,       'active_admin/resource_controller'
   autoload :ResourceDSL,              'active_admin/resource_dsl'
