@@ -229,6 +229,12 @@ class Ability
 end
 ```
 
+To authorize custom page like the dashboard use the `Page` model like this:
+
+```ruby
+can :manage, ActiveAdmin::Page, controller: Admin::DashboardController
+```
+
 To view more details about the CanCan API, visit [https://github.com/ryanb/cancan](https://github.com/ryanb/cancan).
 
 ## Using the Pundit Adapter
