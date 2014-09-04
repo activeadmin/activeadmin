@@ -39,7 +39,7 @@ $ ->
       regex = new RegExp $(@).data('placeholder'), 'g'
       html  = $(@).data('html').replace regex, index
 
-      fieldset = $(html).insertBefore(@)
+      fieldset = $('<li>').html(html).insertBefore(@)
       recompute_positions parent
       parent.trigger 'has_many_add:after', [fieldset]
 
