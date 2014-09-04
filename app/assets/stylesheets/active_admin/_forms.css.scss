@@ -143,8 +143,8 @@ form {
       float: left;
       position: static;
       width: 20%;
-      span { position: static; width: auto; }
-      &.label label { position: static; width: auto; }
+      span { position: static; width: 100%; }
+      &.label label { position: static; width: 100%; }
     }
     .fragments-group {
       box-sizing: border-box;
