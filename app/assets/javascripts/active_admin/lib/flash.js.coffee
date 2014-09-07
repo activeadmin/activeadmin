@@ -4,4 +4,4 @@ ActiveAdmin.flash =
   notice: (message) ->
     this.abstract message, 'notice'
   abstract: (message, type) ->
-    $('.flashes').append "<div class='flash flash_#{type}'>#{message}</div>"
+    $('.flashes').append $("<div>").addClass("flash flash_#{type}").text(message)
