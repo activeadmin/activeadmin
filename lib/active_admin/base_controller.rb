@@ -6,6 +6,7 @@ module ActiveAdmin
   # It implements ActiveAdmin controllers core features.
   class BaseController < ::InheritedResources::Base
     helper ::ActiveAdmin::ViewHelpers
+    helper_method :env
 
     layout :determine_active_admin_layout
 
