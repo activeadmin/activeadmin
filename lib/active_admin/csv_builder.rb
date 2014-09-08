@@ -45,9 +45,7 @@ module ActiveAdmin
       options = ActiveAdmin.application.csv_options.merge self.options
       columns = exec_columns view_context
 
-      column_names = ( options.key?(:column_names) == !!options[:column_names] )
-      options.except!(:column_names)
-      if column_names
+      if options.delete(:column_names) { true }
         receiver << CSV.generate_line(columns.map{ |c| encode c.name, options }, options)
       end
 
