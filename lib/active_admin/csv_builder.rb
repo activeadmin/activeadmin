@@ -45,7 +45,11 @@ module ActiveAdmin
       options = ActiveAdmin.application.csv_options.merge self.options
       columns = exec_columns view_context
 
-      receiver << CSV.generate_line(columns.map{ |c| encode c.name, options }, options)
+      column_names = ( options.key?(:column_names) == !!options[:column_names] )
+      options.except!(:column_names)
+      if column_names
+        receiver << CSV.generate_line(columns.map{ |c| encode c.name, options }, options)
+      end
 
       view_context.send(:collection).find_each do |resource|
         resource = view_context.send :apply_decorator, resource
