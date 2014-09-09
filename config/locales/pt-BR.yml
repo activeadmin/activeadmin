@@ -113,6 +113,7 @@ pt-BR:
         sign_in: "Entrar"
         forgot_your_password: "Esqueceu sua senha?"
         sign_in_with_omniauth_provider: "Entre com o %{provider}"
+        resend_unlock_instructions: "Reenviar instruções de desbloqueio"
     access_denied:
       message: "Você não tem permissão para realizar o solicitado"
     index_list:
