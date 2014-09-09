@@ -112,26 +112,6 @@ de:
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
     access_denied:
       message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."
-  activerecord:
-    attributes:
-      admin_user:
-        id: ID
-        email: E-Mail
-        encrypted_Password: Verschlüsseltes Passwort
-        reset_password_token: Passwort-Reset-Token
-        reset_password_sent_at: Passwort-Reset-Anweisungen gesendet am
-        remember_created_at: Passwort merken seit
-        sign_in_count: Anzahl Logins
-        current_sign_in_at: Aktuell angemeldet seit
-        last_sign_in_at: Letzter Login am
-        current_sign_in_ip: Aktuelle IP-Adresse
-        last_sign_in_ip: Letzte IP-Adresse
-        created_at: Erstellt am
-        updated_at: Aktualisiert am
-    models:
-      admin_user:
-        one: Administrator
-        other: Administratoren
   formtastic:
     yes: "Ja"
     no: "Nein"
