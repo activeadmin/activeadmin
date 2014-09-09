@@ -106,12 +106,3 @@
         sign_in_with_omniauth_provider: "登入%{provider}"
     access_denied:
       message: "您无权处理此操作"
-  formtastic:
-    yes: "YES"
-    no: "NO"
-    create: "新建%{model}"
-    update: "更新%{model}"
-    submit: "确认"
-    cancel: "取消"
-    reset: "重置%{model}"
-    required: "必须的"

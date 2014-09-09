@@ -112,12 +112,3 @@ de:
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
     access_denied:
       message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."
-  formtastic:
-    yes: "Ja"
-    no: "Nein"
-    create: "%{model} anlegen"
-    update: "%{model} aktualisieren"
-    submit: "Abschicken"
-    cancel: "Abbrechen"
-    reset: "%{model} zurücksetzen"
-    required: "Pflichtfeld"
