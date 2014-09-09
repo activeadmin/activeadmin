@@ -67,6 +67,12 @@ module ActiveAdmin
     # The namespace root.
     inheritable_setting :root_to, 'dashboard#index'
 
+    # The namespace of the ActiveAdmin Infopage
+    inheritable_setting :infopage_namespace, :active_admin
+
+    # The group which has ActiveAdmin Infopage
+    inheritable_setting :infopage_groups, %w(development)
+
     # Display breadcrumbs
     inheritable_setting :breadcrumb, true
 
@@ -112,6 +118,10 @@ module ActiveAdmin
     def prepare!
       remove_active_admin_load_paths_from_rails_autoload_and_eager_load
       attach_reloader
+    end
+
+    def use_infopage?
+      infopage_namespace && infopage_groups.include?(Rails.env)
     end
 
     # Registers a brand new configuration for the given resource.

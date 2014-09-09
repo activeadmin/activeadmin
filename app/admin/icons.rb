@@ -1,4 +1,4 @@
-ActiveAdmin.register_page "Icons", namespace: :active_admin do
+ActiveAdmin.register_page "Icons", namespace: ActiveAdmin.application.infopage_namespace do
   content do
     ul do
       ActiveAdmin::Iconic::ICONS.keys.each do |key|
@@ -13,4 +13,4 @@ ActiveAdmin.register_page "Icons", namespace: :active_admin do
       end
     end
   end
-end
+end if ActiveAdmin.application.use_infopage?
