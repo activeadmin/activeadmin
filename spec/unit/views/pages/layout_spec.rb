@@ -13,7 +13,8 @@ describe ActiveAdmin::Views::Pages::Layout do
       current_active_admin_user:  nil,
       current_active_admin_user?: false,
       current_menu:               double('Menu', items: []),
-      params:                     {controller: 'UsersController', action: 'edit'}
+      params:                     {controller: 'UsersController', action: 'edit'},
+      env:                        {}
     }.each do |method, returns|
       allow(helpers).to receive(method).and_return returns
     end
