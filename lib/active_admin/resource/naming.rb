@@ -2,6 +2,8 @@ module ActiveAdmin
   class Resource
 
     module Naming
+      delegate :param_key, to: :resource_name
+
       def resource_name
         @resource_name ||= begin
           as = @options[:as].gsub /\s/, '' if @options[:as]
@@ -25,16 +27,6 @@ module ActiveAdmin
         defaults = {count:   Helpers::I18n::PLURAL_MANY_COUNT,
                     default: resource_label.pluralize.titleize}
         resource_name.translate defaults.merge options
-      end
-
-      # Forms use the model's original `param_key`, so we can't use our
-      # custom `resource_name` when the model's been renamed in ActiveAdmin.
-      def param_key
-        if resource_class.respond_to? :model_name
-          resource_class.model_name.param_key
-        else
-          resource_name.param_key
-        end
       end
     end
 
