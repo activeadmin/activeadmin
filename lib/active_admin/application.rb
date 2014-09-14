@@ -128,11 +128,10 @@ module ActiveAdmin
     def namespace(name)
       name ||= :root
 
-      if namespaces[name]
-        namespace = namespaces[name]
-      else
-        namespace = namespaces[name] = Namespace.new(self, name)
+      namespace = namespaces[name] ||= begin
+        namespace = Namespace.new(self, name)
         ActiveAdmin::Event.dispatch ActiveAdmin::Namespace::RegisterEvent, namespace
+        namespace
       end
 
       yield(namespace) if block_given?
