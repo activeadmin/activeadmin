@@ -186,9 +186,11 @@ config.authorization_adapter = ActiveAdmin::CanCanAdapter
 You can also specify a method to be called on unauthorized access. This is necessary
 in order to prevent a redirect loop that can happen if a user tries to access a page
 they don't have permissions for (see [#2081](https://github.com/activeadmin/activeadmin/issues/2081)).
+
 ```ruby
 config.on_unauthorized_access = :access_denied
 ```    
+
 The method `access_denied` would be defined in `application_controller.rb`. Here is one
 example that redirects the user from the page they don't have permission to
 access to a resource they have permission to access (organizations in this case), and
