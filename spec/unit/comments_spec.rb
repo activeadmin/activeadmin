@@ -36,6 +36,15 @@ describe "Comments" do
         another_post = Post.create! title: "Another Hello World"
         expect(ActiveAdmin::Comment.find_for_resource_in_namespace(another_post, namespace_name)).to eq []
       end
+
+      it "should return the most recent comment first" do
+        another_comment = ActiveAdmin::Comment.create! resource: post, 
+                                                       body: "Another Comment", 
+                                                       namespace: namespace_name
+        comments = ActiveAdmin::Comment.find_for_resource_in_namespace(post, namespace_name)
+        expect(comments.size).to eq 2
+        expect(comments.last).to eq(another_comment)
+      end
     end
 
     describe ".resource_id_cast" do
