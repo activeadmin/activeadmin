@@ -49,7 +49,7 @@ module ActiveAdmin
       reset_menu!
 
       # Dispatch a registration event
-      ActiveAdmin::Event.dispatch ActiveAdmin::Resource::RegisterEvent, config
+      ActiveSupport::Notifications.publish ActiveAdmin::Resource::RegisterEvent, config
 
       # Return the config
       config

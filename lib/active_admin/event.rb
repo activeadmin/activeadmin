@@ -1,33 +1,24 @@
 module ActiveAdmin
 
   class EventDispatcher
-    def initialize
-      @events = {}
-    end
-
-    def clear_all_subscribers!
-      @events = {}
-    end
-
     def subscribe(*event_names, &block)
+      Deprecation.warn "`ActiveAdmin::Event.subscribe` is deprecated, use `ActiveSupport::Notifications.subscribe`"
       event_names.each do |event|
-        @events[event] ||= []
-        @events[event] << block
+        ActiveSupport::Notifications.subscribe event,
+          &wrap_block_for_active_support_notifications(block)
       end
-    end
-
-    def subscribers(event)
-      @events[event] || []
     end
 
     def dispatch(event, *args)
-      subscribers(event).each do |subscriber|
-        subscriber.call(*args)
-      end
+      Deprecation.warn "`ActiveAdmin::Event.dispatch` is deprecated, use `ActiveSupport::Notifications.publish`"
+      ActiveSupport::Notifications.publish event, *args
+    end
+
+    def wrap_block_for_active_support_notifications block
+      proc { |event, *args| block.call *args }
     end
   end
 
   # ActiveAdmin::Event is set to a dispatcher
   Event = EventDispatcher.new
-
 end
