@@ -34,6 +34,20 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 * Fixes comment creation bug with aliased resources 9a082486 by [@seanlinsley][]
 * Fixes the deletion of `:if` and `:unless` from filters [#2523][] by [@PChambino][]
 
+### Deprecations
+
+* `ActiveAdmin::Event` (`ActiveAdmin::EventDispatcher`) [#3435][] by [@timoschilling][]
+  `ActiveAdmin::Event` will be removed in a future version, ActiveAdmin switched
+  to use `ActiveSupport::Notifications`.
+  NOTE: The blog parameters has changed:
+```ruby
+ActiveSupport::Notifications.subscribe ActiveAdmin::Application::BeforeLoadEvent do |event, *args|
+  # some code
+end
+
+ActiveSupport::Notifications.publish ActiveAdmin::Application::BeforeLoadEvent, "some data"
+```
+
 ## 0.6.3 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.2...v0.6.3)
 
 * __Reinstitutes the 10k limit for CSV exports__ [#2847][] by [@seanlinsley][]
