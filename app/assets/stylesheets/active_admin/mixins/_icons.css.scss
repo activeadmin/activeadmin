@@ -4,7 +4,7 @@ span.icon svg { vertical-align: baseline; }
 
 @mixin icon-color ($color) {
   span.icon svg {
-    path, polygon, rect, circle { fill: $color !important; }
+    path, polygon, rect, circle { fill: $color; }
   }
 }
 
