@@ -19,9 +19,7 @@ module ActiveAdmin
           if options[:partial]
             render options[:partial]
           else
-            active_admin_form_for resource, options do |f|
-              instance_exec f, &form_presenter.block
-            end
+            active_admin_form_for resource, options, &form_presenter.block
           end
         end
 

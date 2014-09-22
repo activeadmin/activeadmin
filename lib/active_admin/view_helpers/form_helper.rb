@@ -3,10 +3,9 @@ module ActiveAdmin
     module FormHelper
 
       def active_admin_form_for(resource, options = {}, &block)
-        options = options.deep_dup
-        options[:builder] ||= ActiveAdmin::FormBuilder
-
-        semantic_form_for resource, options, &block
+        Arbre::Context.new({}, self) do
+          active_admin_form_for resource, options, &block
+        end.content
       end
 
       def hidden_field_tags_for(params, options={})
