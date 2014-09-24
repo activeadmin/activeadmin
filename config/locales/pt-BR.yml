@@ -121,3 +121,20 @@ pt-BR:
       block: "Lista"
       grid: "Grid"
       blog: "Blog"
+  formtastic:
+    yes: 'Sim'
+    no: 'Não'
+    create: 'Criar %{model}'
+    update: 'Atualizar %{model}'
+    submit: 'Enviar %{model}'
+    cancel: 'Cancelar %{model}'
+    reset: 'Resetar %{model}'
+    required: 'necessário'
+  flash:
+    actions:
+      update:
+        notice: '%{resource_name} atualizado(a) com sucesso'
+      create:
+        notice: '%{resource_name} criado(a) com sucesso'
+      destroy:
+        notice: '%{resource_name} destruido(a) com sucesso'
