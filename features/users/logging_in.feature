@@ -5,7 +5,7 @@ Feature: User Logging In
   Background:
     Given a configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     And I am logged out
     And an admin user "admin@example.com" exists

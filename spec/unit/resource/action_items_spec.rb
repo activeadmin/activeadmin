@@ -4,7 +4,7 @@ describe ActiveAdmin::Resource::ActionItems do
 
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
-    namespace.register(Post)
+    namespace.register_resource(Post)
   end
 
   describe "adding a new action item" do

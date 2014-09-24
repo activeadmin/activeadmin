@@ -11,7 +11,7 @@ Feature: Development Reloading
 
     When "app/admin/posts.rb" contains:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         if Rails::VERSION::MAJOR == 4
           permit_params :category, :author, :title, :body, :published_at, :starred
         end

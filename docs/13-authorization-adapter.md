@@ -133,7 +133,7 @@ authorized to perform an action on a subject.
 Simply use the `#authorized?(action, subject) method to check.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
 
   index do
     column :title
@@ -149,7 +149,7 @@ If you are implementing a custom controller action, you can use the
 `#authorize!` method to raise an `ActiveAdmin::AccessDenied` exception.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
 
   member_action :publish, method: :post do
     post = Post.find(params[:id])

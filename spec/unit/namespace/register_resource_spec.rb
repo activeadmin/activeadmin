@@ -13,7 +13,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
 
   context "with no configuration" do
     before do
-      namespace.register Category
+      namespace.register_resource Category
     end
     it "should store the namespaced registered configuration" do
       expect(namespace.resources.keys).to include('Category')
@@ -33,7 +33,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
   context "with a block configuration" do
     it "should be evaluated in the dsl" do
       expect {
-        namespace.register Category do
+        namespace.register_resource Category do
           raise "Hello World"
         end
       }.to raise_error
@@ -43,7 +43,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
   context "with a resource that's namespaced" do
     before do
       module ::Mock; class Resource; def self.has_many(arg1, arg2); end; end; end
-      namespace.register Mock::Resource
+      namespace.register_resource Mock::Resource
     end
 
     it "should store the namespaced registered configuration" do
@@ -65,7 +65,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
     let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
 
     it "should return the resource when its been registered" do
-      post = namespace.register Post
+      post = namespace.register_resource Post
       expect(namespace.resource_for(Post)).to eq post
     end
 
@@ -74,13 +74,13 @@ describe ActiveAdmin::Namespace, "registering a resource" do
     end
 
     it "should return the parent when the parent class has been registered and the child has not" do
-      user = namespace.register User
+      user = namespace.register_resource User
       expect(namespace.resource_for(Publisher)).to eq user
     end
 
     it "should return the resource if it and it's parent were registered" do
-      user = namespace.register User
-      publisher = namespace.register Publisher
+      user = namespace.register_resource User
+      publisher = namespace.register_resource Publisher
       expect(namespace.resource_for(Publisher)).to eq publisher
     end
   end # describe "finding resource instances"
@@ -88,7 +88,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
   describe "adding to the menu" do
     describe "adding as a top level item" do
       before do
-        namespace.register Category
+        namespace.register_resource Category
       end
       it "should add a new menu item" do
         expect(menu['Categories']).to_not be_nil
@@ -97,7 +97,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
 
     describe "adding as a child" do
       before do
-        namespace.register Category do
+        namespace.register_resource Category do
           menu parent: 'Blog'
         end
       end
@@ -111,7 +111,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
 
     describe "disabling the menu" do
       before do
-        namespace.register Category do
+        namespace.register_resource Category do
           menu false
         end
       end
@@ -123,7 +123,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
     describe "adding as a belongs to" do
       context "when not optional" do
         before do
-          namespace.register Post do
+          namespace.register_resource Post do
             belongs_to :author
           end
         end
@@ -133,7 +133,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       end
       context "when optional" do
         before do
-          namespace.register Post do
+          namespace.register_resource Post do
             belongs_to :author, optional: true
           end
         end
@@ -148,14 +148,14 @@ describe ActiveAdmin::Namespace, "registering a resource" do
     context "when namespaced" do
       it "should be namespaced" do
         namespace = ActiveAdmin::Namespace.new(application, :one)
-        namespace.register Category
+        namespace.register_resource Category
         expect(defined?(One::CategoriesController)).to be_truthy
       end
     end
     context "when not namespaced" do
       it "should not be namespaced" do
         namespace = ActiveAdmin::Namespace.new(application, :two)
-        namespace.register Category
+        namespace.register_resource Category
         expect(defined?(Two::CategoriesController)).to be_truthy
       end
     end

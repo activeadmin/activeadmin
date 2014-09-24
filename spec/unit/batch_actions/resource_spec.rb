@@ -5,7 +5,7 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
     namespace.batch_actions = true
-    namespace.register(Post)
+    namespace.register_resource(Post)
   end
 
   describe "default action" do

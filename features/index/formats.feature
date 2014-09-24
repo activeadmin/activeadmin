@@ -3,7 +3,7 @@ Feature: Index Formats
   Scenario: View index with default formats
     Given an index configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     And 1 post exists
     When I am on the index page for posts
@@ -14,7 +14,7 @@ Feature: Index Formats
   Scenario: View index with download_links set to false
     Given an index configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :download_links => false
       end
     """
@@ -27,7 +27,7 @@ Feature: Index Formats
   Scenario: View index with pdf download link set
     Given an index configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :download_links => [:pdf]
       end
     """
@@ -41,7 +41,7 @@ Feature: Index Formats
   Scenario: View index with download_links block which returns false
     Given an index configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :download_links => proc { false }
       end
     """
@@ -54,7 +54,7 @@ Feature: Index Formats
   Scenario: View index with download_links block which returns [:csv]
     Given an index configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :download_links => -> { [:csv] }
       end
     """

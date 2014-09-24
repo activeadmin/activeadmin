@@ -5,7 +5,7 @@ Feature: Registering Assets
   Background:
     Given a configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     And I am logged in
 
@@ -20,7 +20,7 @@ Feature: Registering Assets
     Given a configuration of:
     """
       ActiveAdmin.application.register_stylesheet "some-random-css.css", :media => :print
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     When I am on the index page for posts
     Then I should see the css file "some-random-css.css" of media "print"
@@ -29,7 +29,7 @@ Feature: Registering Assets
     Given a configuration of:
     """
       ActiveAdmin.application.register_javascript "some-random-js.js"
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     When I am on the index page for posts
     Then I should see the js file "some-random-js.js"

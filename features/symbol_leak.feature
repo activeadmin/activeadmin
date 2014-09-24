@@ -3,7 +3,7 @@ Feature: User input shouldn't be symbolized
   Background:
     Given a configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     Given I am logged in
     And 1 post exists

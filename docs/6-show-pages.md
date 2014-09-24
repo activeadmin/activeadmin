@@ -5,7 +5,7 @@ The show block is rendered within the context of the view and uses [Arbre](https
 With the `show` block, you can render anything you want.
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   show do
     h3 post.title
     div do
@@ -18,7 +18,7 @@ end
 You can render a partial at any point:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   show do
     # renders app/views/admin/posts/_some_partial.html.erb
     render 'some_partial'
@@ -29,7 +29,7 @@ end
 If you'd like to keep the default AA look, you can use `attributes_table`:
 
 ```ruby
-ActiveAdmin.register Ad do
+ActiveAdmin.register_resource Ad do
   show do
     attributes_table do
       row :title
@@ -53,7 +53,7 @@ end
 If you want a more data-dense page, you can combine a sidebar:
 
 ```ruby
-ActiveAdmin.register Book do
+ActiveAdmin.register_resource Book do
   show do
     panel "Table of Contents" do
       table_for book.chapters do

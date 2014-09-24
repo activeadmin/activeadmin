@@ -8,7 +8,7 @@ Feature: New Page
     And I am logged in
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         permit_params :custom_category_id, :author_id, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
       end
     """
@@ -30,7 +30,7 @@ Feature: New Page
   Scenario: Generating a custom form
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         permit_params :custom_category_id, :author_id, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
 
         form do |f|
@@ -66,7 +66,7 @@ Feature: New Page
     """
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         permit_params :custom_category_id, :author_id, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
 
         form :partial => "form"
@@ -83,7 +83,7 @@ Feature: New Page
   Scenario: Displaying fields at runtime
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         permit_params :custom_category_id, :author_id, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
 
         form do |f|

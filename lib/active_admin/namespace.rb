@@ -11,7 +11,7 @@ module ActiveAdmin
   #
   # For example:
   #
-  #   ActiveAdmin.register Post, namespace: :admin
+  #   ActiveAdmin.register_resource Post, namespace: :admin
   #
   # Will register the Post model into the "admin" namespace. This will namespace the
   # urls for the resource to "/admin/posts" and will set the controller to
@@ -19,7 +19,7 @@ module ActiveAdmin
   #
   # You can also register to the "root" namespace, which is to say no namespace at all.
   #
-  #   ActiveAdmin.register Post, namespace: false
+  #   ActiveAdmin.register_resource Post, namespace: false
   #
   # This will register the resource to an instantiated namespace called :root. The
   # resource will be accessible from "/posts" and the controller will be PostsController.
@@ -38,9 +38,9 @@ module ActiveAdmin
     end
 
     # Register a resource into this namespace. The preffered method to access this is to
-    # use the global registration ActiveAdmin.register which delegates to the proper
+    # use the global registration ActiveAdmin.register_resource which delegates to the proper
     # namespace instance.
-    def register(resource_class, options = {}, &block)
+    def register_resource(resource_class, options = {}, &block)
       config = find_or_build_resource(resource_class, options)
 
       # Register the resource

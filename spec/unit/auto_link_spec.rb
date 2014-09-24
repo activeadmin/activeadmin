@@ -22,7 +22,7 @@ describe "auto linking resources" do
 
   context "when the resource is registered" do
     before do
-      active_admin_namespace.register Post
+      active_admin_namespace.register_resource Post
     end
     it "should return a link with the display name of the object" do
       expect(self).to receive(:url_for).and_return admin_post_path(post)

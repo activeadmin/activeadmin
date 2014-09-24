@@ -55,7 +55,7 @@ describe ActiveAdmin::ResourceController do
     before :all do
       application = ::ActiveAdmin::Application.new
       namespace = ActiveAdmin::Namespace.new(application, :admin)
-      namespace.register Post do
+      namespace.register_resource Post do
         after_build :call_after_build
         before_save :call_before_save
         after_save :call_after_save

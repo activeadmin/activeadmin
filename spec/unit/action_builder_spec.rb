@@ -16,7 +16,7 @@ describe 'defining new actions from registration blocks' do
 
     context "with a block" do
       let(:action!) do
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           member_action :comment do
             # Do nothing
           end
@@ -36,7 +36,7 @@ describe 'defining new actions from registration blocks' do
 
     context "without a block" do
       let(:action!) do
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           member_action :comment
         end
       end
@@ -47,7 +47,7 @@ describe 'defining new actions from registration blocks' do
 
     context "with :title" do
       let(:action!) do
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           member_action :comment, title: "My Awesome Comment"
         end
       end
@@ -69,7 +69,7 @@ describe 'defining new actions from registration blocks' do
 
     context "with a block" do
       let(:action!) do
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           collection_action :comments do
             # Do nothing
           end
@@ -87,7 +87,7 @@ describe 'defining new actions from registration blocks' do
     end
     context "without a block" do
       let(:action!) do
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           collection_action :comments
         end
       end
@@ -97,7 +97,7 @@ describe 'defining new actions from registration blocks' do
     end
     context "with :title" do
       let(:action!) do
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           collection_action :comments, title: "My Awesome Comments"
         end
       end

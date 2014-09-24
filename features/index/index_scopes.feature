@@ -6,7 +6,7 @@ Feature: Index Scoping
     Given 3 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope :all
       end
       """
@@ -18,7 +18,7 @@ Feature: Index Scoping
     Given 3 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope :all, :default => true
       end
       """
@@ -30,7 +30,7 @@ Feature: Index Scoping
     Given 3 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope :all, :default => proc{ false }
       end
       """
@@ -42,7 +42,7 @@ Feature: Index Scoping
     Given 3 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope :all, :default => true
         filter :title
       end
@@ -55,7 +55,7 @@ Feature: Index Scoping
     Given 3 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope :all, :default => true
         index :as => :table, :scope_count => false
       end
@@ -69,7 +69,7 @@ Feature: Index Scoping
     Given 3 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope :all, :default => true, :show_count => false
       end
       """
@@ -82,7 +82,7 @@ Feature: Index Scoping
     And 3 published posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope :all, :default => true
         scope :published do |posts|
           posts.where("published_at IS NOT NULL")
@@ -105,7 +105,7 @@ Feature: Index Scoping
 
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope :all, :default => true
         scope :published do |posts|
           posts.where("published_at IS NOT NULL")
@@ -134,7 +134,7 @@ Feature: Index Scoping
     Given 3 posts exist
     And an index configuration of:
     """
-    ActiveAdmin.register Post do
+    ActiveAdmin.register_resource Post do
       scope :all, :if => proc { false }
       scope "Shown", :if => proc { true } do |posts|
         posts
@@ -157,7 +157,7 @@ Feature: Index Scoping
     Given 3 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope 'Today', :default => true do |posts|
           posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day, ::Time.zone.now.end_of_day])
         end
@@ -184,7 +184,7 @@ Feature: Index Scoping
     And a post with the title "Everlong" written by "Foo Fighters" exists
     And an index configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           scope_to :current_user
           scope :all, :default => true
 
@@ -212,7 +212,7 @@ Feature: Index Scoping
 
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         scope :all, :default => true
         scope :published do |posts|
           posts.where("published_at IS NOT NULL")

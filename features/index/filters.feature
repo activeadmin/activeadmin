@@ -4,7 +4,7 @@ Feature: Index Filtering
     Given 3 posts exist
     And an index configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     When I am on the index page for posts
     Then I should see "Displaying all 3 Posts"
@@ -26,7 +26,7 @@ Feature: Index Filtering
     Given 3 posts exist
     And an index configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     When I am on the index page for posts
     Then I should see "Displaying all 3 Posts"
@@ -42,7 +42,7 @@ Feature: Index Filtering
     Given 9 posts exist
     And an index configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         config.per_page = 5
       end
     """
@@ -59,7 +59,7 @@ Feature: Index Filtering
     And a post with the title "Hello World" written by "Jane Doe" exists
     And an index configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         filter :author, :as => :check_boxes
       end
     """
@@ -73,7 +73,7 @@ Feature: Index Filtering
     And a post with the title "Hello World" written by "Jane Doe" exists
     And an index configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         filter :author, :as => :check_boxes
       end
     """
@@ -86,7 +86,7 @@ Feature: Index Filtering
   Scenario: Disabling filters
     Given an index configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         config.filters = false
       end
     """
@@ -97,7 +97,7 @@ Feature: Index Filtering
     And 1 post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists
     And an index configuration of:
     """
-      ActiveAdmin.register Category
+      ActiveAdmin.register_resource Category
     """
     When I select "Jane Doe" from "Authors"
     And I press "Filter"
@@ -110,7 +110,7 @@ Feature: Index Filtering
     And a post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists
     And an index configuration of:
     """
-      ActiveAdmin.register Category do
+      ActiveAdmin.register_resource Category do
         filter :authors, :as => :check_boxes
       end
     """
@@ -125,7 +125,7 @@ Feature: Index Filtering
     And a post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists
     And an index configuration of:
     """
-      ActiveAdmin.register Category do
+      ActiveAdmin.register_resource Category do
         filter :authors, :as => :check_boxes
       end
     """

@@ -4,7 +4,7 @@ Feature: Index Pagination
   Scenario: Viewing index when one page of resources exist
     Given an index configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     Given 20 posts exist
     When I am on the index page for posts
@@ -14,7 +14,7 @@ Feature: Index Pagination
   Scenario: Viewing index when multiple pages of resources exist
     Given an index configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
     """
     Given 31 posts exist
     When I am on the index page for posts
@@ -23,7 +23,7 @@ Feature: Index Pagination
   Scenario: Viewing index with a custom per page set
     Given an index configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         config.per_page = 2
       end
     """
@@ -35,7 +35,7 @@ Feature: Index Pagination
   Scenario: Viewing index with pagination disabled
     Given an index configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         config.paginate = false
       end
     """
@@ -46,7 +46,7 @@ Feature: Index Pagination
     Scenario: Viewing index with pagination_total set to false
       Given an index configuration of:
       """
-        ActiveAdmin.register Post do
+        ActiveAdmin.register_resource Post do
           index :pagination_total => false do
           end
         end

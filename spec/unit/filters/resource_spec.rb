@@ -4,7 +4,7 @@ describe ActiveAdmin::Filters::ResourceExtension do
 
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
-    namespace.register(Post)
+    namespace.register_resource(Post)
   end
 
   it "should return a Hash" do

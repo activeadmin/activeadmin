@@ -10,7 +10,7 @@ Feature: Commenting
   Scenario: View a resource with no comments
     Given a show configuration of:
       """
-        ActiveAdmin.register Post
+        ActiveAdmin.register_resource Post
       """
     Then I should see "Comments (0)"
     And I should see "No comments yet."
@@ -18,7 +18,7 @@ Feature: Commenting
   Scenario: Create a new comment
     Given a show configuration of:
       """
-        ActiveAdmin.register Post
+        ActiveAdmin.register_resource Post
       """
     When I add a comment "Hello from Comment"
     Then I should see a flash with "Comment was successfully created"
@@ -30,7 +30,7 @@ Feature: Commenting
   Scenario: View resource with comments turned off
     Given a show configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         config.comments = false
       end
     """
@@ -40,8 +40,8 @@ Feature: Commenting
     Given a configuration of:
     """
       ActiveAdmin.application.namespace(:new_namespace).allow_comments = false
-      ActiveAdmin.register Post,      :namespace => :new_namespace
-      ActiveAdmin.register AdminUser, :namespace => :new_namespace
+      ActiveAdmin.register_resource Post,      :namespace => :new_namespace
+      ActiveAdmin.register_resource AdminUser, :namespace => :new_namespace
     """
     Given I am logged in
     When I am on the index page for posts in the new_namespace namespace
@@ -51,9 +51,9 @@ Feature: Commenting
   Scenario: Creating a comment in one namespace does not create it in another
     Given a show configuration of:
     """
-      ActiveAdmin.register Post
-      ActiveAdmin.register Post,      :namespace => :public
-      ActiveAdmin.register AdminUser, :namespace => :public
+      ActiveAdmin.register_resource Post
+      ActiveAdmin.register_resource Post,      :namespace => :public
+      ActiveAdmin.register_resource AdminUser, :namespace => :public
     """
     When I add a comment "Hello world in admin namespace"
     Then I should see "Hello world in admin namespace"
@@ -73,7 +73,7 @@ Feature: Commenting
   Scenario: Creating a comment on an aliased resource
     Given a configuration of:
     """
-    ActiveAdmin.register Post, :as => "Article"
+    ActiveAdmin.register_resource Post, :as => "Article"
     """
     Given I am logged in
     When I am on the index page for articles
@@ -85,7 +85,7 @@ Feature: Commenting
   Scenario: Create an empty comment
     Given a show configuration of:
       """
-        ActiveAdmin.register Post
+        ActiveAdmin.register_resource Post
       """
     When I add a comment ""
     Then I should see a flash with "Comment wasn't saved, text was empty."
@@ -94,7 +94,7 @@ Feature: Commenting
   Scenario: Viewing all comments for a namespace
     Given a show configuration of:
       """
-        ActiveAdmin.register Post
+        ActiveAdmin.register_resource Post
       """
     When I add a comment "Hello from Comment"
     When I am on the index page for comments
@@ -104,7 +104,7 @@ Feature: Commenting
   Scenario: Commenting on a STI superclass
     Given a configuration of:
     """
-      ActiveAdmin.register User
+      ActiveAdmin.register_resource User
     """
     Given I am logged in
     And a publisher named "Pragmatic Publishers" exists
@@ -120,7 +120,7 @@ Feature: Commenting
   Scenario: Commenting on a STI subclass
     Given a configuration of:
     """
-      ActiveAdmin.register Publisher
+      ActiveAdmin.register_resource Publisher
     """
     Given I am logged in
     And a publisher named "Pragmatic Publishers" exists
@@ -137,7 +137,7 @@ Feature: Commenting
     Given a tag with the name "coolness" exists
     Given a configuration of:
     """
-    ActiveAdmin.register Tag
+    ActiveAdmin.register_resource Tag
     """
     Given I am logged in
     When I am on the index page for tags
@@ -149,8 +149,8 @@ Feature: Commenting
   Scenario: Commenting on an aliased resource with an existing non-aliased config
     Given a configuration of:
     """
-      ActiveAdmin.register Post
-      ActiveAdmin.register Post, as: 'Foo'
+      ActiveAdmin.register_resource Post
+      ActiveAdmin.register_resource Post, as: 'Foo'
     """
     Given I am logged in
     When I am on the index page for foos

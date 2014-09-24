@@ -6,9 +6,9 @@ module ActiveAdminIntegrationSpecHelper
   def load_defaults!
     ActiveAdmin.unload!
     ActiveAdmin.load!
-    ActiveAdmin.register(Category)
-    ActiveAdmin.register(User)
-    ActiveAdmin.register(Post){ belongs_to :user, optional: true }
+    ActiveAdmin.register_resource(Category)
+    ActiveAdmin.register_resource(User)
+    ActiveAdmin.register_resource(Post){ belongs_to :user, optional: true }
     reload_menus!
   end
 

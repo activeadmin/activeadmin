@@ -6,7 +6,7 @@ module ActiveAdmin
 
     describe "route names" do
       context "when in the admin namespace" do
-        let!(:config)  { ActiveAdmin.register Category }
+        let!(:config)  { ActiveAdmin.register_resource Category }
         let(:category) { Category.new { |c| c.id = 123 } }
 
         it "should return the route prefix" do
@@ -23,7 +23,7 @@ module ActiveAdmin
       end
 
       context "when in the root namespace" do
-        let!(:config) { ActiveAdmin.register Category, namespace: false }
+        let!(:config) { ActiveAdmin.register_resource Category, namespace: false }
         it "should have a nil route_prefix" do
           expect(config.route_prefix).to be_nil
         end
@@ -36,7 +36,7 @@ module ActiveAdmin
 
       context "when registering a plural resource" do
         class ::News; def self.has_many(*); end end
-        let!(:config) { ActiveAdmin.register News }
+        let!(:config) { ActiveAdmin.register_resource News }
         before{ reload_routes! }
 
         it "should return the plural route with _index" do
@@ -46,7 +46,7 @@ module ActiveAdmin
 
       context "when the resource belongs to another resource" do
         let! :config do
-          ActiveAdmin.register Post do
+          ActiveAdmin.register_resource Post do
             belongs_to :category
           end
         end

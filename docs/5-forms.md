@@ -4,7 +4,7 @@ Active Admin gives you complete control over the output of the form by creating
 a thin DSL on top of [Formtastic](https://github.com/justinfrench/formtastic):
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
 
   form do |f|
     f.inputs 'Details' do
@@ -38,7 +38,7 @@ end
 If you require a more custom form than the DSL can provide, use a partial instead:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   form partial: 'form'
 end
 ```
@@ -61,7 +61,7 @@ Which looks for something like this:
 You can create forms with nested models using the `has_many` method:
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
 
   form do |f|
     f.inputs 'Details' do

@@ -90,7 +90,7 @@ module ActiveAdmin
     #
     # For example:
     #
-    #   ActiveAdmin.register Post do
+    #   ActiveAdmin.register_resource Post do
     #     member_action :comments do
     #       @post = Post.find(params[:id]
     #       @comments = @post.comments
@@ -126,7 +126,7 @@ module ActiveAdmin
     # == After Build
     # Called after the resource is built in the new and create actions.
     #
-    # ActiveAdmin.register Post do
+    # ActiveAdmin.register_resource Post do
     #   after_build do |post|
     #     post.author = current_user
     #   end
@@ -159,7 +159,7 @@ module ActiveAdmin
     #
     # Eg:
     #
-    #   ActiveAdmin.register Post do
+    #   ActiveAdmin.register_resource Post do
     #     actions :index, :show
     #   end
     #

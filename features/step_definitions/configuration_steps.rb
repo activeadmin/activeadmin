@@ -58,7 +58,7 @@ Given /^a(?:n? (index|show))? configuration of:$/ do |action, config_content|
   case action
   when 'index'
     step 'I am logged in'
-    case resource = config_content.match(/ActiveAdmin\.register (\w+)/)[1]
+    case resource = config_content.match(/ActiveAdmin\.register_resource (\w+)/)[1]
     when 'Post'
       step 'I am on the index page for posts'
     when 'Category'
@@ -67,7 +67,7 @@ Given /^a(?:n? (index|show))? configuration of:$/ do |action, config_content|
       raise "#{resource} is not supported"
     end
   when 'show'
-    case resource = config_content.match(/ActiveAdmin\.register (\w+)/)[1]
+    case resource = config_content.match(/ActiveAdmin\.register_resource (\w+)/)[1]
     when 'Post'
       step 'I am logged in'
       step 'I am on the index page for posts'

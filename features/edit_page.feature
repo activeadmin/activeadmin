@@ -9,7 +9,7 @@ Feature: Edit Page
     And I am logged in
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         permit_params :category, :author, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
       end
     """
@@ -30,7 +30,7 @@ Feature: Edit Page
   Scenario: Generating a custom form
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         permit_params :category, :author, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
 
         form do |f|
@@ -59,7 +59,7 @@ Feature: Edit Page
   Scenario: Generating a custom form with :html set, visiting the new page first (bug probing issue #109)
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         permit_params :category, :author, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
 
         form :html => {} do |f|
@@ -98,7 +98,7 @@ Feature: Edit Page
     """
     Given a configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         permit_params :category, :author, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
 
         form :partial => "form"

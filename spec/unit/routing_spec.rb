@@ -38,7 +38,7 @@ describe ActiveAdmin, "Routing", type: :routing do
 
     context "when in root namespace" do
       before(:each) do
-        load_resources { ActiveAdmin.register(Post, namespace: false) }
+        load_resources { ActiveAdmin.register_resource(Post, namespace: false) }
       end
 
       it "should route the index path" do
@@ -62,7 +62,7 @@ describe ActiveAdmin, "Routing", type: :routing do
       context "without an http verb" do
         before do
           load_resources do
-            ActiveAdmin.register(Post){ member_action "do_something" }
+            ActiveAdmin.register_resource(Post){ member_action "do_something" }
           end
         end
 
@@ -75,7 +75,7 @@ describe ActiveAdmin, "Routing", type: :routing do
       context "with one http verb" do
         before do
           load_resources do
-            ActiveAdmin.register(Post){ member_action "do_something", method: :post }
+            ActiveAdmin.register_resource(Post){ member_action "do_something", method: :post }
           end
         end
 
@@ -87,7 +87,7 @@ describe ActiveAdmin, "Routing", type: :routing do
       context "with two http verbs" do
         before do
           load_resources do
-            ActiveAdmin.register(Post){ member_action "do_something", method: [:put, :delete] }
+            ActiveAdmin.register_resource(Post){ member_action "do_something", method: [:put, :delete] }
           end
         end
 
@@ -122,10 +122,10 @@ describe ActiveAdmin, "Routing", type: :routing do
     context "with collection action" do
       before do
         load_resources do
-          ActiveAdmin.register(Post) do
+          ActiveAdmin.register_resource(Post) do
             belongs_to :user, optional: true
           end
-          ActiveAdmin.register(User) do
+          ActiveAdmin.register_resource(User) do
             collection_action "do_something"
           end
         end

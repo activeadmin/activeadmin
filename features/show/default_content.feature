@@ -8,7 +8,7 @@ Feature: Show - Default Content
   Scenario: Viewing the default show page
     Given a show configuration of:
       """
-        ActiveAdmin.register Post
+        ActiveAdmin.register_resource Post
       """
     Then I should see the attribute "Title" with "Hello World"
     And I should see the attribute "Body" with "Empty"
@@ -20,8 +20,8 @@ Feature: Show - Default Content
   Scenario: Attributes should link when linked resource is registered
     Given a show configuration of:
       """
-        ActiveAdmin.register Post
-        ActiveAdmin.register User
+        ActiveAdmin.register_resource Post
+        ActiveAdmin.register_resource User
       """
     Then I should see the attribute "Author" with "Jane Doe"
     And I should see a link to "Jane Doe"
@@ -29,7 +29,7 @@ Feature: Show - Default Content
   Scenario: Customizing the attributes table with a set of attributes
     Given a show configuration of:
     """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
 
         show do
           attributes_table :title, :body, :created_at, :updated_at

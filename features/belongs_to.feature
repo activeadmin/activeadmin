@@ -10,8 +10,8 @@ Feature: Belongs To
   Scenario: Viewing the child resource index page
     Given a configuration of:
     """
-      ActiveAdmin.register User
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource User
+      ActiveAdmin.register_resource Post do
         belongs_to :user
       end
     """
@@ -27,8 +27,8 @@ Feature: Belongs To
   Scenario: Viewing a child resource page
     Given a configuration of:
     """
-      ActiveAdmin.register User
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource User
+      ActiveAdmin.register_resource Post do
         belongs_to :user
       end
     """
@@ -40,8 +40,8 @@ Feature: Belongs To
   Scenario: When the belongs to is optional
     Given a configuration of:
     """
-      ActiveAdmin.register User
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource User
+      ActiveAdmin.register_resource Post do
         belongs_to :user, :optional => true
       end
     """
@@ -55,8 +55,8 @@ Feature: Belongs To
   Scenario: Displaying belongs to resources in main menu
     Given a configuration of:
     """
-      ActiveAdmin.register User
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource User
+      ActiveAdmin.register_resource Post do
         belongs_to :user
         navigation_menu :user
       end

@@ -115,10 +115,12 @@ module ActiveAdmin
     end
 
     # Registers a brand new configuration for the given resource.
-    def register(resource, options = {}, &block)
+    def register_resource(resource, options = {}, &block)
       ns = options.fetch(:namespace){ default_namespace }
-      namespace(ns).register resource, options, &block
+      namespace(ns).register_resource resource, options, &block
     end
+    alias_method :register, :register_resource
+    ActiveAdmin::Deprecation.deprecate self, :register, "ActiveAdmin#register is being removed in the next release. Use ActiveAdmin#register_resource."
 
     # Creates a namespace for the given name
     #

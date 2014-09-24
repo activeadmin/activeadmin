@@ -1,4 +1,4 @@
-ActiveAdmin.register <%= @user_class %> do
+ActiveAdmin.register_resource <%= @user_class %> do
 <% unless Rails::VERSION::MAJOR < 4 -%>
   permit_params :email, :password, :password_confirmation
 

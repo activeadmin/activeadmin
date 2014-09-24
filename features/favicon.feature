@@ -5,7 +5,7 @@ Feature: Favicon
   Background:
     Given a configuration of:
     """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
       ActiveAdmin.application.favicon = "a/favicon.ico"
     """
 

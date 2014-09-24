@@ -21,7 +21,7 @@ module ActiveAdmin
     #
     # eg:
     #
-    #   ActiveAdmin.register Post do
+    #   ActiveAdmin.register_resource Post do
     #     config.sort_order = "id_desc"
     #   end
     #
@@ -44,7 +44,7 @@ module ActiveAdmin
     #
     #   end
     #
-    #   ActiveAdmin.register Post do
+    #   ActiveAdmin.register_resource Post do
     #     include HelpSidebar
     #   end
     #
@@ -60,7 +60,7 @@ module ActiveAdmin
     #
     # Example:
     #
-    #   ActiveAdmin.register Post do
+    #   ActiveAdmin.register_resource Post do
     #
     #     controller do
     #       def some_method_on_controller
@@ -138,7 +138,7 @@ module ActiveAdmin
     # Block must return an array if you want to rewrite breadcrumb links.
     #
     # Example:
-    #   ActiveAdmin.register Post do
+    #   ActiveAdmin.register_resource Post do
     #
     #     breadcrumb do
     #       [

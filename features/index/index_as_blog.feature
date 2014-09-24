@@ -6,7 +6,7 @@ Feature: Index as Blog
     Given a post with the title "Hello World" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :blog
       end
       """
@@ -19,7 +19,7 @@ Feature: Index as Blog
     Given a post with the title "Hello World" and body "My great post body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :blog do
           title :title
           body :body
@@ -34,7 +34,7 @@ Feature: Index as Blog
     Given a post with the title "Hello World" and body "My great post body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :blog do
           title do |post|
             post.title + " From Block"
@@ -53,7 +53,7 @@ Feature: Index as Blog
     Given a post with the title "Hello World" and body "My great post body" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :blog do
           title do |post|
             span(:class => :title_span) { post.title + " From Block " }

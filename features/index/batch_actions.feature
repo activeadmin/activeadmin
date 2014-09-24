@@ -4,7 +4,7 @@ Feature: Batch Actions
     Given 10 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post
+      ActiveAdmin.register_resource Post
       """
     Then I should see the batch action button
     And I should see that the batch action button is disabled
@@ -25,8 +25,8 @@ Feature: Batch Actions
     And 5 posts written by "John Doe" exist
     And a configuration of:
     """
-      ActiveAdmin.register User
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource User
+      ActiveAdmin.register_resource Post do
         belongs_to :user
       end
     """
@@ -49,7 +49,7 @@ Feature: Batch Actions
     Given 10 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         batch_action(:flag) do
           redirect_to collection_path, :notice => "Successfully flagged 10 posts"
         end
@@ -63,7 +63,7 @@ Feature: Batch Actions
     Given 10 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         config.batch_actions = false
       end
       """
@@ -74,7 +74,7 @@ Feature: Batch Actions
     Given 10 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         batch_action :destroy, false
         batch_action(:flag) {}
       end
@@ -86,7 +86,7 @@ Feature: Batch Actions
     Given 10 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         batch_action(:flag, :if => proc { true }) {}
         batch_action(:unflag, :if => proc { false }) {}
       end
@@ -98,7 +98,7 @@ Feature: Batch Actions
     Given 10 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         batch_action(:test, :priority => 3) {}
         batch_action(:flag, :priority => 2) {}
         batch_action(:unflag, :priority => 1) {}
@@ -113,7 +113,7 @@ Feature: Batch Actions
     Given 10 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         batch_action("Very Complex and Time Consuming") {}
         batch_action(:passing_a_symbol) {}
       end
@@ -125,7 +125,7 @@ Feature: Batch Actions
     Given 10 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         batch_action :destroy, false
         batch_action(:action_with_form, form: { name: :text }) {}
       end
@@ -139,7 +139,7 @@ Feature: Batch Actions
     Given 10 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         batch_action :destroy, false
         batch_action(:action_with_form, form: { type: ["a", "b"] }) {}
       end
@@ -153,7 +153,7 @@ Feature: Batch Actions
     Given 10 posts exist
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         batch_action :destroy, false
         batch_action(:action_with_form, form: ->{ {type: ["a", "b"]} }) {}
       end

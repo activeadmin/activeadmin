@@ -54,7 +54,7 @@ The default namespace is "admin".
 
 ```ruby
 # app/admin/posts.rb
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   # ...
 end
 ```
@@ -114,7 +114,7 @@ ActiveAdmin.setup do |config|
 end
 
 # For a given resource:
-ActiveAdmin.register Post do
+ActiveAdmin.register_resource Post do
   config.comments = false
 end
 ```

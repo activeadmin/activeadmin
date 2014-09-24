@@ -6,7 +6,7 @@ describe ActiveAdmin::CanCanAdapter do
 
     let(:application){ ActiveAdmin::Application.new }
     let(:namespace){ ActiveAdmin::Namespace.new(application, "Admin") }
-    let(:resource){ namespace.register(Post) }
+    let(:resource){ namespace.register_resource(Post) }
 
     let :ability_class do
       Class.new do

@@ -6,7 +6,7 @@ Feature: Index as Block
     Given a post with the title "Hello World from Block" exists
     And an index configuration of:
       """
-      ActiveAdmin.register Post do
+      ActiveAdmin.register_resource Post do
         index :as => :block do |post|
           span(link_to(post.title, admin_post_path(post)))
         end

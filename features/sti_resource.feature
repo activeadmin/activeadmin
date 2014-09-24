@@ -6,10 +6,10 @@ Feature: STI Resource
     Given I am logged in
     And a configuration of:
     """
-      ActiveAdmin.register Publisher do
+      ActiveAdmin.register_resource Publisher do
         permit_params :first_name, :last_name, :username, :age if Rails::VERSION::MAJOR == 4
       end
-      ActiveAdmin.register User do
+      ActiveAdmin.register_resource User do
         permit_params :first_name, :last_name, :username, :age if Rails::VERSION::MAJOR == 4
       end
     """

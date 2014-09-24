@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ActiveAdmin do
-  %w(register register_page unload! load! routes).each do |method|
+  %w(register_resource register_page unload! load! routes).each do |method|
     it "delegates ##{method} to application" do
       expect(ActiveAdmin.application).to receive(method)
 
