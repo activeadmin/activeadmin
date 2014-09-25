@@ -299,6 +299,7 @@ describe ActiveAdmin::FormBuilder do
       it "should add a link to add new nested records" do
         link = Capybara.string(body).find('.has_many_container > a.button.has_many_add')
         expect(link[:class]).to eq('button has_many_add')
+        expect(link['data-html']).to eq(%Q|<fieldset class="inputs has_many_fields"><ol><li class="string input optional stringish" id="category_posts_attributes_NEW_POST_RECORD_title_input"><label class="label" for="category_posts_attributes_NEW_POST_RECORD_title">Title</label><input id="category_posts_attributes_NEW_POST_RECORD_title" maxlength="255" name="category[posts_attributes][NEW_POST_RECORD][title]" type="text" />\n\n</li><li><a class="button has_many_remove" href="#">Remove</a></li></ol></fieldset>|)
         expect(link.text).to eq('Add New Post')
         expect(link[:href]).to eq('#')
       end
