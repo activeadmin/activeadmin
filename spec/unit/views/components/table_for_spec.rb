@@ -323,7 +323,7 @@ describe ActiveAdmin::Views::TableFor do
 
     context "when a block given with no sort key" do
       let(:table_column){ build_column("Username"){ } }
-      it { is_expected.not_to be_sortable }
+      it { is_expected.to be_sortable }
     end
 
     context "when a block given with a sort key" do
@@ -333,6 +333,16 @@ describe ActiveAdmin::Views::TableFor do
       describe '#sort_key' do
         subject { super().sort_key }
         it{ is_expected.to eq("username") }
+      end
+    end
+
+    context 'when symbol given as a data column should be sortable' do
+      let(:table_column){ build_column('Username column', :username) }
+      it { is_expected.to be_sortable }
+
+      describe '#sort_key' do
+        subject { super().sort_key }
+        it { is_expected.to eq 'username' }
       end
     end
 
