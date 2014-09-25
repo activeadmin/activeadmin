@@ -293,8 +293,13 @@ module ActiveAdmin
                 instance_exec(resource, &block) if block_given?
               end
             else
-              text_node defaults(resource) if defaults
-              text_node instance_exec(resource, &block) if block_given?
+              table_actions do
+                text_node defaults(resource) if defaults
+                if block_given?
+                  block_result = instance_exec(resource, &block)
+                  text_node block_result unless block_result.is_a? Arbre::Element
+                end
+              end
             end
           end
         end
@@ -327,6 +332,14 @@ module ActiveAdmin
               method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')})
           end
           links
+        end
+
+        class TableActions < ActiveAdmin::Component
+          builder_method :table_actions
+
+          def item *args
+            text_node link_to *args
+          end
         end
       end # IndexTableFor
 
