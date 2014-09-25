@@ -289,12 +289,12 @@ module ActiveAdmin
           column name, options do |resource|
             if dropdown
               dropdown_menu dropdown_name do
-                dropdown_defaults(resource) if defaults
+                defaults(resource) if defaults
                 instance_exec(resource, &block) if block_given?
               end
             else
               table_actions do
-                text_node defaults(resource) if defaults
+                defaults(resource, css_class: :member_link) if defaults
                 if block_given?
                   block_result = instance_exec(resource, &block)
                   text_node block_result unless block_result.is_a? Arbre::Element
@@ -306,32 +306,17 @@ module ActiveAdmin
 
       private
 
-        def dropdown_defaults(resource)
+        def defaults(resource, options = {})
           if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
-            item I18n.t('active_admin.view'), resource_path(resource), class: 'view_link'
+            item I18n.t('active_admin.view'), resource_path(resource), class: "view_link #{options[:css_class]}"
           end
           if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
-            item I18n.t('active_admin.edit'), edit_resource_path(resource), class: 'edit_link'
+            item I18n.t('active_admin.edit'), edit_resource_path(resource), class: "edit_link #{options[:css_class]}"
           end
           if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
-            item I18n.t('active_admin.delete'), resource_path(resource), class: 'delete_link',
+            item I18n.t('active_admin.delete'), resource_path(resource), class: "delete_link #{options[:css_class]}",
               method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
           end
-        end
-
-        def defaults(resource)
-          links = ''.html_safe
-          if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
-            links << link_to(I18n.t('active_admin.view'), resource_path(resource), class: 'member_link view_link')
-          end
-          if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
-            links << link_to(I18n.t('active_admin.edit'), edit_resource_path(resource), class: 'member_link edit_link')
-          end
-          if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
-            links << link_to(I18n.t('active_admin.delete'), resource_path(resource), class: 'member_link delete_link',
-              method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')})
-          end
-          links
         end
 
         class TableActions < ActiveAdmin::Component
