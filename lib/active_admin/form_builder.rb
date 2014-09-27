@@ -47,6 +47,11 @@ module ActiveAdmin
       action(:submit)
       cancel_link
     end
+    
+    def assoc_heading(assoc)
+      object.class.reflect_on_association(assoc).klass.model_name.
+        human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
+    end
 
     def has_many(assoc, options = {}, &block)
       # remove options that should not render as attributes
@@ -55,47 +60,23 @@ module ActiveAdmin
       options         = {for: assoc      }.merge! options.except *custom_settings
       options[:class] = [options[:class], "inputs has_many_fields"].compact.join(' ')
 
-      # Add Delete Links
-      form_block = proc do |has_many_form|
-        index    = parent_child_index options[:parent] if options[:parent]
-        contents = block.call has_many_form, index
-
-        if has_many_form.object.new_record?
-          contents << template.content_tag(:li) do
-            template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
-          end
-        elsif builder_options[:allow_destroy]
-          has_many_form.input :_destroy, as: :boolean, wrapper_html: {class: 'has_many_delete'},
-                                                       label: I18n.t('active_admin.has_many_delete')
-        end
-
-        if builder_options[:sortable]
-          has_many_form.input builder_options[:sortable], as: :hidden
-
-          contents << template.content_tag(:li, class: 'handle') do
-            Iconic.icon :move_vertical
-          end
-        end
-
-        contents
-      end
-
-      # make sure that the sortable children sorted in stable ascending order
-      if column = builder_options[:sortable]
-        children = object.public_send(assoc).sort_by do |o|
-          attribute = o.public_send column
-          [attribute.nil? ? Float::INFINITY : attribute, o.id || Float::INFINITY]
-        end
-        options[:for] = [assoc, children]
+      if (column = builder_options[:sortable])
+        options[:for] = [assoc, sorted_children(assoc, column)]
       end
 
       html = without_wrapper do
         unless builder_options.key?(:heading) && !builder_options[:heading]
           form_buffers.last << template.content_tag(:h3) do
-            builder_options[:heading] || object.class.reflect_on_association(assoc).klass.model_name.human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
+            builder_options[:heading] || assoc_heading(assoc)
           end
         end
 
+        form_block = proc do |has_many_form|
+          index    = parent_child_index options[:parent] if options[:parent]
+          contents = block.call has_many_form, index
+          has_many_actions(has_many_form, builder_options, contents)
+        end
+        
         inputs options, &form_block
 
         form_buffers.last << js_for_has_many(assoc, form_block, template, builder_options[:new_record], options[:class]) if builder_options[:new_record]
@@ -111,6 +92,34 @@ module ActiveAdmin
     end
 
     protected
+
+    def has_many_actions(has_many_form, builder_options, contents)
+      if has_many_form.object.new_record?
+        contents << template.content_tag(:li) do
+          template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
+        end
+      elsif builder_options[:allow_destroy]
+        has_many_form.input :_destroy, as: :boolean, wrapper_html: {class: 'has_many_delete'},
+                                                     label: I18n.t('active_admin.has_many_delete')
+      end
+
+      if builder_options[:sortable]
+        has_many_form.input builder_options[:sortable], as: :hidden
+
+        contents << template.content_tag(:li, class: 'handle') do
+          Iconic.icon :move_vertical
+        end
+      end
+
+      contents
+    end
+
+    def sorted_children(assoc, column)
+      object.public_send(assoc).sort_by do |o|
+        attribute = o.public_send column
+        [attribute.nil? ? Float::INFINITY : attribute, o.id || Float::INFINITY]
+      end
+    end
 
     def active_admin_input_class_name(as)
       "ActiveAdmin::Inputs::#{as.to_s.camelize}Input"
