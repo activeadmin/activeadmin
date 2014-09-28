@@ -82,7 +82,7 @@ module ActiveAdmin
     # A proc to be used when a user is not authorized to view the current resource
     inheritable_setting :on_unauthorized_access, :rescue_active_admin_access_denied
 
-    # A reqex to detect unsupported browser, set to false to disable
+    # A regex to detect unsupported browser, set to false to disable
     inheritable_setting :unsupported_browser_matcher, /MSIE [1-8]\.0/
 
     # Active Admin makes educated guesses when displaying objects, this is

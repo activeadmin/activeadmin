@@ -33,7 +33,7 @@ describe ActiveAdmin::Views::UnsupportedBrowser do
 
     end
 
-    context "when the reqex not match", focus: true do
+    context "when the regex not match", focus: true do
 
       it "should not build the unsupported browser panel" do
         expect(base).to receive(:active_admin_namespace).and_return(namespace)
