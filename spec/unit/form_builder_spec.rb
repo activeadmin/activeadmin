@@ -259,6 +259,8 @@ describe ActiveAdmin::FormBuilder do
         end
       end
 
+      let(:valid_html_id) { /^[A-Za-z]+[\w\-\:\.]*$/ }
+
       it "should translate the association name in header" do
         with_translation activerecord: {models: {post: {one: 'Blog Post', other: 'Blog Posts'}}} do
           expect(body).to have_tag('h3', 'Blog Posts')
@@ -301,6 +303,19 @@ describe ActiveAdmin::FormBuilder do
         expect(link[:class]).to eq('button has_many_add')
         expect(link.text).to eq('Add New Post')
         expect(link[:href]).to eq('#')
+      end
+
+      it "should set an HTML-id valid placeholder" do
+        link = Capybara.string(body).find('.has_many_container > a.button.has_many_add')
+        expect(link[:'data-placeholder']).to match valid_html_id
+      end
+
+      describe "with namespaced model" do
+        it "should set an HTML-id valid placeholder" do
+          allow(Post).to receive(:name).and_return "ActiveAdmin::Post"
+          link = Capybara.string(body).find('.has_many_container > a.button.has_many_add')
+          expect(link[:'data-placeholder']).to match valid_html_id
+        end
       end
     end
 
