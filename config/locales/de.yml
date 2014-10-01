@@ -110,6 +110,10 @@ de:
         sign_in: "Anmeldung"
         forgot_your_password: "Passwort vergessen?"
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
+    unsupported_browser:
+      headline: "ActiveAdmin unterstützt nicht länger den Internet Explorer in Version 8 oder niedriger."
+      recommendation: "Wir empfehlen die Nutzung von <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, oder <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Wenn sie IE 9 oder neuer benutzen, stellen sie sicher das sie den <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Kompatibilitätsansicht\" ausgeschaltet</a> haben."
     access_denied:
       message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."
   formtastic:
