@@ -123,35 +123,6 @@ describe ActiveAdmin::FormBuilder do
 
   end
 
-  context "with actions" do
-    it "should generate the form once" do
-      body = build_form do |f|
-        f.inputs do
-          f.input :title
-        end
-        f.actions
-      end
-      expect(body.scan(/id="post_title"/).size).to eq(1)
-    end
-    it "should generate one button and a cancel link" do
-      body = build_form do |f|
-        f.actions
-      end
-      expect(body.scan(/type="submit"/).size).to eq(1)
-      expect(body.scan(/class="cancel"/).size).to eq(1)
-    end
-    it "should generate multiple actions" do
-      body = build_form do |f|
-        f.actions do
-          f.action :submit, label: "Create & Continue"
-          f.action :submit, label: "Create & Edit"
-        end
-      end
-      expect(body.scan(/type="submit"/).size).to eq(2)
-      expect(body.scan(/class="cancel"/).size).to eq(0)
-    end
-  end
-
   context "without passing a block to inputs" do
     let :body do
       build_form do |f|
