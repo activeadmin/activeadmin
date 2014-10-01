@@ -231,6 +231,8 @@ class Ability
 end
 ```
 
+Note the use of `ActiveAdmin::Page` to authorize the user to view the dashboard. Any custom page can be authorized using the same method.
+
 To view more details about the CanCan API, visit [https://github.com/ryanb/cancan](https://github.com/ryanb/cancan).
 
 ## Using the Pundit Adapter
