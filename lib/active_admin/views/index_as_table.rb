@@ -69,7 +69,7 @@ module ActiveAdmin
     #   selectable_column
     #   column :title
     #   actions do |post|
-    #     link_to "Preview", admin_preview_post_path(post), class: "member_link"
+    #     item "Preview", admin_preview_post_path(post), class: "member_link"
     #   end
     # end
     # ```
@@ -80,7 +80,18 @@ module ActiveAdmin
     # index do
     #   column :title
     #   actions defaults: false do |post|
-    #     link_to "View", admin_post_path(post)
+    #     item "View", admin_post_path(post)
+    #   end
+    # end
+    # ```
+    #
+    # Or append custom action with custom html via arbre:
+    #
+    # ```ruby
+    # index do
+    #   column :title
+    #   actions do |post|
+    #     a link_to "View", admin_post_path(post)
     #   end
     # end
     # ```
@@ -259,12 +270,18 @@ module ActiveAdmin
         #
         # # Append some actions onto the end of the default actions.
         # actions do |admin_user|
-        #   link_to 'Grant Admin', grant_admin_admin_user_path(admin_user)
+        #   item 'Grant Admin', grant_admin_admin_user_path(admin_user)
+        #   item 'Grant User', grant_user_admin_user_path(admin_user)
+        # end
+        #
+        # # Append some actions onto the end of the default actions using arbre dsl.
+        # actions do |admin_user|
+        #   a link_to 'Grant Admin', grant_admin_admin_user_path(admin_user)
         # end
         #
         # # Custom actions without the defaults.
         # actions defaults: false do |admin_user|
-        #   link_to 'Grant Admin', grant_admin_admin_user_path(admin_user)
+        #   item 'Grant Admin', grant_admin_admin_user_path(admin_user)
         # end
         #
         # # Append some actions onto the end of the default actions displayed in a Dropdown Menu
