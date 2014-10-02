@@ -6,14 +6,9 @@ module ActiveAdmin
     class FormBuilder < ::ActiveAdmin::FormBuilder
       include ::ActiveAdmin::Filters::FormtasticAddons
 
-      def initialize(*args)
-        @use_form_buffer = true # force ActiveAdmin::FormBuilder to use the form buffer
-        super
-      end
-
       def filter(method, options = {})
         if method.present? && options[:as] ||= default_input_type(method)
-          input(method, options)
+          template.concat input(method, options)
         end
       end
 
@@ -77,7 +72,7 @@ module ActiveAdmin
               hidden_field_tags_for(params, except: [:q, :page])
           end
 
-          f.form_buffers.last + buttons
+          f.template.concat buttons
         end
       end
 
