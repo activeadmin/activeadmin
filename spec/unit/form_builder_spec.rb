@@ -123,6 +123,47 @@ describe ActiveAdmin::FormBuilder do
 
   end
 
+  context "with Arbre inside" do
+    it "should render the Arbre in the expected place" do
+      body = build_form do |f|
+        div do
+          h1 'Heading'
+        end
+        f.inputs do
+          span 'Top note'
+          f.input :title
+          span 'Bottom note'
+        end
+        h3 'Footer'
+        f.actions
+      end
+      page = Capybara.string(body)
+      expect(page).to have_css("div > h1")
+      expect(page).to have_css("h1", count: 1)
+      expect(page).to have_css(".inputs > ol > span")
+      expect(page).to have_css("span", count: 2)
+    end
+    it "should allow a simplified syntax" do
+      body = build_form do |f|
+        div do
+          h1 'Heading'
+        end
+        inputs do
+          span 'Top note'
+          input :title
+          span 'Bottom note'
+        end
+        h3 'Footer'
+        actions
+      end
+      page = Capybara.string(body)
+      expect(page).to have_css("div > h1")
+      expect(page).to have_css("h1", count: 1)
+      expect(page).to have_css(".inputs > ol > span")
+      expect(page).to have_css("span", count: 2)
+    end
+  end
+
   context "without passing a block to inputs" do
     let :body do
       build_form do |f|
