@@ -24,7 +24,7 @@ Feature: User Logging In
     And I fill in "Password" with "not-my-password"
     And I press "Login"
     Then I should see "Login"
-    And I should see "Invalid email address or password."
+    And I should see "Invalid email or password."
 
   Scenario: Attempting to log in with an incorrect password
     When I fill in "Email" with "admin@example.com"
