@@ -386,3 +386,12 @@ ActiveAdmin.register Ticket do
   end
 end
 ```
+
+If you still want your `belongs_to` resources to be available in the default menu
+and through non-nested routes, you can use the `:optional` option. For example:
+
+```ruby
+ActiveAdmin.register Ticket do
+  belongs_to :project, optional: true
+end
+```
