@@ -42,11 +42,18 @@ module ActiveAdmin
         def build_page
           within @body do
             div id: "wrapper" do
+              build_unsupported_browser
               build_header
               build_title_bar
               build_page_content
               build_footer
             end
+          end
+        end
+
+        def build_unsupported_browser
+          if active_admin_namespace.unsupported_browser_matcher =~ env["HTTP_USER_AGENT"]
+            insert_tag view_factory.unsupported_browser
           end
         end
 

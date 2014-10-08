@@ -11,7 +11,7 @@
 * Allow Inherited Resources shorthand for redirection [#2001][] by [@seanlinsley][]
 ```ruby
     controller do
-      # Redirects to index page instead of rendering udpated resource
+      # Redirects to index page instead of rendering updated resource
       def update
         update!{ collection_path }
       end

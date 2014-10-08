@@ -20,11 +20,9 @@ module ActiveAdmin
     # The CSVBuilder's columns would be Id followed by this
     # resource's content columns
     def self.default_for_resource(resource)
-      new(resource: resource) do
-        column(:id)
-        resource.content_columns.each do |content_column|
-          column(content_column.name.to_sym)
-        end
+      new resource: resource do
+        column :id
+        resource.content_columns.each { |c| column c.name.to_sym }
       end
     end
 
