@@ -110,28 +110,12 @@ de:
         sign_in: "Anmeldung"
         forgot_your_password: "Passwort vergessen?"
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
+    unsupported_browser:
+      headline: "ActiveAdmin unterstützt nicht länger den Internet Explorer in Version 8 oder niedriger."
+      recommendation: "Wir empfehlen die Nutzung von <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, oder <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Wenn sie IE 9 oder neuer benutzen, stellen sie sicher das sie den <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Kompatibilitätsansicht\" ausgeschaltet</a> haben."
     access_denied:
       message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."
-  activerecord:
-    attributes:
-      admin_user:
-        id: ID
-        email: E-Mail
-        encrypted_Password: Verschlüsseltes Passwort
-        reset_password_token: Passwort-Reset-Token
-        reset_password_sent_at: Passwort-Reset-Anweisungen gesendet am
-        remember_created_at: Passwort merken seit
-        sign_in_count: Anzahl Logins
-        current_sign_in_at: Aktuell angemeldet seit
-        last_sign_in_at: Letzter Login am
-        current_sign_in_ip: Aktuelle IP-Adresse
-        last_sign_in_ip: Letzte IP-Adresse
-        created_at: Erstellt am
-        updated_at: Aktualisiert am
-    models:
-      admin_user:
-        one: Administrator
-        other: Administratoren
   formtastic:
     yes: "Ja"
     no: "Nein"

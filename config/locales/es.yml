@@ -19,7 +19,7 @@ es:
     previous: "Anterior"
     next: "Siguiente"
     download: "Descargar:"
-    has_many_new: "Agregar Añadir %{model}"
+    has_many_new: "Añadir %{model}"
     has_many_delete: "Eliminar"
     has_many_remove: "Quitar"
     filters:

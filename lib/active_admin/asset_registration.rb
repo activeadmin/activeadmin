@@ -10,7 +10,7 @@ module ActiveAdmin
     end
 
     def clear_stylesheets!
-      @stylesheets = {}
+      stylesheets.clear
     end
 
     def register_javascript(name)
@@ -22,7 +22,7 @@ module ActiveAdmin
     end
 
     def clear_javascripts!
-      @javascripts = Set.new
+      javascripts.clear
     end
 
   end
