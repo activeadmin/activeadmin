@@ -13,7 +13,7 @@ describe "display_name" do
     end
   end
 
-  it "should memeoize the result for the class" do
+  it "should memorize the result for the class" do
     subject = Class.new.new
     expect(subject).to receive(:name).twice.and_return "My Name"
     expect(display_name subject).to eq "My Name"
