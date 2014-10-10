@@ -174,7 +174,8 @@ end
 
 Sub-classing `ActiveAdmin::AuthorizationAdapter` is fairly low level. Many times
 it's nicer to have a simpler DSL for managing authorization. Active Admin
-provides an adapter out of the box for [CanCan](https://github.com/ryanb/cancan).
+provides an adapter out of the box for [CanCan](https://github.com/ryanb/cancan)
+and [CanCanCan](https://github.com/CanCanCommunity/cancancan).
 
 To use the CanCan adapter, simply update the configuration in the Active Admin
 initializer:
@@ -182,14 +183,14 @@ initializer:
 ```ruby
 config.authorization_adapter = ActiveAdmin::CanCanAdapter
 ```
-    
+
 You can also specify a method to be called on unauthorized access. This is necessary
 in order to prevent a redirect loop that can happen if a user tries to access a page
 they don't have permissions for (see [#2081](https://github.com/activeadmin/activeadmin/issues/2081)).
 
 ```ruby
 config.on_unauthorized_access = :access_denied
-```    
+```
 
 The method `access_denied` would be defined in `application_controller.rb`. Here is one
 example that redirects the user from the page they don't have permission to
@@ -199,7 +200,7 @@ also displays the error message in the browser:
 ```ruby
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
+
   def access_denied(exception)
     redirect_to admin_organizations_path, :alert => exception.message
   end
@@ -213,8 +214,8 @@ changed from the initializer:
 config.cancan_ability_class = "MyCustomAbility"
 ```
 
-Now you can simply use CanCan the way that you would expect and Active Admin
-will use it for authorization:
+Now you can simply use CanCan or CanCanCan the way that you would expect and
+Active Admin will use it for authorization:
 
 ```ruby
 # app/models/ability.rb
@@ -231,7 +232,7 @@ class Ability
 end
 ```
 
-To view more details about the CanCan API, visit [https://github.com/ryanb/cancan](https://github.com/ryanb/cancan).
+To view more details about the API's, visit project pages of [CanCan](https://github.com/ryanb/cancan) and [CanCanCan](https://github.com/CanCanCommunity/cancancan).
 
 ## Using the Pundit Adapter
 
