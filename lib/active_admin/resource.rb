@@ -119,6 +119,7 @@ module ActiveAdmin
 
     def belongs_to(target, options = {})
       @belongs_to = Resource::BelongsTo.new(self, target, options)
+      options[:parent_class] = target.to_s.classify.constantize unless options[:parent_class]
       self.navigation_menu_name = target unless @belongs_to.optional?
       controller.send :belongs_to, target, options.dup
     end
