@@ -301,7 +301,6 @@ describe ActiveAdmin::FormBuilder do
       end
     end
     it "should render four inputs" do
-      expect(body).to have_selector("input[name='utf8']", count: 1)
       expect(body).to have_selector("input[name='post[title]']", count: 1)
       expect(body).to have_selector("textarea[name='post[body]']", count: 1)
       expect(body).to have_selector("select[name='post[author_id]']", count: 1)
