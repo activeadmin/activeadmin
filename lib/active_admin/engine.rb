@@ -1,7 +1,12 @@
 module ActiveAdmin
   class Engine < ::Rails::Engine
     initializer "active_admin.precompile", group: :all do |app|
-      app.config.assets.precompile += %w(active_admin.js active_admin.css active_admin/print.css)
+      ActiveAdmin.application.stylesheets.each do |path, _|
+        app.config.assets.precompile << path
+      end
+      ActiveAdmin.application.javascripts.each do |path|
+        app.config.assets.precompile << path
+      end
     end
   end
 end
