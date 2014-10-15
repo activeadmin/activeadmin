@@ -236,6 +236,19 @@ describe ActiveAdmin::Views::AttributesTable do
       end # describe rendering rows
     end # with a collection
 
+    context "when using a nil" do
+      let(:table) do
+        render_arbre_component nil, helpers do
+          attributes_table_for nil do
+            row :foo
+            row :bar
+          end
+        end
+      end
+      it "should render" do
+        expect(table.find_by_tag('span')[0].content).to eq 'Empty'
+      end
+    end
 
     context "when using a single Hash" do
       let(:table) do
