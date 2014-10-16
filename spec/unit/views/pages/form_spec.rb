@@ -16,6 +16,15 @@ describe ActiveAdmin::Views::Pages::Form do
       OpenStruct.new(params: params, helpers: helpers, assigns: {})
     end
 
+    context "when :title is set" do
+      it "should show the set page title" do
+        page = ActiveAdmin::Views::Pages::Form.new(arbre_context)
+        expect(page).to receive(:resource)
+        expect(page).to receive(:form_presenter).twice.and_return({ title: "My Page Title" })
+        expect(page.title).to eq "My Page Title"
+      end
+    end
+
     context "when page_title is assigned" do
       it "should show the set page title" do
         arbre_context.assigns[:page_title] = "My Page Title"
