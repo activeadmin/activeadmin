@@ -11,7 +11,6 @@ ar:
     new_model: "جديد %{model}"
     create_model: "جديد %{model}"
     edit_model: "تعديل %{model}"
-    update_model: "تحديث %{model}"
     delete_model: "حذف %{model}"
     details: "%{model} التفاصيل"
     cancel: "إلغاء"

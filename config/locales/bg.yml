@@ -11,7 +11,6 @@ bg:
     new_model: "Създаване на %{model}"
     create_model: "Създаване на %{model}"
     edit_model: "Редакция на %{model}"
-    update_model: "Обновяване на %{model}"
     delete_model: "Изтриване на %{model}"
     details: "%{model} детайли"
     cancel: "Отказ"

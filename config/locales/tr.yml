@@ -11,7 +11,6 @@ tr:
     new_model: "Yeni %{model}"
     create_model: "Yeni %{model}"
     edit_model: "%{model} modelini düzenle"
-    update_model: "%{model} modelini düzenle"
     delete_model: "%{model} modelini sil"
     details: "%{model} ayrıntıları"
     cancel: "İptal"

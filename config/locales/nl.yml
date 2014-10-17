@@ -11,7 +11,6 @@ nl:
     new_model: "Nieuwe %{model}"
     create_model: "Nieuwe %{model}"
     edit_model: "Wijzig %{model}"
-    update_model: "Wijzig %{model}"
     delete_model: "Verwijder %{model}"
     details: "%{model} details"
     cancel: "Annuleren"

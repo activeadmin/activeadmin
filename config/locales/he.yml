@@ -11,7 +11,6 @@ he:
     new_model: "%{model} חדש"
     create_model: "יצירת %{model} חדש"
     edit_model: "ערוך %{model}"
-    update_model: "עדכון %{model}"
     delete_model: "מחיקת %{model}"
     details: "פרטים על %{model}"
     cancel: "ביטול"

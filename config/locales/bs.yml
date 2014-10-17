@@ -11,7 +11,6 @@ bs:
     new_model: "Novi %{model}"
     create_model: "Izradi %{model}"
     edit_model: "Uredi %{model}"
-    update_model: "Spremi %{model}"
     delete_model: "Obriši %{model}"
     details: "%{model} detalji"
     cancel: "Odustani"

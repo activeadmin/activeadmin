@@ -11,7 +11,6 @@
     new_model: "新增 %{model}"
     create_model: "新增 %{model}"
     edit_model: "編輯 %{model}"
-    update_model: "編輯 %{model}"
     delete_model: "刪除 %{model}"
     details: "%{model} 明細"
     cancel: "取消"

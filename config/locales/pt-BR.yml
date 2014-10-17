@@ -11,7 +11,6 @@ pt-BR:
     new_model: "Novo(a) %{model}"
     create_model: "Novo(a) %{model}"
     edit_model: "Editar %{model}"
-    update_model: "Atualizar %{model}"
     delete_model: "Remover %{model}"
     details: "Detalhes do(a) %{model}"
     cancel: "Cancelar"

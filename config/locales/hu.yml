@@ -11,7 +11,6 @@ hu:
     new_model: "Új %{model}"
     create_model: "%{model} létrehozása"
     edit_model: "%{model} módosítása"
-    update_model: "%{model} módosítása"
     delete_model: "%{model} törlése"
     details: "%{model} részletei"
     cancel: "Mégsem"

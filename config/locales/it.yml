@@ -11,7 +11,6 @@ it:
     new_model: "Aggiungi %{model}"
     create_model: "Aggiungi %{model}"
     edit_model: "Modifica %{model}"
-    update_model: "Modifica %{model}"
     delete_model: "Rimuovi %{model}"
     details: "Dettagli %{model}"
     cancel: "Annulla"

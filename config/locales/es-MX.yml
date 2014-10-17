@@ -11,7 +11,6 @@ es-MX:
     new_model: "Añadir %{model}"
     create_model: "Añadir %{model}"
     edit_model: "Editar %{model}"
-    update_model: "Editar %{model}"
     delete_model: "Eliminar %{model}"
     details: "Detalles de %{model}"
     cancel: "Cancelar"

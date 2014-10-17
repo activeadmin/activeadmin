@@ -11,7 +11,6 @@ vi:
     new_model: "Tạo mới %{model}"
     create_model: "Tạo mới %{model}"
     edit_model: "Chỉnh sửa %{model}"
-    update_model: "Chỉnh sửa %{model}"
     delete_model: "Xóa %{model}"
     details: "%{model} Chi tiết"
     cancel: "Hủy"

@@ -11,7 +11,6 @@ cs:
     new_model: "Vytvořit"
     create_model: "Vytvořit %{model}"
     edit_model: "Upravit"
-    update_model: "Upravit %{model}"
     delete_model: "Smazat"
     details: "Detaily"
     cancel: "Zrušit"

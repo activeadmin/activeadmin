@@ -11,7 +11,6 @@
     new_model: "Ny %{model}"
     create_model: "Ny %{model}"
     edit_model: "Redigera %{model}"
-    update_model: "Redigera %{model}"
     delete_model: "Ta bort %{model}"
     details: "Detaljvy för %{model}"
     cancel: "Avbryt"

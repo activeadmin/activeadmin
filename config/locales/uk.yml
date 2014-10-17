@@ -11,7 +11,6 @@ uk:
     new_model: "Створити %{model}"
     create_model: "Створити %{model}"
     edit_model: "Змінити %{model}"
-    update_model: "Змінити %{model}"
     delete_model: "Видалити %{model}"
     details: "%{model} детальніше"
     cancel: "Відміна"
