@@ -14,7 +14,7 @@ describe ActiveAdmin::Views::UnsupportedBrowser do
     end
   end
 
-  it "should render the panel", focus: true do
+  it "should render the panel" do
     expect(ActiveAdmin::Views::UnsupportedBrowser::I18n).to receive(:t).and_return("headline", "recommendation" ,"turn_off_compatibility_view")
 
     expect(build_panel.content.gsub(/\s+/, "")).to eq "<h1>headline</h1><p>recommendation</p><p>turn_off_compatibility_view</p>"
@@ -33,7 +33,7 @@ describe ActiveAdmin::Views::UnsupportedBrowser do
 
     end
 
-    context "when the regex not match", focus: true do
+    context "when the regex not match" do
 
       it "should not build the unsupported browser panel" do
         expect(base).to receive(:active_admin_namespace).and_return(namespace)
