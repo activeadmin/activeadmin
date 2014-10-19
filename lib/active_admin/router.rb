@@ -21,7 +21,7 @@ module ActiveAdmin
       router.instance_exec @application.namespaces.values do |namespaces|
         namespaces.each do |namespace|
           if namespace.root?
-            root to: namespace.root_to
+            root to: namespace.root_to, :as => :admin_root
           else
             namespace namespace.name do
               root to: namespace.root_to
