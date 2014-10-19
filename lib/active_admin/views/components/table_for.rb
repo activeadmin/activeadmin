@@ -7,7 +7,8 @@ module ActiveAdmin
         'table'
       end
 
-      def build(obj, options = {})
+      def build(obj, *attrs)
+        options         = attrs.extract_options!
         @sortable       = options.delete(:sortable)
         @resource_class = options.delete(:i18n)
         @collection     = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
@@ -16,6 +17,11 @@ module ActiveAdmin
 
         build_table
         super(options)
+        columns(*attrs)
+      end
+
+      def columns(*attrs)
+        attrs.each {|attr| column(attr) }
       end
 
       def column(*args, &block)

@@ -10,6 +10,92 @@ describe ActiveAdmin::Views::TableFor do
     let(:assigns){ { collection: collection } }
     let(:helpers){ mock_action_view }
 
+    context "when creating a column using symbol argument" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection, :title)
+        end
+      end
+
+      it "should create a table header based on the symbol" do
+        expect(table.find_by_tag("th").first.content).to eq "Title"
+      end
+
+      it "should create a table row for each element in the collection" do
+        expect(table.find_by_tag("tr").size).to eq 4 # 1 for head, 3 for rows
+      end
+
+      ["First Post", "Second Post", "Third Post"].each_with_index do |content, index|
+        it "should create a cell with #{content}" do
+          expect(table.find_by_tag("td")[index].content).to eq content
+        end
+      end
+    end
+
+    context "when creating many columns using symbol arguments" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection, :title, :created_at)
+        end
+      end
+
+      it "should create a table header based on the symbol" do
+        expect(table.find_by_tag("th").first.content).to eq "Title"
+        expect(table.find_by_tag("th").last.content).to eq "Created At"
+      end
+
+      it "should add a class to each table header based on the col name" do
+        expect(table.find_by_tag("th").first.class_list.to_a.join(' ')).to eq "col col-title"
+        expect(table.find_by_tag("th").last.class_list.to_a.join(' ')).to eq "col col-created_at"
+      end
+
+      it "should create a table row for each element in the collection" do
+        expect(table.find_by_tag("tr").size).to eq 4 # 1 for head, 3 for rows
+      end
+
+      it "should create a cell for each column" do
+        expect(table.find_by_tag("td").size).to eq 6
+      end
+
+      it "should add a class for each cell based on the col name" do
+        expect(table.find_by_tag("td").first.class_list.to_a.join(' ')).to eq "col col-title"
+        expect(table.find_by_tag("td").last.class_list.to_a.join(' ')).to eq "col col-created_at"
+      end
+    end
+
+    context "when creating a column using symbol arguments and another using block" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection, :title) do
+            column :created_at
+          end
+        end
+      end
+
+      it "should create a table header based on the symbol" do
+        expect(table.find_by_tag("th").first.content).to eq "Title"
+        expect(table.find_by_tag("th").last.content).to eq "Created At"
+      end
+
+      it "should add a class to each table header based on the col name" do
+        expect(table.find_by_tag("th").first.class_list.to_a.join(' ')).to eq "col col-title"
+        expect(table.find_by_tag("th").last.class_list.to_a.join(' ')).to eq "col col-created_at"
+      end
+
+      it "should create a table row for each element in the collection" do
+        expect(table.find_by_tag("tr").size).to eq 4 # 1 for head, 3 for rows
+      end
+
+      it "should create a cell for each column" do
+        expect(table.find_by_tag("td").size).to eq 6
+      end
+
+      it "should add a class for each cell based on the col name" do
+        expect(table.find_by_tag("td").first.class_list.to_a.join(' ')).to eq "col col-title"
+        expect(table.find_by_tag("td").last.class_list.to_a.join(' ')).to eq "col col-created_at"
+      end
+    end
+
     context "when creating a column with a symbol" do
       let(:table) do
         render_arbre_component assigns, helpers do
