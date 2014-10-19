@@ -9,7 +9,6 @@ da:
     delete: "Slet"
     delete_confirmation: "Er du sikker på at du ønsker at slette?"
     new_model: "Ny(t) %{model}"
-    create_model: "Opret %{model}"
     edit_model: "Rediger %{model}"
     delete_model: "Slet %{model}"
     details: "%{model} detaljer"

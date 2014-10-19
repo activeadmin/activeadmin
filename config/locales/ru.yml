@@ -9,7 +9,6 @@ ru:
     delete: "Удалить"
     delete_confirmation: "Вы уверены, что хотите удалить это?"
     new_model: "Создать %{model}"
-    create_model: "Создать %{model}"
     edit_model: "Изменить %{model}"
     delete_model: "Удалить %{model}"
     details: "%{model} подробнее"

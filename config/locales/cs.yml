@@ -9,7 +9,6 @@ cs:
     delete: "Smazat"
     delete_confirmation: "Jste si jistí, že chcete tuto položku smazat?"
     new_model: "Vytvořit"
-    create_model: "Vytvořit %{model}"
     edit_model: "Upravit"
     delete_model: "Smazat"
     details: "Detaily"

@@ -9,7 +9,6 @@ pl:
     delete: "Usuń"
     delete_confirmation: "Jesteś pewien, że chcesz to usunąć?"
     new_model: "Nowy %{model}"
-    create_model: "Nowy %{model}"
     edit_model: "Edytuj %{model}"
     delete_model: "Usuń %{model}"
     details: "Detale %{model}"

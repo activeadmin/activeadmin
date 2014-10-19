@@ -9,7 +9,6 @@ vi:
     delete: "Xóa"
     delete_confirmation: "Bạn có chắc chắn rằng mình muốn xóa cái này?"
     new_model: "Tạo mới %{model}"
-    create_model: "Tạo mới %{model}"
     edit_model: "Chỉnh sửa %{model}"
     delete_model: "Xóa %{model}"
     details: "%{model} Chi tiết"

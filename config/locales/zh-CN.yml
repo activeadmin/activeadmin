@@ -9,7 +9,6 @@
     delete: "删除"
     delete_confirmation: "确定删除?"
     new_model: "新建%{model}"
-    create_model: "新建%{model}"
     edit_model: "编辑%{model}"
     delete_model: "删除%{model}"
     details: "%{model}详情"

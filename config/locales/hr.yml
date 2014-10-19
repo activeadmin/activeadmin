@@ -9,7 +9,6 @@ hr:
     delete: "Obriši"
     delete_confirmation: "Jeste li sigurni da želite ovo obrisati?"
     new_model: "Novi %{model}"
-    create_model: "Izradi %{model}"
     edit_model: "Uredi %{model}"
     delete_model: "Obriši %{model}"
     details: "%{model} detalji"

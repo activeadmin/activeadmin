@@ -9,7 +9,6 @@ bg:
     delete: "Изтриване"
     delete_confirmation: "Сигурни ли сте, че искате да изтриете това?"
     new_model: "Създаване на %{model}"
-    create_model: "Създаване на %{model}"
     edit_model: "Редакция на %{model}"
     delete_model: "Изтриване на %{model}"
     details: "%{model} детайли"

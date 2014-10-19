@@ -9,7 +9,6 @@ fa:
     delete: "حذف"
     delete_confirmation: "آیا برای حذف این آیتم اطمینان دارید؟"
     new_model: "%{model} جدید"
-    create_model: "%{model} جدید"
     edit_model: "ویرایش %{model}"
     delete_model: "حذف %{model}"
     details: "جزئیات %{model}"

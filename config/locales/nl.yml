@@ -9,7 +9,6 @@ nl:
     delete: "Verwijder"
     delete_confirmation: "Weet u zeker dat je dit item wilt verwijderen?"
     new_model: "Nieuwe %{model}"
-    create_model: "Nieuwe %{model}"
     edit_model: "Wijzig %{model}"
     delete_model: "Verwijder %{model}"
     details: "%{model} details"
