@@ -104,12 +104,4 @@ es-MX:
           previous: "Anterior"
           next: "Siguiente"
           last: "Último"
-  formtastic:
-    yes: "Sí"
-    no: "No"
-    create: "Guardar %{model}"
-    update: "Guardar %{model}"
-    submit: "Aceptar"
-    cancel: "Cancelar"
-    reset: "Restablecer %{model}"
-    required: "requerido"
+

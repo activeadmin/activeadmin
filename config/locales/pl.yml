@@ -98,8 +98,3 @@ pl:
         sign_in: "Zaloguj się"
         forgot_your_password: "Nie pamiętasz hasła?"
         sign_in_with_omniauth_provider: "Zaloguj się z %{provider}"
-  formtastic:
-    actions:
-      update: "Aktualizuj %{model}"
-      create: "Utwórz %{model}"
-
