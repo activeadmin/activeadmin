@@ -32,6 +32,18 @@ describe "Breadcrumbs" do
       end
     end
 
+    context "when path 'admin/users'" do
+      let(:path) { 'admin/users' }
+
+      it 'should have one item' do
+        expect(trail.size).to eq 1
+      end
+      it 'should have a link to /admin' do
+        expect(trail[0][:name]).to eq 'Admin'
+        expect(trail[0][:path]).to eq '/admin'
+      end
+    end
+
     context "when path '/admin/users'" do
       let(:path) { "/admin/users" }
 

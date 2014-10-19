@@ -4,8 +4,9 @@ module ActiveAdmin
 
       # Returns an array of links to use in a breadcrumb
       def breadcrumb_links(path = request.path)
-        parts = path[1..-1].split('/') # remove leading "/" and split up the URL
-        parts.pop                      # remove last since it's used as the page title
+        # remove leading "/" and split up the URL
+        # and remove last since it's used as the page title
+        parts = path.split('/').select(&:present?)[0..-2]
 
         parts.each_with_index.map do |part, index|
           # 1. try using `display_name` if we can locate a DB object
