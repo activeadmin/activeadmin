@@ -19,7 +19,7 @@ You can also set custom CSV settings for an individual resource:
 
 ```ruby
 ActiveAdmin.register Post do
-  csv force_quotes: true, col_sep: ';' do
+  csv force_quotes: true, col_sep: ';', column_names: false do
     column :title
     column(:author) { |post| post.author.full_name }
   end
