@@ -67,6 +67,9 @@ module ActiveAdmin
     # The namespace root.
     inheritable_setting :root_to, 'dashboard#index'
 
+    # Options that a passed to root_to.
+    inheritable_setting :root_to_options, {}
+
     # Display breadcrumbs
     inheritable_setting :breadcrumb, true
 
