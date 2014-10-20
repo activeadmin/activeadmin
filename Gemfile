@@ -45,6 +45,7 @@ group :test do
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'i18n-spec'
   gem 'shoulda-matchers'
   gem 'sqlite3'
 end
