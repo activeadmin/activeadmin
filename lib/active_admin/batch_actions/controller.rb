@@ -7,7 +7,7 @@ module ActiveAdmin
         if action_present?
           selection =            params[:collection_selection] ||  []
           inputs    = JSON.parse params[:batch_action_inputs]  || '{}'
-          inputs    = inputs.with_indifferent_access.slice *current_batch_action.inputs.keys
+          inputs    = inputs.with_indifferent_access.slice *instance_exec(&current_batch_action.inputs).keys
           instance_exec selection, inputs, &current_batch_action.block
         else
           raise "Couldn't find batch action \"#{params[:batch_action]}\""
