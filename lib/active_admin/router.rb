@@ -34,7 +34,7 @@ module ActiveAdmin
     # Defines the routes for each resource
     def define_resource_routes(router)
       router.instance_exec @application.namespaces, self do |namespaces, aa_router|
-        resources = namespaces.values.map{ |n| n.resources.values }.flatten
+        resources = namespaces.values.flat_map{ |n| n.resources.values }
         resources.each do |config|
           routes = aa_router.resource_routes(config)
 
