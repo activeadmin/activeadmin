@@ -11,6 +11,7 @@ script:
   - time bundle exec rake test_with_coveralls
 rvm:
   - 1.9.3
+  - 2.0.0
   - 2.1.2
 env:
   matrix:
