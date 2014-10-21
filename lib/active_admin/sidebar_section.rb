@@ -30,7 +30,7 @@ module ActiveAdmin
 
     # If a block is not passed in, the name of the partial to render
     def partial_name
-      options[:partial] || "#{name.to_s.downcase.gsub(' ', '_')}_sidebar"
+      options[:partial] || "#{name.to_s.downcase.tr(' ', '_')}_sidebar"
     end
 
     def custom_class

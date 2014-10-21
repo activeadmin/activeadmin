@@ -6,7 +6,7 @@ module ActiveAdmin
       source_root File.expand_path("../templates", __FILE__)
 
       def generate_config_file
-        template "admin.rb", "app/admin/#{file_path.gsub('/', '_')}.rb"
+        template "admin.rb", "app/admin/#{file_path.tr('/', '_')}.rb"
       end
 
     end

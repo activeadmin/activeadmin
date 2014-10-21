@@ -71,7 +71,7 @@ module ActiveAdmin
     end
 
     def key_from_method_name(method)
-      method.to_s.gsub('=', '').to_sym
+      method.to_s.tr('=', '').to_sym
     end
 
     def get_view_for_key(key)
