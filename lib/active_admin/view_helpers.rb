@@ -14,6 +14,10 @@ module ActiveAdmin
     include FormHelper
     include TitleHelper
     include ViewFactoryHelper
+    include BlankSlateHelper
+    include ColumnsHelper
+    include PanelHelper
+    include StatusTagHelper
 
   end
 end
