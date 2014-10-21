@@ -100,7 +100,7 @@ module ActiveAdmin
     def batch_action(title, options = {}, &block)
       # Create symbol & title information
       if title.is_a? String
-        sym = title.titleize.gsub(' ', '').underscore.to_sym
+        sym = title.titleize.tr(' ', '').underscore.to_sym
       else
         sym = title
         title = sym.to_s.titleize

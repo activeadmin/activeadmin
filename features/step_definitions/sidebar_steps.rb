@@ -3,7 +3,7 @@ Then /^I should see a sidebar titled "([^"]*)"$/ do |title|
 end
 
 Then /^I should not see a sidebar titled "([^"]*)"$/ do |title|
-  title = title.gsub(' ', '').underscore
+  title = title.tr(' ', '').underscore
   sidebars = page.all :css, "##{title}_sidebar_section"
   expect(sidebars.count).to eq 0
 end
