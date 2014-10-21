@@ -221,7 +221,7 @@ form {
 
   /* Buttons */
 
-  input[type=submit] {
+  input[type=submit], input[type=button], button {
     @include dark-button;
     cursor: pointer;
 
@@ -229,7 +229,7 @@ form {
 
   .buttons, .actions {
     margin-top: 15px;
-    input[type=submit] { margin-right: 10px; }
+    input[type=submit], input[type=button], button { margin-right: 10px; }
   }
 
   fieldset.buttons li, fieldset.actions li {
