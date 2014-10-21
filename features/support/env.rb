@@ -131,3 +131,10 @@ end
 Before('@rails4') do |scenario|
   scenario.skip_invoke! if Rails::VERSION::MAJOR < 4
 end
+
+Around '@silent_unpermitted_params_failure' do |scenario, block|
+  original = ActionController::Parameters.action_on_unpermitted_parameters
+  ActionController::Parameters.action_on_unpermitted_parameters = false
+  block.call
+  ActionController::Parameters.action_on_unpermitted_parameters = original
+end
