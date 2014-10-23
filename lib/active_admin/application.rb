@@ -90,6 +90,9 @@ module ActiveAdmin
       :utf8, :_method, :authenticity_token, :commit, :id
     ]
 
+    # Set flash message keys that shouldn't show in ActiveAdmin
+    inheritable_setting :flash_keys_to_except, ['timedout']
+
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     setting :display_name_methods, [ :display_name,
