@@ -58,7 +58,7 @@ Which looks for something like this:
 
 ## Nested Resources
 
-You can create forms with nested models using the `has_many` method (regardless of whether your model `has_one` or `has_many` of the nested model(s), `has_many` should be used in the form):
+You can create forms with nested models using the `has_many` method, even if your model uses `has_one`:
 
 ```ruby
 ActiveAdmin.register Post do
