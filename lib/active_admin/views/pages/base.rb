@@ -75,7 +75,7 @@ module ActiveAdmin
 
         def build_flash_messages
           div class: 'flashes' do
-            flash.each do |type, message|
+            flash_messages.each do |type, message|
               div message, class: "flash flash_#{type}"
             end
           end
