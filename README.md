@@ -65,7 +65,7 @@ Ask us in IRC ([#activeadmin](https://webchat.freenode.net/?channels=activeadmin
 
 The [contributing guide](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md)
 is a good place to start. If you have questions, feel free to ask
-[@seanlinsley](https://twitter.com/seanlinsley) or [@timoschilling](https://twitter.com/timoschilling).
+[@seanlinsley](https://twitter.com/seanlinsley) or [@captainhagbard](https://twitter.com/captainhagbard).
 
 ## Dependencies
 
