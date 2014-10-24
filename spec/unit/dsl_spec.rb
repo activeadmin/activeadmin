@@ -41,15 +41,15 @@ describe ActiveAdmin::DSL do
     end
 
     context 'DEPRECATED: when used without a name' do
-      before do
+      it "is configured for only the show action" do
+        expect(ActiveAdmin::Deprecation).to receive(:warn).with(instance_of(String))
+
         dsl.run_registration_block do
           action_item only: :edit do
             "Awesome ActionItem"
           end
         end
-      end
 
-      it "is configured for only the show action" do
         item = resource_config.action_items.last
         expect(item.display_on?(:edit)).to be true
         expect(item.display_on?(:index)).to be false
