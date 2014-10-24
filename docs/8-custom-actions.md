@@ -122,11 +122,12 @@ end
 # Action Items
 
 To include your own action items (like the New, Edit and Delete buttons), add an
-`action_item` block. For example, to add a "View on site" button to view a blog
+`action_item` block. The first parameter is just a name to identify the action,
+and is required. For example, to add a "View on site" button to view a blog
 post:
 
 ```ruby
-action_item only: :show do
+action_item :view, only: :show do
   link_to 'View on site', post_path(post) if post.published?
 end
 ```
@@ -134,7 +135,7 @@ end
 Actions items also accept the `:if` option to conditionally display them:
 
 ```ruby
-action_item only: :show, if: proc{ current_admin_user.super_admin? } do
+action_item :super_action, only: :show, if: proc{ current_admin_user.super_admin? } do
   "Only display this to super admins on the show screen"
 end
 ```
