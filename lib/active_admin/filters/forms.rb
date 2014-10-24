@@ -24,6 +24,8 @@ module ActiveAdmin
       def default_input_type(method, options = {})
         if method =~ /_(eq|equals|cont|contains|start|starts_with|end|ends_with)\z/
           :string
+        elsif klass._ransackers.key?(method.to_s)
+          klass._ransackers[method.to_s].type
         elsif reflection_for(method) || polymorphic_foreign_type?(method)
           :select
         elsif column = column_for(method)
