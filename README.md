@@ -38,7 +38,7 @@ Github [docs folder](https://github.com/activeadmin/activeadmin/tree/master/docs
 
 ## Links
 
-* Website: <http://www.activeadmin.info>
+* Website: <http://www.activeadmin.info> (out of date)
 * Live demo: <http://demo.activeadmin.info/admin>
 * Documentation
   * Guides: <http://activeadmin.info/documentation.html>
