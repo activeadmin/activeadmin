@@ -22,7 +22,7 @@ Feature: Index Filtering
     And I press "Filter"
     And I should see 1 posts in the table
     And I should see "Hello World 2" within ".index_table"
-    And I should see current filter "title_contains" equal to "Hello World 2" with label "Title contains"
+    And I should see current filter "title_cont" equal to "Hello World 2" with label "Title contains"
 
   Scenario: No XSS in Resources Filters
     Given an index configuration of:
@@ -33,7 +33,7 @@ Feature: Index Filtering
     """
     When I fill in "Title" with "<script>alert('hax')</script>"
     And I press "Filter"
-    Then I should see current filter "title_contains" equal to "<script>alert('hax')</script>" with label "Title contains"
+    Then I should see current filter "title_cont" equal to "<script>alert('hax')</script>" with label "Title contains"
 
   Scenario: Filtering posts with no results
     Given 3 posts exist
@@ -209,7 +209,7 @@ Feature: Index Filtering
     """
     When I fill in "Title" with "Hello"
     And I press "Filter"
-    Then I should see current filter "title_contains" equal to "Hello" with label "Title contains"
+    Then I should see current filter "title_cont" equal to "Hello" with label "Title contains"
 
   Scenario: Filtering posts by category
     Given a category named "Mystery" exists

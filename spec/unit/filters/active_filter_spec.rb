@@ -14,7 +14,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
   let(:post){ Post.create! title: "Hello World", category: category, author: user }
 
   let(:search) do
-    Post.ransack(title_equals: post.title)
+    Post.ransack(title_eq: post.title)
   end
 
   let(:condition) do
@@ -177,7 +177,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     let(:post){ resource_klass.create! title: "Category", author: user }
 
     let(:search) do
-      resource_klass.ransack(title_equals: post.title)
+      resource_klass.ransack(title_eq: post.title)
     end
 
     it "should use the association's primary key to find the associated record" do

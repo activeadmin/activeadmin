@@ -68,19 +68,19 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :title }
 
     it "should generate a select option for starts with" do
-      expect(body).to have_selector("option[value=title_starts_with]", text: "Starts with")
+      expect(body).to have_selector("option[value=title_start]", text: "Starts with")
     end
 
     it "should generate a select option for ends with" do
-      expect(body).to have_selector("option[value=title_ends_with]", text: "Ends with")
+      expect(body).to have_selector("option[value=title_end]", text: "Ends with")
     end
 
     it "should generate a select option for contains" do
-      expect(body).to have_selector("option[value=title_contains]", text: "Contains")
+      expect(body).to have_selector("option[value=title_cont]", text: "Contains")
     end
 
     it "should generate a text field for input" do
-      expect(body).to have_selector("input[name='q[title_contains]']")
+      expect(body).to have_selector("input[name='q[title_cont]']")
     end
 
     it "should have a proper label" do
@@ -94,26 +94,26 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should select the option which is currently being filtered" do
-      scope = Post.ransack title_starts_with: "foo"
+      scope = Post.ransack title_start: "foo"
       body = Capybara.string(render_filter scope, title: {})
-      expect(body).to have_selector("option[value=title_starts_with][selected=selected]", text: "Starts with")
+      expect(body).to have_selector("option[value=title_start][selected=selected]", text: "Starts with")
     end
 
     context "with filters options" do
       let(:body) { filter :title, filters: [:contains, :starts_with] }
 
       it "should generate provided options for filter select" do
-        expect(body).to have_selector("option[value=title_contains]", text: "Contains")
-        expect(body).to have_selector("option[value=title_starts_with]", text: "Starts with")
+        expect(body).to have_selector("option[value=title_cont]", text: "Contains")
+        expect(body).to have_selector("option[value=title_start]", text: "Starts with")
       end
 
       it "should not generate a select option for ends with" do
-        expect(body).not_to have_selector("option[value=title_ends_with]")
+        expect(body).not_to have_selector("option[value=title_end]")
       end
     end
 
     context "with predicate" do
-      %w[eq equals cont contains start starts_with end ends_with].each do |predicate|
+      %w[eq cont start end].each do |predicate|
         describe "'#{predicate}'" do
           let(:body) { filter :"title_#{predicate}" }
 
@@ -133,7 +133,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :body }
 
     it "should generate a search field for a text attribute" do
-      expect(body).to have_selector("input[name='q[body_contains]']")
+      expect(body).to have_selector("input[name='q[body_cont]']")
     end
 
     it "should have a proper label" do
@@ -189,16 +189,16 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :id }
 
       it "should generate a select option for equal to" do
-        expect(body).to have_selector("option[value=id_equals]", text: "Equals")
+        expect(body).to have_selector("option[value=id_eq]", text: "Equals")
       end
       it "should generate a select option for greater than" do
         expect(body).to have_selector("option[value=id_greater_than]", text: "Greater than")
       end
       it "should generate a select option for less than" do
-        expect(body).to have_selector("option[value=id_less_than]", text: "Less than")
+        expect(body).to have_selector("option[value=id_lt]", text: "Less than")
       end
       it "should generate a text field for input" do
-        expect(body).to have_selector("input[name='q[id_equals]']")
+        expect(body).to have_selector("input[name='q[id_eq]']")
       end
       it "should select the option which is currently being filtered" do
         scope = Post.ransack id_greater_than: 1
@@ -211,12 +211,12 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :id, filters: [:equals, :greater_than] }
 
       it "should generate provided options for filter select" do
-        expect(body).to have_selector("option[value=id_equals]", text: "Equals")
+        expect(body).to have_selector("option[value=id_eq]", text: "Equals")
         expect(body).to have_selector("option[value=id_greater_than]", text: "Greater than")
       end
 
       it "should not generate a select option for less than" do
-        expect(body).not_to have_selector("option[value=id_less_than]")
+        expect(body).not_to have_selector("option[value=id_lt]")
       end
     end
   end
@@ -270,8 +270,8 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
       it "should generate a numeric filter" do
         expect(body).to have_selector("label", text: "Author") # really this should be Author ID :/)
-        expect(body).to have_selector("option[value=author_id_less_than]")
-        expect(body).to have_selector("input#q_author_id[name='q[author_id_equals]']")
+        expect(body).to have_selector("option[value=author_id_lt]")
+        expect(body).to have_selector("input#q_author_id[name='q[author_id_eq]']")
       end
     end
 
@@ -418,23 +418,23 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       context "with #{verb.inspect} proc" do
         it "#{should} be displayed if true" do
           body = filter :body, verb => proc{ true }
-          expect(body).send if_true, have_selector("input[name='q[body_contains]']")
+          expect(body).send if_true, have_selector("input[name='q[body_cont]']")
         end
         it "#{should} be displayed if false" do
           body = filter :body, verb => proc{ false }
-          expect(body).send if_false, have_selector("input[name='q[body_contains]']")
+          expect(body).send if_false, have_selector("input[name='q[body_cont]']")
         end
         it "should still be hidden on the second render" do
           filters = {body: { verb => proc{ verb == :unless }}}
           2.times do
             body = filter scope, filters
-            expect(body).not_to have_selector("input[name='q[body_contains]']")
+            expect(body).not_to have_selector("input[name='q[body_cont]']")
           end
         end
         it "should successfully keep rendering other filters after one is hidden" do
           filters = {body: { verb => proc{ verb == :unless }}, author: {}}
           body    = Capybara.string(render_filter scope, filters)
-          expect(body).not_to have_selector("input[name='q[body_contains]']")
+          expect(body).not_to have_selector("input[name='q[body_cont]']")
           expect(body).to     have_selector("select[name='q[author_id_eq]']")
         end
       end
@@ -444,9 +444,9 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
   describe "custom search methods" do
     it "should use the default type of the ransacker" do
       body = filter :custom_searcher_numeric
-      expect(body).to have_selector("option[value=custom_searcher_numeric_equals]")
+      expect(body).to have_selector("option[value=custom_searcher_numeric_eq]")
       expect(body).to have_selector("option[value=custom_searcher_numeric_greater_than]")
-      expect(body).to have_selector("option[value=custom_searcher_numeric_less_than]")
+      expect(body).to have_selector("option[value=custom_searcher_numeric_lt]")
     end
 
     it "should work as select" do
@@ -456,8 +456,8 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
     it "should work as string" do
       body = filter :custom_title_searcher, as: :string
-      expect(body).to have_selector("option[value=custom_title_searcher_contains]")
-      expect(body).to have_selector("option[value=custom_title_searcher_starts_with]")
+      expect(body).to have_selector("option[value=custom_title_searcher_cont]")
+      expect(body).to have_selector("option[value=custom_title_searcher_start]")
     end
 
     describe "custom date range search" do

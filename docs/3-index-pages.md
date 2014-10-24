@@ -118,9 +118,9 @@ underscore.
 For example:
 
 ```ruby
-filter :name_equals
+filter :name_eq
 # or
-filter :name_contains
+filter :name_cont
 ```
 
 You can change the filter label by passing a label option:
