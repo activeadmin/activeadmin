@@ -24,13 +24,6 @@ ar:
       buttons:
         filter: "تصفية"
         clear: "تفريغ التصفية"
-      predicates:
-        contains: "يحتوي"
-        equals: "متساوي"
-        starts_with: "يبدأ بـ"
-        ends_with: "ينتهي بـ"
-        greater_than: "أكبر من"
-        less_than: "أقل من"
     search_status:
       headline: "حالات البحث:"
       current_scope: "المجال:"

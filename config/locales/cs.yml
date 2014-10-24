@@ -24,13 +24,6 @@ cs:
       buttons:
         filter: "Filtrovat"
         clear: "Vyčistit filtry"
-      predicates:
-        contains: "Obsahuje"
-        equals: "Odpovídá"
-        starts_with: "Začíná na"
-        ends_with: "Končí na"
-        greater_than: "Větší než"
-        less_than: "Menší než"
     status_tag:
       "yes": "Ano"
       "no": "Ne"

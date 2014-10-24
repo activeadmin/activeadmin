@@ -24,17 +24,6 @@ vi:
       buttons:
         filter: "Lọc"
         clear: "Xóa dữ liệu lọc"
-      predicates:
-        contains: "Có chứa"
-        equals: "Bằng"
-        starts_with: "Bắt đầu với"
-        ends_with: "Kết thúc với việc"
-        greater_than: "Lớn hơn"
-        less_than: "Nhỏ hơn"
-        gteq_datetime: "Lớn hơn hoặc bằng"
-        lteq_datetime: "Nhỏ hơn hoặc bằng"
-        from: "Từ"
-        to: "Đến"
     search_status:
       headline: "Danh sách tìm kiếm:"
       current_scope: "Phạm vi:"

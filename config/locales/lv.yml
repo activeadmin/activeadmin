@@ -24,13 +24,6 @@ lv:
       buttons:
         filter: "Filtrēt"
         clear: "Novākt filtrus"
-      predicates:
-        contains: "Satur"
-        equals: "Vienāds ar"
-        starts_with: "Sākas ar"
-        ends_with: "Beidzas ar"
-        greater_than: "Lielāks par"
-        less_than: "Mazāks par"
     status_tag:
       "yes": "Jā"
       "no": "Nē"

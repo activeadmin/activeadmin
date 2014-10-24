@@ -25,17 +25,6 @@
       buttons:
         filter: "过滤"
         clear: "清除条件"
-      predicates:
-        contains: "包含"
-        equals: "等于"
-        starts_with: "开头"
-        ends_with: "完与"
-        greater_than: "大于"
-        less_than: "小于"
-        gteq_datetime: "大于等于"
-        lteq_datetime: "小于等于"
-        from: "起"
-        to: "止"
     search_status:
       headline: "搜索条件："
       current_scope: "搜索范围："

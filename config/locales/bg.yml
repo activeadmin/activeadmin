@@ -24,13 +24,6 @@ bg:
       buttons:
         filter: "Филтриране"
         clear: "Изчистване"
-      predicates:
-        contains: "съдържа"
-        equals: "равно на"
-        starts_with: "Започва с"
-        ends_with: "Завършва с"
-        greater_than: "по-голямо от"
-        less_than: "по-малко от"
     status_tag:
       "yes": "Да"
       "no": "не"

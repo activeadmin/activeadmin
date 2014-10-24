@@ -24,13 +24,6 @@
       buttons:
         filter: "篩選"
         clear: "清除篩選條件"
-      predicates:
-        contains: "包含"
-        equals: "等於"
-        starts_with: "開頭為"
-        ends_with: "結尾為"
-        greater_than: "大於"
-        less_than: "小於"
     search_status:
       headline: "搜尋條件:"
       current_scope: "子集："

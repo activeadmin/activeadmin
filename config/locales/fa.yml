@@ -24,13 +24,6 @@ fa:
       buttons:
         filter: "فیلتر"
         clear: "پاک کردن فیلتر"
-      predicates:
-        contains: "شامل"
-        equals: "برابر با"
-        starts_with: "شروع با"
-        ends_with: "پایان با"
-        greater_than: "بزرگتر از"
-        less_than: "کوچکتر از"
     status_tag:
       "yes": "بله"
       "no": "بدون"

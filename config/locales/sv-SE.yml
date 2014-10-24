@@ -24,15 +24,6 @@
       buttons:
         filter: "Filter"
         clear: "Rensa filter"
-      predicates:
-        contains: "Innehåller"
-        equals: "Lika med"
-        starts_with: "Börjar med"
-        ends_with: "Slutar med"
-        greater_than: "Större än"
-        less_than: "Mindre än"
-        from: "Från"
-        to: "Till"
     search_status:
       headline: "Sök status:"
       current_scope: "Scope:"

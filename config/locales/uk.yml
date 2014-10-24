@@ -24,13 +24,6 @@ uk:
       buttons:
         filter: "Фільтрувати"
         clear: "Очистити"
-      predicates:
-        contains: "Містить"
-        equals: "="
-        starts_with: "Починається з"
-        ends_with: "Закінчується"
-        greater_than: "більше"
-        less_than: "менше"
     search_status:
       headline: "Статус пошуку:"
       current_scope: "Область:"
