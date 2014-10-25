@@ -225,7 +225,7 @@ Feature: Index as Table
       """
     Then I should see a sortable table header with "Author"
     Then I should see a sortable table header with "published_at"
-    Then I should see a sortable table header with "Category"
+    Then I should not see a sortable table header with "Category"
 
   Scenario: Columns with block are not sortable by when sortable option equals to false
     Given 1 post exists

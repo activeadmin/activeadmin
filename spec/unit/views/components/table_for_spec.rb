@@ -336,8 +336,23 @@ describe ActiveAdmin::Views::TableFor do
       end
     end
 
+    context 'when a block given with virtual attribute and no sort key' do
+      let(:table_column) { build_column(:virtual, nil, Post) { } }
+      it { is_expected.not_to be_sortable }
+    end
+
     context 'when symbol given as a data column should be sortable' do
       let(:table_column){ build_column('Username column', :username) }
+      it { is_expected.to be_sortable }
+
+      describe '#sort_key' do
+        subject { super().sort_key }
+        it { is_expected.to eq 'username' }
+      end
+    end
+
+    context 'when sortable: true with a symbol and string' do
+      let(:table_column){ build_column('Username column', :username, sortable: true) }
       it { is_expected.to be_sortable }
 
       describe '#sort_key' do
@@ -361,5 +376,9 @@ describe ActiveAdmin::Views::TableFor do
       it { is_expected.not_to be_sortable }
     end
 
+    context 'when :sortable column is an association and block given' do
+      let(:table_column){ build_column('Category', :category, Post) { } }
+      it { is_expected.not_to be_sortable }
+    end
   end
 end

@@ -176,8 +176,8 @@ module ActiveAdmin
         def sortable?
           if @options.has_key?(:sortable)
             !!@options[:sortable]
-          elsif @data.respond_to?(:to_sym) && @resource_class
-            !@resource_class.reflect_on_association(@data.to_sym)
+          elsif @resource_class
+            @resource_class.column_names.include?(sort_column_name)
           else
             @title.present?
           end
@@ -206,7 +206,7 @@ module ActiveAdmin
           if @options[:sortable] == true || @options[:sortable] == false
             @data.to_s
           elsif @options[:sortable].nil?
-            @data.is_a?(Symbol) ? @data.to_s : @title.to_s
+            sort_column_name
           else
             @options[:sortable].to_s
           end
@@ -223,6 +223,12 @@ module ActiveAdmin
           else
             @title
           end
+        end
+
+        private
+
+        def sort_column_name
+          @data.is_a?(Symbol) ? @data.to_s : @title.to_s
         end
       end
     end
