@@ -8,9 +8,11 @@ module ActiveAdmin
       class Comments < ActiveAdmin::Views::Panel
         builder_method :active_admin_comments_for
 
+        attr_accessor :resource
+
         def build(resource)
           @resource = resource
-          @comments = ActiveAdmin::Comment.find_for_resource_in_namespace @resource, active_admin_namespace.name
+          @comments = ActiveAdmin::Comment.find_for_resource_in_namespace resource, active_admin_namespace.name
           super(title, for: resource)
           build_comments
         end
@@ -55,8 +57,8 @@ module ActiveAdmin
         def build_comment_form
           self << active_admin_form_for(ActiveAdmin::Comment.new, url: comment_form_url) do |f|
             f.inputs do
-              f.input :resource_type, as: :hidden,  input_html: { value: ActiveAdmin::Comment.resource_type(@resource) }
-              f.input :resource_id,   as: :hidden,  input_html: { value: @resource.id }
+              f.input :resource_type, as: :hidden,  input_html: { value: ActiveAdmin::Comment.resource_type(parent.resource) }
+              f.input :resource_id,   as: :hidden,  input_html: { value: parent.resource.id }
               f.input :body,          label: false, input_html: { size: '80x8' }
             end
             f.actions do

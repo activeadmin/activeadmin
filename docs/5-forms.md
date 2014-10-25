@@ -7,13 +7,18 @@ a thin DSL on top of [Formtastic](https://github.com/justinfrench/formtastic):
 ActiveAdmin.register Post do
 
   form do |f|
-    f.inputs 'Details' do
-      f.input :title
-      f.input :published_at, label: "Publish Post At"
-      f.input :category
+    inputs 'Details' do
+      input :title
+      input :published_at, label: "Publish Post At"
+      li "Created at #{f.object.created_at}" unless f.object.new_record?
+      input :category
     end
-    f.inputs 'Content', :body
-    f.actions
+    panel 'Markup' do
+      "The following can be used in the content below..."
+    end
+    inputs 'Content', :body
+    para "Press cancel to return to the list without saving."
+    actions
   end
 
 end
@@ -35,7 +40,7 @@ end
 
 ## Partials
 
-If you require a more custom form than the DSL can provide, use a partial instead:
+If you want to split a custom form into a separate partial use:
 
 ```ruby
 ActiveAdmin.register Post do
@@ -45,16 +50,15 @@ end
 
 Which looks for something like this:
 
-```erb
-<%# app/views/admin/posts/_form.html.erb %>
-<%= semantic_form_for [:admin, @post] do |f| %>
-  <%= f.inputs :title, :body %>
-  <%= f.actions do %>
-    <%= f.action :submit %>
-    <li class="cancel"><%= link_to 'Cancel', collection_path %></li>
-  <% end %>
-<% end %>
+```ruby
+# app/views/admin/posts/_form.html.arb
+active_admin_form_for resource do |f|
+  inputs :title, :body
+  actions
+end
 ```
+
+This is a regular Rails partial so any template engine may be used.
 
 ## Nested Resources
 

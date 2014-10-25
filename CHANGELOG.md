@@ -5,6 +5,7 @@
 * Rails 4 support [#2326][] by many people :heart:
 
 ### Enhancements
+* Allow Arbre to be used inside ActiveAdmin forms [#3486][] by [@varyonic]
 * Make AA ORM-agnostic [#2545][] by [@johnnyshields][]
 * Add multi-record support to `attributes_table_for` [#2544][] by [@zorab47][]
 * Table CSS classes are now prefixed to prevent clashes [#2532][] by [@TimPetricola][]

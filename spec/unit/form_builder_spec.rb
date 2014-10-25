@@ -1,4 +1,5 @@
 require 'rails_helper'
+require "rspec/mocks/standalone"
 
 describe ActiveAdmin::FormBuilder do
 
@@ -33,7 +34,7 @@ describe ActiveAdmin::FormBuilder do
     options = {url: helpers.posts_path}.merge(options)
 
     render_arbre_component({form_object: form_object, form_options: options, form_block: block}, helpers) do
-      text_node active_admin_form_for(assigns[:form_object], assigns[:form_options], &assigns[:form_block])
+      active_admin_form_for(assigns[:form_object], assigns[:form_options], &assigns[:form_block])
     end.to_s
   end
 
@@ -122,32 +123,44 @@ describe ActiveAdmin::FormBuilder do
 
   end
 
-  context "with actions" do
-    it "should generate the form once" do
+  context "with Arbre inside" do
+    it "should render the Arbre in the expected place" do
       body = build_form do |f|
+        div do
+          h1 'Heading'
+        end
         f.inputs do
+          span 'Top note'
           f.input :title
+          span 'Bottom note'
         end
+        h3 'Footer'
         f.actions
       end
-      expect(body.scan(/id="post_title"/).size).to eq(1)
+      page = Capybara.string(body)
+      expect(page).to have_css("div > h1")
+      expect(page).to have_css("h1", count: 1)
+      expect(page).to have_css(".inputs > ol > span")
+      expect(page).to have_css("span", count: 2)
     end
-    it "should generate one button and a cancel link" do
+    it "should allow a simplified syntax" do
       body = build_form do |f|
-        f.actions
-      end
-      expect(body.scan(/type="submit"/).size).to eq(1)
-      expect(body.scan(/class="cancel"/).size).to eq(1)
-    end
-    it "should generate multiple actions" do
-      body = build_form do |f|
-        f.actions do
-          f.action :submit, label: "Create & Continue"
-          f.action :submit, label: "Create & Edit"
+        div do
+          h1 'Heading'
         end
+        inputs do
+          span 'Top note'
+          input :title
+          span 'Bottom note'
+        end
+        h3 'Footer'
+        actions
       end
-      expect(body.scan(/type="submit"/).size).to eq(2)
-      expect(body.scan(/class="cancel"/).size).to eq(0)
+      page = Capybara.string(body)
+      expect(page).to have_css("div > h1")
+      expect(page).to have_css("h1", count: 1)
+      expect(page).to have_css(".inputs > ol > span")
+      expect(page).to have_css("span", count: 2)
     end
   end
 
@@ -173,7 +186,7 @@ describe ActiveAdmin::FormBuilder do
           f.input :title
           f.input :body
         end
-        f.instance_eval do
+        f.form_builder.instance_eval do
           @object.author = User.new
         end
         f.semantic_fields_for :author do |author|
@@ -223,7 +236,7 @@ describe ActiveAdmin::FormBuilder do
           f.input :title
           f.input :body
         end
-        f.instance_eval do
+        f.form_builder.instance_eval do
           @object.author = User.new
         end
         f.inputs name: 'Author', for: :author do |author|
