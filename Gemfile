@@ -28,7 +28,7 @@ group :development do
   gem 'flamegraph'         # Flamegraph visualiztion: ?pp=flamegraph
 
   # Documentation
-  gem 'yard', github: 'lsegal/yard' # Documentation generator (until lsegal/yard#765 is in a release)
+  gem 'yard'               # Documentation generator
   gem 'redcarpet'          # Markdown implementation (for yard)
 end
 
