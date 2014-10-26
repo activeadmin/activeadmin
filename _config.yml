@@ -1,2 +1,3 @@
 highligher: rouge
 markdown: redcarpet
+baseurl: /activeadmin
