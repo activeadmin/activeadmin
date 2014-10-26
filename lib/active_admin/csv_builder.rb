@@ -43,6 +43,10 @@ module ActiveAdmin
       options = ActiveAdmin.application.csv_options.merge self.options
       columns = exec_columns view_context
 
+      if byte_order_mark = options.delete(:byte_order_mark)
+        receiver << byte_order_mark
+      end
+
       if options.delete(:column_names) { true }
         receiver << CSV.generate_line(columns.map{ |c| encode c.name, options }, options)
       end
