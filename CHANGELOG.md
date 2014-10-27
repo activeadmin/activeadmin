@@ -970,6 +970,8 @@ of the highlights. 250 commits. Enough said.
 [#2601]: https://github.com/activeadmin/activeadmin/issues/2601
 [#2744]: https://github.com/activeadmin/activeadmin/issues/2744
 [#2847]: https://github.com/activeadmin/activeadmin/issues/2847
+[#3075]: https://github.com/activeadmin/activeadmin/issues/3075
+[#3486]: https://github.com/activeadmin/activeadmin/issues/3486
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
@@ -994,6 +996,7 @@ of the highlights. 250 commits. Enough said.
 [@developer88]: https://github.com/developer88
 [@dhiemstra]: https://github.com/dhiemstra
 [@dmfrancisco]: https://github.com/dmfrancisco
+[@dmitry]: https://github.com/dmitry
 [@doug316]: https://github.com/doug316
 [@ebeigarts]: https://github.com/ebeigarts
 [@ejholmes]: https://github.com/ejholmes
@@ -1071,6 +1074,7 @@ of the highlights. 250 commits. Enough said.
 [@vairix]: https://github.com/vairix
 [@vairix-ssierra]: https://github.com/vairix-ssierra
 [@valdemarua]: https://github.com/valdemarua
+[@varyonic]: https://github.com/varyonic
 [@watson]: https://github.com/watson
 [@whatcould]: https://github.com/whatcould
 [@yawn]: https://github.com/yawn
