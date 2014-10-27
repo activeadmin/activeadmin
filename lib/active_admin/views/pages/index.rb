@@ -82,7 +82,7 @@ module ActiveAdmin
         def build_scopes
           if active_admin_config.scopes.any?
             scope_options = {
-              scope_count: config[:scope_count].nil? ? true : config[:scope_count]
+              scope_count: config.fetch(:scope_count, true)
             }
 
             scopes_renderer active_admin_config.scopes, scope_options
@@ -124,9 +124,9 @@ module ActiveAdmin
 
         def render_index
           renderer_class = find_index_renderer_class(config[:as])
-          paginator      = config[:paginator].nil?      ? true : config[:paginator]
-          download_links = config[:download_links].nil? ? active_admin_config.namespace.download_links : config[:download_links]
-          pagination_total = config[:pagination_total].nil? ? true : config[:pagination_total]
+          paginator        = config.fetch(:paginator, true)
+          download_links   = config.fetch(:download_links, active_admin_config.namespace.download_links)
+          pagination_total = config.fetch(:pagination_total, true)
 
           paginated_collection(collection, entry_name:       active_admin_config.resource_label,
                                            entries_name:     active_admin_config.plural_resource_label(count: collection_size),

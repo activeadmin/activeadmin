@@ -38,7 +38,7 @@ module ActiveAdmin
       @scope_method               = nil        if @scope_method == :all
       @scope_method, @scope_block = nil, block if block_given?
 
-      @show_count       = options[:show_count].nil? ? true : options[:show_count]
+      @show_count       = options.fetch(:show_count, true)
       @display_if_block = options[:if]      || proc{ true }
       @default_block    = options[:default] || proc{ false }
 
