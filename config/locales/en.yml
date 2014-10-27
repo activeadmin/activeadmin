@@ -110,6 +110,7 @@ en:
         title: "Resend confirmation instructions"
         submit: "Resend confirmation instructions"
       links:
+        sign_up: "Sign up"
         sign_in: "Sign in"
         forgot_your_password: "Forgot your password?"
         sign_in_with_omniauth_provider: "Sign in with %{provider}"

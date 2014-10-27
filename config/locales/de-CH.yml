@@ -90,6 +90,7 @@
         title: "Ändern Sie Ihr Passwort"
         submit: "Mein Passwort ändern"
       links:
+        sign_up: "Registrieren"
         sign_in: "Anmeldung"
         forgot_your_password: "Passwort vergessen?"
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
