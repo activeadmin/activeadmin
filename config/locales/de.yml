@@ -111,6 +111,8 @@ de:
         sign_in: "Anmeldung"
         forgot_your_password: "Passwort vergessen?"
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
+        resend_unlock_instructions: "Entsperrungsanweisung erneut senden"
+        resend_confirmation_instructions: "Bestätigungsanweisung erneut senden"
     unsupported_browser:
       headline: "ActiveAdmin unterstützt nicht länger den Internet Explorer in Version 8 oder niedriger."
       recommendation: "Wir empfehlen die Nutzung von <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, oder <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
