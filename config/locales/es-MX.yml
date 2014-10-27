@@ -94,11 +94,3 @@ es-MX:
       block: "Lista"
       grid: "Cuadrícula"
       blog: "Blog"
-  views:
-      pagination:
-          truncate: "..."
-          first: "Inicio"
-          previous: "Anterior"
-          next: "Siguiente"
-          last: "Último"
-
