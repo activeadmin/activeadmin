@@ -135,7 +135,7 @@ module ActiveAdmin
     #
     # Yields the namespace if a block is given
     #
-    # @returns [Namespace] the new or existing namespace
+    # @return [Namespace] the new or existing namespace
     def namespace(name)
       name ||= :root
 
@@ -153,7 +153,7 @@ module ActiveAdmin
     # Register a page
     #
     # @param name [String] The page name
-    # @options [Hash] Accepts option :namespace.
+    # @option [Hash] Accepts option :namespace.
     # @&block The registration block.
     #
     def register_page(name, options = {}, &block)

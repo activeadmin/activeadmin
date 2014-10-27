@@ -112,7 +112,7 @@ module ActiveAdmin
     # @param [Symbol] name The name of the menu. Default: :default
     # @param [Proc] block The block to be ran when the menu is built
     #
-    # @returns [void]
+    # @return [void]
     def build_menu(name = DEFAULT_MENU, &block)
       @menus.before_build do |menus|
         menus.menu name do |menu|

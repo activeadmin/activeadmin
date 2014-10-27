@@ -12,21 +12,24 @@ module ActiveAdmin
         'status_tag'
       end
 
-      # @method status_tag(status, type = nil, options = {})
+      # @overload status_tag(status, type = nil, options = {})
+      #   @param [String] status the status to display. One of the span classes will be an underscored version of the status.
+      #   @param [Symbol] type type of status. Will become a class of the span. ActiveAdmin provide style for :ok, :warning and :error.
+      #   @param [Hash] options
+      #   @option options [String] :class to override the default class
+      #   @option options [String] :id to override the default id
+      #   @option options [String] :label to override the default label
+      #   @return [ActiveAdmin::Views::StatusTag]
       #
-      # @param [String] status the status to display. One of the span classes will be an underscored version of the status.
-      # @param [Symbol] type type of status. Will become a class of the span. ActiveAdmin provide style for :ok, :warning and :error.
-      # @param [Hash] options such as :class, :id and :label to override the default label
-      #
-      # @return [ActiveAdmin::Views::StatusTag]
-      #
-      # Examples:
+      # @example
       #   status_tag('In Progress')
       #   # => <span class='status_tag in_progress'>In Progress</span>
       #
+      # @example
       #   status_tag('active', :ok)
       #   # => <span class='status_tag active ok'>Active</span>
       #
+      # @example
       #   status_tag('active', :ok, class: 'important', id: 'status_123', label: 'on')
       #   # => <span class='status_tag active ok important' id='status_123'>on</span>
       #

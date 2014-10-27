@@ -115,7 +115,7 @@ module ActiveAdmin
 
       # @param [Hash] options An options hash for the column
       #
-      # @options options [Integer] :span The columns this column should span
+      # @option options [Integer] :span The columns this column should span
       def build(options = {})
         options = options.dup
         @span_size = options.delete(:span) || 1
