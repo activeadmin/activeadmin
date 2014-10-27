@@ -79,9 +79,8 @@ module ActiveAdmin
       end
 
       def content_for(record, attr)
-        previous = current_arbre_element.to_s
         value    = pretty_format find_attr_value(record, attr)
-        value.blank? && previous == current_arbre_element.to_s ? empty_value : value
+        value.blank? ? empty_value : value
       end
 
       def find_attr_value(record, attr)
