@@ -66,13 +66,8 @@ module ActiveAdmin
           build_pagination
           div(page_entries_info(options).html_safe, class: "pagination_information")
 
-          download_links = @download_links.is_a?(Proc) ? instance_exec(&@download_links) : @download_links
-
-          if download_links.is_a?(Array) && !download_links.empty?
-            build_download_format_links download_links
-          else
-            build_download_format_links unless download_links == false
-          end
+          formats = build_download_formats @download_links
+          build_download_format_links formats if formats.any?
         end
       end
 
