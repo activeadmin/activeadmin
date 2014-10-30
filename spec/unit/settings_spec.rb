@@ -79,9 +79,20 @@ describe ActiveAdmin::Settings::Inheritance do
   end
 
   describe "instance API" do
-    before{ subject.inheritable_setting :left, :right }
-    it "should work" do
-      expect(heir.new.left).to eq :right
+    describe "the setter `config.left =`" do
+      before{ subject.inheritable_setting :left, :right }
+      it "should work" do
+        config = heir.new
+        config.left = :none
+        expect(config.left).to eq :none
+      end
+    end
+
+    describe "the getter `config.left`" do
+      before{ subject.inheritable_setting :left, :right }
+      it "should work" do
+        expect(heir.new.left).to eq :right
+      end
     end
   end
 
