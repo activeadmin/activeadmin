@@ -12,8 +12,7 @@ module ActiveAdmin
   class ResourceController < BaseController
     layout :determine_active_admin_layout
 
-    respond_to :html, :xml, :json
-    respond_to :csv, only: :index
+    respond_to :html
 
     include ActionBuilder
     include Decorators
@@ -21,6 +20,7 @@ module ActiveAdmin
     include Scoping
     include Streaming
     include Sidebars
+    include ViewHelpers::DownloadFormatLinksHelper
     extend  ResourceClassMethods
 
     def self.active_admin_config=(config)
@@ -47,5 +47,17 @@ module ActiveAdmin
     end
     helper_method :renderer_for
 
+    # Set the respond_to formats individual for each request
+    def set_respond_to_formats
+      @mimes_for_respond_to = self.class.mimes_for_respond_to.dup
+      mime_formats = build_download_formats active_admin_config.namespace.download_links
+
+      self.class.respond_to *mime_formats, only: :index if mime_formats.any?
+
+      yield
+
+      self.class.mimes_for_respond_to = @mimes_for_respond_to
+    end
+    around_filter :set_respond_to_formats
   end
 end
