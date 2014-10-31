@@ -558,6 +558,23 @@ describe ActiveAdmin::FormBuilder do
       end
     end
 
+    describe "with two inputs" do
+      let :body do
+        build_form({url: '/categories'}, Category.new) do |f|
+          f.object.posts.build
+          f.has_many :posts do |p|
+            p.input :body
+            p.input :title
+          end
+        end
+      end
+
+      it "should have both inputs" do
+        expect(body).to have_tag('input', attributes: { name: 'category[posts_attributes][0][title]'})
+        expect(body).to have_tag('textarea', attributes: { name: 'category[posts_attributes][0][body]'})
+      end
+    end
+
     skip "should render the block if it returns nil" do
       body = build_form({url: '/categories'}, Category.new) do |f|
         f.object.posts.build
