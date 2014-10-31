@@ -30,6 +30,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 ### Security Fixes
 
 * Prevents potential DOS attack via Ruby symbols [#1926][] by [@seanlinsley][]
+* Prevents access to formats that the user not permitted to see [#3542][] by [@timoschilling][]
 
 ### Bug Fixes
 
