@@ -42,17 +42,16 @@ module ActiveAdmin
     end
 
     def build(view_context, receiver)
+      @collection = view_context.send(:collection)
       options = ActiveAdmin.application.csv_options.merge self.options
       columns = exec_columns view_context
 
       receiver << CSV.generate_line(columns.map{ |c| encode c.name, options }, options)
 
-      collection  = view_context.send(:collection)
-      total_pages = collection.public_send(Kaminari.config.page_method_name, 1).per(batch_size).total_pages
-      (1..total_pages).each do |page_no|
-        collection.public_send(Kaminari.config.page_method_name, page_no).per(batch_size).each do |resource|
-          resource = view_context.send :apply_decorator, resource
-          receiver << CSV.generate_line(build_row(resource, columns, options), options)
+      (1..paginated_collection.total_pages).each do |page_no|
+        paginated_collection(page_no).each do |resource|
+           resource = view_context.send :apply_decorator, resource
+           receiver << CSV.generate_line(build_row(resource, columns, options), options)
         end
       end
     end
@@ -110,6 +109,10 @@ module ActiveAdmin
 
     def column_transitive_options
       @column_transitive_options ||= @options.slice(*COLUMN_TRANSITIVE_OPTIONS)
+    end
+
+    def paginated_collection(page_no = 1)
+      @collection.public_send(Kaminari.config.page_method_name, page_no).per(batch_size)
     end
 
     def batch_size
