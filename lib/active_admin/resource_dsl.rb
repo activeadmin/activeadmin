@@ -1,6 +1,11 @@
 module ActiveAdmin
-  # This is the class where all the register blocks are instance eval'd
+  # This is the class where all the register blocks are evaluated.
   class ResourceDSL < DSL
+    def initialize(config, resource_class)
+      @resource = resource_class
+      super(config)
+    end
+
     private
 
     def belongs_to(target, options = {})
@@ -17,12 +22,11 @@ module ActiveAdmin
       config.scope(*args, &block)
     end
 
-    #
-    # Rails 4 Strong Parameters Support
+    # Rails 4 Strong Parameters support
     #
     # Either
     #
-    #   permit_params :title, :author, :body
+    #   permit_params :title, :author, :body, tags: []
     #
     # Or
     #
@@ -35,13 +39,15 @@ module ActiveAdmin
     #     end
     #   end
     #
+    # Keys included in the `permitted_params` setting are automatically whitelisted.
+    #
     def permit_params(*args, &block)
-      resource_sym = config.resource_name.singular.to_sym
+      param_key = config.param_key.to_sym
 
       controller do
         define_method :permitted_params do
-          params.permit resource_sym =>
-                        block ? instance_exec(&block) : args
+          params.permit *active_admin_namespace.permitted_params,
+            param_key => block ? instance_exec(&block) : args
         end
       end
     end
@@ -70,11 +76,13 @@ module ActiveAdmin
     #     column("Author") { |post| post.author.full_name }
     #   end
     #
-    #   csv :col_sep => ";", :force_quotes => true do
+    #   csv col_sep: ";", force_quotes: true do
     #     column :name
     #   end
     #
     def csv(options={}, &block)
+      options[:resource] = @resource
+
       config.csv_builder = CSVBuilder.new(options, &block)
     end
 
@@ -102,7 +110,7 @@ module ActiveAdmin
       title = options.delete(:title)
 
       controller do
-        before_filter(:only => [name]) { @page_title = title } if title
+        before_filter(only: [name]) { @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end
@@ -139,15 +147,15 @@ module ActiveAdmin
     # == Before / After Destroy
     # Called before and after the object is destroyed from the database.
     #
-    delegate :before_build,   :after_build,   :to => :controller
-    delegate :before_create,  :after_create,  :to => :controller
-    delegate :before_update,  :after_update,  :to => :controller
-    delegate :before_save,    :after_save,    :to => :controller
-    delegate :before_destroy, :after_destroy, :to => :controller
+    delegate :before_build,   :after_build,   to: :controller
+    delegate :before_create,  :after_create,  to: :controller
+    delegate :before_update,  :after_update,  to: :controller
+    delegate :before_save,    :after_save,    to: :controller
+    delegate :before_destroy, :after_destroy, to: :controller
 
     # Standard rails filters
     delegate :before_filter, :skip_before_filter, :after_filter, :skip_after_filter, :around_filter, :skip_filter,
-             :to => :controller
+             to: :controller
 
     # Specify which actions to create in the controller
     #
@@ -158,7 +166,7 @@ module ActiveAdmin
     #   end
     #
     # Will only create the index and show actions (no create, update or delete)
-    delegate :actions, :to => :controller
+    delegate :actions, to: :controller
 
   end
 end

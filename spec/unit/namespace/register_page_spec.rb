@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Namespace, "registering a page" do
 
@@ -17,7 +17,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
     end
 
     it "should create a new controller in the default namespace" do
-      expect(defined?(Admin::StatusController)).to be_true
+      expect(defined?(Admin::StatusController)).to be_truthy
     end
 
     it "should create a menu item" do
@@ -49,7 +49,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
     describe "adding as a child" do
       before do
         namespace.register_page "Status" do
-          menu :parent => 'Extra'
+          menu parent: 'Extra'
         end
       end
       it "should generate the parent menu item" do

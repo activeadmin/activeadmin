@@ -10,7 +10,7 @@ Feature: Action Item
     Given a configuration of:
     """
     ActiveAdmin.register Post do
-      action_item do
+      action_item :embiggen do
         link_to "Embiggen", '/'
       end
     end
@@ -32,7 +32,7 @@ Feature: Action Item
     Given a configuration of:
     """
     ActiveAdmin.register Post do
-      action_item :if => proc{ !current_active_admin_user.nil? } do
+      action_item :embiggen, :if => proc{ !current_active_admin_user.nil? } do
         link_to "Embiggen", '/'
       end
     end
@@ -54,7 +54,7 @@ Feature: Action Item
     Given a configuration of:
     """
     ActiveAdmin.register Post do
-      action_item :if => proc{ current_active_admin_user.nil? } do
+      action_item :embiggen, :if => proc{ current_active_admin_user.nil? } do
         link_to "Embiggen", '/'
       end
     end

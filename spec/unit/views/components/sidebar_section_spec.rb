@@ -1,15 +1,17 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Views::SidebarSection do
 
+  let(:options) { {} }
+
   let(:section) do
-    ActiveAdmin::SidebarSection.new("Help Section") do
+    ActiveAdmin::SidebarSection.new("Help Section", options) do
       span "Help Me"
     end
   end
 
   let(:html) do
-    render_arbre_component :section => section do
+    render_arbre_component section: section do
       sidebar_section(assigns[:section])
     end
   end
@@ -32,6 +34,14 @@ describe ActiveAdmin::Views::SidebarSection do
 
   it "should add children to the contents div" do
     expect(html.find_by_tag("span").first.parent).to eq html.find_by_tag("div").first
+  end
+
+  context 'with a custom class attribute' do
+    let(:options) { { class: 'custom_class' } }
+
+    it "should have 'custom_class' class" do
+      expect(html.class_list).to include("custom_class")
+    end
   end
 
 end

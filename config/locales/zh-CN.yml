@@ -33,6 +33,9 @@
         ends_with: "完与"
         greater_than: "大于"
         less_than: "小于"
+    status_tag:
+      "yes": "是的"
+      "no": "无"
     main_content: "请执行 %{model}#main_content 来显示内容."
     logout: "退出"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +54,12 @@
     blank_slate:
       content: "暂时还没有%{resource_name}."
       link: "新建一个"
+    dropdown_actions:
+      button_label: "行动"
     batch_actions:
       button_label: "批处理"
-      delete_confirmation: "你确定要删除所有%{plural_model}? 如果执行，将不可恢复."
+      default_confirmation: "你确定你要这样做？"
+      delete_confirmation: "你确定要删除所有%{plural_model}?"
       succesfully_destroyed:
         one: "成功删除 1 %{model}"
         other: "成功删除 %{count} %{plural_model}"
@@ -91,16 +97,12 @@
       unlock:
         title: "重新发送送解锁命令"
         submit: "重新发送送解锁命令"
+      resend_confirmation_instructions:
+        title: " 重新发送确认指示"
+        submit: " 重新发送确认指示"
       links:
         sign_in: "登录"
         forgot_your_password: "忘记了密码？"
         sign_in_with_omniauth_provider: "登入%{provider}"
-  formtastic:
-    yes: "YES"
-    no: "NO"
-    create: "新建%{model}"
-    update: "更新%{model}"
-    submit: "确认"
-    cancel: "取消"
-    reset: "重置%{model}"
-    required: "必须的"
+    access_denied:
+      message: "您无权处理此操作"

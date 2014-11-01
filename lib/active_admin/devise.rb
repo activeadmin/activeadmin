@@ -1,3 +1,5 @@
+ActiveAdmin::Dependency.devise! ActiveAdmin::Dependency::DEVISE
+
 require 'devise'
 
 module ActiveAdmin
@@ -5,14 +7,14 @@ module ActiveAdmin
 
     def self.config
       config = {
-        :path => ActiveAdmin.application.default_namespace,
-        :controllers => ActiveAdmin::Devise.controllers,
-        :path_names => { :sign_in => 'login', :sign_out => "logout" }
+        path: ActiveAdmin.application.default_namespace || "/",
+        controllers: ActiveAdmin::Devise.controllers,
+        path_names: { sign_in: 'login', sign_out: "logout" }
       }
 
       if ::Devise.respond_to?(:sign_out_via)
         logout_methods = [::Devise.sign_out_via, ActiveAdmin.application.logout_link_method].flatten.uniq
-        config.merge!( :sign_out_via => logout_methods)
+        config.merge!( sign_out_via: logout_methods)
       end
 
       config
@@ -20,9 +22,11 @@ module ActiveAdmin
 
     def self.controllers
       {
-        :sessions => "active_admin/devise/sessions",
-        :passwords => "active_admin/devise/passwords",
-        :unlocks => "active_admin/devise/unlocks"
+        sessions: "active_admin/devise/sessions",
+        passwords: "active_admin/devise/passwords",
+        unlocks: "active_admin/devise/unlocks",
+        registrations: "active_admin/devise/registrations",
+        confirmations: "active_admin/devise/confirmations"
       }
     end
 
@@ -64,6 +68,20 @@ module ActiveAdmin
 
     class UnlocksController < ::Devise::UnlocksController
       include ::ActiveAdmin::Devise::Controller
+    end
+
+    class RegistrationsController < ::Devise::RegistrationsController
+       include ::ActiveAdmin::Devise::Controller
+    end
+
+    class ConfirmationsController < ::Devise::ConfirmationsController
+       include ::ActiveAdmin::Devise::Controller
+    end
+
+    def self.controllers_for_filters
+      [SessionsController, PasswordsController, UnlocksController,
+        RegistrationsController, ConfirmationsController
+      ]
     end
 
   end

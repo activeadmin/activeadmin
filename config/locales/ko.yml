@@ -31,6 +31,9 @@ ko:
         ends_with: "로 종료"
         greater_than: "크다"
         less_than: "작다"
+    status_tag:
+      "yes": "예"
+      "no": "없음"
     main_content: "내용을 보시려면 %{model}#main_content 를 구현해 주시기 바랍니다."
     logout: "로그아웃"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -46,9 +49,12 @@ ko:
     blank_slate:
       content: "아직 %{resource_name} 이/가 없습니다."
       link: "만들기"
+    dropdown_actions:
+      button_label: "작업"
     batch_actions:
       button_label: "배치 작업"
-      delete_confirmation: "당신은 이들을 삭제하시겠습니까 %{plural_model}? 당신은 이것을 취소할 수 없습니다."
+      default_confirmation: "당신은이 작업을 수행 하 시겠습니까?"
+      delete_confirmation: "당신은 이들을 삭제하시겠습니까 %{plural_model}?"
       succesfully_destroyed:
         one: "성공적으로 파괴 1 %{model}"
         other: "성공적으로 파괴 %{count} %{plural_model}"

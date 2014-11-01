@@ -33,6 +33,9 @@ hu:
         ends_with: "végződik"
         greater_than: "Nagyobb, mint"
         less_than: "Kisebb, mint"
+    status_tag:
+      "yes": "Igen"
+      "no": "Nem"
     main_content: "Kérem, implementálja a %{model}#main_content metódust a tartalom megjelenítéséhez."
     logout: "Kilépés"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +54,12 @@ hu:
     blank_slate:
       content: "Még nincs létrehozva %{resource_name}."
       link: "Létrehozás most"
+    dropdown_actions:
+      button_label: "Műveletek"
     batch_actions:
       button_label: "Tömeges műveletek"
-      delete_confirmation: "Biztosan törli ezeket a %{plural_model}? Később nem lehet visszavonni."
+      default_confirmation: "Biztos vagy benne, hogy a ön akar-hoz csinál ez?"
+      delete_confirmation: "Biztosan törli ezeket a %{plural_model}?"
       succesfully_destroyed:
         one: "1 %{model} sikeresen törölve"
         other: "%{count} %{plural_model} sikeresen törölve"
@@ -86,6 +92,9 @@ hu:
       unlock:
         title: "Újraküldés unlock utasítások"
         submit: "Újraküldés unlock utasítások"
+      resend_confirmation_instructions:
+        title: "Megerősítő levél újraküldése"
+        submit: "Megerősítő levél újraküldése"
       links:
         sign_in: "Bejelentkezés"
         forgot_your_password: "Elfelejtette a jelszavát?"

@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper do
 
   describe "class methods" do
-    before :each do
+    before :all do
 
       begin
         # The mime type to be used in respond_to |format| style web-services in rails

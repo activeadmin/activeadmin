@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'rails_helper' 
 
 module ActiveAdmin
   describe Resource::Routes do
@@ -23,7 +23,7 @@ module ActiveAdmin
       end
 
       context "when in the root namespace" do
-        let!(:config) { ActiveAdmin.register Category, :namespace => false }
+        let!(:config) { ActiveAdmin.register Category, namespace: false }
         it "should have a nil route_prefix" do
           expect(config.route_prefix).to be_nil
         end

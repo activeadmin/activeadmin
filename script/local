@@ -19,7 +19,7 @@ Examples:
 end
 
 # Set up some variables
-rails_version = detect_rails_version || '3.0.0'
+rails_version = detect_rails_version!
 
 test_app_dir = ".test-rails-apps"
 test_app_path = "#{test_app_dir}/test-rails-app-#{rails_version}"
@@ -29,7 +29,7 @@ system "mkdir #{test_app_dir}" unless File.exists?(test_app_dir)
 
 # Create the sample rails app if it doesn't already exist
 unless File.exists? test_app_path
-  system "RAILS='#{rails_version}' bundle exec rails new #{test_app_path} -m spec/support/rails_template_with_data.rb"
+  system "RAILS='#{rails_version}' bundle exec rails new #{test_app_path} -m spec/support/rails_template_with_data.rb --skip-bundle"
 end
 
 # Link this rails app

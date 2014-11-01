@@ -47,15 +47,26 @@ end
 This will generate a route at `/admin/users/:id/lock` pointing to the
 `Admin::UserController#lock` controller action.
 
-## Controller Action HTTP Verb
+## HTTP Verbs
 
-The `collection_action` and `member_actions` methods both accept the `:method`
+The `collection_action` and `member_action` methods both accept the `:method`
 argument to set the HTTP verb for the controller action and route.
 
-The generated routes will be scoped to the given method you pass in. By default
-your action will use the GET verb.
+Sometimes you want to create an action with the same name, that handles multiple
+HTTP verbs. In that case, this is the suggested approach:
 
-## Rendering in Custom Actions
+```ruby
+member_action :foo, method: [:get, :post] do
+  if request.post?
+    resource.update_attributes! foo: params[:foo] || {}
+    head :ok
+  else
+    render :foo
+  end
+end
+```
+
+## Rendering
 
 Custom controller actions support rendering within the standard Active Admin
 layout.
@@ -87,27 +98,7 @@ table_for assigns[:post].comments do
 end
 ```
 
-### Custom Action Items
-
-To include your own action items (like the New, Edit and Delete buttons), add an
-`action_item` block. For example, to add a "View on site" button to view a blog
-post:
-
-```ruby
-action_item only: :show do
-  link_to 'View on site', post_path(post) if post.published?
-end
-```
-
-Actions items also accept the `:if` option to conditionally display them:
-
-```ruby
-action_item only: :show, if: proc{ current_admin_user.super_admin? } do
-  "Only display this to super admins on the show screen"
-end
-```
-
-### Page Titles
+## Page Titles
 
 The page title for the custom action will be the translated version of
 the controller action name. For example, a member_action named "upload_csv" will
@@ -128,7 +119,28 @@ ActiveAdmin.register Post do
 end
 ```
 
-## Modifying the Controller
+# Action Items
+
+To include your own action items (like the New, Edit and Delete buttons), add an
+`action_item` block. The first parameter is just a name to identify the action,
+and is required. For example, to add a "View on site" button to view a blog
+post:
+
+```ruby
+action_item :view, only: :show do
+  link_to 'View on site', post_path(post) if post.published?
+end
+```
+
+Actions items also accept the `:if` option to conditionally display them:
+
+```ruby
+action_item :super_action, only: :show, if: proc{ current_admin_user.super_admin? } do
+  "Only display this to super admins on the show screen"
+end
+```
+
+# Modifying the Controller
 
 The generated controller is available to you within the registration block by
 using the `controller` method.

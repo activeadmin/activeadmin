@@ -6,14 +6,9 @@ module ActiveAdmin
     class FormBuilder < ::ActiveAdmin::FormBuilder
       include ::ActiveAdmin::Filters::FormtasticAddons
 
-      def initialize(*args)
-        @use_form_buffer = true # force ActiveAdmin::FormBuilder to use the form buffer
-        super
-      end
-
       def filter(method, options = {})
         if method.present? && options[:as] ||= default_input_type(method)
-          input(method, options)
+          template.concat input(method, options)
         end
       end
 
@@ -22,7 +17,7 @@ module ActiveAdmin
       # Returns the default filter type for a given attribute. If you want
       # to use a custom search method, you have to specify the type yourself.
       def default_input_type(method, options = {})
-        if method =~ /_(contains|starts_with|ends_with)\z/
+        if method =~ /_(eq|equals|cont|contains|start|starts_with|end|ends_with)\z/
           :string
         elsif reflection_for(method) || polymorphic_foreign_type?(method)
           :select
@@ -56,30 +51,28 @@ module ActiveAdmin
 
       # Helper method to render a filter form
       def active_admin_filters_form_for(search, filters, options = {})
-        defaults = { :builder => ActiveAdmin::Filters::FormBuilder,
-                     :url     => collection_path,
-                     :html    => {:class  => 'filter_form'} }
-        required = { :html    => {:method => :get},
-                     :as      => :q }
+        defaults = { builder: ActiveAdmin::Filters::FormBuilder,
+                     url: collection_path,
+                     html: {class: 'filter_form'} }
+        required = { html: {method: :get},
+                     as: :q }
         options  = defaults.deep_merge(options).deep_merge(required)
 
         form_for search, options do |f|
           filters.each do |attribute, opts|
-            should   = opts.delete(:if)     || proc{ true }
-            shouldnt = opts.delete(:unless) || proc{ false }
+            next if opts.key?(:if)     && !call_method_or_proc_on(self, opts[:if])
+            next if opts.key?(:unless) &&  call_method_or_proc_on(self, opts[:unless])
 
-            if call_method_or_proc_on(self, should) && !call_method_or_proc_on(self, shouldnt)
-              f.filter attribute, opts
-            end
+            f.filter attribute, opts.except(:if, :unless)
           end
 
-          buttons = content_tag :div, :class => "buttons" do
+          buttons = content_tag :div, class: "buttons" do
             f.submit(I18n.t('active_admin.filters.buttons.filter')) +
-              link_to(I18n.t('active_admin.filters.buttons.clear'), '#', :class => 'clear_filters_btn') +
-              hidden_field_tags_for(params, :except => [:q, :page])
+              link_to(I18n.t('active_admin.filters.buttons.clear'), '#', class: 'clear_filters_btn') +
+              hidden_field_tags_for(params, except: [:q, :page])
           end
 
-          f.form_buffers.last + buttons
+          f.template.concat buttons
         end
       end
 

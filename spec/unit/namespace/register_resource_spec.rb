@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 # TODO: refactor this file so it doesn't depend on the Admin namespace in such a broken way.
 #       Specifically, the dashboard is already defined and we do let(:namespace) multiple times.
@@ -19,10 +19,10 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       expect(namespace.resources.keys).to include('Category')
     end
     it "should create a new controller in the default namespace" do
-      expect(defined?(Admin::CategoriesController)).to be_true
+      expect(defined?(Admin::CategoriesController)).to be_truthy
     end
-    pending "should not create the dashboard controller" do
-      defined?(Admin::DashboardController).to_not be_true
+    skip "should not create the dashboard controller" do
+      defined?(Admin::DashboardController).to_not be_truthy
     end
     it "should create a menu item" do
       expect(menu["Categories"]).to be_a ActiveAdmin::MenuItem
@@ -50,7 +50,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       expect(namespace.resources.keys).to include('Mock::Resource')
     end
     it "should create a new controller in the default namespace" do
-      expect(defined?(Admin::MockResourcesController)).to be_true
+      expect(defined?(Admin::MockResourcesController)).to be_truthy
     end
     it "should create a menu item" do
       expect(menu["Mock Resources"]).to be_an_instance_of(ActiveAdmin::MenuItem)
@@ -98,7 +98,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
     describe "adding as a child" do
       before do
         namespace.register Category do
-          menu :parent => 'Blog'
+          menu parent: 'Blog'
         end
       end
       it "should generate the parent menu item" do
@@ -134,7 +134,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       context "when optional" do
         before do
           namespace.register Post do
-            belongs_to :author, :optional => true
+            belongs_to :author, optional: true
           end
         end
         it "should show up in the menu" do
@@ -149,14 +149,14 @@ describe ActiveAdmin::Namespace, "registering a resource" do
       it "should be namespaced" do
         namespace = ActiveAdmin::Namespace.new(application, :one)
         namespace.register Category
-        expect(defined?(One::CategoriesController)).to be_true
+        expect(defined?(One::CategoriesController)).to be_truthy
       end
     end
     context "when not namespaced" do
       it "should not be namespaced" do
         namespace = ActiveAdmin::Namespace.new(application, :two)
         namespace.register Category
-        expect(defined?(Two::CategoriesController)).to be_true
+        expect(defined?(Two::CategoriesController)).to be_truthy
       end
     end
   end # describe "dashboard controller name"

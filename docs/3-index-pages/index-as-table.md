@@ -88,6 +88,18 @@ index do
 end
 ```
 
+In case you prefer to list actions links in a dropdown menu:
+
+```ruby
+index do
+  selectable_column
+  column :title
+  actions dropdown: true do |post|
+    item "Preview", admin_preview_post_path(post)
+  end
+end
+```
+
 ## Sorting
 
 When a column is generated from an Active Record attribute, the table is
@@ -113,6 +125,15 @@ You can turn off sorting on any column by passing false:
 ```ruby
 index do
   column :title, sortable: false
+end
+```
+
+It's also possible to sort by PostgreSQL's hstore column key. You should set `sortable`
+option to a `column->'key'` value:
+
+```ruby
+index do
+  column :keywords, sortable: "meta->'keywords'"
 end
 ```
 
@@ -150,5 +171,16 @@ For example, if you were using CanCan:
 index do
   column :title, sortable: false
   column :secret_data if can? :manage, Post
+end
+```
+
+## Custom row class
+
+In order to add special class to table rows pass the proc object as a `:row_class` option
+of the `index` method.
+
+```ruby
+index row_class: ->elem { 'active' if elem.active? } do
+  # columns
 end
 ```

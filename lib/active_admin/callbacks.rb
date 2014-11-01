@@ -2,7 +2,7 @@ module ActiveAdmin
   module Callbacks
     extend ActiveSupport::Concern
 
-    protected
+    private
 
     # Simple callback system. Implements before and after callbacks for
     # use within the controllers.
@@ -11,7 +11,7 @@ module ActiveAdmin
     # passing in any arbitrary object into the callback method (which we
     # need to do)
 
-    def call_callback_with(method, *args)
+    def run_callback(method, *args)
       case method
       when Symbol
         send(method, *args)
@@ -23,6 +23,8 @@ module ActiveAdmin
     end
 
     module ClassMethods
+
+      private
 
       # Define a new callback.
       #
@@ -56,32 +58,31 @@ module ActiveAdmin
       def define_active_admin_callbacks(*names)
         names.each do |name|
           [:before, :after].each do |type|
+            callback_name = "#{type}_#{name}_callbacks"
+            callback_ivar = "@#{callback_name}"
 
-            # Define a method to set the callback
-            class_eval(<<-EOS, __FILE__, __LINE__ + 1)
-              # def self.before_create_callbacks
-              def self.#{type}_#{name}_callbacks
-                @#{type}_#{name}_callbacks ||= []
-              end
+            # def self.before_create_callbacks
+            singleton_class.send :define_method, callback_name do
+              instance_variable_get(callback_ivar) || instance_variable_set(callback_ivar, [])
+            end
+            singleton_class.send :private, callback_name
 
-              # def self.before_create
-              def self.#{type}_#{name}(method = nil, &block)
-                #{type}_#{name}_callbacks << (method || block)
-              end
-            EOS
+            # def self.before_create
+            singleton_class.send :define_method, "#{type}_#{name}" do |method = nil, &block|
+              send(callback_name).push method || block
+            end
           end
 
-          # Define a method to run the callbacks
-          class_eval(<<-EOS, __FILE__, __LINE__ + 1)
-            def run_#{name}_callbacks(*args)
-              self.class.before_#{name}_callbacks.each{|callback| call_callback_with(callback, *args)}
-              value = yield if block_given?
-              self.class.after_#{name}_callbacks.each{|callback| call_callback_with(callback, *args)}
-              return value
-            end
-            EOS
-         end
-       end
+          # def run_create_callbacks
+          define_method "run_#{name}_callbacks" do |*args, &block|
+            self.class.send("before_#{name}_callbacks").each{ |cbk| run_callback(cbk, *args) }
+            value = block.try :call
+            self.class.send("after_#{name}_callbacks").each { |cbk| run_callback(cbk, *args) }
+            return value
+          end
+          send :private, "run_#{name}_callbacks"
+        end
+      end
     end
   end
 end

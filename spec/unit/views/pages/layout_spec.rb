@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Views::Pages::Layout do
 
@@ -6,22 +6,18 @@ describe ActiveAdmin::Views::Pages::Layout do
   let(:helpers) do
     helpers = mock_action_view
 
-    helpers.stub :active_admin_application => active_admin_application,
-                 :active_admin_config => double('Config', action_items?: nil, breadcrumb: nil, sidebar_sections?: nil),
-                 :active_admin_namespace => active_admin_namespace,
-                 :breadcrumb_links => [],
-                 :content_for => "",
-                 :csrf_meta_tag => "",
-                 :current_active_admin_user => nil,
-                 :current_active_admin_user? => false,
-                 :current_menu => double('Menu', :items => []),
-                 :flash => {},
-                 :javascript_path => "/dummy/",
-                 :link_to => "",
-                 :render_or_call_method_or_proc_on => "",
-                 :stylesheet_link_tag => double(html_safe: ""),
-                 :view_factory => view_factory,
-                 :params => {:controller => 'UsersController', :action => 'edit'}
+    { active_admin_application:   active_admin_application,
+      active_admin_config:        double('Config', action_items?: nil, breadcrumb: nil, sidebar_sections?: nil),
+      active_admin_namespace:     active_admin_namespace,
+      csrf_meta_tag:              '',
+      current_active_admin_user:  nil,
+      current_active_admin_user?: false,
+      current_menu:               double('Menu', items: []),
+      params:                     {controller: 'UsersController', action: 'edit'},
+      env:                        {}
+    }.each do |method, returns|
+      allow(helpers).to receive(method).and_return returns
+    end
 
     helpers
   end

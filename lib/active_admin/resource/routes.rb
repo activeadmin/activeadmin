@@ -7,7 +7,7 @@ module ActiveAdmin
       def route_collection_path(params = {})
         RouteBuilder.new(self).collection_path(params)
       end
-      
+
       # @param resource [ActiveRecord::Base] the instance we want the path of
       # @return [String] the path to this resource collection page
       # @example "/admin/posts/1"
@@ -21,7 +21,7 @@ module ActiveAdmin
       end
 
       def route_uncountable?
-        config = controller.resources_configuration[:self]
+        config = resources_configuration[:self]
 
         config[:route_collection_name] == config[:route_instance_name]
       end
@@ -35,20 +35,20 @@ module ActiveAdmin
 
         def collection_path(params)
           route_name = route_name(
-            resource.controller.resources_configuration[:self][:route_collection_name],
+            resource.resources_configuration[:self][:route_collection_name],
             (resource.route_uncountable? ? 'index_path' : 'path')
           )
 
-          routes.send(route_name, *route_collection_params(params))
+          routes.public_send route_name, *route_collection_params(params)
         end
 
         # @return [String] the path to this resource collection page
         # @param instance [ActiveRecord::Base] the instance we want the path of
         # @example "/admin/posts/1"
         def instance_path(instance)
-          route_name = route_name(resource.controller.resources_configuration[:self][:route_instance_name])
+          route_name = route_name(resource.resources_configuration[:self][:route_instance_name])
 
-          routes.send(route_name, *route_instance_params(instance))
+          routes.public_send route_name, *route_instance_params(instance)
         end
 
         private
@@ -70,7 +70,7 @@ module ActiveAdmin
         # @return params to pass to instance path
         def route_instance_params(instance)
           if nested?
-            [instance.send(belongs_to_name).to_param, instance.to_param]
+            [instance.public_send(belongs_to_name).to_param, instance.to_param]
           else
             instance.to_param
           end

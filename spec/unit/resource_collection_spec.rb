@@ -1,15 +1,20 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'active_admin/resource_collection'
-
-include ActiveAdmin
 
 describe ActiveAdmin::ResourceCollection do
   let(:application) { ActiveAdmin::Application.new }
-  let(:namespace)   { ActiveAdmin::Namespace.new(application, :admin) }
+  let(:namespace)   { ActiveAdmin::Namespace.new application, :admin }
+  let(:collection)  { ActiveAdmin::ResourceCollection.new }
+  let(:resource)    { double resource_name: "MyResource" }
 
-  let(:collection){ ResourceCollection.new }
-
-  let(:resource){ double resource_name: "MyResource" }
+  it { is_expected.to respond_to :[]       }
+  it { is_expected.to respond_to :add      }
+  it { is_expected.to respond_to :each     }
+  it { is_expected.to respond_to :has_key? }
+  it { is_expected.to respond_to :keys     }
+  it { is_expected.to respond_to :values   }
+  it { is_expected.to respond_to :size     }
+  it { is_expected.to respond_to :to_a     }
 
   it "should have no resources when new" do
     expect(collection).to be_empty
@@ -25,7 +30,7 @@ describe ActiveAdmin::ResourceCollection do
     expect(collection.keys).to eq [resource.resource_name]
   end
 
-  describe "adding a new resource" do
+  describe "#add" do
     it "should return the resource" do
       expect(collection.add(resource)).to eq resource
     end
@@ -44,11 +49,42 @@ describe ActiveAdmin::ResourceCollection do
       collection.add(resource); collection.add(resource)
       expect(collection.values).to eq [resource]
     end
+
+    it "shouldn't allow a resource name mismatch to occur" do
+      expect {
+        ActiveAdmin.register Category
+        ActiveAdmin.register Post, as: "Category"
+      }.to raise_error ActiveAdmin::ResourceCollection::ConfigMismatch
+    end
+
+    it "shouldn't allow a Page/Resource mismatch to occur" do
+      expect {
+        ActiveAdmin.register User
+        ActiveAdmin.register_page 'User'
+      }.to raise_error ActiveAdmin::ResourceCollection::IncorrectClass
+    end
+
+    describe "should store both renamed and non-renamed resources" do
+      let(:resource) { ActiveAdmin::Resource.new namespace, Category }
+      let(:renamed)  { ActiveAdmin::Resource.new namespace, Category, as: "Subcategory" }
+
+      it "when the renamed version is added first" do
+        collection.add renamed
+        collection.add resource
+        expect(collection.values).to include(resource, renamed)
+      end
+
+      it "when the renamed version is added last" do
+        collection.add resource
+        collection.add renamed
+        expect(collection.values).to include(resource, renamed)
+      end
+    end
   end
 
   describe "#[]" do
-    let(:resource)              { Resource.new(namespace, resource_class) }
-    let(:inherited_resource)    { Resource.new(namespace, inherited_resource_class) }
+    let(:resource)              { ActiveAdmin::Resource.new namespace, resource_class }
+    let(:inherited_resource)    { ActiveAdmin::Resource.new namespace, inherited_resource_class }
 
     let(:resource_class)           { User }
     let(:inherited_resource_class) { Publisher }
@@ -96,7 +132,7 @@ describe ActiveAdmin::ResourceCollection do
     end
 
     context "with a renamed resource" do
-      let(:renamed_resource) { Resource.new(namespace, resource_class, :as => name) }
+      let(:renamed_resource) { ActiveAdmin::Resource.new namespace, resource_class, as: name }
       let(:name)             { "Administrators" }
 
       before do
@@ -117,44 +153,6 @@ describe ActiveAdmin::ResourceCollection do
     end
   end
 
-  describe ".add" do
-    let(:resource)         { Resource.new(namespace, Category) }
-    let(:resource_renamed) { Resource.new(namespace, Category, as: "Subcategory") }
-
-    context "when renamed resource is added first" do
-      before do
-        collection.add(resource_renamed)
-        collection.add(resource)
-      end
-
-      it "contains both resources" do
-        expect(collection.values).to include(resource, resource_renamed)
-      end
-    end
-
-    context "when resource is added first" do
-      before do
-        collection.add(resource)
-        collection.add(resource_renamed)
-      end
-
-      it "contains both resources" do
-        expect(collection.values).to include(resource, resource_renamed)
-      end
-    end
-
-    context "when a duplicate resource is added" do
-      let(:resource_duplicate) { Resource.new(namespace, Category) }
-
-      before do
-        collection.add(resource)
-        collection.add(resource_duplicate)
-      end
-
-      it "the collection contains one instance of that resource" do
-        expect(collection.values).to eq([resource])
-      end
-    end
-  end
+  skip "specs for subclasses of Page and Resource"
 
 end

@@ -13,12 +13,12 @@ module ActiveAdmin
 
       def action(batch_action, options = {})
         options[:class] ||= []
-        options[:class] += %w(batch_action)
+        options[:class] << "batch_action"
         options.merge! "data-action" => batch_action.sym,
                        "data-confirm" => batch_action.confirm
 
-        title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", :default => batch_action.title)
-        label = I18n.t("active_admin.batch_actions.action_label", :title => title)
+        title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", default: batch_action.title)
+        label = I18n.t("active_admin.batch_actions.action_label", title: title)
 
         super(label, "#", options)
       end

@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 Auth = ActiveAdmin::Authorization
 
-describe Admin::PostsController, "Controller Authorization", :type => :controller do
+describe Admin::PostsController, "Controller Authorization", type: :controller do
 
   let(:authorization){ controller.send(:active_admin_authorization) }
 

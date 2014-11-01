@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 module ActiveAdmin
   describe Resource, "Scopes" do
@@ -23,6 +23,13 @@ module ActiveAdmin
       it "should retrive a scope by its id" do
         config.scope :published
         expect(config.get_scope_by_id(:published).name).to eq "Published"
+      end
+
+      it "should retrieve a string scope with spaces by its id without conflicts" do
+        aspace_1 = config.scope "a space"
+        aspace_2 = config.scope "as pace"
+        expect(config.get_scope_by_id(aspace_1.id).name).to eq "a space"
+        expect(config.get_scope_by_id(aspace_2.id).name).to eq "as pace"
       end
 
       it "should not add a scope with the same name twice" do

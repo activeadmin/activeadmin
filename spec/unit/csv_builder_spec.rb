@@ -1,29 +1,43 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::CSVBuilder do
 
   describe '.default_for_resource using Post' do
-    let(:csv_builder) { ActiveAdmin::CSVBuilder.default_for_resource(Post) }
+    let(:csv_builder) { ActiveAdmin::CSVBuilder.default_for_resource(Post).tap(&:exec_columns) }
 
-    it "should return a default csv_builder for Post" do
+    it 'returns a default csv_builder for Post' do
       expect(csv_builder).to be_a(ActiveAdmin::CSVBuilder)
     end
 
-    specify "the first column should be Id" do
+    it 'defines Id as the first column' do
       expect(csv_builder.columns.first.name).to eq 'Id'
       expect(csv_builder.columns.first.data).to eq :id
     end
 
-    specify "the following columns should be content_column" do
+    it "has Post's content_columns" do
       csv_builder.columns[1..-1].each_with_index do |column, index|
-        expect(column.name).to eq Post.content_columns[index].name.titleize
+        expect(column.name).to eq Post.content_columns[index].name.humanize
         expect(column.data).to eq Post.content_columns[index].name.to_sym
+      end
+    end
+
+    context 'when column has a localized name' do
+      let(:localized_name) { 'Titulo' }
+
+      before do
+        allow(Post).to receive(:human_attribute_name).and_call_original
+        allow(Post).to receive(:human_attribute_name).with(:title){ localized_name }
+      end
+
+      it 'gets name from I18n' do
+        title_index = Post.content_columns.map(&:name).index('title') + 1 # First col is always id
+        expect(csv_builder.columns[title_index].name).to eq localized_name
       end
     end
   end
 
   context 'when empty' do
-    let(:builder){ ActiveAdmin::CSVBuilder.new }
+    let(:builder){ ActiveAdmin::CSVBuilder.new.tap(&:exec_columns) }
 
     it "should have no columns" do
       expect(builder.columns).to eq []
@@ -34,7 +48,7 @@ describe ActiveAdmin::CSVBuilder do
     let(:builder) do
       ActiveAdmin::CSVBuilder.new do
         column :title
-      end
+      end.tap(&:exec_columns)
     end
 
     it "should have one column" do
@@ -60,7 +74,7 @@ describe ActiveAdmin::CSVBuilder do
         column "My title" do
           # nothing
         end
-      end
+      end.tap(&:exec_columns)
     end
 
     it "should have one column" do
@@ -80,24 +94,104 @@ describe ActiveAdmin::CSVBuilder do
     end
   end
 
+  context "with a humanize_name column option" do
+    context "with symbol column name" do
+      let(:builder) do
+        ActiveAdmin::CSVBuilder.new do
+          column :my_title, humanize_name: false
+        end.tap(&:exec_columns)
+      end
+
+      describe "the column" do
+        let(:column){ builder.columns.first }
+
+        it "should have a name of 'my_title'" do
+          expect(column.name).to eq "my_title"
+        end
+      end
+    end
+
+    context "with string column name" do
+      let(:builder) do
+        ActiveAdmin::CSVBuilder.new do
+          column "my_title", humanize_name: false
+        end.tap(&:exec_columns)
+      end
+
+      describe "the column" do
+        let(:column){ builder.columns.first }
+
+        it "should have a name of 'my_title'" do
+          expect(column.name).to eq "my_title"
+        end
+      end
+    end
+  end
+
   context "with a separator" do
     let(:builder) do
-      ActiveAdmin::CSVBuilder.new :col_sep => ";"
+      ActiveAdmin::CSVBuilder.new(col_sep: ";").tap(&:exec_columns)
     end
 
     it "should have proper separator" do
-      expect(builder.options).to eq({:col_sep => ";"})
+      expect(builder.options).to eq({col_sep: ";"})
+    end
+  end
+
+  context "with humanize_name option" do
+    let(:builder) do
+      ActiveAdmin::CSVBuilder.new(humanize_name: false) do
+        column :my_title
+      end.tap(&:exec_columns)
+    end
+
+    describe "the column" do
+      let(:column){ builder.columns.first }
+
+      it "should have humanize_name option set" do
+        expect(column.options).to eq humanize_name: false
+      end
+
+      it "should have a name of 'my_title'" do
+        expect(column.name).to eq "my_title"
+      end
     end
   end
 
   context "with csv_options" do
     let(:builder) do
-      ActiveAdmin::CSVBuilder.new :force_quotes => true
+      ActiveAdmin::CSVBuilder.new(force_quotes: true).tap(&:exec_columns)
     end
 
     it "should have proper separator" do
-      expect(builder.options).to eq({:force_quotes => true})
+      expect(builder.options).to eq({force_quotes: true})
     end
+  end
+
+  context "with access to the controller" do
+    let(:dummy_view_context) { double(controller: dummy_controller) }
+    let(:dummy_controller) { double(names: %w(title summary updated_at created_at))}
+    let(:builder) do
+      ActiveAdmin::CSVBuilder.new do
+        column "id"
+        controller.names.each do |name|
+          column(name)
+        end
+      end.tap{ |b| b.exec_columns(dummy_view_context) }
+    end
+
+    it "should build columns provided by the controller" do
+      expect(builder.columns.map(&:data)).to match_array([:id, :title, :summary, :updated_at, :created_at])
+    end
+  end
+
+  skip '#build'
+  skip '#exec_columns'
+
+  skip '#build_row' do
+    it 'renders non-strings'
+    it 'encodes values correctly'
+    it 'passes custom encoding options to String#encode!'
   end
 
 end

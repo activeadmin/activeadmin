@@ -1,8 +1,9 @@
-require 'active_support/core_ext/class/attribute' # needed for Ransack
+require 'active_support/core_ext'
+require 'set'
+
 require 'ransack'
 require 'ransack_ext'
 require 'bourbon'
-require 'devise'
 require 'kaminari'
 require 'formtastic'
 require 'sass-rails'
@@ -11,7 +12,8 @@ require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'coffee-rails'
 require 'arbre'
-require 'active_admin/engine'
+
+require 'active_admin/helpers/i18n'
 
 module ActiveAdmin
 
@@ -20,12 +22,13 @@ module ActiveAdmin
   autoload :AssetRegistration,        'active_admin/asset_registration'
   autoload :Authorization,            'active_admin/authorization_adapter'
   autoload :AuthorizationAdapter,     'active_admin/authorization_adapter'
-  autoload :Breadcrumbs,              'active_admin/breadcrumbs'
   autoload :Callbacks,                'active_admin/callbacks'
   autoload :Component,                'active_admin/component'
   autoload :BaseController,           'active_admin/base_controller'
+  autoload :CanCanAdapter,            'active_admin/cancan_adapter'
   autoload :ControllerAction,         'active_admin/controller_action'
   autoload :CSVBuilder,               'active_admin/csv_builder'
+  autoload :Dependency,               'active_admin/dependency'
   autoload :Deprecation,              'active_admin/deprecation'
   autoload :Devise,                   'active_admin/devise'
   autoload :DSL,                      'active_admin/dsl'
@@ -37,11 +40,12 @@ module ActiveAdmin
   autoload :MenuCollection,           'active_admin/menu_collection'
   autoload :MenuItem,                 'active_admin/menu_item'
   autoload :Namespace,                'active_admin/namespace'
+  autoload :OrderClause,              'active_admin/order_clause'
   autoload :Page,                     'active_admin/page'
   autoload :PagePresenter,            'active_admin/page_presenter'
   autoload :PageController,           'active_admin/page_controller'
   autoload :PageDSL,                  'active_admin/page_dsl'
-  autoload :Reloader,                 'active_admin/reloader'
+  autoload :PunditAdapter,            'active_admin/pundit_adapter'
   autoload :Resource,                 'active_admin/resource'
   autoload :ResourceController,       'active_admin/resource_controller'
   autoload :ResourceDSL,              'active_admin/resource_dsl'
@@ -68,11 +72,11 @@ module ActiveAdmin
       application.prepare!
     end
 
-    delegate :register,      :to => :application
-    delegate :register_page, :to => :application
-    delegate :unload!,       :to => :application
-    delegate :load!,         :to => :application
-    delegate :routes,        :to => :application
+    delegate :register,      to: :application
+    delegate :register_page, to: :application
+    delegate :unload!,       to: :application
+    delegate :load!,         to: :application
+    delegate :routes,        to: :application
 
     # A callback is triggered each time (before) Active Admin loads the configuration files.
     # In development mode, this will happen whenever the user changes files. In production
@@ -113,6 +117,10 @@ module ActiveAdmin
 
 end
 
+# Require things that don't support autoload
+require 'active_admin/engine'
+require 'active_admin/error'
+
 # Require internal plugins
 require 'active_admin/batch_actions'
 require 'active_admin/filters'
@@ -120,6 +128,3 @@ require 'active_admin/filters'
 # Require ORM-specific plugins
 require 'active_admin/orm/active_record' if defined? ActiveRecord
 require 'active_admin/orm/mongoid'       if defined? Mongoid
-
-# Load gem-specific code only if that gem is being used
-require 'active_admin/cancan_adapter' if Gem.loaded_specs['cancan']

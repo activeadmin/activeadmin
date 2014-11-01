@@ -1,0 +1,122 @@
+ar:
+  active_admin:
+    dashboard: لوحة تحكم
+    dashboard_welcome:
+      welcome: ".مرحبا بك في الادارة. لوحة التحكم الرئيسية "
+      call_to_action: "'app/admin/dashboard.rb' لاضافة وحدة الي لوحة التحكم, اتبع "
+    view: "عرض"
+    edit: "تعديل"
+    delete: "حذف"
+    delete_confirmation: "هل تريد تأكيد الحذف؟"
+    new_model: "جديد %{model}"
+    create_model: "جديد %{model}"
+    edit_model: "تعديل %{model}"
+    update_model: "تحديث %{model}"
+    delete_model: "حذف %{model}"
+    details: "%{model} التفاصيل"
+    cancel: "إلغاء"
+    empty: "فارغ"
+    previous: "السابق"
+    next: "التالي"
+    download: "تحميل"
+    has_many_new: "اضافة جديد %{model}"
+    has_many_delete: "حذف"
+    has_many_remove: "ازالة"
+    filters:
+      buttons:
+        filter: "تصنيف"
+        clear: "تفريغ"
+      predicates:
+        contains: "يحتوي"
+        equals: "متساوي"
+        starts_with: "يبدأ ب"
+        ends_with: "ينتهي ب"
+        greater_than: "اكثر من"
+        less_than: "اقل من"
+    status_tag:
+      "yes": "نعم"
+      "no": "لا"
+    main_content: "الرجاء التنفيذ %{model}#main_content لعرض المحتويات."
+    logout: "تسجيل الخروج"
+    powered_by: "تنفيذ %{active_admin} %{version}"
+    sidebars:
+      filters: "التصنيفات"
+    pagination:
+      empty: "لا يوجد %{model} "
+      one: "عرض <b>1</b> %{model}"
+      one_page: "عرض <b>all %{n}</b> %{model}"
+      multiple: "عرض %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
+      multiple_without_total: "عرض %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "مدخل"
+        other: "مدخلات"
+    any: "أي"
+    blank_slate:
+      content: "لايوجد  %{resource_name} بعد."
+      link: "أنشاء"
+    dropdown_actions:
+      button_label: "عمليات"
+    batch_actions:
+      button_label: "Batch Actions"
+      default_confirmation: "هل انت متأكد من هذا"
+      delete_confirmation: " هل انت متأكد من حذف هذا%{plural_model}?"
+      succesfully_destroyed:
+        one: "دمرت بنجاح 1 %{model}"
+        other: "دمرت بنجاح %{count} %{plural_model}"
+      selection_toggle_explanation: "(تتبيث الخيار)"
+      link: "إنشاء"
+      action_label: "%{title} مختار"
+      labels:
+        destroy: "حذف"
+    comments:
+      resource_type: "نوع المصادر"
+      author_type: "نوع الؤلف"
+      body: "هيكل"
+      author: "مؤلف"
+      title: "تعليق"
+      add: "إضافة تعليق"
+      resource: "مصادر"
+      no_comments_yet: "لا يوجد تعليقات بعد"
+      author_missing: "مجهول"
+      title_content: "تعليقات (%{count})"
+      errors:
+        empty_text: "لم يتم إضافة تعليق، النص فارغ"
+    devise:
+      username:
+        title: "اسم المستخدم"
+      email:
+        title: "إايميل"
+      subdomain:
+        title: "فرعي"
+      password:
+        title: "كلمة المرور"
+      sign_up:
+        title: "تسجيل الدخول"
+        submit: "تسجيل الدخول"
+      login:
+        title: "دخول"
+        remember_me: "تذكرني"
+        submit: "تسحيل"
+      reset_password:
+        title: "هل نسيت كلمة المرور؟"
+        submit: "استرجاع كلمة المرور"
+      change_password:
+        title: "تغير كلمة المرور"
+        submit: "تغير كلمة المرور"
+      unlock:
+        title: "إعادة ارسال التعليمات المحررة"
+        submit: "إعادة ارسال التعليمات المحررة"
+      resend_confirmation_instructions:
+        title: ""
+        submit: "إعادة ارسال تعليمات التأكيد"
+      links:
+        sign_in: "دخول"
+        forgot_your_password: "هل نسيت كلمة المرور؟"
+        sign_in_with_omniauth_provider: "تسجيل الدخول ب %{provider}"
+    access_denied:
+      message: "غير مصرح لك"
+    index_list:
+      table: "جدول"
+      block: "قائمة"
+      grid: "شبكة"
+      blog: "مدونة"

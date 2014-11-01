@@ -1,5 +1,5 @@
 def ensure_user_created(email)
-  user = AdminUser.where(:email => email).first_or_create(:password => 'password', :password_confirmation => 'password')
+  user = AdminUser.where(email: email).first_or_create(password: 'password', password_confirmation: 'password')
 
   unless user.persisted?
     raise "Could not create user #{email}: #{user.errors.full_messages}"
@@ -8,7 +8,7 @@ def ensure_user_created(email)
 end
 
 Given /^(?:I am logged|log) out$/ do
-  click_link 'Logout' if page.all(:css, "a", :text => 'Logout').any?
+  click_link 'Logout' if page.all(:css, "a", text: 'Logout').any?
 end
 
 Given /^I am logged in$/ do
@@ -22,8 +22,8 @@ Given /^I am logged in with capybara$/ do
   step 'log out'
 
   visit new_admin_user_session_path
-  fill_in 'Email',    :with => 'admin@example.com'
-  fill_in 'Password', :with => 'password'
+  fill_in 'Email',    with: 'admin@example.com'
+  fill_in 'Password', with: 'password'
   click_button 'Login'
 end
 
@@ -31,11 +31,15 @@ Given /^an admin user "([^"]*)" exists$/ do |email|
   ensure_user_created(email)
 end
 
-Given /^"([^"]*)" requests a pasword reset with token "([^"]*)"( but it expires)?$/ do |email, token, expired|
+Given /^"([^"]*)" requests a password reset with token "([^"]*)"( but it expires)?$/ do |email, token, expired|
   visit new_admin_user_password_path
   fill_in 'Email', with: email
-  Devise.stub(:friendly_token){ token }
+  allow(Devise).to receive(:friendly_token).and_return(token)
   click_button "Reset My Password"
 
   AdminUser.where(email: email).first.update_attribute :reset_password_sent_at, 1.month.ago if expired
+end
+
+When /^I fill in the password field with "([^"]*)"$/ do |password|
+  fill_in 'admin_user_password', with: password
 end

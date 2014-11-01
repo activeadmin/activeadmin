@@ -1,9 +1,8 @@
 module ActiveAdmin
 
-  #
   # The Active Admin DSL. This class is where all the registration blocks
-  # are instance eval'd. This is the central place for the API given to
-  # users of Active Admin
+  # are evaluated. This is the central place for the API given to
+  # users of Active Admin.
   #
   class DSL
 
@@ -13,10 +12,10 @@ module ActiveAdmin
 
     # Runs the registration block inside this object
     def run_registration_block(&block)
-      instance_eval &block if block_given?
+      instance_exec &block if block_given?
     end
 
-    # The instance of ActiveAdmin::Config that's being registered
+    # The instance of ActiveAdmin::Resource that's being registered
     # currently. You can use this within your registration blocks to
     # modify options:
     #
@@ -57,7 +56,7 @@ module ActiveAdmin
     end
 
     # Returns the controller for this resource. If you pass a
-    # block, it will be eval'd in the controller
+    # block, it will be evaluated in the controller.
     #
     # Example:
     #
@@ -72,19 +71,27 @@ module ActiveAdmin
     #   end
     #
     def controller(&block)
-      @config.controller.class_eval(&block) if block_given?
+      @config.controller.class_exec(&block) if block_given?
       @config.controller
     end
 
     # Add a new action item to the resource
     #
+    # @param [Symbol] name
     # @param [Hash] options valid keys include:
     #                 :only:  A single or array of controller actions to display
     #                         this action item on.
     #                 :except: A single or array of controller actions not to
     #                          display this action item on.
-    def action_item(options = {}, &block)
-      config.add_action_item(options, &block)
+    def action_item(name = nil, options = {}, &block)
+      if name.is_a?(Hash)
+        options = name
+        name = nil
+      end
+
+      Deprecation.warn "using `action_item` without a name is deprecated! Use `action_item(:edit)`." unless name
+
+      config.add_action_item(name, options, &block)
     end
 
     # Add a new batch action item to the resource
@@ -101,7 +108,7 @@ module ActiveAdmin
     def batch_action(title, options = {}, &block)
       # Create symbol & title information
       if title.is_a? String
-        sym = title.titleize.gsub(' ', '').underscore.to_sym
+        sym = title.titleize.tr(' ', '').underscore.to_sym
       else
         sym = title
         title = sym.to_s.titleize

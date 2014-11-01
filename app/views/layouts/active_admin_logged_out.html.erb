@@ -11,7 +11,7 @@
   <% ActiveAdmin.application.javascripts.each do |path| %>
     <%= javascript_include_tag path %>
   <% end %>
-  
+
   <%= favicon_link_tag ActiveAdmin.application.favicon if ActiveAdmin.application.favicon %>
 
   <%= csrf_meta_tag %>
@@ -20,10 +20,8 @@
 <div id="wrapper">
 
   <div id="content_wrapper">
-    <% if active_admin_flash_messages.any? %>
-      <% active_admin_flash_messages.each do |type, message| %>
-        <%= content_tag :div, message, :class => "flash flash_#{type}" %>
-      <% end %>
+    <% flash_messages.each do |type, message| %>
+      <%= content_tag :div, message, class: "flash flash_#{type}" %>
     <% end %>
     <div id="active_admin_content">
       <%= yield %>

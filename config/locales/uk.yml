@@ -22,14 +22,20 @@ uk:
     has_many_new: "Додати %{model}"
     has_many_delete: "Прибрати"
     has_many_remove: "Видалити"
-    filter: "Фільтрувати"
-    clear_filters: "Очистити"
-    contains: "Містить"
-    starts_with: "Починається з"
-    ends_with: "Закінчується"
-    equal_to: "="
-    greater_than: "більше"
-    less_than: "менше"
+    filters:
+      buttons:
+        filter: "Фільтрувати"
+        clear: "Очистити"
+      predicates:
+        contains: "Містить"
+        equals: "="
+        starts_with: "Починається з"
+        ends_with: "Закінчується"
+        greater_than: "більше"
+        less_than: "меньше"
+    status_tag:
+      "yes": "та"
+      "no": "немає"
     main_content: "Створіть %{model}#main_content для відображення вмісту."
     logout: "Вийти"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -44,17 +50,22 @@ uk:
       entry:
         one: "запис"
         other: "записів"
+        many: "записів"
+        few: "записи"
     any: "Будь-який"
     blank_slate:
       content: "Покищо немає %{resource_name}."
       link: "Створити"
+    dropdown_actions:
+      button_label: "Oперації"
     batch_actions:
       button_label: "Групові операції"
-      delete_confirmation: "Ви впевнені, що хочете видалити %{plural_model}? Ви не зможете це відмінити."
+      default_confirmation: "Ви справді бажаєте це зробити?"
+      delete_confirmation: "Ви впевнені, що хочете видалити %{plural_model}?"
       succesfully_destroyed:
         one: "Успішно видалено: 1 %{model}"
         few: "Успішно видалено: %{count} %{plural_model}"
-        many: "Успішно видалено: %{count} %{plural_model}"        
+        many: "Успішно видалено: %{count} %{plural_model}"
         other: "Успішно видалено: %{count} %{plural_model}"
       selection_toggle_explanation: "(Відмінити все / Зняти виділення)"
       link: "Створити"
@@ -70,10 +81,22 @@ uk:
       add: "Додати Коментар"
       resource: "Ресурс"
       no_comments_yet: "Покищо немає коментарів."
+      author_missing: "Анонім"
       title_content: "Коментарі (%{count})"
       errors:
         empty_text: "Коментар не збережено, текст не повинен бути пустим."
     devise:
+      username:
+        title: "Ім'я користувача"
+      email:
+        title: "Ел. пошта"
+      subdomain:
+        title: "Піддомен"
+      password:
+        title: "Пароль"
+      sign_up:
+        title: "Зареєструватися"
+        submit: "Зареєструватися"
       login:
         title: "Вхід"
         remember_me: "Запам'ятати мене"
@@ -87,6 +110,9 @@ uk:
       unlock:
         title: "Відправити повторно інструкції з розблокування"
         submit: "Відправити повторно інструкції з розблокування"
+      resend_confirmation_instructions:
+        title: "Вислати повторно листа з активацією"
+        submit: "Вислати повторно листа з активацією"
       links:
         sign_in: "Увійти"
         forgot_your_password: "Забули пароль?"

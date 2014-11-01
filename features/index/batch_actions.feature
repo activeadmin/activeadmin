@@ -121,3 +121,44 @@ Feature: Batch Actions
     Then I should see the batch action :very_complex_and_time_consuming "Very Complex and Time Consuming Selected"
     And I should see the batch action :passing_a_symbol "Passing A Symbol Selected"
 
+  Scenario: Use a Form with text
+    Given 10 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        batch_action :destroy, false
+        batch_action(:action_with_form, form: { name: :text }) {}
+      end
+      """
+
+    When I check the 1st record
+    And I follow "Batch Actions"
+    Then I should be show a input with name "name" and type "text"
+
+  Scenario: Use a Form with select
+    Given 10 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        batch_action :destroy, false
+        batch_action(:action_with_form, form: { type: ["a", "b"] }) {}
+      end
+      """
+
+    When I check the 1st record
+    And I follow "Batch Actions"
+    Then I should be show a select with name "type" with the values "a, b"
+
+  Scenario: Use a Form with select values from proc
+    Given 10 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        batch_action :destroy, false
+        batch_action(:action_with_form, form: ->{ {type: ["a", "b"]} }) {}
+      end
+      """
+
+    When I check the 1st record
+    And I follow "Batch Actions"
+    Then I should be show a select with name "type" with the values "a, b"

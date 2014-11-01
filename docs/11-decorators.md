@@ -35,18 +35,15 @@ end
 
 ## Forms
 
-If you decorate an AA resource, the form will also be decorated.
-
-In most cases this will work as expected, but if your decorator uses the same
-method name as an attribute and it returns a modified version of the attribute's
-value, you'll want to set `decorate: false` to make sure that the population of
-existing values happens correctly:
+By default, ActiveAdmin does *not* decorate the resource used to render forms.
+If you need ActiveAdmin to decorate the forms, you can pass `decorate: true` to the
+form block.
 
 ```ruby
 ActiveAdmin.register Post do
   decorate_with PostDecorator
 
-  form decorate: false do |f|
+  form decorate: true do |f|
     # ...
   end
 end

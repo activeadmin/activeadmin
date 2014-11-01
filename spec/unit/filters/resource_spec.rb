@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Filters::ResourceExtension do
 
@@ -7,9 +7,13 @@ describe ActiveAdmin::Filters::ResourceExtension do
     namespace.register(Post)
   end
 
+  it "should return a Hash" do
+    expect(resource.filters).to be_a Hash
+  end
+
   it "should return the defaults if no filters are set" do
     expect(resource.filters.keys).to match_array([
-      :author, :body, :category, :created_at, :published_at, :starred, :taggings, :title, :updated_at
+      :author, :body, :category, :created_at, :position, :published_at, :starred, :taggings, :title, :updated_at
     ])
   end
 
@@ -57,6 +61,14 @@ describe ActiveAdmin::Filters::ResourceExtension do
     end
   end
 
+  describe "removing a multiple filters inline" do
+    it "should work" do
+      expect(resource.filters.keys).to include :author, :body
+      resource.remove_filter :author, :body
+      expect(resource.filters.keys).to_not include :author, :body
+    end
+  end
+
   describe "adding a filter" do
     it "should work" do
       resource.add_filter :title
@@ -80,22 +92,12 @@ describe ActiveAdmin::Filters::ResourceExtension do
       expect(resource.filters).to eq title: {three: :four}
     end
 
-    it "should keep specified options" do
-      resource.add_filter :title, one: :two
-
-      resource.filters.each do |attribute, opts|
-        opts.delete(:one)
-      end
-
-      expect(resource.filters).to eq title: {one: :two}
-    end
-
     it "should preserve default filters" do
       resource.preserve_default_filters!
       resource.add_filter :count, as: :string
 
       expect(resource.filters.keys).to match_array([
-        :author, :body, :category, :count, :created_at, :published_at, :starred, :taggings, :title, :updated_at
+        :author, :body, :category, :count, :created_at, :position, :published_at, :starred, :taggings, :title, :updated_at
       ])
     end
 

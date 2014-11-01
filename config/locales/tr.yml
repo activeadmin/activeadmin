@@ -33,6 +33,9 @@ tr:
         ends_with: "ile biter"
         greater_than: "Büyükse"
         less_than: "Küçükse"
+    status_tag:
+      "yes": "Evet"
+      "no": "Hayır"
     main_content: "İçeriği görüntülemek için lütfen %{model}#main_content metodunu ekleyin."
     logout: "Oturumu Sonlandır"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +54,12 @@ tr:
     blank_slate:
       content: "Herhangi bir %{resource_name} kaydı bulunamadı"
       link: "Bir tane oluşturun"
+    dropdown_actions:
+      button_label: "Işlemler"
     batch_actions:
       button_label: "Toplu işlemler"
-      delete_confirmation: "%{plural_model} kayıtlarını silmek istediğinize emin misiniz? Dikkat bu işlemin geri dönüşü yoktur!"
+      default_confirmation: "Bunu yapmak istediğinden emin misin?"
+      delete_confirmation: "%{plural_model} kayıtlarını silmek istediğinize emin misiniz?"
       succesfully_destroyed:
         one: "1 %{model} kaydı başarıyla silindi."
         other: "Toplam %{count} kayıt %{plural_model} modelinden silindi"
@@ -83,6 +89,9 @@ tr:
       change_password:
         title: "Şifrenizi değiştirin"
         submit: "Şifremi değiştir"
+      resend_confirmation_instructions:
+        title: "Onaylama talimatlarını tekrar gönder"
+        submit: "Onaylama talimatlarını tekrar gönder"
       links:
         sign_in: "Oturum aç"
         forgot_your_password: "Şifreni mi unuttun?"

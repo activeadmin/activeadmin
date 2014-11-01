@@ -29,10 +29,13 @@
       predicates:
         contains: "包含"
         equals: "等於"
-        starts_with: "开头"
-        ends_with: "完与"
+        starts_with: "開頭為"
+        ends_with: "結尾為"
         greater_than: "大於"
         less_than: "小於"
+    status_tag:
+      "yes": "是的"
+      "no": "無"
     main_content: "請編寫 %{model}#main_content 以顯示內容。"
     logout: "登出"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +54,12 @@
     blank_slate:
       content: "尚無 %{resource_name}"
       link: "建立一筆"
+    dropdown_actions:
+      button_label: "操作"
     batch_actions:
       button_label: "批次作業"
-      delete_confirmation: "您確定要刪除這些 %{plural_model} 嗎？此動作無法復原。"
+      default_confirmation: "你確定你要這樣做？"
+      delete_confirmation: "您確定要刪除這些 %{plural_model} 嗎？"
       succesfully_destroyed:
         one: "成功刪除 1 %{model}"
         other: "成功刪除 %{count} %{plural_model}"
@@ -83,6 +89,9 @@
       change_password:
         title: "更改您的密碼"
         submit: "更改我的密碼"
+      resend_confirmation_instructions:
+        title: '重新發送確認信'
+        submit: '重新發送確認信'
       links:
         sign_in: "登錄"
         forgot_your_password: "忘記密碼？"

@@ -1,13 +1,13 @@
-shared_examples_for "ActiveAdmin::Config" do
+shared_examples_for "ActiveAdmin::Resource" do
   describe "namespace" do
     it "should return the namespace" do
-      config.namespace.should == namespace
+      expect(config.namespace).to eq(namespace)
     end
   end
 
   describe "page_presenters" do
     it "should return an empty hash by default" do
-      config.page_presenters.should == {}
+      expect(config.page_presenters).to eq({})
     end
   end
 
@@ -34,24 +34,24 @@ shared_examples_for "ActiveAdmin::Config" do
     describe "#menu_item_options" do
 
       it "initializes a new menu item with defaults" do
-          config.menu_item_options[:label].call.should == config.plural_resource_label
+          expect(config.menu_item_options[:label].call).to eq(config.plural_resource_label)
       end
 
       it "initialize a new menu item with custom options" do
-        config.menu_item_options = { :label => "Hello" }
-        config.menu_item_options[:label].should == "Hello"
+        config.menu_item_options = { label: "Hello" }
+        expect(config.menu_item_options[:label]).to eq("Hello")
       end
 
     end
 
     describe "#include_in_menu?" do
       it "should be included in menu by default" do
-        config.include_in_menu?.should == true
+        expect(config.include_in_menu?).to eq(true)
       end
 
       it "should not be included in menu when menu set to false" do
         config.menu_item_options = false
-        config.include_in_menu?.should == false
+        expect(config.include_in_menu?).to eq(false)
       end
     end
 

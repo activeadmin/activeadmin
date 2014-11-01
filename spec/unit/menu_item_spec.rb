@@ -1,4 +1,4 @@
-require 'spec_helper_without_rails'
+require 'spec_helper'
 require 'active_admin/menu'
 require 'active_admin/menu_item'
 
@@ -6,12 +6,12 @@ module ActiveAdmin
   describe MenuItem do
 
     it "should have a label" do
-      item = MenuItem.new(:label => "Dashboard")
+      item = MenuItem.new(label: "Dashboard")
       expect(item.label).to eq "Dashboard"
     end
 
     it "should have a url" do
-      item = MenuItem.new(:url => "/admin")
+      item = MenuItem.new(url: "/admin")
       expect(item.url).to eq "/admin"
     end
 
@@ -32,7 +32,7 @@ module ActiveAdmin
       end
 
       it "should hide the item" do
-        expect(MenuItem.new(:if => proc{false}).display?).to eq false
+        expect(MenuItem.new(if: proc{false}).display?).to eq false
       end
     end
 
@@ -42,8 +42,8 @@ module ActiveAdmin
     end
 
     it "should accept an options hash for link_to" do
-      item = MenuItem.new :html_options => { :target => :blank }
-      expect(item.html_options).to include(:target => :blank)
+      item = MenuItem.new html_options: { target: :blank }
+      expect(item.html_options).to include(target: :blank)
     end
 
     context "with no items" do
@@ -53,8 +53,8 @@ module ActiveAdmin
       end
 
       it "should accept new children" do
-        item = MenuItem.new :label => "Dashboard"
-        item.add            :label => "My Child Dashboard"
+        item = MenuItem.new label: "Dashboard"
+        item.add            label: "My Child Dashboard"
         expect(item.items.first).to be_a MenuItem
         expect(item.items.first.label).to eq "My Child Dashboard"
       end
@@ -62,12 +62,12 @@ module ActiveAdmin
 
     context "with many children" do
       let(:item) do
-        i = MenuItem.new(:label => "Dashboard")
-        i.add :label => "Blog"
-        i.add :label => "Cars"
-        i.add :label => "Users", :priority => 1
-        i.add :label => "Settings", :priority => 2
-        i.add :label => "Analytics", :priority => 44
+        i = MenuItem.new(label: "Dashboard")
+        i.add label: "Blog"
+        i.add label: "Cars"
+        i.add label: "Users", priority: 1
+        i.add label: "Settings", priority: 2
+        i.add label: "Analytics", priority: 44
         i
       end
 
@@ -93,7 +93,7 @@ module ActiveAdmin
     end
 
     describe "accessing ancestory" do
-      let(:item){ MenuItem.new :label => "Blog" }
+      let(:item){ MenuItem.new label: "Blog" }
 
       context "with no parent" do
         it "should return an empty array" do
@@ -103,7 +103,7 @@ module ActiveAdmin
 
       context "with one parent" do
         let(:sub_item) do
-          item.add :label => "Create New"
+          item.add label: "Create New"
           item["Create New"]
         end
         it "should return an array with the parent" do
@@ -113,9 +113,9 @@ module ActiveAdmin
 
       context "with many parents" do
         before(:each) do
-          c1 = {:label => "C1"}
-          c2 = {:label => "C2"}
-          c3 = {:label => "C3"}
+          c1 = {label: "C1"}
+          c2 = {label: "C2"}
+          c3 = {label: "C3"}
 
           item.add(c1).add(c2).add(c3)
 
@@ -131,11 +131,11 @@ module ActiveAdmin
 
     describe "#id" do
       it "should be normalized" do
-        expect(MenuItem.new(:id => "Foo Bar").id).to eq "foo_bar"
+        expect(MenuItem.new(id: "Foo Bar").id).to eq "foo_bar"
       end
 
       it "should not accept Procs" do
-        expect{ MenuItem.new(:id => proc{"Dynamic"}).id }.to raise_error TypeError
+        expect{ MenuItem.new(id: proc{"Dynamic"}).id }.to raise_error TypeError
       end
     end
 

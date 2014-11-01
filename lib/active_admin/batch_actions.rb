@@ -13,5 +13,5 @@ ActiveAdmin.before_load do |app|
   require "active_admin/batch_actions/views/batch_action_selector"
 
   # Register the views with the view factory
-  app.view_factory.register :batch_action_selector => ActiveAdmin::BatchActions::BatchActionSelector
+  app.view_factory.register batch_action_selector: ActiveAdmin::BatchActions::BatchActionSelector
 end

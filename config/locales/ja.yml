@@ -33,6 +33,9 @@ ja:
         ends_with: "で終わる"
         greater_than: "より大きい"
         less_than: "より小さい"
+    status_tag:
+      "yes": "はい"
+      "no": "いいえ"
     main_content: "内容を表示するために %{model}#main_content を実装してください。"
     logout: "ログアウト"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -44,16 +47,19 @@ ja:
       one_page: "<b>全 %{n}</b> 件の %{model} を表示しています"
       multiple: "全 <b>%{total}</b> 件中 <b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> 件の %{model} を表示しています"
-      entry: 
+      entry:
         one: "レコード"
         other: "レコード"
     any: "任意"
     blank_slate:
       content: "%{resource_name} はまだありません。"
       link: "作成する"
+    dropdown_actions:
+      button_label: "操作"
     batch_actions:
       button_label: "一括操作"
-      delete_confirmation: "%{plural_model} を削除してもよろしいですか? この操作は取り消すことができません。"
+      default_confirmation: "本当によろしいですか。"
+      delete_confirmation: "%{plural_model} を削除してもよろしいですか?"
       succesfully_destroyed:
         one: "1件の %{model} を削除しました"
         other: "%{count}件の %{plural_model} を削除しました"
@@ -71,10 +77,19 @@ ja:
       add: "コメントを追加"
       resource: "リソース"
       no_comments_yet: "コメントはまだありません。"
+      author_missing: "匿名ユーザ"
       title_content: "コメント (%{count})"
       errors:
         empty_text: "テキストが空のため、コメントは保存されませんでした。"
     devise:
+      username:
+        title: "ユーザ名"
+      email:
+        title: "メールアドレス"
+      subdomain:
+        title: "サブドメイン"
+      password:
+        title: "パスワード"
       login:
         title: "ログイン"
         remember_me: "次回から自動的にログイン"

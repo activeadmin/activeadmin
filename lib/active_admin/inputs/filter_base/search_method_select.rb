@@ -57,7 +57,7 @@ module ActiveAdmin
         def current_filter
           @current_filter ||= begin
             methods = filters.map{ |f| "#{method}_#{f}" }
-            methods.detect{ |m| @object.send m } || methods.first
+            methods.detect{ |m| @object.public_send m } || methods.first
           end
         end
 

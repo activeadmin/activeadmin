@@ -1,20 +1,19 @@
-require "spec_helper"
+require 'rails_helper'
 
 describe ActiveAdmin::Views::Pages::Form do
   describe "#title" do
     let!(:application){ ActiveAdmin::Application.new }
     let(:namespace){ ActiveAdmin::Namespace.new(application, "Admin") }
-    let!(:params){ { :controller => "UsersController", :action => "edit" } }
+    let!(:params){ { controller: "UsersController", action: "edit" } }
     let(:helpers) do
       helpers = mock_action_view
-      helpers.stub :active_admin_config => namespace.register(Post),
-                   :params => params
-
+      allow(helpers).to receive(:active_admin_config).and_return(namespace.register(Post))
+      allow(helpers).to receive(:params).and_return(params)
       helpers
     end
 
     let(:arbre_context) do
-      OpenStruct.new(:params => params, :helpers => helpers, :assigns => {})
+      OpenStruct.new(params: params, helpers: helpers, assigns: {})
     end
 
     context "when page_title is assigned" do

@@ -1,6 +1,7 @@
 module ActiveAdmin
   class Resource
     module Controllers
+      delegate :resources_configuration, to: :controller
 
       # Returns a properly formatted controller name for this
       # config within its namespace

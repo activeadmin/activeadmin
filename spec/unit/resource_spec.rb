@@ -1,11 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 require File.expand_path('config_shared_examples', File.dirname(__FILE__))
 
 module ActiveAdmin
   describe Resource do
 
-    it_should_behave_like "ActiveAdmin::Config"
-
+    it_should_behave_like "ActiveAdmin::Resource"
     before { load_defaults! }
 
     let(:application){ ActiveAdmin::Application.new }
@@ -23,7 +22,7 @@ module ActiveAdmin
       end
       context "when the :as option is given" do
         it "should return the resource's table name" do
-          expect(config(:as => "My Category").resource_table_name).to eq '"categories"'
+          expect(config(as: "My Category").resource_table_name).to eq '"categories"'
         end
       end
     end
@@ -69,12 +68,12 @@ module ActiveAdmin
 
       context "when regular resource" do
         let(:resource){ namespace.register(Post) }
-        it { should be_include_in_menu }
+        it { is_expected.to be_include_in_menu }
       end
 
       context "when menu set to false" do
         let(:resource){ namespace.register(Post){ menu false } }
-        it { should_not be_include_in_menu }
+        it { is_expected.not_to be_include_in_menu }
       end
     end
 
@@ -137,7 +136,7 @@ module ActiveAdmin
         context "when passing in the method as an option" do
           before do
             @resource = application.register Category do
-              scope_to :current_user, :association_method => :blog_categories
+              scope_to :current_user, association_method: :blog_categories
             end
           end
           it "should return the method from the option" do
@@ -186,7 +185,7 @@ module ActiveAdmin
       end
 
       it "should retrieve the default scope by proc" do
-        config.scope :published, :default => proc{ true }
+        config.scope :published, default: proc{ true }
         config.scope :all
         expect(config.default_scope.name).to eq "Published"
       end
@@ -196,7 +195,7 @@ module ActiveAdmin
     describe "#csv_builder" do
       context "when no csv builder set" do
         it "should return a default column builder with id and content columns" do
-          expect(config.csv_builder.columns.size).to eq Category.content_columns.size + 1
+          expect(config.csv_builder.exec_columns.size).to eq Category.content_columns.size + 1
         end
       end
 
@@ -209,11 +208,31 @@ module ActiveAdmin
       end
     end
 
+    describe "#breadcrumb" do
+      subject { config.breadcrumb }
+
+      context "when no breadcrumb is set" do
+        it { is_expected.to eq(namespace.breadcrumb) }
+      end
+
+      context "when breadcrumb is set" do
+        context "when set to true" do
+          before { config.breadcrumb = true }
+          it { is_expected.to be_truthy }
+        end
+
+        context "when set to false" do
+          before { config.breadcrumb = false }
+          it { is_expected.to be_falsey }
+        end
+      end
+    end
+
     describe '#find_resource' do
       let(:resource) { namespace.register(Post) }
       let(:post) { double }
       before do
-        Post.stub(:where).with('id' => '12345').and_return { [post] }
+        allow(Post).to receive(:find_by_id).with('12345') { post }
       end
 
       it 'can find the resource' do
@@ -230,12 +249,28 @@ module ActiveAdmin
       context 'when using a nonstandard primary key' do
         let(:different_post) { double }
         before do
-          Post.stub(:primary_key).and_return 'something_else'
-          Post.stub(:where).with('something_else' => '55555').and_return { [different_post] }
+          allow(Post).to receive(:primary_key).and_return 'something_else'
+          allow(Post).to receive(:find_by_something_else).with('55555') { different_post }
         end
 
         it 'can find the post by the custom primary key' do
           expect(resource.find_resource('55555')).to eq different_post
+        end
+      end
+
+      context 'when using controller finder' do
+        let(:resource) do
+          namespace.register(Post) do
+            controller do
+              defaults finder: :find_by_title!
+            end
+          end
+        end
+
+        it 'can find the post by controller finder' do
+          allow(Post).to receive(:find_by_title!).with('title-name').and_return(post)
+
+          expect(resource.find_resource('title-name')).to eq post
         end
       end
     end

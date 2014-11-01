@@ -5,13 +5,13 @@
       welcome: "Välkommen till Active Admin. Detta är ditt standardskrivbord."
       call_to_action: "För att lägga till sektioner, gör en checkout på 'app/admin/dashboard.rb'"
     view: "Visa"
-    edit: "Editera"
+    edit: "Redigera"
     delete: "Ta bort"
     delete_confirmation: "Är du säker att du vill ta bort denna?"
     new_model: "Ny %{model}"
     create_model: "Ny %{model}"
-    edit_model: "Editera %{model}"
-    update_model: "Editera %{model}"
+    edit_model: "Redigera %{model}"
+    update_model: "Redigera %{model}"
     delete_model: "Ta bort %{model}"
     details: "Detaljvy för %{model}"
     cancel: "Avbryt"
@@ -33,6 +33,9 @@
         ends_with: "Slutar med"
         greater_than: "Större än"
         less_than: "Mindre än"
+    status_tag:
+      "yes": "Ja"
+      "no": "Ingen"
     main_content: "Implementera %{model}#main_content för att kunna visa något."
     logout: "Logga ut"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +54,12 @@
     blank_slate:
       content: "Finns ingen %{resource_name} än."
       link: "Skapa en"
+    dropdown_actions:
+      button_label: "Behandling"
     batch_actions:
       button_label: "Batch Behandling"
-      delete_confirmation: "Är du säker på att du vill radera dessa %{plural_model}? Du kan inte ångra detta."
+      default_confirmation: "Är du säker på att du vill göra detta?"
+      delete_confirmation: "Är du säker på att du vill radera dessa %{plural_model}?"
       succesfully_destroyed:
         one: "Lyckades radera 1 %{model}"
         other: "Lyckades radera %{count} %{plural_model}"

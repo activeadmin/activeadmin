@@ -1,8 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::ResourceController do
-
-  before(:all) { load_defaults! }
 
   let(:controller) { ActiveAdmin::ResourceController.new }
 
@@ -84,7 +82,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing create" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ double("Resource", :save => true) }
+      let(:resource){ double("Resource", save: true) }
 
       before do
         expect(resource).to receive(:save)
@@ -110,7 +108,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing update" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ double("Resource", :attributes= => true, :save => true) }
+      let(:resource){ double("Resource", :attributes= => true, save: true) }
       let(:attributes){ [{}] }
 
       before do
@@ -138,7 +136,7 @@ describe ActiveAdmin::ResourceController do
 
     describe "performing destroy" do
       let(:controller){ Admin::PostsController.new }
-      let(:resource){ double("Resource", :destroy => true) }
+      let(:resource){ double("Resource", destroy: true) }
 
       before do
         expect(resource).to receive(:destroy)
@@ -157,29 +155,29 @@ describe ActiveAdmin::ResourceController do
   end
 end
 
-describe Admin::PostsController, :type => "controller" do
+describe Admin::PostsController, type: "controller" do
 
   describe 'retreiving the resource' do
     let(:controller){ Admin::PostsController.new }
-    let(:post) { Post.new :title => "An incledibly unique Post Title" }
+    let(:post) { Post.new title: "An incledibly unique Post Title" }
 
     before do
-      Post.stub(:find).and_return(post)
+      allow(Post).to receive(:find).and_return(post)
       controller.class_eval { public :resource }
-      controller.stub(:params).and_return({ :id => '1' })
+      allow(controller).to receive(:params).and_return({ id: '1' })
     end
 
     subject { controller.resource }
 
     it "returns a Post" do
-      subject.should be_kind_of(Post)
+      expect(subject).to be_kind_of(Post)
     end
 
     context 'with a decorator' do
       let(:config) { controller.class.active_admin_config }
       before { config.decorator_class_name = '::PostDecorator' }
       it 'returns a PostDecorator' do
-        subject.should be_kind_of(PostDecorator)
+        expect(subject).to be_kind_of(PostDecorator)
       end
 
       it 'returns a PostDecorator that wraps the post' do
@@ -190,34 +188,34 @@ describe Admin::PostsController, :type => "controller" do
 
   describe 'retreiving the resource collection' do
     let(:controller){ Admin::PostsController.new }
+    let(:config) { controller.class.active_admin_config }
     before do
-      Post.create!(:title => "An incledibly unique Post Title") if Post.count == 0
-      controller.class_eval { public :collection }
+      Post.create!(title: "An incledibly unique Post Title") if Post.count == 0
+      config.decorator_class_name = nil
+      request = double 'Request', format: 'application/json'
+      allow(controller).to receive(:params) { {} }
+      allow(controller).to receive(:request){ request }
     end
 
-    subject { controller.collection }
+    subject { controller.send :collection }
 
     it {
-      pending # doesn't pass when running whole spec suite (WTF)
-      should be kind_of(ActiveRecord::Relation)
+      is_expected.to be_a ActiveRecord::Relation
     }
 
     it "returns a collection of posts" do
-      pending # doesn't pass when running whole spec suite (WTF)
       expect(subject.first).to be_kind_of(Post)
     end
 
     context 'with a decorator' do
-      let(:config) { controller.class.active_admin_config }
-      before { config.decorator_class_name = '::PostDecorator' }
+      before { config.decorator_class_name = 'PostDecorator' }
 
-      it 'returns a PostDecorator' do
-        pending # doesn't pass when running whole spec suite (WTF)
-        expect(subject).to be_kind_of(PostDecorator::DecoratedEnumerableProxy)
+      it 'returns a collection decorator using PostDecorator' do
+        expect(subject).to be_a Draper::CollectionDecorator
+        expect(subject.decorator_class).to eq PostDecorator
       end
 
-      it 'returns a PostDecorator that wraps the post' do
-        pending # doesn't pass when running whole spec suite (WTF)
+      it 'returns a collection decorator that wraps the post' do
         expect(subject.first.title).to eq Post.first.title
       end
     end
@@ -226,36 +224,34 @@ describe Admin::PostsController, :type => "controller" do
 
   describe "performing batch_action" do
     let(:controller){ Admin::PostsController.new }
+    let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", &batch_action_block }
+    let(:batch_action_block) { proc { } }
     before do
-      batch_action = ActiveAdmin::BatchAction.new :flag, "Flag" do
-        redirect_to collection_path
-      end
-
-      controller.class.active_admin_config.stub(:batch_actions).and_return([batch_action])
+      allow(controller.class.active_admin_config).to receive(:batch_actions).and_return([batch_action])
     end
 
     describe "when params batch_action matches existing BatchAction" do
       it "should call the block with args" do
-        pending # dont know how to check if the block was called
+        allow(controller).to receive(:params) { { batch_action: "flag", collection_selection: ["1"] } }
+        expect(controller).to receive(:instance_exec).with(["1"], {})
+        controller.batch_action
       end
     end
 
     describe "when params batch_action doesn't match a BatchAction" do
       it "should raise an error" do
-        pending # doesn't pass when running whole spec suite (WTF)
-
+        allow(controller).to receive(:params) { { batch_action: "derp", collection_selection: ["1"] } }
         expect {
-          post(:batch_action, :batch_action => "derp", :collection_selection => ["1"])
+          controller.batch_action
         }.to raise_error("Couldn't find batch action \"derp\"")
       end
     end
 
     describe "when params batch_action is blank" do
       it "should raise an error" do
-        pending # doesn't pass when running whole spec suite (WTF)
-
+        allow(controller).to receive(:params) { { collection_selection: ["1"] } }
         expect {
-          post(:batch_action, :collection_selection => ["1"])
+          controller.batch_action
         }.to raise_error("Couldn't find batch action \"\"")
       end
     end

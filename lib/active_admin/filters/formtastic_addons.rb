@@ -11,7 +11,7 @@ module ActiveAdmin
         if klass.respond_to?(:human_attribute_name)
           klass.human_attribute_name(method)
         else
-          method.to_s.send(builder.label_str_method)
+          method.to_s.public_send(builder.label_str_method)
         end
       end
 
@@ -54,18 +54,24 @@ module ActiveAdmin
       end
 
       def seems_searchable?
-        has_predicate? || ransacker?
+        has_predicate? || ransacker? || scope?
       end
 
       # If the given method has a predicate (like _eq or _lteq), it's pretty
       # likely we're dealing with a valid search method.
       def has_predicate?
-        !!Ransack::Predicate.detect_and_strip_from_string!(method.to_s)
+        !!Ransack::Predicate.detect_from_string(method.to_s)
       end
 
-      # Ransack lets you define custom search methods, so we need to check for them.
+      # Ransack lets you define custom search methods, called ransackers.
       def ransacker?
         klass._ransackers.key? method.to_s
+      end
+
+      # Ransack supports exposing selected scopes on your model for advanced searches.
+      def scope?
+        context = Ransack::Context.for klass
+        context.respond_to?(:ransackable_scope?) && context.ransackable_scope?(method.to_s, klass)
       end
 
     end

@@ -3,7 +3,7 @@
     dashboard: Oversikt
     dashboard_welcome:
       welcome: "Velkommen til Active Admin. Dette er standardoversiktssiden."
-      call_to_action: "Rediger 'app/admin/dashboard.rb' for at legge til elementer i oversikten."
+      call_to_action: "Rediger 'app/admin/dashboard.rb' for å legge til elementer i oversikten."
     view: "Vis"
     edit: "Rediger"
     delete: "Slett"
@@ -31,32 +31,40 @@
         ends_with: "Slutter med"
         greater_than: "Større enn"
         less_than: "Mindre enn"
-    main_content: "Please implement %{model}#main_content to display content."
+    status_tag:
+      "yes": "Ja"
+      "no": "Nei"
+    main_content: "Vennligst implementer %{model}#main_content for å vise innhold."
     logout: "Logg ut"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtere"
     pagination:
-      empty: "Fannt ingen %{model}"
+      empty: "Fant ingen %{model}"
       one: "Viser <b>1</b> %{model}"
       one_page: "Viser <b>alle %{n}</b> %{model}"
       multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt"
       multiple_without_total: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-    any: "Noen"
+      entry:
+        one: "innslag"
+        other: "innslag"
+    any: "Alle"
     blank_slate:
       content: "Her er det ingen %{resource_name} enda."
       link: "Opprett en"
+    dropdown_actions:
+      button_label: "Handlinger"
     batch_actions:
-      button_label: "Batch Actions"
-      delete_confirmation: "Are you sure you want to delete these %{plural_model}? You won't be able to undo this."
+      button_label: "Gruppehandlinger"
+      delete_confirmation: "Er du sikker på at du vil slette disse %{plural_model}? Dette kan ikke reverseres."
       succesfully_destroyed:
-        one: "Successfully destroyed 1 %{model}"
-        other: "Successfully destroyed %{count} %{plural_model}"
+        one: "Slettet én %{model}"
+        other: "Slettet %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"
-      link: "Create one"
-      action_label: "%{title} Selected"
+      link: "Opprett en"
+      action_label: "%{title} valgt"
       labels:
-        destroy: "Delete"
+        destroy: "Slett"
     comments:
       body: "Body"
       author: "Author"
@@ -64,10 +72,21 @@
       add: "Add Comment"
       resource: "Resource"
       no_comments_yet: "No comments yet."
-      title_content: "Comments (%{count})"
+      title_content: "Kommentarer (%{count})"
       errors:
-        empty_text: "Comment wasn't saved, text was empty."
+        empty_text: "Kommentar ble ikke lagret, teksten var tom."
     devise:
+      username:
+        title: "Brukernavn"
+      email:
+        title: "E-post"
+      subdomain:
+        title: "Subdomene"
+      password:
+        title: "Passord"
+      sign_up:
+        title: "Opprett brukerkonto"
+        submit: "Opprett"
       login:
         title: "Logg inn"
         remember_me: "Husk meg"
@@ -78,8 +97,20 @@
       change_password:
         title: "Endre passordet"
         submit: "Endre mitt passord"
+      unlock:
+        title: "Send info om gjenoppretting på nytt"
+        submit: "Send info om gjenoppretting på nytt"
+      resend_confirmation_instructions:
+        title: "Send bekreftelsesinformasjon på nytt"
+        submit: "Send bekreftelsesinformasjon på nytt"
       links:
         sign_in: "Logg inn"
         forgot_your_password: "Glemt passord?"
         sign_in_with_omniauth_provider: "Logg på med %{provider}"
-
+    access_denied:
+      message: "Du er ikke autorisert til å utføre denne handlingen."
+    index_list:
+      table: "Tabell"
+      block: "Liste"
+      grid: "Gitter"
+      blog: "Blogg"

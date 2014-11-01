@@ -17,10 +17,9 @@ module ActiveAdmin
       # Returns the filters for this resource. If filters are not enabled,
       # it will always return an empty array.
       #
-      # @return [Array] Filters that apply for this resource
+      # @return [Hash] Filters that apply for this resource
       def filters
-        return [] unless filters_enabled?
-        filter_lookup
+        filters_enabled? ? filter_lookup : {}
       end
 
       # Setter to enable / disable filters on this resource.
@@ -47,10 +46,10 @@ module ActiveAdmin
       # will raise a RuntimeError
       #
       # @param [Symbol] attribute The attribute to not filter on
-      def remove_filter(attribute)
+      def remove_filter(*attributes)
         raise Disabled unless filters_enabled?
 
-        (@filters_to_remove ||= []) << attribute.to_sym
+        attributes.each { |attribute| (@filters_to_remove ||= []) << attribute.to_sym }
       end
 
       # Add a filter for this resource. If filters are not enabled, this method
@@ -76,7 +75,7 @@ module ActiveAdmin
       # Collapses the waveform, if you will, of which filters should be displayed.
       # Removes filters and adds in default filters as desired.
       def filter_lookup
-        filters = @filters.try(:deep_dup) || {}
+        filters = @filters.try(:dup) || {}
 
         if filters.empty? || preserve_default_filters?
           default_filters.each do |f|
@@ -101,7 +100,7 @@ module ActiveAdmin
         if resource_class.respond_to?(:reflect_on_all_associations)
           poly, not_poly = resource_class.reflect_on_all_associations.partition{ |r| r.macro == :belongs_to && r.options[:polymorphic] }
 
-          # remove associations nested more than twice
+          # remove deeply nested associations
           not_poly.reject!{ |r| r.chain.length > 2 }
 
           filters = poly.map(&:foreign_type) + not_poly.map(&:name)

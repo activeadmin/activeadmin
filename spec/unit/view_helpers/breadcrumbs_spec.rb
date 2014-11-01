@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Breadcrumbs" do
 
@@ -7,15 +7,16 @@ describe "Breadcrumbs" do
   describe "generating a trail from paths" do
 
     def params; {}; end
-    def link_to(name, url); {:name => name, :path => url}; end
+    def link_to(name, url); {name: name, path: url}; end
 
-    let(:user)        { double  display_name: 'Jane Doe' }
-    let(:user_config) { double  find_resource: user,
-                                resource_name: double(route_key: 'users') }
-    let(:post)        { double  display_name: 'Hello World' }
-    let(:post_config) { double  find_resource: post,
-                                belongs_to_config: double(target: user_config),
-                                resource_name: double(route_key: 'posts') }
+    actions = ActiveAdmin::BaseController::ACTIVE_ADMIN_ACTIONS
+
+    let(:user)        { double display_name: 'Jane Doe' }
+    let(:user_config) { double find_resource: user, resource_name: double(route_key: 'users'),
+                               defined_actions: actions }
+    let(:post)        { double display_name: 'Hello World' }
+    let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
+                               defined_actions: actions, belongs_to_config: double(target: user_config) }
 
     let :active_admin_config do
       post_config
@@ -28,6 +29,18 @@ describe "Breadcrumbs" do
 
       it "should not have any items" do
         expect(trail.size).to eq 0
+      end
+    end
+
+    context "when path 'admin/users'" do
+      let(:path) { 'admin/users' }
+
+      it 'should have one item' do
+        expect(trail.size).to eq 1
+      end
+      it 'should have a link to /admin' do
+        expect(trail[0][:name]).to eq 'Admin'
+        expect(trail[0][:path]).to eq '/admin'
       end
     end
 
@@ -75,7 +88,7 @@ describe "Breadcrumbs" do
       end
 
       context "when User.find(1) doesn't exist" do
-        before { user_config.stub(find_resource: nil) }
+        before { allow(user_config).to receive(:find_resource) }
         it "should have a link to /admin/users/1" do
           expect(trail[2][:name]).to eq "1"
           expect(trail[2][:path]).to eq "/admin/users/1"
@@ -106,7 +119,7 @@ describe "Breadcrumbs" do
       end
 
       context "when User.find(4e24d6249ccf967313000000) doesn't exist" do
-        before { user_config.stub(find_resource: nil) }
+        before { allow(user_config).to receive(:find_resource) }
         it "should have a link to /admin/users/4e24d6249ccf967313000000" do
           expect(trail[2][:name]).to eq "4e24d6249ccf967313000000"
           expect(trail[2][:path]).to eq "/admin/users/4e24d6249ccf967313000000"
@@ -115,7 +128,8 @@ describe "Breadcrumbs" do
 
       context "when User.find(4e24d6249ccf967313000000) does exist" do
         before do
-          user_config.stub find_resource: double(display_name: 'Hello :)')
+          display_name = double(display_name: 'Hello :)')
+          allow(user_config).to receive(:find_resource).and_return(display_name) 
         end
         it "should have a link to /admin/users/4e24d6249ccf967313000000 using display name" do
           expect(trail[2][:name]).to eq "Hello :)"
@@ -173,6 +187,29 @@ describe "Breadcrumbs" do
       it "should have a link to /admin/users/1/posts/1" do
         expect(trail[4][:name]).to eq "Hello World"
         expect(trail[4][:path]).to eq "/admin/users/1/posts/1"
+      end
+    end
+
+    context "when the 'show' action is disabled" do
+      let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
+                                 defined_actions: actions - [:show], # this is the change
+                                 belongs_to_config: double(target: user_config) }
+
+      let(:path) { "/admin/posts/1/edit" }
+
+      it "should have 3 items" do
+        expect(trail.size).to eq 3
+      end
+      it "should have a link to /admin" do
+        expect(trail[0][:name]).to eq "Admin"
+        expect(trail[0][:path]).to eq "/admin"
+      end
+      it "should have a link to /admin/posts" do
+        expect(trail[1][:name]).to eq "Posts"
+        expect(trail[1][:path]).to eq "/admin/posts"
+      end
+      it "should not link to the show view for the post" do
+        expect(trail[2]).to eq "Hello World"
       end
     end
 

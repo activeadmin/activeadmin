@@ -1,3 +1,3 @@
 Then /^"(.*?)" shouldn't be a symbol$/ do |sym|
-  Symbol.all_symbols.map(&:to_s).should_not include(sym), 'symbol detected!'
+  expect(Symbol.all_symbols.map &:to_s).to_not include(sym), 'symbol detected!'
 end

@@ -6,7 +6,7 @@
 
 ENV["RAILS_ENV"] ||= "cucumber"
 
-require File.expand_path('../../../spec/spec_helper_without_rails', __FILE__)
+require File.expand_path('../../../spec/spec_helper', __FILE__)
 
 ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{ENV["RAILS"]}", __FILE__)
 
@@ -18,6 +18,7 @@ end
 require 'rails'
 require 'active_record'
 require 'active_admin'
+require 'devise'
 ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
 
 require ENV['RAILS_ROOT'] + '/config/environment'
@@ -28,7 +29,20 @@ autoload :ActiveAdmin, 'active_admin'
 
 require 'cucumber/rails'
 
-require 'cucumber/rspec/doubles'
+require 'rspec/mocks'
+World(RSpec::Mocks::ExampleMethods)
+
+Before do
+  RSpec::Mocks.setup
+end
+
+After do
+  begin
+    RSpec::Mocks.verify
+  ensure
+    RSpec::Mocks.teardown
+  end
+end
 
 require 'capybara/rails'
 require 'capybara/cucumber'
@@ -116,4 +130,11 @@ end
 # Don't run @rails4 tagged features for versions before Rails 4.
 Before('@rails4') do |scenario|
   scenario.skip_invoke! if Rails::VERSION::MAJOR < 4
+end
+
+Around '@silent_unpermitted_params_failure' do |scenario, block|
+  original = ActionController::Parameters.action_on_unpermitted_parameters
+  ActionController::Parameters.action_on_unpermitted_parameters = false
+  block.call
+  ActionController::Parameters.action_on_unpermitted_parameters = original
 end

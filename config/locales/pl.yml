@@ -33,6 +33,9 @@ pl:
         ends_with: "Kończy się"
         greater_than: "Większe niż"
         less_than: "Mniejsze niż"
+    status_tag:
+      "yes": "Tak"
+      "no": "Nie"
     main_content: "Zaimplementuj %{model}#main_content aby wyświetlić treść."
     logout: "Wyloguj"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -48,9 +51,12 @@ pl:
     blank_slate:
       content: "Nie ma jeszcze zasobu %{resource_name}."
       link: "Utwórz go"
+    dropdown_actions:
+      button_label: "Akcje"
     batch_actions:
       button_label: "Akcje na partiach"
-      delete_confirmation: "Czy na pewno chcesz usunąć te %{plural_model}? Nie będziesz miał możliwości cofnięcia tego."
+      default_confirmation: "Czy na pewno chcesz to zrobić?"
+      delete_confirmation: "Czy na pewno chcesz usunąć te %{plural_model}?"
       succesfully_destroyed:
         one: "Poprawnie usunięto 1 %{model}"
         other: "Poprawnie usunięto %{count} %{plural_model}"
@@ -72,6 +78,9 @@ pl:
       errors:
         empty_text: "Komentarz nie został zapisany, zawartość była pusta."
     devise:
+      sign_up:
+        title: "Rejestracja"
+        submit: "Zarejestruj się"
       login:
         title: "Logowanie"
         remember_me: "Zapamiętaj mnie"
@@ -82,12 +91,10 @@ pl:
       change_password:
         title: "Zmień hasło"
         submit: "Zmień hasło"
+      resend_confirmation_instructions:
+        title: "Wyślij ponownie instrukcje aktywacji"
+        submit: "Wyślij ponownie instrukcje aktywacji"
       links:
         sign_in: "Zaloguj się"
         forgot_your_password: "Nie pamiętasz hasła?"
         sign_in_with_omniauth_provider: "Zaloguj się z %{provider}"
-  formtastic:
-    actions:
-      update: "Aktualizuj %{model}"
-      create: "Utwórz %{model}"
-

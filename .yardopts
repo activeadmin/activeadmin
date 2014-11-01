@@ -2,7 +2,6 @@ lib/**/*.rb
 --protected
 --no-private
 --exclude features
---plugin redcarpet-ext
 -
 README.md
 CHANGELOG.md

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Views::AttributesTable do
 
@@ -6,13 +6,13 @@ describe ActiveAdmin::Views::AttributesTable do
     let(:helpers) { action_view }
 
     let(:post) do
-      post = Post.new :title => "Hello World", :body => nil
-      post.stub(:id){ 1 }
-      post.stub(:new_record?){ false }
+      post = Post.new title: "Hello World", body: nil
+      allow(post).to receive(:id){ 1 }
+      allow(post).to receive(:new_record?){ false }
       post
     end
 
-    let(:assigns){ { :post => post } }
+    let(:assigns){ { post: post } }
 
     # Loop through a few different ways to make the same table
     # and ensure that they produce the same results
@@ -117,7 +117,7 @@ describe ActiveAdmin::Views::AttributesTable do
     it "should allow html options for the row itself" do
       table = render_arbre_component(assigns) {
         attributes_table_for(post) do
-          row("Wee", :class => "custom_row", :style => "custom_style") { }
+          row("Wee", class: "custom_row", style: "custom_style") { }
         end
       }
       expect(table.find_by_tag("tr").first.to_s.split("\n").first.lstrip).
@@ -127,28 +127,42 @@ describe ActiveAdmin::Views::AttributesTable do
     it "should allow html content inside the attributes table" do
       table = render_arbre_component(assigns) {
         attributes_table_for(post) do
-          row("ID"){ span(post.id, :class => 'id') }
+          row("ID"){ span(post.id, class: 'id') }
         end
       }
       expect(table.find_by_tag("td").first.content.chomp.strip).to eq "<span class=\"id\">1</span>"
     end
 
-    it "should check if an association exists when an attribute has id in it" do
-      post.author = User.new :username => 'john_doe', :first_name => 'John', :last_name => 'Doe'
-      table = render_arbre_component(assigns) {
-        attributes_table_for post, :author_id
-      }
-      expect(table.find_by_tag('td').first.content).to eq 'John Doe'
+    context 'an attribute ending in _id' do
+      before do
+        post.foo_id = 23
+        post.author = User.new username: 'john_doe', first_name: 'John', last_name: 'Doe'
+      end
+      it 'should call the association if one exists' do
+        table = render_arbre_component assigns do
+          attributes_table_for post, :author_id
+        end
+        expect(table.find_by_tag('th').first.content).to eq 'Author'
+        expect(table.find_by_tag('td').first.content).to eq 'John Doe'
+      end
+      it 'should not attempt to call a nonexistant association' do
+        table = render_arbre_component assigns do
+          attributes_table_for post, :foo_id
+        end
+        expect(table.find_by_tag('th').first.content).to eq 'Foo'
+        expect(table.find_by_tag('td').first.content).to eq '23'
+      end
     end
 
     context "with a collection" do
       let(:posts) do
-        [Post.new(:title => "Hello World", :id => 1), Post.new(:title => "Multi Column", :id => 2)].each_with_index do |post, index|
-          post.stub(:id => index + 1, :new_record? => false)
+        [Post.new(title: "Hello World", id: 1), Post.new(title: "Multi Column", id: 2)].each_with_index do |post, index|
+          allow(post).to receive(:id).and_return(index + 1)
+          allow(post).to receive(:new_record?).and_return(false)
         end
       end
 
-      let(:assigns) { { :posts => posts } }
+      let(:assigns) { { posts: posts } }
 
       let(:table) do
         render_arbre_component(assigns) do
@@ -206,11 +220,8 @@ describe ActiveAdmin::Views::AttributesTable do
 
             context "with defined attribute name translation" do
               it "should have the translated attribute name in the title" do
-                begin
-                  I18n.backend.store_translations(:en, :activerecord => { :attributes => { :post => { :title => 'Translated Title', :id => 'Translated Id' } } })
+                with_translation activerecord: {attributes: {post: {title: 'Translated Title', id: 'Translated Id'}}} do
                   expect(current_row.find_by_tag("th").first.content).to eq "Translated #{title}"
-                ensure
-                  I18n.backend.reload!
                 end
               end
             end
@@ -224,6 +235,39 @@ describe ActiveAdmin::Views::AttributesTable do
         end
       end # describe rendering rows
     end # with a collection
+
+
+    context "when using a single Hash" do
+      let(:table) do
+        render_arbre_component nil, helpers do
+          attributes_table_for foo: 1, bar: 2 do
+            row :foo
+            row :bar
+          end
+        end
+      end
+      it "should render" do
+        expect(table.find_by_tag("th")[0].content).to eq "Foo"
+        expect(table.find_by_tag("th")[1].content).to eq "Bar"
+        expect(table.find_by_tag("td")[0].content).to eq "1"
+        expect(table.find_by_tag("td")[1].content).to eq "2"
+      end
+    end
+
+    context "when using an Array of Hashes" do
+      let(:table) do
+        render_arbre_component nil, helpers do
+          attributes_table_for [{foo: 1},{foo: 2}] do
+            row :foo
+          end
+        end
+      end
+      it "should render" do
+        expect(table.find_by_tag("th")[0].content).to eq "Foo"
+        expect(table.find_by_tag("td")[0].content).to eq "1"
+        expect(table.find_by_tag("td")[1].content).to eq "2"
+      end
+    end
   end
 
 end

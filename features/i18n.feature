@@ -7,14 +7,19 @@ Feature: Internationalization
     And a store named "Hello words" exists
     When I go to the dashboard
     Then I should see "Bookstores"
+
     When I follow "Bookstores"
+    Then I should see the page title "Bookstores"
     Then I should see "Hello words"
+
     When I follow "View"
     Then I should see "Bookstore Details"
     And I should see "Hello words"
     And I should see a link to "Delete Bookstore"
+
     When I follow "Edit Bookstore"
     Then I should see "Edit Bookstore"
+
     When I press "Update Bookstore"
     Then I should see a flash with "Bookstore was successfully updated."
 

@@ -11,7 +11,7 @@ module ActiveAdmin
 
         super(options)
 
-        @contents_root = send(contents_root_tag, :class => "popover_contents")
+        @contents_root = send(contents_root_tag, class: "popover_contents")
       end
 
       def add_child(child)

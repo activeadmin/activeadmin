@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Resource::PagePresenters do
 
@@ -16,7 +16,7 @@ describe ActiveAdmin::Resource::PagePresenters do
   end
 
   it "should add an index page presenter" do
-    page_presenter = ActiveAdmin::PagePresenter.new({:as => :table})
+    page_presenter = ActiveAdmin::PagePresenter.new({as: :table})
     resource.set_page_presenter(:index, page_presenter)
     expect(resource.page_presenters[:index].default).to eq page_presenter
   end

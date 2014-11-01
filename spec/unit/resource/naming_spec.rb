@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-require 'spec_helper'
+require 'rails_helper'
 
 module ActiveAdmin
   describe Resource, "Naming" do
@@ -30,7 +30,7 @@ module ActiveAdmin
       end
       context "when you pass the 'as' option" do
         it "should underscore the passed through string" do
-          expect(config(:as => "Blog Category").resource_name.singular).to eq "blog_category"
+          expect(config(as: "Blog Category").resource_name.singular).to eq "blog_category"
         end
       end
     end
@@ -46,7 +46,7 @@ module ActiveAdmin
 
       context "when the :as option is given" do
         it "should return the custom name" do
-          expect(config(:as => "My Category").resource_label).to eq "My Category"
+          expect(config(as: "My Category").resource_label).to eq "My Category"
         end
       end
 
@@ -79,14 +79,14 @@ module ActiveAdmin
         describe "plural label with not default locale" do
           it "should return the titleized plural version defined by i18n with custom :count if available" do
             expect(config.resource_name).to receive(:translate).at_least(:once).and_return "Категории"
-            expect(config.plural_resource_label(:count => 3)).to eq "Категории"
+            expect(config.plural_resource_label(count: 3)).to eq "Категории"
           end
         end
 
         context "when the :as option is given" do
           describe "singular label" do
             it "should translate the custom name" do
-              config = config(:as => 'My Category')
+              config = config(as: 'My Category')
               expect(config.resource_name).to receive(:translate).and_return "Translated category"
               expect(config.resource_label).to eq "Translated category"
             end
@@ -94,7 +94,7 @@ module ActiveAdmin
 
           describe "plural label" do
             it "should translate the custom name" do
-              config = config(:as => 'My Category')
+              config = config(as: 'My Category')
               expect(config.resource_name).to receive(:translate).at_least(:once).and_return "Translated categories"
               expect(config.plural_resource_label).to eq "Translated categories"
             end
@@ -110,7 +110,7 @@ module ActiveAdmin
 
       [:==, :===, :eql?].each do |method|
         it "are equivalent when compared with #{method}" do
-          expect(resource_name.public_send(method, duplicate_resource_name)).to be_true
+          expect(resource_name.public_send(method, duplicate_resource_name)).to be_truthy
         end
       end
 

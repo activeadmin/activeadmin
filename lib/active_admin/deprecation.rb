@@ -23,13 +23,12 @@ module ActiveAdmin
     #     end
     #
     def deprecate(klass, method, message)
-      klass.class_eval <<-EOC, __FILE__, __LINE__ + 1
-        alias_method :deprecated_#{method}, :#{method}
-        def #{method}(*args)
-          ActiveAdmin::Deprecation.warn('#{message}', caller)
-          send(:deprecated_#{method}, *args)
-        end
-      EOC
+      klass.send :define_method, "deprecated_#{method}", klass.instance_method(method)
+
+      klass.send :define_method, method do |*args|
+        ActiveAdmin::Deprecation.warn "#{message}", caller
+        send "deprecated_#{method}", *args
+      end
     end
 
   end

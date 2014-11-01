@@ -2,11 +2,13 @@ module ActiveAdmin
   module BatchActions
     module Controller
 
-      # Controller Action that get's called when submitting the batch action form
+      # Controller action that is called when submitting the batch action form
       def batch_action
-        if selected_batch_action
-          selected_ids = params[:collection_selection] || []
-          instance_exec selected_ids, &selected_batch_action.block
+        if action_present?
+          selection =            params[:collection_selection] ||  []
+          inputs    = JSON.parse params[:batch_action_inputs]  || '{}'
+          inputs    = inputs.with_indifferent_access.slice *current_batch_action.inputs.keys
+          instance_exec selection, inputs, &current_batch_action.block
         else
           raise "Couldn't find batch action \"#{params[:batch_action]}\""
         end
@@ -14,9 +16,12 @@ module ActiveAdmin
 
       protected
 
-      def selected_batch_action
-        return unless params[:batch_action].present?
-        active_admin_config.batch_actions.detect { |action| action.sym.to_s == params[:batch_action] }
+      def action_present?
+        params[:batch_action].present? && current_batch_action
+      end
+
+      def current_batch_action
+        active_admin_config.batch_actions.detect{ |action| action.sym.to_s == params[:batch_action] }
       end
 
     end

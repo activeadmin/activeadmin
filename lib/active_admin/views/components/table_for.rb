@@ -7,13 +7,21 @@ module ActiveAdmin
         'table'
       end
 
-      def build(record_or_collection, options = {})
+      def build(obj, *attrs)
+        options         = attrs.extract_options!
         @sortable       = options.delete(:sortable)
         @resource_class = options.delete(:i18n)
-        @collection     = Array(record_or_collection)
-        @columns = []
+        @collection     = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
+        @columns        = []
+        @row_class      = options.delete(:row_class)
+
         build_table
         super(options)
+        columns(*attrs)
+      end
+
+      def columns(*attrs)
+        attrs.each {|attr| column(attr) }
       end
 
       def column(*args, &block)
@@ -75,15 +83,42 @@ module ActiveAdmin
       def build_table_body
         @tbody = tbody do
           # Build enough rows for our collection
-          @collection.each{|elem| tr(:class => cycle('odd', 'even'), :id => dom_id(elem)) }
+          @collection.each do |elem|
+            classes = [cycle('odd', 'even')]
+
+            if @row_class
+              classes << @row_class.call(elem)
+            end
+
+            tr(class: classes.flatten.join(' '), id: dom_id_for(elem))
+          end
         end
       end
 
       def build_table_cell(col, item)
         td class: col.html_class do
-          value = call_method_or_proc_on item, col.data, exec: false
-          value = pretty_format(value) if col.data.is_a?(Symbol)
-          value
+          render_data col.data, item
+        end
+      end
+
+      def render_data(data, item)
+        value = if data.is_a? Proc
+          data.call item
+        elsif item.respond_to? data
+          item.public_send data
+        elsif item.respond_to? :[]
+          item[data]
+        end
+        value = pretty_format(value) if data.is_a?(Symbol)
+        value = status_tag value     if is_boolean? data, item
+        value
+      end
+
+      def is_boolean?(data, item)
+        if item.respond_to? :type_for_attribute # Rails >= 4.2
+          item.type_for_attribute(data) == :boolean
+        elsif item.respond_to? :column_for_attribute
+          attr = item.column_for_attribute(data) and attr.type == :boolean
         end
       end
 
@@ -91,10 +126,14 @@ module ActiveAdmin
       #   current_sort[0] #=> sort_key
       #   current_sort[1] #=> asc | desc
       def current_sort
-        @current_sort ||= if params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
-          [$1,$2]
-        else
-          []
+        @current_sort ||= begin
+          order_clause = OrderClause.new params[:order]
+
+          if order_clause.valid?
+            [order_clause.field, order_clause.order]
+          else
+            []
+          end
         end
       end
 
@@ -110,7 +149,7 @@ module ActiveAdmin
 
       def default_options
         {
-          :i18n => @resource_class
+          i18n: @resource_class
         }
       end
 
@@ -135,14 +174,12 @@ module ActiveAdmin
         end
 
         def sortable?
-          if @data.is_a?(Proc)
-            [String, Symbol].include?(@options[:sortable].class)
-          elsif @options.has_key?(:sortable)
-            @options[:sortable]
-          elsif @data.respond_to?(:to_sym) && @resource_class
-            !@resource_class.reflect_on_association(@data.to_sym)
+          if @options.has_key?(:sortable)
+            !!@options[:sortable]
+          elsif @resource_class
+            @resource_class.column_names.include?(sort_column_name)
           else
-            true
+            @title.present?
           end
         end
 
@@ -155,19 +192,21 @@ module ActiveAdmin
         #
         # You can set the sort key by passing a string or symbol
         # to the sortable option:
-        #   column :username, :sortable => 'other_column_to_sort_on'
+        #   column :username, sortable: 'other_column_to_sort_on'
         #
         # If you pass a block to be rendered for this column, the column
         # will not be sortable unless you pass a string to sortable to
         # sort the column on:
         #
-        #   column('Username', :sortable => 'login'){ @user.pretty_name }
+        #   column('Username', sortable: 'login'){ @user.pretty_name }
         #   # => Sort key will be 'login'
         #
         def sort_key
           # If boolean or nil, use the default sort key.
-          if @options[:sortable] == true || @options[:sortable] == false || @options[:sortable].nil?
+          if @options[:sortable] == true || @options[:sortable] == false
             @data.to_s
+          elsif @options[:sortable].nil?
+            sort_column_name
           else
             @options[:sortable].to_s
           end
@@ -184,6 +223,12 @@ module ActiveAdmin
           else
             @title
           end
+        end
+
+        private
+
+        def sort_column_name
+          @data.is_a?(Symbol) ? @data.to_s : @title.to_s
         end
       end
     end

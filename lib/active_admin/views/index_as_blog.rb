@@ -75,7 +75,7 @@ module ActiveAdmin
 
         # Call the block passed in. This will set the
         # title and body methods
-        instance_eval &page_presenter.block if page_presenter.block
+        instance_exec &page_presenter.block if page_presenter.block
 
         add_class "index"
         build_posts
@@ -113,7 +113,7 @@ module ActiveAdmin
       end
 
       def build_post(post)
-        div :for => post do
+        div for: post do
           resource_selection_cell(post) if active_admin_config.batch_actions.any?
           build_title(post)
           build_body(post)
@@ -123,7 +123,7 @@ module ActiveAdmin
       def build_title(post)
         if @title
           h3 do
-            a(:href => resource_path(post)) do
+            a(href: resource_path(post)) do
              render_method_on_post_or_call_proc post, @title
             end
           end
@@ -136,7 +136,7 @@ module ActiveAdmin
 
       def build_body(post)
         if @body
-          div :class => 'content' do
+          div class: 'content' do
             render_method_on_post_or_call_proc post, @body
           end
         end
@@ -144,8 +144,8 @@ module ActiveAdmin
 
       def render_method_on_post_or_call_proc(post, proc)
         case proc
-        when String,Symbol
-          post.send proc
+        when String, Symbol
+          post.public_send proc
         else
           instance_exec post, &proc
         end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Devise::Controller do
 
@@ -22,7 +22,7 @@ describe ActiveAdmin::Devise::Controller do
     end
 
     it "should set the root path to '/' when no default namespace" do
-      ActiveAdmin.application.stub default_namespace: false
+      allow(ActiveAdmin.application).to receive(:default_namespace).and_return(false)
       expect(controller.root_path).to eq "/foo/"
     end
 
@@ -37,7 +37,7 @@ describe ActiveAdmin::Devise::Controller do
     end
 
     it "should set the root path to '/' when no default namespace" do
-      ActiveAdmin.application.stub default_namespace: false
+      allow(ActiveAdmin.application).to receive(:default_namespace).and_return(false)
       expect(controller.root_path).to eq "/"
     end
 
@@ -54,7 +54,7 @@ describe ActiveAdmin::Devise::Controller do
 
       # Add scoped routes
       routes.draw do
-        scope :path => SCOPE do
+        scope path: SCOPE do
           ActiveAdmin.routes(self)
           devise_for :admin_users, ActiveAdmin::Devise.config
         end
@@ -92,7 +92,7 @@ describe ActiveAdmin::Devise::Controller do
       context "when Devise implements sign_out_via (version >= 1.2)" do
         before do
          expect(::Devise).to receive(:respond_to?).with(:sign_out_via).and_return(true)
-          ::Devise.stub(:sign_out_via) { :delete }
+          allow(::Devise).to receive(:sign_out_via) { :delete }
         end
 
         it "should contain the application.logout_link_method" do

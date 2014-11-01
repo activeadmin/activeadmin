@@ -1,12 +1,12 @@
 # encoding: utf-8
 
-require 'spec_helper'
+require 'rails_helper'
 require File.expand_path('config_shared_examples', File.dirname(__FILE__))
 
 module ActiveAdmin
   describe Page do
 
-    it_should_behave_like "ActiveAdmin::Config"
+    it_should_behave_like "ActiveAdmin::Resource"
     before { load_defaults! }
 
     let(:application){ ActiveAdmin::Application.new }

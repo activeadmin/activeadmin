@@ -8,8 +8,8 @@ module ActiveAdmin
       end
 
       # For docs, please see ActiveAdmin::Filters::ResourceExtension#remove_filter
-      def remove_filter(attribute)
-        config.remove_filter(attribute)
+      def remove_filter(*attributes)
+        config.remove_filter(*attributes)
       end
 
       # For docs, please see ActiveAdmin::Filters::ResourceExtension#preserve_default_filters!

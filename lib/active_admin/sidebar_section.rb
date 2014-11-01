@@ -25,12 +25,20 @@ module ActiveAdmin
 
     # The title gets displayed within the section in the view
     def title
-      I18n.t("active_admin.sidebars.#{name.to_s}", :default => name.to_s.titlecase)
+      I18n.t("active_admin.sidebars.#{name.to_s}", default: name.to_s.titlecase)
     end
 
     # If a block is not passed in, the name of the partial to render
     def partial_name
-      options[:partial] || "#{name.to_s.downcase.gsub(' ', '_')}_sidebar"
+      options[:partial] || "#{name.to_s.downcase.tr(' ', '_')}_sidebar"
+    end
+
+    def custom_class
+      options[:class]
+    end
+
+    def priority
+      options[:priority] || 10
     end
   end
 

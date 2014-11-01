@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Views::Popover do
 
   let(:the_popover) do
     render_arbre_component do
-      popover :id => "my_awesome_popover" do
+      popover id: "my_awesome_popover" do
         para "Hello World, this is popover content baby."
       end
     end
@@ -27,7 +27,7 @@ describe ActiveAdmin::Views::Popover do
   end
 
   it "should be hidden" do
-    expect(the_popover.attributes).to include(:style => "display: none");
+    expect(the_popover.attributes).to include(style: "display: none");
   end
 
 end
