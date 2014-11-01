@@ -1,7 +1,7 @@
-require 'active_admin/orm/active_record/comments/views'
-require 'active_admin/orm/active_record/comments/show_page_helper'
-require 'active_admin/orm/active_record/comments/namespace_helper'
-require 'active_admin/orm/active_record/comments/resource_helper'
+require 'active_admin/object_mappers/active_record/comments/views'
+require 'active_admin/object_mappers/active_record/comments/show_page_helper'
+require 'active_admin/object_mappers/active_record/comments/namespace_helper'
+require 'active_admin/object_mappers/active_record/comments/resource_helper'
 
 # Add the comments configuration
 ActiveAdmin::Application.inheritable_setting :allow_comments,             true
@@ -14,7 +14,7 @@ ActiveAdmin::Resource.send  :include, ActiveAdmin::Comments::ResourceHelper
 ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comments::ShowPageHelper
 
 # Load the model as soon as it's referenced. By that point, Rails & Kaminari will be ready
-ActiveAdmin.autoload :Comment, 'active_admin/orm/active_record/comments/comment'
+ActiveAdmin.autoload :Comment, 'active_admin/object_mappers/active_record/comments/comment'
 
 # Walk through all the loaded namespaces after they're loaded
 ActiveAdmin.after_load do |app|
