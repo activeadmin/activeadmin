@@ -1,4 +1,16 @@
 # Provides an intuitive way to build has_many associated records in the same form.
+module Formtastic
+  module Inputs
+    module Base
+      def input_wrapping(&block)
+        html = super
+        template.concat(html) if template.assigns['has_many_block']
+        html
+      end
+    end
+  end
+end
+
 module ActiveAdmin
   class FormBuilder < ::Formtastic::FormBuilder
 
@@ -37,10 +49,11 @@ module ActiveAdmin
         contents = "".html_safe
         form_block = proc do |has_many_form|
           index    = parent_child_index options[:parent] if options[:parent]
-          contents = block.call has_many_form, index
-          has_many_actions(has_many_form, builder_options, contents)
+          block.call has_many_form, index
+          template.concat has_many_actions(has_many_form, builder_options, "".html_safe)
         end
         
+        template.assign('has_many_block'=> true)
         contents = without_wrapper { inputs(options, &form_block) }
 
         if builder_options[:new_record]
@@ -51,7 +64,9 @@ module ActiveAdmin
       end
 
       tag = @already_in_an_inputs_block ? :li : :div
-      template.content_tag(tag, html, class: "has_many_container #{assoc}", 'data-sortable' => builder_options[:sortable])
+      html = template.content_tag(tag, html, class: "has_many_container #{assoc}", 'data-sortable' => builder_options[:sortable])
+      template.concat(html) if template.output_buffer
+      html
     end
 
     protected
