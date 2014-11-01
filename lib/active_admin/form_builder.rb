@@ -4,7 +4,7 @@ module Formtastic
     module Base
       def input_wrapping(&block)
         html = super
-        template.concat(html) if template.assigns['has_many_block']
+        template.concat(html) if template.output_buffer && template.assigns['has_many_block']
         html
       end
     end
