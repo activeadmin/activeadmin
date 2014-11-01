@@ -247,8 +247,9 @@ describe ActiveAdmin::FormBuilder do
     it "should generate a nested text input once" do
       expect(body.scan("post_author_attributes_first_name_input").size).to eq(1)
     end
-    it "should add an author first name field" do
+    it "should add author first and last name fields" do
       expect(body).to have_tag("input", attributes: { name: "post[author_attributes][first_name]"})
+      expect(body).to have_tag("input", attributes: { name: "post[author_attributes][last_name]"})
     end
   end
 
