@@ -261,6 +261,26 @@ describe ActiveAdmin::FormBuilder do
     end
   end
 
+  context "with inputs twice" do
+    let :body do
+      build_form do |f|
+        f.inputs do
+          f.input :title
+          f.input :body
+        end
+        f.inputs do
+          f.input :author
+          f.input :published_at
+        end
+      end
+    end
+    it "should render four inputs" do
+      expect(body.scan(/<input/).size).to eq(2) # utf8, title
+      expect(body.scan(/<textare/).size).to eq(1) # body
+      expect(body.scan(/<select/).size).to eq(6) # author, published at
+    end
+  end
+
   context "with has many inputs" do
     describe "with simple block" do
       let :body do
