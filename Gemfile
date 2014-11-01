@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-
 gemspec
 
 require File.expand_path 'spec/support/detect_rails_version', File.dirname(__FILE__)
@@ -16,6 +15,10 @@ gem 'pundit'
 # Utility gems used in both development & test environments
 gem 'rake', require: false
 gem 'parallel_tests'
+
+gem RUBY_ENGINE =~ /jruby/ ? 'activerecord-jdbcsqlite3-adapter' : 'sqlite3'
+
+gem 'rubysl' if RUBY_ENGINE =~ /rbx/
 
 group :development do
   # Debugging
@@ -45,6 +48,6 @@ group :test do
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rubinius-coverage' if RUBY_ENGINE =~ /rbx/ # colszowka/simplecov#250
   gem 'shoulda-matchers'
-  gem 'sqlite3'
 end
