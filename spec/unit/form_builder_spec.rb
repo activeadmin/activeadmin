@@ -270,6 +270,7 @@ describe ActiveAdmin::FormBuilder do
             p.input :title
             p.input :body
           end
+          f.inputs
         end
       end
 
