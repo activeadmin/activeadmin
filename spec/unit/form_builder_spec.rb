@@ -268,6 +268,7 @@ describe ActiveAdmin::FormBuilder do
           f.object.posts.build
           f.has_many :posts do |p|
             p.input :title
+            p.input :body
           end
         end
       end
@@ -558,7 +559,7 @@ describe ActiveAdmin::FormBuilder do
       end
     end
 
-    skip "should render the block if it returns nil" do
+    it "should render the block if it returns nil" do
       body = build_form({url: '/categories'}, Category.new) do |f|
         f.object.posts.build
         f.has_many :posts do |p|
