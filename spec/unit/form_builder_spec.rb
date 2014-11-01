@@ -303,6 +303,7 @@ describe ActiveAdmin::FormBuilder do
 
       it "should render the nested form" do
         expect(body).to have_tag("input", attributes: {name: "category[posts_attributes][0][title]"})
+        expect(body).to have_tag("textarea", attributes: {name: "category[posts_attributes][0][body]"})
       end
 
       it "should add a link to remove new nested records" do
