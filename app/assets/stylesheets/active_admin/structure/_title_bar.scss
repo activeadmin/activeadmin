@@ -34,12 +34,7 @@
       & > a, & > .dropdown_menu > a {
         @include light-button;
         padding: 12px 17px 10px;
-        span.icon { vertical-align: bottom; margin-right: 4px;}
         margin: 0px;
-
-        &:hover{
-          @include icon-color(#000);
-        }
       }
     }
   }

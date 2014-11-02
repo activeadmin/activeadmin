@@ -84,7 +84,6 @@ Tool                  | Description
 [Arbre]               | Ruby -> HTML, just like that.
 [Devise]              | Powerful, extensible user authentication
 [Formtastic]          | A Rails form builder plugin with semantically rich and accessible markup
-[Iconic Icons]        | An excellent SVG icon set designed by P.J. Onori
 [Inherited Resources] | Simplifies controllers with pre-built RESTful controller actions
 [Kaminari]            | Elegant pagination for any sort of collection
 [Ransack]             | Provides a simple search API to query your data
@@ -92,7 +91,6 @@ Tool                  | Description
 [Arbre]: https://github.com/activeadmin/arbre
 [Devise]: https://github.com/plataformatec/devise
 [Formtastic]: https://github.com/justinfrench/formtastic
-[Iconic Icons]: http://somerandomdude.com/projects/iconic
 [Inherited Resources]: https://github.com/josevalim/inherited_resources
 [Kaminari]: https://github.com/amatsuda/kaminari
 [Ransack]: https://github.com/activerecord-hackery/ransack
