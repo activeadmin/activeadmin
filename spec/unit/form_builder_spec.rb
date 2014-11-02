@@ -451,7 +451,7 @@ describe ActiveAdmin::FormBuilder do
         end
 
         it "should wrap the destroy field in an li with class 'has_many_delete'" do
-          expect(Capybara.string(body)).to have_css(".has_many_container > fieldset > ol > li.has_many_delete > input")
+          expect(Capybara.string(body)).to have_css(".has_many_container > fieldset > ol > li.has_many_delete > input", count: 1)
         end
       end
 

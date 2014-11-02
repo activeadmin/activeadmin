@@ -77,9 +77,9 @@ module ActiveAdmin
           template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
         end
       elsif builder_options[:allow_destroy]
-        contents << has_many_form.input(:_destroy, as: :boolean,
-                                        wrapper_html: {class: 'has_many_delete'},
-                                        label: I18n.t('active_admin.has_many_delete'))
+        has_many_form.input(:_destroy, as: :boolean,
+                            wrapper_html: {class: 'has_many_delete'},
+                            label: I18n.t('active_admin.has_many_delete'))
       end
 
       if builder_options[:sortable]
