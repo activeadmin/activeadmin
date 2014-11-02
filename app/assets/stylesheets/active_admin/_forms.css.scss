@@ -135,6 +135,26 @@ form {
     }
   }
 
+  /* Render fragment-groups like text fields */
+  .fragments {
+    position: static;
+    legend {
+      box-sizing: border-box;
+      float: left;
+      position: static;
+      width: 20%;
+      span { position: static; width: 100%; }
+      &.label label { position: static; width: 100%; }
+    }
+    .fragments-group {
+      box-sizing: border-box;
+      float: left;
+      overflow: hidden;
+      padding-left: 0; /* override the 20% padding used to boost nested fields to the right */
+      width: 80%;
+    }
+  }
+
   fieldset > ol > li {
 
     /* Hints */
@@ -146,7 +166,7 @@ form {
     }
 
     /* Date and Time Fields */
-    &.date, &.time, &.datetime, &.date_select {
+    &.date, &.time, &.datetime, &.datetime_select, &.date_select {
       fieldset ol li {
         float:left; width:auto; margin:0 0.5em 0 0;
         label { display: none; }
