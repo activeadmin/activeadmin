@@ -246,6 +246,33 @@ describe ActiveAdmin::FormBuilder do
     end
     it "should generate a nested text input once" do
       expect(body.scan("post_author_attributes_first_name_input").size).to eq(1)
+      expect(body.scan("post_author_attributes_last_name_input").size).to eq(1)
+    end
+    it "should add author first and last name fields" do
+      expect(body).to have_tag("input", attributes: { name: "post[author_attributes][first_name]"})
+      expect(body).to have_tag("input", attributes: { name: "post[author_attributes][last_name]"})
+    end
+  end
+
+  context "with two input fields 'for'" do
+    let :body do
+      build_form do |f|
+        f.inputs do
+          f.input :title
+          f.input :body
+        end
+        f.form_builder.instance_eval do
+          @object.author = User.new
+        end
+        f.inputs name: 'Author', for: :author do |author|
+          author.input :first_name
+          author.input :last_name
+        end
+      end
+    end
+    it "should generate a nested text input once" do
+      expect(body.scan("post_author_attributes_first_name_input").size).to eq(1)
+      expect(body.scan("post_author_attributes_last_name_input").size).to eq(1)
     end
     it "should add author first and last name fields" do
       expect(body).to have_tag("input", attributes: { name: "post[author_attributes][first_name]"})

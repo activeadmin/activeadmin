@@ -40,7 +40,10 @@ module ActiveAdmin
           wrapped_block = proc do
             wrap_it = form_builder.already_in_an_inputs_block ? true : false
             form_builder.already_in_an_inputs_block = true
-            content = block.call
+            form_builder.template.assign('has_many_block'=> true)
+            content = form_builder.template.capture do
+              block.call
+            end
             form_builder.already_in_an_inputs_block = wrap_it
             content
           end
