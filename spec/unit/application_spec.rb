@@ -66,6 +66,10 @@ describe ActiveAdmin::Application do
     expect(application.allow_comments).to eq true
   end
 
+  it "should set default Pundit policy class" do
+    application.default_pundit_policy = policy_klass
+  end
+
   describe "authentication settings" do
 
     it "should have no default current_user_method" do

@@ -79,6 +79,8 @@ module ActiveAdmin
     # The authorization adapter to use
     inheritable_setting :authorization_adapter, ActiveAdmin::AuthorizationAdapter
 
+    inheritable_setting :pundit_default_policy, nil
+
     # A proc to be used when a user is not authorized to view the current resource
     inheritable_setting :on_unauthorized_access, :rescue_active_admin_access_denied
 
