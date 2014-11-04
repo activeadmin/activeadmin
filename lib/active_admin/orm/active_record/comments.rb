@@ -21,7 +21,7 @@ ActiveAdmin.after_load do |app|
   app.namespaces.values.each do |namespace|
     if namespace.comments?
       namespace.register ActiveAdmin::Comment, as: namespace.comments_registration_name do
-        actions :index, :show, :create
+        actions :index, :show, :create, :destroy
 
         menu false unless namespace.show_comments_in_menu
 
@@ -60,6 +60,13 @@ ActiveAdmin.after_load do |app|
                 flash[:error] = I18n.t 'active_admin.comments.errors.empty_text'
                 redirect_to :back
               end
+            end
+          end
+
+          def destroy
+            destroy! do |success, failure|
+              success.html{ redirect_to :back }
+              failure.html{ redirect_to :back }
             end
           end
         end
