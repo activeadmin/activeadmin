@@ -35,6 +35,9 @@ module ActiveAdmin
                 comment.author ? auto_link(comment.author) : I18n.t('active_admin.comments.author_missing')
               end
               span pretty_format comment.created_at
+              if authorized?(ActiveAdmin::Auth::DESTROY, comment)
+                text_node link_to I18n.t('active_admin.comments.delete'), comments_url(comment.id), method: :delete, data: { confirm: I18n.t('active_admin.comments.delete_confirmation') }
+              end
             end
             div class: 'active_admin_comment_body' do
               simple_format comment.body
@@ -44,6 +47,14 @@ module ActiveAdmin
 
         def build_empty_message
           span I18n.t('active_admin.comments.no_comments_yet'), class: 'empty'
+        end
+
+        def comments_url(*args)
+          parts = []
+          parts << active_admin_namespace.name unless active_admin_namespace.root?
+          parts << active_admin_namespace.comments_registration_name.underscore
+          parts << 'path'
+          send parts.join('_'), *args
         end
 
         def comment_form_url

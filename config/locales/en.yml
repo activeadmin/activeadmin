@@ -75,6 +75,8 @@ en:
       author: "Author"
       title: "Comment"
       add: "Add Comment"
+      delete: "Delete Comment"
+      delete_confirmation: "Are you sure you want to delete these comment?"
       resource: "Resource"
       no_comments_yet: "No comments yet."
       author_missing: "Anonymous"

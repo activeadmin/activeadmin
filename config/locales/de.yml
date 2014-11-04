@@ -75,6 +75,8 @@ de:
       author: "Autor"
       title: "Kommentar"
       add: "Kommentar hinzufügen"
+      delete: "Löschen"
+      delete_confirmation: "Sind Sie sicher dass sie diesen Kommentar löschen wollen?"
       resource: "Res­sour­ce"
       no_comments_yet: "Es gibt noch keine Kommentare."
       author_missing: "Unbekannt"
