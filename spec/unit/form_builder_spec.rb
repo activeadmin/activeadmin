@@ -38,6 +38,38 @@ describe ActiveAdmin::FormBuilder do
     end.to_s
   end
 
+  context "in general" do
+    context "it without custom settings" do
+      let :body do
+        build_form do |f|
+          f.inputs do
+            f.input :title
+            f.input :body
+          end
+        end
+      end
+
+      it "should generate a fieldset with a inputs class" do
+        expect(body).to have_tag("fieldset", attributes: { class: "inputs" })
+      end
+    end
+
+    context "it with custom settings" do
+      let :body do
+        build_form do |f|
+          f.inputs class: "custom_class" do
+            f.input :title
+            f.input :body
+          end
+        end
+      end
+
+      it "should generate a fieldset with a inputs and custom class" do
+        expect(body).to have_tag("fieldset", attributes: { class: "inputs custom_class" })
+      end
+    end
+  end
+
   context "in general with actions" do
     let :body do
       build_form do |f|
