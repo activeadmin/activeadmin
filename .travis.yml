@@ -1,13 +1,12 @@
 language: ruby
 sudo: false
-install:
-  - ./script/travis_cache download_bundle
-  - gem install bundler # use the very latest Bundler
-  - bundle install --without development --path=./bundle
-  - bundle clean # delete now-outdated gems
-  - ./script/travis_cache download_app
+cache:
+  bundler: true
+  directories:
+    - spec/rails
+bundler_args: --without development
+before_script:
   - bundle exec rake setup
-  - ./script/travis_cache upload
 script:
   - bundle exec rake test_with_coveralls
 rvm:
@@ -16,23 +15,27 @@ rvm:
   - 2.2
   - jruby-9.0.0.0
 env:
-  matrix:
-    - "RAILS=3.2.22"
-    - "RAILS=4.1.11"
-    - "RAILS=4.2.2"
   global:
     - JRUBY_OPTS="-J-Xmx1024m --debug"
+gemfile:
+  - gemfiles/rails_3.2.gemfile
+  - gemfiles/rails_4.1.gemfile
+  - gemfiles/rails_4.2.gemfile
 matrix:
   fast_finish: true
   exclude:
     - rvm: 2.2
-      env: "RAILS=3.2.22"
+      gemfile: gemfiles/rails_3.2.gemfile
     - rvm: jruby-9.0.0.0
-      env: "RAILS=3.2.22"
+      gemfile: gemfiles/rails_3.2.gemfile
     - rvm: 2.1
-      env: "RAILS=4.1.11"
+      gemfile: gemfiles/rails_4.1.gemfile
     - rvm: 2.1
-      env: "RAILS=4.2.2"
+      gemfile: gemfiles/rails_4.2.gemfile
+env:
+  global:
+    - secure: lRYUGVUV94eqrR7C0b0hhvp+W76NkLRAn6jkJGCbRCEojbeb3HlgK1P+nTDeIuiDmXksJOG6VD3ZiZAn9Plznj7I/MFh+ijgvk8eWj9QNxA8riaSEPAu5VYtPA+uaw1olUt196U3qXH+SaXB4sx5wdIUXpd9qxWWWsW11ia0Jzs=
+    - JRUBY_OPTS="-J-Xmx1024m --debug"
 notifications:
   irc:
     channels:
