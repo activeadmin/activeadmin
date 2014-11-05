@@ -139,13 +139,17 @@ You can arrage content in tabs as shown below:
   form do |f|
     tabs do
       tab 'Basic' do
-        f.input :email
-        f.input :password
-        f.input :password_confirmation
+        f.inputs 'Basic Details' do
+          f.input :email
+          f.input :password
+          f.input :password_confirmation
+        end
       end
 
       tab 'Advanced' do
-        f.input :role
+        f.inputs 'Advanced Details' do
+          f.input :role
+        end
       end
     end
     f.actions
