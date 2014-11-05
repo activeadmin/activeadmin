@@ -2,10 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-require File.expand_path 'spec/support/detect_rails_version', File.dirname(__FILE__)
-
-rails_version = detect_rails_version
-gem 'rails', rails_version
+gem 'rails'
 
 jquery_ui_rails_version = rails_version > "4" ? "~> 5.0" : "~> 4.0"
 gem 'jquery-ui-rails', jquery_ui_rails_version
@@ -24,6 +21,7 @@ gem 'parallel_tests'
 
 # Debugging
 gem 'pry'                                   # Easily debug from your console with `binding.pry`
+gem 'appraisal'
 
 group :development do
   # Debugging
