@@ -130,3 +130,24 @@ end
 ```
 
 This is particularly useful to display errors on virtual or hidden attributes.
+
+# Tabs
+
+You can arrage content in tabs as shown below:
+
+```ruby
+  form do |f|
+    tabs do
+      tab 'Basic' do
+        f.input :email
+        f.input :password
+        f.input :password_confirmation
+      end
+
+      tab 'Advanced' do
+        f.input :role
+      end
+    end
+    f.actions
+  end
+```
