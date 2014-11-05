@@ -74,7 +74,7 @@ es:
       title: "Comentario"
       add: "Comentar"
       delete: "Borrar Comentario"
-      delete_confirmation: "Está seguro que desea borrar este comentario?"
+      delete_confirmation: "¿Está seguro que desea borrar este comentario?"
       resource: "Recurso"
       no_comments_yet: "Aún sin comentarios."
       title_content: "Comentarios (%{count})"
