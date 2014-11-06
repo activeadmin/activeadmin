@@ -13,7 +13,7 @@ module ActiveAdmin
       policy = retrieve_policy(subject)
       action = format_action(action, subject)
 
-      policy.class.method_defined?(action) && policy.public_send(action)
+      policy.respond_to?(action) && policy.public_send(action)
     end
 
     def scope_collection(collection, action = Auth::READ)
