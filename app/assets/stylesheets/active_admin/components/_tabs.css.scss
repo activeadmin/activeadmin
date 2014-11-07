@@ -1,43 +1,63 @@
 .ui-tabs-nav {
-  border-bottom: 1px solid #DDD;
   list-style: none;
   display: block;
   width: auto;
-  margin-bottom: 15px;
+  margin-bottom: -12px;
   padding-left: 0;
-
-  a {
-    display: block;
-  }
+  overflow: auto;
+  margin-left: 15px;
 
   li {
-    display: inline-block;
+    display: block;
     position: relative;
-    margin-bottom: -1px;
-  }
+    margin: 0;
+    padding: 0;
+    float: left;
 
-  li.ui-tabs-active > a, li.ui-tabs-active > a:hover, li.ui-tabs-active > a:focus {
-    color: #555;
-    cursor: default;
-    background-color: #FFF;
-    border: 1px solid #DDD;
-    border-bottom-color: rgba(0, 0, 0, 0);
-  }
+    &:first-child a {
+      border-left-width: 1px;
+      border-radius: 12px 0 0 12px;
+    }
 
-  li > a:hover {
-    border-color: #EEE #EEE #DDD;
-  }
+    &:last-child a {
+      border-right-width: 1px;
+      border-radius: 0 12px 12px 0;
+    }
 
-  li > a:hover, li > a:focus {
-    text-decoration: none;
-    background-color: #EEE;
+    a {
+      @include light-button;
+      @include gradient(#FFFFFF, #F0F0F0);
+      @include border-colors(#d9d9d9, #d0d0d0, #c5c5c5);
+      text-decoration: none;
+      border-radius: 0;
+      border-width: 1px .5px 1px .5px;
+      margin-right: 0;
+      padding: 4px 14px 4px;
+
+      &:not(.disabled) {
+        &:hover {
+          @include gradient(#FFFFFF, #F6F6F6);
+        }
+      }
+    }
+
+    &.ui-tabs-active {
+      a {
+        cursor: default;
+        @include gradient(#F0F0F0, #FDFDFD);
+        box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1) inset;
+
+        a:hover {
+          @include gradient(#F0F0F0, #FDFDFD);
+        }
+      }
+    }
   }
-  li > a {
-    text-decoration: none;
-    padding: 12px 15px;
-    margin-right: 2px;
-    line-height: 1.42857143;
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-radius: 4px 4px 0 0;
-  }
+}
+
+.tab-content {
+  border: 1px solid #D3D3D3;
+  padding: 15px;
+  padding-top: 30px;
+  text-align: left;
 }
