@@ -126,5 +126,5 @@ require 'active_admin/batch_actions'
 require 'active_admin/filters'
 
 # Require ORM-specific plugins
-require 'active_admin/orm/active_record' if defined? ActiveRecord
-require 'active_admin/orm/mongoid'       if defined? Mongoid
+require 'active_admin/object_mappers/active_record' if defined? ActiveRecord
+require 'active_admin/object_mappers/mongoid'       if defined? Mongoid
