@@ -8,7 +8,10 @@ sudo: false
 
 cache: bundler
 
+bundler_args: --without development
+
 before_script:
+  - bundle update
   - bundle exec rake setup
 
 script:
