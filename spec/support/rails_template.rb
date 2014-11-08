@@ -55,6 +55,12 @@ inject_into_file 'app/models/category.rb', %q{
 }, after: 'class Category < ActiveRecord::Base'
 generate :model, 'store name:string'
 
+generate :model, 'softdelete deleted_at:datetime'
+inject_into_file 'app/models/softdelete.rb', %q{
+  scope :with_deleted, -> { unscope(where: :deleted_at) }
+  scope :only_deleted, -> { where.not(deleted_at: nil) }
+}, :after => 'class Softdelete < ActiveRecord::Base'
+
 # Generate a model with string ids
 generate :model, "tag name:string"
 gsub_file(Dir['db/migrate/*_create_tags.rb'][0], /\:tags\sdo\s.*/, ":tags, id: false, primary_key: :id do |t|\n\t\t\tt.string :id\n")
