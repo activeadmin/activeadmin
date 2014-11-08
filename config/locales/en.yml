@@ -17,6 +17,8 @@ en:
     edit_model: "Edit %{model}"
     update_model: "Edit %{model}"
     delete_model: "Delete %{model}"
+    soft_delete_model: "SoftDelete %{model}"
+    restore_mode: "Restore %{model}"
     details: "%{model} Details"
     cancel: "Cancel"
     empty: "Empty"

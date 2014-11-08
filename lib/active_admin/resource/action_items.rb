@@ -76,6 +76,22 @@ module ActiveAdmin
               method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
           end
         end
+
+        # SoftDestroy link on show
+        add_action_item :soft_delete, :only => :show do
+          if controller.action_methods.include?('soft_delete') && authorized?(ActiveAdmin::Auth::SOFT_DELETE, resource) && !resource.destroyed?
+            link_to I18n.t('active_admin.soft_delete_model', model: active_admin_config.resource_label), "#{resource_path(resource)}/soft_delete",
+              :method => :delete, :data => {:confirm => I18n.t('active_admin.soft_delete_confirmation')}
+          end
+        end
+
+        # Restore link on show
+        add_action_item :restore, :only => :show do
+          if controller.action_methods.include?('restore') && authorized?(ActiveAdmin::Auth::RESTORE, resource) && resource.destroyed?
+            link_to I18n.t('active_admin.restore_model', model: active_admin_config.resource_label), "#{resource_path(resource)}/restore",
+              :method => :put, :data => {:confirm => I18n.t('active_admin.restore_confirmation')}
+          end
+        end
       end
 
     end

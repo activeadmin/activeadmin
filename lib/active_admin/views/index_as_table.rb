@@ -327,29 +327,15 @@ module ActiveAdmin
             links << link_to(I18n.t('active_admin.delete'), resource_path(resource), class: 'member_link delete_link',
               method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')})
           end
-          if controller.action_methods.include?('soft_delete') && authorized?(ActiveAdmin::Auth::SOFT_DELETE, resource) && !soft_destroyed?(resource)
+          if controller.action_methods.include?('soft_delete') && authorized?(ActiveAdmin::Auth::SOFT_DELETE, resource) && !resource.destroyed?
             links << link_to(I18n.t('active_admin.soft_delete'), "#{resource_path(resource)}/soft_delete",
               :method => :delete, :data => {:confirm => I18n.t('active_admin.soft_delete_confirmation')}, :class => "member_link soft_delete_link")
           end
-          if controller.action_methods.include?('restore') && authorized?(ActiveAdmin::Auth::RESTORE, resource) && soft_destroyed?(resource)
+          if controller.action_methods.include?('restore') && authorized?(ActiveAdmin::Auth::RESTORE, resource) && resource.destroyed?
             links << link_to(I18n.t('active_admin.restore'), "#{resource_path(resource)}/restore",
               :method => :put, :data => {:confirm => I18n.t('active_admin.restore_confirmation')}, :class => "member_link restore_link")
           end
           links
-        end
-
-        # Check if record was soft deleted.
-        # @param resource [Activerecord::Base] record.
-        # @return [Boolean] true if record was soft deleted.
-        def soft_destroyed?(resource)
-          case
-            when resource.respond_to?(:deleted?)
-              resource.deleted?
-            when resource.respond_to?(:soft_destroyed?)
-              resource.soft_destroyed?
-            else
-              resource.destroyed?
-          end
         end
       end # IndexTableFor
 

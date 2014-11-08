@@ -17,6 +17,8 @@ ja:
     edit_model: "%{model} を編集する"
     update_model: "%{model} を更新する"
     delete_model: "%{model} を削除する"
+    soft_delete_model: "%{model} を論理削除する"
+    restore_mode: "%{model} を復元する"
     details: "%{model} の詳細"
     cancel: "取り消す"
     empty: "空"

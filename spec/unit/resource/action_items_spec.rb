@@ -52,13 +52,13 @@ describe ActiveAdmin::Resource::ActionItems do
   end
 
   describe "default action items" do
-    it "should have 3 action items" do
-      expect(resource.action_items.size).to eq 3
+    it "should have 5 action items" do
+      expect(resource.action_items.size).to eq 5
     end
 
     it 'can be removed by name' do
       resource.remove_action_item :new
-      expect(resource.action_items.size).to eq 2
+      expect(resource.action_items.size).to eq 4
     end
   end
 

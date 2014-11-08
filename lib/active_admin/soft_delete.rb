@@ -29,9 +29,9 @@ module ActiveAdmin
         check_acts_as_paranoid! unless block_given?
 
         options = {
-            scopes:      true,
-            soft_delete: true,
-            restore:     true,
+          scopes:      true,
+          soft_delete: true,
+          restore:     true,
         }.merge(options)
 
         if options[:scopes]
@@ -41,18 +41,18 @@ module ActiveAdmin
 
         if options[:soft_delete]
           add_member_and_batch_action :soft_delete, :method => :delete do |resource|
-            (block_given?) ? yield(:soft_delete, resource) : resource.destroy
+            block_given? ? yield(:soft_delete, resource) : resource.destroy
           end
         end
 
         if options[:restore]
           add_member_and_batch_action :restore, :method => :put do |resource|
-            (block_given?) ? yield(:restore, resource) : resource.recover
+            block_given? ? yield(:restore, resource) : resource.recover
           end
         end
 
         add_member_and_batch_action :destroy, :method => :delete, :preterit => 'destroyed' do |resource|
-          (block_given?) ? yield(:hard_delete, resource) : resource.destroy!
+          block_given? ? yield(:hard_delete, resource) : resource.destroy!
         end
       end
 
@@ -71,8 +71,8 @@ module ActiveAdmin
         raise 'yield block is nothing.' unless block_given?
 
         options = {
-            method:   :get,
-            preterit: "#{name}d"
+          method:   :get,
+          preterit: "#{name}d"
         }.merge(options)
 
         batch_options = {

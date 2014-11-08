@@ -41,46 +41,30 @@ describe ActiveAdmin::SoftDelete do
       end
 
       context 'When call action' do
-        subject do
-          controller.send(action)
-        end
-
         context '#soft_delete' do
-          let :action do
-            'soft_delete'
-          end
-
           it 'Receive #destroy and #redirect_to' do
             expect(resource).to receive(:destroy).once
             expect(controller).to receive(:redirect_to)
                 .with('This is dummy path.', :notice => I18n.t("active_admin.actions.succesfully_soft_deleted")).once
-            subject
+            controller.soft_delete
           end
         end
 
         context '#restore' do
-          let :action do
-            'restore'
-          end
-
           it 'Receive #recover and #redirect_to' do
             expect(resource).to receive(:recover).once
             expect(controller).to receive(:redirect_to)
                 .with('This is dummy path.', :notice => I18n.t("active_admin.actions.succesfully_restored")).once
-            subject
+            controller.restore
           end
         end
 
         context '#destroy' do
-          let :action do
-            'destroy'
-          end
-
           it 'Receive #destroy! and #redirect_to' do
             expect(resource).to receive(:destroy!).once
             expect(controller).to receive(:redirect_to)
                 .with('This is dummy path.', :notice => I18n.t("active_admin.actions.succesfully_destroyed")).once
-            subject
+            controller.destroy
           end
         end
       end
