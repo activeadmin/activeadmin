@@ -46,7 +46,7 @@
       display: block;
       height: 19px;
       margin-top: -4px;
-      width: 20px;
+      width: 10px;
 
       &.ui-datepicker-prev {
         float: left;
@@ -54,7 +54,7 @@
       }
       &.ui-datepicker-next {
         float: right;
-        background: image-url('active_admin/datepicker/datepicker-next-link-icon.png') no-repeat 12px 5px;
+        background: image-url('active_admin/datepicker/datepicker-next-link-icon.png') no-repeat 2px 5px;
       }
       &:active {
         margin-top: -3px;
