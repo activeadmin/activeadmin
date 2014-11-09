@@ -224,7 +224,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 * Developer can pass options for CSV generation. [#1626][] by [@rheaton][]
 ```ruby
     ActiveAdmin.register Post do
-      csv options: {force_quotes: true} do
+      csv options: { force_quotes: true } do
         column :title
       end
     end

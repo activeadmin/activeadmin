@@ -50,7 +50,7 @@ module ActiveAdmin
     #
     # @param [Module] mod A module to include
     #
-    # @returns [Nil]
+    # @return [Nil]
     def include(mod)
       mod.included(self)
     end

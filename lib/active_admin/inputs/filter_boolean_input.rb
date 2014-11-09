@@ -9,9 +9,8 @@ module ActiveAdmin
         "#{method}_eq"
       end
 
-      # was "#{object_name}[#{association_primary_key}]"
       def input_html_options_name
-        "#{object_name}[#{input_name}]"
+        "#{object_name}[#{input_name}]" # was "#{object_name}[#{association_primary_key}]"
       end
 
       # Provide the AA translation to the blank input field.

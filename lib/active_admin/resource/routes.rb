@@ -1,7 +1,7 @@
 module ActiveAdmin
   class Resource
     module Routes
-      # @params params [Hash] of params: {study_id: 3}
+      # @param params [Hash] of params: { study_id: 3 }
       # @return [String] the path to this resource collection page
       # @example "/admin/posts"
       def route_collection_path(params = {})

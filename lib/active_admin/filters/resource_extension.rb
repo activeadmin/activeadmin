@@ -45,7 +45,7 @@ module ActiveAdmin
       # Remove a filter for this resource. If filters are not enabled, this method
       # will raise a RuntimeError
       #
-      # @param [Symbol] attribute The attribute to not filter on
+      # @param [Symbol] attributes The attributes to not filter on
       def remove_filter(*attributes)
         raise Disabled unless filters_enabled?
 

@@ -24,9 +24,8 @@ module ActiveAdmin
         I18n.t 'active_admin.any' if super
       end
 
-      # was "#{object_name}[#{association_primary_key}]"
       def input_html_options_name
-        "#{object_name}[#{input_name}]"
+        "#{object_name}[#{input_name}]" # was "#{object_name}[#{association_primary_key}]"
       end
 
       # Would normally return true for has_many and HABTM, which would subsequently
