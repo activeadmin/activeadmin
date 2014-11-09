@@ -12,6 +12,7 @@ module ActiveAdmin
 
       def copy_initializer
         @underscored_user_name = name.underscore
+        @use_authentication_method = options[:users].present?
         template 'active_admin.rb.erb', 'config/initializers/active_admin.rb'
       end
 
