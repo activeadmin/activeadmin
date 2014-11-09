@@ -17,7 +17,7 @@ module ActiveAdmin
 
     attr_reader :namespaces
     def initialize
-      @namespaces = {}
+      @namespaces = Namespace::Store.new
     end
 
     # Load paths for admin configurations. Add folders to this load path
@@ -174,7 +174,7 @@ module ActiveAdmin
     # Removes all defined controllers from memory. Useful in
     # development, where they are reloaded on each request.
     def unload!
-      namespaces.values.each &:unload!
+      namespaces.each &:unload!
       @@loaded = false
     end
 

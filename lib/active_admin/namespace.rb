@@ -227,5 +227,21 @@ module ActiveAdmin
       PageDSL.new(config).run_registration_block(&block)
     end
 
+    class Store
+      include Enumerable
+      delegate :[], :[]=, :empty?, to: :@namespaces
+
+      def initialize
+        @namespaces = {}
+      end
+
+      def each(&block)
+        @namespaces.values.each(&block)
+      end
+
+      def names
+        @namespaces.keys
+      end
+    end
   end
 end
