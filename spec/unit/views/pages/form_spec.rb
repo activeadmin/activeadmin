@@ -25,9 +25,17 @@ describe ActiveAdmin::Views::Pages::Form do
     end
 
     context "when page_title is not assigned" do
-      it "should show the correct I18n text" do
-        page = ActiveAdmin::Views::Pages::Form.new(arbre_context)
-        expect(page.title).to eq "Edit Post"
+      {
+        "new" => "New Post",
+        "create" => "New Post",
+        "edit" => "Edit Post",
+        "update" => "Edit Post"
+      }.each do |action, title|
+        it "should show the correct I18n text on the #{action} action" do
+          params[:action] = action
+          page = ActiveAdmin::Views::Pages::Form.new(arbre_context)
+          expect(page.title).to eq title
+        end
       end
     end
   end
