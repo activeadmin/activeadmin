@@ -88,7 +88,7 @@ fr:
       password:
         title: "Mot de passe"
       login:
-        title: "Connection"
+        title: "Connexion"
         remember_me: "Garder ma session ouverte"
         submit: "Se connecter"
       reset_password:
