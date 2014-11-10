@@ -76,38 +76,18 @@ describe ActiveAdmin::Devise::Controller do
     let(:config) { ActiveAdmin::Devise.config }
 
     describe ":sign_out_via option" do
+      it "should contain the application.logout_link_method" do
+        expect(::Devise).to receive(:sign_out_via).and_return(:delete)
+        expect(ActiveAdmin.application).to receive(:logout_link_method).and_return(:get)
 
-      subject { config[:sign_out_via] }
-
-      context "when Devise does not implement sign_out_via (version < 1.2)" do
-        before do
-          expect(::Devise).to receive(:respond_to?).with(:sign_out_via).and_return(false)
-        end
-
-        it "should not contain any customization for sign_out_via" do
-          expect(config).to_not have_key(:sign_out_via)
-        end
+        expect(config[:sign_out_via]).to include(:get)
       end
 
-      context "when Devise implements sign_out_via (version >= 1.2)" do
-        before do
-         expect(::Devise).to receive(:respond_to?).with(:sign_out_via).and_return(true)
-          allow(::Devise).to receive(:sign_out_via) { :delete }
-        end
+      it "should contain Devise's logout_via_method(s)" do
+        expect(::Devise).to receive(:sign_out_via).and_return([:delete, :post])
+        expect(ActiveAdmin.application).to receive(:logout_link_method).and_return(:get)
 
-        it "should contain the application.logout_link_method" do
-            expect(::Devise).to receive(:sign_out_via).and_return(:delete)
-            expect(ActiveAdmin.application).to receive(:logout_link_method).and_return(:get)
-
-            expect(config[:sign_out_via]).to include(:get)
-        end
-
-        it "should contain Devise's logout_via_method(s)" do
-            expect(::Devise).to receive(:sign_out_via).and_return([:delete, :post])
-            expect(ActiveAdmin.application).to receive(:logout_link_method).and_return(:get)
-
-            expect(config[:sign_out_via]).to eq [:delete, :post, :get]
-        end
+        expect(config[:sign_out_via]).to eq [:delete, :post, :get]
       end
 
     end # describe ":sign_out_via option"
