@@ -17,9 +17,11 @@ gem 'pundit'
 gem 'rake', require: false
 gem 'parallel_tests'
 
+# Debugging
+gem 'pry'                  # Easily debug from your console with `binding.pry`
+
 group :development do
   # Debugging
-  gem 'pry'                # Easily debug from your console with `binding.pry`
   gem 'better_errors'      # Web UI to debug exceptions. Go to /__better_errors to access the latest one
   gem 'binding_of_caller'  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 
