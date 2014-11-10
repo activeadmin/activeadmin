@@ -45,9 +45,7 @@ module ActiveAdmin
   private
 
     def self.database_error_classes
-      classes = []
-      classes << ActiveRecord::StatementInvalid if defined? ActiveRecord::StatementInvalid
-      classes
+      @classes ||= []
     end
   end
 
