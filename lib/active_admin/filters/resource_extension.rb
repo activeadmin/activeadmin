@@ -32,9 +32,21 @@ module ActiveAdmin
         @filters_enabled = bool
       end
 
+      # Setter to enable/disable showing current filters on this resource.
+      #
+      # Set to `nil` to inherit the setting from the namespace
+      def show_current_filters=(bool)
+        @show_current_filters_enabled = bool
+      end
+
       # @return [Boolean] If filters are enabled for this resource
       def filters_enabled?
         @filters_enabled.nil? ? namespace.filters : @filters_enabled
+      end
+
+      # @return [Boolean] If show current filters are enabled for this resource
+      def show_current_filters_enabled?
+        @show_current_filters_enabled.nil? ? namespace.show_current_filters : @show_current_filters_enabled
       end
 
       def preserve_default_filters!
@@ -133,7 +145,9 @@ module ActiveAdmin
       end
 
       def add_search_status_sidebar_section
-        self.sidebar_sections << search_status_section
+        if show_current_filters_enabled?
+          self.sidebar_sections << search_status_section
+        end
       end
 
       def search_status_section
