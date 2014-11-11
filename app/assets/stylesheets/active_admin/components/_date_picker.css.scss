@@ -25,11 +25,25 @@
   }
 
   .ui-datepicker-header {
-    background: image-url('active_admin/datepicker/datepicker-header-bg.png') no-repeat 0px 0px;
-    height: 12px;
+    height: 15px;
+    width: 143px;
+    background: rgb(255, 0, 0);
     padding: 16px 7px 8px;
+    border-radius: 8px;
     position: relative;
     z-index: 2000;
+
+    .ui-datepicker-header:before {
+       content: "";
+       position: absolute;
+       right: 42%;
+       top: -9px;
+       width: 0px;
+       height: 0px;
+       border-left: 10px solid rgba(0, 0, 0, 0);
+       border-right: 10px solid rgba(0, 0, 0, 0);
+       border-bottom: 20px solid red;
+
 
     .ui-datepicker-title {
       @include text-shadow(#000);
