@@ -151,7 +151,7 @@ module ActiveAdmin
       end
 
       def search_status_section
-        ActiveAdmin::SidebarSection.new :search_status, only: :index, if: -> { params[:q] } do
+        ActiveAdmin::SidebarSection.new :search_status, only: :index, if: -> { params[:q] || params[:scope] } do
           active = ActiveAdmin::Filters::Active.new(resource_class, params)
 
           span do
@@ -161,10 +161,14 @@ module ActiveAdmin
             div style: "margin-top: 10px" do
               h4 "Current filters:", style: 'margin-bottom: 10px'
               ul do
-                active.filters.each do |filter|
-                  li do
-                    span filter.body
-                    b filter.value
+                if active.filters.blank?
+                  li "None"
+                else
+                  active.filters.each do |filter|
+                    li do
+                      span filter.body
+                      b filter.value
+                    end
                   end
                 end
               end
