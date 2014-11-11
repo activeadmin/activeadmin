@@ -24,24 +24,26 @@
   }
 
   .ui-datepicker-header {
-    height: 15px;
-    width: 143px;
-    background: rgb(255, 0, 0);
-    padding: 16px 7px 8px;
-    border-radius: 8px;
+    height: 14px;
+    background: linear-gradient(to bottom, #7d7e7d 37%,#44484c 90%);
+    padding: 12px 5px 7px 4px;
+    margin: 0px 0px 2px 2px;
+    width: 147px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
     position: relative;
     z-index: 2000;
 
     .ui-datepicker-header:before {
        content: "";
        position: absolute;
-       right: 42%;
-       top: -9px;
+       right: 46%;
+       top: -6px;
        width: 0px;
        height: 0px;
-       border-left: 10px solid rgba(0, 0, 0, 0);
-       border-right: 10px solid rgba(0, 0, 0, 0);
-       border-bottom: 20px solid red;
+       border-left: 8.5px solid rgba(0, 0, 0, 0);
+       border-right: 8.5px solid rgba(0, 0, 0, 0);
+       border-bottom: 10px solid #7d7e7d;
 
 
     .ui-datepicker-title {
