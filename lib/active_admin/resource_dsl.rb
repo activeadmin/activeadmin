@@ -22,7 +22,13 @@ module ActiveAdmin
       config.scope(*args, &block)
     end
 
-    # Rails 4 Strong Parameters support
+    # Store relations that should be included
+    def includes(*args)
+      config.includes.push *args
+    end
+
+    #
+    # Rails 4 Strong Parameters Support
     #
     # Either
     #

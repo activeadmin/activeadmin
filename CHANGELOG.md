@@ -7,6 +7,7 @@
 
 ### Enhancements
 
+* Add DSL method `includes` for `ActiveRecord::Relation#includes` [#3464][] by [@timoschilling][]
 * Column block on table index is now sortable by default [#3075][] by [@dmitry][]
 * Allow Arbre to be used inside ActiveAdmin forms [#3486][] by [@varyonic][]
 * Make AA ORM-agnostic [#2545][] by [@johnnyshields][]

@@ -6,6 +6,7 @@ require 'active_admin/resource/pagination'
 require 'active_admin/resource/routes'
 require 'active_admin/resource/naming'
 require 'active_admin/resource/scopes'
+require 'active_admin/resource/includes'
 require 'active_admin/resource/scope_to'
 require 'active_admin/resource/sidebars'
 require 'active_admin/resource/belongs_to'
@@ -77,6 +78,7 @@ module ActiveAdmin
     include PagePresenters
     include Pagination
     include Scopes
+    include Includes
     include ScopeTo
     include Sidebars
     include Routes

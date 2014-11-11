@@ -49,6 +49,7 @@ module ActiveAdmin
         collection = apply_sorting(collection)
         collection = apply_filtering(collection)
         collection = apply_scoping(collection)
+        collection = apply_includes(collection)
 
         unless request.format == 'text/csv'
           collection = apply_pagination(collection)
@@ -241,6 +242,14 @@ module ActiveAdmin
 
         if current_scope
           scope_chain(current_scope, chain)
+        else
+          chain
+        end
+      end
+
+      def apply_includes(chain)
+        if active_admin_config.includes.any?
+          chain.includes *active_admin_config.includes
         else
           chain
         end
