@@ -190,8 +190,8 @@ describe ActiveAdmin::CSVBuilder do
       @post1 = Post.create!(title: "Hello1", published_at: Date.today - 2.day )
       @post2 = Post.create!(title: "Hello2", published_at: Date.today - 1.day )
     end
-    let(:dummy_view_context) {
-      class DummyViewContext
+    let(:dummy_controller) {
+      class DummyController
         def collection
           Post.order('published_at DESC')
         end
@@ -199,8 +199,11 @@ describe ActiveAdmin::CSVBuilder do
         def apply_decorator(resource)
           resource
         end
+
+        def view_context
+        end
       end
-      DummyViewContext.new
+      DummyController.new
     }
     let(:builder) do
       ActiveAdmin::CSVBuilder.new do
@@ -213,7 +216,7 @@ describe ActiveAdmin::CSVBuilder do
     it "should generate data with the supplied order" do
       expect(builder).to receive(:build_row).and_return([]).once.ordered { |post| expect(post.id).to eq @post2.id }
       expect(builder).to receive(:build_row).and_return([]).once.ordered { |post| expect(post.id).to eq @post1.id }
-      builder.build dummy_view_context, []
+      builder.build dummy_controller, []
     end
   end
 

@@ -14,7 +14,7 @@ describe ActiveAdmin::Views::TabbedNavigation do
     }.children.first
   end
 
-  let(:html) { tabbed_navigation.to_s }
+  let(:html) { Capybara.string(tabbed_navigation.to_s) }
 
   before do
     allow(helpers).to receive(:admin_logged_in?).and_return(false)
@@ -51,62 +51,62 @@ describe ActiveAdmin::Views::TabbedNavigation do
     end
 
     it "should generate a ul" do
-      expect(html).to have_tag("ul")
+      expect(html).to have_selector("ul")
     end
 
     it "should generate an li for each item" do
-      expect(html).to have_tag("li", parent: { tag: "ul" })
+      expect(html).to have_selector("ul > li")
     end
 
     it "should generate a link for each item" do
-      expect(html).to have_tag("a", "Blog Posts", attributes: { href: '/admin/posts' })
+      expect(html).to have_selector("a[href='/admin/posts']", text: "Blog Posts")
     end
 
     it "should generate a nested list for children" do
-      expect(html).to have_tag("ul", parent: { tag: "li" })
+      expect(html).to have_selector("li > ul")
     end
 
     it "should generate a nested list with li for each child" do
-      expect(html).to have_tag("li", parent: { tag: "ul" }, attributes: {id: "a_sub_reports"})
-      expect(html).to have_tag("li", parent: { tag: "ul" }, attributes: {id: "b_sub_reports"})
+      expect(html).to have_selector("ul > li#a_sub_reports")
+      expect(html).to have_selector("ul > li#b_sub_reports")
     end
 
     it "should generate a valid id from a label proc" do
-      expect(html).to have_tag("li", parent: { tag: "ul" }, attributes: {id: "label_proc_sub_reports"})
+      expect(html).to have_selector("ul > li#label_proc_sub_reports")
     end
 
     it "should not generate a link for user administration" do
-      expect(html).to_not have_tag("a", "User administration", attributes: { href: '/admin/user-administration' })
+      expect(html).to_not have_selector("a[href='/admin/user-administration']", text: "User administration")
     end
 
     it "should generate the administration parent menu" do
-      expect(html).to have_tag("a", "Administration", attributes: { href: '/admin/administration' })
+      expect(html).to have_selector("a[href='/admin/administration']", text: "Administration")
     end
 
     it "should not generate a link for order management" do
-      expect(html).to_not have_tag("a", "Order management", attributes: { href: '/admin/order-management' })
+      expect(html).to_not have_selector("a[href='/admin/order-management']", text: "Order management")
     end
 
     it "should not generate a link for bill management" do
-      expect(html).to_not have_tag("a", "Bill management", attributes: { href: '/admin/bill-management' })
+      expect(html).to_not have_selector("a[href='/admin/bill-management']", text: "Bill management")
     end
 
     it "should not generate the management parent menu" do
-      expect(html).to_not have_tag("a", "Management", attributes: { href: '#' })
+      expect(html).to_not have_selector("a[href='#']", text: "Management")
     end
 
     describe "marking current item" do
 
       it "should add the 'current' class to the li" do
         assigns[:current_tab] = menu["Blog Posts"]
-        expect(html).to have_tag("li", attributes: { class: "current" })
+        expect(html).to have_selector("li.current")
       end
 
       it "should add the 'current' and 'has_nested' classes to the li and 'current' to the sub li" do
         assigns[:current_tab] = menu["Reports"]["A Sub Reports"]
-        expect(html).to have_tag("li", attributes: { id: "reports", class: /current/ })
-        expect(html).to have_tag("li", attributes: { id: "reports", class: /has_nested/ })
-        expect(html).to have_tag("li", attributes: { id: "a_sub_reports", class: "current" })
+        expect(html).to have_selector("li#reports.current")
+        expect(html).to have_selector("li#reports.has_nested")
+        expect(html).to have_selector("li#a_sub_reports.current")
       end
 
     end
