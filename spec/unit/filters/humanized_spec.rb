@@ -16,6 +16,13 @@ describe ActiveAdmin::Filters::Humanized do
       it 'parses language from Ransack' do
         expect(subject.body).to eq('Category ID equals')
       end
+
+      it 'handles strings with embedded predicates' do
+        param = ['requires_approval_eq', '1']
+        human = ActiveAdmin::Filters::Humanized.new(param)
+        expect(human.value).to eq('1')
+        expect(human.body).to eq('Requires Approval equals')
+      end
     end
 
     context 'when ActiveAdmin predicate' do

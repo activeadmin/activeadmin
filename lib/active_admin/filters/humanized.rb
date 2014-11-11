@@ -26,7 +26,11 @@ module ActiveAdmin
       private
 
       def parse_parameter_body
-        @body.split(current_predicate)
+        # Accounting for strings that might contain other predicates. Example:
+        # 'requires_approval' contains the substring 'eq'
+        split_string = "_#{current_predicate}"
+
+        @body.split(split_string)
           .first
           .gsub('_', ' ')
           .strip
