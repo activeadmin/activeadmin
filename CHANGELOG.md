@@ -7,6 +7,7 @@
 
 ### Enhancements
 
+* Unify DSL for index `actions` and `actions dropdown: true` [#3463][] by [@timoschilling][]
 * Add DSL method `includes` for `ActiveRecord::Relation#includes` [#3464][] by [@timoschilling][]
 * Column block on table index is now sortable by default [#3075][] by [@dmitry][]
 * Allow Arbre to be used inside ActiveAdmin forms [#3486][] by [@varyonic][]
@@ -972,6 +973,7 @@ of the highlights. 250 commits. Enough said.
 [#2744]: https://github.com/activeadmin/activeadmin/issues/2744
 [#2847]: https://github.com/activeadmin/activeadmin/issues/2847
 [#3075]: https://github.com/activeadmin/activeadmin/issues/3075
+[#3463]: https://github.com/activeadmin/activeadmin/issues/3463
 [#3464]: https://github.com/activeadmin/activeadmin/issues/3464
 [#3486]: https://github.com/activeadmin/activeadmin/issues/3486
 [@Bishop]: https://github.com/Bishop
