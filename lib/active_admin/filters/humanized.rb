@@ -16,16 +16,20 @@ module ActiveAdmin
       def body
         predicate = ransack_predicate_translation
 
-        if translation_missing?(predicate)
+        if current_predicate.nil?
+          predicate = @body.titleize
+        elsif translation_missing?(predicate)
           predicate = active_admin_predicate_translation
         end
 
-        "#{parse_parameter_body} #{predicate}"
+        "#{parse_parameter_body} #{predicate}".strip
       end
 
       private
 
       def parse_parameter_body
+        return if current_predicate.nil?
+
         # Accounting for strings that might contain other predicates. Example:
         # 'requires_approval' contains the substring 'eq'
         split_string = "_#{current_predicate}"
@@ -39,7 +43,7 @@ module ActiveAdmin
       end
 
       def current_predicate
-        predicates.detect { |p| @body.include?(p) }
+        @current_predicate ||= predicates.detect { |p| @body.include?(p) }
       end
 
       def predicates
@@ -51,7 +55,7 @@ module ActiveAdmin
       end
 
       def active_admin_predicate_translation
-        I18n.t("active_admin.filters.predicates.#{current_predicate}").downcase
+        translation = I18n.t("active_admin.filters.predicates.#{current_predicate}").downcase
       end
 
       def translation_missing?(predicate)
