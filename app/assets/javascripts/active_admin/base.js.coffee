@@ -5,6 +5,7 @@
 #= require jquery-ui/widget
 #= require jquery-ui/tabs
 #= require jquery_ujs
+#= require jquery.xdan.datetimepicker
 #
 #= require_self
 #= require_tree ./lib

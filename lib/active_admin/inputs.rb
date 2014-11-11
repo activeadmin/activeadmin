@@ -3,6 +3,7 @@ module ActiveAdmin
     extend ActiveSupport::Autoload
 
     autoload :DatepickerInput
+    autoload :CombinedDateTimePickerInput
 
     autoload :FilterBase
     autoload :FilterStringInput

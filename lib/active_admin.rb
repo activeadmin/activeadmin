@@ -10,6 +10,7 @@ require 'sass-rails'
 require 'inherited_resources'
 require 'jquery-rails'
 require 'jquery-ui-rails'
+require 'xdan-datetimepicker-rails'
 require 'coffee-rails'
 require 'arbre'
 

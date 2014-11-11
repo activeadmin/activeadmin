@@ -157,13 +157,13 @@ describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :created_at }
 
     it "should generate a date greater than" do
-      expect(body).to have_tag("input", attributes: { name: "q[created_at_gteq]", class: "datepicker"})
+      expect(body).to have_tag("input", attributes: { name: "q[created_at_gteq]", class: "combined-date-time-picker"})
     end
     it "should generate a seperator" do
       expect(body).to have_tag("span", attributes: { class: "seperator"})
     end
     it "should generate a date less than" do
-      expect(body).to have_tag("input", attributes: { name: "q[created_at_lteq]", class: "datepicker"})
+      expect(body).to have_tag("input", attributes: { name: "q[created_at_lteq]", class: "combined-date-time-picker"})
     end
   end
 
