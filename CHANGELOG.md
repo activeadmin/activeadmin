@@ -972,6 +972,7 @@ of the highlights. 250 commits. Enough said.
 [#2744]: https://github.com/activeadmin/activeadmin/issues/2744
 [#2847]: https://github.com/activeadmin/activeadmin/issues/2847
 [#3075]: https://github.com/activeadmin/activeadmin/issues/3075
+[#3464]: https://github.com/activeadmin/activeadmin/issues/3464
 [#3486]: https://github.com/activeadmin/activeadmin/issues/3486
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
@@ -1068,6 +1069,7 @@ of the highlights. 250 commits. Enough said.
 [@sunny]: https://github.com/sunny
 [@tank-bohr]: https://github.com/tank-bohr
 [@teoulas]: https://github.com/teoulas
+[@timoschilling]: https://github.com/timoschilling
 [@tinynumbers]: https://github.com/tinynumbers
 [@tracedwax]: https://github.com/tracedwax
 [@tricknotes]: https://github.com/tricknotes
