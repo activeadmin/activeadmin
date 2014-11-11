@@ -124,6 +124,7 @@ require 'active_admin/error'
 # Require internal plugins
 require 'active_admin/batch_actions'
 require 'active_admin/filters'
+require 'active_admin/soft_delete'
 
 # Require ORM-specific plugins
 require 'active_admin/orm/active_record' if defined? ActiveRecord

@@ -8,9 +8,15 @@ ja:
     edit: "編集"
     delete: "削除"
     delete_confirmation: "本当に削除しますか?"
+    soft_delete: "論理削除"
+    soft_delete_confirmation: "本当に論理削除しますか？"
+    restore: "復元"
+    restore_confirmation: "本当に復元しますか？"
     new_model: "%{model} を作成する"
     edit_model: "%{model} を編集する"
     delete_model: "%{model} を削除する"
+    soft_delete_model: "%{model} を論理削除する"
+    restore_mode: "%{model} を復元する"
     details: "%{model} の詳細"
     cancel: "取り消す"
     empty: "空"
@@ -49,6 +55,10 @@ ja:
         one: "レコード"
         other: "レコード"
     any: "任意"
+    actions:
+      succesfully_soft_deleted: "論理削除しました"
+      succesfully_restored: "復元しました"
+      succesfully_destroyed: "削除しました"
     blank_slate:
       content: "%{resource_name} はまだありません。"
       link: "作成する"
@@ -58,14 +68,24 @@ ja:
       button_label: "一括操作"
       default_confirmation: "本当によろしいですか。"
       delete_confirmation: "%{plural_model} を削除してもよろしいですか?"
+      soft_delete_confirmation: "%{plural_model} を論理削除してもよろしいですか?"
+      restore_confirmation: "%{plural_model} を復元してもよろしいですか?"
       succesfully_destroyed:
         one: "1件の %{model} を削除しました"
         other: "%{count}件の %{plural_model} を削除しました"
+      succesfully_soft_deleted:
+        one: "1件の %{model} を論理削除しました"
+        other: "%{count}件の %{plural_model} を論理削除しました"
+      succesfully_restored:
+        one: "1件の %{model} を復元しました"
+        other: "%{count}件の %{plural_model} を復元しました"
       selection_toggle_explanation: "(選択)"
       link: "作成する"
       action_label: "選択した行を%{title}"
       labels:
         destroy: "削除する"
+        soft_delete: "論理削除する"
+        restore: "復元する"
     comments:
       resource_type: "リソース種別"
       author_type: "作成者種別"
@@ -115,3 +135,6 @@ ja:
       block: "リスト"
       grid: "グリッド"
       blog: "ブログ"
+    scopes:
+      only_deleted: '削除済'
+      with_deleted: '全て'

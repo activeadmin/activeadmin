@@ -9,6 +9,7 @@ module ActiveAdminIntegrationSpecHelper
     ActiveAdmin.register(Category)
     ActiveAdmin.register(User)
     ActiveAdmin.register(Post){ belongs_to :user, optional: true }
+    ActiveAdmin.register(Softdelete){ soft_delete {|action, resource| raise "SoftDelete #{action} - #{resource}" } }
     reload_menus!
   end
 
