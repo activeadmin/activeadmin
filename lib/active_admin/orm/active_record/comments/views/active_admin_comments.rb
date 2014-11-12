@@ -53,7 +53,7 @@ module ActiveAdmin
         end
 
         def build_comment_form
-          self << active_admin_form_for(ActiveAdmin::Comment.new, url: comment_form_url) do |f|
+          active_admin_form_for(ActiveAdmin::Comment.new, url: comment_form_url) do |f|
             f.inputs do
               f.input :resource_type, as: :hidden,  input_html: { value: ActiveAdmin::Comment.resource_type(@resource) }
               f.input :resource_id,   as: :hidden,  input_html: { value: @resource.id }
