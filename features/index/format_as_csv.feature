@@ -65,7 +65,7 @@ Feature: Format as CSV
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        csv :force_quotes => true do
+        csv :force_quotes => true, :byte_order_mark => "" do
           column :title
           column :body
         end

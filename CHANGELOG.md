@@ -9,6 +9,7 @@
 
 * Unify DSL for index `actions` and `actions dropdown: true` [#3463][] by [@timoschilling][]
 * Add DSL method `includes` for `ActiveRecord::Relation#includes` [#3464][] by [@timoschilling][]
+* BOM (byte order mark) configurable for CSV download [#3519][] by [@timoschilling][]
 * Column block on table index is now sortable by default [#3075][] by [@dmitry][]
 * Allow Arbre to be used inside ActiveAdmin forms [#3486][] by [@varyonic][]
 * Make AA ORM-agnostic [#2545][] by [@johnnyshields][]
@@ -976,6 +977,7 @@ of the highlights. 250 commits. Enough said.
 [#3463]: https://github.com/activeadmin/activeadmin/issues/3463
 [#3464]: https://github.com/activeadmin/activeadmin/issues/3464
 [#3486]: https://github.com/activeadmin/activeadmin/issues/3486
+[#3519]: https://github.com/activeadmin/activeadmin/issues/3519
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
