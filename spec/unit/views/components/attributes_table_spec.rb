@@ -79,16 +79,15 @@ describe ActiveAdmin::Views::AttributesTable do
             ["Id" , "1"],
             ["Title" , "Hello World"],
             ["Body" , "<span class=\"empty\">Empty</span>"]
-          ].each_with_index do |set, i|
-            describe "for #{set[0]}" do
-              let(:title){ set[0] }
-              let(:content){ set[1] }
+          ].each_with_index do |(title, content), i|
+            describe "for #{title}" do
               let(:current_row){ table.find_by_tag("tr")[i] }
 
-              it "should have the title '#{set[0]}'" do
+              it "should have the title '#{title}'" do
                 expect(current_row.find_by_tag("th").first.content).to eq title
               end
-              it "should have the content '#{set[1]}'" do
+
+              it "should have the content '#{content}'" do
                 expect(current_row.find_by_tag("td").first.content.chomp.strip).to eq content
               end
             end
