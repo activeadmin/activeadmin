@@ -69,8 +69,8 @@ If you have any Bundler issues, call the `use_rails` script then prepend
 the version of rails you would like to use in an environment variable:
 
 ```sh
-script/use_rails 4.0.0
-RAILS=4.0.0 script/local server
+script/use_rails 4.1.7
+RAILS=4.1.7 script/local server
 ```
 
 You should now be able to open <http://localhost:3000/admin> in your browser. You can log in using:
