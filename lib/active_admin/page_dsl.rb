@@ -24,5 +24,9 @@ module ActiveAdmin
         define_method(name, &block || Proc.new{})
       end
     end
+
+    def belongs_to(target, options = {})
+      config.belongs_to(target, options)
+    end
   end
 end
