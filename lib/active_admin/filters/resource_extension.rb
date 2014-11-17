@@ -92,7 +92,15 @@ module ActiveAdmin
 
       # @return [Array] The array of default filters for this resource
       def default_filters
-        default_association_filters + default_content_filters
+        default_association_filters + default_content_filters + custom_ransack_filters
+      end
+
+      def custom_ransack_filters
+        if resource_class.respond_to?(:_ransackers)
+          resource_class._ransackers.keys.map(&:to_sym)
+        else
+          []
+        end
       end
 
       # Returns a default set of filters for the associations
