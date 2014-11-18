@@ -1,6 +1,12 @@
 module ActiveAdmin
   module Filters
 
+    class InputClassFinder < Formtastic::InputClassFinder
+      def class_name(as)
+        "Filter#{super}"
+      end
+    end
+
     # This form builder defines methods to build filter forms such
     # as the one found in the sidebar of the index page of a standard resource.
     class FormBuilder < ::ActiveAdmin::FormBuilder
@@ -11,6 +17,8 @@ module ActiveAdmin
           template.concat input(method, options)
         end
       end
+
+      self.input_class_finder = InputClassFinder
 
       protected
 
@@ -36,15 +44,6 @@ module ActiveAdmin
           end
         end
       end
-
-      def custom_input_class_name(as)
-        "Filter#{as.to_s.camelize}Input"
-      end
-
-      def active_admin_input_class_name(as)
-        "ActiveAdmin::Inputs::Filter#{as.to_s.camelize}Input"
-      end
-
     end
 
 
