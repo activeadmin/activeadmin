@@ -56,6 +56,12 @@ module ActiveAdmin
       end
     end
 
+    describe "#namespace_name" do
+      it "returns the name of the namespace" do
+        expect(config.namespace_name).to eq "admin"
+      end
+    end
+
     it "should not belong_to anything" do
       expect(config.belongs_to?).to eq false
     end
