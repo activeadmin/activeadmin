@@ -52,7 +52,7 @@ describe ActiveAdmin::FormBuilder do
       end
 
       it "should generate a fieldset with a inputs class" do
-        expect(body).to have_tag("fieldset", attributes: { class: "inputs" })
+        expect(body).to have_selector("fieldset.inputs")
       end
     end
 
@@ -67,7 +67,7 @@ describe ActiveAdmin::FormBuilder do
       end
 
       it "should generate a fieldset with a inputs and custom class" do
-        expect(body).to have_tag("fieldset", attributes: { class: "inputs custom_class" })
+        expect(body).to have_selector("fieldset.inputs.custom_class")
       end
     end
   end
