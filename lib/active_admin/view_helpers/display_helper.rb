@@ -42,19 +42,7 @@ module ActiveAdmin
 
       # Attempts to create a human-readable string for any object
       def pretty_format(object)
-        case object
-        when String, Numeric, Arbre::Element
-          object.to_s
-        when Date, Time
-          localize object, format: :long
-        else
-          if defined?(::ActiveRecord) && object.is_a?(ActiveRecord::Base) ||
-             defined?(::Mongoid)      && object.class.include?(Mongoid::Document)
-            auto_link object
-          else
-            display_name object
-          end
-        end
+        ActiveAdmin::Formatter.format(object, self)
       end
 
     end

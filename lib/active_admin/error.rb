@@ -55,4 +55,15 @@ module ActiveAdmin
   class NoMenuError < KeyError
   end
 
+  class NoFormatterRegistered < Error
+    def initialize
+      super "No ActiveAdmin::Formatter registered!"
+    end
+  end
+
+  class NoFormatterFound < Error
+    def initialize(object)
+      super "No ActiveAdmin::Formatter found for #{object.class} '#{object}'!"
+    end
+  end
 end

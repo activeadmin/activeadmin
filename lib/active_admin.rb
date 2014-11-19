@@ -33,6 +33,7 @@ module ActiveAdmin
   autoload :Devise,                   'active_admin/devise'
   autoload :DSL,                      'active_admin/dsl'
   autoload :Event,                    'active_admin/event'
+  autoload :Formatter,                'active_admin/formatter'
   autoload :FormBuilder,              'active_admin/form_builder'
   autoload :Inputs,                   'active_admin/inputs'
   autoload :Iconic,                   'active_admin/iconic'
