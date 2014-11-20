@@ -61,8 +61,7 @@ describe ActiveAdmin::Formatter do
         String => ["hello", "hello"],
         Fixnum => [23, "23"],
         Float => [5.67, "5.67"],
-        Bignum => [10**30, "1000000000000000000000000000000"],
-        Arbre::Element => [Arbre::Element.new.span(:foo), "<span>foo</span>"]
+        Bignum => [10**30, "1000000000000000000000000000000"]
       }.each do |klass, (object, expection)|
         it "should call `to_s` on #{klass.name}s" do
           expect(object).to be_a klass
@@ -79,6 +78,16 @@ describe ActiveAdmin::Formatter do
       it "should return a localized Date or Time with long format" do
         expect(view_context).to receive(:localize).with(object, { format: :long }) { "Just Now!" }
         expect(formatter_instance.process).to eq "Just Now!"
+      end
+    end
+
+    describe "Arbre" do
+      let(:object) { Arbre::Element.new }
+      let(:formatter_instance) { ActiveAdmin::Formatter::Arbre.new(object, view_context) }
+
+      it "should return rendered html" do
+        expect(object).to receive(:to_s).and_return("<span>foo</span>")
+        expect(formatter_instance.process).to eq "<span>foo</span>"
       end
     end
   end
