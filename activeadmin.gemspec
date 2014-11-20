@@ -1,6 +1,4 @@
-# -*- encoding: utf-8 -*-
-$LOAD_PATH << File.expand_path('../lib', __FILE__)
-require 'active_admin/version'
+require_relative 'lib/active_admin/version'
 
 Gem::Specification.new do |s|
   s.name          = 'activeadmin'
