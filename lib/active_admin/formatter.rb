@@ -30,3 +30,4 @@ end
 
 require "active_admin/formatter/dsl"
 require "active_admin/formatter/base"
+require "active_admin/formatter/date_time"

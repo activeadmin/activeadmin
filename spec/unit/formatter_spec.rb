@@ -71,5 +71,15 @@ describe ActiveAdmin::Formatter do
         end
       end
     end
+
+    describe "DateTime" do
+      let(:object) { Time.utc(1985, 2, 28, 20, 15, 1) }
+      let(:formatter_instance) { ActiveAdmin::Formatter::DateTime.new(object, view_context) }
+
+      it "should return a localized Date or Time with long format" do
+        expect(view_context).to receive(:localize).with(object, { format: :long }) { "Just Now!" }
+        expect(formatter_instance.process).to eq "Just Now!"
+      end
+    end
   end
 end
