@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 class DefaultPolicy < ApplicationPolicy
+  def respond_to_missing?(method, include_private = false)
+    method.to_s[0...3] == "foo" || super
+  end
+
+  def method_missing(method, *args, &block)
+    if method.to_s[0...3] == "foo"
+      method.to_s[4...7] == "yes"
+    else
+      super
+    end
+  end
+
   class Scope
 
     attr_reader :user, :scope
@@ -48,6 +60,13 @@ describe ActiveAdmin::PunditAdapter do
       collection = double
       auth.scope_collection(collection, :read)
       expect(collection).to eq collection
+    end
+
+    it "works well with method_missing" do
+      allow(auth).to receive(:retrieve_policy).and_return(DefaultPolicy.new(double, double))
+      expect(auth.authorized?(:foo_no)).to be_falsey
+      expect(auth.authorized?(:foo_yes)).to be_truthy
+      expect(auth.authorized?(:bar_yes)).to be_falsey
     end
 
     context 'when Pundit is unable to find policy scope' do
