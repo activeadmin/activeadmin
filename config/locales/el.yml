@@ -117,7 +117,7 @@ el:
     unsupported_browser:
       headline: "Το ActiveAdmin δεν υποστηρίζει πλεον τον Internet Explorer έκδοση 8 η μικρότερη."
       recommendation: "Σας προτείνουμε να αναβαθμίσετε στην τελευταία <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, or <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Αν χρησιμοποιείτε IE 9 or μεγαλύτερη έκδοση, σιγουρευτείτε οτι <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">turn off \"Compatibility View\"</a>."
+      turn_off_compatibility_view: "Αν χρησιμοποιείτε IE 9 ή μεγαλύτερη έκδοση, σιγουρευτείτε ότι <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">turn off \"Compatibility View\"</a>."
     access_denied:
       message: "Δεν έχετε πρόσβαση για αυτή την ενέργεια."
     index_list:
