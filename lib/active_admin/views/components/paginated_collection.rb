@@ -77,7 +77,7 @@ module ActiveAdmin
       end
 
       def build_pagination
-        options = {theme: 'active_admin'}
+        options = {}
         options[:param_name] = @param_name if @param_name
 
         text_node paginate collection, options
