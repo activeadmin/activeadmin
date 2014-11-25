@@ -105,6 +105,29 @@ Feature: Index Filtering
     And I should see "Non-Fiction" within ".index_table"
     And I should not see "Mystery" within ".index_table"
 
+  @javascript
+  Scenario: Clearing filter preserves custom parameters
+    Given a category named "Mystery" exists
+    And 1 post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists
+    And 1 post with the title "Lorem Ipsum" written by "Joe Smith" in category "Mystery" exists
+    And an index configuration of:
+    """
+    ActiveAdmin.register Category
+    ActiveAdmin.application.favicon = false
+    """
+    Then I should see "Displaying all 2 Categories"
+    When I add parameter "scope" with value "all" to the URL
+    And I add parameter "foo" with value "bar" to the URL
+    And I select "Hello World" from "Posts"
+    And I press "Filter"
+    Then I should see "Non-Fiction"
+    And I should not see "Mystery"
+    When I click "Clear Filters"
+    Then I should see "Non-Fiction"
+    And I should see "Mystery"
+    And I should have parameter "foo" with value "bar"
+    And I should have parameter "scope" with value "all"
+
   Scenario: Checkboxes - Filtering categories via posts written by anyone
     Given a category named "Mystery" exists
     And a post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists

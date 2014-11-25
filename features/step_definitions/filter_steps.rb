@@ -16,16 +16,24 @@ Then /^I should see the following filters:$/ do |table|
   end
 end
 
-Then(/^I should( not)? see parameter "([^"]*)" with value "([^"]*)"$/) do |negative, key, value|
-  uri_with_params= page.current_url.split('?')
-  params_string= (uri_with_params.length == 2) ? uri_with_params[1]: nil
-  expect(params_string).to_not be_nil
-  params= Hash.new
-  params_string.split('&').each do |pair|
-  params[pair.split('=')[0]]= pair.split('=')[1]
-  end
-  if params != nil
-   negative ? (expect(params[key]).to be_falsey)
-   : (expect(params[key]).to be_truthy) && (expect(params[key]).to eq(value))
+Given(/^I add parameter "([^"]*)" with value "([^"]*)" to the URL$/) do |key, value|
+  url = page.current_url
+  separator = url.include?('?') ? '&' : '?'
+  visit url + separator + key.to_s + '=' + value.to_s
+end
+
+Then(/^I should( not)? have parameter "([^"]*)"( with value "([^"]*)")?$/) do |negative, key, compare_val, value|
+  query = URI(page.current_url).query
+  if query.nil?
+    expect(negative).to be_truthy
+  else
+    params = Rack::Utils.parse_query query
+    if compare_val
+      expect(params[key]).to_not eq value if negative
+      expect(params[key]).to eq value unless negative
+    else
+      expect(params[key]).to be_nil if negative
+      expect(params[key]).to be_present unless negative
+    end
   end
 end
