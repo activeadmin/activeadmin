@@ -1,6 +1,7 @@
 <div id="login">
   <h2><%= render_or_call_method_or_proc_on(self, active_admin_application.site_title) %> <%= title t('active_admin.devise.reset_password.title') %></h2>
 
+  <%= devise_error_messages! %>
   <%= active_admin_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
     f.inputs do
       f.input :email
