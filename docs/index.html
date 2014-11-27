@@ -91,20 +91,20 @@
 <span class="no">ActiveAdmin</span><span class="o">.</span><span class="n">register</span> <span class="no">Product</span> <span class="k">do</span>
 
   <span class="c1"># Create sections on the index screen</span>
-  <span class="n">scope</span> <span class="ss">:all</span><span class="p">,</span> <span class="ss">:default</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+  <span class="n">scope</span> <span class="ss">:all</span><span class="p">,</span> <span class="ss">default:</span> <span class="kp">true</span>
   <span class="n">scope</span> <span class="ss">:available</span>
   <span class="n">scope</span> <span class="ss">:drafts</span>
 
   <span class="c1"># Filterable attributes on the index screen</span>
   <span class="n">filter</span> <span class="ss">:title</span>
-  <span class="n">filter</span> <span class="ss">:author</span><span class="p">,</span> <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="ss">:select</span><span class="p">,</span> <span class="ss">:collection</span> <span class="o">=&gt;</span> <span class="nb">lambda</span><span class="p">{</span> <span class="no">Product</span><span class="o">.</span><span class="n">authors</span> <span class="p">}</span>
+  <span class="n">filter</span> <span class="ss">:author</span><span class="p">,</span> <span class="ss">as:</span> <span class="ss">:select</span><span class="p">,</span> <span class="ss">collection:</span> <span class="nb">-></span><span class="p">{</span> <span class="no">Product</span><span class="o">.</span><span class="n">authors</span> <span class="p">}</span>
   <span class="n">filter</span> <span class="ss">:price</span>
   <span class="n">filter</span> <span class="ss">:created_at</span>
 
   <span class="c1"># Customize columns displayed on the index screen in the table</span>
   <span class="n">index</span> <span class="k">do</span>
     <span class="n">column</span> <span class="ss">:title</span>
-    <span class="n">column</span> <span class="s2">"Price"</span><span class="p">,</span> <span class="ss">:sortable</span> <span class="o">=&gt;</span> <span class="ss">:price</span> <span class="k">do</span> <span class="o">|</span><span class="n">product</span><span class="o">|</span>
+    <span class="n">column</span> <span class="s2">"Price"</span><span class="p">,</span> <span class="ss">sortable:</span> <span class="ss">:price</span> <span class="k">do</span> <span class="o">|</span><span class="n">product</span><span class="o">|</span>
       <span class="n">number_to_currency</span> <span class="n">product</span><span class="o">.</span><span class="n">price</span>
     <span class="k">end</span>
     <span class="n">default_actions</span>
