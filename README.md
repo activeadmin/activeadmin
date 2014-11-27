@@ -42,7 +42,7 @@ Github [docs folder](https://github.com/activeadmin/activeadmin/tree/master/docs
 * Live demo: <http://demo.activeadmin.info/admin>
 * Documentation
   * Guides: <http://activeadmin.info/documentation.html>
-  * YARD: <http://rubydoc.info/gems/activeadmin/frames>
+  * YARD: <http://rubydoc.info/gems/activeadmin>
   * Wiki: <https://github.com/activeadmin/activeadmin/wiki>
 
 ## Goals
