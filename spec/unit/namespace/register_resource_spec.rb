@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 # TODO: refactor this file so it doesn't depend on the Admin namespace in such a broken way.
-#       Specifically, the dashboard is already defined and we do let(:namespace) multiple times.
+#       Specifically, the dashboard is already defined.
 
 describe ActiveAdmin::Namespace, "registering a resource" do
 
@@ -62,8 +62,6 @@ describe ActiveAdmin::Namespace, "registering a resource" do
   end # context "with a resource that's namespaced"
 
   describe "finding resource instances" do
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
-
     it "should return the resource when its been registered" do
       post = namespace.register Post
       expect(namespace.resource_for(Post)).to eq post
