@@ -48,12 +48,14 @@ index as: :grid, default: true do |product|
 end
 ```
 
+## Custom Index
+
 Active Admin does not limit the index page to be a table, block, blog or grid.
-If you've [created your own index page](3-index-pages/create-an-index.md) it
+If you've created your own [custom index](3-index-pages/custom-index.md) page it
 can be included by setting `:as` to the class of the index component you created.
 
 ```ruby
-index as: ActiveAdmin::Views::IndexAsTable do
+index as: ActiveAdmin::Views::IndexAsMyIdea do
   column :image_title
   actions
 end

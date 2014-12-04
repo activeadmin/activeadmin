@@ -1,4 +1,4 @@
-# Create an Index
+# Custom Index
 
 If the supplied Active Admin index components are insufficient for your project
 feel free to define your own. Index classes inherit from `ActiveAdmin::Component`
