@@ -77,6 +77,10 @@ module ActiveAdmin
       false
     end
 
+    def show_sub_menu?(*)
+      false
+    end
+
     def add_default_action_items
     end
 

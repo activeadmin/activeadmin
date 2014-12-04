@@ -27,7 +27,7 @@ module ActiveAdmin
   class Namespace
     RegisterEvent = 'active_admin.namespace.register'.freeze
 
-    attr_reader :application, :resources, :name, :menus
+    attr_reader :application, :resources, :name, :menus, :sub_menus
 
     def initialize(application, name)
       @application = application
@@ -105,6 +105,7 @@ module ActiveAdmin
 
     def reset_menu!
       @menus.clear!
+      @sub_menus.clear!
     end
 
     # Add a callback to be ran when we build the menu
@@ -156,12 +157,25 @@ module ActiveAdmin
 
     def build_menu_collection
       @menus = MenuCollection.new
+      @sub_menus = MenuCollection.new
 
       @menus.on_build do |menus|
         build_default_utility_nav
 
         resources.each do |resource|
           resource.add_to_menu(@menus)
+        end
+
+        @sub_menus.send :build_menus!
+      end
+
+      @sub_menus.on_build do |menus|
+        resources.each do |resource|
+          if resource.belongs_to?
+            resource.belongs_to_config.target.nested_resources = true
+          end
+
+          resource.add_to_sub_menu(@sub_menus)
         end
       end
     end

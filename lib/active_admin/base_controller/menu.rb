@@ -6,6 +6,7 @@ module ActiveAdmin
       included do
         before_filter :set_current_tab
         helper_method :current_menu
+        helper_method :sub_menu
       end
 
       protected
@@ -14,7 +15,14 @@ module ActiveAdmin
         active_admin_config.navigation_menu
       end
 
-      # Set's @current_tab to be name of the tab to mark as current
+      def sub_menu
+        active_admin_config.sub_navigation_menu
+      end
+
+      # Sets @current_tab to be name of the tab to mark as current.
+      # Also sets @current_sub_tab to be name of the sub menu tab to mark as
+      # current.
+      #
       # Get's called through a before filter
       def set_current_tab
         @current_tab = if current_menu && active_admin_config.belongs_to? && parent?
@@ -27,6 +35,11 @@ module ActiveAdmin
         else
           active_admin_config.menu_item
         end
+
+        @current_sub_tab =
+          if active_admin_config.show_sub_menu?(params[:action])
+            active_admin_config.menu_item
+          end
       end
 
     end

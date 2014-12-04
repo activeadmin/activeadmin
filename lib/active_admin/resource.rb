@@ -121,8 +121,21 @@ module ActiveAdmin
 
     def belongs_to(target, options = {})
       @belongs_to = Resource::BelongsTo.new(self, target, options)
-      self.navigation_menu_name = target unless @belongs_to.optional?
+      self.sub_navigation_menu_name = target
+      #self.navigation_menu_name = target unless @belongs_to.optional?
       controller.send :belongs_to, target, options.dup
+    end
+
+    def nested_resources=(value)
+      @nested_resources = value
+    end
+
+    def has_nested_resources?
+      @nested_resources
+    end
+
+    def show_sub_menu?(action)
+      sub_menu_item? || (has_nested_resources? && ["show", "edit"].include?(action))
     end
 
     def belongs_to_config
