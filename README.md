@@ -34,14 +34,14 @@ gem 'activeadmin', github: 'activeadmin', branch: '0-6-stable'
 ## Documentation
 
 Please note that <http://activeadmin.info> is out of date. For the latest docs, check out the
-Github [docs folder](https://github.com/activeadmin/activeadmin/tree/master/docs) and the [wiki](https://github.com/activeadmin/activeadmin/wiki).
+Github [docs](https://github.com/activeadmin/activeadmin/tree/master/docs#activeadmin-documentation) and the [wiki](https://github.com/activeadmin/activeadmin/wiki).
 
 ## Links
 
-* Website: <http://www.activeadmin.info>
+* Website: <http://www.activeadmin.info> (out of date)
 * Live demo: <http://demo.activeadmin.info/admin>
 * Documentation
-  * Guides: <http://activeadmin.info/documentation.html>
+  * Guides: <https://github.com/activeadmin/activeadmin/tree/master/docs>
   * YARD: <http://rubydoc.info/gems/activeadmin>
   * Wiki: <https://github.com/activeadmin/activeadmin/wiki>
 
