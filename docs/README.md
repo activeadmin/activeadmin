@@ -13,7 +13,7 @@
 - [Custom Actions](docs/8-custom-actions.md)
 - [Batch Actions](docs/9-batch-actions.md)
 - [Custom Pages](docs/10-custom-pages.md)
-- [decorators](docs/11-decorators.md)
+- [Decorators](docs/11-decorators.md)
 - [Arbre Components](docs/12-arbre-components.md)
 - [Authorization Adapter](docs/13-authorization-adapter.md)
 - [Gotchas](docs/14-gotchas.md)
