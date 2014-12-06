@@ -90,7 +90,7 @@ describe ActiveAdmin::Views::StatusTag do
     end
 
     context "when status is false" do
-      subject { status_tag('false') }
+      subject { status_tag(false) }
 
       describe '#class_list' do
         subject { super().class_list }
