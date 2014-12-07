@@ -50,4 +50,5 @@ group :test do
   gem 'i18n-spec'
   gem 'shoulda-matchers'
   gem 'sqlite3'
+  gem 'poltergeist'
 end
