@@ -1,4 +1,23 @@
-## Master (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...master)
+## 0-6-stable (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.3...0-6-stable)
+
+* Restore compatibility with Formtastic 2.0 by [@seanlinsley][]
+* Backport of [#3489][] by [@timoschilling][]
+* Backport of [#3659][] by [@timoschilling][]
+
+## 0.6.3 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.2...v0.6.3)
+
+* __Reinstitutes the 10k limit for CSV exports__ [#2847][] by [@seanlinsley][]
+* Blacklists Devise versions vulnerable to CVE-2013-0233 [#2744][] by [@jjarmoc][]
+* Autoloads the Comments model so it respects user's Kaminari config 77c97d27 by [@seanlinsley][]
+* Hides the blank slate link if user doesn't have permissions [#2588][] by [@seanlinsley][]
+* Fixes incorrect breadcrumb on edit pages [#2601][] by [@shekibobo][]
+* Resurrects `ResourceMismatchError` b1c28cdb by [@seanlinsley][]
+* Keeps filter conditions from being deleted fa0edec4 by [@seanlinsley][]
+* Translations by [@teoulas][], [@tricknotes][], [@givanse][], and [@pcreux][] :heart:
+
+## 0.6.2 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.1...v0.6.2)
+
+* Patches MetaSearch bug for attributes ending in "ne" d5db9ff4 by [@seanlinsley][]
 
 ## 0.6.1 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.0...v0.6.1)
 
@@ -904,6 +923,8 @@ of the highlights. 250 commits. Enough said.
 [#2419]: https://github.com/gregbell/active_admin/issues/2419
 [#2420]: https://github.com/gregbell/active_admin/issues/2420
 [#2454]: https://github.com/gregbell/active_admin/issues/2454
+[#3489]: https://github.com/gregbell/active_admin/issues/3489
+[#3659]: https://github.com/gregbell/active_admin/issues/3659
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
@@ -992,6 +1013,7 @@ of the highlights. 250 commits. Enough said.
 [@stereoscott]: https://github.com/stereoscott
 [@sunny]: https://github.com/sunny
 [@tank-bohr]: https://github.com/tank-bohr
+[@timoschilling]: https://github.com/timoschilling
 [@tinynumbers]: https://github.com/tinynumbers
 [@tracedwax]: https://github.com/tracedwax
 [@tricknotes]: https://github.com/tricknotes
