@@ -86,7 +86,7 @@ module ActiveAdmin
     inheritable_setting :unsupported_browser_matcher, /MSIE [1-8]\.0/
 
     # Whether to display 'Current Filters' on search screen
-    inheritable_setting :show_current_filters, true
+    inheritable_setting :current_filters, true
 
     # Request parameters that are permitted by default
     inheritable_setting :permitted_params, [
