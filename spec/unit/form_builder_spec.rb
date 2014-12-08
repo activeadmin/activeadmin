@@ -584,7 +584,36 @@ describe ActiveAdmin::FormBuilder do
         it "shows the nested fields for saved and unsaved records" do
           expect(body).to have_selector("fieldset.inputs.has_many_fields")
         end
+      end
 
+      context "without sortable_start set" do
+        let :body do
+          build_form({url: '/categories'}, Category.new) do |f|
+            f.object.posts.build
+            f.has_many :posts, sortable: :position do |p|
+              p.input :title
+            end
+          end
+        end
+
+        it "defaults to 0" do
+          expect(body).to have_selector("div.has_many_container[data-sortable-start='0']")
+        end
+      end
+
+      context "with sortable_start set" do
+        let :body do
+          build_form({url: '/categories'}, Category.new) do |f|
+            f.object.posts.build
+            f.has_many :posts, sortable: :position, sortable_start: 15 do |p|
+              p.input :title
+            end
+          end
+        end
+
+        it "sets the data attribute" do
+          expect(body).to have_selector("div.has_many_container[data-sortable-start='15']")
+        end
       end
     end
 

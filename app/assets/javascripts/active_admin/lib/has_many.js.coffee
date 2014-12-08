@@ -67,7 +67,7 @@ init_sortable = ->
 recompute_positions = (parent)->
   parent     = if parent instanceof jQuery then parent else $(@)
   input_name = parent.data 'sortable'
-  position   = 0
+  position   = parseInt(parent.data('sortable-start') || 0, 10)
 
   parent.children('fieldset').each ->
     # We ignore nested inputs, so when defining your has_many, be sure to keep
