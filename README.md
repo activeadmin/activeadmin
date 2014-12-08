@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/activeadmin/activeadmin.png?label=ready&title=Ready)](https://waffle.io/activeadmin/activeadmin)
 # Active Admin
 
 Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
