@@ -147,7 +147,7 @@ module ActiveAdmin
       if current_user_method
         menu.add id: 'current_user', priority: priority, html_options: html_options,
           label: ->{ display_name current_active_admin_user },
-          url:   ->{ auto_url_for(current_active_admin_user) || '#' },
+          url:   ->{ auto_url_for(current_active_admin_user) },
           if:    :current_active_admin_user?
       end
     end

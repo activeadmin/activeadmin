@@ -7,6 +7,7 @@
 
 ### Enhancements
 
+* Do not auto link to inaccessible actions [#3686][] by [@pranas][]
 * Unify DSL for index `actions` and `actions dropdown: true` [#3463][] by [@timoschilling][]
 * Add DSL method `includes` for `ActiveRecord::Relation#includes` [#3464][] by [@timoschilling][]
 * BOM (byte order mark) configurable for CSV download [#3519][] by [@timoschilling][]
@@ -982,6 +983,7 @@ of the highlights. 250 commits. Enough said.
 [#3464]: https://github.com/activeadmin/activeadmin/issues/3464
 [#3486]: https://github.com/activeadmin/activeadmin/issues/3486
 [#3519]: https://github.com/activeadmin/activeadmin/issues/3519
+[#3686]: https://github.com/activeadmin/activeadmin/issues/3686
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
@@ -1055,6 +1057,7 @@ of the highlights. 250 commits. Enough said.
 [@pcreux]: https://github.com/pcreux
 [@per_page]: https://github.com/per_page
 [@potatosalad]: https://github.com/potatosalad
+[@pranas]: https://github.com/pranas
 [@psy-q]: https://github.com/psy-q
 [@ptn]: https://github.com/ptn
 [@randym]: https://github.com/randym
