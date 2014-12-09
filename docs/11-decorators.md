@@ -4,6 +4,11 @@ Active Admin allows you to use the decorator pattern to provide view-specific
 versions of a resource. [Draper](https://github.com/drapergem/draper) is
 recommended but not required.
 
+To use decorator support without Draper, your decorator must support a variety
+of collection methods to support pagination, filtering, etc. See
+[this github issue discussion](https://github.com/activeadmin/activeadmin/issues/3600)
+and [this gem](https://github.com/kiote/activeadmin-poro-decorator) for more details.
+
 ## Example usage
 
 ```ruby
@@ -13,7 +18,7 @@ class Post < ActiveRecord::Base
 end
 
 # app/decorators/post_decorator.rb
-class PostDecorator < ApplicationDecorator
+class PostDecorator < Draper::Decorator
   delegate_all
 
   def image
