@@ -15,6 +15,10 @@ module ActiveAdmin
         RouteBuilder.new(self).instance_path(resource)
       end
 
+      def route_edit_instance_path(resource)
+        RouteBuilder.new(self).edit_instance_path(resource)
+      end
+
       # Returns the routes prefix for this config
       def route_prefix
         namespace.module_name.try(:underscore)
@@ -36,7 +40,7 @@ module ActiveAdmin
         def collection_path(params)
           route_name = route_name(
             resource.resources_configuration[:self][:route_collection_name],
-            (resource.route_uncountable? ? 'index_path' : 'path')
+            suffix: (resource.route_uncountable? ? "index_path" : "path")
           )
 
           routes.public_send route_name, *route_collection_params(params)
@@ -51,13 +55,25 @@ module ActiveAdmin
           routes.public_send route_name, *route_instance_params(instance)
         end
 
+        # @return [String] the path to the edit page of this resource
+        # @param instance [ActiveRecord::Base] the instance we want the path of
+        # @example "/admin/posts/1/edit"
+        def edit_instance_path(instance)
+          path = resource.resources_configuration[:self][:route_instance_name]
+          route_name = route_name(path, action: :edit)
+
+          routes.public_send route_name, *route_instance_params(instance)
+        end
+
         private
 
         attr_reader :resource
 
-        def route_name(resource_path_name, suffix = 'path')
+        def route_name(resource_path_name, options = {})
+          suffix = options[:suffix] || "path"
           route = []
 
+          route << options[:action]           # "edit" or "new"
           route << resource.route_prefix      # "admin"
           route << belongs_to_name if nested? # "category"
           route << resource_path_name         # "posts" or "post"
