@@ -3,7 +3,18 @@ module ActiveAdmin
 
     class InputClassFinder < Formtastic::InputClassFinder
       def class_name(as)
-        "Filter#{super}"
+        input_class = "Filter#{super}"
+        if active_admin_input_class?(input_class)
+          input_class
+        else
+          super
+        end
+      end
+
+      private
+
+      def active_admin_input_class?(name)
+        ActiveAdmin::Inputs.const_defined?(name)
       end
     end
 

@@ -399,6 +399,13 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
+  describe "does not support some filter inputs" do
+    it "should fallback to use formtastic inputs" do
+      body = Capybara.string(filter :custom_searcher, as: :text)
+      expect(body).to have_selector("textarea[name='q[custom_searcher]']")
+    end
+  end
+
   describe "blank option" do
     context "for a select filter" do
       it "should be there by default" do
