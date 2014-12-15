@@ -133,7 +133,7 @@ describe ActiveAdmin::Filters::ViewHelper do
 
   describe "string attribute, as a select" do
     let(:body) { filter :title, as: :select }
-    let(:builder) { ActiveAdmin::Inputs::FilterSelectInput }
+    let(:builder) { ActiveAdmin::Inputs::Filters::SelectInput }
 
     context "when loading collection from DB" do
       it "should use pluck for efficiency" do
