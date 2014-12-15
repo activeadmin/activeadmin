@@ -48,6 +48,7 @@ require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
 require 'capybara/poltergeist'
+require 'phantomjs/poltergeist'
 
 Capybara.javascript_driver = :poltergeist
 
