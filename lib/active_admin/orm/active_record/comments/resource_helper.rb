@@ -9,7 +9,7 @@ module ActiveAdmin
       end
 
       def comments?
-        namespace.comments? && comments != false
+        (namespace.comments? && comments != false) || comments == true
       end
     end
 
