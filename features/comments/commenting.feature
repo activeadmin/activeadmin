@@ -48,6 +48,20 @@ Feature: Commenting
     And I follow "View"
     Then I should not see "Comments"
 
+  Scenario: Enable comments on per-resource basis
+    Given a configuration of:
+    """
+      ActiveAdmin.application.namespace(:new_namespace).comments = false
+      ActiveAdmin.register Post,      :namespace => :new_namespace do
+        config.comments = true
+      end
+      ActiveAdmin.register AdminUser, :namespace => :new_namespace
+    """
+    Given I am logged in
+    When I am on the index page for posts in the new_namespace namespace
+    And I follow "View"
+    Then I should see "Comments"
+
   Scenario: Creating a comment in one namespace does not create it in another
     Given a show configuration of:
     """

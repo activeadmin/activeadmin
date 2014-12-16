@@ -7,6 +7,7 @@
 
 ### Enhancements
 
+* Allow to enable comments on per-resource basis [#3695][] by [@pranas][]
 * Rename `allow_comments` to `comments` for more consistent naming [#3695][] by [@pranas][]
 * Unify DSL for index `actions` and `actions dropdown: true` [#3463][] by [@timoschilling][]
 * Add DSL method `includes` for `ActiveRecord::Relation#includes` [#3464][] by [@timoschilling][]
