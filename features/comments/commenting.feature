@@ -39,7 +39,7 @@ Feature: Commenting
   Scenario: View a resource in a namespace that doesn't have comments
     Given a configuration of:
     """
-      ActiveAdmin.application.namespace(:new_namespace).allow_comments = false
+      ActiveAdmin.application.namespace(:new_namespace).comments = false
       ActiveAdmin.register Post,      :namespace => :new_namespace
       ActiveAdmin.register AdminUser, :namespace => :new_namespace
     """

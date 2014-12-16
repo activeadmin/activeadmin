@@ -63,7 +63,7 @@ describe ActiveAdmin::Application do
   end
 
   it "should allow comments by default" do
-    expect(application.allow_comments).to eq true
+    expect(application.comments).to eq true
   end
 
   describe "authentication settings" do

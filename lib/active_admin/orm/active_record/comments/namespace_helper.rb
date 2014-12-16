@@ -5,7 +5,7 @@ module ActiveAdmin
 
       # Returns true if the namespace allows comments
       def comments?
-        allow_comments == true
+        comments == true
       end
 
     end
