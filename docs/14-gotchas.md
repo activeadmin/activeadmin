@@ -50,3 +50,30 @@ ActiveAdmin.register User do
   end
 end
 ```
+
+## Conflicts
+
+### With gems that provides a `search` class method on a model
+
+If a gem defines a `search` class method on a model, this can result in conflicts 
+with the same method provided by `ransack` (a dependency of ActiveAdmin).
+
+Each of this conflicts need to solved is a different way. Some solutions are 
+listed below.
+
+#### `tire`, `retire` and `elasticsearch-rails`
+
+This conflict can be solved, by using explicitlly the `search` method of `tire`, 
+`retire` or `elasticsearch-rails`:
+
+##### For `tire` and `retire`
+
+```ruby
+YourModel.tire.search
+```
+
+##### For `elasticsearch-rails`
+
+```ruby
+YourModel.__elasticsearch__.search
+```
