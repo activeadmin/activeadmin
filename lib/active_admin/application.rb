@@ -109,7 +109,7 @@ module ActiveAdmin
 
     # == Deprecated Settings
 
-    def allow_comments=
+    def allow_comments=(*)
       raise "`config.allow_comments` is no longer provided in ActiveAdmin 1.x. Use `config.comments` instead."
     end
 
