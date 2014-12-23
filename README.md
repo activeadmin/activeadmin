@@ -12,6 +12,10 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 
 ## State of the project
 
+### Rails 4.2
+
+ActiveAdmin don't support Rails 4.2 in master at the moment. Read [here](https://github.com/activeadmin/activeadmin/blob/rails-4-2/README.md#rails-42) for details.
+
 ### 1.0.0
 
 We're [currently working on 1.0.0](https://github.com/activeadmin/activeadmin/issues?milestone=18),
