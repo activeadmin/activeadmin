@@ -12,6 +12,22 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 
 ## State of the project
 
+### Rails 4.2
+
+#### Special Branch
+This branch (`rails-4-2`) is a draft to become Rails 4.2 support, this branch has no guaranty to be work with Rails 4.2.
+If you want to contribute to improve the Rails 4.2 support, create a pull request agains the `rails-4-2` branch, not against `master`!
+
+#### Related Issues
+Issues related to Rails 4.2 will be tagged with [`rails-4-2`](https://github.com/activeadmin/activeadmin/labels/rails-4-2).
+
+#### Some background informations
+ActiveAdmin is based on [`inherited_resources`](https://github.com/josevalim/inherited_resources), in a hard and fundamentally way. Which means thats it is a big change to remove `inherited_resources`. For ActiveAdmin `1.0` it is not an option, to remove `inherited_resources`, in my eyes. But if someone want's to do it, I will be happy to see a PR for that.
+
+Some things about the [`Deprecation notice`](https://github.com/josevalim/inherited_resources#deprecation-notice) of `inherited_resources`:
+1. The readme says `[inherited_resources] is no longer actively maintained`, that's not the full truth! [@rafaelfranca](https://github.com/rafaelfranca) has [announced](https://github.com/activeadmin/activeadmin/pull/3193#issuecomment-62421649), that he will maintain `inherited_resources` until Rails 5.0 for us! Thanks for that again btw! For Rails 5.0 we need to remove `inherited_resources` and find a own solution (there is already a [issue](https://github.com/activeadmin/activeadmin/issues/3604) for that).
+2. `inherited_resources` says `I suggest developers to make use of Rails' respond_with feature alongside the responders gem as a replacement to Inherited Resources.`, this sentences is irritating! `responders` is not a full replacement of `inherited_resources`! `responders` is a dependency of `inherited_resources` for example.
+
 ### 1.0.0
 
 We're [currently working on 1.0.0](https://github.com/activeadmin/activeadmin/issues?milestone=18),
