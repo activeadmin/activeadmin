@@ -24,7 +24,13 @@ matrix:
   fast_finish: true
   allow_failures:
     - env: "RAILS=4.2.0"
+  exclude:
     - rvm: 2.2
+      env: "RAILS=3.2.21"
+    - rvm: 2.1
+      env: "RAILS=4.1.8"
+    - rvm: 2.1
+      env: "RAILS=4.2.0"
 notifications:
   irc:
     channels:
