@@ -15,8 +15,8 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 ### Rails 4.2
 
 #### Special Branch
-This branch (`rails-4-2`) is a draft to become Rails 4.2 support, this branch has no guaranty to be work with Rails 4.2.
-If you want to contribute to improve the Rails 4.2 support, create a pull request agains the `rails-4-2` branch, not against `master`!
+This branch (`rails-4-2`) is a draft to support Rails 4.2. There is no guarantee that this branch will work with Rails 4.2.
+If you want to contribute to the improvement of the Rails 4.2 support, create a pull request against the `rails-4-2` branch, not against `master`!
 
 #### Related Issues
 Issues related to Rails 4.2 will be tagged with [`rails-4-2`](https://github.com/activeadmin/activeadmin/labels/rails-4-2).
