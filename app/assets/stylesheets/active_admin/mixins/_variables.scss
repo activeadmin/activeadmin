@@ -32,3 +32,7 @@ $text-input-horizontal-padding: 10px !default;
 $text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2;
 
 $blank-slate-border: 1px dashed #DADADA !default;
+
+//locales
+$rtl_locales: 'arc','bcc','bqi','ckb','dv','fa','glk','he','ku','mzn','pnb','ps','sd','ug','ur','yi','ar' !default;
+

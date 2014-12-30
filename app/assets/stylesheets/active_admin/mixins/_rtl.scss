@@ -1,0 +1,66 @@
+
+@mixin rtl {
+
+  body {
+    direction: rtl;
+  }
+
+  form fieldset ol > li label {
+    float: right !important;
+  }
+
+  #sidebar {
+    float: left !important;
+    width: 270px !important;
+    margin-left: 0px !important;
+  }
+  #active_admin_content > #main_content_wrapper {
+    float: right !important;
+    width: 900px !important
+  }
+  #active_admin_content > #main_content_wrapper #main_content {
+    margin-left: 350px !important;
+    margin-right: 0px !important;
+    width: 100%;
+  }
+  #active_admin_content.without_sidebar > #main_content_wrapper {
+    float: left;
+    width: 100% !important;
+  }
+  #active_admin_content.without_sidebar > #main_content_wrapper #main_content {
+    margin-right: 0;
+    margin-left: 0px !important;
+  }
+
+  form.filter_form .filter_form_field.select_and_search input[type=text] {
+    margin-right: 16px !important;
+    width: 88px !important;
+    margin-left: 0px !important;
+  }
+
+  th,  td ,  table.index_table th,   table.index_table td ,  .attributes_table table th,  .attributes_table table td,   .panel_contents table th,  .panel_contents table td {
+    text-align: right !important;
+  }
+
+  form select {
+    margin: 0;
+    padding: 2px !important;
+  }
+
+  form fieldset > ol > li p.inline-hints {
+    margin-right: 20% !important;
+    margin-top: 20px !important;
+  }
+
+  .float_to_right{
+    float: right;
+    margin-left: 1%;
+    margin-right: 1% !important;
+  }
+}
+
+@each $rtl_locale in $rtl_locales {
+  html[lang=#{$rtl_locale}] {
+    @include rtl;
+  }
+}

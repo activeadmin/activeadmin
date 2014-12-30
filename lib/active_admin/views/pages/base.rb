@@ -5,6 +5,7 @@ module ActiveAdmin
 
         def build(*args)
           super
+          set_attribute :lang, I18n.locale
           add_classes_to_body
           build_active_admin_head
           build_page
