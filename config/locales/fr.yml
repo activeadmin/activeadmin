@@ -26,7 +26,7 @@ fr:
         clear: "Supprimer les filtres"
       predicates:
         contains: "Contient"
-        equals: "Egal à"
+        equals: "Égal à"
         starts_with: "Commence par"
         ends_with: "Se termine par"
         greater_than: "Plus grand que"
@@ -56,7 +56,7 @@ fr:
       button_label: "Actions"
     batch_actions:
       button_label: "Actions groupées"
-      default_confirmation: "Êtes-vous sûr de que vouloir faire cela ?"
+      default_confirmation: "Êtes-vous sûr de vouloir faire cela ?"
       delete_confirmation: "Êtes-vous sûr de vouloir supprimer ces %{plural_model} ?"
       succesfully_destroyed:
         one: "1 %{model} supprimé"
@@ -105,7 +105,7 @@ fr:
         forgot_your_password: "Vous avez oublié votre mot de passe ?"
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
     access_denied:
-      message: "Vous n'êtes pas autorisé à executer cette action"
+      message: "Vous n'êtes pas autorisé à exécuter cette action"
     index_list:
       table: "Tableau"
       block: "Liste"
