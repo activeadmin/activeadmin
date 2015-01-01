@@ -19,6 +19,15 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 This branch (`rails-4-2`) is a draft to support Rails 4.2. There is no guarantee that this branch will work with Rails 4.2.
 If you want to contribute to the improvement of the Rails 4.2 support, create a pull request against the `rails-4-2` branch, not against `master`!
 
+#### Setup
+
+To use `activeadmin` with `rails 4.2`, you need to setup your Gemfile like this:
+
+```ruby
+gem 'activeadmin', github: 'activeadmin', branch: 'rails-4-2'
+gem 'inherited_resources', github: 'josevalim/inherited_resources', branch: 'rails-4-2'
+```
+
 #### Related Issues
 
 Issues related to Rails 4.2 will be tagged with [`rails-4-2`](https://github.com/activeadmin/activeadmin/labels/rails-4-2).
