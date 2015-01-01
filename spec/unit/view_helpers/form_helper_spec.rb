@@ -25,8 +25,9 @@ describe ActiveAdmin::ViewHelpers::FormHelper do
     let(:view) { action_view }
 
     it "should render hidden field tags for params" do
-      expect(view.hidden_field_tags_for(scope: "All", filter: "None")).to eq \
-        %{<input id="hidden_active_admin_scope" name="scope" type="hidden" value="All" />\n<input id="hidden_active_admin_filter" name="filter" type="hidden" value="None" />}
+      html = Capybara.string view.hidden_field_tags_for(scope: "All", filter: "None")
+      expect(html).to have_selector("input#hidden_active_admin_scope[name=scope][type=hidden][value=All]")
+      expect(html).to have_selector("input#hidden_active_admin_filter[name=filter][type=hidden][value=None]")
     end
 
     it "should generate not default id for hidden input" do
@@ -34,8 +35,8 @@ describe ActiveAdmin::ViewHelpers::FormHelper do
     end
 
     it "should filter out the field passed via the option :except" do
-      expect(view.hidden_field_tags_for({scope: "All", filter: "None"}, except: :filter)).to eq \
-        %{<input id="hidden_active_admin_scope" name="scope" type="hidden" value="All" />}
+      html = Capybara.string view.hidden_field_tags_for({scope: "All", filter: "None"}, except: :filter)
+      expect(html).to have_selector("input#hidden_active_admin_scope[name=scope][type=hidden][value=All]")
     end
   end
 end
