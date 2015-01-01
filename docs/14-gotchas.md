@@ -77,3 +77,10 @@ YourModel.tire.search
 ```ruby
 YourModel.__elasticsearch__.search
 ```
+
+### Sunspot Solr
+
+```ruby
+YourModel.solr_search
+```
+
