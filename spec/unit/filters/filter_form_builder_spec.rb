@@ -293,8 +293,8 @@ describe ActiveAdmin::Filters::ViewHelper do
     context "when using a custom foreign key" do
       let(:scope) { Post.search }
       let(:body)  { Capybara.string(filter :category) }
-      it "should should ignore that foreign key and let Ransack handle it" do
-        expect(Post.reflections[:category].foreign_key).to eq :custom_category_id
+      it "should ignore that foreign key and let Ransack handle it" do
+        expect(Post.reflect_on_association(:category).foreign_key).to eq :custom_category_id
         expect(body).to have_selector("select[name='q[category_id_eq]']")
       end
     end
