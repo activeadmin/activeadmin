@@ -3,7 +3,7 @@
 ### Major Changes
 
 * Migration from Metasearch to Ransack [#1979][] by [@seanlinsley][]
-* Rails 4 support [#2326][] by many people :heart:
+* Rails 4 support [#2326][] by many people <3
 
 ### Enhancements
 
@@ -984,6 +984,7 @@ of the highlights. 250 commits. Enough said.
 [#3464]: https://github.com/activeadmin/activeadmin/issues/3464
 [#3486]: https://github.com/activeadmin/activeadmin/issues/3486
 [#3519]: https://github.com/activeadmin/activeadmin/issues/3519
+[#3606]: https://github.com/activeadmin/activeadmin/issues/3606
 [#3695]: https://github.com/activeadmin/activeadmin/issues/3695
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
