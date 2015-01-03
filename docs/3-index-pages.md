@@ -191,11 +191,29 @@ end
 
 ## Index pagination
 
+You can set the number of records per page as default:
+
+```ruby
+ActiveAdmin.setup do |config|
+  config.default_per_page = 30
+end
+```
+
 You can set the number of records per page per resources:
 
 ```ruby
 ActiveAdmin.register Post do
   config.per_page = 10
+end
+```
+
+You can change it per request / action too:
+
+```ruby
+controller do
+  before_filter :only => :index do
+    @per_page = 100
+  end
 end
 ```
 

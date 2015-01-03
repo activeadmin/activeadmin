@@ -14,6 +14,7 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 
 ### Rails 4.2
 
+<<<<<<< HEAD
 #### Special Branch
 
 This branch (`rails-4-2`) is a draft to support Rails 4.2. There is no guarantee that this branch will work with Rails 4.2.
@@ -40,6 +41,9 @@ Some things about the [`Deprecation notice`](https://github.com/josevalim/inheri
 
 1. The readme says `[inherited_resources] is no longer actively maintained`, that's not the full truth! [@rafaelfranca](https://github.com/rafaelfranca) has [announced](https://github.com/activeadmin/activeadmin/pull/3193#issuecomment-62421649), that he will maintain `inherited_resources` until Rails 5.0 for us! Thanks for that again btw! For Rails 5.0 we need to remove `inherited_resources` and find a own solution (there is already a [issue](https://github.com/activeadmin/activeadmin/issues/3604) for that).
 2. `inherited_resources` says `I suggest developers to make use of Rails' respond_with feature alongside the responders gem as a replacement to Inherited Resources.`, this sentences is irritating! `responders` is not a full replacement of `inherited_resources`! `responders` is a dependency of `inherited_resources` for example.
+=======
+ActiveAdmin doesn't currently support Rails 4.2. Read [here](https://github.com/activeadmin/activeadmin/blob/rails-4-2/README.md#rails-42) for details.
+>>>>>>> master
 
 ### 1.0.0
 
