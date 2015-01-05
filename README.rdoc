@@ -2,10 +2,10 @@
 
 Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
 
-{<img src="https://secure.travis-ci.org/gregbell/active_admin.png?branch=master" />}[http://travis-ci.org/gregbell/active_admin]
-{<img src="https://codeclimate.com/github/gregbell/active_admin.png" />}[https://codeclimate.com/github/gregbell/active_admin]
-{<img src="https://gemnasium.com/gregbell/active_admin.png" />}[https://gemnasium.com/gregbell/active_admin]
-{<img src="https://coveralls.io/repos/gregbell/active_admin/badge.png?branch=master" />}[https://coveralls.io/r/gregbell/active_admin?branch=master]
+{<img src="https://secure.travis-ci.org/activeadmin/activeadmin.png?branch=0-6-stable" />}[http://travis-ci.org/activeadmin/activeadmin]
+{<img src="https://codeclimate.com/github/activeadmin/activeadmin.png" />}[https://codeclimate.com/github/activeadmin/activeadmin]
+{<img src="https://gemnasium.com/activeadmin/activeadmin.png" />}[https://gemnasium.com/activeadmin/activeadmin]
+{<img src="https://coveralls.io/repos/activeadmin/activeadmin/badge.png?branch=master" />}[https://coveralls.io/r/activeadmin/activeadmin?branch=0-6-stable]
 {<img src="http://badgr.co/gittip/activeadmin.png" />}[https://www.gittip.com/activeadmin/]
 
 == Documentation & Support
