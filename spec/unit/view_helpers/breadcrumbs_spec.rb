@@ -179,7 +179,7 @@ describe "Breadcrumbs" do
       end
     end
 
-    context "when the 'show' action is disabled", focus: true do
+    context "when the 'show' action is disabled" do
       let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
                                  defined_actions: actions - [:show], # this is the change
                                  belongs_to_config: double(target: user_config) }
