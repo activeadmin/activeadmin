@@ -179,7 +179,7 @@ describe "Breadcrumbs" do
       end
     end
 
-    context "when the 'show' action is disabled" do
+    context "when the 'show' action is disabled", focus: true do
       let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
                                  defined_actions: actions - [:show], # this is the change
                                  belongs_to_config: double(target: user_config) }
@@ -187,18 +187,18 @@ describe "Breadcrumbs" do
       let(:path) { "/admin/posts/1/edit" }
 
       it "should have 3 items" do
-        expect(trail.size).to eq 3
+        trail.size.should == 3
       end
       it "should have a link to /admin" do
-        expect(trail[0][:name]).to eq "Admin"
-        expect(trail[0][:path]).to eq "/admin"
+        trail[0][:name].should == "Admin"
+        trail[0][:path].should == "/admin"
       end
       it "should have a link to /admin/posts" do
-        expect(trail[1][:name]).to eq "Posts"
-        expect(trail[1][:path]).to eq "/admin/posts"
+        trail[1][:name].should == "Posts"
+        trail[1][:path].should == "/admin/posts"
       end
       it "should not link to the show view for the post" do
-        expect(trail[2]).to eq "Hello World"
+        trail[2].should == "Hello World"
       end
     end
 
