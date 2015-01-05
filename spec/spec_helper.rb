@@ -171,5 +171,8 @@ unless ENV['DEFER_GC'] == '0' || ENV['DEFER_GC'] == 'false'
   RSpec.configure do |config|
     config.before(:all) { DeferredGarbageCollection.start }
     config.after(:all)  { DeferredGarbageCollection.reconsider }
+    config.filter_run focus: true
+    config.filter_run_excluding skip: true
+    config.run_all_when_everything_filtered = true
   end
 end
