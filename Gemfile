@@ -27,7 +27,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'haml', '~> 3.1.7',  :require => false
+  # gem 'haml', '~> 3.1.7',  :require => false
   gem 'rake', '~> 10.0.2', :require => false
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rdiscount'  # Markdown implementation (for yard)
