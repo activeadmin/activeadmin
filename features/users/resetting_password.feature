@@ -15,7 +15,7 @@ Feature: User Resetting Password
     And I follow "Forgot your password?"
     When I fill in "Email" with "admin@example.com"
     And I press "Reset My Password"
-    Then I should see "You will receive an email with instructions about how to reset your password in a few minutes."
+    Then I should see /You will receive .* email with instructions about how to reset your password in a few minutes./
 
   Scenario: Changing password after resetting
     When "admin@example.com" requests a pasword reset with token "foobarbaz"
