@@ -1,5 +1,7 @@
 # Active Admin
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/activeadmin/activeadmin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
 
 [![Version         ](http://img.shields.io/gem/v/activeadmin.svg)                               ](https://rubygems.org/gems/activeadmin)
