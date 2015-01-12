@@ -93,10 +93,10 @@ You can arrage content in tabs as shown below:
         
         tab 'Payments' do
           table_for order.payments do
-            column('Payment Type') { |p| payment.payment_type.titleize }
+            column('Payment Type') { |p| p.payment_type.titleize }
             column('Received On', :created_at)
             column('Payment Details & Notes', :notes)
-            column('Amount') { |p| number_to_currency(payment.amount_in_dollars) }
+            column('Amount') { |p| number_to_currency(p.amount_in_dollars) }
           end
         end
       end
