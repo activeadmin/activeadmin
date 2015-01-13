@@ -283,7 +283,7 @@ module ActiveAdmin
       end
 
       def max_per_page
-        @max_per_page || 10_000
+        10_000
       end
 
     end
