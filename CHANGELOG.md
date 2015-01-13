@@ -1,15 +1,20 @@
 ## 1.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.3...master) (unreleased)
 
-### Major Changes
+### Breaking Changes
+
+* Rename `allow_comments` to `comments` for more consistent naming [#3695][] by [@pranas][]
+
+### Enhancements
+
+#### Major
 
 * Migration from Metasearch to Ransack [#1979][] by [@seanlinsley][]
 * Rails 4 support [#2326][] by many people <3
 * Rails 4.2 support [#3731][] by [@gonzedge][] and [@timoschilling][]
 
-### Enhancements
+#### Minor
 
 * Allow to enable comments on per-resource basis [#3695][] by [@pranas][]
-* Rename `allow_comments` to `comments` for more consistent naming [#3695][] by [@pranas][]
 * Unify DSL for index `actions` and `actions dropdown: true` [#3463][] by [@timoschilling][]
 * Add DSL method `includes` for `ActiveRecord::Relation#includes` [#3464][] by [@timoschilling][]
 * BOM (byte order mark) configurable for CSV download [#3519][] by [@timoschilling][]
