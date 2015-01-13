@@ -12,7 +12,7 @@ module ActiveAdmin
     # To display columns, use the #columns method. Within the block, call the
     # #column method to create a new column.
     #
-    # To createa a two column layout:
+    # To create a two column layout:
     #
     #     colums do
     #       column do
@@ -62,7 +62,6 @@ module ActiveAdmin
     # than 100px.
     class Columns < ActiveAdmin::Component
       builder_method :columns
-
 
       # For documentation, please take a look at Column#build
       def column(*args, &block)
@@ -115,7 +114,7 @@ module ActiveAdmin
 
       # @param [Hash] options An options hash for the column
       #
-      # @options options [Integer] :span The columns this column should span
+      # @option options [Integer] :span The columns this column should span
       def build(options = {})
         options = options.dup
         @span_size = options.delete(:span) || 1

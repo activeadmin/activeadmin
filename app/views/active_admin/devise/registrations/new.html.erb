@@ -1,21 +1,22 @@
 <div id="login">
-  <h2><%= title "#{render_or_call_method_or_proc_on(self, active_admin_application.site_title)} #{t('active_admin.devise.sign_up.title')}" %></h2>
+  <h2><%= render_or_call_method_or_proc_on(self, active_admin_application.site_title) %> <%= title t('active_admin.devise.sign_up.title') %></h2>
 
   <% scope = Devise::Mapping.find_scope!(resource_name) %>
-  <%= active_admin_form_for(resource, :as => resource_name, :url => send(:"#{scope}_registration_path"), :html => { :id => "registration_new" }) do |f|
+  <%= devise_error_messages! %>
+  <%= active_admin_form_for(resource, as: resource_name, url: send(:"#{scope}_registration_path"), html: { id: "registration_new" }) do |f|
     f.inputs do
       resource.class.authentication_keys.each_with_index { |key, index|
-        f.input key, :label => t('active_admin.devise.'+key.to_s+'.title'), :input_html => {:autofocus => index.zero?}
+        f.input key, label: t('active_admin.devise.'+key.to_s+'.title'), input_html: { autofocus: index.zero? }
       }
-      f.input :password, :label => t('active_admin.devise.password.title')
-      f.input :password_confirmation, :lable => t('active_admin.devise.password_confirmation.title')
+      f.input :password, label: t('active_admin.devise.password.title')
+      f.input :password_confirmation, lable: t('active_admin.devise.password_confirmation.title')
     end
     f.actions do
-      f.action :submit, :label => t('active_admin.devise.login.submit'), :button_html => { :value => t('active_admin.devise.sign_up.submit') }
+      f.action :submit, label: t('active_admin.devise.login.submit'), button_html: { value: t('active_admin.devise.sign_up.submit') }
     end
   end
   %>
 
-  <%= render :partial => "active_admin/devise/shared/links" %>
+  <%= render partial: "active_admin/devise/shared/links" %>
 </div>
 

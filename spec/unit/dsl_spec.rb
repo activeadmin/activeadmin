@@ -102,4 +102,21 @@ describe ActiveAdmin::DSL do
 
   end
 
+  describe "#batch_action" do
+    it "should add a batch action by symbol" do
+      dsl.run_registration_block do
+        config.batch_actions = true
+        batch_action :foo
+      end
+      expect(resource_config.batch_actions.map(&:sym)).to eq [:foo, :destroy]
+    end
+
+    it "should add a batch action by title" do
+      dsl.run_registration_block do
+        config.batch_actions = true
+        batch_action "foo bar"
+      end
+      expect(resource_config.batch_actions.map(&:sym)).to eq [:foo_bar, :destroy]
+    end
+  end
 end

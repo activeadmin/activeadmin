@@ -21,10 +21,10 @@ module ActiveAdmin
       router.instance_exec @application.namespaces.values do |namespaces|
         namespaces.each do |namespace|
           if namespace.root?
-            root to: namespace.root_to
+            root namespace.root_to_options.merge(to: namespace.root_to)
           else
             namespace namespace.name do
-              root to: namespace.root_to
+              root namespace.root_to_options.merge(to: namespace.root_to)
             end
           end
         end

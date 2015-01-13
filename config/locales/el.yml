@@ -9,9 +9,7 @@ el:
     delete: "Διαγραφή"
     delete_confirmation: "Είστε σίγουρος πως θέλετε να το διαγράψετε;"
     new_model: "Δημιουργία %{model}"
-    create_model: "Δημιουργία %{model}"
     edit_model: "Επεξεργασία %{model}"
-    update_model: "Επεξεργασία %{model}"
     delete_model: "Διαγραφή %{model}"
     details: "Λεπτομέρειες %{model}"
     cancel: "Ακύρωση"
@@ -54,6 +52,8 @@ el:
     blank_slate:
       content: "Δεν υπάρχουν %{resource_name} ακόμα."
       link: "Δημιουργήστε μία εγγραφή"
+    dropdown_actions:
+      button_label: "Ενέργειες"
     batch_actions:
       button_label: "Μαζικές Ενέργειες"
       default_confirmation: "Είστε σίγουρος πως θέλετε να το κάνετε αυτό;"
@@ -88,6 +88,9 @@ el:
         title: "Subdomain"
       password:
         title: "Κωδικός"
+      sign_up:
+        title: "Εγγραφή"
+        submit: "Εγγραφή"
       login:
         title: "Σύνδεση"
         remember_me: "Να με θυμάσαι"
@@ -101,10 +104,20 @@ el:
       unlock:
         title: "Αποστολή οδηγιών ξεκλειδώματος"
         submit: "Αποστολή οδηγιών ξεκλειδώματος"
+      resend_confirmation_instructions:
+        title: "Αποστολή οδηγιών επιβεβαίωσης"
+        submit: "Αποστολή οδηγιών επιβεβαίωσης"
       links:
         sign_in: "Σύνδεση"
+        sign_up: "Εγγραφή"
         forgot_your_password: "Ξεχάσατε τον κωδικό σας;"
         sign_in_with_omniauth_provider: "Σύνδεση με %{provider}"
+        resend_unlock_instructions: "Αποστολή οδηγιών ξεκλειδώματος"
+        resend_confirmation_instructions: "Αποστολή οδηγιών επιβεβαίωσης"
+    unsupported_browser:
+      headline: "Το ActiveAdmin δεν υποστηρίζει πλεον τον Internet Explorer έκδοση 8 η μικρότερη."
+      recommendation: "Σας προτείνουμε να αναβαθμίσετε στην τελευταία <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, or <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Αν χρησιμοποιείτε IE 9 ή μεγαλύτερη έκδοση, σιγουρευτείτε ότι <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">turn off \"Compatibility View\"</a>."
     access_denied:
       message: "Δεν έχετε πρόσβαση για αυτή την ενέργεια."
     index_list:

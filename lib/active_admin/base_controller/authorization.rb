@@ -32,7 +32,7 @@ module ActiveAdmin
       # @param [any] subject The subject that the user is trying to perform
       #                 the action on.
       #
-      # @returns [Boolean]
+      # @return [Boolean]
       #
       def authorized?(action, subject = nil)
         active_admin_authorization.authorized?(action, subject)
@@ -49,7 +49,7 @@ module ActiveAdmin
       # @param [any] subject The subject that the user is trying to perform
       #                 the action on.
       #
-      # @returns [Boolean] True if authorized, otherwise raises
+      # @return [Boolean] True if authorized, otherwise raises
       #                 an ActiveAdmin::AccessDenied.
       def authorize!(action, subject = nil)
         unless authorized? action, subject
@@ -69,7 +69,7 @@ module ActiveAdmin
 
       # Retrieve or instantiate the authorization instance for this resource
       #
-      # @returns [ActiveAdmin::AuthorizationAdapter]
+      # @return [ActiveAdmin::AuthorizationAdapter]
       def active_admin_authorization
         @active_admin_authorization ||=
          active_admin_authorization_adapter.new active_admin_config, current_active_admin_user
@@ -77,7 +77,7 @@ module ActiveAdmin
 
       # Returns the class to be used as the authorization adapter
       #
-      # @returns [Class]
+      # @return [Class]
       def active_admin_authorization_adapter
         adapter = active_admin_namespace.authorization_adapter
         if adapter.is_a? String
@@ -93,7 +93,7 @@ module ActiveAdmin
       #
       # @param [String, Symbol] action The controller action name.
       #
-      # @returns [Symbol] The permission name to use.
+      # @return [Symbol] The permission name to use.
       def action_to_permission(action)
         if action && action = action.to_sym
           Authorization::ACTIONS_DICTIONARY[action] || action

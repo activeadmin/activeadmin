@@ -5,7 +5,7 @@ module ActiveAdmin
       class Form < Base
 
         def title
-          assigns[:page_title] || I18n.t("active_admin.#{params[:action]}_model",
+          assigns[:page_title] || I18n.t("active_admin.#{normalized_action}_model",
                                          model: active_admin_config.resource_label)
         end
 
@@ -41,6 +41,17 @@ module ActiveAdmin
             f.semantic_errors # show errors on :base by default
             f.inputs
             f.actions
+          end
+        end
+
+        def normalized_action
+          case params[:action]
+          when "create"
+            "new"
+          when "update"
+            "edit"
+          else
+            params[:action]
           end
         end
       end

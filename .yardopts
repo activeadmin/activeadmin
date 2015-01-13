@@ -1,7 +1,7 @@
 lib/**/*.rb
 --protected
 --no-private
---exclude features
+--exclude (features|lib\/generators\/active_admin\/.*\/templates)
 -
 README.md
 CHANGELOG.md

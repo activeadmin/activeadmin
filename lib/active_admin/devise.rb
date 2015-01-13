@@ -6,18 +6,12 @@ module ActiveAdmin
   module Devise
 
     def self.config
-      config = {
+      {
         path: ActiveAdmin.application.default_namespace || "/",
         controllers: ActiveAdmin::Devise.controllers,
-        path_names: { sign_in: 'login', sign_out: "logout" }
+        path_names: { sign_in: 'login', sign_out: "logout" },
+        sign_out_via: [*::Devise.sign_out_via, ActiveAdmin.application.logout_link_method].uniq
       }
-
-      if ::Devise.respond_to?(:sign_out_via)
-        logout_methods = [::Devise.sign_out_via, ActiveAdmin.application.logout_link_method].flatten.uniq
-        config.merge!( sign_out_via: logout_methods)
-      end
-
-      config
     end
 
     def self.controllers

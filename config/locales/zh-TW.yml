@@ -2,16 +2,14 @@
   active_admin:
     dashboard: 儀表板
     dashboard_welcome:
-      welcome: "歡迎來到 Active Admin 這是預設的儀表板頁面。"
+      welcome: "歡迎來到 Active Admin，這是預設的儀表板頁面。"
       call_to_action: "要新增儀表板內容，請查看 'app/admin/dashboard.rb'"
     view: "檢視"
     edit: "編輯"
     delete: "刪除"
     delete_confirmation: "你確定要刪除嗎？"
     new_model: "新增 %{model}"
-    create_model: "新增 %{model}"
     edit_model: "編輯 %{model}"
-    update_model: "編輯 %{model}"
     delete_model: "刪除 %{model}"
     details: "%{model} 明細"
     cancel: "取消"
@@ -34,9 +32,9 @@
         greater_than: "大於"
         less_than: "小於"
     status_tag:
-      "yes": "是的"
-      "no": "無"
-    main_content: "請編寫 %{model}#main_content 以顯示內容。"
+      "yes": "是"
+      "no": "否"
+    main_content: "請實作 %{model}#main_content 以顯示內容。"
     logout: "登出"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
@@ -59,11 +57,11 @@
     batch_actions:
       button_label: "批次作業"
       default_confirmation: "你確定你要這樣做？"
-      delete_confirmation: "您確定要刪除這些 %{plural_model} 嗎？"
+      delete_confirmation: "你確定要刪除這些 %{plural_model} 嗎？"
       succesfully_destroyed:
         one: "成功刪除 1 %{model}"
         other: "成功刪除 %{count} %{plural_model}"
-      selection_toggle_explanation: "(切換選取)"
+      selection_toggle_explanation: "（切換選取）"
       link: "建立一個"
       action_label: "%{title} 已選取"
       labels:
@@ -80,20 +78,19 @@
         empty_text: "評論儲存失敗，不允許空白的內容。"
     devise:
       login:
-        title: "登錄"
+        title: "登入"
         remember_me: "記住我"
-        submit: "登錄"
+        submit: "登入"
       reset_password:
         title: "忘記密碼？"
         submit: "重置密碼"
       change_password:
-        title: "更改您的密碼"
+        title: "更改你的密碼"
         submit: "更改我的密碼"
       resend_confirmation_instructions:
         title: '重新發送確認信'
         submit: '重新發送確認信'
       links:
-        sign_in: "登錄"
+        sign_in: "登入"
         forgot_your_password: "忘記密碼？"
         sign_in_with_omniauth_provider: "登入%{provider}"
-

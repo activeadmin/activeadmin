@@ -115,10 +115,10 @@ module ActiveAdmin
       end
 
       def is_boolean?(data, item)
-        if item.respond_to? :type_for_attribute # Rails >= 4.2
-          item.type_for_attribute(data) == :boolean
-        elsif item.respond_to? :column_for_attribute
-          attr = item.column_for_attribute(data) and attr.type == :boolean
+        if item.respond_to? :has_attribute?
+          item.has_attribute?(data) &&
+            item.column_for_attribute(data) &&
+            item.column_for_attribute(data).type == :boolean
         end
       end
 

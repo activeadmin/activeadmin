@@ -9,9 +9,7 @@ fr:
     delete: "Supprimer"
     delete_confirmation: "Êtes-vous certain de vouloir supprimer ceci ?"
     new_model: "Créer %{model}"
-    create_model: "Créer %{model}"
     edit_model: "Modifier %{model}"
-    update_model: "Modifier %{model}"
     delete_model: "Supprimer %{model}"
     details: "Détails de %{model}"
     cancel: "Annuler"
@@ -28,7 +26,7 @@ fr:
         clear: "Supprimer les filtres"
       predicates:
         contains: "Contient"
-        equals: "Egal à"
+        equals: "Égal à"
         starts_with: "Commence par"
         ends_with: "Se termine par"
         greater_than: "Plus grand que"
@@ -58,7 +56,7 @@ fr:
       button_label: "Actions"
     batch_actions:
       button_label: "Actions groupées"
-      default_confirmation: "Êtes-vous sûr de que vouloir faire cela ?"
+      default_confirmation: "Êtes-vous sûr de vouloir faire cela ?"
       delete_confirmation: "Êtes-vous sûr de vouloir supprimer ces %{plural_model} ?"
       succesfully_destroyed:
         one: "1 %{model} supprimé"
@@ -90,7 +88,7 @@ fr:
       password:
         title: "Mot de passe"
       login:
-        title: "Connection"
+        title: "Connexion"
         remember_me: "Garder ma session ouverte"
         submit: "Se connecter"
       reset_password:
@@ -106,7 +104,8 @@ fr:
         sign_in: "Connectez-vous"
         forgot_your_password: "Vous avez oublié votre mot de passe ?"
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
-    access_denied: "Vous n'êtes pas autorisé à executer cette action"
+    access_denied:
+      message: "Vous n'êtes pas autorisé à exécuter cette action"
     index_list:
       table: "Tableau"
       block: "Liste"

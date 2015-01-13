@@ -40,7 +40,7 @@ module ActiveAdmin
 
       # Remove a batch action
       # @param [Symbol] sym
-      # @returns [ActiveAdmin::BatchAction] the batch action, if it was present
+      # @return [ActiveAdmin::BatchAction] the batch action, if it was present
       #
       def remove_batch_action(sym)
         @batch_actions.delete(sym.to_sym)

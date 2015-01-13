@@ -31,8 +31,8 @@ module ActiveAdmin
               text_node(javascript_include_tag(path))
             end
 
-            if active_admin_application.favicon
-              text_node(favicon_link_tag(active_admin_application.favicon))
+            if active_admin_namespace.favicon
+              text_node(favicon_link_tag(active_admin_namespace.favicon))
             end
 
             text_node csrf_meta_tag

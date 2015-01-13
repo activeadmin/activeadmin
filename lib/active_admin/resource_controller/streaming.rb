@@ -23,7 +23,12 @@ module ActiveAdmin
         self.response_body = Enumerator.new &block
       end
 
+      def csv_filename
+        "#{resource_collection_name.to_s.gsub('_', '-')}-#{Time.zone.now.to_date.to_s(:default)}.csv"
+      end
+
       def stream_csv
+        headers['Content-Disposition'] = %{attachment; filename="#{csv_filename}"}
         stream_resource &active_admin_config.csv_builder.method(:build).to_proc.curry[self]
       end
 

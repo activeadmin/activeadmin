@@ -103,13 +103,13 @@ undesired. To disable comments:
 ```ruby
 # For the entire application:
 ActiveAdmin.setup do |config|
-  config.allow_comments = false
+  config.comments = false
 end
 
 # For a namespace:
 ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
-    admin.allow_comments = false
+    admin.comments = false
   end
 end
 

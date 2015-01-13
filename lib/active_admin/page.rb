@@ -56,6 +56,10 @@ module ActiveAdmin
       underscored_resource_name.camelize
     end
 
+    def namespace_name
+      namespace.name.to_s
+    end
+
     def default_menu_options
       super.merge(id: resource_name)
     end

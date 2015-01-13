@@ -48,12 +48,14 @@ index as: :grid, default: true do |product|
 end
 ```
 
+## Custom Index
+
 Active Admin does not limit the index page to be a table, block, blog or grid.
-If you've [created your own index page](3-index-pages/create-an-index.md) it
+If you've created your own [custom index](3-index-pages/custom-index.md) page it
 can be included by setting `:as` to the class of the index component you created.
 
 ```ruby
-index as: ActiveAdmin::Views::IndexAsTable do
+index as: ActiveAdmin::Views::IndexAsMyIdea do
   column :image_title
   actions
 end
@@ -172,7 +174,7 @@ scope ->{ Date.today.strftime '%A' }, :published_today
 scope("Inactive") { |scope| scope.where(active: false) }
 
 # conditionally show a custom controller scope
-scope "Published", :if => proc { current_admin_user.can? :manage, Posts } do |posts|
+scope "Published", if: proc { current_admin_user.can? :manage, Posts } do |posts|
   posts.published
 end
 ```
@@ -189,11 +191,29 @@ end
 
 ## Index pagination
 
+You can set the number of records per page as default:
+
+```ruby
+ActiveAdmin.setup do |config|
+  config.default_per_page = 30
+end
+```
+
 You can set the number of records per page per resources:
 
 ```ruby
 ActiveAdmin.register Post do
   config.per_page = 10
+end
+```
+
+You can change it per request / action too:
+
+```ruby
+controller do
+  before_filter :only => :index do
+    @per_page = 100
+  end
 end
 ```
 

@@ -156,7 +156,7 @@ Under the covers this is powered by the JS `ActiveAdmin.modal_dialog` which you 
 ```coffee
 if $('body.admin_users').length
   $('a[data-prompt]').click ->
-    AA.modal_dialog $(@).data('prompt'), comment: 'textarea',
+    ActiveAdmin.modal_dialog $(@).data('prompt'), comment: 'textarea',
       (inputs)=>
         $.post "/admin/users/#{$(@).data 'id'}/change_state",
           comment: inputs.comment, state: $(@).data('state'),

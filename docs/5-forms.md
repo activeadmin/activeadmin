@@ -79,7 +79,7 @@ ActiveAdmin.register Post do
       end
     end
     f.inputs do
-      f.has_many :taggings, sortable: :position do |t|
+      f.has_many :taggings, sortable: :position, sortable_start: 1 do |t|
         t.input :tag
       end
     end
@@ -106,6 +106,8 @@ If you pass a string, it will be used as the text for the new record button.
 The `:sortable` option adds a hidden field and will enable drag & drop sorting of the children. It 
 expects the name of the column that will store the index of each child.
 
+The `:sortable_start` option sets the value (0 by default) of the first position in the list.
+
 ## Datepicker
 
 ActiveAdmin offers the `datepicker` input, which uses the [jQuery UI datepicker](http://jqueryui.com/datepicker/).
@@ -130,3 +132,28 @@ end
 ```
 
 This is particularly useful to display errors on virtual or hidden attributes.
+
+# Tabs
+
+You can arrage content in tabs as shown below:
+
+```ruby
+  form do |f|
+    tabs do
+      tab 'Basic' do
+        f.inputs 'Basic Details' do
+          f.input :email
+          f.input :password
+          f.input :password_confirmation
+        end
+      end
+
+      tab 'Advanced' do
+        f.inputs 'Advanced Details' do
+          f.input :role
+        end
+      end
+    end
+    f.actions
+  end
+```

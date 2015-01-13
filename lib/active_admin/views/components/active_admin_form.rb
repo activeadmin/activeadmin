@@ -33,6 +33,12 @@ module ActiveAdmin
 
         @opening_tag, @closing_tag = split_string_on(form_string, "</form>")
         instance_eval(&block) if block_given?
+
+        # Rails 4 sets multipart automatically if a file field is present,
+        # but the form tag has already been rendered before the block eval.
+        if multipart? && @opening_tag !~ /multipart/
+          @opening_tag.sub!(/<form/, '<form enctype="multipart/form-data"')
+        end
       end
 
       def inputs(*args, &block)
@@ -40,7 +46,10 @@ module ActiveAdmin
           wrapped_block = proc do
             wrap_it = form_builder.already_in_an_inputs_block ? true : false
             form_builder.already_in_an_inputs_block = true
-            content = block.call
+            form_builder.template.assign('has_many_block'=> true)
+            content = form_builder.template.capture do
+              block.call
+            end
             form_builder.already_in_an_inputs_block = wrap_it
             content
           end
@@ -69,6 +78,10 @@ module ActiveAdmin
         insert_tag(HasManyProxy, form_builder, *args, &block)
       end
 
+      def multipart?
+        form_builder && form_builder.multipart?
+      end
+
       def object
         form_builder.object
       end
@@ -80,11 +93,14 @@ module ActiveAdmin
 
     class SemanticInputsProxy < FormtasticProxy
       def build(form_builder, *args, &block)
+        options = args.extract_options!
         legend = args.shift
         legend_tag = legend ? "<legend><span>#{legend}</span></legend>" : ""
-        @opening_tag = "<fieldset class=\"inputs\">#{legend_tag}<ol>"
+        klasses = ["inputs"]
+        klasses << options[:class] if options[:class]
+        @opening_tag = "<fieldset class=\"#{klasses.join(" ")}\">#{legend_tag}<ol>"
         @closing_tag = "</ol></fieldset>"
-        super(*args, &block)
+        super(*(args << options), &block)
       end
     end
 

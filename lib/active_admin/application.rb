@@ -67,11 +67,14 @@ module ActiveAdmin
     # The namespace root.
     inheritable_setting :root_to, 'dashboard#index'
 
+    # Options that a passed to root_to.
+    inheritable_setting :root_to_options, {}
+
     # Display breadcrumbs
     inheritable_setting :breadcrumb, true
 
     # Default CSV options
-    inheritable_setting :csv_options, {col_sep: ','}
+    inheritable_setting :csv_options, { col_sep: ',', byte_order_mark: "\xEF\xBB\xBF" }
 
     # Default Download Links options
     inheritable_setting :download_links, true
@@ -106,7 +109,9 @@ module ActiveAdmin
 
     # == Deprecated Settings
 
-    # (none currently)
+    def allow_comments=(*)
+      raise "`config.allow_comments` is no longer provided in ActiveAdmin 1.x. Use `config.comments` instead."
+    end
 
     include AssetRegistration
 
@@ -135,7 +140,7 @@ module ActiveAdmin
     #
     # Yields the namespace if a block is given
     #
-    # @returns [Namespace] the new or existing namespace
+    # @return [Namespace] the new or existing namespace
     def namespace(name)
       name ||= :root
 
@@ -153,7 +158,7 @@ module ActiveAdmin
     # Register a page
     #
     # @param name [String] The page name
-    # @options [Hash] Accepts option :namespace.
+    # @option [Hash] Accepts option :namespace.
     # @&block The registration block.
     #
     def register_page(name, options = {}, &block)

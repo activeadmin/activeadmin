@@ -185,7 +185,41 @@ describe ActiveAdmin::CSVBuilder do
     end
   end
 
-  skip '#build'
+  context "build csv using the supplied order" do
+    before do
+      @post1 = Post.create!(title: "Hello1", published_at: Date.today - 2.day )
+      @post2 = Post.create!(title: "Hello2", published_at: Date.today - 1.day )
+    end
+    let(:dummy_controller) {
+      class DummyController
+        def collection
+          Post.order('published_at DESC')
+        end
+
+        def apply_decorator(resource)
+          resource
+        end
+
+        def view_context
+        end
+      end
+      DummyController.new
+    }
+    let(:builder) do
+      ActiveAdmin::CSVBuilder.new do
+        column "id"
+        column "title"
+        column "published_at"
+      end
+    end
+
+    it "should generate data with the supplied order" do
+      expect(builder).to receive(:build_row).and_return([]).once.ordered { |post| expect(post.id).to eq @post2.id }
+      expect(builder).to receive(:build_row).and_return([]).once.ordered { |post| expect(post.id).to eq @post1.id }
+      builder.build dummy_controller, []
+    end
+  end
+
   skip '#exec_columns'
 
   skip '#build_row' do

@@ -45,6 +45,15 @@ module ActiveAdmin
             read_default_setting name.to_sym
           end
         end
+
+        define_method "#{name}?" do
+          value = public_send(name)
+          if value.is_a? Array
+            value.any?
+          else
+            value.present?
+          end
+        end
       end
 
       def deprecated_setting(name, default, message = nil)
