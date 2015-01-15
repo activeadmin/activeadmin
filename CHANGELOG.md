@@ -3,6 +3,8 @@
 ### Breaking Changes
 
 * Rename `allow_comments` to `comments` for more consistent naming [#3695][] by [@pranas][]
+* JavaScript `window.AA` has been removed, use `window.ActiveAdmin` [#3606][] by [@timoschilling][]
+* `f.form_buffers` has been removed [#3486][] by [@varyonic][]
 
 ### Enhancements
 
@@ -48,10 +50,6 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 * "New" action item now only shows up on the index page bf659bc by [@seanlinsley][]
 * Fixes comment creation bug with aliased resources 9a082486 by [@seanlinsley][]
 * Fixes the deletion of `:if` and `:unless` from filters [#2523][] by [@PChambino][]
-
-### Removements
-
-* JS `window.AA` has been removed, use `window.ActiveAdmin` [#3606][] by [@timoschilling][]
 
 ## 0.6.3 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.2...v0.6.3)
 
