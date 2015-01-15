@@ -51,6 +51,10 @@ ActiveAdmin.register User do
 end
 ```
 
+## CSS
+
+In order to avoid the override of your application style (with the Active Admin one), you can properly move the generated file `active_admin.css.scss` from `app/assets/stylesheets` to `vendor/assets/stylesheets`
+
 ## Conflicts
 
 ### With gems that provides a `search` class method on a model
