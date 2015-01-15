@@ -1,4 +1,6 @@
-## 0-6-stable (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.3...0-6-stable)
+## 0-6-stable (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.4...0-6-stable)
+
+## 0.6.4 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.3...v0.6.4)
 
 * Restore compatibility with Formtastic 2.0 by [@seanlinsley][]
 * Backport of [#3489][] by [@timoschilling][]
