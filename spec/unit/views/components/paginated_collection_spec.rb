@@ -216,5 +216,21 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
+    context "when specifying per_page: array option" do
+      let(:collection) do
+        posts = 10.times.map { Post.new }
+        Kaminari.paginate_array(posts).page(1).per(5)
+      end
+
+      let(:pagination) { paginated_collection(collection, per_page: [1, 2, 3]) }
+      let(:pagination_html) { pagination.find_by_class("pagination_per_page").first }
+      let(:pagination_node) { Capybara.string(pagination_html.to_s) }
+
+      it "should render per_page select tag" do
+        expect(pagination_html.content).to match(/Per page:/)
+        expect(pagination_node).to have_css("select option", count: 3)
+      end
+    end
+
   end
 end
