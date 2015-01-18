@@ -276,9 +276,21 @@ module ActiveAdmin
 
       def per_page
         if active_admin_config.paginate
-          @per_page || active_admin_config.per_page
+          dynamic_per_page || configured_per_page
         else
           max_per_page
+        end
+      end
+
+      def dynamic_per_page
+        params[:per_page] || @per_page
+      end
+
+      def configured_per_page
+        if active_admin_config.per_page.is_a?(Array)
+          active_admin_config.per_page[0]
+        else
+          active_admin_config.per_page
         end
       end
 
