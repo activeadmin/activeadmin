@@ -33,7 +33,7 @@ ActiveAdmin.register Ad do
   show do
     attributes_table do
       row :title
-      row :image do
+      row :image do |ad|
         image_tag ad.image.url
       end
     end
