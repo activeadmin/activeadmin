@@ -10,6 +10,7 @@ class ActiveAdmin.PerPage
   _bind: ->
     @$element.change =>
       @$params['per_page'] = @$element.val()
+      delete @$params['page']
       location.search = $.param(@$params)
 
   _queryParams: ->
