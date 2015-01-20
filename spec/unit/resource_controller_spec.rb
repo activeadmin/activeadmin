@@ -231,9 +231,17 @@ describe Admin::PostsController, type: "controller" do
     end
 
     describe "when params batch_action matches existing BatchAction" do
-      it "should call the block with args" do
+      before do
         allow(controller).to receive(:params) { { batch_action: "flag", collection_selection: ["1"] } }
+      end
+
+      it "should call the block with args" do
         expect(controller).to receive(:instance_exec).with(["1"], {})
+        controller.batch_action
+      end
+
+      it "should call the block in controller scope" do
+        expect(controller).to receive(:render_in_context).with(controller, nil).and_return({})
         controller.batch_action
       end
     end
