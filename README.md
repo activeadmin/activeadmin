@@ -22,18 +22,6 @@ You can get Rails 4.x support by tracking master:
 gem 'activeadmin', github: 'activeadmin'
 ```
 
-#### Rails 4.2
-
-To use ActiveAdmin with Rails 4.2, you need to change your Gemfile like this:
-
-```ruby
-gem 'activeadmin', github: 'activeadmin'
-gem 'inherited_resources', github: 'josevalim/inherited_resources', branch: 'rails-4-2'
-```
-
-*But keep in mind that `inherited_resources` still don't support Rails 4.2 officially.*
-*Track [josevalim/inherited_resources#381](https://github.com/josevalim/inherited_resources/issues/381) for details.*
-
 ### 0.6.x
 
 The plan is to follow [semantic versioning](http://semver.org/) as of 1.0.0. The 0.6.x line will
