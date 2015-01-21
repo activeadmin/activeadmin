@@ -1,4 +1,4 @@
-$ ->
+$(document).on 'ready page:load', ->
 
   #
   # Use ActiveAdmin.modal_dialog to prompt user if confirmation is required for current Batch Action
