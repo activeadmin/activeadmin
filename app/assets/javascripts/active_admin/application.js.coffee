@@ -1,5 +1,5 @@
 # Initializers
-$ ->
+$(document).on 'ready page:load', ->
   # jQuery datepickers (also evaluates dynamically added HTML)
   $(document).on 'focus', '.datepicker:not(.hasDatepicker)', ->
     defaults = dateFormat: 'yy-mm-dd'
