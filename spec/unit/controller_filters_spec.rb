@@ -21,7 +21,7 @@ describe ActiveAdmin::Application do
   end
 
   it 'skip after_filter' do
-    controllers.each{ |c| expect(c).to receive(:skip_after_filter).and_return(true) }
+    controllers.each{ |c| c.should_receive(:skip_after_filter).and_return(true) }
     application.skip_after_filter :my_filter, :only => :show
   end
 
