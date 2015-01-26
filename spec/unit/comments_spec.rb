@@ -126,7 +126,7 @@ describe "Comments" do
           namespace: namespace_name)
 
         expect(ActiveAdmin::Comment.find_for_resource_in_namespace(publisher, namespace_name).last.resource_type).
-          to eq('Publisher')
+          to eq("User")
       end
     end
   end
