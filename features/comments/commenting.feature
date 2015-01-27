@@ -143,8 +143,6 @@ Feature: Commenting
     When I add a comment "Hello World"
     Then I should see a flash with "Comment was successfully created"
     And I should be in the resource section for publishers
-    When I am on the index page for comments
-    Then I should see the content "Publisher"
     And I should see "Hello World"
 
   Scenario: Commenting on a class with string id
