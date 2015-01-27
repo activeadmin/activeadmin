@@ -37,6 +37,7 @@ config.site_title       = "My Admin Site"
 config.site_title_link  = "/"
 config.site_title_image = "site_image.png"
 config.site_title_image = "http://www.google.com/images/logos/google_logo_41.png"
+config.site_title_image = ->(context) { context.current_user.company.logo_url }
 ```
 
 ## Internationalization (I18n)
