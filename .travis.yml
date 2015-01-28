@@ -1,8 +1,7 @@
 script: bundle exec rake test
 rvm:
   - 1.9.3
-  - 2.0.0
-  - 2.2.0
+  - 2.2
 before_install:
   - gem update --system
   - gem --version
@@ -13,7 +12,5 @@ env:
   - RAILS=3.2.14
 matrix:
   exclude:
-    - rvm: 2.0.0
-      env: RAILS=3.0.20
-    - rvm: 2.2.0
+    - rvm: 2.2
       env: RAILS=3.0.20
