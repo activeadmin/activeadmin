@@ -16,6 +16,7 @@
 
 #### Minor
 
+* Do not auto link to inaccessible actions [#3686][] by [@pranas][]
 * Allow to enable comments on per-resource basis [#3695][] by [@pranas][]
 * Unify DSL for index `actions` and `actions dropdown: true` [#3463][] by [@timoschilling][]
 * Add DSL method `includes` for `ActiveRecord::Relation#includes` [#3464][] by [@timoschilling][]
@@ -989,6 +990,7 @@ of the highlights. 250 commits. Enough said.
 [#3486]: https://github.com/activeadmin/activeadmin/issues/3486
 [#3519]: https://github.com/activeadmin/activeadmin/issues/3519
 [#3606]: https://github.com/activeadmin/activeadmin/issues/3606
+[#3686]: https://github.com/activeadmin/activeadmin/issues/3686
 [#3695]: https://github.com/activeadmin/activeadmin/issues/3695
 [#3731]: https://github.com/activeadmin/activeadmin/issues/3731
 [@Bishop]: https://github.com/Bishop
