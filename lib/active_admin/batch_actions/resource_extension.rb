@@ -67,7 +67,10 @@ module ActiveAdmin
         }
 
         add_batch_action :destroy, proc { I18n.t('active_admin.delete') }, destroy_options do |selected_ids|
-          active_admin_config.resource_class.find(selected_ids).each { |r| r.destroy }
+          collection.find(selected_ids).each do |r| 
+            authorize! ActiveAdmin::Auth::DESTROY, r
+            r.destroy            
+          end
 
           redirect_to active_admin_config.route_collection_path(params),
                       notice: I18n.t("active_admin.batch_actions.succesfully_destroyed",
