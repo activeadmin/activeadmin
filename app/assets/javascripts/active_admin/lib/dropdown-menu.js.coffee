@@ -9,7 +9,7 @@ class ActiveAdmin.DropdownMenu
       onClickActionItemCallback: null
     }
 
-    @options = $.extend defaults, options
+    @options = $.extend defaults, @options
     @isOpen  = false
 
     @$menuButton = @$element.find '.dropdown_menu_button'
