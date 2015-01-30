@@ -2,6 +2,7 @@
 .DS_Store
 
 ## TEXTMATE
+*.tm_project
 *.tmproj
 tmtags
 
@@ -41,3 +42,5 @@ public
 .rspec
 .rails-version
 .rbenv-version
+# for easy switching between master and 0-6-stable
+.localeapp
