@@ -9,7 +9,7 @@ module ActiveAdmin
       # If the filter method includes a search condition, build a normal string search field.
       # Else, build a search field with a companion dropdown to choose a search condition from.
       def to_html
-        if @object.respond_to? method
+        if @object.methods.exclude?(method) && @object.respond_to?(method)
           input_wrapping do
             label_html <<
             builder.text_field(method, input_html_options)
