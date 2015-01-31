@@ -1,5 +1,6 @@
 ## 0-6-stable (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.5...0-6-stable)
 
+* Fix issue with model attribute matching metasearch method name [#3698][] by [@azach][]
 * Fix default delete prompt on Rails 3.0.x [#3765][] by [@craigmcnamara][]
 
 ## 0.6.5 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.4...v0.6.5)
@@ -938,6 +939,7 @@ of the highlights. 250 commits. Enough said.
 [#2847]: https://github.com/activeadmin/activeadmin/issues/2847
 [#3489]: https://github.com/activeadmin/activeadmin/issues/3489
 [#3659]: https://github.com/activeadmin/activeadmin/issues/3659
+[#3698]: https://github.com/activeadmin/activeadmin/issues/3698
 [#3765]: https://github.com/activeadmin/activeadmin/issues/3765
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
@@ -951,6 +953,7 @@ of the highlights. 250 commits. Enough said.
 [@adrienkohlbecker]: https://github.com/adrienkohlbecker
 [@ai]: https://github.com/ai
 [@amiel]: https://github.com/amiel
+[@azach]: https://github.com/azach
 [@ball-hayden]: https://github.com/ball-hayden
 [@bobbytables]: https://github.com/bobbytables
 [@caifara]: https://github.com/caifara
