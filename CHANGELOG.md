@@ -1,5 +1,7 @@
 ## 0-6-stable (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.5...0-6-stable)
 
+* Fix default delete prompt on Rails 3.0.x [#3765][] by [@craigmcnamara][]
+
 ## 0.6.5 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.4...v0.6.5)
 
 * Backport of [#2715][] by [@timoschilling][]
@@ -936,6 +938,7 @@ of the highlights. 250 commits. Enough said.
 [#2847]: https://github.com/activeadmin/activeadmin/issues/2847
 [#3489]: https://github.com/activeadmin/activeadmin/issues/3489
 [#3659]: https://github.com/activeadmin/activeadmin/issues/3659
+[#3765]: https://github.com/activeadmin/activeadmin/issues/3765
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
@@ -954,6 +957,7 @@ of the highlights. 250 commits. Enough said.
 [@cknoxrun]: https://github.com/cknoxrun
 [@comboy]: https://github.com/comboy
 [@coreyward]: https://github.com/coreyward
+[@craigmcnamara]: https://github.com/craigmcnamara
 [@dapi]: https://github.com/dapi
 [@dbussin]: https://github.com/dbussin
 [@developer88]: https://github.com/developer88
