@@ -1,7 +1,7 @@
 window.ActiveAdmin.CheckboxToggler = class ActiveAdmin.CheckboxToggler
   constructor: (@options, @container)->
     defaults = {}
-    @options = $.extend {}, defaults, options
+    @options = $.extend {}, defaults, @options
     @_init()
     @_bind()
 

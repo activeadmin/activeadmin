@@ -10,7 +10,7 @@ window.ActiveAdmin.DropdownMenu = class ActiveAdmin.DropdownMenu
       onClickActionItemCallback: null
     }
 
-    @options = $.extend({}, defaults, options)
+    @options = $.extend({}, defaults, @options)
 
     @$menuButton = @$element.find(".dropdown_menu_button")
     @$menuList = @$element.find(".dropdown_menu_list_wrapper")
