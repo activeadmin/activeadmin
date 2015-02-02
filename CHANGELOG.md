@@ -1,4 +1,4 @@
-## 0-6-stable (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.5...0-6-stable)
+## 0-6-stable (unreleased) - [compare](https://github.com/gregbell/active_admin/compare/v0.6.6...0-6-stable)
 
 ## 0.6.6 - [compare](https://github.com/gregbell/active_admin/compare/v0.6.5...v0.6.6)
 
