@@ -49,6 +49,18 @@ end
 
 See the [Menu](2-resource-customization.md#customize-the-menu) documentation.
 
+## Customize the Namespace
+
+We use the `admin` namespace by default, but you can use anything:
+
+```ruby
+# Available at /today/calendar
+ActiveAdmin.register_page "Calendar", namespace: :today
+
+# Available at /calendar
+ActiveAdmin.register_page "Calendar", namespace: false
+```
+
 ## Add a Sidebar
 
 See the [Sidebars](7-sidebars.md) documentation.
