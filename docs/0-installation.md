@@ -9,6 +9,11 @@ gem 'activeadmin'
 More accurately, it's a [Rails Engine](http://guides.rubyonrails.org/engines.html)
 that can be injected into your existing Ruby on Rails application.
 
+If you got compatible versions issue running `bundle install`, just track the current master like explained [here](https://github.com/activeadmin/activeadmin#100)
+```ruby
+gem 'activeadmin', github: 'activeadmin'
+```
+
 ## Setting up Active Admin
 
 After installing the gem, you need to run the generator. By default we use Devise, and
@@ -21,6 +26,11 @@ rails g active_admin:install              # creates the AdminUser class
 rails g active_admin:install User         # creates / edits the class for use with Devise
 rails g active_admin:install --skip-users # skips Devise install
 ```
+If you choose to use Devise, just add it to your Gemfile :
+```ruby
+gem 'devise'
+```
+and run `bundle install`
 
 The generator adds these core files, among others:
 
