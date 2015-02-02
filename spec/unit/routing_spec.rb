@@ -10,7 +10,7 @@ describe ActiveAdmin, "Routing", type: :routing do
   end
 
   it "should only have the namespaces necessary for route testing" do
-    expect(ActiveAdmin.application.namespaces.keys).to eq [:admin, :root]
+    expect(ActiveAdmin.application.namespaces.names).to eq [:admin, :root]
   end
 
   it "should route to the admin dashboard" do
