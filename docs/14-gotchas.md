@@ -13,7 +13,7 @@ For more information see the following post:
 
 ## Helpers
 
-There are two knowing gotchas with helpers. This hopfully will help you to
+There are two knowing gotchas with helpers. This hopefully will help you to
 find a solution.
 
 ### Helpers are not reloading in development
