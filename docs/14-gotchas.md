@@ -28,9 +28,9 @@ you need to include it by hand.
 
 #### Solutions
 
-##### First use a monky patch
+##### First use a monkey patch
 
-This works for all ActiveAdmin rources at once.
+This works for all ActiveAdmin resources at once.
 
 ```ruby
 # config/initializers/active_admin_helpers.rb
@@ -67,7 +67,7 @@ listed below.
 
 #### `tire`, `retire` and `elasticsearch-rails`
 
-This conflict can be solved, by using explicitlly the `search` method of `tire`, 
+This conflict can be solved, by using explicitly the `search` method of `tire`, 
 `retire` or `elasticsearch-rails`:
 
 ##### For `tire` and `retire`
