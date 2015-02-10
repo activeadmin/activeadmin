@@ -36,15 +36,15 @@ When /^(?:I )press "([^"]*)"$/ do |button|
 end
 
 When /^(?:I )follow "([^"]*)"$/ do |link|
-  click_link(link)
+  first(:link, link).click
 end
 
 When /^(?:I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field, :with => value)
+  fill_in(field, with: value)
 end
 
 When /^(?:I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
-  select(value, :from => field)
+  select(value, from: field)
 end
 
 When /^(?:I )(check|uncheck|choose) "([^"]*)"$/ do |action, field|
@@ -56,29 +56,28 @@ When /^(?:I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
 end
 
 Then /^(?:I )should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|
-  should = negate ? :should_not    : :should
+  should = negate ? :not_to        : :to
   have   = is_css ? have_css(text) : have_content(text)
-  page.send should, have
+  expect(page).send should, have
 end
 
 Then /^the "([^"]*)" field(?: within (.*))? should( not)? contain "([^"]*)"$/ do |field, parent, negate, value|
   with_scope(parent) do
     field = find_field(field)
-    field_value = (field.tag_name == 'textarea') ? field.text : field.value
-    negate ? field_value.should_not =~ /#{value}/ : field_value.should =~ /#{value}/
+    value = field.tag_name == 'textarea' ? field.text : field.value
+
+    expect(value).send negate ? :not_to : :to, match(/#{value}/)
   end
 end
 
 Then /^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/ do |label, parent, negate|
   with_scope(parent) do
-    field_checked = find_field(label)['checked']
-    field_checked.should negate ? be_false : be_true
+    expect(find_field(label)['checked']).to negate ? eq(false) : eq(true)
   end
 end
 
 Then /^(?:|I )should be on (.+)$/ do |page_name|
-  current_path = URI.parse(current_url).path
-  current_path.should == path_to(page_name)
+  expect(URI.parse(current_url).path).to eq path_to page_name
 end
 
 Then /^show me the page$/ do

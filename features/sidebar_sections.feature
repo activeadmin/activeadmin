@@ -196,3 +196,15 @@ Feature: Sidebar Sections
     When I am on the index page for posts
     Then I should see "Hello World from a custom partial" within the "Help" sidebar
 
+
+  Scenario: Position sidebar at the top using priority option
+    Given a configuration of:
+    """
+    ActiveAdmin.register Post do
+      sidebar :help, priority: 0 do
+        "Need help? Email us at help@example.com"
+      end
+    end
+    """
+    When I am on the index page for posts
+    Then I should see a sidebar titled "Help" above sidebar titled "Filters"

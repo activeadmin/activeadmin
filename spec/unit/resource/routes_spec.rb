@@ -1,4 +1,4 @@
-require 'spec_helper' 
+require 'rails_helper' 
 
 module ActiveAdmin
   describe Resource::Routes do
@@ -10,27 +10,27 @@ module ActiveAdmin
         let(:category) { Category.new { |c| c.id = 123 } }
 
         it "should return the route prefix" do
-          config.route_prefix.should eq 'admin'
+          expect(config.route_prefix).to eq 'admin'
         end
 
         it "should return the route collection path" do
-          config.route_collection_path.should eq '/admin/categories'
+          expect(config.route_collection_path).to eq '/admin/categories'
         end
 
         it "should return the route instance path" do
-          config.route_instance_path(category).should eq '/admin/categories/123'
+          expect(config.route_instance_path(category)).to eq '/admin/categories/123'
         end
       end
 
       context "when in the root namespace" do
-        let!(:config) { ActiveAdmin.register Category, :namespace => false }
+        let!(:config) { ActiveAdmin.register Category, namespace: false }
         it "should have a nil route_prefix" do
-          config.route_prefix.should be_nil
+          expect(config.route_prefix).to be_nil
         end
 
         it "should generate a correct route" do
           reload_routes!
-          config.route_collection_path.should == "/categories"
+          expect(config.route_collection_path).to eq "/categories"
         end
       end
 
@@ -40,7 +40,7 @@ module ActiveAdmin
         before{ reload_routes! }
 
         it "should return the plural route with _index" do
-          config.route_collection_path.should == "/admin/news"
+          expect(config.route_collection_path).to eq "/admin/news"
         end
       end
 
@@ -61,11 +61,11 @@ module ActiveAdmin
         before{ reload_routes! }
 
         it "should nest the collection path" do
-          config.route_collection_path(category_id: 1).should == "/admin/categories/1/posts"
+          expect(config.route_collection_path(category_id: 1)).to eq "/admin/categories/1/posts"
         end
 
         it "should nest the instance path" do
-          config.route_instance_path(post).should == "/admin/categories/1/posts/3"
+          expect(config.route_instance_path(post)).to eq "/admin/categories/1/posts/3"
         end
       end
     end

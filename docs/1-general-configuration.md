@@ -8,7 +8,7 @@ Here are a few common configurations:
 Active Admin requires two settings to authenticate and use the current user
 within your application.
 
-+ the method controllers use to force authentication
++ the method controllers used to force authentication
 
 ```ruby
 config.authentication_method = :authenticate_admin_user!
@@ -36,14 +36,17 @@ If you want, you can customize it.
 config.site_title       = "My Admin Site"
 config.site_title_link  = "/"
 config.site_title_image = "site_image.png"
+config.site_title_image = "http://www.google.com/images/logos/google_logo_41.png"
+config.site_title_image = ->(context) { context.current_user.company.logo_url }
 ```
 
 ## Internationalization (I18n)
 
 To translate Active Admin to a new language or customize an existing translation, you can copy
-[config/locales/en.yml](https://github.com/gregbell/active_admin/blob/master/config/locales/en.yml)
+[config/locales/en.yml](https://github.com/activeadmin/activeadmin/blob/master/config/locales/en.yml)
 to your application's `config/locales` folder and update it. We welcome new/updated translations,
-so feel free to [contribute!](https://github.com/gregbell/active_admin/blob/master/CONTRIBUTING.md)
+so feel free to [contribute](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md)!
+To translate third party gems like devise, use for example devise-i18n.
 
 ## Namespaces
 
@@ -101,13 +104,13 @@ undesired. To disable comments:
 ```ruby
 # For the entire application:
 ActiveAdmin.setup do |config|
-  config.allow_comments = false
+  config.comments = false
 end
 
 # For a namespace:
 ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
-    admin.allow_comments = false
+    admin.comments = false
   end
 end
 

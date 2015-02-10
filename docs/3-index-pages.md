@@ -26,7 +26,7 @@ your resource.
 index do
   id_column
   column :image_title
-  default_actions
+  actions
 end
 
 index as: :grid do |product|
@@ -35,12 +35,12 @@ end
 ```
 
 The first index component will be the default index page unless you indicate
-otherwise by setting :default to true.
+otherwise by setting `:default` to true.
 
 ```ruby
 index do
   column :image_title
-  default_actions
+  actions
 end
 
 index as: :grid, default: true do |product|
@@ -48,14 +48,16 @@ index as: :grid, default: true do |product|
 end
 ```
 
+## Custom Index
+
 Active Admin does not limit the index page to be a table, block, blog or grid.
-If you've [created your own index page](3-index-pages/create-an-index.md) it
-can be included by setting :as to the class of the index component you created.
+If you've created your own [custom index](3-index-pages/custom-index.md) page it
+can be included by setting `:as` to the class of the index component you created.
 
 ```ruby
-index as: ActiveAdmin::Views::IndexAsTable do
+index as: ActiveAdmin::Views::IndexAsMyIdea do
   column :image_title
-  default_actions
+  actions
 end
 ```
 
@@ -65,7 +67,7 @@ By default the index screen includes a "Filters" sidebar on the right hand side
 with a filter for each attribute of the registered model. You can customize the
 filters that are displayed as well as the type of widgets they use.
 
-To display a filter for an attribute, use the filter method
+To display a filter for an attribute, use the `filter` method
 
 ```ruby
 ActiveAdmin.register Post do
@@ -84,13 +86,13 @@ Out of the box, Active Admin supports the following filter types:
 * *:check_boxes* - A list of check boxes users can turn on and off to filter
 
 By default, Active Admin will pick the most relevant filter based on the
-attribute type. You can force the type by passing the :as option.
+attribute type. You can force the type by passing the `:as` option.
 
 ```ruby
 filter :author, as: :check_boxes
 ```
 
-The :check_boxes and :select types accept options for the collection. By default
+The `:check_boxes` and `:select` types accept options for the collection. By default
 it attempts to create a collection based on an association. But you can pass in
 the collection as a proc to be called at render time.
 
@@ -105,6 +107,14 @@ filter :author, label: 'Something else'
 ```
 
 By default, Active Admin will try to use ActiveModel I18n to determine the label.
+
+You can also filter on more than one attribute of a model using the
+[Ransack search predicate syntax](https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching). If using a custom search method, you will
+also need to specify the field type using `:as` and the label.
+
+```ruby
+filter :first_name_or_last_name_cont, as: :string, label: "Name"
+```
 
 Filters can also be disabled for a resource, a namespace or the entire
 application.
@@ -142,23 +152,68 @@ preserve_default_filters!
 filter :author
 ```
 
+## Index Scopes
+
+You can define custom scopes for your index page. This will add a tab bar above
+the index table to quickly filter your collection on pre-defined scopes. There are
+a number of ways to define your scopes:
+
+```ruby
+scope :all, default: true
+
+# assumes the model has a scope called ':active'
+scope :active
+
+# renames model scope ':leaves' to ':subcategories'
+scope "Subcategories", :leaves
+
+# Dynamic scope name
+scope ->{ Date.today.strftime '%A' }, :published_today
+
+# custom scope not defined on the model
+scope("Inactive") { |scope| scope.where(active: false) }
+
+# conditionally show a custom controller scope
+scope "Published", if: proc { current_admin_user.can? :manage, Posts } do |posts|
+  posts.published
+end
+```
+
 ## Index default sort order
 
 You can define the default sort order for index pages:
 
 ```ruby
 ActiveAdmin.register Post do
-  config.sort_order = 'name asc'
+  config.sort_order = 'name_asc'
 end
 ```
 
 ## Index pagination
+
+You can set the number of records per page as default:
+
+```ruby
+ActiveAdmin.setup do |config|
+  config.default_per_page = 30
+end
+```
 
 You can set the number of records per page per resources:
 
 ```ruby
 ActiveAdmin.register Post do
   config.per_page = 10
+end
+```
+
+You can change it per request / action too:
+
+```ruby
+controller do
+  before_filter :only => :index do
+    @per_page = 100
+  end
 end
 ```
 
@@ -170,7 +225,7 @@ ActiveAdmin.register Post do
 end
 ```
 
-If you have a very large database, you might want to disable SELECT COUNT(*)
+If you have a very large database, you might want to disable `SELECT COUNT(*)`
 queries caused by the pagination info at the bottom of the page:
 
 ```ruby
@@ -204,3 +259,7 @@ ActiveAdmin.setup do |config|
 
 end
 ```
+
+Note: you have to actually implement PDF rendering for your action, ActiveAdmin does not provide this feature. This setting just allows you to specify formats that you want to show up under the index collection.
+
+You'll need to use a PDF rendering library like PDFKit or WickedPDF to get the PDF generation you want.

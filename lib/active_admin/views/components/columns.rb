@@ -12,7 +12,7 @@ module ActiveAdmin
     # To display columns, use the #columns method. Within the block, call the
     # #column method to create a new column.
     #
-    # To createa a two column layout:
+    # To create a two column layout:
     #
     #     colums do
     #       column do
@@ -29,7 +29,7 @@ module ActiveAdmin
     # To make a column span multiple, pass the :span option to the column method:
     #
     #     colums do
-    #       column :span => 2 do
+    #       column span: 2 do
     #         span "Column # 1
     #       end
     #       column do
@@ -50,7 +50,7 @@ module ActiveAdmin
     # To overcome this, columns include a :max_width and :min_width option.
     #
     #     colums do
-    #       column :max_width => "200px", :min_width => "100px" do
+    #       column max_width: "200px", min_width: "100px" do
     #         span "Column # 1
     #       end
     #       column do
@@ -62,7 +62,6 @@ module ActiveAdmin
     # than 100px.
     class Columns < ActiveAdmin::Component
       builder_method :columns
-
 
       # For documentation, please take a look at Column#build
       def column(*args, &block)
@@ -115,7 +114,7 @@ module ActiveAdmin
 
       # @param [Hash] options An options hash for the column
       #
-      # @options options [Integer] :span The columns this column should span
+      # @option options [Integer] :span The columns this column should span
       def build(options = {})
         options = options.dup
         @span_size = options.delete(:span) || 1
@@ -133,16 +132,23 @@ module ActiveAdmin
         styles << "width: #{column_with_span_width}%;"
 
         if max_width
-          styles << "max-width: #{max_width};"
+          styles << "max-width: #{safe_width(max_width)};"
         end
 
         if min_width
-          styles << "min-width: #{min_width};"
+          styles << "min-width: #{safe_width(min_width)};"
         end
 
         styles << "margin-right: #{margin_width}%;" unless is_last_column
 
         set_attribute :style, styles.join(" ")
+      end
+
+      private
+
+      # Converts values without a '%' or 'px' suffix to a pixel value
+      def safe_width(width)
+        width.to_s.gsub(/\A(\d+)\z/, '\1px')
       end
 
     end

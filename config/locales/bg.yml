@@ -9,9 +9,7 @@ bg:
     delete: "Изтриване"
     delete_confirmation: "Сигурни ли сте, че искате да изтриете това?"
     new_model: "Създаване на %{model}"
-    create_model: "Създаване на %{model}"
     edit_model: "Редакция на %{model}"
-    update_model: "Обновяване на %{model}"
     delete_model: "Изтриване на %{model}"
     details: "%{model} детайли"
     cancel: "Отказ"
@@ -33,6 +31,9 @@ bg:
         ends_with: "Завършва с"
         greater_than: "по-голямо от"
         less_than: "по-малко от"
+    status_tag:
+      "yes": "Да"
+      "no": "не"
     main_content: "Добавете %{model}#main_content за да видите съдържание."
     logout: "Изход"
     powered_by: "Задвижва се от %{active_admin} %{version}"
@@ -51,9 +52,12 @@ bg:
     blank_slate:
       content: "Все още няма добавени %{resource_name}."
       link: "Създаване"
+    dropdown_actions:
+      button_label: "действия"
     batch_actions:
       button_label: "Масови действия"
-      delete_confirmation: "Сигурни ли сте, че искате да изтриете тези %{plural_model}? Това действие не може да бъде върнато назад."
+      default_confirmation: "Наистина ли искате да направите това?"
+      delete_confirmation: "Сигурни ли сте, че искате да изтриете тези %{plural_model}?"
       succesfully_destroyed:
         one: "Успешно изтриване на 1 %{model}"
         other: "Успешно изтриване на %{count} %{plural_model}"
@@ -71,10 +75,22 @@ bg:
       add: "Добавяне на коментар"
       resource: "Ресурс"
       no_comments_yet: "Все още няма коментари."
+      author_missing: "Анонимен"
       title_content: "Коментари (%{count})"
       errors:
         empty_text: "Коментарът с празен текст не беше запазен."
     devise:
+      username:
+        title: "Потребителско име"
+      email:
+        title: "Поща"
+      subdomain:
+        title: "Поддомейн"
+      password:
+        title: "Парола"
+      sign_up:
+        title: "Регистрация"
+        submit: "Регистрация"
       login:
         title: "Вход"
         remember_me: "Запомни ме"
@@ -83,15 +99,18 @@ bg:
         title: "Забравена парола?"
         submit: "Изпращане на нова парола"
       change_password:
-        title: "Промяна на моята парола"
+        title: "Промяна на паролата"
         submit: "Промяна на паролата"
       unlock:
         title: "Изпрати отново инструкциите за отключване"
-        submit: "Изпрати инструкциите повторно"
+        submit: "Изпрати отново инструкциите за отключване"
+      resend_confirmation_instructions:
+        title: "Изпрати отново инструкциите за потвърждаване"
+        submit: "Изпрати отново инструкциите за потвърждаване"
       links:
         sign_in: "Вход"
         forgot_your_password: "Забравена парола?"
-        sign_in_with_omniauth_provider: "Вход с %{provider}"
+        sign_in_with_omniauth_provider: "Влез с %{provider}"
     access_denied:
       message: "Нямате права да извършите това действие."
     index_list:
@@ -99,3 +118,4 @@ bg:
       block: "Списък"
       grid: "Грид"
       blog: "Блог"
+

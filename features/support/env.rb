@@ -6,7 +6,7 @@
 
 ENV["RAILS_ENV"] ||= "cucumber"
 
-require File.expand_path('../../../spec/spec_helper_without_rails', __FILE__)
+require File.expand_path('../../../spec/spec_helper', __FILE__)
 
 ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{ENV["RAILS"]}", __FILE__)
 
@@ -15,9 +15,10 @@ unless File.exists?(ENV['RAILS_ROOT'])
   system 'rake setup'
 end
 
-# Ensure the Active Admin load path is happy
 require 'rails'
+require 'active_record'
 require 'active_admin'
+require 'devise'
 ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
 
 require ENV['RAILS_ROOT'] + '/config/environment'
@@ -28,9 +29,29 @@ autoload :ActiveAdmin, 'active_admin'
 
 require 'cucumber/rails'
 
+require 'rspec/mocks'
+World(RSpec::Mocks::ExampleMethods)
+
+Before do
+  RSpec::Mocks.setup
+end
+
+After do
+  begin
+    RSpec::Mocks.verify
+  ensure
+    RSpec::Mocks.teardown
+  end
+end
+
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
+require 'capybara/poltergeist'
+require 'phantomjs/poltergeist'
+
+Capybara.javascript_driver = :poltergeist
+
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
@@ -109,4 +130,16 @@ unless ENV['DEFER_GC'] == '0' || ENV['DEFER_GC'] == 'false'
   require File.expand_path('../../../spec/support/deferred_garbage_collection', __FILE__)
   Before { DeferredGarbageCollection.start }
   After  { DeferredGarbageCollection.reconsider }
+end
+
+# Don't run @rails4 tagged features for versions before Rails 4.
+Before('@rails4') do |scenario|
+  scenario.skip_invoke! if Rails::VERSION::MAJOR < 4
+end
+
+Around '@silent_unpermitted_params_failure' do |scenario, block|
+  original = ActionController::Parameters.action_on_unpermitted_parameters
+  ActionController::Parameters.action_on_unpermitted_parameters = false
+  block.call
+  ActionController::Parameters.action_on_unpermitted_parameters = original
 end

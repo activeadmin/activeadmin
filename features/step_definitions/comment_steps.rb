@@ -8,5 +8,5 @@ When /^I add a comment "([^"]*)"$/ do |comment|
 end
 
 Given /^a tag with the name "([^"]*)" exists$/ do |tag_name|
-  Tag.create(:name => tag_name)
+  Tag.create(name: tag_name)
 end

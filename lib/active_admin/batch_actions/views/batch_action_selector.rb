@@ -24,20 +24,21 @@ module ActiveAdmin
 
       def build_drop_down
         dropdown_menu I18n.t("active_admin.batch_actions.button_label"),
-                      :id => "batch_actions_selector",
-                      :button => { :class => "disabled" } do
+                      class: "batch_actions_selector dropdown_menu",
+                      button: { class: "disabled" } do
           batch_actions_to_display.each do |batch_action|
             confirmation_text = render_or_call_method_or_proc_on(self, batch_action.confirm)
 
             options = {
-              :class => "batch_action",
-              "data-action" => batch_action.sym,
-              "data-confirm" => confirmation_text
+              :class         => "batch_action",
+              "data-action"  => batch_action.sym,
+              "data-confirm" => confirmation_text,
+              "data-inputs"  => render_in_context(self, batch_action.inputs).to_json
             }
 
             default_title = render_or_call_method_or_proc_on(self, batch_action.title)
-            title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", :default => default_title)
-            label = I18n.t("active_admin.batch_actions.action_label", :title => title)
+            title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", default: default_title)
+            label = I18n.t("active_admin.batch_actions.action_label", title: title)
 
             item label, "#", options
           end
@@ -51,16 +52,6 @@ module ActiveAdmin
         end
       end
 
-      # def build_batch_action_button
-      #   a :class => 'table_tools_button dropdown_button disabled', :href => "#batch_actions_popover", :id => "batch_actions_button" do
-      #     text_node I18n.t("active_admin.batch_actions.button_label")
-      #   end
-      # end
-
-      # def build_batch_action_popover
-      # end
-
     end
-
   end
 end

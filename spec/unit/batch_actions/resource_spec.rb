@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::BatchActions::ResourceExtension do
 
@@ -11,7 +11,8 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
   describe "default action" do
 
     it "should have the default action by default" do
-      resource.batch_actions.size.should == 1 and resource.batch_actions.first.sym == :destroy
+      expect(resource.batch_actions.size).to eq 1
+      expect(resource.batch_actions.first.sym == :destroy).to be_truthy
     end
 
   end
@@ -26,15 +27,15 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
     end
 
     it "should add an batch action" do
-      resource.batch_actions.size.should == 1
+      expect(resource.batch_actions.size).to eq 1
     end
 
     it "should store an instance of BatchAction" do
-      resource.batch_actions.first.should be_an_instance_of(ActiveAdmin::BatchAction)
+      expect(resource.batch_actions.first).to be_an_instance_of(ActiveAdmin::BatchAction)
     end
 
     it "should store the block in the batch action" do
-      resource.batch_actions.first.block.should_not be_nil
+      expect(resource.batch_actions.first.block).to_not be_nil
     end
 
   end
@@ -46,7 +47,7 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
     end
 
     it "should allow for batch action removal" do
-      resource.batch_actions.size.should == 0
+      expect(resource.batch_actions.size).to eq 0
     end
 
   end
@@ -54,7 +55,7 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
   describe "#batch_action_path" do
 
     it "returns the path as a symbol" do
-      resource.batch_action_path.should == "/admin/posts/batch_action"
+      expect(resource.batch_action_path).to eq "/admin/posts/batch_action"
     end
 
   end
@@ -63,12 +64,12 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
 
     it "should return true by default" do
       action = ActiveAdmin::BatchAction.new :default, "Default"
-      action.display_if_block.call.should == true
+      expect(action.display_if_block.call).to eq true
     end
 
     it "should return the :if block if set" do
-      action = ActiveAdmin::BatchAction.new :with_block, "With Block", :if => proc { false }
-      action.display_if_block.call.should == false
+      action = ActiveAdmin::BatchAction.new :with_block, "With Block", if: proc { false }
+      expect(action.display_if_block.call).to eq false
     end
 
   end
@@ -77,13 +78,13 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
 
     it "should have a default priority" do
       action = ActiveAdmin::BatchAction.new :default, "Default"
-      action.priority.should == 10
+      expect(action.priority).to eq 10
     end
 
     it "should correctly order two actions" do
-      priority_one = ActiveAdmin::BatchAction.new :one, "One", :priority => 1
-      priority_ten = ActiveAdmin::BatchAction.new :ten, "Ten", :priority => 10
-      priority_one.should be < priority_ten
+      priority_one = ActiveAdmin::BatchAction.new :one, "One", priority: 1
+      priority_ten = ActiveAdmin::BatchAction.new :ten, "Ten", priority: 10
+      expect(priority_one).to be < priority_ten
     end
 
   end

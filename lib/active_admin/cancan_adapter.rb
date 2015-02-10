@@ -1,3 +1,7 @@
+unless ActiveAdmin::Dependency.cancan? || ActiveAdmin::Dependency.cancancan?
+  ActiveAdmin::Dependency.cancan!
+end
+
 require 'cancan'
 
 # Add a setting to the application to configure the ability
@@ -21,18 +25,10 @@ module ActiveAdmin
 
     private
 
-    # The setting allows the class to be stored as a string
-    # to enable reloading in development.
     def initialize_cancan_ability
-      ability_class_name = resource.namespace.cancan_ability_class
-
-      if ability_class_name.is_a?(String)
-        ability_class = ActiveSupport::Dependencies.constantize(ability_class_name)
-      else
-        ability_class = ability_class_name
-      end
-
-      ability_class.new(user)
+      klass = resource.namespace.cancan_ability_class
+      klass = klass.constantize if klass.is_a? String
+      klass.new user
     end
 
   end

@@ -9,9 +9,7 @@ vi:
     delete: "Xóa"
     delete_confirmation: "Bạn có chắc chắn rằng mình muốn xóa cái này?"
     new_model: "Tạo mới %{model}"
-    create_model: "Tạo mới %{model}"
     edit_model: "Chỉnh sửa %{model}"
-    update_model: "Chỉnh sửa %{model}"
     delete_model: "Xóa %{model}"
     details: "%{model} Chi tiết"
     cancel: "Hủy"
@@ -33,6 +31,9 @@ vi:
         ends_with: "Kết thúc với việc"
         greater_than: "Lớn hơn"
         less_than: "Nhỏ hơn"
+    status_tag:
+      "yes": "Có"
+      "no": "Không Có"
     main_content: "Xin bổ sung %{model}#main_content để hiển thị nội dung."
     logout: "Đăng xuất"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +52,12 @@ vi:
     blank_slate:
       content: "Chưa có %{resource_name}."
       link: "Tạo mới"
+    dropdown_actions:
+      button_label: "Hành động"
     batch_actions:
       button_label: "Hành động hàng loạt"
-      delete_confirmation: "Bạn có chắc chắn muốn xóa những %{plural_model}? Bạn sẽ không thể lấy lại được dữ liệu."
+      default_confirmation: "Bạn có chắc bạn muốn làm điều này?"
+      delete_confirmation: "Bạn có chắc chắn muốn xóa những %{plural_model}?"
       succesfully_destroyed:
         one: "Đã xóa thành công 1 %{model}"
         other: "Đã xóa thành công %{count} %{plural_model}"

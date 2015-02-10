@@ -1,11 +1,9 @@
 ActiveAdmin.register Store do
 
-  controller do
-    def permitted_params
-      params.permit store: [:name]
-    end if Rails::VERSION::MAJOR == 4
+  if Rails::VERSION::MAJOR == 4
+    permit_params :name
   end
 
-  index :pagination_total => false
+  index pagination_total: false
 
 end

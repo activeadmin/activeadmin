@@ -6,6 +6,7 @@ require 'active_admin/resource/pagination'
 require 'active_admin/resource/routes'
 require 'active_admin/resource/naming'
 require 'active_admin/resource/scopes'
+require 'active_admin/resource/includes'
 require 'active_admin/resource/scope_to'
 require 'active_admin/resource/sidebars'
 require 'active_admin/resource/belongs_to'
@@ -47,7 +48,7 @@ module ActiveAdmin
     attr_writer :csv_builder
 
     # Set breadcrumb builder
-    attr_accessor :breadcrumb
+    attr_writer :breadcrumb
 
     # Store a reference to the DSL so that we can dereference it during garbage collection.
     attr_accessor :dsl
@@ -77,9 +78,9 @@ module ActiveAdmin
     include PagePresenters
     include Pagination
     include Scopes
+    include Includes
     include ScopeTo
     include Sidebars
-    include Menu
     include Routes
 
     # The class this resource wraps. If you register the Post model, Resource#resource_class
@@ -138,12 +139,20 @@ module ActiveAdmin
       @csv_builder || default_csv_builder
     end
 
+    def breadcrumb
+      instance_variable_defined?(:@breadcrumb) ? @breadcrumb : namespace.breadcrumb
+    end
+
     def find_resource(id)
-      resource = resource_class.where(resource_class.primary_key => id).first
+      resource = resource_class.public_send(method_for_find, id)
       decorator_class ? decorator_class.new(resource) : resource
     end
 
     private
+
+    def method_for_find
+      resources_configuration[:self][:finder] || :"find_by_#{resource_class.primary_key}"
+    end
 
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource_class)

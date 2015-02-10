@@ -1,40 +1,32 @@
 # Detects the current version of Rails that is being used
 #
 #
-unless defined? RAILS_VERSION_FILE
-  RAILS_VERSION_FILE = File.expand_path("../../../.rails-version", __FILE__)
-end
+RAILS_VERSION_FILE ||= File.expand_path("../../../.rails-version", __FILE__)
 
 unless defined? TRAVIS_CONFIG
   require 'yaml'
   filename = File.expand_path("../../../.travis.yml", __FILE__)
   TRAVIS_CONFIG = YAML.load_file filename
-  TRAVIS_RAILS_VERSIONS = TRAVIS_CONFIG['env'].grep(/RAILS=(.*)/){ $1 }
+  TRAVIS_RAILS_VERSIONS = TRAVIS_CONFIG['env']['matrix'].grep(/RAILS=(.*)/){ $1 }
 end
 
-unless defined? DEFAULT_RAILS_VERSION
-  DEFAULT_RAILS_VERSION = TRAVIS_RAILS_VERSIONS.first
-end
+DEFAULT_RAILS_VERSION ||= TRAVIS_RAILS_VERSIONS.first
 
 def detect_rails_version
-  version = version_from_file || version_from_env || DEFAULT_RAILS_VERSION
-
+  version = version_from_file || ENV['RAILS'] || DEFAULT_RAILS_VERSION
+ensure
   puts "Detected Rails: #{version}" if ENV['DEBUG']
+end
 
-  version
+def detect_rails_version!
+  detect_rails_version or raise "can't find a version of Rails to use!"
 end
 
 def version_from_file
   if File.exists?(RAILS_VERSION_FILE)
     version = File.read(RAILS_VERSION_FILE).chomp.strip
-    version = nil if version == ""
-
-    version
+    version unless version == ''
   end
-end
-
-def version_from_env
-  ENV['RAILS']
 end
 
 def write_rails_version(version)

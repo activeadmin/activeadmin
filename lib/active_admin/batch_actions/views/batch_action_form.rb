@@ -3,7 +3,7 @@ require 'active_admin/component'
 module ActiveAdmin
   module BatchActions
 
-    # Build an BatchActionForm
+    # Build a BatchActionForm
     class BatchActionForm < ActiveAdmin::Component
       builder_method :batch_action_form
 
@@ -12,9 +12,12 @@ module ActiveAdmin
       def build(options = {}, &block)
         options[:id] ||= "collection_selection"
 
-        # Open a form
-        text_node form_tag(active_admin_config.batch_action_path(params), :id => options[:id])
-        input(:name => :batch_action, :id => :batch_action, :type => :hidden)
+        # Open a form with two hidden input fields:
+        # batch_action        => name of the specific action called
+        # batch_action_inputs => a JSON string of any requested confirmation values
+        text_node form_tag active_admin_config.batch_action_path(params), id: options[:id]
+        input name: :batch_action,        id: :batch_action,        type: :hidden
+        input name: :batch_action_inputs, id: :batch_action_inputs, type: :hidden
 
         super(options)
       end

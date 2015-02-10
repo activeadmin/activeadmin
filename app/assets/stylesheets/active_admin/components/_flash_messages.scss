@@ -1,0 +1,37 @@
+body.logged_in {
+  .flash {
+    @include gradient(#f7f1d3, #f5edc5);
+    @include text-shadow(#fafafa);
+    border-bottom: 1px solid #eee098;
+    color: #cb9810;
+    font-weight: bold;
+    font-size: 1.1em;
+    line-height: 1.0em;
+    padding: 13px 30px 11px;
+    position: relative;
+
+    &.flash_notice {
+      @include gradient(#dce9dd, #ccdfcd);
+      border-bottom: 1px solid #adcbaf;
+      color: #416347;
+    }
+    &.flash_error {
+      @include gradient(#f5e4e4, #f1dcdc);
+      border-bottom: 1px solid #e0c2c0;
+      color: #b33c33;
+    }
+  }
+}
+
+body.logged_out {
+  .flash {
+    @include no-shadow;
+    @include text-shadow(#fff);
+    background: none;
+    color: #666;
+    font-weight: bold;
+    line-height: 1.0em;
+    padding: 0;
+    margin-bottom: 8px;
+  }
+}

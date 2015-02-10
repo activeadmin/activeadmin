@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::MenuCollection do
 
@@ -7,17 +7,17 @@ describe ActiveAdmin::MenuCollection do
   describe "#add" do
 
     it "should initialize a new menu when first item" do
-      menus.add :default, :label => "Hello World"
+      menus.add :default, label: "Hello World"
 
-      menus.fetch(:default).items.size.should == 1
-      menus.fetch(:default)["Hello World"].should be_an_instance_of(ActiveAdmin::MenuItem)
+      expect(menus.fetch(:default).items.size).to eq 1
+      expect(menus.fetch(:default)["Hello World"]).to be_an_instance_of(ActiveAdmin::MenuItem)
     end
 
     it "should add items to an existing menu" do
-      menus.add :default, :label => "Hello World"
-      menus.add :default, :label => "Hello World Again"
+      menus.add :default, label: "Hello World"
+      menus.add :default, label: "Hello World Again"
 
-      menus.fetch(:default).items.size.should == 2
+      expect(menus.fetch(:default).items.size).to eq 2
     end
 
   end
@@ -25,13 +25,13 @@ describe ActiveAdmin::MenuCollection do
   describe "#clear!" do
 
     it "should remove all menus" do
-      menus.add :default, :label => "Hello World"
+      menus.add :default, label: "Hello World"
 
       menus.clear!
 
       expect {
         menus.fetch(:non_default_menu)
-      }.to raise_error(ActiveAdmin::MenuCollection::NoMenuError)
+      }.to raise_error(ActiveAdmin::NoMenuError)
 
     end
 
@@ -41,20 +41,20 @@ describe ActiveAdmin::MenuCollection do
 
     it "runs a callback when fetching a menu" do
       menus.on_build do |m|
-        m.add :default, :label => "Hello World"
+        m.add :default, label: "Hello World"
       end
 
-      menus.fetch(:default)["Hello World"].should_not be_nil
+      expect(menus.fetch(:default)["Hello World"]).to_not be_nil
     end
 
     it "re-runs the callbacks when the menu is cleared" do
       menus.on_build do |m|
-        m.add :default, :label => "Hello World"
+        m.add :default, label: "Hello World"
       end
 
-      menus.fetch(:default)["Hello World"].should_not be_nil
+      expect(menus.fetch(:default)["Hello World"]).to_not be_nil
       menus.clear!
-      menus.fetch(:default)["Hello World"].should_not be_nil
+      expect(menus.fetch(:default)["Hello World"]).to_not be_nil
     end
 
   end

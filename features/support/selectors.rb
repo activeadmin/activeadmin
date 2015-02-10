@@ -27,7 +27,7 @@ module HtmlSelectorsHelpers
       [:css, "table.index_grid"]
 
     when /^the "([^"]*)" sidebar$/
-      [:css, "##{$1.gsub(" ", '').underscore}_sidebar_section"]
+      [:css, "##{$1.tr(" ", '').underscore}_sidebar_section"]
 
     # This allows you to provide a quoted selector as the scope
     # for "within" steps as was previously the default for the

@@ -9,9 +9,7 @@ it:
     delete: "Rimuovi"
     delete_confirmation: "Sei sicuro di volerlo rimuovere?"
     new_model: "Aggiungi %{model}"
-    create_model: "Aggiungi %{model}"
     edit_model: "Modifica %{model}"
-    update_model: "Modifica %{model}"
     delete_model: "Rimuovi %{model}"
     details: "Dettagli %{model}"
     cancel: "Annulla"
@@ -33,6 +31,9 @@ it:
         ends_with: "Finisce con"
         greater_than: "Maggiore di"
         less_than: "Minore di"
+    status_tag:
+      "yes": "Sì"
+      "no": "No"
     main_content: "Devi implemetare %{model}#main_content per mostrarne il contenuto."
     logout: "Esci"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +52,12 @@ it:
     blank_slate:
       content: "Non sono presenti %{resource_name}"
       link: "Crea nuovo/a"
+    dropdown_actions:
+      button_label: "Azioni"
     batch_actions:
       button_label: "Azioni multiple"
-      delete_confirmation: "Sei sicuro di volere cancellare %{plural_model}? Non sarà possibile annulare questa modifica."
+      default_confirmation: "Sei sicuro di che voler fare questo?"
+      delete_confirmation: "Sei sicuro di volere cancellare %{plural_model}?"
       succesfully_destroyed:
         one: "Eliminato con successo 1 %{model}"
         other: "Eliminati con successo %{count} %{plural_model}"
@@ -63,16 +67,27 @@ it:
       labels:
         destroy: "Elimina"
     comments:
+      resource_type: "Tipo di risorsa"
+      author_type: "Tipo di Autore"
       body: "Corpo"
       author: "Autore"
       title: "Commento"
       add: "Aggiungi Commento"
       resource: "Risorsa"
       no_comments_yet: "Nessun commento."
+      author_missing: "Anonimo"
       title_content: "Commenti (%{count})"
       errors:
         empty_text: "Il commento non può essere salvato, il testo è vuoto."
     devise:
+      username:
+        title: "Nome Utente"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Sottodominio"
+      password:
+        title: "Password"
       login:
         title: "Entra"
         remember_me: "Ricordami"
@@ -83,7 +98,20 @@ it:
       change_password:
         title: "Cambia la tua password"
         submit: "Cambia la mia password"
+      unlock:
+        title: "Invia di nuovo le istruzioni per sbloccare"
+        submit: "Invia di nuovo le istruzioni per sbloccare"
+      resend_confirmation_instructions:
+        title: "Invia di nuovo le istruzioni per la conferma"
+        submit: "Invia di nuovo le istruzioni per la conferma"
       links:
         sign_in: "Entra"
         forgot_your_password: "Dimenticato la password?"
         sign_in_with_omniauth_provider: "Collegati a %{provider}"
+    access_denied:
+      message: "Non hai le autorizzazioni necessarie per eseguire questa azione."
+    index_list:
+      table: "Tabella"
+      block: "Lista"
+      grid: "Griglia"
+      blog: "Blog"

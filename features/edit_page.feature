@@ -10,10 +10,9 @@ Feature: Edit Page
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        controller do
-          def permitted_params
-            params.permit post: [:category, :author, :title, :body, :published_at, :starred]
-          end if Rails::VERSION::MAJOR == 4
+        if Rails::VERSION::MAJOR == 4
+          permit_params :custom_category_id, :author_id, :title,
+            :body, :position, :published_at, :starred
         end
       end
     """
@@ -35,11 +34,8 @@ Feature: Edit Page
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        controller do
-          def permitted_params
-            params.permit post: [:category, :author, :title, :body, :published_at, :starred]
-          end if Rails::VERSION::MAJOR == 4
-        end
+        permit_params :category, :author, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
+
         form do |f|
           f.inputs "Your Post" do
             f.input :title
@@ -67,11 +63,8 @@ Feature: Edit Page
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        controller do
-          def permitted_params
-            params.permit post: [:category, :author, :title, :body, :published_at, :starred]
-          end if Rails::VERSION::MAJOR == 4
-        end
+        permit_params :category, :author, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
+
         form :html => {} do |f|
           f.inputs "Your Post" do
             f.input :title
@@ -109,11 +102,8 @@ Feature: Edit Page
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        controller do
-          def permitted_params
-            params.permit post: [:category, :author, :title, :body, :published_at, :starred]
-          end if Rails::VERSION::MAJOR == 4
-        end
+        permit_params :category, :author, :title, :body, :published_at, :starred if Rails::VERSION::MAJOR == 4
+
         form :partial => "form"
       end
     """

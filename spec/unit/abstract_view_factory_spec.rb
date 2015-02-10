@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 require 'active_admin/abstract_view_factory'
 
@@ -13,20 +13,20 @@ describe ActiveAdmin::AbstractViewFactory do
     end
 
     it "should respond to :my_new_view_class" do
-      view_factory.respond_to? :my_new_view_class
+      expect(view_factory.respond_to? :my_new_view_class).to be true
     end
 
     it "should respond to :my_new_view_class=" do
-      view_factory.respond_to? :my_new_view_class=
+      expect(view_factory.respond_to? :my_new_view_class=).to be true
     end
 
     it "should generate a getter method" do
-      view_factory.my_new_view_class.should == view
+      expect(view_factory.my_new_view_class).to eq view
     end
 
     it "should be settable view a setter method" do
       view_factory.my_new_view_class = "Some Obj"
-      view_factory.my_new_view_class.should == "Some Obj"
+      expect(view_factory.my_new_view_class).to eq "Some Obj"
     end
   end
 
@@ -36,12 +36,12 @@ describe ActiveAdmin::AbstractViewFactory do
     end
 
     it "should be available through array syntax" do
-      view_factory[:my_new_view_class].should == view
+      expect(view_factory[:my_new_view_class]).to eq view
     end
 
     it "should be settable through array syntax" do
       view_factory[:my_new_view_class] = "My New View Class"
-      view_factory[:my_new_view_class].should == "My New View Class"
+      expect(view_factory[:my_new_view_class]).to eq "My New View Class"
     end
   end
 
@@ -50,12 +50,12 @@ describe ActiveAdmin::AbstractViewFactory do
       ActiveAdmin::AbstractViewFactory.register my_default_view_class: view
     end
     it "should generate a getter method" do
-      view_factory.my_default_view_class.should == view
+      expect(view_factory.my_default_view_class).to eq view
     end
     it "should be settable view a setter method and not change default" do
       view_factory.my_default_view_class = "Some Obj"
-      view_factory.my_default_view_class.should == "Some Obj"
-      view_factory.default_for(:my_default_view_class).should == view
+      expect(view_factory.my_default_view_class).to eq "Some Obj"
+      expect(view_factory.default_for(:my_default_view_class)).to eq view
     end
   end
 
@@ -71,7 +71,7 @@ describe ActiveAdmin::AbstractViewFactory do
 
     it "should use the subclass implementation" do
       factory = subclass.new
-      factory.my_subclassed_view.should == "From Subclass"
+      expect(factory.my_subclassed_view).to eq "From Subclass"
     end
   end
 

@@ -10,7 +10,7 @@ namespace :docs do
 EOD
 
   def filename_from_module(mod)
-    mod.name.to_s.underscore.gsub('_', '-')
+    mod.name.to_s.underscore.tr('_', '-')
   end
 
   def write_docstrings_to(path, mods)

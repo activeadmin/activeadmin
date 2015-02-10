@@ -1,0 +1,8 @@
+Description:
+    Registers pages with Active Admin
+
+Example:
+    rails generate active_admin:page Thing
+
+    This will create:
+        app/admin/thing.rb

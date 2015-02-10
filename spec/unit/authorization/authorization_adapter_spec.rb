@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::AuthorizationAdapter do
 
@@ -7,7 +7,7 @@ describe ActiveAdmin::AuthorizationAdapter do
   describe "#authorized?" do
 
     it "should always return true" do
-      adapter.authorized?(:read, "Resource").should == true
+      expect(adapter.authorized?(:read, "Resource")).to be_truthy
     end
 
   end
@@ -16,7 +16,7 @@ describe ActiveAdmin::AuthorizationAdapter do
 
     it "should return the collection unscoped" do
       collection = double
-      adapter.scope_collection(collection, ActiveAdmin::Auth::READ).should == collection
+      expect(adapter.scope_collection(collection, ActiveAdmin::Auth::READ)).to eq collection
     end
 
   end
@@ -41,19 +41,19 @@ describe ActiveAdmin::AuthorizationAdapter do
     let(:adapter) { auth_class.new(double, double) }
 
     it "should match against a class" do
-      adapter.authorized?(:read, String).should == true
+      expect(adapter.authorized?(:read, String)).to be_truthy
     end
 
     it 'should match against an instance' do
-      adapter.authorized?(:read, "String").should == true
+      expect(adapter.authorized?(:read, "String")).to be_truthy
     end
 
     it 'should not match a different class' do
-      adapter.authorized?(:read, Hash).should == false
+      expect(adapter.authorized?(:read, Hash)).to be_falsey
     end
 
     it 'should not match a different instance' do
-      adapter.authorized?(:read, {}).should == false
+      expect(adapter.authorized?(:read, {})).to be_falsey
     end
 
   end

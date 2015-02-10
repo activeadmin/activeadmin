@@ -59,3 +59,25 @@ Feature: Index Blank Slate
       end
       """
     And I should see "There are no Posts yet. Create one"
+
+  Scenario: Customizing the default table with no resources
+    Given an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          index blank_slate_link: ->{link_to("Go to dashboard", admin_root_path)} do |post|
+          end
+        end
+      """
+    When I follow "Go to dashboard"
+    Then I should see "Dashboard"
+
+  Scenario: Customizing the default table with no blank slate link
+    Given an index configuration of:
+      """
+        ActiveAdmin.register Post do
+          index blank_slate_link: false do |post|
+          end
+        end
+      """
+    Then I should see "There are no Posts yet."
+    And I should not see "Create one"

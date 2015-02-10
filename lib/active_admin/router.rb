@@ -18,13 +18,13 @@ module ActiveAdmin
     end
 
     def define_root_routes(router)
-      router.instance_exec @application.namespaces.values do |namespaces|
+      router.instance_exec @application.namespaces do |namespaces|
         namespaces.each do |namespace|
           if namespace.root?
-            root :to => namespace.root_to
+            root namespace.root_to_options.merge(to: namespace.root_to)
           else
             namespace namespace.name do
-              root :to => namespace.root_to
+              root namespace.root_to_options.merge(to: namespace.root_to)
             end
           end
         end
@@ -34,7 +34,7 @@ module ActiveAdmin
     # Defines the routes for each resource
     def define_resource_routes(router)
       router.instance_exec @application.namespaces, self do |namespaces, aa_router|
-        resources = namespaces.values.map{ |n| n.resources.values }.flatten
+        resources = namespaces.flat_map{ |n| n.resources.values }
         resources.each do |config|
           routes = aa_router.resource_routes(config)
 
@@ -47,7 +47,7 @@ module ActiveAdmin
 
               # Make the nested belongs_to routes
               # :only is set to nothing so that we don't clobber any existing routes on the resource
-              resources config.belongs_to_config.target.resource_name.plural, :only => [] do
+              resources config.belongs_to_config.target.resource_name.plural, only: [] do
                 instance_exec &belongs_to
               end
             end
@@ -80,14 +80,14 @@ module ActiveAdmin
         }
         case config
         when ::ActiveAdmin::Resource
-          resources config.resource_name.route_key, :only => config.defined_actions do
+          resources config.resource_name.route_key, only: config.defined_actions do
             member do
               config.member_actions.each &build_action
             end
 
             collection do
               config.collection_actions.each &build_action
-              post :batch_action
+              post :batch_action if config.batch_actions_enabled?
             end
           end
         when ::ActiveAdmin::Page

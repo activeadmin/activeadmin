@@ -40,10 +40,14 @@ module ActiveAdmin
       end
 
       def build_menu_item(item)
-        li :id => item.id do |li|
+        li id: item.id do |li|
           li.add_class "current" if item.current? assigns[:current_tab]
 
-          text_node link_to item.label(self), item.url(self), item.html_options
+          if url = item.url(self)
+            text_node link_to item.label(self), url, item.html_options
+          else
+            span item.label(self), item.html_options
+          end
 
           if children = item.items(self).presence
             li.add_class "has_nested"
@@ -55,7 +59,7 @@ module ActiveAdmin
       end
 
       def default_options
-        { :id => "tabs" }
+        { id: "tabs" }
       end
     end
   end

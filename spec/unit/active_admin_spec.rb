@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin do
   %w(register register_page unload! load! routes).each do |method|
     it "delegates ##{method} to application" do
-      ActiveAdmin.application.should_receive(method)
+      expect(ActiveAdmin.application).to receive(method)
 
       ActiveAdmin.send(method)
     end

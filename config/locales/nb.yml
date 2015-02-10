@@ -1,0 +1,116 @@
+nb:
+  active_admin:
+    dashboard: Oversikt
+    dashboard_welcome:
+      welcome: "Velkommen til Active Admin. Dette er standardoversiktssiden."
+      call_to_action: "Rediger 'app/admin/dashboard.rb' for å legge til elementer i oversikten."
+    view: "Vis"
+    edit: "Rediger"
+    delete: "Slett"
+    delete_confirmation: "Er du sikker på at du vil slette denne?"
+    new_model: "Ny %{model}"
+    edit_model: "Rediger %{model}"
+    delete_model: "Slett %{model}"
+    details: "%{model} Detaljer"
+    cancel: "Avbryt"
+    empty: "Tom"
+    previous: "Forrige"
+    next: "Neste"
+    download: "Last ned:"
+    has_many_new: "Legg til ny %{model}"
+    has_many_delete: "Slett"
+    has_many_remove: "Fjern"
+    filters:
+      buttons:
+        filter: "Filter"
+        clear: "Fjern filter"
+      predicates:
+        contains: "Inneholder"
+        equals: "Er lik"
+        starts_with: "Starter med"
+        ends_with: "Slutter med"
+        greater_than: "Større enn"
+        less_than: "Mindre enn"
+    status_tag:
+      "yes": "Ja"
+      "no": "Nei"
+    main_content: "Vennligst implementer %{model}#main_content for å vise innhold."
+    logout: "Logg ut"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Filtere"
+    pagination:
+      empty: "Fant ingen %{model}"
+      one: "Viser <b>1</b> %{model}"
+      one_page: "Viser <b>alle %{n}</b> %{model}"
+      multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> av <b>%{total}</b> totalt"
+      multiple_without_total: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "innslag"
+        other: "innslag"
+    any: "Alle"
+    blank_slate:
+      content: "Her er det ingen %{resource_name} enda."
+      link: "Opprett en"
+    dropdown_actions:
+      button_label: "Handlinger"
+    batch_actions:
+      button_label: "Gruppehandlinger"
+      delete_confirmation: "Er du sikker på at du vil slette disse %{plural_model}? Dette kan ikke reverseres."
+      succesfully_destroyed:
+        one: "Slettet én %{model}"
+        other: "Slettet %{count} %{plural_model}"
+      selection_toggle_explanation: "(Toggle Selection)"
+      link: "Opprett en"
+      action_label: "%{title} valgt"
+      labels:
+        destroy: "Slett"
+    comments:
+      body: "Body"
+      author: "Author"
+      title: "Comment"
+      add: "Add Comment"
+      resource: "Resource"
+      no_comments_yet: "No comments yet."
+      title_content: "Kommentarer (%{count})"
+      errors:
+        empty_text: "Kommentar ble ikke lagret, teksten var tom."
+    devise:
+      username:
+        title: "Brukernavn"
+      email:
+        title: "E-post"
+      subdomain:
+        title: "Subdomene"
+      password:
+        title: "Passord"
+      sign_up:
+        title: "Opprett brukerkonto"
+        submit: "Opprett"
+      login:
+        title: "Logg inn"
+        remember_me: "Husk meg"
+        submit: "Logg inn"
+      reset_password:
+        title: "Glemt passord?"
+        submit: "Tilbakestille passordet mitt"
+      change_password:
+        title: "Endre passordet"
+        submit: "Endre mitt passord"
+      unlock:
+        title: "Send info om gjenoppretting på nytt"
+        submit: "Send info om gjenoppretting på nytt"
+      resend_confirmation_instructions:
+        title: "Send bekreftelsesinformasjon på nytt"
+        submit: "Send bekreftelsesinformasjon på nytt"
+      links:
+        sign_in: "Logg inn"
+        forgot_your_password: "Glemt passord?"
+        sign_in_with_omniauth_provider: "Logg på med %{provider}"
+    access_denied:
+      message: "Du er ikke autorisert til å utføre denne handlingen."
+    index_list:
+      table: "Tabell"
+      block: "Liste"
+      grid: "Gitter"
+      blog: "Blogg"

@@ -1,0 +1,34 @@
+// Variables used throughout Active Admin.
+// They can be overridden by prepending your own
+// to 'app/assets/stylesheets/active_admin.css.scss'.
+
+// Colors
+$body-background-color: #FFF !default;
+$primary-color: #5E6469 !default;
+$secondary-color: #f0f0f0 !default;
+$text-color: #323537 !default;
+$link-color: #38678b !default;
+$section-header-text-color: $primary-color !default;
+$current-menu-item-background: lighten($primary-color, 12%) !default;
+$hover-menu-item-background: lighten($primary-color, 12%) !default;
+$table-stripe-color: lighten($primary-color, 57%) !default;
+$table-selected-color: #d9e4ec !default;
+$error-color: #932419 !default;
+$blank-slate-primary-color: #AAA !default;
+$breadcrumbs-color: #8a949e !default;
+$breadcrumbs-separator-color: #aab2ba !default;
+$required-field-marker-color: #aaa !default;
+$form-label-color: $section-header-text-color !default;
+$page-header-text-color: #cdcdcd !default;
+
+// Sizes
+$border-width: 1px !default;
+$horizontal-page-margin: 30px !default;
+$sidebar-width: 270px !default;
+$cell-padding: 5px 10px 3px 10px !default;
+$cell-horizontal-padding: 12px !default;
+$section-padding: 15px !default;
+$text-input-horizontal-padding: 10px !default;
+$text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2;
+
+$blank-slate-border: 1px dashed #DADADA !default;

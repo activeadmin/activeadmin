@@ -1,6 +1,6 @@
 fr:
   active_admin:
-    dashboard: "Tableau de Bord"
+    dashboard: "Tableau de bord"
     dashboard_welcome:
       welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
       call_to_action: "Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboard.rb'"
@@ -8,17 +8,15 @@ fr:
     edit: "Modifier"
     delete: "Supprimer"
     delete_confirmation: "Êtes-vous certain de vouloir supprimer ceci ?"
-    new_model: "Nouveau %{model}"
-    create_model: "Nouveau %{model}"
+    new_model: "Créer %{model}"
     edit_model: "Modifier %{model}"
-    update_model: "Modifier %{model}"
     delete_model: "Supprimer %{model}"
     details: "Détails de %{model}"
     cancel: "Annuler"
     empty: "Vide"
     previous: "Précédent"
     next: "Suivant"
-    download: "Télécharger:"
+    download: "Télécharger :"
     has_many_new: "Ajouter un nouveau %{model}"
     has_many_delete: "Supprimer"
     has_many_remove: "Enlever"
@@ -28,11 +26,14 @@ fr:
         clear: "Supprimer les filtres"
       predicates:
         contains: "Contient"
-        equals: "Egal à"
+        equals: "Égal à"
         starts_with: "Commence par"
         ends_with: "Se termine par"
         greater_than: "Plus grand que"
         less_than: "Plus petit que"
+    status_tag:
+      "yes": "Oui"
+      "no": "Non"
     main_content: "Veuillez implémenter %{model}#main_content pour afficher le contenu."
     logout: "Déconnexion"
     powered_by: "Propulsé par %{active_admin} %{version}"
@@ -51,9 +52,12 @@ fr:
     blank_slate:
       content: "Il n'y a pas encore de %{resource_name}."
       link: "Créez en un"
+    dropdown_actions:
+      button_label: "Actions"
     batch_actions:
       button_label: "Actions groupées"
-      delete_confirmation: "Êtes-vous sur de vouloir supprimer ces %{plural_model} ? Cette action est irréversible."
+      default_confirmation: "Êtes-vous sûr de vouloir faire cela ?"
+      delete_confirmation: "Êtes-vous sûr de vouloir supprimer ces %{plural_model} ?"
       succesfully_destroyed:
         one: "1 %{model} supprimé"
         other: "%{count} %{plural_model} supprimés"
@@ -75,21 +79,33 @@ fr:
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
     devise:
+      username:
+        title: "Nom d'utilisateur"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Sous-domaine"
+      password:
+        title: "Mot de passe"
       login:
-        title: "login"
-        remember_me: "Se souvenir de moi"
-        submit: "login"
+        title: "Connexion"
+        remember_me: "Garder ma session ouverte"
+        submit: "Se connecter"
       reset_password:
         title: "Vous avez oublié votre mot de passe ?"
         submit: "Réinitialiser mon mot de passe"
       change_password:
         title: "Changez votre mot de passe"
         submit: "Changer mon mot de passe"
+      resend_confirmation_instructions:
+        title: "Renvoyer les instructions de confirmation"
+        submit: "Renvoyer les instructions de confirmation"
       links:
         sign_in: "Connectez-vous"
         forgot_your_password: "Vous avez oublié votre mot de passe ?"
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
-    access_denied: "Vous n'êtes pas autorisé à executer cette action"
+    access_denied:
+      message: "Vous n'êtes pas autorisé à exécuter cette action"
     index_list:
       table: "Tableau"
       block: "Liste"

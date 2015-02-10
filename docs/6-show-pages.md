@@ -1,6 +1,6 @@
 # Customize the Show Page
 
-The show block is rendered within the context of the view and uses [Arbre](https://github.com/gregbell/arbre) syntax.
+The show block is rendered within the context of the view and uses [Arbre](https://github.com/activeadmin/arbre) syntax.
 
 With the `show` block, you can render anything you want.
 
@@ -33,7 +33,7 @@ ActiveAdmin.register Ad do
   show do
     attributes_table do
       row :title
-      row :image do
+      row :image do |ad|
         image_tag ad.image.url
       end
     end
@@ -70,8 +70,36 @@ ActiveAdmin.register Book do
       row :title
       row :author
       row :publisher
-      row('Published?') { |b| status_tag b.published? ? 'Yes' : 'No' }
+      row('Published?') { |b| status_tag b.published? }
     end
   end
 end
+```
+
+# Tabs
+
+You can arrage content in tabs as shown below:
+
+```ruby
+  ActiveAdmin.register Order do 
+    show do
+      tabs do
+        tab 'Overview' do
+          attributes_table do
+            row(:status) { status_tag(order.status) }
+            row(:paid) { number_to_currency(order.amount_paid_in_dollars) }
+          end
+        end
+        
+        tab 'Payments' do
+          table_for order.payments do
+            column('Payment Type') { |p| p.payment_type.titleize }
+            column('Received On', :created_at)
+            column('Payment Details & Notes', :notes)
+            column('Amount') { |p| number_to_currency(p.amount_in_dollars) }
+          end
+        end
+      end
+    end
+  end
 ```

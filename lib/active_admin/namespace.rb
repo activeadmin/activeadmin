@@ -11,7 +11,7 @@ module ActiveAdmin
   #
   # For example:
   #
-  #   ActiveAdmin.register Post, :namespace => :admin
+  #   ActiveAdmin.register Post, namespace: :admin
   #
   # Will register the Post model into the "admin" namespace. This will namespace the
   # urls for the resource to "/admin/posts" and will set the controller to
@@ -19,7 +19,7 @@ module ActiveAdmin
   #
   # You can also register to the "root" namespace, which is to say no namespace at all.
   #
-  #   ActiveAdmin.register Post, :namespace => false
+  #   ActiveAdmin.register Post, namespace: false
   #
   # This will register the resource to an instantiated namespace called :root. The
   # resource will be accessible from "/posts" and the controller will be PostsController.
@@ -45,7 +45,7 @@ module ActiveAdmin
 
       # Register the resource
       register_resource_controller(config)
-      parse_registration_block(config, &block) if block_given?
+      parse_registration_block(config, resource_class, &block) if block_given?
       reset_menu!
 
       # Dispatch a registration event
@@ -96,7 +96,7 @@ module ActiveAdmin
     # Override from ActiveAdmin::Settings to inherit default attributes
     # from the application
     def read_default_setting(name)
-      application.send(name)
+      application.public_send name
     end
 
     def fetch_menu(name)
@@ -112,7 +112,7 @@ module ActiveAdmin
     # @param [Symbol] name The name of the menu. Default: :default
     # @param [Proc] block The block to be ran when the menu is built
     #
-    # @returns [void]
+    # @return [void]
     def build_menu(name = DEFAULT_MENU, &block)
       @menus.before_build do |menus|
         menus.menu name do |menu|
@@ -121,30 +121,35 @@ module ActiveAdmin
       end
     end
 
-    # Add the default logout button to the menu, using the ActiveAdmin configuration settings
+    # The default logout menu item
     #
     # @param [ActiveAdmin::MenuItem] menu The menu to add the logout link to
-    # @param [Fixnum] priority Override the default priority of 100 to position the logout button where you want
+    # @param [Fixnum] priority The numeric priority for the order in which it appears
     # @param [Hash] html_options An options hash to pass along to link_to
     #
-    # @returns [void]
-    def add_logout_button_to_menu(menu, priority=100, html_options={})
+    def add_logout_button_to_menu(menu, priority = 20, html_options = {})
       if logout_link_path
-        logout_method = logout_link_method || :get
-        menu.add :id           => 'logout',
-                 :priority     => priority,
-                 :label        => proc{ I18n.t('active_admin.logout') },
-                 :html_options => html_options.reverse_merge(:method => logout_method),
-                 :url          => proc{ render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
-                 :if           => proc{ current_active_admin_user? }
+        html_options = html_options.reverse_merge(method: logout_link_method || :get)
+        menu.add id: 'logout', priority: priority, html_options: html_options,
+          label: ->{ I18n.t 'active_admin.logout' },
+          url:   ->{ render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
+          if:    :current_active_admin_user?
       end
     end
 
-    def add_current_user_to_menu(menu)
-      menu.add label: proc{ display_name current_active_admin_user },
-               url:   proc{ url_for [active_admin_namespace.name, current_active_admin_user] rescue '#' },
-               id:    'current_user',
-               if:    proc{ current_active_admin_user? }
+    # The default user session menu item
+    #
+    # @param [ActiveAdmin::MenuItem] menu The menu to add the logout link to
+    # @param [Fixnum] priority The numeric priority for the order in which it appears
+    # @param [Hash] html_options An options hash to pass along to link_to
+    #
+    def add_current_user_to_menu(menu, priority = 10, html_options = {})
+      if current_user_method
+        menu.add id: 'current_user', priority: priority, html_options: html_options,
+          label: -> { display_name current_active_admin_user },
+          url:   -> { auto_url_for(current_active_admin_user) },
+          if:    :current_active_admin_user?
+      end
     end
 
     protected
@@ -170,8 +175,7 @@ module ActiveAdmin
       end
     end
 
-    # Either returns an existing Resource instance or builds a new
-    # one for the resource and options
+    # Either returns an existing Resource instance or builds a new one.
     def find_or_build_resource(resource_class, options)
       resources.add Resource.new(self, resource_class, options)
     end
@@ -180,6 +184,7 @@ module ActiveAdmin
       resources.add Page.new(self, name, options)
     end
 
+    # TODO: replace `eval` with `Class.new`
     def register_page_controller(config)
       eval "class ::#{config.controller_name} < ActiveAdmin::PageController; end"
       config.controller.active_admin_config = config
@@ -188,9 +193,8 @@ module ActiveAdmin
     def unload_resources!
       resources.each do |resource|
         parent = (module_name || 'Object').constantize
-        const_name = resource.controller_name.split('::').last
-        # Remove the const if its been defined
-        parent.send(:remove_const, const_name) if parent.const_defined?(const_name)
+        name   = resource.controller_name.split('::').last
+        parent.send(:remove_const, name) if parent.const_defined? name
 
         # Remove circular references
         resource.controller.active_admin_config = nil
@@ -203,16 +207,19 @@ module ActiveAdmin
 
     # Creates a ruby module to namespace all the classes in if required
     def register_module
-      eval "module ::#{module_name}; end"
+      unless Object.const_defined? module_name
+        Object.const_set module_name, Module.new
+      end
     end
 
+    # TODO replace `eval` with `Class.new`
     def register_resource_controller(config)
       eval "class ::#{config.controller_name} < ActiveAdmin::ResourceController; end"
       config.controller.active_admin_config = config
     end
 
-    def parse_registration_block(config, &block)
-      config.dsl = ResourceDSL.new(config)
+    def parse_registration_block(config, resource_class, &block)
+      config.dsl = ResourceDSL.new(config, resource_class)
       config.dsl.run_registration_block(&block)
     end
 
@@ -220,5 +227,21 @@ module ActiveAdmin
       PageDSL.new(config).run_registration_block(&block)
     end
 
+    class Store
+      include Enumerable
+      delegate :[], :[]=, :empty?, to: :@namespaces
+
+      def initialize
+        @namespaces = {}
+      end
+
+      def each(&block)
+        @namespaces.values.each(&block)
+      end
+
+      def names
+        @namespaces.keys
+      end
+    end
   end
 end

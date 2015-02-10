@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 module ActiveAdmin
   describe Resource, "Pagination" do
@@ -14,24 +14,24 @@ module ActiveAdmin
 
     describe "#paginate" do
       it "should default to true" do
-        config.paginate.should == true
+        expect(config.paginate).to eq true
       end
 
       it "should be settable to false" do
         config.paginate = false
-        config.paginate.should == false
+        expect(config.paginate).to eq false
       end
     end
 
     describe "#per_page" do
       it "should default to namespace.default_per_page" do
-        namespace.should_receive(:default_per_page).and_return(5)
-        config.per_page.should == 5
+        expect(namespace).to receive(:default_per_page).and_return(5)
+        expect(config.per_page).to eq 5
       end
 
       it "should be settable" do
         config.per_page = 5
-        config.per_page.should == 5
+        expect(config.per_page).to eq 5
       end
     end
   end

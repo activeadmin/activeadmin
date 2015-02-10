@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Resource, "authorization" do
 
@@ -9,18 +9,18 @@ describe ActiveAdmin::Resource, "authorization" do
   describe "authorization_adapter" do
 
     it "should return AuthorizationAdapter by default" do
-      app.authorization_adapter.should       eq ActiveAdmin::AuthorizationAdapter
-      namespace.authorization_adapter.should eq ActiveAdmin::AuthorizationAdapter
+      expect(app.authorization_adapter).to       eq ActiveAdmin::AuthorizationAdapter
+      expect(namespace.authorization_adapter).to eq ActiveAdmin::AuthorizationAdapter
     end
 
     it "should be settable on the namespace" do
       namespace.authorization_adapter = auth
-      namespace.authorization_adapter.should eq auth
+      expect(namespace.authorization_adapter).to eq auth
     end
 
     it "should be settable on the application" do
       app.authorization_adapter = auth
-      app.authorization_adapter.should eq auth
+      expect(app.authorization_adapter).to eq auth
     end
 
   end

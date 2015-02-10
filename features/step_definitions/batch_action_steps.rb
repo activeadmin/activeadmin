@@ -1,17 +1,22 @@
 Then /^I (should|should not) be asked to confirm "([^"]*)" for "([^"]*)"$/ do |maybe, confirmation, title|
   selector = "#batch_actions_popover a.batch_action:contains('#{title}')"
   selector << "[data-confirm='#{confirmation}']" if maybe == 'should'
-  page.send maybe.sub(' ', '_'), have_css(selector)
+
+  verb = maybe == 'should' ? :to : :to_not
+  expect(page).send verb, have_css(selector)
 end
 
 Then /^I (should|should not) see the batch action :([^\s]*) "([^"]*)"$/ do |maybe, sym, title|
-  selector = "#batch_actions_selector a.batch_action:contains('#{title}')"
+  selector = ".batch_actions_selector a.batch_action:contains('#{title}')"
   selector << "[href='#'][data-action='#{sym}']" if maybe == 'should'
-  page.send maybe.sub(' ', '_'), have_css(selector)
+
+  verb = maybe == 'should' ? :to : :to_not
+  expect(page).send verb, have_css(selector)
 end
 
 Then /^the (\d+)(?:st|nd|rd|th) batch action should be "([^"]*)"$/ do |index, title|
-  page.all("#batch_actions_selector a.batch_action")[index.to_i - 1].text.should match title
+  batch_action = page.all('.batch_actions_selector a.batch_action')[index.to_i - 1]
+  expect(batch_action.text).to match title
 end
 
 When /^I check the (\d+)(?:st|nd|rd|th) record$/ do |index|
@@ -23,17 +28,19 @@ When /^I toggle the collection selection$/ do
 end
 
 Then /^I should see that the batch action button is disabled$/ do
-  page.should have_css "#batch_actions_selector .dropdown_menu_button.disabled"
+  expect(page).to have_css ".batch_actions_selector .dropdown_menu_button.disabled"
 end
 
 Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe, type|
-  selector = "div.table_tools #batch_actions_selector"
+  selector = "div.table_tools .batch_actions_selector"
   selector << ' .dropdown_menu_button' if maybe == 'should' && type == 'button'
-  page.send maybe.sub(' ', '_'), have_css(selector)
+
+  verb = maybe == 'should' ? :to : :to_not
+  expect(page).send verb, have_css(selector)
 end
 
 Then /^I should see the batch action popover exists$/ do
-  page.should have_css "#batch_actions_selector"
+  expect(page).to have_css '.batch_actions_selector'
 end
 
 Given /^I submit the batch action form with "([^"]*)"$/ do |action|
@@ -51,5 +58,15 @@ Given /^I submit the batch action form with "([^"]*)"$/ do |action|
 end
 
 Then /^I should not see checkboxes in the table$/ do
-  page.should_not have_css ".paginated_collection table input[type=checkbox]"
+  expect(page).to_not have_css '.paginated_collection table input[type=checkbox]'
+end
+
+Then /^I should be show a input with name "([^"]*)" and type "([^"]*)"$/ do |name, type|
+  selector = ".batch_actions_selector a.batch_action:first"
+  expect(page.find(selector)["data-inputs"]).to eq "{\"#{name}\":\"#{type}\"}"
+end
+
+Then /^I should be show a select with name "([^"]*)" with the values "([^"]*)"$/ do |name, values|
+  selector = ".batch_actions_selector a.batch_action:first"
+  expect(JSON[page.find(selector)["data-inputs"]]).to eq Hash[name, values.split(', ')]
 end

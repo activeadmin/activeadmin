@@ -1,0 +1,288 @@
+/* Active Admin Print Stylesheet */
+
+// Set colors used elsewhere
+$primary-color: black;
+$text-color: black;
+
+// Reset
+@import "active_admin/mixins/reset";
+@include global-reset;
+
+// Partials
+@import "active_admin/typography";
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 150%;
+  font-size: 72%;
+  background: #fff;
+  width: 99%;
+  margin: 0;
+  padding: .5%;
+  color: $text-color;
+}
+
+a {
+  color: $text-color;
+  text-decoration: none;
+}
+
+h3 {
+  font-weight: bold;
+  margin-bottom: .5em;
+}
+
+// Header
+#header {
+  float: left;
+
+  #tabs, .tabs, #utility_nav {
+    display: none;
+  }
+
+  h1{
+    font-weight: bold;
+  }
+}
+
+.flashes {
+  display: none;
+}
+
+#title_bar {
+  float: right;
+
+  h2 {
+    line-height: 2em;
+    margin: 0;
+  }
+
+  .breadcrumb, #titlebar_right {
+    display: none;
+  }
+}
+
+// Content
+#active_admin_content {
+  border-top: thick solid black;
+  clear: both;
+  margin-top: 2em;
+  padding-top: 3em;
+}
+
+// Footer
+#footer {
+  display: none;
+}
+
+// Tables
+.table_tools {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+      display: none;
+      padding: 0;
+      margin-bottom: 1em;
+
+      &.scope.selected, &.index.selected {
+        display: block;
+
+        &:before {
+          content: "Showing ";
+        }
+
+        a {
+          font-weight: bold;
+        }
+
+        span {
+          display: inline-block;
+          font-weight: normal;
+          font-size: .9em;
+        }
+      }
+    }
+
+  }
+}
+
+table {
+  margin-bottom: 1.5em;
+  text-align: left;
+  width: 100%;
+
+  thead {
+    display: table-header-group;
+
+    th {
+      background: none;
+      border-bottom: medium solid black;
+      font-weight: bold;
+
+      a{
+        text-decoration: none;
+      }
+    }
+  }
+
+  th, td {
+    padding: .5em 1em;
+
+    .member_link {
+      display: none;
+    }
+  }
+
+  td {
+    border-bottom: thin solid black;
+  }
+
+  tr{
+    page-break-inside: avoid;
+  }
+}
+
+// Index
+#index_footer, .pagination_information {
+  display: none;
+}
+
+.index_grid {
+  td {
+    border: none;
+    text-align: center;
+    vertical-align: middle;
+
+    img {
+      max-width: 1in;
+    }
+  }
+}
+
+// Show
+.panel {
+  border-bottom: thick solid #ccc;
+  margin-bottom: 3em;
+  padding-bottom: 2em;
+  page-break-inside: avoid;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.comments {
+  form {
+    display: none;
+  }
+
+  .active_admin_comment {
+    border-top: thin solid black;
+    padding-top: 1em;
+
+    .active_admin_comment_meta {
+      h4 {
+        font-size: 1em;
+        font-weight: bold;
+        float: left;
+        margin-right: .5em;
+        margin-bottom: 0;
+      }
+
+      span {
+        font-size: .9em;
+        font-style: italic;
+        vertical-align: top;
+      }
+    }
+
+    .active_admin_comment_body {
+      clear: both;
+      margin-bottom: 1em;
+    }
+  }
+}
+
+
+// Attribute Tables
+.attributes_table {
+  border-top: medium solid black;
+
+  th {
+    border-bottom: thin solid black;
+    vertical-align: top;
+
+    &:after {
+      content: ':';
+    }
+  }
+
+  td {
+    img {
+      max-height: 4in;
+      max-width: 6in;
+    }
+  }
+}
+
+// Sidebars
+#filters_sidebar_section {
+  display: none;
+}
+
+// Forms
+form {
+  fieldset {
+    border-top: thick solid #ccc;
+    padding-top: 2em;
+    margin-bottom: 2em;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .buttons, abbr {
+    display: none;
+  }
+  ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li{
+      border-top: thin solid black;
+      margin: 0;
+      padding: 1em 0;
+      overflow: hidden;
+
+      &.password, &.hidden {
+        display: none;
+      }
+
+      label {
+        font-weight: bold;
+        float: left;
+        width: 20%;
+      }
+
+      input, textarea, select {
+        background: none;
+        border: 0;
+        font: Arial, Helvetica, sans-serif;
+      }
+
+      input[type=file] {
+        display: none;
+      }
+
+    }
+  }
+}
+
+.unsupported_browser {
+  display: none;
+}

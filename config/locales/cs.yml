@@ -9,9 +9,7 @@ cs:
     delete: "Smazat"
     delete_confirmation: "Jste si jistí, že chcete tuto položku smazat?"
     new_model: "Vytvořit"
-    create_model: "Vytvořit %{model}"
     edit_model: "Upravit"
-    update_model: "Upravit %{model}"
     delete_model: "Smazat"
     details: "Detaily"
     cancel: "Zrušit"
@@ -33,6 +31,9 @@ cs:
         ends_with: "Končí na"
         greater_than: "Větší než"
         less_than: "Menší než"
+    status_tag:
+      "yes": "Ano"
+      "no": "Ne"
     main_content: "Implementujte prosím %{model}#main_content pro zobrazení obsahu."
     logout: "Odhlásit"
     powered_by: "%{active_admin} %{version}"
@@ -52,8 +53,11 @@ cs:
     blank_slate:
       content: "Zatím zde není žádný obsah."
       link: "Vytvořit"
+    dropdown_actions:
+      button_label: "Akce"
     batch_actions:
       button_label: "Hromadné akce"
+      default_confirmation: "Jste si jisti, že chcete provést?"
       delete_confirmation: "Jste si jisti, že chcete smazat tyto %{plural_model}?"
       succesfully_destroyed:
         zero: "Nebyl smazán žádný %{model}"
@@ -74,6 +78,7 @@ cs:
       add: "Přidat komentář"
       resource: "Zdroj"
       no_comments_yet: "Žádný komentář"
+      author_missing: "Anonymní"
       title_content: "Komentáře administrátorů (%{count})"
       errors:
         empty_text: "Komentář nebyl uložen, je prázdný."

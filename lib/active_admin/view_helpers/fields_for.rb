@@ -31,13 +31,13 @@ module ActiveAdmin
           when Symbol
             { k => v.to_s }
           when Hash
-            fields_for_params(v, :namespace => k)
+            fields_for_params(v, namespace: k)
           when Array
             v.map do |v|
               { "#{k}[]" => v }
             end
           when nil
-          	{ k => '' }
+            { k => '' }
           when TrueClass,FalseClass
             { k => v }
           else

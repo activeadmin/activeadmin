@@ -1,0 +1,120 @@
+fa:
+  active_admin:
+    dashboard: "داشبرد"
+    dashboard_welcome:
+      welcome: "به اکتیو ادمین خوش آمدید. این صفحه اول داشبرد است."
+      call_to_action: "برای اضافه کردن قسمت‌هایی به داشبرد اینجا را چک کنید: 'app/admin/dashboard.rb'"
+    view: "نمایش"
+    edit: "ویرایش"
+    delete: "حذف"
+    delete_confirmation: "آیا برای حذف این آیتم اطمینان دارید؟"
+    new_model: "%{model} جدید"
+    edit_model: "ویرایش %{model}"
+    delete_model: "حذف %{model}"
+    details: "جزئیات %{model}"
+    cancel: "لغو"
+    empty: "خالی"
+    previous: "قبلی"
+    next: "بعدی"
+    download: "دریافت:"
+    has_many_new: "اضافه کردن %{model} جدید"
+    has_many_delete: "حذف"
+    has_many_remove: "حذف"
+    filters:
+      buttons:
+        filter: "فیلتر"
+        clear: "پاک کردن فیلتر"
+      predicates:
+        contains: "شامل"
+        equals: "برابر با"
+        starts_with: "شروع با"
+        ends_with: "پایان با"
+        greater_than: "بزرگتر از"
+        less_than: "کوچکتر از"
+    status_tag:
+      "yes": "بله"
+      "no": "بدون"
+    main_content: "لطفا %{model}#main_content را پیاده سازی کنید تا محتوی نمایش داده شود."
+    logout: "خروج"
+    powered_by: "قدرت گرفته از %{active_admin} %{version}"
+    sidebars:
+      filters: "فیلتر‌ها"
+    pagination:
+      empty: "هیچ رکورد %{model} یافت نشد"
+      one: "نمایش <b>1</b> %{model}"
+      one_page: "نمایش <b>همه %{n}</b> %{model}"
+      multiple: "نمایش %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> از کل <b>%{total}</b> رکورد"
+      multiple_without_total: "نمایش %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "آیتم"
+        other: "آیتم‌ها"
+    any: "هرکدام"
+    blank_slate:
+      content: "هنوز هیچ رکوردی از %{resource_name} درج نشده."
+      link: "درج اولین رکورد"
+    dropdown_actions:
+      button_label: "عملیات"
+    batch_actions:
+      button_label: "عملیات‌های دسته‌ای"
+      default_confirmation: "آیا برای اجرای این عملیات اطمینان دارید؟"
+      delete_confirmation: "آیا برای حذف همه رکوردهای %{plural_model} اطمینان دارید؟"
+      succesfully_destroyed:
+        one: "1 %{model} با موفقیت حذف شد"
+        other: "%{count} %{plural_model} با موفقت حذف شدند."
+      selection_toggle_explanation: "(انتخاب‌ها برعکس شوند)"
+      link: "ایجاد یک رکورد جدید"
+      action_label: "%{title} انتخاب شده است"
+      labels:
+        destroy: "حذف"
+    comments:
+      resource_type: "نوع رکورد"
+      author_type: "نوع ایجاد کننده"
+      body: "بدنه"
+      author: "ایجاد کننده"
+      title: "کامنت"
+      add: "افزودن کامنت"
+      resource: "رکورد"
+      no_comments_yet: "هنوز هیچ کامنتی نوشته نشده."
+      author_missing: "بی‌نام"
+      title_content: "کامنت‌ها (%{count})"
+      errors:
+        empty_text: "کامنت درج نشد، متن کامنت خالی بود."
+    devise:
+      username:
+        title: "نام کاربری"
+      email:
+        title: "ایمیل"
+      subdomain:
+        title: "Subdomain"
+      password:
+        title: "کلمه‌عبور"
+      sign_up:
+        title: "ثبت‌نام"
+        submit: "ثبت‌نام"
+      login:
+        title: "ورود"
+        remember_me: "مرا به خاطر بسپار"
+        submit: "ورود"
+      reset_password:
+        title: "کلمه عبور را فراموش کرده‌اید؟"
+        submit: "دریافت کلمه عبور جدید"
+      change_password:
+        title: "تغییر کلمه عبور"
+        submit: "تغییر کلمه عبور"
+      unlock:
+        title: "ارسال مجدد دستورالعمل بازگشایی حساب کاربری"
+        submit: "ارسال مجدد دستورالعمل بازگشایی حساب کاربری"
+      resend_confirmation_instructions:
+        title: "ارسال مجدد تاییدیه ایمیل"
+        submit: "ارسال مجدد تاییدیه ایمیل"
+      links:
+        sign_in: "ورود"
+        forgot_your_password: "کلمه عبور را فراموش کرده‌اید؟"
+        sign_in_with_omniauth_provider: "ورود با حساب %{provider}"
+    access_denied:
+      message: "شما دسترسی لازم برای انجام این عملیات را ندارید."
+    index_list:
+      table: "جدول"
+      block: "لیست"
+      grid: "گرید"
+      blog: "وبلاگ"

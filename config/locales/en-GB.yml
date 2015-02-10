@@ -9,9 +9,7 @@
     delete: "Delete"
     delete_confirmation: "Are you sure you want to delete this?"
     new_model: "New %{model}"
-    create_model: "New %{model}"
     edit_model: "Edit %{model}"
-    update_model: "Edit %{model}"
     delete_model: "Delete %{model}"
     details: "%{model} Details"
     cancel: "Cancel"
@@ -33,6 +31,9 @@
         ends_with: "Ends with"
         greater_than: "Greater than"
         less_than: "Less than"
+    status_tag:
+      "yes": "Yes"
+      "no": "No"
     main_content: "Please implement %{model}#main_content to display content."
     logout: "Logout"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +52,12 @@
     blank_slate:
       content: "There are no %{resource_name} yet."
       link: "Create one"
+    dropdown_actions:
+      button_label: "Actions"
     batch_actions:
       button_label: "Batch Actions"
-      delete_confirmation: "Are you sure you want to delete these %{plural_model}? You won't be able to undo this."
+      default_confirmation: "Are you sure you want to do this?"
+      delete_confirmation: "Are you sure you want to delete these %{plural_model}?"
       succesfully_destroyed:
         one: "Successfully destroyed 1 %{model}"
         other: "Successfully destroyed %{count} %{plural_model}"
@@ -84,8 +88,11 @@
       change_password:
         title: "Change your password"
         submit: "Change my password"
+      resend_confirmation_instructions:
+        title: "Resend confirmation instructions"
+        submit: "Resend confirmation instructions"
       links:
         sign_in: "Sign in"
         forgot_your_password: "Forgot your password?"
         sign_in_with_omniauth_provider: "Sign in with %{provider}"
-
+        resend_unlock_instructions: "Re-send unlock instructions"

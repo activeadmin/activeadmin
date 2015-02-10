@@ -1,19 +1,18 @@
 <div id="login">
-  <%= content_tag :h2, t('active_admin.devise.change_password.title') %>
+  <h2><%= render_or_call_method_or_proc_on(self, active_admin_application.site_title) %> <%= title t('active_admin.devise.change_password.title') %></h2>
 
-  <%= active_admin_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-    <%= devise_error_messages! %>
-    <%
+  <%= devise_error_messages! %>
+  <%= active_admin_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
     f.inputs do
       f.input :password
       f.input :password_confirmation
-    end %>
-    <%=
+      f.input :reset_password_token, as: :hidden, input_html: { value: resource.reset_password_token }
+    end
     f.actions do
-      f.action :submit, :label => t('active_admin.devise.change_password.submit'), :button_html => { :value => t('active_admin.devise.change_password.submit') }
-      f.input :reset_password_token, :as => :hidden, :input_html => { :value => resource.reset_password_token }
-    end %>
-  <% end %>
+      f.action :submit, label: t('active_admin.devise.change_password.submit'), button_html: { value: t('active_admin.devise.change_password.submit') }
+    end
+  end
+  %>
 
   <%= render 'active_admin/devise/shared/links' %>
 </div>

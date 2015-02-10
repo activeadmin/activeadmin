@@ -5,10 +5,10 @@ module ActiveAdmin
   #
   # The options hash accepts:
   #
-  # :only => :index
-  # :only => [:index, :show]
-  # :except => :index
-  # :except => [:index, :show]
+  # only: :index
+  # only: [:index, :show]
+  # except: :index
+  # except: [:index, :show]
   #
   # call #normalize_display_options! after @options has been set
   # to ensure that the display options are setup correctly
@@ -20,7 +20,7 @@ module ActiveAdmin
 
       case condition = @options[:if]
       when Symbol, String
-        render_context.send condition
+        render_context.public_send condition
       when Proc
         render_context.instance_exec &condition
       else

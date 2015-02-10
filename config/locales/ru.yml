@@ -9,9 +9,7 @@ ru:
     delete: "Удалить"
     delete_confirmation: "Вы уверены, что хотите удалить это?"
     new_model: "Создать %{model}"
-    create_model: "Создать %{model}"
     edit_model: "Изменить %{model}"
-    update_model: "Изменить %{model}"
     delete_model: "Удалить %{model}"
     details: "%{model} подробнее"
     cancel: "Отмена"
@@ -20,8 +18,8 @@ ru:
     next: "След."
     download: "Загрузка:"
     has_many_new: "Добавить %{model}"
-    has_many_delete: "Убрать"
-    has_many_remove: "Удалить"
+    has_many_delete: "Удалить"
+    has_many_remove: "Убрать"
     filters:
       buttons:
         filter: "Фильтровать"
@@ -33,6 +31,9 @@ ru:
         ends_with: "Заканчивается"
         greater_than: "больше"
         less_than: "меньше"
+    status_tag:
+      "yes": "Да"
+      "no": "Нет"
     main_content: "Создайте %{model}#main_content для отображения содержимого."
     logout: "Выйти"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -46,14 +47,19 @@ ru:
       multiple_without_total: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "запись"
+        few: "записи"
+        many: "записей"
         other: "записей"
     any: "Любой"
     blank_slate:
       content: "Пока нет %{resource_name}."
       link: "Создать"
+    dropdown_actions:
+      button_label: "Oперации"
     batch_actions:
       button_label: "Групповые операции"
-      delete_confirmation: "Вы уверены, что хотите удалить %{plural_model}? Вы не сможете это отменить."
+      default_confirmation: "Вы уверены, что вы хотите это сделать?"
+      delete_confirmation: "Вы уверены, что хотите удалить %{plural_model}?"
       succesfully_destroyed:
         one: "Успешно удалено: 1 %{model}"
         few: "Успешно удалено: %{count} %{plural_model}"
@@ -73,10 +79,22 @@ ru:
       add: "Добавить Комментарий"
       resource: "Ресурс"
       no_comments_yet: "Пока нет комментариев."
+      author_missing: "Аноним"
       title_content: "Комментарии (%{count})"
       errors:
         empty_text: "Комментарий не сохранен, текст не должен быть пустым."
     devise:
+      username:
+        title: "Имя пользователя"
+      email:
+        title: "Эл. почта"
+      subdomain:
+        title: "Поддомен"
+      password:
+        title: "Пароль"
+      sign_up:
+        title: "Зарегистрироваться"
+        submit: "Зарегистрироваться"
       login:
         title: "Войти"
         remember_me: "Запомнить меня"
@@ -90,6 +108,9 @@ ru:
       unlock:
         title: "Повторно отправить инструкции по разблокировке"
         submit: "Повторно отправить инструкции по разблокировке"
+      resend_confirmation_instructions:
+        title: "Выслать повторно письмо с активацией"
+        submit: "Выслать повторно письмо с активацией"
       links:
         sign_in: "Войти"
         forgot_your_password: "Забыли пароль?"

@@ -1,42 +1,63 @@
 # Sidebar Sections
 
-To add a sidebar section to all the screen within a section, use the sidebar method:
+Sidebars allow you to put whatever content you want on the side the page.
 
-    sidebar :help do
-      "Need help? Email us at help@example.com"
-    end
+```ruby
+sidebar :help do
+  "Need help? Email us at help@example.com"
+end
+```
 
 This will generate a sidebar on every page for that resource. The first
 argument is used as the title, and can be a symbol, string, or lambda.
 
-You can also use [Arbre](https://github.com/gregbell/arbre) to define HTML content.
+You can also use [Arbre](https://github.com/activeadmin/arbre) to define HTML content.
 
-    sidebar :help do
-      ul do
-        li "Second List First Item"
-        li "Second List Second Item"
-      end
-    end
+```ruby
+sidebar :help do
+  ul do
+    li "Second List First Item"
+    li "Second List Second Item"
+  end
+end
+```
 
-Sidebar sections can be rendered on a specific action by using the :only or :except
-options.
+Sidebars can be rendered on a specific action by passing `:only` or `:except`.
 
-    sidebar :help, only: :index do
-      "Need help? Email us at help@example.com"
-    end
+```ruby
+sidebar :help, only: :index do
+  "Need help? Email us at help@example.com"
+end
+```
 
 If you want to conditionally display a sidebar section, use the :if option and
-pass it a proc which will be rendered within the context of the view.
+pass it a proc which will be rendered within the view context.
 
-    sidebar :help, if: proc{ current_admin_user.super_admin? } do
-      "Only for super admins!"
-    end
+```ruby
+sidebar :help, if: proc{ current_admin_user.super_admin? } do
+  "Only for super admins!"
+end
+```
 
-If you only pass a symbol, Active Admin will attempt to locate a partial to render.
+You can also render a partial:
 
-    # Will render app/views/admin/posts/_help_sidebar.html.erb
-    sidebar :help
+```ruby
+sidebar :help                    # app/views/admin/posts/_help_sidebar.html.erb
+sidebar :help, partial: 'custom' # app/views/admin/posts/_custom.html.erb
+```
 
-Or you can pass your own custom partial to render.
+It's possible to add custom class name to the sidebar parent element by passing
+`class` option:
 
-    sidebar :help, partial: "custom_help_partial"
+```ruby
+sidebar :help, class: 'custom_class'
+```
+
+By default sidebars are positioned in the same order as they defined, but it's also
+possible to specify their position manually:
+
+```ruby
+sidebar :help, priority: 0 # will push Help section to the top (above default Filters section)
+```
+
+Default sidebar priority is `10`.

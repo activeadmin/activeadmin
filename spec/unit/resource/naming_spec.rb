@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-require 'spec_helper'
+require 'rails_helper'
 
 module ActiveAdmin
   describe Resource, "Naming" do
@@ -20,83 +20,83 @@ module ActiveAdmin
     describe "singular resource name" do
       context "when class" do
         it "should be the underscored singular resource name" do
-          config.resource_name.singular.should == "category"
+          expect(config.resource_name.singular).to eq "category"
         end
       end
       context "when a class in a module" do
         it "should underscore the module and the class" do
-          Resource.new(namespace, Mock::Resource).resource_name.singular.should == "mock_resource"
+          expect(Resource.new(namespace, Mock::Resource).resource_name.singular).to eq "mock_resource"
         end
       end
       context "when you pass the 'as' option" do
         it "should underscore the passed through string" do
-          config(:as => "Blog Category").resource_name.singular.should == "blog_category"
+          expect(config(as: "Blog Category").resource_name.singular).to eq "blog_category"
         end
       end
     end
 
     describe "resource label" do
       it "should return a pretty name" do
-        config.resource_label.should == "Category"
+        expect(config.resource_label).to eq "Category"
       end
 
       it "should return the plural version" do
-        config.plural_resource_label.should == "Categories"
+        expect(config.plural_resource_label).to eq "Categories"
       end
 
       context "when the :as option is given" do
         it "should return the custom name" do
-          config(:as => "My Category").resource_label.should == "My Category"
+          expect(config(as: "My Category").resource_label).to eq "My Category"
         end
       end
 
       context "when a class in a module" do
         it "should include the module and the class" do
-          Resource.new(namespace, Mock::Resource).resource_label.should == "Mock Resource"
+          expect(Resource.new(namespace, Mock::Resource).resource_label).to eq "Mock Resource"
         end
 
         it "should include the module and the pluralized class" do
-          Resource.new(namespace, Mock::Resource).plural_resource_label.should == "Mock Resources"
+          expect(Resource.new(namespace, Mock::Resource).plural_resource_label).to eq "Mock Resources"
         end
       end
 
       describe "I18n integration" do
         describe "singular label" do
           it "should return the titleized model_name.human" do
-            config.resource_name.should_receive(:translate).and_return "Da category"
+            expect(config.resource_name).to receive(:translate).and_return "Da category"
 
-            config.resource_label.should == "Da category"
+            expect(config.resource_label).to eq "Da category"
           end
         end
 
         describe "plural label" do
           it "should return the titleized plural version defined by i18n if available" do
-            config.resource_name.should_receive(:translate).at_least(:once).and_return "Da categories"
-            config.plural_resource_label.should == "Da categories"
+            expect(config.resource_name).to receive(:translate).at_least(:once).and_return "Da categories"
+            expect(config.plural_resource_label).to eq "Da categories"
           end
         end
 
         describe "plural label with not default locale" do
           it "should return the titleized plural version defined by i18n with custom :count if available" do
-            config.resource_name.should_receive(:translate).at_least(:once).and_return "Категории"
-            config.plural_resource_label(:count => 3).should == "Категории"
+            expect(config.resource_name).to receive(:translate).at_least(:once).and_return "Категории"
+            expect(config.plural_resource_label(count: 3)).to eq "Категории"
           end
         end
 
         context "when the :as option is given" do
           describe "singular label" do
             it "should translate the custom name" do
-              config = config(:as => 'My Category')
-              config.resource_name.should_receive(:translate).and_return "Translated category"
-              config.resource_label.should == "Translated category"
+              config = config(as: 'My Category')
+              expect(config.resource_name).to receive(:translate).and_return "Translated category"
+              expect(config.resource_label).to eq "Translated category"
             end
           end
 
           describe "plural label" do
             it "should translate the custom name" do
-              config = config(:as => 'My Category')
-              config.resource_name.should_receive(:translate).at_least(:once).and_return "Translated categories"
-              config.plural_resource_label.should == "Translated categories"
+              config = config(as: 'My Category')
+              expect(config.resource_name).to receive(:translate).at_least(:once).and_return "Translated categories"
+              expect(config.plural_resource_label).to eq "Translated categories"
             end
           end
         end
@@ -110,12 +110,12 @@ module ActiveAdmin
 
       [:==, :===, :eql?].each do |method|
         it "are equivalent when compared with #{method}" do
-          resource_name.public_send(method, duplicate_resource_name).should be_true
+          expect(resource_name.public_send(method, duplicate_resource_name)).to be_truthy
         end
       end
 
       it "have identical hash values" do
-        resource_name.hash.should == duplicate_resource_name.hash
+        expect(resource_name.hash).to eq duplicate_resource_name.hash
       end
     end
   end

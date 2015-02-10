@@ -9,9 +9,7 @@
     delete: "删除"
     delete_confirmation: "确定删除?"
     new_model: "新建%{model}"
-    create_model: "新建%{model}"
     edit_model: "编辑%{model}"
-    update_model: "编辑%{model}"
     delete_model: "删除%{model}"
     details: "%{model}详情"
     cancel: "取消"
@@ -33,6 +31,9 @@
         ends_with: "完与"
         greater_than: "大于"
         less_than: "小于"
+    status_tag:
+      "yes": "是的"
+      "no": "无"
     main_content: "请执行 %{model}#main_content 来显示内容."
     logout: "退出"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +52,12 @@
     blank_slate:
       content: "暂时还没有%{resource_name}."
       link: "新建一个"
+    dropdown_actions:
+      button_label: "行动"
     batch_actions:
       button_label: "批处理"
-      delete_confirmation: "你确定要删除所有%{plural_model}? 如果执行，将不可恢复."
+      default_confirmation: "你确定你要这样做？"
+      delete_confirmation: "你确定要删除所有%{plural_model}?"
       succesfully_destroyed:
         one: "成功删除 1 %{model}"
         other: "成功删除 %{count} %{plural_model}"
@@ -73,18 +77,30 @@
       errors:
         empty_text: "评论保存失败，内空不能为空."
     devise:
+      username:
+        title: "用户名"
+      email:
+        title: "邮箱"
+      subdomain:
+        title: "子域"
+      password:
+        title: "密码"
       login:
         title: "登录"
         remember_me: "记住我"
         submit: "登录"
       reset_password:
-        title: "忘记密码？"
-        submit: "重置密码"
-      change_password:
-        title: "更改您的密码"
-        submit: "更改我的密码"
+        title: "忘记了密码？"
+        submit: "重置我的密码"
+      unlock:
+        title: "重新发送送解锁命令"
+        submit: "重新发送送解锁命令"
+      resend_confirmation_instructions:
+        title: " 重新发送确认指示"
+        submit: " 重新发送确认指示"
       links:
         sign_in: "登录"
-        forgot_your_password: "忘记密码？"
+        forgot_your_password: "忘记了密码？"
         sign_in_with_omniauth_provider: "登入%{provider}"
-
+    access_denied:
+      message: "您无权处理此操作"

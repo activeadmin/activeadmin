@@ -4,14 +4,19 @@ module ActiveAdmin
   class ResourceCollection
     include Enumerable
     extend Forwardable
-    def_delegators :@resources, :empty?, :has_key?, :keys, :values, :[]=
+    def_delegators :@collection, :empty?, :has_key?, :keys, :values, :size
 
     def initialize
-      @resources = {}
+      @collection = {}
     end
 
     def add(resource)
-      @resources[resource.resource_name] ||= resource
+      if match = @collection[resource.resource_name]
+        raise_if_mismatched! match, resource
+        match
+      else
+        @collection[resource.resource_name] = resource
+      end
     end
 
     # Changes `each` to pass in the value, instead of both the key and value.
@@ -19,23 +24,46 @@ module ActiveAdmin
       values.each &block
     end
 
-    # Finds a resource based on the resource name, the resource class, or the base class.
-    def [](klass)
-      if match = @resources[klass]
-        match
-      elsif match = real_resources.detect{ |r| [r.resource_name.to_s, r.resource_class.to_s].include? klass.to_s }
-        match
-      elsif klass.respond_to? :base_class
-        real_resources.detect{ |r| r.resource_class.to_s == klass.base_class.to_s }
-      end
+    def [](obj)
+      @collection[obj] || find_resource(obj)
     end
 
     private
 
-    # REFACTOR: ResourceCollection currently stores Resource and Page objects. That doesn't
-    # make sense, because by definition a ResourceCollection is a collection of resources.
-    def real_resources
-      select{ |r| r.respond_to? :resource_class }
+    # Finds a resource based on the resource name, resource class, or base class.
+    def find_resource(obj)
+      resources.detect do |r|
+        r.resource_name.to_s == obj.to_s || r.resource_class.to_s == obj.to_s
+      end ||
+      if obj.respond_to? :base_class
+        resources.detect{ |r| r.resource_class.to_s == obj.base_class.to_s }
+      end
+    end
+
+    def resources
+      select{ |r| r.class <= Resource } # can otherwise be a Page
+    end
+
+    def raise_if_mismatched!(existing, given)
+      if existing.class != given.class
+        raise IncorrectClass.new existing, given
+      elsif given.class <= Resource && existing.resource_class != given.resource_class
+        raise ConfigMismatch.new existing, given
+      end
+    end
+
+    class IncorrectClass < StandardError
+      def initialize(existing, given)
+        super "You're trying to register #{given.resource_name} which is a #{given.class}, " +
+              "but #{existing.resource_name}, a #{existing.class} has already claimed that name."
+      end
+    end
+
+    class ConfigMismatch < StandardError
+      def initialize(existing, given)
+        super "You're trying to register #{given.resource_class} as #{given.resource_name}, " +
+              "but the existing #{existing.class} config was built for #{existing.resource_class}!"
+      end
     end
 
   end

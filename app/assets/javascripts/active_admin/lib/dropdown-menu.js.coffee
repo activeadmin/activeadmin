@@ -1,7 +1,6 @@
-window.ActiveAdmin.DropdownMenu = class ActiveAdmin.DropdownMenu
+class ActiveAdmin.DropdownMenu
 
   constructor: (@options, @element) ->
-
     @$element = $(@element)
 
     defaults = {
@@ -10,12 +9,11 @@ window.ActiveAdmin.DropdownMenu = class ActiveAdmin.DropdownMenu
       onClickActionItemCallback: null
     }
 
-    @options = $.extend({}, defaults, options)
+    @options = $.extend defaults, @options
+    @isOpen  = false
 
-    @$menuButton = @$element.find(".dropdown_menu_button")
-    @$menuList = @$element.find(".dropdown_menu_list_wrapper")
-
-    @isOpen = false
+    @$menuButton = @$element.find '.dropdown_menu_button'
+    @$menuList   = @$element.find '.dropdown_menu_list_wrapper'
 
     @_buildMenuList()
     @_bind()
@@ -24,82 +22,80 @@ window.ActiveAdmin.DropdownMenu = class ActiveAdmin.DropdownMenu
     @isOpen = true
     @$menuList.fadeIn @options.fadeInDuration
 
-    @_positionMenuList()
-    @_positionNipple()
-
-    return @
+    @_position()
+    @
 
 
   close: ->
     @isOpen = false
     @$menuList.fadeOut this.options.fadeOutDuration
-
-    return @
+    @
 
   destroy: ->
     @$element.unbind()
     @$element = null
-
-    return @
+    @
 
   isDisabled: ->
-    @$menuButton.hasClass("disabled")
+    @$menuButton.hasClass 'disabled'
 
   disable: ->
-    @$menuButton.addClass("disabled")
+    @$menuButton.addClass 'disabled'
 
   enable: ->
-    @$menuButton.removeClass("disabled")
+    @$menuButton.removeClass 'disabled'
 
   option: (key, value) ->
     if $.isPlainObject(key)
-      return @options = $.extend(true, @options, key)
-
+      @options = $.extend(true, @options, key)
     else if key?
-      return @options[key]
-
+      @options[key]
     else
-      return @options[key] = value
+      @options[key] = value
 
   # Private
 
   _buildMenuList: ->
-    @$menuList.prepend("<div class=\"dropdown_menu_nipple\"></div>")
+    @$nipple = $('<div class="dropdown_menu_nipple"></div>')
+    @$menuList.prepend @$nipple
     @$menuList.hide()
 
   _bind: ->
-    $("body").bind 'click', () =>
-      if @isOpen is true
-          @close()
+    $('body').click =>
+      @close() if @isOpen
 
-    @$menuButton.bind 'click', () =>
+    @$menuButton.click =>
       unless @isDisabled()
-        if @isOpen is true
-          @close()
-        else
-          @open()
-
-      # Return false so that the event is stopped
+        if @isOpen then @close() else @open()
       false
 
-  _positionMenuList: ->
-    centerOfButtonFromLeft = @$menuButton.position().left + @$menuButton.outerWidth() / 2
-    centerOfmenuListFromLeft = @$menuList.outerWidth() / 2
-    menuListLeftPos = centerOfButtonFromLeft - centerOfmenuListFromLeft
-    @$menuList.css "left", menuListLeftPos
+  _position: ->
+    @$menuList.css 'top', @$menuButton.position().top + @$menuButton.outerHeight() + 10
 
-  _positionNipple: ->
-    centerOfmenuListFromLeft = @$menuList.outerWidth() / 2
-    bottomOfButtonFromTop = @$menuButton.position().top + @$menuButton.outerHeight() + 10
-    @$menuList.css "top", bottomOfButtonFromTop
-    $nipple = @$menuList.find(".dropdown_menu_nipple")
-    centerOfnippleFromLeft = $nipple.outerWidth() / 2
-    nippleLeftPos = centerOfmenuListFromLeft - centerOfnippleFromLeft
-    $nipple.css "left", nippleLeftPos
+    button_left = @$menuButton.position().left
+    button_center =  @$menuButton.outerWidth() / 2
+    button_right = button_left + button_center * 2
+    menu_center = @$menuList.outerWidth() / 2
+    nipple_center = @$nipple.outerWidth() / 2
+    window_right = $(window).width()
 
-(($) ->
-  $.widget.bridge 'aaDropdownMenu', ActiveAdmin.DropdownMenu
+    centered_menu_left = button_left + button_center - menu_center
+    centered_menu_right = button_left + button_center + menu_center
 
-  $ ->
-    $(".dropdown_menu").aaDropdownMenu()
-)(jQuery)
+    if centered_menu_left < 0
+      # Left align with button
+      @$menuList.css 'left', button_left
+      @$nipple.css   'left', button_center - nipple_center
+    else if centered_menu_right > window_right
+      # Right align with button
+      @$menuList.css 'right', window_right - button_right
+      @$nipple.css   'right', button_center - nipple_center
+    else
+      # Center align under button
+      @$menuList.css 'left', centered_menu_left
+      @$nipple.css   'left', menu_center - nipple_center
+
+$.widget.bridge 'aaDropdownMenu', ActiveAdmin.DropdownMenu
+
+$(document).on 'ready page:load', ->
+  $('.dropdown_menu').aaDropdownMenu()

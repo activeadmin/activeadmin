@@ -5,7 +5,7 @@ module ActiveAdmin
       def initialize(*)
         super
         @batch_actions = {}
-        add_default_batch_actions
+        add_default_batch_action
       end
 
       # @return [Array] The set of batch actions for this resource
@@ -31,7 +31,8 @@ module ActiveAdmin
       # @param [Hash] options
       # => :if is a proc that will be called to determine if the BatchAction should be displayed
       # => :sort_order is used to sort the batch actions ascending
-      # => :confirm is a string which the user will have to accept in order to process the action
+      # => :confirm is a string to prompt the user with (or a boolean to use the default message)
+      # => :form is a Hash of form fields you want the user to fill out
       #
       def add_batch_action(sym, title, options = {}, &block)
         @batch_actions[sym] = ActiveAdmin::BatchAction.new(sym, title, options, &block)
@@ -39,7 +40,7 @@ module ActiveAdmin
 
       # Remove a batch action
       # @param [Symbol] sym
-      # @returns [ActiveAdmin::BatchAction] the batch action, if it was present
+      # @return [ActiveAdmin::BatchAction] the batch action, if it was present
       #
       def remove_batch_action(sym)
         @batch_actions.delete(sym.to_sym)
@@ -58,21 +59,21 @@ module ActiveAdmin
       private
 
       # @return [ActiveAdmin::BatchAction] The default "delete" action
-      def add_default_batch_actions
+      def add_default_batch_action
         destroy_options = {
-          :priority => 100,
-          :confirm => proc { I18n.t('active_admin.batch_actions.delete_confirmation', :plural_model => active_admin_config.plural_resource_label.downcase) },
-          :if => proc{ controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, active_admin_config.resource_class) }
+          priority: 100,
+          confirm: proc{ I18n.t('active_admin.batch_actions.delete_confirmation', plural_model: active_admin_config.plural_resource_label.downcase) },
+          if: proc{ controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, active_admin_config.resource_class) }
         }
 
         add_batch_action :destroy, proc { I18n.t('active_admin.delete') }, destroy_options do |selected_ids|
           active_admin_config.resource_class.find(selected_ids).each { |r| r.destroy }
 
           redirect_to active_admin_config.route_collection_path(params),
-                      :notice => I18n.t("active_admin.batch_actions.succesfully_destroyed",
-                                        :count => selected_ids.count,
-                                        :model => active_admin_config.resource_label.downcase,
-                                        :plural_model => active_admin_config.plural_resource_label(:count => selected_ids.count).downcase)
+                      notice: I18n.t("active_admin.batch_actions.succesfully_destroyed",
+                                        count: selected_ids.count,
+                                        model: active_admin_config.resource_label.downcase,
+                                        plural_model: active_admin_config.plural_resource_label(count: selected_ids.count).downcase)
         end
       end
 
@@ -83,7 +84,9 @@ module ActiveAdmin
 
     include Comparable
 
-    attr_reader :block, :title, :sym, :confirm
+    attr_reader :block, :title, :sym
+
+    DEFAULT_CONFIRM_MESSAGE = proc{ I18n.t 'active_admin.batch_actions.default_confirmation' }
 
     # Create a Batch Action
     #
@@ -92,24 +95,47 @@ module ActiveAdmin
     #   BatchAction.new :flag
     # => Will create an action that appears in the action list popover
     #
-    #   BatchAction.new( :flag ) { |selection| redirect_to collection_path, :notice => "#{selection.length} users flagged" }
+    #   BatchAction.new(:flag) { |selection| redirect_to collection_path, notice: "#{selection.length} users flagged" }
     # => Will create an action that uses a block to process the request (which receives one paramater of the selected objects)
     #
-    #   BatchAction.new( "Perform Long Operation on the" ) { |selection| }
+    #   BatchAction.new("Perform Long Operation on") { |selection| }
     # => You can create batch actions with a title instead of a Symbol
     #
-    #   BatchAction.new( :flag, :if => proc { can? :flag, AdminUser  } ) { |selection| }
-    # => You can provide an optional :if proc to optionally display the batch action
+    #   BatchAction.new(:flag, if: proc{ can? :flag, AdminUser }) { |selection| }
+    # => You can provide an `:if` proc to choose when the batch action should be displayed
+    #
+    #   BatchAction.new :flag, confirm: true
+    # => You can pass `true` to `:confirm` to use the default confirm message.
+    #
+    #   BatchAction.new(:flag, confirm: "Are you sure?") { |selection| }
+    # => You can pass a custom confirmation message through `:confirm`
+    #
+    #   BatchAction.new(:flag, form: {foo: :text, bar: :checkbox}) { |selection, inputs| }
+    # => You can pass a hash of options to `:form` that will be rendered as form input fields for the user to fill out.
     #
     def initialize(sym, title, options = {}, &block)
       @sym, @title, @options, @block, @confirm = sym, title, options, block, options[:confirm]
       @block ||= proc {}
     end
 
+    def confirm
+      if @confirm == true
+        DEFAULT_CONFIRM_MESSAGE
+      elsif !@confirm && @options[:form]
+        DEFAULT_CONFIRM_MESSAGE
+      else
+        @confirm
+      end
+    end
+
+    def inputs
+      @options[:form]
+    end
+
     # Returns the display if block. If the block was not explicitly defined
     # a default block always returning true will be returned.
     def display_if_block
-      @options[:if] || proc { true }
+      @options[:if] || proc{ true }
     end
 
     # Used for sorting

@@ -12,8 +12,8 @@ Feature: Format as CSV
     When I am on the index page for posts
     And I follow "CSV"
     And I should download a CSV file for "posts" containing:
-    | Id  | Title       | Body | Published At | Starred | Created At | Updated At |
-    | \d+ | Hello World |      |              |         | (.*)       | (.*)       |
+    | Id  | Title       | Body | Published at | Position | Starred | Created at | Updated at |
+    | \d+ | Hello World |      |              |          |         | (.*)       | (.*)       |
 
   Scenario: Default with alias
     Given a configuration of:
@@ -24,7 +24,7 @@ Feature: Format as CSV
     When I am on the index page for my_articles
     And I follow "CSV"
     And I should download a CSV file for "my-articles" containing:
-    | Id  | Title       | Body | Published At | Starred | Created At | Updated At |
+    | Id  | Title       | Body | Published at | Position | Starred | Created at | Updated at |
 
   Scenario: With CSV format customization
     Given a configuration of:
@@ -65,7 +65,7 @@ Feature: Format as CSV
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        csv :force_quotes => true do
+        csv :force_quotes => true, :byte_order_mark => "" do
           column :title
           column :body
         end
@@ -115,3 +115,89 @@ Feature: Format as CSV
       | Title  | Body |
       | 012345 | (.*) |
     And the CSV file should contain "012345" in quotes
+
+    Scenario: Without CVS column names explicitely specified
+    Given a configuration of:
+    """
+      ActiveAdmin.application.csv_options = {:col_sep => ',', :force_quotes => true}
+      ActiveAdmin.register Post do
+        csv :column_names => true do
+          column :title
+          column :body
+        end
+      end
+    """
+    And a post with the title "012345" exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    And I should download a CSV file with "," separator for "posts" containing:
+      | Title  | Body |
+      | 012345 | (.*) |
+
+  Scenario: Without CVS column names
+    Given a configuration of:
+    """
+      ActiveAdmin.application.csv_options = {:col_sep => ',', :force_quotes => true}
+      ActiveAdmin.register Post do
+        csv :column_names => false do
+          column :title
+          column :body
+        end
+      end
+    """
+    And a post with the title "012345" exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    And I should download a CSV file with "," separator for "posts" containing:
+      | 012345 | (.*) |
+
+  Scenario: With encoding CSV options
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        csv :encoding => 'SJIS' do
+          column :title
+          column :body
+        end
+      end
+    """
+    And a post with the title "あいうえお" exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    And the encoding of the CSV file should be "SJIS"
+
+  Scenario: With default encoding CSV options
+    Given a configuration of:
+    """
+      ActiveAdmin.application.csv_options = { :encoding => 'SJIS' }
+      ActiveAdmin.register Post do
+        csv do
+          column :title
+          column :body
+        end
+      end
+    """
+    And a post with the title "あいうえお" exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    And the encoding of the CSV file should be "SJIS"
+
+  Scenario: With decorator
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        decorate_with PostDecorator
+
+        csv do
+          column :id
+          column :title
+          column :decorator_method
+        end
+      end
+    """
+    And a post with the title "Hello World" exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    And I should download a CSV file for "posts" containing:
+    | Id  | Title       | Decorator method                         |
+    | \d+ | Hello World | A method only available on the decorator |

@@ -1,14 +1,15 @@
 <div id="login">
-  <%= content_tag :h2, t('active_admin.devise.reset_password.title') %>
+  <h2><%= render_or_call_method_or_proc_on(self, active_admin_application.site_title) %> <%= title t('active_admin.devise.reset_password.title') %></h2>
 
-  <%= active_admin_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+  <%= devise_error_messages! %>
+  <%= active_admin_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
     f.inputs do
       f.input :email
     end
     f.actions do
-      f.action :submit, :label => t('active_admin.devise.reset_password.submit'), :button_html => { :value => t('active_admin.devise.reset_password.submit') }
+      f.action :submit, label: t('active_admin.devise.reset_password.submit'), button_html: { value: t('active_admin.devise.reset_password.submit') }
     end
   end %>
 
-  <%= render :partial => "active_admin/devise/shared/links" %>
+  <%= render partial: "active_admin/devise/shared/links" %>
 </div>

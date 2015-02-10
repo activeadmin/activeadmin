@@ -72,7 +72,7 @@ index do
   selectable_column
   column :title
   actions do |post|
-    link_to "Preview", admin_preview_post_path(post), class: "member_link"
+    item "Preview", admin_preview_post_path(post), class: "member_link"
   end
 end
 ```
@@ -83,7 +83,30 @@ Or forego the default links entirely:
 index do
   column :title
   actions defaults: false do |post|
-    link_to "View", admin_post_path(post)
+    item "View", admin_post_path(post)
+  end
+end
+```
+
+Or append custom action with custom html via arbre:
+
+```ruby
+index do
+  column :title
+  actions do |post|
+    a link_to "View", admin_post_path(post)
+  end
+end
+```
+
+In case you prefer to list actions links in a dropdown menu:
+
+```ruby
+index do
+  selectable_column
+  column :title
+  actions dropdown: true do |post|
+    item "Preview", admin_preview_post_path(post)
   end
 end
 ```
@@ -113,6 +136,15 @@ You can turn off sorting on any column by passing false:
 ```ruby
 index do
   column :title, sortable: false
+end
+```
+
+It's also possible to sort by PostgreSQL's hstore column key. You should set `sortable`
+option to a `column->'key'` value:
+
+```ruby
+index do
+  column :keywords, sortable: "meta->'keywords'"
 end
 ```
 
@@ -150,5 +182,16 @@ For example, if you were using CanCan:
 index do
   column :title, sortable: false
   column :secret_data if can? :manage, Post
+end
+```
+
+## Custom row class
+
+In order to add special class to table rows pass the proc object as a `:row_class` option
+of the `index` method.
+
+```ruby
+index row_class: ->elem { 'active' if elem.active? } do
+  # columns
 end
 ```

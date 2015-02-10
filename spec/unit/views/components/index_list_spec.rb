@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Views::IndexList do
 
@@ -9,24 +9,27 @@ describe ActiveAdmin::Views::IndexList do
 
     let(:helpers) do
       helpers = mock_action_view
-      helpers.stub url_for: "/"
-      helpers.stub(:params).and_return as: "table"
+      allow(helpers).to receive(:url_for).and_return("/")
+      allow(helpers).to receive(:params).and_return as: "table"
       helpers
     end
 
     subject do
-      render_arbre_component({:index_classes => index_classes}, helpers) do
+      render_arbre_component({index_classes: index_classes}, helpers) do
         index_list_renderer(index_classes)
       end
     end
 
-    its(:tag_name) { should == 'ul' }
+    describe '#tag_name' do
+      subject { super().tag_name }
+      it { is_expected.to eq 'ul'}
+    end
 
     it "should contain the names of available indexes in links" do
       a_tags = subject.find_by_tag("a")
-      a_tags.size.should == 2
-      a_tags.first.to_s.should include("Table")
-      a_tags.last.to_s.should include("List")
+      expect(a_tags.size).to eq 2
+      expect(a_tags.first.to_s).to include("Table")
+      expect(a_tags.last.to_s).to include("List")
     end
   end
 end

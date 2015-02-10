@@ -9,9 +9,7 @@ da:
     delete: "Slet"
     delete_confirmation: "Er du sikker på at du ønsker at slette?"
     new_model: "Ny(t) %{model}"
-    create_model: "Opret %{model}"
     edit_model: "Rediger %{model}"
-    update_model: "Opdater %{model}"
     delete_model: "Slet %{model}"
     details: "%{model} detaljer"
     cancel: "Fortryd"
@@ -33,6 +31,9 @@ da:
         ends_with: "Slutter med"
         greater_than: "større end"
         less_than: "mindre end"
+    status_tag:
+      "yes": "Ja"
+      "no": "Nej"
     main_content: "Implementer venligst %{model}#main_content for at vise noget indhold."
     logout: "Log ud"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +52,12 @@ da:
     blank_slate:
       content: "Der er ingen %{resource_name} endnu."
       link: "Opret"
+    dropdown_actions:
+      button_label: "Handlinger"
     batch_actions:
       button_label: "Batch Handlinger"
-      delete_confirmation: "Er du sikker på du vil slette disse %{plural_model}? Du vil ikke være i stand til at fortryde dette."
+      default_confirmation: "Er du sikker på du vil gøre dette?"
+      delete_confirmation: "Er du sikker på du vil slette disse %{plural_model}?"
       succesfully_destroyed:
         one: "Vellykket ødelagt 1 %{model}"
         other: "Vellykket ødelagt %{count} %{plural_model}"

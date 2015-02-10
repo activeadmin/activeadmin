@@ -9,9 +9,7 @@ lt:
     delete: 'Šalinti'
     delete_confirmation: 'Ar jūs tikrai norite tai pašalinti?'
     new_model: 'Naujas %{model}'
-    create_model: 'Naujas %{model}'
     edit_model: 'Redaguoti %{model}'
-    update_model: 'Redaguoti %{model}'
     delete_model: 'Pašalinti %{model}'
     details: '%{model} Informacija'
     cancel: 'Atšaukti'
@@ -33,6 +31,9 @@ lt:
         ends_with: "Baigiasi"
         greater_than: 'didesnis nei'
         less_than: 'mažiau nei'
+    status_tag:
+      "yes": "Taip"
+      "no": "Nėra"
     main_content: 'Prašome realizuoti %{model}#main_content turiniui vaizduoti.'
     logout: 'Išeiti'
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +52,12 @@ lt:
     blank_slate:
       content: 'Nėra %{resource_name}.'
       link: 'Sukurti'
+    dropdown_actions:
+      button_label: "Veiksmai"
     batch_actions:
       button_label: 'Veiksmai su pažymėtais'
-      delete_confirmation: 'Ar jūs tikrai norite pašalinti šiuos %{plural_model}? Pašalinus negalėsite atstatyti?'
+      default_confirmation: 'Ar jūs tikrai norite tai padaryti?'
+      delete_confirmation: 'Ar jūs tikrai norite pašalinti šiuos %{plural_model}?'
       succesfully_destroyed:
         one: 'Sėkmingai pašalintas 1 %{model}'
         few: 'Sėkmingai pašalinti %{count} %{plural_model}'
@@ -64,27 +68,54 @@ lt:
       labels:
         destroy: 'Šalinti'
     comments:
-      body: 'Kūno'
+      resource_type: 'Resurso Tipas'
+      author_type: 'Autoriaus Tipas'
+      body: 'Įrašas'
       author: 'Autorius'
       title: 'Komentaras'
       add: 'Pridėti komentarą'
       resource: 'Išteklių'
       no_comments_yet: 'Dar nėra komentarų.'
+      author_missing: 'Anonimas'
       title_content: 'Komentarai (%{count})'
       errors:
-        empty_text: 'komentaras neišsaugotas, tekstas buvo tuščias.'
+        empty_text: 'Komentaras neišsaugotas, tekstas buvo tuščias.'
     devise:
+      username:
+        title: 'Vartotojo Vardas'
+      email:
+        title: 'El. paštas'
+      subdomain:
+        title: 'Subdomenas'
+      password:
+        title: 'Slaptažodis'
+      sign_up:
+        title: 'Registracija'
+        submit: 'Užsiregistruoti'
       login:
-        title: 'Prisijungti'
-        remember_me: 'Prisimink mane'
+        title: 'Prisijungimas'
+        remember_me: 'Prisiminti Mane'
         submit: 'Prisijungti'
       reset_password:
         title: 'Pamiršote slaptažodį?'
-        submit: 'Vėl nustatykite savo slaptažodį'
+        submit: 'Sukurti Naują Slaptažodį'
       change_password:
-        title: 'Keisti slaptažodį'
-        submit: 'Keisti slaptažodį'
+        title: 'Slaptažodžio Keitimas'
+        submit: 'Pakeisti mano slaptažodį'
+      unlock:
+        title: 'Pakartotinio Atrakinimo Instrukcijos'
+        submit: 'Pakartotinai siųsti atrakinimo instrukcijas'
+      resend_confirmation_instructions:
+        title: 'Patvirtinimo Instrukcijos'
+        submit: 'Siųsti patvirtinimo instructions'
       links:
         sign_in: 'Prisijungti'
         forgot_your_password: 'Pamiršote slaptažodį?'
-        sign_in_with_omniauth_provider: "Prisijunkite su %{provider}"
+        sign_in_with_omniauth_provider: 'Prisijungti su %{provider}'
+    access_denied:
+      message: 'Jūs nesate įgaliotas atlikti šį veiksmą.'
+    index_list:
+      table: "Lentelė"
+      block: "Sąrašas"
+      grid: "Tinklelis"
+      blog: "Blog"

@@ -9,9 +9,7 @@ lv:
     delete: "Dzēst"
     delete_confirmation: "Vai Tu tiešām vēlies dzēst?"
     new_model: "Pievienot '%{model}' ierakstu"
-    create_model: "Pievienot '%{model}' ierakstu"
     edit_model: "Labot '%{model}' ierakstu"
-    update_model: "Labot '%{model}' ierakstu"
     delete_model: "Dzēst '%{model}' ierakstu"
     details: "Apraksts"
     cancel: "Atcelt"
@@ -33,6 +31,9 @@ lv:
         ends_with: "Beidzas ar"
         greater_than: "Lielāks par"
         less_than: "Mazāks par"
+    status_tag:
+      "yes": "Jā"
+      "no": "Nē"
     main_content: "Lūdzu implementēt %{model}#main_content, lai rādītos saturs."
     logout: "Iziet"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +52,12 @@ lv:
     blank_slate:
       content: "Sadaļā '%{resource_name}' nav neviena ieraksta."
       link: "Izveidot jaunu"
+    dropdown_actions:
+      button_label: "Actions"
     batch_actions:
       button_label: "Batch Actions"
-      delete_confirmation: "Are you sure you want to delete these %{plural_model}? You won't be able to undo this."
+      default_confirmation: "Vai tiešām vēlaties to darīt?"
+      delete_confirmation: "Vai tiešām vēlaties dzēst šos %{plural_model}?"
       succesfully_destroyed:
         one: "Successfully destroyed 1 %{model}"
         other: "Successfully destroyed %{count} %{plural_model}"

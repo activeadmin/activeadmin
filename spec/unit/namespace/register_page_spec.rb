@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Namespace, "registering a page" do
 
@@ -13,15 +13,15 @@ describe ActiveAdmin::Namespace, "registering a page" do
     end
 
     it "should store the namespaced registered configuration" do
-      namespace.resources.keys.should include('Status')
+      expect(namespace.resources.keys).to include('Status')
     end
 
     it "should create a new controller in the default namespace" do
-      defined?(Admin::StatusController).should be_true
+      expect(defined?(Admin::StatusController)).to be_truthy
     end
 
     it "should create a menu item" do
-      menu["Status"].should be_an_instance_of(ActiveAdmin::MenuItem)
+      expect(menu["Status"]).to be_an_instance_of(ActiveAdmin::MenuItem)
     end
   end # context "with no configuration"
 
@@ -42,21 +42,21 @@ describe ActiveAdmin::Namespace, "registering a page" do
       end
 
       it "should add a new menu item" do
-        menu['Status'].should_not be_nil
+        expect(menu['Status']).to_not be_nil
       end
     end # describe "adding as a top level item"
 
     describe "adding as a child" do
       before do
         namespace.register_page "Status" do
-          menu :parent => 'Extra'
+          menu parent: 'Extra'
         end
       end
       it "should generate the parent menu item" do
-        menu['Extra'].should_not be_nil
+       expect( menu['Extra']).to_not be_nil
       end
       it "should generate its own child item" do
-        menu['Extra']['Status'].should_not be_nil
+        expect(menu['Extra']['Status']).to_not be_nil
       end
     end # describe "adding as a child"
 
@@ -67,7 +67,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
         end
       end
       it "should not create a menu item" do
-        menu["Status"].should be_nil
+        expect(menu["Status"]).to be_nil
       end
     end # describe "disabling the menu"
   end # describe "adding to the menu"

@@ -9,9 +9,7 @@ de:
     delete: "Löschen"
     delete_confirmation: "Wollen Sie dieses Element wirklich löschen?"
     new_model: "%{model} erstellen"
-    create_model: "%{model} erstellen"
     edit_model: "%{model} bearbeiten"
-    update_model: "%{model} bearbeiten"
     delete_model: "%{model} löschen"
     details: "%{model} Details"
     cancel: "Abbrechen"
@@ -33,6 +31,9 @@ de:
         ends_with: "Endet mit"
         greater_than: "Größer als"
         less_than: "Kleiner als"
+    status_tag:
+      "yes": "Ja"
+      "no": "Nein"
     main_content: "Bitte implementieren Sie %{model}#main_content, um Inhalte anzuzeigen."
     logout: "Abmelden"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +52,12 @@ de:
     blank_slate:
       content: "Es gibt noch keine %{resource_name}."
       link: "Erstellen"
+    dropdown_actions:
+      button_label: "Aktionen"
     batch_actions:
       button_label: "Stapelverarbeitung"
-      delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen? Dies kann nicht rückgängig gemacht werden"
+      default_confirmation: "Bist du sicher, dass Sie dies tun wollen?"
+      delete_confirmation: "Sind Sie sicher dass sie diese %{plural_model} löschen wollen?"
       succesfully_destroyed:
         one: "Erfolgreich 1 %{model} gelöscht"
         other: "Erfolgreich %{count} %{plural_model} gelöscht"
@@ -68,16 +72,28 @@ de:
       body: "Inhalt"
       author: "Autor"
       title: "Kommentar"
-      resource: "Res­sour­ce"
       add: "Kommentar hinzufügen"
+      resource: "Res­sour­ce"
       no_comments_yet: "Es gibt noch keine Kommentare."
+      author_missing: "Unbekannt"
       title_content: "Kommentare (%{count})"
       errors:
         empty_text: "Der Kommentar wurde nicht gespeichert, da der Text fehlt."
     devise:
+      username:
+        title: "Benutzername"
+      email:
+        title: "E-Mail-Adresse"
+      subdomain:
+        title: "Subdomain"
+      password:
+        title: "Passwort"
+      sign_up:
+        title: "Registrieren"
+        submit: "Registrieren"
       login:
         title: "Login"
-        remember_me: "erinnere dich an mich"
+        remember_me: "Angemeldet bleiben"
         submit: "Login"
       reset_password:
         title: "Passwort vergessen?"
@@ -85,35 +101,19 @@ de:
       change_password:
         title: "Ändern Sie Ihr Passwort"
         submit: "Mein Passwort ändern"
+      resend_confirmation_instructions:
+        title: "Anleitung zur Bestätigung noch mal schicken"
+        submit: "Anleitung zur Bestätigung noch mal schicken"
       links:
+        sign_up: "Registrieren"
         sign_in: "Anmeldung"
         forgot_your_password: "Passwort vergessen?"
         sign_in_with_omniauth_provider: "Anmeldung mit %{provider}"
-  activerecord:
-    attributes:
-      admin_user:
-        id: ID
-        email: E-Mail
-        encrypted_Password: Verschlüsseltes Passwort
-        reset_password_token: Passwort-Reset-Token
-        reset_password_sent_at: Passwort-Reset-Anweisungen gesendet am
-        remember_created_at: Passwort merken seit
-        sign_in_count: Anzahl Logins
-        current_sign_in_at: Aktuell angemeldet seit
-        last_sign_in_at: Letzter Login am
-        current_sign_in_ip: Aktuelle IP-Adresse
-        last_sign_in_ip: Letzte IP-Adresse
-        created_at: Erstellt am
-        updated_at: Aktualisiert am
-    models:
-      admin_user:
-        one: Administrator
-        other: Administratoren
-  devise:
-    failure:
-      admin_user:
-        invalid: Benutzername oder Kennwort nicht korrekt.
-        unauthenticated: Bitte melden Sie sich als Administrator an.
-    sessions:
-      admin_user:
-        signed_in: Erfolgreich als Administrator angemeldet.
+        resend_unlock_instructions: "Entsperrungsanweisung erneut senden"
+        resend_confirmation_instructions: "Bestätigungsanweisung erneut senden"
+    unsupported_browser:
+      headline: "ActiveAdmin unterstützt nicht länger den Internet Explorer in Version 8 oder niedriger."
+      recommendation: "Wir empfehlen die Nutzung von <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, oder <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Wenn sie IE 9 oder neuer benutzen, stellen sie sicher das sie den <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Kompatibilitätsansicht\" ausgeschaltet</a> haben."
+    access_denied:
+      message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."

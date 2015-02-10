@@ -9,9 +9,7 @@ he:
     delete: "מחיקה"
     delete_confirmation: "האם אתה בטוח שאתה רוצה למחוק את זה?"
     new_model: "%{model} חדש"
-    create_model: "יצירת %{model} חדש"
     edit_model: "ערוך %{model}"
-    update_model: "עדכון %{model}"
     delete_model: "מחיקת %{model}"
     details: "פרטים על %{model}"
     cancel: "ביטול"
@@ -33,6 +31,9 @@ he:
         ends_with: "מסתיים ב"
         greater_than: "גדול מ"
         less_than: "פחות מ"
+    status_tag:
+      "yes": "כן"
+      "no": "לא"
     main_content: "Please implement %{model}#main_content to display content."
     logout: "התנתקות"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,9 +52,12 @@ he:
     blank_slate:
       content: "כרגע אין עוד אף %{resource_name}."
       link: "צור אחד"
+    dropdown_actions:
+      button_label: "פעולו"
     batch_actions:
       button_label: "פעולות מרובות"
-      delete_confirmation: "האם הנך בטוח שאתה רוצה למרוח את %{plural_model}? לא תוכל לבטל את המחיקה."
+      default_confirmation: "אתה בטוח שאתה רוצה לעשות את זה?"
+      delete_confirmation: "האם הנך בטוח שאתה רוצה למרוח את %{plural_model}?"
       succesfully_destroyed:
         one: "1 %{model} נמחק בהצלחה"
         few: "%{count} %{plural_model} נמחק בהצלחה"

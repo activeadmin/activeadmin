@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ActiveAdmin::Views::SiteTitle do
 
@@ -18,18 +18,18 @@ describe ActiveAdmin::Views::SiteTitle do
                          site_title_link: nil
 
       site_title = build_title(namespace)
-      site_title.content.should eq "Hello World"
+      expect(site_title.content).to eq "Hello World"
     end
 
     it "renders the return value of a method when a symbol" do
-      helpers.should_receive(:hello_world).and_return("Hello World")
+      expect(helpers).to receive(:hello_world).and_return("Hello World")
 
       namespace = double site_title: :hello_world,
                          site_title_image: nil,
                          site_title_link: nil
 
       site_title = build_title(namespace)
-      site_title.content.should eq "Hello World"
+      expect(site_title.content).to eq "Hello World"
     end
 
     it "renders the return value of a proc" do
@@ -38,7 +38,7 @@ describe ActiveAdmin::Views::SiteTitle do
                          site_title_link: nil
 
       site_title = build_title(namespace)
-      site_title.content.should eq "Hello World"
+      expect(site_title.content).to eq "Hello World"
     end
 
   end
@@ -46,7 +46,7 @@ describe ActiveAdmin::Views::SiteTitle do
   context "when an image" do
 
     it "renders the string when a string is passed in" do
-      helpers.should_receive(:image_tag).
+      expect(helpers).to receive(:image_tag).
         with("an/image.png", alt: nil, id: "site_title_image").
         and_return '<img src="/assets/an/image.png" />'.html_safe
 
@@ -55,7 +55,7 @@ describe ActiveAdmin::Views::SiteTitle do
                          site_title_link: nil
 
       site_title = build_title(namespace)
-      site_title.content.strip.should eq '<img src="/assets/an/image.png" />'
+      expect(site_title.content.strip).to eq '<img src="/assets/an/image.png" />'
     end
 
   end
@@ -68,7 +68,7 @@ describe ActiveAdmin::Views::SiteTitle do
                          site_title_link: "/"
 
       site_title = build_title(namespace)
-      site_title.content.should eq '<a href="/">Hello World</a>'
+      expect(site_title.content).to eq '<a href="/">Hello World</a>'
     end
 
   end

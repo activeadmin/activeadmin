@@ -10,9 +10,9 @@ Feature: Index as Blog
         index :as => :blog
       end
       """
-	And I am logged in
+    And I am logged in
     When I am on the index page for posts
-    Then I should see "Hello World" within "h3"
+    Then I should see a blog header "Hello World"
     And I should see a link to "Hello World"
 
   Scenario: Viewing the blog with a resource as a simple configuration
@@ -26,7 +26,7 @@ Feature: Index as Blog
         end
       end
       """
-    Then I should see "Hello World" within "h3"
+    Then I should see a blog header "Hello World"
     And I should see a link to "Hello World"
     And I should see "My great post body" within ".post"
 
@@ -45,7 +45,7 @@ Feature: Index as Blog
         end
       end
       """
-    Then I should see "Hello World From Block" within "h3"
+    Then I should see a blog header "Hello World From Block"
     And I should see a link to "Hello World From Block"
     And I should see "My great post body From Block" within ".post"
 

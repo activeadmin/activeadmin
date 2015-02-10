@@ -1,0 +1,122 @@
+bs:
+  active_admin:
+    dashboard: "Upravljačka ploča"
+    dashboard_welcome:
+      welcome: "Dobrodošli u Active Admin. Ovo je početna upravljačka ploča."
+      call_to_action: "Da biste dodali nove odjeljke na upravljačku ploču, pogledajte 'app/admin/dashboard.rb'"
+    view: "Pregledaj"
+    edit: "Uredi"
+    delete: "Obriši"
+    delete_confirmation: "Jeste li sigurni da želite ovo obrisati?"
+    new_model: "Novi %{model}"
+    edit_model: "Uredi %{model}"
+    delete_model: "Obriši %{model}"
+    details: "%{model} detalji"
+    cancel: "Odustani"
+    empty: "Prazno"
+    previous: "Prethodni"
+    next: "Sljedeći"
+    download: "Spremi na računalo:"
+    has_many_new: "Dodaj novi %{model}"
+    has_many_delete: "Obriši"
+    has_many_remove: "Ukloniti"
+    filters:
+      buttons:
+        filter: "Filtriraj"
+        clear: "Ukloni filtere"
+      predicates:
+        contains: "Sadrži"
+        equals: "Jednako"
+        starts_with: "počinje s"
+        ends_with: "Završava sa"
+        greater_than: "Veće od"
+        less_than: "Manje od"
+    status_tag:
+      "yes": "Da"
+      "no": "Nema"
+    main_content: "Molim Vas, implementirajte %{model}#main_content da biste prikazali sadržaj."
+    logout: "Odjavi se"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Filtriranje"
+    pagination:
+      empty: "Nije pronađen niti jedan %{model}."
+      one: "Prikazan <b>1</b> %{model}"
+      one_page: "Prikazano <b>svih %{n}</b> %{model}"
+      multiple: "Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> od ukupno <b>%{total}</b>"
+      multiple_without_total: "Prikazani %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "zapis"
+        few: "zapisa"
+        many: "zapisa"
+        other: "zapisa"
+    any: "Bilo koji"
+    blank_slate:
+      content: "Još uvijek ne postoji niti jedan zapis tipa %{resource_name}."
+      link: "Izradi jedan"
+    batch_actions:
+      button_label: "Grupne akcije"
+      default_confirmation: "Jeste li sigurni da želite to učiniti?"
+      delete_confirmation: "Jeste li sigurni da želite obrisati %{plural_model}?"
+      succesfully_destroyed:
+        one: "Uspješno je obrisan 1 %{model}"
+        few: "Uspješno su obrisana %{count} %{plural_model}"
+        many: "Uspješno je obrisano %{count} %{plural_model}"
+        other: "Uspješno je obrisano %{count} %{plural_model}"
+      selection_toggle_explanation: "(Izmijeni odabir)"
+      link: "Izradi jedan"
+      action_label: "%{title} označene"
+      labels:
+        destroy: "Obriši"
+    comments:
+      resource_type: "Tip objekta"
+      author_type: "Tip autora"
+      body: "Sadržaj"
+      author: "Autor"
+      title: "Komentar"
+      add: "Dodaj komentar"
+      resource: "Objekt"
+      no_comments_yet: "Još nema komentara."
+      author_missing: "Anoniman"
+      title_content: "Komentari (%{count})"
+      errors:
+        empty_text: "Komentar nije spremljen, sadržaj je prazan."
+    devise:
+      username:
+        title: "Korisničko ime"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Poddomena"
+      password:
+        title: "Lozinka"
+      sign_up:
+        title: "Registracija"
+        submit: "Registruj"
+      login:
+        title: "Prijava"
+        remember_me: "Zapamti me"
+        submit: "Prijavi se"
+      reset_password:
+        title: "Zaboravljena lozinka?"
+        submit: "Resetuj lozinku"
+      change_password:
+        title: "Izmjena lozinke"
+        submit: "Izmijeni lozinku"
+      unlock:
+        title: "Ponovno slanje uputstva za otključavanje"
+        submit: "Pošalji"
+      resend_confirmation_instructions:
+        title: "Ponovno slanje uputstva za potvrdu"
+        submit: "Pošalji"
+      links:
+        sign_in: "Prijavi se"
+        forgot_your_password: "Zaboravljena lozinka?"
+        sign_in_with_omniauth_provider: "Prijavite se za %{provider}"
+    access_denied:
+      message: "Nemaš dopuštenja."
+    index_list:
+      table: "Tabela"
+      block: "Lista"
+      grid: "Rešetka"
+      blog: "Blog"

@@ -23,7 +23,7 @@ module NavigationHelpers
       "/admin/posts/1"
     when /the first post edit page/
       "/admin/posts/1/edit"
-    when /the admin password reset form with reset password token "([^"]*)"/
+    when /the admin password reset form with token "([^"]*)"/
       "/admin/password/edit?reset_password_token=#{$1}"
 
     # the index page for posts in the root namespace
@@ -43,7 +43,7 @@ module NavigationHelpers
       admin_user_posts_path(User.last)
 
     when /^the last author's last post page$/
-      admin_user_post_path(User.last, Post.where(:author_id => User.last.id).last)
+      admin_user_post_path(User.last, Post.where(author_id: User.last.id).last)
 
     when /^the last post's edit page$/
       edit_admin_post_path(Post.last)

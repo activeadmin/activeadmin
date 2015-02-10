@@ -7,7 +7,7 @@ module ActiveAdmin
       class Layout < Base
 
         def title
-          assigns[:page_title] || I18n.t("active_admin.#{params[:action]}", :default => params[:action].to_s.titleize)
+          assigns[:page_title] || I18n.t("active_admin.#{params[:action]}", default: params[:action].to_s.titleize)
         end
 
         # Render the content_for(:layout) into the main content area
