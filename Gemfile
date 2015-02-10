@@ -5,7 +5,7 @@ gemspec
 require File.expand_path 'spec/support/detect_rails_version', File.dirname(__FILE__)
 
 #rails_version = detect_rails_version
-gem 'rails'  #, rails_version
+gem 'rails', '4.1.8'  #, rails_version
 
 # Optional dependencies
 gem 'cancan'
