@@ -196,7 +196,7 @@ module ActiveAdmin
 
     # Returns ALL the files to be loaded
     def files
-      load_paths.flatten.compact.uniq.map{ |path| Dir["#{path}/**/*.rb"] }.flatten
+      load_paths.flatten.compact.uniq.flat_map{ |path| Dir["#{path}/**/*.rb"] }
     end
 
     def router
