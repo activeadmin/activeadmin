@@ -12,9 +12,6 @@ $(document).on 'ready page:load', ->
     regex = /^(q\[|q%5B|q%5b|page|commit)/
     window.location.search = (param for param in params when not param.match(regex)).join('&')
 
-  # Batch Actions dropdown
-  $('.dropdown_button').popover()
-
   # Filter form: don't send any inputs that are empty
   $('.filter_form').submit ->
     $(@).find(':input').filter(-> @value is '').prop 'disabled', true
