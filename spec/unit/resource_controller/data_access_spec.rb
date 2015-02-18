@@ -58,8 +58,8 @@ describe ActiveAdmin::ResourceController::DataAccess do
 
     context "when current scope" do
       it "should set collection_before_scope to the chain and return the scoped chain" do
-        chain         = double "ChainObj"
-        scoped_chain  = double "ScopedChain"
+        chain = double "ChainObj"
+        scoped_chain = double "ScopedChain"
         current_scope = double "CurrentScope"
         allow(controller).to receive(:current_scope) { current_scope }
 
@@ -85,6 +85,55 @@ describe ActiveAdmin::ResourceController::DataAccess do
         expect(chain).to receive(:includes).with(:taggings, :author).and_return(chain_with_includes)
         expect(controller.send(:active_admin_config)).to receive(:includes).twice.and_return([:taggings, :author])
         expect(controller.send(:apply_includes, chain)).to eq chain_with_includes
+      end
+    end
+  end
+
+  describe "find_collection" do
+    let(:appliers) do
+      ActiveAdmin::ResourceController::DataAccess::COLLECTION_APPLIES
+    end
+    let(:scoped_collection) do
+      double "ScopedCollectionChain"
+    end
+    before do
+      allow(controller).to receive(:scoped_collection).
+        and_return(scoped_collection)
+    end
+
+    it "should return chain with all appliers " do
+      appliers.each do |applier|
+        expect(controller).to receive("apply_#{applier}").
+          with(scoped_collection).
+          once.
+          and_return(scoped_collection)
+      end
+      expect(controller).to receive(:collection_applies).
+        with({}).and_call_original.once
+      controller.send :find_collection
+    end
+
+    describe "collection_applies" do
+      context "excepting appliers" do
+        let(:options) do
+          { except:
+              [:authorization_scope, :filtering, :scoping, :collection_decorator]
+          }
+        end
+
+        it "should except appliers" do
+          expect(controller.send :collection_applies, options).
+            to eq([:sorting, :includes, :pagination])
+        end
+      end
+
+      context "specifying only needed appliers" do
+        let(:options) do
+          { only: [:filtering, :scoping] }
+        end
+        it "should except appliers" do
+          expect(controller.send :collection_applies, options).to eq(options[:only])
+        end
       end
     end
   end

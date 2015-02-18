@@ -274,7 +274,7 @@ module ActiveAdmin
         chain.public_send(page_method_name, page).per(per_page)
       end
 
-      def collection_applies(options)
+      def collection_applies(options = {})
         only = Array(options.fetch(:only, COLLECTION_APPLIES))
         except = Array(options.fetch(:except, []))
         COLLECTION_APPLIES && only - except
