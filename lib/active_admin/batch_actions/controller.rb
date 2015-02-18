@@ -33,8 +33,8 @@ module ActiveAdmin
         :includes
       ].freeze
 
-      def batch_action_collection
-        find_collection(only: COLLECTION_APPLIES)
+      def batch_action_collection(only = COLLECTION_APPLIES)
+        find_collection(only: only)
       end
     end
   end
