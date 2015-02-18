@@ -25,8 +25,16 @@ module ActiveAdmin
         active_admin_config.batch_actions.detect{ |action| action.sym.to_s == params[:batch_action] }
       end
 
+      COLLECTION_APPLIES = [
+        :authorization_scope,
+        :collection_decorator,
+        :filtering,
+        :scoping,
+        :includes
+      ].freeze
+
       def batch_action_collection
-        find_collection(only: [:authorization_scope, :collection_decorator, :filtering, :scoping])
+        find_collection(only: COLLECTION_APPLIES)
       end
     end
   end
