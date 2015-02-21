@@ -68,13 +68,14 @@ table.index_table {
 .panel_contents table {
   margin-top: 5px;
   th {
-    padding-top: 10px;
     background: none;
     color: $primary-color;
     @include no-shadow;
     @include text-shadow;
-    text-transform: uppercase;
+  }
+  thead th {
     border-bottom: 1px solid #ccc;
+    padding-top: 10px;
   }
   tr.odd td { background: darken($table-stripe-color, 3%); }
   tr.even td { background: $table-stripe-color; }
@@ -84,6 +85,10 @@ table.index_table {
 .attributes_table { overflow: hidden; }
 
 .attributes_table table {
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
+  width: auto;
+  
   col.even { background: $table-stripe-color; }
   col.odd  { background: darken($table-stripe-color, 3%); }
   th, td {
@@ -94,18 +99,28 @@ table.index_table {
   th {
     @include no-shadow;
     @include no-gradient;
-    width: 150px;
+    max-width: 150px;
     font-size: 0.9em;
-    padding-left: 0;
-    text-transform: uppercase;
     color: $primary-color;
     @include text-shadow;
   }
+  thead th {
+  }
+  tbody th {
+  }
+  tfoot th {
+    border-top: 1px solid #e8e8e8;
+  }
+  tfoot td {
+    border-top: 1px solid #e8e8e8;
+    font-weight: 600;
+    color: $primary-color;
+  }
   td {
+    border-left: 1px solid #e8e8e8;
     .empty {
       color: #bbb;
       font-size: 0.8em;
-      text-transform: uppercase;
       letter-spacing: 0.2em;
     }
   }
