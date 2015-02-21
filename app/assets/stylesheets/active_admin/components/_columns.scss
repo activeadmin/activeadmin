@@ -1,3 +1,4 @@
 .columns {
+  @include clearfix;
   margin-bottom: 10px;
 }
