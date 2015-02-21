@@ -5,6 +5,9 @@ table tr {
   td {
     vertical-align: top;
   }
+  td.numeric {
+    text-align: right !important;
+  }
 }
 
 // --------- Index Tables
