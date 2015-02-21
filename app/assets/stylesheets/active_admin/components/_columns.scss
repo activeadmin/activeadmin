@@ -1,3 +1,7 @@
 .columns {
+  @include clearfix;
   margin-bottom: 10px;
+}
+.column {
+  margin-right: 20px;
 }

@@ -113,6 +113,10 @@ table {
   margin-bottom: 1.5em;
   text-align: left;
   width: 100%;
+  
+  .numeric {
+    text-align: right;
+  }
 
   thead {
     display: table-header-group;
