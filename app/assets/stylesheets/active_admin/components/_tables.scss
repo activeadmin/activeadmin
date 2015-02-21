@@ -73,10 +73,12 @@ table.index_table {
     @include no-shadow;
     @include text-shadow;
   }
+
   thead th {
     border-bottom: 1px solid #ccc;
     padding-top: 10px;
   }
+
   tr.odd td { background: darken($table-stripe-color, 3%); }
   tr.even td { background: $table-stripe-color; }
 }
@@ -96,26 +98,26 @@ table.index_table {
     vertical-align: top;
     border-bottom: 1px solid #e8e8e8;
   }
+
   th {
     @include no-shadow;
     @include no-gradient;
-    max-width: 150px;
-    font-size: 0.9em;
-    color: $primary-color;
     @include text-shadow;
+    color: $primary-color;
+    font-size: 0.9em;
+    max-width: 150px;
   }
-  thead th {
-  }
-  tbody th {
-  }
+
   tfoot th {
     border-top: 1px solid #e8e8e8;
   }
+
   tfoot td {
     border-top: 1px solid #e8e8e8;
-    font-weight: 600;
     color: $primary-color;
+    font-weight: 600;
   }
+
   td {
     border-left: 1px solid #e8e8e8;
     .empty {
