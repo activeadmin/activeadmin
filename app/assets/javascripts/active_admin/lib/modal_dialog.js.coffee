@@ -20,8 +20,8 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
       "'": '&#39;'
       "/": '&#x2F;'
 
-    escapeHtml = (string)->
-      String(string).replace /[&<>"'\/]/g, (s)->
+    escapeHtml = (string) ->
+      String(string).replace /[&<>"'\/]/g, (s) ->
         entityMap[s]
 
     html += """<li>
