@@ -63,7 +63,7 @@ module ActiveAdmin
         end
 
         # Edit link on show
-        add_action_item :show, only: :show do
+        add_action_item :edit, only: :show do
           if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
             link_to I18n.t('active_admin.edit_model', model: active_admin_config.resource_label), edit_resource_path(resource)
           end
