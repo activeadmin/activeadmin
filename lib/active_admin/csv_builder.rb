@@ -40,7 +40,7 @@ module ActiveAdmin
     end
 
     def build(controller, receiver)
-      @collection = controller.send(:collection)
+      @collection = controller.send(:find_collection, except: :pagination)
       options = ActiveAdmin.application.csv_options.merge self.options
       columns = exec_columns controller.view_context
 

@@ -19,6 +19,16 @@ module ActiveAdmin
 
       protected
 
+      COLLECTION_APPLIES = [
+        :authorization_scope,
+        :sorting,
+        :filtering,
+        :scoping,
+        :includes,
+        :pagination,
+        :collection_decorator
+      ].freeze
+
       # Retrieve, memoize and authorize the current collection from the db. This
       # method delegates the finding of the collection to #find_collection.
       #
@@ -41,22 +51,12 @@ module ActiveAdmin
       # some additional db # work before your controller returns and
       # authorizes the collection.
       #
-      # @return [ActiveRecord::Relation] The collectin for the index
-      def find_collection
+      # @return [ActiveRecord::Relation] The collection for the index
+      def find_collection(options = {})
         collection = scoped_collection
-
-        collection = apply_authorization_scope(collection)
-        collection = apply_sorting(collection)
-        collection = apply_filtering(collection)
-        collection = apply_scoping(collection)
-        collection = apply_includes(collection)
-
-        unless request.format == 'text/csv'
-          collection = apply_pagination(collection)
+        collection_applies(options).each do |applyer|
+          collection = send("apply_#{applyer}", collection)
         end
-
-        collection = apply_collection_decorator(collection)
-
         collection
       end
 
@@ -272,6 +272,12 @@ module ActiveAdmin
         page = params[Kaminari.config.param_name]
 
         chain.public_send(page_method_name, page).per(per_page)
+      end
+
+      def collection_applies(options = {})
+        only = Array(options.fetch(:only, COLLECTION_APPLIES))
+        except = Array(options.fetch(:except, []))
+        COLLECTION_APPLIES && only - except
       end
 
       def per_page
