@@ -9,8 +9,6 @@
 }
 
 @mixin box-sizing($value: border-box) {
-  -moz-box-sizing: $value;
-  -webkit-box-sizing: $value;
   box-sizing: $value;
 }
 
