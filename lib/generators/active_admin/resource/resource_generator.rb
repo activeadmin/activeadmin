@@ -1,3 +1,5 @@
+require 'active_admin/generators/boilerplate'
+
 module ActiveAdmin
   module Generators
     class ResourceGenerator < Rails::Generators::NamedBase
@@ -6,6 +8,7 @@ module ActiveAdmin
       source_root File.expand_path("../templates", __FILE__)
 
       def generate_config_file
+        @formatter = ActiveAdmin::Generators::Boilerplate.new(class_name)
         template "admin.rb", "app/admin/#{file_path.tr('/', '_')}.rb"
       end
 

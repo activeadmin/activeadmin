@@ -1,17 +1,26 @@
 ActiveAdmin.register <%= class_name %> do
 
-# Available Filters
-#<% class_name.constantize.new.attributes.keys.each do |attr| %>
-# filter :<%= attr.gsub(/_id$/, '') %><% end %>
+# Limit actions available to your users by adding them to the 'except' array
+# actions :all, except: []
 
-# Sample Index
-#
+# Add or remove filters (you can use any ActiveRecord scope) to toggle their
+# visibility in the sidebar
+<%= @formatter.filters %>
+
+# Add or remove columns to toggle their visiblity in the index action
 # index do
 #   selectable_column
-#   id_column<% class_name.constantize.new.attributes.keys.each do |attr| %>
-#   column :<%= attr.gsub(/_id$/, '') %><% end %>
+#   id_column
+<%= @formatter.columns %>
 #   actions
 # end
+
+# Add or remove rows to toggle their visiblity in the show action
+# show do |<%= class_name.downcase %>|
+<%= @formatter.rows %>
+# end
+
+# Add or remove fields to toggle their visibility in the form
 
 <% if Rails::VERSION::MAJOR == 4 || defined?(ActionController::StrongParameters) %>
   # See permitted parameters documentation:
@@ -27,6 +36,4 @@ ActiveAdmin.register <%= class_name %> do
   #   permitted
   # end
 <% end %>
-
-
 end
