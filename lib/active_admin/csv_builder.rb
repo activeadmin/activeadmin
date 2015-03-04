@@ -75,7 +75,7 @@ module ActiveAdmin
 
     def encode(content, options)
       if options[:encoding]
-        content.to_s.encode! options[:encoding], options[:encoding_options]
+        content.to_s.encode options[:encoding], options[:encoding_options]
       else
         content
       end
