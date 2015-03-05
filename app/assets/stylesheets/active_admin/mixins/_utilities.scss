@@ -8,11 +8,6 @@
   }
 }
 
-@mixin box-sizing($value: border-box) {
-  box-sizing: $value;
-}
-
-
 @mixin border-colors($top, $sides, $bottom) {
   border-color: $sides;
   border-top-color: $top;
