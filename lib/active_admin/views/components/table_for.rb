@@ -116,9 +116,11 @@ module ActiveAdmin
 
       def is_boolean?(data, item)
         if item.respond_to? :has_attribute?
-          item.has_attribute?(data) &&
-            item.column_for_attribute(data) &&
-            item.column_for_attribute(data).type == :boolean
+          ActiveSupport::Deprecation.silence do
+            item.has_attribute?(data) &&
+              item.column_for_attribute(data) &&
+              item.column_for_attribute(data).type == :boolean
+          end
         end
       end
 
