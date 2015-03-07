@@ -93,8 +93,14 @@ module ActiveAdmin
         end
       end
 
+      # Moving kaminari theme to a custom namespace is required to
+      # avoid conflict with the main app's kaminari.
+      #
+      # Please, read through this issue's comments for details:
+      #
+      #   https://github.com/activeadmin/activeadmin/issues/1126
       def build_pagination
-        options = {}
+        options = { theme: "active_admin" }
         options[:param_name] = @param_name if @param_name
 
         text_node paginate collection, options
