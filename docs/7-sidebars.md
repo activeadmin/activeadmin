@@ -46,6 +46,14 @@ sidebar :help                    # app/views/admin/posts/_help_sidebar.html.erb
 sidebar :help, partial: 'custom' # app/views/admin/posts/_custom.html.erb
 ```
 
+Or any info of your model:
+
+```ruby
+sidebar :custom, only: :show do
+  resource.attribute_or_function_of_your_model
+end
+```
+
 It's possible to add custom class name to the sidebar parent element by passing
 `class` option:
 
