@@ -198,9 +198,10 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       describe "set to false" do
-        let(:pagination) { paginated_collection(collection, pagination_total: false) }
-
         it "should not show the total item counts" do
+          expect(collection).not_to receive(:num_pages)
+          expect(collection).not_to receive(:total_pages)
+          pagination = paginated_collection(collection, pagination_total: false)
           info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')
           expect(info).to eq "Displaying posts <b>1 - 30</b>"
         end
