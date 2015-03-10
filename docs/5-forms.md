@@ -51,7 +51,7 @@ end
 Which looks for something like this:
 
 ```ruby
-# app/views/admin/posts/_form.html.arb
+# app/views/admin/posts/_form.html.erb
 active_admin_form_for resource do |f|
   inputs :title, :body
   actions
