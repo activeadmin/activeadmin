@@ -1,6 +1,14 @@
 ActiveAdmin.modal_dialog = (message, inputs, callback)->
   html = """<form id="dialog_confirm" title="#{message}"><ul>"""
-  for name, type of inputs
+  for name, definition of inputs
+    label = name
+    type = definition
+    if definition.type
+      type = definition.type
+
+    if definition.label
+      label = definition.label
+
     if /^(datepicker|checkbox|text)$/.test type
       wrapper = 'input'
     else if type is 'textarea'
@@ -12,7 +20,7 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
 
     klass = if type is 'datepicker' then type else ''
     html += """<li>
-      <label>#{name.charAt(0).toUpperCase() + name.slice(1)}</label>
+      <label>#{label.charAt(0).toUpperCase() + label.slice(1)}</label>
       <#{wrapper} name="#{name}" class="#{klass}" type="#{type}">""" +
         (if opts then (
           for v in opts
