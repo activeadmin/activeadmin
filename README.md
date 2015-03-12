@@ -16,11 +16,18 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 
 We're [currently working on 1.0.0](https://github.com/activeadmin/activeadmin/issues?milestone=18),
 which as far as dependencies, moves us from meta_search to Ransack and adds Rails 4 support.
-You can get Rails 4.x support by tracking master:
 
+You can get it by tracking master:
 ```ruby
 gem 'activeadmin', github: 'activeadmin'
 ```
+
+Or you can using rubygems:
+```ruby
+gem 'activeadmin', '~> 1.0.0.pre1'
+```
+
+*Keep in mind that during the time where we use `pre`-release label, things can break in each release!*
 
 ### 0.6.x
 
