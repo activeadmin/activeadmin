@@ -58,5 +58,5 @@ Now that you have a working Active Admin installation, learn how to customize it
 
 * <a href='{{ site.baseurl }}/3-index-pages.html'>Customize the Index Page</a>
 * <a href='{{ site.baseurl }}/5-forms.html'>Customize the New and Edit Form</a>
-* <a href='{{ site.baseurl }}/6-show-screens.html'>Customize the Show Page</a>
+* <a href='{{ site.baseurl }}/6-show-pages.html'>Customize the Show Page</a>
 * <a href='{{ site.baseurl }}/2-resource-customization.html'>Customize the Resource in General</a>
