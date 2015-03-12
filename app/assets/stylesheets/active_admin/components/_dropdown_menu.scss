@@ -106,17 +106,16 @@
       li {
         display: block;
         border-bottom: solid 1px #ebebeb;
-        @include box-sizing(border-box);
+        box-sizing: border-box;
 
         a {
           display: block;
-          @include box-sizing(padding-box);
+          box-sizing: padding-box;
           font-size: 0.95em;
           font-weight: bold;
           padding: 7px 16px 5px;
           text-decoration: none;
           text-align: center;
-          -webkit-font-smoothing: antialiased;
           white-space: nowrap;
 
           &:hover {

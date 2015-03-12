@@ -8,15 +8,6 @@
   }
 }
 
-@mixin box-sizing($value: border-box) {
-  -moz-box-sizing: $value;
-  -webkit-box-sizing: $value;
-  -o-box-sizing: $value;
-  -ms-box-sizing: $value;
-  box-sizing: $value;
-}
-
-
 @mixin border-colors($top, $sides, $bottom) {
   border-color: $sides;
   border-top-color: $top;

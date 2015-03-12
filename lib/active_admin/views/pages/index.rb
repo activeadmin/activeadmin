@@ -14,13 +14,13 @@ module ActiveAdmin
           end
         end
 
-        # Retreives the given page presenter, or uses the default.
+        # Retrieves the given page presenter, or uses the default.
         def config
           active_admin_config.get_page_presenter(:index, params[:as]) ||
           ActiveAdmin::PagePresenter.new(as: :table)
         end
 
-        # Render's the index configuration that was set in the
+        # Renders the index configuration that was set in the
         # controller. Defaults to rendering the ActiveAdmin::Pages::Index::Table
         def main_content
           wrap_with_batch_action_form do

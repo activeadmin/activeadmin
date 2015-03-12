@@ -21,7 +21,7 @@ your desired batch action on all of them:
 ```ruby
 ActiveAdmin.register Post do
   batch_action :flag do |ids|
-    Post.find(ids).each do |post|
+    batch_action_collection.find(ids).each do |post|
       post.flag! :hot
     end
     redirect_to collection_path, alert: "The posts have been flagged."

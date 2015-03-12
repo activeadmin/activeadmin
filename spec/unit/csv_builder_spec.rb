@@ -192,6 +192,10 @@ describe ActiveAdmin::CSVBuilder do
     end
     let(:dummy_controller) {
       class DummyController
+        def find_collection(*)
+          collection
+        end
+
         def collection
           Post.order('published_at DESC')
         end
@@ -218,6 +222,15 @@ describe ActiveAdmin::CSVBuilder do
       expect(builder).to receive(:build_row).and_return([]).once.ordered { |post| expect(post.id).to eq @post1.id }
       builder.build dummy_controller, []
     end
+
+    it "should generate data ignoring pagination" do
+      expect(dummy_controller).to receive(:find_collection).
+        with(except: :pagination).once.
+        and_call_original
+      expect(builder).to receive(:build_row).and_return([]).twice
+      builder.build dummy_controller, []
+    end
+
   end
 
   skip '#exec_columns'
