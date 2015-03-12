@@ -16,7 +16,7 @@ module ActiveAdmin
 
       def install_devise
         begin
-          Dependency.devise! Dependency::DEVISE
+          Dependency.devise! Dependency::Requirements::DEVISE
         rescue DependencyError => e
           raise ActiveAdmin::GeneratorError, "#{e.message} If you don't want to use devise, run the generator with --skip-users."
         end

@@ -1,6 +1,8 @@
 module ActiveAdmin
   module Dependency
-    DEVISE = '~> 3.2'
+    module Requirements
+      DEVISE = '~> 3.2'
+    end
 
     # Provides a clean interface to check for gem dependencies at runtime.
     #
