@@ -16,6 +16,7 @@
 
 #### Minor
 
+* Improved code reloading [#3783][] by [@chancancode][]
 * Do not auto link to inaccessible actions [#3686][] by [@pranas][]
 * Allow to enable comments on per-resource basis [#3695][] by [@pranas][]
 * Unify DSL for index `actions` and `actions dropdown: true` [#3463][] by [@timoschilling][]
@@ -993,6 +994,7 @@ of the highlights. 250 commits. Enough said.
 [#3686]: https://github.com/activeadmin/activeadmin/issues/3686
 [#3695]: https://github.com/activeadmin/activeadmin/issues/3695
 [#3731]: https://github.com/activeadmin/activeadmin/issues/3731
+[#3783]: https://github.com/activeadmin/activeadmin/issues/3783
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
 [@DMajrekar]: https://github.com/DMajrekar
@@ -1009,6 +1011,7 @@ of the highlights. 250 commits. Enough said.
 [@ball-hayden]: https://github.com/ball-hayden
 [@bobbytables]: https://github.com/bobbytables
 [@caifara]: https://github.com/caifara
+[@chancancode]: https://github.com/chancancode
 [@cknoxrun]: https://github.com/cknoxrun
 [@comboy]: https://github.com/comboy
 [@coreyward]: https://github.com/coreyward
