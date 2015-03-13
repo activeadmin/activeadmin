@@ -26,7 +26,6 @@ matrix:
   fast_finish: true
   allow_failures:
     - env: "RAILS=4.2.0"
-    - rvm: jruby-head
   exclude:
     - rvm: 2.2
       env: "RAILS=3.2.21"
