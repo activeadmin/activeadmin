@@ -39,6 +39,14 @@ sidebar :help, if: proc{ current_admin_user.super_admin? } do
 end
 ```
 
+You can access your model as resource in the sidebar too:
+
+```ruby
+sidebar :custom, only: :show do
+  resource.a_method
+end
+```
+
 You can also render a partial:
 
 ```ruby
