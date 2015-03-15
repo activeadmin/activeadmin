@@ -128,7 +128,7 @@ module ActiveAdmin
       config.menu_item_options = options
     end
 
-    # Set the name of the navigation menu to display. This is mainly used in conjuction with the
+    # Set the name of the navigation menu to display. This is mainly used in conjunction with the
     # `#belongs_to` functionality.
     #
     # @param [Symbol] menu_name The name of the menu to display as the global navigation

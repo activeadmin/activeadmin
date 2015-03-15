@@ -7,7 +7,7 @@ module ActiveAdmin
     # Simple callback system. Implements before and after callbacks for
     # use within the controllers.
     #
-    # We didn't use the ActiveSupport callbacks becuase they do not support
+    # We didn't use the ActiveSupport callbacks because they do not support
     # passing in any arbitrary object into the callback method (which we
     # need to do)
 

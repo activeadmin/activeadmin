@@ -79,7 +79,7 @@ module ActiveAdmin
       true
     end
 
-    # Returns an array of the ancestory of this menu item.
+    # Returns an array of the ancestry of this menu item.
     # The first item is the immediate parent of the item.
     def ancestors
       parent ? [parent, parent.ancestors].flatten : []
