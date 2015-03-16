@@ -88,6 +88,9 @@ module ActiveAdmin
     # A regex to detect unsupported browser, set to false to disable
     inheritable_setting :unsupported_browser_matcher, /MSIE [1-8]\.0/
 
+    # Whether to display 'Current Filters' on search screen
+    inheritable_setting :current_filters, true
+
     # Request parameters that are permitted by default
     inheritable_setting :permitted_params, [
       :utf8, :_method, :authenticity_token, :commit, :id
