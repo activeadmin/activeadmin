@@ -1,20 +1,15 @@
 @mixin section-header {
-  @include secondary-gradient;
-  border: solid 1px #cdcdcd;
-  @include border-colors(#e6e6e6, #d4d4d4, #cdcdcd);
-
+  background-color: #e9e9e9;
+  border-radius: 4px 4px 0 0;
   font-size: 1em;
   font-weight: bold;
-  line-height: 18px;
-  margin-bottom: 0.5em;
   color: $section-header-text-color;
-
   padding: 5px 10px 3px 10px;
 }
 
 @mixin section-background {
-  background: #f4f4f4;
-  @include rounded(4px);
+  background-color: #f8f8f8;
+  border-radius: 4px;
 }
 
 @mixin section {
