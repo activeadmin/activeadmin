@@ -35,7 +35,7 @@
 
 body {
   @include sans-family;
-  line-height: 150%;
+  line-height: 1.5;
   font-size: 72%;
   background: $body-background-color;
   color: $text-color;
