@@ -4,9 +4,8 @@
 $primary-color: black;
 $text-color: black;
 
-// Reset
-@import "active_admin/mixins/reset";
-@include global-reset;
+// Normalize
+@import "active_admin/normalize";
 
 // Partials
 @import "active_admin/typography";
