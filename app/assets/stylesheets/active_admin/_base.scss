@@ -1,6 +1,6 @@
 /* Active Admin CSS */
-// Reset Away!
-@include global-reset;
+// Normalize
+@import "active_admin/normalize";
 
 // Partials
 @import "active_admin/typography";

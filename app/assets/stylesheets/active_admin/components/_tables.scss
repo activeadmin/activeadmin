@@ -5,6 +5,10 @@ table tr {
   td {
     vertical-align: top;
   }
+
+  th {
+    text-align: left;
+  }
 }
 
 // --------- Index Tables
@@ -18,7 +22,6 @@ table.index_table {
   th {
     @include section-header;
     border-right: none;
-    text-align: left;
     padding-left: $cell-horizontal-padding;
     padding-right: $cell-horizontal-padding;
 
