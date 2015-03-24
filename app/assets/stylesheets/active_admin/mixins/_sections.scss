@@ -1,6 +1,5 @@
 @mixin section-header {
   @include secondary-gradient;
-  @include text-shadow;
   border: solid 1px #cdcdcd;
   @include border-colors(#e6e6e6, #d4d4d4, #cdcdcd);
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 0 1px #FFF inset;

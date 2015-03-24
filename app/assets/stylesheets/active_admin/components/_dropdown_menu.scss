@@ -120,7 +120,6 @@
 
           &:hover {
             @include highlight-gradient;
-            @include text-shadow(#5a83aa);
             color: #FFF;
           }
 

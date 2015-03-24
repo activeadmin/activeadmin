@@ -71,7 +71,6 @@ table.index_table {
     background: none;
     color: $primary-color;
     @include no-shadow;
-    @include text-shadow;
     text-transform: uppercase;
     border-bottom: 1px solid #ccc;
   }
@@ -98,7 +97,6 @@ table.index_table {
     padding-left: 0;
     text-transform: uppercase;
     color: $primary-color;
-    @include text-shadow;
   }
   td {
     .empty {

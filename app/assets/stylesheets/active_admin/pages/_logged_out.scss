@@ -14,7 +14,6 @@ body.logged_out {
   h2 {
     @include section-header;
     @include primary-gradient;
-    @include text-shadow(#000);
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
     border: none;
     color: #fff;

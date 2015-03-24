@@ -9,7 +9,3 @@
 @mixin inset-shadow($x: 0, $y: 1px, $blur: 2px, $color: #aaa) {
   box-shadow: inset $x $y $blur $color;
 }
-
-@mixin text-shadow($color: #fff, $x: 0, $y: 1px, $blur: 0) {
-  text-shadow: $color $x $y $blur;
-}
