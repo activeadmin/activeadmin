@@ -22,7 +22,6 @@ a.table_tools_button, .table_tools .dropdown_menu_button {
 
     &:active {
       @include border-colors(#d7d7d7, #c8c8c8, #c3c3c3);
-      box-shadow: 0 1px 1px 0 rgba(0,0,0,0.17) inset;
       @include gradient(#FFFFFF, #E8E8E8);
     }
   }
@@ -55,7 +54,6 @@ a.table_tools_button, .table_tools .dropdown_menu_button {
 
     &.selected a {
       @include gradient(#F0F0F0, #FDFDFD);
-      box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1) inset;
       cursor: default;
 
       &:hover {

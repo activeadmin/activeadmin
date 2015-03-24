@@ -1,8 +1,6 @@
 // ----------------------------------- Header
 #header {
   @include primary-gradient;
-  @include shadow;
-  @include text-shadow(#000);
   display: table;
   height: 20px;
   width: 100%;
