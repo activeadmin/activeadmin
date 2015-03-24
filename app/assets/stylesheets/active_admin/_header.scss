@@ -2,7 +2,7 @@
 //= depend_on_asset "active_admin/nested_menu_arrow_dark.gif"
 // ----------------------------------- Header
 #header {
-  @include primary-gradient;
+  background-color: lighten($primary-color, 5%);
   display: table;
   height: 20px;
   width: 100%;
@@ -61,10 +61,10 @@
       position: relative;
 
       a {
+        border-radius: 4px;
         text-decoration: none;
         padding: 6px 10px 4px 10px;
         position: relative;
-        @include rounded(10px);
       }
 
       &.current > a {
@@ -101,7 +101,7 @@
       ul {
         background: $hover-menu-item-background;
         @include rounded-all(0,10px,10px,10px);
-        @include shadow(0, 1px, 3px, #444);
+        box-shadow: 0 1px 3px #444;
         position: absolute;
         width: 120%;
         min-width: 175px;

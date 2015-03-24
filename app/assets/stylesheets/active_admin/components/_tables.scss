@@ -20,7 +20,7 @@ table.index_table {
   border-spacing: 0;
 
   th {
-    @include section-header;
+    background-color: #e9e9e9;
     border-right: none;
     padding-left: $cell-horizontal-padding;
     padding-right: $cell-horizontal-padding;
@@ -40,7 +40,7 @@ table.index_table {
     &.sorted-desc a {  background-position: 0 -56px;}
 
     &.sorted-asc, &.sorted-desc {
-      @include gradient(darken($secondary-gradient-start, 5%), darken($secondary-gradient-stop, 5%));
+      background-color: darken($secondary-gradient-stop, 5%);
     }
 
     &:last-child {
@@ -89,7 +89,6 @@ table.index_table {
     border-bottom: 1px solid #e8e8e8;
   }
   th {
-    @include no-gradient;
     width: 150px;
     font-size: 0.9em;
     padding-left: 0;
