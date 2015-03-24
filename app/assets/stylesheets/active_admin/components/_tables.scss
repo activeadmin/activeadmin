@@ -70,7 +70,6 @@ table.index_table {
     padding-top: 10px;
     background: none;
     color: $primary-color;
-    @include no-shadow;
     text-transform: uppercase;
     border-bottom: 1px solid #ccc;
   }
@@ -90,7 +89,6 @@ table.index_table {
     border-bottom: 1px solid #e8e8e8;
   }
   th {
-    @include no-shadow;
     @include no-gradient;
     width: 150px;
     font-size: 0.9em;

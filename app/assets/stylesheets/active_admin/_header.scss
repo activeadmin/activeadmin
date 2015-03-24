@@ -3,7 +3,6 @@
 // ----------------------------------- Header
 #header {
   @include primary-gradient;
-  @include shadow;
   display: table;
   height: 20px;
   width: 100%;

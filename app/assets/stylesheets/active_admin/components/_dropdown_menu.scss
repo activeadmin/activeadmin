@@ -80,7 +80,7 @@
     position: absolute;
     background-color: white;
     padding: 2px;
-    box-shadow: rgba(0,0,0,0.4) 0 1px 3px, lighten($primary-color, 15%) 0px 1px 0px 0px inset;
+    box-shadow: rgba(0,0,0,0.4) 0 1px 3px;
     background-color: $primary-color;
     @include gradient(lighten($primary-color, 4%), darken($primary-color, 5%));
     border: solid 1px darken($primary-color, 10%);
@@ -94,7 +94,6 @@
       display: block;
       background-color: #FFF;
       border: solid 1px darken($primary-color, 10%);
-      box-shadow: lighten($primary-color, 5%) 0px 1px 0px 0px;
       border-radius: 3px;
       margin: 0;
       overflow: hidden;

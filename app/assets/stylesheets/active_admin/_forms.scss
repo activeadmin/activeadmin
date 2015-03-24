@@ -136,7 +136,7 @@ form {
 
     &:focus {
       border: $border-width solid #99a2aa;
-      @include shadow(0,0,4px,#99a2aa);
+      box-shadow: 0 0 4px #99a2aa;
     }
   }
 

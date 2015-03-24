@@ -24,7 +24,6 @@ body.logged_in {
 
 body.logged_out {
   .flash {
-    @include no-shadow;
     background: none;
     color: #666;
     font-weight: bold;
