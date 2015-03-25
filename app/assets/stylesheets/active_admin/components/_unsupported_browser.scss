@@ -1,9 +1,7 @@
 .unsupported_browser {
-  padding: 10px 30px;
-  color: #211e14;
   background-color: #fae692;
-  @include gradient(#feefae, #fae692);
-  border-bottom: 1px solid #b3a569;
+  color: #211e14;
+  padding: 10px 30px;
 
   h1 {
     font-size: 13px;
