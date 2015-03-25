@@ -35,10 +35,11 @@
 
   ul.tabs {
     display: table-cell;
-    vertical-align: middle;
     height: 100%;
     margin: 0;
     padding: 0;
+    vertical-align: middle;
+    width: 100%;
 
     & > li {
       display: inline-block;
@@ -76,50 +77,41 @@
       }
 
       &.has_nested:hover > a {
-        @include rounded-top(10px);
         border-bottom: 5px solid $hover-menu-item-background;
         background: $hover-menu-item-background image-url('active_admin/nested_menu_arrow_dark.gif') no-repeat calc(100% - 7px) 50%;
         z-index: 1020;
       }
 
-
       /* Hover on li, display the ul */
-      &:hover ul { display: block;}
+      &:hover ul {
+        display: block;
+      }
+
       /* Drop down menus */
       ul {
         background: $hover-menu-item-background;
-        @include rounded-all(0,10px,10px,10px);
-        box-shadow: 0 1px 3px #444;
-        position: absolute;
-        width: 120%;
-        min-width: 175px;
-        max-width: calc(100% + 20px);
-        margin-top: 5px;
-        float: left;
+        border-radius: 0 4px 4px 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         display: none;
-        padding: 3px 0px 5px 0;
         list-style: none;
+        margin-top: 5px;
+        min-width: 175px;
+        padding: 5px 0;
+        position: absolute;
         z-index: 1010;
 
         li {
-          margin: 0px;
           a {
-            background: none;
             display: block;
-            &:hover { color: #fff; background: none; }
           }
 
-          &.current {
-            a { @include rounded(0) }
+          &.current a,
+          a:hover {
+            color: #fff;
           }
         }
       }
     }
-
-  }
-
-  #tabs {
-    width: 100%;
   }
 
   #utility_nav {
@@ -131,11 +123,8 @@
     padding-right: 26px;
     text-align: right;
 
-    a { text-decoration: none; }
-    a:hover { color: #fff; }
-
-    li {
-      display:inline;
+    a:hover {
+      color: #fff;
     }
   }
 
