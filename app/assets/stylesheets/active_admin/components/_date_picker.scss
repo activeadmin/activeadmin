@@ -15,11 +15,10 @@
   }
 
   .ui-datepicker-header {
-    height: 14px;
     @include primary-gradient;
     padding: 12px 5px 7px 4px;
     margin: 0px 0px 2px 2px;
-    width: 147px;
+    width: 156px;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
     position: relative;
