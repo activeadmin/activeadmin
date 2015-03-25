@@ -1,10 +1,12 @@
 @mixin clearfix {
+  &:before,
   &:after {
-    visibility: hidden;
-    display: block;
-    content: "";
+    content: " ";
+    display: table;
+  }
+
+  &:after {
     clear: both;
-    height: 0;
   }
 }
 
