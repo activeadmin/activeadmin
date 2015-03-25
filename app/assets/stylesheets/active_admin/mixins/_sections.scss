@@ -4,7 +4,8 @@
   font-size: 1em;
   font-weight: bold;
   color: $section-header-text-color;
-  padding: 5px 10px 3px 10px;
+  margin: 0;
+  padding: 10px 15px;
 }
 
 @mixin section-background {
@@ -24,5 +25,7 @@
     }
   }
 
-  > div { padding: 3px $section-padding $section-padding $section-padding; }
+  > div {
+    padding: $section-padding;
+  }
 }
