@@ -128,9 +128,7 @@ form {
   textarea {
     width: calc(80% - #{$text-input-total-padding});
     border: $border-width solid #c9d0d6;
-    @include rounded;
-    font-size: 0.95em;
-    @include sans-family;
+    border-radius: 3px;
     outline: none;
     padding: 8px $text-input-horizontal-padding 7px;
 
@@ -219,7 +217,7 @@ form {
   /* semantic_errors */
   ul.errors {
     background: lighten($error-color, 60%);
-    @include rounded(4px);
+    border-radius: 3px;
     color: $error-color;
     font-weight: bold;
     margin-bottom: 10px;
@@ -256,11 +254,10 @@ $sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
 .sidebar_section {
 
   label {
-    display: block;
-    text-transform: uppercase;
     color:  $form-label-color;
-    font-size: 0.9em;
+    display: block;
     font-weight: bold;
+    margin: 0 0 0.18em 2px;
   }
 
   select {
