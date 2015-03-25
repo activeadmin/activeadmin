@@ -1,23 +1,32 @@
-// ----------------------------------- Tables
+table {
+  margin-bottom: 1.4em;
+  width: 100%;
+}
 
 th {
   text-align: left;
 }
 
-// --------- Index Tables
+th, td {
+  border-bottom: 1px solid #e8e8e8;
+  padding: 8px;
+  vertical-align: top;
+}
 
-table.index_table {
-  margin-bottom: 10px;
-  width: 100%;
-
+thead {
   th {
-    background-color: #e9e9e9;
-    padding: 10px 12px 8px 12px;
+    border-bottom: 2px solid #ccc;
+    vertical-align: bottom;
+  }
+}
 
+// -------------------------------------- Index Tables
+table.index_table {
+  th {
     a, a:link, a:visited {
       color: $section-header-text-color;
-      text-decoration: none;
       display: block;
+      text-decoration: none;
       white-space: nowrap;
     }
 
@@ -25,70 +34,66 @@ table.index_table {
       background: url($orderable-icon-url) no-repeat 0 4px; padding-left: 13px;
     }
 
-    &.sorted-asc a { background-position: 0 -27px; }
-    &.sorted-desc a {  background-position: 0 -56px;}
+    &.sorted-asc a {
+      background-position: 0 -27px;
+    }
+
+    &.sorted-desc a {
+      background-position: 0 -56px;
+    }
 
     &.sorted-asc, &.sorted-desc {
-      background-color: darken($secondary-gradient-stop, 5%);
+      background-color: #e6e6e6;
     }
   }
 
-  tr.even td { background: $table-stripe-color; }
-
-  tr.selected td {
-    background: $table-selected-color;
+  tbody tr:nth-of-type(odd) {
+    background-color: $table-stripe-color;
   }
 
-  td {
-    padding: 10px $cell-horizontal-padding 8px $cell-horizontal-padding;
-    border-bottom: 1px solid #e8e8e8;
+  tbody tr.selected {
+    background-color: $table-selected-color;
   }
 }
 
-// --------- Tables inside Panels
-
+// -------------------------------------- Tables inside Panels
 .panel_contents table {
-  margin-top: 5px;
-  width: 100%;
-
-  th {
-    padding-top: 10px;
-    background: none;
-    color: $primary-color;
-    text-transform: uppercase;
-    border-bottom: 1px solid #ccc;
+  thead {
+    background-color: transparent;
   }
-  tr.odd td { background: darken($table-stripe-color, 3%); }
-  tr.even td { background: $table-stripe-color; }
+
+  th, td {
+    padding: 5px;
+  }
 }
 
 // -------------------------------------- Resource Attributes Table
-.attributes_table { overflow: hidden; }
+.attributes_table {
+  overflow: hidden;
+}
 
 .attributes_table table {
-  width: 100%;
+  col {
+    border-right: 1px solid #e8e8e8;
 
-  col.even { background: $table-stripe-color; }
-  col.odd  { background: darken($table-stripe-color, 3%); }
-  th, td {
-    padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
-    border-bottom: 1px solid #e8e8e8;
-  }
-  th {
-    width: 150px;
-    font-size: 0.9em;
-    padding-left: 0;
-    text-transform: uppercase;
-    color: $primary-color;
-  }
-  td {
-    .empty {
-      color: #bbb;
-      font-size: 0.8em;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
+    &:first-child {
+      border-right: 2px solid #ccc;
     }
+  }
+
+  th {
+    color: $primary-color;
+    width: 150px;
+  }
+
+  td .empty {
+    color: #bbb;
+    font-size: 0.8em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
   }
 }
 
-.sidebar_section .attributes_table th { width: 50px; }
+.sidebar_section .attributes_table th {
+  width: 50px;
+}
