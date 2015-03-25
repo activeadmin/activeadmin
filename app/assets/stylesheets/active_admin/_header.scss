@@ -33,10 +33,11 @@
 
   ul.tabs {
     display: table-cell;
-    vertical-align: middle;
     height: 100%;
     margin: 0;
     padding: 0;
+    vertical-align: middle;
+    width: 100%;
 
     li {
       /* Hover on li, display the ul */
@@ -79,40 +80,33 @@
       }
 
       &.has_nested:hover > a {
-        @include rounded-top(10px);
         border-bottom: 5px solid $hover-menu-item-background;
         background: $hover-menu-item-background url($menu-arrow-dark-icon-url) no-repeat calc(100% - 7px) 50%;
         z-index: 1020;
       }
 
-
       /* Drop down menus */
       ul {
         background: $hover-menu-item-background;
-        @include rounded-all(0,10px,10px,10px);
-        box-shadow: 0 1px 3px #444;
-        position: absolute;
-        width: 120%;
-        min-width: 175px;
-        max-width: calc(100% + 20px);
-        margin-top: 5px;
-        float: left;
+        border-radius: 0 4px 4px 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         display: none;
-        padding: 3px 0px 5px 0;
         list-style: none;
+        margin-top: 5px;
+        min-width: 175px;
+        padding: 5px 0;
+        position: absolute;
         z-index: 1010;
 
         li {
           position: relative;
-          margin: 0px;
           a {
-            background: none;
             display: block;
-            &:hover { color: #fff; background: none; }
           }
 
-          &.current {
-            a { @include rounded(0) }
+          &.current a,
+          a:hover {
+            color: #fff;
           }
 
           &.has_nested > a {
@@ -150,10 +144,6 @@
     }
   }
 
-  #tabs {
-    width: 100%;
-  }
-
   #utility_nav {
     color: #aaa;
     display: table-cell;
@@ -163,11 +153,8 @@
     padding-right: 26px;
     text-align: right;
 
-    a { text-decoration: none; }
-    a:hover { color: #fff; }
-
-    li {
-      display:inline;
+    a:hover {
+      color: #fff;
     }
   }
 
