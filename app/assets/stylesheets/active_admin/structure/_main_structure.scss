@@ -1,25 +1,23 @@
-#wrapper {
+#active_admin_content {
+  @include clearfix;
+  padding: $horizontal-page-margin;
+}
+
+#main_content_wrapper {
+  float: left;
   width: 100%;
 }
 
-#active_admin_content {
-  margin: 0;
-  padding: $horizontal-page-margin;
+#main_content{
+  margin-right: 300px;
+}
 
-  #main_content_wrapper {
-    float: left;
-    width: 100%;
+.without_sidebar #main_content {
+  margin-right: 0;
+}
 
-    #main_content{
-      margin-right: 300px;
-    }
-  }
-
-  &.without_sidebar #main_content_wrapper #main_content{ margin-right: 0; }
-
-  #sidebar {
-    float: left;
-    width: $sidebar-width;
-    margin-left: -$sidebar-width;
-  }
+#sidebar {
+  float: left;
+  margin-left: -$sidebar-width;
+  width: $sidebar-width;
 }
