@@ -3,7 +3,6 @@
   text-align: center;
 
   .blank_slate {
-    @include rounded;
     border:  $blank-slate-border;
     color: $blank-slate-primary-color;
     display: inline-block;

@@ -122,7 +122,7 @@
           }
 
           ul {
-            @include rounded-all(10px,10px,10px,10px);
+            border-radius: 10px;
             margin-top: 0;
             top: -3px;
             left: 100%;
