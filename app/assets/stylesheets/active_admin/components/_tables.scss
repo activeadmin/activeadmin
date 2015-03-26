@@ -7,10 +7,8 @@ table {
 }
 
 thead {
-  background-color: #e9e9e9;
-
   th {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
   }
 }
 
@@ -38,20 +36,25 @@ table.index_table {
       background: image-url('active_admin/orderable.png') no-repeat 0 4px; padding-left: 13px;
     }
 
-    &.sorted-asc a { background-position: 0 -27px; }
-    &.sorted-desc a {  background-position: 0 -56px;}
+    &.sorted-asc a {
+      background-position: 0 -27px;
+    }
+
+    &.sorted-desc a {
+      background-position: 0 -56px;
+    }
 
     &.sorted-asc, &.sorted-desc {
-      background-color: darken($secondary-gradient-stop, 5%);
+      background-color: #e6e6e6;
     }
   }
 
-  tr.even td {
-    background: $table-stripe-color;
+  tbody tr:nth-of-type(odd) {
+    background-color: $table-stripe-color;
   }
 
-  tr.selected td {
-    background: $table-selected-color;
+  tbody tr.selected {
+    background-color: $table-selected-color;
   }
 }
 
@@ -61,8 +64,10 @@ table.index_table {
   thead {
     background-color: transparent;
   }
-  tr.odd td { background: darken($table-stripe-color, 3%); }
-  tr.even td { background: $table-stripe-color; }
+
+  th, td {
+    padding: 5px;
+  }
 }
 
 // -------------------------------------- Resource Attributes Table
@@ -71,20 +76,24 @@ table.index_table {
 }
 
 .attributes_table table {
-  col.even { background: $table-stripe-color; }
-  col.odd  { background: darken($table-stripe-color, 3%); }
+  col {
+    border-right: 1px solid #e8e8e8;
+
+    &:first-child {
+      border-right: 2px solid #ccc;
+    }
+  }
+
   th {
     color: $primary-color;
-    padding-left: 0;
     width: 150px;
   }
-  td {
-    .empty {
-      color: #bbb;
-      font-size: 0.8em;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
+
+  td .empty {
+    color: #bbb;
+    font-size: 0.8em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
   }
 }
 
