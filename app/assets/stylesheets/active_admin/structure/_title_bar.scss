@@ -11,7 +11,7 @@
   h2 {
     margin: 0;
     padding: 0;
-    font-size: 2.6em;
+    font-size: 2.2em;
     line-height: 100%;
     font-weight: bold;
   }
@@ -20,8 +20,6 @@
     span.action_item {
       & > a, & > .dropdown_menu > a {
         @include light-button;
-        padding: 12px 17px 10px;
-        margin: 0px;
       }
     }
   }
