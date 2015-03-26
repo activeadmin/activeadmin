@@ -1,26 +1,22 @@
 @mixin basic-button {
-  @include rounded(200px);
+  border-radius: 0.25em;
   display: inline-block;
-  font-weight: bold;
   font-size: 1.0em;
-  @include sans-family;
-  line-height: 12px;
-  margin-right: 3px;
-  padding: 7px 16px 6px;
+  font-weight: bold;
+  line-height: 1.5; // needed for input/button elements to match a.button size
+  padding: 6px 15px;
   text-decoration: none;
 
   &.disabled {
+    cursor: now-allowed;
     opacity: 0.5;
-    cursor: default;
   }
-
 }
 
 @mixin default-button {
   @include basic-button;
   @include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
   border: solid 1px #484e53;
-  @include border-colors(#616a71, #484e53, #363b3f);
   color: #efefef;
 
   &:not(.disabled) {
@@ -38,7 +34,6 @@
   @include basic-button;
   @include gradient(#FFFFFF, #E7E7E7);
   border: solid 1px #c7c7c7;
-  @include border-colors(#d3d3d3, #c7c7c7, #c2c2c2);
   color: $primary-color;
 
   &:not(.disabled) {
@@ -47,7 +42,6 @@
     }
 
     &:active {
-      @include border-colors(#c2c2c2, #b9b9b9, #b7b7b7);
       @include gradient(#F3F3F3, #D8D8D8);
     }
   }
