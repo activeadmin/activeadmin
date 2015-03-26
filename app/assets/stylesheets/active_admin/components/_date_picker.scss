@@ -16,11 +16,10 @@
 
   .ui-datepicker-header {
     @include primary-gradient;
-    padding: 12px 5px 7px 4px;
+    padding: 8px 5px;
     margin: 0px 0px 2px 2px;
     width: 156px;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
+    border-radius: 3px 3px 0 0;
     position: relative;
     z-index: 2000;
 
@@ -86,7 +85,6 @@
   }
 
   table.ui-datepicker-calendar {
-    @include rounded-bottom;
     background-color: #f4f4f4;
     border: solid 1px #63686e;
     left: 2px;
@@ -102,10 +100,11 @@
 
     thead th {
       background-color: #dbdddf;
+      border-bottom: none;
       color: #333333;
       font-weight: normal;
       font-size: 0.8em;
-      padding-top: 1px;
+      padding: 1px 0;
     }
 
     tbody {
@@ -117,10 +116,11 @@
         width: 22px;
 
         a {
-          @include rounded;
+          border-radius: 3px;
           color: #666666;
-          font-weight: bold;
+          display: block;
           font-size: 0.85em;
+          font-weight: bold;
           padding: 4px;
 
           &.ui-state-active {
