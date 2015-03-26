@@ -1,12 +1,21 @@
 //= depend_on_asset "active_admin/nested_menu_arrow.gif"
 //= depend_on_asset "active_admin/nested_menu_arrow_dark.gif"
 // ----------------------------------- Header
-#header {
+.header {
   background-color: lighten($primary-color, 5%);
   display: table;
   width: 100%;
   padding: 5px 0;
   z-index: 900;
+
+  a, a:link, a:visited {
+    color: $page-header-text-color;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #fff;
+  }
 
   h1 {
     display: table-cell;
@@ -18,16 +27,10 @@
     font-weight: normal;
     line-height: 1.2;
 
-    a {
-      text-decoration: none;
-
-      &:hover {
-        color: #fff;
-      }
+    a:hover {
+      color: #fff;
     }
   }
-
-  a, a:link { color: $page-header-text-color; }
 
   .header-item {
     position: relative;
@@ -51,7 +54,6 @@
 
       a {
         border-radius: 4px;
-        text-decoration: none;
         padding: 6px 10px 4px 10px;
         position: relative;
       }
@@ -113,19 +115,14 @@
       }
     }
   }
+}
 
-  #utility_nav {
-    color: #aaa;
-    display: table-cell;
-    white-space: nowrap;
-    margin: 0;
-    padding: 0;
-    padding-right: 26px;
-    text-align: right;
-
-    a:hover {
-      color: #fff;
-    }
-  }
-
+#utility_nav {
+  color: #aaa;
+  display: table-cell;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  padding-right: 26px;
+  text-align: right;
 }
