@@ -1,30 +1,21 @@
 .blank_slate_container {
-  clear: both;
   text-align: center;
+}
 
-  .blank_slate {
-    @include rounded;
-    border:  $blank-slate-border;
-    color: $blank-slate-primary-color;
-    display: inline-block;
-    font-size: 1.2em;
-    font-weight: bold;
-    padding: 14px 25px;
-    text-align: center;
+.blank_slate {
+  color: $blank-slate-primary-color;
+  display: inline-block;
+  font-size: 1.3em;
+  font-weight: bold;
 
-    small {
-      display: block;
-      font-size: 0.9em;
-      font-weight: normal;
-    }
+  small {
+    display: block;
+    font-size: 0.9em;
+    font-weight: normal;
   }
 }
 
-.admin_dashboard .blank_slate_container .blank_slate {
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.with_sidebar .blank_slate_container .blank_slate {
-  margin-top: 80px;
+.admin_dashboard .blank_slate,
+.with_sidebar .blank_slate {
+  margin: 80px 0;
 }
