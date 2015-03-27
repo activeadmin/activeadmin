@@ -21,10 +21,7 @@ class ActiveAdmin.DropdownMenu
   open: ->
     @isOpen = true
     @$menuList.fadeIn @options.fadeInDuration
-
-    @_position()
     @
-
 
   close: ->
     @isOpen = false
@@ -56,8 +53,6 @@ class ActiveAdmin.DropdownMenu
   # Private
 
   _buildMenuList: ->
-    @$nipple = $('<div class="dropdown_menu_nipple"></div>')
-    @$menuList.prepend @$nipple
     @$menuList.hide()
 
   _bind: ->
@@ -68,32 +63,6 @@ class ActiveAdmin.DropdownMenu
       unless @isDisabled()
         if @isOpen then @close() else @open()
       false
-
-  _position: ->
-    @$menuList.css 'top', @$menuButton.position().top + @$menuButton.outerHeight() + 10
-
-    button_left = @$menuButton.position().left
-    button_center =  @$menuButton.outerWidth() / 2
-    button_right = button_left + button_center * 2
-    menu_center = @$menuList.outerWidth() / 2
-    nipple_center = @$nipple.outerWidth() / 2
-    window_right = $(window).width()
-
-    centered_menu_left = button_left + button_center - menu_center
-    centered_menu_right = button_left + button_center + menu_center
-
-    if centered_menu_left < 0
-      # Left align with button
-      @$menuList.css 'left', button_left
-      @$nipple.css   'left', button_center - nipple_center
-    else if centered_menu_right > window_right
-      # Right align with button
-      @$menuList.css 'right', window_right - button_right
-      @$nipple.css   'right', button_center - nipple_center
-    else
-      # Center align under button
-      @$menuList.css 'left', centered_menu_left
-      @$nipple.css   'left', menu_center - nipple_center
 
 $.widget.bridge 'aaDropdownMenu', ActiveAdmin.DropdownMenu
 
