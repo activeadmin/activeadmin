@@ -1,6 +1,5 @@
 .table_tools {
-  @include clearfix;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 }
 
 .table_tools .dropdown_menu {
@@ -9,57 +8,66 @@
 
 a.table_tools_button, .table_tools .dropdown_menu_button {
   @include light-button;
-  @include gradient(#FFFFFF, #F0F0F0);
-  @include border-colors(#d9d9d9, #d0d0d0, #c5c5c5);
-  font-size: 0.9em;
-  padding: 4px 14px 4px;
-  margin: 0;
-
-  &:not(.disabled) {
-    &:hover {
-      @include gradient(#FFFFFF, #F6F6F6);
-    }
-
-    &:active {
-      @include border-colors(#d7d7d7, #c8c8c8, #c3c3c3);
-      @include gradient(#FFFFFF, #E8E8E8);
-    }
-  }
+  font-weight: normal;
 }
 
 .table_tools_segmented_control {
-  list-style-type: none;
-  padding: 0;
+  @include clearfix;
+  display: inline-block;
+  list-style: none;
   margin: 0;
+  padding: 0;
+  vertical-align: bottom; // required so this aligns correctly with .dropdown_menu
+
+  + & {
+    margin-left: 10px;
+  }
+
+  .badge {
+    background-color: rgba(0,0,0,0.35);
+    border-radius: 10px;
+    color: #fff;
+    display: inline-block;
+    line-height: 1;
+    padding: 3px 7px;
+    vertical-align: baseline;
+  }
 
   li {
     float: left;
 
-    a {
-      border-width: 1px .5px 1px .5px;
+    & + li a {
       border-radius: 0;
+      margin-left: -1px;
     }
 
-    &:first-child a {
-      border-left-width: 1px;
-      border-top-left-radius: 12px;
-      border-bottom-left-radius: 12px;
-    }
+    a {
+      position: relative;
 
-    &:last-child a {
-      border-right-width: 1px;
-      border-top-right-radius: 12px;
-      border-bottom-right-radius: 12px;
-    }
-
-    &.selected a {
-      @include gradient(#F0F0F0, #FDFDFD);
-      cursor: default;
-
-      &:hover {
-        @include gradient(#F0F0F0, #FDFDFD);
+      &:hover,
+      &:focus,
+      &:active {
+        z-index: 2;
       }
     }
 
+    &:first-child a {
+      border-radius: 0.25em 0 0 0.25em;
+    }
+
+    &:last-child a {
+      border-radius: 0 0.25em 0.25em 0;
+    }
+
+    &.selected a {
+      background-color: darken(#fff, 10%);
+      border-color: darken(#d9d9d9, 12%);
+      z-index: 2;
+
+      &:hover {
+        background-color: darken(#fff, 17%);
+        border-color: darken(#d9d9d9, 25%);
+      }
+    }
   }
 }

@@ -12,7 +12,7 @@ end
 
 Then /^I should see the scope "([^"]*)" with the count (\d+)$/ do |name, count|
   name = name.tr(" ", "").underscore.downcase
-  step %{I should see "#{count}" within ".scopes .#{name} .count"}
+  step %{I should see "#{count}" within ".scopes .#{name} .badge"}
 end
 
 Then /^I should see the scope with label "([^"]*)"$/ do |label|
@@ -26,7 +26,7 @@ end
 Then /^I should see the scope "([^"]*)" with no count$/ do |name|
   name = name.tr(" ", "").underscore.downcase
   expect(page).to have_css ".scopes .#{name}"
-  expect(page).to_not have_css ".scopes .#{name} .count"
+  expect(page).to_not have_css ".scopes .#{name} .badge"
 end
 
 Then "I should see a group {string} with the scopes {string} and {string}" do |group, name1, name2|
