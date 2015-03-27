@@ -37,7 +37,7 @@
 }
 
 body {
-  @include sans-family;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-size: 72%;
   background: $body-background-color;
