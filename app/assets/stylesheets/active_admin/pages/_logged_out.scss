@@ -1,40 +1,34 @@
 body.logged_out {
-  background: #e8e9ea;
+  background-color: #e8e9ea;
+}
 
-  #content_wrapper{
-    width: 500px;
-    margin: 70px auto;
-    #active_admin_content {
-      background: #fff;
-      border-radius: 4px;
-      padding: 13px 30px;
-    }
-  }
+#login {
+  background-color: #fff;
+  border-radius: 4px;
+  margin: 70px auto;
+  padding: 15px;
+  width: 500px;
 
   h2 {
-    @include section-header;
-    background-color: darken($primary-color, 7%);
-    color: #fff;
-    margin: -13px -30px 20px -30px;
+    font-size: 1.8em;
   }
 
-  #login {
-    /* Login Form */
-    form {
-      fieldset {
-        background: none;
-        padding: 0;
-        li { padding: 10px 0; }
+  fieldset.inputs {
+    background-color: transparent;
+    margin-bottom: 0;
+    padding: 0;
 
-        input[type=text], input[type=email], input[type=password] {
-          width: 70%;
-        }
-        &.buttons { margin-left: 20%; }
-        margin-bottom: 0;
-      }
+    li {
+      padding: 10px 0;
     }
 
-    a { float: right; margin-top: -32px; }
+    input[type=text], input[type=email], input[type=password] {
+      width: 79%;
+    }
   }
 
+  a {
+    float: right;
+    margin-top: -55px;
+  }
 }
