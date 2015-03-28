@@ -1,35 +1,65 @@
 //= depend_on_asset "active_admin/datepicker/datepicker-input-icon.png"
-// -------------------------------------- Active Admin Forms
-form {
-  /* Reset margins & Padding */
-  ul, ol, li, fieldset, legend, input, textarea, select, p { margin:0; padding:0; }
-  ol, ul { list-style: none }
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+input[type=url],
+input[type=tel],
+textarea {
+  border: $border-width solid #c9d0d6;
+  border-radius: 3px;
+  outline: none;
+  padding: 6px 8px;
+  width: calc(80% - #{$text-input-total-padding});
+
+  &:focus {
+    border: $border-width solid #99a2aa;
+    box-shadow: 0 0 4px #99a2aa;
+  }
+}
+
+.formtastic {
+  ol, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .input {
+    margin-bottom: 15px;
+  }
+
+  .label {
+    color: $form-label-color;
+    display: block;
+    float: left;
+    font-weight: bold;
+    width: 20%;
+
+    abbr {
+      border: none;
+      color:  $required-field-marker-color;
+      margin-left: 0.3em;
+    }
+  }
 
   fieldset {
     border: 0;
-    padding: 10px 0;
-    margin-bottom: 20px;
+    margin: 0 0 20px 0;
+    padding: 0;
 
-    &.inputs { @include section-background; }
+    &.inputs {
+      @include section-background;
+      padding: 10px;
+    }
 
     legend {
       width: 100%;
-      span { display: block; @include section-header; }
-    }
 
-    ol > li {
-      padding: 10px;
-      label {
+      span {
         display: block;
-        width: 20%;
-        float: left;
-        font-size: 1.0em;
-        font-weight: bold;
-        color: $form-label-color;
-        abbr {
-          border: none;
-          color:  $required-field-marker-color;
-        }
+        @include section-header;
       }
     }
 
@@ -78,36 +108,55 @@ form {
     }
   }
 
-  /* Nested Fieldsets and Legends */
+  /* Nested Fieldsets and Legends (radio, check boxes and date/time inputs use nested fieldsets) */
+
+  legend.label {
+    font-size: inherit;
+    left: 0;
+    padding-top: 0.1em;
+    position: absolute
+  }
+
+  .choices-group,
+  .fragments-group {
+    float: left;
+    padding: 0 0 0 20%;
+    width: 74%;
+  }
+
+  .choice,
+  .fragment {
+    margin: 0 0 0.5em 0;
+  }
+
+  .fragment {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    width: auto;
+
+    label {
+      display: none;
+    }
+  }
+
+  /* BOOLEAN OVERRIDES */
+
+  .boolean input,
+  .choice input {
+    margin: 0 0.3em 0 0;
+  }
+
+  .boolean label {
+    padding-left:20%;
+    padding-right: 10px;
+    width: 80%;
+  }
 
   fieldset > ol > li {
     fieldset {
       position:relative;
       padding: 0;
-      margin-bottom: 0;
-
-      legend {
-        position:absolute;
-        width:95%;
-        padding-top:0.1em;
-        left: 0px;
-        font-size: 100%;
-        font-weight: normal;
-        span { position:absolute; }
-        &.label label { position:absolute; }
-      }
-
-      &:not(.has_many_fields) ol {
-        float: left;
-        width: 74%;
-        margin: 0;
-        padding: 0 0 0 20%;
-
-        li {
-          padding: 0;
-          border: 0;
-        }
-      }
+      margin: 0;
 
       &.has_many_fields ol {
         float: left;
@@ -117,133 +166,44 @@ form {
     }
   }
 
-  /* Text Fields */
-  input[type=text],
-  input[type=password],
-  input[type=email],
-  input[type=number],
-  input[type=url],
-  input[type=tel],
-  input[type=date],
-  textarea {
-    width: calc(80% - #{$text-input-total-padding});
-    border: $border-width solid #c9d0d6;
-    border-radius: 3px;
-    outline: none;
-    padding: 6px 8px;
-
-    &:focus {
-      border: $border-width solid #99a2aa;
-      box-shadow: 0 0 4px #99a2aa;
-    }
+  .inline-hints {
+    color: #999;
+    margin: 0.3em 0 0 20%;
   }
 
-  input[type=date] {
-    width: calc(100% - #{$text-input-total-padding});
-  }
-
-  fieldset > ol > li {
-
-    /* Hints */
-    p.inline-hints {
-      font-size: 0.95em;
-      font-style: italic;
-      color:#666;
-      margin: 0.5em 0 0 20%;
-    }
-
-    /* Date and Time Fields */
-    &.date_select, &.time_select, &.datetime_select {
-      fieldset ol li {
-        float:left; width:auto; margin:0 0.5em 0 0;
-        label { display: none; }
-        input { display:inline; margin:0; padding:0;  }
-      }
-    }
-
-    /* Check Boxes or Radio fields */
-    &.check_boxes, &.radio {
-      fieldset ol {
-        margin-bottom:-0.6em;
-        li {
-          margin:0.1em 0 0.5em 0;
-          label {
-            float:none;
-            width:100%;
-            input { margin-right:0.2em; }
-          }
-        }
-      }
-    }
-
-    /* Boolean Field */
-    &.boolean {
-      height: 1.1em;
-      label {
-        width: 80%;
-        padding-left:20%;
-        padding-right: 10px;
-        text-transform: none !important;
-        font-weight: normal;
-        input { margin:0 0.5em 0 0.2em; }
-      }
-    }
-
-    /* Hidden fields */
-    &.hidden {
-      padding: 0;
-    }
-
-    /* Errors */
-    p.inline-errors {
-      color: $error-color;
-      font-weight: bold;
-      margin:0.3em 0 0 20%;
-    }
-    ul.errors {
-      color: $error-color;
-      margin:0.5em 0 0 20%;
-      list-style:square;
-      li { padding:0; border:none; display:list-item; }
-    }
-
-    &.error {
-      input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
-        border: $border-width solid $error-color;
-      }
-    }
-  }
-
-  /* semantic_errors */
-  ul.errors {
-    background: lighten($error-color, 60%);
-    border-radius: 3px;
+  .inline-errors, .errors {
     color: $error-color;
     font-weight: bold;
-    margin-bottom: 10px;
-    padding: 10px;
-    list-style:square;
-    li { margin-left:15px; padding:0; border:none; display:list-item; }
+    margin: 0.3em 0 0 20%;
   }
 
-  /* Buttons */
+  .errors {
+    background-color: lighten($error-color, 60%);
+    border-radius: 3px;
+    color: $error-color;
+    list-style-type: square;
+    margin: 0.5em 0 0 20%;
+    padding: 10px 10px 10px 25px;
+    width: calc(80% - 22px);
+  }
+
+  // Buttons
 
   input[type=submit], input[type=button], button {
     @include dark-button;
-    cursor: pointer;
-
   }
 
-  .buttons, .actions {
-    margin-top: 15px;
-    input[type=submit], input[type=button], button { margin-right: 10px; }
+  .button,
+  .action {
+    display: inline-block;
+    margin-right: 0.5em;
   }
 
-  fieldset.buttons li, fieldset.actions li {
-    float:left;
-    padding: 0;
-
-    &.cancel a { @include light-button; }
+  .cancel {
+    a {
+      @include light-button;
+      @include icon(#777, 9px);
+    }
   }
 }
 
@@ -252,79 +212,81 @@ form {
 $sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
 
 .sidebar_section {
-
-  label {
-    color:  $form-label-color;
-    display: block;
-    font-weight: bold;
-    margin: 0 0 0.18em 2px;
-  }
-
   select {
     width: $sidebar-inner-content-width;
   }
 
-  input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], textarea {
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  input[type=url],
+  input[type=tel],
+  textarea {
     width: $sidebar-inner-content-width - ($text-input-horizontal-padding * 2);
   }
-
 }
 
 // -------------------------------------- Filter Forms
 
 $filter-field-seperator-width: 12px;
 
-$side-by-side-filter-input-width: ($sidebar-inner-content-width / 2) - ($text-input-horizontal-padding * 2) - $filter-field-seperator-width;
-$side-by-side-filter-select-width: ($sidebar-inner-content-width / 2) - $filter-field-seperator-width;
+$side-by-side-filter-input-width: ($sidebar-inner-content-width / 2) - $filter-field-seperator-width;
+$side-by-side-filter-select-width: ($sidebar-inner-content-width / 2);
 
-$date-range-filter-input-right-padding: 27px;
-$date-range-filter-input-horizontal-padding: $date-range-filter-input-right-padding + $text-input-horizontal-padding;
-$date-range-filter-input-width: ($sidebar-inner-content-width / 2) - $filter-field-seperator-width - $date-range-filter-input-horizontal-padding;
+$date-range-filter-input-right-padding: 25px;
 
-form.filter_form {
-  .filter_form_field {
-    margin-bottom: 10px;
-    clear: both;
+$date-range-filter-input-width: ($sidebar-inner-content-width / 2) - ($filter-field-seperator-width / 2);
 
-    &.select_and_search {
-      input[type=text] {
-        margin-left: $filter-field-seperator-width + 4;
-        width: $side-by-side-filter-input-width;
-      }
-      select {
-        width: $side-by-side-filter-select-width;
-      }
+.filter_form_field {
+  margin-bottom: 12px;
+
+  .label {
+    display: block;
+    margin: 0 0 0.18em 0;
+  }
+
+  &.select_and_search {
+    input[type=text] {
+      margin-left: $filter-field-seperator-width;
+      width: $side-by-side-filter-input-width;
     }
 
-    &.filter_check_boxes {
-      label { margin-bottom: 3px; }
-      fieldset {
-        margin-bottom: 0px;
-        padding-bottom: 0px;
-      }
-      .check_boxes_wrapper label {
-        font-weight: normal;
-        margin-bottom: 3px;
-        text-transform: none;
-        font-size: 1.0em;
-        input { vertical-align: baseline; }
-      }
-    }
-
-    &.filter_date_range {
-      .seperator {
-        display: inline-block;
-        text-align: center;
-        width: $filter-field-seperator-width;
-      }
-
-      input[type=text] {
-        background: #fff image-url('active_admin/datepicker/datepicker-input-icon.png') no-repeat 100% 7px;
-        padding-right: $date-range-filter-input-right-padding;
-        width: $date-range-filter-input-width;
-      }
+    select {
+      width: $side-by-side-filter-select-width;
     }
   }
-  a.clear_filters_btn { @include light-button; }
+
+  &.filter_date_range {
+    input {
+      background: #fff image-url('active_admin/datepicker/datepicker-input-icon.png') no-repeat 100% 6px;
+      padding-right: $date-range-filter-input-right-padding;
+      width: $date-range-filter-input-width;
+    }
+
+    input + input {
+      margin-left: 6px;
+    }
+  }
 }
 
+.filter_check_boxes {
+  .choices {
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    > label {
+      display: block;
+    }
+  }
+}
+
+.filter_form {
+  .buttons > * {
+    margin-right: 5px;
+  }
+
+  a.clear_filters_btn {
+    @include light-button;
+  }
+}
