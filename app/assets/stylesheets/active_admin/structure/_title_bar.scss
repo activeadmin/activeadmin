@@ -16,16 +16,16 @@
     font-weight: bold;
   }
 
-  .action_items {
-    span.action_item {
-      & > a, & > .dropdown_menu > a {
-        @include light-button;
-      }
+  .action_item {
+    & > a,
+    & > .dropdown_menu > a {
+      @include light-button;
     }
   }
 }
 
-#titlebar_left, #titlebar_right {
+#titlebar_left,
+#titlebar_right {
   display: table-cell;
   height: 50px; // acts as minimum height
   vertical-align: middle;
