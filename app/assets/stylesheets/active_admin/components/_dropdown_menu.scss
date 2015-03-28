@@ -3,8 +3,7 @@
   position: relative;
 }
 
-.dropdown_menu_button,
-.dropdown_menu .dropdown_menu_button { // needed to outweigh a,a:link,.. selectors
+.dropdown_menu_button {
   @include light-button;
   padding-right: 22px;
   position: relative;
