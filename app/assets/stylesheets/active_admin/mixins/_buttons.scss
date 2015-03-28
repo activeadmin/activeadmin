@@ -1,5 +1,6 @@
 @mixin basic-button {
   border-radius: 0.25em;
+  cursor: pointer;
   display: inline-block;
   font-size: 1.0em;
   font-weight: bold;
@@ -8,7 +9,7 @@
   text-decoration: none;
 
   &.disabled {
-    cursor: now-allowed;
+    cursor: not-allowed;
     opacity: 0.5;
   }
 }
