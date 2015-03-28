@@ -5,8 +5,14 @@
   font-size: 1.0em;
   font-weight: bold;
   line-height: 1.5; // needed for input/button elements to match a.button size
-  padding: 6px 15px;
+  padding: 6px 10px;
   text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $primary-color;
+    text-decoration: none;
+  }
 
   &.disabled {
     cursor: not-allowed;
@@ -51,4 +57,9 @@
 
 @mixin dark-button {
   @include default-button;
+
+  &:hover,
+  &:focus {
+    color: #efefef;
+  }
 }
