@@ -1,27 +1,17 @@
-body.logged_in {
-  .flash {
-    background-color: #f7f1d3;
-    color: #cb9810;
-    font-weight: bold;
-    font-size: 1.1em;
-    padding: 13px 30px 11px;
-    position: relative;
+.flash {
+  background-color: #f7f1d3;
+  color: #cb9810;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 15px 30px;
 
-    &.flash_notice {
-      background-color: #ccdfcd;
-      color: #416347;
-    }
-    &.flash_error {
-      background-color: #f1dcdc;
-      color: #b33c33;
-    }
+  &.flash_notice {
+    background-color: #ccdfcd;
+    color: #416347;
   }
-}
 
-body.logged_out {
-  .flash {
-    color: #666;
-    font-weight: bold;
-    margin-bottom: 8px;
+  &.flash_error {
+    background-color: #f1dcdc;
+    color: #b33c33;
   }
 }
