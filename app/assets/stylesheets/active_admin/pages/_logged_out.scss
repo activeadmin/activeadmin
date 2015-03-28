@@ -18,17 +18,15 @@ body.logged_out {
     margin-bottom: 0;
     padding: 0;
 
-    li {
-      padding: 10px 0;
-    }
-
-    input[type=text], input[type=email], input[type=password] {
+    input[type=text],
+    input[type=email],
+    input[type=password] {
       width: 79%;
     }
   }
 
   a {
     float: right;
-    margin-top: -55px;
+    margin-top: -45px;
   }
 }
