@@ -31,9 +31,10 @@ module ActiveAdmin
         def build_comment(comment)
           div for: comment do
             div class: 'active_admin_comment_meta' do
-              h4 class: 'active_admin_comment_author' do
+              span class: 'active_admin_comment_author' do
                 comment.author ? auto_link(comment.author) : I18n.t('active_admin.comments.author_missing')
               end
+              span I18n.t('active_admin.comments.commented_on')
               span pretty_format comment.created_at
             end
             div class: 'active_admin_comment_body' do
