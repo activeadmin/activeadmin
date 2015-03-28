@@ -35,11 +35,15 @@
 * {
   box-sizing: border-box;
 }
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-size: 72%;
   background: $body-background-color;
   color: $text-color;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 72%;
+  line-height: 1.5;
 }
