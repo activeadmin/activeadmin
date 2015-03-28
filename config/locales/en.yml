@@ -112,6 +112,7 @@ en:
       title_content: "Comments (%{count})"
       errors:
         empty_text: "Comment wasn't saved, text was empty."
+      commented_on: "commented on"
     devise:
       username:
         title: "Username"

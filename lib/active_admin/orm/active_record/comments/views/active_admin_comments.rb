@@ -44,9 +44,10 @@ module ActiveAdmin
         def build_comment(comment)
           div for: comment do
             div class: "active_admin_comment_meta" do
-              h4 class: "active_admin_comment_author" do
+              span class: "active_admin_comment_author" do
                 comment.author ? auto_link(comment.author) : I18n.t("active_admin.comments.author_missing")
               end
+              span I18n.t("active_admin.comments.commented_on")
               span pretty_format comment.created_at
               if authorized?(ActiveAdmin::Auth::DESTROY, comment)
                 text_node link_to I18n.t("active_admin.comments.delete"), comments_url(comment.id), method: :delete, data: { confirm: I18n.t("active_admin.comments.delete_confirmation") }
