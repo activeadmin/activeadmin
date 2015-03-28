@@ -3,11 +3,7 @@
   margin-bottom: 15px;
 }
 
-.table_tools .dropdown_menu {
-  float: left;
-}
-
-a.table_tools_button, .table_tools .dropdown_menu_button {
+a.table_tools_button {
   @include light-button;
   font-weight: normal;
   padding: 4px 10px;

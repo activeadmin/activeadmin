@@ -6,14 +6,14 @@
 .dropdown_menu_button,
 .dropdown_menu .dropdown_menu_button { // needed to outweigh a,a:link,.. selectors
   @include light-button;
-  position: relative;
   padding-right: 22px;
+  position: relative;
 
   &:after {
-    content: '';
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
     border-top: 4px dashed;
+    content: '';
     height: 0;
     position: absolute;
     right: 11px;
