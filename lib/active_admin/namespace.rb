@@ -157,7 +157,7 @@ module ActiveAdmin
     def build_menu_collection
       @menus = MenuCollection.new
 
-      @menus.on_build do |menus|
+      @menus.on_build do
         build_default_utility_nav
 
         resources.each do |resource|
