@@ -7,7 +7,7 @@ ActiveAdmin.flash =
     reference: ->
       @reference
     constructor: (@message, @type = "notice", close_after) ->
-      @reference = jQuery("<div>").addClass("flash flash_#{type}").text(message)
+      @reference = jQuery("<div>").addClass("flash flash_#{@type}").text(@message)
       jQuery ".flashes"
         .append @reference
       @close_after close_after if close_after?
