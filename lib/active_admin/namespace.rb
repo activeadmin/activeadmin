@@ -110,13 +110,13 @@ module ActiveAdmin
     # Add a callback to be ran when we build the menu
     #
     # @param [Symbol] name The name of the menu. Default: :default
-    # @param [Proc] block The block to be ran when the menu is built
+    # @yield [ActiveAdmin::Menu] The block to be ran when the menu is built
     #
     # @return [void]
-    def build_menu(name = DEFAULT_MENU, &block)
+    def build_menu(name = DEFAULT_MENU)
       @menus.before_build do |menus|
         menus.menu name do |menu|
-          block.call(menu)
+          yield menu
         end
       end
     end
@@ -157,7 +157,7 @@ module ActiveAdmin
     def build_menu_collection
       @menus = MenuCollection.new
 
-      @menus.on_build do |menus|
+      @menus.on_build do
         build_default_utility_nav
 
         resources.each do |resource|
