@@ -120,6 +120,8 @@ end
 # Require things that don't support autoload
 require 'active_admin/engine'
 require 'active_admin/error'
+require 'active_admin/exception_app'
+require 'active_admin/middleware/error_handler'
 
 # Require internal plugins
 require 'active_admin/batch_actions'
