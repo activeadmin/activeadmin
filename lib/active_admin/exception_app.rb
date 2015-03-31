@@ -16,7 +16,6 @@ module ActiveAdmin
       render status: status
     end
 
-
     def active_admin_application
       ActiveAdmin.application
     end
@@ -29,7 +28,6 @@ module ActiveAdmin
     end
 
     helper_method :active_admin_namespace
-
 
     def active_admin_config
       ::ActiveAdmin::Page.new(active_admin_namespace, "Error", {})
@@ -49,14 +47,16 @@ module ActiveAdmin
 
     helper_method :env
 
-    def authorized?(action, subject = nil)
+    def authorized?(*)
       true
     end
 
     helper_method :authorized?
 
     def current_active_admin_user
-      send(active_admin_namespace.current_user_method) if active_admin_namespace.current_user_method
+      if active_admin_namespace.current_user_method
+        send(active_admin_namespace.current_user_method)
+      end
     end
 
     helper_method :current_active_admin_user
