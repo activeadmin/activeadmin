@@ -9,7 +9,7 @@
 }
 
 #main_content{
-  margin-right: 300px;
+  margin-right: $sidebar-width + $horizontal-page-margin;
 }
 
 .without_sidebar #main_content {
