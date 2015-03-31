@@ -110,7 +110,7 @@ textarea {
     }
   }
 
-  /* Nested Fieldsets and Legends (radio, check boxes and date/time inputs use nested fieldsets) */
+  // Nested Fieldsets and Legends (radio, check boxes and date/time inputs use nested fieldsets)
 
   legend.label {
     font-size: inherit;
@@ -141,7 +141,7 @@ textarea {
     }
   }
 
-  /* BOOLEAN OVERRIDES */
+  // BOOLEAN OVERRIDES
 
   .boolean input,
   .choice input {
