@@ -1,8 +1,10 @@
-require 'active_admin/view_helpers'
-
 module ActiveAdmin
   class ExceptionController < ActionController::Base
-    include Rails.application.routes.url_helpers
+
+    def self.included(base)
+      base.send :include, Rails.application.routes.url_helpers
+    end
+
     helper ::ActiveAdmin::ViewHelpers
 
     def self.call(env)
@@ -11,6 +13,7 @@ module ActiveAdmin
     end
 
     def index
+      render status: status
     end
 
 
@@ -63,12 +66,6 @@ module ActiveAdmin
     end
 
     helper_method :current_active_admin_user?
-
-    def destroy_admin_user_session
-      active_admin_namespace.logout_link_path
-    end
-
-    helper_method :destroy_admin_user_session
 
     def status
       request.env['STATUS']
