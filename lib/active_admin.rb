@@ -57,6 +57,8 @@ module ActiveAdmin
   autoload :ViewHelpers,              'active_admin/view_helpers'
   autoload :Views,                    'active_admin/views'
   autoload :ExceptionController,      'active_admin/exception_app'
+  autoload :ErrorHandler,             'active_admin/middleware/error_handler'
+
 
   class << self
 
@@ -121,7 +123,6 @@ end
 # Require things that don't support autoload
 require 'active_admin/engine'
 require 'active_admin/error'
-require 'active_admin/middleware/error_handler'
 
 # Require internal plugins
 require 'active_admin/batch_actions'

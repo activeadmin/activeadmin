@@ -10,7 +10,7 @@ module ActiveAdmin
     end
 
     initializer "active_admin.middleware" do |app|
-      app.config.middleware.use ActiveAdmin::Middleware::ErrorHandler
+      app.config.middleware.use ActiveAdmin::ErrorHandler
     end
 
     initializer 'active_admin.routes' do
