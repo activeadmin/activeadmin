@@ -7,15 +7,19 @@ module ActiveAdmin
 
     def call(env)
       @app.call(env)
-    rescue Exception => e
-      if ActiveAdmin.application.default_namespace.to_s == env['PATH_INFO'].split('/').second
-        render_exception(env, e)
+    rescue Exception => exception
+      if is_active_admin_error?(env)
+        render_exception(env, exception)
       else
-        @app.call(env)
+        raise exception
       end
     end
 
     private
+
+    def is_active_admin_error?(env)
+      ActiveAdmin.application.default_namespace.to_s == env['PATH_INFO'].split('/').second
+    end
 
     def render_exception(env, exception)
       wrapper = ActionDispatch::ExceptionWrapper.new(env, exception)
