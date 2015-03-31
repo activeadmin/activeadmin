@@ -1,9 +1,7 @@
 module ActiveAdmin
   class ExceptionController < ActionController::Base
 
-    def self.included(base)
-      base.send :include, Rails.application.routes.url_helpers
-    end
+    include Rails.application.routes.url_helpers
 
     helper ::ActiveAdmin::ViewHelpers
 
