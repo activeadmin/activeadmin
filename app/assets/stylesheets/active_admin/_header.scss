@@ -1,11 +1,8 @@
-//= depend_on_asset "active_admin/nested_menu_arrow.gif"
-//= depend_on_asset "active_admin/nested_menu_arrow_dark.gif"
-// ----------------------------------- Header
 .header {
   background-color: lighten($primary-color, 5%);
   display: table;
+  padding: 5px $horizontal-page-margin;
   width: 100%;
-  padding: 5px 0;
   z-index: 900;
 
   a, a:link, a:visited {
@@ -17,43 +14,42 @@
     color: #fff;
   }
 
-  h1 {
+  h1,
+  .tabs {
     display: table-cell;
     vertical-align: middle;
     white-space: nowrap;
+  }
+
+  h1 {
     color:  $page-header-text-color;
-    padding: 0 $horizontal-page-margin;
     font-size: 1.3em;
     font-weight: normal;
-    line-height: 1.2;
+    padding: 0;
 
     a:hover {
       color: #fff;
     }
   }
 
-  .header-item {
-    position: relative;
-  }
-
-  ul.tabs {
+  .tabs {
     display: table-cell;
-    height: 100%;
     margin: 0;
-    padding: 0;
-    vertical-align: middle;
+    padding: 0 20px;
     width: 100%;
 
     & > li {
       display: inline-block;
-      margin-right: 4px;
-      margin-top: 5px;
-      margin-bottom: 5px;
       position: relative;
+
+      & + li {
+        margin-left: 5px;
+      }
 
       a {
         border-radius: 4px;
-        padding: 6px 10px 4px 10px;
+        display: inline-block;
+        padding: 5px 10px;
         position: relative;
       }
 
@@ -62,14 +58,22 @@
         color: #fff;
       }
 
-      &.has_nested > a {
-        background: image-url('active_admin/nested_menu_arrow.gif') no-repeat calc(100% - 7px) 50%;
-        padding-right: 20px;
-      }
+      &.has_nested > a,
+      &.has_nested.current > a,
+      &.has_nested:hover > a {
+        padding-right: 22px;
 
-      &.has_nested.current > a {
-        background: $current-menu-item-background image-url('active_admin/nested_menu_arrow_dark.gif') no-repeat calc(100% - 7px) 50%;
-        padding-right: 20px;
+        &:after {
+          border-left: 4px solid transparent;
+          border-right: 4px solid transparent;
+          border-top: 4px dashed;
+          content: '';
+          height: 0;
+          position: absolute;
+          right: 10px;
+          top: 45%;
+          width: 0;
+        }
       }
 
       &:hover > a {
@@ -78,34 +82,26 @@
       }
 
       &.has_nested:hover > a {
-        border-bottom: 5px solid $hover-menu-item-background;
-        background: $hover-menu-item-background image-url('active_admin/nested_menu_arrow_dark.gif') no-repeat calc(100% - 7px) 50%;
+        border-radius: 4px 4px 0 0;
         z-index: 1020;
       }
 
-      /* Hover on li, display the ul */
       &:hover ul {
         display: block;
       }
 
-      /* Drop down menus */
       ul {
         background: $hover-menu-item-background;
         border-radius: 0 4px 4px 4px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.175);
         display: none;
         list-style: none;
-        margin-top: 5px;
         min-width: 175px;
         padding: 5px 0;
         position: absolute;
         z-index: 1010;
 
         li {
-          a {
-            display: block;
-          }
-
           &.current a,
           a:hover {
             color: #fff;
@@ -117,11 +113,7 @@
 }
 
 #utility_nav {
-  color: #aaa;
-  display: table-cell;
-  white-space: nowrap;
-  margin: 0;
   padding: 0;
-  padding-right: 26px;
   text-align: right;
+  white-space: nowrap;
 }
