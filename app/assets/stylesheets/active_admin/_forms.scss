@@ -51,7 +51,10 @@ textarea {
 
     &.inputs {
       @include section-background;
-      padding: 10px;
+
+      > ol {
+        padding: 15px;
+      }
     }
 
     legend {
