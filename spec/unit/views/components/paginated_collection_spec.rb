@@ -52,6 +52,17 @@ describe ActiveAdmin::Views::PaginatedCollection do
       expect(pagination_content).to include '/admin/posts.json?page=1&amp;something=else'
     end
 
+    context "when paginating several pages" do
+      let(:collection) do
+        posts = [Post.new(title: "First Post"), Post.new(title: "Second Post"), Post.new(title: "Third Post")]
+        Kaminari.paginate_array(posts).page(1).per(2)
+      end
+
+      it "should have a custom paginator theme" do
+        expect(pagination.content).to match("activeadmin-pagination")
+      end
+    end
+
     context "when specifying :param_name option" do
       let(:collection) do
         posts = 10.times.map{ Post.new }
