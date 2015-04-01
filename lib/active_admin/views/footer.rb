@@ -4,7 +4,7 @@ module ActiveAdmin
     class Footer < Component
 
       def build(namespace)
-        super id: "footer"
+        super id: "footer", class: "footer"
         @namespace = namespace
 
         if footer_text.present?
