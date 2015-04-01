@@ -56,7 +56,6 @@ module ActiveAdmin
   autoload :ViewFactory,              'active_admin/view_factory'
   autoload :ViewHelpers,              'active_admin/view_helpers'
   autoload :Views,                    'active_admin/views'
-  autoload :ExceptionController,      'active_admin/exception_app'
   autoload :ErrorHandler,             'active_admin/middleware/error_handler'
 
 
@@ -131,3 +130,4 @@ require 'active_admin/filters'
 # Require ORM-specific plugins
 require 'active_admin/orm/active_record' if defined? ActiveRecord
 require 'active_admin/orm/mongoid'       if defined? Mongoid
+require 'active_admin/error_pages/error_pages'

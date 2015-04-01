@@ -10,7 +10,7 @@ module ActiveAdmin
     end
 
     initializer "active_admin.middleware" do |app|
-      if ActiveAdmin.application.active_admin_error_page
+      if ActiveAdmin.application.use_active_admin_error_page
         app.config.middleware.use ActiveAdmin::ErrorHandler
       end
     end

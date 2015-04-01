@@ -22,8 +22,6 @@ module ActiveAdmin
               new_page:   ActiveAdmin::Views::Pages::Form,
               edit_page:  ActiveAdmin::Views::Pages::Form,
               layout:     ActiveAdmin::Views::Pages::Layout,
-              page:       ActiveAdmin::Views::Pages::Page,
-              exception:  ActiveAdmin::Views::Pages::Exception
-
+              page:       ActiveAdmin::Views::Pages::Page
   end
 end

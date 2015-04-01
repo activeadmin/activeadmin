@@ -18,13 +18,28 @@ module ActiveAdmin
     private
 
     def is_active_admin_error?(env)
-      ActiveAdmin.application.default_namespace.to_s == env['PATH_INFO'].split('/').second
+      stringified_namespaces.include?(current_namespace(env))
     end
 
     def render_exception(env, exception)
-      wrapper = ActionDispatch::ExceptionWrapper.new(env, exception)
-      env["STATUS"] = wrapper.status_code
-      ActiveAdmin::ExceptionController.call(env)
+      env["active_admin.original_error"] = exception
+
+      env["action_dispatch.request.parameters"] =
+          {"controller" => "#{current_namespace(env)}/errors", "action" => "index"}
+
+      Object.const_get(current_namespace(env).titleize)
+          .const_get("ErrorController")
+          .action(:index)
+          .call(env)
     end
+
+    def stringified_namespaces
+      ActiveAdmin.application.namespaces.collect { |namespace| namespace.name.to_s }
+    end
+
+    def current_namespace(env)
+      env['PATH_INFO'].split('/').second
+    end
+
   end
 end

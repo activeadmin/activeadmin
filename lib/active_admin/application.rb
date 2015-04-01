@@ -110,6 +110,11 @@ module ActiveAdmin
                                       :email,
                                       :to_s ]
 
+    # Active Admin overrides the default error pages of rails with it's own
+    # This is set to false in the Development and Test environment by default
+
+    inheritable_setting :use_active_admin_error_page, -> { !(Rails.env.test? || Rails.env.development?) }.call
+
     # == Deprecated Settings
 
     def allow_comments=(*)
