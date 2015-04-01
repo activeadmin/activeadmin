@@ -12,33 +12,30 @@ describe ActiveAdmin::Application do
     ]
   end
 
-  it 'before_filter' do
-    controllers.each{ |c| expect(c).to receive(:before_filter).and_return(true) }
-    application.before_filter :my_filter, only: :show
-  end
+  expected_actions = (
+    prefixes = %w(skip append prepend) << nil
+    positions = %w(before around after)
+    suffixes = %w(filter)
+    base = %w(skip_filter)
+    if Rails::VERSION::MAJOR >= 4
+      suffixes += %w(action)
+      base += %w(skip_action_callback)
+    end
 
-  it 'skip_before_filter' do
-    controllers.each{ |c| expect(c).to receive(:skip_before_filter).and_return(true) }
-    application.skip_before_filter :my_filter, only: :show
-  end
+    prefixes.each_with_object(base) do |prefix, stack|
+      positions.each do |position|
+        suffixes.each do |suffix|
+          stack << [prefix, position, suffix].compact.join("_").to_sym
+        end
+      end
+    end
+  )
 
-  it 'after_filter' do
-    controllers.each{ |c| expect(c).to receive(:after_filter).and_return(true) }
-    application.after_filter :my_filter, only: :show
-  end
-
-  it 'skip after_filter' do
-    controllers.each{ |c| expect(c).to receive(:skip_after_filter).and_return(true) }
-    application.skip_after_filter :my_filter, only: :show
-  end
-
-  it 'around_filter' do
-    controllers.each{ |c| expect(c).to receive(:around_filter).and_return(true) }
-    application.around_filter :my_filter, only: :show
-  end
-
-  it 'skip_filter' do
-    controllers.each{ |c| expect(c).to receive(:skip_filter).and_return(true) }
-    application.skip_filter :my_filter, only: :show
+  expected_actions.each do |action|
+    it action do
+      args = [:my_filter, { only: :show }]
+      controllers.each { |c| expect(c).to receive(action).with(args) }
+      application.public_send action, args
+    end
   end
 end

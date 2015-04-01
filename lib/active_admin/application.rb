@@ -216,7 +216,8 @@ module ActiveAdmin
     # Example usage:
     #   ActiveAdmin.before_filter :authenticate_admin!
     #
-    %w(before_filter skip_before_filter after_filter skip_after_filter around_filter skip_filter).each do |name|
+    AbstractController::Callbacks::ClassMethods.public_instance_methods.
+      select { |m| m.match(/(filter|action)/) }.each do |name|
       define_method name do |*args, &block|
         controllers_for_filters.each do |controller|
           controller.public_send name, *args, &block
