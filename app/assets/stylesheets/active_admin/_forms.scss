@@ -9,6 +9,7 @@ input[type=tel],
 textarea {
   border: $border-width solid #c9d0d6;
   border-radius: 3px;
+  display: inline-block;
   outline: none;
   padding: 6px 8px;
   width: calc(80% - #{$text-input-total-padding});
@@ -24,6 +25,10 @@ textarea {
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  .hidden {
+    display: none;
   }
 
   .input {
@@ -44,18 +49,19 @@ textarea {
     }
   }
 
+  .inputs {
+    @include section-background;
+
+    > ol {
+      padding: 15px;
+    }
+  }
+
   fieldset {
     border: 0;
     margin: 0 0 20px 0;
     padding: 0;
-
-    &.inputs {
-      @include section-background;
-
-      > ol {
-        padding: 15px;
-      }
-    }
+    position: relative; // for abosolute positioning sub fieldset legends for choices/fragments
 
     legend {
       width: 100%;
@@ -66,48 +72,28 @@ textarea {
       }
     }
 
-    ol > li.has_many_container {
-      padding: 20px 10px;
+    .has_many_container {
       h3 {
-        font-size: 12px;
-        font-weight: bold;
-      }
-      .has_many_fields { margin: 10px 0 }
-    }
-
-    ol > li > li label {
-      line-height:100%;
-      padding-top:0;
-      input {
-        line-height:100%;
-        vertical-align:middle;
-        margin-top:-0.1em;
+        border-bottom: 1px solid #e8e8e8;
+        margin-bottom: 20px;
       }
     }
   }
 
   // relative so the absolutely-positioned handle will fit
-  .has_many_fields { position: relative }
+  .has_many_fields {
+    border-bottom: 1px solid #e8e8e8;
 
-  .has_many_container {
+    ol {
+      padding: 0 15px;
+      position: relative;
+    }
+
     .handle {
-      position: absolute;
-      top: calc(50% - 3em / 2);
-      right: 2px;
-      padding: 0;
       cursor: move;
-    }
-
-    // If a sortable is nested in a sortable, give the parent handle space!
-    &.ui-sortable .has_many_container {
-      margin-right: 2em;
-    }
-  }
-
-  .ui-sortable {
-    // give the handle space!
-    input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
-      width: calc(80% - #{$text-input-total-padding} - 2em - 1px);
+      position: absolute;
+      right: 0;
+      top: calc(50% - 3em / 2);
     }
   }
 
@@ -116,7 +102,6 @@ textarea {
   legend.label {
     font-size: inherit;
     left: 0;
-    padding-top: 0.1em;
     position: absolute
   }
 
@@ -134,8 +119,7 @@ textarea {
 
   .fragment {
     display: inline-block;
-    margin: 0 5px 0 0;
-    width: auto;
+    margin: 0 0.5em 0 0;
 
     label {
       display: none;
@@ -146,53 +130,46 @@ textarea {
 
   .boolean input,
   .choice input {
-    margin: 0 0.3em 0 0;
+    display: inline-block; // for IE
+    margin: 0 0.5em 0 0;
   }
 
   .boolean label {
-    padding-left:20%;
+    padding-left: 20%;
     padding-right: 10px;
     width: 80%;
   }
 
-  fieldset > ol > li {
-    fieldset {
-      position:relative;
-      padding: 0;
-      margin: 0;
+  // HINTS and ERRORS
 
-      &.has_many_fields ol {
-        float: left;
-        width: 100%;
-        margin: 0;
-      }
-    }
+  .inline-hints,
+  .inline-errors,
+  .errors {
+    margin: 0.3em 0 0 20%;
   }
 
   .inline-hints {
     color: #999;
-    margin: 0.3em 0 0 20%;
   }
 
   .inline-errors, .errors {
     color: $error-color;
     font-weight: bold;
-    margin: 0.3em 0 0 20%;
   }
 
   .errors {
     background-color: lighten($error-color, 60%);
     border-radius: 3px;
-    color: $error-color;
     list-style-type: square;
-    margin: 0.5em 0 0 20%;
     padding: 10px 10px 10px 25px;
     width: calc(80% - 22px);
   }
 
   // Buttons
 
-  input[type=submit], input[type=button], button {
+  input[type=submit],
+  input[type=button],
+  button {
     @include dark-button;
   }
 
