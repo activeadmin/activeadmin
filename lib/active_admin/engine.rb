@@ -10,9 +10,7 @@ module ActiveAdmin
     end
 
     initializer "active_admin.middleware" do |app|
-      if ActiveAdmin.application.use_active_admin_error_page
-        app.config.middleware.use ActiveAdmin::ErrorHandler
-      end
+      app.config.middleware.insert_after ActionDispatch::ShowExceptions, ActiveAdmin::ErrorHandler
     end
 
     initializer 'active_admin.routes' do

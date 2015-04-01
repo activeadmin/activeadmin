@@ -6,10 +6,11 @@ module ActiveAdmin
     end
 
     def call(env)
+      @env = env
       @app.call(env)
     rescue Exception => exception
-      if is_active_admin_error?(env)
-        render_exception(env, exception)
+      if is_active_admin_error? && use_active_admin_error_page?
+        render_exception(exception)
       else
         raise exception
       end
@@ -17,28 +18,36 @@ module ActiveAdmin
 
     private
 
-    def is_active_admin_error?(env)
-      stringified_namespaces.include?(current_namespace(env))
+    def is_active_admin_error?
+      stringified_namespaces.include?(current_namespace)
     end
 
-    def render_exception(env, exception)
-      env["active_admin.original_error"] = exception
+    def use_active_admin_error_page?
+      if ActiveAdmin.application.use_active_admin_error_page.is_a?(Proc)
+        ActiveAdmin.application.use_active_admin_error_page.call
+      else
+        ActiveAdmin.application.use_active_admin_error_page
+      end
+    end
 
-      env["action_dispatch.request.parameters"] =
-          {"controller" => "#{current_namespace(env)}/errors", "action" => "index"}
+    def render_exception(exception)
+      @env["active_admin.original_error"] = exception
 
-      Object.const_get(current_namespace(env).titleize)
+      @env["action_dispatch.request.parameters"] =
+          {"controller" => "#{current_namespace}/errors", "action" => "index"}
+
+      Object.const_get(current_namespace.titleize)
           .const_get("ErrorController")
           .action(:index)
-          .call(env)
+          .call(@env)
     end
 
     def stringified_namespaces
       ActiveAdmin.application.namespaces.collect { |namespace| namespace.name.to_s }
     end
 
-    def current_namespace(env)
-      env['PATH_INFO'].split('/').second
+    def current_namespace
+      @env['PATH_INFO'].split('/').second
     end
 
   end

@@ -111,9 +111,11 @@ module ActiveAdmin
                                       :to_s ]
 
     # Active Admin overrides the default error pages of rails with it's own
-    # This is set to false in the Development and Test environment by default
+    # To enable it, it takes either a boolean or a proc which can be evaluated to a boolean
+    # By default, it is assigned the proc -> { !(Rails.env.test? || Rails.env.development?) }
 
-    inheritable_setting :use_active_admin_error_page, -> { !(Rails.env.test? || Rails.env.development?) }.call
+    setting :use_active_admin_error_page, -> { !(Rails.env.test? || Rails.env.development?) }
+
 
     # == Deprecated Settings
 
