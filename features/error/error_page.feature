@@ -6,7 +6,7 @@ Feature: Error Page
   Scenario: For a 500 Error Page
     Given a configuration of:
       """
-      ActiveAdmin.application.active_admin_error_page = true
+      ActiveAdmin.application.use_active_admin_error_page = true
       ActiveAdmin.register_page "Dashboard" do
         content do
           five_hundred_error
@@ -20,7 +20,7 @@ Feature: Error Page
   Scenario: For a 404 Error Page
     Given an index configuration of:
       """
-        ActiveAdmin.application.active_admin_error_page = true
+        ActiveAdmin.application.use_active_admin_error_page = true
         ActiveAdmin.register Post
       """
     When I visit "/admin/posts/1"
