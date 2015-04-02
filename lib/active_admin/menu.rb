@@ -27,6 +27,7 @@ module ActiveAdmin
       def [](id)
         @children[normalize_id(id)]
       end
+
       def []=(id, child)
         @children[normalize_id(id)] = child
       end

@@ -1,10 +1,15 @@
 # Initializers
 $(document).on 'ready page:load', ->
   # jQuery datepickers (also evaluates dynamically added HTML)
-  $(document).on 'focus', '.datepicker:not(.hasDatepicker)', ->
+  $(document).on 'focus', 'input.datepicker:not(.hasDatepicker)', ->
+    $input = $(@)
+
+    # Only applying datepicker to compatible browsers
+    return if $input[0].type is 'date'
+
     defaults = dateFormat: 'yy-mm-dd'
-    options = $(@).data 'datepicker-options'
-    $(@).datepicker $.extend(defaults, options)
+    options = $input.data 'datepicker-options'
+    $input.datepicker $.extend(defaults, options)
 
   # Clear Filters button
   $('.clear_filters_btn').click ->

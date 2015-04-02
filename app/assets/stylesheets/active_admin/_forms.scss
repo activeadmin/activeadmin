@@ -119,7 +119,14 @@ form {
   }
 
   /* Text Fields */
-  input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  input[type=number],
+  input[type=url],
+  input[type=tel],
+  input[type=date],
+  textarea {
     width: calc(80% - #{$text-input-total-padding});
     border: $border-width solid #c9d0d6;
     @include rounded;
@@ -132,6 +139,10 @@ form {
       border: $border-width solid #99a2aa;
       @include shadow(0,0,4px,#99a2aa);
     }
+  }
+
+  input[type=date] {
+    width: calc(100% - #{$text-input-total-padding});
   }
 
   fieldset > ol > li {
