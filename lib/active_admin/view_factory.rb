@@ -23,5 +23,6 @@ module ActiveAdmin
               edit_page:  ActiveAdmin::Views::Pages::Form,
               layout:     ActiveAdmin::Views::Pages::Layout,
               page:       ActiveAdmin::Views::Pages::Page
+
   end
 end

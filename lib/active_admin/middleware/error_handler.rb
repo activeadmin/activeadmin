@@ -1,16 +1,16 @@
 module ActiveAdmin
   class ErrorHandler
+    include MethodOrProcHelper
 
     def initialize(app)
       @app = app
     end
 
     def call(env)
-      @env = env
       @app.call(env)
     rescue Exception => exception
-      if is_active_admin_error? && use_active_admin_error_page?
-        render_exception(exception)
+      if is_active_admin_error?(env) && use_active_admin_error_page?
+        render_exception(exception, env)
       else
         raise exception
       end
@@ -18,36 +18,33 @@ module ActiveAdmin
 
     private
 
-    def is_active_admin_error?
-      stringified_namespaces.include?(current_namespace)
+    def is_active_admin_error?(env)
+      stringified_namespaces.include?(current_namespace(env))
     end
 
     def use_active_admin_error_page?
-      if ActiveAdmin.application.use_active_admin_error_page.is_a?(Proc)
-        ActiveAdmin.application.use_active_admin_error_page.call
-      else
-        ActiveAdmin.application.use_active_admin_error_page
-      end
+      render_in_context(ActiveAdmin.application, ActiveAdmin.application.use_active_admin_error_page)
     end
 
-    def render_exception(exception)
-      @env["active_admin.original_error"] = exception
 
-      @env["action_dispatch.request.parameters"] =
-          {controller: "#{current_namespace}/error", action: "index"}
+    def render_exception(exception, env)
+      env["active_admin.original_exception"] = ActionDispatch::ExceptionWrapper.new(env, exception)
 
-      Object.const_get(current_namespace.titleize)
+      env["action_dispatch.request.parameters"] =
+          {controller: "#{current_namespace(env)}/error", action: "index"}
+
+      Object.const_get(current_namespace(env).titleize)
           .const_get("ErrorController")
           .action(:index)
-          .call(@env)
+          .call(env)
     end
 
     def stringified_namespaces
       ActiveAdmin.application.namespaces.collect { |namespace| namespace.name.to_s }
     end
 
-    def current_namespace
-      @env['PATH_INFO'].split('/').second
+    def current_namespace(env)
+      env['PATH_INFO'].split('/').second
     end
 
   end

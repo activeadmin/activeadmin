@@ -3,8 +3,7 @@ ActiveAdmin.after_load do |app|
     namespace.register_page "Error" do
       menu false
 
-      content title: proc{ "Error #{status_code}" }
-
+      content title: proc { "Error #{env["active_admin.original_exception"].status_code}" }
     end
   end
 end

@@ -59,11 +59,6 @@ module ActiveAdmin
     end
     helper_method :active_admin_namespace
 
-    def status_code
-      ActionDispatch::ExceptionWrapper.new(env, env["active_admin.original_error"]).status_code
-    end
-    helper_method :status_code
-
     ACTIVE_ADMIN_ACTIONS = [:index, :show, :new, :create, :edit, :update, :destroy]
 
     # Determine which layout to use.
