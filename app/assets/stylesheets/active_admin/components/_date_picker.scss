@@ -1,81 +1,63 @@
 // -------------------------------------- Date Picker
 .ui-datepicker {
-  color: #fff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
   display: none;
-  margin-top: 2px;
-  padding: 0;
-  text-align: center;
   width: 160px;
 
-  a {
+  a,
+  a:hover {
     text-decoration: none;
-    &:hover {
-      cursor: pointer;
-    }
   }
 
   .ui-datepicker-header {
-    @include primary-gradient;
-    padding: 8px 5px;
-    margin: 0px 0px 2px 2px;
-    width: 156px;
-    border-radius: 3px 3px 0 0;
+    background-color: lighten($primary-color, 5%);
+    border-radius: 0.25em 0.25em 0 0;
+    color: #fff;
+    padding: 5px;
     position: relative;
     z-index: 2000;
 
-    &:before {
-       content: "";
-       position: absolute;
-       right: 45%;
-       top: -6px;
-       width: 0px;
-       height: 0px;
-       border-left: 8.5px solid rgba(0, 0, 0, 0);
-       border-right: 8.5px solid rgba(0, 0, 0, 0);
-       border-bottom: 10px solid #676e73;
-    }
-
     .ui-datepicker-title {
-      color: #fff;
       display: block;
-      font-size: 1.1em;
       font-weight: bold;
-      line-height: 0.8em;
       text-align: center;
-
-      .ui-datepicker-month {
-        margin: -4px 0 0 0;
-      }
-      .ui-datepicker-year {
-        margin: -4px 0 0 0;
-      }
     }
-
 
     a {
+      bottom: 0;
       color: #fff;
+      cursor: pointer;
       display: block;
-      height: 19px;
-      margin-top: -4px;
-      width: 10px;
+      position: absolute;
+      top: 0;
+      width: 20px;
+
+      &:after {
+        border-bottom: 4px solid transparent;
+        border-top: 4px solid transparent;
+        content: '';
+        height: 0;
+        position: absolute;
+        top: calc(50% - 4px);
+        width: 0;
+      }
 
       &.ui-datepicker-prev {
-        float: left;
-        width: 0;
-        height: 0;
-        margin: 0px 0px 0px 4px;
-        border-top: 5px solid transparent;
-        border-right: 5px solid white;
-        border-bottom: 5px solid transparent;
+        left: 0;
+
+        &:after {
+          border-right: 5px solid;
+          left: calc(50% - 2px);
+        }
       }
+
       &.ui-datepicker-next {
-        float: right;
-        width: 0;
-        height: 0;
-        margin: 0px 4px 0px 0px;
-        border-top: 5px solid transparent;
-        border-left: 5px solid white;
-        border-bottom: 5px solid transparent;
+        right: 0;
+
+        &:after {
+          border-left: 5px solid;
+          right: calc(50% - 2px);
+        }
       }
 
       span {
@@ -87,54 +69,46 @@
   table.ui-datepicker-calendar {
     background-color: #f4f4f4;
     border: solid 1px #63686e;
-    left: 2px;
-    margin-bottom: 0px;
-    position: relative;
-    top: -2px;
-    width: 156px;
+    border-width: 0 1px 1px 1px;
+    margin-bottom: 0;
 
     td, th {
-      padding: 0px;
+      padding: 0;
       text-align: center;
     }
 
     thead th {
-      background-color: #dbdddf;
       border-bottom: none;
-      color: #333333;
+      font-size: 0.9em;
       font-weight: normal;
-      font-size: 0.8em;
-      padding: 1px 0;
+      padding: 2px 0;
     }
 
     tbody {
-      color: #666666;
-
       td {
         border: none;
-        height: 24px;
+        height: 22px;
         width: 22px;
 
         a {
-          border-radius: 3px;
-          color: #666666;
+          border-radius: 0.25em;
+          color: #666;
           display: block;
-          font-size: 0.85em;
+          font-size: 0.9em;
           font-weight: bold;
           padding: 4px;
 
-          &.ui-state-active {
-            background-color: #5a5f64;
-            color: #fff;
-            &.ui-state-hover {
-              background-color: #5a5f64;
-              color: #fff;
-            }
-          }
-          &.ui-state-hover {
+          &:hover {
             background-color: #eceef0;
           }
-          &.ui-state-highlight {
+
+          &.ui-state-active,
+          &.ui-state-active:hover {
+            background-color: #5a5f64;
+            color: #fff;
+          }
+
+          &.ui-state-highlight { // today's date
             background-color: #dbdddf;
           }
         }
