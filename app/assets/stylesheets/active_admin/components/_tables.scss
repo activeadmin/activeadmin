@@ -26,24 +26,40 @@ table.index_table {
     a, a:link, a:visited {
       color: $section-header-text-color;
       display: block;
+      position: relative;
       text-decoration: none;
       white-space: nowrap;
     }
 
     &.sortable a {
-      background: url($orderable-icon-url) no-repeat 0 4px; padding-left: 13px;
+      &:after,
+      &:before {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        bottom: 100%;
+        content: '';
+        height: 0;
+        position: absolute;
+        right: 0;
+        top: calc(50% - 2px);
+        width: 0;
+      }
     }
 
     &.sorted-asc a {
-      background-position: 0 -27px;
+      padding-right: 11px;
+
+      &:after { // upward pointing arrow
+        border-bottom: 4px solid;
+      }
     }
 
     &.sorted-desc a {
-      background-position: 0 -56px;
-    }
+      padding-right: 11px;
 
-    &.sorted-asc, &.sorted-desc {
-      background-color: #e6e6e6;
+      &:before { // downward pointing arrow
+        border-top: 4px solid;
+      }
     }
   }
 
