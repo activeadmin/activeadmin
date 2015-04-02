@@ -34,7 +34,7 @@ module ActiveAdmin
       @env["active_admin.original_error"] = exception
 
       @env["action_dispatch.request.parameters"] =
-          {"controller" => "#{current_namespace}/errors", "action" => "index"}
+          {controller: "#{current_namespace}/error", action: "index"}
 
       Object.const_get(current_namespace.titleize)
           .const_get("ErrorController")

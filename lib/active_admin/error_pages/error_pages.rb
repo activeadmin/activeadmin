@@ -3,6 +3,8 @@ ActiveAdmin.after_load do |app|
     namespace.register_page "Error" do
       menu false
 
+      content title: proc{ "Error #{status_code}" }
+
     end
   end
 end
