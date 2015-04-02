@@ -6,12 +6,6 @@ table {
   width: 100%;
 }
 
-thead {
-  th {
-    border-bottom: 2px solid #ccc;
-  }
-}
-
 th {
   text-align: left;
 }
@@ -19,6 +13,14 @@ th {
 th, td {
   border-bottom: 1px solid #e8e8e8;
   padding: 8px;
+  vertical-align: top;
+}
+
+thead {
+  th {
+    border-bottom: 2px solid #ccc;
+    vertical-align: bottom;
+  }
 }
 
 // --------- Index Tables
