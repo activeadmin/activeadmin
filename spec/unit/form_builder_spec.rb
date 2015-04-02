@@ -157,7 +157,7 @@ describe ActiveAdmin::FormBuilder do
         f.actions
       end
       expect(body).to have_selector("[type=submit]", count: 1)
-      expect(body).to have_selector("[class=cancel]", count: 1)
+      expect(body).to have_selector("[class~=cancel]", count: 1)
     end
     it "should generate multiple actions" do
       body = build_form do |f|
@@ -167,7 +167,7 @@ describe ActiveAdmin::FormBuilder do
         end
       end
       expect(body).to have_selector("[type=submit]", count: 2)
-      expect(body).to have_selector("[class=cancel]", count: 0)
+      expect(body).to have_selector("[class~=cancel]", count: 0)
     end
 
   end
