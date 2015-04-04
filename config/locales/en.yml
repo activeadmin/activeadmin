@@ -48,8 +48,8 @@ en:
       empty: "No %{model} found"
       one: "Displaying <b>1</b> %{model}"
       one_page: "Displaying <b>all %{n}</b> %{model}"
-      multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
-      multiple_without_total: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      multiple: "Displaying %{model} <b>%{from} - %{to}</b> of <b>%{total}</b> in total"
+      multiple_without_total: "Displaying %{model} <b>%{from} - %{to}</b>"
       entry:
         one: "entry"
         other: "entries"
