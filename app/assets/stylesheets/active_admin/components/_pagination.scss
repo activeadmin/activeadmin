@@ -1,29 +1,34 @@
 .pagination {
   float: right;
-  font-size: 0.9em;
   margin-left: 10px;
 
   a {
     @include light-button;
   }
 
-  span.page.current {
-    @include default-button;
+  .page.current {
+    background-color: $primary-color;
+    border: 1px solid darken($primary-color, 5%);
+    border-radius: 0.25em;
+    color: #fff;
+    cursor: default;
+    display: inline-block;
+    font-weight: bold;
   }
 
-  a, span.page.current {
-    margin-right: 3px;
-    padding: 2px 5px;
+  a,
+  .page.current {
+    padding: 1px 5px;
   }
 }
 
 .pagination_information {
-  color: #b3bcc1;
+  color: #aab2ba;
   float: right;
   margin-top: 2px; // match pagination link top padding so both appear vertically aligned
 
   b {
-    color: #5c6469;
+    color: $text-color;
   }
 }
 
