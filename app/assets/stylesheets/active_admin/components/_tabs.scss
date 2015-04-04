@@ -1,40 +1,41 @@
 .nav-tabs {
   @include clearfix;
-  list-style: none;
   display: block;
-  margin: 0 0 -12px 15px;
+  list-style: none;
+  margin: 0 0 0 5px;
   padding-left: 0;
 
   li {
-    display: block;
     float: left;
-
-    & + li a {
-      border-left-width: 0;
-    }
-
-    &:first-child a {
-      border-radius: 0.25em 0 0 0.25em;
-    }
-
-    &:last-child a {
-      border-radius: 0 0.25em 0.25em 0;
-    }
+    margin: 0 2px -1px 0;
+    position: relative;
 
     a {
-      @include light-button;
+      @include basic-button;
+      border-radius: 0.25em 0.25em 0 0;
+      outline: none;
+
+      &:hover {
+        background-color: darken(#fff, 10%);
+        border-bottom-color: #d3d3d3;
+      }
     }
 
     &.ui-tabs-active {
       a,
       a:hover {
-        @include gradient(#F0F0F0, #FDFDFD);
+        background-color: #fff;
+        border: 1px solid #d3d3d3;
+        border-bottom-color: transparent;
+        color: $text-color;
       }
     }
   }
 }
 
 .tab-content {
+  background-color: #fff;
   border: 1px solid #D3D3D3;
-  padding: 30px 15px 15px 15px;
+  border-radius: 0.25em;
+  padding: 15px;
 }
