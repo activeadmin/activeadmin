@@ -34,10 +34,11 @@ module ActiveAdmin
           breadcrumb_links
         end
         return unless links.present? && links.is_a?(::Array)
-        span class: "breadcrumb" do
+        ol class: "breadcrumb" do
           links.each do |link|
-            text_node link
-            span(separator, class: "breadcrumb_sep")
+            li do
+              text_node link
+            end
           end
         end
       end

@@ -1,14 +1,21 @@
 .breadcrumb {
   display: block;
-  margin-bottom: 2px;
+  list-style: none;
+  margin: 0 0 2px 0;
+  padding: 0;
+
+  > li {
+    display: inline-block;
+
+    & + li:before {
+      color: $breadcrumbs-separator-color;
+      content: "/";
+      padding: 0 6px 0 2px;
+    }
+  }
 
   a,
   a:hover {
     color: $breadcrumbs-color;
   }
-}
-
-.breadcrumb_sep {
-  color: $breadcrumbs-separator-color;
-  margin: 0 2px;
 }
