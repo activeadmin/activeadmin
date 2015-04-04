@@ -1,4 +1,5 @@
 @mixin basic-button {
+  border: 1px solid transparent;
   border-radius: 0.25em;
   cursor: pointer;
   display: inline-block;
@@ -7,11 +8,16 @@
   line-height: 1.5; // needed for input/button elements to match a.button size
   padding: 6px 10px;
   text-decoration: none;
+  transition: background-color .2s, border-color .2s, color .2s;
 
   &:hover,
   &:focus {
     color: $primary-color;
     text-decoration: none;
+  }
+
+  &:active {
+    outline: 0;
   }
 
   &.disabled {
