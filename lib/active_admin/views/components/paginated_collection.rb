@@ -32,11 +32,13 @@ module ActiveAdmin
       # collection => A paginated collection from kaminari
       # options    => These options will be passed to `page_entries_info`
       #   entry_name     => The name to display for this resource collection
+      #   params         => Extra parameters for pagination (e.g. { anchor: 'details' })
       #   param_name     => Parameter name for page number in the links (:page by default)
       #   download_links => Download links override (false or [:csv, :pdf])
       #
       def build(collection, options = {})
         @collection     = collection
+        @params         = options.delete(:params)
         @param_name     = options.delete(:param_name)
         @download_links = options.delete(:download_links)
         @display_total  = options.delete(:pagination_total) { true }
@@ -95,6 +97,7 @@ module ActiveAdmin
 
       def build_pagination
         options = {}
+        options[:params]     = @params     if @params
         options[:param_name] = @param_name if @param_name
 
         text_node paginate collection, options

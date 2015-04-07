@@ -65,6 +65,19 @@ describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
+    context "when specifying :params option" do
+      let(:collection) do
+        posts = 10.times.map{ Post.new }
+        Kaminari.paginate_array(posts).page(1).per(5)
+      end
+
+      let(:pagination) { paginated_collection(collection, param_name: :post_page, params: { anchor: 'here' }) }
+
+      it "should pass it through to Kaminari" do
+        expect(pagination.children.last.content).to match(/\/admin\/posts\?post_page=2#here/)
+      end
+    end
+
     context "when specifying download_links: false option" do
       let(:collection) do
         posts = 10.times.map{ Post.new }
