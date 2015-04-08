@@ -15,9 +15,14 @@ a.table_tools_button {
   padding: 0;
   vertical-align: bottom; // required so this aligns correctly with .dropdown_menu
 
-  .count {
-    color: #8e979e;
-    font-weight: normal;
+  .badge {
+    background-color: rgba(0,0,0,0.35);
+    border-radius: 10px;
+    color: #fff;
+    display: inline-block;
+    line-height: 1;
+    padding: 3px 7px;
+    vertical-align: baseline;
   }
 
   li {
