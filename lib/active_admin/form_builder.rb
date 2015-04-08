@@ -93,7 +93,7 @@ module ActiveAdmin
         has_many_form.input builder_options[:sortable], as: :hidden
 
         contents << template.content_tag(:li, class: 'handle') do
-          Iconic.icon :move_vertical
+          "MOVE"
         end
       end
 

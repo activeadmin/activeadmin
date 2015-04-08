@@ -27,6 +27,10 @@ describe ActiveAdmin::FormBuilder do
       "A Helper Method"
     end
 
+    def view.fa_icon(*args)
+      args.inspect
+    end
+
     view
   end
 

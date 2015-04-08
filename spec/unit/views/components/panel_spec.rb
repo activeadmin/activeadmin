@@ -3,7 +3,7 @@ require 'rails_helper'
 describe ActiveAdmin::Views::Panel do
   let(:arbre_panel) do
     render_arbre_component do
-      panel "My Title", icon: :arrow_down do
+      panel "My Title" do
         header_action link_to("My Link", "https://www.github.com/activeadmin/activeadmin")
         span("Hello World")
       end
@@ -28,10 +28,6 @@ describe ActiveAdmin::Views::Panel do
 
   it "should add children to the contents div" do
     expect(panel_html).to have_css 'div.panel_contents > span', text: "Hello World"
-  end
-
-  it "should set the icon" do
-    expect(panel_html).to have_css "h3 > span.icon"
   end
 
   context "with html-safe title" do
