@@ -31,11 +31,11 @@ describe "display_name" do
     expect(display_name subject).to eq 'foo@bar.baz'
   end
 
-  it "should return nil when the passed object is nil" do
+  it "should return `nil` when the passed object is `nil`" do
     expect(display_name nil).to eq nil
   end
 
-  it "should return `false` when the passed objct is false" do
+  it "should return 'false' when the passed objct is `false`" do
     expect(display_name false).to eq "false"
   end
 
