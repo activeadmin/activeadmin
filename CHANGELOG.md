@@ -6,6 +6,7 @@
 * Rename `allow_comments` to `comments` for more consistent naming [#3695][] by [@pranas][]
 * JavaScript `window.AA` has been removed, use `window.ActiveAdmin` [#3606][] by [@timoschilling][]
 * `f.form_buffers` has been removed [#3486][] by [@varyonic][]
+* iconic has been removed [#3553][] by [@timoschilling][]
 
 ### Enhancements
 
@@ -74,6 +75,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#3464]: https://github.com/activeadmin/activeadmin/issues/3464
 [#3486]: https://github.com/activeadmin/activeadmin/issues/3486
 [#3519]: https://github.com/activeadmin/activeadmin/issues/3519
+[#3553]: https://github.com/activeadmin/activeadmin/issues/3553
 [#3606]: https://github.com/activeadmin/activeadmin/issues/3606
 [#3686]: https://github.com/activeadmin/activeadmin/issues/3686
 [#3695]: https://github.com/activeadmin/activeadmin/issues/3695
