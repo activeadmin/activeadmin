@@ -1,6 +1,3 @@
-#collection_selection_toggle_panel {
-  @include clearfix;
-  >.resource_selection_toggle_cell {
-    float:left;
-  }
+.resource_selection_toggle_panel {
+  margin-bottom: 15px;
 }
