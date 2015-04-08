@@ -14,8 +14,8 @@ describe "display_name" do
   end
 
   it "should memoize the result for the class" do
-    subject = Class.new.new
-    expect(subject).to receive(:name).twice.and_return "My Name"
+    subject = double(title: "My Name")
+    expect(subject).to receive(:display_name).twice.and_return "My Name"
     expect(display_name subject).to eq "My Name"
     expect(ActiveAdmin.application).to_not receive(:display_name_methods)
     expect(display_name subject).to eq "My Name"
@@ -27,8 +27,9 @@ describe "display_name" do
     allow(klass).to receive(:reflect_on_all_associations).and_return [ double(name: :login) ]
     allow(subject).to receive :login
     expect(subject).to_not receive :login
-    allow(subject).to receive(:email).and_return 'foo@bar.baz'
-    expect(display_name subject).to eq 'foo@bar.baz'
+    allow(ActiveAdmin.application).to receive(:display_name_methods).and_return [:login, :display_name]
+    allow(subject).to receive(:display_name).and_return "foo@bar.baz"
+    expect(display_name subject).to eq "foo@bar.baz"
   end
 
   it "should return `nil` when the passed object is `nil`" do

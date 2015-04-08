@@ -24,6 +24,10 @@ inject_into_file 'app/models/post.rb', %q{
   accepts_nested_attributes_for :author
   accepts_nested_attributes_for :taggings
   attr_accessible :author, :position unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+
+  def display_name
+    title
+  end
 }, after: 'class Post < ActiveRecord::Base'
 copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), "app/models/post_decorator.rb"
 
@@ -96,6 +100,12 @@ directory File.expand_path('../templates/policies', __FILE__), 'app/policies'
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 generate 'active_admin:install'
+
+inject_into_file 'app/models/admin_user.rb', %q{
+  def display_name
+    email
+  end
+}, after: 'class AdminUser < ActiveRecord::Base'
 
 inject_into_file "config/routes.rb", "\n  root to: redirect('/admin')", after: /.*::Application.routes.draw do/
 remove_file "public/index.html" if File.exists? "public/index.html"
