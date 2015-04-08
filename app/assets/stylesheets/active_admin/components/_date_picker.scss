@@ -1,4 +1,3 @@
-// -------------------------------------- Date Picker
 .ui-datepicker {
   box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
   display: none;
@@ -8,108 +7,110 @@
   a:hover {
     text-decoration: none;
   }
+}
 
-  .ui-datepicker-header {
-    background-color: lighten($primary-color, 5%);
-    border-radius: 0.25em 0.25em 0 0;
-    color: #fff;
-    padding: 5px;
-    position: relative;
+.ui-datepicker-title {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+}
 
-    .ui-datepicker-title {
-      display: block;
-      font-weight: bold;
-      text-align: center;
-    }
+.ui-datepicker-header {
+  background-color: lighten($primary-color, 5%);
+  border-radius: 0.25em 0.25em 0 0;
+  color: #fff;
+  padding: 5px;
+  position: relative; // for datepicker prev/next buttons
+}
 
-    a {
-      bottom: 0;
-      color: #fff;
-      cursor: pointer;
-      display: block;
-      position: absolute;
-      top: 0;
-      width: 20px;
+.ui-datepicker-prev,
+.ui-datepicker-next {
+  bottom: 0;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 20px; // with top/bottom provide larger hit area for button
 
-      &:after {
-        border-bottom: 4px solid transparent;
-        border-top: 4px solid transparent;
-        content: '';
-        height: 0;
-        position: absolute;
-        top: calc(50% - 4px);
-        width: 0;
-      }
-
-      &.ui-datepicker-prev {
-        left: 0;
-
-        &:after {
-          border-right: 5px solid;
-          left: calc(50% - 2px);
-        }
-      }
-
-      &.ui-datepicker-next {
-        right: 0;
-
-        &:after {
-          border-left: 5px solid;
-          right: calc(50% - 2px);
-        }
-      }
-
-      span {
-        display: none;
-      }
-    }
+  // base for arrows
+  &:after {
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    content: '';
+    height: 0;
+    position: absolute;
+    top: calc(50% - 4px);
+    width: 0;
   }
 
-  table.ui-datepicker-calendar {
-    background-color: #f4f4f4;
-    border: solid 1px #63686e;
-    border-width: 0 1px 1px 1px;
-    margin-bottom: 0;
+  span {
+    display: none; // hide Next/Prev text
+  }
+}
 
-    td, th {
-      padding: 0;
-      text-align: center;
-    }
+.ui-datepicker-prev {
+  left: 0;
 
-    thead th {
-      border-bottom: none;
-      font-size: 0.9em;
-      font-weight: normal;
-      padding: 2px 0;
-    }
+  &:after {
+    border-right: 5px solid; // arrow pointing left
+    left: calc(50% - 2px); // half of arrow size (border) to horizontally center
+  }
+}
 
-    tbody {
-      td {
-        border: none;
-        height: 22px;
-        width: 22px;
+.ui-datepicker-next {
+  right: 0;
 
-        a {
-          border-radius: 0.25em;
-          color: #666;
-          display: block;
-          font-size: 0.9em;
-          font-weight: bold;
-          padding: 4px;
+  &:after {
+    border-left: 5px solid; // arrow pointing right
+    right: calc(50% - 2px); // half of arrow size (border) to horizontally center
+  }
+}
 
-          &:hover {
-            background-color: #eceef0;
-          }
+.ui-datepicker-calendar {
+  background-color: #f4f4f4;
+  border: solid 1px #63686e;
+  border-width: 0 1px 1px 1px;
+  margin-bottom: 0;
 
-          &.ui-state-active,
-          &.ui-state-active:hover {
-            background-color: #5a5f64;
-            color: #fff;
-          }
+  td, th {
+    padding: 0;
+    text-align: center;
+  }
 
-          &.ui-state-highlight { // today's date
-            background-color: #dbdddf;
-          }
+  thead th {
+    border-bottom: none;
+    font-size: 0.9em;
+    font-weight: normal;
+    padding: 2px 0;
+  }
+
+  tbody {
+    td {
+      border: none;
+      height: 22px;
+      width: 22px;
+
+      a {
+        border-radius: 0.25em;
+        color: #666;
+        display: block;
+        font-size: 0.9em;
+        font-weight: bold;
+        padding: 4px;
+
+        &:hover {
+          background-color: #eceef0;
+        }
+
+        &.ui-state-active,
+        &.ui-state-active:hover {
+          background-color: #5a5f64;
+          color: #fff;
+        }
+
+        &.ui-state-highlight { // today's date
+          background-color: #dbdddf;
         }
       }
     }
