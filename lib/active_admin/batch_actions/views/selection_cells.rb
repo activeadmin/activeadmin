@@ -7,8 +7,11 @@ module ActiveAdmin
     class ResourceSelectionToggleCell < ActiveAdmin::Component
       builder_method :resource_selection_toggle_cell
 
-      def build
-        input type: "checkbox", id: "collection_selection_toggle_all", name: "collection_selection_toggle_all", class: "toggle_all"
+      def build(label_text='')
+        label do
+          input type: "checkbox", id: "collection_selection_toggle_all", name: "collection_selection_toggle_all", class: "toggle_all"
+          text_node label_text if label_text.present?
+        end
       end
     end
 
@@ -27,10 +30,8 @@ module ActiveAdmin
 
       def build
         super(id: "collection_selection_toggle_panel")
-        resource_selection_toggle_cell
-        div(id: "collection_selection_toggle_explaination" ) { I18n.t('active_admin.batch_actions.selection_toggle_explanation', default: "(Toggle Selection)") }
+        resource_selection_toggle_cell(I18n.t('active_admin.batch_actions.selection_toggle_explanation', default: "(Toggle Selection)"))
       end
-
     end
 
   end
