@@ -1,5 +1,3 @@
-// ----------------------------------- Tables
-
 table {
   margin-bottom: 1.4em;
   width: 100%;
@@ -22,8 +20,7 @@ thead {
   }
 }
 
-// --------- Index Tables
-
+// -------------------------------------- Index Tables
 table.index_table {
   th {
     a, a:link, a:visited {
@@ -75,8 +72,7 @@ table.index_table {
   }
 }
 
-// --------- Tables inside Panels
-
+// -------------------------------------- Tables inside Panels
 .panel_contents table {
   thead {
     background-color: transparent;

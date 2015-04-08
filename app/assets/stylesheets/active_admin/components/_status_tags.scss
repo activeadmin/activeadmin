@@ -6,22 +6,15 @@
   text-align: center;
 
   &.ok,
-  &.published,
-  &.complete,
-  &.completed,
-  &.green {
+  &.completed {
     background-color: #8daa92;
   }
 
-  &.warn,
-  &.warning,
-  &.orange {
+  &.warning {
     background-color: #e29b20;
   }
 
-  &.error,
-  &.errored,
-  &.red {
+  &.error {
     background-color: #d45f53;
   }
 

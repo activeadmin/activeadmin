@@ -1,9 +1,7 @@
-// -------------------------------------- Index as Grid
-table.index_grid td {
+.index_grid td {
   border: none;
 }
 
-// -------------------------------------- Columns
 .columns {
   @include clearfix;
   margin-bottom: 10px;
