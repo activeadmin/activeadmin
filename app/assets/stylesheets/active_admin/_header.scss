@@ -3,7 +3,6 @@
   display: table;
   padding: 5px $horizontal-page-margin;
   width: 100%;
-  z-index: 900;
 
   a, a:link, a:visited {
     color: $page-header-text-color;
@@ -83,7 +82,7 @@
 
       &.has_nested:hover > a {
         border-radius: 4px 4px 0 0;
-        z-index: 1020;
+        z-index: 960; // so top part of sub menu box-shadow doesn't appear over this link
       }
 
       &:hover ul {
@@ -99,7 +98,7 @@
         min-width: 175px;
         padding: 5px 0;
         position: absolute;
-        z-index: 1010;
+        z-index: 950;
 
         li {
           &.current a,
