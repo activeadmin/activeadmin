@@ -18,7 +18,7 @@ module ActiveAdmin
       end
 
       # Returns the filters for this resource. If filters are not enabled,
-      # it will always return an empty array.
+      # it will always return an empty hash.
       #
       # @return [Hash] Filters that apply for this resource
       def filters
