@@ -28,44 +28,48 @@
 
 @mixin default-button {
   @include basic-button;
-  @include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
-  border: solid 1px #484e53;
-  color: #efefef;
+//   @include gradient(lighten($primary-color, 15%), darken($primary-color, 12%));
+// $primary-color: #3498DB;
+  background-color: $primary-color;
+  border: 1px solid darken($primary-color, 5%);
+  color: #fff;
 
   &:not(.disabled) {
     &:hover{
-      @include gradient(lighten($primary-color, 18%), darken($primary-color, 9%));
+//       @include gradient(lighten($primary-color, 18%), darken($primary-color, 9%));
+      background-color: darken($primary-color, 10%);
+      border-color: darken($primary-color, 15%);
     }
 
     &:active {
-      @include gradient(lighten($primary-color, 8%), darken($primary-color, 17%));
+//       @include gradient(lighten($primary-color, 8%), darken($primary-color, 17%));
+      box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
     }
+  }
+
+  &:hover,
+  &:focus {
+    color: #fff;
   }
 }
 
 @mixin light-button {
   @include basic-button;
-  @include gradient(#FFFFFF, #E7E7E7);
-  border: solid 1px #c7c7c7;
+//   @include gradient(#FFFFFF, #E7E7E7);
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
   color: $primary-color;
 
   &:not(.disabled) {
     &:hover {
-      @include gradient(#FFFFFF, #F1F1F1);
+//       @include gradient(#FFFFFF, #F1F1F1);
+      background-color: darken(#fff, 10%);
+      border-color: darken(#d9d9d9, 12%);
     }
 
     &:active {
-      @include gradient(#F3F3F3, #D8D8D8);
+//       @include gradient(#F3F3F3, #D8D8D8);
+      box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
     }
-  }
-
-}
-
-@mixin dark-button {
-  @include default-button;
-
-  &:hover,
-  &:focus {
-    color: #efefef;
   }
 }

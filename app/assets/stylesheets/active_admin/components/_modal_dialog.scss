@@ -46,7 +46,7 @@
   margin-right: 5px;
 
   & {
-    @include dark-button;
+    @include default-button;
   }
 
   &.cancel {
