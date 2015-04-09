@@ -7,7 +7,7 @@ require File.expand_path 'spec/support/detect_rails_version', File.dirname(__FIL
 rails_version = detect_rails_version
 gem 'rails', rails_version
 
-gem 'execjs', '< 2.0.0'
+gem 'execjs', '~> 2.4.0' # ~> 2.5.0 works only for Ruby > 2.0
 
 # Optional dependencies
 gem 'cancan'
