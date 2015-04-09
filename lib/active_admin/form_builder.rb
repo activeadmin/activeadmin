@@ -92,9 +92,7 @@ module ActiveAdmin
       if builder_options[:sortable]
         has_many_form.input builder_options[:sortable], as: :hidden
 
-        contents << template.content_tag(:li, class: 'handle') do
-          "MOVE"
-        end
+        contents << template.content_tag(:li, class: 'handle') { }
       end
 
       contents

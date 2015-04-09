@@ -81,6 +81,7 @@ textarea {
   // relative so the absolutely-positioned handle will fit
   .has_many_fields {
     border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 15px;
 
     ol {
       padding: 0 15px;
@@ -88,10 +89,18 @@ textarea {
     }
 
     .handle {
+      bottom: 0;
       cursor: move;
       position: absolute;
       right: 0;
-      top: calc(50% - 3em / 2);
+      top: 0;
+      width: 20px;
+
+      &:before {
+        content: '\1801\1801\1801\1801';
+        font-size: 1.8em;
+        position: absolute;
+      }
     }
   }
 
