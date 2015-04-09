@@ -168,7 +168,7 @@ textarea {
   input[type=submit],
   input[type=button],
   button {
-    @include dark-button;
+    @include default-button;
   }
 
   .button,
