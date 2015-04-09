@@ -5,7 +5,6 @@
   padding: 2px;
   box-shadow: rgba(0,0,0,0.4) 0 1px 3px, lighten($primary-color, 15%) 0px 1px 0px 0px inset;
   background-color: $primary-color;
-  @include gradient(lighten($primary-color, 4%), darken($primary-color, 5%));
   border: solid 1px darken($primary-color, 10%);
   border-top-color: darken($primary-color, 4%);
   border-bottom-color: darken($primary-color, 17%);
@@ -89,12 +88,12 @@
         text-align: center;
 
         &:hover {
-          @include highlight-gradient;
+          background-color: #75a1c2;
           color: #FFF;
         }
 
         &:active {
-          @include reverse-highlight-gradient;
+          background-color: #608cb4;
           color: #FFF;
         }
 
