@@ -33,6 +33,16 @@ a.table_tools_button {
       margin-left: -1px;
     }
 
+    a {
+      position: relative;
+
+      &:hover,
+      &:focus,
+      &:active {
+        z-index: 2;
+      }
+    }
+
     &:first-child a {
       border-radius: 0.25em 0 0 0.25em;
     }
