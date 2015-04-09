@@ -31,6 +31,10 @@ en:
         ends_with: "Ends with"
         greater_than: "Greater than"
         less_than: "Less than"
+    search_status:
+      headline: "Scope:"
+      current_filters: "Current filters:"
+      no_current_filters: "None"
     status_tag:
       "yes": "Yes"
       "no": "No"
@@ -39,6 +43,7 @@ en:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filters"
+      search_status: "Search Status"
     pagination:
       empty: "No %{model} found"
       one: "Displaying <b>1</b> %{model}"
