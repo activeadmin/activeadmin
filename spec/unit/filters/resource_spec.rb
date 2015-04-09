@@ -115,7 +115,7 @@ describe ActiveAdmin::Filters::ResourceExtension do
   end
 
   it "should add a sidebar section for the filters" do
-    expect(resource.sidebar_sections.first.name).to eq :filters
+    expect(resource.sidebar_sections.first.name).to eq "filters"
   end
 
 end
