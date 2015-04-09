@@ -52,10 +52,13 @@ a.table_tools_button {
     }
 
     &.selected a {
-      @include gradient(#F0F0F0, #FDFDFD);
+      background-color: darken(#fff, 10%);
+      border-color: darken(#d9d9d9, 12%);
+      z-index: 2;
 
       &:hover {
-        @include gradient(#F0F0F0, #FDFDFD);
+        background-color: darken(#fff, 17%);
+        border-color: darken(#d9d9d9, 25%);
       }
     }
   }
