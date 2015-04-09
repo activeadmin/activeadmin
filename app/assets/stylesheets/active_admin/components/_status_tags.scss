@@ -1,28 +1,15 @@
 .status_tag {
-  background-color: darken($secondary-color, 15%);
   border-radius: 0.25em;
   color: #fff;
   padding: 0.2em 0.5em;
   text-align: center;
 
-  &.ok,
-  &.completed {
-    background-color: #8daa92;
-  }
-
-  &.warning {
-    background-color: #e29b20;
-  }
-
-  &.error {
-    background-color: #d45f53;
+  &,
+  &.no {
+    background-color: #777;
   }
 
   &.yes {
     background-color: #6090DB;
-  }
-
-  &.no {
-    background-color: grey;
   }
 }

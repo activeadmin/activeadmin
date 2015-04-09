@@ -117,25 +117,6 @@ describe ActiveAdmin::Views::StatusTag do
       end
     end
 
-    context "when status is 'Active' and type is :ok" do
-      subject { status_tag('Active', :ok) }
-
-      describe '#class_list' do
-        subject { super().class_list }
-        it      { is_expected.to include('status_tag') }
-      end
-
-      describe '#class_list' do
-        subject { super().class_list }
-        it      { is_expected.to include('active') }
-      end
-
-      describe '#class_list' do
-        subject { super().class_list }
-        it      { is_expected.to include('ok') }
-      end
-    end
-
     context "when status is 'Active' and class is 'ok'" do
       subject { status_tag('Active', class: 'ok') }
 
@@ -179,8 +160,8 @@ describe ActiveAdmin::Views::StatusTag do
       end
     end
 
-    context "when status is 'So useless', type is :ok, class is 'woot awesome' and id is 'useless'" do
-      subject { status_tag('So useless', :ok, class: 'woot awesome', id: 'useless') }
+    context "when status is 'So useless', class is 'woot awesome' and id is 'useless'" do
+      subject { status_tag('So useless', class: 'woot awesome', id: 'useless') }
 
       describe '#content' do
         subject { super().content }
@@ -190,11 +171,6 @@ describe ActiveAdmin::Views::StatusTag do
       describe '#class_list' do
         subject { super().class_list }
         it      { is_expected.to include('status_tag') }
-      end
-
-      describe '#class_list' do
-        subject { super().class_list }
-        it      { is_expected.to include('ok') }
       end
 
       describe '#class_list' do
