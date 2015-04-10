@@ -38,7 +38,7 @@
 body {
   background: $body-background-color;
   color: $text-color;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 72%;
-  line-height: 1.5;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
 }

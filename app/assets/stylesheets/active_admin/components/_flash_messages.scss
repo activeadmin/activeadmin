@@ -1,17 +1,16 @@
 .flash {
-  background-color: #f7f1d3;
-  color: #cb9810;
-  font-size: 1.1em;
-  font-weight: bold;
-  padding: 12px $horizontal-page-margin;
+  background-color: $flash-message-default-background-color;
+  color: $flash-message-default-text-color;
+  font-weight: $flash-message-font-weight;
+  padding: $flash-message-padding;
 
   &.flash_notice {
-    background-color: #ccdfcd;
-    color: #416347;
+    background-color: $flash-message-notice-background-color;
+    color: $flash-message-notice-text-color;
   }
 
   &.flash_error {
-    background-color: #f1dcdc;
-    color: #b33c33;
+    background-color: $flash-message-error-background-color;
+    color: $flash-message-error-text-color;
   }
 }

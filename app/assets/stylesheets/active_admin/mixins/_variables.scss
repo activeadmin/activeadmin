@@ -30,5 +30,63 @@ $cell-horizontal-padding: 12px !default;
 $section-padding: 15px !default;
 $text-input-horizontal-padding: 8px !default;
 $text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2;
-
 $blank-slate-border: 1px dashed #DADADA !default;
+
+
+
+// NEW VARIABLES
+
+$font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+$font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
+$font-family-base: $font-family-sans-serif;
+
+$font-weight-normal: normal;
+$font-weight-semibold: normal;
+$font-weight-bold: bold;
+
+$font-size-base: 13px;
+
+$line-height-base: 1.5;
+
+$text-color: #323537;
+
+$body-background-color: #fff;
+$body-font-size: $font-size-base;
+$body-font-weight: $font-weight-normal;
+
+$border-radius-base: 0.25em;
+
+$primary-color: #5E6469;
+$secondary-color: #f0f0f0;
+
+$padding-base-vertical: 6px;
+$padding-base-horizontal: 10px;
+
+// Start off with
+//
+// TODO: zindex-
+//      flash-message-default- flash-message-notice- flash-message-error-
+// ...
+
+//== z-indexes
+
+
+
+//== Buttons
+
+$button-font-weight: $font-weight-bold;
+
+//== Flash Messages
+
+$flash-message-font-weight: bold;
+$flash-message-padding: 12px $horizontal-page-margin;
+
+$flash-message-default-background-color: #f7f1d3;
+$flash-message-default-text-color: #cb9810;
+
+$flash-message-notice-background-color: #ccdfcd;
+$flash-message-notice-text-color: #416347;
+
+$flash-message-error-background-color: #f1dcdc;
+$flash-message-error-text-color: #b33c33;
