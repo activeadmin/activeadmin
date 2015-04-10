@@ -13,8 +13,7 @@ module ActiveAdmin
               header:              ActiveAdmin::Views::Header,
               footer:              ActiveAdmin::Views::Footer,
               index_scopes:        ActiveAdmin::Views::Scopes,
-              blank_slate:         ActiveAdmin::Views::BlankSlate,
-              action_list_popover: ActiveAdmin::Views::ActionListPopover
+              blank_slate:         ActiveAdmin::Views::BlankSlate
 
     # Register All The Pages
     register  index_page: ActiveAdmin::Views::Pages::Index,
