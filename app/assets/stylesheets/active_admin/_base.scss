@@ -41,9 +41,9 @@
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-size: 72%;
+    font-family: $body-font-family;
+    line-height: $line-height-base;
+    font-size: $body-font-size;
     background: $body-background-color;
     color: $text-color;
   }
