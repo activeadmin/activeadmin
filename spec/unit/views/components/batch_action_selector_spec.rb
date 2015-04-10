@@ -6,9 +6,9 @@ describe ActiveAdmin::BatchActions::BatchActionSelector do
   let(:dropdown) do
     render_arbre_component do
       batch_action_selector [
-        ActiveAdmin::BatchAction.new( :action_1, "Action 1" ),
-        ActiveAdmin::BatchAction.new( :action_2, "Action 2" ),
-        ActiveAdmin::BatchAction.new( :action_3, "Action 3" )
+        ActiveAdmin::BatchAction.new(:action_1, "Action 1"),
+        ActiveAdmin::BatchAction.new(:action_2, "Action 2"),
+        ActiveAdmin::BatchAction.new(:action_3, "Action 3")
       ]
     end
   end
