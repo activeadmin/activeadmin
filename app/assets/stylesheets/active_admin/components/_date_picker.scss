@@ -10,7 +10,6 @@
 }
 
 .ui-datepicker-title {
-  display: block;
   font-weight: bold;
   text-align: center;
 }
@@ -93,11 +92,10 @@
 
       a {
         border-radius: 0.25em;
-        color: #666;
+        color: #555;
         display: block;
         font-size: 0.9em;
-        font-weight: bold;
-        padding: 4px;
+        padding: 4px 0;
 
         &:hover {
           background-color: #eceef0;
@@ -109,8 +107,10 @@
           color: #fff;
         }
 
-        &.ui-state-highlight { // today's date
+        &.ui-state-highlight,
+        &.ui-state-highlight:hover { // today's date
           background-color: #dbdddf;
+          color: #666;
         }
       }
     }
