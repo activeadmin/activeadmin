@@ -1,4 +1,4 @@
-.header {
+.main-navbar {
   background-color: lighten($primary-color, 5%);
   display: table;
   padding: 5px $horizontal-page-margin;
@@ -109,10 +109,10 @@
       }
     }
   }
-}
 
-#utility_nav {
-  padding: 0;
-  text-align: right;
-  white-space: nowrap;
+  .utility-nav {
+    padding: 0;
+    text-align: right;
+    white-space: nowrap;
+  }
 }
