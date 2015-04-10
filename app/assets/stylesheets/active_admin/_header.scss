@@ -1,7 +1,7 @@
 .main-navbar {
   background-color: lighten($primary-color, 5%);
   display: table;
-  padding: 5px $horizontal-page-margin;
+  padding: 0 $horizontal-page-margin;
   width: 100%;
 
   a, a:link, a:visited {
@@ -24,11 +24,6 @@
     color:  $page-header-text-color;
     font-size: 1.3em;
     font-weight: normal;
-    padding: 0;
-
-    a:hover {
-      color: #fff;
-    }
   }
 
   .tabs {
@@ -41,47 +36,41 @@
       display: inline-block;
       position: relative;
 
-      & + li {
-        margin-left: 5px;
-      }
-
       a {
-        border-radius: 4px;
         display: inline-block;
-        padding: 5px 10px;
+        padding: 10px;
         position: relative;
       }
 
       &.current > a {
-        background: $current-menu-item-background;
+        background-color: $current-menu-item-background;
         color: #fff;
       }
 
       &.has_nested > a,
       &.has_nested.current > a,
       &.has_nested:hover > a {
-        padding-right: 22px;
+        padding-right: 8px + 10px + 4px; // arrow width + link right padding + little spacing
 
         &:after {
-          border-left: 4px solid transparent;
+          border-left: 4px solid transparent; // arrow width is 8px
           border-right: 4px solid transparent;
-          border-top: 4px dashed;
+          border-top: 4px dashed; // arrow height is 4px
           content: '';
           height: 0;
           position: absolute;
           right: 10px;
-          top: 45%;
+          top: calc(50% - 2px); // half of arrow height
           width: 0;
         }
       }
 
       &:hover > a {
-        background: $hover-menu-item-background;
+        background-color: $hover-menu-item-background;
         color: #fff;
       }
 
       &.has_nested:hover > a {
-        border-radius: 4px 4px 0 0;
         z-index: 960; // so top part of sub menu box-shadow doesn't appear over this link
       }
 
@@ -90,9 +79,8 @@
       }
 
       ul {
-        background: $hover-menu-item-background;
-        border-radius: 0 4px 4px 4px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.175);
+        background-color: lighten($primary-color, 5%);
+        border-radius: 0 0 4px 4px;
         display: none;
         list-style: none;
         min-width: 175px;
@@ -101,8 +89,14 @@
         z-index: 950;
 
         li {
+          a {
+            display: block;
+            padding: 5px 10px;
+          }
+
           &.current a,
           a:hover {
+            background-color: $hover-menu-item-background;
             color: #fff;
           }
         }
