@@ -43,17 +43,21 @@ Feature: Index Pagination
     When I am on the index page for posts
     Then I should not see pagination
 
-    Scenario: Viewing index with pagination_total set to false
-      Given an index configuration of:
-      """
-        ActiveAdmin.register Post do
-          index :pagination_total => false do
-          end
+  Scenario: Viewing index with pagination_total set to false
+    Given an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        config.per_page = 10
+        index :pagination_total => false do
         end
-      """
-      Given 100 posts exist
-      When I am on the index page for posts
-      Then I should see pagination with 4 pages
-      Then I should see "Displaying Posts 1 - 30"
-      And I should not see "Displaying Posts 1 - 30 of 100 in total"
+      end
+    """
+    Given 11 posts exist
+    When I am on the index page for posts
+    Then I should see "Displaying Posts 1 - 10"
+    And I should not see "11 in total"
+    And I should see the pagination "Next" link
 
+    When I follow "Next"
+    Then I should see "Displaying Posts 11 - 11"
+    And I should not see the pagination "Next" link
