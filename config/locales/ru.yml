@@ -31,6 +31,10 @@ ru:
         ends_with: "Заканчивается"
         greater_than: "больше"
         less_than: "меньше"
+    search_status:
+      headline: "Область:"
+      current_filters: "Текущий фильтр:"
+      no_current_filters: "Ни один"
     status_tag:
       "yes": "Да"
       "no": "Нет"
@@ -39,6 +43,7 @@ ru:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Фильтры"
+      search_status: "Статус поиска"
     pagination:
       empty: "%{model} не найдено"
       one: "Результат: <b>1</b> %{model}"
@@ -112,9 +117,16 @@ ru:
         title: "Выслать повторно письмо с активацией"
         submit: "Выслать повторно письмо с активацией"
       links:
+        sign_up: "Зарегистрироваться"
         sign_in: "Войти"
         forgot_your_password: "Забыли пароль?"
         sign_in_with_omniauth_provider: "Войти с помощью %{provider}"
+        resend_unlock_instructions: "Повторная отправка инструкций разблокировки"
+        resend_confirmation_instructions: "Повторная отправка инструкций подтверждения"
+    unsupported_browser:
+      headline: "Пожалуйста, обратите внимание, что ActiveAdmin больше не поддерживает Internet Explorer 8 версии и старее"
+      recommendation: "Мы рекомендуем обновить версию вашего браузера (<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, или <a href=\"https://mozilla.org/firefox/\">Firefox</a>)."
+      turn_off_compatibility_view: "Если вы используете IE 9 или новее, убедитесь, что <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">вы выключили опцию \"Просмотр в режиме совместимости\"</a>."
     access_denied:
       message: "Вы не авторизованы для выполнения данного действия."
     index_list:
