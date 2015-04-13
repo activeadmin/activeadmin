@@ -244,8 +244,9 @@ form {
   fieldset.buttons li, fieldset.actions li {
     float:left;
     padding: 0;
-  }
 
+    &.cancel a { @include light-button; }
+  }
 }
 
 // -------------------------------------- Sidebar Forms
