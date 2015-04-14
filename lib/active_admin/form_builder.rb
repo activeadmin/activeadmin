@@ -4,7 +4,7 @@ module Formtastic
     module Base
       def input_wrapping(&block)
         html = super
-        template.concat(html) if template.output_buffer && template.assigns['has_many_block']
+        template.concat(html) if template.output_buffer && template.assigns[:has_many_block]
         html
       end
     end
@@ -60,7 +60,7 @@ module ActiveAdmin
           template.concat has_many_actions(has_many_form, builder_options, "".html_safe)
         end
         
-        template.assign('has_many_block'=> true)
+        template.assign(has_many_block: true)
         contents = without_wrapper { inputs(options, &form_block) }
 
         if builder_options[:new_record]
