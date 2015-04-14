@@ -31,6 +31,10 @@ pt-BR:
         ends_with: "Termina com"
         greater_than: "Maior Que"
         less_than: "Menor Que"
+    search_status:
+      headline: "Em:"
+      current_filters: "Filtros escolhidos:"
+      no_current_filters: "Nenhum"
     status_tag:
       "yes": "Sim"
       "no": "Não"
@@ -39,6 +43,7 @@ pt-BR:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtros"
+      search_status: "Buscou"
     pagination:
       empty: "Nenhum(a) %{model} encontrado(a)"
       one: "Exibindo <b>1</b> %{model}"
@@ -108,10 +113,16 @@ pt-BR:
         title: "Reenviar instruções de confirmação"
         submit: "Reenviar instruções de confirmação"
       links:
+        sign_up: "Criar conta"
         sign_in: "Entrar"
         forgot_your_password: "Esqueceu sua senha?"
         sign_in_with_omniauth_provider: "Entre com o %{provider}"
         resend_unlock_instructions: "Reenviar instruções de desbloqueio"
+        resend_confirmation_instructions: "Reenviar instruções de confirmação"
+    unsupported_browser:
+      headline: "O ActiveAdmin não oferece suporte ao Internet Explorer versão 8 ou inferior."
+      recommendation: "Nós recomendamos atualizar para a última versão do <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, ou <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Se você está usando o IE 9 ou superior, <a href=\"http://windows.microsoft.com/pt-BR/windows7/webpages-look-incorrect-in-Internet-Explorer\">desligue o \"Modo de Exibição de Compatibilidade\"</a>."
     access_denied:
       message: "Você não tem permissão para realizar o solicitado"
     index_list:
