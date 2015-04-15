@@ -1,5 +1,7 @@
 h1, h2, h3, h4, h5, h6 {
-  color: $primary-color;
+  color: $header-color;
+  font-family: $header-font-family;
+  font-weight: $header-font-weight;
 }
 
 h1 {
@@ -41,7 +43,7 @@ pre {
 
 pre,
 code {
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: $font-family-monospace;
 }
 
 ul, ol {
