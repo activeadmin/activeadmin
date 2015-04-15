@@ -8,14 +8,14 @@
     display: inline-block;
 
     & + li:before {
-      color: $breadcrumbs-separator-color;
-      content: "/";
-      padding: 0 6px 0 2px;
+      color: $breadcrumb-separator-color;
+      content: "#{$breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+      padding: 0 5px;
     }
   }
 
   a,
   a:hover {
-    color: $breadcrumbs-color;
+    color: $breadcrumb-color;
   }
 }

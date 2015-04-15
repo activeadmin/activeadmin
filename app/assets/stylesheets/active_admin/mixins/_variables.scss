@@ -15,19 +15,19 @@ $table-stripe-color: #f8f8f8 !default;
 $table-selected-color: #fcf8e3 !default;
 $error-color: #932419 !default;
 $blank-slate-primary-color: #AAA !default;
-$breadcrumbs-color: #8a949e !default;
-$breadcrumbs-separator-color: #aab2ba !default;
+$breadcrumbs-color: #8a949e !default;           // renamed: $breadcrumb-color
+$breadcrumbs-separator-color: #aab2ba !default; // renamed: $breadcrumb-separator-color
 $required-field-marker-color: #aaa !default;
-$form-label-color: $section-header-text-color !default;
+$form-label-color: $section-header-text-color !default; // REMOVED
 $page-header-text-color: #cdcdcd !default;
 
 // Sizes
 $border-width: 1px !default;
 $horizontal-page-margin: 20px !default;
 $sidebar-width: 270px !default;
-$cell-padding: 5px 10px 3px 10px !default;
-$cell-horizontal-padding: 12px !default;
-$section-padding: 15px !default;      // $panel-body-padding
+$cell-padding: 5px 10px 3px 10px !default;    // renamed: $table-cell-padding
+$cell-horizontal-padding: 12px !default;      // REMOVED
+$section-padding: 15px !default;              // renamed: $panel-body-padding
 $text-input-horizontal-padding: 8px !default;
 $text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2;
 $blank-slate-border: 1px dashed #DADADA !default;
@@ -55,19 +55,19 @@ $body-background-color: #fff;
 $body-font-size: $font-size-base;
 $body-font-weight: $font-weight-normal;
 
-$border-radius-base: 0.25em;
+$header-font-family: inherit;
+$header-font-weight: inherit;
+$header-color: inherit;
+
+//== Components
 
 $primary-color: #5E6469;
 $secondary-color: #f0f0f0;
 
+$border-radius-base: 0.25em;
+
 $padding-base-vertical: 6px;
 $padding-base-horizontal: 10px;
-
-// Start off with
-//
-// TODO: zindex-
-//      flash-message-default- flash-message-notice- flash-message-error-
-// ...
 
 //== z-indexes
 
@@ -76,6 +76,16 @@ $padding-base-horizontal: 10px;
 //== Buttons
 
 $button-font-weight: $font-weight-bold;
+
+//== Tables
+
+$table-cell-padding: 8px;
+
+//== Breadcrumbs
+
+$breadcrumb-color: #8a949e;
+$breadcrumb-separator-color: #aab2ba;
+$breadcrumb-separator: "/";
 
 //== Flash Messages
 
