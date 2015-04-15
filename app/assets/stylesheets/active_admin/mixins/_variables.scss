@@ -8,7 +8,7 @@ $primary-color: #5E6469 !default;
 $secondary-color: #f0f0f0 !default;
 $text-color: #323537 !default;
 $link-color: #38678b !default;
-$section-header-text-color: $primary-color !default;
+$section-header-text-color: $primary-color !default; // REMOVED
 $current-menu-item-background: lighten($primary-color, 12%) !default;
 $hover-menu-item-background: lighten($primary-color, 12%) !default;
 $table-stripe-color: #f8f8f8 !default;
@@ -27,7 +27,7 @@ $horizontal-page-margin: 20px !default;
 $sidebar-width: 270px !default;
 $cell-padding: 5px 10px 3px 10px !default;
 $cell-horizontal-padding: 12px !default;
-$section-padding: 15px !default;
+$section-padding: 15px !default;      // $panel-body-padding
 $text-input-horizontal-padding: 8px !default;
 $text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2;
 $blank-slate-border: 1px dashed #DADADA !default;
@@ -90,3 +90,11 @@ $flash-message-notice-text-color: #416347;
 
 $flash-message-error-background-color: #f1dcdc;
 $flash-message-error-text-color: #b33c33;
+
+//== Panels
+
+$panel-background-color: #f8f8f8;
+$panel-body-padding: 15px;
+$panel-heading-background-color: #e6e6e6;
+$panel-heading-padding: 10px 15px;
+$panel-border-radius: $border-radius-base;

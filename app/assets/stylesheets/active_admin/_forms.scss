@@ -48,7 +48,8 @@ textarea {
   }
 
   .inputs {
-    @include section-background;
+    background-color: $panel-background-color;
+    border-radius: $panel-border-radius;
 
     > ol {
       padding: 15px;
@@ -65,8 +66,11 @@ textarea {
       width: 100%;
 
       span {
+        background-color: $panel-heading-background-color;
+        border-radius: $panel-border-radius $panel-border-radius 0 0;
         display: block;
-        @include section-header;
+        font-weight: $font-weight-bold;
+        padding: $panel-heading-padding;
       }
     }
 

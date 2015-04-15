@@ -9,7 +9,8 @@
 }
 
 .ui-dialog {
-  @include section-background;
+  background-color: #fff;
+  border-radius: 0.25em;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   outline: none;
   position: fixed;
@@ -32,7 +33,9 @@
 }
 
 .ui-dialog-titlebar {
-  @include section-header;
+  border-bottom: 1px solid #eee;
+  font-weight: $font-weight-bold;
+  padding: 10px 15px;
 }
 
 .ui-dialog-titlebar-close {

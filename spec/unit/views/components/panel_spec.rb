@@ -17,17 +17,17 @@ describe ActiveAdmin::Views::Panel do
   end
 
   it "should add panel actions to the panel header" do
-    link = panel_html.find('h3 > div.header_action a')
+    link = panel_html.find('div.panel-heading-actions a')
     expect(link.text).to eq('My Link')
     expect(link[:href]).to eq("https://www.github.com/activeadmin/activeadmin")
   end
 
   it "should have a contents div" do
-    expect(panel_html).to have_css 'div.panel_contents'
+    expect(panel_html).to have_css 'div.panel-body'
   end
 
   it "should add children to the contents div" do
-    expect(panel_html).to have_css 'div.panel_contents > span', text: "Hello World"
+    expect(panel_html).to have_css 'div.panel-body > span', text: "Hello World"
   end
 
   context "with html-safe title" do
