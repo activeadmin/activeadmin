@@ -277,6 +277,17 @@ describe ActiveAdmin::FormBuilder do
 
   end
 
+  shared_examples :inputs_with_for_expectation do
+    it "should generate a nested text input once" do
+      expect(body).to have_selector("[id=post_author_attributes_first_name_input]", count: 1)
+      expect(body).to have_selector("[id=post_author_attributes_last_name_input]", count: 1)
+    end
+    it "should add author first and last name fields" do
+      expect(body).to have_selector("input[name='post[author_attributes][first_name]']")
+      expect(body).to have_selector("input[name='post[author_attributes][last_name]']")
+    end
+  end
+
   context "with inputs 'for'" do
     let :body do
       build_form do |f|
@@ -292,17 +303,11 @@ describe ActiveAdmin::FormBuilder do
         end
       end
     end
-    it "should generate a nested text input once" do
-      expect(body).to have_selector("[id=post_author_attributes_first_name_input]", count: 1)
-      expect(body).to have_selector("[id=post_author_attributes_last_name_input]", count: 1)
-    end
-    it "should add author first and last name fields" do
-      expect(body).to have_selector("input[name='post[author_attributes][first_name]']")
-      expect(body).to have_selector("input[name='post[author_attributes][last_name]']")
-    end
+
+    include_examples :inputs_with_for_expectation
   end
 
-  context "with two input fields 'for'" do
+  context "with two input fields 'for' at the end of block" do
     let :body do
       build_form do |f|
         f.inputs do
@@ -318,14 +323,28 @@ describe ActiveAdmin::FormBuilder do
         end
       end
     end
-    it "should generate a nested text input once" do
-      expect(body).to have_selector("[id=post_author_attributes_first_name_input]", count: 1)
-      expect(body).to have_selector("[id=post_author_attributes_last_name_input]", count: 1)
+
+    include_examples :inputs_with_for_expectation
+  end
+
+  context "with two input fields 'for' at the beginning of block" do
+    let :body do
+      build_form do |f|
+        f.form_builder.instance_eval do
+          @object.author = User.new
+        end
+        f.inputs name: 'Author', for: :author do |author|
+          author.input :first_name
+          author.input :last_name
+        end
+        f.inputs do
+          f.input :title
+          f.input :body
+        end
+      end
     end
-    it "should add author first and last name fields" do
-      expect(body).to have_selector("input[name='post[author_attributes][first_name]']")
-      expect(body).to have_selector("input[name='post[author_attributes][last_name]']")
-    end
+
+    include_examples :inputs_with_for_expectation
   end
 
   context "with wrapper html" do
