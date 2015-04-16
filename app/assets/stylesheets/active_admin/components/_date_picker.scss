@@ -68,7 +68,7 @@
 
 .ui-datepicker-calendar {
   background-color: #f4f4f4;
-  border: solid 1px #63686e;
+  border: 1px solid lighten($primary-color, 5%);
   border-width: 0 1px 1px 1px;
   margin-bottom: 0;
 
