@@ -29,45 +29,45 @@ $cell-padding: 5px 10px 3px 10px !default;    // renamed: $table-cell-padding
 $cell-horizontal-padding: 12px !default;      // REMOVED
 $section-padding: 15px !default;              // renamed: $panel-body-padding
 $text-input-horizontal-padding: 8px !default;
-$text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2;
+$text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2 !default;
 $blank-slate-border: 1px dashed #DADADA !default;
 
 
 
 // NEW VARIABLES
 
-$font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-$font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-$font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
-$font-family-base: $font-family-sans-serif;
+$font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif !default;
+$font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif !default;
+$font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base: $font-family-sans-serif !default;
 
-$font-weight-normal: normal;
-$font-weight-semibold: normal;
-$font-weight-bold: bold;
+$font-weight-normal: normal !default;
+$font-weight-semibold: normal !default;
+$font-weight-bold: bold !default;
 
-$font-size-base: 13px;
+$font-size-base: 13px !default;
 
-$line-height-base: 1.5;
+$line-height-base: 1.5 !default;
 
-$text-color: #323537;
+$text-color: #323537 !default;
 
-$body-background-color: #fff;
-$body-font-size: $font-size-base;
-$body-font-weight: $font-weight-normal;
+$body-background-color: #fff !default;
+$body-font-size: $font-size-base !default;
+$body-font-weight: $font-weight-normal !default;
 
-$header-font-family: inherit;
-$header-font-weight: inherit;
-$header-color: inherit;
+$header-font-family: inherit !default;
+$header-font-weight: inherit !default;
+$header-color: inherit !default;
 
 //== Components
 
-$primary-color: #5E6469;
-$secondary-color: #f0f0f0;
+$primary-color: #5E6469 !default;
+$secondary-color: #f0f0f0 !default;
 
-$border-radius-base: 0.25em;
+$border-radius-base: 0.25em !default;
 
-$padding-base-vertical: 6px;
-$padding-base-horizontal: 10px;
+$padding-base-vertical: 6px !default;
+$padding-base-horizontal: 10px !default;
 
 //== z-indexes
 
@@ -75,36 +75,36 @@ $padding-base-horizontal: 10px;
 
 //== Buttons
 
-$button-font-weight: $font-weight-bold;
+$button-font-weight: $font-weight-bold !default;
 
 //== Tables
 
-$table-cell-padding: 8px;
+$table-cell-padding: 8px !default;
 
 //== Breadcrumbs
 
-$breadcrumb-color: #8a949e;
-$breadcrumb-separator-color: #aab2ba;
-$breadcrumb-separator: "/";
+$breadcrumb-color: #8a949e !default;
+$breadcrumb-separator-color: #aab2ba !default;
+$breadcrumb-separator: "/" !default;
 
 //== Flash Messages
 
-$flash-message-font-weight: bold;
-$flash-message-padding: 12px $horizontal-page-margin;
+$flash-message-font-weight: bold !default;
+$flash-message-padding: 12px $horizontal-page-margin !default;
 
-$flash-message-default-background-color: #f7f1d3;
-$flash-message-default-text-color: #cb9810;
+$flash-message-default-background-color: #f7f1d3 !default;
+$flash-message-default-text-color: #cb9810 !default;
 
-$flash-message-notice-background-color: #ccdfcd;
-$flash-message-notice-text-color: #416347;
+$flash-message-notice-background-color: #ccdfcd !default;
+$flash-message-notice-text-color: #416347 !default;
 
-$flash-message-error-background-color: #f1dcdc;
-$flash-message-error-text-color: #b33c33;
+$flash-message-error-background-color: #f1dcdc !default;
+$flash-message-error-text-color: #b33c33 !default;
 
 //== Panels
 
-$panel-background-color: #f8f8f8;
-$panel-body-padding: 15px;
-$panel-heading-background-color: #e6e6e6;
-$panel-heading-padding: 10px 15px;
-$panel-border-radius: $border-radius-base;
+$panel-background-color: #f8f8f8 !default;
+$panel-body-padding: 15px !default;
+$panel-heading-background-color: #e6e6e6 !default;
+$panel-heading-padding: 10px 15px !default;
+$panel-border-radius: $border-radius-base !default;
