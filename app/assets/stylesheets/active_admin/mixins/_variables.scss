@@ -117,3 +117,34 @@ $panel-body-padding: 15px !default;
 $panel-heading-background-color: #e6e6e6 !default;
 $panel-heading-padding: 10px 15px !default;
 $panel-border-radius: $border-radius-base !default;
+
+//== Status Tags
+
+$status-tag-border-radius: $border-radius-base !default;
+$status-tag-padding: 0.2em 0.5em !default;
+
+$status-tag-color: #fff !default;
+$status-tag-no-background-color: #777 !default;
+$status-tag-yes-background-color: #6090DB !default;
+
+//== Title Bar
+
+$title-bar-background-color: #eaebec !default;
+$title-bar-color: $text-color !default;
+
+$title-bar-heading-font-size: 1.9em !default;
+
+//== Date Picker
+
+$date-picker-header-background-color: $primary-color;
+$date-picker-header-link-color: #fff !default;
+$date-picker-header-link-hover-color: #fff !default;
+
+$date-picker-calendar-background-color: #fff !default;
+$date-picker-calendar-link-hover-background-color: #ECF0F1 !default;
+$date-picker-calendar-link-active-background-color: darken(#ECF0F1, 10%) !default;
+
+//== Typography
+
+$hr-border-color: darken($body-background-color, 15%) !default;
+$blockquote-color: lighten($text-color, 35%) !default;
