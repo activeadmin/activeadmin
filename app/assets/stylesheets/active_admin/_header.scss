@@ -1,16 +1,16 @@
 .main-navbar {
-  background-color: lighten($primary-color, 5%);
+  background-color: $navbar-background-color;
   display: table;
   padding: 0 $horizontal-page-margin;
   width: 100%;
 
   a, a:link, a:visited {
-    color: $page-header-text-color;
+    color: $navbar-link-color;
     text-decoration: none;
   }
 
   a:hover {
-    color: #fff;
+    color: $navbar-link-hover-color;
   }
 
   h1,
@@ -21,7 +21,7 @@
   }
 
   h1 {
-    color:  $page-header-text-color;
+    color: $navbar-color;
     font-size: 1.3em;
     font-weight: normal;
   }
@@ -38,36 +38,36 @@
 
       a {
         display: inline-block;
-        padding: 10px;
+        padding: $navbar-padding-vertical $navbar-padding-horizontal;
         position: relative;
       }
 
       &.current > a {
-        background-color: $current-menu-item-background;
-        color: #fff;
+        background-color: $navbar-link-active-background-color;
+        color: $navbar-link-active-color;
       }
 
       &.has_nested > a,
       &.has_nested.current > a,
       &.has_nested:hover > a {
-        padding-right: 8px + 10px + 4px; // arrow width + link right padding + little spacing
+        padding-right: $navbar-arrow-width + $navbar-padding-vertical + 4px;
 
         &:after {
-          border-left: 4px solid transparent; // arrow width is 8px
-          border-right: 4px solid transparent;
-          border-top: 4px dashed; // arrow height is 4px
+          border-left: ($navbar-arrow-width / 2) solid transparent;
+          border-right: ($navbar-arrow-width / 2) solid transparent;
+          border-top: $navbar-arrow-height dashed;
           content: '';
           height: 0;
           position: absolute;
-          right: 10px;
-          top: calc(50% - 2px); // half of arrow height
+          right: $navbar-padding-vertical;
+          top: calc(50% - #{$navbar-arrow-height / 2});
           width: 0;
         }
       }
 
       &:hover > a {
-        background-color: $hover-menu-item-background;
-        color: #fff;
+        background-color: $navbar-link-hover-background-color;
+        color: $navbar-link-hover-color;
       }
 
       &.has_nested:hover > a {
@@ -79,8 +79,8 @@
       }
 
       ul {
-        background-color: lighten($primary-color, 5%);
-        border-radius: 0 0 4px 4px;
+        background-color: $navbar-background-color;
+        border-radius: 0 0 $navbar-border-radius $navbar-border-radius;
         display: none;
         list-style: none;
         min-width: 175px;
@@ -91,13 +91,13 @@
         li {
           a {
             display: block;
-            padding: 5px 10px;
+            padding: ($navbar-padding-vertical / 2) $navbar-padding-horizontal;
           }
 
           &.current a,
           a:hover {
-            background-color: $hover-menu-item-background;
-            color: #fff;
+            background-color: $navbar-link-hover-background-color;
+            color: $navbar-link-hover-color;
           }
         }
       }
