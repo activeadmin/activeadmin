@@ -33,7 +33,7 @@ p {
 }
 
 blockquote  {
-  color: #888;
+  color: $blockquote-color;
   margin: 1.5em;
 }
 
@@ -58,5 +58,5 @@ li ol {
 
 hr {
   border: none;
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid $hr-border-color;
 }

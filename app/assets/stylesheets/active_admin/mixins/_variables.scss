@@ -77,6 +77,18 @@ $padding-base-horizontal: 10px !default;
 
 $button-font-weight: $font-weight-bold !default;
 
+$button-default-color: $text-color !default;
+$button-default-background-color: #fff !default;
+$button-default-border-color: #d9d9d9 !default;
+
+$button-primary-color: #fff !default;
+$button-primary-background-color: $primary-color !default;
+$button-primary-border-color: darken($primary-color, 5%) !default;
+
+//== Forms
+
+$cursor-disabled: not-allowed !default; // for forms and buttons
+
 //== Tables
 
 $table-cell-padding: 8px !default;
@@ -103,17 +115,17 @@ $flash-message-error-text-color: #b33c33 !default;
 
 //== Navbar
 
-$navbar-border-radius: $border-radius-base;
+$navbar-border-radius: $border-radius-base !default;
 $navbar-padding-horizontal: 10px !default;
 $navbar-padding-vertical: 10px !default;
 
-$navbar-color: #fff;
-$navbar-background-color: lighten($primary-color, 5%);
+$navbar-color: #fff !default;
+$navbar-background-color: lighten($primary-color, 5%) !default;
 
-$navbar-link-color: #fff;
-$navbar-link-hover-color: #fff;
+$navbar-link-color: #fff !default;
+$navbar-link-hover-color: #fff !default;
 $navbar-link-hover-background-color: lighten($primary-color, 12%) !default;
-$navbar-link-active-color: #fff;
+$navbar-link-active-color: #fff !default;
 $navbar-link-active-background-color: lighten($primary-color, 12%) !default;
 
 $navbar-arrow-height: 4px !default;
@@ -126,3 +138,8 @@ $panel-body-padding: 15px !default;
 $panel-heading-background-color: #e6e6e6 !default;
 $panel-heading-padding: 10px 15px !default;
 $panel-border-radius: $border-radius-base !default;
+
+//== Typography
+
+$hr-border-color: darken($body-background-color, 15%) !default;
+$blockquote-color: lighten($text-color, 35%) !default;
