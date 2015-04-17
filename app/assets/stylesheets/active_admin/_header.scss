@@ -40,6 +40,7 @@
         display: inline-block;
         padding: $navbar-padding-vertical $navbar-padding-horizontal;
         position: relative;
+        transition: background-color .15s, color .15s;
       }
 
       &.current > a {
