@@ -1,6 +1,6 @@
 @mixin basic-button {
   border: 1px solid transparent;
-  border-radius: 0.25em;
+  border-radius: $border-radius-base;
   cursor: pointer;
   display: inline-block;
   font-size: $font-size-base;
@@ -9,6 +9,7 @@
   padding: $padding-base-vertical $padding-base-horizontal;
   text-decoration: none;
   transition: background-color .2s, border-color .2s, color .2s;
+  white-space: nowrap;
 
   &:hover,
   &:focus {
@@ -22,21 +23,21 @@
 
   &[disabled],
   &.disabled {
-    cursor: not-allowed;
+    cursor: $cursor-disabled;
     opacity: 0.5;
   }
 }
 
 @mixin default-button {
   @include basic-button;
-  background-color: $primary-color;
-  border: 1px solid darken($primary-color, 5%);
-  color: #fff;
+  background-color: $button-primary-background-color;
+  border: 1px solid $button-primary-border-color;
+  color: $button-primary-color;
 
   &:not(.disabled) {
     &:hover{
-      background-color: darken($primary-color, 10%);
-      border-color: darken($primary-color, 15%);
+      background-color: darken($button-primary-background-color, 10%);
+      border-color: darken($button-primary-border-color, 15%);
     }
 
     &:active {
@@ -46,20 +47,20 @@
 
   &:hover,
   &:focus {
-    color: #fff;
+    color: $button-primary-color;
   }
 }
 
 @mixin light-button {
   @include basic-button;
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
-  color: $primary-color;
+  background-color: $button-default-background-color;
+  border: 1px solid $button-default-border-color;
+  color: $button-default-color;
 
   &:not(.disabled) {
     &:hover {
-      background-color: darken(#fff, 10%);
-      border-color: darken(#d9d9d9, 12%);
+      background-color: darken($button-default-background-color, 10%);
+      border-color: darken($button-default-border-color, 12%);
     }
 
     &:active {
