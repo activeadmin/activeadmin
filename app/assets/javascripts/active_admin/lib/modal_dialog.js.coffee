@@ -16,10 +16,12 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
       <#{wrapper} name="#{name}" class="#{klass}" type="#{type}">""" +
         (if opts then (
           for v in opts
+            $elem = $("<#{elem}/>")
             if $.isArray v
-              "<#{elem} value=#{v[1]}>#{v[0]}</#{elem}>"
+              $elem.text(v[0]).val(v[1])
             else
-              "<#{elem}>#{v}</#{elem}>"
+              $elem.text(v)
+            $elem.wrap('<div>').parent().html()
         ).join '' else '') +
       "</#{wrapper}>" +
     "</li>"
