@@ -17,6 +17,10 @@ module ActiveAdmin
     class DropdownMenu < ActiveAdmin::Component
       builder_method :dropdown_menu
 
+      def default_class_name
+        "dropdown"
+      end
+
       # Build a new action list
       #
       # @param [String] name  The name to display in the button
@@ -48,19 +52,16 @@ module ActiveAdmin
         button_options[:class] = "#{button_options[:class]} dropdown_menu_button"
         button_options[:href] = "#"
 
-        a name, button_options
+        a button_options do
+          text_node name
+          span class: "caret"
+        end
       end
 
       def build_menu(options)
-        options[:class] = "#{options[:class]} dropdown_menu_list"
+        options[:class] = "#{options[:class]} dropdown-menu"
 
-        menu_list = nil
-
-        div class: "dropdown_menu_list_wrapper" do
-          menu_list = ul(options)
-        end
-
-        menu_list
+        menu_list = ul(options)
       end
 
     end

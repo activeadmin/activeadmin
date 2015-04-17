@@ -49,10 +49,10 @@
   margin-right: 5px;
 
   & {
-    @include default-button;
+    @include primary-button;
   }
 
   &.cancel {
-    @include light-button;
+    @include default-button;
   }
 }

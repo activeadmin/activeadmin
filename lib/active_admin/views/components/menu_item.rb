@@ -19,7 +19,15 @@ module ActiveAdmin
         add_class "current" if item.current? assigns[:current_tab]
 
         if url
-          text_node link_to label, url, **item.html_options
+          link = link_to url, **item.html_options do
+            if children.present?
+              (label + " " + tag(:span, class: "caret")).html_safe
+            else
+              label
+            end
+          end
+
+          text_node link
         else
           span label, item.html_options
         end

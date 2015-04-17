@@ -47,7 +47,7 @@ const onDOMReady = function() {
     }
 
     $(document).on('change', '.paginated_collection :checkbox', function() {
-      if ($(".paginated_collection :checkbox:checked").length && $(".dropdown_menu_list").children().length) {
+      if ($(".paginated_collection :checkbox:checked").length && $(".dropdown-menu").children().length) {
         $(".batch_actions_selector").each(function() { $(this).aaDropdownMenu("enable"); });
       } else {
         $(".batch_actions_selector").each(function() { $(this).aaDropdownMenu("disable"); });
