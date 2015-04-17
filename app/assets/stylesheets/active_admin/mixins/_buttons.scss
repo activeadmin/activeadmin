@@ -30,6 +30,24 @@
 
 @mixin default-button {
   @include basic-button;
+  background-color: $button-default-background-color;
+  border: 1px solid $button-default-border-color;
+  color: $button-default-color;
+
+  &:not(.disabled) {
+    &:hover {
+      background-color: darken($button-default-background-color, 10%);
+      border-color: darken($button-default-border-color, 12%);
+    }
+
+    &:active {
+      box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    }
+  }
+}
+
+@mixin primary-button {
+  @include basic-button;
   background-color: $button-primary-background-color;
   border: 1px solid $button-primary-border-color;
   color: $button-primary-color;
@@ -48,23 +66,5 @@
   &:hover,
   &:focus {
     color: $button-primary-color;
-  }
-}
-
-@mixin light-button {
-  @include basic-button;
-  background-color: $button-default-background-color;
-  border: 1px solid $button-default-border-color;
-  color: $button-default-color;
-
-  &:not(.disabled) {
-    &:hover {
-      background-color: darken($button-default-background-color, 10%);
-      border-color: darken($button-default-border-color, 12%);
-    }
-
-    &:active {
-      box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-    }
   }
 }

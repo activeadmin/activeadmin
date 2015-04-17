@@ -13,7 +13,7 @@
   .action_item {
     & > a,
     & > .dropdown_menu > a {
-      @include light-button;
+      @include default-button;
     }
   }
 }

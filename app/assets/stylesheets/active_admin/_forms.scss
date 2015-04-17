@@ -180,7 +180,7 @@ textarea {
   input[type=submit],
   input[type=button],
   button {
-    @include default-button;
+    @include primary-button;
   }
 
   .button,
@@ -191,8 +191,7 @@ textarea {
 
   .cancel {
     a {
-      @include light-button;
-      @include icon(#777, 9px);
+      @include default-button;
     }
   }
 }
@@ -273,6 +272,6 @@ $date-range-filter-input-width: ($sidebar-inner-content-width / 2) - ($filter-fi
   }
 
   a.clear_filters_btn {
-    @include light-button;
+    @include default-button;
   }
 }

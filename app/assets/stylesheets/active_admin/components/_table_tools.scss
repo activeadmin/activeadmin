@@ -3,7 +3,7 @@
 }
 
 a.table_tools_button {
-  @include light-button;
+  @include default-button;
   font-weight: normal;
 }
 
@@ -44,22 +44,17 @@ a.table_tools_button {
     }
 
     &:first-child a {
-      border-radius: 0.25em 0 0 0.25em;
+      border-radius: $border-radius-base 0 0 $border-radius-base;
     }
 
     &:last-child a {
-      border-radius: 0 0.25em 0.25em 0;
+      border-radius: 0 $border-radius-base $border-radius-base 0;
     }
 
     &.selected a {
-      background-color: darken(#fff, 10%);
-      border-color: darken(#d9d9d9, 12%);
+      background-color: darken($button-default-background-color, 10%);
+      border-color: darken($button-default-border-color, 12%);
       z-index: 2;
-
-      &:hover {
-        background-color: darken(#fff, 17%);
-        border-color: darken(#d9d9d9, 25%);
-      }
     }
   }
 }
