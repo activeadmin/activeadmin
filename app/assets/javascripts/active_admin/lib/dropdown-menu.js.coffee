@@ -13,7 +13,7 @@ class ActiveAdmin.DropdownMenu
     @isOpen  = false
 
     @$menuButton = @$element.find '.dropdown_menu_button'
-    @$menuList   = @$element.find '.dropdown_menu_list_wrapper'
+    @$menuList   = @$element.find '.dropdown-menu'
 
     @_buildMenuList()
     @_bind()
