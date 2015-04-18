@@ -43,16 +43,26 @@ module ActiveAdmin
         li id: item.id do |li|
           li.add_class "current" if item.current? assigns[:current_tab]
 
+          children = item.items(self).presence
+
           if url = item.url(self)
-            text_node link_to item.label(self), url, item.html_options
+            link = link_to url, item.html_options do
+              if children.present?
+                (item.label(self) + ' ' + tag(:span, class: 'caret')).html_safe
+              else
+                item.label(self)
+              end
+            end
+
+            text_node link
           else
             span item.label(self), item.html_options
           end
 
-          if children = item.items(self).presence
+          if children.present?
             li.add_class "has_nested"
             ul do
-              children.each{ |child| build_menu_item child }
+              children.each { |child| build_menu_item child }
             end
           end
         end

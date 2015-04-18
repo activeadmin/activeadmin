@@ -1,3 +1,13 @@
+.caret {
+  border-left: $caret-width-base solid transparent;
+  border-right: $caret-width-base solid transparent;
+  border-top: $caret-width-base dashed;
+  display: inline-block;
+  height: 0;
+  vertical-align: middle;
+  width: 0;
+}
+
 .dropdown_menu {
   display: inline-block;
   position: relative;
@@ -5,20 +15,6 @@
 
 .dropdown_menu_button {
   @include default-button;
-  padding-right: 22px;
-  position: relative;
-
-  &:after {
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px dashed;
-    content: '';
-    height: 0;
-    position: absolute;
-    right: 11px;
-    top: 45%;
-    width: 0;
-  }
 }
 
 .dropdown_menu_list_wrapper {
@@ -30,9 +26,9 @@
 }
 
 .dropdown_menu_list {
-  background-color: #FFF;
-  border: 1px solid #c7c7c7;
-  border-radius: 3px;
+  background-color: $dropdown-background-color;
+  border: 1px solid $dropdown-border-color;
+  border-radius: $border-radius-base;
   box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
   display: block;
   list-style: none;
@@ -42,13 +38,15 @@
 
   > li {
     > a {
+      color: $dropdown-link-color;
       display: block;
       padding: 4px 15px;
       text-decoration: none;
       white-space: nowrap;
 
       &:hover {
-        background-color: #e9e9e9;
+        background-color: $dropdown-link-hover-background-color;
+        color: $dropdown-link-hover-color;
       }
     }
   }

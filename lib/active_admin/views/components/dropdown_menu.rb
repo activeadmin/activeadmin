@@ -49,7 +49,10 @@ module ActiveAdmin
 
         button_options[:href] = '#'
 
-        a name, button_options
+        a button_options do
+          text_node name
+          span class: 'caret'
+        end
       end
 
       def build_menu(options)
