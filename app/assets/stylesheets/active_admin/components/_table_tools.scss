@@ -4,7 +4,7 @@
 
 a.table_tools_button {
   @include default-button;
-  font-weight: normal;
+  font-weight: $font-weight-normal;
 }
 
 .table_tools_segmented_control {

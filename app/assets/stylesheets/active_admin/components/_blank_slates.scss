@@ -1,21 +1,18 @@
 .blank_slate_container {
   clear: both;
   text-align: center;
+}
 
-  .blank_slate {
-    border:  $blank-slate-border;
-    color: $blank-slate-primary-color;
-    display: inline-block;
-    font-size: 1.2em;
-    font-weight: bold;
-    padding: 14px 25px;
-    text-align: center;
+.blank_slate {
+  color: $blank-slate-primary-color;
+  display: inline-block;
+  font-size: 1.3em;
+  font-weight: $font-weight-bold;
 
-    small {
-      display: block;
-      font-size: 0.9em;
-      font-weight: normal;
-    }
+  small {
+    display: block;
+    font-size: 0.9em;
+    font-weight: $font-weight-normal;
   }
 }
 
