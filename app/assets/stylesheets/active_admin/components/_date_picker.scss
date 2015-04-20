@@ -10,7 +10,7 @@
 }
 
 .ui-datepicker-title {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   text-align: center;
 }
 
@@ -80,7 +80,7 @@
   thead th {
     border-bottom: none;
     font-size: 0.9em;
-    font-weight: normal;
+    font-weight: $font-weight-normal;
     padding: 2px 0;
   }
 

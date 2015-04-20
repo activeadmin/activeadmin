@@ -36,7 +36,7 @@ textarea {
   .label {
     display: block;
     float: left;
-    font-weight: bold;
+    font-weight: $font-weight-bold;
     width: 20%;
 
     abbr {
@@ -164,7 +164,7 @@ textarea {
 
   .inline-errors, .errors {
     color: $error-color;
-    font-weight: bold;
+    font-weight: $font-weight-bold;
   }
 
   .errors {

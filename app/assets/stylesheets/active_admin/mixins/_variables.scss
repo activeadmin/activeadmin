@@ -112,7 +112,7 @@ $breadcrumb-separator: "/" !default;
 
 //== Flash Messages
 
-$flash-message-font-weight: bold !default;
+$flash-message-font-weight: $font-weight-bold !default;
 $flash-message-padding: 12px $horizontal-page-margin !default;
 
 $flash-message-default-background-color: #f7f1d3 !default;

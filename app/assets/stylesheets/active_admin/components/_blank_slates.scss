@@ -6,12 +6,12 @@
   color: $blank-slate-primary-color;
   display: inline-block;
   font-size: 1.3em;
-  font-weight: bold;
+  font-weight: $font-weight-bold;
 
   small {
     display: block;
     font-size: 0.9em;
-    font-weight: normal;
+    font-weight: $font-weight-normal;
   }
 }
 
