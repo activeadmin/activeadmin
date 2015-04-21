@@ -34,12 +34,12 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
     buttons:
       OK:
         text: 'OK'
-        class: 'button'
+        class: 'button button-primary'
         click: ->
           callback $(@).serializeObject()
           $(@).dialog('close')
       Cancel:
         text: 'Cancel'
-        class: 'button cancel'
+        class: 'button button-default'
         click: ->
           $(@).dialog('close').remove()

@@ -3,6 +3,7 @@
   margin-left: 10px;
 
   a {
+    @include button-base;
     @include default-button;
   }
 

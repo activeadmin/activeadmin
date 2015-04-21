@@ -44,12 +44,4 @@
 
 .ui-dialog-buttonpane button {
   margin-right: 5px;
-
-  & {
-    @include primary-button;
-  }
-
-  &.cancel {
-    @include default-button;
-  }
 }

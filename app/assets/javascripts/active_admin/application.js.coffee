@@ -12,7 +12,7 @@ $(document).on 'ready page:load', ->
     $input.datepicker $.extend(defaults, options)
 
   # Clear Filters button
-  $('.clear_filters_btn').click ->
+  $('.js-clear-filters-button').click ->
     params = window.location.search.split('&')
     regex = /^(q\[|q%5B|q%5b|page|commit)/
     window.location.search = (param for param in params when not param.match(regex)).join('&')

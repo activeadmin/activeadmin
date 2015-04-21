@@ -19,7 +19,7 @@ module ActiveAdmin
         opening_tag << children.to_s << closing_tag
       end
     end
-    
+
     class ActiveAdminForm < FormtasticProxy
       builder_method :active_admin_form_for
 
@@ -72,7 +72,7 @@ module ActiveAdmin
       end
 
       def commit_action_with_cancel_link
-        action(:submit)
+        action(:submit, button_html: { class: 'button button-primary' })
         cancel_link
       end
 

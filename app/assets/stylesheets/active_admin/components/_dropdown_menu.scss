@@ -9,13 +9,9 @@
   width: 0;
 }
 
-.dropdown_menu {
+.dropdown {
   display: inline-block;
   position: relative;
-}
-
-.dropdown_menu_button {
-  @include default-button;
 }
 
 .dropdown-menu {

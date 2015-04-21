@@ -34,7 +34,7 @@ module ActiveAdmin
           scope_name = I18n.t "active_admin.scopes.#{scope.id}", default: scope.name
           params     = request.query_parameters.except :page, :scope, :commit, :format
 
-          a href: url_for(scope: scope.id, params: params), class: 'table_tools_button' do
+          a href: url_for(scope: scope.id, params: params), class: 'button button-default' do
             text_node scope_name
             span class: 'badge' do
               "#{get_scope_count(scope)}"

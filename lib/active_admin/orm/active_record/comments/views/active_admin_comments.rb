@@ -63,7 +63,7 @@ module ActiveAdmin
               f.input :body,          label: false, input_html: { size: '80x8' }
             end
             f.actions do
-              f.action :submit, label: I18n.t('active_admin.comments.add')
+              f.action :submit, label: I18n.t('active_admin.comments.add'), button_html: { class: 'button button-primary' }
             end
           end
         end

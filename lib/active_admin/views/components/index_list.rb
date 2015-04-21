@@ -36,7 +36,7 @@ module ActiveAdmin
       # @param [Class] index_class The class on which to build the link and html classes
       def build_index_list(index_class)
         li class: classes_for_index(index_class) do
-          a href: url_for(params.merge(as: index_class.index_name.to_sym)), class: "table_tools_button" do
+          a href: url_for(params.merge(as: index_class.index_name.to_sym)), class: "button button-default" do
             name = index_class.index_name
             I18n.t("active_admin.index_list.#{name}", default: name.to_s.titleize)
           end

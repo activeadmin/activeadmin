@@ -63,8 +63,8 @@ module ActiveAdmin
           end
 
           buttons = content_tag :div, class: "buttons" do
-            f.submit(I18n.t('active_admin.filters.buttons.filter')) +
-              link_to(I18n.t('active_admin.filters.buttons.clear'), '#', class: 'clear_filters_btn') +
+            f.submit(I18n.t('active_admin.filters.buttons.filter'), class: "button button-primary") +
+              link_to(I18n.t('active_admin.filters.buttons.clear'), '#', class: 'js-clear-filters-button button button-default') +
               hidden_field_tags_for(params, except: except_hidden_fields)
           end
 

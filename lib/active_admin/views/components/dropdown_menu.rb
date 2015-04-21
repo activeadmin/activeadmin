@@ -33,6 +33,8 @@ module ActiveAdmin
         @menu = build_menu(menu_options)
 
         super(options)
+
+        add_class 'dropdown'
       end
 
       def item(*args)
@@ -45,7 +47,7 @@ module ActiveAdmin
 
       def build_button(name, button_options)
         button_options[:class] ||= ''
-        button_options[:class] << ' dropdown_menu_button'
+        button_options[:class] << ' button button-default'
 
         button_options[:href] = '#'
 
