@@ -71,7 +71,8 @@ $padding-base-horizontal: 10px !default;
 
 //== z-indexes
 
-
+$z-index-modal-backdrop: 1001 !default;
+$z-index-modal: 1002 !default;
 
 //== Buttons
 
@@ -133,6 +134,15 @@ $flash-message-notice-text-color: #416347 !default;
 $flash-message-error-background-color: #f1dcdc !default;
 $flash-message-error-text-color: #b33c33 !default;
 
+//== Modals
+
+$modal-content-padding: 15px !default;
+$modal-heading-padding: 10px 15px !default;
+
+$modal-background-color: #fff !default;
+$modal-backdrop-background-color: rgba(0, 0, 0, 0.5) !default;
+$modal-heading-border-color: #eee !default;
+
 //== Navbar
 
 $navbar-border-radius: $border-radius-base !default;
@@ -165,6 +175,16 @@ $status-tag-color: #fff !default;
 $status-tag-no-background-color: #777 !default;
 $status-tag-yes-background-color: #6090DB !default;
 
+//== Tabs
+
+$tabs-border-color: #d3d3d3 !default;
+
+$tabs-link-hover-background-color: darken(#fff, 10%) !default;
+
+$tabs-active-link-hover-background-color: #fff !default;
+$tabs-active-link-hover-border-color: $tabs-border-color !default;
+$tabs-active-link-hover-color: $text-color !default;
+
 //== Title Bar
 
 $title-bar-background-color: #eaebec !default;
@@ -174,5 +194,6 @@ $title-bar-heading-font-size: 1.9em !default;
 
 //== Typography
 
+$text-muted-color: #9aa2aa !default;
 $hr-border-color: darken($body-background-color, 15%) !default;
 $blockquote-color: lighten($text-color, 35%) !default;

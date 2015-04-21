@@ -1,20 +1,20 @@
 .ui-widget-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $modal-backdrop-background-color;
   bottom: 0;
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 1001;
+  z-index: $z-index-modal-backdrop;
 }
 
 .ui-dialog {
-  background-color: #fff;
+  background-color: $modal-background-color;
   border-radius: 0.25em;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   outline: none;
   position: fixed;
-  z-index: 1002;
+  z-index: $z-index-modal;
 
   ul {
     list-style-type: none;
@@ -28,14 +28,14 @@
 
   form,
   .ui-dialog-buttonpane {
-    padding: 15px;
+    padding: $modal-content-padding;
   }
 }
 
 .ui-dialog-titlebar {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid $modal-heading-border-color;
   font-weight: $font-weight-bold;
-  padding: 10px 15px;
+  padding: $modal-heading-padding;
 }
 
 .ui-dialog-titlebar-close {
