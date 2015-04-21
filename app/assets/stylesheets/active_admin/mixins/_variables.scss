@@ -19,17 +19,17 @@ $breadcrumbs-color: #8a949e !default;           // renamed: $breadcrumb-color
 $breadcrumbs-separator-color: #aab2ba !default; // renamed: $breadcrumb-separator-color
 $required-field-marker-color: #aaa !default;
 $form-label-color: $section-header-text-color !default; // REMOVED
-$page-header-text-color: #cdcdcd !default;
+$page-header-text-color: #cdcdcd !default;              // REMOVED
 
 // Sizes
-$border-width: 1px !default;
+$border-width: 1px !default;                // REMOVED
 $horizontal-page-margin: 20px !default;
 $sidebar-width: 270px !default;
 $cell-padding: 5px 10px 3px 10px !default;    // renamed: $table-cell-padding
 $cell-horizontal-padding: 12px !default;      // REMOVED
 $section-padding: 15px !default;              // renamed: $panel-body-padding
-$text-input-horizontal-padding: 8px !default;
-$text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2 !default;
+$text-input-horizontal-padding: 8px !default; // REMOVED
+$text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2 !default; // REMOVED
 $blank-slate-border: 1px dashed #DADADA !default;
 
 
@@ -87,6 +87,12 @@ $button-primary-background-color: $primary-color !default;
 $button-primary-border-color: darken($primary-color, 5%) !default;
 
 //== Forms
+
+$input-background-color: #fff !default;
+$input-border-color: #c9d0d6 !default;
+$input-border-focus-color: #99a2aa !default;
+$input-border-radius: $border-radius-base !default;
+$input-color: $text-color !default;
 
 $cursor-disabled: not-allowed !default; // for forms and buttons
 

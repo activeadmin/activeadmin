@@ -10,7 +10,7 @@
 
 .ui-dialog {
   background-color: $modal-background-color;
-  border-radius: 0.25em;
+  border-radius: $border-radius-base;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   outline: none;
   position: fixed;

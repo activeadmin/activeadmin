@@ -5,16 +5,19 @@ input[type=number],
 input[type=url],
 input[type=tel],
 textarea {
-  border: $border-width solid #c9d0d6;
-  border-radius: 3px;
+  background-color: $input-background-color;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  color: $input-color;
   display: inline-block;
   outline: none;
-  padding: 6px 8px;
-  width: calc(80% - #{$text-input-total-padding});
+  padding: $padding-base-vertical $padding-base-horizontal;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  width: calc(80% - #{($padding-base-horizontal * 2) + 2px});
 
   &:focus {
-    border: $border-width solid #99a2aa;
-    box-shadow: 0 0 4px #99a2aa;
+    border: 1px solid $input-border-focus-color;
+    box-shadow: 0 0 4px $input-border-focus-color;
   }
 }
 
@@ -159,7 +162,7 @@ textarea {
   }
 
   .inline-hints {
-    color: #999;
+    color: $text-muted-color;
   }
 
   .inline-errors, .errors {
@@ -169,7 +172,7 @@ textarea {
 
   .errors {
     background-color: lighten($error-color, 60%);
-    border-radius: 3px;
+    border-radius: $border-radius-base;
     list-style-type: square;
     padding: 10px 10px 10px 25px;
     width: calc(80% - 22px);

@@ -1,7 +1,7 @@
 .ui-datepicker {
   box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
   display: none;
-  width: 160px;
+  width: 12em;
 
   a,
   a:hover {
@@ -15,8 +15,8 @@
 }
 
 .ui-datepicker-header {
-  background-color: lighten($primary-color, 5%);
-  border-radius: 0.25em 0.25em 0 0;
+  background-color: $primary-color;
+  border-radius: $border-radius-base $border-radius-base 0 0;
   color: #fff;
   padding: 5px;
   position: relative; // for datepicker prev/next buttons
@@ -95,11 +95,12 @@
       width: 22px;
 
       a {
-        border-radius: 0.25em;
-        color: #555;
+        border-radius: $border-radius-base;
+        color: $text-color;
         display: block;
         font-size: 0.9em;
-        padding: 3px 0;
+        line-height: 1;
+        padding: 6px 0;
 
         &:hover {
           background-color: #eceef0;
@@ -114,7 +115,6 @@
         &.ui-state-highlight,
         &.ui-state-highlight:hover { // today's date
           background-color: #dbdddf;
-          color: #666;
         }
       }
     }
