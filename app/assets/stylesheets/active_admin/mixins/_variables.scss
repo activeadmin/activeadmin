@@ -14,7 +14,7 @@ $hover-menu-item-background: lighten($primary-color, 12%) !default; // renamed: 
 $table-stripe-color: #f8f8f8 !default;
 $table-selected-color: #fcf8e3 !default;
 $error-color: #932419 !default;
-$blank-slate-primary-color: #AAA !default;
+$blank-slate-primary-color: #AAA !default;      // renamed: $blank-slate-color
 $breadcrumbs-color: #8a949e !default;           // renamed: $breadcrumb-color
 $breadcrumbs-separator-color: #aab2ba !default; // renamed: $breadcrumb-separator-color
 $required-field-marker-color: #aaa !default;
@@ -51,6 +51,8 @@ $line-height-base: 1.5 !default;
 
 $text-color: #323537 !default;
 
+$text-muted-color: #9aa2aa !default;
+
 $body-background-color: #fff !default;
 $body-font-size: $font-size-base !default;
 $body-font-weight: $font-weight-normal !default;
@@ -73,6 +75,10 @@ $padding-base-horizontal: 10px !default;
 
 $z-index-modal-backdrop: 1001 !default;
 $z-index-modal: 1002 !default;
+
+//== Blank Slate
+
+$blank-slate-color: $text-muted-color !default;
 
 //== Buttons
 
@@ -202,6 +208,5 @@ $title-bar-heading-font-size: 1.9em !default;
 
 //== Typography
 
-$text-muted-color: #9aa2aa !default;
 $hr-border-color: darken($body-background-color, 15%) !default;
 $blockquote-color: lighten($text-color, 35%) !default;

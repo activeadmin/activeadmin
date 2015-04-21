@@ -5,8 +5,8 @@ ActiveAdmin.register_page "Dashboard" do
   content title: proc{ I18n.t("active_admin.dashboard") } do
 
     blank_slate do
-      para I18n.t("active_admin.dashboard_welcome.welcome")
-      para small(I18n.t("active_admin.dashboard_welcome.call_to_action"))
+      h4 I18n.t("active_admin.dashboard_welcome.welcome")
+      h5 I18n.t("active_admin.dashboard_welcome.call_to_action")
     end
 
     # Here is an example of a simple dashboard with columns and panels.

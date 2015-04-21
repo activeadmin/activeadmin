@@ -3,16 +3,8 @@
 }
 
 .blank_slate {
-  color: $blank-slate-primary-color;
-  display: inline-block;
+  color: $blank-slate-color;
   font-size: 1.3em;
-  font-weight: $font-weight-bold;
-
-  small {
-    display: block;
-    font-size: 0.9em;
-    font-weight: $font-weight-normal;
-  }
 }
 
 .admin_dashboard .blank_slate,
