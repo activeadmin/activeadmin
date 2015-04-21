@@ -176,7 +176,7 @@ module ActiveAdmin
                     li do
                       if filter.body =~ /ID/i
                         begin
-                          klass = filter.body.split(' ID').first.gsub(' ','').constantize
+                          klass = filter.body.split(' ID').first.gsub(' ', '').constantize
                           method = klass.inspect.scan(/(title|name|value|id)/).last[0].to_sym
                           value = klass.find(filter.value).send(method)
                           span "#{klass}: "
