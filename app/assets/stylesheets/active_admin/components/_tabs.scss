@@ -1,8 +1,9 @@
 .nav-tabs {
   @include clearfix;
+  border-bottom: 1px solid $tabs-border-color;
   display: block;
   list-style: none;
-  margin: 0 0 0 5px;
+  margin: 0;
   padding-left: 0;
 
   li {
@@ -12,30 +13,27 @@
 
     a {
       @include button-base;
-      border-radius: 0.25em 0.25em 0 0;
+      border-radius: $border-radius-base $border-radius-base 0 0;
       outline: none;
 
       &:hover {
-        background-color: darken(#fff, 10%);
-        border-bottom-color: #d3d3d3;
+        background-color: $tabs-link-hover-background-color;
+        border-bottom-color: $tabs-border-color;
       }
     }
 
     &.ui-tabs-active {
       a,
       a:hover {
-        background-color: #fff;
-        border: 1px solid #d3d3d3;
+        background-color: $tabs-active-link-hover-background-color;
+        border: 1px solid $tabs-active-link-hover-border-color;
         border-bottom-color: transparent;
-        color: $text-color;
+        color: $tabs-active-link-hover-color;
       }
     }
   }
 }
 
 .tab-content {
-  background-color: #fff;
-  border: 1px solid #D3D3D3;
-  border-radius: 0.25em;
   padding: 15px;
 }
