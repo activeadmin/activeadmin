@@ -49,12 +49,20 @@ function ModalDialog(message, inputs, callback){
     },
     dialogClass: 'active_admin_dialog',
     buttons: {
-      OK() {
-        callback($(this).serializeObject());
-        $(this).dialog('close');
+      OK: {
+        text: 'OK',
+        class: 'button button-primary',
+        click() {
+          callback($(this).serializeObject());
+          $(this).dialog('close');
+        }
       },
-      Cancel() {
-        $(this).dialog('close').remove();
+      Cancel: {
+        text: 'Cancel',
+        class: 'button button-default',
+        click() {
+          $(this).dialog('close').remove();
+        }
       }
     }
   });

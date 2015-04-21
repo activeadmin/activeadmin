@@ -1,4 +1,4 @@
-@mixin basic-button {
+@mixin button-base {
   border: 1px solid transparent;
   border-radius: $border-radius-base;
   cursor: pointer;
@@ -29,7 +29,6 @@
 }
 
 @mixin default-button {
-  @include basic-button;
   background-color: $button-default-background-color;
   border: 1px solid $button-default-border-color;
   color: $button-default-color;
@@ -52,7 +51,6 @@
 }
 
 @mixin primary-button {
-  @include basic-button;
   background-color: $button-primary-background-color;
   border: 1px solid $button-primary-border-color;
   color: $button-primary-color;

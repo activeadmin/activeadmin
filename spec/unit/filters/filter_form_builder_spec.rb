@@ -47,7 +47,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should generate a clear filters link" do
-      expect(body).to have_selector("a.clear_filters_btn", text: "Clear Filters")
+      expect(body).to have_selector("a.button-default", text: "Clear Filters")
     end
 
     describe "label as proc" do

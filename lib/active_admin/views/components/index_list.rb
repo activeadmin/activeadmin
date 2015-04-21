@@ -40,7 +40,7 @@ module ActiveAdmin
           params = request.query_parameters.except :page, :commit, :format
           url_with_params = url_for(**params.merge(as: index_class.index_name.to_sym).symbolize_keys)
 
-          a href: url_with_params, class: "table_tools_button" do
+          a href: url_with_params, class: "button button-default" do
             name = index_class.index_name
             I18n.t("active_admin.index_list.#{name}", default: name.to_s.titleize)
           end

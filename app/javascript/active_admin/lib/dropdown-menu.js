@@ -13,8 +13,8 @@ class DropdownMenu {
     this.options = $.extend(defaults, this.options);
     this.isOpen  = false;
 
-    this.$menuButton = this.$element.find('.dropdown_menu_button');
-    this.$menuList   = this.$element.find('.dropdown_menu_list_wrapper');
+    this.$menuButton = this.$element.find('.button');
+    this.$menuList   = this.$element.find('.dropdown-menu');
 
     this._buildMenuList();
     this._bind();
@@ -23,8 +23,6 @@ class DropdownMenu {
   open() {
     this.isOpen = true;
     this.$menuList.fadeIn(this.options.fadeInDuration);
-
-    this._position();
     return this;
   }
 
@@ -62,8 +60,6 @@ class DropdownMenu {
   }
 
   _buildMenuList() {
-    this.$nipple = $('<div class="dropdown_menu_nipple"></div>');
-    this.$menuList.prepend(this.$nipple);
     this.$menuList.hide();
   }
 
@@ -82,34 +78,6 @@ class DropdownMenu {
       }
       return false;
     });
-  }
-
-  _position() {
-    this.$menuList.css('top', this.$menuButton.position().top + this.$menuButton.outerHeight() + 10);
-
-    const button_left = this.$menuButton.position().left;
-    const button_center =  this.$menuButton.outerWidth() / 2;
-    const button_right = button_left + (button_center * 2);
-    const menu_center = this.$menuList.outerWidth() / 2;
-    const nipple_center = this.$nipple.outerWidth() / 2;
-    const window_right = $(window).width();
-
-    const centered_menu_left = (button_left + button_center) - menu_center;
-    const centered_menu_right = button_left + button_center + menu_center;
-
-    if (centered_menu_left < 0) {
-      // Left align with button
-      this.$menuList.css('left', button_left);
-      this.$nipple.css('left', button_center - nipple_center);
-    } else if (centered_menu_right > window_right) {
-      // Right align with button
-      this.$menuList.css('right', window_right - button_right);
-      this.$nipple.css('right', button_center - nipple_center);
-    } else {
-      // Center align under button
-      this.$menuList.css('left', centered_menu_left);
-      this.$nipple.css('left', menu_center - nipple_center);
-    }
   }
 }
 

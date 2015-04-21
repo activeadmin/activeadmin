@@ -71,12 +71,20 @@
       },
       dialogClass: "active_admin_dialog",
       buttons: {
-        OK: function OK() {
-          callback($(this).serializeObject());
-          $(this).dialog("close");
+        OK: {
+          text: "OK",
+          class: "button button-primary",
+          click: function click() {
+            callback($(this).serializeObject());
+            $(this).dialog("close");
+          }
         },
-        Cancel: function Cancel() {
-          $(this).dialog("close").remove();
+        Cancel: {
+          text: "Cancel",
+          class: "button button-default",
+          click: function click() {
+            $(this).dialog("close").remove();
+          }
         }
       }
     });
@@ -113,7 +121,7 @@
         $(".paginated_collection").checkboxToggler();
       }
       $(document).on("change", ".paginated_collection :checkbox", function() {
-        if ($(".paginated_collection :checkbox:checked").length && $(".dropdown_menu_list").children().length) {
+        if ($(".paginated_collection :checkbox:checked").length && $(".dropdown-menu").children().length) {
           $(".batch_actions_selector").each(function() {
             $(this).aaDropdownMenu("enable");
           });
@@ -201,8 +209,8 @@
       };
       this.options = $.extend(defaults, this.options);
       this.isOpen = false;
-      this.$menuButton = this.$element.find(".dropdown_menu_button");
-      this.$menuList = this.$element.find(".dropdown_menu_list_wrapper");
+      this.$menuButton = this.$element.find(".button");
+      this.$menuList = this.$element.find(".dropdown-menu");
       this._buildMenuList();
       this._bind();
     }
@@ -210,7 +218,6 @@
     _proto.open = function open() {
       this.isOpen = true;
       this.$menuList.fadeIn(this.options.fadeInDuration);
-      this._position();
       return this;
     };
     _proto.close = function close() {
@@ -241,8 +248,6 @@
       }
     };
     _proto._buildMenuList = function _buildMenuList() {
-      this.$nipple = $('<div class="dropdown_menu_nipple"></div>');
-      this.$menuList.prepend(this.$nipple);
       this.$menuList.hide();
     };
     _proto._bind = function _bind() {
@@ -263,32 +268,11 @@
         return false;
       });
     };
-    _proto._position = function _position() {
-      this.$menuList.css("top", this.$menuButton.position().top + this.$menuButton.outerHeight() + 10);
-      var button_left = this.$menuButton.position().left;
-      var button_center = this.$menuButton.outerWidth() / 2;
-      var button_right = button_left + button_center * 2;
-      var menu_center = this.$menuList.outerWidth() / 2;
-      var nipple_center = this.$nipple.outerWidth() / 2;
-      var window_right = $(window).width();
-      var centered_menu_left = button_left + button_center - menu_center;
-      var centered_menu_right = button_left + button_center + menu_center;
-      if (centered_menu_left < 0) {
-        this.$menuList.css("left", button_left);
-        this.$nipple.css("left", button_center - nipple_center);
-      } else if (centered_menu_right > window_right) {
-        this.$menuList.css("right", window_right - button_right);
-        this.$nipple.css("right", button_center - nipple_center);
-      } else {
-        this.$menuList.css("left", centered_menu_left);
-        this.$nipple.css("left", menu_center - nipple_center);
-      }
-    };
     return DropdownMenu;
   }();
   $.widget.bridge("aaDropdownMenu", DropdownMenu);
   var onDOMReady$1 = function onDOMReady() {
-    return $(".dropdown_menu").aaDropdownMenu();
+    return $(".dropdown").aaDropdownMenu();
   };
   $(document).ready(onDOMReady$1).on("page:load turbolinks:load", onDOMReady$1);
   function hasTurbolinks() {
@@ -360,7 +344,7 @@
     return Filters;
   }();
   (function($) {
-    $(document).on("click", ".clear_filters_btn", Filters._clearForm).on("submit", ".filter_form", Filters._disableEmptyInputFields).on("change", ".filter_form_field.select_and_search select", Filters._setSearchType);
+    $(document).on("click", ".js-clear-filters-button", Filters._clearForm).on("submit", ".filter_form", Filters._disableEmptyInputFields).on("change", ".filter_form_field.select_and_search select", Filters._setSearchType);
   })(jQuery);
   $(function() {
     $(document).on("click", "a.button.has_many_remove", function(event) {

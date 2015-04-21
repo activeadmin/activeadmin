@@ -4,13 +4,6 @@
   display: table;
   padding: 10px $horizontal-page-margin;
   width: 100%;
-
-  .action_item {
-    & > a,
-    & > .dropdown_menu > a {
-      @include default-button;
-    }
-  }
 }
 
 .title-bar-header,

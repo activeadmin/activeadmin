@@ -179,12 +179,6 @@ textarea {
 
   // Buttons
 
-  input[type=submit],
-  input[type=button],
-  button {
-    @include primary-button;
-  }
-
   .button,
   .action {
     display: inline-block;
@@ -192,13 +186,7 @@ textarea {
   }
 
   .actions .create_another {
-    float: none;
-    margin-bottom: 10px;
-
-    label {
-      float: none;
-      display: inline;
-    }
+    margin-bottom: 15px;
   }
 }
 
@@ -275,9 +263,5 @@ $date-range-filter-input-width: ($sidebar-inner-content-width * 0.5) - ($filter-
 .filter_form {
   .buttons > * {
     margin-right: 5px;
-  }
-
-  a.clear_filters_btn {
-    @include default-button;
   }
 }
