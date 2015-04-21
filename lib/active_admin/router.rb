@@ -56,6 +56,10 @@ module ActiveAdmin
           # Add on the namespace if required
           unless config.namespace.root?
             nested = routes
+
+            # Do not define unnecessary path
+            return if config.resource_name.route_key == 'comments' && ActiveAdmin.application.comments == false
+
             routes = Proc.new do
               namespace config.namespace.name do
                 instance_exec &nested
