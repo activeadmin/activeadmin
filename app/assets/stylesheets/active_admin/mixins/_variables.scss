@@ -8,7 +8,7 @@ $primary-color: #5E6469 !default;
 $secondary-color: #f0f0f0 !default;
 $text-color: #323537 !default;
 $link-color: #38678b !default;
-$section-header-text-color: $primary-color !default; // REMOVED
+$section-header-text-color: $primary-color !default; // renamed: $title-bar-color
 $current-menu-item-background: lighten($primary-color, 12%) !default; // renamed: $navbar-link-active-background-color
 $hover-menu-item-background: lighten($primary-color, 12%) !default; // renamed: $navbar-link-hover-background-color
 $table-stripe-color: #f8f8f8 !default;
@@ -104,6 +104,15 @@ $dropdown-link-hover-background-color: #e9e9e9 !default;
 
 $table-cell-padding: 8px !default;
 
+//== Badges
+
+$badge-color: #fff !default;
+$badge-background-color: rgba(0, 0, 0, 0.35) !default;
+
+$badge-border-radius: 10px !default;
+$badge-font-weight: $font-weight-normal !default;
+$badge-line-height: 1 !default;
+
 //== Breadcrumbs
 
 $breadcrumb-color: #8a949e !default;
@@ -146,6 +155,22 @@ $panel-body-padding: 15px !default;
 $panel-heading-background-color: #e6e6e6 !default;
 $panel-heading-padding: 10px 15px !default;
 $panel-border-radius: $border-radius-base !default;
+
+//== Status Tags
+
+$status-tag-border-radius: $border-radius-base !default;
+$status-tag-padding: 0.2em 0.5em !default;
+
+$status-tag-color: #fff !default;
+$status-tag-no-background-color: #777 !default;
+$status-tag-yes-background-color: #6090DB !default;
+
+//== Title Bar
+
+$title-bar-background-color: #eaebec !default;
+$title-bar-color: $text-color !default;
+
+$title-bar-heading-font-size: 1.9em !default;
 
 //== Typography
 

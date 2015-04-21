@@ -1,3 +1,14 @@
+.badge {
+  background-color: $badge-background-color;
+  border-radius: $badge-border-radius;
+  color: $badge-color;
+  display: inline-block;
+  font-weight: $badge-font-weight;
+  line-height: $badge-line-height;
+  padding: 3px 7px;
+  vertical-align: baseline;
+}
+
 .table_tools {
   margin-bottom: 15px;
 }
@@ -14,16 +25,6 @@ a.table_tools_button {
   margin: 0;
   padding: 0;
   vertical-align: bottom; // required so this aligns correctly with .dropdown_menu
-
-  .badge {
-    background-color: rgba(0,0,0,0.35);
-    border-radius: 10px;
-    color: #fff;
-    display: inline-block;
-    line-height: 1;
-    padding: 3px 7px;
-    vertical-align: baseline;
-  }
 
   li {
     float: left;

@@ -1,14 +1,9 @@
-#title_bar {
-  background-color: #eaebec;
-  color: $section-header-text-color;
+.title-bar {
+  background-color: $title-bar-background-color;
+  color: $title-bar-color;
   display: table;
   padding: 10px $horizontal-page-margin;
   width: 100%;
-
-  h2 {
-    font-size: 2em;
-    margin: 0;
-  }
 
   .action_item {
     & > a,
@@ -18,12 +13,17 @@
   }
 }
 
-#titlebar_left,
-#titlebar_right {
+.title-bar-header,
+.title-bar-actions {
   display: table-cell;
   vertical-align: middle;
 }
 
-#titlebar_right {
+.title-bar-actions {
   text-align: right;
+}
+
+.title-bar-heading {
+  font-size: $title-bar-heading-font-size;
+  margin: 0;
 }

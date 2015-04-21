@@ -1,15 +1,15 @@
 .status_tag {
-  border-radius: 0.25em;
-  color: #fff;
-  padding: 0.2em 0.5em;
+  border-radius: $status-tag-border-radius;
+  color: $status-tag-color;
+  padding: $status-tag-padding;
   text-align: center;
 
   &,
   &.no {
-    background-color: #777;
+    background-color: $status-tag-no-background-color;
   }
 
   &.yes {
-    background-color: #6090DB;
+    background-color: $status-tag-yes-background-color;
   }
 }
