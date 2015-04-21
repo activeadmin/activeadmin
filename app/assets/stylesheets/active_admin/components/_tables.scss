@@ -8,14 +8,14 @@ th {
 }
 
 th, td {
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid $table-border-color;
   padding: $table-cell-padding;
   vertical-align: top;
 }
 
 thead {
   th {
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid darken($table-border-color, 10%);
     vertical-align: bottom;
   }
 }
@@ -74,12 +74,8 @@ table.index_table {
 
 // -------------------------------------- Tables inside Panels
 .panel_contents table {
-  thead {
-    background-color: transparent;
-  }
-
   th, td {
-    padding: 5px;
+    padding: $table-condensed-cell-padding;
   }
 }
 
@@ -90,10 +86,10 @@ table.index_table {
 
 .attributes_table table {
   col {
-    border-right: 1px solid #e8e8e8;
+    border-right: 1px solid $table-border-color;
 
     &:first-child {
-      border-right: 2px solid #ccc;
+      border-right: 2px solid darken($table-border-color, 10%);
     }
   }
 
@@ -102,7 +98,7 @@ table.index_table {
   }
 
   td .empty {
-    color: #bbb;
+    color: $text-muted-color;
     font-size: 0.8em;
     letter-spacing: 0.2em;
     text-transform: uppercase;
