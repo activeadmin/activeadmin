@@ -174,8 +174,21 @@ module ActiveAdmin
                 else
                   active.filters.each do |filter|
                     li do
-                      span filter.body
-                      b filter.value
+                      if filter.body =~ /ID/i
+                        begin
+                          klass = filter.body.split(' ').first.constantize
+                          method = klass.inspect.scan(/(title|name|value|id)/).last[0].to_sym
+                          value = klass.find(filter.value).send(method)
+                          span "#{klass}: "
+                          b value
+                        rescue
+                          span filter.body
+                          b filter.value
+                        end
+                      else
+                        span filter.body
+                        b filter.value
+                      end
                     end
                   end
                 end
