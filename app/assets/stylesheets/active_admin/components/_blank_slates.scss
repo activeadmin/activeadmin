@@ -1,26 +1,9 @@
 .blank_slate_container {
-  clear: both;
   text-align: center;
 }
 
 .blank_slate {
-  color: $blank-slate-primary-color;
-  display: inline-block;
+  color: $blank-slate-color;
   font-size: 1.3em;
-  font-weight: $font-weight-bold;
-
-  small {
-    display: block;
-    font-size: 0.9em;
-    font-weight: $font-weight-normal;
-  }
-}
-
-.admin_dashboard .blank_slate_container .blank_slate {
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.with_sidebar .blank_slate_container .blank_slate {
-  margin-top: 80px;
+  margin: 80px 0;
 }

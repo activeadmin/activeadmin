@@ -13,7 +13,8 @@ Feature: Index Blank Slate
         end
       """
     Then I should not see a sortable table header
-    And I should see "There are no Posts yet. Create one"
+    And I should see "There are no Posts yet."
+    And I should see "Create one"
     And I should not see ".index_table"
     And I should not see pagination
     When I follow "Create one"
@@ -38,7 +39,8 @@ Feature: Index Blank Slate
         end
       end
       """
-    And I should see "There are no Posts yet. Create one"
+    And I should see "There are no Posts yet."
+    And I should see "Create one"
 
   Scenario: Viewing a index using blocks with no resources
     Given an index configuration of:
@@ -49,7 +51,8 @@ Feature: Index Blank Slate
         end
       end
       """
-    And I should see "There are no Posts yet. Create one"
+    And I should see "There are no Posts yet."
+    And I should see "Create one"
 
   Scenario: Viewing a blog with no resources
     Given an index configuration of:
@@ -58,7 +61,8 @@ Feature: Index Blank Slate
         index as: :blog
       end
       """
-    And I should see "There are no Posts yet. Create one"
+    And I should see "There are no Posts yet."
+    And I should see "Create one"
 
   Scenario: Customizing the default table with no resources
     Given an index configuration of:
