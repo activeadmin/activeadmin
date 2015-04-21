@@ -32,6 +32,11 @@
   top: 0;
   width: 20px; // with top/bottom provide larger hit area for button
 
+  &:focus,
+  &:hover {
+    color: #fff;
+  }
+
   // base for arrows
   &:after {
     border-bottom: 4px solid transparent;
@@ -67,9 +72,8 @@
 }
 
 .ui-datepicker-calendar {
-  background-color: #f4f4f4;
-  border: 1px solid lighten($primary-color, 5%);
-  border-width: 0 1px 1px 1px;
+  background-color: #fff;
+  border: none;
   margin-bottom: 0;
 
   td, th {
@@ -80,7 +84,7 @@
   thead th {
     border-bottom: none;
     font-size: 0.9em;
-    font-weight: $font-weight-normal;
+    font-weight: $font-weight-bold;
     padding: 2px 0;
   }
 
@@ -95,7 +99,7 @@
         color: #555;
         display: block;
         font-size: 0.9em;
-        padding: 4px 0;
+        padding: 3px 0;
 
         &:hover {
           background-color: #eceef0;
