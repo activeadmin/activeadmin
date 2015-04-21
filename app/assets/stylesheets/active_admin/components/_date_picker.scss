@@ -1,7 +1,7 @@
 .ui-datepicker {
   box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
   display: none;
-  width: 160px;
+  width: 12em;
 
   a,
   a:hover {
@@ -95,11 +95,12 @@
       width: 22px;
 
       a {
-        border-radius: 0.25em;
-        color: #555;
+        border-radius: $border-radius-base;
+        color: $text-color;
         display: block;
         font-size: 0.9em;
-        padding: 3px 0;
+        line-height: 1;
+        padding: 6px 0;
 
         &:hover {
           background-color: $date-picker-calendar-link-hover-background-color;
