@@ -174,21 +174,8 @@ module ActiveAdmin
                 else
                   active.filters.each do |filter|
                     li do
-                      if filter.body =~ /ID/i
-                        begin
-                          klass = filter.body.split(' ID').first.gsub(' ', '').constantize
-                          method = klass.inspect.scan(/(title|name|value|id)/).last[0].to_sym
-                          value = klass.find(filter.value).send(method)
-                          span "#{klass}: "
-                          b value
-                        rescue
-                          span filter.body
-                          b filter.value
-                        end
-                      else
-                        span filter.body
-                        b filter.value
-                      end
+                      span filter.body
+                      b filter.value
                     end
                   end
                 end
@@ -198,6 +185,5 @@ module ActiveAdmin
         end
       end
     end
-
   end
 end

@@ -9,8 +9,22 @@ module ActiveAdmin
         @value = param[1]
       end
 
+      def related_class
+        @related_class ||=
+            begin
+              @body.split('_id').first.gsub(' ', '').classify.constantize
+            rescue
+              nil
+            end
+      end
+
       def value
-        @value
+        @value =
+            begin
+              display_name(related_class.find(@value))
+            rescue
+              @value
+            end
       end
 
       def body
@@ -22,7 +36,7 @@ module ActiveAdmin
           predicate = active_admin_predicate_translation
         end
 
-        "#{parse_parameter_body} #{predicate}".strip
+        "#{related_class || parse_parameter_body} #{predicate}".strip
       end
 
       private
