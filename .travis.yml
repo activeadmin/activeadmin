@@ -18,6 +18,7 @@ env:
     - "RAILS=3.2.21"
     - "RAILS=4.1.8"
     - "RAILS=4.2.0"
+    - "RAILS=4.2.1"
   global:
     secure: lRYUGVUV94eqrR7C0b0hhvp+W76NkLRAn6jkJGCbRCEojbeb3HlgK1P+nTDeIuiDmXksJOG6VD3ZiZAn9Plznj7I/MFh+ijgvk8eWj9QNxA8riaSEPAu5VYtPA+uaw1olUt196U3qXH+SaXB4sx5wdIUXpd9qxWWWsW11ia0Jzs=
 matrix:
@@ -31,6 +32,8 @@ matrix:
       env: "RAILS=4.1.8"
     - rvm: 2.1
       env: "RAILS=4.2.0"
+    - rvm: 2.1
+      env: "RAILS=4.2.1"
 notifications:
   irc:
     channels:

@@ -1,20 +1,46 @@
 require 'rails_helper'
 
 describe ActiveAdmin::Filters::Humanized do
-  let(:param) { ['category_id_eq', '1'] }
-
-  subject { ActiveAdmin::Filters::Humanized.new(param) }
+  let(:category) { Category.create!(name: 'Jazz') }
 
   describe '#value' do
-    it 'should equal query string parameter' do
-      expect(subject.value).to eq('1')
+    context 'parameter points to a related model' do
+      it 'should equal the :name of category instance' do
+        param = ['category_id_eq', category.id]
+        humanizer = ActiveAdmin::Filters::Humanized.new(param)
+        expect(humanizer.value).to eq('Jazz')
+      end
+    end
+
+    context 'parameter looks like a related model but does not' do
+      it 'should equal query string parameter' do
+        param = ['color_id_eq', '1']
+        humanizer = ActiveAdmin::Filters::Humanized.new(param)
+        expect(humanizer.value).to eq('1')
+      end
+    end
+
+    context 'parameter is a field' do
+      it 'should equal query string parameter' do
+        param = ['requires_approval_eq', '1']
+        humanizer = ActiveAdmin::Filters::Humanized.new(param)
+        expect(humanizer.value).to eq('1')
+      end
     end
   end
 
   describe '#body' do
     context 'when Ransack predicate' do
-      it 'parses language from Ransack' do
-        expect(subject.body).to eq('Category ID equals')
+      it 'parses language from Ransack if filter is a related model' do
+        param = ['category_id_eq', category.id]
+        humanizer = ActiveAdmin::Filters::Humanized.new(param)
+        expect(humanizer.body).to eq('Category equals')
+      end
+
+      it 'parses language from Ransack if filter parameter looks like related model but does not' do
+        param = ['color_id_eq', '1']
+        humanizer = ActiveAdmin::Filters::Humanized.new(param)
+        expect(humanizer.body).to eq('Color ID equals')
       end
 
       it 'handles strings with embedded predicates' do
