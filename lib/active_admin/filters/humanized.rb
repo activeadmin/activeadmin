@@ -36,7 +36,7 @@ module ActiveAdmin
           predicate = active_admin_predicate_translation
         end
 
-        "#{related_class || parse_parameter_body} #{predicate}".strip
+        "#{related_class ? related_class.to_s.underscore.humanize.titleize : parse_parameter_body} #{predicate}".strip
       end
 
       private

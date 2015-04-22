@@ -31,6 +31,14 @@ describe ActiveAdmin::Filters::Humanized do
 
   describe '#body' do
     context 'when Ransack predicate' do
+
+      it 'returns correct model name even if multi-word model' do
+        class MultiWordKlass; end
+        param = ['multi_word_klass_id_eq', 1]
+        humanizer = ActiveAdmin::Filters::Humanized.new(param)
+        expect(humanizer.body).to start_with('Multi Word Klass')
+      end
+
       it 'parses language from Ransack if filter is a related model' do
         param = ['category_id_eq', category.id]
         humanizer = ActiveAdmin::Filters::Humanized.new(param)
