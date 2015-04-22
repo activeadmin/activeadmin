@@ -26,6 +26,20 @@ describe ActiveAdmin::Resource::BelongsTo do
         }.to raise_error(ActiveAdmin::Resource::BelongsTo::TargetNotFound)
       end
     end
+
+    context "when the resource is on a namespace" do
+      let(:blog_post_config){ ActiveAdmin.register Blog::Post do; end }
+      let(:belongs_to) { ActiveAdmin::Resource::BelongsTo.new blog_post_config, :blog_author, class_name: "Blog::Author" }
+      before do
+        class Blog::Author
+          include ActiveModel::Naming
+        end
+        @blog_author_config = ActiveAdmin.register Blog::Author do; end
+      end
+      it "should return the target resource" do
+        expect(belongs_to.target).to eq @blog_author_config
+      end
+    end
   end
 
   it "should be optional" do
