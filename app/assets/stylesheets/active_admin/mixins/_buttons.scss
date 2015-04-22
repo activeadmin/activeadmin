@@ -8,7 +8,7 @@
   line-height: $line-height-base; // needed for input/button elements to match a.button size
   padding: $padding-base-vertical $padding-base-horizontal;
   text-decoration: none;
-  transition: background-color .15s, border-color .15s, color .15s;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
   white-space: nowrap;
 
   &:hover,

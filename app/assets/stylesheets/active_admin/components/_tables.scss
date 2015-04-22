@@ -15,7 +15,7 @@ th, td {
 
 thead {
   th {
-    border-bottom: 2px solid darken($table-border-color, 10%);
+    border-bottom: 2px solid $table-border-color;
     vertical-align: bottom;
   }
 }
@@ -89,7 +89,7 @@ table.index_table {
     border-right: 1px solid $table-border-color;
 
     &:first-child {
-      border-right: 2px solid darken($table-border-color, 10%);
+      border-right: 2px solid $table-border-color;
     }
   }
 

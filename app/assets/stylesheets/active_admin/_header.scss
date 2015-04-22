@@ -43,7 +43,7 @@
         display: inline-block;
         padding: $navbar-padding-vertical $navbar-padding-horizontal;
         position: relative;
-        transition: background-color .15s, color .15s;
+        transition: background-color 0.15s, color 0.15s;
       }
 
       &.current > a {
@@ -57,7 +57,7 @@
       }
 
       &.has_nested:hover > a {
-        z-index: 960; // so top part of sub menu box-shadow doesn't appear over this link
+        z-index: $z-index-navbar; // so top part of sub menu box-shadow doesn't appear over this link
       }
 
       ul {
@@ -68,7 +68,7 @@
         min-width: 175px;
         padding: 5px 0;
         position: absolute;
-        z-index: 950;
+        z-index: $z-index-navbar;
 
         li {
           position: relative;

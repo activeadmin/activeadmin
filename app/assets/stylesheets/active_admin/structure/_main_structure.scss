@@ -9,7 +9,7 @@
 }
 
 #main_content {
-  margin-right: $sidebar-width + ($section-padding * 2);
+  margin-right: $sidebar-width + ($panel-body-padding * 2);
 }
 
 .without_sidebar #main_content {

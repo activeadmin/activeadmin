@@ -13,7 +13,7 @@ textarea {
   display: inline-block;
   outline: none;
   padding: $padding-base-vertical $padding-base-horizontal;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   width: calc(80% - #{($padding-base-horizontal * 2) + 2px});
 
   &:focus {
@@ -79,7 +79,7 @@ textarea {
 
     .has_many_container {
       h3 {
-        border-bottom: 1px solid #e8e8e8;
+        border-bottom: 1px solid darken($panel-background-color, 12%);
         margin-bottom: 20px;
       }
     }
@@ -87,7 +87,7 @@ textarea {
 
   // relative so the absolutely-positioned handle will fit
   .has_many_fields {
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid darken($panel-background-color, 12%);
     margin-bottom: 15px;
 
     ol {
@@ -173,7 +173,7 @@ textarea {
   }
 
   .errors {
-    background-color: lighten($error-color, 60%);
+    background-color: lighten($error-color, 35%);
     border-radius: $border-radius-base;
     list-style-type: square;
     padding: 10px 10px 10px 25px;
@@ -195,7 +195,7 @@ textarea {
 
 // -------------------------------------- Sidebar Forms
 
-$sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
+$sidebar-inner-content-width: $sidebar-width - ($panel-body-padding * 2);
 
 .sidebar_section {
   select {
@@ -208,7 +208,7 @@ $sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
   input[type=url],
   input[type=tel],
   textarea {
-    width: $sidebar-inner-content-width - ($text-input-horizontal-padding * 2);
+    width: $sidebar-inner-content-width - ($padding-base-horizontal * 2);
   }
 }
 

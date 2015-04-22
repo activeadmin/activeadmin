@@ -27,7 +27,7 @@
   padding: 5px 0;
   position: absolute;
   top: 100%;
-  z-index: 950;
+  z-index: $z-index-dropdown;
 
   > li {
     > a {
