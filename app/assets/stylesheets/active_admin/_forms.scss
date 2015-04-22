@@ -171,7 +171,7 @@ textarea {
   }
 
   .errors {
-    background-color: lighten($error-color, 60%);
+    background-color: lighten($error-color, 35%);
     border-radius: $border-radius-base;
     list-style-type: square;
     padding: 10px 10px 10px 25px;
@@ -189,7 +189,7 @@ textarea {
 
 // -------------------------------------- Sidebar Forms
 
-$sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
+$sidebar-inner-content-width: $sidebar-width - ($panel-body-padding * 2);
 
 .sidebar_section {
   select {
@@ -202,7 +202,7 @@ $sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
   input[type=url],
   input[type=tel],
   textarea {
-    width: $sidebar-inner-content-width - ($text-input-horizontal-padding * 2);
+    width: $sidebar-inner-content-width - ($padding-base-horizontal * 2);
   }
 }
 

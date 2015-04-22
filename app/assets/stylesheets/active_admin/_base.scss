@@ -38,7 +38,8 @@
 body {
   background: $body-background-color;
   color: $text-color;
-  font-family: $font-family-base;
-  font-size: $font-size-base;
+  font-family: $body-font-family;
+  font-size: $body-font-size;
+  font-weight: $body-font-weight;
   line-height: $line-height-base;
 }

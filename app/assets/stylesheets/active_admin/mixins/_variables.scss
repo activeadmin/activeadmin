@@ -2,39 +2,47 @@
 // They can be overridden by prepending your own
 // to 'app/assets/stylesheets/active_admin.css.scss'.
 
-// Colors
-$body-background-color: #FFF !default;
-$primary-color: #5E6469 !default;
-$secondary-color: #f0f0f0 !default;
-$text-color: #323537 !default;
-$link-color: #38678b !default;
-$section-header-text-color: $primary-color !default; // renamed: $title-bar-color
-$current-menu-item-background: lighten($primary-color, 12%) !default; // renamed: $navbar-link-active-background-color
-$hover-menu-item-background: lighten($primary-color, 12%) !default; // renamed: $navbar-link-hover-background-color
-$table-stripe-color: #f8f8f8 !default;
-$table-selected-color: #fcf8e3 !default;
-$error-color: #932419 !default;
-$blank-slate-primary-color: #AAA !default;      // renamed: $blank-slate-color
-$breadcrumbs-color: #8a949e !default;           // renamed: $breadcrumb-color
-$breadcrumbs-separator-color: #aab2ba !default; // renamed: $breadcrumb-separator-color
-$required-field-marker-color: #aaa !default;
-$form-label-color: $section-header-text-color !default; // REMOVED
-$page-header-text-color: #cdcdcd !default;              // REMOVED
 
-// Sizes
-$border-width: 1px !default;                // REMOVED
-$horizontal-page-margin: 20px !default;
-$sidebar-width: 270px !default;
-$cell-padding: 5px 10px 3px 10px !default;    // renamed: $table-cell-padding
-$cell-horizontal-padding: 12px !default;      // REMOVED
-$section-padding: 15px !default;              // renamed: $panel-body-padding
-$text-input-horizontal-padding: 8px !default; // REMOVED
-$text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2 !default; // REMOVED
-$blank-slate-border: 1px dashed #DADADA !default;
+// Old variables have been either removed or renamed
+//
+// $secondary-color               -> REMOVED
+// $section-header-text-color     -> $title-bar-color
+// $current-menu-item-background  -> $navbar-link-active-background-color
+// $hover-menu-item-background    -> $navbar-link-hover-background-color
+// $blank-slate-primary-color     -> $blank-slate-color
+// $breadcrumbs-color             -> $breadcrumb-color
+// $breadcrumbs-separator-color   -> $breadcrumb-separator-color
+// $form-label-color              -> REMOVED
+// $page-header-text-color        -> REMOVED
+// $border-width                  -> REMOVED
+// $cell-padding                  -> $table-cell-padding
+// $cell-horizontal-padding       -> REMOVED
+// $section-padding               -> $panel-body-padding
+// $text-input-horizontal-padding -> REMOVED
+// $text-input-total-padding      -> REMOVED
+// $blank-slate-border            -> REMOVED
 
 
+// Color theme from Flat UI (color swatch section at http://designmodo.github.io/Flat-UI/)
 
-// NEW VARIABLES
+
+//== Scaffolding
+
+$primary-color: #34495E !default;
+$success-color: #2ECC71 !default;
+$warning-color: #F1C40F !default;
+$error-color: #E74C3C !default;
+
+$body-background-color: #fff !default;
+
+$text-color: #3F4C4D !default;
+$text-muted-color: #7F8C8D !default;
+
+$link-color: #2980B9 !default;
+$link-hover-color: darken(#2980B9, 5%) !default;
+$link-hover-decoration: underline !default;
+
+//== Typography
 
 $font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif !default;
 $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif !default;
@@ -49,27 +57,24 @@ $font-size-base: 13px !default;
 
 $line-height-base: 1.5 !default;
 
-$text-color: #323537 !default;
-
-$text-muted-color: #9aa2aa !default;
-
-$body-background-color: #fff !default;
+$body-font-family: $font-family-base !default;
 $body-font-size: $font-size-base !default;
 $body-font-weight: $font-weight-normal !default;
 
-$header-font-family: inherit !default;
-$header-font-weight: inherit !default;
-$header-color: inherit !default;
+$headings-font-family: inherit !default;
+$headings-font-weight: inherit !default;
+$headings-color: inherit !default;
 
 //== Components
-
-$primary-color: #5E6469 !default;
-$secondary-color: #f0f0f0 !default;
 
 $border-radius-base: 0.25em !default;
 
 $padding-base-vertical: 6px !default;
 $padding-base-horizontal: 10px !default;
+
+$horizontal-page-margin: 20px !default;
+
+$sidebar-width: 270px !default;
 
 //== z-indexes
 
@@ -95,10 +100,12 @@ $button-primary-border-color: darken($primary-color, 5%) !default;
 //== Forms
 
 $input-background-color: #fff !default;
-$input-border-color: #c9d0d6 !default;
-$input-border-focus-color: #99a2aa !default;
+$input-border-color: lighten(#BDC3C7, 5%) !default;
+$input-border-focus-color: darken(#BDC3C7, 5%) !default;
 $input-border-radius: $border-radius-base !default;
 $input-color: $text-color !default;
+
+$required-field-marker-color: #aaa !default;
 
 $cursor-disabled: not-allowed !default; // for forms and buttons
 
@@ -119,6 +126,9 @@ $table-border-color: #e8e8e8 !default;
 $table-cell-padding: 8px !default;
 $table-condensed-cell-padding: 5px !default;
 
+$table-stripe-color: lighten(#ECF0F1, 4%) !default;
+$table-selected-color: #fcf9c1 !default;
+
 //== Badges
 
 $badge-color: #fff !default;
@@ -130,8 +140,8 @@ $badge-line-height: 1 !default;
 
 //== Breadcrumbs
 
-$breadcrumb-color: #8a949e !default;
-$breadcrumb-separator-color: #aab2ba !default;
+$breadcrumb-color: #7F8C8D !default;
+$breadcrumb-separator-color: #7F8C8D !default;
 $breadcrumb-separator: "/" !default;
 
 //== Flash Messages
@@ -139,14 +149,14 @@ $breadcrumb-separator: "/" !default;
 $flash-message-font-weight: $font-weight-bold !default;
 $flash-message-padding: 12px $horizontal-page-margin !default;
 
-$flash-message-default-background-color: #f7f1d3 !default;
-$flash-message-default-text-color: #cb9810 !default;
+$flash-message-default-background-color: $warning-color !default;
+$flash-message-default-text-color: #fff !default;
 
-$flash-message-notice-background-color: #ccdfcd !default;
-$flash-message-notice-text-color: #416347 !default;
+$flash-message-notice-background-color: $success-color !default;
+$flash-message-notice-text-color: #fff !default;
 
-$flash-message-error-background-color: #f1dcdc !default;
-$flash-message-error-text-color: #b33c33 !default;
+$flash-message-error-background-color: $error-color !default;
+$flash-message-error-text-color: #fff !default;
 
 //== Modals
 
@@ -164,19 +174,19 @@ $navbar-padding-horizontal: 10px !default;
 $navbar-padding-vertical: 10px !default;
 
 $navbar-color: #fff !default;
-$navbar-background-color: lighten($primary-color, 5%) !default;
+$navbar-background-color: $primary-color !default;
 
 $navbar-link-color: #fff !default;
 $navbar-link-hover-color: #fff !default;
-$navbar-link-hover-background-color: lighten($primary-color, 12%) !default;
+$navbar-link-hover-background-color: lighten($primary-color, 8%) !default;
 $navbar-link-active-color: #fff !default;
-$navbar-link-active-background-color: lighten($primary-color, 12%) !default;
+$navbar-link-active-background-color: lighten($primary-color, 8%) !default;
 
 //== Panels
 
-$panel-background-color: #f8f8f8 !default;
+$panel-background-color: lighten(#ECF0F1, 4%) !default;
 $panel-body-padding: 15px !default;
-$panel-heading-background-color: #e6e6e6 !default;
+$panel-heading-background-color: #ECF0F1 !default;
 $panel-heading-padding: 10px 15px !default;
 $panel-border-radius: $border-radius-base !default;
 
@@ -186,8 +196,8 @@ $status-tag-border-radius: $border-radius-base !default;
 $status-tag-padding: 0.2em 0.5em !default;
 
 $status-tag-color: #fff !default;
-$status-tag-no-background-color: #777 !default;
-$status-tag-yes-background-color: #6090DB !default;
+$status-tag-no-background-color: #7F8C8D !default;
+$status-tag-yes-background-color: #27AE60 !default;
 
 //== Tabs
 
@@ -201,7 +211,7 @@ $tabs-active-link-hover-color: $text-color !default;
 
 //== Title Bar
 
-$title-bar-background-color: #eaebec !default;
+$title-bar-background-color: lighten(#ECF0F1, 2%) !default;
 $title-bar-color: $text-color !default;
 
 $title-bar-heading-font-size: 1.9em !default;
@@ -209,4 +219,4 @@ $title-bar-heading-font-size: 1.9em !default;
 //== Typography
 
 $hr-border-color: darken($body-background-color, 15%) !default;
-$blockquote-color: lighten($text-color, 35%) !default;
+$blockquote-color: $text-muted-color !default;

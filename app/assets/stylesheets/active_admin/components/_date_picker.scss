@@ -103,18 +103,18 @@
         padding: 6px 0;
 
         &:hover {
-          background-color: #eceef0;
+          background-color: darken(#ECF0F1, 5%);
         }
 
         &.ui-state-active,
         &.ui-state-active:hover {
-          background-color: #5a5f64;
+          background-color: lighten($primary-color, 10%);
           color: #fff;
         }
 
         &.ui-state-highlight,
         &.ui-state-highlight:hover { // today's date
-          background-color: #dbdddf;
+          background-color: darken(#ECF0F1, 5%);
         }
       }
     }

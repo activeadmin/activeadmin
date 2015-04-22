@@ -4,7 +4,7 @@ a {
 
   &:hover,
   &:focus {
-    color: $link-color;
-    text-decoration: underline;
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
   }
 }
