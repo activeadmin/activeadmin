@@ -18,6 +18,10 @@ module ActiveAdmin
             end
       end
 
+      def related_class_to_s
+        related_class ? related_class.to_s.underscore.humanize.titleize : nil
+      end
+
       def value
         @value =
             begin
@@ -36,7 +40,7 @@ module ActiveAdmin
           predicate = active_admin_predicate_translation
         end
 
-        "#{related_class ? related_class.to_s.underscore.humanize.titleize : parse_parameter_body} #{predicate}".strip
+        "#{related_class_to_s || parse_parameter_body} #{predicate}".strip
       end
 
       private

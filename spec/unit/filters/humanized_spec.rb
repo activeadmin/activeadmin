@@ -31,7 +31,6 @@ describe ActiveAdmin::Filters::Humanized do
 
   describe '#body' do
     context 'when Ransack predicate' do
-
       it 'returns correct model name even if multi-word model' do
         class MultiWordKlass; end
         param = ['multi_word_klass_id_eq', 1]
