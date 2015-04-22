@@ -28,5 +28,7 @@ body.logged_out {
   a {
     float: right;
     margin-top: -45px;
+    position: relative;
+    z-index: 2; // to make sure link is always above full width fieldset (e.g. forgot password page)
   }
 }
