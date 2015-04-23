@@ -14,7 +14,7 @@ RSpec.describe ActiveAdmin::Views::UnsupportedBrowser do
 
   it "should render the panel" do
     expect(I18n).to receive(:t).and_return("headline", "recommendation", "turn_off_compatibility_view")
-    expect(build_panel.content.gsub(/\s+/, "")).to eq "<h1>headline</h1><p>recommendation</p><p>turn_off_compatibility_view</p>"
+    expect(build_panel.content.gsub(/\s+/, "")).to eq "<p>headline</p><p>recommendation</p><p>turn_off_compatibility_view</p>"
   end
 
   describe "ActiveAdmin::Views::Pages::Base behavior" do
