@@ -3,4 +3,14 @@ a.member_link {
   white-space: nowrap;
 }
 
-a.button, a:link.button, a:visited.button, input[type=submit], input[type=button], button { @include dark-button; }
+.button {
+  @include button-base;
+}
+
+.button-default {
+  @include default-button;
+}
+
+.button-primary {
+  @include primary-button;
+}

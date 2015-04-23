@@ -1,5 +1,10 @@
-a, a:link, a:visited {
+a {
   color: $link-color;
-  text-decoration: underline;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
 }
-a:hover { text-decoration: none; }

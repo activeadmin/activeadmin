@@ -1,110 +1,110 @@
-//= depend_on_asset "active_admin/orderable.png"
-// ----------------------------------- Tables
+table {
+  margin-bottom: 1.4em;
+  width: 100%;
+}
 
-table tr {
-  td {
-    vertical-align: top;
+th {
+  text-align: left;
+}
+
+th, td {
+  border-bottom: 1px solid $table-border-color;
+  padding: $table-cell-padding;
+  vertical-align: top;
+}
+
+thead {
+  th {
+    border-bottom: 2px solid darken($table-border-color, 7%);
+    vertical-align: bottom;
   }
 }
 
-// --------- Index Tables
-
+// -------------------------------------- Index Tables
 table.index_table {
-  width: 100%;
-  margin-bottom: 10px;
-  border: 0;
-  border-spacing: 0;
-
   th {
-    @include section-header;
-    border-right: none;
-    text-align: left;
-    padding-left: $cell-horizontal-padding;
-    padding-right: $cell-horizontal-padding;
-
     a, a:link, a:visited {
-      color: $section-header-text-color;
-      text-decoration: none;
+      color: $text-color;
       display: block;
+      position: relative;
+      text-decoration: none;
       white-space: nowrap;
     }
 
     &.sortable a {
-      background: image-url('active_admin/orderable.png') no-repeat 0 4px; padding-left: 13px;
+      &:after,
+      &:before {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        bottom: 100%;
+        content: '';
+        height: 0;
+        position: absolute;
+        right: 0;
+        top: calc(50% - 2px);
+        width: 0;
+      }
     }
 
-    &.sorted-asc a { background-position: 0 -27px; }
-    &.sorted-desc a {  background-position: 0 -56px;}
+    &.sorted-asc a {
+      padding-right: 11px;
 
-    &.sorted-asc, &.sorted-desc {
-      @include gradient(darken($secondary-gradient-start, 5%), darken($secondary-gradient-stop, 5%));
+      &:after { // upward pointing arrow
+        border-bottom: 4px solid;
+      }
     }
 
-    &:last-child {
-      border-right: solid 1px #d4d4d4;
-    }
+    &.sorted-desc a {
+      padding-right: 11px;
 
+      &:before { // downward pointing arrow
+        border-top: 4px solid;
+      }
+    }
   }
 
-  tr.even td { background: $table-stripe-color; }
-
-  tr.selected td {
-    background: $table-selected-color;
+  tbody tr:nth-of-type(odd) {
+    background-color: $table-stripe-color;
   }
 
-  td {
-    padding: 10px $cell-horizontal-padding 8px $cell-horizontal-padding;
-    border-bottom: 1px solid #e8e8e8;
-    vertical-align: top;
+  tbody tr.selected {
+    background-color: $table-selected-color;
   }
 }
 
-// --------- Tables inside Panels
-
+// -------------------------------------- Tables inside Panels
 .panel_contents table {
-  margin-top: 5px;
-  th {
-    padding-top: 10px;
-    background: none;
-    color: $primary-color;
-    @include no-shadow;
-    @include text-shadow;
-    text-transform: uppercase;
-    border-bottom: 1px solid #ccc;
+  th, td {
+    padding: $table-condensed-cell-padding;
   }
-  tr.odd td { background: darken($table-stripe-color, 3%); }
-  tr.even td { background: $table-stripe-color; }
 }
 
 // -------------------------------------- Resource Attributes Table
-.attributes_table { overflow: hidden; }
+.attributes_table {
+  overflow: hidden;
+}
 
 .attributes_table table {
-  col.even { background: $table-stripe-color; }
-  col.odd  { background: darken($table-stripe-color, 3%); }
-  th, td {
-    padding: 8px $cell-horizontal-padding 6px $cell-horizontal-padding;
-    vertical-align: top;
-    border-bottom: 1px solid #e8e8e8;
-  }
-  th {
-    @include no-shadow;
-    @include no-gradient;
-    width: 150px;
-    font-size: 0.9em;
-    padding-left: 0;
-    text-transform: uppercase;
-    color: $primary-color;
-    @include text-shadow;
-  }
-  td {
-    .empty {
-      color: #bbb;
-      font-size: 0.8em;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
+  col {
+    border-right: 1px solid $table-border-color;
+
+    &:first-child {
+      border-right: 2px solid darken($table-border-color, 10%);
     }
+  }
+
+  th {
+    width: 150px;
+  }
+
+  td .empty {
+    color: $text-muted-color;
+    font-size: 0.8em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
   }
 }
 
-.sidebar_section .attributes_table th { width: 50px; }
+.sidebar_section .attributes_table th {
+  width: 50px;
+}

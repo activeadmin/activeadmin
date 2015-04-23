@@ -76,11 +76,6 @@ module ActiveAdmin
 
       protected
 
-      # Override the closing tag to include a clear
-      def closing_tag
-        "<div style=\"clear:both;\"></div>" + super
-      end
-
       def margin_size
         2
       end

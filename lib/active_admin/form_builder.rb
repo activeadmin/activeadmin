@@ -20,8 +20,8 @@ module ActiveAdmin
     self.action_class_finder = ::Formtastic::ActionClassFinder
 
     def cancel_link(url = {action: "index"}, html_options = {}, li_attrs = {})
-      li_attrs[:class] ||= "cancel"
-      li_content = template.link_to I18n.t('active_admin.cancel'), url, html_options
+      li_attrs[:class] ||= "action cancel"
+      li_content = template.link_to I18n.t('active_admin.cancel'), url, html_options.merge(class: 'button button-default')
       template.content_tag(:li, li_content, li_attrs)
     end
 
@@ -59,7 +59,7 @@ module ActiveAdmin
           block.call has_many_form, index
           template.concat has_many_actions(has_many_form, builder_options, "".html_safe)
         end
-        
+
         template.assign(has_many_block: true)
         contents = without_wrapper { inputs(options, &form_block) }
 
@@ -92,9 +92,7 @@ module ActiveAdmin
       if builder_options[:sortable]
         has_many_form.input builder_options[:sortable], as: :hidden
 
-        contents << template.content_tag(:li, class: 'handle') do
-          "MOVE"
-        end
+        contents << template.tag(:li, class: 'handle')
       end
 
       contents

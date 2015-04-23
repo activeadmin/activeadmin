@@ -24,7 +24,7 @@ module ActiveAdmin
 
       def build_drop_down
         dropdown_menu I18n.t("active_admin.batch_actions.button_label"),
-                      class: "batch_actions_selector dropdown_menu",
+                      class: "batch_actions_selector",
                       button: { class: "disabled" } do
           batch_actions_to_display.each do |batch_action|
             confirmation_text = render_or_call_method_or_proc_on(self, batch_action.confirm)

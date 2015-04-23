@@ -1,17 +1,11 @@
 @mixin clearfix {
+  &:before,
   &:after {
-    visibility: hidden;
-    display: block;
-    content: "";
-    clear: both;
-    height: 0;
+    content: " ";
+    display: table;
   }
-}
 
-@mixin border-colors($top, $sides, $bottom) {
-  border-color: $sides;
-  border-top-color: $top;
-  border-right-color: $sides;
-  border-bottom-color: $bottom;
-  border-left-color: $sides;
+  &:after {
+    clear: both;
+  }
 }

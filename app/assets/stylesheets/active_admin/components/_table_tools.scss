@@ -1,67 +1,56 @@
+.badge {
+  background-color: $badge-background-color;
+  border-radius: $badge-border-radius;
+  color: $badge-color;
+  display: inline-block;
+  font-weight: $badge-font-weight;
+  line-height: $badge-line-height;
+  padding: 3px 7px;
+  vertical-align: baseline;
+}
+
 .table_tools {
-  @include clearfix;
-  margin-bottom: 16px;
-}
-
-.table_tools .dropdown_menu {
-  float: left;
-}
-
-a.table_tools_button, .table_tools .dropdown_menu_button {
-  @include light-button;
-  @include gradient(#FFFFFF, #F0F0F0);
-  @include border-colors(#d9d9d9, #d0d0d0, #c5c5c5);
-  font-size: 0.9em;
-  padding: 4px 14px 4px;
-  margin: 0;
-
-  &:not(.disabled) {
-    &:hover {
-      @include gradient(#FFFFFF, #F6F6F6);
-    }
-
-    &:active {
-      @include border-colors(#d7d7d7, #c8c8c8, #c3c3c3);
-      box-shadow: 0 1px 1px 0 rgba(0,0,0,0.17) inset;
-      @include gradient(#FFFFFF, #E8E8E8);
-    }
-  }
+  margin-bottom: 15px;
 }
 
 .table_tools_segmented_control {
-  list-style-type: none;
-  padding: 0;
+  @include clearfix;
+  display: inline-block;
+  list-style: none;
   margin: 0;
+  padding: 0;
+  vertical-align: bottom; // required so this aligns correctly with .dropdown
 
   li {
     float: left;
 
-    a {
-      border-width: 1px .5px 1px .5px;
+    & + li a {
       border-radius: 0;
+      margin-left: -1px;
     }
 
-    &:first-child a {
-      border-left-width: 1px;
-      border-top-left-radius: 12px;
-      border-bottom-left-radius: 12px;
-    }
+    a {
+      position: relative;
 
-    &:last-child a {
-      border-right-width: 1px;
-      border-top-right-radius: 12px;
-      border-bottom-right-radius: 12px;
-    }
-
-    &.selected a {
-      @include gradient(#F0F0F0, #FDFDFD);
-      box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1) inset;
-      cursor: default;
-
-      &:hover {
-        @include gradient(#F0F0F0, #FDFDFD);
+      &:hover,
+      &:focus,
+      &:active {
+        z-index: 2;
       }
     }
 
+    &:first-child a {
+      border-radius: $border-radius-base 0 0 $border-radius-base;
+    }
+
+    &:last-child a {
+      border-radius: 0 $border-radius-base $border-radius-base 0;
+    }
+
+    &.selected a {
+      background-color: darken($button-default-background-color, 10%);
+      border-color: darken($button-default-border-color, 12%);
+      z-index: 2;
+    }
   }
 }

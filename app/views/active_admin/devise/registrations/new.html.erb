@@ -12,7 +12,9 @@
       f.input :password_confirmation, lable: t('active_admin.devise.password_confirmation.title')
     end
     f.actions do
-      f.action :submit, label: t('active_admin.devise.login.submit'), button_html: { value: t('active_admin.devise.sign_up.submit') }
+      f.action :submit,
+        label: t('active_admin.devise.login.submit'),
+        button_html: { class: 'button button-primary', value: t('active_admin.devise.sign_up.submit') }
     end
   end
   %>

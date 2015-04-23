@@ -162,28 +162,27 @@ module ActiveAdmin
         ActiveAdmin::SidebarSection.new :search_status, only: :index, if: -> { params[:q] || params[:scope] } do
           active = ActiveAdmin::Filters::Active.new(resource_class, params)
 
-          span do
-            h4 I18n.t("active_admin.search_status.headline"), style: 'display: inline'
-            b active.scope, style: "display: inline"
+          para do
+            span I18n.t("active_admin.search_status.headline")
+            b active.scope
+          end
 
-            div style: "margin-top: 10px" do
-              h4 I18n.t("active_admin.search_status.current_filters"), style: 'margin-bottom: 10px'
-              ul do
-                if active.filters.blank?
-                  li I18n.t("active_admin.search_status.no_current_filters")
-                else
-                  active.filters.each do |filter|
-                    li do
-                      span filter.body
-                      b filter.value
-                    end
-                  end
+          div I18n.t("active_admin.search_status.current_filters")
+          ul do
+            if active.filters.blank?
+              li I18n.t("active_admin.search_status.no_current_filters")
+            else
+              active.filters.each do |filter|
+                li do
+                  span filter.body
+                  b filter.value
                 end
               end
             end
           end
         end
       end
+
     end
 
   end

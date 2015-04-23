@@ -1,44 +1,34 @@
 body.logged_out {
-  background: #e8e9ea;
+  background-color: #ECF0F1;
+}
 
-  #content_wrapper{
-    width: 500px;
-    margin: 70px auto;
-    #active_admin_content {
-      @include shadow;
-      background: #fff;
-      padding: 13px 30px;
-    }
-  }
+#login {
+  background-color: #fff;
+  border-radius: $border-radius-base;
+  margin: 70px auto;
+  padding: 15px;
+  width: 500px;
 
   h2 {
-    @include section-header;
-    @include primary-gradient;
-    @include text-shadow(#000);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    border: none;
-    color: #fff;
-    margin: -13px -30px 20px -30px;
+    font-size: 1.8em;
   }
 
-  #login {
-    /* Login Form */
-    form {
-      fieldset {
-        @include no-shadow;
-        background: none;
-        padding: 0;
-        li { padding: 10px 0; }
+  fieldset.inputs {
+    background-color: transparent;
+    margin-bottom: 0;
+    padding: 0;
 
-        input[type=text], input[type=email], input[type=password] {
-          width: 70%;
-        }
-        &.buttons { margin-left: 20%; }
-        margin-bottom: 0;
-      }
+    input[type=text],
+    input[type=email],
+    input[type=password] {
+      width: 79%;
     }
-
-    a { float: right; margin-top: -32px; }
   }
 
+  a {
+    float: right;
+    margin-top: -45px;
+    position: relative;
+    z-index: 2; // to make sure link is always above full width fieldset (e.g. forgot password page)
+  }
 }

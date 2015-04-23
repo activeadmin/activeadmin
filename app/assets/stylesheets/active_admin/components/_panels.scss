@@ -1,6 +1,25 @@
-// ----------------------------------- Helper class to apply to elements to make them sections
-.section, .panel{ @include section; }
+.panel {
+  background-color: $panel-background-color;
+  border-radius: $panel-border-radius;
+  margin-bottom: 20px;
+}
 
-// ----------------------------------- Sidebar Sections
+.panel-body {
+  padding: $panel-body-padding;
+}
 
-.sidebar_section { @include section; }
+.panel-heading {
+  background-color: $panel-heading-background-color;
+  border-radius: $panel-border-radius $panel-border-radius 0 0;
+  font-weight: $font-weight-bold;
+  padding: $panel-heading-padding;
+}
+
+.panel-title {
+  font-size: $font-size-base;
+  margin: 0;
+}
+
+.panel-heading-actions {
+  float: right;
+}

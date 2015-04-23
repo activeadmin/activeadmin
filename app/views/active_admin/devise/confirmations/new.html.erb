@@ -7,7 +7,9 @@
       f.input :email
     end
     f.actions do
-      f.action :submit, label: t('active_admin.devise.resend_confirmation_instructions.submit'), button_html: { value: t('active_admin.devise.resend_confirmation_instructions.submit') }
+      f.action :submit,
+        label: t('active_admin.devise.resend_confirmation_instructions.submit'),
+        button_html: { class: 'button button-primary', value: t('active_admin.devise.resend_confirmation_instructions.submit') }
     end
   end %>
 

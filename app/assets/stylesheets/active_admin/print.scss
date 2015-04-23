@@ -1,12 +1,13 @@
 /* Active Admin Print Stylesheet */
 
+@import "active_admin/mixins/variables";
+
 // Set colors used elsewhere
 $primary-color: black;
 $text-color: black;
 
-// Reset
-@import "active_admin/mixins/reset";
-@include global-reset;
+// Normalize
+@import "active_admin/normalize";
 
 // Partials
 @import "active_admin/typography";

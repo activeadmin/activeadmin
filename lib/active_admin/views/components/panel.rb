@@ -6,9 +6,15 @@ module ActiveAdmin
 
       def build(title, attributes = {})
         super(attributes)
+
         add_class "panel"
-        @title = h3(title.to_s)
-        @contents = div(class: "panel_contents")
+
+        @title = div(class: "panel-heading") do
+          @actions = div(class: 'panel-heading-actions')
+          h3(title.to_s, class: 'panel-title')
+        end
+
+        @contents = div(class: "panel-body")
       end
 
       def add_child(child)
@@ -29,9 +35,7 @@ module ActiveAdmin
       def header_action(*args)
         action = args[0]
 
-        @title << div(class: 'header_action') do
-          action
-        end
+        @actions << action
       end
     end
   end

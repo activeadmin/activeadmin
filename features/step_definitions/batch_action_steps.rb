@@ -28,12 +28,12 @@ When /^I toggle the collection selection$/ do
 end
 
 Then /^I should see that the batch action button is disabled$/ do
-  expect(page).to have_css ".batch_actions_selector .dropdown_menu_button.disabled"
+  expect(page).to have_css ".batch_actions_selector .button.disabled"
 end
 
 Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe, type|
   selector = "div.table_tools .batch_actions_selector"
-  selector << ' .dropdown_menu_button' if maybe == 'should' && type == 'button'
+  selector << ' .button' if maybe == 'should' && type == 'button'
 
   verb = maybe == 'should' ? :to : :to_not
   expect(page).send verb, have_css(selector)

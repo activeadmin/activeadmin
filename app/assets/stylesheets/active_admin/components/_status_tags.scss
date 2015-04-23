@@ -1,16 +1,15 @@
 .status_tag {
-  background: darken($secondary-color, 15%);
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  padding: 3px 5px 2px 5px;
-  font-size: 0.8em;
+  border-radius: $status-tag-border-radius;
+  color: $status-tag-color;
+  padding: $status-tag-padding;
+  text-align: center;
 
-  &.ok, &.published, &.complete, &.completed, &.green { background: #8daa92; }
-  &.warn, &.warning, &.orange { background: #e29b20; }
-  &.error, &.errored, &.red { background: #d45f53; }
+  &,
+  &.no {
+    background-color: $status-tag-no-background-color;
+  }
 
-  &.yes { background: #6090DB }
-  &.no  { background: grey }
-
+  &.yes {
+    background-color: $status-tag-yes-background-color;
+  }
 }

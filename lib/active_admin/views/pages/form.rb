@@ -40,7 +40,10 @@ module ActiveAdmin
           ActiveAdmin::PagePresenter.new do |f|
             f.semantic_errors # show errors on :base by default
             f.inputs
-            f.actions
+            f.actions do
+              f.action :submit, button_html: { class: "button button-primary" }
+              f.action :cancel, button_html: { class: "button button-default" }
+            end
           end
         end
 

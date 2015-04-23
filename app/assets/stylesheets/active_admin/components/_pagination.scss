@@ -1,32 +1,36 @@
-.paginated_collection_contents {
-  clear: both;
-}
-
 .pagination {
   float: right;
-  font-size: 0.9em;
   margin-left: 10px;
 
   a {
-    @include light-button;
-  }
-
-  span.page.current {
+    @include button-base;
     @include default-button;
   }
 
-  a, span.page.current {
-    @include rounded(0px);
-    margin-right: 4px;
-    padding: 2px 5px;
+  .page.current {
+    background-color: $button-primary-background-color;
+    border: 1px solid $button-primary-border-color;
+    border-radius: $border-radius-base;
+    color: $button-primary-color;
+    cursor: default;
+    display: inline-block;
+    font-weight: $button-font-weight;
+  }
+
+  a,
+  .page.current {
+    padding: 1px 5px;
   }
 }
 
 .pagination_information {
+  color: $text-muted-color;
   float: right;
-  margin-bottom: 5px;
-  color: #b3bcc1;
-  b { color: #5c6469; }
+  margin-top: 2px; // match pagination link top padding so both appear vertically aligned
+
+  b {
+    color: $text-color;
+  }
 }
 
 .download_links {
@@ -35,10 +39,5 @@
 
 .pagination_per_page {
   float: right;
-  margin-left: 4px;
-  select {
-    @include light-button;
-    @include rounded(0px);
-    padding: 1px 5px;
-  }
+  margin: 2px 0 0 4px;
 }

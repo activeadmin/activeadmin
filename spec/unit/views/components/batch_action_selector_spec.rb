@@ -15,7 +15,7 @@ describe ActiveAdmin::BatchActions::BatchActionSelector do
 
   describe "the action list" do
     subject do
-      dropdown.find_by_class("dropdown_menu_list").first
+      dropdown.find_by_class("dropdown-menu").first
     end
 
     describe '#tag_name' do

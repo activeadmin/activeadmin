@@ -5,7 +5,7 @@ describe ActiveAdmin::Views::BlankSlate do
   describe "#blank_slate" do
     subject do
       render_arbre_component do
-        blank_slate("There are no Posts yet. <a href=\"/posts/new\">Create one</a></span>")
+        blank_slate("There are no Posts yet. <a href=\"/posts/new\">Create one</a>")
       end
     end
 
@@ -21,7 +21,7 @@ describe ActiveAdmin::Views::BlankSlate do
 
     describe '#content' do
       subject { super().content }
-      it     { is_expected.to include '<span class="blank_slate">There are no Posts yet. <a href="/posts/new">Create one</a></span>' }
+      it     { is_expected.to include '<div class="blank_slate">There are no Posts yet. <a href="/posts/new">Create one</a></div>' }
     end
   end
 end

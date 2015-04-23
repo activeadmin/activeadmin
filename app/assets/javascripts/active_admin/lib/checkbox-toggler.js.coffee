@@ -23,14 +23,16 @@ class ActiveAdmin.CheckboxToggler
     @toggle_all_checkbox.change => @_didChangeToggleAllCheckbox()
 
   _didChangeCheckbox: (checkbox)->
-    switch @checkboxes.filter(':checked').length
-      when @checkboxes.length - 1 then @toggle_all_checkbox.prop checked: null
-      when @checkboxes.length     then @toggle_all_checkbox.prop checked: true
+    numChecked = @checkboxes.filter(':checked').length
+
+    allChecked = numChecked == @checkboxes.length
+    someChecked = numChecked > 0 && numChecked < @checkboxes.length
+
+    @toggle_all_checkbox.prop checked: allChecked, indeterminate: someChecked
 
   _didChangeToggleAllCheckbox: ->
-    setting = if @toggle_all_checkbox.prop 'checked' then true else null
-    @checkboxes.each (index, el)=>
-      $(el).prop checked: setting
-      @_didChangeCheckbox(el)
+    setting = @toggle_all_checkbox.prop 'checked'
+    @checkboxes.prop checked: setting
+    setting
 
 $.widget.bridge 'checkboxToggler', ActiveAdmin.CheckboxToggler
