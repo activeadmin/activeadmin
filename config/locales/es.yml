@@ -31,6 +31,10 @@ es:
         ends_with: "Termina con"
         greater_than: "Mayor que"
         less_than: "Menor que"
+    search_status:
+      headline: "Alcance:"
+      current_filters: "Filtros actuales:"
+      no_current_filters: "Ninguno"
     status_tag:
       "yes": "Sí"
       "no": "No"
@@ -39,6 +43,7 @@ es:
     powered_by: "Funciona con %{active_admin} %{version}"
     sidebars:
       filters: "Filtros"
+      search_status: "Estado de la búsqueda"
     pagination:
       empty: "No se han encontrado %{model}"
       one: "Mostrando <b>1</b> %{model}"
@@ -67,13 +72,13 @@ es:
       labels:
         destroy: "Borrar"
     comments:
+      resource_type: "Tipo de recurso"
+      author_type: "Tipo de autor"
       body: "Cuerpo"
       author: "Autor"
       title: "Comentario"
       add: "Comentar"
       resource: "Recurso"
-      no_comments_yet: "Aún sin comentarios."
-      title_content: "Comentarios (%{count})"
       no_comments_yet: "No hay comentarios aún."
       author_missing: "Anónimo"
       title_content: "Comentarios (%{count})"
@@ -105,9 +110,23 @@ es:
         title: "Reenviar instrucciones de desbloqueo"
         submit: "Reenviar instrucciones de desbloqueo"
       resend_confirmation_instructions:
-          title: "Reenviar instrucciones de confirmación"
-          submit: "Reenviar instrucciones de confirmación"
+        title: "Reenviar instrucciones de confirmación"
+        submit: "Reenviar instrucciones de confirmación"
       links:
+        sign_up: "Ingresar"
         sign_in: "registrarse"
         forgot_your_password: "¿Olvidó su contraseña?"
         sign_in_with_omniauth_provider: "Conéctate con %{provider}"
+        resend_unlock_instructions: "Reenviar instrucciones de desbloqueo"
+        resend_confirmation_instructions: "Reenviar instrucciones de confirmación"
+    unsupported_browser:
+      headline: "Por favor tenga en cuenta que Active Admin no soporta versiones de Internet Explorer menores a 8."
+      recommendation: "Recomendamos que actualice a la última versión de <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, o <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Si está usando IE 9 o superior, asegúrese de <a href=\"http://windows.microsoft.com/es-es/windows7/webpages-look-incorrect-in-Internet-Explorer\">apagar la \"Vista de compatibilidad\"</a>."
+    access_denied:
+      message: "No está autorizado/a a realizar esta acción."
+    index_list:
+      table: "Tabla"
+      block: "Lista"
+      grid: "Grilla"
+      blog: "Blog"
