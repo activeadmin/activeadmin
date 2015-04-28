@@ -40,6 +40,12 @@ module ActiveAdmin
     # Set a favicon
     inheritable_setting :favicon, false
 
+    # Additional meta tags to place in head of logged in pages.
+    inheritable_setting :meta_tags, {}
+
+    # Additional meta tags to place in head of logged out pages.
+    inheritable_setting :meta_tags_for_logged_out_pages, { robots: "noindex, nofollow" }
+
     # The view factory to use to generate all the view classes. Take
     # a look at ActiveAdmin::ViewFactory
     inheritable_setting :view_factory, ActiveAdmin::ViewFactory.new
