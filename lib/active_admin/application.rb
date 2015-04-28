@@ -40,6 +40,10 @@ module ActiveAdmin
     # Set a favicon
     inheritable_setting :favicon, false
 
+    # Set to "noindex, nofollow" to prevent authentication related
+    # pages to show in search engine result.
+    inheritable_setting :robots_meta_tag_for_logged_out_pages, nil
+
     # The view factory to use to generate all the view classes. Take
     # a look at ActiveAdmin::ViewFactory
     inheritable_setting :view_factory, ActiveAdmin::ViewFactory.new
