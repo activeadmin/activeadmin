@@ -54,6 +54,26 @@ describe ActiveAdmin::Application do
     expect(application.favicon).to eq "/a/favicon.ico"
   end
 
+  it "should store meta tags" do
+    expect(application.meta_tags).to eq({})
+  end
+
+  it "should set meta tags" do
+    application.meta_tags = { author: "My Company" }
+    expect(application.meta_tags).to eq(author: "My Company")
+  end
+
+  it "should contains robots meta tags by default" do
+    result = application.meta_tags_for_logged_out_pages
+    expect(result).to eq(robots: "noindex, nofollow")
+  end
+
+  it "should set meta tags for logged out pages" do
+    value = { author: "My Company" }
+    application.meta_tags_for_logged_out_pages = value
+    expect(application.meta_tags_for_logged_out_pages).to eq value
+  end
+
   it "should have a view factory" do
     expect(application.view_factory).to be_an_instance_of(ActiveAdmin::ViewFactory)
   end

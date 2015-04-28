@@ -14,6 +14,10 @@
 
   <%= favicon_link_tag ActiveAdmin.application.favicon if ActiveAdmin.application.favicon %>
 
+  <% ActiveAdmin.application.meta_tags_for_logged_out_pages.each do |name, content| %>
+    <%= tag(:meta, name: name, content: content) %>
+  <% end %>
+
   <%= csrf_meta_tag %>
 </head>
 <body class="active_admin logged_out <%= controller.action_name %>">
