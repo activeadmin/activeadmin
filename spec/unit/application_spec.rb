@@ -54,6 +54,15 @@ describe ActiveAdmin::Application do
     expect(application.favicon).to eq "/a/favicon.ico"
   end
 
+  it "should store robots meta tag content for logged out pages" do
+    expect(application.robots_meta_tag_for_logged_out_pages).to eq nil
+  end
+
+  it "should set robots meta tag content for logged out pages" do
+    application.robots_meta_tag_for_logged_out_pages = "noindex, nofollow"
+    expect(application.robots_meta_tag_for_logged_out_pages).to eq "noindex, nofollow"
+  end
+
   it "should have a view factory" do
     expect(application.view_factory).to be_an_instance_of(ActiveAdmin::ViewFactory)
   end
