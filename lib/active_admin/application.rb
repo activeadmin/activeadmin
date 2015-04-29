@@ -105,6 +105,9 @@ module ActiveAdmin
     # Set flash message keys that shouldn't show in ActiveAdmin
     inheritable_setting :flash_keys_to_except, ['timedout']
 
+    # Set the order and column to be used for ordering for comments
+    inheritable_setting :comment_order, 'created_at ASC'
+
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     setting :display_name_methods, [ :display_name,

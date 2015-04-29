@@ -29,7 +29,7 @@ module ActiveAdmin
         resource_type: resource_type(resource),
         resource_id:   resource_id_cast(resource),
         namespace:     namespace.to_s
-      ).order('created_at ASC')
+      ).order(ActiveAdmin.application.comment_order)
     end
 
     def self.resource_id_type
