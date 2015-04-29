@@ -60,12 +60,15 @@ describe "Comments" do
         ActiveAdmin::Application.inheritable_setting(
           :comment_order, "created_at DESC"
         )
+
         another_comment = ActiveAdmin::Comment.create!(
           resource: post,
           body: "Another Comment",
           namespace: namespace_name,
           created_at: @comment.created_at + 20.minutes
         )
+
+        comments = ActiveAdmin::Comment.find_for_resource_in_namespace(post, namespace_name)
         expect(comments.size).to eq 2
         expect(comments.first).to eq(another_comment)
         expect(comments.last).to eq(@comment)
