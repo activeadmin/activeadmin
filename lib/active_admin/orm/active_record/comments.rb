@@ -7,6 +7,7 @@ require 'active_admin/orm/active_record/comments/resource_helper'
 ActiveAdmin::Application.inheritable_setting :comments,                   true
 ActiveAdmin::Application.inheritable_setting :show_comments_in_menu,      true
 ActiveAdmin::Application.inheritable_setting :comments_registration_name, 'Comment'
+ActiveAdmin::Application.inheritable_setting :comments_order,             "created_at ASC"
 
 # Insert helper modules
 ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper

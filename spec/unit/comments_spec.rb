@@ -58,7 +58,7 @@ describe "Comments" do
 
       it "should return the correctly ordered comments" do
         ActiveAdmin::Application.inheritable_setting(
-          :comment_order, "created_at DESC"
+          :comments_order, "created_at DESC"
         )
 
         another_comment = ActiveAdmin::Comment.create!(
