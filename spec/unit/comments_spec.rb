@@ -68,7 +68,9 @@ describe "Comments" do
           created_at: @comment.created_at + 20.minutes
         )
 
-        comments = ActiveAdmin::Comment.find_for_resource_in_namespace(post, namespace_name)
+        comments = ActiveAdmin::Comment.find_for_resource_in_namespace(
+          post, namespace_name
+        )
         expect(comments.size).to eq 2
         expect(comments.first).to eq(another_comment)
         expect(comments.last).to eq(@comment)
