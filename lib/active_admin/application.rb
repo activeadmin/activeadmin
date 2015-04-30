@@ -164,8 +164,7 @@ module ActiveAdmin
     private
 
     def register_default_assets
-      register_stylesheet "active_admin.css", media: "screen"
-      register_stylesheet "active_admin/print.css", media: "print"
+      register_stylesheet "active_admin.css", media: "all"
       register_javascript "active_admin.js"
     end
 
