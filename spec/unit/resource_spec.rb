@@ -232,7 +232,11 @@ module ActiveAdmin
       let(:resource) { namespace.register(Post) }
       let(:post) { double }
       before do
-        allow(Post).to receive(:find_by_id).with('12345') { post }
+        if Rails::VERSION::MAJOR >= 4
+          allow(Post).to receive(:find_by).with("id" => "12345") { post }
+        else
+          allow(Post).to receive(:find_by_id).with("12345") { post }
+        end
       end
 
       it 'can find the resource' do
@@ -250,7 +254,13 @@ module ActiveAdmin
         let(:different_post) { double }
         before do
           allow(Post).to receive(:primary_key).and_return 'something_else'
-          allow(Post).to receive(:find_by_something_else).with('55555') { different_post }
+          if Rails::VERSION::MAJOR >= 4
+            allow(Post).to receive(:find_by).
+              with("something_else" => "55555") { different_post }
+          else
+            allow(Post).to receive(:find_by_something_else).
+              with("55555") { different_post }
+          end
         end
 
         it 'can find the post by the custom primary key' do
