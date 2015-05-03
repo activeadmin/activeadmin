@@ -1,6 +1,3 @@
-require 'active_admin/base_controller/authorization'
-require 'active_admin/base_controller/menu'
-
 module ActiveAdmin
   # BaseController for ActiveAdmin.
   # It implements ActiveAdmin controllers core features.
@@ -29,8 +26,8 @@ module ActiveAdmin
       raise AbstractController::ActionNotFound unless action_methods.include?(params[:action])
     end
 
-    include Menu
-    include Authorization
+    include BaseController::Menu
+    include BaseController::Authorization
 
     private
 
