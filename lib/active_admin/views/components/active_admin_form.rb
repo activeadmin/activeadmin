@@ -116,8 +116,6 @@ module ActiveAdmin
 
     class HasManyProxy < FormtasticProxy
       def build(form_builder, *args, &block)
-        assoc = args[0]
-        builder_options = args[1] || {}
         text_node form_builder.has_many(*args, &block)
       end
     end
