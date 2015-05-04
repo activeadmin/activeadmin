@@ -17,7 +17,7 @@ that can be injected into your existing Ruby on Rails application.
 
 ## Setting up Active Admin
 
-After installing the gem, you need to run the generator. By default we use Devise, and
+After installing the gem, you need to run the generator. By default we use Devise (but we do not install it: add it to your gemfile if you want to use it), and
 the generator creates an `AdminUser` model. If you want to create a different model
 (or modify an existing one for use with Devise) you can pass it as an argument.
 If you want to skip Devise configuration entirely, you can pass `--skip-users`.
