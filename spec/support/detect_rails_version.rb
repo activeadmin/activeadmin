@@ -10,7 +10,7 @@ unless defined? TRAVIS_CONFIG
   TRAVIS_RAILS_VERSIONS = TRAVIS_CONFIG['env']['matrix'].grep(/RAILS=(.*)/){ $1 }
 end
 
-DEFAULT_RAILS_VERSION ||= TRAVIS_RAILS_VERSIONS.first
+DEFAULT_RAILS_VERSION ||= TRAVIS_RAILS_VERSIONS.last
 
 def detect_rails_version
   version = version_from_file || ENV['RAILS'] || DEFAULT_RAILS_VERSION
