@@ -143,10 +143,17 @@ RSpec.configure do |c|
   c.include Devise::TestHelpers, type: :controller
 end
 
+# Force deprecations to raise an exception.
+# This would set `behavior = :raise`, but that wasn't added until Rails 4.
+ActiveSupport::Deprecation.behavior = -> message, callstack do
+  e = StandardError.new message
+  e.set_backtrace callstack
+  raise e
+end
+
 # improve the performance of the specs suite by not logging anything
 # see http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
 Rails.logger.level = 4
-
 
 # Improves performance by forcing the garbage collector to run less often.
 unless ENV['DEFER_GC'] == '0' || ENV['DEFER_GC'] == 'false'
