@@ -301,6 +301,51 @@ describe ActiveAdmin::Views::TableFor do
       end
     end
 
+    context "when i18n option is specified" do
+      before(:each) do
+        I18n.backend.store_translations :en,
+          activerecord: { attributes: { post: { title: "Name" } } }
+      end
+
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection, i18n: Post) do
+            column :title
+          end
+        end
+      end
+
+      it "should use localized column key" do
+        expect(table.find_by_tag("th").first.content).to eq "Name"
+      end
+    end
+
+    context "when i18n option is not specified" do
+      before(:each) do
+        I18n.backend.store_translations :en,
+          activerecord: { attributes: { post: { title: "Name" } } }
+      end
+
+      let(:collection) do
+        Post.create([
+          { title: "First Post", starred: true },
+          { title: "Second Post" },
+        ])
+        Post.where(starred: true)
+      end
+
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection) do
+            column :title
+          end
+        end
+      end
+
+      it "should predict localized key based on AR collection klass" do
+        expect(table.find_by_tag("th").first.content).to eq "Name"
+      end
+    end
   end
 
   describe "column sorting" do

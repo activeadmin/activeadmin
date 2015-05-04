@@ -10,8 +10,9 @@ module ActiveAdmin
       def build(obj, *attrs)
         options         = attrs.extract_options!
         @sortable       = options.delete(:sortable)
-        @resource_class = options.delete(:i18n)
         @collection     = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
+        @resource_class = options.delete(:i18n)
+        @resource_class ||= @collection.klass if @collection.respond_to? :klass
         @columns        = []
         @row_class      = options.delete(:row_class)
 
