@@ -47,6 +47,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 ### Security Fixes
 
 * Prevents potential DOS attack via Ruby symbols [#1926][] by [@seanlinsley][]
+  * [this isn't an issue for those using Ruby >= 2.2](http://rubykaigi.org/2014/presentation/S-NarihiroNakamura)
 
 ### Bug Fixes
 
