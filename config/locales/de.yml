@@ -106,6 +106,9 @@ de:
       change_password:
         title: "Ändern Sie Ihr Passwort"
         submit: "Mein Passwort ändern"
+      unlock:
+        title: "Entsperrungsanweisung erneut senden"
+        submit: "Entsperrungsanweisung erneut senden"
       resend_confirmation_instructions:
         title: "Anleitung zur Bestätigung noch mal schicken"
         submit: "Anleitung zur Bestätigung noch mal schicken"
@@ -122,3 +125,8 @@ de:
       turn_off_compatibility_view: "Wenn sie IE 9 oder neuer benutzen, stellen sie sicher das sie den <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Kompatibilitätsansicht\" ausgeschaltet</a> haben."
     access_denied:
       message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."
+    index_list:
+      table: "Tabelle"
+      block: "Liste"
+      grid: "Gitter"
+      blog: "Blog"
