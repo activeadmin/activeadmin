@@ -94,4 +94,5 @@ tr:
         sign_in: "Oturum aç"
         forgot_your_password: "Şifreni mi unuttun?"
         sign_in_with_omniauth_provider: "%{provider} ile giriş yapın"
-
+  formtastic:
+    create: 'Oluştur'
