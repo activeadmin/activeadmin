@@ -26,7 +26,7 @@ module ActiveAdmin
         {
           id: resource_name.plural,
           label: proc{ resource.plural_resource_label },
-          url:   proc{ resource.route_collection_path(params) },
+          url:   proc{ (controller.config.relative_url_root || '') + resource.route_collection_path(params) },
           if:    proc{ authorized?(:read, menu_resource_class) }
         }
       end
