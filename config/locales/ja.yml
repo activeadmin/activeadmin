@@ -31,6 +31,10 @@ ja:
         ends_with: "で終わる"
         greater_than: "より大きい"
         less_than: "より小さい"
+    search_status:
+      headline: "範囲:"
+      current_filters: "現在の絞り込み:"
+      no_current_filters: "なし"
     status_tag:
       "yes": "はい"
       "no": "いいえ"
@@ -39,6 +43,7 @@ ja:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "検索条件"
+      search_status: "検索状態"
     pagination:
       empty: "%{model} は見つかりませんでした"
       one: "<b>1</b> 件の %{model} を表示しています"
@@ -88,6 +93,9 @@ ja:
         title: "サブドメイン"
       password:
         title: "パスワード"
+      sign_up:
+        title: "登録"
+        submit: "登録"
       login:
         title: "ログイン"
         remember_me: "次回から自動的にログイン"
@@ -101,6 +109,9 @@ ja:
       unlock:
         title: "ロックの解除方法を送る"
         submit: "ロックの解除方法を送る"
+      resend_confirmation_instructions:
+        title: "確認方法を再送信する"
+        submit: "確認方法を再送信する"
       links:
         sign_in: "サインイン"
         sign_up: "ユーザ登録"
@@ -108,6 +119,10 @@ ja:
         sign_in_with_omniauth_provider: "%{provider}のアカウントを使ってログイン"
         resend_confirmation_instructions: "ユーザ確認手順を再送する"
         resend_unlock_instructions: "ロックの解除方法を再送する"
+    unsupported_browser:
+      headline: "ActiveAdminは、Internet Explorer 8以下はサポートはしていません。"
+      recommendation: "最新版の<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>、<a href=\"https://chrome.google.com/\">Google Chrome</a>、もしくは<a href=\"https://mozilla.org/firefox/\">Firefox</a>を使うことを推奨します。"
+      turn_off_compatibility_view: "Internet Explorer 9以降を使っている場合、<a href=\"http://windows.microsoft.com/ja-JP/windows7/webpages-look-incorrect-in-Internet-Explorer\">互換表示をオフ</a>にしてください。"
     access_denied:
       message: "アクションを実行する権限がありません"
     index_list:
