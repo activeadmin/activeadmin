@@ -7,9 +7,13 @@ module ActiveAdmin
         div class: "download_links" do
           span I18n.t('active_admin.download')
           formats.each do |format|
-            a format.upcase, href: url_for(params: params, format: format)
+            a format.upcase, href: download_url_for(params: params, format: format)
           end
         end
+      end
+
+      def download_url_for(options = {})
+        url_for(options)
       end
 
       def self.included base
