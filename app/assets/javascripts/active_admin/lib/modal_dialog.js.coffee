@@ -1,9 +1,13 @@
 ActiveAdmin.modal_dialog = (message, inputs, callback)->
   if typeof(inputs) == "string"
-    html = """<form id="dialog_confirm" title="#{message}">"""
-    $.get inputs, (data) ->
-      html += data
-    html += "</form>"
+    $.get window.location.href + "/batch_action_form_view?partial_name=" + $.parseJSON(inputs), (data) ->
+      data = $(data)
+      data.find('input[type="submit"]').remove()
+      console.log(data.html())
+      html = """<form id="dialog_confirm" title="#{message}">"""
+      html += data.html()
+      html += "</form>"
+      start_dialog(html)
   else
     html = """<form id="dialog_confirm" title="#{message}"><ul>"""
     for name, type of inputs
@@ -34,13 +38,15 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
       [wrapper, elem, opts, type, klass] = [] # unset any temporary variables
 
     html += "</ul></form>"
+    start_dialog(html)
 
-  $(html).appendTo('body').dialog
-    modal: true
-    dialogClass: 'active_admin_dialog'
-    buttons:
-      OK: ->
-        callback $(@).serializeObject()
-        $(@).dialog('close')
-      Cancel: ->
-        $(@).dialog('close').remove()
+  start_dialog = (html) ->
+    $(html).appendTo('body').dialog
+      modal: true
+      dialogClass: 'active_admin_dialog'
+      buttons:
+        OK: ->
+          callback $(@).serializeObject()
+          $(@).dialog('close')
+        Cancel: ->
+          $(@).dialog('close').remove()
