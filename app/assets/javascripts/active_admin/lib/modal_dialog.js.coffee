@@ -1,4 +1,16 @@
 ActiveAdmin.modal_dialog = (message, inputs, callback)->
+
+  start_dialog = (html) ->
+    $(html).appendTo('body').dialog
+      modal: true
+      dialogClass: 'active_admin_dialog'
+      buttons:
+        OK: ->
+          callback $(@).serializeObject()
+          $(@).dialog('close')
+        Cancel: ->
+          $(@).dialog('close').remove()
+
   if typeof(inputs) == "string"
     $.get window.location.href + "/batch_action_form_view?partial_name=" + $.parseJSON(inputs), (data) ->
       data = $(data)
@@ -38,14 +50,3 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
 
     html += "</ul></form>"
     start_dialog(html)
-
-  start_dialog = (html) ->
-    $(html).appendTo('body').dialog
-      modal: true
-      dialogClass: 'active_admin_dialog'
-      buttons:
-        OK: ->
-          callback $(@).serializeObject()
-          $(@).dialog('close')
-        Cancel: ->
-          $(@).dialog('close').remove()
