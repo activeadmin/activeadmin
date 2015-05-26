@@ -31,6 +31,10 @@
         ends_with: "結尾為"
         greater_than: "大於"
         less_than: "小於"
+    search_status:
+      headline: "子集："
+      current_filters: "目前篩選條件："
+      no_current_filters: "無"
     status_tag:
       "yes": "是"
       "no": "否"
@@ -39,6 +43,7 @@
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "篩選條件"
+      search_status: "搜尋條件"
     pagination:
       empty: "找不到 %{model} "
       one: "顯示 <b>1</b> %{model}"
@@ -67,16 +72,30 @@
       labels:
         destroy: "刪除"
     comments:
+      resource_type: "資源種類"
+      author_type: "作者身份"
       body: "內文"
       author: "作者"
       title: "評論"
       add: "新增評論"
       resource: "資源"
       no_comments_yet: "尚無評論"
+      author_missing: "匿名"
       title_content: "(%{count}) 則評論"
       errors:
         empty_text: "評論儲存失敗，不允許空白的內容。"
     devise:
+      username:
+        title: "帳號"
+      email:
+        title: "電子郵件信箱"
+      subdomain:
+        title: "子網域"
+      password:
+        title: "密碼"
+      sign_up:
+        title: "註冊"
+        submit: "註冊"
       login:
         title: "登入"
         remember_me: "記住我"
@@ -87,10 +106,22 @@
       change_password:
         title: "更改你的密碼"
         submit: "更改我的密碼"
+      unlock:
+        title: "重新發送解鎖指示"
+        submit: "重新發送解鎖指示"
       resend_confirmation_instructions:
         title: '重新發送確認信'
         submit: '重新發送確認信'
       links:
+        sign_up: "註冊"
         sign_in: "登入"
         forgot_your_password: "忘記密碼？"
-        sign_in_with_omniauth_provider: "登入%{provider}"
+        sign_in_with_omniauth_provider: "使用 %{provider} 登入"
+        resend_unlock_instructions: "重新發送解鎖指示"
+        resend_confirmation_instructions: "重新發送確認信"
+    unsupported_browser:
+      headline: "很抱歉，ActiveAdmin 已不再支援 Internet Explorer 8 以下版本的瀏覽器。"
+      recommendation: "建議您升級到最新版本的<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>，<a href=\"https://chrome.google.com/\">Google Chrome</a>，或是 <a href=\"https://mozilla.org/firefox/\">Firefox</a>。"
+      turn_off_compatibility_view: "若您是使用 IE 9 或更新的版本，請確認<a href=\"http://windows.microsoft.com/zh-TW/windows7/webpages-look-incorrect-in-Internet-Explorer\">「相容性檢視」是關閉的</a>。"
+    access_denied:
+      message: "您沒有權限執行此項操作"
