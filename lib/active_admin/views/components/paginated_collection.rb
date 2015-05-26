@@ -41,7 +41,7 @@ module ActiveAdmin
         @params         = options.delete(:params)
         @param_name     = options.delete(:param_name)
         @download_links = options.delete(:download_links)
-        @download_url_options = options.delete(:download_url_options) || {}
+        @download_url_options = options.delete(:download_url_options) { {} }
         @display_total  = options.delete(:pagination_total) { true }
         @per_page       = options.delete(:per_page)
 
