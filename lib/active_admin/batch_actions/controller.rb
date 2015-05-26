@@ -15,6 +15,10 @@ module ActiveAdmin
         end
       end
 
+      def batch_action_form_view
+        render partial: params[:partial_name], layout: false
+      end
+
       protected
 
       def action_present?

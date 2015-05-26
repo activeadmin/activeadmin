@@ -1,9 +1,13 @@
 ActiveAdmin.modal_dialog = (message, inputs, callback)->
   if typeof(inputs) == "string"
-    html = """<form id="dialog_confirm" title="#{message}">"""
-    $.get inputs, (data) ->
-      html += data
-    html += "</form>"
+    $.get window.location.href + "/batch_action_form_view?partial_name=" + $.parseJSON(inputs), (data) ->
+      data = $(data)
+      data.find('input[type="submit"]').remove()
+      console.log(data.html())
+      html = """<form id="dialog_confirm" title="#{message}">"""
+      html += data.html()
+      html += "</form>"
+      start_dialog(html)
   else
     html = """<form id="dialog_confirm" title="#{message}"><ul>"""
     for name, type of inputs
