@@ -1,6 +1,10 @@
 ActiveAdmin.modal_dialog = (message, inputs, callback)->
   if typeof(inputs) == "string"
-    $.get window.location.href + "/batch_action_form_view?partial_name=" + $.parseJSON(inputs), (data) ->
+    selected_ids = $(".collection_selection:checked").map ->
+      return $(this).val()
+    .get()
+    params = {'ids': selected_ids, 'partial_name': $.parseJSON(inputs)}
+    $.get window.location.href + "/batch_action_form_view?" + $.param(params), (data) ->
       data = $(data)
       data.find('input[type="submit"]').remove()
       html = """<form id="dialog_confirm" title="#{message}">"""
