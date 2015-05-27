@@ -16,7 +16,8 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
       return $(this).val()
     .get()
     params = {'ids': selected_ids, 'partial_name': $.parseJSON(inputs)}
-    $.get window.location.href + "/batch_action_form_view?" + $.param(params), (data) ->
+    url = window.location.href + "/batch_action_form_view?" + $.param(params)
+    $.get url, (data) ->
       data = $(data)
       data.find('input[type="submit"]').remove()
       html = """<form id="dialog_confirm" title="#{message}">"""
