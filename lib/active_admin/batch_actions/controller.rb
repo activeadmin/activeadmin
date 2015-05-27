@@ -5,8 +5,8 @@ module ActiveAdmin
       # Controller action that is called when submitting the batch action form
       def batch_action
         if action_present?
-          selection  =  params[:collection_selection] || []
-          inputs     =  pick_valid_keys
+          selection = params[:collection_selection] || []
+          inputs = pick_valid_keys
           instance_exec selection, inputs, &current_batch_action.block
         else
           raise "Couldn't find batch action \"#{params[:batch_action]}\""
@@ -14,7 +14,7 @@ module ActiveAdmin
       end
 
       def batch_action_form_view
-        render partial: params[:partial_name], layout: false, locals: {ids: params[:ids]}
+        render partial: params[:partial_name], layout: false, locals: { ids: params[:ids] }
       end
 
       protected
@@ -24,7 +24,7 @@ module ActiveAdmin
       end
 
       def current_batch_action
-        active_admin_config.batch_actions.detect{ |action| action.sym.to_s == params[:batch_action] }
+        active_admin_config.batch_actions.detect { |action| action.sym.to_s == params[:batch_action] }
       end
 
       COLLECTION_APPLIES = [
@@ -39,7 +39,7 @@ module ActiveAdmin
       end
 
       def pick_valid_keys
-        inputs     = JSON.parse params[:batch_action_inputs]  || '{}'
+        inputs = JSON.parse params[:batch_action_inputs] || "{}"
         valid_keys = render_in_context(self, current_batch_action.inputs).try(:keys)
         if valid_keys
           inputs.with_indifferent_access.slice(*valid_keys)
