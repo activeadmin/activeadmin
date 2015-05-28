@@ -31,14 +31,19 @@ uk:
         ends_with: "Закінчується"
         greater_than: "більше"
         less_than: "меньше"
+    search_status:
+      headline: "Область:"
+      current_filters: "Поточний фільтр:"
+      no_current_filters: "Жоден"
     status_tag:
-      "yes": "та"
-      "no": "немає"
+      "yes": "Так"
+      "no": "Ні"
     main_content: "Створіть %{model}#main_content для відображення вмісту."
     logout: "Вийти"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Фільтри"
+      search_status: "Статус пошуку"
     pagination:
       empty: "%{model} не знайдено"
       one: "Результат: <b>1</b> %{model}"
@@ -47,9 +52,9 @@ uk:
       multiple_without_total: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "запис"
-        other: "записів"
-        many: "записів"
         few: "записи"
+        many: "записів"
+        other: "записів"
     any: "Будь-який"
     blank_slate:
       content: "Покищо немає %{resource_name}."
@@ -112,9 +117,16 @@ uk:
         title: "Вислати повторно листа з активацією"
         submit: "Вислати повторно листа з активацією"
       links:
+        sign_up: "Зареєструватись"
         sign_in: "Увійти"
         forgot_your_password: "Забули пароль?"
         sign_in_with_omniauth_provider: "Увійти з допомогою %{provider}"
+        resend_unlock_instructions: "Повторна відправка інструкцій розблокування"
+        resend_confirmation_instructions: "Повторна відправка інструкцій підтвердження"
+    unsupported_browser:
+      headline: "Зверніть, будь-ласка, увагу, що ActiveAdmin більше не підтримує Internet Explorer 8 версії і нижче"
+      recommendation: "Ми рекомендуємо оновити версію вашого браузеру (<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, або <a href=\"https://mozilla.org/firefox/\">Firefox</a>)."
+      turn_off_compatibility_view: "Якщо ви використовуєте IE 9 і вище переконайтесь, що <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">ви виключили опцію \"Перегляд в режимі сумісності\"</a>."
     access_denied:
       message: "Ви не авторизовані для виконання даної дії."
     index_list:
