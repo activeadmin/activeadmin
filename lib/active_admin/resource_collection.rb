@@ -33,7 +33,9 @@ module ActiveAdmin
     # Finds a resource based on the resource name, resource class, or base class.
     def find_resource(obj)
       resources.detect do |r|
-        r.resource_name.to_s == obj.to_s || r.resource_class.to_s == obj.to_s
+        r.resource_name.to_s == obj.to_s
+      end || resources.detect do |r|
+        r.resource_class.to_s == obj.to_s
       end ||
       if obj.respond_to? :base_class
         resources.detect{ |r| r.resource_class.to_s == obj.base_class.to_s }
