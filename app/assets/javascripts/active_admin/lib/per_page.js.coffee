@@ -18,8 +18,12 @@ class ActiveAdmin.PerPage
     params = {}
     re = /([^&=]+)=([^&]*)/g
     while m = re.exec(query)
-      params[decodeURIComponent(m[1])] = decodeURIComponent(m[2])
+      params[@_decode(m[1])] = @_decode(m[2])
     params
+   
+  _decode: (value) ->
+    #replace "+" before decodeURIComponent
+    decodeURIComponent(value.replace(/\+/g, '%20')) 
 
 $.widget.bridge 'perPage', ActiveAdmin.PerPage
 
