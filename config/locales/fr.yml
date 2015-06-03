@@ -31,6 +31,10 @@ fr:
         ends_with: "Se termine par"
         greater_than: "Plus grand que"
         less_than: "Plus petit que"
+    search_status:
+      headline: "Etendu du filtre :"
+      current_filters: "Filtres actuels :"
+      no_current_filters: "Aucun filtres"
     status_tag:
       "yes": "Oui"
       "no": "Non"
@@ -39,6 +43,7 @@ fr:
     powered_by: "Propulsé par %{active_admin} %{version}"
     sidebars:
       filters: "Filtres"
+      search_status: "Statut de la recherche"
     pagination:
       empty: "Aucun %{model} trouvé"
       one: "Affichage de <b>1</b> %{model}"
