@@ -336,7 +336,7 @@ ActiveAdmin.register Ticket do
 end
 ```
 
-Projects will be available as usual and tickets will be availble by visiting
+Projects will be available as usual and tickets will be available by visiting
 `/admin/projects/1/tickets` assuming that a Project with the id of 1 exists.
 Active Admin does not add "Tickets" to the global navigation because the routes
 can only be generated when there is a project id.
@@ -367,7 +367,7 @@ end
 In some cases (like Projects), there are many sub resources and you would
 actually like the global navigation to switch when the user navigates "into" a
 project. To accomplish this, Active Admin stores the `belongs_to` resources in a
-seperate menu which you can use if you so wish. To use:
+separate menu which you can use if you so wish. To use:
 
 ```ruby
 ActiveAdmin.register Ticket do
