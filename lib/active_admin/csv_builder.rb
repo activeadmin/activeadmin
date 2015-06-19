@@ -6,8 +6,8 @@ module ActiveAdmin
   #   csv_builder = CSVBuilder.new
   #   csv_builder.column :id
   #   csv_builder.column("Name") { |resource| resource.full_name }
-  #   csv_builder.column(:name, humanize: false)
-  #   csv_builder.column("name", humanize: false) { |resource| resource.full_name }
+  #   csv_builder.column(:name, humanize_name: false)
+  #   csv_builder.column("name", humanize_name: false) { |resource| resource.full_name }
   #
   #   csv_builder = CSVBuilder.new col_sep: ";"
   #   csv_builder = CSVBuilder.new humanize_name: false
