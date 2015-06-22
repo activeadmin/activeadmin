@@ -30,9 +30,11 @@ end
 Any form field that sends multiple values (such as a HABTM association, or an array attribute)
 needs to pass an empty array to `permit_params`:
 
+If your HABTM is `roles`, you should permit `role_ids: []`
+
 ```ruby
 ActiveAdmin.register Post do
-  permit_params :title, :content, :publisher_id, roles: []
+  permit_params :title, :content, :publisher_id, role_ids: []
 end
 ```
 
