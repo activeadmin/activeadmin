@@ -38,13 +38,20 @@ inject_into_file 'app/models/blog/post.rb', %q{
 }, after: 'class Blog::Post < ActiveRecord::Base'
 
 
+generate :model, "profile user_id:integer bio:text"
 generate :model, "user type:string first_name:string last_name:string username:string age:integer"
 inject_into_file 'app/models/user.rb', %q{
   has_many :posts, foreign_key: 'author_id'
+  has_one :profile
+  accepts_nested_attributes_for :profile, allow_destroy: true
   def display_name
     "#{first_name} #{last_name}"
   end
 }, after: 'class User < ActiveRecord::Base'
+
+inject_into_file 'app/models/profile.rb', %q{
+  belongs_to :user
+}, after: 'class Profile < ActiveRecord::Base'
 
 generate :model, 'publisher --migration=false --parent=User'
 generate :model, 'category name:string description:text'
