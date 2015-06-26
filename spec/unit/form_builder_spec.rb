@@ -277,9 +277,8 @@ describe ActiveAdmin::FormBuilder do
 
   end
 
-
-  context "with a has_one relation on an author's profile" do 
-    let :body do 
+  context "with a has_one relation on an author's profile" do
+    let :body do
       author = user()
       build_form do |f|
         f.inputs do
@@ -287,7 +286,7 @@ describe ActiveAdmin::FormBuilder do
           f.input :body
         end
         f.form_builder.instance_eval do
-          @object.author = author 
+          @object.author = author
         end
         f.inputs name: 'Author', for: :author do |author|
           author.has_many :profile, allow_destroy: true do |profile|
@@ -297,14 +296,14 @@ describe ActiveAdmin::FormBuilder do
       end
     end
 
-    it "should see the button to add profile" do 
+    it "should see the button to add profile" do
       def user
         User.new
       end
       expect(body).to have_selector("a[contains(data-html,'post[author_attributes][profile_attributes][bio]')]")
     end
 
-    it "should see the profile fields for an existing profile" do 
+    it "should see the profile fields for an existing profile" do
       def user
         u = User.new
         u.profile = Profile.new

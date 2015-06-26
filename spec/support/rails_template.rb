@@ -53,7 +53,6 @@ inject_into_file 'app/models/profile.rb', %q{
   belongs_to :user
 }, after: 'class Profile < ActiveRecord::Base'
 
-
 generate :model, 'publisher --migration=false --parent=User'
 generate :model, 'category name:string description:text'
 inject_into_file 'app/models/category.rb', %q{
