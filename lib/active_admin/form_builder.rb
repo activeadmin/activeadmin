@@ -61,7 +61,7 @@ module ActiveAdmin
         end
         
         template.assign(has_many_block: true)
-        contents = without_wrapper { inputs(options, &form_block) }
+        contents = without_wrapper { inputs(options, &form_block) } || "".html_safe
 
         if builder_options[:new_record]
           contents << js_for_has_many(assoc, form_block, template, builder_options[:new_record], options[:class])
