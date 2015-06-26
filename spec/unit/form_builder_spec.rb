@@ -278,31 +278,6 @@ describe ActiveAdmin::FormBuilder do
   end
 
 
-  context "with a button to add a new has_one relationship" do 
-    let :body do
-      build_form do |f|
-        f.inputs do
-          f.input :title
-          f.input :body
-        end
-        f.form_builder.instance_eval do
-          @object.author = User.new
-        end
-        f.inputs name: 'Author', for: :author do |author|
-          author.inputs :first_name, :last_name
-          author.has_many :profile, allow_destroy: true do |profile|
-            profile.input :bio
-          end
-        end
-      end
-    end
-
-    it "should see a button to add the has_one relation" do 
-      expect(body).to have_selector("a[contains(data-html,'post[author_attributes][profile_attributes][bio]')]")
-    end
-
-  end
-
   context "with a has_one relation on an author's profile" do 
     let :body do 
       author = user()
