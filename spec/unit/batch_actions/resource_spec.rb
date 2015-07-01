@@ -58,6 +58,11 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
       expect(resource.batch_action_path).to eq "/admin/posts/batch_action"
     end
 
+    it "includes :scope and :q params" do
+      params = { q: { name_equals: "Any" }, scope: :all }
+      batch_action_path = "/admin/posts/batch_action?q%5Bname_equals%5D=Any&scope=all"
+      expect(resource.batch_action_path(params)).to eq(batch_action_path)
+    end
   end
 
   describe "#display_if_block" do
