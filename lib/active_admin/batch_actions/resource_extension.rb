@@ -53,7 +53,9 @@ module ActiveAdmin
 
       # Path to the batch action itself
       def batch_action_path(params = {})
-        [route_collection_path(params), "batch_action"].join("/")
+        path = [route_collection_path(params), "batch_action"].join("/")
+        query = params.slice(:q, :scope).to_param
+        [path, query].reject(&:blank?).join("?")
       end
 
       private
