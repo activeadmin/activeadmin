@@ -72,6 +72,7 @@ en:
       labels:
         destroy: "Delete"
     comments:
+      created_at: "Created"
       resource_type: "Resource Type"
       author_type: "Author Type"
       body: "Body"

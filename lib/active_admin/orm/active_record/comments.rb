@@ -74,6 +74,7 @@ ActiveAdmin.after_load do |app|
         column I18n.t('active_admin.comments.resource'),      :resource
         column I18n.t('active_admin.comments.author'),        :author
         column I18n.t('active_admin.comments.body'),          :body
+        column I18n.t('active_admin.comments.created_at'),    :created_at
         actions
       end
     end
