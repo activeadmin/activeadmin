@@ -91,7 +91,7 @@ module ActiveAdmin
     # index do
     #   column :title
     #   actions do |post|
-    #     a link_to "View", admin_post_path(post)
+    #     a "View", href: admin_post_path(post)
     #   end
     # end
     # ```
@@ -277,7 +277,7 @@ module ActiveAdmin
         #
         # # Append some actions onto the end of the default actions using arbre dsl.
         # actions do |admin_user|
-        #   a link_to 'Grant Admin', grant_admin_admin_user_path(admin_user)
+        #   a 'Grant Admin', href: grant_admin_admin_user_path(admin_user)
         # end
         #
         # # Custom actions without the defaults.
