@@ -7,7 +7,7 @@ describe "#pretty_format" do
     mock_action_view.send *args, &block
   end
 
-  {String: 'hello', Fixnum: 23, Float: 5.67, Bignum: 10**30,
+  {String: 'hello', Fixnum: 23, Float: 5.67, Bignum: 10**30, Symbol: :foo,
     'Arbre::Element' => Arbre::Element.new.br(:foo)
   }.each do |klass, obj|
     it "should call `to_s` on #{klass}s" do

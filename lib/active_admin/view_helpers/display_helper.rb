@@ -43,7 +43,7 @@ module ActiveAdmin
       # Attempts to create a human-readable string for any object
       def pretty_format(object)
         case object
-        when String, Numeric, Arbre::Element
+        when String, Numeric, Symbol, Arbre::Element
           object.to_s
         when Date, Time
           localize object, format: :long
