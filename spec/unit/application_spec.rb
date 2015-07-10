@@ -49,6 +49,15 @@ describe ActiveAdmin::Application do
     expect(application.favicon).to eq false
   end
 
+  it "should return default localize format" do
+    expect(application.localize_format).to eq :long
+  end
+
+  it "should set localize format" do
+    application.localize_format = :default
+    expect(application.localize_format).to eq :default
+  end
+
   it "should set the site's favicon" do
     application.favicon = "/a/favicon.ico"
     expect(application.favicon).to eq "/a/favicon.ico"

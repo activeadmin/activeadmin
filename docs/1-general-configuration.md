@@ -48,6 +48,15 @@ to your application's `config/locales` folder and update it. We welcome new/upda
 so feel free to [contribute](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md)!
 To translate third party gems like devise, use for example devise-i18n.
 
+## Localize Format For Dates and Times
+
+Active Admin sets `:long` as default localize format for dates and times.
+If you want, you can customize it.
+
+```ruby
+config.localize_format = :short
+```
+
 ## Namespaces
 
 When registering resources in Active Admin, they are loaded into a namespace.
