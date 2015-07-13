@@ -1,56 +1,40 @@
-source 'https://rubygems.org'
-
-gemspec
-
-require File.expand_path 'spec/support/detect_rails_version', File.dirname(__FILE__)
-
-rails_version = detect_rails_version
-gem 'rails', rails_version
-
-gem 'execjs', '~> 2.4.0' # ~> 2.5.0 works only for Ruby > 2.0
-
-# Optional dependencies
-gem 'cancan'
-gem 'devise'
-gem 'draper'
-gem 'pundit'
-
-# Utility gems used in both development & test environments
-gem 'rake', require: false
-gem 'parallel_tests'
-
-# Debugging
-gem 'pry'                  # Easily debug from your console with `binding.pry`
-
-group :development do
-  # Debugging
-  gem 'better_errors'      # Web UI to debug exceptions. Go to /__better_errors to access the latest one
-  gem 'binding_of_caller'  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
-
-  # Performance
-  gem 'rack-mini-profiler' # Inline app profiler. See ?pp=help for options.
-  gem 'flamegraph'         # Flamegraph visualiztion: ?pp=flamegraph
-
-  # Documentation
-  gem 'yard'               # Documentation generator
-  gem 'redcarpet'          # Markdown implementation (for yard)
-end
-
-group :test do
-  gem 'capybara'
-  gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
-  gem 'coveralls', require: false # Test coverage website. Go to https://coveralls.io
-  gem 'cucumber-rails', require: false
-  gem 'database_cleaner'
-  gem 'guard-rspec'
-  gem 'jasmine'
-  gem 'jslint_on_rails'
-  gem 'launchy'
-  gem 'rails-i18n' # Provides default i18n for many languages
-  gem 'rspec'
-  gem 'rspec-rails', '~> 3.1.0'
-  gem 'i18n-spec'
-  gem 'shoulda-matchers'
-  gem 'sqlite3'
-  gem 'poltergeist'
-end
+language: ruby
+install:
+  - time ./script/travis_cache download_bundle
+  - time gem install bundler # use the very latest Bundler
+  - time bundle install --without development --path=./bundle
+  - bundle clean # delete now-outdated gems
+  - time ./script/travis_cache download_app
+  - time bundle exec rake setup
+  - time ./script/travis_cache upload
+script:
+  - time bundle exec rake test_with_coveralls
+rvm:
+  - 1.9
+  - 2.1
+  - 2.2
+env:
+  matrix:
+    - "RAILS=3.2.22"
+    - "RAILS=4.1.11"
+    - "RAILS=4.2.2"
+  global:
+    secure: lRYUGVUV94eqrR7C0b0hhvp+W76NkLRAn6jkJGCbRCEojbeb3HlgK1P+nTDeIuiDmXksJOG6VD3ZiZAn9Plznj7I/MFh+ijgvk8eWj9QNxA8riaSEPAu5VYtPA+uaw1olUt196U3qXH+SaXB4sx5wdIUXpd9qxWWWsW11ia0Jzs=
+matrix:
+  fast_finish: true
+  exclude:
+    - rvm: 2.2
+      env: "RAILS=3.2.22"
+    - rvm: 2.1
+      env: "RAILS=4.1.11"
+    - rvm: 2.1
+      env: "RAILS=4.2.2"
+notifications:
+  irc:
+    channels:
+      - "irc.freenode.org#activeadmin"
+    on_success: change
+    on_failure: always
+    skip_join: true
+    template:
+      - "(%{branch}/%{commit} by %{author}): %{message} (%{build_url})"
