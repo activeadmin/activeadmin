@@ -29,6 +29,20 @@ describe "#pretty_format" do
         expect(pretty_format(t)).to eq "February 28, 1985 20:15"
       end
 
+      context "apply custom localize format" do
+        before do
+          ActiveAdmin.application.localize_format = :short
+        end
+        after do
+          ActiveAdmin.application = nil
+        end
+        it "should actually do the formatting" do
+          t = Time.utc(1985, "feb", 28, 20, 15, 1)
+
+          expect(pretty_format(t)).to eq "28 Feb 20:15"
+        end
+      end
+
       context "with non-English locale" do
         before(:all) do
           @previous_locale = I18n.locale.to_s

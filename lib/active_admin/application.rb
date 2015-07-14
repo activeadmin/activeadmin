@@ -105,6 +105,9 @@ module ActiveAdmin
     # Set flash message keys that shouldn't show in ActiveAdmin
     inheritable_setting :flash_keys_to_except, ['timedout']
 
+    # Set default localize format for Date/Time values
+    inheritable_setting :localize_format, :long
+
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     setting :display_name_methods, [ :display_name,
