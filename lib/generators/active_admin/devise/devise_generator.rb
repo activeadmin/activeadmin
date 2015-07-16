@@ -1,4 +1,5 @@
 require "active_admin/error"
+require "active_admin/dependency"
 
 module ActiveAdmin
   module Generators
