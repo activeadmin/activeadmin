@@ -27,6 +27,8 @@ matrix:
   exclude:
     - rvm: 2.2
       env: "RAILS=3.2.22"
+    - rvm: jruby-head
+      env: "RAILS=3.2.22"
     - rvm: 2.1
       env: "RAILS=4.1.11"
     - rvm: 2.1
