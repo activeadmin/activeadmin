@@ -7,11 +7,11 @@ Then /^I (should|should not) be asked to confirm "([^"]*)" for "([^"]*)"$/ do |m
 end
 
 Then /^I (should|should not) see the batch action :([^\s]*) "([^"]*)"$/ do |maybe, sym, title|
-  selector = ".batch_actions_selector a.batch_action:contains('#{title}')"
+  selector = ".batch_actions_selector a.batch_action"
   selector << "[href='#'][data-action='#{sym}']" if maybe == 'should'
 
   verb = maybe == 'should' ? :to : :to_not
-  expect(page).send verb, have_css(selector)
+  expect(page).send verb, have_css(selector, text: title)
 end
 
 Then /^the (\d+)(?:st|nd|rd|th) batch action should be "([^"]*)"$/ do |index, title|
@@ -55,6 +55,15 @@ Given /^I submit the batch action form with "([^"]*)"$/ do |action|
     end
   end
   page.driver.submit form['method'], form['action'], params
+end
+
+When /^I click "(.*?)" and accept confirmation$/ do |link|
+  # Use this implementation instead if poltergeist ever implements it
+  # page.driver.accept_modal(:confirm) { click_link(link) }
+
+  click_link(link)
+  expect(page).to have_content("Are you sure you want to delete these posts?")
+  click_button("OK")
 end
 
 Then /^I should not see checkboxes in the table$/ do
