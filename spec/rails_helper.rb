@@ -139,7 +139,7 @@ end
 # or else it whines.
 require "support/active_admin_request_helpers"
 RSpec.configure do |c|
-  c.include ActiveAdminRequestHelpers, file_path: /\bspec\/requests\//
+  c.include ActiveAdminRequestHelpers, type: :request
   c.include Devise::TestHelpers, type: :controller
 end
 
