@@ -137,9 +137,9 @@ end
 
 # All RSpec configuration needs to happen before any examples
 # or else it whines.
-require 'integration_example_group'
+require "support/active_admin_request_helpers"
 RSpec.configure do |c|
-  c.include RSpec::Rails::IntegrationExampleGroup, file_path: /\bspec\/requests\//
+  c.include ActiveAdminRequestHelpers, file_path: /\bspec\/requests\//
   c.include Devise::TestHelpers, type: :controller
 end
 
