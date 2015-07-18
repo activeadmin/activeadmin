@@ -11,7 +11,7 @@ task :setup, :parallel do |t, args|
 end
 
 desc "Run the full suite using 1 core"
-task test: ['spec:unit', 'spec:integration', 'cucumber', 'cucumber:class_reloading']
+task test: ['spec:unit', 'spec:request', 'cucumber', 'cucumber:class_reloading']
 
 require 'coveralls/rake/task'
 Coveralls::RakeTask.new
@@ -56,9 +56,9 @@ namespace :spec do
     t.pattern = "spec/unit/**/*_spec.rb"
   end
 
-  desc "Run the integration specs"
-  RSpec::Core::RakeTask.new(:integration) do |t|
-    t.pattern = "spec/integration/**/*_spec.rb"
+  desc "Run the request specs"
+  RSpec::Core::RakeTask.new(:request) do |t|
+    t.pattern = "spec/requests/**/*_spec.rb"
   end
 
 end
