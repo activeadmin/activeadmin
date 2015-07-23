@@ -13,7 +13,7 @@ rvm:
   - 1.9
   - 2.1
   - 2.2
-  - jruby-head
+  - jruby-9.0.0.0
 env:
   matrix:
     - "RAILS=3.2.22"
@@ -27,7 +27,7 @@ matrix:
   exclude:
     - rvm: 2.2
       env: "RAILS=3.2.22"
-    - rvm: jruby-head
+    - rvm: jruby-9.0.0.0
       env: "RAILS=3.2.22"
     - rvm: 2.1
       env: "RAILS=4.1.11"
