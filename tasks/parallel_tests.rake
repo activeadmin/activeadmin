@@ -49,7 +49,7 @@ namespace :parallel do
 
   namespace :spec do
 
-    %w(unit integration).each do |type|
+    %w(unit request).each do |type|
       desc "Run the #{type} specs in parallel"
       task type => :setup_parallel_tests do
         run_in_parallel "parallel_rspec spec/#{type}"

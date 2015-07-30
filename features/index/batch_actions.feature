@@ -1,5 +1,6 @@
 Feature: Batch Actions
 
+  @javascript
   Scenario: Use default (destroy) batch action
     Given 10 posts exist
     And an index configuration of:
@@ -16,7 +17,7 @@ Feature: Batch Actions
     And I follow "Batch Actions"
     Then I should see the batch action :destroy "Delete Selected"
 
-    Given I submit the batch action form with "destroy"
+    Given I click "Delete Selected" and accept confirmation
     Then I should see a flash with "Successfully destroyed 2 posts"
     And I should see 8 posts in the table
 
@@ -37,6 +38,7 @@ Feature: Batch Actions
     Then I should see a flash with "Successfully destroyed 2 posts"
     And I should see 3 posts in the table
 
+  @javascript
   Scenario: Use default (destroy) batch action on a nested resource
     Given I am logged in
     And 5 posts written by "John Doe" exist
@@ -58,7 +60,7 @@ Feature: Batch Actions
     And I follow "Batch Actions"
     Then I should see the batch action :destroy "Delete Selected"
 
-    Given I submit the batch action form with "destroy"
+    Given I click "Delete Selected" and accept confirmation
     Then I should see a flash with "Successfully destroyed 2 posts"
     And I should see 3 posts in the table
 
