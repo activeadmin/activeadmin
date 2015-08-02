@@ -54,8 +54,8 @@ end
 ## CSS
 
 In order to avoid the override of your application style with the Active Admin one, you can do one of this things:
-* You can properly move the generated file `active_admin.css.scss` from `app/assets/stylesheets` to `vendor/assets/stylesheets`.
-* You can remove all `require_tree` comands from your root level css files, where the `active_admin.css.scss` is in the tree.
+* You can properly move the generated file `active_admin.scss` from `app/assets/stylesheets` to `vendor/assets/stylesheets`.
+* You can remove all `require_tree` comands from your root level css files, where the `active_admin.scss` is in the tree.
 
 ## Conflicts
 
