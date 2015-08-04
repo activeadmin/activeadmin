@@ -13,6 +13,11 @@ module ActiveAdmin
         build_sidebar_content
       end
 
+      # Renders attributes_table_for current resource
+      def attributes_table(*args, &block)
+        attributes_table_for resource, *args, &block
+      end
+
       protected
 
       def build_sidebar_content
