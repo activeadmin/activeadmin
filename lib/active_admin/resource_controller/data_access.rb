@@ -293,11 +293,7 @@ module ActiveAdmin
       end
 
       def configured_per_page
-        if active_admin_config.per_page.is_a?(Array)
-          active_admin_config.per_page[0]
-        else
-          active_admin_config.per_page
-        end
+        Array(active_admin_config.per_page).first
       end
 
       def max_per_page
