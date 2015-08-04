@@ -20,7 +20,7 @@ ActiveAdmin.autoload :Comment, 'active_admin/orm/active_record/comments/comment'
 ActiveAdmin.after_load do |app|
   app.namespaces.each do |namespace|
     namespace.register ActiveAdmin::Comment, as: namespace.comments_registration_name do
-      actions :index, :show, :create
+      actions :index, :show, :create, :destroy
 
       menu false unless namespace.comments && namespace.show_comments_in_menu
 
@@ -58,6 +58,13 @@ ActiveAdmin.after_load do |app|
             failure.html do
               flash[:error] = I18n.t 'active_admin.comments.errors.empty_text'
               redirect_to :back
+            end
+          end
+
+          def destroy
+            destroy! do |success, failure|
+              success.html { redirect_to :back }
+              failure.html { redirect_to :back }
             end
           end
         end

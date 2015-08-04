@@ -72,6 +72,8 @@
       title: "Kommentar"
       resource: "Resource"
       add: "Kommentar hinzufügen"
+      delete: "Löschen"
+      delete_confirmation: "Sind Sie sicher dass sie diesen Kommentar löschen wollen?"
       no_comments_yet: "Es gibt noch keine Kommentare."
       title_content: "Kommentare (%{count})"
       errors:
