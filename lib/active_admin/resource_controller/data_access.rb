@@ -284,7 +284,7 @@ module ActiveAdmin
         if active_admin_config.paginate
           dynamic_per_page || configured_per_page
         else
-          max_per_page
+          active_admin_config.max_per_page
         end
       end
 
@@ -294,10 +294,6 @@ module ActiveAdmin
 
       def configured_per_page
         Array(active_admin_config.per_page).first
-      end
-
-      def max_per_page
-        10_000
       end
 
     end

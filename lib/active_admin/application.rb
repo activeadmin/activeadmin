@@ -28,6 +28,9 @@ module ActiveAdmin
     # The default number of resources to display on index pages
     inheritable_setting :default_per_page, 30
 
+    # The max number of resources to display on index pages and batch exports
+    inheritable_setting :max_per_page, 10_000
+
     # The title which gets displayed in the main layout
     inheritable_setting :site_title, ""
 
