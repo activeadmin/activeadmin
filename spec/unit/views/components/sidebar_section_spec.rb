@@ -44,25 +44,25 @@ describe ActiveAdmin::Views::SidebarSection do
     end
   end
 
-  context 'with attributes_table for resource' do
+  context "with attributes_table for resource" do
     let(:post) { Post.create!(title: "Testing.") }
     let(:section) do
-      ActiveAdmin::SidebarSection.new('Summary', options) do
+      ActiveAdmin::SidebarSection.new("Summary", options) do
         attributes_table do
           row :title
         end
       end
     end
-    let(:assigns){ { resource: post, section: section } }
+    let(:assigns) { { resource: post, section: section } }
     let(:html) do
       render_arbre_component assigns do
         sidebar_section(assigns[:section])
       end
     end
 
-    it 'should have table' do
-      expect(html.find_by_tag('th').first.content).to eq 'Title'
-      expect(html.find_by_tag('td').first.content).to eq 'Testing.'
+    it "should have table" do
+      expect(html.find_by_tag("th").first.content).to eq "Title"
+      expect(html.find_by_tag("td").first.content).to eq "Testing."
     end
   end
 end
