@@ -82,7 +82,7 @@ $headings-color: inherit !default;
 $border-radius-base: 0.25em !default;
 
 $padding-base-vertical: 6px !default;
-$padding-base-horizontal: 10px !default;
+$padding-base-horizontal: 12px !default;
 
 $horizontal-page-margin: 20px !default;
 
@@ -122,6 +122,9 @@ $input-color: $text-color !default;
 $required-field-marker-color: #aaa !default;
 
 $cursor-disabled: not-allowed !default; // for forms and buttons
+
+$form-label-width: 30%;
+$form-input-width: 70%;
 
 //== Dropdowns
 

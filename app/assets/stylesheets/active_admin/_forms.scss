@@ -14,7 +14,7 @@ textarea {
   outline: none;
   padding: $padding-base-vertical $padding-base-horizontal;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  width: calc(80% - #{($padding-base-horizontal * 2) + 2px});
+  width: calc(#{$form-input-width} - #{($padding-base-horizontal * 2) + 2px});
 
   &:focus {
     border: 1px solid $input-border-focus-color;
@@ -35,13 +35,14 @@ textarea {
 
   .input {
     margin-bottom: 15px;
+    max-width: 600px;
   }
 
   .label {
     display: block;
     float: left;
     font-weight: $font-weight-bold;
-    width: 20%;
+    width: $form-label-width;
 
     abbr {
       border: none;
@@ -61,7 +62,7 @@ textarea {
 
   fieldset {
     border: 0;
-    margin: 0 0 20px 0;
+    margin: 0;
     padding: 0;
     position: relative; // for abosolute positioning sub fieldset legends for choices/fragments
 
@@ -83,6 +84,10 @@ textarea {
         margin-bottom: 20px;
       }
     }
+  }
+
+  > fieldset {
+    margin: 0 0 20px 0;
   }
 
   // relative so the absolutely-positioned handle will fit
@@ -123,8 +128,12 @@ textarea {
   .choices-group,
   .fragments-group {
     float: left;
-    padding: 0 0 0 20%;
-    width: 74%;
+  }
+
+  .choices-group,
+  .fragments-group,
+  .boolean label {
+    padding-left: $form-label-width;
   }
 
   .choice,
@@ -150,17 +159,14 @@ textarea {
   }
 
   .boolean label {
-    padding-left: 20%;
     padding-right: 10px;
-    width: 80%;
   }
 
   // HINTS and ERRORS
 
   .inline-hints,
-  .inline-errors,
-  .errors {
-    margin: 0.3em 0 0 20%;
+  .inline-errors {
+    margin: 0.3em 0 0 $form-label-width;
   }
 
   .inline-hints {
@@ -176,8 +182,8 @@ textarea {
     background-color: lighten($error-color, 35%);
     border-radius: $border-radius-base;
     list-style-type: square;
-    padding: 10px 10px 10px 25px;
-    width: calc(80% - 22px);
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 28px;
   }
 
   // Buttons
