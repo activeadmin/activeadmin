@@ -1,6 +1,12 @@
 #active_admin_content {
   @include clearfix;
   padding: $horizontal-page-margin;
+
+  // so index table and filters scroll horizontally
+  &.with_sidebar {
+    display: table;
+    width: 100%;
+  }
 }
 
 #main_content_wrapper {
