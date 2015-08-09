@@ -72,6 +72,7 @@ es:
       labels:
         destroy: "Borrar"
     comments:
+      created_at: "Fecha de creación"
       resource_type: "Tipo de recurso"
       author_type: "Tipo de autor"
       body: "Cuerpo"
