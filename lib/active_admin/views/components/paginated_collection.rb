@@ -100,7 +100,7 @@ module ActiveAdmin
         options[:params]     = @params     if @params
         options[:param_name] = @param_name if @param_name
 
-        if !@display_total
+        if !@display_total && collection.respond_to?(:offset)
           # The #paginate method in kaminari will query the resource with a
           # count(*) to determine how many pages there should be unless
           # you pass in the :total_pages option. We issue a query to determine
