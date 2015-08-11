@@ -14,12 +14,8 @@
   margin: 0;
 }
 
-.active_admin_comment fieldset.inputs {
+.active_admin_comment > fieldset {
   background-color: transparent;
   margin: 0;
   padding: 0;
-
-  & > ol {
-    padding: 0;
-  }
 }
