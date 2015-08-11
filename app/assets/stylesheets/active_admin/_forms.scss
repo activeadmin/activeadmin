@@ -109,7 +109,7 @@ textarea {
 
   // Nested Fieldsets and Legends (radio, check boxes and date/time inputs use nested fieldsets)
 
-  legend.label {
+  .fragments > .label {
     font-size: inherit;
     left: 0;
     position: absolute
