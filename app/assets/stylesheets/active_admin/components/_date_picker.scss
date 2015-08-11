@@ -41,7 +41,7 @@
   &:after {
     border-bottom: 4px solid transparent;
     border-top: 4px solid transparent;
-    content: '';
+    content: "";
     height: 0;
     position: absolute;
     top: calc(50% - 4px);
@@ -76,7 +76,8 @@
   border: none;
   margin-bottom: 0;
 
-  td, th {
+  td,
+  th {
     padding: 0;
     text-align: center;
   }

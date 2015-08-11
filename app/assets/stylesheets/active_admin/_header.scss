@@ -4,7 +4,9 @@
   padding: 0 $horizontal-page-margin;
   width: 100%;
 
-  a, a:link, a:visited {
+  a,
+  a:link,
+  a:visited {
     color: $navbar-link-color;
     text-decoration: none;
   }
@@ -35,7 +37,7 @@
       &:hover > ul { display: block;}
     }
 
-    & > li {
+    > li {
       display: inline-block;
       position: relative;
 

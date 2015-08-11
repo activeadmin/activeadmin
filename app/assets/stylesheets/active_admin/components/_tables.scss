@@ -7,7 +7,8 @@ th {
   text-align: left;
 }
 
-th, td {
+th,
+td {
   border-bottom: 1px solid $table-border-color;
   padding: $table-cell-padding;
   vertical-align: top;
@@ -21,9 +22,11 @@ thead {
 }
 
 // -------------------------------------- Index Tables
-table.index_table {
+.index_table {
   th {
-    a, a:link, a:visited {
+    a,
+    a:link,
+    a:visited {
       color: $text-color;
       display: block;
       position: relative;
@@ -37,7 +40,7 @@ table.index_table {
         border-left: 4px solid transparent;
         border-right: 4px solid transparent;
         bottom: 100%;
-        content: '';
+        content: "";
         height: 0;
         position: absolute;
         right: 0;
@@ -74,7 +77,8 @@ table.index_table {
 
 // -------------------------------------- Tables inside Panels
 .panel_contents table {
-  th, td {
+  th,
+  td {
     padding: $table-condensed-cell-padding;
   }
 }
@@ -82,26 +86,26 @@ table.index_table {
 // -------------------------------------- Resource Attributes Table
 .attributes_table {
   overflow: hidden;
-}
 
-.attributes_table table {
-  col {
-    border-right: 1px solid $table-border-color;
+  table {
+    col {
+      border-right: 1px solid $table-border-color;
 
-    &:first-child {
-      border-right: 2px solid $table-border-color;
+      &:first-child {
+        border-right: 2px solid $table-border-color;
+      }
     }
-  }
 
-  th {
-    width: 180px;
-  }
+    th {
+      width: 180px;
+    }
 
-  td .empty {
-    color: $text-muted-color;
-    font-size: 0.8em;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    td .empty {
+      color: $text-muted-color;
+      font-size: 0.8em;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
   }
 }
 

@@ -28,7 +28,7 @@
   li {
     float: left;
 
-    & + li a {
+    + li a {
       border-radius: 0;
       margin-left: -1px;
     }

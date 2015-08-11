@@ -1,6 +1,12 @@
 .active_admin_comment {
   margin-bottom: 25px;
   max-width: 45em;
+
+  > fieldset {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .active_admin_comment_meta {
@@ -12,10 +18,4 @@
   color: $primary-color;
   font-weight: $font-weight-bold;
   margin: 0;
-}
-
-.active_admin_comment > fieldset {
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
 }
