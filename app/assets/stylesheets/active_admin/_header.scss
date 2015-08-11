@@ -28,13 +28,8 @@
   }
 }
 
+.main-navigation,
 .main-utility-navigation {
-  padding: 0;
-  text-align: right;
-  white-space: nowrap;
-}
-
-.main-navigation {
   display: table-cell;
   margin: 0;
   padding: 0 20px;
@@ -124,4 +119,10 @@
       }
     }
   }
+}
+
+.main-utility-navigation {
+  padding: 0;
+  text-align: right;
+  white-space: nowrap;
 }
