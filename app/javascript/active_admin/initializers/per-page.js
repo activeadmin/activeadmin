@@ -3,7 +3,7 @@ import PerPage from "../lib/per-page";
 (($) => {
 
   $(document).
-    on('change', '.pagination_per_page > select', function(_event) {
+    on('change', '.js-pagination-per-page > select', function(_event) {
       PerPage._jQueryInterface.call($(this), 'update')
     });
 

@@ -78,7 +78,7 @@ module ActiveAdmin
       end
 
       def build_per_page_select
-        div class: "pagination_per_page" do
+        div class: "pagination-per-page js-pagination-per-page" do
           text_node I18n.t("active_admin.pagination.per_page")
           select do
             @per_page.each do |per_page|

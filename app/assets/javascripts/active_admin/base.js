@@ -446,7 +446,7 @@
     return PerPage;
   }();
   (function($) {
-    $(document).on("change", ".pagination_per_page > select", function(_event) {
+    $(document).on("change", ".js-pagination-per-page > select", function(_event) {
       PerPage._jQueryInterface.call($(this), "update");
     });
     $.fn["perPage"] = PerPage._jQueryInterface;

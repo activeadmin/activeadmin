@@ -254,7 +254,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       let(:pagination) { paginated_collection(collection, per_page: [1, 2, 3]) }
-      let(:pagination_html) { pagination.find_by_class("pagination_per_page").first }
+      let(:pagination_html) { pagination.find_by_class("pagination-per-page").first }
       let(:pagination_node) { Capybara.string(pagination_html.to_s) }
 
       it "should render per_page select tag" do
