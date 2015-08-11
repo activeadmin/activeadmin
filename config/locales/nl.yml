@@ -31,6 +31,10 @@ nl:
         ends_with: "Eindigt op"
         greater_than: "Groter dan"
         less_than: "Kleiner dan"
+    search_status:
+      headline: "Scope:"
+      current_filters: "Huidige filters:"
+      no_current_filters: "Geen"
     status_tag:
       "yes": "Ja"
       "no": "Geen"
@@ -67,12 +71,15 @@ nl:
       labels:
         destroy: "Verwijder"
     comments:
+      created_at: 'Aangemaakt op'
       resource_type: "Resource Type"
       author_type: "Auteur Type"
       body: "Tekst"
       author: "Auteur"
       title: "Reactie"
       add: "Voeg commentaar toe"
+      delete: 'Verwijder commentaar'
+      delete_confirmation: "Weet u zeker dat u dit commentaar wilt verwijderen?"
       resource: "Resource"
       no_comments_yet: "Nog geen reacties."
       author_missing: "Anoniem"
@@ -108,9 +115,16 @@ nl:
         title: "Verstuur bevestigingsinstructies opnieuw"
         submit: "Verstuur bevestigingsinstructies opnieuw"
       links:
+        sign_up: "Registreren"
         sign_in: "Meld u aan"
         forgot_your_password: "Wachtwoord vergeten?"
         sign_in_with_omniauth_provider: "Log in met %{provider}"
+        resend_unlock_instructions: "Ontgrendelinstructies opnieuw versturen"
+        resend_confirmation_instructions: "Bevestigingsinstructies opnieuw versturen"
+    unsupported_browser:
+      headline: "Opgelet, ActiveAdmin bied geen support meer voor Internet Explorer 8 of lager"
+      recommendation: "Wij raden aan om te upgraden naar de nieuwste <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, of <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Als u IE 9 of nieuwer gebruikt, zorg ervoor dat u <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\"> \"Compatibility View\" uit zet</a>."
     access_denied:
       message: "U bent niet gemachtigd voor deze actie."
     index_list:
@@ -118,4 +132,3 @@ nl:
       block: "Lijst"
       grid: "Rooster"
       blog: "Blog"
-
