@@ -1,27 +1,17 @@
-#login {
+.devise-form-container {
   background-color: $panel-background-color;
   border-radius: $border-radius-base;
   margin: 70px auto;
-  padding: 15px;
+  padding: 5px 0;
   width: 500px;
 
   h2 {
     font-size: 1.8em;
+    padding: 0 15px;
   }
 
-  fieldset.inputs {
+  .inputs {
     background-color: transparent;
     margin-bottom: 0;
-
-    ol {
-      padding: 15px 0;
-    }
-  }
-
-  a {
-    float: right;
-    margin-top: -45px;
-    position: relative;
-    z-index: 2; // to make sure link is always above full width fieldset (e.g. forgot password page)
   }
 }
