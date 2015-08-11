@@ -60,7 +60,7 @@ module ActiveAdmin
         end
 
         def build_empty_message
-          span I18n.t("active_admin.comments.no_comments_yet"), class: "empty"
+          span I18n.t("active_admin.comments.no_comments_yet"), class: "empty-value"
         end
 
         def comments_url(*args)

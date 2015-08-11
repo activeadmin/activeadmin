@@ -26,104 +26,102 @@
     color: $navbar-color;
     font-size: 1.3em;
   }
+}
 
-  .tabs {
-    display: table-cell;
-    margin: 0;
-    padding: 0 20px;
-    width: 100%;
+.main-utility-navigation {
+  padding: 0;
+  text-align: right;
+  white-space: nowrap;
+}
 
-    li {
-      &:hover > ul { display: block;}
+.main-navigation {
+  display: table-cell;
+  margin: 0;
+  padding: 0 20px;
+  width: 100%;
+
+   li {
+     &:hover > ul { display: block;}
+   }
+
+  // first level navigation items
+  > li {
+    display: inline-block;
+    position: relative;
+
+    &.current > a {
+      background-color: $navbar-link-active-background-color;
+      color: $navbar-link-active-color;
     }
 
-    > li {
+    &:hover > a {
+      background-color: $navbar-link-hover-background-color;
+      color: $navbar-link-hover-color;
+    }
+
+    a {
       display: inline-block;
+      padding: $navbar-padding-vertical $navbar-padding-horizontal;
+      position: relative;
+      transition: background-color 0.15s, color 0.15s;
+    }
+  }
+
+  // second level (sub menu for current item)
+  ul {
+    background-color: $navbar-background-color;
+    border-radius: 0 0 $navbar-border-radius $navbar-border-radius;
+    display: none;
+    list-style: none;
+    min-width: 175px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: $z-index-navbar;
+
+    > li {
       position: relative;
 
-      a {
-        display: inline-block;
-        padding: $navbar-padding-vertical $navbar-padding-horizontal;
-        position: relative;
-        transition: background-color 0.15s, color 0.15s;
+      > a {
+        display: block;
+        padding: ($navbar-padding-vertical / 2) $navbar-padding-horizontal;
       }
 
-      &.current > a {
-        background-color: $navbar-link-active-background-color;
-        color: $navbar-link-active-color;
-      }
-
-      &:hover > a {
+      &.current a,
+      > a:hover {
         background-color: $navbar-link-hover-background-color;
         color: $navbar-link-hover-color;
       }
 
+      &.has_nested > a {
+        background: url($menu-arrow-right-light-icon-url) no-repeat calc(100% - 7px) 55%;
+        padding-right: 20px;
+      }
+
       &.has_nested:hover > a {
-        z-index: $z-index-navbar; // so top part of sub menu box-shadow doesn't appear over this link
+        background: url($menu-arrow-right-dark-icon-url) no-repeat calc(100% - 7px) 55%;
+        color: #fff;
       }
 
       ul {
-        background-color: $navbar-background-color;
-        border-radius: 0 0 $navbar-border-radius $navbar-border-radius;
-        display: none;
-        list-style: none;
-        min-width: 175px;
-        padding: 5px 0;
-        position: absolute;
-        z-index: $z-index-navbar;
+        border-radius: 10px;
+        margin-top: 0;
+        top: -3px;
+        left: 100%;
 
-        li {
-          position: relative;
-
-          a {
-            display: block;
-            padding: ($navbar-padding-vertical / 2) $navbar-padding-horizontal;
-          }
-
-          &.current a,
-          a:hover {
-            background-color: $navbar-link-hover-background-color;
-            color: $navbar-link-hover-color;
-          }
-
-          &.has_nested > a {
-            background: url($menu-arrow-right-light-icon-url) no-repeat calc(100% - 7px) 55%;
-            padding-right: 20px;
-          }
-
-          &.has_nested:hover > a {
-            background: url($menu-arrow-right-dark-icon-url) no-repeat calc(100% - 7px) 55%;
-            color: #fff;
-          }
-
-          ul {
-            border-radius: 10px;
-            margin-top: 0;
-            top: -3px;
-            left: 100%;
-
-            /* Create an invisible backdrop that adds 8px margin around the dropdown menu or submenu
-               that maintains the hover. This makes it much easier to navigate to submenus in
-               particular without losing hover accientally, especially near rounded corners. */
-            &:after {
-              content: "";
-              display: block;
-              position: absolute;
-              top: -8px;
-              left: -8px;
-              height: calc(100% + 16px);
-              width: calc(100% + 16px);
-              z-index: -2;
-            }
-          }
+        /* Create an invisible backdrop that adds 8px margin around the dropdown menu or submenu
+           that maintains the hover. This makes it much easier to navigate to submenus in
+           particular without losing hover accientally, especially near rounded corners. */
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: -8px;
+          left: -8px;
+          height: calc(100% + 16px);
+          width: calc(100% + 16px);
+          z-index: -2;
         }
       }
     }
-  }
-
-  .utility-nav {
-    padding: 0;
-    text-align: right;
-    white-space: nowrap;
   }
 }

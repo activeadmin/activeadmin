@@ -82,40 +82,38 @@
     text-align: center;
   }
 
-  thead th {
+  th {
     border-bottom: none;
     font-size: 0.9em;
     font-weight: $font-weight-bold;
     padding: 2px 0;
   }
 
-  tbody {
-    td {
-      border: none;
-      height: 22px;
-      width: 22px;
+  td {
+    border: none;
+    height: 22px;
+    width: 22px;
 
-      a {
-        border-radius: $border-radius-base;
-        color: $text-color;
-        display: block;
-        font-size: 0.9em;
-        line-height: 1;
-        padding: 6px 0;
+    a {
+      border-radius: $border-radius-base;
+      color: $text-color;
+      display: block;
+      font-size: 0.9em;
+      line-height: 1;
+      padding: 6px 0;
 
-        &:hover {
-          background-color: $date-picker-calendar-link-hover-background-color;
-        }
+      &:hover {
+        background-color: $date-picker-calendar-link-hover-background-color;
+      }
 
-        &.ui-state-active,
-        &.ui-state-active:hover {
-          background-color: $date-picker-calendar-link-active-background-color;
-        }
+      &.ui-state-active,
+      &.ui-state-active:hover {
+        background-color: $date-picker-calendar-link-active-background-color;
+      }
 
-        &.ui-state-highlight,
-        &.ui-state-highlight:hover { // today's date
-          background-color: $date-picker-calendar-link-hover-background-color;
-        }
+      &.ui-state-highlight,
+      &.ui-state-highlight:hover { // today's date
+        background-color: $date-picker-calendar-link-hover-background-color;
       }
     }
   }

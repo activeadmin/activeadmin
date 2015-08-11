@@ -99,13 +99,13 @@ thead {
     th {
       width: 180px;
     }
+  }
 
-    td .empty {
-      color: $text-muted-color;
-      font-size: 0.8em;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
+  .empty-value {
+    color: $text-muted-color;
+    font-size: 0.8em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
   }
 }
 
