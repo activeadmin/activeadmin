@@ -1,14 +1,14 @@
 language: ruby
 install:
-  - time ./script/travis_cache download_bundle
-  - time gem install bundler # use the very latest Bundler
-  - time bundle install --without development --path=./bundle
+  - ./script/travis_cache download_bundle
+  - gem install bundler # use the very latest Bundler
+  - bundle install --without development --path=./bundle
   - bundle clean # delete now-outdated gems
-  - time ./script/travis_cache download_app
-  - time bundle exec rake setup
-  - time ./script/travis_cache upload
+  - ./script/travis_cache download_app
+  - bundle exec rake setup
+  - ./script/travis_cache upload
 script:
-  - time bundle exec rake test_with_coveralls
+  - bundle exec rake test_with_coveralls
 rvm:
   - 1.9
   - 2.1
