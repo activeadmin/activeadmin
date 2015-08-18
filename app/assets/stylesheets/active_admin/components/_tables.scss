@@ -28,41 +28,9 @@ thead {
     a:link,
     a:visited {
       color: $text-color;
-      display: block;
-      position: relative;
+      display: inline-block;
       text-decoration: none;
       white-space: nowrap;
-    }
-
-    &.sortable a {
-      &:after,
-      &:before {
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        bottom: 100%;
-        content: "";
-        height: 0;
-        position: absolute;
-        right: 0;
-        top: calc(50% - 2px);
-        width: 0;
-      }
-    }
-
-    &.sorted-asc a {
-      padding-right: 11px;
-
-      &:after { // upward pointing arrow
-        border-bottom: 4px solid;
-      }
-    }
-
-    &.sorted-desc a {
-      padding-right: 11px;
-
-      &:before { // downward pointing arrow
-        border-top: 4px solid;
-      }
     }
   }
 

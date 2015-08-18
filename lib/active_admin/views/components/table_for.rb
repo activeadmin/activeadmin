@@ -70,13 +70,18 @@ module ActiveAdmin
         sort_key = sortable? && col.sortable? && col.sort_key
         params = request.query_parameters.except :page, :order, :commit, :format
 
-        classes << "sortable" if sort_key
-        classes << "sorted-#{current_sort[1]}" if sort_key && current_sort[0] == sort_key
         classes << col.html_class
 
         if sort_key
+          classes << "sortable"
+
+          caret_classes = Arbre::HTML::ClassList.new
+          caret_classes << "caret up" if current_sort[0] == sort_key && current_sort[1] == "asc"
+          caret_classes << "caret down" if current_sort[0] == sort_key && current_sort[1] == "desc"
+
           th class: classes do
-            link_to col.pretty_title, params: params, order: "#{sort_key}_#{order_for_sort_key(sort_key)}"
+            text_node link_to col.pretty_title, params: params, order: "#{sort_key}_#{order_for_sort_key(sort_key)}"
+            span class: caret_classes
           end
         else
           th col.pretty_title, class: classes
