@@ -53,7 +53,7 @@ module ActiveAdmin
 
       def add_default_user_to_seed
         # Don't assume that we have a migration!
-        seeds_file = Rails.application.paths["db/seeds.rb"].existent
+        seeds_file = Rails.application.paths["db/seeds.rb"].existent.first
         return if seeds_file.nil? || !options[:default_user]
 
         create_user_code = "#{class_name}.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')"
