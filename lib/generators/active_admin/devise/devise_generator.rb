@@ -51,27 +51,14 @@ module ActiveAdmin
         gsub_file routes_file, /devise_for :#{plural_table_name}$/, "devise_for :#{plural_table_name}, ActiveAdmin::Devise.config"
       end
 
-      def add_default_user_to_migration
+      def add_default_user_to_seed
         # Don't assume that we have a migration!
-        devise_migration_file = Dir["db/migrate/*_devise_create_#{table_name}.rb"].first
+        seeds_file = Rails.application.paths["db/seeds.rb"].existent
         return if devise_migration_file.nil? || !options[:default_user]
-
-        devise_migration_content = File.read(devise_migration_file)
 
         create_user_code = "#{class_name}.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')"
 
-        if devise_migration_content["def change"]
-          inject_into_file  devise_migration_file,
-                            "def migrate(direction)\n    super\n    # Create a default user\n    #{create_user_code} if direction == :up\n  end\n\n  ",
-                            before: "def change"
-        elsif devise_migration_content[/def (self.)?up/]
-          inject_into_file  devise_migration_file,
-                            "# Create a default user\n    #{create_user_code}\n\n    ",
-                            before: "add_index :#{table_name}, :email"
-        else
-          puts devise_migration_content
-          raise "Failed to add default admin user to migration."
-        end
+        append_to_file seeds_file, create_user_code
       end
     end
   end
