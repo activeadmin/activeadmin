@@ -89,8 +89,22 @@ describe ActiveAdmin::Views::StatusTag do
       end
     end
 
-    context "when status is false" do
+    context "when status is 'false'" do
       subject { status_tag('false') }
+
+      describe '#class_list' do
+        subject { super().class_list }
+        it      { is_expected.to include('status_tag') }
+      end
+
+      describe '#content' do
+        subject { super().content }
+        it      { is_expected.to eq('No') }
+      end
+    end
+
+    context "when status is false" do
+      subject { status_tag(false) }
 
       describe '#class_list' do
         subject { super().class_list }

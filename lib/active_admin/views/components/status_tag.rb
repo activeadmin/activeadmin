@@ -57,9 +57,10 @@ module ActiveAdmin
       protected
 
       def convert_to_boolean_status(status)
-        if status == 'true'
+        case status
+        when true, 'true'
           'Yes'
-        elsif ['false', nil].include?(status)
+        when false, 'false', nil
           'No'
         else
           status
