@@ -110,8 +110,8 @@ module ActiveAdmin
         elsif item.respond_to? :[]
           item[data]
         end
-        value = pretty_format(value) if data.is_a?(Symbol)
         value = status_tag value     if is_boolean? data, item
+        value = pretty_format(value) if data.is_a?(Symbol)
         value
       end
 

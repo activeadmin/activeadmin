@@ -39,7 +39,7 @@ module ActiveAdmin
         type = args[1]
         label = options.delete(:label)
         classes = options.delete(:class)
-        status = convert_to_boolean_status(status)
+        status = status_from_boolean(status)
 
         if status
           content = label || if s = status.to_s and s.present?
@@ -56,10 +56,10 @@ module ActiveAdmin
 
       protected
 
-      def convert_to_boolean_status(status)
-        if status == 'true'
+      def status_from_boolean(status)
+        if status == true
           'Yes'
-        elsif ['false', nil].include?(status)
+        elsif [false, nil].include?(status)
           'No'
         else
           status
