@@ -13,7 +13,7 @@ $(document).on 'ready page:load', ->
 
   # Clear Filters button
   $('.clear_filters_btn').click ->
-    params = window.location.search.split('&')
+    params = window.location.search.slice(1).split('&')
     regex = /^(q\[|q%5B|q%5b|page|commit)/
     window.location.search = (param for param in params when not param.match(regex)).join('&')
 
