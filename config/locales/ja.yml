@@ -7,7 +7,7 @@ ja:
     view: "閲覧"
     edit: "編集"
     delete: "削除"
-    delete_confirmation: "本当に削除しますか?"
+    delete_confirmation: "本当に削除しますか？"
     new_model: "%{model} を作成する"
     edit_model: "%{model} を編集する"
     delete_model: "%{model} を削除する"
@@ -61,8 +61,8 @@ ja:
       button_label: "操作"
     batch_actions:
       button_label: "一括操作"
-      default_confirmation: "本当によろしいですか。"
-      delete_confirmation: "%{plural_model} を削除してもよろしいですか?"
+      default_confirmation: "本当によろしいですか？"
+      delete_confirmation: "%{plural_model} を削除してもよろしいですか？"
       succesfully_destroyed:
         one: "1件の %{model} を削除しました"
         other: "%{count}件の %{plural_model} を削除しました"
