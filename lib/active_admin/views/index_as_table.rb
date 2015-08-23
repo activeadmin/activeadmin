@@ -108,6 +108,16 @@ module ActiveAdmin
     # end
     # ```
     #
+    # In addition, you can insert the position of the row in the greater collection by using the index_column special command:
+    #
+    # ```ruby
+    # index do
+    #   selectable_column
+    #   index_column
+    #   column :title
+    # end
+    # ```
+    #
     # ## Sorting
     #
     # When a column is generated from an Active Record attribute, the table is
@@ -241,6 +251,12 @@ module ActiveAdmin
           return unless active_admin_config.batch_actions.any?
           column resource_selection_toggle_cell, class: 'col-selectable', sortable: false do |resource|
             resource_selection_cell resource
+          end
+        end
+
+        def index_column
+          column '#', class: 'col-index', sortable: false do |resource|
+            @collection.offset_value + @collection.index(resource) + 1
           end
         end
 
