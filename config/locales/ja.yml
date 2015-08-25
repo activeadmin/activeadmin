@@ -72,12 +72,15 @@ ja:
       labels:
         destroy: "削除する"
     comments:
+      created_at: "作成日"
       resource_type: "リソース種別"
       author_type: "作成者種別"
       body: "本文"
       author: "作成者"
       title: "コメント"
       add: "コメントを追加"
+      delete: "コメントを削除"
+      delete_confirmation: "本当にコメントを削除しますか？"
       resource: "リソース"
       no_comments_yet: "コメントはまだありません。"
       author_missing: "匿名ユーザ"
