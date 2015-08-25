@@ -101,6 +101,27 @@ describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
           end
         end
       end
+
+      context 'allows for zero-based indices' do
+        let(:table) do
+          render_arbre_component assigns, helpers do
+            insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, {sortable: true}) do
+              index_column(0)
+            end
+          end
+        end
+
+        let(:index_values) do
+          table.find_by_tag('tr').map do |row|
+            next unless row.find_by_tag('td').first
+            row.find_by_tag('td').first.content
+          end.compact
+        end
+
+        it 'shows the correct indices' do
+          expect(index_values).to eq(['0', '1'])
+        end
+      end
     end
   end
 end

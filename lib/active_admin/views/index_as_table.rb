@@ -118,6 +118,8 @@ module ActiveAdmin
     # end
     # ```
     #
+    # index_column take an optional offset parameter to allow a developer to set the starting number for the index (default is 1).
+    #
     # ## Sorting
     #
     # When a column is generated from an Active Record attribute, the table is
@@ -254,9 +256,9 @@ module ActiveAdmin
           end
         end
 
-        def index_column
+        def index_column(start_value = 1)
           column '#', class: 'col-index', sortable: false do |resource|
-            @collection.offset_value + @collection.index(resource) + 1
+            @collection.offset_value + @collection.index(resource) + start_value
           end
         end
 
