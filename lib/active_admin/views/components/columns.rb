@@ -41,7 +41,7 @@ module ActiveAdmin
     # the first being 2 time bigger than the second.
     #
     #
-    # == Max and Mix Column Sizes
+    # == Max and Min Column Sizes
     #
     # Active Admin is a fluid width layout, which means that columns are all defined
     # using percentages. Sometimes this can cause issues if you don't want a column
