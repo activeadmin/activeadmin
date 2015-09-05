@@ -93,7 +93,7 @@ module ActiveAdmin
         if options[:entry_name]
           entry_name   = options[:entry_name]
           entries_name = options[:entries_name] || entry_name.pluralize
-        elsif collection_is_empty?
+        elsif collection_is_empty?(collection)
           entry_name   = I18n.t "active_admin.pagination.entry", :count => 1, :default => 'entry'
           entries_name = I18n.t "active_admin.pagination.entry", :count => 2, :default => 'entries'
         else
@@ -103,7 +103,7 @@ module ActiveAdmin
         end
 
         if collection.num_pages < 2
-          case collection_size
+          case collection_size(collection)
           when 0; I18n.t('active_admin.pagination.empty',    :model => entries_name)
           when 1; I18n.t('active_admin.pagination.one',      :model => entry_name)
           else;   I18n.t('active_admin.pagination.one_page', :model => entries_name, :n => collection.total_count)
@@ -113,10 +113,10 @@ module ActiveAdmin
           if @display_total
             total  = collection.total_count
             I18n.t 'active_admin.pagination.multiple', :model => entries_name, :total => total,
-              :from => offset + 1, :to => offset + collection_size
+              :from => offset + 1, :to => offset + collection_size(collection)
           else
             I18n.t 'active_admin.pagination.multiple_without_total', :model => entries_name,
-              :from => offset + 1, :to => offset + collection_size
+              :from => offset + 1, :to => offset + collection_size(collection)
           end
         end
       end

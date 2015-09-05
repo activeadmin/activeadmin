@@ -31,16 +31,6 @@ describe ActiveAdmin::Helpers::Collection do
     it "should return the collection size for a collection with group by, select and custom order" do
       expect(collection_size(Post.select("title, count(*) as nb_posts").group(:title).order("nb_posts"))).to eq 2
     end
-
-    it "should take the defined collection by default" do
-      def collection; Post; end
-
-      expect(collection_size).to eq 3
-
-      def collection; Post.where(:title => "An other post"); end
-
-      expect(collection_size).to eq 1
-    end
   end
 
   describe "#collection_is_empty?" do
@@ -50,16 +40,6 @@ describe ActiveAdmin::Helpers::Collection do
 
     it "should return false when the collection is not empty" do
       expect(collection_is_empty?(Post.where(:title => "A post"))).to be_false
-    end
-
-    it "should take the defined collection by default" do
-      def collection; Post; end
-
-      expect(collection_is_empty?).to be_false
-
-      def collection; Post.where(:title => "Non existing post"); end
-
-      expect(collection_is_empty?).to be_true
     end
   end
 end

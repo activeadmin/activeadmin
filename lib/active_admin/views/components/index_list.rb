@@ -58,7 +58,7 @@ module ActiveAdmin
       end
 
       def current_filter_search_empty?
-        params.include?(:q) && collection_is_empty?
+        params.include?(:q) && collection_is_empty?(collection)
       end
 
     end
