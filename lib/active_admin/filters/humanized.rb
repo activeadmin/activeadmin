@@ -10,7 +10,7 @@ module ActiveAdmin
       end
 
       def value
-        @value
+        @value.is_a?(::Array) ? @value.compact.join(', ') : @value
       end
 
       def body
