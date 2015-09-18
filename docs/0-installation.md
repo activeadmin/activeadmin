@@ -3,7 +3,7 @@
 Active Admin is a Ruby Gem.
 
 ```ruby
-gem 'activeadmin'
+gem 'activeadmin', '~> 1.0.0.pre1'
 
 # Plus integrations with:
 gem 'devise'
@@ -21,6 +21,8 @@ After installing the gem, you need to run the generator. By default we use Devis
 the generator creates an `AdminUser` model. If you want to create a different model
 (or modify an existing one for use with Devise) you can pass it as an argument.
 If you want to skip Devise configuration entirely, you can pass `--skip-users`.
+If you're starting a new app, it would make sense to only run the second line.
+Running all three of the lines below will cause conflicts so it makes sense to only choose the one that makes sense for your needs.
 
 ```sh
 rails g active_admin:install              # creates the AdminUser class
@@ -51,7 +53,7 @@ Visit `http://localhost:3000/admin` and log in as the default user:
 
 Voila! You're on your brand new Active Admin dashboard.
 
-To register an existing model with Active Admin:
+If you don't already have a model that you wish to put on the dashboard, now is the time to add it using the regular Rails process. Then add it into ActiveAdmin with the following command, replacing "MyModel" with the name of your model:
 
 ```sh
 rails generate active_admin:resource MyModel
