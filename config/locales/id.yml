@@ -1,0 +1,135 @@
+id:
+  active_admin:
+    dashboard: Dashboard
+    dashboard_welcome:
+      welcome: "Selamat datang di Active Admin. Ini adalah tampilan standar halaman dashboard."
+      call_to_action: "Tampilan halaman ini bisa diubah di file 'app/admin/dashboard.rb'"
+    view: "Lihat"
+    edit: "Ubah"
+    delete: "Hapus"
+    delete_confirmation: "Apakah anda yakin ingin menghapus data ini?"
+    new_model: "Tambah %{model} baru"
+    edit_model: "Ubah %{model}"
+    delete_model: "Hapus %{model}"
+    details: "Detail %{model}"
+    cancel: "Batal"
+    empty: "Kosong"
+    previous: "Sebelumnya"
+    next: "Berikutnya"
+    download: "Unduh:"
+    has_many_new: "Tambah %{model} baru"
+    has_many_delete: "Hapus"
+    has_many_remove: "Hapus"
+    filters:
+      buttons:
+        filter: "Filter"
+        clear: "Hapus Filters"
+      predicates:
+        contains: "Mengandung"
+        equals: "Sama dengan"
+        starts_with: "Diawali dengan"
+        ends_with: "Diakhiri dengan"
+        greater_than: "Lebih besar dari"
+        less_than: "Lebih kecil dari"
+    search_status:
+      headline: "Scope:"
+      current_filters: "Filter kini:"
+      no_current_filters: "Tidak ada"
+    status_tag:
+      "yes": "Ya"
+      "no": "Tidak"
+    main_content: "Harap mengimplementasikan %{model}#main_content untuk menampilkan konten."
+    logout: "Keluar"
+    powered_by: "Dibuat dengan %{active_admin} %{version}"
+    sidebars:
+      filters: "Filter"
+      search_status: "Status Pencarian"
+    pagination:
+      empty: "Tidak ada %{model} yang bisa ditemukan"
+      one: "Menampilkan <b>1</b> %{model}"
+      one_page: "Menampilkan <b>semua %{n}</b> %{model}"
+      multiple: "Menampilkan <b>%{from}&nbsp;-&nbsp;%{to}</b> dari <b>%{total}</b> keseluruhan %{model}"
+      multiple_without_total: "Menampilkan <b>%{from}&nbsp;-&nbsp;%{to} %{model}</b>"
+      entry:
+        one: "data"
+        other: "data"
+    any: "Apapun"
+    blank_slate:
+      content: "%{resource_name} masih belum ada sama sekali."
+      link: "Tambah data"
+    dropdown_actions:
+      button_label: "Tindakan"
+    batch_actions:
+      button_label: "Tindakan Serentak"
+      default_confirmation: "Apakah anda yakin akan melakukan ini?"
+      delete_confirmation: "Apakah anda yakin akan menghapus %{plural_model}?"
+      succesfully_destroyed:
+        one: "Berhasil menghapus %{model}"
+        other: "Berhasil menghapus %{count} %{plural_model}"
+      selection_toggle_explanation: "(Tampilkan Pilihan)"
+      link: "Tambah data"
+      action_label: "%{title} terpilih"
+      labels:
+        destroy: "Hapus"
+    comments:
+      created_at: "Dibuat"
+      resource_type: "Jenis Resource"
+      author_type: "Tipe Penulis"
+      body: "Isi"
+      author: "Penulis"
+      title: "Komentar"
+      add: "Tambah Komentar"
+      delete: "Hapus Komentar"
+      delete_confirmation: "Apakah anda yakin akan menghapus komentar tersebut?"
+      resource: "Resource"
+      no_comments_yet: "Belum ada komentar sama sekali."
+      author_missing: "Anonim"
+      title_content: "Komentar (%{count})"
+      errors:
+        empty_text: "Komentar tak bisa disimpan, text tidak boleh dikosongi."
+    devise:
+      username:
+        title: "Username"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Subdomain"
+      password:
+        title: "Password"
+      sign_up:
+        title: " - Daftar"
+        submit: "Daftar"
+      login:
+        title: " - Masuk"
+        remember_me: "Ingat saya"
+        submit: "Masuk"
+      reset_password:
+        title: " - Form Atur Ulang Password"
+        submit: "Atur ulang password"
+      change_password:
+        title: " - Atur Ulang Password"
+        submit: "Kirimkan instruksi pengaturan ulang password"
+      unlock:
+        title: " - Kirim Instruksi Pengaktifan Kembali Akun"
+        submit: "Kirimkan instruksi pengaktifan kembali akun"
+      resend_confirmation_instructions:
+        title: " - Kirim Lagi Instruksi Konfirmasi Akun"
+        submit: "Kirimkan lagi instruksi konfirmasi akun"
+      links:
+        sign_up: "Daftar"
+        sign_in: "Masuk"
+        forgot_your_password: "Lupa password?"
+        sign_in_with_omniauth_provider: "Daftar melalui %{provider}"
+        resend_unlock_instructions: "Kirim instruksi pengaktifan kembali akun"
+        resend_confirmation_instructions: "Kirim lagi instruksi konfirmasi akun"
+    unsupported_browser:
+      headline: "Harap dicatat bahwa ActiveAdmin sudah tidak mendukung InternetExplorer versi 8 atau versi sebelum itu."
+      recommendation: "Kami sarankan agar anda mengupgrade ke versi <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, atau <a href=\"https://mozilla.org/firefox/\">Firefox</a> yang terbaru."
+      turn_off_compatibility_view: "Kalau anda menggunakan IE 9 atau yang lebih baru, pastikan anda <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">mematikan \"Compatibility View\"</a>."
+    access_denied:
+      message: "Anda tidak diperkenankan melakukan aksi tersebut."
+    index_list:
+      table: "Tabel"
+      block: "Daftar"
+      grid: "Grid"
+      blog: "Blog"
