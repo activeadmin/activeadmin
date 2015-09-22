@@ -1,4 +1,5 @@
 language: ruby
+sudo: false
 install:
   - ./script/travis_cache download_bundle
   - gem install bundler # use the very latest Bundler
