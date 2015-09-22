@@ -20,7 +20,6 @@ env:
     - "RAILS=4.1.11"
     - "RAILS=4.2.2"
   global:
-    - secure: lRYUGVUV94eqrR7C0b0hhvp+W76NkLRAn6jkJGCbRCEojbeb3HlgK1P+nTDeIuiDmXksJOG6VD3ZiZAn9Plznj7I/MFh+ijgvk8eWj9QNxA8riaSEPAu5VYtPA+uaw1olUt196U3qXH+SaXB4sx5wdIUXpd9qxWWWsW11ia0Jzs=
     - JRUBY_OPTS="-J-Xmx1024m --debug"
 matrix:
   fast_finish: true
