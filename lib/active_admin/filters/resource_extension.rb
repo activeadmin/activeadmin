@@ -107,11 +107,11 @@ module ActiveAdmin
 
       # @return [Array] The array of default filters for this resource
       def default_filters
-        [].tap do |result|
-          result.concat default_association_filters if namespace.include_default_association_filters
-          result.concat default_content_filters
-          result.concat custom_ransack_filters
-        end
+        result = []
+        result.concat default_association_filters if namespace.include_default_association_filters
+        result.concat default_content_filters
+        result.concat custom_ransack_filters
+        result
       end
 
       def custom_ransack_filters
