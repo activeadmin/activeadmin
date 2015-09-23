@@ -13,6 +13,8 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n").sort
   s.test_files    = `git ls-files -- {spec,features}/*`.split("\n")
 
+  s.required_ruby_version = '>= 1.9.3'
+
   s.add_dependency 'arbre',               '~> 1.0', '>= 1.0.2'
   s.add_dependency 'bourbon'
   s.add_dependency 'coffee-rails'
