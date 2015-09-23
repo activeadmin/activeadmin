@@ -24,7 +24,7 @@ gem 'activeadmin', github: 'activeadmin'
 
 Or you can using rubygems:
 ```ruby
-gem 'activeadmin', '~> 1.0.0.pre1'
+gem 'activeadmin', '~> 1.0.0.pre2'
 ```
 
 *Keep in mind that during the time where we use `pre`-release label, things can break in each release!*
