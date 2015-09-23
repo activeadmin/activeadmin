@@ -10,8 +10,6 @@ gem 'rails', rails_version
 jquery_ui_rails_version = rails_version > "4" ? "~> 5.0" : "~> 4.0"
 gem 'jquery-ui-rails', jquery_ui_rails_version
 
-gem 'execjs', '~> 2.4.0' # ~> 2.5.0 works only for Ruby > 2.0
-
 # Optional dependencies
 gem 'cancan'
 gem 'devise'
