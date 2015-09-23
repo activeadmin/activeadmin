@@ -34,6 +34,7 @@ matrix:
     - rvm: 2.1
       env: "RAILS=4.2.2"
 notifications:
+  email: false
   irc:
     channels:
       - "irc.freenode.org#activeadmin"
