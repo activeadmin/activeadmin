@@ -1,3 +1,5 @@
+# Encoding: UTF-8
+
 require 'rails_helper'
 
 describe ActiveAdmin::CSVBuilder do
@@ -231,6 +233,63 @@ describe ActiveAdmin::CSVBuilder do
       builder.build dummy_controller, []
     end
 
+  end
+
+  context "build csv using specified encoding and encoding_options" do
+    let(:dummy_controller) do
+      class DummyController
+        def find_collection(*)
+          collection
+        end
+
+        def collection
+          Post
+        end
+
+        def apply_decorator(resource)
+          resource
+        end
+
+        def view_context
+        end
+      end
+      DummyController.new
+    end
+    let(:encoding) { Encoding::ASCII }
+    let(:opts) { {} }
+    let(:builder) do
+      ActiveAdmin::CSVBuilder.new(encoding: encoding, encoding_options: opts) do
+        column "おはようございます"
+        column "title"
+      end
+    end
+
+    context "Shift-JIS with options" do
+      let(:encoding) { Encoding::Shift_JIS }
+      let(:opts) { { invalid: :replace, undef: :replace, replace: "?" } }
+
+      it "encodes the CSV" do
+        receiver = []
+        builder.build dummy_controller, receiver
+        line = receiver.last
+        expect(line.encoding).to eq(encoding)
+      end
+    end
+
+    context "ASCII with options" do
+      let(:encoding) { Encoding::ASCII }
+      let(:opts) do
+        { invalid: :replace, undef: :replace, replace: "__REPLACED__" }
+      end
+
+      it "encodes the CSV without errors" do
+        receiver = []
+        builder.build dummy_controller, receiver
+        line = receiver.last
+        expect(line.encoding).to eq(encoding)
+        expect(line).to include("__REPLACED__")
+      end
+    end
   end
 
   skip '#exec_columns'
