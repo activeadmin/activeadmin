@@ -132,3 +132,8 @@ de:
       block: "Liste"
       grid: "Gitter"
       blog: "Blog"
+  activerecord:
+    models:
+      comment:
+        one: Kommentar
+        other: Kommentare
