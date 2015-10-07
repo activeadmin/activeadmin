@@ -45,7 +45,7 @@ rake db:seed
 rails server
 ```
 
-Please note if the server was running, you need to restart it for active admin to work.  
+*Please note if the server was running, you need to restart it for active admin to work.*  
 Visit `http://localhost:3000/admin` and log in as the default user:
 
 * __User__: admin@example.com
