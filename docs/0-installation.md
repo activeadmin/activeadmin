@@ -37,10 +37,11 @@ app/assets/stylesheets/active_admin.scss
 config/initializers/active_admin.rb
 ```
 
-Now, migrate your database and start the server:
+Now, migrate and seed your database before starting the server:
 
 ```sh
 rake db:migrate
+rake db:seed
 rails server
 ```
 
