@@ -9,3 +9,6 @@ java_script:
 
 scss:
   enabled: true
+
+Metrics/LineLength:
+  Max: 110
