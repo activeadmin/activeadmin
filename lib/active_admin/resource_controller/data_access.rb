@@ -275,12 +275,10 @@ module ActiveAdmin
       end
 
       def collection_applies(options = {})
-        only = Array(options.fetch(:only, COLLECTION_APPLIES))
+        only   = Array(options.fetch(:only, COLLECTION_APPLIES))
         except = Array(options.fetch(:except, []))
-        
-        # see #4074 for code reasons
-        COLLECTION_APPLIES.select { |applier| only.include? applier }
-                          .reject { |applier| except.include? applier }
+
+        COLLECTION_APPLIES & only - except
       end
 
       def per_page
