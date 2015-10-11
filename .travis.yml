@@ -12,31 +12,26 @@ script:
   - bundle exec rake test_with_coveralls
 rvm:
   - 1.9
-  - 2.1
-  - 2.2
+  - 2.2.3
   - jruby-9.0.0.0
 env:
   matrix:
-    - "RAILS=3.2.22"
-    - "RAILS=4.1.11"
-    - "RAILS=4.2.2"
+    - RAILS=3.2.22
+    - RAILS=4.1.13
+    - RAILS=4.2.4
   global:
     - JRUBY_OPTS="-J-Xmx1024m --debug"
 matrix:
   fast_finish: true
   exclude:
-    - rvm: 2.2
-      env: "RAILS=3.2.22"
+    - rvm: 2.2.3
+      env: RAILS=3.2.22
     - rvm: jruby-9.0.0.0
-      env: "RAILS=3.2.22"
-    - rvm: 2.1
-      env: "RAILS=4.1.11"
-    - rvm: 2.1
-      env: "RAILS=4.2.2"
+      env: RAILS=3.2.22
 notifications:
   irc:
     channels:
-      - "irc.freenode.org#activeadmin"
+      - irc.freenode.org#activeadmin
     on_success: change
     on_failure: always
     skip_join: true
