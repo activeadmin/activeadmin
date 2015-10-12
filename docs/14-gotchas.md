@@ -89,4 +89,6 @@ YourModel.__elasticsearch__.search
 ```ruby
 YourModel.solr_search
 ```
+## Authentication & Application Controller
 
+The `ActiveAdmin::BaseController` inherits from the `ApplicationController`. Any authentication method(s) specified in the `ApplicationController` callbacks will be called instead of the authentication method in the active admin config file. For example, if the ApplicationController has a callback `before_action :custom_authentication_method` and the config file's authentication method is `config.authentication_method = :authenticate_active_admin_user`, then `custom_authentication_method` will be called instead of `authenticate_active_admin_user`.
