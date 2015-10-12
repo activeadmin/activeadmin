@@ -1,9 +1,9 @@
 ar:
   active_admin:
-    dashboard: لوحة تحكم
+    dashboard: "لوحة تحكم"
     dashboard_welcome:
-      welcome: ".مرحبا بك في الادارة. لوحة التحكم الرئيسية "
-      call_to_action: "'app/admin/dashboard.rb' لاضافة وحدة الي لوحة التحكم, اتبع "
+      welcome: "مرحبًا بك في في صفحة الإدارة، وهذه هي الصفحة الإفتراضيّة."
+      call_to_action: "لإضافة أقسام إلى  لوحة التحكم, راجع: 'app/admin/dashboard.rb'"
     view: "عرض"
     edit: "تعديل"
     delete: "حذف"
@@ -11,34 +11,34 @@ ar:
     new_model: "جديد %{model}"
     edit_model: "تعديل %{model}"
     delete_model: "حذف %{model}"
-    details: "%{model} التفاصيل"
+    details: "تفاصيل %{model}"
     cancel: "إلغاء"
     empty: "فارغ"
     previous: "السابق"
     next: "التالي"
     download: "تحميل"
-    has_many_new: "اضافة جديد %{model}"
+    has_many_new: "إضافة %{model} جديد"
     has_many_delete: "حذف"
-    has_many_remove: "ازالة"
+    has_many_remove: "إزالة"
     filters:
       buttons:
-        filter: "تصنيف"
-        clear: "تفريغ"
+        filter: "تصفية"
+        clear: "تفريغ التصفية"
       predicates:
         contains: "يحتوي"
         equals: "متساوي"
-        starts_with: "يبدأ ب"
-        ends_with: "ينتهي ب"
-        greater_than: "اكثر من"
-        less_than: "اقل من"
+        starts_with: "يبدأ بـ"
+        ends_with: "ينتهي بـ"
+        greater_than: "أكبر من"
+        less_than: "أقل من"
     search_status:
       headline: "المجال:"
       current_filters: "المُرشحات الحاليّة:"
       no_current_filters: "بدون"
     status_tag:
-      "yes": "نعم"
-      "no": "لا"
-    main_content: "الرجاء التنفيذ %{model}#main_content لعرض المحتويات."
+      'yes': "نعم"
+      'no': "لا"
+    main_content: "الرجاء تنفيذ %{model}#main_content لعرض المحتوى."
     logout: "تسجيل الخروج"
     powered_by: "تنفيذ %{active_admin} %{version}"
     sidebars:
@@ -48,49 +48,52 @@ ar:
       empty: "لا يوجد %{model} "
       one: "عرض <b>1</b> %{model}"
       one_page: "عرض <b>all %{n}</b> %{model}"
-      multiple: "عرض %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
+      multiple: "عرض %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> من <b>%{total}</b> بالمجمل"
       multiple_without_total: "عرض %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "مدخل"
         other: "مدخلات"
     any: "أي"
     blank_slate:
-      content: "لايوجد  %{resource_name} بعد."
-      link: "أنشاء"
+      content: "لايوجد %{resource_name} بعد."
+      link: "إنشاء"
     dropdown_actions:
-      button_label: "عمليات"
+      button_label: "إجراءات"
     batch_actions:
-      button_label: "Batch Actions"
-      default_confirmation: "هل انت متأكد من هذا"
-      delete_confirmation: " هل انت متأكد من حذف هذا%{plural_model}?"
+      button_label: "إجراءات متعددة"
+      default_confirmation: "هل أنت متأكّد؟"
+      delete_confirmation: "هل أنت متأكّد من حذف هذه %{plural_model}؟"
       succesfully_destroyed:
-        one: "دمرت بنجاح 1 %{model}"
-        other: "دمرت بنجاح %{count} %{plural_model}"
+        one: "حُذف بنجاح 1 %{model}"
+        other: "حُذف بنجاح %{count} %{plural_model}"
       selection_toggle_explanation: "(تتبيث الخيار)"
       link: "إنشاء"
-      action_label: "%{title} مختار"
+      action_label: "اُختير %{title}"
       labels:
         destroy: "حذف"
     comments:
-      resource_type: "نوع المصادر"
-      author_type: "نوع الؤلف"
+      resource_type: "نوع المصدر"
+      author_type: "نوع الؤلّف"
       body: "هيكل"
-      author: "مؤلف"
+      author: "مؤلّف"
       title: "تعليق"
       add: "إضافة تعليق"
-      resource: "مصادر"
-      no_comments_yet: "لا يوجد تعليقات بعد"
+      resource: "مصدر"
+      no_comments_yet: "لا يوجد تعليقات بعد."
       author_missing: "مجهول"
       title_content: "تعليقات (%{count})"
       errors:
-        empty_text: "لم يتم إضافة تعليق، النص فارغ"
+        empty_text: "لم يُحفظ التعليق، النص فارغ."
+      created_at: "أُنشئ"
+      delete: "حذف تعليق"
+      delete_confirmation: "هل أنت متأكّد من حذف هذه التعليقات؟"
     devise:
       username:
         title: "اسم المستخدم"
       email:
         title: "البريد الإلكترونيّ"
       subdomain:
-        title: "فرعي"
+        title: "مجال فرعي"
       password:
         title: "كلمة المرور"
       sign_up:
@@ -104,27 +107,27 @@ ar:
         title: "هل نسيت كلمة المرور؟"
         submit: "استرجاع كلمة المرور"
       change_password:
-        title: "تغير كلمة المرور"
-        submit: "تغير كلمة المرور"
+        title: "تغير كلمة المرور خاصتك"
+        submit: "تغير كلمة المرور خاصتي"
       unlock:
-        title: "إعادة ارسال التعليمات المحررة"
-        submit: "إعادة ارسال التعليمات المحررة"
+        title: "إعادة إرسال تعليمات فك الحظر"
+        submit: "إعادة إرسال تعليمات فك الحظر"
       resend_confirmation_instructions:
-        title: ""
+        title: "إعادة ارسال تعليمات التأكيد"
         submit: "إعادة ارسال تعليمات التأكيد"
       links:
         sign_up: "التسجيل"
         sign_in: "دخول"
         forgot_your_password: "هل نسيت كلمة المرور؟"
-        sign_in_with_omniauth_provider: "تسجيل الدخول ب %{provider}"
+        sign_in_with_omniauth_provider: "تسجيل الدخول بـ %{provider}"
         resend_unlock_instructions: "إعادة إرسال تعليمات تنشيط الحساب"
         resend_confirmation_instructions: "إعادة إرسال تعليمات تأكيد الحساب"
     unsupported_browser:
-      headline: "يُرجى مُلاحظة أن أكتف أدمن لم تعد تدعم المُتصفّح إنترنت اكسبلورر الإصدار الثامن وما قبله"
-      recommendation: "ننصح بالتحديث إلى الإصدار الأخير <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, أو <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "إن كنت تستخدم الإصدار التاسع من إنترنت إكسبلورر فتأكّد من أن <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">turn off \"Compatibility View\"</a>."
+      headline: "يُرجى مُلاحظة أن (أكتف أدمن) لم تعد تدعم المُتصفّح إنترنت اكسبلوررالإصدار الثامن وما قبله"
+      recommendation: "ننصح بالتحديث إلى الإصدارات الأخيرة من: <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, أو <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "إن كنت تستخدم الإصدار التاسع وما يليه من إنترنت إكسبلورر تأكّد من <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">تعطيل \"Compatibility View\"</a>."
     access_denied:
-      message: "غير مصرح لك"
+      message: "لم يُصرّح لك بهذا الإجراء."
     index_list:
       table: "جدول"
       block: "قائمة"
