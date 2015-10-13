@@ -32,6 +32,13 @@ describe ActiveAdmin::Filters::ResourceExtension do
     expect(resource.filters).to be_empty
   end
 
+  it "should return the defaults without associations if default association filters are disabled on the namespace" do
+    resource.namespace.include_default_association_filters = false
+    expect(resource.filters.keys).to match_array([
+      :body, :created_at, :custom_searcher, :position, :published_at, :starred, :title, :updated_at
+    ])
+  end
+
   describe "removing a filter" do
     it "should work" do
       expect(resource.filters.keys).to include :author

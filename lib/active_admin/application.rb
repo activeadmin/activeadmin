@@ -111,6 +111,9 @@ module ActiveAdmin
     # Set default localize format for Date/Time values
     inheritable_setting :localize_format, :long
 
+    # Include association filters by default
+    inheritable_setting :include_default_association_filters, true
+
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     setting :display_name_methods, [ :display_name,

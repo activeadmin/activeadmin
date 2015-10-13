@@ -259,4 +259,11 @@ ActiveAdmin.setup do |config|
   # You can enable or disable them for all resources here.
   #
   # config.filters = true
+  #
+  # By default the filters include associations in a select, which means
+  # that every record will be loaded for each association.
+  # You can enabled or disable the inclusion
+  # of those filters by default here.
+  #
+  # config.include_default_association_filters = true
 end
