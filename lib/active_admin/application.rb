@@ -122,6 +122,13 @@ module ActiveAdmin
                                       :email,
                                       :to_s ]
 
+    # Active Admin overrides the default error pages of rails with it's own
+    # To enable it, it takes either a boolean or a proc which can be evaluated to a boolean
+    # By default, it is assigned the proc -> { !(Rails.env.test? || Rails.env.development?) }
+
+    setting :use_active_admin_error_page, -> { !(Rails.env.test? || Rails.env.development?) }
+
+
     # == Deprecated Settings
 
     def allow_comments=(*)

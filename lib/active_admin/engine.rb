@@ -9,6 +9,10 @@ module ActiveAdmin
       end
     end
 
+    initializer "active_admin.middleware" do |app|
+      app.config.middleware.insert_after ActionDispatch::DebugExceptions, ActiveAdmin::ErrorHandler
+    end
+
     initializer 'active_admin.routes' do
       require 'active_admin/helpers/routes/url_helpers'
     end

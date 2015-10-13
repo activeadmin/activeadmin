@@ -5,6 +5,7 @@ Feature: Specifying Actions
   Scenario: Only creating the index action
     Given a configuration of:
       """
+        ActiveAdmin.application.use_active_admin_error_page = false
         ActiveAdmin.register Post do
           actions :index
           index do

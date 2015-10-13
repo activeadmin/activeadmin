@@ -59,7 +59,6 @@ module ActiveAdmin
     end
     helper_method :active_admin_namespace
 
-
     ACTIVE_ADMIN_ACTIONS = [:index, :show, :new, :create, :edit, :update, :destroy]
 
     # Determine which layout to use.
