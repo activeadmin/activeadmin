@@ -48,9 +48,17 @@ inject_into_file 'app/models/user.rb', %q{
     "#{first_name} #{last_name}"
   end
 }, after: 'class User < ActiveRecord::Base'
+copy_file(
+  File.expand_path("../templates/user_decorator.rb", __FILE__),
+  "app/models/user_decorator.rb"
+)
 
 inject_into_file 'app/models/profile.rb', %q{
   belongs_to :user
+
+  def display_name
+    #{bio}
+  end
 }, after: 'class Profile < ActiveRecord::Base'
 
 generate :model, 'publisher --migration=false --parent=User'
