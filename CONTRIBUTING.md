@@ -63,7 +63,9 @@ script/local server
 ```
 
 This will automatically create a Rails app if none already exists, and store it in the
-`.test-rails-apps` folder. The currently active app is symlinked to `test-rails-app`.
+`spec/rails` folder.
+
+~~The currently active app is symlinked to `test-rails-app`.~~ TODO: Is this true?
 
 If you have any Bundler issues, call the `use_rails` script then prepend
 the version of rails you would like to use in an environment variable:

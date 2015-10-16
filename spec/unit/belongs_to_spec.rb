@@ -48,7 +48,7 @@ describe ActiveAdmin::Resource::BelongsTo do
   end
 
   describe "controller" do
-    let(:controller) { post_config.controller.new }
+    let!(:controller) { post_config.controller.new }
     before do
       user = User.create!
       request = double 'Request', format: 'application/json'
