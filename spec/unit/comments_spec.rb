@@ -17,9 +17,11 @@ describe "Comments" do
     describe ".find_for_resource_in_namespace" do
       let(:post) { Post.create!(title: "Hello World") }
       let(:namespace_name) { "admin" }
-      let!(:comment) { ActiveAdmin::Comment.create! resource: post,
-                                                    body: "A Comment",
-                                                    namespace: namespace_name }
+      let!(:comment) do
+        ActiveAdmin::Comment.create! resource: post,
+                                     body: "A Comment",
+                                     namespace: namespace_name
+      end
 
       it "should return a comment for the resource in the same namespace" do
         expect(ActiveAdmin::Comment.find_for_resource_in_namespace(post, namespace_name)).to eq [comment]
@@ -38,15 +40,20 @@ describe "Comments" do
 
       it "should return the most recent comment first" do
         ActiveAdmin::Comment.class_eval { attr_accessible :created_at } if Rails::VERSION::MAJOR == 3
-        another_comment = ActiveAdmin::Comment.create! resource: post,
-                                                       body: "Another Comment",
-                                                       namespace: namespace_name,
-                                                       created_at: comment.created_at + 20.minutes
 
-        yet_another_comment = ActiveAdmin::Comment.create! resource: post,
-                                                           body: "Yet Another Comment",
-                                                           namespace: namespace_name,
-                                                           created_at: comment.created_at + 10.minutes
+        time = comment.created_at + 20.minutes
+        another_comment =
+            ActiveAdmin::Comment.create! resource: post,
+                                         body: "Another Comment",
+                                         namespace: namespace_name,
+                                         created_at: time
+
+        yet_another_time = comment.created_at + 10.minutes
+        yet_another_comment =
+            ActiveAdmin::Comment.create! resource: post,
+                                         body: "Yet Another Comment",
+                                         namespace: namespace_name,
+                                         created_at: yet_another_time
 
         comments = ActiveAdmin::Comment.find_for_resource_in_namespace(post, namespace_name)
         expect(comments.size).to eq 3

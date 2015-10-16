@@ -164,6 +164,7 @@ unless ENV['DEFER_GC'] == '0' || ENV['DEFER_GC'] == 'false'
   end
 end
 
+require "shoulda/matchers"
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     # Choose a test framework:
