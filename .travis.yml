@@ -20,6 +20,10 @@ gemfile:
   - gemfiles/Gemfile.rails-4.2.x
 env:
   global:
+    - RAILS_V=$(bundle exec rails -v)
+    - RAILS_VERSION="${RAILS_V##Rails }"
+    # Need Fuzzy Version, so keep "D.D.", and add x
+    - RAILS="${RAILS_V:0:3}x"
     - JRUBY_OPTS="-J-Xmx1024m --debug"
 matrix:
   fast_finish: true
