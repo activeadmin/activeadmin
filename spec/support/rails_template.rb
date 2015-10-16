@@ -4,16 +4,31 @@ run "rm Gemfile"
 run "rm -r test"
 
 # Create a cucumber database and environment
-copy_file File.expand_path('../templates/cucumber.rb', __FILE__),                "config/environments/cucumber.rb"
-copy_file File.expand_path('../templates/cucumber_with_reloading.rb', __FILE__), "config/environments/cucumber_with_reloading.rb"
+copy_file File.expand_path('../templates/cucumber.rb', __FILE__),
+          "config/environments/cucumber.rb"
+copy_file File.expand_path('../templates/cucumber_with_reloading.rb', __FILE__),
+          "config/environments/cucumber_with_reloading.rb"
 
-gsub_file 'config/database.yml', /^test:.*\n/, "test: &test\n"
-gsub_file 'config/database.yml', /\z/, "\ncucumber:\n  <<: *test\n  database: db/cucumber.sqlite3"
-gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\n  database: db/cucumber.sqlite3"
+gsub_file 'config/database.yml',
+          /^  adapter:.*\n/,
+          %[  adapter: "jdbcsqlite3"\n] if RUBY_PLATFORM == "java"
+gsub_file 'config/database.yml',
+          /^test:.*\n/,
+          "test: &test\n"
+gsub_file 'config/database.yml',
+          /\z/,
+          "\ncucumber:\n  <<: *test\n  database: db/cucumber.sqlite3"
+gsub_file 'config/database.yml',
+          /\z/,
+          "\ncucumber_with_reloading:\n  <<: *test\n  database: db/cucumber.sqlite3"
 
 if File.exists? 'config/secrets.yml'
-  gsub_file 'config/secrets.yml', /\z/, "\ncucumber:\n  secret_key_base: #{'o' * 128}"
-  gsub_file 'config/secrets.yml', /\z/, "\ncucumber_with_reloading:\n  secret_key_base: #{'o' * 128}"
+  gsub_file 'config/secrets.yml',
+            /\z/,
+            "\ncucumber:\n  secret_key_base: #{'o' * 128}"
+  gsub_file 'config/secrets.yml',
+            /\z/,
+            "\ncucumber_with_reloading:\n  secret_key_base: #{'o' * 128}"
 end
 
 generate :model, "post title:string body:text published_at:datetime author_id:integer position:integer custom_category_id:integer starred:boolean foo_id:integer"

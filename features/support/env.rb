@@ -6,19 +6,25 @@
 
 ENV["RAILS_ENV"] ||= "cucumber"
 
-require File.expand_path('../../../spec/spec_helper', __FILE__)
-
-ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{ENV["RAILS"]}", __FILE__)
-
-# Create the test app if it doesn't exists
-unless File.exists?(ENV['RAILS_ROOT'])
-  system 'rake setup'
-end
-
+# The version of rails that gets loaded depends on which Gemfile in gemfiles/ is loaded.
 require 'rails'
 require 'active_record'
 require 'active_admin'
 require 'devise'
+
+require File.expand_path('../../../spec/spec_helper', __FILE__)
+
+# NOTE: Safe to use fuzzy rails version here?  Or does it need to be exact?
+#       Fuzzy *should* be OK.
+fuzzy_rails_version = "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}.x"
+ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/ruby-#{RUBY_VERSION}-rails-#{fuzzy_rails_version}", __FILE__)
+
+# Create the test app if it doesn't exists
+unless File.exists?(ENV['RAILS_ROOT'])
+  gemfile_location = "gemfiles/Gemfile.rails-#{fuzzy_rails_version}"
+  system %[BUNDLE_GEMFILE='#{gemfile_location}' bundle exec rake setup]
+end
+
 ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
 
 require ENV['RAILS_ROOT'] + '/config/environment'

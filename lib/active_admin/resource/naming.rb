@@ -38,7 +38,7 @@ module ActiveAdmin
       end
     end
 
-    class Name < ActiveModel::Name
+    class Name < ::ActiveModel::Name
       delegate :hash, to: :to_str
 
       def initialize(klass, name = nil)

@@ -1,31 +1,12 @@
-source "https://rubygems.org"
+source "http://rubygems.org"
 
-gemspec
-
-# VALID REASONS TO ADD A GEM TO A GEMFILE INSTEAD OF THE GEMSPEC:
-# * It needs require: false
-#   * must also be in the gemspec
-#   * version requirement belongs in gemspec ONLY, not in both places
-# * It needs a platform restriction
-#   * can't be in the gemspec
-#   * version requirement belongs here only.
-# * The version restrictions change between the rails-specific
-#     gemfiles in the testing matrix (should also be in the gemspec
-#     with a generous version restriction allowing all supported versions)
-# * There are no other valid reasons.
-
-# Gems listed here that are not also in the gemspec
-#   (which necessarily includes all platform restricted gems)
-#   must be configured in every Gemfile in gemfiles/ for the test matrix.
-#   *This* Gemfile is ignored when the gemfiles/ are used.
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# *This* Gemfile is setup to mirror gemfiles/Gemfile.rails-4.2.x as this
-#   is the default Gemfile used when bundle exec rspec spec is run without modifiers.
+# Lowest Precedence First, Gemspec => Gemfile => gemfiles/Gemfile.rails-D.D.x
+gemspec :path => ".."
 
 # The only gems that change with version of Rails being tested are:
-# gem "rails",                                "~> 4.2.0"
-# gem "jquery-ui-rails",                      ">= 5.0"
-# gem "shoulda-matchers",                     "~> 3.0",   group: :test
+gem "rails",                                "~> 4.2.0"
+gem "jquery-ui-rails",                      ">= 5.0"
+gem "shoulda-matchers",                     "~> 3.0",   group: :test
 
 # The following gems do not change with version of Rails being tested.
 # If they are also listed in the gemspec the version will not be specified here.
@@ -33,7 +14,7 @@ gem "rake",                                             require: false
 
 # The next set are listed here to restrict the platform.
 # Gems that need a platform restriction can never be added
-#   to the .gemspec as dependencies
+#   to the .gemspec as dependencies because bundler would attempt to install on all platforms.
 gem "sqlite3",                              "~> 1.3",   platforms: [:ruby]
 gem "activerecord-mysql2-adapter",                      platforms: [:ruby]
 gem "pg",                                               platforms: [:ruby]

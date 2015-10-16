@@ -89,21 +89,29 @@ module ActiveAdminIntegrationSpecHelper
 
 end
 
-ENV['RAILS_ENV'] = 'test'
-ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{ENV['RAILS']}", __FILE__)
-
-# Create the test app if it doesn't exists
-unless File.exists?(ENV['RAILS_ROOT'])
-  system 'rake setup'
-end
-
 require 'rails'
 require 'active_record'
 require 'active_admin'
 require 'devise'
-ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
 
-require ENV['RAILS_ROOT'] + '/config/environment'
+# NOTE: Safe to use fuzzy rails version here?  Or does it need to be exact?
+#       Fuzzy *should* be OK.
+fuzzy_rails_version = "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}.x"
+ENV["RAILS_ENV"] = "test"
+ENV["RAILS_ROOT"] = File.expand_path("../rails/ruby-#{RUBY_VERSION}-rails-#{fuzzy_rails_version}", __FILE__)
+puts "[rails_helper.rb] Rails Root: #{ENV["RAILS_ROOT"]}"
+
+# Create the test app if it doesn't exists
+unless File.exists?(ENV["RAILS_ROOT"])
+  puts "[rails_helper.rb] BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{fuzzy_rails_version}' bundle exec rake setup"
+  system %[BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{fuzzy_rails_version}' bundle exec rake setup]
+else
+  puts "already setup #{ENV["RAILS_ROOT"]}"
+end
+
+ActiveAdmin.application.load_paths = [ENV["RAILS_ROOT"] + "/app/admin"]
+
+require ENV["RAILS_ROOT"] + '/config/environment'
 
 require 'rspec/rails'
 
@@ -146,7 +154,6 @@ end
 # improve the performance of the specs suite by not logging anything
 # see http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
 Rails.logger.level = 4
-
 
 # Improves performance by forcing the garbage collector to run less often.
 unless ENV['DEFER_GC'] == '0' || ENV['DEFER_GC'] == 'false'

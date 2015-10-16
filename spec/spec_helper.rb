@@ -5,13 +5,14 @@ ENV['BUNDLE_GEMFILE'] = File.expand_path('../../Gemfile', __FILE__)
 require "bundler"
 Bundler.setup
 
-require 'detect_rails_version'
-ENV['RAILS'] = detect_rails_version
+# Run tests with NOCOVER=true to skip code coverage
+unless ENV["NOCOVER"]
+  # Code coverage libraries must be required before all application / gem / library code.
+  require 'simplecov'
 
-require 'simplecov'
-
-SimpleCov.start do
-  add_filter 'spec/'
-  add_filter 'features/'
-  add_filter 'bundle/' # for Travis
+  SimpleCov.start do
+    add_filter 'spec/'
+    add_filter 'features/'
+    add_filter 'bundle/' # for Travis
+  end
 end
