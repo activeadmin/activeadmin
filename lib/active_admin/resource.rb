@@ -96,7 +96,9 @@ module ActiveAdmin
     end
 
     def form_class
-      ActiveSupport::Dependencies.constantize(form_class_name) if form_class_name
+      if form_class_name
+        ActiveSupport::Dependencies.constantize(form_class_name)
+      end
     end
 
     def resource_table_name

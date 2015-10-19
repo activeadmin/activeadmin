@@ -1,18 +1,17 @@
 module ActiveAdmin
   class ResourceController < BaseController
     module Forms
-
-    protected
+      protected
 
       def apply_form(resource)
         apply_form? ? form_class.new(resource) : resource
       end
 
-    private
+      private
 
       def apply_form?
         case action_name
-        when 'new', 'edit', 'update', 'create'
+        when "new", "edit", "update", "create"
           form_class.present?
         end
       end

@@ -26,7 +26,10 @@ inject_into_file 'app/models/post.rb', %q{
   attr_accessible :author, :position unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
 }, after: 'class Post < ActiveRecord::Base'
 copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), "app/models/post_decorator.rb"
-copy_file File.expand_path('../templates/post_form.rb', __FILE__), "app/models/post_form.rb"
+copy_file(
+  File.expand_path("../templates/post_form.rb", __FILE__),
+  "app/models/post_form.rb"
+)
 
 generate :model, "blog/post title:string body:text published_at:datetime author_id:integer position:integer custom_category_id:integer starred:boolean foo_id:integer"
 inject_into_file 'app/models/blog/post.rb', %q{

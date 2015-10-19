@@ -171,7 +171,7 @@ module ActiveAdmin
     end
 
     def form_class(form_class)
-      config.form_class_name = "::#{ form_class }"
+      config.form_class_name = "::#{form_class}"
     end
   end
 end

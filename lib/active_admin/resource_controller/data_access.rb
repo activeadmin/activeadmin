@@ -183,7 +183,7 @@ module ActiveAdmin
         when object.respond_to?(:attributes=)
           object.attributes = attributes[0]
         when object.is_a?(Reform::Form)
-           object.validate(*attributes)
+          object.validate(*attributes)
         end
 
         run_update_callbacks object do

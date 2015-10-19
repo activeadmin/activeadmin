@@ -1,7 +1,7 @@
 require 'active_admin/resource_controller/action_builder'
 require 'active_admin/resource_controller/data_access'
 require 'active_admin/resource_controller/decorators'
-require 'active_admin/resource_controller/forms'
+require "active_admin/resource_controller/forms"
 require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/streaming'
 require 'active_admin/resource_controller/sidebars'
