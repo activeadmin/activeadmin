@@ -115,7 +115,7 @@ Feature: New Page
 
       ActiveAdmin.register Post do
         form_class PostForm
-        permit_params :title, :body
+        permit_params :title, :body if Rails::VERSION::MAJOR == 4
 
         form do |f|
           f.inputs do
