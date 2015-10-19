@@ -148,7 +148,6 @@ module ActiveAdmin
       def create_resource(object)
         run_create_callbacks object do
           if object.is_a?(Reform::Form)
-            object.model.restore_attributes
             object.validate(*resource_params)
           end
           save_resource(object)
