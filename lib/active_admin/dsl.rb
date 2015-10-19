@@ -169,5 +169,9 @@ module ActiveAdmin
       # us to handle a string or a class.
       config.decorator_class_name = "::#{ decorator_class }"
     end
+
+    def form_class(form_class)
+      config.form_class_name = "::#{ form_class }"
+    end
   end
 end

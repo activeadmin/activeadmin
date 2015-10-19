@@ -15,6 +15,7 @@ gem 'cancan'
 gem 'devise'
 gem 'draper'
 gem 'pundit'
+gem 'reform'
 
 # Utility gems used in both development & test environments
 gem 'rake', require: false
