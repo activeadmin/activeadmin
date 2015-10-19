@@ -115,3 +115,28 @@ Feature: Edit Page
     Then I should see "Post was successfully updated."
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"
+
+  Scenario: Use form object
+    Given a configuration of:
+    """
+      require 'post_form'
+
+      ActiveAdmin.register Post do
+        form_class PostForm
+        permit_params :title, :body if Rails::VERSION::MAJOR == 4
+
+        form do |f|
+          f.inputs do
+            f.input :title
+          end
+          f.actions
+        end
+      end
+    """
+    Given I follow "Edit"
+    And I fill in "Title" with ""
+    Then I press "Update Post"
+    When I should see "can't be blank"
+    And I fill in "Title" with "Hello World"
+    And I press "Update Post"
+    And I should see the attribute "Title" with "Hello World"

@@ -91,6 +91,7 @@ module ActiveAdmin
           authorize_resource! resource
 
           resource = apply_decorator resource
+          resource = apply_form resource
           set_resource_ivar resource
         end
       end
@@ -123,6 +124,7 @@ module ActiveAdmin
           authorize_resource! resource
 
           resource = apply_decorator resource
+          resource = apply_form resource
           set_resource_ivar resource
         end
       end
@@ -145,6 +147,9 @@ module ActiveAdmin
       # @return [void]
       def create_resource(object)
         run_create_callbacks object do
+          if object.is_a?(Reform::Form)
+            object.validate(*resource_params)
+          end
           save_resource(object)
         end
       end
@@ -171,10 +176,13 @@ module ActiveAdmin
       #
       # @return [void]
       def update_resource(object, attributes)
-        if object.respond_to?(:assign_attributes)
+        case
+        when object.respond_to?(:assign_attributes)
           object.assign_attributes(*attributes)
-        else
+        when object.respond_to?(:attributes=)
           object.attributes = attributes[0]
+        when object.is_a?(Reform::Form)
+          object.validate(*attributes)
         end
 
         run_update_callbacks object do
@@ -277,7 +285,7 @@ module ActiveAdmin
       def collection_applies(options = {})
         only = Array(options.fetch(:only, COLLECTION_APPLIES))
         except = Array(options.fetch(:except, []))
-        
+
         # see #4074 for code reasons
         COLLECTION_APPLIES.select { |applier| only.include? applier }
                           .reject { |applier| except.include? applier }

@@ -107,3 +107,27 @@ Feature: New Page
     Given I follow "New Post"
     Then I should not see "Title"
     And I should see "Body"
+
+  Scenario: Use form object
+    Given a configuration of:
+    """
+      require 'post_form'
+
+      ActiveAdmin.register Post do
+        form_class PostForm
+        permit_params :title, :body if Rails::VERSION::MAJOR == 4
+
+        form do |f|
+          f.inputs do
+            f.input :title
+          end
+          f.actions
+        end
+      end
+    """
+    And I follow "New Post"
+    Then I press "Create Post"
+    When I should see "can't be blank"
+    And I fill in "Title" with "Hello World"
+    And I press "Update Post"
+    And I should see the attribute "Title" with "Hello World"

@@ -57,6 +57,8 @@ module ActiveAdmin
     # nil to not decorate.
     attr_accessor :decorator_class_name
 
+    attr_accessor :form_class_name
+
     module Base
       def initialize(namespace, resource_class, options = {})
         @namespace = namespace
@@ -91,6 +93,12 @@ module ActiveAdmin
 
     def decorator_class
       ActiveSupport::Dependencies.constantize(decorator_class_name) if decorator_class_name
+    end
+
+    def form_class
+      if form_class_name
+        ActiveSupport::Dependencies.constantize(form_class_name)
+      end
     end
 
     def resource_table_name
