@@ -119,6 +119,7 @@ module ActiveAdmin
       def build_resource
         get_resource_ivar || begin
           resource = build_new_resource
+          resource = assign_attributes(resource, resource_params)
           run_build_callbacks resource
           authorize_resource! resource
 
@@ -135,7 +136,7 @@ module ActiveAdmin
       #
       # @return [ActiveRecord::Base] An un-saved active record base object
       def build_new_resource
-        scoped_collection.send method_for_build, *resource_params
+        scoped_collection.send method_for_build
       end
 
       # Calls all the appropriate callbacks and then creates the new resource.
@@ -171,11 +172,7 @@ module ActiveAdmin
       #
       # @return [void]
       def update_resource(object, attributes)
-        if object.respond_to?(:assign_attributes)
-          object.assign_attributes(*attributes)
-        else
-          object.attributes = attributes[0]
-        end
+        object = assign_attributes(object, attributes)
 
         run_update_callbacks object do
           save_resource(object)
@@ -277,7 +274,7 @@ module ActiveAdmin
       def collection_applies(options = {})
         only = Array(options.fetch(:only, COLLECTION_APPLIES))
         except = Array(options.fetch(:except, []))
-        
+
         # see #4074 for code reasons
         COLLECTION_APPLIES.select { |applier| only.include? applier }
                           .reject { |applier| except.include? applier }
@@ -299,6 +296,19 @@ module ActiveAdmin
         Array(active_admin_config.per_page).first
       end
 
+      # @param resource [ActiveRecord::Base]
+      # @param attributes [Array<Hash]
+      # @return [ActiveRecord::Base] resource
+      #
+      def assign_attributes(resource, attributes)
+        if resource.respond_to?(:assign_attributes)
+          resource.assign_attributes(*attributes)
+        else
+          resource.attributes = attributes[0]
+        end
+
+        resource
+      end
     end
   end
 end
