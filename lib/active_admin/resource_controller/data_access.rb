@@ -88,9 +88,9 @@ module ActiveAdmin
       def resource
         get_resource_ivar || begin
           resource = find_resource
+          resource = apply_decorator resource
           authorize_resource! resource
 
-          resource = apply_decorator resource
           set_resource_ivar resource
         end
       end
@@ -119,11 +119,11 @@ module ActiveAdmin
       def build_resource
         get_resource_ivar || begin
           resource = build_new_resource
+          resource = apply_decorator resource
           resource = assign_attributes(resource, resource_params)
           run_build_callbacks resource
           authorize_resource! resource
 
-          resource = apply_decorator resource
           set_resource_ivar resource
         end
       end
