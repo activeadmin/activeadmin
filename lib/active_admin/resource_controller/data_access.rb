@@ -88,7 +88,7 @@ module ActiveAdmin
       def resource
         get_resource_ivar || begin
           resource = find_resource
-          resource = apply_decorator resource
+          resource = apply_decorations(resource)
           authorize_resource! resource
 
           set_resource_ivar resource
@@ -119,7 +119,7 @@ module ActiveAdmin
       def build_resource
         get_resource_ivar || begin
           resource = build_new_resource
-          resource = apply_decorator resource
+          resource = apply_decorations(resource)
           resource = assign_attributes(resource, resource_params)
           run_build_callbacks resource
           authorize_resource! resource
@@ -308,6 +308,13 @@ module ActiveAdmin
         end
 
         resource
+      end
+
+      # @param resource [ActiveRecord::Base]
+      # @return [ActiveRecord::Base] resource
+      #
+      def apply_decorations(resource)
+        apply_decorator(resource)
       end
     end
   end
