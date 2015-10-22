@@ -11,6 +11,7 @@ ActiveAdmin.register Post do
   csv do
     column :title
     column(:author) { |post| post.author.full_name }
+    column('bODY', humanize_name: false) # preserve case
   end
 end
 ```
