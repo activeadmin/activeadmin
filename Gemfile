@@ -5,10 +5,17 @@ gemspec
 require File.expand_path 'spec/support/detect_rails_version', File.dirname(__FILE__)
 
 rails_version = detect_rails_version
-gem 'rails', rails_version
+gem 'rails', rails_version == 'master' ? {github: 'rails/rails'} : rails_version
 
-jquery_ui_rails_version = rails_version > "4" ? "~> 5.0" : "~> 4.0"
-gem 'jquery-ui-rails', jquery_ui_rails_version
+gem 'jquery-ui-rails', rails_version[0] == '3' ? '~> 4.0' : '~> 5.0'
+
+if rails_version == 'master'
+  gem 'arel',       github: 'rails/arel'
+  gem 'sprockets',  github: 'rails/sprockets'
+  gem 'sass-rails', github: 'rails/sass-rails'
+  gem 'rack',       github: 'rack/rack'
+  gem 'sprockets-rails', '3.0.0.beta2'
+end
 
 # Optional dependencies
 gem 'cancan'
