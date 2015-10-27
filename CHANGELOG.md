@@ -69,6 +69,22 @@ end
 ActiveSupport::Notifications.publish ActiveAdmin::Application::BeforeLoadEvent, "some data"
 ```
 
+## 0.6.6 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.5...v0.6.6)
+
+* Backport of [#3779][] from [@aaronsakowski][] by [@timoschilling][]
+* Fix issue with model attribute matching metasearch method name [#3698][] by [@azach][]
+* Fix default delete prompt on Rails 3.0.x [#3765][] by [@craigmcnamara][]
+
+## 0.6.5 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.4...v0.6.5)
+
+* Backport of [#2715][] by [@timoschilling][]
+
+## 0.6.4 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.3...v0.6.4)
+
+* Restore compatibility with Formtastic 2.0 by [@seanlinsley][]
+* Backport of [#3489][] by [@timoschilling][]
+* Backport of [#3659][] by [@timoschilling][]
+
 ## 0.6.3 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.2...v0.6.3)
 
 * __Reinstitutes the 10k limit for CSV exports__ [#2847][] by [@seanlinsley][]
@@ -999,18 +1015,24 @@ of the highlights. 250 commits. Enough said.
 [#2545]: https://github.com/activeadmin/activeadmin/issues/2545
 [#2588]: https://github.com/activeadmin/activeadmin/issues/2588
 [#2601]: https://github.com/activeadmin/activeadmin/issues/2601
+[#2715]: https://github.com/activeadmin/activeadmin/issues/2715
 [#2744]: https://github.com/activeadmin/activeadmin/issues/2744
 [#2847]: https://github.com/activeadmin/activeadmin/issues/2847
 [#3075]: https://github.com/activeadmin/activeadmin/issues/3075
 [#3463]: https://github.com/activeadmin/activeadmin/issues/3463
 [#3464]: https://github.com/activeadmin/activeadmin/issues/3464
 [#3486]: https://github.com/activeadmin/activeadmin/issues/3486
+[#3489]: https://github.com/activeadmin/activeadmin/issues/3489
 [#3519]: https://github.com/activeadmin/activeadmin/issues/3519
 [#3553]: https://github.com/activeadmin/activeadmin/issues/3553
 [#3606]: https://github.com/activeadmin/activeadmin/issues/3606
 [#3686]: https://github.com/activeadmin/activeadmin/issues/3686
+[#3659]: https://github.com/activeadmin/activeadmin/issues/3659
 [#3695]: https://github.com/activeadmin/activeadmin/issues/3695
+[#3698]: https://github.com/activeadmin/activeadmin/issues/3698
 [#3731]: https://github.com/activeadmin/activeadmin/issues/3731
+[#3765]: https://github.com/activeadmin/activeadmin/issues/3765
+[#3779]: https://github.com/activeadmin/activeadmin/issues/3779
 [#3783]: https://github.com/activeadmin/activeadmin/issues/3783
 [@Bishop]: https://github.com/Bishop
 [@BoboFraggins]: https://github.com/BoboFraggins
@@ -1022,9 +1044,11 @@ of the highlights. 250 commits. Enough said.
 [@TiagoCardoso1983]: https://github.com/TiagoCardoso1983
 [@TimPetricola]: https://github.com/TimPetricola
 [@ZequeZ]: https://github.com/ZequeZ
+[@aaronsakowski]: https://github.com/aaronsakowski
 [@adrienkohlbecker]: https://github.com/adrienkohlbecker
 [@ai]: https://github.com/ai
 [@amiel]: https://github.com/amiel
+[@azach]: https://github.com/azach
 [@ball-hayden]: https://github.com/ball-hayden
 [@bobbytables]: https://github.com/bobbytables
 [@caifara]: https://github.com/caifara
@@ -1032,6 +1056,7 @@ of the highlights. 250 commits. Enough said.
 [@cknoxrun]: https://github.com/cknoxrun
 [@comboy]: https://github.com/comboy
 [@coreyward]: https://github.com/coreyward
+[@craigmcnamara]: https://github.com/craigmcnamara
 [@dapi]: https://github.com/dapi
 [@dbussin]: https://github.com/dbussin
 [@developer88]: https://github.com/developer88
