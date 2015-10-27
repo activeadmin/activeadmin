@@ -89,6 +89,13 @@ Kaminari.configure do |config|
 end
 ```
 
+If you are also using [Draper](https://github.com/drapergem/draper), you may want to
+make sure `per_page_kaminari` is delegated correctly:
+
+```ruby
+Draper::CollectionDecorator.send :delegate, :per_page_kaminari
+```
+
 ## simple_form
 
 If you're getting the error `wrong number of arguments (6 for 4..5)`, [read #2703].
