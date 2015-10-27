@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 module ActiveAdminIntegrationSpecHelper
   extend self
@@ -89,23 +89,32 @@ module ActiveAdminIntegrationSpecHelper
 
 end
 
-ENV['RAILS_ENV'] = 'test'
-ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{ENV['RAILS']}", __FILE__)
+require "rails"
+require "active_record"
+require "active_admin"
+require "devise"
 
-# Create the test app if it doesn't exists
-unless File.exists?(ENV['RAILS_ROOT'])
-  system 'rake setup'
+# NOTE: Safe to use fuzzy rails version here?  Or does it need to be exact?
+#       Fuzzy *should* be OK.
+fuzzy_rails_version = "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}.x"
+ENV["RAILS_ENV"] = "test"
+ENV["RAILS_ROOT"] = File.expand_path("../rails/ruby-#{RUBY_VERSION}-rails-#{fuzzy_rails_version}", __FILE__)
+
+# Create the test app if it doesn't exist
+if File.exists?(ENV["RAILS_ROOT"])
+  puts "[rails_helper.rb] already setup Rails Root: #{ENV['RAILS_ROOT']}"
+else
+  puts "[rails_helper.rb] BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{fuzzy_rails_version}' /
+            bundle exec rake setup"
+  system %[BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{fuzzy_rails_version}' /
+            bundle exec rake setup]
 end
 
-require 'rails'
-require 'active_record'
-require 'active_admin'
-require 'devise'
-ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
+ActiveAdmin.application.load_paths = [ENV["RAILS_ROOT"] + "/app/admin"]
 
-require ENV['RAILS_ROOT'] + '/config/environment'
+require ENV["RAILS_ROOT"] + "/config/environment"
 
-require 'rspec/rails'
+require "rspec/rails"
 
 # Prevent Test::Unit's AutoRunner from executing during RSpec's rake task on
 # JRuby
@@ -123,7 +132,7 @@ ActiveAdmin.application.current_user_method = false
 
 # Don't add asset cache timestamps. Makes it easy to integration
 # test for the presence of an asset file
-ENV["RAILS_ASSET_ID"] = ''
+ENV["RAILS_ASSET_ID"] = ""
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
@@ -147,12 +156,26 @@ end
 # see http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
 Rails.logger.level = 4
 
-
 # Improves performance by forcing the garbage collector to run less often.
-unless ENV['DEFER_GC'] == '0' || ENV['DEFER_GC'] == 'false'
-  require 'support/deferred_garbage_collection'
+unless ENV["DEFER_GC"] == "0" || ENV["DEFER_GC"] == "false"
+  require "support/deferred_garbage_collection"
   RSpec.configure do |config|
     config.before(:all) { DeferredGarbageCollection.start }
     config.after(:all)  { DeferredGarbageCollection.reconsider }
+  end
+end
+
+require "shoulda/matchers"
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    # Choose a test framework:
+    with.test_framework :rspec
+
+    # Choose one or more libraries:
+    # with.library :active_record
+    # with.library :active_model
+    # with.library :action_controller
+    # Or, choose the following (which implies all of the above):
+    with.library :rails
   end
 end

@@ -33,7 +33,6 @@ doc
 pkg
 
 ## Project (specific)
-bin/
 .bundle
 spec/rails
 *.sqlite3-journal
@@ -47,3 +46,4 @@ public
 .rails-version
 .rbenv-version
 .localeapp/*
+gemfiles/Gemfile.*.lock

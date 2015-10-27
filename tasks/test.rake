@@ -1,11 +1,13 @@
 desc "Creates a test rails app for the specs to run against"
 task :setup, :parallel do |t, args|
   require 'rails/version'
-  if File.exists? dir = "spec/rails/rails-#{Rails::VERSION::STRING}"
+  fuzzy_rails_version = "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}.x"
+  # The files created vary depending on version of Ruby (e.g. JRuby uses different database adapters)
+  if File.exists?(dir = "spec/rails/ruby-#{RUBY_VERSION}-rails-#{fuzzy_rails_version}")
     puts "test app #{dir} already exists; skipping"
   else
-    system("mkdir spec/rails") unless File.exists?("spec/rails")
-    system "#{'INSTALL_PARALLEL=yes' if args[:parallel]} bundle exec rails new #{dir} -m spec/support/rails_template.rb --skip-bundle"
+    cmd("mkdir spec/rails") unless File.exists?("spec/rails")
+    cmd "#{'INSTALL_PARALLEL=yes' if args[:parallel]} BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{fuzzy_rails_version}' bundle exec rails new #{dir} -m spec/support/rails_template.rb --skip-bundle"
     Rake::Task['parallel:after_setup_hook'].invoke if args[:parallel]
   end
 end
@@ -13,31 +15,27 @@ end
 desc "Run the full suite using 1 core"
 task test: ['spec:unit', 'spec:request', 'cucumber', 'cucumber:class_reloading']
 
-require 'coveralls/rake/task'
-Coveralls::RakeTask.new
-task test_with_coveralls: [:test, 'coveralls:push']
+unless ENV["NOCOVER"]
+  require 'coveralls/rake/task'
+  Coveralls::RakeTask.new
+  task test_with_coveralls: [:test, 'coveralls:push']
+end
 
 namespace :test do
 
   def run_tests_against(*versions)
-    current_version = detect_rails_version if File.exists?("Gemfile.lock")
-
-    versions.each do |version|
+    versions.each do |fuzzy_rails_version|
       puts
-      puts "== Using Rails #{version}"
-
-      cmd "./script/use_rails #{version}"
-      cmd "bundle exec rspec spec"
-      cmd "bundle exec cucumber features"
-      cmd "bundle exec cucumber -p class-reloading features"
+      puts "== Using Rails #{fuzzy_rails_version}"
+      cmd "BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{fuzzy_rails_version}' bundle exec rspec spec"
+      cmd "BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{fuzzy_rails_version}' bundle exec cucumber features"
+      cmd "BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{fuzzy_rails_version}' bundle exec cucumber -p class-reloading features"
     end
-
-    cmd "./script/use_rails #{current_version}" if current_version
   end
 
   desc "Run the full suite against the important versions of rails"
   task :major_supported_rails do
-    run_tests_against *TRAVIS_RAILS_VERSIONS
+    run_tests_against *%(3.2.x 4.1.x 4.2.x)
   end
 
   desc "Alias for major_supported_rails"
@@ -62,7 +60,6 @@ namespace :spec do
   end
 
 end
-
 
 require 'cucumber/rake/task'
 

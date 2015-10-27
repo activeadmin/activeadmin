@@ -11,23 +11,22 @@ install:
 script:
   - bundle exec rake test_with_coveralls
 rvm:
-  - 1.9
+  - 2.1.5
   - 2.2.3
-  - jruby-9.0.0.0
+  - jruby-9.0.1.0
+gemfile:
+  - gemfiles/Gemfile.rails-3.2.x
+  - gemfiles/Gemfile.rails-4.1.x
+  - gemfiles/Gemfile.rails-4.2.x
 env:
-  matrix:
-    - RAILS=3.2.22
-    - RAILS=4.1.13
-    - RAILS=4.2.4
   global:
+    - RAILS_V=$(bundle exec rails -v)
+    - RAILS_VERSION="${RAILS_V##Rails }"
+    # Need Fuzzy Version, so keep "D.D.", and add x
+    - RAILS="${RAILS_V:0:3}x"
     - JRUBY_OPTS="-J-Xmx1024m --debug"
 matrix:
   fast_finish: true
-  exclude:
-    - rvm: 2.2.3
-      env: RAILS=3.2.22
-    - rvm: jruby-9.0.0.0
-      env: RAILS=3.2.22
 notifications:
   irc:
     channels:

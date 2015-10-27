@@ -8,7 +8,9 @@ namespace :parallel do
 
   def rails_app_rake(task)
     require 'rails/version'
-    system "cd spec/rails/rails-#{Rails::VERSION::STRING}; rake #{task}"
+    fuzzy_rails_version = "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}.x"
+    gemfile_location = "../../../gemfiles/Gemfile.rails-#{fuzzy_rails_version}"
+    system "cd spec/rails/ruby-#{RUBY_VERSION}-rails-#{fuzzy_rails_version}; BUNDLE_GEMFILE=#{gemfile_location} rake #{task}"
   end
 
   task :after_setup_hook do
@@ -19,16 +21,18 @@ namespace :parallel do
 
   def parallel_tests_setup?
     require 'rails/version'
-    database_config = File.join "spec", "rails", "rails-#{Rails::VERSION::STRING}", "config", "database.yml"
+    fuzzy_rails_version = "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}.x"
+    database_config = File.join "spec", "rails", "ruby-#{RUBY_VERSION}-rails-#{fuzzy_rails_version}", "config", "database.yml"
     File.exists?(database_config) && File.read(database_config).include?("TEST_ENV_NUMBER")
   end
 
   desc "Setup parallel_tests DBs"
   task :setup_parallel_tests do
     unless parallel_tests_setup?
-      puts "parallel_tests is not set up. (Re)building spec/rails/rails-#{Rails::VERSION::STRING} App. Please wait."
       require 'rails/version'
-      system("rm -Rf spec/rails/rails-#{Rails::VERSION::STRING}")
+      fuzzy_rails_version = "#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}.x"
+      puts "parallel_tests is not set up. (Re)building spec/rails/ruby-#{RUBY_VERSION}-rails-#{fuzzy_rails_version} App. Please wait."
+      system("rm -Rf spec/rails/ruby-#{RUBY_VERSION}-rails-#{fuzzy_rails_version}")
       Rake::Task['setup'].invoke true
     end
   end

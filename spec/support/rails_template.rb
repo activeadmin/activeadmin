@@ -4,16 +4,57 @@ run "rm Gemfile"
 run "rm -r test"
 
 # Create a cucumber database and environment
-copy_file File.expand_path('../templates/cucumber.rb', __FILE__),                "config/environments/cucumber.rb"
-copy_file File.expand_path('../templates/cucumber_with_reloading.rb', __FILE__), "config/environments/cucumber_with_reloading.rb"
+cucumber_file_path = File.expand_path(
+    "../templates/cucumber.rb",
+    __FILE__
+)
+copy_file cucumber_file_path,
+          "config/environments/cucumber.rb"
+cucumber_with_reloading_file_path = File.expand_path(
+    "../templates/cucumber_with_reloading.rb",
+    __FILE__
+)
+copy_file cucumber_with_reloading_file_path,
+          "config/environments/cucumber_with_reloading.rb"
 
-gsub_file 'config/database.yml', /^test:.*\n/, "test: &test\n"
-gsub_file 'config/database.yml', /\z/, "\ncucumber:\n  <<: *test\n  database: db/cucumber.sqlite3"
-gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\n  database: db/cucumber.sqlite3"
+gsub_file "config/database.yml",
+          /^  adapter:.*\n/,
+          %[  adapter: "jdbcsqlite3"\n] if RUBY_PLATFORM == "java"
+gsub_file "config/database.yml",
+          /^test:.*\n/,
+          "test: &test\n"
+gsub_file "config/database.yml",
+          /\z/,
+          %[
 
-if File.exists? 'config/secrets.yml'
-  gsub_file 'config/secrets.yml', /\z/, "\ncucumber:\n  secret_key_base: #{'o' * 128}"
-  gsub_file 'config/secrets.yml', /\z/, "\ncucumber_with_reloading:\n  secret_key_base: #{'o' * 128}"
+cucumber:
+  <<: *test
+  database: db/cucumber.sqlite3
+]
+gsub_file "config/database.yml",
+          /\z/,
+          %[
+
+cucumber_with_reloading:
+  <<: *test
+  database: db/cucumber.sqlite3
+]
+
+if File.exists? "config/secrets.yml"
+  gsub_file "config/secrets.yml",
+            /\z/,
+            %[
+
+cucumber:
+  secret_key_base: #{"o" * 128}
+]
+  gsub_file "config/secrets.yml",
+            /\z/,
+            %[
+
+cucumber_with_reloading:
+  secret_key_base: #{"o" * 128}
+]
 end
 
 generate :model, "post title:string body:text published_at:datetime author_id:integer position:integer custom_category_id:integer starred:boolean foo_id:integer"
@@ -64,7 +105,12 @@ generate :model, 'store name:string'
 
 # Generate a model with string ids
 generate :model, "tag name:string"
-gsub_file(Dir['db/migrate/*_create_tags.rb'][0], /\:tags\sdo\s.*/, ":tags, id: false, primary_key: :id do |t|\n\t\t\tt.string :id\n")
+gsub_file(Dir['db/migrate/*_create_tags.rb'][0],
+          /\:tags\sdo\s.*/,
+          %[:tags, id: false, primary_key: :id do |t|
+      t.string :id
+
+])
 inject_into_file 'app/models/tag.rb', %q{
   self.primary_key = :id
   before_create :set_id
