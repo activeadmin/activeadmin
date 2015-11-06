@@ -24,7 +24,7 @@ module ActiveAdmin
       @options, @block = options, block
     end
     def block
-      @extensions.inject(@block) do |stack, ext|
+      extensions.inject(@block) do |stack, ext|
         Proc.new do |f|
           ext.call(f)
           stack.call(f)
