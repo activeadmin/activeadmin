@@ -16,7 +16,7 @@ module ActiveAdmin
   #
   class PagePresenter
 
-    attr_reader :block, :options
+    attr_accessor :block, :options
 
     delegate :has_key?, :fetch, to: :options
 
