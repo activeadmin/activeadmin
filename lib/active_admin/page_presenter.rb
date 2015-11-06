@@ -23,9 +23,20 @@ module ActiveAdmin
     def initialize(options = {}, &block)
       @options, @block = options, block
     end
-
+    def block
+      @extensions.inject(@block) do |stack, ext|
+        Proc.new do |f|
+          ext.call(f)
+          stack.call(f)
+        end
+      end
+    end
     def [](key)
       @options[key]
+    end
+    
+    def extensions 
+      @extensions ||= []
     end
 
   end
