@@ -71,10 +71,11 @@ module ActiveAdmin
 
     def form(options = {}, &block)
       f = form_presenter
-      f.options, f.block = options, block
+      f.options = options
+      f.block = block
     end
     def form_presenter
-      config.get_page_presenter(:form) || ActiveAdmin::Views::Pages::Form.default_form_config
+      config.get_page_presenter(:form) || config.set_page_presenter(:form, ActiveAdmin::Views::Pages::Form.default_form_config)
     end
     def extend_form(&block)
       form_presenter.extensions << block
