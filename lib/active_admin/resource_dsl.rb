@@ -70,16 +70,14 @@ module ActiveAdmin
     end
 
     def form(options = {}, &block)
-      f = config.get_page_presenter(:form)
-      if f
-        f.options, f.block = options, block
-      else
-        config.set_page_presenter :form, ActiveAdmin::PagePresenter.new(options, &block)
-      end
+      f = form_presenter
+      f.options, f.block = options, block
     end
-
+    def form_presenter
+      config.get_page_presenter(:form) || config.set_page_presenter(:form, ActiveAdmin::PagePresenter.new({}, &Proc.new))
+    end
     def extend_form(&block)
-      (config.get_page_presenter(:form) || config.set_page_presenter(:form, ActiveAdmin::PagePresenter.new({}, &Proc.new))).extensions << block
+      form_presenter.extensions << block
     end
 
     # Configure the CSV format
