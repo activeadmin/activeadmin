@@ -73,6 +73,10 @@ module ActiveAdmin
       config.set_page_presenter :form, ActiveAdmin::PagePresenter.new(options, &block)
     end
 
+    def extend_form(&block)
+      config.get_page_presenter(:form).extensions << block
+    end
+
     # Configure the CSV format
     #
     # For example:
