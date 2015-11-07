@@ -52,6 +52,8 @@ module ActiveAdmin
     # end
     # ```
     #
+    # ## Defining Actions
+    #
     # To setup links to View, Edit and Delete a resource, use the `actions` method:
     #
     # ```ruby
@@ -107,6 +109,18 @@ module ActiveAdmin
     #   end
     # end
     # ```
+    #
+    # In addition, you can insert the position of the row in the greater collection by using the index_column special command:
+    #
+    # ```ruby
+    # index do
+    #   selectable_column
+    #   index_column
+    #   column :title
+    # end
+    # ```
+    #
+    # index_column take an optional offset parameter to allow a developer to set the starting number for the index (default is 1).
     #
     # ## Sorting
     #
@@ -241,6 +255,12 @@ module ActiveAdmin
           return unless active_admin_config.batch_actions.any?
           column resource_selection_toggle_cell, class: 'col-selectable', sortable: false do |resource|
             resource_selection_cell resource
+          end
+        end
+
+        def index_column(start_value = 1)
+          column '#', class: 'col-index', sortable: false do |resource|
+            @collection.offset_value + @collection.index(resource) + start_value
           end
         end
 

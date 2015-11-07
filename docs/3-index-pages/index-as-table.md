@@ -98,7 +98,7 @@ Or append custom action with custom html via arbre:
 index do
   column :title
   actions do |post|
-    a link_to "View", admin_post_path(post)
+    a "View", href: admin_post_path(post)
   end
 end
 ```
@@ -114,6 +114,18 @@ index do
   end
 end
 ```
+
+In addition, you can insert the position of the row in the greater collection by using the index_column special command:
+
+```ruby
+index do
+  selectable_column
+  index_column
+  column :title
+end
+```
+
+index_column take an optional offset parameter to allow a developer to set the starting number for the index (default is 1).
 
 ## Sorting
 
