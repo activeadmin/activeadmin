@@ -7,6 +7,7 @@
 * JavaScript `window.AA` has been removed, use `window.ActiveAdmin` [#3606][] by [@timoschilling][]
 * `f.form_buffers` has been removed [#3486][] by [@varyonic][]
 * Iconic has been removed [#3553][] by [@timoschilling][]
+* `config.show_comments_in_menu` has been removed [#4187][] by [@drn][]
 
 ### Enhancements
 
@@ -45,6 +46,7 @@
 ```ruby
 index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 ```
+* Comments menu can be customized via configuration passed to `config.comments_menu` [#4187][] by [@drn][]
 
 ### Security Fixes
 

@@ -5,10 +5,9 @@ require 'active_admin/orm/active_record/comments/resource_helper'
 
 # Add the comments configuration
 ActiveAdmin::Application.inheritable_setting :comments,                   true
-ActiveAdmin::Application.inheritable_setting :show_comments_in_menu,      true
 ActiveAdmin::Application.inheritable_setting :comments_registration_name, 'Comment'
 ActiveAdmin::Application.inheritable_setting :comments_order,             "created_at ASC"
-ActiveAdmin::Application.inheritable_setting :comments_menu, {}
+ActiveAdmin::Application.inheritable_setting :comments_menu,              {}
 
 # Insert helper modules
 ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper
@@ -24,11 +23,7 @@ ActiveAdmin.after_load do |app|
     namespace.register ActiveAdmin::Comment, as: namespace.comments_registration_name do
       actions :index, :show, :create, :destroy
 
-      if namespace.comments && namespace.show_comments_in_menu
-        menu namespace.comments_menu
-      elsif !namespace.comments || !namespace.show_comments_in_menu
-        menu false
-      end
+      menu namespace.comments ? namespace.comments_menu : false
 
       config.comments      = false # Don't allow comments on comments
       config.batch_actions = false # The default destroy batch action isn't showing up anyway...
