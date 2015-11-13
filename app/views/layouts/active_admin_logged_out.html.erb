@@ -21,12 +21,11 @@
   <%= csrf_meta_tag %>
 </head>
 <body class="active_admin logged_out <%= controller.action_name %>">
+<% flash_messages.each do |type, message| %>
+  <%= content_tag :div, message, class: "flash flash_#{type}" %>
+<% end %>
 <div id="wrapper">
-
   <div id="content_wrapper">
-    <% flash_messages.each do |type, message| %>
-      <%= content_tag :div, message, class: "flash flash_#{type}" %>
-    <% end %>
     <div id="active_admin_content">
       <%= yield %>
     </div>
