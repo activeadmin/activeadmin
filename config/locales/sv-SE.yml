@@ -37,7 +37,7 @@
       no_current_filters: "Inga"
     status_tag:
       "yes": "Ja"
-      "no": "Ingen"
+      "no": "Nej"
     main_content: "Implementera %{model}#main_content för att kunna visa något."
     logout: "Logga ut"
     powered_by: "Powered by %{active_admin} %{version}"
