@@ -120,8 +120,8 @@ it:
         sign_in: "Entra"
         forgot_your_password: "Dimenticato la password?"
         sign_in_with_omniauth_provider: "Collegati a %{provider}"
-        resend_unlock_instructions: "Invia nuovamente istruzioni di sblocco"
-        resend_confirmation_instructions: "Invia nuovamente istruzioni di conferma"
+        resend_unlock_instructions: "Invia nuovamente istruzioni per lo sblocco"
+        resend_confirmation_instructions: "Invia nuovamente istruzioni per la conferma"
     unsupported_browser:
       headline: "Perfavore, notare che ActiveAdmin non supporta più Internet Explorer 8 o inferiore"
       recommendation: "Ti raccomandiamo di aggiornare alla versione più recente di <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, o <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
