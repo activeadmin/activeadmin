@@ -31,6 +31,10 @@ it:
         ends_with: "Finisce con"
         greater_than: "Maggiore di"
         less_than: "Minore di"
+    search_status:
+      headline: "Contesto:"
+      current_filters: "Filtri attivi:"
+      no_current_filters: "Nessuno"
     status_tag:
       "yes": "Sì"
       "no": "No"
@@ -39,6 +43,7 @@ it:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtri"
+      search_status: "Informazioni sulla ricerca"
     pagination:
       empty: "Nessun %{model} trovato"
       one: "Sto mostrando <b>1</b> %{model}"
@@ -67,12 +72,15 @@ it:
       labels:
         destroy: "Elimina"
     comments:
+      created_at: "Creato il"
       resource_type: "Tipo di risorsa"
       author_type: "Tipo di Autore"
       body: "Corpo"
       author: "Autore"
       title: "Commento"
       add: "Aggiungi Commento"
+      delete: "Cancella Commento"
+      delete_confirmation: "Sei sicuro di voler cancellare questo commento?"
       resource: "Risorsa"
       no_comments_yet: "Nessun commento."
       author_missing: "Anonimo"
@@ -88,6 +96,9 @@ it:
         title: "Sottodominio"
       password:
         title: "Password"
+      sign_up:
+        title: "Iscriviti"
+        submit: "Iscriviti"
       login:
         title: "Entra"
         remember_me: "Ricordami"
@@ -105,9 +116,16 @@ it:
         title: "Invia di nuovo le istruzioni per la conferma"
         submit: "Invia di nuovo le istruzioni per la conferma"
       links:
+        sign_in: "Iscriviti"
         sign_in: "Entra"
         forgot_your_password: "Dimenticato la password?"
         sign_in_with_omniauth_provider: "Collegati a %{provider}"
+        resend_unlock_instructions: "Invia di nuovo le istruzioni per lo sblocco"
+        resend_confirmation_instructions: "Invia di nuovo le istruzioni per la conferma"
+    unsupported_browser:
+      headline: "Perfavore, notare che ActiveAdmin non supporta più Internet Explorer 8 o inferiore"
+      recommendation: "Ti raccomandiamo di aggiornare alla versione più recente di <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, o <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Se stai utilizzando Internet Explorer 9 o successivo, assicurati di <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">disabilitare la \"Modalità Compatibilità\"</a>."
     access_denied:
       message: "Non hai le autorizzazioni necessarie per eseguire questa azione."
     index_list:
