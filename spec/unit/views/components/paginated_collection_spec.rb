@@ -29,6 +29,7 @@ describe ActiveAdmin::Views::PaginatedCollection do
 
     before do
       allow(collection).to receive(:except) { collection } unless collection.respond_to? :except
+      allow(collection).to receive(:loaded?) { true }      unless collection.respond_to? :loaded?
       allow(collection).to receive(:group_values) { [] }   unless collection.respond_to? :group_values
     end
 
