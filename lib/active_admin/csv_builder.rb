@@ -39,17 +39,17 @@ module ActiveAdmin
       @columns << Column.new(name, @resource, column_transitive_options.merge(options), block)
     end
 
-    def build(controller, receiver)
+    def build(controller, csv)
       @collection = controller.send(:find_collection, except: :pagination)
       options = ActiveAdmin.application.csv_options.merge self.options
       columns = exec_columns controller.view_context
 
       if byte_order_mark = options.delete(:byte_order_mark)
-        receiver << byte_order_mark
+        csv << byte_order_mark
       end
 
       if options.delete(:column_names) { true }
-        receiver << CSV.generate_line(
+        csv << CSV.generate_line(
           columns.map { |c| encode c.name, options },
           options.except(:encoding_options))
       end
@@ -57,11 +57,13 @@ module ActiveAdmin
       (1..paginated_collection.total_pages).each do |page_no|
         paginated_collection(page_no).each do |resource|
           resource = controller.send :apply_decorator, resource
-          receiver << CSV.generate_line(
+          csv << CSV.generate_line(
             build_row(resource, columns, options),
             options.except(:encoding_options))
         end
       end
+
+      csv
     end
 
     def exec_columns(view_context = nil)
