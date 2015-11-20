@@ -18,6 +18,8 @@
 
 #### Minor
 
+* Stream CSV downloads as they're generated [#3038][] by [@craigmcnamara][]
+  * Disable streaming in development for easier debugging [#3535][] by [@seanlinsley][]
 * Improved code reloading [#3783][] by [@chancancode][]
 * Do not auto link to inaccessible actions [#3686][] by [@pranas][]
 * Allow to enable comments on per-resource basis [#3695][] by [@pranas][]
