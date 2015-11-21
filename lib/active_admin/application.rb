@@ -125,6 +125,9 @@ module ActiveAdmin
                                       :email,
                                       :to_s ]
 
+    # To make debugging easier, by default don't stream in development
+    setting :disable_streaming_in, ['development']
+
     # == Deprecated Settings
 
     def allow_comments=(*)
