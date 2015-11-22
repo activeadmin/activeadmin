@@ -26,7 +26,7 @@ module ActiveAdmin
       end
     end
 
-    attr_reader :columns, :options, :byte_order_mark, :column_names, :csv_options
+    attr_reader :columns, :options, :paginate_with, :byte_order_mark, :column_names, :csv_options
 
     COLUMN_TRANSITIVE_OPTIONS = [:humanize_name].freeze
 
@@ -34,6 +34,7 @@ module ActiveAdmin
       @resource = options.delete(:resource)
       @block    = block
       @options  = ActiveAdmin.application.csv_options.merge options
+      @paginate_with   = @options.delete(:paginate_with) { :find_each }
       @byte_order_mark = @options.delete :byte_order_mark
       @column_names    = @options.delete(:column_names) { true }
       @csv_options     = @options.except :encoding_options
@@ -47,17 +48,15 @@ module ActiveAdmin
       @collection = controller.send :find_collection, except: :pagination
       columns     = exec_columns controller.view_context
 
-      csv << byte_order_mark if byte_order_mark
+      csv << encode(byte_order_mark) if byte_order_mark
 
       if column_names
-        csv << CSV.generate_line(columns.map{ |c| encode c.name, options }, csv_options)
+        csv << CSV.generate_line(columns.map{ |c| encode c.name }, csv_options)
       end
 
-      (1..paginated_collection.total_pages).each do |page|
-        paginated_collection(page).each do |resource|
-          resource = controller.send :apply_decorator, resource
-          csv << CSV.generate_line(build_row(resource, columns, options), csv_options)
-        end
+      each_resource do |resource|
+        resource = controller.send :apply_decorator, resource
+        csv << CSV.generate_line(build_row(resource, columns), csv_options)
       end
 
       csv
@@ -72,13 +71,13 @@ module ActiveAdmin
       @columns
     end
 
-    def build_row(resource, columns, options)
+    def build_row(resource, columns)
       columns.map do |column|
-        encode call_method_or_proc_on(resource, column.data), options
+        encode call_method_or_proc_on(resource, column.data)
       end
     end
 
-    def encode(content, options)
+    def encode(content)
       if options[:encoding]
         content.to_s.encode options[:encoding], options[:encoding_options]
       else
@@ -98,12 +97,23 @@ module ActiveAdmin
       @column_transitive_options ||= @options.slice(*COLUMN_TRANSITIVE_OPTIONS)
     end
 
-    def paginated_collection(page_no = 1)
-      @collection.public_send(Kaminari.config.page_method_name, page_no).per(batch_size)
+    def each_resource
+      case paginate_with
+      when :find_each
+        @collection.find_each{ |resource| yield resource }
+      when :kaminari
+        (1..kaminari_collection.total_pages).each do |page|
+          kaminari_collection(page).each{ |resource| yield resource }
+        end
+      when Proc
+        paginate_with.call(@collection).each{ |resource| yield resource }
+      else
+        fail "unexpected argument for paginate_with: #{paginate_with}"
+      end
     end
 
-    def batch_size
-      1000
+    def kaminari_collection(page = 1)
+      @collection.public_send(Kaminari.config.page_method_name, page).per 1000
     end
 
     class Column

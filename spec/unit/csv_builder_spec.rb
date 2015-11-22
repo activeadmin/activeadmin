@@ -6,7 +6,27 @@ describe ActiveAdmin::CSVBuilder do
   let(:builder) { ActiveAdmin::CSVBuilder.new options, &block }
   let(:options) { {} }
   let(:block)   { ->{} }
-  before{ |ex| builder.send :exec_columns unless ex.metadata[:skip_exec] }
+
+  let(:view_context) {
+    context = double
+    method = MethodOrProcHelper.instance_method(:call_method_or_proc_on).bind(context)
+    allow(context).to receive(:call_method_or_proc_on){ |*args| method.call *args }
+    context
+  }
+  let(:controller) {
+    controller = double view_context: view_context, find_collection: collection
+    allow(controller).to receive(:apply_decorator) { |r| r }
+    controller
+  }
+  let(:collection) { Post.all }
+
+  before{ |ex| builder.send :exec_columns, view_context unless ex.metadata[:skip_exec] }
+
+  before :all do
+    Post.destroy_all
+    @post1 = Post.create!(title: "Hello1", published_date: Date.today - 2.day )
+    @post2 = Post.create!(title: "Hello2", published_date: Date.today - 1.day )
+  end
 
   context 'when empty' do
     it "has no columns" do
@@ -158,46 +178,45 @@ describe ActiveAdmin::CSVBuilder do
     end
   end
 
-  context "with access to the controller", skip_exec: true do
-    let(:dummy_view_context) { double(controller: dummy_controller) }
-    let(:dummy_controller) { double(names: %w(title summary updated_at created_at))}
+  context "with access to the controller"do
+    let(:view_context) { double controller: double(names: %w(title summary updated_at created_at)) }
     let(:block) {
       -> {
         column "id"
         controller.names.each{ |name| column name }
       }
     }
-    before{ builder.send :exec_columns, dummy_view_context }
 
     it "builds columns provided by the controller" do
       expect(builder.columns.map(&:data)).to match_array([:id, :title, :summary, :updated_at, :created_at])
     end
   end
 
-  context "build csv using the supplied order" do
-    before do
-      @post1 = Post.create!(title: "Hello1", published_date: Date.today - 2.day )
-      @post2 = Post.create!(title: "Hello2", published_date: Date.today - 1.day )
+  it "generates data ignoring pagination" do
+    expect(controller).to receive(:find_collection).with(except: :pagination).once
+    expect(builder).to    receive(:build_row).and_return([]).twice
+    builder.build controller, []
+  end
+
+  describe "paginate_with: :per_page" do
+    it "works" do
+      expect(collection).to receive(:find_each).and_call_original
+      builder.build controller, []
     end
-    let(:dummy_controller) {
-      class DummyController
-        def find_collection(*)
-          collection
-        end
+  end
 
-        def collection
-          Post.order('published_date DESC')
-        end
+  describe "paginate_with: <Proc>" do
+    let(:options) { {paginate_with: ->collection { collection }} }
 
-        def apply_decorator(resource)
-          resource
-        end
+    it "works" do
+      expect(collection).to receive(:each).and_call_original
+      builder.build controller, []
+    end
+  end
 
-        def view_context
-        end
-      end
-      DummyController.new
-    }
+  describe "paginate_with: :kaminari" do
+    let(:options) { {paginate_with: :kaminari} }
+    let(:collection) { Post.order published_date: :desc }
     let(:block) {
       -> {
         column "id"
@@ -209,71 +228,43 @@ describe ActiveAdmin::CSVBuilder do
     it "generates data with the supplied order" do
       expect(builder).to receive(:build_row).and_return([]).once.ordered { |post| expect(post.id).to eq @post2.id }
       expect(builder).to receive(:build_row).and_return([]).once.ordered { |post| expect(post.id).to eq @post1.id }
-      builder.build dummy_controller, []
+      builder.build controller, []
     end
-
-    it "generates data ignoring pagination" do
-      expect(dummy_controller).to receive(:find_collection).
-        with(except: :pagination).once.
-        and_call_original
-      expect(builder).to receive(:build_row).and_return([]).twice
-      builder.build dummy_controller, []
-    end
-
   end
 
-  context "build csv using specified encoding and encoding_options" do
-    let(:dummy_controller) do
-      class DummyController
-        def find_collection(*)
-          collection
-        end
-
-        def collection
-          Post
-        end
-
-        def apply_decorator(resource)
-          resource
-        end
-
-        def view_context
-        end
-      end
-      DummyController.new
-    end
+  describe ":encoding and :encoding_options" do
     let(:encoding) { Encoding::ASCII }
     let(:encoding_options) { {} }
     let(:options) { {encoding: encoding, encoding_options: encoding_options} }
     let(:block) {
       -> {
-        column "おはようございます"
-        column "title"
+        column("おはようございます") { |p| p.title }
       }
     }
 
-    context "Shift-JIS with options" do
+    context "Shift-JIS" do
       let(:encoding) { Encoding::Shift_JIS }
       let(:encoding_options) { {invalid: :replace, undef: :replace, replace: "?"} }
 
       it "encodes the CSV" do
-        receiver = []
-        builder.build dummy_controller, receiver
-        line = receiver.last
-        expect(line.encoding).to eq(encoding)
+        csv = []
+        builder.build controller, csv
+
+        expect(csv.map(&:encoding).uniq).to eq [encoding]
+        expect(csv).to include "おはようございます\n".encode(encoding, encoding_options)
       end
     end
 
-    context "ASCII with options" do
+    context "ASCII" do
       let(:encoding) { Encoding::ASCII }
       let(:encoding_options) { {invalid: :replace, undef: :replace, replace: "__REPLACED__"} }
 
       it "encodes the CSV without errors" do
-        receiver = []
-        builder.build dummy_controller, receiver
-        line = receiver.last
-        expect(line.encoding).to eq(encoding)
-        expect(line).to include("__REPLACED__")
+        csv = []
+        builder.build controller, csv
+
+        expect(csv.map(&:encoding).uniq).to eq [encoding]
+        expect(csv.first).to include "__REPLACED__"
       end
     end
   end
