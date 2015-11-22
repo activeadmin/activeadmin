@@ -166,7 +166,7 @@ describe ActiveAdmin::CSVBuilder do
     end
 
     it "should have proper separator" do
-      expect(builder.options).to eq({force_quotes: true})
+      expect(builder.options).to eq col_sep: ',', force_quotes: true
     end
   end
 

@@ -26,13 +26,17 @@ module ActiveAdmin
       end
     end
 
-    attr_reader :columns, :options, :view_context
+    attr_reader :columns, :options, :byte_order_mark, :column_names, :csv_options
 
     COLUMN_TRANSITIVE_OPTIONS = [:humanize_name].freeze
 
     def initialize(options={}, &block)
       @resource = options.delete(:resource)
-      @columns, @options, @block = [], options, block
+      @block    = block
+      @options  = ActiveAdmin.application.csv_options.merge options
+      @byte_order_mark = @options.delete :byte_order_mark
+      @column_names    = @options.delete(:column_names) { true }
+      @csv_options     = @options.except :encoding_options
     end
 
     def column(name, options={}, &block)
@@ -40,14 +44,10 @@ module ActiveAdmin
     end
 
     def build(controller, csv)
-      @collection  = controller.send :find_collection, except: :pagination
-      columns      = exec_columns controller.view_context
-      options      = ActiveAdmin.application.csv_options.merge self.options
-      bom          = options.delete :byte_order_mark
-      column_names = options.delete(:column_names) { true }
-      csv_options  = options.except :encoding_options
+      @collection = controller.send :find_collection, except: :pagination
+      columns     = exec_columns controller.view_context
 
-      csv << bom if bom
+      csv << byte_order_mark if byte_order_mark
 
       if column_names
         csv << CSV.generate_line(columns.map{ |c| encode c.name, options }, csv_options)
@@ -67,7 +67,7 @@ module ActiveAdmin
       @view_context = view_context
       @columns = [] # we want to re-render these every instance
       instance_exec &@block if @block.present?
-      columns
+      @columns
     end
 
     def build_row(resource, columns, options)
