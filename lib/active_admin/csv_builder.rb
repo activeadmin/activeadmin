@@ -63,6 +63,8 @@ module ActiveAdmin
       csv
     end
 
+  private
+
     def exec_columns(view_context = nil)
       @view_context = view_context
       @columns = [] # we want to re-render these every instance
@@ -92,6 +94,18 @@ module ActiveAdmin
       end
     end
 
+    def column_transitive_options
+      @column_transitive_options ||= @options.slice(*COLUMN_TRANSITIVE_OPTIONS)
+    end
+
+    def paginated_collection(page_no = 1)
+      @collection.public_send(Kaminari.config.page_method_name, page_no).per(batch_size)
+    end
+
+    def batch_size
+      1000
+    end
+
     class Column
       attr_reader :name, :data, :options
 
@@ -110,20 +124,6 @@ module ActiveAdmin
           name.to_s
         end
       end
-    end
-
-    private
-
-    def column_transitive_options
-      @column_transitive_options ||= @options.slice(*COLUMN_TRANSITIVE_OPTIONS)
-    end
-
-    def paginated_collection(page_no = 1)
-      @collection.public_send(Kaminari.config.page_method_name, page_no).per(batch_size)
-    end
-
-    def batch_size
-      1000
     end
   end
 end
