@@ -56,3 +56,25 @@ environments where CSV streaming is disabled, you can change this setting:
 
 config.disable_streaming_in = ['development', 'staging']
 ```
+
+# Pagination
+
+By default we use `find_each` to paginate through your records because it's the
+best option made available by Rails. Note that it relies on the table's primary
+key, and orders the collection by ID. If you would like to configure either of
+those, you can use the `paginate_with` option.
+
+```ruby
+ActiveAdmin.register Post do
+  controller do
+    def collection
+      Post.order created_at: :desc
+    end
+  end
+
+  csv paginate_with: :kaminari
+end
+```
+
+You can also provide any custom pagination by passing a proc/lambda. The only
+requirement is that it needs to respond to `each`.
