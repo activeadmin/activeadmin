@@ -6,7 +6,7 @@
 * Rename `allow_comments` to `comments` for more consistent naming [#3695][] by [@pranas][]
 * JavaScript `window.AA` has been removed, use `window.ActiveAdmin` [#3606][] by [@timoschilling][]
 * `f.form_buffers` has been removed [#3486][] by [@varyonic][]
-* iconic has been removed [#3553][] by [@timoschilling][]
+* Iconic has been removed [#3553][] by [@timoschilling][]
 
 ### Enhancements
 
