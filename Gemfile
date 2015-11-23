@@ -9,6 +9,8 @@ gem 'rails', rails_version == 'master' ? {github: 'rails/rails'} : rails_version
 
 gem 'jquery-ui-rails', rails_version[0] == '3' ? '~> 4.0' : '~> 5.0'
 
+gem 'test-unit', '~> 3.0' if rails_version[0] == '3'
+
 if rails_version == 'master'
   gem 'arel',       github: 'rails/arel'
   gem 'sprockets',  github: 'rails/sprockets'
