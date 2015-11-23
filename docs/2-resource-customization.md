@@ -297,6 +297,9 @@ end
 
 ## Customizing resource retrieval
 
+Our controllers are built on [Inherited Resources](https://github.com/josevalim/inherited_resources),
+so you can use [all of its features](https://github.com/josevalim/inherited_resources#overwriting-defaults).
+
 If you need to customize the collection properties, you can overwrite the `scoped_collection` method.
 
 ```ruby
@@ -316,14 +319,24 @@ If you need to completely replace the record retrieving code (e.g., you have a c
 ActiveAdmin.register Post do
   controller do
     def find_resource
-      Post.where(id: params[:id]).first!
+      scoped_collection.where(id: params[:id]).first!
     end
   end
 end
 ```
 
-Our controllers are built on [Inherited Resources](https://github.com/josevalim/inherited_resources),
-so you can use [all of its features](https://github.com/josevalim/inherited_resources#overwriting-defaults).
+Note that if you use an authorization library like CanCan, you should be careful to not
+write code like this, otherwise **your authorization rules won't be applied**:
+
+```ruby
+ActiveAdmin.register Post do
+  controller do
+    def find_resource
+      Post.where(id: params[:id]).first!
+    end
+  end
+end
+```
 
 ## Belongs To
 
