@@ -116,10 +116,8 @@ module ActiveAdmin
       end
 
       def is_boolean?(data, item)
-        if item.respond_to? :has_attribute?
-          item.has_attribute?(data) &&
-            item.column_for_attribute(data) &&
-            item.column_for_attribute(data).type == :boolean
+        if item.class.respond_to? :columns_hash
+          column = item.class.columns_hash[data.to_s] and column.type == :boolean
         end
       end
 

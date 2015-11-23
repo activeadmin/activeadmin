@@ -30,7 +30,6 @@ module ActiveAdmin
         :filtering,
         :scoping,
         :includes,
-        :collection_decorator
       ].freeze
 
       def batch_action_collection(only = COLLECTION_APPLIES)
