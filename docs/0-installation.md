@@ -3,7 +3,7 @@
 Active Admin is a Ruby Gem.
 
 ```ruby
-gem 'activeadmin'
+gem 'activeadmin', github: 'activeadmin'
 
 # Plus integrations with:
 gem 'devise'
