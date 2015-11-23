@@ -8,10 +8,9 @@ describe ActiveAdmin::CSVBuilder do
   let(:block)   { ->{} }
 
   let(:view_context) {
-    context = double
-    method = MethodOrProcHelper.instance_method(:call_method_or_proc_on).bind(context)
-    allow(context).to receive(:call_method_or_proc_on){ |*args| method.call *args }
-    context
+    context = Class.new
+    context.send :include, MethodOrProcHelper
+    context.new
   }
   let(:controller) {
     controller = double view_context: view_context, find_collection: collection
