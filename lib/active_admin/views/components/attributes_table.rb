@@ -5,7 +5,7 @@ module ActiveAdmin
       builder_method :attributes_table_for
 
       def build(obj, *attrs)
-        @collection     = is_array?(obj) ? obj : [obj]
+        @collection     = Array.wrap(obj)
         @resource_class = @collection.first.class
         options = { }
         options[:for] = @collection.first if single_record?
@@ -101,10 +101,6 @@ module ActiveAdmin
 
       def single_record?
         @single_record ||= @collection.size == 1
-      end
-      
-      def is_array?(obj)
-        obj.respond_to?(:each) && obj.respond_to?(:first) && !obj.is_a?(Hash)
       end
     end
 
