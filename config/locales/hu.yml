@@ -83,7 +83,7 @@ hu:
         submit: "Belépés"
       reset_password:
         title: "Elfelejtette a jelszavát?"
-        submit: "Visszaállítása a jelszót"
+        submit: "Jelszó visszaállítása"
       change_password:
         title: "A jelszó módosítása"
         submit: "Jelszó módosítása"
