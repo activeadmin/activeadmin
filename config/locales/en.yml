@@ -32,6 +32,7 @@ en:
         greater_than: "Greater than"
         less_than: "Less than"
     search_status:
+	  search_status_name: "Search status:"
       headline: "Scope:"
       current_filters: "Current filters:"
       no_current_filters: "None"
