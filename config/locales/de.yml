@@ -32,7 +32,7 @@ de:
         greater_than: "Größer als"
         less_than: "Kleiner als"
     search_status:
-      headline: "Anwendungsbereich:"
+      current_scope: "Anwendungsbereich:"
       current_filters: "Aktuelle Filter:"
       no_current_filters: "Keine"
     status_tag:

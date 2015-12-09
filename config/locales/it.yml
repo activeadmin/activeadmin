@@ -32,8 +32,8 @@ it:
         greater_than: "Maggiore di"
         less_than: "Minore di"
     search_status:
-	  search_status_name: "Situazione filtri:"
-      headline: "Contesto:"
+	  headline: "Situazione filtri:"
+      current_scope: "Contesto selezionato:"
       current_filters: "Filtri attivi:"
       no_current_filters: "Nessuno"
     status_tag:

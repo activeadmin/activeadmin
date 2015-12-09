@@ -32,7 +32,7 @@ ar:
         greater_than: "أكبر من"
         less_than: "أقل من"
     search_status:
-      headline: "المجال:"
+      current_scope: "المجال:"
       current_filters: "المُرشحات الحاليّة:"
       no_current_filters: "بدون"
     status_tag:
