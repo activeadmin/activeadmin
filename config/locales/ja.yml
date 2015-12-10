@@ -32,7 +32,7 @@ ja:
         greater_than: "より大きい"
         less_than: "より小さい"
     search_status:
-      headline: "範囲:"
+      current_scope: "範囲:"
       current_filters: "現在の絞り込み:"
       no_current_filters: "なし"
     status_tag:

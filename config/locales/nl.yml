@@ -32,7 +32,7 @@ nl:
         greater_than: "Groter dan"
         less_than: "Kleiner dan"
     search_status:
-      headline: "Scope:"
+      current_scope: "Scope:"
       current_filters: "Huidige filters:"
       no_current_filters: "Geen"
     status_tag:

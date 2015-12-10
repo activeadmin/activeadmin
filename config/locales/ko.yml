@@ -32,7 +32,7 @@ ko:
         greater_than: "초과"
         less_than: "미만"
     search_status:
-      headline: "검색 범위:"
+      current_scope: "검색 범위:"
       current_filters: "적용된 필터:"
       no_current_filters: "현재 적용된 필터가 없습니다"
     status_tag:

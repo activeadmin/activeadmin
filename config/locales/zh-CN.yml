@@ -32,7 +32,7 @@
         greater_than: "大于"
         less_than: "小于"
     search_status:
-      headline: "搜索范围："
+      current_scope: "搜索范围："
       current_filters: "过滤条件："
       no_current_filters: "无"
     status_tag:

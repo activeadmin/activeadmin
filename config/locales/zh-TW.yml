@@ -32,7 +32,7 @@
         greater_than: "大於"
         less_than: "小於"
     search_status:
-      headline: "子集："
+      current_scope: "子集："
       current_filters: "目前篩選條件："
       no_current_filters: "無"
     status_tag:
