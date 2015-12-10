@@ -32,7 +32,7 @@ it:
         greater_than: "Maggiore di"
         less_than: "Minore di"
     search_status:
-	  headline: "Situazione filtri:"
+      headline: "Situazione filtri:"
       current_scope: "Contesto selezionato:"
       current_filters: "Filtri attivi:"
       no_current_filters: "Nessuno"
