@@ -163,7 +163,7 @@ module ActiveAdmin
       end
 
       def search_status_section
-        ActiveAdmin::SidebarSection.new I18n.t("active_admin.search_status.headline", :default => 'Search status'), only: :index, if: -> { params[:q] || params[:scope] } do
+        ActiveAdmin::SidebarSection.new I18n.t("active_admin.search_status.headline"), only: :index, if: -> { params[:q] || params[:scope] } do
           active = ActiveAdmin::Filters::Active.new(resource_class, params)
 
           span do
