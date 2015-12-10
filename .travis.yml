@@ -12,14 +12,15 @@ script:
   - bundle exec rake test_with_coveralls
 rvm:
   - 1.9
+  - 2.1.7
   - 2.2.3
-  - jruby-9.0.0.0
+  - jruby-9.0.4.0
 env:
   matrix:
     - RAILS=3.2.22
-    - RAILS=4.1.13
+    - RAILS=4.1.14
     - RAILS=master
-    - RAILS=4.2.4
+    - RAILS=4.2.5
   global:
     - JRUBY_OPTS="-J-Xmx1024m --debug"
 matrix:
