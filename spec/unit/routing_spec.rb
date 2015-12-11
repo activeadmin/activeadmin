@@ -146,6 +146,31 @@ describe ActiveAdmin, "Routing", type: :routing do
     end
   end
 
+  describe "nested belongs to resource" do
+    before do
+      ActiveAdmin.register(PostComment) do
+        belongs_to :user, optional: true
+        belongs_to :post
+      end
+      reload_routes!
+    end
+    it "should route the nested index path" do
+      expect(admin_user_post_post_comments_path(1,2)).to eq "/admin/users/1/posts/2/post_comments"
+    end
+
+    it "should route the nested show path" do
+      expect(admin_user_post_post_comment_path(1,2,3)).to eq "/admin/users/1/posts/2/post_comments/3"
+    end
+
+    it "should route the nested skipping optional index path" do
+      expect(admin_post_post_comments_path(1)).to eq "/admin/posts/1/post_comments"
+    end
+
+    it "should route the nested skipping optional show path" do
+      expect(admin_post_post_comment_path(1,2)).to eq "/admin/posts/1/post_comments/2"
+    end
+  end
+
   describe "page" do
     context "when default namespace" do
       before(:each) do

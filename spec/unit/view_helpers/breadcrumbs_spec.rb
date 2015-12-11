@@ -16,7 +16,7 @@ describe "Breadcrumbs" do
                                defined_actions: actions }
     let(:post)        { double display_name: 'Hello World' }
     let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
-                               defined_actions: actions, belongs_to_config: double(target: user_config) }
+                               defined_actions: actions, belongs_to_config: [double(target: user_config)] }
 
     let :active_admin_config do
       post_config
@@ -193,7 +193,7 @@ describe "Breadcrumbs" do
     context "when the 'show' action is disabled" do
       let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
                                  defined_actions: actions - [:show], # this is the change
-                                 belongs_to_config: double(target: user_config) }
+                                 belongs_to_config: [double(target: user_config)] }
 
       let(:path) { "/admin/posts/1/edit" }
 
