@@ -102,7 +102,7 @@ module ActiveAdmin
 
     # Request parameters that are permitted by default
     inheritable_setting :permitted_params, [
-      :utf8, :_method, :authenticity_token, :commit, :id
+      :utf8, :_method, :authenticity_token, :commit, :id, :protocol
     ]
 
     # Set flash message keys that shouldn't show in ActiveAdmin
