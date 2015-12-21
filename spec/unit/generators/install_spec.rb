@@ -3,8 +3,9 @@ require 'rails_helper'
 describe "AA installation" do
   context "should create" do
 
-    it "active_admin.css.scss" do
-      expect(File.exists?(Rails.root + "app/assets/stylesheets/active_admin.css.scss")).to be_truthy
+    it "active_admin.scss" do
+      path = Rails.root + "app/assets/stylesheets/active_admin.scss"
+      expect(File.exists? path).to be_truthy
     end
 
     it "active_admin.js.coffee" do

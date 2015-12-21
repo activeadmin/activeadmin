@@ -42,11 +42,13 @@ module ActiveAdmin
       end
 
       def inputs(*args, &block)
+        if block_given?
+          form_builder.template.assign(has_many_block: true)
+        end
         if block_given? && block.arity == 0
           wrapped_block = proc do
             wrap_it = form_builder.already_in_an_inputs_block ? true : false
             form_builder.already_in_an_inputs_block = true
-            form_builder.template.assign('has_many_block'=> true)
             content = form_builder.template.capture do
               block.call
             end
@@ -114,8 +116,6 @@ module ActiveAdmin
 
     class HasManyProxy < FormtasticProxy
       def build(form_builder, *args, &block)
-        assoc = args[0]
-        builder_options = args[1] || {}
         text_node form_builder.has_many(*args, &block)
       end
     end

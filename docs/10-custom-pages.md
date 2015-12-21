@@ -49,6 +49,16 @@ end
 
 See the [Menu](2-resource-customization.md#customize-the-menu) documentation.
 
+## Customize the breadcrumbs
+
+```ruby
+ActiveAdmin.register_page "Calendar" do
+  breadcrumb do
+    ['admin', 'calendar']
+  end
+end
+```
+
 ## Customize the Namespace
 
 We use the `admin` namespace by default, but you can use anything:

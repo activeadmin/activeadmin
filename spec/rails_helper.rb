@@ -107,6 +107,10 @@ require ENV['RAILS_ROOT'] + '/config/environment'
 
 require 'rspec/rails'
 
+# Prevent Test::Unit's AutoRunner from executing during RSpec's rake task on
+# JRuby
+Test::Unit.run = true if defined?(Test::Unit) && Test::Unit.respond_to?(:run=)
+
 # Setup Some Admin stuff for us to play with
 include ActiveAdminIntegrationSpecHelper
 load_defaults!
@@ -133,16 +137,23 @@ end
 
 # All RSpec configuration needs to happen before any examples
 # or else it whines.
-require 'integration_example_group'
+require "support/active_admin_request_helpers"
 RSpec.configure do |c|
-  c.include RSpec::Rails::IntegrationExampleGroup, file_path: /\bspec\/requests\//
+  c.include ActiveAdminRequestHelpers, type: :request
   c.include Devise::TestHelpers, type: :controller
+end
+
+# Force deprecations to raise an exception.
+# This would set `behavior = :raise`, but that wasn't added until Rails 4.
+ActiveSupport::Deprecation.behavior = -> message, callstack do
+  e = StandardError.new message
+  e.set_backtrace callstack
+  raise e
 end
 
 # improve the performance of the specs suite by not logging anything
 # see http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
 Rails.logger.level = 4
-
 
 # Improves performance by forcing the garbage collector to run less often.
 unless ENV['DEFER_GC'] == '0' || ENV['DEFER_GC'] == 'false'

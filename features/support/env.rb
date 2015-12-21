@@ -106,7 +106,6 @@ After do
 end
 
 Before do
-
   begin
     # We are caching classes, but need to manually clear references to
     # the controllers. If they aren't clear, the router stores references
@@ -119,6 +118,14 @@ Before do
     p $!
     raise $!
   end
+end
+
+# Force deprecations to raise an exception.
+# This would set `behavior = :raise`, but that wasn't added until Rails 4.
+ActiveSupport::Deprecation.behavior = -> message, callstack do
+  e = StandardError.new message
+  e.set_backtrace callstack
+  raise e
 end
 
 # improve the performance of the specs suite by not logging anything

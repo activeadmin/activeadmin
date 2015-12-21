@@ -23,7 +23,7 @@
     filters:
       buttons:
         filter: "Filter"
-        clear: "Töm dina filters"
+        clear: "Rensa filter"
       predicates:
         contains: "Innehåller"
         equals: "Lika med"
@@ -31,14 +31,19 @@
         ends_with: "Slutar med"
         greater_than: "Större än"
         less_than: "Mindre än"
+    search_status:
+      current_scope: "Scope:"
+      current_filters: "Nuvarande filter:"
+      no_current_filters: "Inga"
     status_tag:
       "yes": "Ja"
-      "no": "Ingen"
+      "no": "Nej"
     main_content: "Implementera %{model}#main_content för att kunna visa något."
     logout: "Logga ut"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filter"
+      search_status: "Sök status"
     pagination:
       empty: "Ingen %{model} funnen"
       one: "Visar <b>1</b> utav %{model}"
@@ -50,12 +55,12 @@
         other: "inlägg"
     any: "Någon"
     blank_slate:
-      content: "Finns ingen %{resource_name} än."
+      content: "Finns inga %{resource_name} än."
       link: "Skapa en"
     dropdown_actions:
       button_label: "Behandling"
     batch_actions:
-      button_label: "Batch Behandling"
+      button_label: "Batch behandling"
       default_confirmation: "Är du säker på att du vill göra detta?"
       delete_confirmation: "Är du säker på att du vill radera dessa %{plural_model}?"
       succesfully_destroyed:
@@ -67,27 +72,62 @@
       labels:
         destroy: "Radera"
     comments:
+      created_at: "Skapad"
+      resource_type: "Resurs typ"
+      author_type: "Författar typ"
       body: "Innehåll"
       author: "Författare"
       title: "Kommentar"
       add: "Lägg till kommentar"
       resource: "Resurs"
       no_comments_yet: "Inga kommentarer än."
+      author_missing: "Anonym"
       title_content: "Kommentarer (%{count})"
       errors:
         empty_text: "Kommentaren sparades inte, måste innehålla text."
     devise:
+      username:
+        title: "Användarnamn"
+      email:
+        title: "Epost"
+      subdomain:
+        title: "Subdomän"
+      password:
+        title: "Lösenord"
+      sign_up:
+        title: "Registera"
+        submit: "Registera"
       login:
-        title: "inloggning"
+        title: "Inloggning"
         remember_me: "Kom ihåg mig"
-        submit: "inloggning"
+        submit: "Inloggning"
       reset_password:
         title: "Glömt ditt lösenord?"
         submit: "Återställa mitt lösenord"
       change_password:
         title: "Ändra ditt lösenord"
         submit: "Ändra mitt lösenord"
+      unlock:
+        title: "Skicka upplåsnings instruktioner"
+        submit: "Skicka upplåsnings instruktioner"
+      resend_confirmation_instructions:
+        title: "Skicka bekräftnings instruktioner"
+        submit: "Skicka bekräftnings instruktioner"
       links:
+        sign_up: "Registera"
         sign_in: "Logga in"
         forgot_your_password: "Glömt ditt lösenord?"
         sign_in_with_omniauth_provider: "Logga in med %{provider}"
+        resend_unlock_instructions: "Skicka upplåsnings instruktioner"
+        resend_confirmation_instructions: "Skicka bekräftnings instruktioner"
+    unsupported_browser:
+      headline: "Notera att ActiveAdmin inte längre stödjer Internet Explorer version 8 eller mindre."
+      recommendation: "Vi rekommenderar dig att uppgradera till den senaste versionen av <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, eller <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Om du använder IE 9 eller senare, se till att <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">stäng av \"Compatibility View\"</a>."
+    access_denied:
+      message: "Du har inte rättighet att utföra denna åtgärd."
+    index_list:
+      table: "Tabell"
+      block: "Lista"
+      grid: "Rutnät"
+      blog: "Blogg"

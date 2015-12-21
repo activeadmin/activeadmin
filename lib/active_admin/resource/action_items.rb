@@ -55,21 +55,31 @@ module ActiveAdmin
 
       # Adds the default action items to each resource
       def add_default_action_items
-        # New link on index
+        add_default_new_action_item
+        add_default_edit_action_item
+        add_default_show_action_item
+      end
+
+      # Adds the default New link on index
+      def add_default_new_action_item
         add_action_item :new, only: :index do
           if controller.action_methods.include?('new') && authorized?(ActiveAdmin::Auth::CREATE, active_admin_config.resource_class)
             link_to I18n.t('active_admin.new_model', model: active_admin_config.resource_label), new_resource_path
           end
         end
+      end
 
-        # Edit link on show
+      # Adds the default Edit link on show
+      def add_default_edit_action_item
         add_action_item :edit, only: :show do
           if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
             link_to I18n.t('active_admin.edit_model', model: active_admin_config.resource_label), edit_resource_path(resource)
           end
         end
+      end
 
-        # Destroy link on show
+      # Adds the default Destroy link on show
+      def add_default_show_action_item
         add_action_item :destroy, only: :show do
           if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
             link_to I18n.t('active_admin.delete_model', model: active_admin_config.resource_label), resource_path(resource),

@@ -6,31 +6,23 @@ module ActiveAdmin
     attr_accessor :name, :options, :block
 
     def initialize(name, options = {}, &block)
-      @name, @options, @block = name, options, block
+      @name, @options, @block = name.to_s, options, block
       normalize_display_options!
     end
 
     # The id gets used for the div in the view
     def id
-      "#{name.to_s.downcase.underscore}_sidebar_section".parameterize
-    end
-
-    def icon?
-      !!options[:icon]
-    end
-
-    def icon
-      options[:icon] if icon?
+      "#{name.downcase.underscore}_sidebar_section".parameterize
     end
 
     # The title gets displayed within the section in the view
     def title
-      I18n.t("active_admin.sidebars.#{name.to_s}", default: name.to_s.titlecase)
+      I18n.t("active_admin.sidebars.#{name}", default: name.titlecase)
     end
 
     # If a block is not passed in, the name of the partial to render
     def partial_name
-      options[:partial] || "#{name.to_s.downcase.tr(' ', '_')}_sidebar"
+      options[:partial] || "#{name.downcase.tr(' ', '_')}_sidebar"
     end
 
     def custom_class

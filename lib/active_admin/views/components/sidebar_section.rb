@@ -7,10 +7,15 @@ module ActiveAdmin
       # Takes a ActiveAdmin::SidebarSection instance
       def build(section)
         @section = section
-        super(@section.title, icon: @section.icon)
+        super(@section.title)
         add_class @section.custom_class if @section.custom_class
         self.id = @section.id
         build_sidebar_content
+      end
+
+      # Renders attributes_table_for current resource
+      def attributes_table(*args, &block)
+        attributes_table_for resource, *args, &block
       end
 
       protected

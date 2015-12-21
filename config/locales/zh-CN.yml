@@ -31,6 +31,10 @@
         ends_with: "完与"
         greater_than: "大于"
         less_than: "小于"
+    search_status:
+      current_scope: "搜索范围："
+      current_filters: "过滤条件："
+      no_current_filters: "无"
     status_tag:
       "yes": "是的"
       "no": "无"
@@ -39,6 +43,7 @@
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "所有条件"
+      search_status: "搜索条件"
     pagination:
       empty: "暂时没有%{model}"
       one: "显示 <b>1</b> %{model}"

@@ -1,8 +1,8 @@
 module ActiveAdminReloading
   def load_aa_config(config_content)
-    ActiveAdmin::Event.dispatch ActiveAdmin::Application::BeforeLoadEvent, ActiveAdmin.application
+    ActiveSupport::Notifications.publish ActiveAdmin::Application::BeforeLoadEvent, ActiveAdmin.application
     eval(config_content)
-    ActiveAdmin::Event.dispatch ActiveAdmin::Application::AfterLoadEvent,  ActiveAdmin.application
+    ActiveSupport::Notifications.publish ActiveAdmin::Application::AfterLoadEvent,  ActiveAdmin.application
     Rails.application.reload_routes!
     ActiveAdmin.application.namespaces.each &:reset_menu!
   end

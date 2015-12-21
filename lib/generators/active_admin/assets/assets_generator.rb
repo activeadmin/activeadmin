@@ -6,7 +6,7 @@ module ActiveAdmin
 
       def install_assets
         template 'active_admin.js.coffee', 'app/assets/javascripts/active_admin.js.coffee'
-        template 'active_admin.css.scss',  'app/assets/stylesheets/active_admin.css.scss'
+        template "active_admin.scss", "app/assets/stylesheets/active_admin.scss"
       end
 
     end

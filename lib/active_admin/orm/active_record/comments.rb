@@ -7,6 +7,7 @@ require 'active_admin/orm/active_record/comments/resource_helper'
 ActiveAdmin::Application.inheritable_setting :comments,                   true
 ActiveAdmin::Application.inheritable_setting :show_comments_in_menu,      true
 ActiveAdmin::Application.inheritable_setting :comments_registration_name, 'Comment'
+ActiveAdmin::Application.inheritable_setting :comments_order,             "created_at ASC"
 
 # Insert helper modules
 ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper
@@ -20,7 +21,7 @@ ActiveAdmin.autoload :Comment, 'active_admin/orm/active_record/comments/comment'
 ActiveAdmin.after_load do |app|
   app.namespaces.each do |namespace|
     namespace.register ActiveAdmin::Comment, as: namespace.comments_registration_name do
-      actions :index, :show, :create
+      actions :index, :show, :create, :destroy
 
       menu false unless namespace.comments && namespace.show_comments_in_menu
 
@@ -60,6 +61,13 @@ ActiveAdmin.after_load do |app|
               redirect_to :back
             end
           end
+
+          def destroy
+            destroy! do |success, failure|
+              success.html { redirect_to :back }
+              failure.html { redirect_to :back }
+            end
+          end
         end
       end
 
@@ -74,6 +82,7 @@ ActiveAdmin.after_load do |app|
         column I18n.t('active_admin.comments.resource'),      :resource
         column I18n.t('active_admin.comments.author'),        :author
         column I18n.t('active_admin.comments.body'),          :body
+        column I18n.t('active_admin.comments.created_at'),    :created_at
         actions
       end
     end

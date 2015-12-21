@@ -4,7 +4,7 @@ module Formtastic
     module Base
       def input_wrapping(&block)
         html = super
-        template.concat(html) if template.output_buffer && template.assigns['has_many_block']
+        template.concat(html) if template.output_buffer && template.assigns[:has_many_block]
         html
       end
     end
@@ -60,8 +60,8 @@ module ActiveAdmin
           template.concat has_many_actions(has_many_form, builder_options, "".html_safe)
         end
         
-        template.assign('has_many_block'=> true)
-        contents = without_wrapper { inputs(options, &form_block) }
+        template.assign(has_many_block: true)
+        contents = without_wrapper { inputs(options, &form_block) } || "".html_safe
 
         if builder_options[:new_record]
           contents << js_for_has_many(assoc, form_block, template, builder_options[:new_record], options[:class])
@@ -93,7 +93,7 @@ module ActiveAdmin
         has_many_form.input builder_options[:sortable], as: :hidden
 
         contents << template.content_tag(:li, class: 'handle') do
-          Iconic.icon :move_vertical
+          "MOVE"
         end
       end
 

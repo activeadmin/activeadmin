@@ -1,11 +1,14 @@
 ruby:
-  enabled: true
+  enabled: false
 
 coffee_script:
-  enabled: true
+  enabled: false
 
 java_script:
-  enabled: true
+  enabled: false
 
 scss:
-  enabled: true
+  enabled: false
+
+Metrics/LineLength:
+  Max: 110

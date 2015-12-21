@@ -19,7 +19,7 @@ ActiveAdmin.register Post do
         row 'Tags' do
           post.tags.each do |tag|
             a tag, href: admin_post_path(q: {tagged_with_contains: tag})          
-            text_node "&nbsp".html_safe
+            text_node "&nbsp;".html_safe
           end
         end
       end

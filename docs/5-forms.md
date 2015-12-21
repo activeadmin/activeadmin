@@ -6,7 +6,7 @@ a thin DSL on top of [Formtastic](https://github.com/justinfrench/formtastic):
 ```ruby
 ActiveAdmin.register Post do
 
-  form do |f|
+  form title: 'A custom title' do |f|
     inputs 'Details' do
       input :title
       input :published_at, label: "Publish Post At"

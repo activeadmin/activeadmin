@@ -1,6 +1,8 @@
 module ActiveAdmin
   module Dependency
-    DEVISE = '~> 3.2'
+    module Requirements
+      DEVISE = '~> 3.2'
+    end
 
     # Provides a clean interface to check for gem dependencies at runtime.
     #
@@ -54,38 +56,38 @@ module ActiveAdmin
     end
 
     class Matcher
+      attr_reader :name
+
       def initialize(name)
-        @name, @spec = name, Gem.loaded_specs[name]
+        @name = name
+      end
+
+      def spec
+        @spec ||= Gem.loaded_specs[name]
+      end
+
+      def spec!
+        spec || raise(DependencyError, "To use #{name} you need to specify it in your Gemfile.")
       end
 
       def match?(*reqs)
-        !!@spec && Gem::Requirement.create(reqs).satisfied_by?(@spec.version)
+        !!spec && Gem::Requirement.create(reqs).satisfied_by?(spec.version)
       end
 
       def match!(*reqs)
-        unless @spec
-          raise DependencyError, "To use #{@name} you need to specify it in your Gemfile."
-        end
-
         unless match? reqs
-          raise DependencyError, "You provided #{@spec.name} #{@spec.version} but we need: #{reqs.join ', '}."
+          raise DependencyError, "You provided #{spec!.name} #{spec!.version} but we need: #{reqs.join ', '}."
         end
       end
 
       include Comparable
 
       def <=>(other)
-        if @spec
-          @spec.version <=> Gem::Version.create(other)
-        else
-          # you'd otherwise get an unhelpful error message:
-          # ArgumentError: comparison of ActiveAdmin::Dependency::Matcher with 2 failed
-          raise DependencyError, "To use #{@name} you need to specify it in your Gemfile."
-        end
+        spec!.version <=> Gem::Version.create(other)
       end
 
       def inspect
-        info = @spec ? "#{@spec.name} #{@spec.version}" : '(missing)'
+        info = spec ? "#{spec.name} #{spec.version}" : '(missing)'
         "<ActiveAdmin::Dependency::Matcher for #{info}>"
       end
     end

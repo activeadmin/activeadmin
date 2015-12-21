@@ -29,7 +29,9 @@ describe "Comments" do
       end
 
       it "should not return a comment for the same resource in a different namespace" do
+        ActiveAdmin.application.namespaces[:public] = ActiveAdmin.application.namespaces[:admin]
         expect(ActiveAdmin::Comment.find_for_resource_in_namespace(post, 'public')).to eq []
+        ActiveAdmin.application.namespaces.instance_variable_get(:@namespaces).delete(:public)
       end
 
       it "should not return a comment for a different resource" do
@@ -39,8 +41,8 @@ describe "Comments" do
 
       it "should return the most recent comment first" do
         ActiveAdmin::Comment.class_eval { attr_accessible :created_at } if Rails::VERSION::MAJOR == 3
-        another_comment = ActiveAdmin::Comment.create! resource: post, 
-                                                       body: "Another Comment", 
+        another_comment = ActiveAdmin::Comment.create! resource: post,
+                                                       body: "Another Comment",
                                                        namespace: namespace_name,
                                                        created_at: @comment.created_at + 20.minutes
 
@@ -54,6 +56,26 @@ describe "Comments" do
         expect(comments.first).to eq(@comment)
         expect(comments.second).to eq(yet_another_comment)
         expect(comments.last).to eq(another_comment)
+      end
+
+      it "should return the correctly ordered comments" do
+        ActiveAdmin::Application.inheritable_setting(
+          :comments_order, "created_at DESC"
+        )
+
+        another_comment = ActiveAdmin::Comment.create!(
+          resource: post,
+          body: "Another Comment",
+          namespace: namespace_name,
+          created_at: @comment.created_at + 20.minutes
+        )
+
+        comments = ActiveAdmin::Comment.find_for_resource_in_namespace(
+          post, namespace_name
+        )
+        expect(comments.size).to eq 2
+        expect(comments.first).to eq(another_comment)
+        expect(comments.last).to eq(@comment)
       end
     end
 

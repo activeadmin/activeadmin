@@ -1,4 +1,4 @@
-ActiveAdmin::Dependency.devise! ActiveAdmin::Dependency::DEVISE
+ActiveAdmin::Dependency.devise! ActiveAdmin::Dependency::Requirements::DEVISE
 
 require 'devise'
 

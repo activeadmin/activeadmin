@@ -3,7 +3,7 @@ Feature: Show - Default Content
   Viewing the show page for a resource
 
   Background:
-    Given a post with the title "Hello World" written by "Jane Doe" exists
+    Given a unstarred post with the title "Hello World" written by "Jane Doe" exists
 
   Scenario: Viewing the default show page
     Given a show configuration of:
@@ -14,6 +14,7 @@ Feature: Show - Default Content
     And I should see the attribute "Body" with "Empty"
     And I should see the attribute "Created At" with a nicely formatted datetime
     And I should see the attribute "Author" with "Jane Doe"
+    And I should see the attribute "Starred" with "false"
     And I should see an action item button "Delete Post"
     And I should see an action item button "Edit Post"
 

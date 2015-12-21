@@ -31,6 +31,10 @@ de:
         ends_with: "Endet mit"
         greater_than: "Größer als"
         less_than: "Kleiner als"
+    search_status:
+      current_scope: "Anwendungsbereich:"
+      current_filters: "Aktuelle Filter:"
+      no_current_filters: "Keine"
     status_tag:
       "yes": "Ja"
       "no": "Nein"
@@ -39,6 +43,7 @@ de:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filter"
+      search_status: "Suchstatus"
     pagination:
       empty: "Keine %{model} gefunden"
       one: "Zeige <b>1</b> %{model}"
@@ -73,6 +78,8 @@ de:
       author: "Autor"
       title: "Kommentar"
       add: "Kommentar hinzufügen"
+      delete: "Löschen"
+      delete_confirmation: "Sind Sie sicher dass sie diesen Kommentar löschen wollen?"
       resource: "Res­sour­ce"
       no_comments_yet: "Es gibt noch keine Kommentare."
       author_missing: "Unbekannt"
@@ -101,6 +108,9 @@ de:
       change_password:
         title: "Ändern Sie Ihr Passwort"
         submit: "Mein Passwort ändern"
+      unlock:
+        title: "Entsperrungsanweisung erneut senden"
+        submit: "Entsperrungsanweisung erneut senden"
       resend_confirmation_instructions:
         title: "Anleitung zur Bestätigung noch mal schicken"
         submit: "Anleitung zur Bestätigung noch mal schicken"
@@ -117,3 +127,8 @@ de:
       turn_off_compatibility_view: "Wenn sie IE 9 oder neuer benutzen, stellen sie sicher das sie den <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">\"Kompatibilitätsansicht\" ausgeschaltet</a> haben."
     access_denied:
       message: "Sie haben nicht die Berechtigung um diese Aktion auszuführen."
+    index_list:
+      table: "Tabelle"
+      block: "Liste"
+      grid: "Gitter"
+      blog: "Blog"

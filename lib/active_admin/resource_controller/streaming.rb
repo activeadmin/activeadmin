@@ -20,7 +20,12 @@ module ActiveAdmin
       def stream_resource(&block)
         headers['X-Accel-Buffering'] = 'no'
         headers['Cache-Control'] = 'no-cache'
-        self.response_body = Enumerator.new &block
+
+        if ActiveAdmin.application.disable_streaming_in.include? Rails.env
+          self.response_body = block['']
+        else
+          self.response_body = Enumerator.new &block
+        end
       end
 
       def csv_filename

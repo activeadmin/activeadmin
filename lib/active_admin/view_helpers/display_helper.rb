@@ -15,7 +15,7 @@ module ActiveAdmin
       # Attempts to call any known display name methods on the resource.
       # See the setting in `application.rb` for the list of methods and their priority.
       def display_name(resource)
-        render_in_context resource, display_name_method_for(resource) if resource
+        render_in_context resource, display_name_method_for(resource) unless resource.nil?
       end
 
       # Looks up and caches the first available display name method.
@@ -43,10 +43,10 @@ module ActiveAdmin
       # Attempts to create a human-readable string for any object
       def pretty_format(object)
         case object
-        when String, Numeric, Arbre::Element
+        when String, Numeric, Symbol, Arbre::Element
           object.to_s
         when Date, Time
-          localize object, format: :long
+          localize object, format: active_admin_application.localize_format
         else
           if defined?(::ActiveRecord) && object.is_a?(ActiveRecord::Base) ||
              defined?(::Mongoid)      && object.class.include?(Mongoid::Document)
@@ -56,7 +56,6 @@ module ActiveAdmin
           end
         end
       end
-
     end
   end
 end

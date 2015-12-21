@@ -6,9 +6,7 @@ Active Admin is a Ruby on Rails framework for creating elegant backends for webs
 [![Travis CI       ](http://img.shields.io/travis/activeadmin/activeadmin/master.svg)           ](https://travis-ci.org/activeadmin/activeadmin)
 [![Quality         ](http://img.shields.io/codeclimate/github/activeadmin/activeadmin.svg)      ](https://codeclimate.com/github/activeadmin/activeadmin)
 [![Coverage        ](http://img.shields.io/coveralls/activeadmin/activeadmin.svg)               ](https://coveralls.io/r/activeadmin/activeadmin)
-[![Gittip          ](http://img.shields.io/gittip/activeadmin.svg)                              ](https://gittip.com/activeadmin)
 [![Inch CI         ](http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master)       ](http://inch-ci.org/github/activeadmin/activeadmin)
-[![Stories in Ready](http://badge.waffle.io/activeadmin/activeadmin.png?label=ready&title=ready)](https://waffle.io/activeadmin/activeadmin)
 
 ## State of the project
 
@@ -24,7 +22,7 @@ gem 'activeadmin', github: 'activeadmin'
 
 Or you can using rubygems:
 ```ruby
-gem 'activeadmin', '~> 1.0.0.pre1'
+gem 'activeadmin', '~> 1.0.0.pre2'
 ```
 
 *Keep in mind that during the time where we use `pre`-release label, things can break in each release!*
@@ -84,7 +82,6 @@ Tool                  | Description
 [Arbre]               | Ruby -> HTML, just like that.
 [Devise]              | Powerful, extensible user authentication
 [Formtastic]          | A Rails form builder plugin with semantically rich and accessible markup
-[Iconic Icons]        | An excellent SVG icon set designed by P.J. Onori
 [Inherited Resources] | Simplifies controllers with pre-built RESTful controller actions
 [Kaminari]            | Elegant pagination for any sort of collection
 [Ransack]             | Provides a simple search API to query your data
@@ -92,7 +89,6 @@ Tool                  | Description
 [Arbre]: https://github.com/activeadmin/arbre
 [Devise]: https://github.com/plataformatec/devise
 [Formtastic]: https://github.com/justinfrench/formtastic
-[Iconic Icons]: http://somerandomdude.com/projects/iconic
 [Inherited Resources]: https://github.com/josevalim/inherited_resources
 [Kaminari]: https://github.com/amatsuda/kaminari
 [Ransack]: https://github.com/activerecord-hackery/ransack

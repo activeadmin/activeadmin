@@ -27,6 +27,10 @@ describe ActiveAdmin::FormBuilder do
       "A Helper Method"
     end
 
+    def view.fa_icon(*args)
+      args.inspect
+    end
+
     view
   end
 
@@ -273,6 +277,54 @@ describe ActiveAdmin::FormBuilder do
 
   end
 
+  context "with a has_one relation on an author's profile" do
+    let :body do
+      author = user()
+      build_form do |f|
+        f.inputs do
+          f.input :title
+          f.input :body
+        end
+        f.form_builder.instance_eval do
+          @object.author = author
+        end
+        f.inputs name: 'Author', for: :author do |author|
+          author.has_many :profile, allow_destroy: true do |profile|
+            profile.input :bio
+          end
+        end
+      end
+    end
+
+    it "should see the button to add profile" do
+      def user
+        User.new
+      end
+      expect(body).to have_selector("a[contains(data-html,'post[author_attributes][profile_attributes][bio]')]")
+    end
+
+    it "should see the profile fields for an existing profile" do
+      def user
+        u = User.new
+        u.profile = Profile.new
+        u
+      end
+      expect(body).to have_selector("[id='post_author_attributes_profile_attributes_bio']", count: 1)
+      expect(body).to have_selector("textarea[name='post[author_attributes][profile_attributes][bio]']")
+    end
+  end
+
+  shared_examples :inputs_with_for_expectation do
+    it "should generate a nested text input once" do
+      expect(body).to have_selector("[id=post_author_attributes_first_name_input]", count: 1)
+      expect(body).to have_selector("[id=post_author_attributes_last_name_input]", count: 1)
+    end
+    it "should add author first and last name fields" do
+      expect(body).to have_selector("input[name='post[author_attributes][first_name]']")
+      expect(body).to have_selector("input[name='post[author_attributes][last_name]']")
+    end
+  end
+
   context "with inputs 'for'" do
     let :body do
       build_form do |f|
@@ -288,17 +340,11 @@ describe ActiveAdmin::FormBuilder do
         end
       end
     end
-    it "should generate a nested text input once" do
-      expect(body).to have_selector("[id=post_author_attributes_first_name_input]", count: 1)
-      expect(body).to have_selector("[id=post_author_attributes_last_name_input]", count: 1)
-    end
-    it "should add author first and last name fields" do
-      expect(body).to have_selector("input[name='post[author_attributes][first_name]']")
-      expect(body).to have_selector("input[name='post[author_attributes][last_name]']")
-    end
+
+    include_examples :inputs_with_for_expectation
   end
 
-  context "with two input fields 'for'" do
+  context "with two input fields 'for' at the end of block" do
     let :body do
       build_form do |f|
         f.inputs do
@@ -314,14 +360,28 @@ describe ActiveAdmin::FormBuilder do
         end
       end
     end
-    it "should generate a nested text input once" do
-      expect(body).to have_selector("[id=post_author_attributes_first_name_input]", count: 1)
-      expect(body).to have_selector("[id=post_author_attributes_last_name_input]", count: 1)
+
+    include_examples :inputs_with_for_expectation
+  end
+
+  context "with two input fields 'for' at the beginning of block" do
+    let :body do
+      build_form do |f|
+        f.form_builder.instance_eval do
+          @object.author = User.new
+        end
+        f.inputs name: 'Author', for: :author do |author|
+          author.input :first_name
+          author.input :last_name
+        end
+        f.inputs do
+          f.input :title
+          f.input :body
+        end
+      end
     end
-    it "should add author first and last name fields" do
-      expect(body).to have_selector("input[name='post[author_attributes][first_name]']")
-      expect(body).to have_selector("input[name='post[author_attributes][last_name]']")
-    end
+
+    include_examples :inputs_with_for_expectation
   end
 
   context "with wrapper html" do

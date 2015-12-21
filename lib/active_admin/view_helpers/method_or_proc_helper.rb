@@ -76,11 +76,11 @@ module MethodOrProcHelper
     end
   end
 
-  # This method is different from the others in that it calls `instance_exec` on the reciever,
-  # passing it the proc. This evaluates the proc in the context of the reciever, thus changing
+  # This method is different from the others in that it calls `instance_exec` on the receiver,
+  # passing it the proc. This evaluates the proc in the context of the receiver, thus changing
   # what `self` means inside the proc.
   def render_in_context(context, obj, *args)
-    context ||= self # default to `self`
+    context = self if context.nil? # default to `self` only when nil
     case obj
     when Proc
       context.instance_exec *args, &obj

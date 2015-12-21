@@ -232,7 +232,11 @@ module ActiveAdmin
       let(:resource) { namespace.register(Post) }
       let(:post) { double }
       before do
-        allow(Post).to receive(:find_by_id).with('12345') { post }
+        if Rails::VERSION::MAJOR >= 4
+          allow(Post).to receive(:find_by).with("id" => "12345") { post }
+        else
+          allow(Post).to receive(:find_by_id).with("12345") { post }
+        end
       end
 
       it 'can find the resource' do
@@ -250,7 +254,13 @@ module ActiveAdmin
         let(:different_post) { double }
         before do
           allow(Post).to receive(:primary_key).and_return 'something_else'
-          allow(Post).to receive(:find_by_something_else).with('55555') { different_post }
+          if Rails::VERSION::MAJOR >= 4
+            allow(Post).to receive(:find_by).
+              with("something_else" => "55555") { different_post }
+          else
+            allow(Post).to receive(:find_by_something_else).
+              with("55555") { different_post }
+          end
         end
 
         it 'can find the post by the custom primary key' do
@@ -271,6 +281,47 @@ module ActiveAdmin
           allow(Post).to receive(:find_by_title!).with('title-name').and_return(post)
 
           expect(resource.find_resource('title-name')).to eq post
+        end
+      end
+    end
+
+    describe "delegation" do
+      let(:controller) {
+        Class.new do
+          def method_missing(name, *args, &block)
+            "called #{name}"
+          end
+        end.new
+      }
+      let(:resource) { ActiveAdmin::ResourceDSL.new(double, double) }
+
+      before do
+        expect(resource).to receive(:controller).and_return(controller)
+      end
+
+      context "filters" do
+        [
+          :before_filter, :skip_before_filter,
+          :after_filter, :skip_after_filter,
+          :around_filter, :skip_filter
+        ].each do |filter|
+          it "delegates #{filter}" do
+            expect(resource.send(filter)).to eq "called #{filter}"
+          end
+        end
+      end
+
+      if Rails::VERSION::MAJOR == 4
+        context "actions" do
+          [
+            :before_action, :skip_before_action,
+            :after_action, :skip_after_action,
+            :around_action, :skip_action
+          ].each do |action|
+            it "delegates #{action}" do
+              expect(resource.send(action)).to eq "called #{action}"
+            end
+          end
         end
       end
     end

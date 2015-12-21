@@ -35,7 +35,7 @@ module ActiveAdmin
         def default_title
           title = display_name(resource)
 
-          if title.nil? || title.empty? || title == resource.to_s
+          if title.blank?
             title = "#{active_admin_config.resource_label} ##{resource.id}"
           end
 

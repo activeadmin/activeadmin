@@ -27,10 +27,9 @@ module ActiveAdmin
 
       COLLECTION_APPLIES = [
         :authorization_scope,
-        :collection_decorator,
         :filtering,
         :scoping,
-        :includes
+        :includes,
       ].freeze
 
       def batch_action_collection(only = COLLECTION_APPLIES)

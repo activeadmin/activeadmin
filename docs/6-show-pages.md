@@ -21,7 +21,7 @@ You can render a partial at any point:
 ActiveAdmin.register Post do
   show do
     # renders app/views/admin/posts/_some_partial.html.erb
-    render 'some_partial'
+    render 'some_partial', { post: post }
   end
 end
 ```

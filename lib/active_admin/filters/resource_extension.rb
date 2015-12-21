@@ -1,3 +1,5 @@
+require 'active_admin/filters/active'
+
 module ActiveAdmin
   module Filters
 
@@ -12,10 +14,11 @@ module ActiveAdmin
       def initialize(*)
         super
         add_filters_sidebar_section
+        add_search_status_sidebar_section
       end
 
       # Returns the filters for this resource. If filters are not enabled,
-      # it will always return an empty array.
+      # it will always return an empty hash.
       #
       # @return [Hash] Filters that apply for this resource
       def filters
@@ -29,9 +32,21 @@ module ActiveAdmin
         @filters_enabled = bool
       end
 
+      # Setter to enable/disable showing current filters on this resource.
+      #
+      # Set to `nil` to inherit the setting from the namespace
+      def current_filters=(bool)
+        @current_filters_enabled = bool
+      end
+
       # @return [Boolean] If filters are enabled for this resource
       def filters_enabled?
         @filters_enabled.nil? ? namespace.filters : @filters_enabled
+      end
+
+      # @return [Boolean] If show current filters are enabled for this resource
+      def current_filters_enabled?
+        @current_filters_enabled.nil? ? namespace.current_filters : @current_filters_enabled
       end
 
       def preserve_default_filters!
@@ -92,7 +107,11 @@ module ActiveAdmin
 
       # @return [Array] The array of default filters for this resource
       def default_filters
-        default_association_filters + default_content_filters + custom_ransack_filters
+        result = []
+        result.concat default_association_filters if namespace.include_default_association_filters
+        result.concat default_content_filters
+        result.concat custom_ransack_filters
+        result
       end
 
       def custom_ransack_filters
@@ -137,6 +156,38 @@ module ActiveAdmin
         end
       end
 
+      def add_search_status_sidebar_section
+        if current_filters_enabled?
+          self.sidebar_sections << search_status_section
+        end
+      end
+
+      def search_status_section
+        ActiveAdmin::SidebarSection.new I18n.t("active_admin.search_status.headline"), only: :index, if: -> { params[:q] || params[:scope] } do
+          active = ActiveAdmin::Filters::Active.new(resource_class, params)
+
+          span do
+            h4 I18n.t("active_admin.search_status.current_scope"), style: 'display: inline'
+            b active.scope, style: "display: inline"
+
+            div style: "margin-top: 10px" do
+              h4 I18n.t("active_admin.search_status.current_filters"), style: 'margin-bottom: 10px'
+              ul do
+                if active.filters.blank?
+                  li I18n.t("active_admin.search_status.no_current_filters")
+                else
+                  active.filters.each do |filter|
+                    li do
+                      span filter.body
+                      b filter.value
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
     end
 
   end
