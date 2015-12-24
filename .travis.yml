@@ -29,6 +29,10 @@ matrix:
       env: RAILS=master
   allow_failures:
     - env: RAILS=master
+branches:
+  only:
+    - master
+    - /\A\d-\d-stable\z/
 notifications:
   irc:
     channels:
