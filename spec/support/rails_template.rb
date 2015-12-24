@@ -1,8 +1,5 @@
 # Rails template to build the sample app for specs
 
-run "rm Gemfile"
-run "rm -r test"
-
 # Create a cucumber database and environment
 copy_file File.expand_path('../templates/cucumber.rb', __FILE__),                "config/environments/cucumber.rb"
 copy_file File.expand_path('../templates/cucumber_with_reloading.rb', __FILE__), "config/environments/cucumber_with_reloading.rb"
