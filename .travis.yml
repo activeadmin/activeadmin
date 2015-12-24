@@ -12,7 +12,6 @@ script:
   - bundle exec rake test_with_coveralls
 rvm:
   - 1.9
-  - 2.1.7
   - 2.2.3
   - jruby-9.0.4.0
 env:
