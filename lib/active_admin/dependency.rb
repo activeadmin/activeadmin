@@ -55,11 +55,6 @@ module ActiveAdmin
       Matcher.new name.to_s
     end
 
-    # Rubygems doesn't match beta / prerelease versions 😩
-    def self.rails5?
-      rails == 5 || rails.spec.version.to_s.start_with?('5')
-    end
-
     class Matcher
       attr_reader :name
 
@@ -136,10 +131,10 @@ module ActiveAdmin
 
       class Rails < Base
         def parameterize(string)
-          if @version <= 4
-            string.parameterize '_'
-          else
+          if @version >= '5.beta'
             string.parameterize separator: '_'
+          else
+            string.parameterize '_'
           end
         end
       end
