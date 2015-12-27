@@ -8,7 +8,7 @@ module ActiveAdmin
 
     actions :index
 
-    before_filter :authorize_access!
+    before_action :authorize_access!
 
     def index(options={}, &block)
       render "active_admin/page/index"

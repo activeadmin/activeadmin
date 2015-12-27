@@ -116,7 +116,7 @@ module ActiveAdmin
       title = options.delete(:title)
 
       controller do
-        before_filter(only: [name]) { @page_title = title } if title
+        before_action(name, only: [name]) { @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end
@@ -159,11 +159,24 @@ module ActiveAdmin
     delegate :before_save,    :after_save,    to: :controller
     delegate :before_destroy, :after_destroy, to: :controller
 
-    # Standard rails filters
-    delegate :before_filter,  :skip_before_filter, to: :controller
-    delegate :after_filter,   :skip_after_filter,  to: :controller
-    delegate :around_filter,  :skip_filter,        to: :controller
-    if Rails::VERSION::MAJOR == 4
+    filters = [
+      :before_filter, :skip_before_filter,
+      :after_filter,  :skip_after_filter,
+      :around_filter, :skip_filter
+    ]
+
+    if ActiveAdmin::Dependency.rails <= 4
+      delegate *filters, to: :controller
+    else # remove this in 2.0.0
+      filters.each do |filter|
+        action = filter.to_s.sub 'filter', 'action'
+        define_method filter do |*args, &block|
+          controller.public_send action, *args, &block
+        end
+      end
+    end
+
+    if ActiveAdmin::Dependency.rails >= 4
       delegate :before_action,  :skip_before_action, to: :controller
       delegate :after_action,   :skip_after_action,  to: :controller
       delegate :around_action,  :skip_action,        to: :controller

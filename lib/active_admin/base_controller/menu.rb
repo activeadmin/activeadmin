@@ -4,7 +4,7 @@ module ActiveAdmin
       extend ActiveSupport::Concern
 
       included do
-        before_filter :set_current_tab
+        before_action :set_current_tab
         helper_method :current_menu
       end
 

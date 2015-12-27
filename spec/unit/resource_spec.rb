@@ -306,12 +306,13 @@ module ActiveAdmin
           :around_filter, :skip_filter
         ].each do |filter|
           it "delegates #{filter}" do
-            expect(resource.send(filter)).to eq "called #{filter}"
+            action = filter.to_s.sub 'filter', 'action'
+            expect(resource.send(filter)).to eq "called #{action}"
           end
         end
       end
 
-      if Rails::VERSION::MAJOR == 4
+      if ActiveAdmin::Dependency.rails >= 4
         context "actions" do
           [
             :before_action, :skip_before_action,

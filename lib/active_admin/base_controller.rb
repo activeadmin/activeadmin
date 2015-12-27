@@ -10,8 +10,8 @@ module ActiveAdmin
 
     layout :determine_active_admin_layout
 
-    before_filter :only_render_implemented_actions
-    before_filter :authenticate_active_admin_user
+    before_action :only_render_implemented_actions
+    before_action :authenticate_active_admin_user
 
     class << self
       # Ensure that this method is available for the DSL
