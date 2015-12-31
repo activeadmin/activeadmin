@@ -11,7 +11,7 @@ module ActiveAdmin
       source_root File.expand_path("../templates", __FILE__)
 
       def copy_initializer
-        @underscored_user_name = name.underscore
+        @underscored_user_name = name.underscore.gsub('/', '_')
         @use_authentication_method = options[:users].present?
         template 'active_admin.rb.erb', 'config/initializers/active_admin.rb'
       end
