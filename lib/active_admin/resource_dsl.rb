@@ -116,7 +116,8 @@ module ActiveAdmin
       title = options.delete(:title)
 
       controller do
-        before_action(name, only: [name]) { @page_title = title } if title
+        callback = ActiveAdmin::Dependency.rails >= 4 ? :before_action : :before_filter
+        send(callback, only: [name]) { @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end
@@ -159,27 +160,19 @@ module ActiveAdmin
     delegate :before_save,    :after_save,    to: :controller
     delegate :before_destroy, :after_destroy, to: :controller
 
-    filters = [
-      :before_filter, :skip_before_filter,
-      :after_filter,  :skip_after_filter,
-      :around_filter, :skip_filter
+    # This code defines both *_filter and *_action for Rails 3.2 to Rails 5.
+    actions = [
+      :before, :skip_before,
+      :after,  :skip_after,
+      :around, :skip
     ]
-
-    if ActiveAdmin::Dependency.rails <= 4
-      delegate *filters, to: :controller
-    else # remove this in 2.0.0
-      filters.each do |filter|
-        action = filter.to_s.sub 'filter', 'action'
-        define_method filter do |*args, &block|
-          controller.public_send action, *args, &block
+    destination = ActiveAdmin::Dependency.rails >= 4 ? :action : :filter
+    [:action, :filter].each do |name|
+      actions.each do |action|
+        define_method "#{action}_#{name}" do |*args, &block|
+          controller.public_send "#{action}_#{destination}", *args, &block
         end
       end
-    end
-
-    if ActiveAdmin::Dependency.rails >= 4
-      delegate :before_action,  :skip_before_action, to: :controller
-      delegate :after_action,   :skip_after_action,  to: :controller
-      delegate :around_action,  :skip_action,        to: :controller
     end
 
     # Specify which actions to create in the controller

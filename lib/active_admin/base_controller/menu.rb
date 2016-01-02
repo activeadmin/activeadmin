@@ -4,7 +4,11 @@ module ActiveAdmin
       extend ActiveSupport::Concern
 
       included do
-        before_action :set_current_tab
+        if ActiveAdmin::Dependency.rails >= 4
+          before_action :set_current_tab
+        else
+          before_filter :set_current_tab
+        end
         helper_method :current_menu
       end
 

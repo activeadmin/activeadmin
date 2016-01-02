@@ -10,8 +10,13 @@ module ActiveAdmin
 
     layout :determine_active_admin_layout
 
-    before_action :only_render_implemented_actions
-    before_action :authenticate_active_admin_user
+    if ActiveAdmin::Dependency.rails >= 4
+      before_action :only_render_implemented_actions
+      before_action :authenticate_active_admin_user
+    else
+      before_filter :only_render_implemented_actions
+      before_filter :authenticate_active_admin_user
+    end
 
     class << self
       # Ensure that this method is available for the DSL
