@@ -1,5 +1,11 @@
 #Gotchas
 
+## Security
+
+### Spreadsheet applications vulnerable to unescaped CSV data
+
+If your CSV export includes untrusted data provided by your users, it's possible that they could include an executable formula that could call arbitrary commands on your computer. See [#4256](https://github.com/activeadmin/activeadmin/issues/4256) for more details.
+
 ## Session Commits & Asset Pipeline
 
 When configuring the asset pipeline ensure that the asset prefix 
