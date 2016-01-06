@@ -15,11 +15,11 @@ module ActiveAdmin
       #
       def fields_for_params(params, options = {})
         namespace = options[:namespace]
-        except = options[:except].is_a?(Array) ? options[:except] : [options[:except]]
+        except    = Array.wrap(options[:except]).map &:to_s
 
-        params.flat_map do |k, v|
+        params.to_h.flat_map do |k, v|
           next if namespace.nil? && %w(controller action commit utf8).include?(k.to_s)
-          next if except.map(&:to_s).include?(k.to_s)
+          next if except.include?(k.to_s)
 
           if namespace
             k = "#{namespace}[#{k}]"

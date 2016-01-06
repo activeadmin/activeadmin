@@ -16,13 +16,21 @@ if rails_version == 'master'
   gem 'sprockets',  github: 'rails/sprockets'
   gem 'sass-rails', github: 'rails/sass-rails'
   gem 'rack',       github: 'rack/rack'
-  gem 'sprockets-rails', '3.0.0.beta2'
+  gem 'devise',     github: 'plataformatec/devise'
+  gem 'ransack',    github: 'activerecord-hackery/ransack'
+  gem 'draper',     github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
+  gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml' # drapergem/draper#697
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, github: "rspec/#{lib}"
+  end
 end
 
 # Optional dependencies
 gem 'cancan'
-gem 'devise'
-gem 'draper'
+if rails_version != 'master'
+  gem 'devise'
+  gem 'draper'
+end
 gem 'pundit'
 
 # Utility gems used in both development & test environments
@@ -53,15 +61,17 @@ group :test do
   gem 'coveralls', require: false           # Test coverage website. Go to https://coveralls.io
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
-  gem 'guard-rspec'
+  gem 'guard-rspec', require: false
   gem 'jasmine'
   gem 'jslint_on_rails'
   gem 'launchy'
   gem 'rails-i18n'                          # Provides default i18n for many languages
-  gem 'rspec'
-  gem 'rspec-rails', '~> 3.1.0'
+  if rails_version != 'master'
+    gem 'rspec'
+    gem 'rspec-rails'
+  end
   gem 'i18n-spec'
-  gem 'shoulda-matchers', '<= 2.8.0'
+  gem 'shoulda-matchers'
   gem 'sqlite3', platforms: :mri
   gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
   gem 'poltergeist'

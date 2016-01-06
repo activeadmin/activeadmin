@@ -5,7 +5,7 @@ describe Admin::PostsController, 'Index overriding', type: :controller do
     controller.instance_eval do
       def index
         super do
-          render text: 'Rendered from passed block' and return
+          render body: 'Rendered from passed block' and return
         end
       end
     end
