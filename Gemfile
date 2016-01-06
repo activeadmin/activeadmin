@@ -61,7 +61,7 @@ group :test do
   gem 'rspec'
   gem 'rspec-rails', '~> 3.1.0'
   gem 'i18n-spec'
-  gem 'shoulda-matchers', '<= 2.8.0'
+  gem 'shoulda-matchers'
   gem 'sqlite3', platforms: :mri
   gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
   gem 'poltergeist'
