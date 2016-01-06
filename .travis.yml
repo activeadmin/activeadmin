@@ -18,8 +18,8 @@ env:
   matrix:
     - RAILS=3.2.22
     - RAILS=4.1.14
-    - RAILS=master
     - RAILS=4.2.5
+    - RAILS=master
   global:
     - JRUBY_OPTS="-J-Xmx1024m --debug"
 matrix:

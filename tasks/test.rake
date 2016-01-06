@@ -1,7 +1,7 @@
 desc "Creates a test rails app for the specs to run against"
 task :setup, :parallel do |t, opts|
   require 'rails/version'
-  if File.exists? dir = "spec/rails/rails-#{Rails::VERSION::STRING}"
+  if File.exists? dir = "spec/rails/rails-#{detect_rails_version}"
     puts "test app #{dir} already exists; skipping"
   else
     system 'mkdir -p spec/rails'
@@ -10,7 +10,6 @@ task :setup, :parallel do |t, opts|
       --skip-gemfile
       --skip-bundle
       --skip-git
-      --skip-keeps
       --skip-turbolinks
       --skip-test-unit
     ]

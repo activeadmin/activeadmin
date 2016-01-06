@@ -113,7 +113,7 @@ module ActiveAdmin
             redirect_backwards_or_to_root
           end
 
-          format.csv  { render text:          error,           status: :unauthorized }
+          format.csv  { render body:          error,           status: :unauthorized }
           format.json { render json: { error: error },         status: :unauthorized }
           format.xml  { render xml: "<error>#{error}</error>", status: :unauthorized }
         end
