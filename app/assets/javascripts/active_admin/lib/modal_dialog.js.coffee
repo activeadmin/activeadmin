@@ -12,7 +12,7 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
       html = """<form id="dialog_confirm" title="#{message}">"""
       html += partial.html()
       html += "</form>"
-      ActiveAdmin.start_dialog(html)
+      ActiveAdmin.start_dialog(html, callback)
     response.fail (data) ->
       alert(data.statusText)
   else
@@ -45,9 +45,9 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
       [wrapper, elem, opts, type, klass] = [] # unset any temporary variables
 
     html += "</ul></form>"
-    ActiveAdmin.start_dialog(html)
+    ActiveAdmin.start_dialog(html, callback)
 
-ActiveAdmin.start_dialog = (html) ->
+ActiveAdmin.start_dialog = (html, callback) ->
   form = $(html).appendTo('body')
   $('body').trigger 'modal_dialog:before_open', [form]
 
