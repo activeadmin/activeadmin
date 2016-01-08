@@ -5,13 +5,16 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
     .get()
     params = {'ids': selected_ids, 'partial_name': $.parseJSON(inputs)}
     url = window.location.href + "/batch_action_form_view?" + $.param(params)
-    $.get url, (data) ->
-      data = $(data)
-      data.find('input[type="submit"]').remove()
+    response = $.get(url)
+    response.done (data) ->
+      partial = $('<div class="batch_action_partial_container">'+data+'</div>')
+      partial.find('input[type="submit"]').remove()
       html = """<form id="dialog_confirm" title="#{message}">"""
-      html += data.html()
+      html += partial.html()
       html += "</form>"
       start_dialog(html)
+    response.fail (data) ->
+      alert(data.statusText)
   else
     html = """<form id="dialog_confirm" title="#{message}"><ul>"""
     for name, type of inputs
@@ -42,7 +45,9 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
       [wrapper, elem, opts, type, klass] = [] # unset any temporary variables
 
     html += "</ul></form>"
+    start_dialog(html)
 
+  start_dialog = (html) ->
     form = $(html).appendTo('body')
     $('body').trigger 'modal_dialog:before_open', [form]
 
