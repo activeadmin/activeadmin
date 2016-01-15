@@ -79,8 +79,21 @@ module ActiveAdmin
       end
 
       def content_for(record, attr)
-        value = pretty_format find_attr_value(record, attr)
+        value = find_attr_value(record, attr)
+        if is_boolean?(attr, record)
+          value = status_tag(value)
+        else
+          value = pretty_format(value)
+        end
         value.blank? && current_arbre_element.children.to_s.empty? ? empty_value : value
+      end
+
+      def is_boolean?(data, item)
+        if item.respond_to? :has_attribute?
+          item.has_attribute?(data) &&
+            item.column_for_attribute(data) &&
+            item.column_for_attribute(data).type == :boolean
+        end
       end
 
       def find_attr_value(record, attr)
