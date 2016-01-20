@@ -24,7 +24,9 @@ module ActiveAdmin
         end
 
         def wrapper_html_options
-          { class: "filter_form_field filter_#{as}" }
+          opts = super
+          (opts[:class] ||= '') << " filter_form_field filter_#{as}"
+          opts
         end
 
         # Override the standard finder to accept a proc
