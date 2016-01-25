@@ -45,9 +45,8 @@ describe ActiveAdmin::ResourceController::Decorators do
       let(:decorator_class) { nil }
       it { is_expected.to be_kind_of(Post) }
     end
-
   end
-`
+
   describe '#apply_collection_decorator' do
     before { Post.create! }
     let(:action) { 'index' }
