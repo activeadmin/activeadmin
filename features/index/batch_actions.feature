@@ -64,6 +64,19 @@ Feature: Batch Actions
     Then I should see a flash with "Successfully destroyed 2 posts"
     And I should see 3 posts in the table
 
+  Scenario: Disable display of batch action button if all nested buttons hide
+    Given 1 post exist
+    And an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        batch_action :destroy, false
+        batch_action(:flag, if: proc { false } ) do
+          render text: 42
+        end
+      end
+      """
+    Then I should not see the batch action selector
+
   Scenario: Using a custom batch action
     Given 10 posts exist
     And an index configuration of:
