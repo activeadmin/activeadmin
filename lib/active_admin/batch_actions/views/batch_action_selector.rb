@@ -23,6 +23,7 @@ module ActiveAdmin
       private
 
       def build_drop_down
+        return if batch_actions_to_display.empty?
         dropdown_menu I18n.t("active_admin.batch_actions.button_label"),
                       class: "batch_actions_selector dropdown_menu",
                       button: { class: "disabled" } do
