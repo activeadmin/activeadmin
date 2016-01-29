@@ -17,16 +17,22 @@ that can be injected into your existing Ruby on Rails application.
 
 ## Setting up Active Admin
 
-After installing the gem, you need to run the generator. By default we use Devise, and
-the generator creates an `AdminUser` model. If you want to create a different model
-(or modify an existing one for use with Devise) you can pass it as an argument.
-If you want to skip Devise configuration entirely, you can pass `--skip-users`.
+After installing the gem, you need to run the generator. Here are your options:
 
-```sh
-rails g active_admin:install              # creates the AdminUser class
-rails g active_admin:install User         # creates / edits the class for use with Devise
-rails g active_admin:install --skip-users # skips Devise install
-```
+- If you don't want to use Devise, run it with `--skip-users`:
+  ```sh
+  rails g active_admin:install --skip-users
+  ```
+
+- If you want to use an existing user class, provide it as an argument:
+  ```sh
+  rails g active_admin:install User
+  ```
+
+- Otherwise, with no arguments we will create an `AdminUser` class to use with Devise:
+  ```sh
+  rails g active_admin:install
+  ```
 
 The generator adds these core files, among others:
 
