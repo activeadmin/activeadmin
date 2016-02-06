@@ -32,6 +32,7 @@ id:
         greater_than: "Lebih besar dari"
         less_than: "Lebih kecil dari"
     search_status:
+      headline: "Status Pencarian:"
       current_scope: "Scope:"
       current_filters: "Filter kini:"
       no_current_filters: "Tidak ada"

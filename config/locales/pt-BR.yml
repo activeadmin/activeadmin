@@ -32,6 +32,7 @@ pt-BR:
         greater_than: "Maior Que"
         less_than: "Menor Que"
     search_status:
+      headline: "Buscou:"
       current_scope: "Em:"
       current_filters: "Filtros escolhidos:"
       no_current_filters: "Nenhum"

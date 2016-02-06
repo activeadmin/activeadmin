@@ -32,6 +32,7 @@ ru:
         greater_than: "больше"
         less_than: "меньше"
     search_status:
+      headline: "Статус поиска:"
       current_scope: "Область:"
       current_filters: "Текущий фильтр:"
       no_current_filters: "Ни один"

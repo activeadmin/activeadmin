@@ -32,6 +32,7 @@ es:
         greater_than: "Mayor que"
         less_than: "Menor que"
     search_status:
+      headline: "Estado de la búsqueda:"
       current_scope: "Alcance:"
       current_filters: "Filtros actuales:"
       no_current_filters: "Ninguno"
