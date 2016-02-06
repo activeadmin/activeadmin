@@ -32,6 +32,7 @@ uk:
         greater_than: "більше"
         less_than: "меньше"
     search_status:
+      headline: "Статус пошуку:"
       current_scope: "Область:"
       current_filters: "Поточний фільтр:"
       no_current_filters: "Жоден"

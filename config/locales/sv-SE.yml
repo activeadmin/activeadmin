@@ -32,6 +32,7 @@
         greater_than: "Större än"
         less_than: "Mindre än"
     search_status:
+      headline: "Sök status:"
       current_scope: "Scope:"
       current_filters: "Nuvarande filter:"
       no_current_filters: "Inga"
