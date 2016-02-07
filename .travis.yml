@@ -27,8 +27,6 @@ matrix:
   exclude:
     - rvm: 1.9
       env: RAILS=master
-  allow_failures:
-    - env: RAILS=master
 branches:
   only:
     - master
