@@ -120,7 +120,7 @@ module ActiveAdmin
       end
 
       def redirect_backwards_or_to_root
-        ActiveAdmin::Dependency.rails.redirect_back self, fallback_location: active_admin_root
+        ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
       end
 
     end

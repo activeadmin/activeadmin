@@ -142,7 +142,7 @@ module ActiveAdmin
           end
         end
 
-        def redirect_back(controller, fallback_location:)
+        def redirect_back(controller, fallback_location)
           controller.instance_exec do
             if Dependency.rails5?
               redirect_back fallback_location: fallback_location
