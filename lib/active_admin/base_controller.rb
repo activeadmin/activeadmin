@@ -78,5 +78,10 @@ module ActiveAdmin
       ACTIVE_ADMIN_ACTIONS.include?(params[:action].to_sym) ? false : 'active_admin'
     end
 
+    def active_admin_root
+      controller, action = active_admin_namespace.root_to.split '#'
+      {controller: controller, action: action}
+    end
+
   end
 end

@@ -55,6 +55,10 @@ module ActiveAdmin
       Matcher.new name.to_s
     end
 
+    def self.rails5?
+      rails >= '5.beta'
+    end
+
     class Matcher
       attr_reader :name
 
@@ -131,10 +135,22 @@ module ActiveAdmin
 
       class Rails < Base
         def parameterize(string)
-          if @version >= '5.beta'
+          if Dependency.rails5?
             string.parameterize separator: '_'
           else
             string.parameterize '_'
+          end
+        end
+
+        def redirect_back(controller, fallback_location:)
+          controller.instance_exec do
+            if Dependency.rails5?
+              redirect_back fallback_location: fallback_location
+            elsif controller.request.headers.key? 'HTTP_REFERER'
+              redirect_to :back
+            else
+              redirect_to fallback_location
+            end
           end
         end
       end
