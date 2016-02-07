@@ -563,8 +563,11 @@ describe ActiveAdmin::FormBuilder do
     describe "with allow destroy" do
       context "with an existing post" do
         let :body do
+          s = self
           build_form({url: '/categories'}, Category.new) do |f|
-            allow(f.object.posts.build).to receive(:new_record?).and_return(false)
+            s.instance_exec do
+              allow(f.object.posts.build).to receive(:new_record?).and_return(false)
+            end
             f.has_many :posts, allow_destroy: true do |p|
               p.input :title
             end
