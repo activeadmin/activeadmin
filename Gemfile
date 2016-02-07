@@ -26,6 +26,7 @@ if rails_version == 'master'
     gem lib, github: "rspec/#{lib}"
   end
   gem 'rack-mini-profiler', github: 'MiniProfiler/rack-mini-profiler'
+  gem 'database_cleaner',  github: 'pschambacher/database_cleaner', branch: 'rails5.0', ref: '8dd9fa4'
 end
 
 # Optional dependencies
@@ -64,7 +65,7 @@ group :test do
   gem 'coveralls', require: false           # Test coverage website. Go to https://coveralls.io
   gem 'cucumber-rails', require: false
   gem 'cucumber', '1.3.20'
-  gem 'database_cleaner'
+  gem 'database_cleaner' if rails_version != 'master'
   gem 'guard-rspec', require: false
   gem 'jasmine'
   gem 'jslint_on_rails'
