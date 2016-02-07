@@ -34,7 +34,6 @@ unless File.exists? test_app_path
     --skip-gemfile
     --skip-bundle
     --skip-git
-    --skip-keeps
     --skip-turbolinks
     --skip-test-unit
   ]
