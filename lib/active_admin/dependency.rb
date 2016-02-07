@@ -90,6 +90,55 @@ module ActiveAdmin
         info = spec ? "#{spec.name} #{spec.version}" : '(missing)'
         "<ActiveAdmin::Dependency::Matcher for #{info}>"
       end
+
+      def adapter
+        @adapter ||= Adapter.const_get(@name.camelize).new self
+      end
+
+      def method_missing(method, *args, &block)
+        if respond_to_missing?(method)
+          adapter.send method, *args, &block
+        else
+          super
+        end
+      end
+
+      def respond_to_missing?(method, include_private = false)
+        adapter.respond_to?(method) || super
+      rescue NameError
+        # 🐾
+      end
     end
+
+    # Dependency adapters provide an easy way to wrap the conditional logic
+    # necessary to support multiple versions of a gem.
+    #
+    # ActiveAdmin::Dependency.rails.adapter.parameterize 'a b'
+    # => 'a_b'
+    #
+    # ActiveAdmin::Dependency.rails.parameterize 'a b'
+    # => 'a_b'
+    #
+    # ActiveAdmin::Dependency.devise.adapter
+    # -> NameError: uninitialized constant ActiveAdmin::Dependency::Adapter::Devise
+    #
+    module Adapter
+      class Base
+        def initialize(version)
+          @version = version
+        end
+      end
+
+      class Rails < Base
+        def parameterize(string)
+          if @version >= '5.beta'
+            string.parameterize separator: '_'
+          else
+            string.parameterize '_'
+          end
+        end
+      end
+    end
+
   end
 end

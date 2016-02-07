@@ -29,10 +29,10 @@ module ActiveAdmin
 
       if name.is_a? Proc
         raise "A string/symbol is required as the second argument if your label is a proc." unless method
-        @id = method.to_s.parameterize("_")
+        @id = ActiveAdmin::Dependency.rails.parameterize method.to_s
       else
         @scope_method ||= name.to_sym
-        @id = name.to_s.parameterize("_")
+        @id = ActiveAdmin::Dependency.rails.parameterize name.to_s
       end
 
       @scope_method               = nil        if @scope_method == :all
@@ -41,7 +41,6 @@ module ActiveAdmin
       @show_count       = options.fetch(:show_count, true)
       @display_if_block = options[:if]      || proc{ true }
       @default_block    = options[:default] || proc{ false }
-
     end
 
     def name
