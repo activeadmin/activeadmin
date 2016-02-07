@@ -62,7 +62,9 @@ describe 'defining actions from registration blocks', type: :controller do
       end
 
       it 'sets the page title' do
-        get :comment, params: {id: 1}
+        params = {id: 1}
+        params = {params: params} if ActiveAdmin::Dependency.rails > 4
+        get :comment, params
 
         expect(controller.instance_variable_get(:@page_title)).to eq 'My Awesome Comment'
       end
