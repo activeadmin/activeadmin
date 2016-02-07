@@ -52,6 +52,7 @@ group :test do
   gem 'simplecov', require: false           # Test coverage generator. Go to /coverage/ after running tests
   gem 'coveralls', require: false           # Test coverage website. Go to https://coveralls.io
   gem 'cucumber-rails', require: false
+  gem 'cucumber', '1.3.20'
   gem 'database_cleaner'
   gem 'guard-rspec'
   gem 'jasmine'
