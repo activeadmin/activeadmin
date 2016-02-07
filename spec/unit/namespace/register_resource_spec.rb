@@ -4,41 +4,40 @@ require 'rails_helper'
 #       Specifically, the dashboard is already defined.
 
 describe ActiveAdmin::Namespace, "registering a resource" do
-
   let(:application){ ActiveAdmin::Application.new }
-
   let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
-
   let(:menu){ namespace.fetch_menu(:default) }
 
   context "with no configuration" do
     before do
       namespace.register Category
     end
+
     it "should store the namespaced registered configuration" do
       expect(namespace.resources.keys).to include('Category')
     end
+
     it "should create a new controller in the default namespace" do
       expect(defined?(Admin::CategoriesController)).to be_truthy
     end
+
     skip "should not create the dashboard controller" do
       defined?(Admin::DashboardController).to_not be_truthy
     end
+
     it "should create a menu item" do
       expect(menu["Categories"]).to be_a ActiveAdmin::MenuItem
       expect(menu["Categories"].instance_variable_get(:@url)).to be_a Proc
     end
-  end # context "with no configuration"
+  end
 
   context "with a block configuration" do
     it "should be evaluated in the dsl" do
-      expect {
-        namespace.register Category do
-          raise "Hello World"
-        end
-      }.to raise_error
+      expect{ |block|
+        namespace.register Category, &block
+      }.to yield_control
     end
-  end # context "with a block configuration"
+  end
 
   context "with a resource that's namespaced" do
     before do
