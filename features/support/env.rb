@@ -81,7 +81,12 @@ ActionController::Base.allow_rescue = false
 # after each scenario, which can lead to hard-to-debug failures in
 # subsequent scenarios. If you do this, we recommend you create a Before
 # block that will explicitly put your database in a known state.
-Cucumber::Rails::World.use_transactional_fixtures = false
+if ActiveAdmin::Dependency.rails5?
+  Cucumber::Rails::World.use_transactional_tests = true
+else
+  Cucumber::Rails::World.use_transactional_fixtures = true
+end
+
 # How to clean your database when transactions are turned off. See
 # http://github.com/bmabey/database_cleaner for more info.
 if defined?(ActiveRecord::Base)
@@ -125,6 +130,7 @@ end
 ActiveSupport::Deprecation.behavior = -> message, callstack do
   e = StandardError.new message
   e.set_backtrace callstack.map(&:to_s)
+  puts e
   raise e
 end
 
