@@ -5,7 +5,8 @@ describe Admin::PostsController, 'Index overriding', type: :controller do
     controller.instance_eval do
       def index
         super do
-          render body: 'Rendered from passed block' and return
+          body = ActiveAdmin::Dependency.rails5? ? :body : :text
+          render body => 'Rendered from passed block' and return
         end
       end
     end
