@@ -27,6 +27,7 @@ if rails_version == 'master'
   end
   gem 'rack-mini-profiler', github: 'MiniProfiler/rack-mini-profiler'
   gem 'database_cleaner',  github: 'pschambacher/database_cleaner', branch: 'rails5.0', ref: '8dd9fa4'
+  gem 'activerecord-jdbc-adapter', github: 'jruby/activerecord-jdbc-adapter', platforms: :jruby
 end
 
 # Optional dependencies
@@ -78,6 +79,6 @@ group :test do
   gem 'i18n-spec'
   gem 'shoulda-matchers', '<= 2.8.0'
   gem 'sqlite3', platforms: :mri
-  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
+  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby if rails_version != 'master'
   gem 'poltergeist'
 end
