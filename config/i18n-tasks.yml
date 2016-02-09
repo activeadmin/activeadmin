@@ -1,0 +1,92 @@
+# i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
+
+# The "main" locale.
+base_locale: en
+## All available locales are inferred from the data by default. Alternatively, specify them explicitly:
+locales: [ar, bg, bs, ca, cs, da, de, de-CH, el, en, en-GB, es, es-MX, fa, fi, fr, he, hr, hu, id, it, ja, ko, lt, lv, nb, nl, pl, pt-BR, pt-PT, ro, ru, sv-SE, tr, uk, vi, zh-CN, zh-TW]
+## Reporting locale, default: en. Available: en, ru.
+# internal_locale: en
+
+# Read and write translations.
+data:
+  ## Translations are read from the file system. Supported format: YAML, JSON.
+  ## Provide a custom adapter:
+  # adapter: I18n::Tasks::Data::FileSystem
+
+  # Locale files or `File.find` patterns where translations are read from:
+  read:
+    ## Default:
+    - config/locales/%{locale}.yml
+    ## More files:
+    # - config/locales/**/*.%{locale}.yml
+
+  # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
+  # `i18n-tasks normalize -p` will force move the keys according to these rules
+  write:
+    ## For example, write devise and simple form keys to their respective files:
+    # - ['{devise, simple_form}.*', 'config/locales/\1.%{locale}.yml']
+    ## Catch-all default:
+    # - config/locales/%{locale}.yml
+
+  ## Specify the router (see Readme for details). Valid values: conservative_router, pattern_router, or a custom class.
+  # router: convervative_router
+
+  yaml:
+    write:
+      # do not wrap lines at 80 characters
+      line_width: -1
+
+search:
+  ## Paths or `File.find` patterns to search in:
+  paths:
+    - app/
+
+  ## Root directories for relative keys resolution.
+  relative_roots:
+    - app/views
+    - lib/generators/active_admin
+
+  ## Files or `File.fnmatch` patterns to exclude from search. Some files are always excluded regardless of this setting:
+  ##   %w(*.jpg *.png *.gif *.svg *.ico *.eot *.otf *.ttf *.woff *.woff2 *.pdf *.css *.sass *.scss *.less *.yml *.json)
+  exclude:
+    - app/assets
+
+  ## Alternatively, the only files or `File.fnmatch patterns` to search in `paths`:
+  ## If specified, this settings takes priority over `exclude`, but `exclude` still applies.
+  # only: ["*.rb", "*.html.slim"]
+
+  ## If `strict` is `false`, guess usages such as t("categories.#{category}.title"). The default is `true`.
+  # strict: true
+
+  ## Multiple scanners can be used. Their results are merged.
+  ## The options specified above are passed down to each scanner. Per-scanner options can be specified as well.
+  ## See this example of a custom scanner: https://github.com/glebm/i18n-tasks/wiki/A-custom-scanner-example
+
+## Google Translate
+# translation:
+#   # Get an API key and set billing info at https://code.google.com/apis/console to use Google Translate
+#   api_key: "AbC-dEf5"
+
+## Do not consider these keys missing:
+# ignore_missing:
+# - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'
+# - '{devise,simple_form}.*'
+
+## Consider these keys used:
+# ignore_unused:
+# - 'activerecord.attributes.*'
+# - '{devise,kaminari,will_paginate}.*'
+# - 'simple_form.{yes,no}'
+# - 'simple_form.{placeholders,hints,labels}.*'
+# - 'simple_form.{error_notification,required}.:'
+
+## Exclude these keys from the `i18n-tasks eq-base' report:
+# ignore_eq_base:
+#   all:
+#     - common.ok
+#   fr,es:
+#     - common.brand
+
+## Ignore these keys completely:
+# ignore:
+#  - kaminari.*
