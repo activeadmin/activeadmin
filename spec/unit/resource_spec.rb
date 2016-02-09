@@ -118,7 +118,7 @@ module ActiveAdmin
           controller = @resource.controller.new
           expect(controller).to receive(:current_user).and_return(true)
           begin_of_association_chain = controller.send(:begin_of_association_chain)
-          expect(begin_of_association_chain).to eq true
+          expect(begin_of_association_chain).to be_truthy
         end
       end
 

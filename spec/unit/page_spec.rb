@@ -63,15 +63,15 @@ module ActiveAdmin
     end
 
     it "should not belong_to anything" do
-      expect(config.belongs_to?).to eq false
+      expect(config.belongs_to?).to be_falsey
     end
 
     it "should not have any action_items" do
-      expect(config.action_items?).to eq false
+      expect(config.action_items?).to be_falsey
     end
 
     it "should not have any sidebar_sections" do
-      expect(config.sidebar_sections?).to eq false
+      expect(config.sidebar_sections?).to be_falsey
     end
 
   end

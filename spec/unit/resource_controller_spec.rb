@@ -34,7 +34,7 @@ describe ActiveAdmin::ResourceController do
       namespace = controller.class.active_admin_config.namespace
       expect(namespace).to receive(:current_user_method).once.and_return(nil)
 
-      expect(controller.send(:current_active_admin_user)).to eq nil
+      expect(controller.send(:current_active_admin_user)).to be_nil
     end
 
     it "should call the current_user_method when set" do

@@ -41,12 +41,12 @@ describe ActiveAdmin::Scope do
 
       describe '#scope_method' do
         subject { super().scope_method }
-        it { is_expected.to eq(nil) }
+        it { is_expected.to be_nil }
       end
 
       describe '#scope_block' do
         subject { super().scope_block }
-        it { is_expected.to eq(nil) }
+        it { is_expected.to be_nil }
       end
     end
 
@@ -103,7 +103,7 @@ describe ActiveAdmin::Scope do
 
       describe '#scope_method' do
         subject { super().scope_method }
-        it { is_expected.to eq(nil) }
+        it { is_expected.to be_nil }
       end
 
       describe '#scope_block' do
@@ -144,12 +144,12 @@ describe ActiveAdmin::Scope do
 
     it "should return true by default" do
       scope = ActiveAdmin::Scope.new(:default)
-      expect(scope.display_if_block.call).to eq true
+      expect(scope.display_if_block.call).to be_truthy
     end
 
     it "should return the :if block if set" do
       scope = ActiveAdmin::Scope.new(:with_block, nil, if: proc{ false })
-      expect(scope.display_if_block.call).to eq false
+      expect(scope.display_if_block.call).to be_falsey
     end
 
   end
@@ -158,17 +158,17 @@ describe ActiveAdmin::Scope do
 
     it "should accept a boolean" do
       scope = ActiveAdmin::Scope.new(:method, nil, default: true)
-      expect(scope.default_block).to eq true
+      expect(scope.default_block).to be_truthy
     end
 
     it "should default to a false #default_block" do
       scope = ActiveAdmin::Scope.new(:method, nil)
-      expect(scope.default_block.call).to eq false
+      expect(scope.default_block.call).to be_falsey
     end
 
     it "should store the :default proc" do
       scope = ActiveAdmin::Scope.new(:with_block, nil, default: proc{ true })
-      expect(scope.default_block.call).to eq true
+      expect(scope.default_block.call).to be_truthy
     end
 
   end
@@ -177,12 +177,12 @@ describe ActiveAdmin::Scope do
 
     it "should allow setting of show_count to prevent showing counts" do
       scope = ActiveAdmin::Scope.new(:default, nil, show_count: false)
-      expect(scope.show_count).to eq false
+      expect(scope.show_count).to be_falsey
     end
 
     it "should set show_count to true if not passed in" do
       scope = ActiveAdmin::Scope.new(:default)
-      expect(scope.show_count).to eq true
+      expect(scope.show_count).to be_truthy
     end
 
   end

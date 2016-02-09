@@ -24,7 +24,7 @@ describe ActiveAdmin::Settings do
     klass.setting :my_setting, :some_val
     inst = klass.new
     inst.my_setting = nil
-    expect(inst.my_setting).to eq nil
+    expect(inst.my_setting).to be_nil
   end
 
 end

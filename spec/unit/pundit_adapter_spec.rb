@@ -44,8 +44,8 @@ describe ActiveAdmin::PunditAdapter do
     end
 
     it "should initialize the ability stored in the namespace configuration" do
-      expect(auth.authorized?(:read, Post)).to eq true
-      expect(auth.authorized?(:update, Post)).to eq false
+      expect(auth.authorized?(:read, Post)).to be_truthy
+      expect(auth.authorized?(:update, Post)).to be_falsey
     end
 
     it "should scope the collection" do

@@ -36,7 +36,7 @@ describe ActiveAdmin::Resource::PagePresenters do
     end
 
     it "should return nil when no page config set" do
-      expect(resource.get_page_presenter(:index)).to eq nil
+      expect(resource.get_page_presenter(:index)).to be_nil
     end
 
   end

@@ -18,35 +18,35 @@ describe ActiveAdmin::Dependency do
 
     describe '`?`' do
       it 'base' do
-        expect(k.foo?).to eq true
-        expect(k.bar?).to eq false
+        expect(k.foo?).to be_truthy
+        expect(k.bar?).to be_falsey
       end
       it '=' do
-        expect(k.foo? '= 1.2.3').to eq true
-        expect(k.foo? '= 1'    ).to eq false
+        expect(k.foo? '= 1.2.3').to be_truthy
+        expect(k.foo? '= 1'    ).to be_falsey
       end
       it '>' do
-        expect(k.foo? '> 1').to eq true
-        expect(k.foo? '> 2').to eq false
+        expect(k.foo? '> 1').to be_truthy
+        expect(k.foo? '> 2').to be_falsey
       end
       it '<' do
-        expect(k.foo? '< 2').to eq true
-        expect(k.foo? '< 1').to eq false
+        expect(k.foo? '< 2').to be_truthy
+        expect(k.foo? '< 1').to be_falsey
       end
       it '>=' do
-        expect(k.foo? '>= 1.2.3').to eq true
-        expect(k.foo? '>= 1.2.2').to eq true
-        expect(k.foo? '>= 1.2.4').to eq false
+        expect(k.foo? '>= 1.2.3').to be_truthy
+        expect(k.foo? '>= 1.2.2').to be_truthy
+        expect(k.foo? '>= 1.2.4').to be_falsey
       end
       it '<=' do
-        expect(k.foo? '<= 1.2.3').to eq true
-        expect(k.foo? '<= 1.2.4').to eq true
-        expect(k.foo? '<= 1.2.2').to eq false
+        expect(k.foo? '<= 1.2.3').to be_truthy
+        expect(k.foo? '<= 1.2.4').to be_truthy
+        expect(k.foo? '<= 1.2.2').to be_falsey
       end
       it '~>' do
-        expect(k.foo? '~> 1.2.0').to eq true
-        expect(k.foo? '~> 1.1'  ).to eq true
-        expect(k.foo? '~> 1.2.4').to eq false
+        expect(k.foo? '~> 1.2.0').to be_truthy
+        expect(k.foo? '~> 1.1'  ).to be_truthy
+        expect(k.foo? '~> 1.2.4').to be_falsey
       end
     end
 
@@ -81,14 +81,14 @@ describe ActiveAdmin::Dependency do
     # Note: more extensive tests for match? and match! are above.
 
     it 'match?' do
-      expect(k['a-b'].match?        ).to eq true
-      expect(k['a-b'].match? '1.2.3').to eq true
-      expect(k['b-c'].match?        ).to eq false
+      expect(k['a-b'].match?        ).to be_truthy
+      expect(k['a-b'].match? '1.2.3').to be_truthy
+      expect(k['b-c'].match?        ).to be_falsey
     end
 
     it 'match!' do
-      expect(k['a-b'].match!        ).to eq nil
-      expect(k['a-b'].match! '1.2.3').to eq nil
+      expect(k['a-b'].match!        ).to be_nil
+      expect(k['a-b'].match! '1.2.3').to be_nil
 
       expect{ k['a-b'].match! '2.5' }.to raise_error ActiveAdmin::DependencyError,
         'You provided a-b 1.2.3 but we need: 2.5.'
@@ -102,27 +102,27 @@ describe ActiveAdmin::Dependency do
     describe 'Ruby comparison syntax' do
 
       it '==' do
-        expect(k['a-b'] == '1.2.3').to eq true
-        expect(k['a-b'] == '1.2'  ).to eq false
-        expect(k['a-b'] == 1      ).to eq false
+        expect(k['a-b'] == '1.2.3').to be_truthy
+        expect(k['a-b'] == '1.2'  ).to be_falsey
+        expect(k['a-b'] == 1      ).to be_falsey
       end
       it '>' do
-        expect(k['a-b'] > 1).to eq true
-        expect(k['a-b'] > 2).to eq false
+        expect(k['a-b'] > 1).to be_truthy
+        expect(k['a-b'] > 2).to be_falsey
       end
       it '<' do
-        expect(k['a-b'] < 2).to eq true
-        expect(k['a-b'] < 1).to eq false
+        expect(k['a-b'] < 2).to be_truthy
+        expect(k['a-b'] < 1).to be_falsey
       end
       it '>=' do
-        expect(k['a-b'] >= '1.2.3').to eq true
-        expect(k['a-b'] >= '1.2.2').to eq true
-        expect(k['a-b'] >= '1.2.4').to eq false
+        expect(k['a-b'] >= '1.2.3').to be_truthy
+        expect(k['a-b'] >= '1.2.2').to be_truthy
+        expect(k['a-b'] >= '1.2.4').to be_falsey
       end
       it '<=' do
-        expect(k['a-b'] <= '1.2.3').to eq true
-        expect(k['a-b'] <= '1.2.4').to eq true
-        expect(k['a-b'] <= '1.2.2').to eq false
+        expect(k['a-b'] <= '1.2.3').to be_truthy
+        expect(k['a-b'] <= '1.2.4').to be_truthy
+        expect(k['a-b'] <= '1.2.2').to be_falsey
       end
 
       it 'throws a custom error if the gem is missing' do

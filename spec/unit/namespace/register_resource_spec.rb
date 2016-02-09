@@ -68,7 +68,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
     end
 
     it 'should return nil when the resource has not been registered' do
-      expect(namespace.resource_for(Post)).to eq nil
+      expect(namespace.resource_for(Post)).to be_nil
     end
 
     it "should return the parent when the parent class has been registered and the child has not" do

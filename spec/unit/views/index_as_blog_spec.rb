@@ -64,7 +64,7 @@ describe ActiveAdmin::Views::IndexAsBlog do
 
       context 'when no block and no method given' do
         it 'should be nil' do
-          expect(subject.public_send("#{method}")).to eq(nil)
+          expect(subject.public_send("#{method}")).to be_nil
         end
       end
     end

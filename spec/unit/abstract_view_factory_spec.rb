@@ -13,11 +13,11 @@ describe ActiveAdmin::AbstractViewFactory do
     end
 
     it "should respond to :my_new_view_class" do
-      expect(view_factory.respond_to? :my_new_view_class).to be true
+      expect(view_factory.respond_to? :my_new_view_class).to be_truthy
     end
 
     it "should respond to :my_new_view_class=" do
-      expect(view_factory.respond_to? :my_new_view_class=).to be true
+      expect(view_factory.respond_to? :my_new_view_class=).to be_truthy
     end
 
     it "should generate a getter method" do
