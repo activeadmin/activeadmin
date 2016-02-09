@@ -6,16 +6,16 @@ describe ActiveAdmin::Scope do
     subject{ scope }
 
     context "when just a scope method" do
-      let(:scope)        { ActiveAdmin::Scope.new :published }
+      let(:scope) { ActiveAdmin::Scope.new :published }
 
       describe '#name' do
         subject { super().name }
-        it         { is_expected.to eq("Published")}
+        it { is_expected.to eq("Published")}
       end
 
       describe '#id' do
         subject { super().id }
-        it           { is_expected.to eq("published")}
+        it { is_expected.to eq("published")}
       end
 
       describe '#scope_method' do
@@ -25,16 +25,16 @@ describe ActiveAdmin::Scope do
     end
 
     context "when scope method is :all" do
-      let(:scope)        { ActiveAdmin::Scope.new :all }
+      let(:scope) { ActiveAdmin::Scope.new :all }
 
       describe '#name' do
         subject { super().name }
-        it         { is_expected.to eq("All")}
+        it { is_expected.to eq("All")}
       end
 
       describe '#id' do
         subject { super().id }
-        it           { is_expected.to eq("all")}
+        it { is_expected.to eq("all")}
       end
       # :all does not return a chain but an array of active record
       # instances. We set the scope_method to nil then.
@@ -46,16 +46,16 @@ describe ActiveAdmin::Scope do
 
       describe '#scope_block' do
         subject { super().scope_block }
-        it  { is_expected.to eq(nil) }
+        it { is_expected.to eq(nil) }
       end
     end
 
     context 'when a name and scope method is :all' do
-      let(:scope)        { ActiveAdmin::Scope.new 'Tous', :all }
+      let(:scope) { ActiveAdmin::Scope.new 'Tous', :all }
 
       describe '#name' do
         subject { super().name }
-        it         { is_expected.to eq 'Tous' }
+        it { is_expected.to eq 'Tous' }
       end
 
       describe '#scope_method' do
@@ -65,21 +65,21 @@ describe ActiveAdmin::Scope do
 
       describe '#scope_block' do
         subject { super().scope_block }
-        it  { is_expected.to be_nil }
+        it { is_expected.to be_nil }
       end
     end
 
     context "when a name and scope method" do
-      let(:scope)        { ActiveAdmin::Scope.new "With API Access", :with_api_access }
+      let(:scope) { ActiveAdmin::Scope.new "With API Access", :with_api_access }
 
       describe '#name' do
         subject { super().name }
-        it         { is_expected.to eq("With API Access")}
+        it { is_expected.to eq("With API Access")}
       end
 
       describe '#id' do
         subject { super().id }
-        it           { is_expected.to eq("with_api_access")}
+        it { is_expected.to eq("with_api_access")}
       end
 
       describe '#scope_method' do
@@ -89,16 +89,16 @@ describe ActiveAdmin::Scope do
     end
 
     context "when a name and scope block" do
-      let(:scope)        { ActiveAdmin::Scope.new("My Scope"){|s| s } }
+      let(:scope) { ActiveAdmin::Scope.new("My Scope"){|s| s } }
 
       describe '#name' do
         subject { super().name }
-        it         { is_expected.to eq("My Scope")}
+        it { is_expected.to eq("My Scope")}
       end
 
       describe '#id' do
         subject { super().id }
-        it           { is_expected.to eq("my_scope")}
+        it { is_expected.to eq("my_scope")}
       end
 
       describe '#scope_method' do
@@ -108,21 +108,21 @@ describe ActiveAdmin::Scope do
 
       describe '#scope_block' do
         subject { super().scope_block }
-        it  { is_expected.to be_a(Proc)}
+        it { is_expected.to be_a(Proc)}
       end
     end
 
     context "when a name has a space and lowercase" do
-      let(:scope)        { ActiveAdmin::Scope.new("my scope") }
+      let(:scope) { ActiveAdmin::Scope.new("my scope") }
 
       describe '#name' do
         subject { super().name }
-        it         { is_expected.to eq("my scope")}
+        it { is_expected.to eq("my scope")}
       end
 
       describe '#id' do
         subject { super().id }
-        it           { is_expected.to eq("my_scope")}
+        it { is_expected.to eq("my_scope")}
       end
     end
 
