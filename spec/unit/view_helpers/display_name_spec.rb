@@ -32,7 +32,7 @@ describe "display_name" do
   end
 
   it "should return `nil` when the passed object is `nil`" do
-    expect(display_name nil).to eq nil
+    expect(display_name nil).to be_nil
   end
 
   it "should return 'false' when the passed objct is `false`" do

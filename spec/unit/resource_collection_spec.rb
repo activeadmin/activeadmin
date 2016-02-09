@@ -113,11 +113,11 @@ describe ActiveAdmin::ResourceCollection do
       end
 
       it "should return nil when the resource_class does not respond to base_class and it is not in the collection" do
-        expect(collection[double]).to eq nil
+        expect(collection[double]).to be_nil
       end
 
       it "should return nil when a resource class is NOT in the collection" do
-        expect(collection[unregistered_class]).to eq nil
+        expect(collection[unregistered_class]).to be_nil
       end
     end
 

@@ -46,12 +46,12 @@ shared_examples_for "ActiveAdmin::Resource" do
 
     describe "#include_in_menu?" do
       it "should be included in menu by default" do
-        expect(config.include_in_menu?).to eq(true)
+        expect(config.include_in_menu?).to be_truthy
       end
 
       it "should not be included in menu when menu set to false" do
         config.menu_item_options = false
-        expect(config.include_in_menu?).to eq(false)
+        expect(config.include_in_menu?).to be_falsey
       end
     end
 

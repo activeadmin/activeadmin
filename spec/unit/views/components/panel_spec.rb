@@ -52,7 +52,7 @@ describe ActiveAdmin::Views::Panel do
     end
 
     it "returns false if no children have been added to the panel" do
-      expect(arbre_panel.children?).to eq false
+      expect(arbre_panel.children?).to be_falsey
     end
   end
 end

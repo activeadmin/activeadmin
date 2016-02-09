@@ -28,11 +28,11 @@ module ActiveAdmin
       end
 
       it "should show the item by default" do
-        expect(MenuItem.new.display?).to eq true
+        expect(MenuItem.new.display?).to be_truthy
       end
 
       it "should hide the item" do
-        expect(MenuItem.new(if: proc{false}).display?).to eq false
+        expect(MenuItem.new(if: proc{false}).display?).to be_falsey
       end
     end
 

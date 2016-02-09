@@ -14,12 +14,12 @@ module ActiveAdmin
 
     describe "#paginate" do
       it "should default to true" do
-        expect(config.paginate).to eq true
+        expect(config.paginate).to be_truthy
       end
 
       it "should be settable to false" do
         config.paginate = false
-        expect(config.paginate).to eq false
+        expect(config.paginate).to be_falsey
       end
     end
 

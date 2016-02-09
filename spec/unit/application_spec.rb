@@ -46,7 +46,7 @@ describe ActiveAdmin::Application do
   end
 
   it "should store the site's favicon" do
-    expect(application.favicon).to eq false
+    expect(application.favicon).to be_falsey
   end
 
   it "should return default localize format" do
@@ -88,17 +88,17 @@ describe ActiveAdmin::Application do
   end
 
   it "should allow comments by default" do
-    expect(application.comments).to eq true
+    expect(application.comments).to be_truthy
   end
 
   describe "authentication settings" do
 
     it "should have no default current_user_method" do
-      expect(application.current_user_method).to eq false
+      expect(application.current_user_method).to be_falsey
     end
 
     it "should have no default authentication method" do
-      expect(application.authentication_method).to eq false
+      expect(application.authentication_method).to be_falsey
     end
 
     it "should have a logout link path (Devise's default)" do

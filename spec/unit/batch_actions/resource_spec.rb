@@ -69,12 +69,12 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
 
     it "should return true by default" do
       action = ActiveAdmin::BatchAction.new :default, "Default"
-      expect(action.display_if_block.call).to eq true
+      expect(action.display_if_block.call).to be_truthy
     end
 
     it "should return the :if block if set" do
       action = ActiveAdmin::BatchAction.new :with_block, "With Block", if: proc { false }
-      expect(action.display_if_block.call).to eq false
+      expect(action.display_if_block.call).to be_falsey
     end
 
   end

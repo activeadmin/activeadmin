@@ -51,8 +51,8 @@ describe ActiveAdmin::DSL do
         end
 
         item = resource_config.action_items.last
-        expect(item.display_on?(:edit)).to be true
-        expect(item.display_on?(:index)).to be false
+        expect(item.display_on?(:edit)).to be_truthy
+        expect(item.display_on?(:index)).to be_falsey
       end
     end
   end
