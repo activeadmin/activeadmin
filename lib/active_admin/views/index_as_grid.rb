@@ -29,7 +29,7 @@ module ActiveAdmin
 
       def build(page_presenter, collection)
         @page_presenter = page_presenter
-        @collection = collection
+        @collection = collection.to_a
         add_class "index"
         build_table
       end
@@ -47,7 +47,7 @@ module ActiveAdmin
       def build_table
         resource_selection_toggle_panel if active_admin_config.batch_actions.any?
         table class: "index_grid" do
-          collection.in_groups_of(number_of_columns).each do |group|
+          @collection.in_groups_of(number_of_columns).each do |group|
             build_row(group)
           end
         end

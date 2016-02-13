@@ -113,19 +113,16 @@ module ActiveAdmin
             redirect_backwards_or_to_root
           end
 
-          format.csv  { render text:          error,           status: :unauthorized }
+          body = ActiveAdmin::Dependency.rails.render_key
+
+          format.csv  { render body =>        error,           status: :unauthorized }
           format.json { render json: { error: error },         status: :unauthorized }
           format.xml  { render xml: "<error>#{error}</error>", status: :unauthorized }
         end
       end
 
       def redirect_backwards_or_to_root
-        if request.headers.key? "HTTP_REFERER"
-          redirect_to :back
-        else
-          controller, action = active_admin_namespace.root_to.split '#'
-          redirect_to controller: controller, action: action
-        end
+        ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
       end
 
     end

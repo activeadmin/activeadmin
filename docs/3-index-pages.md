@@ -218,7 +218,7 @@ You can change it per request / action too:
 
 ```ruby
 controller do
-  before_filter :only => :index do
+  before_action only: :index do
     @per_page = 100
   end
 end

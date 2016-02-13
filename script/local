@@ -22,7 +22,7 @@ end
 rails_version = detect_rails_version!
 
 test_app_dir = ".test-rails-apps"
-test_app_path = "#{test_app_dir}/test-rails-app-#{rails_version}"
+test_app_path = "#{test_app_dir}/test-rails-app-#{Shellwords.escape rails_version}"
 
 # Ensure .test-rails-apps is created
 system "mkdir #{test_app_dir}" unless File.exists?(test_app_dir)
@@ -34,7 +34,6 @@ unless File.exists? test_app_path
     --skip-gemfile
     --skip-bundle
     --skip-git
-    --skip-keeps
     --skip-turbolinks
     --skip-test-unit
   ]

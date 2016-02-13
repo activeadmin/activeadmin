@@ -12,23 +12,23 @@ script:
   - bundle exec rake test_with_coveralls
 rvm:
   - 1.9
-  - 2.2.3
+  - 2.3.0
   - jruby-9.0.4.0
 env:
   matrix:
     - RAILS=3.2.22
-    - RAILS=4.1.14
-    - RAILS=master
     - RAILS=4.2.5
+    - RAILS="> 5.x"
   global:
     - JRUBY_OPTS="-J-Xmx1024m --debug"
 matrix:
   fast_finish: true
   exclude:
     - rvm: 1.9
-      env: RAILS=master
+      env: RAILS="> 5.x"
   allow_failures:
-    - env: RAILS=master
+    - rvm: jruby-9.0.4.0
+      env: RAILS="> 5.x"
 branches:
   only:
     - master

@@ -304,22 +304,24 @@ module ActiveAdmin
           :before_filter, :skip_before_filter,
           :after_filter, :skip_after_filter,
           :around_filter, :skip_filter
-        ].each do |filter|
-          it "delegates #{filter}" do
-            expect(resource.send(filter)).to eq "called #{filter}"
+        ].each do |method|
+          it "delegates #{method}" do
+            expected = method.to_s.dup
+            expected.sub! 'filter', 'action' if ActiveAdmin::Dependency.rails >= 4
+            expect(resource.send(method)).to eq "called #{expected}"
           end
         end
       end
 
-      if Rails::VERSION::MAJOR == 4
+      if ActiveAdmin::Dependency.rails >= 4
         context "actions" do
           [
             :before_action, :skip_before_action,
             :after_action, :skip_after_action,
             :around_action, :skip_action
-          ].each do |action|
-            it "delegates #{action}" do
-              expect(resource.send(action)).to eq "called #{action}"
+          ].each do |method|
+            it "delegates #{method}" do
+              expect(resource.send(method)).to eq "called #{method}"
             end
           end
         end

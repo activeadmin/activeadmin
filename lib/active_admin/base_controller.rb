@@ -10,8 +10,13 @@ module ActiveAdmin
 
     layout :determine_active_admin_layout
 
-    before_filter :only_render_implemented_actions
-    before_filter :authenticate_active_admin_user
+    if ActiveAdmin::Dependency.rails >= 4
+      before_action :only_render_implemented_actions
+      before_action :authenticate_active_admin_user
+    else
+      before_filter :only_render_implemented_actions
+      before_filter :authenticate_active_admin_user
+    end
 
     class << self
       # Ensure that this method is available for the DSL
@@ -71,6 +76,11 @@ module ActiveAdmin
     #       that users can render any template inside Active Admin.
     def determine_active_admin_layout
       ACTIVE_ADMIN_ACTIONS.include?(params[:action].to_sym) ? false : 'active_admin'
+    end
+
+    def active_admin_root
+      controller, action = active_admin_namespace.root_to.split '#'
+      {controller: controller, action: action}
     end
 
   end

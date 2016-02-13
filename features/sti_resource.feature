@@ -7,10 +7,10 @@ Feature: STI Resource
     And a configuration of:
     """
       ActiveAdmin.register Publisher do
-        permit_params :first_name, :last_name, :username, :age if Rails::VERSION::MAJOR == 4
+        permit_params :first_name, :last_name, :username, :age if Rails::VERSION::MAJOR >= 4
       end
       ActiveAdmin.register User do
-        permit_params :first_name, :last_name, :username, :age if Rails::VERSION::MAJOR == 4
+        permit_params :first_name, :last_name, :username, :age if Rails::VERSION::MAJOR >= 4
       end
     """
 

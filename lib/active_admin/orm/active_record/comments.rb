@@ -55,24 +55,29 @@ ActiveAdmin.after_load do |app|
         # Redirect to the resource show page after comment creation
         def create
           create! do |success, failure|
-            success.html{ redirect_to :back }
+            success.html do
+              ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+            end
             failure.html do
               flash[:error] = I18n.t 'active_admin.comments.errors.empty_text'
-              redirect_to :back
+              ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
             end
           end
 
           def destroy
             destroy! do |success, failure|
-              success.html { redirect_to :back }
-              failure.html { redirect_to :back }
+              success.html do
+                ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+              end
+              failure.html do
+                ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+              end
             end
           end
         end
       end
 
-      # Set up permitted params in case the app is using Strong Parameters
-      unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
+      if ActiveAdmin::Dependency.rails.strong_parameters?
         permit_params :body, :namespace, :resource_id, :resource_type
       end
 

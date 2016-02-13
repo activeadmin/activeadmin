@@ -136,7 +136,7 @@ RUBY
 # Force strong parameters to raise exceptions
 inject_into_file 'config/application.rb', <<-RUBY, after: 'class Application < Rails::Application'
 
-    config.action_controller.action_on_unpermitted_parameters = :raise if Rails::VERSION::MAJOR == 4
+    config.action_controller.action_on_unpermitted_parameters = :raise if Rails::VERSION::MAJOR >= 4
 
 RUBY
 

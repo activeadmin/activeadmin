@@ -51,7 +51,8 @@ Feature: Show - Page Title
     """
       ActiveAdmin.register Post do
         controller do
-          before_filter { @page_title = "List of #{resource_class.model_name.plural}" }
+          callback = ActiveAdmin::Dependency.rails >= 4 ? :before_action : :before_filter
+          send(callback) { @page_title = "List of #{resource_class.model_name.plural}" }
         end
       end
     """

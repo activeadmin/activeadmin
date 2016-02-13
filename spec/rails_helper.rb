@@ -133,6 +133,7 @@ RSpec.configure do |config|
   config.filter_run focus: true
   config.filter_run_excluding skip: true
   config.run_all_when_everything_filtered = true
+  config.color = true
 end
 
 # All RSpec configuration needs to happen before any examples
@@ -147,7 +148,7 @@ end
 # This would set `behavior = :raise`, but that wasn't added until Rails 4.
 ActiveSupport::Deprecation.behavior = -> message, callstack do
   e = StandardError.new message
-  e.set_backtrace callstack
+  e.set_backtrace callstack.map(&:to_s)
   raise e
 end
 

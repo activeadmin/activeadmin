@@ -24,7 +24,7 @@ module ActiveAdmin
             root namespace.root_to_options.merge(to: namespace.root_to)
           else
             namespace namespace.name do
-              root namespace.root_to_options.merge(to: namespace.root_to)
+              root namespace.root_to_options.merge(to: namespace.root_to, as: :root)
             end
           end
         end
