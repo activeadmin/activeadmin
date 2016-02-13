@@ -130,7 +130,7 @@ end
 ActiveSupport::Deprecation.behavior = -> message, callstack do
   e = StandardError.new message
   e.set_backtrace callstack.map(&:to_s)
-  puts e
+  puts e # sometimes Cucumber otherwise won't show the error message
   raise e
 end
 

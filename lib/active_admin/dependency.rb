@@ -56,7 +56,7 @@ module ActiveAdmin
     end
 
     def self.rails5?
-      rails >= '5.beta'
+      rails >= '5.x'
     end
 
     class Matcher

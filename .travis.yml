@@ -18,20 +18,20 @@ env:
   matrix:
     - RAILS=3.2.22
     - RAILS=4.2.5
-    - RAILS=master
+    - RAILS=> 5.x
   global:
     - JRUBY_OPTS="-J-Xmx1024m --debug"
 matrix:
   fast_finish: true
   exclude:
     - rvm: 1.9
-      env: RAILS=master
+      env: RAILS=> 5.x
   allow_failures:
     - rvm: jruby-9.0.4.0
-      env: RAILS=master
+      env: RAILS=> 5.x
 branches:
   only:
-    - master
+    - "> 5.x"
     - /\A\d-\d-stable\z/
 notifications:
   irc:
