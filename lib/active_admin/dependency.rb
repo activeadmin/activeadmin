@@ -134,6 +134,10 @@ module ActiveAdmin
       end
 
       class Rails < Base
+        def strong_parameters?
+          @version >= 4 || defined?(ActionController::StrongParameters)
+        end
+
         def parameterize(string)
           if Dependency.rails5?
             string.parameterize separator: '_'
