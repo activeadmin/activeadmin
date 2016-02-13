@@ -157,6 +157,10 @@ module ActiveAdmin
             end
           end
         end
+
+        def render_key
+          Dependency.rails5? ? :body : :text
+        end
       end
     end
 

@@ -113,7 +113,7 @@ module ActiveAdmin
             redirect_backwards_or_to_root
           end
 
-          body = ActiveAdmin::Dependency.rails5? ? :body : :text
+          body = ActiveAdmin::Dependency.rails.render_key
 
           format.csv  { render body =>        error,           status: :unauthorized }
           format.json { render json: { error: error },         status: :unauthorized }
