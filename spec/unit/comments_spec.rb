@@ -159,7 +159,7 @@ describe "Comments" do
       it "should have comments when the namespace allows comments" do
         ns = ActiveAdmin::Namespace.new(application, :admin)
         ns.comments = true
-        expect(ns.comments?).to be_truthy
+        expect(ns.comments?).to eq true
       end
 
       it "should not have comments when the namespace does not allow comments" do
@@ -176,7 +176,7 @@ describe "Comments" do
       resource = ActiveAdmin::Resource.new(ns, Post)
       expect(resource.comments).to eq nil
       resource.comments = true
-      expect(resource.comments).to be_truthy
+      expect(resource.comments).to eq true
     end
     it "should disable comments if set to false" do
       ns = ActiveAdmin::Namespace.new(application, :admin)

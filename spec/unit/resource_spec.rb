@@ -218,7 +218,7 @@ module ActiveAdmin
       context "when breadcrumb is set" do
         context "when set to true" do
           before { config.breadcrumb = true }
-          it { is_expected.to be_truthy }
+          it { is_expected.to eq true }
         end
 
         context "when set to false" do

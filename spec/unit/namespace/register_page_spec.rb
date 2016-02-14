@@ -15,7 +15,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
     end
 
     it "should create a new controller in the default namespace" do
-      expect(defined?(Admin::StatusController)).to be_truthy
+      expect(defined?(Admin::StatusController)).to eq 'constant'
     end
 
     it "should create a menu item" do

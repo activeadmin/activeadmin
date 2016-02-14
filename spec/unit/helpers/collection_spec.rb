@@ -45,7 +45,7 @@ describe ActiveAdmin::Helpers::Collection do
 
   describe "#collection_is_empty?" do
     it "should return true when the collection is empty" do
-      expect(collection_is_empty?(Post.where(title: "Non existing post"))).to be_truthy
+      expect(collection_is_empty?(Post.where(title: "Non existing post"))).to eq true
     end
 
     it "should return false when the collection is not empty" do
@@ -59,7 +59,7 @@ describe ActiveAdmin::Helpers::Collection do
 
       def collection; Post.where(title: "Non existing post"); end
 
-      expect(collection_is_empty?).to be_truthy
+      expect(collection_is_empty?).to eq true
     end
   end
 end
