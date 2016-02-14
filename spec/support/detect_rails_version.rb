@@ -7,7 +7,7 @@ unless defined? TRAVIS_CONFIG
   require 'yaml'
   filename = File.expand_path("../../../.travis.yml", __FILE__)
   TRAVIS_CONFIG = YAML.load_file filename
-  TRAVIS_RAILS_VERSIONS = TRAVIS_CONFIG['env']['matrix'].grep(/RAILS=(.*)/){ $1 }
+  TRAVIS_RAILS_VERSIONS = TRAVIS_CONFIG['env']['matrix'].grep(/RAILS=(.*)/){ $1 }.map{ |v| v.delete('"') }
 end
 
 DEFAULT_RAILS_VERSION ||= TRAVIS_RAILS_VERSIONS.last
