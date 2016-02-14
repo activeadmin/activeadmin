@@ -68,11 +68,24 @@ module ActiveAdmin
       end
 
       # Retrieve or instantiate the authorization instance for this resource
-      #
       # @return [ActiveAdmin::AuthorizationAdapter]
       def active_admin_authorization
-        @active_admin_authorization ||=
-         active_admin_authorization_adapter.new active_admin_config, current_active_admin_user
+        return @active_admin_authorization if @active_admin_authorization
+        adapter = active_admin_authorization_adapter
+
+        @active_admin_authorization = if adapter == ActiveAdmin::PunditAdapter
+                                        user = if active_admin_namespace.pundit_user_method
+                                                 send(active_admin_namespace.pundit_user_method)
+                                               else
+                                                 current_active_admin_user
+                                               end
+
+                                        adapter.new(active_admin_config,
+                                                    user)
+                                      else
+                                        adapter.new(active_admin_config,
+                                                    current_active_admin_user)
+                                      end
       end
 
       # Returns the class to be used as the authorization adapter

@@ -4,11 +4,10 @@ require 'pundit'
 
 # Add a setting to the application to configure the pundit default policy
 ActiveAdmin::Application.inheritable_setting :pundit_default_policy, nil
+ActiveAdmin::Application.inheritable_setting :pundit_user_method, false
 
 module ActiveAdmin
-
   class PunditAdapter < AuthorizationAdapter
-
     def authorized?(action, subject = nil)
       policy = retrieve_policy(subject)
       action = format_action(action, subject)
@@ -16,7 +15,7 @@ module ActiveAdmin
       policy.respond_to?(action) && policy.public_send(action)
     end
 
-    def scope_collection(collection, action = Auth::READ)
+    def scope_collection(collection, _action = Auth::READ)
       # scoping is appliable only to read/index action
       # which means there is no way how to scope other actions
       Pundit.policy_scope!(user, collection)
@@ -62,7 +61,5 @@ module ActiveAdmin
     def default_policy(user, subject)
       default_policy_class.new(user, subject)
     end
-
   end
-
 end
