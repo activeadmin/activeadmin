@@ -169,3 +169,21 @@ Feature: Commenting
     And I follow "View"
     When I add a comment "Bar"
     Then I should be in the resource section for foos
+
+  @javascript
+  Scenario: Delete a comment
+    Given a show configuration of:
+      """
+        ActiveAdmin.register Post
+      """
+    When I add a comment "Hello from Comment"
+    Then I should see a flash with "Comment was successfully created"
+    And I should be in the resource section for posts
+    And I should see "Comments (1)"
+    And I should see "Hello from Comment"
+    And I should see a comment by "admin@example.com"
+
+    When I click "Delete Comment"
+    Then I should see a flash with "Comment was successfully destroyed"
+    And I should be in the resource section for posts
+    And I should see "Comments (0)"

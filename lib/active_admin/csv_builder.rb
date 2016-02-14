@@ -92,6 +92,10 @@ module ActiveAdmin
       end
     end
 
+    def respond_to_missing?(method, include_private)
+      @view_context.respond_to?(method) || super
+    end
+
     class Column
       attr_reader :name, :data, :options
 

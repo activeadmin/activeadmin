@@ -13,6 +13,7 @@ module ActiveAdmin
         def build(resource)
           @resource = resource
           @comments = ActiveAdmin::Comment.find_for_resource_in_namespace resource, active_admin_namespace.name
+          @controller = active_admin_comment_config.controller
           super(title, for: resource)
           build_comments
         end
@@ -35,8 +36,9 @@ module ActiveAdmin
                 comment.author ? auto_link(comment.author) : I18n.t('active_admin.comments.author_missing')
               end
               span pretty_format comment.created_at
-              if authorized?(ActiveAdmin::Auth::DESTROY, comment)
-                text_node link_to I18n.t('active_admin.comments.delete'), comments_url(comment.id), method: :delete, data: { confirm: I18n.t('active_admin.comments.delete_confirmation') }
+              if @controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, comment)
+                text_node link_to I18n.t('active_admin.comments.delete'), comments_url(comment.id),
+                  method: :delete, data: {confirm: I18n.t('active_admin.comments.delete_confirmation')}
               end
             end
             div class: 'active_admin_comment_body' do
