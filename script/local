@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'shellwords'
 require File.expand_path('../../spec/support/detect_rails_version', __FILE__)
 
 unless ARGV[0]
@@ -21,14 +22,14 @@ end
 # Set up some variables
 rails_version = detect_rails_version!
 
-test_app_dir = ".test-rails-apps"
-test_app_path = "#{test_app_dir}/test-rails-app-#{Shellwords.escape rails_version}"
+dir = ".test-rails-apps"
+path = "#{dir}/test-rails-app-#{rails_version}"
 
 # Ensure .test-rails-apps is created
-system "mkdir #{test_app_dir}" unless File.exists?(test_app_dir)
+system "mkdir #{dir}" unless File.exists?(dir)
 
 # Create the sample rails app if it doesn't already exist
-unless File.exists? test_app_path
+unless File.exists? path
   args = %w[
     -m\ spec/support/rails_template_with_data.rb
     --skip-gemfile
@@ -37,12 +38,12 @@ unless File.exists? test_app_path
     --skip-turbolinks
     --skip-test-unit
   ]
-  system "RAILS='#{rails_version}' bundle exec rails new #{test_app_path} #{args.join ' '}"
+  system "RAILS='#{rails_version}' bundle exec rails new #{Shellwords.escape path} #{args.join ' '}"
 end
 
 # Link this rails app
 system "rm test-rails-app"
-system "ln -s #{test_app_path} test-rails-app"
+system "ln -s #{Shellwords.escape path} test-rails-app"
 
 # If it's a rails command, auto add the rails script
 RAILS_COMMANDS = %w{generate console server dbconsole g c s runner}
