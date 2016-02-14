@@ -60,12 +60,12 @@ describe ActiveAdmin::Scope do
 
       describe '#scope_method' do
         subject { super().scope_method }
-        it      { is_expected.to be_nil }
+        it      { is_expected.to eq nil }
       end
 
       describe '#scope_block' do
         subject { super().scope_block }
-        it      { is_expected.to be_nil }
+        it      { is_expected.to eq nil }
       end
     end
 

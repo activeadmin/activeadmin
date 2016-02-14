@@ -35,7 +35,7 @@ describe ActiveAdmin::BatchActions::ResourceExtension do
     end
 
     it "should store the block in the batch action" do
-      expect(resource.batch_actions.first.block).to_not be_nil
+      expect(resource.batch_actions.first.block).to_not eq nil
     end
 
   end

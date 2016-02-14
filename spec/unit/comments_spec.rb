@@ -174,7 +174,7 @@ describe "Comments" do
     it "should add an attr_accessor :comments to ActiveAdmin::Resource" do
       ns = ActiveAdmin::Namespace.new(application, :admin)
       resource = ActiveAdmin::Resource.new(ns, Post)
-      expect(resource.comments).to be_nil
+      expect(resource.comments).to eq nil
       resource.comments = true
       expect(resource.comments).to be_truthy
     end

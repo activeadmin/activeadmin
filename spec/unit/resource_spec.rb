@@ -35,7 +35,7 @@ module ActiveAdmin
 
     describe '#decorator_class' do
       it 'returns nil by default' do
-        expect(config.decorator_class).to be_nil
+        expect(config.decorator_class).to eq nil
       end
       context 'when a decorator is defined' do
         let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
@@ -80,9 +80,9 @@ module ActiveAdmin
     describe "#belongs_to" do
 
       it "should build a belongs to configuration" do
-        expect(config.belongs_to_config).to be_nil
+        expect(config.belongs_to_config).to eq nil
         config.belongs_to :posts
-        expect(config.belongs_to_config).to_not be_nil
+        expect(config.belongs_to_config).to_not eq nil
       end
 
       it "should set the target menu to the belongs to target" do

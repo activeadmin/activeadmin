@@ -66,7 +66,7 @@ describe ActiveAdmin::Namespace do
         menu.add label: "menu item"
       end
 
-      expect(namespace.fetch_menu(:default)["menu item"]).to_not be_nil
+      expect(namespace.fetch_menu(:default)["menu item"]).to_not eq nil
     end
 
     it "should set a block on a custom menu" do
@@ -74,7 +74,7 @@ describe ActiveAdmin::Namespace do
         menu.add label: "menu item"
       end
 
-      expect(namespace.fetch_menu(:test)["menu item"]).to_not be_nil
+      expect(namespace.fetch_menu(:test)["menu item"]).to_not eq nil
     end
   end
 
@@ -89,12 +89,12 @@ describe ActiveAdmin::Namespace do
     end
 
     it "should have a logout button to the far left" do
-      expect(menu["Logout"]).to_not be_nil
+      expect(menu["Logout"]).to_not eq nil
       expect(menu["Logout"].priority).to eq 1
     end
 
     it "should have a static link with a target of :blank" do
-      expect(menu["ActiveAdmin.info"]).to_not be_nil
+      expect(menu["ActiveAdmin.info"]).to_not eq nil
       expect(menu["ActiveAdmin.info"].html_options).to include(target: :blank)
     end
 

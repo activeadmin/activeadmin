@@ -24,7 +24,7 @@ Then /^I should download a CSV file with "([^"]*)" separator for "([^"]*)" conta
       expected_row.each_with_index do |expected_cell, col_index|
         cell = csv.try(:[], row_index).try(:[], col_index)
         if expected_cell.blank?
-          expect(cell).to be_nil
+          expect(cell).to eq nil
         else
           expect(cell || '').to match /#{expected_cell}/
         end

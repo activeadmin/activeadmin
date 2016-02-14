@@ -170,7 +170,7 @@ describe ActiveAdmin::Views::AttributesTable do
       end
 
       it "does not set id on the table" do
-        expect(table.attr(:id)).to be_nil
+        expect(table.attr(:id)).to eq nil
       end
 
       context "colgroup" do

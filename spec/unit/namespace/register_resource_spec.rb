@@ -88,7 +88,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         namespace.register Category
       end
       it "should add a new menu item" do
-        expect(menu['Categories']).to_not be_nil
+        expect(menu['Categories']).to_not eq nil
       end
     end # describe "adding as a top level item"
 
@@ -99,10 +99,10 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         end
       end
       it "should generate the parent menu item" do
-        expect(menu['Blog']).to_not be_nil
+        expect(menu['Blog']).to_not eq nil
       end
       it "should generate its own child item" do
-        expect(menu['Blog']['Categories']).to_not be_nil
+        expect(menu['Blog']['Categories']).to_not eq nil
       end
     end # describe "adding as a child"
 
@@ -113,7 +113,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
         end
       end
       it "should not create a menu item" do
-        expect(menu["Categories"]).to be_nil
+        expect(menu["Categories"]).to eq nil
       end
     end # describe "disabling the menu"
 
@@ -125,7 +125,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
           end
         end
         it "should not show up in the menu" do
-          expect(menu["Posts"]).to be_nil
+          expect(menu["Posts"]).to eq nil
         end
       end
       context "when optional" do
@@ -135,7 +135,7 @@ describe ActiveAdmin::Namespace, "registering a resource" do
           end
         end
         it "should show up in the menu" do
-          expect(menu["Posts"]).to_not be_nil
+          expect(menu["Posts"]).to_not eq nil
         end
       end
     end

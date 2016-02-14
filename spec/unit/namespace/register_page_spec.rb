@@ -38,7 +38,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
       end
 
       it "should add a new menu item" do
-        expect(menu['Status']).to_not be_nil
+        expect(menu['Status']).to_not eq nil
       end
     end
 
@@ -50,11 +50,11 @@ describe ActiveAdmin::Namespace, "registering a page" do
       end
 
       it "should generate the parent menu item" do
-       expect( menu['Extra']).to_not be_nil
+       expect( menu['Extra']).to_not eq nil
       end
 
       it "should generate its own child item" do
-        expect(menu['Extra']['Status']).to_not be_nil
+        expect(menu['Extra']['Status']).to_not eq nil
       end
     end
 
@@ -66,7 +66,7 @@ describe ActiveAdmin::Namespace, "registering a page" do
       end
 
       it "should not create a menu item" do
-        expect(menu["Status"]).to be_nil
+        expect(menu["Status"]).to eq nil
       end
     end
   end

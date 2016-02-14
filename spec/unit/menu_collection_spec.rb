@@ -44,7 +44,7 @@ describe ActiveAdmin::MenuCollection do
         m.add :default, label: "Hello World"
       end
 
-      expect(menus.fetch(:default)["Hello World"]).to_not be_nil
+      expect(menus.fetch(:default)["Hello World"]).to_not eq nil
     end
 
     it "re-runs the callbacks when the menu is cleared" do
@@ -52,9 +52,9 @@ describe ActiveAdmin::MenuCollection do
         m.add :default, label: "Hello World"
       end
 
-      expect(menus.fetch(:default)["Hello World"]).to_not be_nil
+      expect(menus.fetch(:default)["Hello World"]).to_not eq nil
       menus.clear!
-      expect(menus.fetch(:default)["Hello World"]).to_not be_nil
+      expect(menus.fetch(:default)["Hello World"]).to_not eq nil
     end
 
   end

@@ -1,6 +1,6 @@
 Then /^I should see the attribute "([^"]*)" with "([^"]*)"$/ do |title, value|
   elems = all ".attributes_table th:contains('#{title}') ~ td:contains('#{value}')"
-  expect(elems.first).to_not be_nil, 'attribute missing'
+  expect(elems.first).to_not eq(nil), 'attribute missing'
 end
 
 Then /^I should see the attribute "([^"]*)" with a nicely formatted datetime$/ do |title|
@@ -10,7 +10,7 @@ end
 
 Then /^the attribute "([^"]*)" should be empty$/ do |title|
   elems = all ".attributes_table th:contains('#{title}') ~ td > span.empty"
-  expect(elems.first).to_not be_nil, 'attribute not empty'
+  expect(elems.first).to_not eq(nil), 'attribute not empty'
 end
 
 Then /^I should not see the attribute "([^"]*)"$/ do |title|

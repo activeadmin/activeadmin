@@ -25,7 +25,7 @@ module ActiveAdmin
       context "when in the root namespace" do
         let!(:config) { ActiveAdmin.register Category, namespace: false }
         it "should have a nil route_prefix" do
-          expect(config.route_prefix).to be_nil
+          expect(config.route_prefix).to eq nil
         end
 
         it "should generate a correct route" do
