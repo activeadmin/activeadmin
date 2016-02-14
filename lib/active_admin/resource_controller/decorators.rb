@@ -28,7 +28,7 @@ module ActiveAdmin
 
       def decorate?
         case action_name
-        when 'new', 'edit'
+        when 'new', 'edit', 'create', 'update'
           form = active_admin_config.get_page_presenter :form
           form && form.options[:decorate] && decorator_class.present?
         else

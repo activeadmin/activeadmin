@@ -28,6 +28,17 @@ describe ActiveAdmin::ResourceController::Decorators do
     context 'with a decorator configured' do
       let(:decorator_class) { PostDecorator }
       it { is_expected.to be_kind_of(PostDecorator) }
+
+      context 'with form' do
+        let(:action) { 'update' }
+
+        it "does not decorate when :decorate is set to false" do 
+          form = double
+          allow(form).to receive(:options).and_return(:decorate => false)
+          allow(active_admin_config).to receive(:get_page_presenter).and_return(form)
+          is_expected.not_to be_kind_of(PostDecorator) 
+        end
+      end
     end
 
     context 'with no decorator configured' do
