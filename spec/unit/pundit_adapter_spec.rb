@@ -64,9 +64,9 @@ describe ActiveAdmin::PunditAdapter do
 
     it "works well with method_missing" do
       allow(auth).to receive(:retrieve_policy).and_return(DefaultPolicy.new(double, double))
-      expect(auth.authorized?(:foo_no)).to be_falsey
+      expect(auth.authorized?(:foo_no)).to eq false
       expect(auth.authorized?(:foo_yes)).to eq true
-      expect(auth.authorized?(:bar_yes)).to be_falsey
+      expect(auth.authorized?(:bar_yes)).to eq false
     end
 
     context 'when Pundit is unable to find policy scope' do

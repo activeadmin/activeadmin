@@ -223,7 +223,7 @@ module ActiveAdmin
 
         context "when set to false" do
           before { config.breadcrumb = false }
-          it { is_expected.to be_falsey }
+          it { is_expected.to eq false }
         end
       end
     end

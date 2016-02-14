@@ -8,9 +8,9 @@ describe "Batch Actions Settings" do
   it "should be disabled globally by default" do
     # Note: the default initializer would set it to true
 
-    expect(app.batch_actions).to be_falsey
-    expect(ns.batch_actions).to be_falsey
-    expect(post_resource.batch_actions_enabled?).to be_falsey
+    expect(app.batch_actions).to eq false
+    expect(ns.batch_actions).to eq false
+    expect(post_resource.batch_actions_enabled?).to eq false
   end
 
   it "should be settable to true" do
@@ -28,18 +28,18 @@ describe "Batch Actions Settings" do
     ns.batch_actions = false
 
     expect(app.batch_actions).to eq true
-    expect(ns.batch_actions).to be_falsey
+    expect(ns.batch_actions).to eq false
   end
 
   it "should be settable at the resource level" do
-    expect(post_resource.batch_actions_enabled?).to be_falsey
+    expect(post_resource.batch_actions_enabled?).to eq false
     post_resource.batch_actions = true
     expect(post_resource.batch_actions_enabled?).to eq true
   end
 
   it "should inherit the setting on the resource from the namespace" do
     ns.batch_actions = false
-    expect(post_resource.batch_actions_enabled?).to be_falsey
+    expect(post_resource.batch_actions_enabled?).to eq false
     expect(post_resource.batch_actions).to be_empty
 
     post_resource.batch_actions = true

@@ -165,7 +165,7 @@ describe "Comments" do
       it "should not have comments when the namespace does not allow comments" do
         ns = ActiveAdmin::Namespace.new(application, :admin)
         ns.comments = false
-        expect(ns.comments?).to be_falsey
+        expect(ns.comments?).to eq false
       end
     end
   end
@@ -182,7 +182,7 @@ describe "Comments" do
       ns = ActiveAdmin::Namespace.new(application, :admin)
       resource = ActiveAdmin::Resource.new(ns, Post)
       resource.comments = false
-      expect(resource.comments?).to be_falsey
+      expect(resource.comments?).to eq false
     end
   end
 end

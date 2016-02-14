@@ -49,11 +49,11 @@ describe ActiveAdmin::AuthorizationAdapter do
     end
 
     it 'should not match a different class' do
-      expect(adapter.authorized?(:read, Hash)).to be_falsey
+      expect(adapter.authorized?(:read, Hash)).to eq false
     end
 
     it 'should not match a different instance' do
-      expect(adapter.authorized?(:read, {})).to be_falsey
+      expect(adapter.authorized?(:read, {})).to eq false
     end
 
   end
