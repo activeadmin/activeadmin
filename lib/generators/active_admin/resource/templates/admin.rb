@@ -35,5 +35,11 @@ ActiveAdmin.register <%= class_name %> do
 # end
 
 # Add or remove fields to toggle their visibility in the form
+# form do |f|
+#   f.inputs do
+<%= @boilerplate.form_inputs %>
+#   end
+#   f.actions
+# end
 <% end %>
 end
