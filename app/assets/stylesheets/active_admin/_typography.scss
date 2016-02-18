@@ -23,6 +23,8 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 
+@import "active_admin/mixins";
+
 // Default font settings.  The font-size percentage is of 16px. (0.75 * 16px = 12px) */
 html { font-size:100.01%; }
 body { font-size: 75%; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; }

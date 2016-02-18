@@ -1,5 +1,6 @@
 //= depend_on_asset "active_admin/datepicker/datepicker-input-icon.png"
 // -------------------------------------- Active Admin Forms
+@import "active_admin/mixins";
 form {
   /* Reset margins & Padding */
   ul, ol, li, fieldset, legend, input, textarea, select, p { margin:0; padding:0; }

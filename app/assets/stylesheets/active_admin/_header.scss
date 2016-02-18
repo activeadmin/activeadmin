@@ -1,6 +1,7 @@
 //= depend_on_asset "active_admin/nested_menu_arrow.gif"
 //= depend_on_asset "active_admin/nested_menu_arrow_dark.gif"
 // ----------------------------------- Header
+@import "active_admin/mixins";
 #header {
   @include primary-gradient;
   @include shadow;
