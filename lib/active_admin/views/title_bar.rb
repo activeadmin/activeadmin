@@ -47,7 +47,7 @@ module ActiveAdmin
       end
 
       def build_action_items
-        insert_tag(view_factory.action_items, @action_items) if @action_items.any?
+        insert_tag(view_factory.action_items, @action_items)
       end
 
     end
