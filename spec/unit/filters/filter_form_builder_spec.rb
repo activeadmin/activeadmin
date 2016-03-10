@@ -157,13 +157,13 @@ describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { Capybara.string(filter :created_at) }
 
     it "should generate a date greater than" do
-      expect(body).to have_selector("input.datepicker[name='q[created_at_gteq]']")
+      expect(body).to have_selector("input.datepicker[name='q[created_at_gteq_date]']")
     end
     it "should generate a seperator" do
       expect(body).to have_selector("span.seperator")
     end
     it "should generate a date less than" do
-      expect(body).to have_selector("input.datepicker[name='q[created_at_lteq]']")
+      expect(body).to have_selector("input.datepicker[name='q[created_at_lteq_date]']")
     end
   end
 
