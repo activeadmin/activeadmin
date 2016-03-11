@@ -12,5 +12,5 @@ Ransack.configure do |config|
 
   config.add_predicate 'lteqdate',
   	arel_predicate: 'lt',
-  	formatter: -> (v) { v + 1.day }
+  	formatter: -> (v) { v + 1.day - 1.second }
 end
