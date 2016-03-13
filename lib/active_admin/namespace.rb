@@ -198,6 +198,7 @@ module ActiveAdmin
 
         # Remove circular references
         resource.controller.active_admin_config = nil
+        resource.instance_variable_set :@namespace, nil
         if resource.is_a?(Resource) && resource.dsl
           resource.dsl.run_registration_block { @config = nil }
         end
@@ -241,6 +242,11 @@ module ActiveAdmin
 
       def names
         @namespaces.keys
+      end
+
+      def unload!
+        each &:unload!
+        # @namespaces.clear
       end
     end
   end
