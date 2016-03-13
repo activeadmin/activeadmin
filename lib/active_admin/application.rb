@@ -109,7 +109,7 @@ module ActiveAdmin
     inheritable_setting :flash_keys_to_except, ['timedout']
 
     # Set default localize format for Date/Time values
-    inheritable_setting :localize_format, :long
+    setting :localize_format, :long
 
     # Include association filters by default
     inheritable_setting :include_default_association_filters, true
