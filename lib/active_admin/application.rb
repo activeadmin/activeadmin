@@ -195,7 +195,7 @@ module ActiveAdmin
     # Removes all defined controllers from memory. Useful in
     # development, where they are reloaded on each request.
     def unload!
-      namespaces.each &:unload!
+      namespaces.unload!
       @@loaded = false
     end
 

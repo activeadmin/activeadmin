@@ -9,8 +9,13 @@ describe ActiveAdmin, "Routing", type: :routing do
     reload_routes!
   end
 
+  after :all do
+    load_defaults!
+    reload_routes!
+  end
+
   it "should only have the namespaces necessary for route testing" do
-    expect(ActiveAdmin.application.namespaces.names).to eq [:admin, :root]
+    expect(ActiveAdmin.application.namespaces.names).to eq [:admin]
   end
 
   it "should route to the admin dashboard" do
