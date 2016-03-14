@@ -2,7 +2,11 @@ require 'rails_helper'
 
 module ActiveAdmin
   describe Resource::Routes do
-    before { load_defaults! }
+
+    after :all do
+      load_defaults!
+      reload_routes!
+    end
 
     describe "route names" do
       context "when in the admin namespace" do

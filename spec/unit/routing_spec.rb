@@ -9,6 +9,11 @@ describe ActiveAdmin, "Routing", type: :routing do
     reload_routes!
   end
 
+  after :all do
+    load_defaults!
+    reload_routes!
+  end
+
   it "should only have the namespaces necessary for route testing" do
     expect(ActiveAdmin.application.namespaces.names).to eq [:admin, :root]
   end
@@ -155,25 +160,25 @@ describe ActiveAdmin, "Routing", type: :routing do
       it "should route to the page under /admin" do
         expect(admin_chocolate_i_love_you_path).to eq "/admin/chocolate_i_love_you"
       end
+    end
 
-      context "when in the root namespace" do
-        before(:each) do
-          load_resources { ActiveAdmin.register_page("Chocolate I lØve You!", namespace: false) }
-        end
-
-        it "should route to page under /" do
-          expect(chocolate_i_love_you_path).to eq "/chocolate_i_love_you"
-        end
+    context "when in the root namespace" do
+      before(:each) do
+        load_resources { ActiveAdmin.register_page("Chocolate I lØve You!", namespace: false) }
       end
 
-      context "when singular page name" do
-        before(:each) do
-          load_resources { ActiveAdmin.register_page("Log") }
-        end
+      it "should route to page under /" do
+        expect(chocolate_i_love_you_path).to eq "/chocolate_i_love_you"
+      end
+    end
 
-        it "should not inject _index_ into the route name" do
-          expect(admin_log_path).to eq "/admin/log"
-        end
+    context "when singular page name" do
+      before(:each) do
+        load_resources { ActiveAdmin.register_page("Log") }
+      end
+
+      it "should not inject _index_ into the route name" do
+        expect(admin_log_path).to eq "/admin/log"
       end
     end
   end
