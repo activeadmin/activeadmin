@@ -14,7 +14,7 @@ describe "auto linking resources" do
     "/admin/posts/#{post.id}"
   end
 
-  def authorized?(_action, _subject)
+  def authorized?(*)
     true
   end
 

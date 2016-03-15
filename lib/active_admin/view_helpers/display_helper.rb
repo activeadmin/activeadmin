@@ -40,6 +40,25 @@ module ActiveAdmin
         resource.class.reflect_on_all_associations.map(&:name)
       end
 
+      def format_attribute(resource, attr)
+        value = find_value resource, attr
+        value = pretty_format value                    if attr.is_a? Symbol
+        value = Arbre::Context.new{ status_tag value } if boolean_attr? resource, attr
+        value
+      end
+
+      def find_value(resource, attr)
+        if attr.is_a? Proc
+          attr.call resource
+        elsif attr =~ /\A(.+)_id\z/ && reflection_for(resource, $1.to_sym)
+          resource.public_send $1
+        elsif resource.respond_to? attr
+          resource.public_send attr
+        elsif resource.respond_to? :[]
+          resource[attr]
+        end
+      end
+
       # Attempts to create a human-readable string for any object
       def pretty_format(object)
         case object
@@ -56,6 +75,18 @@ module ActiveAdmin
           end
         end
       end
+
+      def reflection_for(resource, method)
+        klass = resource.class
+        klass.reflect_on_association method if klass.respond_to? :reflect_on_association
+      end
+
+      def boolean_attr?(resource, attr)
+        if resource.class.respond_to? :columns_hash
+          column = resource.class.columns_hash[attr.to_s] and column.type == :boolean
+        end
+      end
+
     end
   end
 end
