@@ -40,9 +40,9 @@ module ActiveAdmin
         resource.class.reflect_on_all_associations.map(&:name)
       end
 
-      def format_attribute(resource, attr)
+      def format_attribute(resource, attr, args = {})
         value = find_value resource, attr
-        value = pretty_format value                    if attr.is_a? Symbol
+        value = pretty_format value, args              if attr.is_a? Symbol
         value = Arbre::Context.new{ status_tag value } if boolean_attr? resource, attr
         value
       end
@@ -60,12 +60,13 @@ module ActiveAdmin
       end
 
       # Attempts to create a human-readable string for any object
-      def pretty_format(object)
+      def pretty_format(object, args = {})
         case object
         when String, Numeric, Symbol, Arbre::Element
           object.to_s
         when Date, Time
-          localize object, format: active_admin_application.localize_format
+          date_format = args.fetch(:format, active_admin_application.localize_format)
+          localize object, format: date_format
         else
           if defined?(::ActiveRecord) && object.is_a?(ActiveRecord::Base) ||
              defined?(::Mongoid)      && object.class.include?(Mongoid::Document)

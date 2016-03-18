@@ -37,6 +37,16 @@ module ActiveAdmin
     # end
     # ```
     #
+    # Column also accepts a `format` option for overriding the global date or time format
+    #
+    # ```ruby
+    # index do
+    #   selectable_column
+    #   column :title
+    #   column :created_at, format: :short
+    # end
+    # ```
+    #
     # Sometimes that just isn't enough and you need to write some view-specific code.
     # For example, say we wanted a "Title" column that links to the posts admin screen.
     #

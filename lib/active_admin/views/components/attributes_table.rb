@@ -36,7 +36,7 @@ module ActiveAdmin
           end
           @collection.each do |record|
             td do
-              content_for(record, block || title)
+              content_for(record, block || title, options)
             end
           end
         end
@@ -78,8 +78,8 @@ module ActiveAdmin
         span I18n.t('active_admin.empty'), class: "empty"
       end
 
-      def content_for(record, attr)
-        value = format_attribute record, attr
+      def content_for(record, attr, options = {})
+        value = format_attribute record, attr, options
         value.blank? && current_arbre_element.children.to_s.empty? ? empty_value : value
         # Don't add the same Arbre twice, while still allowing format_attribute to call status_tag
         current_arbre_element << value unless current_arbre_element.children.include? value

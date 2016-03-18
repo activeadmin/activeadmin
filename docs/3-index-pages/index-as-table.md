@@ -40,6 +40,16 @@ index do
 end
 ```
 
+Column also accepts a `format` option for overriding the global date or time format
+
+```ruby
+index do
+  selectable_column
+  column :title
+  column :created_at, format: :short
+end
+```
+
 Sometimes that just isn't enough and you need to write some view-specific code.
 For example, say we wanted a "Title" column that links to the posts admin screen.
 
@@ -86,8 +96,6 @@ index do
   column :title
   actions defaults: false do |post|
     item "View", admin_post_path(post)
-    item "Edit", edit_admin_post_path(post)
-    item "Delete", admin_post_path(post), method: :delete
   end
 end
 ```
