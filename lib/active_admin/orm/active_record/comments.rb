@@ -44,6 +44,8 @@ ActiveAdmin.after_load do |app|
       end
 
       controller do
+        include ActiveAdmin::ViewHelpers::AutoLinkHelper
+
         # Prevent N+1 queries
         def scoped_collection
           super.includes *( # rails/rails#14734
@@ -56,22 +58,30 @@ ActiveAdmin.after_load do |app|
         def create
           create! do |success, failure|
             success.html do
-              ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+              # ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+              redirect_to auto_url_for resource.resource
             end
             failure.html do
               flash[:error] = I18n.t 'active_admin.comments.errors.empty_text'
-              ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+              # ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+              redirect_to auto_url_for resource.resource
             end
           end
 
           def destroy
-            destroy! do |success, failure|
-              success.html do
-                ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
-              end
-              failure.html do
-                ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
-              end
+            destroy! do
+              redirect_to auto_url_for resource.resource
+              return
+              # binding.pry
+              # success.html do
+              #   binding.pry
+              #   redirect_to auto_url_for resource.resource
+              #   # ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+              # end
+              # failure.html do
+              #   redirect_to auto_url_for resource.resource
+              #   # ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+              # end
             end
           end
         end

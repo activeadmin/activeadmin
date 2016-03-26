@@ -83,5 +83,10 @@ module ActiveAdmin
       {controller: controller, action: action}
     end
 
+    def active_admin_comment_config
+      active_admin_namespace.resources[active_admin_namespace.comments_registration_name]
+    end
+    helper_method :active_admin_comment_config
+
   end
 end

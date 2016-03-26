@@ -51,6 +51,10 @@ module ActiveAdmin
       end
     end
 
+    def self.respond_to_missing?(method, include_private)
+      true
+    end
+
     def self.[](name)
       Matcher.new name.to_s
     end
