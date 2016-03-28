@@ -4,7 +4,7 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-ENV["RAILS_ENV"] ||= "cucumber"
+ENV['RAILS_ENV'] = 'test'
 
 require File.expand_path('../../../spec/spec_helper', __FILE__)
 
@@ -94,7 +94,8 @@ if defined?(ActiveRecord::Base)
     require 'database_cleaner'
     require 'database_cleaner/cucumber'
     DatabaseCleaner.strategy = :truncation
-  rescue LoadError => ignore_if_database_cleaner_not_present
+  rescue LoadError
+    # ignore if database_cleaner isn't present
   end
 end
 
