@@ -33,6 +33,7 @@ nb:
         less_than: "Mindre enn"
     search_status:
       headline: "Søkestatus:"
+      current_scope: "Søkeområde:"
       current_filters: "Gjeldende filtre:"
       no_current_filters: "Ingen"
     status_tag:
@@ -92,7 +93,7 @@ nb:
         title: "Opprett brukerkonto"
         submit: "Opprett"
       login:
-        title: "Logg inn"
+        title: "Innlogging"
         remember_me: "Husk meg"
         submit: "Logg inn"
       reset_password:
