@@ -56,7 +56,7 @@ the rest.
 
 #### Simple Columns
 
-To create simple columnns, use the `columns` method. Within the block, call
+To create simple columns, use the `columns` method. Within the block, call
 the #column method to create a new column.
 
 ```ruby
