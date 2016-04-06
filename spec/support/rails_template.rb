@@ -1,18 +1,5 @@
 # Rails template to build the sample app for specs
 
-# Create a cucumber database and environment
-copy_file File.expand_path('../templates/cucumber.rb', __FILE__),                'config/environments/cucumber.rb'
-copy_file File.expand_path('../templates/cucumber_with_reloading.rb', __FILE__), 'config/environments/cucumber_with_reloading.rb'
-
-gsub_file 'config/database.yml', /^test:.*\n/, "test: &test\n"
-gsub_file 'config/database.yml', /\z/, "\ncucumber:\n  <<: *test\n  database: db/cucumber.sqlite3"
-gsub_file 'config/database.yml', /\z/, "\ncucumber_with_reloading:\n  <<: *test\n  database: db/cucumber.sqlite3"
-
-if File.exists? 'config/secrets.yml'
-  gsub_file 'config/secrets.yml', /\z/, "\ncucumber:\n  secret_key_base: #{'o' * 128}"
-  gsub_file 'config/secrets.yml', /\z/, "\ncucumber_with_reloading:\n  secret_key_base: #{'o' * 128}"
-end
-
 generate :model, 'post title:string body:text published_at:datetime author_id:integer ' +
   'position:integer custom_category_id:integer starred:boolean foo_id:integer'
 create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
@@ -118,8 +105,9 @@ create_file 'app/models/tagging.rb', <<-RUBY.strip_heredoc, force: true
   end
 RUBY
 
-inject_into_file 'config/environments/test.rb', <<-RUBY, after: 'config.cache_classes = true'
+gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUBY
 
+  config.cache_classes = !ENV['CLASS_RELOADING']
   config.action_mailer.default_url_options = {host: 'example.com'}
   config.assets.digest = false
 
@@ -163,35 +151,8 @@ remove_file 'public/index.html' if File.exists? 'public/index.html' # remove onc
 # https://github.com/plataformatec/devise/issues/2554
 gsub_file 'config/initializers/devise.rb', /# config.secret_key =/, 'config.secret_key ='
 
-rake 'db:migrate db:test:prepare'
-run '/usr/bin/env RAILS_ENV=cucumber rake db:migrate'
+rake 'db:migrate'
 
 if ENV['INSTALL_PARALLEL']
   inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'test.sqlite3'
-  inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'cucumber.sqlite3', force: true
-
-  # Note: this is hack!
-  # Somehow, calling parallel_tests tasks from Rails generator using Thor does not work ...
-  # RAILS_ENV variable never makes it to parallel_tests tasks.
-  # We need to call these tasks in the after set up hook in order to create cucumber DBs + run migrations on test & cucumber DBs
-  create_file 'lib/tasks/parallel.rake', <<-RUBY.strip_heredoc
-    namespace :parallel do
-      def run_in_parallel(cmd, options)
-        count = "-n #{options[:count]}" if options[:count]
-        executable = 'parallel_test'
-        command = "#{executable} --exec '#{cmd}' #{count} #{'--non-parallel' if options[:non_parallel]}"
-        abort unless system(command)
-      end
-
-      desc "create cucumber databases via db:create --> parallel:create_cucumber_db[num_cpus]"
-      task :create_cucumber_db, :count do |t, args|
-        run_in_parallel("rake db:create RAILS_ENV=cucumber", args)
-      end
-
-      desc "load dumped schema for cucumber databases"
-      task :load_schema_cucumber_db, :count do |t,args|
-        run_in_parallel("rake db:schema:load RAILS_ENV=cucumber", args)
-      end
-    end
-  RUBY
 end

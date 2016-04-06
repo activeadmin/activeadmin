@@ -23,6 +23,8 @@ if rails_version == '> 5.x'
   gem 'activerecord-jdbc-adapter', github: 'jruby/activerecord-jdbc-adapter', platforms: :jruby
 end
 
+gem 'mime-types', '< 3' # Remove this line when we drop support for Ruby 1.9
+
 # Optional dependencies
 gem 'cancan'
 gem 'devise', rails_version == '> 5.x' ? '> 4.x' : '~> 3.5'
