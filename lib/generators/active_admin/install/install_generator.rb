@@ -38,11 +38,7 @@ module ActiveAdmin
       end
 
       def create_migrations
-        if Rails::VERSION::MAJOR > 4
-          migration_template 'migrations/create_active_admin_comments_rails5.rb', 'db/migrate/create_active_admin_comments.rb'
-        else
-          migration_template 'migrations/create_active_admin_comments.rb', 'db/migrate/create_active_admin_comments.rb'
-        end
+        migration_template 'migrations/create_active_admin_comments.rb', 'db/migrate/create_active_admin_comments.rb'
       end
     end
   end
