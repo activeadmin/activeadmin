@@ -121,6 +121,42 @@ describe ActiveAdmin::Application do
       FileUtils.touch(test_file)
       expect(application.files).to include(test_file)
     end
+
+    context "given a complex admin directory" do
+      before(:each) do
+        @tmpdir = Dir.mktmpdir
+        @ordered_directory = [
+          "#{@tmpdir}/app/admin/a.rb",
+          "#{@tmpdir}/app/admin/b.rb",
+          "#{@tmpdir}/app/admin/concerns/d.rb",
+          "#{@tmpdir}/app/admin/concerns/e.rb",
+          "#{@tmpdir}/app/admin/v.rb",
+          "#{@tmpdir}/app/admin/w.rb",
+          "#{@tmpdir}/app/admin/x.rb",
+          "#{@tmpdir}/app/admin/y.rb"
+        ]
+        FileUtils.mkdir_p "#{@tmpdir}/app/admin/concerns"
+        FileUtils.touch @ordered_directory
+      end
+      after(:each) { FileUtils.rm_rf @tmpdir }
+
+      context "with a single entry in load_paths" do
+        it "should return the files in alphabetical order" do
+          application.load_paths = ["#{@tmpdir}/app/admin"]
+          expect(application.files).to eq(@ordered_directory)
+        end
+      end
+
+      context "with multiple entries in load_paths" do
+
+        it "should return the files in alphabetical order, grouped by the order defined in load_paths" do
+          file_group1 = @ordered_directory.select {|f| f.include? 'concerns'}
+          file_group2 = @ordered_directory.reject {|f| f.include? 'concerns'}
+          application.load_paths = ["#{@tmpdir}/app/admin/concerns", "#{@tmpdir}/app/admin"]
+          expect(application.files).to eq(file_group1 + file_group2)
+        end
+      end
+    end
   end
 
   describe "#namespace" do
