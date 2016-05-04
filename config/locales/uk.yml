@@ -2,8 +2,8 @@ uk:
   active_admin:
     dashboard: "Панель керування"
     dashboard_welcome:
-      welcome: "Ласкаво просимо в Active Admin. Це стандартна сторінка керування сайтом."
-      call_to_action: "Щоб додати сюди що-небудь загляніть в 'app/admin/dashboard.rb'"
+      welcome: "Ласкаво просимо до Active Admin. Це стандартна сторінка керування сайтом."
+      call_to_action: "Щоб додати сюди що-небудь, зазирніть у 'app/admin/dashboard.rb'"
     view: "Переглянути"
     edit: "Змінити"
     delete: "Видалити"
@@ -12,7 +12,7 @@ uk:
     edit_model: "Змінити %{model}"
     delete_model: "Видалити %{model}"
     details: "%{model} детальніше"
-    cancel: "Відміна"
+    cancel: "Скасувати"
     empty: "Пусто"
     previous: "Поперед."
     next: "Наст."
@@ -30,7 +30,7 @@ uk:
         starts_with: "Починається з"
         ends_with: "Закінчується"
         greater_than: "більше"
-        less_than: "меньше"
+        less_than: "менше"
     search_status:
       headline: "Статус пошуку:"
       current_scope: "Область:"
@@ -58,7 +58,7 @@ uk:
         other: "записів"
     any: "Будь-який"
     blank_slate:
-      content: "Покищо немає %{resource_name}."
+      content: "Поки-що немає %{resource_name}."
       link: "Створити"
     dropdown_actions:
       button_label: "Oперації"
@@ -71,7 +71,7 @@ uk:
         few: "Успішно видалено: %{count} %{plural_model}"
         many: "Успішно видалено: %{count} %{plural_model}"
         other: "Успішно видалено: %{count} %{plural_model}"
-      selection_toggle_explanation: "(Відмінити все / Зняти виділення)"
+      selection_toggle_explanation: "(Скасувати все / Зняти виділення)"
       link: "Створити"
       action_label: "%{title} вибране"
       labels:
@@ -84,7 +84,7 @@ uk:
       title: "Коментар"
       add: "Додати Коментар"
       resource: "Ресурс"
-      no_comments_yet: "Покищо немає коментарів."
+      no_comments_yet: "Поки-що немає коментарів."
       author_missing: "Анонім"
       title_content: "Коментарі (%{count})"
       errors:
@@ -93,7 +93,7 @@ uk:
       username:
         title: "Ім'я користувача"
       email:
-        title: "Ел. пошта"
+        title: "Електронна пошта"
       subdomain:
         title: "Піддомен"
       password:
@@ -115,8 +115,8 @@ uk:
         title: "Відправити повторно інструкції з розблокування"
         submit: "Відправити повторно інструкції з розблокування"
       resend_confirmation_instructions:
-        title: "Вислати повторно листа з активацією"
-        submit: "Вислати повторно листа з активацією"
+        title: "Відправити повторно листа з активацією"
+        submit: "Відправити повторно листа з активацією"
       links:
         sign_up: "Зареєструватись"
         sign_in: "Увійти"
@@ -127,7 +127,7 @@ uk:
     unsupported_browser:
       headline: "Зверніть, будь-ласка, увагу, що ActiveAdmin більше не підтримує Internet Explorer 8 версії і нижче"
       recommendation: "Ми рекомендуємо оновити версію вашого браузеру (<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, або <a href=\"https://mozilla.org/firefox/\">Firefox</a>)."
-      turn_off_compatibility_view: "Якщо ви використовуєте IE 9 і вище переконайтесь, що <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">ви виключили опцію \"Перегляд в режимі сумісності\"</a>."
+      turn_off_compatibility_view: "Якщо ви використовуєте IE 9 і вище, переконайтесь, що <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">ви вимкнули опцію \"Перегляд в режимі сумісності\"</a>."
     access_denied:
       message: "Ви не авторизовані для виконання даної дії."
     index_list:
