@@ -27,7 +27,7 @@ gem 'mime-types', '< 3' # Remove this line when we drop support for Ruby 1.9
 
 # Optional dependencies
 gem 'cancan'
-gem 'devise', rails_version == '> 5.x' ? '> 4.x' : '~> 3.5'
+gem 'devise', *(rails_version == '> 5.x' ? ['~> 4.x'] : ['~> 3.5', '~> 4.x'])
 gem 'draper' if rails_version != '> 5.x'
 gem 'pundit'
 
