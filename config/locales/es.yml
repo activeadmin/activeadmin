@@ -101,9 +101,9 @@ es:
         title: "Registrarse"
         submit: "Registrarse"
       login:
-        title: "iniciar sesión"
+        title: "Iniciar Sesión"
         remember_me: "Recordarme"
-        submit: "iniciar sesión"
+        submit: "Iniciar Sesión"
       reset_password:
         title: "¿Olvidó su contraseña?"
         submit: "Restablecer mi contraseña"
@@ -118,7 +118,7 @@ es:
         submit: "Reenviar instrucciones de confirmación"
       links:
         sign_up: "Ingresar"
-        sign_in: "registrarse"
+        sign_in: "Registrarse"
         forgot_your_password: "¿Olvidó su contraseña?"
         sign_in_with_omniauth_provider: "Conéctate con %{provider}"
         resend_unlock_instructions: "Reenviar instrucciones de desbloqueo"
