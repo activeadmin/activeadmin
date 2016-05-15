@@ -163,7 +163,7 @@ describe ActiveAdmin::Filters::ViewHelper do
       expect(body).to have_selector("span.seperator")
     end
     it "should generate a date less than" do
-      expect(body).to have_selector("input.datepicker[name='q[created_at_lteq]']")
+      expect(body).to have_selector("input.datepicker[name='q[created_at_lteqdate]']")
     end
   end
 

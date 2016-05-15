@@ -9,4 +9,8 @@ Ransack.configure do |config|
   {'equals'=>'eq', 'greater_than'=>'gt', 'less_than'=>'lt'}.each do |old,current|
     config.add_predicate old, arel_predicate: current
   end
+
+  config.add_predicate 'lteqdate',
+  	arel_predicate: 'lt',
+  	formatter: -> (v) { v + 1.day }
 end
