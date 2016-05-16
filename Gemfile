@@ -54,7 +54,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', '~> 2.6.2'
   gem 'simplecov', require: false           # Test coverage generator. Go to /coverage/ after running tests
   gem 'coveralls', require: false           # Test coverage website. Go to https://coveralls.io
   gem 'cucumber-rails', require: false
@@ -67,7 +67,7 @@ group :test do
   gem 'rails-i18n'                          # Provides default i18n for many languages
   gem 'rspec-rails', '>= 3.5.0.beta1'
   gem 'i18n-spec'
-  gem 'shoulda-matchers', '<= 2.8.0'
+  gem 'shoulda-matchers', '< 3'
   gem 'sqlite3', platforms: :mri
   gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby if rails_version != '> 5.x'
   gem 'poltergeist'
