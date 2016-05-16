@@ -62,6 +62,7 @@ group :test do
   gem 'database_cleaner' if rails_version != '> 5.x'
   gem 'guard-rspec', require: false
   gem 'jasmine'
+  gem 'phantomjs', '~> 1.9.8.0'
   gem 'jslint_on_rails'
   gem 'launchy'
   gem 'rails-i18n'                          # Provides default i18n for many languages
