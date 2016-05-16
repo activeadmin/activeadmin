@@ -40,7 +40,8 @@ gem 'pry'                                   # Easily debug from your console wit
 
 group :development do
   # Debugging
-  gem 'better_errors'                       # Web UI to debug exceptions. Go to /__better_errors to access the latest one
+  # gem 'better_errors'                       # Web UI to debug exceptions. Go to /__better_errors to access the latest one
+  gem 'better_errors', RUBY_VERSION.start_with?('1') ? '< 2' : nil # do not support ruby1.9
   gem 'binding_of_caller', platforms: :mri  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 
   # Performance
@@ -61,6 +62,7 @@ group :test do
   gem 'cucumber', '1.3.20'
   gem 'database_cleaner' if rails_version != '> 5.x'
   gem 'guard-rspec', require: false
+  gem 'listen', RUBY_VERSION.start_with?('1') ? '3.0.7' : nil # do not support ruby1.9
   gem 'jasmine'
   gem 'phantomjs', '~> 1.9.8.0'
   gem 'jslint_on_rails'
