@@ -47,7 +47,7 @@ module ActiveAdmin
     #        the class of the subject also. For example, Active Admin uses the class
     #        of the resource to decide if the resource should be displayed in the
     #        global navigation. To deal with this nicely in a case statement, take
-    #        a look at `#normalized(klasss)`
+    #        a look at `#normalized(klass)`
     #
     # @return [Boolean]
     def authorized?(action, subject = nil)

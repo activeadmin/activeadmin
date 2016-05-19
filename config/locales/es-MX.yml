@@ -74,9 +74,9 @@ es-MX:
         empty_text: "El comentario no fue guardado, el texto estaba vacío."
     devise:
       login:
-        title: "iniciar sesión"
+        title: "Iniciar Sesión"
         remember_me: "Recordarme"
-        submit: "iniciar sesión"
+        submit: "Iniciar Sesión"
       reset_password:
         title: "¿Olvidó su contraseña?"
         submit: "Restablecer mi contraseña"
@@ -84,7 +84,7 @@ es-MX:
         title: "Cambie su contraseña"
         submit: "Cambiar mi contraseña"
       links:
-        sign_in: "registrarse"
+        sign_in: "Registrarse"
         forgot_your_password: "¿Olvidó su contraseña?"
         sign_in_with_omniauth_provider: "Conéctate con %{provider}"
     index_list:
