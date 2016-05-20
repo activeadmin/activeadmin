@@ -7,7 +7,7 @@ module ActiveAdmin
         def input_name
           return method if seems_searchable?
 
-          searchable_method_name.concat multiple? ? '_in' : '_eq'
+          searchable_method_name + (multiple? ? '_in' : '_eq')
         end
 
         def searchable_method_name
