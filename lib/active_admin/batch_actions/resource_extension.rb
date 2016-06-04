@@ -53,7 +53,6 @@ module ActiveAdmin
 
       # Path to the batch action itself
       def batch_action_path(params = {})
-        saved_locale = params['locale']
         path = [route_collection_path(params.slice!(:locale)), "batch_action"].join("/")
         query = params.slice(:q, :scope)
         query = query.permit!.to_h if query.respond_to? :permit!
