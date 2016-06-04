@@ -40,7 +40,8 @@ gem 'pry'                                   # Easily debug from your console wit
 
 group :development do
   # Debugging
-  gem 'better_errors'                       # Web UI to debug exceptions. Go to /__better_errors to access the latest one
+  # gem 'better_errors'                       # Web UI to debug exceptions. Go to /__better_errors to access the latest one
+  gem 'better_errors', RUBY_VERSION.start_with?('1') ? '< 2' : nil # do not support ruby1.9
   gem 'binding_of_caller', platforms: :mri  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 
   # Performance
@@ -54,20 +55,22 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', '~> 2.6.2'
   gem 'simplecov', require: false           # Test coverage generator. Go to /coverage/ after running tests
   gem 'coveralls', require: false           # Test coverage website. Go to https://coveralls.io
   gem 'cucumber-rails', require: false
   gem 'cucumber', '1.3.20'
   gem 'database_cleaner' if rails_version != '> 5.x'
   gem 'guard-rspec', require: false
+  gem 'listen', RUBY_VERSION.start_with?('1') ? '3.0.7' : nil # do not support ruby1.9
   gem 'jasmine'
+  gem 'phantomjs', '~> 1.9.8.0'
   gem 'jslint_on_rails'
   gem 'launchy'
   gem 'rails-i18n'                          # Provides default i18n for many languages
   gem 'rspec-rails', '>= 3.5.0.beta1'
   gem 'i18n-spec'
-  gem 'shoulda-matchers', '<= 2.8.0'
+  gem 'shoulda-matchers', '< 3'
   gem 'sqlite3', platforms: :mri
   gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby if rails_version != '> 5.x'
   gem 'poltergeist'
