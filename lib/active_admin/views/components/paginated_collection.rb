@@ -44,7 +44,7 @@ module ActiveAdmin
         @display_total  = options.delete(:pagination_total) { true }
         @per_page       = options.delete(:per_page)
 
-        unless collection.respond_to?(:num_pages)
+        unless collection.respond_to?(:total_pages)
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
         end
 
@@ -132,7 +132,7 @@ module ActiveAdmin
         end
 
         if @display_total
-          if collection.num_pages < 2
+          if collection.total_pages < 2
             case collection_size
             when 0; I18n.t("active_admin.pagination.empty",    model: entries_name)
             when 1; I18n.t("active_admin.pagination.one",      model: entry_name)
@@ -149,7 +149,7 @@ module ActiveAdmin
           end
         else
           # Do not display total count, in order to prevent a `SELECT count(*)`.
-          # To do so we must not call `collection.num_pages`
+          # To do so we must not call `collection.total_pages`
           offset = (collection.current_page - 1) * collection.limit_value
           I18n.t "active_admin.pagination.multiple_without_total",
                  model: entries_name,
