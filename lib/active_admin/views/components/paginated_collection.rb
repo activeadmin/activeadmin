@@ -132,7 +132,7 @@ module ActiveAdmin
         end
 
         if @display_total
-          if collection.num_pages < 2
+          if collection.total_pages < 2
             case collection_size
             when 0; I18n.t("active_admin.pagination.empty",    model: entries_name)
             when 1; I18n.t("active_admin.pagination.one",      model: entry_name)
