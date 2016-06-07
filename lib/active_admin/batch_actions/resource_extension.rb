@@ -53,6 +53,7 @@ module ActiveAdmin
 
       # Path to the batch action itself
       def batch_action_path(params = {})
+        # Hotfix here
         path = [route_collection_path(params), "batch_action"].join("/").gsub("?locale=de","").gsub("?locale=en","")
         query = params.slice(:q, :scope)
         query = query.permit!.to_h if query.respond_to? :permit!
