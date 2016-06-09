@@ -70,8 +70,8 @@ module ActiveAdmin
     #
     #   end
     #
-    def controller(&block)
-      @config.controller.class_exec(&block) if block_given?
+    def controller(*args,&block)
+      @config.controller.class_exec(*args,&block) if block_given?
       @config.controller
     end
 
