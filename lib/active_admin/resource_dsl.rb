@@ -63,11 +63,16 @@ module ActiveAdmin
     def permit_params(*args, &block)
       param_key = config.param_key.to_sym
       belongs_to_param = config.belongs_to_param
+      create_another_param = :create_another if config.create_another
 
       controller do
         define_method :permitted_params do
-          params.permit *(active_admin_namespace.permitted_params + Array.wrap(belongs_to_param)),
-            param_key => block ? instance_exec(&block) : args
+          permitted_params =
+            active_admin_namespace.permitted_params +
+              Array.wrap(belongs_to_param) +
+              Array.wrap(create_another_param)
+
+          params.permit(*permitted_params, param_key => block ? instance_exec(&block) : args)
         end
       end
     end

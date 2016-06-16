@@ -72,7 +72,12 @@ end
 
 Then /^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/ do |label, parent, negate|
   with_scope(parent) do
-    expect(find_field(label)['checked']).to negate ? eq(false) : eq(true)
+    checkbox = find_field(label)
+    if negate
+      expect(checkbox).not_to be_checked
+    else
+      expect(checkbox).to be_checked
+    end
   end
 end
 

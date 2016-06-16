@@ -242,6 +242,16 @@ form {
     input[type=submit], input[type=button], button { margin-right: 10px; }
   }
 
+  .buttons .actions .create_another {
+    float: none;
+    margin-bottom: 10px;
+
+    label {
+      float: none;
+      display: inline;
+    }
+  }
+
   fieldset.buttons li, fieldset.actions li {
     float:left;
     padding: 0;

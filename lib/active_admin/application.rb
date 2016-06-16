@@ -89,6 +89,10 @@ module ActiveAdmin
     # Display breadcrumbs
     inheritable_setting :breadcrumb, true
 
+    # Display create another checkbox on a new page
+    # @return [Boolean] (true)
+    inheritable_setting :create_another, false
+
     # Default CSV options
     inheritable_setting :csv_options, { col_sep: ',', byte_order_mark: "\xEF\xBB\xBF" }
 

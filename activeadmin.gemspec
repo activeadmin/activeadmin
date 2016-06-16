@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.1'
 
-  s.add_dependency 'arbre',               '~> 1.0', '>= 1.0.2'
+  s.add_dependency 'arbre',               '>= 1.1.1'
   s.add_dependency 'bourbon'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'formtastic',          '~> 3.1'
