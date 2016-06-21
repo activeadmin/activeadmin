@@ -73,7 +73,7 @@ module ActiveAdmin
       def add_default_edit_action_item
         add_action_item :edit, only: :show do
           if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
-            link_to I18n.t('active_admin.edit_model', model: active_admin_config.resource_label), edit_resource_path(resource)
+            link_to I18n.t('active_admin.edit_model', model: active_admin_config.resource_label), edit_resource_path(resource.id)
           end
         end
       end
@@ -82,7 +82,7 @@ module ActiveAdmin
       def add_default_show_action_item
         add_action_item :destroy, only: :show do
           if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
-            link_to I18n.t('active_admin.delete_model', model: active_admin_config.resource_label), resource_path(resource),
+            link_to I18n.t('active_admin.delete_model', model: active_admin_config.resource_label), resource_path(resource.id),
               method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
           end
         end
