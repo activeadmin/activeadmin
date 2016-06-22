@@ -45,9 +45,8 @@ module ActiveAdmin
 
           if url = item.url(self)
             relative_url_root = controller.config.relative_url_root
-            url = "/#{relative_url_root}#{url}" if relative_url_root.present?
-            #text_node link_to item.label(self), url, item.html_options
-            text_node link_to(relative_url_root || 'empty', url, item.html_options)
+            url = "#{relative_url_root}#{url}" if relative_url_root.present?
+            text_node link_to item.label(self), url, item.html_options
           else
             span item.label(self), item.html_options
           end
