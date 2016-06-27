@@ -46,7 +46,7 @@ module ActiveAdmin
 
       def title_image
         path = helpers.render_or_call_method_or_proc_on(self, @namespace.site_title_image)
-        helpers.image_tag(path, id: "site_title_image", alt: @namespace.site_title)
+        helpers.image_tag(path, id: "site_title_image", alt: title_text)
       end
 
     end
