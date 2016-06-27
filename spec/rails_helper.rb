@@ -164,3 +164,6 @@ unless ENV['DEFER_GC'] == '0' || ENV['DEFER_GC'] == 'false'
     config.after(:all)  { DeferredGarbageCollection.reconsider }
   end
 end
+
+# Make input type=hidden visible
+Capybara.ignore_hidden_elements = false
