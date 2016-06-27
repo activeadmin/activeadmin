@@ -31,6 +31,7 @@
         ends_with: "Slutar med"
         greater_than: "Större än"
         less_than: "Mindre än"
+        lteqdate: "Innan"
     search_status:
       headline: "Sök status:"
       current_scope: "Scope:"

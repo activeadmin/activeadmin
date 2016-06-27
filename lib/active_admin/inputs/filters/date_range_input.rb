@@ -20,7 +20,7 @@ module ActiveAdmin
         alias :input_name :gt_input_name
 
         def lt_input_name
-          "#{method}_lteq"
+          "#{method}_lteqdate" # Defined in /lib/ransack_ext.rb 
         end
 
         def input_html_options(input_name = gt_input_name)

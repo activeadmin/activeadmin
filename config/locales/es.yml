@@ -31,6 +31,7 @@ es:
         ends_with: "Termina con"
         greater_than: "Mayor que"
         less_than: "Menor que"
+        lteqdate: "Antes de"
     search_status:
       headline: "Estado de la búsqueda:"
       current_scope: "Alcance:"
