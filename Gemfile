@@ -61,6 +61,7 @@ group :test do
   gem 'cucumber', '1.3.20'
   gem 'database_cleaner' if rails_version != '> 5.x'
   gem 'guard-rspec', require: false
+  gem 'listen', '~> 2.7', platforms: :ruby_19
   gem 'jasmine'
   gem 'jslint_on_rails'
   gem 'launchy'
