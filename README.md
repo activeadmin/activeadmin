@@ -32,6 +32,7 @@ gem 'activeadmin', '~> 1.0.0.pre4'
 Active Admin master has preliminary support for Rails 5. To give it a try, these Gemfile changes may be needed:
 
 ```ruby
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'devise',      '> 4.x'
 gem 'rspec-rails', '>= 3.5.0.beta1'
 gem 'ransack',    github: 'activerecord-hackery/ransack'
