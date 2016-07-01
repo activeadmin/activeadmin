@@ -52,5 +52,13 @@ describe ActiveAdmin::Filters::Humanized do
         expect(humanizer.body).to eq("Name Predicate Does Not Exist")
       end
     end
+
+    context 'when column name similar to predicate' do
+      it 'parses correct predicate' do
+        param = ['time_start_gteq', 'test']
+        humanizer = ActiveAdmin::Filters::Humanized.new(param)
+        expect(humanizer.body).to eq('Time Start greater than or equal to')
+      end
+    end
   end
 end
