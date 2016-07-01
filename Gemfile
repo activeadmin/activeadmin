@@ -63,6 +63,7 @@ group :test do
   gem 'guard-rspec', require: false
   gem 'listen', '~> 2.7', platforms: :ruby_19
   gem 'jasmine'
+  gem 'phantomjs', '1.9.8.0'                # Same version as Travis CI's pre-installed version
   gem 'jslint_on_rails'
   gem 'launchy'
   gem 'rails-i18n'                          # Provides default i18n for many languages
