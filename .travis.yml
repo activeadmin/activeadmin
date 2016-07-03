@@ -1,9 +1,10 @@
 language: ruby
 sudo: false
-install:
+cache: bundler
+bundler_args: --without development
+before_install:
   - gem install bundler # use the very latest Bundler
-  - bundle install --without development --path=./bundle
-  - bundle clean # delete now-outdated gems
+after_install:
   - bundle exec rake setup
 script:
   - bundle exec rake test_with_coveralls
