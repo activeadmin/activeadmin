@@ -128,7 +128,7 @@ ENV["RAILS_ASSET_ID"] = ''
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.render_views = false
   config.filter_run focus: true
   config.filter_run_excluding skip: true
@@ -141,7 +141,7 @@ end
 require "support/active_admin_request_helpers"
 RSpec.configure do |c|
   c.include ActiveAdminRequestHelpers, type: :request
-  c.include Devise::TestHelpers, type: :controller
+  c.include Devise::Test::ControllerHelpers, type: :controller
 end
 
 # Force deprecations to raise an exception.

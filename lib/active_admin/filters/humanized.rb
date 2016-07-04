@@ -4,7 +4,8 @@ module ActiveAdmin
     class Humanized
       include ActiveAdmin::ViewHelpers
 
-      def initialize(param)
+      def initialize(resource_class, param)
+        @resource_class = resource_class
         @body = param[0]
         @value = param[1]
       end
@@ -34,12 +35,8 @@ module ActiveAdmin
         # 'requires_approval' contains the substring 'eq'
         split_string = "_#{current_predicate}"
 
-        @body.split(split_string)
-          .first
-          .gsub('_', ' ')
-          .strip
-          .titleize
-          .gsub('Id', 'ID')
+        parameter = @body.split(split_string).first
+        translation_parameter_body(parameter) || parameter.gsub('_', ' ').strip.titleize.gsub('Id', 'ID')
       end
 
       def current_predicate
@@ -60,6 +57,11 @@ module ActiveAdmin
 
       def translation_missing?(predicate)
         predicate.downcase.include?('translation missing')
+      end
+
+      def translation_parameter_body(parameter)
+        key = "activerecord.attributes.#{@resource_class.to_s.downcase}.#{parameter}"
+        I18n.exists?(key) ? I18n.t(key) : nil
       end
 
     end
