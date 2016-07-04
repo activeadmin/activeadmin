@@ -31,7 +31,8 @@ en:
         ends_with: "Ends with"
         greater_than: "Greater than"
         less_than: "Less than"
-        lteqdate: "Before"
+        lteq_date: "Before"
+        gteq_date: "After"
     search_status:
       headline: "Search status:"
       current_scope: "Scope:"
