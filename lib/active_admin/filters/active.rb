@@ -16,8 +16,8 @@ module ActiveAdmin
       private
 
       def build_filters
-        filters = @params[:q] || []
-        filters.map{ |param| Humanized.new(param) }
+        filters = @params[:q] || @params["q"] || []
+        filters.map{ |param| Humanized.new(@resource_class, param) }
       end
 
       def humanize_scope
