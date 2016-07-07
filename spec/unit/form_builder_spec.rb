@@ -71,7 +71,7 @@ describe ActiveAdmin::FormBuilder do
       end
 
       it "should generate a fieldset with a inputs and custom class" do
-        expect(body).to have_selector("fieldset.inputs.custom_class")
+        expect(body).to have_selector("fieldset.custom_class")
       end
     end
   end

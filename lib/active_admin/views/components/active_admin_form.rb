@@ -19,7 +19,7 @@ module ActiveAdmin
         opening_tag << children.to_s << closing_tag
       end
     end
-    
+
     class ActiveAdminForm < FormtasticProxy
       builder_method :active_admin_form_for
 
@@ -95,14 +95,15 @@ module ActiveAdmin
 
     class SemanticInputsProxy < FormtasticProxy
       def build(form_builder, *args, &block)
-        options = args.extract_options!
-        legend = args.shift
+        html_options = args.extract_options!
+        html_options[:class] ||= "inputs"
+        legend = args.shift if args.first.is_a?(::String)
+        legend = html_options.delete(:name) if html_options.key?(:name)
         legend_tag = legend ? "<legend><span>#{legend}</span></legend>" : ""
-        klasses = ["inputs"]
-        klasses << options[:class] if options[:class]
-        @opening_tag = "<fieldset class=\"#{klasses.join(" ")}\">#{legend_tag}<ol>"
+        fieldset_attrs = html_options.map {|k,v| %Q{#{k}="#{v}"} }.join(" ")
+        @opening_tag = "<fieldset #{fieldset_attrs}>#{legend_tag}<ol>"
         @closing_tag = "</ol></fieldset>"
-        super(*(args << options), &block)
+        super(*(args << html_options), &block)
       end
     end
 
