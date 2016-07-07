@@ -23,9 +23,17 @@ class ActiveAdmin.PerPage
    
   _decode: (value) ->
     #replace "+" before decodeURIComponent
-    decodeURIComponent(value.replace(/\+/g, '%20')) 
+    decodeURIComponent(value.replace(/\+/g, '%20'))
+
+  option: (key, value) ->
+    if $.isPlainObject(key)
+      @options = $.extend(true, @options, key)
+    else if key?
+      @options[key]
+    else
+      @options[key] = value
 
 $.widget.bridge 'perPage', ActiveAdmin.PerPage
 
-$ ->
+$(document).on 'ready page:load turbolinks:load', ->
   $('.pagination_per_page select').perPage()
