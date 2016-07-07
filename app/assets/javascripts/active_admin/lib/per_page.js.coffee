@@ -11,7 +11,10 @@ class ActiveAdmin.PerPage
     @$element.change =>
       @$params['per_page'] = @$element.val()
       delete @$params['page']
-      location.search = $.param(@$params)
+      if typeof Turbolinks != 'undefined'
+        Turbolinks.visit(window.location.href.split('?')[0] + '?' + $.param(@$params))
+      else
+        location.search = $.param(@$params)
 
   _queryParams: ->
     query = window.location.search.substring(1)
