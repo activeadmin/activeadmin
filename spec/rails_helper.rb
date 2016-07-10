@@ -86,7 +86,6 @@ module ActiveAdminIntegrationSpecHelper
   ensure
     I18n.backend.reload!
   end
-
 end
 
 ENV['RAILS_ENV'] = 'test'
@@ -121,27 +120,18 @@ reload_routes!
 ActiveAdmin.application.authentication_method = false
 ActiveAdmin.application.current_user_method = false
 
-# Don't add asset cache timestamps. Makes it easy to integration
-# test for the presence of an asset file
-ENV["RAILS_ASSET_ID"] = ''
-
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.render_views = false
   config.filter_run focus: true
   config.filter_run_excluding skip: true
   config.run_all_when_everything_filtered = true
   config.color = true
-end
 
-# All RSpec configuration needs to happen before any examples
-# or else it whines.
-require "support/active_admin_request_helpers"
-RSpec.configure do |c|
-  c.include ActiveAdminRequestHelpers, type: :request
-  c.include Devise::TestHelpers, type: :controller
+  require 'support/active_admin_request_helpers'
+  config.include ActiveAdminRequestHelpers, type: :request
 end
 
 # Force deprecations to raise an exception.

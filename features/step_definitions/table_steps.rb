@@ -59,8 +59,6 @@ class HtmlTableToTextHelper
 end
 
 module TableMatchHelper
-
-
   # @param table [Array[Array]]
   # @param expected_table [Array[Array[String]]]
   # The expected_table values are String. They are converted to
@@ -97,11 +95,9 @@ module TableMatchHelper
       expect((cell || "").strip).to eq expected_cell
     end
   end
-
-end # module TableMatchHelper
+end
 
 World(TableMatchHelper)
-
 
 # Usage:
 #

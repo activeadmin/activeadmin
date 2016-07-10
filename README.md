@@ -33,18 +33,8 @@ Active Admin master has preliminary support for Rails 5. To give it a try, these
 
 ```ruby
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem 'devise',      '> 4.x'
-gem 'rspec-rails', '>= 3.5.0.beta1'
-gem 'ransack',    github: 'activerecord-hackery/ransack'
-gem 'formtastic', github: 'justinfrench/formtastic'
-gem 'draper',     github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
-# To fix a Draper deprecation error
-gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
-# Optional -- only if you already include these gems
-gem 'rack-mini-profiler',          github: 'MiniProfiler/rack-mini-profiler'
-gem 'database_cleaner',            github: 'pschambacher/database_cleaner', branch: 'rails5.0', ref: '8dd9fa4'
-# Only for JRuby:
-gem 'activerecord-jdbc-adapter',   github: 'jruby/activerecord-jdbc-adapter', platforms: :jruby
+gem 'ransack',             github: 'activerecord-hackery/ransack'
+gem 'draper',              '> 3.x'
 ```
 
 If something isn't working for you please report it on [#4177](https://github.com/activeadmin/activeadmin/issues/4177).
