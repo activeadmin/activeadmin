@@ -123,12 +123,14 @@ ActiveAdmin.application.current_user_method = false
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
-  config.include Devise::Test::ControllerHelpers, type: :controller
   config.render_views = false
   config.filter_run focus: true
   config.filter_run_excluding skip: true
   config.run_all_when_everything_filtered = true
   config.color = true
+
+  devise = ActiveAdmin::Dependency.devise >= '4.2' ? Devise::Test::ControllerHelpers : Devise::TestHelpers
+  config.include devise, type: :controller
 
   require 'support/active_admin_request_helpers'
   config.include ActiveAdminRequestHelpers, type: :request
