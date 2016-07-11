@@ -63,7 +63,7 @@ describe ActiveAdmin::FormBuilder do
     context "it with custom settings" do
       let :body do
         build_form do |f|
-          f.inputs class: "custom_class" do
+          f.inputs class: "custom_class", name: 'custom_name', custom_attr: 'custom_attr' do
             f.input :title
             f.input :body
           end
@@ -72,6 +72,14 @@ describe ActiveAdmin::FormBuilder do
 
       it "should generate a fieldset with a inputs and custom class" do
         expect(body).to have_selector("fieldset.custom_class")
+      end
+
+      it "should generate a fieldset with a custom legend" do
+        expect(body).to have_css("legend", text: 'custom_name')
+      end
+
+      it "should generate a fieldset with a custom attributes" do
+        expect(body).to have_selector("fieldset[custom_attr='custom_attr']")
       end
     end
   end
