@@ -80,7 +80,7 @@ Feature: Specifying Actions
       """
     Given "app/views/admin/posts/review.html.arb" contains:
       """
-        h1 "Review: #{@post.title}"
+        h1 "Review: #{post.title}"
       """
     And I am logged in
     And a post with the title "Hello World" exists
