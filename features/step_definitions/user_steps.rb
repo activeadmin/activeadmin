@@ -40,6 +40,13 @@ Given /^"([^"]*)" requests a password reset with token "([^"]*)"( but it expires
   AdminUser.where(email: email).first.update_attribute :reset_password_sent_at, 1.month.ago if expired
 end
 
+Given /^override locale "([^"]*)" with "([^"]*)"$/ do |path, value|
+  keys_value  = path.split('.') + [value]
+  locale_hash = keys_value.reverse.inject{|a,n| {n=>a}}
+  I18n.available_locales
+  I18n.backend.store_translations(I18n.locale, locale_hash)
+end
+
 When /^I fill in the password field with "([^"]*)"$/ do |password|
   fill_in 'admin_user_password', with: password
 end
