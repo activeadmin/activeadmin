@@ -1,5 +1,9 @@
 # Rails template to build the sample app for specs
 
+if Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR >= 2
+  copy_file File.expand_path('../templates/manifest.js', __FILE__), 'app/assets/config/manifest.js', force: true
+end
+
 generate :model, 'post title:string body:text published_at:datetime author_id:integer ' +
   'position:integer custom_category_id:integer starred:boolean foo_id:integer'
 create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
