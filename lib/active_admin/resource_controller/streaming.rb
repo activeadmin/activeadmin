@@ -8,8 +8,8 @@ module ActiveAdmin
     #
     module Streaming
 
-      def index
-        super do |format|
+      def index(options = {})
+        super(options) do |format|
           format.csv { stream_csv }
           yield(format) if block_given?
         end
