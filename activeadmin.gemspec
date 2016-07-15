@@ -27,5 +27,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails',               '>= 3.2', '< 5.1'
   s.add_dependency 'ransack',             '~> 1.3'
   s.add_dependency 'sass-rails'
-  s.add_dependency 'sprockets',           '< 4'
+  s.add_dependency 'sprockets',           '< 4.1'
 end

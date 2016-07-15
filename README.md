@@ -35,6 +35,7 @@ Active Admin master has preliminary support for Rails 5. To give it a try, these
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'ransack',             github: 'activerecord-hackery/ransack'
 gem 'draper',              '> 3.x'
+gem 'sass-rails',          github: 'rails/sass-rails' # For Sprockets 4
 ```
 
 If something isn't working for you please report it on [#4177](https://github.com/activeadmin/activeadmin/issues/4177).

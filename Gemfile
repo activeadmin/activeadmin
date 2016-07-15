@@ -15,6 +15,7 @@ gem 'test-unit', '~> 3.0' if rails_major == '3'
 
 if rails_major == '5'
   # Note: when updating this list, be sure to also update the README
+  gem 'sass-rails',          github: 'rails/sass-rails'
   gem 'inherited_resources', github: 'activeadmin/inherited_resources'
   gem 'ransack',             github: 'activerecord-hackery/ransack'
 end
@@ -42,6 +43,10 @@ group :development do
   # Performance
   gem 'rack-mini-profiler'                  # Inline app profiler. See ?pp=help for options.
   gem 'flamegraph', platforms: :mri         # Flamegraph visualiztion: ?pp=flamegraph
+
+  # Flamegraph dependency
+  gem 'stackprof', platforms: [:mri_21, :mri_22, :mri_23], require: false
+  gem 'fast_track', platforms: [:mri_19, :mri_20], require: false
 
   # Documentation
   gem 'yard'                                # Documentation generator
