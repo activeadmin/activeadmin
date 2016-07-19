@@ -89,7 +89,7 @@ describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it 'calls the provided block to format the value' do
       value = format_attribute double(foo: 2), ->r { r.foo + 1 }
 
-      expect(value).to eq 3
+      expect(value).to eq '3'
     end
 
     it 'finds values as methods' do
@@ -104,7 +104,7 @@ describe ActiveAdmin::ViewHelpers::DisplayHelper do
       expect(value).to eq '100'
     end
 
-    [1, 1.2, :a_symbol, Arbre::Element.new].each do |val|
+    [1, 1.2, :a_symbol].each do |val|
       it "calls to_s to format the value of type #{val.class}" do
         value = format_attribute double(foo: val), :foo
 
