@@ -74,5 +74,5 @@ group :test do
   gem 'sqlite3', platforms: :mri
   gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
   gem 'poltergeist'
-  gem 'tins', '1.6.0'
+  gem 'tins', '< 1.3.4', platforms: :ruby_19
 end
