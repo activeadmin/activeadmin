@@ -239,7 +239,13 @@ module ActiveAdmin
     # One-liner called by user's config/routes.rb file
     def routes(rails_router)
       load!
-      router.apply(rails_router)
+
+      # If our reloader has been updated, we know it will trigger
+      # a routes reload later. By then the reloader will no longer
+      # consider itself updated and the routes will safely be reloaded.
+      unless defined?(@routes_reloader) && @routes_reloader.updated?
+        router.apply(rails_router)
+      end
     end
 
     # Adds before, around and after filters to all controllers.
@@ -260,6 +266,8 @@ module ActiveAdmin
       controllers.push *Devise.controllers_for_filters if Dependency.devise?
       controllers
     end
+
+    attr_writer :routes_reloader # :nodoc:
 
   private
 
@@ -310,6 +318,7 @@ module ActiveAdmin
         routes_reloader = app.config.file_watcher.new([], admin_dirs) do
           app.reload_routes!
         end
+        ActiveAdmin.application.routes_reloader = routes_reloader
 
         app.reloaders << routes_reloader
 
