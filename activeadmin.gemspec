@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'inherited_resources', '~> 1.6'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
-  s.add_dependency 'kaminari',            '~> 0.15'
+  s.add_dependency 'kaminari',            '~> 0.17'
   s.add_dependency 'rails',               '>= 3.2', '< 5.1'
   s.add_dependency 'ransack',             '~> 1.3'
   s.add_dependency 'sass-rails'
