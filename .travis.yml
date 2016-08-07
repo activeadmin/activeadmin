@@ -29,10 +29,6 @@ matrix:
   allow_failures:
     - rvm: jruby-9.0.5.0
       env: RAILS=5.0.0
-branches:
-  only:
-    - master
-    - /\A\d-\d-stable\z/
 notifications:
   irc:
     channels:
