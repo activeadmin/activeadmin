@@ -7,7 +7,7 @@
 * JavaScript `window.AA` has been removed, use `window.ActiveAdmin` [#3606][] by [@timoschilling][]
 * `f.form_buffers` has been removed [#3486][] by [@varyonic][]
 * Iconic has been removed [#3553][] by [@timoschilling][]
-* `config.show_comments_in_menu` has been removed [#4187][] by [@drn][]
+* `config.show_comments_in_menu` has been removed, see `config.comments_menu` [#4187][] by [@drn][]
 
 ### Enhancements
 
@@ -100,9 +100,11 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#3695]: https://github.com/activeadmin/activeadmin/issues/3695
 [#3731]: https://github.com/activeadmin/activeadmin/issues/3731
 [#3783]: https://github.com/activeadmin/activeadmin/issues/3783
+[#4187]: https://github.com/activeadmin/activeadmin/issues/4187
 [@PChambino]: https://github.com/PChambino
 [@TimPetricola]: https://github.com/TimPetricola
 [@chancancode]: https://github.com/chancancode
+[@drn]: https://github.com/drn
 [@dmitry]: https://github.com/dmitry
 [@gonzedge]: https://github.com/gonzedge
 [@johnnyshields]: https://github.com/johnnyshields
