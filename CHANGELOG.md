@@ -89,11 +89,13 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#2541]: https://github.com/activeadmin/activeadmin/issues/2541
 [#2544]: https://github.com/activeadmin/activeadmin/issues/2544
 [#2545]: https://github.com/activeadmin/activeadmin/issues/2545
+[#3038]: https://github.com/activeadmin/activeadmin/issues/3038
 [#3075]: https://github.com/activeadmin/activeadmin/issues/3075
 [#3463]: https://github.com/activeadmin/activeadmin/issues/3463
 [#3464]: https://github.com/activeadmin/activeadmin/issues/3464
 [#3486]: https://github.com/activeadmin/activeadmin/issues/3486
 [#3519]: https://github.com/activeadmin/activeadmin/issues/3519
+[#3535]: https://github.com/activeadmin/activeadmin/issues/3535
 [#3553]: https://github.com/activeadmin/activeadmin/issues/3553
 [#3606]: https://github.com/activeadmin/activeadmin/issues/3606
 [#3686]: https://github.com/activeadmin/activeadmin/issues/3686
@@ -104,6 +106,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [@PChambino]: https://github.com/PChambino
 [@TimPetricola]: https://github.com/TimPetricola
 [@chancancode]: https://github.com/chancancode
+[@craigmcnamara]: https://github.com/craigmcnamara
 [@drn]: https://github.com/drn
 [@dmitry]: https://github.com/dmitry
 [@gonzedge]: https://github.com/gonzedge
