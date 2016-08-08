@@ -78,7 +78,7 @@ end
 
 # Tabs
 
-You can arrage content in tabs as shown below:
+You can arrange content in tabs as shown below:
 
 ```ruby
   ActiveAdmin.register Order do 

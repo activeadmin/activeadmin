@@ -1,5 +1,9 @@
 # Rails template to build the sample app for specs
 
+if Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR >= 2
+  copy_file File.expand_path('../templates/manifest.js', __FILE__), 'app/assets/config/manifest.js', force: true
+end
+
 generate :model, 'post title:string body:text published_at:datetime author_id:integer ' +
   'position:integer custom_category_id:integer starred:boolean foo_id:integer'
 create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
@@ -11,7 +15,7 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
     accepts_nested_attributes_for :taggings
 
     unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
-      attr_accessible :id, :title, :body, :starred, :author, :position, :published_at, :author_id, :custom_category_id
+      attr_accessible :id, :title, :body, :starred, :author, :position, :published_at, :author_id, :custom_category_id, :category
     end
   end
 RUBY
@@ -28,7 +32,7 @@ create_file 'app/models/blog/post.rb', <<-RUBY.strip_heredoc, force: true
     accepts_nested_attributes_for :taggings
 
     unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
-      attr_accessible :title, :body, :starred, :author, :position, :published_at, :author_id, :custom_category_id
+      attr_accessible :title, :body, :starred, :author, :position, :published_at, :author_id, :custom_category_id, :category
     end
   end
 RUBY
@@ -68,7 +72,7 @@ create_file 'app/models/category.rb', <<-RUBY.strip_heredoc, force: true
     accepts_nested_attributes_for :posts
 
     unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
-      attr_accessible :name
+      attr_accessible :name, :description
     end
   end
 RUBY

@@ -13,28 +13,22 @@ script:
 rvm:
   - 1.9
   - 2.3.0
-  - jruby-9.0.4.0
+  - jruby-9.0.5.0
 env:
   matrix:
     - RAILS=3.2.22
     - RAILS=4.2.5
-    - RAILS="> 5.x"
+    - RAILS=5.0.0
   global:
     - JRUBY_OPTS="-J-Xmx1024m --debug"
 matrix:
   fast_finish: true
   exclude:
     - rvm: 1.9
-      env: RAILS="> 5.x"
+      env: RAILS=5.0.0
   allow_failures:
-    - rvm: 2.3.0
-      env: RAILS="> 5.x"
-    - rvm: jruby-9.0.4.0
-      env: RAILS="> 5.x"
-branches:
-  only:
-    - master
-    - /\A\d-\d-stable\z/
+    - rvm: jruby-9.0.5.0
+      env: RAILS=5.0.0
 notifications:
   irc:
     channels:

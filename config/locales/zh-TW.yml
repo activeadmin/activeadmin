@@ -73,12 +73,15 @@
       labels:
         destroy: "刪除"
     comments:
+      created_at: "建立"
       resource_type: "資源種類"
       author_type: "作者身份"
       body: "內文"
       author: "作者"
       title: "評論"
       add: "新增評論"
+      delete: "刪除評論"
+      delete_confirmation: "你確定要刪除這些評論嗎？"
       resource: "資源"
       no_comments_yet: "尚無評論"
       author_missing: "匿名"
@@ -126,3 +129,8 @@
       turn_off_compatibility_view: "若您是使用 IE 9 或更新的版本，請確認<a href=\"http://windows.microsoft.com/zh-TW/windows7/webpages-look-incorrect-in-Internet-Explorer\">「相容性檢視」是關閉的</a>。"
     access_denied:
       message: "您沒有權限執行此項操作"
+    index_list:
+      table: "表格"
+      block: "清單"
+      grid: "格狀"
+      blog: "部落格"

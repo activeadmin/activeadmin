@@ -1,4 +1,4 @@
-$(document).on 'ready page:load', ->
+$(document).on 'ready page:load turbolinks:load', ->
   # Clear Filters button
   $('.clear_filters_btn').click ->
     params = window.location.search.slice(1).split('&')

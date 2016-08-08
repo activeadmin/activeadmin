@@ -22,7 +22,7 @@ gem 'activeadmin', github: 'activeadmin'
 
 Or you can using rubygems:
 ```ruby
-gem 'activeadmin', '~> 1.0.0.pre2'
+gem 'activeadmin', '~> 1.0.0.pre4'
 ```
 
 *Keep in mind that during the time where we use `pre`-release label, things can break in each release!*
@@ -32,19 +32,10 @@ gem 'activeadmin', '~> 1.0.0.pre2'
 Active Admin master has preliminary support for Rails 5. To give it a try, these Gemfile changes may be needed:
 
 ```ruby
-gem 'devise',      '> 4.x'
-gem 'rspec-rails', '>= 3.5.0.beta1'
-gem 'ransack',    github: 'activerecord-hackery/ransack'
-gem 'kaminari',   github: 'amatsuda/kaminari', branch: '0-17-stable'
-gem 'formtastic', github: 'justinfrench/formtastic'
-gem 'draper',     github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
-# To fix a Draper deprecation error
-gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
-# Optional -- only if you already include these gems
-gem 'rack-mini-profiler',          github: 'MiniProfiler/rack-mini-profiler'
-gem 'database_cleaner',            github: 'pschambacher/database_cleaner', branch: 'rails5.0', ref: '8dd9fa4'
-# Only for JRuby:
-gem 'activerecord-jdbc-adapter',   github: 'jruby/activerecord-jdbc-adapter', platforms: :jruby
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'ransack',             github: 'activerecord-hackery/ransack'
+gem 'draper',              '> 3.x'
+gem 'sass-rails',          github: 'rails/sass-rails' # For Sprockets 4
 ```
 
 If something isn't working for you please report it on [#4177](https://github.com/activeadmin/activeadmin/issues/4177).
