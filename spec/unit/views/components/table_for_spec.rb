@@ -202,6 +202,37 @@ describe ActiveAdmin::Views::TableFor do
       end
     end
 
+    context "when passing a format to a date column" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          collection.first.created_at = Time.utc(1985,"feb",28,20,15,1)
+          table_for(collection) do
+            column :created_at, format: :short
+          end
+        end
+      end
+
+      it "should use the given format for displaying" do
+        expect(table.find_by_tag("td").first.content).to eq "28 Feb 20:15"
+      end
+    end
+
+
+    context "when passing a format to a date column" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          collection.first.created_at = Time.utc(1985,"feb",28,20,15,1) 
+          table_for(collection) do
+            column :created_at, format: :short
+          end
+        end
+      end
+
+      it "should use the given format for displaying" do
+        expect(table.find_by_tag("td").first.content).to eq "28 Feb 20:15"
+      end
+    end
+
     context "when creating many columns with symbols, blocks and strings" do
       let(:table) do
         render_arbre_component assigns, helpers do

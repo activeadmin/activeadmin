@@ -120,12 +120,28 @@ describe ActiveAdmin::ViewHelpers::DisplayHelper do
       expect(value).to eq 'February 28, 2016'
     end
 
+    it 'localizes dates with a custom format' do
+      date = Date.parse '2016/02/28'
+
+      value = format_attribute double(date: date), :date, format: :short
+
+      expect(value).to eq 'Feb 28'
+    end
+
     it 'localizes times' do
       time = Time.parse '2016/02/28 9:34 PM'
 
       value = format_attribute double(time: time), :time
 
       expect(value).to eq 'February 28, 2016 21:34'
+    end
+
+    it 'localizes times with custom format' do
+      time = Time.parse '2016/02/28 9:34 PM'
+
+      value = format_attribute double(time: time), :time, format: :short
+
+      expect(value).to eq '28 Feb 21:34'
     end
 
     it 'uses a display_name method for arbitrary objects' do

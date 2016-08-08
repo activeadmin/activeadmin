@@ -98,7 +98,7 @@ module ActiveAdmin
 
       def build_table_cell(col, resource)
         td class: col.html_class do
-          html = format_attribute(resource, col.data)
+          html = format_attribute(resource, col.data, format: col.format)
           # Don't add the same Arbre twice, while still allowing format_attribute to call status_tag
           current_arbre_element << html unless current_arbre_element.children.include? html
         end
@@ -137,10 +137,11 @@ module ActiveAdmin
 
       class Column
 
-        attr_accessor :title, :data , :html_class
+        attr_accessor :title, :data , :html_class, :format
 
-        def initialize(*args, &block) 
+        def initialize(*args, &block)
           @options = args.extract_options!
+          @format = @options.delete(:format)
 
           @title = args[0]
           html_classes = [:col]

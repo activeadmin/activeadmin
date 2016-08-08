@@ -29,6 +29,11 @@ describe "#pretty_format" do
         expect(pretty_format(t)).to eq "February 28, 1985 20:15"
       end
 
+      it "should allow a custom format passed" do
+        t = Time.utc(1985,"feb",28,20,15,1)
+        expect(pretty_format(t, format: :short)).to eq "28 Feb 20:15"
+      end
+
       context "apply custom localize format" do
         before do
           ActiveAdmin.application.localize_format = :short
