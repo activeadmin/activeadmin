@@ -33,4 +33,12 @@ class ActiveAdmin.CheckboxToggler
       $(el).prop checked: setting
       @_didChangeCheckbox(el)
 
+  option: (key, value) ->
+    if $.isPlainObject(key)
+      @options = $.extend(true, @options, key)
+    else if key?
+      @options[key]
+    else
+      @options[key] = value
+
 $.widget.bridge 'checkboxToggler', ActiveAdmin.CheckboxToggler
