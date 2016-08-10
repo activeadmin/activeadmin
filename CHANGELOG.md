@@ -7,7 +7,7 @@
 * JavaScript `window.AA` has been removed, use `window.ActiveAdmin` [#3606][] by [@timoschilling][]
 * `f.form_buffers` has been removed [#3486][] by [@varyonic][]
 * Iconic has been removed [#3553][] by [@timoschilling][]
-* `config.show_comments_in_menu` has been removed [#4187][] by [@drn][]
+* `config.show_comments_in_menu` has been removed, see `config.comments_menu` [#4187][] by [@drn][]
 
 ### Enhancements
 
@@ -89,20 +89,25 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#2541]: https://github.com/activeadmin/activeadmin/issues/2541
 [#2544]: https://github.com/activeadmin/activeadmin/issues/2544
 [#2545]: https://github.com/activeadmin/activeadmin/issues/2545
+[#3038]: https://github.com/activeadmin/activeadmin/issues/3038
 [#3075]: https://github.com/activeadmin/activeadmin/issues/3075
 [#3463]: https://github.com/activeadmin/activeadmin/issues/3463
 [#3464]: https://github.com/activeadmin/activeadmin/issues/3464
 [#3486]: https://github.com/activeadmin/activeadmin/issues/3486
 [#3519]: https://github.com/activeadmin/activeadmin/issues/3519
+[#3535]: https://github.com/activeadmin/activeadmin/issues/3535
 [#3553]: https://github.com/activeadmin/activeadmin/issues/3553
 [#3606]: https://github.com/activeadmin/activeadmin/issues/3606
 [#3686]: https://github.com/activeadmin/activeadmin/issues/3686
 [#3695]: https://github.com/activeadmin/activeadmin/issues/3695
 [#3731]: https://github.com/activeadmin/activeadmin/issues/3731
 [#3783]: https://github.com/activeadmin/activeadmin/issues/3783
+[#4187]: https://github.com/activeadmin/activeadmin/issues/4187
 [@PChambino]: https://github.com/PChambino
 [@TimPetricola]: https://github.com/TimPetricola
 [@chancancode]: https://github.com/chancancode
+[@craigmcnamara]: https://github.com/craigmcnamara
+[@drn]: https://github.com/drn
 [@dmitry]: https://github.com/dmitry
 [@gonzedge]: https://github.com/gonzedge
 [@johnnyshields]: https://github.com/johnnyshields
