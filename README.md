@@ -35,8 +35,6 @@ Active Admin master has preliminary support for Rails 5. To give it a try, these
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 ```
 
-If something isn't working for you please report it on [#4177](https://github.com/activeadmin/activeadmin/issues/4177).
-
 ### 0.6.x
 
 The plan is to follow [semantic versioning](http://semver.org/) as of 1.0.0. The 0.6.x line will
