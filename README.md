@@ -74,22 +74,6 @@ Github [docs](https://github.com/activeadmin/activeadmin/tree/master/docs#active
 
 Check out [the docs](https://github.com/activeadmin/activeadmin/blob/master/docs/0-installation.md)!
 
-## Known issues
-
-### Rails 5 scaffold generators
-
-Active Admin requires the `inherited_resources` gem which may break scaffolding under Rails 5 as it replaces the default scaffold generator. The solution is to configure the default controller in `config/application.rb` as outlined in [josevalim/inherited_resources#195](https://github.com/josevalim/inherited_resources/issues/195)
-
-```
-module SampleApp
-  class Application < Rails::Application
-    ...
-    config.app_generators.scaffold_controller = :scaffold_controller
-    ...
-  end
-end
-```
-
 ## Need help?
 
 Ask us in IRC ([#activeadmin](https://webchat.freenode.net/?channels=activeadmin)), on the
