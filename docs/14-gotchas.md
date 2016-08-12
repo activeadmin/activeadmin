@@ -95,6 +95,22 @@ YourModel.__elasticsearch__.search
 ```ruby
 YourModel.solr_search
 ```
+
+### Rails 5 scaffold generators
+
+Active Admin requires the `inherited_resources` gem which may break scaffolding under Rails 5 as it replaces the default scaffold generator. The solution is to configure the default controller in `config/application.rb` as outlined in [josevalim/inherited_resources#195](https://github.com/josevalim/inherited_resources/issues/195)
+
+```
+module SampleApp
+  class Application < Rails::Application
+    ...
+    config.app_generators.scaffold_controller = :scaffold_controller
+    ...
+  end
+end
+```
+
+
 ## Authentication & Application Controller
 
 The `ActiveAdmin::BaseController` inherits from the `ApplicationController`. Any authentication method(s) specified in the `ApplicationController` callbacks will be called instead of the authentication method in the active admin config file. For example, if the ApplicationController has a callback `before_action :custom_authentication_method` and the config file's authentication method is `config.authentication_method = :authenticate_active_admin_user`, then `custom_authentication_method` will be called instead of `authenticate_active_admin_user`.
