@@ -10,6 +10,7 @@ require 'active_admin/resource/includes'
 require 'active_admin/resource/scope_to'
 require 'active_admin/resource/sidebars'
 require 'active_admin/resource/belongs_to'
+require 'active_admin/resource/controller_actions'
 
 module ActiveAdmin
 
@@ -63,7 +64,8 @@ module ActiveAdmin
         @resource_class_name = "::#{resource_class.name}"
         @options    = options
         @sort_order = options[:sort_order]
-        @member_actions, @collection_actions = [], []
+        @member_actions = ControllerActions.new
+        @collection_actions = ControllerActions.new
       end
     end
 
@@ -107,11 +109,11 @@ module ActiveAdmin
 
     # Clears all the member actions this resource knows about
     def clear_member_actions!
-      @member_actions = []
+      @member_actions = ControllerActions.new
     end
 
     def clear_collection_actions!
-      @collection_actions = []
+      @collection_actions = ControllerActions.new
     end
 
     # Return only defined resource actions
