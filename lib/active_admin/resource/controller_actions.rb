@@ -16,7 +16,7 @@ module ActiveAdmin
         actions.each do |action|
           next if action.name != new_action.name
 
-          new_action.remove_http_verb(action.http_verb)
+          new_action.remove_http_verbs(action.http_verb)
           return if new_action.http_verb.blank?
         end
 

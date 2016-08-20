@@ -7,8 +7,8 @@ module ActiveAdmin
       @http_verb = resolve_http_verb(options)
     end
 
-    def remove_http_verb(verb)
-      self.http_verb = Array(http_verb) - Array(verb)
+    def remove_http_verbs(verbs)
+      self.http_verb = http_verb - verbs
     end
 
     private
@@ -17,13 +17,9 @@ module ActiveAdmin
 
     def resolve_http_verb(options)
       method = options[:method]
-      return :get unless method
+      return [:get] unless method
 
-      if method.is_a?(Array)
-        method.map(&:to_sym).uniq
-      else
-        method.to_sym
-      end
+      Array(method).map { |m| m.downcase.to_sym }.uniq
     end
   end
 end
