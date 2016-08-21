@@ -2,7 +2,6 @@ require 'rails_helper'
 require "rspec/mocks/standalone"
 
 describe ActiveAdmin::FormBuilder do
-
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
   let(:helpers) do
@@ -510,7 +509,6 @@ describe ActiveAdmin::FormBuilder do
       it "should add a custom header" do
         expect(body).to have_selector("h3", text: "Post")
       end
-
     end
 
     describe "without heading and new record link" do
@@ -549,7 +547,6 @@ describe ActiveAdmin::FormBuilder do
       it "should add a custom header" do
         expect(body).to have_selector("h3", "Test heading")
       end
-
     end
 
     describe "with custom new record link" do
@@ -565,33 +562,92 @@ describe ActiveAdmin::FormBuilder do
       it "should add a custom new record link" do
         expect(body).to have_selector("a", text: "My Custom New Post")
       end
-
     end
 
     describe "with allow destroy" do
       context "with an existing post" do
-        let :body do
-          s = self
-          build_form({url: '/categories'}, Category.new) do |f|
-            s.instance_exec do
-              allow(f.object.posts.build).to receive(:new_record?).and_return(false)
-            end
-            f.has_many :posts, allow_destroy: true do |p|
-              p.input :title
-            end
+
+        shared_examples_for "has many persisted with allow_destroy as boolean" do
+          it "should include a boolean field for _destroy" do
+            expect(body).to have_selector("input[name='category[posts_attributes][0][_destroy]']")
+          end
+
+          it "should have a check box with 'Remove' as its label" do
+            expect(body).to have_selector("label[for=category_posts_attributes_0__destroy]", text: "Delete")
+          end
+
+          it "should wrap the destroy field in an li with class 'has_many_delete'" do
+            expect(body).to have_selector(".has_many_container > fieldset > ol > li.has_many_delete > input", count: 1)
           end
         end
 
-        it "should include a boolean field for _destroy" do
-          expect(body).to have_selector("input[name='category[posts_attributes][0][_destroy]']")
+        shared_examples_for "has many persisted with allow_destroy as Symbol or Proc" do |allow_destroy_option|
+          let :body do
+            s = self
+            build_form({url: '/categories'}, Category.new) do |f|
+              s.instance_exec do
+                allow(f.object.posts.build).to receive(:foo?).and_return(true)
+                allow(f.object.posts.build).to receive(:foo?).and_return(false)
+
+                f.object.posts.each do |post|
+                  allow(post).to receive(:new_record?).and_return(false)
+                end
+              end
+              f.has_many :posts, allow_destroy: allow_destroy_option do |p|
+                p.input :title
+              end
+            end
+          end
+
+          before(:each) do
+            expect(body).to have_selector("input[name='category[posts_attributes][0][title]']")
+            expect(body).to have_selector("input[name='category[posts_attributes][1][title]']")
+          end
+
+          it_behaves_like "has many persisted with allow_destroy as boolean"
+
+          it "should not include a boolean field for _destroy" do
+            expect(body).to_not have_selector("input[name='category[posts_attributes][1][_destroy]']")
+          end
+
+          it "should not have a check box with 'Remove' as its label" do
+            expect(body).to_not have_selector("label[for=category_posts_attributes_1__destroy]", text: "Delete")
+          end
         end
 
-        it "should have a check box with 'Remove' as its label" do
-          expect(body).to have_selector("label[for=category_posts_attributes_0__destroy]", text: "Delete")
+        context "with allow_destroy as boolean" do
+          let :body do
+            s = self
+            build_form({url: '/categories'}, Category.new) do |f|
+              s.instance_exec do
+                allow(f.object.posts.build).to receive(:new_record?).and_return(false)
+              end
+              f.has_many :posts, allow_destroy: true do |p|
+                p.input :title
+              end
+            end
+          end
+
+          it_behaves_like "has many persisted with allow_destroy as boolean"
         end
 
-        it "should wrap the destroy field in an li with class 'has_many_delete'" do
-          expect(body).to have_selector(".has_many_container > fieldset > ol > li.has_many_delete > input", count: 1)
+        context "with allow_destroy as symbol" do
+          it_behaves_like(
+            "has many persisted with allow_destroy as Symbol or Proc", :foo?)
+        end
+
+        context "with allow_destroy as proc" do
+          it_behaves_like(
+            "has many persisted with allow_destroy as Symbol or Proc",
+            Proc.new { |child| child.foo? }
+          )
+        end
+
+        context "with allow_destroy as lambda" do
+          it_behaves_like(
+            "has many persisted with allow_destroy as Symbol or Proc",
+            -> (child) { child.foo? }
+          )
         end
       end
 

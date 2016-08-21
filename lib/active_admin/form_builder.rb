@@ -59,7 +59,7 @@ module ActiveAdmin
           block.call has_many_form, index
           template.concat has_many_actions(has_many_form, builder_options, "".html_safe)
         end
-        
+
         template.assign(has_many_block: true)
         contents = without_wrapper { inputs(options, &form_block) } || "".html_safe
 
@@ -83,10 +83,12 @@ module ActiveAdmin
         contents << template.content_tag(:li) do
           template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
         end
-      elsif builder_options[:allow_destroy]
-        has_many_form.input(:_destroy, as: :boolean,
-                            wrapper_html: {class: 'has_many_delete'},
-                            label: I18n.t('active_admin.has_many_delete'))
+      elsif builder_options.key? :allow_destroy
+        if allow_destroy?(has_many_form.object, builder_options.fetch(:allow_destroy))
+          has_many_form.input(:_destroy, as: :boolean,
+                                wrapper_html: {class: 'has_many_delete'},
+                                label: I18n.t('active_admin.has_many_delete'))
+        end
       end
 
       if builder_options[:sortable]
@@ -137,5 +139,15 @@ module ActiveAdmin
       }
     end
 
+    def allow_destroy?(object, allow_destroy_option)
+      case allow_destroy_option
+      when Symbol
+        object.public_send allow_destroy_option
+      when Proc
+        allow_destroy_option.call(object)
+      else
+        allow_destroy_option
+      end
+    end
   end
 end
