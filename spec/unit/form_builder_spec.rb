@@ -578,8 +578,11 @@ describe ActiveAdmin::FormBuilder do
           expect(body).to have_selector("label[for=category_posts_attributes_#{child_num}__destroy]", text: "Delete")
         end
 
-        it "should wrap the destroy field in an li with class 'has_many_delete'" do
-          expect(body).to have_selector(".has_many_container > fieldset > ol > li.has_many_delete > input", count: 1)
+        context "with allow_destroy as lambda" do
+          it_behaves_like(
+            "has many persisted with allow_destroy as Symbol or Proc",
+            -> (child) { child.foo? }
+          )
         end
       end
 
