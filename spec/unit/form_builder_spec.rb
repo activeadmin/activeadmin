@@ -565,7 +565,7 @@ describe ActiveAdmin::FormBuilder do
     end
 
     describe "with allow destroy" do
-      shared_examples_for "has many persisted with allow_destroy = true" do |child_num|
+      shared_examples_for "has many with allow_destroy = true" do |child_num|
         it "should render the nested form" do
           expect(body).to have_selector("input[name='category[posts_attributes][#{child_num}][title]']")
         end
@@ -583,7 +583,7 @@ describe ActiveAdmin::FormBuilder do
         end
       end
 
-      shared_examples_for "has many persisted with allow_destroy = false" do |child_num|
+      shared_examples_for "has many with allow_destroy = false" do |child_num|
         it "should render the nested form" do
           expect(body).to have_selector("input[name='category[posts_attributes][#{child_num}][title]']")
         end
@@ -597,7 +597,7 @@ describe ActiveAdmin::FormBuilder do
         end
       end
 
-      shared_examples_for "has many persisted with allow_destroy as Symbol or Proc" do |allow_destroy_option|
+      shared_examples_for "has many with allow_destroy as String, Symbol or Proc" do |allow_destroy_option|
         let :body do
           s = self
           build_form({url: '/categories'}, Category.new) do |f|
@@ -616,11 +616,11 @@ describe ActiveAdmin::FormBuilder do
         end
 
         context 'for the child that responds with true' do
-          it_behaves_like "has many persisted with allow_destroy = true", 0
+          it_behaves_like "has many with allow_destroy = true", 0
         end
 
         context 'for the child that responds with false' do
-          it_behaves_like "has many persisted with allow_destroy = false", 1
+          it_behaves_like "has many with allow_destroy = false", 1
         end
       end
 
@@ -638,7 +638,7 @@ describe ActiveAdmin::FormBuilder do
             end
           end
 
-          it_behaves_like "has many persisted with allow_destroy = true", 0
+          it_behaves_like "has many with allow_destroy = true", 0
         end
 
         context "with allow_destroy = false" do
@@ -654,7 +654,7 @@ describe ActiveAdmin::FormBuilder do
             end
           end
 
-          it_behaves_like "has many persisted with allow_destroy = false", 0
+          it_behaves_like "has many with allow_destroy = false", 0
         end
 
         context "with allow_destroy = nil" do
@@ -670,29 +670,41 @@ describe ActiveAdmin::FormBuilder do
             end
           end
 
-          it_behaves_like "has many persisted with allow_destroy = false", 0
+          it_behaves_like "has many with allow_destroy = false", 0
         end
 
         context "with allow_destroy as Symbol" do
-          it_behaves_like("has many persisted with allow_destroy as Symbol or Proc", :foo?)
+          it_behaves_like("has many with allow_destroy as String, Symbol or Proc", :foo?)
         end
 
         context "with allow_destroy as String" do
-          it_behaves_like("has many persisted with allow_destroy as Symbol or Proc", "foo?")
+          it_behaves_like("has many with allow_destroy as String, Symbol or Proc", "foo?")
         end
 
         context "with allow_destroy as proc" do
-          it_behaves_like(
-            "has many persisted with allow_destroy as Symbol or Proc",
-            Proc.new { |child| child.foo? }
-          )
+          it_behaves_like("has many with allow_destroy as String, Symbol or Proc",
+                          Proc.new { |child| child.foo? })
         end
 
         context "with allow_destroy as lambda" do
-          it_behaves_like(
-            "has many persisted with allow_destroy as Symbol or Proc",
-            -> (child) { child.foo? }
-          )
+          it_behaves_like("has many with allow_destroy as String, Symbol or Proc",
+                          -> (child) { child.foo? })
+        end
+
+        context "with allow_destroy as any other expression that evaluates to true" do
+          let :body do
+            s = self
+            build_form({url: '/categories'}, Category.new) do |f|
+              s.instance_exec do
+                allow(f.object.posts.build).to receive(:new_record?).and_return(false)
+              end
+              f.has_many :posts, allow_destroy: Object.new do |p|
+                p.input :title
+              end
+            end
+          end
+
+          it_behaves_like "has many with allow_destroy = true", 0
         end
       end
 
@@ -707,7 +719,7 @@ describe ActiveAdmin::FormBuilder do
             end
           end
 
-          it_behaves_like "has many persisted with allow_destroy = false", 0
+          it_behaves_like "has many with allow_destroy = false", 0
         end
       end
     end

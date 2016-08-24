@@ -85,7 +85,10 @@ module ActiveAdmin
         contents << template.content_tag(:li) do
           template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
         end
-      elsif has_many_allow_destroy?(has_many_form, builder_options)
+      elsif call_method_or_proc_on(has_many_form.object,
+                                   builder_options[:allow_destroy],
+                                   exec: false)
+
         has_many_form.input(:_destroy, as: :boolean,
                             wrapper_html: {class: 'has_many_delete'},
                             label: I18n.t('active_admin.has_many_delete'))
@@ -137,17 +140,6 @@ module ActiveAdmin
       template.link_to text, '#', class: "button has_many_add", data: {
         html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
       }
-    end
-
-    def has_many_allow_destroy?(has_many_form, builder_options)
-      allow_destroy_option = builder_options[:allow_destroy]
-
-      case allow_destroy_option
-      when nil then false
-      when TrueClass, FalseClass then allow_destroy_option
-      else
-        call_method_or_proc_on(has_many_form.object, allow_destroy_option, exec: false)
-      end
     end
   end
 end
