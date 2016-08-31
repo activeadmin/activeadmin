@@ -5,19 +5,33 @@ describe ActiveAdmin::CSVBuilder do
   describe '.default_for_resource using Post' do
     let(:csv_builder) { ActiveAdmin::CSVBuilder.default_for_resource(Post) }
 
-    it "should return a default csv_builder for Post" do
+    it 'returns a default csv_builder for Post' do
       csv_builder.should be_a(ActiveAdmin::CSVBuilder)
     end
 
-    specify "the first column should be Id" do
+    it 'defines Id as the first column' do
       csv_builder.columns.first.name.should == 'Id'
       csv_builder.columns.first.data.should == :id
     end
 
-    specify "the following columns should be content_column" do
+    it "has Post's content_columns" do
       csv_builder.columns[1..-1].each_with_index do |column, index|
-        column.name.should == Post.content_columns[index].name.titleize
+        column.name.should == Post.content_columns[index].name.humanize
         column.data.should == Post.content_columns[index].name.to_sym
+      end
+    end
+
+    context 'when column has a localized name' do
+      let(:localized_name) { 'Titulo' }
+
+      before do
+        Post.stub(:human_attribute_name)
+        Post.stub(:human_attribute_name).with(:title){ localized_name }
+      end
+
+      it 'gets name from I18n' do
+        title_index = Post.content_columns.map(&:name).index('title') + 1 # First col is always id
+        csv_builder.columns[title_index].name.should == localized_name
       end
     end
   end
