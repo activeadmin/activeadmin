@@ -20,7 +20,12 @@ Gem::Specification.new do |s|
 
   s.add_dependency "arbre",               "~> 1.0"
   s.add_dependency "bourbon",             ">= 1.0.0", "< 4"
-  s.add_dependency "devise",              ">= 1.5.4", "< 4"
+  s.add_dependency "devise",              ">= 1.5.4", "< 4",
+    # Exclude Devise versions vulnerable to CVE-2013-0233
+      "!= 2.0.0", "!= 2.0.1", "!= 2.0.2", "!= 2.0.3", "!= 2.0.4",
+      "!= 2.1.0", "!= 2.1.1", "!= 2.1.2",
+      "!= 2.2.0", "!= 2.2.1", "!= 2.2.2"
+    #
   s.add_dependency "formtastic",          "~> 2.0"
   s.add_dependency "inherited_resources", "~> 1.3"
   s.add_dependency "jquery-rails",        ">= 1.0.0", "< 3"
