@@ -285,7 +285,7 @@ module ActiveAdmin
       end
 
       def max_per_page
-        10_000
+        @max_per_page || 10_000
       end
 
       def apply_decorator(chain)
