@@ -244,6 +244,18 @@ module ActiveAdmin
         "table"
       end
 
+      def columns(*attributes)
+        options = attributes.extract_options!
+
+        attributes.each do |attributes|
+          attributes = {attributes => {}} unless attributes.is_a?(Hash)
+
+          attributes.each do |attribute, attribute_options|
+            current_arbre_element.column(attribute, options.merge(attribute_options))
+          end
+        end
+      end
+
       #
       # Extend the default ActiveAdmin::Views::TableFor with some
       # methods for quickly displaying items on the index page
