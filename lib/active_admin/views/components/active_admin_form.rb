@@ -43,7 +43,7 @@ module ActiveAdmin
 
       def inputs(*args, &block)
         if block_given?
-          form_builder.template.assign(has_many_block: true)
+          form_builder.template.assigns[:has_many_block] = true
         end
         if block_given? && block.arity == 0
           wrapped_block = proc do
