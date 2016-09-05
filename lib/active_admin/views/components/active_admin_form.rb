@@ -61,6 +61,18 @@ module ActiveAdmin
         end
       end
 
+      def multiple_inputs(*attributes)
+        options = attributes.extract_options!
+
+        attributes.each do |attributes|
+          attributes = {attributes => {}} unless attributes.is_a?(Hash)
+
+          attributes.each do |attribute, attribute_options|
+            input(attribute, options.merge(attribute_options))
+          end
+        end
+      end
+
       def input(*args)
         proxy_call_to_form :input, *args
       end
