@@ -5,7 +5,7 @@ module ActiveAdmin
     protected
 
       def apply_decorator(resource)
-        decorate? ? decorator_class.new(resource) : resource
+        decorate? ? decorator_class.new(resource, context: action_name) : resource
       end
 
       def apply_collection_decorator(collection)
