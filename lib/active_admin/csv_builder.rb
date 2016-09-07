@@ -26,17 +26,29 @@ module ActiveAdmin
       end
     end
 
-    attr_reader :columns, :options, :view_context
+    attr_reader :all_columns, :options, :view_context
 
     COLUMN_TRANSITIVE_OPTIONS = [:humanize_name].freeze
 
     def initialize(options={}, &block)
       @resource = options.delete(:resource)
-      @columns, @options, @block = [], options, block
+      @all_columns, @options, @block = [], options, block
+    end
+
+    def columns(*attributes)
+      options = attributes.extract_options!
+
+      attributes.each do |attributes|
+        attributes = {attributes => {}} unless attributes.is_a?(Hash)
+
+        attributes.each do |attribute, attribute_options|
+          column(attribute, options.merge(attribute_options))
+        end
+      end
     end
 
     def column(name, options={}, &block)
-      @columns << Column.new(name, @resource, column_transitive_options.merge(options), block)
+      @all_columns << Column.new(name, @resource, column_transitive_options.merge(options), block)
     end
 
     def build(controller, csv)
@@ -65,9 +77,9 @@ module ActiveAdmin
 
     def exec_columns(view_context = nil)
       @view_context = view_context
-      @columns = [] # we want to re-render these every instance
+      @all_columns = [] # we want to re-render these every instance
       instance_exec &@block if @block.present?
-      columns
+      all_columns
     end
 
     def build_row(resource, columns, options)
