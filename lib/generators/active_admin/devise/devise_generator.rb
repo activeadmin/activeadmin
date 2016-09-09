@@ -24,7 +24,7 @@ module ActiveAdmin
 
         require 'devise'
 
-        if File.exists?(File.join(destination_root, "config", "initializers", "devise.rb"))
+        if File.exist?(File.join(destination_root, "config", "initializers", "devise.rb"))
           log :generate, "No need to install devise, already done."
         else
           log :generate, "devise:install"

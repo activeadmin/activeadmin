@@ -26,10 +26,10 @@ dir = ".test-rails-apps"
 path = "#{dir}/test-rails-app-#{rails_version}"
 
 # Ensure .test-rails-apps is created
-system "mkdir #{dir}" unless File.exists?(dir)
+system "mkdir #{dir}" unless File.exist?(dir)
 
 # Create the sample rails app if it doesn't already exist
-unless File.exists? path
+unless File.exist? path
   args = %w[
     -m\ spec/support/rails_template_with_data.rb
     --skip-gemfile
