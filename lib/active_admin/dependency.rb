@@ -25,7 +25,7 @@ module ActiveAdmin
     # => true
     #
     # ActiveAdmin::Dependency.rails! '2'
-    # -> ActiveAdmin::DependencyError: You provided rails 3.2.18 but we need: 2.
+    # -> ActiveAdmin::DependencyError: You provided Rails 3.2.18 but we need: 2.
     #
     # ActiveAdmin::Dependency.devise!
     # -> ActiveAdmin::DependencyError: To use devise you need to specify it in your Gemfile.

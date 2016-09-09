@@ -2,7 +2,7 @@ module ActiveAdmin
   module Views
     module Pages
 
-      # Acts as a standard rails Layout for use when logged
+      # Acts as a standard Rails Layout for use when logged
       # out or when rendering custom actions.
       class Layout < Base
 
