@@ -8,14 +8,14 @@ ENV['RAILS_ENV'] = 'test'
 
 require File.expand_path('../../../spec/spec_helper', __FILE__)
 
-ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{ENV["RAILS"]}", __FILE__)
+require 'rails'
+ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{Rails.version}", __FILE__)
 
 # Create the test app if it doesn't exists
 unless File.exists?(ENV['RAILS_ROOT'])
   system 'rake setup'
 end
 
-require 'rails'
 require 'active_record'
 require 'active_admin'
 require 'devise'

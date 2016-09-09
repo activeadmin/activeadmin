@@ -27,14 +27,14 @@ rvm:
   - 2.3.3
   - 2.4.0
 
-env:
-  matrix:
-    - RAILS=3.2.22
-    - RAILS=4.0.13
-    - RAILS=4.1.16
-    - RAILS=4.2.7.1
-    - RAILS=5.0.1
+gemfile:
+  - gemfiles/rails_32.gemfile
+  - gemfiles/rails_40.gemfile
+  - gemfiles/rails_41.gemfile
+  - gemfiles/rails_42.gemfile
+  - gemfiles/rails_50.gemfile
 
+env:
   global:
     - JRUBY_OPTS="-J-Xmx1024m --debug"
 
@@ -43,7 +43,7 @@ matrix:
 
   exclude:
     - rvm: 1.9.3
-      env: RAILS=5.0.1
+      gemfile: gemfiles/rails_50.gemfile
 
     - rvm: 2.4.0
       env: RAILS=3.2.22
@@ -56,7 +56,7 @@ matrix:
 
   allow_failures:
     - rvm: jruby-9.1.7.0
-      env: RAILS=5.0.1
+      gemfile: gemfiles/rails_50.gemfile
 
     - rvm: 2.4.0
       env: RAILS=4.2.7.1

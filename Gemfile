@@ -1,35 +1,9 @@
 source 'https://rubygems.org'
 
-gemspec
-
-require File.expand_path 'spec/support/detect_rails_version', File.dirname(__FILE__)
-
-rails_version = detect_rails_version
-rails_major   = rails_version[0]
-
-gem 'rails', rails_version
-
-gem 'jquery-ui-rails', rails_major == '3' ? '~> 4.0' : '~> 5.0'
-
-gem 'test-unit', '~> 3.0' if rails_major == '3'
-
-if rails_major == '5'
-  # Note: when updating this list, be sure to also update the README
-  gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
-end
-
-platform :ruby_19 do # Remove this block when we drop support for Ruby 1.9
-  gem 'kaminari', '~> 0.15'
-  gem 'mime-types', '< 3'
-  gem 'nokogiri', '< 1.7'
-  gem 'public_suffix', '< 1.5'
-end
-
+gem 'appraisal'
 
 # Optional dependencies
 gem 'cancan'
-gem 'devise', rails_major == '5' ? '> 4.x' : '~> 3.5'
-gem 'draper', rails_major == '5' ? '> 3.x' : '~> 2.1'
 gem 'pundit'
 
 # Until https://github.com/erikhuda/thor/issues/538 fixed
