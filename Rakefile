@@ -1,6 +1,5 @@
-require 'bundler'
-Bundler.setup
-Bundler::GemHelper.install_tasks
+require 'bundler/setup'
+require 'bundler/gem_tasks'
 
 def cmd(command)
   puts command
