@@ -1,14 +1,12 @@
 language: ruby
 sudo: false
-install:
-  - ./script/travis_cache download_bundle
+bundler_args: --without development
+cache: bundler
+before_install:
   - gem update --system # use the very latest Rubygems
   - gem install bundler # use the very latest Bundler
-  - bundle install --without development --path=./bundle
-  - bundle clean # delete now-outdated gems
-  - ./script/travis_cache download_app
+before_script:
   - bundle exec rake setup
-  - ./script/travis_cache upload
 script:
   - bundle exec rake test
 rvm:
