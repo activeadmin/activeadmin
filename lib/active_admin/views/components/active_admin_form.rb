@@ -34,7 +34,7 @@ module ActiveAdmin
         @opening_tag, @closing_tag = split_string_on(form_string, "</form>")
         instance_eval(&block) if block_given?
 
-        # Rails 4 sets multipart automatically if a file field is present,
+        # Rails sets multipart automatically if a file field is present,
         # but the form tag has already been rendered before the block eval.
         if multipart? && @opening_tag !~ /multipart/
           @opening_tag.sub!(/<form/, '<form enctype="multipart/form-data"')

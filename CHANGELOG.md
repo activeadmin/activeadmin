@@ -10,6 +10,7 @@
 * `config.show_comments_in_menu` has been removed, see `config.comments_menu` [#4187][] by [@drn][]
 * Rails 3.2 & Ruby 1.9.3 support has been dropped [#4848][] [@deivid-rodriguez][]
 * Ruby 2.0.0 support has been dropped [#4851][] [@deivid-rodriguez][]
+* Rails 4.0 & 4.1 support has been dropped [#4855][] [@deivid-rodriguez][]
 
 ### Enhancements
 

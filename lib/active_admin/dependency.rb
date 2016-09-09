@@ -21,7 +21,7 @@ module ActiveAdmin
     # ActiveAdmin::Dependency.draper? '~> 1.2.0'
     # => true
     #
-    # ActiveAdmin::Dependency.rails? '>= 4.1.0', '<= 4.1.1'
+    # ActiveAdmin::Dependency.rails? '>= 4.2.7', '<= 5.0.2'
     # => true
     #
     # ActiveAdmin::Dependency.rails! '5'
