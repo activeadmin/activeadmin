@@ -57,7 +57,7 @@ group :development do
 
   # Flamegraph dependency
   gem 'stackprof', platforms: [:mri_21, :mri_22, :mri_23], require: false
-  gem 'fast_track', platforms: [:mri_19, :mri_20], require: false
+  gem 'fast_stack', platforms: [:mri_19, :mri_20], require: false
 
   # Documentation
   gem 'yard'                                # Documentation generator
