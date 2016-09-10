@@ -13,7 +13,7 @@ task :setup, :parallel do |t, opts|
       --skip-turbolinks
       --skip-test-unit
     ]
-    system "#{'INSTALL_PARALLEL=yes' if opts[:parallel]} bundle exec rails new #{dir} #{args.join ' '}"
+    system "#{'INSTALL_PARALLEL=yes' if opts[:parallel]} rails new #{dir} #{args.join ' '}"
     Rake::Task['parallel:after_setup_hook'].invoke if opts[:parallel]
   end
 end
@@ -35,9 +35,9 @@ namespace :test do
       puts "== Using Rails #{version}"
 
       cmd "./script/use_rails #{version}"
-      cmd "bundle exec rspec spec"
-      cmd "bundle exec cucumber features"
-      cmd "bundle exec cucumber -p class-reloading features"
+      cmd "rspec spec"
+      cmd "cucumber features"
+      cmd "cucumber -p class-reloading features"
     end
 
     cmd "./script/use_rails #{current_version}" if current_version
