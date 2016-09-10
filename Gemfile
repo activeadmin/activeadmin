@@ -80,7 +80,7 @@ group :test do
   gem 'jslint_on_rails'
   gem 'launchy'
   gem 'rails-i18n'                          # Provides default i18n for many languages
-  gem 'rspec-rails', '>= 3.5.0.beta1'
+  gem 'rspec-rails'
   gem 'i18n-spec'
   gem 'shoulda-matchers', '<= 2.8.0'
   gem 'sqlite3', platforms: :mri
