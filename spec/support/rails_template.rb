@@ -173,7 +173,7 @@ remove_file 'public/index.html' if File.exists? 'public/index.html' # remove onc
 # https://github.com/plataformatec/devise/issues/2554
 gsub_file 'config/initializers/devise.rb', /# config.secret_key =/, 'config.secret_key ='
 
-rake 'db:drop db:create db:migrate', env: ENV['RAILS_ENV'] || 'development'
+rake "db:drop db:create db:migrate", env: ENV['RAILS_ENV'] || 'development'
 
 if ENV['INSTALL_PARALLEL']
   inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'test.sqlite3'
