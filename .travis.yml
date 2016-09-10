@@ -1,19 +1,29 @@
+---
+
 language: ruby
+
 sudo: false
+
 bundler_args: --without development
+
 cache: bundler
+
 before_install:
   - gem update --system # use the very latest Rubygems
   - gem install bundler # use the very latest Bundler
+
 before_script:
   - bundle exec rake setup
+
 script:
   - bundle exec rake test
+
 rvm:
   - jruby-9.1.6.0
   - 1.9.3
   - 2.2.6
   - 2.3.3
+
 env:
   matrix:
     - RAILS=3.2.22
@@ -21,22 +31,29 @@ env:
     - RAILS=4.1.16
     - RAILS=4.2.7.1
     - RAILS=5.0.1
+
   global:
     - JRUBY_OPTS="-J-Xmx1024m --debug"
+
 matrix:
   fast_finish: true
+
   exclude:
     - rvm: 1.9.3
       env: RAILS=5.0.1
+
   allow_failures:
     - rvm: jruby-9.1.6.0
       env: RAILS=5.0.1
+
 notifications:
   irc:
     channels:
       - irc.freenode.org#activeadmin
+
     on_success: change
     on_failure: always
     skip_join: true
+
     template:
       - "(%{branch}/%{commit} by %{author}): %{message} (%{build_url})"
