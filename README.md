@@ -17,7 +17,7 @@ which as far as dependencies, moves us from meta_search to Ransack and adds Rail
 
 You can get it by tracking master:
 ```ruby
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 ```
 
 Or you can using rubygems:
@@ -32,7 +32,7 @@ gem 'activeadmin', '~> 1.0.0.pre4'
 Active Admin master has preliminary support for Rails 5. To give it a try, these Gemfile changes may be needed:
 
 ```ruby
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
 ```
 
 ### 0.6.x
@@ -42,7 +42,7 @@ still be maintained, and we will backport bug fixes into future 0.6.x releases. 
 to have to wait for a release, you can track the branch instead:
 
 ```ruby
-gem 'activeadmin', github: 'activeadmin', branch: '0-6-stable'
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin', branch: '0-6-stable'
 ```
 
 ## Documentation
