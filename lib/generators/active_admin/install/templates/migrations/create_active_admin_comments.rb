@@ -9,7 +9,11 @@ class CreateActiveAdminComments < parent_class
       t.string :resource_id,   null: false
       t.string :resource_type, null: false
       t.references :author, polymorphic: true
-      t.timestamps
+      if Rails::VERSION::MAJOR >= 5
+        t.timestamps
+      else
+        t.timestamps null: false
+      end
     end
     add_index :active_admin_comments, [:namespace]
 
