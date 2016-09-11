@@ -9,6 +9,7 @@ bundler_args: --without development
 cache: bundler
 
 before_install:
+  - source script/install_phantomjs.sh
   - gem update --system # use the very latest Rubygems
   - rvm @global do gem uninstall bundler -a -x
   - rvm @global do gem install bundler -v 1.14.2 # latest version known to work
