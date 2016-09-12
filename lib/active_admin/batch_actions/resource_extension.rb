@@ -55,7 +55,8 @@ module ActiveAdmin
       def batch_action_path(params = {})
         path = [route_collection_path(params), "batch_action"].join("/")
         query = params.slice(:q, :scope)
-        query = query.permit!.to_h if query.respond_to? :permit!
+        query = query.permit! if query.respond_to? :permit!
+        query = query.to_h if Rails::VERSION::MAJOR >= 5
         [path, query.to_param].reject(&:blank?).join("?")
       end
 
