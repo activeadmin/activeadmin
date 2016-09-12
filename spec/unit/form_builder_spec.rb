@@ -688,7 +688,7 @@ describe ActiveAdmin::FormBuilder do
 
         context "with allow_destroy as lambda" do
           it_behaves_like("has many with allow_destroy as String, Symbol or Proc",
-                          -> (child) { child.foo? })
+                          lambda { |child| child.foo? })
         end
 
         context "with allow_destroy as any other expression that evaluates to true" do
