@@ -23,8 +23,7 @@ ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
 
 require ENV['RAILS_ROOT'] + '/config/environment'
 
-# Setup autoloading of ActiveAdmin and the load path
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+# Setup autoloading of ActiveAdmin
 autoload :ActiveAdmin, 'active_admin'
 
 require 'cucumber/rails'
