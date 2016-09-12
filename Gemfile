@@ -5,30 +5,27 @@ gemspec
 require File.expand_path 'spec/support/detect_rails_version', File.dirname(__FILE__)
 
 rails_version = detect_rails_version
+rails_major   = rails_version[0]
+
 gem 'rails', rails_version
 
-gem 'jquery-ui-rails', rails_version[0] == '3' ? '~> 4.0' : '~> 5.0'
+gem 'jquery-ui-rails', rails_major == '3' ? '~> 4.0' : '~> 5.0'
 
-gem 'test-unit', '~> 3.0' if rails_version[0] == '3'
+gem 'test-unit', '~> 3.0' if rails_major == '3'
 
-if rails_version == '> 5.x'
+if rails_major == '5'
   # Note: when updating this list, be sure to also update the README
-  gem 'ransack',    github: 'activerecord-hackery/ransack'
-  gem 'kaminari',   github: 'amatsuda/kaminari', branch: '0-17-stable'
-  gem 'draper',     github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
-  gem 'formtastic', github: 'justinfrench/formtastic'
-  gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml' # drapergem/draper#697
-  gem 'rack-mini-profiler', github: 'MiniProfiler/rack-mini-profiler'
-  gem 'database_cleaner',  github: 'DatabaseCleaner/database_cleaner'
-  gem 'activerecord-jdbc-adapter', github: 'jruby/activerecord-jdbc-adapter', platforms: :jruby
+  gem 'sass-rails',          github: 'rails/sass-rails'
+  gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+  gem 'ransack',             github: 'activerecord-hackery/ransack'
 end
 
 gem 'mime-types', '< 3' # Remove this line when we drop support for Ruby 1.9
 
 # Optional dependencies
 gem 'cancan'
-gem 'devise', rails_version == '> 5.x' ? '> 4.x' : '~> 3.5'
-gem 'draper' if rails_version != '> 5.x'
+gem 'devise', rails_major == '5' ? '> 4.x' : '~> 3.5'
+gem 'draper', rails_major == '5' ? '> 3.x' : '~> 2.1'
 gem 'pundit'
 
 # Utility gems used in both development & test environments
@@ -44,8 +41,12 @@ group :development do
   gem 'binding_of_caller', platforms: :mri  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 
   # Performance
-  gem 'rack-mini-profiler' if rails_version != '> 5.x' # Inline app profiler. See ?pp=help for options.
+  gem 'rack-mini-profiler'                  # Inline app profiler. See ?pp=help for options.
   gem 'flamegraph', platforms: :mri         # Flamegraph visualiztion: ?pp=flamegraph
+
+  # Flamegraph dependency
+  gem 'stackprof', platforms: [:mri_21, :mri_22, :mri_23], require: false
+  gem 'fast_track', platforms: [:mri_19, :mri_20], require: false
 
   # Documentation
   gem 'yard'                                # Documentation generator
@@ -57,12 +58,14 @@ group :test do
   gem 'capybara'
   gem 'simplecov', require: false           # Test coverage generator. Go to /coverage/ after running tests
   gem 'coveralls', require: false           # Test coverage website. Go to https://coveralls.io
+  gem 'tins', '~> 1.6.0', require: false    # Required by coveralls, > 1.6.0 removes support for Ruby 1.9
   gem 'cucumber-rails', require: false
   gem 'cucumber', '1.3.20'
-  gem 'database_cleaner' if rails_version != '> 5.x'
+  gem 'database_cleaner'
   gem 'guard-rspec', require: false
-  gem 'listen', '~> 2.7', platforms: :ruby_19
+  gem 'listen', '~> 2.7', platforms: [:ruby_19, :jruby]
   gem 'jasmine'
+  gem 'phantomjs', '1.9.8.0'                # Same version as Travis CI's pre-installed version
   gem 'jslint_on_rails'
   gem 'launchy'
   gem 'rails-i18n'                          # Provides default i18n for many languages
@@ -70,6 +73,6 @@ group :test do
   gem 'i18n-spec'
   gem 'shoulda-matchers', '<= 2.8.0'
   gem 'sqlite3', platforms: :mri
-  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby if rails_version != '> 5.x'
+  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
   gem 'poltergeist'
 end

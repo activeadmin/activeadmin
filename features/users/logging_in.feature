@@ -20,6 +20,7 @@ Feature: User Logging In
     And I should see the element "a[href='/admin/admin_users/1']:contains('admin@example.com')"
 
   Scenario: Attempting to log in with an incorrect email address
+    Given override locale "devise.failure.not_found_in_database" with "Invalid email or password."
     When I fill in "Email" with "not-an-admin@example.com"
     And I fill in "Password" with "not-my-password"
     And I press "Login"
@@ -27,6 +28,7 @@ Feature: User Logging In
     And I should see "Invalid email or password."
 
   Scenario: Attempting to log in with an incorrect password
+    Given override locale "devise.failure.invalid" with "Invalid email or password."
     When I fill in "Email" with "admin@example.com"
     And I fill in "Password" with "not-my-password"
     And I press "Login"

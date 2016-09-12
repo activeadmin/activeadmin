@@ -4,7 +4,26 @@ apply File.expand_path("../rails_template.rb", __FILE__)
   generate :'active_admin:resource', type
 end
 
+inject_into_file 'app/admin/category.rb', <<-RUBY, after: "ActiveAdmin.register Category do\n"
+
+  if Rails::VERSION::MAJOR >= 4
+    permit_params [:name, :description]
+  end
+RUBY
+
+inject_into_file 'app/admin/user.rb', <<-RUBY, after: "ActiveAdmin.register User do\n"
+
+  if Rails::VERSION::MAJOR >= 4
+    permit_params [:first_name, :last_name, :username, :age]
+  end
+RUBY
+
 inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post do\n"
+
+  if Rails::VERSION::MAJOR >= 4
+    permit_params [:custom_category_id, :author_id, :title, :body, :published_at, :position, :starred]
+  end
+
   scope :all, default: true
 
   scope :drafts do |posts|

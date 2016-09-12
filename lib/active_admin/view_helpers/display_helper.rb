@@ -42,9 +42,14 @@ module ActiveAdmin
 
       def format_attribute(resource, attr)
         value = find_value resource, attr
-        value = pretty_format value                    if attr.is_a? Symbol
-        value = Arbre::Context.new{ status_tag value } if boolean_attr? resource, attr
-        value
+
+        if value.is_a?(Arbre::Element)
+          value
+        elsif boolean_attr?(resource, attr)
+          Arbre::Context.new { status_tag value }
+        else
+          pretty_format value
+        end
       end
 
       def find_value(resource, attr)

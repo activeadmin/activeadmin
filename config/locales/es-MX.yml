@@ -59,7 +59,7 @@ es-MX:
         other: "Se han destruido %{count} %{plural_model} con éxito"
       selection_toggle_explanation: "(Cambiar selección)"
       link: "Añadir"
-      action_label: "%{title} seleccionado"
+      action_label: "%{title} seleccionados"
       labels:
         destroy: "Borrar"
     comments:

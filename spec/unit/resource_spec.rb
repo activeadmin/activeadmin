@@ -234,8 +234,10 @@ module ActiveAdmin
       before do
         if Rails::VERSION::MAJOR >= 4
           allow(Post).to receive(:find_by).with("id" => "12345") { post }
+          allow(Post).to receive(:find_by).with("id" => "54321") { nil }
         else
           allow(Post).to receive(:find_by_id).with("12345") { post }
+          allow(Post).to receive(:find_by_id).with("54321") { nil }
         end
       end
 
@@ -247,6 +249,10 @@ module ActiveAdmin
         let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
         it 'decorates the resource' do
           expect(resource.find_resource('12345')).to eq PostDecorator.new(post)
+        end
+
+        it 'does not decorate a not found resource' do
+          expect(resource.find_resource('54321')).to equal nil
         end
       end
 

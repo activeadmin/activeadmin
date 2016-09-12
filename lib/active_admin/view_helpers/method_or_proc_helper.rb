@@ -18,6 +18,8 @@ module MethodOrProcHelper
       send(symbol_or_proc, *args)
     when Proc
       instance_exec(*args, &symbol_or_proc)
+    else
+      symbol_or_proc
     end
   end
 
@@ -60,6 +62,8 @@ module MethodOrProcHelper
       else
         symbol_or_proc.call(receiver, *args)
       end
+    else
+      symbol_or_proc
     end
   end
 
@@ -71,7 +75,7 @@ module MethodOrProcHelper
     case string_symbol_or_proc
     when Symbol, Proc
       call_method_or_proc_on(obj, string_symbol_or_proc, options)
-    when String
+    else
       string_symbol_or_proc
     end
   end
