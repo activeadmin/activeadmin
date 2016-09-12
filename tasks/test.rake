@@ -13,7 +13,7 @@ task :setup, :parallel do |t, opts|
       --skip-turbolinks
       --skip-test-unit
     ]
-    system "#{'INSTALL_PARALLEL=yes' if opts[:parallel]} bundle exec rails new #{dir} #{args.join ' '}"
+    system "#{'INSTALL_PARALLEL=yes' if opts[:parallel]} rails new #{dir} #{args.join ' '}"
     Rake::Task['parallel:after_setup_hook'].invoke if opts[:parallel]
   end
 end
@@ -72,16 +72,19 @@ require 'cucumber/rake/task'
 
 Cucumber::Rake::Task.new(:cucumber) do |t|
   t.profile = 'default'
+  t.bundler = false
 end
 
 namespace :cucumber do
 
   Cucumber::Rake::Task.new(:wip, "Run the cucumber scenarios with the @wip tag") do |t|
     t.profile = 'wip'
+    t.bundler = false
   end
 
   Cucumber::Rake::Task.new(:class_reloading, "Run the cucumber scenarios that test reloading") do |t|
     t.profile = 'class-reloading'
+    t.bundler = false
   end
 
 end
