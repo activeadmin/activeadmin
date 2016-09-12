@@ -43,7 +43,9 @@ gem 'pry'                                   # Easily debug from your console wit
 
 group :development do
   # Debugging
-  gem 'better_errors'                       # Web UI to debug exceptions. Go to /__better_errors to access the latest one
+  gem 'better_errors',                      # Web UI to debug exceptions. Go to /__better_errors to access the latest one
+      platforms: [:ruby_20, :ruby_21, :ruby_22, :ruby_23]
+
   gem 'binding_of_caller', platforms: :mri  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 
   # Performance
@@ -63,6 +65,7 @@ end
 group :test do
   gem 'capybara'
   gem 'simplecov', require: false           # Test coverage generator. Go to /coverage/ after running tests
+  gem 'json', '~> 1.8', require: false      # Required by simplecov, > 2 removes support for Ruby 1.9
   gem 'coveralls', require: false           # Test coverage website. Go to https://coveralls.io
   gem 'tins', '~> 1.6.0', require: false    # Required by coveralls, > 1.6.0 removes support for Ruby 1.9
   gem 'cucumber-rails', require: false
