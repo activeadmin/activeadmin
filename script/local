@@ -35,6 +35,7 @@ unless File.exist? path
     --skip-gemfile
     --skip-bundle
     --skip-git
+    --skip-listen
     --skip-turbolinks
     --skip-test-unit
   ]

@@ -74,8 +74,6 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'cucumber', '1.3.20'
   gem 'database_cleaner'
-  gem 'guard-rspec', require: false
-  gem 'listen', '~> 2.7', platforms: [:ruby_19, :jruby]
   gem 'jasmine'
   gem 'jslint_on_rails'
   gem 'launchy'

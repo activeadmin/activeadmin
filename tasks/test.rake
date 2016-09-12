@@ -10,6 +10,7 @@ task :setup, :parallel do |t, opts|
       --skip-gemfile
       --skip-bundle
       --skip-git
+      --skip-listen
       --skip-turbolinks
       --skip-test-unit
     ]
