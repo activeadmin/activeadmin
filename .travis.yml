@@ -2,6 +2,7 @@ language: ruby
 sudo: false
 install:
   - ./script/travis_cache download_bundle
+  - gem update --system # use the very latest Rubygems
   - gem install bundler # use the very latest Bundler
   - bundle install --without development --path=./bundle
   - bundle clean # delete now-outdated gems
