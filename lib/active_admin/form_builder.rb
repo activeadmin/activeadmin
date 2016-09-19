@@ -13,6 +13,8 @@ end
 
 module ActiveAdmin
   class FormBuilder < ::Formtastic::FormBuilder
+    include MethodOrProcHelper
+
     self.input_namespaces = [::Object, ::ActiveAdmin::Inputs, ::Formtastic::Inputs]
 
     # TODO: remove both class finders after formtastic 4 (where it will be default)
@@ -59,7 +61,7 @@ module ActiveAdmin
           block.call has_many_form, index
           template.concat has_many_actions(has_many_form, builder_options, "".html_safe)
         end
-        
+
         template.assign(has_many_block: true)
         contents = without_wrapper { inputs(options, &form_block) } || "".html_safe
 
@@ -83,7 +85,10 @@ module ActiveAdmin
         contents << template.content_tag(:li) do
           template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
         end
-      elsif builder_options[:allow_destroy]
+      elsif call_method_or_proc_on(has_many_form.object,
+                                   builder_options[:allow_destroy],
+                                   exec: false)
+
         has_many_form.input(:_destroy, as: :boolean,
                             wrapper_html: {class: 'has_many_delete'},
                             label: I18n.t('active_admin.has_many_delete'))
@@ -136,6 +141,5 @@ module ActiveAdmin
         html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
       }
     end
-
   end
 end
