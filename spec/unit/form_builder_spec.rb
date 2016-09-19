@@ -2,7 +2,6 @@ require 'rails_helper'
 require "rspec/mocks/standalone"
 
 describe ActiveAdmin::FormBuilder do
-
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
   let(:helpers) do
@@ -510,7 +509,6 @@ describe ActiveAdmin::FormBuilder do
       it "should add a custom header" do
         expect(body).to have_selector("h3", text: "Post")
       end
-
     end
 
     describe "without heading and new record link" do
@@ -547,9 +545,8 @@ describe ActiveAdmin::FormBuilder do
       end
 
       it "should add a custom header" do
-        expect(body).to have_selector("h3", "Test heading")
+        expect(body).to have_selector("h3", text: "Test heading")
       end
-
     end
 
     describe "with custom new record link" do
@@ -565,29 +562,20 @@ describe ActiveAdmin::FormBuilder do
       it "should add a custom new record link" do
         expect(body).to have_selector("a", text: "My Custom New Post")
       end
-
     end
 
     describe "with allow destroy" do
-      context "with an existing post" do
-        let :body do
-          s = self
-          build_form({url: '/categories'}, Category.new) do |f|
-            s.instance_exec do
-              allow(f.object.posts.build).to receive(:new_record?).and_return(false)
-            end
-            f.has_many :posts, allow_destroy: true do |p|
-              p.input :title
-            end
-          end
+      shared_examples_for "has many with allow_destroy = true" do |child_num|
+        it "should render the nested form" do
+          expect(body).to have_selector("input[name='category[posts_attributes][#{child_num}][title]']")
         end
 
         it "should include a boolean field for _destroy" do
-          expect(body).to have_selector("input[name='category[posts_attributes][0][_destroy]']")
+          expect(body).to have_selector("input[name='category[posts_attributes][#{child_num}][_destroy]']")
         end
 
         it "should have a check box with 'Remove' as its label" do
-          expect(body).to have_selector("label[for=category_posts_attributes_0__destroy]", text: "Delete")
+          expect(body).to have_selector("label[for=category_posts_attributes_#{child_num}__destroy]", text: "Delete")
         end
 
         it "should wrap the destroy field in an li with class 'has_many_delete'" do
@@ -595,22 +583,143 @@ describe ActiveAdmin::FormBuilder do
         end
       end
 
-      context "with a new post" do
+      shared_examples_for "has many with allow_destroy = false" do |child_num|
+        it "should render the nested form" do
+          expect(body).to have_selector("input[name='category[posts_attributes][#{child_num}][title]']")
+        end
+
+        it "should not have a boolean field for _destroy" do
+          expect(body).not_to have_selector("input[name='category[posts_attributes][#{child_num}][_destroy]']")
+        end
+
+        it "should not have a check box with 'Remove' as its label" do
+          expect(body).not_to have_selector("label[for=category_posts_attributes_#{child_num}__destroy]", text: "Remove")
+        end
+      end
+
+      shared_examples_for "has many with allow_destroy as String, Symbol or Proc" do |allow_destroy_option|
         let :body do
+          s = self
           build_form({url: '/categories'}, Category.new) do |f|
-            f.object.posts.build
-            f.has_many :posts, allow_destroy: true do |p|
+            s.instance_exec do
+              allow(f.object.posts.build).to receive(:foo?).and_return(true)
+              allow(f.object.posts.build).to receive(:foo?).and_return(false)
+
+              f.object.posts.each do |post|
+                allow(post).to receive(:new_record?).and_return(false)
+              end
+            end
+            f.has_many :posts, allow_destroy: allow_destroy_option do |p|
               p.input :title
             end
           end
         end
 
-        it "should not have a boolean field for _destroy" do
-          expect(body).not_to have_selector("input[name='category[posts_attributes][0][_destroy]']")
+        context 'for the child that responds with true' do
+          it_behaves_like "has many with allow_destroy = true", 0
         end
 
-        it "should not have a check box with 'Remove' as its label" do
-          expect(body).not_to have_selector("label[for=category_posts_attributes_0__destroy]", text: "Remove")
+        context 'for the child that responds with false' do
+          it_behaves_like "has many with allow_destroy = false", 1
+        end
+      end
+
+      context "with an existing post" do
+        context "with allow_destroy = true" do
+          let :body do
+            s = self
+            build_form({url: '/categories'}, Category.new) do |f|
+              s.instance_exec do
+                allow(f.object.posts.build).to receive(:new_record?).and_return(false)
+              end
+              f.has_many :posts, allow_destroy: true do |p|
+                p.input :title
+              end
+            end
+          end
+
+          it_behaves_like "has many with allow_destroy = true", 0
+        end
+
+        context "with allow_destroy = false" do
+          let :body do
+            s = self
+            build_form({url: '/categories'}, Category.new) do |f|
+              s.instance_exec do
+                allow(f.object.posts.build).to receive(:new_record?).and_return(false)
+              end
+              f.has_many :posts, allow_destroy: false do |p|
+                p.input :title
+              end
+            end
+          end
+
+          it_behaves_like "has many with allow_destroy = false", 0
+        end
+
+        context "with allow_destroy = nil" do
+          let :body do
+            s = self
+            build_form({url: '/categories'}, Category.new) do |f|
+              s.instance_exec do
+                allow(f.object.posts.build).to receive(:new_record?).and_return(false)
+              end
+              f.has_many :posts, allow_destroy: nil do |p|
+                p.input :title
+              end
+            end
+          end
+
+          it_behaves_like "has many with allow_destroy = false", 0
+        end
+
+        context "with allow_destroy as Symbol" do
+          it_behaves_like("has many with allow_destroy as String, Symbol or Proc", :foo?)
+        end
+
+        context "with allow_destroy as String" do
+          it_behaves_like("has many with allow_destroy as String, Symbol or Proc", "foo?")
+        end
+
+        context "with allow_destroy as proc" do
+          it_behaves_like("has many with allow_destroy as String, Symbol or Proc",
+                          Proc.new { |child| child.foo? })
+        end
+
+        context "with allow_destroy as lambda" do
+          it_behaves_like("has many with allow_destroy as String, Symbol or Proc",
+                          lambda { |child| child.foo? })
+        end
+
+        context "with allow_destroy as any other expression that evaluates to true" do
+          let :body do
+            s = self
+            build_form({url: '/categories'}, Category.new) do |f|
+              s.instance_exec do
+                allow(f.object.posts.build).to receive(:new_record?).and_return(false)
+              end
+              f.has_many :posts, allow_destroy: Object.new do |p|
+                p.input :title
+              end
+            end
+          end
+
+          it_behaves_like "has many with allow_destroy = true", 0
+        end
+      end
+
+      context "with a new post" do
+        context "with allow_destroy = true" do
+          let :body do
+            build_form({url: '/categories'}, Category.new) do |f|
+              f.object.posts.build
+              f.has_many :posts, allow_destroy: true do |p|
+                p.input :title
+              end
+            end
+          end
+
+          it_behaves_like "has many with allow_destroy = false", 0
         end
       end
     end

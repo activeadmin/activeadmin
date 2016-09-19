@@ -58,11 +58,12 @@ group :test do
   gem 'capybara'
   gem 'simplecov', require: false           # Test coverage generator. Go to /coverage/ after running tests
   gem 'coveralls', require: false           # Test coverage website. Go to https://coveralls.io
+  gem 'tins', '~> 1.6.0', require: false    # Required by coveralls, > 1.6.0 removes support for Ruby 1.9
   gem 'cucumber-rails', require: false
   gem 'cucumber', '1.3.20'
   gem 'database_cleaner'
   gem 'guard-rspec', require: false
-  gem 'listen', '~> 2.7', platforms: :ruby_19
+  gem 'listen', '~> 2.7', platforms: [:ruby_19, :jruby]
   gem 'jasmine'
   gem 'phantomjs', '1.9.8.0'                # Same version as Travis CI's pre-installed version
   gem 'jslint_on_rails'
