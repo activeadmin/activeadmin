@@ -96,7 +96,8 @@ ActiveAdmin.register Post do
       end
     end
     f.inputs do
-      f.has_many :comment, new_record: 'Leave Comment' do |b|
+      f.has_many :comment, new_record: 'Leave Comment',
+        allow_destroy: proc { |comment| comment.author?(current_admin_user) } do |b|
         b.input :body
       end
     end
@@ -108,14 +109,14 @@ end
 
 The `:allow_destroy` option adds a checkbox to the end of the nested form allowing
 removal of the child object upon submission. Be sure to set `allow_destroy: true`
-on the association to use this option.
+on the association to use this option. It is possible to associate `:allow_destroy` with a string or a symbol, corresponding to the name of a child object's method that will get called, or with a Proc object. The Proc object receives the child object as a parameter and should return either true or false.
 
 The `:heading` option adds a custom heading. You can hide it entirely by passing `false`.
 
 The `:new_record` option controls the visibility of the new record button (shown by default).
 If you pass a string, it will be used as the text for the new record button.
 
-The `:sortable` option adds a hidden field and will enable drag & drop sorting of the children. It 
+The `:sortable` option adds a hidden field and will enable drag & drop sorting of the children. It
 expects the name of the column that will store the index of each child.
 
 The `:sortable_start` option sets the value (0 by default) of the first position in the list.
