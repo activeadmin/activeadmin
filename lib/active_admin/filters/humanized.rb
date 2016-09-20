@@ -43,7 +43,7 @@ module ActiveAdmin
       end
 
       def current_predicate
-        @current_predicate ||= predicates.detect { |p| @body.include?(p) }
+        @current_predicate ||= predicates.detect { |p| @body.end_with?("_#{p}") }
       end
 
       def predicates
