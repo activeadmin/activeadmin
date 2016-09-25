@@ -41,6 +41,9 @@ module ActiveAdmin
     # Set the site title image displayed in the main layout (has precendence over :site_title)
     inheritable_setting :site_title_image, ""
 
+    # Set the site footer text (defaults to Powered by ActiveAdmin text with version)
+    inheritable_setting :footer, ""
+
     # Set a favicon
     inheritable_setting :favicon, false
 
