@@ -1,7 +1,7 @@
 ActiveAdmin.modal_dialog = (message, inputs, callback)->
   html = """<form id="dialog_confirm" title="#{message}"><ul>"""
   for name, type of inputs
-    if /^(datepicker|checkbox|text)$/.test type
+    if /^(datepicker|checkbox|text|number)$/.test type
       wrapper = 'input'
     else if type is 'textarea'
       wrapper = 'textarea'
