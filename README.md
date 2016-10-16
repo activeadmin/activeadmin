@@ -1,5 +1,6 @@
 # Active Admin
 
+FIXED LOCALE for BATCH ACTIONS WITH DE AND EN
 Active Admin is a Ruby on Rails framework for creating elegant backends for website administration.
 
 [![Version         ](http://img.shields.io/gem/v/activeadmin.svg)                               ](https://rubygems.org/gems/activeadmin)
