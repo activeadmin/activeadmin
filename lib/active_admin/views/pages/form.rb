@@ -37,7 +37,7 @@ module ActiveAdmin
         end
 
         def default_form_path
-          resource.persisted? ? resource_path(resource) : collection_path
+          resource.persisted? ? resource_path(resource.id) : collection_path
         end
 
         def default_form_config
