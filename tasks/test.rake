@@ -50,6 +50,11 @@ namespace :test do
 
   desc "Alias for major_supported_rails"
   task :all => :major_supported_rails
+  
+  desc "Run test suite against specified version of rails (version=3.1.3)"
+  task :version do 
+    run_tests_against ENV['version']
+  end
 
 end
 
