@@ -2,11 +2,14 @@
 # identically to the versions given in Ransack.
 #
 Ransack.configure do |config|
-  {'contains'=>'cont', 'starts_with'=>'start', 'ends_with'=>'end'}.each do |old,current|
-    config.add_predicate old, Ransack::Constants::DERIVED_PREDICATES.detect{ |q, _| q == current }[1]
+  [nil, "not_"].each do |negator|
+    { "#{negator}contains" => "#{negator}cont", "#{negator}starts_with" => "#{negator}start", "#{negator}ends_with" => "#{negator}end" }.each do |old, current|
+      config.add_predicate old, Ransack::Constants::DERIVED_PREDICATES.detect{ |q, _| q == current }[1]
+    end
+    config.add_predicate "#{negator}equals", arel_predicate: "#{negator}eq"
   end
 
-  {'equals'=>'eq', 'greater_than'=>'gt', 'less_than'=>'lt'}.each do |old,current|
+  { "greater_than" => "gt", "less_than" => "lt" }.each do |old, current|
     config.add_predicate old, arel_predicate: current
   end
 
