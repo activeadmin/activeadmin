@@ -22,7 +22,7 @@ describe ActiveAdmin::Views::UnsupportedBrowser do
     context "when the reqex match" do
       it "should build the unsupported browser panel" do
         expect(base).to receive(:active_admin_namespace).and_return(namespace)
-        expect(base).to receive_message_chain(:request, :user_agent).and_return("Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 6.2; Trident/6.0)")
+        expect(base).to receive_message_chain(:controller, :request, :user_agent).and_return("Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 6.2; Trident/6.0)")
         expect(base).to receive(:view_factory).and_return(view_factory)
         expect(base).to receive(:insert_tag).with(component)
         base.send(:build_unsupported_browser)
@@ -32,7 +32,7 @@ describe ActiveAdmin::Views::UnsupportedBrowser do
     context "when the regex not match" do
       it "should not build the unsupported browser panel" do
         expect(base).to receive(:active_admin_namespace).and_return(namespace)
-        expect(base).to receive_message_chain(:request, :user_agent).and_return("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)")
+        expect(base).to receive_message_chain(:controller, :request, :user_agent).and_return("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)")
         expect(base).to receive(:insert_tag).never
         base.send(:build_unsupported_browser)
       end

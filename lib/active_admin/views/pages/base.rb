@@ -56,7 +56,7 @@ module ActiveAdmin
         end
 
         def build_unsupported_browser
-          if active_admin_namespace.unsupported_browser_matcher =~ request.user_agent
+          if active_admin_namespace.unsupported_browser_matcher =~ controller.request.user_agent
             insert_tag view_factory.unsupported_browser
           end
         end
