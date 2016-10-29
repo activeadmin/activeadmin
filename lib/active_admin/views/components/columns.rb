@@ -14,7 +14,7 @@ module ActiveAdmin
     #
     # To create a two column layout:
     #
-    #     colums do
+    #     columns do
     #       column do
     #         span "Column # 1
     #       end
@@ -28,7 +28,7 @@ module ActiveAdmin
     #
     # To make a column span multiple, pass the :span option to the column method:
     #
-    #     colums do
+    #     columns do
     #       column span: 2 do
     #         span "Column # 1
     #       end
@@ -49,7 +49,7 @@ module ActiveAdmin
     #
     # To overcome this, columns include a :max_width and :min_width option.
     #
-    #     colums do
+    #     columns do
     #       column max_width: "200px", min_width: "100px" do
     #         span "Column # 1
     #       end
