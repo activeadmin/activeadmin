@@ -59,7 +59,11 @@ module ActiveAdmin
 
       # Return the count for the scope passed in.
       def get_scope_count(scope)
-        collection_size(scope_chain(scope, collection_before_scope))
+        if scope.show_count.respond_to?(:to_int)
+          scope.show_count.to_int
+        else
+          collection_size(scope_chain(scope, collection_before_scope))
+        end
       end
     end
   end

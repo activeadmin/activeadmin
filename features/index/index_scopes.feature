@@ -77,6 +77,19 @@ Feature: Index Scoping
     And I should see the scope "All" with no count
     And I should see 3 posts in the table
 
+  @scope
+  Scenario: Viewing resources with a scope and scope count provided for a single scope
+    Given 3 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope :all, :default => true, :show_count => 100
+      end
+      """
+    Then I should see the scope "All" selected
+    And I should see the scope "All" with the count 100
+    And I should see 3 posts in the table
+
   Scenario: Viewing resources when scoping
     Given 2 posts exist
     And 3 published posts exist
