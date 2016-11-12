@@ -4,6 +4,9 @@ class Post
   ransacker :custom_searcher do
     # nothing to see here
   end
+  ransacker :custom_searcher_numeric, type: :numeric do
+    # nothing to see here
+  end
 end
 
 describe ActiveAdmin::Filters::ViewHelper do
@@ -403,14 +406,22 @@ describe ActiveAdmin::Filters::ViewHelper do
 
   describe "custom search methods" do
 
+    it "should use the default type of the ransacker" do
+      body = Capybara.string(filter :custom_searcher_numeric)
+      expect(body).to have_selector("option[value=custom_searcher_numeric_equals]")
+      expect(body).to have_selector("option[value=custom_searcher_numeric_greater_than]")
+      expect(body).to have_selector("option[value=custom_searcher_numeric_less_than]")
+    end
+
     it "should work as select" do
       body = Capybara.string(filter :custom_searcher, as: :select, collection: ['foo'])
-      expect(body).to have_selector("select[name='q[custom_searcher]']")
+      expect(body).to have_selector("select[name='q[custom_searcher_eq]']")
     end
 
     it "should work as string" do
       body = Capybara.string(filter :custom_searcher, as: :string)
-      expect(body).to have_selector("input[name='q[custom_searcher]']")
+      expect(body).to have_selector("option[value=custom_searcher_contains]")
+      expect(body).to have_selector("option[value=custom_searcher_starts_with]")
     end
   end
 

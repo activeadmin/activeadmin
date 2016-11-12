@@ -54,7 +54,7 @@ module ActiveAdmin
       end
 
       def seems_searchable?
-        has_predicate? || ransacker? || scope?
+        has_predicate? || scope?
       end
 
       # If the given method has a predicate (like _eq or _lteq), it's pretty
