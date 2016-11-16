@@ -10,9 +10,13 @@ module ActiveAdmin
       self.input_class_finder = ::Formtastic::InputClassFinder
 
       def filter(method, options = {})
-        if method.present? && options[:as] ||= default_input_type(method)
-          template.concat input(method, options)
+        raise "'method' required" unless method.present?
+
+        unless options[:as] ||= default_input_type(method)
+          raise "Could not determine filter input type for '#{method}'. Try specifing 'as: :something'"
         end
+
+        template.concat input(method, options)
       end
 
       protected
