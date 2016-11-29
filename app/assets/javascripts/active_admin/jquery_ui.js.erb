@@ -4,8 +4,15 @@
                       "jquery.ui."
                     end
 %>
-<% require_asset "#{jquery_ui_path}datepicker" %>
-<% require_asset "#{jquery_ui_path}dialog" %>
-<% require_asset "#{jquery_ui_path}sortable" %>
+<% jquery_ui_widgets_path =
+                    if Jquery::Ui::Rails::VERSION >= "6"
+                      jquery_ui_path + "widgets/"
+                    else
+                      jquery_ui_path
+                    end
+%>
+<% require_asset "#{jquery_ui_widgets_path}datepicker" %>
+<% require_asset "#{jquery_ui_widgets_path}dialog" %>
+<% require_asset "#{jquery_ui_widgets_path}sortable" %>
+<% require_asset "#{jquery_ui_widgets_path}tabs" %>
 <% require_asset "#{jquery_ui_path}widget" %>
-<% require_asset "#{jquery_ui_path}tabs" %>
