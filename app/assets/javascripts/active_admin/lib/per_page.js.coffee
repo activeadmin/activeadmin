@@ -23,7 +23,7 @@ class ActiveAdmin.PerPage
     while m = re.exec(query)
       params[@_decode(m[1])] = @_decode(m[2])
     params
-   
+
   _decode: (value) ->
     #replace "+" before decodeURIComponent
     decodeURIComponent(value.replace(/\+/g, '%20'))
@@ -38,5 +38,9 @@ class ActiveAdmin.PerPage
 
 $.widget.bridge 'perPage', ActiveAdmin.PerPage
 
-$(document).on 'ready page:load turbolinks:load', ->
+onDOMReady = ->
   $('.pagination_per_page select').perPage()
+
+$(document).
+  ready(onDOMReady).
+  on 'page:load turbolinks:load', onDOMReady

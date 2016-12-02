@@ -1,5 +1,4 @@
-$(document).on 'ready page:load turbolinks:load', ->
-
+onDOMReady = ->
   #
   # Use ActiveAdmin.modal_dialog to prompt user if confirmation is required for current Batch Action
   #
@@ -37,3 +36,7 @@ $(document).on 'ready page:load turbolinks:load', ->
         $(".batch_actions_selector").each -> $(@).aaDropdownMenu("enable")
       else
         $(".batch_actions_selector").each -> $(@).aaDropdownMenu("disable")
+
+$(document).
+  ready(onDOMReady).
+  on 'page:load turbolinks:load', onDOMReady

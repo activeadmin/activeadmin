@@ -1,4 +1,4 @@
-$(document).on 'ready page:load turbolinks:load', ->
+onDOMReady = ->
   $(document).on 'focus', 'input.datepicker:not(.hasDatepicker)', ->
     input = $(@)
 
@@ -8,3 +8,7 @@ $(document).on 'ready page:load turbolinks:load', ->
     defaults = dateFormat: 'yy-mm-dd'
     options  = input.data 'datepicker-options'
     input.datepicker $.extend(defaults, options)
+
+$(document).
+  ready(onDOMReady).
+  on 'page:load turbolinks:load', onDOMReady

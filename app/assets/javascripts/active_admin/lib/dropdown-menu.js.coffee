@@ -97,5 +97,9 @@ class ActiveAdmin.DropdownMenu
 
 $.widget.bridge 'aaDropdownMenu', ActiveAdmin.DropdownMenu
 
-$(document).on 'ready page:load turbolinks:load', ->
+onDOMReady = ->
   $('.dropdown_menu').aaDropdownMenu()
+
+$(document).
+  ready(onDOMReady).
+  on 'page:load turbolinks:load', onDOMReady
