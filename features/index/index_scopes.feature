@@ -14,6 +14,25 @@ Feature: Index Scoping
     And I should see the scope "All" with the count 3
     And I should see 3 posts in the table
 
+  Scenario: Viewing resources with one scope with dynamic name
+    Given 3 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope -> { scope_title }, :all
+
+        controller do
+          def scope_title
+            'Neat scope'
+          end
+
+          helper_method :scope_title
+        end
+      end
+      """
+    Then I should see the scope with label "Neat scope"
+    And I should see 3 posts in the table
+
   Scenario: Viewing resources with one scope as the default
     Given 3 posts exist
     And an index configuration of:
