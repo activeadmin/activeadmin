@@ -1,34 +1,34 @@
 language: ruby
 sudo: false
-install:
-  - ./script/travis_cache download_bundle
+cache: bundler
+bundler_args: --without development
+before_install:
   - gem install bundler # use the very latest Bundler
-  - bundle install --without development --path=./bundle
-  - bundle clean # delete now-outdated gems
-  - ./script/travis_cache download_app
+after_install:
   - bundle exec rake setup
-  - ./script/travis_cache upload
 script:
   - bundle exec rake test_with_coveralls
 rvm:
   - 1.9
   - 2.3.0
   - jruby-9.0.5.0
+gemfile:
+  - gemfiles/rails_3.gemfile
+  - gemfiles/rails_4.gemfile
+  - gemfiles/rails_5.gemfile
 env:
-  matrix:
-    - RAILS=3.2.22
-    - RAILS=4.2.5
-    - RAILS=5.0.0
   global:
     - JRUBY_OPTS="-J-Xmx1024m --debug"
 matrix:
   fast_finish: true
   exclude:
     - rvm: 1.9
-      env: RAILS=5.0.0
+      gemfile: gemfiles/rails_5.gemfile
   allow_failures:
+    - rvm: 2.3.0
+      gemfile: gemfiles/rails_5.gemfile
     - rvm: jruby-9.0.5.0
-      env: RAILS=5.0.0
+      gemfile: gemfiles/rails_5.gemfile
 notifications:
   irc:
     channels:

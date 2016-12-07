@@ -1,6 +1,5 @@
-require 'bundler'
 require 'rake'
-Bundler.setup
+require 'bundler/setup'
 Bundler::GemHelper.install_tasks
 
 def cmd(command)
@@ -13,7 +12,9 @@ require File.expand_path('../spec/support/detect_rails_version', __FILE__)
 # Import all our rake tasks
 FileList['tasks/**/*.rake'].each { |task| import task }
 
-task default: :test
+if !ENV["APPRAISAL_INITIALIZED"] && !ENV["TRAVIS"]
+  task default: :appraisal
+end
 
 begin
   require 'jasmine'
