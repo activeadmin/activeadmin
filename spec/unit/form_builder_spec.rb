@@ -284,6 +284,36 @@ describe ActiveAdmin::FormBuilder do
 
   end
 
+  context "with inputs component inside has_many" do
+
+    def user
+      u = User.new
+      u.profile = Profile.new(bio: 'bio')
+      u
+    end
+
+    let :body do
+      author = user()
+      build_form do |f|
+        f.form_builder.instance_eval do
+          @object.author = author
+        end
+        f.inputs name: 'Author', for: :author do |author|
+          author.has_many :profile, allow_destroy: true do |profile|
+            profile.inputs  "inputs for profile #{profile.object.bio}" do
+              profile.input :bio
+            end
+          end
+        end
+      end
+    end
+
+    it "should see the profile fields for an existing profile" do
+      expect(body).to have_selector("[id='post_author_attributes_profile_attributes_bio']", count: 1)
+      expect(body).to have_selector("textarea[name='post[author_attributes][profile_attributes][bio]']")
+    end
+  end
+
   context "with a has_one relation on an author's profile" do
     let :body do
       author = user()
