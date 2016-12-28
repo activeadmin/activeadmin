@@ -13,7 +13,7 @@ describe ActiveAdmin::Filters::ResourceExtension do
 
   it "should return the defaults if no filters are set" do
     expect(resource.filters.keys).to match_array([
-      :author, :body, :category, :created_at, :custom_searcher, :position, :published_at, :starred, :taggings, :title, :updated_at
+      :author, :body, :category, :created_at, :custom_searcher, :position, :published_date, :starred, :taggings, :title, :updated_at
     ])
   end
 
@@ -35,7 +35,7 @@ describe ActiveAdmin::Filters::ResourceExtension do
   it "should return the defaults without associations if default association filters are disabled on the namespace" do
     resource.namespace.include_default_association_filters = false
     expect(resource.filters.keys).to match_array([
-      :body, :created_at, :custom_searcher, :position, :published_at, :starred, :title, :updated_at
+      :body, :created_at, :custom_searcher, :position, :published_date, :starred, :title, :updated_at
     ])
   end
 
@@ -104,7 +104,7 @@ describe ActiveAdmin::Filters::ResourceExtension do
       resource.add_filter :count, as: :string
 
       expect(resource.filters.keys).to match_array([
-        :author, :body, :category, :count, :created_at, :custom_searcher, :position, :published_at, :starred, :taggings, :title, :updated_at
+        :author, :body, :category, :count, :created_at, :custom_searcher, :position, :published_date, :starred, :taggings, :title, :updated_at
       ])
     end
 

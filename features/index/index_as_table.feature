@@ -218,13 +218,13 @@ Feature: Index as Table
       ActiveAdmin.register Post do
         index do
           column :author_id do end
-          column 'published_at' do end
+          column 'published_date' do end
           column :category do end
         end
       end
       """
     Then I should see a sortable table header with "Author"
-    Then I should see a sortable table header with "published_at"
+    Then I should see a sortable table header with "published_date"
     Then I should not see a sortable table header with "Category"
 
   Scenario: Columns with block are not sortable by when sortable option equals to false
@@ -234,12 +234,12 @@ Feature: Index as Table
       ActiveAdmin.register Post do
         index do
           column :author_id, sortable: false do end
-          column 'published_at', sortable: false do end
+          column 'published_date', sortable: false do end
         end
       end
       """
     Then I should not see a sortable table header with "Author"
-    Then I should not see a sortable table header with "published_at"
+    Then I should not see a sortable table header with "published_date"
 
   Scenario: Sorting
     Given a post with the title "Hello World" and body "From the body" exists
@@ -250,12 +250,12 @@ Feature: Index as Table
       """
     When I am on the index page for posts
     Then I should see the "index_table_posts" table:
-      | [ ] | Id | Title        | Body | Published At | Position | Starred | Created At | Updated At | |
+      | [ ] | Id | Title        | Body | Published Date | Position | Starred | Created At | Updated At | |
       | [ ] | 2 | Bye bye world | Move your...  |  |  | No | /.*/ | /.*/ | ViewEditDelete |
       | [ ] | 1 | Hello World   | From the body |  |  | No | /.*/ | /.*/ | ViewEditDelete |
     When I follow "Id"
     Then I should see the "index_table_posts" table:
-      | [ ] | Id | Title        | Body | Published At | Position | Starred | Created At | Updated At | |
+      | [ ] | Id | Title        | Body | Published Date | Position | Starred | Created At | Updated At | |
       | [ ] | 1 | Hello World   | From the body |  |  | No | /.*/ | /.*/ | ViewEditDelete |
       | [ ] | 2 | Bye bye world | Move your...  |  |  | No | /.*/ | /.*/ | ViewEditDelete |
 
