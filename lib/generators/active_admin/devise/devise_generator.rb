@@ -52,6 +52,8 @@ module ActiveAdmin
       end
 
       def add_default_user_to_seed
+        return unless Rails.application
+        
         seeds_paths = Rails.application.paths["db/seeds.rb"] || Rails.application.paths["db/seeds"] # "db/seeds" => Rails 3.2 fallback
         seeds_file = seeds_paths.existent.first
         return if seeds_file.nil? || !options[:default_user]
