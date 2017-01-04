@@ -20,7 +20,13 @@ if rails_major == '5'
   gem 'ransack',             github: 'activerecord-hackery/ransack'
 end
 
-gem 'mime-types', '< 3' # Remove this line when we drop support for Ruby 1.9
+platform :ruby_19 do # Remove this block when we drop support for Ruby 1.9
+  gem 'mime-types', '< 3'
+  gem 'nokogiri', '< 1.7'
+  gem 'public_suffix', '< 1.5'
+  gem 'term-ansicolor', '< 1.4'
+end
+
 
 # Optional dependencies
 gem 'cancan'
@@ -30,7 +36,7 @@ gem 'pundit'
 
 # Utility gems used in both development & test environments
 gem 'rake', require: false
-gem 'parallel_tests'
+gem 'parallel_tests', '< 2.10' #2.10 requires ruby '>= 2.0.0'
 
 # Debugging
 gem 'pry'                                   # Easily debug from your console with `binding.pry`
