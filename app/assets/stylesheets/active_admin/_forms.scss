@@ -125,6 +125,7 @@ form {
   input[type=url],
   input[type=tel],
   input[type=date],
+  input[type=time],
   textarea {
     width: calc(80% - #{$text-input-total-padding});
     border: $border-width solid #c9d0d6;
