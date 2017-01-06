@@ -59,6 +59,10 @@ RUBY
 create_file 'app/models/profile.rb', <<-RUBY.strip_heredoc, force: true
   class Profile < ActiveRecord::Base
     belongs_to :user
+
+    unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+      attr_accessible :bio
+    end
   end
 RUBY
 
