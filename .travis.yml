@@ -19,6 +19,8 @@ rvm:
 env:
   matrix:
     - RAILS=3.2.22
+    - RAILS=4.0.13
+    - RAILS=4.1.16
     - RAILS=4.2.7.1
     - RAILS=5.0.1
   global:
