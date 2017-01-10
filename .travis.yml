@@ -9,7 +9,7 @@ install:
   - bundle exec rake setup
   - ./script/travis_cache upload
 script:
-  - bundle exec rake test_with_coveralls
+  - bundle exec rake test
 rvm:
   - 1.9
   - 2.3.0
