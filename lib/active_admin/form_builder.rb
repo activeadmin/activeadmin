@@ -55,10 +55,12 @@ module ActiveAdmin
       end
 
       html << template.capture do
-        contents = "".html_safe
         form_block = proc do |has_many_form|
           index    = parent_child_index options[:parent] if options[:parent]
-          block.call has_many_form, index
+          block_contents = template.capture do
+            block.call(has_many_form, index)
+          end
+          template.concat(block_contents)
           template.concat has_many_actions(has_many_form, builder_options, "".html_safe)
         end
 
