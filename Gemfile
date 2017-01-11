@@ -21,6 +21,7 @@ if rails_major == '5'
 end
 
 platform :ruby_19 do # Remove this block when we drop support for Ruby 1.9
+  gem 'kaminari', '~> 0.15'
   gem 'mime-types', '< 3'
   gem 'nokogiri', '< 1.7'
   gem 'public_suffix', '< 1.5'
