@@ -21,10 +21,6 @@ end
 desc "Run the full suite using 1 core"
 task test: ['spec:unit', 'spec:request', 'cucumber', 'cucumber:class_reloading']
 
-require 'coveralls/rake/task'
-Coveralls::RakeTask.new
-task test_with_coveralls: [:test, 'coveralls:push']
-
 namespace :test do
 
   def run_tests_against(*versions)

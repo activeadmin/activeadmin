@@ -15,3 +15,6 @@ SimpleCov.start do
   add_filter 'features/'
   add_filter 'bundle/' # for Travis
 end
+
+require 'codecov'
+SimpleCov.formatter = SimpleCov::Formatter::Codecov

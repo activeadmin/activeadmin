@@ -17,7 +17,7 @@ Feature: Index Scope To
         # Set up some scopes
         scope :all, default: true
         scope :published do |posts|
-          posts.where "published_at IS NOT NULL"
+          posts.where "published_date IS NOT NULL"
         end
       end
       """

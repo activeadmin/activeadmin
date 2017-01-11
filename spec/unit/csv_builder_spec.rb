@@ -189,8 +189,8 @@ describe ActiveAdmin::CSVBuilder do
 
   context "build csv using the supplied order" do
     before do
-      @post1 = Post.create!(title: "Hello1", published_at: Date.today - 2.day )
-      @post2 = Post.create!(title: "Hello2", published_at: Date.today - 1.day )
+      @post1 = Post.create!(title: "Hello1", published_date: Date.today - 2.day )
+      @post2 = Post.create!(title: "Hello2", published_date: Date.today - 1.day )
     end
     let(:dummy_controller) {
       class DummyController
@@ -199,7 +199,7 @@ describe ActiveAdmin::CSVBuilder do
         end
 
         def collection
-          Post.order('published_at DESC')
+          Post.order('published_date DESC')
         end
 
         def apply_decorator(resource)
@@ -215,7 +215,7 @@ describe ActiveAdmin::CSVBuilder do
       ActiveAdmin::CSVBuilder.new do
         column "id"
         column "title"
-        column "published_at"
+        column "published_date"
       end
     end
 

@@ -153,17 +153,31 @@ describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
-  describe "datetime attribute" do
-    let(:body) { Capybara.string(filter :created_at) }
+  describe "date attribute" do
+    let(:body) { Capybara.string(filter :published_date) }
 
     it "should generate a date greater than" do
-      expect(body).to have_selector("input.datepicker[name='q[created_at_gteq_date]']")
+      expect(body).to have_selector("input.datepicker[name='q[published_date_gteq]']")
     end
     it "should generate a seperator" do
       expect(body).to have_selector("span.seperator")
     end
     it "should generate a date less than" do
-      expect(body).to have_selector("input.datepicker[name='q[created_at_lteq_date]']")
+      expect(body).to have_selector("input.datepicker[name='q[published_date_lteq]']")
+    end
+  end
+
+  describe "datetime attribute" do
+    let(:body) { Capybara.string(filter :created_at) }
+
+    it "should generate a date greater than" do
+      expect(body).to have_selector("input.datepicker[name='q[created_at_gteq_datetime]']")
+    end
+    it "should generate a seperator" do
+      expect(body).to have_selector("span.seperator")
+    end
+    it "should generate a date less than" do
+      expect(body).to have_selector("input.datepicker[name='q[created_at_lteq_datetime]']")
     end
   end
 

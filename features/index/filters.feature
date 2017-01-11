@@ -9,13 +9,13 @@ Feature: Index Filtering
     When I am on the index page for posts
     Then I should see "Displaying all 3 Posts"
     And I should see the following filters:
-     | Author       | select     |
-     | Category     | select     |
-     | Title        | string     |
-     | Body         | string     |
-     | Published at | date range |
-     | Created at   | date range |
-     | Updated at   | date range |
+     | Author         | select     |
+     | Category       | select     |
+     | Title          | string     |
+     | Body           | string     |
+     | Published date | date range |
+     | Created at     | date range |
+     | Updated at     | date range |
 
     When I fill in "Title" with "Hello World 2"
     And I press "Filter"

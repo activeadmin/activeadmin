@@ -24,7 +24,6 @@ platform :ruby_19 do # Remove this block when we drop support for Ruby 1.9
   gem 'mime-types', '< 3'
   gem 'nokogiri', '< 1.7'
   gem 'public_suffix', '< 1.5'
-  gem 'term-ansicolor', '< 1.4'
 end
 
 
@@ -66,7 +65,7 @@ group :test do
   gem 'capybara'
   gem 'simplecov', require: false           # Test coverage generator. Go to /coverage/ after running tests
   gem 'json', '~> 1.8', require: false      # Required by simplecov, > 2 removes support for Ruby 1.9
-  gem 'coveralls', require: false           # Test coverage website. Go to https://coveralls.io
+  gem 'codecov', require: false             # Test coverage website. Go to https://codecov.io
   gem 'tins', '~> 1.6.0', require: false    # Required by coveralls, > 1.6.0 removes support for Ruby 1.9
   gem 'cucumber-rails', require: false
   gem 'cucumber', '1.3.20'
