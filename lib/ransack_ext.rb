@@ -10,11 +10,11 @@ Ransack.configure do |config|
     config.add_predicate old, arel_predicate: current
   end
 
-  config.add_predicate 'gteq_date',
+  config.add_predicate 'gteq_datetime',
     arel_predicate: 'gteq',
     formatter: ->(v) { v.beginning_of_day }
 
-  config.add_predicate 'lteq_date',
+  config.add_predicate 'lteq_datetime',
   	arel_predicate: 'lt',
   	formatter: ->(v) { v + 1.day }
 end

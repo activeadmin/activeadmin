@@ -21,21 +21,21 @@ RUBY
 inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post do\n"
 
   if Rails::VERSION::MAJOR >= 4
-    permit_params [:custom_category_id, :author_id, :title, :body, :published_at, :position, :starred]
+    permit_params [:custom_category_id, :author_id, :title, :body, :published_date, :position, :starred]
   end
 
   scope :all, default: true
 
   scope :drafts do |posts|
-    posts.where(["published_at IS NULL"])
+    posts.where(["published_date IS NULL"])
   end
 
   scope :scheduled do |posts|
-    posts.where(["posts.published_at IS NOT NULL AND posts.published_at > ?", Time.now.utc])
+    posts.where(["posts.published_date IS NOT NULL AND posts.published_date > ?", Time.now.utc])
   end
 
   scope :published do |posts|
-    posts.where(["posts.published_at IS NOT NULL AND posts.published_at < ?", Time.now.utc])
+    posts.where(["posts.published_date IS NOT NULL AND posts.published_date < ?", Time.now.utc])
   end
 
   scope :my_posts do |posts|
@@ -61,11 +61,11 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
   1_000.times do |i|
     user = users[i % users.size]
     cat = categories[i % categories.size]
-    published_at = published_at_values[i % published_at_values.size]
+    published = published_at_values[i % published_at_values.size]
     Post.create title: "Blog Post \#{i}",
                 body: "Blog post \#{i} is written by \#{user.username} about \#{cat.name}",
                 category: cat,
-                published_at: published_at,
+                published_date: published,
                 author: user,
                 starred: true
   end

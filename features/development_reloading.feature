@@ -14,7 +14,7 @@ Feature: Development Reloading
       ActiveAdmin.register Post do
         if Rails::VERSION::MAJOR >= 4
           permit_params :custom_category_id, :author_id, :title,
-            :body, :position, :published_at, :starred
+            :body, :position, :published_date, :starred
         end
       end
     """

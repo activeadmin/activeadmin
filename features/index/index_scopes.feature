@@ -85,7 +85,7 @@ Feature: Index Scoping
       ActiveAdmin.register Post do
         scope :all, :default => true
         scope :published do |posts|
-          posts.where("published_at IS NOT NULL")
+          posts.where("published_date IS NOT NULL")
         end
       end
       """
@@ -108,7 +108,7 @@ Feature: Index Scoping
       ActiveAdmin.register Post do
         scope :all, :default => true
         scope :published do |posts|
-          posts.where("published_at IS NOT NULL")
+          posts.where("published_date IS NOT NULL")
         end
       end
       """
@@ -215,7 +215,7 @@ Feature: Index Scoping
       ActiveAdmin.register Post do
         scope :all, :default => true
         scope :published do |posts|
-          posts.where("published_at IS NOT NULL")
+          posts.where("published_date IS NOT NULL")
         end
 
         index do

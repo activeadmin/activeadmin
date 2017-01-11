@@ -439,7 +439,7 @@ describe ActiveAdmin::FormBuilder do
         end
         f.inputs do
           f.input :author
-          f.input :published_at
+          f.input :created_at
         end
       end
     end
@@ -447,10 +447,10 @@ describe ActiveAdmin::FormBuilder do
       expect(body).to have_selector("input[name='post[title]']", count: 1)
       expect(body).to have_selector("textarea[name='post[body]']", count: 1)
       expect(body).to have_selector("select[name='post[author_id]']", count: 1)
-      expect(body).to have_selector("select[name='post[published_at(1i)]']", count: 1)
-      expect(body).to have_selector("select[name='post[published_at(2i)]']", count: 1)
-      expect(body).to have_selector("select[name='post[published_at(3i)]']", count: 1)
-      expect(body).to have_selector("select[name='post[published_at(4i)]']", count: 1)
+      expect(body).to have_selector("select[name='post[created_at(1i)]']", count: 1)
+      expect(body).to have_selector("select[name='post[created_at(2i)]']", count: 1)
+      expect(body).to have_selector("select[name='post[created_at(3i)]']", count: 1)
+      expect(body).to have_selector("select[name='post[created_at(4i)]']", count: 1)
     end
   end
 
