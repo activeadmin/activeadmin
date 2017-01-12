@@ -8,7 +8,6 @@ task :setup, :parallel do |t, opts|
     args = %w[
       -m spec/support/rails_template.rb
       --skip-bundle
-      --skip-git
       --skip-listen
       --skip-turbolinks
       --skip-test-unit
