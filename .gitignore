@@ -33,7 +33,6 @@ doc
 pkg
 
 ## Project (specific)
-bin/
 .bundle
 spec/rails
 *.sqlite3-journal
