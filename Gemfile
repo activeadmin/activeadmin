@@ -34,6 +34,9 @@ gem 'devise', rails_major == '5' ? '> 4.x' : '~> 3.5'
 gem 'draper', rails_major == '5' ? '> 3.x' : '~> 2.1'
 gem 'pundit'
 
+# Until https://github.com/erikhuda/thor/issues/538 fixed
+gem 'thor', '<= 0.19.1'
+
 # Utility gems used in both development & test environments
 gem 'rake'
 gem 'parallel_tests', '< 2.10' #2.10 requires ruby '>= 2.0.0'
