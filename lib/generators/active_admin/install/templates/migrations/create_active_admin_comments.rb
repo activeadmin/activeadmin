@@ -12,7 +12,11 @@ class CreateActiveAdminComments < parent_class
       t.timestamps
     end
     add_index :active_admin_comments, [:namespace]
-    add_index :active_admin_comments, [:author_type, :author_id]
+
+    unless Rails::VERSION::MAJOR >= 5
+      add_index :active_admin_comments, [:author_type, :author_id]
+    end
+
     add_index :active_admin_comments, [:resource_type, :resource_id]
   end
 
