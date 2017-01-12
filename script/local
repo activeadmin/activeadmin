@@ -12,9 +12,9 @@ app stored in test-rails-app.
 
 Examples:
 
-./script/local server
-./script/local c
-./script/local rake db:migrate
+#{__FILE__} server
+#{__FILE__} c
+#{__FILE__} rake db:migrate
   EOF
   exit(1)
 end
