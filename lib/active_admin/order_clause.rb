@@ -3,9 +3,9 @@ module ActiveAdmin
     attr_reader :field, :order
 
     def initialize(clause)
-      clause =~ /^([\w\_\.]+)(->'\w+')?_(desc|asc)$/
+      clause =~ /^([\w\_\.]+)([-#]>>?'\w+')?_(desc|asc)$/
       @column = $1
-      @op = $2
+      @op = $2.to_s.strip
       @order = $3
 
       @field = [@column, @op].compact.join

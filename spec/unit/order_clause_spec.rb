@@ -67,6 +67,26 @@ describe ActiveAdmin::OrderClause do
     end
   end
 
+  describe "hstore_col#>>'field'_asc" do
+    let(:clause) { "hstore_col->>'field'_asc" }
+
+    it { is_expected.to be_valid }
+
+    describe '#field' do
+      subject { super().field }
+      it { is_expected.to eq("hstore_col->>'field'") }
+    end
+
+    describe '#order' do
+      subject { super().order }
+      it { is_expected.to eq('asc') }
+    end
+
+    it 'converts to sql' do
+      expect(subject.to_sql(config)).to eq %Q("hstore_col"->>'field' asc)
+    end
+  end
+
   describe '_asc' do
     let(:clause) { '_asc' }
 
