@@ -64,7 +64,7 @@ module ActiveAdmin
       def add_default_new_action_item
         add_action_item :new, only: :index do
           if controller.action_methods.include?('new') && authorized?(ActiveAdmin::Auth::CREATE, active_admin_config.resource_class)
-            link_to I18n.t('active_admin.new_model', model: active_admin_config.resource_label), new_resource_path
+            link_to i18n(:new), new_resource_path
           end
         end
       end
@@ -73,7 +73,7 @@ module ActiveAdmin
       def add_default_edit_action_item
         add_action_item :edit, only: :show do
           if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
-            link_to I18n.t('active_admin.edit_model', model: active_admin_config.resource_label), edit_resource_path(resource)
+            link_to i18n(:edit), edit_resource_path(resource)
           end
         end
       end
@@ -82,12 +82,15 @@ module ActiveAdmin
       def add_default_show_action_item
         add_action_item :destroy, only: :show do
           if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
-            link_to I18n.t('active_admin.delete_model', model: active_admin_config.resource_label), resource_path(resource),
+            link_to i18n(:destroy), resource_path(resource),
               method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
           end
         end
       end
 
+      def i18n(action)
+        I18n.t("active_admin.#{active_admin_config.resource_name.singular}.#{action}_model", model: active_admin_config.resource_label, defaults: ["active_admin.#{action}_model"])
+      end
     end
   end
 
