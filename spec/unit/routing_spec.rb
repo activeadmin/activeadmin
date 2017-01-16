@@ -30,6 +30,24 @@ describe ActiveAdmin, "Routing", type: :routing do
     end
   end
 
+  describe "route_options" do
+    context "with a custom path set in route_options" do
+      before(:each) do
+        ActiveAdmin.application.namespaces[:admin].route_options = { path: '/custom-path' }
+        reload_routes!
+      end
+
+      after(:all) do
+        ActiveAdmin.application.namespaces[:admin].route_options = {}
+        reload_routes!
+      end
+
+      it "should route using the custom path" do
+        expect(admin_posts_path).to eq "/custom-path/posts"
+      end
+    end
+  end
+
   describe "standard resources" do
     context "when in admin namespace" do
       it "should route the index path" do
