@@ -54,10 +54,6 @@ describe ActiveAdmin::Resource::ActionItems do
   describe "default action items" do
     it "should have 3 action items" do
       expect(resource.action_items.size).to eq 3
-
-      expect(I18n.t("active_admin.#{resource.resource_name.i18n_key.to_s}.#{resource.action_items.first.name.to_s}_model")).to   eq 'New post'
-      expect(I18n.t("active_admin.#{resource.resource_name.i18n_key.to_s}.#{resource.action_items.second.name.to_s}_model")).to  eq 'Edit post'
-      expect(I18n.t("active_admin.#{resource.resource_name.i18n_key.to_s}.#{resource.action_items.last.name.to_s}_model")).to    eq 'Delete post'
     end
 
     it 'can be removed by name' do
