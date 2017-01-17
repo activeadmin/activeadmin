@@ -117,6 +117,8 @@ module ActiveAdmin
 
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
+    # Note that Formtastic also has 'collection_label_methods' similar to this
+    # used by auto generated dropdowns in filter or belongs_to field of Active Admin
     setting :display_name_methods, [ :display_name,
                                       :full_name,
                                       :name,
