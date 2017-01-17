@@ -8,8 +8,7 @@ class CreateActiveAdminComments < <%= parent_class.to_s %>
     create_table :active_admin_comments do |t|
       t.string :namespace
       t.text   :body
-      t.string :resource_id,   null: false
-      t.string :resource_type, null: false
+      t.references :resource, polymorphic: true
       t.references :author, polymorphic: true
       <%- if Rails::VERSION::MAJOR >= 5 -%>
       t.timestamps
