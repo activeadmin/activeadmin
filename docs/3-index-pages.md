@@ -186,6 +186,8 @@ scope "Published", if: proc { current_admin_user.can? :manage, Posts } do |posts
 end
 ```
 
+Scopes can be labelled with a translation, e.g. `activerecord.scopes.invoice.expired`.
+
 ## Index default sort order
 
 You can define the default sort order for index pages:

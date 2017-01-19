@@ -94,6 +94,13 @@ ActiveAdmin.register Post do
 end
 ```
 
+## Renaming Action Items
+
+One can set custom button name and page title for new, edit, and destroy actions/pages
+at the resource level by providing a resource specific translation.
+For example to change 'New Offer' to 'Make an Offer'
+set `active_admin.resources.offer.new_model`.
+
 ## Rename the Resource
 
 By default, any references to the resource (menu, routes, buttons, etc) in the
