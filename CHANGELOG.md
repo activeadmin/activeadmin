@@ -47,6 +47,7 @@
 index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 ```
 * Comments menu can be customized via configuration passed to `config.comments_menu` [#4187][] by [@drn][]
+* Added `config.route_options` to namespace to customize routes [#4467][] by [@stereoscott[]]
 
 ### Security Fixes
 
