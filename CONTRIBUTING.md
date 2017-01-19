@@ -148,7 +148,8 @@ git push -f 325-add-japanese-translations
 A PR can only be merged into master by a maintainer if:
 
 * It is passing CI.
-* It has been approved by at least another maintainer.
+* It has been approved by at least two maintainers. If it was a maintainer who
+  opened the PR, only one extra approval is needed.
 * It has no requested changes.
 * It is up to date with current master.
 * It has been opened for at least 48h.
