@@ -142,3 +142,17 @@ git checkout 325-add-japanese-translations
 git pull --rebase upstream master
 git push -f 325-add-japanese-translations
 ```
+
+### 9. Merging a PR (maintainers only)
+
+A PR can only be merged into master by a maintainer if:
+
+* It is passing CI.
+* It has been approved by at least two maintainers. If it was a maintainer who
+  opened the PR, only one extra approval is needed.
+* It has no requested changes.
+* It is up to date with current master.
+* It has been opened for at least 48h.
+
+Any maintainer is allowed to merge a PR if all of these conditions are
+met.
