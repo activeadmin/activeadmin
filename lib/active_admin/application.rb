@@ -80,6 +80,9 @@ module ActiveAdmin
     # Options that a passed to root_to.
     inheritable_setting :root_to_options, {}
 
+    # Options passed to the routes, i.e. { path: '/custom' }
+    inheritable_setting :route_options, {}
+
     # Display breadcrumbs
     inheritable_setting :breadcrumb, true
 
