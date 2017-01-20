@@ -424,7 +424,7 @@ describe ActiveAdmin::Filters::ViewHelper do
     it "should work as string" do
       body = Capybara.string(filter :custom_title_searcher, as: :string)
       expect(body).to have_selector("input[name='q[custom_title_searcher_contains]']")
-      expect(body).to have_selector("input[name='q[custom_searcher_starts_with]']")
+      expect(body).to have_selector("input[name='q[custom_title_searcher_starts_with]']")
     end
 
     describe "custom date range search" do
