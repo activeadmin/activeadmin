@@ -10,7 +10,8 @@ cache: bundler
 
 before_install:
   - gem update --system # use the very latest Rubygems
-  - gem install bundler # use the very latest Bundler
+  - rvm @global do gem uninstall bundler -a -x
+  - rvm @global do gem install bundler -v 1.14.2 # latest version known to work
 
 before_script:
   - bundle exec rake setup
