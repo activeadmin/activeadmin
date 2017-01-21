@@ -46,6 +46,10 @@ create_file 'app/models/user.rb', <<-RUBY.strip_heredoc, force: true
     has_one :profile
     accepts_nested_attributes_for :profile, allow_destroy: true
 
+    ransacker :age_in_five_years, type: :numeric, formatter: proc { |v| v.to_i - 5 } do |parent|
+      parent.table[:age]
+    end
+
     unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
       attr_accessible :first_name, :last_name, :username,  :age
     end

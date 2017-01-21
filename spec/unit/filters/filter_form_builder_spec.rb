@@ -7,6 +7,9 @@ class Post
   ransacker :custom_created_at_searcher do |parent|
     parent.table[:created_at]
   end
+  ransacker :custom_searcher_numeric, type: :numeric do
+    # nothing to see here
+  end
 end
 
 describe ActiveAdmin::Filters::ViewHelper do
@@ -406,14 +409,22 @@ describe ActiveAdmin::Filters::ViewHelper do
 
   describe "custom search methods" do
 
+    it "should use the default type of the ransacker" do
+      body = Capybara.string(filter :custom_searcher_numeric)
+      expect(body).to have_selector("option[value=custom_searcher_numeric_equals]")
+      expect(body).to have_selector("option[value=custom_searcher_numeric_greater_than]")
+      expect(body).to have_selector("option[value=custom_searcher_numeric_less_than]")
+    end
+
     it "should work as select" do
       body = Capybara.string(filter :custom_title_searcher, as: :select, collection: ['foo'])
-      expect(body).to have_selector("select[name='q[custom_title_searcher]']")
+      expect(body).to have_selector("select[name='q[custom_title_searcher_eq]']")
     end
 
     it "should work as string" do
       body = Capybara.string(filter :custom_title_searcher, as: :string)
-      expect(body).to have_selector("input[name='q[custom_title_searcher]']")
+      expect(body).to have_selector("option[value=custom_title_searcher_contains]")
+      expect(body).to have_selector("option[value=custom_title_searcher_starts_with]")
     end
 
     describe "custom date range search" do
@@ -436,6 +447,7 @@ describe ActiveAdmin::Filters::ViewHelper do
           expect(body).to have_selector("input[name='q[custom_created_at_searcher_lteq_datetime]'][value='']")
         end
       end
+
     end
   end
 
