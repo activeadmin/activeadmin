@@ -35,7 +35,7 @@ Feature: Index Scope To
     Given an index configuration of:
       """
       ActiveAdmin.register Post do
-        scope_to :if => proc{ false } do
+        scope_to if: proc{ false } do
           User.find_by_first_name_and_last_name("John", "Doe")
         end
       end
@@ -47,7 +47,7 @@ Feature: Index Scope To
     Given an index configuration of:
       """
       ActiveAdmin.register Post do
-        scope_to :unless => proc{ true } do
+        scope_to unless: proc{ true } do
           User.find_by_first_name_and_last_name("John", "Doe")
         end
       end

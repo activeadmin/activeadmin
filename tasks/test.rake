@@ -45,7 +45,7 @@ namespace :test do
   end
 
   desc "Alias for major_supported_rails"
-  task :all => :major_supported_rails
+  task all: :major_supported_rails
 
 end
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Stylesheets", :type => :request do
+describe "Stylesheets", type: :request do
 
   require "sprockets"
 

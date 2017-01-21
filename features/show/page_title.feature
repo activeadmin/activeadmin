@@ -9,7 +9,7 @@ Feature: Show - Page Title
     Given a show configuration of:
     """
       ActiveAdmin.register Post do
-        show :title => :title
+        show title: :title
       end
     """
     Then I should see the page title "Hello World"
@@ -18,7 +18,7 @@ Feature: Show - Page Title
     Given a show configuration of:
     """
       ActiveAdmin.register Post do
-        show :title => "Title From String"
+        show title: "Title From String"
       end
     """
     Then I should see the page title "Title From String"
@@ -27,7 +27,7 @@ Feature: Show - Page Title
     Given a show configuration of:
     """
       ActiveAdmin.register Post do
-        show :title => proc{|post| "Title: " + post.title }
+        show title: proc{|post| "Title: " + post.title }
       end
     """
     Then I should see the page title "Title: Hello World"

@@ -7,7 +7,7 @@ Feature: Index as Grid
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :grid do |post|
+        index as: :grid do |post|
           h2 auto_link(post)
         end
       end
@@ -21,7 +21,7 @@ Feature: Index as Grid
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-      index :as => :grid, :columns => 1 do |post|
+      index as: :grid, columns: 1 do |post|
           h2 auto_link(post)
         end
       end
@@ -35,7 +35,7 @@ Feature: Index as Grid
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-      index :as => :grid, :columns => 2 do |post|
+      index as: :grid, columns: 2 do |post|
           h2 auto_link(post)
         end
       end

@@ -40,8 +40,8 @@ Feature: Commenting
     Given a configuration of:
     """
       ActiveAdmin.application.namespace(:new_namespace).comments = false
-      ActiveAdmin.register Post,      :namespace => :new_namespace
-      ActiveAdmin.register AdminUser, :namespace => :new_namespace
+      ActiveAdmin.register Post,      namespace: :new_namespace
+      ActiveAdmin.register AdminUser, namespace: :new_namespace
     """
     Given I am logged in
     When I am on the index page for posts in the new_namespace namespace
@@ -52,10 +52,10 @@ Feature: Commenting
     Given a configuration of:
     """
       ActiveAdmin.application.namespace(:new_namespace).comments = false
-      ActiveAdmin.register Post,      :namespace => :new_namespace do
+      ActiveAdmin.register Post,      namespace: :new_namespace do
         config.comments = true
       end
-      ActiveAdmin.register AdminUser, :namespace => :new_namespace
+      ActiveAdmin.register AdminUser, namespace: :new_namespace
     """
     Given I am logged in
     When I am on the index page for posts in the new_namespace namespace
@@ -66,8 +66,8 @@ Feature: Commenting
     Given a show configuration of:
     """
       ActiveAdmin.register Post
-      ActiveAdmin.register Post,      :namespace => :public
-      ActiveAdmin.register AdminUser, :namespace => :public
+      ActiveAdmin.register Post,      namespace: :public
+      ActiveAdmin.register AdminUser, namespace: :public
     """
     When I add a comment "Hello world in admin namespace"
     Then I should see "Hello world in admin namespace"
@@ -87,7 +87,7 @@ Feature: Commenting
   Scenario: Creating a comment on an aliased resource
     Given a configuration of:
     """
-    ActiveAdmin.register Post, :as => "Article"
+    ActiveAdmin.register Post, as: "Article"
     """
     Given I am logged in
     When I am on the index page for articles

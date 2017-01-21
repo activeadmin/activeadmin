@@ -9,7 +9,7 @@ Feature: Index Blank Slate
           batch_action :favourite do
             # nothing
           end
-          scope :all, :default => true
+          scope :all, default: true
         end
       """
     Then I should not see a sortable table header
@@ -33,7 +33,7 @@ Feature: Index Blank Slate
     Given an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :grid do |post|
+        index as: :grid do |post|
           h2 auto_link(post)
         end
       end
@@ -44,7 +44,7 @@ Feature: Index Blank Slate
     Given an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :block do |post|
+        index as: :block do |post|
           span(link_to(post.title, admin_post_path(post)))
         end
       end
@@ -55,7 +55,7 @@ Feature: Index Blank Slate
     Given an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :blog
+        index as: :blog
       end
       """
     And I should see "There are no Posts yet. Create one"

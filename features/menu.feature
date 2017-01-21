@@ -17,7 +17,7 @@ Feature: Menu
     Given a configuration of:
     """
       ActiveAdmin.register Post do
-        menu :label => "Articles"
+        menu label: "Articles"
       end
     """
     When I am on the dashboard
@@ -29,7 +29,7 @@ Feature: Menu
     """
       ActiveAdmin.application.namespace :admin do |admin|
         admin.build_menu do |menu|
-          menu.add :label => "Custom Menu", :url => :admin_dashboard_path
+          menu.add label: "Custom Menu", url: :admin_dashboard_path
         end
       end
     """
@@ -43,7 +43,7 @@ Feature: Menu
     """
       ActiveAdmin.register User
       ActiveAdmin.register Post do
-        menu :parent => 'User'
+        menu parent: 'User'
       end
     """
     When I am on the dashboard

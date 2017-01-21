@@ -65,7 +65,7 @@ Feature: Edit Page
       ActiveAdmin.register Post do
         permit_params :category, :author, :title, :body, :published_date, :starred if Rails::VERSION::MAJOR >= 4
 
-        form :html => {} do |f|
+        form html: {} do |f|
           f.inputs "Your Post" do
             f.input :title
             f.input :body
@@ -94,7 +94,7 @@ Feature: Edit Page
     Given "app/views/admin/posts/_form.html.erb" contains:
     """
       <% url = @post.new_record? ? admin_posts_path : admin_post_path(@post) %>
-      <%= active_admin_form_for @post, :url => url do |f|
+      <%= active_admin_form_for @post, url: url do |f|
             f.inputs :title, :body
             f.actions
           end %>
@@ -104,7 +104,7 @@ Feature: Edit Page
       ActiveAdmin.register Post do
         permit_params :category, :author, :title, :body, :published_date, :starred if Rails::VERSION::MAJOR >= 4
 
-        form :partial => "form"
+        form partial: "form"
       end
     """
     Given I follow "Edit"

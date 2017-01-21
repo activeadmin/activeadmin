@@ -62,7 +62,7 @@ Feature: New Page
     Given "app/views/admin/posts/_form.html.erb" contains:
     """
       <% url = @post.new_record? ? admin_posts_path : admin_post_path(@post) %>
-      <%= active_admin_form_for @post, :url => url do |f|
+      <%= active_admin_form_for @post, url: url do |f|
             f.inputs :title, :body
             f.actions
           end %>
@@ -72,7 +72,7 @@ Feature: New Page
       ActiveAdmin.register Post do
         permit_params :custom_category_id, :author_id, :title, :body, :published_date, :starred if Rails::VERSION::MAJOR >= 4
 
-        form :partial => "form"
+        form partial: "form"
       end
     """
     Given I follow "New Post"

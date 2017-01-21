@@ -22,7 +22,7 @@ Feature: Registering Resources
   Scenario: Registering a resource with another name
     Given a configuration of:
     """
-      ActiveAdmin.register Post, :as => "My Post"
+      ActiveAdmin.register Post, as: "My Post"
     """
     When I go to the dashboard
     Then I should see "My Posts"

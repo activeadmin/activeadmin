@@ -42,7 +42,7 @@ Feature: Belongs To
     """
       ActiveAdmin.register User
       ActiveAdmin.register Post do
-        belongs_to :user, :optional => true
+        belongs_to :user, optional: true
       end
     """
     When I go to the last author's posts

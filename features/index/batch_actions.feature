@@ -83,7 +83,7 @@ Feature: Batch Actions
       """
       ActiveAdmin.register Post do
         batch_action(:flag) do
-          redirect_to collection_path, :notice => "Successfully flagged 10 posts"
+          redirect_to collection_path, notice: "Successfully flagged 10 posts"
         end
       end
       """
@@ -119,8 +119,8 @@ Feature: Batch Actions
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        batch_action(:flag, :if => proc { true }) {}
-        batch_action(:unflag, :if => proc { false }) {}
+        batch_action(:flag, if: proc { true }) {}
+        batch_action(:unflag, if: proc { false }) {}
       end
       """
     Then I should see the batch action :flag "Flag Selected"
@@ -131,9 +131,9 @@ Feature: Batch Actions
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        batch_action(:test, :priority => 3) {}
-        batch_action(:flag, :priority => 2) {}
-        batch_action(:unflag, :priority => 1) {}
+        batch_action(:test, priority: 3) {}
+        batch_action(:flag, priority: 2) {}
+        batch_action(:unflag, priority: 1) {}
       end
       """
     Then the 4th batch action should be "Delete Selected"

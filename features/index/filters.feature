@@ -60,7 +60,7 @@ Feature: Index Filtering
     And an index configuration of:
     """
       ActiveAdmin.register Post do
-        filter :author, :as => :check_boxes
+        filter :author, as: :check_boxes
       end
     """
     When I press "Filter"
@@ -74,7 +74,7 @@ Feature: Index Filtering
     And an index configuration of:
     """
       ActiveAdmin.register Post do
-        filter :author, :as => :check_boxes
+        filter :author, as: :check_boxes
       end
     """
     When I check "Jane Doe"
@@ -134,7 +134,7 @@ Feature: Index Filtering
     And an index configuration of:
     """
       ActiveAdmin.register Category do
-        filter :authors, :as => :check_boxes
+        filter :authors, as: :check_boxes
       end
     """
     When I press "Filter"
@@ -149,7 +149,7 @@ Feature: Index Filtering
     And an index configuration of:
     """
       ActiveAdmin.register Category do
-        filter :authors, :as => :check_boxes
+        filter :authors, as: :check_boxes
       end
     """
     When I check "Jane Doe"
