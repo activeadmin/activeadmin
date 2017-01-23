@@ -139,6 +139,30 @@ describe ActiveAdmin::Scope do
       end
     end
 
+    context "with scope method and localizer" do
+      let(:localizer) do
+        loc = double(:localizer)
+        allow(loc).to receive(:t).with(:published, scope: 'scopes').and_return("All published")
+        loc
+      end
+      let(:scope)        { ActiveAdmin::Scope.new :published, :published, localizer: localizer }
+
+      describe '#name' do
+        subject { super().name }
+        it         { is_expected.to eq("All published")}
+      end
+
+      describe '#id' do
+        subject { super().id }
+        it           { is_expected.to eq("published")}
+      end
+
+      describe '#scope_method' do
+        subject { super().scope_method }
+        it { is_expected.to eq(:published) }
+      end
+    end
+
   end # describe "creating a scope"
 
   describe "#display_if_block" do

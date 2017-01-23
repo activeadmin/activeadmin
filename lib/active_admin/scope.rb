@@ -38,6 +38,7 @@ module ActiveAdmin
       @scope_method               = nil        if @scope_method == :all
       @scope_method, @scope_block = nil, block if block_given?
 
+      @localizer        = options[:localizer]
       @show_count       = options.fetch(:show_count, true)
       @display_if_block = options[:if]      || proc{ true }
       @default_block    = options[:default] || proc{ false }
@@ -47,7 +48,7 @@ module ActiveAdmin
       case @name
         when Proc   then @name.call.to_s
         when String then @name
-        when Symbol then @name.to_s.titleize
+        when Symbol then @localizer ? @localizer.t(@name, scope: 'scopes') : @name.to_s.titleize
         else             @name.to_s
       end
     end

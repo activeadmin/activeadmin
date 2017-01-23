@@ -31,6 +31,7 @@ module ActiveAdmin
         title = args[0] rescue nil
         method = args[1] rescue nil
 
+        options[:localizer] ||= ActiveAdmin::Localizers.resource(self)
         scope = ActiveAdmin::Scope.new(title, method, options, &block)
 
         # Finds and replaces a scope by the same name if it already exists
