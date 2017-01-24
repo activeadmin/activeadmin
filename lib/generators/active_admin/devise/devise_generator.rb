@@ -12,8 +12,8 @@ module ActiveAdmin
 
       RESERVED_NAMES = [:active_admin_user]
 
-      class_option  :default_user, :type => :boolean, :default => true,
-                    :desc => "Should a default user be created inside the migration?"
+      class_option  :default_user, type: :boolean, default: true,
+                    desc: "Should a default user be created inside the migration?"
 
       def install_devise
         begin

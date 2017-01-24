@@ -4,7 +4,7 @@ Feature: Index Parameters
     Given an index configuration of:
     """
     ActiveAdmin.register Post do
-      index :as => :table, :download_links => false
+      index as: :table, download_links: false
     end
     """
     Given 31 posts exist
@@ -19,7 +19,7 @@ Feature: Index Parameters
     Given an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :table
+        index as: :table
       end
       """
     Given 1 posts exist
@@ -35,15 +35,15 @@ Feature: Index Parameters
     Given a configuration of:
       """
       ActiveAdmin.application.namespace(:superadmin).download_links = false
-      ActiveAdmin.register AdminUser, :namespace => :superadmin
+      ActiveAdmin.register AdminUser, namespace: :superadmin
       """
     Given an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :table
+        index as: :table
       end
-      ActiveAdmin.register Post, :namespace => :superadmin do
-        index :as => :table
+      ActiveAdmin.register Post, namespace: :superadmin do
+        index as: :table
       end
       """
     Given 1 posts exist
@@ -58,15 +58,15 @@ Feature: Index Parameters
     Given a configuration of:
       """
       ActiveAdmin.application.namespace(:superadmin).download_links = false
-      ActiveAdmin.register AdminUser, :namespace => :superadmin
+      ActiveAdmin.register AdminUser, namespace: :superadmin
       """
     Given an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :table
+        index as: :table
       end
-      ActiveAdmin.register Post, :namespace => :superadmin do
-        index :as => :table, :download_links => true
+      ActiveAdmin.register Post, namespace: :superadmin do
+        index as: :table, download_links: true
       end
       """
     Given 1 posts exist

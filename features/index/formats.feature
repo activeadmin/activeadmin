@@ -15,7 +15,7 @@ Feature: Index Formats
     Given an index configuration of:
     """
       ActiveAdmin.register Post do
-        index :download_links => false
+        index download_links: false
       end
     """
     And 1 post exists
@@ -28,7 +28,7 @@ Feature: Index Formats
     Given an index configuration of:
     """
       ActiveAdmin.register Post do
-        index :download_links => [:pdf]
+        index download_links: [:pdf]
       end
     """
     And 1 post exists
@@ -42,7 +42,7 @@ Feature: Index Formats
     Given an index configuration of:
     """
       ActiveAdmin.register Post do
-        index :download_links => proc { false }
+        index download_links: proc { false }
       end
     """
     And 1 post exists
@@ -55,7 +55,7 @@ Feature: Index Formats
     Given an index configuration of:
     """
       ActiveAdmin.register Post do
-        index :download_links => -> { [:csv] }
+        index download_links: -> { [:csv] }
       end
     """
     And 1 post exists

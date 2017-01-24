@@ -7,7 +7,7 @@ Feature: Index as Block
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :block do |post|
+        index as: :block do |post|
           span(link_to(post.title, admin_post_path(post)))
         end
       end

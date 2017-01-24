@@ -15,7 +15,7 @@ module ActiveAdmin
       end
 
       # We don't want to wrap the action list (or any other children) in
-      # an unecessary div, so instead we just return the children
+      # an unnecessary div, so instead we just return the children
       def to_s
         children.to_s
       end

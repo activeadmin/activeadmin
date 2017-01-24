@@ -7,7 +7,7 @@ Feature: Index as Blog
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :blog
+        index as: :blog
       end
       """
     And I am logged in
@@ -20,7 +20,7 @@ Feature: Index as Blog
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :blog do
+        index as: :blog do
           title :title
           body :body
         end
@@ -35,7 +35,7 @@ Feature: Index as Blog
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :blog do
+        index as: :blog do
           title do |post|
             post.title + " From Block"
           end
@@ -54,12 +54,12 @@ Feature: Index as Blog
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index :as => :blog do
+        index as: :blog do
           title do |post|
-            span(:class => :title_span) { post.title + " From Block " }
+            span(class: :title_span) { post.title + " From Block " }
           end
           body do |post|
-            span(:class => :body_span) { post.body + " From Block" }
+            span(class: :body_span) { post.body + " From Block" }
           end
         end
       end

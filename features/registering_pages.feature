@@ -49,7 +49,7 @@ Feature: Registering Pages
     Given a configuration of:
     """
     ActiveAdmin.register_page "Status" do
-      content :title => "Custom Page Title" do
+      content title: "Custom Page Title" do
         "I love chocolate."
       end
     end
@@ -62,7 +62,7 @@ Feature: Registering Pages
     Given a configuration of:
     """
     ActiveAdmin.register_page "Status" do
-      content :title => proc{ "Custom Page Title from Proc" } do
+      content title: proc{ "Custom Page Title from Proc" } do
         "I love chocolate."
       end
     end

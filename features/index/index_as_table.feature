@@ -116,7 +116,7 @@ Feature: Index as Table
         index do
           column :category
           actions do |resource|
-            link_to 'Custom Action', edit_admin_post_path(resource), :class => 'member_link'
+            link_to 'Custom Action', edit_admin_post_path(resource), class: 'member_link'
           end
         end
       end
@@ -135,8 +135,8 @@ Feature: Index as Table
 
         index do
           column :category
-          actions :defaults => false do |resource|
-            link_to 'Custom Action', edit_admin_post_path(resource), :class => 'member_link'
+          actions defaults: false do |resource|
+            link_to 'Custom Action', edit_admin_post_path(resource), class: 'member_link'
           end
         end
       end
@@ -175,7 +175,7 @@ Feature: Index as Table
 
         index do
           column :category
-          actions :defaults => false, dropdown: true do |resource|
+          actions defaults: false, dropdown: true do |resource|
             item 'Custom Action', edit_admin_post_path(resource)
           end
         end
@@ -274,7 +274,7 @@ Feature: Index as Table
           index do
             column :id
             column :title
-            column("Title Length", :sortable => :title_length) { |post| post.title_length }
+            column("Title Length", sortable: :title_length) { |post| post.title_length }
           end
         end
       """

@@ -34,7 +34,7 @@ Feature: Sidebar Sections
     Given a configuration of:
     """
     ActiveAdmin.register Post do
-      sidebar :help, :only => :index do
+      sidebar :help, only: :index do
         "Need help? Email us at help@example.com"
       end
     end
@@ -58,7 +58,7 @@ Feature: Sidebar Sections
     Given a configuration of:
     """
     ActiveAdmin.register Post do
-      sidebar :help, :except => :index do
+      sidebar :help, except: :index do
         "Need help? Email us at help@example.com"
       end
     end
@@ -80,7 +80,7 @@ Feature: Sidebar Sections
     Given a configuration of:
     """
     ActiveAdmin.register Post do
-      sidebar :help, :only => :index, :if => proc{ current_active_admin_user.nil? } do
+      sidebar :help, only: :index, if: proc{ current_active_admin_user.nil? } do
         "Need help? Email us at help@example.com"
       end
     end
@@ -106,7 +106,7 @@ Feature: Sidebar Sections
     end
     ActiveAdmin.register Post do
       controller { helper SidebarHelper }
-      sidebar :help, :only => :index, :if => :can_sidebar? do
+      sidebar :help, only: :index, if: :can_sidebar? do
         "Need help? Email us at help@example.com"
       end
     end
@@ -128,7 +128,7 @@ Feature: Sidebar Sections
     Given a configuration of:
     """
     ActiveAdmin.register Post do
-      sidebar :help, :only => :show, :if => proc{ !current_active_admin_user.nil? } do
+      sidebar :help, only: :show, if: proc{ !current_active_admin_user.nil? } do
         "Need help? Email us at help@example.com"
       end
     end
@@ -190,7 +190,7 @@ Feature: Sidebar Sections
     Given a configuration of:
     """
     ActiveAdmin.register Post do
-      sidebar :help, :partial => "custom_help_partial"
+      sidebar :help, partial: "custom_help_partial"
     end
     """
     When I am on the index page for posts

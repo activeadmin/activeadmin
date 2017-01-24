@@ -12,12 +12,12 @@ Feature: Authorizing Access using CanCan
 
       def initialize(user)
         # Manage Posts
-        can [:edit, :destroy], Post, :author_id => user.id
+        can [:edit, :destroy], Post, author_id: user.id
         can :read, Post
 
         # View Pages
-        can :read, ActiveAdmin::Page, :name => "Dashboard"
-        cannot :read, ActiveAdmin::Page, :name => "No Access"
+        can :read, ActiveAdmin::Page, name: "Dashboard"
+        cannot :read, ActiveAdmin::Page, name: "No Access"
       end
 
     end

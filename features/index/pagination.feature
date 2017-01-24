@@ -48,7 +48,7 @@ Feature: Index Pagination
     """
       ActiveAdmin.register Post do
         config.per_page = 10
-        index :pagination_total => false do
+        index pagination_total: false do
         end
       end
     """
