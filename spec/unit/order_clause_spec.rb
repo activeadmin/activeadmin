@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe ActiveAdmin::OrderClause do
-  subject { described_class.new clause }
+  subject { described_class.new(config, clause) }
 
   let(:application) { ActiveAdmin::Application.new }
-  let(:namespace)   { ActiveAdmin::Namespace.new application, :admin }
-  let(:config)      { ActiveAdmin::Resource.new namespace, Post }
+  let(:namespace) { ActiveAdmin::Namespace.new application, :admin }
+  let(:config) { ActiveAdmin::Resource.new namespace, Post }
 
   describe 'id_asc (existing column)' do
     let(:clause) { 'id_asc' }
@@ -23,7 +23,7 @@ describe ActiveAdmin::OrderClause do
     end
 
     specify '#to_sql prepends table name' do
-      expect(subject.to_sql(config)).to eq '"posts"."id" asc'
+      expect(subject.to_sql).to eq '"posts"."id" asc'
     end
   end
 
@@ -43,7 +43,7 @@ describe ActiveAdmin::OrderClause do
     end
 
     specify '#to_sql' do
-      expect(subject.to_sql(config)).to eq '"virtual_column" asc'
+      expect(subject.to_sql).to eq '"virtual_column" asc'
     end
   end
 
@@ -63,7 +63,7 @@ describe ActiveAdmin::OrderClause do
     end
 
     it 'converts to sql' do
-      expect(subject.to_sql(config)).to eq %Q("hstore_col"->'field' desc)
+      expect(subject.to_sql).to eq %Q("hstore_col"->'field' desc)
     end
   end
 

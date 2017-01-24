@@ -209,11 +209,10 @@ module ActiveAdmin
 
       def apply_sorting(chain)
         params[:order] ||= active_admin_config.sort_order
-
-        order_clause = OrderClause.new params[:order]
+        order_clause = active_admin_config.order_clause.new(active_admin_config, params[:order])
 
         if order_clause.valid?
-          chain.reorder(order_clause.to_sql(active_admin_config))
+          order_clause.apply(chain)
         else
           chain # just return the chain
         end

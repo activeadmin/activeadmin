@@ -107,6 +107,9 @@ module ActiveAdmin
     # Whether to display 'Current Filters' on search screen
     inheritable_setting :current_filters, true
 
+    # class to handle ordering
+    inheritable_setting :order_clause, ActiveAdmin::OrderClause
+
     # Request parameters that are permitted by default
     inheritable_setting :permitted_params, [
       :utf8, :_method, :authenticity_token, :commit, :id
