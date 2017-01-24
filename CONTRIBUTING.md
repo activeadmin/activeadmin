@@ -140,7 +140,7 @@ but here's the suggested workflow:
 ```sh
 git checkout 325-add-japanese-translations
 git pull --rebase upstream master
-git push -f 325-add-japanese-translations
+git push --force-with-lease 325-add-japanese-translations
 ```
 
 ### 9. Merging a PR (maintainers only)
