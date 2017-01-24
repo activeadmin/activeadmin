@@ -111,14 +111,24 @@ module ActiveAdmin
     # You can treat everything within the block as a standard Rails controller
     # action.
     #
-    def action(set, name, options = {}, &block)
-      set << ControllerAction.new(name, options)
+    def action(actions_set, name, options = {}, &block)
+      action = ControllerAction.new(name, options)
+      name, http_verb = action.name, action.http_verb
+      actions_set << action
+
       title = options.delete(:title)
 
       controller do
         callback = ActiveAdmin::Dependency.rails >= 4 ? :before_action : :before_filter
         send(callback, only: [name]) { @page_title = title } if title
-        define_method(name, &block || Proc.new{})
+
+        block ||= Proc.new {}
+
+        if public_method_defined? name
+          add_behaviour_to_action(name, http_verb, &block)
+        else
+          define_method(name, &block)
+        end
       end
     end
 

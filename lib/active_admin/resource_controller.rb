@@ -5,6 +5,7 @@ require 'active_admin/resource_controller/scoping'
 require 'active_admin/resource_controller/streaming'
 require 'active_admin/resource_controller/sidebars'
 require 'active_admin/resource_controller/resource_class_methods'
+require 'active_admin/resource_controller/action_verb_combiner.rb'
 
 module ActiveAdmin
   # All Resources Controller inherits from this controller.
@@ -22,6 +23,7 @@ module ActiveAdmin
     include Streaming
     include Sidebars
     extend  ResourceClassMethods
+    extend  ActionVerbCombiner
 
     def self.active_admin_config=(config)
       if @active_admin_config = config
