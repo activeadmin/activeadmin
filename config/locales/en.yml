@@ -30,7 +30,9 @@ en:
         starts_with: "Starts with"
         ends_with: "Ends with"
         greater_than: "Greater than"
+        gteq_date: "Greater than or equal to"
         less_than: "Less than"
+        lteq_date: "Less than or equal to"
     search_status:
       headline: "Search status:"
       current_scope: "Scope:"
