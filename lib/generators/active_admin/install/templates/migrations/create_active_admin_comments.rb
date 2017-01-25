@@ -1,4 +1,7 @@
-class CreateActiveAdminComments < ActiveRecord::Migration
+parent_class = ActiveRecord::Migration
+parent_class = parent_class[5.0] if Rails::VERSION::MAJOR >= 5
+
+class CreateActiveAdminComments < parent_class
   def self.up
     create_table :active_admin_comments do |t|
       t.string :namespace
