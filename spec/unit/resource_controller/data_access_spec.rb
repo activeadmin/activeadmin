@@ -20,6 +20,22 @@ describe ActiveAdmin::ResourceController::DataAccess do
       expect(chain).to receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
       controller.send :apply_filtering, chain
     end
+
+    context "params includes empty values" do
+      let(:params) do
+        { q: {id_eq: 1, position_eq: ""} }
+      end
+      it "should return relation without empty filters" do
+        expect(Post).to receive(:ransack).with(params[:q]).once.and_wrap_original do |original, *args|
+          chain  = original.call(*args)
+          expect(chain.conditions.size).to eq(1)
+          chain
+        end
+        controller.send :apply_filtering, Post
+      end
+    end
+
+
   end
 
   describe "sorting" do
