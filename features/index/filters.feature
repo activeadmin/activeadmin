@@ -158,4 +158,24 @@ Feature: Index Filtering
     And I should see "Non-Fiction" within ".index_table"
     And the "Jane Doe" checkbox should be checked
 
+  Scenario: Enabling filters status sidebar
+    Given an index configuration of:
+    """
+      ActiveAdmin.application.current_filters = false
+      ActiveAdmin.register Post do
+        config.current_filters = true
+      end
+    """
+    And I press "Filter"
+    Then I should see a sidebar titled "Search Status:"
 
+  Scenario: Disabling filters status sidebar
+    Given an index configuration of:
+    """
+      ActiveAdmin.application.current_filters = true
+      ActiveAdmin.register Post do
+        config.current_filters = false
+      end
+    """
+    And I press "Filter"
+    Then I should not see a sidebar titled "Search Status:"
