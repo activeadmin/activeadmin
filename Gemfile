@@ -15,9 +15,9 @@ gem 'test-unit', '~> 3.0' if rails_major == '3'
 
 if rails_major == '5'
   # Note: when updating this list, be sure to also update the README
-  gem 'sass-rails',          github: 'rails/sass-rails'
-  gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-  gem 'ransack',             github: 'activerecord-hackery/ransack'
+  gem 'sass-rails',          git: 'https://github.com/rails/sass-rails'
+  gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
+  gem 'ransack',             git: 'https://github.com/activerecord-hackery/ransack'
 end
 
 platform :ruby_19 do # Remove this block when we drop support for Ruby 1.9
@@ -33,6 +33,9 @@ gem 'cancan'
 gem 'devise', rails_major == '5' ? '> 4.x' : '~> 3.5'
 gem 'draper', rails_major == '5' ? '> 3.x' : '~> 2.1'
 gem 'pundit'
+
+# Until https://github.com/erikhuda/thor/issues/538 fixed
+gem 'thor', '<= 0.19.1'
 
 # Utility gems used in both development & test environments
 gem 'rake'
@@ -74,7 +77,6 @@ group :test do
   gem 'guard-rspec', require: false
   gem 'listen', '~> 2.7', platforms: [:ruby_19, :jruby]
   gem 'jasmine'
-  gem 'phantomjs', '1.9.8.0'                # Same version as Travis CI's pre-installed version
   gem 'jslint_on_rails'
   gem 'launchy'
   gem 'rails-i18n'                          # Provides default i18n for many languages

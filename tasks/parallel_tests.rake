@@ -20,7 +20,7 @@ namespace :parallel do
   def parallel_tests_setup?
     require 'rails/version'
     database_config = File.join "spec", "rails", "rails-#{Rails::VERSION::STRING}", "config", "database.yml"
-    File.exists?(database_config) && File.read(database_config).include?("TEST_ENV_NUMBER")
+    File.exist?(database_config) && File.read(database_config).include?("TEST_ENV_NUMBER")
   end
 
   desc "Setup parallel_tests DBs"

@@ -129,6 +129,10 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
   config.action_mailer.default_url_options = {host: 'example.com'}
   config.assets.digest = false
 
+  if ActiveAdmin::Dependency.rails? '>= 4.1.0'
+    config.active_record.maintain_test_schema = false
+  end
+
 RUBY
 
 # Add our local Active Admin to the load path
@@ -169,7 +173,7 @@ remove_file 'public/index.html' if File.exists? 'public/index.html' # remove onc
 # https://github.com/plataformatec/devise/issues/2554
 gsub_file 'config/initializers/devise.rb', /# config.secret_key =/, 'config.secret_key ='
 
-rake 'db:migrate'
+rake "db:drop db:create db:migrate", env: ENV['RAILS_ENV'] || 'development'
 
 if ENV['INSTALL_PARALLEL']
   inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'test.sqlite3'
