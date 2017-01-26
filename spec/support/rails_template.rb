@@ -135,13 +135,15 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
 
 RUBY
 
-# Add our local Active Admin to the load path
-inject_into_file 'config/environment.rb', <<-RUBY, after: "require File.expand_path('../application', __FILE__)"
+# Add our local Active Admin to the application
+gem 'activeadmin', path: '../..'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
+gem 'devise'
 
-$LOAD_PATH.unshift '#{File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'lib'))}'
-require 'active_admin'
+run 'bundle install'
 
-RUBY
+# Setup Active Admin
+generate 'active_admin:install'
 
 # Force strong parameters to raise exceptions
 inject_into_file 'config/application.rb', <<-RUBY, after: 'class Application < Rails::Application'
@@ -158,10 +160,6 @@ directory File.expand_path('../templates/admin', __FILE__), 'app/admin'
 
 # Add predefined policies
 directory File.expand_path('../templates/policies', __FILE__), 'app/policies'
-
-$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
-
-generate 'active_admin:install'
 
 if ENV['RAILS_ENV'] != 'test'
   inject_into_file 'config/routes.rb', "\n  root to: redirect('admin')", after: /.*routes.draw do/

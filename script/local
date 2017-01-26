@@ -50,4 +50,4 @@ RAILS_COMMANDS = %w{generate console server dbconsole g c s runner}
 args = RAILS_COMMANDS.include?(ARGV[0]) ? ["rails", ARGV].flatten : ARGV
 
 # Run the command
-exec "cd test-rails-app && GEMFILE=../Gemfile #{args.join(" ")}"
+exec "cd test-rails-app && #{args.join(" ")}"
