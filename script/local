@@ -31,7 +31,7 @@ system "mkdir #{dir}" unless File.exist?(dir)
 # Create the sample rails app if it doesn't already exist
 unless File.exist? path
   args = %w[
-    -m\ spec/support/rails_template_with_data.rb
+    -m spec/support/rails_template_with_data.rb
     --skip-bundle
     --skip-git
     --skip-listen
