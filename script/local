@@ -32,7 +32,6 @@ system "mkdir #{dir}" unless File.exist?(dir)
 unless File.exist? path
   args = %w[
     -m\ spec/support/rails_template_with_data.rb
-    --skip-gemfile
     --skip-bundle
     --skip-git
     --skip-listen
