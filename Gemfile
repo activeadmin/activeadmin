@@ -57,7 +57,7 @@ group :development do
 
   # Flamegraph dependency
   gem 'stackprof', platforms: [:mri_21, :mri_22, :mri_23], require: false
-  gem 'fast_track', platforms: [:mri_19, :mri_20], require: false
+  gem 'fast_stack', platforms: [:mri_19, :mri_20], require: false
 
   # Documentation
   gem 'yard'                                # Documentation generator
@@ -68,19 +68,15 @@ end
 group :test do
   gem 'capybara'
   gem 'simplecov', require: false           # Test coverage generator. Go to /coverage/ after running tests
-  gem 'json', '~> 1.8', require: false      # Required by simplecov, > 2 removes support for Ruby 1.9
   gem 'codecov', require: false             # Test coverage website. Go to https://codecov.io
-  gem 'tins', '~> 1.6.0', require: false    # Required by coveralls, > 1.6.0 removes support for Ruby 1.9
   gem 'cucumber-rails', require: false
   gem 'cucumber', '1.3.20'
   gem 'database_cleaner'
-  gem 'guard-rspec', require: false
-  gem 'listen', '~> 2.7', platforms: [:ruby_19, :jruby]
   gem 'jasmine'
   gem 'jslint_on_rails'
   gem 'launchy'
   gem 'rails-i18n'                          # Provides default i18n for many languages
-  gem 'rspec-rails', '>= 3.5.0.beta1'
+  gem 'rspec-rails'
   gem 'i18n-spec'
   gem 'shoulda-matchers', '<= 2.8.0'
   gem 'sqlite3', platforms: :mri

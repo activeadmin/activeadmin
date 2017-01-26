@@ -21,10 +21,11 @@ script:
   - bundle exec rake test
 
 rvm:
-  - jruby-9.1.6.0
+  - jruby-9.1.7.0
   - 1.9.3
   - 2.2.6
   - 2.3.3
+  - 2.4.0
 
 env:
   matrix:
@@ -44,9 +45,21 @@ matrix:
     - rvm: 1.9.3
       env: RAILS=5.0.1
 
+    - rvm: 2.4.0
+      env: RAILS=3.2.22
+
+    - rvm: 2.4.0
+      env: RAILS=4.0.13
+
+    - rvm: 2.4.0
+      env: RAILS=4.1.16
+
   allow_failures:
-    - rvm: jruby-9.1.6.0
+    - rvm: jruby-9.1.7.0
       env: RAILS=5.0.1
+
+    - rvm: 2.4.0
+      env: RAILS=4.2.7.1
 
 notifications:
   irc:
