@@ -157,13 +157,11 @@ module ActiveAdmin
       end
 
       def add_search_status_sidebar_section
-        if current_filters_enabled?
-          self.sidebar_sections << search_status_section
-        end
+        self.sidebar_sections << search_status_section
       end
 
       def search_status_section
-        ActiveAdmin::SidebarSection.new I18n.t("active_admin.search_status.headline"), only: :index, if: -> { params[:q] || params[:scope] } do
+        ActiveAdmin::SidebarSection.new I18n.t("active_admin.search_status.headline"), only: :index, if: -> {active_admin_config.current_filters_enabled? && (params[:q] || params[:scope]) } do
           active = ActiveAdmin::Filters::Active.new(resource_class, params)
 
           span do
