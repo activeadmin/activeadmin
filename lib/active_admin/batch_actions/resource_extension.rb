@@ -51,18 +51,6 @@ module ActiveAdmin
         @batch_actions = {}
       end
 
-      # Path to the batch action itself
-      def batch_action_path(params = {}, url_options = {})
-        uri = URI(route_collection_path(params, url_options))
-        uri.path += "/batch_action"
-
-        query = params.slice(:q, :scope)
-        query = query.permit! if query.respond_to? :permit!
-        query = query.to_h if Rails::VERSION::MAJOR >= 5
-        uri.query = [uri.query, query.to_param].compact.join('&') if query.present?
-        uri.to_s
-      end
-
       private
 
       # @return [ActiveAdmin::BatchAction] The default "delete" action

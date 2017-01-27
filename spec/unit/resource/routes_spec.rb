@@ -101,6 +101,27 @@ module ActiveAdmin
           expect(config.route_instance_path(tagging)).to eq "/admin/categories/1/posts/3/taggings/4"
         end
       end
+
+      context "for batch_action handler" do
+        let! :config do
+          ActiveAdmin.register Post do
+            belongs_to :category
+          end
+        end
+
+        before do
+          config.batch_actions= true
+          reload_routes!
+        end
+
+        it "should include :scope and :q params" do
+          params = { category_id: 1, q: { name_equals: "Any" }, scope: :all }
+          additional_params = { locale: 'en' }
+          batch_action_path = "/admin/categories/1/posts/batch_action?locale=en&q%5Bname_equals%5D=Any&scope=all"
+
+          expect(config.route_batch_action_path(params, additional_params)).to eq batch_action_path
+        end
+      end
     end
   end
 end

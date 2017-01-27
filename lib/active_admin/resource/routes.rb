@@ -8,6 +8,10 @@ module ActiveAdmin
         RouteBuilder.new(self).collection_path(params, additional_params)
       end
 
+      def route_batch_action_path(params = {}, additional_params = {})
+        RouteBuilder.new(self).batch_action_path(params, additional_params)
+      end
+
       # @param resource [ActiveRecord::Base] the instance we want the path of
       # @return [String] the path to this resource collection page
       # @example "/admin/posts/1"
@@ -44,6 +48,16 @@ module ActiveAdmin
           )
 
           routes.public_send route_name, *route_collection_params(params), additional_params
+        end
+
+        def batch_action_path(params, additional_params = {})
+          path = resource.resources_configuration[:self][:route_collection_name]
+          route_name = route_name(path, action: :batch_action)
+
+          query = params.slice(:q, :scope)
+          query = query.permit! if query.respond_to? :permit!
+          query = query.to_h if Rails::VERSION::MAJOR >= 5
+          routes.public_send route_name, *route_collection_params(params), additional_params.merge(query)
         end
 
         # @return [String] the path to this resource collection page
