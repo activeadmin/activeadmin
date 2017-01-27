@@ -16,6 +16,10 @@ describe ActiveAdmin::ViewHelpers::DisplayHelper do
     true
   end
 
+  def url_options
+    { locale: nil }
+  end
+
   describe '#display_name' do
     ActiveAdmin::Application.new.display_name_methods.map(&:to_s).each do |m|
       it "should return #{m} when defined" do
