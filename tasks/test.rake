@@ -6,8 +6,7 @@ task :setup, :parallel do |t, opts|
   else
     system 'mkdir -p spec/rails'
     args = %w[
-      -m\ spec/support/rails_template.rb
-      --skip-gemfile
+      -m spec/support/rails_template.rb
       --skip-bundle
       --skip-git
       --skip-listen

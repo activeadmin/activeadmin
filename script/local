@@ -5,16 +5,16 @@ require File.expand_path('../../spec/support/detect_rails_version', __FILE__)
 
 unless ARGV[0]
   puts <<-EOF
-Usage: ./script/#{__FILE__} COMMAND [ARGS]
+Usage: #{__FILE__} COMMAND [ARGS]
 
 The command will be run in the context of the local rails
 app stored in test-rails-app.
 
 Examples:
 
-./script/local server
-./script/local c
-./script/local rake db:migrate
+#{__FILE__} server
+#{__FILE__} c
+#{__FILE__} rake db:migrate
   EOF
   exit(1)
 end
@@ -31,8 +31,7 @@ system "mkdir #{dir}" unless File.exist?(dir)
 # Create the sample rails app if it doesn't already exist
 unless File.exist? path
   args = %w[
-    -m\ spec/support/rails_template_with_data.rb
-    --skip-gemfile
+    -m spec/support/rails_template_with_data.rb
     --skip-bundle
     --skip-git
     --skip-listen
@@ -51,4 +50,4 @@ RAILS_COMMANDS = %w{generate console server dbconsole g c s runner}
 args = RAILS_COMMANDS.include?(ARGV[0]) ? ["rails", ARGV].flatten : ARGV
 
 # Run the command
-exec "cd test-rails-app && GEMFILE=../Gemfile #{args.join(" ")}"
+exec "cd test-rails-app && #{args.join(" ")}"
