@@ -135,7 +135,7 @@ describe ActiveAdmin::Scope do
 
       it "should properly render the proc" do
         scope = ActiveAdmin::Scope.new proc{ Date.today.strftime '%A' }, :foobar
-        expect(scope.name).to eq Date.today.strftime '%A'
+        expect(scope.name.call).to eq Date.today.strftime '%A'
       end
     end
 

@@ -14,6 +14,10 @@ Then /^I should see the scope "([^"]*)" with the count (\d+)$/ do |name, count|
   step %{I should see "#{count}" within ".scopes .#{name} .count"}
 end
 
+Then /^I should see the scope with label "([^"]*)"$/ do |label|
+  expect(page).to have_link(label)
+end
+
 Then /^I should see the scope "([^"]*)" with no count$/ do |name|
   name = name.tr(" ", "").underscore.downcase
   expect(page).to     have_css ".scopes .#{name}"
