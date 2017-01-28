@@ -3,6 +3,8 @@ module ActiveAdmin
     attr_reader :field, :order
 
     def initialize(clause)
+      @@postgres ||= ActiveRecord::Base.connection.instance_of?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
+
       clause =~ /^([\w\_\.]+)(->'\w+')?_(desc|asc)$/
       @column = $1
       @op = $2
@@ -20,7 +22,10 @@ module ActiveAdmin
       table_column = (@column =~ /\./) ? @column :
         [table, active_admin_config.resource_quoted_column_name(@column)].compact.join(".")
 
-      [table_column, @op, ' ', @order].compact.join
+      order = @order
+      order = "desc nulls last" if order == "desc" and @@postgres
+
+      [table_column, @op, ' ', order].compact.join
     end
   end
 end
