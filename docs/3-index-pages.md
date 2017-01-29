@@ -100,6 +100,16 @@ the collection as a proc to be called at render time.
 filter :author, as: :check_boxes, collection: proc { Author.all }
 ```
 
+Also, if you don't need the select with the options 'contains', 'equals', 'starts_with' or 'ends_with'
+just add the option to the filter name with an underscore.
+
+For example:
+```ruby
+filter :name_equals
+# or
+filter :name_contains
+```
+
 You can change the filter label by passing a label option:
 
 ```ruby
