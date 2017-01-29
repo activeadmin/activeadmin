@@ -169,3 +169,11 @@ ActiveAdmin.setup do |config|
   end
 end
 ```
+
+## Footer Customization
+
+By default, Active Admin displays a "Powered by ActiveAdmin" message on every
+page. You can override this message and show domain-specific messaging:
+```ruby
+config.footer = "MyApp Revision v1.3"
+```
