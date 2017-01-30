@@ -29,21 +29,26 @@ git checkout -b 325-add-japanese-translations
 Install the development dependencies:
 
 ```sh
-bundle install
+script/appraisal install
 ```
 
 Now you should be able to run the entire suite using:
 
 ```sh
-rake test
+script/appraisal rails_50 rake test
 ```
 
-Which will generate a rails application in `spec/rails` to run the tests against.
+NOTE: You can also use `rails_42` or the other Rails versions defined in the
+`Appraisals` file, but initial focus on the latest supported Rails version is
+preferred.
+
+The previous command will generate a rails application in `spec/rails` to run
+the tests against.
 
 If your tests are passing locally but they're failing on Travis, reset your test environment:
 
 ```sh
-rm -rf spec/rails && bundle update
+rm -rf spec/rails && script/appraisal update
 ```
 
 ### 4. Implement your fix or feature
@@ -59,19 +64,11 @@ a look at your changes in a browser.
 To boot up a test Rails app:
 
 ```sh
-script/local server
+script/appraisal rails_50 script/local server
 ```
 
 This will automatically create a Rails app if none already exists, and store it in the
 `.test-rails-apps` folder. The currently active app is symlinked to `test-rails-app`.
-
-If you have any Bundler issues, call the `use_rails` script then prepend
-the version of rails you would like to use in an environment variable:
-
-```sh
-script/use_rails 4.0.0
-RAILS=4.0.0 script/local server
-```
 
 You should now be able to open <http://localhost:3000/admin> in your browser. You can log in using:
 
@@ -84,13 +81,13 @@ If you need to perform any other commands on the test application, use the
 To boot the rails console:
 
 ```sh
-script/local console
+script/appraisal rails_50 script/local console
 ```
 
 Or to migrate the database:
 
 ```sh
-script/local rake db:migrate
+script/appraisal rails_50 script/local rake db:migrate
 ```
 
 ### 6. Run tests against major supported rails versions
@@ -99,7 +96,7 @@ Once you've implemented your code, got the tests passing, previewed it in a
 browser, you're ready to test it against multiple versions of Rails.
 
 ```sh
-rake test:major_supported_rails
+script/appraisal rake test
 ```
 
 This runs our test suite against a couple of major versions of Rails.
