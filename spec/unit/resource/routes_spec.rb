@@ -85,39 +85,6 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     end
   end
 
-  context "when the resources belongs to two other resources" do
-    let(:config) { namespace.resource_for('Tagging') }
-
-    let :tagging do
-      Tagging.new do |t|
-        t.id = 4
-        t.post = Post.new do |p|
-          p.id = 3
-          p.category = Category.new{ |c| c.id = 1 }
-        end
-      end
-    end
-
-    before do
-      load_resources do
-        ActiveAdmin.register Category
-        ActiveAdmin.register Post
-        ActiveAdmin.register Tagging do
-          belongs_to :category
-          belongs_to :post
-        end
-      end
-    end
-
-    it "should nest the collection path" do
-      expect(config.route_collection_path(category_id: 1, post_id: 3)).to eq "/admin/categories/1/posts/3/taggings"
-    end
-
-    it "should nest the instance path" do
-      expect(config.route_instance_path(tagging)).to eq "/admin/categories/1/posts/3/taggings/4"
-    end
-  end
-
   context "for batch_action handler" do
     before do
       load_resources { config.batch_actions = true }

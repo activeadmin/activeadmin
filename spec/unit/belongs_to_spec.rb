@@ -9,10 +9,10 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
   end
 
   let(:namespace) { ActiveAdmin.application.namespace(:admin) }
+  let(:user_config){ ActiveAdmin.register User }
+  let(:post_config){ ActiveAdmin.register Post do belongs_to :user end }
+  let(:belongs_to){ post_config.belongs_to_config }
 
-  let(:user_config){ namespace.resource_for('User') }
-  let(:post_config){ namespace.resource_for('Post') }
-  let(:belongs_to){ post_config.belongs_to_config.first }
 
   it "should have an owner" do
     expect(belongs_to.owner).to eq post_config

@@ -22,7 +22,7 @@ module ActiveAdmin
       # Get's called through a before filter
       def set_current_tab
         @current_tab = if current_menu && active_admin_config.belongs_to? && parent?
-          parent_item = active_admin_config.belongs_to_config.first.target.menu_item
+          parent_item = active_admin_config.belongs_to_config.target.menu_item
           if current_menu.include? parent_item
             parent_item
           else
