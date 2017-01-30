@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'appraisal'
-
 # Optional dependencies
 gem 'cancan'
 gem 'pundit'
@@ -35,6 +33,7 @@ group :development do
   gem 'yard'                                # Documentation generator
   gem 'redcarpet', platforms: :mri          # Markdown implementation (for yard)
   gem 'kramdown', platforms: :jruby         # Markdown implementation (for yard)
+  gem 'appraisal', require: false
 end
 
 group :test do

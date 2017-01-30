@@ -2,7 +2,6 @@
 
 source "https://rubygems.org"
 
-gem "appraisal"
 gem "cancan"
 gem "pundit"
 gem "thor", "<= 0.19.1"
@@ -26,6 +25,7 @@ group :development do
   gem "yard"
   gem "redcarpet", :platforms => :mri
   gem "kramdown", :platforms => :jruby
+  gem "appraisal", :require => false
 end
 
 group :test do
