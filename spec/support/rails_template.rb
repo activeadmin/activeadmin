@@ -129,7 +129,7 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
   config.action_mailer.default_url_options = {host: 'example.com'}
   config.assets.digest = false
 
-  if ActiveAdmin::Dependency.rails? '>= 4.1.0'
+  if Rails::VERSION::MAJOR >= 4 && Rails::VERSION::MINOR >= 1
     config.active_record.maintain_test_schema = false
   end
 
