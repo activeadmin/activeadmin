@@ -164,6 +164,24 @@ index do
 end
 ```
 
+## Custom sorting 
+
+It is also possible to use database specific expressions and options for sorting by column
+
+```ruby
+order_by(:title) do |order_clause|
+   if order_clause.order == 'desc'
+     [order_clause.to_sql, 'NULLS LAST'].join(' ')
+   else
+     [order_clause.to_sql, 'NULLS FIRST'].join(' ')
+   end
+end
+
+index do
+  column :title
+end
+```
+
 ## Associated Sorting
 
 You're normally able to sort columns alphabetically, but by default you
@@ -186,6 +204,7 @@ index do
   column :publisher, sortable: 'publishers.name'
 end
 ```
+
 
 ## Showing and Hiding Columns
 

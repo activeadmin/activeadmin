@@ -19,6 +19,7 @@
 
 #### Minor
 
+* Support for custom sorting strategies [#4768][] by [@Fivell][]
 * Stream CSV downloads as they're generated [#3038][] by [@craigmcnamara][]
   * Disable streaming in development for easier debugging [#3535][] by [@seanlinsley][]
 * Improved code reloading [#3783][] by [@chancancode][]

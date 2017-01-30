@@ -60,6 +60,35 @@ describe ActiveAdmin::ResourceController::DataAccess do
       end
     end
 
+    context "custom strategy" do
+      before do
+        expect(controller.send(:active_admin_config)).to receive(:ordering).twice.and_return(
+          {
+            published_date: proc do |order_clause|
+              [order_clause.to_sql, 'NULLS LAST'].join(' ') if order_clause.order == 'desc'
+            end
+          }.with_indifferent_access
+        )
+      end
+
+      context "when params applicable" do
+        let(:params) {{ order: "published_date_desc" }}
+        it "reorders chain" do
+          chain = double "ChainObj"
+          expect(chain).to receive(:reorder).with('"posts"."published_date" desc NULLS LAST').once.and_return(Post.search)
+          controller.send :apply_sorting, chain
+        end
+      end
+      context "when params not applicable" do
+        let(:params) {{ order: "published_date_asc" }}
+        it "reorders chain" do
+          chain = double "ChainObj"
+          expect(chain).to receive(:reorder).with('"posts"."published_date" asc').once.and_return(Post.search)
+          controller.send :apply_sorting, chain
+        end
+      end
+    end
+
   end
 
   describe "scoping" do

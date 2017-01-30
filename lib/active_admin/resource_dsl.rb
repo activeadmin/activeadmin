@@ -8,6 +8,25 @@ module ActiveAdmin
 
     private
 
+    # Redefine sort behaviour for column
+    #
+    # For example:
+    #
+    #   # nulls last
+    #   order_by(:age) do |order_clause|
+    #     [order_clause.to_sql, 'NULLS LAST'].join(' ')  if order_clause.order == 'desc'
+    #   end
+    #
+    #   # by last_name but in the case that there is no last name, by first_name.
+    #   order_by(:full_name) do |order_clause|
+    #     ['COALESCE(NULLIF(last_name, ''), first_name), first_name', order_clause.order].join(' ')
+    #   end
+    #
+    #
+    def order_by(column, &block)
+      config.ordering[column] = block
+    end
+
     def belongs_to(target, options = {})
       config.belongs_to(target, options)
     end

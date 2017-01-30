@@ -91,6 +91,10 @@ describe ActiveAdmin::Application do
     expect(application.comments).to eq true
   end
 
+  it "should have default order clause class" do
+    expect(application.order_clause).to eq ActiveAdmin::OrderClause
+  end
+
   describe "authentication settings" do
 
     it "should have no default current_user_method" do
