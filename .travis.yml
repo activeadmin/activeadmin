@@ -46,20 +46,20 @@ matrix:
       gemfile: gemfiles/rails_50.gemfile
 
     - rvm: 2.4.0
-      env: RAILS=3.2.22
+      gemfile: gemfiles/rails_32.gemfile
 
     - rvm: 2.4.0
-      env: RAILS=4.0.13
+      gemfile: gemfiles/rails_40.gemfile
 
     - rvm: 2.4.0
-      env: RAILS=4.1.16
+      gemfile: gemfiles/rails_41.gemfile
 
   allow_failures:
     - rvm: jruby-9.1.7.0
       gemfile: gemfiles/rails_50.gemfile
 
     - rvm: 2.4.0
-      env: RAILS=4.2.7.1
+      gemfile: gemfiles/rails_42.gemfile
 
 notifications:
   irc:
