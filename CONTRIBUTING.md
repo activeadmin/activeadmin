@@ -51,6 +51,13 @@ If your tests are passing locally but they're failing on Travis, reset your test
 rm -rf spec/rails && script/appraisal update
 ```
 
+If you find running everything through appraisal too verbose, you can also do
+`export BUNDLE_GEMFILE=gemfiles/rails_50.gemfile` and then run all commands
+directly (`bundle exec rake test`, `bundle exec rake setup`) without Appraisal.
+
+If you find issues apparently related to `bundler`, check the `.travis.yml` file
+and make sure you're using exactly the same version Travis is using.
+
 ### 4. Implement your fix or feature
 
 At this point, you're ready to make your changes! Feel free to ask for help;
