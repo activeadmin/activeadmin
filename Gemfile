@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'appraisal'
-
 # Optional dependencies
 gem 'cancan'
 gem 'pundit'
@@ -19,22 +17,18 @@ gem 'pry'                                   # Easily debug from your console wit
 group :development do
   # Debugging
   gem 'better_errors',                      # Web UI to debug exceptions. Go to /__better_errors to access the latest one
-      platforms: [:ruby_20, :ruby_21, :ruby_22, :ruby_23]
+      platforms: [:ruby_20, :ruby_21, :ruby_22, :ruby_23, :ruby_24]
 
   gem 'binding_of_caller', platforms: :mri  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
 
   # Performance
   gem 'rack-mini-profiler'                  # Inline app profiler. See ?pp=help for options.
-  gem 'flamegraph', platforms: :mri         # Flamegraph visualiztion: ?pp=flamegraph
-
-  # Flamegraph dependency
-  gem 'stackprof', platforms: [:mri_21, :mri_22, :mri_23], require: false
-  gem 'fast_stack', platforms: [:mri_19, :mri_20], require: false
 
   # Documentation
   gem 'yard'                                # Documentation generator
   gem 'redcarpet', platforms: :mri          # Markdown implementation (for yard)
   gem 'kramdown', platforms: :jruby         # Markdown implementation (for yard)
+  gem 'appraisal', require: false
 end
 
 group :test do
