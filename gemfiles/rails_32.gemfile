@@ -19,9 +19,6 @@ group :development do
   gem "better_errors", :platforms => [:ruby_20, :ruby_21, :ruby_22, :ruby_23]
   gem "binding_of_caller", :platforms => :mri
   gem "rack-mini-profiler"
-  gem "flamegraph", :platforms => :mri
-  gem "stackprof", :platforms => [:mri_21, :mri_22, :mri_23], :require => false
-  gem "fast_stack", :platforms => [:mri_19, :mri_20], :require => false
   gem "yard"
   gem "redcarpet", :platforms => :mri
   gem "kramdown", :platforms => :jruby

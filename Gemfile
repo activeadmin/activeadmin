@@ -23,11 +23,6 @@ group :development do
 
   # Performance
   gem 'rack-mini-profiler'                  # Inline app profiler. See ?pp=help for options.
-  gem 'flamegraph', platforms: :mri         # Flamegraph visualiztion: ?pp=flamegraph
-
-  # Flamegraph dependency
-  gem 'stackprof', platforms: [:mri_21, :mri_22, :mri_23], require: false
-  gem 'fast_stack', platforms: [:mri_19, :mri_20], require: false
 
   # Documentation
   gem 'yard'                                # Documentation generator
