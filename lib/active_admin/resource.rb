@@ -135,6 +135,10 @@ module ActiveAdmin
       @belongs_to ||= []
     end
 
+    def belongs_to_params
+      belongs_to_config.select{ |c| c.required? }.map{ |c| c.to_param }
+    end
+
     # Do we belong to another resource?
     def belongs_to?
       belongs_to_config.length > 0
