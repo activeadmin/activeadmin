@@ -21,8 +21,33 @@ Feature: Belongs To
     And I should see "Displaying 1 Post"
     And I should see a link to "Users" in the breadcrumb
     And I should see a link to "Jane Doe" in the breadcrumb
-    When I follow "Edit"
-    Then I should see a link to "Hello World" in the breadcrumb
+
+  Scenario: Updating a child resource page
+    Given a configuration of:
+    """
+      ActiveAdmin.register User
+      ActiveAdmin.register Post do
+        belongs_to :user
+        permit_params :title, :body, :published_date if Rails::VERSION::MAJOR >= 4
+
+        form do |f|
+          f.inputs "Your Post" do
+            f.input :title
+            f.input :body
+          end
+          f.inputs "Publishing" do
+            f.input :published_date
+          end
+          f.actions
+        end
+      end
+    """
+    When I go to the last author's last post page
+    And I follow "Edit Post"
+    And I should see the element "form[action='/admin/users/2/posts/2']"
+    And I should see a link to "Hello World" in the breadcrumb
+    When I press "Update Post"
+    Then I should see "Post was successfully updated."
 
   Scenario: Viewing a child resource page
     Given a configuration of:
