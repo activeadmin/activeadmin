@@ -68,10 +68,11 @@ module ActiveAdmin
     #
     def permit_params(*args, &block)
       param_key = config.param_key.to_sym
+      belongs_to_params =  config.belongs_to_params
 
       controller do
         define_method :permitted_params do
-          params.permit *active_admin_namespace.permitted_params,
+          params.permit *(active_admin_namespace.permitted_params + belongs_to_params),
             param_key => block ? instance_exec(&block) : args
         end
       end

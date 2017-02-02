@@ -39,6 +39,10 @@ module ActiveAdmin
       def required?
         !optional?
       end
+
+      def to_param
+        :"#{@target_name}_id"
+      end
     end
   end
 end
