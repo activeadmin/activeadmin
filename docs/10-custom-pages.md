@@ -71,6 +71,19 @@ ActiveAdmin.register_page "Calendar", namespace: :today
 ActiveAdmin.register_page "Calendar", namespace: false
 ```
 
+## Belongs To
+
+To nest the page within another resource, you can use the `belongs_to` method:
+
+```ruby
+ActiveAdmin.register Project
+ActiveAdmin.register_page "Status" do
+  belongs_to :project
+end
+```
+
+See also the [Belongs To](2-resource-customization.md#belongs-to) documentation and examples.
+
 ## Add a Sidebar
 
 See the [Sidebars](7-sidebars.md) documentation.

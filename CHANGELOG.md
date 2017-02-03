@@ -19,6 +19,7 @@
 
 #### Minor
 
+* Page supports belongs_to [#4759][] by [@Fivell][] and [@zorab47][]
 * Support for custom sorting strategies [#4768][] by [@Fivell][]
 * Stream CSV downloads as they're generated [#3038][] by [@craigmcnamara][]
   * Disable streaming in development for easier debugging [#3535][] by [@seanlinsley][]
@@ -105,6 +106,8 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#3731]: https://github.com/activeadmin/activeadmin/issues/3731
 [#3783]: https://github.com/activeadmin/activeadmin/issues/3783
 [#4187]: https://github.com/activeadmin/activeadmin/issues/4187
+[#4759]: https://github.com/activeadmin/activeadmin/pull/4759
+[#4768]: https://github.com/activeadmin/activeadmin/pull/4768
 [@PChambino]: https://github.com/PChambino
 [@TimPetricola]: https://github.com/TimPetricola
 [@chancancode]: https://github.com/chancancode
@@ -120,3 +123,4 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [@timoschilling]: https://github.com/timoschilling
 [@varyonic]: https://github.com/varyonic
 [@zorab47]: https://github.com/zorab47
+[@Fivell]: https://github.com/Fivell
