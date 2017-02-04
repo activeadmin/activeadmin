@@ -68,6 +68,32 @@ describe ActiveAdmin::Namespace, "registering a page" do
       it "should not create a menu item" do
         expect(menu["Status"]).to eq nil
       end
+    end # describe "disabling the menu"
+  end # describe "adding to the menu"
+
+  describe "adding as a belongs to" do
+    context "when not optional" do
+      before do
+        namespace.register_page "Reports" do
+          belongs_to :author
+        end
+      end
+
+      it "should be excluded from the menu" do
+        expect(menu["Reports"]).to be_nil
+      end
     end
-  end
+
+    context "when optional" do
+      before do
+        namespace.register_page "Reports" do
+          belongs_to :author, :optional => true
+        end
+      end
+
+      it "should be in the menu" do
+        expect(menu["Reports"]).to_not be_nil
+      end
+    end
+  end # describe "adding as a belongs to"
 end

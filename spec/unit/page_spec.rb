@@ -11,6 +11,7 @@ module ActiveAdmin
 
     let(:application){ ActiveAdmin::Application.new }
     let(:namespace){ Namespace.new(application, :admin) }
+    let(:page_name) { "Chocolate I lØve You!" }
 
     def config(options = {})
       @config ||= namespace.register_page("Chocolate I lØve You!", options)
@@ -70,6 +71,7 @@ module ActiveAdmin
       expect(config.belongs_to?).to eq false
     end
 
+
     it "should not have any action_items" do
       expect(config.action_items?).to eq false
     end
@@ -78,5 +80,52 @@ module ActiveAdmin
       expect(config.sidebar_sections?).to eq false
     end
 
+    context "with belongs to config" do
+      let!(:post_config) { namespace.register Post }
+      let!(:page_config) {
+        namespace.register_page page_name do
+          belongs_to :post
+        end
+      }
+
+      it "configures page with belongs_to" do
+        expect(page_config.belongs_to?).to be true
+      end
+
+      it "sets navigation menu to parent" do
+        expect(page_config.navigation_menu_name).to eq :post
+      end
+
+      it "builds a belongs_to relationship" do
+        belongs_to = page_config.belongs_to_config.first
+
+        expect(belongs_to.target).to eq(post_config)
+        expect(belongs_to.owner).to eq(page_config)
+        expect(belongs_to.optional?).to be_falsy
+      end
+
+      it "forwards belongs_to call to controller" do
+        options = { optional: true }
+        expect(page_config.controller).to receive(:belongs_to).with(:post, options)
+        page_config.belongs_to :post, options
+      end
+    end # context "with belongs to config" do
+
+    context "with optional belongs to config" do
+      let!(:post_config) { namespace.register Post }
+      let!(:page_config) {
+        namespace.register_page page_name do
+          belongs_to :post, optional: true
+        end
+      }
+
+      it "does not override default navigation menu" do
+        expect(page_config.navigation_menu_name).to eq(:default)
+      end
+    end # context "with optional belongs to config" do
+
+    it "has no belongs_to by default" do
+      expect(config.belongs_to?).to be_falsy
+    end
   end
 end
