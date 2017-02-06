@@ -49,7 +49,7 @@ module ActiveAdmin
           end
 
           def default_attribute_table_rows
-            resource.class.columns.collect{|column| column.name.to_sym }
+            active_admin_config.resource_columns
           end
         end
 

@@ -5,7 +5,10 @@ require 'rails_helper'
 RSpec.describe ActiveAdmin::CSVBuilder do
 
   describe '.default_for_resource using Post' do
-    let(:csv_builder) { ActiveAdmin::CSVBuilder.default_for_resource(Post).tap(&:exec_columns) }
+    let(:application){ ActiveAdmin::Application.new }
+    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+    let(:resource){ ActiveAdmin::Resource.new(namespace, Post, {}) }
+    let(:csv_builder) { ActiveAdmin::CSVBuilder.default_for_resource(resource).tap(&:exec_columns) }
 
     it 'returns a default csv_builder for Post' do
       expect(csv_builder).to be_a(ActiveAdmin::CSVBuilder)
@@ -18,8 +21,8 @@ RSpec.describe ActiveAdmin::CSVBuilder do
 
     it "has Post's content_columns" do
       csv_builder.columns[1..-1].each_with_index do |column, index|
-        expect(column.name).to eq Post.content_columns[index].name.humanize
-        expect(column.data).to eq Post.content_columns[index].name.to_sym
+        expect(column.name).to eq resource.content_columns[index].to_s.humanize
+        expect(column.data).to eq resource.content_columns[index]
       end
     end
 
@@ -32,7 +35,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       end
 
       it 'gets name from I18n' do
-        title_index = Post.content_columns.map(&:name).index('title') + 1 # First col is always id
+        title_index =  resource.content_columns.index(:title) + 1 # First col is always id
         expect(csv_builder.columns[title_index].name).to eq localized_name
       end
     end

@@ -109,7 +109,7 @@ module ActiveAdmin
       def default_filters
         result = []
         result.concat default_association_filters if namespace.include_default_association_filters
-        result.concat default_content_filters
+        result.concat content_columns
         result.concat custom_ransack_filters
         result
       end
@@ -121,7 +121,7 @@ module ActiveAdmin
           []
         end
       end
-
+      
       # Returns a default set of filters for the associations
       def default_association_filters
         if resource_class.respond_to?(:reflect_on_all_associations)
@@ -132,15 +132,6 @@ module ActiveAdmin
 
           filters = poly.map(&:foreign_type) + not_poly.map(&:name)
           filters.map &:to_sym
-        else
-          []
-        end
-      end
-
-      # Returns a default set of filters for the content columns
-      def default_content_filters
-        if resource_class.respond_to? :content_columns
-          resource_class.content_columns.map{ |c| c.name.to_sym }
         else
           []
         end

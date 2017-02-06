@@ -55,8 +55,6 @@ module ActiveAdmin
       def find_value(resource, attr)
         if attr.is_a? Proc
           attr.call resource
-        elsif attr =~ /\A(.+)_id\z/ && reflection_for(resource, $1.to_sym)
-          resource.public_send $1
         elsif resource.respond_to? attr
           resource.public_send attr
         elsif resource.respond_to? :[]
@@ -79,11 +77,6 @@ module ActiveAdmin
             display_name object
           end
         end
-      end
-
-      def reflection_for(resource, method)
-        klass = resource.class
-        klass.reflect_on_association method if klass.respond_to? :reflect_on_association
       end
 
       def boolean_attr?(resource, attr)
