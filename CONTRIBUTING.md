@@ -179,7 +179,6 @@ A PR can only be merged into master by a maintainer if:
   opened the PR, only one extra approval is needed.
 * It has no requested changes.
 * It is up to date with current master.
-* It has been opened for at least 48h.
 
 Any maintainer is allowed to merge a PR if all of these conditions are
 met.
