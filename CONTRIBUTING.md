@@ -66,7 +66,8 @@ bundle exec appraisal rails_42 rspec spec/unit/belongs_to_spec.rb
 The test run will generate a sample rails application in `spec/rails` to run the
 tests against.
 
-If your tests are passing locally but they're failing on Travis, reset your test environment:
+If your tests are passing locally but they're failing on Travis, reset your test
+environment:
 
 ```sh
 rm -rf spec/rails && bundle exec appraisal update
@@ -93,13 +94,16 @@ To boot up a test Rails app:
 bundle exec rake local server
 ```
 
-This will automatically create a Rails app if none already exists, and store it in the
-`.test-rails-apps` folder.
+This will automatically create a Rails app if none already exists, and store it
+in the `.test-rails-apps` folder.
 
-You should now be able to open <http://localhost:3000/admin> in your browser. You can log in using:
+You should now be able to open <http://localhost:3000/admin> in your browser.
+You can log in using:
 
-	User: admin@example.com
-	Password: password
+```
+User: admin@example.com
+Password: password
+```
 
 If you need to perform any other commands on the test application, just pass
 them to the `local` rake task. For example, to boot the rails console:
@@ -146,7 +150,9 @@ git rebase master
 git push --set-upstream origin 325-add-japanese-translations
 ```
 
-Finally, go to GitHub and [make a Pull Request](https://help.github.com/articles/creating-a-pull-request) :D
+Finally, go to GitHub and
+[make a Pull Request](https://help.github.com/articles/creating-a-pull-request)
+:D
 
 ### 8. Keeping your Pull Request updated
 
