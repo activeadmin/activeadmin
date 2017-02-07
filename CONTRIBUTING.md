@@ -51,10 +51,16 @@ bundle exec rake test
 This will automatically run the tests against Rails 5.0. But you can easily run
 tests against older versions of Rails too.
 
-For example, to run tests against Rails 4.2, do:
+For example, you can run all tests against Rails 4.2:
 
 ```sh
 bundle exec appraisal rails_42 rake test
+```
+
+or even just run specific tests. For example:
+
+```sh
+bundle exec appraisal rails_42 rspec spec/unit/belongs_to_spec.rb
 ```
 
 The test run will generate a sample rails application in `spec/rails` to run the
