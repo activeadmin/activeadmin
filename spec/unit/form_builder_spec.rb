@@ -37,13 +37,16 @@ RSpec.describe ActiveAdmin::FormBuilder do
     view
   end
 
-  def build_form(options = {}, form_object = Post.new, &block)
+  def form_html(options = {}, form_object = Post.new, &block)
     options = {url: helpers.posts_path}.merge(options)
 
     form = render_arbre_component({form_object: form_object, form_options: options, form_block: block}, helpers) do
       active_admin_form_for(assigns[:form_object], assigns[:form_options], &assigns[:form_block])
     end.to_s
+  end
 
+  def build_form(options = {}, form_object = Post.new, &block)
+    form = form_html(options, form_object, &block)
     Capybara.string(form)
   end
 
@@ -896,8 +899,8 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       context "in another has_many block" do
-        let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+        let :body_html do
+          form_html({url: '/categories'}, Category.new) do |f|
             f.object.posts.build
             f.has_many :posts do |p|
               p.object.taggings.build
@@ -907,6 +910,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
             end
           end
         end
+        let(:body) { Capybara.string body_html }
 
         it "should wrap the inner has_many fieldset in an ol > li" do
           expect(body).to have_selector(".has_many_container ol > li.has_many_container > fieldset")
