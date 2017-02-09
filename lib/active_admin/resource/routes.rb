@@ -90,7 +90,7 @@ module ActiveAdmin
           suffix = options[:suffix] || "path"
           route = []
 
-          route << options[:action]           # "edit" or "new"
+          route << options[:action]           # "batch_action", "edit" or "new"
           route << resource.route_prefix      # "admin"
           route += belongs_to_names
           route << resource_path_name         # "posts" or "post"
