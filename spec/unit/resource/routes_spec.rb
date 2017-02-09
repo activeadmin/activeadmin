@@ -50,7 +50,7 @@ module ActiveAdmin
           expect(config.route_collection_path).to eq "/admin/news"
         end
 
-        it "should rturn the pluar route batch action with _index" do
+        it "should return the plural batch action route with _index" do
           expect(config.route_batch_action_path).to eq "/admin/news/batch_action"
         end
       end
