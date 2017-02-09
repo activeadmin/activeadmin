@@ -51,9 +51,11 @@ module ActiveAdmin
         end
 
         def batch_action_path(params, additional_params = {})
-          path = resource.resources_configuration[:self][:route_collection_name]
-          route_name = route_name(path, action: :batch_action)
-
+          route_name = route_name(
+            resource.resources_configuration[:self][:route_collection_name],
+            action: :batch_action,
+            suffix: (resource.route_uncountable? ? "index_path" : "path")
+          )
           query = params.slice(:q, :scope)
           query = query.permit! if query.respond_to? :permit!
           query = query.to_h if Rails::VERSION::MAJOR >= 5
