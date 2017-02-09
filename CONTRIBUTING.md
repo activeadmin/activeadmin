@@ -26,37 +26,57 @@ git checkout -b 325-add-japanese-translations
 
 ### 3. Get the test suite running
 
+Make sure you're using a recent ruby and have the `bundler` gem installed, at
+least version `1.14.3`. The most reliable `bundler` version to use is the same
+Travis is using.
+
+Install `appraisal` and the other common development dependencies:
+
+```sh
+bundle install
+```
+
 Install the development dependencies:
 
 ```sh
-script/appraisal install
+bundle exec appraisal install
 ```
 
 Now you should be able to run the entire suite using:
 
 ```sh
-script/appraisal rails_50 rake test
+bundle exec rake test
 ```
 
-NOTE: You can also use `rails_42` or the other Rails versions defined in the
-`Appraisals` file, but initial focus on the latest supported Rails version is
-preferred.
+This will automatically run the tests against Rails 5.0. But you can easily run
+tests against older versions of Rails too.
 
-The previous command will generate a rails application in `spec/rails` to run
-the tests against.
-
-If your tests are passing locally but they're failing on Travis, reset your test environment:
+For example, you can run all tests against Rails 4.2:
 
 ```sh
-rm -rf spec/rails && script/appraisal update
+bundle exec appraisal rails_42 rake test
 ```
 
-If you find running everything through appraisal too verbose, you can also do
-`export BUNDLE_GEMFILE=gemfiles/rails_50.gemfile` and then run all commands
-directly (`bundle exec rake test`, `bundle exec rake setup`) without Appraisal.
+or even just run specific tests. For example:
 
-If you find issues apparently related to `bundler`, check the `.travis.yml` file
-and make sure you're using exactly the same version Travis is using.
+```sh
+bundle exec appraisal rails_42 rspec spec/unit/belongs_to_spec.rb
+```
+
+The test run will generate a sample rails application in `spec/rails` to run the
+tests against.
+
+If your tests are passing locally but they're failing on Travis, reset your test
+environment:
+
+```sh
+rm -rf spec/rails && bundle exec appraisal update
+```
+
+If you want to stick with a specific older Rails version for a while, you can
+also do `export BUNDLE_GEMFILE=gemfiles/rails_42.gemfile` and then run all
+commands directly (`bundle exec rake test`, `bundle exec rake setup`) without
+Appraisal.
 
 ### 4. Implement your fix or feature
 
@@ -71,30 +91,31 @@ a look at your changes in a browser.
 To boot up a test Rails app:
 
 ```sh
-script/appraisal rails_50 script/local server
+bundle exec rake local server
 ```
 
-This will automatically create a Rails app if none already exists, and store it in the
-`.test-rails-apps` folder. The currently active app is symlinked to `test-rails-app`.
+This will automatically create a Rails app if none already exists, and store it
+in the `.test-rails-apps` folder.
 
-You should now be able to open <http://localhost:3000/admin> in your browser. You can log in using:
+You should now be able to open <http://localhost:3000/admin> in your browser.
+You can log in using:
 
-	User: admin@example.com
-	Password: password
+```
+User: admin@example.com
+Password: password
+```
 
-If you need to perform any other commands on the test application, use the
-`local` script. For example:
-
-To boot the rails console:
+If you need to perform any other commands on the test application, just pass
+them to the `local` rake task. For example, to boot the rails console:
 
 ```sh
-script/appraisal rails_50 script/local console
+bundle exec rake local console
 ```
 
 Or to migrate the database:
 
 ```sh
-script/appraisal rails_50 script/local rake db:migrate
+bundle exec rake local db:migrate
 ```
 
 ### 6. Run tests against major supported rails versions
@@ -103,7 +124,7 @@ Once you've implemented your code, got the tests passing, previewed it in a
 browser, you're ready to test it against multiple versions of Rails.
 
 ```sh
-script/appraisal rake test
+bundle exec appraisal rake test
 ```
 
 This runs our test suite against a couple of major versions of Rails.
@@ -129,7 +150,9 @@ git rebase master
 git push --set-upstream origin 325-add-japanese-translations
 ```
 
-Finally, go to GitHub and [make a Pull Request](https://help.github.com/articles/creating-a-pull-request) :D
+Finally, go to GitHub and
+[make a Pull Request](https://help.github.com/articles/creating-a-pull-request)
+:D
 
 ### 8. Keeping your Pull Request updated
 
@@ -156,7 +179,6 @@ A PR can only be merged into master by a maintainer if:
   opened the PR, only one extra approval is needed.
 * It has no requested changes.
 * It is up to date with current master.
-* It has been opened for at least 48h.
 
 Any maintainer is allowed to merge a PR if all of these conditions are
 met.

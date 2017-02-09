@@ -1,24 +1,9 @@
-desc "Creates a test rails app for the specs to run against"
-task :setup, :parallel do |t, opts|
-  require 'rails/version'
-  if File.exist? dir = "spec/rails/rails-#{Rails::VERSION::STRING}"
-    puts "test app #{dir} already exists; skipping"
-  else
-    system 'mkdir -p spec/rails'
-    args = %w[
-      -m spec/support/rails_template.rb
-      --skip-bundle
-      --skip-listen
-      --skip-turbolinks
-      --skip-test-unit
-    ]
-    system "#{'INSTALL_PARALLEL=yes' if opts[:parallel]} rails new #{dir} #{args.join ' '}"
-    Rake::Task['parallel:after_setup_hook'].invoke if opts[:parallel]
-  end
-end
-
 desc "Run the full suite using 1 core"
-task test: ['spec:unit', 'spec:request', 'cucumber', 'cucumber:class_reloading']
+task test: [:enforce_version,
+            'spec:unit',
+            'spec:request',
+            'cucumber',
+            'cucumber:class_reloading']
 
 require 'rspec/core/rake_task'
 
