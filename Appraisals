@@ -60,7 +60,7 @@ end
 appraise 'rails_42' do
   gemspec
 
-  gem 'rails', '4.2.7.1'
+  gem 'rails', '4.2.8.rc1'
   gem 'jquery-ui-rails', '~> 5.0'
   gem 'devise', '~> 3.5'
 

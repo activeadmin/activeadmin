@@ -58,9 +58,6 @@ matrix:
     - rvm: jruby-9.1.7.0
       gemfile: gemfiles/rails_50.gemfile
 
-    - rvm: 2.4.0
-      gemfile: gemfiles/rails_42.gemfile
-
 notifications:
   irc:
     channels:
