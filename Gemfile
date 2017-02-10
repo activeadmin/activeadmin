@@ -46,6 +46,5 @@ group :test do
   gem 'i18n-spec'
   gem 'shoulda-matchers', '<= 2.8.0'
   gem 'sqlite3', platforms: :mri
-  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
   gem 'poltergeist'
 end

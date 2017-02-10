@@ -13,6 +13,7 @@ gem "jquery-ui-rails", "~> 5.0"
 gem "devise", "> 4.x"
 gem "inherited_resources", :git => "https://github.com/activeadmin/inherited_resources"
 gem "draper", "> 3.x"
+gem "activerecord-jdbcsqlite3-adapter", :git => "https://github.com/jruby/activerecord-jdbc-adapter", :branch => "rails-5", :platforms => :jruby
 
 group :development do
   gem "better_errors", :platforms => [:ruby_20, :ruby_21, :ruby_22, :ruby_23, :ruby_24]
@@ -39,7 +40,6 @@ group :test do
   gem "i18n-spec"
   gem "shoulda-matchers", "<= 2.8.0"
   gem "sqlite3", :platforms => :mri
-  gem "activerecord-jdbcsqlite3-adapter", :platforms => :jruby
   gem "poltergeist"
 end
 

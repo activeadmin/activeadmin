@@ -17,6 +17,8 @@ appraise 'rails_32' do
     gem 'nokogiri', '< 1.7'
     gem 'public_suffix', '< 1.5'
   end
+
+  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
 end
 
 appraise 'rails_40' do
@@ -36,6 +38,8 @@ appraise 'rails_40' do
     gem 'nokogiri', '< 1.7'
     gem 'public_suffix', '< 1.5'
   end
+
+  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
 end
 
 appraise 'rails_41' do
@@ -55,6 +59,8 @@ appraise 'rails_41' do
     gem 'nokogiri', '< 1.7'
     gem 'public_suffix', '< 1.5'
   end
+
+  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
 end
 
 appraise 'rails_42' do
@@ -74,6 +80,8 @@ appraise 'rails_42' do
     gem 'nokogiri', '< 1.7'
     gem 'public_suffix', '< 1.5'
   end
+
+  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
 end
 
 appraise 'rails_50' do
@@ -87,4 +95,9 @@ appraise 'rails_50' do
   gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
 
   gem 'draper', '> 3.x'
+
+  gem 'activerecord-jdbcsqlite3-adapter',
+      git: 'https://github.com/jruby/activerecord-jdbc-adapter',
+      branch: 'rails-5',
+      platforms: :jruby
 end
