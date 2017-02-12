@@ -78,12 +78,25 @@ also do `export BUNDLE_GEMFILE=gemfiles/rails_42.gemfile` and then run all
 commands directly (`bundle exec rake test`, `bundle exec rake setup`) without
 Appraisal.
 
-### 4. Implement your fix or feature
+#### 4. Did you find a bug?
+
+* **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/activeadmin/activeadmin/issues).
+
+* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/activeadmin/activeadmin/issues/new). 
+Be sure to include a **title and clear description**, as much relevant information as possible, 
+and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
+
+* If possible, use the relevant bug report templates to create the issue. 
+Simply copy the content of the appropriate template into a .rb file, make the necessary changes to demonstrate the issue, 
+and **paste the content into the issue description**:
+  * [**Rails 5** issues](https://github.com/activeadmin/activeadmin/blob/master/lib/bug_report_templates/rails_5_master.rb)
+
+### 5. Implement your fix or feature
 
 At this point, you're ready to make your changes! Feel free to ask for help;
 everyone is a beginner at first :smile_cat:
 
-### 5. View your changes in a Rails application
+### 6. View your changes in a Rails application
 
 Active Admin is meant to be used by humans, not cucumbers. So make sure to take
 a look at your changes in a browser.
@@ -118,7 +131,7 @@ Or to migrate the database:
 bundle exec rake local db:migrate
 ```
 
-### 6. Run tests against major supported rails versions
+### 7. Run tests against major supported rails versions
 
 Once you've implemented your code, got the tests passing, previewed it in a
 browser, you're ready to test it against multiple versions of Rails.
@@ -131,7 +144,7 @@ This runs our test suite against a couple of major versions of Rails.
 Travis does essentially the same thing when you open a Pull Request.
 We care about quality, so your PR won't be merged until all tests pass.
 
-### 7. Make a Pull Request
+### 8. Make a Pull Request
 
 At this point, you should switch back to your master branch and make sure it's
 up to date with Active Admin's master branch:
@@ -154,7 +167,7 @@ Finally, go to GitHub and
 [make a Pull Request](https://help.github.com/articles/creating-a-pull-request)
 :D
 
-### 8. Keeping your Pull Request updated
+### 9. Keeping your Pull Request updated
 
 If a maintainer asks you to "rebase" your PR, they're saying that a lot of code
 has changed, and that you need to update your branch so it's easier to merge.
@@ -170,7 +183,7 @@ git pull --rebase upstream master
 git push --force-with-lease 325-add-japanese-translations
 ```
 
-### 9. Merging a PR (maintainers only)
+### 10. Merging a PR (maintainers only)
 
 A PR can only be merged into master by a maintainer if:
 
