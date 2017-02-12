@@ -23,8 +23,10 @@ RSpec.describe ActiveAdmin::Localizers::ResourceLocalizer do
   end
 
   describe "model action specified" do
-    before do
-      I18n.backend.store_translations :en, active_admin: {resources: {comment: {new_model: 'Write comment'}}}
+    around do |example|
+      with_translation active_admin: {resources: {comment: {new_model: 'Write comment'}}} do
+        example.call
+      end
     end
 
     it_behaves_like "ActiveAdmin::Localizers::ResourceLocalizer" do
