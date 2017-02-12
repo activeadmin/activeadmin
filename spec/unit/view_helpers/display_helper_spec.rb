@@ -21,6 +21,8 @@ describe ActiveAdmin::ViewHelpers::DisplayHelper do
   end
 
   describe '#display_name' do
+    subject { display_name(resource) }
+
     ActiveAdmin::Application.new.display_name_methods.map(&:to_s).each do |m|
       it "should return #{m} when defined" do
         klass = Class.new do
@@ -86,6 +88,37 @@ describe ActiveAdmin::ViewHelpers::DisplayHelper do
           end
         end
       end
+    end
+
+    context 'when the model with no display name method defined is decorated' do
+      let(:resource) { decorator_class.new(model) }
+      let(:decorator_class) do
+        Class.new(Draper::Decorator) do
+          decorates Tagging
+          delegate_all
+        end
+      end
+      let(:model) { Tagging.create! }
+
+      it { is_expected.to eq('Tagging #1') }
+    end
+
+    context 'when the model with a display name method defined is decorated' do
+      let(:resource) { decorator_class.new(model) }
+      let(:decorator_class) do
+        Class.new(Draper::Decorator) do
+          decorates Tagging
+          delegate_all
+        end
+      end
+      let(:model) { Tagging.create! }
+      before do
+        model.define_singleton_method(:name) do
+          "The Tagging ##{id}"
+        end
+      end
+
+      it { is_expected.to eq('The Tagging #1') }
     end
   end
 
