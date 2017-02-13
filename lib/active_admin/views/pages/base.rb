@@ -12,6 +12,8 @@ module ActiveAdmin
 
         private
 
+        delegate :active_admin_config, :controller, :params, to: :helpers
+
         def add_classes_to_body
           @body.add_class(params[:action])
           @body.add_class(params[:controller].tr('/', '_'))

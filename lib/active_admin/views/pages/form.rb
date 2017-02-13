@@ -6,7 +6,7 @@ module ActiveAdmin
 
         def title
           if form_presenter[:title]
-            render_or_call_method_or_proc_on(resource, form_presenter[:title])
+            helpers.render_or_call_method_or_proc_on(resource, form_presenter[:title])
           else
             assigns[:page_title] || ActiveAdmin::Localizers.resource(active_admin_config).t("#{normalized_action}_model")
           end

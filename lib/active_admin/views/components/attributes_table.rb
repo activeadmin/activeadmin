@@ -79,7 +79,7 @@ module ActiveAdmin
       end
 
       def content_for(record, attr)
-        value = format_attribute record, attr
+        value = helpers.format_attribute record, attr
         value.blank? && current_arbre_element.children.to_s.empty? ? empty_value : value
         # Don't add the same Arbre twice, while still allowing format_attribute to call status_tag
         current_arbre_element << value unless current_arbre_element.children.include? value
