@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Registering an object to administer" do
-  application = ActiveAdmin::Application.new
+  let(:application) { ActiveAdmin::Application.new }
 
   context "with no configuration" do
-    namespace = ActiveAdmin::Namespace.new(application, :admin)
+    let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
+
     it "should call register on the namespace" do
       application.namespaces[namespace.name] = namespace
       expect(namespace).to receive(:register)
