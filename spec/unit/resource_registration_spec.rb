@@ -6,8 +6,11 @@ RSpec.describe "Registering an object to administer" do
   context "with no configuration" do
     let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
 
-    it "should call register on the namespace" do
+    before do
       application.namespaces[namespace.name] = namespace
+    end
+
+    it "should call register on the namespace" do
       expect(namespace).to receive(:register)
 
       application.register Category
@@ -15,6 +18,7 @@ RSpec.describe "Registering an object to administer" do
 
     it "should dispatch a Resource::RegisterEvent" do
       expect(ActiveSupport::Notifications).to receive(:publish).with(ActiveAdmin::Resource::RegisterEvent, an_instance_of(ActiveAdmin::Resource))
+
       application.register Category
     end
   end
