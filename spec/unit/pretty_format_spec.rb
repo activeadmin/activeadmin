@@ -30,11 +30,11 @@ RSpec.describe "#pretty_format" do
       end
 
       context "apply custom localize format" do
-        before do
+        around do |example|
+          previous_localize_format = ActiveAdmin.application.localize_format
           ActiveAdmin.application.localize_format = :short
-        end
-        after do
-          ActiveAdmin.application = nil
+          example.call
+          ActiveAdmin.application.localize_format = previous_localize_format
         end
         it "should actually do the formatting" do
           t = Time.utc(1985, "feb", 28, 20, 15, 1)
