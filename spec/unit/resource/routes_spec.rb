@@ -103,23 +103,39 @@ module ActiveAdmin
       end
 
       context "for batch_action handler" do
-        let! :config do
-          ActiveAdmin.register Post do
-            belongs_to :category
-          end
-        end
-
         before do
-          config.batch_actions= true
+          config.batch_actions = true
           reload_routes!
         end
 
-        it "should include :scope and :q params" do
-          params = { category_id: 1, q: { name_equals: "Any" }, scope: :all }
-          additional_params = { locale: 'en' }
-          batch_action_path = "/admin/categories/1/posts/batch_action?locale=en&q%5Bname_equals%5D=Any&scope=all"
+        context "when register a singular resource" do
 
-          expect(config.route_batch_action_path(params, additional_params)).to eq batch_action_path
+          let! :config do
+            ActiveAdmin.register Post do
+              belongs_to :category
+            end
+          end
+
+          it "should include :scope and :q params" do
+            params = { category_id: 1, q: { name_equals: "Any" }, scope: :all }
+            additional_params = { locale: 'en' }
+            batch_action_path = "/admin/categories/1/posts/batch_action?locale=en&q%5Bname_equals%5D=Any&scope=all"
+
+            expect(config.route_batch_action_path(params, additional_params)).to eq batch_action_path
+          end
+        end
+
+        context "when registering a plural resource" do
+
+          class ::News; def self.has_many(*); end end
+          let!(:config) { ActiveAdmin.register News }
+
+          it "should return the plural batch action route with _index and given params" do
+            params = { q: { name_equals: "Any" }, scope: :all }
+            additional_params = { locale: 'en' }
+            batch_action_path = "/admin/news/batch_action?locale=en&q%5Bname_equals%5D=Any&scope=all"
+            expect(config.route_batch_action_path(params, additional_params)).to eq batch_action_path
+          end
         end
       end
     end

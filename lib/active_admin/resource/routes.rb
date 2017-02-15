@@ -51,8 +51,11 @@ module ActiveAdmin
         end
 
         def batch_action_path(params, additional_params = {})
-          path = resource.resources_configuration[:self][:route_collection_name]
-          route_name = route_name(path, action: :batch_action)
+          route_name = route_name(
+            resource.resources_configuration[:self][:route_collection_name],
+            action: :batch_action,
+            suffix: (resource.route_uncountable? ? "index_path" : "path")
+          )
 
           query = params.slice(:q, :scope)
           query = query.permit! if query.respond_to? :permit!
@@ -87,7 +90,7 @@ module ActiveAdmin
           suffix = options[:suffix] || "path"
           route = []
 
-          route << options[:action]           # "edit" or "new"
+          route << options[:action]           # "batch_action", "edit" or "new"
           route << resource.route_prefix      # "admin"
           route += belongs_to_names
           route << resource_path_name         # "posts" or "post"
