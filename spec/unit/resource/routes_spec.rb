@@ -41,10 +41,17 @@ module ActiveAdmin
       context "when registering a plural resource" do
         class ::News; def self.has_many(*); end end
         let!(:config) { ActiveAdmin.register News }
-        before{ reload_routes! }
+        before do
+          config.batch_actions= true
+          reload_routes!
+        end
 
         it "should return the plural route with _index" do
           expect(config.route_collection_path).to eq "/admin/news"
+        end
+
+        it "should return the plural batch action route with _index" do
+          expect(config.route_batch_action_path).to eq "/admin/news/batch_action"
         end
       end
 
