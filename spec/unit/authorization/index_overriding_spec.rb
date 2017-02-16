@@ -5,7 +5,7 @@ RSpec.describe Admin::PostsController, 'Index overriding', type: :controller do
     controller.instance_eval do
       def index
         super do
-          render Dependency.rails.render_key => 'Rendered from passed block'
+          render ActiveAdmin::Dependency.rails.render_key => 'Rendered from passed block'
           return
         end
       end
