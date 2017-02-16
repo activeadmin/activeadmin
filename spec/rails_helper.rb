@@ -27,7 +27,7 @@ module ActiveAdminIntegrationSpecHelper
   #
   # Eg:
   #   load_resources do
-  #     ActiveAdmin.regiser(Post)
+  #     ActiveAdmin.register(Post)
   #   end
   #
   def load_resources
