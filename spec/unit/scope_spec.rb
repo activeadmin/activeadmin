@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Scope do
+RSpec.describe ActiveAdmin::Scope do
 
   describe "creating a scope" do
     subject{ scope }

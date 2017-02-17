@@ -101,6 +101,7 @@ ActiveAdmin.application.authentication_method = false
 ActiveAdmin.application.current_user_method = false
 
 RSpec.configure do |config|
+  config.disable_monkey_patching!
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
   config.render_views = false

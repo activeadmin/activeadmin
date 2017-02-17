@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Resource, "authorization" do
+RSpec.describe ActiveAdmin::Resource, "authorization" do
 
   let(:app){ ActiveAdmin::Application.new }
   let(:namespace){ ActiveAdmin::Namespace.new(app, :admin) }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'bug_report_templates' do
+RSpec.describe 'bug_report_templates' do
   subject do
     Bundler.with_clean_env do
       Dir.chdir(chdir_path) do

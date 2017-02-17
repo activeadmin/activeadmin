@@ -2,7 +2,7 @@ require 'rails_helper'
 
 class MockComponentClass < ActiveAdmin::Component; end
 
-describe ActiveAdmin::Component do
+RSpec.describe ActiveAdmin::Component do
 
   let(:component_class){ MockComponentClass }
   let(:component){ component_class.new }

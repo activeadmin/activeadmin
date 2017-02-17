@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Breadcrumbs" do
+RSpec.describe "Breadcrumbs" do
 
   include ActiveAdmin::ViewHelpers
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../config_shared_examples', File.dirname(__FILE__))
 
-describe ActiveAdmin::Localizers::ResourceLocalizer do
+RSpec.describe ActiveAdmin::Localizers::ResourceLocalizer do
   let(:action) { 'new_model' }
   let(:model) { 'Comment' }
   let(:model_name) { 'comment' }

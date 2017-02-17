@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::ResourceController::Decorators do
+RSpec.describe ActiveAdmin::ResourceController::Decorators do
   let(:controller_class) do
     Class.new do
       def self.name

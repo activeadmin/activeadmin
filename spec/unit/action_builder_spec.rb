@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'defining actions from registration blocks', type: :controller do
+RSpec.describe 'defining actions from registration blocks', type: :controller do
   let(:klass){ Admin::PostsController }
   render_views # https://github.com/rspec/rspec-rails/issues/860
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::UnsupportedBrowser do
+RSpec.describe ActiveAdmin::Views::UnsupportedBrowser do
   let(:helpers){ mock_action_view }
   let(:namespace) { double :namespace, unsupported_browser_matcher: /MSIE [1-8]\.0/ }
   let(:component) { double :unsupported_browser_component }

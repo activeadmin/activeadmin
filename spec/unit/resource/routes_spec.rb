@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module ActiveAdmin
-  describe Resource::Routes do
+  RSpec.describe Resource::Routes do
 
     after do
       load_defaults!

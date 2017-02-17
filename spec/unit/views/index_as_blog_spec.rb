@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 include ActiveAdmin
-describe ActiveAdmin::Views::IndexAsBlog do
+RSpec.describe ActiveAdmin::Views::IndexAsBlog do
   subject { described_class.new }
 
   describe '#build' do

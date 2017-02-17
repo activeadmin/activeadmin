@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Resource::PagePresenters do
+RSpec.describe ActiveAdmin::Resource::PagePresenters do
 
   let(:namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
   let(:resource){ namespace.register(Post) }

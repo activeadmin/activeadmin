@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::CanCanAdapter do
+RSpec.describe ActiveAdmin::CanCanAdapter do
 
   describe "full integration" do
 

@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'fileutils'
 
-describe ActiveAdmin::Application do
+RSpec.describe ActiveAdmin::Application do
 
   let(:application) do
     ActiveAdmin::Application.new.tap do |app|

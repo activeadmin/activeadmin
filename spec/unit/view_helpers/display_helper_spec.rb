@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::ViewHelpers::DisplayHelper do
+RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
   include ActiveAdmin::ViewHelpers::ActiveAdminApplicationHelper
   include ActiveAdmin::ViewHelpers::AutoLinkHelper
   include ActiveAdmin::ViewHelpers::DisplayHelper

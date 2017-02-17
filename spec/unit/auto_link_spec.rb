@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "auto linking resources" do
+RSpec.describe "auto linking resources" do
   include ActiveAdmin::ViewHelpers::ActiveAdminApplicationHelper
   include ActiveAdmin::ViewHelpers::AutoLinkHelper
   include ActiveAdmin::ViewHelpers::DisplayHelper

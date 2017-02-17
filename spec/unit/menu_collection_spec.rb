@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::MenuCollection do
+RSpec.describe ActiveAdmin::MenuCollection do
 
   let(:menus) { ActiveAdmin::MenuCollection.new }
 

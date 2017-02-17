@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe MethodOrProcHelper do
+RSpec.describe MethodOrProcHelper do
   let(:receiver) { double }
 
   let(:context) do

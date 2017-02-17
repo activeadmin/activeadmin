@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::Pages::Layout do
+RSpec.describe ActiveAdmin::Views::Pages::Layout do
 
   let(:assigns){ {} }
   let(:helpers) do

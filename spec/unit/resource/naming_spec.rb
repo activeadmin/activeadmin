@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 module ActiveAdmin
-  describe Resource, "Naming" do
+  RSpec.describe Resource, "Naming" do
 
     before { load_defaults! }
 
