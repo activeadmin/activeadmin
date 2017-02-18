@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::Panel do
+RSpec.describe ActiveAdmin::Views::Panel do
   let(:arbre_panel) do
     render_arbre_component do
       panel "My Title" do

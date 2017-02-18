@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Namespace, "registering a page" do
+RSpec.describe ActiveAdmin::Namespace, "registering a page" do
   let(:application){ ActiveAdmin::Application.new }
   let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
   let(:menu){ namespace.fetch_menu(:default) }

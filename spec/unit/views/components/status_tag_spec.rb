@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::StatusTag do
+RSpec.describe ActiveAdmin::Views::StatusTag do
 
   describe "#status_tag" do
 

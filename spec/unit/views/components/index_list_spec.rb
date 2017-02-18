@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::IndexList do
+RSpec.describe ActiveAdmin::Views::IndexList do
 
   describe "#index_list_renderer" do
 

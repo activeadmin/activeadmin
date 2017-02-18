@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Admin::PostsController, 'Index overriding', type: :controller do
+RSpec.describe Admin::PostsController, 'Index overriding', type: :controller do
   before do
     controller.instance_eval do
       def index

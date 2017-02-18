@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Comments" do
+RSpec.describe "Comments" do
   let(:application) { ActiveAdmin::Application.new }
 
   describe ActiveAdmin::Comment do

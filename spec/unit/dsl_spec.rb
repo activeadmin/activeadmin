@@ -6,7 +6,7 @@ module MockModuleToInclude
   end
 end
 
-describe ActiveAdmin::DSL do
+RSpec.describe ActiveAdmin::DSL do
 
   let(:application) { ActiveAdmin::Application.new }
   let(:namespace) { ActiveAdmin::Namespace.new application, :admin }

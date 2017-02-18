@@ -28,7 +28,7 @@ class DefaultPolicy < ApplicationPolicy
   end
 end
 
-describe ActiveAdmin::PunditAdapter do
+RSpec.describe ActiveAdmin::PunditAdapter do
 
   describe "full integration" do
 

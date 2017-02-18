@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'active_admin/batch_actions/views/batch_action_selector'
 
-describe ActiveAdmin::BatchActions::BatchActionSelector do
+RSpec.describe ActiveAdmin::BatchActions::BatchActionSelector do
 
   let(:dropdown) do
     render_arbre_component do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Helpers::Collection do
+RSpec.describe ActiveAdmin::Helpers::Collection do
 
   include ActiveAdmin::Helpers::Collection
 

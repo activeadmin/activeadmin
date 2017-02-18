@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
+RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
   describe 'creating with the dsl' do
     let(:collection) do
       [Post.new(title: 'First Post', starred: true)]

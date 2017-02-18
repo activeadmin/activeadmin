@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::ResourceController do
+RSpec.describe ActiveAdmin::ResourceController do
 
   let(:controller) { ActiveAdmin::ResourceController.new }
 
@@ -155,7 +155,7 @@ describe ActiveAdmin::ResourceController do
   end
 end
 
-describe Admin::PostsController, type: "controller" do
+RSpec.describe Admin::PostsController, type: "controller" do
 
   describe 'retrieving the resource' do
     let(:controller){ Admin::PostsController.new }

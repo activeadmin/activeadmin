@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Dependency do
+RSpec.describe ActiveAdmin::Dependency do
 
   k = ActiveAdmin::Dependency
 

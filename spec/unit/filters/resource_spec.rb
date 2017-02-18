@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Filters::ResourceExtension do
+RSpec.describe ActiveAdmin::Filters::ResourceExtension do
 
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)

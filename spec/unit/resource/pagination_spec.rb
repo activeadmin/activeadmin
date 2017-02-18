@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module ActiveAdmin
-  describe Resource, "Pagination" do
+  RSpec.describe Resource, "Pagination" do
 
     before { load_defaults! }
 

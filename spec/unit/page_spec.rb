@@ -4,7 +4,7 @@ require 'rails_helper'
 require File.expand_path('config_shared_examples', File.dirname(__FILE__))
 
 module ActiveAdmin
-  describe Page do
+  RSpec.describe Page do
 
     it_should_behave_like "ActiveAdmin::Resource"
     before { load_defaults! }

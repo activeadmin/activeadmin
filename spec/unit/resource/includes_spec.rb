@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module ActiveAdmin
-  describe Resource, "Includes" do
+  RSpec.describe Resource, "Includes" do
     describe "#includes" do
 
       let(:application) { ActiveAdmin::Application.new }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Memory Leak", type: :request, if: RUBY_ENGINE == 'ruby' do
+RSpec.describe "Memory Leak", type: :request, if: RUBY_ENGINE == 'ruby' do
   def count_instances_of(klass)
     ObjectSpace.each_object(klass) { }
   end

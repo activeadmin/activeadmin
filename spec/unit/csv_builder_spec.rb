@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActiveAdmin::CSVBuilder do
+RSpec.describe ActiveAdmin::CSVBuilder do
 
   describe '.default_for_resource using Post' do
     let(:csv_builder) { ActiveAdmin::CSVBuilder.default_for_resource(Post).tap(&:exec_columns) }

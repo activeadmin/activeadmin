@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::Pages::Show do
+RSpec.describe ActiveAdmin::Views::Pages::Show do
 
   describe "the resource" do
     let(:helpers) { double resource: resource }

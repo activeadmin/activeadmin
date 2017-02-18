@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Registering an object to administer" do
+RSpec.describe "Registering an object to administer" do
   application = ActiveAdmin::Application.new
 
   context "with no configuration" do

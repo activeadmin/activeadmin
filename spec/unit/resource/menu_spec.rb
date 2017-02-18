@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module ActiveAdmin
-  describe Resource, "Menu" do
+  RSpec.describe Resource, "Menu" do
 
     before { load_defaults! }
 

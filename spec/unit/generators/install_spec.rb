@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "AA installation" do
+RSpec.describe "AA installation" do
   context "should create" do
 
     it "active_admin.scss" do

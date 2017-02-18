@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Resource::BelongsTo do
+RSpec.describe ActiveAdmin::Resource::BelongsTo do
 
   let(:user_config){ ActiveAdmin.register User }
   let(:post_config){ ActiveAdmin.register Post do belongs_to :user end }
