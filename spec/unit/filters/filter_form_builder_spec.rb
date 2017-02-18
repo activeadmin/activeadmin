@@ -1,17 +1,5 @@
 require 'rails_helper'
 
-class Post
-  ransacker :custom_title_searcher do |parent|
-    parent.table[:title]
-  end
-  ransacker :custom_created_at_searcher do |parent|
-    parent.table[:created_at]
-  end
-  ransacker :custom_searcher_numeric, type: :numeric do
-    # nothing to see here
-  end
-end
-
 RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
   # Setup an ActionView::Base object which can be used for
