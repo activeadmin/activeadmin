@@ -14,6 +14,18 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
     accepts_nested_attributes_for :author
     accepts_nested_attributes_for :taggings
 
+    ransacker :custom_title_searcher do |parent|
+      parent.table[:title]
+    end
+
+    ransacker :custom_created_at_searcher do |parent|
+      parent.table[:created_at]
+    end
+
+    ransacker :custom_searcher_numeric, type: :numeric do
+      # nothing to see here
+    end
+
     unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
       attr_accessible :id, :title, :body, :starred, :author, :position, :published_date, :author_id, :custom_category_id, :category
     end
