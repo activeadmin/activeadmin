@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::AssetRegistration do
+RSpec.describe ActiveAdmin::AssetRegistration do
   include ActiveAdmin::AssetRegistration
 
   before do

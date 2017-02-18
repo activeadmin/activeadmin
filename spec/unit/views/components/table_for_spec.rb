@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::TableFor do
+RSpec.describe ActiveAdmin::Views::TableFor do
   describe "creating with the dsl" do
 
     let(:collection) do

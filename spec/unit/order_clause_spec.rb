@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::OrderClause do
+RSpec.describe ActiveAdmin::OrderClause do
   subject { described_class.new(config, clause) }
 
   let(:application) { ActiveAdmin::Application.new }

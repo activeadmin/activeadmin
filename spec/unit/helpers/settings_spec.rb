@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'active_admin/helpers/settings'
 
-describe ActiveAdmin::Settings do
+RSpec.describe ActiveAdmin::Settings do
 
   # A Class with settings module included
   let(:klass) do

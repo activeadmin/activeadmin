@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'active_admin/resource_collection'
 
-describe ActiveAdmin::ResourceCollection do
+RSpec.describe ActiveAdmin::ResourceCollection do
   let(:application) { ActiveAdmin::Application.new }
   let(:namespace)   { ActiveAdmin::Namespace.new application, :admin }
   let(:collection)  { ActiveAdmin::ResourceCollection.new }

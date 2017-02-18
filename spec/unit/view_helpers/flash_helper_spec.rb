@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::ViewHelpers::FlashHelper do
+RSpec.describe ActiveAdmin::ViewHelpers::FlashHelper do
 
   describe '.flash_messages' do
     let(:view) { action_view }

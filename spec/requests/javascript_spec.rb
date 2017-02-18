@@ -7,7 +7,7 @@ require 'rbconfig'
 RbConfig::CONFIG['host_os'].include?('darwin') ? `/usr/libexec/java_home` : `which java`
 java_installed = $?.success?
 
-describe 'Javascript', type: :request, if: java_installed do
+RSpec.describe 'Javascript', type: :request, if: java_installed do
   let(:lint) {
     JSLint::Lint.new \
       paths:         ['public/javascripts/**/*.js'],

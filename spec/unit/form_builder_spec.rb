@@ -1,7 +1,7 @@
 require 'rails_helper'
 require "rspec/mocks/standalone"
 
-describe ActiveAdmin::FormBuilder do
+RSpec.describe ActiveAdmin::FormBuilder do
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
   let(:helpers) do

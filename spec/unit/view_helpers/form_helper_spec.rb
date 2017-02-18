@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::ViewHelpers::FormHelper do
+RSpec.describe ActiveAdmin::ViewHelpers::FormHelper do
 
   describe '.active_admin_form_for' do
     let(:view) { action_view }

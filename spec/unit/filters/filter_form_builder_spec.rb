@@ -12,7 +12,7 @@ class Post
   end
 end
 
-describe ActiveAdmin::Filters::ViewHelper do
+RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
   # Setup an ActionView::Base object which can be used for
   # generating the form for.

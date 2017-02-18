@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::ResourceController::DataAccess do
+RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   let(:params) do
     {}
   end

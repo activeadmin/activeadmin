@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::ResourceController::Sidebars, type: :controller do
+RSpec.describe ActiveAdmin::ResourceController::Sidebars, type: :controller do
   let(:klass){ Admin::PostsController }
   render_views # https://github.com/rspec/rspec-rails/issues/860
 

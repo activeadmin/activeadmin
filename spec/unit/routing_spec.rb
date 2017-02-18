@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActiveAdmin, "Routing", type: :routing do
+RSpec.describe ActiveAdmin, "Routing", type: :routing do
 
   before do
     load_defaults!

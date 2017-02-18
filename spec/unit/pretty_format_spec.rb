@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "#pretty_format" do
+RSpec.describe "#pretty_format" do
   include ActiveAdmin::ViewHelpers::DisplayHelper
 
   def method_missing(*args, &block)

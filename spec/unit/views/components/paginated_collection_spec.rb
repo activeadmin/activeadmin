@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::PaginatedCollection do
+RSpec.describe ActiveAdmin::Views::PaginatedCollection do
   describe "creating with the dsl" do
 
     before :all do

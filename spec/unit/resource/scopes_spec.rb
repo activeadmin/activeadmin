@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module ActiveAdmin
-  describe Resource, "Scopes" do
+  RSpec.describe Resource, "Scopes" do
 
     before { load_defaults! }
 

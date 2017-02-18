@@ -3,7 +3,7 @@ require 'active_admin/menu'
 require 'active_admin/menu_item'
 
 module ActiveAdmin
-  describe MenuItem do
+  RSpec.describe MenuItem do
 
     it "should have a label" do
       item = MenuItem.new(label: "Dashboard")

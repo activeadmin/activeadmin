@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Devise::Controller do
+RSpec.describe ActiveAdmin::Devise::Controller do
 
   let(:controller_class) do
     klass = Class.new do

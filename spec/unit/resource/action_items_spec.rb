@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Resource::ActionItems do
+RSpec.describe ActiveAdmin::Resource::ActionItems do
 
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)

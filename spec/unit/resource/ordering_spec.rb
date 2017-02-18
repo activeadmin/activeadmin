@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module ActiveAdmin
-  describe Resource, "Ordering" do
+  RSpec.describe Resource, "Ordering" do
     describe "#order_by" do
 
       let(:application) { ActiveAdmin::Application.new }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Filters::Active do
+RSpec.describe ActiveAdmin::Filters::Active do
   subject { described_class.new(Post, params) }
   let(:params_klass) do
     if defined? ::ActionController::Parameters

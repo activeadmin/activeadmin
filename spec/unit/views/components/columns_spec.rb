@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::Columns do
+RSpec.describe ActiveAdmin::Views::Columns do
 
   describe "Rendering zero columns" do
     let(:cols) do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Filters::Humanized do
+RSpec.describe ActiveAdmin::Filters::Humanized do
   describe '#value' do
     it 'should equal query string parameter if not an Array' do
       param = ['category_id_eq', '1']

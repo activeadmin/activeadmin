@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::AuthorizationAdapter do
+RSpec.describe ActiveAdmin::AuthorizationAdapter do
 
   let(:adapter) { ActiveAdmin::AuthorizationAdapter.new(double, double) }
 

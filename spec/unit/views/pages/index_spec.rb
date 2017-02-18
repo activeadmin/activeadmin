@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::Pages::Index do
+RSpec.describe ActiveAdmin::Views::Pages::Index do
   describe "#title" do
     let!(:application){ ActiveAdmin::Application.new }
     let(:namespace){ ActiveAdmin::Namespace.new(application, "Admin") }

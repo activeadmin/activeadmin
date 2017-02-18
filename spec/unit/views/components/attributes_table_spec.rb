@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ActiveAdmin::Views::AttributesTable do
+RSpec.describe ActiveAdmin::Views::AttributesTable do
 
   describe "creating with the dsl" do
     let(:helpers) { action_view }
