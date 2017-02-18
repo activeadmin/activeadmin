@@ -100,6 +100,12 @@ the collection as a proc to be called at render time.
 filter :author, as: :check_boxes, collection: proc { Author.all }
 ```
 
+To override options for string or numeric filter pass `filters` option.
+
+```ruby
+  filter :title, filters: [:starts_with, :ends_with]
+```
+
 Also, if you don't need the select with the options 'contains', 'equals', 'starts_with' or 'ends_with'
 just add the option to the filter name with an underscore.
 
