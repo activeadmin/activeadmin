@@ -7,6 +7,8 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     reload_routes!
   end
 
+  let(:namespace) { ActiveAdmin.application.namespace(:admin) }
+
   context "when in the admin namespace" do
     let!(:config)  { ActiveAdmin.register Category }
     let(:category) { Category.new { |c| c.id = 123 } }
@@ -47,11 +49,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
   end
 
   context "when the resource belongs to another resource" do
-    let! :config do
-      ActiveAdmin.register Post do
-        belongs_to :category
-      end
-    end
+    let(:config) { namespace.resource_for('Post') }
 
     let :post do
       Post.new do |p|
@@ -60,7 +58,12 @@ RSpec.describe ActiveAdmin::Resource::Routes do
       end
     end
 
-    before{ reload_routes! }
+    before do
+      ActiveAdmin.register Category
+      ActiveAdmin.register(Post) { belongs_to :category }
+
+      reload_routes!
+    end
 
     it "should nest the collection path" do
       expect(config.route_collection_path(category_id: 1)).to eq "/admin/categories/1/posts"
@@ -72,12 +75,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
   end
 
   context "when the resources belongs to two other resources" do
-    let! :config do
-      ActiveAdmin.register Tagging do
-        belongs_to :category
-        belongs_to :post
-      end
-    end
+    let(:config) { namespace.resource_for('Tagging') }
 
     let :tagging do
       Tagging.new do |t|
@@ -89,7 +87,16 @@ RSpec.describe ActiveAdmin::Resource::Routes do
       end
     end
 
-    before{ reload_routes! }
+    before do
+      ActiveAdmin.register Category
+      ActiveAdmin.register Post
+      ActiveAdmin.register Tagging do
+        belongs_to :category
+        belongs_to :post
+      end
+
+      reload_routes!
+    end
 
     it "should nest the collection path" do
       expect(config.route_collection_path(category_id: 1, post_id: 3)).to eq "/admin/categories/1/posts/3/taggings"
