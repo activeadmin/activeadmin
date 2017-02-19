@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-include ActiveAdmin
 RSpec.describe ActiveAdmin::Views::TabbedNavigation do
 
   let(:menu){ ActiveAdmin::Menu.new }
