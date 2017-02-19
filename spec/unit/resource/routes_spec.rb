@@ -10,7 +10,12 @@ RSpec.describe ActiveAdmin::Resource::Routes do
   let(:namespace) { ActiveAdmin.application.namespace(:admin) }
 
   context "when in the admin namespace" do
-    let!(:config)  { ActiveAdmin.register Category }
+    let(:config) { namespace.resource_for('Category') }
+
+    before do
+      load_resources { ActiveAdmin.register Category }
+    end
+
     let(:category) { Category.new { |c| c.id = 123 } }
 
     it "should return the route prefix" do
