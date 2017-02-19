@@ -12,10 +12,22 @@ RSpec.describe ActiveAdmin::Devise::Controller do
   end
 
   let(:controller) { controller_class.new }
+  let(:action_controller_config) { Rails.configuration.action_controller }
+
+  def with_temp_relative_url_root(relative_url_root)
+    previous_relative_url_root = action_controller_config[:relative_url_root]
+    action_controller_config[:relative_url_root] = relative_url_root
+
+    yield
+  ensure
+    action_controller_config[:relative_url_root] = previous_relative_url_root
+  end
 
   context 'with a RAILS_RELATIVE_URL_ROOT set' do
 
-    before { Rails.configuration.action_controller[:relative_url_root] = '/foo' }
+    around do |example|
+      with_temp_relative_url_root('/foo') { example.call }
+    end
 
     it "should set the root path to the default namespace" do
       expect(controller.root_path).to eq "/foo/admin"
@@ -30,7 +42,9 @@ RSpec.describe ActiveAdmin::Devise::Controller do
 
   context 'without a RAILS_RELATIVE_URL_ROOT set' do
 
-    before { Rails.configuration.action_controller[:relative_url_root] = nil }
+    around do |example|
+      with_temp_relative_url_root(nil) { example.call }
+    end
 
     it "should set the root path to the default namespace" do
       expect(controller.root_path).to eq "/admin"
