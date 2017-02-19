@@ -59,10 +59,10 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     end
 
     before do
-      ActiveAdmin.register Category
-      ActiveAdmin.register(Post) { belongs_to :category }
-
-      reload_routes!
+      load_resources do
+        ActiveAdmin.register Category
+        ActiveAdmin.register(Post) { belongs_to :category }
+      end
     end
 
     it "should nest the collection path" do
@@ -88,14 +88,14 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     end
 
     before do
-      ActiveAdmin.register Category
-      ActiveAdmin.register Post
-      ActiveAdmin.register Tagging do
-        belongs_to :category
-        belongs_to :post
+      load_resources do
+        ActiveAdmin.register Category
+        ActiveAdmin.register Post
+        ActiveAdmin.register Tagging do
+          belongs_to :category
+          belongs_to :post
+        end
       end
-
-      reload_routes!
     end
 
     it "should nest the collection path" do
@@ -109,13 +109,12 @@ RSpec.describe ActiveAdmin::Resource::Routes do
 
   context "for batch_action handler" do
     before do
-      config.batch_actions = true
-      reload_routes!
+      load_resources { config.batch_actions = true }
     end
 
     context "when register a singular resource" do
 
-      let! :config do
+      let :config do
         ActiveAdmin.register Post do
           belongs_to :category
         end
@@ -133,7 +132,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     context "when registering a plural resource" do
 
       class ::News; def self.has_many(*); end end
-      let!(:config) { ActiveAdmin.register News }
+      let(:config) { ActiveAdmin.register News }
 
       it "should return the plural batch action route with _index and given params" do
         params = { q: { name_equals: "Any" }, scope: :all }

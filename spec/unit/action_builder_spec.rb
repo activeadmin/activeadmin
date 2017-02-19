@@ -4,8 +4,7 @@ RSpec.describe 'defining actions from registration blocks', type: :controller do
   let(:klass){ Admin::PostsController }
 
   before do
-    action!
-    reload_routes!
+    load_resources { action! }
 
     @controller = klass.new
   end

@@ -5,8 +5,7 @@ RSpec.describe ActiveAdmin::ResourceController::Sidebars, type: :controller do
 
   shared_context 'with post config' do
     before do
-      post_config
-      reload_routes!
+      load_resources { post_config }
 
       @controller = klass.new
 
