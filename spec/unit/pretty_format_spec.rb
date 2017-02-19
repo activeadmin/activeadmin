@@ -45,11 +45,11 @@ RSpec.describe "#pretty_format" do
       end
 
       context "with non-English locale" do
-        before(:all) do
+        before do
           @previous_locale = I18n.locale.to_s
           I18n.locale = "es"
         end
-        after(:all) do
+        after do
           I18n.locale = @previous_locale
         end
         it "should return a localized Date or Time with long format for non-english locale" do

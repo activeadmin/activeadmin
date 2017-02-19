@@ -4,14 +4,14 @@ RSpec.describe ActiveAdmin::Helpers::Collection do
 
   include ActiveAdmin::Helpers::Collection
 
-  before(:all) do
+  before do
     Post.delete_all
     Post.create!(title: "A post")
     Post.create!(title: "A post")
     Post.create!(title: "An other post")
   end
 
-  after(:all) do
+  after do
     Post.delete_all
   end
 
