@@ -34,12 +34,12 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
 
   describe "route_options" do
     context "with a custom path set in route_options" do
-      before(:each) do
+      before do
         namespaces[:admin].route_options = { path: '/custom-path' }
         reload_routes!
       end
 
-      after(:all) do
+      after do
         namespaces[:admin].route_options = {}
         reload_routes!
       end
