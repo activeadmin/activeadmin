@@ -155,8 +155,12 @@ RSpec.describe ActiveAdmin::ResourceController do
   end
 end
 
-RSpec.describe Admin::PostsController, type: "controller" do
-  let(:controller){ Admin::PostsController.new }
+RSpec.describe "A specific resource controller", type: "controller" do
+  before do
+    load_resources { ActiveAdmin.register Post }
+
+    @controller = Admin::PostsController.new
+  end
 
   describe 'retrieving the resource' do
     let(:post) { Post.new title: "An incledibly unique Post Title" }

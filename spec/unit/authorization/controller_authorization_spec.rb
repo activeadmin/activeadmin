@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe Admin::PostsController, "Controller Authorization", type: :controller do
+RSpec.describe "Controller Authorization", type: :controller do
 
   let(:authorization){ controller.send(:active_admin_authorization) }
 
   before do
     load_defaults!
-    # HACK: the AA config is missing, so we throw it in here
-    controller.class.active_admin_config = ActiveAdmin.application.namespace(:admin).resources['Post'].controller.active_admin_config
+    @controller = Admin::PostsController.new
+    allow(authorization).to receive(:authorized?)
   end
 
   it "should authorize the index action" do
