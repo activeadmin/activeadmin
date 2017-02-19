@@ -155,7 +155,7 @@ RSpec.describe ActiveAdmin::ResourceController do
   end
 end
 
-RSpec.describe "A specific resource controller", type: "controller" do
+RSpec.describe "A specific resource controller", type: :controller do
   before do
     load_resources { ActiveAdmin.register Post }
 
