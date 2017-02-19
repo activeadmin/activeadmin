@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include head.html %}
+  <body class="with-sidebar">
+    <div id="wrapper">
+      {% include top-menu.html %}
+      <div id="main-content">
+        <div class='toc'>
+          {% include toc.html %}
+        </div>
+        <div class='toc-content'>
+          <div class='docs-content'>
+            {{ content }}
+          </div>
+        </div>
+      </div>
+      {% include footer.html %}
+    </div>
+    {% include google-analytics.html %}
+  </body>
+</html>
