@@ -17,7 +17,7 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
   let(:namespaces) { ActiveAdmin.application.namespaces }
 
   it "should only have the namespaces necessary for route testing" do
-    expect(namespaces.names).to eq [:admin, :root]
+    expect(namespaces.names).to eq [:admin]
   end
 
   it "should route to the admin dashboard" do
@@ -72,6 +72,10 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
     context "when in root namespace" do
       before(:each) do
         load_resources { ActiveAdmin.register(Post, namespace: false) }
+      end
+
+      after(:each) do
+        namespaces.instance_variable_get(:@namespaces).delete(:root)
       end
 
       it "should route the index path" do
@@ -210,6 +214,10 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
     context "when in the root namespace" do
       before(:each) do
         load_resources { ActiveAdmin.register_page("Chocolate I lØve You!", namespace: false) }
+      end
+
+      after(:each) do
+        namespaces.instance_variable_get(:@namespaces).delete(:root)
       end
 
       it "should route to page under /" do

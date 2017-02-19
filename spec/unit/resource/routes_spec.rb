@@ -7,7 +7,8 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     reload_routes!
   end
 
-  let(:namespace) { ActiveAdmin.application.namespace(:admin) }
+  let(:application) { ActiveAdmin.application }
+  let(:namespace) { application.namespace(:admin) }
 
   context "when in the admin namespace" do
     let(:config) { namespace.resource_for('Category') }
@@ -33,6 +34,11 @@ RSpec.describe ActiveAdmin::Resource::Routes do
 
   context "when in the root namespace" do
     let!(:config) { ActiveAdmin.register Category, namespace: false }
+
+    after(:each) do
+      application.namespaces.instance_variable_get(:@namespaces).delete(:root)
+    end
+
     it "should have a nil route_prefix" do
       expect(config.route_prefix).to eq nil
     end
