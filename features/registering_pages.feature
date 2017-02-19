@@ -106,6 +106,36 @@ Feature: Registering Pages
     And I follow "Status"
     Then I should see an action item link to "Visit"
 
+  Scenario: Adding a page action to a page with multiple http methods
+    Given a configuration of:
+    """
+    ActiveAdmin.register_page "Status" do
+      page_action :check, method: [:get, :post] do
+        redirect_to admin_status_path, notice: "Checked via #{request.method}"
+      end
+
+      action_item :post_check do
+         link_to "Post Check", admin_status_check_path, method: :post
+      end
+
+      action_item :get_check do
+        link_to "Get Check", admin_status_check_path
+      end
+
+      content do
+        "I love chocolate."
+      end
+    end
+    """
+    When I go to the dashboard
+    And I follow "Status"
+    And I follow "Post Check"
+    Then I should see "Checked via POST"
+    And I should see the Active Admin layout
+    When I follow "Get Check"
+    Then I should see "Checked via GET"
+    And I should see the Active Admin layout
+
   Scenario: Adding a page action to a page
     Given a configuration of:
     """
