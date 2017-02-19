@@ -6,6 +6,10 @@ sudo: false
 
 bundler_args: --without development
 
+branches:
+  only:
+    - master
+
 cache: bundler
 
 before_install:
