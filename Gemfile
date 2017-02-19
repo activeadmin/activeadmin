@@ -11,6 +11,9 @@ gem 'parallel_tests'
 # Debugging
 gem 'pry'                                   # Easily debug from your console with `binding.pry`
 
+# Code style
+gem 'rubocop'
+
 group :development do
   # Debugging
   gem 'better_errors'                       # Web UI to debug exceptions. Go to /__better_errors to access the latest one
