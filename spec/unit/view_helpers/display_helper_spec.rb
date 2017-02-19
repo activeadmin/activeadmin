@@ -1,4 +1,8 @@
 require 'rails_helper'
+require 'active_admin/view_helpers/active_admin_application_helper'
+require 'active_admin/view_helpers/auto_link_helper'
+require 'active_admin/view_helpers/display_helper'
+require 'active_admin/view_helpers/method_or_proc_helper'
 
 RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
   include ActiveAdmin::ViewHelpers::ActiveAdminApplicationHelper
