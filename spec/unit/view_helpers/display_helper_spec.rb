@@ -20,6 +20,13 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     { locale: nil }
   end
 
+  before do
+    load_resources do
+      ActiveAdmin.register(User)
+      ActiveAdmin.register(Post){ belongs_to :user, optional: true }
+    end
+  end
+
   describe '#display_name' do
     ActiveAdmin::Application.new.display_name_methods.map(&:to_s).each do |m|
       it "should return #{m} when defined" do
