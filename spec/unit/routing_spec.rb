@@ -14,8 +14,10 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
     reload_routes!
   end
 
+  let(:namespaces) { ActiveAdmin.application.namespaces }
+
   it "should only have the namespaces necessary for route testing" do
-    expect(ActiveAdmin.application.namespaces.names).to eq [:admin, :root]
+    expect(namespaces.names).to eq [:admin, :root]
   end
 
   it "should route to the admin dashboard" do
@@ -33,12 +35,12 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
   describe "route_options" do
     context "with a custom path set in route_options" do
       before(:each) do
-        ActiveAdmin.application.namespaces[:admin].route_options = { path: '/custom-path' }
+        namespaces[:admin].route_options = { path: '/custom-path' }
         reload_routes!
       end
 
       after(:all) do
-        ActiveAdmin.application.namespaces[:admin].route_options = {}
+        namespaces[:admin].route_options = {}
         reload_routes!
       end
 

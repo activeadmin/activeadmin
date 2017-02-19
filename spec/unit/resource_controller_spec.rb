@@ -156,9 +156,9 @@ RSpec.describe ActiveAdmin::ResourceController do
 end
 
 RSpec.describe Admin::PostsController, type: "controller" do
+  let(:controller){ Admin::PostsController.new }
 
   describe 'retrieving the resource' do
-    let(:controller){ Admin::PostsController.new }
     let(:post) { Post.new title: "An incledibly unique Post Title" }
 
     before do
@@ -187,7 +187,6 @@ RSpec.describe Admin::PostsController, type: "controller" do
   end
 
   describe 'retrieving the resource collection' do
-    let(:controller){ Admin::PostsController.new }
     let(:config) { controller.class.active_admin_config }
     before do
       Post.create!(title: "An incledibly unique Post Title") if Post.count == 0
@@ -223,7 +222,6 @@ RSpec.describe Admin::PostsController, type: "controller" do
 
 
   describe "performing batch_action" do
-    let(:controller){ Admin::PostsController.new }
     let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", &batch_action_block }
     let(:batch_action_block) { proc { } }
     before do
