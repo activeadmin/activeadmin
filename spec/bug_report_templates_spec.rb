@@ -4,7 +4,10 @@ RSpec.describe 'bug_report_templates' do
   subject do
     Bundler.with_clean_env do
       Dir.chdir(chdir_path) do
-        system({'ACTIVE_ADMIN_PATH' => active_admin_root}, Gem.ruby, template_path)
+        system({'ACTIVE_ADMIN_PATH' => active_admin_root},
+               Gem.ruby,
+               template_path,
+               out: File::NULL)
       end
     end
   end
