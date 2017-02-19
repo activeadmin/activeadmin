@@ -39,7 +39,7 @@ RSpec.describe "Comments" do
         expect(ActiveAdmin::Comment.find_for_resource_in_namespace(another_post, namespace_name)).to eq []
       end
 
-      it "should return the most recent comment first" do
+      it "should return the most recent comment first by default" do
         ActiveAdmin::Comment.class_eval { attr_accessible :created_at } if Rails::VERSION::MAJOR == 3
         another_comment = ActiveAdmin::Comment.create! resource: post,
                                                        body: "Another Comment",
@@ -58,24 +58,31 @@ RSpec.describe "Comments" do
         expect(comments.last).to eq(another_comment)
       end
 
-      it "should return the correctly ordered comments" do
-        ActiveAdmin::Application.inheritable_setting(
-          :comments_order, "created_at DESC"
-        )
+      context "when custom ordering configured" do
+        around do |example|
+          previous_order = ActiveAdmin.application.comments_order
+          ActiveAdmin.application.comments_order = "created_at DESC"
 
-        another_comment = ActiveAdmin::Comment.create!(
-          resource: post,
-          body: "Another Comment",
-          namespace: namespace_name,
-          created_at: @comment.created_at + 20.minutes
-        )
+          example.call
 
-        comments = ActiveAdmin::Comment.find_for_resource_in_namespace(
-          post, namespace_name
-        )
-        expect(comments.size).to eq 2
-        expect(comments.first).to eq(another_comment)
-        expect(comments.last).to eq(@comment)
+          ActiveAdmin.application.comments_order = previous_order
+        end
+
+        it "should return the correctly ordered comments" do
+          another_comment = ActiveAdmin::Comment.create!(
+            resource: post,
+            body: "Another Comment",
+            namespace: namespace_name,
+            created_at: @comment.created_at + 20.minutes
+          )
+
+          comments = ActiveAdmin::Comment.find_for_resource_in_namespace(
+            post, namespace_name
+          )
+          expect(comments.size).to eq 2
+          expect(comments.first).to eq(another_comment)
+          expect(comments.last).to eq(@comment)
+        end
       end
     end
 
