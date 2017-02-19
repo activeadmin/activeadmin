@@ -117,3 +117,12 @@ end
 This defines the route `/admin/calendar/add_event` which can handle HTTP POST requests.
 
 Clicking on the action item will reload page and display the message "Your event was added"
+
+Page actions can handle multiple HTTP verbs.
+
+```ruby
+page_action :add_event, method: [:get, :post] do
+  # ...
+end
+```
+See also the [Custom Actions](8-custom-actions.md#http-verbs) example.

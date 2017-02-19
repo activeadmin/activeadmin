@@ -97,7 +97,9 @@ module ActiveAdmin
           page = config.underscored_resource_name
           get "/#{page}" => "#{page}#index"
           config.page_actions.each do |action|
-            build_route.call action.http_verb, "/#{page}/#{action.name}" => "#{page}##{action.name}"
+            Array.wrap(action.http_verb).each do |verb|
+              build_route.call verb, "/#{page}/#{action.name}" => "#{page}##{action.name}"
+            end
           end
         else
           raise "Unsupported config class: #{config.class}"
