@@ -46,12 +46,16 @@ module ActiveAdminIntegrationSpecHelper
   # Returns a fake action view instance to use with our renderers
   def mock_action_view(assigns = {})
     controller = ActionView::TestCase::TestController.new
-    ActionView::Base.send :include, ActionView::Helpers
-    ActionView::Base.send :include, ActiveAdmin::ViewHelpers
-    ActionView::Base.send :include, Rails.application.routes.url_helpers
-    ActionView::Base.new(ActionController::Base.view_paths, assigns, controller)
+    MockActionView.new(ActionController::Base.view_paths, assigns, controller)
   end
   alias_method :action_view, :mock_action_view
+
+  # A mock action view to test view helpers
+  class MockActionView < ::ActionView::Base
+    include ActionView::Helpers
+    include ActiveAdmin::ViewHelpers
+    include Rails.application.routes.url_helpers
+  end
 
   def with_translation(translation)
     I18n.backend.store_translations :en, translation
