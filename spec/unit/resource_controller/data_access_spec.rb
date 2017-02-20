@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::ResourceController::DataAccess do
+  before do
+    load_resources { ActiveAdmin.register Post }
+  end
+
   let(:params) do
     {}
   end
