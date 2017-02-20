@@ -46,3 +46,4 @@ public
 .rails-version
 .rbenv-version
 .localeapp/*
+lib/bug_report_templates/tmp
