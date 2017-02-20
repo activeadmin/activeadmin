@@ -126,6 +126,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     context "when register a singular resource" do
 
       let :config do
+        ActiveAdmin.register Category
         ActiveAdmin.register Post do
           belongs_to :category
         end
