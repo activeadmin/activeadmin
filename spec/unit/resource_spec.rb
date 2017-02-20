@@ -148,6 +148,8 @@ module ActiveAdmin
 
 
     describe "sort order" do
+      class MockResource
+      end
 
       context "when resource class responds to primary_key" do
         it "should sort by primary key desc by default" do

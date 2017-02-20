@@ -55,10 +55,6 @@ module ActiveAdminIntegrationSpecHelper
   end
   alias_method :action_view, :mock_action_view
 
-  # A mock resource to register
-  class MockResource
-  end
-
   def with_translation(translation)
     I18n.backend.store_translations :en, translation
     yield
