@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Index overriding', type: :controller do
   before do
-    load_defaults!
+    load_resources { ActiveAdmin.register Post }
     @controller = Admin::PostsController.new
 
     @controller.instance_eval do
