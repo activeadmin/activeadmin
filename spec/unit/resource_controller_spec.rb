@@ -2,11 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::ResourceController do
 
-  let(:controller) { ActiveAdmin::ResourceController.new }
+  let(:controller) { Admin::PostsController.new }
 
   describe "authenticating the user" do
-    let(:controller){ Admin::PostsController.new }
-
     it "should do nothing when no authentication_method set" do
       namespace = controller.class.active_admin_config.namespace
       expect(namespace).to receive(:authentication_method).once.and_return(nil)
@@ -28,8 +26,6 @@ RSpec.describe ActiveAdmin::ResourceController do
   end
 
   describe "retrieving the current user" do
-    let(:controller){ Admin::PostsController.new }
-
     it "should return nil when no current_user_method set" do
       namespace = controller.class.active_admin_config.namespace
       expect(namespace).to receive(:current_user_method).once.and_return(nil)
@@ -81,7 +77,6 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing create" do
-      let(:controller){ Admin::PostsController.new }
       let(:resource){ double("Resource", save: true) }
 
       before do
@@ -107,7 +102,6 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing update" do
-      let(:controller){ Admin::PostsController.new }
       let(:resource){ double("Resource", :attributes= => true, save: true) }
       let(:attributes){ [{}] }
 
@@ -135,7 +129,6 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing destroy" do
-      let(:controller){ Admin::PostsController.new }
       let(:resource){ double("Resource", destroy: true) }
 
       before do
