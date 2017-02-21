@@ -10,7 +10,7 @@ RSpec.describe ActiveAdmin::DSL do
 
   let(:application) { ActiveAdmin::Application.new }
   let(:namespace) { ActiveAdmin::Namespace.new application, :admin }
-  let(:resource_config) { ActiveAdmin::Resource.new namespace, Post }
+  let(:resource_config) { namespace.register Post }
   let(:dsl){ ActiveAdmin::DSL.new(resource_config) }
 
   describe "#include" do

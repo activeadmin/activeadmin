@@ -1,9 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Resource::BelongsTo do
+  before do
+    load_resources do
+      ActiveAdmin.register User
+      ActiveAdmin.register Post do belongs_to :user end
+    end
+  end
 
-  let(:user_config){ ActiveAdmin.register User }
-  let(:post_config){ ActiveAdmin.register Post do belongs_to :user end }
+  let(:namespace) { ActiveAdmin.application.namespace(:admin) }
+
+  let(:user_config){ namespace.resource_for('User') }
+  let(:post_config){ namespace.resource_for('Post') }
   let(:belongs_to){ post_config.belongs_to_config.first }
 
   it "should have an owner" do

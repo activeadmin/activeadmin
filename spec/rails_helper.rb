@@ -1,72 +1,5 @@
 require 'spec_helper'
 
-module ActiveAdminIntegrationSpecHelper
-  extend self
-
-  def load_defaults!
-    ActiveAdmin.unload!
-    ActiveAdmin.load!
-    ActiveAdmin.register(Category)
-    ActiveAdmin.register(User)
-    ActiveAdmin.register(Post){ belongs_to :user, optional: true }
-    reload_menus!
-  end
-
-  def reload_menus!
-    ActiveAdmin.application.namespaces.each{|n| n.reset_menu! }
-  end
-
-  # Sometimes we need to reload the routes within
-  # the application to test them out
-  def reload_routes!
-    Rails.application.reload_routes!
-  end
-
-  # Helper method to load resources and ensure that Active Admin is
-  # setup with the new configurations.
-  #
-  # Eg:
-  #   load_resources do
-  #     ActiveAdmin.regiser(Post)
-  #   end
-  #
-  def load_resources
-    ActiveAdmin.unload!
-    yield
-    reload_menus!
-    reload_routes!
-  end
-
-  def arbre(assigns = {}, helpers = mock_action_view, &block)
-    Arbre::Context.new(assigns, helpers, &block)
-  end
-
-  def render_arbre_component(assigns = {}, helpers = mock_action_view, &block)
-    arbre(assigns, helpers, &block).children.first
-  end
-
-  # Returns a fake action view instance to use with our renderers
-  def mock_action_view(assigns = {})
-    controller = ActionView::TestCase::TestController.new
-    ActionView::Base.send :include, ActionView::Helpers
-    ActionView::Base.send :include, ActiveAdmin::ViewHelpers
-    ActionView::Base.send :include, Rails.application.routes.url_helpers
-    ActionView::Base.new(ActionController::Base.view_paths, assigns, controller)
-  end
-  alias_method :action_view, :mock_action_view
-
-  # A mock resource to register
-  class MockResource
-  end
-
-  def with_translation(translation)
-    I18n.backend.store_translations :en, translation
-    yield
-  ensure
-    I18n.backend.reload!
-  end
-end
-
 ENV['RAILS_ENV'] = 'test'
 
 require 'rails'
@@ -90,11 +23,6 @@ require 'rspec/rails'
 # JRuby
 Test::Unit.run = true if defined?(Test::Unit) && Test::Unit.respond_to?(:run=)
 
-# Setup Some Admin stuff for us to play with
-include ActiveAdminIntegrationSpecHelper
-load_defaults!
-reload_routes!
-
 # Disabling authentication in specs so that we don't have to worry about
 # it allover the place
 ActiveAdmin.application.authentication_method = false
@@ -109,12 +37,22 @@ RSpec.configure do |config|
   config.filter_run_excluding skip: true
   config.run_all_when_everything_filtered = true
   config.color = true
+  config.order = :random
 
   devise = ActiveAdmin::Dependency.devise >= '4.2' ? Devise::Test::ControllerHelpers : Devise::TestHelpers
   config.include devise, type: :controller
 
+  require 'support/active_admin_integration_spec_helper'
+  config.include ActiveAdminIntegrationSpecHelper
+
   require 'support/active_admin_request_helpers'
   config.include ActiveAdminRequestHelpers, type: :request
+
+  # Setup Some Admin stuff for us to play with
+  config.before(:suite) do
+    ActiveAdminIntegrationSpecHelper.load_defaults!
+    ActiveAdminIntegrationSpecHelper.reload_routes!
+  end
 end
 
 # Force deprecations to raise an exception.

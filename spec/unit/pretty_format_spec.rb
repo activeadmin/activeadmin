@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'active_admin/view_helpers/display_helper'
 
 RSpec.describe "#pretty_format" do
   include ActiveAdmin::ViewHelpers::DisplayHelper
@@ -30,11 +31,11 @@ RSpec.describe "#pretty_format" do
       end
 
       context "apply custom localize format" do
-        before do
+        around do |example|
+          previous_localize_format = ActiveAdmin.application.localize_format
           ActiveAdmin.application.localize_format = :short
-        end
-        after do
-          ActiveAdmin.application = nil
+          example.call
+          ActiveAdmin.application.localize_format = previous_localize_format
         end
         it "should actually do the formatting" do
           t = Time.utc(1985, "feb", 28, 20, 15, 1)
@@ -44,11 +45,11 @@ RSpec.describe "#pretty_format" do
       end
 
       context "with non-English locale" do
-        before(:all) do
+        before do
           @previous_locale = I18n.locale.to_s
           I18n.locale = "es"
         end
-        after(:all) do
+        after do
           I18n.locale = @previous_locale
         end
         it "should return a localized Date or Time with long format for non-english locale" do

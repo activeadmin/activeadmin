@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-include ActiveAdmin
 RSpec.describe ActiveAdmin::Views::TabbedNavigation do
 
   let(:menu){ ActiveAdmin::Menu.new }
@@ -17,6 +16,7 @@ RSpec.describe ActiveAdmin::Views::TabbedNavigation do
   let(:html) { Capybara.string(tabbed_navigation.to_s) }
 
   before do
+    load_resources { ActiveAdmin.register Post }
     allow(helpers).to receive(:admin_logged_in?).and_return(false)
   end
 

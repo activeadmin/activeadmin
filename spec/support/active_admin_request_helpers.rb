@@ -24,4 +24,16 @@ module ActiveAdminRequestHelpers
       @router = ::Rails.application.routes
     end
   end
+
+  def with_temp_application(application)
+    original_application = ActiveAdmin.application
+    ActiveAdmin.application = application
+    load_defaults!
+    reload_routes!
+
+    yield
+
+  ensure
+    ActiveAdmin.application = original_application
+  end
 end

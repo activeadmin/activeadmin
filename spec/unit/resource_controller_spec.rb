@@ -2,54 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::ResourceController do
 
-  let(:controller) { ActiveAdmin::ResourceController.new }
-
-  describe "authenticating the user" do
-    let(:controller){ Admin::PostsController.new }
-
-    it "should do nothing when no authentication_method set" do
-      namespace = controller.class.active_admin_config.namespace
-      expect(namespace).to receive(:authentication_method).once.and_return(nil)
-
-      controller.send(:authenticate_active_admin_user)
-    end
-
-    it "should call the authentication_method when set" do
-      namespace = controller.class.active_admin_config.namespace
-
-      expect(namespace).to receive(:authentication_method).twice.
-        and_return(:authenticate_admin_user!)
-
-      expect(controller).to receive(:authenticate_admin_user!).and_return(true)
-
-      controller.send(:authenticate_active_admin_user)
-    end
-
-  end
-
-  describe "retrieving the current user" do
-    let(:controller){ Admin::PostsController.new }
-
-    it "should return nil when no current_user_method set" do
-      namespace = controller.class.active_admin_config.namespace
-      expect(namespace).to receive(:current_user_method).once.and_return(nil)
-
-      expect(controller.send(:current_active_admin_user)).to eq nil
-    end
-
-    it "should call the current_user_method when set" do
-      user = double
-      namespace = controller.class.active_admin_config.namespace
-
-      expect(namespace).to receive(:current_user_method).twice.
-        and_return(:current_admin_user)
-
-      expect(controller).to receive(:current_admin_user).and_return(user)
-
-      expect(controller.send(:current_active_admin_user)).to eq user
-    end
-  end
-
+  let(:controller) { Admin::PostsController.new }
 
   describe "callbacks" do
     before :all do
@@ -81,7 +34,6 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing create" do
-      let(:controller){ Admin::PostsController.new }
       let(:resource){ double("Resource", save: true) }
 
       before do
@@ -107,7 +59,6 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing update" do
-      let(:controller){ Admin::PostsController.new }
       let(:resource){ double("Resource", :attributes= => true, save: true) }
       let(:attributes){ [{}] }
 
@@ -135,7 +86,6 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing destroy" do
-      let(:controller){ Admin::PostsController.new }
       let(:resource){ double("Resource", destroy: true) }
 
       before do
@@ -155,10 +105,56 @@ RSpec.describe ActiveAdmin::ResourceController do
   end
 end
 
-RSpec.describe Admin::PostsController, type: "controller" do
+RSpec.describe "A specific resource controller", type: :controller do
+  before do
+    load_resources { ActiveAdmin.register Post }
+
+    @controller = Admin::PostsController.new
+  end
+
+  describe "authenticating the user" do
+    it "should do nothing when no authentication_method set" do
+      namespace = controller.class.active_admin_config.namespace
+      expect(namespace).to receive(:authentication_method).once.and_return(nil)
+
+      controller.send(:authenticate_active_admin_user)
+    end
+
+    it "should call the authentication_method when set" do
+      namespace = controller.class.active_admin_config.namespace
+
+      expect(namespace).to receive(:authentication_method).twice.
+        and_return(:authenticate_admin_user!)
+
+      expect(controller).to receive(:authenticate_admin_user!).and_return(true)
+
+      controller.send(:authenticate_active_admin_user)
+    end
+
+  end
+
+  describe "retrieving the current user" do
+    it "should return nil when no current_user_method set" do
+      namespace = controller.class.active_admin_config.namespace
+      expect(namespace).to receive(:current_user_method).once.and_return(nil)
+
+      expect(controller.send(:current_active_admin_user)).to eq nil
+    end
+
+    it "should call the current_user_method when set" do
+      user = double
+      namespace = controller.class.active_admin_config.namespace
+
+      expect(namespace).to receive(:current_user_method).twice.
+        and_return(:current_admin_user)
+
+      expect(controller).to receive(:current_admin_user).and_return(user)
+
+      expect(controller.send(:current_active_admin_user)).to eq user
+    end
+  end
 
   describe 'retrieving the resource' do
-    let(:controller){ Admin::PostsController.new }
     let(:post) { Post.new title: "An incledibly unique Post Title" }
 
     before do
@@ -187,7 +183,6 @@ RSpec.describe Admin::PostsController, type: "controller" do
   end
 
   describe 'retrieving the resource collection' do
-    let(:controller){ Admin::PostsController.new }
     let(:config) { controller.class.active_admin_config }
     before do
       Post.create!(title: "An incledibly unique Post Title") if Post.count == 0
@@ -223,7 +218,6 @@ RSpec.describe Admin::PostsController, type: "controller" do
 
 
   describe "performing batch_action" do
-    let(:controller){ Admin::PostsController.new }
     let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", &batch_action_block }
     let(:batch_action_block) { proc { } }
     before do
