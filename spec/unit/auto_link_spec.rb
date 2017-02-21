@@ -40,6 +40,13 @@ RSpec.describe "auto linking resources", type: :view do
           match(%r{<a href="/admin/posts/\d+">Hello World</a>})
     end
 
+    it "should keep locale in the url if present" do
+      expect(self).to receive(:url_options).and_return(locale: 'en')
+
+      expect(auto_link(post)).to \
+          match(%r{<a href="/admin/posts/\d+\?locale=en">Hello World</a>})
+    end
+
     context "but the user doesn't have access" do
       before do
         allow(self).to receive(:authorized?).and_return(false)
@@ -61,6 +68,13 @@ RSpec.describe "auto linking resources", type: :view do
     it "should fallback to edit" do
       expect(auto_link(post)).to \
         match(%r{<a href="/admin/posts/\d+/edit">Hello World</a>})
+    end
+
+    it "should keep locale in the url if present" do
+      expect(self).to receive(:url_options).and_return(locale: 'en')
+
+      expect(auto_link(post)).to \
+        match(%r{<a href="/admin/posts/\d+/edit\?locale=en">Hello World</a>})
     end
   end
 
