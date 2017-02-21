@@ -4,49 +4,6 @@ RSpec.describe ActiveAdmin::ResourceController do
 
   let(:controller) { Admin::PostsController.new }
 
-  describe "authenticating the user" do
-    it "should do nothing when no authentication_method set" do
-      namespace = controller.class.active_admin_config.namespace
-      expect(namespace).to receive(:authentication_method).once.and_return(nil)
-
-      controller.send(:authenticate_active_admin_user)
-    end
-
-    it "should call the authentication_method when set" do
-      namespace = controller.class.active_admin_config.namespace
-
-      expect(namespace).to receive(:authentication_method).twice.
-        and_return(:authenticate_admin_user!)
-
-      expect(controller).to receive(:authenticate_admin_user!).and_return(true)
-
-      controller.send(:authenticate_active_admin_user)
-    end
-
-  end
-
-  describe "retrieving the current user" do
-    it "should return nil when no current_user_method set" do
-      namespace = controller.class.active_admin_config.namespace
-      expect(namespace).to receive(:current_user_method).once.and_return(nil)
-
-      expect(controller.send(:current_active_admin_user)).to eq nil
-    end
-
-    it "should call the current_user_method when set" do
-      user = double
-      namespace = controller.class.active_admin_config.namespace
-
-      expect(namespace).to receive(:current_user_method).twice.
-        and_return(:current_admin_user)
-
-      expect(controller).to receive(:current_admin_user).and_return(user)
-
-      expect(controller.send(:current_active_admin_user)).to eq user
-    end
-  end
-
-
   describe "callbacks" do
     before :all do
       application = ::ActiveAdmin::Application.new
@@ -153,6 +110,48 @@ RSpec.describe "A specific resource controller", type: :controller do
     load_resources { ActiveAdmin.register Post }
 
     @controller = Admin::PostsController.new
+  end
+
+  describe "authenticating the user" do
+    it "should do nothing when no authentication_method set" do
+      namespace = controller.class.active_admin_config.namespace
+      expect(namespace).to receive(:authentication_method).once.and_return(nil)
+
+      controller.send(:authenticate_active_admin_user)
+    end
+
+    it "should call the authentication_method when set" do
+      namespace = controller.class.active_admin_config.namespace
+
+      expect(namespace).to receive(:authentication_method).twice.
+        and_return(:authenticate_admin_user!)
+
+      expect(controller).to receive(:authenticate_admin_user!).and_return(true)
+
+      controller.send(:authenticate_active_admin_user)
+    end
+
+  end
+
+  describe "retrieving the current user" do
+    it "should return nil when no current_user_method set" do
+      namespace = controller.class.active_admin_config.namespace
+      expect(namespace).to receive(:current_user_method).once.and_return(nil)
+
+      expect(controller.send(:current_active_admin_user)).to eq nil
+    end
+
+    it "should call the current_user_method when set" do
+      user = double
+      namespace = controller.class.active_admin_config.namespace
+
+      expect(namespace).to receive(:current_user_method).twice.
+        and_return(:current_admin_user)
+
+      expect(controller).to receive(:current_admin_user).and_return(user)
+
+      expect(controller.send(:current_active_admin_user)).to eq user
+    end
   end
 
   describe 'retrieving the resource' do
