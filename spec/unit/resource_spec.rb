@@ -80,9 +80,9 @@ module ActiveAdmin
     describe "#belongs_to" do
 
       it "should build a belongs to configuration" do
-        expect(config.belongs_to_config.length).to eq 0
+        expect(config.belongs_to_config).to eq nil
         config.belongs_to :posts
-        expect(config.belongs_to_config.length).to eq 1
+        expect(config.belongs_to_config).to_not eq nil
       end
 
       it "should set the target menu to the belongs to target" do

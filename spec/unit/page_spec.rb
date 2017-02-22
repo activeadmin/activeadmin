@@ -97,7 +97,7 @@ module ActiveAdmin
       end
 
       it "builds a belongs_to relationship" do
-        belongs_to = page_config.belongs_to_config.first
+        belongs_to = page_config.belongs_to_config
 
         expect(belongs_to.target).to eq(post_config)
         expect(belongs_to.owner).to eq(page_config)

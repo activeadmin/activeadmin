@@ -110,24 +110,6 @@ Feature: Belongs To
     When I follow "Posts"
     Then the "Posts" tab should be selected
 
-  Scenario: When the belongs to is nested
-    Given a configuration of:
-    """
-      ActiveAdmin.register User
-      ActiveAdmin.register Post do
-        belongs_to :user
-      end
-      ActiveAdmin.register Tagging do
-        belongs_to :user
-        belongs_to :post
-      end
-    """
-    When I go to the last author's last post's taggings
-    Then I should see a link to "Users" in the breadcrumb
-    And I should see a link to "Jane Doe" in the breadcrumb
-    And I should see a link to "Posts" in the breadcrumb
-    And I should see a link to "Hello World" in the breadcrumb
-
   Scenario: Displaying belongs to resources in main menu
     Given a configuration of:
     """

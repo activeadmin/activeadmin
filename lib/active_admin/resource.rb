@@ -125,23 +125,24 @@ module ActiveAdmin
     end
 
     def belongs_to(target, options = {})
-      this_belongs_to = Resource::BelongsTo.new(self, target, options)
-      self.navigation_menu_name = target unless this_belongs_to.optional?
-      belongs_to_config << this_belongs_to
+      @belongs_to = Resource::BelongsTo.new(self, target, options)
+      self.navigation_menu_name = target unless @belongs_to.optional?
       controller.send :belongs_to, target, options.dup
     end
 
     def belongs_to_config
-      @belongs_to ||= []
+      @belongs_to
     end
 
-    def belongs_to_params
-      belongs_to_config.select{ |c| c.required? }.map{ |c| c.to_param }
+    def belongs_to_param
+      if belongs_to? && belongs_to_config.required?
+        belongs_to_config.to_param
+      end
     end
 
     # Do we belong to another resource?
     def belongs_to?
-      belongs_to_config.length > 0
+      !!belongs_to_config
     end
 
     # The csv builder for this resource
