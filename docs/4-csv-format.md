@@ -39,6 +39,18 @@ config.csv_options = { col_sep: ';' }
 config.csv_options = { force_quotes: true }
 ```
 
+You can customize the filename by overriding `csv_filename` in the controller block.
+```ruby
+ActiveAdmin.register User do
+  controller do
+    def csv_filename
+      'User Details.csv'
+    end
+  end
+end
+```
+
+
 ## Streaming
 
 By default Active Admin streams the CSV response to your browser as it's generated.
