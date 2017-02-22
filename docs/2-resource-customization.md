@@ -72,7 +72,7 @@ ActiveAdmin.register Post do
   belongs_to :user
   permit_params :title, :content, :publisher_id
 end
-
+```
 
 The `permit_params` call creates a method called `permitted_params`. You should use this method when overriding `create` or `update` actions:
 
