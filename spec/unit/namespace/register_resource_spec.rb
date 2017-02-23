@@ -8,6 +8,8 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
   let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
   let(:menu){ namespace.fetch_menu(:default) }
 
+  after { namespace.unload! }
+
   context "with no configuration" do
     before do
       namespace.register Category
