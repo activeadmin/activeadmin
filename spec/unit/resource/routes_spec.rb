@@ -36,6 +36,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     let!(:config) { ActiveAdmin.register Category, namespace: false }
 
     after(:each) do
+      application.namespace(:root).unload!
       application.namespaces.instance_variable_get(:@namespaces).delete(:root)
     end
 
