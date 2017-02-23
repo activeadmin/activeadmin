@@ -1,3 +1,6 @@
+---
+redirect_from: /docs/5-forms.html
+---
 # Forms
 
 Active Admin gives you complete control over the output of the form by creating

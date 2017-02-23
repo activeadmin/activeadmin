@@ -1,5 +1,5 @@
 ---
-layout: default
+redirect_from: /docs/documentation.html
 ---
 <h2 class="in-docs">
     <span class="breadcrumb">

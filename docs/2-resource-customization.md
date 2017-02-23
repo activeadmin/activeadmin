@@ -1,3 +1,6 @@
+---
+redirect_from: /docs/2-resource-customization.html
+---
 # Working with Resources
 
 Every Active Admin resource corresponds to a Rails model. So before creating a

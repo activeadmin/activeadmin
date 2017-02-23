@@ -1,3 +1,6 @@
+---
+redirect_from: /docs/3-index-pages.html
+---
 # Customizing the Index Page
 
 Filtering and listing resources is one of the most important tasks for

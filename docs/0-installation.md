@@ -1,3 +1,6 @@
+---
+redirect_from: /docs/0-installation.html
+---
 # Installation
 
 Active Admin is a Ruby Gem.
