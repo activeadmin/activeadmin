@@ -5,27 +5,31 @@ module ActiveAdmin
       # @return [String] the path to this resource collection page
       # @example "/admin/posts"
       def route_collection_path(params = {}, additional_params = {})
-        RouteBuilder.new(self).collection_path(params, additional_params)
+        route_builder.collection_path(params, additional_params)
       end
 
       def route_batch_action_path(params = {}, additional_params = {})
-        RouteBuilder.new(self).batch_action_path(params, additional_params)
+        route_builder.batch_action_path(params, additional_params)
       end
 
       # @param resource [ActiveRecord::Base] the instance we want the path of
       # @return [String] the path to this resource collection page
       # @example "/admin/posts/1"
       def route_instance_path(resource, additional_params = {})
-        RouteBuilder.new(self).instance_path(resource, additional_params)
+        route_builder.instance_path(resource, additional_params)
       end
 
       def route_edit_instance_path(resource, additional_params = {})
-        RouteBuilder.new(self).edit_instance_path(resource, additional_params)
+        route_builder.edit_instance_path(resource, additional_params)
       end
 
       # Returns the routes prefix for this config
       def route_prefix
         namespace.module_name.try(:underscore)
+      end
+
+      def route_builder
+        @route_builder ||= RouteBuilder.new(self)
       end
 
       def route_uncountable?
