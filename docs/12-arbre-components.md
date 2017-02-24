@@ -1,3 +1,6 @@
+---
+redirect_from: /docs/12-arbre-components.html
+---
 # Arbre Components
 
 Arbre allows the creation of shareable and extendable HTML components and is

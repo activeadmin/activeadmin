@@ -1,3 +1,6 @@
+---
+redirect_from: /docs/3-index-pages/custom-index.html
+---
 # Custom Index
 
 If the supplied Active Admin index components are insufficient for your project

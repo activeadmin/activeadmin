@@ -1,3 +1,6 @@
+---
+redirect_from: /docs/7-sidebars.html
+---
 # Sidebar Sections
 
 Sidebars allow you to put whatever content you want on the side the page.

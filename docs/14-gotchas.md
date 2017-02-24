@@ -1,3 +1,6 @@
+---
+redirect_from: /docs/14-gotchas.html
+---
 #Gotchas
 
 ## Security

@@ -1,3 +1,6 @@
+---
+redirect_from: /docs/8-custom-actions.html
+---
 # Custom Controller Actions
 
 Active Admin allows you to override and modify the underlying controller which

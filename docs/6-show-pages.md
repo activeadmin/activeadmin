@@ -1,3 +1,6 @@
+---
+redirect_from: /docs/6-show-pages.html
+---
 # Customize the Show Page
 
 The show block is rendered within the context of the view and uses [Arbre](https://github.com/activeadmin/arbre) syntax.
