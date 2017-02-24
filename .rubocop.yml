@@ -1,0 +1,16 @@
+---
+
+AllCops:
+  DisabledByDefault: true
+
+  Exclude:
+    - spec/rails/**/*
+
+  Include:
+    - "**/*.rake"
+    - "**/Gemfile"
+    - "**/Rakefile"
+
+  DisplayCopNames: true
+
+  StyleGuideCopsOnly: false
