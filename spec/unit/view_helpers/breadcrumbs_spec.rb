@@ -129,7 +129,7 @@ RSpec.describe "Breadcrumbs" do
       context "when User.find(4e24d6249ccf967313000000) does exist" do
         before do
           display_name = double(display_name: 'Hello :)')
-          allow(user_config).to receive(:find_resource).and_return(display_name) 
+          allow(user_config).to receive(:find_resource).and_return(display_name)
         end
         it "should have a link to /admin/users/4e24d6249ccf967313000000 using display name" do
           expect(trail[2][:name]).to eq "Hello :)"
