@@ -10,7 +10,6 @@ RSpec.describe "auto linking resources", type: :view do
   include ActiveAdmin::ViewHelpers::DisplayHelper
   include MethodOrProcHelper
 
-  let(:active_admin_config)   { double namespace: namespace }
   let(:active_admin_namespace){ ActiveAdmin.application.namespace(:admin) }
   let(:post){ Post.create! title: "Hello World" }
 
