@@ -37,7 +37,7 @@ gemfile:
 env:
   global:
     - JRUBY_OPTS="-J-Xmx1024m --debug"
-    - PATH=$(npm bin):$PATH
+    - PATH=$(npm bin)\:$PATH
 
 matrix:
   fast_finish: true
