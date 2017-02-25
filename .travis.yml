@@ -9,7 +9,7 @@ bundler_args: --without development
 cache: bundler
 
 before_install:
-  - if [ $(phantomjs --version) != '2.1.1' ]; then npm install phantomjs-prebuilt; fi
+  - if [ $(phantomjs --version) != '2.1.1' ]; then npm install phantomjs-prebuilt@2.1; fi
   - gem update --system # use the very latest Rubygems
   - rvm @global do gem uninstall bundler -a -x
   - rvm @global do gem install bundler -v 1.14.3 # latest version known to work
