@@ -71,7 +71,7 @@ module ActiveAdmin
       # Returns sorted array of menu items that should be displayed in this context.
       # Sorts by priority first, then alphabetically by label if needed.
       def items(context = nil)
-        @children.values.select{ |i| i.display?(context) }.sort do |a,b|
+        @children.values.select{ |i| i.display?(context) }.sort do |a, b|
           result = a.priority       <=> b.priority
           result = a.label(context) <=> b.label(context) if result == 0
           result
