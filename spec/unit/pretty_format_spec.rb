@@ -23,7 +23,7 @@ RSpec.describe "#pretty_format" do
 
     context "actually do the formatting" do
       it "should actually do the formatting" do
-        t = Time.utc(1985,"feb",28,20,15,1)
+        t = Time.utc(1985, "feb", 28, 20, 15, 1)
         expect(pretty_format(t)).to eq "February 28, 1985 20:15"
       end
 
@@ -50,7 +50,7 @@ RSpec.describe "#pretty_format" do
           I18n.locale = @previous_locale
         end
         it "should return a localized Date or Time with long format for non-english locale" do
-          t = Time.utc(1985,"feb",28,20,15,1)
+          t = Time.utc(1985, "feb", 28, 20, 15, 1)
           expect(pretty_format(t)).to eq "28 de febrero de 1985 20:15"
         end
       end

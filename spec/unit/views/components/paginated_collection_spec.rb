@@ -189,7 +189,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should display proper message (including number and not hash)" do
-        expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')).
+        expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
           to eq "Displaying posts <b>1 - 2</b> of <b>3</b> in total"
       end
     end
@@ -200,7 +200,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should show the proper item counts" do
-        expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')).
+        expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
           to eq "Displaying posts <b>61 - 81</b> of <b>81</b> in total"
       end
     end
@@ -214,7 +214,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
         it "should not show the total item counts" do
           expect(collection).not_to receive(:total_pages)
           pagination = paginated_collection(collection, pagination_total: false)
-          info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')
+          info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')
           expect(info).to eq "Displaying posts <b>1 - 30</b>"
         end
       end
@@ -223,7 +223,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
         let(:pagination) { paginated_collection(collection, pagination_total: true) }
 
         it "should show the total item counts" do
-          info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;',' ')
+          info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')
           expect(info).to eq "Displaying posts <b>1 - 30</b> of <b>256</b> in total"
         end
       end

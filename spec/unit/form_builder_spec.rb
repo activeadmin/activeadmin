@@ -524,7 +524,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       let :body do
         build_form({url: '/categories'}, Category.new) do |f|
           f.object.posts.build
-          f.has_many :posts do |p,i|
+          f.has_many :posts do |p, i|
             p.input :title, label: "Title #{i}"
           end
         end

@@ -17,3 +17,6 @@ AllCops:
 
 Style/TrailingWhitespace:
   Enabled: true
+
+Style/SpaceAfterComma:
+  Enabled: true

@@ -256,7 +256,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
     context "when using an Array of Hashes" do
       let(:table) do
         render_arbre_component nil, helpers do
-          attributes_table_for [{foo: 1},{foo: 2}] do
+          attributes_table_for [{foo: 1}, {foo: 2}] do
             row :foo
           end
         end
