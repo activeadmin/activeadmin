@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::Pages::Form do
-  let!(:application) { ActiveAdmin::Application.new }
-  let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
   let!(:params) { { controller: "PostsController", action: "edit" } }
+  let(:active_admin_namespace){ ActiveAdmin.application.namespace(:admin) }
+  before do
+    load_defaults!
+  end
+
   let(:helpers) do
     helpers = mock_action_view
-    allow(helpers).to receive(:active_admin_config).and_return(namespace.register(Post))
+    allow(helpers).to receive(:active_admin_config).and_return(  active_admin_namespace.resource_for(Post))
     allow(helpers).to receive(:params).and_return(params)
     helpers
   end
