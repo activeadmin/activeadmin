@@ -1,0 +1,110 @@
+sk:
+  active_admin:
+    dashboard: Úvod
+    dashboard_welcome:
+      welcome: "Vitajte v Active Admin. Toto je nástenka."
+      call_to_action: "Pre pridanie sekcie na nástenku se pozrite do súboru 'app/admin/dashboard.rb'"
+    view: "Zobraziť"
+    edit: "Upraviť"
+    delete: "Zmazať"
+    delete_confirmation: "Ste si istí, že chcete túto položku zmazať?"
+    new_model: "Vytvoriť"
+    edit_model: "Upraviť"
+    delete_model: "Zmazať"
+    details: "Detaily"
+    cancel: "Zrušiť"
+    empty: "Prázdne"
+    previous: "Predchádzajúce"
+    next: "Nasledujúce"
+    download: "Stiahnúť:"
+    has_many_new: "Pridať nový"
+    has_many_delete: "Zmazať"
+    has_many_remove: "Odstrániť"
+    filters:
+      buttons:
+        filter: "Filtrovať"
+        clear: "Vyčistiť filtre"
+      predicates:
+        contains: "Obsahuje"
+        equals: "Je presne"
+        starts_with: "Začína na"
+        ends_with: "Končí na"
+        greater_than: "Väčší ako"
+        less_than: "Menší ako"
+    status_tag:
+      "yes": "Áno"
+      "no": "Nie"
+    main_content: "Implementujte prosím %{model}#main_content pre zobrazenie obsahu."
+    logout: "Odhlásiť"
+    powered_by: "%{active_admin} %{version}"
+    sidebars:
+      filters: "Filtre"
+    pagination:
+      empty: "Nenájdený."
+      one: "Zobrazená  <b>1</b> položka"
+      one_page: "Počet zobrazených položiek %{n}"
+      multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
+      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "položka"
+        few: "položky"
+        other: "položky"
+    any: "Akákoľvek"
+    blank_slate:
+      content: "Zatiaľ tu nie je žiadny obsah."
+      link: "Vytvoriť"
+    dropdown_actions:
+      button_label: "Akcie"
+    batch_actions:
+      button_label: "Hromadné akcie"
+      default_confirmation: "Ste si istí, že to chcete spraviť?"
+      delete_confirmation: "Ste si istí, že chcete zmazať tieto %{plural_model}?"
+      succesfully_destroyed:
+        zero: "Nebol zmazaný žiaden %{model}"
+        one: "Úspešne zmazaný %{model}"
+        few: "Úspešne zmazané %{count} %{plural_model}"
+        other: "Úspešne zmazaných %{count} %{plural_model}"
+      selection_toggle_explanation: "(Zmeniť výber)"
+      link: "Vytvoriť"
+      action_label: "%{title}"
+      labels:
+        destroy: "Vymazať"
+    comments:
+      resource_type: "Typ zdroja"
+      author_type: "Typ autora"
+      body: "Telo"
+      author: "Autor"
+      title: "Komentár"
+      add: "Pridať komentár"
+      resource: "Zdroj"
+      no_comments_yet: "Žiadny komentár"
+      author_missing: "Anonymný"
+      title_content: "Komentáre administrátorov (%{count})"
+      errors:
+        empty_text: "Komentár nebol uložený, je prázdny."
+    devise:
+      login:
+        title: "Prihlásenie"
+        remember_me: "Zapamätať si ma"
+        submit: "Prihlásiť"
+      reset_password:
+        title: "Zabudli ste heslo?"
+        submit: "Obnoviť heslo"
+      change_password:
+        title: "Zmeniť heslo"
+        submit: "Zmeniť svoje heslo"
+      unlock:
+        title: "Zaslanie inštrukcií k odomknutiu účtu"
+        submit: "Zaslať inštrukcií k odomknutiu účtu"
+      links:
+        sign_in: "Prihlásiť sa"
+        sign_up: "Registrovať sa"
+        forgot_your_password: "Zabudli ste heslo?"
+        sign_in_with_omniauth_provider: "Prihlásiť sa cez %{provider}"
+    access_denied:
+      message: "Nemáte oprávnenie k vykonaniu tejto akcie."
+    index_list:
+      table: "Tabuľka"
+      block: "Zoznam"
+      grid: "Tabuľka"
+      blog: "Blog"
