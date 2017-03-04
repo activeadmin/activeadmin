@@ -61,7 +61,17 @@ RSpec.describe ActiveAdmin::Resource::Routes do
   end
 
   context "when the resource belongs to another resource" do
-    let(:config) { namespace.resource_for('Post') }
+
+    before do
+      load_resources { config }
+    end
+
+    let :config do
+      ActiveAdmin.register Category
+      ActiveAdmin.register Post do
+        belongs_to :category
+      end
+    end
 
     let :post do
       Post.new do |p|
@@ -70,19 +80,35 @@ RSpec.describe ActiveAdmin::Resource::Routes do
       end
     end
 
-    before do
-      load_resources do
-        ActiveAdmin.register Category
-        ActiveAdmin.register(Post) { belongs_to :category }
-      end
-    end
-
-    it "should nest the collection path" do
-      expect(config.route_collection_path(category_id: 1)).to eq "/admin/categories/1/posts"
-    end
-
     it "should nest the instance path" do
       expect(config.route_instance_path(post)).to eq "/admin/categories/1/posts/3"
+    end
+
+    shared_examples :nested_collection_path do
+
+      it "should nest the collection path" do
+        expect(config.route_collection_path(category_id: 1)).to eq "/admin/categories/1/posts"
+      end
+
+    end
+
+    include_examples :nested_collection_path
+
+    context "when belongs_to optional" do
+
+      let :config do
+        ActiveAdmin.register Category
+        ActiveAdmin.register Post do
+          belongs_to :category, optional: true
+        end
+      end
+
+      include_examples :nested_collection_path
+
+      it "should not nest the collection path if routed without nesting" do
+        expect(config.route_collection_path).to eq "/admin/posts"
+      end
+
     end
   end
 
@@ -100,12 +126,29 @@ RSpec.describe ActiveAdmin::Resource::Routes do
         end
       end
 
-      it "should include :scope and :q params" do
-        params = { category_id: 1, q: { name_equals: "Any" }, scope: :all }
-        additional_params = { locale: 'en' }
-        batch_action_path = "/admin/categories/1/posts/batch_action?locale=en&q%5Bname_equals%5D=Any&scope=all"
+      shared_examples :valid_batch_action_path do
+        it "should include :scope and :q params" do
+          params = { category_id: 1, q: { name_equals: "Any" }, scope: :all }
+          additional_params = { locale: 'en' }
+          batch_action_path = "/admin/categories/1/posts/batch_action?locale=en&q%5Bname_equals%5D=Any&scope=all"
 
-        expect(config.route_batch_action_path(params, additional_params)).to eq batch_action_path
+          expect(config.route_batch_action_path(params, additional_params)).to eq batch_action_path
+        end
+      end
+
+      include_examples :valid_batch_action_path
+
+      context "when belongs to optional" do
+
+        let :config do
+          ActiveAdmin.register Category
+          ActiveAdmin.register Post do
+            belongs_to :category, optional: true
+          end
+        end
+
+        include_examples :valid_batch_action_path
+
       end
     end
 
