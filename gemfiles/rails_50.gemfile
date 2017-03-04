@@ -4,7 +4,6 @@ source "https://rubygems.org"
 
 gem "cancan"
 gem "pundit"
-gem "thor", "<= 0.19.1"
 gem "rake"
 gem "parallel_tests", "< 2.10"
 gem "pry"
