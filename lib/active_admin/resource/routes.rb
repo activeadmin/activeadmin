@@ -48,7 +48,8 @@ module ActiveAdmin
         def collection_path(params, additional_params = {})
           route_name = route_name(
             resource.resources_configuration[:self][:route_collection_name],
-            suffix: (resource.route_uncountable? ? "index_path" : "path")
+            suffix: (resource.route_uncountable? ? "index_path" : "path"),
+            nested: resource_nested?(params)
           )
 
           routes.public_send route_name, *route_collection_params(params), additional_params
@@ -58,7 +59,8 @@ module ActiveAdmin
           route_name = route_name(
             resource.resources_configuration[:self][:route_collection_name],
             action: :batch_action,
-            suffix: (resource.route_uncountable? ? "index_path" : "path")
+            suffix: (resource.route_uncountable? ? "index_path" : "path"),
+            nested: resource_nested?(params)
           )
 
           query = params.slice(:q, :scope)
@@ -94,19 +96,21 @@ module ActiveAdmin
           suffix = options[:suffix] || "path"
           route = []
 
-          route << options[:action]           # "batch_action", "edit" or "new"
-          route << resource.route_prefix      # "admin"
-          route << belongs_to_name if nested? # "category"
-          route << resource_path_name         # "posts" or "post"
-          route << suffix                     # "path" or "index path"
+          route << options[:action]             # "batch_action", "edit" or "new"
+          route << resource.route_prefix        # "admin"
+          if options[:nested] || nested_required?
+            route << belongs_to_name            # "category"
+          end
+          route << resource_path_name           # "posts" or "post"
+          route << suffix                       # "path" or "index path"
 
-          route.compact.join('_').to_sym      # :admin_category_posts_path
+          route.compact.join('_').to_sym        # :admin_category_posts_path
         end
 
 
         # @return params to pass to instance path
         def route_instance_params(instance)
-          if nested?
+          if nested_required?
             [instance.public_send(belongs_to_name).to_param, instance.to_param]
           else
             instance.to_param
@@ -114,17 +118,29 @@ module ActiveAdmin
         end
 
         def route_collection_params(params)
-          if nested?
+          if resource_nested?(params)
             params[:"#{belongs_to_name}_id"]
           end
         end
 
+        def resource_nested?(params)
+          nested? && params.has_key?(resource.belongs_to_config.to_param)
+        end
+
         def nested?
-          resource.belongs_to? && resource.belongs_to_config.required?
+          resource.belongs_to?
+        end
+
+        def nested_required?
+          nested? && resource.belongs_to_config.required?
+        end
+
+        def belongs_to_target
+          resource.belongs_to? ? resource.belongs_to_config.target : nil
         end
 
         def belongs_to_name
-          resource.belongs_to_config.target.resource_name.singular if nested?
+          belongs_to_target.resource_name.singular if belongs_to_target
         end
 
         def routes
