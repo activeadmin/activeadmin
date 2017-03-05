@@ -27,6 +27,10 @@ RSpec.describe ActiveAdmin::Namespace do
   describe "#unload!" do
     context "when controller is only defined without a namespace" do
       before do
+        # To ensure Admin::PostsController is defined
+        ActiveAdmin.register Post
+
+        # To ensure ::PostsController is defined
         ActiveAdmin.register Post, namespace: false
 
         # To prevent unload! from unregistering ::PostsController
