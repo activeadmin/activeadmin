@@ -45,7 +45,7 @@ end
 # Import all our rake tasks
 FileList['tasks/**/*.rake'].each { |task| import task }
 
-task default: :test
+task default: [:test, :lint]
 
 begin
   require 'jasmine'
