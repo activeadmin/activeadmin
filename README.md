@@ -22,7 +22,7 @@ gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 
 Or you can using rubygems:
 ```ruby
-gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'activeadmin', '~> 1.0.0.pre5'
 ```
 
 *Keep in mind that during the time where we use `pre`-release label, things can break in each release!*
