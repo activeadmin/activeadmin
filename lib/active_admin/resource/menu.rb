@@ -10,7 +10,7 @@ module ActiveAdmin
           @include_in_menu   = false
           @menu_item_options = {}
         else
-          @navigation_menu_name = options[:menu_name]
+          @navigation_menu_name = options[:menu_name] if options.has_key?(:menu_name)
           @menu_item_options    = default_menu_options.merge options
         end
       end
