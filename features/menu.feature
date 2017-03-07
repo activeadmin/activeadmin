@@ -51,3 +51,15 @@ Feature: Menu
     When I follow "Users"
     Then the "Users" tab should be selected
     And I should see a nested menu item for "Posts"
+
+  Scenario: Adding a nested resource
+    Given a configuration of:
+    """
+      ActiveAdmin.register User
+      ActiveAdmin.register Post do
+        belongs_to :user
+      end
+    """
+    When I am on the dashboard
+    Then I should see a menu item for "Users"
+    And I should not see a menu item for "Posts"
