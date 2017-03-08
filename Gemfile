@@ -4,9 +4,6 @@ source 'https://rubygems.org'
 gem 'cancan'
 gem 'pundit'
 
-# Until https://github.com/erikhuda/thor/issues/538 fixed
-gem 'thor', '<= 0.19.1'
-
 # Utility gems used in both development & test environments
 gem 'rake'
 gem 'parallel_tests', '< 2.10' #2.10 requires ruby '>= 2.0.0'

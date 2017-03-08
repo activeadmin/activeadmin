@@ -13,7 +13,7 @@ before_install:
   - if [ $(phantomjs --version) != '2.1.1' ]; then npm install phantomjs-prebuilt@2.1; fi
   - gem update --system # use the very latest Rubygems
   - rvm @global do gem uninstall bundler -a -x
-  - rvm @global do gem install bundler -v 1.14.3 # latest version known to work
+  - rvm @global do gem install bundler -v 1.14.6 # latest version known to work
 
 before_script:
   - bundle exec rake setup
@@ -22,7 +22,7 @@ script:
   - bundle exec rake test
 
 rvm:
-  - jruby-9.1.7.0
+  - jruby-9.1.8.0
   - 1.9.3
   - 2.2.6
   - 2.3.3
@@ -41,6 +41,10 @@ env:
 
 matrix:
   fast_finish: true
+
+  allow_failures:
+    - rvm: jruby-9.1.8.0
+      gemfile: gemfiles/rails_50.gemfile
 
   exclude:
     - rvm: 1.9.3
