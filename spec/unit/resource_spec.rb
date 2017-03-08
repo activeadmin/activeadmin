@@ -85,10 +85,10 @@ module ActiveAdmin
         expect(config.belongs_to_config).to_not eq nil
       end
 
-      it "should set the target menu to the belongs to target" do
+      it "should not set the target menu to the belongs to target" do
         expect(config.navigation_menu_name).to eq ActiveAdmin::DEFAULT_MENU
         config.belongs_to :posts
-        expect(config.navigation_menu_name).to eq :posts
+        expect(config.navigation_menu_name).to eq ActiveAdmin::DEFAULT_MENU
       end
 
     end
