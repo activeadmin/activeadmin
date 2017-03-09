@@ -34,4 +34,4 @@ RSpec.describe ActiveAdmin::ResourceController::Sidebars, type: :controller do
       expect(controller.instance_variable_get(:@skip_sidebar)).to eq true
     end
   end
-end unless ActiveAdmin::Dependency.rails < 4
+end

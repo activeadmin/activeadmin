@@ -23,13 +23,11 @@ script:
 
 rvm:
   - jruby-9.1.8.0
-  - 1.9.3
   - 2.2.6
   - 2.3.3
   - 2.4.0
 
 gemfile:
-  - gemfiles/rails_32.gemfile
   - gemfiles/rails_40.gemfile
   - gemfiles/rails_41.gemfile
   - gemfiles/rails_42.gemfile
@@ -47,12 +45,6 @@ matrix:
       gemfile: gemfiles/rails_50.gemfile
 
   exclude:
-    - rvm: 1.9.3
-      gemfile: gemfiles/rails_50.gemfile
-
-    - rvm: 2.4.0
-      gemfile: gemfiles/rails_32.gemfile
-
     - rvm: 2.4.0
       gemfile: gemfiles/rails_40.gemfile
 

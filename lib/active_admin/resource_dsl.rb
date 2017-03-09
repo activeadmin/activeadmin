@@ -47,7 +47,7 @@ module ActiveAdmin
     end
 
     #
-    # Rails 4 Strong Parameters Support
+    # Keys included in the `permitted_params` setting are automatically whitelisted.
     #
     # Either
     #
@@ -63,8 +63,6 @@ module ActiveAdmin
     #       defaults
     #     end
     #   end
-    #
-    # Keys included in the `permitted_params` setting are automatically whitelisted.
     #
     def permit_params(*args, &block)
       param_key = config.param_key.to_sym
@@ -136,8 +134,7 @@ module ActiveAdmin
       title = options.delete(:title)
 
       controller do
-        callback = ActiveAdmin::Dependency.rails >= 4 ? :before_action : :before_filter
-        send(callback, only: [name]) { @page_title = title } if title
+        before_action(only: [name]) { @page_title = title } if title
         define_method(name, &block || Proc.new{})
       end
     end
@@ -187,17 +184,16 @@ module ActiveAdmin
     delegate :before_save,    :after_save,    to: :controller
     delegate :before_destroy, :after_destroy, to: :controller
 
-    # This code defines both *_filter and *_action for Rails 3.2 to Rails 5.
+    # This code defines both *_filter and *_action for Rails 4.0 to Rails 5.
     actions = [
       :before, :skip_before,
       :after,  :skip_after,
       :around, :skip
     ]
-    destination = ActiveAdmin::Dependency.rails >= 4 ? :action : :filter
     [:action, :filter].each do |name|
       actions.each do |action|
         define_method "#{action}_#{name}" do |*args, &block|
-          controller.public_send "#{action}_#{destination}", *args, &block
+          controller.public_send "#{action}_action", *args, &block
         end
       end
     end

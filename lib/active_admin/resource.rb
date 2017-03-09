@@ -168,10 +168,8 @@ module ActiveAdmin
     def method_for_find(id)
       if finder = resources_configuration[:self][:finder]
         [finder, id]
-      elsif Rails::VERSION::MAJOR >= 4
-        [:find_by, { resource_class.primary_key => id }]
       else
-        [:"find_by_#{resource_class.primary_key}", id]
+        [:find_by, { resource_class.primary_key => id }]
       end
     end
 

@@ -1,5 +1,4 @@
 ActiveAdmin.register <%= class_name %> do
-<% if ActiveAdmin::Dependency.rails.strong_parameters? %>
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -12,7 +11,6 @@ ActiveAdmin.register <%= class_name %> do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-<% end %>
 <% if options.include_boilerplate? %>
 # Limit actions available to your users by adding them to the 'except' array
 # actions :all, except: []

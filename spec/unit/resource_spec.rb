@@ -234,13 +234,8 @@ module ActiveAdmin
       let(:resource) { namespace.register(Post) }
       let(:post) { double }
       before do
-        if Rails::VERSION::MAJOR >= 4
-          allow(Post).to receive(:find_by).with("id" => "12345") { post }
-          allow(Post).to receive(:find_by).with("id" => "54321") { nil }
-        else
-          allow(Post).to receive(:find_by_id).with("12345") { post }
-          allow(Post).to receive(:find_by_id).with("54321") { nil }
-        end
+        allow(Post).to receive(:find_by).with("id" => "12345") { post }
+        allow(Post).to receive(:find_by).with("id" => "54321") { nil }
       end
 
       it 'can find the resource' do
@@ -262,13 +257,8 @@ module ActiveAdmin
         let(:different_post) { double }
         before do
           allow(Post).to receive(:primary_key).and_return 'something_else'
-          if Rails::VERSION::MAJOR >= 4
-            allow(Post).to receive(:find_by).
+          allow(Post).to receive(:find_by).
               with("something_else" => "55555") { different_post }
-          else
-            allow(Post).to receive(:find_by_something_else).
-              with("55555") { different_post }
-          end
         end
 
         it 'can find the post by the custom primary key' do
@@ -307,30 +297,14 @@ module ActiveAdmin
         expect(resource).to receive(:controller).and_return(controller)
       end
 
-      context "filters" do
+      context "actions" do
         [
-          :before_filter, :skip_before_filter,
-          :after_filter, :skip_after_filter,
-          :around_filter, :skip_filter
+          :before_action, :skip_before_action,
+          :after_action, :skip_after_action,
+          :around_action, :skip_action
         ].each do |method|
           it "delegates #{method}" do
-            expected = method.to_s.dup
-            expected.sub! 'filter', 'action' if ActiveAdmin::Dependency.rails >= 4
-            expect(resource.send(method)).to eq "called #{expected}"
-          end
-        end
-      end
-
-      if ActiveAdmin::Dependency.rails >= 4
-        context "actions" do
-          [
-            :before_action, :skip_before_action,
-            :after_action, :skip_after_action,
-            :around_action, :skip_action
-          ].each do |method|
-            it "delegates #{method}" do
-              expect(resource.send(method)).to eq "called #{method}"
-            end
+            expect(resource.send(method)).to eq "called #{method}"
           end
         end
       end

@@ -63,7 +63,7 @@ or even just run specific tests. For example:
 bundle exec appraisal rails_42 rspec spec/unit/belongs_to_spec.rb
 ```
 
-The test run will generate a sample rails application in `spec/rails` to run the
+The test run will generate a sample Rails application in `spec/rails` to run the
 tests against.
 
 If your tests are passing locally but they're failing on Travis, reset your test
@@ -131,7 +131,7 @@ Or to migrate the database:
 bundle exec rake local db:migrate
 ```
 
-### 7. Run tests against major supported rails versions
+### 7. Run tests against major supported Rails versions
 
 Once you've implemented your code, got the tests passing, previewed it in a
 browser, you're ready to test it against multiple versions of Rails.

@@ -8,11 +8,7 @@ module ActiveAdmin
 
     actions :index
 
-    if ActiveAdmin::Dependency.rails >= 4
-      before_action :authorize_access!
-    else
-      before_filter :authorize_access!
-    end
+    before_action :authorize_access!
 
     def index(options={}, &block)
       render "active_admin/page/index"

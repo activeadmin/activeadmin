@@ -1,8 +1,6 @@
 ActiveAdmin.register <%= @user_class %> do
-<% unless Rails::VERSION::MAJOR < 4 -%>
   permit_params :email, :password, :password_confirmation
 
-<% end -%>
   index do
     selectable_column
     id_column

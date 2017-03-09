@@ -19,10 +19,6 @@ require ENV['RAILS_ROOT'] + '/config/environment'
 
 require 'rspec/rails'
 
-# Prevent Test::Unit's AutoRunner from executing during RSpec's rake task on
-# JRuby
-Test::Unit.run = true if defined?(Test::Unit) && Test::Unit.respond_to?(:run=)
-
 # Disabling authentication in specs so that we don't have to worry about
 # it allover the place
 ActiveAdmin.application.authentication_method = false
@@ -56,12 +52,7 @@ RSpec.configure do |config|
 end
 
 # Force deprecations to raise an exception.
-# This would set `behavior = :raise`, but that wasn't added until Rails 4.
-ActiveSupport::Deprecation.behavior = -> message, callstack do
-  e = StandardError.new message
-  e.set_backtrace callstack.map(&:to_s)
-  raise e
-end
+ActiveSupport::Deprecation.behavior = :raise
 
 # improve the performance of the specs suite by not logging anything
 # see http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/

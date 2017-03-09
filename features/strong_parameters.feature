@@ -1,9 +1,5 @@
-@rails4
 @silent_unpermitted_params_failure
 Feature: Strong Params
-
-  When I am using Rails 4
-  I want to use Strong Parameters
 
   Background:
     Given a category named "Music" exists

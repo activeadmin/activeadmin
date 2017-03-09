@@ -24,8 +24,8 @@ module ActiveAdmin
     # ActiveAdmin::Dependency.rails? '>= 4.1.0', '<= 4.1.1'
     # => true
     #
-    # ActiveAdmin::Dependency.rails! '2'
-    # -> ActiveAdmin::DependencyError: You provided rails 3.2.18 but we need: 2.
+    # ActiveAdmin::Dependency.rails! '5'
+    # -> ActiveAdmin::DependencyError: You provided rails 4.2.7 but we need: 5.
     #
     # ActiveAdmin::Dependency.devise!
     # -> ActiveAdmin::DependencyError: To use devise you need to specify it in your Gemfile.
@@ -33,7 +33,7 @@ module ActiveAdmin
     #
     # All but the pessimistic operator (~>) can also be run using Ruby's comparison syntax.
     #
-    # ActiveAdmin::Dependency.rails >= '3.2.18'
+    # ActiveAdmin::Dependency.rails >= '4.2.7'
     # => true
     #
     # Which is especially useful if you're looking up a gem with dashes in the name.
@@ -134,10 +134,6 @@ module ActiveAdmin
       end
 
       class Rails < Base
-        def strong_parameters?
-          @version >= 4 || defined?(ActionController::StrongParameters)
-        end
-
         def parameterize(string)
           if Dependency.rails5?
             string.parameterize separator: '_'

@@ -43,7 +43,7 @@ module ActiveAdmin
                  "/#{namespace}"
                end
 
-        # NOTE: `relative_url_root` is deprecated by rails.
+        # NOTE: `relative_url_root` is deprecated by Rails.
         #       Remove prefix here if it is removed completely.
         prefix = Rails.configuration.action_controller[:relative_url_root] || ''
         prefix + path

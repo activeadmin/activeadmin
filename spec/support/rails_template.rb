@@ -26,7 +26,7 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
       # nothing to see here
     end
 
-    unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :id, :title, :body, :starred, :author, :position, :published_date, :author_id, :custom_category_id, :category
     end
   end
@@ -43,7 +43,7 @@ create_file 'app/models/blog/post.rb', <<-RUBY.strip_heredoc, force: true
     accepts_nested_attributes_for :author
     accepts_nested_attributes_for :taggings
 
-    unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :title, :body, :starred, :author, :position, :published_date, :author_id, :custom_category_id, :category
     end
   end
@@ -62,7 +62,7 @@ create_file 'app/models/user.rb', <<-RUBY.strip_heredoc, force: true
       parent.table[:age]
     end
 
-    unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :first_name, :last_name, :username,  :age
     end
 
@@ -76,7 +76,7 @@ create_file 'app/models/profile.rb', <<-RUBY.strip_heredoc, force: true
   class Profile < ActiveRecord::Base
     belongs_to :user
 
-    unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :bio
     end
   end
@@ -91,7 +91,7 @@ create_file 'app/models/category.rb', <<-RUBY.strip_heredoc, force: true
     has_many :authors, through: :posts
     accepts_nested_attributes_for :posts
 
-    unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :name, :description
     end
   end
@@ -115,7 +115,7 @@ create_file 'app/models/tag.rb', <<-RUBY.strip_heredoc, force: true
       self.id = SecureRandom.uuid
     end
 
-    unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :name
     end
   end
@@ -154,7 +154,7 @@ generate 'active_admin:install'
 # Force strong parameters to raise exceptions
 inject_into_file 'config/application.rb', <<-RUBY, after: 'class Application < Rails::Application'
 
-    config.action_controller.action_on_unpermitted_parameters = :raise if Rails::VERSION::MAJOR >= 4
+    config.action_controller.action_on_unpermitted_parameters = :raise
 
 RUBY
 
@@ -170,8 +170,6 @@ directory File.expand_path('../templates/policies', __FILE__), 'app/policies'
 if ENV['RAILS_ENV'] != 'test'
   inject_into_file 'config/routes.rb', "\n  root to: redirect('admin')", after: /.*routes.draw do/
 end
-
-remove_file 'public/index.html' if File.exists? 'public/index.html' # remove once Rails 3.2 support is dropped
 
 # Devise master doesn't set up its secret key on Rails 4.1
 # https://github.com/plataformatec/devise/issues/2554

@@ -45,8 +45,7 @@ module ActiveAdmin
         end
 
         def pluck_column
-          distinct = ActiveAdmin::Dependency.rails >= 4 ? :distinct : :uniq
-          klass.reorder("#{method} asc").public_send(distinct).pluck method
+          klass.reorder("#{method} asc").distinct.pluck method
         end
 
       end

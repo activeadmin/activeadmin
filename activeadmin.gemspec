@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.test_files    = `git ls-files -- {spec,features}/*`.split("\n")
 
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.0'
 
   s.add_dependency 'arbre',               '~> 1.0', '>= 1.0.2'
   s.add_dependency 'bourbon'
@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'kaminari',            '>= 0.15', '< 2.0'
-  s.add_dependency 'railties',            '>= 3.2', '< 5.1'
+  s.add_dependency 'railties',            '>= 4.0', '< 5.1'
   s.add_dependency 'ransack',             '~> 1.3'
   s.add_dependency 'sass-rails'
   s.add_dependency 'sprockets',           '< 4.1'
