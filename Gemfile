@@ -15,7 +15,7 @@ group :development do
   # Debugging
   gem 'better_errors'                       # Web UI to debug exceptions. Go to /__better_errors to access the latest one
 
-  gem 'binding_of_caller', platforms: :mri  # Retrieve the binding of a method's caller in MRI Ruby >= 1.9.2
+  gem 'binding_of_caller', platforms: :mri  # Retrieve the binding of a method's caller
 
   # Performance
   gem 'rack-mini-profiler'                  # Inline app profiler. See ?pp=help for options.
