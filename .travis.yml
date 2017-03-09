@@ -28,7 +28,6 @@ rvm:
   - 2.4.0
 
 gemfile:
-  - gemfiles/rails_32.gemfile
   - gemfiles/rails_40.gemfile
   - gemfiles/rails_41.gemfile
   - gemfiles/rails_42.gemfile
@@ -46,9 +45,6 @@ matrix:
       gemfile: gemfiles/rails_50.gemfile
 
   exclude:
-    - rvm: 2.4.0
-      gemfile: gemfiles/rails_32.gemfile
-
     - rvm: 2.4.0
       gemfile: gemfiles/rails_40.gemfile
 

@@ -19,9 +19,6 @@ end
 
 ## Setting up Strong Parameters
 
-Rails 4 replaces `attr_accessible` with [Strong Parameters](https://github.com/rails/strong_parameters),
-which moves attribute whitelisting from the model to the controller.
-
 Use the `permit_params` method to define which attributes may be changed:
 
 ```ruby

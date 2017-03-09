@@ -77,9 +77,7 @@ ActiveAdmin.after_load do |app|
         end
       end
 
-      if ActiveAdmin::Dependency.rails.strong_parameters?
-        permit_params :body, :namespace, :resource_id, :resource_type
-      end
+      permit_params :body, :namespace, :resource_id, :resource_type
 
       index do
         column I18n.t('active_admin.comments.resource_type'), :resource_type

@@ -98,10 +98,6 @@ module ActiveAdmin
       # Does the actual work of finding a resource in the database. This
       # method uses the finder method as defined in InheritedResources.
       #
-      # Note that public_send can't be used here because Rails 3.2's
-      # ActiveRecord::Associations::CollectionProxy (belongs_to associations)
-      # mysteriously returns an Enumerator object.
-      #
       # @return [ActiveRecord::Base] An active record object.
       def find_resource
         scoped_collection.send method_for_find, params[:id]
@@ -130,9 +126,6 @@ module ActiveAdmin
 
       # Builds a new resource. This method uses the method_for_build provided
       # by Inherited Resources.
-      #
-      # Note that public_send can't be used here w/ Rails 3.2 & a belongs_to
-      # config, or you'll get undefined method `build' for []:Array.
       #
       # @return [ActiveRecord::Base] An un-saved active record base object
       def build_new_resource

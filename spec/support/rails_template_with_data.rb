@@ -6,23 +6,17 @@ end
 
 inject_into_file 'app/admin/category.rb', <<-RUBY, after: "ActiveAdmin.register Category do\n"
 
-  if Rails::VERSION::MAJOR >= 4
-    permit_params [:name, :description]
-  end
+  permit_params [:name, :description]
 RUBY
 
 inject_into_file 'app/admin/user.rb', <<-RUBY, after: "ActiveAdmin.register User do\n"
 
-  if Rails::VERSION::MAJOR >= 4
-    permit_params [:first_name, :last_name, :username, :age]
-  end
+  permit_params [:first_name, :last_name, :username, :age]
 RUBY
 
 inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post do\n"
 
-  if Rails::VERSION::MAJOR >= 4
-    permit_params [:custom_category_id, :author_id, :title, :body, :published_date, :position, :starred]
-  end
+  permit_params [:custom_category_id, :author_id, :title, :body, :published_date, :position, :starred]
 
   scope :all, default: true
 

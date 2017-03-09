@@ -150,9 +150,8 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
       it "should remove original ordering to prevent PostgreSQL error" do
         expect(scope.object.klass).to receive(:reorder).with('title asc') {
-          distinct = ActiveAdmin::Dependency.rails >= 4 ? :distinct : :uniq
-          m = double distinct => double(pluck: ['A Title'])
-          expect(m.send(distinct)).to receive(:pluck).with :title
+          m = double :distinct => double(pluck: ['A Title'])
+          expect(m.distinct).to receive(:pluck).with :title
           m
         }
         body

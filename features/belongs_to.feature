@@ -28,7 +28,7 @@ Feature: Belongs To
       ActiveAdmin.register User
       ActiveAdmin.register Post do
         belongs_to :user
-        permit_params :title, :body, :published_date if Rails::VERSION::MAJOR >= 4
+        permit_params :title, :body, :published_date
 
         form do |f|
           f.inputs "Your Post" do
@@ -56,7 +56,7 @@ Feature: Belongs To
       ActiveAdmin.register User
       ActiveAdmin.register Post do
         belongs_to :user
-        permit_params :title, :body, :published_date if Rails::VERSION::MAJOR >= 4
+        permit_params :title, :body, :published_date
 
         form do |f|
           f.inputs "Your Post" do

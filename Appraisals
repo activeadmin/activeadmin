@@ -1,19 +1,3 @@
-appraise 'rails_32' do
-  gemspec
-
-  gem 'rails', '3.2.22'
-  gem 'jquery-ui-rails', '~> 4.0'
-  gem 'devise', '~> 3.5'
-
-  gem 'inherited_resources'
-
-  gem 'test-unit', '~> 3.0'
-
-  gem 'draper', '~> 2.1'
-
-  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
-end
-
 appraise 'rails_40' do
   gemspec
 

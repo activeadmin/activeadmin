@@ -40,7 +40,6 @@ RSpec.describe "Comments" do
       end
 
       it "should return the most recent comment first by default" do
-        ActiveAdmin::Comment.class_eval { attr_accessible :created_at } if Rails::VERSION::MAJOR == 3
         another_comment = ActiveAdmin::Comment.create! resource: post,
                                                        body: "Another Comment",
                                                        namespace: namespace_name,

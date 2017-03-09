@@ -135,17 +135,15 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
   end
 
-  if Rails::VERSION::MAJOR > 3
-    context "file input present" do
-      let :body do
-        build_form do |f|
-          f.input :body, as: :file
-        end
+  context "file input present" do
+    let :body do
+      build_form do |f|
+        f.input :body, as: :file
       end
+    end
 
-      it "adds multipart attribute automatically" do
-        expect(body).to have_selector("form[enctype='multipart/form-data']")
-      end
+    it "adds multipart attribute automatically" do
+      expect(body).to have_selector("form[enctype='multipart/form-data']")
     end
   end
 
