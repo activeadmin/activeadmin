@@ -8,6 +8,7 @@
 * `f.form_buffers` has been removed [#3486][] by [@varyonic][]
 * Iconic has been removed [#3553][] by [@timoschilling][]
 * `config.show_comments_in_menu` has been removed, see `config.comments_menu` [#4187][] by [@drn][]
+* Rails 3.2 & Ruby 1.9.3 support has been dropped [#4848][] [@deivid-rodriguez][]
 
 ### Enhancements
 
@@ -108,6 +109,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#4187]: https://github.com/activeadmin/activeadmin/issues/4187
 [#4759]: https://github.com/activeadmin/activeadmin/pull/4759
 [#4768]: https://github.com/activeadmin/activeadmin/pull/4768
+[#4848]: https://github.com/activeadmin/activeadmin/pull/4848
 [@PChambino]: https://github.com/PChambino
 [@TimPetricola]: https://github.com/TimPetricola
 [@chancancode]: https://github.com/chancancode
@@ -124,3 +126,4 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [@varyonic]: https://github.com/varyonic
 [@zorab47]: https://github.com/zorab47
 [@Fivell]: https://github.com/Fivell
+[@deivid-rodriguez]: https://github.com/deivid-rodriguez
