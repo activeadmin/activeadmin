@@ -5,7 +5,7 @@ source "https://rubygems.org"
 gem "cancan"
 gem "pundit"
 gem "rake"
-gem "parallel_tests", "< 2.10"
+gem "parallel_tests"
 gem "pry"
 gem "rails", "4.2.8"
 gem "jquery-ui-rails", "~> 5.0"
@@ -15,7 +15,7 @@ gem "draper", "~> 2.1"
 gem "activerecord-jdbcsqlite3-adapter", :platforms => :jruby
 
 group :development do
-  gem "better_errors", :platforms => [:ruby_20, :ruby_21, :ruby_22, :ruby_23, :ruby_24]
+  gem "better_errors"
   gem "binding_of_caller", :platforms => :mri
   gem "rack-mini-profiler"
   gem "yard"
@@ -40,13 +40,6 @@ group :test do
   gem "shoulda-matchers", "<= 2.8.0"
   gem "sqlite3", :platforms => :mri
   gem "poltergeist"
-end
-
-platforms :ruby_19 do
-  gem "kaminari", "~> 0.15"
-  gem "mime-types", "< 3"
-  gem "nokogiri", "< 1.7"
-  gem "public_suffix", "< 1.5"
 end
 
 gemspec :path => "../"

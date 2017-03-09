@@ -5,7 +5,7 @@ source "https://rubygems.org"
 gem "cancan"
 gem "pundit"
 gem "rake"
-gem "parallel_tests", "< 2.10"
+gem "parallel_tests"
 gem "pry"
 gem "rails", "5.0.2"
 gem "jquery-ui-rails", "~> 5.0"
@@ -15,7 +15,7 @@ gem "draper", "> 3.x"
 gem "activerecord-jdbcsqlite3-adapter", :git => "https://github.com/jruby/activerecord-jdbc-adapter", :branch => "rails-5", :platforms => :jruby
 
 group :development do
-  gem "better_errors", :platforms => [:ruby_20, :ruby_21, :ruby_22, :ruby_23, :ruby_24]
+  gem "better_errors"
   gem "binding_of_caller", :platforms => :mri
   gem "rack-mini-profiler"
   gem "yard"

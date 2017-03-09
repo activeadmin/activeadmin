@@ -11,13 +11,6 @@ appraise 'rails_32' do
 
   gem 'draper', '~> 2.1'
 
-  platforms :ruby_19 do # Remove this block when we drop support for Ruby 1.9
-    gem 'kaminari', '~> 0.15'
-    gem 'mime-types', '< 3'
-    gem 'nokogiri', '< 1.7'
-    gem 'public_suffix', '< 1.5'
-  end
-
   gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
 end
 
@@ -31,13 +24,6 @@ appraise 'rails_40' do
   gem 'inherited_resources'
 
   gem 'draper', '~> 2.1'
-
-  platforms :ruby_19 do # Remove this block when we drop support for Ruby 1.9
-    gem 'kaminari', '~> 0.15'
-    gem 'mime-types', '< 3'
-    gem 'nokogiri', '< 1.7'
-    gem 'public_suffix', '< 1.5'
-  end
 
   gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
 end
@@ -53,13 +39,6 @@ appraise 'rails_41' do
 
   gem 'draper', '~> 2.1'
 
-  platforms :ruby_19 do # Remove this block when we drop support for Ruby 1.9
-    gem 'kaminari', '~> 0.15'
-    gem 'mime-types', '< 3'
-    gem 'nokogiri', '< 1.7'
-    gem 'public_suffix', '< 1.5'
-  end
-
   gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
 end
 
@@ -73,13 +52,6 @@ appraise 'rails_42' do
   gem 'inherited_resources'
 
   gem 'draper', '~> 2.1'
-
-  platforms :ruby_19 do # Remove this block when we drop support for Ruby 1.9
-    gem 'kaminari', '~> 0.15'
-    gem 'mime-types', '< 3'
-    gem 'nokogiri', '< 1.7'
-    gem 'public_suffix', '< 1.5'
-  end
 
   gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
 end
