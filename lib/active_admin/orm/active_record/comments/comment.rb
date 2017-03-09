@@ -6,7 +6,7 @@ module ActiveAdmin
     belongs_to :resource, polymorphic: true
     belongs_to :author,   polymorphic: true
 
-    unless !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :resource, :resource_id, :resource_type, :body, :namespace
     end
 

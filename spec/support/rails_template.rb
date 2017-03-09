@@ -26,7 +26,7 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
       # nothing to see here
     end
 
-    unless !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :id, :title, :body, :starred, :author, :position, :published_date, :author_id, :custom_category_id, :category
     end
   end
@@ -43,7 +43,7 @@ create_file 'app/models/blog/post.rb', <<-RUBY.strip_heredoc, force: true
     accepts_nested_attributes_for :author
     accepts_nested_attributes_for :taggings
 
-    unless !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :title, :body, :starred, :author, :position, :published_date, :author_id, :custom_category_id, :category
     end
   end
@@ -62,7 +62,7 @@ create_file 'app/models/user.rb', <<-RUBY.strip_heredoc, force: true
       parent.table[:age]
     end
 
-    unless !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :first_name, :last_name, :username,  :age
     end
 
@@ -76,7 +76,7 @@ create_file 'app/models/profile.rb', <<-RUBY.strip_heredoc, force: true
   class Profile < ActiveRecord::Base
     belongs_to :user
 
-    unless !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :bio
     end
   end
@@ -91,7 +91,7 @@ create_file 'app/models/category.rb', <<-RUBY.strip_heredoc, force: true
     has_many :authors, through: :posts
     accepts_nested_attributes_for :posts
 
-    unless !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :name, :description
     end
   end
@@ -115,7 +115,7 @@ create_file 'app/models/tag.rb', <<-RUBY.strip_heredoc, force: true
       self.id = SecureRandom.uuid
     end
 
-    unless !defined? ProtectedAttributes
+    if defined? ProtectedAttributes
       attr_accessible :name
     end
   end
