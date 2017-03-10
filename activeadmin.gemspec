@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.test_files    = `git ls-files -- {spec,features}/*`.split("\n")
 
-  s.required_ruby_version = '>= 2.0'
+  s.required_ruby_version = '>= 2.1'
 
   s.add_dependency 'arbre',               '~> 1.0', '>= 1.0.2'
   s.add_dependency 'bourbon'
