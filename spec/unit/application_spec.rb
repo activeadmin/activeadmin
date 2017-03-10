@@ -7,7 +7,7 @@ RSpec.describe ActiveAdmin::Application do
 
   around do |example|
     old_load_paths = application.load_paths
-    # Manually override the load paths becuase RSpec messes these up
+    # Manually override the load paths because RSpec messes these up
     application.load_paths = [File.expand_path('app/admin', Rails.root)]
 
     example.call
