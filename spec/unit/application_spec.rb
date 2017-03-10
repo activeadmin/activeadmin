@@ -120,10 +120,16 @@ RSpec.describe ActiveAdmin::Application do
     end
 
     it "should load files from subdirectories" do
-      FileUtils.mkdir_p(File.expand_path("app/admin/public", Rails.root))
+      test_dir = File.expand_path("app/admin/public", Rails.root)
       test_file = File.expand_path("app/admin/public/posts.rb", Rails.root)
-      FileUtils.touch(test_file)
-      expect(application.files).to include(test_file)
+
+      begin
+        FileUtils.mkdir_p(test_dir)
+        FileUtils.touch(test_file)
+        expect(application.files).to include(test_file)
+      ensure
+        FileUtils.remove_entry_secure(test_dir, force: true)
+      end
     end
   end
 
