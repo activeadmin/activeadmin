@@ -87,6 +87,6 @@ Tool                  | Description
 [Arbre]: https://github.com/activeadmin/arbre
 [Devise]: https://github.com/plataformatec/devise
 [Formtastic]: https://github.com/justinfrench/formtastic
-[Inherited Resources]: https://github.com/josevalim/inherited_resources
+[Inherited Resources]: https://github.com/activeadmin/inherited_resources
 [Kaminari]: https://github.com/kaminari/kaminari
 [Ransack]: https://github.com/activerecord-hackery/ransack
