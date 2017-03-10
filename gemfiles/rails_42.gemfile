@@ -10,7 +10,6 @@ gem "pry"
 gem "rails", "4.2.8"
 gem "jquery-ui-rails", "~> 5.0"
 gem "devise", "~> 3.5"
-gem "inherited_resources"
 gem "draper", "~> 2.1"
 gem "activerecord-jdbcsqlite3-adapter", :platforms => :jruby
 

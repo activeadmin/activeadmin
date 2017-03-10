@@ -27,14 +27,6 @@ gem 'activeadmin', '~> 1.0.0.pre5'
 
 *Keep in mind that during the time where we use `pre`-release label, things can break in each release!*
 
-### Rails 5
-
-Active Admin master has preliminary support for Rails 5. To give it a try, these Gemfile changes may be needed:
-
-```ruby
-gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
-```
-
 ### 0.6.x
 
 The plan is to follow [semantic versioning](http://semver.org/) as of 1.0.0. The 0.6.x line will

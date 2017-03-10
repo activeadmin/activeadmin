@@ -143,7 +143,6 @@ RUBY
 
 # Add our local Active Admin to the application
 gem 'activeadmin', path: '../..'
-gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
 gem 'devise'
 
 run 'bundle install'
