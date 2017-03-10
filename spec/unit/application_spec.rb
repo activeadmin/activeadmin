@@ -3,11 +3,16 @@ require 'fileutils'
 
 RSpec.describe ActiveAdmin::Application do
 
-  let(:application) do
-    ActiveAdmin::Application.new.tap do |app|
-      # Manually override the load paths becuase RSpec messes these up
-      app.load_paths = [File.expand_path('app/admin', Rails.root)]
-    end
+  let(:application) { ActiveAdmin::Application.new }
+
+  around do |example|
+    old_load_paths = application.load_paths
+    # Manually override the load paths becuase RSpec messes these up
+    application.load_paths = [File.expand_path('app/admin', Rails.root)]
+
+    example.call
+
+    application.load_paths = old_load_paths
   end
 
   it "should have a default load path of ['app/admin']" do
