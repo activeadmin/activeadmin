@@ -101,7 +101,7 @@ YourModel.solr_search
 
 ### Rails 5 scaffold generators
 
-Active Admin requires the `inherited_resources` gem which may break scaffolding under Rails 5 as it replaces the default scaffold generator. The solution is to configure the default controller in `config/application.rb` as outlined in [josevalim/inherited_resources#195](https://github.com/josevalim/inherited_resources/issues/195)
+Active Admin requires the `inherited_resources` gem which may break scaffolding under Rails 5 as it replaces the default scaffold generator. The solution is to configure the default controller in `config/application.rb` as outlined in [activeadmin/inherited_resources#195](https://github.com/activeadmin/inherited_resources/issues/195)
 
 ```
 module SampleApp

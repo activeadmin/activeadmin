@@ -313,8 +313,8 @@ end
 
 ## Customizing resource retrieval
 
-Our controllers are built on [Inherited Resources](https://github.com/josevalim/inherited_resources),
-so you can use [all of its features](https://github.com/josevalim/inherited_resources#overwriting-defaults).
+Our controllers are built on [Inherited Resources](https://github.com/activeadmin/inherited_resources),
+so you can use [all of its features](https://github.com/activeadmin/inherited_resources#overwriting-defaults).
 
 If you need to customize the collection properties, you can overwrite the `scoped_collection` method.
 

@@ -21,8 +21,6 @@ gemfile(true) do
   else
     gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin', require: false
   end
-
-  gem 'inherited_resources', '~> 1.7', require: false
 end
 
 # prepare active_record database

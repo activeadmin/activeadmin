@@ -9,6 +9,7 @@
 * Iconic has been removed [#3553][] by [@timoschilling][]
 * `config.show_comments_in_menu` has been removed, see `config.comments_menu` [#4187][] by [@drn][]
 * Rails 3.2 & Ruby 1.9.3 support has been dropped [#4848][] [@deivid-rodriguez][]
+* Ruby 2.0.0 support has been dropped [#4851][] [@deivid-rodriguez][]
 
 ### Enhancements
 
