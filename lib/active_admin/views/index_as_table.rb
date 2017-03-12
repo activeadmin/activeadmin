@@ -233,8 +233,8 @@ module ActiveAdmin
         proc do
           selectable_column
           id_column if resource_class.primary_key
-          resource_class.content_columns.each do |col|
-            column col.name.to_sym
+          active_admin_config.resource_columns.each do |attribute|
+            column attribute
           end
           actions
         end

@@ -151,10 +151,10 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       expect(value).to eq :right
     end
 
-    it 'auto-links ActiveRecord records from foreign keys' do
+    it 'auto-links ActiveRecord records by association' do
       post = Post.create! author: User.new
 
-      value = format_attribute post, :author_id
+      value = format_attribute post, :author
 
       expect(value).to match /<a href="\/admin\/users\/\d+"> <\/a>/
     end

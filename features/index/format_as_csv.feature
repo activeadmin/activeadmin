@@ -12,8 +12,8 @@ Feature: Format as CSV
     When I am on the index page for posts
     And I follow "CSV"
     And I should download a CSV file for "posts" containing:
-    | Id  | Title       | Body | Published date | Position | Starred | Created at | Updated at |
-    | \d+ | Hello World |      |              |          |         | (.*)       | (.*)       |
+    | Id  | Title       | Body | Published date | Position | Starred | Foo    |Created at | Updated at |
+    | \d+ | Hello World |      |                |          |         |        |(.*)       | (.*)       |
 
   Scenario: Default with alias
     Given a configuration of:
@@ -24,7 +24,7 @@ Feature: Format as CSV
     When I am on the index page for my_articles
     And I follow "CSV"
     And I should download a CSV file for "my-articles" containing:
-    | Id  | Title       | Body | Published date | Position | Starred | Created at | Updated at |
+    | Id  | Title       | Body | Published date | Position | Starred | Foo    | Created at | Updated at |
 
   Scenario: With CSV format customization
     Given a configuration of:

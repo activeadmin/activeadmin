@@ -1,4 +1,5 @@
 require 'active_admin/resource/action_items'
+require 'active_admin/resource/attributes'
 require 'active_admin/resource/controllers'
 require 'active_admin/resource/menu'
 require 'active_admin/resource/page_presenters'
@@ -87,6 +88,7 @@ module ActiveAdmin
     include Sidebars
     include Routes
     include Ordering
+    include Attributes
 
     # The class this resource wraps. If you register the Post model, Resource#resource_class
     # will point to the Post class
@@ -163,6 +165,22 @@ module ActiveAdmin
       (decorator_class && resource) ? decorator_class.new(resource) : resource
     end
 
+    def resource_columns
+      resource_attributes.values
+    end
+
+    def resource_attributes
+      @resource_attributes ||= default_attributes
+    end
+
+    def association_columns
+      @association_columns ||= resource_attributes.select{ |key, value| key != value }.values
+    end
+
+    def content_columns
+      @content_columns ||= resource_attributes.select{ |key, value| key == value }.values
+    end
+
     private
 
     def method_for_find(id)
@@ -174,7 +192,7 @@ module ActiveAdmin
     end
 
     def default_csv_builder
-      @default_csv_builder ||= CSVBuilder.default_for_resource(resource_class)
+      @default_csv_builder ||= CSVBuilder.default_for_resource(self)
     end
 
   end # class Resource

@@ -139,7 +139,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
       end
       it 'should call the association if one exists' do
         table = render_arbre_component assigns do
-          attributes_table_for post, :author_id
+          attributes_table_for post, :author
         end
         expect(table.find_by_tag('th').first.content).to eq 'Author'
         expect(table.find_by_tag('td').first.content).to eq 'John Doe'

@@ -17,10 +17,9 @@ RSpec.describe ActiveAdmin::Views::Pages::Show do
 
     context 'when you pass a block to main content' do
       let(:block) { lambda { } }
-      let(:resource_class) { double(columns: [double('column', name: 'field')]) }
-      let(:resource) { double('resource', class: resource_class) }
+      let(:resource) { double('resource') }
 
-      before { allow(page).to receive(:active_admin_config).and_return(double(comments?: false))}
+      before { allow(page).to receive(:active_admin_config).and_return(double(comments?: false, resource_columns: [:field]))}
 
       it 'appends it to the output' do
         expect(page).to receive(:attributes_table).with(:field).and_yield
