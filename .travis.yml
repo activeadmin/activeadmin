@@ -35,7 +35,7 @@ gemfile:
 
 env:
   global:
-    - JRUBY_OPTS="--dev --debug"
+    - JRUBY_OPTS="-J-Xmx1024m --dev --debug"
 
 matrix:
   fast_finish: true
