@@ -51,6 +51,7 @@ fr:
       one_page: "Affichage des <b>%{n}</b> %{model}"
       multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"
       multiple_without_total: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Par page: "
       entry:
         one: "entrée"
         other: "entrées"
@@ -73,14 +74,18 @@ fr:
       labels:
         destroy: "Supprimer"
     comments:
+      created_at: "Créé le"
+      resource_type: "Type de ressource"
+      author_type: "Profil de l'auteur"
       body: "Corps"
       author: "Auteur"
       title: "Commentaire"
       add: "Ajouter un commentaire"
+      delete: "Supprimer ce commentaire"
+      delete_confirmation: "Êtes-vous sûr de vouloir supprimer ce commentaire ?"
       resource: "Ressource"
-      resource_type: "Type de ressource"
-      author_type: "Profil de l'auteur"
       no_comments_yet: "Aucun commentaire actuellement"
+      author_missing: "Anonyme"
       title_content: "Commentaires (%{count})"
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
@@ -93,6 +98,9 @@ fr:
         title: "Sous-domaine"
       password:
         title: "Mot de passe"
+      sign_up:
+        title: "S'inscrire"
+        submit: "S'inscrire"
       login:
         title: "Connexion"
         remember_me: "Garder ma session ouverte"
@@ -103,13 +111,19 @@ fr:
       change_password:
         title: "Changez votre mot de passe"
         submit: "Changer mon mot de passe"
+      unlock:
+        title: "Renvoyer les informations de déverrouillage"
+        submit: "Renvoyer les informations de déverrouillage"
       resend_confirmation_instructions:
         title: "Renvoyer les instructions de confirmation"
         submit: "Renvoyer les instructions de confirmation"
       links:
+        sign_up: "Inscrivez-vous"
         sign_in: "Connectez-vous"
         forgot_your_password: "Vous avez oublié votre mot de passe ?"
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
+        resend_unlock_instructions: "Renvoyer les informations de déverrouillage"
+        resend_confirmation_instructions: "Renvoyer les instructions de confirmation"
     access_denied:
       message: "Vous n'êtes pas autorisé à exécuter cette action"
     index_list:
