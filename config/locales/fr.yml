@@ -75,6 +75,8 @@ fr:
         destroy: "Supprimer"
     comments:
       created_at: "Créé le"
+      resource_type: "Type de ressource"
+      author_type: "Profil de l'auteur"
       body: "Corps"
       author: "Auteur"
       title: "Commentaire"
@@ -82,8 +84,6 @@ fr:
       delete: "Supprimer ce commentaire"
       delete_confirmation: "Êtes-vous sûr de vouloir supprimer ce commentaire ?"
       resource: "Ressource"
-      resource_type: "Type de ressource"
-      author_type: "Profil de l'auteur"
       no_comments_yet: "Aucun commentaire actuellement"
       author_missing: "Anonyme"
       title_content: "Commentaires (%{count})"
