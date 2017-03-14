@@ -8,7 +8,7 @@ RSpec.describe ActiveAdmin::Application, type: :request do
 
     describe "with a #{value} default namespace" do
 
-      around(:all) do |example|
+      around do |example|
         application = ActiveAdmin::Application.new
         application.default_namespace = value
 
@@ -29,7 +29,7 @@ RSpec.describe ActiveAdmin::Application, type: :request do
 
   describe "with a test default namespace" do
 
-    around(:all) do |example|
+    around do |example|
       application = ActiveAdmin::Application.new
       application.default_namespace = :test
 

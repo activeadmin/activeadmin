@@ -3,11 +3,16 @@ require 'fileutils'
 
 RSpec.describe ActiveAdmin::Application do
 
-  let(:application) do
-    ActiveAdmin::Application.new.tap do |app|
-      # Manually override the load paths becuase RSpec messes these up
-      app.load_paths = [File.expand_path('app/admin', Rails.root)]
-    end
+  let(:application) { ActiveAdmin::Application.new }
+
+  around do |example|
+    old_load_paths = application.load_paths
+    # TODO: Figure out why load paths need to be overriden
+    application.load_paths = [File.expand_path('app/admin', Rails.root)]
+
+    example.call
+
+    application.load_paths = old_load_paths
   end
 
   it "should have a default load path of ['app/admin']" do
@@ -120,10 +125,16 @@ RSpec.describe ActiveAdmin::Application do
     end
 
     it "should load files from subdirectories" do
-      FileUtils.mkdir_p(File.expand_path("app/admin/public", Rails.root))
+      test_dir = File.expand_path("app/admin/public", Rails.root)
       test_file = File.expand_path("app/admin/public/posts.rb", Rails.root)
-      FileUtils.touch(test_file)
-      expect(application.files).to include(test_file)
+
+      begin
+        FileUtils.mkdir_p(test_dir)
+        FileUtils.touch(test_file)
+        expect(application.files).to include(test_file)
+      ensure
+        FileUtils.remove_entry_secure(test_dir, force: true)
+      end
     end
   end
 

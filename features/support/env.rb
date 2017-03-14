@@ -109,13 +109,6 @@ ActiveSupport::Deprecation.behavior = :raise
 # see http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
 Rails.logger.level = 4
 
-# Improves performance by forcing the garbage collector to run less often.
-unless ENV['DEFER_GC'] == '0' || ENV['DEFER_GC'] == 'false'
-  require File.expand_path('../../../spec/support/deferred_garbage_collection', __FILE__)
-  Before { DeferredGarbageCollection.start }
-  After  { DeferredGarbageCollection.reconsider }
-end
-
 Around '@silent_unpermitted_params_failure' do |scenario, block|
   original = ActionController::Parameters.action_on_unpermitted_parameters
   ActionController::Parameters.action_on_unpermitted_parameters = false
