@@ -11,7 +11,7 @@ ca:
     delete_confirmation: "Segur que vols eliminar-ho?"
     new_model: "Crear %{model}"
     edit_model: "Editar %{model}"
-    delete_model: "eliminar %{model}"
+    delete_model: "Eliminar %{model}"
     details: "Detalls de %{model}"
     cancel: "Cancel·lar"
     empty: "Buit"
