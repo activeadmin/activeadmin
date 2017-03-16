@@ -17,12 +17,12 @@ class CreateActiveAdminComments < <%= parent_class.to_s %>
       <%- end -%>
     end
     add_index :active_admin_comments, [:namespace]
-    <%- unless Rails::VERSION::MAJOR >= 5 -%>
+    <%- if Rails::VERSION::MAJOR <= 5 -%>
 
     add_index :active_admin_comments, [:author_type, :author_id]
+    add_index :active_admin_comments, [:resource_type, :resource_id]
     <%- end -%>
 
-    add_index :active_admin_comments, [:resource_type, :resource_id]
   end
 
   def self.down
