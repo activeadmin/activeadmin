@@ -40,19 +40,26 @@ module ActiveAdmin
       end
 
       def build_menu_item(item)
-        li id: item.id do |li|
-          li.add_class "current" if item.current? assigns[:current_tab]
-
-          if url = item.url(self)
-            text_node link_to item.label(self), url, item.html_options
-          else
-            span item.label(self), item.html_options
-          end
-
-          if children = item.items(self).presence
-            li.add_class "has_nested"
-            ul do
+        children = item.items(self).presence
+        cls = if children.nil?
+          "nav-item"
+        else
+          "has_nested nav-item dropdown"
+        end
+        li class: cls, id: item.id do |li|
+          
+          if !children.nil?
+            a item.label(self), class:'dropdown-toggle', 'data-toggle': 'dropdown', role:'button', 'aria-haspopup':true, 'aria-expanded':false, href: '#'
+            ul class: "dropdown-menu" do
               children.each{ |child| build_menu_item child }
+            end
+          else
+            li.add_class "current nav-item" if item.current? assigns[:current_tab]
+
+            if url = item.url(self)
+              text_node link_to item.label(self), url, item.html_options
+            else
+              span item.label(self), item.html_options
             end
           end
         end
