@@ -22,7 +22,7 @@ module ActiveAdmin
       end
 
       def build_global_navigation
-        insert_tag view_factory.global_navigation, @menu, class: 'header-item tabs'
+        insert_tag view_factory.global_navigation, @menu, class: 'nav navbar-nav'
       end
 
       def build_utility_navigation
