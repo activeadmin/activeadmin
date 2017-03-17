@@ -145,7 +145,7 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
     end
 
     it "should route the nested show path" do
-      expect(admin_user_post_path(1,2)).to eq "/admin/users/1/posts/2"
+      expect(admin_user_post_path(1, 2)).to eq "/admin/users/1/posts/2"
     end
 
     it "should route the nested new path" do
@@ -153,7 +153,7 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
     end
 
     it "should route the nested edit path" do
-      expect(edit_admin_user_post_path(1,2)).to eq "/admin/users/1/posts/2/edit"
+      expect(edit_admin_user_post_path(1, 2)).to eq "/admin/users/1/posts/2/edit"
     end
 
     context "with collection action" do

@@ -30,7 +30,7 @@ module ActiveAdminContentsRollback
   # Else, remove the file and its parent folder structure until Rails.root OR other files exist.
   def rollback_file(file, contents)
     if contents.present?
-      File.open(file,'w') { |f| f << contents }
+      File.open(file, 'w') { |f| f << contents }
     else
       File.delete(file)
       begin
@@ -87,7 +87,7 @@ Given /^"([^"]*)" contains:$/ do |filename, contents|
   FileUtils.mkdir_p File.dirname path
   record path
 
-  File.open(path,'w+'){ |f| f << contents }
+  File.open(path, 'w+'){ |f| f << contents }
 end
 
 Given /^I add "([^"]*)" to the "([^"]*)" model$/ do |code, model_name|

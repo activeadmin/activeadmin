@@ -27,7 +27,7 @@ module ActiveAdmin
           current_value = begin
             #cast value to date object before rendering input
             @object.public_send(input_name).to_s.to_date
-          rescue 
+          rescue
             nil
           end
           { size: 12,

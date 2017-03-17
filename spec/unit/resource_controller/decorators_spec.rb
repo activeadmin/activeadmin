@@ -32,11 +32,11 @@ RSpec.describe ActiveAdmin::ResourceController::Decorators do
       context 'with form' do
         let(:action) { 'update' }
 
-        it "does not decorate when :decorate is set to false" do 
+        it "does not decorate when :decorate is set to false" do
           form = double
           allow(form).to receive(:options).and_return(decorate: false)
           allow(active_admin_config).to receive(:get_page_presenter).and_return(form)
-          is_expected.not_to be_kind_of(PostDecorator) 
+          is_expected.not_to be_kind_of(PostDecorator)
         end
       end
     end

@@ -39,7 +39,7 @@ module ActiveAdmin
             end
           when nil
             { k => '' }
-          when TrueClass,FalseClass
+          when TrueClass, FalseClass
             { k => v }
           else
             raise "I don't know what to do with #{v.class} params: #{v.inspect}"

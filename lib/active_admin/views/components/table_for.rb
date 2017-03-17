@@ -139,7 +139,7 @@ module ActiveAdmin
 
         attr_accessor :title, :data , :html_class
 
-        def initialize(*args, &block) 
+        def initialize(*args, &block)
           @options = args.extract_options!
 
           @title = args[0]
