@@ -5,7 +5,7 @@ module ActiveAdmin
   class AccessDenied < StandardError
     attr_reader :user, :action, :subject
 
-    def initialize(user, action, subject)
+    def initialize(user, action, subject = nil)
       @user, @action, @subject = user, action, subject
 
       super()
