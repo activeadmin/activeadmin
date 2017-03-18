@@ -55,6 +55,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 
 ### Security Fixes
 
+* Prevents access to formats that the user not permitted to see [#4867][] by [@Fivell][] and [@timoschilling][] 
 * Prevents potential DOS attack via Ruby symbols [#1926][] by [@seanlinsley][]
   * [this isn't an issue for those using Ruby >= 2.2](http://rubykaigi.org/2014/presentation/S-NarihiroNakamura)
 
@@ -111,6 +112,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#4759]: https://github.com/activeadmin/activeadmin/pull/4759
 [#4768]: https://github.com/activeadmin/activeadmin/pull/4768
 [#4848]: https://github.com/activeadmin/activeadmin/pull/4848
+[#4867]: https://github.com/activeadmin/activeadmin/pull/4867
 [@PChambino]: https://github.com/PChambino
 [@TimPetricola]: https://github.com/TimPetricola
 [@chancancode]: https://github.com/chancancode
