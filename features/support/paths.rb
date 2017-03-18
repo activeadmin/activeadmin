@@ -41,6 +41,9 @@ module NavigationHelpers
     when /^the index page for (.*)$/
       send "admin_#{$1}_path"
 
+    when /^the (.*) index page for (.*)$/
+      send "admin_#{$2}_path", format: $1
+
     when /^the last author's posts$/
       admin_user_posts_path(User.last)
 
