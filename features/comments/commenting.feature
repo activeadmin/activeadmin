@@ -145,19 +145,6 @@ Feature: Commenting
     And I should be in the resource section for publishers
     And I should see "Hello World"
 
-  Scenario: Commenting on a class with string id
-    Given a tag with the name "coolness" exists
-    Given a configuration of:
-    """
-    ActiveAdmin.register Tag
-    """
-    Given I am logged in
-    When I am on the index page for tags
-    And I follow "View"
-    When I add a comment "Tag Comment"
-    Then I should see a flash with "Comment was successfully created"
-    And I should be in the resource section for tags
-
   Scenario: Commenting on an aliased resource with an existing non-aliased config
     Given a configuration of:
     """
