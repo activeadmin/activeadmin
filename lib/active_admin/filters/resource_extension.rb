@@ -121,7 +121,7 @@ module ActiveAdmin
           []
         end
       end
-      
+
       # Returns a default set of filters for the associations
       def default_association_filters
         if resource_class.respond_to?(:reflect_on_all_associations)
