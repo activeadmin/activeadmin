@@ -19,7 +19,7 @@ before_script:
   - bundle exec rake setup
 
 script:
-  - bundle exec rake test
+  - bundle exec rake test lint
 
 rvm:
   - jruby-9.1.8.0
