@@ -10,9 +10,7 @@ module ActiveAdmin
         @utility_menu = @namespace.fetch_menu(:utility_navigation)
 
         build_site_title
-        nav class: 'navbar navbar-toggleable-md navbar-light bg-faded' do |n|
-          build_global_navigation
-        end
+        build_global_navigation
         build_utility_navigation
       end
 
