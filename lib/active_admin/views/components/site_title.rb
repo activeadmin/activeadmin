@@ -3,12 +3,8 @@ module ActiveAdmin
 
     class SiteTitle < Component
 
-      def tag_name
-        'h1'
-      end
-
       def build(namespace)
-        super(id: "site_title")
+        # super(id: "site_title")
         @namespace = namespace
 
         if site_title_link?
@@ -29,7 +25,7 @@ module ActiveAdmin
       private
 
       def site_title_with_link
-        helpers.link_to(site_title_content, @namespace.site_title_link)
+        helpers.link_to(site_title_content, @namespace.site_title_link, class: 'navbar-brand')
       end
 
       def site_title_content
