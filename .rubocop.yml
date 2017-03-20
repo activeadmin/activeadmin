@@ -5,6 +5,7 @@ AllCops:
 
   Exclude:
     - spec/rails/**/*
+    - gemfiles/vendor/bundle/**/*
 
   Include:
     - "**/*.rake"

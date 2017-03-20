@@ -15,11 +15,8 @@ before_install:
   - rvm @global do gem uninstall bundler -a -x
   - rvm @global do gem install bundler -v 1.14.6 # latest version known to work
 
-before_script:
-  - bundle exec rake setup
-
 script:
-  - bundle exec rake test
+  - bundle exec rake
 
 rvm:
   - jruby-9.1.8.0
