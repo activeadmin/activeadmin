@@ -23,6 +23,7 @@ tmtags
 .rvmrc
 .ruby-version
 .ruby-gemset
+.rbenv-gemsets
 
 ## Project (general)
 tags
