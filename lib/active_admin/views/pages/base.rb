@@ -10,12 +10,6 @@ module ActiveAdmin
           build_page
         end
 
-        def build_head
-          @head = head do 
-            meta "http-equiv": 'Content-type', content: 'text/html; charset=utf-8 width=device-width, initial-scale=1, shrink-to-fit=no'
-          end
-        end
-
         private
 
         delegate :active_admin_config, :controller, :params, to: :helpers
@@ -53,9 +47,9 @@ module ActiveAdmin
 
         def build_page
           within @body do
-            build_header
             div id: "wrapper" do
               build_unsupported_browser
+              build_header
               build_title_bar
               build_page_content
               build_footer

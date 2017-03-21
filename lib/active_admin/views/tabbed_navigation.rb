@@ -31,10 +31,6 @@ module ActiveAdmin
         'ul'
       end
 
-      def default_class
-        'navbar-nav mr-auto'
-      end
-
       private
 
       def build_menu
@@ -44,8 +40,8 @@ module ActiveAdmin
       end
 
       def build_menu_item(item)
-        li id: item.id, class: 'nav-item' do |li|
-          li.add_class "active" if item.current? assigns[:current_tab]
+        li id: item.id do |li|
+          li.add_class "current" if item.current? assigns[:current_tab]
 
           if url = item.url(self)
             text_node link_to item.label(self), url, item.html_options
@@ -63,7 +59,7 @@ module ActiveAdmin
       end
 
       def default_options
-        {}
+        { id: "tabs" }
       end
     end
   end
