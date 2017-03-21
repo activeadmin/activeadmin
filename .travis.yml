@@ -27,6 +27,7 @@ rvm:
 gemfile:
   - gemfiles/rails_42.gemfile
   - gemfiles/rails_50.gemfile
+  - gemfiles/rails_51.gemfile
 
 env:
   global:
@@ -38,6 +39,8 @@ matrix:
   allow_failures:
     - rvm: jruby-9.1.8.0
       gemfile: gemfiles/rails_50.gemfile
+    - rvm: jruby-9.1.8.0
+      gemfile: gemfiles/rails_51.gemfile
 
 notifications:
   irc:
