@@ -59,6 +59,6 @@ module ActiveAdmin
       end
     end
 
-    before_filter :restrict_format_access!, only: [:index, :show]
+    before_action :restrict_format_access!, only: [:index, :show]
   end
 end
