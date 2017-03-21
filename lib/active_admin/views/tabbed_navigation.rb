@@ -11,6 +11,10 @@ module ActiveAdmin
 
       attr_reader :menu
 
+      def default_class
+        'navbar-nav mr-auto'
+      end
+
       # Build a new tabbed navigation component.
       #
       # @param [ActiveAdmin::Menu] menu the Menu to render
@@ -40,27 +44,40 @@ module ActiveAdmin
       end
 
       def build_menu_item(item)
-        li id: item.id do |li|
-          li.add_class "current" if item.current? assigns[:current_tab]
-
-          if url = item.url(self)
-            text_node link_to item.label(self), url, item.html_options
-          else
-            span item.label(self), item.html_options
+        if children = item.items(self).presence
+          li id: item.id, class: 'nav-item dropdown' do |li|
+            a class: 'nav-link dropdown-toggle', 'data-toggle': 'dropdown' do 
+              span item.label(self), item.html_options
+            end
+            div class: 'dropdown-menu' do
+              children.each{ |child| build_child_menu_item child }
+            end
           end
+        else
+          li id:item.id, class: 'nav-item' do |li|
+            li.add_class "active" if item.current? assigns[:current_tab]
 
-          if children = item.items(self).presence
-            li.add_class "has_nested"
-            ul do
-              children.each{ |child| build_menu_item child }
+            if url = item.url(self)
+              text_node link_to item.label(self), url, item.html_options.merge({class: 'nav-link'})
+            else
+              span item.label(self), item.html_options
             end
           end
         end
       end
 
-      def default_options
-        { id: "tabs" }
+      def build_child_menu_item(item)
+        if url = item.url(self)
+          text_node link_to item.label(self), url, item.html_options.merge({class: 'dropdown-item'})
+        else
+          span item.label(self), item.html_options
+        end
       end
+
+      def default_options
+        {}
+      end
+
     end
   end
 end
