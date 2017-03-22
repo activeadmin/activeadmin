@@ -30,6 +30,10 @@ RSpec.describe ActiveAdmin::FormBuilder do
       args.inspect
     end
 
+    def view.action_name
+      'edit'
+    end
+
     view
   end
 
@@ -157,13 +161,39 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
       expect(body).to have_selector("[id=post_title]", count: 1)
     end
-    it "should generate one button and a cancel link" do
+
+    context "create another checkbox" do
+      subject do
+        build_form do |f|
+          f.actions
+        end
+      end
+
+      %w(new create).each do |action_name|
+        it "generates create another checkbox on #{action_name} page" do
+          expect(helpers).to receive(:action_name) { action_name }
+          allow(helpers).to receive(:active_admin_config) { instance_double(ActiveAdmin::Resource, create_another: true) }
+
+          is_expected.to have_selector("[type=checkbox]", count: 1)
+                            .and have_selector("[name=create_another]", count: 1)
+        end
+      end
+
+      %w(show edit update).each do |action_name|
+        it "doesn't generate create another checkbox on #{action_name} page" do
+          is_expected.not_to have_selector("[name=create_another]", count: 1)
+        end
+      end
+    end
+
+    it "should generate one button create another checkbox and a cancel link" do
       body = build_form do |f|
         f.actions
       end
       expect(body).to have_selector("[type=submit]", count: 1)
       expect(body).to have_selector("[class=cancel]", count: 1)
     end
+
     it "should generate multiple actions" do
       body = build_form do |f|
         f.actions do

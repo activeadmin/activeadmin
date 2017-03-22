@@ -173,3 +173,22 @@ You can arrange content in tabs as shown below:
     f.actions
   end
 ```
+
+## Customize the Create Another checkbox
+
+In order to simplify creating multiple resources you may enable ActiveAdmin to show nice "Create Another" checkbox alongside of Create Model
+button. It may be enabled for the whole application:
+ 
+```ruby
+ActiveAdmin.setup do |config|
+  config.create_another = true
+end
+```
+
+or for the particular resource:
+
+```ruby
+ActiveAdmin.register Post do
+  config.create_another = true
+end
+```

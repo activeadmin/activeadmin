@@ -21,6 +21,7 @@
 
 #### Minor
 
+* "Create another" checkbox for the new resource page. [#4477][] by [@bolshakov][]
 * Page supports belongs_to [#4759][] by [@Fivell][] and [@zorab47][]
 * Support for custom sorting strategies [#4768][] by [@Fivell][]
 * Stream CSV downloads as they're generated [#3038][] by [@craigmcnamara][]
@@ -109,24 +110,29 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#3731]: https://github.com/activeadmin/activeadmin/issues/3731
 [#3783]: https://github.com/activeadmin/activeadmin/issues/3783
 [#4187]: https://github.com/activeadmin/activeadmin/issues/4187
+[#4477]: https://github.com/activeadmin/activeadmin/pull/4477
 [#4759]: https://github.com/activeadmin/activeadmin/pull/4759
 [#4768]: https://github.com/activeadmin/activeadmin/pull/4768
 [#4848]: https://github.com/activeadmin/activeadmin/pull/4848
 [#4867]: https://github.com/activeadmin/activeadmin/pull/4867
-[@PChambino]: https://github.com/PChambino
-[@TimPetricola]: https://github.com/TimPetricola
+
+[@bolshakov]: https://github.com/bolshakov
 [@chancancode]: https://github.com/chancancode
 [@craigmcnamara]: https://github.com/craigmcnamara
-[@drn]: https://github.com/drn
+[@deivid-rodriguez]: https://github.com/deivid-rodriguez
 [@dmitry]: https://github.com/dmitry
+[@drn]: https://github.com/drn
+[@Fivell]: https://github.com/Fivell
 [@gonzedge]: https://github.com/gonzedge
 [@johnnyshields]: https://github.com/johnnyshields
+[@PChambino]: https://github.com/PChambino
+[@PChambino]: https://github.com/PChambino
 [@potatosalad]: https://github.com/potatosalad
 [@pranas]: https://github.com/pranas
 [@seanlinsley]: https://github.com/seanlinsley
 [@shekibobo]: https://github.com/shekibobo
 [@timoschilling]: https://github.com/timoschilling
+[@TimPetricola]: https://github.com/TimPetricola
+[@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
 [@zorab47]: https://github.com/zorab47
-[@Fivell]: https://github.com/Fivell
-[@deivid-rodriguez]: https://github.com/deivid-rodriguez

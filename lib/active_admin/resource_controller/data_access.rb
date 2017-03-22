@@ -298,6 +298,23 @@ module ActiveAdmin
       def apply_decorations(resource)
         apply_decorator(resource)
       end
+
+      # @return [String]
+      def smart_resource_url
+        if create_another?
+          new_resource_url(create_another: params[:create_another])
+        else
+          super
+        end
+      end
+
+      private
+
+      # @return [Boolean] true if user requested to create one more
+      #   resource after creating this one.
+      def create_another?
+        params[:create_another].present?
+      end
     end
   end
 end
