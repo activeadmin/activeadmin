@@ -135,6 +135,10 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
 
   config.active_record.maintain_test_schema = false
 
+  if Rails::VERSION::MAJOR >= 5
+    config.active_record.belongs_to_required_by_default = false
+  end
+
 RUBY
 
 # Add our local Active Admin to the application
