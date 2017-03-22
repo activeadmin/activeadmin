@@ -15,7 +15,7 @@ RSpec.describe ActiveAdmin::Views::IndexList do
       helpers = mock_action_view
       allow(helpers).to receive(:url_for) { |url| "/?#{ url.to_query }" }
       allow(helpers.request).to receive(:query_parameters).and_return as: "table", q: { title_contains: "terms" }
-      allow(helpers).to receive(:params).and_return as: "table", q: { title_contains: "terms" }
+      allow(helpers).to receive(:params).and_return(ActionController::Parameters.new(as: "table", q: { title_contains: "terms" }))
       allow(helpers).to receive(:collection).and_return(collection)
       helpers
     end
