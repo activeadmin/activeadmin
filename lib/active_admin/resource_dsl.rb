@@ -185,14 +185,20 @@ module ActiveAdmin
     delegate :before_save,    :after_save,    to: :controller
     delegate :before_destroy, :after_destroy, to: :controller
 
-    # This code defines both *_filter and *_action for Rails 4.0 to Rails 5.
-    actions = [
+    # This code defines both *_filter and *_action for Rails 4.0 to Rails 5 and  *_action for Rails >= 5.1
+    phases = [
       :before, :skip_before,
       :after,  :skip_after,
       :around, :skip
     ]
-    [:action, :filter].each do |name|
-      actions.each do |action|
+    keywords = if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
+                       [:action]
+                     else
+                       [:action, :filter]
+                     end
+
+    keywords.each do |name|
+       phases.each do |action|
         define_method "#{action}_#{name}" do |*args, &block|
           controller.public_send "#{action}_action", *args, &block
         end
