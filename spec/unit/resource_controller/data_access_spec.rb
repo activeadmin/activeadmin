@@ -2,7 +2,12 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   before do
-    load_resources { ActiveAdmin.register Post }
+    load_resources { config }
+  end
+
+  let(:config) do
+    ActiveAdmin.register Post do
+    end
   end
 
   let(:params) do
@@ -38,8 +43,6 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
         controller.send :apply_filtering, Post
       end
     end
-
-
   end
 
   describe "sorting" do
@@ -186,4 +189,38 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
       end
     end
   end
+
+  describe "build_resource" do
+
+    let(:config) do
+      ActiveAdmin.register Post do
+        permit_params :body, taggings_attributes: [:id, :tag_id]
+      end
+    end
+
+    let!(:tag) { Tag.create! }
+
+    let(:params) do
+      ActionController::Parameters.new({ post: { body: 'Body', taggings_attributes: [tag_id: tag.id] } })
+    end
+
+    before do
+      expect(Post).to receive(:new).with(a_hash_including(:body, :taggings_attributes )).and_call_original
+    end
+
+    subject do
+      controller.send :build_resource
+    end
+
+    it "should return post with assigned attributes" do
+      expect(subject.body).to be_present
+    end
+
+    # see issue 4548
+    it "should assign nested attributes once" do
+      expect(subject.taggings.size).to eq(1)
+    end
+
+  end
+
 end
