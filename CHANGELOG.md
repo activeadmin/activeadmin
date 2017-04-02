@@ -114,6 +114,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#4759]: https://github.com/activeadmin/activeadmin/pull/4759
 [#4768]: https://github.com/activeadmin/activeadmin/pull/4768
 [#4848]: https://github.com/activeadmin/activeadmin/pull/4848
+[#4851]: https://github.com/activeadmin/activeadmin/pull/4851
 [#4867]: https://github.com/activeadmin/activeadmin/pull/4867
 
 [@bolshakov]: https://github.com/bolshakov
