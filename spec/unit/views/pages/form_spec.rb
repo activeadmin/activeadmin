@@ -1,26 +1,45 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::Pages::Form do
-  describe "#title" do
-    let!(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ ActiveAdmin::Namespace.new(application, "Admin") }
-    let!(:params){ { controller: "UsersController", action: "edit" } }
-    let(:helpers) do
-      helpers = mock_action_view
-      allow(helpers).to receive(:active_admin_config).and_return(namespace.register(Post))
-      allow(helpers).to receive(:params).and_return(params)
-      helpers
-    end
+  let!(:params) { { controller: "PostsController", action: "edit" } }
+  let(:active_admin_namespace){ ActiveAdmin.application.namespace(:admin) }
+  before do
+    load_defaults!
+  end
 
-    let(:arbre_context) do
-      OpenStruct.new(params: params, helpers: helpers, assigns: {})
+  let(:helpers) do
+    helpers = mock_action_view
+    allow(helpers).to receive(:active_admin_config).and_return(  active_admin_namespace.resource_for(Post))
+    allow(helpers).to receive(:params).and_return(params)
+    helpers
+  end
+
+  let(:arbre_context) do
+    OpenStruct.new(params: params, helpers: helpers, assigns: {})
+  end
+
+  let(:page) do
+    ActiveAdmin::Views::Pages::Form.new(arbre_context)
+  end
+
+  describe "#options" do
+    it "should include valid uri for new record" do
+      allow(page).to receive(:resource).and_return(Post.new)
+      expect(page.options[:url]).to eq('/admin/posts')
     end
+    it "should include valid uri for persisted record" do
+      post = Post.create
+      allow(page).to receive(:resource).and_return(post)
+      expect(page.options[:url]).to eq("/admin/posts/#{post.id}")
+    end
+  end
+
+  describe "#title" do
 
     context "when :title is set" do
       it "should show the set page title" do
-        page = ActiveAdmin::Views::Pages::Form.new(arbre_context)
         expect(page).to receive(:resource)
-        expect(page).to receive(:form_presenter).twice.and_return({ title: "My Page Title" })
+        expect(page).to receive(:form_presenter).twice.and_return(title: "My Page Title")
         expect(page.title).to eq "My Page Title"
       end
     end
@@ -28,7 +47,6 @@ RSpec.describe ActiveAdmin::Views::Pages::Form do
     context "when page_title is assigned" do
       it "should show the set page title" do
         arbre_context.assigns[:page_title] = "My Page Title"
-        page = ActiveAdmin::Views::Pages::Form.new(arbre_context)
         expect(page.title).to eq "My Page Title"
       end
     end
@@ -42,7 +60,6 @@ RSpec.describe ActiveAdmin::Views::Pages::Form do
       }.each do |action, title|
         it "should show the correct I18n text on the #{action} action" do
           params[:action] = action
-          page = ActiveAdmin::Views::Pages::Form.new(arbre_context)
           expect(page.title).to eq title
         end
       end

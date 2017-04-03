@@ -17,13 +17,15 @@ module ActiveAdmin
         end
 
         def main_content
-          options = default_form_options.merge form_presenter.options
-
           if options[:partial]
             render options[:partial]
           else
             active_admin_form_for resource, options, &form_presenter.block
           end
+        end
+
+        def options
+          @options ||= default_form_options.merge(form_presenter.options)
         end
 
         private
@@ -36,7 +38,7 @@ module ActiveAdmin
         end
 
         def default_form_path
-          resource.persisted? ? resource_path(resource) : collection_path
+          resource.persisted? ? active_admin_config.route_instance_path(resource, url_options) : active_admin_config.route_collection_path(url_options)
         end
 
         def default_form_config
