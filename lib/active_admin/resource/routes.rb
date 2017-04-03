@@ -62,8 +62,7 @@ module ActiveAdmin
           )
 
           query = params.slice(:q, :scope)
-          query = query.permit! if query.respond_to? :permit!
-          query = query.to_h if Rails::VERSION::MAJOR >= 5
+          query = query.permit!.to_h
           routes.public_send route_name, *route_collection_params(params), additional_params.merge(query)
         end
 

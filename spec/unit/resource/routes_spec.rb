@@ -101,7 +101,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
       end
 
       it "should include :scope and :q params" do
-        params = { category_id: 1, q: { name_equals: "Any" }, scope: :all }
+        params = ActionController::Parameters.new(category_id: 1, q: { name_equals: "Any" }, scope: :all)
         additional_params = { locale: 'en' }
         batch_action_path = "/admin/categories/1/posts/batch_action?locale=en&q%5Bname_equals%5D=Any&scope=all"
 
@@ -115,7 +115,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
       let(:config) { ActiveAdmin.register News }
 
       it "should return the plural batch action route with _index and given params" do
-        params = { q: { name_equals: "Any" }, scope: :all }
+        params = ActionController::Parameters.new(q: { name_equals: "Any" }, scope: :all)
         additional_params = { locale: 'en' }
         batch_action_path = "/admin/news/batch_action?locale=en&q%5Bname_equals%5D=Any&scope=all"
         expect(config.route_batch_action_path(params, additional_params)).to eq batch_action_path

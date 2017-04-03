@@ -25,17 +25,17 @@ RSpec.describe ActiveAdmin::ViewHelpers::FormHelper do
     let(:view) { action_view }
 
     it "should render hidden field tags for params" do
-      html = Capybara.string view.hidden_field_tags_for(scope: "All", filter: "None")
+      html = Capybara.string view.hidden_field_tags_for(ActionController::Parameters.new(scope: "All", filter: "None"))
       expect(html).to have_selector("input#hidden_active_admin_scope[name=scope][type=hidden][value=All]")
       expect(html).to have_selector("input#hidden_active_admin_filter[name=filter][type=hidden][value=None]")
     end
 
     it "should generate not default id for hidden input" do
-      expect(view.hidden_field_tags_for(scope: "All")[/id="([^"]+)"/, 1]).to_not eq "scope"
+      expect(view.hidden_field_tags_for(ActionController::Parameters.new(scope: "All"))[/id="([^"]+)"/, 1]).to_not eq "scope"
     end
 
     it "should filter out the field passed via the option :except" do
-      html = Capybara.string view.hidden_field_tags_for({scope: "All", filter: "None"}, except: :filter)
+      html = Capybara.string view.hidden_field_tags_for(ActionController::Parameters.new(scope: "All", filter: "None"), except: :filter)
       expect(html).to have_selector("input#hidden_active_admin_scope[name=scope][type=hidden][value=All]")
     end
   end

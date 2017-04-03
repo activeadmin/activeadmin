@@ -10,8 +10,12 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     end
   end
 
-  let(:params) do
+  let(:http_params) do
     {}
+  end
+
+  let(:params) do
+    ActionController::Parameters.new(http_params)
   end
 
   let(:controller) do
@@ -23,7 +27,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   end
 
   describe "searching" do
-    let(:params) {{ q: {} }}
+    let(:http_params) {{ q: {} }}
     it "should call the search method" do
       chain = double "ChainObj"
       expect(chain).to receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
@@ -31,7 +35,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     end
 
     context "params includes empty values" do
-      let(:params) do
+      let(:http_params) do
         { q: {id_eq: 1, position_eq: ""} }
       end
       it "should return relation without empty filters" do
@@ -48,7 +52,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   describe "sorting" do
 
     context "valid clause" do
-      let(:params) {{ order: "id_asc" }}
+      let(:http_params) {{ order: "id_asc" }}
 
       it "reorders chain" do
         chain = double "ChainObj"
@@ -58,7 +62,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     end
 
     context "invalid clause" do
-      let(:params) {{ order: "_asc" }}
+      let(:http_params) {{ order: "_asc" }}
 
       it "returns chain untouched" do
         chain = double "ChainObj"
@@ -79,7 +83,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
       end
 
       context "when params applicable" do
-        let(:params) {{ order: "published_date_desc" }}
+        let(:http_params) {{ order: "published_date_desc" }}
         it "reorders chain" do
           chain = double "ChainObj"
           expect(chain).to receive(:reorder).with('"posts"."published_date" desc NULLS LAST').once.and_return(Post.search)
@@ -87,7 +91,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
         end
       end
       context "when params not applicable" do
-        let(:params) {{ order: "published_date_asc" }}
+        let(:http_params) {{ order: "published_date_asc" }}
         it "reorders chain" do
           chain = double "ChainObj"
           expect(chain).to receive(:reorder).with('"posts"."published_date" asc').once.and_return(Post.search)

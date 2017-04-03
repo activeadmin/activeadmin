@@ -1,4 +1,4 @@
-require 'active_admin/view_helpers/fields_for'
+require 'rails_helper'
 
 RSpec.describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
   include ActiveAdmin::ViewHelpers::FormHelper

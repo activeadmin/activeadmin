@@ -1,8 +1,6 @@
 # Rails template to build the sample app for specs
 
-if Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR >= 2
-  copy_file File.expand_path('../templates/manifest.js', __FILE__), 'app/assets/config/manifest.js', force: true
-end
+copy_file File.expand_path('../templates/manifest.js', __FILE__), 'app/assets/config/manifest.js', force: true
 
 generate :model, 'post title:string body:text published_date:date author_id:integer ' +
   'position:integer custom_category_id:integer starred:boolean foo_id:integer'
@@ -135,9 +133,7 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
   config.action_mailer.default_url_options = {host: 'example.com'}
   config.assets.digest = false
 
-  if Rails::VERSION::MAJOR >= 4 && Rails::VERSION::MINOR >= 1
-    config.active_record.maintain_test_schema = false
-  end
+  config.active_record.maintain_test_schema = false
 
 RUBY
 
@@ -169,10 +165,6 @@ directory File.expand_path('../templates/policies', __FILE__), 'app/policies'
 if ENV['RAILS_ENV'] != 'test'
   inject_into_file 'config/routes.rb', "\n  root to: redirect('admin')", after: /.*routes.draw do/
 end
-
-# Devise master doesn't set up its secret key on Rails 4.1
-# https://github.com/plataformatec/devise/issues/2554
-gsub_file 'config/initializers/devise.rb', /# config.secret_key =/, 'config.secret_key ='
 
 rake "db:drop db:create db:migrate", env: 'development'
 rake "db:drop db:create db:migrate", env: 'test'

@@ -1,27 +1,3 @@
-appraise 'rails_40' do
-  gemspec
-
-  gem 'rails', '4.0.13'
-  gem 'jquery-ui-rails', '~> 5.0'
-  gem 'devise', '~> 3.5'
-
-  gem 'draper', '~> 2.1'
-
-  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
-end
-
-appraise 'rails_41' do
-  gemspec
-
-  gem 'rails', '4.1.16'
-  gem 'jquery-ui-rails', '~> 5.0'
-  gem 'devise', '~> 3.5'
-
-  gem 'draper', '~> 2.1'
-
-  gem 'activerecord-jdbcsqlite3-adapter', platforms: :jruby
-end
-
 appraise 'rails_42' do
   gemspec
 
