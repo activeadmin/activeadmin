@@ -38,6 +38,24 @@ Feature: Index Filtering
     And I should not see pagination
     And I should see "No Posts found"
 
+  Scenario: Filtering posts with pagination
+    Given 7 posts with the title "Hello World 3" exist
+    And 1 post with the title "Hello World 4" exist
+    And an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        config.per_page = 2
+      end
+    """
+    When I fill in "Title" with "Hello World 3"
+    And I press "Filter"
+
+    Then I follow "2"
+    Then I should see "Displaying Posts 3 - 4 of 7 in total"
+
+    Then I follow "3"
+    Then I should see "Displaying Posts 5 - 6 of 7 in total"
+
   Scenario: Filtering posts while not on the first page
     Given 9 posts exist
     And an index configuration of:
