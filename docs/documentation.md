@@ -14,7 +14,7 @@ little effort.
 ### Getting Started
 
 Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby on Rails 4 application. To
-        install, simply add the following to your Gemfile:</p>
+        install, simply add the following to your Gemfile:
 
 ```ruby
 # Gemfile
@@ -50,7 +50,7 @@ $> rails generate active_admin:resource
         [MyModelName]
 ```
 
-This creates a file at <tt>app/admin/my_model_names.rb</tt> for configuring the resource. Refresh your web browser to see the interface.</p>
+This creates a file at <tt>app/admin/my_model_names.rb</tt> for configuring the resource. Refresh your web browser to see the interface.
 
 ### Next Steps
 
