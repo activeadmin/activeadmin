@@ -24,7 +24,7 @@ module ActiveAdmin
       end
 
       def build_filters
-        filters = @params[:q] || []
+        filters = @params[:q] || @params["q"] || []
         filters.map{ |param| Humanized.new(param) }
       end
 
