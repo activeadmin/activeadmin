@@ -19,6 +19,8 @@
 * Migration from Metasearch to Ransack [#1979][] by [@seanlinsley][]
 * Rails 4 support [#2326][] by many people <3
 * Rails 4.2 support [#3731][] by [@gonzedge][] and [@timoschilling][]
+* Rails 5 support [#4254][] by [@seanlinsley][]
+* Rails 5.1 support [#4882][] by [@varyonic][]
 
 #### Minor
 
@@ -111,12 +113,14 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#3731]: https://github.com/activeadmin/activeadmin/issues/3731
 [#3783]: https://github.com/activeadmin/activeadmin/issues/3783
 [#4187]: https://github.com/activeadmin/activeadmin/issues/4187
+[#4254]: https://github.com/activeadmin/activeadmin/issues/4254
 [#4477]: https://github.com/activeadmin/activeadmin/pull/4477
 [#4759]: https://github.com/activeadmin/activeadmin/pull/4759
 [#4768]: https://github.com/activeadmin/activeadmin/pull/4768
 [#4848]: https://github.com/activeadmin/activeadmin/pull/4848
 [#4851]: https://github.com/activeadmin/activeadmin/pull/4851
 [#4867]: https://github.com/activeadmin/activeadmin/pull/4867
+[#4882]: https://github.com/activeadmin/activeadmin/pull/4882
 
 [@bolshakov]: https://github.com/bolshakov
 [@chancancode]: https://github.com/chancancode
@@ -128,13 +132,11 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [@gonzedge]: https://github.com/gonzedge
 [@johnnyshields]: https://github.com/johnnyshields
 [@PChambino]: https://github.com/PChambino
-[@PChambino]: https://github.com/PChambino
 [@potatosalad]: https://github.com/potatosalad
 [@pranas]: https://github.com/pranas
 [@seanlinsley]: https://github.com/seanlinsley
 [@shekibobo]: https://github.com/shekibobo
 [@timoschilling]: https://github.com/timoschilling
-[@TimPetricola]: https://github.com/TimPetricola
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
 [@zorab47]: https://github.com/zorab47
