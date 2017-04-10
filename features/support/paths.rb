@@ -23,6 +23,8 @@ module NavigationHelpers
       "/admin/posts/1"
     when /the first post custom status page/
       "/admin/posts/1/status"
+    when /the last posts page/
+      "/admin/last_posts"
     when /the first post edit page/
       "/admin/posts/1/edit"
     when /the admin password reset form with token "([^"]*)"/
