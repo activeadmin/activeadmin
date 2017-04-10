@@ -54,7 +54,6 @@ module ActiveAdminIntegrationSpecHelper
 
   # A mock action view to test view helpers
   class MockActionView < ::ActionView::Base
-    include ActionView::Helpers
     include ActiveAdmin::ViewHelpers
     include Rails.application.routes.url_helpers
   end
