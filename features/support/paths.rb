@@ -6,10 +6,7 @@ module NavigationHelpers
   # step definition in web_steps.rb
   #
   def path_to(page_name)
-    params = page_name.scan(/with params "(.*?)"/).flatten[0] || ''
-    page_name.sub! /\ with params.*/, ''
-
-    url = case page_name
+    case page_name
 
     when /the home\s?page/
       '/'
@@ -19,14 +16,10 @@ module NavigationHelpers
       "/admin/posts/new"
     when /the login page/
       "/admin/login"
-    when /the first post show page/
-      "/admin/posts/1"
     when /the first post custom status page/
       "/admin/posts/1/status"
     when /the last posts page/
       "/admin/last_posts"
-    when /the first post edit page/
-      "/admin/posts/1/edit"
     when /the admin password reset form with token "([^"]*)"/
       "/admin/password/edit?reset_password_token=#{$1}"
 
@@ -74,7 +67,6 @@ module NavigationHelpers
           "Now, go and add a mapping in #{__FILE__}"
       end
     end
-    url + params
   end
 end
 
