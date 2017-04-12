@@ -1,0 +1,45 @@
+hu:
+  active_admin:
+    dashboard: Vezérlőpult
+    dashboard_welcome:
+      welcome: "Üdvözöljük az Active Admin felületén. Ez a vezérlőpult kezdőlapja"
+      call_to_action: "Elemek hozzáadásához nézze meg a 'app/admin/dashboards.rb' fájlt"
+    view: "Megtekintés"
+    edit: "Szerkesztés"
+    delete: "Törlés"
+    delete_confirmation: "Biztosan törli ezt az elemet?"
+    new_model: "Új %{model}"
+    create_model: "%{model} létrehozása"
+    edit_model: "%{model} módosítása"
+    update_model: "%{model} módosítása"
+    delete_model: "%{model} törlése"
+    details: "%{model} részletei"
+    cancel: "Mégsem"
+    empty: "Üres"
+    previous: "Előző"
+    next: "Következő"
+    download: "Letöltés:"
+    has_many_new: "Új %{model} hozzáadása"
+    has_many_delete: "Törlés"
+    filter: "Szűrés"
+    clear_filters: "Feltételek törlése"
+    search_field: "Keresés %{field} alapján"
+    equal_to: "Pontosan"
+    greater_than: "Nagyobb, mint"
+    less_than: "Kisebb, mint"
+    main_content: "Kérem, implementálja a %{model}#main_content metódust a tartalom megjelenítéséhez."
+    logout: "Kilépés"
+    sidebars:
+      filters: "Szűrők"
+    pagination:
+      empty: "Nincs több %{model}"
+      one: "<b>Egy</b> %{model} megjelenítése"
+      one_page: "<b>Az összes (%{n} db)</b> %{model} megjelenítése"
+      multiple: "%{model} listájának megjelenítése, <b>%{from}&nbsp;-&nbsp;%{to}</b>/<b>%{total}</b> "
+      entry:
+        one: "elem"
+        other: "elem"
+    any: "Összes"
+    blank_slate:
+      content: "Még nincs létrehozva %{resource_name}."
+      link: "Létrehozás most"
