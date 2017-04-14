@@ -2,6 +2,10 @@
 
 copy_file File.expand_path('../templates/manifest.js', __FILE__), 'app/assets/config/manifest.js', force: true
 
+create_file 'app/assets/stylesheets/some-random-css.css'
+create_file 'app/assets/javascripts/some-random-js.js'
+create_file 'app/assets/images/a/favicon.ico'
+
 generate :model, 'post title:string body:text published_date:date author_id:integer ' +
   'position:integer custom_category_id:integer starred:boolean foo_id:integer'
 create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
@@ -131,9 +135,13 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
 
   config.cache_classes = !ENV['CLASS_RELOADING']
   config.action_mailer.default_url_options = {host: 'example.com'}
-  config.assets.digest = false
+  config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )
 
   config.active_record.maintain_test_schema = false
+
+  if Rails::VERSION::MAJOR >= 5
+    config.active_record.belongs_to_required_by_default = false
+  end
 
 RUBY
 

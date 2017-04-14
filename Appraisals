@@ -24,3 +24,18 @@ appraise 'rails_50' do
       branch: 'rails-5',
       platforms: :jruby
 end
+
+appraise 'rails_51' do
+  gemspec
+
+  gem 'rails', '~> 5.1.x'
+  gem 'jquery-ui-rails', '~> 5.0'
+  gem 'devise', '> 4.x'
+
+  gem 'draper', '> 3.x'
+
+  gem 'activerecord-jdbcsqlite3-adapter',
+      git: 'https://github.com/jruby/activerecord-jdbc-adapter',
+      branch: 'rails-5',
+      platforms: :jruby
+end

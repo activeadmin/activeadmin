@@ -8,11 +8,11 @@ gem "rake"
 gem "parallel_tests"
 gem "pry"
 gem "rubocop"
-gem "rails", "4.2.8"
+gem "rails", "~> 5.1.x"
 gem "jquery-ui-rails", "~> 5.0"
-gem "devise", "~> 3.5"
-gem "draper", "~> 2.1"
-gem "activerecord-jdbcsqlite3-adapter", :platforms => :jruby
+gem "devise", "> 4.x"
+gem "draper", "> 3.x"
+gem "activerecord-jdbcsqlite3-adapter", :git => "https://github.com/jruby/activerecord-jdbc-adapter", :branch => "rails-5", :platforms => :jruby
 
 group :development do
   gem "better_errors"

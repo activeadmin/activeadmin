@@ -23,10 +23,10 @@ RSpec.describe ActiveAdmin::ResourceController::Sidebars, type: :controller do
     end
   end
 
-  context 'with skip_sidebar! before_filter' do
+  context 'with skip_sidebar! before_action' do
     include_context 'with post config' do
       let(:post_config) do
-        ActiveAdmin.register(Post) { before_filter :skip_sidebar! }
+        ActiveAdmin.register(Post) { before_action :skip_sidebar! }
       end
     end
 
