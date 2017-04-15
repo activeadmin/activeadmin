@@ -24,9 +24,11 @@ module ActiveAdmin
     module Base
       def initialize(namespace, name, options)
         @namespace = namespace
-        @name = name
+        @internal_name = name
         @options = options
         @page_actions = []
+        
+        @name = @options[:as] ? @options[:as] : name
       end
     end
 
@@ -41,11 +43,11 @@ module ActiveAdmin
 
     # label is singular
     def plural_resource_label
-      name
+      @internal_name || name
     end
 
     def resource_name
-      @resource_name ||= Resource::Name.new(nil, name)
+      @resource_name ||= Resource::Name.new(nil, @internal_name || name)
     end
 
     def underscored_resource_name
