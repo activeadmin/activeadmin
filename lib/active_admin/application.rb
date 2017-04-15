@@ -1,11 +1,13 @@
 require 'active_admin/router'
 require 'active_admin/reloader'
 require 'active_admin/helpers/settings'
+require 'active_admin/helpers/environment_checker'
 
 module ActiveAdmin
   class Application
     include Settings
     include Settings::Inheritance
+    include EnvironmentChecker
 
     settings_inherited_by Namespace
 
@@ -242,8 +244,10 @@ module ActiveAdmin
 
     # One-liner called by user's config/routes.rb file
     def routes(rails_router)
-      load!
-      router.apply(rails_router)
+      if should_build_routes?
+        load!
+        router.apply(rails_router)
+      end
     end
 
     # Adds before, around and after filters to all controllers.
