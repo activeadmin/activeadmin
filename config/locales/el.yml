@@ -33,7 +33,7 @@ el:
         less_than: "Μικρότερο από"
     status_tag:
       "yes": "Ναι"
-      "no": "Δεν"
+      "no": "Όχι"
     main_content: "Παρακαλώ υλοποιήστε την %{model}#main_content για να εμφανίσετε περιεχόμενο."
     logout: "Αποσύνδεση"
     powered_by: "Powered by %{active_admin} %{version}"
