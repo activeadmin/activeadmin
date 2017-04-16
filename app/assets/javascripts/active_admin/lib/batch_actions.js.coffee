@@ -32,8 +32,8 @@ $(document).on 'ready page:load turbolinks:load', ->
     else
       $(".paginated_collection").checkboxToggler()
 
-    $(document).on 'change', '.paginated_collection :checkbox', ->
-      if $(".paginated_collection :checkbox:checked").length
-        $(".batch_actions_selector").each -> $(@).aaDropdownMenu("enable")
-      else
-        $(".batch_actions_selector").each -> $(@).aaDropdownMenu("disable")
+$(document).on 'change', '.paginated_collection :checkbox', ->
+  if $(".paginated_collection :checkbox:checked").length
+    $(".batch_actions_selector").each -> $(@).aaDropdownMenu("enable")
+  else
+    $(".batch_actions_selector").each -> $(@).aaDropdownMenu("disable")
