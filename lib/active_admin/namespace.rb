@@ -184,9 +184,8 @@ module ActiveAdmin
       resources.add Page.new(self, name, options)
     end
 
-    # TODO: replace `eval` with `Class.new`
     def register_page_controller(config)
-      eval "class ::#{config.controller_name} < ActiveAdmin::PageController; end"
+      Object.const_set(config.controller_name, Class.new(ActiveAdmin::PageController))
       config.controller.active_admin_config = config
     end
 
@@ -212,9 +211,8 @@ module ActiveAdmin
       end
     end
 
-    # TODO replace `eval` with `Class.new`
     def register_resource_controller(config)
-      eval "class ::#{config.controller_name} < ActiveAdmin::ResourceController; end"
+      Object.const_set(config.controller_name, Class.new(ActiveAdmin::ResourceController))
       config.controller.active_admin_config = config
     end
 
