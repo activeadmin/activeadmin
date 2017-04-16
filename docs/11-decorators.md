@@ -15,6 +15,18 @@ and [this gem](https://github.com/kiote/activeadmin-poro-decorator) for more det
 ## Example usage
 
 ```ruby
+# config/application.rb
+module MyApplication
+  class Application < Rails::Application
+    # ...
+    # add path to decorators to autoload, so that ActiveAdmin does not complain.
+    config.autoload_paths += %W(#{Rails.root}/app/decorators)
+    # ...
+  end
+end
+```
+
+```ruby
 # app/models/post.rb
 class Post < ActiveRecord::Base
   # has title, content, and image_url
