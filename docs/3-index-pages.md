@@ -178,6 +178,9 @@ preserve_default_filters!
 remove_filter :id
 ```
 
+To access filtered collections for custom actions (such as CSV download), use:
+`ModelName.ransack(params[:q]).result`
+
 ## Index Scopes
 
 You can define custom scopes for your index page. This will add a tab bar above
