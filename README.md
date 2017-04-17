@@ -9,19 +9,6 @@
 [![Inch CI         ](http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master)       ](http://inch-ci.org/github/activeadmin/activeadmin)
 [![Gratipay Team   ](https://img.shields.io/gratipay/team/Active-Admin.svg)](https://gratipay.com/Active-Admin/)
 
-## State of the project
-
-1.0.0.pre5 is the last release to support Rails 3.2 and Ruby 2.0 or earlier.
-It is provided to help with upgrades to Rails 4 only.
-
-1.0.0.pre5 has support for Rails 5. The following Gemfile addition may be needed:
-
-```ruby
-gem 'inherited_resources', '~> 1.7'
-```
-
-1.0.0 will drop support for Rails 3.2 and Ruby 2.0 or earlier.
-
 ## Goals
 
 1. Enable developers to quickly create good-looking administration interfaces.

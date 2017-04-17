@@ -1,5 +1,5 @@
 # Changelog
-## 1.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.3...master) (unreleased)
+## 1.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.3...master)
 
 ### Breaking Changes
 
