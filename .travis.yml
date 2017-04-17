@@ -43,6 +43,7 @@ matrix:
       gemfile: gemfiles/rails_51.gemfile
 
 notifications:
+  email: false
   irc:
     channels:
       - irc.freenode.org#activeadmin
