@@ -40,6 +40,9 @@ module ActiveAdmin
         end
 
         def default_form_config
+          self.class.default_form_config
+        end
+        def self.default_form_config
           ActiveAdmin::PagePresenter.new do |f|
             f.semantic_errors # show errors on :base by default
             f.inputs
