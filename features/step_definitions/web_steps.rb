@@ -27,10 +27,6 @@ When /^(?:I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
-When /^(?:I )POST to "(.*?)" with params "(.*?)"$/ do |url, params|
-  post "#{url}#{params}"
-end
-
 When /^(?:I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
