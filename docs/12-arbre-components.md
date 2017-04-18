@@ -151,3 +151,26 @@ status_tag 'active', :ok
 status_tag 'active', :ok, class: 'important', id: 'status_123', label: 'on'
 # => <span class='status_tag active ok important' id='status_123'>on</span>
 ```
+
+## Tabs
+
+The Tabs component is helpful for saving page real estate. The first tab will be
+the one open when the page initially loads and the rest hidden. You can click
+each tab to toggle back and forth between them. Arbre supports unlimited number
+of tabs.
+
+```ruby
+tabs do
+  tab :active do
+    table_for orders.active do
+      ...
+    end
+  end
+
+  tab :inactive do
+    table_for orders.inactive do
+      ...
+    end
+  end
+end
+```
