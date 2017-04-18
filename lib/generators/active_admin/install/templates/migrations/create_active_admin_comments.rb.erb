@@ -1,6 +1,6 @@
 <%
-parent_class = ActiveRecord::Migration
-parent_class = parent_class[5.0] if Rails::VERSION::MAJOR >= 5
+  parent_class = ActiveRecord::Migration
+  parent_class = parent_class[parent_class.current_version] if Rails::VERSION::MAJOR >= 5
 -%>
 class CreateActiveAdminComments < <%= parent_class.to_s %>
   def self.up
