@@ -179,7 +179,7 @@ module ActiveAdmin
     #
     # @return [Namespace] the new or existing namespace
     def namespace(name)
-      name ||= :root
+      name ||= default_namespace
 
       namespace = namespaces[name] ||= begin
         namespace = Namespace.new(self, name)
