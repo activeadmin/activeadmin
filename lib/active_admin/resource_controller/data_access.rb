@@ -128,7 +128,7 @@ module ActiveAdmin
       #
       # @return [ActiveRecord::Base] An un-saved active record base object
       def build_new_resource
-        scoped_collection.send method_for_build, *resource_params
+        scoped_collection.send method_for_build
       end
 
       # Calls all the appropriate callbacks and then creates the new resource.
