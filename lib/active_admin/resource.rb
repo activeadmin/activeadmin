@@ -81,7 +81,6 @@ module ActiveAdmin
     include ActionItems
     include Authorization
     include Controllers
-    include Menu
     include Naming
     include PagePresenters
     include Pagination
