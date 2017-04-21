@@ -15,6 +15,12 @@ gem 'draper'
 gem 'pundit'
 ```
 
+For Rails >= 4.0, you will need to use ActiveAdmin from github:
+
+```ruby
+gem 'activeadmin', github: 'activeadmin'
+```
+
 More accurately, it's a [Rails Engine](http://guides.rubyonrails.org/engines.html)
 that can be injected into your existing Ruby on Rails application.
 
