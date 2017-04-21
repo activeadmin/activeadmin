@@ -12,25 +12,25 @@ gem "rails", "~> 5.1.x"
 gem "jquery-ui-rails", "~> 5.0"
 gem "devise", "> 4.x"
 gem "draper", "> 3.x"
-gem "activerecord-jdbcsqlite3-adapter", :git => "https://github.com/jruby/activerecord-jdbc-adapter", :branch => "rails-5", :platforms => :jruby
+gem "activerecord-jdbcsqlite3-adapter", git: "https://github.com/jruby/activerecord-jdbc-adapter", branch: "rails-5", platforms: :jruby
 
 group :development do
   gem "better_errors"
-  gem "binding_of_caller", :platforms => :mri
+  gem "binding_of_caller", platforms: :mri
   gem "rack-mini-profiler"
   gem "yard"
-  gem "redcarpet", :platforms => :mri
-  gem "kramdown", :platforms => :jruby
-  gem "appraisal", :require => false
+  gem "redcarpet", platforms: :mri
+  gem "kramdown", platforms: :jruby
+  gem "appraisal", require: false
 end
 
 group :test do
   gem "capybara"
-  gem "simplecov", :require => false
-  gem "codecov", :require => false
-  gem "cucumber-rails", :require => false
+  gem "simplecov", require: false
+  gem "codecov", require: false
+  gem "cucumber-rails", require: false
   gem "cucumber", "1.3.20"
-  gem "database_cleaner", :git => "https://github.com/DatabaseCleaner/database_cleaner.git"
+  gem "database_cleaner", git: "https://github.com/DatabaseCleaner/database_cleaner.git"
   gem "jasmine"
   gem "jslint_on_rails"
   gem "launchy"
@@ -38,8 +38,8 @@ group :test do
   gem "rspec-rails"
   gem "i18n-spec"
   gem "shoulda-matchers", "<= 2.8.0"
-  gem "sqlite3", :platforms => :mri
+  gem "sqlite3", platforms: :mri
   gem "poltergeist"
 end
 
-gemspec :path => "../"
+gemspec path: "../"

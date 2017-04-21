@@ -10,11 +10,15 @@ AllCops:
   Include:
     - "**/*.rake"
     - "**/Gemfile"
+    - "gemfiles/*.gemfile"
     - "**/Rakefile"
 
   DisplayCopNames: true
 
   StyleGuideCopsOnly: false
+
+Style/HashSyntax:
+  Enabled: true
 
 Style/TrailingWhitespace:
   Enabled: true
