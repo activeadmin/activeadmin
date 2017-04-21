@@ -85,18 +85,6 @@ RSpec.describe "Comments" do
       end
     end
 
-    describe ".resource_id_cast" do
-      let(:post) { Post.create!(title: "Testing.") }
-      let(:namespace_name) { "admin" }
-
-      it "should cast resource_id as string" do
-        comment = ActiveAdmin::Comment.create! resource: post,
-                                                body: "Another Comment",
-                                                namespace: namespace_name
-        expect(ActiveAdmin::Comment.resource_id_cast(comment).class).to eql String
-      end
-    end
-
     describe ".resource_type" do
       let(:post) { Post.create!(title: "Testing.") }
       let(:post_decorator) { double 'PostDecorator' }
@@ -120,12 +108,6 @@ RSpec.describe "Comments" do
         it "returns object class string" do
           expect(ActiveAdmin::Comment.resource_type resource).to eql 'Post'
         end
-      end
-    end
-
-    describe ".resource_id_type" do
-      it "should be :string" do
-        expect(ActiveAdmin::Comment.resource_id_type).to eql :string
       end
     end
 
