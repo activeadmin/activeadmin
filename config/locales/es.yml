@@ -68,7 +68,6 @@ es:
         one: "Se ha destruido 1 %{model} con éxito"
         other: "Se han destruido %{count} %{plural_model} con éxito"
       selection_toggle_explanation: "(Cambiar selección)"
-      link: "Añadir"
       action_label: "%{title} seleccionados"
       labels:
         destroy: "Borrar"
@@ -78,7 +77,6 @@ es:
       author_type: "Tipo de autor"
       body: "Cuerpo"
       author: "Autor"
-      title: "Comentario"
       add: "Comentar"
       delete: "Borrar Comentario"
       delete_confirmation: "¿Está seguro que desea borrar este comentario?"

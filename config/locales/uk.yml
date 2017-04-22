@@ -72,7 +72,6 @@ uk:
         many: "Успішно видалено: %{count} %{plural_model}"
         other: "Успішно видалено: %{count} %{plural_model}"
       selection_toggle_explanation: "(Скасувати все / Зняти виділення)"
-      link: "Створити"
       action_label: "%{title} вибране"
       labels:
         destroy: "Видалити"
@@ -81,7 +80,6 @@ uk:
       author_type: "Тип автора"
       body: "Текст"
       author: "Автор"
-      title: "Коментар"
       add: "Додати Коментар"
       resource: "Ресурс"
       no_comments_yet: "Поки-що немає коментарів."

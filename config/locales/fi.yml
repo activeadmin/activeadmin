@@ -62,7 +62,6 @@ fi:
         one: "1 %{model} poistettu"
         other: "%{count} %{plural_model}:a poistettu"
       selection_toggle_explanation: "(Vaihda valintaa)"
-      link: "Luo"
       action_label: "%{title} Valittu"
       labels:
         destroy: "Poista"
@@ -71,7 +70,6 @@ fi:
       author_type: "Luoja-tyyppi"
       body: "Runko"
       author: "Luoja"
-      title: "Kommentti"
       add: "Lisää kommentti"
       resource: "Resurssi"
       no_comments_yet: "Ei kommentteja."

@@ -68,7 +68,6 @@
         one: "成功刪除 1 %{model}"
         other: "成功刪除 %{count} %{plural_model}"
       selection_toggle_explanation: "（切換選取）"
-      link: "建立一個"
       action_label: "%{title} 已選取"
       labels:
         destroy: "刪除"
@@ -78,7 +77,6 @@
       author_type: "作者身份"
       body: "內文"
       author: "作者"
-      title: "評論"
       add: "新增評論"
       delete: "刪除評論"
       delete_confirmation: "你確定要刪除這些評論嗎？"

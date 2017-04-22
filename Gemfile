@@ -14,6 +14,9 @@ gem 'pry'                                   # Easily debug from your console wit
 # Code style
 gem 'rubocop', '0.48.1'
 
+# Translations
+gem 'i18n-tasks'
+
 group :development do
   # Debugging
   gem 'better_errors'                       # Web UI to debug exceptions. Go to /__better_errors to access the latest one

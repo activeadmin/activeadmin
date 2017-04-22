@@ -68,7 +68,6 @@ ar:
         one: "حُذف بنجاح 1 %{model}"
         other: "حُذف بنجاح %{count} %{plural_model}"
       selection_toggle_explanation: "(تتبيث الخيار)"
-      link: "إنشاء"
       action_label: "اُختير %{title}"
       labels:
         destroy: "حذف"
@@ -77,7 +76,6 @@ ar:
       author_type: "نوع الؤلّف"
       body: "هيكل"
       author: "مؤلّف"
-      title: "تعليق"
       add: "إضافة تعليق"
       resource: "مصدر"
       no_comments_yet: "لا يوجد تعليقات بعد."

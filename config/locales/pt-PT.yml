@@ -62,14 +62,12 @@
         one: "Excluiu com sucesso 1 %{model}"
         other: "Excluiu com sucesso %{count} %{plural_model}"
       selection_toggle_explanation: "(Alternar Seleção)"
-      link: "Novo"
       action_label: "%{title} Selecionado"
       labels:
         destroy: "Excluir"
     comments:
       body: "Conteúdo"
       author: "Autor"
-      title: "Comentário"
       add: "Adicionar Comentário"
       resource: "Objeto"
       no_comments_yet: "Nenhum comentário."

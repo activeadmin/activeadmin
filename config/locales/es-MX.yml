@@ -44,6 +44,9 @@ es-MX:
       one: "Mostrando <b>1</b> %{model}"
       one_page: "Mostrando <b>un total de %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
+      entry:
+        one:
+        other:
     blank_slate:
       content: "No hay %{resource_name} aún."
       link: "Añadir"
@@ -58,14 +61,12 @@ es-MX:
         one: "Se ha destruido 1 %{model} con éxito"
         other: "Se han destruido %{count} %{plural_model} con éxito"
       selection_toggle_explanation: "(Cambiar selección)"
-      link: "Añadir"
       action_label: "%{title} seleccionados"
       labels:
         destroy: "Borrar"
     comments:
       body: "Cuerpo"
       author: "Autor"
-      title: "Comentario"
       add: "Comentar"
       resource: "Recurso"
       no_comments_yet: "Aún sin comentarios."

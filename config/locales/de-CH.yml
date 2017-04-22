@@ -62,14 +62,12 @@
         one: "Erfolgreich 1 %{model} gelöscht"
         other: "Erfolgreich %{count} %{plural_model} gelöscht"
       selection_toggle_explanation: "(Auswahl umschalten)"
-      link: "erstellen"
       action_label: "%{title} ausgewählte"
       labels:
         destroy: "Lösche"
     comments:
       body: "Inhalt"
       author: "Autor"
-      title: "Kommentar"
       resource: "Resource"
       add: "Kommentar hinzufügen"
       delete: "Löschen"

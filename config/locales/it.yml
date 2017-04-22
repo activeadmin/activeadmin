@@ -68,7 +68,6 @@ it:
         one: "Eliminato con successo 1 %{model}"
         other: "Eliminati con successo %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"
-      link: "Crea uno"
       action_label: "%{title} Selezionati"
       labels:
         destroy: "Elimina"
@@ -78,7 +77,6 @@ it:
       author_type: "Tipo di Autore"
       body: "Corpo"
       author: "Autore"
-      title: "Commento"
       add: "Aggiungi Commento"
       delete: "Cancella Commento"
       delete_confirmation: "Sei sicuro di voler cancellare questo commento?"

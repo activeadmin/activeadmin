@@ -1,0 +1,26 @@
+---
+
+# The "main" locale
+base_locale: en
+
+# Read and write translations
+data:
+  yaml:
+    write:
+      # Do not wrap lines at 80 characters
+      line_width: -1
+
+# Find translate calls
+search:
+  # Paths or `File.find` patterns to search in
+  paths:
+   - app
+   - lib
+
+  # Files or `File.fnmatch` patterns to exclude from search
+  exclude:
+    - app/assets/images
+    - lib/bug_report_templates/tmp
+
+  # Guess usages such as t("categories.#{category}.title")
+  strict: false

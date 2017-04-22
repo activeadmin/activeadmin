@@ -69,7 +69,6 @@ ja:
         one: "1件の %{model} を削除しました"
         other: "%{count}件の %{plural_model} を削除しました"
       selection_toggle_explanation: "(選択)"
-      link: "作成する"
       action_label: "選択した行を%{title}"
       labels:
         destroy: "削除する"
@@ -79,7 +78,6 @@ ja:
       author_type: "作成者種別"
       body: "本文"
       author: "作成者"
-      title: "コメント"
       add: "コメントを追加"
       delete: "コメントを削除"
       delete_confirmation: "本当にコメントを削除しますか？"

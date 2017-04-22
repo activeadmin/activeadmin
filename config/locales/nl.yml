@@ -66,7 +66,6 @@ nl:
         one: "1 %{model} verwijderd."
         other: "%{count} %{plural_model} verwijderd."
       selection_toggle_explanation: "(Toggle selectie)"
-      link: "Maak aan"
       action_label: "%{title} geselecteerde"
       labels:
         destroy: "Verwijder"
@@ -76,7 +75,6 @@ nl:
       author_type: "Auteur Type"
       body: "Tekst"
       author: "Auteur"
-      title: "Reactie"
       add: "Voeg commentaar toe"
       delete: 'Verwijder commentaar'
       delete_confirmation: "Weet u zeker dat u dit commentaar wilt verwijderen?"
