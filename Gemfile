@@ -12,7 +12,7 @@ gem 'parallel_tests'
 gem 'pry'                                   # Easily debug from your console with `binding.pry`
 
 # Code style
-gem 'rubocop'
+gem 'rubocop', '0.48.1'
 
 group :development do
   # Debugging
@@ -27,7 +27,7 @@ group :development do
   gem 'yard'                                # Documentation generator
   gem 'redcarpet', platforms: :mri          # Markdown implementation (for yard)
   gem 'kramdown', platforms: :jruby         # Markdown implementation (for yard)
-  gem 'appraisal', require: false
+  gem 'appraisal', '~> 2.2', require: false
 end
 
 group :test do

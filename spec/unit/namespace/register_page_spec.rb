@@ -87,7 +87,7 @@ RSpec.describe ActiveAdmin::Namespace, "registering a page" do
     context "when optional" do
       before do
         namespace.register_page "Reports" do
-          belongs_to :author, :optional => true
+          belongs_to :author, optional: true
         end
       end
 
