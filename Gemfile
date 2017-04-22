@@ -12,7 +12,7 @@ gem 'parallel_tests'
 gem 'pry'                                   # Easily debug from your console with `binding.pry`
 
 # Code style
-gem 'rubocop'
+gem 'rubocop', '0.48.1'
 
 group :development do
   # Debugging
