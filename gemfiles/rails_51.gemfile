@@ -21,7 +21,7 @@ group :development do
   gem "yard"
   gem "redcarpet", platforms: :mri
   gem "kramdown", platforms: :jruby
-  gem "appraisal", require: false
+  gem "appraisal", "~> 2.2", require: false
 end
 
 group :test do
