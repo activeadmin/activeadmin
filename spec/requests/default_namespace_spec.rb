@@ -4,12 +4,18 @@ RSpec.describe ActiveAdmin::Application, type: :request do
 
   include Rails.application.routes.url_helpers
 
+  let(:resource) { ActiveAdmin.register Category }
+
   [false, nil].each do |value|
 
     describe "with a #{value} default namespace" do
 
       around do |example|
         with_custom_default_namespace(value) { example.call }
+      end
+
+      it "should generate resource paths" do
+        expect(resource.route_collection_path).to eq "/categories"
       end
 
       it "should generate a log out path" do
@@ -28,6 +34,10 @@ RSpec.describe ActiveAdmin::Application, type: :request do
 
     around do |example|
       with_custom_default_namespace(:test) { example.call }
+    end
+
+    it "should generate resource paths" do
+      expect(resource.route_collection_path).to eq "/test/categories"
     end
 
     it "should generate a log out path" do
