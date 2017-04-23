@@ -42,12 +42,8 @@ RSpec.describe "#pretty_format" do
       end
 
       context "with non-English locale" do
-        before do
-          @previous_locale = I18n.locale.to_s
-          I18n.locale = "es"
-        end
-        after do
-          I18n.locale = @previous_locale
+        around do |example|
+          I18n.with_locale(:es) { example.call }
         end
         it "should return a localized Date or Time with long format for non-english locale" do
           t = Time.utc(1985, "feb", 28, 20, 15, 1)
