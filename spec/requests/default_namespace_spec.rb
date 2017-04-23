@@ -9,10 +9,7 @@ RSpec.describe ActiveAdmin::Application, type: :request do
     describe "with a #{value} default namespace" do
 
       around do |example|
-        application = ActiveAdmin::Application.new
-        application.default_namespace = value
-
-        with_temp_application(application) { example.call }
+        with_custom_default_namespace(value) { example.call }
       end
 
       it "should generate a log out path" do
@@ -30,10 +27,7 @@ RSpec.describe ActiveAdmin::Application, type: :request do
   describe "with a test default namespace" do
 
     around do |example|
-      application = ActiveAdmin::Application.new
-      application.default_namespace = :test
-
-      with_temp_application(application) { example.call }
+      with_custom_default_namespace(:test) { example.call }
     end
 
     it "should generate a log out path" do
@@ -46,4 +40,12 @@ RSpec.describe ActiveAdmin::Application, type: :request do
 
   end
 
+  private
+
+  def with_custom_default_namespace(namespace)
+    application = ActiveAdmin::Application.new
+    application.default_namespace = namespace
+
+    with_temp_application(application) { yield }
+  end
 end
