@@ -17,7 +17,7 @@ RSpec.describe "#pretty_format" do
   context "given a Date or a Time" do
     it "should return a localized Date or Time with long format" do
       t = Time.now
-      expect(self).to receive(:localize).with(t, {format: :long}) { "Just Now!" }
+      expect(I18n).to receive(:localize).with(t, {format: :long}) { "Just Now!" }
       expect(pretty_format(t)).to eq "Just Now!"
     end
 

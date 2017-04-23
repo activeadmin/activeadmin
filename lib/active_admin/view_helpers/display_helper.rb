@@ -68,7 +68,7 @@ module ActiveAdmin
         when String, Numeric, Symbol, Arbre::Element
           object.to_s
         when Date, Time
-          localize object, format: active_admin_application.localize_format
+          I18n.localize object, format: active_admin_application.localize_format
         else
           if defined?(::ActiveRecord) && object.is_a?(ActiveRecord::Base) ||
              defined?(::Mongoid)      && object.class.include?(Mongoid::Document)
