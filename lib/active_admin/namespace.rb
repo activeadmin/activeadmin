@@ -27,14 +27,18 @@ module ActiveAdmin
   class Namespace
     RegisterEvent = 'active_admin.namespace.register'.freeze
 
-    attr_reader :application, :resources, :name, :menus
+    attr_reader :application, :resources, :menus
 
     def initialize(application, name)
       @application = application
-      @name = name.to_s.underscore.to_sym
+      @name = name.to_s.underscore
       @resources = ResourceCollection.new
       register_module unless root?
       build_menu_collection
+    end
+
+    def name
+      @name.to_sym
     end
 
     # Register a resource into this namespace. The preffered method to access this is to
@@ -78,7 +82,11 @@ module ActiveAdmin
     #   Namespace.new(:root).module_name # => nil
     #
     def module_name
-      root? ? nil : name.to_s.camelize
+      root? ? nil : @name.camelize
+    end
+
+    def route_prefix
+      root? ? nil : @name
     end
 
     # Unload all the registered resources for this namespace

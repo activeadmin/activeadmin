@@ -25,7 +25,7 @@ module ActiveAdmin
 
       # Returns the routes prefix for this config
       def route_prefix
-        namespace.module_name.try(:underscore)
+        namespace.route_prefix
       end
 
       def route_builder
