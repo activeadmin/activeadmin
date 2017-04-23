@@ -59,7 +59,7 @@ module ActiveAdminIntegrationSpecHelper
   end
 
   def with_translation(translation)
-    I18n.backend.store_translations :en, translation
+    I18n.backend.store_translations I18n.locale, translation
     yield
   ensure
     I18n.backend.reload!
