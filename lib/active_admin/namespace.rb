@@ -78,8 +78,7 @@ module ActiveAdmin
     #   Namespace.new(:root).module_name # => nil
     #
     def module_name
-      return nil if root?
-      @module_name ||= name.to_s.camelize
+      root? ? nil : name.to_s.camelize
     end
 
     # Unload all the registered resources for this namespace
