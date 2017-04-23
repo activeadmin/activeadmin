@@ -15,39 +15,49 @@ RSpec.describe "#pretty_format" do
   end
 
   context "given a Date or a Time" do
-    it "should return a localized Date or Time with long format" do
-      t = Time.now
-      expect(I18n).to receive(:localize).with(t, {format: :long}) { "Just Now!" }
-      expect(pretty_format(t)).to eq "Just Now!"
+    let(:t) { Time.utc(1985, "feb", 28, 20, 15, 1) }
+
+    it "formats it with the default long format" do
+      expect(pretty_format(t)).to eq "February 28, 1985 20:15"
     end
 
-    context "actually do the formatting" do
-      it "should actually do the formatting" do
-        t = Time.utc(1985, "feb", 28, 20, 15, 1)
-        expect(pretty_format(t)).to eq "February 28, 1985 20:15"
+    it "formats it with a customized long format" do
+      with_translation time: { formats: { long: "%B %d, %Y, %l:%M%P" } } do
+        expect(pretty_format(t)).to eq "February 28, 1985,  8:15pm"
+      end
+    end
+
+    context "with a custom localize format" do
+      around do |example|
+        previous_localize_format = ActiveAdmin.application.localize_format
+        ActiveAdmin.application.localize_format = :short
+        example.call
+        ActiveAdmin.application.localize_format = previous_localize_format
       end
 
-      context "apply custom localize format" do
-        around do |example|
-          previous_localize_format = ActiveAdmin.application.localize_format
-          ActiveAdmin.application.localize_format = :short
-          example.call
-          ActiveAdmin.application.localize_format = previous_localize_format
-        end
-        it "should actually do the formatting" do
-          t = Time.utc(1985, "feb", 28, 20, 15, 1)
-
-          expect(pretty_format(t)).to eq "28 Feb 20:15"
-        end
+      it "formats it with the default custom format" do
+        expect(pretty_format(t)).to eq "28 Feb 20:15"
       end
 
-      context "with non-English locale" do
-        around do |example|
-          I18n.with_locale(:es) { example.call }
+      it "formats it with i18n custom format" do
+        with_translation time: { formats: { short: "%-m %d %Y" } } do
+          expect(pretty_format(t)).to eq "2 28 1985"
         end
-        it "should return a localized Date or Time with long format for non-english locale" do
-          t = Time.utc(1985, "feb", 28, 20, 15, 1)
-          expect(pretty_format(t)).to eq "28 de febrero de 1985 20:15"
+      end
+    end
+
+    context "with non-English locale" do
+      around do |example|
+        I18n.with_locale(:es) { example.call }
+      end
+
+      it "formats it with the default long format" do
+        expect(pretty_format(t)).to eq "28 de febrero de 1985 20:15"
+      end
+
+      it "formats it with a customized long format" do
+        with_translation time: { formats: { long: "El %d de %B de %Y a las %H horas y %M minutos" } } do
+          expect(pretty_format(t)).to eq "El 28 de febrero de 1985 a las 20 horas y 15 minutos"
         end
       end
     end
