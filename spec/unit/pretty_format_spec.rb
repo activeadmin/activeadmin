@@ -14,9 +14,7 @@ RSpec.describe "#pretty_format" do
     end
   end
 
-  context "given a Date or a Time" do
-    let(:t) { Time.utc(1985, "feb", 28, 20, 15, 1) }
-
+  shared_examples_for 'a time-ish object' do |t|
     it "formats it with the default long format" do
       expect(pretty_format(t)).to eq "February 28, 1985 20:15"
     end
@@ -62,6 +60,9 @@ RSpec.describe "#pretty_format" do
       end
     end
   end
+
+  it_behaves_like 'a time-ish object', Time.utc(1985, "feb", 28, 20, 15, 1)
+  it_behaves_like 'a time-ish object', DateTime.new(1985, 2, 28, 20, 15, 1)
 
   context "given an ActiveRecord object" do
     it "should delegate to auto_link" do
