@@ -115,3 +115,7 @@ Around '@silent_unpermitted_params_failure' do |scenario, block|
   block.call
   ActionController::Parameters.action_on_unpermitted_parameters = original
 end
+
+Around '@locale_manipulation' do |scenario, block|
+  I18n.with_locale(:en) { block.call }
+end
