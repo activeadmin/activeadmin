@@ -45,7 +45,7 @@ module ActiveAdmin
 
         if value.is_a?(Arbre::Element)
           value
-        elsif boolean_attr?(resource, attr)
+        elsif boolean_attr?(resource, attr, value)
           Arbre::Context.new { status_tag value }
         else
           pretty_format value
@@ -79,9 +79,14 @@ module ActiveAdmin
         end
       end
 
-      def boolean_attr?(resource, attr)
-        if resource.class.respond_to? :columns_hash
-          column = resource.class.columns_hash[attr.to_s] and column.type == :boolean
+      def boolean_attr?(resource, attr, value)
+        case value
+        when TrueClass, FalseClass
+           true
+        else
+          if resource.class.respond_to? :columns_hash
+            column = resource.class.columns_hash[attr.to_s] and column.type == :boolean
+          end
         end
       end
 
