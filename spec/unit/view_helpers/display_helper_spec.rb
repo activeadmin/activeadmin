@@ -176,5 +176,20 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
 
       expect(value.to_s).to eq "<span class=\"status_tag yes\">Yes</span>\n"
     end
+
+    it 'calls status_tag for boolean non-database values' do
+      post = Post.new
+      post.define_singleton_method(:true_method) do
+        true
+      end
+      post.define_singleton_method(:false_method) do
+        false
+      end
+      true_value = format_attribute post, :true_method
+      expect(true_value.to_s).to eq "<span class=\"status_tag yes\">Yes</span>\n"
+      false_value = format_attribute post, :false_method
+      expect(false_value.to_s).to eq "<span class=\"status_tag no\">No</span>\n"
+    end
+
   end
 end
