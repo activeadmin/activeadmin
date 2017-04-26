@@ -25,3 +25,6 @@ Style/TrailingWhitespace:
 
 Style/SpaceAfterComma:
   Enabled: true
+
+Style/SpaceInsideParens:
+  Enabled: true

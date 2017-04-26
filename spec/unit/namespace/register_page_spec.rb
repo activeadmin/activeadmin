@@ -50,7 +50,7 @@ RSpec.describe ActiveAdmin::Namespace, "registering a page" do
       end
 
       it "should generate the parent menu item" do
-       expect( menu['Extra']).to_not eq nil
+       expect(menu['Extra']).to_not eq nil
       end
 
       it "should generate its own child item" do

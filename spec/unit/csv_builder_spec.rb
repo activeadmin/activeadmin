@@ -192,8 +192,8 @@ RSpec.describe ActiveAdmin::CSVBuilder do
 
   context "build csv using the supplied order" do
     before do
-      @post1 = Post.create!(title: "Hello1", published_date: Date.today - 2.day )
-      @post2 = Post.create!(title: "Hello2", published_date: Date.today - 1.day )
+      @post1 = Post.create!(title: "Hello1", published_date: Date.today - 2.day)
+      @post2 = Post.create!(title: "Hello2", published_date: Date.today - 1.day)
     end
     let(:dummy_controller) {
       class DummyController

@@ -23,7 +23,7 @@ RSpec.describe ActiveAdmin::Dependency do
       end
       it '=' do
         expect(k.foo? '= 1.2.3').to eq true
-        expect(k.foo? '= 1'    ).to eq false
+        expect(k.foo? '= 1').to eq false
       end
       it '>' do
         expect(k.foo? '> 1').to eq true
@@ -45,7 +45,7 @@ RSpec.describe ActiveAdmin::Dependency do
       end
       it '~>' do
         expect(k.foo? '~> 1.2.0').to eq true
-        expect(k.foo? '~> 1.1'  ).to eq true
+        expect(k.foo? '~> 1.1').to eq true
         expect(k.foo? '~> 1.2.4').to eq false
       end
     end
@@ -81,13 +81,13 @@ RSpec.describe ActiveAdmin::Dependency do
     # Note: more extensive tests for match? and match! are above.
 
     it 'match?' do
-      expect(k['a-b'].match?        ).to eq true
+      expect(k['a-b'].match?).to eq true
       expect(k['a-b'].match? '1.2.3').to eq true
-      expect(k['b-c'].match?        ).to eq false
+      expect(k['b-c'].match?).to eq false
     end
 
     it 'match!' do
-      expect(k['a-b'].match!        ).to eq nil
+      expect(k['a-b'].match!).to eq nil
       expect(k['a-b'].match! '1.2.3').to eq nil
 
       expect{ k['a-b'].match! '2.5' }.to raise_error ActiveAdmin::DependencyError,
@@ -103,8 +103,8 @@ RSpec.describe ActiveAdmin::Dependency do
 
       it '==' do
         expect(k['a-b'] == '1.2.3').to eq true
-        expect(k['a-b'] == '1.2'  ).to eq false
-        expect(k['a-b'] == 1      ).to eq false
+        expect(k['a-b'] == '1.2').to eq false
+        expect(k['a-b'] == 1).to eq false
       end
       it '>' do
         expect(k['a-b'] > 1).to eq true
