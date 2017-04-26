@@ -209,7 +209,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     end
 
     before do
-      expect(Post).to receive(:new).with(a_hash_including(:body, :taggings_attributes )).and_call_original
+      expect(Post).to receive(:new).with(a_hash_including(:body, :taggings_attributes)).and_call_original
     end
 
     subject do
