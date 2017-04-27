@@ -20,6 +20,17 @@ AllCops:
 Style/HashSyntax:
   Enabled: true
 
+Style/PredicateName:
+  Enabled: true
+
+  NamePrefixBlacklist:
+    - is_
+    - have_
+
+  NameWhitelist:
+    - has_many
+    - has_many_actions
+
 Style/TrailingWhitespace:
   Enabled: true
 
