@@ -40,7 +40,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
       end
       it "should return relation without empty filters" do
         expect(Post).to receive(:ransack).with(params[:q]).once.and_wrap_original do |original, *args|
-          chain  = original.call(*args)
+          chain = original.call(*args)
           expect(chain.conditions.size).to eq(1)
           chain
         end
