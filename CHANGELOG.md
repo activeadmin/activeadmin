@@ -1,4 +1,13 @@
 # Changelog
+
+## Master (unreleased)
+
+### Enhancements
+
+##### Minor
+
+* Allow custom panel title given with `attributes_table` [#4940][] by [@ajw725][]
+
 ## 1.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.3...master)
 
 ### Breaking Changes
