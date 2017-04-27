@@ -137,11 +137,13 @@ module ActiveAdmin
           else
             offset = (collection.current_page - 1) * collection.limit_value
             total  = collection.total_count
+            to = offset + collection.limit_value
+            to = total if to > total
             I18n.t "active_admin.pagination.multiple",
                    model: entries_name,
                    total: total,
                    from: offset + 1,
-                   to: offset + collection.per_page
+                   to: to
           end
         else
           # Do not display total count, in order to prevent a `SELECT count(*)`.
@@ -150,7 +152,7 @@ module ActiveAdmin
           I18n.t "active_admin.pagination.multiple_without_total",
                  model: entries_name,
                  from: offset + 1,
-                 to: offset + collection.per_page
+                 to: offset + collection.limit_value
         end
       end
 
