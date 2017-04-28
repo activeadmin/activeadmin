@@ -145,16 +145,16 @@ RSpec.describe ActiveAdmin::Scope do
         allow(loc).to receive(:t).with(:published, scope: 'scopes').and_return("All published")
         loc
       end
-      let(:scope)        { ActiveAdmin::Scope.new :published, :published, localizer: localizer }
+      let(:scope) { ActiveAdmin::Scope.new :published, :published, localizer: localizer }
 
       describe '#name' do
         subject { super().name }
-        it         { is_expected.to eq("All published")}
+        it { is_expected.to eq("All published")}
       end
 
       describe '#id' do
         subject { super().id }
-        it           { is_expected.to eq("published")}
+        it { is_expected.to eq("published")}
       end
 
       describe '#scope_method' do

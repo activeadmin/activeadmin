@@ -71,7 +71,7 @@ module ActiveAdmin
     def resource_routes(config)
       Proc.new do
         # Builds one route for each HTTP verb passed in
-        build_route  = proc{ |verbs, *args|
+        build_route = proc{ |verbs, *args|
           [*verbs].each{ |verb| send verb, *args }
         }
         # Deals with +ControllerAction+ instances

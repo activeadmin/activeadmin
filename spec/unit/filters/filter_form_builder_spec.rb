@@ -399,7 +399,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       context "with #{verb.inspect} proc" do
         it "#{should} be displayed if true" do
           body = Capybara.string(filter :body, verb => proc{ true })
-          expect(body).send if_true,  have_selector("input[name='q[body_contains]']")
+          expect(body).send if_true, have_selector("input[name='q[body_contains]']")
         end
         it "#{should} be displayed if false" do
           body = Capybara.string(filter :body, verb => proc{ false })

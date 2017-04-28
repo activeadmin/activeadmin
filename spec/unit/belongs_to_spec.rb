@@ -57,7 +57,7 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
 
   describe "controller" do
     let(:controller) { post_config.controller.new }
-    let(:http_params) { {user_id: user.id}  }
+    let(:http_params) { {user_id: user.id} }
     let(:user) { User.create! }
 
     before do
