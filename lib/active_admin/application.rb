@@ -114,6 +114,9 @@ module ActiveAdmin
     # class to handle ordering
     inheritable_setting :order_clause, ActiveAdmin::OrderClause
 
+    # default show_count for scopes
+    inheritable_setting :scopes_show_count, true
+
     # Request parameters that are permitted by default
     inheritable_setting :permitted_params, [
       :utf8, :_method, :authenticity_token, :commit, :id
