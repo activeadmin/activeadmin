@@ -4,12 +4,11 @@ module ActiveAdmin
   module Filters
 
     class Active
-      attr_accessor :filters, :scope
+      attr_accessor :filters
 
       def initialize(resource_class, params)
         @resource_class = resource_class
         @params = params.to_unsafe_h
-        @scope = humanize_scope
         @filters = build_filters
       end
 
@@ -20,10 +19,6 @@ module ActiveAdmin
         filters.map{ |param| Humanized.new(param) }
       end
 
-      def humanize_scope
-        scope = @params['scope']
-        scope ? scope.humanize : "All"
-      end
     end
 
   end

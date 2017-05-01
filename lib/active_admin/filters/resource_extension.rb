@@ -156,8 +156,11 @@ module ActiveAdmin
           active = ActiveAdmin::Filters::Active.new(resource_class, params)
 
           span do
-            h4 I18n.t("active_admin.search_status.current_scope"), style: 'display: inline'
-            b active.scope, style: "display: inline"
+
+            if active_admin_config.scopes.any?
+              h4 I18n.t("active_admin.search_status.current_scope"), style: 'display: inline'
+              b scope_name(current_scope), class: 'current_scope_name', style: "display: inline"
+            end
 
             div style: "margin-top: 10px" do
               h4 I18n.t("active_admin.search_status.current_filters"), style: 'margin-bottom: 10px'
