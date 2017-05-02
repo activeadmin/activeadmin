@@ -37,6 +37,7 @@ gemfile:
 env:
   global:
     - JRUBY_OPTS="-J-Xmx1024m --dev --debug"
+    - COVERAGE=true
 
 matrix:
   fast_finish: true

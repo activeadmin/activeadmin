@@ -62,14 +62,12 @@ hu:
         one: "1 %{model} sikeresen törölve"
         other: "%{count} %{plural_model} sikeresen törölve"
       selection_toggle_explanation: "(Kijelölés megfordítása)"
-      link: "Létrehozás"
       action_label: "%{title} kiválasztva"
       labels:
         destroy: "Törlés"
     comments:
       body: "Törzs"
       author: "Szerző"
-      title: "Hozzászólás"
       add: "Új hozzászólás"
       resource: "Erőforrás"
       no_comments_yet: "Nincsenek hozzászólások."

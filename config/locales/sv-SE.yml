@@ -68,7 +68,6 @@
         one: "Lyckades radera 1 %{model}"
         other: "Lyckades radera %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"
-      link: "Skapa en"
       action_label: "%{title} Markerad"
       labels:
         destroy: "Radera"
@@ -78,7 +77,6 @@
       author_type: "Författar typ"
       body: "Innehåll"
       author: "Författare"
-      title: "Kommentar"
       add: "Lägg till kommentar"
       resource: "Resurs"
       no_comments_yet: "Inga kommentarer än."

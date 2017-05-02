@@ -62,14 +62,12 @@ vi:
         one: "Đã xóa thành công 1 %{model}"
         other: "Đã xóa thành công %{count} %{plural_model}"
       selection_toggle_explanation: "(Thay đổi lựa chọn)"
-      link: "Tạo mới"
       action_label: "%{title} được chọn"
       labels:
         destroy: "Xóa"
     comments:
       body: "Nội dung"
       author: "Tác giả"
-      title: "Bình luận"
       add: "Thêm bình luận"
       resource: "Tài nguyên"
       no_comments_yet: "Chưa có bình luận."

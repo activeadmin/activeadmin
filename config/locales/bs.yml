@@ -64,7 +64,6 @@ bs:
         many: "Uspješno je obrisano %{count} %{plural_model}"
         other: "Uspješno je obrisano %{count} %{plural_model}"
       selection_toggle_explanation: "(Izmijeni odabir)"
-      link: "Izradi jedan"
       action_label: "%{title} označene"
       labels:
         destroy: "Obriši"
@@ -73,7 +72,6 @@ bs:
       author_type: "Tip autora"
       body: "Sadržaj"
       author: "Autor"
-      title: "Komentar"
       add: "Dodaj komentar"
       resource: "Objekt"
       no_comments_yet: "Još nema komentara."

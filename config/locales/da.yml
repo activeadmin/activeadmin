@@ -70,7 +70,6 @@ da:
         one: "Vellykket ødelagt 1 %{model}"
         other: "Vellykket ødelagt %{count} %{plural_model}"
       selection_toggle_explanation: "(Skift valg)"
-      link: "Opret en"
       action_label: "%{title} Valgte"
       labels:
         destroy: "Slet"
@@ -80,7 +79,6 @@ da:
       author_type: "Forfatter type"
       body: "Krop"
       author: "Forfatter"
-      title: "Kommentar"
       add: "Tilføj Kommentar"
       delete: "Slet kommentar"
       delete_confirmation: "Er du sikker på du vil slette disse kommentarer?"

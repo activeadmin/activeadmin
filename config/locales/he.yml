@@ -64,14 +64,12 @@ he:
         many: "%{count} %{plural_model} נמחק בהצלחה"
         other: "%{count} %{plural_model} נמחק בהצלחה"
       selection_toggle_explanation: "(שינוי בחירה)"
-      link: "צור"
       action_label: "%{title} נבחר"
       labels:
         destroy: "מחק"
     comments:
       body: "תוכן"
       author: 'נוצר ע"י'
-      title: "תגובה"
       add: "הוסף תגובה"
       resource: "Resource"
       no_comments_yet: "אין עדיין תגובות."

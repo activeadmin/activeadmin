@@ -63,14 +63,12 @@ ro:
         few: "%{count} %{plural_model} sterse"
         other: "%{count} %{plural_model} sterse"
       selection_toggle_explanation: "(Modifica Selectia)"
-      link: "Creati unul"
       action_label: "%{title} Selectat"
       labels:
         destroy: "Sterge"
     comments:
       body: "Text"
       author: "Autor"
-      title: "Comentariu"
       add: "Adaugati comentariu"
       resource: "Resursa"
       no_comments_yet: "Nu exista comentarii."

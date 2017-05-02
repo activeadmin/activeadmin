@@ -72,7 +72,6 @@ ru:
         many: "Успешно удалено: %{count} %{plural_model}"
         other: "Успешно удалено: %{count} %{plural_model}"
       selection_toggle_explanation: "(Отметить всё / Снять выделение)"
-      link: "Создать"
       action_label: "%{title} выбранное"
       labels:
         destroy: "Удалить"
@@ -82,7 +81,6 @@ ru:
       author_type: "Тип автора"
       body: "Текст"
       author: "Автор"
-      title: "Комментарий"
       add: "Добавить Комментарий"
       delete: "Удалить Комментарий"
       delete_confirmation: "Вы уверены, что хотите удалить этот комментарий?"

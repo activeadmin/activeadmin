@@ -45,6 +45,9 @@ pl:
       one_page: "Wyświetlanie <b>wszystkich %{n}</b> %{model}"
       multiple: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
       multiple_without_total: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one:
+        other:
     any: "Jakikolwiek"
     blank_slate:
       content: "Nie ma jeszcze zasobu %{resource_name}."
@@ -61,14 +64,12 @@ pl:
         many: "Poprawnie usunięto %{count} %{plural_model}"
         few: "Poprawnie usunięto %{count} %{plural_model}"
       selection_toggle_explanation: "(Przełącz zaznaczenie)"
-      link: "Utwórz jeden"
       action_label: "%{title} zaznaczone"
       labels:
         destroy: "Usuń"
     comments:
       body: "Treść"
       author: "Autor"
-      title: "Komentarz"
       add: "Dodaj komentarz"
       resource: "Zasób"
       no_comments_yet: "Nie ma jeszcze komentarzy."

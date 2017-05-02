@@ -62,7 +62,6 @@ el:
         one: "Διαγράφηκε επιτυχώς 1 %{model}"
         other: "Διαγράφηκαν επιτυχώς %{count} %{plural_model}"
       selection_toggle_explanation: "(Αντιστροφή επιλογών)"
-      link: "Δημιουργήστε ένα"
       action_label: "%{title} επιλεγμένων"
       labels:
         destroy: "Διαγραφή"
@@ -71,7 +70,6 @@ el:
       author_type: "Τύπος Συγγραφέα"
       body: "Κείμενο"
       author: "Συγγραφέας"
-      title: "Σχόλιο"
       add: "Προσθήκη Σχολίου"
       resource: "Εγγραφή"
       no_comments_yet: "Δεν υπάρχει κανένα σχόλιο."

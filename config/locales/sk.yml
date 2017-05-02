@@ -65,7 +65,6 @@ sk:
         few: "Úspešne zmazané %{count} %{plural_model}"
         other: "Úspešne zmazaných %{count} %{plural_model}"
       selection_toggle_explanation: "(Zmeniť výber)"
-      link: "Vytvoriť"
       action_label: "%{title}"
       labels:
         destroy: "Vymazať"
@@ -74,7 +73,6 @@ sk:
       author_type: "Typ autora"
       body: "Telo"
       author: "Autor"
-      title: "Komentár"
       add: "Pridať komentár"
       resource: "Zdroj"
       no_comments_yet: "Žiadny komentár"

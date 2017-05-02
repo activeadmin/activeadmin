@@ -68,7 +68,6 @@ tr:
         one: "1 %{model} başarıyla silindi"
         other: "Toplam %{count} %{plural_model} başarıyla silindi"
       selection_toggle_explanation: "(Seçimi Değiştir)"
-      link: "Yeni oluştur"
       action_label: "Seçilenleri %{title}"
       labels:
         destroy: "Sil"
@@ -78,7 +77,6 @@ tr:
       author_type: "Yazar Tipi"
       body: "Ayrıntı"
       author: "Yazar"
-      title: "Yorum"
       add: "Yorum Ekle"
       delete: "Yorumu Sil"
       delete_confirmation: "Bu yorumları silmek istediğinizden emin misiniz?"

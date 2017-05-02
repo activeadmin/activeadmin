@@ -68,7 +68,6 @@ id:
         one: "Berhasil menghapus %{model}"
         other: "Berhasil menghapus %{count} %{plural_model}"
       selection_toggle_explanation: "(Tampilkan Pilihan)"
-      link: "Tambah data"
       action_label: "%{title} terpilih"
       labels:
         destroy: "Hapus"
@@ -78,7 +77,6 @@ id:
       author_type: "Tipe Penulis"
       body: "Isi"
       author: "Penulis"
-      title: "Komentar"
       add: "Tambah Komentar"
       delete: "Hapus Komentar"
       delete_confirmation: "Apakah anda yakin akan menghapus komentar tersebut?"

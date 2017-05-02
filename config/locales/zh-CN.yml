@@ -68,14 +68,12 @@
         one: "成功删除 1 %{model}"
         other: "成功删除 %{count} %{plural_model}"
       selection_toggle_explanation: "(切换选择)"
-      link: "新建一个"
       action_label: "%{title} 被选中"
       labels:
         destroy: "删除"
     comments:
       body: "内容"
       author: "作者"
-      title: "评论"
       add: "添加评论"
       resource: "资源"
       no_comments_yet: "暂时没有评论"

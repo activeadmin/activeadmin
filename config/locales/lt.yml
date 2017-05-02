@@ -63,7 +63,6 @@ lt:
         few: 'Sėkmingai pašalinti %{count} %{plural_model}'
         other: 'Sėkmingai pašalinti %{count} %{plural_model}'
       selection_toggle_explanation: '(Žymėti)'
-      link: 'Sukurti'
       action_label: '%{title} Pasirinkta'
       labels:
         destroy: 'Šalinti'
@@ -72,7 +71,6 @@ lt:
       author_type: 'Autoriaus Tipas'
       body: 'Įrašas'
       author: 'Autorius'
-      title: 'Komentaras'
       add: 'Pridėti komentarą'
       resource: 'Išteklių'
       no_comments_yet: 'Dar nėra komentarų.'
