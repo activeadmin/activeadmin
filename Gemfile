@@ -43,6 +43,7 @@ group :test do
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
   gem 'i18n-spec'
+  gem 'i18n-tasks', rails_version[0] == '3' ? '~> 0.8.7' : '~> 0.9.4', platforms: [:ruby_21, :ruby_22]
   gem 'shoulda-matchers', '<= 2.8.0'
   gem 'sqlite3', platforms: :mri
   gem 'poltergeist'
