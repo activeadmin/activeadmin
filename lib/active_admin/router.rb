@@ -19,7 +19,7 @@ module ActiveAdmin
         if namespace.root?
           router.root namespace.root_to_options.merge(to: namespace.root_to)
         else
-          router.namespace namespace.name, namespace.route_options.dup do
+          define_nested_namespace(namespace.name_path, namespace) do
             router.root namespace.root_to_options.merge(to: namespace.root_to, as: :root)
           end
         end
@@ -105,8 +105,18 @@ module ActiveAdmin
     end
 
     def define_namespace(config)
-      router.namespace config.namespace.name, config.namespace.route_options.dup do
+      define_nested_namespace(config.namespace.name_path, config.namespace) do
         define_routes(config)
+      end
+    end
+
+    def define_nested_namespace(names, namespace)
+      router.namespace names.first, namespace.route_options.dup do
+        if names.size > 1
+          define_nested_namespace(names.drop(1), namespace, &Proc.new)
+        else
+          yield
+        end
       end
     end
   end

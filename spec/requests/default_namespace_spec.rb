@@ -4,7 +4,19 @@ RSpec.describe ActiveAdmin::Application, type: :request do
 
   include Rails.application.routes.url_helpers
 
-  let(:resource) { ActiveAdmin.register Category }
+  before do
+    load_defaults!
+    ActiveAdmin.register(Category, namespace: [:foo, :bar])
+    reload_routes!
+  end
+
+  after :all do
+    load_defaults!
+    reload_routes!
+  end
+
+  let(:resource1) { ActiveAdmin.register Category }
+  let(:resource2) { ActiveAdmin.register Category, namespace: [:foo, :bar] }
 
   [false, nil].each do |value|
 
@@ -15,7 +27,8 @@ RSpec.describe ActiveAdmin::Application, type: :request do
       end
 
       it "should generate resource paths" do
-        expect(resource.route_collection_path).to eq "/categories"
+        expect(resource1.route_collection_path).to eq "/categories"
+        expect(resource2.route_collection_path).to eq "/foo/bar/categories"
       end
 
       it "should generate a log out path" do
@@ -37,7 +50,8 @@ RSpec.describe ActiveAdmin::Application, type: :request do
     end
 
     it "should generate resource paths" do
-      expect(resource.route_collection_path).to eq "/test/categories"
+      expect(resource1.route_collection_path).to eq "/test/categories"
+      expect(resource2.route_collection_path).to eq "/test/foo/bar/categories"
     end
 
     it "should generate a log out path" do
@@ -57,7 +71,8 @@ RSpec.describe ActiveAdmin::Application, type: :request do
     end
 
     it "should generate resource paths" do
-      expect(resource.route_collection_path).to eq "/abc_123/categories"
+      expect(resource1.route_collection_path).to eq "/abc_123/categories"
+      expect(resource2.route_collection_path).to eq "/abc_123/foo/bar/categories"
     end
 
     it "should generate a log out path" do

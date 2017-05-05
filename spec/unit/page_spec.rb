@@ -25,6 +25,12 @@ module ActiveAdmin
           expect(config.controller_name).to eq "ChocolateILoveYouController"
         end
       end
+      context "when nest namespaced controller" do
+        let(:namespace){ ActiveAdmin::Namespace.new(application, [:foo, :bar]) }
+        it "should return a nest namespaced controller name" do
+          expect(config.controller_name).to eq "Foo::Bar::ChocolateILoveYouController"
+        end
+      end
     end
 
     describe "#resource_name" do

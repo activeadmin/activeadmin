@@ -4,24 +4,62 @@ RSpec.describe ActiveAdmin::Namespace do
 
   let(:application){ ActiveAdmin::Application.new }
 
-  context "when new" do
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+  describe "when new" do
+    shared_examples :when_new_expectation do
+      it "should have an application instance" do
+        expect(namespace.application).to eq application
+      end
 
-    it "should have an application instance" do
-      expect(namespace.application).to eq application
+      it "should have no resources" do
+        expect(namespace.resources).to be_empty
+      end
+
+      it "should not have any menu item" do
+        expect(namespace.fetch_menu(:default).children).to be_empty
+      end
     end
 
-    it "should have a name" do
-      expect(namespace.name).to eq :admin
+    context "with a single-level namespaces" do
+      let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+      it_behaves_like :when_new_expectation do
+        it "should have a name" do
+          ActiveSupport::Deprecation.silence do
+            expect(namespace.name).to eq :admin
+          end
+        end
+        it "should have a name_path" do
+          expect(namespace.name_path).to eq [:admin]
+        end
+      end
+    end
+    context "with a 1-level nested namespaces" do
+      let(:namespace){ ActiveAdmin::Namespace.new(application, [:admin]) }
+      it "should have a name" do
+        ActiveSupport::Deprecation.silence do
+          expect(namespace.name).to eq :admin
+        end
+      end
+      it_behaves_like :when_new_expectation do
+        it "should have a name_path" do
+          expect(namespace.name_path).to eq [:admin]
+        end
+      end
     end
 
-    it "should have no resources" do
-      expect(namespace.resources).to be_empty
+    context "with a 3-level nested namespaces" do
+      let(:namespace){ ActiveAdmin::Namespace.new(application, [:admin, :foo, :bar]) }
+      it_behaves_like :when_new_expectation do
+        it "should have a name" do
+          ActiveSupport::Deprecation.silence do
+            expect(namespace.name).to eq :admin
+          end
+        end
+        it "should have a name_path" do
+          expect(namespace.name_path).to eq [:admin, :foo, :bar]
+        end
+      end
     end
 
-    it "should not have any menu item" do
-      expect(namespace.fetch_menu(:default).children).to be_empty
-    end
   end # context "when new"
 
   describe "#unload!" do
@@ -34,7 +72,7 @@ RSpec.describe ActiveAdmin::Namespace do
         ActiveAdmin.register Post, namespace: false
 
         # To prevent unload! from unregistering ::PostsController
-        ActiveAdmin.application.namespaces.instance_variable_get(:@namespaces).delete(:root)
+        ActiveAdmin.application.namespaces.instance_variable_get(:@namespaces).delete([:root])
 
         # To force Admin::PostsController to not be there
         Admin.send(:remove_const, 'PostsController')
@@ -102,23 +140,47 @@ RSpec.describe ActiveAdmin::Namespace do
   end
 
   describe "utility navigation" do
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
-    let(:menu) do
-      namespace.build_menu :utility_navigation do |menu|
-        menu.add label: "ActiveAdmin.info", url: "http://www.activeadmin.info", html_options: { target: :blank }
-        namespace.add_logout_button_to_menu menu, 1, class: "matt"
+    shared_examples :utility_navigation_expectation do
+      let(:menu) do
+        namespace.build_menu :utility_navigation do |menu|
+          menu.add label: "ActiveAdmin.info", url: "http://www.activeadmin.info", html_options: {target: :blank}
+          namespace.add_logout_button_to_menu menu, 1, class: "matt"
+        end
+        namespace.fetch_menu(:utility_navigation)
       end
-      namespace.fetch_menu(:utility_navigation)
+
+      it "should have a logout button to the far left" do
+        expect(menu["Logout"]).to_not eq nil
+        expect(menu["Logout"].priority).to eq 1
+      end
+
+      context "with logout_link_path as Symbol" do
+        let(:mock_url) { double }
+        before { application.logout_link_path = :destroy_admin_user_session_path }
+        before { allow(menu["Logout"]).to receive(:url).and_return(mock_url) }
+        it { expect(menu["Logout"].url).to eq(mock_url) }
+      end
+
+      context "with logout_link_path as Proc" do
+        before { application.logout_link_path = Proc.new { "localhost" } }
+        it { expect(menu["Logout"].url).to eq("localhost") }
+      end
+
+      it "should have a static link with a target of :blank" do
+        expect(menu["ActiveAdmin.info"]).to_not eq nil
+        expect(menu["ActiveAdmin.info"].html_options).to include(target: :blank)
+      end
+
     end
 
-    it "should have a logout button to the far left" do
-      expect(menu["Logout"]).to_not eq nil
-      expect(menu["Logout"].priority).to eq 1
+    context "with a single-level namespaces" do
+      let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+      it_behaves_like :utility_navigation_expectation
     end
 
-    it "should have a static link with a target of :blank" do
-      expect(menu["ActiveAdmin.info"]).to_not eq nil
-      expect(menu["ActiveAdmin.info"].html_options).to include(target: :blank)
+    context "with a nested namespaces" do
+      let(:namespace){ ActiveAdmin::Namespace.new(application, [:admin, :foo, :bar]) }
+      it_behaves_like :utility_navigation_expectation
     end
 
   end

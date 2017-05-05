@@ -33,18 +33,20 @@ module ActiveAdmin
 
     RegisterEvent = 'active_admin.namespace.register'.freeze
 
-    attr_reader :application, :resources, :menus
+    attr_reader :application, :resources, :menus, :name_path
 
     def initialize(application, name)
       @application = application
-      @name = name.to_s.underscore
+      @name = Array(name).first.to_s.underscore.to_sym
+      @name_path = application.build_name_path(name)
       @resources = ResourceCollection.new
       register_module unless root?
       build_menu_collection
     end
 
     def name
-      @name.to_sym
+      Deprecation.warn "name replaced by name_path now that namespaces can be nested."
+      @name
     end
 
     def settings
@@ -89,7 +91,7 @@ module ActiveAdmin
     end
 
     def root?
-      name == :root
+      @name == :root
     end
 
     # Returns the name of the module if required. Will be nil if none
@@ -100,11 +102,11 @@ module ActiveAdmin
     #   Namespace.new(:root).module_name # => nil
     #
     def module_name
-      root? ? nil : @name.camelize
+      root? ? nil : name_path.map(&:to_s).map(&:camelize).join('::')
     end
 
     def route_prefix
-      root? ? nil : @name
+      root? ? nil : name_path.map(&:to_s).join('_').underscore
     end
 
     # Unload all the registered resources for this namespace
@@ -147,12 +149,13 @@ module ActiveAdmin
     # @param [Hash] html_options An options hash to pass along to link_to
     #
     def add_logout_button_to_menu(menu, priority = 20, html_options = {})
-      if logout_link_path
+      computed_logout_link_path = logout_link_path.is_a?(Proc) ? logout_link_path.call(name_path) : logout_link_path
+      if computed_logout_link_path
         html_options = html_options.reverse_merge(method: logout_link_method || :get)
         menu.add id: 'logout', priority: priority, html_options: html_options,
-          label: ->{ I18n.t 'active_admin.logout' },
-          url:   ->{ render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
-          if:    :current_active_admin_user?
+                 label:   -> { I18n.t 'active_admin.logout' },
+                 url:   computed_logout_link_path,
+                 if:    :current_active_admin_user?
       end
     end
 
@@ -226,8 +229,10 @@ module ActiveAdmin
 
     # Creates a ruby module to namespace all the classes in if required
     def register_module
-      unless Object.const_defined? module_name
-        Object.const_set module_name, Module.new
+      # dynamically create nested modules
+      module_names = module_name.split("::").inject([]) { |n, c| n << (n.empty? ? [c] : [n.last] + [c]).flatten }
+      module_names.each do |module_name_array|
+        eval "module ::#{module_name_array.join("::")}; end"
       end
     end
 
