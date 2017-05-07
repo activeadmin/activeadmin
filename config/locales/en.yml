@@ -97,6 +97,8 @@ en:
         title: "Subdomain"
       password:
         title: "Password"
+      password_confirmation:
+        title: "Confirm Password"
       sign_up:
         title: "Sign up"
         submit: "Sign up"
