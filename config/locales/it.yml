@@ -115,7 +115,7 @@ it:
         title: "Invia di nuovo le istruzioni per la conferma"
         submit: "Invia di nuovo le istruzioni per la conferma"
       links:
-        sign_in: "Iscriviti"
+        sign_up: "Iscriviti"
         sign_in: "Entra"
         forgot_your_password: "Dimenticato la password?"
         sign_in_with_omniauth_provider: "Collegati a %{provider}"
