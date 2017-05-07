@@ -235,24 +235,6 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
       end # describe rendering rows
     end # with a collection
 
-
-    context "when using a single Hash" do
-      let(:table) do
-        render_arbre_component nil, helpers do
-          attributes_table_for foo: 1, bar: 2 do
-            row :foo
-            row :bar
-          end
-        end
-      end
-      it "should render" do
-        expect(table.find_by_tag("th")[0].content).to eq "Foo"
-        expect(table.find_by_tag("th")[1].content).to eq "Bar"
-        expect(table.find_by_tag("td")[0].content).to eq "1"
-        expect(table.find_by_tag("td")[1].content).to eq "2"
-      end
-    end
-
     context "when using an Array of Hashes" do
       let(:table) do
         render_arbre_component nil, helpers do

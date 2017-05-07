@@ -7,12 +7,12 @@ module ActiveAdmin
       def build(obj, *attrs)
         @collection     = Array.wrap(obj)
         @resource_class = @collection.first.class
-        options = { }
+        options = attrs.extract_options!
         options[:for] = @collection.first if single_record?
         super(options)
         @table = table
         build_colgroups
-        rows(*attrs)
+        rows(*display_rows(*attrs, options))
       end
 
       def rows(*attrs)
@@ -46,6 +46,25 @@ module ActiveAdmin
 
       def default_id_for_prefix
         'attributes_table'
+      end
+
+      def default_rows
+        if @resource_class.respond_to? :attribute_names
+          @resource_class.attribute_names
+        elsif @resource_class.respond_to? :keys
+          @resource_class.keys
+        elsif @resource_class.respond_to? :each
+          @resource_class.first
+        else
+          raise "can't detect default_rows"
+        end
+      end
+
+      def display_rows(*attrs, options)
+        attrs = default_rows if attrs.empty?
+        attrs.map!(&:to_s)
+        attrs += [*options[:with]].map(&:to_s)
+        attrs -= [*options[:expect]].map(&:to_s)
       end
 
       # Build Colgroups
