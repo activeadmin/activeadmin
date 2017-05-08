@@ -123,7 +123,7 @@ module ActiveAdmin
         if @title
           h3 do
             a(href: resource_path(post)) do
-             render_method_on_post_or_call_proc post, @title
+              render_method_on_post_or_call_proc post, @title
             end
           end
         else

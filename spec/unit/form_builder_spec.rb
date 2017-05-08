@@ -943,15 +943,15 @@ RSpec.describe ActiveAdmin::FormBuilder do
     "[:title].each{ |r| f.input r }"               => "post_title",
     "[:title].map { |r| f.input r }"               => "post_title",
   }.each do |source, selector|
-   it "should properly buffer `#{source}`" do
-     body = build_form do |f|
-       f.inputs do
-         eval source
-         eval source
-       end
-     end
-     expect(body).to have_selector("[id=#{selector}]", count: 2)
-   end
+    it "should properly buffer `#{source}`" do
+      body = build_form do |f|
+        f.inputs do
+          eval source
+          eval source
+        end
+      end
+      expect(body).to have_selector("[id=#{selector}]", count: 2)
+    end
   end
 
   describe "datepicker input" do

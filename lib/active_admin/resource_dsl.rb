@@ -192,17 +192,17 @@ module ActiveAdmin
       :around, :skip
     ]
     keywords = if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
-                       [:action]
+                 [:action]
                else
-                       [:action, :filter]
+                 [:action, :filter]
                      end
 
     keywords.each do |name|
-       phases.each do |action|
-        define_method "#{action}_#{name}" do |*args, &block|
-          controller.public_send "#{action}_action", *args, &block
-        end
-      end
+      phases.each do |action|
+       define_method "#{action}_#{name}" do |*args, &block|
+         controller.public_send "#{action}_action", *args, &block
+       end
+     end
     end
 
     # Specify which actions to create in the controller

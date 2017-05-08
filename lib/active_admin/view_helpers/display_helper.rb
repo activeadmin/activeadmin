@@ -82,7 +82,7 @@ module ActiveAdmin
       def boolean_attr?(resource, attr, value)
         case value
         when TrueClass, FalseClass
-           true
+          true
         else
           if resource.class.respond_to? :columns_hash
             column = resource.class.columns_hash[attr.to_s] and column.type == :boolean

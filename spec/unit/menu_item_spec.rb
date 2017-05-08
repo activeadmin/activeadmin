@@ -97,7 +97,7 @@ module ActiveAdmin
 
       context "with no parent" do
         it "should return an empty array" do
-         expect(item.ancestors).to eq []
+          expect(item.ancestors).to eq []
         end
       end
 

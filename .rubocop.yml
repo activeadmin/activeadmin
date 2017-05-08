@@ -38,6 +38,9 @@ Style/HashSyntax:
 Style/IndentationConsistency:
   Enabled: true
 
+Style/IndentationWidth:
+  Enabled: true
+
 Style/PredicateName:
   Enabled: true
 
