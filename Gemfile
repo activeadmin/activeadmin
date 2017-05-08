@@ -49,4 +49,5 @@ group :test do
   gem 'shoulda-matchers', '<= 2.8.0'
   gem 'sqlite3', platforms: :mri
   gem 'poltergeist'
+  gem 'tins', '< 1.3.4', platforms: :ruby_19
 end
