@@ -34,16 +34,6 @@ module ActiveAdmin
         def choice_wrapping(html_options, &block)
           template.capture(&block)
         end
-
-        # Don't render hidden fields
-        def hidden_field_for_all
-          ""
-        end
-
-        # Don't render hidden fields
-        def hidden_fields?
-          false
-        end
       end
     end
   end
