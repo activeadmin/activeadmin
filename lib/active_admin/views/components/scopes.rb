@@ -12,7 +12,6 @@ module ActiveAdmin
       include ActiveAdmin::ScopeChain
       include ::ActiveAdmin::Helpers::Collection
 
-
       def default_class_name
         "scopes table_tools_segmented_control"
       end

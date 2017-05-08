@@ -81,7 +81,6 @@ RSpec.describe ActiveAdmin::Views::Columns do
       expect(cols.children.size).to eq 4
     end
 
-
     (0..2).to_a.each do |index|
       it "should have column #{index + 1} with width 49% and margin 2%" do
         expect(cols.children[index].attr(:style)).to eq "width: 23.5%; margin-right: 2%;"
@@ -92,7 +91,6 @@ RSpec.describe ActiveAdmin::Views::Columns do
       expect(cols.children[3].attr(:style)).to eq "width: 23.5%;"
     end
   end
-
 
   describe "Column Spans" do
     let(:cols) do

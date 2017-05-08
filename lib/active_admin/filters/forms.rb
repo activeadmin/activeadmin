@@ -41,7 +41,6 @@ module ActiveAdmin
       end
     end
 
-
     # This module is included into the view
     module ViewHelper
 

@@ -89,7 +89,6 @@ module ActiveAdmin
         @title
       end
 
-
       # Setter method for the configuration of the body
       #
       def body(method = nil, &block)

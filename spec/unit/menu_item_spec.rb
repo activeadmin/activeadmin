@@ -128,7 +128,6 @@ module ActiveAdmin
       end
     end # accessing ancestory
 
-
     describe "#id" do
       it "should be normalized" do
         expect(MenuItem.new(id: "Foo Bar").id).to eq "foo_bar"

@@ -17,6 +17,9 @@ AllCops:
 
   StyleGuideCopsOnly: false
 
+Style/EmptyLines:
+  Enabled: true
+
 Style/ExtraSpacing:
   Enabled: true
 

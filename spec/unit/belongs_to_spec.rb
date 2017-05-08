@@ -13,7 +13,6 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
   let(:post_config){ ActiveAdmin.register Post do belongs_to :user end }
   let(:belongs_to){ post_config.belongs_to_config }
 
-
   it "should have an owner" do
     expect(belongs_to.owner).to eq post_config
   end

@@ -49,7 +49,6 @@ module ActiveAdmin
       end
     end
 
-
     describe "controller name" do
       it "should return a namespaced controller name" do
         expect(config.controller_name).to eq "Admin::CategoriesController"
@@ -145,7 +144,6 @@ module ActiveAdmin
         end
       end
     end
-
 
     describe "sort order" do
       class MockResource
