@@ -51,7 +51,7 @@ module ActiveAdmin
                  (self[parent] || add(label: parent)).add options
                else
                  _add options.merge parent: self
-        end
+               end
 
         yield(item) if block_given?
 

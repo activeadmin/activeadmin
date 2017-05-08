@@ -17,6 +17,9 @@ AllCops:
 
   StyleGuideCopsOnly: false
 
+Lint/EndAlignment:
+  Enabled: true
+
 Style/CaseIndentation:
   Enabled: true
 

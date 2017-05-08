@@ -30,7 +30,7 @@ module ActiveAdmin
                           render_or_call_method_or_proc_on(resource, opts[:title])
                         else
                           ActiveAdmin::Localizers.resource(active_admin_config).t(:details)
-          end
+                        end
           panel(table_title) do
             attributes_table_for resource, *args, &block
           end

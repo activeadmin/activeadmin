@@ -239,7 +239,7 @@ module ActiveAdmin
                              active_admin_config.get_scope_by_id(params[:scope])
                            else
                              active_admin_config.default_scope(self)
-        end
+                           end
       end
 
       def apply_pagination(chain)

@@ -26,7 +26,7 @@ module ActiveAdmin
                          end
                        else
                          active_admin_config.menu_item
-        end
+                       end
       end
 
     end

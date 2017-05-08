@@ -32,7 +32,7 @@ module ActiveAdmin
                   instance_exec(controller, &active_admin_config.breadcrumb)
                 elsif breadcrumb_config.present?
                   breadcrumb_links
-        end
+                end
         return unless links.present? && links.is_a?(::Array)
         span class: "breadcrumb" do
           links.each do |link|

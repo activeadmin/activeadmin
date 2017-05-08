@@ -75,6 +75,6 @@ module ActiveAdmin
         3
       end
 
-   end
+    end
   end
 end

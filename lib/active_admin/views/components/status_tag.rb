@@ -44,7 +44,7 @@ module ActiveAdmin
         if status
           content = label || if s = status.to_s and s.present?
                                I18n.t "active_admin.status_tag.#{s.downcase}", default: s.titleize
-          end
+                             end
         end
 
         super(content, options)

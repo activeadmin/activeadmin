@@ -195,7 +195,7 @@ module ActiveAdmin
                  [:action]
                else
                  [:action, :filter]
-                     end
+               end
 
     keywords.each do |name|
       phases.each do |action|
