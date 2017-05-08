@@ -63,8 +63,8 @@ module ActiveAdmin
 
       def name_for_scope(scope)
         case scope.name
-          when Proc then self.instance_exec(&scope.name).to_s
-          else      scope.name.to_s
+        when Proc then self.instance_exec(&scope.name).to_s
+          else scope.name.to_s
         end
       end
     end

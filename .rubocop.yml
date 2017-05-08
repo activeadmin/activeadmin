@@ -17,6 +17,9 @@ AllCops:
 
   StyleGuideCopsOnly: false
 
+Style/CaseIndentation:
+  Enabled: true
+
 Style/EmptyLines:
   Enabled: true
 
