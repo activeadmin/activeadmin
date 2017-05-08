@@ -20,6 +20,9 @@ AllCops:
 Style/EmptyLines:
   Enabled: true
 
+Style/EndOfLine:
+  Enabled: true
+
 Style/ExtraSpacing:
   Enabled: true
 
