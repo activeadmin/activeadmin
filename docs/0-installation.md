@@ -15,6 +15,17 @@ gem 'draper'
 gem 'pundit'
 ```
 
+In case you are using Rails 4.0.X or Rails 4.1,
+
+```ruby
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'formtastic', github: 'justinfrench/formtastic'
+```
+
+As in this [StackOverflow](http://stackoverflow.com/a/16805376/2080089) answer.
+
 More accurately, it's a [Rails Engine](http://guides.rubyonrails.org/engines.html)
 that can be injected into your existing Ruby on Rails application.
 
