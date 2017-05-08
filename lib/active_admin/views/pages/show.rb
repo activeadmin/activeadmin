@@ -27,10 +27,10 @@ module ActiveAdmin
         def attributes_table(*args, &block)
           opts = args.extract_options!
           table_title = if opts.has_key?(:title)
-            render_or_call_method_or_proc_on(resource, opts[:title])
-          else
-            ActiveAdmin::Localizers.resource(active_admin_config).t(:details)
-          end
+                          render_or_call_method_or_proc_on(resource, opts[:title])
+                        else
+                          ActiveAdmin::Localizers.resource(active_admin_config).t(:details)
+                        end
           panel(table_title) do
             attributes_table_for resource, *args, &block
           end

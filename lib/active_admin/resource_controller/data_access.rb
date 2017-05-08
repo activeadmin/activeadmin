@@ -45,7 +45,6 @@ module ActiveAdmin
         end
       end
 
-
       # Does the actual work of retrieving the current collection from the db.
       # This is a great method to override if you would like to perform
       # some additional db # work before your controller returns and
@@ -59,7 +58,6 @@ module ActiveAdmin
         end
         collection
       end
-
 
       # Override this method in your controllers to modify the start point
       # of our searches and index.
@@ -102,7 +100,6 @@ module ActiveAdmin
       def find_resource
         scoped_collection.send method_for_find, params[:id]
       end
-
 
       # Builds, memoize and authorize a new instance of the resource. The
       # actual work of building the new instance is delegated to the
@@ -180,11 +177,9 @@ module ActiveAdmin
         end
       end
 
-
       #
       # Collection Helper Methods
       #
-
 
       # Gives the authorization library a change to pre-scope the collection.
       #
@@ -241,10 +236,10 @@ module ActiveAdmin
 
       def current_scope
         @current_scope ||= if params[:scope]
-          active_admin_config.get_scope_by_id(params[:scope])
-        else
-          active_admin_config.default_scope(self)
-        end
+                             active_admin_config.get_scope_by_id(params[:scope])
+                           else
+                             active_admin_config.default_scope(self)
+                           end
       end
 
       def apply_pagination(chain)

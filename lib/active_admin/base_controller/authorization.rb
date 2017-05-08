@@ -38,7 +38,6 @@ module ActiveAdmin
         active_admin_authorization.authorized?(action, subject)
       end
 
-
       # Authorize the action and subject. Available in the controller
       # as well as all the views. If the action is not allowd, it raises
       # an ActiveAdmin::AccessDenied exception.

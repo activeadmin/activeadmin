@@ -45,7 +45,6 @@ RSpec.describe ActiveAdmin::Settings do
 
 end
 
-
 RSpec.describe ActiveAdmin::Settings::Inheritance do
 
   subject do

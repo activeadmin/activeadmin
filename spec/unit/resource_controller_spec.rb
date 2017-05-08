@@ -217,7 +217,6 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
   end
 
-
   describe "performing batch_action" do
     let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", &batch_action_block }
     let(:batch_action_block) { proc { } }

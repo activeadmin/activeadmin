@@ -87,7 +87,6 @@ RSpec.describe MethodOrProcHelper do
 
     end
 
-
   end
 
   describe "#render_or_call_method_or_proc_on" do

@@ -102,7 +102,6 @@ module ActiveAdmin
           route.compact.join('_').to_sym      # :admin_category_posts_path
         end
 
-
         # @return params to pass to instance path
         def route_instance_params(instance)
           if nested?

@@ -17,10 +17,31 @@ AllCops:
 
   StyleGuideCopsOnly: false
 
+Lint/EndAlignment:
+  Enabled: true
+
+Style/CaseIndentation:
+  Enabled: true
+
+Style/ElseAlignment:
+  Enabled: true
+
+Style/EmptyLines:
+  Enabled: true
+
+Style/EndOfLine:
+  Enabled: true
+
 Style/ExtraSpacing:
   Enabled: true
 
 Style/HashSyntax:
+  Enabled: true
+
+Style/IndentationConsistency:
+  Enabled: true
+
+Style/IndentationWidth:
   Enabled: true
 
 Style/PredicateName:

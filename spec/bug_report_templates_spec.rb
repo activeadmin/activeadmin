@@ -23,5 +23,4 @@ RSpec.describe 'bug_report_templates' do
     end
   end
 
-
 end

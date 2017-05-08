@@ -14,7 +14,6 @@ module ActiveAdmin
         build_utility_navigation
       end
 
-
       def build_site_title
         insert_tag view_factory.site_title, @namespace
       end
