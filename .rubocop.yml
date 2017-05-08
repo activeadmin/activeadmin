@@ -35,6 +35,9 @@ Style/ExtraSpacing:
 Style/HashSyntax:
   Enabled: true
 
+Style/IndentationConsistency:
+  Enabled: true
+
 Style/PredicateName:
   Enabled: true
 

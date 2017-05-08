@@ -101,9 +101,9 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
 
-   it "should generate a text input" do
-      expect(body).to have_selector("input[type=text][name='post[title]']")
-    end
+    it "should generate a text input" do
+       expect(body).to have_selector("input[type=text][name='post[title]']")
+     end
     it "should generate a textarea" do
       expect(body).to have_selector("textarea[name='post[body]']")
     end
