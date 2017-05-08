@@ -28,7 +28,7 @@ module ActiveAdmin
           opts = args.extract_options!
           table_title = if opts.has_key?(:title)
             render_or_call_method_or_proc_on(resource, opts[:title])
-          else
+                        else
             ActiveAdmin::Localizers.resource(active_admin_config).t(:details)
           end
           panel(table_title) do

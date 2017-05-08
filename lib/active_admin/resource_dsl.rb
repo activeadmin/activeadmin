@@ -193,7 +193,7 @@ module ActiveAdmin
     ]
     keywords = if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
                        [:action]
-                     else
+               else
                        [:action, :filter]
                      end
 

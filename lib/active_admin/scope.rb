@@ -48,7 +48,7 @@ module ActiveAdmin
       case @name
       when String then @name
       when Symbol then @localizer ? @localizer.t(@name, scope: 'scopes') : @name.to_s.titleize
-        else @name
+      else @name
       end
     end
 

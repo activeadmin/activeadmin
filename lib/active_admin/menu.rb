@@ -49,7 +49,7 @@ module ActiveAdmin
       def add(options)
         item = if parent = options.delete(:parent)
           (self[parent] || add(label: parent)).add options
-        else
+               else
           _add options.merge parent: self
         end
 

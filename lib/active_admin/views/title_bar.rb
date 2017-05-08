@@ -30,7 +30,7 @@ module ActiveAdmin
 
         links = if breadcrumb_config.is_a?(Proc)
           instance_exec(controller, &active_admin_config.breadcrumb)
-        elsif breadcrumb_config.present?
+                elsif breadcrumb_config.present?
           breadcrumb_links
         end
         return unless links.present? && links.is_a?(::Array)
