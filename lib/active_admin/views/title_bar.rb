@@ -4,7 +4,7 @@ module ActiveAdmin
 
       def build(title, action_items)
         super(id: "title_bar")
-        @title = title
+        @title = I18n.t("active_admin.resources.#{title}.title") ? I18n.t("active_admin.resources.#{title}.title") : title
         @action_items = action_items
         build_titlebar_left
         build_titlebar_right

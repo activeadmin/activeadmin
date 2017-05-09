@@ -1,5 +1,8 @@
 en:
   active_admin:
+    resources:
+      "Admin Users":
+        title: "Admin Users"
     dashboard: Dashboard
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."
