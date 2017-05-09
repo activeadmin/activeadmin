@@ -21,6 +21,7 @@ Feature: Index Filtering
     And I press "Filter"
     And I should see 1 posts in the table
     And I should see "Hello World 2" within ".index_table"
+    And I should see current filter "title_contains" equal to "Hello World 2" with label "Title contains"
 
   Scenario: Filtering posts with no results
     Given 3 posts exist
@@ -100,6 +101,7 @@ Feature: Index Filtering
     Then I should see 1 posts in the table
     And I should see "Hello World" within ".index_table"
     And the "Jane Doe" checkbox should be checked
+    And I should see current filter "author_id_in" equal to "Jane Doe"
 
   Scenario: Disabling filters
     Given an index configuration of:
@@ -122,6 +124,7 @@ Feature: Index Filtering
     Then I should see 1 categories in the table
     And I should see "Non-Fiction" within ".index_table"
     And I should not see "Mystery" within ".index_table"
+    And I should see current filter "posts_author_id_eq" equal to "Jane Doe"
 
   @javascript
   Scenario: Clearing filter preserves custom parameters
@@ -160,6 +163,7 @@ Feature: Index Filtering
     And I should see "Mystery" within ".index_table"
     And I should see "Non-Fiction" within ".index_table"
     And the "Jane Doe" checkbox should not be checked
+    And should not see a sidebar titled "Search Status:"
 
   Scenario: Checkboxes - Filtering categories via posts written by Jane Doe
     Given a category named "Mystery" exists

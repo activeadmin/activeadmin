@@ -37,3 +37,8 @@ Then(/^I should( not)? have parameter "([^"]*)"( with value "([^"]*)")?$/) do |n
     end
   end
 end
+
+Then /^I should see current filter "([^"]*)" equal to "([^"]*)"( with label "([^"]*)")?$/ do |name, value, label_block, label|
+  expect(page).to have_css "li.current_filter_#{name} span", text: label if label_block
+  expect(page).to have_css "li.current_filter_#{name} b", text: value
+end
