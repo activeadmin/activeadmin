@@ -7,6 +7,9 @@ task :test_all do
     print "\n=== Running tests using #{gemfile} ===\n\n"
 
     Bundler.with_clean_env do
+      system({ "BUNDLE_GEMFILE" => gemfile }, "bundle check") ||
+        system({ "BUNDLE_GEMFILE" => gemfile }, "bundle install")
+
       system({ "BUNDLE_GEMFILE" => gemfile }, "bundle exec rake test")
     end
   end
