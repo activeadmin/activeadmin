@@ -44,7 +44,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     end
 
     it 'should have valid label' do
-      expect(subject.label).to eq("Category")
+      expect(subject.label).to eq("Category equals")
     end
 
   end
@@ -63,7 +63,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     end
 
     it 'should have valid label' do
-      expect(subject.label).to eq("Post")
+      expect(subject.label).to eq("Post equals")
     end
 
     context 'search by has many through association' do
@@ -80,7 +80,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
       end
 
       it 'should have valid label' do
-        expect(subject.label).to eq("Category")
+        expect(subject.label).to eq("Category equals")
       end
 
     end

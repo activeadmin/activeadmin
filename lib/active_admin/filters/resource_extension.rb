@@ -172,7 +172,7 @@ module ActiveAdmin
                         text_node filter.label
                       end
                       b do
-                        filter.values.map { |value| pretty_format(value) }.join(', ')
+                        text_node filter.values.map{|v| pretty_format(v) }.to_sentence.html_safe
                       end
                     end
                   end

@@ -27,7 +27,7 @@ module ActiveAdmin
 
       def label
         if related_class
-          related_class.model_name.human
+          "#{related_class.model_name.human} #{predicate_name}".strip
         else
           "#{attribute_name} #{predicate_name}".strip
         end
@@ -66,7 +66,7 @@ module ActiveAdmin
         if condition_attribute.klass != resource_class && condition_attribute.klass.primary_key == name.to_s
           condition_attribute.klass
         else
-          assoc = condition_attribute.klass.reflect_on_all_associations.detect { |r| r.foreign_key == name.to_s }
+          assoc = condition_attribute.klass.reflect_on_all_associations.detect { |r| r.foreign_key.to_s == name.to_s }
           assoc.class_name.constantize if assoc
         end
       end
