@@ -2,7 +2,7 @@ require 'bundler/gem_tasks'
 
 task :enforce_version do
   if ENV['BUNDLE_GEMFILE'] == File.expand_path('../Gemfile', __FILE__)
-    gemfile_path = File.expand_path('../gemfiles/rails_50.gemfile', __FILE__)
+    gemfile_path = File.expand_path('../gemfiles/rails_51.gemfile', __FILE__)
 
     command = ['bundle', 'exec', 'rake', *ARGV].join(' ')
     env = { 'BUNDLE_GEMFILE' => gemfile_path }
