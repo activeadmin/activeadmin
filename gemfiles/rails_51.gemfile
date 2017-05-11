@@ -6,6 +6,6 @@ gem "rails", "5.1.0"
 gem "jquery-ui-rails", "~> 5.0"
 gem "devise", "~> 4.3"
 gem "draper", "~> 3.0"
-gem "activerecord-jdbcsqlite3-adapter", git: "https://github.com/jruby/activerecord-jdbc-adapter", branch: "rails-5", platforms: :jruby
+gem "activerecord-jdbcsqlite3-adapter", github: "jruby/activerecord-jdbc-adapter", branch: "rails-5", platforms: :jruby
 
 gemspec path: "../"
