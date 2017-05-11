@@ -30,7 +30,6 @@ group :development do
   gem 'yard'                        # Documentation generator
   gem 'redcarpet', platforms: :mri  # Markdown implementation (for yard)
   gem 'kramdown', platforms: :jruby # Markdown implementation (for yard)
-  gem 'appraisal', '~> 2.2', require: false
 end
 
 group :test do

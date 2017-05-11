@@ -30,16 +30,10 @@ Make sure you're using a recent ruby and have the `bundler` gem installed, at
 least version `1.14.3`. The most reliable `bundler` version to use is the same
 Travis is using.
 
-Install `appraisal` and the other common development dependencies:
-
-```sh
-bundle install
-```
-
 Install the development dependencies:
 
 ```sh
-bundle exec appraisal install
+bundle install
 ```
 
 Now you should be able to run the entire suite using:
@@ -49,19 +43,16 @@ bundle exec rake test
 ```
 
 This will automatically run the tests against Rails 5.0. But you can easily run
-tests against older versions of Rails too.
+tests against older versions of Rails too by changing the `Gemfile` bundler
+uses.
 
-For example, you can run all tests against Rails 4.2:
+Run, for example,
 
-```sh
-bundle exec appraisal rails_42 rake test
+```
+export BUNDLE_GEMFILE=gemfiles/rails_42.gemfile
 ```
 
-or even just run specific tests. For example:
-
-```sh
-bundle exec appraisal rails_42 rspec spec/unit/belongs_to_spec.rb
-```
+And then everything will be run against Rails 4.2.
 
 The test run will generate a sample Rails application in `spec/rails` to run the
 tests against.
@@ -70,13 +61,8 @@ If your tests are passing locally but they're failing on Travis, reset your test
 environment:
 
 ```sh
-rm -rf spec/rails && bundle exec appraisal update
+rm -rf spec/rails && bundle update
 ```
-
-If you want to stick with a specific older Rails version for a while, you can
-also do `export BUNDLE_GEMFILE=gemfiles/rails_42.gemfile` and then run all
-commands directly (`bundle exec rake test`, `bundle exec rake setup`) without
-Appraisal.
 
 #### 4. Did you find a bug?
 
@@ -137,7 +123,7 @@ Once you've implemented your code, got the tests passing, previewed it in a
 browser, you're ready to test it against multiple versions of Rails.
 
 ```sh
-bundle exec appraisal rake test
+bundle exec rake test_all
 ```
 
 This runs our test suite against a couple of major versions of Rails.
