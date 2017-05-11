@@ -43,6 +43,10 @@ config.site_title_image = "http://www.google.com/images/logos/google_logo_41.png
 config.site_title_image = ->(context) { context.current_user.company.logo_url }
 ```
 
+## CSS
+
+In order to avoid the override of your application style (with the Active Admin one), you can properly move the generated file `active_admin.css.scss` from `app/assets/stylesheets` to `vendor/assets/stylesheets`
+
 ## Internationalization (I18n)
 
 To translate Active Admin to a new language or customize an existing translation, you can copy
