@@ -25,13 +25,7 @@ module ActiveAdmin
         @@display_name_methods_cache ||= {}
         @@display_name_methods_cache[resource.class] ||= begin
           methods = active_admin_application.display_name_methods - association_methods_for(resource)
-          method  = methods.detect{ |method| resource.respond_to? method }
-
-          if method != :to_s || resource.method(method).source_location
-            method
-          else
-            DISPLAY_NAME_FALLBACK
-          end
+          methods.detect { |method| resource.respond_to?(method) } || DISPLAY_NAME_FALLBACK
         end
       end
 

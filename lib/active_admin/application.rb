@@ -141,8 +141,7 @@ module ActiveAdmin
                                       :username,
                                       :login,
                                       :title,
-                                      :email,
-                                      :to_s ]
+                                      :email ]
 
     # To make debugging easier, by default don't stream in development
     setting :disable_streaming_in, ['development']
