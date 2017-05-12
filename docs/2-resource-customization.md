@@ -105,10 +105,16 @@ end
 
 ## Renaming Action Items
 
-One can set custom button name and page title for new, edit, and destroy actions/pages
-at the resource level by providing a resource specific translation.
-For example to change 'New Offer' to 'Make an Offer'
-set `active_admin.resources.offer.new_model`.
+You can use translations to override labels and page titles for actions such as new, edit, and destroy by providing a resource specific translation.
+For example, to change 'New Offer' to 'Make an Offer' add the following in config/locales/[en].yml:
+
+```
+en:
+  active_admin:
+    resources:
+      offer:
+        new_model: 'Make an Offer'
+```
 
 ## Rename the Resource
 
