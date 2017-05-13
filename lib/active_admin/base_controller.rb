@@ -13,6 +13,9 @@ module ActiveAdmin
     before_action :only_render_implemented_actions
     before_action :authenticate_active_admin_user
 
+    # Or render will fail after trying to save invalid model under Rails 4.
+    public :render
+
     class << self
       # Ensure that this method is available for the DSL
       public :actions
