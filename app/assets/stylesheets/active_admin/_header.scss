@@ -66,7 +66,7 @@
         text-decoration: none;
         padding: 6px 10px 4px 10px;
         position: relative;
-        @include rounded(10px);
+        @include rounded($tabs-radius);
       }
 
       &.current > a {
