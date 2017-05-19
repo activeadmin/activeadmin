@@ -6,7 +6,7 @@ module ActiveAdmin
     attr_accessor :name, :options, :block
 
     def initialize(name, options = {}, &block)
-      @name, @options, @block = name.to_s, options, block
+      @name, @options, @block = name, options, block
       normalize_display_options!
     end
 
@@ -31,6 +31,10 @@ module ActiveAdmin
 
     def priority
       options[:priority] || 10
+    end
+
+    def name
+      @name.is_a?(Proc) ? @name.call : @name.to_s
     end
   end
 
