@@ -1,9 +1,19 @@
 desc "Run the full suite using 1 core"
-task test: [:enforce_version,
-            'spec:unit',
-            'spec:request',
-            'cucumber',
-            'cucumber:class_reloading']
+task test: ['spec:unit', 'spec:request', 'cucumber', 'cucumber:class_reloading']
+
+desc "Run the full suite against all supported Rails versions using 1 core"
+task :test_all do
+  Dir.glob("gemfiles/rails_*.gemfile").each do |gemfile|
+    print "\n=== Running tests using #{gemfile} ===\n\n"
+
+    Bundler.with_clean_env do
+      system({ "BUNDLE_GEMFILE" => gemfile }, "bundle check") ||
+        system({ "BUNDLE_GEMFILE" => gemfile }, "bundle install")
+
+      system({ "BUNDLE_GEMFILE" => gemfile }, "bundle exec rake test")
+    end
+  end
+end
 
 require 'rspec/core/rake_task'
 

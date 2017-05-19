@@ -1,5 +1,12 @@
 source 'https://rubygems.org'
 
+# Trick to use https without warnings and without having to specify full URLs
+# TODO: Can be removed when Bundler 2.x is released.
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
 # Optional dependencies
 gem 'cancan'
 gem 'pundit'
@@ -30,16 +37,15 @@ group :development do
   gem 'yard'                        # Documentation generator
   gem 'redcarpet', platforms: :mri  # Markdown implementation (for yard)
   gem 'kramdown', platforms: :jruby # Markdown implementation (for yard)
-  gem 'appraisal', '~> 2.2', require: false
 end
 
 group :test do
   gem 'capybara'
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'codecov', require: false # Test coverage website. Go to https://codecov.io
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', github: 'cucumber/cucumber-rails', require: false
   gem 'cucumber', '1.3.20'
-  gem 'database_cleaner', git: 'https://github.com/DatabaseCleaner/database_cleaner.git'
+  gem 'database_cleaner'
   gem 'jasmine'
   gem 'jslint_on_rails'
   gem 'launchy'
