@@ -47,7 +47,7 @@ If you want to split a custom form into a separate partial use:
 
 ```ruby
 ActiveAdmin.register Post do
-  form partial: 'form'
+  form partial: 'admin/posts/form'
 end
 ```
 
