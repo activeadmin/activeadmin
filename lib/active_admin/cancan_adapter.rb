@@ -12,6 +12,7 @@ module ActiveAdmin
   class CanCanAdapter < AuthorizationAdapter
 
     def authorized?(action, subject = nil)
+      subject = subject.name if subject.is_a?(::ActiveAdmin::Page)
       cancan_ability.can?(action, subject)
     end
 
