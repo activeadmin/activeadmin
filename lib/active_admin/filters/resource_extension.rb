@@ -1,5 +1,3 @@
-require 'active_admin/filters/active'
-
 module ActiveAdmin
   module Filters
 
@@ -148,41 +146,9 @@ module ActiveAdmin
       end
 
       def add_search_status_sidebar_section
-        self.sidebar_sections << search_status_section
+        self.sidebar_sections << ActiveAdmin::Filters::ActiveSidebar.new
       end
 
-      def search_status_section
-        ActiveAdmin::SidebarSection.new I18n.t("active_admin.search_status.headline"), only: :index, if: -> {active_admin_config.current_filters_enabled? && (params[:q] || params[:scope]) } do
-          active = ActiveAdmin::Filters::Active.new(active_admin_config, assigns[:search])
-
-          span do
-            if active_admin_config.scopes.any?
-              h4 I18n.t("active_admin.search_status.current_scope"), style: 'display: inline'
-              b scope_name(current_scope), class: 'current_scope_name', style: "display: inline"
-            end
-            div style: "margin-top: 10px" do
-              h4 I18n.t("active_admin.search_status.current_filters"), style: 'margin-bottom: 10px'
-              ul do
-                if active.filters.blank?
-                  li I18n.t("active_admin.search_status.no_current_filters")
-                else
-                  active.filters.each do |filter|
-                    li filter.html_options do
-                      span do
-                        text_node filter.label
-                      end
-                      b do
-                        text_node filter.values.map{|v| pretty_format(v) }.to_sentence.html_safe
-                      end
-                    end
-                  end
-                end
-              end
-
-            end
-          end
-        end
-      end
     end
 
   end
