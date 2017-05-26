@@ -14,6 +14,7 @@ module ActiveAdmin
     include TitleHelper
     include ViewFactoryHelper
     include FlashHelper
+    include ScopeNameHelper
 
   end
 end

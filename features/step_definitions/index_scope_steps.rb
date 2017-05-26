@@ -18,6 +18,10 @@ Then /^I should see the scope with label "([^"]*)"$/ do |label|
   expect(page).to have_link(label)
 end
 
+Then /^I should see the current scope with label "([^"]*)"$/ do |label|
+  expect(page).to have_css '.current_scope_name', text: label
+end
+
 Then /^I should see the scope "([^"]*)" with no count$/ do |name|
   name = name.tr(" ", "").underscore.downcase
   expect(page).to     have_css ".scopes .#{name}"

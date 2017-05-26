@@ -14,6 +14,8 @@ module ActiveAdmin
           include ScopeChain
 
           define_active_admin_callbacks :build, :create, :update, :save, :destroy
+
+          helper_method :current_scope
         end
       end
 
