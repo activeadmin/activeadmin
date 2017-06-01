@@ -127,6 +127,11 @@ module ActiveAdmin
           entries_name = I18n.translate key, count: collection.size, default: entry_name.pluralize
         end
 
+        offset = (collection.current_page - 1) * collection.limit_value
+        total  = collection.total_count
+        to = offset + collection.limit_value
+        to = total if to >= total
+
         if @display_total
           if collection.total_pages < 2
             case collection_size
@@ -135,22 +140,19 @@ module ActiveAdmin
             else;   I18n.t("active_admin.pagination.one_page", model: entries_name, n: collection.total_count)
             end
           else
-            offset = (collection.current_page - 1) * collection.limit_value
-            total  = collection.total_count
             I18n.t "active_admin.pagination.multiple",
                    model: entries_name,
                    total: total,
                    from: offset + 1,
-                   to: offset + collection_size
+                   to: to
           end
         else
           # Do not display total count, in order to prevent a `SELECT count(*)`.
           # To do so we must not call `collection.total_pages`
-          offset = (collection.current_page - 1) * collection.limit_value
           I18n.t "active_admin.pagination.multiple_without_total",
                  model: entries_name,
                  from: offset + 1,
-                 to: offset + collection_size
+                 to: to
         end
       end
 
