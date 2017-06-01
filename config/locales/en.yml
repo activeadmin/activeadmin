@@ -32,6 +32,8 @@ en:
         ends_with: "Ends with"
         greater_than: "Greater than"
         less_than: "Less than"
+        gteq_datetime: "Greater or equal to"
+        lteq_datetime: "Lesser or equal to"
     search_status:
       headline: "Search status:"
       current_scope: "Scope:"
