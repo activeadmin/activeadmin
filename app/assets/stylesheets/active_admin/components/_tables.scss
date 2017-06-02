@@ -1,6 +1,8 @@
 //= depend_on_asset "active_admin/orderable.png"
 // ----------------------------------- Tables
 
+@import "active_admin/mixins";
+
 table tr {
   td {
     vertical-align: top;
