@@ -31,6 +31,8 @@ fr:
         ends_with: "Se termine par"
         greater_than: "Plus grand que"
         less_than: "Plus petit que"
+        gteq_datetime: "Ultérieur ou égal à"
+        lteq_datetime: "Antérieur ou égal à"
     search_status:
       headline: "Statut de la recherche :"
       current_scope: "Etendu du filtre :"
