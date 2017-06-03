@@ -326,12 +326,6 @@ form.filter_form {
     }
 
     &.filter_date_range {
-      .seperator {
-        display: inline-block;
-        text-align: center;
-        width: $filter-field-seperator-width;
-      }
-
       input[type=text] {
         background: #fff image-url('active_admin/datepicker/datepicker-input-icon.png') no-repeat 100% 7px;
         padding-right: $date-range-filter-input-right-padding;
