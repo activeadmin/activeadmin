@@ -2,10 +2,7 @@
 #header {
   background-color: lighten($primary-color, 5%);
   display: table;
-  height: 20px;
   width: 100%;
-  overflow: visible;
-  position: inherit;
   padding: 5px 0;
   z-index: 900;
 
@@ -14,9 +11,7 @@
     vertical-align: middle;
     white-space: nowrap;
     color:  $page-header-text-color;
-    margin-right: 20px;
-    margin-bottom: 0px;
-    padding: 3px $horizontal-page-margin 0 $horizontal-page-margin;
+    padding: 0 $horizontal-page-margin;
     font-size: 1.3em;
     font-weight: normal;
     line-height: 1.2;
@@ -28,19 +23,12 @@
         color: #fff;
       }
     }
-
-    img {
-      position: relative;
-      top: -2px;
-    }
   }
 
   a, a:link { color: $page-header-text-color; }
 
   .header-item {
-    top: 2px;
     position: relative;
-    height: 20px
   }
 
   ul.tabs {

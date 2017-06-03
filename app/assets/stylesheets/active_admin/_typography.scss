@@ -31,7 +31,6 @@ body { font-size: 75%; font-family: "Helvetica Neue", Arial, Helvetica, sans-ser
 h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
   color: $primary-color;
-  img { margin: 0; }
 }
 
 h1 { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
@@ -53,9 +52,6 @@ p {
 .right             { float: right !important; }
 
 blockquote  { margin: 1.5em; color: #666; font-style: italic; }
-strong,dfn    { font-weight: bold; }
-em,dfn      { font-style: italic; }
-sup, sub    { line-height: 0; }
 
 abbr,
 acronym     { border-bottom: 1px dotted #666; }
@@ -70,18 +66,9 @@ li ul,
 li ol       { margin: 0; }
 ul, ol      { margin: 0 1.5em 1.5em 0; padding-left: 1.5em; }
 
-ul          { list-style-type: disc; }
-ol          { list-style-type: decimal; }
-
 dl          { margin: 0 0 1.5em 0; }
 dl dt       { font-weight: bold; }
 dd          { margin-left: 1.5em;}
-
-// Tables
-table       { margin-bottom: 1.4em; width:100%; }
-th          { font-weight: bold; }
-thead th    { background: #c3d9ff; }
-th,td,caption { padding: 4px 10px 4px 5px; }
 
 // Helper Classes
 .small      { font-size: .8em; margin-bottom: 1.875em; line-height: 1.875em; }
@@ -98,3 +85,8 @@ th,td,caption { padding: 4px 10px 4px 5px; }
 .last       { margin-right:0; padding-right:0; }
 .top        { margin-top:0; padding-top:0; }
 .bottom     { margin-bottom:0; padding-bottom:0; }
+
+hr {
+  border: none;
+  border-bottom: 1px solid #E8E8E8;
+}
