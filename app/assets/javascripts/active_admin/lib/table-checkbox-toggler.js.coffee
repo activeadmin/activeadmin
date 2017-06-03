@@ -18,6 +18,14 @@ class ActiveAdmin.TableCheckboxToggler extends ActiveAdmin.CheckboxToggler
     else
       $row.removeClass 'selected'
 
+  _didChangeToggleAllCheckbox: ->
+    checked = super
+
+    if checked
+      @$container.find('tbody tr').addClass 'selected'
+    else
+      @$container.find('tbody tr').removeClass 'selected'
+
   _didClickCell: (cell) ->
     $(cell).parent('tr').find(':checkbox').click()
 
