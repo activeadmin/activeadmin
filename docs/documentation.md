@@ -13,7 +13,7 @@ little effort.
 
 ### Getting Started
 
-Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby on Rails 4 application. To
+Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby on Rails application. To
         install, simply add the following to your Gemfile:
 
 ```ruby
