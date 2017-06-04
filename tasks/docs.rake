@@ -1,13 +1,24 @@
 namespace :docs do
 
+  def jekyll_redirect_string(filename)
+    <<-EOD.strip_heredoc
+      ---
+      redirect_from: /docs/3-index-pages/#{filename}
+      ---
+
+    EOD
+  end
+
   def filename_from_module(mod)
     mod.name.to_s.underscore.tr('_', '-')
   end
 
   def write_docstrings_to(path, mods)
     mods.each do |mod|
-      File.open("#{path}/#{filename_from_module(mod)}.md", 'w+') do |f|
-        f << mod.docstring + "\n"
+      filename = filename_from_module(mod)
+
+      File.open("#{path}/#{filename}.md", 'w+') do |f|
+        f << jekyll_redirect_string("#{filename}.html") + mod.docstring + "\n"
       end
     end
   end
