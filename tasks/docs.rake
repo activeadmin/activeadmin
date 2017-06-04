@@ -24,7 +24,7 @@ namespace :docs do
   end
 
   desc "Update docs in the docs folder"
-  task :build do
+  task build: :yard do
     require 'yard'
     require 'active_support/all'
 
