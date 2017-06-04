@@ -61,5 +61,8 @@ Layout/TrailingWhitespace:
 Layout/SpaceAfterComma:
   Enabled: true
 
+Style/SpaceAroundEqualsInParameterDefault:
+  Enabled: true
+
 Layout/SpaceInsideParens:
   Enabled: true
