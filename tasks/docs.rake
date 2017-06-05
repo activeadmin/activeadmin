@@ -1,4 +1,11 @@
+require 'yard'
+require 'yard/rake/yardoc_task'
+
 namespace :docs do
+
+  YARD::Rake::YardocTask.new do |t|
+    t.files = ['lib/**/*.rb']
+  end
 
   def jekyll_redirect_string(filename)
     <<-EOD.strip_heredoc
