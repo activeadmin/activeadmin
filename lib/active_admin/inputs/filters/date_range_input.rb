@@ -37,11 +37,11 @@ module ActiveAdmin
         end
 
         def gt_input_placeholder
-          I18n.t("active_admin.filters.predicates.starts_with")
+          I18n.t("active_admin.filters.predicates.from")
         end
 
         def lt_input_placeholder
-          I18n.t("active_admin.filters.predicates.ends_with")
+          I18n.t("active_admin.filters.predicates.to")
         end
       end
     end
