@@ -25,6 +25,11 @@ gem 'mdl', '0.4.0'
 # Translations
 gem 'i18n-tasks'
 
+# Documentation
+gem 'yard'                        # Documentation generator
+gem 'redcarpet', platforms: :mri  # Markdown implementation (for yard)
+gem 'kramdown', platforms: :jruby # Markdown implementation (for yard)
+
 group :development do
   # Debugging
   gem 'better_errors' # Web UI to debug exceptions. Go to /__better_errors to access the latest one
@@ -33,11 +38,6 @@ group :development do
 
   # Performance
   gem 'rack-mini-profiler' # Inline app profiler. See ?pp=help for options.
-
-  # Documentation
-  gem 'yard'                        # Documentation generator
-  gem 'redcarpet', platforms: :mri  # Markdown implementation (for yard)
-  gem 'kramdown', platforms: :jruby # Markdown implementation (for yard)
 end
 
 group :test do
