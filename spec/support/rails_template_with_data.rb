@@ -95,18 +95,42 @@ inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post
     attributes_table do
       row :id
       row :title
+      row :published_date
+      row :author
       row :body
+      row :category
+      row :starred
+      row :position
+      row :created_at
+      row :updated_at
     end
 
-    panel 'Tags' do
-      table_for(post.taggings.order(:position)) do
-        column :tag_id do |tagging|
-          link_to tagging.tag_id, admin_tag_path(tagging.tag)
+    columns do
+      column do
+        panel 'Tags' do
+          table_for(post.taggings.order(:position)) do
+            column :tag_id do |tagging|
+              link_to tagging.tag_id, admin_tag_path(tagging.tag)
+            end
+            column :tag_name
+            column :position
+            column :created_at
+            column :updated_at
+          end
         end
-        column :tag_name
-        column :position
-        column :created_at
-        column :updated_at
+      end
+      column do
+        panel 'Author' do
+          attributes_table_for post.author do
+            row :id do |author|
+              link_to author.id, admin_user_path(author)
+            end
+            row :first_name
+            row :last_name
+            row :username
+            row :age
+          end
+        end
       end
     end
   end
