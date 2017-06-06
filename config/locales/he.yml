@@ -8,6 +8,7 @@ he:
     edit: "עריכה"
     delete: "מחיקה"
     delete_confirmation: "האם אתה בטוח שאתה רוצה למחוק את זה?"
+    create_another: "צור עוד %{model}"
     new_model: "%{model} חדש"
     edit_model: "ערוך %{model}"
     delete_model: "מחיקת %{model}"
@@ -31,20 +32,29 @@ he:
         ends_with: "מסתיים ב"
         greater_than: "גדול מ"
         less_than: "פחות מ"
+        gteq_datetime: "אחרי או בתאריך"
+        lteq_datetime: "לפני או בתאריך"
+    search_status:
+      headline: "תוצאות חיפוש:"
+      current_scope: "תחום:"
+      current_filters: "מסננים:"
+      no_current_filters: "ללא"
     status_tag:
       "yes": "כן"
       "no": "לא"
-    main_content: "Please implement %{model}#main_content to display content."
+    main_content: "אנא הטמע את %{model}#main_content בכדי להציג תוכן."
     logout: "התנתקות"
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "סינון"
+      search_status: "מצב החיפוש"
     pagination:
       empty: "אין %{model} בנמצא"
       one: "מציג <b>1</b> %{model}"
       one_page: "הצגת <b>כל %{n}</b> %{model}"
       multiple: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> מתוך <b>%{total}</b> בסך הכל"
       multiple_without_total: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "בדף: "
       entry:
         one: "רשומה בודדה"
         other: "רשומות"
@@ -60,23 +70,40 @@ he:
       delete_confirmation: "האם הנך בטוח שאתה רוצה למרוח את %{plural_model}?"
       succesfully_destroyed:
         one: "1 %{model} נמחק בהצלחה"
-        few: "%{count} %{plural_model} נמחק בהצלחה"
-        many: "%{count} %{plural_model} נמחק בהצלחה"
         other: "%{count} %{plural_model} נמחק בהצלחה"
       selection_toggle_explanation: "(שינוי בחירה)"
       action_label: "%{title} נבחר"
       labels:
         destroy: "מחק"
     comments:
+      created_at: "נוצר"
+      resource_type: "סוג רישום"
+      author_type: "סוג מחבר"
       body: "תוכן"
       author: 'נוצר ע"י'
       add: "הוסף תגובה"
+      delete: "מחק תגובה"
+      delete_confirmation: "האם אתה בטוח שברצונך למחוק תגובה זאת?"
       resource: "Resource"
       no_comments_yet: "אין עדיין תגובות."
+      author_missing: "אנונימי"
       title_content: "תגובות (%{count})"
       errors:
         empty_text: "התגובה לא נשמרה, שדה התוכן ריק."
     devise:
+      username:
+        title: "שם משתמש"
+      email:
+        title: "כתובת דוא״ל"
+      subdomain:
+        title: "תת-דומיין"
+      password:
+        title: "סיסמא"
+      password_confirmation:
+        title: "אישור סיסמא"
+      sign_up:
+        title: "הרשמה"
+        submit: "הרשמה"
       login:
         title: "כניסה"
         remember_me: "זכור אותי"
@@ -87,7 +114,28 @@ he:
       change_password:
         title: "שנה את הסיסמא שלך"
         submit: "שנה את הסיסמא שלי"
+      unlock:
+        title: "שלח שוב הוראות שיחרור"
+        submit: "שלח שוב הוראות שיחרור"
+      resend_confirmation_instructions:
+        title: "שלח שוב הוראות אישור"
+        submit: "שלח שוב הוראות אישור"
       links:
+        sign_up: "הרשמה"
         sign_in: "כניסה"
         forgot_your_password: "שכחת את הסיסמא שלך?"
         sign_in_with_omniauth_provider: "%{provider} היכנס עם"
+        resend_unlock_instructions: "שלח שוב הוראות שיחרור"
+        resend_confirmation_instructions: "שלח שוב הוראות אישור"
+    unsupported_browser:
+      headline: "Please note that ActiveAdmin no longer supports Internet Explorer versions 8 or less."
+      recommendation: "We recommend upgrading to the latest <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, or <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "If you are using IE 9 or later, make sure you <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">turn off \"Compatibility View\"</a>."
+    access_denied:
+      message: "אתה לא רשאי לבצע פעולה זו."
+    index_list:
+      table: "טבלה"
+      block: "רשימה"
+      grid: "גריד"
+      blog: "בלוג"
+
