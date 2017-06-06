@@ -91,6 +91,32 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
+    context "when specifying download_url_options" do
+      let(:view) do
+        view = mock_action_view
+        allow(view.request).to receive(:query_parameters).and_return details: '1'
+        allow(view.request).to receive(:path_parameters).and_return  controller: 'admin/users', action: 'show', id: 1
+        view
+      end
+
+      let(:collection) do
+        posts = 10.times.map{ Post.new }
+        Kaminari.paginate_array(posts).page(1).per(5)
+      end
+
+      let(:pagination) { paginated_collection(collection,
+                                              download_url_options: {
+                                                controller: 'admin/posts',
+                                                action: 'index',
+                                                params: { user_id: 1 }
+                                              },
+                                              download_links: [:csv]) }
+
+      it "should generate download link URLs using download_url_options" do
+        expect(pagination.find_by_tag('a').last.attr(:href)).to eq('/admin/posts.csv?user_id=1')
+      end
+    end
+
     context "when specifying :entry_name option with a single item" do
       let(:collection) do
         posts = [Post.new]
