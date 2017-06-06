@@ -20,28 +20,28 @@ AllCops:
 Lint/EndAlignment:
   Enabled: true
 
-Style/CaseIndentation:
+Layout/CaseIndentation:
   Enabled: true
 
-Style/ElseAlignment:
+Layout/ElseAlignment:
   Enabled: true
 
-Style/EmptyLines:
+Layout/EmptyLines:
   Enabled: true
 
-Style/EndOfLine:
+Layout/EndOfLine:
   Enabled: true
 
-Style/ExtraSpacing:
+Layout/ExtraSpacing:
   Enabled: true
 
 Style/HashSyntax:
   Enabled: true
 
-Style/IndentationConsistency:
+Layout/IndentationConsistency:
   Enabled: true
 
-Style/IndentationWidth:
+Layout/IndentationWidth:
   Enabled: true
 
 Style/PredicateName:
@@ -55,11 +55,11 @@ Style/PredicateName:
     - has_many
     - has_many_actions
 
-Style/TrailingWhitespace:
+Layout/TrailingWhitespace:
   Enabled: true
 
-Style/SpaceAfterComma:
+Layout/SpaceAfterComma:
   Enabled: true
 
-Style/SpaceInsideParens:
+Layout/SpaceInsideParens:
   Enabled: true
