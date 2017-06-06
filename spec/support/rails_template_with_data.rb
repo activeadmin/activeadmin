@@ -16,6 +16,34 @@ inject_into_file 'app/admin/user.rb', <<-RUBY, after: "ActiveAdmin.register User
   config.create_another = true
 
   permit_params [:first_name, :last_name, :username, :age]
+
+  show do
+    attributes_table do
+      row :id
+      row :first_name
+      row :last_name
+      row :username
+      row :age
+      row :created_at
+      row :updated_at
+    end
+
+    panel 'Posts' do
+      table_for(user.posts.order(:updated_at).limit(10)) do
+        column :id do |post|
+          link_to post.id, admin_post_path(post)
+        end
+        column :title
+        column :published_date
+        column :category
+        column :created_at
+        column :updated_at
+      end
+      para do
+        link_to "View all posts", admin_posts_path('q[author_id_eq]' => user.id)
+      end
+    end
+  end
 RUBY
 
 inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post do\n"
