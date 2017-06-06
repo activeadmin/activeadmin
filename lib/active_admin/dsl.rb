@@ -70,10 +70,17 @@ module ActiveAdmin
     #
     #   end
     #
-    def controller(&block)
-      @config.controller.class_exec(&block) if block_given?
+    def controller(*args,&block)
+      if block_given?
+        @config.controller.class_exec(*args) do
+          args_names = block.parameters.map(&:last)
+          args.each_with_index{|value,i| define_method(args_names[i]){ value }}
+        end
+        @config.controller.class_exec(*args,&block)
+      end
       @config.controller
     end
+
 
     # Add a new action item to the resource
     #
