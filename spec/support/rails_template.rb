@@ -115,6 +115,8 @@ create_file 'app/models/tagging.rb', <<-RUBY.strip_heredoc, force: true
   class Tagging < ActiveRecord::Base
     belongs_to :post
     belongs_to :tag
+
+    delegate :name, to: :tag, prefix: true
   end
 RUBY
 
