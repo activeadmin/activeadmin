@@ -91,6 +91,18 @@ inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post
     column :updated_at
   end
 
+  sidebar :author, only: :show do
+    attributes_table_for post.author do
+      row :id do |author|
+        link_to author.id, admin_user_path(author)
+      end
+      row :first_name
+      row :last_name
+      row :username
+      row :age
+    end
+  end
+
   show do |post|
     attributes_table do
       row :id
@@ -109,26 +121,22 @@ inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post
       column do
         panel 'Tags' do
           table_for(post.taggings.order(:position)) do
-            column :tag_id do |tagging|
+            column :id do |tagging|
               link_to tagging.tag_id, admin_tag_path(tagging.tag)
             end
-            column :tag_name
+            column :tag, &:tag_name
             column :position
-            column :created_at
             column :updated_at
           end
         end
       end
       column do
-        panel 'Author' do
-          attributes_table_for post.author do
-            row :id do |author|
-              link_to author.id, admin_user_path(author)
+        panel 'Category' do
+          attributes_table_for post.category do
+            row :id do |category|
+              link_to category.id, admin_category_path(category)
             end
-            row :first_name
-            row :last_name
-            row :username
-            row :age
+            row :description
           end
         end
       end
