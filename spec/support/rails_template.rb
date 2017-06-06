@@ -14,7 +14,7 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
     belongs_to :author, class_name: 'User'
     has_many :taggings
     accepts_nested_attributes_for :author
-    accepts_nested_attributes_for :taggings
+    accepts_nested_attributes_for :taggings, allow_destroy: true
 
     ransacker :custom_title_searcher do |parent|
       parent.table[:title]
@@ -43,7 +43,7 @@ create_file 'app/models/blog/post.rb', <<-RUBY.strip_heredoc, force: true
     belongs_to :author, class_name: 'User'
     has_many :taggings
     accepts_nested_attributes_for :author
-    accepts_nested_attributes_for :taggings
+    accepts_nested_attributes_for :taggings, allow_destroy: true
 
     if defined? ProtectedAttributes
       attr_accessible :title, :body, :starred, :author, :position, :published_date, :author_id, :custom_category_id, :category
