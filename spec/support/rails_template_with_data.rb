@@ -6,10 +6,14 @@ end
 
 inject_into_file 'app/admin/category.rb', <<-RUBY, after: "ActiveAdmin.register Category do\n"
 
+  config.create_another = true
+
   permit_params [:name, :description]
 RUBY
 
 inject_into_file 'app/admin/user.rb', <<-RUBY, after: "ActiveAdmin.register User do\n"
+
+  config.create_another = true
 
   permit_params [:first_name, :last_name, :username, :age]
 RUBY
