@@ -1,5 +1,15 @@
 apply File.expand_path("../rails_template.rb", __FILE__)
 
+inject_into_file 'config/initializers/active_admin.rb', <<-RUBY, after: "ActiveAdmin.setup do |config|\n"
+
+  config.comments_menu = { parent: 'Administrative' }
+RUBY
+
+inject_into_file 'app/admin/admin_user.rb', <<-RUBY, after: "ActiveAdmin.register AdminUser do\n"
+
+  menu parent: "Administrative", priority: 1
+RUBY
+
 %w{Post User Category Tag}.each do |type|
   generate :'active_admin:resource', type
 end
