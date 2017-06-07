@@ -1,12 +1,16 @@
 .status_tag {
-  background: darken($secondary-color, 15%);
+  border-radius: 0.25em;
   color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  padding: 3px 5px 2px 5px;
-  font-size: 0.8em;
+  padding: 0.2em 0.5em;
+  text-align: center;
+  white-space: nowrap;
 
-  &.yes { background: #6090DB }
-  &.no  { background: grey }
+  &,
+  &.no {
+    background-color: #777;
+  }
 
+  &.yes {
+    background-color: #6090DB;
+  }
 }
