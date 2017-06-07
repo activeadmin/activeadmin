@@ -243,6 +243,9 @@ Feature: Index Scoping
         scope :published do |posts|
           posts.where("published_date IS NOT NULL")
         end
+        scope :single do |posts|
+           posts.page(1).per(1)
+        end
 
         index do
           column :author_id
@@ -260,7 +263,11 @@ Feature: Index Scoping
       """
     Then I should see the scope "All" with the count 2
     And I should see the scope "Published" with the count 1
+    And I should see the scope "Single" with the count 1
     And I should see 2 posts in the table
+
+    When I follow "Single"
+    Then I should see 1 posts in the table
 
     When I follow "Published"
     Then I should see the scope "Published" selected

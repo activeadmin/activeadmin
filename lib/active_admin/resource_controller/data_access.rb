@@ -245,6 +245,8 @@ module ActiveAdmin
       end
 
       def apply_pagination(chain)
+        # skip pagination if already was paginated by scope
+        return chain if chain.respond_to?(:total_pages)
         page_method_name = Kaminari.config.page_method_name
         page = params[Kaminari.config.param_name]
 

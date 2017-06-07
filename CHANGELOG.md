@@ -25,6 +25,7 @@
 
 ##### Minor
 
+* Allow AA scopes to return paginated collections [#4996][] by [@Fivell][]
 * Added `scopes_show_count` configuration to  setup show_count attribute for scopes globally [#4950][] by [@Fivell][]
 * Allow custom panel title given with `attributes_table` [#4940][] by [@ajw725][]
 
@@ -151,6 +152,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#4867]: https://github.com/activeadmin/activeadmin/pull/4867
 [#4882]: https://github.com/activeadmin/activeadmin/pull/4882
 [#4950]: https://github.com/activeadmin/activeadmin/pull/4950
+[#4996]: https://github.com/activeadmin/activeadmin/pull/4996
 
 
 [@bolshakov]: https://github.com/bolshakov
