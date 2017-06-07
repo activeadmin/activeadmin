@@ -128,7 +128,7 @@ ru:
     unsupported_browser:
       headline: "Пожалуйста, обратите внимание, что Active Admin больше не поддерживает старые версии Internet Explorer начиная с версии IE 8"
       recommendation: "Мы рекомендуем обновить версию вашего браузера (<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, или <a href=\"https://mozilla.org/firefox/\">Firefox</a>)."
-      turn_off_compatibility_view: "Если вы используете IE 9 или новее, убедитесь, что <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">вы выключили опцию \"Просмотр в режиме совместимости\"</a>."
+      turn_off_compatibility_view: "Если вы используете IE 9 или новее, убедитесь, что <a href=\"https://support.microsoft.com/ru-ru/help/17471\">вы выключили опцию \"Просмотр в режиме совместимости\"</a>."
     access_denied:
       message: "Вы не авторизованы для выполнения данного действия."
     index_list:

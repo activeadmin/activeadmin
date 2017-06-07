@@ -129,7 +129,7 @@ he:
         resend_confirmation_instructions: "שלח שוב הוראות אישור"
     unsupported_browser:
       headline: "שים לב ש-ActiveAdmin אינו תומך יותר ב-Internet Explorer גרסא 8 ומטה."
-      recommendation: "אנו ממליצים לשדרג לגרסא האחרונה של <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, או <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      recommendation: "אנו ממליצים <a href=\"http://browsehappy.com/\">לשדרג את הדפדפן שלך</a> על מנת לשפר את חווית הגלישה."
       turn_off_compatibility_view: "אם אתה משתמש ב- IE 9 ואילך, ודא ש<a href=\"https://support.microsoft.com/he-il/help/17471\">כיבית \"תצוגת תאימות\"</a>."
     access_denied:
       message: "אינך רשאי לבצע פעולה זו."

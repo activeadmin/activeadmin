@@ -132,7 +132,7 @@ en:
     unsupported_browser:
       headline: "Please note that ActiveAdmin no longer supports Internet Explorer versions 8 or less."
       recommendation: "We recommend that you <a href=\"http://browsehappy.com/\">upgrade your browser</a> to improve your experience."
-      turn_off_compatibility_view: "If you are using IE 9 or later, make sure you <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">turn off \"Compatibility View\"</a>."
+      turn_off_compatibility_view: "If you are using IE 9 or later, make sure you <a href=\"https://support.microsoft.com/en-us/help/17471\">turn off \"Compatibility View\"</a>."
     access_denied:
       message: "You are not authorized to perform this action."
     index_list:

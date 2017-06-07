@@ -126,7 +126,7 @@ da:
     unsupported_browser:
       headline: "Vær venligst opmærksom på, at ActiveAdmin ikke længere understøtter Internet Explorer version 8 eller tidligere."
       recommendation: "Vi anbefaler at du opgraderer til den nyeste <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, eller <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Hvis du bruger IE 9 eller senere, så vær sikker på, at du <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">slår \"Compatibility View\" fra</a>."
+      turn_off_compatibility_view: "Hvis du bruger IE 9 eller senere, så vær sikker på, at du <a href=\"https://support.microsoft.com/da-dk/help/17471\">slår \"Compatibility View\" fra</a>."
     access_denied:
       message: "Du har ikke rettigheder til at udføre denne handling."
     index_list:
