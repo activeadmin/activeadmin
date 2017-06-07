@@ -2,6 +2,25 @@
 
 ## Master (unreleased)
 
+### Deprecations
+
+* Deprecated `type` param from `status_tag` and related CSS classes [#4989][] by [@javierjulio][]
+  * The method signature has changed from:
+    ```ruby
+    status_tag(status, :ok, class: 'completed', label: 'on')
+    # now changes to:
+    status_tag(status, class: 'completed ok', label: 'on')
+    ```
+  * The following CSS classes have been deprecated and will be removed in the future:
+    ```css
+    .status_tag {
+      &.ok, &.published, &.complete, &.completed, &.green { background: #8daa92; }
+      &.warn, &.warning, &.orange { background: #e29b20; }
+      &.error, &.errored, &.red { background: #d45f53; }
+    }
+    ```
+
+
 ### Enhancements
 
 ##### Minor
@@ -69,7 +88,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 
 ### Security Fixes
 
-* Prevents access to formats that the user not permitted to see [#4867][] by [@Fivell][] and [@timoschilling][] 
+* Prevents access to formats that the user not permitted to see [#4867][] by [@Fivell][] and [@timoschilling][]
 * Prevents potential DOS attack via Ruby symbols [#1926][] by [@seanlinsley][]
   * [this isn't an issue for those using Ruby >= 2.2](http://rubykaigi.org/2014/presentation/S-NarihiroNakamura)
 

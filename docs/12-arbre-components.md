@@ -138,18 +138,15 @@ takes a block.
 Status tags provide convenient syntactic sugar for styling items that have
 status. A common example of where the status tag could be useful is for orders
 that are complete or in progress. `status_tag` takes a status, like
-"In Progress", a type, which defaults to nil, and a hash of options. The
-status_tag will generate html markup that Active Admin css uses in styling.
+"In Progress", and a hash of options. The status_tag will generate HTML markup
+that Active Admin CSS uses in styling.
 
 ```ruby
 status_tag 'In Progress'
 # => <span class='status_tag in_progress'>In Progress</span>
 
-status_tag 'active', :ok
-# => <span class='status_tag active ok'>Active</span>
-
-status_tag 'active', :ok, class: 'important', id: 'status_123', label: 'on'
-# => <span class='status_tag active ok important' id='status_123'>on</span>
+status_tag 'active', class: 'important', id: 'status_123', label: 'on'
+# => <span class='status_tag active important' id='status_123'>on</span>
 ```
 
 ## Tabs
