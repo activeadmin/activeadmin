@@ -34,6 +34,8 @@ en:
         less_than: "Less than"
         gteq_datetime: "Greater or equal to"
         lteq_datetime: "Lesser or equal to"
+        from: "From"
+        to: "To"
     search_status:
       headline: "Search status:"
       current_scope: "Scope:"
