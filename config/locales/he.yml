@@ -44,7 +44,7 @@ he:
       "no": "לא"
     main_content: "אנא הטמע את %{model}#main_content בכדי להציג תוכן."
     logout: "התנתקות"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: "ממונע בעזרת %{active_admin} %{version}"
     sidebars:
       filters: "סינון"
       search_status: "מצב החיפוש"
@@ -84,7 +84,7 @@ he:
       add: "הוסף תגובה"
       delete: "מחק תגובה"
       delete_confirmation: "האם אתה בטוח שברצונך למחוק תגובה זאת?"
-      resource: "Resource"
+      resource: "רשומה"
       no_comments_yet: "אין עדיין תגובות."
       author_missing: "אנונימי"
       title_content: "תגובות (%{count})"
@@ -128,11 +128,11 @@ he:
         resend_unlock_instructions: "שלח שוב הוראות שיחרור"
         resend_confirmation_instructions: "שלח שוב הוראות אישור"
     unsupported_browser:
-      headline: "Please note that ActiveAdmin no longer supports Internet Explorer versions 8 or less."
-      recommendation: "We recommend upgrading to the latest <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, or <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "If you are using IE 9 or later, make sure you <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">turn off \"Compatibility View\"</a>."
+      headline: "שים לב ש-ActiveAdmin אינו תומך יותר ב-Internet Explorer גרסא 8 ומטה."
+      recommendation: "אנו ממליצים לשדרג לגרסא האחרונה של <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, או <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "אם אתה משתמש ב- IE 9 ואילך, ודא ש<a href=\"https://support.microsoft.com/he-il/help/17471\">כיבית \"תצוגת תאימות\"</a>."
     access_denied:
-      message: "אתה לא רשאי לבצע פעולה זו."
+      message: "אינך רשאי לבצע פעולה זו."
     index_list:
       table: "טבלה"
       block: "רשימה"
