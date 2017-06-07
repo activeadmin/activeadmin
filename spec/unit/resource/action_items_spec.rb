@@ -11,7 +11,7 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
 
     before do
       resource.clear_action_items!
-      resource.add_action_item :empty do
+      resource.add_action_item :empty, class: :test do
         # Empty ...
       end
     end
@@ -26,6 +26,10 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
 
     it "should store the block in the action item" do
       expect(resource.action_items.first.block).to_not eq nil
+    end
+
+    it "should include class from options" do
+      expect(resource.action_items.first.html_class).to eq("action_item test")
     end
 
   end
