@@ -138,3 +138,10 @@ en:
       block: "List"
       grid: "Grid"
       blog: "Blog"
+    ransack:
+      predicates:
+        equals: "equals"
+        contains: "contains"
+        starts_with: "starts with"
+        ends_with: "ends with"
+
