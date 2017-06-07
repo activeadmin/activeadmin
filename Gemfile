@@ -19,7 +19,7 @@ gem 'parallel_tests'
 gem 'pry' # Easily debug from your console with `binding.pry`
 
 # Code style
-gem 'rubocop', '0.48.1'
+gem 'rubocop', '0.49.1'
 
 # Translations
 gem 'i18n-tasks'
