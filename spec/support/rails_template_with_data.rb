@@ -93,6 +93,19 @@ inject_into_file 'app/admin/user.rb', <<-RUBY, after: "ActiveAdmin.register User
 
   permit_params [:first_name, :last_name, :username, :age]
 
+  index as: :grid do |user|
+    div for: user do
+      resource_selection_cell user
+      h2 link_to(user.display_name, admin_user_path(user)), style: 'margin-bottom: 0'
+      para do
+        strong user.username, style: 'text-transform: uppercase; font-size: 10px;'
+        br
+        em user.age
+        text_node 'years old'
+      end
+    end
+  end
+
   show do
     attributes_table do
       row :id
