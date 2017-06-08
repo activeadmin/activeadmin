@@ -13,9 +13,12 @@ module ActiveAdmin
 
       # The resource which initiated this relationship
       attr_reader :owner
+      # method_name to access parent object
+      attr_reader :method_name
 
       def initialize(owner, target_name, options = {})
         @owner, @target_name, @options = owner, target_name, options
+        @method_name = @options.delete(:method_name)
       end
 
       # Returns the target resource class or raises an exception if it doesn't exist
@@ -38,6 +41,10 @@ module ActiveAdmin
 
       def required?
         !optional?
+      end
+
+      def method_name
+        @method_name || @target_name
       end
 
       def to_param

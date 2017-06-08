@@ -90,4 +90,23 @@ RSpec.describe "auto linking resources", type: :view do
       end
     end
   end
+
+  context "when the resource is registered with belongs_to with different target" do
+
+    let(:post){ Post.create! title: "Hello World" , author: User.create!}
+    before do
+      load_resources do
+        active_admin_namespace.register User
+        active_admin_namespace.register Post do
+          belongs_to :user , method_name: :author  # ActiveRecord's Post belongs_to :author though
+        end
+      end
+    end
+    it "should return the display name of the object" do
+      expect(self).to receive(:url_options).and_return(locale: 'en')
+      expect(auto_link(post)).to \
+          match(%r{<a href="/admin/users/\d+/posts/\d+\?locale=en">Hello World</a>})
+    end
+
+  end
 end
