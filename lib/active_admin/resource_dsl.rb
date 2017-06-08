@@ -32,6 +32,20 @@ module ActiveAdmin
       config.scope_to(*args, &block)
     end
 
+    def scopes(*attributes)
+      options = attributes.extract_options!
+      first   = true
+
+      attributes.each do |attributes|
+        attributes = {attributes => {}} unless attributes.is_a?(Hash)
+
+        attributes.each do |attribute, attribute_options|
+          scope(attribute, options.merge(default: first).merge(attribute_options))
+          first = false
+        end
+      end
+    end
+
     # Create a scope
     def scope(*args, &block)
       config.scope(*args, &block)
