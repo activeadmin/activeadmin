@@ -336,3 +336,21 @@ form.filter_form {
   a.clear_filters_btn { @include light-button; }
 }
 
+@media only screen and (min-width: 1170px) {
+  form {
+    fieldset.inputs {
+      display: inline-block;
+      vertical-align: top;
+
+      &:not(.has_many_fields) { // usual fieldsets -- two columns
+        width: 49%;
+        margin-right: 1%;
+      }
+      
+      &.has_many_fields { // nested forms -- however many they can fit into
+        margin-right: 1%;
+      }
+    }
+    a.button.has_many_add { display: table; }
+  }
+}
