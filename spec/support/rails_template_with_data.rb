@@ -135,7 +135,7 @@ inject_into_file 'app/admin/user.rb', <<-RUBY, after: "ActiveAdmin.register User
   end
 RUBY
 
-inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post do\n"
+inject_into_file 'app/admin/post.rb', <<-'RUBY', after: "ActiveAdmin.register Post do\n"
 
   permit_params :custom_category_id, :author_id, :title, :body, :published_date, :position, :starred, taggings_attributes: [ :id, :tag_id, :name, :position, :_destroy ]
 
@@ -239,16 +239,24 @@ inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post
   end
 
   form do |f|
-    f.inputs 'Details' do
-      f.input :title
-      f.input :body
-      f.input :starred
-      f.input :author
-      f.input :position
-      f.input :published_date
-      f.input :author_id
-      f.input :custom_category_id
-      f.input :category
+    columns do
+      column do
+        f.inputs 'Details' do
+          f.input :title
+          f.input :author
+          f.input :published_date,
+            hint: f.object.persisted? && "Created at #{f.object.created_at}"
+          f.input :custom_category_id
+          f.input :category
+          f.input :position
+          f.input :starred
+        end
+      end
+      column do
+        f.inputs 'Content' do
+          f.input :body
+        end
+      end
     end
     f.inputs "Tags" do
       f.has_many :taggings, sortable: :position do |t|
@@ -256,6 +264,7 @@ inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post
         t.input :_destroy, as: :boolean
       end
     end
+    para "Press cancel to return to the list without saving."
     f.actions
   end
 RUBY
