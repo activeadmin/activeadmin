@@ -189,6 +189,15 @@ inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post
     end
   end
 
+  member_action :toggle_starred, method: :put do
+    resource.update(starred: !resource.starred)
+    redirect_to resource_path, notice: "Post updated."
+  end
+
+  action_item :toggle_starred, only: :show do
+    link_to 'Toggle Starred', toggle_starred_admin_post_path(post), method: :put
+  end
+
   show do |post|
     attributes_table do
       row :id
