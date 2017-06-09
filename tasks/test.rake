@@ -1,5 +1,5 @@
 desc "Run the full suite using 1 core"
-task test: ['spec:unit', 'spec:request', 'cucumber', 'cucumber:class_reloading']
+task test: ['spec', 'cucumber', 'cucumber:class_reloading']
 
 desc "Run the full suite against all supported Rails versions using 1 core"
 task :test_all do
@@ -18,20 +18,6 @@ end
 require 'rspec/core/rake_task'
 
 RSpec::Core::RakeTask.new(:spec)
-
-namespace :spec do
-
-  desc "Run the unit specs"
-  RSpec::Core::RakeTask.new(:unit) do |t|
-    t.pattern = "spec/unit/**/*_spec.rb"
-  end
-
-  desc "Run the request specs"
-  RSpec::Core::RakeTask.new(:request) do |t|
-    t.pattern = "spec/requests/**/*_spec.rb"
-  end
-
-end
 
 require 'cucumber/rake/task'
 
