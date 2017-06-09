@@ -8,6 +8,10 @@ ENV['RAILS_ENV'] = 'test'
 
 require File.expand_path('../../../spec/spec_helper', __FILE__)
 
+Dir["#{File.expand_path('../../step_definitions', __FILE__)}/*.rb"].each do |f|
+  require f
+end
+
 require 'rails'
 ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{Rails.version}", __FILE__)
 
