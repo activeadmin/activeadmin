@@ -5,8 +5,7 @@
 # https://github.com/glebm/i18n-tasks/issues/221 are fixed
 if ENV['COVERAGE'] == 'true'
   SimpleCov.start do
-    add_filter 'spec/'
-    add_filter 'features/'
+    add_filter 'spec/rails/'
   end
 end
 
