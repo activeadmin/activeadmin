@@ -30,12 +30,12 @@ module ActiveAdmin
 
     COLUMN_TRANSITIVE_OPTIONS = [:humanize_name].freeze
 
-    def initialize(options={}, &block)
+    def initialize(options = {}, &block)
       @resource = options.delete(:resource)
       @columns, @options, @block = [], options, block
     end
 
-    def column(name, options={}, &block)
+    def column(name, options = {}, &block)
       @columns << Column.new(name, @resource, column_transitive_options.merge(options), block)
     end
 
