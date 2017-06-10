@@ -208,7 +208,6 @@ index do
 end
 ```
 
-
 ## Showing and Hiding Columns
 
 The entire index block is rendered within the context of the view, so you can

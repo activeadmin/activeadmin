@@ -54,7 +54,6 @@ ActiveAdmin.register User do
 end
 ```
 
-
 ## Streaming
 
 By default Active Admin streams the CSV response to your browser as it's generated.

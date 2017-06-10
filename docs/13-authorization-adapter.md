@@ -127,7 +127,6 @@ By default Active Admin simplifies the controller actions into 4 actions:
 Each of these actions is available as a constant. Eg: `:read` is available as
 `ActiveAdmin::Authorization::READ`.
 
-
 ## Checking for Authorization in Controllers and Views
 
 Active Admin provides a helper method to check if the current user is
