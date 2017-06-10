@@ -117,13 +117,13 @@ end
 
 By default Active Admin simplifies the controller actions into 4 actions:
 
-  * `:read` - This controls if the user can view the menu item as well as the
-    index and show screens.
-  * `:create` - This controls if the user can view the new screen and submit
-    the form to the create action.
-  * `:update` - This controls if the user can view the edit screen and submit
-    the form to the update action.
-  * `:destroy` - This controls if the user can delete a resource.
+* `:read` - This controls if the user can view the menu item as well as the
+  index and show screens.
+* `:create` - This controls if the user can view the new screen and submit
+  the form to the create action.
+* `:update` - This controls if the user can view the edit screen and submit
+  the form to the update action.
+* `:destroy` - This controls if the user can delete a resource.
 
 Each of these actions is available as a constant. Eg: `:read` is available as
 `ActiveAdmin::Authorization::READ`.
