@@ -23,7 +23,7 @@ session from being committed. Flash messages won't work and you will be unable t
 use the session for storing anything.
 
 For more information see [the following
-post](http://www.intridea.com/blog/2013/3/20/rails-assets-prefix-may-disable-your-session)
+post](http://www.intridea.com/blog/2013/3/20/rails-assets-prefix-may-disable-your-session).
 
 ## Helpers
 
