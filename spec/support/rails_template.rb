@@ -14,7 +14,7 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
     belongs_to :author, class_name: 'User'
     has_many :taggings
     accepts_nested_attributes_for :author
-    accepts_nested_attributes_for :taggings
+    accepts_nested_attributes_for :taggings, allow_destroy: true
 
     ransacker :custom_title_searcher do |parent|
       parent.table[:title]
@@ -43,7 +43,7 @@ create_file 'app/models/blog/post.rb', <<-RUBY.strip_heredoc, force: true
     belongs_to :author, class_name: 'User'
     has_many :taggings
     accepts_nested_attributes_for :author
-    accepts_nested_attributes_for :taggings
+    accepts_nested_attributes_for :taggings, allow_destroy: true
 
     if defined? ProtectedAttributes
       attr_accessible :title, :body, :starred, :author, :position, :published_date, :author_id, :custom_category_id, :category
@@ -101,33 +101,22 @@ RUBY
 
 generate :model, 'store name:string'
 
-# Generate a model with string ids
 generate :model, 'tag name:string'
-gsub_file Dir['db/migrate/*_create_tags.rb'].first, /\:tags do .*/, <<-RUBY.strip_heredoc
-  :tags, id: false, primary_key: :id do |t|
-    t.string :id
-RUBY
 create_file 'app/models/tag.rb', <<-RUBY.strip_heredoc, force: true
   class Tag < ActiveRecord::Base
-    self.primary_key = :id
-    before_create :set_id
-
-    private
-    def set_id
-      self.id = SecureRandom.uuid
-    end
-
     if defined? ProtectedAttributes
       attr_accessible :name
     end
   end
 RUBY
 
-generate :model, 'tagging post_id:integer tag_id:integer'
+generate :model, 'tagging post_id:integer tag_id:integer position:integer'
 create_file 'app/models/tagging.rb', <<-RUBY.strip_heredoc, force: true
   class Tagging < ActiveRecord::Base
     belongs_to :post
     belongs_to :tag
+
+    delegate :name, to: :tag, prefix: true
   end
 RUBY
 
