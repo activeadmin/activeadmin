@@ -53,7 +53,7 @@ end
 
 See the [Menu](2-resource-customization.md#customize-the-menu) documentation.
 
-## Customize the breadcrumbs
+## Customize the breadcrumbs
 
 ```ruby
 ActiveAdmin.register_page "Calendar" do
