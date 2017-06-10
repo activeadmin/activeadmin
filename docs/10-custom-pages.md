@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/10-custom-pages.html
 ---
+
 # Custom Pages
 
 If you have data you want on a standalone page that isn't tied to a resource,

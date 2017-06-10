@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/1-general-configuration.html
 ---
+
 # General Configuration
 
 You can configure Active Admin settings in `config/initializers/active_admin.rb`.

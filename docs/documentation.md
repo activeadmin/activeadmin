@@ -11,7 +11,7 @@ redirect_from: /docs/documentation.html
 Active Admin is a framework for creating administration style interfaces. It abstracts common business application patterns to make it simple for developers to implement beautiful and elegant interfaces with very
 little effort.
 
-### Getting Started
+# Getting Started
 
 Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby on Rails application. To
         install, simply add the following to your Gemfile:
@@ -52,7 +52,7 @@ $> rails generate active_admin:resource
 
 This creates a file at <tt>app/admin/my_model_names.rb</tt> for configuring the resource. Refresh your web browser to see the interface.
 
-### Next Steps
+# Next Steps
 
 Now that you have a working Active Admin installation, learn how to customize it:
 

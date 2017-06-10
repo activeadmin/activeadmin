@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/4-csv-format.html
 ---
+
 # Customizing the CSV format
 
 Active Admin provides CSV file downloads on the index screen for each Resource.

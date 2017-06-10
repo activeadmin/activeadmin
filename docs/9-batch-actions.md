@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/9-batch-actions.html
 ---
+
 # Batch Actions
 
 By default, the index page provides you a "Batch Action" to quickly delete records,
