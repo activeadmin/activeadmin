@@ -110,8 +110,9 @@ To override options for string or numeric filter pass `filters` option.
   filter :title, filters: [:starts_with, :ends_with]
 ```
 
-Also, if you don't need the select with the options 'contains', 'equals', 'starts_with' or 'ends_with'
-just add the option to the filter name with an underscore.
+Also, if you don't need the select with the options 'contains', 'equals',
+'starts_with' or 'ends_with' just add the option to the filter name with an
+underscore.
 
 For example:
 
@@ -129,9 +130,11 @@ filter :author, label: 'Something else'
 
 By default, Active Admin will try to use ActiveModel I18n to determine the label.
 
-You can also filter on more than one attribute of a model using the
-[Ransack search predicate syntax](https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching). If using a custom search method, you will
-also need to specify the field type using `:as` and the label.
+You can also filter on more than one attribute of a model using the [Ransack
+search predicate
+syntax](https://github.com/activerecord-hackery/ransack/wiki/Basic-Searching).
+If using a custom search method, you will also need to specify the field type
+using `:as` and the label.
 
 ```ruby
 filter :first_name_or_last_name_cont, as: :string, label: "Name"
@@ -183,8 +186,8 @@ remove_filter :id
 ## Index Scopes
 
 You can define custom scopes for your index page. This will add a tab bar above
-the index table to quickly filter your collection on pre-defined scopes. There are
-a number of ways to define your scopes:
+the index table to quickly filter your collection on pre-defined scopes. There
+are a number of ways to define your scopes:
 
 ```ruby
 scope :all, default: true
@@ -202,12 +205,13 @@ scope ->{ Date.today.strftime '%A' }, :published_today
 scope("Inactive") { |scope| scope.where(active: false) }
 
 # conditionally show a custom controller scope
-scope "Published", if: proc { current_admin_user.can? :manage, Posts } do |posts|
+scope "Published", if: -> { current_admin_user.can? :manage, Posts } do |posts|
   posts.published
 end
 ```
 
-Scopes can be labelled with a translation, e.g. `activerecord.scopes.invoice.expired`.
+Scopes can be labelled with a translation, e.g.
+`activerecord.scopes.invoice.expired`.
 
 ## Index default sort order
 
@@ -290,6 +294,9 @@ ActiveAdmin.setup do |config|
 end
 ```
 
-Note: you have to actually implement PDF rendering for your action, ActiveAdmin does not provide this feature. This setting just allows you to specify formats that you want to show up under the index collection.
+Note: you have to actually implement PDF rendering for your action, ActiveAdmin
+does not provide this feature. This setting just allows you to specify formats
+that you want to show up under the index collection.
 
-You'll need to use a PDF rendering library like PDFKit or WickedPDF to get the PDF generation you want.
+You'll need to use a PDF rendering library like PDFKit or WickedPDF to get the
+PDF generation you want.

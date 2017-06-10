@@ -71,7 +71,8 @@ To register an existing model with Active Admin:
 rails generate active_admin:resource MyModel
 ```
 
-This creates a file at `app/admin/my_model.rb` to set up the UI; refresh your browser to see it.
+This creates a file at `app/admin/my_model.rb` to set up the UI; refresh your
+browser to see it.
 
 # Upgrading
 
@@ -102,8 +103,8 @@ Kaminari.configure do |config|
 end
 ```
 
-If you are also using [Draper](https://github.com/drapergem/draper), you may want to
-make sure `per_page_kaminari` is delegated correctly:
+If you are also using [Draper](https://github.com/drapergem/draper), you may
+want to make sure `per_page_kaminari` is delegated correctly:
 
 ```ruby
 Draper::CollectionDecorator.send :delegate, :per_page_kaminari

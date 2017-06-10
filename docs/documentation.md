@@ -2,13 +2,14 @@
 redirect_from: /docs/documentation.html
 ---
 
-Active Admin is a framework for creating administration style interfaces. It abstracts common business application patterns to make it simple for developers to implement beautiful and elegant interfaces with very
-little effort.
+Active Admin is a framework for creating administration style interfaces. It
+abstracts common business application patterns to make it simple for developers
+to implement beautiful and elegant interfaces with very little effort.
 
 # Getting Started
 
-Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby on Rails application. To
-        install, simply add the following to your Gemfile:
+Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby
+on Rails application. To install, simply add the following to your Gemfile:
 
 ```ruby
 # Gemfile
@@ -21,7 +22,9 @@ After updating your bundle, run the installer
 rails generate active_admin:install
 ```
 
-The installer creates an initializer used for configuring defaults used by Active Admin as well as a new folder at `app/admin` to put all your admin configurations.
+The installer creates an initializer used for configuring defaults used by
+Active Admin as well as a new folder at `app/admin` to put all your admin
+configurations.
 
 Migrate your db and start the server:
 
@@ -44,7 +47,8 @@ $> rails generate active_admin:resource
         [MyModelName]
 ```
 
-This creates a file at `app/admin/my_model_names.rb` for configuring the resource. Refresh your web browser to see the interface.
+This creates a file at `app/admin/my_model_names.rb` for configuring the
+resource. Refresh your web browser to see the interface.
 
 # Next Steps
 

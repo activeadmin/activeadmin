@@ -46,10 +46,12 @@ config.site_title_image = ->(context) { context.current_user.company.logo_url }
 
 ## Internationalization (I18n)
 
-To translate Active Admin to a new language or customize an existing translation, you can copy
+To translate Active Admin to a new language or customize an existing
+translation, you can copy
 [config/locales/en.yml](https://github.com/activeadmin/activeadmin/blob/master/config/locales/en.yml)
-to your application's `config/locales` folder and update it. We welcome new/updated translations,
-so feel free to [contribute](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md)!
+to your application's `config/locales` folder and update it. We welcome
+new/updated translations, so feel free to
+[contribute](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md)!
 To translate third party gems like devise, use for example devise-i18n.
 
 ## Localize Format For Dates and Times

@@ -86,7 +86,8 @@ ActiveAdmin.register_page "Status" do
 end
 ```
 
-See also the [Belongs To](2-resource-customization.md#belongs-to) documentation and examples.
+See also the [Belongs To](2-resource-customization.md#belongs-to) documentation
+and examples.
 
 ## Add a Sidebar
 
@@ -105,7 +106,8 @@ end
 
 ## Add a Page Action
 
-Page actions are custom controller actions (which mirror the resource DSL for the same feature).
+Page actions are custom controller actions (which mirror the resource DSL for
+the same feature).
 
 ```ruby
 page_action :add_event, method: :post do
@@ -120,7 +122,8 @@ end
 
 This defines the route `/admin/calendar/add_event` which can handle HTTP POST requests.
 
-Clicking on the action item will reload page and display the message "Your event was added"
+Clicking on the action item will reload page and display the message "Your event
+was added"
 
 Page actions can handle multiple HTTP verbs.
 
