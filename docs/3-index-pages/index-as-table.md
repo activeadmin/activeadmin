@@ -167,7 +167,7 @@ index do
 end
 ```
 
-## Custom sorting 
+## Custom sorting
 
 It is also possible to use database specific expressions and options for sorting by column
 

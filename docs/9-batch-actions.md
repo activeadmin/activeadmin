@@ -52,7 +52,7 @@ end
 
 # app/admin/post.rb
 ActiveAdmin.register Post do
-  
+
   # Resource level:
   config.batch_actions = false
 end
