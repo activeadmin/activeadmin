@@ -36,7 +36,7 @@ $> rake db:migrate
 $> rails server
 ```
 
-Visit http://localhost:3000/admin and log in using:
+Visit `http://localhost:3000/admin` and log in using:
 
 * <em>User</em>: admin@example.com
 * <em>Password</em>: password
