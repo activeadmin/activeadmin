@@ -39,7 +39,7 @@ inject_into_file 'app/admin/user.rb', <<-RUBY, after: "ActiveAdmin.register User
     end
 
     panel 'Posts' do
-      table_for(user.posts.order(:updated_at).limit(10)) do
+      table_for(user.posts.includes(:category).order(:updated_at).limit(10)) do
         column :id do |post|
           link_to post.id, admin_post_path(post)
         end
@@ -59,6 +59,8 @@ RUBY
 inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post do\n"
 
   permit_params :custom_category_id, :author_id, :title, :body, :published_date, :position, :starred, taggings_attributes: [ :id, :tag_id, :name, :position, :_destroy ]
+
+  includes :author, :category, :taggings
 
   scope :all, default: true
 
