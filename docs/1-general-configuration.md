@@ -140,16 +140,19 @@ config.comments_registration_name = 'AdminComment'
 
 You can change the order for the comments and you can change the column to be
 used for ordering:
+
 ```ruby
 config.comments_order = 'created_at ASC'
 ```
 
 You can disable the menu item for the comments index page:
+
 ```ruby
 config.comments_menu = false
 ```
 
 You can customize the comment menu:
+
 ```ruby
 config.comments_menu = { parent: 'Admin', priority: 1 }
 ```
@@ -177,6 +180,7 @@ end
 
 By default, Active Admin displays a "Powered by ActiveAdmin" message on every
 page. You can override this message and show domain-specific messaging:
+
 ```ruby
 config.footer = "MyApp Revision v1.3"
 ```

@@ -128,4 +128,5 @@ page_action :add_event, method: [:get, :post] do
   # ...
 end
 ```
+
 See also the [Custom Actions](8-custom-actions.md#http-verbs) example.

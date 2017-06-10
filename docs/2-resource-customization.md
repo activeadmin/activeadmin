@@ -194,6 +194,7 @@ end
 ### Conditionally Showing / Hiding Menu Items
 
 Menu items can be shown or hidden at runtime using the `:if` option.
+
 ```ruby
 ActiveAdmin.register Post do
   menu if: proc{ current_user.can_edit_posts? }

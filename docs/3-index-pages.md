@@ -113,6 +113,7 @@ Also, if you don't need the select with the options 'contains', 'equals', 'start
 just add the option to the filter name with an underscore.
 
 For example:
+
 ```ruby
 filter :name_equals
 # or

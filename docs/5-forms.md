@@ -178,7 +178,7 @@ You can arrange content in tabs as shown below:
 
 In order to simplify creating multiple resources you may enable ActiveAdmin to show nice "Create Another" checkbox alongside of Create Model
 button. It may be enabled for the whole application:
- 
+
 ```ruby
 ActiveAdmin.setup do |config|
   config.create_another = true
