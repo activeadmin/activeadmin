@@ -80,6 +80,11 @@ inject_into_file 'app/admin/post.rb', <<-RUBY, after: "ActiveAdmin.register Post
     posts.where(author_id: current_admin_user.id)
   end
 
+  batch_action :set_starred, form: { starred: :checkbox } do |ids, inputs|
+    Post.where(id: ids).update_all(starred: inputs['starred'].present?)
+    redirect_to collection_path, notice: "The posts have been updated."
+  end
+
   index do
     selectable_column
     id_column
