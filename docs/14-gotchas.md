@@ -22,8 +22,8 @@ When configuring the asset pipeline ensure that the asset prefix
 session from being committed. Flash messages won't work and you will be unable to
 use the session for storing anything.
 
-For more information see the following post:
-[http://www.intridea.com/blog/2013/3/20/rails-assets-prefix-may-disable-your-session](http://www.intridea.com/blog/2013/3/20/rails-assets-prefix-may-disable-your-session)
+For more information see [the following
+post](http://www.intridea.com/blog/2013/3/20/rails-assets-prefix-may-disable-your-session)
 
 ## Helpers
 
