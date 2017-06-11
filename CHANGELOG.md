@@ -2,6 +2,10 @@
 
 ## Master (unreleased)
 
+### Removals
+
+* Ruby 2.1 support has been dropped [#5002][] by [@deivid-rodriguez][]
+
 ### Deprecations
 
 * Deprecated `type` param from `status_tag` and related CSS classes [#4989][] by [@javierjulio][]
