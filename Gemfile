@@ -44,7 +44,7 @@ group :test do
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'codecov', require: false # Test coverage website. Go to https://codecov.io
   gem 'cucumber-rails', github: 'cucumber/cucumber-rails', require: false
-  gem 'cucumber', '1.3.20'
+  gem 'cucumber'
   gem 'database_cleaner'
   gem 'jasmine'
   gem 'jslint_on_rails'
