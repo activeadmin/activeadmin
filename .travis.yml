@@ -24,7 +24,6 @@ script:
 
 rvm:
   - jruby-9.1.10.0
-  - 2.1.10
   - 2.2.7
   - 2.3.4
   - 2.4.1
@@ -41,12 +40,6 @@ env:
 
 matrix:
   fast_finish: true
-
-  exclude:
-    - rvm: 2.1.10
-      gemfile: gemfiles/rails_50.gemfile
-    - rvm: 2.1.10
-      gemfile: gemfiles/rails_51.gemfile
 
   allow_failures:
     - rvm: jruby-9.1.10.0
