@@ -27,7 +27,6 @@ lt:
       predicates:
         contains: "Sudėtyje yra"
         equals: 'lygus'
-        eq: 'lygus'
         starts_with: "Prasideda nuo"
         ends_with: "Baigiasi"
         greater_than: 'didesnis nei'
