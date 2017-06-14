@@ -4,6 +4,8 @@ language: ruby
 
 sudo: false
 
+dist: trusty
+
 bundler_args: --without development
 
 branches:
