@@ -46,15 +46,3 @@ matrix:
       gemfile: gemfiles/rails_50.gemfile
     - rvm: jruby-9.1.10.0
       gemfile: gemfiles/rails_51.gemfile
-
-notifications:
-  irc:
-    channels:
-      - irc.freenode.org#activeadmin
-
-    on_success: change
-    on_failure: always
-    skip_join: true
-
-    template:
-      - "(%{branch}/%{commit} by %{author}): %{message} (%{build_url})"
