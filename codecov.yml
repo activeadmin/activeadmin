@@ -13,11 +13,5 @@ coverage:
     patch: true
     project: true
 parsers:
-  gcov:
-    branch_detection:
-      conditional: true
-      loop: true
-      macro: false
-      method: false
   javascript:
     enable_partials: false
