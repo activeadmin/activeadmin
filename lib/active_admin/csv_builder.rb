@@ -45,7 +45,7 @@ module ActiveAdmin
       options      = ActiveAdmin.application.csv_options.merge self.options
       bom          = options.delete :byte_order_mark
       column_names = options.delete(:column_names) { true }
-      csv_options  = options.except :encoding_options
+      csv_options  = options.except :encoding_options, :humanize_name
 
       csv << bom if bom
 

@@ -61,6 +61,23 @@ Feature: Format as CSV
       | Title        | Body |
       | Hello, World | (.*) |
 
+  Scenario: With humanize_name option
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        csv humanize_name: false do
+          column :title
+          column :body
+        end
+      end
+    """
+    And a post with the title "Hello, World" exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    And I should download a CSV file with "," separator for "posts" containing:
+      | title | body |
+      | Hello, World | (.*) |
+    
   Scenario: With CSV option customization
     Given a configuration of:
     """
