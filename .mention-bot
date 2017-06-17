@@ -1,9 +1,0 @@
-{
-  "message": "@pullRequester, thanks for contributing an activeadmin
-              translation! @reviewers, are you able to review this?",
-  "findPotentialReviewers": true,
-  "actions": ["labeled"],
-  "createComment": true,
-  "withLabel": "i18n",
-  "delayed": false
-}
