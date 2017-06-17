@@ -1,5 +1,3 @@
-# Encoding: UTF-8
-
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::CSVBuilder do

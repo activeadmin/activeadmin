@@ -35,6 +35,10 @@ Layout/EndOfLine:
 Layout/ExtraSpacing:
   Enabled: true
 
+Style/Encoding:
+  EnforcedStyle: never
+  Enabled: true
+
 Style/HashSyntax:
   Enabled: true
 
