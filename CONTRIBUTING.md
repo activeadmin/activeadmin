@@ -38,7 +38,7 @@ bundle install
 Now you should be able to run the entire suite using:
 
 ```sh
-bundle exec rake test
+bundle exec rake
 ```
 
 This will automatically run the tests against Rails 5.0. But you can easily run
