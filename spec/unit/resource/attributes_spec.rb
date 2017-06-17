@@ -47,4 +47,3 @@ module ActiveAdmin
 
   end
 end
-

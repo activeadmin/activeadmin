@@ -55,6 +55,9 @@ Style/PredicateName:
     - has_many
     - has_many_actions
 
+Layout/TrailingBlankLines:
+  Enabled: true
+
 Layout/TrailingWhitespace:
   Enabled: true
 

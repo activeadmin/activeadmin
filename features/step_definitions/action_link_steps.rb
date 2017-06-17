@@ -17,4 +17,3 @@ end
 Then /^I should not see a dropdown menu item to "([^"]*)"$/ do |name|
   %{Then I should not see "#{name}" within "ul.dropdown_menu_list li a"}
 end
-

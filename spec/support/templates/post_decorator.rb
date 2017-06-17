@@ -8,4 +8,3 @@ class PostDecorator < Draper::Decorator
     'A method only available on the decorator'
   end
 end
-
