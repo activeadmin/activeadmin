@@ -8,6 +8,7 @@ es:
     edit: "Editar"
     delete: "Eliminar"
     delete_confirmation: "¿Está seguro de que quiere eliminar esto?"
+    create_another: "Crear otro %{model}"
     new_model: "Añadir %{model}"
     edit_model: "Editar %{model}"
     delete_model: "Eliminar %{model}"
@@ -31,6 +32,10 @@ es:
         ends_with: "Termina con"
         greater_than: "Mayor que"
         less_than: "Menor que"
+        gteq_datetime: "Mayor o igual que"
+        lteq_datetime: "Menor o igual que"
+        from: "Desde"
+        to: "Hasta"
     search_status:
       headline: "Estado de la búsqueda:"
       current_scope: "Alcance:"
@@ -51,6 +56,7 @@ es:
       one_page: "Mostrando <b>un total de %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
       multiple_without_total: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Por página: "
       entry:
         one: "registro"
         other: "registros"
@@ -94,7 +100,9 @@ es:
       subdomain:
         title: "Subdominio"
       password:
-        title: "Password"
+        title: "Contraseña"
+      password_confirmation:
+        title: "Confirmar Contraseña"
       sign_up:
         title: "Registrarse"
         submit: "Registrarse"
