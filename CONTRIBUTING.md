@@ -27,8 +27,7 @@ git checkout -b 325-add-japanese-translations
 ### 3. Get the test suite running
 
 Make sure you're using a recent ruby and have the `bundler` gem installed, at
-least version `1.14.3`. The most reliable `bundler` version to use is the same
-Travis is using.
+least version `1.14.3`.
 
 Install the development dependencies:
 
