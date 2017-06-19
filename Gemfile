@@ -47,7 +47,6 @@ group :test do
   gem 'cucumber'
   gem 'database_cleaner'
   gem 'jasmine'
-  gem 'jslint_on_rails'
   gem 'launchy'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
