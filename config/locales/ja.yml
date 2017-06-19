@@ -125,7 +125,7 @@ ja:
     unsupported_browser:
       headline: "ActiveAdminは、Internet Explorer 8以下はサポートはしていません。"
       recommendation: "最新版の<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>、<a href=\"https://chrome.google.com/\">Google Chrome</a>、もしくは<a href=\"https://mozilla.org/firefox/\">Firefox</a>を使うことを推奨します。"
-      turn_off_compatibility_view: "Internet Explorer 9以降を使っている場合、<a href=\"http://windows.microsoft.com/ja-JP/windows7/webpages-look-incorrect-in-Internet-Explorer\">互換表示をオフ</a>にしてください。"
+      turn_off_compatibility_view: "Internet Explorer 9以降を使っている場合、<a href=\"https://support.microsoft.com/ja-jp/help/17471\">互換表示をオフ</a>にしてください。"
     access_denied:
       message: "アクションを実行する権限がありません"
     index_list:

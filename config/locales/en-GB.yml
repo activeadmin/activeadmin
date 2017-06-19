@@ -128,7 +128,7 @@
     unsupported_browser:
       headline: "Please note that ActiveAdmin no longer supports Internet Explorer versions 8 or less."
       recommendation: "We recommend upgrading to the latest <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, or <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "If you are using IE 9 or later, make sure you <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">turn off \"Compatibility View\"</a>."
+      turn_off_compatibility_view: "If you are using IE 9 or later, make sure you <a href=\"https://support.microsoft.com/en-gb/help/17471\">turn off \"Compatibility View\"</a>."
     access_denied:
       message: "You are not authorised to perform this action."
     index_list:

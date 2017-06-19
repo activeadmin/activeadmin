@@ -125,7 +125,7 @@ uk:
     unsupported_browser:
       headline: "Зверніть, будь-ласка, увагу, що ActiveAdmin більше не підтримує Internet Explorer 8 версії і нижче"
       recommendation: "Ми рекомендуємо оновити версію вашого браузеру (<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, або <a href=\"https://mozilla.org/firefox/\">Firefox</a>)."
-      turn_off_compatibility_view: "Якщо ви використовуєте IE 9 і вище, переконайтесь, що <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">ви вимкнули опцію \"Перегляд в режимі сумісності\"</a>."
+      turn_off_compatibility_view: "Якщо ви використовуєте IE 9 і вище, переконайтесь, що <a href=\"https://support.microsoft.com/uk-ua/help/17471\">ви вимкнули опцію \"Перегляд в режимі сумісності\"</a>."
     access_denied:
       message: "Ви не авторизовані для виконання даної дії."
     index_list:

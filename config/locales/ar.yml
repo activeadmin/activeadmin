@@ -124,7 +124,7 @@ ar:
     unsupported_browser:
       headline: "يُرجى مُلاحظة أن (أكتف أدمن) لم تعد تدعم المُتصفّح إنترنت اكسبلوررالإصدار الثامن وما قبله"
       recommendation: "ننصح بالتحديث إلى الإصدارات الأخيرة من: <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, أو <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "إن كنت تستخدم الإصدار التاسع وما يليه من إنترنت إكسبلورر تأكّد من <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">تعطيل \"Compatibility View\"</a>."
+      turn_off_compatibility_view: "إن كنت تستخدم الإصدار التاسع وما يليه من إنترنت إكسبلورر تأكّد من <a href=\"https://support.microsoft.com/ar-ae/help/17471\">تعطيل \"Compatibility View\"</a>."
     access_denied:
       message: "لم يُصرّح لك بهذا الإجراء."
     index_list:
