@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/13-authorization-adapter.html
 ---
+
 # Authorization Adapter
 
 Active Admin offers the ability to define and use your own authorization
@@ -40,7 +41,8 @@ application's `config/initializers/active_admin.rb` and add/modify the line:
 config.authorization_adapter = "OnlyAuthorsAuthorization"
 ```
 
-Authorization adapters can be configured per ActiveAdmin namespace as well, for example:
+Authorization adapters can be configured per ActiveAdmin namespace as well, for
+example:
 
 ```ruby
 ActiveAdmin.setup do |config|
@@ -73,9 +75,9 @@ end
 
 ## Scoping Collections in Authorization Adapters
 
-`ActiveAdmin::AuthorizationAdapter` also provides a hook method (`#scope_collection`)
-for the adapter to scope the resource's collection. For example, you may want to
-centralize the scoping:
+`ActiveAdmin::AuthorizationAdapter` also provides a hook method
+(`#scope_collection`) for the adapter to scope the resource's collection. For
+example, you may want to centralize the scoping:
 
 ```ruby
 class OnlyMyAccount < ActiveAdmin::AuthorizationAdapter
@@ -104,7 +106,9 @@ class OnlyDashboard < ActiveAdmin::AuthorizationAdapter
   def authorized?(action, subject = nil)
     case subject
     when ActiveAdmin::Page
-      action == :read && subject.name == "Dashboard" && subject.namespace.name == :admin
+      action == :read &&
+        subject.name == "Dashboard" &&
+        subject.namespace.name == :admin
     else
       false
     end
@@ -116,24 +120,23 @@ end
 
 By default Active Admin simplifies the controller actions into 4 actions:
 
-  * `:read` - This controls if the user can view the menu item as well as the
-    index and show screens.
-  * `:create` - This controls if the user can view the new screen and submit
-    the form to the create action.
-  * `:update` - This controls if the user can view the edit screen and submit
-    the form to the update action.
-  * `:destroy` - This controls if the user can delete a resource.
+* `:read` - This controls if the user can view the menu item as well as the
+  index and show screens.
+* `:create` - This controls if the user can view the new screen and submit
+  the form to the create action.
+* `:update` - This controls if the user can view the edit screen and submit
+  the form to the update action.
+* `:destroy` - This controls if the user can delete a resource.
 
 Each of these actions is available as a constant. Eg: `:read` is available as
 `ActiveAdmin::Authorization::READ`.
-
 
 ## Checking for Authorization in Controllers and Views
 
 Active Admin provides a helper method to check if the current user is
 authorized to perform an action on a subject.
 
-Simply use the `#authorized?(action, subject) method to check.
+Simply use the `#authorized?(action, subject)` method to check.
 
 ```ruby
 ActiveAdmin.register Post do
@@ -187,18 +190,19 @@ initializer:
 config.authorization_adapter = ActiveAdmin::CanCanAdapter
 ```
 
-You can also specify a method to be called on unauthorized access. This is necessary
-in order to prevent a redirect loop that can happen if a user tries to access a page
-they don't have permissions for (see [#2081](https://github.com/activeadmin/activeadmin/issues/2081)).
+You can also specify a method to be called on unauthorized access. This is
+necessary in order to prevent a redirect loop that can happen if a user tries to
+access a page they don't have permissions for (see
+[#2081](https://github.com/activeadmin/activeadmin/issues/2081)).
 
 ```ruby
 config.on_unauthorized_access = :access_denied
 ```
 
-The method `access_denied` would be defined in `application_controller.rb`. Here is one
-example that redirects the user from the page they don't have permission to
-access to a resource they have permission to access (organizations in this case), and
-also displays the error message in the browser:
+The method `access_denied` would be defined in `application_controller.rb`. Here
+is one example that redirects the user from the page they don't have permission
+to access to a resource they have permission to access (organizations in this
+case), and also displays the error message in the browser:
 
 ```ruby
 class ApplicationController < ActionController::Base
@@ -235,11 +239,14 @@ class Ability
 end
 ```
 
-To view more details about the API's, visit project pages of [CanCan](https://github.com/ryanb/cancan) and [CanCanCan](https://github.com/CanCanCommunity/cancancan).
+To view more details about the API's, visit project pages of
+[CanCan](https://github.com/ryanb/cancan) and
+[CanCanCan](https://github.com/CanCanCommunity/cancancan).
 
 ## Using the Pundit Adapter
 
-Active Admin provides an adapter out of the box also for [Pundit](https://github.com/elabs/pundit).
+Active Admin provides an adapter out of the box also for
+[Pundit](https://github.com/elabs/pundit).
 
 To use the Pundit adapter, simply update the configuration in the Active Admin
 initializer:
@@ -248,4 +255,12 @@ initializer:
 config.authorization_adapter = ActiveAdmin::PunditAdapter
 ```
 
-You can simply use Pundit the way that you would expect and Active Admin will use it for authorization. Check Pundit's documentation to [set up Pundit in your application](https://github.com/elabs/pundit#installation). If you want to use batch actions just ensure that `destroy_all?` method is defined in your policy class. You can use this [template policy](https://github.com/activeadmin/activeadmin/blob/master/spec/support/templates/policies/application_policy.rb) in your application instead of default one generated by Pundit's `rails g pundit:install` command.
+You can simply use Pundit the way that you would expect and Active Admin will
+use it for authorization. Check Pundit's documentation to [set up Pundit in your
+application](https://github.com/elabs/pundit#installation). If you want to use
+batch actions just ensure that `destroy_all?` method is defined in your policy
+class. You can use this [template
+policy](https://github.com/activeadmin/activeadmin/blob/master/spec/support/templates/policies/application_policy.rb)
+in your application instead of default one generated by Pundit's `rails g
+pundit:install` command.
+

@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/5-forms.html
 ---
+
 # Forms
 
 Active Admin gives you complete control over the output of the form by creating
@@ -63,7 +64,8 @@ end
 
 This is a regular Rails partial so any template engine may be used.
 
-You can also use the `ActiveAdmin::FormBuilder` as builder in your Formtastic Form for use the same helpers are used in the admin file:
+You can also use the `ActiveAdmin::FormBuilder` as builder in your Formtastic
+Form for use the same helpers are used in the admin file:
 
 ```ruby
   = semantic_form_for [:admin, @post], builder: ActiveAdmin::FormBuilder do |f|
@@ -77,7 +79,8 @@ You can also use the `ActiveAdmin::FormBuilder` as builder in your Formtastic Fo
 
 ## Nested Resources
 
-You can create forms with nested models using the `has_many` method, even if your model uses `has_one`:
+You can create forms with nested models using the `has_many` method, even if
+your model uses `has_one`:
 
 ```ruby
 ActiveAdmin.register Post do
@@ -89,7 +92,9 @@ ActiveAdmin.register Post do
     end
     f.inputs 'Content', :body
     f.inputs do
-      f.has_many :categories, heading: 'Themes', allow_destroy: true, new_record: false do |a|
+      f.has_many :categories, heading: 'Themes',
+                              allow_destroy: true,
+                              new_record: false do |a|
         a.input :title
       end
     end
@@ -99,8 +104,9 @@ ActiveAdmin.register Post do
       end
     end
     f.inputs do
-      f.has_many :comment, new_record: 'Leave Comment',
-        allow_destroy: proc { |comment| comment.author?(current_admin_user) } do |b|
+      f.has_many :comment,
+                 new_record: 'Leave Comment',
+                 allow_destroy: -> { |c| c.author?(current_admin_user) } do |b|
         b.input :body
       end
     end
@@ -112,27 +118,44 @@ end
 
 The `:allow_destroy` option adds a checkbox to the end of the nested form allowing
 removal of the child object upon submission. Be sure to set `allow_destroy: true`
-on the association to use this option. It is possible to associate `:allow_destroy` with a string or a symbol, corresponding to the name of a child object's method that will get called, or with a Proc object. The Proc object receives the child object as a parameter and should return either true or false.
+on the association to use this option. It is possible to associate
+`:allow_destroy` with a string or a symbol, corresponding to the name of a child
+object's method that will get called, or with a Proc object. The Proc object
+receives the child object as a parameter and should return either true or false.
 
-The `:heading` option adds a custom heading. You can hide it entirely by passing `false`.
+The `:heading` option adds a custom heading. You can hide it entirely by passing
+`false`.
 
-The `:new_record` option controls the visibility of the new record button (shown by default).
-If you pass a string, it will be used as the text for the new record button.
+The `:new_record` option controls the visibility of the new record button (shown
+by default).  If you pass a string, it will be used as the text for the new
+record button.
 
-The `:sortable` option adds a hidden field and will enable drag & drop sorting of the children. It
-expects the name of the column that will store the index of each child.
+The `:sortable` option adds a hidden field and will enable drag & drop sorting
+of the children. It expects the name of the column that will store the index of
+each child.
 
-The `:sortable_start` option sets the value (0 by default) of the first position in the list.
+The `:sortable_start` option sets the value (0 by default) of the first position
+in the list.
 
 ## Datepicker
 
-ActiveAdmin offers the `datepicker` input, which uses the [jQuery UI datepicker](http://jqueryui.com/datepicker/).
-The datepicker input accepts any of the options available to the standard jQueryUI Datepicker. For example:
+ActiveAdmin offers the `datepicker` input, which uses the [jQuery UI
+datepicker](http://jqueryui.com/datepicker/).  The datepicker input accepts any
+of the options available to the standard jQueryUI Datepicker. For example:
 
 ```ruby
 form do |f|
-  f.input :starts_at, as: :datepicker, datepicker_options: { min_date: "2013-10-8",        max_date: "+3D" }
-  f.input :ends_at,   as: :datepicker, datepicker_options: { min_date: 3.days.ago.to_date, max_date: "+1W +5D" }
+  f.input :starts_at, as: :datepicker,
+                      datepicker_options: {
+                        min_date: "2013-10-8",
+                        max_date: "+3D"
+                      }
+
+  f.input :ends_at, as: :datepicker,
+                    datepicker_options: {
+                      min_date: 3.days.ago.to_date,
+                      max_date: "+1W +5D"
+                    }
 end
 ```
 
@@ -176,9 +199,10 @@ You can arrange content in tabs as shown below:
 
 # Customize the Create Another checkbox
 
-In order to simplify creating multiple resources you may enable ActiveAdmin to show nice "Create Another" checkbox alongside of Create Model
-button. It may be enabled for the whole application:
- 
+In order to simplify creating multiple resources you may enable ActiveAdmin to
+show nice "Create Another" checkbox alongside of Create Model button. It may be
+enabled for the whole application:
+
 ```ruby
 ActiveAdmin.setup do |config|
   config.create_another = true

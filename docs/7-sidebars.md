@@ -68,7 +68,8 @@ By default sidebars are positioned in the same order as they defined, but it's a
 possible to specify their position manually:
 
 ```ruby
-sidebar :help, priority: 0 # will push Help section to the top (above default Filters section)
+# will push Help section to the top (above default Filters section)
+sidebar :help, priority: 0
 ```
 
 Default sidebar priority is `10`.

@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/12-arbre-components.html
 ---
+
 # Arbre Components
 
 Arbre allows the creation of shareable and extendable HTML components and is
@@ -21,7 +22,7 @@ ActiveAdmin.register Post do
         row :id
         row 'Tags' do
           post.tags.each do |tag|
-            a tag, href: admin_post_path(q: {tagged_with_contains: tag})          
+            a tag, href: admin_post_path(q: {tagged_with_contains: tag})
             text_node "&nbsp;".html_safe
           end
         end
@@ -57,7 +58,7 @@ The Columns component allows you draw content into scalable columns. All you
 need to do is define the number of columns and the component will take care of
 the rest.
 
-#### Simple Columns
+### Simple Columns
 
 To create simple columns, use the `columns` method. Within the block, call
 the #column method to create a new column.

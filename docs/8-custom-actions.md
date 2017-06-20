@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/8-custom-actions.html
 ---
+
 # Custom Controller Actions
 
 Active Admin allows you to override and modify the underlying controller which
@@ -138,7 +139,9 @@ end
 Actions items also accept the `:if` option to conditionally display them:
 
 ```ruby
-action_item :super_action, only: :show, if: proc{ current_admin_user.super_admin? } do
+action_item :super_action,
+            only: :show,
+            if: proc{ current_admin_user.super_admin? } do
   "Only display this to super admins on the show screen"
 end
 ```

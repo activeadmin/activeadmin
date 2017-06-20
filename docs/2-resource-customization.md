@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/2-resource-customization.html
 ---
+
 # Working with Resources
 
 Every Active Admin resource corresponds to a Rails model. So before creating a
@@ -27,8 +28,8 @@ ActiveAdmin.register Post do
 end
 ```
 
-Any form field that sends multiple values (such as a HABTM association, or an array attribute)
-needs to pass an empty array to `permit_params`:
+Any form field that sends multiple values (such as a HABTM association, or an
+array attribute) needs to pass an empty array to `permit_params`:
 
 If your HABTM is `roles`, you should permit `role_ids: []`
 
@@ -74,7 +75,8 @@ ActiveAdmin.register Post do
 end
 ```
 
-The `permit_params` call creates a method called `permitted_params`. You should use this method when overriding `create` or `update` actions:
+The `permit_params` call creates a method called `permitted_params`. You should
+use this method when overriding `create` or `update` actions:
 
 ```ruby
 ActiveAdmin.register Post do
@@ -105,8 +107,10 @@ end
 
 ## Renaming Action Items
 
-You can use translations to override labels and page titles for actions such as new, edit, and destroy by providing a resource specific translation.
-For example, to change 'New Offer' to 'Make an Offer' add the following in config/locales/[en].yml:
+You can use translations to override labels and page titles for actions such as
+new, edit, and destroy by providing a resource specific translation.  For
+example, to change 'New Offer' to 'Make an Offer' add the following in
+config/locales/[en].yml:
 
 ```
 en:
@@ -194,6 +198,7 @@ end
 ### Conditionally Showing / Hiding Menu Items
 
 Menu items can be shown or hidden at runtime using the `:if` option.
+
 ```ruby
 ActiveAdmin.register Post do
   menu if: proc{ current_user.can_edit_posts? }
@@ -268,9 +273,15 @@ config.namespace :admin do |admin|
     menu.add label: "The Application", url: "/", priority: 0
 
     menu.add label: "Sites" do |sites|
-      sites.add label: "Google",   url: "http://google.com", html_options: { target: :blank }
-      sites.add label: "Facebook", url: "http://facebook.com"
-      sites.add label: "Github",   url: "http://github.com"
+      sites.add label: "Google",
+                url: "http://google.com",
+                html_options: { target: :blank }
+
+      sites.add label: "Facebook",
+                url: "http://facebook.com"
+
+      sites.add label: "Github",
+                url: "http://github.com"
     end
   end
 end
@@ -309,7 +320,8 @@ end
 
 ## Eager loading
 
-A common way to increase page performance is to elimate N+1 queries by eager loading associations:
+A common way to increase page performance is to elimate N+1 queries by eager
+loading associations:
 
 ```ruby
 ActiveAdmin.register Post do
@@ -319,10 +331,13 @@ end
 
 ## Customizing resource retrieval
 
-Our controllers are built on [Inherited Resources](https://github.com/activeadmin/inherited_resources),
-so you can use [all of its features](https://github.com/activeadmin/inherited_resources#overwriting-defaults).
+Our controllers are built on [Inherited
+Resources](https://github.com/activeadmin/inherited_resources), so you can use
+[all of its
+features](https://github.com/activeadmin/inherited_resources#overwriting-defaults).
 
-If you need to customize the collection properties, you can overwrite the `scoped_collection` method.
+If you need to customize the collection properties, you can overwrite the
+`scoped_collection` method.
 
 ```ruby
 ActiveAdmin.register Post do
@@ -334,8 +349,9 @@ ActiveAdmin.register Post do
 end
 ```
 
-If you need to completely replace the record retrieving code (e.g., you have a custom
-`to_param` implementation in your models), override the `resource` method on the controller:
+If you need to completely replace the record retrieving code (e.g., you have a
+custom `to_param` implementation in your models), override the `resource` method
+on the controller:
 
 ```ruby
 ActiveAdmin.register Post do
@@ -347,8 +363,9 @@ ActiveAdmin.register Post do
 end
 ```
 
-Note that if you use an authorization library like CanCan, you should be careful to not
-write code like this, otherwise **your authorization rules won't be applied**:
+Note that if you use an authorization library like CanCan, you should be careful
+to not write code like this, otherwise **your authorization rules won't be
+applied**:
 
 ```ruby
 ActiveAdmin.register Post do
