@@ -5,22 +5,19 @@ module ActiveAdmin
 
         def build(*args)
           super
-          add_classes_to_body
           build_active_admin_head
           build_page
+        end
+
+        def build_head
+          @head = head do 
+            meta "http-equiv": 'Content-type', content: 'text/html; charset=utf-8 width=device-width, initial-scale=1, shrink-to-fit=no'
+          end
         end
 
         private
 
         delegate :active_admin_config, :controller, :params, to: :helpers
-
-        def add_classes_to_body
-          @body.add_class(params[:action])
-          @body.add_class(params[:controller].tr('/', '_'))
-          @body.add_class("active_admin")
-          @body.add_class("logged_in")
-          @body.add_class(active_admin_namespace.name.to_s + "_namespace")
-        end
 
         def build_active_admin_head
           within @head do
@@ -47,13 +44,15 @@ module ActiveAdmin
 
         def build_page
           within @body do
-            div id: "wrapper" do
-              build_unsupported_browser
-              build_header
-              build_title_bar
-              build_page_content
-              build_footer
+            build_header
+            div class: 'active_admin' do
+              div id: "wrapper" do
+                build_unsupported_browser
+                build_title_bar
+                build_page_content
+              end
             end
+            build_footer
           end
         end
 
