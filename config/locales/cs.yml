@@ -65,7 +65,6 @@ cs:
         few: "Úspěšně smazány %{count} %{plural_model}"
         other: "Úspěšně smazáno %{count} %{plural_model}"
       selection_toggle_explanation: "(Změnit výběr)"
-      link: "Vytvořit"
       action_label: "%{title}"
       labels:
         destroy: "Vymazat"
@@ -74,7 +73,6 @@ cs:
       author_type: "Typ autora"
       body: "Tělo"
       author: "Autor"
-      title: "Komentář"
       add: "Přidat komentář"
       resource: "Zdroj"
       no_comments_yet: "Žádný komentář"

@@ -8,6 +8,7 @@ es:
     edit: "Editar"
     delete: "Eliminar"
     delete_confirmation: "¿Está seguro de que quiere eliminar esto?"
+    create_another: "Crear otro %{model}"
     new_model: "Añadir %{model}"
     edit_model: "Editar %{model}"
     delete_model: "Eliminar %{model}"
@@ -31,6 +32,10 @@ es:
         ends_with: "Termina con"
         greater_than: "Mayor que"
         less_than: "Menor que"
+        gteq_datetime: "Mayor o igual que"
+        lteq_datetime: "Menor o igual que"
+        from: "Desde"
+        to: "Hasta"
     search_status:
       headline: "Estado de la búsqueda:"
       current_scope: "Alcance:"
@@ -51,6 +56,7 @@ es:
       one_page: "Mostrando <b>un total de %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
       multiple_without_total: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Por página: "
       entry:
         one: "registro"
         other: "registros"
@@ -68,7 +74,6 @@ es:
         one: "Se ha destruido 1 %{model} con éxito"
         other: "Se han destruido %{count} %{plural_model} con éxito"
       selection_toggle_explanation: "(Cambiar selección)"
-      link: "Añadir"
       action_label: "%{title} seleccionados"
       labels:
         destroy: "Borrar"
@@ -78,7 +83,6 @@ es:
       author_type: "Tipo de autor"
       body: "Cuerpo"
       author: "Autor"
-      title: "Comentario"
       add: "Comentar"
       delete: "Borrar Comentario"
       delete_confirmation: "¿Está seguro que desea borrar este comentario?"
@@ -96,7 +100,9 @@ es:
       subdomain:
         title: "Subdominio"
       password:
-        title: "Password"
+        title: "Contraseña"
+      password_confirmation:
+        title: "Confirmar Contraseña"
       sign_up:
         title: "Registrarse"
         submit: "Registrarse"
@@ -126,7 +132,7 @@ es:
     unsupported_browser:
       headline: "Por favor tenga en cuenta que Active Admin no soporta versiones de Internet Explorer menores a 8."
       recommendation: "Recomendamos que actualice a la última versión de <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, o <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Si está usando IE 9 o superior, asegúrese de <a href=\"http://windows.microsoft.com/es-es/windows7/webpages-look-incorrect-in-Internet-Explorer\">apagar la \"Vista de compatibilidad\"</a>."
+      turn_off_compatibility_view: "Si está usando IE 9 o superior, asegúrese de <a href=\"https://support.microsoft.com/es-es/help/17471\">apagar la \"Vista de compatibilidad\"</a>."
     access_denied:
       message: "No está autorizado/a a realizar esta acción."
     index_list:

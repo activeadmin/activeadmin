@@ -8,8 +8,23 @@
   @import "active_admin/mixins/reset";
   @include global-reset;
 
+
+  // Normalize
+  @import "active_admin/normalize";
+
   // Partials
   @import "active_admin/typography";
+
+  body {
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 150%;
+    font-size: 72%;
+    background: #fff;
+    width: 99%;
+    margin: 0;
+    padding: .5%;
+    color: $text-color;
+  }
 
   a {
     color: $text-color;

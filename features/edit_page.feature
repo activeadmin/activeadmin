@@ -23,6 +23,7 @@ Feature: Edit Page
     And the "Category" field should contain ""
     And the "Author" field should contain the option "John Doe"
     When I fill in "Title" with "Hello World from update"
+    And I should not see the element "Create another"
     When I press "Update Post"
     Then I should see "Post was successfully updated."
     And I should see the attribute "Title" with "Hello World from update"

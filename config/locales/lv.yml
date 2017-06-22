@@ -62,14 +62,12 @@ lv:
         one: "Successfully destroyed 1 %{model}"
         other: "Successfully destroyed %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"
-      link: "Create one"
       action_label: "%{title} Selected"
       labels:
         destroy: "Delete"
     comments:
       body: "Saturs"
       author: "Autors"
-      title: "Komentārs"
       add: "Pievienot komentāru"
       resource: "Resurss"
       no_comments_yet: "Nav neviena komentāra."

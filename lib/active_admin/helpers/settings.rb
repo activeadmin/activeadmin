@@ -70,7 +70,6 @@ module ActiveAdmin
 
     end
 
-
     # Allows you to define child classes that should receive the same
     # settings, as well as the same default values.
     #

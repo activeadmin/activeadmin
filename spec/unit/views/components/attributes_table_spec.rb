@@ -235,7 +235,6 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
       end # describe rendering rows
     end # with a collection
 
-
     context "when using a single Hash" do
       let(:table) do
         render_arbre_component nil, helpers do

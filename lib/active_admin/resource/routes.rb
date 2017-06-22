@@ -25,7 +25,7 @@ module ActiveAdmin
 
       # Returns the routes prefix for this config
       def route_prefix
-        namespace.module_name.try(:underscore)
+        namespace.route_prefix
       end
 
       def route_builder
@@ -62,8 +62,7 @@ module ActiveAdmin
           )
 
           query = params.slice(:q, :scope)
-          query = query.permit! if query.respond_to? :permit!
-          query = query.to_h if Rails::VERSION::MAJOR >= 5
+          query = query.permit!.to_h
           routes.public_send route_name, *route_collection_params(params), additional_params.merge(query)
         end
 
@@ -102,7 +101,6 @@ module ActiveAdmin
 
           route.compact.join('_').to_sym      # :admin_category_posts_path
         end
-
 
         # @return params to pass to instance path
         def route_instance_params(instance)

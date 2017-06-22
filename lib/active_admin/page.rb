@@ -102,5 +102,10 @@ module ActiveAdmin
     def breadcrumb
       instance_variable_defined?(:@breadcrumb) ? @breadcrumb : namespace.breadcrumb
     end
+
+    def order_clause
+      @order_clause || namespace.order_clause
+    end
+
   end
 end

@@ -1,18 +1,7 @@
 require 'bundler/gem_tasks'
 
-task :enforce_version do
-  if ENV['BUNDLE_GEMFILE'] == File.expand_path('../Gemfile', __FILE__)
-    gemfile_path = File.expand_path('../gemfiles/rails_50.gemfile', __FILE__)
-
-    command = ['bundle', 'exec', 'rake', *ARGV].join(' ')
-    env = { 'BUNDLE_GEMFILE' => gemfile_path }
-
-    Bundler.with_clean_env { Kernel.exec(env, command) }
-  end
-end
-
 desc 'Creates a test rails app for the specs to run against'
-task :setup, [:parallel, :dir, :template] => [:enforce_version] do |_t, opts|
+task :setup, [:parallel, :dir, :template] do |_t, opts|
   require 'rails/version'
 
   base_dir = opts[:dir] || 'spec/rails'

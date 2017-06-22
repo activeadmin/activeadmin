@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/10-custom-pages.html
 ---
+
 # Custom Pages
 
 If you have data you want on a standalone page that isn't tied to a resource,
@@ -52,7 +53,7 @@ end
 
 See the [Menu](2-resource-customization.md#customize-the-menu) documentation.
 
-## Customize the breadcrumbs
+## Customize the breadcrumbs
 
 ```ruby
 ActiveAdmin.register_page "Calendar" do
@@ -85,7 +86,8 @@ ActiveAdmin.register_page "Status" do
 end
 ```
 
-See also the [Belongs To](2-resource-customization.md#belongs-to) documentation and examples.
+See also the [Belongs To](2-resource-customization.md#belongs-to) documentation
+and examples.
 
 ## Add a Sidebar
 
@@ -104,7 +106,8 @@ end
 
 ## Add a Page Action
 
-Page actions are custom controller actions (which mirror the resource DSL for the same feature).
+Page actions are custom controller actions (which mirror the resource DSL for
+the same feature).
 
 ```ruby
 page_action :add_event, method: :post do
@@ -119,7 +122,8 @@ end
 
 This defines the route `/admin/calendar/add_event` which can handle HTTP POST requests.
 
-Clicking on the action item will reload page and display the message "Your event was added"
+Clicking on the action item will reload page and display the message "Your event
+was added"
 
 Page actions can handle multiple HTTP verbs.
 
@@ -128,4 +132,5 @@ page_action :add_event, method: [:get, :post] do
   # ...
 end
 ```
+
 See also the [Custom Actions](8-custom-actions.md#http-verbs) example.

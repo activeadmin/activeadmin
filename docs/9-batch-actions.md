@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/9-batch-actions.html
 ---
+
 # Batch Actions
 
 By default, the index page provides you a "Batch Action" to quickly delete records,
@@ -51,7 +52,7 @@ end
 
 # app/admin/post.rb
 ActiveAdmin.register Post do
-  
+
   # Resource level:
   config.batch_actions = false
 end
@@ -147,14 +148,14 @@ end
 When you have dynamic form inputs you can pass a proc instead:
 
 ```ruby
-# NOTE: multi-pluck is new to Rails 4
 batch_action :doit, form: -> { {user: User.pluck(:name, :id)} } do |ids, inputs|
   User.find(inputs[:user])
   # ...
 end
 ```
 
-Under the covers this is powered by the JS `ActiveAdmin.modal_dialog` which you can use yourself:
+Under the covers this is powered by the JS `ActiveAdmin.modal_dialog` which you
+can use yourself:
 
 ```coffee
 if $('body.admin_users').length

@@ -63,11 +63,11 @@ module ActiveAdmin
     end
 
     class RegistrationsController < ::Devise::RegistrationsController
-       include ::ActiveAdmin::Devise::Controller
+      include ::ActiveAdmin::Devise::Controller
     end
 
     class ConfirmationsController < ::Devise::ConfirmationsController
-       include ::ActiveAdmin::Devise::Controller
+      include ::ActiveAdmin::Devise::Controller
     end
 
     def self.controllers_for_filters

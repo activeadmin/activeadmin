@@ -179,6 +179,13 @@ ActiveAdmin.setup do |config|
   #
   # config.breadcrumb = false
 
+  # == Create Another Checkbox
+  #
+  # Create another checkbox is disabled by default. You can customize it for individual
+  # resources or you can enable them globally from here.
+  #
+  # config.create_another = true
+
   # == Register Stylesheets & Javascripts
   #
   # We recommend using the built in Active Admin layout and loading

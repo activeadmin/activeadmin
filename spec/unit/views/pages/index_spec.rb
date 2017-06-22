@@ -4,7 +4,7 @@ RSpec.describe ActiveAdmin::Views::Pages::Index do
   describe "#title" do
     let!(:application){ ActiveAdmin::Application.new }
     let(:namespace){ ActiveAdmin::Namespace.new(application, "Admin") }
-    let!(:params){ { controller: "UsersController", action: "edit" } }
+    let!(:params){ ActionController::Parameters.new(controller: "UsersController", action: "edit") }
     let(:helpers) do
       helpers = mock_action_view
       allow(helpers).to receive(:active_admin_config).and_return(namespace.register(Post))

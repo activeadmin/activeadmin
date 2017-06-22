@@ -45,7 +45,7 @@ module ActiveAdmin
 
         if value.is_a?(Arbre::Element)
           value
-        elsif boolean_attr?(resource, attr)
+        elsif boolean_attr?(resource, attr, value)
           Arbre::Context.new { status_tag value }
         else
           pretty_format value
@@ -68,7 +68,7 @@ module ActiveAdmin
         when String, Numeric, Symbol, Arbre::Element
           object.to_s
         when Date, Time
-          localize object, format: active_admin_application.localize_format
+          I18n.localize object, format: active_admin_application.localize_format
         else
           if defined?(::ActiveRecord) && object.is_a?(ActiveRecord::Base) ||
              defined?(::Mongoid)      && object.class.include?(Mongoid::Document)
@@ -79,9 +79,14 @@ module ActiveAdmin
         end
       end
 
-      def boolean_attr?(resource, attr)
-        if resource.class.respond_to? :columns_hash
-          column = resource.class.columns_hash[attr.to_s] and column.type == :boolean
+      def boolean_attr?(resource, attr, value)
+        case value
+        when TrueClass, FalseClass
+          true
+        else
+          if resource.class.respond_to? :columns_hash
+            column = resource.class.columns_hash[attr.to_s] and column.type == :boolean
+          end
         end
       end
 

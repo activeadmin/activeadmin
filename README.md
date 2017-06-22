@@ -7,19 +7,7 @@
 [![Quality         ](http://img.shields.io/codeclimate/github/activeadmin/activeadmin.svg)      ](https://codeclimate.com/github/activeadmin/activeadmin)
 [![Coverage        ](https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg)](https://codecov.io/gh/activeadmin/activeadmin)
 [![Inch CI         ](http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master)       ](http://inch-ci.org/github/activeadmin/activeadmin)
-
-## State of the project
-
-1.0.0.pre5 is the last release to support Rails 3.2 and Ruby 2.0 or earlier.
-It is provided to help with upgrades to Rails 4 only.
-
-1.0.0.pre5 has support for Rails 5. The following Gemfile addition may be needed:
-
-```ruby
-gem 'inherited_resources', '~> 1.7'
-```
-
-1.0.0 will drop support for Rails 3.2 and Ruby 2.0 or earlier.
+[![Gratipay Team   ](https://img.shields.io/gratipay/team/Active-Admin.svg)](https://gratipay.com/Active-Admin/)
 
 ## Goals
 
@@ -47,6 +35,12 @@ Google Groups, IRC #activeadmin and Gitter are not actively monitored.
 
 The [contributing guide](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md)
 is a good place to start. If you have questions, feel free to ask.
+
+## Want to support us?
+
+You can support us with a weekly tip via [Gratipay](https://gratipay.com).
+
+[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.1.3/dist/gratipay.png)](https://gratipay.com/Active-Admin)
 
 ## Dependencies
 

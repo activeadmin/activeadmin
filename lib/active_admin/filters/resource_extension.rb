@@ -1,5 +1,3 @@
-require 'active_admin/filters/active'
-
 module ActiveAdmin
   module Filters
 
@@ -121,7 +119,7 @@ module ActiveAdmin
           []
         end
       end
-      
+
       # Returns a default set of filters for the associations
       def default_association_filters
         if resource_class.respond_to?(:reflect_on_all_associations)
@@ -148,35 +146,9 @@ module ActiveAdmin
       end
 
       def add_search_status_sidebar_section
-        self.sidebar_sections << search_status_section
+        self.sidebar_sections << ActiveAdmin::Filters::ActiveSidebar.new
       end
 
-      def search_status_section
-        ActiveAdmin::SidebarSection.new I18n.t("active_admin.search_status.headline"), only: :index, if: -> {active_admin_config.current_filters_enabled? && (params[:q] || params[:scope]) } do
-          active = ActiveAdmin::Filters::Active.new(resource_class, params)
-
-          span do
-            h4 I18n.t("active_admin.search_status.current_scope"), style: 'display: inline'
-            b active.scope, style: "display: inline"
-
-            div style: "margin-top: 10px" do
-              h4 I18n.t("active_admin.search_status.current_filters"), style: 'margin-bottom: 10px'
-              ul do
-                if active.filters.blank?
-                  li I18n.t("active_admin.search_status.no_current_filters")
-                else
-                  active.filters.each do |filter|
-                    li do
-                      span filter.body
-                      b filter.value
-                    end
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
     end
 
   end

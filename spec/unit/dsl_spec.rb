@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 module MockModuleToInclude
   def self.included(dsl)
   end
@@ -23,7 +22,6 @@ RSpec.describe ActiveAdmin::DSL do
     end
 
   end
-
 
   describe '#action_item' do
     before do

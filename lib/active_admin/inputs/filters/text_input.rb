@@ -7,8 +7,8 @@ module ActiveAdmin
 
         def input_html_options
           {
-            :cols => builder.default_text_area_width,
-            :rows => builder.default_text_area_height
+            cols: builder.default_text_area_width,
+            rows: builder.default_text_area_height
           }.merge(super)
         end
 

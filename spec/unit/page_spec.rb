@@ -71,7 +71,6 @@ module ActiveAdmin
       expect(config.belongs_to?).to eq false
     end
 
-
     it "should not have any action_items" do
       expect(config.action_items?).to eq false
     end

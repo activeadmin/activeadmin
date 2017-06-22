@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/11-decorators.html
 ---
+
 # Decorators
 
 Active Admin allows you to use the decorator pattern to provide view-specific

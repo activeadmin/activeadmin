@@ -6,7 +6,11 @@
 
 ENV['RAILS_ENV'] = 'test'
 
-require File.expand_path('../../../spec/spec_helper', __FILE__)
+require 'simplecov'
+
+Dir["#{File.expand_path('../../step_definitions', __FILE__)}/*.rb"].each do |f|
+  require f
+end
 
 require 'rails'
 ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{Rails.version}", __FILE__)
@@ -114,4 +118,8 @@ Around '@silent_unpermitted_params_failure' do |scenario, block|
   ActionController::Parameters.action_on_unpermitted_parameters = false
   block.call
   ActionController::Parameters.action_on_unpermitted_parameters = original
+end
+
+Around '@locale_manipulation' do |scenario, block|
+  I18n.with_locale(:en) { block.call }
 end

@@ -68,14 +68,12 @@
         one: "成功删除 1 %{model}"
         other: "成功删除 %{count} %{plural_model}"
       selection_toggle_explanation: "(切换选择)"
-      link: "新建一个"
       action_label: "%{title} 被选中"
       labels:
         destroy: "删除"
     comments:
       body: "内容"
       author: "作者"
-      title: "评论"
       add: "添加评论"
       resource: "资源"
       no_comments_yet: "暂时没有评论"
@@ -108,5 +106,9 @@
         sign_in: "登录"
         forgot_your_password: "忘记了密码？"
         sign_in_with_omniauth_provider: "登入%{provider}"
+    unsupported_browser:
+      headline: "很抱歉，ActiveAdmin 已不再支持 Internet Explorer 8 以下版本的浏览器。"
+      recommendation: "建议您升级到最新版本的<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>，<a href=\"https://chrome.google.com/\">Google Chrome</a>，或是 <a href=\"https://mozilla.org/firefox/\">Firefox</a>。"
+      turn_off_compatibility_view: "如果您使用的是 IE 9 或更新的版本，请确认<a href=\"https://support.microsoft.com/zh-cn/help/17472/windows-internet-explorer-11-fix-site-display-problems-compatibility-view\">已关闭“兼容性视图”</a>。"
     access_denied:
       message: "您无权处理此操作"

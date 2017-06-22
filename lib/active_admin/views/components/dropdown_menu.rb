@@ -26,10 +26,10 @@ module ActiveAdmin
         options = options.dup
 
         # Easily set options for the button or menu
-        button_options  = options.delete(:button) || {}
+        button_options = options.delete(:button) || {}
         menu_options = options.delete(:menu) || {}
 
-        @button  = build_button(name, button_options)
+        @button = build_button(name, button_options)
         @menu = build_menu(menu_options)
 
         super(options)

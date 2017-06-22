@@ -12,9 +12,9 @@ Feature: Favicon
   Scenario: Logged out views show Favicon
     Given I am logged out
     When I am on the login page
-    Then I should see the favicon "a/favicon.ico"
+    Then I should see the favicon "favicon"
 
   Scenario: Logged in views show Favicon
     Given I am logged in
     When I am on the dashboard
-    Then I should see the favicon "a/favicon.ico"
+    Then I should see the favicon "favicon"

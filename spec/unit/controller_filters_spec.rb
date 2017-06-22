@@ -15,10 +15,12 @@ RSpec.describe ActiveAdmin::Application do
   expected_actions = (
     prefixes = %w(skip append prepend) << nil
     positions = %w(before around after)
-    suffixes = %w(filter)
-    base = %w(skip_filter)
-    suffixes += %w(action)
-    base += %w(skip_action_callback)
+    suffixes = %w(action)
+    base = %w()
+    if ActiveAdmin::Dependency.rails? '< 5.1.x'
+      suffixes += %w(filter)
+      base += %w(skip_filter skip_action_callback)
+    end
 
     prefixes.each_with_object(base) do |prefix, stack|
       positions.each do |position|

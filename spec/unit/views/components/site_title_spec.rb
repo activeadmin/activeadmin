@@ -73,6 +73,4 @@ RSpec.describe ActiveAdmin::Views::SiteTitle do
 
   end
 
-
-
 end

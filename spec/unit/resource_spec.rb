@@ -49,7 +49,6 @@ module ActiveAdmin
       end
     end
 
-
     describe "controller name" do
       it "should return a namespaced controller name" do
         expect(config.controller_name).to eq "Admin::CategoriesController"
@@ -146,7 +145,6 @@ module ActiveAdmin
       end
     end
 
-
     describe "sort order" do
       class MockResource
       end
@@ -179,6 +177,15 @@ module ActiveAdmin
         config.scope :published
         expect(config.scopes.first).to be_a(ActiveAdmin::Scope)
         expect(config.scopes.first.name).to eq "Published"
+        expect(config.scopes.first.show_count).to eq true
+      end
+
+      context 'when show_count disabled' do
+        it "should add a scope show_count = false" do
+          namespace.scopes_show_count = false
+          config.scope :published
+          expect(config.scopes.first.show_count).to eq false
+        end
       end
 
       it "should retrive a scope by its id" do

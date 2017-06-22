@@ -75,5 +75,4 @@ RSpec.describe ActiveAdmin::AbstractViewFactory do
     end
   end
 
-
 end

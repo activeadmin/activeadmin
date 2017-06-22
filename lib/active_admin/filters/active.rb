@@ -1,37 +1,26 @@
-require 'active_admin/filters/humanized'
+require 'active_admin/filters/active_filter'
 
 module ActiveAdmin
   module Filters
 
     class Active
-      attr_accessor :filters, :scope
+      attr_accessor :filters, :resource
 
-      def initialize(resource_class, params)
-        @resource_class = resource_class
-        @params = normalize_params(params)
-        @scope = humanize_scope
-        @filters = build_filters
+      # Instantiate a `Active` object containing collection of current active filters
+
+      # @param [ActiveAdmin::Resource] current resource
+      # @param [Ransack::Search] search object, see ActiveAdmin::ResourceController::DataAcces#apply_filtering
+      def initialize(resource, search)
+        @resource = resource
+        @filters = build_filters(search.conditions)
       end
 
       private
 
-      def normalize_params(params)
-        if params.is_a?(HashWithIndifferentAccess)
-          params
-        else
-          params.to_unsafe_h
-        end
+      def build_filters(conditions)
+        conditions.map { |condition| ActiveFilter.new(resource, condition.dup) }
       end
 
-      def build_filters
-        filters = @params[:q] || []
-        filters.map{ |param| Humanized.new(param) }
-      end
-
-      def humanize_scope
-        scope = @params['scope']
-        scope ? scope.humanize : "All"
-      end
     end
 
   end

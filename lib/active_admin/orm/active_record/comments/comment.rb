@@ -19,21 +19,12 @@ module ActiveAdmin
       ResourceController::Decorators.undecorate(resource).class.base_class.name.to_s
     end
 
-    # Postgres adapters won't compare strings to numbers (issue 34)
-    def self.resource_id_cast(record)
-      resource_id_type == :string ? record.id.to_s : record.id
-    end
-
     def self.find_for_resource_in_namespace(resource, namespace)
       where(
         resource_type: resource_type(resource),
-        resource_id:   resource_id_cast(resource),
+        resource_id:   resource,
         namespace:     namespace.to_s
       ).order(ActiveAdmin.application.namespaces[namespace.to_sym].comments_order)
-    end
-
-    def self.resource_id_type
-      columns.detect{ |i| i.name == "resource_id" }.type
     end
 
     def set_resource_type
@@ -42,4 +33,3 @@ module ActiveAdmin
 
   end
 end
-

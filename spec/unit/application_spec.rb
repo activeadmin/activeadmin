@@ -100,6 +100,10 @@ RSpec.describe ActiveAdmin::Application do
     expect(application.order_clause).to eq ActiveAdmin::OrderClause
   end
 
+  it "should have default show_count for scopes" do
+    expect(application.scopes_show_count).to eq true
+  end
+
   describe "authentication settings" do
 
     it "should have no default current_user_method" do

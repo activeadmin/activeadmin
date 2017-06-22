@@ -12,7 +12,7 @@ module ActiveAdmin
       end
 
       it 'should return attributes hash' do
-        expect(subject).to eq( author_id: :author,
+        expect(subject).to eq(author_id: :author,
                                body: :body,
                                created_at: :created_at,
                                custom_category_id: :category,
