@@ -66,14 +66,12 @@ nb:
         one: "Slettet én %{model}"
         other: "Slettet %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"
-      link: "Opprett en"
       action_label: "%{title} valgt"
       labels:
         destroy: "Slett"
     comments:
       body: "Body"
       author: "Author"
-      title: "Comment"
       add: "Add Comment"
       resource: "Resource"
       no_comments_yet: "No comments yet."

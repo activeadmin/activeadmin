@@ -29,7 +29,6 @@ module ActiveAdmin
         end
       end
 
-
       def build_site_title
         insert_tag view_factory.site_title, @namespace
       end

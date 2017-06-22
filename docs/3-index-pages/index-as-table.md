@@ -9,8 +9,9 @@ redirect_from: /docs/3-index-pages/index-as-table.html
 
 # Index as a Table
 
-By default, the index page is a table with each of the models content columns and links to
-show, edit and delete the object. There are many ways to customize what gets
+By default, the index page is a table with each of the models content columns
+and links to show, edit and delete the object. There are many ways to customize
+what gets
 displayed.
 
 ## Defining Columns
@@ -44,10 +45,12 @@ end
 ```
 
 Sometimes that just isn't enough and you need to write some view-specific code.
-For example, say we wanted a "Title" column that links to the posts admin screen.
+For example, say we wanted a "Title" column that links to the posts admin
+screen.
 
-`column` accepts a block that will be rendered for each of the objects in the collection.
-The block is called once for each resource, which is passed as an argument to the block.
+`column` accepts a block that will be rendered for each of the objects in the
+collection.  The block is called once for each resource, which is passed as an
+argument to the block.
 
 ```ruby
 index do
@@ -118,7 +121,8 @@ index do
 end
 ```
 
-In addition, you can insert the position of the row in the greater collection by using the index_column special command:
+In addition, you can insert the position of the row in the greater collection by
+using the index_column special command:
 
 ```ruby
 index do
@@ -128,7 +132,8 @@ index do
 end
 ```
 
-index_column take an optional offset parameter to allow a developer to set the starting number for the index (default is 1).
+index_column take an optional offset parameter to allow a developer to set the
+starting number for the index (default is 1).
 
 ## Sorting
 
@@ -136,11 +141,12 @@ When a column is generated from an Active Record attribute, the table is
 sortable by default. If you are creating a custom column, you may need to give
 Active Admin a hint for how to sort the table.
 
-If a column is defined using a block, you must pass the key to turn on sorting. The key
-is the attribute which gets used to sort objects using Active Record.
+If a column is defined using a block, you must pass the key to turn on sorting.
+The key is the attribute which gets used to sort objects using Active Record.
 
-By default, this is the column on the resource's table that the attribute corresponds to.
-Otherwise, any attribute that the resource collection responds to can be used.
+By default, this is the column on the resource's table that the attribute
+corresponds to.  Otherwise, any attribute that the resource collection responds
+to can be used.
 
 ```ruby
 index do
@@ -167,9 +173,10 @@ index do
 end
 ```
 
-## Custom sorting 
+## Custom sorting
 
-It is also possible to use database specific expressions and options for sorting by column
+It is also possible to use database specific expressions and options for sorting
+by column
 
 ```ruby
 order_by(:title) do |order_clause|
@@ -208,7 +215,6 @@ index do
 end
 ```
 
-
 ## Showing and Hiding Columns
 
 The entire index block is rendered within the context of the view, so you can
@@ -225,8 +231,8 @@ end
 
 ## Custom row class
 
-In order to add special class to table rows pass the proc object as a `:row_class` option
-of the `index` method.
+In order to add special class to table rows pass the proc object as a
+`:row_class` option of the `index` method.
 
 ```ruby
 index row_class: ->elem { 'active' if elem.active? } do

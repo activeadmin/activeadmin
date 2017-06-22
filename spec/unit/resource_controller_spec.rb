@@ -156,11 +156,12 @@ RSpec.describe "A specific resource controller", type: :controller do
 
   describe 'retrieving the resource' do
     let(:post) { Post.new title: "An incledibly unique Post Title" }
+    let(:http_params){ { id: '1' } }
 
     before do
       allow(Post).to receive(:find).and_return(post)
       controller.class_eval { public :resource }
-      allow(controller).to receive(:params).and_return({ id: '1' })
+      allow(controller).to receive(:params).and_return(ActionController::Parameters.new(http_params))
     end
 
     subject { controller.resource }
@@ -216,17 +217,20 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
   end
 
-
   describe "performing batch_action" do
     let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", &batch_action_block }
     let(:batch_action_block) { proc { } }
+    let(:params) { ActionController::Parameters.new(http_params) }
+
     before do
       allow(controller.class.active_admin_config).to receive(:batch_actions).and_return([batch_action])
+      allow(controller).to receive(:params) { params }
     end
 
     describe "when params batch_action matches existing BatchAction" do
-      before do
-        allow(controller).to receive(:params) { { batch_action: "flag", collection_selection: ["1"] } }
+
+      let(:http_params) do
+        { batch_action: "flag", collection_selection: ["1"] }
       end
 
       it "should call the block with args" do
@@ -241,8 +245,11 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
 
     describe "when params batch_action doesn't match a BatchAction" do
+      let(:http_params) do
+        { batch_action: "derp", collection_selection: ["1"] }
+      end
+
       it "should raise an error" do
-        allow(controller).to receive(:params) { { batch_action: "derp", collection_selection: ["1"] } }
         expect {
           controller.batch_action
         }.to raise_error("Couldn't find batch action \"derp\"")
@@ -250,8 +257,11 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
 
     describe "when params batch_action is blank" do
+      let(:http_params) do
+        { collection_selection: ["1"] }
+      end
+
       it "should raise an error" do
-        allow(controller).to receive(:params) { { collection_selection: ["1"] } }
         expect {
           controller.batch_action
         }.to raise_error("Couldn't find batch action \"\"")

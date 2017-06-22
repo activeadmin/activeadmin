@@ -5,18 +5,64 @@ AllCops:
 
   Exclude:
     - spec/rails/**/*
+    - gemfiles/vendor/bundle/**/*
 
   Include:
     - "**/*.rake"
     - "**/Gemfile"
+    - "gemfiles/*.gemfile"
     - "**/Rakefile"
 
   DisplayCopNames: true
 
   StyleGuideCopsOnly: false
 
-Style/TrailingWhitespace:
+Lint/EndAlignment:
   Enabled: true
 
-Style/SpaceAfterComma:
+Layout/CaseIndentation:
+  Enabled: true
+
+Layout/ElseAlignment:
+  Enabled: true
+
+Layout/EmptyLines:
+  Enabled: true
+
+Layout/EndOfLine:
+  Enabled: true
+
+Layout/ExtraSpacing:
+  Enabled: true
+
+Style/HashSyntax:
+  Enabled: true
+
+Layout/IndentationConsistency:
+  Enabled: true
+
+Layout/IndentationWidth:
+  Enabled: true
+
+Style/PredicateName:
+  Enabled: true
+
+  NamePrefixBlacklist:
+    - is_
+    - have_
+
+  NameWhitelist:
+    - has_many
+    - has_many_actions
+
+Layout/TrailingWhitespace:
+  Enabled: true
+
+Layout/SpaceAfterComma:
+  Enabled: true
+
+Style/SpaceAroundEqualsInParameterDefault:
+  Enabled: true
+
+Layout/SpaceInsideParens:
   Enabled: true

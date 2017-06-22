@@ -116,7 +116,7 @@ module ActiveAdmin
 
       # Either add/remove the batch action
       unless options == false
-        config.add_batch_action( sym, title, options, &block )
+        config.add_batch_action(sym, title, options, &block)
       else
         config.remove_batch_action sym
       end
@@ -137,7 +137,7 @@ module ActiveAdmin
     # Pass a block returning the name of a menu you want rendered for the request, being
     # executed in the context of the controller
     #
-    def navigation_menu(menu_name=nil, &block)
+    def navigation_menu(menu_name = nil, &block)
       config.navigation_menu_name = menu_name || block
     end
 

@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/4-csv-format.html
 ---
+
 # Customizing the CSV format
 
 Active Admin provides CSV file downloads on the index screen for each Resource.
@@ -43,6 +44,7 @@ config.csv_options = { force_quotes: true }
 ```
 
 You can customize the filename by overriding `csv_filename` in the controller block.
+
 ```ruby
 ActiveAdmin.register User do
   controller do
@@ -52,7 +54,6 @@ ActiveAdmin.register User do
   end
 end
 ```
-
 
 ## Streaming
 

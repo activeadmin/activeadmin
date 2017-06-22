@@ -29,8 +29,8 @@ module ActiveAdmin
       raise AbstractController::ActionNotFound unless action_methods.include?(params[:action])
     end
 
-    include Menu
     include Authorization
+    include Menu
 
     private
 
@@ -58,7 +58,6 @@ module ActiveAdmin
       active_admin_config.namespace
     end
     helper_method :active_admin_namespace
-
 
     ACTIVE_ADMIN_ACTIONS = [:index, :show, :new, :create, :edit, :update, :destroy]
 

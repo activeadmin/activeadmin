@@ -150,7 +150,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
       it "should remove original ordering to prevent PostgreSQL error" do
         expect(scope.object.klass).to receive(:reorder).with('title asc') {
-          m = double :distinct => double(pluck: ['A Title'])
+          m = double distinct: double(pluck: ['A Title'])
           expect(m.distinct).to receive(:pluck).with :title
           m
         }
@@ -165,9 +165,6 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     it "should generate a date greater than" do
       expect(body).to have_selector("input.datepicker[name='q[published_date_gteq]']")
     end
-    it "should generate a seperator" do
-      expect(body).to have_selector("span.seperator")
-    end
     it "should generate a date less than" do
       expect(body).to have_selector("input.datepicker[name='q[published_date_lteq]']")
     end
@@ -178,9 +175,6 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
     it "should generate a date greater than" do
       expect(body).to have_selector("input.datepicker[name='q[created_at_gteq_datetime]']")
-    end
-    it "should generate a seperator" do
-      expect(body).to have_selector("span.seperator")
     end
     it "should generate a date less than" do
       expect(body).to have_selector("input.datepicker[name='q[created_at_lteq_datetime]']")
@@ -399,7 +393,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       context "with #{verb.inspect} proc" do
         it "#{should} be displayed if true" do
           body = Capybara.string(filter :body, verb => proc{ true })
-          expect(body).send if_true,  have_selector("input[name='q[body_contains]']")
+          expect(body).send if_true, have_selector("input[name='q[body_contains]']")
         end
         it "#{should} be displayed if false" do
           body = Capybara.string(filter :body, verb => proc{ false })

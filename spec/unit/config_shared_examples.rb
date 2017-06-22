@@ -34,7 +34,7 @@ RSpec.shared_examples_for "ActiveAdmin::Resource" do
     describe "#menu_item_options" do
 
       it "initializes a new menu item with defaults" do
-          expect(config.menu_item_options[:label].call).to eq(config.plural_resource_label)
+        expect(config.menu_item_options[:label].call).to eq(config.plural_resource_label)
       end
 
       it "initialize a new menu item with custom options" do

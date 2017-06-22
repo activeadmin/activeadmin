@@ -1,3 +1,4 @@
+@locale_manipulation
 Feature: Internationalization
 
   ActiveAdmin should use the translations provided by the host app.

@@ -86,8 +86,6 @@ module ActiveAdmin
       @menus[menu_name] ||= ActiveAdmin::Menu.new
     end
 
-
-
   end
 
 end

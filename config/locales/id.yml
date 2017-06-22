@@ -68,7 +68,6 @@ id:
         one: "Berhasil menghapus %{model}"
         other: "Berhasil menghapus %{count} %{plural_model}"
       selection_toggle_explanation: "(Tampilkan Pilihan)"
-      link: "Tambah data"
       action_label: "%{title} terpilih"
       labels:
         destroy: "Hapus"
@@ -78,7 +77,6 @@ id:
       author_type: "Tipe Penulis"
       body: "Isi"
       author: "Penulis"
-      title: "Komentar"
       add: "Tambah Komentar"
       delete: "Hapus Komentar"
       delete_confirmation: "Apakah anda yakin akan menghapus komentar tersebut?"
@@ -126,7 +124,7 @@ id:
     unsupported_browser:
       headline: "Harap dicatat bahwa ActiveAdmin sudah tidak mendukung InternetExplorer versi 8 atau versi sebelum itu."
       recommendation: "Kami sarankan agar anda mengupgrade ke versi <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, atau <a href=\"https://mozilla.org/firefox/\">Firefox</a> yang terbaru."
-      turn_off_compatibility_view: "Kalau anda menggunakan IE 9 atau yang lebih baru, pastikan anda <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">mematikan \"Compatibility View\"</a>."
+      turn_off_compatibility_view: "Kalau anda menggunakan IE 9 atau yang lebih baru, pastikan anda <a href=\"https://support.microsoft.com/id-id/help/17471\">mematikan \"Compatibility View\"</a>."
     access_denied:
       message: "Anda tidak diperkenankan melakukan aksi tersebut."
     index_list:

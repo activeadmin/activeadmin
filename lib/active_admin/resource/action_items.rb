@@ -106,6 +106,10 @@ module ActiveAdmin
       @block = block
       normalize_display_options!
     end
+
+    def html_class
+      "action_item #{@options[:class]}".rstrip
+    end
   end
 
 end

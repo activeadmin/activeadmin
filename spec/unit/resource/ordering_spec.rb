@@ -20,7 +20,6 @@ module ActiveAdmin
         expect(resource_config.ordering.size).to eq(1)
       end
 
-
       it "should allow to setup custom ordering class" do
         MyOrderClause = Class.new(ActiveAdmin::OrderClause)
         dsl.run_registration_block do

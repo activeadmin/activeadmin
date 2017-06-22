@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/0-installation.html
 ---
+
 # Installation
 
 Active Admin is a Ruby Gem.
@@ -22,17 +23,20 @@ that can be injected into your existing Ruby on Rails application.
 
 After installing the gem, you need to run the generator. Here are your options:
 
-- If you don't want to use Devise, run it with `--skip-users`:
+* If you don't want to use Devise, run it with `--skip-users`:
+
   ```sh
   rails g active_admin:install --skip-users
   ```
 
-- If you want to use an existing user class, provide it as an argument:
+* If you want to use an existing user class, provide it as an argument:
+
   ```sh
   rails g active_admin:install User
   ```
 
-- Otherwise, with no arguments we will create an `AdminUser` class to use with Devise:
+* Otherwise, with no arguments we will create an `AdminUser` class to use with Devise:
+
   ```sh
   rails g active_admin:install
   ```
@@ -67,7 +71,8 @@ To register an existing model with Active Admin:
 rails generate active_admin:resource MyModel
 ```
 
-This creates a file at `app/admin/my_model.rb` to set up the UI; refresh your browser to see it.
+This creates a file at `app/admin/my_model.rb` to set up the UI; refresh your
+browser to see it.
 
 # Upgrading
 
@@ -98,8 +103,8 @@ Kaminari.configure do |config|
 end
 ```
 
-If you are also using [Draper](https://github.com/drapergem/draper), you may want to
-make sure `per_page_kaminari` is delegated correctly:
+If you are also using [Draper](https://github.com/drapergem/draper), you may
+want to make sure `per_page_kaminari` is delegated correctly:
 
 ```ruby
 Draper::CollectionDecorator.send :delegate, :per_page_kaminari

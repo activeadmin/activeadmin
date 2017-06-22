@@ -2,6 +2,18 @@ module ActiveAdmin
   module ViewHelpers
     module DownloadFormatLinksHelper
 
+      def build_download_formats(download_links)
+        download_links = instance_exec(&download_links) if download_links.is_a?(Proc)
+
+        if download_links.is_a?(Array) && !download_links.empty?
+          download_links
+        elsif download_links == false
+          []
+        else
+          self.class.formats
+        end
+      end
+
       def build_download_format_links(formats = self.class.formats)
         params = request.query_parameters.except :format, :commit
         div class: "download_links" do

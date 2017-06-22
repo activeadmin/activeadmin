@@ -62,7 +62,6 @@ bg:
         one: "Успешно изтриване на 1 %{model}"
         other: "Успешно изтриване на %{count} %{plural_model}"
       selection_toggle_explanation: "(Инвертиране на маркирането)"
-      link: "Създаване"
       action_label: "%{title} избран"
       labels:
         destroy: "Изтриване"
@@ -71,7 +70,6 @@ bg:
       author_type: "Тип автор"
       body: "Текст"
       author: "Автор"
-      title: "Коментар"
       add: "Добавяне на коментар"
       resource: "Ресурс"
       no_comments_yet: "Все още няма коментари."

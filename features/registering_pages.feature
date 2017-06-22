@@ -217,3 +217,21 @@ Feature: Registering Pages
     Then I should see the content "Status page for Post 1"
     And  I should see a link to "Post 1" in the breadcrumb
 
+  Scenario: Rendering sortable table_for within page
+    Given a configuration of:
+    """
+     ActiveAdmin.register Post
+     ActiveAdmin.register_page "Last Posts" do
+       content do
+         table_for Post.last(2), sortable: true, class: "index_table" do
+           column :id
+           column :title
+           column :author
+         end
+       end
+    end
+    """
+    And a post with the title "Hello World" written by "Jane Doe" exists
+    When I go to the last posts page
+    Then I should see the page title "Last Posts"
+    And I should see 1 post in the table

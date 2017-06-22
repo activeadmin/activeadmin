@@ -7,7 +7,8 @@ da:
     view: "Vis"
     edit: "Rediger"
     delete: "Slet"
-    delete_confirmation: "Er du sikker på at du ønsker at slette?"
+    delete_confirmation: "Er du sikker på, at du ønsker at slette?"
+    create_another: "Opret endnu en %{model}"
     new_model: "Ny(t) %{model}"
     edit_model: "Rediger %{model}"
     delete_model: "Slet %{model}"
@@ -26,11 +27,16 @@ da:
         clear: "Ryd filtre"
       predicates:
         contains: "Indeholder"
-        equals: "lig"
+        equals: "Lig"
         starts_with: "Begynder med"
         ends_with: "Slutter med"
-        greater_than: "større end"
-        less_than: "mindre end"
+        greater_than: "Større end"
+        less_than: "Mindre end"
+    search_status:
+      headline: "Søgestatus:"
+      current_scope: "Perspektiv:"
+      current_filters: "Valgte filtre:"
+      no_current_filters: "Ingen"
     status_tag:
       "yes": "Ja"
       "no": "Nej"
@@ -39,12 +45,14 @@ da:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtre"
+      search_status: "Søgestatus"
     pagination:
       empty: "Ingen %{model} fundet"
       one: "Viser <b>1</b> %{model}"
       one_page: "Viser <b>alle %{n}</b> %{model}"
       multiple: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> af <b>%{total}</b> i alt"
       multiple_without_total: "Viser %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Per side: "
       entry:
         one: "post"
         other: "poster"
@@ -61,24 +69,37 @@ da:
       succesfully_destroyed:
         one: "Vellykket ødelagt 1 %{model}"
         other: "Vellykket ødelagt %{count} %{plural_model}"
-      selection_toggle_explanation: "(Skift Selection)"
-      link: "Opret en"
+      selection_toggle_explanation: "(Skift valg)"
       action_label: "%{title} Valgte"
       labels:
         destroy: "Slet"
     comments:
-      resource_type: "resource type"
-      author_type: "forfatter type"
-      body: "krop"
-      author: "forfatter"
-      title: "Kommentar"
+      created_at: "Oprettet"
+      resource_type: "Resource type"
+      author_type: "Forfatter type"
+      body: "Krop"
+      author: "Forfatter"
       add: "Tilføj Kommentar"
+      delete: "Slet kommentar"
+      delete_confirmation: "Er du sikker på du vil slette disse kommentarer?"
       resource: "Resource"
       no_comments_yet: "Ingen kommentarer endnu."
+      author_missing: "Anonym"
       title_content: "Kommentarer (%{count})"
       errors:
         empty_text: "Kommentar blev ikke gemt, tekst var tom."
     devise:
+      username:
+        title: "Brugernavn"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Underdomæne"
+      password:
+        title: "Kodeord"
+      sign_up:
+        title: "Opret bruger"
+        submit: "Opret bruger"
       login:
         title: "Login"
         remember_me: "Husk mig"
@@ -90,12 +111,22 @@ da:
         title: "Skift din adgangskode"
         submit: "Skift min adgangskode"
       unlock:
-        title: "Send oplåsnings instruktioner igen"
-        submit: "Send oplåsnings instruktioner igen"
+        title: "Send oplåsningsinstruktioner igen"
+        submit: "Send oplåsningsinstruktioner igen"
+      resend_confirmation_instructions:
+        title: "Send bekræftigelsesinstruktioner igen"
+        submit: "Send bekræftigelsesinstruktioner igen"
       links:
+        sign_up: "Opret bruger"
         sign_in: "Log ind"
         forgot_your_password: "Glemt din adgangskode?"
         sign_in_with_omniauth_provider: "Log ind med %{provider}"
+        resend_unlock_instructions: "Send oplåsningsinstruktioner igen"
+        resend_confirmation_instructions: "Send oplåsningsinstruktioner igen"
+    unsupported_browser:
+      headline: "Vær venligst opmærksom på, at ActiveAdmin ikke længere understøtter Internet Explorer version 8 eller tidligere."
+      recommendation: "Vi anbefaler at du opgraderer til den nyeste <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, eller <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "Hvis du bruger IE 9 eller senere, så vær sikker på, at du <a href=\"https://support.microsoft.com/da-dk/help/17471\">slår \"Compatibility View\" fra</a>."
     access_denied:
       message: "Du har ikke rettigheder til at udføre denne handling."
     index_list:
@@ -103,4 +134,3 @@ da:
       block: "Liste"
       grid: "Gitter"
       blog: "Blog"
-

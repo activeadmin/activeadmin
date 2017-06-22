@@ -61,7 +61,6 @@ RSpec.describe ActiveAdmin::Namespace do
     end
   end
 
-
   describe "#fetch_menu" do
     let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
 

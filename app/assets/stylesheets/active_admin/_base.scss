@@ -3,6 +3,10 @@
 .active_admin {
   @include global-reset;
 
+  // Normalize
+  @import "active_admin/normalize";
+
+
   // Partials
   @import "active_admin/typography";
   @import "active_admin/header";

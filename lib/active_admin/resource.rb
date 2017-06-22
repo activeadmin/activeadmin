@@ -54,6 +54,9 @@ module ActiveAdmin
 
     #Set order clause
     attr_writer :order_clause
+    # Display create another checkbox on a new page
+    # @return [Boolean]
+    attr_writer :create_another
 
     # Store a reference to the DSL so that we can dereference it during garbage collection.
     attr_accessor :dsl
@@ -158,6 +161,10 @@ module ActiveAdmin
 
     def order_clause
       @order_clause || namespace.order_clause
+    end
+
+    def create_another
+      instance_variable_defined?(:@create_another) ? @create_another : namespace.create_another
     end
 
     def find_resource(id)

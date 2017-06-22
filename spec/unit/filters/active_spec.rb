@@ -1,17 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Filters::Active do
-  subject { described_class.new(Post, params) }
-  let(:params_klass) do
-    if defined? ::ActionController::Parameters
-      ::ActionController::Parameters
-    else
-      HashWithIndifferentAccess #remove this when drop rails 3 support
-    end
+
+  let(:resource) do
+    namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
+    namespace.register(Post)
   end
 
+  subject { described_class.new(resource, search) }
+
   let(:params) do
-    params_klass.new(q: {author_id_eq: 1})
+    ::ActionController::Parameters.new(q: {author_id_eq: 1})
+  end
+
+  let(:search) do
+    Post.ransack(params[:q])
   end
 
   it 'should have filters' do

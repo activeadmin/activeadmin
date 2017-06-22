@@ -68,7 +68,6 @@
         one: "Lyckades radera 1 %{model}"
         other: "Lyckades radera %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"
-      link: "Skapa en"
       action_label: "%{title} Markerad"
       labels:
         destroy: "Radera"
@@ -78,7 +77,6 @@
       author_type: "Författar typ"
       body: "Innehåll"
       author: "Författare"
-      title: "Kommentar"
       add: "Lägg till kommentar"
       resource: "Resurs"
       no_comments_yet: "Inga kommentarer än."
@@ -124,7 +122,7 @@
     unsupported_browser:
       headline: "Notera att ActiveAdmin inte längre stödjer Internet Explorer version 8 eller mindre."
       recommendation: "Vi rekommenderar dig att uppgradera till den senaste versionen av <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, eller <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Om du använder IE 9 eller senare, se till att <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">stäng av \"Compatibility View\"</a>."
+      turn_off_compatibility_view: "Om du använder IE 9 eller senare, se till att <a href=\"https://support.microsoft.com/sv-se/help/17471\">stäng av \"Compatibility View\"</a>."
     access_denied:
       message: "Du har inte rättighet att utföra denna åtgärd."
     index_list:
