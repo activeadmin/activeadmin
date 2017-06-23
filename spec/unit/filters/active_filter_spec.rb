@@ -49,6 +49,43 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
 
   end
 
+  context 'search by polymorphic association' do
+    let(:resource) do
+      namespace.register(ActiveAdmin::Comment)
+    end
+
+    let(:search) do
+      ActiveAdmin::Comment.ransack(resource_id_eq: post.id, resource_type_eq: post.class.to_s)
+    end
+
+    context 'id filter' do
+      let(:condition) do
+        search.conditions[0]
+      end
+      it 'should have valid values' do
+        expect(subject.values[0]).to eq(post.id)
+      end
+
+      it 'should have valid label' do
+        expect(subject.label).to eq("Resource equals")
+      end
+    end
+
+    context 'type filter' do
+      let(:condition) do
+        search.conditions[1]
+      end
+
+      it 'should have valid values' do
+        expect(subject.values[0]).to eq(post.class.to_s)
+      end
+
+      it 'should have valid label' do
+        expect(subject.label).to eq("Resource type equals")
+      end
+    end
+  end
+
   context 'search by has many association' do
     let(:resource) do
       namespace.register(Category)
