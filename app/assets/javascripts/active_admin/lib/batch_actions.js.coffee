@@ -14,7 +14,7 @@ $(document).on 'ready page:load turbolinks:load', ->
 
   $('.batch_actions_selector li a').on 'confirm:complete', (e, inputs)->
     if val = JSON.stringify inputs
-      $('#batch_action_inputs').val val
+      $('#batch_action_inputs').removeAttr('disabled').val val
     else
       $('#batch_action_inputs').attr 'disabled', 'disabled'
 
