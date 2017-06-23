@@ -30,6 +30,7 @@
 
 ##### Minor
 
+* Support proc as an input_html option value when declaring filters [#5029][] by [@Fivell][]
 * Base localization support, better associations handling for active filters sidebar [#4951][] by [@Fivell][]
 * Allow AA scopes to return paginated collections [#4996][] by [@Fivell][]
 * Added `scopes_show_count` configuration to  setup show_count attribute for scopes globally [#4950][] by [@Fivell][]
@@ -164,6 +165,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#4951]: https://github.com/activeadmin/activeadmin/pull/4951
 [#4989]: https://github.com/activeadmin/activeadmin/pull/4989
 [#4996]: https://github.com/activeadmin/activeadmin/pull/4996
+[#5029]: https://github.com/activeadmin/activeadmin/pull/5029
 
 
 [@ajw725]: https://github.com/ajw725
