@@ -8,8 +8,8 @@ module ActiveAdmin
 
       # Instantiate a `ActiveFilter`
       #
-      # @param [ActiveAdmin::Resource] current resource
-      # @param [Ransack::Nodes::Condition] applied ransack condition
+      # @param resource [ActiveAdmin::Resource] current resource
+      # @param condition [Ransack::Nodes::Condition] applied ransack condition
       def initialize(resource, condition)
         @resource = resource
         @condition = condition
