@@ -5,6 +5,7 @@ namespace :docs do
 
   YARD::Rake::YardocTask.new do |t|
     t.files = ['lib/**/*.rb']
+    t.options = ['--no-output']
   end
 
   def jekyll_redirect_string(filename)
