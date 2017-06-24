@@ -40,4 +40,3 @@ RSpec.describe ActiveAdmin::ViewHelpers::FormHelper do
     end
   end
 end
-

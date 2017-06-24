@@ -33,4 +33,3 @@ RSpec.describe ActiveAdmin::ScopeChain do
     end
   end
 end
-

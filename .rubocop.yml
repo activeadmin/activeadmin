@@ -36,6 +36,10 @@ Layout/EndOfLine:
 Layout/ExtraSpacing:
   Enabled: true
 
+Style/Encoding:
+  EnforcedStyle: never
+  Enabled: true
+
 Style/HashSyntax:
   Enabled: true
 
@@ -56,13 +60,16 @@ Style/PredicateName:
     - has_many
     - has_many_actions
 
+Layout/TrailingBlankLines:
+  Enabled: true
+
 Layout/TrailingWhitespace:
   Enabled: true
 
 Layout/SpaceAfterComma:
   Enabled: true
 
-Style/SpaceAroundEqualsInParameterDefault:
+Layout/SpaceAroundEqualsInParameterDefault:
   Enabled: true
 
 Layout/SpaceInsideParens:

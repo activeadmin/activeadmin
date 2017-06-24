@@ -22,4 +22,3 @@ RSpec.describe ActiveAdmin::ViewHelpers::FlashHelper do
 
   end
 end
-
