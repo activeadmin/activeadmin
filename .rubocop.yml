@@ -2,7 +2,8 @@
 
 AllCops:
   DisabledByDefault: true
-
+  TargetRubyVersion: 2.2
+  
   Exclude:
     - spec/rails/**/*
     - gemfiles/vendor/bundle/**/*
