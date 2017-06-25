@@ -241,6 +241,14 @@ ActiveAdmin.register Post do
 end
 ```
 
+Or allow users to choose themselves using dropdown with values
+
+```ruby
+ActiveAdmin.register Post do
+  config.per_page = [10, 50, 100]
+end
+```
+
 You can change it per request / action too:
 
 ```ruby
