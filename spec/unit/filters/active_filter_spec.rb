@@ -34,6 +34,10 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     expect(subject.label).to eq("Title equals")
   end
 
+  it 'should pick predicate name translation' do
+    expect(subject.predicate_name).to eq(I18n.t("active_admin.filters.predicates.equals"))
+  end
+
   context 'search by belongs_to association' do
     let(:search) do
       Post.ransack(custom_category_id_eq: category.id)
@@ -45,6 +49,10 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
 
     it 'should have valid label' do
       expect(subject.label).to eq("Category equals")
+    end
+
+    it 'should pick predicate name translation' do
+      expect(subject.predicate_name).to eq(Ransack::Translate.predicate('eq'))
     end
 
   end
