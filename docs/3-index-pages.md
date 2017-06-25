@@ -81,7 +81,8 @@ end
 
 Out of the box, Active Admin supports the following filter types:
 
-* *:string* - A search field
+* *:string* -  A drop down for selecting "Contains", "Equals", "Starts with", 
+  "Ends with" and an input for a value.
 * *:date_range* - A start and end date field with calendar inputs
 * *:numeric* - A drop down for selecting "Equal To", "Greater Than" or "Less
   Than" and an input for a value.
