@@ -5,6 +5,7 @@
 ### Removals
 
 * Ruby 2.1 support has been dropped [#5002][] by [@deivid-rodriguez][]
+* Replaced `sass-rails` with `sass` dependency [#5037][] by [@javierjulio][]
 
 ### Deprecations
 
