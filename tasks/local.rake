@@ -1,5 +1,5 @@
 desc 'Runs a command agains the local sample application'
-task local: :enforce_version do
+task :local do
   Rake::Task['setup'].invoke(false,
                              '.test-rails-apps',
                              'rails_template_with_data')
