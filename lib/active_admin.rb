@@ -3,7 +3,6 @@ require 'set'
 
 require 'ransack'
 require 'ransack_ext'
-require 'bourbon'
 require 'kaminari'
 require 'formtastic'
 require 'formtastic_i18n'
