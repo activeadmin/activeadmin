@@ -9,6 +9,6 @@ namespace :lint do
   desc "Checks markdown code style with Markdownlint"
   task :mdl do
     puts "Running mdl..."
-    system("mdl docs/*.md")
+    abort unless system("mdl docs/*.md")
   end
 end
