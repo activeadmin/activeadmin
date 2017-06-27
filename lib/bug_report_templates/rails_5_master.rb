@@ -8,19 +8,21 @@ end
 gemfile(true) do
   source 'https://rubygems.org'
 
-  gem 'rails', require: false
-  gem 'sqlite3', platform: :mri
+  # Use local changes or ActiveAdmin master.
+  if ENV['ACTIVE_ADMIN_PATH']
+    gem 'activeadmin', path: ENV['ACTIVE_ADMIN_PATH'], require: false
+  else
+    gem 'activeadmin', github: 'activeadmin/activeadmin', require: false
+  end
 
+  # Change Rails version if necessary.
+  gem 'rails', '~> 5.1.0'
+
+  gem 'sqlite3', platform: :mri
   gem 'activerecord-jdbcsqlite3-adapter',
       git: 'https://github.com/jruby/activerecord-jdbc-adapter',
       branch: 'rails-5',
       platform: :jruby
-
-  if ENV['ACTIVE_ADMIN_PATH']
-    gem 'activeadmin', path: ENV['ACTIVE_ADMIN_PATH'], require: false
-  else
-    gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin', require: false
-  end
 end
 
 # prepare active_record database
