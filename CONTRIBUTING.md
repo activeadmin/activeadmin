@@ -57,18 +57,23 @@ environment:
 rm -rf spec/rails && bundle update
 ```
 
-#### 4. Did you find a bug?
+### 4. Did you find a bug?
 
-* **Ensure the bug was not already reported** by [searching all issues](https://github.com/activeadmin/activeadmin/issues?q=).
+* **Ensure the bug was not already reported** by [searching all
+  issues](https://github.com/activeadmin/activeadmin/issues?q=).
 
-* If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/activeadmin/activeadmin/issues/new).
-Be sure to include a **title and clear description**, as much relevant information as possible,
-and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
+* If you're unable to find an open issue addressing the problem, [open a new
+  one](https://github.com/activeadmin/activeadmin/issues/new).  Be sure to
+  include a **title and clear description**, as much relevant information as
+  possible, and a **code sample** or an **executable test case** demonstrating
+  the expected behavior that is not occurring.
 
 * If possible, use the relevant bug report templates to create the issue.
-Simply copy the content of the appropriate template into a .rb file, make the necessary changes to demonstrate the issue,
-and **paste the content into the issue description**:
-  * [**ActiveAdmin** master issues](https://github.com/activeadmin/activeadmin/blob/master/lib/bug_report_templates/active_admin_master.rb)
+  Simply copy the content of the appropriate template into a .rb file, make the
+  necessary changes to demonstrate the issue, and **paste the content into the
+  issue description**:
+  * [**ActiveAdmin** master
+    issues](https://github.com/activeadmin/activeadmin/blob/master/lib/bug_report_templates/active_admin_master.rb)
 
 ### 5. Implement your fix or feature
 
@@ -92,10 +97,8 @@ in the `.test-rails-apps` folder.
 You should now be able to open <http://localhost:3000/admin> in your browser.
 You can log in using:
 
-```
-User: admin@example.com
-Password: password
-```
+*User*: admin@example.com
+*Password*: password
 
 If you need to perform any other commands on the test application, just pass
 them to the `local` rake task. For example, to boot the rails console:

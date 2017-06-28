@@ -116,7 +116,7 @@ under Rails 5 as it replaces the default scaffold generator. The solution is to
 configure the default controller in `config/application.rb` as outlined in
 [activeadmin/inherited_resources#195](https://github.com/activeadmin/inherited_resources/issues/195)
 
-```
+```ruby
 module SampleApp
   class Application < Rails::Application
     ...

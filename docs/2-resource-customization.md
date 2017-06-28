@@ -112,7 +112,7 @@ new, edit, and destroy by providing a resource specific translation.  For
 example, to change 'New Offer' to 'Make an Offer' add the following in
 config/locales/[en].yml:
 
-```
+```yaml
 en:
   active_admin:
     resources:

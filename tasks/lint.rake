@@ -9,6 +9,13 @@ namespace :lint do
   desc "Checks markdown code style with Markdownlint"
   task :mdl do
     puts "Running mdl..."
-    abort unless system("mdl docs/*.md")
+
+    targets = [
+      *Dir.glob("docs/*.md"),
+      "CONTRIBUTING.md",
+      ".github/ISSUE_TEMPLATE.md"
+    ]
+
+    abort unless system("mdl", *targets)
   end
 end
