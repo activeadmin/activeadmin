@@ -303,7 +303,7 @@ ActiveAdmin.register Post do
   scope_to :current_user, association_method: :blog_posts
 
   # Finally, you can pass a block to be called:
-  scope_to do
+  scope_to association_method: :itself do
     User.most_popular_posts
   end
 end
