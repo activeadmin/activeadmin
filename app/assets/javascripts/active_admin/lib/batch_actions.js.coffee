@@ -6,8 +6,8 @@ $(document).on 'ready page:load turbolinks:load', ->
   $('.batch_actions_selector li a').click (e)->
     e.stopPropagation() # prevent Rails UJS click event
     e.preventDefault()
-    if message = $(@).data 'confirm'
-      ActiveAdmin.modal_dialog message, $(@).data('inputs'), (inputs)=>
+    if $(@).data 'confirm'
+      ActiveAdmin.modal_dialog $(@), (inputs)=>
         $(@).trigger 'confirm:complete', inputs
     else
       $(@).trigger 'confirm:complete'

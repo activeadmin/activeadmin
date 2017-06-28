@@ -1,4 +1,7 @@
-ActiveAdmin.modal_dialog = (message, inputs, callback)->
+ActiveAdmin.modal_dialog = (batch_action, callback)->
+  message = batch_action.data 'confirm'
+  inputs  = batch_action.data 'inputs'
+  action  = batch_action.data 'action'
   html = """<form id="dialog_confirm" title="#{message}"><ul>"""
   for name, type of inputs
     if /^(datepicker|checkbox|text|number)$/.test type
@@ -31,11 +34,13 @@ ActiveAdmin.modal_dialog = (message, inputs, callback)->
 
   form = $(html).appendTo('body')
   $('body').trigger 'modal_dialog:before_open', [form]
+  $('body').trigger "modal_dialog:#{action}:before_open", [form]
 
   form.dialog
     modal: true
     open: (event, ui) ->
       $('body').trigger 'modal_dialog:after_open', [form]
+      $('body').trigger "modal_dialog:#{action}:after_open", [form]
     dialogClass: 'active_admin_dialog'
     buttons:
       OK: ->
