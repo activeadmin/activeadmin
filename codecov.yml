@@ -7,13 +7,13 @@ codecov:
 comment: off
 
 coverage:
-  precision: 2
+  precision: 1
 
   range:
     - 70.0
     - 100.0
 
-  round: down
+  round: up
 
   status:
     changes: false
