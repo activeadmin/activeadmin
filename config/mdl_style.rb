@@ -1,7 +1,9 @@
 all
 
-exclude_rule "MD002"
+exclude_rule "first-header-h1"
 
-rule "MD026", punctuation: ".,;:!"
+exclude_rule "line-length"
 
-exclude_rule "MD041"
+rule "no-trailing-punctuation", punctuation: ".,;:!"
+
+exclude_rule "first-line-h1"

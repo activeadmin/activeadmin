@@ -11,7 +11,7 @@ namespace :lint do
     puts "Running mdl..."
 
     targets = [
-      *Dir.glob("docs/*.md"),
+      *Dir.glob("docs/**/*.md"),
       "CONTRIBUTING.md",
       ".github/ISSUE_TEMPLATE.md"
     ]
