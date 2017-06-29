@@ -1,4 +1,4 @@
-#= require jquery
+#= require jquery3
 #= require ./jquery_ui
 #= require jquery_ujs
 #= require_self
