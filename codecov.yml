@@ -12,6 +12,3 @@ coverage:
     changes: false
     patch: true
     project: true
-parsers:
-  javascript:
-    enable_partials: false
