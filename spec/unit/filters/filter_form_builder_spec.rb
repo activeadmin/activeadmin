@@ -59,6 +59,14 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
         expect(body).to have_selector("label", text: "Title from proc")
       end
     end
+
+    describe "input html as proc" do
+      let(:body) { Capybara.string(filter :title, as: :select, input_html: proc{ {'data-ajax-url': '/'} }) }
+
+      it "should render proper label" do
+        expect(body).to have_selector('select[data-ajax-url="/"]')
+      end
+    end
   end
 
   describe "string attribute" do
