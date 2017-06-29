@@ -1,4 +1,4 @@
-$(document).on 'ready page:load turbolinks:load', ->
+onDOMReady = ->
   # Clear Filters button
   $('.clear_filters_btn').click (e) ->
     params = window.location.search.slice(1).split('&')
@@ -20,3 +20,7 @@ $(document).on 'ready page:load turbolinks:load', ->
   # a dropdown, apply that choice to the filter input field.
   $('.filter_form_field.select_and_search select').change ->
     $(@).siblings('input').prop name: "q[#{@value}]"
+
+$(document).
+  ready(onDOMReady).
+  on 'page:load turbolinks:load', onDOMReady
