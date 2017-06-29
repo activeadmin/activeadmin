@@ -61,9 +61,6 @@ Capybara.javascript_driver = :poltergeist
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
 
-# Make input type=hidden visible
-Capybara.ignore_hidden_elements = false
-
 # If you set this to false, any error raised from within your app will bubble
 # up to your step definition and out to cucumber unless you catch it somewhere
 # on the way. You can make Rails rescue errors and render error pages on a

@@ -44,9 +44,9 @@ Then /^I should see the batch action popover exists$/ do
 end
 
 Given /^I submit the batch action form with "([^"]*)"$/ do |action|
-  page.find("#batch_action").set action
+  page.find("#batch_action", visible: false).set action
   form   = page.find "#collection_selection"
-  params = page.all("#main_content input").each_with_object({}) do |input, obj|
+  params = page.all("#main_content input", visible: false).each_with_object({}) do |input, obj|
     key, value = input['name'], input['value']
     if key == 'collection_selection[]'
       (obj[key] ||= []).push value if input.checked?
