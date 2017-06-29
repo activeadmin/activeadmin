@@ -181,6 +181,24 @@ Feature: Index Filtering
     And I should see "Non-Fiction" within ".index_table"
     And the "Jane Doe" checkbox should be checked
 
+  Scenario: Filtering posts without default scope
+
+    Given a post with the title "Hello World" written by "Jane Doe" exists
+    Given an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        scope :all
+        scope :published do |posts|
+          posts.where("published_date IS NOT NULL")
+        end
+
+        filter :title
+      end
+    """
+    When I fill in "Title" with "Hello"
+    And I press "Filter"
+    Then I should see current filter "title_contains" equal to "Hello" with label "Title contains"
+
   Scenario: Filtering posts by category
     Given a category named "Mystery" exists
     And a post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists

@@ -12,7 +12,7 @@ module ActiveAdmin
         -> do
           active_filters = ActiveAdmin::Filters::Active.new(active_admin_config, assigns[:search])
           span do
-            if active_admin_config.scopes.any?
+            if current_scope
               h4 I18n.t("active_admin.search_status.current_scope"), style: 'display: inline'
               b scope_name(current_scope), class: 'current_scope_name', style: "display: inline"
             end
