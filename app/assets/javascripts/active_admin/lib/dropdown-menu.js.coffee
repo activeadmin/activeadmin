@@ -32,7 +32,6 @@ class ActiveAdmin.DropdownMenu
     @
 
   destroy: ->
-    @$element.unbind()
     @$element = null
     @
 
