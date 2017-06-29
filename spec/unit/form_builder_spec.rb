@@ -637,7 +637,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "should wrap the destroy field in an li with class 'has_many_delete'" do
-          expect(body).to have_selector(".has_many_container > fieldset > ol > li.has_many_delete > input", count: 1)
+          expect(body).to have_selector(".has_many_container > fieldset > ol > li.has_many_delete > input", count: 1, visible: false)
         end
       end
 
@@ -647,7 +647,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "should not have a boolean field for _destroy" do
-          expect(body).not_to have_selector("input[name='category[posts_attributes][#{child_num}][_destroy]']")
+          expect(body).not_to have_selector("input[name='category[posts_attributes][#{child_num}][_destroy]']", visible: :all)
         end
 
         it "should not have a check box with 'Remove' as its label" do
@@ -950,7 +950,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
           eval source
         end
       end
-      expect(body).to have_selector("[id=#{selector}]", count: 2)
+      expect(body).to have_selector("[id=#{selector}]", count: 2, visible: :all)
     end
   end
 

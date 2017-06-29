@@ -57,6 +57,3 @@ ActiveSupport::Deprecation.behavior = :raise
 # improve the performance of the specs suite by not logging anything
 # see http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
 Rails.logger.level = Logger::FATAL
-
-# Make input type=hidden visible
-Capybara.ignore_hidden_elements = false
