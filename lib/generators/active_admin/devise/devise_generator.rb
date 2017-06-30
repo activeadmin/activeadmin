@@ -59,7 +59,7 @@ module ActiveAdmin
         seeds_file = seeds_paths.existent.first
         return if seeds_file.nil? || !options[:default_user]
 
-        create_user_code = "#{class_name}.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')"
+        create_user_code = "#{class_name}.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?"
 
         append_to_file seeds_file, create_user_code
       end
