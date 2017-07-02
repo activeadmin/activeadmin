@@ -1,1 +1,1 @@
-require 'simplecov' if ENV["COVERAGE"] == true
+require 'simplecov' if ENV["COVERAGE"] == "true"
