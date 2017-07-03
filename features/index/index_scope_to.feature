@@ -11,7 +11,7 @@ Feature: Index Scope To
       ActiveAdmin.register Post do
         # Scope section to a specific author
         scope_to do
-          User.find_by_first_name_and_last_name "John", "Doe"
+          User.find_by_first_name_and_last_name("John", "Doe").posts
         end
 
         # Set up some scopes
@@ -36,7 +36,7 @@ Feature: Index Scope To
       """
       ActiveAdmin.register Post do
         scope_to if: proc{ false } do
-          User.find_by_first_name_and_last_name("John", "Doe")
+          User.find_by_first_name_and_last_name("John", "Doe").posts
         end
       end
       """
@@ -48,9 +48,22 @@ Feature: Index Scope To
       """
       ActiveAdmin.register Post do
         scope_to unless: proc{ true } do
-          User.find_by_first_name_and_last_name("John", "Doe")
+          User.find_by_first_name_and_last_name("John", "Doe").posts
         end
       end
       """
     When I am on the index page for posts
     Then I should see 12 posts in the table
+
+  Scenario: Viewing the default scope counts with method option
+    Given a post with the title "Hello World" written by "Agent Smith" exists
+    Given an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope_to association_method: :posts do
+          User.find_by_first_name_and_last_name("Agent", "Smith")
+        end
+      end
+      """
+    When I am on the index page for posts
+    Then I should see 1 post in the table

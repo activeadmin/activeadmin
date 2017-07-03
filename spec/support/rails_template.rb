@@ -16,6 +16,8 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
     accepts_nested_attributes_for :author
     accepts_nested_attributes_for :taggings, allow_destroy: true
 
+    scope :starred, -> { where(starred: true) }
+
     ransacker :custom_title_searcher do |parent|
       parent.table[:title]
     end
