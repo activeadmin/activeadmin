@@ -1,4 +1,5 @@
 #= require jquery3
+#= require jquery-migrate-3.0.0
 #= require ./jquery_ui
 #= require jquery_ujs
 #= require_self
