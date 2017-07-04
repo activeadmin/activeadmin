@@ -38,7 +38,12 @@ body.logged_out {
       }
     }
 
-    a { float: right; margin-top: -32px; }
+    a {
+      bottom: 32px;
+      float: right;
+      margin-left: 16px;
+      position: relative;
+    }
   }
 
 }
