@@ -53,11 +53,9 @@ module ActiveAdmin
         csv << CSV.generate_line(columns.map{ |c| encode c.name, options }, csv_options)
       end
 
-      (1..paginated_collection.total_pages).each do |page|
-        paginated_collection(page).each do |resource|
-          resource = controller.send :apply_decorator, resource
-          csv << CSV.generate_line(build_row(resource, columns, options), csv_options)
-        end
+      each_resource do |resource|
+        resource = controller.send :apply_decorator, resource
+        csv << CSV.generate_line(build_row(resource, columns, options), csv_options)
       end
 
       csv
@@ -113,6 +111,28 @@ module ActiveAdmin
     end
 
     private
+
+    def each_resource
+      page_no = 1
+      loop do
+        page = paginated_collection(page_no)
+
+        # force the page to load
+        records = page.to_a
+
+        # stop if the page is empty
+        break if records.empty?
+
+        records.each do |resource|
+          yield resource
+        end
+
+        # stop if we're on the last page
+        break if records.length < batch_size
+
+        page_no += 1
+      end
+    end
 
     def column_transitive_options
       @column_transitive_options ||= @options.slice(*COLUMN_TRANSITIVE_OPTIONS)
