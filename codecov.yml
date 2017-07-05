@@ -7,15 +7,19 @@ codecov:
 comment: off
 
 coverage:
-  precision: 1
+  precision: 2
 
   range:
     - 70.0
     - 100.0
 
-  round: up
+  round: down
 
   status:
     changes: false
+
     patch: true
-    project: true
+
+    project:
+      default:
+        threshold: 1%
