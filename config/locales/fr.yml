@@ -8,6 +8,7 @@ fr:
     edit: "Modifier"
     delete: "Supprimer"
     delete_confirmation: "Êtes-vous certain de vouloir supprimer ceci ?"
+    create_another: "Créer autre %{model}"
     new_model: "Créer %{model}"
     edit_model: "Modifier %{model}"
     delete_model: "Supprimer %{model}"
@@ -33,6 +34,8 @@ fr:
         less_than: "Plus petit que"
         gteq_datetime: "Ultérieur ou égal à"
         lteq_datetime: "Antérieur ou égal à"
+        from: "De"
+        to: "À"
     search_status:
       headline: "Statut de la recherche :"
       current_scope: "Etendu du filtre :"
@@ -124,6 +127,10 @@ fr:
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
         resend_unlock_instructions: "Renvoyer les informations de déverrouillage"
         resend_confirmation_instructions: "Renvoyer les instructions de confirmation"
+    unsupported_browser:
+      headline: "Veuillez noter que ActiveAdmin ne supporte plus les versions d'Internet Explorer 8 ou moins."
+      recommendation: "Nous vous recommandons de <a href=\"http://browsehappy.com/\">mettre à jour votre navigateur</a> pour améliorer votre expérience."
+      turn_off_compatibility_view: "Si vous utilisez IE 9 ou une version ultérieure, assurez-vous d'<a href=\"https://support.microsoft.com/fr-fr/help/17471\">activer \"Affichage de compatibilité\"</a>."
     access_denied:
       message: "Vous n'êtes pas autorisé à exécuter cette action"
     index_list:
