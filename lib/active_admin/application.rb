@@ -136,7 +136,7 @@ module ActiveAdmin
                                         ['active_admin/print.css', media: 'print']
                                       ]
     
-    inheritable_setting :javascripts ['active_admin.js']
+    inheritable_setting :javascripts, ['active_admin.js']
     
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
