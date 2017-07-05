@@ -38,7 +38,7 @@ module ActiveAdmin
     #
     # Which is especially useful if you're looking up a gem with dashes in the name.
     #
-    # ActiveAdmin::Dependency['jquery-ui-rails'] < 5
+    # ActiveAdmin::Dependency['jquery-rails'] < 5
     # => false
     #
     def self.method_missing(name, *args)
