@@ -8,7 +8,6 @@ require 'formtastic'
 require 'formtastic_i18n'
 require 'inherited_resources'
 require 'jquery-rails'
-require 'jquery-ui-rails'
 require 'coffee-rails'
 require 'arbre'
 
