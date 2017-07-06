@@ -2,6 +2,8 @@
 
 ## Master (unreleased)
 
+* Fixed [#4173](../../issues/4173) by including the default Kaminari templates [#5069](../../pull/5069) by [@javierjulio][]
+
 ### Removals
 
 * Ruby 2.1 support has been dropped [#5002][] by [@deivid-rodriguez][]
