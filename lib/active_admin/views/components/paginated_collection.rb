@@ -92,7 +92,7 @@ module ActiveAdmin
       end
 
       def build_pagination
-        options = {}
+        options = { theme: 'active_admin' }
         options[:params]     = @params     if @params
         options[:param_name] = @param_name if @param_name
 
