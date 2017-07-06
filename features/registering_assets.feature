@@ -18,8 +18,10 @@ Feature: Registering Assets
   Scenario: Registering a CSS file
     Given a configuration of:
     """
-      ActiveAdmin.application.register_stylesheet "some-random-css.css", media: :print
-      ActiveAdmin.register Post
+      ActiveSupport::Deprecation.silence do
+        ActiveAdmin.application.register_stylesheet "some-random-css.css", media: :print
+        ActiveAdmin.register Post
+      end
     """
     When I am on the index page for posts
     Then I should see the css file "some-random-css" of media "print"
@@ -27,8 +29,10 @@ Feature: Registering Assets
   Scenario: Registering a JS file
     Given a configuration of:
     """
-      ActiveAdmin.application.register_javascript "some-random-js.js"
-      ActiveAdmin.register Post
+      ActiveSupport::Deprecation.silence do
+        ActiveAdmin.application.register_javascript "some-random-js.js"
+        ActiveAdmin.register Post
+      end
     """
     When I am on the index page for posts
     Then I should see the js file "some-random-js"
