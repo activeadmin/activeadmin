@@ -26,11 +26,18 @@ module ActiveAdmin
       end
 
       def label
+        # TODO: to remind us to go back to the simpler str.downcase once we support ruby >= 2.4 only.
+        translated_predicate = predicate_name.mb_chars.downcase.to_s
         if related_class
-          "#{related_class.model_name.human} #{predicate_name}".strip
+          "#{related_class.model_name.human} #{translated_predicate}".strip
         else
-          "#{attribute_name} #{predicate_name}".strip
+          "#{attribute_name} #{translated_predicate}".strip
         end
+      end
+
+      def predicate_name
+        I18n.t("active_admin.filters.predicates.#{condition.predicate.name}",
+               default: ransack_predicate_name)
       end
 
       def html_options
@@ -56,8 +63,7 @@ module ActiveAdmin
         condition_attribute.attr_name
       end
 
-      # translated predicated (equals, contains, etc)
-      def predicate_name
+      def ransack_predicate_name
         Ransack::Translate.predicate(condition.predicate.name)
       end
 
