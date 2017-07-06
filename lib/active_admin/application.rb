@@ -131,6 +131,13 @@ module ActiveAdmin
     # Include association filters by default
     inheritable_setting :include_default_association_filters, true
 
+    inheritable_setting :stylesheets, [
+                                        ['active_admin.css', media: 'screen'],
+                                        ['active_admin/print.css', media: 'print']
+                                      ]
+    
+    inheritable_setting :javascripts, ['active_admin.js']
+    
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     # Note that Formtastic also has 'collection_label_methods' similar to this
@@ -153,15 +160,12 @@ module ActiveAdmin
       raise "`config.allow_comments` is no longer provided in ActiveAdmin 1.x. Use `config.comments` instead."
     end
 
-    include AssetRegistration
-
     # Event that gets triggered on load of Active Admin
     BeforeLoadEvent = 'active_admin.application.before_load'.freeze
     AfterLoadEvent  = 'active_admin.application.after_load'.freeze
 
     # Runs before the app's AA initializer
     def setup!
-      register_default_assets
     end
 
     # Runs after the app's AA initializer
@@ -269,14 +273,6 @@ module ActiveAdmin
     end
 
   private
-
-    def register_default_assets
-      register_stylesheet 'active_admin.css',       media: 'screen'
-      register_stylesheet 'active_admin/print.css', media: 'print'
-
-      register_javascript 'active_admin.js'
-    end
-
     # Since app/admin is alphabetically before app/models, we have to remove it
     # from the host app's +autoload_paths+ to prevent missing constant errors.
     #
