@@ -5,8 +5,8 @@ onDOMReady = ->
   $('.batch_actions_selector li a').click (e)->
     e.stopPropagation() # prevent Rails UJS click event
     e.preventDefault()
-    if $(@).data 'confirm'
-      ActiveAdmin.modal_dialog $(@), (inputs)=>
+    if message = $(@).data 'confirm'
+      ActiveAdmin.modal_dialog message, $(@).data('inputs'), (inputs)=>
         $(@).trigger 'confirm:complete', inputs
     else
       $(@).trigger 'confirm:complete'

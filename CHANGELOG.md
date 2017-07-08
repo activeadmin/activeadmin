@@ -39,8 +39,6 @@
 * Allow AA scopes to return paginated collections [#4996][] by [@Fivell][]
 * Added `scopes_show_count` configuration to  setup show_count attribute for scopes globally [#4950][] by [@Fivell][]
 * Allow custom panel title given with `attributes_table` [#4940][] by [@ajw725][]
-* Added unique js events for each particular batch action [#5040][] by [@Fivell][]
-
 
 ## 1.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.3...master)
 
