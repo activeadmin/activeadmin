@@ -5,16 +5,6 @@ RSpec.describe ActiveAdmin::Application do
 
   let(:application) { ActiveAdmin::Application.new }
 
-  around do |example|
-    old_load_paths = application.load_paths
-    # TODO: Figure out why load paths need to be overriden
-    application.load_paths = [File.expand_path('app/admin', Rails.root)]
-
-    example.call
-
-    application.load_paths = old_load_paths
-  end
-
   it "should have a default load path of ['app/admin']" do
     expect(application.load_paths).to eq [File.expand_path('app/admin', Rails.root)]
   end

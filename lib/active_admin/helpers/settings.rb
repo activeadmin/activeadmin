@@ -22,6 +22,10 @@ module ActiveAdmin
     end
 
     def read_default_setting(name)
+      if (value = default_settings[name]).respond_to?(:call)
+        default_settings[name] = value.call
+      end
+
       default_settings[name]
     end
 
