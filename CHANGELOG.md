@@ -5,6 +5,10 @@
 ### Bug Fixes
 
 * Fixed [#4173][] by including the default Kaminari templates [#5069][] by [@javierjulio][]
+* Fixed [#5043][]. Do not crash in sidebar rendering when a default scope is not
+  specified. [#5044] by [@Fivell][].
+* Fixed [#3894][]. Make tab's component work with non-ascii titles. [#5046] by
+  [@Fivell][].
 
 ### Removals
 
@@ -47,6 +51,7 @@
 * Allow AA scopes to return paginated collections [#4996][] by [@Fivell][]
 * Added `scopes_show_count` configuration to  setup show_count attribute for scopes globally [#4950][] by [@Fivell][]
 * Allow custom panel title given with `attributes_table` [#4940][] by [@ajw725][]
+* Allow passing a class to `action_item` block [#4997][] by [@Fivell][]
 
 ## 1.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.3...master)
 
@@ -164,9 +169,11 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#3695]: https://github.com/activeadmin/activeadmin/issues/3695
 [#3731]: https://github.com/activeadmin/activeadmin/issues/3731
 [#3783]: https://github.com/activeadmin/activeadmin/issues/3783
+[#3894]: https://github.com/activeadmin/activeadmin/issues/3894
 [#4187]: https://github.com/activeadmin/activeadmin/issues/4187
 [#4173]: https://github.com/activeadmin/activeadmin/issues/4173
 [#4254]: https://github.com/activeadmin/activeadmin/issues/4254
+[#5043]: https://github.com/activeadmin/activeadmin/issues/5043
 
 [#4477]: https://github.com/activeadmin/activeadmin/pull/4477
 [#4759]: https://github.com/activeadmin/activeadmin/pull/4759
@@ -180,9 +187,12 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#4951]: https://github.com/activeadmin/activeadmin/pull/4951
 [#4989]: https://github.com/activeadmin/activeadmin/pull/4989
 [#4996]: https://github.com/activeadmin/activeadmin/pull/4996
+[#4997]: https://github.com/activeadmin/activeadmin/pull/4997
 [#5029]: https://github.com/activeadmin/activeadmin/pull/5029
 [#5002]: https://github.com/activeadmin/activeadmin/pull/5002
 [#5037]: https://github.com/activeadmin/activeadmin/pull/5037
+[#5044]: https://github.com/activeadmin/activeadmin/pull/5044
+[#5046]: https://github.com/activeadmin/activeadmin/pull/5046
 [#5060]: https://github.com/activeadmin/activeadmin/pull/5060
 [#5069]: https://github.com/activeadmin/activeadmin/pull/5069
 
