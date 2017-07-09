@@ -1,4 +1,6 @@
-//= depend_on_asset "active_admin/orderable.png"
+//= depend_on_asset "active_admin/sortable.png"
+//= depend_on_asset "active_admin/sortable_asc.png"
+//= depend_on_asset "active_admin/sortable_desc.png"
 // ----------------------------------- Tables
 
 table tr {
@@ -29,15 +31,19 @@ table.index_table {
       color: $section-header-text-color;
       text-decoration: none;
       display: block;
-      white-space: nowrap;
     }
 
     &.sortable a {
-      background: image-url('active_admin/orderable.png') no-repeat 0 4px; padding-left: 13px;
+      background: image-url("active_admin/sortable.png") no-repeat left center;
+      padding-left: 13px;
     }
 
-    &.sorted-asc a { background-position: 0 -27px; }
-    &.sorted-desc a {  background-position: 0 -56px;}
+    &.sorted-asc a {
+      background: image-url("active_admin/sortable_asc.png") no-repeat left center;
+    }
+    &.sorted-desc a {
+      background: image-url("active_admin/sortable_desc.png") no-repeat left center;
+    }
 
     &.sorted-asc, &.sorted-desc {
       @include gradient(darken($secondary-gradient-start, 5%), darken($secondary-gradient-stop, 5%));
