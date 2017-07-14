@@ -10,6 +10,7 @@ require 'inherited_resources'
 require 'jquery-rails'
 require 'coffee-rails'
 require 'arbre'
+require 'sprockets/es6'
 
 require 'active_admin/helpers/i18n'
 
