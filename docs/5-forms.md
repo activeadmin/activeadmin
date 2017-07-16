@@ -28,7 +28,7 @@ ActiveAdmin.register Post do
 end
 ```
 
-For more details, please see Formtastic's documentation.
+For more details, please see [Formtastic's documentation](https://github.com/justinfrench/formtastic/wiki).
 
 ## Default
 
