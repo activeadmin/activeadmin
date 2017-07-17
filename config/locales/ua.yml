@@ -1,0 +1,142 @@
+ua:
+  active_admin:
+    dashboard: "Головна сторінка"
+    dashboard_welcome:
+      welcome: "Ласкаво просимо до Active Admin. Це стандартна головна сторінка."
+      call_to_action: "Щоб змінити головну сторінку, подивіться 'app/admin/dashboard.rb'"
+    view: "Переглянути"
+    edit: "Редигувати"
+    delete: "Видалити"
+    delete_confirmation: "Ви впевнені, що бажаєте видалити це?"
+    create_another: "Створити інший %{model}"
+    new_model: "Новий %{model}"
+    edit_model: "Редагувати %{model}"
+    delete_model: "Видалити %{model}"
+    details: "%{model} детальніше"
+    cancel: "Скасувати"
+    empty: "Порожне"
+    previous: "Поперед."
+    next: "Наступн."
+    download: "Завантажити:"
+    has_many_new: "Додати %{model}"
+    has_many_delete: "Видалити"
+    has_many_remove: "Видалити"
+    filters:
+      buttons:
+        filter: "Фільтрувати"
+        clear: "Очистити фільтри"
+      predicates:
+        contains: "Містить"
+        equals: "Дорівнює"
+        starts_with: "Починається з"
+        ends_with: "Закінчується"
+        greater_than: "більш ніж"
+        less_than: "менш ніж"
+        gteq_datetime: "Більш ніж або дорівнює"
+        lteq_datetime: "Менш ніж або дорівнює"
+        from: "З"
+        to: "До"
+    search_status:
+      headline: "Статус пошуку:"
+      current_scope: "Межі:"
+      current_filters: "Поточні фільтри:"
+      no_current_filters: "Жоден"
+    status_tag:
+      "yes": "Так"
+      "no": "Ні"
+    main_content: "Будь ласка, створіть %{model}#main_content для відображення вмісту."
+    logout: "Вийти"
+    powered_by: "Працює на %{active_admin} %{version}"
+    sidebars:
+      filters: "Фільтри"
+      search_status: "Статус пошуку"
+    pagination:
+      empty: "Не знайдено жодних %{model}."
+      one: "Результат: <b>1</b> %{model}"
+      one_page: "Результат: <b>усі %{n}</b> %{model}"
+      multiple: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> з <b>%{total}</b>"
+      multiple_without_total: "Результат: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "На сторінці: "
+      entry:
+        one: "запис"
+        other: "записів"
+    any: "Будь-який"
+    blank_slate:
+      content: "Поки що немає жодних %{resource_name}."
+      link: "Створити"
+    dropdown_actions:
+      button_label: "Операції"
+    batch_actions:
+      button_label: "Групові операції"
+      default_confirmation: "Ви впевнені, що бажаєте це зробити?"
+      delete_confirmation: "Ви впевнені, що бажаєте видалити %{plural_model}?"
+      succesfully_destroyed:
+        one: "Успішно видалено 1 %{model}"
+        other: "Успішно видалено %{count} %{plural_model}"
+      selection_toggle_explanation: "(Переключити вибір)"
+      action_label: "%{title} обрані"
+      labels:
+        destroy: "Видалити"
+    comments:
+      created_at: "Створено"
+      resource_type: "Тип ресурсу"
+      author_type: "Тип автора"
+      body: "Текст"
+      author: "Автор"
+      add: "Додати коментар"
+      delete: "Видалити коментар"
+      delete_confirmation: "Ви впевнені, що бажаєте видалити цей коментар?"
+      resource: "Ресурс"
+      no_comments_yet: "Поки що немає коментарів."
+      author_missing: "Анонім"
+      title_content: "Коментарі (%{count})"
+      errors:
+        empty_text: "Коментар не було збережено, текст був порожнім."
+    devise:
+      username:
+        title: "Логін"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Піддомен"
+      password:
+        title: "Пароль"
+      password_confirmation:
+        title: "Підтвердити пароль"
+      sign_up:
+        title: "Зареєструватися"
+        submit: "Зареєструватися"
+      login:
+        title: "Увійти"
+        remember_me: "Запам'ятати мене"
+        submit: "Увійти"
+      reset_password:
+        title: "Забули свій пароль?"
+        submit: "Скинути мій пароль"
+      change_password:
+        title: "Змінити ваш пароль"
+        submit: "Скинути мій пароль"
+      unlock:
+        title: "Повторно надіслати інструкції щодо розблокування"
+        submit: "Повторно надіслати інструкції щодо розблокування"
+      resend_confirmation_instructions:
+        title: "Повторно надіслати інструкції щодо підтвердження"
+        submit: "Повторно надіслати інструкції щодо підтвердження"
+      links:
+        sign_up: "Зареєструватися"
+        sign_in: "Увійти"
+        forgot_your_password: "Забули свій пароль?"
+        sign_in_with_omniauth_provider: "Увійти з %{provider}"
+        resend_unlock_instructions: "Повторно надіслати інструкції щодо розблокування"
+        resend_confirmation_instructions: "Повторно надіслати інструкції щодо підтвердження"
+    unsupported_browser:
+      headline: "Будь ласка, зверніть увагу, що ActiveAdmin більше не підтримує Internet Explorer 8 та нижче."
+      recommendation: "Ми радимо вам <a href=\"http://browsehappy.com/\">оновити ваш браузер</a>."
+      turn_off_compatibility_view: "Якщо ви використовуєте IE 9 або вище, переконайтесь, що ви <a href=\"https://support.microsoft.com/en-us/help/17471\">вимкнули опцію \"Перегляд у режимі сумісності\"</a>."
+    access_denied:
+      message: "Ви не авторизовані для виконання цієї операції."
+    index_list:
+      table: "Таблиця"
+      block: "Перелік"
+      grid: "Сітка"
+      blog: "Блог"
