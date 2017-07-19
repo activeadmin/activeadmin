@@ -156,3 +156,23 @@ Feature: Commenting
     And I follow "View"
     When I add a comment "Bar"
     Then I should be in the resource section for foos
+
+  Scenario: View comments
+    Given 70 comments added by admin with an email "admin@example.com"
+    And a show configuration of:
+      """
+        ActiveAdmin.register Post
+      """
+    Then I should see "Comments (70)"
+    And I should see "Displaying comments 1 - 25 of 70 in total"
+    And I should see 25 comments
+    And I should see pagination with 3 pages
+    And I should see the pagination "Next" link
+    Then I follow "2"
+    And I should see "Displaying comments 26 - 50 of 70 in total"
+    And I should see 25 comments
+    And I should see the pagination "Next" link
+    Then I follow "Next"
+    And I should see 20 comments
+    And I should see "Displaying comments 51 - 70 of 70 in total"
+    And I should not see the pagination "Next" link
