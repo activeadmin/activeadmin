@@ -9,7 +9,7 @@ module ActiveAdmin
     register :max_per_page, 10_000
 
     # The title which gets displayed in the main layout
-    register :site_title, ""
+    register :site_title, "", :string_symbol_or_proc
 
     # Set the site title link href (defaults to AA dashboard)
     register :site_title_link, ""

@@ -41,7 +41,7 @@ module ActiveAdmin
       end
 
       def title_text
-        helpers.render_or_call_method_or_proc_on(helpers, @namespace.site_title)
+        @title_text ||= @namespace.site_title(helpers)
       end
 
       def title_image

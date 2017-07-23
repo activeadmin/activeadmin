@@ -24,7 +24,7 @@ module ActiveAdmin
 
         def build_active_admin_head
           within @head do
-            insert_tag Arbre::HTML::Title, [title, render_or_call_method_or_proc_on(self, active_admin_namespace.site_title)].compact.join(" | ")
+            insert_tag Arbre::HTML::Title, [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
 
             text_node stylesheet_link_tag('active_admin.css', media: 'screen').html_safe
             text_node stylesheet_link_tag('active_admin/print.css', media: 'print').html_safe
