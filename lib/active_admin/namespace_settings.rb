@@ -15,7 +15,7 @@ module ActiveAdmin
     register :site_title_link, ""
 
     # Set the site title image displayed in the main layout (has precendence over :site_title)
-    register :site_title_image, ""
+    register :site_title_image, "", :string_symbol_or_proc
 
     # Set the site footer text (defaults to Powered by ActiveAdmin text with version)
     register :footer, ""
