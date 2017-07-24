@@ -313,6 +313,15 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
                 author: user,
                 starred: true
   end
+
+  800.times do |i|
+    ActiveAdmin::Comment.create!(
+      namespace: :admin,
+      author: AdminUser.first,
+      body: "Test comment #{i}",
+      resource: categories.sample,
+    )
+  end
 RUBY
 
 rake 'db:seed'
