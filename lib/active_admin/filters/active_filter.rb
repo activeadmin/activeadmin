@@ -13,7 +13,7 @@ module ActiveAdmin
       def initialize(resource, condition)
         @resource = resource
         @condition = condition
-        @related_class = find_class
+        @related_class = find_class if find_class?
       end
 
       def values
@@ -65,6 +65,10 @@ module ActiveAdmin
 
       def ransack_predicate_name
         Ransack::Translate.predicate(condition.predicate.name)
+      end
+
+      def find_class?
+        ['eq', 'in'].include? condition.predicate.arel_predicate
       end
 
       # detect related class for Ransack::Nodes::Attribute
