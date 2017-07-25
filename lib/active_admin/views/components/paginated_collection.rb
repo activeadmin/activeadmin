@@ -107,7 +107,7 @@ module ActiveAdmin
           options[:right] = 0
         end
 
-        text_node paginate collection, options
+        text_node paginate(collection, options).html_safe
       end
 
       include ::ActiveAdmin::Helpers::Collection
