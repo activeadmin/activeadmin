@@ -171,3 +171,22 @@ A PR can only be merged into master by a maintainer if:
 
 Any maintainer is allowed to merge a PR if all of these conditions are
 met.
+
+### 10. Shipping a release (maintainers only)
+
+Maintainers need to do the following to push out a release:
+
+* Make sure all pull requests are in and that changelog is current
+* Update `version.rb` file and changelog with new version number
+* Create a stable branch for that release:
+
+  ```sh
+  git checkout master
+  git fetch activeadmin
+  git rebase activeadmin/master
+  # If the release is 2.1.x then this should be: 2-1-stable
+  git checkout -b N-N-stable
+  git push activeadmin N-N-stable:N-N-stable
+  ```
+
+* `bundle exec rake release`
