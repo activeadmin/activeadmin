@@ -79,15 +79,15 @@ Feature: Index Filtering
     And an index configuration of:
     """
       ActiveAdmin.register Post do
-        filter :published_at, :as => :date_range
+        filter :published_date
       end
     """
-    When I fill in "q_published_at_gteq_date" with today's date
-    When I fill in "q_published_at_lteq_date" with today's date
+    When I fill in "q_published_date_gteq" with today's date
+    When I fill in "q_published_date_lteq" with today's date
     When I press "Filter"
     Then I should see 1 posts in the table
-    And I should see "Published At greater than or equal to" within "#search-status-_sidebar_section"
-    And I should see "Published At less than or equal to" within "#search-status-_sidebar_section"
+    And I should see "Published date after" within "#search-status-_sidebar_section"
+    And I should see "Published date before" within "#search-status-_sidebar_section"
 
   Scenario: Checkboxes - Filtering posts written by anyone
     Given 1 post exists
