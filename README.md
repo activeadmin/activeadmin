@@ -61,3 +61,20 @@ Tool                  | Description
 [Inherited Resources]: https://github.com/activeadmin/inherited_resources
 [Kaminari]: https://github.com/kaminari/kaminari
 [Ransack]: https://github.com/activerecord-hackery/ransack
+
+## Releasing
+
+* Make sure all pull requests are in and that changelog is current
+* Update `version.rb` file and changelog with new version number
+* Create a stable branch for that release:
+
+  ```sh
+  git checkout master
+  git fetch activeadmin
+  git rebase activeadmin/master
+  # If the release is 2.1 then this should be: 2-1-stable
+  git checkout -b N-N-stable
+  git push activeadmin N-N-stable:N-N-stable
+  ```
+
+* `bundle exec rake release`
