@@ -4,6 +4,7 @@
 
 ### Bug Fixes
 
+* Fixed [#5093][] Handle table prefix & table suffix for `ActiveAdminComment` model
 * Fixed [#4173][] by including the default Kaminari templates [#5069][] by [@javierjulio][]
 * Fixed [#5043][]. Do not crash in sidebar rendering when a default scope is not
   specified. [#5044] by [@Fivell][].
