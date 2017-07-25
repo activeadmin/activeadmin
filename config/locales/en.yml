@@ -32,8 +32,10 @@ en:
         ends_with: "Ends with"
         greater_than: "Greater than"
         less_than: "Less than"
-        gteq_datetime: "Greater or equal to"
-        lteq_datetime: "Lesser or equal to"
+        gteq_datetime: "After"
+        lteq_datetime: "Before"
+        gteq_date: "After"
+        lteq_date: "Before"
         from: "From"
         to: "To"
     search_status:
