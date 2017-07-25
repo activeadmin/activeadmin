@@ -73,6 +73,22 @@ Feature: Index Filtering
     And I should see 1 posts in the table
     And I should see "Hello World 2" within ".index_table"
 
+  Scenario: Date range - Filtering posts by date range
+    Given 3 post exists
+    And a published post with the title "Hello World" exists
+    And an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        filter :published_at, :as => :date_range
+      end
+    """
+    When I fill in "q_published_at_gteq_date" with today's date
+    When I fill in "q_published_at_lteq_date" with today's date
+    When I press "Filter"
+    Then I should see 1 posts in the table
+    And I should see "Published At greater than or equal to" within "#search-status-_sidebar_section"
+    And I should see "Published At less than or equal to" within "#search-status-_sidebar_section"
+
   Scenario: Checkboxes - Filtering posts written by anyone
     Given 1 post exists
     And a post with the title "Hello World" written by "Jane Doe" exists
