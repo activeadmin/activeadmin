@@ -64,21 +64,21 @@ ActiveAdmin.after_load do |app|
         def create
           create! do |success, failure|
             success.html do
-              ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+              redirect_back fallback_location: active_admin_root
             end
             failure.html do
               flash[:error] = I18n.t 'active_admin.comments.errors.empty_text'
-              ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+              redirect_back fallback_location: active_admin_root
             end
           end
 
           def destroy
             destroy! do |success, failure|
               success.html do
-                ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+                redirect_back fallback_location: active_admin_root
               end
               failure.html do
-                ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+                redirect_back fallback_location: active_admin_root
               end
             end
           end

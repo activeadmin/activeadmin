@@ -8,7 +8,7 @@ PATH
       inherited_resources (>= 1.7.0)
       jquery-rails (>= 4.2.0)
       kaminari (>= 1.0.1)
-      railties (>= 4.2, < 5.3)
+      railties (>= 5.0, < 5.3)
       ransack (>= 1.8.7)
       sass (~> 3.4)
       sprockets (>= 3.0, < 4.1)

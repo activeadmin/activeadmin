@@ -111,16 +111,14 @@ module ActiveAdmin
             redirect_backwards_or_to_root
           end
 
-          body = ActiveAdmin::Dependency.rails.render_key
-
-          format.csv  { render body =>        error,           status: :unauthorized }
+          format.csv  { render body:          error,           status: :unauthorized }
           format.json { render json: { error: error },         status: :unauthorized }
           format.xml  { render xml: "<error>#{error}</error>", status: :unauthorized }
         end
       end
 
       def redirect_backwards_or_to_root
-        ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+        redirect_back fallback_location: active_admin_root
       end
 
     end

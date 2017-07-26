@@ -39,7 +39,6 @@ rvm:
   - jruby-9.2.0.0
 
 gemfile:
-  - gemfiles/rails_42.gemfile
   - gemfiles/rails_50.gemfile
   - gemfiles/rails_51.gemfile
   - Gemfile
