@@ -37,22 +37,6 @@ RSpec.describe ActiveAdmin::DSL do
     it "adds action_item to the action_items of config" do
       expect(resource_config.action_items.size).to eq(@default_items_count + 1)
     end
-
-    context 'DEPRECATED: when used without a name' do
-      it "is configured for only the show action" do
-        expect(ActiveAdmin::Deprecation).to receive(:warn).with(instance_of(String))
-
-        dsl.run_registration_block do
-          action_item only: :edit do
-            "Awesome ActionItem"
-          end
-        end
-
-        item = resource_config.action_items.last
-        expect(item.display_on?(:edit)).to be true
-        expect(item.display_on?(:index)).to be false
-      end
-    end
   end
 
   describe "#menu" do
