@@ -131,46 +131,6 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       end
     end
 
-    context "when status is 'Active' and type is :ok" do
-      subject { status_tag('Active', :ok) }
-
-      describe 'is deprecated' do
-        subject { super().class_list }
-        it do
-          expect(ActiveAdmin::Deprecation)
-            .to receive(:warn)
-            .with(<<-MSG.strip_heredoc
-              The `type` parameter has been deprecated. Provide the "ok" type as
-              a class instead. For example, `status_tag(status, :ok, class: "abc")`
-              would change to `status_tag(status, class: "ok abc")`. Also note that
-              the "ok" CSS rule will be removed too, so you'll have to provide
-              the styles yourself. See https://github.com/activeadmin/activeadmin/blob/master/CHANGELOG.md#110-
-              for more information.
-            MSG
-            )
-          is_expected.to include('ok')
-        end
-      end
-
-      describe '#class_list' do
-        before  { expect(ActiveAdmin::Deprecation).to receive(:warn).once }
-        subject { super().class_list }
-        it      { is_expected.to include('status_tag') }
-      end
-
-      describe '#class_list' do
-        before  { expect(ActiveAdmin::Deprecation).to receive(:warn).once }
-        subject { super().class_list }
-        it      { is_expected.to include('active') }
-      end
-
-      describe '#class_list' do
-        before  { expect(ActiveAdmin::Deprecation).to receive(:warn).once }
-        subject { super().class_list }
-        it      { is_expected.to include('ok') }
-      end
-    end
-
     context "when status is 'Active' and class is 'ok'" do
       subject { status_tag('Active', class: 'ok') }
 
