@@ -22,11 +22,7 @@ module ActiveAdmin
     end
 
     def read_default_setting(name)
-      if (value = default_settings[name]).respond_to?(:call)
-        default_settings[name] = value.call
-      end
-
-      default_settings[name]
+      self.class.unwrap_value(default_settings[name])
     end
 
     private
@@ -36,6 +32,19 @@ module ActiveAdmin
     end
 
     module ClassMethods
+      WrappedValue = Struct.new(:block) do
+        def unwrap
+          block.call
+        end
+      end
+
+      def wrap_value(&block)
+        WrappedValue.new(block)
+      end
+
+      def unwrap_value(value)
+        value.is_a?(WrappedValue) ? value.unwrap : value
+      end
 
       def setting(name, default)
         default_settings[name] = default
