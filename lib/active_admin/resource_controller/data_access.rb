@@ -301,6 +301,8 @@ module ActiveAdmin
       def smart_resource_url
         if create_another?
           new_resource_url(create_another: params[:create_another])
+        elsif params[:redirect_to_index]
+          smart_collection_url
         else
           super
         end
