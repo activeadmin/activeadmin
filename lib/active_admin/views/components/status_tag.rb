@@ -28,11 +28,7 @@ module ActiveAdmin
       #   status_tag('active', class: 'important', id: 'status_123', label: 'on')
       #   # => <span class='status_tag active important' id='status_123'>on</span>
       #
-      def build(*args)
-        options = args.extract_options!
-        status = args[0]
-        type = args[1]
-
+      def build(status, options = {})
         label = options.delete(:label)
         classes = options.delete(:class)
         status = convert_to_boolean_status(status)
@@ -46,19 +42,6 @@ module ActiveAdmin
         super(content, options)
 
         add_class(status_to_class(status)) if status
-
-        if type
-          Deprecation.warn <<-MSG.strip_heredoc
-            The `type` parameter has been deprecated. Provide the "#{type}" type as
-            a class instead. For example, `status_tag(status, :#{type}, class: "abc")`
-            would change to `status_tag(status, class: "#{type} abc")`. Also note that
-            the "#{type}" CSS rule will be removed too, so you'll have to provide
-            the styles yourself. See https://github.com/activeadmin/activeadmin/blob/master/CHANGELOG.md#110-
-            for more information.
-          MSG
-          add_class(type.to_s)
-        end
-
         add_class(classes) if classes
       end
 
