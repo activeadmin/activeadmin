@@ -21,6 +21,8 @@ module ActiveAdmin
       @namespaces = Namespace::Store.new
     end
 
+    setting :app_path, Rails.root
+
     # Load paths for admin configurations. Add folders to this load path
     # to load up other resources for administration. External gems can
     # include their paths in this load path to provide active_admin UIs
