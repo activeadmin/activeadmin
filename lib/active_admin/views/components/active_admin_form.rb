@@ -31,6 +31,10 @@ module ActiveAdmin
           @form_builder = f
         end
 
+        if options[:redirect_to_index].present? || params[:redirect_to_index].present?
+          add_child hidden_field_tag :redirect_to_index, true
+        end
+
         @opening_tag, @closing_tag = split_string_on(form_string, "</form>")
         instance_eval(&block) if block_given?
 

@@ -1,0 +1,30 @@
+.sidebar_section.panel {
+  .cancel {
+    display: none;
+  }
+
+  fieldset {
+    box-shadow: none;
+
+    .input {
+      padding: 0;
+    }
+
+    legend {
+      span {
+        background-color: inherit;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+        padding-left: 0;
+      }
+    }
+
+    margin-bottom: 0;
+  }
+
+  fieldset.actions {
+    padding-bottom: 0;
+    margin-top: 0;
+  }
+}
