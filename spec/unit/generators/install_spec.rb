@@ -9,8 +9,8 @@ RSpec.describe "AA installation" do
       expect(File.exist?(path)).to eq true
     end
 
-    it "active_admin.js.coffee" do
-      path = Rails.root + "app/assets/javascripts/active_admin.js.coffee"
+    it "active_admin.js" do
+      path = Rails.root + "app/assets/javascripts/active_admin.js"
 
       expect(File.exist?(path)).to eq true
     end

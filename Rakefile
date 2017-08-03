@@ -18,6 +18,7 @@ task :setup, [:parallel, :dir, :template] do |_t, opts|
       --skip-listen
       --skip-turbolinks
       --skip-test-unit
+      --skip-coffee
     )
 
     command = ['bundle', 'exec', 'rails', 'new', app_dir, *args].join(' ')
