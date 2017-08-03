@@ -1,13 +1,54 @@
 require 'active_admin/router'
 require 'active_admin/reloader'
-require 'active_admin/helpers/settings'
+require 'active_admin/settings_node'
 
 module ActiveAdmin
   class Application
-    include Settings
-    include Settings::Inheritance
 
-    settings_inherited_by Namespace
+    class << self
+      def default_settings
+        @settings ||= SettingsNode.new
+      end
+
+      def namespace_default_settings
+        @namespace_settings ||= SettingsNode.new
+      end
+
+      def setting(name, default)
+        default_settings.settings[name] = default
+      end
+
+      def inheritable_setting(name, default)
+        namespace_default_settings.settings[name] = default
+        Namespace.default_settings.settings[name] = default
+      end
+    end
+
+    def default_settings
+      self.class.default_settings
+    end
+
+    def settings
+      @settings ||= SettingsNode.new(self.class.default_settings)
+    end
+
+    def namespace_settings
+      @namespace_settings ||= SettingsNode.new(self.class.namespace_default_settings)
+    end
+
+    def respond_to_missing?(method, include_private = false)
+      [settings, namespace_settings].any? { |sets| sets.respond_to?(method) } || super
+    end
+
+    def method_missing(method, *args)
+      if settings.respond_to?(method)
+        settings.send(method, *args)
+      elsif namespace_settings.respond_to?(method)
+        namespace_settings.send(method, *args)
+      else
+        super
+      end
+    end
 
     # The default namespace to put controllers and routes inside. Set this
     # in config/initializers/active_admin.rb using:

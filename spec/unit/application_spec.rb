@@ -94,6 +94,12 @@ RSpec.describe ActiveAdmin::Application do
     expect(application.scopes_show_count).to eq true
   end
 
+  it "fails if setting undefined" do
+    expect do
+      application.undefined_setting
+    end.to raise_error(NoMethodError)
+  end
+
   describe "authentication settings" do
 
     it "should have no default current_user_method" do
