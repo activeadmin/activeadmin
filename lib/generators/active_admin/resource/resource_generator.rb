@@ -12,7 +12,7 @@ module ActiveAdmin
 
       def generate_config_file
         @boilerplate = ActiveAdmin::Generators::Boilerplate.new(class_name)
-        template "admin.rb.erb", "app/admin/#{file_path.tr('/', '_')}.rb"
+        template "admin.rb", "app/admin/#{file_path.gsub('/', '_').pluralize}.rb"
       end
 
     end
