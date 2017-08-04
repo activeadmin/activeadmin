@@ -24,8 +24,13 @@ module ActiveAdmin
         end
 
         def build_comments
-          @comments.any? ? @comments.each(&method(:build_comment)) : build_empty_message
-          div page_entries_info(@comments).html_safe, class: 'pagination_information'
+          if @comments.any?
+            @comments.each(&method(:build_comment))
+            div page_entries_info(@comments).html_safe, class: 'pagination_information'
+          else
+            build_empty_message
+          end
+
           text_node paginate @comments
           build_comment_form
         end
