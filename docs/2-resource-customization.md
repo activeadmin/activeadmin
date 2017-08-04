@@ -10,7 +10,7 @@ resource you must first create a Rails model for it.
 ## Create a Resource
 
 The basic command for creating a resource is `rails g active_admin:resource Post`.
-The generator will produce an empty `app/admin/post.rb` file like so:
+The generator will produce an empty `app/admin/posts.rb` file like so:
 
 ```ruby
 ActiveAdmin.register Post do
