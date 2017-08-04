@@ -8,6 +8,7 @@
 //= require_self
 //= require ./ext/jquery
 //= require ./ext/jquery-ui
+//= require ./lib/active_admin
 //= require ./lib/batch_actions
 //= require ./lib/dropdown-menu
 //= require ./lib/has_many
