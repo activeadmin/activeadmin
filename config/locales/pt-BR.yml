@@ -8,6 +8,7 @@ pt-BR:
     edit: "Editar"
     delete: "Remover"
     delete_confirmation: "Você tem certeza que deseja remover este item?"
+    create_another: "Criar outro %{model}"
     new_model: "Novo(a) %{model}"
     edit_model: "Editar %{model}"
     delete_model: "Remover %{model}"
@@ -31,6 +32,10 @@ pt-BR:
         ends_with: "Termina com"
         greater_than: "Maior Que"
         less_than: "Menor Que"
+        gteq_datetime: "Maior ou igual a"
+        lteq_datetime: "Menor ou igual a"
+        from: "A partir de"
+        to: "Até"
     search_status:
       headline: "Buscou:"
       current_scope: "Em:"
@@ -51,6 +56,7 @@ pt-BR:
       one_page: "Exibindo <b>todos(as) os(as) %{n}</b> %{model}"
       multiple: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de um total de <b>%{total}</b>"
       multiple_without_total: "Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Por página: "
       entry:
         one: "registro"
         other: "registros"
@@ -95,6 +101,8 @@ pt-BR:
         title: "Subdomínio"
       password:
         title: "Senha"
+      password_confirmation:
+        title: "Confirmação de senha"
       sign_up:
         title: "Cadastre-se"
         submit: "Continuar"
