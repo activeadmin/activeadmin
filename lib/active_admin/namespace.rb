@@ -26,12 +26,8 @@ module ActiveAdmin
   #
   class Namespace
     class << self
-      def default_settings
-        @settings ||= SettingsNode.new
-      end
-
       def setting(name, default)
-        default_settings.settings[name] = default
+        Deprecation.warn "This method does not do anything and will be removed."
       end
     end
 
