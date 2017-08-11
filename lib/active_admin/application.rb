@@ -20,7 +20,6 @@ module ActiveAdmin
 
       def inheritable_setting(name, default)
         namespace_default_settings.settings[name] = default
-        Namespace.default_settings.settings[name] = default
       end
     end
 
