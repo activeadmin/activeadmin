@@ -9,8 +9,6 @@ module ActiveAdmin
       @settings ||= {}
     end
 
-    delegate :[]=, to: :settings
-
     protected
 
     def parent
