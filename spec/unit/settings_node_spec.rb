@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::SettingsNode do
-  subject { ActiveAdmin::SettingsNode.new }
-  let(:child) { ActiveAdmin::SettingsNode.new(subject) }
+  subject { ActiveAdmin::SettingsNode.build }
+  let!(:child) { ActiveAdmin::SettingsNode.build(subject) }
 
   context 'parent setting includes foo' do
     before { subject.register :foo, true }
