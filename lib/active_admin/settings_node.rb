@@ -5,6 +5,10 @@ module ActiveAdmin
       @parent = parent
     end
 
+    def register(name, value)
+      settings[name] = value
+    end
+
     def settings
       @settings ||= {}
     end

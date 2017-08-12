@@ -5,7 +5,7 @@ RSpec.describe ActiveAdmin::SettingsNode do
   let(:child) { ActiveAdmin::SettingsNode.new(subject) }
 
   context 'parent setting includes foo' do
-    before { subject.settings[:foo] = true }
+    before { subject.register :foo, true }
 
     it 'returns parent settings' do
       expect(child.foo).to eq true
