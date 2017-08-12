@@ -15,11 +15,11 @@ module ActiveAdmin
       end
 
       def setting(name, default)
-        default_settings.settings[name] = default
+        default_settings.register name, default
       end
 
       def inheritable_setting(name, default)
-        namespace_default_settings.settings[name] = default
+        namespace_default_settings.register name, default
       end
     end
 
