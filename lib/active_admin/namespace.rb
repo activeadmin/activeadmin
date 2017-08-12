@@ -48,7 +48,7 @@ module ActiveAdmin
     end
 
     def settings
-      @settings ||= SettingsNode.new(application.namespace_settings)
+      @settings ||= SettingsNode.build(application.namespace_settings)
     end
 
     def respond_to_missing?(method, include_private = false)
