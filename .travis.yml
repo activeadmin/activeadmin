@@ -42,6 +42,8 @@ matrix:
 
   allow_failures:
     - rvm: jruby-9.1.12.0
+      gemfile: gemfiles/rails_42.gemfile
+    - rvm: jruby-9.1.12.0
       gemfile: gemfiles/rails_50.gemfile
     - rvm: jruby-9.1.12.0
       gemfile: gemfiles/rails_51.gemfile
