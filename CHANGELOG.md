@@ -199,7 +199,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#5060]: https://github.com/activeadmin/activeadmin/pull/5060
 [#5069]: https://github.com/activeadmin/activeadmin/pull/5069
 [#5088]: https://github.com/activeadmin/activeadmin/pull/5088
-[#5093]: https://github.com/activeadmin/activeadmin/pull/5093 
+[#5093]: https://github.com/activeadmin/activeadmin/pull/5093
 
 [@ajw725]: https://github.com/ajw725
 [@bolshakov]: https://github.com/bolshakov

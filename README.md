@@ -11,9 +11,9 @@
 
 ## Goals
 
-1. Enable developers to quickly create good-looking administration interfaces.
-2. Build a DSL for developers and an interface for businesses.
-3. Ensure that developers can easily customize every nook and cranny.
+* Enable developers to quickly create good-looking administration interfaces.
+* Build a DSL for developers and an interface for businesses.
+* Ensure that developers can easily customize every nook and cranny.
 
 ## Getting started
 
