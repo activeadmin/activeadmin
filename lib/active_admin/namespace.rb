@@ -26,12 +26,8 @@ module ActiveAdmin
   #
   class Namespace
     class << self
-      def default_settings
-        @settings ||= SettingsNode.new
-      end
-
       def setting(name, default)
-        default_settings.settings[name] = default
+        Deprecation.warn "This method does not do anything and will be removed."
       end
     end
 
@@ -52,7 +48,7 @@ module ActiveAdmin
     end
 
     def settings
-      @settings ||= SettingsNode.new(application.namespace_settings)
+      @settings ||= SettingsNode.build(application.namespace_settings)
     end
 
     def respond_to_missing?(method, include_private = false)

@@ -7,33 +7,28 @@ module ActiveAdmin
 
     class << self
       def default_settings
-        @settings ||= SettingsNode.new
+        @settings ||= SettingsNode.build
       end
 
       def namespace_default_settings
-        @namespace_settings ||= SettingsNode.new
+        @namespace_settings ||= SettingsNode.build
       end
 
       def setting(name, default)
-        default_settings.settings[name] = default
+        default_settings.register name, default
       end
 
       def inheritable_setting(name, default)
-        namespace_default_settings.settings[name] = default
-        Namespace.default_settings.settings[name] = default
+        namespace_default_settings.register name, default
       end
     end
 
-    def default_settings
-      self.class.default_settings
-    end
-
     def settings
-      @settings ||= SettingsNode.new(self.class.default_settings)
+      @settings ||= SettingsNode.build(self.class.default_settings)
     end
 
     def namespace_settings
-      @namespace_settings ||= SettingsNode.new(self.class.namespace_default_settings)
+      @namespace_settings ||= SettingsNode.build(self.class.namespace_default_settings)
     end
 
     def respond_to_missing?(method, include_private = false)
