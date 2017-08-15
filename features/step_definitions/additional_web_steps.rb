@@ -46,13 +46,6 @@ Then /^I should be in the resource section for (.+)$/ do |resource_name|
   expect(current_url).to include resource_name.tr(' ', '').underscore.pluralize
 end
 
-Then /^I should wait and see "([^"]*)"(?: within "([^"]*)")?$/ do |text, selector|
-  sleep 1
-  step 'show me the page'
-  selector ||= "*"
-  locate(:xpath, "//#{selector}[text()='#{text}']")
-end
-
 Then /^I should see the page title "([^"]*)"$/ do |title|
   within('h2#page_title') do
     expect(page).to have_content title
