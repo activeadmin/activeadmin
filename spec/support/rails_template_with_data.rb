@@ -5,7 +5,7 @@ inject_into_file 'config/initializers/active_admin.rb', <<-RUBY, after: "ActiveA
   config.comments_menu = { parent: 'Administrative' }
 RUBY
 
-inject_into_file 'app/admin/admin_user.rb', <<-RUBY, after: "ActiveAdmin.register AdminUser do\n"
+inject_into_file 'app/admin/admin_users.rb', <<-RUBY, after: "ActiveAdmin.register AdminUser do\n"
 
   menu parent: "Administrative", priority: 1
 RUBY
@@ -80,14 +80,14 @@ RUBY
   generate :'active_admin:resource', type
 end
 
-inject_into_file 'app/admin/category.rb', <<-RUBY, after: "ActiveAdmin.register Category do\n"
+inject_into_file 'app/admin/categories.rb', <<-RUBY, after: "ActiveAdmin.register Category do\n"
 
   config.create_another = true
 
   permit_params [:name, :description]
 RUBY
 
-inject_into_file 'app/admin/user.rb', <<-RUBY, after: "ActiveAdmin.register User do\n"
+inject_into_file 'app/admin/users.rb', <<-RUBY, after: "ActiveAdmin.register User do\n"
 
   config.create_another = true
 
@@ -135,7 +135,7 @@ inject_into_file 'app/admin/user.rb', <<-RUBY, after: "ActiveAdmin.register User
   end
 RUBY
 
-inject_into_file 'app/admin/post.rb', <<-'RUBY', after: "ActiveAdmin.register Post do\n"
+inject_into_file 'app/admin/posts.rb', <<-'RUBY', after: "ActiveAdmin.register Post do\n"
 
   permit_params :custom_category_id, :author_id, :title, :body, :published_date, :position, :starred, taggings_attributes: [ :id, :tag_id, :name, :position, :_destroy ]
 
@@ -269,7 +269,7 @@ inject_into_file 'app/admin/post.rb', <<-'RUBY', after: "ActiveAdmin.register Po
   end
 RUBY
 
-inject_into_file 'app/admin/tag.rb', <<-RUBY, after: "ActiveAdmin.register Tag do\n"
+inject_into_file 'app/admin/tags.rb', <<-RUBY, after: "ActiveAdmin.register Tag do\n"
 
   config.create_another = true
 
