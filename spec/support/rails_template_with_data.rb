@@ -318,7 +318,7 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
     ActiveAdmin::Comment.create!(
       namespace: :admin,
       author: AdminUser.first,
-      body: "Test comment #{i}",
+      body: "Test comment \#{i}",
       resource: categories.sample
     )
   end
