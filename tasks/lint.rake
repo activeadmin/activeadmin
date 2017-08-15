@@ -10,12 +10,6 @@ namespace :lint do
   task :mdl do
     puts "Running mdl..."
 
-    targets = [
-      *Dir.glob("docs/**/*.md"),
-      "CONTRIBUTING.md",
-      ".github/ISSUE_TEMPLATE.md"
-    ]
-
-    abort unless system("mdl", *targets)
+    abort unless system("mdl", ".")
   end
 end
