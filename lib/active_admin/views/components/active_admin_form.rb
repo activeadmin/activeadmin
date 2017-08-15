@@ -111,7 +111,7 @@ module ActiveAdmin
               id: 'create_another',
               class: 'create_another',
               name: 'create_another',
-              type: 'checkbox',
+              type: 'checkbox'
             )
             label(I18n.t('active_admin.create_another', model: label), for: 'create_another')
           end
