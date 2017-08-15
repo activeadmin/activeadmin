@@ -60,6 +60,9 @@ Style/PredicateName:
     - has_many
     - has_many_actions
 
+Style/TrailingCommaInArguments:
+  Enabled: true
+
 Layout/TrailingBlankLines:
   Enabled: true
 
