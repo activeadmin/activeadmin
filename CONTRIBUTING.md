@@ -108,7 +108,14 @@ Or to migrate the database:
 bundle exec rake local db:migrate
 ```
 
-### 7. Make a Pull Request
+### 7. Get the style right
+
+Your patch should follow the same conventions & pass the same code quality
+checks as the rest of the project. [Codeclimate][codeclimate] will give you
+feedback in this regard. You can check & fix codeclimate's feedback by running
+it locally using [Codeclimate's CLI][codeclimate cli], via `codeclimate analyze`.
+
+### 8. Make a Pull Request
 
 At this point, you should switch back to your master branch and make sure it's
 up to date with Active Admin's master branch:
@@ -150,7 +157,7 @@ git pull --rebase upstream master
 git push --force-with-lease 325-add-japanese-translations
 ```
 
-### 9. Merging a PR (maintainers only)
+### 10. Merging a PR (maintainers only)
 
 A PR can only be merged into master by a maintainer if:
 
@@ -163,7 +170,7 @@ A PR can only be merged into master by a maintainer if:
 Any maintainer is allowed to merge a PR if all of these conditions are
 met.
 
-### 10. Shipping a release (maintainers only)
+### 11. Shipping a release (maintainers only)
 
 Maintainers need to do the following to push out a release:
 
@@ -189,6 +196,8 @@ Maintainers need to do the following to push out a release:
 [fork Active Admin]: https://help.github.com/articles/fork-a-repo
 [searching all issues]: https://github.com/activeadmin/activeadmin/issues?q=
 [master template]: https://github.com/activeadmin/activeadmin/blob/master/lib/bug_report_templates/active_admin_master.rb
+[codeclimate]: https://codeclimate.com
+[codeclimate cli]: https://github.com/codeclimate/codeclimate
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
 [git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
 [interactive rebase]: https://help.github.com/articles/interactive-rebase
