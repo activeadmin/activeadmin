@@ -1,34 +1,27 @@
 require 'active_admin/router'
 require 'active_admin/reloader'
-require 'active_admin/settings_node'
+require 'active_admin/application_settings'
+require 'active_admin/namespace_settings'
 
 module ActiveAdmin
   class Application
 
     class << self
-      def default_settings
-        @settings ||= SettingsNode.build
-      end
-
-      def namespace_default_settings
-        @namespace_settings ||= SettingsNode.build
-      end
-
       def setting(name, default)
-        default_settings.register name, default
+        ApplicationSettings.register name, default
       end
 
       def inheritable_setting(name, default)
-        namespace_default_settings.register name, default
+        NamespaceSettings.register name, default
       end
     end
 
     def settings
-      @settings ||= SettingsNode.build(self.class.default_settings)
+      @settings ||= SettingsNode.build(ApplicationSettings)
     end
 
     def namespace_settings
-      @namespace_settings ||= SettingsNode.build(self.class.namespace_default_settings)
+      @namespace_settings ||= SettingsNode.build(NamespaceSettings)
     end
 
     def respond_to_missing?(method, include_private = false)
@@ -45,145 +38,10 @@ module ActiveAdmin
       end
     end
 
-    # The default namespace to put controllers and routes inside. Set this
-    # in config/initializers/active_admin.rb using:
-    #
-    #   config.default_namespace = :super_admin
-    #
-    setting :default_namespace, :admin
-
     attr_reader :namespaces
     def initialize
       @namespaces = Namespace::Store.new
     end
-
-    setting :app_path, Rails.root
-
-    # Load paths for admin configurations. Add folders to this load path
-    # to load up other resources for administration. External gems can
-    # include their paths in this load path to provide active_admin UIs
-    setting :load_paths, [File.expand_path('app/admin', Rails.root)]
-
-    # The default number of resources to display on index pages
-    inheritable_setting :default_per_page, 30
-
-    # The max number of resources to display on index pages and batch exports
-    inheritable_setting :max_per_page, 10_000
-
-    # The title which gets displayed in the main layout
-    inheritable_setting :site_title, ""
-
-    # Set the site title link href (defaults to AA dashboard)
-    inheritable_setting :site_title_link, ""
-
-    # Set the site title image displayed in the main layout (has precendence over :site_title)
-    inheritable_setting :site_title_image, ""
-
-    # Set the site footer text (defaults to Powered by ActiveAdmin text with version)
-    inheritable_setting :footer, ""
-
-    # Set a favicon
-    inheritable_setting :favicon, false
-
-    # Additional meta tags to place in head of logged in pages.
-    inheritable_setting :meta_tags, {}
-
-    # Additional meta tags to place in head of logged out pages.
-    inheritable_setting :meta_tags_for_logged_out_pages, { robots: "noindex, nofollow" }
-
-    # The view factory to use to generate all the view classes. Take
-    # a look at ActiveAdmin::ViewFactory
-    inheritable_setting :view_factory, ActiveAdmin::ViewFactory.new
-
-    # The method to call in controllers to get the current user
-    inheritable_setting :current_user_method, false
-
-    # The method to call in the controllers to ensure that there
-    # is a currently authenticated admin user
-    inheritable_setting :authentication_method, false
-
-    # The path to log user's out with. If set to a symbol, we assume
-    # that it's a method to call which returns the path
-    inheritable_setting :logout_link_path, :destroy_admin_user_session_path
-
-    # The method to use when generating the link for user logout
-    inheritable_setting :logout_link_method, :get
-
-    # Whether the batch actions are enabled or not
-    inheritable_setting :batch_actions, false
-
-    # Whether filters are enabled
-    inheritable_setting :filters, true
-
-    # The namespace root.
-    inheritable_setting :root_to, 'dashboard#index'
-
-    # Options that a passed to root_to.
-    inheritable_setting :root_to_options, {}
-
-    # Options passed to the routes, i.e. { path: '/custom' }
-    inheritable_setting :route_options, {}
-
-    # Display breadcrumbs
-    inheritable_setting :breadcrumb, true
-
-    # Display create another checkbox on a new page
-    # @return [Boolean] (true)
-    inheritable_setting :create_another, false
-
-    # Default CSV options
-    inheritable_setting :csv_options, { col_sep: ',', byte_order_mark: "\xEF\xBB\xBF" }
-
-    # Default Download Links options
-    inheritable_setting :download_links, true
-
-    # The authorization adapter to use
-    inheritable_setting :authorization_adapter, ActiveAdmin::AuthorizationAdapter
-
-    # A proc to be used when a user is not authorized to view the current resource
-    inheritable_setting :on_unauthorized_access, :rescue_active_admin_access_denied
-
-    # A regex to detect unsupported browser, set to false to disable
-    inheritable_setting :unsupported_browser_matcher, /MSIE [1-8]\.0/
-
-    # Whether to display 'Current Filters' on search screen
-    inheritable_setting :current_filters, true
-
-    # class to handle ordering
-    inheritable_setting :order_clause, ActiveAdmin::OrderClause
-
-    # default show_count for scopes
-    inheritable_setting :scopes_show_count, true
-
-    # Request parameters that are permitted by default
-    inheritable_setting :permitted_params, [
-      :utf8, :_method, :authenticity_token, :commit, :id
-    ]
-
-    # Set flash message keys that shouldn't show in ActiveAdmin
-    inheritable_setting :flash_keys_to_except, ['timedout']
-
-    # Set default localize format for Date/Time values
-    setting :localize_format, :long
-
-    # Include association filters by default
-    inheritable_setting :include_default_association_filters, true
-
-    # Active Admin makes educated guesses when displaying objects, this is
-    # the list of methods it tries calling in order
-    # Note that Formtastic also has 'collection_label_methods' similar to this
-    # used by auto generated dropdowns in filter or belongs_to field of Active Admin
-    setting :display_name_methods, [ :display_name,
-                                      :full_name,
-                                      :name,
-                                      :username,
-                                      :login,
-                                      :title,
-                                      :email,
-                                      :to_s ]
-
-    # To make debugging easier, by default don't stream in development
-    setting :disable_streaming_in, ['development']
 
     # Event that gets triggered on load of Active Admin
     BeforeLoadEvent = 'active_admin.application.before_load'.freeze
