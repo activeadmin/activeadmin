@@ -1,7 +1,7 @@
-require 'active_admin/settings_node'
+require 'active_admin/dynamic_settings_node'
 
 module ActiveAdmin
-  class NamespaceSettings < SettingsNode
+  class NamespaceSettings < DynamicSettingsNode
     # The default number of resources to display on index pages
     register :default_per_page, 30
 
