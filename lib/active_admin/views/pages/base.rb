@@ -33,8 +33,6 @@ module ActiveAdmin
               text_node(tag(:meta, name: name, content: content))
             end
 
-            text_node(javascript_include_tag('active_admin.js'))
-
             if active_admin_namespace.favicon
               text_node(favicon_link_tag(active_admin_namespace.favicon))
             end
@@ -52,6 +50,7 @@ module ActiveAdmin
               build_page_content
               build_footer
             end
+            build_script
           end
         end
 
@@ -141,6 +140,10 @@ module ActiveAdmin
           insert_tag view_factory.footer, active_admin_namespace
         end
 
+        # Renders the script tags for JavaScript
+        def build_script
+          text_node(javascript_include_tag('active_admin.js'))
+        end
       end
     end
   end
