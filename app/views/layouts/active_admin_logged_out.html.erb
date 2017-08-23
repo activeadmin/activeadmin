@@ -31,6 +31,7 @@
     <%= yield :footer %>
   </div>
 </div>
-  <%= javascript_include_tag 'active_admin.js' %>
+  <%- async = !Rails.configuration.assets.debug %>
+  <%= javascript_include_tag 'active_admin.js', async: async, defer: async %>
 </body>
 </html>

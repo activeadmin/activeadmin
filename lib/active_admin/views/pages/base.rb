@@ -142,7 +142,8 @@ module ActiveAdmin
 
         # Renders the script tags for JavaScript
         def build_script
-          text_node(javascript_include_tag('active_admin.js'))
+          async = !Rails.configuration.assets.debug
+          text_node(javascript_include_tag('active_admin.js', async: async, defer: async))
         end
       end
     end
