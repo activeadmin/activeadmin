@@ -1,0 +1,64 @@
+---
+
+version: "2"
+
+plugins:
+  duplication:
+    enabled: true
+
+    config:
+      languages:
+        javascript:
+
+        ruby:
+          mass_threshold: 100
+
+  fixme:
+    enabled: true
+
+    config:
+      strings:
+        - FIXME
+        - BUG
+
+  grep:
+    enabled: true
+
+    config:
+      patterns:
+        no-trailing-whitespace:
+          pattern: \s*$
+          annotation: "Don't leave trailing whitespace"
+          severity: minor
+          categories: Style
+          path_patterns:
+            - "**.arb"
+            - "**.coffee"
+            - "**.css"
+            - "**.erb"
+            - "**.es6"
+            - "**.feature"
+            - "**.gemfile"
+            - "**.gemspec"
+            - "**.html"
+            - "**.js"
+            - "**.md"
+            - "**.rake"
+            - "**.rb"
+            - "**.scss"
+            - "**.yml"
+            - ".*.yml"
+
+  markdownlint:
+    enabled: true
+
+  rubocop:
+    enabled: true
+    channel: rubocop-0-49
+
+exclude_patterns:
+  - "gemfiles/vendor/"
+  - ".test-rails-apps/"
+  - "spec/rails/"
+  - "coverage/"
+  - "vendor/"
