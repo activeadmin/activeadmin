@@ -50,6 +50,10 @@ engines:
   markdownlint:
     enabled: true
 
+  rubocop:
+    enabled: true
+    channel: rubocop-0-49
+
 exclude_paths:
   - "gemfiles/vendor/**/*"
   - ".test-rails-apps/**/*"
