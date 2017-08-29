@@ -6,21 +6,17 @@ module ActiveAdmin
         super id: "footer"
         @namespace = namespace
 
-        if footer?
+        if footer_text.present?
           para footer_text
         else
           para powered_by_message
         end
       end
 
-      def footer?
-        @namespace.footer.present?
-      end
-
       private
 
       def footer_text
-        helpers.render_or_call_method_or_proc_on(self, @namespace.footer)
+        @footer_text ||= @namespace.footer(self)
       end
 
       def powered_by_message
