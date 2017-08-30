@@ -26,7 +26,7 @@ module ActiveAdmin
         def build_comments
           if @comments.any?
             @comments.each(&method(:build_comment))
-            div page_entries_info(@comments).html_safe, class: 'pagination_information'
+            div page_entries_info(@comments).html_safe, class: 'pagination_information', entry_name: I18n.t('active_admin.comments.resource')
           else
             build_empty_message
           end
