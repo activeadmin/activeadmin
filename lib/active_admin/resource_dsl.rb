@@ -131,6 +131,8 @@ module ActiveAdmin
     # action.
     #
     def action(set, name, options = {}, &block)
+      raise ArgumentError, "method #{name} already defined" if controller.method_defined?(name)
+
       set << ControllerAction.new(name, options)
       title = options.delete(:title)
 
