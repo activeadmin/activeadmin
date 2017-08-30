@@ -1,3 +1,5 @@
+# Utility methods for internal use.
+# @private
 module MethodOrProcHelper
 
   # This method will either call the symbol on self or instance_exec the Proc
