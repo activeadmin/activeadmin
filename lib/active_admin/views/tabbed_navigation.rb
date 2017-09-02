@@ -18,8 +18,11 @@ module ActiveAdmin
       #
       def build(menu, options = {})
         @menu = menu
-        super(default_options.merge(options))
-        build_menu
+        super(options.reverse_merge(id: 'tabs'))
+
+        menu_items.each do |item|
+          menu_item(item)
+        end
       end
 
       # The top-level menu items that should be displayed.
@@ -30,36 +33,35 @@ module ActiveAdmin
       def tag_name
         'ul'
       end
+    end
 
-      private
+    class MenuItem < Component
+      builder_method :menu_item
 
-      def build_menu
-        menu_items.each do |item|
-          build_menu_item(item)
+      def build(item, options = {})
+        super(options.merge(id: item.id))
+
+        add_class "current" if item.current? assigns[:current_tab]
+
+        if url = item.url(self)
+          a item.label(self), item.html_options.merge(href: url)
+        else
+          span item.label(self), item.html_options
         end
-      end
 
-      def build_menu_item(item)
-        li id: item.id do |li|
-          li.add_class "current" if item.current? assigns[:current_tab]
+        if children = item.items(self).presence
+          add_class "has_nested"
 
-          if url = item.url(self)
-            text_node link_to item.label(self), url, item.html_options
-          else
-            span item.label(self), item.html_options
-          end
-
-          if children = item.items(self).presence
-            li.add_class "has_nested"
-            ul do
-              children.each{ |child| build_menu_item child }
+          ul do
+            children.each do |child|
+              menu_item(child)
             end
           end
         end
       end
 
-      def default_options
-        { id: "tabs" }
+      def tag_name
+        'li'
       end
     end
   end
