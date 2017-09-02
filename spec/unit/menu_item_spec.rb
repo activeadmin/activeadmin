@@ -78,14 +78,6 @@ module ActiveAdmin
         expect(item['Blog'].label).to eq 'Blog'
       end
 
-      it "should sort items based on priority and name" do
-        expect(item.items[0].label).to eq 'Users'
-        expect(item.items[1].label).to eq 'Settings'
-        expect(item.items[2].label).to eq 'Blog'
-        expect(item.items[3].label).to eq 'Cars'
-        expect(item.items[4].label).to eq 'Analytics'
-      end
-
       it "children should hold a reference to their parent" do
         expect(item["Blog"].parent).to eq item
       end

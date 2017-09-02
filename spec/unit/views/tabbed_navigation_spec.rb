@@ -155,4 +155,14 @@ RSpec.describe ActiveAdmin::Views::TabbedNavigation do
     end
 
   end
+
+  describe "sorting items" do
+    it "should sort children by the result of their label proc" do
+      menu.add label: proc{ "G" }, id: "not related 1"
+      menu.add label: proc{ "B" }, id: "not related 2"
+      menu.add label: proc{ "A" }, id: "not related 3"
+
+      expect(tabbed_navigation.children.map(&:label)).to eq %w[A B G]
+    end
+  end
 end

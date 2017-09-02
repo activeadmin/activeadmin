@@ -23,6 +23,7 @@ module ActiveAdmin
         menu_items.each do |item|
           menu_item(item)
         end
+        children.sort!
       end
 
       # The top-level menu items that should be displayed.
