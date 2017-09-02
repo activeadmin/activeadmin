@@ -126,24 +126,24 @@ RSpec.describe ActiveAdmin::Views::TabbedNavigation do
 
     it "should return one item with no if block" do
       menu.add label: "Hello World", url: "/"
-      expect(tabbed_navigation.menu_items).to eq menu.items
+      expect(tabbed_navigation.children.map(&:id)).to eq %w(hello_world)
     end
 
     it "should not include menu items with an if block that returns false" do
       menu.add label: "Don't Show", url: "/", priority: 10, if: proc{ false }
-      expect(tabbed_navigation.menu_items).to be_empty
+      expect(tabbed_navigation.children).to be_empty
     end
 
     it "should not include menu items with an if block that calls a method that returns false" do
       menu.add label: "Don't Show", url: "/", priority: 10, if: :admin_logged_in?
-      expect(tabbed_navigation.menu_items).to be_empty
+      expect(tabbed_navigation.children).to be_empty
     end
 
     it "should not display any items that have no children to display" do
       menu.add label: "Parent", url: "#" do |p|
         p.add label: "Child", url: "/", priority: 10, if: proc{ false }
       end
-      expect(tabbed_navigation.menu_items).to be_empty
+      expect(tabbed_navigation.children).to be_empty
     end
 
     it "should display a parent that has a child to display" do
@@ -151,7 +151,7 @@ RSpec.describe ActiveAdmin::Views::TabbedNavigation do
         p.add label: "Hidden Child", url: "/", priority: 10, if: proc{ false }
         p.add label: "Child", url: "/"
       end
-      expect(tabbed_navigation.menu_items.size).to eq(1)
+      expect(tabbed_navigation.children.size).to eq(1)
     end
 
   end

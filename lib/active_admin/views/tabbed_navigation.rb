@@ -20,15 +20,10 @@ module ActiveAdmin
         @menu = menu
         super(options.reverse_merge(id: 'tabs'))
 
-        menu_items.each do |item|
-          menu_item(item)
+        menu.items.each do |child|
+          menu_item(child) if child.display?(self)
         end
         children.sort!
-      end
-
-      # The top-level menu items that should be displayed.
-      def menu_items
-        menu.items(self)
       end
 
       def tag_name

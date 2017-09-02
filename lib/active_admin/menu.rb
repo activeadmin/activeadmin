@@ -68,9 +68,8 @@ module ActiveAdmin
         self == item || include?(item)
       end
 
-      # Returns sorted array of menu items that should be displayed in this context.
-      def items(context = nil)
-        @children.values.select{ |i| i.display?(context) }
+      def items
+        @children.values
       end
 
       attr_reader :children

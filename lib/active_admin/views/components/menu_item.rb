@@ -11,6 +11,7 @@ module ActiveAdmin
         super(options.merge(id: item.id))
         @label = item.label(self)
         @priority = item.priority
+        child_items = item.items
 
         add_class "current" if item.current? assigns[:current_tab]
 
@@ -20,12 +21,12 @@ module ActiveAdmin
           span item.label(self), item.html_options
         end
 
-        if child_items = item.items(self).presence
+        if child_items.any?
           add_class "has_nested"
 
           ul do
             child_items.each do |child|
-              menu_item(child)
+              menu_item(child) if child.display?(self)
             end
             current_arbre_element.children.sort!
           end
