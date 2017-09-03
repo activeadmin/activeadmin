@@ -1,19 +1,19 @@
 require 'rails_helper'
 
-RSpec.describe ActiveAdmin::Views::TabbedNavigation do
+RSpec.describe ActiveAdmin::Views::Menu do
 
   let(:menu){ ActiveAdmin::Menu.new }
 
   let(:assigns){ { active_admin_menu: menu } }
   let(:helpers){ mock_action_view }
 
-  let(:tabbed_navigation) do
+  let(:menu_component) do
     arbre(assigns, helpers) {
-      insert_tag(ActiveAdmin::Views::TabbedNavigation, active_admin_menu)
+      insert_tag(ActiveAdmin::Views::Menu, active_admin_menu)
     }.children.first
   end
 
-  let(:html) { Capybara.string(tabbed_navigation.to_s) }
+  let(:html) { Capybara.string(menu_component.to_s) }
 
   before do
     load_resources { ActiveAdmin.register Post }
@@ -126,24 +126,24 @@ RSpec.describe ActiveAdmin::Views::TabbedNavigation do
 
     it "should return one item with no if block" do
       menu.add label: "Hello World", url: "/"
-      expect(tabbed_navigation.children.map(&:id)).to eq %w(hello_world)
+      expect(menu_component.children.map(&:id)).to eq %w(hello_world)
     end
 
     it "should not include menu items with an if block that returns false" do
       menu.add label: "Don't Show", url: "/", priority: 10, if: proc{ false }
-      expect(tabbed_navigation.children).to be_empty
+      expect(menu_component.children).to be_empty
     end
 
     it "should not include menu items with an if block that calls a method that returns false" do
       menu.add label: "Don't Show", url: "/", priority: 10, if: :admin_logged_in?
-      expect(tabbed_navigation.children).to be_empty
+      expect(menu_component.children).to be_empty
     end
 
     it "should not display any items that have no children to display" do
       menu.add label: "Parent", url: "#" do |p|
         p.add label: "Child", url: "/", priority: 10, if: proc{ false }
       end
-      expect(tabbed_navigation.children).to be_empty
+      expect(menu_component.children).to be_empty
     end
 
     it "should display a parent that has a child to display" do
@@ -151,7 +151,7 @@ RSpec.describe ActiveAdmin::Views::TabbedNavigation do
         p.add label: "Hidden Child", url: "/", priority: 10, if: proc{ false }
         p.add label: "Child", url: "/"
       end
-      expect(tabbed_navigation.children.size).to eq(1)
+      expect(menu_component.children.size).to eq(1)
     end
 
   end
@@ -162,7 +162,7 @@ RSpec.describe ActiveAdmin::Views::TabbedNavigation do
       menu.add label: proc{ "B" }, id: "not related 2"
       menu.add label: proc{ "A" }, id: "not related 3"
 
-      expect(tabbed_navigation.children.map(&:label)).to eq %w[A B G]
+      expect(menu_component.children.map(&:label)).to eq %w[A B G]
     end
   end
 end
