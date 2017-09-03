@@ -143,7 +143,7 @@ RSpec.describe ActiveAdmin::Views::Menu do
       menu.add label: "Parent", url: "#" do |p|
         p.add label: "Child", url: "/", priority: 10, if: proc{ false }
       end
-      expect(menu_component.children).to be_empty
+      expect(html.all('li')).to be_empty
     end
 
     it "should display a parent that has a child to display" do

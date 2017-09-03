@@ -13,6 +13,7 @@ module ActiveAdmin
         @label = item.label(self)
         @url = item.url(self)
         @priority = item.priority
+        @submenu = nil
 
         add_class "current" if item.current? assigns[:current_tab]
 
@@ -24,7 +25,7 @@ module ActiveAdmin
 
         if item.items.any?
           add_class "has_nested"
-          menu(item)
+          @submenu = menu(item)
         end
       end
 
@@ -36,6 +37,21 @@ module ActiveAdmin
       def <=>(other)
         result = priority <=> other.priority
         result == 0 ? label <=> other.label : result
+      end
+
+      def visible?
+        url.nil? || real_url? || @submenu && @submenu.children.any?
+      end
+
+      def to_s
+        visible? ? super : ''
+      end
+
+      private
+
+      # URL is not nil, empty, or '#'
+      def real_url?
+        url && url.present? && url != '#'
       end
     end
   end

@@ -5,11 +5,12 @@ require 'active_admin/views/components/menu_item'
 RSpec.describe ActiveAdmin::Views::MenuItem do
   let(:item) do
     i = ActiveAdmin::MenuItem.new(label: "Dashboard")
-    i.add label: "Blog"
-    i.add label: "Cars"
-    i.add label: "Users", priority: 1
-    i.add label: "Settings", priority: 2
-    i.add label: "Analytics", priority: 44
+    i.add label: "Blog", url: 'blogs'
+    i.add label: "Cars", url: 'cars'
+    i.add label: "Restricted", url: 'secret', if: proc{false}
+    i.add label: "Users", priority: 1, url: 'admin_users'
+    i.add label: "Settings", priority: 2, url: 'setup'
+    i.add label: "Analytics", priority: 44, url: 'reports'
     i
   end
 

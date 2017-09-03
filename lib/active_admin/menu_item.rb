@@ -72,24 +72,14 @@ module ActiveAdmin
     end
 
     # Don't display if the :if option passed says so
-    # Don't display if the link isn't real, we have children, and none of the children are being displayed.
     def display?(context = nil)
-      render_in_context(context, @should_display) &&
-        (@children.values.any? { |i| i.display?(context) } || @children.none? || real_url?(context))
+      render_in_context context, @should_display
     end
 
     # Returns an array of the ancestry of this menu item.
     # The first item is the immediate parent of the item.
     def ancestors
       parent ? [parent, parent.ancestors].flatten : []
-    end
-
-    private
-
-    # URL is not nil, empty, or '#'
-    def real_url?(context = nil)
-      url = url context
-      url.present? && url != '#'
     end
 
   end
