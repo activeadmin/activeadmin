@@ -13,7 +13,6 @@ module ActiveAdmin
         @label = item.label(self)
         @url = item.url(self)
         @priority = item.priority
-        child_items = item.items
 
         add_class "current" if item.current? assigns[:current_tab]
 
@@ -23,15 +22,9 @@ module ActiveAdmin
           span label, item.html_options
         end
 
-        if child_items.any?
+        if item.items.any?
           add_class "has_nested"
-
-          ul do
-            child_items.each do |child|
-              menu_item(child) if child.display?(self)
-            end
-            current_arbre_element.children.sort!
-          end
+          menu(item)
         end
       end
 
@@ -43,6 +36,23 @@ module ActiveAdmin
       def <=>(other)
         result = priority <=> other.priority
         result == 0 ? label <=> other.label : result
+      end
+    end
+
+    class Menu < Component
+      builder_method :menu
+
+      def build(menu, options = {})
+        super(options)
+
+        menu.items.each do |item|
+          menu_item(item) if item.display?(self)
+        end
+        children.sort!
+      end
+
+      def tag_name
+        'ul'
       end
     end
   end
