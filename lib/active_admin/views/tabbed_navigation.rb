@@ -7,27 +7,31 @@ module ActiveAdmin
     # displayed given the current context and renders them appropriately.
     #
     # The entire component is rendered within one ul element.
-    class TabbedNavigation < Component
-
+    class Menu < Component
       attr_reader :menu
+      builder_method :menu
 
-      # Build a new tabbed navigation component.
-      #
       # @param [ActiveAdmin::Menu] menu the Menu to render
       # @param [Hash] options the options as passed to the underlying ul element.
       #
       def build(menu, options = {})
         @menu = menu
-        super(options.reverse_merge(id: 'tabs'))
+        super(options)
 
-        menu.items.each do |child|
-          menu_item(child) if child.display?(self)
+        menu.items.each do |item|
+          menu_item(item) if item.display?(self)
         end
         children.sort!
       end
 
       def tag_name
         'ul'
+      end
+    end
+
+    class TabbedNavigation < Menu
+      def build(menu, options = {})
+        super(menu, options.reverse_merge(id: 'tabs'))
       end
     end
   end

@@ -38,22 +38,5 @@ module ActiveAdmin
         result == 0 ? label <=> other.label : result
       end
     end
-
-    class Menu < Component
-      builder_method :menu
-
-      def build(menu, options = {})
-        super(options)
-
-        menu.items.each do |item|
-          menu_item(item) if item.display?(self)
-        end
-        children.sort!
-      end
-
-      def tag_name
-        'ul'
-      end
-    end
   end
 end
