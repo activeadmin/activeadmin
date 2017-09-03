@@ -5,20 +5,22 @@ module ActiveAdmin
     class MenuItem < Component
       builder_method :menu_item
       attr_reader :label
+      attr_reader :url
       attr_reader :priority
 
       def build(item, options = {})
         super(options.merge(id: item.id))
         @label = item.label(self)
+        @url = item.url(self)
         @priority = item.priority
         child_items = item.items
 
         add_class "current" if item.current? assigns[:current_tab]
 
-        if url = item.url(self)
-          a item.label(self), item.html_options.merge(href: url)
+        if url
+          a label, item.html_options.merge(href: url)
         else
-          span item.label(self), item.html_options
+          span label, item.html_options
         end
 
         if child_items.any?
