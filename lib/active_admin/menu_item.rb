@@ -65,12 +65,5 @@ module ActiveAdmin
 
     # Don't display if the :if option passed says so
     attr_reader :should_display
-
-    # Returns an array of the ancestry of this menu item.
-    # The first item is the immediate parent of the item.
-    def ancestors
-      parent ? [parent, parent.ancestors].flatten : []
-    end
-
   end
 end

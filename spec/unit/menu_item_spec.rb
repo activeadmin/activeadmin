@@ -68,42 +68,6 @@ module ActiveAdmin
       end
     end
 
-    describe "accessing ancestory" do
-      let(:item){ MenuItem.new label: "Blog" }
-
-      context "with no parent" do
-        it "should return an empty array" do
-          expect(item.ancestors).to eq []
-        end
-      end
-
-      context "with one parent" do
-        let(:sub_item) do
-          item.add label: "Create New"
-          item["Create New"]
-        end
-        it "should return an array with the parent" do
-          expect(sub_item.ancestors).to eq [item]
-        end
-      end
-
-      context "with many parents" do
-        before(:each) do
-          c1 = {label: "C1"}
-          c2 = {label: "C2"}
-          c3 = {label: "C3"}
-
-          item.add(c1).add(c2).add(c3)
-
-          item
-        end
-        let(:sub_item){ item["C1"]["C2"]["C3"] }
-        it "should return an array with the parents in reverse order" do
-          expect(sub_item.ancestors).to eq [item["C1"]["C2"], item["C1"], item]
-        end
-      end
-    end # accessing ancestory
-
     describe "#id" do
       it "should be normalized" do
         expect(MenuItem.new(id: "Foo Bar").id).to eq "foo_bar"
