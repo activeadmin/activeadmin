@@ -10,8 +10,8 @@ module ActiveAdmin
 
       def build(item, options = {})
         super(options.merge(id: item.id))
-        @label = item.label(self)
-        @url = item.url(self)
+        @label = helpers.render_in_context self, item.label
+        @url = helpers.render_in_context self, item.url
         @priority = item.priority
         @submenu = nil
 

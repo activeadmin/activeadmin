@@ -19,7 +19,7 @@ module ActiveAdmin
         super(options)
 
         menu.items.each do |item|
-          menu_item(item) if item.display?(self)
+          menu_item(item) if helpers.render_in_context self, item.should_display
         end
         children.sort!
       end

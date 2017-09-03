@@ -1,9 +1,6 @@
-require 'active_admin/view_helpers/method_or_proc_helper'
-
 module ActiveAdmin
   class MenuItem
     include Menu::MenuNode
-    include MethodOrProcHelper
 
     attr_reader :html_options, :parent, :priority
 
@@ -63,18 +60,11 @@ module ActiveAdmin
       @id ||= normalize_id @dirty_id
     end
 
-    def label(context = nil)
-      render_in_context context, @label
-    end
-
-    def url(context = nil)
-      render_in_context context, @url
-    end
+    attr_reader :label
+    attr_reader :url
 
     # Don't display if the :if option passed says so
-    def display?(context = nil)
-      render_in_context context, @should_display
-    end
+    attr_reader :should_display
 
     # Returns an array of the ancestry of this menu item.
     # The first item is the immediate parent of the item.

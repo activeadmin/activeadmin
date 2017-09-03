@@ -20,22 +20,6 @@ module ActiveAdmin
       expect(item.priority).to eq 10
     end
 
-    context "conditional display" do
-      it "should store a Proc internally and evaluate it when requested" do
-        item = MenuItem.new
-        expect(item.instance_variable_get(:@should_display)).to be_a Proc
-        expect(item.display?).to_not be_a Proc
-      end
-
-      it "should show the item by default" do
-        expect(MenuItem.new.display?).to eq true
-      end
-
-      it "should hide the item" do
-        expect(MenuItem.new(if: proc{false}).display?).to eq false
-      end
-    end
-
     it "should default to an empty hash for html_options" do
       item = MenuItem.new
       expect(item.html_options).to be_empty
