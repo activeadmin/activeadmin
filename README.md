@@ -17,8 +17,8 @@
 
 ## Getting started
 
-* Check out [the docs][docs]
-* Try the [live demo][demo]
+* Check out [the docs][docs].
+* Try the [live demo][demo].
 * The [wiki] includes links to tutorials, articles and sample projects.
 
 ## Need help?
