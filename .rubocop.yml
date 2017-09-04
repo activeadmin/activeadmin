@@ -24,6 +24,9 @@ Lint/EndAlignment:
 Layout/CaseIndentation:
   Enabled: true
 
+Layout/CommentIndentation:
+  Enabled: true
+
 Layout/ElseAlignment:
   Enabled: true
 
