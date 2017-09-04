@@ -83,7 +83,7 @@ module ActiveAdmin
         @filters_to_remove = nil
       end
 
-    private
+      private
 
       # Collapses the waveform, if you will, of which filters should be displayed.
       # Removes filters and adds in default filters as desired.

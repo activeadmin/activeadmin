@@ -268,7 +268,7 @@ module ActiveAdmin
       controllers
     end
 
-  private
+    private
 
     def register_default_assets
       stylesheets['active_admin.css'] = { media: 'screen' }
