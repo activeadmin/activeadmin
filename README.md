@@ -2,12 +2,12 @@
 
 [Active Admin](https://www.activeadmin.info) is a Ruby on Rails framework for creating elegant backends for website administration.
 
-[![Version         ](http://img.shields.io/gem/v/activeadmin.svg)                               ](https://rubygems.org/gems/activeadmin)
-[![Travis CI       ](http://img.shields.io/travis/activeadmin/activeadmin/master.svg)           ](https://travis-ci.org/activeadmin/activeadmin)
-[![Quality         ](http://img.shields.io/codeclimate/github/activeadmin/activeadmin.svg)      ](https://codeclimate.com/github/activeadmin/activeadmin)
-[![Coverage        ](https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg)](https://codecov.io/gh/activeadmin/activeadmin)
-[![Inch CI         ](http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master)       ](http://inch-ci.org/github/activeadmin/activeadmin)
-[![Gratipay Team   ](https://img.shields.io/gratipay/team/Active-Admin.svg)](https://gratipay.com/Active-Admin/)
+[![Version         ][rubygems_badge]][rubygems]
+[![Travis CI       ][travis_badge]][travis]
+[![Quality         ][codeclimate_badge]][codeclimate]
+[![Coverage        ][codecov_badge]][codecov]
+[![Inch CI         ][inch_badge]][inch]
+[![Gratipay Team   ][gratipay_badge]][gratipay]
 
 ## Goals
 
@@ -17,14 +17,13 @@
 
 ## Getting started
 
-* Check out [the docs](http://activeadmin.info/0-installation.html)!
-* Try the [live demo](http://demo.activeadmin.info/admin)
-* The [wiki](https://github.com/activeadmin/activeadmin/wiki) includes links to tutorials, articles and sample projects.
+* Check out [the docs][docs].
+* Try the [live demo][demo].
+* The [wiki] includes links to tutorials, articles and sample projects.
 
 ## Need help?
 
-Please use [StackOverflow](http://stackoverflow.com/questions/tagged/activeadmin) for
-help requests and how-to questions.
+Please use [StackOverflow][stackoverflow] for help requests and how-to questions.
 
 Please open GitHub issues for bugs and enhancements only, not general help requests.
 Please search previous issues (and Google and StackOverflow) before creating a new issue.
@@ -33,14 +32,14 @@ Google Groups, IRC #activeadmin and Gitter are not actively monitored.
 
 ## Want to contribute?
 
-The [contributing guide](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md)
+The [contributing guide][contributing]
 is a good place to start. If you have questions, feel free to ask.
 
 ## Want to support us?
 
-You can support us with a weekly tip via [Gratipay](https://gratipay.com).
+You can support us with a weekly tip via [Gratipay][gratipay.com].
 
-[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.1.3/dist/gratipay.png)](https://gratipay.com/Active-Admin)
+[![Support via Gratipay][gratipay_button]][gratipay]
 
 ## Dependencies
 
@@ -61,3 +60,24 @@ Tool                  | Description
 [Inherited Resources]: https://github.com/activeadmin/inherited_resources
 [Kaminari]: https://github.com/kaminari/kaminari
 [Ransack]: https://github.com/activerecord-hackery/ransack
+
+[rubygems_badge]: http://img.shields.io/gem/v/activeadmin.svg
+[rubygems]: https://rubygems.org/gems/activeadmin
+[travis_badge]: http://img.shields.io/travis/activeadmin/activeadmin/master.svg
+[travis]: https://travis-ci.org/activeadmin/activeadmin
+[codeclimate_badge]: https://api.codeclimate.com/v1/badges/779e407d22bacff19733/maintainability
+[codeclimate]: https://codeclimate.com/github/activeadmin/activeadmin/maintainability
+[codecov_badge]: https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg
+[codecov]: https://codecov.io/gh/activeadmin/activeadmin
+[inch_badge]: http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
+[inch]: http://inch-ci.org/github/activeadmin/activeadmin
+[gratipay_badge]: https://img.shields.io/gratipay/team/Active-Admin.svg
+[gratipay]: https://gratipay.com/Active-Admin/
+
+[docs]: http://activeadmin.info/0-installation.html
+[demo]: http://demo.activeadmin.info/admin
+[wiki]: https://github.com/activeadmin/activeadmin/wiki
+[stackoverflow]: http://stackoverflow.com/questions/tagged/activeadmin
+[contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
+[gratipay.com]: https://gratipay.com
+[gratipay_button]: https://cdn.rawgit.com/gratipay/gratipay-badge/2.1.3/dist/gratipay.png
