@@ -21,7 +21,13 @@ AllCops:
 Lint/EndAlignment:
   Enabled: true
 
+Layout/AccessModifierIndentation:
+  Enabled: true
+
 Layout/CaseIndentation:
+  Enabled: true
+
+Layout/CommentIndentation:
   Enabled: true
 
 Layout/ElseAlignment:

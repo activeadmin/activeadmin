@@ -362,7 +362,7 @@ module ActiveAdmin
           end
         end
 
-      private
+        private
 
         def defaults(resource, options = {})
           if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)

@@ -155,7 +155,7 @@ module ActiveAdmin
       controllers
     end
 
-  private
+    private
 
     # Since app/admin is alphabetically before app/models, we have to remove it
     # from the host app's +autoload_paths+ to prevent missing constant errors.
