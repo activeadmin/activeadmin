@@ -23,10 +23,10 @@ module ActiveAdmin
     # Set a favicon
     register :favicon, false
 
-    # Additional meta tags to place in head of logged in pages.
+    # Additional meta tags to place in head of logged in pages
     register :meta_tags, {}
 
-    # Additional meta tags to place in head of logged out pages.
+    # Additional meta tags to place in head of logged out pages
     register :meta_tags_for_logged_out_pages, { robots: "noindex, nofollow" }
 
     # The view factory to use to generate all the view classes. Take
@@ -53,10 +53,10 @@ module ActiveAdmin
     # Whether filters are enabled
     register :filters, true
 
-    # The namespace root.
+    # The namespace root
     register :root_to, 'dashboard#index'
 
-    # Options that a passed to root_to.
+    # Options that are passed to root_to
     register :root_to_options, {}
 
     # Options passed to the routes, i.e. { path: '/custom' }
