@@ -33,7 +33,7 @@ module ActiveAdmin
     def define_resource_routes(router)
       resources = @application.namespaces.flat_map{ |n| n.resources.values }
       resources.each do |config|
-        routes = resource_routes(router, config)
+        routes = proc { resource_routes(router, config) }
 
         # Add in the parent if it exists
         if config.belongs_to?
@@ -65,7 +65,6 @@ module ActiveAdmin
     end
 
     def resource_routes(router, config)
-      Proc.new do
         case config
         when ::ActiveAdmin::Resource
           router.resources config.resource_name.route_key, only: config.defined_actions do
@@ -90,7 +89,6 @@ module ActiveAdmin
           raise "Unsupported config class: #{config.class}"
         end
       end
-    end
 
     # Deals with +ControllerAction+ instances
     # Builds one route for each HTTP verb passed in
