@@ -68,14 +68,7 @@ module ActiveAdmin
       case config
       when ::ActiveAdmin::Resource
         router.resources config.resource_name.route_key, only: config.defined_actions do
-          router.member do
-            config.member_actions.each { |action| build_action(router, action) }
-          end
-
-          router.collection do
-            config.collection_actions.each { |action| build_action(router, action) }
-            router.post :batch_action if config.batch_actions_enabled?
-          end
+          define_actions(router, config)
         end
       when ::ActiveAdmin::Page
         page = config.underscored_resource_name
@@ -87,6 +80,18 @@ module ActiveAdmin
         end
       else
         raise "Unsupported config class: #{config.class}"
+      end
+    end
+
+    # Defines member and collection actions
+    def define_actions(router, config)
+      router.member do
+        config.member_actions.each { |action| build_action(router, action) }
+      end
+
+      router.collection do
+        config.collection_actions.each { |action| build_action(router, action) }
+        router.post :batch_action if config.batch_actions_enabled?
       end
     end
 
