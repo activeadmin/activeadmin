@@ -51,11 +51,7 @@ module ActiveAdmin
         # Add on the namespace if required
       unless config.namespace.root?
         nested = routes
-        routes = Proc.new do
-          router.namespace config.namespace.name, config.namespace.route_options.dup do
-            nested.call
-          end
-        end
+        routes = proc { define_namespace(router, config, &nested) }
       end
 
       routes.call
@@ -113,5 +109,10 @@ module ActiveAdmin
       end
     end
 
+    def define_namespace(router, config)
+      router.namespace config.namespace.name, config.namespace.route_options.dup do
+        yield
+      end
+    end
   end
 end
