@@ -40,12 +40,12 @@ module ActiveAdmin
           belongs_to = routes
           routes     = Proc.new do
             # If it's optional, make the normal resource routes
-            instance_exec &belongs_to if config.belongs_to_config.optional?
+            belongs_to.call if config.belongs_to_config.optional?
 
             # Make the nested belongs_to routes
             # :only is set to nothing so that we don't clobber any existing routes on the resource
             router.resources config.belongs_to_config.target.resource_name.plural, only: [] do
-              instance_exec &belongs_to
+              belongs_to.call
             end
           end
         end
@@ -55,40 +55,40 @@ module ActiveAdmin
           nested = routes
           routes = Proc.new do
             router.namespace config.namespace.name, config.namespace.route_options.dup do
-              instance_exec &nested
+              nested.call
             end
           end
         end
 
-        instance_exec &routes
+        routes.call
       end
     end
 
     def resource_routes(router, config)
-        case config
-        when ::ActiveAdmin::Resource
-          router.resources config.resource_name.route_key, only: config.defined_actions do
-            router.member do
-              config.member_actions.each { |action| build_action(router, action) }
-            end
+      case config
+      when ::ActiveAdmin::Resource
+        router.resources config.resource_name.route_key, only: config.defined_actions do
+          router.member do
+            config.member_actions.each { |action| build_action(router, action) }
+          end
 
-            router.collection do
-              config.collection_actions.each { |action| build_action(router, action) }
-              router.post :batch_action if config.batch_actions_enabled?
-            end
+          router.collection do
+            config.collection_actions.each { |action| build_action(router, action) }
+            router.post :batch_action if config.batch_actions_enabled?
           end
-        when ::ActiveAdmin::Page
-          page = config.underscored_resource_name
-          router.get "/#{page}" => "#{page}#index"
-          config.page_actions.each do |action|
-            Array.wrap(action.http_verb).each do |verb|
-              build_route router, verb, "/#{page}/#{action.name}" => "#{page}##{action.name}"
-            end
-          end
-        else
-          raise "Unsupported config class: #{config.class}"
         end
+      when ::ActiveAdmin::Page
+        page = config.underscored_resource_name
+        router.get "/#{page}" => "#{page}#index"
+        config.page_actions.each do |action|
+          Array.wrap(action.http_verb).each do |verb|
+            build_route router, verb, "/#{page}/#{action.name}" => "#{page}##{action.name}"
+          end
+        end
+      else
+        raise "Unsupported config class: #{config.class}"
       end
+    end
 
     # Deals with +ControllerAction+ instances
     # Builds one route for each HTTP verb passed in
