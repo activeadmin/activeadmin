@@ -66,23 +66,15 @@ module ActiveAdmin
 
     def resource_routes(router, config)
       Proc.new do
-        # Builds one route for each HTTP verb passed in
-        build_route = proc{ |verbs, *args|
-          [*verbs].each{ |verb| send verb, *args }
-        }
-        # Deals with +ControllerAction+ instances
-        build_action = proc{ |action|
-          build_route.call(action.http_verb, action.name)
-        }
         case config
         when ::ActiveAdmin::Resource
           router.resources config.resource_name.route_key, only: config.defined_actions do
             router.member do
-              config.member_actions.each &build_action
+              config.member_actions.each { |action| build_action(router, action) }
             end
 
             router.collection do
-              config.collection_actions.each &build_action
+              config.collection_actions.each { |action| build_action(router, action) }
               router.post :batch_action if config.batch_actions_enabled?
             end
           end
@@ -91,14 +83,23 @@ module ActiveAdmin
           router.get "/#{page}" => "#{page}#index"
           config.page_actions.each do |action|
             Array.wrap(action.http_verb).each do |verb|
-              build_route.call verb, "/#{page}/#{action.name}" => "#{page}##{action.name}"
+              build_route router, verb, "/#{page}/#{action.name}" => "#{page}##{action.name}"
             end
           end
         else
           raise "Unsupported config class: #{config.class}"
         end
       end
+    end
 
+    # Deals with +ControllerAction+ instances
+    # Builds one route for each HTTP verb passed in
+    def build_action(router, action)
+      build_route(router, action.http_verb, action.name)
+    end
+
+    def build_route(router, verbs, *args)
+      Array.wrap(verbs).each { |verb| router.send(verb, *args) }
     end
   end
 end
