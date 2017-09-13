@@ -13,9 +13,11 @@ module ActiveAdmin
     #   end
     #
     def apply(router)
-      define_root_routes router
-      define_resource_routes router
+      define_root_routes(router)
+      define_resources_routes(router)
     end
+
+    private
 
     def define_root_routes(router)
       @application.namespaces.each do |namespace|
@@ -30,38 +32,42 @@ module ActiveAdmin
     end
 
     # Defines the routes for each resource
-    def define_resource_routes(router)
+    def define_resources_routes(router)
       resources = @application.namespaces.flat_map{ |n| n.resources.values }
       resources.each do |config|
-        routes = proc { resource_routes(router, config) }
-
-        # Add in the parent if it exists
-        if config.belongs_to?
-          belongs_to = routes
-          routes     = Proc.new do
-            # If it's optional, make the normal resource routes
-            belongs_to.call if config.belongs_to_config.optional?
-
-            # Make the nested belongs_to routes
-            # :only is set to nothing so that we don't clobber any existing routes on the resource
-            router.resources config.belongs_to_config.target.resource_name.plural, only: [] do
-              belongs_to.call
-            end
-          end
-        end
-
-          # Add on the namespace if required
-        unless config.namespace.root?
-          nested = routes
-          routes = Proc.new do
-            router.namespace config.namespace.name, config.namespace.route_options.dup do
-              nested.call
-            end
-          end
-        end
-
-        routes.call
+        define_resource_routes(router, config)
       end
+    end
+
+    def define_resource_routes(router, config)
+      routes = proc { resource_routes(router, config) }
+
+      # Add in the parent if it exists
+      if config.belongs_to?
+        belongs_to = routes
+        routes     = Proc.new do
+          # If it's optional, make the normal resource routes
+          belongs_to.call if config.belongs_to_config.optional?
+
+          # Make the nested belongs_to routes
+          # :only is set to nothing so that we don't clobber any existing routes on the resource
+          router.resources config.belongs_to_config.target.resource_name.plural, only: [] do
+            belongs_to.call
+          end
+        end
+      end
+
+        # Add on the namespace if required
+      unless config.namespace.root?
+        nested = routes
+        routes = Proc.new do
+          router.namespace config.namespace.name, config.namespace.route_options.dup do
+            nested.call
+          end
+        end
+      end
+
+      routes.call
     end
 
     def resource_routes(router, config)
