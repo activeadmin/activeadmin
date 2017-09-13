@@ -18,14 +18,12 @@ module ActiveAdmin
     end
 
     def define_root_routes(router)
-      router.instance_exec @application.namespaces do |namespaces|
-        namespaces.each do |namespace|
-          if namespace.root?
-            root namespace.root_to_options.merge(to: namespace.root_to)
-          else
-            namespace namespace.name, namespace.route_options.dup do
-              root namespace.root_to_options.merge(to: namespace.root_to, as: :root)
-            end
+      @application.namespaces.each do |namespace|
+        if namespace.root?
+          router.root namespace.root_to_options.merge(to: namespace.root_to)
+        else
+          router.namespace namespace.name, namespace.route_options.dup do
+            router.root namespace.root_to_options.merge(to: namespace.root_to, as: :root)
           end
         end
       end
@@ -33,42 +31,40 @@ module ActiveAdmin
 
     # Defines the routes for each resource
     def define_resource_routes(router)
-      router.instance_exec @application.namespaces, self do |namespaces, aa_router|
-        resources = namespaces.flat_map{ |n| n.resources.values }
-        resources.each do |config|
-          routes = aa_router.resource_routes(config)
+      resources = @application.namespaces.flat_map{ |n| n.resources.values }
+      resources.each do |config|
+        routes = resource_routes(router, config)
 
-          # Add in the parent if it exists
-          if config.belongs_to?
-            belongs_to = routes
-            routes     = Proc.new do
-              # If it's optional, make the normal resource routes
-              instance_exec &belongs_to if config.belongs_to_config.optional?
+        # Add in the parent if it exists
+        if config.belongs_to?
+          belongs_to = routes
+          routes     = Proc.new do
+            # If it's optional, make the normal resource routes
+            instance_exec &belongs_to if config.belongs_to_config.optional?
 
-              # Make the nested belongs_to routes
-              # :only is set to nothing so that we don't clobber any existing routes on the resource
-              resources config.belongs_to_config.target.resource_name.plural, only: [] do
-                instance_exec &belongs_to
-              end
+            # Make the nested belongs_to routes
+            # :only is set to nothing so that we don't clobber any existing routes on the resource
+            router.resources config.belongs_to_config.target.resource_name.plural, only: [] do
+              instance_exec &belongs_to
             end
           end
+        end
 
           # Add on the namespace if required
-          unless config.namespace.root?
-            nested = routes
-            routes = Proc.new do
-              namespace config.namespace.name, config.namespace.route_options.dup do
-                instance_exec &nested
-              end
+        unless config.namespace.root?
+          nested = routes
+          routes = Proc.new do
+            router.namespace config.namespace.name, config.namespace.route_options.dup do
+              instance_exec &nested
             end
           end
-
-          instance_exec &routes
         end
+
+        instance_exec &routes
       end
     end
 
-    def resource_routes(config)
+    def resource_routes(router, config)
       Proc.new do
         # Builds one route for each HTTP verb passed in
         build_route = proc{ |verbs, *args|
@@ -80,19 +76,19 @@ module ActiveAdmin
         }
         case config
         when ::ActiveAdmin::Resource
-          resources config.resource_name.route_key, only: config.defined_actions do
-            member do
+          router.resources config.resource_name.route_key, only: config.defined_actions do
+            router.member do
               config.member_actions.each &build_action
             end
 
-            collection do
+            router.collection do
               config.collection_actions.each &build_action
-              post :batch_action if config.batch_actions_enabled?
+              router.post :batch_action if config.batch_actions_enabled?
             end
           end
         when ::ActiveAdmin::Page
           page = config.underscored_resource_name
-          get "/#{page}" => "#{page}#index"
+          router.get "/#{page}" => "#{page}#index"
           config.page_actions.each do |action|
             Array.wrap(action.http_verb).each do |verb|
               build_route.call verb, "/#{page}/#{action.name}" => "#{page}##{action.name}"
