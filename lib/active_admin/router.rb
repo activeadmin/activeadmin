@@ -1,19 +1,13 @@
 module ActiveAdmin
+  # @private
   class Router
-    def initialize(application)
-      @application = application
+    attr_reader :namespaces, :router
+
+    def initialize(router:, namespaces:)
+      @router, @namespaces = router, namespaces
     end
 
-    # Creates all the necessary routes for the ActiveAdmin configurations
-    #
-    # Use this within the routes.rb file:
-    #
-    #   Application.routes.draw do |map|
-    #     ActiveAdmin.routes(self)
-    #   end
-    #
-    # @param router [ActionDispatch::Routing::Mapper]
-    def apply(router)
+    def apply(router = @router)
       define_root_routes(router)
       define_resources_routes(router)
     end
@@ -21,7 +15,7 @@ module ActiveAdmin
     private
 
     def define_root_routes(router)
-      @application.namespaces.each do |namespace|
+      namespaces.each do |namespace|
         if namespace.root?
           router.root namespace.root_to_options.merge(to: namespace.root_to)
         else
@@ -34,7 +28,7 @@ module ActiveAdmin
 
     # Defines the routes for each resource
     def define_resources_routes(router)
-      resources = @application.namespaces.flat_map{ |n| n.resources.values }
+      resources = namespaces.flat_map{ |n| n.resources.values }
       resources.each do |config|
         define_resource_routes(router, config)
       end
