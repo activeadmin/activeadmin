@@ -7,14 +7,14 @@ module ActiveAdmin
       @router, @namespaces = router, namespaces
     end
 
-    def apply(router = @router)
-      define_root_routes(router)
-      define_resources_routes(router)
+    def apply
+      define_root_routes
+      define_resources_routes
     end
 
     private
 
-    def define_root_routes(router)
+    def define_root_routes
       namespaces.each do |namespace|
         if namespace.root?
           router.root namespace.root_to_options.merge(to: namespace.root_to)
@@ -27,42 +27,42 @@ module ActiveAdmin
     end
 
     # Defines the routes for each resource
-    def define_resources_routes(router)
+    def define_resources_routes
       resources = namespaces.flat_map{ |n| n.resources.values }
       resources.each do |config|
-        define_resource_routes(router, config)
+        define_resource_routes(config)
       end
     end
 
-    def define_resource_routes(router, config)
+    def define_resource_routes(config)
       if config.namespace.root?
-        define_routes(router, config)
+        define_routes(config)
       else
         # Add on the namespace if required
-        define_namespace(router, config)
+        define_namespace(config)
       end
     end
 
-    def define_routes(router, config)
+    def define_routes(config)
       if config.belongs_to?
-        define_belongs_to_routes(router, config)
+        define_belongs_to_routes(config)
       else
-        resource_routes(router, config)
+        resource_routes(config)
       end
     end
 
-    def resource_routes(router, config)
+    def resource_routes(config)
       case config
       when ::ActiveAdmin::Resource
         router.resources config.resource_name.route_key, only: config.defined_actions do
-          define_actions(router, config)
+          define_actions(config)
         end
       when ::ActiveAdmin::Page
         page = config.underscored_resource_name
         router.get "/#{page}" => "#{page}#index"
         config.page_actions.each do |action|
           Array.wrap(action.http_verb).each do |verb|
-            build_route router, verb, "/#{page}/#{action.name}" => "#{page}##{action.name}"
+            build_route(verb, "/#{page}/#{action.name}" => "#{page}##{action.name}")
           end
         end
       else
@@ -71,41 +71,41 @@ module ActiveAdmin
     end
 
     # Defines member and collection actions
-    def define_actions(router, config)
+    def define_actions(config)
       router.member do
-        config.member_actions.each { |action| build_action(router, action) }
+        config.member_actions.each { |action| build_action(action) }
       end
 
       router.collection do
-        config.collection_actions.each { |action| build_action(router, action) }
+        config.collection_actions.each { |action| build_action(action) }
         router.post :batch_action if config.batch_actions_enabled?
       end
     end
 
     # Deals with +ControllerAction+ instances
     # Builds one route for each HTTP verb passed in
-    def build_action(router, action)
-      build_route(router, action.http_verb, action.name)
+    def build_action(action)
+      build_route(action.http_verb, action.name)
     end
 
-    def build_route(router, verbs, *args)
+    def build_route(verbs, *args)
       Array.wrap(verbs).each { |verb| router.send(verb, *args) }
     end
 
-    def define_belongs_to_routes(router, config)
+    def define_belongs_to_routes(config)
       # If it's optional, make the normal resource routes
-      resource_routes(router, config) if config.belongs_to_config.optional?
+      resource_routes(config) if config.belongs_to_config.optional?
 
       # Make the nested belongs_to routes
       # :only is set to nothing so that we don't clobber any existing routes on the resource
       router.resources config.belongs_to_config.target.resource_name.plural, only: [] do
-        resource_routes(router, config)
+        resource_routes(config)
       end
     end
 
-    def define_namespace(router, config)
+    def define_namespace(config)
       router.namespace config.namespace.name, config.namespace.route_options.dup do
-        define_routes(router, config)
+        define_routes(config)
       end
     end
   end
