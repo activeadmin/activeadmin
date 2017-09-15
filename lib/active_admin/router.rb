@@ -41,14 +41,12 @@ module ActiveAdmin
     end
 
     def define_resource_routes(router, config)
-      routes = proc { define_routes(router, config) }
-
+      if config.namespace.root?
+        define_routes(router, config)
+      else
         # Add on the namespace if required
-      unless config.namespace.root?
-        routes = proc { define_namespace(router, config) }
+        define_namespace(router, config)
       end
-
-      routes.call
     end
 
     def define_routes(router, config)
