@@ -219,7 +219,7 @@ RSpec.describe "A specific resource controller", type: :controller do
 
   describe "performing batch_action" do
     let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", &batch_action_block }
-    let(:batch_action_block) { proc { } }
+    let(:batch_action_block) { proc { self.instance_variable_set :@block_context, self.class } }
     let(:params) { ActionController::Parameters.new(http_params) }
 
     before do
@@ -239,8 +239,8 @@ RSpec.describe "A specific resource controller", type: :controller do
       end
 
       it "should call the block in controller scope" do
-        expect(controller).to receive(:render_in_context).with(controller, nil).and_return({})
         controller.batch_action
+        expect(controller.instance_variable_get(:@block_context)).to eq Admin::PostsController
       end
     end
 
