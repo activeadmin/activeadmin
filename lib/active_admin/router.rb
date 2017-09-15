@@ -44,8 +44,7 @@ module ActiveAdmin
 
       # Add in the parent if it exists
       if config.belongs_to?
-        belongs_to = routes
-        routes     = proc { define_belongs_to_routes(router, config, &belongs_to) }
+        routes     = proc { define_belongs_to_routes(router, config) }
       end
 
         # Add on the namespace if required
@@ -100,12 +99,12 @@ module ActiveAdmin
 
     def define_belongs_to_routes(router, config)
       # If it's optional, make the normal resource routes
-      yield if config.belongs_to_config.optional?
+      resource_routes(router, config) if config.belongs_to_config.optional?
 
       # Make the nested belongs_to routes
       # :only is set to nothing so that we don't clobber any existing routes on the resource
       router.resources config.belongs_to_config.target.resource_name.plural, only: [] do
-        yield
+        resource_routes(router, config)
       end
     end
 
