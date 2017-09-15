@@ -12,6 +12,7 @@ module ActiveAdmin
     #     ActiveAdmin.routes(self)
     #   end
     #
+    # @param router [ActionDispatch::Routing::Mapper]
     def apply(router)
       define_root_routes(router)
       define_resources_routes(router)
@@ -40,12 +41,7 @@ module ActiveAdmin
     end
 
     def define_resource_routes(router, config)
-      routes = proc { resource_routes(router, config) }
-
-      # Add in the parent if it exists
-      if config.belongs_to?
-        routes     = proc { define_belongs_to_routes(router, config) }
-      end
+      routes = proc { define_routes(router, config) }
 
         # Add on the namespace if required
       unless config.namespace.root?
@@ -54,6 +50,14 @@ module ActiveAdmin
       end
 
       routes.call
+    end
+
+    def define_routes(router, config)
+      if config.belongs_to?
+        define_belongs_to_routes(router, config)
+      else
+        resource_routes(router, config)
+      end
     end
 
     def resource_routes(router, config)
