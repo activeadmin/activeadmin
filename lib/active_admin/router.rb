@@ -47,26 +47,27 @@ module ActiveAdmin
       if config.belongs_to?
         define_belongs_to_routes(config)
       else
-        resource_routes(config)
+        page_or_resource_routes(config)
       end
     end
 
+    def page_or_resource_routes(config)
+      config.is_a?(Page) ? page_routes(config) : resource_routes(config)
+    end
+
     def resource_routes(config)
-      case config
-      when ::ActiveAdmin::Resource
-        router.resources config.resource_name.route_key, only: config.defined_actions do
-          define_actions(config)
+      router.resources config.resource_name.route_key, only: config.defined_actions do
+        define_actions(config)
+      end
+    end
+
+    def page_routes(config)
+      page = config.underscored_resource_name
+      router.get "/#{page}" => "#{page}#index"
+      config.page_actions.each do |action|
+        Array.wrap(action.http_verb).each do |verb|
+          build_route(verb, "/#{page}/#{action.name}" => "#{page}##{action.name}")
         end
-      when ::ActiveAdmin::Page
-        page = config.underscored_resource_name
-        router.get "/#{page}" => "#{page}#index"
-        config.page_actions.each do |action|
-          Array.wrap(action.http_verb).each do |verb|
-            build_route(verb, "/#{page}/#{action.name}" => "#{page}##{action.name}")
-          end
-        end
-      else
-        raise "Unsupported config class: #{config.class}"
       end
     end
 
@@ -94,12 +95,12 @@ module ActiveAdmin
 
     def define_belongs_to_routes(config)
       # If it's optional, make the normal resource routes
-      resource_routes(config) if config.belongs_to_config.optional?
+      page_or_resource_routes(config) if config.belongs_to_config.optional?
 
       # Make the nested belongs_to routes
       # :only is set to nothing so that we don't clobber any existing routes on the resource
       router.resources config.belongs_to_config.target.resource_name.plural, only: [] do
-        resource_routes(config)
+        page_or_resource_routes(config)
       end
     end
 
