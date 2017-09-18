@@ -74,6 +74,8 @@ module ActiveAdmin
 
           params.permit(*permitted_params, param_key => block ? instance_exec(&block) : args)
         end
+
+        private :permitted_params
       end
     end
 

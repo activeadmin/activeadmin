@@ -20,6 +20,8 @@ RSpec.describe ActiveAdmin::ResourceController do
         after_destroy :call_after_destroy
 
         controller do
+          private
+
           def call_after_build(obj); end
           def call_before_save(obj); end
           def call_after_save(obj); end
@@ -101,6 +103,17 @@ RSpec.describe ActiveAdmin::ResourceController do
         expect(controller).to receive(:call_after_destroy).with(resource)
         controller.send :destroy_resource, resource
       end
+    end
+  end
+
+  describe "action methods" do
+    before do
+      load_resources { ActiveAdmin.register Post }
+    end
+
+    it "should have actual action methods" do
+      controller.class.clear_action_methods! # make controller recalculate :action_methods on the next call
+      expect(controller.action_methods.sort).to eq ["batch_action", "create", "destroy", "edit", "index", "new", "show", "update"]
     end
   end
 end
