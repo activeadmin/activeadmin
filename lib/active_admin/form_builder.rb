@@ -100,7 +100,7 @@ module ActiveAdmin
         has_many_form.input builder_options[:sortable], as: :hidden
 
         contents << template.content_tag(:li, class: 'handle') do
-          "MOVE"
+          I18n.t('active_admin.move')
         end
       end
 
