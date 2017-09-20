@@ -1,6 +1,7 @@
 module ActiveAdmin
   module ViewHelpers
     module DownloadFormatLinksHelper
+      private
 
       def build_download_formats(download_links)
         download_links = instance_exec(&download_links) if download_links.is_a?(Proc)

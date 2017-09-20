@@ -13,6 +13,8 @@ module ActiveAdmin
             @active_admin_config ? @active_admin_config.resource_class : nil
           end
 
+          private
+
           def resource_class
             self.class.resource_class
           end
