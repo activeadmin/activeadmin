@@ -89,7 +89,7 @@ module ActiveAdmin
               config.collection_actions.each &build_action
               post :batch_action if config.batch_actions_enabled?
             end
-          end
+          end unless (config.resource_name.name.eql? "Comment" && !config.comments)
         when ::ActiveAdmin::Page
           page = config.underscored_resource_name
           get "/#{page}" => "#{page}#index"
