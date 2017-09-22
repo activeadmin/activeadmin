@@ -126,14 +126,18 @@ module ActiveAdmin
       load_paths.flatten.compact.uniq.flat_map{ |path| Dir["#{path}/**/*.rb"] }
     end
 
-    def router
-      @router ||= Router.new(self)
-    end
-
-    # One-liner called by user's config/routes.rb file
+    # Creates all the necessary routes for the ActiveAdmin configurations
+    #
+    # Use this within the routes.rb file:
+    #
+    #   Application.routes.draw do |map|
+    #     ActiveAdmin.routes(self)
+    #   end
+    #
+    # @param rails_router [ActionDispatch::Routing::Mapper]
     def routes(rails_router)
       load!
-      router.apply(rails_router)
+      Router.new(router: rails_router, namespaces: namespaces).apply
     end
 
     # Adds before, around and after filters to all controllers.
