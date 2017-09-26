@@ -2,11 +2,6 @@
 
 ## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
 
-### Breaking Changes
-
-* jquery-ui-rails is no longer a gem dependency and all assets are now
-packaged within the vendor directory. Please remove `//= require jquery-ui` from your active_admin.js file. [#5052][] by [@javierjulio][]
-
 ### Bug Fixes
 
 * Fixed [#5093][] Handle table prefix & table suffix for `ActiveAdminComment` model
@@ -20,6 +15,8 @@ packaged within the vendor directory. Please remove `//= require jquery-ui` from
 
 * Ruby 2.1 support has been dropped [#5002][] by [@deivid-rodriguez][]
 * Replaced `sass-rails` with `sass` dependency [#5037][] by [@javierjulio][]
+* Removed `jquery-ui-rails` as a dependency. All jQuery UI assets are now
+packaged within the vendor directory. Please remove any direct inclusions of`//= require jquery-ui`. [#5052][] by [@javierjulio][]
 
 ### Deprecations
 
