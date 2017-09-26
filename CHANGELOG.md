@@ -15,8 +15,10 @@
 
 * Ruby 2.1 support has been dropped [#5002][] by [@deivid-rodriguez][]
 * Replaced `sass-rails` with `sass` dependency [#5037][] by [@javierjulio][]
-* Removed `jquery-ui-rails` as a dependency. All jQuery UI assets are now
-packaged within the vendor directory. Please remove any direct inclusions of`//= require jquery-ui`. [#5052][] by [@javierjulio][]
+* Removed `jquery-ui-rails` as a dependency. The specific jQuery UI assets used
+  are now within the vendor directory. This will be replaced by alternatives and
+  dropped entirely in a major release. Please remove any direct inclusions
+  of `//= require jquery-ui`. [#5052][] by [@javierjulio][]
 
 ### Deprecations
 
