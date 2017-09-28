@@ -200,6 +200,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#5037]: https://github.com/activeadmin/activeadmin/pull/5037
 [#5044]: https://github.com/activeadmin/activeadmin/pull/5044
 [#5046]: https://github.com/activeadmin/activeadmin/pull/5046
+[#5052]: https://github.com/activeadmin/activeadmin/pull/5052
 [#5060]: https://github.com/activeadmin/activeadmin/pull/5060
 [#5069]: https://github.com/activeadmin/activeadmin/pull/5069
 [#5088]: https://github.com/activeadmin/activeadmin/pull/5088
