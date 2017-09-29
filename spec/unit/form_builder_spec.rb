@@ -904,6 +904,8 @@ RSpec.describe ActiveAdmin::FormBuilder do
             f.object.posts.build
             f.has_many :posts do |p|
               p.object.taggings.build
+              p.input :title
+
               p.has_many :taggings do |t|
                 t.input :tag
               end
@@ -912,8 +914,9 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
         let(:body) { Capybara.string body_html }
 
-        it "should wrap the inner has_many fieldset in an ol > li" do
-          expect(body).to have_selector(".has_many_container ol > li.has_many_container > fieldset")
+        it "displays the input between the outer and inner has_many" do
+          expect(body).to have_selector(".has_many_container ol > li:first-child input#category_posts_attributes_0_title")
+          expect(body).to have_selector(".has_many_container ol > li:nth-child(2).has_many_container > fieldset")
         end
 
         it "should not contain invalid li children" do
