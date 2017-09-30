@@ -33,17 +33,6 @@ Then(/^I should( not)? have parameter "([^"]*)" with value "([^"]*)"$/) do |nega
   end
 end
 
-Then(/^I should( not)? have parameter "([^"]*)"$/) do |negative, key|
-  query = URI(page.current_url).query
-  if query.nil?
-    expect(negative).to eq true
-  else
-    params = Rack::Utils.parse_query query
-    expect(params[key]).to eq nil if negative
-    expect(params[key]).to be_present unless negative
-  end
-end
-
 Then /^I should see current filter "([^"]*)" equal to "([^"]*)" with label "([^"]*)"$/ do |name, value, label|
   expect(page).to have_css "li.current_filter_#{name} span", text: label
   expect(page).to have_css "li.current_filter_#{name} b", text: value
