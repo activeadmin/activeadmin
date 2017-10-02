@@ -13,7 +13,6 @@ end
 
 module ActiveAdmin
   class FormBuilder < ::Formtastic::FormBuilder
-    include MethodOrProcHelper
 
     self.input_namespaces = [::Object, ::ActiveAdmin::Inputs, ::Formtastic::Inputs]
 
@@ -87,10 +86,7 @@ module ActiveAdmin
         contents << template.content_tag(:li) do
           template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
         end
-      elsif call_method_or_proc_on(has_many_form.object,
-                                   builder_options[:allow_destroy],
-                                   exec: false)
-
+      elsif allow_destroy?(has_many_form.object, builder_options[:allow_destroy])
         has_many_form.input(:_destroy, as: :boolean,
                             wrapper_html: {class: 'has_many_delete'},
                             label: I18n.t('active_admin.has_many_delete'))
@@ -105,6 +101,17 @@ module ActiveAdmin
       end
 
       contents
+    end
+
+    def allow_destroy?(form_object, destroy_option)
+      !! case destroy_option
+         when Symbol, String
+           form_object.public_send destroy_option
+         when Proc
+           destroy_option.call form_object
+         else
+           destroy_option
+         end
     end
 
     def sorted_children(assoc, column)
