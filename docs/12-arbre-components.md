@@ -115,6 +115,23 @@ end
 In the above example, the first column will not grow larger than 200px and will
 not shrink less than 100px.
 
+
+### Custom Column Class
+
+In order to add special class to columns pass :class option of the column methods.
+
+```ruby
+columns do
+  column class: "important" do
+    span "Column # 1"
+  end
+  column do
+    span "Column # 2"
+  end
+end
+```
+
+
 ## Table For
 
 Table For provides the ability to create tables like those present
