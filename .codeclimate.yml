@@ -1,6 +1,8 @@
 ---
 
-engines:
+version: "2"
+
+plugins:
   duplication:
     enabled: true
 
@@ -54,9 +56,9 @@ engines:
     enabled: true
     channel: rubocop-0-49
 
-exclude_paths:
-  - "gemfiles/vendor/**/*"
-  - ".test-rails-apps/**/*"
-  - "spec/rails/**/*"
-  - "coverage/**/*"
-  - "vendor/**/*"
+exclude_patterns:
+  - "gemfiles/vendor/"
+  - ".test-rails-apps/"
+  - "spec/rails/"
+  - "coverage/"
+  - "vendor/"
