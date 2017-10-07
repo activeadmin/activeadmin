@@ -29,18 +29,36 @@ module ActiveAdmin
     attr_accessor :already_in_an_inputs_block
 
     def has_many(assoc, options = {}, &block)
-      builder_options, options = partition_custom_settings(options)
-      builder_options.reverse_merge!(new_record: true, heading: assoc_heading(assoc))
-      options.reverse_merge!(for: assoc)
-      options[:class] = [options[:class], "inputs has_many_fields"].compact.join(' ')
-      heading = builder_options[:heading]
-      sortable_column = builder_options[:sortable]
-      sortable_start  = builder_options.fetch(:sortable_start, 0)
+      HasManyBuilder.new(self, assoc, options).render(&block)
+    end
+  end
+
+  # Decorates a FormBuilder with the additional attributes and methods
+  # to build a has_many block.  Nested has_many blocks are handled by
+  # nested decorators.
+  class HasManyBuilder < SimpleDelegator
+    attr_reader :has_many_form, :assoc
+    attr_reader :builder_options, :options
+    attr_reader :heading, :sortable_column, :sortable_start
+
+    def initialize(has_many_form, assoc, options)
+      @has_many_form = has_many_form
+      @assoc = assoc
+      @builder_options, @options = partition_custom_settings(options)
+      @builder_options.reverse_merge!(new_record: true, heading: assoc_heading(assoc))
+      @options.reverse_merge!(for: assoc)
+      @options[:class] = [options[:class], "inputs has_many_fields"].compact.join(' ')
+      @heading = builder_options[:heading]
+      @sortable_column = builder_options[:sortable]
+      @sortable_start  = builder_options.fetch(:sortable_start, 0)
 
       if sortable_column
-        options[:for] = [assoc, sorted_children(assoc, sortable_column)]
+        @options[:for] = [assoc, sorted_children(assoc, sortable_column)]
       end
+      super has_many_form
+    end
 
+    def render(&block)
       html = "".html_safe
       html << template.content_tag(:h3) { heading } if heading.present?
 
@@ -48,7 +66,7 @@ module ActiveAdmin
         content_has_many(assoc, options, builder_options, &block)
       end
 
-      tag = @already_in_an_inputs_block ? :li : :div
+      tag = already_in_an_inputs_block ? :li : :div
       html = template.content_tag(tag, html, class: "has_many_container #{assoc}", 'data-sortable' => sortable_column, 'data-sortable-start' => sortable_start)
       template.concat(html) if template.output_buffer
       html
@@ -63,7 +81,7 @@ module ActiveAdmin
     end
 
     def assoc_heading(assoc)
-      object.class.reflect_on_association(assoc).klass.model_name.
+      has_many_form.object.class.reflect_on_association(assoc).klass.model_name.
         human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
     end
 
@@ -83,8 +101,8 @@ module ActiveAdmin
 
     # Renders the Formtastic inputs then appends ActiveAdmin delete and sort actions.
     def render_has_many_form(has_many_form, parent, builder_options, &block)
-      index = parent && parent_child_index(parent)
-      template.concat template.capture { has_many_form.instance_exec(has_many_form, index, &block) }
+      index = parent && has_many_form.send(:parent_child_index, parent)
+      template.concat template.capture { yield(has_many_form, index) }
       template.concat has_many_actions(has_many_form, builder_options, "".html_safe)
     end
 
@@ -122,21 +140,19 @@ module ActiveAdmin
     end
 
     def sorted_children(assoc, column)
-      object.public_send(assoc).sort_by do |o|
+      has_many_form.object.public_send(assoc).sort_by do |o|
         attribute = o.public_send column
         [attribute.nil? ? Float::INFINITY : attribute, o.id || Float::INFINITY]
       end
     end
 
-    private
-
     def without_wrapper
-      is_being_wrapped = @already_in_an_inputs_block
-      @already_in_an_inputs_block = false
+      is_being_wrapped = already_in_an_inputs_block
+      self.already_in_an_inputs_block = false
 
       html = yield
 
-      @already_in_an_inputs_block = is_being_wrapped
+      self.already_in_an_inputs_block = is_being_wrapped
       html
     end
 
@@ -150,7 +166,7 @@ module ActiveAdmin
         class: class_string,
         for_options: { child_index: placeholder }
       }
-      html = template.capture{ inputs_for_nested_attributes opts, &form_block }
+      html = template.capture{ has_many_form.send(:inputs_for_nested_attributes, opts, &form_block) }
       text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
       template.link_to text, '#', class: "button has_many_add", data: {
