@@ -75,7 +75,7 @@ module ActiveAdmin
       contents ||= "".html_safe
 
       new_record = builder_options[:new_record]
-      js = new_record ? js_for_has_many(assoc, form_block, template, new_record, options[:class]) : ''
+      js = new_record ? js_for_has_many(assoc, new_record, options[:class], &form_block) : ''
       contents << js
     end
 
@@ -139,7 +139,7 @@ module ActiveAdmin
     end
 
     # Capture the ADD JS
-    def js_for_has_many(assoc, form_block, template, new_record, class_string)
+    def js_for_has_many(assoc, new_record, class_string, &form_block)
       assoc_reflection = object.class.reflect_on_association assoc
       assoc_name       = assoc_reflection.klass.model_name
       placeholder      = "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
