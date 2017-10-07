@@ -54,18 +54,7 @@ module ActiveAdmin
       end
 
       html << template.capture do
-        form_block = proc do |has_many_form|
-          render_has_many_form(has_many_form, options[:parent], builder_options, &block)
-        end
-
-        template.assigns[:has_many_block] = true
-        contents = without_wrapper { inputs(options, &form_block) } || "".html_safe
-
-        if builder_options[:new_record]
-          contents << js_for_has_many(assoc, form_block, template, builder_options[:new_record], options[:class])
-        else
-          contents
-        end
+        content_has_many(assoc, options, builder_options, &block)
       end
 
       tag = @already_in_an_inputs_block ? :li : :div
@@ -75,6 +64,20 @@ module ActiveAdmin
     end
 
     protected
+
+    def content_has_many(assoc, options, builder_options, &block)
+      form_block = proc do |has_many_form|
+        render_has_many_form(has_many_form, options[:parent], builder_options, &block)
+      end
+
+      template.assigns[:has_many_block] = true
+      contents = without_wrapper { inputs(options, &form_block) }
+      contents ||= "".html_safe
+
+      new_record = builder_options[:new_record]
+      js = new_record ? js_for_has_many(assoc, form_block, template, new_record, options[:class]) : ''
+      contents << js
+    end
 
     # Renders the Formtastic inputs then appends ActiveAdmin delete and sort actions.
     def render_has_many_form(has_many_form, parent, builder_options, &block)
