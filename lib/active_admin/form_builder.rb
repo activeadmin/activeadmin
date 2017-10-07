@@ -34,10 +34,9 @@ module ActiveAdmin
     end
 
     def has_many(assoc, options = {}, &block)
-      # remove options that should not render as attributes
-      custom_settings = :new_record, :allow_destroy, :heading, :sortable, :sortable_start
-      builder_options = {new_record: true}.merge! options.slice  *custom_settings
-      options         = {for: assoc      }.merge! options.except *custom_settings
+      builder_options, options = partition_custom_settings(options)
+      builder_options.reverse_merge!(new_record: true)
+      options.reverse_merge!(for: assoc)
       options[:class] = [options[:class], "inputs has_many_fields"].compact.join(' ')
       sortable_column = builder_options[:sortable]
       sortable_start  = builder_options.fetch(:sortable_start, 0)
@@ -64,6 +63,12 @@ module ActiveAdmin
     end
 
     protected
+
+    # remove options that should not render as attributes
+    def partition_custom_settings(options)
+      custom_settings = %i(new_record allow_destroy heading sortable sortable_start)
+      options.partition { |k, v| custom_settings.include?(k) }.map(&:to_h)
+    end
 
     def content_has_many(assoc, options, builder_options, &block)
       form_block = proc do |has_many_form|
