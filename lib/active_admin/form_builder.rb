@@ -55,12 +55,7 @@ module ActiveAdmin
 
       html << template.capture do
         form_block = proc do |has_many_form|
-          index    = parent_child_index options[:parent] if options[:parent]
-          block_contents = template.capture do
-            block.call(has_many_form, index)
-          end
-          template.concat(block_contents)
-          template.concat has_many_actions(has_many_form, builder_options, "".html_safe)
+          render_has_many_form(has_many_form, options[:parent], builder_options, &block)
         end
 
         template.assigns[:has_many_block] = true
@@ -80,6 +75,13 @@ module ActiveAdmin
     end
 
     protected
+
+    # Renders the Formtastic inputs then appends ActiveAdmin delete and sort actions.
+    def render_has_many_form(has_many_form, parent, builder_options, &block)
+      index = parent && parent_child_index(parent)
+      template.concat template.capture { has_many_form.instance_exec(has_many_form, index, &block) }
+      template.concat has_many_actions(has_many_form, builder_options, "".html_safe)
+    end
 
     def has_many_actions(has_many_form, builder_options, contents)
       if has_many_form.object.new_record?
