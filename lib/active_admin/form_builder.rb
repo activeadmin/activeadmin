@@ -28,16 +28,12 @@ module ActiveAdmin
 
     attr_accessor :already_in_an_inputs_block
 
-    def assoc_heading(assoc)
-      object.class.reflect_on_association(assoc).klass.model_name.
-        human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
-    end
-
     def has_many(assoc, options = {}, &block)
       builder_options, options = partition_custom_settings(options)
-      builder_options.reverse_merge!(new_record: true)
+      builder_options.reverse_merge!(new_record: true, heading: assoc_heading(assoc))
       options.reverse_merge!(for: assoc)
       options[:class] = [options[:class], "inputs has_many_fields"].compact.join(' ')
+      heading = builder_options[:heading]
       sortable_column = builder_options[:sortable]
       sortable_start  = builder_options.fetch(:sortable_start, 0)
 
@@ -46,11 +42,7 @@ module ActiveAdmin
       end
 
       html = "".html_safe
-      unless builder_options.key?(:heading) && !builder_options[:heading]
-        html << template.content_tag(:h3) do
-          builder_options[:heading] || assoc_heading(assoc)
-        end
-      end
+      html << template.content_tag(:h3) { heading } if heading.present?
 
       html << template.capture do
         content_has_many(assoc, options, builder_options, &block)
@@ -68,6 +60,11 @@ module ActiveAdmin
     def partition_custom_settings(options)
       custom_settings = %i(new_record allow_destroy heading sortable sortable_start)
       options.partition { |k, v| custom_settings.include?(k) }.map(&:to_h)
+    end
+
+    def assoc_heading(assoc)
+      object.class.reflect_on_association(assoc).klass.model_name.
+        human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
     end
 
     def content_has_many(assoc, options, builder_options, &block)
