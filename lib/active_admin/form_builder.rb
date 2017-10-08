@@ -38,19 +38,16 @@ module ActiveAdmin
   # nested decorators.
   class HasManyBuilder < SimpleDelegator
     attr_reader :has_many_form, :assoc
-    attr_reader :builder_options, :options
+    attr_reader :options
     attr_reader :heading, :sortable_column, :sortable_start
+    attr_reader :new_record, :destroy_option
 
     def initialize(has_many_form, assoc, options)
       @has_many_form = has_many_form
       @assoc = assoc
-      @builder_options, @options = partition_custom_settings(options)
-      @builder_options.reverse_merge!(new_record: true, heading: assoc_heading(assoc))
+      @options = extract_custom_settings!(options.dup)
       @options.reverse_merge!(for: assoc)
       @options[:class] = [options[:class], "inputs has_many_fields"].compact.join(' ')
-      @heading = builder_options[:heading]
-      @sortable_column = builder_options[:sortable]
-      @sortable_start  = builder_options.fetch(:sortable_start, 0)
 
       if sortable_column
         @options[:for] = [assoc, sorted_children(assoc, sortable_column)]
@@ -63,7 +60,7 @@ module ActiveAdmin
       html << template.content_tag(:h3) { heading } if heading.present?
 
       html << template.capture do
-        content_has_many(assoc, options, builder_options, &block)
+        content_has_many(assoc, options, &block)
       end
 
       tag = already_in_an_inputs_block ? :li : :div
@@ -75,50 +72,53 @@ module ActiveAdmin
     protected
 
     # remove options that should not render as attributes
-    def partition_custom_settings(options)
-      custom_settings = %i(new_record allow_destroy heading sortable sortable_start)
-      options.partition { |k, v| custom_settings.include?(k) }.map(&:to_h)
+    def extract_custom_settings!(options)
+      @heading = options.key?(:heading) ? options.delete(:heading) : default_heading(assoc)
+      @sortable_column = options.delete(:sortable)
+      @sortable_start  = options.delete(:sortable_start) || 0
+      @new_record = options.key?(:new_record) ? options.delete(:new_record) : true
+      @destroy_option = options.delete(:allow_destroy)
+      options
     end
 
-    def assoc_heading(assoc)
+    def default_heading(assoc)
       has_many_form.object.class.reflect_on_association(assoc).klass.model_name.
         human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
     end
 
-    def content_has_many(assoc, options, builder_options, &block)
+    def content_has_many(assoc, options, &block)
       form_block = proc do |has_many_form|
-        render_has_many_form(has_many_form, options[:parent], builder_options, &block)
+        render_has_many_form(has_many_form, options[:parent], &block)
       end
 
       template.assigns[:has_many_block] = true
       contents = without_wrapper { inputs(options, &form_block) }
       contents ||= "".html_safe
 
-      new_record = builder_options[:new_record]
       js = new_record ? js_for_has_many(assoc, new_record, options[:class], &form_block) : ''
       contents << js
     end
 
     # Renders the Formtastic inputs then appends ActiveAdmin delete and sort actions.
-    def render_has_many_form(has_many_form, parent, builder_options, &block)
+    def render_has_many_form(has_many_form, parent, &block)
       index = parent && has_many_form.send(:parent_child_index, parent)
       template.concat template.capture { yield(has_many_form, index) }
-      template.concat has_many_actions(has_many_form, builder_options, "".html_safe)
+      template.concat has_many_actions(has_many_form, "".html_safe)
     end
 
-    def has_many_actions(has_many_form, builder_options, contents)
+    def has_many_actions(has_many_form, contents)
       if has_many_form.object.new_record?
         contents << template.content_tag(:li) do
           template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
         end
-      elsif allow_destroy?(has_many_form.object, builder_options[:allow_destroy])
+      elsif allow_destroy?(has_many_form.object)
         has_many_form.input(:_destroy, as: :boolean,
                             wrapper_html: {class: 'has_many_delete'},
                             label: I18n.t('active_admin.has_many_delete'))
       end
 
-      if builder_options[:sortable]
-        has_many_form.input builder_options[:sortable], as: :hidden
+      if sortable_column
+        has_many_form.input sortable_column, as: :hidden
 
         contents << template.content_tag(:li, class: 'handle') do
           I18n.t('active_admin.move')
@@ -128,7 +128,7 @@ module ActiveAdmin
       contents
     end
 
-    def allow_destroy?(form_object, destroy_option)
+    def allow_destroy?(form_object)
       !! case destroy_option
          when Symbol, String
            form_object.public_send destroy_option
