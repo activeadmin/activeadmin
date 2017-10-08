@@ -50,14 +50,14 @@ module ActiveAdmin
       @options[:class] = [options[:class], "inputs has_many_fields"].compact.join(' ')
 
       if sortable_column
-        @options[:for] = [assoc, sorted_children(assoc, sortable_column)]
+        @options[:for] = [assoc, sorted_children(sortable_column)]
       end
     end
 
     def render(&block)
       html = "".html_safe
       html << template.content_tag(:h3) { heading } if heading.present?
-      html << template.capture { content_has_many(assoc, options, &block) }
+      html << template.capture { content_has_many(&block) }
       wrap_div_or_li(html)
     end
 
@@ -65,7 +65,7 @@ module ActiveAdmin
 
     # remove options that should not render as attributes
     def extract_custom_settings!(options)
-      @heading = options.key?(:heading) ? options.delete(:heading) : default_heading(assoc)
+      @heading = options.key?(:heading) ? options.delete(:heading) : default_heading
       @sortable_column = options.delete(:sortable)
       @sortable_start  = options.delete(:sortable_start) || 0
       @new_record = options.key?(:new_record) ? options.delete(:new_record) : true
@@ -73,12 +73,16 @@ module ActiveAdmin
       options
     end
 
-    def default_heading(assoc)
-      __getobj__.object.class.reflect_on_association(assoc).klass.model_name.
+    def default_heading
+      assoc_klass.model_name.
         human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
     end
 
-    def content_has_many(assoc, options, &block)
+    def assoc_klass
+      @assoc_klass ||= __getobj__.object.class.reflect_on_association(assoc).klass
+    end
+
+    def content_has_many(&block)
       form_block = proc do |form_builder|
         render_has_many_form(form_builder, options[:parent], &block)
       end
@@ -87,7 +91,7 @@ module ActiveAdmin
       contents = without_wrapper { inputs(options, &form_block) }
       contents ||= "".html_safe
 
-      js = new_record ? js_for_has_many(assoc, new_record, options[:class], &form_block) : ''
+      js = new_record ? js_for_has_many(options[:class], &form_block) : ''
       contents << js
     end
 
@@ -131,7 +135,7 @@ module ActiveAdmin
          end
     end
 
-    def sorted_children(assoc, column)
+    def sorted_children(column)
       __getobj__.object.public_send(assoc).sort_by do |o|
         attribute = o.public_send column
         [attribute.nil? ? Float::INFINITY : attribute, o.id || Float::INFINITY]
@@ -149,12 +153,11 @@ module ActiveAdmin
     end
 
     # Capture the ADD JS
-    def js_for_has_many(assoc, new_record, class_string, &form_block)
-      assoc_reflection = object.class.reflect_on_association assoc
-      assoc_name       = assoc_reflection.klass.model_name
+    def js_for_has_many(class_string, &form_block)
+      assoc_name       = assoc_klass.model_name
       placeholder      = "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
       opts = {
-        for: [assoc, assoc_reflection.klass.new],
+        for: [assoc, assoc_klass.new],
         class: class_string,
         for_options: { child_index: placeholder }
       }
