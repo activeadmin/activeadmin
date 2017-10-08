@@ -57,15 +57,8 @@ module ActiveAdmin
     def render(&block)
       html = "".html_safe
       html << template.content_tag(:h3) { heading } if heading.present?
-
-      html << template.capture do
-        content_has_many(assoc, options, &block)
-      end
-
-      tag = already_in_an_inputs_block ? :li : :div
-      html = template.content_tag(tag, html, class: "has_many_container #{assoc}", 'data-sortable' => sortable_column, 'data-sortable-start' => sortable_start)
-      template.concat(html) if template.output_buffer
-      html
+      html << template.capture { content_has_many(assoc, options, &block) }
+      wrap_div_or_li(html)
     end
 
     protected
@@ -171,6 +164,14 @@ module ActiveAdmin
       template.link_to text, '#', class: "button has_many_add", data: {
         html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
       }
+    end
+
+    def wrap_div_or_li(html)
+      template.content_tag(already_in_an_inputs_block ? :li : :div,
+                           html,
+                           class: "has_many_container #{assoc}",
+                           'data-sortable' => sortable_column,
+                           'data-sortable-start' => sortable_start)
     end
   end
 end
