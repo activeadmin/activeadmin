@@ -37,13 +37,13 @@ module ActiveAdmin
   # to build a has_many block.  Nested has_many blocks are handled by
   # nested decorators.
   class HasManyBuilder < SimpleDelegator
-    attr_reader :has_many_form, :assoc
+    attr_reader :assoc
     attr_reader :options
     attr_reader :heading, :sortable_column, :sortable_start
     attr_reader :new_record, :destroy_option
 
     def initialize(has_many_form, assoc, options)
-      @has_many_form = has_many_form
+      super has_many_form
       @assoc = assoc
       @options = extract_custom_settings!(options.dup)
       @options.reverse_merge!(for: assoc)
@@ -52,7 +52,6 @@ module ActiveAdmin
       if sortable_column
         @options[:for] = [assoc, sorted_children(assoc, sortable_column)]
       end
-      super has_many_form
     end
 
     def render(&block)
@@ -82,13 +81,13 @@ module ActiveAdmin
     end
 
     def default_heading(assoc)
-      has_many_form.object.class.reflect_on_association(assoc).klass.model_name.
+      __getobj__.object.class.reflect_on_association(assoc).klass.model_name.
         human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
     end
 
     def content_has_many(assoc, options, &block)
-      form_block = proc do |has_many_form|
-        render_has_many_form(has_many_form, options[:parent], &block)
+      form_block = proc do |form_builder|
+        render_has_many_form(form_builder, options[:parent], &block)
       end
 
       template.assigns[:has_many_block] = true
@@ -100,25 +99,25 @@ module ActiveAdmin
     end
 
     # Renders the Formtastic inputs then appends ActiveAdmin delete and sort actions.
-    def render_has_many_form(has_many_form, parent, &block)
-      index = parent && has_many_form.send(:parent_child_index, parent)
-      template.concat template.capture { yield(has_many_form, index) }
-      template.concat has_many_actions(has_many_form, "".html_safe)
+    def render_has_many_form(form_builder, parent, &block)
+      index = parent && form_builder.send(:parent_child_index, parent)
+      template.concat template.capture { yield(form_builder, index) }
+      template.concat has_many_actions(form_builder, "".html_safe)
     end
 
-    def has_many_actions(has_many_form, contents)
-      if has_many_form.object.new_record?
+    def has_many_actions(form_builder, contents)
+      if form_builder.object.new_record?
         contents << template.content_tag(:li) do
           template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
         end
-      elsif allow_destroy?(has_many_form.object)
-        has_many_form.input(:_destroy, as: :boolean,
+      elsif allow_destroy?(form_builder.object)
+        form_builder.input(:_destroy, as: :boolean,
                             wrapper_html: {class: 'has_many_delete'},
                             label: I18n.t('active_admin.has_many_delete'))
       end
 
       if sortable_column
-        has_many_form.input sortable_column, as: :hidden
+        form_builder.input sortable_column, as: :hidden
 
         contents << template.content_tag(:li, class: 'handle') do
           I18n.t('active_admin.move')
@@ -140,7 +139,7 @@ module ActiveAdmin
     end
 
     def sorted_children(assoc, column)
-      has_many_form.object.public_send(assoc).sort_by do |o|
+      __getobj__.object.public_send(assoc).sort_by do |o|
         attribute = o.public_send column
         [attribute.nil? ? Float::INFINITY : attribute, o.id || Float::INFINITY]
       end
@@ -166,7 +165,7 @@ module ActiveAdmin
         class: class_string,
         for_options: { child_index: placeholder }
       }
-      html = template.capture{ has_many_form.send(:inputs_for_nested_attributes, opts, &form_block) }
+      html = template.capture{ __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
       text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
       template.link_to text, '#', class: "button has_many_add", data: {
