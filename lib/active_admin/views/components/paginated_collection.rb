@@ -103,6 +103,8 @@ module ActiveAdmin
           # if there is another page or not, but the limit/offset make this
           # query fast.
           offset = collection.offset(collection.current_page * @per_page.to_i).limit(1).count
+          # if we have a collection with a group_by the count method returns a Hash
+          offset = offset.size if offset.is_a?(Hash) || offset.is_a?(ActiveSupport::OrderedHash)
           options[:total_pages] = collection.current_page + offset
           options[:right] = 0
         end
@@ -128,15 +130,17 @@ module ActiveAdmin
         end
 
         if @display_total
+          total = collection.total_count
+          # if we have a collection with a group_by the count method returns a Hash
+          total = total.size if total.is_a?(Hash) || total.is_a?(ActiveSupport::OrderedHash)
           if collection.total_pages < 2
             case collection_size
             when 0; I18n.t("active_admin.pagination.empty",    model: entries_name)
             when 1; I18n.t("active_admin.pagination.one",      model: entry_name)
-            else;   I18n.t("active_admin.pagination.one_page", model: entries_name, n: collection.total_count)
+            else;   I18n.t("active_admin.pagination.one_page", model: entries_name, n: total)
             end
           else
             offset = (collection.current_page - 1) * collection.limit_value
-            total  = collection.total_count
             I18n.t "active_admin.pagination.multiple",
                    model: entries_name,
                    total: total,
