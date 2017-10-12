@@ -71,8 +71,16 @@ module ActiveAdmin
     end
 
     def build_row(resource, columns, options)
-      columns.map do |column|
-        encode call_method_or_proc_on(resource, column.data), options
+      p = Proc.new do
+        columns.map do |column|
+          encode call_method_or_proc_on(resource, column.data), options
+        end
+      end
+
+      if defined?(::ActiveRecord)
+        ActiveRecord::Base.uncached { p.call }
+      else
+        p.call
       end
     end
 
