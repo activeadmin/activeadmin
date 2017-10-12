@@ -33,7 +33,14 @@ module ActiveAdmin
       super "Your file, #{file} (line #{line}), caused a database error while Active Admin was loading. This " +
             "is most common when your database is missing or doesn't have the latest migrations applied. To " +
             "prevent this error, move the code to a place where it will only be run when a page is rendered. " +
-            "One solution can be, to wrap the query in a Proc. " +
+            "One solution can be, to wrap the query in a Proc.\n\n" +
+            "Another solution may be to rescue ActiveAdmin::DatabaseHitDuringLoad in your routes:\n" +
+            "\n" +
+            "  # config/routes.rb\n" +
+            "  Rails.application.routes.draw do\n" +
+            "    ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad\n" +
+            "  end\n" +
+            "\n" +
             "Original error message: #{exception.message}"
     end
 
