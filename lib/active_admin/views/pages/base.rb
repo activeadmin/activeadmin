@@ -10,6 +10,14 @@ module ActiveAdmin
           build_page
         end
 
+        def title
+          self.class.name
+        end
+
+        def main_content
+          I18n.t('active_admin.main_content', model: title).html_safe
+        end
+
         private
 
         delegate :active_admin_config, :controller, :params, to: :helpers
@@ -94,19 +102,6 @@ module ActiveAdmin
               main_content
             end
           end
-        end
-
-        def main_content
-          I18n.t('active_admin.main_content', model: title).html_safe
-        end
-
-        def title
-          self.class.name
-        end
-
-        # Set's the page title for the layout to render
-        def set_page_title
-          set_ivar_on_view "@page_title", title
         end
 
         # Returns the sidebar sections to render for the current action
