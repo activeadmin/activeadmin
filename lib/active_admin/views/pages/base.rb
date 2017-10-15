@@ -68,16 +68,16 @@ module ActiveAdmin
 
         def build_unsupported_browser
           if active_admin_namespace.unsupported_browser_matcher =~ controller.request.user_agent
-            insert_tag view_factory.unsupported_browser
+            unsupported_browser
           end
         end
 
         def build_header
-          insert_tag view_factory.header, active_admin_namespace, current_menu
+          header active_admin_namespace, current_menu
         end
 
         def build_title_bar
-          insert_tag view_factory.title_bar, title, action_items_for_action
+          title_bar title, action_items_for_action
         end
 
         def build_page_content
@@ -127,7 +127,7 @@ module ActiveAdmin
 
         # Renders the content for the footer
         def build_footer
-          insert_tag view_factory.footer, active_admin_namespace
+          footer active_admin_namespace
         end
 
       end
