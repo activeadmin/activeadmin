@@ -73,7 +73,7 @@ module ActiveAdmin
           build_flash_messages
           div id: "active_admin_content", class: (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
             build_main_content_wrapper
-            build_sidebar unless skip_sidebar?
+            sidebar sidebar_sections_for_action, id: 'sidebar' unless skip_sidebar?
           end
         end
 
@@ -120,15 +120,6 @@ module ActiveAdmin
             active_admin_config.action_items_for(params[:action], self)
           else
             []
-          end
-        end
-
-        # Renders the sidebar
-        def build_sidebar
-          div id: "sidebar" do
-            sidebar_sections_for_action.collect do |section|
-              sidebar_section(section)
-            end
           end
         end
 
