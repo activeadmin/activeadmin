@@ -10,6 +10,7 @@ module ActiveAdmin
           build_page
         end
 
+        alias_method :html_title, :title # Arbre::HTML::Title
         def title
           self.class.name
         end
@@ -32,7 +33,7 @@ module ActiveAdmin
 
         def build_active_admin_head
           within @head do
-            insert_tag Arbre::HTML::Title, [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
+            html_title [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
 
             active_admin_application.stylesheets.each do |style, options|
               text_node stylesheet_link_tag(style, options).html_safe
