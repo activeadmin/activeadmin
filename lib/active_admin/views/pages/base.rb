@@ -4,8 +4,6 @@ module ActiveAdmin
       class Base < Arbre::HTML::Document
 
         def build(*args)
-          super
-          add_classes_to_body
           build_active_admin_head
           build_page
         end
@@ -23,16 +21,8 @@ module ActiveAdmin
 
         delegate :active_admin_config, :controller, :params, to: :helpers
 
-        def add_classes_to_body
-          @body.add_class(params[:action])
-          @body.add_class(params[:controller].tr('/', '_'))
-          @body.add_class("active_admin")
-          @body.add_class("logged_in")
-          @body.add_class(active_admin_namespace.name.to_s + "_namespace")
-        end
-
         def build_active_admin_head
-          within @head do
+          within head do
             html_title [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
 
             active_admin_application.stylesheets.each do |style, options|
@@ -56,7 +46,7 @@ module ActiveAdmin
         end
 
         def build_page
-          within @body do
+          within body(class: body_classes) do
             div id: "wrapper" do
               build_unsupported_browser
               build_header
@@ -65,6 +55,15 @@ module ActiveAdmin
               build_footer
             end
           end
+        end
+
+        def body_classes
+          Arbre::HTML::ClassList.new [
+            params[:action],
+            params[:controller].tr('/', '_'),
+            'active_admin', 'logged_in',
+            active_admin_namespace.name.to_s + '_namespace'
+          ]
         end
 
         def build_unsupported_browser
