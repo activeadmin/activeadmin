@@ -1,0 +1,144 @@
+eo:
+  active_admin:
+    dashboard: Panelo
+    dashboard_welcome:
+      welcome: "Bonvenon al Active Admin. Jen la defaŭlta panela paĝo."
+      call_to_action: "Por aldoni sekciojn al via panelo, vidu 'app/admin/dashboard.rb'"
+    view: "Vidi"
+    edit: "Redakti"
+    delete: "Forigi"
+    delete_confirmation: "Ĉu vi certas, ke vi volas forigi tion?"
+    create_another: "Krei alian %{model}"
+    new_model: "Nova %{model}"
+    edit_model: "Redakti %{model}"
+    delete_model: "Forigi %{model}"
+    details: "Detaloj de %{model}"
+    cancel: "Nuligi"
+    empty: "Malplena"
+    previous: "Antaŭa"
+    next: "Sekva"
+    download: "Elŝuti:"
+    has_many_new: "Aldoni novan %{model}"
+    has_many_delete: "Forigi"
+    has_many_remove: "Forigi"
+    move: "Movi"
+    filters:
+      buttons:
+        filter: "Filtri"
+        clear: "Viŝi filtrilojn"
+      predicates:
+        contains: "Enhavas"
+        equals: "Egalas al"
+        starts_with: "Komenciĝas per"
+        ends_with: "Finiĝas per"
+        greater_than: "Pli grandas ol"
+        less_than: "Malpli grandas ol"
+        gteq_datetime: "Pli grandas ol aŭ egalas al"
+        lteq_datetime: "Malpli grandas ol aŭ egalas al"
+        from: "De"
+        to: "Al"
+    search_status:
+      headline: "Serĉstato:"
+      current_scope: "Regiono:"
+      current_filters: "Nunaj filtriloj:"
+      no_current_filters: "Neniu"
+    status_tag:
+      "yes": "Jes"
+      "no": "Ne"
+    main_content: "Aldonu %{model}#main_content por montri la enhavon."
+    logout: "Elsaluti"
+    powered_by: "Povigita de %{active_admin} %{version}"
+    sidebars:
+      filters: "Filtriloj"
+      search_status: "Serĉstato"
+    pagination:
+      empty: "Neniu %{model} trovita"
+      one: "Montras <b>1</b> %{model}"
+      one_page: "Montras <b>ĉiujn %{n}</b> %{model}"
+      multiple: "Montras %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{total}</b> entute"
+      multiple_without_total: "Montras %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Paĝe: "
+      entry:
+        one: "ero"
+        other: "eroj"
+    any: "Ĉiuj"
+    blank_slate:
+      content: "Ankoraŭ ne estas %{resource_name}."
+      link: "Krei novan"
+    dropdown_actions:
+      button_label: "Agoj"
+    batch_actions:
+      button_label: "Amasagoj"
+      default_confirmation: "Ĉu vi certas, ke vi volas fari tion?"
+      delete_confirmation: "Ĉu vi certas, ke vi volas forigi tiujn %{plural_model}?"
+      succesfully_destroyed:
+        one: "1 %{model} sukcese forigita"
+        other: "%{count} %{plural_model} sukcese forigitaj"
+      selection_toggle_explanation: "(Baskuligi elekton)"
+      action_label: "%{title} elektita"
+      labels:
+        destroy: "Forigi"
+    comments:
+      created_at: "Kreita"
+      resource_type: "Resursotipo"
+      author_type: "Aŭtorotipo"
+      body: "Enhavo"
+      author: "Aŭtoro"
+      add: "Aldoni komenton"
+      delete: "Forigi komenton"
+      delete_confirmation: "Ĉu vi certas, ke vi volas forigi tiun komenton?"
+      resource: "Resurso"
+      no_comments_yet: "Ankoraŭ neniu komento."
+      author_missing: "Anonimulo"
+      title_content: "Komentoj (%{count})"
+      errors:
+        empty_text: "La komento ne estis konservita, la teksto estis malplena."
+    devise:
+      username:
+        title: "Uzantnomo"
+      email:
+        title: "Retpoŝtadreso"
+      subdomain:
+        title: "Subdomajno"
+      password:
+        title: "Pasvorto"
+      password_confirmation:
+        title: "Konfirmi pasvorton"
+      sign_up:
+        title: "Registriĝi"
+        submit: "Registriĝi"
+      login:
+        title: "Ensaluti"
+        remember_me: "Memori min"
+        submit: "Ensaluti"
+      reset_password:
+        title: "Ĉu vi forgesis vian pasvorton?"
+        submit: "Restarigi mian pasvorton"
+      change_password:
+        title: "Ŝanĝi vian pasvorton"
+        submit: "Ŝanĝi mian pasvorton"
+      unlock:
+        title: "Resendi klarigojn por malŝlosi"
+        submit: "Resendi klarigojn por malŝlosi"
+      resend_confirmation_instructions:
+        title: "Resendi klarigojn por konfirmi"
+        submit: "Resendi klarigojn por konfirmi"
+      links:
+        sign_up: "Registriĝi"
+        sign_in: "Ensaluti"
+        forgot_your_password: "Ĉu vi forgesis vian pasvorton?"
+        sign_in_with_omniauth_provider: "Ensaluti per %{provider}"
+        resend_unlock_instructions: "Resendi klarigojn por malŝlosi"
+        resend_confirmation_instructions: "Resendi klarigojn por konfirmi"
+    unsupported_browser:
+      headline: "Rimarku ke ActiveAdmin ne plu subtenas versiojn 8 kaj mal
+      de Internet Explorer."
+      recommendation: "Ni rekomendas, ke vi <a href=\"http://browsehappy.com/\">ĝisdatigu vian retumilon</a> por plibonigi vian sperton."
+      turn_off_compatibility_view: "Se vi uzas version 8 aŭ pli novan de Internet Explorer, estu certa, ke vi <a href=\"https://support.microsoft.com/en-us/help/17471\">malŝaltu \"kongruecan reĝimon\"</a>."
+    access_denied:
+      message: "Vi ne rajtas fari tiun agon."
+    index_list:
+      table: "Tabelo"
+      block: "Listo"
+      grid: "Krado"
+      blog: "Blogo"
