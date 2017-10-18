@@ -41,7 +41,18 @@ $(function() {
     parent.trigger((before_add = $.Event('has_many_add:before')), [parent]);
 
     if (!before_add.isDefaultPrevented()) {
-      let index = parent.data('has_many_index') || (parent.children('fieldset').length - 1);
+      let index = parent.data('has_many_index');
+
+      if (!index) {
+        var lastInputIndex = parent.children('fieldset')
+          .last()
+          .find('input')
+          .prop('name')
+          .match(/^.*(?:\[.*\])*\[([0-9])+\]\[.*\]$/);
+
+        index = (lastInputIndex) ? parseInt(lastInputIndex[1]) : (parent.children('fieldset').length - 1);
+      }
+
       parent.data({has_many_index: ++index});
 
       const regex = new RegExp($(this).data('placeholder'), 'g');
