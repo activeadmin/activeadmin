@@ -1,48 +1,47 @@
-ActiveAdmin.PerPage = class PerPage {
-  constructor(options, element){
-    this.element = element;
-    this.$element = $(this.element);
-    this._init();
-    this._bind();
-  }
+(($, ActiveAdmin) => {
 
-  _init() {
-    this.$params = this._queryParamsToObject();
-  }
-
-  _bind() {
-    this.$element.change(() => {
-      this.$params['per_page'] = this.$element.val();
-      delete this.$params['page'];
-      if (typeof Turbolinks !== 'undefined') {
-        Turbolinks.visit(window.location.href.split('?')[0] + '?' + $.param(this.$params));
-      } else {
-        window.location.search = $.param(this.$params);
-      }
-    });
-  }
-
-  _queryParamsToObject() {
-    let m;
-    const query = window.location.search;
-    const params = {};
-    const re = /\??([^&=]+)=([^&]*)/g;
-    while ((m = re.exec(query))) {
-      params[this._decode(m[1])] = this._decode(m[2]);
+  class PerPage {
+    constructor(element) {
+      this.element = element;
     }
-    return params;
-  }
 
-  _decode(value) {
-    // replace "+" before decodeURIComponent
-    return decodeURIComponent(value.replace(/\+/g, '%20'));
-  }
-};
+    update() {
+      const params = ActiveAdmin
+        .queryStringToParams()
+        .filter(({name}) => name != 'per_page' || name != 'page')
 
-$.widget.bridge('perPage', ActiveAdmin.PerPage);
+      params.push({ name: 'per_page', value: this.element.value });
 
-const onDOMReady = () => $('.pagination_per_page select').perPage();
+      if (ActiveAdmin.turbolinks) {
+        ActiveAdmin.turbolinksVisit(params);
+      } else {
+        window.location.search = ActiveAdmin.toQueryString(params);
+      }
+    }
 
-$(document).
-  ready(onDOMReady).
-  on('page:load turbolinks:load', onDOMReady);
+    static _jQueryInterface(config) {
+      return this.each(function () {
+        const $this = $(this)
+        let data = $this.data('perPage')
+
+        if (!data) {
+          data = new PerPage(this)
+          $this.data('perPage', data)
+        }
+
+        if (config === 'update') {
+          data[config]()
+        }
+      })
+    }
+  };
+
+  $(document).
+    on('change', '.pagination_per_page > select', function(event) {
+      PerPage._jQueryInterface.call($(this), 'update')
+    });
+
+  $.fn['perPage'] = PerPage._jQueryInterface
+  $.fn['perPage'].Constructor = PerPage
+
+})(jQuery, window.activeadmin);
