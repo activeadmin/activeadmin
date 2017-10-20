@@ -37,15 +37,27 @@ module ActiveAdmin
 
         # Provides an efficient default lookup query if the attribute is a DB column.
         def collection
-          if !options[:collection] && column
-            pluck_column
-          else
-            super
+          cache_on_demand do
+            if !options[:collection] && column
+              pluck_column
+            else
+              super
+            end
           end
         end
 
         def pluck_column
           klass.reorder("#{method} asc").distinct.pluck method
+        end
+
+        def cache_on_demand(&block)
+          if options[:cache]
+            cache_name = "#{klass.name}/#{method}"
+            cache_name = "#{cache_name}/#{options[:cache_key].call}" if options[:cache_key]
+            cache_filter(cache_name, &block)
+          else
+            yield
+          end
         end
 
       end
