@@ -38,6 +38,15 @@ module ActiveAdmin
           end
         end
 
+        def cache_filter(cache_key, &block)
+          full_key = "filter/#{cache_key}"
+          if Rails.configuration.action_controller.perform_caching
+            Rails.cache.fetch(full_key, &block)
+          else
+            yield
+          end
+        end
+
       end
     end
   end

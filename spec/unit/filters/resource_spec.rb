@@ -125,4 +125,64 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
     expect(resource.sidebar_sections.first.name).to eq "filters"
   end
 
+  describe "cacheable filters" do
+    let(:view) { action_view }
+
+    context "with caching enabled" do
+      it "should cache the collection" do
+        action_controller_double = double(perform_caching: true)
+        configuration_double     = double(action_controller: action_controller_double)
+        cache_double             = double(fetch: "")
+
+        allow(Rails).to receive(:cache).and_return(cache_double)
+        allow(Rails).to receive(:configuration).and_return(configuration_double)
+        allow(view).to  receive(:collection_path).and_return("admin/posts")
+
+        resource.add_filter :author, as: :select, cache: true
+
+        # This is a hacky kind of way to force the select filters being created
+        view.active_admin_filters_form_for(Post.search, resource.filters)
+
+        expect(action_controller_double).to have_received :perform_caching
+        expect(cache_double).to have_received :fetch
+      end
+
+      it "should use a specified cache_key as part of full cache path" do
+        action_controller_double = double(perform_caching: true)
+        configuration_double     = double(action_controller: action_controller_double)
+        cache_double             = double(fetch: "")
+
+        allow(Rails).to receive(:cache).and_return(cache_double)
+        allow(Rails).to receive(:configuration).and_return(configuration_double)
+        allow(view).to  receive(:collection_path).and_return("admin/posts")
+
+        resource.add_filter :author, as: :select, cache: true, cache_key: -> { "foo-123" }
+
+        view.active_admin_filters_form_for(Post.search, resource.filters)
+
+        expect(action_controller_double).to have_received :perform_caching
+        expect(cache_double).to have_received(:fetch).with("filter/Post/author/foo-123")
+      end
+    end
+
+    context "with caching disabled" do
+      it "should not cache the collection" do
+        action_controller_double = double(perform_caching: false)
+        configuration_double     = double(action_controller: action_controller_double)
+        cache_double             = double(fetch: "")
+
+        allow(Rails).to receive(:cache).and_return(cache_double)
+        allow(Rails).to receive(:configuration).and_return(configuration_double)
+        allow(view).to  receive(:collection_path).and_return("admin/posts")
+
+        resource.add_filter :author, as: :select, cache: true
+
+        view.active_admin_filters_form_for(Post.search, resource.filters)
+
+        expect(action_controller_double).to have_received :perform_caching
+        expect(cache_double).not_to have_received :fetch
+      end
+    end
+  end
+
 end
