@@ -19,7 +19,7 @@ module ActiveAdmin
       def values
         condition_values = condition.values.map(&:value)
         if related_class
-          related_class.find(condition_values)
+          related_class.where(id: condition_values)
         else
           condition_values
         end
