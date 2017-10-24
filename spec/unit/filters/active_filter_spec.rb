@@ -132,4 +132,16 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
 
   end
 
+  context 'search has no matching records' do
+    let(:search) { Post.ransack(author_id_eq: "foo") }
+
+    it 'should not produce and error' do
+      expect { subject.values }.not_to raise_error
+    end
+
+    it 'should return an enumerable' do
+      expect(subject.values).to be_a(Enumerable)
+    end
+  end
+
 end
