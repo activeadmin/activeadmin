@@ -44,13 +44,7 @@ $(function() {
       let index = parent.data('has_many_index');
 
       if (!index) {
-        var lastInputIndex = parent.children('fieldset')
-          .last()
-          .find('input')
-          .prop('name')
-          .match(/^.*(?:\[.*\])*\[([0-9])+\]\[.*\]$/);
-
-        index = (lastInputIndex) ? parseInt(lastInputIndex[1]) : (parent.children('fieldset').length - 1);
+        index = parseInt($(this).data('lastInputIndex'));
       }
 
       parent.data({has_many_index: ++index});

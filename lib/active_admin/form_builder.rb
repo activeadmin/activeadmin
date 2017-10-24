@@ -47,6 +47,7 @@ module ActiveAdmin
       end
 
       html = "".html_safe
+      last_input_index = nil
       unless builder_options.key?(:heading) && !builder_options[:heading]
         html << template.content_tag(:h3) do
           builder_options[:heading] || assoc_heading(assoc)
@@ -55,8 +56,9 @@ module ActiveAdmin
 
       html << template.capture do
         form_block = proc do |has_many_form|
-          index    = parent_child_index options[:parent] if options[:parent]
-          block_contents = template.capture do
+          index            = parent_child_index options[:parent] if options[:parent]
+          last_input_index = index
+          block_contents   = template.capture do
             block.call(has_many_form, index)
           end
           template.concat(block_contents)
@@ -67,7 +69,7 @@ module ActiveAdmin
         contents = without_wrapper { inputs(options, &form_block) } || "".html_safe
 
         if builder_options[:new_record]
-          contents << js_for_has_many(assoc, form_block, template, builder_options[:new_record], options[:class])
+          contents << js_for_has_many(assoc, form_block, template, builder_options[:new_record], options[:class], last_input_index)
         else
           contents
         end
@@ -134,7 +136,7 @@ module ActiveAdmin
     end
 
     # Capture the ADD JS
-    def js_for_has_many(assoc, form_block, template, new_record, class_string)
+    def js_for_has_many(assoc, form_block, template, new_record, class_string, last_input_index)
       assoc_reflection = object.class.reflect_on_association assoc
       assoc_name       = assoc_reflection.klass.model_name
       placeholder      = "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
@@ -147,7 +149,8 @@ module ActiveAdmin
       text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
       template.link_to text, '#', class: "button has_many_add", data: {
-        html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
+        html: CGI.escapeHTML(html).html_safe, placeholder: placeholder,
+        last_input_index: last_input_index.nil? ? 0 : last_input_index - 1
       }
     end
   end
