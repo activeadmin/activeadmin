@@ -19,7 +19,7 @@ module ActiveAdmin
       def values
         condition_values = condition.values.map(&:value)
         if related_class
-          related_class.where(id: condition_values)
+          related_class.where(related_class.primary_key => condition_values)
         else
           condition_values
         end
@@ -28,11 +28,13 @@ module ActiveAdmin
       def label
         # TODO: to remind us to go back to the simpler str.downcase once we support ruby >= 2.4 only.
         translated_predicate = predicate_name.mb_chars.downcase.to_s
-        if related_class
-          "#{related_class.model_name.human} #{translated_predicate}".strip
+        if filter_label
+          "#{filter_label} #{translated_predicate}"
+        elsif related_class
+          "#{related_class_name} #{translated_predicate}"
         else
-          "#{attribute_name} #{translated_predicate}".strip
-        end
+          "#{attribute_name} #{translated_predicate}"
+        end.strip
       end
 
       def predicate_name
@@ -52,6 +54,18 @@ module ActiveAdmin
 
       def attribute_name
         resource_class.human_attribute_name(name)
+      end
+
+      def related_class_name
+        return unless related_class
+
+        related_class.model_name.human
+      end
+
+      def filter_label
+        return unless filter
+
+        filter[:label]
       end
 
       #@return Ransack::Nodes::Attribute
@@ -81,6 +95,10 @@ module ActiveAdmin
             detect { |r| r.foreign_key.to_s == name.to_s }
           assoc.class_name.constantize if assoc
         end
+      end
+
+      def filter
+        resource.filters[name.to_sym]
       end
     end
   end
