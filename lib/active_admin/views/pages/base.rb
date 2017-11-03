@@ -49,10 +49,10 @@ module ActiveAdmin
           within body(class: body_classes) do
             div id: "wrapper" do
               build_unsupported_browser
-              build_header
-              build_title_bar
+              header active_admin_namespace, current_menu
+              title_bar title, action_items_for_action
               build_page_content
-              build_footer
+              footer active_admin_namespace
             end
           end
         end
@@ -70,14 +70,6 @@ module ActiveAdmin
           if active_admin_namespace.unsupported_browser_matcher =~ controller.request.user_agent
             unsupported_browser
           end
-        end
-
-        def build_header
-          header active_admin_namespace, current_menu
-        end
-
-        def build_title_bar
-          title_bar title, action_items_for_action
         end
 
         def build_page_content
@@ -123,11 +115,6 @@ module ActiveAdmin
 
         def skip_sidebar?
           sidebar_sections_for_action.empty? || assigns[:skip_sidebar] == true
-        end
-
-        # Renders the content for the footer
-        def build_footer
-          footer active_admin_namespace
         end
 
       end
