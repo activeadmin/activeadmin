@@ -26,14 +26,17 @@ module ActiveAdmin
           within @head do
             insert_tag Arbre::HTML::Title, [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
 
-            text_node stylesheet_link_tag('active_admin.css', media: 'screen').html_safe
-            text_node stylesheet_link_tag('active_admin/print.css', media: 'print').html_safe
+            active_admin_application.stylesheets.each do |style, options|
+              text_node stylesheet_link_tag(style, options).html_safe
+            end
 
             active_admin_namespace.meta_tags.each do |name, content|
               text_node(tag(:meta, name: name, content: content))
             end
 
-            text_node(javascript_include_tag('active_admin.js'))
+            active_admin_application.javascripts.each do |path|
+              text_node(javascript_include_tag(path))
+            end
 
             if active_admin_namespace.favicon
               text_node(favicon_link_tag(active_admin_namespace.favicon))

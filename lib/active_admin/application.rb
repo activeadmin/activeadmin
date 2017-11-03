@@ -43,12 +43,15 @@ module ActiveAdmin
       @namespaces = Namespace::Store.new
     end
 
+    include AssetRegistration
+
     # Event that gets triggered on load of Active Admin
     BeforeLoadEvent = 'active_admin.application.before_load'.freeze
     AfterLoadEvent  = 'active_admin.application.after_load'.freeze
 
     # Runs before the app's AA initializer
     def setup!
+      register_default_assets
     end
 
     # Runs after the app's AA initializer
@@ -160,6 +163,12 @@ module ActiveAdmin
     end
 
     private
+
+    def register_default_assets
+      stylesheets['active_admin.css'] = { media: 'screen' }
+      stylesheets['active_admin/print.css'] = { media: 'print' }
+      javascripts.add 'active_admin.js'
+    end
 
     # Since app/admin is alphabetically before app/models, we have to remove it
     # from the host app's +autoload_paths+ to prevent missing constant errors.

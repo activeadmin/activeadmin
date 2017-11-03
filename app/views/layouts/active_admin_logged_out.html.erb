@@ -5,9 +5,12 @@
 
   <title><%= [@page_title, ActiveAdmin.application.site_title(self)].compact.join(" | ") %></title>
 
-  <%= stylesheet_link_tag 'active_admin.css', media: 'screen' %>
-  <%= stylesheet_link_tag 'active_admin/print.css', media: 'print' %>
-  <%= javascript_include_tag 'active_admin.js' %>
+  <% ActiveAdmin.application.stylesheets.each do |style, options| %>
+    <%= stylesheet_link_tag style, options %>
+  <% end %>
+  <% ActiveAdmin.application.javascripts.each do |path| %>
+    <%= javascript_include_tag path %>
+  <% end %>
 
   <%= favicon_link_tag ActiveAdmin.application.favicon if ActiveAdmin.application.favicon %>
 
