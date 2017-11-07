@@ -118,7 +118,7 @@ not shrink less than 100px.
 
 ### Custom Column Class
 
-In order to add special class to columns pass :class option of the column methods.
+Pass the `:class` option to the column method to set a custom class.
 
 ```ruby
 columns do
