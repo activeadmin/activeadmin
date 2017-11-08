@@ -15,7 +15,7 @@ module ActiveAdmin
             "#{reflection.through_reflection.name}_#{reflection.foreign_key}"
           else
             name = method.to_s
-            name.concat '_id' if reflection
+            name.concat "_#{reflection.association_primary_key}" if reflection_searchable?
             name
           end
         end
@@ -46,6 +46,10 @@ module ActiveAdmin
 
         def pluck_column
           klass.reorder("#{method} asc").distinct.pluck method
+        end
+
+        def reflection_searchable?
+          reflection && !reflection.polymorphic?
         end
 
       end
