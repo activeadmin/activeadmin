@@ -12,7 +12,7 @@ module ActiveAdmin
 
         def build(resource)
           @resource = resource
-          @comments = ActiveAdmin::Comment.find_for_resource_in_namespace(resource, active_admin_namespace.name).includes(:author).page(params[:page])
+          @comments = ActiveAdmin::Comment.find_for_resource_in_namespace(resource, active_admin_namespace.name_path).includes(:author).page(params[:page])
           super(title, for: resource)
           build_comments
         end
@@ -58,7 +58,7 @@ module ActiveAdmin
 
         def comments_url(*args)
           parts = []
-          parts << active_admin_namespace.name unless active_admin_namespace.root?
+          parts << active_admin_namespace.name_path unless active_admin_namespace.root?
           parts << active_admin_namespace.comments_registration_name.underscore
           parts << 'path'
           send parts.join('_'), *args
@@ -66,7 +66,7 @@ module ActiveAdmin
 
         def comment_form_url
           parts = []
-          parts << active_admin_namespace.name unless active_admin_namespace.root?
+          parts << active_admin_namespace.name_path unless active_admin_namespace.root?
           parts << active_admin_namespace.comments_registration_name.underscore.pluralize
           parts << 'path'
           send parts.join '_'

@@ -133,7 +133,7 @@ RSpec.describe "A specific resource controller", type: :controller do
       controller.send(:authenticate_active_admin_user)
     end
 
-    it "should call the authentication_method when set" do
+    it "should call the authentication_method when set as Symbol" do
       namespace = controller.class.active_admin_config.namespace
 
       expect(namespace).to receive(:authentication_method).twice.
@@ -142,6 +142,17 @@ RSpec.describe "A specific resource controller", type: :controller do
       expect(controller).to receive(:authenticate_admin_user!).and_return(true)
 
       controller.send(:authenticate_active_admin_user)
+    end
+
+    context "should call the authentication_method when set as Proc" do
+      let(:proc) { Proc.new { :proc_authenticate_admin_user! } }
+      let(:ns) { controller.class.active_admin_config.namespace }
+      it {
+        expect(ns).to receive(:authentication_method).twice.and_return(proc)
+
+        expect(controller).to receive(:proc_authenticate_admin_user!).once
+        controller.send(:authenticate_active_admin_user)
+      }
     end
 
   end
@@ -154,7 +165,7 @@ RSpec.describe "A specific resource controller", type: :controller do
       expect(controller.send(:current_active_admin_user)).to eq nil
     end
 
-    it "should call the current_user_method when set" do
+    it "should call the current_user_method when set as Symbol" do
       user = double
       namespace = controller.class.active_admin_config.namespace
 
@@ -164,6 +175,20 @@ RSpec.describe "A specific resource controller", type: :controller do
       expect(controller).to receive(:current_admin_user).and_return(user)
 
       expect(controller.send(:current_active_admin_user)).to eq user
+    end
+
+    context "should call the current_user_method when set as Proc" do
+      let(:user) { double }
+      let(:proc) { Proc.new { :proc_current_admin_user } }
+      let(:namespace) { controller.class.active_admin_config.namespace }
+      it {
+        expect(namespace).to receive(:current_user_method).twice.
+            and_return(proc)
+
+        expect(controller).to receive(:proc_current_admin_user).and_return(user)
+
+        expect(controller.send(:current_active_admin_user)).to eq user
+      }
     end
   end
 

@@ -31,15 +31,16 @@ ActiveAdmin.after_load do |app|
       scope :all, show_count: false
       # Register a scope for every namespace that exists.
       # The current namespace will be the default scope.
-      app.namespaces.map(&:name).each do |name|
-        scope name, default: namespace.name == name do |scope|
-          scope.where namespace: name.to_s
+      app.namespaces.map(&:name_path).each do |name_path|
+        scope_name = name_path.is_a?(Array) ? "/#{name_path.join('/')}" : name_path
+        scope scope_name, default: namespace.name_path == name_path do |scope|
+          scope.where namespace: name_path.to_s
         end
       end
 
       # Store the author and namespace
       before_save do |comment|
-        comment.namespace = active_admin_config.namespace.name
+        comment.namespace = active_admin_config.namespace.name_path
         comment.author    = current_active_admin_user
       end
 

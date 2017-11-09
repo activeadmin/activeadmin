@@ -31,7 +31,7 @@ module ActiveAdmin
         raise "A string/symbol is required as the second argument if your label is a proc." unless method
         @id = ActiveAdmin::Dependency.rails.parameterize method.to_s
       else
-        @scope_method ||= name.to_sym
+        @scope_method ||= (name.is_a?(Array) ? name.join('_').underscore : name).to_sym
         @id = ActiveAdmin::Dependency.rails.parameterize name.to_s
       end
 

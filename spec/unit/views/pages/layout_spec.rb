@@ -51,7 +51,7 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
     end
 
     it "should have namespace class" do
-      expect(layout.build.class_list).to include "#{active_admin_namespace.name}_namespace"
+      expect(layout.build.class_list).to include "#{active_admin_namespace.name_path.map(&:to_s).join('_')}_namespace"
     end
 
   end

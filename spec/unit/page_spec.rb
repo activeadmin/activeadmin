@@ -64,7 +64,9 @@ module ActiveAdmin
 
     describe "#namespace_name" do
       it "returns the name of the namespace" do
-        expect(config.namespace_name).to eq "admin"
+        ActiveSupport::Deprecation.silence do
+          expect(config.namespace_name).to eq "admin"
+        end
       end
     end
 

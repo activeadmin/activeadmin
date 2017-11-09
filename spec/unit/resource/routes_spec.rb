@@ -37,7 +37,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
 
     after(:each) do
       application.namespace(:root).unload!
-      application.namespaces.instance_variable_get(:@namespaces).delete(:root)
+      application.namespaces.instance_variable_get(:@namespaces).delete([:root])
     end
 
     it "should have a nil route_prefix" do

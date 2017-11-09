@@ -36,11 +36,27 @@ module ActiveAdmin
 
     # Calls the authentication method as defined in ActiveAdmin.authentication_method
     def authenticate_active_admin_user
-      send(active_admin_namespace.authentication_method) if active_admin_namespace.authentication_method
+      if active_admin_namespace.authentication_method
+        auth_method = active_admin_namespace.authentication_method
+        if auth_method.is_a?(Proc)
+          namespace = active_admin_namespace.name_path
+          send(auth_method.call(namespace))
+        else
+          send(auth_method)
+        end
+      end
     end
 
     def current_active_admin_user
-      send(active_admin_namespace.current_user_method) if active_admin_namespace.current_user_method
+      if active_admin_namespace.current_user_method
+        user_method = active_admin_namespace.current_user_method
+        if user_method.is_a?(Proc)
+          namespace = active_admin_namespace.name_path
+          send(user_method.call(namespace))
+        else
+          send(user_method)
+        end
+      end
     end
     helper_method :current_active_admin_user
 

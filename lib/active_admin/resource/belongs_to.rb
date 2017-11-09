@@ -6,7 +6,7 @@ module ActiveAdmin
 
       class TargetNotFound < StandardError
         def initialize(key, namespace)
-          super "Could not find #{key} in #{namespace.name} " +
+          super "Could not find #{key} in #{namespace.name_path} " +
                 "with #{namespace.resources.map(&:resource_name)}"
         end
       end

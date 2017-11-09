@@ -15,7 +15,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
   include ActionView::Helpers::SanitizeHelper
 
   def active_admin_namespace
-    active_admin_application.namespaces[:admin]
+    active_admin_application.namespaces[[:admin]]
   end
 
   def authorized?(*)

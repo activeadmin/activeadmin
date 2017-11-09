@@ -7,7 +7,7 @@ RSpec.describe "Registering an object to administer" do
     let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
 
     before do
-      application.namespaces[namespace.name] = namespace
+      application.namespaces[namespace.name_path] = namespace
     end
 
     it "should call register on the namespace" do
@@ -26,7 +26,7 @@ RSpec.describe "Registering an object to administer" do
   context "with a different namespace" do
     it "should call register on the namespace" do
       namespace = ActiveAdmin::Namespace.new(application, :hello_world)
-      application.namespaces[namespace.name] = namespace
+      application.namespaces[namespace.name_path] = namespace
       expect(namespace).to receive(:register)
 
       application.register Category, namespace: :hello_world
@@ -42,7 +42,7 @@ RSpec.describe "Registering an object to administer" do
   context "with no namespace" do
     it "should call register on the root namespace" do
       namespace = ActiveAdmin::Namespace.new(application, :root)
-      application.namespaces[namespace.name] = namespace
+      application.namespaces[namespace.name_path] = namespace
       expect(namespace).to receive(:register)
 
       application.register Category, namespace: false

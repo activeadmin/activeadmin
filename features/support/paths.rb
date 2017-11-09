@@ -27,7 +27,11 @@ module NavigationHelpers
     # the index page for posts in the user_admin namespace
     when /^the index page for (.*) in the (.*) namespace$/
       if $2 != 'root'
-        send "#{$2}_#{$1}_path"
+        if $2 != 'admin'
+          send "admin_#{$2}_#{$1}_path"
+        else
+          send "admin_#{$1}_path"
+        end
       else
         send "#{$1}_path"
       end

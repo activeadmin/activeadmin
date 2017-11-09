@@ -18,7 +18,7 @@ Given /^(a|\d+) comments added by admin with an email "([^"]+)"?$/ do |number, e
   comment_text = 'Comment %i'
 
   number.times do |i|
-    ActiveAdmin::Comment.create!(namespace:     'admin',
+    ActiveAdmin::Comment.create!(namespace:     [:admin],
                                  body:          comment_text % i,
                                  resource_type: Post.to_s,
                                  resource_id:   Post.first.id,
