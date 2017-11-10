@@ -908,6 +908,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
               p.has_many :taggings do |t|
                 t.input :tag
+                t.input :position
               end
             end
           end
