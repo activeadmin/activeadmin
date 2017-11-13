@@ -37,13 +37,16 @@ RSpec.describe ActiveAdmin::FormBuilder do
     view
   end
 
-  def build_form(options = {}, form_object = Post.new, &block)
+  def form_html(options = {}, form_object = Post.new, &block)
     options = {url: helpers.posts_path}.merge(options)
 
     form = render_arbre_component({form_object: form_object, form_options: options, form_block: block}, helpers) do
       active_admin_form_for(assigns[:form_object], assigns[:form_options], &assigns[:form_block])
     end.to_s
+  end
 
+  def build_form(options = {}, form_object = Post.new, &block)
+    form = form_html(options, form_object, &block)
     Capybara.string(form)
   end
 
@@ -102,8 +105,8 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     it "should generate a text input" do
-       expect(body).to have_selector("input[type=text][name='post[title]']")
-     end
+      expect(body).to have_selector("input[type=text][name='post[title]']")
+    end
     it "should generate a textarea" do
       expect(body).to have_selector("textarea[name='post[body]']")
     end
@@ -896,20 +899,25 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       context "in another has_many block" do
-        let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+        let :body_html do
+          form_html({url: '/categories'}, Category.new) do |f|
             f.object.posts.build
             f.has_many :posts do |p|
               p.object.taggings.build
+              p.input :title
+
               p.has_many :taggings do |t|
                 t.input :tag
+                t.input :position
               end
             end
           end
         end
+        let(:body) { Capybara.string body_html }
 
-        it "should wrap the inner has_many fieldset in an ol > li" do
-          expect(body).to have_selector(".has_many_container ol > li.has_many_container > fieldset")
+        it "displays the input between the outer and inner has_many" do
+          expect(body).to have_selector(".has_many_container ol > li:first-child input#category_posts_attributes_0_title")
+          expect(body).to have_selector(".has_many_container ol > li:nth-child(2).has_many_container > fieldset")
         end
 
         it "should not contain invalid li children" do
