@@ -65,8 +65,8 @@ Tool                  | Description
 [rubygems]: https://rubygems.org/gems/activeadmin
 [travis_badge]: http://img.shields.io/travis/activeadmin/activeadmin/master.svg
 [travis]: https://travis-ci.org/activeadmin/activeadmin
-[codeclimate_badge]: http://img.shields.io/codeclimate/github/activeadmin/activeadmin.svg
-[codeclimate]: https://codeclimate.com/github/activeadmin/activeadmin
+[codeclimate_badge]: https://api.codeclimate.com/v1/badges/779e407d22bacff19733/maintainability
+[codeclimate]: https://codeclimate.com/github/activeadmin/activeadmin/maintainability
 [codecov_badge]: https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg
 [codecov]: https://codecov.io/gh/activeadmin/activeadmin
 [inch_badge]: http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
