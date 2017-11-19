@@ -150,7 +150,9 @@ ActiveSupport::Notifications.publish ActiveAdmin::Application::BeforeLoadEvent, 
 
 ## Previous Changes
 
-Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-stable/CHANGELOG.md) for previous changes.
+Please check [0-6-stable][] for previous changes.
+
+[0-6-stable]: https://github.com/activeadmin/activeadmin/blob/0-6-stable/CHANGELOG.md
 
 [#1926]: https://github.com/activeadmin/activeadmin/issues/1926
 [#1979]: https://github.com/activeadmin/activeadmin/issues/1979
