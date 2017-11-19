@@ -90,7 +90,7 @@ module ActiveAdmin
         if condition_attribute.klass != resource_class && condition_attribute.klass.primary_key == name.to_s
           condition_attribute.klass
         elsif predicate_association
-          predicate_association.class_name.constantize
+          predicate_association.klass
         end
       end
 
