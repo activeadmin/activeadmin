@@ -58,9 +58,6 @@ Given /^I submit the batch action form with "([^"]*)"$/ do |action|
 end
 
 When /^I click "(.*?)" and accept confirmation$/ do |link|
-  # Use this implementation instead if poltergeist ever implements it
-  # page.driver.accept_modal(:confirm) { click_link(link) }
-
   click_link(link)
   expect(page).to have_content("Are you sure you want to delete these posts?")
   click_button("OK")
