@@ -13,6 +13,9 @@ bundler_args: --without development
 
 cache: bundler
 
+before_script:
+  - unset _JAVA_OPTIONS
+
 before_install:
   - gem update --system # use the very latest Rubygems
   - gem install bundler # use the very latest Bundler
