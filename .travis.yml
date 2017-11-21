@@ -37,8 +37,7 @@ gemfile:
 
 env:
   global:
-    - JRUBY_OPTS="-J-Xmx1024m --dev --debug"
-    - JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
+    - JRUBY_OPTS="-J-Djava.security.egd=file:/dev/./urandom -J-Xmx1024m --dev --debug"
     - COVERAGE=true
 
 matrix:
