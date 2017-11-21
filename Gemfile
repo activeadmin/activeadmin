@@ -1,12 +1,5 @@
 source 'https://rubygems.org'
 
-# Trick to use https without warnings and without having to specify full URLs
-# TODO: Can be removed when Bundler 2.x is released.
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
-
 # Optional dependencies
 gem 'cancan'
 gem 'pundit'
