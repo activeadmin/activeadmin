@@ -53,10 +53,12 @@ module ActiveAdmin
         csv << CSV.generate_line(columns.map{ |c| encode c.name, options }, csv_options)
       end
 
-      (1..paginated_collection.total_pages).each do |page|
-        paginated_collection(page).each do |resource|
-          resource = controller.send :apply_decorator, resource
-          csv << CSV.generate_line(build_row(resource, columns, options), csv_options)
+      ActiveRecord::Base.uncached do
+        (1..paginated_collection.total_pages).each do |page|
+          paginated_collection(page).each do |resource|
+            resource = controller.send :apply_decorator, resource
+            csv << CSV.generate_line(build_row(resource, columns, options), csv_options)
+          end
         end
       end
 
