@@ -115,6 +115,7 @@ module ActiveAdmin
         get_resource_ivar || begin
           resource = build_new_resource
           resource = apply_decorations(resource)
+          resource = assign_attributes(resource, resource_params)
           run_build_callbacks resource
           authorize_resource! resource
 
@@ -127,7 +128,10 @@ module ActiveAdmin
       #
       # @return [ActiveRecord::Base] An un-saved active record base object
       def build_new_resource
-        scoped_collection.send method_for_build, *resource_params
+        scoped_collection.send(
+          method_for_build,
+          *resource_params.map { |params| params.slice(active_admin_config.resource_class.inheritance_column) }
+        )
       end
 
       # Calls all the appropriate callbacks and then creates the new resource.
