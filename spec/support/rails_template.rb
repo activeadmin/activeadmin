@@ -50,9 +50,12 @@ generate :model, 'profile user_id:integer bio:text'
 generate :model, 'user type:string first_name:string last_name:string username:string age:integer'
 create_file 'app/models/user.rb', <<-RUBY.strip_heredoc, force: true
   class User < ActiveRecord::Base
+    class VIP < self
+    end
     has_many :posts, foreign_key: 'author_id'
     has_one :profile
     accepts_nested_attributes_for :profile, allow_destroy: true
+    accepts_nested_attributes_for :posts, allow_destroy: true
 
     ransacker :age_in_five_years, type: :numeric, formatter: proc { |v| v.to_i - 5 } do |parent|
       parent.table[:age]
