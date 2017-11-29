@@ -13,7 +13,7 @@
 
 ### Removals
 
-* Ruby 2.1 support has been dropped [#5002][] by [@deivid-rodriguez][]
+* Ruby 2.1 support has been dropped [#5003][] by [@deivid-rodriguez][]
 * Replaced `sass-rails` with `sass` dependency [#5037][] by [@javierjulio][]
 * Removed `jquery-ui-rails` as a dependency. The specific jQuery UI assets used
   are now within the vendor directory. This will be replaced by alternatives and
@@ -196,7 +196,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#4996]: https://github.com/activeadmin/activeadmin/pull/4996
 [#4997]: https://github.com/activeadmin/activeadmin/pull/4997
 [#5029]: https://github.com/activeadmin/activeadmin/pull/5029
-[#5002]: https://github.com/activeadmin/activeadmin/pull/5002
+[#5003]: https://github.com/activeadmin/activeadmin/pull/5003
 [#5037]: https://github.com/activeadmin/activeadmin/pull/5037
 [#5044]: https://github.com/activeadmin/activeadmin/pull/5044
 [#5046]: https://github.com/activeadmin/activeadmin/pull/5046
