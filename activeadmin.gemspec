@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'coffee-rails'
   s.add_dependency 'formtastic', '~> 3.1'
   s.add_dependency 'formtastic_i18n'
-  s.add_dependency 'inherited_resources', '~> 1.7'
+  s.add_dependency 'inherited_resources', '>= 1.7.0'
   s.add_dependency 'jquery-rails', '>= 4.2.0'
   s.add_dependency 'kaminari', '>= 0.15'
   s.add_dependency 'railties', '>= 4.2', '< 5.3'
