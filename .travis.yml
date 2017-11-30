@@ -36,6 +36,7 @@ gemfile:
   - gemfiles/rails_42.gemfile
   - gemfiles/rails_50.gemfile
   - gemfiles/rails_51.gemfile
+  - gemfiles/rails_52.gemfile
 
 env:
   global:
@@ -44,3 +45,7 @@ env:
 
 matrix:
   fast_finish: true
+
+  allow_failures:
+    - rvm: jruby-9.1.15.0
+      gemfile: gemfiles/rails_52.gemfile
