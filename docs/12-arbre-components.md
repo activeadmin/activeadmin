@@ -139,7 +139,7 @@ in `index_as_table`. It takes a collection and a hash of options and then
 uses `column` to build the fields to show with the table.
 
 ```ruby
-table_for order.payments do
+table_for order.payments, i18n: Payment do
   column(:payment_type) { |payment| payment.payment_type.titleize }
   column "Received On",     :created_at
   column "Details & Notes", :payment_details
@@ -147,7 +147,11 @@ table_for order.payments do
 end
 ```
 
-the `column` method can take a title as its first argument and data
+To maintain internationalization for the component, specify a resource to use for
+translations via the `i18n` named parameter. Unlike `index_as_table`, the
+translation resource cannot be automatically assumed for `table_for` components.
+
+The `column` method can take a title as its first argument and data
 (`:your_method`) as its second (or first if no title provided). Column also
 takes a block.
 
