@@ -28,7 +28,7 @@ module ActiveAdmin
                         text_node filter.label
                       end
                       b do
-                        text_node filter.values.map { |v| pretty_format(v) }.to_sentence.html_safe
+                        text_node filter.values.map { |v| pretty_format(v) }.to_sentence
                       end
                     end
                   end
