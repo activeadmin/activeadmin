@@ -4,6 +4,15 @@ module ActiveAdmin
     def self.register(view_hash)
       view_hash.each do |view_key, view_class|
         super view_key, view_class
+        add_writer(view_key)
+        send "#{view_key}=", view_class
+      end
+    end
+
+    def self.add_writer(name)
+      define_singleton_method("#{name}=") do |value|
+        value.builder_method name
+        instance_variable_set :"@#{name}", value
       end
     end
 

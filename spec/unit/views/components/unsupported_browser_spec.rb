@@ -4,7 +4,6 @@ RSpec.describe ActiveAdmin::Views::UnsupportedBrowser do
   let(:helpers){ mock_action_view }
   let(:namespace) { double :namespace, unsupported_browser_matcher: /MSIE [1-8]\.0/ }
   let(:component) { double :unsupported_browser_component }
-  let(:view_factory) { double :view_factory, unsupported_browser: component }
   let(:base) { ActiveAdmin::Views::Pages::Base.new }
 
   def build_panel
@@ -23,8 +22,7 @@ RSpec.describe ActiveAdmin::Views::UnsupportedBrowser do
       it "should build the unsupported browser panel" do
         expect(base).to receive(:active_admin_namespace).and_return(namespace)
         expect(base).to receive_message_chain(:controller, :request, :user_agent).and_return("Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 6.2; Trident/6.0)")
-        expect(base).to receive(:view_factory).and_return(view_factory)
-        expect(base).to receive(:insert_tag).with(component)
+        expect(base).to receive(:unsupported_browser)
         base.send(:build_unsupported_browser)
       end
     end
@@ -33,7 +31,7 @@ RSpec.describe ActiveAdmin::Views::UnsupportedBrowser do
       it "should not build the unsupported browser panel" do
         expect(base).to receive(:active_admin_namespace).and_return(namespace)
         expect(base).to receive_message_chain(:controller, :request, :user_agent).and_return("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)")
-        expect(base).to receive(:insert_tag).never
+        expect(base).to receive(:unsupported_browser).never
         base.send(:build_unsupported_browser)
       end
     end
