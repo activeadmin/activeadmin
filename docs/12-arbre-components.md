@@ -130,9 +130,21 @@ table_for order.payments do
 end
 ```
 
-the `column` method can take a title as its first argument and data
+The `column` method can take a title as its first argument and data
 (`:your_method`) as its second (or first if no title provided). Column also
 takes a block.
+
+### Internationalization
+
+To customize the internationalization for the component, specify a resource to
+use for translations via the `i18n` named parameter. This is only necessary for
+non-`ActiveRecord::Relation` collections:
+
+```ruby
+table_for payments, i18n: Payment do
+  # ...
+end
+```
 
 ## Status tag
 
