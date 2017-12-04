@@ -132,4 +132,58 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
 
   end
 
+  context 'search has no matching records' do
+    let(:search) { Post.ransack(author_id_eq: "foo") }
+
+    it 'should not produce and error' do
+      expect { subject.values }.not_to raise_error
+    end
+
+    it 'should return an enumerable' do
+      expect(subject.values).to respond_to(:map)
+    end
+  end
+
+  context 'a label is set on the filter' do
+    it 'should use the filter label as the label prefix' do
+      label = "#{user.first_name}'s Post Title"
+      resource.add_filter(:title, label: label)
+
+      expect(subject.label).to eq ("#{label} equals")
+    end
+  end
+
+  context "the association uses a different primary_key than the related class' primary_key" do
+    let (:resource_klass) {
+      Class.new(Post) do
+        belongs_to :kategory, class_name: "Category", primary_key: :name, foreign_key: :title
+
+        def self.name
+          "SuperPost"
+        end
+      end
+    }
+
+    let(:resource) do
+      namespace.register(resource_klass)
+    end
+
+    let(:user){ User.create! first_name: "John", last_name: "Doe" }
+    let!(:category){ Category.create! name: "Category" }
+
+    let(:post){ resource_klass.create! title: "Category", author: user }
+
+    let(:search) do
+      resource_klass.ransack(title_equals: post.title)
+    end
+
+    it "should use the association's primary key to find the associated record" do
+      allow(ActiveSupport::Dependencies).to receive(:constantize).with("::SuperPost").and_return(resource_klass)
+
+      resource.add_filter(:kategory)
+
+      expect(subject.values.first).to eq category
+    end
+  end
+
 end
