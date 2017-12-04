@@ -4,27 +4,26 @@ module ActiveAdmin
       class Base < Arbre::HTML::Document
 
         def build(*args)
-          super
-          add_classes_to_body
           build_active_admin_head
           build_page
+        end
+
+        alias_method :html_title, :title # Arbre::HTML::Title
+        def title
+          self.class.name
+        end
+
+        def main_content
+          I18n.t('active_admin.main_content', model: title).html_safe
         end
 
         private
 
         delegate :active_admin_config, :controller, :params, to: :helpers
 
-        def add_classes_to_body
-          @body.add_class(params[:action])
-          @body.add_class(params[:controller].tr('/', '_'))
-          @body.add_class("active_admin")
-          @body.add_class("logged_in")
-          @body.add_class(active_admin_namespace.name.to_s + "_namespace")
-        end
-
         def build_active_admin_head
-          within @head do
-            insert_tag Arbre::HTML::Title, [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
+          within head do
+            html_title [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
 
             active_admin_application.stylesheets.each do |style, options|
               text_node stylesheet_link_tag(style, options).html_safe
@@ -47,29 +46,30 @@ module ActiveAdmin
         end
 
         def build_page
-          within @body do
+          within body(class: body_classes) do
             div id: "wrapper" do
               build_unsupported_browser
-              build_header
-              build_title_bar
+              header active_admin_namespace, current_menu
+              title_bar title, action_items_for_action
               build_page_content
-              build_footer
+              footer active_admin_namespace
             end
           end
         end
 
+        def body_classes
+          Arbre::HTML::ClassList.new [
+            params[:action],
+            params[:controller].tr('/', '_'),
+            'active_admin', 'logged_in',
+            active_admin_namespace.name.to_s + '_namespace'
+          ]
+        end
+
         def build_unsupported_browser
           if active_admin_namespace.unsupported_browser_matcher =~ controller.request.user_agent
-            insert_tag view_factory.unsupported_browser
+            unsupported_browser
           end
-        end
-
-        def build_header
-          insert_tag view_factory.header, active_admin_namespace, current_menu
-        end
-
-        def build_title_bar
-          insert_tag view_factory.title_bar, title, action_items_for_action
         end
 
         def build_page_content
@@ -96,19 +96,6 @@ module ActiveAdmin
           end
         end
 
-        def main_content
-          I18n.t('active_admin.main_content', model: title).html_safe
-        end
-
-        def title
-          self.class.name
-        end
-
-        # Set's the page title for the layout to render
-        def set_page_title
-          set_ivar_on_view "@page_title", title
-        end
-
         # Returns the sidebar sections to render for the current action
         def sidebar_sections_for_action
           if active_admin_config && active_admin_config.sidebar_sections?
@@ -128,11 +115,6 @@ module ActiveAdmin
 
         def skip_sidebar?
           sidebar_sections_for_action.empty? || assigns[:skip_sidebar] == true
-        end
-
-        # Renders the content for the footer
-        def build_footer
-          insert_tag view_factory.footer, active_admin_namespace
         end
 
       end
