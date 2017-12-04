@@ -54,7 +54,7 @@ plugins:
 
   rubocop:
     enabled: true
-    channel: rubocop-0-49
+    channel: rubocop-0-51
 
 exclude_patterns:
   - "gemfiles/vendor/"
