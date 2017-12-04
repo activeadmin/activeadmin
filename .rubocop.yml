@@ -43,7 +43,6 @@ Layout/ExtraSpacing:
   Enabled: true
 
 Style/Encoding:
-  EnforcedStyle: never
   Enabled: true
 
 Style/HashSyntax:
@@ -55,7 +54,7 @@ Layout/IndentationConsistency:
 Layout/IndentationWidth:
   Enabled: true
 
-Style/PredicateName:
+Naming/PredicateName:
   Enabled: true
 
   NamePrefixBlacklist:
