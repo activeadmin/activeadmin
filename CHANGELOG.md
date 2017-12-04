@@ -1,5 +1,9 @@
 # Changelog
 
+### Bug fixes
+
+* Fixed [#5198][] Prevent XSS on sidebar's current filter rendering [#5272][] by [@deivid-rodriguez][]
+
 ## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
 
 ### Bug Fixes
@@ -180,6 +184,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#4173]: https://github.com/activeadmin/activeadmin/issues/4173
 [#4254]: https://github.com/activeadmin/activeadmin/issues/4254
 [#5043]: https://github.com/activeadmin/activeadmin/issues/5043
+[#5198]: https://github.com/activeadmin/activeadmin/issues/5198
 
 [#4477]: https://github.com/activeadmin/activeadmin/pull/4477
 [#4759]: https://github.com/activeadmin/activeadmin/pull/4759
@@ -205,6 +210,7 @@ Please check [0-6-stable](https://github.com/activeadmin/activeadmin/blob/0-6-st
 [#5069]: https://github.com/activeadmin/activeadmin/pull/5069
 [#5088]: https://github.com/activeadmin/activeadmin/pull/5088
 [#5093]: https://github.com/activeadmin/activeadmin/pull/5093
+[#5272]: https://github.com/activeadmin/activeadmin/pull/5272
 
 [@ajw725]: https://github.com/ajw725
 [@bolshakov]: https://github.com/bolshakov
