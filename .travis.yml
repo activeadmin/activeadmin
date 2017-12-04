@@ -1,7 +1,9 @@
 ---
 
 addons:
-  chrome: stable
+  apt:
+    packages:
+      - google-chrome-stable
 
 language: ruby
 
