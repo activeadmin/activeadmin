@@ -15,6 +15,8 @@
 
 * Ruby 2.1 support has been dropped [#5002][] by [@deivid-rodriguez][]
 * Replaced `sass-rails` with `sass` dependency [#5037][] by [@javierjulio][]
+* AA won't work properly with jQuery 1 & 2. Use jQuery 3 instead (`#= require jquery3`
+ in `active_admin.js.coffee`)
 
 ### Deprecations
 
