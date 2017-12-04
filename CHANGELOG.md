@@ -1,5 +1,13 @@
 # Changelog
 
+## ## 1.1.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.1.0...v1.1.1) (unreleased)
+
+### Bug Fixes
+
+* Fix a couple of issues rendering filter labels [#5223][] by [@wspurgin][]
+* Prevent NameError when filtering on a namespaced association [#5240][] by [@DanielHeath][]
+* Fix undefined method error in Ransack when building filters [#5238][] by [@wspurgin][]
+
 ## ## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
 
 ### Bug Fixes
