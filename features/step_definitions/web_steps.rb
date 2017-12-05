@@ -65,12 +65,12 @@ Then /^I should see the field "([^"]*)" of type "([^"]+)"?$/ do |label, of_type|
   expect(page).to have_field(label, type: of_type)
 end
 
-Then /^the "([^"]*)" field(?: within (.*))? should( not)? contain "([^"]*)"$/ do |field, parent, negate, value|
+Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field, parent, value|
   with_scope(parent) do
     field = find_field(field)
     value = field.tag_name == 'textarea' ? field.text : field.value
 
-    expect(value).send negate ? :not_to : :to, match(/#{value}/)
+    expect(value).to match(/#{value}/)
   end
 end
 
