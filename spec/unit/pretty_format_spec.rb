@@ -8,7 +8,7 @@ RSpec.describe "#pretty_format" do
     mock_action_view.send *args, &block
   end
 
-  ['hello', 23, 5.67, 10**30, :foo, Arbre::Element.new.br(:foo)].each do |obj|
+  ['hello', 23, 5.67, 10**30, :foo, Arbre::Element.new.br].each do |obj|
     it "should call `to_s` on #{obj.class}s" do
       expect(pretty_format(obj)).to eq obj.to_s
     end
