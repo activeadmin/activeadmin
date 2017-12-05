@@ -1,11 +1,3 @@
-Then /^I (should|should not) be asked to confirm "([^"]*)" for "([^"]*)"$/ do |maybe, confirmation, title|
-  selector = "#batch_actions_popover a.batch_action:contains('#{title}')"
-  selector << "[data-confirm='#{confirmation}']" if maybe == 'should'
-
-  verb = maybe == 'should' ? :to : :to_not
-  expect(page).send verb, have_css(selector)
-end
-
 Then /^I (should|should not) see the batch action :([^\s]*) "([^"]*)"$/ do |maybe, sym, title|
   selector = ".batch_actions_selector a.batch_action"
   selector << "[href='#'][data-action='#{sym}']" if maybe == 'should'
