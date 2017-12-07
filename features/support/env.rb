@@ -35,11 +35,11 @@ require 'cucumber/rails'
 require 'rspec/mocks'
 World(RSpec::Mocks::ExampleMethods)
 
-Before do
+Around do |scenario, block|
   RSpec::Mocks.setup
-end
 
-After do
+  block.call
+
   begin
     RSpec::Mocks.verify
   ensure
