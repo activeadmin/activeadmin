@@ -1,3 +1,4 @@
+@authorization
 Feature: Authorizing Access using CanCan
 
   Background:

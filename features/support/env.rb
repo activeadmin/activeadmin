@@ -81,10 +81,6 @@ include Warden::Test::Helpers
 
 After do
   Warden.test_reset!
-
-  # Reset back to the default auth adapter
-  ActiveAdmin.application.namespace(:admin).
-    authorization_adapter = ActiveAdmin::AuthorizationAdapter
 end
 
 Before do
@@ -99,6 +95,12 @@ end
 
 # Force deprecations to raise an exception.
 ActiveSupport::Deprecation.behavior = :raise
+
+After '@authorization' do |scenario, block|
+  # Reset back to the default auth adapter
+  ActiveAdmin.application.namespace(:admin).
+    authorization_adapter = ActiveAdmin::AuthorizationAdapter
+end
 
 Around '@silent_unpermitted_params_failure' do |scenario, block|
   original = ActionController::Parameters.action_on_unpermitted_parameters
