@@ -2,7 +2,7 @@ all
 
 exclude_rule "first-header-h1"
 
-exclude_rule "line-length"
+rule "line-length", line_length: 110, tables: false
 
 exclude_rule "no-duplicate-header"
 
