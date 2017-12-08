@@ -1,6 +1,7 @@
 # Active Admin
 
-[Active Admin](https://www.activeadmin.info) is a Ruby on Rails framework for creating elegant backends for website administration.
+[Active Admin](https://www.activeadmin.info) is a Ruby on Rails framework for
+creating elegant backends for website administration.
 
 [![Version         ][rubygems_badge]][rubygems]
 [![Travis CI       ][travis_badge]][travis]
