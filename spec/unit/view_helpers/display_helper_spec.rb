@@ -12,6 +12,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TranslationHelper
+  include ActionView::Helpers::SanitizeHelper
 
   def active_admin_namespace
     active_admin_application.namespaces[:admin]
@@ -39,6 +40,13 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
           define_method(m) { m }
         end
         expect(display_name klass.new).to eq m
+      end
+
+      it "should sanitize the result of #{m} when defined" do
+        klass = Class.new do
+          define_method(m) { '<script>alert(1)</script>' }
+        end
+        expect(display_name klass.new).to eq 'alert(1)'
       end
     end
 
@@ -73,7 +81,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
 
     it "should default to `to_s`" do
       subject = Class.new.new
-      expect(display_name subject).to eq subject.to_s
+      expect(display_name subject).to eq sanitize(subject.to_s)
     end
 
     context "when no display name method is defined" do
@@ -149,7 +157,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
 
       value = format_attribute double(object: object), :object
 
-      expect(value).to eq :right
+      expect(value).to eq 'right'
     end
 
     it 'auto-links ActiveRecord records by association' do
