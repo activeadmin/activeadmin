@@ -1,7 +1,10 @@
+//= require jquery-ui/escape-selector
+//= require jquery-ui/form-reset-mixin
+//= require jquery-ui/labels
 //= require jquery-ui/widget
 
 /*!
- * jQuery UI Controlgroup 1.12.1
+ * jQuery UI Checkboxradio 1.12.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -9,292 +12,280 @@
  * http://jquery.org/license
  */
 
-//>>label: Controlgroup
+//>>label: Checkboxradio
 //>>group: Widgets
-//>>description: Visually groups form control widgets
-//>>docs: http://api.jqueryui.com/controlgroup/
-//>>demos: http://jqueryui.com/controlgroup/
+//>>description: Enhances a form with multiple themeable checkboxes or radio buttons.
+//>>docs: http://api.jqueryui.com/checkboxradio/
+//>>demos: http://jqueryui.com/checkboxradio/
 //>>css.structure: ../../themes/base/core.css
-//>>css.structure: ../../themes/base/controlgroup.css
+//>>css.structure: ../../themes/base/button.css
+//>>css.structure: ../../themes/base/checkboxradio.css
 //>>css.theme: ../../themes/base/theme.css
 
 ( function( factory ) {
-	if ( typeof define === "function" && define.amd ) {
+  if ( typeof define === "function" && define.amd ) {
 
-		// AMD. Register as an anonymous module.
-		define( [
-			"jquery",
-			"../widget"
-		], factory );
-	} else {
+    // AMD. Register as an anonymous module.
+    define( [
+      "jquery",
+      "../escape-selector",
+      "../form-reset-mixin",
+      "../labels",
+      "../widget"
+    ], factory );
+  } else {
 
-		// Browser globals
-		factory( jQuery );
-	}
+    // Browser globals
+    factory( jQuery );
+  }
 }( function( $ ) {
-var controlgroupCornerRegex = /ui-corner-([a-z]){2,6}/g;
 
-return $.widget( "ui.controlgroup", {
-	version: "1.12.1",
-	defaultElement: "<div>",
-	options: {
-		direction: "horizontal",
-		disabled: null,
-		onlyVisible: true,
-		items: {
-			"button": "input[type=button], input[type=submit], input[type=reset], button, a",
-			"controlgroupLabel": ".ui-controlgroup-label",
-			"checkboxradio": "input[type='checkbox'], input[type='radio']",
-			"selectmenu": "select",
-			"spinner": ".ui-spinner-input"
-		}
-	},
+  $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
+    version: "1.12.1",
+    options: {
+      disabled: null,
+      label: null,
+      icon: true,
+      classes: {
+        "ui-checkboxradio-label": "ui-corner-all",
+        "ui-checkboxradio-icon": "ui-corner-all"
+      }
+    },
 
-	_create: function() {
-		this._enhance();
-	},
+    _getCreateOptions: function() {
+      var disabled, labels;
+      var that = this;
+      var options = this._super() || {};
 
-	// To support the enhanced option in jQuery Mobile, we isolate DOM manipulation
-	_enhance: function() {
-		this.element.attr( "role", "toolbar" );
-		this.refresh();
-	},
+      // We read the type here, because it makes more sense to throw a element type error first,
+      // rather then the error for lack of a label. Often if its the wrong type, it
+      // won't have a label (e.g. calling on a div, btn, etc)
+      this._readType();
 
-	_destroy: function() {
-		this._callChildMethod( "destroy" );
-		this.childWidgets.removeData( "ui-controlgroup-data" );
-		this.element.removeAttr( "role" );
-		if ( this.options.items.controlgroupLabel ) {
-			this.element
-				.find( this.options.items.controlgroupLabel )
-				.find( ".ui-controlgroup-label-contents" )
-				.contents().unwrap();
-		}
-	},
+      labels = this.element.labels();
 
-	_initWidgets: function() {
-		var that = this,
-			childWidgets = [];
+      // If there are multiple labels, use the last one
+      this.label = $( labels[ labels.length - 1 ] );
+      if ( !this.label.length ) {
+        $.error( "No label found for checkboxradio widget" );
+      }
 
-		// First we iterate over each of the items options
-		$.each( this.options.items, function( widget, selector ) {
-			var labels;
-			var options = {};
+      this.originalLabel = "";
 
-			// Make sure the widget has a selector set
-			if ( !selector ) {
-				return;
-			}
+      // We need to get the label text but this may also need to make sure it does not contain the
+      // input itself.
+      this.label.contents().not( this.element[ 0 ] ).each( function() {
 
-			if ( widget === "controlgroupLabel" ) {
-				labels = that.element.find( selector );
-				labels.each( function() {
-					var element = $( this );
+        // The label contents could be text, html, or a mix. We concat each element to get a
+        // string representation of the label, without the input as part of it.
+        that.originalLabel += this.nodeType === 3 ? $( this ).text() : this.outerHTML;
+      } );
 
-					if ( element.children( ".ui-controlgroup-label-contents" ).length ) {
-						return;
-					}
-					element.contents()
-						.wrapAll( "<span class='ui-controlgroup-label-contents'></span>" );
-				} );
-				that._addClass( labels, null, "ui-widget ui-widget-content ui-state-default" );
-				childWidgets = childWidgets.concat( labels.get() );
-				return;
-			}
+      // Set the label option if we found label text
+      if ( this.originalLabel ) {
+        options.label = this.originalLabel;
+      }
 
-			// Make sure the widget actually exists
-			if ( !$.fn[ widget ] ) {
-				return;
-			}
+      disabled = this.element[ 0 ].disabled;
+      if ( disabled != null ) {
+        options.disabled = disabled;
+      }
+      return options;
+    },
 
-			// We assume everything is in the middle to start because we can't determine
-			// first / last elements until all enhancments are done.
-			if ( that[ "_" + widget + "Options" ] ) {
-				options = that[ "_" + widget + "Options" ]( "middle" );
-			} else {
-				options = { classes: {} };
-			}
+    _create: function() {
+      var checked = this.element[ 0 ].checked;
 
-			// Find instances of this widget inside controlgroup and init them
-			that.element
-				.find( selector )
-				.each( function() {
-					var element = $( this );
-					var instance = element[ widget ]( "instance" );
+      this._bindFormResetHandler();
 
-					// We need to clone the default options for this type of widget to avoid
-					// polluting the variable options which has a wider scope than a single widget.
-					var instanceOptions = $.widget.extend( {}, options );
+      if ( this.options.disabled == null ) {
+        this.options.disabled = this.element[ 0 ].disabled;
+      }
 
-					// If the button is the child of a spinner ignore it
-					// TODO: Find a more generic solution
-					if ( widget === "button" && element.parent( ".ui-spinner" ).length ) {
-						return;
-					}
+      this._setOption( "disabled", this.options.disabled );
+      this._addClass( "ui-checkboxradio", "ui-helper-hidden-accessible" );
+      this._addClass( this.label, "ui-checkboxradio-label", "ui-button ui-widget" );
 
-					// Create the widget if it doesn't exist
-					if ( !instance ) {
-						instance = element[ widget ]()[ widget ]( "instance" );
-					}
-					if ( instance ) {
-						instanceOptions.classes =
-							that._resolveClassesValues( instanceOptions.classes, instance );
-					}
-					element[ widget ]( instanceOptions );
+      if ( this.type === "radio" ) {
+        this._addClass( this.label, "ui-checkboxradio-radio-label" );
+      }
 
-					// Store an instance of the controlgroup to be able to reference
-					// from the outermost element for changing options and refresh
-					var widgetElement = element[ widget ]( "widget" );
-					$.data( widgetElement[ 0 ], "ui-controlgroup-data",
-						instance ? instance : element[ widget ]( "instance" ) );
+      if ( this.options.label && this.options.label !== this.originalLabel ) {
+        this._updateLabel();
+      } else if ( this.originalLabel ) {
+        this.options.label = this.originalLabel;
+      }
 
-					childWidgets.push( widgetElement[ 0 ] );
-				} );
-		} );
+      this._enhance();
 
-		this.childWidgets = $( $.unique( childWidgets ) );
-		this._addClass( this.childWidgets, "ui-controlgroup-item" );
-	},
+      if ( checked ) {
+        this._addClass( this.label, "ui-checkboxradio-checked", "ui-state-active" );
+        if ( this.icon ) {
+          this._addClass( this.icon, null, "ui-state-hover" );
+        }
+      }
 
-	_callChildMethod: function( method ) {
-		this.childWidgets.each( function() {
-			var element = $( this ),
-				data = element.data( "ui-controlgroup-data" );
-			if ( data && data[ method ] ) {
-				data[ method ]();
-			}
-		} );
-	},
+      this._on( {
+        change: "_toggleClasses",
+        focus: function() {
+          this._addClass( this.label, null, "ui-state-focus ui-visual-focus" );
+        },
+        blur: function() {
+          this._removeClass( this.label, null, "ui-state-focus ui-visual-focus" );
+        }
+      } );
+    },
 
-	_updateCornerClass: function( element, position ) {
-		var remove = "ui-corner-top ui-corner-bottom ui-corner-left ui-corner-right ui-corner-all";
-		var add = this._buildSimpleOptions( position, "label" ).classes.label;
+    _readType: function() {
+      var nodeName = this.element[ 0 ].nodeName.toLowerCase();
+      this.type = this.element[ 0 ].type;
+      if ( nodeName !== "input" || !/radio|checkbox/.test( this.type ) ) {
+        $.error( "Can't create checkboxradio on element.nodeName=" + nodeName +
+            " and element.type=" + this.type );
+      }
+    },
 
-		this._removeClass( element, null, remove );
-		this._addClass( element, null, add );
-	},
+    // Support jQuery Mobile enhanced option
+    _enhance: function() {
+      this._updateIcon( this.element[ 0 ].checked );
+    },
 
-	_buildSimpleOptions: function( position, key ) {
-		var direction = this.options.direction === "vertical";
-		var result = {
-			classes: {}
-		};
-		result.classes[ key ] = {
-			"middle": "",
-			"first": "ui-corner-" + ( direction ? "top" : "left" ),
-			"last": "ui-corner-" + ( direction ? "bottom" : "right" ),
-			"only": "ui-corner-all"
-		}[ position ];
+    widget: function() {
+      return this.label;
+    },
 
-		return result;
-	},
+    _getRadioGroup: function() {
+      var group;
+      var name = this.element[ 0 ].name;
+      var nameSelector = "input[name='" + $.ui.escapeSelector( name ) + "']";
 
-	_spinnerOptions: function( position ) {
-		var options = this._buildSimpleOptions( position, "ui-spinner" );
+      if ( !name ) {
+        return $( [] );
+      }
 
-		options.classes[ "ui-spinner-up" ] = "";
-		options.classes[ "ui-spinner-down" ] = "";
+      if ( this.form.length ) {
+        group = $( this.form[ 0 ].elements ).filter( nameSelector );
+      } else {
 
-		return options;
-	},
+        // Not inside a form, check all inputs that also are not inside a form
+        group = $( nameSelector ).filter( function() {
+          return $( this ).form().length === 0;
+        } );
+      }
 
-	_buttonOptions: function( position ) {
-		return this._buildSimpleOptions( position, "ui-button" );
-	},
+      return group.not( this.element );
+    },
 
-	_checkboxradioOptions: function( position ) {
-		return this._buildSimpleOptions( position, "ui-checkboxradio-label" );
-	},
+    _toggleClasses: function() {
+      var checked = this.element[ 0 ].checked;
+      this._toggleClass( this.label, "ui-checkboxradio-checked", "ui-state-active", checked );
 
-	_selectmenuOptions: function( position ) {
-		var direction = this.options.direction === "vertical";
-		return {
-			width: direction ? "auto" : false,
-			classes: {
-				middle: {
-					"ui-selectmenu-button-open": "",
-					"ui-selectmenu-button-closed": ""
-				},
-				first: {
-					"ui-selectmenu-button-open": "ui-corner-" + ( direction ? "top" : "tl" ),
-					"ui-selectmenu-button-closed": "ui-corner-" + ( direction ? "top" : "left" )
-				},
-				last: {
-					"ui-selectmenu-button-open": direction ? "" : "ui-corner-tr",
-					"ui-selectmenu-button-closed": "ui-corner-" + ( direction ? "bottom" : "right" )
-				},
-				only: {
-					"ui-selectmenu-button-open": "ui-corner-top",
-					"ui-selectmenu-button-closed": "ui-corner-all"
-				}
+      if ( this.options.icon && this.type === "checkbox" ) {
+        this._toggleClass( this.icon, null, "ui-icon-check ui-state-checked", checked )
+            ._toggleClass( this.icon, null, "ui-icon-blank", !checked );
+      }
 
-			}[ position ]
-		};
-	},
+      if ( this.type === "radio" ) {
+        this._getRadioGroup()
+            .each( function() {
+              var instance = $( this ).checkboxradio( "instance" );
 
-	_resolveClassesValues: function( classes, instance ) {
-		var result = {};
-		$.each( classes, function( key ) {
-			var current = instance.options.classes[ key ] || "";
-			current = $.trim( current.replace( controlgroupCornerRegex, "" ) );
-			result[ key ] = ( current + " " + classes[ key ] ).replace( /\s+/g, " " );
-		} );
-		return result;
-	},
+              if ( instance ) {
+                instance._removeClass( instance.label,
+                    "ui-checkboxradio-checked", "ui-state-active" );
+              }
+            } );
+      }
+    },
 
-	_setOption: function( key, value ) {
-		if ( key === "direction" ) {
-			this._removeClass( "ui-controlgroup-" + this.options.direction );
-		}
+    _destroy: function() {
+      this._unbindFormResetHandler();
 
-		this._super( key, value );
-		if ( key === "disabled" ) {
-			this._callChildMethod( value ? "disable" : "enable" );
-			return;
-		}
+      if ( this.icon ) {
+        this.icon.remove();
+        this.iconSpace.remove();
+      }
+    },
 
-		this.refresh();
-	},
+    _setOption: function( key, value ) {
 
-	refresh: function() {
-		var children,
-			that = this;
+      // We don't allow the value to be set to nothing
+      if ( key === "label" && !value ) {
+        return;
+      }
 
-		this._addClass( "ui-controlgroup ui-controlgroup-" + this.options.direction );
+      this._super( key, value );
 
-		if ( this.options.direction === "horizontal" ) {
-			this._addClass( null, "ui-helper-clearfix" );
-		}
-		this._initWidgets();
+      if ( key === "disabled" ) {
+        this._toggleClass( this.label, null, "ui-state-disabled", value );
+        this.element[ 0 ].disabled = value;
 
-		children = this.childWidgets;
+        // Don't refresh when setting disabled
+        return;
+      }
+      this.refresh();
+    },
 
-		// We filter here because we need to track all childWidgets not just the visible ones
-		if ( this.options.onlyVisible ) {
-			children = children.filter( ":visible" );
-		}
+    _updateIcon: function( checked ) {
+      var toAdd = "ui-icon ui-icon-background ";
 
-		if ( children.length ) {
+      if ( this.options.icon ) {
+        if ( !this.icon ) {
+          this.icon = $( "<span>" );
+          this.iconSpace = $( "<span> </span>" );
+          this._addClass( this.iconSpace, "ui-checkboxradio-icon-space" );
+        }
 
-			// We do this last because we need to make sure all enhancment is done
-			// before determining first and last
-			$.each( [ "first", "last" ], function( index, value ) {
-				var instance = children[ value ]().data( "ui-controlgroup-data" );
+        if ( this.type === "checkbox" ) {
+          toAdd += checked ? "ui-icon-check ui-state-checked" : "ui-icon-blank";
+          this._removeClass( this.icon, null, checked ? "ui-icon-blank" : "ui-icon-check" );
+        } else {
+          toAdd += "ui-icon-blank";
+        }
+        this._addClass( this.icon, "ui-checkboxradio-icon", toAdd );
+        if ( !checked ) {
+          this._removeClass( this.icon, null, "ui-icon-check ui-state-checked" );
+        }
+        this.icon.prependTo( this.label ).after( this.iconSpace );
+      } else if ( this.icon !== undefined ) {
+        this.icon.remove();
+        this.iconSpace.remove();
+        delete this.icon;
+      }
+    },
 
-				if ( instance && that[ "_" + instance.widgetName + "Options" ] ) {
-					var options = that[ "_" + instance.widgetName + "Options" ](
-						children.length === 1 ? "only" : value
-					);
-					options.classes = that._resolveClassesValues( options.classes, instance );
-					instance.element[ instance.widgetName ]( options );
-				} else {
-					that._updateCornerClass( children[ value ](), value );
-				}
-			} );
+    _updateLabel: function() {
 
-			// Finally call the refresh method on each of the child widgets.
-			this._callChildMethod( "refresh" );
-		}
-	}
-} );
+      // Remove the contents of the label ( minus the icon, icon space, and input )
+      var contents = this.label.contents().not( this.element[ 0 ] );
+      if ( this.icon ) {
+        contents = contents.not( this.icon[ 0 ] );
+      }
+      if ( this.iconSpace ) {
+        contents = contents.not( this.iconSpace[ 0 ] );
+      }
+      contents.remove();
+
+      this.label.append( this.options.label );
+    },
+
+    refresh: function() {
+      var checked = this.element[ 0 ].checked,
+          isDisabled = this.element[ 0 ].disabled;
+
+      this._updateIcon( checked );
+      this._toggleClass( this.label, "ui-checkboxradio-checked", "ui-state-active", checked );
+      if ( this.options.label !== null ) {
+        this._updateLabel();
+      }
+
+      if ( isDisabled !== this.options.disabled ) {
+        this._setOptions( { "disabled": isDisabled } );
+      }
+    }
+
+  } ] );
+
+  return $.ui.checkboxradio;
+
 } ) );
