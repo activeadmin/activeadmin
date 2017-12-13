@@ -4,5 +4,8 @@ end
 
 if ENV['CI'] == 'true'
   require 'codecov'
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+  SimpleCov.formatters = [
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::Codecov
+  ]
 end

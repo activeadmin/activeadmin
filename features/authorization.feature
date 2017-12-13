@@ -1,3 +1,4 @@
+@authorization
 Feature: Authorizing Access
 
   Ensure that access denied exceptions are managed

@@ -16,7 +16,6 @@ Given /^I am logged in$/ do
   login_as ensure_user_created 'admin@example.com'
 end
 
-# only for @requires-reloading scenario
 Given /^I am logged in with capybara$/ do
   ensure_user_created 'admin@example.com'
   step 'log out'
