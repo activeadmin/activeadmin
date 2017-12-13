@@ -56,6 +56,35 @@ Feature: New Page
     And I should see the attribute "Title" with "Hello World"
     And I should see the attribute "Body" with "This is the body"
 
+  Scenario: Generating a custom form decorated with virtual attributes
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        decorate_with PostDecorator
+        permit_params :custom_category_id, :author_id, :virtual_title, :body, :published_date, :starred
+
+        form decorate: true do |f|
+          f.inputs "Your Post" do
+            f.input :virtual_title
+            f.input :body
+          end
+          f.inputs "Publishing" do
+            f.input :published_date
+          end
+          f.actions
+        end
+      end
+    """
+    Given I follow "New Post"
+    Then I should see a fieldset titled "Your Post"
+    And I should see a fieldset titled "Publishing"
+    When I fill in "Virtual title" with "Hello World"
+    And I fill in "Body" with "This is the body"
+    And I press "Create Post"
+    Then I should see "Post was successfully created."
+    And I should see the attribute "Title" with "Hello World"
+    And I should see the attribute "Body" with "This is the body"
+
   Scenario: Generating a form from a partial
     Given "app/views/admin/posts/_form.html.erb" contains:
     """
