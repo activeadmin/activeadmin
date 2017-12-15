@@ -2,7 +2,33 @@
 
 ### Bug fixes
 
+## 1.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.1.0...v1.2.0)
+
+### Enhancements
+
+#### Minor
+
+* Do not display pagination info when there are no comments [#5119][] by [@alex-bogomolov][]
+* Revert generated config files to pluralized [#5120][] by [@varyonic][], [#5137][] by [@deivid-rodriguez][]
+* Warn when action definition overwrites controller method [#5167][] by [@aarek][]
+* Better performance of comments show view [#5208][] by [@dhyegofernando][]
+* Mitigate memory bloat [#4118][] with CSV exports [#5251][] by [@f1sherman][]
+* Fix issue applying custom decorations [#5253][] by [@faucct][]
+* Translations:
+  * Brazilian locale upated [#5125][] by [@renotocn][]
+  * Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [innparusu95][]
+  * Italian locale updated [#5180][] by [@blocknotes][]
+  * Swedish locale updated [#5187][] by [@jawa][]
+  * Vietnamese locale updated [#5194][] by [@Nguyenanh][]
+  * Esperanto locale added [#5210][] by [@RobinvanderVliet][]
+
+### Bug Fixes
+
+* Fix a couple of issues rendering filter labels [#5223][] by [@wspurgin][]
+* Prevent NameError when filtering on a namespaced association [#5240][] by [@DanielHeath][]
+* Fix undefined method error in Ransack when building filters [#5238][] by [@wspurgin][]
 * Fixed [#5198][] Prevent XSS on sidebar's current filter rendering [#5272][] by [@deivid-rodriguez][]
+* Sanitize display_name [#5284][] by [@markstory][].
 
 ## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
 
@@ -23,6 +49,8 @@
   are now within the vendor directory. This will be replaced by alternatives and
   dropped entirely in a major release. Please remove any direct inclusions
   of `//= require jquery-ui`. [#5052][] by [@javierjulio][]
+* AA won't work properly with jQuery 1 & 2. Use jQuery 3 instead (`#= require jquery3`
+ in `active_admin.js.coffee`)
 
 ### Deprecations
 
@@ -182,6 +210,7 @@ Please check [0-6-stable][] for previous changes.
 [#3731]: https://github.com/activeadmin/activeadmin/issues/3731
 [#3783]: https://github.com/activeadmin/activeadmin/issues/3783
 [#3894]: https://github.com/activeadmin/activeadmin/issues/3894
+[#4118]: https://github.com/activeadmin/activeadmin/issues/4118
 [#4187]: https://github.com/activeadmin/activeadmin/issues/4187
 [#4173]: https://github.com/activeadmin/activeadmin/issues/4173
 [#4254]: https://github.com/activeadmin/activeadmin/issues/4254
@@ -212,26 +241,52 @@ Please check [0-6-stable][] for previous changes.
 [#5069]: https://github.com/activeadmin/activeadmin/pull/5069
 [#5088]: https://github.com/activeadmin/activeadmin/pull/5088
 [#5093]: https://github.com/activeadmin/activeadmin/pull/5093
+[#5119]: https://github.com/activeadmin/activeadmin/pull/5119
+[#5120]: https://github.com/activeadmin/activeadmin/pull/5120
+[#5125]: https://github.com/activeadmin/activeadmin/pull/5125
+[#5137]: https://github.com/activeadmin/activeadmin/pull/5137
+[#5143]: https://github.com/activeadmin/activeadmin/pull/5143
+[#5167]: https://github.com/activeadmin/activeadmin/pull/5167
+[#5180]: https://github.com/activeadmin/activeadmin/pull/5180
+[#5187]: https://github.com/activeadmin/activeadmin/pull/5187
+[#5194]: https://github.com/activeadmin/activeadmin/pull/5194
+[#5208]: https://github.com/activeadmin/activeadmin/pull/5208
+[#5210]: https://github.com/activeadmin/activeadmin/pull/5210
+[#5251]: https://github.com/activeadmin/activeadmin/pull/5251
+[#5253]: https://github.com/activeadmin/activeadmin/pull/5253
 [#5272]: https://github.com/activeadmin/activeadmin/pull/5272
+[#5284]: https://github.com/activeadmin/activeadmin/pull/5284
 
+[@5t111111]: https://github.com/5t111111
+[@aarek]: https://github.com/aarek
 [@ajw725]: https://github.com/ajw725
+[@alex-bogomolov]: https://github.com/alex-bogomolov
 [@bolshakov]: https://github.com/bolshakov
+[@blocknotes]: https://github.com/blocknotes
 [@chancancode]: https://github.com/chancancode
 [@craigmcnamara]: https://github.com/craigmcnamara
 [@deivid-rodriguez]: https://github.com/deivid-rodriguez
+[@dhyegofernando]: https://github.com/dhyegofernando
 [@dmitry]: https://github.com/dmitry
 [@drn]: https://github.com/drn
+[@f1sherman]: https://github.com/f1sherman
+[@faucct]: https://github.com/faucct
 [@Fivell]: https://github.com/Fivell
 [@gonzedge]: https://github.com/gonzedge
+[@innparusu95]: https://github.com/innparusu95
 [@javierjulio]: https://github.com/javierjulio
+[@jawa]: https://github.com/jawa
 [@johnnyshields]: https://github.com/johnnyshields
+[@markstory]: https://github.com/markstory
+[@Nguyenanh]: https://github.com/Nguyenanh
 [@PChambino]: https://github.com/PChambino
 [@potatosalad]: https://github.com/potatosalad
 [@pranas]: https://github.com/pranas
+[@renotocn]: https://github.com/renotocn
+[@RobinvanderVliet]: https://github.com/RobinvanderVliet
 [@seanlinsley]: https://github.com/seanlinsley
 [@shekibobo]: https://github.com/shekibobo
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
 [@zorab47]: https://github.com/zorab47
-[@alex-bogomolov]: https://github.com/alex-bogomolov
