@@ -66,7 +66,7 @@ module ActiveAdmin
       def pretty_format(object)
         case object
         when String, Numeric, Symbol, Arbre::Element
-          object.to_s
+          sanitize(object.to_s)
         when Date, Time
           I18n.localize object, format: active_admin_application.localize_format
         else

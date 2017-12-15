@@ -23,6 +23,17 @@ Feature: Index Filtering
     And I should see "Hello World 2" within ".index_table"
     And I should see current filter "title_contains" equal to "Hello World 2" with label "Title contains"
 
+  Scenario: No XSS in Resources Filters
+    Given an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        filter :title
+      end
+    """
+    When I fill in "Title" with "<script>alert('hax')</script>"
+    And I press "Filter"
+    Then I should see current filter "title_contains" equal to "alert('hax')" with label "Title contains"
+
   Scenario: Filtering posts with no results
     Given 3 posts exist
     And an index configuration of:
