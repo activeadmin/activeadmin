@@ -253,7 +253,7 @@ module ActiveAdmin
 
     class Store
       include Enumerable
-      delegate :[], :[]=, :empty?, to: :@namespaces
+      delegate :[]=, :empty?, to: :@namespaces
 
       def initialize
         @namespaces = {}
@@ -263,9 +263,19 @@ module ActiveAdmin
         @namespaces.values.each(&block)
       end
 
+      def [](key)
+        @namespaces[Array(key)]
+      end
+
       def names
+        Deprecation.warn "names replaced by name_paths now that namespaces can be nested."
+        @namespaces.keys.first
+      end
+
+      def name_paths
         @namespaces.keys
       end
+
     end
   end
 end

@@ -57,7 +57,12 @@ module ActiveAdmin
     end
 
     def namespace_name
+      Deprecation.warn "namespace_name replaced by namespace_name now that namespaces can be nested."
       namespace.name.to_s
+    end
+
+    def namespace_name_path
+      namespace.name_path
     end
 
     def default_menu_options

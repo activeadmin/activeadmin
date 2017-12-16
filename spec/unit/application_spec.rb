@@ -172,8 +172,12 @@ RSpec.describe ActiveAdmin::Application do
     it "should not pollute the global app" do
       expect(application.namespaces).to be_empty
       application.namespace(:brand_new_ns)
-      expect(application.namespaces.names).to eq [[:brand_new_ns]]
-      expect(ActiveAdmin.application.namespaces.names).to eq [[:admin]]
+      ActiveSupport::Deprecation.silence do
+        expect(application.namespaces.names).to eq [:brand_new_ns]
+        expect(ActiveAdmin.application.namespaces.names).to eq [:admin]
+      end
+      expect(application.namespaces.name_paths).to eq [[:brand_new_ns]]
+      expect(ActiveAdmin.application.namespaces.name_paths).to eq [[:admin]]
     end
   end
 

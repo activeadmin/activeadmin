@@ -15,7 +15,7 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
   let(:namespaces) { ActiveAdmin.application.namespaces }
 
   it "should only have the namespaces necessary for route testing" do
-    expect(namespaces.names).to eq [[:admin]]
+    expect(namespaces.name_paths).to eq [[:admin]]
   end
 
   it "should route to the admin dashboard" do
