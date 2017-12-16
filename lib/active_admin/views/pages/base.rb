@@ -62,7 +62,7 @@ module ActiveAdmin
             params[:action],
             params[:controller].tr('/', '_'),
             'active_admin', 'logged_in',
-            active_admin_namespace.name.to_s + '_namespace'
+            active_admin_namespace.name_path.map(&:to_s).join('_') + '_namespace'
           ]
         end
 
