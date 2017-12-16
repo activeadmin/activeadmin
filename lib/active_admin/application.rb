@@ -163,9 +163,7 @@ module ActiveAdmin
     end
 
     def build_name_path(name)
-      names = Array(name).map { |n| [true, false, nil].include?(n) ? n : n.to_s.underscore.to_sym }
-      return names if [:root, false, nil].include?(default_namespace) || [:root, default_namespace].include?(names.first)
-      [default_namespace] + names
+      Array(name).map(&:to_s).map(&:underscore).map(&:to_sym)
     end
 
     private

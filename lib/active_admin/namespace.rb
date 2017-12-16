@@ -37,7 +37,7 @@ module ActiveAdmin
 
     def initialize(application, name)
       @application = application
-      @name = Array(name).first.to_s.underscore.to_sym
+      # @name_splits = name.split('/').map(&:to_sym)
       @name_path = application.build_name_path(name)
       @resources = ResourceCollection.new
       register_module unless root?
@@ -46,7 +46,7 @@ module ActiveAdmin
 
     def name
       Deprecation.warn "name replaced by name_path now that namespaces can be nested."
-      @name
+      name_path.first
     end
 
     def settings
@@ -91,7 +91,7 @@ module ActiveAdmin
     end
 
     def root?
-      @name == :root
+      name_path.first == :root
     end
 
     # Returns the name of the module if required. Will be nil if none

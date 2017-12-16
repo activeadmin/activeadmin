@@ -51,7 +51,7 @@ RSpec.describe ActiveAdmin::Application, type: :request do
 
     it "should generate resource paths" do
       expect(resource1.route_collection_path).to eq "/test/categories"
-      expect(resource2.route_collection_path).to eq "/test/foo/bar/categories"
+      expect(resource2.route_collection_path).to eq "/foo/bar/categories"
     end
 
     it "should generate a log out path" do
@@ -72,7 +72,7 @@ RSpec.describe ActiveAdmin::Application, type: :request do
 
     it "should generate resource paths" do
       expect(resource1.route_collection_path).to eq "/abc_123/categories"
-      expect(resource2.route_collection_path).to eq "/abc_123/foo/bar/categories"
+      expect(resource2.route_collection_path).to eq "/foo/bar/categories"
     end
 
     it "should generate a log out path" do

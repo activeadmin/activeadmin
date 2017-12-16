@@ -69,7 +69,7 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
 
     context "when in nested admin namespace" do
       before(:each) do
-        load_resources { ActiveAdmin.register(Post, namespace: [:foo, :bar]) }
+        load_resources { ActiveAdmin.register(Post, namespace: [:admin, :foo, :bar]) }
       end
 
       after(:each) do
@@ -204,8 +204,8 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
 
       before(:each) do
         load_resources {
-          ActiveAdmin.register(User, namespace: [:foo, :bar])
-          ActiveAdmin.register(Post, namespace: [:foo, :bar]){ belongs_to :user, optional: true }
+          ActiveAdmin.register(User, namespace: [:admin, :foo, :bar])
+          ActiveAdmin.register(Post, namespace: [:admin, :foo, :bar]){ belongs_to :user, optional: true }
         }
       end
 
@@ -232,8 +232,8 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
       context "with collection action" do
         before do
           load_resources do
-            ActiveAdmin.register(User, namespace: [:foo, :bar]){ collection_action "do_something" }
-            ActiveAdmin.register(Post, namespace: [:foo, :bar]){ belongs_to :user, optional: true }
+            ActiveAdmin.register(User, namespace: [:admin, :foo, :bar]){ collection_action "do_something" }
+            ActiveAdmin.register(Post, namespace: [:admin, :foo, :bar]){ belongs_to :user, optional: true }
           end
         end
 
@@ -262,7 +262,7 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
 
     context "when in default nested namespace" do
       before(:each) do
-        load_resources { ActiveAdmin.register_page("Chocolate I lØve You!", namespace: [:foo, :bar]) }
+        load_resources { ActiveAdmin.register_page("Chocolate I lØve You!", namespace: [:admin, :foo, :bar]) }
       end
 
       after(:each) do

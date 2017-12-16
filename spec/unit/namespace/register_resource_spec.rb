@@ -148,14 +148,14 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
       it "should be namespaced" do
         namespace = ActiveAdmin::Namespace.new(application, :one)
         namespace.register Category
-        expect(defined?(Admin::One::CategoriesController)).to eq 'constant'
+        expect(defined?(One::CategoriesController)).to eq 'constant'
       end
     end
     context "when not namespaced" do
       it "should not be namespaced" do
         namespace = ActiveAdmin::Namespace.new(application, :two)
         namespace.register Category
-        expect(defined?(Admin::Two::CategoriesController)).to eq 'constant'
+        expect(defined?(Two::CategoriesController)).to eq 'constant'
       end
     end
   end # describe "dashboard controller name"

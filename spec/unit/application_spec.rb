@@ -145,7 +145,7 @@ RSpec.describe ActiveAdmin::Application do
         ActiveSupport::Deprecation.silence do
           expect(ns.name).to eq :new_namespace
         end
-        expect(ns.name_path).to eq [:admin, :new_namespace]
+        expect(ns.name_path).to eq [:new_namespace]
       end
     end
 
@@ -155,7 +155,7 @@ RSpec.describe ActiveAdmin::Application do
     end
 
     it "should return an instantiated nested-namespace" do
-      ns = application.namespace [:foo, :bar]
+      ns = application.namespace [:admin, :foo, :bar]
       expect(ns).to eq application.namespaces[[:admin, :foo, :bar]]
       application.namespaces.instance_variable_get(:@namespaces).delete([:admin, :foo, :bar])
     end
@@ -172,7 +172,7 @@ RSpec.describe ActiveAdmin::Application do
     it "should not pollute the global app" do
       expect(application.namespaces).to be_empty
       application.namespace(:brand_new_ns)
-      expect(application.namespaces.names).to eq [[:admin, :brand_new_ns]]
+      expect(application.namespaces.names).to eq [[:brand_new_ns]]
       expect(ActiveAdmin.application.namespaces.names).to eq [[:admin]]
     end
   end
