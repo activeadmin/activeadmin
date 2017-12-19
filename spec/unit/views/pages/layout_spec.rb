@@ -44,6 +44,10 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
     expect(layout.title).to eq "Edit"
   end
 
+  it "should have lang attribute on the html element" do
+    expect(layout.attributes[:lang]).to eq :en
+  end
+
   describe "the body" do
 
     it "should have class 'active_admin'" do
