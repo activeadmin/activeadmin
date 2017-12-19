@@ -8,6 +8,7 @@ ja:
     edit: "編集"
     delete: "削除"
     delete_confirmation: "本当に削除しますか？"
+    create_another: "%{model} を追加する"
     new_model: "%{model} を作成する"
     edit_model: "%{model} を編集する"
     delete_model: "%{model} を削除する"
@@ -31,6 +32,10 @@ ja:
         ends_with: "で終わる"
         greater_than: "より大きい"
         less_than: "より小さい"
+        gteq_datetime: "以上"
+        lteq_datetime: "以下"
+        from: "開始"
+        to: "終了"
     search_status:
       headline: "検索条件:"
       current_scope: "範囲:"

@@ -122,4 +122,37 @@ RSpec.describe 'defining actions from registration blocks', type: :controller do
       end
     end
   end
+
+  context 'when method with given name is already defined' do
+    around :each do |example|
+      original_stderr = $stderr
+      $stderr = StringIO.new
+      example.run
+      $stderr = original_stderr
+    end
+
+    describe 'defining member action' do
+      let :action! do
+        ActiveAdmin.register Post do
+          member_action :process
+        end
+      end
+
+      it 'writes warning to $stderr' do
+        expect($stderr.string).to include('Warning: method `process` already defined')
+      end
+    end
+
+    describe 'defining collection action' do
+      let :action! do
+        ActiveAdmin.register Post do
+          collection_action :process
+        end
+      end
+
+      it 'writes warning to $stderr' do
+        expect($stderr.string).to include('Warning: method `process` already defined')
+      end
+    end
+  end
 end

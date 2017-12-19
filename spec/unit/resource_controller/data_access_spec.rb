@@ -197,32 +197,36 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   describe "build_resource" do
 
     let(:config) do
-      ActiveAdmin.register Post do
-        permit_params :body, taggings_attributes: [:id, :tag_id]
+      ActiveAdmin.register User do
+        permit_params :type, posts_attributes: :custom_category_id
       end
     end
 
-    let!(:tag) { Tag.create! }
+    let!(:category) { Category.create! }
 
     let(:params) do
-      ActionController::Parameters.new({ post: { body: 'Body', taggings_attributes: [tag_id: tag.id] } })
-    end
-
-    before do
-      expect(Post).to receive(:new).with(a_hash_including(:body, :taggings_attributes)).and_call_original
+      ActionController::Parameters.new(user: { type: 'User::VIP', posts_attributes: [custom_category_id: category.id] })
     end
 
     subject do
       controller.send :build_resource
     end
 
+    let(:controller) do
+      rc = Admin::UsersController.new
+      allow(rc).to receive(:params) do
+        params
+      end
+      rc
+    end
+
     it "should return post with assigned attributes" do
-      expect(subject.body).to be_present
+      expect(subject).to be_a(User::VIP)
     end
 
     # see issue 4548
     it "should assign nested attributes once" do
-      expect(subject.taggings.size).to eq(1)
+      expect(subject.posts.size).to eq(1)
     end
 
   end

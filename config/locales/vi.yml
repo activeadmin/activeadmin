@@ -1,9 +1,9 @@
 vi:
   active_admin:
-    dashboard: Dashboard
+    dashboard: Bảng điều khiển
     dashboard_welcome:
-      welcome: "Chào mừng bạn đến với Active Admin. Đây là trang Dashboard mặc định."
-      call_to_action: "Để thêm phần phần cho trang Dashboar hãy chỉnh sửa 'app/admin/dashboard.rb'"
+      welcome: "Chào mừng bạn đến với Active Admin. Đây là trang điều khiển mặc định."
+      call_to_action: "Để thêm phần phần cho trang điều khiển hãy chỉnh sửa 'app/admin/dashboard.rb'"
     view: "Xem"
     edit: "Chỉnh sửa"
     delete: "Xóa"
@@ -25,12 +25,21 @@ vi:
         filter: "Lọc"
         clear: "Xóa dữ liệu lọc"
       predicates:
-        contains: "Thông tin"
+        contains: "Có chứa"
         equals: "Bằng"
         starts_with: "Bắt đầu với"
         ends_with: "Kết thúc với việc"
         greater_than: "Lớn hơn"
         less_than: "Nhỏ hơn"
+        gteq_datetime: "Lớn hơn hoặc bằng"
+        lteq_datetime: "Nhỏ hơn hoặc bằng"
+        from: "Từ"
+        to: "Đến"
+    search_status:
+      headline: "Danh sách tìm kiếm:"
+      current_scope: "Phạm vi:"
+      current_filters: "Bộ lộc hiện tại:"
+      no_current_filters: "Không có"
     status_tag:
       "yes": "Có"
       "no": "Không Có"
@@ -39,12 +48,14 @@ vi:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Bộ Lọc"
+      search_status: "Trạng thái tìm kiếm"
     pagination:
       empty: "Không có %{model} nào được tìm thấy"
       one: "Đang hiển thị <b>1</b> %{model}"
       one_page: "Đang hiển thị <b>tất cả %{n}</b> %{model}"
       multiple: "Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> trong tất cả."
       multiple_without_total: "Đang hiển thị %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>."
+      per_page: "Mỗi trang: "
       entry:
         one: "entry"
         other: "entries"
@@ -66,15 +77,33 @@ vi:
       labels:
         destroy: "Xóa"
     comments:
+      created_at: "Đã tạo"
+      resource_type: "Resource Type"
       body: "Nội dung"
       author: "Tác giả"
       add: "Thêm bình luận"
-      resource: "Tài nguyên"
+      delete: "Xoá bình luận"
+      delete_confirmation: "Bạn có chắc chắn muốn xóa những bình luận này?"
+      resource: "Resource"
       no_comments_yet: "Chưa có bình luận."
+      author_missing: "Vô danh"
       title_content: "Bình luận (%{count})"
       errors:
         empty_text: "Lời bình luận chưa được lưu, vì nội dung còn trống."
     devise:
+      username:
+        title: "Tên người dùng"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Tên miền phụ"
+      password:
+        title: "Mật khẩu"
+      password_confirmation:
+        title: "Mật khẩu xác nhận"
+      sign_up:
+        title: "Đăng ký"
+        submit: "Đăng ký"
       login:
         title: "Đăng nhập"
         remember_me: "Ghi nhớ tôi"
@@ -85,8 +114,20 @@ vi:
       change_password:
         title: "Thay đổi mật khẩu của bạn"
         submit: "Thay đổi mật khẩu của tôi"
+      unlock:
+        title: "Gởi lại hướng dẫn mở khoá"
+        submit: "Gởi lại hướng dẫn mở khoá"
+      resend_confirmation_instructions:
+        title: "Gởi lại hướng dẫn xác nhận"
+        submit: "Gởi lại hướng dẫn xác nhận"
       links:
         sign_in: "Đăng nhập"
         forgot_your_password: "Quên mật khẩu của bạn?"
         sign_in_with_omniauth_provider: "Đăng nhập với %{provider}"
-
+    access_denied:
+      message: "Bạn không có quyền thực hiện tính năng này"
+    index_list:
+      table: "Bảng"
+      block: "Danh sách"
+      grid: "Lưới"
+      blog: "Blog"

@@ -31,6 +31,8 @@
         ends_with: "Slutar med"
         greater_than: "Större än"
         less_than: "Mindre än"
+        from: "Från"
+        to: "Till"
     search_status:
       headline: "Sök status:"
       current_scope: "Scope:"
