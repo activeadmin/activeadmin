@@ -1,143 +1,143 @@
 tr:
-	  active_admin:
-	    dashboard: "Gösterge Paneli"
-	    dashboard_welcome:
-	      welcome: "Active Admin'e hoş geldiniz. Burası varsayılan gösterge paneli sayfasıdır."
-	      call_to_action: "Buraya bölümler eklemek için 'app/admin/dashboard.rb' dosyasına bakabilirsiniz."
-	    view: "Görüntüle"
-	    edit: "Düzenle"
-	    delete: "Sil"
-	    delete_confirmation: "Bu kaydı silmek istediğinizden emin misiniz?"
-	    create_another: "Başka bir %{model} oluştur"
-	    new_model: "Yeni %{model}"
-	    edit_model: "%{model} Kaydını Düzenle"
-	    delete_model: "%{model} Kaydını Sil"
-	    details: "%{model} Ayrıntıları"
-	    cancel: "İptal"
-	    empty: "Boş"
-	    previous: "Önceki"
-	    next: "Sonraki"
-	    download: "İndir:"
-	    has_many_new: "Yeni %{model} Ekle"
-	    has_many_delete: "Sil"
-	    has_many_remove: "Çıkar"
-	    move: "Taşı"
-	    filters:
-	      buttons:
-	        filter: "Filtrele"
-	        clear: "Filtreleri Temizle"
-	      predicates:
-	        contains: "İçerir"
-	        equals: "Eşittir"
-	        starts_with: "İle başlar"
-	        ends_with: "İle biter"
-	        greater_than: "Büyüktür"
-	        less_than: "Küçüktür"
-	        gteq_datetime: "Büyük yada eşit"
-	        lteq_datetime: "Küçük yada eşit"
-	        from: "Başlangıç"
-	        to: "Bitiş"
-	    search_status:
-	      headline: "Arama"
-	      current_scope: "Kapsam:"
-	      current_filters: "Seçili filtreler:"
-	      no_current_filters: "Yok"
-	    status_tag:
-	      "yes": "Evet"
-	      "no": "Hayır"
-	    main_content: "İçeriği görüntülemek için lütfen %{model}#main_content metodunu ekleyin."
-	    logout: "Çıkış Yap"
-	    powered_by: "%{active_admin} %{version} tarafından desteklenmektedir."
-	    sidebars:
-	      filters: "Filtreler"
-	      search_status: "Arama Durumu"
-	    pagination:
-	      empty: "Hiç %{model} yok"
-	      one: "<b>1</b> %{model} görüntüleniyor"
-	      one_page: "<b>%{n}</b> %{model} kaydının tamamı görüntüleniyor"
-	      multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> arası %{model} görüntüleniyor (toplam %{total} kayıt)"
-	      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> arası %{model} görüntüleniyor"
-	      per_page: "Sayfa Başına: "
-	      entry:
-	        one: "kayıt"
-	        other: "kayıtlar"
-	    any: "Herhangi biri"
-	    blank_slate:
-	      content: "Henüz %{resource_name} yok."
-	      link: "Bir tane oluşturun"
-	    dropdown_actions:
-	      button_label: "İşlemler"
-	    batch_actions:
-	      button_label: "Toplu İşlemler"
-	      default_confirmation: "Bunu yapmak istediğinizden emin misiniz?"
-	      delete_confirmation: "Bu %{plural_model} kayıtlarını silmek istediğinizden emin misiniz?"
-	      succesfully_destroyed:
-	        one: "1 %{model} başarıyla silindi"
-	        other: "Toplam %{count} %{plural_model} başarıyla silindi"
-	      selection_toggle_explanation: "(Seçimi Değiştir)"
-	      action_label: "Seçilenleri %{title}"
-	      labels:
-	        destroy: "Sil"
-	    comments:
-	      created_at: "Oluşturma Tarihi"
-	      resource_type: "Kayıt Tipi"
-	      author_type: "Yazar Tipi"
-	      body: "Ayrıntı"
-	      author: "Yazar"
-	      add: "Yorum Ekle"
-	      delete: "Yorumu Sil"
-	      delete_confirmation: "Bu yorumları silmek istediğinizden emin misiniz?"
-	      resource: "Kayıt"
-	      no_comments_yet: "Henüz yorum yok."
-	      author_missing: "Anonim"
-	      title_content: "Yorumlar (%{count})"
-	      errors:
-	        empty_text: "Yorum boş olarak kaydedilemez."
-	    devise:
-	      username:
-	        title: "Kullanıcı adı"
-	      email:
-	        title: "E-posta adresi"
-	      subdomain:
-	        title: "Alt alan adı"
-	      password:
-	        title: "Şifre"
-	      password_confirmation:
-	        title: "Şifreyi Tekrarla"
-	      sign_up:
-	        title: "Kaydol"
-	        submit: "Kaydol"
-	      login:
-	        title: "Giriş yap"
-	        remember_me: "Beni hatırla"
-	        submit: "Giriş yap"
-	      reset_password:
-	        title: "Şifrenizi mi unuttunuz?"
-	        submit: "Şifremi sıfırla"
-	      change_password:
-	        title: "Şifrenizi değiştirin"
-	        submit: "Şifremi değiştir"
-	      unlock:
-	        title: "Hesap geri açma talimatlarını tekrar gönder"
-	        submit: "Hesap geri açma talimatlarını tekrar gönder"
-	      resend_confirmation_instructions:
-	        title: "Onaylama talimatlarını tekrar gönder"
-	        submit: "Onaylama talimatlarını tekrar gönder"
-	      links:
-	        sign_up: "Kaydol"
-	        sign_in: "Giriş yap"
-	        forgot_your_password: "Şifrenizi mi unuttunuz?"
-	        sign_in_with_omniauth_provider: "%{provider} ile giriş yapın"
-	        resend_unlock_instructions: "Hesap geri açma talimatlarını tekrar gönder"
-	        resend_confirmation_instructions: "Onaylama talimatlarını tekrar gönder"
-	    unsupported_browser:
-	      headline: "ActiveAdmin Internet Explorer 8 ve altı artık desteklememektedir."
-	      recommendation: "Son sürüm <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, ya da <a href=\"https://mozilla.org/firefox/\">Firefox</a> tarayıcılarından birine geçmenizi tavsiye ederiz."
-	      turn_off_compatibility_view: "IE 9 ya da üstünü kullanıyorsanız, <a href=\"http://windows.microsoft.com/tr-tr/internet-explorer/use-compatibility-view\">\"Uyumluluk Görünümü\"</a>nü kapatmayı unutmayın."
-	    access_denied:
-	      message: "Bu işlemi gerçekleştirmek için yetkiniz yok."
-	    index_list:
-	      table: "Tablo"
-	      block: "Liste"
-	      grid: "Izgara"
-	      blog: "Blog"
+  active_admin:
+    dashboard: "Gösterge Paneli"
+    dashboard_welcome:
+      welcome: "Active Admin'e hoş geldiniz. Burası varsayılan gösterge paneli sayfasıdır."
+      call_to_action: "Buraya bölümler eklemek için 'app/admin/dashboard.rb' dosyasına bakabilirsiniz."
+    view: "Görüntüle"
+    edit: "Düzenle"
+    delete: "Sil"
+    delete_confirmation: "Bu kaydı silmek istediğinizden emin misiniz?"
+    create_another: "Başka bir %{model} oluştur"
+    new_model: "Yeni %{model}"
+    edit_model: "%{model} Kaydını Düzenle"
+    delete_model: "%{model} Kaydını Sil"
+    details: "%{model} Ayrıntıları"
+    cancel: "İptal"
+    empty: "Boş"
+    previous: "Önceki"
+    next: "Sonraki"
+    download: "İndir:"
+    has_many_new: "Yeni %{model} Ekle"
+    has_many_delete: "Sil"
+    has_many_remove: "Çıkar"
+    move: "Taşı"
+    filters:
+      buttons:
+        filter: "Filtrele"
+        clear: "Filtreleri Temizle"
+      predicates:
+        contains: "İçerir"
+        equals: "Eşittir"
+        starts_with: "İle başlar"
+        ends_with: "İle biter"
+        greater_than: "Büyüktür"
+        less_than: "Küçüktür"
+        gteq_datetime: "Büyük yada eşit"
+        lteq_datetime: "Küçük yada eşit"
+        from: "Başlangıç"
+        to: "Bitiş"
+    search_status:
+      headline: "Arama"
+      current_scope: "Kapsam:"
+      current_filters: "Seçili filtreler:"
+      no_current_filters: "Yok"
+    status_tag:
+      "yes": "Evet"
+      "no": "Hayır"
+    main_content: "İçeriği görüntülemek için lütfen %{model}#main_content metodunu ekleyin."
+    logout: "Çıkış Yap"
+    powered_by: "%{active_admin} %{version} tarafından desteklenmektedir."
+    sidebars:
+      filters: "Filtreler"
+      search_status: "Arama Durumu"
+    pagination:
+      empty: "Hiç %{model} yok"
+      one: "<b>1</b> %{model} görüntüleniyor"
+      one_page: "<b>%{n}</b> %{model} kaydının tamamı görüntüleniyor"
+      multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> arası %{model} görüntüleniyor (toplam %{total} kayıt)"
+      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> arası %{model} görüntüleniyor"
+      per_page: "Sayfa Başına: "
+      entry:
+        one: "kayıt"
+        other: "kayıtlar"
+    any: "Herhangi biri"
+    blank_slate:
+      content: "Henüz %{resource_name} yok."
+      link: "Bir tane oluşturun"
+    dropdown_actions:
+      button_label: "İşlemler"
+    batch_actions:
+      button_label: "Toplu İşlemler"
+      default_confirmation: "Bunu yapmak istediğinizden emin misiniz?"
+      delete_confirmation: "Bu %{plural_model} kayıtlarını silmek istediğinizden emin misiniz?"
+      succesfully_destroyed:
+        one: "1 %{model} başarıyla silindi"
+        other: "Toplam %{count} %{plural_model} başarıyla silindi"
+      selection_toggle_explanation: "(Seçimi Değiştir)"
+      action_label: "Seçilenleri %{title}"
+      labels:
+        destroy: "Sil"
+    comments:
+      created_at: "Oluşturma Tarihi"
+      resource_type: "Kayıt Tipi"
+      author_type: "Yazar Tipi"
+      body: "Ayrıntı"
+      author: "Yazar"
+      add: "Yorum Ekle"
+      delete: "Yorumu Sil"
+      delete_confirmation: "Bu yorumları silmek istediğinizden emin misiniz?"
+      resource: "Kayıt"
+      no_comments_yet: "Henüz yorum yok."
+      author_missing: "Anonim"
+      title_content: "Yorumlar (%{count})"
+      errors:
+        empty_text: "Yorum boş olarak kaydedilemez."
+    devise:
+      username:
+        title: "Kullanıcı adı"
+      email:
+        title: "E-posta adresi"
+      subdomain:
+        title: "Alt alan adı"
+      password:
+        title: "Şifre"
+      password_confirmation:
+        title: "Şifreyi Tekrarla"
+      sign_up:
+        title: "Kaydol"
+        submit: "Kaydol"
+      login:
+        title: "Giriş yap"
+        remember_me: "Beni hatırla"
+        submit: "Giriş yap"
+      reset_password:
+        title: "Şifrenizi mi unuttunuz?"
+        submit: "Şifremi sıfırla"
+      change_password:
+        title: "Şifrenizi değiştirin"
+        submit: "Şifremi değiştir"
+      unlock:
+        title: "Hesap geri açma talimatlarını tekrar gönder"
+        submit: "Hesap geri açma talimatlarını tekrar gönder"
+      resend_confirmation_instructions:
+        title: "Onaylama talimatlarını tekrar gönder"
+        submit: "Onaylama talimatlarını tekrar gönder"
+      links:
+        sign_up: "Kaydol"
+        sign_in: "Giriş yap"
+        forgot_your_password: "Şifrenizi mi unuttunuz?"
+        sign_in_with_omniauth_provider: "%{provider} ile giriş yapın"
+        resend_unlock_instructions: "Hesap geri açma talimatlarını tekrar gönder"
+        resend_confirmation_instructions: "Onaylama talimatlarını tekrar gönder"
+    unsupported_browser:
+      headline: "ActiveAdmin Internet Explorer 8 ve altı artık desteklememektedir."
+      recommendation: "Son sürüm <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, ya da <a href=\"https://mozilla.org/firefox/\">Firefox</a> tarayıcılarından birine geçmenizi tavsiye ederiz."
+      turn_off_compatibility_view: "IE 9 ya da üstünü kullanıyorsanız, <a href=\"http://windows.microsoft.com/tr-tr/internet-explorer/use-compatibility-view\">\"Uyumluluk Görünümü\"</a>nü kapatmayı unutmayın."
+    access_denied:
+      message: "Bu işlemi gerçekleştirmek için yetkiniz yok."
+    index_list:
+      table: "Tablo"
+      block: "Liste"
+      grid: "Izgara"
+      blog: "Blog"
