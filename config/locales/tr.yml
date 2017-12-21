@@ -8,6 +8,7 @@ tr:
     edit: "Düzenle"
     delete: "Sil"
     delete_confirmation: "Bu kaydı silmek istediğinizden emin misiniz?"
+    create_another: "Başka bir %{model} oluştur"
     new_model: "Yeni %{model}"
     edit_model: "%{model} Kaydını Düzenle"
     delete_model: "%{model} Kaydını Sil"
@@ -20,6 +21,7 @@ tr:
     has_many_new: "Yeni %{model} Ekle"
     has_many_delete: "Sil"
     has_many_remove: "Çıkar"
+    move: "Taşı"
     filters:
       buttons:
         filter: "Filtrele"
@@ -31,6 +33,10 @@ tr:
         ends_with: "İle biter"
         greater_than: "Büyüktür"
         less_than: "Küçüktür"
+        gteq_datetime: "Büyük yada eşit"
+        lteq_datetime: "Küçük yada eşit"
+        from: "Başlangıç"
+        to: "Bitiş"
     search_status:
       headline: "Arama"
       current_scope: "Kapsam:"
@@ -51,6 +57,7 @@ tr:
       one_page: "<b>%{n}</b> %{model} kaydının tamamı görüntüleniyor"
       multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> arası %{model} görüntüleniyor (toplam %{total} kayıt)"
       multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b> arası %{model} görüntüleniyor"
+      per_page: "Sayfa Başına: "
       entry:
         one: "kayıt"
         other: "kayıtlar"
@@ -95,6 +102,8 @@ tr:
         title: "Alt alan adı"
       password:
         title: "Şifre"
+      password_confirmation:
+        title: "Şifreyi Tekrarla"
       sign_up:
         title: "Kaydol"
         submit: "Kaydol"
