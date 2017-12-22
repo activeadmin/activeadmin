@@ -56,7 +56,7 @@
 * Mitigate memory bloat [#4118][] with CSV exports [#5251][] by [@f1sherman][]
 * Fix issue applying custom decorations [#5253][] by [@faucct][]
 * Translations:
-  * Brazilian locale upated [#5125][] by [@renotocn][]
+  * Brazilian locale updated [#5125][] by [@renotocn][]
   * Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
   * Italian locale updated [#5180][] by [@blocknotes][]
   * Swedish locale updated [#5187][] by [@jawa][]
