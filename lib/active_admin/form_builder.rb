@@ -158,13 +158,17 @@ module ActiveAdmin
     def js_for_has_many(class_string, &form_block)
       assoc_name       = assoc_klass.model_name
       placeholder      = "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
+      record           = (new_record.is_a?(Hash) && new_record[:value]) || assoc_klass.new
       opts = {
-        for: [assoc, assoc_klass.new],
+        for: [assoc, record],
         class: class_string,
         for_options: { child_index: placeholder }
       }
       html = template.capture{ __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
-      text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
+      text =
+        (new_record.is_a?(Hash) && new_record[:text]) ||
+        (new_record.is_a?(String) && new_record) ||
+        (I18n.t('active_admin.has_many_new', model: assoc_name.human))
 
       template.link_to text, '#', class: "button has_many_add", data: {
         html: CGI.escapeHTML(html).html_safe, placeholder: placeholder

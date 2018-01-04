@@ -610,7 +610,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
 
-    describe "with custom new record link" do
+    describe "with custom new record text" do
       let :body do
         build_form({url: '/categories'}, Category.new) do |f|
           f.object.posts.build
@@ -622,6 +622,38 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
       it "should add a custom new record link" do
         expect(body).to have_selector("a", text: "My Custom New Post")
+      end
+    end
+
+    describe "with custom new record hash with a :text field" do
+      let :body do
+        build_form({url: '/categories'}, Category.new) do |f|
+          f.object.posts.build
+          f.has_many :posts, new_record: { text: 'My Custom New Post' } do |p|
+            p.input :title
+          end
+        end
+      end
+
+      it "should add a custom new record link" do
+        expect(body).to have_selector("a", text: "My Custom New Post")
+      end
+    end
+
+    describe "with custom new record hash with a :value field" do
+      let :body do
+        build_form({url: '/categories'}, Category.new) do |f|
+          f.object.posts.build
+          f.has_many :posts, new_record: { value: Post.new(title: "Great news") } do |p|
+            p.input :title
+          end
+        end
+      end
+
+      it "should add a new record link with default values specified in the data-html attribute" do
+        link = body.find('.has_many_container > a.button.has_many_add')
+        fieldset = Capybara.string(link[:"data-html"])
+        expect(fieldset).to have_selector("input[name='category[posts_attributes][NEW_POST_RECORD][title]'][value='Great news']")
       end
     end
 
