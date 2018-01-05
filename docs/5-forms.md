@@ -99,13 +99,18 @@ ActiveAdmin.register Post do
       end
     end
     f.inputs do
-      f.has_many :taggings, sortable: :position, sortable_start: 1 do |t|
+      f.has_many :taggings, sortable: :position,
+                            sortable_start: 1,
+                            new_record: 'Add Tag' do |t|
         t.input :tag
       end
     end
     f.inputs do
       f.has_many :comment,
-                 new_record: 'Leave Comment',
+                 new_record: {
+                   text: 'Leave Comment',
+                   value: Comment.new(body: 'Active Admin rules!')
+                 },
                  allow_destroy: -> { |c| c.author?(current_admin_user) } do |b|
         b.input :body
       end
@@ -127,8 +132,11 @@ The `:heading` option adds a custom heading. You can hide it entirely by passing
 `false`.
 
 The `:new_record` option controls the visibility of the new record button (shown
-by default).  If you pass a string, it will be used as the text for the new
-record button.
+by default). You can pass `false` to hide the new record button. When you pass a
+string, it will be used as the text for the new record button. Your can control
+the defaults for the new record by passing a hash with a :value field containing
+a default record. When you pass a hash, the :text field is used as the text for
+the new record button.
 
 The `:sortable` option adds a hidden field and will enable drag & drop sorting
 of the children. It expects the name of the column that will store the index of

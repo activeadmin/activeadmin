@@ -84,6 +84,14 @@ module ActiveAdmin
       @assoc_klass ||= __getobj__.object.class.reflect_on_association(assoc).klass
     end
 
+    def assoc_name
+      @assoc_name ||= assoc_klass.model_name
+    end
+
+    def assoc_placeholder
+      @assoc_placeholder ||= "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
+    end
+
     def content_has_many(&block)
       form_block = proc do |form_builder|
         render_has_many_form(form_builder, options[:parent], &block)
@@ -156,19 +164,27 @@ module ActiveAdmin
 
     # Capture the ADD JS
     def js_for_has_many(class_string, &form_block)
-      assoc_name       = assoc_klass.model_name
-      placeholder      = "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
-      opts = {
-        for: [assoc, assoc_klass.new],
-        class: class_string,
-        for_options: { child_index: placeholder }
-      }
-      html = template.capture{ __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
-      text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
+      template.link_to js_text_for_has_many, '#',
+        class: "button has_many_add",
+        data: {
+          html: CGI.escapeHTML(js_html_for_has_many(class_string, &form_block)).html_safe,
+          placeholder: assoc_placeholder
+        }
+    end
 
-      template.link_to text, '#', class: "button has_many_add", data: {
-        html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
+    def js_html_for_has_many(class_string, &form_block)
+      opts = {
+        for: [assoc, (new_record.is_a?(Hash) && new_record[:value]) || assoc_klass.new],
+        class: class_string,
+        for_options: { child_index: assoc_placeholder }
       }
+      template.capture{ __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
+    end
+
+    def js_text_for_has_many
+      (new_record.is_a?(Hash) && new_record[:text]) ||
+      (new_record.is_a?(String) && new_record) ||
+      (I18n.t('active_admin.has_many_new', model: assoc_name.human))
     end
 
     def wrap_div_or_li(html)
