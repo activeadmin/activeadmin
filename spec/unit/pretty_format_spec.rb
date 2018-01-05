@@ -8,18 +8,10 @@ RSpec.describe "#pretty_format" do
     mock_action_view.send *args, &block
   end
 
-  ['hello', 23, 5.67, 10**30, :foo].each do |obj|
+  ['hello', 23, 5.67, 10**30, :foo, Arbre::Element.new.br].each do |obj|
     it "should call `to_s` on #{obj.class}s" do
       expect(pretty_format(obj)).to eq obj.to_s
     end
-  end
-
-  it "normalizes Arbre elements" do
-    expect(pretty_format(Arbre::Element.new.br)).to eq("<br>\n")
-  end
-
-  it "sanitizes Arbre elements" do
-    expect(pretty_format(Arbre::Element.new.script('alert("foo");'))).to eq("alert(&amp;quot;foo&amp;quot;);\n")
   end
 
   shared_examples_for 'a time-ish object' do |t|

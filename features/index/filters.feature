@@ -32,7 +32,7 @@ Feature: Index Filtering
     """
     When I fill in "Title" with "<script>alert('hax')</script>"
     And I press "Filter"
-    Then I should see current filter "title_contains" equal to "alert('hax')" with label "Title contains"
+    Then I should see current filter "title_contains" equal to "<script>alert('hax')</script>" with label "Title contains"
 
   Scenario: Filtering posts with no results
     Given 3 posts exist
