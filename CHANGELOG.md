@@ -2,6 +2,8 @@
 
 ### Bug fixes
 
+* Fixed [#5306][] HTML-safe strings getting sanitized again [#5307][] by [@tiagotex][]
+
 ## 1.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.1.0...v1.2.0)
 
 ### Enhancements
@@ -216,6 +218,7 @@ Please check [0-6-stable][] for previous changes.
 [#4254]: https://github.com/activeadmin/activeadmin/issues/4254
 [#5043]: https://github.com/activeadmin/activeadmin/issues/5043
 [#5198]: https://github.com/activeadmin/activeadmin/issues/5198
+[#5306]: https://github.com/activeadmin/activeadmin/issues/5306
 
 [#4477]: https://github.com/activeadmin/activeadmin/pull/4477
 [#4759]: https://github.com/activeadmin/activeadmin/pull/4759
@@ -256,6 +259,7 @@ Please check [0-6-stable][] for previous changes.
 [#5253]: https://github.com/activeadmin/activeadmin/pull/5253
 [#5272]: https://github.com/activeadmin/activeadmin/pull/5272
 [#5284]: https://github.com/activeadmin/activeadmin/pull/5284
+[#5307]: https://github.com/activeadmin/activeadmin/pull/5307
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -286,6 +290,7 @@ Please check [0-6-stable][] for previous changes.
 [@RobinvanderVliet]: https://github.com/RobinvanderVliet
 [@seanlinsley]: https://github.com/seanlinsley
 [@shekibobo]: https://github.com/shekibobo
+[@tiagotex]: https://github.com/tiagotex
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic

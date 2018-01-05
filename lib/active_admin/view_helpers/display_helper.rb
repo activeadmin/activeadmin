@@ -65,6 +65,8 @@ module ActiveAdmin
       # Attempts to create a human-readable string for any object
       def pretty_format(object)
         case object
+        when ActiveSupport::SafeBuffer
+          object.to_s
         when String, Numeric, Symbol, Arbre::Element
           sanitize(object.to_s)
         when Date, Time
