@@ -22,6 +22,16 @@ RSpec.describe "#pretty_format" do
     expect(pretty_format(Arbre::Element.new.script('alert("foo");'))).to eq("alert(&amp;quot;foo&amp;quot;);\n")
   end
 
+  it "sanitizes String" do
+    expect(pretty_format('<a rel="nofollow" data-method="delete" href="/admin/posts/1">Delete</a>'))
+      .to eq('<a href="/admin/posts/1">Delete</a>')
+  end
+
+  it "doesn't sanitize SafeBuffer" do
+    expect(pretty_format('<a rel="nofollow" data-method="delete" href="/admin/posts/1">Delete</a>'.html_safe))
+      .to eq('<a rel="nofollow" data-method="delete" href="/admin/posts/1">Delete</a>')
+  end
+
   shared_examples_for 'a time-ish object' do |t|
     it "formats it with the default long format" do
       expect(pretty_format(t)).to eq "February 28, 1985 20:15"
