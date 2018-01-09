@@ -27,7 +27,7 @@
 * Fix a couple of issues rendering filter labels [#5223][] by [@wspurgin][]
 * Prevent NameError when filtering on a namespaced association [#5240][] by [@DanielHeath][]
 * Fix undefined method error in Ransack when building filters [#5238][] by [@wspurgin][]
-* Fixed [#5198][] Prevent XSS on sidebar's current filter rendering [#5272][] by [@deivid-rodriguez][]
+* Fixed [#5198][] Prevent XSS on sidebar's current filter rendering [#5275][] by [@deivid-rodriguez][]
 * Sanitize display_name [#5284][] by [@markstory][].
 
 ## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
