@@ -10,7 +10,6 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
   include ActiveAdmin::ViewHelpers::DisplayHelper
   include MethodOrProcHelper
   include ActionView::Helpers::UrlHelper
-  include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TranslationHelper
   include ActionView::Helpers::SanitizeHelper
 
