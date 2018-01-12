@@ -2,6 +2,12 @@
 
 ### Bug fixes
 
+## 1.2.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.0...v1.2.1)
+
+### Bug Fixes
+
+* Resolve issue with [#5275][] preventing XSS in filters sidebar. [#5299][] by [@faucct][]
+
 ## 1.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.1.0...v1.2.0)
 
 ### Enhancements
