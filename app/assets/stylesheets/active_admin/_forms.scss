@@ -96,7 +96,7 @@ form {
         &.label label { position:absolute; }
       }
 
-      &:not(.has_many_fields) ol {
+      &:not(.inputs) ol {
         float: left;
         width: 74%;
         margin: 0;
@@ -108,7 +108,7 @@ form {
         }
       }
 
-      &.has_many_fields ol {
+      &.inputs ol {
         float: left;
         width: 100%;
         margin: 0;
