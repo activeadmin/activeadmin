@@ -52,7 +52,15 @@ require 'capybara/cucumber'
 require 'capybara/session'
 require 'selenium-webdriver'
 
-Capybara.javascript_driver = :selenium_chrome_headless
+# copied from https://about.gitlab.com/2017/12/19/moving-to-headless-chrome/
+Capybara.register_driver :chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new(
+    args: %w[headless disable-gpu no-sandbox]
+  )
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
+Capybara.javascript_driver = :chrome
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
