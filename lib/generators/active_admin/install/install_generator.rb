@@ -7,12 +7,14 @@ module ActiveAdmin
       argument :name, type: :string, default: "AdminUser"
 
       hook_for :users, default: "devise", desc: "Admin user generator to run. Skip with --skip-users"
+      class_option :skip_comments, type: :boolean, default: false, desc: "Skip installation of comments"
 
       source_root File.expand_path("../templates", __FILE__)
 
       def copy_initializer
         @underscored_user_name = name.underscore.gsub('/', '_')
         @use_authentication_method = options[:users].present?
+        @skip_comments = options[:skip_comments]
         template 'active_admin.rb.erb', 'config/initializers/active_admin.rb'
       end
 
@@ -38,7 +40,9 @@ module ActiveAdmin
       end
 
       def create_migrations
-        migration_template 'migrations/create_active_admin_comments.rb.erb', 'db/migrate/create_active_admin_comments.rb'
+        unless options[:skip_comments]
+          migration_template 'migrations/create_active_admin_comments.rb.erb', 'db/migrate/create_active_admin_comments.rb'
+        end
       end
     end
   end
