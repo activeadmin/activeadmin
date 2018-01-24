@@ -31,6 +31,8 @@ ru:
         ends_with: "Заканчивается"
         greater_than: "больше"
         less_than: "меньше"
+        from: "От"
+        to: "До"
     search_status:
       headline: "Статус поиска:"
       current_scope: "Область:"
