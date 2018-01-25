@@ -116,9 +116,14 @@ config/locales/[en].yml:
 en:
   active_admin:
     resources:
-      offer:
-        new_model: 'Make an Offer'
+      offer: # Registered resource
+        new_model: 'Make an Offer' # new action item
+        edit_model: 'Change Offer' # edit action item
+        delete_model: 'Cancel Offer' # delete action item
 ```
+
+See the [default en.yml](/config/locales/en.yml) locale file for
+existing translations and examples.
 
 ## Rename the Resource
 
