@@ -32,6 +32,13 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
       expect(resource.action_items.first.html_class).to eq("action_item test")
     end
 
+    it 'should be first when specified' do
+      resource.add_action_item :first_item, first: true do
+        # Empty ...
+      end
+      expect(resource.action_items.first.name).to eq :first_item
+    end
+
   end
 
   describe "setting an action item to only display on specific controller actions" do

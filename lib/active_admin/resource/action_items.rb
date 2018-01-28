@@ -24,8 +24,10 @@ module ActiveAdmin
       #                         this action item on.
       #                 :except: A single or array of controller actions not to
       #                          display this action item on.
+      #                 :first: Place action item to the beginning of action_items array.
       def add_action_item(name, options = {}, &block)
-        self.action_items << ActiveAdmin::ActionItem.new(name, options, &block)
+        method_name = options.delete(:first) ? :unshift : :<<
+        action_items.public_send method_name, ActiveAdmin::ActionItem.new(name, options, &block)
       end
 
       def remove_action_item(name)
