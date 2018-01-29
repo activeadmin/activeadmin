@@ -36,10 +36,14 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
       resource.add_action_item :first, priority: 0 do
         # Empty ...
       end
+      resource.add_action_item :some_other do
+        # Empty ...
+      end
       resource.add_action_item :second, priority: 1 do
         # Empty ...
       end
-      expect(resource.action_items_for(:index).collect(&:name)).to eq [:first, :second, :empty]
+
+      expect(resource.action_items_for(:index).collect(&:name)).to eq [:first, :second, :empty, :some_other]
     end
 
   end

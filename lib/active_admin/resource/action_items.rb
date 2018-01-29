@@ -24,6 +24,7 @@ module ActiveAdmin
       #                         this action item on.
       #                 :except: A single or array of controller actions not to
       #                          display this action item on.
+      #                 :priority: A single integer value. To control the display order. Default is 10.
       def add_action_item(name, options = {}, &block)
         self.action_items << ActiveAdmin::ActionItem.new(name, options, &block)
       end
