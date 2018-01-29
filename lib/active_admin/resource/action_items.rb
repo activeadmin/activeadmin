@@ -24,10 +24,8 @@ module ActiveAdmin
       #                         this action item on.
       #                 :except: A single or array of controller actions not to
       #                          display this action item on.
-      #                 :first: Place action item to the beginning of action_items array.
       def add_action_item(name, options = {}, &block)
-        method_name = options.delete(:first) ? :unshift : :<<
-        action_items.public_send method_name, ActiveAdmin::ActionItem.new(name, options, &block)
+        self.action_items << ActiveAdmin::ActionItem.new(name, options, &block)
       end
 
       def remove_action_item(name)
@@ -40,7 +38,7 @@ module ActiveAdmin
       #
       # @return [Array] Array of ActionItems for the controller actions
       def action_items_for(action, render_context = nil)
-        action_items.select{ |item| item.display_on? action, render_context }
+        action_items.select { |item| item.display_on? action, render_context }.sort_by(&:priority)
       end
 
       # Clears all the existing action items for this resource
@@ -111,6 +109,10 @@ module ActiveAdmin
 
     def html_class
       "action_item #{@options[:class]}".rstrip
+    end
+
+    def priority
+      @options[:priority] || 10
     end
   end
 

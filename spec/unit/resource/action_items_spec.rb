@@ -32,11 +32,14 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
       expect(resource.action_items.first.html_class).to eq("action_item test")
     end
 
-    it 'should be first when specified' do
-      resource.add_action_item :first_item, first: true do
+    it 'should be ordered by priority' do
+      resource.add_action_item :first, priority: 0 do
         # Empty ...
       end
-      expect(resource.action_items.first.name).to eq :first_item
+      resource.add_action_item :second, priority: 1 do
+        # Empty ...
+      end
+      expect(resource.action_items_for(:index).collect(&:name)).to eq [:first, :second, :empty]
     end
 
   end
