@@ -21,6 +21,7 @@ es:
     has_many_new: "Añadir %{model}"
     has_many_delete: "Eliminar"
     has_many_remove: "Quitar"
+    move: "Mover"
     filters:
       buttons:
         filter: "Filtrar"
