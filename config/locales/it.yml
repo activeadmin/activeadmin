@@ -137,3 +137,20 @@ it:
       block: "Lista"
       grid: "Griglia"
       blog: "Blog"
+  views:
+    pagination:
+      first: "&laquo; Prima"
+      last: "Ultima &raquo;"
+      previous: "&lsaquo; Precedente"
+      next: "Successiva &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Nessuna %{entry_name} trovata"
+          one: "Stai visualizzando <b>1</b> %{entry_name}"
+          other: "Stai visualizzando <b> %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Stai visualizzando %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> su <b>%{total}</b> totali"
+

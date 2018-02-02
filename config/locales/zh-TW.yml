@@ -132,3 +132,19 @@
       block: "清單"
       grid: "格狀"
       blog: "部落格"
+  views:
+    pagination:
+      first: "&laquo; 第一頁"
+      last: "最後一頁 &raquo;"
+      previous: "&lsaquo; 上一頁"
+      next: "下一頁 &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "沒有任何 %{entry_name}"
+          one: "顯示 <b>1</b> 筆 %{entry_name}"
+          other: "顯示 <b>全部 %{count}</b> 筆 %{entry_name}"
+      more_pages:
+        display_entries: "顯示 <b>%{total}</b> 筆 %{entry_name} 中的第 <b>%{first}&nbsp;-&nbsp;%{last}</b> 筆"
