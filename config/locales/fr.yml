@@ -138,3 +138,19 @@ fr:
       block: "Liste"
       grid: "Grille"
       blog: "Blog"
+  views:
+    pagination:
+      first: "&laquo; Première"
+      last: "Dernière &raquo;"
+      previous: "&lsaquo; Précédente"
+      next: "Suivante &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Aucun(e) %{entry_name} trouvé(e)s"
+          one: "Affichage de <b>1</b> %{entry_name}"
+          other: "Affichage des <b>%{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "%{entry_name} <b>%{first}</b> à <b>%{last}</b> affiché(e)s sur <b>%{total}</b> au total"

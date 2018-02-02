@@ -138,3 +138,20 @@ ja:
       block: "リスト"
       grid: "グリッド"
       blog: "ブログ"
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "%{entry_name}がありません"
+          one: "<b>一つの</b>%{entry_name}しか表示されていません"
+          other: "他<b>%{count}</b>個の%{entry_name}が表示されています"
+      more_pages:
+        display_entries: "<b>%{first}&nbsp;-&nbsp;%{last}</b> 全部<b>%{total}</b>個の%{entry_name}が表示されています"
+

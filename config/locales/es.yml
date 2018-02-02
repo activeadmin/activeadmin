@@ -141,3 +141,19 @@ es:
       block: "Lista"
       grid: "Grilla"
       blog: "Blog"
+  views:
+    pagination:
+      first: "&laquo; Primero"
+      last: "Último &raquo;"
+      previous: "&lsaquo; Anterior"
+      next: "Siguiente &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No se encontró %{entry_name}"
+          one: "Mostrando <b>1</b> %{entry_name}"
+          other: "Mostrando <b>%{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Mostrando %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b> en total"

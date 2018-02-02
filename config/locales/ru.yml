@@ -138,3 +138,19 @@ ru:
       block: "Список"
       grid: "Сетка"
       blog: "Блог"
+  views:
+    pagination:
+      first: "&laquo; Первая"
+      last: "Последняя &raquo;"
+      previous: "&lsaquo; Пред."
+      next: "Следующая &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "%{entry_name.capitalize} не найдено"
+          one: "Отображение <b>1</b> %{entry_name}"
+          other: "Отображение <b>все %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Отображение %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> из <b>%{total}</b> всего"

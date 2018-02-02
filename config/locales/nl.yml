@@ -130,3 +130,19 @@ nl:
       block: "Lijst"
       grid: "Rooster"
       blog: "Blog"
+  views:
+    pagination:
+      first: "&laquo; Eerste"
+      last: "Laatste &raquo;"
+      previous: "&lsaquo; Vorige"
+      next: "Volgende &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Geen %{entry_name} gevonden"
+          one: "Toon <b>1</b> %{entry_name}"
+          other: "Toon <b>alle %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Toon %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> van <b>%{total}</b> in totaal"
