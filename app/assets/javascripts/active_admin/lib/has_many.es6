@@ -66,7 +66,8 @@ var init_sortable = function() {
   elems.sortable({
     items: '> fieldset',
     handle: '> ol > .handle',
-    stop:    recompute_positions
+    start: (ev, ui) => { ui.item.css({opacity: 0.3})},
+    stop:  (ev, ui) => { ui.item.css({opacity: 1.0}); recompute_positions }
   });
   elems.each(recompute_positions);
 };
