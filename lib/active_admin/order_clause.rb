@@ -16,7 +16,7 @@ module ActiveAdmin
     end
 
     def apply(chain)
-      chain.reorder(sql)
+      chain.reorder(Arel.sql sql)
     end
 
     def to_sql
