@@ -15,7 +15,14 @@ module ActiveAdmin
             "#{reflection.through_reflection.name}_#{reflection.foreign_key}"
           else
             name = method.to_s
-            name.concat "_#{reflection.association_primary_key}" if reflection_searchable?
+
+            if reflection_searchable?
+              name.concat "_#{reflection.association_primary_key}"
+
+            elsif reflection_polymorphic?
+              name.concat "_id"
+            end
+
             name
           end
         end
@@ -50,6 +57,10 @@ module ActiveAdmin
 
         def reflection_searchable?
           reflection && !reflection.polymorphic?
+        end
+
+        def reflection_polymorphic?
+          reflection && reflection.polymorphic?
         end
 
       end
