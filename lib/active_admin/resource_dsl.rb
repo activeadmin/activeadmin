@@ -133,7 +133,11 @@ module ActiveAdmin
     # action.
     #
     def action(set, name, options = {}, &block)
-      warn "Warning: method `#{name}` already defined" if controller.method_defined?(name)
+      display_warning = !options.delete(:ignore_warning)
+
+      if controller.method_defined?(name) && display_warning
+        warn "Warning: method `#{name}` already defined"
+      end
 
       set << ControllerAction.new(name, options)
       title = options.delete(:title)
