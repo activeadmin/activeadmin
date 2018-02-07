@@ -69,6 +69,15 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       expect(auth.authorized?(:bar_yes)).to eq false
     end
 
+    it "uses a Pundit namespace if provided" do
+      collection = double
+      allow(ActiveAdmin.application).to receive(:pundit_policy_namespace).and_return :foobar
+      expect(Pundit).to receive(:policy!).with(anything, [:foobar, Post]).and_return(DefaultPolicy.new(double, double))
+      expect(Pundit).to receive(:policy_scope!).with(anything, [:foobar, collection]).and_return(DefaultPolicy::Scope.new(double, double))
+      auth.authorized?(:read, Post)
+      auth.scope_collection(collection, :read)
+    end
+
     context 'when Pundit is unable to find policy scope' do
       let(:collection) { double("collection", to_sym: :collection) }
       subject(:scope) { auth.scope_collection(collection, :read) }
