@@ -32,6 +32,20 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
       expect(resource.action_items.first.html_class).to eq("action_item test")
     end
 
+    it 'should be ordered by priority' do
+      resource.add_action_item :first, priority: 0 do
+        # Empty ...
+      end
+      resource.add_action_item :some_other do
+        # Empty ...
+      end
+      resource.add_action_item :second, priority: 1 do
+        # Empty ...
+      end
+
+      expect(resource.action_items_for(:index).collect(&:name)).to eq [:first, :second, :empty, :some_other]
+    end
+
   end
 
   describe "setting an action item to only display on specific controller actions" do
