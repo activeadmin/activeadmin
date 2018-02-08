@@ -41,6 +41,7 @@ group :test do
   gem 'cucumber'
   gem 'database_cleaner'
   gem 'jasmine'
+  gem 'jasmine-core', '2.9.1' # last release with Ruby 2.2 support.
   gem 'launchy'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
