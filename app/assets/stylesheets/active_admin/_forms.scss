@@ -85,18 +85,7 @@ form {
       padding: 0;
       margin-bottom: 0;
 
-      legend {
-        position:absolute;
-        width:95%;
-        padding-top:0.1em;
-        left: 0px;
-        font-size: 100%;
-        font-weight: normal;
-        span { position:absolute; }
-        &.label label { position:absolute; }
-      }
-
-      &:not(.has_many_fields) ol {
+      &:not(.inputs) ol {
         float: left;
         width: 74%;
         margin: 0;
@@ -108,7 +97,7 @@ form {
         }
       }
 
-      &.has_many_fields ol {
+      &.inputs ol {
         float: left;
         width: 100%;
         margin: 0;
