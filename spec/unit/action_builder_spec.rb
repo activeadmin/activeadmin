@@ -143,6 +143,18 @@ RSpec.describe 'defining actions from registration blocks', type: :controller do
       end
     end
 
+    describe 'ignoring the warning about redefining a member action' do
+      let :action! do
+        ActiveAdmin.register Post do
+          member_action :process, ignore_warning: true
+        end
+      end
+
+      it 'writes warning to $stderr' do
+        expect($stderr.string).not_to include('Warning: method `process` already defined')
+      end
+    end
+
     describe 'defining collection action' do
       let :action! do
         ActiveAdmin.register Post do
@@ -152,6 +164,18 @@ RSpec.describe 'defining actions from registration blocks', type: :controller do
 
       it 'writes warning to $stderr' do
         expect($stderr.string).to include('Warning: method `process` already defined')
+      end
+    end
+
+    describe 'ignoring the warning about redefining a collection action' do
+      let :action! do
+        ActiveAdmin.register Post do
+          collection_action :process, ignore_warning: true
+        end
+      end
+
+      it 'writes warning to $stderr' do
+        expect($stderr.string).not_to include('Warning: method `process` already defined')
       end
     end
   end
