@@ -27,6 +27,26 @@ Feature: Commenting
     And I should see "Hello from Comment"
     And I should see a comment by "admin@example.com"
 
+  Scenario: Create an anonymous comment without authentication
+    Given a show configuration of:
+      """
+        # disable authentication, but Comment's author is optional, it should be able to create a comment as author is anonymous
+        ActiveAdmin.application.authentication_method = false
+
+        ActiveAdmin.register Post
+      """
+    And I am logged out
+    When I go to the last post's show page
+    And I add a comment "Hello from Comment"
+    Then I should see a successful create flash
+    Given a show configuration of:
+      """
+        # reset authentication settings
+        ActiveAdmin.application.authentication_method = :authenticate_admin_user!
+        # re-register Post to make other tests pass
+        ActiveAdmin.register Post
+      """
+
   Scenario: View resource with comments turned off
     Given a show configuration of:
     """

@@ -5,9 +5,10 @@ module ActiveAdmin
     self.table_name = "#{table_name_prefix}active_admin_comments#{table_name_suffix}"
 
     belongs_to :resource, polymorphic: true, optional: true
-    belongs_to :author, polymorphic: true
+    belongs_to :author, polymorphic: true, optional: true
 
     validates_presence_of :body, :namespace, :resource
+    validates_presence_of :author, if: -> { Rails.application.config.active_record.belongs_to_required_by_default && ActiveAdmin.application.authentication_method != false }
 
     before_create :set_resource_type
 

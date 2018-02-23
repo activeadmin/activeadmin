@@ -23,6 +23,45 @@ RSpec.describe "Comments" do
       expect(comment.author).to eq(user)
     end
 
+    context "when authentication disabled" do
+      before do
+        ActiveAdmin.application.authentication_method = false
+      end
+
+      it "doesn't need an author" do
+        comment.valid?
+        expect(comment.errors[:author]).to be_empty
+      end
+    end
+
+    context "when authentication enabled" do
+      before do
+        ActiveAdmin.application.authentication_method = :authenticate_admin_user!
+      end
+
+      context "and application not using `belongs_to_required_by_default`" do
+        before do
+          allow(Rails.application.config.active_record).to receive(:belongs_to_required_by_default).and_return(false)
+        end
+
+        it "doesn't need an author" do
+          comment.valid?
+          expect(comment.errors[:author]).to be_empty
+        end
+      end
+
+      context "and application using `belongs_to_required_by_default`" do
+        before do
+          allow(Rails.application.config.active_record).to receive(:belongs_to_required_by_default).and_return(true)
+        end
+
+        it "needs an author" do
+          expect(comment).to_not be_valid
+          expect(comment.errors[:author]).to eq(["can't be blank"])
+        end
+      end
+    end
+
     it "needs a body" do
       expect(comment).to_not be_valid
       expect(comment.errors[:body]).to eq(["can't be blank"])
