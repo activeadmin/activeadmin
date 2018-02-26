@@ -37,6 +37,7 @@ en:
         lteq_datetime: "Lesser or equal to"
         from: "From"
         to: "To"
+        matches: "Matches"
     search_status:
       headline: "Search status:"
       current_scope: "Scope:"
