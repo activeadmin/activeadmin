@@ -1,7 +1,7 @@
 module ActiveAdmin
   class Scope
 
-    attr_reader :scope_method, :id, :scope_block, :display_if_block, :show_count, :default_block
+    attr_reader :scope_method, :id, :scope_block, :display_if_block, :show_count, :default_block, :group
 
     # Create a Scope
     #
@@ -24,6 +24,9 @@ module ActiveAdmin
     #   Scope.new ->{Date.today.strftime '%A'}, :published_today
     #   # => Scope with dynamic title using the :published_today scope method
     #
+    #   Scope.new :published, nil, group: :status
+    #   # => Scope with the group :status
+    #
     def initialize(name, method = nil, options = {}, &block)
       @name, @scope_method = name, method.try(:to_sym)
 
@@ -42,6 +45,7 @@ module ActiveAdmin
       @show_count       = options.fetch(:show_count, true)
       @display_if_block = options[:if]      || proc{ true }
       @default_block    = options[:default] || proc{ false }
+      @group            = options[:group].try(:to_sym)
     end
 
     def name

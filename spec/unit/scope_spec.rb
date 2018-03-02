@@ -206,4 +206,20 @@ RSpec.describe ActiveAdmin::Scope do
     end
   end
 
+  describe "group" do
+    it "should default to nil" do
+      scope = ActiveAdmin::Scope.new(:default)
+      expect(scope.group).to eq nil
+    end
+
+    it "should accept a symbol to assign a group to the scope" do
+      scope = ActiveAdmin::Scope.new(:default, nil, group: :test)
+      expect(scope.group).to eq :test
+    end
+
+    it "should accept a string to assign a group to the scope" do
+      scope = ActiveAdmin::Scope.new(:default, nil, group: "test")
+      expect(scope.group).to eq :test
+    end
+  end
 end
