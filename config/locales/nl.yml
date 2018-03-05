@@ -8,6 +8,7 @@ nl:
     edit: "Wijzig"
     delete: "Verwijder"
     delete_confirmation: "Weet u zeker dat je dit item wilt verwijderen?"
+    create_another: "Maak nog een %{model}"
     new_model: "Nieuwe %{model}"
     edit_model: "Wijzig %{model}"
     delete_model: "Verwijder %{model}"
@@ -20,6 +21,7 @@ nl:
     has_many_new: "Voeg nieuwe %{model} toe"
     has_many_delete: "Verwijderen"
     has_many_remove: "Verwijderen"
+    move: "Verplaats"
     filters:
       buttons:
         filter: "Filter"
@@ -31,10 +33,15 @@ nl:
         ends_with: "Eindigt op"
         greater_than: "Groter dan"
         less_than: "Kleiner dan"
+        from: Van
+        gteq_datetime: Groter of gelijk aan
+        lteq_datetime: Kleiner of gelijk aan
+        to: Tot
     search_status:
       current_scope: "Scope:"
       current_filters: "Huidige filters:"
       no_current_filters: "Geen"
+      headline: "Zoek status"
     status_tag:
       "yes": "Ja"
       "no": "Geen"
@@ -43,6 +50,7 @@ nl:
     powered_by: "Mogelijk gemaakt door %{active_admin} %{version}"
     sidebars:
       filters: "Filters"
+      search_status: "Zoek status"
     pagination:
       empty: "Geen %{model} gevonden"
       one: "Geeft <b>1</b> %{model} weer"
@@ -52,6 +60,7 @@ nl:
       entry:
         one: "entry"
         other: "entries"
+      per_page: "Per pagina: "
     any: "Alle"
     blank_slate:
       content: "Er zijn geen %{resource_name} gevonden."
@@ -93,6 +102,8 @@ nl:
         title: "Subdomein"
       password:
         title: "Wachtwoord"
+      password_confirmation:
+        title: "Bevestig password"
       sign_up:
         title: "Registreren"
         submit: "Registreren"
