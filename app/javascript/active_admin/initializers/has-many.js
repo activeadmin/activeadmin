@@ -47,7 +47,7 @@ $(function() {
       const regex = new RegExp($(this).data('placeholder'), 'g');
       const html  = $(this).data('html').replace(regex, index);
 
-      const fieldset = $(html).insertBefore(this);
+      const fieldset = $(html).insertBefore(parent.find('a.button.has_many_add').first());
       recompute_positions(parent);
       return parent.trigger('has_many_add:after', [fieldset, parent]);
     }
