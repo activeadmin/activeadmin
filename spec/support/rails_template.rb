@@ -6,7 +6,7 @@ create_file 'app/assets/stylesheets/some-random-css.css'
 create_file 'app/assets/javascripts/some-random-js.js'
 create_file 'app/assets/images/a/favicon.ico'
 
-generate :model, 'post title:string body:text published_date:date author_id:integer ' +
+generate :model, 'post type:string title:string body:text published_date:date author_id:integer ' +
   'position:integer custom_category_id:integer starred:boolean foo_id:integer'
 create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
   class Post < ActiveRecord::Base
@@ -28,6 +28,8 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
       # nothing to see here
     end
 
+  end
+  class AnonymousPost < Post
   end
 RUBY
 copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), 'app/models/post_decorator.rb'

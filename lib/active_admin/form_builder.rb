@@ -40,7 +40,9 @@ module ActiveAdmin
     attr_reader :assoc
     attr_reader :options
     attr_reader :heading, :sortable_column, :sortable_start
-    attr_reader :new_record, :destroy_option
+    attr_reader :new_records, :destroy_option
+
+    NewRecord = Struct.new(:object, :text)
 
     def initialize(has_many_form, assoc, options)
       super has_many_form
@@ -70,9 +72,30 @@ module ActiveAdmin
       @heading = options.key?(:heading) ? options.delete(:heading) : default_heading
       @sortable_column = options.delete(:sortable)
       @sortable_start  = options.delete(:sortable_start) || 0
-      @new_record = options.key?(:new_record) ? options.delete(:new_record) : true
+      @new_records = extract_new_records(options)
       @destroy_option = options.delete(:allow_destroy)
       options
+    end
+
+    def extract_new_records(options)
+      Array.wrap(options.fetch(:new_record, {})).flat_map do |new_record|
+        option =
+          case new_record
+          when false
+            next []
+          when Hash
+            new_record
+          when String
+            { text: new_record }
+          else
+            { object: new_record }
+          end
+        object = option.fetch(:object, assoc_klass.new)
+        [NewRecord.new(
+          object,
+          option.fetch(:text, I18n.t('active_admin.has_many_new', model: object.class.model_name.human))
+        )]
+      end
     end
 
     def default_heading
@@ -93,7 +116,7 @@ module ActiveAdmin
       contents = without_wrapper { inputs(options, &form_block) }
       contents ||= "".html_safe
 
-      js = new_record ? js_for_has_many(options[:class], &form_block) : ''
+      js = js_for_has_many(options[:class], &form_block)
       contents << js
     end
 
@@ -156,19 +179,20 @@ module ActiveAdmin
 
     # Capture the ADD JS
     def js_for_has_many(class_string, &form_block)
-      assoc_name       = assoc_klass.model_name
-      placeholder      = "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
-      opts = {
-        for: [assoc, assoc_klass.new],
-        class: class_string,
-        for_options: { child_index: placeholder }
-      }
-      html = template.capture{ __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
-      text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
+      template.safe_join(new_records.map do |new_record|
+        assoc_name = assoc_klass.model_name
+        placeholder = "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
+        opts = {
+          for: [assoc, new_record.object],
+          class: class_string,
+          for_options: { child_index: placeholder }
+        }
+        html = template.capture { __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
 
-      template.link_to text, '#', class: "button has_many_add", data: {
-        html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
-      }
+        template.link_to new_record.text, '#', class: "button has_many_add", data: {
+          html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
+        }
+      end)
     end
 
     def wrap_div_or_li(html)
