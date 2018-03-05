@@ -1,4 +1,4 @@
-//= require jquery3
+//= require jquery2
 //= require jquery-ui/widgets/datepicker
 //= require jquery-ui/widgets/dialog
 //= require jquery-ui/widgets/sortable
