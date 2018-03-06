@@ -13,6 +13,7 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
     belongs_to :category, foreign_key: :custom_category_id
     belongs_to :author, class_name: 'User'
     has_many :taggings
+    has_many :tags, through: :taggings
     accepts_nested_attributes_for :author
     accepts_nested_attributes_for :taggings, allow_destroy: true
 
@@ -89,6 +90,8 @@ generate :model, 'store name:string'
 generate :model, 'tag name:string'
 create_file 'app/models/tag.rb', <<-RUBY.strip_heredoc, force: true
   class Tag < ActiveRecord::Base
+    has_many :taggings
+    has_many :posts, through: :taggings
   end
 RUBY
 
