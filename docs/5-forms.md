@@ -84,6 +84,7 @@ your model uses `has_one`:
 
 ```ruby
 ActiveAdmin.register Post do
+  permit_params :title, :published_at, :body, categories_attributes: [:id, :title, :_destroy], taggings_attributes: [:id, :tag], comment_attributes: [:id, :body, :_destroy]
 
   form do |f|
     f.inputs 'Details' do
@@ -115,6 +116,9 @@ ActiveAdmin.register Post do
 
 end
 ```
+
+*NOTE: In addition to using `has_many` as illustrated above, you'll need to add 
+`accepts_nested_attributes` to your parent model and [configure strong parameters](https://activeadmin.info/2-resource-customization.html)*
 
 The `:allow_destroy` option adds a checkbox to the end of the nested form allowing
 removal of the child object upon submission. Be sure to set `allow_destroy: true`
