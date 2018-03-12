@@ -74,11 +74,17 @@ nb:
       labels:
         destroy: "Slett"
     comments:
-      body: "Body"
-      author: "Author"
-      add: "Add Comment"
-      resource: "Resource"
-      no_comments_yet: "No comments yet."
+      created_at: "Opprettet"
+      resource_type: "Ressurstype"
+      author_type: "Forfattertype"
+      body: "Brødtekst"
+      author: "Forfatter"
+      add: "Legg til kommentar"
+      delete: "Slett kommentar"
+      delete_confirmation: "Er du sikker på at du ønsker å slette kommentaren?"
+      resource: "Ressurs"
+      no_comments_yet: "Ingen kommentarer ennå."
+      author_missing: "Anonym"
       title_content: "Kommentarer (%{count})"
       errors:
         empty_text: "Kommentar ble ikke lagret, teksten var tom."
