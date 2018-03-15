@@ -69,13 +69,26 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       expect(auth.authorized?(:bar_yes)).to eq false
     end
 
-    it "uses a Pundit namespace if provided" do
-      collection = double
-      allow(ActiveAdmin.application).to receive(:pundit_policy_namespace).and_return :foobar
-      expect(Pundit).to receive(:policy!).with(anything, [:foobar, Post]).and_return(DefaultPolicy.new(double, double))
-      expect(Pundit).to receive(:policy_scope!).with(anything, [:foobar, collection]).and_return(DefaultPolicy::Scope.new(double, double))
-      auth.authorized?(:read, Post)
-      auth.scope_collection(collection, :read)
+    context "when Pundit namespace provided" do
+      before do
+        allow(ActiveAdmin.application).to receive(:pundit_policy_namespace).and_return :foobar
+      end
+
+      it "looks for a namespaced policy" do
+        expect(Pundit).to receive(:policy!).with(anything, [:foobar, Post]).and_return(DefaultPolicy.new(double, double))
+        auth.authorized?(:read, Post)
+      end
+
+      it "looks for a namespaced policy scope" do
+        collection = double
+        expect(Pundit).to receive(:policy_scope!).with(anything, [:foobar, collection]).and_return(DefaultPolicy::Scope.new(double, double))
+        auth.scope_collection(collection, :read)
+      end
+
+      it "uses the resource when no subject given" do
+        expect(Pundit).to receive(:policy!).with(anything, [:foobar, resource]).and_return(DefaultPolicy::Scope.new(double, double))
+        auth.authorized?(:index)
+      end
     end
 
     it "uses the resource when no subject given" do
