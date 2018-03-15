@@ -78,6 +78,11 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       auth.scope_collection(collection, :read)
     end
 
+    it "uses the resource when no subject given" do
+      expect(Pundit).to receive(:policy!).with(anything, resource).and_return(DefaultPolicy::Scope.new(double, double))
+      auth.authorized?(:index)
+    end
+
     context 'when Pundit is unable to find policy scope' do
       let(:collection) { double("collection", to_sym: :collection) }
       subject(:scope) { auth.scope_collection(collection, :read) }
@@ -88,6 +93,14 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       end
 
       it("should return default policy's scope if defined") { is_expected.to eq(collection) }
+
+      context "and default policy doesn't exist" do
+        let(:default_policy_klass_name) { nil }
+
+        it "raises the error" do
+          expect { subject }.to raise_error Pundit::NotDefinedError
+        end
+      end
     end
 
     context "when Pundit is unable to find policy" do
@@ -101,6 +114,14 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       end
 
       it("should return default policy instance") { is_expected.to be_instance_of(default_policy_klass) }
+
+      context "and default policy doesn't exist" do
+        let(:default_policy_klass_name) { nil }
+
+        it "raises the error" do
+          expect { subject }.to raise_error Pundit::NotDefinedError
+        end
+      end
     end
   end
 
