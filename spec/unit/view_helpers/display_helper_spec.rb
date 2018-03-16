@@ -199,5 +199,26 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       expect(false_value.to_s).to eq "<span class=\"status_tag no\">No</span>\n"
     end
 
+    it 'renders ActiveRecord relations as a list' do
+      tags = (1..3).map do |i|
+        Tag.create!(name: "abc#{i}")
+      end
+      post = Post.create!(tags: tags)
+
+      value = format_attribute post, :tags
+
+      expect(value.to_s).to eq "abc1, abc2, abc3"
+    end
+
+    it 'renders arrays as a list' do
+      items = (1..3).map { |i| "abc#{i}" }
+      post = Post.create!
+      allow(post).to receive(:items).and_return(items)
+
+      value = format_attribute post, :items
+
+      expect(value.to_s).to eq "abc1, abc2, abc3"
+    end
+
   end
 end
