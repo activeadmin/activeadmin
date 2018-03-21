@@ -73,7 +73,11 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     before do
       load_resources do
         ActiveAdmin.register Category
-        ActiveAdmin.register(Post) { belongs_to :category }
+        ActiveAdmin.register(Post) do
+          belongs_to :category
+
+          member_action :foo
+        end
       end
     end
 
@@ -83,6 +87,10 @@ RSpec.describe ActiveAdmin::Resource::Routes do
 
     it "should nest the instance path" do
       expect(config.route_instance_path(post)).to eq "/admin/categories/1/posts/3"
+    end
+
+    it "should nest the member action path" do
+      expect(config.route_member_action_path(:foo, post)).to eq "/admin/categories/1/posts/3/foo"
     end
   end
 

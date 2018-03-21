@@ -43,12 +43,15 @@ module ActiveAdmin
       @namespaces = Namespace::Store.new
     end
 
+    include AssetRegistration
+
     # Event that gets triggered on load of Active Admin
     BeforeLoadEvent = 'active_admin.application.before_load'.freeze
     AfterLoadEvent  = 'active_admin.application.after_load'.freeze
 
     # Runs before the app's AA initializer
     def setup!
+      register_default_assets
     end
 
     # Runs after the app's AA initializer
@@ -126,14 +129,18 @@ module ActiveAdmin
       load_paths.flatten.compact.uniq.flat_map{ |path| Dir["#{path}/**/*.rb"] }
     end
 
-    def router
-      @router ||= Router.new(self)
-    end
-
-    # One-liner called by user's config/routes.rb file
+    # Creates all the necessary routes for the ActiveAdmin configurations
+    #
+    # Use this within the routes.rb file:
+    #
+    #   Application.routes.draw do |map|
+    #     ActiveAdmin.routes(self)
+    #   end
+    #
+    # @param rails_router [ActionDispatch::Routing::Mapper]
     def routes(rails_router)
       load!
-      router.apply(rails_router)
+      Router.new(router: rails_router, namespaces: namespaces).apply
     end
 
     # Adds before, around and after filters to all controllers.
@@ -155,7 +162,13 @@ module ActiveAdmin
       controllers
     end
 
-  private
+    private
+
+    def register_default_assets
+      stylesheets['active_admin.css'] = { media: 'screen' }
+      stylesheets['active_admin/print.css'] = { media: 'print' }
+      javascripts.add 'active_admin.js'
+    end
 
     # Since app/admin is alphabetically before app/models, we have to remove it
     # from the host app's +autoload_paths+ to prevent missing constant errors.

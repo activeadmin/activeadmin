@@ -16,11 +16,6 @@ namespace :cucumber do
     t.bundler = false
   end
 
-  Cucumber::Rake::Task.new(:wip, "Run the cucumber scenarios with the @wip tag") do |t|
-    t.profile = 'wip'
-    t.bundler = false
-  end
-
   Cucumber::Rake::Task.new(:reloading, "Run the cucumber scenarios that test reloading") do |t|
     t.profile = 'class-reloading'
     t.bundler = false

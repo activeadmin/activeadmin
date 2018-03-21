@@ -234,6 +234,15 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       builder.build dummy_controller, []
     end
 
+    it "should disable the ActiveRecord query cache" do
+      expect(builder).to receive(:build_row).twice do
+        expect(ActiveRecord::Base.connection.query_cache_enabled).to be_falsy
+        []
+      end
+      ActiveRecord::Base.cache do
+        builder.build dummy_controller, []
+      end
+    end
   end
 
   context "build csv using specified encoding and encoding_options" do

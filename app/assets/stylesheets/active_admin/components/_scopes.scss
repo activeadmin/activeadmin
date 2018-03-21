@@ -6,5 +6,8 @@
       font-size: 0.9em;
       line-height: 10px;
     }
+    &:first-child a {
+      margin-left: 10px;
+    }
   }
 }

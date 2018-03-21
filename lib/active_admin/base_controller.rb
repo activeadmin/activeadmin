@@ -22,17 +22,17 @@ module ActiveAdmin
       attr_accessor :active_admin_config
     end
 
+    include Authorization
+    include Menu
+
+    private
+
     # By default Rails will render un-implemented actions when the view exists. Because Active
     # Admin allows you to not render any of the actions by using the #actions method, we need
     # to check if they are implemented.
     def only_render_implemented_actions
       raise AbstractController::ActionNotFound unless action_methods.include?(params[:action])
     end
-
-    include Authorization
-    include Menu
-
-    private
 
     # Calls the authentication method as defined in ActiveAdmin.authentication_method
     def authenticate_active_admin_user

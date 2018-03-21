@@ -1,7 +1,7 @@
-require 'active_admin/settings_node'
+require 'active_admin/dynamic_settings_node'
 
 module ActiveAdmin
-  class NamespaceSettings < SettingsNode
+  class NamespaceSettings < DynamicSettingsNode
     # The default number of resources to display on index pages
     register :default_per_page, 30
 
@@ -9,24 +9,24 @@ module ActiveAdmin
     register :max_per_page, 10_000
 
     # The title which gets displayed in the main layout
-    register :site_title, ""
+    register :site_title, "", :string_symbol_or_proc
 
     # Set the site title link href (defaults to AA dashboard)
     register :site_title_link, ""
 
     # Set the site title image displayed in the main layout (has precendence over :site_title)
-    register :site_title_image, ""
+    register :site_title_image, "", :string_symbol_or_proc
 
     # Set the site footer text (defaults to Powered by ActiveAdmin text with version)
-    register :footer, ""
+    register :footer, "", :string_symbol_or_proc
 
     # Set a favicon
     register :favicon, false
 
-    # Additional meta tags to place in head of logged in pages.
+    # Additional meta tags to place in head of logged in pages
     register :meta_tags, {}
 
-    # Additional meta tags to place in head of logged out pages.
+    # Additional meta tags to place in head of logged out pages
     register :meta_tags_for_logged_out_pages, { robots: "noindex, nofollow" }
 
     # The view factory to use to generate all the view classes. Take
@@ -53,10 +53,10 @@ module ActiveAdmin
     # Whether filters are enabled
     register :filters, true
 
-    # The namespace root.
+    # The namespace root
     register :root_to, 'dashboard#index'
 
-    # Options that a passed to root_to.
+    # Options that are passed to root_to
     register :root_to_options, {}
 
     # Options passed to the routes, i.e. { path: '/custom' }

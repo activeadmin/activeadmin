@@ -11,6 +11,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
   include MethodOrProcHelper
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::TranslationHelper
+  include ActionView::Helpers::SanitizeHelper
 
   def active_admin_namespace
     active_admin_application.namespaces[:admin]
@@ -38,6 +39,13 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
           define_method(m) { m }
         end
         expect(display_name klass.new).to eq m
+      end
+
+      it "should sanitize the result of #{m} when defined" do
+        klass = Class.new do
+          define_method(m) { '<script>alert(1)</script>' }
+        end
+        expect(display_name klass.new).to eq 'alert(1)'
       end
     end
 
@@ -72,7 +80,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
 
     it "should default to `to_s`" do
       subject = Class.new.new
-      expect(display_name subject).to eq subject.to_s
+      expect(display_name subject).to eq sanitize(subject.to_s)
     end
 
     context "when no display name method is defined" do
@@ -148,7 +156,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
 
       value = format_attribute double(object: object), :object
 
-      expect(value).to eq :right
+      expect(value).to eq 'right'
     end
 
     it 'auto-links ActiveRecord records by association' do
@@ -189,6 +197,27 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       expect(true_value.to_s).to eq "<span class=\"status_tag yes\">Yes</span>\n"
       false_value = format_attribute post, :false_method
       expect(false_value.to_s).to eq "<span class=\"status_tag no\">No</span>\n"
+    end
+
+    it 'renders ActiveRecord relations as a list' do
+      tags = (1..3).map do |i|
+        Tag.create!(name: "abc#{i}")
+      end
+      post = Post.create!(tags: tags)
+
+      value = format_attribute post, :tags
+
+      expect(value.to_s).to eq "abc1, abc2, abc3"
+    end
+
+    it 'renders arrays as a list' do
+      items = (1..3).map { |i| "abc#{i}" }
+      post = Post.create!
+      allow(post).to receive(:items).and_return(items)
+
+      value = format_attribute post, :items
+
+      expect(value.to_s).to eq "abc1, abc2, abc3"
     end
 
   end

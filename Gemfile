@@ -1,12 +1,5 @@
 source 'https://rubygems.org'
 
-# Trick to use https without warnings and without having to specify full URLs
-# TODO: Can be removed when Bundler 2.x is released.
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
-
 # Optional dependencies
 gem 'cancan'
 gem 'pundit'
@@ -19,7 +12,7 @@ gem 'parallel_tests'
 gem 'pry' # Easily debug from your console with `binding.pry`
 
 # Code style
-gem 'rubocop', '0.49.1'
+gem 'rubocop', '0.51.0'
 gem 'mdl', '0.4.0'
 
 # Translations
@@ -48,11 +41,13 @@ group :test do
   gem 'cucumber'
   gem 'database_cleaner'
   gem 'jasmine'
+  gem 'jasmine-core', '2.9.1' # last release with Ruby 2.2 support.
   gem 'launchy'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
   gem 'i18n-spec'
   gem 'shoulda-matchers', '<= 2.8.0'
   gem 'sqlite3', platforms: :mri
-  gem 'poltergeist'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper', '1.1.0' # 1.2 causing build failure with JRuby.
 end

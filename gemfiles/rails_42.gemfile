@@ -2,9 +2,9 @@ source "https://rubygems.org"
 
 eval_gemfile(File.expand_path(File.join("..", "Gemfile"), __dir__))
 
-gem "rails", "4.2.9"
-gem "devise", "~> 3.5"
+gem "rails", "4.2.10"
+gem "devise", "~> 4.0"
 gem "draper", "~> 2.1"
-gem "activerecord-jdbcsqlite3-adapter", platforms: :jruby
+gem "activerecord-jdbcsqlite3-adapter", "~> 1.3", platforms: :jruby
 
 gemspec path: "../"

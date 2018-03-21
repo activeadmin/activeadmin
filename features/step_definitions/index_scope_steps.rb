@@ -27,3 +27,16 @@ Then /^I should see the scope "([^"]*)" with no count$/ do |name|
   expect(page).to     have_css ".scopes .#{name}"
   expect(page).to_not have_css ".scopes .#{name} .count"
 end
+
+Then "I should see a group {string} with the scopes {string} and {string}" do |group, name1, name2|
+  group = group.tr(" ", "").underscore.downcase
+  name1 = name1.tr(" ", "").underscore.downcase
+  name2 = name2.tr(" ", "").underscore.downcase
+  expect(page).to     have_css ".scopes .scope-group-#{group} .#{name1}"
+  expect(page).to     have_css ".scopes .scope-group-#{group} .#{name2}"
+end
+
+Then"I should see an empty group with the scope {string}" do |name|
+  name = name.tr(" ", "").underscore.downcase
+  expect(page).to     have_css ".scopes .scope-default-group .#{name}"
+end

@@ -1,5 +1,10 @@
 ---
 
+addons:
+  apt:
+    packages:
+      - google-chrome-stable
+
 language: ruby
 
 sudo: false
@@ -10,9 +15,10 @@ bundler_args: --without development
 
 cache: bundler
 
+before_script:
+  - unset _JAVA_OPTIONS
+
 before_install:
-  - PATH=$(npm bin):$PATH # needed to install phantomjs via npm
-  - if [ $(phantomjs --version) != '2.1.1' ]; then npm install phantomjs-prebuilt@2.1; fi
   - gem update --system # use the very latest Rubygems
   - gem install bundler # use the very latest Bundler
 
@@ -21,29 +27,26 @@ script:
   - bundle exec rake docs:build
 
 rvm:
-  - jruby-9.1.12.0
-  - 2.2.7
-  - 2.3.4
-  - 2.4.1
+  - jruby-9.1.16.0
+  - 2.2.9
+  - 2.3.6
+  - 2.4.3
+  - 2.5.0
 
 gemfile:
   - gemfiles/rails_42.gemfile
   - gemfiles/rails_50.gemfile
   - gemfiles/rails_51.gemfile
+  - gemfiles/rails_52.gemfile
 
 env:
   global:
     - JRUBY_OPTS="-J-Xmx1024m --dev --debug"
-    - JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
     - COVERAGE=true
 
 matrix:
   fast_finish: true
 
   allow_failures:
-    - rvm: jruby-9.1.12.0
-      gemfile: gemfiles/rails_42.gemfile
-    - rvm: jruby-9.1.12.0
-      gemfile: gemfiles/rails_50.gemfile
-    - rvm: jruby-9.1.12.0
-      gemfile: gemfiles/rails_51.gemfile
+    - rvm: jruby-9.1.16.0
+      gemfile: gemfiles/rails_52.gemfile

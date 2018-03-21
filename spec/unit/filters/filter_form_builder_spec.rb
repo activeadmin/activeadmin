@@ -311,6 +311,28 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       end
     end
 
+    context "when given the name of relationship with a primary key other than id" do
+      let(:resource_klass) {
+        Class.new(Post) do
+          belongs_to :kategory, class_name: "Category", primary_key: :name, foreign_key: :title
+
+          def self.name
+            "SuperPost"
+          end
+        end
+      }
+
+      let(:scope) do
+        resource_klass.search
+      end
+
+      let(:body) { Capybara.string(filter :kategory) }
+
+      it "should use the association primary key" do
+        expect(body).to have_selector("select[name='q[kategory_name_eq]']")
+      end
+    end
+
     context "as check boxes" do
       let(:body) { Capybara.string(filter :author, as: :check_boxes) }
 

@@ -13,7 +13,7 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
 
   it "should return the defaults if no filters are set" do
     expect(resource.filters.keys).to match_array([
-      :author, :body, :category, :created_at, :custom_created_at_searcher, :custom_title_searcher, :custom_searcher_numeric, :position, :published_date, :starred, :taggings, :title, :updated_at, :foo_id
+      :author, :body, :category, :created_at, :custom_created_at_searcher, :custom_title_searcher, :custom_searcher_numeric, :position, :published_date, :starred, :taggings, :tags, :title, :updated_at, :foo_id
     ])
   end
 
@@ -104,7 +104,7 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
       resource.add_filter :count, as: :string
 
       expect(resource.filters.keys).to match_array([
-        :author, :body, :category, :count, :created_at, :custom_created_at_searcher, :custom_title_searcher, :custom_searcher_numeric, :position, :published_date, :starred, :taggings, :title, :updated_at, :foo_id
+        :author, :body, :category, :count, :created_at, :custom_created_at_searcher, :custom_title_searcher, :custom_searcher_numeric, :position, :published_date, :starred, :taggings, :tags, :title, :updated_at, :foo_id
       ])
     end
 

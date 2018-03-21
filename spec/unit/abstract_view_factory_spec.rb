@@ -5,7 +5,7 @@ require 'active_admin/abstract_view_factory'
 RSpec.describe ActiveAdmin::AbstractViewFactory do
 
   let(:view_factory){ ActiveAdmin::AbstractViewFactory.new }
-  let(:view){ Class.new }
+  let(:view){ ActiveAdmin::Component }
 
   describe "registering a new view key" do
     before do
@@ -61,7 +61,7 @@ RSpec.describe ActiveAdmin::AbstractViewFactory do
 
   describe "subclassing the ViewFactory" do
     let(:subclass) do
-      ActiveAdmin::AbstractViewFactory.register my_subclassed_view: "From Parent"
+      ActiveAdmin::AbstractViewFactory.register my_subclassed_view: view
       Class.new(ActiveAdmin::AbstractViewFactory) do
         def my_subclassed_view
           "From Subclass"

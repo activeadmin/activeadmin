@@ -2,7 +2,7 @@ module ActiveAdmin
   class ResourceController < BaseController
     module Decorators
 
-    protected
+      protected
 
       def apply_decorator(resource)
         decorate? ? decorator_class.new(resource) : resource
@@ -24,7 +24,7 @@ module ActiveAdmin
         end
       end
 
-    private
+      private
 
       def decorate?
         case action_name
@@ -62,7 +62,7 @@ module ActiveAdmin
           end
         end
 
-      private
+        private
 
         def self.wrap!(parent, name)
           ::Class.new parent do

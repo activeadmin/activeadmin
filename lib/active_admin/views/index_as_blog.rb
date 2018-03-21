@@ -27,7 +27,7 @@ module ActiveAdmin
     # ```
     #
     # Second, you can pass a block to the tile option which will then be
-    # used as the contents fo the title. The resource being rendered
+    # used as the contents of the title. The resource being rendered
     # is passed in to the block. For Example:
     #
     # ```ruby

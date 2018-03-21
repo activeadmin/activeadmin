@@ -7,7 +7,7 @@ module ActiveAdmin
         if action_present?
           selection  =            params[:collection_selection] || []
           inputs     = JSON.parse params[:batch_action_inputs]  || '{}'
-          valid_keys = render_in_context(self, current_batch_action.inputs).try(:keys)
+          valid_keys = StringSymbolOrProcSetting.new(current_batch_action.inputs).value(self).try(:keys)
           inputs     = inputs.with_indifferent_access.slice *valid_keys
           instance_exec selection, inputs, &current_batch_action.block
         else

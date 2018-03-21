@@ -74,6 +74,8 @@ module ActiveAdmin
 
           params.permit(*permitted_params, param_key => block ? instance_exec(&block) : args)
         end
+
+        private :permitted_params
       end
     end
 
@@ -131,6 +133,8 @@ module ActiveAdmin
     # action.
     #
     def action(set, name, options = {}, &block)
+      warn "Warning: method `#{name}` already defined" if controller.method_defined?(name)
+
       set << ControllerAction.new(name, options)
       title = options.delete(:title)
 

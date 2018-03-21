@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%=I18n.locale%>">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
-  <title><%= [@page_title, render_or_call_method_or_proc_on(self, ActiveAdmin.application.site_title)].compact.join(" | ") %></title>
+  <title><%= [@page_title, ActiveAdmin.application.site_title(self)].compact.join(" | ") %></title>
 
-  <%= stylesheet_link_tag 'active_admin.css', media: 'screen' %>
-  <%= stylesheet_link_tag 'active_admin/print.css', media: 'print' %>
+  <% ActiveAdmin.application.stylesheets.each do |style, options| %>
+    <%= stylesheet_link_tag style, options %>
+  <% end %>
 
   <%= favicon_link_tag ActiveAdmin.application.favicon if ActiveAdmin.application.favicon %>
 
@@ -32,6 +33,8 @@
   </div>
 </div>
   <%- async = !Rails.configuration.assets.debug %>
-  <%= javascript_include_tag 'active_admin.js', async: async, defer: async %>
-</body>
+  <% ActiveAdmin.application.javascripts.each do |path| %>
+    <%= javascript_include_tag path, async: async, defer: async %>
+  <% end %>
+  </body>
 </html>
