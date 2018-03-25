@@ -179,7 +179,16 @@ module ActiveAdmin
       # @return [void]
       def destroy_resource(object)
         run_destroy_callbacks object do
-          object.destroy
+          if object.destroy
+            true # result used by batch delete to handle succeful and failed deletes
+          else
+            # add error message if needed.
+            # if association prevents destroy (through throw(:abort)),
+            # then the object errors array is empty
+            # to show an error flash message an error needs to be added
+            object.errors.add(:base, "Not destroyed") if object.errors.empty?
+            false
+          end
         end
       end
 
