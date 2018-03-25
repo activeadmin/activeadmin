@@ -62,19 +62,32 @@ module ActiveAdmin
         }
 
         add_batch_action :destroy, proc { I18n.t('active_admin.delete') }, destroy_options do |selected_ids|
+          destroyed_count = 0
+          not_destroyed_count = 0
+
           batch_action_collection.find(selected_ids).each do |record|
             authorize! ActiveAdmin::Auth::DESTROY, record
-            destroy_resource(record)
+            if destroy_resource(record)
+              destroyed_count += 1
+            else
+              not_destroyed_count += 1
+            end
           end
 
-          redirect_to active_admin_config.route_collection_path(params),
-                      notice: I18n.t("active_admin.batch_actions.succesfully_destroyed",
-                                        count: selected_ids.count,
-                                        model: active_admin_config.resource_label.downcase,
-                                        plural_model: active_admin_config.plural_resource_label(count: selected_ids.count).downcase)
+          if destroyed_count > 0
+            flash_options = {
+              notice: I18n.t("active_admin.batch_actions.succesfully_destroyed",
+              count: destroyed_count,
+              model: active_admin_config.resource_label.downcase,
+              plural_model: active_admin_config.plural_resource_label(count: destroyed_count).downcase)
+            }
+          end
+          
+          flash[:error] = "Failed to destroy #{not_destroyed_count} #{active_admin_config.resource_label.downcase.pluralize(not_destroyed_count)}" if not_destroyed_count > 0
+          redirect_to active_admin_config.route_collection_path(params), flash_options||{}
+
         end
       end
-
     end
   end
 
