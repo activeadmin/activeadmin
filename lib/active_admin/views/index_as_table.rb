@@ -367,15 +367,16 @@ module ActiveAdmin
         private
 
         def defaults(resource, options = {})
+          localizer = ActiveAdmin::Localizers.resource(active_admin_config)
           if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
-            item I18n.t('active_admin.view'), resource_path(resource), class: "view_link #{options[:css_class]}", title: I18n.t('active_admin.view')
+            item localizer.t(:view), resource_path(resource), class: "view_link #{options[:css_class]}", title: localizer.t(:view)
           end
           if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
-            item I18n.t('active_admin.edit'), edit_resource_path(resource), class: "edit_link #{options[:css_class]}", title: I18n.t('active_admin.edit')
+            item localizer.t(:edit), edit_resource_path(resource), class: "edit_link #{options[:css_class]}", title: localizer.t(:edit)
           end
           if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
-            item I18n.t('active_admin.delete'), resource_path(resource), class: "delete_link #{options[:css_class]}", title: I18n.t('active_admin.delete'),
-              method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
+            item localizer.t(:delete), resource_path(resource), class: "delete_link #{options[:css_class]}", title: localizer.t(:delete),
+              method: :delete, data: {confirm: localizer.t(:delete_confirmation)}
           end
         end
 
