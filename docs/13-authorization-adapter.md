@@ -41,6 +41,9 @@ application's `config/initializers/active_admin.rb` and add/modify the line:
 config.authorization_adapter = "OnlyAuthorsAuthorization"
 ```
 
+Now, whenever a controller action is performed, the `OnlyAuthorsAuthorization`'s
+`#authorized?` method will be called.
+
 Authorization adapters can be configured per ActiveAdmin namespace as well, for
 example:
 
@@ -54,9 +57,6 @@ ActiveAdmin.setup do |config|
   end
 end
 ```
-
-Now, whenever a controller action is performed, the `OnlyAuthorsAuthorization`'s
-`#authorized?` method will be called.
 
 ## Getting Access to the Current User
 
