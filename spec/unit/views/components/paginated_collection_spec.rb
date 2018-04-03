@@ -217,6 +217,18 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
           info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')
           expect(info).to eq "Displaying posts <b>1 - 30</b>"
         end
+
+        it "should not perform count queries" do
+          Post.create!
+          collection = Post.page(1).per(30)
+          log = StringIO.new
+
+          expect(collection).not_to receive(:total_pages)
+          ActiveRecord::Base.logger = Logger.new(log)
+          paginated_collection(collection, pagination_total: false)
+          ActiveRecord::Base.logger = nil
+          expect(log.string).to_not include 'SELECT COUNT'
+        end
       end
 
       describe "set to true" do
