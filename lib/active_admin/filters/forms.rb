@@ -57,8 +57,11 @@ module ActiveAdmin
           filters.each do |attribute, opts|
             next if opts.key?(:if)     && !call_method_or_proc_on(self, opts[:if])
             next if opts.key?(:unless) &&  call_method_or_proc_on(self, opts[:unless])
-            opts[:input_html] = instance_exec(&opts[:input_html]) if opts[:input_html].is_a?(Proc)
-            f.filter attribute, opts.except(:if, :unless)
+
+            filter_opts = opts.except(:if, :unless)
+            filter_opts[:input_html] = instance_exec(&filter_opts[:input_html]) if filter_opts[:input_html].is_a?(Proc)
+
+            f.filter attribute, filter_opts
           end
 
           buttons = content_tag :div, class: "buttons" do
