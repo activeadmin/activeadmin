@@ -245,5 +245,23 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
+    context "when collection has many pages and you are displaying an in between one" do
+      let(:collection) do
+        posts = 88.times.map { Post.new }
+        Kaminari.paginate_array(posts).page(5).per(10)
+      end
+
+      it "should show the correct info page" do
+        info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')
+        expect(info).to eq "Displaying posts <b>41 - 50</b> of <b>88</b> in total"
+      end
+
+      it "should not show the correct info page" do
+        info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')
+        expect(info).not_to eq "Displaying posts <b>41 - 129</b> of <b>88</b> in total"
+      end
+
+    end
+
   end
 end
