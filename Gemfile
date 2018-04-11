@@ -34,7 +34,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', '< 3.0'
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'codecov', require: false # Test coverage website. Go to https://codecov.io
   gem 'cucumber-rails', require: false
