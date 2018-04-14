@@ -29,7 +29,7 @@ least version `1.14.3`.
 Select the Gemfile for your preferred Rails version, preferably the latest:
 
 ```sh
-export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
+export BUNDLE_GEMFILE=gemfiles/rails_52.gemfile
 ```
 
 Now install the development dependencies:
