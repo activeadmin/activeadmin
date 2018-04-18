@@ -13,13 +13,13 @@ RSpec.describe "Controller Authorization", type: :controller do
   it "should authorize the index action" do
     expect(authorization).to receive(:authorized?).with(auth::READ, Post).and_return true
     get :index
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it "should authorize the new action" do
     expect(authorization).to receive(:authorized?).with(auth::CREATE, an_instance_of(Post)).and_return true
     get :new
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it "should authorize the create action with the new resource" do
