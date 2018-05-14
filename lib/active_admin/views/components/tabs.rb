@@ -16,7 +16,10 @@ module ActiveAdmin
 
       def build_menu_item(title, options, &block)
         fragment = options.fetch(:id, title.parameterize)
-        li { link_to title, "##{fragment}" }
+        css_class = options.fetch(:class, '')
+        li class: css_class do 
+          link_to title, "##{fragment}"
+        end
       end
 
       def build_content_item(title, options, &block)
