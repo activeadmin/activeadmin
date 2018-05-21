@@ -18,7 +18,7 @@ module ActiveAdmin
     def self.find_for_resource_in_namespace(resource, namespace)
       where(
         resource_type: resource_type(resource),
-        resource_id:   resource,
+        resource_id:   resource.id,
         namespace:     namespace.to_s
       ).order(ActiveAdmin.application.namespaces[namespace.to_sym].comments_order)
     end
