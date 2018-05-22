@@ -1,6 +1,6 @@
 module ActiveAdmin
   class CommentPolicy < ApplicationPolicy
-    class Scope < Struct.new(:user, :scope)
+    class Scope < Scope
       def resolve
         scope
       end
