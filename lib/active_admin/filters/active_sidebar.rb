@@ -5,7 +5,7 @@ module ActiveAdmin
     class ActiveSidebar < ActiveAdmin::SidebarSection
 
       def initialize
-        super I18n.t("active_admin.search_status.headline"), sidebar_options
+        super 'search_status', sidebar_options
       end
 
       def block
@@ -37,6 +37,10 @@ module ActiveAdmin
             end
           end
         end
+      end
+
+      def title
+        I18n.t("active_admin.search_status.headline")
       end
 
       protected
