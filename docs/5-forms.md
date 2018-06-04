@@ -199,7 +199,7 @@ You can arrange content in tabs as shown below:
         end
       end
 
-      tab 'Advanced' do
+      tab 'Advanced', html_options: { class: 'specific_css_class' } do
         f.inputs 'Advanced Details' do
           f.input :role
         end
@@ -208,6 +208,7 @@ You can arrange content in tabs as shown below:
     f.actions
   end
 ```
+`html_options` allows you set additional html params for tab's menu item.
 
 # Customize the Create Another checkbox
 
