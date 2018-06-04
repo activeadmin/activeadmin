@@ -11,7 +11,7 @@ RSpec.describe ActiveAdmin::Views::Tabs do
         render_arbre_component do
           tabs do
             tab :overview
-            tab I18n.t(:tab_key), { id: :something_unique }
+            tab I18n.t(:tab_key), { id: :something_unique, html_options: { class: :some_css_class }}
           end
         end
       end
@@ -40,6 +40,10 @@ RSpec.describe ActiveAdmin::Views::Tabs do
 
       it "should have link with fragment based on options" do
         expect(subject).to have_selector('a[href="#something_unique"]')
+      end
+
+      it "should have li with specific css class" do
+        expect(subject).to have_selector('li.some_css_class')
       end
 
     end
