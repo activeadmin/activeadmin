@@ -245,6 +245,78 @@ RSpec.describe ActiveAdmin::CSVBuilder do
     end
   end
 
+  context "build csv using specified batch options" do
+    before do
+      @posts = Array.new
+      (1..3000).each do |index|
+        @posts.push Post.create!(title: "Hello#{index}", published_date: Date.today - index.day)
+      end
+    end
+    test_values = [
+      { batch_size: nil, max_batch_page_count: nil },
+      { batch_size: 1500, max_batch_page_count: nil },
+      { batch_size: 0, max_batch_page_count: nil },
+      { batch_size: nil, max_batch_page_count: 1 },
+      { batch_size: nil, max_batch_page_count: 0 }
+    ]
+    test_results = [
+      { page_count: 3, batch_size: 1000, row_count: 3000 },
+      { page_count: 2, batch_size: 1500, row_count: 3000 },
+      { page_count: 3, batch_size: 1000, row_count: 3000 },
+      { page_count: 1, batch_size: 1000, row_count: 1000 },
+      { page_count: 3, batch_size: 1000, row_count: 3000 },
+    ]
+    let(:dummy_controller) do
+      class DummyController
+        def find_collection(*)
+          collection
+        end
+
+        def collection
+          Post
+        end
+
+        def apply_decorator(resource)
+          resource
+        end
+
+        def view_context
+        end
+      end
+      DummyController.new
+    end
+    let(:batch_size) { nil }
+    let(:max_batch_page_count) { nil }
+    let(:builder) do
+      ActiveAdmin::CSVBuilder.new(batch_size: batch_size, max_batch_page_count: max_batch_page_count) do
+        column "id"
+        column "title"
+        column "published_date"
+      end
+    end
+
+    test_values.each_with_index do |test_value, index|
+      context "check if batch_size set to #{test_value[:batch_size]} and \
+      max_batch_page_count set to #{test_value[:max_batch_page_count]}" do
+        let(:batch_size) { test_value[:batch_size] }
+        let(:max_batch_page_count) { test_value[:max_batch_page_count] }
+        page_count_result = test_results[index][:page_count]
+        batch_size_result = test_results[index][:batch_size]
+        row_count_result = test_results[index][:row_count]
+        it "batches everything (#{page_count_result} pages) \
+        into the CSV with a batch size of batch_size_result" do
+          expect(builder).to receive(:page_count).and_return(page_count_result).at_least(:once)
+          expect(builder).to receive(:batch_size).and_return(batch_size_result).at_least(:once)
+          post_array_index = -1
+          expect(builder).to receive(:build_row).and_return([]).exactly(row_count_result).times.ordered { |post|
+            expect(post.id).to eq @posts[post_array_index += 1].id
+          }
+          builder.build dummy_controller, []
+        end
+      end
+    end
+  end
+
   context "build csv using specified encoding and encoding_options" do
     let(:dummy_controller) do
       class DummyController
