@@ -169,6 +169,12 @@ You can customize the comment menu:
 config.comments_menu = { parent: 'Admin', priority: 1 }
 ```
 
+Remember to indicate where to place the comments and form with:
+
+```ruby
+active_admin_comments
+```
+
 ## Utility Navigation
 
 The "utility navigation" shown at the top right normally shows the current user
