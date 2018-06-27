@@ -151,6 +151,13 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
 
       expect(subject.label).to eq ("#{label} equals")
     end
+
+    it 'should use the filter label as the label prefix' do
+      label = proc { "#{user.first_name}'s Post Title" }
+      resource.add_filter(:title, label: label)
+
+      expect(subject.label).to eq("#{label.call} equals")
+    end
   end
 
   context "the association uses a different primary_key than the related class' primary_key" do
