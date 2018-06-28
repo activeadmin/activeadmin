@@ -28,7 +28,9 @@ module ActiveAdmin
       def label
         # TODO: to remind us to go back to the simpler str.downcase once we support ruby >= 2.4 only.
         translated_predicate = predicate_name.mb_chars.downcase.to_s
-        if filter_label
+        if filter_label && filter_label.is_a?(Proc)
+          "#{filter_label.call} #{translated_predicate}"
+        elsif filter_label
           "#{filter_label} #{translated_predicate}"
         elsif related_class
           "#{related_class_name} #{translated_predicate}"
