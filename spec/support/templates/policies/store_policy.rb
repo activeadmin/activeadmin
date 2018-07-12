@@ -1,5 +1,5 @@
 class StorePolicy < ApplicationPolicy
-  class Scope < Struct.new(:user, :scope)
+  class Scope < Scope
     def resolve
       scope
     end
