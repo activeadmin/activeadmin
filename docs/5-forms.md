@@ -84,7 +84,12 @@ your model uses `has_one`:
 
 ```ruby
 ActiveAdmin.register Post do
-  permit_params :title, :published_at, :body, categories_attributes: [:id, :title, :_destroy], taggings_attributes: [:id, :tag], comment_attributes: [:id, :body, :_destroy]
+  permit_params :title,
+                :published_at,
+                :body, 
+                categories_attributes: [:id, :title, :_destroy], 
+                taggings_attributes: [:id, :tag], 
+                comment_attributes: [:id, :body, :_destroy]
 
   form do |f|
     f.inputs 'Details' do
