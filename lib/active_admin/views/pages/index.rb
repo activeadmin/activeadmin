@@ -128,6 +128,7 @@ module ActiveAdmin
           download_links   = config.fetch(:download_links, active_admin_config.namespace.download_links)
           pagination_total = config.fetch(:pagination_total, true)
           per_page         = config.fetch(:per_page, active_admin_config.per_page)
+          paginate         = config.fetch(:paginate, active_admin_config.paginate)
 
           paginated_collection(collection, entry_name:       active_admin_config.resource_label,
                                            entries_name:     active_admin_config.plural_resource_label(count: collection_size),
@@ -138,7 +139,7 @@ module ActiveAdmin
             div class: 'index_content' do
               insert_tag(renderer_class, config, collection)
             end
-          end
+          end if paginate
         end
 
         private
