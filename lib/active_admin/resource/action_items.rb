@@ -58,7 +58,7 @@ module ActiveAdmin
       def add_default_action_items
         add_default_new_action_item
         add_default_edit_action_item
-        add_default_show_action_item
+        add_default_destroy_action_item
       end
 
       # Adds the default New link on index
@@ -82,7 +82,7 @@ module ActiveAdmin
       end
 
       # Adds the default Destroy link on show
-      def add_default_show_action_item
+      def add_default_destroy_action_item
         add_action_item :destroy, only: :show do
           if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
             localizer = ActiveAdmin::Localizers.resource(active_admin_config)
