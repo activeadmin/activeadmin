@@ -107,7 +107,7 @@ module ActiveAdmin
     end
 
     def has_many_actions(form_builder, contents)
-      if form_builder.object.new_record?
+      if form_builder.object.new_record? && builder_options[:allow_destroy] != false
         contents << template.content_tag(:li) do
           remove_text = remove_record.is_a?(String) ? remove_record : I18n.t("active_admin.has_many_remove")
           template.link_to remove_text, "#", class: "button has_many_remove"
