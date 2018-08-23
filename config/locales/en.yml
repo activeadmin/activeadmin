@@ -1,6 +1,20 @@
 en:
+  activerecord:
+    models:
+      comment: "Comment"
+      active_admin/comment:
+        one: "Comment"
+        other: "Comments"
+    attributes:
+      active_admin/comment:
+        author_type: "Author type"
+        body: "Body"
+        created_at: "Created"
+        namespace: "Namespace"
+        resource_type: "Resource type"
+        updated_at: "Updated"
   active_admin:
-    dashboard: Dashboard
+    dashboard: "Dashboard"
     dashboard_welcome:
       welcome: "Welcome to Active Admin. This is the default dashboard page."
       call_to_action: "To add dashboard sections, checkout 'app/admin/dashboard.rb'"
@@ -37,6 +51,8 @@ en:
         lteq_datetime: "Lesser or equal to"
         from: "From"
         to: "To"
+    scopes:
+      all: "All"
     search_status:
       headline: "Search status:"
       current_scope: "Scope:"
