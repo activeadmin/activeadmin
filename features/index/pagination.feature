@@ -37,10 +37,9 @@ Feature: Index Pagination
     """
       ActiveAdmin.register Post do
         config.paginate = false
-        config.max_per_page = 30
       end
     """
-    Given 31 posts exist
+    Given 10001 posts exist
     When I am on the index page for posts
     Then I should not see pagination
 
