@@ -39,7 +39,19 @@ Feature: Index Pagination
         config.paginate = false
       end
     """
-    Given 10001 posts exist
+    Given 31 posts exist
+    When I am on the index page for posts
+    Then I should not see pagination
+
+  Scenario: Viewing index with pagination disabled and a collection larger than max per page
+    Given an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        config.paginate = false
+        config.max_per_page = 10
+      end
+    """
+    Given 31 posts exist
     When I am on the index page for posts
     Then I should not see pagination
 
