@@ -1,5 +1,7 @@
 # Changelog
 
+## Master (unreleased)
+
 ### Bug fixes
 
 ## 1.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.1...v1.3.0)
