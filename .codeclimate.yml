@@ -4,14 +4,7 @@ version: "2"
 
 plugins:
   duplication:
-    enabled: true
-
-    config:
-      languages:
-        javascript:
-
-        ruby:
-          mass_threshold: 100
+    enabled: false
 
   fixme:
     enabled: true
