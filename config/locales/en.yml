@@ -1,7 +1,9 @@
 en:
   activerecord:
     models:
-      comment: "Comment"
+      comment:
+        one: "Comment"
+        other: "Comments"
       active_admin/comment:
         one: "Comment"
         other: "Comments"
