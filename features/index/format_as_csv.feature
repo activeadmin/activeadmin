@@ -77,7 +77,7 @@ Feature: Format as CSV
     And I should download a CSV file with "," separator for "posts" containing:
       | title | body |
       | Hello, World | (.*) |
-    
+
   Scenario: With CSV option customization
     Given a configuration of:
     """

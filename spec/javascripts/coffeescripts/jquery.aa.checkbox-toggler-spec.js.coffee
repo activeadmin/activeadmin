@@ -1,5 +1,5 @@
 describe "ActiveAdmin.CheckboxToggler", ->
-  
+
   beforeEach ->
     loadFixtures('checkboxes.html')
 
@@ -7,8 +7,8 @@ describe "ActiveAdmin.CheckboxToggler", ->
     @toggle_all = @collection.find(".toggle_all")
 
     @checkboxes = @collection.find(":checkbox").not(@toggle_all)
-    
-    
+
+
     new ActiveAdmin.CheckboxToggler({}, @collection)
 
   describe "on init", ->
