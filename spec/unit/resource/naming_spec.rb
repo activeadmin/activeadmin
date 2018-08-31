@@ -1,5 +1,3 @@
-# -*- coding: UTF-8 -*-
-
 require 'rails_helper'
 
 module ActiveAdmin

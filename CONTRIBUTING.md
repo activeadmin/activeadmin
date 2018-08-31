@@ -6,17 +6,14 @@ like you that make Active Admin such a great tool.
 ### 1. Where do I go from here?
 
 If you've noticed a bug or have a question that doesn't belong on the
-[mailing list](http://groups.google.com/group/activeadmin) or
-[Stack Overflow](http://stackoverflow.com/questions/tagged/activeadmin),
-[search the issue tracker](https://github.com/activeadmin/activeadmin/issues?q=something)
-to see if someone else in the community has already created a ticket.
-If not, go ahead and [make one](https://github.com/activeadmin/activeadmin/issues/new)!
+[mailing list][] or [Stack Overflow][], [search the issue tracker][] to see if
+someone else in the community has already created a ticket. If not, go ahead and
+[make one][new issue]!
 
 ### 2. Fork & create a branch
 
-If this is something you think you can fix, then
-[fork Active Admin](https://help.github.com/articles/fork-a-repo)
-and create a branch with a descriptive name.
+If this is something you think you can fix, then [fork Active Admin][] and
+create a branch with a descriptive name.
 
 A good branch name would be (where issue #325 is the ticket you're working on):
 
@@ -32,7 +29,7 @@ least version `1.14.3`.
 Select the Gemfile for your preferred Rails version, preferably the latest:
 
 ```sh
-export BUNDLE_GEMFILE=gemfiles/rails_52.gemfile
+export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
 ```
 
 Now install the development dependencies:
@@ -59,21 +56,19 @@ rm -rf spec/rails && bundle update
 
 ### 4. Did you find a bug?
 
-* **Ensure the bug was not already reported** by [searching all
-  issues](https://github.com/activeadmin/activeadmin/issues?q=).
+* **Ensure the bug was not already reported** by [searching all issues][].
 
-* If you're unable to find an open issue addressing the problem, [open a new
-  one](https://github.com/activeadmin/activeadmin/issues/new).  Be sure to
-  include a **title and clear description**, as much relevant information as
-  possible, and a **code sample** or an **executable test case** demonstrating
-  the expected behavior that is not occurring.
+* If you're unable to find an open issue addressing the problem,
+  [open a new one][new issue]. Be sure to include a **title and clear
+  description**, as much relevant information as possible, and a **code sample**
+  or an **executable test case** demonstrating the expected behavior that is not
+  occurring.
 
 * If possible, use the relevant bug report templates to create the issue.
   Simply copy the content of the appropriate template into a .rb file, make the
   necessary changes to demonstrate the issue, and **paste the content into the
   issue description**:
-  * [**ActiveAdmin** master
-    issues](https://github.com/activeadmin/activeadmin/blob/master/lib/bug_report_templates/active_admin_master.rb)
+  * [**ActiveAdmin** master issues][master template]
 
 ### 5. Implement your fix or feature
 
@@ -113,7 +108,14 @@ Or to migrate the database:
 bundle exec rake local db:migrate
 ```
 
-### 7. Make a Pull Request
+### 7. Get the style right
+
+Your patch should follow the same conventions & pass the same code quality
+checks as the rest of the project. [Codeclimate][codeclimate] will give you
+feedback in this regard. You can check & fix codeclimate's feedback by running
+it locally using [Codeclimate's CLI][codeclimate cli], via `codeclimate analyze`.
+
+### 8. Make a Pull Request
 
 At this point, you should switch back to your master branch and make sure it's
 up to date with Active Admin's master branch:
@@ -132,9 +134,7 @@ git rebase master
 git push --set-upstream origin 325-add-japanese-translations
 ```
 
-Finally, go to GitHub and
-[make a Pull Request](https://help.github.com/articles/creating-a-pull-request)
-:D
+Finally, go to GitHub and [make a Pull Request][] :D
 
 Travis CI will run our test suite against all supported Rails versions. We care
 about quality, so your PR won't be merged until all tests pass. It's unlikely,
@@ -148,10 +148,8 @@ what's going on!
 If a maintainer asks you to "rebase" your PR, they're saying that a lot of code
 has changed, and that you need to update your branch so it's easier to merge.
 
-To learn more about rebasing in Git, there are a lot of
-[good](http://git-scm.com/book/en/Git-Branching-Rebasing)
-[resources](https://help.github.com/articles/interactive-rebase),
-but here's the suggested workflow:
+To learn more about rebasing in Git, there are a lot of [good][git rebasing]
+[resources][interactive rebase] but here's the suggested workflow:
 
 ```sh
 git checkout 325-add-japanese-translations
@@ -159,7 +157,7 @@ git pull --rebase upstream master
 git push --force-with-lease 325-add-japanese-translations
 ```
 
-### 9. Merging a PR (maintainers only)
+### 10. Merging a PR (maintainers only)
 
 A PR can only be merged into master by a maintainer if:
 
@@ -171,3 +169,16 @@ A PR can only be merged into master by a maintainer if:
 
 Any maintainer is allowed to merge a PR if all of these conditions are
 met.
+
+[mailing list]: http://groups.google.com/group/activeadmin
+[Stack Overflow]: http://stackoverflow.com/questions/tagged/activeadmin
+[search the issue tracker]: https://github.com/activeadmin/activeadmin/issues?q=something
+[new issue]: https://github.com/activeadmin/activeadmin/issues/new
+[fork Active Admin]: https://help.github.com/articles/fork-a-repo
+[searching all issues]: https://github.com/activeadmin/activeadmin/issues?q=
+[master template]: https://github.com/activeadmin/activeadmin/blob/master/lib/bug_report_templates/active_admin_master.rb
+[codeclimate]: https://codeclimate.com
+[codeclimate cli]: https://github.com/codeclimate/codeclimate
+[make a pull request]: https://help.github.com/articles/creating-a-pull-request
+[git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
+[interactive rebase]: https://help.github.com/articles/interactive-rebase

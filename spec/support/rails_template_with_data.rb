@@ -319,7 +319,7 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
       namespace: :admin,
       author: AdminUser.first,
       body: "Test comment #{i}",
-      resource: categories.sample,
+      resource: categories.sample
     )
   end
 RUBY

@@ -21,7 +21,13 @@ AllCops:
 Lint/EndAlignment:
   Enabled: true
 
+Layout/AccessModifierIndentation:
+  Enabled: true
+
 Layout/CaseIndentation:
+  Enabled: true
+
+Layout/CommentIndentation:
   Enabled: true
 
 Layout/ElseAlignment:
@@ -37,7 +43,6 @@ Layout/ExtraSpacing:
   Enabled: true
 
 Style/Encoding:
-  EnforcedStyle: never
   Enabled: true
 
 Style/HashSyntax:
@@ -49,7 +54,7 @@ Layout/IndentationConsistency:
 Layout/IndentationWidth:
   Enabled: true
 
-Style/PredicateName:
+Naming/PredicateName:
   Enabled: true
 
   NamePrefixBlacklist:
@@ -59,6 +64,9 @@ Style/PredicateName:
   NameWhitelist:
     - has_many
     - has_many_actions
+
+Style/TrailingCommaInArguments:
+  Enabled: true
 
 Layout/TrailingBlankLines:
   Enabled: true
