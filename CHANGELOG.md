@@ -24,6 +24,11 @@
 
 ### Bug Fixes
 
+* Fixed the string representation of the resolved `sort_key` when no explicit
+  `sortable` attribute is passed [#5464][] by [@chumakoff][]
+* Fixed docs on the column `sortable` attribute (which actually doesn't have to
+  be explicitly specified when a block is passed to column) [#5464][] by
+  [@chumakoff][]
 * Fixed "create anoter" checkbox styling. [#5324][] by [@faucct][]
 
 ## 1.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.0...v1.3.1)
