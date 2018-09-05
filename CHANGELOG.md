@@ -1,5 +1,7 @@
 # Changelog
 
+## Master (unreleased)
+
 ### Bug fixes
 
 * Fixed the string representation of the resolved `sort_key` when no explicit `sortable` attribute is passed [#5464][] by [@chumakoff][]
