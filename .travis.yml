@@ -24,7 +24,7 @@ script:
   - bundle exec rake docs:build
 
 rvm:
-  - jruby-9.1.16.0
+  - jruby-9.2.0.0
   - 2.3.7
   - 2.4.4
   - 2.5.1
@@ -42,3 +42,6 @@ env:
 
 matrix:
   fast_finish: true
+
+  allow_failures:
+    - rvm: jruby-9.2.0.0
