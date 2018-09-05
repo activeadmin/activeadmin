@@ -5,7 +5,6 @@ creating elegant backends for website administration.
 
 [![Version         ][rubygems_badge]][rubygems]
 [![Travis CI       ][travis_badge]][travis]
-[![Quality         ][codeclimate_badge]][codeclimate]
 [![Coverage        ][codecov_badge]][codecov]
 [![Inch CI         ][inch_badge]][inch]
 [![Gratipay Team   ][gratipay_badge]][gratipay]
@@ -66,8 +65,6 @@ Tool                  | Description
 [rubygems]: https://rubygems.org/gems/activeadmin
 [travis_badge]: http://img.shields.io/travis/activeadmin/activeadmin/master.svg
 [travis]: https://travis-ci.org/activeadmin/activeadmin
-[codeclimate_badge]: https://api.codeclimate.com/v1/badges/779e407d22bacff19733/maintainability
-[codeclimate]: https://codeclimate.com/github/activeadmin/activeadmin/maintainability
 [codecov_badge]: https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg
 [codecov]: https://codecov.io/gh/activeadmin/activeadmin
 [inch_badge]: http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
