@@ -22,6 +22,7 @@ before_install:
 script:
   - bundle exec rake
   - bundle exec rake docs:build
+  - bundle exec rake lint
 
 rvm:
   - jruby-9.2.0.0

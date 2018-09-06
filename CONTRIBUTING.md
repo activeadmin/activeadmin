@@ -111,9 +111,9 @@ bundle exec rake local db:migrate
 ### 7. Get the style right
 
 Your patch should follow the same conventions & pass the same code quality
-checks as the rest of the project. [Codeclimate][codeclimate] will give you
-feedback in this regard. You can check & fix codeclimate's feedback by running
-it locally using [Codeclimate's CLI][codeclimate cli], via `codeclimate analyze`.
+checks as the rest of the project. `bundle exec rake lint` will give you
+feedback in this regard. You can check & fix style issues by running each linter
+individually. Run `bundle exec rake -T lint` to see the available linters.
 
 ### 8. Make a Pull Request
 
@@ -177,8 +177,6 @@ met.
 [fork Active Admin]: https://help.github.com/articles/fork-a-repo
 [searching all issues]: https://github.com/activeadmin/activeadmin/issues?q=
 [master template]: https://github.com/activeadmin/activeadmin/blob/master/lib/bug_report_templates/active_admin_master.rb
-[codeclimate]: https://codeclimate.com
-[codeclimate cli]: https://github.com/codeclimate/codeclimate
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
 [git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
 [interactive rebase]: https://help.github.com/articles/interactive-rebase
