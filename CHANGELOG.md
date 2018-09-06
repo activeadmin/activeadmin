@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.4.0 (unreleased)
+
+### Enhancements
+
+#### Minor
+
+* Translations:
+  * I18n for Comments. [#5458][], [#5461][] by [@mauriciopasquier][]
+  * Change batch_actions.delete_confirmation in zh-CN.yml. [#5453][] by [@ShallmentMo][]
+  * Update it.yml. [#5433][] by [@stefsava][]
+  * enhance zh_CN translation. [#5413][] by [@shouya][]
+  * Add missing filter predicate translations to nb. [#5377][] by [@rogerkk][]
+  * Add missing nb comments translations. [#5375] by [@rogerkk][]
+  * Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
+  * Add missing de locale / german translations. [#5341][] by [@eikes][]
+  * Add missing spanish locale entry. [#5336][] by Mauricio Coniglio
+  * Add from and to predicates for russian language. [#5330][] by [@glebtv][]
+  * Fix typo. [#5320][] by [@JiiHu][]
+  * Update tr.yml. [#5295][] by [@kobeumut][]
+  * Update zh-CN.yml. [#5266][] by [@jasl][]
+
 ## 1.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.0...v1.3.1)
 
 ### Bug Fixes
@@ -18,7 +39,7 @@
 
 ### Bug Fixes
 
-* Resolve issue with [#5275][] preventing XSS in filters sidebar [#5299][] by [@faucct][].
+* Resolve issue with [#5275][] preventing XSS in filters sidebar. [#5299][] by [@faucct][]
 
 ## 1.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.1.0...v1.2.0)
 
@@ -45,7 +66,7 @@
 * Fix a couple of issues rendering filter labels [#5223][] by [@wspurgin][]
 * Prevent NameError when filtering on a namespaced association [#5240][] by [@DanielHeath][]
 * Fix undefined method error in Ransack when building filters [#5238][] by [@wspurgin][]
-* Fixed [#5198][] Prevent XSS on sidebar's current filter rendering [#5275][] by [@deivid-rodriguez][].
+* Fixed [#5198][] Prevent XSS on sidebar's current filter rendering [#5275][] by [@deivid-rodriguez][]
 * Sanitize display_name [#5284][] by [@markstory][].
 
 ## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
