@@ -126,11 +126,9 @@ run 'bundle install'
 generate 'active_admin:install'
 
 # Force strong parameters to raise exceptions
-inject_into_file 'config/application.rb', <<-RUBY, after: 'class Application < Rails::Application'
-
-    config.action_controller.action_on_unpermitted_parameters = :raise
-
-RUBY
+inject_into_file 'config/application.rb', after: 'class Application < Rails::Application' do
+  "\n    config.action_controller.action_on_unpermitted_parameters = :raise\n"
+end
 
 # Add some translations
 append_file 'config/locales/en.yml', File.read(File.expand_path('../templates/en.yml', __FILE__))

@@ -10,6 +10,9 @@ bundler_args: --without development
 
 cache: bundler
 
+before_script:
+  - unset _JAVA_OPTIONS
+
 before_install:
   - PATH=$(npm bin):$PATH # needed to install phantomjs via npm
   - if [ $(phantomjs --version) != '2.1.1' ]; then npm install phantomjs-prebuilt@2.1; fi
@@ -21,7 +24,7 @@ script:
   - bundle exec rake docs:build
 
 rvm:
-  - jruby-9.1.15.0
+  - jruby-9.2.0.0
   - 2.3.7
   - 2.4.4
   - 2.5.1
@@ -41,11 +44,4 @@ matrix:
   fast_finish: true
 
   allow_failures:
-    - rvm: jruby-9.1.15.0
-      gemfile: gemfiles/rails_42.gemfile
-    - rvm: jruby-9.1.15.0
-      gemfile: gemfiles/rails_50.gemfile
-    - rvm: jruby-9.1.15.0
-      gemfile: gemfiles/rails_51.gemfile
-    - rvm: jruby-9.1.15.0
-      gemfile: gemfiles/rails_52.gemfile
+    - rvm: jruby-9.2.0.0
