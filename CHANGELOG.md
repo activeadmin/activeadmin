@@ -16,7 +16,7 @@
 
 #### Major
 
-* Rails 5.2 support [#5343][] by [@varyonic][], [#5399][], [#5401][] by [@zorab47][].
+* Rails 5.2 support [#5343][] by [@varyonic][], [#5399][], [#5401][] by [@zorab47][]
 
 ## 1.2.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.0...v1.2.1)
 
@@ -50,7 +50,7 @@
 * Prevent NameError when filtering on a namespaced association [#5240][] by [@DanielHeath][]
 * Fix undefined method error in Ransack when building filters [#5238][] by [@wspurgin][]
 * Fixed [#5198][] Prevent XSS on sidebar's current filter rendering [#5275][] by [@deivid-rodriguez][]
-* Sanitize display_name [#5284][] by [@markstory][].
+* Sanitize display_name [#5284][] by [@markstory][]
 
 ## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
 

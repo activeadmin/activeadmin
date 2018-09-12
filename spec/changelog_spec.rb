@@ -12,4 +12,16 @@ RSpec.describe "Changelog" do
       expect(changelog).to include("[#{name}]: https")
     end
   end
+
+  describe 'entry' do
+    let(:lines) { changelog.each_line }
+
+    subject(:entries) { lines.grep(/^\*/) }
+
+    it 'does not end with a punctuation' do
+      entries.each do |entry|
+        expect(entry).not_to match(/\.$/)
+      end
+    end
+  end
 end
