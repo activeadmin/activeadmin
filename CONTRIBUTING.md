@@ -26,6 +26,9 @@ git checkout -b 325-add-japanese-translations
 Make sure you're using a recent ruby and have the `bundler` gem installed, at
 least version `1.14.3`.
 
+You'll also need chrome and [chromedriver] installed in order to run cucumber
+scenarios.
+
 Select the Gemfile for your preferred Rails version, preferably the latest:
 
 ```sh
@@ -189,6 +192,7 @@ Maintainers need to do the following to push out a release:
 
 * `bundle exec rake release`
 
+[chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/getting-started
 [mailing list]: http://groups.google.com/group/activeadmin
 [Stack Overflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [search the issue tracker]: https://github.com/activeadmin/activeadmin/issues?q=something
