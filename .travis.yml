@@ -14,6 +14,7 @@ bundler_args: --without development
 cache: bundler
 
 before_script:
+  - bin/install_chromedriver.sh
   - unset _JAVA_OPTIONS
 
 before_install:

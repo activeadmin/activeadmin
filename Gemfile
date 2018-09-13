@@ -49,5 +49,4 @@ group :test do
   gem 'shoulda-matchers', '<= 2.8.0'
   gem 'sqlite3', platforms: :mri
   gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
 end
