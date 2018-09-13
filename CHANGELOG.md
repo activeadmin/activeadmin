@@ -25,7 +25,7 @@
 
 ### Bug Fixes
 
-* gemspec should have more permissive ransack dependency [#][] by [@varyonic][5447]
+* gemspec should have more permissive ransack dependency [#5447][] by [@varyonic][]
 
 ## 1.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.1...v1.3.0)
 
@@ -33,7 +33,7 @@
 
 #### Major
 
-* Rails 5.2 support [#5343][] by [@varyonic][], [#5399][], [#5401][] by [@zorab47][].
+* Rails 5.2 support [#5343][] by [@varyonic][], [#5399][], [#5401][] by [@zorab47][]
 
 ## 1.2.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.0...v1.2.1)
 
@@ -55,7 +55,7 @@
 * Fix issue applying custom decorations [#5253][] by [@faucct][]
 * Translations:
   * Brazilian locale upated [#5125][] by [@renotocn][]
-  * Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [innparusu95][]
+  * Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
   * Italian locale updated [#5180][] by [@blocknotes][]
   * Swedish locale updated [#5187][] by [@jawa][]
   * Vietnamese locale updated [#5194][] by [@Nguyenanh][]
@@ -67,7 +67,7 @@
 * Prevent NameError when filtering on a namespaced association [#5240][] by [@DanielHeath][]
 * Fix undefined method error in Ransack when building filters [#5238][] by [@wspurgin][]
 * Fixed [#5198][] Prevent XSS on sidebar's current filter rendering [#5275][] by [@deivid-rodriguez][]
-* Sanitize display_name [#5284][] by [@markstory][].
+* Sanitize display_name [#5284][] by [@markstory][]
 
 ## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
 
@@ -185,7 +185,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 ```
 
 * Comments menu can be customized via configuration passed to `config.comments_menu`. [#4187][] by [@drn][]
-* Added `config.route_options` to namespace to customize routes. [#4467][] by [@stereoscott[]]
+* Added `config.route_options` to namespace to customize routes. [#4731][] by [@stereoscott[]]
 
 ### Security Fixes
 
@@ -251,8 +251,11 @@ Please check [0-6-stable][] for previous changes.
 [#4254]: https://github.com/activeadmin/activeadmin/issues/4254
 [#5043]: https://github.com/activeadmin/activeadmin/issues/5043
 [#5198]: https://github.com/activeadmin/activeadmin/issues/5198
+[#5447]: https://github.com/activeadmin/activeadmin/issues/5447
 
+[#3435]: https://github.com/activeadmin/activeadmin/pull/3435
 [#4477]: https://github.com/activeadmin/activeadmin/pull/4477
+[#4731]: https://github.com/activeadmin/activeadmin/pull/4731
 [#4759]: https://github.com/activeadmin/activeadmin/pull/4759
 [#4768]: https://github.com/activeadmin/activeadmin/pull/4768
 [#4848]: https://github.com/activeadmin/activeadmin/pull/4848
@@ -280,6 +283,7 @@ Please check [0-6-stable][] for previous changes.
 [#5125]: https://github.com/activeadmin/activeadmin/pull/5125
 [#5137]: https://github.com/activeadmin/activeadmin/pull/5137
 [#5143]: https://github.com/activeadmin/activeadmin/pull/5143
+[#5157]: https://github.com/activeadmin/activeadmin/pull/5157
 [#5167]: https://github.com/activeadmin/activeadmin/pull/5167
 [#5180]: https://github.com/activeadmin/activeadmin/pull/5180
 [#5187]: https://github.com/activeadmin/activeadmin/pull/5187
@@ -287,9 +291,31 @@ Please check [0-6-stable][] for previous changes.
 [#5208]: https://github.com/activeadmin/activeadmin/pull/5208
 [#5210]: https://github.com/activeadmin/activeadmin/pull/5210
 [#5251]: https://github.com/activeadmin/activeadmin/pull/5251
+[#5223]: https://github.com/activeadmin/activeadmin/pull/5223
+[#5238]: https://github.com/activeadmin/activeadmin/pull/5238
+[#5240]: https://github.com/activeadmin/activeadmin/pull/5240
 [#5253]: https://github.com/activeadmin/activeadmin/pull/5253
+[#5266]: https://github.com/activeadmin/activeadmin/pull/5266
 [#5272]: https://github.com/activeadmin/activeadmin/pull/5272
+[#5275]: https://github.com/activeadmin/activeadmin/pull/5275
 [#5284]: https://github.com/activeadmin/activeadmin/pull/5284
+[#5295]: https://github.com/activeadmin/activeadmin/pull/5295
+[#5299]: https://github.com/activeadmin/activeadmin/pull/5299
+[#5320]: https://github.com/activeadmin/activeadmin/pull/5320
+[#5330]: https://github.com/activeadmin/activeadmin/pull/5330
+[#5336]: https://github.com/activeadmin/activeadmin/pull/5336
+[#5343]: https://github.com/activeadmin/activeadmin/pull/5343
+[#5341]: https://github.com/activeadmin/activeadmin/pull/5341
+[#5368]: https://github.com/activeadmin/activeadmin/pull/5368
+[#5377]: https://github.com/activeadmin/activeadmin/pull/5377
+[#5399]: https://github.com/activeadmin/activeadmin/pull/5399
+[#5401]: https://github.com/activeadmin/activeadmin/pull/5401
+[#5413]: https://github.com/activeadmin/activeadmin/pull/5413
+[#5433]: https://github.com/activeadmin/activeadmin/pull/5433
+[#5453]: https://github.com/activeadmin/activeadmin/pull/5453
+[#5458]: https://github.com/activeadmin/activeadmin/pull/5458
+[#5461]: https://github.com/activeadmin/activeadmin/pull/5461
+[#5464]: https://github.com/activeadmin/activeadmin/pull/5464
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -298,29 +324,43 @@ Please check [0-6-stable][] for previous changes.
 [@bolshakov]: https://github.com/bolshakov
 [@blocknotes]: https://github.com/blocknotes
 [@chancancode]: https://github.com/chancancode
+[@chumakoff]: https://github.com/chumakoff
 [@craigmcnamara]: https://github.com/craigmcnamara
+[@DanielHeath]: https://github.com/DanielHeath
 [@deivid-rodriguez]: https://github.com/deivid-rodriguez
+[@dennisvdvliet]: https://github.com/dennisvdvliet
 [@dhyegofernando]: https://github.com/dhyegofernando
 [@dmitry]: https://github.com/dmitry
 [@drn]: https://github.com/drn
+[@eikes]: https://github.com/eikes
 [@f1sherman]: https://github.com/f1sherman
 [@faucct]: https://github.com/faucct
 [@Fivell]: https://github.com/Fivell
 [@gonzedge]: https://github.com/gonzedge
+[@glebtv]: https://github.com/glebtv
 [@innparusu95]: https://github.com/innparusu95
+[@jasl]: https://github.com/jasl
 [@javierjulio]: https://github.com/javierjulio
 [@jawa]: https://github.com/jawa
+[@JiiHu]: https://github.com/JiiHu
 [@johnnyshields]: https://github.com/johnnyshields
+[@kobeumut]: https://github.com/kobeumut
 [@markstory]: https://github.com/markstory
+[@mauriciopasquier]: https://github.com/mauriciopasquier
 [@Nguyenanh]: https://github.com/Nguyenanh
 [@PChambino]: https://github.com/PChambino
 [@potatosalad]: https://github.com/potatosalad
 [@pranas]: https://github.com/pranas
 [@renotocn]: https://github.com/renotocn
 [@RobinvanderVliet]: https://github.com/RobinvanderVliet
+[@rogerkk]: https://github.com/rogerkk
 [@seanlinsley]: https://github.com/seanlinsley
+[@ShallmentMo]: https://github.com/ShallmentMo
 [@shekibobo]: https://github.com/shekibobo
+[@shouya]: https://github.com/shouya
+[@stefsava]: https://github.com/stefsava
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
+[@wspurgin]: https://github.com/wspurgin
 [@zorab47]: https://github.com/zorab47
