@@ -8,12 +8,13 @@
     edit: "编辑"
     delete: "删除"
     delete_confirmation: "确定删除?"
+    create_another: "新建另一个%{model}"
     new_model: "新建%{model}"
     edit_model: "编辑%{model}"
     delete_model: "删除%{model}"
     details: "%{model}详情"
     cancel: "取消"
-    empty: "清空"
+    empty: "未定义"
     previous: "上一个"
     next: "下一个"
     download: "下载:"
@@ -31,14 +32,18 @@
         ends_with: "完与"
         greater_than: "大于"
         less_than: "小于"
+        gteq_datetime: "大于等于"
+        lteq_datetime: "小于等于"
+        from: "起"
+        to: "止"
     search_status:
       headline: "搜索条件："
       current_scope: "搜索范围："
       current_filters: "过滤条件："
       no_current_filters: "无"
     status_tag:
-      "yes": "是的"
-      "no": "无"
+      "yes": "是"
+      "no": "否"
     main_content: "请执行 %{model}#main_content 来显示内容."
     logout: "退出"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,6 +56,7 @@
       one_page: "显示 <b>所有 %{n}</b> %{model}"
       multiple: "显示所有 <b>%{total}</b> %{model}中的<b>%{from}&nbsp;-&nbsp;%{to}</b> 条"
       multiple_without_total: "%{model}中的<b>%{from}&nbsp;-&nbsp;%{to}</b> 条"
+      per_page: "每页："
       entry:
         one: "条目"
         other: "条目"
@@ -63,7 +69,7 @@
     batch_actions:
       button_label: "批处理"
       default_confirmation: "你确定你要这样做？"
-      delete_confirmation: "你确定要删除所有%{plural_model}?"
+      delete_confirmation: "你确定要删除这些%{plural_model}?"
       succesfully_destroyed:
         one: "成功删除 1 %{model}"
         other: "成功删除 %{count} %{plural_model}"
@@ -72,11 +78,17 @@
       labels:
         destroy: "删除"
     comments:
+      created_at: "创建于"
+      resource_type: "资源类型"
+      author_type: "作者类型"
       body: "内容"
       author: "作者"
       add: "添加评论"
+      delete: "删除评论"
+      delete_confirmation: "你确定删除这些评论？"
       resource: "资源"
       no_comments_yet: "暂时没有评论"
+      author_missing: "匿名"
       title_content: "(%{count})条评论"
       errors:
         empty_text: "评论保存失败，内空不能为空."
@@ -89,6 +101,11 @@
         title: "子域"
       password:
         title: "密码"
+      password_confirmation:
+        title: "确认密码"
+      sign_up:
+        title: "注册"
+        submit: "注册"
       login:
         title: "登录"
         remember_me: "记住我"
@@ -96,6 +113,9 @@
       reset_password:
         title: "忘记了密码？"
         submit: "重置我的密码"
+      change_password:
+        title: "修改密码"
+        submit: "修改密码"
       unlock:
         title: "重新发送送解锁命令"
         submit: "重新发送送解锁命令"
@@ -103,12 +123,20 @@
         title: " 重新发送确认指示"
         submit: " 重新发送确认指示"
       links:
+        sign_up: "注册"
         sign_in: "登录"
         forgot_your_password: "忘记了密码？"
-        sign_in_with_omniauth_provider: "登入%{provider}"
+        sign_in_with_omniauth_provider: "通过%{provider}登录"
+        resend_unlock_instructions: "重发解锁邮件"
+        resend_confirmation_instructions: "重发确认邮件"
     unsupported_browser:
       headline: "很抱歉，ActiveAdmin 已不再支持 Internet Explorer 8 以下版本的浏览器。"
       recommendation: "建议您升级到最新版本的<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>，<a href=\"https://chrome.google.com/\">Google Chrome</a>，或是 <a href=\"https://mozilla.org/firefox/\">Firefox</a>。"
       turn_off_compatibility_view: "如果您使用的是 IE 9 或更新的版本，请确认<a href=\"https://support.microsoft.com/zh-cn/help/17472/windows-internet-explorer-11-fix-site-display-problems-compatibility-view\">已关闭“兼容性视图”</a>。"
     access_denied:
       message: "您无权处理此操作"
+    index_list:
+      table: "表格"
+      block: "列表"
+      grid: "网格"
+      blog: "博客"

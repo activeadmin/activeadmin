@@ -1,6 +1,22 @@
 es:
+  activerecord:
+    models:
+      comment:
+        one: "Comentario"
+        other: "Comentarios"
+      active_admin/comment:
+        one: "Comentario"
+        other: "Comentarios"
+    attributes:
+      active_admin/comment:
+        namespace: "Espacio de nombres"
+        body: "Cuerpo"
+        resource_type: "Tipo de recurso"
+        author_type: "Tipo de autor"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de actualización"
   active_admin:
-    dashboard: Inicio
+    dashboard: "Inicio"
     dashboard_welcome:
       welcome: "Bienvenido a Active Admin. Esta es la página de inicio predeterminada."
       call_to_action: "Para agregar secciones edite 'app/admin/dashboard.rb'"
@@ -21,6 +37,7 @@ es:
     has_many_new: "Añadir %{model}"
     has_many_delete: "Eliminar"
     has_many_remove: "Quitar"
+    move: "Mover"
     filters:
       buttons:
         filter: "Filtrar"
@@ -36,6 +53,8 @@ es:
         lteq_datetime: "Menor o igual que"
         from: "Desde"
         to: "Hasta"
+    scopes:
+      all: "Todos"
     search_status:
       headline: "Estado de la búsqueda:"
       current_scope: "Alcance:"

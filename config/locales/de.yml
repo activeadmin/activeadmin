@@ -8,6 +8,7 @@ de:
     edit: "Bearbeiten"
     delete: "Löschen"
     delete_confirmation: "Wollen Sie dieses Element wirklich löschen?"
+    create_another: "Mehr %{model} erstellen"
     new_model: "%{model} erstellen"
     edit_model: "%{model} bearbeiten"
     delete_model: "%{model} löschen"
@@ -20,6 +21,7 @@ de:
     has_many_new: "%{model} hinzufügen"
     has_many_delete: "Löschen"
     has_many_remove: "Entfernen"
+    move: "Bewegen"
     filters:
       buttons:
         filter: "Filtern"
@@ -31,6 +33,10 @@ de:
         ends_with: "Endet mit"
         greater_than: "Größer als"
         less_than: "Kleiner als"
+        gteq_datetime: "Größer gleich"
+        lteq_datetime: "Kleiner gleich"
+        from: "Von"
+        to: "Bis"
     search_status:
       headline: "Filter"
       current_scope: "Anwendungsbereich:"
@@ -51,6 +57,7 @@ de:
       one_page: "Zeige <b>alle %{n}</b> %{model}"
       multiple: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b> von <b>%{total}</b>"
       multiple_without_total: "Zeige %{model} <b>%{from}&nbsp;–&nbsp;%{to}</b>"
+      per_page: "Pro Seite: "
       entry:
         one: "Eintrag"
         other: "Einträge"
@@ -72,6 +79,7 @@ de:
       labels:
         destroy: "Lösche"
     comments:
+      created_at: "Erstellt"
       resource_type: "Res­sour­cen-Typ"
       author_type: "Autor-Typ"
       body: "Inhalt"
@@ -94,6 +102,8 @@ de:
         title: "Subdomain"
       password:
         title: "Passwort"
+      password_confirmation:
+        title: "Passwort Bestätigung"
       sign_up:
         title: "Registrieren"
         submit: "Registrieren"

@@ -17,6 +17,17 @@ ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comme
 # Load the model as soon as it's referenced. By that point, Rails & Kaminari will be ready
 ActiveAdmin.autoload :Comment, 'active_admin/orm/active_record/comments/comment'
 
+# Hint i18n-tasks about model and attribute translations used by default install
+# i18n-tasks-use t('activerecord.models.comment')
+# i18n-tasks-use t('activerecord.models.active_admin/comment')
+# i18n-tasks-use t('activerecord.attributes.active_admin/comment.author_type')
+# i18n-tasks-use t('activerecord.attributes.active_admin/comment.body')
+# i18n-tasks-use t('activerecord.attributes.active_admin/comment.created_at')
+# i18n-tasks-use t('activerecord.attributes.active_admin/comment.namespace')
+# i18n-tasks-use t('activerecord.attributes.active_admin/comment.resource_type')
+# i18n-tasks-use t('activerecord.attributes.active_admin/comment.updated_at')
+# i18n-tasks-use t('active_admin.scopes.all')
+
 # Walk through all the loaded namespaces after they're loaded
 ActiveAdmin.after_load do |app|
   app.namespaces.each do |namespace|
