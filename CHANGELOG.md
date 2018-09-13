@@ -11,7 +11,7 @@
   * Change batch_actions.delete_confirmation in zh-CN.yml. [#5453][] by [@ShallmentMo][]
   * Update it.yml. [#5433][] by [@stefsava][]
   * enhance zh_CN translation. [#5413][] by [@shouya][]
-  * Add missing filter predicate translations to nb. [#5377][] by [@rogerkk][]
+  * Add missing filter predicate translations to nb. [#5357][] by [@rogerkk][]
   * Add missing nb comments translations. [#5375] by [@rogerkk][]
   * Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
   * Add missing de locale / german translations. [#5341][] by [@eikes][]
@@ -306,8 +306,8 @@ Please check [0-6-stable][] for previous changes.
 [#5336]: https://github.com/activeadmin/activeadmin/pull/5336
 [#5343]: https://github.com/activeadmin/activeadmin/pull/5343
 [#5341]: https://github.com/activeadmin/activeadmin/pull/5341
+[#5357]: https://github.com/activeadmin/activeadmin/pull/5357
 [#5368]: https://github.com/activeadmin/activeadmin/pull/5368
-[#5377]: https://github.com/activeadmin/activeadmin/pull/5377
 [#5399]: https://github.com/activeadmin/activeadmin/pull/5399
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
 [#5413]: https://github.com/activeadmin/activeadmin/pull/5413
