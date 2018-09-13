@@ -16,7 +16,7 @@
 
 #### Major
 
-* Rails 5.2 support [#5343][] by [@varyonic][], [#5399][], [#5401][] by [@zorab47][].
+* Rails 5.2 support [#5343][] by [@varyonic][], [#5399][], [#5401][] by [@zorab47][]
 
 ## 1.2.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.0...v1.2.1)
 
@@ -38,7 +38,7 @@
 * Fix issue applying custom decorations [#5253][] by [@faucct][]
 * Translations:
   * Brazilian locale updated [#5125][] by [@renotocn][]
-  * Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [innparusu95][]
+  * Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
   * Italian locale updated [#5180][] by [@blocknotes][]
   * Swedish locale updated [#5187][] by [@jawa][]
   * Vietnamese locale updated [#5194][] by [@Nguyenanh][]
@@ -50,7 +50,7 @@
 * Prevent NameError when filtering on a namespaced association [#5240][] by [@DanielHeath][]
 * Fix undefined method error in Ransack when building filters [#5238][] by [@wspurgin][]
 * Fixed [#5198][] Prevent XSS on sidebar's current filter rendering [#5275][] by [@deivid-rodriguez][]
-* Sanitize display_name [#5284][] by [@markstory][].
+* Sanitize display_name [#5284][] by [@markstory][]
 
 ## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
 
@@ -172,7 +172,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 ```
 
 * Comments menu can be customized via configuration passed to `config.comments_menu`. [#4187][] by [@drn][]
-* Added `config.route_options` to namespace to customize routes. [#4467][] by [@stereoscott[]]
+* Added `config.route_options` to namespace to customize routes. [#4731][] by [@stereoscott[]]
 
 ### Security Fixes
 
@@ -239,7 +239,9 @@ Please check [0-6-stable][] for previous changes.
 [#5043]: https://github.com/activeadmin/activeadmin/issues/5043
 [#5198]: https://github.com/activeadmin/activeadmin/issues/5198
 
+[#3435]: https://github.com/activeadmin/activeadmin/pull/3435
 [#4477]: https://github.com/activeadmin/activeadmin/pull/4477
+[#4731]: https://github.com/activeadmin/activeadmin/pull/4731
 [#4759]: https://github.com/activeadmin/activeadmin/pull/4759
 [#4768]: https://github.com/activeadmin/activeadmin/pull/4768
 [#4848]: https://github.com/activeadmin/activeadmin/pull/4848
@@ -268,6 +270,7 @@ Please check [0-6-stable][] for previous changes.
 [#5125]: https://github.com/activeadmin/activeadmin/pull/5125
 [#5137]: https://github.com/activeadmin/activeadmin/pull/5137
 [#5143]: https://github.com/activeadmin/activeadmin/pull/5143
+[#5157]: https://github.com/activeadmin/activeadmin/pull/5157
 [#5167]: https://github.com/activeadmin/activeadmin/pull/5167
 [#5180]: https://github.com/activeadmin/activeadmin/pull/5180
 [#5187]: https://github.com/activeadmin/activeadmin/pull/5187
@@ -275,9 +278,18 @@ Please check [0-6-stable][] for previous changes.
 [#5208]: https://github.com/activeadmin/activeadmin/pull/5208
 [#5210]: https://github.com/activeadmin/activeadmin/pull/5210
 [#5251]: https://github.com/activeadmin/activeadmin/pull/5251
+[#5223]: https://github.com/activeadmin/activeadmin/pull/5223
+[#5238]: https://github.com/activeadmin/activeadmin/pull/5238
+[#5240]: https://github.com/activeadmin/activeadmin/pull/5240
 [#5253]: https://github.com/activeadmin/activeadmin/pull/5253
 [#5272]: https://github.com/activeadmin/activeadmin/pull/5272
+[#5275]: https://github.com/activeadmin/activeadmin/pull/5275
 [#5284]: https://github.com/activeadmin/activeadmin/pull/5284
+[#5299]: https://github.com/activeadmin/activeadmin/pull/5299
+[#5343]: https://github.com/activeadmin/activeadmin/pull/5343
+[#5399]: https://github.com/activeadmin/activeadmin/pull/5399
+[#5401]: https://github.com/activeadmin/activeadmin/pull/5401
+[#5464]: https://github.com/activeadmin/activeadmin/pull/5464
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -286,7 +298,9 @@ Please check [0-6-stable][] for previous changes.
 [@bolshakov]: https://github.com/bolshakov
 [@blocknotes]: https://github.com/blocknotes
 [@chancancode]: https://github.com/chancancode
+[@chumakoff]: https://github.com/chumakoff
 [@craigmcnamara]: https://github.com/craigmcnamara
+[@DanielHeath]: https://github.com/DanielHeath
 [@deivid-rodriguez]: https://github.com/deivid-rodriguez
 [@dhyegofernando]: https://github.com/dhyegofernando
 [@dmitry]: https://github.com/dmitry
@@ -311,4 +325,5 @@ Please check [0-6-stable][] for previous changes.
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
+[@wspurgin]: https://github.com/wspurgin
 [@zorab47]: https://github.com/zorab47
