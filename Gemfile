@@ -31,7 +31,7 @@ group :development do
   gem 'binding_of_caller', platforms: :mri # Retrieve the binding of a method's caller
 
   # Performance
-  gem 'rack-mini-profiler' # Inline app profiler. See ?pp=help for options.
+  gem 'rack-mini-profiler', '>= 0.10.1' # Inline app profiler. See ?pp=help for options.
 end
 
 group :test do
