@@ -6,6 +6,7 @@ creating elegant backends for website administration.
 [![Version         ][rubygems_badge]][rubygems]
 [![Travis CI       ][travis_badge]][travis]
 [![Coverage        ][codecov_badge]][codecov]
+[![Tidelift        ][tidelift_badge]][tidelift]
 [![Inch CI         ][inch_badge]][inch]
 
 ## Goals
@@ -35,6 +36,8 @@ The [contributing guide][contributing]
 is a good place to start. If you have questions, feel free to ask.
 
 ## Want to support us?
+
+Subscribe to [Tidelift][tidelift] to support Active Admin and get licensing assurances and timely security notifications.
 
 You can support us with a weekly tip via [Liberapay][liberapay.com].
 
@@ -68,6 +71,8 @@ Tool                  | Description
 [codecov]: https://codecov.io/gh/activeadmin/activeadmin
 [inch_badge]: http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
 [inch]: http://inch-ci.org/github/activeadmin/activeadmin
+[tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
+[tidelift]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=readme
 
 [docs]: http://activeadmin.info/0-installation.html
 [demo]: http://demo.activeadmin.info/admin
