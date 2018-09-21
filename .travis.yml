@@ -5,6 +5,11 @@ addons:
     packages:
       - google-chrome-stable
 
+branches:
+  only:
+    - master
+    - 1-4-stable
+
 language: ruby
 
 sudo: false
