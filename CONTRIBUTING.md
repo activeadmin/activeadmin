@@ -29,12 +29,6 @@ least version `1.14.3`.
 You'll also need chrome and [chromedriver] installed in order to run cucumber
 scenarios.
 
-Select the Gemfile for your preferred Rails version, preferably the latest:
-
-```sh
-export BUNDLE_GEMFILE=gemfiles/rails_52.gemfile
-```
-
 Now install the development dependencies:
 
 ```sh
@@ -55,6 +49,13 @@ environment:
 
 ```sh
 rm -rf spec/rails && bundle update
+```
+
+If you want to test against a Rails version different from the latest, make sure
+you use the correct Gemfile, for example:
+
+```sh
+export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
 ```
 
 ### 4. Did you find a bug?
