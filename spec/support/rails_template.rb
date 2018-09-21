@@ -55,7 +55,7 @@ RUBY
 
 generate :model, 'profile user_id:integer bio:text'
 
-generate :model, 'user type:string first_name:string last_name:string username:string age:integer'
+generate :model, 'user type:string first_name:string last_name:string username:string age:integer encrypted_password:string'
 create_file 'app/models/user.rb', <<-RUBY.strip_heredoc, force: true
   class User < ActiveRecord::Base
     class VIP < self

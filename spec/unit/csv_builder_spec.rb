@@ -35,6 +35,14 @@ RSpec.describe ActiveAdmin::CSVBuilder do
         expect(csv_builder.columns[title_index].name).to eq localized_name
       end
     end
+
+    context 'for models having sensitive attributes' do
+      let(:resource){ ActiveAdmin::Resource.new(namespace, User, {}) }
+
+      it 'omits sensitive fields' do
+        expect(csv_builder.columns.map(&:data)).to_not include :encrypted_password
+      end
+    end
   end
 
   context 'when empty' do

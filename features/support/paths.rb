@@ -14,6 +14,8 @@ module NavigationHelpers
       "/admin"
     when /the new post page/
       "/admin/posts/new"
+    when /the new user page/
+      "/admin/users/new"
     when /the login page/
       "/admin/login"
     when /the first post custom status page/

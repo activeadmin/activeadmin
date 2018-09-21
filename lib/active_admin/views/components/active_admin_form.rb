@@ -57,6 +57,12 @@ module ActiveAdmin
           end
           insert_tag(SemanticInputsProxy, form_builder, *args, &wrapped_block)
         else
+          # Set except option to prevent sensitive fields from being shown in forms by default.
+          opts = args.extract_options!
+          opts[:except] ||= []
+          ActiveAdmin.application.filter_attributes.each { |e| opts[:except] << e }
+          args << opts
+
           proxy_call_to_form(:inputs, *args, &block)
         end
       end
