@@ -10,7 +10,7 @@ gem 'rake'
 gem 'parallel_tests'
 
 # Debugging
-gem 'pry' # Easily debug from your console with `binding.pry`
+gem 'pry-byebug' # Easily debug from your console with `binding.pry`
 
 # Code style
 gem 'rubocop', '0.51.0'
