@@ -44,12 +44,12 @@ bundle exec rake
 The test run will generate a sample Rails application in `spec/rails` to run the
 tests against.
 
-If your tests are passing locally but they're failing on Travis, reset your test
-environment:
-
-```sh
-rm -rf spec/rails && bundle update
-```
+If your tests are passing locally but they're failing on Travis, it's probably
+because of some breaking change or problem with the latest version of some
+dependency. You should be able to reproduce the issue locally by removing the
+`Gemfile.lock` file, running `bundle install`, and re-running the specs. This is
+not your fault though, so if this happens feel free to investigate, but also
+feel free to ping maintainers about the issue you just found.
 
 If you want to test against a Rails version different from the latest, make sure
 you use the correct Gemfile, for example:
