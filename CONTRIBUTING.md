@@ -47,7 +47,7 @@ tests against.
 If your tests are passing locally but they're failing on Travis, it's probably
 because of some breaking change or problem with the latest version of some
 dependency. You should be able to reproduce the issue locally by removing the
-`Gemfile.lock` file, running `bundle install`, and re-running the specs. This is
+`Gemfile.lock` file, running `bundle install`, and re-running the tests. This is
 not your fault though, so if this happens feel free to investigate, but also
 feel free to ping maintainers about the issue you just found.
 
