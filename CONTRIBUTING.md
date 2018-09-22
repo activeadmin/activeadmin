@@ -46,10 +46,14 @@ tests against.
 
 If your tests are passing locally but they're failing on Travis, it's probably
 because of some breaking change or problem with the latest version of some
-dependency. You should be able to reproduce the issue locally by removing the
-`Gemfile.lock` file, running `bundle install`, and re-running the tests. This is
-not your fault though, so if this happens feel free to investigate, but also
-feel free to ping maintainers about the issue you just found.
+dependency. You should be able to reproduce the issue locally by:
+
+* Removing the `Gemfile.lock` file.
+* Running `bundle install`.
+* Re-running the tests again like you did previously.
+
+This is not your fault though, so if this happens feel free to investigate, but
+also feel free to ping maintainers about the issue you just found.
 
 If you want to test against a Rails version different from the latest, make sure
 you use the correct Gemfile, for example:
