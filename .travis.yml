@@ -27,6 +27,7 @@ before_script:
 before_install:
   - gem update --system # use the very latest Rubygems
   - gem install bundler # use the very latest Bundler
+  - rm "${BUNDLE_GEMFILE}.lock"
 
 script:
   - bundle exec rake
@@ -43,7 +44,7 @@ gemfile:
   - gemfiles/rails_42.gemfile
   - gemfiles/rails_50.gemfile
   - gemfiles/rails_51.gemfile
-  - gemfiles/rails_52.gemfile
+  - Gemfile
 
 env:
   global:
