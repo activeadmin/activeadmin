@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::ResourceController::Sidebars, type: :controller do
   let(:klass){ Admin::PostsController }
 

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::DynamicSettingsNode do
   subject { ActiveAdmin::DynamicSettingsNode.build }
 

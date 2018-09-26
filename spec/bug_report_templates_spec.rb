@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe 'bug_report_templates' do
   subject do
     Bundler.with_original_env do

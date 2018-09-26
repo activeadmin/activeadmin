@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::OrderClause do
   subject { described_class.new(config, clause) }
 

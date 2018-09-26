@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Views::PaginatedCollection do
   describe "creating with the dsl" do
 

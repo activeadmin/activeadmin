@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::ResourceController do
 
   let(:controller) { Admin::PostsController.new }

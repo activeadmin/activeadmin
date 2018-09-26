@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe "Stylesheets", type: :request do
 
   require "sprockets"

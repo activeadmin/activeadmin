@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 class DefaultPolicy < ApplicationPolicy
   def respond_to_missing?(method, include_private = false)
     method.to_s[0...3] == "foo" || super

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 module ActiveAdmin
   RSpec.describe Resource, "Scopes" do
 

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Views::Tabs do
   describe "creating with the dsl" do
     context "when creating tabs with a symbol" do

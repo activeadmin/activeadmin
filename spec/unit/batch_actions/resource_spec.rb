@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::BatchActions::ResourceExtension do
 
   let(:resource) do

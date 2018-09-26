@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Views::IndexList do
 
   describe "#index_list_renderer" do

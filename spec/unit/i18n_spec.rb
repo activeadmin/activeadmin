@@ -1,4 +1,3 @@
-require 'rails_helper'
 require 'i18n/tasks'
 
 Dir.glob('config/locales/*.yml') do |locale_file|
