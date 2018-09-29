@@ -10,8 +10,8 @@ generate :model, 'post title:string body:text published_date:date author_id:inte
   'position:integer custom_category_id:integer starred:boolean foo_id:integer'
 create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
   class Post < ActiveRecord::Base
-    belongs_to :category, foreign_key: :custom_category_id
-    belongs_to :author, class_name: 'User'
+    belongs_to :category, foreign_key: :custom_category_id, optional: true
+    belongs_to :author, class_name: 'User', optional: true
     has_many :taggings
     has_many :tags, through: :taggings
     accepts_nested_attributes_for :author
@@ -98,8 +98,8 @@ RUBY
 generate :model, 'tagging post_id:integer tag_id:integer position:integer'
 create_file 'app/models/tagging.rb', <<-RUBY.strip_heredoc, force: true
   class Tagging < ActiveRecord::Base
-    belongs_to :post
-    belongs_to :tag
+    belongs_to :post, optional: true
+    belongs_to :tag, optional: true
 
     delegate :name, to: :tag, prefix: true
   end
@@ -112,10 +112,6 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
   config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )
 
   config.active_record.maintain_test_schema = false
-
-  if Rails::VERSION::MAJOR >= 5
-    config.active_record.belongs_to_required_by_default = false
-  end
 
 RUBY
 
