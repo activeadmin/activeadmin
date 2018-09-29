@@ -34,6 +34,7 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.color = true
   config.order = :random
+  config.example_status_persistence_file_path = ".rspec_failures"
 
   devise = ActiveAdmin::Dependency.devise >= '4.2' ? Devise::Test::ControllerHelpers : Devise::TestHelpers
   config.include devise, type: :controller
