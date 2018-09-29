@@ -186,7 +186,7 @@ RSpec.describe "A specific resource controller", type: :controller do
   describe 'retrieving the resource collection' do
     let(:config) { controller.class.active_admin_config }
     before do
-      Post.create!(title: "An incledibly unique Post Title") if Post.count == 0
+      Post.create!(title: "An incledibly unique Post Title")
       config.decorator_class_name = nil
       request = double 'Request', format: 'application/json'
       allow(controller).to receive(:params) { {} }
