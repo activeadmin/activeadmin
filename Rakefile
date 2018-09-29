@@ -15,6 +15,7 @@ task :setup, [:parallel, :dir, :template] do |_t, opts|
     args = %W(
       -m spec/support/#{template}.rb
       --skip-bundle
+      --skip-gemfile
       --skip-listen
       --skip-turbolinks
       --skip-test-unit
