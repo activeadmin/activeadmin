@@ -405,6 +405,7 @@ DEPENDENCIES
   launchy
   mdl (= 0.4.0)
   parallel_tests
+  pry
   pry-byebug
   puma (~> 3.12)
   pundit
