@@ -6,6 +6,8 @@ RSpec.describe "Comments" do
   describe ActiveAdmin::Comment do
     subject(:comment){ ActiveAdmin::Comment.new }
 
+    let(:user) { User.create!(first_name: "John", last_name: "Doe") }
+
     it "has valid Associations and Validations" do
       expect(comment).to belong_to :resource
       expect(comment).to belong_to :author
@@ -19,7 +21,8 @@ RSpec.describe "Comments" do
       let(:namespace_name) { "admin" }
 
       before do
-        @comment = ActiveAdmin::Comment.create! resource: post,
+        @comment = ActiveAdmin::Comment.create! author: user,
+                                                resource: post,
                                                 body: "A Comment",
                                                 namespace: namespace_name
       end
@@ -40,12 +43,14 @@ RSpec.describe "Comments" do
       end
 
       it "should return the most recent comment first by default" do
-        another_comment = ActiveAdmin::Comment.create! resource: post,
+        another_comment = ActiveAdmin::Comment.create! author: user,
+                                                       resource: post,
                                                        body: "Another Comment",
                                                        namespace: namespace_name,
                                                        created_at: @comment.created_at + 20.minutes
 
-        yet_another_comment = ActiveAdmin::Comment.create! resource: post,
+        yet_another_comment = ActiveAdmin::Comment.create! author: user,
+                                                           resource: post,
                                                            body: "Yet Another Comment",
                                                            namespace: namespace_name,
                                                            created_at: @comment.created_at + 10.minutes
@@ -69,6 +74,7 @@ RSpec.describe "Comments" do
 
         it "should return the correctly ordered comments" do
           another_comment = ActiveAdmin::Comment.create!(
+            author: user,
             resource: post,
             body: "Another Comment",
             namespace: namespace_name,
@@ -117,6 +123,7 @@ RSpec.describe "Comments" do
 
       it "should allow commenting" do
         comment = ActiveAdmin::Comment.create!(
+          author: user,
           resource: tag,
           body: "Another Comment",
           namespace: namespace_name)
@@ -131,6 +138,7 @@ RSpec.describe "Comments" do
 
       it "should assign child class as commented resource" do
         comment = ActiveAdmin::Comment.create!(
+          author: user,
           resource: publisher,
           body: "Lorem Ipsum",
           namespace: namespace_name)
