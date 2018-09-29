@@ -47,6 +47,10 @@ Around do |scenario, block|
   end
 end
 
+After '@debug' do |scenario|
+  save_and_open_page if scenario.failed?
+end
+
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
@@ -63,6 +67,8 @@ end
 Capybara.javascript_driver = :chrome
 
 Capybara.server = :puma, { Silent: true }
+
+Capybara.asset_host = 'http://localhost:3000'
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
