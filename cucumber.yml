@@ -1,5 +1,5 @@
 <%
-  std_opts = "--format progress"
+  std_opts = "--format progress --order random"
 %>
 
 default: <%= std_opts %> --require features/support/regular_env.rb features --tags 'not @requires-reloading' --tags 'not @wip'
