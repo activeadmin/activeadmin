@@ -1,2 +1,2 @@
-default: --format 'progress' --require features/support/regular_env.rb features --tags 'not @requires-reloading' --tags 'not @wip'
+default: --format progress --require features/support/regular_env.rb features --tags 'not @requires-reloading' --tags 'not @wip'
 class-reloading: CLASS_RELOADING=true --format 'progress' --require features/support/reload_env.rb features --tags @requires-reloading
