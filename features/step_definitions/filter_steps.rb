@@ -1,3 +1,13 @@
+Around '@filters' do |scenario, block|
+  previous_current_filters = ActiveAdmin.application.current_filters
+
+  begin
+    block.call
+  ensure
+    ActiveAdmin.application.current_filters = previous_current_filters
+  end
+end
+
 Then /^I should see a select filter for "([^"]*)"$/ do |label|
   expect(page).to have_css '.filter_select label', text: label
 end
