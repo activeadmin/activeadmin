@@ -1,3 +1,4 @@
+@csv
 Feature: Format as CSV
 
   Background:

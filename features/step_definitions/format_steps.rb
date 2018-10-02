@@ -1,5 +1,15 @@
 require 'csv'
 
+Around '@csv' do |scenario, block|
+  default_csv_options = ActiveAdmin.application.csv_options
+
+  begin
+    block.call
+  ensure
+    ActiveAdmin.application.csv_options = default_csv_options
+  end
+end
+
 Then "I should see nicely formatted datetimes" do
   expect(page.body).to match /\w+ \d{1,2}, \d{4} \d{2}:\d{2}/
 end
