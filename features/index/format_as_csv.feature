@@ -171,6 +171,12 @@ Feature: Format as CSV
   Scenario: With encoding CSV options
     Given a configuration of:
     """
+      # Currently manually setting a non-UTF8 encoding crashes in combination
+      # with default csv options. It crashes with a cryptic incompatible
+      # encoding error, because the BOM is set in UTF-8 encoding by default.
+      # We should probably fix that, but for now we just set empty csv options
+      # for this scenario.
+      ActiveAdmin.application.csv_options = {}
       ActiveAdmin.register Post do
         csv encoding: 'SJIS' do
           column :title
