@@ -11,7 +11,7 @@ Feature: Format as CSV
     And a post with the title "Hello World" exists
     When I am on the index page for posts
     And I follow "CSV"
-    And I should download a CSV file for "posts" containing:
+    Then I should download a CSV file for "posts" containing:
     | Id  | Title       | Body | Published date | Position | Starred | Foo    |Created at | Updated at |
     | \d+ | Hello World |      |                |          |         |        |(.*)       | (.*)       |
 
@@ -23,7 +23,7 @@ Feature: Format as CSV
     And 1 post exists
     When I am on the index page for my_articles
     And I follow "CSV"
-    And I should download a CSV file for "my-articles" containing:
+    Then I should download a CSV file for "my-articles" containing:
     | Id  | Title       | Body | Published date | Position | Starred | Foo    | Created at | Updated at |
 
   Scenario: With CSV format customization
@@ -40,7 +40,7 @@ Feature: Format as CSV
     And a post with the title "Hello, World" exists
     When I am on the index page for posts
     And I follow "CSV"
-    And I should download a CSV file for "posts" containing:
+    Then I should download a CSV file for "posts" containing:
     | Title        | Last update | Copyright |
     | Hello, World | (.*)        | Greg Bell |
 
@@ -57,7 +57,7 @@ Feature: Format as CSV
     And a post with the title "Hello, World" exists
     When I am on the index page for posts
     And I follow "CSV"
-    And I should download a CSV file with ";" separator for "posts" containing:
+    Then I should download a CSV file with ";" separator for "posts" containing:
       | Title        | Body |
       | Hello, World | (.*) |
 
@@ -165,7 +165,7 @@ Feature: Format as CSV
     And a post with the title "012345" exists
     When I am on the index page for posts
     And I follow "CSV"
-    And I should download a CSV file with "," separator for "posts" containing:
+    Then I should download a CSV file with "," separator for "posts" containing:
       | 012345 | (.*) |
 
   Scenario: With encoding CSV options
@@ -181,7 +181,7 @@ Feature: Format as CSV
     And a post with the title "あいうえお" exists
     When I am on the index page for posts
     And I follow "CSV"
-    And the encoding of the CSV file should be "SJIS"
+    Then the encoding of the CSV file should be "SJIS"
 
   Scenario: With default encoding CSV options
     Given a configuration of:
@@ -197,7 +197,7 @@ Feature: Format as CSV
     And a post with the title "あいうえお" exists
     When I am on the index page for posts
     And I follow "CSV"
-    And the encoding of the CSV file should be "SJIS"
+    Then the encoding of the CSV file should be "SJIS"
 
   Scenario: With decorator
     Given a configuration of:
@@ -215,6 +215,6 @@ Feature: Format as CSV
     And a post with the title "Hello World" exists
     When I am on the index page for posts
     And I follow "CSV"
-    And I should download a CSV file for "posts" containing:
+    Then I should download a CSV file for "posts" containing:
     | Id  | Title       | Decorator method                         |
     | \d+ | Hello World | A method only available on the decorator |
