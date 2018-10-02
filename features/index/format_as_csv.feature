@@ -133,7 +133,7 @@ Feature: Format as CSV
       | 012345 | (.*) |
     And the CSV file should contain "012345" in quotes
 
-    Scenario: Without CVS column names explicitely specified
+    Scenario: Without CSV column names explicitely specified
     Given a configuration of:
     """
       ActiveAdmin.application.csv_options = {col_sep: ',', force_quotes: true}
@@ -151,7 +151,7 @@ Feature: Format as CSV
       | Title  | Body |
       | 012345 | (.*) |
 
-  Scenario: Without CVS column names
+  Scenario: Without CSV column names
     Given a configuration of:
     """
       ActiveAdmin.application.csv_options = {col_sep: ',', force_quotes: true}
