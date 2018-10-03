@@ -1,3 +1,4 @@
+@filters
 Feature: Index Filtering
 
   Scenario: Default Resources Filters

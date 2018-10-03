@@ -1,5 +1,15 @@
 require 'csv'
 
+Around '@csv' do |scenario, block|
+  default_csv_options = ActiveAdmin.application.csv_options
+
+  begin
+    block.call
+  ensure
+    ActiveAdmin.application.csv_options = default_csv_options
+  end
+end
+
 Then "I should see nicely formatted datetimes" do
   expect(page.body).to match /\w+ \d{1,2}, \d{4} \d{2}:\d{2}/
 end
@@ -18,24 +28,16 @@ Then /^I should download a CSV file with "([^"]*)" separator for "([^"]*)" conta
   expect(content_type_header).to eq 'text/csv; charset=utf-8'
   expect(content_disposition_header).to match /\Aattachment; filename=".+?\.csv"\z/
 
-  begin
-    csv = CSV.parse(body, col_sep: sep)
-    table.raw.each_with_index do |expected_row, row_index|
-      expected_row.each_with_index do |expected_cell, col_index|
-        cell = csv.try(:[], row_index).try(:[], col_index)
-        if expected_cell.blank?
-          expect(cell).to eq nil
-        else
-          expect(cell || '').to match /#{expected_cell}/
-        end
+  csv = CSV.parse(body, col_sep: sep)
+  table.raw.each_with_index do |expected_row, row_index|
+    expected_row.each_with_index do |expected_cell, col_index|
+      cell = csv.try(:[], row_index).try(:[], col_index)
+      if expected_cell.blank?
+        expect(cell).to eq nil
+      else
+        expect(cell || '').to match /#{expected_cell}/
       end
     end
-  rescue
-    puts "Expecting:"
-    p table.raw
-    puts "to match:"
-    p csv
-    raise $!
   end
 end
 
