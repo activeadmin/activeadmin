@@ -1,3 +1,4 @@
+@footer
 Feature: Site title
 
   As a developer

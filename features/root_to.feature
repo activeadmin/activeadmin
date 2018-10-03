@@ -1,3 +1,4 @@
+@root
 Feature: Namespace root
 
   As a developer
