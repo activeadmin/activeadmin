@@ -132,27 +132,27 @@
 
 * Deprecated `config.register_stylesheet` and `config.register_javascript`. Import your CSS and JS files in `active_admin.scss` or `active_admin.js`. [#5060] by [@javierjulio]
 * Deprecated `type` param from `status_tag` and related CSS classes [#4989] by [@javierjulio]
-  * The method signature has changed from:
+  The method signature has changed from:
 
-    ```ruby
-    status_tag(status, :ok, class: 'completed', label: 'on')
-    ```
+  ```ruby
+  status_tag(status, :ok, class: 'completed', label: 'on')
+  ```
 
-    to:
+  to:
 
-    ```ruby
-    status_tag(status, class: 'completed ok', label: 'on')
-    ```
+  ```ruby
+  status_tag(status, class: 'completed ok', label: 'on')
+  ```
 
-  * The following CSS classes have been deprecated and will be removed in the future:
+  The following CSS classes have been deprecated and will be removed in the future:
 
-    ```css
-    .status_tag {
-      &.ok, &.published, &.complete, &.completed, &.green { background: #8daa92; }
-      &.warn, &.warning, &.orange { background: #e29b20; }
-      &.error, &.errored, &.red { background: #d45f53; }
-    }
-    ```
+  ```css
+  .status_tag {
+    &.ok, &.published, &.complete, &.completed, &.green { background: #8daa92; }
+    &.warn, &.warning, &.orange { background: #e29b20; }
+    &.error, &.errored, &.red { background: #d45f53; }
+  }
+  ```
 
 ### Enhancements
 
@@ -209,20 +209,20 @@
 * Table CSS classes are now prefixed to prevent clashes. [#2532] by [@TimPetricola]
 * Allow Inherited Resources shorthand for redirection. [#2001] by [@seanlinsley]
 
-```ruby
-    controller do
-      # Redirects to index page instead of rendering updated resource
-      def update
-        update!{ collection_path }
-      end
+  ```ruby
+  controller do
+    # Redirects to index page instead of rendering updated resource
+    def update
+      update!{ collection_path }
     end
-```
+  end
+  ```
 
 * Accept block for download links. [#2040] by [@potatosalad]
 
-```ruby
-index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
-```
+  ```ruby
+  index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
+  ```
 
 * Comments menu can be customized via configuration passed to `config.comments_menu`. [#4187] by [@drn]
 * Added `config.route_options` to namespace to customize routes. [#4731] by [@stereoscott]
@@ -247,13 +247,13 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
   to use `ActiveSupport::Notifications`
   NOTE: The blog parameters has changed:
 
-```ruby
-ActiveSupport::Notifications.subscribe ActiveAdmin::Application::BeforeLoadEvent do |event, *args|
-  # some code
-end
+  ```ruby
+  ActiveSupport::Notifications.subscribe ActiveAdmin::Application::BeforeLoadEvent do |event, *args|
+    # some code
+  end
 
-ActiveSupport::Notifications.publish ActiveAdmin::Application::BeforeLoadEvent, "some data"
-```
+  ActiveSupport::Notifications.publish ActiveAdmin::Application::BeforeLoadEvent, "some data"
+  ```
 
 ## Previous Changes
 
