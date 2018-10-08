@@ -650,11 +650,14 @@ body h3 {
   font-weight: 300;
 }
 
-body #nav {
+body #nav, body #tidelift .cta {
   font-family: 'Yanone Kaffeesatz', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 1.2em;
   text-transform: uppercase;
+}
+
+body #nav {
   position: absolute;
   right: 0;
   top: 20px;
