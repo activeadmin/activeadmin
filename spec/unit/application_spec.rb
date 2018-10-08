@@ -5,18 +5,8 @@ RSpec.describe ActiveAdmin::Application do
 
   let(:application) { ActiveAdmin::Application.new }
 
-  around do |example|
-    old_load_paths = application.load_paths
-    # TODO: Figure out why load paths need to be overriden
-    application.load_paths = [File.expand_path('app/admin', Rails.root)]
-
-    example.call
-
-    application.load_paths = old_load_paths
-  end
-
   it "should have a default load path of ['app/admin']" do
-    expect(application.load_paths).to eq [File.expand_path('app/admin', Rails.root)]
+    expect(application.load_paths).to eq [File.expand_path('app/admin', application.app_path)]
   end
 
   it "should remove app/admin from the autoload paths (Active Admin deals with loading)" do
@@ -104,6 +94,12 @@ RSpec.describe ActiveAdmin::Application do
     expect(application.scopes_show_count).to eq true
   end
 
+  it "fails if setting undefined" do
+    expect do
+      application.undefined_setting
+    end.to raise_error(NoMethodError)
+  end
+
   describe "authentication settings" do
 
     it "should have no default current_user_method" do
@@ -125,12 +121,12 @@ RSpec.describe ActiveAdmin::Application do
 
   describe "files in load path" do
     it "should load files in the first level directory" do
-      expect(application.files).to include(File.expand_path("app/admin/dashboard.rb", Rails.root))
+      expect(application.files).to include(File.expand_path("app/admin/dashboard.rb", application.app_path))
     end
 
     it "should load files from subdirectories" do
-      test_dir = File.expand_path("app/admin/public", Rails.root)
-      test_file = File.expand_path("app/admin/public/posts.rb", Rails.root)
+      test_dir = File.expand_path("app/admin/public", application.app_path)
+      test_file = File.expand_path("app/admin/public/posts.rb", application.app_path)
 
       begin
         FileUtils.mkdir_p(test_dir)

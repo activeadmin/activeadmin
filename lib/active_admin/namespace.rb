@@ -25,6 +25,12 @@ module ActiveAdmin
   # resource will be accessible from "/posts" and the controller will be PostsController.
   #
   class Namespace
+    class << self
+      def setting(name, default)
+        Deprecation.warn "This method does not do anything and will be removed."
+      end
+    end
+
     RegisterEvent = 'active_admin.namespace.register'.freeze
 
     attr_reader :application, :resources, :menus
@@ -39,6 +45,18 @@ module ActiveAdmin
 
     def name
       @name.to_sym
+    end
+
+    def settings
+      @settings ||= SettingsNode.build(application.namespace_settings)
+    end
+
+    def respond_to_missing?(method, include_private = false)
+      settings.respond_to?(method) || super
+    end
+
+    def method_missing(method, *args)
+      settings.respond_to?(method) ? settings.send(method, *args) : super
     end
 
     # Register a resource into this namespace. The preffered method to access this is to
@@ -98,12 +116,6 @@ module ActiveAdmin
     # Returns the first registered ActiveAdmin::Resource instance for a given class
     def resource_for(klass)
       resources[klass]
-    end
-
-    # Override from ActiveAdmin::Settings to inherit default attributes
-    # from the application
-    def read_default_setting(name)
-      application.public_send name
     end
 
     def fetch_menu(name)

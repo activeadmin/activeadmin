@@ -50,7 +50,9 @@ RSpec.describe ActiveAdmin::Namespace do
     let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
 
     it "should inherit the site title from the application" do
-      ActiveAdmin::Namespace.setting :site_title, "Not the Same"
+      ActiveSupport::Deprecation.silence do
+        ActiveAdmin::Namespace.setting :site_title, "Not the Same"
+      end
       expect(namespace.site_title).to eq application.site_title
     end
 

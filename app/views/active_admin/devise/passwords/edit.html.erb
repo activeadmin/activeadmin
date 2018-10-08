@@ -1,5 +1,5 @@
 <div id="login">
-  <h2><%= render_or_call_method_or_proc_on(self, active_admin_application.site_title) %> <%= title t('active_admin.devise.change_password.title') %></h2>
+  <h2><%= active_admin_application.site_title(self) %> <%= title t('active_admin.devise.change_password.title') %></h2>
 
   <%= devise_error_messages! %>
   <%= active_admin_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|

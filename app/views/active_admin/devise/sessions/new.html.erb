@@ -1,5 +1,5 @@
 <div id="login">
-  <h2><%= render_or_call_method_or_proc_on(self, active_admin_application.site_title) %> <%= title t('active_admin.devise.login.title') %></h2>
+  <h2><%= active_admin_application.site_title(self) %> <%= title t('active_admin.devise.login.title') %></h2>
 
   <% scope = Devise::Mapping.find_scope!(resource_name) %>
   <%= active_admin_form_for(resource, as: resource_name, url: send(:"#{scope}_session_path"), html: { id: "session_new" }) do |f|
