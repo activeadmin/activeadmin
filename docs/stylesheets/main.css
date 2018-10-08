@@ -559,7 +559,7 @@ caption {
 body {
   background: #f6f4f1;
   color: #676767;
-  width: 676px;
+  width: 768px;
   padding: 0 20px;
   font-size: 95%;
   margin: 25px auto;
@@ -592,6 +592,27 @@ body h1 a span {
 
 body #header {
   margin: 40px 0;
+}
+
+body #header h1 {
+  margin-bottom: 0;
+}
+
+body #tidelift {
+  display: flex;
+  justify-content: flex-start;
+}
+
+body #tidelift .cta {
+  border: 1px solid #666666;
+  margin-left: auto;
+  padding: 10px;
+}
+
+body #tidelift .cta a {
+  background: url("../images/tidelift.svg") no-repeat;
+  padding-left: 30px;
+  text-decoration: none;
 }
 
 body .clear {
