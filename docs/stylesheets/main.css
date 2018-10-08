@@ -603,16 +603,16 @@ body #tidelift {
   justify-content: flex-start;
 }
 
-body #tidelift .cta {
+body #tidelift a {
   border: 1px solid #666666;
   margin-left: auto;
   padding: 10px;
+  text-decoration: none;
 }
 
-body #tidelift .cta a {
+body #tidelift a .cta {
   background: url("../images/tidelift.svg") no-repeat;
   padding-left: 30px;
-  text-decoration: none;
 }
 
 body .clear {
