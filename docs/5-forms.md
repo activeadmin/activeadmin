@@ -159,6 +159,9 @@ form do |f|
 end
 ```
 
+Datepicker also accepts the `:label` option as a string or proc to display.
+If it's a proc, it will be called each time the datepicker is rendered.
+
 ## Displaying Errors
 
 To display a list of all validation errors:

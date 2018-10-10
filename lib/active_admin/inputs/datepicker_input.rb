@@ -9,6 +9,13 @@ module ActiveAdmin
         end
       end
 
+      # Can pass proc to filter label option
+      def label_from_options
+        res = super
+        res = res.call if res.is_a? Proc
+        res
+      end
+
       private
       def datepicker_options
         options = self.options.fetch(:datepicker_options, {})
