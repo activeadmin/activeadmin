@@ -20,7 +20,7 @@ AllCops:
 
   StyleGuideCopsOnly: false
 
-Lint/EndAlignment:
+Layout/EndAlignment:
   Enabled: true
 
 Layout/AccessModifierIndentation:
