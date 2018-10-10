@@ -994,5 +994,19 @@ RSpec.describe ActiveAdmin::FormBuilder do
         expect(body.find(selector)["data-datepicker-options"]).to eq({ minDate: '2013-10-18', maxDate: '2013-12-31' }.to_json)
       end
     end
+
+    describe "with label as proc" do
+      let :body do
+        build_form do |f|
+          f.inputs do
+            f.input :created_at, as: :datepicker, label: proc { 'Title from proc' }
+          end
+        end
+      end
+
+      it "should render proper label" do
+        expect(body).to have_selector("label", text: "Title from proc")
+      end
+    end
   end
 end

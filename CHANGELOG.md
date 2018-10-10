@@ -2,6 +2,12 @@
 
 ## Master (unreleased)
 
+### Enhancements
+
+#### Minor
+
+* Allow proc label in datepicker input [#5408][] by [@tiagotex][]
+
 ### Bug fixes
 
 * Fixed the string representation of the resolved `sort_key` when no explicit
@@ -292,6 +298,7 @@ Please check [0-6-stable][] for previous changes.
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
 [#5464]: https://github.com/activeadmin/activeadmin/pull/5464
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
+[#5408]: https://github.com/activeadmin/activeadmin/pull/5408
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -324,6 +331,7 @@ Please check [0-6-stable][] for previous changes.
 [@RobinvanderVliet]: https://github.com/RobinvanderVliet
 [@seanlinsley]: https://github.com/seanlinsley
 [@shekibobo]: https://github.com/shekibobo
+[@tiagotex]: https://github.com/tiagotex
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
