@@ -23,6 +23,9 @@ AllCops:
 Layout/EndAlignment:
   Enabled: true
 
+Lint/ParenthesesAsGroupedExpression:
+  Enabled: true
+
 Layout/AccessModifierIndentation:
   Enabled: true
 
