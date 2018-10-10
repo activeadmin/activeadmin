@@ -1,5 +1,10 @@
 ---
 
+addons:
+  apt:
+    packages:
+      - google-chrome-stable
+
 language: ruby
 
 sudo: false
@@ -11,11 +16,10 @@ bundler_args: --without development
 cache: bundler
 
 before_script:
+  - bin/install_chromedriver.sh
   - unset _JAVA_OPTIONS
 
 before_install:
-  - PATH=$(npm bin):$PATH # needed to install phantomjs via npm
-  - if [ $(phantomjs --version) != '2.1.1' ]; then npm install phantomjs-prebuilt@2.1; fi
   - gem update --system # use the very latest Rubygems
   - gem install bundler # use the very latest Bundler
 
