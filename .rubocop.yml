@@ -1,5 +1,9 @@
 ---
 
+inherit_mode:
+  merge:
+    - Include
+
 AllCops:
   DisabledByDefault: true
   TargetRubyVersion: 2.3
