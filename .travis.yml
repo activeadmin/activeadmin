@@ -35,6 +35,7 @@ script:
   - bundle exec rake lint
 
 rvm:
+  - jruby-9.1.17.0
   - jruby-9.2.0.0
 
 gemfile:
