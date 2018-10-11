@@ -25,7 +25,7 @@ task :setup, [:parallel, :dir, :template] do |_t, opts|
     env = { 'BUNDLE_GEMFILE' => ENV['BUNDLE_GEMFILE'] }
     env['INSTALL_PARALLEL'] = 'yes' if opts[:parallel]
 
-    Bundler.with_clean_env { Kernel.exec(env, command) }
+    Bundler.with_original_env { Kernel.exec(env, command) }
 
     Rake::Task['parallel:after_setup_hook'].invoke if opts[:parallel]
   end

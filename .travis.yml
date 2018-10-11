@@ -30,10 +30,8 @@ script:
   - bundle exec rake lint
 
 rvm:
+  - jruby-9.1.17.0
   - jruby-9.2.0.0
-  - 2.3.7
-  - 2.4.4
-  - 2.5.1
 
 gemfile:
   - gemfiles/rails_42.gemfile
@@ -48,6 +46,3 @@ env:
 
 matrix:
   fast_finish: true
-
-  allow_failures:
-    - rvm: jruby-9.2.0.0
