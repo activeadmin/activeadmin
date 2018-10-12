@@ -9,8 +9,12 @@ RSpec.describe ActiveAdmin::Application do
     expect(application.load_paths).to eq [File.expand_path('app/admin', application.app_path)]
   end
 
-  it "should remove app/admin from the autoload paths (Active Admin deals with loading)" do
-    expect(ActiveSupport::Dependencies.autoload_paths).to_not include(File.join(Rails.root, "app/admin"))
+  describe "#prepare" do
+    before { application.prepare! }
+
+    it "should remove app/admin from the autoload paths" do
+      expect(ActiveSupport::Dependencies.autoload_paths).to_not include(File.join(Rails.root, "app/admin"))
+    end
   end
 
   it "should store the site's title" do
