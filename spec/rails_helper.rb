@@ -2,8 +2,7 @@ require 'spec_helper'
 
 ENV['RAILS_ENV'] = 'test'
 
-require 'rails'
-ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{Rails.version}", __FILE__)
+ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{Gem.loaded_specs["rails"].version}", __FILE__)
 
 # Create the test app if it doesn't exists
 unless File.exists?(ENV['RAILS_ROOT'])
