@@ -399,6 +399,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  activemodel-serializers-xml
   activerecord-jdbcsqlite3-adapter (>= 52.0)
   better_errors
   binding_of_caller

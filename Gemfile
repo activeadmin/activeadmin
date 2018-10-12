@@ -6,6 +6,7 @@ gem "rails", "~> 5.2.x"
 gem "bootsnap"
 gem "devise", "~> 4.4"
 gem "draper", "~> 3.0"
+gem "activemodel-serializers-xml"
 gem "activerecord-jdbcsqlite3-adapter", ">= 52.0", platforms: :jruby
 
 gemspec path: "."
