@@ -67,7 +67,7 @@ class FixmeLinter
 end
 
 desc "Lints ActiveAdmin code base"
-task lint: ["lint:rubocop", "lint:mdl", "lint:trailing_whitespace", "lint:fixme"]
+task lint: ["lint:rubocop", "lint:mdl", "lint:trailing_whitespace", "lint:fixme", "lint:i18n"]
 
 namespace :lint do
   require "rubocop/rake_task"
@@ -93,5 +93,11 @@ namespace :lint do
     puts "Checking for FIXME strings..."
 
     FixmeLinter.new.run
+  end
+
+  task :i18n do
+    puts "Checking for issues in i18n files..."
+
+    system("rspec tasks/i18n_spec.rb")
   end
 end
