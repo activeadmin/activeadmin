@@ -23,12 +23,6 @@ RSpec.configure do |config|
 
   require 'support/active_admin_integration_spec_helper'
   config.include ActiveAdminIntegrationSpecHelper
-
-  # Setup Some Admin stuff for us to play with
-  config.before(:suite) do
-    ActiveAdminIntegrationSpecHelper.load_defaults!
-    ActiveAdminIntegrationSpecHelper.reload_routes!
-  end
 end
 
 # Force deprecations to raise an exception.
