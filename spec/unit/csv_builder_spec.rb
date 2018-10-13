@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::CSVBuilder do
 
   describe '.default_for_resource using Post' do

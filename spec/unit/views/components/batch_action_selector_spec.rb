@@ -1,3 +1,4 @@
+require 'rails_helper'
 require 'active_admin/batch_actions/views/batch_action_selector'
 
 RSpec.describe ActiveAdmin::BatchActions::BatchActionSelector do

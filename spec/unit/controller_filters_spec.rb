@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::Application do
   let(:application){ ActiveAdmin::Application.new }
   let(:controllers){ application.controllers_for_filters }

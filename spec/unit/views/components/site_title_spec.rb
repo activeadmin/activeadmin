@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::Views::SiteTitle do
 
   let(:helpers){ mock_action_view }

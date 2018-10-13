@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::Views::AttributesTable do
 
   describe "creating with the dsl" do

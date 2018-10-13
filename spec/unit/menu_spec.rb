@@ -1,3 +1,4 @@
+require 'rails_helper'
 require 'active_admin/menu'
 require 'active_admin/menu_item'
 

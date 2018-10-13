@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe "Memory Leak", type: :request, if: RUBY_ENGINE == 'ruby' do
   before do
     load_defaults!

@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::Namespace, "registering a page" do
   let(:application){ ActiveAdmin::Application.new }
   let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }

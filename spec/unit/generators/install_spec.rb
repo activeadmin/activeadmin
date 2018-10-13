@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe "AA installation" do
   context "should create" do
 
