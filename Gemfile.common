@@ -17,6 +17,7 @@ gem 'chandler', git: 'https://github.com/deivid-rodriguez/chandler', branch: 'su
 group :lint do
   # Code style
   gem 'rubocop', '0.59.2'
+  gem 'rubocop-rspec', '~> 1.30'
   gem 'mdl', '0.5.0'
 
   # Translations

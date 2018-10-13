@@ -4,6 +4,8 @@ inherit_mode:
   merge:
     - Include
 
+require: rubocop-rspec
+
 AllCops:
   DisabledByDefault: true
   TargetRubyVersion: 2.3
@@ -46,6 +48,9 @@ Layout/EndOfLine:
   Enabled: true
 
 Layout/ExtraSpacing:
+  Enabled: true
+
+RSpec/HookArgument:
   Enabled: true
 
 Style/Encoding:

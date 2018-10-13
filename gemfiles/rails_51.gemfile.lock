@@ -342,6 +342,8 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
+    rubocop-rspec (1.30.0)
+      rubocop (>= 0.58.0)
     ruby-progressbar (1.10.0)
     rubyzip (1.2.2)
     sass (3.7.2)
@@ -425,6 +427,7 @@ DEPENDENCIES
   rake
   rspec-rails
   rubocop (= 0.59.2)
+  rubocop-rspec (~> 1.30)
   selenium-webdriver
   simplecov
   sqlite3
