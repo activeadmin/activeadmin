@@ -1,4 +1,4 @@
-RSpec.describe ActiveAdmin, "Routing", type: :routing do
+RSpec.describe "Routing", type: :routing do
 
   before do
     load_defaults!
