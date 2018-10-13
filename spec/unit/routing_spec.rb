@@ -67,11 +67,11 @@ RSpec.describe "Routing", type: :routing do
     end
 
     context "when in root namespace" do
-      before(:each) do
+      before do
         load_resources { ActiveAdmin.register(Post, namespace: false) }
       end
 
-      after(:each) do
+      after do
         namespaces.instance_variable_get(:@namespaces).delete(:root)
       end
 
@@ -174,7 +174,7 @@ RSpec.describe "Routing", type: :routing do
 
   describe "page" do
     context "when default namespace" do
-      before(:each) do
+      before do
         load_resources { ActiveAdmin.register_page("Chocolate I lØve You!") }
       end
 
@@ -184,11 +184,11 @@ RSpec.describe "Routing", type: :routing do
     end
 
     context "when in the root namespace" do
-      before(:each) do
+      before do
         load_resources { ActiveAdmin.register_page("Chocolate I lØve You!", namespace: false) }
       end
 
-      after(:each) do
+      after do
         namespaces.instance_variable_get(:@namespaces).delete(:root)
       end
 
@@ -198,7 +198,7 @@ RSpec.describe "Routing", type: :routing do
     end
 
     context "when singular page name" do
-      before(:each) do
+      before do
         load_resources { ActiveAdmin.register_page("Log") }
       end
 
