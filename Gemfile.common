@@ -23,9 +23,6 @@ gem 'yard'                        # Documentation generator
 gem 'redcarpet', platforms: :mri  # Markdown implementation (for yard)
 gem 'kramdown', platforms: :jruby # Markdown implementation (for yard)
 
-# Application server
-gem 'puma', '~> 3.12'
-
 group :development do
   # Debugging
   gem 'better_errors' # Web UI to debug exceptions. Go to /__better_errors to access the latest one
