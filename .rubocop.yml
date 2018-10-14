@@ -10,7 +10,7 @@ AllCops:
     - vendor/bundle/**/*
 
   Include:
-    - "gemfiles/*.gemfile"
+    - gemfiles/*.gemfile
 
   DisplayCopNames: true
 
