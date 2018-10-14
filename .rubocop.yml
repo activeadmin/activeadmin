@@ -15,6 +15,7 @@ AllCops:
 
   Include:
     - gemfiles/*.gemfile
+    - .simplecov
 
   DisplayCopNames: true
 
