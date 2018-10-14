@@ -119,12 +119,6 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
 
 RUBY
 
-# Add our local Active Admin to the application
-gem 'activeadmin', path: '../..'
-gem 'devise'
-
-run 'bundle install'
-
 # Setup Active Admin
 generate 'active_admin:install'
 
