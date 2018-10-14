@@ -6,7 +6,7 @@ RSpec.describe ActiveAdmin::Resource::PagePresenters do
   let(:resource){ namespace.register(Post) }
 
   it "should have an empty set of configs on initialize" do
-    expect(resource.page_presenters).to eq ({})
+    expect(resource.page_presenters).to eq({})
   end
 
   it "should add a show page presenter" do
