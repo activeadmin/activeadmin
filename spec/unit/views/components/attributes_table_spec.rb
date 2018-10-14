@@ -177,7 +177,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
         let(:cols) { table.find_by_tag "col" }
 
         it "contains a col for each record (plus headers)" do
-          expect(cols.size).to eq (2 + 1)
+          expect(cols.size).to eq(2 + 1)
         end
 
         it "assigns an id to each col" do
