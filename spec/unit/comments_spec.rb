@@ -4,7 +4,7 @@ RSpec.describe "Comments" do
   let(:application) { ActiveAdmin::Application.new }
 
   describe ActiveAdmin::Comment do
-    subject(:comment){ ActiveAdmin::Comment.new }
+    let(:comment){ ActiveAdmin::Comment.new }
 
     let(:user) { User.create!(first_name: "John", last_name: "Doe") }
 
@@ -30,6 +30,11 @@ RSpec.describe "Comments" do
     it "needs a namespace" do
       expect(comment).to_not be_valid
       expect(comment.errors[:namespace]).to eq(["can't be blank"])
+    end
+
+    it "needs a resource" do
+      expect(comment).to_not be_valid
+      expect(comment.errors[:resource]).to eq(["can't be blank"])
     end
 
     describe ".find_for_resource_in_namespace" do
