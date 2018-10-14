@@ -50,7 +50,6 @@ module ActiveAdminIntegrationSpecHelper
     controller.params = ActionController::Parameters.new
     MockActionView.new(ActionController::Base.view_paths, assigns, controller)
   end
-  alias_method :action_view, :mock_action_view
 
   # A mock action view to test view helpers
   class MockActionView < ::ActionView::Base

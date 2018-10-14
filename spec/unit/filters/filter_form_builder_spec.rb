@@ -5,7 +5,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
   let(:helpers) do
-    view = action_view
+    view = mock_action_view
     def view.collection_path
       "/posts"
     end
@@ -368,7 +368,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     # Setup an ActionView::Base object which can be used for
     # generating the form for.
     let(:helpers) do
-      view = action_view
+      view = mock_action_view
       def view.collection_path
         "/categories"
       end
