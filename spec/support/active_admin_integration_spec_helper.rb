@@ -44,11 +44,11 @@ module ActiveAdminIntegrationSpecHelper
   end
 
   # Returns a fake action view instance to use with our renderers
-  def mock_action_view(assigns = {})
+  def mock_action_view
     controller = ActionView::TestCase::TestController.new
     #this line needed because of rails bug https://github.com/rails/rails/commit/d8e98897b5703ac49bf0764da71a06d64ecda9b0
     controller.params = ActionController::Parameters.new
-    MockActionView.new(ActionController::Base.view_paths, assigns, controller)
+    MockActionView.new(ActionController::Base.view_paths, {}, controller)
   end
 
   # A mock action view to test view helpers
