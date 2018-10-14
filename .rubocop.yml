@@ -10,10 +10,7 @@ AllCops:
     - vendor/bundle/**/*
 
   Include:
-    - "**/*.rake"
-    - "**/Gemfile"
     - "gemfiles/*.gemfile"
-    - "**/Rakefile"
 
   DisplayCopNames: true
 
