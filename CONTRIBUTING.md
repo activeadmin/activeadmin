@@ -29,12 +29,6 @@ least version `1.14.3`.
 You'll also need chrome and [chromedriver] installed in order to run cucumber
 scenarios.
 
-Select the Gemfile for your preferred Rails version, preferably the latest:
-
-```sh
-export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
-```
-
 Now install the development dependencies:
 
 ```sh
@@ -50,11 +44,22 @@ bundle exec rake
 The test run will generate a sample Rails application in `spec/rails` to run the
 tests against.
 
-If your tests are passing locally but they're failing on Travis, reset your test
-environment:
+If your tests are passing locally but they're failing on Travis, it's probably
+because of some breaking change or problem with the latest version of some
+dependency. You should be able to reproduce the issue locally by:
+
+* Removing the `Gemfile.lock` file.
+* Running `bundle install`.
+* Re-running the tests again like you did previously.
+
+This is not your fault though, so if this happens feel free to investigate, but
+also feel free to ping maintainers about the issue you just found.
+
+If you want to test against a Rails version different from the latest, make sure
+you use the correct Gemfile, for example:
 
 ```sh
-rm -rf spec/rails && bundle update
+export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
 ```
 
 ### 4. Did you find a bug?

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe 'bug_report_templates' do
   subject do
-    Bundler.with_clean_env do
+    Bundler.with_original_env do
       Dir.chdir(chdir_path) do
         system({'ACTIVE_ADMIN_PATH' => active_admin_root},
                Gem.ruby,

@@ -5,6 +5,11 @@ addons:
     packages:
       - google-chrome-stable
 
+branches:
+  only:
+    - master
+    - 1-4-stable
+
 language: ruby
 
 sudo: false
@@ -22,6 +27,7 @@ before_script:
 before_install:
   - gem update --system # use the very latest Rubygems
   - gem install bundler # use the very latest Bundler
+  - rm "${BUNDLE_GEMFILE}.lock"
 
 script:
   - bundle exec rake
@@ -29,16 +35,14 @@ script:
   - bundle exec rake lint
 
 rvm:
+  - jruby-9.1.17.0
   - jruby-9.2.0.0
-  - 2.3.7
-  - 2.4.4
-  - 2.5.1
 
 gemfile:
   - gemfiles/rails_42.gemfile
   - gemfiles/rails_50.gemfile
   - gemfiles/rails_51.gemfile
-  - gemfiles/rails_52.gemfile
+  - Gemfile
 
 env:
   global:
@@ -47,6 +51,3 @@ env:
 
 matrix:
   fast_finish: true
-
-  allow_failures:
-    - rvm: jruby-9.2.0.0
