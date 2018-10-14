@@ -16,6 +16,7 @@
   be explicitly specified when a block is passed to column) [#5464][] by
   [@chumakoff][]
 * Fixed `if:` scope option when a lambda is passed [#5501][] by [@deivid-rodriguez][]
+* Comment validation adding redundant errors when resource is missing [#5516][] by [@deivid-rodriguez][]
 
 ## 1.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.1...v1.3.0)
 
@@ -299,6 +300,7 @@ Please check [0-6-stable][] for previous changes.
 [#5464]: https://github.com/activeadmin/activeadmin/pull/5464
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
 [#5408]: https://github.com/activeadmin/activeadmin/pull/5408
+[#5516]: https://github.com/activeadmin/activeadmin/pull/5516
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
