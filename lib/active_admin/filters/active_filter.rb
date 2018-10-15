@@ -102,7 +102,7 @@ module ActiveAdmin
 
       def related_primary_key
         if predicate_association
-          predicate_association.active_record_primary_key
+          predicate_association.association_primary_key
         elsif related_class
           related_class.primary_key
         end
