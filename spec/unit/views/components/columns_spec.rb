@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Views::Columns do
 
   describe "Rendering zero columns" do

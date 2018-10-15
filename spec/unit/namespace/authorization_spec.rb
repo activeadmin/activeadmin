@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Resource, "authorization" do
 
   let(:app){ ActiveAdmin::Application.new }

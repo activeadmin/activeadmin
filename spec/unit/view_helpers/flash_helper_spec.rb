@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::ViewHelpers::FlashHelper do
 
   describe '.flash_messages' do

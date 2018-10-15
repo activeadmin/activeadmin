@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Resource::Sidebars do
 
   let(:resource) do

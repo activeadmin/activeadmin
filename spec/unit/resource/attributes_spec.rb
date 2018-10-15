@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 module ActiveAdmin
   RSpec.describe Resource, "Attributes" do
     let(:application) { ActiveAdmin::Application.new }

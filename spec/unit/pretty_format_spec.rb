@@ -1,4 +1,3 @@
-require 'rails_helper'
 require 'active_admin/view_helpers/display_helper'
 
 RSpec.describe "#pretty_format" do

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 include ActiveAdmin
 RSpec.describe ActiveAdmin::Views::IndexAsBlog do
   subject { described_class.new }

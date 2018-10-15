@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Views::Menu do
 
   let(:menu){ ActiveAdmin::Menu.new }

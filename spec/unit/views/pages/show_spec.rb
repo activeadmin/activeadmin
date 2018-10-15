@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Views::Pages::Show do
 
   describe "the resource" do
