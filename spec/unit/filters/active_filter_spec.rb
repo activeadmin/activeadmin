@@ -186,4 +186,33 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     end
   end
 
+  context 'when the resource has a custom primary key' do
+    let(:resource_klass) do
+      Class.new(Store) do
+        self.primary_key = 'name'
+        belongs_to :user
+
+        def self.name
+          'SubStore'
+        end
+      end
+    end
+
+    let(:resource) do
+      namespace.register(resource_klass)
+    end
+
+    let(:user) { User.create! first_name: 'John', last_name: 'Doe' }
+    let(:store) { resource_klass.create! name: 'Store 1', user_id: user.id }
+
+    let(:search) do
+      resource_klass.ransack(user_id_eq: user.id)
+    end
+
+    it "should use the association's primary key to find the associated record" do
+      allow(ActiveSupport::Dependencies).to receive(:constantize).with("::#{resource_klass.name}").and_return(resource_klass)
+
+      expect(subject.values.first).to eq user
+    end
+  end
 end

@@ -89,7 +89,7 @@ create_file 'app/models/category.rb', <<-RUBY.strip_heredoc, force: true
   end
 RUBY
 
-generate :model, 'store name:string'
+generate :model, 'store name:string user_id:integer'
 
 generate :model, 'tag name:string'
 create_file 'app/models/tag.rb', <<-RUBY.strip_heredoc, force: true
