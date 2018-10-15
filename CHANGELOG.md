@@ -21,6 +21,8 @@
   * Update tr.yml. [#5295][] by [@kobeumut][]
   * Update zh-CN.yml. [#5266][] by [@jasl][]
 
+* Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
+
 ## 1.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.0...v1.3.1)
 
 ### Bug Fixes
@@ -307,6 +309,7 @@ Please check [0-6-stable][] for previous changes.
 [#5343]: https://github.com/activeadmin/activeadmin/pull/5343
 [#5341]: https://github.com/activeadmin/activeadmin/pull/5341
 [#5357]: https://github.com/activeadmin/activeadmin/pull/5357
+[#5359]: https://github.com/activeadmin/activeadmin/pull/5359
 [#5368]: https://github.com/activeadmin/activeadmin/pull/5368
 [#5399]: https://github.com/activeadmin/activeadmin/pull/5399
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
@@ -345,6 +348,7 @@ Please check [0-6-stable][] for previous changes.
 [@JiiHu]: https://github.com/JiiHu
 [@johnnyshields]: https://github.com/johnnyshields
 [@kobeumut]: https://github.com/kobeumut
+[@leio10]: https://github.com/leio10
 [@markstory]: https://github.com/markstory
 [@mauriciopasquier]: https://github.com/mauriciopasquier
 [@Nguyenanh]: https://github.com/Nguyenanh
