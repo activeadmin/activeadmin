@@ -8,12 +8,28 @@ RSpec.describe "Comments" do
 
     let(:user) { User.create!(first_name: "John", last_name: "Doe") }
 
-    it "has valid Associations and Validations" do
-      expect(comment).to belong_to :resource
-      expect(comment).to belong_to :author
-      expect(comment).to validate_presence_of :resource
-      expect(comment).to validate_presence_of :body
-      expect(comment).to validate_presence_of :namespace
+    let(:post) { Post.create!(title: "Hello World") }
+
+    it "belongs to a resource" do
+      comment.assign_attributes(resource_type: "Post", resource_id: post.id)
+
+      expect(comment.resource).to eq(post)
+    end
+
+    it "belongs to an author" do
+      comment.assign_attributes(author_type: "User", author_id: user.id)
+
+      expect(comment.author).to eq(user)
+    end
+
+    it "needs a body" do
+      expect(comment).to_not be_valid
+      expect(comment.errors[:body]).to eq(["can't be blank"])
+    end
+
+    it "needs a namespace" do
+      expect(comment).to_not be_valid
+      expect(comment.errors[:namespace]).to eq(["can't be blank"])
     end
 
     it "needs a resource" do
@@ -22,7 +38,6 @@ RSpec.describe "Comments" do
     end
 
     describe ".find_for_resource_in_namespace" do
-      let(:post) { Post.create!(title: "Hello World") }
       let(:namespace_name) { "admin" }
 
       before do

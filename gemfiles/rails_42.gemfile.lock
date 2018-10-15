@@ -332,8 +332,6 @@ GEM
     selenium-webdriver (3.14.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
-    shoulda-matchers (2.8.0)
-      activesupport (>= 3.0.0)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -407,7 +405,6 @@ DEPENDENCIES
   rspec-rails
   rubocop (= 0.59.2)
   selenium-webdriver
-  shoulda-matchers (<= 2.8.0)
   simplecov
   sqlite3
   yard
