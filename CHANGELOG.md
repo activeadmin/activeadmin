@@ -7,6 +7,7 @@
 #### Minor
 
 * Allow proc label in datepicker input [#5408][] by [@tiagotex][]
+* Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
 
 ### Bug fixes
 
@@ -295,6 +296,7 @@ Please check [0-6-stable][] for previous changes.
 [#5284]: https://github.com/activeadmin/activeadmin/pull/5284
 [#5299]: https://github.com/activeadmin/activeadmin/pull/5299
 [#5343]: https://github.com/activeadmin/activeadmin/pull/5343
+[#5359]: https://github.com/activeadmin/activeadmin/pull/5359
 [#5399]: https://github.com/activeadmin/activeadmin/pull/5399
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
 [#5464]: https://github.com/activeadmin/activeadmin/pull/5464
@@ -324,6 +326,7 @@ Please check [0-6-stable][] for previous changes.
 [@javierjulio]: https://github.com/javierjulio
 [@jawa]: https://github.com/jawa
 [@johnnyshields]: https://github.com/johnnyshields
+[@leio10]: https://github.com/leio10
 [@markstory]: https://github.com/markstory
 [@Nguyenanh]: https://github.com/Nguyenanh
 [@PChambino]: https://github.com/PChambino
