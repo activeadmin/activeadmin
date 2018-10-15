@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Views::Panel do
   let(:arbre_panel) do
     render_arbre_component do

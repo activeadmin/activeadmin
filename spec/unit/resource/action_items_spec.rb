@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Resource::ActionItems do
 
   let(:resource) do

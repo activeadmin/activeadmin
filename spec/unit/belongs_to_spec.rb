@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Resource::BelongsTo do
   before do
     load_resources do

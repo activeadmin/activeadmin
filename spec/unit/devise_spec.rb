@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Devise::Controller do
 
   let(:controller_class) do

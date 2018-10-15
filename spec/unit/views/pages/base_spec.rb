@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Views::Pages::Base do
   class NewPage < ActiveAdmin::Views::Pages::Base
   end

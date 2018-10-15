@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Views::Pages::Layout do
 
   let(:assigns){ {} }

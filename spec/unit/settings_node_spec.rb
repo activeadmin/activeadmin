@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::SettingsNode do
   subject { ActiveAdmin::SettingsNode.build }
   let!(:child) { ActiveAdmin::SettingsNode.build(subject) }

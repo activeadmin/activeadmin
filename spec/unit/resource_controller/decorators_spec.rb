@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::ResourceController::Decorators do
   let(:controller_class) do
     Class.new do

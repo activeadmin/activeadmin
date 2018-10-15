@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Namespace do
 
   let(:application){ ActiveAdmin::Application.new }

@@ -1,4 +1,3 @@
-require 'rails_helper'
 require "rspec/mocks/standalone"
 
 RSpec.describe ActiveAdmin::FormBuilder do

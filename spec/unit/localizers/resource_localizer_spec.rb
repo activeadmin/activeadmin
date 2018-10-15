@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.shared_examples_for "ActiveAdmin::Localizers::ResourceLocalizer" do
   it "should use proper translation" do
     string = ActiveAdmin::Localizers::ResourceLocalizer.t(action, model: model, model_name: model_name)

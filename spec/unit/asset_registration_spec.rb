@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::AssetRegistration do
   include ActiveAdmin::AssetRegistration
 

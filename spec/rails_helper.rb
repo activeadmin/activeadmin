@@ -25,16 +25,9 @@ ActiveAdmin.application.authentication_method = false
 ActiveAdmin.application.current_user_method = false
 
 RSpec.configure do |config|
-  config.disable_monkey_patching!
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures = false
   config.render_views = false
-  config.filter_run focus: true
-  config.filter_run_excluding skip: true
-  config.run_all_when_everything_filtered = true
-  config.color = true
-  config.order = :random
-  config.example_status_persistence_file_path = ".rspec_failures"
 
   devise = ActiveAdmin::Dependency.devise >= '4.2' ? Devise::Test::ControllerHelpers : Devise::TestHelpers
   config.include devise, type: :controller

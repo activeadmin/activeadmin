@@ -1,4 +1,3 @@
-require 'rails_helper'
 require 'fileutils'
 
 RSpec.describe ActiveAdmin::Application do

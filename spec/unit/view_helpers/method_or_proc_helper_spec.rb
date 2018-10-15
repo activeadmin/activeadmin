@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe MethodOrProcHelper do
   let(:receiver) { double }
 

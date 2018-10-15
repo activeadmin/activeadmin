@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ActiveAdmin::Views::Pages::Form do
   describe "#title" do
     let!(:application){ ActiveAdmin::Application.new }

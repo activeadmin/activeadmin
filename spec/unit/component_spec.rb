@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 class MockComponentClass < ActiveAdmin::Component; end
 
 RSpec.describe ActiveAdmin::Component do
