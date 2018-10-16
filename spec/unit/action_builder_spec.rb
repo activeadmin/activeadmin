@@ -56,9 +56,7 @@ RSpec.describe 'defining actions from registration blocks', type: :controller do
       end
 
       it 'sets the page title' do
-        params = {id: 1}
-        params = {params: params} if ActiveAdmin::Dependency.rails5?
-        get :comment, params
+        get :comment, params: { id: 1 }
 
         expect(controller.instance_variable_get(:@page_title)).to eq 'My Awesome Comment'
       end

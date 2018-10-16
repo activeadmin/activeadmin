@@ -34,16 +34,6 @@ steps: &steps
         bundle exec rake lint
 
 jobs:
-  ruby23rails42:
-    docker:
-      - image: circleci/ruby:2.3.7-node-browsers
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_42.gemfile
-
-    steps:
-      *steps
-
   ruby23rails50:
     docker:
       - image: circleci/ruby:2.3.7-node-browsers
@@ -74,16 +64,6 @@ jobs:
     steps:
       *steps
 
-  ruby24rails42:
-    docker:
-      - image: circleci/ruby:2.4.4-node-browsers
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_42.gemfile
-
-    steps:
-      *steps
-
   ruby24rails50:
     docker:
       - image: circleci/ruby:2.4.4-node-browsers
@@ -110,16 +90,6 @@ jobs:
 
     environment:
       BUNDLE_GEMFILE: Gemfile
-
-    steps:
-      *steps
-
-  ruby25rails42:
-    docker:
-      - image: circleci/ruby:2.5.1-node-browsers
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_42.gemfile
 
     steps:
       *steps
@@ -159,17 +129,14 @@ workflows:
 
   build:
     jobs:
-      - ruby23rails42
       - ruby23rails50
       - ruby23rails51
       - ruby23rails52
 
-      - ruby24rails42
       - ruby24rails50
       - ruby24rails51
       - ruby24rails52
 
-      - ruby25rails42
       - ruby25rails50
       - ruby25rails51
       - ruby25rails52
