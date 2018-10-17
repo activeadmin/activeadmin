@@ -23,9 +23,6 @@ gem 'yard'                        # Documentation generator
 gem 'redcarpet', platforms: :mri  # Markdown implementation (for yard)
 gem 'kramdown', platforms: :jruby # Markdown implementation (for yard)
 
-# Application server
-gem 'puma', '~> 3.12'
-
 group :development do
   # Debugging
   gem 'better_errors' # Web UI to debug exceptions. Go to /__better_errors to access the latest one
@@ -37,7 +34,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 3.0'
+  gem 'capybara', git: "https://github.com/deivid-rodriguez/capybara", branch: "fix_jruby_issue"
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'codecov', require: false # Test coverage website. Go to https://codecov.io
   gem 'cucumber-rails', '~> 1.5', require: false

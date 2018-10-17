@@ -1,4 +1,4 @@
-require 'i18n/tasks'
+require 'i18n-spec'
 
 Dir.glob('config/locales/*.yml') do |locale_file|
   RSpec.describe locale_file do
@@ -11,15 +11,15 @@ Dir.glob('config/locales/*.yml') do |locale_file|
   end
 end
 
+require 'i18n/tasks'
+
 RSpec.describe 'I18n' do
   let(:i18n) { I18n::Tasks::BaseTask.new }
   let(:unused_keys) { i18n.unused_keys }
+  let(:unused_key_count) { unused_keys.leaves.count }
 
   let(:failure_msg) do
-    <<-MSG.squish
-      #{unused_keys.leaves.count} unused i18n keys, run `i18n-tasks unused' to
-      show them
-    MSG
+    "#{unused_key_count} unused i18n keys, run `i18n-tasks unused' to show them"
   end
 
   it 'does not have unused keys' do

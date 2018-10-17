@@ -1,4 +1,4 @@
-RSpec.describe ActiveAdmin, "Routing", type: :routing do
+RSpec.describe "Routing", type: :routing do
 
   before do
     load_defaults!
@@ -17,6 +17,8 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
   end
 
   it "should route to the admin dashboard" do
+    skip('route_to matcher crashes sometimes on jruby') if RUBY_ENGINE == 'jruby'
+
     expect(get('/admin')).to route_to 'admin/dashboard#index'
   end
 
@@ -165,6 +167,8 @@ RSpec.describe ActiveAdmin, "Routing", type: :routing do
       end
 
       it "should properly route the collection action" do
+        skip('route_to matcher crashes sometimes on jruby') if RUBY_ENGINE == 'jruby'
+
         expect({ get: "/admin/users/do_something" }).to \
           route_to({ controller: 'admin/users', action: 'do_something'})
       end
