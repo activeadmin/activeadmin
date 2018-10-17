@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/deivid-rodriguez/capybara
+  revision: b01b4ceaa7b7ee65b4a0c0d99eaf48bb2735f341
+  branch: fix_jruby_issue
+  specs:
+    capybara (3.9.0)
+      addressable
+      mini_mime (>= 0.1.3)
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      xpath (~> 3.2)
+
 PATH
   remote: ..
   specs:
@@ -85,13 +98,6 @@ GEM
     builder (3.2.3)
     byebug (10.0.2)
     cancan (1.6.10)
-    capybara (3.8.2)
-      addressable
-      mini_mime (>= 0.1.3)
-      nokogiri (~> 1.8)
-      rack (>= 1.6.0)
-      rack-test (>= 0.6.3)
-      xpath (~> 3.1)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     codecov (0.1.10)
@@ -374,7 +380,7 @@ GEM
     websocket-driver (0.6.5-java)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
-    xpath (3.1.0)
+    xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.16)
 
@@ -388,7 +394,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   cancan
-  capybara (~> 3.0)
+  capybara!
   codecov
   cucumber
   cucumber-rails (~> 1.5)
