@@ -4,6 +4,7 @@
 //= require jquery-ui/widgets/sortable
 //= require jquery-ui/widgets/tabs
 //= require jquery-ui/widget
+//= require jquery.form
 //= require jquery_ujs
 //= require_self
 //= require ./ext/jquery
