@@ -6,6 +6,10 @@ steps: &steps
   - checkout
 
   - run:
+      name: Install a specific bundler version
+      command: gem install bundler -v 1.16.6
+
+  - run:
       name: Cat current Gemfile to a specific file so caching works
       command: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
 
