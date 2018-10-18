@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'Index overriding', type: :controller do
   before do
     load_resources { ActiveAdmin.register Post }

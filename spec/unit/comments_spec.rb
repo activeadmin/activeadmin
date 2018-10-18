@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe "Comments" do
   let(:application) { ActiveAdmin::Application.new }
 

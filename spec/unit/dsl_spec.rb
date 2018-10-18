@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 module MockModuleToInclude
   def self.included(dsl)
   end

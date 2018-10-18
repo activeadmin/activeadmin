@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe "Controller Authorization", type: :controller do
 
   let(:authorization){ controller.send(:active_admin_authorization) }

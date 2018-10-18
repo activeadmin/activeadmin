@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 # Adapted from Rails 5 to support Rails 4.
 # https://github.com/rails/rails/blob/9c35bf2a6a27431c6aa283db781c19f61c5155be/actionview/test/template/output_safety_helper_test.rb
 RSpec.describe ActiveAdmin::OutputSafetyHelper, type: :view do

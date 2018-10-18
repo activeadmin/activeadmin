@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::Filters::Active do
 
   let(:resource) do

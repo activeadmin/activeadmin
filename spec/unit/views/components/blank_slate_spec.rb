@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::Views::BlankSlate do
 
   describe "#blank_slate" do

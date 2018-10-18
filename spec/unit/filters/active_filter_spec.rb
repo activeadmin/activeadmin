@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::Filters::ActiveFilter do
 
   let(:namespace) do
