@@ -36,7 +36,7 @@ module ActiveAdmin
               "data-confirm" => confirmation_text,
               "data-inputs"  => render_in_context(self, batch_action.inputs).to_json
             }
-
+            options['data-remote'] = true if batch_action.options.try(:[], :remote)
             default_title = render_or_call_method_or_proc_on(self, batch_action.title)
             title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", default: default_title)
             label = I18n.t("active_admin.batch_actions.action_label", title: title)

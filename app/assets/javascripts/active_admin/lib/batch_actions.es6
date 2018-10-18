@@ -25,7 +25,14 @@ const onDOMReady = function() {
     }
 
     $('#batch_action').val($(this).data('action'));
-    $('#collection_selection').submit();
+    if ($(this).data('remote')) {
+      $('#collection_selection').ajaxSubmit();
+      $('.dropdown_menu').aaDropdownMenu('close');
+      $('.dropdown_menu').aaDropdownMenu('disable');
+      $('.collection_selection').prop({ checked: false });
+    } else {
+      $('#collection_selection').submit();
+    }
   });
 
   //
