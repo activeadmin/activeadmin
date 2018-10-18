@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::Resource::PagePresenters do
 
   let(:namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }

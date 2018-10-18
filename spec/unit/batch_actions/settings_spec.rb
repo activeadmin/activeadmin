@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe "Batch Actions Settings" do
   let(:app) { ActiveAdmin::Application.new }
   let(:ns) { ActiveAdmin::Namespace.new(app, "Admin") }

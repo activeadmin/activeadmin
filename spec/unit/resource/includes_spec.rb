@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 module ActiveAdmin
   RSpec.describe Resource, "Includes" do
     describe "#includes" do
