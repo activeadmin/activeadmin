@@ -1,24 +1,24 @@
 desc "Run the full suite using 1 core"
 task test: [:setup, :spec, :cucumber]
 
-require 'rspec/core/rake_task'
+desc "Run the specs"
+task :spec do
+  system("rspec")
+end
 
-RSpec::Core::RakeTask.new(:spec)
-
-require 'cucumber/rake/task'
-
+desc "Run the cucumber scenarios"
 task cucumber: [:"cucumber:regular", :"cucumber:reloading"]
 
 namespace :cucumber do
 
-  Cucumber::Rake::Task.new(:regular, "Run the standard cucumber scenarios") do |t|
-    t.profile = 'default'
-    t.bundler = false
+  desc "Run the standard cucumber scenarios"
+  task :regular do
+    system("cucumber")
   end
 
-  Cucumber::Rake::Task.new(:reloading, "Run the cucumber scenarios that test reloading") do |t|
-    t.profile = 'class-reloading'
-    t.bundler = false
+  desc "Run the cucumber scenarios that test reloading"
+  task :reloading do
+    system("cucumber --profile class-reloading")
   end
 
 end
