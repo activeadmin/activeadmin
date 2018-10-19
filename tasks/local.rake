@@ -9,10 +9,8 @@ task :local do
   # Discard the "local" argument (name of the task)
   argv = ARGV[1..-1]
 
-  # If it's a rails command, or we're using Rails 5, auto add the rails script
-  rails_commands = %w(generate console server db dbconsole g c s runner)
-
-  if rails_commands.include?(argv[0])
+  # If it's a rails command, auto add the rails script
+  if %w(generate console server db dbconsole g c s runner).include?(argv[0])
     argv.unshift('rails')
   end
 
