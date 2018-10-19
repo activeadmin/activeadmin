@@ -3,7 +3,7 @@ require 'shellwords'
 require_relative "application_generator"
 
 desc "Run the full suite using parallel_tests to run on multiple cores"
-task parallel_tests: ['parallel:setup_parallel_tests', 'parallel:spec', 'parallel:features', 'cucumber:class_reloading']
+task parallel_tests: ['parallel:setup_parallel_tests', 'parallel:spec', 'parallel:cucumber', 'cucumber:class_reloading']
 
 namespace :parallel do
 
@@ -37,8 +37,8 @@ namespace :parallel do
 
   end
 
-  desc "Run the cucumber features in parallel"
-  task features: :setup_parallel_tests do
+  desc "Run the cucumber scenarios in parallel"
+  task cucumber: :setup_parallel_tests do
     run_in_parallel "parallel_cucumber features/"
   end
 
