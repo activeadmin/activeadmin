@@ -57,7 +57,7 @@ version: 2.1
 .run_tests: &run_tests
   run:
     name: Run tests
-    command: COVERAGE=true bundle exec rake test
+    command: COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bundle exec rake test
 
 .save_test_times: &save_test_times
   save_cache:
