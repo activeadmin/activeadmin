@@ -293,7 +293,8 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
     User.create!  first_name: first,
                   last_name: last,
                   username: [first,last].join('-').downcase,
-                  age: rand(80)
+                  age: rand(80),
+                  encrypted_password: SecureRandom.hex
   end
 
   categories = ["Rock", "Pop Rock", "Alt-Country", "Blues", "Dub-Step"].collect do |name|
