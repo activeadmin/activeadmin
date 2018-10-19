@@ -14,8 +14,6 @@ namespace :parallel do
 
   task :after_setup_hook do
     rails_app_rake "parallel:load_schema"
-    rails_app_rake "parallel:create_cucumber_db"
-    rails_app_rake "parallel:load_schema_cucumber_db"
   end
 
   desc "Setup parallel_tests DBs"
