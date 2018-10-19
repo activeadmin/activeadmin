@@ -7,15 +7,6 @@ task parallel_tests: ['parallel:setup_parallel_tests', 'parallel:spec', 'paralle
 
 namespace :parallel do
 
-  def rails_app_rake(task)
-    require 'rails/version'
-    system "cd spec/rails/rails-#{Rails::VERSION::STRING}; rake #{task}"
-  end
-
-  task :after_setup_hook do
-    rails_app_rake "parallel:load_schema"
-  end
-
   desc "Setup parallel_tests DBs"
   task :setup_parallel_tests do
     ActiveAdmin::ApplicationGenerator.new(parallel: true).generate

@@ -36,11 +36,16 @@ module ActiveAdmin
 
         Bundler.with_original_env { Kernel.exec(env, command) }
 
-        Rake::Task['parallel:after_setup_hook'].invoke if parallel
+        rails_app_rake "parallel:load_schema" if parallel
       end
     end
 
     private
+
+    def rails_app_rake(task)
+      require 'rails/version'
+      system "cd spec/rails/rails-#{Rails::VERSION::STRING}; rake #{task}"
+    end
 
     def base_dir
       @base_dir ||= rails_env == 'test' ? 'spec/rails' : '.test-rails-apps'
