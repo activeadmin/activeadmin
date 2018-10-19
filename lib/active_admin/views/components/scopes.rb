@@ -13,16 +13,20 @@ module ActiveAdmin
       include ::ActiveAdmin::Helpers::Collection
 
       def default_class_name
-        "scopes table_tools_segmented_control"
+        "scopes"
       end
 
       def tag_name
-        'ul'
+        'div'
       end
 
       def build(scopes, options = {})
-        scopes.each do |scope|
-          build_scope(scope, options) if call_method_or_proc_on(self, scope.display_if_block)
+        scopes.group_by(&:group).each do |group, group_scopes|
+          ul class: "table_tools_segmented_control #{group_class(group)}" do
+            group_scopes.each do |scope|
+              build_scope(scope, options) if call_method_or_proc_on(self, scope.display_if_block)
+            end
+          end
         end
       end
 
@@ -60,6 +64,9 @@ module ActiveAdmin
         collection_size(scope_chain(scope, collection_before_scope))
       end
 
+      def group_class(group)
+        group.present? ? "scope-group-#{group}" : "scope-default-group"
+      end
     end
   end
 end

@@ -283,3 +283,27 @@ Feature: Index Scoping
     And I should see the scope "Published" with the count 1
     And I should see 1 posts in the table
     And I should see the current scope with label "Published"
+
+  Scenario: Viewing resources with grouped scopes
+    Given 3 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope :all
+        scope "Published", group: :status do |posts|
+          posts.where("published_date IS NOT NULL")
+        end
+        scope "Unpublished", group: :status do |posts|
+          posts.where("published_date IS NULL")
+        end
+        scope "Today", group: :date do |posts|
+          posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day, ::Time.zone.now.end_of_day])
+        end
+        scope "Tomorrow", group: :date do |posts|
+          posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day + 1.day, ::Time.zone.now.end_of_day + 1.day])
+        end
+      end
+      """
+    Then I should see an empty group with the scope "All"
+    And I should see a group "status" with the scopes "Published" and "Unpublished"
+    And I should see a group "date" with the scopes "Today" and "Tomorrow"
