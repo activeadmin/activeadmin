@@ -12,7 +12,7 @@ task :local do
   # If it's a rails command, or we're using Rails 5, auto add the rails script
   rails_commands = %w(generate console server db dbconsole g c s runner)
 
-  if Rails::VERSION::MAJOR >= 5 || rails_commands.include?(argv[0])
+  if rails_commands.include?(argv[0])
     argv.unshift('rails')
   end
 
