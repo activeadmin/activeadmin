@@ -15,8 +15,8 @@ module ActiveAdmin
       app_dir = "#{base_dir}/rails-#{Rails::VERSION::STRING}"
 
       unless !parallel || parallel_tests_setup?
-        puts "parallel_tests is not set up. (Re)building spec/rails/rails-#{Rails::VERSION::STRING} App. Please wait."
-        system("rm -Rf spec/rails/rails-#{Rails::VERSION::STRING}")
+        puts "parallel_tests is not set up. (Re)building #{app_dir} App. Please wait."
+        system("rm -Rf #{app_dir}")
       end
 
       if File.exist? app_dir
