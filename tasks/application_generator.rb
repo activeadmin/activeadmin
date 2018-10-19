@@ -14,6 +14,12 @@ module ActiveAdmin
       base_dir = rails_env == 'test' ? 'spec/rails' : '.test-rails-apps'
       app_dir = "#{base_dir}/rails-#{Rails::VERSION::STRING}"
 
+      unless !parallel || parallel_tests_setup?
+        puts "parallel_tests is not set up. (Re)building spec/rails/rails-#{Rails::VERSION::STRING} App. Please wait."
+        require 'rails/version'
+        system("rm -Rf spec/rails/rails-#{Rails::VERSION::STRING}")
+      end
+
       if File.exist? app_dir
         puts "test app #{app_dir} already exists; skipping"
       else
@@ -38,6 +44,14 @@ module ActiveAdmin
 
         Rake::Task['parallel:after_setup_hook'].invoke if parallel
       end
+    end
+
+    private
+
+    def parallel_tests_setup?
+      require 'rails/version'
+      database_config = File.join "spec", "rails", "rails-#{Rails::VERSION::STRING}", "config", "database.yml"
+      File.exist?(database_config) && File.read(database_config).include?("TEST_ENV_NUMBER")
     end
   end
 end

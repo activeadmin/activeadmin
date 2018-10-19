@@ -1,5 +1,6 @@
 require 'parallel'
 require 'shellwords'
+require_relative "application_generator"
 
 desc "Run the full suite using parallel_tests to run on multiple cores"
 task parallel_tests: ['parallel:setup_parallel_tests', 'parallel:spec', 'parallel:features', 'cucumber:class_reloading']
@@ -17,20 +18,9 @@ namespace :parallel do
     rails_app_rake "parallel:load_schema_cucumber_db"
   end
 
-  def parallel_tests_setup?
-    require 'rails/version'
-    database_config = File.join "spec", "rails", "rails-#{Rails::VERSION::STRING}", "config", "database.yml"
-    File.exist?(database_config) && File.read(database_config).include?("TEST_ENV_NUMBER")
-  end
-
   desc "Setup parallel_tests DBs"
   task :setup_parallel_tests do
-    unless parallel_tests_setup?
-      puts "parallel_tests is not set up. (Re)building spec/rails/rails-#{Rails::VERSION::STRING} App. Please wait."
-      require 'rails/version'
-      system("rm -Rf spec/rails/rails-#{Rails::VERSION::STRING}")
-      Rake::Task['setup'].invoke true
-    end
+    ActiveAdmin::ApplicationGenerator.new(parallel: true).generate
   end
 
   def run_in_parallel(command)
