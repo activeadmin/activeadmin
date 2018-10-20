@@ -1,12 +1,8 @@
 # Utility gems used in both development & test environments
 gem 'rake'
-
-# Debugging
 gem 'pry' # Easily debug from your console with `binding.pry`
-gem 'pry-byebug', platforms: :mri
-
-# Github releases from changelog
-gem 'chandler', git: 'https://github.com/deivid-rodriguez/chandler', branch: 'submit_link_references'
+gem 'pry-byebug', platforms: :mri # Step-by-step debugging
+gem 'chandler', git: 'https://github.com/deivid-rodriguez/chandler', branch: 'submit_link_references' # Github releases from changelog
 
 group :lint do
   # Code style
