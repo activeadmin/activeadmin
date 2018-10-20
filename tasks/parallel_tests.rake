@@ -2,7 +2,7 @@ require 'parallel'
 require_relative "application_generator"
 
 desc "Run the full suite using parallel_tests to run on multiple cores"
-task parallel_tests: [:setup_parallel_tests, 'parallel:spec', 'parallel:cucumber', 'cucumber:class_reloading']
+task parallel_tests: [:setup_parallel_tests, 'parallel:spec', 'parallel:cucumber', 'cucumber:reloading']
 
 desc "Setup parallel_tests DBs"
 task :setup_parallel_tests do
