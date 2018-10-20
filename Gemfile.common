@@ -1,11 +1,5 @@
-# Optional dependencies
-gem 'cancan'
-gem 'pundit'
-gem 'jruby-openssl', '~> 0.10.1', platforms: :jruby
-
 # Utility gems used in both development & test environments
 gem 'rake'
-gem 'parallel_tests', '~> 2.26'
 
 # Debugging
 gem 'pry' # Easily debug from your console with `binding.pry`
@@ -41,6 +35,12 @@ end
 
 group :test do
   gem 'capybara', '~> 3.10'
+
+  # Optional dependencies
+  gem 'cancan'
+  gem 'pundit'
+  gem 'jruby-openssl', '~> 0.10.1', platforms: :jruby
+
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'cucumber-rails', '~> 1.5', require: false
   gem 'cucumber'
@@ -48,6 +48,7 @@ group :test do
   gem 'jasmine'
   gem 'jasmine-core', '2.9.1' # last release with Ruby 2.2 support.
   gem 'launchy'
+  gem 'parallel_tests', '~> 2.26'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
   gem 'sqlite3', platforms: :mri
