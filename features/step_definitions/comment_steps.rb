@@ -12,10 +12,6 @@ When /^I add a comment "([^"]*)"$/ do |comment|
   step %{I press "Add Comment"}
 end
 
-Given /^a tag with the name "([^"]*)" exists$/ do |tag_name|
-  Tag.create(name: tag_name)
-end
-
 Given /^(a|\d+) comments added by admin with an email "([^"]+)"?$/ do |number, email|
   number = number == 'a' ? 1 : number.to_i
   admin_user = ensure_user_created(email)
