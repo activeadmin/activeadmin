@@ -1,5 +1,4 @@
 require 'parallel'
-require 'shellwords'
 require_relative "application_generator"
 
 desc "Run the full suite using parallel_tests to run on multiple cores"
@@ -12,18 +11,9 @@ namespace :parallel do
     ActiveAdmin::ApplicationGenerator.new(parallel: true).generate
   end
 
-  def run_in_parallel(command)
-    bash("ENV['TEST_ENV_NUMBER']=#{Parallel.processor_count} #{command}")
-  end
-
-  def bash(command)
-    escaped_command = Shellwords.escape(command)
-    system("bash -c #{escaped_command}")
-  end
-
   desc "Run the specs in parallel"
   task spec: :setup_parallel_tests do
-    run_in_parallel "parallel_rspec spec/"
+    system "parallel_rspec spec/"
   end
 
   namespace :spec do
@@ -31,7 +21,7 @@ namespace :parallel do
     %w(unit request).each do |type|
       desc "Run the #{type} specs in parallel"
       task type => :setup_parallel_tests do
-        run_in_parallel "parallel_rspec spec/#{type}"
+        system "parallel_rspec spec/#{type}"
       end
     end
 
@@ -39,7 +29,7 @@ namespace :parallel do
 
   desc "Run the cucumber scenarios in parallel"
   task cucumber: :setup_parallel_tests do
-    run_in_parallel "parallel_cucumber features/"
+    system "parallel_cucumber features/"
   end
 
 end
