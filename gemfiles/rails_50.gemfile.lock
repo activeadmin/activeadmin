@@ -1,7 +1,6 @@
 GIT
-  remote: https://github.com/deivid-rodriguez/capybara
-  revision: b01b4ceaa7b7ee65b4a0c0d99eaf48bb2735f341
-  branch: fix_jruby_issue
+  remote: https://github.com/teamcapybara/capybara
+  revision: 057b552f5be85f7c82e57bbc8179f65eba8a0a94
   specs:
     capybara (3.9.0)
       addressable
@@ -9,6 +8,7 @@ GIT
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
+      regexp_parser (~> 1.2)
       xpath (~> 3.2)
 
 PATH
@@ -307,6 +307,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redcarpet (3.4.0)
+    regexp_parser (1.2.0)
     request_store (1.4.1)
       rack (>= 1.4)
     responders (2.4.0)
