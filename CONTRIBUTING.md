@@ -44,7 +44,7 @@ bundle exec rake
 The test run will generate a sample Rails application in `spec/rails` to run the
 tests against.
 
-If your tests are passing locally but they're failing on Travis, it's probably
+If your tests are passing locally but they're failing on CircleCI, it's probably
 because of some breaking change or problem with the latest version of some
 dependency. You should be able to reproduce the issue locally by:
 
@@ -144,7 +144,7 @@ git push --set-upstream origin 325-add-japanese-translations
 
 Finally, go to GitHub and [make a Pull Request][] :D
 
-Travis CI will run our test suite against all supported Rails versions. We care
+CircleCI will run our test suite against all supported Rails versions. We care
 about quality, so your PR won't be merged until all tests pass. It's unlikely,
 but it's possible that your changes pass tests in one Rails version but fail in
 another. In that case, you'll have to setup your development environment (as
