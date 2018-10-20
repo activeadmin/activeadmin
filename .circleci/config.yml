@@ -19,7 +19,7 @@ steps: &steps
 
   - run:
       name: Install dependencies
-      command: bundle install --without development --path vendor/bundle --retry 3 --jobs 3
+      command: bundle install --without development --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3
 
   - run:
       name: Install chromedriver
