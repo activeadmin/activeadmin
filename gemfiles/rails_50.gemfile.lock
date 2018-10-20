@@ -100,7 +100,7 @@ GEM
     cancan (1.6.10)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
-    codecov (0.1.10)
+    codecov (0.1.13)
       json
       simplecov
       url
