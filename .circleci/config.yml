@@ -33,15 +33,39 @@ version: 2.1
     paths:
       - vendor/bundle
 
-.run_checks: &run_checks
+.run_tests: &run_tests
   run:
-    name: Run checks
-    command: |
-      COVERAGE=true bundle exec rake
-      bundle exec rake docs:build
-      bundle exec rake lint
+    name: Run tests
+    command: COVERAGE=true bundle exec rake
+
+.generate_docs: &generate_docs
+  run:
+    name: Generate docs
+    command: bundle exec rake docs:build
+
+.run_lints: &run_lints
+  run:
+    name: Run lints
+    command: bundle exec rake lint
 
 jobs:
+  lint_and_docs:
+    docker:
+      - image: circleci/ruby:2.5.1
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+
+    steps:
+      - checkout
+      - *install_bundler
+      - *copy_current_gemfile
+      - *restore_cache
+      - *install_dependencies
+      - *save_cache
+      - *generate_docs
+      - *run_lints
+
   ruby23rails50:
     docker:
       - image: circleci/ruby:2.3.7-node-browsers
@@ -57,7 +81,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   ruby23rails51:
     docker:
@@ -74,7 +98,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   ruby23rails52:
     docker:
@@ -91,7 +115,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   ruby24rails50:
     docker:
@@ -108,7 +132,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   ruby24rails51:
     docker:
@@ -125,7 +149,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   ruby24rails52:
     docker:
@@ -142,7 +166,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   ruby25rails50:
     docker:
@@ -159,7 +183,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   ruby25rails51:
     docker:
@@ -176,7 +200,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   ruby25rails52:
     docker:
@@ -193,7 +217,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   jruby91rails50:
     docker:
@@ -211,7 +235,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   jruby91rails51:
     docker:
@@ -229,7 +253,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   jruby91rails52:
     docker:
@@ -247,7 +271,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   jruby92rails50:
     docker:
@@ -265,7 +289,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   jruby92rails51:
     docker:
@@ -283,7 +307,7 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
   jruby92rails52:
     docker:
@@ -301,13 +325,14 @@ jobs:
       - *install_dependencies
       - *install_chromedriver
       - *save_cache
-      - *run_checks
+      - *run_tests
 
 workflows:
   version: 2
 
   build:
     jobs:
+      - lint_and_docs
       - ruby23rails50
       - ruby23rails51
       - ruby23rails52
