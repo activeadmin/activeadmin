@@ -128,6 +128,72 @@ jobs:
     steps:
       *steps
 
+  jruby91rails50:
+    docker:
+      - image: ccistaging/jruby:9.1.17.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *steps
+
+  jruby91rails51:
+    docker:
+      - image: ccistaging/jruby:9.1.17.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *steps
+
+  jruby91rails52:
+    docker:
+      - image: ccistaging/jruby:9.1.17.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *steps
+
+  jruby92rails50:
+    docker:
+      - image: ccistaging/jruby:9.2.0.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *steps
+
+  jruby92rails51:
+    docker:
+      - image: ccistaging/jruby:9.2.0.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *steps
+
+  jruby92rails52:
+    docker:
+      - image: ccistaging/jruby:9.2.0.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *steps
+
 workflows:
   version: 2
 
@@ -144,3 +210,11 @@ workflows:
       - ruby25rails50
       - ruby25rails51
       - ruby25rails52
+
+      - jruby91rails50
+      - jruby91rails51
+      - jruby91rails52
+
+      - jruby92rails50
+      - jruby92rails51
+      - jruby92rails52
