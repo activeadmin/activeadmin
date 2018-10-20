@@ -12,7 +12,7 @@ namespace :parallel do
   end
 
   desc "Run the specs in parallel"
-  task spec: :setup_parallel_tests do
+  task :spec do
     system "parallel_rspec spec/"
   end
 
@@ -20,7 +20,7 @@ namespace :parallel do
 
     %w(unit request).each do |type|
       desc "Run the #{type} specs in parallel"
-      task type => :setup_parallel_tests do
+      task type do
         system "parallel_rspec spec/#{type}"
       end
     end
@@ -28,7 +28,7 @@ namespace :parallel do
   end
 
   desc "Run the cucumber scenarios in parallel"
-  task cucumber: :setup_parallel_tests do
+  task :cucumber do
     system "parallel_cucumber features/"
   end
 
