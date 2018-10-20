@@ -35,23 +35,7 @@ class HtmlTableToTextHelper
   def input_to_string(input)
     case input.attribute("type").value
     when "checkbox"
-      if input.attribute("disabled")
-        "_"
-      else
-        if input.attribute("checked")
-          "[X]"
-        else
-          "[ ]"
-        end
-      end
-    when "text"
-      if input.attribute("value").present?
-        "[#{input.attribute("value")}]"
-      else
-        "[ ]"
-      end
-    when "submit"
-      input.attribute("value")
+      "[ ]"
     else
       raise "I don't know what to do with #{input}"
     end

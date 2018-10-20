@@ -9,14 +9,8 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-# Single-line step scoper
-When /^(.*) within (.*[^:])$/ do |step_name, parent|
+When /^(.*) within (.*)$/ do |step_name, parent|
   with_scope(parent) { step step_name }
-end
-
-# Multi-line step scoper
-When /^(.*) within (.*[^:]):$/ do |step_name, parent, table_or_string|
-  with_scope(parent) { step "#{step_name}:", table_or_string }
 end
 
 Given /^I am on (.+)$/ do |page_name|
@@ -45,10 +39,6 @@ end
 
 When /^I (check|uncheck) "([^"]*)"$/ do |action, field|
   send action, field
-end
-
-When /^I attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
-  attach_file(field, File.expand_path(path))
 end
 
 Then /^I should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|

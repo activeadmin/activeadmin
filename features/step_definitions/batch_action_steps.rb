@@ -15,10 +15,6 @@ When /^I check the (\d+)(?:st|nd|rd|th) record$/ do |index|
   page.all("table.index_table input[type=checkbox]")[index.to_i].set true
 end
 
-When /^I toggle the collection selection$/ do
-  page.find("#collection_selection_toggle_all").click
-end
-
 Then /^I should see that the batch action button is disabled$/ do
   expect(page).to have_css ".batch_actions_selector .dropdown_menu_button.disabled"
 end

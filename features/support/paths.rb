@@ -8,14 +8,10 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /the home\s?page/
-      '/'
     when /the dashboard/
       "/admin"
     when /the new post page/
       "/admin/posts/new"
-    when /the new user page/
-      "/admin/users/new"
     when /the login page/
       "/admin/login"
     when /the first post custom status page/
@@ -25,14 +21,9 @@ module NavigationHelpers
     when /the admin password reset form with token "([^"]*)"/
       "/admin/password/edit?reset_password_token=#{$1}"
 
-    # the index page for posts in the root namespace
     # the index page for posts in the user_admin namespace
     when /^the index page for (.*) in the (.*) namespace$/
-      if $2 != 'root'
-        send "#{$2}_#{$1}_path"
-      else
-        send "#{$1}_path"
-      end
+      send "#{$2}_#{$1}_path"
 
     # same as above, except defaults to admin namespace
     when /^the index page for (.*)$/
