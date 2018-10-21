@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::CSVBuilder do
 
   describe '.default_for_resource using Post' do
@@ -33,6 +35,14 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       it 'gets name from I18n' do
         title_index =  resource.content_columns.index(:title) + 1 # First col is always id
         expect(csv_builder.columns[title_index].name).to eq localized_name
+      end
+    end
+
+    context 'for models having sensitive attributes' do
+      let(:resource){ ActiveAdmin::Resource.new(namespace, User, {}) }
+
+      it 'omits sensitive fields' do
+        expect(csv_builder.columns.map(&:data)).to_not include :encrypted_password
       end
     end
   end

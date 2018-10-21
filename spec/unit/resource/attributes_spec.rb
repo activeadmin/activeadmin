@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 module ActiveAdmin
   RSpec.describe Resource, "Attributes" do
     let(:application) { ActiveAdmin::Application.new }
@@ -20,6 +22,13 @@ module ActiveAdmin
                                starred: :starred,
                                title: :title,
                                updated_at: :updated_at)
+      end
+
+      it 'does not return sensitive attributes' do
+        keep = ActiveAdmin.application.filter_attributes
+        ActiveAdmin.application.filter_attributes = [:published_date]
+        expect(subject).to_not include :published_date
+        ActiveAdmin.application.filter_attributes = keep
       end
     end
 

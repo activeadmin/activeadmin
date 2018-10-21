@@ -6,19 +6,13 @@ create_file 'app/assets/stylesheets/some-random-css.css'
 create_file 'app/assets/javascripts/some-random-js.js'
 create_file 'app/assets/images/a/favicon.ico'
 
-belongs_to_optional_flag = if Rails::VERSION::MAJOR < 5
-                             "required: false"
-                           else
-                             "optional: true"
-                           end
-
 generate :model, 'post title:string body:text published_date:date author_id:integer ' +
   'position:integer custom_category_id:integer starred:boolean foo_id:integer'
 
 create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
   class Post < ActiveRecord::Base
-    belongs_to :category, foreign_key: :custom_category_id, #{belongs_to_optional_flag}
-    belongs_to :author, class_name: 'User', #{belongs_to_optional_flag}
+    belongs_to :category, foreign_key: :custom_category_id, optional: true
+    belongs_to :author, class_name: 'User', optional: true
     has_many :taggings
     has_many :tags, through: :taggings
     accepts_nested_attributes_for :author
@@ -55,7 +49,7 @@ RUBY
 
 generate :model, 'profile user_id:integer bio:text'
 
-generate :model, 'user type:string first_name:string last_name:string username:string age:integer'
+generate :model, 'user type:string first_name:string last_name:string username:string age:integer encrypted_password:string'
 create_file 'app/models/user.rb', <<-RUBY.strip_heredoc, force: true
   class User < ActiveRecord::Base
     class VIP < self
@@ -105,8 +99,8 @@ RUBY
 generate :model, 'tagging post_id:integer tag_id:integer position:integer'
 create_file 'app/models/tagging.rb', <<-RUBY.strip_heredoc, force: true
   class Tagging < ActiveRecord::Base
-    belongs_to :post, #{belongs_to_optional_flag}
-    belongs_to :tag, #{belongs_to_optional_flag}
+    belongs_to :post, optional: true
+    belongs_to :tag, optional: true
 
     delegate :name, to: :tag, prefix: true
   end

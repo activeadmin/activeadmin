@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper do
   describe "class methods" do
     before :all do

@@ -1,10 +1,11 @@
+require 'rails_helper'
 require "rspec/mocks/standalone"
 
 RSpec.describe ActiveAdmin::FormBuilder do
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
   let(:helpers) do
-    view = action_view
+    view = mock_action_view
     def view.posts_path
       "/posts"
     end

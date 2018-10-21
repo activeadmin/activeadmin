@@ -4,6 +4,10 @@
 
 ### Enhancements
 
+### Security Fixes
+
+* Prevent leaking hashed passwords via user CSV export and adds a config option for sensitive attributes [#5486][] by [@chrp][]
+
 #### Minor
 
 * Allow proc label in datepicker input [#5408][] by [@tiagotex][]
@@ -310,6 +314,7 @@ Please check [0-6-stable][] for previous changes.
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
 [#5408]: https://github.com/activeadmin/activeadmin/pull/5408
 [#5516]: https://github.com/activeadmin/activeadmin/pull/5516
+[#5486]: https://github.com/activeadmin/activeadmin/pull/5486
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -350,3 +355,4 @@ Please check [0-6-stable][] for previous changes.
 [@wasifhossain]: https://github.com/wasifhossain
 [@wspurgin]: https://github.com/wspurgin
 [@zorab47]: https://github.com/zorab47
+[@chrp]: https://github.com/chrp

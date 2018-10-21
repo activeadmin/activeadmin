@@ -1,7 +1,9 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::Views::AttributesTable do
 
   describe "creating with the dsl" do
-    let(:helpers) { action_view }
+    let(:helpers) { mock_action_view }
 
     let(:post) do
       post = Post.new title: "Hello World", body: nil

@@ -1,7 +1,9 @@
+require 'rails_helper'
+
 RSpec.describe ActiveAdmin::ViewHelpers::FlashHelper do
 
   describe '.flash_messages' do
-    let(:view) { action_view }
+    let(:view) { mock_action_view }
 
     it "should not include 'timedout' flash messages by default" do
       view.request.flash[:alert] = "Alert"
