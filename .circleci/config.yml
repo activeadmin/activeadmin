@@ -2,42 +2,80 @@
 
 version: 2.1
 
-steps: &steps
+.install_bundler: &install_bundler
+  run:
+    name: Install a specific bundler version
+    command: gem install bundler -v 1.16.6
+
+.copy_current_gemfile: &copy_current_gemfile
+  run:
+    name: Cat current Gemfile to a specific file so caching works
+    command: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
+
+.restore_cache: &restore_cache
+  restore_cache:
+    keys:
+      - bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
+
+.install_dependencies: &install_dependencies
+  run:
+    name: Install dependencies
+    command: bundle install --without development --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3
+
+.install_chromedriver: &install_chromedriver
+  run:
+    name: Install chromedriver
+    command: bin/install_chromedriver.sh
+
+.save_cache: &save_cache
+  save_cache:
+    key: bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
+    paths:
+      - vendor/bundle
+
+.run_tests: &run_tests
+  run:
+    name: Run tests
+    command: COVERAGE=true bundle exec rake
+
+.generate_docs: &generate_docs
+  run:
+    name: Generate docs
+    command: bundle exec rake docs:build
+
+.run_lints: &run_lints
+  run:
+    name: Run lints
+    command: bundle exec rake lint
+
+.test_steps: &test_steps
   - checkout
-
-  - run:
-      name: Install a specific bundler version
-      command: gem install bundler -v 1.16.6
-
-  - run:
-      name: Cat current Gemfile to a specific file so caching works
-      command: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
-
-  - restore_cache:
-      keys:
-        - bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
-
-  - run:
-      name: Install dependencies
-      command: bundle install --without development --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3
-
-  - run:
-      name: Install chromedriver
-      command: bin/install_chromedriver.sh
-
-  - save_cache:
-      key: bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
-      paths:
-        - vendor/bundle
-
-  - run:
-      name: Run checks
-      command: |
-        COVERAGE=true bundle exec rake
-        bundle exec rake docs:build
-        bundle exec rake lint
+  - *install_bundler
+  - *copy_current_gemfile
+  - *restore_cache
+  - *install_dependencies
+  - *install_chromedriver
+  - *save_cache
+  - *run_tests
 
 jobs:
+  lint_and_docs:
+    docker:
+      - image: circleci/ruby:2.5.1
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+
+    steps:
+      - checkout
+      - *install_bundler
+      - *copy_current_gemfile
+      - *restore_cache
+      - *install_dependencies
+      - *save_cache
+      - *generate_docs
+      - *run_lints
+
   ruby23rails50:
     docker:
       - image: circleci/ruby:2.3.7-node-browsers
@@ -46,7 +84,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby23rails51:
     docker:
@@ -56,7 +94,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby23rails52:
     docker:
@@ -66,7 +104,7 @@ jobs:
       BUNDLE_GEMFILE: Gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby24rails50:
     docker:
@@ -76,7 +114,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby24rails51:
     docker:
@@ -86,7 +124,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby24rails52:
     docker:
@@ -96,7 +134,7 @@ jobs:
       BUNDLE_GEMFILE: Gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby25rails50:
     docker:
@@ -106,7 +144,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby25rails51:
     docker:
@@ -116,7 +154,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby25rails52:
     docker:
@@ -126,7 +164,7 @@ jobs:
       BUNDLE_GEMFILE: Gemfile
 
     steps:
-      *steps
+      *test_steps
 
   jruby91rails50:
     docker:
@@ -137,7 +175,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      *steps
+      *test_steps
 
   jruby91rails51:
     docker:
@@ -148,7 +186,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      *steps
+      *test_steps
 
   jruby91rails52:
     docker:
@@ -159,7 +197,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      *steps
+      *test_steps
 
   jruby92rails50:
     docker:
@@ -170,7 +208,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      *steps
+      *test_steps
 
   jruby92rails51:
     docker:
@@ -181,7 +219,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      *steps
+      *test_steps
 
   jruby92rails52:
     docker:
@@ -192,13 +230,14 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      *steps
+      *test_steps
 
 workflows:
   version: 2
 
   build:
     jobs:
+      - lint_and_docs
       - ruby23rails50
       - ruby23rails51
       - ruby23rails52

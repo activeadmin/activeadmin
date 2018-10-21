@@ -67,7 +67,7 @@ class FixmeLinter
 end
 
 desc "Lints ActiveAdmin code base"
-task lint: ["lint:rubocop", "lint:mdl", "lint:trailing_whitespace", "lint:fixme"]
+task lint: ["lint:rubocop", "lint:mdl", "lint:trailing_whitespace", "lint:fixme", "lint:rspec"]
 
 namespace :lint do
   require "rubocop/rake_task"
@@ -93,5 +93,18 @@ namespace :lint do
     puts "Checking for FIXME strings..."
 
     FixmeLinter.new.run
+  end
+
+  desc "RSpec specs for linting project files"
+  task :rspec do
+    puts "Linting project files..."
+
+    abort unless system(
+      { "COVERAGE" => "true" },
+      "rspec",
+      "spec/gemfiles_spec.lint.rb",
+      "spec/changelog_spec.lint.rb",
+      "spec/i18n_spec.lint.rb"
+    )
   end
 end
