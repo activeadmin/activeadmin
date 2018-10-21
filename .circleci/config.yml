@@ -48,6 +48,16 @@ version: 2.1
     name: Run lints
     command: bundle exec rake lint
 
+.test_steps: &test_steps
+  - checkout
+  - *install_bundler
+  - *copy_current_gemfile
+  - *restore_cache
+  - *install_dependencies
+  - *install_chromedriver
+  - *save_cache
+  - *run_tests
+
 jobs:
   lint_and_docs:
     docker:
@@ -74,14 +84,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   ruby23rails51:
     docker:
@@ -91,14 +94,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   ruby23rails52:
     docker:
@@ -108,14 +104,7 @@ jobs:
       BUNDLE_GEMFILE: Gemfile
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   ruby24rails50:
     docker:
@@ -125,14 +114,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   ruby24rails51:
     docker:
@@ -142,14 +124,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   ruby24rails52:
     docker:
@@ -159,14 +134,7 @@ jobs:
       BUNDLE_GEMFILE: Gemfile
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   ruby25rails50:
     docker:
@@ -176,14 +144,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   ruby25rails51:
     docker:
@@ -193,14 +154,7 @@ jobs:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   ruby25rails52:
     docker:
@@ -210,14 +164,7 @@ jobs:
       BUNDLE_GEMFILE: Gemfile
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   jruby91rails50:
     docker:
@@ -228,14 +175,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   jruby91rails51:
     docker:
@@ -246,14 +186,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   jruby91rails52:
     docker:
@@ -264,14 +197,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   jruby92rails50:
     docker:
@@ -282,14 +208,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   jruby92rails51:
     docker:
@@ -300,14 +219,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
   jruby92rails52:
     docker:
@@ -318,14 +230,7 @@ jobs:
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
-      - checkout
-      - *install_bundler
-      - *copy_current_gemfile
-      - *restore_cache
-      - *install_dependencies
-      - *install_chromedriver
-      - *save_cache
-      - *run_tests
+      *test_steps
 
 workflows:
   version: 2
