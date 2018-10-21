@@ -15,18 +15,18 @@ steps: &steps
 
   - restore_cache:
       keys:
-        - bundler-dependencies-{{ checksum "current_gemfile.lock" }}
+        - bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
 
   - run:
       name: Install dependencies
-      command: bundle install --without development --path vendor/bundle --retry 3 --jobs 3
+      command: bundle install --without development --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3
 
   - run:
       name: Install chromedriver
       command: bin/install_chromedriver.sh
 
   - save_cache:
-      key: bundler-dependencies-{{ checksum "current_gemfile.lock" }}
+      key: bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
       paths:
         - vendor/bundle
 
