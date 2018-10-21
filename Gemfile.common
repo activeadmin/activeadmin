@@ -11,12 +11,15 @@ gem 'parallel_tests'
 gem 'pry' # Easily debug from your console with `binding.pry`
 gem 'pry-byebug', platforms: :mri
 
-# Code style
-gem 'rubocop', '0.59.2'
-gem 'mdl', '0.4.0'
+group :lint do
+  # Code style
+  gem 'rubocop', '0.59.2'
+  gem 'mdl', '0.4.0'
 
-# Translations
-gem 'i18n-tasks'
+  # Translations
+  gem 'i18n-tasks'
+  gem 'i18n-spec'
+end
 
 # Documentation
 gem 'yard'                        # Documentation generator
@@ -48,7 +51,6 @@ group :test do
   gem 'launchy'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
-  gem 'i18n-spec'
   gem 'sqlite3', platforms: :mri
   gem 'selenium-webdriver'
 end
