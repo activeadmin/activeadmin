@@ -13,7 +13,7 @@ namespace :parallel do
 
   desc "Run the specs in parallel"
   task :spec do
-    system "parallel_rspec spec/"
+    system "parallel_rspec --serialize-stdout --verbose spec/"
   end
 
   namespace :spec do
@@ -21,7 +21,7 @@ namespace :parallel do
     %w(unit request).each do |type|
       desc "Run the #{type} specs in parallel"
       task type do
-        system "parallel_rspec spec/#{type}"
+        system "parallel_rspec --serialize-stdout --verbose spec/#{type}"
       end
     end
 
@@ -29,7 +29,7 @@ namespace :parallel do
 
   desc "Run the cucumber scenarios in parallel"
   task :cucumber do
-    system "parallel_cucumber features/"
+    system "parallel_cucumber --serialize-stdout --verbose features/"
   end
 
 end
