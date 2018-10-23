@@ -14,6 +14,7 @@ task :setup, [:parallel, :dir, :template] do |_t, opts|
     system "mkdir -p #{base_dir}"
     args = %W(
       -m spec/support/#{template}.rb
+      --skip-bootsnap
       --skip-bundle
       --skip-gemfile
       --skip-listen
