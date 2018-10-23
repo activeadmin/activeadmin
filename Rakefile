@@ -1,10 +1,12 @@
 require 'bundler/gem_tasks'
 
 desc 'Creates a test rails app for the specs to run against'
-task :setup, [:parallel, :dir, :template] do |_t, opts|
+task :setup, [:parallel, :rails_env, :template] do |_t, opts|
   require 'rails/version'
 
-  base_dir = opts[:dir] || 'spec/rails'
+  rails_env = opts[:rails_env] || 'test'
+
+  base_dir = rails_env == 'test' ? 'spec/rails' : '.test-rails-apps'
   app_dir = "#{base_dir}/rails-#{Rails::VERSION::STRING}"
   template = opts[:template] || 'rails_template'
 
@@ -25,7 +27,7 @@ task :setup, [:parallel, :dir, :template] do |_t, opts|
 
     command = ['bundle', 'exec', 'rails', 'new', app_dir, *args].join(' ')
 
-    env = { 'BUNDLE_GEMFILE' => ENV['BUNDLE_GEMFILE'] }
+    env = { 'BUNDLE_GEMFILE' => ENV['BUNDLE_GEMFILE'], 'RAILS_ENV' => rails_env }
     env['INSTALL_PARALLEL'] = 'yes' if opts[:parallel]
 
     Bundler.with_original_env { Kernel.exec(env, command) }

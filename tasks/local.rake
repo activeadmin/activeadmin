@@ -1,7 +1,7 @@
 desc 'Runs a command agains the local sample application'
 task :local do
   Rake::Task['setup'].invoke(false,
-                             '.test-rails-apps',
+                             'development',
                              'rails_template_with_data')
 
   app_folder = ".test-rails-apps/rails-#{Rails::VERSION::STRING}"
