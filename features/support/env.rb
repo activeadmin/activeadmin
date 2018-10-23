@@ -61,7 +61,7 @@ end
 
 Capybara.javascript_driver = :chrome
 
-Capybara.server = :puma, { Silent: true }
+Capybara.server = :webrick
 
 Capybara.asset_host = 'http://localhost:3000'
 
