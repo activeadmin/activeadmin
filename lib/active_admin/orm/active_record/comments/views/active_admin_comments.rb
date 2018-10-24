@@ -20,7 +20,12 @@ module ActiveAdmin
         protected
 
         def title
-          I18n.t 'active_admin.comments.title_content', count: @comments.total_count
+          count = uuid_used? ? "many" : @comments.total_count
+          I18n.t 'active_admin.comments.title_content', count: count
+        end
+
+        def uuid_used?
+          ActiveAdmin::Comment.columns_hash["resource_id"]&.type == :uuid
         end
 
         def build_comments
