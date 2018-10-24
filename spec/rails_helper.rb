@@ -4,11 +4,6 @@ ENV['RAILS_ENV'] = 'test'
 
 ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{Gem.loaded_specs["rails"].version}", __FILE__)
 
-# Create the test app if it doesn't exists
-unless File.exists?(ENV['RAILS_ROOT'])
-  system 'rake setup'
-end
-
 require ENV['RAILS_ROOT'] + '/config/environment'
 
 require 'rspec/rails'
