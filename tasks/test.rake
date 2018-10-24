@@ -1,5 +1,5 @@
 desc "Run the full suite using 1 core"
-task test: [:spec, :cucumber]
+task test: [:setup, :spec, :cucumber]
 
 require 'rspec/core/rake_task'
 

@@ -33,10 +33,25 @@ version: 2.1
     paths:
       - vendor/bundle
 
+.create_test_app: &create_test_app
+  run:
+    name: Create test app
+    command: bundle exec rake setup
+
+.save_test_app_to_workspace: &save_test_app_to_workspace
+  persist_to_workspace:
+    root: spec/rails
+    paths:
+      - rails-*
+
+.restore_test_app_from_workspace: &restore_test_app_from_workspace
+  attach_workspace:
+    at: spec/rails
+
 .run_tests: &run_tests
   run:
     name: Run tests
-    command: COVERAGE=true bundle exec rake
+    command: COVERAGE=true bundle exec rake test
 
 .generate_docs: &generate_docs
   run:
@@ -56,9 +71,60 @@ version: 2.1
   - *install_dependencies
   - *install_chromedriver
   - *save_cache
+  - *restore_test_app_from_workspace
   - *run_tests
 
+.test_app_steps: &test_app_steps
+  - checkout
+  - *install_bundler
+  - *copy_current_gemfile
+  - *restore_cache
+  - *install_dependencies
+  - *save_cache
+  - *create_test_app
+  - *save_test_app_to_workspace
+
 jobs:
+  testapp42:
+    docker:
+      - image: circleci/ruby:2.5.3-node
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_42.gemfile
+
+    steps:
+      *test_app_steps
+
+  testapp50:
+    docker:
+      - image: circleci/ruby:2.5.3-node
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
+
+    steps:
+      *test_app_steps
+
+  testapp51:
+    docker:
+      - image: circleci/ruby:2.5.3-node
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
+
+    steps:
+      *test_app_steps
+
+  testapp52:
+    docker:
+      - image: circleci/ruby:2.5.3-node
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+
+    steps:
+      *test_app_steps
+
   lint_and_docs:
     docker:
       - image: circleci/ruby:2.5.3
@@ -196,6 +262,17 @@ jobs:
     steps:
       *test_steps
 
+  jruby91rails42:
+    docker:
+      - image: ccistaging/jruby:9.1.17.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_42.gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *test_steps
+
   jruby91rails50:
     docker:
       - image: ccistaging/jruby:9.1.17.0-node-browsers
@@ -224,6 +301,17 @@ jobs:
 
     environment:
       BUNDLE_GEMFILE: Gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *test_steps
+
+  jruby92rails42:
+    docker:
+      - image: ccistaging/jruby:9.2.0.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_42.gemfile
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
@@ -265,29 +353,100 @@ jobs:
 workflows:
   version: 2
 
+  #
+  # The workflow has three types of jobs:
+  #
+  # * A lint job to run style checks.
+  # * Jobs that create test apps for each supported rails version.
+  # * Jobs that run tests, one for each supported [ruby_version, rails_version]
+  #   combination. Every test job for a specific rails version reuses the test
+  #   app created for that specific rails version.
+  #
   build:
     jobs:
       - lint_and_docs
 
-      - ruby23rails42
-      - ruby23rails50
-      - ruby23rails51
-      - ruby23rails52
+      - testapp42
+      - testapp50
+      - testapp51
+      - testapp52
 
-      - ruby24rails42
-      - ruby24rails50
-      - ruby24rails51
-      - ruby24rails52
+      - ruby23rails42:
+          requires:
+            - testapp42
 
-      - ruby25rails42
-      - ruby25rails50
-      - ruby25rails51
-      - ruby25rails52
+      - ruby23rails50:
+          requires:
+            - testapp50
 
-      - jruby91rails50
-      - jruby91rails51
-      - jruby91rails52
+      - ruby23rails51:
+          requires:
+            - testapp51
 
-      - jruby92rails50
-      - jruby92rails51
-      - jruby92rails52
+      - ruby23rails52:
+          requires:
+            - testapp52
+
+      - ruby24rails42:
+          requires:
+            - testapp42
+
+      - ruby24rails50:
+          requires:
+            - testapp50
+
+      - ruby24rails51:
+          requires:
+            - testapp51
+
+      - ruby24rails52:
+          requires:
+            - testapp52
+
+      - ruby25rails42:
+          requires:
+            - testapp50
+
+      - ruby25rails50:
+          requires:
+            - testapp50
+
+      - ruby25rails51:
+          requires:
+            - testapp51
+
+      - ruby25rails52:
+          requires:
+            - testapp52
+
+      - jruby91rails42:
+          requires:
+            - testapp42
+
+      - jruby91rails50:
+          requires:
+            - testapp50
+
+      - jruby91rails51:
+          requires:
+            - testapp51
+
+      - jruby91rails52:
+          requires:
+            - testapp52
+
+      - jruby92rails42:
+          requires:
+            - testapp42
+
+      - jruby92rails50:
+          requires:
+            - testapp50
+
+      - jruby92rails51:
+          requires:
+            - testapp51
+
+      - jruby92rails52:
+          requires:
+            - testapp52
