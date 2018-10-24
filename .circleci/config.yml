@@ -291,6 +291,15 @@ jobs:
 workflows:
   version: 2
 
+  #
+  # The workflow has three types of jobs:
+  #
+  # * A lint job to run style checks.
+  # * Jobs that create test apps for each supported rails version.
+  # * Jobs that run tests, one for each supported [ruby_version, rails_version]
+  #   combination. Every test job for a specific rails version reuses the test
+  #   app created for that specific rails version.
+  #
   build:
     jobs:
       - lint_and_docs
