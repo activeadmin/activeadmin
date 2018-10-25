@@ -15,7 +15,7 @@ module ActiveAdmin
       end
 
       if File.exist? app_dir
-        puts "test app #{app_dir} already exists; skipping"
+        puts "test app #{app_dir} already exists; skipping test app generation"
       else
         system "mkdir -p #{base_dir}"
         args = %W(
