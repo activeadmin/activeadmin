@@ -6,7 +6,7 @@ task parallel_tests: [:setup_parallel_tests, 'parallel:spec', 'parallel:cucumber
 
 desc "Creates a test rails app for the parallel specs to run against"
 task :setup_parallel_tests do
-  ActiveAdmin::ApplicationGenerator.new(parallel: true).generate
+  ActiveAdmin::ApplicationGenerator.new.generate
 end
 
 namespace :parallel do

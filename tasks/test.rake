@@ -4,7 +4,7 @@ desc "Run the full suite using 1 core"
 task test: [:setup, :spec, :cucumber]
 
 desc 'Creates a test rails app for the specs to run against'
-task :setup, [:parallel, :rails_env, :template] do |_t, opts|
+task :setup, [:rails_env, :template] do |_t, opts|
   ActiveAdmin::ApplicationGenerator.new(opts).generate
 end
 
