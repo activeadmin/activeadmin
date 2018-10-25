@@ -18,7 +18,7 @@ namespace :parallel do
 
   namespace :spec do
 
-    %w(unit request).each do |type|
+    %i(unit request).each do |type|
       desc "Run the #{type} specs in parallel"
       task type do
         system("parallel_rspec --serialize-stdout --verbose spec/#{type}")
