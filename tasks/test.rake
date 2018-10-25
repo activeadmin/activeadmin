@@ -13,6 +13,17 @@ task :spec do
   system("rspec")
 end
 
+namespace :spec do
+
+  %i(unit request).each do |type|
+    desc "Run #{type} specs"
+    task type do
+      system("rspec spec/#{type}")
+    end
+  end
+
+end
+
 desc "Run the cucumber scenarios"
 task cucumber: [:"cucumber:regular", :"cucumber:reloading"]
 
