@@ -32,7 +32,7 @@ namespace :parallel do
 
   namespace :cucumber do
 
-    desc "Run the cucumber scenarios in parallel"
+    desc "Run the standard cucumber scenarios in parallel"
     task :regular do
       system("parallel_cucumber --serialize-stdout --verbose features/")
     end
