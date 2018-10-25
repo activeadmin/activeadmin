@@ -137,6 +137,8 @@ end
 
 rake "db:drop db:create db:migrate", env: ENV['RAILS_ENV']
 
-inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'test.sqlite3'
+if ENV['RAILS_ENV'] == 'test'
+  inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'test.sqlite3'
 
-rake "parallel:drop parallel:create parallel:load_schema", env: ENV['RAILS_ENV']
+  rake "parallel:drop parallel:create parallel:load_schema", env: ENV['RAILS_ENV']
+end
