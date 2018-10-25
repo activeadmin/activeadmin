@@ -1,7 +1,11 @@
+require_relative "application_generator"
+
 desc 'Runs a command agains the local sample application'
 task :local do
-  Rake::Task['setup'].invoke('development',
-                             'rails_template_with_data')
+  ActiveAdmin::ApplicationGenerator.new(
+    rails_env: 'development',
+    template: 'rails_template_with_data'
+  ).generate
 
   app_folder = ".test-rails-apps/rails-#{Rails::VERSION::STRING}"
 
