@@ -1,6 +1,6 @@
 require_relative "application_generator"
 
-desc 'Run a command agains the local sample application'
+desc 'Run a command against the local sample application'
 task :local do
   app_folder = ActiveAdmin::ApplicationGenerator.new(
     rails_env: 'development',
