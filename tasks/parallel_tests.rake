@@ -2,7 +2,7 @@ require 'parallel'
 require_relative "application_generator"
 
 desc "Run the full suite using parallel_tests to run on multiple cores"
-task parallel_tests: [:setup_parallel_tests, 'parallel:spec', 'parallel:cucumber', 'cucumber:reloading']
+task parallel_tests: [:setup_parallel_tests, 'parallel:spec', 'parallel:cucumber']
 
 desc "Creates a test rails app for the parallel specs to run against"
 task :setup_parallel_tests do
@@ -28,8 +28,15 @@ namespace :parallel do
   end
 
   desc "Run the cucumber scenarios in parallel"
-  task :cucumber do
-    system("parallel_cucumber --serialize-stdout --verbose features/")
+  task cucumber: ["cucumber:regular", "cucumber:reloading"]
+
+  namespace :cucumber do
+
+    desc "Run the cucumber scenarios in parallel"
+    task :regular do
+      system("parallel_cucumber --serialize-stdout --verbose features/")
+    end
+
   end
 
 end
