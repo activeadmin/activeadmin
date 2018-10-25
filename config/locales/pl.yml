@@ -1,4 +1,24 @@
 pl:
+  activerecord:
+    models:
+      comment:
+        one: "Komentarz"
+        few: "Komentarze"
+        many: "Komentarzy"
+        other: "Komentarze"
+      active_admin/comment:
+        one: "Komentarz"
+        few: "Komentarze"
+        many: "Komentarzy"
+        other: "Komentarze"
+    attributes:
+      active_admin/comment:
+        author_type: "Typ autora"
+        body: "Treść"
+        created_at: "Utworzony"
+        namespace: "Namespace"
+        resource_type: "Typ zasobu"
+        updated_at: "Zaktualizowany"
   active_admin:
     dashboard: Pulpit
     dashboard_welcome:
@@ -8,10 +28,11 @@ pl:
     edit: "Edytuj"
     delete: "Usuń"
     delete_confirmation: "Jesteś pewien, że chcesz to usunąć?"
+    create_another: "Utwórz kolejny %{model}"
     new_model: "Nowy %{model}"
     edit_model: "Edytuj %{model}"
     delete_model: "Usuń %{model}"
-    details: "Detale %{model}"
+    details: "Szczegóły %{model}"
     cancel: "Anuluj"
     empty: "Pusty"
     previous: "Poprzednia"
@@ -20,6 +41,7 @@ pl:
     has_many_new: "Dodaj nowy %{model}"
     has_many_delete: "Usuń"
     has_many_remove: "Usuń"
+    move: "Przenieś"
     filters:
       buttons:
         filter: "Filtruj"
@@ -31,6 +53,17 @@ pl:
         ends_with: "Kończy się"
         greater_than: "Większe niż"
         less_than: "Mniejsze niż"
+        gteq_datetime: "Większe lub równe"
+        lteq_datetime: "Mniejsze lub równe"
+        from: "Od"
+        to: "Do"
+    scopes:
+      all: "Wszystko"
+    search_status:
+      headline: "Status wyszukiwania:"
+      current_scope: "Aktywny zakres:"
+      current_filters: "Aktywne filtry:"
+      no_current_filters: "Brak"
     status_tag:
       "yes": "Tak"
       "no": "Nie"
@@ -39,12 +72,14 @@ pl:
     powered_by: "Powered by %{active_admin} %{version}"
     sidebars:
       filters: "Filtry"
+      search_status: "Status wyszukiwania"
     pagination:
       empty: "Nie znaleziono %{model}"
       one: "Wyświetlanie <b>1</b> %{model}"
       one_page: "Wyświetlanie <b>wszystkich %{n}</b> %{model}"
       multiple: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
       multiple_without_total: "Wyświetlanie %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Na stronę: "
       entry:
         one:
         other:
@@ -68,15 +103,31 @@ pl:
       labels:
         destroy: "Usuń"
     comments:
+      created_at: "Utworzony"
+      resource_type: "Typ zasobu"
+      author_type: "Typ autora"
       body: "Treść"
       author: "Autor"
       add: "Dodaj komentarz"
+      delete: "Usuń komentarz"
+      delete_confirmation: "Czy na pewno chcesz usunąć ten komentarz?"
       resource: "Zasób"
       no_comments_yet: "Nie ma jeszcze komentarzy."
+      author_missing: "Anonim"
       title_content: "Komentarze (%{count})"
       errors:
         empty_text: "Komentarz nie został zapisany, zawartość była pusta."
     devise:
+      username:
+        title: "Nazwa użytkownika"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Subdomena"
+      password:
+        title: "Hasło"
+      password_confirmation:
+        title: "Powtórz hasło"
       sign_up:
         title: "Rejestracja"
         submit: "Zarejestruj się"
@@ -90,10 +141,27 @@ pl:
       change_password:
         title: "Zmień hasło"
         submit: "Zmień hasło"
+      unlock:
+        title: "Ponownie wyślij instrukcję odblokowania konta"
+        submit: "Ponownie wyślij instrukcję odblokowania konta"
       resend_confirmation_instructions:
-        title: "Wyślij ponownie instrukcje aktywacji"
-        submit: "Wyślij ponownie instrukcje aktywacji"
+        title: "Ponownie wyślij instrukcje aktywacji"
+        submit: "Ponownie wyślij instrukcje aktywacji"
       links:
+        sign_up: "Zarejestruj się"
         sign_in: "Zaloguj się"
         forgot_your_password: "Nie pamiętasz hasła?"
         sign_in_with_omniauth_provider: "Zaloguj się z %{provider}"
+        resend_unlock_instructions: "Ponownie wyślij instrukcję odblokowania konta"
+        resend_confirmation_instructions: "Ponownie wyślij instrukcje aktywacji"
+    unsupported_browser:
+      headline: "ActiveAdmin nie wspiera przeglądarki Internet Explorer w wersjach 8 i niższych."
+      recommendation: "Polecamy <a href=\"http://browsehappy.com/\">aktualizację przeglądarki</a>."
+      turn_off_compatibility_view: "Jeśli używasz Internet Explorera w wersji 9 lub nowszej, upewnij się, że <a href=\"https://support.microsoft.com/en-us/help/17471\">\"tryb zgodności\" został wyłączony.</a>."
+    access_denied:
+      message: "Nie masz uprawnień wystarczających do wykonania tej akcji."
+    index_list:
+      table: "Tabela"
+      block: "Lista"
+      grid: "Siatka"
+      blog: "Blog"
