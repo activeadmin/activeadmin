@@ -29,6 +29,8 @@ module ActiveAdmin
 
         Bundler.with_original_env { Kernel.system(env, command) }
       end
+
+      app_dir
     end
 
     private
