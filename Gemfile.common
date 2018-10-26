@@ -5,7 +5,7 @@ gem 'jruby-openssl', '~> 0.10.1', platforms: :jruby
 
 # Utility gems used in both development & test environments
 gem 'rake'
-gem 'parallel_tests'
+gem 'parallel_tests', '~> 2.26'
 
 # Debugging
 gem 'pry' # Easily debug from your console with `binding.pry`
