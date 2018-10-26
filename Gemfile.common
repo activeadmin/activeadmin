@@ -5,7 +5,7 @@ gem 'jruby-openssl', '~> 0.10.1', platforms: :jruby
 
 # Utility gems used in both development & test environments
 gem 'rake'
-gem 'parallel_tests'
+gem 'parallel_tests', '~> 2.26'
 
 # Debugging
 gem 'pry' # Easily debug from your console with `binding.pry`
@@ -37,7 +37,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 3.0'
+  gem 'capybara', '~> 3.10'
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'codecov', require: false # Test coverage website. Go to https://codecov.io
   gem 'cucumber-rails', '~> 1.5', require: false
