@@ -1,5 +1,9 @@
 ---
 
+inherit_mode:
+  merge:
+    - Include
+
 AllCops:
   DisabledByDefault: true
   TargetRubyVersion: 2.3
@@ -10,16 +14,17 @@ AllCops:
     - vendor/bundle/**/*
 
   Include:
-    - "**/*.rake"
-    - "**/Gemfile"
-    - "gemfiles/*.gemfile"
-    - "**/Rakefile"
+    - gemfiles/*.gemfile
+    - .simplecov
 
   DisplayCopNames: true
 
   StyleGuideCopsOnly: false
 
-Lint/EndAlignment:
+Layout/EndAlignment:
+  Enabled: true
+
+Lint/ParenthesesAsGroupedExpression:
   Enabled: true
 
 Layout/AccessModifierIndentation:
@@ -45,6 +50,10 @@ Layout/ExtraSpacing:
 
 Style/Encoding:
   Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: never
 
 Style/HashSyntax:
   Enabled: true

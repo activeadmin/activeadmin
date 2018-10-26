@@ -24,7 +24,6 @@ Feature: Show - Tabs
       end
     """
 
-    Then show me the page
     Then I should see two tabs "Overview" and "テスト"
     And I should see the element "#overview span"
     And I should not see the element "#test_non_ascii span"

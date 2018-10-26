@@ -1,3 +1,4 @@
+@filters
 Feature: Index Filtering
 
   Scenario: Default Resources Filters
@@ -63,10 +64,10 @@ Feature: Index Filtering
     And I press "Filter"
 
     Then I follow "2"
-    Then I should see "Displaying Posts 3 - 4 of 7 in total"
+    Then I should see "Displaying Posts 3 - 4 of 7 in total"
 
     Then I follow "3"
-    Then I should see "Displaying Posts 5 - 6 of 7 in total"
+    Then I should see "Displaying Posts 5 - 6 of 7 in total"
 
   Scenario: Filtering posts while not on the first page
     Given 9 posts exist
@@ -77,7 +78,7 @@ Feature: Index Filtering
       end
     """
     When I follow "2"
-    Then I should see "Displaying Posts 6 - 9 of 9 in total"
+    Then I should see "Displaying Posts 6 - 9 of 9 in total"
 
     When I fill in "Title" with "Hello World 2"
     And I press "Filter"

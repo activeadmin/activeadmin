@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ActiveAdmin::ViewHelpers::FormHelper do
 
   describe '.active_admin_form_for' do
-    let(:view) { action_view }
+    let(:view) { mock_action_view }
     let(:resource) { double 'resource' }
     let(:default_options) { { builder: ActiveAdmin::FormBuilder } }
 
@@ -22,7 +22,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::FormHelper do
   end
 
   describe ".hidden_field_tags_for" do
-    let(:view) { action_view }
+    let(:view) { mock_action_view }
 
     it "should render hidden field tags for params" do
       html = Capybara.string view.hidden_field_tags_for(ActionController::Parameters.new(scope: "All", filter: "None"))

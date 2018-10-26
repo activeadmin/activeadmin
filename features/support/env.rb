@@ -15,11 +15,6 @@ end
 require 'rails'
 ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{Rails.version}", __FILE__)
 
-# Create the test app if it doesn't exists
-unless File.exists?(ENV['RAILS_ROOT'])
-  system 'rake setup'
-end
-
 require 'active_record'
 require 'active_admin'
 require 'devise'
@@ -35,16 +30,20 @@ require 'cucumber/rails'
 require 'rspec/mocks'
 World(RSpec::Mocks::ExampleMethods)
 
-Before do
+Around do |scenario, block|
   RSpec::Mocks.setup
-end
 
-After do
+  block.call
+
   begin
     RSpec::Mocks.verify
   ensure
     RSpec::Mocks.teardown
   end
+end
+
+After '@debug' do |scenario|
+  save_and_open_page if scenario.failed?
 end
 
 require 'capybara/rails'
@@ -61,6 +60,10 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.javascript_driver = :chrome
+
+Capybara.server = :webrick
+
+Capybara.asset_host = 'http://localhost:3000'
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
@@ -89,39 +92,36 @@ include Warden::Test::Helpers
 
 After do
   Warden.test_reset!
-
-  # Reset back to the default auth adapter
-  ActiveAdmin.application.namespace(:admin).
-    authorization_adapter = ActiveAdmin::AuthorizationAdapter
 end
 
 Before do
-  begin
-    # We are caching classes, but need to manually clear references to
-    # the controllers. If they aren't clear, the router stores references
-    ActiveSupport::Dependencies.clear
+  # We are caching classes, but need to manually clear references to
+  # the controllers. If they aren't clear, the router stores references
+  ActiveSupport::Dependencies.clear
 
-    # Reload Active Admin
-    ActiveAdmin.unload!
-    ActiveAdmin.load!
-  rescue
-    p $!
-    raise $!
-  end
+  # Reload Active Admin
+  ActiveAdmin.unload!
+  ActiveAdmin.load!
 end
 
 # Force deprecations to raise an exception.
 ActiveSupport::Deprecation.behavior = :raise
 
-# improve the performance of the specs suite by not logging anything
-# see http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
-Rails.logger.level = 4
+After '@authorization' do |scenario, block|
+  # Reset back to the default auth adapter
+  ActiveAdmin.application.namespace(:admin).
+    authorization_adapter = ActiveAdmin::AuthorizationAdapter
+end
 
 Around '@silent_unpermitted_params_failure' do |scenario, block|
   original = ActionController::Parameters.action_on_unpermitted_parameters
-  ActionController::Parameters.action_on_unpermitted_parameters = false
-  block.call
-  ActionController::Parameters.action_on_unpermitted_parameters = original
+
+  begin
+    ActionController::Parameters.action_on_unpermitted_parameters = false
+    block.call
+  ensure
+    ActionController::Parameters.action_on_unpermitted_parameters = original
+  end
 end
 
 Around '@locale_manipulation' do |scenario, block|

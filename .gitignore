@@ -26,6 +26,7 @@ tmtags
 
 ## Project (general)
 tags
+tmp
 coverage
 rdoc
 doc
@@ -38,7 +39,7 @@ spec/rails
 *.sqlite3-journal
 .test-rails-apps
 public
-.rspec
+.rspec_failures
 .rails-version
 .rbenv-version
 .localeapp/*

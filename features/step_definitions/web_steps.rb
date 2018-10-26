@@ -80,7 +80,3 @@ end
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   expect(URI.parse(current_url).path).to eq path_to page_name
 end
-
-Then /^show me the page$/ do
-  save_and_open_page
-end

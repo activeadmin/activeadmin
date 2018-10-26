@@ -5,18 +5,21 @@ gem 'jruby-openssl', '~> 0.10.1', platforms: :jruby
 
 # Utility gems used in both development & test environments
 gem 'rake'
-gem 'parallel_tests'
+gem 'parallel_tests', '~> 2.26'
 
 # Debugging
 gem 'pry' # Easily debug from your console with `binding.pry`
 gem 'pry-byebug', platforms: :mri
 
-# Code style
-gem 'rubocop', '0.51.0'
-gem 'mdl', '0.4.0'
+group :lint do
+  # Code style
+  gem 'rubocop', '0.59.2'
+  gem 'mdl', '0.4.0'
 
-# Translations
-gem 'i18n-tasks'
+  # Translations
+  gem 'i18n-tasks'
+  gem 'i18n-spec'
+end
 
 # Documentation
 gem 'yard'                        # Documentation generator
@@ -34,7 +37,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '< 3.0'
+  gem 'capybara', '~> 3.10'
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'codecov', require: false # Test coverage website. Go to https://codecov.io
   gem 'cucumber-rails', '~> 1.5', require: false
@@ -45,8 +48,6 @@ group :test do
   gem 'launchy'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
-  gem 'i18n-spec'
-  gem 'shoulda-matchers', '<= 2.8.0'
   gem 'sqlite3', platforms: :mri
   gem 'selenium-webdriver'
 end

@@ -44,7 +44,7 @@ bundle exec rake
 The test run will generate a sample Rails application in `spec/rails` to run the
 tests against.
 
-If your tests are passing locally but they're failing on Travis, it's probably
+If your tests are passing locally but they're failing on CircleCI, it's probably
 because of some breaking change or problem with the latest version of some
 dependency. You should be able to reproduce the issue locally by:
 
@@ -144,7 +144,7 @@ git push --set-upstream origin 325-add-japanese-translations
 
 Finally, go to GitHub and [make a Pull Request][] :D
 
-Travis CI will run our test suite against all supported Rails versions. We care
+CircleCI will run our test suite against all supported Rails versions. We care
 about quality, so your PR won't be merged until all tests pass. It's unlikely,
 but it's possible that your changes pass tests in one Rails version but fail in
 another. In that case, you'll have to setup your development environment (as
@@ -177,6 +177,25 @@ A PR can only be merged into master by a maintainer if:
 
 Any maintainer is allowed to merge a PR if all of these conditions are
 met.
+
+### 10. Shipping a release (maintainers only)
+
+Maintainers need to do the following to push out a release:
+
+* Make sure all pull requests are in and that changelog is current
+* Update `version.rb` file and changelog with new version number
+* Create a stable branch for that release:
+
+  ```sh
+  git checkout master
+  git fetch activeadmin
+  git rebase activeadmin/master
+  # If the release is 2.1.x then this should be: 2-1-stable
+  git checkout -b N-N-stable
+  git push activeadmin N-N-stable:N-N-stable
+  ```
+
+* `bundle exec rake release`
 
 [chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/getting-started
 [mailing list]: http://groups.google.com/group/activeadmin

@@ -320,7 +320,7 @@ end
 
 ## Eager loading
 
-A common way to increase page performance is to elimate N+1 queries by eager
+A common way to increase page performance is to eliminate N+1 queries by eager
 loading associations:
 
 ```ruby

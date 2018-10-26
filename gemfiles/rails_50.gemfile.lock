@@ -81,13 +81,14 @@ GEM
     builder (3.2.3)
     byebug (10.0.2)
     cancan (1.6.10)
-    capybara (2.18.0)
+    capybara (3.10.0)
       addressable
       mini_mime (>= 0.1.3)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      xpath (>= 2.0, < 4.0)
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      regexp_parser (~> 1.2)
+      xpath (~> 3.2)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     codecov (0.1.13)
@@ -178,6 +179,8 @@ GEM
       responders
     iso (0.2.2)
       i18n
+    jaro_winkler (1.5.1)
+    jaro_winkler (1.5.1-java)
     jasmine (2.9.0)
       jasmine-core (>= 2.9.0, < 3.0.0)
       phantomjs
@@ -238,7 +241,7 @@ GEM
     nokogiri (1.8.5-java)
     orm_adapter (0.5.0)
     parallel (1.12.1)
-    parallel_tests (2.23.0)
+    parallel_tests (2.26.0)
       parallel
     parser (2.5.1.2)
       ast (~> 2.4.0)
@@ -300,6 +303,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redcarpet (3.4.0)
+    regexp_parser (1.2.0)
     request_store (1.4.1)
       rack (>= 1.4)
     responders (2.4.0)
@@ -322,11 +326,12 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
-    rubocop (0.51.0)
+    rubocop (0.59.2)
+      jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
-      parser (>= 2.3.3.1, < 3.0)
+      parser (>= 2.5, != 2.5.1.1)
       powerpack (~> 0.1)
-      rainbow (>= 2.2.2, < 3.0)
+      rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.10.0)
@@ -339,8 +344,6 @@ GEM
     selenium-webdriver (3.14.1)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
-    shoulda-matchers (2.8.0)
-      activesupport (>= 3.0.0)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -373,7 +376,7 @@ GEM
     websocket-driver (0.6.5-java)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
-    xpath (3.1.0)
+    xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.16)
 
@@ -387,7 +390,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   cancan
-  capybara (< 3.0)
+  capybara (~> 3.10)
   codecov
   cucumber
   cucumber-rails (~> 1.5)
@@ -402,7 +405,7 @@ DEPENDENCIES
   kramdown
   launchy
   mdl (= 0.4.0)
-  parallel_tests
+  parallel_tests (~> 2.26)
   pry
   pry-byebug
   pundit
@@ -412,12 +415,11 @@ DEPENDENCIES
   rake
   redcarpet
   rspec-rails
-  rubocop (= 0.51.0)
+  rubocop (= 0.59.2)
   selenium-webdriver
-  shoulda-matchers (<= 2.8.0)
   simplecov
   sqlite3
   yard
 
 BUNDLED WITH
-   1.16.5
+   1.17.1

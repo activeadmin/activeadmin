@@ -30,7 +30,7 @@ Feature: Index Pagination
     Given 3 posts exist
     When I am on the index page for posts
     Then I should see pagination with 2 pages
-    And I should see "Displaying Posts 1 - 2 of 3 in total"
+    And I should see "Displaying Posts 1 - 2 of 3 in total"
 
   Scenario: Viewing index with pagination disabled
     Given an index configuration of:
@@ -54,10 +54,10 @@ Feature: Index Pagination
     """
     Given 11 posts exist
     When I am on the index page for posts
-    Then I should see "Displaying Posts 1 - 10"
+    Then I should see "Displaying Posts 1 - 10"
     And I should not see "11 in total"
     And I should see the pagination "Next" link
 
     When I follow "Next"
-    Then I should see "Displaying Posts 11 - 11"
+    Then I should see "Displaying Posts 11 - 11"
     And I should not see the pagination "Next" link
