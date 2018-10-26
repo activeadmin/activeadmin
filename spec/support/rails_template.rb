@@ -1,7 +1,5 @@
 # Rails template to build the sample app for specs
 
-copy_file File.expand_path('../templates/manifest.js', __FILE__), 'app/assets/config/manifest.js', force: true
-
 create_file 'app/assets/stylesheets/some-random-css.css'
 create_file 'app/assets/javascripts/some-random-js.js'
 create_file 'app/assets/images/a/favicon.ico'
@@ -139,6 +137,8 @@ end
 
 rake "db:drop db:create db:migrate", env: ENV['RAILS_ENV']
 
-if ENV['INSTALL_PARALLEL']
+if ENV['RAILS_ENV'] == 'test'
   inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'test.sqlite3'
+
+  rake "parallel:drop parallel:create parallel:load_schema", env: ENV['RAILS_ENV']
 end

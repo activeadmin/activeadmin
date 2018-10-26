@@ -48,10 +48,23 @@ version: 2.1
   attach_workspace:
     at: spec/rails
 
+.restore_test_times: &restore_test_times
+  restore_cache:
+    keys:
+      - testtime-{{ .Branch }}-{{ .Environment.CIRCLE_JOB }}
+      - testtime-master-{{ .Environment.CIRCLE_JOB }}
+
 .run_tests: &run_tests
   run:
     name: Run tests
-    command: COVERAGE=true bundle exec rake test
+    command: COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bundle exec rake test
+
+.save_test_times: &save_test_times
+  save_cache:
+    key: testtime-{{ .Branch }}-{{ .Environment.CIRCLE_JOB }}
+    paths:
+      - tmp/parallel_runtime_rspec.log
+      - tmp/parallel_runtime_cucumber.log
 
 .generate_docs: &generate_docs
   run:
@@ -72,7 +85,9 @@ version: 2.1
   - *install_chromedriver
   - *save_cache
   - *restore_test_app_from_workspace
+  - *restore_test_times
   - *run_tests
+  - *save_test_times
 
 .test_app_steps: &test_app_steps
   - checkout

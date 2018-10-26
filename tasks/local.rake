@@ -1,18 +1,17 @@
-desc 'Runs a command agains the local sample application'
-task :local do
-  Rake::Task['setup'].invoke(false,
-                             'development',
-                             'rails_template_with_data')
+require_relative "application_generator"
 
-  app_folder = ".test-rails-apps/rails-#{Rails::VERSION::STRING}"
+desc 'Run a command against the local sample application'
+task :local do
+  app_folder = ActiveAdmin::ApplicationGenerator.new(
+    rails_env: 'development',
+    template: 'rails_template_with_data'
+  ).generate
 
   # Discard the "local" argument (name of the task)
   argv = ARGV[1..-1]
 
-  # If it's a rails command, or we're using Rails 5, auto add the rails script
-  rails_commands = %w(generate console server db dbconsole g c s runner)
-
-  if rails_commands.include?(argv[0])
+  # If it's a rails command, auto add the rails script
+  if %w(generate console server db dbconsole g c s runner).include?(argv[0])
     argv.unshift('rails')
   end
 
