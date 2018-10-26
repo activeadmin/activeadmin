@@ -36,7 +36,7 @@ version: 2.1
 .create_test_app: &create_test_app
   run:
     name: Create test app
-    command: bundle exec rake setup
+    command: PARALLEL_TEST_PROCESSORS=4 bundle exec rake setup
 
 .save_test_app_to_workspace: &save_test_app_to_workspace
   persist_to_workspace:
