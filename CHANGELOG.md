@@ -28,6 +28,12 @@
 
 * Rails 4.2 support has been dropped. [#5104][] by [@javierjulio][] and [@deivid-rodriguez][]
 
+## 1.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.0...v1.3.1)
+
+### Bug Fixes
+
+* gemspec should have more permissive ransack dependency [#5448][] by [@varyonic][]
+
 ## 1.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.1...v1.3.0)
 
 ### Enhancements
@@ -310,6 +316,7 @@ Please check [0-6-stable][] for previous changes.
 [#5399]: https://github.com/activeadmin/activeadmin/pull/5399
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
 [#5446]: https://github.com/activeadmin/activeadmin/pull/5446
+[#5448]: https://github.com/activeadmin/activeadmin/pull/5448
 [#5464]: https://github.com/activeadmin/activeadmin/pull/5464
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
 [#5408]: https://github.com/activeadmin/activeadmin/pull/5408
