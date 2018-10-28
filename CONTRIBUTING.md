@@ -3,14 +3,14 @@
 First off, thank you for considering contributing to Active Admin. It's people
 like you that make Active Admin such a great tool.
 
-### 1. Where do I go from here?
+### Where do I go from here?
 
 If you've noticed a bug or have a question that doesn't belong on the
 [mailing list][] or [Stack Overflow][], [search the issue tracker][] to see if
 someone else in the community has already created a ticket. If not, go ahead and
 [make one][new issue]!
 
-### 2. Fork & create a branch
+### Fork & create a branch
 
 If this is something you think you can fix, then [fork Active Admin][] and
 create a branch with a descriptive name.
@@ -21,7 +21,7 @@ A good branch name would be (where issue #325 is the ticket you're working on):
 git checkout -b 325-add-japanese-translations
 ```
 
-### 3. Get the test suite running
+### Get the test suite running
 
 Make sure you're using a recent ruby and have the `bundler` gem installed, at
 least version `1.14.3`.
@@ -62,7 +62,7 @@ you use the correct Gemfile, for example:
 export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
 ```
 
-### 4. Did you find a bug?
+### Did you find a bug?
 
 * **Ensure the bug was not already reported** by [searching all issues][].
 
@@ -116,14 +116,14 @@ Or to migrate the database:
 bundle exec rake local db:migrate
 ```
 
-### 7. Get the style right
+### Get the style right
 
 Your patch should follow the same conventions & pass the same code quality
 checks as the rest of the project. `bundle exec rake lint` will give you
 feedback in this regard. You can check & fix style issues by running each linter
 individually. Run `bundle exec rake -T lint` to see the available linters.
 
-### 8. Make a Pull Request
+### Make a Pull Request
 
 At this point, you should switch back to your master branch and make sure it's
 up to date with Active Admin's master branch:
@@ -151,7 +151,7 @@ another. In that case, you'll have to setup your development environment (as
 explained in step 3) to use the problematic Rails version, and investigate
 what's going on!
 
-### 8. Keeping your Pull Request updated
+### Keeping your Pull Request updated
 
 If a maintainer asks you to "rebase" your PR, they're saying that a lot of code
 has changed, and that you need to update your branch so it's easier to merge.
@@ -165,7 +165,7 @@ git pull --rebase upstream master
 git push --force-with-lease 325-add-japanese-translations
 ```
 
-### 10. Merging a PR (maintainers only)
+### Merging a PR (maintainers only)
 
 A PR can only be merged into master by a maintainer if:
 
@@ -178,7 +178,7 @@ A PR can only be merged into master by a maintainer if:
 Any maintainer is allowed to merge a PR if all of these conditions are
 met.
 
-### 11. Shipping a release (maintainers only)
+### Shipping a release (maintainers only)
 
 Maintainers need to do the following to push out a release:
 
