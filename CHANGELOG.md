@@ -36,6 +36,7 @@
 * Fixed `if:` scope option when a lambda is passed [#5501][] by [@deivid-rodriguez][]
 * Comment validation adding redundant errors when resource is missing [#5516][] by [@deivid-rodriguez][]
 * Fixed resource filtering by association when the resource has custom primary key [#5446][] by [@wasifhossain][]
+* Fixed "create anoter" checkbox styling. [#5324][] by [@faucct][]
 
 ### Removals
 
@@ -333,6 +334,7 @@ Please check [0-6-stable][] for previous changes.
 [#5295]: https://github.com/activeadmin/activeadmin/pull/5295
 [#5299]: https://github.com/activeadmin/activeadmin/pull/5299
 [#5320]: https://github.com/activeadmin/activeadmin/pull/5320
+[#5324]: https://github.com/activeadmin/activeadmin/pull/5324
 [#5330]: https://github.com/activeadmin/activeadmin/pull/5330
 [#5336]: https://github.com/activeadmin/activeadmin/pull/5336
 [#5341]: https://github.com/activeadmin/activeadmin/pull/5341
