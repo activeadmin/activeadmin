@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+SimpleCov.command_name "lint"
 
 RSpec.describe "Changelog" do
   subject(:changelog) do

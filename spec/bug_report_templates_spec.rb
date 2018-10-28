@@ -1,13 +1,14 @@
-require 'spec_helper'
+require 'open3'
 
 RSpec.describe 'bug_report_templates' do
   subject do
     Bundler.with_original_env do
       Dir.chdir(chdir_path) do
-        system({'ACTIVE_ADMIN_PATH' => active_admin_root},
-               Gem.ruby,
-               template_path,
-               out: File::NULL)
+        Open3.capture2e(
+          {'ACTIVE_ADMIN_PATH' => active_admin_root},
+          Gem.ruby,
+          template_path
+        )[1]
       end
     end
   end

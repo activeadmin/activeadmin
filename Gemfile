@@ -3,7 +3,6 @@ source "https://rubygems.org"
 eval_gemfile(File.expand_path("Gemfile.common", __dir__))
 
 gem "rails", "~> 5.2.x"
-gem "bootsnap"
 gem "devise", "~> 4.4"
 gem "draper", "~> 3.0"
 gem "activemodel-serializers-xml"

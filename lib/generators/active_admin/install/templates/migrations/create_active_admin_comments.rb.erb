@@ -1,27 +1,13 @@
-<%
-  parent_class = ActiveRecord::Migration
-  parent_class = parent_class[parent_class.current_version] if Rails::VERSION::MAJOR >= 5
--%>
-class CreateActiveAdminComments < <%= parent_class.to_s %>
+class CreateActiveAdminComments < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version.to_s %>]
   def self.up
     create_table :active_admin_comments do |t|
       t.string :namespace
       t.text   :body
       t.references :resource, polymorphic: true
       t.references :author, polymorphic: true
-      <%- if Rails::VERSION::MAJOR >= 5 -%>
       t.timestamps
-      <%- else -%>
-      t.timestamps null: false
-      <%- end -%>
     end
     add_index :active_admin_comments, [:namespace]
-    <%- unless Rails::VERSION::MAJOR >= 5 -%>
-
-    add_index :active_admin_comments, [:author_type, :author_id]
-    add_index :active_admin_comments, [:resource_type, :resource_id]
-    <%- end -%>
-
   end
 
   def self.down

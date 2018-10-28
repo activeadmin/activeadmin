@@ -2,174 +2,383 @@
 
 version: 2.1
 
-steps: &steps
+.install_bundler: &install_bundler
+  run:
+    name: Install a specific bundler version
+    command: gem install bundler -v 1.17.1
+
+.copy_current_gemfile: &copy_current_gemfile
+  run:
+    name: Cat current Gemfile to a specific file so caching works
+    command: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
+
+.restore_cache: &restore_cache
+  restore_cache:
+    keys:
+      - bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
+
+.install_dependencies: &install_dependencies
+  run:
+    name: Install dependencies
+    command: bundle install --without development --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3
+
+.install_chromedriver: &install_chromedriver
+  run:
+    name: Install chromedriver
+    command: bin/install_chromedriver.sh
+
+.save_cache: &save_cache
+  save_cache:
+    key: bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
+    paths:
+      - vendor/bundle
+
+.create_test_app: &create_test_app
+  run:
+    name: Create test app
+    command: PARALLEL_TEST_PROCESSORS=4 bundle exec rake setup
+
+.save_test_app_to_workspace: &save_test_app_to_workspace
+  persist_to_workspace:
+    root: spec/rails
+    paths:
+      - rails-*
+
+.restore_test_app_from_workspace: &restore_test_app_from_workspace
+  attach_workspace:
+    at: spec/rails
+
+.restore_test_times: &restore_test_times
+  restore_cache:
+    keys:
+      - testtime-{{ .Branch }}-{{ .Environment.CIRCLE_JOB }}
+      - testtime-master-{{ .Environment.CIRCLE_JOB }}
+
+.run_tests: &run_tests
+  run:
+    name: Run tests
+    command: COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bundle exec rake test
+
+.save_test_times: &save_test_times
+  save_cache:
+    key: testtime-{{ .Branch }}-{{ .Environment.CIRCLE_JOB }}
+    paths:
+      - tmp/parallel_runtime_rspec.log
+      - tmp/parallel_runtime_cucumber.log
+
+.generate_docs: &generate_docs
+  run:
+    name: Generate docs
+    command: bundle exec rake docs:build
+
+.run_lints: &run_lints
+  run:
+    name: Run lints
+    command: bundle exec rake lint
+
+.test_steps: &test_steps
   - checkout
+  - *install_bundler
+  - *copy_current_gemfile
+  - *restore_cache
+  - *install_dependencies
+  - *install_chromedriver
+  - *save_cache
+  - *restore_test_app_from_workspace
+  - *restore_test_times
+  - *run_tests
+  - *save_test_times
 
-  - run:
-      name: Cat current Gemfile to a specific file so caching works
-      command: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
-
-  - restore_cache:
-      keys:
-        - bundler-dependencies-{{ checksum "current_gemfile.lock" }}
-
-  - run:
-      name: Install dependencies
-      command: bundle install --without development --path vendor/bundle --retry 3 --jobs 3
-
-  - run:
-      name: Install chromedriver
-      command: bin/install_chromedriver.sh
-
-  - save_cache:
-      key: bundler-dependencies-{{ checksum "current_gemfile.lock" }}
-      paths:
-        - vendor/bundle
-
-  - run:
-      name: Run checks
-      command: |
-        COVERAGE=true bundle exec rake
-        bundle exec rake docs:build
-        bundle exec rake lint
+.test_app_steps: &test_app_steps
+  - checkout
+  - *install_bundler
+  - *copy_current_gemfile
+  - *restore_cache
+  - *install_dependencies
+  - *save_cache
+  - *create_test_app
+  - *save_test_app_to_workspace
 
 jobs:
-  ruby23rails42:
+  testapp50:
     docker:
-      - image: circleci/ruby:2.3.7-node-browsers
+      - image: circleci/ruby:2.5.3-node
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_42.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
 
     steps:
-      *steps
+      *test_app_steps
+
+  testapp51:
+    docker:
+      - image: circleci/ruby:2.5.3-node
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
+
+    steps:
+      *test_app_steps
+
+  testapp52:
+    docker:
+      - image: circleci/ruby:2.5.3-node
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+
+    steps:
+      *test_app_steps
+
+  lint_and_docs:
+    docker:
+      - image: circleci/ruby:2.5.3
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+
+    steps:
+      - checkout
+      - *install_bundler
+      - *copy_current_gemfile
+      - *restore_cache
+      - *install_dependencies
+      - *save_cache
+      - *generate_docs
+      - *run_lints
 
   ruby23rails50:
     docker:
-      - image: circleci/ruby:2.3.7-node-browsers
+      - image: circleci/ruby:2.3.8-node-browsers
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby23rails51:
     docker:
-      - image: circleci/ruby:2.3.7-node-browsers
+      - image: circleci/ruby:2.3.8-node-browsers
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby23rails52:
     docker:
-      - image: circleci/ruby:2.3.7-node-browsers
+      - image: circleci/ruby:2.3.8-node-browsers
 
     environment:
       BUNDLE_GEMFILE: Gemfile
 
     steps:
-      *steps
-
-  ruby24rails42:
-    docker:
-      - image: circleci/ruby:2.4.4-node-browsers
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_42.gemfile
-
-    steps:
-      *steps
+      *test_steps
 
   ruby24rails50:
     docker:
-      - image: circleci/ruby:2.4.4-node-browsers
+      - image: circleci/ruby:2.4.5-node-browsers
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby24rails51:
     docker:
-      - image: circleci/ruby:2.4.4-node-browsers
+      - image: circleci/ruby:2.4.5-node-browsers
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby24rails52:
     docker:
-      - image: circleci/ruby:2.4.4-node-browsers
+      - image: circleci/ruby:2.4.5-node-browsers
 
     environment:
       BUNDLE_GEMFILE: Gemfile
 
     steps:
-      *steps
-
-  ruby25rails42:
-    docker:
-      - image: circleci/ruby:2.5.1-node-browsers
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_42.gemfile
-
-    steps:
-      *steps
+      *test_steps
 
   ruby25rails50:
     docker:
-      - image: circleci/ruby:2.5.1-node-browsers
+      - image: circleci/ruby:2.5.3-node-browsers
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby25rails51:
     docker:
-      - image: circleci/ruby:2.5.1-node-browsers
+      - image: circleci/ruby:2.5.3-node-browsers
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
 
     steps:
-      *steps
+      *test_steps
 
   ruby25rails52:
     docker:
-      - image: circleci/ruby:2.5.1-node-browsers
+      - image: circleci/ruby:2.5.3-node-browsers
 
     environment:
       BUNDLE_GEMFILE: Gemfile
 
     steps:
-      *steps
+      *test_steps
+
+  jruby91rails50:
+    docker:
+      - image: ccistaging/jruby:9.1.17.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *test_steps
+
+  jruby91rails51:
+    docker:
+      - image: ccistaging/jruby:9.1.17.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *test_steps
+
+  jruby91rails52:
+    docker:
+      - image: ccistaging/jruby:9.1.17.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *test_steps
+
+  jruby92rails50:
+    docker:
+      - image: ccistaging/jruby:9.2.0.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *test_steps
+
+  jruby92rails51:
+    docker:
+      - image: ccistaging/jruby:9.2.0.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *test_steps
+
+  jruby92rails52:
+    docker:
+      - image: ccistaging/jruby:9.2.0.0-node-browsers
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *test_steps
 
 workflows:
   version: 2
 
+  #
+  # The workflow has three types of jobs:
+  #
+  # * A lint job to run style checks.
+  # * Jobs that create test apps for each supported rails version.
+  # * Jobs that run tests, one for each supported [ruby_version, rails_version]
+  #   combination. Every test job for a specific rails version reuses the test
+  #   app created for that specific rails version.
+  #
   build:
     jobs:
-      - ruby23rails42
-      - ruby23rails50
-      - ruby23rails51
-      - ruby23rails52
+      - lint_and_docs
 
-      - ruby24rails42
-      - ruby24rails50
-      - ruby24rails51
-      - ruby24rails52
+      - testapp50
+      - testapp51
+      - testapp52
 
-      - ruby25rails42
-      - ruby25rails50
-      - ruby25rails51
-      - ruby25rails52
+      - ruby23rails50:
+          requires:
+            - testapp50
+
+      - ruby23rails51:
+          requires:
+            - testapp51
+
+      - ruby23rails52:
+          requires:
+            - testapp52
+
+      - ruby24rails50:
+          requires:
+            - testapp50
+
+      - ruby24rails51:
+          requires:
+            - testapp51
+
+      - ruby24rails52:
+          requires:
+            - testapp52
+
+      - ruby25rails50:
+          requires:
+            - testapp50
+
+      - ruby25rails51:
+          requires:
+            - testapp51
+
+      - ruby25rails52:
+          requires:
+            - testapp52
+
+      - jruby91rails50:
+          requires:
+            - testapp50
+
+      - jruby91rails51:
+          requires:
+            - testapp51
+
+      - jruby91rails52:
+          requires:
+            - testapp52
+
+      - jruby92rails50:
+          requires:
+            - testapp50
+
+      - jruby92rails51:
+          requires:
+            - testapp51
+
+      - jruby92rails52:
+          requires:
+            - testapp52
