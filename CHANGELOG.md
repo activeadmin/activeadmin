@@ -27,7 +27,7 @@
 
 ### Bug Fixes
 
-* gemspec should have more permissive ransack dependency [#5447][] by [@varyonic][]
+* gemspec should have more permissive ransack dependency [#5448][] by [@varyonic][]
 
 ## 1.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.1...v1.3.0)
 
@@ -253,7 +253,6 @@ Please check [0-6-stable][] for previous changes.
 [#4254]: https://github.com/activeadmin/activeadmin/issues/4254
 [#5043]: https://github.com/activeadmin/activeadmin/issues/5043
 [#5198]: https://github.com/activeadmin/activeadmin/issues/5198
-[#5447]: https://github.com/activeadmin/activeadmin/issues/5447
 
 [#3435]: https://github.com/activeadmin/activeadmin/pull/3435
 [#4477]: https://github.com/activeadmin/activeadmin/pull/4477
@@ -315,6 +314,7 @@ Please check [0-6-stable][] for previous changes.
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
 [#5413]: https://github.com/activeadmin/activeadmin/pull/5413
 [#5433]: https://github.com/activeadmin/activeadmin/pull/5433
+[#5448]: https://github.com/activeadmin/activeadmin/pull/5448
 [#5453]: https://github.com/activeadmin/activeadmin/pull/5453
 [#5458]: https://github.com/activeadmin/activeadmin/pull/5458
 [#5461]: https://github.com/activeadmin/activeadmin/pull/5461
