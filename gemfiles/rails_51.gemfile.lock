@@ -2,6 +2,7 @@ PATH
   remote: ..
   specs:
     activeadmin (2.0.0.alpha)
+      activemodel-serializers-xml
       arbre (>= 1.1.1)
       formtastic (~> 3.1)
       formtastic_i18n
@@ -290,7 +291,7 @@ GEM
     rainbow (2.2.2)
       rake
     rake (12.3.1)
-    ransack (2.0.1)
+    ransack (2.1.0)
       actionpack (>= 5.0)
       activerecord (>= 5.0)
       activesupport (>= 5.0)
