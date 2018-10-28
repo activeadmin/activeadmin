@@ -23,6 +23,10 @@
 
 * Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
 
+### Bug Fixes
+
+* Fixed "create anoter" checkbox styling. [#5324][] by [@faucct][]
+
 ## 1.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.0...v1.3.1)
 
 ### Bug Fixes
@@ -303,6 +307,7 @@ Please check [0-6-stable][] for previous changes.
 [#5295]: https://github.com/activeadmin/activeadmin/pull/5295
 [#5299]: https://github.com/activeadmin/activeadmin/pull/5299
 [#5320]: https://github.com/activeadmin/activeadmin/pull/5320
+[#5324]: https://github.com/activeadmin/activeadmin/pull/5324
 [#5330]: https://github.com/activeadmin/activeadmin/pull/5330
 [#5336]: https://github.com/activeadmin/activeadmin/pull/5336
 [#5343]: https://github.com/activeadmin/activeadmin/pull/5343
