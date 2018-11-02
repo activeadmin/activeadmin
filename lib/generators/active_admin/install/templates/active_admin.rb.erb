@@ -286,11 +286,22 @@ ActiveAdmin.setup do |config|
   # config.filters = true
   #
   # By default the filters include associations in a select, which means
-  # that every record will be loaded for each association.
+  # that every record will be loaded for each association (up to 256).
   # You can enabled or disable the inclusion
   # of those filters by default here.
   #
   # config.include_default_association_filters = true
+  # config.maximum_association_filter_arity = 256
+  # config.filter_columns_for_large_association, [
+  #    :display_name,
+  #    :full_name,
+  #    :name,
+  #    :username,
+  #    :login,
+  #    :title,
+  #    :email,
+  #  ]
+  # config.filter_method_for_large_association, '_starts_with'
 
   # == Head
   #
