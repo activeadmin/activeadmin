@@ -2,7 +2,7 @@ onDOMReady = ->
   #
   # Use ActiveAdmin.modal_dialog to prompt user if confirmation is required for current Batch Action
   #
-  $('.batch_actions_selector li a').click (e)->
+  $('.batch_actions_selector li a').off('click').on 'click', (e)->
     e.stopPropagation() # prevent Rails UJS click event
     e.preventDefault()
     if message = $(@).data 'confirm'
