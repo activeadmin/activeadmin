@@ -10,10 +10,23 @@
 
 #### Minor
 
+* Add missing I18n for comments. [#5458][], [#5461][] by [@mauriciopasquier][]
+* Fix batch_actions.delete_confirmation translation in zh-CN.yml. [#5453][] by [@ShallmentMo][]
+* Add some missing italian translations. [#5433][] by [@stefsava][]
+* Enhance some chinese translations. [#5413][] by [@shouya][]
+* Add missing filter predicate translations to nb. [#5357][] by [@rogerkk][]
+* Add missing norwegian comment translations. [#5375] by [@rogerkk][]
+* Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
+* Add missing german translations. [#5341][] by [@eikes][]
+* Add missing spanish translation. [#5336][] by [@mconiglio][]
+* Add from and to predicates for russian language. [#5330][] by [@glebtv][]
+* Fix typo in finnish translation. [#5320][] by [@JiiHu][]
+* Add missing turkish translations. [#5295][] by [@kobeumut][]
+* Add missing chinese translations. [#5266][] by [@jasl][]
 * Allow proc label in datepicker input [#5408][] by [@tiagotex][]
 * Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
 
-### Bug fixes
+### Bug Fixes
 
 * Fixed the string representation of the resolved `sort_key` when no explicit
   `sortable` attribute is passed [#5464][] by [@chumakoff][]
@@ -23,6 +36,7 @@
 * Fixed `if:` scope option when a lambda is passed [#5501][] by [@deivid-rodriguez][]
 * Comment validation adding redundant errors when resource is missing [#5516][] by [@deivid-rodriguez][]
 * Fixed resource filtering by association when the resource has custom primary key [#5446][] by [@wasifhossain][]
+* Fixed "create anoter" checkbox styling. [#5324][] by [@faucct][]
 
 ### Removals
 
@@ -67,13 +81,12 @@
 * Better performance of comments show view [#5208][] by [@dhyegofernando][]
 * Mitigate memory bloat [#4118][] with CSV exports [#5251][] by [@f1sherman][]
 * Fix issue applying custom decorations [#5253][] by [@faucct][]
-* Translations:
-  * Brazilian locale updated [#5125][] by [@renotocn][]
-  * Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
-  * Italian locale updated [#5180][] by [@blocknotes][]
-  * Swedish locale updated [#5187][] by [@jawa][]
-  * Vietnamese locale updated [#5194][] by [@Nguyenanh][]
-  * Esperanto locale added [#5210][] by [@RobinvanderVliet][]
+* Brazilian locale updated [#5125][] by [@renotocn][]
+* Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
+* Italian locale updated [#5180][] by [@blocknotes][]
+* Swedish locale updated [#5187][] by [@jawa][]
+* Vietnamese locale updated [#5194][] by [@Nguyenanh][]
+* Esperanto locale added [#5210][] by [@RobinvanderVliet][]
 
 ### Bug Fixes
 
@@ -91,7 +104,7 @@
 * Fixed [#4173][] by including the default Kaminari templates. [#5069][] by [@javierjulio][]
 * Fixed [#5043][]. Do not crash in sidebar rendering when a default scope is not
   specified. [#5044][] by [@Fivell][]
-* Fixed [#3894][]. Make tab's component work with non-ascii titles. [#5046] by
+* Fixed [#3894][]. Make tab's component work with non-ascii titles. [#5046][] by
   [@Fivell][]
 
 ### Removals
@@ -101,9 +114,8 @@
 * Removed `jquery-ui-rails` as a dependency. The specific jQuery UI assets used
   are now within the vendor directory. This will be replaced by alternatives and
   dropped entirely in a major release. Please remove any direct inclusions
-  of `//= require jquery-ui`. [#5052][] by [@javierjulio][]
-* AA won't work properly with jQuery 1 & 2. Use jQuery 3 instead (`#= require jquery3`
- in `active_admin.js.coffee`)
+  of `//= require jquery-ui`. This allows us to upgrade to jquery v3. [#5052][]
+  by [@javierjulio][]
 
 ### Deprecations
 
@@ -315,16 +327,31 @@ Please check [0-6-stable][] for previous changes.
 [#5238]: https://github.com/activeadmin/activeadmin/pull/5238
 [#5240]: https://github.com/activeadmin/activeadmin/pull/5240
 [#5253]: https://github.com/activeadmin/activeadmin/pull/5253
+[#5266]: https://github.com/activeadmin/activeadmin/pull/5266
 [#5272]: https://github.com/activeadmin/activeadmin/pull/5272
 [#5275]: https://github.com/activeadmin/activeadmin/pull/5275
 [#5284]: https://github.com/activeadmin/activeadmin/pull/5284
+[#5295]: https://github.com/activeadmin/activeadmin/pull/5295
 [#5299]: https://github.com/activeadmin/activeadmin/pull/5299
+[#5320]: https://github.com/activeadmin/activeadmin/pull/5320
+[#5324]: https://github.com/activeadmin/activeadmin/pull/5324
+[#5330]: https://github.com/activeadmin/activeadmin/pull/5330
+[#5336]: https://github.com/activeadmin/activeadmin/pull/5336
+[#5341]: https://github.com/activeadmin/activeadmin/pull/5341
 [#5343]: https://github.com/activeadmin/activeadmin/pull/5343
+[#5357]: https://github.com/activeadmin/activeadmin/pull/5357
 [#5359]: https://github.com/activeadmin/activeadmin/pull/5359
+[#5368]: https://github.com/activeadmin/activeadmin/pull/5368
+[#5375]: https://github.com/activeadmin/activeadmin/pull/5375
 [#5399]: https://github.com/activeadmin/activeadmin/pull/5399
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
+[#5413]: https://github.com/activeadmin/activeadmin/pull/5413
+[#5433]: https://github.com/activeadmin/activeadmin/pull/5433
 [#5446]: https://github.com/activeadmin/activeadmin/pull/5446
 [#5448]: https://github.com/activeadmin/activeadmin/pull/5448
+[#5453]: https://github.com/activeadmin/activeadmin/pull/5453
+[#5458]: https://github.com/activeadmin/activeadmin/pull/5458
+[#5461]: https://github.com/activeadmin/activeadmin/pull/5461
 [#5464]: https://github.com/activeadmin/activeadmin/pull/5464
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
 [#5408]: https://github.com/activeadmin/activeadmin/pull/5408
@@ -342,27 +369,39 @@ Please check [0-6-stable][] for previous changes.
 [@craigmcnamara]: https://github.com/craigmcnamara
 [@DanielHeath]: https://github.com/DanielHeath
 [@deivid-rodriguez]: https://github.com/deivid-rodriguez
+[@dennisvdvliet]: https://github.com/dennisvdvliet
 [@dhyegofernando]: https://github.com/dhyegofernando
 [@dmitry]: https://github.com/dmitry
 [@drn]: https://github.com/drn
+[@eikes]: https://github.com/eikes
 [@f1sherman]: https://github.com/f1sherman
 [@faucct]: https://github.com/faucct
 [@Fivell]: https://github.com/Fivell
+[@glebtv]: https://github.com/glebtv
 [@gonzedge]: https://github.com/gonzedge
 [@innparusu95]: https://github.com/innparusu95
+[@jasl]: https://github.com/jasl
 [@javierjulio]: https://github.com/javierjulio
 [@jawa]: https://github.com/jawa
+[@JiiHu]: https://github.com/JiiHu
 [@johnnyshields]: https://github.com/johnnyshields
+[@kobeumut]: https://github.com/kobeumut
 [@leio10]: https://github.com/leio10
 [@markstory]: https://github.com/markstory
+[@mauriciopasquier]: https://github.com/mauriciopasquier
+[@mconiglio]: https://github.com/mconiglio
 [@Nguyenanh]: https://github.com/Nguyenanh
 [@PChambino]: https://github.com/PChambino
 [@potatosalad]: https://github.com/potatosalad
 [@pranas]: https://github.com/pranas
 [@renotocn]: https://github.com/renotocn
 [@RobinvanderVliet]: https://github.com/RobinvanderVliet
+[@rogerkk]: https://github.com/rogerkk
 [@seanlinsley]: https://github.com/seanlinsley
+[@ShallmentMo]: https://github.com/ShallmentMo
 [@shekibobo]: https://github.com/shekibobo
+[@shouya]: https://github.com/shouya
+[@stefsava]: https://github.com/stefsava
 [@tiagotex]: https://github.com/tiagotex
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
