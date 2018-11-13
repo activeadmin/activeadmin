@@ -91,7 +91,7 @@
 * Fixed [#4173][] by including the default Kaminari templates. [#5069][] by [@javierjulio][]
 * Fixed [#5043][]. Do not crash in sidebar rendering when a default scope is not
   specified. [#5044][] by [@Fivell][]
-* Fixed [#3894][]. Make tab's component work with non-ascii titles. [#5046] by
+* Fixed [#3894][]. Make tab's component work with non-ascii titles. [#5046][] by
   [@Fivell][]
 
 ### Removals
