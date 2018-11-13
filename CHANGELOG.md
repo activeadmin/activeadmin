@@ -18,7 +18,7 @@
 * Add missing norwegian comment translations. [#5375] by [@rogerkk][]
 * Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
 * Add missing german translations. [#5341][] by [@eikes][]
-* Add missing spanish translation. [#5336][] by Mauricio Coniglio
+* Add missing spanish translation. [#5336][] by [@mconiglio][]
 * Add from and to predicates for russian language. [#5330][] by [@glebtv][]
 * Fix typo in finnish translation. [#5320][] by [@JiiHu][]
 * Add missing turkish translations. [#5295][] by [@kobeumut][]
@@ -387,6 +387,7 @@ Please check [0-6-stable][] for previous changes.
 [@leio10]: https://github.com/leio10
 [@markstory]: https://github.com/markstory
 [@mauriciopasquier]: https://github.com/mauriciopasquier
+[@mconiglio]: https://github.com/mconiglio
 [@Nguyenanh]: https://github.com/Nguyenanh
 [@PChambino]: https://github.com/PChambino
 [@potatosalad]: https://github.com/potatosalad
