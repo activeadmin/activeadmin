@@ -34,7 +34,7 @@
   be explicitly specified when a block is passed to column) [#5464][] by
   [@chumakoff][]
 * Fixed `if:` scope option when a lambda is passed [#5501][] by [@deivid-rodriguez][]
-* Comment validation adding redundant errors when resource is missing [#5516][] by [@deivid-rodriguez][]
+* Comment validation adding redundant errors when resource is missing [#5517][] by [@deivid-rodriguez][]
 * Fixed resource filtering by association when the resource has custom primary key [#5446][] by [@wasifhossain][]
 * Fixed "create anoter" checkbox styling. [#5324][] by [@faucct][]
 
@@ -355,7 +355,7 @@ Please check [0-6-stable][] for previous changes.
 [#5464]: https://github.com/activeadmin/activeadmin/pull/5464
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
 [#5408]: https://github.com/activeadmin/activeadmin/pull/5408
-[#5516]: https://github.com/activeadmin/activeadmin/pull/5516
+[#5517]: https://github.com/activeadmin/activeadmin/pull/5517
 [#5486]: https://github.com/activeadmin/activeadmin/pull/5486
 
 [@5t111111]: https://github.com/5t111111
