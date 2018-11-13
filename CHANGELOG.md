@@ -10,20 +10,19 @@
 
 #### Minor
 
-* Translations:
-  * I18n for Comments. [#5458][], [#5461][] by [@mauriciopasquier][]
-  * Change batch_actions.delete_confirmation in zh-CN.yml. [#5453][] by [@ShallmentMo][]
-  * Update it.yml. [#5433][] by [@stefsava][]
-  * enhance zh_CN translation. [#5413][] by [@shouya][]
-  * Add missing filter predicate translations to nb. [#5357][] by [@rogerkk][]
-  * Add missing nb comments translations. [#5375] by [@rogerkk][]
-  * Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
-  * Add missing de locale / german translations. [#5341][] by [@eikes][]
-  * Add missing spanish locale entry. [#5336][] by Mauricio Coniglio
-  * Add from and to predicates for russian language. [#5330][] by [@glebtv][]
-  * Fix typo. [#5320][] by [@JiiHu][]
-  * Update tr.yml. [#5295][] by [@kobeumut][]
-  * Update zh-CN.yml. [#5266][] by [@jasl][]
+* I18n for Comments. [#5458][], [#5461][] by [@mauriciopasquier][]
+* Change batch_actions.delete_confirmation in zh-CN.yml. [#5453][] by [@ShallmentMo][]
+* Update it.yml. [#5433][] by [@stefsava][]
+* enhance zh_CN translation. [#5413][] by [@shouya][]
+* Add missing filter predicate translations to nb. [#5357][] by [@rogerkk][]
+* Add missing nb comments translations. [#5375] by [@rogerkk][]
+* Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
+* Add missing de locale / german translations. [#5341][] by [@eikes][]
+* Add missing spanish locale entry. [#5336][] by Mauricio Coniglio
+* Add from and to predicates for russian language. [#5330][] by [@glebtv][]
+* Fix typo. [#5320][] by [@JiiHu][]
+* Update tr.yml. [#5295][] by [@kobeumut][]
+* Update zh-CN.yml. [#5266][] by [@jasl][]
 * Allow proc label in datepicker input [#5408][] by [@tiagotex][]
 * Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
 
@@ -81,13 +80,12 @@
 * Better performance of comments show view [#5208][] by [@dhyegofernando][]
 * Mitigate memory bloat [#4118][] with CSV exports [#5251][] by [@f1sherman][]
 * Fix issue applying custom decorations [#5253][] by [@faucct][]
-* Translations:
-  * Brazilian locale updated [#5125][] by [@renotocn][]
-  * Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
-  * Italian locale updated [#5180][] by [@blocknotes][]
-  * Swedish locale updated [#5187][] by [@jawa][]
-  * Vietnamese locale updated [#5194][] by [@Nguyenanh][]
-  * Esperanto locale added [#5210][] by [@RobinvanderVliet][]
+* Brazilian locale updated [#5125][] by [@renotocn][]
+* Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
+* Italian locale updated [#5180][] by [@blocknotes][]
+* Swedish locale updated [#5187][] by [@jawa][]
+* Vietnamese locale updated [#5194][] by [@Nguyenanh][]
+* Esperanto locale added [#5210][] by [@RobinvanderVliet][]
 
 ### Bug Fixes
 
