@@ -10,6 +10,20 @@
 
 #### Minor
 
+* Translations:
+  * I18n for Comments. [#5458][], [#5461][] by [@mauriciopasquier][]
+  * Change batch_actions.delete_confirmation in zh-CN.yml. [#5453][] by [@ShallmentMo][]
+  * Update it.yml. [#5433][] by [@stefsava][]
+  * enhance zh_CN translation. [#5413][] by [@shouya][]
+  * Add missing filter predicate translations to nb. [#5357][] by [@rogerkk][]
+  * Add missing nb comments translations. [#5375] by [@rogerkk][]
+  * Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
+  * Add missing de locale / german translations. [#5341][] by [@eikes][]
+  * Add missing spanish locale entry. [#5336][] by Mauricio Coniglio
+  * Add from and to predicates for russian language. [#5330][] by [@glebtv][]
+  * Fix typo. [#5320][] by [@JiiHu][]
+  * Update tr.yml. [#5295][] by [@kobeumut][]
+  * Update zh-CN.yml. [#5266][] by [@jasl][]
 * Allow proc label in datepicker input [#5408][] by [@tiagotex][]
 * Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
 
@@ -314,16 +328,30 @@ Please check [0-6-stable][] for previous changes.
 [#5238]: https://github.com/activeadmin/activeadmin/pull/5238
 [#5240]: https://github.com/activeadmin/activeadmin/pull/5240
 [#5253]: https://github.com/activeadmin/activeadmin/pull/5253
+[#5266]: https://github.com/activeadmin/activeadmin/pull/5266
 [#5272]: https://github.com/activeadmin/activeadmin/pull/5272
 [#5275]: https://github.com/activeadmin/activeadmin/pull/5275
 [#5284]: https://github.com/activeadmin/activeadmin/pull/5284
+[#5295]: https://github.com/activeadmin/activeadmin/pull/5295
 [#5299]: https://github.com/activeadmin/activeadmin/pull/5299
+[#5320]: https://github.com/activeadmin/activeadmin/pull/5320
+[#5330]: https://github.com/activeadmin/activeadmin/pull/5330
+[#5336]: https://github.com/activeadmin/activeadmin/pull/5336
+[#5341]: https://github.com/activeadmin/activeadmin/pull/5341
 [#5343]: https://github.com/activeadmin/activeadmin/pull/5343
+[#5357]: https://github.com/activeadmin/activeadmin/pull/5357
 [#5359]: https://github.com/activeadmin/activeadmin/pull/5359
+[#5368]: https://github.com/activeadmin/activeadmin/pull/5368
+[#5375]: https://github.com/activeadmin/activeadmin/pull/5375
 [#5399]: https://github.com/activeadmin/activeadmin/pull/5399
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
+[#5413]: https://github.com/activeadmin/activeadmin/pull/5413
+[#5433]: https://github.com/activeadmin/activeadmin/pull/5433
 [#5446]: https://github.com/activeadmin/activeadmin/pull/5446
 [#5448]: https://github.com/activeadmin/activeadmin/pull/5448
+[#5453]: https://github.com/activeadmin/activeadmin/pull/5453
+[#5458]: https://github.com/activeadmin/activeadmin/pull/5458
+[#5461]: https://github.com/activeadmin/activeadmin/pull/5461
 [#5464]: https://github.com/activeadmin/activeadmin/pull/5464
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
 [#5408]: https://github.com/activeadmin/activeadmin/pull/5408
@@ -341,27 +369,38 @@ Please check [0-6-stable][] for previous changes.
 [@craigmcnamara]: https://github.com/craigmcnamara
 [@DanielHeath]: https://github.com/DanielHeath
 [@deivid-rodriguez]: https://github.com/deivid-rodriguez
+[@dennisvdvliet]: https://github.com/dennisvdvliet
 [@dhyegofernando]: https://github.com/dhyegofernando
 [@dmitry]: https://github.com/dmitry
 [@drn]: https://github.com/drn
+[@eikes]: https://github.com/eikes
 [@f1sherman]: https://github.com/f1sherman
 [@faucct]: https://github.com/faucct
 [@Fivell]: https://github.com/Fivell
+[@glebtv]: https://github.com/glebtv
 [@gonzedge]: https://github.com/gonzedge
 [@innparusu95]: https://github.com/innparusu95
+[@jasl]: https://github.com/jasl
 [@javierjulio]: https://github.com/javierjulio
 [@jawa]: https://github.com/jawa
+[@JiiHu]: https://github.com/JiiHu
 [@johnnyshields]: https://github.com/johnnyshields
+[@kobeumut]: https://github.com/kobeumut
 [@leio10]: https://github.com/leio10
 [@markstory]: https://github.com/markstory
+[@mauriciopasquier]: https://github.com/mauriciopasquier
 [@Nguyenanh]: https://github.com/Nguyenanh
 [@PChambino]: https://github.com/PChambino
 [@potatosalad]: https://github.com/potatosalad
 [@pranas]: https://github.com/pranas
 [@renotocn]: https://github.com/renotocn
 [@RobinvanderVliet]: https://github.com/RobinvanderVliet
+[@rogerkk]: https://github.com/rogerkk
 [@seanlinsley]: https://github.com/seanlinsley
+[@ShallmentMo]: https://github.com/ShallmentMo
 [@shekibobo]: https://github.com/shekibobo
+[@shouya]: https://github.com/shouya
+[@stefsava]: https://github.com/stefsava
 [@tiagotex]: https://github.com/tiagotex
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
