@@ -146,7 +146,7 @@ action_item :super_action,
 end
 ```
 
-By default action items are positioned in the same order as they defined (after default actions), 
+By default action items are positioned in the same order as they defined (after default actions),
 but it’s also possible to specify their position manually:
 
 ```ruby
