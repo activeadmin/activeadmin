@@ -11,7 +11,7 @@
 * Add some missing italian translations. [#5433][] by [@stefsava][]
 * Enhance some chinese translations. [#5413][] by [@shouya][]
 * Add missing filter predicate translations to nb. [#5357][] by [@rogerkk][]
-* Add missing norwegian comment translations. [#5375] by [@rogerkk][]
+* Add missing norwegian comment translations. [#5375][] by [@rogerkk][]
 * Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
 * Add missing german translations. [#5341][] by [@eikes][]
 * Add missing spanish translation. [#5336][] by [@mconiglio][]
@@ -19,26 +19,25 @@
 * Fix typo in finnish translation. [#5320][] by [@JiiHu][]
 * Add missing turkish translations. [#5295][] by [@kobeumut][]
 * Add missing chinese translations. [#5266][] by [@jasl][]
-* Allow proc label in datepicker input [#5408][] by [@tiagotex][]
-* Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
+* Allow proc label in datepicker input. [#5408][] by [@tiagotex][]
+* Add `group` attribute to scopes in order to show them in grouped. [#5359][] by [@leio10][]
+* Add missing polish translations and improve existing ones. [#5537][] by [@Wowu][]
+* Add `priority` option to `action_item`. [#5334][] by [@andreslemik][]
 
 ### Bug Fixes
 
-* Fixed the string representation of the resolved `sort_key` when no explicit
-  `sortable` attribute is passed [#5464][] by [@chumakoff][]
-* Fixed docs on the column `sortable` attribute (which actually doesn't have to
-  be explicitly specified when a block is passed to column) [#5464][] by
-  [@chumakoff][]
-* Fixed `if:` scope option when a lambda is passed [#5501][] by [@deivid-rodriguez][]
-* Comment validation adding redundant errors when resource is missing [#5516][] by [@deivid-rodriguez][]
-* Fixed resource filtering by association when the resource has custom primary key [#5446][] by [@wasifhossain][]
+* Fixed the string representation of the resolved `sort_key` when no explicit `sortable` attribute is passed. [#5464][] by [@chumakoff][]
+* Fixed docs on the column `sortable` attribute (which actually doesn't have to be explicitly specified when a block is passed to column). [#5464][] by [@chumakoff][]
+* Fixed `if:` scope option when a lambda is passed. [#5501][] by [@deivid-rodriguez][]
+* Comment validation adding redundant errors when resource is missing. [#5517][] by [@deivid-rodriguez][]
+* Fixed resource filtering by association when the resource has custom primary key. [#5446][] by [@wasifhossain][]
 * Fixed "create anoter" checkbox styling. [#5324][] by [@faucct][]
 
 ## 1.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.0...v1.3.1)
 
 ### Bug Fixes
 
-* gemspec should have more permissive ransack dependency [#5448][] by [@varyonic][]
+* gemspec should have more permissive ransack dependency. [#5448][] by [@varyonic][]
 
 ## 1.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.1...v1.3.0)
 
@@ -60,26 +59,26 @@
 
 #### Minor
 
-* Do not display pagination info when there are no comments [#5119][] by [@alex-bogomolov][]
-* Revert generated config files to pluralized [#5120][] by [@varyonic][], [#5137][] by [@deivid-rodriguez][]
-* Warn when action definition overwrites controller method [#5167][] by [@aarek][]
-* Better performance of comments show view [#5208][] by [@dhyegofernando][]
-* Mitigate memory bloat [#4118][] with CSV exports [#5251][] by [@f1sherman][]
-* Fix issue applying custom decorations [#5253][] by [@faucct][]
-* Brazilian locale updated [#5125][] by [@renotocn][]
-* Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
-* Italian locale updated [#5180][] by [@blocknotes][]
-* Swedish locale updated [#5187][] by [@jawa][]
-* Vietnamese locale updated [#5194][] by [@Nguyenanh][]
-* Esperanto locale added [#5210][] by [@RobinvanderVliet][]
+* Do not display pagination info when there are no comments. [#5119][] by [@alex-bogomolov][]
+* Revert generated config files to pluralized. [#5120][] by [@varyonic][], [#5137][] by [@deivid-rodriguez][]
+* Warn when action definition overwrites controller method. [#5167][] by [@aarek][]
+* Better performance of comments show view. [#5208][] by [@dhyegofernando][]
+* Mitigate memory bloat [#4118][] with CSV exports. [#5251][] by [@f1sherman][]
+* Fix issue applying custom decorations. [#5253][] by [@faucct][]
+* Brazilian locale updated. [#5125][] by [@renotocn][]
+* Japanese locale updated. [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
+* Italian locale updated. [#5180][] by [@blocknotes][]
+* Swedish locale updated. [#5187][] by [@jawa][]
+* Vietnamese locale updated. [#5194][] by [@Nguyenanh][]
+* Esperanto locale added. [#5210][] by [@RobinvanderVliet][]
 
 ### Bug Fixes
 
-* Fix a couple of issues rendering filter labels [#5223][] by [@wspurgin][]
-* Prevent NameError when filtering on a namespaced association [#5240][] by [@DanielHeath][]
-* Fix undefined method error in Ransack when building filters [#5238][] by [@wspurgin][]
-* Fixed [#5198][] Prevent XSS on sidebar's current filter rendering [#5275][] by [@deivid-rodriguez][]
-* Sanitize display_name [#5284][] by [@markstory][]
+* Fix a couple of issues rendering filter labels. [#5223][] by [@wspurgin][]
+* Prevent NameError when filtering on a namespaced association. [#5240][] by [@DanielHeath][]
+* Fix undefined method error in Ransack when building filters. [#5238][] by [@wspurgin][]
+* Fixed [#5198][] Prevent XSS on sidebar's current filter rendering. [#5275][] by [@deivid-rodriguez][]
+* Sanitize display_name. [#5284][] by [@markstory][]
 
 ## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
 
@@ -87,25 +86,22 @@
 
 * Fixed [#5093][] Handle table prefix & table suffix for `ActiveAdminComment` model
 * Fixed [#4173][] by including the default Kaminari templates. [#5069][] by [@javierjulio][]
-* Fixed [#5043][]. Do not crash in sidebar rendering when a default scope is not
-  specified. [#5044][] by [@Fivell][]
-* Fixed [#3894][]. Make tab's component work with non-ascii titles. [#5046][] by
-  [@Fivell][]
+* Fixed [#5043][]. Do not crash in sidebar rendering when a default scope is not specified. [#5044][] by [@Fivell][]
+* Fixed [#3894][]. Make tab's component work with non-ascii titles. [#5046][] by [@Fivell][]
 
 ### Removals
 
 * Ruby 2.1 support has been dropped. [#5003][] by [@deivid-rodriguez][]
 * Replaced `sass-rails` with `sass` dependency. [#5037][] by [@javierjulio][]
-* Removed `jquery-ui-rails` as a dependency. The specific jQuery UI assets used
-  are now within the vendor directory. This will be replaced by alternatives and
-  dropped entirely in a major release. Please remove any direct inclusions
-  of `//= require jquery-ui`. This allows us to upgrade to jquery v3. [#5052][]
-  by [@javierjulio][]
+* Removed `jquery-ui-rails` as a dependency. [#5052][] by [@javierjulio][]
+  The specific jQuery UI assets used are now within the vendor directory. This
+  will be replaced by alternatives and dropped entirely in a major release.
+  Please remove any direct inclusions of `//= require jquery-ui`. This allows us
+  to upgrade to jquery v3.
 
 ### Deprecations
 
-* Deprecated `config.register_stylesheet` and `config.register_javascript`. Import
-  your CSS and JS files in `active_admin.scss` or `active_admin.js`. [#5060][] by [@javierjulio][]
+* Deprecated `config.register_stylesheet` and `config.register_javascript`. Import your CSS and JS files in `active_admin.scss` or `active_admin.js`. [#5060][] by [@javierjulio][]
 * Deprecated `type` param from `status_tag` and related CSS classes [#4989][] by [@javierjulio][]
   * The method signature has changed from:
 
@@ -261,8 +257,8 @@ Please check [0-6-stable][] for previous changes.
 [#3783]: https://github.com/activeadmin/activeadmin/issues/3783
 [#3894]: https://github.com/activeadmin/activeadmin/issues/3894
 [#4118]: https://github.com/activeadmin/activeadmin/issues/4118
-[#4187]: https://github.com/activeadmin/activeadmin/issues/4187
 [#4173]: https://github.com/activeadmin/activeadmin/issues/4173
+[#4187]: https://github.com/activeadmin/activeadmin/issues/4187
 [#4254]: https://github.com/activeadmin/activeadmin/issues/4254
 [#5043]: https://github.com/activeadmin/activeadmin/issues/5043
 [#5198]: https://github.com/activeadmin/activeadmin/issues/5198
@@ -283,8 +279,8 @@ Please check [0-6-stable][] for previous changes.
 [#4989]: https://github.com/activeadmin/activeadmin/pull/4989
 [#4996]: https://github.com/activeadmin/activeadmin/pull/4996
 [#4997]: https://github.com/activeadmin/activeadmin/pull/4997
-[#5029]: https://github.com/activeadmin/activeadmin/pull/5029
 [#5003]: https://github.com/activeadmin/activeadmin/pull/5003
+[#5029]: https://github.com/activeadmin/activeadmin/pull/5029
 [#5037]: https://github.com/activeadmin/activeadmin/pull/5037
 [#5044]: https://github.com/activeadmin/activeadmin/pull/5044
 [#5046]: https://github.com/activeadmin/activeadmin/pull/5046
@@ -305,10 +301,10 @@ Please check [0-6-stable][] for previous changes.
 [#5194]: https://github.com/activeadmin/activeadmin/pull/5194
 [#5208]: https://github.com/activeadmin/activeadmin/pull/5208
 [#5210]: https://github.com/activeadmin/activeadmin/pull/5210
-[#5251]: https://github.com/activeadmin/activeadmin/pull/5251
 [#5223]: https://github.com/activeadmin/activeadmin/pull/5223
 [#5238]: https://github.com/activeadmin/activeadmin/pull/5238
 [#5240]: https://github.com/activeadmin/activeadmin/pull/5240
+[#5251]: https://github.com/activeadmin/activeadmin/pull/5251
 [#5253]: https://github.com/activeadmin/activeadmin/pull/5253
 [#5266]: https://github.com/activeadmin/activeadmin/pull/5266
 [#5272]: https://github.com/activeadmin/activeadmin/pull/5272
@@ -319,6 +315,7 @@ Please check [0-6-stable][] for previous changes.
 [#5320]: https://github.com/activeadmin/activeadmin/pull/5320
 [#5324]: https://github.com/activeadmin/activeadmin/pull/5324
 [#5330]: https://github.com/activeadmin/activeadmin/pull/5330
+[#5334]: https://github.com/activeadmin/activeadmin/pull/5334
 [#5336]: https://github.com/activeadmin/activeadmin/pull/5336
 [#5341]: https://github.com/activeadmin/activeadmin/pull/5341
 [#5343]: https://github.com/activeadmin/activeadmin/pull/5343
@@ -338,14 +335,16 @@ Please check [0-6-stable][] for previous changes.
 [#5461]: https://github.com/activeadmin/activeadmin/pull/5461
 [#5464]: https://github.com/activeadmin/activeadmin/pull/5464
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
-[#5516]: https://github.com/activeadmin/activeadmin/pull/5516
+[#5517]: https://github.com/activeadmin/activeadmin/pull/5517
+[#5537]: https://github.com/activeadmin/activeadmin/pull/5537
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
 [@ajw725]: https://github.com/ajw725
 [@alex-bogomolov]: https://github.com/alex-bogomolov
-[@bolshakov]: https://github.com/bolshakov
+[@andreslemik]: https://github.com/andreslemik
 [@blocknotes]: https://github.com/blocknotes
+[@bolshakov]: https://github.com/bolshakov
 [@chancancode]: https://github.com/chancancode
 [@chumakoff]: https://github.com/chumakoff
 [@craigmcnamara]: https://github.com/craigmcnamara
@@ -389,5 +388,6 @@ Please check [0-6-stable][] for previous changes.
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
 [@wasifhossain]: https://github.com/wasifhossain
+[@Wowu]: https://github.com/Wowu
 [@wspurgin]: https://github.com/wspurgin
 [@zorab47]: https://github.com/zorab47
