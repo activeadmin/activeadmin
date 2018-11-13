@@ -10,19 +10,19 @@
 
 #### Minor
 
-* I18n for Comments. [#5458][], [#5461][] by [@mauriciopasquier][]
-* Change batch_actions.delete_confirmation in zh-CN.yml. [#5453][] by [@ShallmentMo][]
-* Update it.yml. [#5433][] by [@stefsava][]
-* enhance zh_CN translation. [#5413][] by [@shouya][]
+* Add missing I18n for comments. [#5458][], [#5461][] by [@mauriciopasquier][]
+* Fix batch_actions.delete_confirmation translation in zh-CN.yml. [#5453][] by [@ShallmentMo][]
+* Add some missing italian translations. [#5433][] by [@stefsava][]
+* Enhance some chinese translations. [#5413][] by [@shouya][]
 * Add missing filter predicate translations to nb. [#5357][] by [@rogerkk][]
-* Add missing nb comments translations. [#5375] by [@rogerkk][]
+* Add missing norwegian comment translations. [#5375] by [@rogerkk][]
 * Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
-* Add missing de locale / german translations. [#5341][] by [@eikes][]
-* Add missing spanish locale entry. [#5336][] by Mauricio Coniglio
+* Add missing german translations. [#5341][] by [@eikes][]
+* Add missing spanish translation. [#5336][] by Mauricio Coniglio
 * Add from and to predicates for russian language. [#5330][] by [@glebtv][]
-* Fix typo. [#5320][] by [@JiiHu][]
-* Update tr.yml. [#5295][] by [@kobeumut][]
-* Update zh-CN.yml. [#5266][] by [@jasl][]
+* Fix typo in finnish translation. [#5320][] by [@JiiHu][]
+* Add missing turkish translations. [#5295][] by [@kobeumut][]
+* Add missing chinese translations. [#5266][] by [@jasl][]
 * Allow proc label in datepicker input [#5408][] by [@tiagotex][]
 * Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
 
