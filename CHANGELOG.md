@@ -26,6 +26,7 @@
 * Allow proc label in datepicker input. [#5408][] by [@tiagotex][]
 * Add `group` attribute to scopes in order to show them in grouped. [#5359][] by [@leio10][]
 * Add missing polish translations and improve existing ones. [#5537][] by [@Wowu][]
+* Add `priority` option to `action_item`. [#5334][] by [@andreslemik][]
 
 ### Bug Fixes
 
@@ -331,6 +332,7 @@ Please check [0-6-stable][] for previous changes.
 [#5320]: https://github.com/activeadmin/activeadmin/pull/5320
 [#5324]: https://github.com/activeadmin/activeadmin/pull/5324
 [#5330]: https://github.com/activeadmin/activeadmin/pull/5330
+[#5334]: https://github.com/activeadmin/activeadmin/pull/5334
 [#5336]: https://github.com/activeadmin/activeadmin/pull/5336
 [#5341]: https://github.com/activeadmin/activeadmin/pull/5341
 [#5343]: https://github.com/activeadmin/activeadmin/pull/5343
@@ -358,6 +360,7 @@ Please check [0-6-stable][] for previous changes.
 [@aarek]: https://github.com/aarek
 [@ajw725]: https://github.com/ajw725
 [@alex-bogomolov]: https://github.com/alex-bogomolov
+[@andreslemik]: https://github.com/andreslemik
 [@blocknotes]: https://github.com/blocknotes
 [@bolshakov]: https://github.com/bolshakov
 [@chancancode]: https://github.com/chancancode
