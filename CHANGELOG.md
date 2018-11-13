@@ -6,7 +6,7 @@
 
 ### Security Fixes
 
-* Prevent leaking hashed passwords via user CSV export and adds a config option for sensitive attributes [#5486][] by [@chrp][]
+* Prevent leaking hashed passwords via user CSV export and adds a config option for sensitive attributes. [#5486][] by [@chrp][]
 
 #### Minor
 
@@ -23,20 +23,20 @@
 * Fix typo in finnish translation. [#5320][] by [@JiiHu][]
 * Add missing turkish translations. [#5295][] by [@kobeumut][]
 * Add missing chinese translations. [#5266][] by [@jasl][]
-* Allow proc label in datepicker input [#5408][] by [@tiagotex][]
-* Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
+* Allow proc label in datepicker input. [#5408][] by [@tiagotex][]
+* Add `group` attribute to scopes in order to show them in grouped. [#5359][] by [@leio10][]
 * Add missing polish translations and improve existing ones. [#5537][] by [@Wowu][]
 
 ### Bug Fixes
 
 * Fixed the string representation of the resolved `sort_key` when no explicit
-  `sortable` attribute is passed [#5464][] by [@chumakoff][]
+  `sortable` attribute is passed. [#5464][] by [@chumakoff][]
 * Fixed docs on the column `sortable` attribute (which actually doesn't have to
-  be explicitly specified when a block is passed to column) [#5464][] by
+  be explicitly specified when a block is passed to column). [#5464][] by
   [@chumakoff][]
-* Fixed `if:` scope option when a lambda is passed [#5501][] by [@deivid-rodriguez][]
-* Comment validation adding redundant errors when resource is missing [#5517][] by [@deivid-rodriguez][]
-* Fixed resource filtering by association when the resource has custom primary key [#5446][] by [@wasifhossain][]
+* Fixed `if:` scope option when a lambda is passed. [#5501][] by [@deivid-rodriguez][]
+* Comment validation adding redundant errors when resource is missing. [#5517][] by [@deivid-rodriguez][]
+* Fixed resource filtering by association when the resource has custom primary key. [#5446][] by [@wasifhossain][]
 * Fixed "create anoter" checkbox styling. [#5324][] by [@faucct][]
 
 ### Removals
@@ -54,7 +54,7 @@
 
 ### Bug Fixes
 
-* gemspec should have more permissive ransack dependency [#5448][] by [@varyonic][]
+* gemspec should have more permissive ransack dependency. [#5448][] by [@varyonic][]
 
 ## 1.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.1...v1.3.0)
 
@@ -76,26 +76,26 @@
 
 #### Minor
 
-* Do not display pagination info when there are no comments [#5119][] by [@alex-bogomolov][]
-* Revert generated config files to pluralized [#5120][] by [@varyonic][], [#5137][] by [@deivid-rodriguez][]
-* Warn when action definition overwrites controller method [#5167][] by [@aarek][]
-* Better performance of comments show view [#5208][] by [@dhyegofernando][]
-* Mitigate memory bloat [#4118][] with CSV exports [#5251][] by [@f1sherman][]
-* Fix issue applying custom decorations [#5253][] by [@faucct][]
-* Brazilian locale updated [#5125][] by [@renotocn][]
-* Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
-* Italian locale updated [#5180][] by [@blocknotes][]
-* Swedish locale updated [#5187][] by [@jawa][]
-* Vietnamese locale updated [#5194][] by [@Nguyenanh][]
-* Esperanto locale added [#5210][] by [@RobinvanderVliet][]
+* Do not display pagination info when there are no comments. [#5119][] by [@alex-bogomolov][]
+* Revert generated config files to pluralized. [#5120][] by [@varyonic][], [#5137][] by [@deivid-rodriguez][]
+* Warn when action definition overwrites controller method. [#5167][] by [@aarek][]
+* Better performance of comments show view. [#5208][] by [@dhyegofernando][]
+* Mitigate memory bloat [#4118][] with CSV exports. [#5251][] by [@f1sherman][]
+* Fix issue applying custom decorations. [#5253][] by [@faucct][]
+* Brazilian locale updated. [#5125][] by [@renotocn][]
+* Japanese locale updated. [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
+* Italian locale updated. [#5180][] by [@blocknotes][]
+* Swedish locale updated. [#5187][] by [@jawa][]
+* Vietnamese locale updated. [#5194][] by [@Nguyenanh][]
+* Esperanto locale added. [#5210][] by [@RobinvanderVliet][]
 
 ### Bug Fixes
 
-* Fix a couple of issues rendering filter labels [#5223][] by [@wspurgin][]
-* Prevent NameError when filtering on a namespaced association [#5240][] by [@DanielHeath][]
-* Fix undefined method error in Ransack when building filters [#5238][] by [@wspurgin][]
-* Fixed [#5198][] Prevent XSS on sidebar's current filter rendering [#5275][] by [@deivid-rodriguez][]
-* Sanitize display_name [#5284][] by [@markstory][]
+* Fix a couple of issues rendering filter labels. [#5223][] by [@wspurgin][]
+* Prevent NameError when filtering on a namespaced association. [#5240][] by [@DanielHeath][]
+* Fix undefined method error in Ransack when building filters. [#5238][] by [@wspurgin][]
+* Fixed [#5198][] Prevent XSS on sidebar's current filter rendering. [#5275][] by [@deivid-rodriguez][]
+* Sanitize display_name. [#5284][] by [@markstory][]
 
 ## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
 
