@@ -15,7 +15,7 @@
 * Add some missing italian translations. [#5433][] by [@stefsava][]
 * Enhance some chinese translations. [#5413][] by [@shouya][]
 * Add missing filter predicate translations to nb. [#5357][] by [@rogerkk][]
-* Add missing norwegian comment translations. [#5375] by [@rogerkk][]
+* Add missing norwegian comment translations. [#5375][] by [@rogerkk][]
 * Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
 * Add missing german translations. [#5341][] by [@eikes][]
 * Add missing spanish translation. [#5336][] by [@mconiglio][]
