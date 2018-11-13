@@ -26,7 +26,7 @@
 * Allow proc label in datepicker input [#5408][] by [@tiagotex][]
 * Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
 
-### Bug fixes
+### Bug Fixes
 
 * Fixed the string representation of the resolved `sort_key` when no explicit
   `sortable` attribute is passed [#5464][] by [@chumakoff][]
