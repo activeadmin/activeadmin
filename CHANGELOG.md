@@ -276,8 +276,8 @@ Please check [0-6-stable][] for previous changes.
 [#3783]: https://github.com/activeadmin/activeadmin/issues/3783
 [#3894]: https://github.com/activeadmin/activeadmin/issues/3894
 [#4118]: https://github.com/activeadmin/activeadmin/issues/4118
-[#4187]: https://github.com/activeadmin/activeadmin/issues/4187
 [#4173]: https://github.com/activeadmin/activeadmin/issues/4173
+[#4187]: https://github.com/activeadmin/activeadmin/issues/4187
 [#4254]: https://github.com/activeadmin/activeadmin/issues/4254
 [#5043]: https://github.com/activeadmin/activeadmin/issues/5043
 [#5198]: https://github.com/activeadmin/activeadmin/issues/5198
@@ -298,8 +298,8 @@ Please check [0-6-stable][] for previous changes.
 [#4989]: https://github.com/activeadmin/activeadmin/pull/4989
 [#4996]: https://github.com/activeadmin/activeadmin/pull/4996
 [#4997]: https://github.com/activeadmin/activeadmin/pull/4997
-[#5029]: https://github.com/activeadmin/activeadmin/pull/5029
 [#5003]: https://github.com/activeadmin/activeadmin/pull/5003
+[#5029]: https://github.com/activeadmin/activeadmin/pull/5029
 [#5037]: https://github.com/activeadmin/activeadmin/pull/5037
 [#5044]: https://github.com/activeadmin/activeadmin/pull/5044
 [#5046]: https://github.com/activeadmin/activeadmin/pull/5046
@@ -322,10 +322,10 @@ Please check [0-6-stable][] for previous changes.
 [#5194]: https://github.com/activeadmin/activeadmin/pull/5194
 [#5208]: https://github.com/activeadmin/activeadmin/pull/5208
 [#5210]: https://github.com/activeadmin/activeadmin/pull/5210
-[#5251]: https://github.com/activeadmin/activeadmin/pull/5251
 [#5223]: https://github.com/activeadmin/activeadmin/pull/5223
 [#5238]: https://github.com/activeadmin/activeadmin/pull/5238
 [#5240]: https://github.com/activeadmin/activeadmin/pull/5240
+[#5251]: https://github.com/activeadmin/activeadmin/pull/5251
 [#5253]: https://github.com/activeadmin/activeadmin/pull/5253
 [#5266]: https://github.com/activeadmin/activeadmin/pull/5266
 [#5272]: https://github.com/activeadmin/activeadmin/pull/5272
@@ -345,6 +345,7 @@ Please check [0-6-stable][] for previous changes.
 [#5375]: https://github.com/activeadmin/activeadmin/pull/5375
 [#5399]: https://github.com/activeadmin/activeadmin/pull/5399
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
+[#5408]: https://github.com/activeadmin/activeadmin/pull/5408
 [#5413]: https://github.com/activeadmin/activeadmin/pull/5413
 [#5433]: https://github.com/activeadmin/activeadmin/pull/5433
 [#5446]: https://github.com/activeadmin/activeadmin/pull/5446
@@ -353,17 +354,16 @@ Please check [0-6-stable][] for previous changes.
 [#5458]: https://github.com/activeadmin/activeadmin/pull/5458
 [#5461]: https://github.com/activeadmin/activeadmin/pull/5461
 [#5464]: https://github.com/activeadmin/activeadmin/pull/5464
-[#5501]: https://github.com/activeadmin/activeadmin/pull/5501
-[#5408]: https://github.com/activeadmin/activeadmin/pull/5408
-[#5517]: https://github.com/activeadmin/activeadmin/pull/5517
 [#5486]: https://github.com/activeadmin/activeadmin/pull/5486
+[#5501]: https://github.com/activeadmin/activeadmin/pull/5501
+[#5517]: https://github.com/activeadmin/activeadmin/pull/5517
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
 [@ajw725]: https://github.com/ajw725
 [@alex-bogomolov]: https://github.com/alex-bogomolov
-[@bolshakov]: https://github.com/bolshakov
 [@blocknotes]: https://github.com/blocknotes
+[@bolshakov]: https://github.com/bolshakov
 [@chancancode]: https://github.com/chancancode
 [@chumakoff]: https://github.com/chumakoff
 [@craigmcnamara]: https://github.com/craigmcnamara
