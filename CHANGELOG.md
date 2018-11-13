@@ -103,7 +103,7 @@
   dropped entirely in a major release. Please remove any direct inclusions
   of `//= require jquery-ui`. [#5052][] by [@javierjulio][]
 * AA won't work properly with jQuery 1 & 2. Use jQuery 3 instead (`#= require jquery3`
- in `active_admin.js.coffee`)
+ in `active_admin.js.coffee`). [#5052][] by [@javierjulio][]
 
 ### Deprecations
 
