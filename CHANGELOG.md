@@ -29,11 +29,8 @@
 
 ### Bug Fixes
 
-* Fixed the string representation of the resolved `sort_key` when no explicit
-  `sortable` attribute is passed. [#5464][] by [@chumakoff][]
-* Fixed docs on the column `sortable` attribute (which actually doesn't have to
-  be explicitly specified when a block is passed to column). [#5464][] by
-  [@chumakoff][]
+* Fixed the string representation of the resolved `sort_key` when no explicit `sortable` attribute is passed. [#5464][] by [@chumakoff][]
+* Fixed docs on the column `sortable` attribute (which actually doesn't have to be explicitly specified when a block is passed to column). [#5464][] by [@chumakoff][]
 * Fixed `if:` scope option when a lambda is passed. [#5501][] by [@deivid-rodriguez][]
 * Comment validation adding redundant errors when resource is missing. [#5517][] by [@deivid-rodriguez][]
 * Fixed resource filtering by association when the resource has custom primary key. [#5446][] by [@wasifhossain][]
@@ -103,25 +100,22 @@
 
 * Fixed [#5093][] Handle table prefix & table suffix for `ActiveAdminComment` model
 * Fixed [#4173][] by including the default Kaminari templates. [#5069][] by [@javierjulio][]
-* Fixed [#5043][]. Do not crash in sidebar rendering when a default scope is not
-  specified. [#5044][] by [@Fivell][]
-* Fixed [#3894][]. Make tab's component work with non-ascii titles. [#5046][] by
-  [@Fivell][]
+* Fixed [#5043][]. Do not crash in sidebar rendering when a default scope is not specified. [#5044][] by [@Fivell][]
+* Fixed [#3894][]. Make tab's component work with non-ascii titles. [#5046][] by [@Fivell][]
 
 ### Removals
 
 * Ruby 2.1 support has been dropped. [#5003][] by [@deivid-rodriguez][]
 * Replaced `sass-rails` with `sass` dependency. [#5037][] by [@javierjulio][]
-* Removed `jquery-ui-rails` as a dependency. The specific jQuery UI assets used
-  are now within the vendor directory. This will be replaced by alternatives and
-  dropped entirely in a major release. Please remove any direct inclusions
-  of `//= require jquery-ui`. This allows us to upgrade to jquery v3. [#5052][]
-  by [@javierjulio][]
+* Removed `jquery-ui-rails` as a dependency. [#5052][] by [@javierjulio][]
+  The specific jQuery UI assets used are now within the vendor directory. This
+  will be replaced by alternatives and dropped entirely in a major release.
+  Please remove any direct inclusions of `//= require jquery-ui`. This allows us
+  to upgrade to jquery v3.
 
 ### Deprecations
 
-* Deprecated `config.register_stylesheet` and `config.register_javascript`. Import
-  your CSS and JS files in `active_admin.scss` or `active_admin.js`. [#5060][] by [@javierjulio][]
+* Deprecated `config.register_stylesheet` and `config.register_javascript`. Import your CSS and JS files in `active_admin.scss` or `active_admin.js`. [#5060][] by [@javierjulio][]
 * Deprecated `type` param from `status_tag` and related CSS classes [#4989][] by [@javierjulio][]
   * The method signature has changed from:
 
