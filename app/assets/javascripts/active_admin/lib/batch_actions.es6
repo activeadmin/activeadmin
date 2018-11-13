@@ -3,7 +3,7 @@ const onDOMReady = function() {
   // Use ActiveAdmin.modal_dialog to prompt user if
   // confirmation is required for current Batch Action
   //
-  $('.batch_actions_selector li a').click(function(event){
+  $('.batch_actions_selector li a').off('click').on('click', function(event){
     let message;
     event.stopPropagation(); // prevent Rails UJS click event
     event.preventDefault();
