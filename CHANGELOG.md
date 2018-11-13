@@ -6,21 +6,20 @@
 
 #### Minor
 
-* Translations:
-  * I18n for Comments. [#5458][], [#5461][] by [@mauriciopasquier][]
-  * Change batch_actions.delete_confirmation in zh-CN.yml. [#5453][] by [@ShallmentMo][]
-  * Update it.yml. [#5433][] by [@stefsava][]
-  * enhance zh_CN translation. [#5413][] by [@shouya][]
-  * Add missing filter predicate translations to nb. [#5357][] by [@rogerkk][]
-  * Add missing nb comments translations. [#5375] by [@rogerkk][]
-  * Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
-  * Add missing de locale / german translations. [#5341][] by [@eikes][]
-  * Add missing spanish locale entry. [#5336][] by Mauricio Coniglio
-  * Add from and to predicates for russian language. [#5330][] by [@glebtv][]
-  * Fix typo. [#5320][] by [@JiiHu][]
-  * Update tr.yml. [#5295][] by [@kobeumut][]
-  * Update zh-CN.yml. [#5266][] by [@jasl][]
-
+* Add missing I18n for comments. [#5458][], [#5461][] by [@mauriciopasquier][]
+* Fix batch_actions.delete_confirmation translation in zh-CN.yml. [#5453][] by [@ShallmentMo][]
+* Add some missing italian translations. [#5433][] by [@stefsava][]
+* Enhance some chinese translations. [#5413][] by [@shouya][]
+* Add missing filter predicate translations to nb. [#5357][] by [@rogerkk][]
+* Add missing norwegian comment translations. [#5375] by [@rogerkk][]
+* Add missing dutch translations. [#5368][] by [@dennisvdvliet][]
+* Add missing german translations. [#5341][] by [@eikes][]
+* Add missing spanish translation. [#5336][] by [@mconiglio][]
+* Add from and to predicates for russian language. [#5330][] by [@glebtv][]
+* Fix typo in finnish translation. [#5320][] by [@JiiHu][]
+* Add missing turkish translations. [#5295][] by [@kobeumut][]
+* Add missing chinese translations. [#5266][] by [@jasl][]
+* Allow proc label in datepicker input [#5408][] by [@tiagotex][]
 * Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
 
 ### Bug Fixes
@@ -59,13 +58,12 @@
 * Better performance of comments show view [#5208][] by [@dhyegofernando][]
 * Mitigate memory bloat [#4118][] with CSV exports [#5251][] by [@f1sherman][]
 * Fix issue applying custom decorations [#5253][] by [@faucct][]
-* Translations:
-  * Brazilian locale updated [#5125][] by [@renotocn][]
-  * Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
-  * Italian locale updated [#5180][] by [@blocknotes][]
-  * Swedish locale updated [#5187][] by [@jawa][]
-  * Vietnamese locale updated [#5194][] by [@Nguyenanh][]
-  * Esperanto locale added [#5210][] by [@RobinvanderVliet][]
+* Brazilian locale updated [#5125][] by [@renotocn][]
+* Japanese locale updated [#5143][] by [@5t111111][], [#5157][] by [@innparusu95][]
+* Italian locale updated [#5180][] by [@blocknotes][]
+* Swedish locale updated [#5187][] by [@jawa][]
+* Vietnamese locale updated [#5194][] by [@Nguyenanh][]
+* Esperanto locale added [#5210][] by [@RobinvanderVliet][]
 
 ### Bug Fixes
 
@@ -83,15 +81,18 @@
 * Fixed [#4173][] by including the default Kaminari templates. [#5069][] by [@javierjulio][]
 * Fixed [#5043][]. Do not crash in sidebar rendering when a default scope is not
   specified. [#5044][] by [@Fivell][]
-* Fixed [#3894][]. Make tab's component work with non-ascii titles. [#5046] by
+* Fixed [#3894][]. Make tab's component work with non-ascii titles. [#5046][] by
   [@Fivell][]
 
 ### Removals
 
 * Ruby 2.1 support has been dropped. [#5003][] by [@deivid-rodriguez][]
 * Replaced `sass-rails` with `sass` dependency. [#5037][] by [@javierjulio][]
-* AA won't work properly with jQuery 1 & 2. Use jQuery 3 instead (`#= require jquery3`
- in `active_admin.js.coffee`).
+* Removed `jquery-ui-rails` as a dependency. The specific jQuery UI assets used
+  are now within the vendor directory. This will be replaced by alternatives and
+  dropped entirely in a major release. Please remove any direct inclusions
+  of `//= require jquery-ui`. This allows us to upgrade to jquery v3. [#5052][]
+  by [@javierjulio][]
 
 ### Deprecations
 
@@ -279,6 +280,7 @@ Please check [0-6-stable][] for previous changes.
 [#5037]: https://github.com/activeadmin/activeadmin/pull/5037
 [#5044]: https://github.com/activeadmin/activeadmin/pull/5044
 [#5046]: https://github.com/activeadmin/activeadmin/pull/5046
+[#5052]: https://github.com/activeadmin/activeadmin/pull/5052
 [#5060]: https://github.com/activeadmin/activeadmin/pull/5060
 [#5069]: https://github.com/activeadmin/activeadmin/pull/5069
 [#5088]: https://github.com/activeadmin/activeadmin/pull/5088
@@ -310,15 +312,18 @@ Please check [0-6-stable][] for previous changes.
 [#5324]: https://github.com/activeadmin/activeadmin/pull/5324
 [#5330]: https://github.com/activeadmin/activeadmin/pull/5330
 [#5336]: https://github.com/activeadmin/activeadmin/pull/5336
-[#5343]: https://github.com/activeadmin/activeadmin/pull/5343
 [#5341]: https://github.com/activeadmin/activeadmin/pull/5341
+[#5343]: https://github.com/activeadmin/activeadmin/pull/5343
 [#5357]: https://github.com/activeadmin/activeadmin/pull/5357
 [#5359]: https://github.com/activeadmin/activeadmin/pull/5359
 [#5368]: https://github.com/activeadmin/activeadmin/pull/5368
+[#5375]: https://github.com/activeadmin/activeadmin/pull/5375
 [#5399]: https://github.com/activeadmin/activeadmin/pull/5399
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
+[#5408]: https://github.com/activeadmin/activeadmin/pull/5408
 [#5413]: https://github.com/activeadmin/activeadmin/pull/5413
 [#5433]: https://github.com/activeadmin/activeadmin/pull/5433
+[#5446]: https://github.com/activeadmin/activeadmin/pull/5446
 [#5448]: https://github.com/activeadmin/activeadmin/pull/5448
 [#5453]: https://github.com/activeadmin/activeadmin/pull/5453
 [#5458]: https://github.com/activeadmin/activeadmin/pull/5458
@@ -344,8 +349,8 @@ Please check [0-6-stable][] for previous changes.
 [@f1sherman]: https://github.com/f1sherman
 [@faucct]: https://github.com/faucct
 [@Fivell]: https://github.com/Fivell
-[@gonzedge]: https://github.com/gonzedge
 [@glebtv]: https://github.com/glebtv
+[@gonzedge]: https://github.com/gonzedge
 [@innparusu95]: https://github.com/innparusu95
 [@jasl]: https://github.com/jasl
 [@javierjulio]: https://github.com/javierjulio
@@ -356,6 +361,7 @@ Please check [0-6-stable][] for previous changes.
 [@leio10]: https://github.com/leio10
 [@markstory]: https://github.com/markstory
 [@mauriciopasquier]: https://github.com/mauriciopasquier
+[@mconiglio]: https://github.com/mconiglio
 [@Nguyenanh]: https://github.com/Nguyenanh
 [@PChambino]: https://github.com/PChambino
 [@potatosalad]: https://github.com/potatosalad
@@ -368,6 +374,7 @@ Please check [0-6-stable][] for previous changes.
 [@shekibobo]: https://github.com/shekibobo
 [@shouya]: https://github.com/shouya
 [@stefsava]: https://github.com/stefsava
+[@tiagotex]: https://github.com/tiagotex
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
