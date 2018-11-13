@@ -25,6 +25,7 @@
 * Add missing chinese translations. [#5266][] by [@jasl][]
 * Allow proc label in datepicker input [#5408][] by [@tiagotex][]
 * Add `group` attribute to scopes in order to show them in grouped [#5359][] by [@leio10][]
+* Add missing polish translations and improve existing ones. [#5537][] by [@Wowu][]
 
 ### Bug Fixes
 
@@ -357,6 +358,7 @@ Please check [0-6-stable][] for previous changes.
 [#5486]: https://github.com/activeadmin/activeadmin/pull/5486
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
 [#5517]: https://github.com/activeadmin/activeadmin/pull/5517
+[#5537]: https://github.com/activeadmin/activeadmin/pull/5537
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -407,6 +409,7 @@ Please check [0-6-stable][] for previous changes.
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
 [@wasifhossain]: https://github.com/wasifhossain
+[@Wowu]: https://github.com/Wowu
 [@wspurgin]: https://github.com/wspurgin
 [@zorab47]: https://github.com/zorab47
 [@chrp]: https://github.com/chrp
