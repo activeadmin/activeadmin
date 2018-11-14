@@ -239,7 +239,7 @@ jobs:
 
   jruby91rails50:
     docker:
-      - image: ccistaging/jruby:9.1.17.0-node-browsers
+      - image: circleci/jruby:9.1.17.0-node-browsers
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -250,7 +250,7 @@ jobs:
 
   jruby91rails51:
     docker:
-      - image: ccistaging/jruby:9.1.17.0-node-browsers
+      - image: circleci/jruby:9.1.17.0-node-browsers
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -261,7 +261,7 @@ jobs:
 
   jruby91rails52:
     docker:
-      - image: ccistaging/jruby:9.1.17.0-node-browsers
+      - image: circleci/jruby:9.1.17.0-node-browsers
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -272,7 +272,7 @@ jobs:
 
   jruby92rails50:
     docker:
-      - image: ccistaging/jruby:9.2.0.0-node-browsers
+      - image: circleci/jruby:9.2.3.0-node-browsers
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -283,7 +283,7 @@ jobs:
 
   jruby92rails51:
     docker:
-      - image: ccistaging/jruby:9.2.0.0-node-browsers
+      - image: circleci/jruby:9.2.3.0-node-browsers
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -294,7 +294,7 @@ jobs:
 
   jruby92rails52:
     docker:
-      - image: ccistaging/jruby:9.2.0.0-node-browsers
+      - image: circleci/jruby:9.2.3.0-node-browsers
 
     environment:
       BUNDLE_GEMFILE: Gemfile
