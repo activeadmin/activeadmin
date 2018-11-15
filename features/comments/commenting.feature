@@ -176,3 +176,48 @@ Feature: Commenting
     And I should see 20 comments
     And I should see "Displaying comments 51 - 70 of 70 in total"
     And I should not see the pagination "Next" link
+
+  Scenario: Not authorized to list comments
+    Given 5 comments added by admin with an email "commenter@example.com"
+    And 3 comments added by admin with an email "admin@example.com"
+    And a show configuration of:
+      """
+        class ListCommentsForCommenterOnly < ActiveAdmin::AuthorizationAdapter
+          def authorized?(action, subject = nil)
+            # Disallow ActiveAdmin::Comment#index for "admin@example.com"
+            if action == :read && subject == ActiveAdmin::Comment
+              user.email == "commenter@example.com"
+            else
+              true
+            end
+          end
+        end
+
+        ActiveAdmin.application.namespace(:admin).authorization_adapter = ListCommentsForCommenterOnly
+
+        ActiveAdmin.register Post
+      """
+    Then I should not see "Comments"
+    And I should see 0 comments
+
+  Scenario: Authorized to list and view own comments
+    Given 5 comments added by admin with an email "commenter@example.com"
+    And 3 comments added by admin with an email "admin@example.com"
+    And a show configuration of:
+      """
+        class CommentsByCommenterOnly < ActiveAdmin::AuthorizationAdapter
+          def scope_collection(collection, action = ActiveAdmin::Authorization::READ)
+            if collection.is_a?(ActiveRecord::Relation) && collection.klass == ActiveAdmin::Comment
+              collection.where(author: AdminUser.find_by(email: "admin@example.com"))
+            else
+              collection
+            end
+          end
+        end
+
+        ActiveAdmin.application.namespace(:admin).authorization_adapter = CommentsByCommenterOnly
+
+        ActiveAdmin.register Post
+      """
+    Then I should see "Comments (3)"
+    And I should see 3 comments
