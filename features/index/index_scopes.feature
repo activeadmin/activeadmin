@@ -164,11 +164,25 @@ Feature: Index Scoping
       scope "Shown", if: proc { true } do |posts|
         posts
       end
+      scope "Shown with lambda", if: -> { true } do |posts|
+        posts
+      end
+      scope "Shown with method name", if: :neat_scope? do |posts|
+        posts
+      end
       scope "Default", default: true do |posts|
         posts
       end
       scope 'Today', if: proc { false } do |posts|
         posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day, ::Time.zone.now.end_of_day])
+      end
+
+      controller do
+        def neat_scope?
+          true
+        end
+
+        helper_method :neat_scope?
       end
     end
     """
@@ -176,6 +190,8 @@ Feature: Index Scoping
     And I should not see the scope "All"
     And I should not see the scope "Today"
     And I should see the scope "Shown"
+    And I should see the scope "Shown with lambda"
+    And I should see the scope "Shown with method name"
     And I should see the scope "Default" with the count 3
 
   Scenario: Viewing resources with multiple scopes as blocks

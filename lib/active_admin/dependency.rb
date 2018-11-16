@@ -134,6 +134,14 @@ module ActiveAdmin
       end
 
       class Rails < Base
+        def optional_belongs_to_flag
+          if Dependency.rails5?
+            { optional: true }
+          else
+            { required: false }
+          end
+        end
+
         def parameterize(string)
           if Dependency.rails5?
             string.parameterize separator: '_'

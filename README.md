@@ -1,13 +1,13 @@
 # Active Admin
 
-[Active Admin](https://www.activeadmin.info) is a Ruby on Rails framework for
+[Active Admin](https://activeadmin.info) is a Ruby on Rails framework for
 creating elegant backends for website administration.
 
 [![Version         ][rubygems_badge]][rubygems]
 [![Circle CI       ][circle_badge]][circle]
 [![Coverage        ][codecov_badge]][codecov]
+[![Tidelift        ][tidelift_badge]][tidelift]
 [![Inch CI         ][inch_badge]][inch]
-[![Gratipay Team   ][gratipay_badge]][gratipay]
 
 ## Goals
 
@@ -37,9 +37,11 @@ is a good place to start. If you have questions, feel free to ask.
 
 ## Want to support us?
 
-You can support us with a weekly tip via [Gratipay][gratipay.com].
+Subscribe to [Tidelift][tidelift] to support Active Admin and get licensing assurances and timely security notifications.
 
-[![Support via Gratipay][gratipay_button]][gratipay]
+You can support us with a weekly tip via [Liberapay][liberapay.com].
+
+[![Support via Liberapay][liberapay_button]][liberapay_donate]
 
 ## Dependencies
 
@@ -69,13 +71,14 @@ Tool                  | Description
 [codecov]: https://codecov.io/gh/activeadmin/activeadmin
 [inch_badge]: http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
 [inch]: http://inch-ci.org/github/activeadmin/activeadmin
-[gratipay_badge]: https://img.shields.io/gratipay/team/Active-Admin.svg
-[gratipay]: https://gratipay.com/Active-Admin/
+[tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
+[tidelift]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=readme
 
 [docs]: http://activeadmin.info/0-installation.html
 [demo]: http://demo.activeadmin.info/admin
 [wiki]: https://github.com/activeadmin/activeadmin/wiki
 [stackoverflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
-[gratipay.com]: https://gratipay.com
-[gratipay_button]: https://cdn.rawgit.com/gratipay/gratipay-badge/2.1.3/dist/gratipay.png
+[liberapay.com]: https://liberapay.com
+[liberapay_button]: https://liberapay.com/assets/widgets/donate.svg
+[liberapay_donate]: https://liberapay.com/Active-Admin/donate

@@ -146,6 +146,17 @@ action_item :super_action,
 end
 ```
 
+By default action items are positioned in the same order as they defined (after default actions),
+but it’s also possible to specify their position manually:
+
+```ruby
+action_item :help, priority: 0 do
+  "Display this action to the first position"
+end
+```
+
+Default action item priority is 10.
+
 # Modifying the Controller
 
 The generated controller is available to you within the registration block by

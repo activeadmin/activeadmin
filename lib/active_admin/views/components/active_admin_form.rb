@@ -105,11 +105,10 @@ module ActiveAdmin
         create_another = params[:create_another]
         label = @resource.class.model_name.human
         Arbre::Context.new do
-          li do
+          li class: 'create_another' do
             input(
               checked: create_another,
               id: 'create_another',
-              class: 'create_another',
               name: 'create_another',
               type: 'checkbox'
             )

@@ -46,13 +46,22 @@ config.site_title_image = ->(context) { context.current_user.company.logo_url }
 
 ## Internationalization (I18n)
 
+Active Admin comes with translations for a lot of
+[locales](https://github.com/activeadmin/activeadmin/blob/master/config/locales/).
+Active Admin does not provide the translations for the kaminari gem it uses for pagination,
+to get these you can use the
+[kaminari-i18n](https://github.com/tigrish/kaminari-i18n) gem.
+
 To translate Active Admin to a new language or customize an existing
 translation, you can copy
 [config/locales/en.yml](https://github.com/activeadmin/activeadmin/blob/master/config/locales/en.yml)
 to your application's `config/locales` folder and update it. We welcome
 new/updated translations, so feel free to
 [contribute](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md)!
-To translate third party gems like devise, use for example devise-i18n.
+
+When using [devise](https://github.com/plataformatec/devise) for authentication,
+you can use the [devise-i18n](https://github.com/tigrish/devise-i18n)
+gem to get the devise translations for other locales.
 
 ## Localize Format For Dates and Times
 
@@ -158,6 +167,12 @@ You can customize the comment menu:
 
 ```ruby
 config.comments_menu = { parent: 'Admin', priority: 1 }
+```
+
+Remember to indicate where to place the comments and form with:
+
+```ruby
+active_admin_comments
 ```
 
 ## Utility Navigation

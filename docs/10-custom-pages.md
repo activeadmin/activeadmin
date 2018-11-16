@@ -134,3 +134,17 @@ end
 ```
 
 See also the [Custom Actions](8-custom-actions.md#http-verbs) example.
+
+## Use custom column as id
+
+You can use custom parameter instead of id
+
+```ruby
+ActiveAdmin.register User do
+  controller do
+    defaults :finder => :find_by_name
+  end
+end
+```
+
+This defines the resource route as `/admin/users/john` if user name is john

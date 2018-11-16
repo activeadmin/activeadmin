@@ -24,7 +24,7 @@ module ActiveAdmin
         scopes.group_by(&:group).each do |group, group_scopes|
           ul class: "table_tools_segmented_control #{group_class(group)}" do
             group_scopes.each do |scope|
-              build_scope(scope, options) if call_method_or_proc_on(self, scope.display_if_block)
+              build_scope(scope, options) if call_method_or_exec_proc(scope.display_if_block)
             end
           end
         end
