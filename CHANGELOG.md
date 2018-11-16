@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.4.0 (unreleased)
+## 1.4.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.1...v1.4.0)
 
 ### Enhancements
 
