@@ -244,7 +244,7 @@ GEM
     nokogiri (1.8.5-java)
     orm_adapter (0.5.0)
     parallel (1.12.1)
-    parallel_tests (2.26.0)
+    parallel_tests (2.27.0)
       parallel
     parser (2.5.1.2)
       ast (~> 2.4.0)
@@ -413,7 +413,7 @@ DEPENDENCIES
   kramdown
   launchy
   mdl (= 0.4.0)
-  parallel_tests (~> 2.26)
+  parallel_tests (~> 2.27)
   pry
   pry-byebug
   pundit
