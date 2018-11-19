@@ -2,11 +2,11 @@
 
 ## Master (unreleased)
 
-### Enhancements
-
 ### Security Fixes
 
 * Prevent leaking hashed passwords via user CSV export and adds a config option for sensitive attributes. [#5486][] by [@chrp][]
+
+### Enhancements
 
 #### Minor
 
