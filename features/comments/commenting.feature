@@ -199,6 +199,7 @@ Feature: Commenting
       """
     Then I should not see "Comments"
     And I should see 0 comments
+    And I should not be able to add a comment
 
   Scenario: Authorized to list and view own comments
     Given 5 comments added by admin with an email "commenter@example.com"
@@ -221,3 +222,27 @@ Feature: Commenting
       """
     Then I should see "Comments (3)"
     And I should see 3 comments
+    And I should be able to add a comment
+
+  Scenario: Not authorized to create comments
+    Given 5 comments added by admin with an email "commenter@example.com"
+    And a show configuration of:
+      """
+        class NoNewComments < ActiveAdmin::AuthorizationAdapter
+          def authorized?(action, subject = nil)
+            # Disallow ActiveAdmin::Comment#create
+            if action == :create && subject == ActiveAdmin::Comment
+              false
+            else
+              true
+            end
+          end
+        end
+
+        ActiveAdmin.application.namespace(:admin).authorization_adapter = NoNewComments
+
+        ActiveAdmin.register Post
+      """
+    Then I should see "Comments (5)"
+    And I should see 5 comments
+    And I should not be able to add a comment

@@ -2,6 +2,11 @@ Then /^I should see a comment by "([^"]*)"$/ do |name|
   step %{I should see "#{name}" within ".active_admin_comment_author"}
 end
 
+Then /^I should( not)? be able to add a comment$/ do |negate|
+  should = negate ? :not_to : :to
+  expect(page).send should, have_button("Add Comment")
+end
+
 When /^I add a comment "([^"]*)"$/ do |comment|
   step %{I fill in "active_admin_comment_body" with "#{comment}"}
   step %{I press "Add Comment"}
