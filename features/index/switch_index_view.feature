@@ -68,6 +68,3 @@ Feature: Switch Index View
     Then I should see "My body is awesome" within ".index_as_table"
     When I click "List"
     Then I should not see "My body is awesome" within ".index_as_block"
-
-
-

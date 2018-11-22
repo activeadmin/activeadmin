@@ -31,4 +31,3 @@ describe "ActiveAdmin.TableCheckboxToggler", ->
       $(row).trigger("click")
 
       expect(checkbox).toHaveAttr("checked", "checked")
-
