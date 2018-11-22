@@ -17,6 +17,10 @@
   convert that file to plain JS (`//= require active_admin/base` if you
   didn't add any stuff to it).
 
+### Bug Fixes
+
+* Fix menu item link with method delete. [#5583][] by [@tiagotex][]
+
 ## 1.4.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.1...v1.4.0)
 
 ### Enhancements
@@ -357,6 +361,7 @@ Please check [0-6-stable][] for previous changes.
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
 [#5517]: https://github.com/activeadmin/activeadmin/pull/5517
 [#5537]: https://github.com/activeadmin/activeadmin/pull/5537
+[#5583]: https://github.com/activeadmin/activeadmin/pull/5583
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
