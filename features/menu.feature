@@ -82,4 +82,3 @@ Feature: Menu
     And I should not see a menu item for "Posts"
     And I should see a nested menu item for "Categories"
     And I should see a nested menu item for "Posts"
-
