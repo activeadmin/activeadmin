@@ -177,6 +177,7 @@ Feature: Commenting
     And I should see "Displaying comments 51 - 70 of 70 in total"
     And I should not see the pagination "Next" link
 
+  @authorization
   Scenario: Not authorized to list comments
     Given 5 comments added by admin with an email "commenter@example.com"
     And 3 comments added by admin with an email "admin@example.com"
@@ -201,6 +202,7 @@ Feature: Commenting
     And I should see 0 comments
     And I should not be able to add a comment
 
+  @authorization
   Scenario: Authorized to list and view own comments
     Given 5 comments added by admin with an email "commenter@example.com"
     And 3 comments added by admin with an email "admin@example.com"
@@ -224,6 +226,7 @@ Feature: Commenting
     And I should see 3 comments
     And I should be able to add a comment
 
+  @authorization
   Scenario: Not authorized to create comments
     Given 5 comments added by admin with an email "commenter@example.com"
     And a show configuration of:
