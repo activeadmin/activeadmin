@@ -183,18 +183,17 @@ Feature: Commenting
     And 3 comments added by admin with an email "admin@example.com"
     And a show configuration of:
       """
-        class ListCommentsForCommenterOnly < ActiveAdmin::AuthorizationAdapter
+        class NoCommentListForASpecificUser < ActiveAdmin::AuthorizationAdapter
           def authorized?(action, subject = nil)
-            # Disallow ActiveAdmin::Comment#index for "admin@example.com"
             if action == :read && subject == ActiveAdmin::Comment
-              user.email == "commenter@example.com"
+              user.email != "admin@example.com"
             else
               true
             end
           end
         end
 
-        ActiveAdmin.application.namespace(:admin).authorization_adapter = ListCommentsForCommenterOnly
+        ActiveAdmin.application.namespace(:admin).authorization_adapter = NoCommentListForASpecificUser
 
         ActiveAdmin.register Post
       """
@@ -208,17 +207,17 @@ Feature: Commenting
     And 3 comments added by admin with an email "admin@example.com"
     And a show configuration of:
       """
-        class CommentsByCommenterOnly < ActiveAdmin::AuthorizationAdapter
+        class ListCommentsByCurrentUserOnly < ActiveAdmin::AuthorizationAdapter
           def scope_collection(collection, action = ActiveAdmin::Authorization::READ)
             if collection.is_a?(ActiveRecord::Relation) && collection.klass == ActiveAdmin::Comment
-              collection.where(author: AdminUser.find_by(email: "admin@example.com"))
+              collection.where(author: user)
             else
               collection
             end
           end
         end
 
-        ActiveAdmin.application.namespace(:admin).authorization_adapter = CommentsByCommenterOnly
+        ActiveAdmin.application.namespace(:admin).authorization_adapter = ListCommentsByCurrentUserOnly
 
         ActiveAdmin.register Post
       """
@@ -233,7 +232,6 @@ Feature: Commenting
       """
         class NoNewComments < ActiveAdmin::AuthorizationAdapter
           def authorized?(action, subject = nil)
-            # Disallow ActiveAdmin::Comment#create
             if action == :create && subject == ActiveAdmin::Comment
               false
             else
