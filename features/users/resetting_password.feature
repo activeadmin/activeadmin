@@ -3,11 +3,7 @@ Feature: User Resetting Password
   Resetting my password as an admin user
 
   Background:
-    Given a configuration of:
-    """
-      ActiveAdmin.register Post
-    """
-    And I am logged out
+    Given I am logged out
     And an admin user "admin@example.com" exists
 
   Scenario: Resetting password successfully
