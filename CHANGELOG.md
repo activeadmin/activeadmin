@@ -17,6 +17,8 @@
   convert that file to plain JS (`//= require active_admin/base` if you
   didn't add any stuff to it).
 
+## 1.4.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.0...v1.4.1)
+
 ### Bug Fixes
 
 * Fix menu item link with method delete. [#5583][] by [@tiagotex][]
