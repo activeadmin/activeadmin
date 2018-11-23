@@ -71,17 +71,6 @@ Capybara.asset_host = 'http://localhost:3000'
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
 
-# If you set this to false, any error raised from within your app will bubble
-# up to your step definition and out to cucumber unless you catch it somewhere
-# on the way. You can make Rails rescue errors and render error pages on a
-# per-scenario basis by tagging a scenario or feature with the @allow-rescue tag.
-#
-# If you set this to true, Rails will rescue all errors and render error
-# pages, more or less in the same way your application would behave in the
-# default production environment. It's not recommended to do this for all
-# of your scenarios, as this makes it hard to discover errors in your application.
-ActionController::Base.allow_rescue = false
-
 # Database resetting strategy
 DatabaseCleaner.strategy = :truncation
 Cucumber::Rails::Database.javascript_strategy = :truncation
