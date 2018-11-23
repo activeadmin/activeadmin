@@ -2,6 +2,8 @@
 
 ## Master (unreleased)
 
+## 1.4.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.0...v1.4.1)
+
 ### Bug Fixes
 
 * Fix menu item link with method delete. [#5583][] by [@tiagotex][]
