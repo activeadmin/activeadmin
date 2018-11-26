@@ -89,6 +89,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.2)
       xpath (~> 3.2)
+    chandler (0.7.0)
+      netrc
+      octokit (>= 2.2.0)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
@@ -141,6 +144,8 @@ GEM
       request_store (~> 1.0)
     erubi (1.7.1)
     execjs (2.7.0)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     ffi (1.9.25-java)
     formtastic (3.1.5)
@@ -228,11 +233,15 @@ GEM
       tomlrb
     multi_json (1.13.1)
     multi_test (0.1.2)
+    multipart-post (2.0.0)
+    netrc (0.11.0)
     nio4r (2.3.1)
     nio4r (2.3.1-java)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     nokogiri (1.8.5-java)
+    octokit (4.13.0)
+      sawyer (~> 0.8.0, >= 0.5.3)
     orm_adapter (0.5.0)
     parallel (1.12.1)
     parallel_tests (2.26.0)
@@ -335,6 +344,9 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    sawyer (0.8.1)
+      addressable (>= 2.3.5, < 2.6)
+      faraday (~> 0.8, < 1.0)
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -384,6 +396,7 @@ DEPENDENCIES
   binding_of_caller
   cancan
   capybara (~> 3.10)
+  chandler
   cucumber
   cucumber-rails (~> 1.5)
   database_cleaner
