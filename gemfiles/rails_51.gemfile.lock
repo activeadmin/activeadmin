@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/deivid-rodriguez/chandler
+  revision: 71ca85925b54a1b1e6ba785efa450a012364efe6
+  branch: submit_link_references
+  specs:
+    chandler (0.7.0)
+      netrc
+      octokit (>= 2.2.0)
+
 PATH
   remote: ..
   specs:
@@ -89,9 +98,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.2)
       xpath (~> 3.2)
-    chandler (0.7.0)
-      netrc
-      octokit (>= 2.2.0)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
@@ -396,7 +402,7 @@ DEPENDENCIES
   binding_of_caller
   cancan
   capybara (~> 3.10)
-  chandler
+  chandler!
   cucumber
   cucumber-rails (~> 1.5)
   database_cleaner
