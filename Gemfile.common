@@ -12,7 +12,7 @@ gem 'pry' # Easily debug from your console with `binding.pry`
 gem 'pry-byebug', platforms: :mri
 
 # Github releases from changelog
-gem 'chandler'
+gem 'chandler', git: 'https://github.com/deivid-rodriguez/chandler', branch: 'submit_link_references'
 
 group :lint do
   # Code style
