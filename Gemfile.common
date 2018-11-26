@@ -11,6 +11,9 @@ gem 'parallel_tests', '~> 2.26'
 gem 'pry' # Easily debug from your console with `binding.pry`
 gem 'pry-byebug', platforms: :mri
 
+# Github releases from changelog
+gem 'chandler'
+
 group :lint do
   # Code style
   gem 'rubocop', '0.59.2'
