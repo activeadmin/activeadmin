@@ -184,7 +184,9 @@ Maintainers need to do the following to push out a release:
 
 * Make sure all pull requests are in and that changelog is current
 * Update `version.rb` file and changelog with new version number
-* Create a stable branch for that release:
+* If it's not a patch level release, create a stable branch for that release,
+  otherwise switch to the stable branch corresponding to the patch release you
+  want to ship:
 
   ```sh
   git checkout master
