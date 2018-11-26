@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.4.2 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.1...v1.4.2)
+
 ### Bug Fixes
 
 * Fix `input_html` filter option evaluated only once. [#5376][] by [@kjeldahl][]

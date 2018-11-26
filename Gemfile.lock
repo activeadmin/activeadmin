@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    activeadmin (1.4.1)
+    activeadmin (1.4.2)
       arbre (>= 1.1.1)
       coffee-rails
       formtastic (~> 3.1)
