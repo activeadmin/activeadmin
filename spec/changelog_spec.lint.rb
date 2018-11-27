@@ -1,4 +1,4 @@
-SimpleCov.command_name "lint" if ENV["COVERAGE"] == true
+SimpleCov.command_name "lint" if ENV["COVERAGE"] == "true"
 
 RSpec.describe "Changelog" do
   subject(:changelog) do
