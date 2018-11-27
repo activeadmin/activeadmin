@@ -91,10 +91,6 @@ GEM
       xpath (~> 3.2)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
-    codecov (0.1.13)
-      json
-      simplecov
-      url
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -366,7 +362,6 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.4.0)
-    url (0.3.2)
     warden (1.2.7)
       rack (>= 1.0)
     websocket-driver (0.6.5)
@@ -389,7 +384,6 @@ DEPENDENCIES
   binding_of_caller
   cancan
   capybara (~> 3.10)
-  codecov
   cucumber
   cucumber-rails (~> 1.5)
   database_cleaner
