@@ -5,7 +5,6 @@ creating elegant backends for website administration.
 
 [![Version         ][rubygems_badge]][rubygems]
 [![Circle CI       ][circle_badge]][circle]
-[![Coverage        ][codecov_badge]][codecov]
 [![Tidelift        ][tidelift_badge]][tidelift]
 [![Inch CI         ][inch_badge]][inch]
 
@@ -67,8 +66,6 @@ Tool                  | Description
 [rubygems]: https://rubygems.org/gems/activeadmin
 [circle_badge]: https://circleci.com/gh/activeadmin/activeadmin/tree/master.svg
 [circle]: https://circleci.com/gh/activeadmin/activeadmin/tree/master
-[codecov_badge]: https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg
-[codecov]: https://codecov.io/gh/activeadmin/activeadmin
 [inch_badge]: http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
 [inch]: http://inch-ci.org/github/activeadmin/activeadmin
 [tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
