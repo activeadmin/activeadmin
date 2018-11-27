@@ -151,7 +151,7 @@
 * Allow passing a class to `action_item` block. [#4997][] by [@Fivell][]
 * Add pagination to the comments section. [#5088][] by [@alex-bogomolov][]
 
-## 1.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.3...master)
+## 1.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.3...v1.0.0)
 
 ### Breaking Changes
 
