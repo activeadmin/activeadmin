@@ -17,6 +17,20 @@ RSpec.describe "Changelog" do
     expect(changelog).not_to match(/\[([^\]]+)\]\[\]/)
   end
 
+  it 'has definitions for all issue/pr references' do
+    implicit_link_names = changelog.scan(/\[#([0-9]+)\] /).flatten.uniq
+    implicit_link_names.each do |name|
+      expect(changelog).to include("[##{name}]: https://github.com/activeadmin/activeadmin/pull/#{name}").or include("[##{name}]: https://github.com/activeadmin/activeadmin/issues/#{name}")
+    end
+  end
+
+  it 'has definitions for users' do
+    implicit_link_names = changelog.scan(/ \[@([[:alnum:]]+)\]/).flatten.uniq
+    implicit_link_names.each do |name|
+      expect(changelog).to include("[@#{name}]: https://github.com/#{name}")
+    end
+  end
+
   describe 'entry' do
     let(:lines) { changelog.each_line }
 
