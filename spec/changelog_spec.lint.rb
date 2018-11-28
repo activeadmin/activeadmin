@@ -7,7 +7,7 @@ RSpec.describe "Changelog" do
   end
 
   it 'has definitions for all implicit links' do
-    implicit_link_names = changelog.scan(/\[([^\]]+)\]\[\]/).flatten.uniq
+    implicit_link_names = changelog.scan(/\[([^\\\[:]+)\]\[\]/).flatten.uniq
     implicit_link_names.each do |name|
       expect(changelog).to include("[#{name}]: https")
     end
