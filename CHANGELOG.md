@@ -225,7 +225,7 @@ index download_links: ->{ can?(:view_all_download_links) || [:pdf] }
 ```
 
 * Comments menu can be customized via configuration passed to `config.comments_menu`. [#4187][] by [@drn][]
-* Added `config.route_options` to namespace to customize routes. [#4731][] by [@stereoscott[]]
+* Added `config.route_options` to namespace to customize routes. [#4731][] by [@stereoscott][]
 
 ### Security Fixes
 
@@ -418,6 +418,7 @@ Please check [0-6-stable][] for previous changes.
 [@shekibobo]: https://github.com/shekibobo
 [@shouya]: https://github.com/shouya
 [@stefsava]: https://github.com/stefsava
+[@stereoscott]: https://github.com/stereoscott
 [@tiagotex]: https://github.com/tiagotex
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
