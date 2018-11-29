@@ -25,9 +25,8 @@ group :lint do
 end
 
 # Documentation
-gem 'yard'                        # Documentation generator
-gem 'redcarpet', platforms: :mri  # Markdown implementation (for yard)
-gem 'kramdown', platforms: :jruby # Markdown implementation (for yard)
+gem 'yard'     # Documentation generator
+gem 'kramdown' # Markdown implementation (for yard)
 
 group :development do
   # Debugging
