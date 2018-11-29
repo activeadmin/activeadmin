@@ -114,5 +114,5 @@ Around '@silent_unpermitted_params_failure' do |scenario, block|
 end
 
 Around '@locale_manipulation' do |scenario, block|
-  I18n.with_locale(:en) { block.call }
+  I18n.with_locale(:en, &block)
 end
