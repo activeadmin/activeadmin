@@ -372,7 +372,12 @@ workflows:
   #
   build:
     jobs:
-      - setup_coverage
+      - setup_coverage:
+          filters:
+            branches:
+              only:
+                - master
+                - 1-4-stable
 
       - lint_and_docs:
           requires:
