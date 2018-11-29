@@ -86,7 +86,7 @@ RSpec.describe "#pretty_format" do
 
     context "with non-English locale" do
       around do |example|
-        I18n.with_locale(:es) { example.call }
+        I18n.with_locale(:es, &example)
       end
 
       it "formats it with the default long format" do
