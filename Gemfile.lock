@@ -319,7 +319,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    redcarpet (3.4.0)
     regexp_parser (1.2.0)
     request_store (1.4.1)
       rack (>= 1.4)
@@ -432,7 +431,6 @@ DEPENDENCIES
   rails (~> 5.2.x)
   rails-i18n
   rake
-  redcarpet
   rspec-rails
   rubocop (= 0.59.2)
   selenium-webdriver

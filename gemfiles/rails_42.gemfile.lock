@@ -216,7 +216,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    mdl (0.4.0)
+    mdl (0.5.0)
       kramdown (~> 1.12, >= 1.12.0)
       mixlib-cli (~> 1.7, >= 1.7.0)
       mixlib-config (~> 2.2, >= 2.2.1)
@@ -303,7 +303,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    redcarpet (3.4.0)
     regexp_parser (1.2.0)
     request_store (1.4.1)
       rack (>= 1.4)
@@ -402,7 +401,7 @@ DEPENDENCIES
   jruby-openssl (~> 0.10.1)
   kramdown
   launchy
-  mdl (= 0.4.0)
+  mdl (= 0.5.0)
   parallel_tests (~> 2.26)
   pry
   pry-byebug
@@ -411,7 +410,6 @@ DEPENDENCIES
   rails (= 4.2.10)
   rails-i18n
   rake
-  redcarpet
   rspec-rails
   rubocop (= 0.59.2)
   selenium-webdriver
