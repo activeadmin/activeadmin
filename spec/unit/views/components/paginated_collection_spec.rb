@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::PaginatedCollection do
   describe "creating with the dsl" do
-
     before :all do
       load_defaults!
       reload_routes!
@@ -244,6 +243,5 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
         expect(pagination_node).to have_css("select option", count: 3)
       end
     end
-
   end
 end

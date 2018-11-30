@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Resource::Sidebars do
-
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
     namespace.register(Post)
@@ -10,7 +9,6 @@ RSpec.describe ActiveAdmin::Resource::Sidebars do
   let(:sidebar) { ActiveAdmin::SidebarSection.new(:help) }
 
   describe "adding a new sidebar section" do
-
     before do
       resource.clear_sidebar_sections!
       resource.sidebar_sections << sidebar
@@ -19,11 +17,9 @@ RSpec.describe ActiveAdmin::Resource::Sidebars do
     it "should add a sidebar section" do
       expect(resource.sidebar_sections.size).to eq(1)
     end
-
   end
 
   describe "retrieving sections for a controller action" do
-
     let(:only_index){ ActiveAdmin::SidebarSection.new(:help, only: :index) }
     let(:only_show){ ActiveAdmin::SidebarSection.new(:help, only: :show) }
 
@@ -37,7 +33,5 @@ RSpec.describe ActiveAdmin::Resource::Sidebars do
       expect(resource.sidebar_sections.size).to eq(2)
       expect(resource.sidebar_sections_for("index")).to eq [only_index]
     end
-
   end
-
 end

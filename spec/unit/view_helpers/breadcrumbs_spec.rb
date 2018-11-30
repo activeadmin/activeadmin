@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Breadcrumbs" do
-
   include ActiveAdmin::ViewHelpers
   include ActionView::Helpers::SanitizeHelper
 
   describe "generating a trail from paths" do
-
     def params; {}; end
     def link_to(name, url); {name: name, path: url}; end
 
@@ -248,6 +246,5 @@ RSpec.describe "Breadcrumbs" do
         expect(trail[2]).to eq "Hello World"
       end
     end
-
   end
 end

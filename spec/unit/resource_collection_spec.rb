@@ -171,5 +171,4 @@ RSpec.describe ActiveAdmin::ResourceCollection do
   end
 
   skip "specs for subclasses of Page and Resource"
-
 end

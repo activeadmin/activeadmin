@@ -50,7 +50,6 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   end
 
   describe "sorting" do
-
     context "valid clause" do
       let(:http_params) {{ order: "id_asc" }}
 
@@ -99,11 +98,9 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
         end
       end
     end
-
   end
 
   describe "scoping" do
-
     context "when no current scope" do
       it "should set collection_before_scope to the chain and return the chain" do
         chain = double "ChainObj"
@@ -195,7 +192,6 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   end
 
   describe "build_resource" do
-
     let(:config) do
       ActiveAdmin.register User do
         permit_params :type, posts_attributes: :custom_category_id
@@ -228,7 +224,5 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     it "should assign nested attributes once" do
       expect(subject.posts.size).to eq(1)
     end
-
   end
-
 end

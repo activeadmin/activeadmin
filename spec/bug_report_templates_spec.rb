@@ -23,5 +23,4 @@ RSpec.describe 'bug_report_templates' do
       expect(subject).to be_truthy
     end
   end
-
 end

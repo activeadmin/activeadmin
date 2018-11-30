@@ -1,15 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Application, type: :request do
-
   include Rails.application.routes.url_helpers
 
   let(:resource) { ActiveAdmin.register Category }
 
   [false, nil].each do |value|
-
     describe "with a #{value} default namespace" do
-
       around do |example|
         with_custom_default_namespace(value) { example.call }
       end
@@ -25,13 +22,10 @@ RSpec.describe ActiveAdmin::Application, type: :request do
       it "should generate a log in path" do
         expect(new_admin_user_session_path).to eq "/login"
       end
-
     end
-
   end
 
   describe "with a test default namespace" do
-
     around do |example|
       with_custom_default_namespace(:test) { example.call }
     end
@@ -47,11 +41,9 @@ RSpec.describe ActiveAdmin::Application, type: :request do
     it "should generate a log in path" do
       expect(new_admin_user_session_path).to eq "/test/login"
     end
-
   end
 
   describe "with a namespace with underscores in the name" do
-
     around do |example|
       with_custom_default_namespace(:abc_123) { example.call }
     end
@@ -67,7 +59,6 @@ RSpec.describe ActiveAdmin::Application, type: :request do
     it "should generate a log in path" do
       expect(new_admin_user_session_path).to eq "/abc_123/login"
     end
-
   end
 
   private

@@ -29,9 +29,7 @@ class DefaultPolicy < ApplicationPolicy
 end
 
 RSpec.describe ActiveAdmin::PunditAdapter do
-
   describe "full integration" do
-
     let(:application) { ActiveAdmin::Application.new }
     let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
     let(:resource) { namespace.register(Post) }
@@ -137,5 +135,4 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       end
     end
   end
-
 end

@@ -207,7 +207,6 @@ RSpec.describe ActiveAdmin::FormBuilder do
       expect(body).to have_selector("[type=submit]", count: 2)
       expect(body).to have_selector("[class=cancel]", count: 0)
     end
-
   end
 
   context "with Arbre inside" do
@@ -312,11 +311,9 @@ RSpec.describe ActiveAdmin::FormBuilder do
         expect(body).to have_selector("[type=radio]", count: 2)
       end
     end
-
   end
 
   context "with inputs component inside has_many" do
-
     def user
       u = User.new
       u.profile = Profile.new(bio: 'bio')
@@ -800,7 +797,6 @@ RSpec.describe ActiveAdmin::FormBuilder do
         it "shows the nested fields for unsaved records" do
           expect(body).to have_selector("fieldset.inputs.has_many_fields")
         end
-
       end
 
       context "with post returning nil for the sortable attribute" do
@@ -817,7 +813,6 @@ RSpec.describe ActiveAdmin::FormBuilder do
         it "shows the nested fields for unsaved records" do
           expect(body).to have_selector("fieldset.inputs.has_many_fields")
         end
-
       end
 
       context "with existing and new posts" do

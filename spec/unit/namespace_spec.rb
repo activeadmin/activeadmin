@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Namespace do
-
   let(:application){ ActiveAdmin::Application.new }
 
   context "when new" do
@@ -120,7 +119,5 @@ RSpec.describe ActiveAdmin::Namespace do
       expect(menu["ActiveAdmin.info"]).to_not eq nil
       expect(menu["ActiveAdmin.info"].html_options).to include(target: :blank)
     end
-
   end
-
 end

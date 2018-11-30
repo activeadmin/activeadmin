@@ -171,7 +171,6 @@ RSpec.describe "Comments" do
 
   describe ActiveAdmin::Comments::NamespaceHelper do
     describe "#comments?" do
-
       it "should have comments when the namespace allows comments" do
         ns = ActiveAdmin::Namespace.new(application, :admin)
         ns.comments = true

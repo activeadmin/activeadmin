@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Filters::ResourceExtension do
-
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
     namespace.register(Post)
@@ -124,5 +123,4 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
   it "should add a sidebar section for the filters" do
     expect(resource.sidebar_sections.first.name).to eq "filters"
   end
-
 end

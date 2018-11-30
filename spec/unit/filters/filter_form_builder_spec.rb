@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Filters::ViewHelper do
-
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
   let(:helpers) do
@@ -447,7 +446,6 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
   end
 
   describe "custom search methods" do
-
     it "should use the default type of the ransacker" do
       body = Capybara.string(filter :custom_searcher_numeric)
       expect(body).to have_selector("option[value=custom_searcher_numeric_equals]")
@@ -486,7 +484,6 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
           expect(body).to have_selector("input[name='q[custom_created_at_searcher_lteq_datetime]'][value='']")
         end
       end
-
     end
   end
 
@@ -520,5 +517,4 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       end
     end
   end
-
 end

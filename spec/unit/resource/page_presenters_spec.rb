@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Resource::PagePresenters do
-
   let(:namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
   let(:resource){ namespace.register(Post) }
 
@@ -22,7 +21,6 @@ RSpec.describe ActiveAdmin::Resource::PagePresenters do
   end
 
   describe "#get_page_presenter" do
-
     it "should return a page config when set" do
       page_presenter = ActiveAdmin::PagePresenter.new
       resource.set_page_presenter(:index, page_presenter)
@@ -38,7 +36,5 @@ RSpec.describe ActiveAdmin::Resource::PagePresenters do
     it "should return nil when no page config set" do
       expect(resource.get_page_presenter(:index)).to eq nil
     end
-
   end
-
 end

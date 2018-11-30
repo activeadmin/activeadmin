@@ -3,7 +3,6 @@ require 'rails_helper'
 module ActiveAdmin
   RSpec.describe Resource, "Ordering" do
     describe "#order_by" do
-
       let(:application) { ActiveAdmin::Application.new }
       let(:namespace) { ActiveAdmin::Namespace.new application, :admin }
       let(:resource_config) { ActiveAdmin::Resource.new namespace, Post }
@@ -27,9 +26,7 @@ module ActiveAdmin
         end
         expect(resource_config.order_clause).to eq(MyOrderClause)
         expect(application.order_clause).to eq(ActiveAdmin::OrderClause)
-
       end
-
     end
   end
 end

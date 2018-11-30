@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Dependency do
-
   k = ActiveAdmin::Dependency
 
   describe 'method_missing' do
@@ -100,7 +99,6 @@ RSpec.describe ActiveAdmin::Dependency do
     # Note: Ruby comparison operators are separate from the `foo? '> 1'` syntax
 
     describe 'Ruby comparison syntax' do
-
       it '==' do
         expect(k['a-b'] == '1.2.3').to eq true
         expect(k['a-b'] == '1.2').to eq false
@@ -131,5 +129,4 @@ RSpec.describe ActiveAdmin::Dependency do
       end
     end
   end
-
 end

@@ -219,6 +219,5 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
 
       expect(value.to_s).to eq "abc1, abc2, abc3"
     end
-
   end
 end
