@@ -48,6 +48,13 @@ Layout/EndOfLine:
 Layout/ExtraSpacing:
   Enabled: true
 
+Rails:
+  Enabled: true
+
+Rails/FilePath:
+  Enabled: true
+  EnforcedStyle: slashes
+
 Style/Dir:
   Enabled: true
 
