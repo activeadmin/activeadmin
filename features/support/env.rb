@@ -12,18 +12,9 @@ Dir["#{File.expand_path('../../step_definitions', __FILE__)}/*.rb"].each do |f|
   require f
 end
 
-require 'rails'
-ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{Rails.version}", __FILE__)
-
-require 'active_record'
-require 'active_admin'
-require 'devise'
-ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
+ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{Gem.loaded_specs["rails"].version}", __FILE__)
 
 require ENV['RAILS_ROOT'] + '/config/environment'
-
-# Setup autoloading of ActiveAdmin
-autoload :ActiveAdmin, 'active_admin'
 
 require 'cucumber/rails'
 
