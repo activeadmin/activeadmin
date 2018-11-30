@@ -85,12 +85,6 @@ GEM
     backports (3.11.4)
     bcrypt (3.1.12)
     bcrypt (3.1.12-java)
-    better_errors (2.5.0)
-      coderay (>= 1.0.0)
-      erubi (>= 1.0.0)
-      rack (>= 0.9.0)
-    binding_of_caller (0.8.0)
-      debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (10.0.2)
     cancan (1.6.10)
@@ -137,7 +131,6 @@ GEM
     cucumber-tag_expressions (1.1.1)
     cucumber-wire (0.0.1)
     database_cleaner (1.7.0)
-    debug_inspector (0.0.3)
     devise (4.5.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -277,8 +270,6 @@ GEM
     pundit (2.0.0)
       activesupport (>= 3.0.0)
     rack (2.0.5)
-    rack-mini-profiler (1.0.0)
-      rack (>= 1.2.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.1)
@@ -407,8 +398,6 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   activerecord-jdbcsqlite3-adapter (>= 52.0)
-  better_errors
-  binding_of_caller
   cancan
   capybara (~> 3.10)
   chandler!
@@ -429,7 +418,6 @@ DEPENDENCIES
   pry
   pry-byebug
   pundit
-  rack-mini-profiler (>= 0.10.1)
   rails (~> 5.2.x)
   rails-i18n
   rake
