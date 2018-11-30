@@ -50,7 +50,17 @@ Layout/EndOfLine:
 Layout/ExtraSpacing:
   Enabled: true
 
+Rails:
+  Enabled: true
+
+Rails/FilePath:
+  Enabled: true
+  EnforcedStyle: slashes
+
 RSpec/HookArgument:
+  Enabled: true
+
+Style/Dir:
   Enabled: true
 
 Style/Encoding:

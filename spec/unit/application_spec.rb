@@ -13,7 +13,7 @@ RSpec.describe ActiveAdmin::Application do
     before { application.prepare! }
 
     it "should remove app/admin from the autoload paths" do
-      expect(ActiveSupport::Dependencies.autoload_paths).to_not include(File.join(Rails.root, "app/admin"))
+      expect(ActiveSupport::Dependencies.autoload_paths).to_not include(Rails.root.join("app/admin"))
     end
   end
 
