@@ -1,6 +1,6 @@
 require 'uri'
-require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
-require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
+require File.expand_path(File.join(__dir__, "..", "support", "paths"))
+require File.expand_path(File.join(__dir__, "..", "support", "selectors"))
 
 module WithinHelpers
   def with_scope(locator)
