@@ -1,4 +1,4 @@
-apply File.expand_path("../rails_template.rb", __FILE__)
+apply File.expand_path('rails_template.rb', __dir__)
 
 inject_into_file 'config/initializers/active_admin.rb', <<-RUBY, after: "ActiveAdmin.setup do |config|\n"
 

@@ -51,6 +51,9 @@ Layout/ExtraSpacing:
 Style/Encoding:
   Enabled: true
 
+Style/ExpandPathArguments:
+  Enabled: true
+
 Style/FrozenStringLiteralComment:
   Enabled: true
   EnforcedStyle: never
