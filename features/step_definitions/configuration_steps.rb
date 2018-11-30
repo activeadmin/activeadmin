@@ -64,7 +64,9 @@ Given /^a(?:n? (index|show))? configuration of:$/ do |action, config_content|
     when 'Category'
       step 'I am on the index page for categories'
     else
+      # :nocov:
       raise "#{resource} is not supported"
+      # :nocov:
     end
   when 'show'
     case resource = config_content.match(/ActiveAdmin\.register (\w+)/)[1]
@@ -77,7 +79,9 @@ Given /^a(?:n? (index|show))? configuration of:$/ do |action, config_content|
       Tag.create!
       visit admin_tag_path Tag.last
     else
+      # :nocov:
       raise "#{resource} is not supported"
+      # :nocov:
     end
   end
 end

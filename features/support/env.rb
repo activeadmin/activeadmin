@@ -43,7 +43,9 @@ Around do |scenario, block|
 end
 
 After '@debug' do |scenario|
+  # :nocov:
   save_and_open_page if scenario.failed?
+  # :nocov:
 end
 
 require 'capybara/rails'
