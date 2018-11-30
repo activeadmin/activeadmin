@@ -11,14 +11,8 @@ task "release:rubygem_push" => "chandler:push"
 
 task default: :test
 
-begin
-  require 'jasmine'
-  load 'jasmine/tasks/jasmine.rake'
-rescue LoadError
-  task :jasmine do
-    abort 'Jasmine is not available. In order to run jasmine, you must: (sudo) gem install jasmine'
-  end
-end
+require 'jasmine'
+load 'jasmine/tasks/jasmine.rake'
 
 task :console do
   require 'irb'
