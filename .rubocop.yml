@@ -48,6 +48,9 @@ Layout/EndOfLine:
 Layout/ExtraSpacing:
   Enabled: true
 
+Style/Dir:
+  Enabled: true
+
 Style/Encoding:
   Enabled: true
 
