@@ -8,7 +8,7 @@ ENV['RAILS_ENV'] = 'test'
 
 require 'simplecov' if ENV["COVERAGE"] == "true"
 
-Dir["#{File.expand_path('../../step_definitions', __FILE__)}/*.rb"].each do |f|
+Dir["#{File.expand_path('../step_definitions', __dir__)}/*.rb"].each do |f|
   require f
 end
 

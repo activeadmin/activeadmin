@@ -30,7 +30,7 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
 
   end
 RUBY
-copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), 'app/models/post_decorator.rb'
+copy_file File.expand_path('templates/post_decorator.rb', __dir__), 'app/models/post_decorator.rb'
 
 generate :model, 'blog/post title:string body:text published_date:date author_id:integer ' +
   'position:integer custom_category_id:integer starred:boolean foo_id:integer'
@@ -123,13 +123,13 @@ inject_into_file 'config/application.rb', after: 'class Application < Rails::App
 end
 
 # Add some translations
-append_file 'config/locales/en.yml', File.read(File.expand_path('../templates/en.yml', __FILE__))
+append_file 'config/locales/en.yml', File.read(File.expand_path('templates/en.yml', __dir__))
 
 # Add predefined admin resources
-directory File.expand_path('../templates/admin', __FILE__), 'app/admin'
+directory File.expand_path('templates/admin', __dir__), 'app/admin'
 
 # Add predefined policies
-directory File.expand_path('../templates/policies', __FILE__), 'app/policies'
+directory File.expand_path('templates/policies', __dir__), 'app/policies'
 
 if ENV['RAILS_ENV'] != 'test'
   inject_into_file 'config/routes.rb', "\n  root to: redirect('admin')", after: /.*routes.draw do/

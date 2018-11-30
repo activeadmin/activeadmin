@@ -13,7 +13,7 @@ RSpec.describe 'bug_report_templates' do
     end
   end
 
-  let(:active_admin_root) { File.expand_path('../..', __FILE__) }
+  let(:active_admin_root) { File.expand_path('..', __dir__) }
   let(:chdir_path) { File.join(active_admin_root, 'lib', 'bug_report_templates') }
 
   context 'when runs active_admin_master.rb' do

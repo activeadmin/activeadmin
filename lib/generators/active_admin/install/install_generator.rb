@@ -9,7 +9,7 @@ module ActiveAdmin
       hook_for :users, default: "devise", desc: "Admin user generator to run. Skip with --skip-users"
       class_option :skip_comments, type: :boolean, default: false, desc: "Skip installation of comments"
 
-      source_root File.expand_path("../templates", __FILE__)
+      source_root File.expand_path('templates', __dir__)
 
       def copy_initializer
         @underscored_user_name = name.underscore.gsub('/', '_')
