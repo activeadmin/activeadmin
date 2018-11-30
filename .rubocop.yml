@@ -42,6 +42,9 @@ Layout/ElseAlignment:
 Layout/EmptyLines:
   Enabled: true
 
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: true
+
 Layout/EndOfLine:
   Enabled: true
 

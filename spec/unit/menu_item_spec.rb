@@ -4,7 +4,6 @@ require 'active_admin/menu_item'
 
 module ActiveAdmin
   RSpec.describe MenuItem do
-
     it "should have a label" do
       item = MenuItem.new(label: "Dashboard")
       expect(item.label).to eq "Dashboard"
@@ -77,6 +76,5 @@ module ActiveAdmin
         expect{ MenuItem.new(id: proc{"Dynamic"}).id }.to raise_error TypeError
       end
     end
-
   end
 end

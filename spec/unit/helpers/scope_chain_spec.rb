@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::ScopeChain do
-
   include ActiveAdmin::ScopeChain
 
   describe "#scope_chain" do

@@ -57,5 +57,4 @@ RSpec.describe "Registering an object to administer" do
       expect(config_1.filters.size).to eq 2
     end
   end
-
 end

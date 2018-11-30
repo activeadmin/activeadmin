@@ -3,7 +3,6 @@ require File.expand_path('config_shared_examples', File.dirname(__FILE__))
 
 module ActiveAdmin
   RSpec.describe Resource do
-
     it_should_behave_like "ActiveAdmin::Resource"
     before { load_defaults! }
 
@@ -77,7 +76,6 @@ module ActiveAdmin
     end
 
     describe "#belongs_to" do
-
       it "should build a belongs to configuration" do
         expect(config.belongs_to_config).to eq nil
         config.belongs_to :posts
@@ -89,7 +87,6 @@ module ActiveAdmin
         config.belongs_to :posts
         expect(config.navigation_menu_name).to eq ActiveAdmin::DEFAULT_MENU
       end
-
     end
 
     describe "scoping" do
@@ -168,11 +165,9 @@ module ActiveAdmin
         config.sort_order = "task_id_desc"
         expect(config.sort_order).to eq "task_id_desc"
       end
-
     end
 
     describe "adding a scope" do
-
       it "should add a scope" do
         config.scope :published
         expect(config.scopes.first).to be_a(ActiveAdmin::Scope)
@@ -198,7 +193,6 @@ module ActiveAdmin
         config.scope :all
         expect(config.default_scope.name).to eq "Published"
       end
-
     end
 
     describe "#csv_builder" do

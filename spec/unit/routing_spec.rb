@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Routing", type: :routing do
-
   before do
     load_defaults!
     reload_routes!

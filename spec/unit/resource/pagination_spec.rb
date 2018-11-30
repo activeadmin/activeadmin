@@ -2,7 +2,6 @@ require 'rails_helper'
 
 module ActiveAdmin
   RSpec.describe Resource, "Pagination" do
-
     before { load_defaults! }
 
     let(:application){ ActiveAdmin::Application.new }

@@ -15,21 +15,18 @@ task :spec do
 end
 
 namespace :spec do
-
   %i(unit request).each do |type|
     desc "Run the #{type} specs in parallel"
     task type do
       system("parallel_rspec --serialize-stdout --verbose spec/#{type}")
     end
   end
-
 end
 
 desc "Run the cucumber scenarios in parallel"
 task cucumber: [:"cucumber:regular", :"cucumber:reloading"]
 
 namespace :cucumber do
-
   desc "Run the standard cucumber scenarios in parallel"
   task :regular do
     system("parallel_cucumber --serialize-stdout --verbose features/")
@@ -39,5 +36,4 @@ namespace :cucumber do
   task :reloading do
     system("cucumber --profile class-reloading")
   end
-
 end

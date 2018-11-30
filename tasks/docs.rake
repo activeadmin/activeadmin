@@ -2,7 +2,6 @@ require 'yard'
 require 'yard/rake/yardoc_task'
 
 namespace :docs do
-
   YARD::Rake::YardocTask.new do |t|
     t.files = ['lib/**/*.rb']
     t.options = ['--no-output']
@@ -60,5 +59,4 @@ namespace :docs do
 
     docs_syncronized? if ENV["CI"]
   end
-
 end

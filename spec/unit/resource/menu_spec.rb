@@ -2,7 +2,6 @@ require 'rails_helper'
 
 module ActiveAdmin
   RSpec.describe Resource, "Menu" do
-
     before { load_defaults! }
 
     let(:application){ ActiveAdmin::Application.new }
@@ -13,6 +12,5 @@ module ActiveAdmin
     end
 
     # TODO...
-
   end
 end

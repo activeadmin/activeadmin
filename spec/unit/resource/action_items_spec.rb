@@ -1,14 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Resource::ActionItems do
-
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
     namespace.register(Post)
   end
 
   describe "adding a new action item" do
-
     before do
       resource.clear_action_items!
       resource.add_action_item :empty, class: :test do
@@ -45,11 +43,9 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
 
       expect(resource.action_items_for(:index).collect(&:name)).to eq [:first, :second, :empty, :some_other]
     end
-
   end
 
   describe "setting an action item to only display on specific controller actions" do
-
     before do
       resource.clear_action_items!
       resource.add_action_item :new, only: :index do
@@ -66,7 +62,6 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
         resource.action_items_for(:index).first.call
       }.to raise_exception(StandardError)
     end
-
   end
 
   describe "default action items" do
@@ -79,5 +74,4 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
       expect(resource.action_items.size).to eq 2
     end
   end
-
 end

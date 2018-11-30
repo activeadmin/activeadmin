@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::ViewHelpers::FormHelper do
-
   describe '.active_admin_form_for' do
     let(:view) { mock_action_view }
     let(:resource) { double 'resource' }

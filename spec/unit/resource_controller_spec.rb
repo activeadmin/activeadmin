@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::ResourceController do
-
   let(:controller) { Admin::PostsController.new }
 
   describe "callbacks" do
@@ -143,7 +142,6 @@ RSpec.describe "A specific resource controller", type: :controller do
 
       controller.send(:authenticate_active_admin_user)
     end
-
   end
 
   describe "retrieving the current user" do
@@ -241,7 +239,6 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
 
     describe "when params batch_action matches existing BatchAction" do
-
       let(:http_params) do
         { batch_action: "flag", collection_selection: ["1"] }
       end
@@ -280,7 +277,5 @@ RSpec.describe "A specific resource controller", type: :controller do
         }.to raise_error("Couldn't find batch action \"\"")
       end
     end
-
   end
-
 end

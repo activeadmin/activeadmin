@@ -20,7 +20,6 @@ RSpec.describe ActiveAdmin::Views::Pages::Form do
 
     context "when :title is set" do
       it "should show the set page title" do
-
         page = ActiveAdmin::Views::Pages::Form.new(arbre_context)
         expect(page).to receive(:resource)
         expect(page).to receive(:form_presenter).twice.and_return({ title: "My Page Title" })

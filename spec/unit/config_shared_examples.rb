@@ -32,7 +32,6 @@ RSpec.shared_examples_for "ActiveAdmin::Resource" do
 
   describe "Menu" do
     describe "#menu_item_options" do
-
       it "initializes a new menu item with defaults" do
         expect(config.menu_item_options[:label].call).to eq(config.plural_resource_label)
       end
@@ -41,7 +40,6 @@ RSpec.shared_examples_for "ActiveAdmin::Resource" do
         config.menu_item_options = { label: "Hello" }
         expect(config.menu_item_options[:label]).to eq("Hello")
       end
-
     end
 
     describe "#include_in_menu?" do
@@ -54,6 +52,5 @@ RSpec.shared_examples_for "ActiveAdmin::Resource" do
         expect(config.include_in_menu?).to eq(false)
       end
     end
-
   end
 end
