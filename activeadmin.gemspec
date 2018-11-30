@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), "lib", "active_admin", "version")
+require File.join(__dir__, "lib", "active_admin", "version")
 
 Gem::Specification.new do |s|
   s.name          = 'activeadmin'
