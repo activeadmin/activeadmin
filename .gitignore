@@ -2,6 +2,7 @@
 tmp
 coverage
 .yardoc
+.ruby-version
 pkg
 
 ## Project (specific)
