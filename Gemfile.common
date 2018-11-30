@@ -2,7 +2,10 @@
 gem 'rake'
 gem 'pry' # Easily debug from your console with `binding.pry`
 gem 'pry-byebug', platforms: :mri # Step-by-step debugging
-gem 'chandler', git: 'https://github.com/deivid-rodriguez/chandler', branch: 'submit_link_references' # Github releases from changelog
+
+group :release do
+  gem 'chandler', git: 'https://github.com/deivid-rodriguez/chandler', branch: 'submit_link_references' # Github releases from changelog
+end
 
 group :lint do
   # Code style
@@ -15,9 +18,10 @@ group :lint do
   gem 'i18n-spec'
 end
 
-# Documentation
-gem 'yard'     # Documentation generator
-gem 'kramdown' # Markdown implementation (for yard)
+group :docs do
+  gem 'yard'     # Documentation generator
+  gem 'kramdown' # Markdown implementation (for yard)
+end
 
 group :test do
   gem 'capybara', '~> 3.10'
