@@ -13,7 +13,7 @@ Dir["#{File.expand_path('../step_definitions', __dir__)}/*.rb"].each do |f|
 end
 
 require 'rails'
-ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{Rails.version}", __FILE__)
+ENV['RAILS_ROOT'] = File.expand_path("../../spec/rails/rails-#{Rails.version}", __dir__)
 
 require 'active_record'
 require 'active_admin'
