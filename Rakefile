@@ -1,8 +1,11 @@
 require 'bundler/gem_tasks'
 require "chandler/tasks"
 
-# Import all our rake tasks
-FileList['tasks/**/*.rake'].each { |task| import task }
+import 'tasks/docs.rake'
+import 'tasks/gemfiles.rake'
+import 'tasks/lint.rake'
+import 'tasks/local.rake'
+import 'tasks/test.rake'
 
 #
 # Add chandler as a prerequisite for `rake release`
