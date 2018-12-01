@@ -12,9 +12,7 @@ Dir["#{File.expand_path('../../step_definitions', __FILE__)}/*.rb"].each do |f|
   require f
 end
 
-ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{Gem.loaded_specs["rails"].version}", __FILE__)
-
-require ENV['RAILS_ROOT'] + '/config/environment'
+require_relative "../../spec/rails/rails-#{Gem.loaded_specs["rails"].version}/config/environment"
 
 require 'cucumber/rails/application'
 require 'cucumber/rails/action_controller'
