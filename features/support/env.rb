@@ -16,7 +16,14 @@ ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{Gem.loaded_spe
 
 require ENV['RAILS_ROOT'] + '/config/environment'
 
-require 'cucumber/rails'
+require 'cucumber/rails/application'
+require 'cucumber/rails/action_controller'
+require 'cucumber/rails/world'
+require 'cucumber/rails/hooks'
+require 'cucumber/rails/capybara'
+require 'cucumber/rails/database'
+
+MultiTest.disable_autorun
 
 require 'rspec/mocks'
 World(RSpec::Mocks::ExampleMethods)
