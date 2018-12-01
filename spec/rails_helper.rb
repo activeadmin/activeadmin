@@ -2,9 +2,7 @@ require 'spec_helper'
 
 ENV['RAILS_ENV'] = 'test'
 
-ENV['RAILS_ROOT'] = File.expand_path("rails/rails-#{Gem.loaded_specs["rails"].version}", __dir__)
-
-require ENV['RAILS_ROOT'] + '/config/environment'
+require_relative "rails/rails-#{Gem.loaded_specs["rails"].version}/config/environment"
 
 require 'rspec/rails'
 
