@@ -127,6 +127,20 @@ Feature: Batch Actions
     Given I submit the batch action form with "flag"
     Then I should see a flash with "Successfully flagged 10 posts"
 
+  Scenario: Using a custom batch action with form as proc
+    Given 10 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        batch_action(:flag, form: -> { {type: ["a", "b"]} }) do
+          redirect_to collection_path, notice: "Successfully flagged 10 posts"
+        end
+      end
+      """
+    When I check the 1st record
+    Given I submit the batch action form with "flag"
+    Then I should see a flash with "Successfully flagged 10 posts"
+
   Scenario: Disabling batch actions for a resource
     Given 10 posts exist
     And an index configuration of:
