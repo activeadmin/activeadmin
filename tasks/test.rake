@@ -1,4 +1,3 @@
-require 'parallel'
 require_relative "application_generator"
 
 desc "Run the full suite using parallel_tests to run on multiple cores"
