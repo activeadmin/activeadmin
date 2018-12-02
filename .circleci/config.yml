@@ -98,6 +98,11 @@ version: 2.1
     name: Run lints
     command: bundle exec rake lint
 
+.run_bug_report_template: &run_bug_report_template
+  run:
+    name: Run bug report template
+    command: ACTIVE_ADMIN_PATH=. ruby lib/bug_report_templates/active_admin_master.rb
+
 .test_steps: &test_steps
   - checkout
   - *install_bundler
@@ -194,7 +199,7 @@ jobs:
 
   lint_and_docs:
     docker:
-      - image: circleci/ruby:2.5.3
+      - image: circleci/ruby:2.5.3-node
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -209,6 +214,7 @@ jobs:
       - *generate_docs
       - *restore_coverage
       - *run_lints
+      - *run_bug_report_template
       - *format_coverage
       - *save_coverage
 
