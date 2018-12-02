@@ -254,6 +254,19 @@ RSpec.describe "A specific resource controller", type: :controller do
       end
     end
 
+    describe "when params batch_action matches existing BatchAction and form inputs defined" do
+      let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", form: { type: ["a", "b"] }, &batch_action_block }
+
+      let(:http_params) do
+        { batch_action: "flag", collection_selection: ["1"], batch_action_inputs: '{ "type": "a", "bogus": "param" }' }
+      end
+
+      it "should filter permitted params" do
+        expect(controller).to receive(:instance_exec).with(["1"], { "type" => "a" })
+        controller.batch_action
+      end
+    end
+
     describe "when params batch_action doesn't match a BatchAction" do
       let(:http_params) do
         { batch_action: "derp", collection_selection: ["1"] }
