@@ -1,7 +1,7 @@
 # Utility gems used in both development & test environments
 gem 'rake'
 gem 'pry' # Easily debug from your console with `binding.pry`
-gem 'pry-byebug', platforms: :mri # Step-by-step debugging
+gem 'pry-byebug', platform: :mri # Step-by-step debugging
 
 group :test do
   gem 'capybara', '~> 3.10'
@@ -9,7 +9,7 @@ group :test do
   # Optional dependencies
   gem 'cancan'
   gem 'pundit'
-  gem 'jruby-openssl', '~> 0.10.1', platforms: :jruby
+  gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
 
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'cucumber-rails', '~> 1.5', require: false
@@ -21,6 +21,6 @@ group :test do
   gem 'parallel_tests', '~> 2.26'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
-  gem 'sqlite3', platforms: :mri
+  gem 'sqlite3', platform: :mri
   gem 'selenium-webdriver'
 end
