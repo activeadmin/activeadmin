@@ -11,7 +11,7 @@ lv:
     new_model: "Pievienot '%{model}' ierakstu"
     edit_model: "Labot '%{model}' ierakstu"
     delete_model: "Dzēst '%{model}' ierakstu"
-    details: "Apraksts"
+    details: "%{model} apraksts"
     cancel: "Atcelt"
     empty: "Tukšs"
     previous: "Iepriekšējā"
@@ -40,11 +40,11 @@ lv:
     sidebars:
       filters: "Filtri"
     pagination:
-      empty: "Nav ierakstu"
-      one: "<b>1</b> ieraksts"
-      one_page: "<b>%{n}</b> ieraksti"
-      multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> ieraksti no <b>%{total}</b> kopā"
-      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      empty: "Nav %{model}"
+      one: "<b>1</b> %{model}"
+      one_page: "<b>%{n}</b> %{model}"
+      multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} no <b>%{total}</b> kopā"
+      multiple_without_total: "%{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "ieraksts"
         other: "ieraksti"

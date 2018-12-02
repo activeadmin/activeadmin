@@ -53,8 +53,8 @@ lt:
       empty: '%{model} nerastas'
       one: 'Rodoma <B> 1 </ b> %{model}'
       one_page: 'Rodoma <b>visi %{n} </ b> %{model}'
-      multiple: 'Rodomi %{model} <b>%{iš}&nbsp;-&nbsp;%{to} </ b> iš<b>%{total} </ b> iš viso'
-      multiple_without_total: 'Rodomi %{model} <b>%{iš}&nbsp;-&nbsp;%{to} </ b> '
+      multiple: 'Rodomi %{model} <b>%{from}&nbsp;-&nbsp;%{to} </ b> iš<b>%{total} </ b> iš viso'
+      multiple_without_total: 'Rodomi %{model} <b>%{from}&nbsp;-&nbsp;%{to} </ b> '
       per_page: "Puslapyje: "
       entry:
         one: 'įrašas'
