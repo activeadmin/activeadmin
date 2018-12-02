@@ -29,7 +29,7 @@ module ActiveAdmin
 
         env = { 'BUNDLE_GEMFILE' => ENV['BUNDLE_GEMFILE'], 'RAILS_ENV' => rails_env }
 
-        Bundler.with_original_env { Kernel.system(env, command) }
+        Bundler.with_original_env { abort unless Kernel.system(env, command) }
       end
 
       app_dir
