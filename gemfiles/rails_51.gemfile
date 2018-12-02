@@ -5,6 +5,6 @@ eval_gemfile(File.expand_path(File.join("..", "Gemfile.common"), __dir__))
 gem "rails", "~> 5.1.6"
 gem "devise", "~> 4.3"
 gem "draper", "~> 3.0"
-gem "activerecord-jdbcsqlite3-adapter", "~> 51.0", platforms: :jruby
+gem "activerecord-jdbcsqlite3-adapter", "~> 51.0", platform: :jruby
 
 gemspec path: "../"
