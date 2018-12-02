@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module ActiveAdmin
   class ApplicationGenerator
     attr_reader :rails_env, :template
@@ -11,7 +13,7 @@ module ActiveAdmin
       if File.exist? app_dir
         puts "test app #{app_dir} already exists; skipping test app generation"
       else
-        system "mkdir -p #{base_dir}"
+        FileUtils.mkdir_p base_dir
         args = %W(
           -m spec/support/#{template}.rb
           --skip-bootsnap
