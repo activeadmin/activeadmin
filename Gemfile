@@ -23,7 +23,6 @@ group :docs do
 end
 
 gem "rails", "~> 5.2.x"
-gem "devise", "~> 4.4"
 gem "activerecord-jdbcsqlite3-adapter", "~> 52.0", platform: :jruby
 
 gemspec path: "."
