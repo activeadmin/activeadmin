@@ -6,6 +6,8 @@ Feature: Index Scope To
     Given 10 posts exist
     And a post with the title "Hello World" written by "John Doe" exists
     And a published post with the title "Hello World" written by "John Doe" exists
+
+  Scenario: Viewing the default scope counts
     Given an index configuration of:
       """
       ActiveAdmin.register Post do
@@ -21,8 +23,6 @@ Feature: Index Scope To
         end
       end
       """
-
-  Scenario: Viewing the default scope counts
     When I am on the index page for posts
     Then I should see the scope "All" selected
     And I should see the scope "All" with the count 2
