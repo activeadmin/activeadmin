@@ -1,9 +1,4 @@
-begin
-  require 'bundler/inline'
-rescue LoadError => e
-  STDERR.puts 'Bundler version 1.10 or later is required. Please update your Bundler'
-  raise e
-end
+require 'bundler/inline'
 
 gemfile(true) do
   source 'https://rubygems.org'
