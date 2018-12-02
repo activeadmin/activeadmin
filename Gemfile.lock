@@ -391,7 +391,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
-  activerecord-jdbcsqlite3-adapter (>= 52.0)
+  activerecord-jdbcsqlite3-adapter (~> 52.0)
   cancan
   capybara (~> 3.10)
   chandler (= 0.9.0)
