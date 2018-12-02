@@ -16,7 +16,7 @@ gemfile(true) do
   gem 'sass-rails'
   gem 'sqlite3', platform: :mri
   gem 'activerecord-jdbcsqlite3-adapter', "~> 52.0", platform: :jruby
-  gem 'jruby-openssl', '~> 0.10.1', platforms: :jruby
+  gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
 end
 
 require 'active_record'
