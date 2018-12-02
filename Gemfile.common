@@ -11,6 +11,7 @@ group :test do
   gem 'pundit'
   gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
   gem 'draper', '~> 3.0'
+  gem "devise", '~> 4.4'
 
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'cucumber-rails', '~> 1.5', require: false
