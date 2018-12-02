@@ -14,14 +14,14 @@ end
 
 RSpec.describe 'I18n' do
   let(:i18n) { I18n::Tasks::BaseTask.new }
+
   let(:unused_keys) { i18n.unused_keys }
   let(:unused_key_count) { unused_keys.leaves.count }
-
-  let(:failure_msg) do
+  let(:unused_key_failure_msg) do
     "#{unused_key_count} unused i18n keys, run `i18n-tasks unused` to show them"
   end
 
   it 'does not have unused keys' do
-    expect(unused_keys).to be_empty, failure_msg
+    expect(unused_keys).to be_empty, unused_key_failure_msg
   end
 end
