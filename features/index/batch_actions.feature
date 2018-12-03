@@ -132,7 +132,7 @@ Feature: Batch Actions
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        batch_action(:flag, form: -> { {type: ["a", "b"]} }) do
+        batch_action(:flag, form: -> { {type: params[:type]} }) do
           redirect_to collection_path, notice: "Successfully flagged 10 posts"
         end
       end
