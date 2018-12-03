@@ -13,6 +13,7 @@ Feature: User Resetting Password
     And I press "Reset My Password"
     Then I should see "You will receive an email with instructions on how to reset your password in a few minutes."
 
+  @mocks
   Scenario: Changing password after resetting
     When "admin@example.com" requests a password reset with token "foobarbaz"
     When I go to the admin password reset form with token "foobarbaz"
@@ -21,6 +22,7 @@ Feature: User Resetting Password
     And I press "Change my password"
     Then I should see "success"
 
+  @mocks
   Scenario: Changing password after resetting with errors
     When "admin@example.com" requests a password reset with token "foobarbaz" but it expires
     When I go to the admin password reset form with token "foobarbaz"

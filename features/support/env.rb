@@ -13,7 +13,7 @@ require_relative 'rails'
 require 'rspec/mocks'
 World(RSpec::Mocks::ExampleMethods)
 
-Around do |scenario, block|
+Around '@mocks' do |scenario, block|
   RSpec::Mocks.setup
 
   block.call
