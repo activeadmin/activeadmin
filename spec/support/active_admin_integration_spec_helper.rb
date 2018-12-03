@@ -1,6 +1,4 @@
 module ActiveAdminIntegrationSpecHelper
-  extend self
-
   def load_defaults!
     ActiveAdmin.unload!
     ActiveAdmin.load!
