@@ -342,7 +342,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pundit
-  rails (= 5.1.6)
+  rails (~> 5.1.6)
   rails-i18n
   rake
   rspec-rails
