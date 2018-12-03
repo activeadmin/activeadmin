@@ -1,10 +1,10 @@
 module ActiveAdminIntegrationSpecHelper
-  def load_defaults!
-    load_resources do
-      ActiveAdmin.register(Category)
-      ActiveAdmin.register(User)
-      ActiveAdmin.register(Post){ belongs_to :user, optional: true }
-    end
+  def with_resources_during(example)
+    load_resources { yield }
+
+    example.run
+
+    load_resources {}
   end
 
   def reload_menus!

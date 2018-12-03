@@ -4,7 +4,10 @@ require File.expand_path('config_shared_examples', __dir__)
 module ActiveAdmin
   RSpec.describe Resource do
     it_should_behave_like "ActiveAdmin::Resource"
-    before { load_defaults! }
+
+    around do |example|
+      with_resources_during(example) { namespace.register Category }
+    end
 
     let(:application){ ActiveAdmin::Application.new }
     let(:namespace){ Namespace.new(application, :admin) }
@@ -37,6 +40,10 @@ module ActiveAdmin
         expect(config.decorator_class).to eq nil
       end
       context 'when a decorator is defined' do
+        around do |example|
+          with_resources_during(example) { resource }
+        end
+
         let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
         specify '#decorator_class_name should return PostDecorator' do
           expect(resource.decorator_class_name).to eq '::PostDecorator'
@@ -62,6 +69,10 @@ module ActiveAdmin
 
     describe "#include_in_menu?" do
       subject{ resource }
+
+      around do |example|
+        with_resources_during(example) { resource }
+      end
 
       context "when regular resource" do
         let(:resource){ namespace.register(Post) }
@@ -233,6 +244,10 @@ module ActiveAdmin
     describe '#find_resource' do
       let(:post) { double }
 
+      around do |example|
+        with_resources_during(example) { resource }
+      end
+
       context 'without a decorator' do
         let(:resource) { namespace.register(Post) }
 
@@ -276,6 +291,10 @@ module ActiveAdmin
               defaults finder: :find_by_title!
             end
           end
+        end
+
+        after do
+          Admin.send(:remove_const, :"PostsController")
         end
 
         it 'can find the post by controller finder' do
