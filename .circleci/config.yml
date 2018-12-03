@@ -57,7 +57,7 @@ version: 2.1
   run:
     name: Upload coverage results to Code Climate
     command: |
-      tmp/test-reporter sum-coverage tmp/codeclimate.*.json --parts 16 --output tmp/codeclimate.total.json
+      tmp/test-reporter sum-coverage tmp/codeclimate.*.json --parts 21 --output tmp/codeclimate.total.json
       tmp/test-reporter upload-coverage --input tmp/codeclimate.total.json
 
 .save_test_app_to_workspace: &save_test_app_to_workspace
