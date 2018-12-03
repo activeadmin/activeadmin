@@ -39,6 +39,10 @@ RSpec.describe ActiveAdmin::Namespace do
         Admin.send(:remove_const, 'PostsController')
       end
 
+      after do
+        load_resources {}
+      end
+
       it "should not crash" do
         expect { ActiveAdmin.unload! }.not_to raise_error
       end
