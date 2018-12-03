@@ -5,29 +5,29 @@ require 'active_admin/view_helpers/display_helper'
 require 'active_admin/view_helpers/method_or_proc_helper'
 
 RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
-  include ActiveAdmin::ViewHelpers::ActiveAdminApplicationHelper
-  include ActiveAdmin::ViewHelpers::AutoLinkHelper
-  include ActiveAdmin::ViewHelpers::DisplayHelper
-  include MethodOrProcHelper
-  include ActionView::Helpers::UrlHelper
-  include ActionView::Helpers::TranslationHelper
-  include ActionView::Helpers::SanitizeHelper
-
-  def active_admin_namespace
-    active_admin_application.namespaces[:admin]
+  let(:view_klass) do
+    Class.new(ActionView::Base) do
+      include ActiveAdmin::ViewHelpers::ActiveAdminApplicationHelper
+      include ActiveAdmin::ViewHelpers::AutoLinkHelper
+      include ActiveAdmin::ViewHelpers::DisplayHelper
+      include MethodOrProcHelper
+      include ActionView::Helpers::UrlHelper
+      include ActionView::Helpers::TranslationHelper
+      include ActionView::Helpers::SanitizeHelper
+    end
   end
 
-  def authorized?(*)
-    true
-  end
+  let(:active_admin_namespace){ view.active_admin_application.namespaces[:admin] }
 
-  def url_options
-    { locale: nil }
-  end
+  let(:view) { mock_action_view(view_klass) }
 
-  let(:displayed_name) { display_name(resource) }
+  let(:displayed_name) { view.display_name(resource) }
 
   before do
+    allow(view).to receive(:authorized?).and_return(true)
+    allow(view).to receive(:active_admin_namespace).and_return(active_admin_namespace)
+    allow(view).to receive(:url_options).and_return(locale: nil)
+
     load_resources do
       ActiveAdmin.register(User)
       ActiveAdmin.register(Post){ belongs_to :user, optional: true }
@@ -106,7 +106,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       it "should default to `to_s`" do
         result = resource.to_s
 
-        expect(displayed_name).to eq sanitize(result)
+        expect(displayed_name).to eq view.sanitize(result)
       end
     end
 
@@ -143,26 +143,26 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
 
   describe '#format_attribute' do
     it 'calls the provided block to format the value' do
-      value = format_attribute double(foo: 2), ->r { r.foo + 1 }
+      value = view.format_attribute double(foo: 2), ->r { r.foo + 1 }
 
       expect(value).to eq '3'
     end
 
     it 'finds values as methods' do
-      value = format_attribute double(name: 'Joe'), :name
+      value = view.format_attribute double(name: 'Joe'), :name
 
       expect(value).to eq 'Joe'
     end
 
     it 'finds values from hashes' do
-      value = format_attribute({id: 100}, :id)
+      value = view.format_attribute({id: 100}, :id)
 
       expect(value).to eq '100'
     end
 
     [1, 1.2, :a_symbol].each do |val|
       it "calls to_s to format the value of type #{val.class}" do
-        value = format_attribute double(foo: val), :foo
+        value = view.format_attribute double(foo: val), :foo
 
         expect(value).to eq val.to_s
       end
@@ -171,7 +171,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it 'localizes dates' do
       date = Date.parse '2016/02/28'
 
-      value = format_attribute double(date: date), :date
+      value = view.format_attribute double(date: date), :date
 
       expect(value).to eq 'February 28, 2016'
     end
@@ -179,7 +179,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it 'localizes times' do
       time = Time.parse '2016/02/28 9:34 PM'
 
-      value = format_attribute double(time: time), :time
+      value = view.format_attribute double(time: time), :time
 
       expect(value).to eq 'February 28, 2016 21:34'
     end
@@ -187,7 +187,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it 'uses a display_name method for arbitrary objects' do
       object = double to_s: :wrong, display_name: :right
 
-      value = format_attribute double(object: object), :object
+      value = view.format_attribute double(object: object), :object
 
       expect(value).to eq 'right'
     end
@@ -195,7 +195,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it 'auto-links ActiveRecord records by association' do
       post = Post.create! author: User.new
 
-      value = format_attribute post, :author
+      value = view.format_attribute post, :author
 
       expect(value).to match /<a href="\/admin\/users\/\d+"> <\/a>/
     end
@@ -203,7 +203,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it 'auto-links ActiveRecord records & uses a display_name method' do
       post = Post.create! author: User.new(first_name: 'A', last_name: 'B')
 
-      value = format_attribute post, :author
+      value = view.format_attribute post, :author
 
       expect(value).to match /<a href="\/admin\/users\/\d+">A B<\/a>/
     end
@@ -213,7 +213,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     it 'calls status_tag for boolean values' do
       post = Post.new starred: true
 
-      value = format_attribute post, :starred
+      value = view.format_attribute post, :starred
 
       expect(value.to_s).to eq "<span class=\"status_tag yes\">Yes</span>\n"
     end
@@ -226,9 +226,9 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       post.define_singleton_method(:false_method) do
         false
       end
-      true_value = format_attribute post, :true_method
+      true_value = view.format_attribute post, :true_method
       expect(true_value.to_s).to eq "<span class=\"status_tag yes\">Yes</span>\n"
-      false_value = format_attribute post, :false_method
+      false_value = view.format_attribute post, :false_method
       expect(false_value.to_s).to eq "<span class=\"status_tag no\">No</span>\n"
     end
 
