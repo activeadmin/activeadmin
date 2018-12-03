@@ -25,6 +25,8 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     { locale: nil }
   end
 
+  let(:displayed_name) { display_name(resource) }
+
   before do
     load_resources do
       ActiveAdmin.register(User)
@@ -33,75 +35,106 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
   end
 
   describe '#display_name' do
+    let(:resource) { klass.new }
+
     ActiveAdmin::Application.new.display_name_methods.map(&:to_s).each do |m|
-      it "should return #{m} when defined" do
-        klass = Class.new do
-          define_method(m) { m }
+      context "when it is the identity" do
+        let(:klass) do
+          Class.new do
+            define_method(m) { m }
+          end
         end
-        expect(display_name klass.new).to eq m
+
+        it "should return #{m}" do
+          expect(displayed_name).to eq m
+        end
       end
 
-      it "should sanitize the result of #{m} when defined" do
-        klass = Class.new do
-          define_method(m) { '<script>alert(1)</script>' }
+      context "when it includes js" do
+        let(:klass) do
+          Class.new do
+            define_method(m) { '<script>alert(1)</script>' }
+          end
         end
-        expect(display_name klass.new).to eq 'alert(1)'
+
+        it "should sanitize the result of #{m}" do
+          expect(displayed_name).to eq 'alert(1)'
+        end
       end
     end
 
-    it "should memoize the result for the class" do
-      subject = Class.new.new
-      expect(subject).to receive(:name).twice.and_return "My Name"
+    describe "memoization" do
+      let(:klass) { Class.new }
 
-      expect(display_name subject).to eq "My Name"
+      it "should memoize the result for the class" do
+        expect(resource).to receive(:name).and_return "My Name"
+        expect(displayed_name).to eq "My Name"
 
-      expect(ActiveAdmin.application).to_not receive(:display_name_methods)
-      expect(display_name subject).to eq "My Name"
+        expect(ActiveAdmin.application).to_not receive(:display_name_methods)
+        expect(displayed_name).to eq "My Name"
+      end
+
+      it "should not call a method if it's an association" do
+        allow(klass).to receive(:reflect_on_all_associations).and_return [ double(name: :login) ]
+        allow(resource).to receive :login
+        expect(resource).to_not receive :login
+        allow(resource).to receive(:email).and_return 'foo@bar.baz'
+
+        expect(displayed_name).to eq 'foo@bar.baz'
+      end
     end
 
-    it "should not call a method if it's an association" do
-      klass = Class.new
-      subject = klass.new
-      allow(klass).to receive(:reflect_on_all_associations).and_return [ double(name: :login) ]
-      allow(subject).to receive :login
-      expect(subject).to_not receive :login
-      allow(subject).to receive(:email).and_return 'foo@bar.baz'
+    context "when the passed object is `nil`" do
+      let(:resource) { nil }
 
-      expect(display_name subject).to eq 'foo@bar.baz'
+      it "should return `nil` when the passed object is `nil`" do
+        expect(displayed_name).to eq nil
+      end
     end
 
-    it "should return `nil` when the passed object is `nil`" do
-      expect(display_name nil).to eq nil
+    context "when the passed object is `false`" do
+      let(:resource) { false }
+
+      it "should return 'false' when the passed object is `false`" do
+        expect(displayed_name).to eq "false"
+      end
     end
 
-    it "should return 'false' when the passed object is `false`" do
-      expect(display_name false).to eq "false"
-    end
+    describe "default implementation" do
+      let(:klass) { Class.new }
 
-    it "should default to `to_s`" do
-      subject = Class.new.new
-      expect(display_name subject).to eq sanitize(subject.to_s)
+      it "should default to `to_s`" do
+        result = resource.to_s
+
+        expect(displayed_name).to eq sanitize(result)
+      end
     end
 
     context "when no display name method is defined" do
-      context "on a Rails model" do
-        it "should show the model name" do
+      context "when no ID" do
+        let(:resource) do
           class ThisModel
             extend ActiveModel::Naming
           end
-          subject = ThisModel.new
-          expect(display_name subject).to eq "This model"
+
+          ThisModel.new
         end
 
+        it "should show the model name" do
+          expect(displayed_name).to eq "This model"
+        end
+      end
+
+      context "when ID" do
+        let(:resource) { Tagging.create! }
+
         it "should show the model name, plus the ID if in use" do
-          subject = Tagging.create!
-          expect(display_name subject).to eq "Tagging #1"
+          expect(displayed_name).to eq "Tagging #1"
         end
 
         it "should translate the model name" do
           with_translation activerecord: {models: {tagging: {one: "Different"}}} do
-            subject = Tagging.create!
-            expect(display_name subject).to eq "Different #1"
+            expect(displayed_name).to eq "Different #1"
           end
         end
       end
