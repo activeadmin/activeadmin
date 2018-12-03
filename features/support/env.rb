@@ -31,9 +31,7 @@ After '@debug' do |scenario|
   # :nocov:
 end
 
-require 'capybara/rails'
 require 'capybara/cucumber'
-require 'capybara/session'
 
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.load_selenium
