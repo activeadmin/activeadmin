@@ -231,29 +231,33 @@ module ActiveAdmin
     end
 
     describe '#find_resource' do
-      let(:resource) { namespace.register(Post) }
       let(:post) { double }
-      before do
-        allow(Post).to receive(:find_by).with("id" => "12345") { post }
-        allow(Post).to receive(:find_by).with("id" => "54321") { nil }
-      end
 
-      it 'can find the resource' do
-        expect(resource.find_resource('12345')).to eq post
+      context 'without a decorator' do
+        let(:resource) { namespace.register(Post) }
+
+        it 'can find the resource' do
+          allow(Post).to receive(:find_by).with("id" => "12345") { post }
+          expect(resource.find_resource('12345')).to eq post
+        end
       end
 
       context 'with a decorator' do
         let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
+
         it 'decorates the resource' do
+          allow(Post).to receive(:find_by).with("id" => "12345") { post }
           expect(resource.find_resource('12345')).to eq PostDecorator.new(post)
         end
 
         it 'does not decorate a not found resource' do
+          allow(Post).to receive(:find_by).with("id" => "54321") { nil }
           expect(resource.find_resource('54321')).to equal nil
         end
       end
 
       context 'when using a nonstandard primary key' do
+        let(:resource) { namespace.register(Post) }
         let(:different_post) { double }
         before do
           allow(Post).to receive(:primary_key).and_return 'something_else'
