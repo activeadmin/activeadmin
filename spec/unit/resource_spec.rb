@@ -62,7 +62,6 @@ module ActiveAdmin
     end
 
     describe "#include_in_menu?" do
-      let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
       subject{ resource }
 
       context "when regular resource" do

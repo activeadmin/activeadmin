@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Application, type: :request do
-
-  include Rails.application.routes.url_helpers
-
   let(:resource) { ActiveAdmin.register Category }
 
   [false, nil].each do |value|
