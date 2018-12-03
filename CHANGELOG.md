@@ -6,6 +6,11 @@
 
 * Prevent leaking hashed passwords via user CSV export and adds a config option for sensitive attributes. [#5486] by [@chrp]
 
+### Bug Fixes
+
+* Fix `form` parameter to `batch_action` no longer accepting procs. [#5611] by [@buren] and [@deivid-rodriguez]
+* Fix passing a proc to `scope_to`. [#5611] by [@deivid-rodriguez]
+
 ### Removals
 
 * Rails 4.2 support has been dropped. [#5104] by [@javierjulio] and [@deivid-rodriguez]
@@ -373,6 +378,7 @@ Please check [0-6-stable] for previous changes.
 [#5537]: https://github.com/activeadmin/activeadmin/pull/5537
 [#5583]: https://github.com/activeadmin/activeadmin/pull/5583
 [#5608]: https://github.com/activeadmin/activeadmin/pull/5608
+[#5611]: https://github.com/activeadmin/activeadmin/pull/5611
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -381,6 +387,7 @@ Please check [0-6-stable] for previous changes.
 [@andreslemik]: https://github.com/andreslemik
 [@blocknotes]: https://github.com/blocknotes
 [@bolshakov]: https://github.com/bolshakov
+[@buren]: https://github.com/buren
 [@chancancode]: https://github.com/chancancode
 [@chumakoff]: https://github.com/chumakoff
 [@craigmcnamara]: https://github.com/craigmcnamara
