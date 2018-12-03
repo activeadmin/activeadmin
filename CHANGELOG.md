@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.4.3 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.2...v1.4.3)
+
 ### Bug Fixes
 
 * Fix `form` parameter to `batch_action` no longer accepting procs. [#5611] by [@buren] and [@deivid-rodriguez]
