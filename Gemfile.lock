@@ -418,7 +418,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pundit
-  rails (~> 5.2.x)
+  rails (= 5.2.1)
   rails-i18n
   rake
   rspec-rails
