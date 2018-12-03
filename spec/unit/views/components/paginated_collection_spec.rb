@@ -2,10 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::PaginatedCollection do
   describe "creating with the dsl" do
-
-    before :all do
-      load_defaults!
-      reload_routes!
+    around do |example|
+      with_resources_during(example) { ActiveAdmin.register Post }
     end
 
     let(:view) do

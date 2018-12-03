@@ -5,7 +5,6 @@ module ActiveAdmin
   RSpec.describe Page do
 
     it_should_behave_like "ActiveAdmin::Resource"
-    before { load_defaults! }
 
     let(:application){ ActiveAdmin::Application.new }
     let(:namespace){ Namespace.new(application, :admin) }
