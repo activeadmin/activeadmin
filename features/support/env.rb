@@ -34,13 +34,13 @@ end
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
-require 'selenium-webdriver'
 
-# copied from https://about.gitlab.com/2017/12/19/moving-to-headless-chrome/
 Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new(
-    args: %w[headless disable-gpu no-sandbox]
-  )
+  Capybara::Selenium::Driver.load_selenium
+
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.args << '--headless'
+
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
