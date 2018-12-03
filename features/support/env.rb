@@ -31,7 +31,21 @@ After '@debug' do |scenario|
   # :nocov:
 end
 
-require 'capybara/cucumber'
+require 'capybara/dsl'
+
+World(Capybara::DSL)
+
+After do
+  Capybara.reset_sessions!
+end
+
+Before do
+  Capybara.use_default_driver
+end
+
+Before '@javascript' do
+  Capybara.current_driver = Capybara.javascript_driver
+end
 
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.load_selenium
