@@ -13,7 +13,7 @@ require_relative 'rails'
 require 'rspec/mocks'
 World(RSpec::Mocks::ExampleMethods)
 
-Around do |scenario, block|
+Around '@mocks' do |scenario, block|
   RSpec::Mocks.setup
 
   block.call
@@ -31,17 +31,32 @@ After '@debug' do |scenario|
   # :nocov:
 end
 
-require 'capybara/rails'
-require 'capybara/cucumber'
-require 'capybara/session'
-require 'selenium-webdriver'
+require 'capybara/dsl'
 
-# copied from https://about.gitlab.com/2017/12/19/moving-to-headless-chrome/
+World(Capybara::DSL)
+
+After do
+  Capybara.reset_sessions!
+end
+
+Before do
+  Capybara.use_default_driver
+end
+
+Before '@javascript' do
+  Capybara.current_driver = Capybara.javascript_driver
+end
+
 Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new(
-    args: %w[headless disable-gpu no-sandbox]
-  )
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  Capybara::Selenium::Driver.load_selenium
+
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.args << '--headless'
+
+  http_client = Selenium::WebDriver::Remote::Http::Default.new
+  http_client.read_timeout = 180
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options, http_client: http_client)
 end
 
 Capybara.javascript_driver = :chrome
