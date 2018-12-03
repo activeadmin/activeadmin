@@ -258,15 +258,14 @@ module ActiveAdmin
 
       context 'when using a nonstandard primary key' do
         let(:resource) { namespace.register(Post) }
-        let(:different_post) { double }
+
         before do
           allow(Post).to receive(:primary_key).and_return 'something_else'
-          allow(Post).to receive(:find_by).
-              with("something_else" => "55555") { different_post }
+          allow(Post).to receive(:find_by).with("something_else" => "55555") { post }
         end
 
         it 'can find the post by the custom primary key' do
-          expect(resource.find_resource('55555')).to eq different_post
+          expect(resource.find_resource('55555')).to eq post
         end
       end
 
