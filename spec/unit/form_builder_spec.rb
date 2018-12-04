@@ -22,14 +22,6 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
 
-    def view.a_helper_method
-      "A Helper Method"
-    end
-
-    def view.fa_icon(*args)
-      args.inspect
-    end
-
     def view.action_name
       'edit'
     end

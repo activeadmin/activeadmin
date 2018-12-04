@@ -94,10 +94,10 @@ RSpec.describe "#auto_link" do
           actions :all, except: [:show, :edit]
         end
       end
+    end
 
-      it "should return the display name of the object" do
-        expect(linked_post).to eq "Hello World"
-      end
+    it "should return the display name of the object" do
+      expect(linked_post).to eq "Hello World"
     end
   end
 end

@@ -1,8 +1,5 @@
 require 'rails_helper'
 
-# TODO: refactor this file so it doesn't depend on the Admin namespace in such a broken way.
-#       Specifically, the dashboard is already defined.
-
 RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
   let(:application){ ActiveAdmin::Application.new }
   let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
@@ -23,8 +20,9 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
       expect(defined?(Admin::CategoriesController)).to eq 'constant'
     end
 
-    skip "should not create the dashboard controller" do
-      defined?(Admin::DashboardController).to_not eq 'constant'
+    it "should not create the dashboard controller" do
+      skip "Not currently passing, aparently due to the setup of this spec file"
+      expect(defined?(Admin::DashboardController)).to_not eq 'constant'
     end
 
     it "should create a menu item" do

@@ -3,10 +3,6 @@ require 'rails_helper'
 RSpec.describe ActiveAdmin::ResourceController::Decorators do
   let(:controller_class) do
     Class.new do
-      def self.name
-        "Test Controller using Decorators"
-      end
-
       include ActiveAdmin::ResourceController::Decorators
 
       public :apply_decorator, :apply_collection_decorator
