@@ -9,4 +9,3 @@ public
 .rspec_failures
 .rails-version
 .rbenv-version
-lib/bug_report_templates/tmp

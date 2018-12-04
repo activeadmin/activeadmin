@@ -20,7 +20,7 @@ search:
   # Files or `File.fnmatch` patterns to exclude from search
   exclude:
     - app/assets/images
-    - lib/bug_report_templates/tmp
+    - tasks/tmp
 
   # Guess usages such as t("categories.#{category}.title")
   strict: false

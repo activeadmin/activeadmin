@@ -4,17 +4,18 @@ Gem::Specification.new do |s|
   s.name          = 'activeadmin'
   s.license       = 'MIT'
   s.version       = ActiveAdmin::VERSION
-  s.homepage      = 'http://activeadmin.info'
-  s.authors       = ['Greg Bell']
-  s.email         = ['gregdbell@gmail.com']
+  s.homepage      = 'https://activeadmin.info'
+  s.authors       = ['Charles Maresh', 'David Rodríguez', 'Greg Bell', 'Igor Fedoronchuk', 'Javier Julio', 'Piers C', 'Sean Linsley', 'Timo Schilling']
+  s.email         = ['deivid.rodriguez@riseup.net']
   s.description   = 'The administration framework for Ruby on Rails.'
-  s.summary       = 'The administration framework for Ruby on Rails.'
+  s.summary       = 'Active Admin is a Ruby on Rails plugin for generating ' \
+    'administration style interfaces. It abstracts common business ' \
+    'application patterns to make it simple for developers to implement ' \
+    'beautiful and elegant interfaces with very little effort.'
 
-  s.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(spec|features)/})
-  end
+  s.files         = `git ls-files LICENSE app config/locales docs lib vendor -z`.split("\x0")
 
-  s.test_files = `git ls-files -- {spec,features}/*`.split("\n")
+  s.extra_rdoc_files = %w[CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md README.md]
 
   s.required_ruby_version = '>= 2.3'
 

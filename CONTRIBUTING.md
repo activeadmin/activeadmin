@@ -210,7 +210,7 @@ Maintainers need to do the following to push out a release:
 [new issue]: https://github.com/activeadmin/activeadmin/issues/new
 [fork Active Admin]: https://help.github.com/articles/fork-a-repo
 [searching all issues]: https://github.com/activeadmin/activeadmin/issues?q=
-[master template]: https://github.com/activeadmin/activeadmin/blob/master/lib/bug_report_templates/active_admin_master.rb
+[master template]: https://github.com/activeadmin/activeadmin/blob/master/tasks/bug_report_template.rb
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
 [git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
 [interactive rebase]: https://help.github.com/articles/interactive-rebase
