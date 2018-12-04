@@ -11,7 +11,7 @@ gemfile(true) do
   end
 
   # Change Rails version if necessary.
-  gem 'rails', '5.2.1'
+  gem 'rails', '5.2.1.1'
 
   gem 'sass-rails', '5.0.7'
   gem 'sqlite3', '1.3.13', platform: :mri
