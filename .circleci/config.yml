@@ -79,7 +79,9 @@ version: 2.1
 .run_tests: &run_tests
   run:
     name: Run tests
-    command: COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bundle exec rake test
+    command: |
+      COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bin/parallel_rspec spec/
+      COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bin/parallel_cucumber features/
 
 .save_test_times: &save_test_times
   save_cache:
