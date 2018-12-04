@@ -11,7 +11,7 @@ AllCops:
   TargetRubyVersion: 2.3
 
   Exclude:
-    - spec/rails/**/*
+    - tmp/rails/**/*
     - gemfiles/vendor/bundle/**/*
     - vendor/bundle/**/*
 

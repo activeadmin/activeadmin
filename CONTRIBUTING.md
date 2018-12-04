@@ -41,7 +41,7 @@ Now you should be able to run the entire suite using:
 bundle exec rake
 ```
 
-The test run will generate a sample Rails application in `spec/rails` to run the
+The test run will generate a sample Rails application in `tmp/rails` to run the
 tests against.
 
 If your tests are passing locally but they're failing on CircleCI, it's probably

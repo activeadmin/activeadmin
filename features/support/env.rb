@@ -6,7 +6,7 @@ Dir["#{File.expand_path('../../step_definitions', __FILE__)}/*.rb"].each do |f|
   require f
 end
 
-require_relative "../../spec/rails/rails-#{Gem.loaded_specs["rails"].version}/config/environment"
+require_relative "../../tmp/rails/rails-#{Gem.loaded_specs["rails"].version}/config/environment"
 
 require_relative 'rails'
 

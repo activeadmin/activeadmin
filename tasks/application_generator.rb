@@ -37,7 +37,7 @@ module ActiveAdmin
     private
 
     def base_dir
-      @base_dir ||= rails_env == 'test' ? 'spec/rails' : '.test-rails-apps'
+      @base_dir ||= rails_env == 'test' ? 'tmp/rails' : '.test-rails-apps'
     end
 
     def app_dir
