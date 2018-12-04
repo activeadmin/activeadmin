@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version       = ActiveAdmin::VERSION
   s.homepage      = 'https://activeadmin.info'
   s.authors       = ['Charles Maresh', 'David Rodríguez', 'Greg Bell', 'Igor Fedoronchuk', 'Javier Julio', 'Piers C', 'Sean Linsley', 'Timo Schilling']
-  s.email         = ['gregdbell@gmail.com']
+  s.email         = ['deivid.rodriguez@riseup.net']
   s.description   = 'The administration framework for Ruby on Rails.'
   s.summary       = 'The administration framework for Ruby on Rails.'
 
