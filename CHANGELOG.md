@@ -6,11 +6,6 @@
 
 * Prevent leaking hashed passwords via user CSV export and adds a config option for sensitive attributes. [#5486] by [@chrp]
 
-### Bug Fixes
-
-* Fix `form` parameter to `batch_action` no longer accepting procs. [#5611] by [@buren] and [@deivid-rodriguez]
-* Fix passing a proc to `scope_to`. [#5611] by [@deivid-rodriguez]
-
 ### Removals
 
 * Rails 4.2 support has been dropped. [#5104] by [@javierjulio] and [@deivid-rodriguez]
@@ -22,6 +17,13 @@
   convert that file to plain JS (`//= require active_admin/base` if you
   didn't add any stuff to it).
 * Devise 3 support has been dropped. [#5608] by [@deivid-rodriguez] and [@javierjulio]
+
+## 1.4.3 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.2...v1.4.3)
+
+### Bug Fixes
+
+* Fix `form` parameter to `batch_action` no longer accepting procs. [#5611] by [@buren] and [@deivid-rodriguez]
+* Fix passing a proc to `scope_to`. [#5611] by [@deivid-rodriguez]
 
 ## 1.4.2 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.1...v1.4.2)
 
