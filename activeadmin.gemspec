@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name          = 'activeadmin'
   s.license       = 'MIT'
   s.version       = ActiveAdmin::VERSION
-  s.homepage      = 'http://activeadmin.info'
+  s.homepage      = 'https://activeadmin.info'
   s.authors       = ['Greg Bell']
   s.email         = ['gregdbell@gmail.com']
   s.description   = 'The administration framework for Ruby on Rails.'
