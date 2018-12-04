@@ -62,13 +62,13 @@ version: 2.1
 
 .save_test_app_to_workspace: &save_test_app_to_workspace
   persist_to_workspace:
-    root: spec/rails
+    root: tmp/rails
     paths:
       - rails-*
 
 .restore_test_app_from_workspace: &restore_test_app_from_workspace
   attach_workspace:
-    at: spec/rails
+    at: tmp/rails
 
 .restore_test_times: &restore_test_times
   restore_cache:

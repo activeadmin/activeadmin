@@ -1,5 +1,5 @@
 SimpleCov.start do
-  add_filter 'spec/rails/'
+  add_filter 'tmp/rails/'
 end
 
 if ENV['CI'] == 'true'

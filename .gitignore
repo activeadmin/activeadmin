@@ -7,7 +7,6 @@ pkg
 
 ## Project (specific)
 .bundle
-spec/rails
 .test-rails-apps
 public
 .rspec_failures
