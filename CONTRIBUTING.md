@@ -184,7 +184,9 @@ Maintainers need to do the following to push out a release:
 
 * Make sure all pull requests are in and that changelog is current
 * Update `version.rb` file and changelog with new version number
-* Create a stable branch for that release:
+* If it's not a patch level release, create a stable branch for that release,
+  otherwise switch to the stable branch corresponding to the patch release you
+  want to ship:
 
   ```sh
   git checkout master
@@ -195,8 +197,12 @@ Maintainers need to do the following to push out a release:
   git push activeadmin N-N-stable:N-N-stable
   ```
 
+* Make sure you have [chandler] properly configured. Chandler is used to
+  automatically submit github release notes from the changelog right after
+  pushing the gem to rubygems.
 * `bundle exec rake release`
 
+[chandler]: https://github.com/mattbrictson/chandler#2-configure-credentials
 [chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/getting-started
 [mailing list]: http://groups.google.com/group/activeadmin
 [Stack Overflow]: http://stackoverflow.com/questions/tagged/activeadmin

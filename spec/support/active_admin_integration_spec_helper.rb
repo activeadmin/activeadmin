@@ -1,13 +1,10 @@
 module ActiveAdminIntegrationSpecHelper
-  extend self
+  def with_resources_during(example)
+    load_resources { yield }
 
-  def load_defaults!
-    ActiveAdmin.unload!
-    ActiveAdmin.load!
-    ActiveAdmin.register(Category)
-    ActiveAdmin.register(User)
-    ActiveAdmin.register(Post){ belongs_to :user, optional: true }
-    reload_menus!
+    example.run
+
+    load_resources {}
   end
 
   def reload_menus!
@@ -61,8 +58,6 @@ module ActiveAdminIntegrationSpecHelper
     # If no translations have been loaded, any later calls to `I18n.t` will
     # cause the full translation hash to be loaded, possibly overwritting what
     # we've loaded via `store_translations`. We use this hack to prevent that.
-    # TODO: Might not be necessary anymore once
-    # https://github.com/svenfuchs/i18n/pull/353 lands.
     I18n.backend.send(:init_translations)
     I18n.backend.store_translations I18n.locale, translation
     yield

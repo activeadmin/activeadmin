@@ -8,9 +8,6 @@ module HtmlSelectorsHelpers
   def selector_for(locator)
     case locator
 
-    when "the page"
-      "html > body"
-
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
@@ -36,8 +33,10 @@ module HtmlSelectorsHelpers
       $1
 
     else
+      # :nocov:
       raise "Can't find mapping from \"#{locator}\" to a selector.\n" +
         "Now, go and add a mapping in #{__FILE__}"
+      # :nocov:
     end
   end
 end

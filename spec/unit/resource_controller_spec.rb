@@ -218,7 +218,7 @@ RSpec.describe "A specific resource controller", type: :controller do
   end
 
   describe "performing batch_action" do
-    let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", &batch_action_block }
+    let(:batch_action) { ActiveAdmin::BatchAction.new *batch_action_args, &batch_action_block }
     let(:batch_action_block) { proc { self.instance_variable_set :@block_context, self.class } }
     let(:params) { ActionController::Parameters.new(http_params) }
 
@@ -228,6 +228,7 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
 
     describe "when params batch_action matches existing BatchAction" do
+      let(:batch_action_args) { [:flag, "Flag"] }
 
       let(:http_params) do
         { batch_action: "flag", collection_selection: ["1"] }
@@ -244,7 +245,22 @@ RSpec.describe "A specific resource controller", type: :controller do
       end
     end
 
+    describe "when params batch_action matches existing BatchAction and form inputs defined" do
+      let(:batch_action_args) { [:flag, "Flag", { form: { type: ["a", "b"] } }] }
+
+      let(:http_params) do
+        { batch_action: "flag", collection_selection: ["1"], batch_action_inputs: '{ "type": "a", "bogus": "param" }' }
+      end
+
+      it "should filter permitted params" do
+        expect(controller).to receive(:instance_exec).with(["1"], { "type" => "a" })
+        controller.batch_action
+      end
+    end
+
     describe "when params batch_action doesn't match a BatchAction" do
+      let(:batch_action_args) { [:flag, "Flag"] }
+
       let(:http_params) do
         { batch_action: "derp", collection_selection: ["1"] }
       end
@@ -257,6 +273,8 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
 
     describe "when params batch_action is blank" do
+      let(:batch_action_args) { [:flag, "Flag"] }
+
       let(:http_params) do
         { collection_selection: ["1"] }
       end

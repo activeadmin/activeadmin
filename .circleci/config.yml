@@ -20,7 +20,7 @@ version: 2.1
 .install_dependencies: &install_dependencies
   run:
     name: Install dependencies
-    command: bundle install --without development --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3
+    command: bundle install --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3
 
 .install_chromedriver: &install_chromedriver
   run:
@@ -37,6 +37,28 @@ version: 2.1
   run:
     name: Create test app
     command: PARALLEL_TEST_PROCESSORS=4 bundle exec rake setup
+
+.restore_coverage: &restore_coverage
+  attach_workspace:
+    at: tmp
+
+.format_coverage: &format_coverage
+  run:
+    name: Format coverage
+    command: tmp/test-reporter format-coverage --input-type simplecov --output tmp/codeclimate.$CIRCLE_JOB.json
+
+.save_coverage: &save_coverage
+  persist_to_workspace:
+      root: tmp
+      paths:
+        - codeclimate.*.json
+
+.submit_coverage: &submit_coverage
+  run:
+    name: Upload coverage results to Code Climate
+    command: |
+      tmp/test-reporter sum-coverage tmp/codeclimate.*.json --parts 21 --output tmp/codeclimate.total.json
+      tmp/test-reporter upload-coverage --input tmp/codeclimate.total.json
 
 .save_test_app_to_workspace: &save_test_app_to_workspace
   persist_to_workspace:
@@ -76,6 +98,11 @@ version: 2.1
     name: Run lints
     command: bundle exec rake lint
 
+.run_bug_report_template: &run_bug_report_template
+  run:
+    name: Run bug report template
+    command: ACTIVE_ADMIN_PATH=. ruby lib/bug_report_templates/active_admin_master.rb
+
 .test_steps: &test_steps
   - checkout
   - *install_bundler
@@ -86,7 +113,10 @@ version: 2.1
   - *save_cache
   - *restore_test_app_from_workspace
   - *restore_test_times
+  - *restore_coverage
   - *run_tests
+  - *format_coverage
+  - *save_coverage
   - *save_test_times
 
 .test_app_steps: &test_app_steps
@@ -100,6 +130,33 @@ version: 2.1
   - *save_test_app_to_workspace
 
 jobs:
+  setup_coverage:
+    docker:
+      - image: circleci/ruby:2.5.3
+
+    steps:
+      - run:
+          name: Download Code Climate test-reporter
+          command: |
+            mkdir tmp
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-linux-amd64 > tmp/test-reporter
+            chmod +x tmp/test-reporter
+
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - test-reporter
+
+  upload_coverage:
+    docker:
+      - image: circleci/ruby:2.5.3
+        environment:
+          CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
+
+    steps:
+      - *restore_coverage
+      - *submit_coverage
+
   testapp42:
     docker:
       - image: circleci/ruby:2.5.3-node
@@ -142,7 +199,7 @@ jobs:
 
   lint_and_docs:
     docker:
-      - image: circleci/ruby:2.5.3
+      - image: circleci/ruby:2.5.3-node
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -155,7 +212,11 @@ jobs:
       - *install_dependencies
       - *save_cache
       - *generate_docs
+      - *restore_coverage
       - *run_lints
+      - *run_bug_report_template
+      - *format_coverage
+      - *save_coverage
 
   ruby23rails42:
     docker:
@@ -379,12 +440,27 @@ workflows:
   #
   build:
     jobs:
-      - lint_and_docs
+      - setup_coverage
 
-      - testapp42
-      - testapp50
-      - testapp51
-      - testapp52
+      - lint_and_docs:
+          requires:
+            - setup_coverage
+
+      - testapp42:
+          requires:
+            - setup_coverage
+
+      - testapp50:
+          requires:
+            - setup_coverage
+
+      - testapp51:
+          requires:
+            - setup_coverage
+
+      - testapp52:
+          requires:
+            - setup_coverage
 
       - ruby23rails42:
           requires:
@@ -465,3 +541,32 @@ workflows:
       - jruby92rails52:
           requires:
             - testapp52
+
+      - upload_coverage:
+          requires:
+            - lint_and_docs
+
+            - ruby23rails42
+            - ruby23rails50
+            - ruby23rails51
+            - ruby23rails52
+
+            - ruby24rails42
+            - ruby24rails50
+            - ruby24rails51
+            - ruby24rails52
+
+            - ruby25rails42
+            - ruby25rails50
+            - ruby25rails51
+            - ruby25rails52
+
+            - jruby91rails42
+            - jruby91rails50
+            - jruby91rails51
+            - jruby91rails52
+
+            - jruby92rails42
+            - jruby92rails50
+            - jruby92rails51
+            - jruby92rails52

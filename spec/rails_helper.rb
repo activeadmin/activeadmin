@@ -2,9 +2,7 @@ require 'spec_helper'
 
 ENV['RAILS_ENV'] = 'test'
 
-ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{Gem.loaded_specs["rails"].version}", __FILE__)
-
-require ENV['RAILS_ROOT'] + '/config/environment'
+require_relative "rails/rails-#{Gem.loaded_specs["rails"].version}/config/environment"
 
 require 'rspec/rails'
 
@@ -18,22 +16,11 @@ RSpec.configure do |config|
   config.use_instantiated_fixtures = false
   config.render_views = false
 
-  devise = ActiveAdmin::Dependency.devise >= '4.2' ? Devise::Test::ControllerHelpers : Devise::TestHelpers
-  config.include devise, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   require 'support/active_admin_integration_spec_helper'
   config.include ActiveAdminIntegrationSpecHelper
-
-  # Setup Some Admin stuff for us to play with
-  config.before(:suite) do
-    ActiveAdminIntegrationSpecHelper.load_defaults!
-    ActiveAdminIntegrationSpecHelper.reload_routes!
-  end
 end
 
 # Force deprecations to raise an exception.
 ActiveSupport::Deprecation.behavior = :raise
-
-# improve the performance of the specs suite by not logging anything
-# see http://blog.plataformatec.com.br/2011/12/three-tips-to-improve-the-performance-of-your-test-suite/
-Rails.logger.level = Logger::FATAL

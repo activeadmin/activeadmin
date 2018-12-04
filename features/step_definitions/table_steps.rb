@@ -35,25 +35,11 @@ class HtmlTableToTextHelper
   def input_to_string(input)
     case input.attribute("type").value
     when "checkbox"
-      if input.attribute("disabled")
-        "_"
-      else
-        if input.attribute("checked")
-          "[X]"
-        else
-          "[ ]"
-        end
-      end
-    when "text"
-      if input.attribute("value").present?
-        "[#{input.attribute("value")}]"
-      else
-        "[ ]"
-      end
-    when "submit"
-      input.attribute("value")
+      "[ ]"
     else
+      # :nocov:
       raise "I don't know what to do with #{input}"
+      # :nocov:
     end
   end
 end
@@ -77,12 +63,14 @@ module TableMatchHelper
         begin
           assert_cells_match(cell, expected_cell)
         rescue
+          # :nocov:
           puts "Cell at line #{row_index} and column #{column_index}: #{cell.inspect} does not match #{expected_cell.inspect}"
           puts "Expecting:"
           table.each { |row| puts row.inspect }
           puts "to match:"
           expected_table.each { |row| puts row.inspect }
           raise $!
+          # :nocov:
         end
       end
     end

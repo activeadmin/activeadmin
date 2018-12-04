@@ -78,7 +78,7 @@ namespace :lint do
   task :mdl do
     puts "Running mdl..."
 
-    abort unless system("mdl", "--git-recurse", ".")
+    sh("mdl", "--git-recurse", ".")
   end
 
   desc "Check for unnecessary trailing whitespace across all repo files"
@@ -99,7 +99,7 @@ namespace :lint do
   task :rspec do
     puts "Linting project files..."
 
-    abort unless system(
+    sh(
       { "COVERAGE" => "true" },
       "rspec",
       "spec/gemfiles_spec.lint.rb",

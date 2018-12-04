@@ -5,7 +5,10 @@ module ActiveAdmin
   RSpec.describe Resource do
 
     it_should_behave_like "ActiveAdmin::Resource"
-    before { load_defaults! }
+
+    around do |example|
+      with_resources_during(example) { namespace.register Category }
+    end
 
     let(:application){ ActiveAdmin::Application.new }
     let(:namespace){ Namespace.new(application, :admin) }
@@ -38,6 +41,10 @@ module ActiveAdmin
         expect(config.decorator_class).to eq nil
       end
       context 'when a decorator is defined' do
+        around do |example|
+          with_resources_during(example) { resource }
+        end
+
         let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
         specify '#decorator_class_name should return PostDecorator' do
           expect(resource.decorator_class_name).to eq '::PostDecorator'
@@ -62,8 +69,11 @@ module ActiveAdmin
     end
 
     describe "#include_in_menu?" do
-      let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
       subject{ resource }
+
+      around do |example|
+        with_resources_during(example) { resource }
+      end
 
       context "when regular resource" do
         let(:resource){ namespace.register(Post) }
@@ -238,38 +248,45 @@ module ActiveAdmin
     end
 
     describe '#find_resource' do
-      let(:resource) { namespace.register(Post) }
       let(:post) { double }
-      before do
-        allow(Post).to receive(:find_by).with("id" => "12345") { post }
-        allow(Post).to receive(:find_by).with("id" => "54321") { nil }
+
+      around do |example|
+        with_resources_during(example) { resource }
       end
 
-      it 'can find the resource' do
-        expect(resource.find_resource('12345')).to eq post
+      context 'without a decorator' do
+        let(:resource) { namespace.register(Post) }
+
+        it 'can find the resource' do
+          allow(Post).to receive(:find_by).with("id" => "12345") { post }
+          expect(resource.find_resource('12345')).to eq post
+        end
       end
 
       context 'with a decorator' do
         let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
+
         it 'decorates the resource' do
+          allow(Post).to receive(:find_by).with("id" => "12345") { post }
           expect(resource.find_resource('12345')).to eq PostDecorator.new(post)
         end
 
         it 'does not decorate a not found resource' do
+          allow(Post).to receive(:find_by).with("id" => "54321") { nil }
           expect(resource.find_resource('54321')).to equal nil
         end
       end
 
       context 'when using a nonstandard primary key' do
-        let(:different_post) { double }
+        let(:resource) { namespace.register(Post) }
+
         before do
           allow(Post).to receive(:primary_key).and_return 'something_else'
-          allow(Post).to receive(:find_by).
-              with("something_else" => "55555") { different_post }
+          allow(Post).to receive(:find_by).with("something_else" => "55555") { post }
         end
 
         it 'can find the post by the custom primary key' do
-          expect(resource.find_resource('55555')).to eq different_post
+          expect(resource.find_resource('55555')).to eq post
         end
       end
 
@@ -280,6 +297,10 @@ module ActiveAdmin
               defaults finder: :find_by_title!
             end
           end
+        end
+
+        after do
+          Admin.send(:remove_const, :"PostsController")
         end
 
         it 'can find the post by controller finder' do

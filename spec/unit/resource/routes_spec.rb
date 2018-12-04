@@ -1,20 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Resource::Routes do
-
-  after do
-    load_defaults!
-    reload_routes!
-  end
-
   let(:application) { ActiveAdmin.application }
   let(:namespace) { application.namespace(:admin) }
 
   context "when in the admin namespace" do
     let(:config) { namespace.resource_for('Category') }
 
-    before do
-      load_resources { ActiveAdmin.register Category }
+    around do |example|
+      with_resources_during(example) { ActiveAdmin.register Category }
     end
 
     let(:category) { Category.new { |c| c.id = 123 } }
@@ -35,7 +29,11 @@ RSpec.describe ActiveAdmin::Resource::Routes do
   context "when in the root namespace" do
     let!(:config) { ActiveAdmin.register Category, namespace: false }
 
-    after(:each) do
+    around do |example|
+      with_resources_during(example) { config }
+    end
+
+    after do
       application.namespace(:root).unload!
       application.namespaces.instance_variable_get(:@namespaces).delete(:root)
     end
@@ -45,7 +43,6 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     end
 
     it "should generate a correct route" do
-      reload_routes!
       expect(config.route_collection_path).to eq "/categories"
     end
   end
@@ -53,7 +50,10 @@ RSpec.describe ActiveAdmin::Resource::Routes do
   context "when registering a plural resource" do
     class ::News; def self.has_many(*); end end
     let!(:config) { ActiveAdmin.register News }
-    before{ reload_routes! }
+
+    around do |example|
+      with_resources_during(example) { config }
+    end
 
     it "should return the plural route with _index" do
       expect(config.route_collection_path).to eq "/admin/news"
