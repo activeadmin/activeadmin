@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Enhancements
+
+#### Minor
+
+* Add better support for rendering lists. [#5370] by [@dkniffin]
+
 ### Security Fixes
 
 * Prevent leaking hashed passwords via user CSV export and adds a config option for sensitive attributes. [#5486] by [@chrp]
@@ -361,6 +367,7 @@ Please check [0-6-stable] for previous changes.
 [#5357]: https://github.com/activeadmin/activeadmin/pull/5357
 [#5359]: https://github.com/activeadmin/activeadmin/pull/5359
 [#5368]: https://github.com/activeadmin/activeadmin/pull/5368
+[#5370]: https://github.com/activeadmin/activeadmin/pull/5370
 [#5375]: https://github.com/activeadmin/activeadmin/pull/5375
 [#5377]: https://github.com/activeadmin/activeadmin/pull/5377
 [#5399]: https://github.com/activeadmin/activeadmin/pull/5399
@@ -397,6 +404,7 @@ Please check [0-6-stable] for previous changes.
 [@deivid-rodriguez]: https://github.com/deivid-rodriguez
 [@dennisvdvliet]: https://github.com/dennisvdvliet
 [@dhyegofernando]: https://github.com/dhyegofernando
+[@dkniffin]: https://github.com/dkniffin
 [@dmitry]: https://github.com/dmitry
 [@drn]: https://github.com/drn
 [@eikes]: https://github.com/eikes
