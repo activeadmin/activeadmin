@@ -9,10 +9,6 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       "/posts"
     end
 
-    def view.protect_against_forgery?
-      false
-    end
-
     def view.a_helper_method
       "A Helper Method"
     end

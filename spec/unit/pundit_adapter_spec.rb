@@ -6,11 +6,7 @@ class DefaultPolicy < ApplicationPolicy
   end
 
   def method_missing(method, *args, &block)
-    if method.to_s[0...3] == "foo"
-      method.to_s[4...7] == "yes"
-    else
-      super
-    end
+    method.to_s[4...7] == "yes" if method.to_s[0...3] == "foo"
   end
 
   class Scope

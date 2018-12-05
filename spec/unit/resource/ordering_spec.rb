@@ -10,11 +10,7 @@ module ActiveAdmin
 
       it "should register the ordering in the config" do
         dsl.run_registration_block do
-          order_by(:age) do |order_clause|
-            if order_clause.order == 'desc'
-              [order_clause.to_sql, 'NULLS LAST'].join(' ')
-            end
-          end
+          order_by(:age, &:to_sql)
         end
         expect(resource_config.ordering.size).to eq(1)
       end
