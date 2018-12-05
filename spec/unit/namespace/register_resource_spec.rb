@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
   let(:application){ ActiveAdmin::Application.new }
-  let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+  let(:namespace){ ActiveAdmin::Namespace.new(application, :super_admin) }
   let(:menu){ namespace.fetch_menu(:default) }
 
   after { namespace.unload! }
@@ -17,12 +17,11 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
     end
 
     it "should create a new controller in the default namespace" do
-      expect(defined?(Admin::CategoriesController)).to eq 'constant'
+      expect(defined?(SuperAdmin::CategoriesController)).to eq 'constant'
     end
 
     it "should not create the dashboard controller" do
-      skip "Not currently passing, aparently due to the setup of this spec file"
-      expect(defined?(Admin::DashboardController)).to_not eq 'constant'
+      expect(defined?(SuperAdmin::DashboardController)).to_not eq 'constant'
     end
 
     it "should create a menu item" do
@@ -49,14 +48,14 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
       expect(namespace.resources.keys).to include('Mock::Resource')
     end
     it "should create a new controller in the default namespace" do
-      expect(defined?(Admin::MockResourcesController)).to eq 'constant'
+      expect(defined?(SuperAdmin::MockResourcesController)).to eq 'constant'
     end
     it "should create a menu item" do
       expect(menu["Mock Resources"]).to be_an_instance_of(ActiveAdmin::MenuItem)
     end
 
     it "should use the resource as the model in the controller" do
-      expect(Admin::MockResourcesController.resource_class).to eq Mock::Resource
+      expect(SuperAdmin::MockResourcesController.resource_class).to eq Mock::Resource
     end
   end # context "with a resource that's namespaced"
 
