@@ -11,12 +11,12 @@ gemfile(true) do
   end
 
   # Change Rails version if necessary.
-  gem 'rails', '~> 5.2.1'
+  gem 'rails', '5.2.1.1'
 
-  gem 'sass-rails'
-  gem 'sqlite3', platform: :mri
-  gem 'activerecord-jdbcsqlite3-adapter', "~> 52.0", platform: :jruby
-  gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
+  gem 'sass-rails', '5.0.7'
+  gem 'sqlite3', '1.3.13', platform: :mri
+  gem 'activerecord-jdbcsqlite3-adapter', "52.0", platform: :jruby
+  gem 'jruby-openssl', '0.10.1', platform: :jruby
 end
 
 require 'active_record'
