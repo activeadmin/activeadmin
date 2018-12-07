@@ -1,5 +1,3 @@
-require "open3"
-
 RSpec.describe "Gemfile sanity" do
   shared_examples_for "a sane gemfile" do |gemfile|
     it "is up to date" do
