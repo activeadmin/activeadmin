@@ -26,7 +26,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     render_filter scope, name => options
   end
 
-  let(:scope) { Post.search }
+  let(:scope) { Post.ransack }
 
   describe "the form in general" do
     let(:body) { Capybara.string(filter :title) }
@@ -94,7 +94,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should select the option which is currently being filtered" do
-      scope = Post.search title_starts_with: "foo"
+      scope = Post.ransack title_starts_with: "foo"
       body = Capybara.string(render_filter scope, title: {})
       expect(body).to have_selector("option[value=title_starts_with][selected=selected]", text: "Starts with")
     end
@@ -201,7 +201,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
         expect(body).to have_selector("input[name='q[id_equals]']")
       end
       it "should select the option which is currently being filtered" do
-        scope = Post.search id_greater_than: 1
+        scope = Post.ransack id_greater_than: 1
         body = Capybara.string(render_filter scope, id: {})
         expect(body).to have_selector("option[value=id_greater_than][selected=selected]", text: "Greater than")
       end
@@ -318,7 +318,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       }
 
       let(:scope) do
-        resource_klass.search
+        resource_klass.ransack
       end
 
       let(:body) { Capybara.string(filter :kategory) }
@@ -338,7 +338,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "when polymorphic relationship" do
-      let(:scope) { ActiveAdmin::Comment.search }
+      let(:scope) { ActiveAdmin::Comment.ransack }
       it "should raise an error if a collection isn't provided" do
         expect { filter :resource }.to raise_error \
           Formtastic::PolymorphicInputWithoutCollectionError
@@ -346,7 +346,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "when using a custom foreign key" do
-      let(:scope) { Post.search }
+      let(:scope) { Post.ransack }
       let(:body)  { Capybara.string(filter :category) }
       it "should ignore that foreign key and let Ransack handle it" do
         expect(Post.reflect_on_association(:category).foreign_key).to eq :custom_category_id
@@ -378,7 +378,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
       view
     end
-    let(:scope) { Category.search }
+    let(:scope) { Category.ransack }
 
     let!(:john) { User.create first_name: "John", last_name: "Doe", username: "john_doe" }
     let!(:jane) { User.create first_name: "Jane", last_name: "Doe", username: "jane_doe" }
@@ -463,7 +463,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     describe "custom date range search" do
       let(:qteq) { "2010-10-01" }
       let(:lteq) { "2010-10-02" }
-      let(:scope){ Post.search custom_created_at_searcher_gteq_datetime: qteq, custom_created_at_searcher_lteq_datetime: lteq }
+      let(:scope){ Post.ransack custom_created_at_searcher_gteq_datetime: qteq, custom_created_at_searcher_lteq_datetime: lteq }
       let(:body) { Capybara.string(render_filter scope, custom_created_at_searcher: {as: :date_range}) }
 
       it "should work as date_range" do
