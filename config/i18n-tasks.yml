@@ -24,3 +24,16 @@ search:
 
   # Guess usages such as t("categories.#{category}.title")
   strict: false
+
+ignore_inconsistent_interpolations:
+  - active_admin.new_model
+  - active_admin.edit_model
+  - active_admin.delete_model
+  - active_admin.details
+  - active_admin.has_many_new
+  - active_admin.pagination.empty
+  - active_admin.pagination.one
+  - active_admin.pagination.one_page
+  - active_admin.pagination.multiple
+  - active_admin.pagination.multiple_without_total
+  - active_admin.blank_slate.content
