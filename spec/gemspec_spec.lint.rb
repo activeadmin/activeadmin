@@ -14,7 +14,7 @@ RSpec.describe "gemspec sanity" do
     expect(build[1]).not_to include("WARNING")
   end
 
-  it "suceeds" do
+  it "succeeds" do
     expect(build[2]).to be_success
   end
 end
