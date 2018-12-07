@@ -246,7 +246,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (12.3.1)
-    ransack (2.1.0)
+    ransack (2.1.1)
       actionpack (>= 5.0)
       activerecord (>= 5.0)
       activesupport (>= 5.0)
