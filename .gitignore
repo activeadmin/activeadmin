@@ -1,11 +1,8 @@
-## Project (general)
 tmp
 coverage
 .yardoc
 .ruby-version
 pkg
-
-## Project (specific)
 .bundle
 .test-rails-apps
 public
