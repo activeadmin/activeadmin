@@ -30,7 +30,7 @@ Feature: Specifying Actions
           collection_action :import
         end
       """
-    Given "app/views/admin/posts/import.html.arb" contains:
+    And "app/views/admin/posts/import.html.arb" contains:
       """
         para "We are currently working on this feature..."
       """
@@ -52,7 +52,7 @@ Feature: Specifying Actions
           end
         end
       """
-    Given "app/views/admin/posts/review.html.erb" contains:
+    And "app/views/admin/posts/review.html.erb" contains:
       """
         <h1>Review: <%= @post.title %></h1>
       """
@@ -78,7 +78,7 @@ Feature: Specifying Actions
           end
         end
       """
-    Given "app/views/admin/posts/review.html.arb" contains:
+    And "app/views/admin/posts/review.html.arb" contains:
       """
         h1 "Review: #{post.title}"
       """

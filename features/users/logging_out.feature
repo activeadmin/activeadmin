@@ -13,7 +13,7 @@ Feature: User Logging out
     When I go to the dashboard
     Then I should see the element "a[data-method='get']:contains('Logout')"
     And I follow "Logout"
-    Then I should see "Login"
+    And I should see "Login"
 
   Scenario: Logging out sucessfully with delete method
     Given a configuration of:
@@ -26,4 +26,4 @@ Feature: User Logging out
     When I am on the dashboard
     Then I should see the element "a[data-method='delete']:contains('Logout')"
     And I follow "Logout"
-    Then I should see "Login"
+    And I should see "Login"

@@ -5,7 +5,7 @@ Feature: Global Navigation
     """
       ActiveAdmin.register Post
     """
-    Given I am logged in
+    And I am logged in
     And 10 posts exist
 
   Scenario: Viewing the current section in the global navigation

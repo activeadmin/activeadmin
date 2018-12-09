@@ -1,10 +1,10 @@
+@requires-reloading
 Feature: Development Reloading
 
   In order to quickly develop applications
   As a developer
   I want the application to reload itself in development
 
-  @requires-reloading
   Scenario: Registering a resource that was not previously registered
     When I am logged in with capybara
     Then I should not see a menu item for "Posts"
@@ -16,7 +16,7 @@ Feature: Development Reloading
           :body, :position, :published_date, :starred
       end
     """
-    When I am logged in with capybara
+    And I am logged in with capybara
     Then I should see a menu item for "Posts"
 
     When I create a new post with the title "A"

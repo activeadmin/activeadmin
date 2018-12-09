@@ -7,7 +7,7 @@ Feature: Index Parameters
       index as: :table, download_links: false
     end
     """
-    Given 31 posts exist
+    And 31 posts exist
     When I am on the index page for posts
     Then I should not see a link to download "CSV"
 
@@ -16,16 +16,16 @@ Feature: Index Parameters
       """
       ActiveAdmin.application.download_links = false
       """
-    Given an index configuration of:
+    And an index configuration of:
       """
       ActiveAdmin.register Post do
         index as: :table
       end
       """
-    Given 1 posts exist
+    And 1 posts exist
     When I am on the index page for posts
     Then I should be on the index page for posts
-    Then I should not see a link to download "CSV"
+    And I should not see a link to download "CSV"
     Given a configuration of:
       """
       ActiveAdmin.application.download_links = true
@@ -37,7 +37,7 @@ Feature: Index Parameters
       ActiveAdmin.application.namespace(:superadmin).download_links = false
       ActiveAdmin.register AdminUser, namespace: :superadmin
       """
-    Given an index configuration of:
+    And an index configuration of:
       """
       ActiveAdmin.register Post do
         index as: :table
@@ -46,13 +46,13 @@ Feature: Index Parameters
         index as: :table
       end
       """
-    Given 1 posts exist
+    And 1 posts exist
     When I am on the index page for posts in the superadmin namespace
     Then I should be on the index page for posts in the superadmin namespace
-    Then I should not see a link to download "CSV"
+    And I should not see a link to download "CSV"
     When I am on the index page for posts
     Then I should be on the index page for posts
-    Then I should see a link to download "CSV"
+    And I should see a link to download "CSV"
 
   Scenario: Viewing index when download_links enabled only for a resource
     Given a configuration of:
@@ -60,7 +60,7 @@ Feature: Index Parameters
       ActiveAdmin.application.namespace(:superadmin).download_links = false
       ActiveAdmin.register AdminUser, namespace: :superadmin
       """
-    Given an index configuration of:
+    And an index configuration of:
       """
       ActiveAdmin.register Post do
         index as: :table
@@ -69,7 +69,7 @@ Feature: Index Parameters
         index as: :table, download_links: true
       end
       """
-    Given 1 posts exist
+    And 1 posts exist
     When I am on the index page for posts in the superadmin namespace
     Then I should be on the index page for posts in the superadmin namespace
-    Then I should see a link to download "CSV"
+    And I should see a link to download "CSV"

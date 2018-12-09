@@ -16,7 +16,7 @@ Feature: Site title
     """
     When I am on the dashboard
     And I should see the site title "My Great Site"
-    When I follow "My Great Site"
+    And I follow "My Great Site"
     Then I should see the site title "My Great Site"
 
   Scenario: Set the site title image
