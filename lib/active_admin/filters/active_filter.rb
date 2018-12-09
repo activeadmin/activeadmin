@@ -40,7 +40,7 @@ module ActiveAdmin
       end
 
       def predicate_name
-        I18n.t("active_admin.filters.predicates.#{condition.predicate.name}",
+        I18n.t("ransack.predicates.#{condition.predicate.name}",
                default: ransack_predicate_name)
       end
 

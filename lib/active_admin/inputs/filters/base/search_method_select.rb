@@ -64,7 +64,7 @@ module ActiveAdmin
 
           def filter_options
             filters.collect do |filter|
-              [I18n.t("active_admin.filters.predicates.#{filter}"), "#{method}_#{filter}"]
+              [I18n.t("ransack.predicates.#{filter}"), "#{method}_#{filter}"]
             end
           end
 
