@@ -4,9 +4,9 @@ Feature: New Page
 
   Background:
     Given a category named "Music" exists
-    Given a user named "John Doe" exists
+    And a user named "John Doe" exists
     And I am logged in
-    Given a configuration of:
+    And a configuration of:
     """
       ActiveAdmin.register Post do
         permit_params :custom_category_id, :author_id, :title,
@@ -46,7 +46,7 @@ Feature: New Page
         end
       end
     """
-    Given I follow "New Post"
+    And I follow "New Post"
     Then I should see a fieldset titled "Your Post"
     And I should see a fieldset titled "Publishing"
     When I fill in "Title" with "Hello World"
@@ -75,7 +75,7 @@ Feature: New Page
         end
       end
     """
-    Given I follow "New Post"
+    And I follow "New Post"
     Then I should see a fieldset titled "Your Post"
     And I should see a fieldset titled "Publishing"
     When I fill in "Virtual title" with "Hello World"
@@ -94,7 +94,7 @@ Feature: New Page
             f.actions
           end %>
     """
-    Given a configuration of:
+    And a configuration of:
     """
       ActiveAdmin.register Post do
         permit_params :custom_category_id, :author_id, :title, :body, :published_date, :starred
@@ -102,8 +102,8 @@ Feature: New Page
         form partial: "form"
       end
     """
-    Given I follow "New Post"
-    When I fill in "Title" with "Hello World"
+    When I follow "New Post"
+    And I fill in "Title" with "Hello World"
     And I fill in "Body" with "This is the body"
     And I press "Create Post"
     Then I should see "Post was successfully created."
@@ -131,6 +131,6 @@ Feature: New Page
         end
       end
     """
-    Given I follow "New Post"
+    When I follow "New Post"
     Then I should not see "Title"
     And I should see "Body"

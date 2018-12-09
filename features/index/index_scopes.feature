@@ -117,15 +117,15 @@ Feature: Index Scoping
     And I should see the scope "Published" with the count 3
     When I follow "Published"
     Then I should see the scope "Published" selected
-    Then I should see the current scope with label "Published"
+    And I should see the current scope with label "Published"
     And I should see 3 posts in the table
 
   Scenario: Viewing resources when scoping and filtering
     Given 2 posts written by "Daft Punk" exist
-    Given 1 published posts written by "Daft Punk" exist
+    And 1 published posts written by "Daft Punk" exist
 
-    Given 1 posts written by "Alfred" exist
-    Given 2 published posts written by "Alfred" exist
+    And 1 posts written by "Alfred" exist
+    And 2 published posts written by "Alfred" exist
 
     And an index configuration of:
       """
@@ -248,9 +248,9 @@ Feature: Index Scoping
 
   Scenario: Viewing resources when scoping and filtering and group bys and stuff
     Given 2 posts written by "Daft Punk" exist
-    Given 1 published posts written by "Daft Punk" exist
+    And 1 published posts written by "Daft Punk" exist
 
-    Given 1 posts written by "Alfred" exist
+    And 1 posts written by "Alfred" exist
 
     And an index configuration of:
       """

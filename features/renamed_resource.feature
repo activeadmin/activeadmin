@@ -4,9 +4,9 @@ Feature: Renamed Resource
 
   Background:
     Given a category named "Music" exists
-    Given a user named "John Doe" exists
+    And a user named "John Doe" exists
     And I am logged in
-    Given a configuration of:
+    And a configuration of:
     """
       ActiveAdmin.register Blog::Post, as: 'Post' do
         permit_params :custom_category_id, :author_id, :title,
@@ -16,8 +16,8 @@ Feature: Renamed Resource
     When I am on the index page for posts
 
   Scenario: Default form with no config
-    Given I follow "New Post"
-    When I fill in "Title" with "Hello World"
+    And I follow "New Post"
+    And I fill in "Title" with "Hello World"
     And I fill in "Body" with "This is the body"
     And I select "Music" from "Category"
     And I select "John Doe" from "Author"

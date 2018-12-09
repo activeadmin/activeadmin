@@ -167,7 +167,7 @@ Feature: Registering Pages
       end
     end
     """
-    Given "app/views/admin/status/check.html.erb" contains:
+    And "app/views/admin/status/check.html.erb" contains:
       """
         <div>Chocolate lØves You Too!</div>
       """
@@ -179,7 +179,7 @@ Feature: Registering Pages
 
   Scenario: Registering a page with paginated index table for a collection Array
     Given a user named "John Doe" exists
-    Given a configuration of:
+    And a configuration of:
     """
     ActiveAdmin.register_page "Special users" do
       content do

@@ -16,7 +16,7 @@ Feature: Development Reloading
           :body, :position, :published_date, :starred
       end
     """
-    When I am logged in with capybara
+    And I am logged in with capybara
     Then I should see a menu item for "Posts"
 
     When I create a new post with the title "A"
