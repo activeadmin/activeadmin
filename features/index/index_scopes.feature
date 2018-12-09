@@ -86,7 +86,6 @@ Feature: Index Scoping
     And I should see the scope "All" with no count
     And I should see 3 posts in the table
 
-  @scope
   Scenario: Viewing resources with a scope and scope count turned off for a single scope
     Given 3 posts exist
     And an index configuration of:
