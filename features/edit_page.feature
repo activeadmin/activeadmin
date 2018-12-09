@@ -58,7 +58,7 @@ Feature: Edit Page
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"
 
-  Scenario: Generating a custom form with :html set, visiting the new page first (bug probing issue #109)
+  Scenario: Generating a custom form with :html set, visiting the new page first
     Given a configuration of:
     """
       ActiveAdmin.register Post do
