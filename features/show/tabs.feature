@@ -1,3 +1,4 @@
+@javascript
 Feature: Show - Tabs
 
   Add tabs with different content to the page
@@ -5,7 +6,6 @@ Feature: Show - Tabs
   Background:
     Given a post with the title "Hello World" written by "Jane Doe" exists
 
-  @javascript
   Scenario: Set a method to be called on the resource as the title
     And a show configuration of:
     """
