@@ -49,7 +49,7 @@ Feature: Menu
     """
     When I am on the dashboard
     Then I should see a menu item for "Delete Menu"
-     And I should see the element "a[data-method='delete']:contains('Delete Menu')"
+    And I should see the element "a[data-method='delete']:contains('Delete Menu')"
 
   Scenario: Adding a resource as a sub menu item
     Given a configuration of:
