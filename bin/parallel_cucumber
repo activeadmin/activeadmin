@@ -2,7 +2,7 @@
 
 require "bundler/setup"
 
-%w[--serialize-stdout --combine-stderr --verbose].each do |flag|
+["--serialize-stdout", "--combine-stderr", "--verbose", "--test-options", "-p default"].each do |flag|
   ARGV << flag unless ARGV.include?(flag)
 end
 
