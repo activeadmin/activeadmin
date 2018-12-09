@@ -1,6 +1,5 @@
 Feature: Index Pagination
 
-  Background:
   Scenario: Viewing index when one page of resources exist
     Given an index configuration of:
     """
