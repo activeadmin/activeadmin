@@ -73,7 +73,6 @@ Feature: Index Scoping
     And I press "Filter"
     Then I should see the scope "All" selected
 
-
   Scenario: Viewing resources with a scope but scope_count turned off
     Given 3 posts exist
     And an index configuration of:

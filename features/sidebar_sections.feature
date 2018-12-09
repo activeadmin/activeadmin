@@ -29,7 +29,6 @@ Feature: Sidebar Sections
     And I follow "New Post"
     Then I should see a sidebar titled "Help"
 
-
   Scenario: Create a sidebar for only one action
     Given a configuration of:
     """
@@ -52,7 +51,6 @@ Feature: Sidebar Sections
     When I am on the index page for posts
     And I follow "New Post"
     Then I should not see a sidebar titled "Help"
-
 
   Scenario: Create a sidebar for all except one action
     Given a configuration of:
@@ -195,7 +193,6 @@ Feature: Sidebar Sections
     """
     When I am on the index page for posts
     Then I should see "Hello World from a custom partial" within the "Help" sidebar
-
 
   Scenario: Position sidebar at the top using priority option
     Given a configuration of:

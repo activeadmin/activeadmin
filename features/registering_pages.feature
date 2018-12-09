@@ -88,7 +88,6 @@ Feature: Registering Pages
     And I follow "Status"
     Then I should see a sidebar titled "Help"
 
-
   Scenario: Adding an action item to a page
     Given a configuration of:
     """
