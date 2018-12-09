@@ -1,5 +1,6 @@
 <%
-  std_opts = "--format progress --order random"
+  std_format = ENV["CI"] ? "summary" : "progress"
+  std_opts = "--format #{std_format} --order random"
   default_opts = std_opts + " --format ParallelTests::Gherkin::RuntimeLogger --out tmp/parallel_runtime_cucumber.log"
 %>
 
