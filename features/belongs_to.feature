@@ -43,9 +43,9 @@ Feature: Belongs To
       end
     """
     When I go to the last author's last post page
-    Then I follow "Edit Post"
+    And I follow "Edit Post"
     Then I should see the element "form[action='/admin/users/2/posts/2']"
-    Then I should see a link to "Hello World" in the breadcrumb
+    And I should see a link to "Hello World" in the breadcrumb
 
     When I press "Update Post"
     Then I should see "Post was successfully updated."
@@ -71,12 +71,12 @@ Feature: Belongs To
       end
     """
     When I go to the last author's posts
-    Then I follow "New Post"
+    And I follow "New Post"
     Then I should see the element "form[action='/admin/users/2/posts']"
-    Then I fill in "Title" with "Hello World"
-    Then I fill in "Body" with "This is the body"
+    When I fill in "Title" with "Hello World"
+    And I fill in "Body" with "This is the body"
 
-    When I press "Create Post"
+    And I press "Create Post"
     Then I should see "Post was successfully created."
     And I should see the attribute "Title" with "Hello World"
     And I should see the attribute "Body" with "This is the body"

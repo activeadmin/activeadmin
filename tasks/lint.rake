@@ -89,7 +89,7 @@ class FixmeLinter
 end
 
 desc "Lints ActiveAdmin code base"
-task lint: ["lint:rubocop", "lint:mdl", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:rspec"]
+task lint: ["lint:rubocop", "lint:mdl", "lint:gherkin_lint", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:rspec"]
 
 namespace :lint do
   require "rubocop/rake_task"
@@ -101,6 +101,13 @@ namespace :lint do
     puts "Running mdl..."
 
     sh("mdl", "--git-recurse", ".")
+  end
+
+  desc "Checks gherkin code style with gherkin-lint"
+  task :gherkin_lint do
+    puts "Running gherkin-lint..."
+
+    sh("npx", "gherkin-lint")
   end
 
   desc "Check for unnecessary trailing blank lines across all repo files"

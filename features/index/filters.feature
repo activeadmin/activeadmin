@@ -64,10 +64,10 @@ Feature: Index Filtering
     And I press "Filter"
 
     Then I follow "2"
-    Then I should see "Displaying Posts 3 - 4 of 7 in total"
+    And I should see "Displaying Posts 3 - 4 of 7 in total"
 
-    Then I follow "3"
-    Then I should see "Displaying Posts 5 - 6 of 7 in total"
+    And I follow "3"
+    And I should see "Displaying Posts 5 - 6 of 7 in total"
 
   Scenario: Filtering posts while not on the first page
     Given 9 posts exist
@@ -82,7 +82,7 @@ Feature: Index Filtering
 
     When I fill in "Title" with "Hello World 2"
     And I press "Filter"
-    And I should see 1 posts in the table
+    Then I should see 1 posts in the table
     And I should see "Hello World 2" within ".index_table"
 
   Scenario: Checkboxes - Filtering posts written by anyone
@@ -196,7 +196,7 @@ Feature: Index Filtering
   Scenario: Filtering posts without default scope
 
     Given a post with the title "Hello World" written by "Jane Doe" exists
-    Given an index configuration of:
+    And an index configuration of:
     """
       ActiveAdmin.register Post do
         scope :all
@@ -214,7 +214,7 @@ Feature: Index Filtering
   Scenario: Filtering posts by category
     Given a category named "Mystery" exists
     And a post with the title "Hello World" written by "Jane Doe" in category "Non-Fiction" exists
-    Given an index configuration of:
+    And an index configuration of:
     """
       ActiveAdmin.register Category
       ActiveAdmin.register Post do
