@@ -3,10 +3,9 @@ Feature: Show - Tabs
 
   Add tabs with different content to the page
 
-  Background:
+  Scenario: Set a method to be called on the resource as the title
     Given a post with the title "Hello World" written by "Jane Doe" exists
 
-  Scenario: Set a method to be called on the resource as the title
     And a show configuration of:
     """
       ActiveAdmin.register Post do

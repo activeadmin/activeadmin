@@ -2,7 +2,7 @@ Feature: Renamed Resource
 
   Strong attributes for resources renamed with as: 'NewName'
 
-  Background:
+  Scenario: Default form with no config
     Given a category named "Music" exists
     And a user named "John Doe" exists
     And I am logged in
@@ -15,7 +15,6 @@ Feature: Renamed Resource
     """
     When I am on the index page for posts
 
-  Scenario: Default form with no config
     And I follow "New Post"
     And I fill in "Title" with "Hello World"
     And I fill in "Body" with "This is the body"
