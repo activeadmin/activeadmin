@@ -461,9 +461,9 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     describe "custom date range search" do
-      let(:qteq) { "2010-10-01" }
+      let(:gteq) { "2010-10-01" }
       let(:lteq) { "2010-10-02" }
-      let(:scope){ Post.ransack custom_created_at_searcher_gteq_datetime: qteq, custom_created_at_searcher_lteq_datetime: lteq }
+      let(:scope){ Post.ransack custom_created_at_searcher_gteq_datetime: gteq, custom_created_at_searcher_lteq_datetime: lteq }
       let(:body) { filter :custom_created_at_searcher, as: :date_range }
 
       it "should work as date_range" do
@@ -472,7 +472,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       end
 
       context "filter value can't be casted to date" do
-        let(:qteq) { "Ooops" }
+        let(:gteq) { "Ooops" }
         let(:lteq) { "Ooops" }
 
         it "should work display empty filter values" do
