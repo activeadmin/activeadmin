@@ -41,7 +41,7 @@
 
 ### Bug Fixes
 
-* Fix `input_html` filter option evaluated only once. [#5377] by [@kjeldahl]
+* Fix `input_html` filter option evaluated only once. [#5376] by [@kjeldahl]
 
 ## 1.4.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.0...v1.4.1)
 
@@ -375,7 +375,7 @@ Please check [0-6-stable] for previous changes.
 [#5368]: https://github.com/activeadmin/activeadmin/pull/5368
 [#5370]: https://github.com/activeadmin/activeadmin/pull/5370
 [#5375]: https://github.com/activeadmin/activeadmin/pull/5375
-[#5377]: https://github.com/activeadmin/activeadmin/pull/5377
+[#5376]: https://github.com/activeadmin/activeadmin/pull/5376
 [#5399]: https://github.com/activeadmin/activeadmin/pull/5399
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
 [#5408]: https://github.com/activeadmin/activeadmin/pull/5408
