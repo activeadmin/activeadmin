@@ -13,15 +13,6 @@ task :spec do
   sh("bin/parallel_rspec spec/")
 end
 
-namespace :spec do
-  %i(unit request).each do |type|
-    desc "Run the #{type} specs in parallel"
-    task type do
-      sh("bin/parallel_rspec spec/#{type}")
-    end
-  end
-end
-
 desc "Run the cucumber scenarios in parallel"
 task cucumber: :"cucumber:all"
 
