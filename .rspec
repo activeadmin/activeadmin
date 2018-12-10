@@ -1,1 +1,2 @@
+--format <%= ENV['CI'] ? 'documentation' : 'progress' %>
 --require spec_helper
