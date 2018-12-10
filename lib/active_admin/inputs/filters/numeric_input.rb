@@ -5,7 +5,7 @@ module ActiveAdmin
         include Base
         include Base::SearchMethodSelect
 
-        filter :equals, :greater_than, :less_than
+        filter :eq, :gt, :lt
       end
     end
   end

@@ -34,7 +34,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
   end
 
   it 'should pick predicate name translation' do
-    expect(subject.predicate_name).to eq(I18n.t("ransack.predicates.equals"))
+    expect(subject.predicate_name).to eq(I18n.t("ransack.predicates.eq"))
   end
 
   context 'search by belongs_to association' do

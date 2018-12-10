@@ -24,13 +24,6 @@ id:
       buttons:
         filter: "Filter"
         clear: "Hapus Filters"
-      predicates:
-        contains: "Mengandung"
-        equals: "Sama dengan"
-        starts_with: "Diawali dengan"
-        ends_with: "Diakhiri dengan"
-        greater_than: "Lebih besar dari"
-        less_than: "Lebih kecil dari"
     search_status:
       headline: "Status Pencarian:"
       current_scope: "Scope:"

@@ -68,15 +68,15 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :title }
 
     it "should generate a select option for starts with" do
-      expect(body).to have_selector("option[value=title_start]", text: "starts with")
+      expect(body).to have_selector("option[value=title_start]", text: "Starts with")
     end
 
     it "should generate a select option for ends with" do
-      expect(body).to have_selector("option[value=title_end]", text: "ends with")
+      expect(body).to have_selector("option[value=title_end]", text: "Ends with")
     end
 
     it "should generate a select option for contains" do
-      expect(body).to have_selector("option[value=title_cont]", text: "contains")
+      expect(body).to have_selector("option[value=title_cont]", text: "Contains")
     end
 
     it "should generate a text field for input" do
@@ -96,11 +96,11 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     it "should select the option which is currently being filtered" do
       scope = Post.ransack title_start: "foo"
       body = Capybara.string(render_filter scope, title: {})
-      expect(body).to have_selector("option[value=title_start][selected=selected]", text: "starts with")
+      expect(body).to have_selector("option[value=title_start][selected=selected]", text: "Starts with")
     end
 
     context "with filters options" do
-      let(:body) { filter :title, filters: [:contains, :starts_with] }
+      let(:body) { filter :title, filters: [:cont, :start] }
 
       it "should generate provided options for filter select" do
         expect(body).to have_selector("option[value=title_cont]", text: "Contains")
@@ -189,30 +189,30 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :id }
 
       it "should generate a select option for equal to" do
-        expect(body).to have_selector("option[value=id_eq]", text: "equals")
+        expect(body).to have_selector("option[value=id_eq]", text: "Equals")
       end
       it "should generate a select option for greater than" do
-        expect(body).to have_selector("option[value=id_greater_than]", text: "greater than")
+        expect(body).to have_selector("option[value=id_gt]", text: "Greater than")
       end
       it "should generate a select option for less than" do
-        expect(body).to have_selector("option[value=id_lt]", text: "less than")
+        expect(body).to have_selector("option[value=id_lt]", text: "Less than")
       end
       it "should generate a text field for input" do
         expect(body).to have_selector("input[name='q[id_eq]']")
       end
       it "should select the option which is currently being filtered" do
-        scope = Post.ransack id_greater_than: 1
+        scope = Post.ransack id_gt: 1
         body = Capybara.string(render_filter scope, id: {})
-        expect(body).to have_selector("option[value=id_greater_than][selected=selected]", text: "greater than")
+        expect(body).to have_selector("option[value=id_gt][selected=selected]", text: "Greater than")
       end
     end
 
     context "with filters options" do
-      let(:body) { filter :id, filters: [:equals, :greater_than] }
+      let(:body) { filter :id, filters: [:eq, :gt] }
 
       it "should generate provided options for filter select" do
         expect(body).to have_selector("option[value=id_eq]", text: "Equals")
-        expect(body).to have_selector("option[value=id_greater_than]", text: "Greater than")
+        expect(body).to have_selector("option[value=id_gt]", text: "Greater than")
       end
 
       it "should not generate a select option for less than" do
@@ -445,7 +445,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     it "should use the default type of the ransacker" do
       body = filter :custom_searcher_numeric
       expect(body).to have_selector("option[value=custom_searcher_numeric_eq]")
-      expect(body).to have_selector("option[value=custom_searcher_numeric_greater_than]")
+      expect(body).to have_selector("option[value=custom_searcher_numeric_gt]")
       expect(body).to have_selector("option[value=custom_searcher_numeric_lt]")
     end
 
