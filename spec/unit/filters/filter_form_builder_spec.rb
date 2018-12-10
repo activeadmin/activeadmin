@@ -23,7 +23,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
   end
 
   def filter(name, options = {})
-    Capybara.string(render_filter scope, name => options)
+    Capybara.string(render_filter(scope, name => options))
   end
 
   let(:scope) { Post.ransack }
