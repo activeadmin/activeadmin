@@ -8,9 +8,21 @@ task :setup, [:rails_env, :template] do |_t, opts|
   ActiveAdmin::ApplicationGenerator.new(opts).generate
 end
 
-desc "Run the specs in parallel"
-task :spec do
-  sh("bin/parallel_rspec spec/")
+task spec: :"spec:all"
+
+namespace :spec do
+  desc "Run all specs"
+  task all: [:regular, :filesystem_changes]
+
+  desc "Run the standard specs in parallel"
+  task :regular do
+    sh("bin/parallel_rspec spec/")
+  end
+
+  desc "Run the specs that change the filesystem sequentially"
+  task :filesystem_changes do
+    sh("rspec --tag changes_filesystem")
+  end
 end
 
 desc "Run the cucumber scenarios in parallel"
