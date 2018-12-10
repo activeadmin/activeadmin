@@ -1,4 +1,4 @@
-@requires-reloading
+@requires-reloading @changes-filesystem
 Feature: Development Reloading
 
   In order to quickly develop applications

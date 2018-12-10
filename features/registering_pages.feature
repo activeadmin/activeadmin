@@ -154,6 +154,7 @@ Feature: Registering Pages
     Then I should see the content "Chocolate I lØve You!"
     And I should see the Active Admin layout
 
+  @changes-filesystem
   Scenario: Adding a page action to a page with erb view
     Given a configuration of:
     """
