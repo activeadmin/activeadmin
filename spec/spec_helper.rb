@@ -3,7 +3,6 @@ require 'simplecov' if ENV["COVERAGE"] == "true"
 RSpec.configure do |config|
   config.disable_monkey_patching!
   config.filter_run focus: true
-  config.filter_run_excluding skip: true
   config.run_all_when_everything_filtered = true
   config.color = true
   config.order = :random
