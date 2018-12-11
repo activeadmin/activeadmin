@@ -4,5 +4,5 @@
   default_opts = std_opts + " --format ParallelTests::Gherkin::RuntimeLogger --out tmp/parallel_runtime_cucumber.log"
 %>
 
-default: <%= default_opts %> --require features/support/regular_env.rb --tags 'not @requires-reloading'
-class-reloading: CLASS_RELOADING=true <%= std_opts %> --require features/support/reload_env.rb --tags @requires-reloading
+default: <%= default_opts %> --require features/support/simplecov_regular_env.rb --tags 'not @requires-reloading'
+class-reloading: CLASS_RELOADING=true <%= std_opts %> --require features/support/simplecov_reload_env.rb --tags @requires-reloading
