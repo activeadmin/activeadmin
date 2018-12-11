@@ -19,6 +19,7 @@ Feature: Specifying Actions
     When I am on the index page for posts
     Then an "ActionController::RoutingError" exception should be raised when I follow "View"
 
+  @changes-filesystem
   Scenario: Specify a custom collection action with template
     Given a configuration of:
       """
@@ -39,6 +40,7 @@ Feature: Specifying Actions
     And I follow "Import"
     Then I should see "We are currently working on this feature"
 
+  @changes-filesystem
   Scenario: Specify a custom member action with template
     Given a configuration of:
       """
@@ -65,6 +67,7 @@ Feature: Specifying Actions
     And I should see the page title "Review"
     And I should see the Active Admin layout
 
+  @changes-filesystem
   Scenario: Specify a custom member action with template using arb
     Given a configuration of:
       """
