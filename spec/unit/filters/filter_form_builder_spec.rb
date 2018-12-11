@@ -177,10 +177,10 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :created_at }
 
     it "should generate a date greater than" do
-      expect(body).to have_selector("input.datepicker[name='q[created_at_gteq_datetime]']")
+      expect(body).to have_selector("input.datepicker[name='q[created_at_gteq]']")
     end
     it "should generate a date less than" do
-      expect(body).to have_selector("input.datepicker[name='q[created_at_lteq_datetime]']")
+      expect(body).to have_selector("input.datepicker[name='q[created_at_lteq]']")
     end
   end
 
@@ -463,12 +463,12 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     describe "custom date range search" do
       let(:gteq) { "2010-10-01" }
       let(:lteq) { "2010-10-02" }
-      let(:scope){ Post.ransack custom_created_at_searcher_gteq_datetime: gteq, custom_created_at_searcher_lteq_datetime: lteq }
+      let(:scope){ Post.ransack custom_created_at_searcher_gteq: gteq, custom_created_at_searcher_lteq: lteq }
       let(:body) { filter :custom_created_at_searcher, as: :date_range }
 
       it "should work as date_range" do
-        expect(body).to have_selector("input[name='q[custom_created_at_searcher_gteq_datetime]'][value='2010-10-01']")
-        expect(body).to have_selector("input[name='q[custom_created_at_searcher_lteq_datetime]'][value='2010-10-02']")
+        expect(body).to have_selector("input[name='q[custom_created_at_searcher_gteq]'][value='2010-10-01']")
+        expect(body).to have_selector("input[name='q[custom_created_at_searcher_lteq]'][value='2010-10-02']")
       end
 
       context "filter value can't be casted to date" do
@@ -476,8 +476,8 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
         let(:lteq) { "Ooops" }
 
         it "should work display empty filter values" do
-          expect(body).to have_selector("input[name='q[custom_created_at_searcher_gteq_datetime]'][value='']")
-          expect(body).to have_selector("input[name='q[custom_created_at_searcher_lteq_datetime]'][value='']")
+          expect(body).to have_selector("input[name='q[custom_created_at_searcher_gteq]'][value='']")
+          expect(body).to have_selector("input[name='q[custom_created_at_searcher_lteq]'][value='']")
         end
       end
     end
