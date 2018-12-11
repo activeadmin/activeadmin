@@ -85,6 +85,7 @@ Feature: New Page
     And I should see the attribute "Title" with "Hello World"
     And I should see the attribute "Body" with "This is the body"
 
+  @changes-filesystem
   Scenario: Generating a form from a partial
     Given "app/views/admin/posts/_form.html.erb" contains:
     """

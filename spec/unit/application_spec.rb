@@ -126,7 +126,7 @@ RSpec.describe ActiveAdmin::Application do
       expect(application.files).to include(File.expand_path("app/admin/dashboard.rb", application.app_path))
     end
 
-    it "should load files from subdirectories" do
+    it "should load files from subdirectories", :changes_filesystem do
       test_dir = File.expand_path("app/admin/public", application.app_path)
       test_file = File.expand_path("app/admin/public/posts.rb", application.app_path)
 
