@@ -143,7 +143,6 @@ namespace :lint do
     puts "Linting project files..."
 
     sh(
-      { "COVERAGE" => "true" },
       "bin/rspec",
       "spec/gemfiles_spec.lint.rb",
       "spec/changelog_spec.lint.rb",

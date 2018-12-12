@@ -96,7 +96,7 @@ version: 2.1
 .run_lints: &run_lints
   run:
     name: Run lints
-    command: bundle exec rake lint
+    command: COVERAGE=true bundle exec rake lint
 
 .run_bug_report_template: &run_bug_report_template
   run:
