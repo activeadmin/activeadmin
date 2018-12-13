@@ -78,8 +78,18 @@ version: 2.1
 
 .run_tests: &run_tests
   run:
-    name: Run tests
-    command: COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bundle exec rake spec cucumber
+    name: Run RSpec tests
+    command: |
+      COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bin/parallel_rspec spec/
+      COVERAGE=true RSPEC_FILESYSTEM_CHANGES=true bin/rspec
+
+.run_features: &run_features
+  run:
+    name: Run Cucumber features
+    command: |
+      COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bin/parallel_cucumber features/
+      COVERAGE=true bin/cucumber --profile filesystem-changes
+      COVERAGE=true bin/cucumber --profile class-reloading
 
 .save_test_times: &save_test_times
   save_cache:
@@ -115,6 +125,7 @@ version: 2.1
   - *restore_test_times
   - *restore_coverage
   - *run_tests
+  - *run_features
   - *format_coverage
   - *save_coverage
   - *save_test_times
