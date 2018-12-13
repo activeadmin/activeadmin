@@ -21,7 +21,7 @@ namespace :spec do
 
   desc "Run the specs that change the filesystem sequentially"
   task :filesystem_changes do
-    sh("bin/rspec --require #{File.dirname(__dir__)}/spec/support/simplecov_changes_env.rb --tag changes_filesystem")
+    sh({ "RSPEC_FILESYSTEM_CHANGES" => "true" }, "bin/rspec")
   end
 end
 
