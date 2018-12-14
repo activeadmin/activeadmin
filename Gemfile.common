@@ -3,15 +3,15 @@ gem 'rake'
 gem 'pry' # Easily debug from your console with `binding.pry`
 gem 'pry-byebug', platform: :mri # Step-by-step debugging
 
+# Optional dependencies
+gem 'cancan'
+gem 'pundit'
+gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
+gem 'draper', '~> 3.0'
+gem "devise", '~> 4.4'
+
 group :test do
   gem 'capybara', '~> 3.10'
-
-  # Optional dependencies
-  gem 'cancan'
-  gem 'pundit'
-  gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
-  gem 'draper', '~> 3.0'
-  gem "devise", '~> 4.4'
 
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'cucumber-rails', '~> 1.5', require: false
