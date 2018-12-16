@@ -1,1 +1,2 @@
 --require spec_helper
+<%= "--require #{__dir__}/spec/support/simplecov_changes_env.rb --tag changes_filesystem" if ENV['RSPEC_FILESYSTEM_CHANGES'] %>

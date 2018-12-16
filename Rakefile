@@ -4,7 +4,7 @@ import 'tasks/gemfiles.rake'
 import 'tasks/local.rake'
 import 'tasks/test.rake'
 
-if ENV['BUNDLE_GEMFILE'] == File.expand_path('Gemfile')
+if File.expand_path(ENV['BUNDLE_GEMFILE']) == File.expand_path('Gemfile')
   import 'tasks/docs.rake'
   import 'tasks/lint.rake'
   import 'tasks/release.rake'

@@ -21,7 +21,7 @@ namespace :spec do
 
   desc "Run the specs that change the filesystem sequentially"
   task :filesystem_changes do
-    sh("rspec --require #{File.dirname(__dir__)}/spec/support/simplecov_changes_env.rb --tag changes_filesystem")
+    sh({ "RSPEC_FILESYSTEM_CHANGES" => "true" }, "bin/rspec")
   end
 end
 
@@ -39,11 +39,11 @@ namespace :cucumber do
 
   desc "Run the cucumber scenarios that change the filesystem sequentially"
   task :filesystem_changes do
-    sh("cucumber --profile filesystem-changes")
+    sh("bin/cucumber --profile filesystem-changes")
   end
 
   desc "Run the cucumber scenarios that test reloading"
   task :reloading do
-    sh("cucumber --profile class-reloading")
+    sh("bin/cucumber --profile class-reloading")
   end
 end

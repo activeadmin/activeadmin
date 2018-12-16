@@ -4,8 +4,7 @@ require "kramdown"
 
 RSpec.describe "Changelog" do
   subject(:changelog) do
-    path = File.join(File.dirname(__dir__), "CHANGELOG.md")
-    File.read(path)
+    File.read("CHANGELOG.md")
   end
 
   it 'uses the simplest style for implicit links' do
