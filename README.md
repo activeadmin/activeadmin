@@ -8,6 +8,8 @@ creating elegant backends for website administration.
 [![Coverage        ][coverage_badge]][coverage]
 [![Tidelift        ][tidelift_badge]][tidelift]
 [![Inch CI         ][inch_badge]][inch]
+[![Backers on Open Collective][ocb_badge]](#backers)
+[![Sponsors on Open Collective][ocs_badge]](#sponsors)
 
 ## Goals
 
@@ -56,6 +58,36 @@ Tool                  | Description
 [Kaminari]            | Elegant pagination for any sort of collection
 [Ransack]             | Provides a simple search API to query your data
 
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/activeadmin/activeadmin/graphs/contributors"><img src="https://opencollective.com/activeadmin/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/activeadmin#backer)]
+
+<a href="https://opencollective.com/activeadmin#backers" target="_blank"><img src="https://opencollective.com/activeadmin/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/activeadmin#sponsor)]
+
+<a href="https://opencollective.com/activeadmin/sponsor/0/website" target="_blank"><img src="https://opencollective.com/activeadmin/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/activeadmin/sponsor/1/website" target="_blank"><img src="https://opencollective.com/activeadmin/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/activeadmin/sponsor/2/website" target="_blank"><img src="https://opencollective.com/activeadmin/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/activeadmin/sponsor/3/website" target="_blank"><img src="https://opencollective.com/activeadmin/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/activeadmin/sponsor/4/website" target="_blank"><img src="https://opencollective.com/activeadmin/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/activeadmin/sponsor/5/website" target="_blank"><img src="https://opencollective.com/activeadmin/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/activeadmin/sponsor/6/website" target="_blank"><img src="https://opencollective.com/activeadmin/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/activeadmin/sponsor/7/website" target="_blank"><img src="https://opencollective.com/activeadmin/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/activeadmin/sponsor/8/website" target="_blank"><img src="https://opencollective.com/activeadmin/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/activeadmin/sponsor/9/website" target="_blank"><img src="https://opencollective.com/activeadmin/sponsor/9/avatar.svg"></a>
+
+
 [Arbre]: https://github.com/activeadmin/arbre
 [Devise]: https://github.com/plataformatec/devise
 [Formtastic]: https://github.com/justinfrench/formtastic
@@ -73,6 +105,9 @@ Tool                  | Description
 [inch]: http://inch-ci.org/github/activeadmin/activeadmin
 [tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
 [tidelift]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=readme
+[ocb_badge]: https://opencollective.com/activeadmin/backers/badge.svg
+[ocs_badge]: https://opencollective.com/activeadmin/sponsors/badge.svg)](#sponsors) 
+
 
 [docs]: http://activeadmin.info/0-installation.html
 [demo]: http://demo.activeadmin.info/admin
@@ -82,3 +117,6 @@ Tool                  | Description
 [liberapay.com]: https://liberapay.com
 [liberapay_button]: https://liberapay.com/assets/widgets/donate.svg
 [liberapay_donate]: https://liberapay.com/Active-Admin/donate
+
+
+
