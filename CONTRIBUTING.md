@@ -38,7 +38,7 @@ bundle install
 Now you should be able to run the entire suite using:
 
 ```sh
-bundle exec rake
+bin/rake
 ```
 
 The test run will generate a sample Rails application in `tmp/rails` to run the
@@ -91,7 +91,7 @@ a look at your changes in a browser.
 To boot up a test Rails app:
 
 ```sh
-bundle exec rake local server
+bin/rake local server
 ```
 
 This will automatically create a Rails app if none already exists, and store it
@@ -107,21 +107,21 @@ If you need to perform any other commands on the test application, just pass
 them to the `local` rake task. For example, to boot the rails console:
 
 ```sh
-bundle exec rake local console
+bin/rake local console
 ```
 
 Or to migrate the database:
 
 ```sh
-bundle exec rake local db:migrate
+bin/rake local db:migrate
 ```
 
 ### Get the style right
 
 Your patch should follow the same conventions & pass the same code quality
-checks as the rest of the project. `bundle exec rake lint` will give you
-feedback in this regard. You can check & fix style issues by running each linter
-individually. Run `bundle exec rake -T lint` to see the available linters.
+checks as the rest of the project. `bin/rake lint` will give you feedback in
+this regard. You can check & fix style issues by running each linter
+individually. Run `bin/rake -T lint` to see the available linters.
 
 ### Make a Pull Request
 
@@ -200,7 +200,7 @@ Maintainers need to do the following to push out a release:
 * Make sure you have [chandler] properly configured. Chandler is used to
   automatically submit github release notes from the changelog right after
   pushing the gem to rubygems.
-* `bundle exec rake release`
+* `bin/rake release`
 
 [chandler]: https://github.com/mattbrictson/chandler#2-configure-credentials
 [chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/getting-started
