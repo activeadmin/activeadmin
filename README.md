@@ -37,7 +37,7 @@ guide is the best place to start][contributing]. If you have questions, feel fre
 to ask.
 
 If you want to support us financially, you can help fund the project
-through a [Tidelift subscription][tidelift]. By buying a Tidelift subscription
+through a Tidelift subscription][tidelift]. By buying a Tidelift subscription
 you make sure your whole dependency stack is properly maintained, while also
 getting a comprehensive view of outdated dependencies, new releases, security
 alerts, and licensing compatibility issues.
