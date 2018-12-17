@@ -70,7 +70,7 @@ snippet tips, slack dicussions and so on.
 
 Thanks to [Tidelift][tidelift] and all our Tidelift subscribers.
 
-Thanks to [Opencollective][opencollective contributors] and our Opencollective contributors.
+Thanks to [Open Collective][opencollective contributors] and all our Open Collective contributors.
 
 [Arbre]: https://github.com/activeadmin/arbre
 [Devise]: https://github.com/plataformatec/devise
