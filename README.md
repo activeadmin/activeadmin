@@ -66,7 +66,7 @@ Thanks to [Greg Bell][Greg] for creating and sharing this project with the open 
 
 Thanks to [all the people that ever contributed to this project through code][contributors] or
 other means such as bug reports, issue triaging, feature suggestions, code
-snippet tips, slack dicussions and so on.
+snippet tips, Slack discussions and so on.
 
 Thanks to [Tidelift][tidelift] and all our Tidelift subscribers.
 
