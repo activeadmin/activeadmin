@@ -97,6 +97,6 @@ Thanks to [Opencollective][opencollective contributors] and our Opencollective c
 [contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
 [Liberapay]: https://liberapay.com
 [Greg]: https://github.com/gregbell
-[code]: https://github.com/activeadmin/activeadmin/graphs/contributors
+[contributors]: https://github.com/activeadmin/activeadmin/graphs/contributors
 [opencollective page]: https://opencollective.com/activeadmin
 [opencollective contributors]: https://opencollective.com/activeadmin#contributors
