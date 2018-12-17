@@ -33,7 +33,7 @@ Google Groups, IRC #activeadmin and Gitter are not actively monitored.
 ## Want to contribute?
 
 If you want to contribute through code or documentation, the [contributing
-guide][contributing] is the best place to start. If you have questions, feel free
+guide is the best place to start][contributing]. If you have questions, feel free
 to ask.
 
 If you want to support us financially, you can help fund the project
