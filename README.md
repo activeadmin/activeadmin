@@ -32,6 +32,8 @@ Google Groups, IRC #activeadmin and Gitter are not actively monitored.
 
 ## Want to contribute?
 
+This project exists thanks to all the people who contribute, so thank you!
+
 The [contributing guide][contributing]
 is a good place to start. If you have questions, feel free to ask.
 
