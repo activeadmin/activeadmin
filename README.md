@@ -32,7 +32,7 @@ Google Groups, IRC #activeadmin and Gitter are not actively monitored.
 
 ## Want to contribute?
 
-If you want to contribute through code or documentation, the [contributing
+If you want to contribute through code or documentation, the [Contributing
 guide is the best place to start][contributing]. If you have questions, feel free
 to ask.
 
