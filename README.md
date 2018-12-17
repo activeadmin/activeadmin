@@ -34,12 +34,15 @@ Google Groups, IRC #activeadmin and Gitter are not actively monitored.
 
 This project exists thanks to all the people who contribute, so thank you!
 
-The [contributing guide][contributing]
-is a good place to start. If you have questions, feel free to ask.
+If you want to contribute through code or documentation, the [contributing
+guide][contributing] is a good place to start. If you have questions, feel free
+to ask.
 
-## Want to support us?
-
-Subscribe to [Tidelift][tidelift] to support Active Admin and get licensing assurances and timely security notifications.
+If you want to contribute economically, you can help funding the project
+through a [Tidelift subscription][tidelift]. By buying a Tidelift subscription
+you make sure your whole dependency stack is properly maintained, while also
+getting a comprenhensive view of outdated dependencies, new releases, security
+alerts, and licensing compatibility issues.
 
 You can also support us with a weekly tip via [Liberapay][liberapay.com].
 
