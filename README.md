@@ -64,7 +64,7 @@ Tool                  | Description
 
 Thanks to [Greg Bell][Greg] for creating and sharing this project with the open source community.
 
-Thanks to [all the people that ever contributed to this project through code][contributors] or
+Thanks to [all the people that ever contributed through code][contributors] or
 other means such as bug reports, issue triaging, feature suggestions, code
 snippet tips, Slack discussions and so on.
 
