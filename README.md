@@ -64,7 +64,7 @@ Tool                  | Description
 
 Thanks to [Greg] for creating and opensourcing this project.
 
-Thanks to all the people that ever contributed to this project through [code] or
+Thanks to [all the people that ever contributed to this project through code][contributors] or
 other means such as bug reports, issue triaging, feature suggestions, code
 snippet tips, slack dicussions and so on.
 
