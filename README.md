@@ -44,7 +44,7 @@ you make sure your whole dependency stack is properly maintained, while also
 getting a comprenhensive view of outdated dependencies, new releases, security
 alerts, and licensing compatibility issues.
 
-You can also support us with a weekly tip via [Liberapay][liberapay.com].
+You can also support us with a weekly tip via [Liberapay].
 
 ## Dependencies
 
@@ -82,4 +82,4 @@ Tool                  | Description
 [wiki]: https://github.com/activeadmin/activeadmin/wiki
 [stackoverflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
-[liberapay.com]: https://liberapay.com
+[Liberapay]: https://liberapay.com
