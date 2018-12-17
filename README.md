@@ -32,8 +32,6 @@ Google Groups, IRC #activeadmin and Gitter are not actively monitored.
 
 ## Want to contribute?
 
-This project exists thanks to all the people who contribute, so thank you!
-
 If you want to contribute through code or documentation, the [contributing
 guide][contributing] is a good place to start. If you have questions, feel free
 to ask.
@@ -59,6 +57,16 @@ Tool                  | Description
 [Kaminari]            | Elegant pagination for any sort of collection
 [Ransack]             | Provides a simple search API to query your data
 
+## Acknowledgements
+
+Thanks to [Greg] for creating and opensourcing this project.
+
+Thanks to all the people that ever contributed to this project through [code] or
+other means such as bug reports, issue triaging, feature suggestions, code
+snippet tips, slack dicussions and so on.
+
+Thanks to [Tidelift][tidelift] and our Tidelift subscriptors.
+
 [Arbre]: https://github.com/activeadmin/arbre
 [Devise]: https://github.com/plataformatec/devise
 [Formtastic]: https://github.com/justinfrench/formtastic
@@ -83,3 +91,5 @@ Tool                  | Description
 [stackoverflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
 [Liberapay]: https://liberapay.com
+[Greg]: https://github.com/gregbell
+[code]: https://github.com/activeadmin/activeadmin/graphs/contributors
