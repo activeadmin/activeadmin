@@ -62,7 +62,7 @@ Tool                  | Description
 
 ## Acknowledgements
 
-Thanks to [Greg] for creating and opensourcing this project.
+Thanks to [Greg Bell][Greg] for creating and sharing this project with the open source community.
 
 Thanks to [all the people that ever contributed to this project through code][contributors] or
 other means such as bug reports, issue triaging, feature suggestions, code
