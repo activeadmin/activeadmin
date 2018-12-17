@@ -68,7 +68,7 @@ Thanks to [all the people that ever contributed to this project through code][co
 other means such as bug reports, issue triaging, feature suggestions, code
 snippet tips, slack dicussions and so on.
 
-Thanks to [Tidelift][tidelift] and our Tidelift subscriptors.
+Thanks to [Tidelift][tidelift] and all our Tidelift subscribers.
 
 Thanks to [Opencollective][opencollective contributors] and our Opencollective contributors.
 
