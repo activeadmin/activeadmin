@@ -39,9 +39,7 @@ is a good place to start. If you have questions, feel free to ask.
 
 Subscribe to [Tidelift][tidelift] to support Active Admin and get licensing assurances and timely security notifications.
 
-You can support us with a weekly tip via [Liberapay][liberapay.com].
-
-[![Support via Liberapay][liberapay_button]][liberapay_donate]
+You can also support us with a weekly tip via [Liberapay][liberapay.com].
 
 ## Dependencies
 
@@ -80,5 +78,3 @@ Tool                  | Description
 [stackoverflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
 [liberapay.com]: https://liberapay.com
-[liberapay_button]: https://liberapay.com/assets/widgets/donate.svg
-[liberapay_donate]: https://liberapay.com/Active-Admin/donate
