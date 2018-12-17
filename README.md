@@ -44,7 +44,7 @@ alerts, and licensing compatibility issues.
 
 You can also support us with a weekly tip via [Liberapay].
 
-Finally, we have an [opencollective page] where you can become a backer or
+Finally, we have an [Open Collective][opencollective page] where you can become a backer or
 sponsor for the project, and also submit expenses to it.
 
 ## Dependencies
