@@ -44,6 +44,9 @@ alerts, and licensing compatibility issues.
 
 You can also support us with a weekly tip via [Liberapay].
 
+Finally, we have an [opencollective page] where you can become a backer or
+sponsor for the project, and also submit expenses to it.
+
 ## Dependencies
 
 We try not to reinvent the wheel, so Active Admin is built with other open source projects:
@@ -66,6 +69,8 @@ other means such as bug reports, issue triaging, feature suggestions, code
 snippet tips, slack dicussions and so on.
 
 Thanks to [Tidelift][tidelift] and our Tidelift subscriptors.
+
+Thanks to [Opencollective][opencollective contributors] and our Opencollective contributors.
 
 [Arbre]: https://github.com/activeadmin/arbre
 [Devise]: https://github.com/plataformatec/devise
@@ -93,3 +98,5 @@ Thanks to [Tidelift][tidelift] and our Tidelift subscriptors.
 [Liberapay]: https://liberapay.com
 [Greg]: https://github.com/gregbell
 [code]: https://github.com/activeadmin/activeadmin/graphs/contributors
+[opencollective page]: https://opencollective.com/activeadmin
+[opencollective contributors]: https://opencollective.com/activeadmin#contributors
