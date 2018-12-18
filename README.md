@@ -36,6 +36,8 @@ If you want to contribute through code or documentation, the [Contributing
 guide is the best place to start][contributing]. If you have questions, feel free
 to ask.
 
+## Want to support us?
+
 If you want to support us financially, you can [help fund the project
 through a Tidelift subscription][tidelift]. By buying a Tidelift subscription
 you make sure your whole dependency stack is properly maintained, while also
