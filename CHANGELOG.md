@@ -398,6 +398,7 @@ Please check [0-6-stable] for previous changes.
 [#5627]: https://github.com/activeadmin/activeadmin/pull/5627
 [#5631]: https://github.com/activeadmin/activeadmin/pull/5631
 [#5632]: https://github.com/activeadmin/activeadmin/pull/5632
+[#5650]: https://github.com/activeadmin/activeadmin/pull/5650
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -458,3 +459,4 @@ Please check [0-6-stable] for previous changes.
 [@zorab47]: https://github.com/zorab47
 [@chrp]: https://github.com/chrp
 [@bartoszkopinski]: https://github.com/bartoszkopinski
+[@panasyuk]: https://github.com/panasyuk
