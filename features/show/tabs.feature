@@ -35,11 +35,13 @@ Feature: Show - Tabs
     And I should see tab content "tab 1"
     And I should not see tab content "tab 2"
     And I should not see tab content "tab 3"
-    Then I follow "テスト"
-    And I should not see tab content "tab 1"
+
+    When I follow "テスト"
+    Then I should not see tab content "tab 1"
     And I should see tab content "tab 2"
     And I should not see tab content "tab 3"
-    Then I follow "🤗"
-    And I should not see tab content "tab 1"
+
+    When I follow "🤗"
+    Then I should not see tab content "tab 1"
     And I should not see tab content "tab 2"
     And I should see tab content "tab 3"
