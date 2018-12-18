@@ -59,7 +59,7 @@ RSpec.describe ActiveAdmin::Views::Tabs do
       end
 
       it "should create a tab navigation bar based on the symbol" do
-        expect(tabs.find_by_tag('li').first.content).to include "Overview"
+        expect(tabs.find_by_tag('li').first.content).to include("Overview")
       end
 
       it "should create a tab with a span inside of it" do
@@ -71,7 +71,9 @@ RSpec.describe ActiveAdmin::Views::Tabs do
       let(:tabs) do
         render_arbre_component do
           tabs do
-            tab '🤗'
+            tab '🤗' do
+              'Tab content'
+            end
           end
         end
       end
@@ -82,14 +84,16 @@ RSpec.describe ActiveAdmin::Views::Tabs do
         expect(subject).to have_content('🤗')
       end
 
-      it "should have tab with id based on URL-safe Base64 representation of the string without padding" do
-        expected_fragment = Base64.urlsafe_encode64('🤗', padding: false)
-        expect(subject).to have_selector("div##{expected_fragment}")
+      it "should have tab with id based on URL-safe Base64 representation of the string" do
+        expected_fragment = Base64.urlsafe_encode64('🤗')
+        tab_content = subject.find('.tabs .tab-content div', text: 'Tab content')
+
+        expect(tab_content['id']).to eq(expected_fragment)
       end
 
-      it "should have link with fragment based on URL-safe Base64 representation of the string without padding" do
-        expected_fragment = Base64.urlsafe_encode64('🤗', padding: false)
-        expect(subject).to have_selector(%{a[href="##{expected_fragment}"]})
+      it "should have link with fragment based on URL-safe Base64 representation of the string" do
+        expected_fragment = Base64.urlsafe_encode64('🤗')
+        expect(subject).to have_link('🤗', href: "##{expected_fragment}")
       end
     end
   end
