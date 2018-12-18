@@ -66,5 +66,29 @@ RSpec.describe ActiveAdmin::Views::Tabs do
         expect(tabs.find_by_tag('span').first.content).to eq('tab 1')
       end
     end
+
+    context "when creating a tab with non-transliteratable string" do
+      let(:tabs) do
+        render_arbre_component do
+          tabs do
+            tab '🤗'
+          end
+        end
+      end
+
+      let(:subject) { Capybara.string(tabs.to_s) }
+
+      it "should create a tab navigation bar based on the string" do
+        expect(subject).to have_content('🤗')
+      end
+
+      it "should have tab with id based on hash of the string" do
+        expect(subject).to have_selector("div##{'🤗'.hash}")
+      end
+
+      it "should have link with fragment based on hash of the string" do
+        expect(subject).to have_selector(%{a[href="##{'🤗'.hash}"]})
+      end
+    end
   end
 end

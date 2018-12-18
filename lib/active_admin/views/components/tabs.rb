@@ -15,7 +15,8 @@ module ActiveAdmin
       end
 
       def build_menu_item(title, options, &block)
-        fragment = options.fetch(:id, title.parameterize)
+        fragment = options.fetch(:id, fragmentize(title))
+
         html_options = options.fetch(:html_options, {})
         li html_options do
           link_to title, "##{fragment}"
@@ -23,8 +24,16 @@ module ActiveAdmin
       end
 
       def build_content_item(title, options, &block)
-        options = options.reverse_merge(id: title.parameterize)
+        options = options.reverse_merge(id: fragmentize(title))
         div(options, &block)
+      end
+
+      private
+
+      def fragmentize(string)
+        result = string.parameterize
+        result = string.hash if result.blank?
+        result
       end
     end
   end
