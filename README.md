@@ -32,16 +32,22 @@ Google Groups, IRC #activeadmin and Gitter are not actively monitored.
 
 ## Want to contribute?
 
-The [contributing guide][contributing]
-is a good place to start. If you have questions, feel free to ask.
+If you want to contribute through code or documentation, the [Contributing
+guide is the best place to start][contributing]. If you have questions, feel free
+to ask.
 
 ## Want to support us?
 
-Subscribe to [Tidelift][tidelift] to support Active Admin and get licensing assurances and timely security notifications.
+If you want to support us financially, you can [help fund the project
+through a Tidelift subscription][tidelift]. By buying a Tidelift subscription
+you make sure your whole dependency stack is properly maintained, while also
+getting a comprehensive view of outdated dependencies, new releases, security
+alerts, and licensing compatibility issues.
 
-You can support us with a weekly tip via [Liberapay][liberapay.com].
+You can also support us with a weekly tip via [Liberapay].
 
-[![Support via Liberapay][liberapay_button]][liberapay_donate]
+Finally, we have an [Open Collective][opencollective page] where you can become a backer or
+sponsor for the project, and also submit expenses to it.
 
 ## Dependencies
 
@@ -55,6 +61,18 @@ Tool                  | Description
 [Inherited Resources] | Simplifies controllers with pre-built RESTful controller actions
 [Kaminari]            | Elegant pagination for any sort of collection
 [Ransack]             | Provides a simple search API to query your data
+
+## Acknowledgements
+
+Thanks to [Greg Bell][Greg] for creating and sharing this project with the open source community.
+
+Thanks to [all the people that ever contributed through code][contributors] or
+other means such as bug reports, issue triaging, feature suggestions, code
+snippet tips, Slack discussions and so on.
+
+Thanks to [Tidelift][tidelift] and all our Tidelift subscribers.
+
+Thanks to [Open Collective][opencollective contributors] and all our Open Collective contributors.
 
 [Arbre]: https://github.com/activeadmin/arbre
 [Devise]: https://github.com/plataformatec/devise
@@ -79,6 +97,8 @@ Tool                  | Description
 [wiki]: https://github.com/activeadmin/activeadmin/wiki
 [stackoverflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
-[liberapay.com]: https://liberapay.com
-[liberapay_button]: https://liberapay.com/assets/widgets/donate.svg
-[liberapay_donate]: https://liberapay.com/Active-Admin/donate
+[Liberapay]: https://liberapay.com
+[Greg]: https://github.com/gregbell
+[contributors]: https://github.com/activeadmin/activeadmin/graphs/contributors
+[opencollective page]: https://opencollective.com/activeadmin
+[opencollective contributors]: https://opencollective.com/activeadmin#contributors
