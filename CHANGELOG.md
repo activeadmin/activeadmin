@@ -17,6 +17,7 @@
 * Fix for paginated collections with `per_page: Array, pagination_total: false`. [#5627] by [@bartoszkopinski]
 * Restrict ransack requirement to >= 2.1.1 to play nice with Rails 5.2.2. [#5632] by [@deivid-rodriguez]
 * Bad interpolation variables on pagination keys in Lithuanian translation. [#5631] by [@deivid-rodriguez]
+* Tabs are not correctly created when using non-transliteratable characters as title. [#5650] by [@panasyuk]
 
 ### Removals
 
