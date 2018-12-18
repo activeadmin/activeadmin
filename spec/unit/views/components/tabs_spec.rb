@@ -82,12 +82,14 @@ RSpec.describe ActiveAdmin::Views::Tabs do
         expect(subject).to have_content('🤗')
       end
 
-      it "should have tab with id based on hash of the string" do
-        expect(subject).to have_selector("div##{'🤗'.hash}")
+      it "should have tab with id based on URL-safe Base64 representation of the string without padding" do
+        expected_fragment = Base64.urlsafe_encode64('🤗', padding: false)
+        expect(subject).to have_selector("div##{expected_fragment}")
       end
 
-      it "should have link with fragment based on hash of the string" do
-        expect(subject).to have_selector(%{a[href="##{'🤗'.hash}"]})
+      it "should have link with fragment based on URL-safe Base64 representation of the string without padding" do
+        expected_fragment = Base64.urlsafe_encode64('🤗', padding: false)
+        expect(subject).to have_selector(%{a[href="##{expected_fragment}"]})
       end
     end
   end
