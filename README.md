@@ -97,7 +97,7 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 [wiki]: https://github.com/activeadmin/activeadmin/wiki
 [stackoverflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
-[Liberapay]: https://liberapay.com
+[Liberapay]: https://liberapay.com/Active-Admin/donate
 [Greg]: https://github.com/gregbell
 [contributors]: https://github.com/activeadmin/activeadmin/graphs/contributors
 [opencollective page]: https://opencollective.com/activeadmin
