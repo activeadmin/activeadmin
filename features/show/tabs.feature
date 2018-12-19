@@ -18,14 +18,30 @@ Feature: Show - Tabs
             tab 'テスト', id: :test_non_ascii do
               span "tab 2"
             end
+
+            tab '🤗' do
+              span "tab 3"
+            end
           end
         end
       end
     """
 
-    Then I should see two tabs "Overview" and "テスト"
-    And I should see the element "#overview span"
-    And I should not see the element "#test_non_ascii span"
+    Then I should see tabs:
+    | Tab title |
+    | Overview  |
+    | テスト     |
+    | 🤗        |
+    And I should see tab content "tab 1"
+    And I should not see tab content "tab 2"
+    And I should not see tab content "tab 3"
+
     When I follow "テスト"
-    Then I should see the element "#test_non_ascii span"
-    And I should not see the element "#overview span"
+    Then I should not see tab content "tab 1"
+    And I should see tab content "tab 2"
+    And I should not see tab content "tab 3"
+
+    When I follow "🤗"
+    Then I should not see tab content "tab 1"
+    And I should not see tab content "tab 2"
+    And I should see tab content "tab 3"

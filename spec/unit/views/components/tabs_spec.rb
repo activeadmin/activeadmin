@@ -59,11 +59,38 @@ RSpec.describe ActiveAdmin::Views::Tabs do
       end
 
       it "should create a tab navigation bar based on the symbol" do
-        expect(tabs.find_by_tag('li').first.content).to include "Overview"
+        expect(tabs.find_by_tag('li').first.content).to include("Overview")
       end
 
       it "should create a tab with a span inside of it" do
         expect(tabs.find_by_tag('span').first.content).to eq('tab 1')
+      end
+    end
+
+    context "when creating a tab with non-transliteratable string" do
+      let(:tabs) do
+        render_arbre_component do
+          tabs do
+            tab '🤗' do
+              'content'
+            end
+          end
+        end
+      end
+
+      let(:subject) { Capybara.string(tabs.to_s) }
+
+      it "should create a tab navigation bar based on the string" do
+        expect(subject).to have_content('🤗')
+      end
+
+      it "should have tab with id based on URL-encoded string" do
+        tab_content = subject.find('.tabs .tab-content div', text: 'content')
+        expect(tab_content['id']).to eq(URI.encode('🤗'))
+      end
+
+      it "should have link with fragment based on URL-encoded string" do
+        expect(subject).to have_link('🤗', href: "##{URI.encode('🤗')}")
       end
     end
   end
