@@ -32,7 +32,7 @@ module ActiveAdmin
 
       def fragmentize(string)
         result = string.parameterize
-        result = Base64.urlsafe_encode64(string) if result.blank?
+        result = URI.encode(string) if result.blank?
         result
       end
     end

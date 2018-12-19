@@ -72,7 +72,7 @@ RSpec.describe ActiveAdmin::Views::Tabs do
         render_arbre_component do
           tabs do
             tab '🤗' do
-              'Tab content'
+              'content'
             end
           end
         end
@@ -84,16 +84,13 @@ RSpec.describe ActiveAdmin::Views::Tabs do
         expect(subject).to have_content('🤗')
       end
 
-      it "should have tab with id based on URL-safe Base64 representation of the string" do
-        expected_fragment = Base64.urlsafe_encode64('🤗')
-        tab_content = subject.find('.tabs .tab-content div', text: 'Tab content')
-
-        expect(tab_content['id']).to eq(expected_fragment)
+      it "should have tab with id based on URL-encoded string" do
+        tab_content = subject.find('.tabs .tab-content div', text: 'content')
+        expect(tab_content['id']).to eq(URI.encode('🤗'))
       end
 
-      it "should have link with fragment based on URL-safe Base64 representation of the string" do
-        expected_fragment = Base64.urlsafe_encode64('🤗')
-        expect(subject).to have_link('🤗', href: "##{expected_fragment}")
+      it "should have link with fragment based on URL-encoded string" do
+        expect(subject).to have_link('🤗', href: "##{URI.encode('🤗')}")
       end
     end
   end
