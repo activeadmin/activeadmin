@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+load File.expand_path("bundle", __dir__)
+
 require "bundler/setup"
 
 %w[--serialize-stdout --combine-stderr --verbose].each do |flag|

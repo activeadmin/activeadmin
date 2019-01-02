@@ -2,6 +2,11 @@
 
 version: 2.1
 
+.install_rubygems: &install_rubygems
+  run:
+    name: Install a specific rubygems version
+    command: gem update --system 3.0.2
+
 .install_bundler: &install_bundler
   run:
     name: Install a specific bundler version
@@ -20,7 +25,7 @@ version: 2.1
 .install_dependencies: &install_dependencies
   run:
     name: Install dependencies
-    command: bundle install --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3
+    command: bin/bundle install --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3
 
 .install_chromedriver: &install_chromedriver
   run:
@@ -115,6 +120,7 @@ version: 2.1
 
 .test_steps: &test_steps
   - checkout
+  - *install_rubygems
   - *install_bundler
   - *copy_current_gemfile
   - *restore_cache
@@ -132,6 +138,7 @@ version: 2.1
 
 .test_app_steps: &test_app_steps
   - checkout
+  - *install_rubygems
   - *install_bundler
   - *copy_current_gemfile
   - *restore_cache
@@ -217,6 +224,7 @@ jobs:
 
     steps:
       - checkout
+      - *install_rubygems
       - *install_bundler
       - *copy_current_gemfile
       - *restore_cache
