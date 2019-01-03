@@ -4,6 +4,14 @@
 
 ### Enhancements
 
+* Add your own content to the site `<head>`, like analytics [#5590] by [@buren]
+
+  ```ruby
+  ActiveAdmin.setup do |config|
+    config.head = ''.html_safe
+  end
+  ```
+
 #### Minor
 
 * Add better support for rendering lists. [#5370] by [@dkniffin]
@@ -399,6 +407,7 @@ Please check [0-6-stable] for previous changes.
 [#5631]: https://github.com/activeadmin/activeadmin/pull/5631
 [#5632]: https://github.com/activeadmin/activeadmin/pull/5632
 [#5650]: https://github.com/activeadmin/activeadmin/pull/5650
+[#5590]: https://github.com/activeadmin/activeadmin/pull/5590
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek

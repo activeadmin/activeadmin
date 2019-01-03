@@ -26,6 +26,8 @@ module ActiveAdmin
           within head do
             html_title [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
 
+            text_node(active_admin_namespace.head)
+
             active_admin_application.stylesheets.each do |style, options|
               text_node stylesheet_link_tag(style, options).html_safe
             end
