@@ -62,6 +62,11 @@ Tool                  | Description
 [Kaminari]            | Elegant pagination for any sort of collection
 [Ransack]             | Provides a simple search API to query your data
 
+## Security contact information
+
+Please use the Tidelift security contact to [report a security vulnerability][Tidelift security contact].
+Tidelift will coordinate the fix and disclosure.
+
 ## Acknowledgements
 
 Thanks to [Greg Bell][Greg] for creating and sharing this project with the open source community.
@@ -98,6 +103,7 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 [stackoverflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
 [Liberapay]: https://liberapay.com/Active-Admin/donate
+[Tidelift security contact]: https://tidelift.com/security
 [Greg]: https://github.com/gregbell
 [contributors]: https://github.com/activeadmin/activeadmin/graphs/contributors
 [opencollective page]: https://opencollective.com/activeadmin
