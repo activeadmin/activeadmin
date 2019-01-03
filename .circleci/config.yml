@@ -10,7 +10,7 @@ version: 2.1
 .install_bundler: &install_bundler
   run:
     name: Install a specific bundler version
-    command: gem install bundler -v 1.17.3
+    command: gem install bundler -v 2.0.1
 
 .copy_current_gemfile: &copy_current_gemfile
   run:
