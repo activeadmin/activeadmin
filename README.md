@@ -64,7 +64,7 @@ Tool                  | Description
 
 ## Security contact information
 
-To report a security vulnerability, please use the [Tidelift security contact].
+Please use the Tidelift security contact to [report a security vulnerability][Tidelift security contact].
 Tidelift will coordinate the fix and disclosure.
 
 ## Acknowledgements
