@@ -32,7 +32,7 @@ scenarios.
 Now install the development dependencies:
 
 ```sh
-bin/bundle install
+bundle install
 ```
 
 Now you should be able to run the entire suite using:
@@ -49,7 +49,7 @@ because of some breaking change or problem with the latest version of some
 dependency. You should be able to reproduce the issue locally by:
 
 * Removing the `Gemfile.lock` file.
-* Running `bin/bundle install`.
+* Running `bundle install`.
 * Re-running the tests again like you did previously.
 
 This is not your fault though, so if this happens feel free to investigate, but
