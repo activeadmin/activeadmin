@@ -25,7 +25,7 @@ version: 2.1
 .install_dependencies: &install_dependencies
   run:
     name: Install dependencies
-    command: BUNDLER_VERSION=2.0.1 bundle install --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3
+    command: bundle install --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3
 
 .install_chromedriver: &install_chromedriver
   run:
@@ -116,7 +116,7 @@ version: 2.1
 .run_bug_report_template: &run_bug_report_template
   run:
     name: Run bug report template
-    command: BUNDLER_VERSION=2.0.1 ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
+    command: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
 
 .test_steps: &test_steps
   - checkout

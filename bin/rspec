@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-ENV["BUNDLER_VERSION"] = "2.0.1"
-
 require "bundler/setup"
 
 load Gem.bin_path("rspec-core", "rspec")

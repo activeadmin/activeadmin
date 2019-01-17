@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-ENV["BUNDLER_VERSION"] = "2.0.1"
-
 require "bundler/setup"
 
 ["--serialize-stdout", "--combine-stderr", "--verbose", "--test-options", "-p default"].each do |flag|
