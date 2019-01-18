@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/deivid-rodriguez/chandler
-  revision: 71ca85925b54a1b1e6ba785efa450a012364efe6
+  revision: c46770b45be3c07e7a830b01ca85baa8e0f3beae
   branch: submit_link_references
   specs:
     chandler (0.7.0)
