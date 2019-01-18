@@ -614,6 +614,22 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
 
+    describe "with multiple new record links" do
+      let :body do
+        build_form({url: '/categories'}, Category.new) do |f|
+          f.object.posts.build
+          f.has_many :posts, new_record: [Post.new, AnonymousPost.new] do |p|
+            p.input :title
+            p.input :author unless p.object.is_a?(AnonymousPost)
+          end
+        end
+      end
+
+      it "should add a custom new record link" do
+        expect(body).to have_selector("a", text: "Add New Post").and(have_selector("a", text: "Add New Anonymous post"))
+      end
+    end
+
     describe "with allow destroy" do
       shared_examples_for "has many with allow_destroy = true" do |child_num|
         it "should render the nested form" do
