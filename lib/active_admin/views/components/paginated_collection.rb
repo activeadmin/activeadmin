@@ -44,6 +44,7 @@ module ActiveAdmin
         @download_links = options.delete(:download_links)
         @display_total  = options.delete(:pagination_total) { true }
         @per_page       = options.delete(:per_page)
+        @remote         = options.delete(:remote)
 
         unless collection.respond_to?(:total_pages)
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
@@ -95,6 +96,7 @@ module ActiveAdmin
         options = { theme: 'active_admin' }
         options[:params]     = @params     if @params
         options[:param_name] = @param_name if @param_name
+        options[:remote] = @remote if @remote
 
         if !@display_total && collection.respond_to?(:offset)
           # The #paginate method in kaminari will query the resource with a

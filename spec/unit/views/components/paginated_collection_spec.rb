@@ -227,6 +227,28 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
+    context "with :remote" do
+      let(:collection) do
+        Kaminari.paginate_array([Post.new] * 256).page(1).per(30)
+      end
+
+      describe "set to false" do
+        let(:pagination) { paginated_collection(collection, remote: false) }
+
+        it "should pass remote: false through to Kaminari" do
+          expect(pagination.children.last.content).to_not match(/.*data-remote.*/)
+        end
+      end
+
+      describe "set to true" do
+        let(:pagination) { paginated_collection(collection, remote: true) }
+
+        it "should pass remote: true through to Kaminari" do
+          expect(pagination.children.last.content).to match(/.*data-remote="true".*/)
+        end
+      end
+    end
+
     context "when specifying per_page: array option" do
       let(:collection) do
         posts = 10.times.map { Post.new }
