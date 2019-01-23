@@ -181,11 +181,11 @@ module ActiveAdmin
     end
 
     def association_columns
-      @association_columns ||= resource_attributes.select{ |key, value| key != value }.values
+      @association_columns ||= resource_attributes.select { |key, value| key != value }.values
     end
 
     def content_columns
-      @content_columns ||= resource_attributes.select{ |key, value| key == value }.values
+      @content_columns ||= resource_attributes.select { |key, value| key == value }.values
     end
 
     private

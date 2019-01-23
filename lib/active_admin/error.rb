@@ -22,7 +22,7 @@ module ActiveAdmin
   class ErrorLoading < Error
     # Locates the most recent file and line from the caught exception's backtrace.
     def find_cause(folder, backtrace)
-      backtrace.grep(/\/(#{folder}\/.*\.rb):(\d+)/){ [$1, $2] }.first
+      backtrace.grep(/\/(#{folder}\/.*\.rb):(\d+)/) { [$1, $2] }.first
     end
   end
 

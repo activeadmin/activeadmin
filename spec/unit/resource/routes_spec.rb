@@ -66,7 +66,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     let :post do
       Post.new do |p|
         p.id = 3
-        p.category = Category.new{ |c| c.id = 1 }
+        p.category = Category.new { |c| c.id = 1 }
       end
     end
 

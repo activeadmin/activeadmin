@@ -17,7 +17,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     end
   end
 
-  let(:active_admin_namespace){ view.active_admin_application.namespaces[:admin] }
+  let(:active_admin_namespace) { view.active_admin_application.namespaces[:admin] }
 
   let(:view) { mock_action_view(view_klass) }
 
@@ -30,7 +30,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
 
     load_resources do
       ActiveAdmin.register(User)
-      ActiveAdmin.register(Post){ belongs_to :user, optional: true }
+      ActiveAdmin.register(Post) { belongs_to :user, optional: true }
     end
   end
 

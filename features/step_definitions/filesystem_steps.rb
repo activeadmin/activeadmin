@@ -12,7 +12,7 @@ module ActiveAdminContentsRollback
 
   # Rolls the recorded files back to their original states
   def rollback!
-    files.each{ |file, contents| rollback_file(file, contents) }
+    files.each { |file, contents| rollback_file(file, contents) }
     @files = {}
   end
 
@@ -46,7 +46,7 @@ Given /^"([^"]*)" contains:$/ do |filename, contents|
   FileUtils.mkdir_p File.dirname path
   record path
 
-  File.open(path, 'w+'){ |f| f << contents }
+  File.open(path, 'w+') { |f| f << contents }
 end
 
 Given /^I add "([^"]*)" to the "([^"]*)" model$/ do |code, model_name|

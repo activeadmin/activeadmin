@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'defining actions from registration blocks', type: :controller do
-  let(:klass){ Admin::PostsController }
+  let(:klass) { Admin::PostsController }
 
   before do
     load_resources { action! }

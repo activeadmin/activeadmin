@@ -24,17 +24,17 @@ RSpec.describe ActiveAdmin::BatchActions::BatchActionSelector do
 
     describe '#content' do
       subject { super().content }
-      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_1\"") }
+      it { is_expected.to include("class=\"batch_action\" data-action=\"action_1\"") }
     end
 
     describe '#content' do
       subject { super().content }
-      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_2\"") }
+      it { is_expected.to include("class=\"batch_action\" data-action=\"action_2\"") }
     end
 
     describe '#content' do
       subject { super().content }
-      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_3\"") }
+      it { is_expected.to include("class=\"batch_action\" data-action=\"action_3\"") }
     end
   end
 end

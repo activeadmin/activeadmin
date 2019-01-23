@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Resource::PagePresenters do
-  let(:namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
-  let(:resource){ namespace.register(Post) }
+  let(:namespace) { ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
+  let(:resource) { namespace.register(Post) }
 
   it "should have an empty set of configs on initialize" do
     expect(resource.page_presenters).to eq({})

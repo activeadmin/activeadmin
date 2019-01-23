@@ -104,7 +104,7 @@ RSpec.describe "Routing", type: :routing do
       context "without an http verb" do
         around do |example|
           with_resources_during(example) do
-            ActiveAdmin.register(Post){ member_action "do_something" }
+            ActiveAdmin.register(Post) { member_action "do_something" }
           end
         end
 
@@ -117,7 +117,7 @@ RSpec.describe "Routing", type: :routing do
       context "with one http verb" do
         around do |example|
           with_resources_during(example) do
-            ActiveAdmin.register(Post){ member_action "do_something", method: :post }
+            ActiveAdmin.register(Post) { member_action "do_something", method: :post }
           end
         end
 
@@ -129,7 +129,7 @@ RSpec.describe "Routing", type: :routing do
       context "with two http verbs" do
         around do |example|
           with_resources_during(example) do
-            ActiveAdmin.register(Post){ member_action "do_something", method: [:put, :delete] }
+            ActiveAdmin.register(Post) { member_action "do_something", method: [:put, :delete] }
           end
         end
 
@@ -148,7 +148,7 @@ RSpec.describe "Routing", type: :routing do
     around do |example|
       with_resources_during(example) do
         ActiveAdmin.register(User)
-        ActiveAdmin.register(Post){ belongs_to :user, optional: true }
+        ActiveAdmin.register(Post) { belongs_to :user, optional: true }
       end
     end
 

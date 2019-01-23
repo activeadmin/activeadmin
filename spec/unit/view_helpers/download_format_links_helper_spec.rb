@@ -28,7 +28,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper do
     end
 
     it "raises an exception if you provide an unregisterd mime type extension" do
-      expect{ subject.add_format :hoge }.to raise_error 'Please register the hoge mime type with `Mime::Type.register`'
+      expect { subject.add_format :hoge }.to raise_error 'Please register the hoge mime type with `Mime::Type.register`'
     end
   end
 end

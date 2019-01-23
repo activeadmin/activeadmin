@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::Menu do
-  let(:menu){ ActiveAdmin::Menu.new }
+  let(:menu) { ActiveAdmin::Menu.new }
 
-  let(:assigns){ { active_admin_menu: menu } }
-  let(:helpers){ mock_action_view }
+  let(:assigns) { { active_admin_menu: menu } }
+  let(:helpers) { mock_action_view }
 
   let(:menu_component) do
     arbre(assigns, helpers) {
@@ -26,7 +26,7 @@ RSpec.describe ActiveAdmin::Views::Menu do
       menu.add label: "Reports", url: "/admin/reports" do |reports|
         reports.add label: "A Sub Reports", url: "/admin/a-sub-reports"
         reports.add label: "B Sub Reports", url: "/admin/b-sub-reports"
-        reports.add label: proc{ "Label Proc Sub Reports" }, url: "/admin/label-proc-sub-reports", id: "Label Proc Sub Reports"
+        reports.add label: proc { "Label Proc Sub Reports" }, url: "/admin/label-proc-sub-reports", id: "Label Proc Sub Reports"
       end
 
       menu.add label: "Administration", url: "/admin/administration" do |administration|
@@ -124,7 +124,7 @@ RSpec.describe ActiveAdmin::Views::Menu do
     end
 
     it "should not include menu items with an if block that returns false" do
-      menu.add label: "Don't Show", url: "/", priority: 10, if: proc{ false }
+      menu.add label: "Don't Show", url: "/", priority: 10, if: proc { false }
       expect(menu_component.children).to be_empty
     end
 
@@ -135,14 +135,14 @@ RSpec.describe ActiveAdmin::Views::Menu do
 
     it "should not display any items that have no children to display" do
       menu.add label: "Parent", url: "#" do |p|
-        p.add label: "Child", url: "/", priority: 10, if: proc{ false }
+        p.add label: "Child", url: "/", priority: 10, if: proc { false }
       end
       expect(html.all('li')).to be_empty
     end
 
     it "should display a parent that has a child to display" do
       menu.add label: "Parent", url: "#" do |p|
-        p.add label: "Hidden Child", url: "/", priority: 10, if: proc{ false }
+        p.add label: "Hidden Child", url: "/", priority: 10, if: proc { false }
         p.add label: "Child", url: "/"
       end
       expect(menu_component.children.size).to eq(1)
@@ -151,9 +151,9 @@ RSpec.describe ActiveAdmin::Views::Menu do
 
   describe "sorting items" do
     it "should sort children by the result of their label proc" do
-      menu.add label: proc{ "G" }, id: "not related 1"
-      menu.add label: proc{ "B" }, id: "not related 2"
-      menu.add label: proc{ "A" }, id: "not related 3"
+      menu.add label: proc { "G" }, id: "not related 1"
+      menu.add label: proc { "B" }, id: "not related 2"
+      menu.add label: proc { "A" }, id: "not related 3"
 
       expect(menu_component.children.map(&:label)).to eq %w[A B G]
     end
