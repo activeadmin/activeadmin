@@ -257,7 +257,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
     context "when using an Array of Hashes" do
       let(:table) do
         render_arbre_component nil, helpers do
-          table_for [{foo: 1}, {foo: 2}] do
+          table_for [{ foo: 1 }, { foo: 2 }] do
             column :foo
           end
         end

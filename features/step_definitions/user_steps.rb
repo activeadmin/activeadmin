@@ -36,7 +36,7 @@ end
 
 Given /^override locale "([^"]*)" with "([^"]*)"$/ do |path, value|
   keys_value  = path.split('.') + [value]
-  locale_hash = keys_value.reverse.inject {|a, n| {n=>a}}
+  locale_hash = keys_value.reverse.inject {|a, n| { n=>a }}
   I18n.available_locales
   I18n.backend.store_translations(I18n.locale, locale_hash)
 end

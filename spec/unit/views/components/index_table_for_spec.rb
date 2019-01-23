@@ -22,7 +22,7 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
     context 'when creating a selectable column' do
       let(:table) do
         render_arbre_component assigns, helpers do
-          insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, {sortable: true}) do
+          insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, { sortable: true }) do
             selectable_column
           end
         end
@@ -59,7 +59,7 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
 
       let(:table) do
         render_arbre_component assigns, helpers do
-          insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, {sortable: true}) do
+          insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, { sortable: true }) do
             index_column
           end
         end
@@ -105,7 +105,7 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
       context 'allows for zero-based indices' do
         let(:table) do
           render_arbre_component assigns, helpers do
-            insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, {sortable: true}) do
+            insert_tag(ActiveAdmin::Views::IndexAsTable::IndexTableFor, collection, { sortable: true }) do
               index_column(0)
             end
           end

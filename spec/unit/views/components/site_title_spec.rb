@@ -5,7 +5,7 @@ RSpec.describe ActiveAdmin::Views::SiteTitle do
   let(:settings) { ActiveAdmin::SettingsNode.build(ActiveAdmin::NamespaceSettings) }
 
   def build_title(namespace)
-    render_arbre_component({namespace: namespace}, helpers) do
+    render_arbre_component({ namespace: namespace }, helpers) do
       insert_tag ActiveAdmin::Views::SiteTitle, assigns[:namespace]
     end
   end

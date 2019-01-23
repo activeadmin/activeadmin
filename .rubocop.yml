@@ -114,5 +114,8 @@ Layout/SpaceAroundEqualsInParameterDefault:
 Layout/SpaceBeforeBlockBraces:
   Enabled: true
 
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
 Layout/SpaceInsideParens:
   Enabled: true

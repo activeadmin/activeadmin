@@ -52,7 +52,7 @@ RSpec.describe 'defining actions from registration blocks', type: :controller do
       let(:action!) do
         ActiveAdmin.register Post do
           member_action :comment, title: 'My Awesome Comment' do
-            render json: {a: 2}
+            render json: { a: 2 }
           end
         end
       end
@@ -108,7 +108,7 @@ RSpec.describe 'defining actions from registration blocks', type: :controller do
       let(:action!) do
         ActiveAdmin.register Post do
           collection_action :comments, title: 'My Awesome Comments' do
-            render json: {a: 2}
+            render json: { a: 2 }
           end
         end
       end
