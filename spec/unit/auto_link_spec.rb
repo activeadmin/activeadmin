@@ -18,8 +18,8 @@ RSpec.describe "#auto_link" do
 
   let(:linked_post) { view.auto_link(post) }
 
-  let(:active_admin_namespace){ ActiveAdmin.application.namespace(:admin) }
-  let(:post){ Post.create! title: "Hello World" }
+  let(:active_admin_namespace) { ActiveAdmin.application.namespace(:admin) }
+  let(:post) { Post.create! title: "Hello World" }
 
   before do
     allow(view).to receive(:authorized?).and_return(true)

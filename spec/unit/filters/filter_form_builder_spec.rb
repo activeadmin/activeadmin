@@ -17,7 +17,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
   end
 
   def render_filter(search, filters)
-    render_arbre_component({filter_args: [search, filters]}, helpers) do
+    render_arbre_component({ filter_args: [search, filters] }, helpers) do
       text_node active_admin_filters_form_for *assigns[:filter_args]
     end.to_s
   end
@@ -56,7 +56,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     describe "input html as proc" do
-      let(:body) { filter :title, as: :select, input_html: proc{ {'data-ajax-url': '/'} } }
+      let(:body) { filter :title, as: :select, input_html: proc { { 'data-ajax-url': '/' } } }
 
       it "should render proper label" do
         expect(body).to have_selector('select[data-ajax-url="/"]')
@@ -88,7 +88,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should translate the label for text field" do
-      with_translation activerecord: {attributes: {post: {title: 'Name'}}} do
+      with_translation activerecord: { attributes: { post: { title: 'Name' } } } do
         expect(body).to have_selector("label", text: "Name")
       end
     end
@@ -237,7 +237,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should translate the label for boolean field" do
-        with_translation activerecord: {attributes: {post: {starred: 'Faved'}}} do
+        with_translation activerecord: { attributes: { post: { starred: 'Faved' } } } do
           expect(body).to have_selector("label", text: "Faved")
         end
       end
@@ -291,7 +291,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
       context "with a proc" do
         let :body do
-          filter :title, as: :select, collection: proc{ ['Title One', 'Title Two'] }
+          filter :title, as: :select, collection: proc { ['Title One', 'Title Two'] }
         end
 
         it "should use call the proc as the collection" do
@@ -300,7 +300,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
         end
 
         it "should render the collection in the context of the view" do
-          body = filter :title, as: :select, collection: proc{[a_helper_method]}
+          body = filter :title, as: :select, collection: proc {[a_helper_method]}
           expect(body).to have_selector("option", text: "A Helper Method")
         end
       end
@@ -417,22 +417,22 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       if_false = verb == :if ? :to_not  : :to
       context "with #{verb.inspect} proc" do
         it "#{should} be displayed if true" do
-          body = filter :body, verb => proc{ true }
+          body = filter :body, verb => proc { true }
           expect(body).send if_true, have_selector("input[name='q[body_contains]']")
         end
         it "#{should} be displayed if false" do
-          body = filter :body, verb => proc{ false }
+          body = filter :body, verb => proc { false }
           expect(body).send if_false, have_selector("input[name='q[body_contains]']")
         end
         it "should still be hidden on the second render" do
-          filters = {body: { verb => proc{ verb == :unless }}}
+          filters = { body: { verb => proc { verb == :unless } } }
           2.times do
             body = filter scope, filters
             expect(body).not_to have_selector("input[name='q[body_contains]']")
           end
         end
         it "should successfully keep rendering other filters after one is hidden" do
-          filters = {body: { verb => proc{ verb == :unless }}, author: {}}
+          filters = { body: { verb => proc { verb == :unless } }, author: {} }
           body    = Capybara.string(render_filter scope, filters)
           expect(body).not_to have_selector("input[name='q[body_contains]']")
           expect(body).to     have_selector("select[name='q[author_id_eq]']")
@@ -463,7 +463,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     describe "custom date range search" do
       let(:gteq) { "2010-10-01" }
       let(:lteq) { "2010-10-02" }
-      let(:scope){ Post.ransack custom_created_at_searcher_gteq_datetime: gteq, custom_created_at_searcher_lteq_datetime: lteq }
+      let(:scope) { Post.ransack custom_created_at_searcher_gteq_datetime: gteq, custom_created_at_searcher_lteq_datetime: lteq }
       let(:body) { filter :custom_created_at_searcher, as: :date_range }
 
       it "should work as date_range" do

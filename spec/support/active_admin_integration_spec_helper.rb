@@ -8,7 +8,7 @@ module ActiveAdminIntegrationSpecHelper
   end
 
   def reload_menus!
-    ActiveAdmin.application.namespaces.each{|n| n.reset_menu! }
+    ActiveAdmin.application.namespaces.each {|n| n.reset_menu! }
   end
 
   # Sometimes we need to reload the routes within

@@ -11,7 +11,7 @@ RSpec.describe ActiveAdmin::Views::Tabs do
         render_arbre_component do
           tabs do
             tab :overview
-            tab I18n.t(:tab_key), { id: :something_unique, html_options: { class: :some_css_class }}
+            tab I18n.t(:tab_key), { id: :something_unique, html_options: { class: :some_css_class } }
           end
         end
       end

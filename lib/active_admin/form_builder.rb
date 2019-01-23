@@ -20,7 +20,7 @@ module ActiveAdmin
     self.input_class_finder = ::Formtastic::InputClassFinder
     self.action_class_finder = ::Formtastic::ActionClassFinder
 
-    def cancel_link(url = {action: "index"}, html_options = {}, li_attrs = {})
+    def cancel_link(url = { action: "index" }, html_options = {}, li_attrs = {})
       li_attrs[:class] ||= "cancel"
       li_content = template.link_to I18n.t('active_admin.cancel'), url, html_options
       template.content_tag(:li, li_content, li_attrs)
@@ -111,7 +111,7 @@ module ActiveAdmin
         end
       elsif allow_destroy?(form_builder.object)
         form_builder.input(:_destroy, as: :boolean,
-                            wrapper_html: {class: 'has_many_delete'},
+                            wrapper_html: { class: 'has_many_delete' },
                             label: I18n.t('active_admin.has_many_delete'))
       end
 
@@ -163,7 +163,7 @@ module ActiveAdmin
         class: class_string,
         for_options: { child_index: placeholder }
       }
-      html = template.capture{ __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
+      html = template.capture { __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
       text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
       template.link_to text, '#', class: "button has_many_add", data: {

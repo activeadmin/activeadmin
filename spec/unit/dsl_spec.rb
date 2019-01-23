@@ -9,7 +9,7 @@ RSpec.describe ActiveAdmin::DSL do
   let(:application) { ActiveAdmin::Application.new }
   let(:namespace) { ActiveAdmin::Namespace.new application, :admin }
   let(:resource_config) { namespace.register Post }
-  let(:dsl){ ActiveAdmin::DSL.new(resource_config) }
+  let(:dsl) { ActiveAdmin::DSL.new(resource_config) }
 
   describe "#include" do
     it "should call the included class method on the module that is included" do
@@ -38,7 +38,7 @@ RSpec.describe ActiveAdmin::DSL do
 
   describe "#menu" do
     it "should set the menu_item_options on the configuration" do
-      expect(resource_config).to receive(:menu_item_options=).with({parent: "Admin"})
+      expect(resource_config).to receive(:menu_item_options=).with({ parent: "Admin" })
       dsl.run_registration_block do
         menu parent: "Admin"
       end

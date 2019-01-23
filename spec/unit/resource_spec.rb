@@ -9,8 +9,8 @@ module ActiveAdmin
       with_resources_during(example) { namespace.register Category }
     end
 
-    let(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ Namespace.new(application, :admin) }
+    let(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { Namespace.new(application, :admin) }
 
     def config(options = {})
       @config ||= Resource.new(namespace, Category, options)
@@ -60,7 +60,7 @@ module ActiveAdmin
         expect(config.controller_name).to eq "Admin::CategoriesController"
       end
       context "when non namespaced controller" do
-        let(:namespace){ ActiveAdmin::Namespace.new(application, :root) }
+        let(:namespace) { ActiveAdmin::Namespace.new(application, :root) }
         it "should return a non namespaced controller name" do
           expect(config.controller_name).to eq "CategoriesController"
         end
@@ -68,19 +68,19 @@ module ActiveAdmin
     end
 
     describe "#include_in_menu?" do
-      subject{ resource }
+      subject { resource }
 
       around do |example|
         with_resources_during(example) { resource }
       end
 
       context "when regular resource" do
-        let(:resource){ namespace.register(Post) }
+        let(:resource) { namespace.register(Post) }
         it { is_expected.to be_include_in_menu }
       end
 
       context "when menu set to false" do
-        let(:resource){ namespace.register(Post){ menu false } }
+        let(:resource) { namespace.register(Post) { menu false } }
         it { is_expected.not_to be_include_in_menu }
       end
     end
@@ -199,7 +199,7 @@ module ActiveAdmin
       end
 
       it "should retrieve the default scope by proc" do
-        config.scope :published, default: proc{ true }
+        config.scope :published, default: proc { true }
         config.scope :all
         expect(config.default_scope.name).to eq "Published"
       end

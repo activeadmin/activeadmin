@@ -18,9 +18,9 @@ module ActiveAdmin
 
       def foreign_methods
         @foreign_methods ||= resource_class.reflect_on_all_associations.
-          select{ |r| r.macro == :belongs_to }.
-          reject{ |r| r.chain.length > 2 && !r.options[:polymorphic] }.
-          index_by{ |r| r.foreign_key.to_sym }
+          select { |r| r.macro == :belongs_to }.
+          reject { |r| r.chain.length > 2 && !r.options[:polymorphic] }.
+          index_by { |r| r.foreign_key.to_sym }
       end
 
       def reject_col?(c)

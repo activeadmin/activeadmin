@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Scope do
   describe "creating a scope" do
-    subject{ scope }
+    subject { scope }
 
     context "when just a scope method" do
       let(:scope) { ActiveAdmin::Scope.new :published }
@@ -88,7 +88,7 @@ RSpec.describe ActiveAdmin::Scope do
     end
 
     context "when a name and scope block" do
-      let(:scope) { ActiveAdmin::Scope.new("My Scope"){|s| s } }
+      let(:scope) { ActiveAdmin::Scope.new("My Scope") {|s| s } }
 
       describe '#name' do
         subject { super().name }
@@ -127,13 +127,13 @@ RSpec.describe ActiveAdmin::Scope do
 
     context "with a proc as the label" do
       it "should raise an exception if a second argument isn't provided" do
-        expect{
-          ActiveAdmin::Scope.new proc{ Date.today.strftime '%A' }
+        expect {
+          ActiveAdmin::Scope.new proc { Date.today.strftime '%A' }
         }.to raise_error 'A string/symbol is required as the second argument if your label is a proc.'
       end
 
       it "should properly render the proc" do
-        scope = ActiveAdmin::Scope.new proc{ Date.today.strftime '%A' }, :foobar
+        scope = ActiveAdmin::Scope.new proc { Date.today.strftime '%A' }, :foobar
         expect(scope.name.call).to eq Date.today.strftime '%A'
       end
     end
@@ -170,7 +170,7 @@ RSpec.describe ActiveAdmin::Scope do
     end
 
     it "should return the :if block if set" do
-      scope = ActiveAdmin::Scope.new(:with_block, nil, if: proc{ false })
+      scope = ActiveAdmin::Scope.new(:with_block, nil, if: proc { false })
       expect(scope.display_if_block.call).to eq false
     end
   end
@@ -187,7 +187,7 @@ RSpec.describe ActiveAdmin::Scope do
     end
 
     it "should store the :default proc" do
-      scope = ActiveAdmin::Scope.new(:with_block, nil, default: proc{ true })
+      scope = ActiveAdmin::Scope.new(:with_block, nil, default: proc { true })
       expect(scope.default_block.call).to eq true
     end
   end

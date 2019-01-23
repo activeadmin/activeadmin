@@ -36,7 +36,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
 
     context "params includes empty values" do
       let(:http_params) do
-        { q: {id_eq: 1, position_eq: ""} }
+        { q: { id_eq: 1, position_eq: "" } }
       end
       it "should return relation without empty filters" do
         expect(Post).to receive(:ransack).with(params[:q]).once.and_wrap_original do |original, *args|

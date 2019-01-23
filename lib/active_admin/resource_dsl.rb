@@ -140,7 +140,7 @@ module ActiveAdmin
 
       controller do
         before_action(only: [name]) { @page_title = title } if title
-        define_method(name, &block || Proc.new{})
+        define_method(name, &block || Proc.new {})
       end
     end
 

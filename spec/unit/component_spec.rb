@@ -3,8 +3,8 @@ require 'rails_helper'
 class MockComponentClass < ActiveAdmin::Component; end
 
 RSpec.describe ActiveAdmin::Component do
-  let(:component_class){ MockComponentClass }
-  let(:component){ component_class.new }
+  let(:component_class) { MockComponentClass }
+  let(:component) { component_class.new }
 
   it "should be a subclass of an html div" do
     expect(ActiveAdmin::Component.ancestors).to include(Arbre::HTML::Div)

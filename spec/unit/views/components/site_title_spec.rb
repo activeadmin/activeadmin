@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::SiteTitle do
-  let(:helpers){ mock_action_view }
+  let(:helpers) { mock_action_view }
   let(:settings) { ActiveAdmin::SettingsNode.build(ActiveAdmin::NamespaceSettings) }
 
   def build_title(namespace)
-    render_arbre_component({namespace: namespace}, helpers) do
+    render_arbre_component({ namespace: namespace }, helpers) do
       insert_tag ActiveAdmin::Views::SiteTitle, assigns[:namespace]
     end
   end
@@ -37,7 +37,7 @@ RSpec.describe ActiveAdmin::Views::SiteTitle do
     end
 
     it "renders the return value of a proc" do
-      namespace = double site_title: proc{ "Hello World" },
+      namespace = double site_title: proc { "Hello World" },
                          site_title_image: nil,
                          site_title_link: nil
 

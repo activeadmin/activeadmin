@@ -4,7 +4,7 @@ RSpec.describe "Comments" do
   let(:application) { ActiveAdmin::Application.new }
 
   describe ActiveAdmin::Comment do
-    let(:comment){ ActiveAdmin::Comment.new }
+    let(:comment) { ActiveAdmin::Comment.new }
 
     let(:user) { User.create!(first_name: "John", last_name: "Doe") }
 

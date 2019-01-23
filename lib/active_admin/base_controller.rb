@@ -74,7 +74,7 @@ module ActiveAdmin
 
     def active_admin_root
       controller, action = active_admin_namespace.root_to.split '#'
-      {controller: controller, action: action}
+      { controller: controller, action: action }
     end
 
   end

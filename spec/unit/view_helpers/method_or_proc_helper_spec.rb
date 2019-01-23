@@ -19,7 +19,7 @@ RSpec.describe MethodOrProcHelper do
     end
 
     it "should exec a proc in the context" do
-      test_proc = Proc.new{ raise "Success" if receiver_in_context }
+      test_proc = Proc.new { raise "Success" if receiver_in_context }
 
       expect {
         context.call_method_or_exec_proc(test_proc)
@@ -82,7 +82,7 @@ RSpec.describe MethodOrProcHelper do
   end
 
   describe "#render_or_call_method_or_proc_on" do
-    [ :symbol, Proc.new{} ].each do |key|
+    [ :symbol, Proc.new {} ].each do |key|
       context "when a #{key.class}" do
         it "should call #call_method_or_proc_on" do
           options = { foo: :bar }

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Resource::PagePresenters do
-  let(:namespace){ ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
-  let(:resource){ namespace.register(Post) }
+  let(:namespace) { ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin) }
+  let(:resource) { namespace.register(Post) }
 
   it "should have an empty set of configs on initialize" do
     expect(resource.page_presenters).to eq({})
@@ -15,7 +15,7 @@ RSpec.describe ActiveAdmin::Resource::PagePresenters do
   end
 
   it "should add an index page presenter" do
-    page_presenter = ActiveAdmin::PagePresenter.new({as: :table})
+    page_presenter = ActiveAdmin::PagePresenter.new({ as: :table })
     resource.set_page_presenter(:index, page_presenter)
     expect(resource.page_presenters[:index].default).to eq page_presenter
   end

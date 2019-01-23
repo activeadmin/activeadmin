@@ -15,7 +15,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     # Helper to render paginated collections within an arbre context
     def paginated_collection(*args)
-      render_arbre_component({paginated_collection_args: args}, view) do
+      render_arbre_component({ paginated_collection_args: args }, view) do
         paginated_collection(*paginated_collection_args)
       end
     end
@@ -30,7 +30,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       allow(collection).to receive(:group_values) { [] }   unless collection.respond_to? :group_values
     end
 
-    let(:pagination){ paginated_collection collection }
+    let(:pagination) { paginated_collection collection }
 
     it "should set :collection as the passed in collection" do
       expect(pagination.find_by_class('pagination_information').first.content).to eq "Displaying <b>all 3</b> posts"
@@ -52,7 +52,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying :param_name option" do
       let(:collection) do
-        posts = 10.times.map{ Post.new }
+        posts = 10.times.map { Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -65,7 +65,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying :params option" do
       let(:collection) do
-        posts = 10.times.map{ Post.new }
+        posts = 10.times.map { Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -78,7 +78,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying download_links: false option" do
       let(:collection) do
-        posts = 10.times.map{ Post.new }
+        posts = 10.times.map { Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 

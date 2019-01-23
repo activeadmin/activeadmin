@@ -104,41 +104,41 @@ RSpec.describe "Routing", type: :routing do
       context "without an http verb" do
         around do |example|
           with_resources_during(example) do
-            ActiveAdmin.register(Post){ member_action "do_something" }
+            ActiveAdmin.register(Post) { member_action "do_something" }
           end
         end
 
         it "should default to GET" do
-          expect({get: "/admin/posts/1/do_something"}).to      be_routable
-          expect({post: "/admin/posts/1/do_something"}).to_not be_routable
+          expect({ get: "/admin/posts/1/do_something" }).to      be_routable
+          expect({ post: "/admin/posts/1/do_something" }).to_not be_routable
         end
       end
 
       context "with one http verb" do
         around do |example|
           with_resources_during(example) do
-            ActiveAdmin.register(Post){ member_action "do_something", method: :post }
+            ActiveAdmin.register(Post) { member_action "do_something", method: :post }
           end
         end
 
         it "should properly route" do
-          expect({post: "/admin/posts/1/do_something"}).to be_routable
+          expect({ post: "/admin/posts/1/do_something" }).to be_routable
         end
       end
 
       context "with two http verbs" do
         around do |example|
           with_resources_during(example) do
-            ActiveAdmin.register(Post){ member_action "do_something", method: [:put, :delete] }
+            ActiveAdmin.register(Post) { member_action "do_something", method: [:put, :delete] }
           end
         end
 
         it "should properly route the first verb" do
-          expect({put: "/admin/posts/1/do_something"}).to be_routable
+          expect({ put: "/admin/posts/1/do_something" }).to be_routable
         end
 
         it "should properly route the second verb" do
-          expect({delete: "/admin/posts/1/do_something"}).to be_routable
+          expect({ delete: "/admin/posts/1/do_something" }).to be_routable
         end
       end
     end
@@ -148,7 +148,7 @@ RSpec.describe "Routing", type: :routing do
     around do |example|
       with_resources_during(example) do
         ActiveAdmin.register(User)
-        ActiveAdmin.register(Post){ belongs_to :user, optional: true }
+        ActiveAdmin.register(Post) { belongs_to :user, optional: true }
       end
     end
 
@@ -182,7 +182,7 @@ RSpec.describe "Routing", type: :routing do
 
       it "should properly route the collection action" do
         expect({ get: "/admin/users/do_something" }).to \
-          route_to({ controller: 'admin/users', action: 'do_something'})
+          route_to({ controller: 'admin/users', action: 'do_something' })
       end
     end
   end

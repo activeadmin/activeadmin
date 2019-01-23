@@ -48,8 +48,8 @@ module ActiveAdmin
       def active_admin_filters_form_for(search, filters, options = {})
         defaults = { builder: ActiveAdmin::Filters::FormBuilder,
                      url: collection_path,
-                     html: {class: 'filter_form'} }
-        required = { html: {method: :get},
+                     html: { class: 'filter_form' } }
+        required = { html: { method: :get },
                      as: :q }
         options  = defaults.deep_merge(options).deep_merge(required)
 

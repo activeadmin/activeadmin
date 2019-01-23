@@ -43,8 +43,8 @@ module ActiveAdmin
 
       @localizer        = options[:localizer]
       @show_count       = options.fetch(:show_count, true)
-      @display_if_block = options[:if]      || proc{ true }
-      @default_block    = options[:default] || proc{ false }
+      @display_if_block = options[:if]      || proc { true }
+      @default_block    = options[:default] || proc { false }
       @group            = options[:group].try(:to_sym)
     end
 
