@@ -179,8 +179,8 @@ GEM
       responders
     iso (0.2.2)
       i18n
-    jaro_winkler (1.5.1)
-    jaro_winkler (1.5.1-java)
+    jaro_winkler (1.5.2)
+    jaro_winkler (1.5.2-java)
     jasmine (2.9.0)
       jasmine-core (>= 2.9.0, < 3.0.0)
       phantomjs
@@ -247,10 +247,10 @@ GEM
     octokit (4.13.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     orm_adapter (0.5.0)
-    parallel (1.12.1)
+    parallel (1.13.0)
     parallel_tests (2.27.0)
       parallel
-    parser (2.5.3.0)
+    parser (2.6.0.0)
       ast (~> 2.4.0)
     phantomjs (2.1.1.0)
     powerpack (0.1.2)
@@ -330,7 +330,7 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
-    rubocop (0.62.0)
+    rubocop (0.63.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
@@ -423,7 +423,7 @@ DEPENDENCIES
   rails-i18n
   rake
   rspec-rails
-  rubocop (= 0.62.0)
+  rubocop (= 0.63.1)
   rubocop-rspec (~> 1.30)
   selenium-webdriver
   simplecov
