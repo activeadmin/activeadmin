@@ -38,7 +38,7 @@ RSpec.describe ActiveAdmin::DSL do
 
   describe "#menu" do
     it "should set the menu_item_options on the configuration" do
-      expect(resource_config).to receive(:menu_item_options=).with({parent: "Admin"})
+      expect(resource_config).to receive(:menu_item_options=).with({ parent: "Admin" })
       dsl.run_registration_block do
         menu parent: "Admin"
       end

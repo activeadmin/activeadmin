@@ -87,7 +87,7 @@ module ActiveAdmin
           if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
             localizer = ActiveAdmin::Localizers.resource(active_admin_config)
             link_to localizer.t(:delete_model), resource_path(resource), method: :delete,
-              data: {confirm: localizer.t(:delete_confirmation)}
+              data: { confirm: localizer.t(:delete_confirmation) }
           end
         end
       end

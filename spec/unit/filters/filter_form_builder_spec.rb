@@ -17,7 +17,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
   end
 
   def render_filter(search, filters)
-    render_arbre_component({filter_args: [search, filters]}, helpers) do
+    render_arbre_component({ filter_args: [search, filters] }, helpers) do
       text_node active_admin_filters_form_for *assigns[:filter_args]
     end.to_s
   end
@@ -56,7 +56,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     describe "input html as proc" do
-      let(:body) { filter :title, as: :select, input_html: proc { {'data-ajax-url': '/'} } }
+      let(:body) { filter :title, as: :select, input_html: proc { { 'data-ajax-url': '/' } } }
 
       it "should render proper label" do
         expect(body).to have_selector('select[data-ajax-url="/"]')
@@ -88,7 +88,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should translate the label for text field" do
-      with_translation activerecord: {attributes: {post: {title: 'Name'}}} do
+      with_translation activerecord: { attributes: { post: { title: 'Name' } } } do
         expect(body).to have_selector("label", text: "Name")
       end
     end
@@ -237,7 +237,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should translate the label for boolean field" do
-        with_translation activerecord: {attributes: {post: {starred: 'Faved'}}} do
+        with_translation activerecord: { attributes: { post: { starred: 'Faved' } } } do
           expect(body).to have_selector("label", text: "Faved")
         end
       end
@@ -425,14 +425,14 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
           expect(body).send if_false, have_selector("input[name='q[body_contains]']")
         end
         it "should still be hidden on the second render" do
-          filters = {body: { verb => proc { verb == :unless }}}
+          filters = { body: { verb => proc { verb == :unless } } }
           2.times do
             body = filter scope, filters
             expect(body).not_to have_selector("input[name='q[body_contains]']")
           end
         end
         it "should successfully keep rendering other filters after one is hidden" do
-          filters = {body: { verb => proc { verb == :unless }}, author: {}}
+          filters = { body: { verb => proc { verb == :unless } }, author: {} }
           body    = Capybara.string(render_filter scope, filters)
           expect(body).not_to have_selector("input[name='q[body_contains]']")
           expect(body).to     have_selector("select[name='q[author_id_eq]']")

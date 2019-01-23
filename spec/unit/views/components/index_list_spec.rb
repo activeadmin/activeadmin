@@ -19,7 +19,7 @@ RSpec.describe ActiveAdmin::Views::IndexList do
     end
 
     subject do
-      render_arbre_component({index_classes: index_classes}, helpers) do
+      render_arbre_component({ index_classes: index_classes }, helpers) do
         index_list_renderer(index_classes)
       end
     end

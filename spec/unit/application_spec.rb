@@ -174,7 +174,7 @@ RSpec.describe ActiveAdmin::Application do
     it "finds or create the namespace and register the page to it" do
       namespace = double
       expect(application).to receive(:namespace).with("public").and_return namespace
-      expect(namespace).to receive(:register_page).with("My Page", {namespace: "public"})
+      expect(namespace).to receive(:register_page).with("My Page", { namespace: "public" })
       application.register_page("My Page", namespace: "public")
     end
   end

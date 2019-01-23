@@ -9,7 +9,7 @@ RSpec.describe ActiveAdmin::Filters::Active do
   subject { described_class.new(resource, search) }
 
   let(:params) do
-    ::ActionController::Parameters.new(q: {author_id_eq: 1})
+    ::ActionController::Parameters.new(q: { author_id_eq: 1 })
   end
 
   let(:search) do

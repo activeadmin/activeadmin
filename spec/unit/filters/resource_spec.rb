@@ -88,14 +88,14 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
 
     it "should work with specified options" do
       resource.add_filter :title, as: :string
-      expect(resource.filters).to eq title: {as: :string}
+      expect(resource.filters).to eq title: { as: :string }
     end
 
     it "should override an existing filter" do
       resource.add_filter :title, one: :two
       resource.add_filter :title, three: :four
 
-      expect(resource.filters).to eq title: {three: :four}
+      expect(resource.filters).to eq title: { three: :four }
     end
 
     it "should preserve default filters" do

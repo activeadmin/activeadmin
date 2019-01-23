@@ -15,7 +15,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     def view.url_for(*args)
-      if args.first == {action: "index"}
+      if args.first == { action: "index" }
         posts_path
       else
         super
@@ -30,9 +30,9 @@ RSpec.describe ActiveAdmin::FormBuilder do
   end
 
   def form_html(options = {}, form_object = Post.new, &block)
-    options = {url: helpers.posts_path}.merge(options)
+    options = { url: helpers.posts_path }.merge(options)
 
-    form = render_arbre_component({form_object: form_object, form_options: options, form_block: block}, helpers) do
+    form = render_arbre_component({ form_object: form_object, form_options: options, form_block: block }, helpers) do
       active_admin_form_for(assigns[:form_object], assigns[:form_options], &assigns[:form_block])
     end.to_s
   end
@@ -115,7 +115,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     it "should raise error" do
       expect {
         comment = ActiveAdmin::Comment.new
-        build_form({url: "admins/comments"}, comment) do |f|
+        build_form({ url: "admins/comments" }, comment) do |f|
           f.inputs :resource
         end
       }.to raise_error(Formtastic::PolymorphicInputWithoutCollectionError)
@@ -477,7 +477,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
   context "with has many inputs" do
     describe "with simple block" do
       let :body do
-        build_form({url: '/categories'}, Category.new) do |f|
+        build_form({ url: '/categories' }, Category.new) do |f|
           f.object.posts.build
           f.has_many :posts do |p|
             p.input :title
@@ -490,7 +490,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       let(:valid_html_id) { /^[A-Za-z]+[\w\-\:\.]*$/ }
 
       it "should translate the association name in header" do
-        with_translation activerecord: {models: {post: {one: 'Blog Post', other: 'Blog Posts'}}} do
+        with_translation activerecord: { models: { post: { one: 'Blog Post', other: 'Blog Posts' } } } do
           expect(body).to have_selector("h3", text: "Blog Posts")
         end
       end
@@ -500,13 +500,13 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should translate the association name in has many new button" do
-        with_translation activerecord: {models: {post: {one: 'Blog Post', other: 'Blog Posts'}}} do
+        with_translation activerecord: { models: { post: { one: 'Blog Post', other: 'Blog Posts' } } } do
           expect(body).to have_selector("a", text: "Add New Blog Post")
         end
       end
 
       it "should translate the attribute name" do
-        with_translation activerecord: {attributes: {post: {title: 'A very nice title'}}} do
+        with_translation activerecord: { attributes: { post: { title: 'A very nice title' } } } do
           expect(body).to have_selector("label", text: "A very nice title")
         end
       end
@@ -544,7 +544,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
     describe "with complex block" do
       let :body do
-        build_form({url: '/categories'}, Category.new) do |f|
+        build_form({ url: '/categories' }, Category.new) do |f|
           f.object.posts.build
           f.has_many :posts do |p, i|
             p.input :title, label: "Title #{i}"
@@ -563,7 +563,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
     describe "without heading and new record link" do
       let :body do
-        build_form({url: '/categories'}, Category.new) do |f|
+        build_form({ url: '/categories' }, Category.new) do |f|
           f.object.posts.build
           f.has_many :posts, heading: false, new_record: false do |p|
             p.input :title
@@ -586,7 +586,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
     describe "with custom heading" do
       let :body do
-        build_form({url: '/categories'}, Category.new) do |f|
+        build_form({ url: '/categories' }, Category.new) do |f|
           f.object.posts.build
           f.has_many :posts, heading: "Test heading" do |p|
             p.input :title
@@ -601,7 +601,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
     describe "with custom new record link" do
       let :body do
-        build_form({url: '/categories'}, Category.new) do |f|
+        build_form({ url: '/categories' }, Category.new) do |f|
           f.object.posts.build
           f.has_many :posts, new_record: 'My Custom New Post' do |p|
             p.input :title
@@ -650,7 +650,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       shared_examples_for "has many with allow_destroy as String, Symbol or Proc" do |allow_destroy_option|
         let :body do
           s = self
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: '/categories' }, Category.new) do |f|
             s.instance_exec do
               allow(f.object.posts.build).to receive(:foo?).and_return(true)
               allow(f.object.posts.build).to receive(:foo?).and_return(false)
@@ -678,7 +678,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         context "with allow_destroy = true" do
           let :body do
             s = self
-            build_form({url: '/categories'}, Category.new) do |f|
+            build_form({ url: '/categories' }, Category.new) do |f|
               s.instance_exec do
                 allow(f.object.posts.build).to receive(:new_record?).and_return(false)
               end
@@ -694,7 +694,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         context "with allow_destroy = false" do
           let :body do
             s = self
-            build_form({url: '/categories'}, Category.new) do |f|
+            build_form({ url: '/categories' }, Category.new) do |f|
               s.instance_exec do
                 allow(f.object.posts.build).to receive(:new_record?).and_return(false)
               end
@@ -710,7 +710,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         context "with allow_destroy = nil" do
           let :body do
             s = self
-            build_form({url: '/categories'}, Category.new) do |f|
+            build_form({ url: '/categories' }, Category.new) do |f|
               s.instance_exec do
                 allow(f.object.posts.build).to receive(:new_record?).and_return(false)
               end
@@ -744,7 +744,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         context "with allow_destroy as any other expression that evaluates to true" do
           let :body do
             s = self
-            build_form({url: '/categories'}, Category.new) do |f|
+            build_form({ url: '/categories' }, Category.new) do |f|
               s.instance_exec do
                 allow(f.object.posts.build).to receive(:new_record?).and_return(false)
               end
@@ -761,7 +761,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       context "with a new post" do
         context "with allow_destroy = true" do
           let :body do
-            build_form({url: '/categories'}, Category.new) do |f|
+            build_form({ url: '/categories' }, Category.new) do |f|
               f.object.posts.build
               f.has_many :posts, allow_destroy: true do |p|
                 p.input :title
@@ -778,7 +778,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       # TODO: it doesn't make any sense to use your foreign key as something that's sortable (and therefore editable)
       context "with a new post" do
         let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: '/categories' }, Category.new) do |f|
             f.object.posts.build
             f.has_many :posts, sortable: :position do |p|
               p.input :title
@@ -793,7 +793,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
       context "with post returning nil for the sortable attribute" do
         let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: '/categories' }, Category.new) do |f|
             f.object.posts.build position: 3
             f.object.posts.build
             f.has_many :posts, sortable: :position do |p|
@@ -815,7 +815,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
           category.posts.create
         end
         let :body do
-          build_form({url: '/categories'}, category) do |f|
+          build_form({ url: '/categories' }, category) do |f|
             f.object.posts.build
             f.has_many :posts, sortable: :position do |p|
               p.input :title
@@ -830,7 +830,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
       context "without sortable_start set" do
         let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: '/categories' }, Category.new) do |f|
             f.object.posts.build
             f.has_many :posts, sortable: :position do |p|
               p.input :title
@@ -845,7 +845,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
       context "with sortable_start set" do
         let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: '/categories' }, Category.new) do |f|
             f.object.posts.build
             f.has_many :posts, sortable: :position, sortable_start: 15 do |p|
               p.input :title
@@ -862,7 +862,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     describe "with nesting" do
       context "in an inputs block" do
         let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: '/categories' }, Category.new) do |f|
             f.inputs "Field Wrapper" do
               f.object.posts.build
               f.has_many :posts do |p|
@@ -887,7 +887,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
       context "in another has_many block" do
         let :body_html do
-          form_html({url: '/categories'}, Category.new) do |f|
+          form_html({ url: '/categories' }, Category.new) do |f|
             f.object.posts.build
             f.has_many :posts do |p|
               p.object.taggings.build
@@ -914,7 +914,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     it "should render the block if it returns nil" do
-      body = build_form({url: '/categories'}, Category.new) do |f|
+      body = build_form({ url: '/categories' }, Category.new) do |f|
         f.object.posts.build
         f.has_many :posts do |p|
           p.input :title
