@@ -17,7 +17,7 @@ RSpec.describe ActiveAdmin::Application do
     positions = %w(before around after)
     suffixes = %w(action)
     base = %w()
-    if ActiveAdmin::Dependency.rails? '< 5.1.x'
+    if ActiveAdmin::Dependency.actionpack? '< 5.1.x'
       suffixes += %w(filter)
       base += %w(skip_filter skip_action_callback)
     end
