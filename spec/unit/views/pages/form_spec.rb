@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::Pages::Form do
   describe "#title" do
-    let!(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ ActiveAdmin::Namespace.new(application, "Admin") }
-    let!(:http_params){ { controller: "UsersController", action: "edit" } }
+    let!(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
+    let!(:http_params) { { controller: "UsersController", action: "edit" } }
     let!(:params) { ActionController::Parameters.new(http_params) }
 
     let(:helpers) do

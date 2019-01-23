@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Namespace, "registering a page" do
-  let(:application){ ActiveAdmin::Application.new }
-  let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
-  let(:menu){ namespace.fetch_menu(:default) }
+  let(:application) { ActiveAdmin::Application.new }
+  let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
+  let(:menu) { namespace.fetch_menu(:default) }
 
   context "with no configuration" do
     before do
@@ -25,7 +25,7 @@ RSpec.describe ActiveAdmin::Namespace, "registering a page" do
 
   context "with a block configuration" do
     it "should be evaluated in the dsl" do
-      expect{ |block|
+      expect { |block|
         namespace.register_page "Status", &block
       }.to yield_control
     end

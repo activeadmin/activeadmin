@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Application do
-  let(:application){ ActiveAdmin::Application.new }
-  let(:controllers){ application.controllers_for_filters }
+  let(:application) { ActiveAdmin::Application.new }
+  let(:controllers) { application.controllers_for_filters }
 
   it 'controllers_for_filters' do
     expect(application.controllers_for_filters).to eq [

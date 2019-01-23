@@ -34,7 +34,7 @@ module ActiveAdmin
       end
 
       def form_inputs
-        attributes.reject{|a| %w(id created_at updated_at).include? a}.map{ |a| form_input(a) }.join("\n")
+        attributes.reject {|a| %w(id created_at updated_at).include? a}.map { |a| form_input(a) }.join("\n")
       end
 
       def form_input(name)

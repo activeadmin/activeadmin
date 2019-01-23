@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::CanCanAdapter do
   describe "full integration" do
-    let(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ ActiveAdmin::Namespace.new(application, "Admin") }
-    let(:resource){ namespace.register(Post) }
+    let(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
+    let(:resource) { namespace.register(Post) }
 
     let :ability_class do
       Class.new do

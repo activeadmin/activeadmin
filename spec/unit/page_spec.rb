@@ -5,8 +5,8 @@ module ActiveAdmin
   RSpec.describe Page do
     it_should_behave_like "ActiveAdmin::Resource"
 
-    let(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ Namespace.new(application, :admin) }
+    let(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { Namespace.new(application, :admin) }
     let(:page_name) { "Chocolate I lØve You!" }
 
     def config(options = {})
@@ -18,7 +18,7 @@ module ActiveAdmin
         expect(config.controller_name).to eq "Admin::ChocolateILoveYouController"
       end
       context "when non namespaced controller" do
-        let(:namespace){ ActiveAdmin::Namespace.new(application, :root) }
+        let(:namespace) { ActiveAdmin::Namespace.new(application, :root) }
         it "should return a non namespaced controller name" do
           expect(config.controller_name).to eq "ChocolateILoveYouController"
         end

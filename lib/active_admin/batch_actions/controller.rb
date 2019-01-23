@@ -22,7 +22,7 @@ module ActiveAdmin
       end
 
       def current_batch_action
-        active_admin_config.batch_actions.detect{ |action| action.sym.to_s == params[:batch_action] }
+        active_admin_config.batch_actions.detect { |action| action.sym.to_s == params[:batch_action] }
       end
 
       COLLECTION_APPLIES = [

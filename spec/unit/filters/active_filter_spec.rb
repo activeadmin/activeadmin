@@ -9,9 +9,9 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     namespace.register(Post)
   end
 
-  let(:user){ User.create! first_name: "John", last_name: "Doe" }
-  let(:category){ Category.create! name: "Category" }
-  let(:post){ Post.create! title: "Hello World", category: category, author: user }
+  let(:user) { User.create! first_name: "John", last_name: "Doe" }
+  let(:category) { Category.create! name: "Category" }
+  let(:post) { Post.create! title: "Hello World", category: category, author: user }
 
   let(:search) do
     Post.ransack(title_equals: post.title)
@@ -171,10 +171,10 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
       namespace.register(resource_klass)
     end
 
-    let(:user){ User.create! first_name: "John", last_name: "Doe" }
-    let!(:category){ Category.create! name: "Category" }
+    let(:user) { User.create! first_name: "John", last_name: "Doe" }
+    let!(:category) { Category.create! name: "Category" }
 
-    let(:post){ resource_klass.create! title: "Category", author: user }
+    let(:post) { resource_klass.create! title: "Category", author: user }
 
     let(:search) do
       resource_klass.ransack(title_equals: post.title)

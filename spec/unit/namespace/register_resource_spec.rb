@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
-  let(:application){ ActiveAdmin::Application.new }
-  let(:namespace){ ActiveAdmin::Namespace.new(application, :super_admin) }
-  let(:menu){ namespace.fetch_menu(:default) }
+  let(:application) { ActiveAdmin::Application.new }
+  let(:namespace) { ActiveAdmin::Namespace.new(application, :super_admin) }
+  let(:menu) { namespace.fetch_menu(:default) }
 
   after { namespace.unload! }
 
@@ -32,7 +32,7 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
 
   context "with a block configuration" do
     it "should be evaluated in the dsl" do
-      expect{ |block|
+      expect { |block|
         namespace.register Category, &block
       }.to yield_control
     end

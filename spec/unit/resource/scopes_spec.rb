@@ -2,8 +2,8 @@ require 'rails_helper'
 
 module ActiveAdmin
   RSpec.describe Resource, "Scopes" do
-    let(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ Namespace.new(application, :admin) }
+    let(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { Namespace.new(application, :admin) }
 
     def config(options = {})
       @config ||= Resource.new(namespace, Category, options)
@@ -37,7 +37,7 @@ module ActiveAdmin
       it "should update a scope with the same id" do
         config.scope :published
         expect(config.scopes.first.scope_block).to eq nil
-        config.scope(:published){ }
+        config.scope(:published) { }
         expect(config.scopes.first.scope_block).to_not eq nil
       end
     end

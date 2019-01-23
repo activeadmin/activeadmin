@@ -10,8 +10,8 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       ]
     end
 
-    let(:assigns){ { collection: collection } }
-    let(:helpers){ mock_action_view }
+    let(:assigns) { { collection: collection } }
+    let(:helpers) { mock_action_view }
 
     context "when creating a column using symbol argument" do
       let(:table) do
@@ -363,17 +363,17 @@ RSpec.describe ActiveAdmin::Views::TableFor do
     subject { table_column }
 
     context "when default" do
-      let(:table_column){ build_column(:username) }
+      let(:table_column) { build_column(:username) }
       it { is_expected.to be_sortable }
 
       describe '#sort_key' do
         subject { super().sort_key }
-        it{ is_expected.to eq("username") }
+        it { is_expected.to eq("username") }
       end
     end
 
     context "when a block given with no sort key" do
-      let(:table_column){ build_column("Username"){ } }
+      let(:table_column) { build_column("Username") { } }
       it { is_expected.to be_sortable }
 
       describe '#sort_key' do
@@ -383,12 +383,12 @@ RSpec.describe ActiveAdmin::Views::TableFor do
     end
 
     context "when a block given with a sort key" do
-      let(:table_column){ build_column("Username", sortable: :username){ } }
+      let(:table_column) { build_column("Username", sortable: :username) { } }
       it { is_expected.to be_sortable }
 
       describe '#sort_key' do
         subject { super().sort_key }
-        it{ is_expected.to eq("username") }
+        it { is_expected.to eq("username") }
       end
     end
 
@@ -398,7 +398,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
     end
 
     context 'when symbol given as a data column should be sortable' do
-      let(:table_column){ build_column('Username column', :username) }
+      let(:table_column) { build_column('Username column', :username) }
       it { is_expected.to be_sortable }
 
       describe '#sort_key' do
@@ -408,7 +408,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
     end
 
     context 'when sortable: true with a symbol and string' do
-      let(:table_column){ build_column('Username column', :username, sortable: true) }
+      let(:table_column) { build_column('Username column', :username, sortable: true) }
       it { is_expected.to be_sortable }
 
       describe '#sort_key' do
@@ -418,22 +418,22 @@ RSpec.describe ActiveAdmin::Views::TableFor do
     end
 
     context "when sortable: false with a symbol" do
-      let(:table_column){ build_column(:username, sortable: false) }
+      let(:table_column) { build_column(:username, sortable: false) }
       it { is_expected.not_to be_sortable }
     end
 
     context "when sortable: false with a symbol and string" do
-      let(:table_column){ build_column("Username", :username, sortable: false) }
+      let(:table_column) { build_column("Username", :username, sortable: false) }
       it { is_expected.not_to be_sortable }
     end
 
     context "when :sortable column is an association" do
-      let(:table_column){ build_column("Category", :category, Post) }
+      let(:table_column) { build_column("Category", :category, Post) }
       it { is_expected.not_to be_sortable }
     end
 
     context 'when :sortable column is an association and block given' do
-      let(:table_column){ build_column('Category', :category, Post) { } }
+      let(:table_column) { build_column('Category', :category, Post) { } }
       it { is_expected.not_to be_sortable }
     end
   end

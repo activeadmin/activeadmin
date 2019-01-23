@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Resource, "authorization" do
-  let(:app){ ActiveAdmin::Application.new }
-  let(:namespace){ ActiveAdmin::Namespace.new(app, :admin) }
-  let(:auth){ double }
+  let(:app) { ActiveAdmin::Application.new }
+  let(:namespace) { ActiveAdmin::Namespace.new(app, :admin) }
+  let(:auth) { double }
 
   describe "authorization_adapter" do
     it "should return AuthorizationAdapter by default" do
