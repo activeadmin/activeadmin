@@ -10,7 +10,7 @@ module ActiveAdmin
       # Returns a scope for this object by its identifier
       def get_scope_by_id(id)
         id = id.to_s
-        scopes.find {|s| s.id == id }
+        scopes.find { |s| s.id == id }
       end
 
       def default_scope(context = nil)
@@ -36,7 +36,7 @@ module ActiveAdmin
         scope = ActiveAdmin::Scope.new(title, method, options, &block)
 
         # Finds and replaces a scope by the same name if it already exists
-        existing_scope_index = scopes.index {|existing_scope| existing_scope.id == scope.id }
+        existing_scope_index = scopes.index { |existing_scope| existing_scope.id == scope.id }
         if existing_scope_index
           scopes.delete_at(existing_scope_index)
           scopes.insert(existing_scope_index, scope)

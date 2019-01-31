@@ -22,7 +22,7 @@ module ActiveAdmin
       end
 
       def columns(*attrs)
-        attrs.each {|attr| column(attr) }
+        attrs.each { |attr| column(attr) }
       end
 
       def column(*args, &block)

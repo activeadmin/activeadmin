@@ -103,7 +103,7 @@ RSpec.describe MethodOrProcHelper do
     let(:args) { [1, 2, 3] }
 
     context "when a Proc" do
-      let(:object) { Proc.new { } }
+      let(:object) { Proc.new {} }
 
       it "should instance_exec the Proc" do
         expect(receiver).to receive(:instance_exec).with(args, &object).and_return("data")

@@ -300,7 +300,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
         end
 
         it "should render the collection in the context of the view" do
-          body = filter :title, as: :select, collection: proc {[a_helper_method]}
+          body = filter :title, as: :select, collection: proc { [a_helper_method] }
           expect(body).to have_selector("option", text: "A Helper Method")
         end
       end

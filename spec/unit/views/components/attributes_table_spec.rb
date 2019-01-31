@@ -114,7 +114,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
     it "should allow html options for the row itself" do
       table = render_arbre_component(assigns) {
         attributes_table_for(post) do
-          row("Wee", class: "custom_row", style: "custom_style") { }
+          row("Wee", class: "custom_row", style: "custom_style") {}
         end
       }
       expect(table.find_by_tag("tr").first.to_s.split("\n").first.lstrip).

@@ -16,7 +16,7 @@ module ActiveAdmin
       end
 
       def rows(*attrs)
-        attrs.each {|attr| row(attr) }
+        attrs.each { |attr| row(attr) }
       end
 
       def row(*args, &block)

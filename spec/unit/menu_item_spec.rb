@@ -73,7 +73,7 @@ module ActiveAdmin
       end
 
       it "should not accept Procs" do
-        expect { MenuItem.new(id: proc {"Dynamic"}).id }.to raise_error TypeError
+        expect { MenuItem.new(id: proc { "Dynamic" }).id }.to raise_error TypeError
       end
     end
   end
