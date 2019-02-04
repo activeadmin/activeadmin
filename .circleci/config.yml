@@ -178,6 +178,7 @@ jobs:
   testapp50:
     docker:
       - image: circleci/ruby:2.6.1-node
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -188,6 +189,7 @@ jobs:
   testapp51:
     docker:
       - image: circleci/ruby:2.6.1-node
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -198,6 +200,7 @@ jobs:
   testapp52:
     docker:
       - image: circleci/ruby:2.6.1-node
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -208,6 +211,7 @@ jobs:
   lint_and_docs:
     docker:
       - image: circleci/ruby:2.6.1-node
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -230,6 +234,7 @@ jobs:
   ruby23rails50:
     docker:
       - image: circleci/ruby:2.3.8-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -240,6 +245,7 @@ jobs:
   ruby23rails51:
     docker:
       - image: circleci/ruby:2.3.8-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -250,6 +256,7 @@ jobs:
   ruby23rails52:
     docker:
       - image: circleci/ruby:2.3.8-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -260,6 +267,7 @@ jobs:
   ruby24rails50:
     docker:
       - image: circleci/ruby:2.4.5-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -270,6 +278,7 @@ jobs:
   ruby24rails51:
     docker:
       - image: circleci/ruby:2.4.5-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -280,6 +289,7 @@ jobs:
   ruby24rails52:
     docker:
       - image: circleci/ruby:2.4.5-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -290,6 +300,7 @@ jobs:
   ruby25rails50:
     docker:
       - image: circleci/ruby:2.5.3-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -300,6 +311,7 @@ jobs:
   ruby25rails51:
     docker:
       - image: circleci/ruby:2.5.3-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -310,6 +322,7 @@ jobs:
   ruby25rails52:
     docker:
       - image: circleci/ruby:2.5.3-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -320,6 +333,7 @@ jobs:
   ruby26rails50:
     docker:
       - image: circleci/ruby:2.6.1-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -330,6 +344,7 @@ jobs:
   ruby26rails51:
     docker:
       - image: circleci/ruby:2.6.1-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -340,6 +355,7 @@ jobs:
   ruby26rails52:
     docker:
       - image: circleci/ruby:2.6.1-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -350,6 +366,7 @@ jobs:
   jruby91rails50:
     docker:
       - image: circleci/jruby:9.1.17.0-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -361,6 +378,7 @@ jobs:
   jruby91rails51:
     docker:
       - image: circleci/jruby:9.1.17.0-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -372,6 +390,7 @@ jobs:
   jruby91rails52:
     docker:
       - image: circleci/jruby:9.1.17.0-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -383,6 +402,7 @@ jobs:
   jruby92rails50:
     docker:
       - image: circleci/jruby:9.2.5.1-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -394,6 +414,7 @@ jobs:
   jruby92rails51:
     docker:
       - image: circleci/jruby:9.2.5.1-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -405,6 +426,7 @@ jobs:
   jruby92rails52:
     docker:
       - image: circleci/jruby:9.2.5.1-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
