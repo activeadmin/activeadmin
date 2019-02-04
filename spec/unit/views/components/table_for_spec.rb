@@ -373,7 +373,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
     end
 
     context "when a block given with no sort key" do
-      let(:table_column) { build_column("Username") { } }
+      let(:table_column) { build_column("Username") {} }
       it { is_expected.to be_sortable }
 
       describe '#sort_key' do
@@ -383,7 +383,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
     end
 
     context "when a block given with a sort key" do
-      let(:table_column) { build_column("Username", sortable: :username) { } }
+      let(:table_column) { build_column("Username", sortable: :username) {} }
       it { is_expected.to be_sortable }
 
       describe '#sort_key' do
@@ -393,7 +393,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
     end
 
     context 'when a block given with virtual attribute and no sort key' do
-      let(:table_column) { build_column(:virtual, nil, Post) { } }
+      let(:table_column) { build_column(:virtual, nil, Post) {} }
       it { is_expected.not_to be_sortable }
     end
 
@@ -433,7 +433,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
     end
 
     context 'when :sortable column is an association and block given' do
-      let(:table_column) { build_column('Category', :category, Post) { } }
+      let(:table_column) { build_column('Category', :category, Post) {} }
       it { is_expected.not_to be_sortable }
     end
   end

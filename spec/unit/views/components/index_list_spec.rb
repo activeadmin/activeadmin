@@ -26,7 +26,7 @@ RSpec.describe ActiveAdmin::Views::IndexList do
 
     describe '#tag_name' do
       subject { super().tag_name }
-      it { is_expected.to eq 'ul'}
+      it { is_expected.to eq 'ul' }
     end
 
     it "should contain the names of available indexes in links" do

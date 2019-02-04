@@ -9,12 +9,12 @@ RSpec.describe ActiveAdmin::Scope do
 
       describe '#name' do
         subject { super().name }
-        it      { is_expected.to eq("Published")}
+        it      { is_expected.to eq("Published") }
       end
 
       describe '#id' do
         subject { super().id }
-        it      { is_expected.to eq("published")}
+        it      { is_expected.to eq("published") }
       end
 
       describe '#scope_method' do
@@ -28,12 +28,12 @@ RSpec.describe ActiveAdmin::Scope do
 
       describe '#name' do
         subject { super().name }
-        it      { is_expected.to eq("All")}
+        it      { is_expected.to eq("All") }
       end
 
       describe '#id' do
         subject { super().id }
-        it      { is_expected.to eq("all")}
+        it      { is_expected.to eq("all") }
       end
       # :all does not return a chain but an array of active record
       # instances. We set the scope_method to nil then.
@@ -73,12 +73,12 @@ RSpec.describe ActiveAdmin::Scope do
 
       describe '#name' do
         subject { super().name }
-        it      { is_expected.to eq("With API Access")}
+        it      { is_expected.to eq("With API Access") }
       end
 
       describe '#id' do
         subject { super().id }
-        it      { is_expected.to eq("with_api_access")}
+        it      { is_expected.to eq("with_api_access") }
       end
 
       describe '#scope_method' do
@@ -88,16 +88,16 @@ RSpec.describe ActiveAdmin::Scope do
     end
 
     context "when a name and scope block" do
-      let(:scope) { ActiveAdmin::Scope.new("My Scope") {|s| s } }
+      let(:scope) { ActiveAdmin::Scope.new("My Scope") { |s| s } }
 
       describe '#name' do
         subject { super().name }
-        it      { is_expected.to eq("My Scope")}
+        it      { is_expected.to eq("My Scope") }
       end
 
       describe '#id' do
         subject { super().id }
-        it      { is_expected.to eq("my_scope")}
+        it      { is_expected.to eq("my_scope") }
       end
 
       describe '#scope_method' do
@@ -107,7 +107,7 @@ RSpec.describe ActiveAdmin::Scope do
 
       describe '#scope_block' do
         subject { super().scope_block }
-        it      { is_expected.to be_a(Proc)}
+        it      { is_expected.to be_a(Proc) }
       end
     end
 
@@ -116,12 +116,12 @@ RSpec.describe ActiveAdmin::Scope do
 
       describe '#name' do
         subject { super().name }
-        it      { is_expected.to eq("my scope")}
+        it      { is_expected.to eq("my scope") }
       end
 
       describe '#id' do
         subject { super().id }
-        it      { is_expected.to eq("my_scope")}
+        it      { is_expected.to eq("my_scope") }
       end
     end
 
@@ -148,12 +148,12 @@ RSpec.describe ActiveAdmin::Scope do
 
       describe '#name' do
         subject { super().name }
-        it { is_expected.to eq("All published")}
+        it { is_expected.to eq("All published") }
       end
 
       describe '#id' do
         subject { super().id }
-        it { is_expected.to eq("published")}
+        it { is_expected.to eq("published") }
       end
 
       describe '#scope_method' do
