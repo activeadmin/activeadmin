@@ -180,7 +180,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
 
   context "with access to the controller" do
     let(:dummy_view_context) { double(controller: dummy_controller) }
-    let(:dummy_controller) { double(names: %w(title summary updated_at created_at))}
+    let(:dummy_controller) { double(names: %w(title summary updated_at created_at)) }
     let(:builder) do
       ActiveAdmin::CSVBuilder.new do
         column "id"

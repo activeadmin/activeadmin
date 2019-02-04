@@ -6,7 +6,7 @@ RSpec.describe "Memory Leak", type: :request, if: RUBY_ENGINE == 'ruby' do
   end
 
   def count_instances_of(klass)
-    ObjectSpace.each_object(klass) { }
+    ObjectSpace.each_object(klass) {}
   end
 
   [ActiveAdmin::Namespace, ActiveAdmin::Resource].each do |klass|

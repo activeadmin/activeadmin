@@ -171,7 +171,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when collection comes from find with GROUP BY" do
       let(:collection) do
-        %w{Foo Foo Bar}.each {|title| Post.create(title: title) }
+        %w{Foo Foo Bar}.each { |title| Post.create(title: title) }
         Post.select(:title).group(:title).page(1).per(5)
       end
 
@@ -182,7 +182,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when collection with many pages comes from find with GROUP BY" do
       let(:collection) do
-        %w{Foo Foo Bar Baz}.each {|title| Post.create(title: title) }
+        %w{Foo Foo Bar Baz}.each { |title| Post.create(title: title) }
         Post.select(:title).group(:title).page(1).per(2)
       end
 

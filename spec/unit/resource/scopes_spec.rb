@@ -37,7 +37,7 @@ module ActiveAdmin
       it "should update a scope with the same id" do
         config.scope :published
         expect(config.scopes.first.scope_block).to eq nil
-        config.scope(:published) { }
+        config.scope(:published) {}
         expect(config.scopes.first.scope_block).to_not eq nil
       end
     end

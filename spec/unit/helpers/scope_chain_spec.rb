@@ -24,7 +24,7 @@ RSpec.describe ActiveAdmin::ScopeChain do
     end
 
     context "when Scope has a name and a scope block" do
-      let(:scope) { ActiveAdmin::Scope.new("My Scope") {|s| :scoped_relation } }
+      let(:scope) { ActiveAdmin::Scope.new("My Scope") { |s| :scoped_relation } }
 
       it "should instance_exec the block and return it" do
         expect(scope_chain(scope, relation)).to eq :scoped_relation

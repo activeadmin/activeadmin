@@ -27,7 +27,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   end
 
   describe "searching" do
-    let(:http_params) {{ q: {} }}
+    let(:http_params) { { q: {} } }
     it "should call the search method" do
       chain = double "ChainObj"
       expect(chain).to receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
@@ -51,7 +51,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
 
   describe "sorting" do
     context "valid clause" do
-      let(:http_params) {{ order: "id_asc" }}
+      let(:http_params) { { order: "id_asc" } }
 
       it "reorders chain" do
         chain = double "ChainObj"
@@ -61,7 +61,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     end
 
     context "invalid clause" do
-      let(:http_params) {{ order: "_asc" }}
+      let(:http_params) { { order: "_asc" } }
 
       it "returns chain untouched" do
         chain = double "ChainObj"
@@ -82,7 +82,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
       end
 
       context "when params applicable" do
-        let(:http_params) {{ order: "published_date_desc" }}
+        let(:http_params) { { order: "published_date_desc" } }
         it "reorders chain" do
           chain = double "ChainObj"
           expect(chain).to receive(:reorder).with('"posts"."published_date" desc NULLS LAST').once.and_return(Post.ransack)
@@ -90,7 +90,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
         end
       end
       context "when params not applicable" do
-        let(:http_params) {{ order: "published_date_asc" }}
+        let(:http_params) { { order: "published_date_asc" } }
         it "reorders chain" do
           chain = double "ChainObj"
           expect(chain).to receive(:reorder).with('"posts"."published_date" asc').once.and_return(Post.ransack)

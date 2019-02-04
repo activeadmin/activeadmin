@@ -131,7 +131,7 @@ module ActiveAdmin
         legend = args.shift if args.first.is_a?(::String)
         legend = html_options.delete(:name) if html_options.key?(:name)
         legend_tag = legend ? "<legend><span>#{legend}</span></legend>" : ""
-        fieldset_attrs = html_options.map {|k, v| %Q{#{k}="#{v}"} }.join(" ")
+        fieldset_attrs = html_options.map { |k, v| %Q{#{k}="#{v}"} }.join(" ")
         @opening_tag = "<fieldset #{fieldset_attrs}>#{legend_tag}<ol>"
         @closing_tag = "</ol></fieldset>"
         super(*(args << html_options), &block)
