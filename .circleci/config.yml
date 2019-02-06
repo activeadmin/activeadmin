@@ -62,7 +62,7 @@ version: 2.1
   run:
     name: Upload coverage results to Code Climate
     command: |
-      coverage/test-reporter sum-coverage coverage/codeclimate.*.json --parts 16 --output coverage/codeclimate.total.json
+      coverage/test-reporter sum-coverage coverage/codeclimate.*.json --parts 19 --output coverage/codeclimate.total.json
       coverage/test-reporter upload-coverage --input coverage/codeclimate.total.json
 
 .save_test_app_to_workspace: &save_test_app_to_workspace
@@ -150,7 +150,7 @@ version: 2.1
 jobs:
   setup_coverage:
     docker:
-      - image: circleci/ruby:2.5.3
+      - image: circleci/ruby:2.6.1
 
     steps:
       - run:
@@ -167,7 +167,7 @@ jobs:
 
   upload_coverage:
     docker:
-      - image: circleci/ruby:2.5.3
+      - image: circleci/ruby:2.6.1
         environment:
           CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
 
@@ -177,7 +177,8 @@ jobs:
 
   testapp50:
     docker:
-      - image: circleci/ruby:2.5.3-node
+      - image: circleci/ruby:2.6.1-node
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -187,7 +188,8 @@ jobs:
 
   testapp51:
     docker:
-      - image: circleci/ruby:2.5.3-node
+      - image: circleci/ruby:2.6.1-node
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -197,7 +199,8 @@ jobs:
 
   testapp52:
     docker:
-      - image: circleci/ruby:2.5.3-node
+      - image: circleci/ruby:2.6.1-node
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -207,7 +210,8 @@ jobs:
 
   lint_and_docs:
     docker:
-      - image: circleci/ruby:2.5.3-node
+      - image: circleci/ruby:2.6.1-node
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -230,6 +234,7 @@ jobs:
   ruby23rails50:
     docker:
       - image: circleci/ruby:2.3.8-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -240,6 +245,7 @@ jobs:
   ruby23rails51:
     docker:
       - image: circleci/ruby:2.3.8-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -250,6 +256,7 @@ jobs:
   ruby23rails52:
     docker:
       - image: circleci/ruby:2.3.8-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -260,6 +267,7 @@ jobs:
   ruby24rails50:
     docker:
       - image: circleci/ruby:2.4.5-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -270,6 +278,7 @@ jobs:
   ruby24rails51:
     docker:
       - image: circleci/ruby:2.4.5-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -280,6 +289,7 @@ jobs:
   ruby24rails52:
     docker:
       - image: circleci/ruby:2.4.5-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -290,6 +300,7 @@ jobs:
   ruby25rails50:
     docker:
       - image: circleci/ruby:2.5.3-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -300,6 +311,7 @@ jobs:
   ruby25rails51:
     docker:
       - image: circleci/ruby:2.5.3-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -310,6 +322,40 @@ jobs:
   ruby25rails52:
     docker:
       - image: circleci/ruby:2.5.3-node-browsers
+        user: root
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+
+    steps:
+      *test_steps
+
+  ruby26rails50:
+    docker:
+      - image: circleci/ruby:2.6.1-node-browsers
+        user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
+
+    steps:
+      *test_steps
+
+  ruby26rails51:
+    docker:
+      - image: circleci/ruby:2.6.1-node-browsers
+        user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
+
+    steps:
+      *test_steps
+
+  ruby26rails52:
+    docker:
+      - image: circleci/ruby:2.6.1-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -320,6 +366,7 @@ jobs:
   jruby91rails50:
     docker:
       - image: circleci/jruby:9.1.17.0-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -331,6 +378,7 @@ jobs:
   jruby91rails51:
     docker:
       - image: circleci/jruby:9.1.17.0-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -342,6 +390,7 @@ jobs:
   jruby91rails52:
     docker:
       - image: circleci/jruby:9.1.17.0-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -353,6 +402,7 @@ jobs:
   jruby92rails50:
     docker:
       - image: circleci/jruby:9.2.5.1-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
@@ -364,6 +414,7 @@ jobs:
   jruby92rails51:
     docker:
       - image: circleci/jruby:9.2.5.1-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
@@ -375,6 +426,7 @@ jobs:
   jruby92rails52:
     docker:
       - image: circleci/jruby:9.2.5.1-node-browsers
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -451,6 +503,18 @@ workflows:
           requires:
             - testapp52
 
+      - ruby26rails50:
+          requires:
+            - testapp50
+
+      - ruby26rails51:
+          requires:
+            - testapp51
+
+      - ruby26rails52:
+          requires:
+            - testapp52
+
       - jruby91rails50:
           requires:
             - testapp50
@@ -490,6 +554,10 @@ workflows:
             - ruby25rails50
             - ruby25rails51
             - ruby25rails52
+
+            - ruby26rails50
+            - ruby26rails51
+            - ruby26rails52
 
             - jruby91rails50
             - jruby91rails51
