@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/deivid-rodriguez/chandler
   revision: 71fadf13f03eb1fbd2b492d56aae382bb18173df
-  branch: submit_link_references
+  tag: 0.8.0_plus_submit_link_references
   specs:
     chandler (0.8.0)
       netrc
