@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/deivid-rodriguez/chandler
-  revision: c46770b45be3c07e7a830b01ca85baa8e0f3beae
+  revision: 71fadf13f03eb1fbd2b492d56aae382bb18173df
   branch: submit_link_references
   specs:
-    chandler (0.7.0)
+    chandler (0.8.0)
       netrc
       octokit (>= 2.2.0)
 
