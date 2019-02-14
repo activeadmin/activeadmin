@@ -7,7 +7,6 @@ require "kaminari"
 require "formtastic"
 require "formtastic_i18n"
 require "inherited_resources"
-require "jquery-rails"
 require "arbre"
 
 require "active_admin/helpers/i18n"
