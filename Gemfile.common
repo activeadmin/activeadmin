@@ -4,7 +4,7 @@ gem 'pry' # Easily debug from your console with `binding.pry`
 gem 'pry-byebug', platform: :mri # Step-by-step debugging
 
 # Optional dependencies used in both development & test environments
-gem 'cancan'
+gem 'cancancan'
 gem 'pundit'
 gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
 gem 'draper', '~> 3.0'
