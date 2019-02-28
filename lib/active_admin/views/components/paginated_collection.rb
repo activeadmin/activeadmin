@@ -141,7 +141,7 @@ module ActiveAdmin
                    model: entries_name,
                    total: total,
                    from: offset + 1,
-                   to: offset + collection_size
+                   to: [ offset + collection.limit_value, total ].min
           end
         else
           # Do not display total count, in order to prevent a `SELECT count(*)`.
