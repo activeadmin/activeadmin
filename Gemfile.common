@@ -8,7 +8,7 @@ gem 'cancancan'
 gem 'pundit'
 gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
 gem 'draper', '~> 3.0'
-gem "devise", '~> 4.4'
+gem "devise", '~> 4.6.1'
 
 group :test do
   gem 'capybara', '~> 3.10'

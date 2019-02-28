@@ -1,7 +1,7 @@
 <div id="login">
   <h2><%= active_admin_application.site_title(self) %> <%= title t('active_admin.devise.reset_password.title') %></h2>
 
-  <%= devise_error_messages! %>
+  <%= render partial: "active_admin/devise/shared/error_messages", resource: resource %>
   <%= active_admin_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
     f.inputs do
       f.input :email

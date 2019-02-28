@@ -2,7 +2,7 @@
   <h2><%= active_admin_application.site_title(self) %> <%= title t('active_admin.devise.sign_up.title') %></h2>
 
   <% scope = Devise::Mapping.find_scope!(resource_name) %>
-  <%= devise_error_messages! %>
+  <%= render partial: "active_admin/devise/shared/error_messages", resource: resource %>
   <%= active_admin_form_for(resource, as: resource_name, url: send(:"#{scope}_registration_path"), html: { id: "registration_new" }) do |f|
     f.inputs do
       resource.class.authentication_keys.each_with_index { |key, index|
