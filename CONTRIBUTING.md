@@ -110,7 +110,8 @@ them to the `local` rake task. For example, to boot the rails console:
 bin/rake local console
 ```
 
-Or to migrate the database:
+Or to migrate the database, if you create a new migration or just play around
+with the db:
 
 ```sh
 bin/rake local db:migrate
