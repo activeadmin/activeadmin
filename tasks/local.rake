@@ -11,7 +11,7 @@ task :local do
   argv = ARGV[1..-1]
 
   # If it's a rails command, auto add the rails script
-  if %w(generate console server db dbconsole g c s runner).include?(argv[0])
+  if %w(generate console server dbconsole g c s runner).include?(argv[0]) || argv[0] =~ /db:/
     argv.unshift('rails')
   end
 

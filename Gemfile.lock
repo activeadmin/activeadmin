@@ -220,8 +220,10 @@ GEM
     multipart-post (2.0.0)
     netrc (0.11.0)
     nio4r (2.3.1)
+    nio4r (2.3.1-java)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
+    nokogiri (1.10.1-java)
     octokit (4.13.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     orm_adapter (0.5.0)
@@ -368,7 +370,7 @@ DEPENDENCIES
   activeadmin!
   activerecord-jdbcsqlite3-adapter (~> 52.0)
   cancancan
-  capybara (~> 3.10)
+  capybara (~> 3.14)
   chandler (= 0.9.0)
   cucumber
   cucumber-rails (~> 1.5)

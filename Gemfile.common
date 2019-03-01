@@ -11,7 +11,7 @@ gem 'draper', '~> 3.0'
 gem "devise", '~> 4.4'
 
 group :test do
-  gem 'capybara', '~> 3.10'
+  gem 'capybara', '~> 3.14'
 
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'cucumber-rails', '~> 1.5', require: false
