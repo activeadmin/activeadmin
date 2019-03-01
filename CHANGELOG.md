@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Fixes bug on sidebar title internationalization with i18n. [#5417] by [@WaKeMaTTa]
+* `filter` labels now support to be passed a `Proc`. [#5418] by [@WaKeMaTTa]
+
 ## 1.4.3 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.2...v1.4.3)
 
 ### Bug Fixes
