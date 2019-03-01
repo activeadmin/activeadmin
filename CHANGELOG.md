@@ -352,6 +352,8 @@ Please check [0-6-stable] for previous changes.
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
 [#5408]: https://github.com/activeadmin/activeadmin/pull/5408
 [#5413]: https://github.com/activeadmin/activeadmin/pull/5413
+[#5417]: https://github.com/activeadmin/activeadmin/pull/5417
+[#5418]: https://github.com/activeadmin/activeadmin/pull/5418
 [#5433]: https://github.com/activeadmin/activeadmin/pull/5433
 [#5446]: https://github.com/activeadmin/activeadmin/pull/5446
 [#5448]: https://github.com/activeadmin/activeadmin/pull/5448
@@ -418,6 +420,7 @@ Please check [0-6-stable] for previous changes.
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
 [@wasifhossain]: https://github.com/wasifhossain
+[@WaKeMaTTa]: https://github.com/WaKeMaTTa
 [@Wowu]: https://github.com/Wowu
 [@wspurgin]: https://github.com/wspurgin
 [@zorab47]: https://github.com/zorab47
