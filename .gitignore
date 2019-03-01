@@ -9,3 +9,4 @@ public
 .rspec_failures
 .rails-version
 .rbenv-version
+vendor
