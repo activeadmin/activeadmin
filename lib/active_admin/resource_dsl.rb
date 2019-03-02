@@ -121,7 +121,7 @@ module ActiveAdmin
     #
     #   ActiveAdmin.register Post do
     #     member_action :comments do
-    #       @post = Post.find(params[:id]
+    #       @post = Post.find(params[:id])
     #       @comments = @post.comments
     #     end
     #   end
