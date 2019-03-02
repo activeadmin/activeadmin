@@ -3,7 +3,6 @@ require File.expand_path('config_shared_examples', File.dirname(__FILE__))
 
 module ActiveAdmin
   RSpec.describe Page do
-
     it_should_behave_like "ActiveAdmin::Resource"
 
     let(:application){ ActiveAdmin::Application.new }

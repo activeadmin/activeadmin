@@ -45,7 +45,6 @@ RSpec.describe ActiveAdmin::Views::Tabs do
       it "should have li with specific css class" do
         expect(subject).to have_selector('li.some_css_class')
       end
-
     end
 
     context "when creating a tab with a block" do

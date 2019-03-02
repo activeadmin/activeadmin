@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::IndexList do
-
   describe "#index_list_renderer" do
-
     let(:index_classes) { [ActiveAdmin::Views::IndexAsTable, ActiveAdmin::Views::IndexAsBlock] }
 
     let(:collection) {

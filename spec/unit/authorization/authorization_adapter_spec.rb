@@ -1,31 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::AuthorizationAdapter do
-
   let(:adapter) { ActiveAdmin::AuthorizationAdapter.new(double, double) }
 
   describe "#authorized?" do
-
     it "should always return true" do
       expect(adapter.authorized?(:read, "Resource")).to eq true
     end
-
   end
 
   describe "#scope_collection" do
-
     it "should return the collection unscoped" do
       collection = double
       expect(adapter.scope_collection(collection, ActiveAdmin::Auth::READ)).to eq collection
     end
-
   end
 
   describe "using #normalized in a subclass" do
-
     let(:auth_class) do
       Class.new(ActiveAdmin::AuthorizationAdapter) do
-
         def authorized?(action, subject = nil)
           case subject
           when normalized(String)
@@ -34,7 +27,6 @@ RSpec.describe ActiveAdmin::AuthorizationAdapter do
             false
           end
         end
-
       end
     end
 
@@ -55,7 +47,5 @@ RSpec.describe ActiveAdmin::AuthorizationAdapter do
     it 'should not match a different instance' do
       expect(adapter.authorized?(:read, {})).to eq false
     end
-
   end
-
 end

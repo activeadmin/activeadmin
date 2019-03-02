@@ -242,6 +242,5 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
         expect(pagination_node).to have_css("select option", count: 3)
       end
     end
-
   end
 end

@@ -10,7 +10,6 @@ module ActiveAdmin
     end
 
     describe "adding a scope" do
-
       it "should add a scope" do
         config.scope :published
         expect(config.scopes.first).to be_a(ActiveAdmin::Scope)
@@ -41,7 +40,6 @@ module ActiveAdmin
         config.scope(:published){ }
         expect(config.scopes.first.scope_block).to_not eq nil
       end
-
     end
   end
 end

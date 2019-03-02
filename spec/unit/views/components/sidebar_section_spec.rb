@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::SidebarSection do
-
   let(:options) { {} }
 
   let(:section) do

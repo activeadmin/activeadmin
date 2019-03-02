@@ -29,9 +29,7 @@ class DefaultPolicy < ApplicationPolicy
 end
 
 RSpec.describe ActiveAdmin::PunditAdapter do
-
   describe "full integration" do
-
     let(:application) { ActiveAdmin::Application.new }
     let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
     let(:resource) { namespace.register(Post) }
@@ -94,5 +92,4 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       it("should return default policy instance") { is_expected.to be_instance_of(default_policy_klass) }
     end
   end
-
 end

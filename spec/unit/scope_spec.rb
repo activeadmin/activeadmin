@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Scope do
-
   describe "creating a scope" do
     subject{ scope }
 
@@ -162,7 +161,6 @@ RSpec.describe ActiveAdmin::Scope do
         it { is_expected.to eq(:published) }
       end
     end
-
   end # describe "creating a scope"
 
   describe "#display_if_block" do

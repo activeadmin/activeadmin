@@ -5,7 +5,6 @@ require 'active_admin/menu_item'
 include ActiveAdmin
 
 RSpec.describe ActiveAdmin::Menu do
-
   context "with no items" do
     it "should have an empty item collection" do
       menu = Menu.new

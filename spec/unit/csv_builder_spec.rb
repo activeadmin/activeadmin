@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::CSVBuilder do
-
   describe '.default_for_resource using Post' do
     let(:application){ ActiveAdmin::Application.new }
     let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
@@ -309,5 +308,4 @@ RSpec.describe ActiveAdmin::CSVBuilder do
     it 'encodes values correctly'
     it 'passes custom encoding options to String#encode!'
   end
-
 end

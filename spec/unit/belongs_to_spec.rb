@@ -67,7 +67,6 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
 
     it 'should be able to access the collection' do
       expect(controller.send :collection).to be_a ActiveRecord::Relation
-
     end
     it 'should be able to build a new resource' do
       expect(controller.send :build_resource).to be_a Post

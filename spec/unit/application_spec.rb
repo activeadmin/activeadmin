@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'fileutils'
 
 RSpec.describe ActiveAdmin::Application do
-
   let(:application) { ActiveAdmin::Application.new }
 
   it "should have a default load path of ['app/admin']" do
@@ -105,7 +104,6 @@ RSpec.describe ActiveAdmin::Application do
   end
 
   describe "authentication settings" do
-
     it "should have no default current_user_method" do
       expect(application.current_user_method).to eq false
     end
@@ -144,7 +142,6 @@ RSpec.describe ActiveAdmin::Application do
   end
 
   describe "#namespace" do
-
     it "should yield a new namespace" do
       application.namespace :new_namespace do |ns|
         expect(ns.name).to eq :new_namespace
@@ -181,5 +178,4 @@ RSpec.describe ActiveAdmin::Application do
       application.register_page("My Page", namespace: "public")
     end
   end
-
 end

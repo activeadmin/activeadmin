@@ -3,7 +3,6 @@ require 'rails_helper'
 class MockComponentClass < ActiveAdmin::Component; end
 
 RSpec.describe ActiveAdmin::Component do
-
   let(:component_class){ MockComponentClass }
   let(:component){ component_class.new }
 
@@ -14,5 +13,4 @@ RSpec.describe ActiveAdmin::Component do
   it "should render to a div, even as a subclass" do
     expect(component.tag_name).to eq 'div'
   end
-
 end
