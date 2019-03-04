@@ -203,6 +203,28 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
+    context "when viewing the first page of a collection that has multiple pages" do
+      let(:collection) do
+        Kaminari.paginate_array([Post.new] * 81).page(1).per(20)
+      end
+
+      it "should show the proper item counts" do
+        expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
+          to eq "Displaying posts <b>1 - 20</b> of <b>81</b> in total"
+      end
+    end
+
+    context "when viewing the second page of a collection that has multiple pages" do
+      let(:collection) do
+        Kaminari.paginate_array([Post.new] * 81).page(2).per(25)
+      end
+
+      it "should show the proper item counts" do
+        expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
+          to eq "Displaying posts <b>26 - 50</b> of <b>81</b> in total"
+      end
+    end
+
     context "with :pagination_total" do
       let(:collection) do
         Kaminari.paginate_array([Post.new] * 256).page(1).per(30)
