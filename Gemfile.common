@@ -6,9 +6,11 @@ gem 'pry-byebug', platform: :mri # Step-by-step debugging
 # Optional dependencies used in both development & test environments
 gem 'cancancan'
 gem 'pundit'
-gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
-gem 'draper', '~> 3.0'
-gem "devise", '~> 4.6'
+gem 'jruby-openssl', platform: :jruby
+gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+gem 'draper'
+gem 'responders'
+gem "devise"
 
 group :test do
   gem 'capybara', '~> 3.14'
@@ -18,7 +20,7 @@ group :test do
   gem 'cucumber'
   gem 'database_cleaner'
   gem 'jasmine'
-  gem 'jasmine-core', '2.9.1' # last release with Ruby 2.2 support.
+  gem 'jasmine-core'
   gem 'launchy'
   gem 'parallel_tests', '~> 2.26'
   gem 'rails-i18n' # Provides default i18n for many languages
