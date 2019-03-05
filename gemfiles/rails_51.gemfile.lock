@@ -114,7 +114,7 @@ GEM
     cucumber-tag_expressions (1.1.1)
     cucumber-wire (0.0.1)
     database_cleaner (1.7.0)
-    devise (4.5.0)
+    devise (4.6.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)
@@ -332,7 +332,7 @@ DEPENDENCIES
   cucumber
   cucumber-rails (~> 1.5)
   database_cleaner
-  devise (~> 4.4)
+  devise (~> 4.6)
   draper (~> 3.0)
   jasmine
   jasmine-core (= 2.9.1)
