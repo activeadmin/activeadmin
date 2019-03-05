@@ -129,7 +129,10 @@ module ActiveAdmin
           not_poly.reject! { |r| r.chain.length > 2 }
 
           # Check high-arity associations for filterable columns
-          high_arity, low_arity = not_poly.partition { |r| r.klass.count > namespace.maximum_association_filter_arity }
+          max = namespace.maximum_association_filter_arity
+          high_arity, low_arity = not_poly.partition do |r|
+            r.klass.limit(max+1).count > max
+          end
 
           # Remove high-arity associations with no searchable column
           high_arity = high_arity.select(&method(:searchable_column_for))
