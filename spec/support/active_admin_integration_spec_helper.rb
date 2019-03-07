@@ -50,8 +50,8 @@ module ActiveAdminIntegrationSpecHelper
   def mock_action_view(base = MockActionView)
     controller = ActionView::TestCase::TestController.new
     #this line needed because of rails bug https://github.com/rails/rails/commit/d8e98897b5703ac49bf0764da71a06d64ecda9b0
-    controller.params = ActionController::Parameters.new
-    base.new(ActionController::Base.view_paths, {}, controller)
+    # controller.params = ActionController::Parameters.new
+    base.new(ActionView::LookupContext.new(ActionController::Base.view_paths), {}, controller)
   end
 
   def with_translation(translation)

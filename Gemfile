@@ -21,8 +21,9 @@ group :docs do
   gem 'yard'     # Documentation generator
   gem 'kramdown' # Markdown implementation (for yard)
 end
-gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources', ref: 'eb822433650bba76f8c41be2b90d749548efcb9f'
-gem "rails", "6.0.0.beta1"
+
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
+gem "rails", "6.0.0.beta2"
 gem "activerecord-jdbcsqlite3-adapter", platform: :jruby
 
 gemspec path: "."
