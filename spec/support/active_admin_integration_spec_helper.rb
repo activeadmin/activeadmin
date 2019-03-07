@@ -50,8 +50,17 @@ module ActiveAdminIntegrationSpecHelper
   def mock_action_view(base = MockActionView)
     controller = ActionView::TestCase::TestController.new
     #this line needed because of rails bug https://github.com/rails/rails/commit/d8e98897b5703ac49bf0764da71a06d64ecda9b0
-    # controller.params = ActionController::Parameters.new
-    base.new(ActionView::LookupContext.new(ActionController::Base.view_paths), {}, controller)
+    controller.params = ActionController::Parameters.new
+
+    base.new(view_paths, {}, controller)
+  end
+
+  def view_paths
+    paths = ActionController::Base.view_paths
+    # the constructor for ActionView::Base changed from Rails 6
+    # and now expects an instance of ActionView::LookupContext
+    return paths unless Rails::VERSION::MAJOR >= 6
+    ActionView::LookupContext.new(paths)
   end
 
   def with_translation(translation)
