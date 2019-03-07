@@ -7,6 +7,7 @@ gem 'pry-byebug', platform: :mri # Step-by-step debugging
 gem 'cancancan'
 gem 'pundit'
 gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
+# Use the unreleased version of draper because is compatible with Rails 6
 gem 'draper', github: 'drapergem/draper'
 gem "devise", '~> 4.6'
 
@@ -18,9 +19,9 @@ group :test do
   gem 'cucumber'
   gem 'database_cleaner'
   gem 'jasmine'
-  gem 'jasmine-core'
+  gem 'jasmine-core', '2.9.1' # last release with Ruby 2.2 support.
   gem 'launchy'
-  gem 'parallel_tests'
+  gem 'parallel_tests', '~> 2.26'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
   gem 'sqlite3', '~> 1.3.6', platform: :mri
