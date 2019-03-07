@@ -6,7 +6,7 @@ gem 'pry-byebug', platform: :mri # Step-by-step debugging
 # Optional dependencies used in both development & test environments
 gem 'cancancan'
 gem 'pundit'
-gem 'jruby-openssl', platform: :jruby
+gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
 gem 'draper', github: 'drapergem/draper'
 gem "devise", '~> 4.6'
 
