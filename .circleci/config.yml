@@ -208,6 +208,18 @@ jobs:
     steps:
       *test_app_steps
 
+  testapp60:
+    docker:
+    - image: circleci/ruby:2.6.1-node
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60.gemfile
+
+    steps:
+      *test_app_steps
+
+
   lint_and_docs:
     docker:
       - image: circleci/ruby:2.6.1-node
@@ -500,6 +512,10 @@ workflows:
       - testapp52:
           requires:
             - setup_coverage
+
+      - testapp60:
+          requires:
+          - setup_coverage
 
       - ruby23rails50:
           requires:
