@@ -22,9 +22,7 @@ group :docs do
   gem 'kramdown' # Markdown implementation (for yard)
 end
 
-# Use the unreleased version of inherited_resources because is compatible with Rails 6
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem "rails", "6.0.0.beta2"
-gem "activerecord-jdbcsqlite3-adapter", github: 'jruby/activerecord-jdbc-adapter', platform: :jruby
+gem "rails", "~> 5.2.2"
+gem "activerecord-jdbcsqlite3-adapter", "~> 52.0", platform: :jruby
 
 gemspec path: "."
