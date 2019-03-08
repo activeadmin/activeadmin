@@ -118,7 +118,7 @@ inject_into_file 'app/admin/users.rb', <<-RUBY, after: "ActiveAdmin.register Use
     end
 
     panel 'Posts' do
-      paginated_collection(user.posts.includes(:category).order(:updated_at).page(params[:page]).per(10)) do
+      paginated_collection(user.posts.includes(:category).order(:updated_at).page(params[:page]).per(10), download_links: false) do
         table_for(collection) do
           column :id do |post|
             link_to post.id, admin_post_path(post)
