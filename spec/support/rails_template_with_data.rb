@@ -130,6 +130,7 @@ inject_into_file 'app/admin/users.rb', <<-RUBY, after: "ActiveAdmin.register Use
           column :updated_at
         end
       end
+
       para do
         link_to "View all posts", admin_posts_path('q[author_id_eq]' => user.id)
       end
