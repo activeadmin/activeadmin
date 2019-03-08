@@ -2,7 +2,6 @@ source "https://rubygems.org"
 
 eval_gemfile(File.expand_path(File.join("..", "Gemfile.common"), __dir__))
 
-
 gem "rails", "6.0.0.beta2"
 
 # Use the unreleased version of gems because they are compatible with Rails 6
