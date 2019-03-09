@@ -27,6 +27,8 @@
 * Restrict ransack requirement to >= 2.1.1 to play nice with Rails 5.2.2. [#5632] by [@deivid-rodriguez]
 * Bad interpolation variables on pagination keys in Lithuanian translation. [#5631] by [@deivid-rodriguez]
 * Tabs are not correctly created when using non-transliteratable characters as title. [#5650] by [@panasyuk]
+* Sidebar title internationalization. [#5417] by [@WaKeMaTTa]
+* `filter` labels not allowing a `Proc` to be passed. [#5418] by [@WaKeMaTTa]
 
 ### Removals
 
@@ -390,6 +392,8 @@ Please check [0-6-stable] for previous changes.
 [#5401]: https://github.com/activeadmin/activeadmin/pull/5401
 [#5408]: https://github.com/activeadmin/activeadmin/pull/5408
 [#5413]: https://github.com/activeadmin/activeadmin/pull/5413
+[#5417]: https://github.com/activeadmin/activeadmin/pull/5417
+[#5418]: https://github.com/activeadmin/activeadmin/pull/5418
 [#5433]: https://github.com/activeadmin/activeadmin/pull/5433
 [#5446]: https://github.com/activeadmin/activeadmin/pull/5446
 [#5448]: https://github.com/activeadmin/activeadmin/pull/5448
@@ -465,6 +469,7 @@ Please check [0-6-stable] for previous changes.
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
 [@wasifhossain]: https://github.com/wasifhossain
+[@WaKeMaTTa]: https://github.com/WaKeMaTTa
 [@Wowu]: https://github.com/Wowu
 [@wspurgin]: https://github.com/wspurgin
 [@zorab47]: https://github.com/zorab47
