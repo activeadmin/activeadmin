@@ -118,16 +118,19 @@ inject_into_file 'app/admin/users.rb', <<-RUBY, after: "ActiveAdmin.register Use
     end
 
     panel 'Posts' do
-      table_for(user.posts.includes(:category).order(:updated_at).limit(10)) do
-        column :id do |post|
-          link_to post.id, admin_post_path(post)
+      paginated_collection(user.posts.includes(:category).order(:updated_at).page(params[:page]).per(10), download_links: false) do
+        table_for(collection) do
+          column :id do |post|
+            link_to post.id, admin_post_path(post)
+          end
+          column :title
+          column :published_date
+          column :category
+          column :created_at
+          column :updated_at
         end
-        column :title
-        column :published_date
-        column :category
-        column :created_at
-        column :updated_at
       end
+
       para do
         link_to "View all posts", admin_posts_path('q[author_id_eq]' => user.id)
       end
