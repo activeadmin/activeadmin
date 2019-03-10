@@ -193,7 +193,6 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
     end
 
     context "on an array collection" do
-
       context "when viewing the first page of a collection that has multiple pages" do
         let(:collection) do
           Kaminari.paginate_array([Post.new] * 81).page(1).per(20)
@@ -226,11 +225,9 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
             to eq "Displaying posts <b>61 - 81</b> of <b>81</b> in total"
         end
       end
-
     end
 
     context "on an ActiveRecord::Relation collection" do
-
       context "when viewing the first page of a collection that has multiple pages" do
         let(:collection) do
           5.times { Post.create }
@@ -266,7 +263,6 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
             to eq "Displaying posts <b>5 - 5</b> of <b>5</b> in total"
         end
       end
-
     end
 
     context "with :pagination_total" do
