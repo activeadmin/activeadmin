@@ -192,37 +192,81 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
-    context "when viewing the last page of a collection that has multiple pages" do
-      let(:collection) do
-        Kaminari.paginate_array([Post.new] * 81).page(3).per(30)
+    context "on an array collection" do
+
+      context "when viewing the first page of a collection that has multiple pages" do
+        let(:collection) do
+          Kaminari.paginate_array([Post.new] * 81).page(1).per(20)
+        end
+
+        it "should show the proper item counts" do
+          expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
+            to eq "Displaying posts <b>1 - 20</b> of <b>81</b> in total"
+        end
       end
 
-      it "should show the proper item counts" do
-        expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
-          to eq "Displaying posts <b>61 - 81</b> of <b>81</b> in total"
+      context "when viewing the second page of a collection that has multiple pages" do
+        let(:collection) do
+          Kaminari.paginate_array([Post.new] * 81).page(2).per(25)
+        end
+
+        it "should show the proper item counts" do
+          expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
+            to eq "Displaying posts <b>26 - 50</b> of <b>81</b> in total"
+        end
       end
+
+      context "when viewing the last page of a collection that has multiple pages" do
+        let(:collection) do
+          Kaminari.paginate_array([Post.new] * 81).page(3).per(30)
+        end
+
+        it "should show the proper item counts" do
+          expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
+            to eq "Displaying posts <b>61 - 81</b> of <b>81</b> in total"
+        end
+      end
+
     end
 
-    context "when viewing the first page of a collection that has multiple pages" do
-      let(:collection) do
-        Kaminari.paginate_array([Post.new] * 81).page(1).per(20)
+    context "on an ActiveRecord::Relation collection" do
+
+      context "when viewing the first page of a collection that has multiple pages" do
+        let(:collection) do
+          5.times { Post.create }
+          Kaminari.paginate_array(Post.all).page(1).per(2)
+        end
+
+        it "should show the proper item counts" do
+          expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
+            to eq "Displaying posts <b>1 - 2</b> of <b>5</b> in total"
+        end
       end
 
-      it "should show the proper item counts" do
-        expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
-          to eq "Displaying posts <b>1 - 20</b> of <b>81</b> in total"
-      end
-    end
+      context "when viewing the second page of a collection that has multiple pages" do
+        let(:collection) do
+          5.times { Post.create }
+          Kaminari.paginate_array(Post.all).page(2).per(2)
+        end
 
-    context "when viewing the second page of a collection that has multiple pages" do
-      let(:collection) do
-        Kaminari.paginate_array([Post.new] * 81).page(2).per(25)
+        it "should show the proper item counts" do
+          expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
+            to eq "Displaying posts <b>3 - 4</b> of <b>5</b> in total"
+        end
       end
 
-      it "should show the proper item counts" do
-        expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
-          to eq "Displaying posts <b>26 - 50</b> of <b>81</b> in total"
+      context "when viewing the last page of a collection that has multiple pages" do
+        let(:collection) do
+          5.times { Post.create }
+          Kaminari.paginate_array(Post.all).page(3).per(2)
+        end
+
+        it "should show the proper item counts" do
+          expect(pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')).
+            to eq "Displaying posts <b>5 - 5</b> of <b>5</b> in total"
+        end
       end
+
     end
 
     context "with :pagination_total" do
