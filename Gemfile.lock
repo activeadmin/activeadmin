@@ -399,7 +399,7 @@ DEPENDENCIES
   cucumber
   cucumber-rails (~> 1.5)
   database_cleaner
-  devise (~> 4.6.1)
+  devise (~> 4.6)
   draper (~> 3.0)
   i18n-spec
   i18n-tasks
