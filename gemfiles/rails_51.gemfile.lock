@@ -16,10 +16,10 @@ PATH
       arbre (~> 1.1, >= 1.1.1)
       formtastic (~> 3.1)
       formtastic_i18n (~> 0.4)
-      inherited_resources
+      inherited_resources (~> 1.7)
       jquery-rails (~> 4.2)
       kaminari (~> 1.0, >= 1.0.1)
-      railties (>= 5.0)
+      railties (>= 5.0, < 6.0)
       ransack (~> 2.1, >= 2.1.1)
       sass (~> 3.4)
       sprockets (>= 3.0, < 4.1)
@@ -340,10 +340,10 @@ DEPENDENCIES
   devise (~> 4.6)
   draper!
   jasmine
-  jasmine-core
+  jasmine-core (= 2.9.1)
   jruby-openssl (~> 0.10.1)
   launchy
-  parallel_tests
+  parallel_tests (~> 2.26)
   pry
   pry-byebug
   pundit
