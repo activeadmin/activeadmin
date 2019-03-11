@@ -1,5 +1,12 @@
 GIT
-  remote: git://github.com/drapergem/draper.git
+  remote: https://github.com/CanCanCommunity/cancancan
+  revision: 23ac88c2aa7db77f08744dd3f5492af02a29cd03
+  branch: feature/3.0.0
+  specs:
+    cancancan (2.3.0)
+
+GIT
+  remote: https://github.com/drapergem/draper
   revision: 157eb955072a941e6455e0121fca09a989fcbc21
   specs:
     draper (3.0.1)
@@ -88,7 +95,6 @@ GEM
     bcrypt (3.1.12-java)
     builder (3.2.3)
     byebug (10.0.2)
-    cancancan (2.3.0)
     capybara (3.14.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -332,7 +338,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   activerecord-jdbcsqlite3-adapter (~> 51.0)
-  cancancan
+  cancancan!
   capybara (~> 3.14)
   cucumber
   cucumber-rails (~> 1.5)
