@@ -515,7 +515,7 @@ workflows:
 
       - testapp60:
           requires:
-          - setup_coverage
+            - setup_coverage
 
       - ruby23rails50:
           requires:
@@ -555,7 +555,7 @@ workflows:
 
       - ruby25rails60:
           requires:
-          - testapp60
+            - testapp60
 
       - ruby26rails50:
           requires:
@@ -571,7 +571,7 @@ workflows:
 
       - ruby26rails60:
           requires:
-          - testapp60
+            - testapp60
 
       - jruby91rails50:
           requires:
@@ -599,7 +599,7 @@ workflows:
 
       - jruby92rails60:
           requires:
-          - testapp60
+            - testapp60
 
       - upload_coverage:
           requires:
