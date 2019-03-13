@@ -62,7 +62,7 @@ version: 2.1
   run:
     name: Upload coverage results to Code Climate
     command: |
-      coverage/test-reporter sum-coverage coverage/codeclimate.*.json --parts 19 --output coverage/codeclimate.total.json
+      coverage/test-reporter sum-coverage coverage/codeclimate.*.json --parts 22 --output coverage/codeclimate.total.json
       coverage/test-reporter upload-coverage --input coverage/codeclimate.total.json
 
 .save_test_app_to_workspace: &save_test_app_to_workspace
@@ -218,7 +218,6 @@ jobs:
 
     steps:
       *test_app_steps
-
 
   lint_and_docs:
     docker:
