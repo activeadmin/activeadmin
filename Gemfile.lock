@@ -1,3 +1,21 @@
+GIT
+  remote: https://github.com/CanCanCommunity/cancancan
+  revision: 23ac88c2aa7db77f08744dd3f5492af02a29cd03
+  branch: feature/3.0.0
+  specs:
+    cancancan (2.3.0)
+
+GIT
+  remote: https://github.com/drapergem/draper
+  revision: 157eb955072a941e6455e0121fca09a989fcbc21
+  specs:
+    draper (3.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
+
 PATH
   remote: .
   specs:
@@ -8,7 +26,7 @@ PATH
       inherited_resources (~> 1.7)
       jquery-rails (~> 4.2)
       kaminari (~> 1.0, >= 1.0.1)
-      railties (>= 5.0, < 5.3)
+      railties (>= 5.0, < 6.0)
       ransack (~> 2.1, >= 2.1.1)
       sass (~> 3.4)
       sprockets (>= 3.0, < 4.1)
@@ -82,7 +100,6 @@ GEM
     bcrypt (3.1.12-java)
     builder (3.2.3)
     byebug (10.0.2)
-    cancancan (2.3.0)
     capybara (3.14.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -130,12 +147,6 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.3)
     docile (1.3.1)
-    draper (3.0.1)
-      actionpack (~> 5.0)
-      activemodel (~> 5.0)
-      activemodel-serializers-xml (~> 1.0)
-      activesupport (~> 5.0)
-      request_store (~> 1.0)
     erubi (1.7.1)
     execjs (2.7.0)
     faraday (0.15.4)
@@ -299,8 +310,8 @@ GEM
       activesupport (>= 5.0)
       i18n
     rb-fsevent (0.10.3)
-    rb-inotify (0.9.10)
-      ffi (>= 0.5.0, < 2)
+    rb-inotify (0.10.0)
+      ffi (~> 1.0)
     regexp_parser (1.3.0)
     request_store (1.4.1)
       rack (>= 1.4)
@@ -336,7 +347,7 @@ GEM
       rubocop (>= 0.60.0)
     ruby-progressbar (1.10.0)
     rubyzip (1.2.2)
-    sass (3.7.2)
+    sass (3.7.3)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -393,14 +404,14 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   activerecord-jdbcsqlite3-adapter (~> 52.0)
-  cancancan
+  cancancan!
   capybara (~> 3.14)
   chandler (= 0.9.0)
   cucumber
   cucumber-rails (~> 1.5)
   database_cleaner
   devise (~> 4.6)
-  draper (~> 3.0)
+  draper!
   i18n-spec
   i18n-tasks
   jasmine
@@ -421,7 +432,7 @@ DEPENDENCIES
   rubocop-rspec (~> 1.30)
   selenium-webdriver
   simplecov
-  sqlite3
+  sqlite3 (~> 1.3.6)
   yard
 
 BUNDLED WITH

@@ -62,7 +62,9 @@ version: 2.1
   run:
     name: Upload coverage results to Code Climate
     command: |
-      coverage/test-reporter sum-coverage coverage/codeclimate.*.json --parts 19 --output coverage/codeclimate.total.json
+      # The parts number is the total jobs count plus the lint job,
+      # This number should match the number of jobs under upload_coverage/requires
+      coverage/test-reporter sum-coverage coverage/codeclimate.*.json --parts 22 --output coverage/codeclimate.total.json
       coverage/test-reporter upload-coverage --input coverage/codeclimate.total.json
 
 .save_test_app_to_workspace: &save_test_app_to_workspace
@@ -208,6 +210,17 @@ jobs:
     steps:
       *test_app_steps
 
+  testapp60:
+    docker:
+    - image: circleci/ruby:2.6.1-node
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60.gemfile
+
+    steps:
+      *test_app_steps
+
   lint_and_docs:
     docker:
       - image: circleci/ruby:2.6.1-node
@@ -330,6 +343,17 @@ jobs:
     steps:
       *test_steps
 
+  ruby25rails60:
+    docker:
+    - image: circleci/ruby:2.5.3-node-browsers
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60.gemfile
+
+    steps:
+      *test_steps
+
   ruby26rails50:
     docker:
       - image: circleci/ruby:2.6.1-node-browsers
@@ -359,6 +383,17 @@ jobs:
 
     environment:
       BUNDLE_GEMFILE: Gemfile
+
+    steps:
+      *test_steps
+
+  ruby26rails60:
+    docker:
+    - image: circleci/ruby:2.6.1-node-browsers
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60.gemfile
 
     steps:
       *test_steps
@@ -435,6 +470,18 @@ jobs:
     steps:
       *test_steps
 
+  jruby92rails60:
+    docker:
+    - image: circleci/jruby:9.2.5.1-node-browsers
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60.gemfile
+      JRUBY_OPTS: -J-Xmx1024m --dev --debug
+
+    steps:
+      *test_steps
+
 workflows:
   version: 2
 
@@ -464,6 +511,10 @@ workflows:
             - setup_coverage
 
       - testapp52:
+          requires:
+            - setup_coverage
+
+      - testapp60:
           requires:
             - setup_coverage
 
@@ -503,6 +554,10 @@ workflows:
           requires:
             - testapp52
 
+      - ruby25rails60:
+          requires:
+            - testapp60
+
       - ruby26rails50:
           requires:
             - testapp50
@@ -514,6 +569,10 @@ workflows:
       - ruby26rails52:
           requires:
             - testapp52
+
+      - ruby26rails60:
+          requires:
+            - testapp60
 
       - jruby91rails50:
           requires:
@@ -539,6 +598,10 @@ workflows:
           requires:
             - testapp52
 
+      - jruby92rails60:
+          requires:
+            - testapp60
+
       - upload_coverage:
           requires:
             - lint_and_docs
@@ -554,10 +617,12 @@ workflows:
             - ruby25rails50
             - ruby25rails51
             - ruby25rails52
+            - ruby25rails60
 
             - ruby26rails50
             - ruby26rails51
             - ruby26rails52
+            - ruby26rails60
 
             - jruby91rails50
             - jruby91rails51
@@ -566,3 +631,4 @@ workflows:
             - jruby92rails50
             - jruby92rails51
             - jruby92rails52
+            - jruby92rails60
