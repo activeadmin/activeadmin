@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Enhancements
+
+#### Minor
+
+* Add Macedonian locale. [#5710] by [@violeta-p]
+
 ### Bug Fixes
 
 * Fix pundit policy retrieving for static pages when the pundit namespace is :active_admin. [#5777] by [@kwent]
@@ -453,6 +459,7 @@ Please check [0-6-stable] for previous changes.
 [#5650]: https://github.com/activeadmin/activeadmin/pull/5650
 [#5590]: https://github.com/activeadmin/activeadmin/pull/5590
 [#5662]: https://github.com/activeadmin/activeadmin/pull/5662
+[#5710]: https://github.com/activeadmin/activeadmin/pull/5710
 [#5726]: https://github.com/activeadmin/activeadmin/pull/5726
 [#5738]: https://github.com/activeadmin/activeadmin/pull/5738
 [#5740]: https://github.com/activeadmin/activeadmin/pull/5740
@@ -526,3 +533,4 @@ Please check [0-6-stable] for previous changes.
 [@bartoszkopinski]: https://github.com/bartoszkopinski
 [@panasyuk]: https://github.com/panasyuk
 [@jscheid]: https://github.com/jscheid
+[@violeta-p]: https://github.com/violeta-p
