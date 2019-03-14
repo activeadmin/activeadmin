@@ -7,14 +7,14 @@ GIT
 
 GIT
   remote: https://github.com/activeadmin/arbre
-  revision: b845f1f90c7f471d243557aba8cc8c5fa6b5239f
+  revision: 3c493ab9b9a7e470ac67bbb5354ae686f67f2230
   specs:
     arbre (1.1.1)
       activesupport (>= 3.0.0)
 
 GIT
   remote: https://github.com/activeadmin/inherited_resources
-  revision: 310ecd28a039e75e7bbdfc103b37a416cab56d42
+  revision: 95d1e24d97dd0f871fecfea662805953d7fcd44b
   specs:
     inherited_resources (1.9.0)
       actionpack (>= 5.0, < 6.0)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/jruby/activerecord-jdbc-adapter
-  revision: 3f9bce9a73a9fb31167bc8c80eabffac719d7aa5
+  revision: e49f1435167610e7801012da0d74d32234f8bc1d
   specs:
 
 PATH
@@ -57,59 +57,59 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    actioncable (6.0.0.beta2)
-      actionpack (= 6.0.0.beta2)
+    actioncable (6.0.0.beta3)
+      actionpack (= 6.0.0.beta3)
       nio4r (~> 2.0)
       websocket-driver (>= 0.6.1)
-    actionmailbox (6.0.0.beta2)
-      actionpack (= 6.0.0.beta2)
-      activejob (= 6.0.0.beta2)
-      activerecord (= 6.0.0.beta2)
-      activestorage (= 6.0.0.beta2)
-      activesupport (= 6.0.0.beta2)
+    actionmailbox (6.0.0.beta3)
+      actionpack (= 6.0.0.beta3)
+      activejob (= 6.0.0.beta3)
+      activerecord (= 6.0.0.beta3)
+      activestorage (= 6.0.0.beta3)
+      activesupport (= 6.0.0.beta3)
       mail (>= 2.7.1)
-    actionmailer (6.0.0.beta2)
-      actionpack (= 6.0.0.beta2)
-      actionview (= 6.0.0.beta2)
-      activejob (= 6.0.0.beta2)
+    actionmailer (6.0.0.beta3)
+      actionpack (= 6.0.0.beta3)
+      actionview (= 6.0.0.beta3)
+      activejob (= 6.0.0.beta3)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 2.0)
-    actionpack (6.0.0.beta2)
-      actionview (= 6.0.0.beta2)
-      activesupport (= 6.0.0.beta2)
+    actionpack (6.0.0.beta3)
+      actionview (= 6.0.0.beta3)
+      activesupport (= 6.0.0.beta3)
       rack (~> 2.0)
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actiontext (6.0.0.beta2)
-      actionpack (= 6.0.0.beta2)
-      activerecord (= 6.0.0.beta2)
-      activestorage (= 6.0.0.beta2)
-      activesupport (= 6.0.0.beta2)
+    actiontext (6.0.0.beta3)
+      actionpack (= 6.0.0.beta3)
+      activerecord (= 6.0.0.beta3)
+      activestorage (= 6.0.0.beta3)
+      activesupport (= 6.0.0.beta3)
       nokogiri (>= 1.8.5)
-    actionview (6.0.0.beta2)
-      activesupport (= 6.0.0.beta2)
+    actionview (6.0.0.beta3)
+      activesupport (= 6.0.0.beta3)
       builder (~> 3.1)
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    activejob (6.0.0.beta2)
-      activesupport (= 6.0.0.beta2)
+    activejob (6.0.0.beta3)
+      activesupport (= 6.0.0.beta3)
       globalid (>= 0.3.6)
-    activemodel (6.0.0.beta2)
-      activesupport (= 6.0.0.beta2)
+    activemodel (6.0.0.beta3)
+      activesupport (= 6.0.0.beta3)
     activemodel-serializers-xml (1.0.2)
       activemodel (> 5.x)
       activesupport (> 5.x)
       builder (~> 3.1)
-    activerecord (6.0.0.beta2)
-      activemodel (= 6.0.0.beta2)
-      activesupport (= 6.0.0.beta2)
-    activestorage (6.0.0.beta2)
-      actionpack (= 6.0.0.beta2)
-      activerecord (= 6.0.0.beta2)
+    activerecord (6.0.0.beta3)
+      activemodel (= 6.0.0.beta3)
+      activesupport (= 6.0.0.beta3)
+    activestorage (6.0.0.beta3)
+      actionpack (= 6.0.0.beta3)
+      activerecord (= 6.0.0.beta3)
       marcel (~> 0.3.1)
-    activesupport (6.0.0.beta2)
+    activesupport (6.0.0.beta3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -136,7 +136,7 @@ GEM
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
-    concurrent-ruby (1.1.4)
+    concurrent-ruby (1.1.5)
     crass (1.0.4)
     cucumber (3.1.2)
       builder (>= 2.1.2)
@@ -245,20 +245,20 @@ GEM
     rack (2.0.6)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    rails (6.0.0.beta2)
-      actioncable (= 6.0.0.beta2)
-      actionmailbox (= 6.0.0.beta2)
-      actionmailer (= 6.0.0.beta2)
-      actionpack (= 6.0.0.beta2)
-      actiontext (= 6.0.0.beta2)
-      actionview (= 6.0.0.beta2)
-      activejob (= 6.0.0.beta2)
-      activemodel (= 6.0.0.beta2)
-      activerecord (= 6.0.0.beta2)
-      activestorage (= 6.0.0.beta2)
-      activesupport (= 6.0.0.beta2)
+    rails (6.0.0.beta3)
+      actioncable (= 6.0.0.beta3)
+      actionmailbox (= 6.0.0.beta3)
+      actionmailer (= 6.0.0.beta3)
+      actionpack (= 6.0.0.beta3)
+      actiontext (= 6.0.0.beta3)
+      actionview (= 6.0.0.beta3)
+      activejob (= 6.0.0.beta3)
+      activemodel (= 6.0.0.beta3)
+      activerecord (= 6.0.0.beta3)
+      activestorage (= 6.0.0.beta3)
+      activesupport (= 6.0.0.beta3)
       bundler (>= 1.3.0)
-      railties (= 6.0.0.beta2)
+      railties (= 6.0.0.beta3)
       sprockets-rails (>= 2.0.0)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
@@ -268,9 +268,9 @@ GEM
     rails-i18n (5.1.3)
       i18n (>= 0.7, < 2)
       railties (>= 5.0, < 6)
-    railties (6.0.0.beta2)
-      actionpack (= 6.0.0.beta2)
-      activesupport (= 6.0.0.beta2)
+    railties (6.0.0.beta3)
+      actionpack (= 6.0.0.beta3)
+      activesupport (= 6.0.0.beta3)
       method_source
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
@@ -343,7 +343,7 @@ GEM
     websocket-extensions (0.1.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (1.3.2)
+    zeitwerk (1.3.3)
 
 PLATFORMS
   ruby
@@ -368,7 +368,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pundit
-  rails (= 6.0.0.beta2)
+  rails (= 6.0.0.beta3)
   rails-i18n
   rake
   rspec-rails
