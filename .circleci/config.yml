@@ -62,6 +62,8 @@ version: 2.1
   run:
     name: Upload coverage results to Code Climate
     command: |
+      # The parts number is the total jobs count plus the lint job,
+      # This number should match the number of jobs under upload_coverage/requires
       coverage/test-reporter sum-coverage coverage/codeclimate.*.json --parts 22 --output coverage/codeclimate.total.json
       coverage/test-reporter upload-coverage --input coverage/codeclimate.total.json
 
