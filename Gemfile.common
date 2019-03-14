@@ -4,10 +4,12 @@ gem 'pry' # Easily debug from your console with `binding.pry`
 gem 'pry-byebug', platform: :mri # Step-by-step debugging
 
 # Optional dependencies used in both development & test environments
-gem 'cancancan'
+# CanCanCan gem has introduce support for Rails 6 in feature/3.0.0 branch
+gem 'cancancan', git: 'https://github.com/CanCanCommunity/cancancan', branch: 'feature/3.0.0'
 gem 'pundit'
 gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
-gem 'draper', '~> 3.0'
+# Use the unreleased version of draper because is compatible with Rails 6
+gem 'draper', git: 'https://github.com/drapergem/draper'
 gem "devise", '~> 4.6'
 
 group :test do
@@ -23,6 +25,6 @@ group :test do
   gem 'parallel_tests', '~> 2.26'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
-  gem 'sqlite3', platform: :mri
+  gem 'sqlite3', '~> 1.3.6', platform: :mri
   gem 'selenium-webdriver'
 end
