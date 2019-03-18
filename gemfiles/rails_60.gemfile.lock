@@ -23,17 +23,6 @@ GIT
       responders
 
 GIT
-  remote: https://github.com/drapergem/draper
-  revision: 157eb955072a941e6455e0121fca09a989fcbc21
-  specs:
-    draper (3.0.1)
-      actionpack (>= 5.0)
-      activemodel (>= 5.0)
-      activemodel-serializers-xml (>= 1.0)
-      activesupport (>= 5.0)
-      request_store (>= 1.0)
-
-GIT
   remote: https://github.com/jruby/activerecord-jdbc-adapter
   revision: e49f1435167610e7801012da0d74d32234f8bc1d
   specs:
@@ -169,6 +158,12 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.3)
     docile (1.3.1)
+    draper (3.1.0)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
     erubi (1.8.0)
     execjs (2.7.0)
     ffi (1.10.0)
@@ -358,7 +353,7 @@ DEPENDENCIES
   cucumber-rails (~> 1.5)
   database_cleaner
   devise (~> 4.6)
-  draper!
+  draper (~> 3.1)
   inherited_resources!
   jasmine
   jasmine-core (= 2.9.1)
