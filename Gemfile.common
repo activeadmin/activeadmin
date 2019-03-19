@@ -8,8 +8,8 @@ gem 'pry-byebug', platform: :mri # Step-by-step debugging
 gem 'cancancan', git: 'https://github.com/CanCanCommunity/cancancan', branch: 'feature/3.0.0'
 gem 'pundit'
 gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
-# Use the unreleased version of draper because is compatible with Rails 6
-gem 'draper', git: 'https://github.com/drapergem/draper'
+
+gem 'draper', '~> 3.1'
 gem "devise", '~> 4.6'
 
 group :test do

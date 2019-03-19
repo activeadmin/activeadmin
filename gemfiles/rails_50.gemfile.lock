@@ -5,17 +5,6 @@ GIT
   specs:
     cancancan (2.3.0)
 
-GIT
-  remote: https://github.com/drapergem/draper
-  revision: 157eb955072a941e6455e0121fca09a989fcbc21
-  specs:
-    draper (3.0.1)
-      actionpack (>= 5.0)
-      activemodel (>= 5.0)
-      activemodel-serializers-xml (>= 1.0)
-      activesupport (>= 5.0)
-      request_store (>= 1.0)
-
 PATH
   remote: ..
   specs:
@@ -139,6 +128,12 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.3)
     docile (1.3.1)
+    draper (3.1.0)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.25)
@@ -344,7 +339,7 @@ DEPENDENCIES
   cucumber-rails (~> 1.5)
   database_cleaner
   devise (~> 4.6)
-  draper!
+  draper (~> 3.1)
   jasmine
   jasmine-core (= 2.9.1)
   jruby-openssl (~> 0.10.1)
