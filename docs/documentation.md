@@ -14,6 +14,7 @@ on Rails application. To install, simply add the following to your Gemfile:
 ```ruby
 # Gemfile
 gem 'activeadmin'
+gem 'devise'
 ```
 
 After updating your bundle, run the installer
@@ -30,6 +31,7 @@ Migrate your db and start the server:
 
 ```bash
 $> rake db:migrate
+$> rake db:seed
 $> rails server
 ```
 
