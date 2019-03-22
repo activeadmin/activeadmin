@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0.rc1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.3..v2.0.0.rc1)
+
 ### Enhancements
 
 * Add your own content to the site `<head>`, like analytics [#5590] by [@buren]
