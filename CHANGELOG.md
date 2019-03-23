@@ -42,26 +42,26 @@
   didn't add any stuff to it).
 * Devise 3 support has been dropped. [#5608] by [@deivid-rodriguez] and [@javierjulio]
 
-## 1.4.3 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.2...v1.4.3)
+## 1.4.3 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.2..v1.4.3)
 
 ### Bug Fixes
 
 * Fix `form` parameter to `batch_action` no longer accepting procs. [#5611] by [@buren] and [@deivid-rodriguez]
 * Fix passing a proc to `scope_to`. [#5611] by [@deivid-rodriguez]
 
-## 1.4.2 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.1...v1.4.2)
+## 1.4.2 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.1..v1.4.2)
 
 ### Bug Fixes
 
 * Fix `input_html` filter option evaluated only once. [#5376] by [@kjeldahl]
 
-## 1.4.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.0...v1.4.1)
+## 1.4.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.0..v1.4.1)
 
 ### Bug Fixes
 
 * Fix menu item link with method delete. [#5583] by [@tiagotex]
 
-## 1.4.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.1...v1.4.0)
+## 1.4.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.1..v1.4.0)
 
 ### Enhancements
 
@@ -94,13 +94,13 @@
 * Fixed resource filtering by association when the resource has custom primary key. [#5446] by [@wasifhossain]
 * Fixed "create anoter" checkbox styling. [#5324] by [@faucct]
 
-## 1.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.0...v1.3.1)
+## 1.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.0..v1.3.1)
 
 ### Bug Fixes
 
 * gemspec should have more permissive ransack dependency. [#5448] by [@varyonic]
 
-## 1.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.1...v1.3.0)
+## 1.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.1..v1.3.0)
 
 ### Enhancements
 
@@ -108,13 +108,13 @@
 
 * Rails 5.2 support [#5343] by [@varyonic], [#5399], [#5401] by [@zorab47]
 
-## 1.2.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.0...v1.2.1)
+## 1.2.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.0..v1.2.1)
 
 ### Bug Fixes
 
 * Resolve issue with [#5275] preventing XSS in filters sidebar. [#5299] by [@faucct]
 
-## 1.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.1.0...v1.2.0)
+## 1.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.1.0..v1.2.0)
 
 ### Enhancements
 
@@ -141,7 +141,7 @@
 * Fixed [#5198] Prevent XSS on sidebar's current filter rendering. [#5275] by [@deivid-rodriguez]
 * Sanitize display_name. [#5284] by [@markstory]
 
-## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0...v1.1.0)
+## 1.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.0.0..v1.1.0)
 
 ### Bug Fixes
 
@@ -198,7 +198,7 @@
 * Allow passing a class to `action_item` block. [#4997] by [@Fivell]
 * Add pagination to the comments section. [#5088] by [@alex-bogomolov]
 
-## 1.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.3...v1.0.0)
+## 1.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v0.6.3..v1.0.0)
 
 ### Breaking Changes
 
