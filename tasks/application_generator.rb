@@ -23,6 +23,7 @@ module ActiveAdmin
           --skip-turbolinks
           --skip-test-unit
           --skip-coffee
+          --skip-webpack-install
         )
 
         command = ['bundle', 'exec', 'rails', 'new', app_dir, *args].join(' ')
