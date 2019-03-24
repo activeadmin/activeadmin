@@ -6,23 +6,6 @@ GIT
     cancancan (2.3.0)
 
 GIT
-  remote: https://github.com/activeadmin/arbre
-  revision: 3c493ab9b9a7e470ac67bbb5354ae686f67f2230
-  specs:
-    arbre (1.1.1)
-      activesupport (>= 3.0.0)
-
-GIT
-  remote: https://github.com/activeadmin/inherited_resources
-  revision: 95d1e24d97dd0f871fecfea662805953d7fcd44b
-  specs:
-    inherited_resources (1.9.0)
-      actionpack (>= 5.0, < 6.0)
-      has_scope (~> 0.6)
-      railties (>= 5.0, < 6.0)
-      responders
-
-GIT
   remote: https://github.com/jruby/activerecord-jdbc-adapter
   revision: e49f1435167610e7801012da0d74d32234f8bc1d
   specs:
@@ -112,6 +95,8 @@ GEM
       zeitwerk (~> 1.3, >= 1.3.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    arbre (1.2.0.rc1)
+      activesupport (>= 3.0.0)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -186,6 +171,11 @@ GEM
       activesupport (>= 4.1)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
+    inherited_resources (1.10.0.rc1)
+      actionpack (>= 5.0, < 6.0)
+      has_scope (~> 0.6)
+      railties (>= 5.0, < 6.0)
+      responders (~> 2.0)
     jasmine (2.9.0)
       jasmine-core (>= 2.9.0, < 3.0.0)
       phantomjs
@@ -362,7 +352,7 @@ GEM
     websocket-extensions (0.1.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (1.3.3)
+    zeitwerk (1.4.2)
 
 PLATFORMS
   java
@@ -371,7 +361,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   activerecord-jdbcsqlite3-adapter!
-  arbre!
+  arbre (~> 1.2.a)
   cancancan!
   capybara (~> 3.14)
   cucumber
@@ -379,7 +369,6 @@ DEPENDENCIES
   database_cleaner
   devise (~> 4.6)
   draper (~> 3.1)
-  inherited_resources!
   jasmine
   jasmine-core (= 2.9.1)
   jruby-openssl (~> 0.10.1)
