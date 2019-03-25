@@ -9,8 +9,8 @@ to implement beautiful and elegant interfaces with very little effort.
 # Getting Started
 
 Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby
-on Rails application. Active Admin does not provide authentification; this is done 
-by other gems (e.g. devise). To install without any authentification, simply 
+on Rails application. Active Admin does not provide authentification; this is done
+by other gems (e.g. devise). To install without any authentification, simply
 add the following to your Gemfile:
 
 ```ruby
@@ -35,7 +35,7 @@ $> rake db:migrate
 $> rails server
 ```
 
-Visit `http://localhost:3000/admin` and voila: You&#8217;re on your brand 
+Visit `http://localhost:3000/admin` and voila: You&#8217;re on your brand
 new Active Admin dashboard.
 
 To register an already existing model, run:
@@ -92,7 +92,6 @@ by the database seed):
 * __Password__: password
 
 Adding existing models to Active Admin works as described above.
-
 
 # Next Steps
 
