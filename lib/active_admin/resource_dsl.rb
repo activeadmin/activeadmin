@@ -65,6 +65,10 @@ module ActiveAdmin
       belongs_to_param = config.belongs_to_param
       create_another_param = :create_another if config.create_another
 
+      if config.build_form_with_permitted_params_only
+        config.permitted_params = block ? block.call : args.flatten
+      end
+
       controller do
         define_method :permitted_params do
           permitted_params =
