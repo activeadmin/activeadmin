@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/CanCanCommunity/cancancan
-  revision: 23ac88c2aa7db77f08744dd3f5492af02a29cd03
-  branch: feature/3.0.0
-  specs:
-    cancancan (2.3.0)
-
-GIT
   remote: https://github.com/jruby/activerecord-jdbc-adapter
   revision: e49f1435167610e7801012da0d74d32234f8bc1d
   specs:
@@ -106,6 +99,7 @@ GEM
     bcrypt (3.1.12-java)
     builder (3.2.3)
     byebug (11.0.0)
+    cancancan (3.0.0.rc1)
     capybara (3.14.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -352,7 +346,7 @@ GEM
     websocket-extensions (0.1.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (1.4.2)
+    zeitwerk (1.4.3)
 
 PLATFORMS
   java
@@ -362,7 +356,7 @@ DEPENDENCIES
   activeadmin!
   activerecord-jdbcsqlite3-adapter!
   arbre (~> 1.2.a)
-  cancancan!
+  cancancan (= 3.0.0.rc1)
   capybara (~> 3.14)
   cucumber
   cucumber-rails (~> 1.5)
