@@ -4,8 +4,8 @@ gem 'pry' # Easily debug from your console with `binding.pry`
 gem 'pry-byebug', platform: :mri # Step-by-step debugging
 
 # Optional dependencies used in both development & test environments
-# CanCanCan gem has introduce support for Rails 6 in feature/3.0.0 branch
-gem 'cancancan', git: 'https://github.com/CanCanCommunity/cancancan', branch: 'feature/3.0.0'
+# CanCanCan gem has introduce support for Rails 6 in version 3.0.0.rc1
+gem 'cancancan', '3.0.0.rc1'
 gem 'pundit'
 gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
 
