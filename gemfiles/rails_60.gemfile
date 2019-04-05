@@ -4,8 +4,6 @@ eval_gemfile(File.expand_path(File.join("..", "Gemfile.common"), __dir__))
 
 gem "rails", "6.0.0.beta3"
 
-# Use the unreleased version of gems because they are compatible with Rails 6
-gem "arbre", "~> 1.2.a"
 gem "activerecord-jdbcsqlite3-adapter", git: 'https://github.com/jruby/activerecord-jdbc-adapter', platform: :jruby
 
 gemspec path: "../"

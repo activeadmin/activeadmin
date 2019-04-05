@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Enhancements
+
+#### Minor
+
+* Update gemspec dependency on arbre to use version `~> 1.2` [#5726] by [@ionut998]
+
 ## 2.0.0.rc1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.3..v2.0.0.rc1)
 
 ### Enhancements
@@ -416,6 +422,7 @@ Please check [0-6-stable] for previous changes.
 [#5650]: https://github.com/activeadmin/activeadmin/pull/5650
 [#5590]: https://github.com/activeadmin/activeadmin/pull/5590
 [#5662]: https://github.com/activeadmin/activeadmin/pull/5662
+[#5726]: https://github.com/activeadmin/activeadmin/pull/5726
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -442,6 +449,7 @@ Please check [0-6-stable] for previous changes.
 [@glebtv]: https://github.com/glebtv
 [@gonzedge]: https://github.com/gonzedge
 [@innparusu95]: https://github.com/innparusu95
+[@ionut998]: https://github.com/ionut998
 [@jasl]: https://github.com/jasl
 [@javierjulio]: https://github.com/javierjulio
 [@jawa]: https://github.com/jawa
