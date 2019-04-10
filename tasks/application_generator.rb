@@ -20,6 +20,7 @@ module ActiveAdmin
           --skip-bundle
           --skip-gemfile
           --skip-listen
+          --skip-spring
           --skip-turbolinks
           --skip-test-unit
           --skip-coffee

@@ -2,7 +2,9 @@ require 'spec_helper'
 
 ENV['RAILS_ENV'] = 'test'
 
-require_relative "../tmp/rails/rails-#{Gem.loaded_specs["rails"].version}/config/environment"
+require_relative "../gemfiles/rails_version"
+
+require_relative "../tmp/rails/rails-#{TestEnvironment.rails_version}/config/environment"
 
 require 'rspec/rails'
 
