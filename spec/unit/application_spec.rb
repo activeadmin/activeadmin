@@ -135,7 +135,7 @@ RSpec.describe ActiveAdmin::Application do
         FileUtils.touch(test_file)
         expect(application.files).to include(test_file)
       ensure
-        ActiveSupport::Dependencies.clear
+        ActiveSupport::Dependencies.clear unless TestEnvironment.supports_zeitwerk?
         FileUtils.remove_entry_secure(test_dir, force: true)
       end
     end
