@@ -6,7 +6,7 @@
 
 #### Minor
 
-* Update gemspec dependency on arbre to use version `~> 1.2` [#5726] by [@ionut998]
+* Require arbre `~> 1.2, >= 1.2.1` [#5726] by [@ionut998], and [#5738] by [@deivid-rodriguez]
 
 ## 2.0.0.rc1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.3..v2.0.0.rc1)
 
@@ -423,6 +423,7 @@ Please check [0-6-stable] for previous changes.
 [#5590]: https://github.com/activeadmin/activeadmin/pull/5590
 [#5662]: https://github.com/activeadmin/activeadmin/pull/5662
 [#5726]: https://github.com/activeadmin/activeadmin/pull/5726
+[#5738]: https://github.com/activeadmin/activeadmin/pull/5738
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
