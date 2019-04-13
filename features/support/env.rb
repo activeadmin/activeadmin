@@ -6,9 +6,9 @@ Dir["#{File.expand_path('../step_definitions', __dir__)}/*.rb"].each do |f|
   require f
 end
 
-require_relative "../../gemfiles/rails_version"
+require "active_admin/dependency"
 
-require_relative "../../tmp/rails/rails-#{TestEnvironment.rails_version}/config/environment"
+require_relative "../../tmp/rails/rails-#{ActiveAdmin::Dependency.rails_version}/config/environment"
 
 require_relative 'rails'
 
@@ -88,7 +88,7 @@ end
 Before do
   # We are caching classes, but need to manually clear references to
   # the controllers. If they aren't clear, the router stores references
-  ActiveSupport::Dependencies.clear unless TestEnvironment.supports_zeitwerk?
+  ActiveSupport::Dependencies.clear unless ActiveAdmin::Dependency.supports_zeitwerk?
 
   # Reload Active Admin
   ActiveAdmin.unload!
