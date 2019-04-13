@@ -9,7 +9,12 @@ RSpec.describe ActiveAdmin::Application do
   end
 
   describe "#prepare" do
-    before { application.prepare! }
+    before do
+      %i[run complete prepare class_unload].each do |event|
+        ActiveSupport::Reloader.reset_callbacks(event)
+      end
+      application.prepare!
+    end
 
     it "should remove app/admin from the autoload paths" do
       expect(ActiveSupport::Dependencies.autoload_paths).to_not include(Rails.root.join("app/admin"))

@@ -1,3 +1,4 @@
 --format <%= ENV['CI'] ? 'documentation' : 'progress' %>
 --require spec_helper
 <%= "--require #{__dir__}/spec/support/simplecov_changes_env.rb --tag changes_filesystem" if ENV['RSPEC_FILESYSTEM_CHANGES'] %>
+<%= "--require #{__dir__}/spec/support/simplecov_reload_env.rb --tag requires_reloading" if ENV['CLASS_RELOADING'] %>
