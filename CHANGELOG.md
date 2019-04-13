@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+* Ensure application gets reloaded only once. [#5740] by [@jscheid]
+
 ### Removals
 
 * Support for ruby 2.3 has been removed. [#5751] by [@deivid-rodriguez]
@@ -439,6 +443,7 @@ Please check [0-6-stable] for previous changes.
 [#5662]: https://github.com/activeadmin/activeadmin/pull/5662
 [#5726]: https://github.com/activeadmin/activeadmin/pull/5726
 [#5738]: https://github.com/activeadmin/activeadmin/pull/5738
+[#5740]: https://github.com/activeadmin/activeadmin/pull/5740
 [#5751]: https://github.com/activeadmin/activeadmin/pull/5751
 
 [@5t111111]: https://github.com/5t111111
@@ -504,3 +509,4 @@ Please check [0-6-stable] for previous changes.
 [@chrp]: https://github.com/chrp
 [@bartoszkopinski]: https://github.com/bartoszkopinski
 [@panasyuk]: https://github.com/panasyuk
+[@jscheid]: https://github.com/jscheid
