@@ -114,10 +114,6 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
 
 RUBY
 
-# TODO: remove this line after the STI pre-loading is fixed
-# The test commenting.feature/Commenting on a STI subclass fails with zeitwerk autoloader
-inject_into_file 'config/environments/test.rb', "\n  config.autoloader = :classic\n", after: 'Rails.application.configure do' if Rails::VERSION::MAJOR >= 6
-
 # Setup Active Admin
 generate 'active_admin:install'
 

@@ -152,7 +152,7 @@ version: 2.1
 jobs:
   setup_coverage:
     docker:
-      - image: circleci/ruby:2.6.2
+      - image: circleci/ruby:2.6.3
 
     steps:
       - run:
@@ -169,7 +169,7 @@ jobs:
 
   upload_coverage:
     docker:
-      - image: circleci/ruby:2.6.2
+      - image: circleci/ruby:2.6.3
         environment:
           CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
 
@@ -179,7 +179,7 @@ jobs:
 
   testapp50:
     docker:
-      - image: circleci/ruby:2.6.2-node
+      - image: circleci/ruby:2.6.3-node
         user: root
 
     environment:
@@ -190,7 +190,7 @@ jobs:
 
   testapp51:
     docker:
-      - image: circleci/ruby:2.6.2-node
+      - image: circleci/ruby:2.6.3-node
         user: root
 
     environment:
@@ -201,7 +201,7 @@ jobs:
 
   testapp52:
     docker:
-      - image: circleci/ruby:2.6.2-node
+      - image: circleci/ruby:2.6.3-node
         user: root
 
     environment:
@@ -212,7 +212,7 @@ jobs:
 
   testapp60:
     docker:
-    - image: circleci/ruby:2.6.2-node
+    - image: circleci/ruby:2.6.3-node
       user: root
 
     environment:
@@ -223,7 +223,7 @@ jobs:
 
   lint_and_docs:
     docker:
-      - image: circleci/ruby:2.6.2-node
+      - image: circleci/ruby:2.6.3-node
         user: root
 
     environment:
@@ -356,7 +356,7 @@ jobs:
 
   ruby26rails50:
     docker:
-      - image: circleci/ruby:2.6.2-node-browsers
+      - image: circleci/ruby:2.6.3-node-browsers
         user: root
 
     environment:
@@ -367,7 +367,7 @@ jobs:
 
   ruby26rails51:
     docker:
-      - image: circleci/ruby:2.6.2-node-browsers
+      - image: circleci/ruby:2.6.3-node-browsers
         user: root
 
     environment:
@@ -378,7 +378,7 @@ jobs:
 
   ruby26rails52:
     docker:
-      - image: circleci/ruby:2.6.2-node-browsers
+      - image: circleci/ruby:2.6.3-node-browsers
         user: root
 
     environment:
@@ -389,7 +389,7 @@ jobs:
 
   ruby26rails60:
     docker:
-    - image: circleci/ruby:2.6.2-node-browsers
+    - image: circleci/ruby:2.6.3-node-browsers
       user: root
 
     environment:
@@ -436,7 +436,7 @@ jobs:
 
   jruby92rails50:
     docker:
-      - image: circleci/jruby:9.2.5.1-node-browsers
+      - image: circleci/jruby:9.2.7.0-node-browsers
         user: root
 
     environment:
@@ -448,7 +448,7 @@ jobs:
 
   jruby92rails51:
     docker:
-      - image: circleci/jruby:9.2.5.1-node-browsers
+      - image: circleci/jruby:9.2.7.0-node-browsers
         user: root
 
     environment:
@@ -460,7 +460,7 @@ jobs:
 
   jruby92rails52:
     docker:
-      - image: circleci/jruby:9.2.5.1-node-browsers
+      - image: circleci/jruby:9.2.7.0-node-browsers
         user: root
 
     environment:
@@ -472,7 +472,7 @@ jobs:
 
   jruby92rails60:
     docker:
-    - image: circleci/jruby:9.2.5.1-node-browsers
+    - image: circleci/jruby:9.2.7.0-node-browsers
       user: root
 
     environment:

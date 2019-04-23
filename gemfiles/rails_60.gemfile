@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 eval_gemfile(File.expand_path(File.join("..", "Gemfile.common"), __dir__))
 
-gem "rails", "6.0.0.beta3"
+gem "rails", git: "https://github.com/rails/rails"
 gem "activerecord-jdbcsqlite3-adapter", git: 'https://github.com/jruby/activerecord-jdbc-adapter', platform: :jruby
 
 gemspec path: "../"
