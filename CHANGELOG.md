@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 2.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.0.0.rc2..v2.0.0)
+
+_No changes_.
+
 ## 2.0.0.rc2 [☰](https://github.com/activeadmin/activeadmin/compare/v2.0.0.rc1..v2.0.0.rc2)
 
 ### Enhancements
