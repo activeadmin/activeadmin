@@ -55,6 +55,7 @@ _No changes_.
   convert that file to plain JS (`//= require active_admin/base` if you
   didn't add any stuff to it).
 * Devise 3 support has been dropped. [#5608] by [@deivid-rodriguez] and [@javierjulio]
+* `action_item` without a name has been removed. [#5099] by [@javierjulio]
 
 ## 1.4.3 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.2..v1.4.3)
 
@@ -301,6 +302,8 @@ _No changes_.
   ActiveSupport::Notifications.publish ActiveAdmin::Application::BeforeLoadEvent, "some data"
   ```
 
+* `action_item` without a name, to introduce a solution for removing action items (`remove_action_item(name)`). [#3091] by [@amiel]
+
 ## Previous Changes
 
 Please check [0-6-stable] for previous changes.
@@ -338,6 +341,7 @@ Please check [0-6-stable] for previous changes.
 [#5043]: https://github.com/activeadmin/activeadmin/issues/5043
 [#5198]: https://github.com/activeadmin/activeadmin/issues/5198
 
+[#3091]: https://github.com/activeadmin/activeadmin/pull/3091
 [#3435]: https://github.com/activeadmin/activeadmin/pull/3435
 [#4477]: https://github.com/activeadmin/activeadmin/pull/4477
 [#4731]: https://github.com/activeadmin/activeadmin/pull/4731
@@ -365,6 +369,7 @@ Please check [0-6-stable] for previous changes.
 [#5081]: https://github.com/activeadmin/activeadmin/pull/5081
 [#5088]: https://github.com/activeadmin/activeadmin/pull/5088
 [#5093]: https://github.com/activeadmin/activeadmin/pull/5093
+[#5099]: https://github.com/activeadmin/activeadmin/pull/5099
 [#5104]: https://github.com/activeadmin/activeadmin/pull/5104
 [#5119]: https://github.com/activeadmin/activeadmin/pull/5119
 [#5120]: https://github.com/activeadmin/activeadmin/pull/5120
@@ -435,6 +440,7 @@ Please check [0-6-stable] for previous changes.
 [@aarek]: https://github.com/aarek
 [@ajw725]: https://github.com/ajw725
 [@alex-bogomolov]: https://github.com/alex-bogomolov
+[@amiel]: https://github.com/amiel
 [@andreslemik]: https://github.com/andreslemik
 [@blocknotes]: https://github.com/blocknotes
 [@bolshakov]: https://github.com/bolshakov
