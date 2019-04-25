@@ -89,6 +89,7 @@ version: 2.1
     command: |
       COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bin/parallel_rspec spec/
       COVERAGE=true RSPEC_FILESYSTEM_CHANGES=true bin/rspec
+      COVERAGE=true CLASS_RELOADING=true bin/rspec
 
 .run_features: &run_features
   run:
