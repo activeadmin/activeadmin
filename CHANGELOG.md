@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Removals
+
+* Support for ruby 2.3 has been removed. [#5751] by [@deivid-rodriguez]
+
 ## 2.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.0.0.rc2..v2.0.0)
 
 _No changes_.
@@ -435,6 +439,7 @@ Please check [0-6-stable] for previous changes.
 [#5662]: https://github.com/activeadmin/activeadmin/pull/5662
 [#5726]: https://github.com/activeadmin/activeadmin/pull/5726
 [#5738]: https://github.com/activeadmin/activeadmin/pull/5738
+[#5751]: https://github.com/activeadmin/activeadmin/pull/5751
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
