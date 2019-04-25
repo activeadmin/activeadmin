@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 2.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.0.0.rc2..v2.0.0)
+
+_No changes_.
+
 ## 2.0.0.rc2 [☰](https://github.com/activeadmin/activeadmin/compare/v2.0.0.rc1..v2.0.0.rc2)
 
 ### Enhancements
@@ -51,6 +55,7 @@
   convert that file to plain JS (`//= require active_admin/base` if you
   didn't add any stuff to it).
 * Devise 3 support has been dropped. [#5608] by [@deivid-rodriguez] and [@javierjulio]
+* `action_item` without a name has been removed. [#5099] by [@javierjulio]
 
 ## 1.4.3 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.2..v1.4.3)
 
@@ -237,7 +242,7 @@
 * Page supports belongs_to. [#4759] by [@Fivell] and [@zorab47]
 * Support for custom sorting strategies. [#4768] by [@Fivell]
 * Stream CSV downloads as they're generated. [#3038] by [@craigmcnamara]
-  * Disable streaming in development for easier debugging. [#3535] by [@seanlinsley]
+* Disable streaming in development for easier debugging. [#3535] by [@seanlinsley]
 * Improved code reloading. [#3783] by [@chancancode]
 * Do not auto link to inaccessible actions. [#3686] by [@pranas]
 * Allow to enable comments on per-resource basis. [#3695] by [@pranas]
@@ -297,6 +302,8 @@
   ActiveSupport::Notifications.publish ActiveAdmin::Application::BeforeLoadEvent, "some data"
   ```
 
+* `action_item` without a name, to introduce a solution for removing action items (`remove_action_item(name)`). [#3091] by [@amiel]
+
 ## Previous Changes
 
 Please check [0-6-stable] for previous changes.
@@ -334,6 +341,7 @@ Please check [0-6-stable] for previous changes.
 [#5043]: https://github.com/activeadmin/activeadmin/issues/5043
 [#5198]: https://github.com/activeadmin/activeadmin/issues/5198
 
+[#3091]: https://github.com/activeadmin/activeadmin/pull/3091
 [#3435]: https://github.com/activeadmin/activeadmin/pull/3435
 [#4477]: https://github.com/activeadmin/activeadmin/pull/4477
 [#4731]: https://github.com/activeadmin/activeadmin/pull/4731
@@ -361,6 +369,7 @@ Please check [0-6-stable] for previous changes.
 [#5081]: https://github.com/activeadmin/activeadmin/pull/5081
 [#5088]: https://github.com/activeadmin/activeadmin/pull/5088
 [#5093]: https://github.com/activeadmin/activeadmin/pull/5093
+[#5099]: https://github.com/activeadmin/activeadmin/pull/5099
 [#5104]: https://github.com/activeadmin/activeadmin/pull/5104
 [#5119]: https://github.com/activeadmin/activeadmin/pull/5119
 [#5120]: https://github.com/activeadmin/activeadmin/pull/5120
@@ -431,6 +440,7 @@ Please check [0-6-stable] for previous changes.
 [@aarek]: https://github.com/aarek
 [@ajw725]: https://github.com/ajw725
 [@alex-bogomolov]: https://github.com/alex-bogomolov
+[@amiel]: https://github.com/amiel
 [@andreslemik]: https://github.com/andreslemik
 [@blocknotes]: https://github.com/blocknotes
 [@bolshakov]: https://github.com/bolshakov
