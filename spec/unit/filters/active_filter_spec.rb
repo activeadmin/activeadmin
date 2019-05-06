@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Filters::ActiveFilter do
-
   let(:namespace) do
     ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
   end
@@ -10,9 +9,9 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     namespace.register(Post)
   end
 
-  let(:user){ User.create! first_name: "John", last_name: "Doe" }
-  let(:category){ Category.create! name: "Category" }
-  let(:post){ Post.create! title: "Hello World", category: category, author: user }
+  let(:user) { User.create! first_name: "John", last_name: "Doe" }
+  let(:category) { Category.create! name: "Category" }
+  let(:post) { Post.create! title: "Hello World", category: category, author: user }
 
   let(:search) do
     Post.ransack(title_equals: post.title)
@@ -54,7 +53,6 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     it 'should pick predicate name translation' do
       expect(subject.predicate_name).to eq(Ransack::Translate.predicate('eq'))
     end
-
   end
 
   context 'search by polymorphic association' do
@@ -127,9 +125,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
       it 'should have valid label' do
         expect(subject.label).to eq("Category equals")
       end
-
     end
-
   end
 
   context 'search has no matching records' do
@@ -149,12 +145,19 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
       label = "#{user.first_name}'s Post Title"
       resource.add_filter(:title, label: label)
 
-      expect(subject.label).to eq ("#{label} equals")
+      expect(subject.label).to eq("#{label} equals")
+    end
+
+    it 'should use the filter label as the label prefix' do
+      label = proc { "#{user.first_name}'s Post Title" }
+      resource.add_filter(:title, label: label)
+
+      expect(subject.label).to eq("#{label.call} equals")
     end
   end
 
   context "the association uses a different primary_key than the related class' primary_key" do
-    let (:resource_klass) {
+    let(:resource_klass) {
       Class.new(Post) do
         belongs_to :kategory, class_name: "Category", primary_key: :name, foreign_key: :title
 
@@ -168,10 +171,10 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
       namespace.register(resource_klass)
     end
 
-    let(:user){ User.create! first_name: "John", last_name: "Doe" }
-    let!(:category){ Category.create! name: "Category" }
+    let(:user) { User.create! first_name: "John", last_name: "Doe" }
+    let!(:category) { Category.create! name: "Category" }
 
-    let(:post){ resource_klass.create! title: "Category", author: user }
+    let(:post) { resource_klass.create! title: "Category", author: user }
 
     let(:search) do
       resource_klass.ransack(title_equals: post.title)
@@ -186,4 +189,33 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     end
   end
 
+  context 'when the resource has a custom primary key' do
+    let(:resource_klass) do
+      Class.new(Store) do
+        self.primary_key = 'name'
+        belongs_to :user
+
+        def self.name
+          'SubStore'
+        end
+      end
+    end
+
+    let(:resource) do
+      namespace.register(resource_klass)
+    end
+
+    let(:user) { User.create! first_name: 'John', last_name: 'Doe' }
+    let(:store) { resource_klass.create! name: 'Store 1', user_id: user.id }
+
+    let(:search) do
+      resource_klass.ransack(user_id_eq: user.id)
+    end
+
+    it "should use the association's primary key to find the associated record" do
+      allow(ActiveSupport::Dependencies).to receive(:constantize).with("::#{resource_klass.name}").and_return(resource_klass)
+
+      expect(subject.values.first).to eq user
+    end
+  end
 end

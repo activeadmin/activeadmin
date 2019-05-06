@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'active_admin/batch_actions/views/batch_action_selector'
 
 RSpec.describe ActiveAdmin::BatchActions::BatchActionSelector do
-
   let(:dropdown) do
     render_arbre_component do
       batch_action_selector [
@@ -25,19 +24,17 @@ RSpec.describe ActiveAdmin::BatchActions::BatchActionSelector do
 
     describe '#content' do
       subject { super().content }
-      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_1\"") }
+      it { is_expected.to include("class=\"batch_action\" data-action=\"action_1\"") }
     end
 
     describe '#content' do
       subject { super().content }
-      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_2\"") }
+      it { is_expected.to include("class=\"batch_action\" data-action=\"action_2\"") }
     end
 
     describe '#content' do
       subject { super().content }
-      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_3\"") }
+      it { is_expected.to include("class=\"batch_action\" data-action=\"action_3\"") }
     end
-
   end
-
 end

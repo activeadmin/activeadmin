@@ -23,6 +23,13 @@ module ActiveAdmin
                                title: :title,
                                updated_at: :updated_at)
       end
+
+      it 'does not return sensitive attributes' do
+        keep = ActiveAdmin.application.filter_attributes
+        ActiveAdmin.application.filter_attributes = [:published_date]
+        expect(subject).to_not include :published_date
+        ActiveAdmin.application.filter_attributes = keep
+      end
     end
 
     describe "#association_columns" do
@@ -44,6 +51,5 @@ module ActiveAdmin
         expect(subject).to eq([:title, :body, :published_date, :position, :starred, :foo_id, :created_at, :updated_at])
       end
     end
-
   end
 end

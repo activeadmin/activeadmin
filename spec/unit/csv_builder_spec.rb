@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::CSVBuilder do
-
   describe '.default_for_resource using Post' do
-    let(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
-    let(:resource){ ActiveAdmin::Resource.new(namespace, Post, {}) }
+    let(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
+    let(:resource) { ActiveAdmin::Resource.new(namespace, Post, {}) }
     let(:csv_builder) { ActiveAdmin::CSVBuilder.default_for_resource(resource).tap(&:exec_columns) }
 
     it 'returns a default csv_builder for Post' do
@@ -29,7 +28,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
 
       before do
         allow(Post).to receive(:human_attribute_name).and_call_original
-        allow(Post).to receive(:human_attribute_name).with(:title){ localized_name }
+        allow(Post).to receive(:human_attribute_name).with(:title) { localized_name }
       end
 
       it 'gets name from I18n' do
@@ -37,10 +36,18 @@ RSpec.describe ActiveAdmin::CSVBuilder do
         expect(csv_builder.columns[title_index].name).to eq localized_name
       end
     end
+
+    context 'for models having sensitive attributes' do
+      let(:resource) { ActiveAdmin::Resource.new(namespace, User, {}) }
+
+      it 'omits sensitive fields' do
+        expect(csv_builder.columns.map(&:data)).to_not include :encrypted_password
+      end
+    end
   end
 
   context 'when empty' do
-    let(:builder){ ActiveAdmin::CSVBuilder.new.tap(&:exec_columns) }
+    let(:builder) { ActiveAdmin::CSVBuilder.new.tap(&:exec_columns) }
 
     it "should have no columns" do
       expect(builder.columns).to eq []
@@ -59,7 +66,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
     end
 
     describe "the column" do
-      let(:column){ builder.columns.first }
+      let(:column) { builder.columns.first }
 
       it "should have a name of 'Title'" do
         expect(column.name).to eq "Title"
@@ -85,7 +92,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
     end
 
     describe "the column" do
-      let(:column){ builder.columns.first }
+      let(:column) { builder.columns.first }
 
       it "should have a name of 'My title'" do
         expect(column.name).to eq "My title"
@@ -106,7 +113,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       end
 
       describe "the column" do
-        let(:column){ builder.columns.first }
+        let(:column) { builder.columns.first }
 
         it "should have a name of 'my_title'" do
           expect(column.name).to eq "my_title"
@@ -122,7 +129,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       end
 
       describe "the column" do
-        let(:column){ builder.columns.first }
+        let(:column) { builder.columns.first }
 
         it "should have a name of 'my_title'" do
           expect(column.name).to eq "my_title"
@@ -137,7 +144,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
     end
 
     it "should have proper separator" do
-      expect(builder.options).to eq({col_sep: ";"})
+      expect(builder.options).to eq({ col_sep: ";" })
     end
   end
 
@@ -149,7 +156,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
     end
 
     describe "the column" do
-      let(:column){ builder.columns.first }
+      let(:column) { builder.columns.first }
 
       it "should have humanize_name option set" do
         expect(column.options).to eq humanize_name: false
@@ -167,20 +174,20 @@ RSpec.describe ActiveAdmin::CSVBuilder do
     end
 
     it "should have proper separator" do
-      expect(builder.options).to eq({force_quotes: true})
+      expect(builder.options).to eq({ force_quotes: true })
     end
   end
 
   context "with access to the controller" do
     let(:dummy_view_context) { double(controller: dummy_controller) }
-    let(:dummy_controller) { double(names: %w(title summary updated_at created_at))}
+    let(:dummy_controller) { double(names: %w(title summary updated_at created_at)) }
     let(:builder) do
       ActiveAdmin::CSVBuilder.new do
         column "id"
         controller.names.each do |name|
           column(name)
         end
-      end.tap{ |b| b.exec_columns(dummy_view_context) }
+      end.tap { |b| b.exec_columns(dummy_view_context) }
     end
 
     it "should build columns provided by the controller" do
@@ -256,10 +263,6 @@ RSpec.describe ActiveAdmin::CSVBuilder do
           Post
         end
 
-        def apply_decorator(resource)
-          resource
-        end
-
         def view_context
         end
       end
@@ -304,10 +307,9 @@ RSpec.describe ActiveAdmin::CSVBuilder do
 
   skip '#exec_columns'
 
-  skip '#build_row' do
-    it 'renders non-strings'
-    it 'encodes values correctly'
-    it 'passes custom encoding options to String#encode!'
+  describe '#build_row' do
+    xit 'renders non-strings'
+    xit 'encodes values correctly'
+    xit 'passes custom encoding options to String#encode!'
   end
-
 end

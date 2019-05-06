@@ -1,0 +1,25 @@
+{
+  "name": "activeadmin",
+  "version": "2.0.0-rc1",
+  "description": "The administration framework for Ruby on Rails.",
+  "repository": {
+    "type": "git",
+    "url": "activeadmin/activeadmin"
+  },
+  "keywords": [
+    "administration",
+    "rails"
+  ],
+  "author": "David Rodríguez <deivid.rodriguez@riseup.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/activeadmin/activeadmin/issues"
+  },
+  "homepage": "htts://activeadmin.info",
+  "devDependencies": {
+    "gherkin-lint": "^3.0.2"
+  },
+  "scripts": {
+    "lint": "gherkin-lint features"
+  }
+}

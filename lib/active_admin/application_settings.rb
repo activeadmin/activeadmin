@@ -35,5 +35,8 @@ module ActiveAdmin
 
     # To make debugging easier, by default don't stream in development
     register :disable_streaming_in, ['development']
+
+    # Remove sensitive attributes from being displayed, made editable, or exported by default
+    register :filter_attributes, [:encrypted_password, :password, :password_confirmation]
   end
 end

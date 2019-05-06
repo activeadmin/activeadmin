@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Dependency do
-
   k = ActiveAdmin::Dependency
 
   describe 'method_missing' do
@@ -52,15 +51,15 @@ RSpec.describe ActiveAdmin::Dependency do
 
     describe '`!`' do
       it 'raises an error if requirement not met' do
-        expect{ k.foo! '5'            }.to raise_error ActiveAdmin::DependencyError,
+        expect { k.foo! '5'            }.to raise_error ActiveAdmin::DependencyError,
           'You provided foo 1.2.3 but we need: 5.'
       end
       it 'accepts multiple arguments' do
-        expect{ k.foo! '> 1', '< 1.2' }.to raise_error ActiveAdmin::DependencyError,
+        expect { k.foo! '> 1', '< 1.2' }.to raise_error ActiveAdmin::DependencyError,
           'You provided foo 1.2.3 but we need: > 1, < 1.2.'
       end
       it 'raises an error if not provided' do
-        expect{ k.bar!                }.to raise_error ActiveAdmin::DependencyError,
+        expect { k.bar!                }.to raise_error ActiveAdmin::DependencyError,
           'To use bar you need to specify it in your Gemfile.'
       end
     end
@@ -90,17 +89,16 @@ RSpec.describe ActiveAdmin::Dependency do
       expect(k['a-b'].match!).to eq nil
       expect(k['a-b'].match! '1.2.3').to eq nil
 
-      expect{ k['a-b'].match! '2.5' }.to raise_error ActiveAdmin::DependencyError,
+      expect { k['a-b'].match! '2.5' }.to raise_error ActiveAdmin::DependencyError,
         'You provided a-b 1.2.3 but we need: 2.5.'
 
-      expect{ k['b-c'].match!       }.to raise_error ActiveAdmin::DependencyError,
+      expect { k['b-c'].match!       }.to raise_error ActiveAdmin::DependencyError,
         'To use b-c you need to specify it in your Gemfile.'
     end
 
     # Note: Ruby comparison operators are separate from the `foo? '> 1'` syntax
 
     describe 'Ruby comparison syntax' do
-
       it '==' do
         expect(k['a-b'] == '1.2.3').to eq true
         expect(k['a-b'] == '1.2').to eq false
@@ -126,10 +124,9 @@ RSpec.describe ActiveAdmin::Dependency do
       end
 
       it 'throws a custom error if the gem is missing' do
-        expect{ k['b-c'] < 23 }.to raise_error ActiveAdmin::DependencyError,
+        expect { k['b-c'] < 23 }.to raise_error ActiveAdmin::DependencyError,
           'To use b-c you need to specify it in your Gemfile.'
       end
     end
   end
-
 end

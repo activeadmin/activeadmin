@@ -28,7 +28,7 @@ module ActiveAdmin
 
     # Defines the routes for each resource
     def define_resources_routes
-      resources = namespaces.flat_map{ |n| n.resources.values }
+      resources = namespaces.flat_map { |n| n.resources.values }
       resources.each do |config|
         define_resource_routes(config)
       end

@@ -1,3 +1,4 @@
+@site_title
 Feature: Site title
 
   As a developer
@@ -15,7 +16,7 @@ Feature: Site title
     """
     When I am on the dashboard
     And I should see the site title "My Great Site"
-    When I follow "My Great Site"
+    And I follow "My Great Site"
     Then I should see the site title "My Great Site"
 
   Scenario: Set the site title image
@@ -40,7 +41,6 @@ Feature: Site title
   Scenario: Set the site title to a proc
     Given a configuration of:
     """
-      ActiveAdmin.application.site_title_image = nil # Configuration is not reset between scenarios
       ActiveAdmin.application.site_title = proc { "Hello #{controller.current_admin_user.try(:email) || 'you!'}" }
     """
     When I am on the dashboard

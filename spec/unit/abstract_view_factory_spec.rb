@@ -3,9 +3,8 @@ require 'rails_helper'
 require 'active_admin/abstract_view_factory'
 
 RSpec.describe ActiveAdmin::AbstractViewFactory do
-
-  let(:view_factory){ ActiveAdmin::AbstractViewFactory.new }
-  let(:view){ ActiveAdmin::Component }
+  let(:view_factory) { ActiveAdmin::AbstractViewFactory.new }
+  let(:view) { ActiveAdmin::Component }
 
   describe "registering a new view key" do
     before do
@@ -74,5 +73,4 @@ RSpec.describe ActiveAdmin::AbstractViewFactory do
       expect(factory.my_subclassed_view).to eq "From Subclass"
     end
   end
-
 end

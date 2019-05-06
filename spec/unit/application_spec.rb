@@ -2,15 +2,23 @@ require 'rails_helper'
 require 'fileutils'
 
 RSpec.describe ActiveAdmin::Application do
-
   let(:application) { ActiveAdmin::Application.new }
 
   it "should have a default load path of ['app/admin']" do
     expect(application.load_paths).to eq [File.expand_path('app/admin', application.app_path)]
   end
 
-  it "should remove app/admin from the autoload paths (Active Admin deals with loading)" do
-    expect(ActiveSupport::Dependencies.autoload_paths).to_not include(File.join(Rails.root, "app/admin"))
+  describe "#prepare" do
+    before do
+      %i[run complete prepare class_unload].each do |event|
+        ActiveSupport::Reloader.reset_callbacks(event)
+      end
+      application.prepare!
+    end
+
+    it "should remove app/admin from the autoload paths" do
+      expect(ActiveSupport::Dependencies.autoload_paths).to_not include(Rails.root.join("app/admin"))
+    end
   end
 
   it "should store the site's title" do
@@ -101,7 +109,6 @@ RSpec.describe ActiveAdmin::Application do
   end
 
   describe "authentication settings" do
-
     it "should have no default current_user_method" do
       expect(application.current_user_method).to eq false
     end
@@ -124,7 +131,7 @@ RSpec.describe ActiveAdmin::Application do
       expect(application.files).to include(File.expand_path("app/admin/dashboard.rb", application.app_path))
     end
 
-    it "should load files from subdirectories" do
+    it "should load files from subdirectories", :changes_filesystem do
       test_dir = File.expand_path("app/admin/public", application.app_path)
       test_file = File.expand_path("app/admin/public/posts.rb", application.app_path)
 
@@ -133,13 +140,13 @@ RSpec.describe ActiveAdmin::Application do
         FileUtils.touch(test_file)
         expect(application.files).to include(test_file)
       ensure
+        ActiveSupport::Dependencies.clear unless ActiveAdmin::Dependency.supports_zeitwerk?
         FileUtils.remove_entry_secure(test_dir, force: true)
       end
     end
   end
 
   describe "#namespace" do
-
     it "should yield a new namespace" do
       application.namespace :new_namespace do |ns|
         expect(ns.name).to eq :new_namespace
@@ -172,9 +179,8 @@ RSpec.describe ActiveAdmin::Application do
     it "finds or create the namespace and register the page to it" do
       namespace = double
       expect(application).to receive(:namespace).with("public").and_return namespace
-      expect(namespace).to receive(:register_page).with("My Page", {namespace: "public"})
+      expect(namespace).to receive(:register_page).with("My Page", { namespace: "public" })
       application.register_page("My Page", namespace: "public")
     end
   end
-
 end

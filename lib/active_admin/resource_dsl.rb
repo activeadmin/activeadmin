@@ -121,7 +121,7 @@ module ActiveAdmin
     #
     #   ActiveAdmin.register Post do
     #     member_action :comments do
-    #       @post = Post.find(params[:id]
+    #       @post = Post.find(params[:id])
     #       @comments = @post.comments
     #     end
     #   end
@@ -140,7 +140,7 @@ module ActiveAdmin
 
       controller do
         before_action(only: [name]) { @page_title = title } if title
-        define_method(name, &block || Proc.new{})
+        define_method(name, &block || Proc.new {})
       end
     end
 
@@ -189,7 +189,7 @@ module ActiveAdmin
     delegate :before_save,    :after_save,    to: :controller
     delegate :before_destroy, :after_destroy, to: :controller
 
-    # This code defines both *_filter and *_action for Rails 4.0 to Rails 5 and  *_action for Rails >= 5.1
+    # This code defines both *_filter and *_action for Rails 5.0 and  *_action for Rails >= 5.1
     phases = [
       :before, :skip_before,
       :after,  :skip_after,

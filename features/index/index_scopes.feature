@@ -73,7 +73,6 @@ Feature: Index Scoping
     And I press "Filter"
     Then I should see the scope "All" selected
 
-
   Scenario: Viewing resources with a scope but scope_count turned off
     Given 3 posts exist
     And an index configuration of:
@@ -87,7 +86,6 @@ Feature: Index Scoping
     And I should see the scope "All" with no count
     And I should see 3 posts in the table
 
-  @scope
   Scenario: Viewing resources with a scope and scope count turned off for a single scope
     Given 3 posts exist
     And an index configuration of:
@@ -117,15 +115,15 @@ Feature: Index Scoping
     And I should see the scope "Published" with the count 3
     When I follow "Published"
     Then I should see the scope "Published" selected
-    Then I should see the current scope with label "Published"
+    And I should see the current scope with label "Published"
     And I should see 3 posts in the table
 
   Scenario: Viewing resources when scoping and filtering
     Given 2 posts written by "Daft Punk" exist
-    Given 1 published posts written by "Daft Punk" exist
+    And 1 published posts written by "Daft Punk" exist
 
-    Given 1 posts written by "Alfred" exist
-    Given 2 published posts written by "Alfred" exist
+    And 1 posts written by "Alfred" exist
+    And 2 published posts written by "Alfred" exist
 
     And an index configuration of:
       """
@@ -164,11 +162,25 @@ Feature: Index Scoping
       scope "Shown", if: proc { true } do |posts|
         posts
       end
+      scope "Shown with lambda", if: -> { true } do |posts|
+        posts
+      end
+      scope "Shown with method name", if: :neat_scope? do |posts|
+        posts
+      end
       scope "Default", default: true do |posts|
         posts
       end
       scope 'Today', if: proc { false } do |posts|
         posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day, ::Time.zone.now.end_of_day])
+      end
+
+      controller do
+        def neat_scope?
+          true
+        end
+
+        helper_method :neat_scope?
       end
     end
     """
@@ -176,6 +188,8 @@ Feature: Index Scoping
     And I should not see the scope "All"
     And I should not see the scope "Today"
     And I should see the scope "Shown"
+    And I should see the scope "Shown with lambda"
+    And I should see the scope "Shown with method name"
     And I should see the scope "Default" with the count 3
 
   Scenario: Viewing resources with multiple scopes as blocks
@@ -232,9 +246,9 @@ Feature: Index Scoping
 
   Scenario: Viewing resources when scoping and filtering and group bys and stuff
     Given 2 posts written by "Daft Punk" exist
-    Given 1 published posts written by "Daft Punk" exist
+    And 1 published posts written by "Daft Punk" exist
 
-    Given 1 posts written by "Alfred" exist
+    And 1 posts written by "Alfred" exist
 
     And an index configuration of:
       """

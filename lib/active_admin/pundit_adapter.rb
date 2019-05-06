@@ -4,6 +4,7 @@ require 'pundit'
 
 # Add a setting to the application to configure the pundit default policy
 ActiveAdmin::Application.inheritable_setting :pundit_default_policy, nil
+ActiveAdmin::Application.inheritable_setting :pundit_policy_namespace, nil
 
 module ActiveAdmin
 
@@ -19,7 +20,7 @@ module ActiveAdmin
     def scope_collection(collection, action = Auth::READ)
       # scoping is appliable only to read/index action
       # which means there is no way how to scope other actions
-      Pundit.policy_scope!(user, collection)
+      Pundit.policy_scope!(user, namespace(collection))
     rescue Pundit::NotDefinedError => e
       if default_policy_class && default_policy_class.const_defined?(:Scope)
         default_policy_class::Scope.new(user, collection).resolve
@@ -30,9 +31,9 @@ module ActiveAdmin
 
     def retrieve_policy(subject)
       case subject
-      when nil   then Pundit.policy!(user, resource)
-      when Class then Pundit.policy!(user, subject.new)
-      else Pundit.policy!(user, subject)
+      when nil   then Pundit.policy!(user, namespace(resource))
+      when Class then Pundit.policy!(user, namespace(subject.new))
+      else Pundit.policy!(user, namespace(subject))
       end
     rescue Pundit::NotDefinedError => e
       if default_policy_class
@@ -54,6 +55,14 @@ module ActiveAdmin
     end
 
     private
+
+    def namespace(object)
+      if ActiveAdmin.application.pundit_policy_namespace
+        [ActiveAdmin.application.pundit_policy_namespace.to_sym, object]
+      else
+        object
+      end
+    end
 
     def default_policy_class
       ActiveAdmin.application.pundit_default_policy && ActiveAdmin.application.pundit_default_policy.constantize

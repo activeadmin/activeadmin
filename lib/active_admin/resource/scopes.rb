@@ -10,7 +10,7 @@ module ActiveAdmin
       # Returns a scope for this object by its identifier
       def get_scope_by_id(id)
         id = id.to_s
-        scopes.find{|s| s.id == id }
+        scopes.find { |s| s.id == id }
       end
 
       def default_scope(context = nil)
@@ -27,7 +27,7 @@ module ActiveAdmin
       # If you want to internationalize the scope name, you can add
       # to your i18n files a key like "active_admin.scopes.scope_method".
       def scope(*args, &block)
-        default_options = {show_count: namespace.scopes_show_count}
+        default_options = { show_count: namespace.scopes_show_count }
         options = default_options.merge(args.extract_options!)
         title = args[0] rescue nil
         method = args[1] rescue nil
@@ -36,7 +36,7 @@ module ActiveAdmin
         scope = ActiveAdmin::Scope.new(title, method, options, &block)
 
         # Finds and replaces a scope by the same name if it already exists
-        existing_scope_index = scopes.index{|existing_scope| existing_scope.id == scope.id }
+        existing_scope_index = scopes.index { |existing_scope| existing_scope.id == scope.id }
         if existing_scope_index
           scopes.delete_at(existing_scope_index)
           scopes.insert(existing_scope_index, scope)

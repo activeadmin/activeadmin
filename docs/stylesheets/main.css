@@ -559,7 +559,7 @@ caption {
 body {
   background: #f6f4f1;
   color: #676767;
-  width: 676px;
+  width: 768px;
   padding: 0 20px;
   font-size: 95%;
   margin: 25px auto;
@@ -592,6 +592,27 @@ body h1 a span {
 
 body #header {
   margin: 40px 0;
+}
+
+body #header h1 {
+  margin-bottom: 0;
+}
+
+body #tidelift {
+  display: flex;
+  justify-content: flex-start;
+}
+
+body #tidelift a {
+  border: 1px solid #666666;
+  margin-left: auto;
+  padding: 10px;
+  text-decoration: none;
+}
+
+body #tidelift a .cta {
+  background: url("../images/tidelift.svg") no-repeat;
+  padding-left: 30px;
 }
 
 body .clear {
@@ -629,11 +650,14 @@ body h3 {
   font-weight: 300;
 }
 
-body #nav {
+body #nav, body #tidelift .cta {
   font-family: 'Yanone Kaffeesatz', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 1.2em;
   text-transform: uppercase;
+}
+
+body #nav {
   position: absolute;
   right: 0;
   top: 20px;

@@ -1,12 +1,12 @@
 # Active Admin
 
-[Active Admin](https://www.activeadmin.info) is a Ruby on Rails framework for
+[Active Admin](https://activeadmin.info) is a Ruby on Rails framework for
 creating elegant backends for website administration.
 
 [![Version         ][rubygems_badge]][rubygems]
-[![Travis CI       ][travis_badge]][travis]
-[![Quality         ][codeclimate_badge]][codeclimate]
-[![Coverage        ][codecov_badge]][codecov]
+[![Circle CI       ][circle_badge]][circle]
+[![Coverage        ][coverage_badge]][coverage]
+[![Tidelift        ][tidelift_badge]][tidelift]
 [![Inch CI         ][inch_badge]][inch]
 
 ## Goals
@@ -32,14 +32,22 @@ Google Groups, IRC #activeadmin and Gitter are not actively monitored.
 
 ## Want to contribute?
 
-The [contributing guide][contributing]
-is a good place to start. If you have questions, feel free to ask.
+If you want to contribute through code or documentation, the [Contributing
+guide is the best place to start][contributing]. If you have questions, feel free
+to ask.
 
 ## Want to support us?
 
-You can support us with a weekly tip via [Liberapay][liberapay.com].
+If you want to support us financially, you can [help fund the project
+through a Tidelift subscription][tidelift]. By buying a Tidelift subscription
+you make sure your whole dependency stack is properly maintained, while also
+getting a comprehensive view of outdated dependencies, new releases, security
+alerts, and licensing compatibility issues.
 
-[![Support via Liberapay][liberapay_button]][liberapay_donate]
+You can also support us with a weekly tip via [Liberapay].
+
+Finally, we have an [Open Collective][opencollective page] where you can become a backer or
+sponsor for the project, and also submit expenses to it.
 
 ## Dependencies
 
@@ -54,6 +62,23 @@ Tool                  | Description
 [Kaminari]            | Elegant pagination for any sort of collection
 [Ransack]             | Provides a simple search API to query your data
 
+## Security contact information
+
+Please use the Tidelift security contact to [report a security vulnerability][Tidelift security contact].
+Tidelift will coordinate the fix and disclosure.
+
+## Acknowledgements
+
+Thanks to [Greg Bell][Greg] for creating and sharing this project with the open source community.
+
+Thanks to [all the people that ever contributed through code][contributors] or
+other means such as bug reports, issue triaging, feature suggestions, code
+snippet tips, Slack discussions and so on.
+
+Thanks to [Tidelift][tidelift] and all our Tidelift subscribers.
+
+Thanks to [Open Collective][opencollective contributors] and all our Open Collective contributors.
+
 [Arbre]: https://github.com/activeadmin/arbre
 [Devise]: https://github.com/plataformatec/devise
 [Formtastic]: https://github.com/justinfrench/formtastic
@@ -63,20 +88,23 @@ Tool                  | Description
 
 [rubygems_badge]: http://img.shields.io/gem/v/activeadmin.svg
 [rubygems]: https://rubygems.org/gems/activeadmin
-[travis_badge]: http://img.shields.io/travis/activeadmin/activeadmin/master.svg
-[travis]: https://travis-ci.org/activeadmin/activeadmin
-[codeclimate_badge]: https://api.codeclimate.com/v1/badges/779e407d22bacff19733/maintainability
-[codeclimate]: https://codeclimate.com/github/activeadmin/activeadmin/maintainability
-[codecov_badge]: https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg
-[codecov]: https://codecov.io/gh/activeadmin/activeadmin
+[circle_badge]: https://circleci.com/gh/activeadmin/activeadmin/tree/master.svg
+[circle]: https://circleci.com/gh/activeadmin/activeadmin/tree/master
+[coverage_badge]: https://api.codeclimate.com/v1/badges/779e407d22bacff19733/test_coverage
+[coverage]: https://codeclimate.com/github/activeadmin/activeadmin/test_coverage
 [inch_badge]: http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
 [inch]: http://inch-ci.org/github/activeadmin/activeadmin
+[tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
+[tidelift]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=readme
 
 [docs]: http://activeadmin.info/0-installation.html
 [demo]: http://demo.activeadmin.info/admin
 [wiki]: https://github.com/activeadmin/activeadmin/wiki
 [stackoverflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
-[liberapay.com]: https://liberapay.com
-[liberapay_button]: https://liberapay.com/assets/widgets/donate.svg
-[liberapay_donate]: https://liberapay.com/Active-Admin/donate
+[Liberapay]: https://liberapay.com/Active-Admin/donate
+[Tidelift security contact]: https://tidelift.com/security
+[Greg]: https://github.com/gregbell
+[contributors]: https://github.com/activeadmin/activeadmin/graphs/contributors
+[opencollective page]: https://opencollective.com/activeadmin
+[opencollective contributors]: https://opencollective.com/activeadmin#contributors

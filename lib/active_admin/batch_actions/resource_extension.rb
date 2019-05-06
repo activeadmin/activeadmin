@@ -57,8 +57,8 @@ module ActiveAdmin
       def add_default_batch_action
         destroy_options = {
           priority: 100,
-          confirm: proc{ I18n.t('active_admin.batch_actions.delete_confirmation', plural_model: active_admin_config.plural_resource_label.downcase) },
-          if: proc{ controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, active_admin_config.resource_class) }
+          confirm: proc { I18n.t('active_admin.batch_actions.delete_confirmation', plural_model: active_admin_config.plural_resource_label.downcase) },
+          if: proc { controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, active_admin_config.resource_class) }
         }
 
         add_batch_action :destroy, proc { I18n.t('active_admin.delete') }, destroy_options do |selected_ids|
@@ -84,7 +84,7 @@ module ActiveAdmin
 
     attr_reader :block, :title, :sym
 
-    DEFAULT_CONFIRM_MESSAGE = proc{ I18n.t 'active_admin.batch_actions.default_confirmation' }
+    DEFAULT_CONFIRM_MESSAGE = proc { I18n.t 'active_admin.batch_actions.default_confirmation' }
 
     # Create a Batch Action
     #
@@ -133,7 +133,7 @@ module ActiveAdmin
     # Returns the display if block. If the block was not explicitly defined
     # a default block always returning true will be returned.
     def display_if_block
-      @options[:if] || proc{ true }
+      @options[:if] || proc { true }
     end
 
     # Used for sorting

@@ -1,10 +1,5 @@
 def ensure_user_created(email)
-  user = AdminUser.where(email: email).first_or_create(password: 'password', password_confirmation: 'password')
-
-  unless user.persisted?
-    raise "Could not create user #{email}: #{user.errors.full_messages}"
-  end
-  user
+  AdminUser.create_with(password: 'password', password_confirmation: 'password').find_or_create_by!(email: email)
 end
 
 Given /^(?:I am logged|log) out$/ do
@@ -41,7 +36,7 @@ end
 
 Given /^override locale "([^"]*)" with "([^"]*)"$/ do |path, value|
   keys_value  = path.split('.') + [value]
-  locale_hash = keys_value.reverse.inject{|a, n| {n=>a}}
+  locale_hash = keys_value.reverse.inject { |a, n| { n=>a } }
   I18n.available_locales
   I18n.backend.store_translations(I18n.locale, locale_hash)
 end

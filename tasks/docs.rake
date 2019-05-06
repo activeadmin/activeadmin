@@ -2,7 +2,6 @@ require 'yard'
 require 'yard/rake/yardoc_task'
 
 namespace :docs do
-
   YARD::Rake::YardocTask.new do |t|
     t.files = ['lib/**/*.rb']
     t.options = ['--no-output']
@@ -55,10 +54,9 @@ namespace :docs do
     views = YARD::Registry.at("ActiveAdmin::Views")
 
     # Index Types
-    index_types = views.children.select{|obj| obj.name.to_s =~ /^IndexAs/ }
+    index_types = views.children.select { |obj| obj.name.to_s =~ /^IndexAs/ }
     write_docstrings_to "docs/3-index-pages", index_types
 
     docs_syncronized? if ENV["CI"]
   end
-
 end

@@ -1,4 +1,4 @@
-apply File.expand_path("../rails_template.rb", __FILE__)
+apply File.expand_path('rails_template.rb', __dir__)
 
 inject_into_file 'config/initializers/active_admin.rb', <<-RUBY, after: "ActiveAdmin.setup do |config|\n"
 
@@ -118,16 +118,19 @@ inject_into_file 'app/admin/users.rb', <<-RUBY, after: "ActiveAdmin.register Use
     end
 
     panel 'Posts' do
-      table_for(user.posts.includes(:category).order(:updated_at).limit(10)) do
-        column :id do |post|
-          link_to post.id, admin_post_path(post)
+      paginated_collection(user.posts.includes(:category).order(:updated_at).page(params[:page]).per(10), download_links: false) do
+        table_for(collection) do
+          column :id do |post|
+            link_to post.id, admin_post_path(post)
+          end
+          column :title
+          column :published_date
+          column :category
+          column :created_at
+          column :updated_at
         end
-        column :title
-        column :published_date
-        column :category
-        column :created_at
-        column :updated_at
       end
+
       para do
         link_to "View all posts", admin_posts_path('q[author_id_eq]' => user.id)
       end
@@ -293,7 +296,8 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
     User.create!  first_name: first,
                   last_name: last,
                   username: [first,last].join('-').downcase,
-                  age: rand(80)
+                  age: rand(80),
+                  encrypted_password: SecureRandom.hex
   end
 
   categories = ["Rock", "Pop Rock", "Alt-Country", "Blues", "Dub-Step"].collect do |name|

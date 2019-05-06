@@ -3,14 +3,14 @@
 First off, thank you for considering contributing to Active Admin. It's people
 like you that make Active Admin such a great tool.
 
-### 1. Where do I go from here?
+### Where do I go from here?
 
 If you've noticed a bug or have a question that doesn't belong on the
 [mailing list][] or [Stack Overflow][], [search the issue tracker][] to see if
 someone else in the community has already created a ticket. If not, go ahead and
 [make one][new issue]!
 
-### 2. Fork & create a branch
+### Fork & create a branch
 
 If this is something you think you can fix, then [fork Active Admin][] and
 create a branch with a descriptive name.
@@ -21,16 +21,13 @@ A good branch name would be (where issue #325 is the ticket you're working on):
 git checkout -b 325-add-japanese-translations
 ```
 
-### 3. Get the test suite running
+### Get the test suite running
 
 Make sure you're using a recent ruby and have the `bundler` gem installed, at
 least version `1.14.3`.
 
-Select the Gemfile for your preferred Rails version, preferably the latest:
-
-```sh
-export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
-```
+You'll also need chrome and [chromedriver] installed in order to run cucumber
+scenarios.
 
 Now install the development dependencies:
 
@@ -41,20 +38,31 @@ bundle install
 Now you should be able to run the entire suite using:
 
 ```sh
-bundle exec rake
+bin/rake
 ```
 
-The test run will generate a sample Rails application in `spec/rails` to run the
+The test run will generate a sample Rails application in `tmp/rails` to run the
 tests against.
 
-If your tests are passing locally but they're failing on Travis, reset your test
-environment:
+If your tests are passing locally but they're failing on CircleCI, it's probably
+because of some breaking change or problem with the latest version of some
+dependency. You should be able to reproduce the issue locally by:
+
+* Removing the `Gemfile.lock` file.
+* Running `bundle install`.
+* Re-running the tests again like you did previously.
+
+This is not your fault though, so if this happens feel free to investigate, but
+also feel free to ping maintainers about the issue you just found.
+
+If you want to test against a Rails version different from the latest, make sure
+you use the correct Gemfile, for example:
 
 ```sh
-rm -rf spec/rails && bundle update
+export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
 ```
 
-### 4. Did you find a bug?
+### Did you find a bug?
 
 * **Ensure the bug was not already reported** by [searching all issues][].
 
@@ -83,7 +91,7 @@ a look at your changes in a browser.
 To boot up a test Rails app:
 
 ```sh
-bundle exec rake local server
+bin/rake local server
 ```
 
 This will automatically create a Rails app if none already exists, and store it
@@ -99,23 +107,24 @@ If you need to perform any other commands on the test application, just pass
 them to the `local` rake task. For example, to boot the rails console:
 
 ```sh
-bundle exec rake local console
+bin/rake local console
 ```
 
-Or to migrate the database:
+Or to migrate the database, if you create a new migration or just play around
+with the db:
 
 ```sh
-bundle exec rake local db:migrate
+bin/rake local db:migrate
 ```
 
-### 7. Get the style right
+### Get the style right
 
 Your patch should follow the same conventions & pass the same code quality
-checks as the rest of the project. [Codeclimate][codeclimate] will give you
-feedback in this regard. You can check & fix codeclimate's feedback by running
-it locally using [Codeclimate's CLI][codeclimate cli], via `codeclimate analyze`.
+checks as the rest of the project. `bin/rake lint` will give you feedback in
+this regard. You can check & fix style issues by running each linter
+individually. Run `bin/rake -T lint` to see the available linters.
 
-### 8. Make a Pull Request
+### Make a Pull Request
 
 At this point, you should switch back to your master branch and make sure it's
 up to date with Active Admin's master branch:
@@ -136,14 +145,14 @@ git push --set-upstream origin 325-add-japanese-translations
 
 Finally, go to GitHub and [make a Pull Request][] :D
 
-Travis CI will run our test suite against all supported Rails versions. We care
+CircleCI will run our test suite against all supported Rails versions. We care
 about quality, so your PR won't be merged until all tests pass. It's unlikely,
 but it's possible that your changes pass tests in one Rails version but fail in
 another. In that case, you'll have to setup your development environment (as
 explained in step 3) to use the problematic Rails version, and investigate
 what's going on!
 
-### 8. Keeping your Pull Request updated
+### Keeping your Pull Request updated
 
 If a maintainer asks you to "rebase" your PR, they're saying that a lot of code
 has changed, and that you need to update your branch so it's easier to merge.
@@ -157,7 +166,7 @@ git pull --rebase upstream master
 git push --force-with-lease 325-add-japanese-translations
 ```
 
-### 10. Merging a PR (maintainers only)
+### Merging a PR (maintainers only)
 
 A PR can only be merged into master by a maintainer if:
 
@@ -170,13 +179,15 @@ A PR can only be merged into master by a maintainer if:
 Any maintainer is allowed to merge a PR if all of these conditions are
 met.
 
-### 11. Shipping a release (maintainers only)
+### Shipping a release (maintainers only)
 
 Maintainers need to do the following to push out a release:
 
 * Make sure all pull requests are in and that changelog is current
 * Update `version.rb` file and changelog with new version number
-* Create a stable branch for that release:
+* If it's not a patch level release, create a stable branch for that release,
+  otherwise switch to the stable branch corresponding to the patch release you
+  want to ship:
 
   ```sh
   git checkout master
@@ -187,17 +198,20 @@ Maintainers need to do the following to push out a release:
   git push activeadmin N-N-stable:N-N-stable
   ```
 
-* `bundle exec rake release`
+* Make sure you have [chandler] properly configured. Chandler is used to
+  automatically submit github release notes from the changelog right after
+  pushing the gem to rubygems.
+* `bin/rake release`
 
+[chandler]: https://github.com/mattbrictson/chandler#2-configure-credentials
+[chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/getting-started
 [mailing list]: http://groups.google.com/group/activeadmin
 [Stack Overflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [search the issue tracker]: https://github.com/activeadmin/activeadmin/issues?q=something
 [new issue]: https://github.com/activeadmin/activeadmin/issues/new
 [fork Active Admin]: https://help.github.com/articles/fork-a-repo
 [searching all issues]: https://github.com/activeadmin/activeadmin/issues?q=
-[master template]: https://github.com/activeadmin/activeadmin/blob/master/lib/bug_report_templates/active_admin_master.rb
-[codeclimate]: https://codeclimate.com
-[codeclimate cli]: https://github.com/codeclimate/codeclimate
+[master template]: https://github.com/activeadmin/activeadmin/blob/master/tasks/bug_report_template.rb
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
 [git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
 [interactive rebase]: https://help.github.com/articles/interactive-rebase

@@ -27,7 +27,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   end
 
   describe "searching" do
-    let(:http_params) {{ q: {} }}
+    let(:http_params) { { q: {} } }
     it "should call the search method" do
       chain = double "ChainObj"
       expect(chain).to receive(:ransack).with(params[:q]).once.and_return(Post.ransack)
@@ -36,7 +36,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
 
     context "params includes empty values" do
       let(:http_params) do
-        { q: {id_eq: 1, position_eq: ""} }
+        { q: { id_eq: 1, position_eq: "" } }
       end
       it "should return relation without empty filters" do
         expect(Post).to receive(:ransack).with(params[:q]).once.and_wrap_original do |original, *args|
@@ -50,19 +50,18 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   end
 
   describe "sorting" do
-
     context "valid clause" do
-      let(:http_params) {{ order: "id_asc" }}
+      let(:http_params) { { order: "id_asc" } }
 
       it "reorders chain" do
         chain = double "ChainObj"
-        expect(chain).to receive(:reorder).with('"posts"."id" asc').once.and_return(Post.search)
+        expect(chain).to receive(:reorder).with('"posts"."id" asc').once.and_return(Post.ransack)
         controller.send :apply_sorting, chain
       end
     end
 
     context "invalid clause" do
-      let(:http_params) {{ order: "_asc" }}
+      let(:http_params) { { order: "_asc" } }
 
       it "returns chain untouched" do
         chain = double "ChainObj"
@@ -83,27 +82,25 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
       end
 
       context "when params applicable" do
-        let(:http_params) {{ order: "published_date_desc" }}
+        let(:http_params) { { order: "published_date_desc" } }
         it "reorders chain" do
           chain = double "ChainObj"
-          expect(chain).to receive(:reorder).with('"posts"."published_date" desc NULLS LAST').once.and_return(Post.search)
+          expect(chain).to receive(:reorder).with('"posts"."published_date" desc NULLS LAST').once.and_return(Post.ransack)
           controller.send :apply_sorting, chain
         end
       end
       context "when params not applicable" do
-        let(:http_params) {{ order: "published_date_asc" }}
+        let(:http_params) { { order: "published_date_asc" } }
         it "reorders chain" do
           chain = double "ChainObj"
-          expect(chain).to receive(:reorder).with('"posts"."published_date" asc').once.and_return(Post.search)
+          expect(chain).to receive(:reorder).with('"posts"."published_date" asc').once.and_return(Post.ransack)
           controller.send :apply_sorting, chain
         end
       end
     end
-
   end
 
   describe "scoping" do
-
     context "when no current scope" do
       it "should set collection_before_scope to the chain and return the chain" do
         chain = double "ChainObj"
@@ -195,7 +192,6 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   end
 
   describe "build_resource" do
-
     let(:config) do
       ActiveAdmin.register User do
         permit_params :type, posts_attributes: :custom_category_id
@@ -228,7 +224,5 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     it "should assign nested attributes once" do
       expect(subject.posts.size).to eq(1)
     end
-
   end
-
 end

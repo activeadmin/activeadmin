@@ -1,17 +1,16 @@
 # Rails template to build the sample app for specs
 
-copy_file File.expand_path('../templates/manifest.js', __FILE__), 'app/assets/config/manifest.js', force: true
-
 create_file 'app/assets/stylesheets/some-random-css.css'
 create_file 'app/assets/javascripts/some-random-js.js'
 create_file 'app/assets/images/a/favicon.ico'
 
 generate :model, 'post title:string body:text published_date:date author_id:integer ' +
   'position:integer custom_category_id:integer starred:boolean foo_id:integer'
+
 create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
   class Post < ActiveRecord::Base
-    belongs_to :category, foreign_key: :custom_category_id
-    belongs_to :author, class_name: 'User'
+    belongs_to :category, foreign_key: :custom_category_id, optional: true
+    belongs_to :author, class_name: 'User', optional: true
     has_many :taggings
     has_many :tags, through: :taggings
     accepts_nested_attributes_for :author
@@ -31,7 +30,7 @@ create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
 
   end
 RUBY
-copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), 'app/models/post_decorator.rb'
+copy_file File.expand_path('templates/post_decorator.rb', __dir__), 'app/models/post_decorator.rb'
 
 generate :model, 'blog/post title:string body:text published_date:date author_id:integer ' +
   'position:integer custom_category_id:integer starred:boolean foo_id:integer'
@@ -48,7 +47,7 @@ RUBY
 
 generate :model, 'profile user_id:integer bio:text'
 
-generate :model, 'user type:string first_name:string last_name:string username:string age:integer'
+generate :model, 'user type:string first_name:string last_name:string username:string age:integer encrypted_password:string'
 create_file 'app/models/user.rb', <<-RUBY.strip_heredoc, force: true
   class User < ActiveRecord::Base
     class VIP < self
@@ -85,7 +84,7 @@ create_file 'app/models/category.rb', <<-RUBY.strip_heredoc, force: true
   end
 RUBY
 
-generate :model, 'store name:string'
+generate :model, 'store name:string user_id:integer'
 
 generate :model, 'tag name:string'
 create_file 'app/models/tag.rb', <<-RUBY.strip_heredoc, force: true
@@ -98,8 +97,8 @@ RUBY
 generate :model, 'tagging post_id:integer tag_id:integer position:integer'
 create_file 'app/models/tagging.rb', <<-RUBY.strip_heredoc, force: true
   class Tagging < ActiveRecord::Base
-    belongs_to :post
-    belongs_to :tag
+    belongs_to :post, optional: true
+    belongs_to :tag, optional: true
 
     delegate :name, to: :tag, prefix: true
   end
@@ -113,17 +112,7 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
 
   config.active_record.maintain_test_schema = false
 
-  if Rails::VERSION::MAJOR >= 5
-    config.active_record.belongs_to_required_by_default = false
-  end
-
 RUBY
-
-# Add our local Active Admin to the application
-gem 'activeadmin', path: '../..'
-gem 'devise'
-
-run 'bundle install'
 
 # Setup Active Admin
 generate 'active_admin:install'
@@ -134,21 +123,22 @@ inject_into_file 'config/application.rb', after: 'class Application < Rails::App
 end
 
 # Add some translations
-append_file 'config/locales/en.yml', File.read(File.expand_path('../templates/en.yml', __FILE__))
+append_file 'config/locales/en.yml', File.read(File.expand_path('templates/en.yml', __dir__))
 
 # Add predefined admin resources
-directory File.expand_path('../templates/admin', __FILE__), 'app/admin'
+directory File.expand_path('templates/admin', __dir__), 'app/admin'
 
 # Add predefined policies
-directory File.expand_path('../templates/policies', __FILE__), 'app/policies'
+directory File.expand_path('templates/policies', __dir__), 'app/policies'
 
 if ENV['RAILS_ENV'] != 'test'
   inject_into_file 'config/routes.rb', "\n  root to: redirect('admin')", after: /.*routes.draw do/
 end
 
-rake "db:drop db:create db:migrate", env: 'development'
-rake "db:drop db:create db:migrate", env: 'test'
+rake "db:drop db:create db:migrate", env: ENV['RAILS_ENV']
 
-if ENV['INSTALL_PARALLEL']
+if ENV['RAILS_ENV'] == 'test'
   inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'test.sqlite3'
+
+  rake "parallel:drop parallel:create parallel:load_schema", env: ENV['RAILS_ENV']
 end

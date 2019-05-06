@@ -22,7 +22,7 @@ module ActiveAdmin
       end
 
       def columns(*attrs)
-        attrs.each {|attr| column(attr) }
+        attrs.each { |attr| column(attr) }
       end
 
       def column(*args, &block)
@@ -147,7 +147,7 @@ module ActiveAdmin
           if @options.has_key?(:class)
             html_classes << @options.delete(:class)
           elsif @title.present?
-            html_classes << "col-#{ActiveAdmin::Dependency.rails.parameterize(@title.to_s)}"
+            html_classes << "col-#{@title.to_s.parameterize(separator: "_")}"
           end
           @html_class = html_classes.join(' ')
           @data = args[1] || args[0]
@@ -176,18 +176,9 @@ module ActiveAdmin
         # to the sortable option:
         #   column :username, sortable: 'other_column_to_sort_on'
         #
-        # If you pass a block to be rendered for this column, the column
-        # will not be sortable unless you pass a string to sortable to
-        # sort the column on:
-        #
-        #   column('Username', sortable: 'login'){ @user.pretty_name }
-        #   # => Sort key will be 'login'
-        #
         def sort_key
           # If boolean or nil, use the default sort key.
-          if @options[:sortable] == true || @options[:sortable] == false
-            @data.to_s
-          elsif @options[:sortable].nil?
+          if @options[:sortable].nil? || @options[:sortable] == true || @options[:sortable] == false
             sort_column_name
           else
             @options[:sortable].to_s

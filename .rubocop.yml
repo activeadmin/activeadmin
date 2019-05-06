@@ -1,24 +1,32 @@
 ---
 
+inherit_mode:
+  merge:
+    - Include
+
+require: rubocop-rspec
+
 AllCops:
   DisabledByDefault: true
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.4
 
   Exclude:
-    - spec/rails/**/*
+    - tmp/rails/**/*
     - gemfiles/vendor/bundle/**/*
+    - vendor/bundle/**/*
 
   Include:
-    - "**/*.rake"
-    - "**/Gemfile"
-    - "gemfiles/*.gemfile"
-    - "**/Rakefile"
+    - gemfiles/*.gemfile
+    - .simplecov
 
   DisplayCopNames: true
 
   StyleGuideCopsOnly: false
 
-Lint/EndAlignment:
+Layout/EndAlignment:
+  Enabled: true
+
+Lint/ParenthesesAsGroupedExpression:
   Enabled: true
 
 Layout/AccessModifierIndentation:
@@ -36,14 +44,37 @@ Layout/ElseAlignment:
 Layout/EmptyLines:
   Enabled: true
 
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: true
+
 Layout/EndOfLine:
   Enabled: true
 
 Layout/ExtraSpacing:
   Enabled: true
 
+Rails:
+  Enabled: true
+
+Rails/FilePath:
+  Enabled: true
+  EnforcedStyle: slashes
+
+RSpec/HookArgument:
+  Enabled: true
+
+Style/Dir:
+  Enabled: true
+
 Style/Encoding:
   Enabled: true
+
+Style/ExpandPathArguments:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: never
 
 Style/HashSyntax:
   Enabled: true
@@ -78,6 +109,15 @@ Layout/SpaceAfterComma:
   Enabled: true
 
 Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: true
+
+Layout/SpaceBeforeBlockBraces:
+  Enabled: true
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+
+Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
 
 Layout/SpaceInsideParens:

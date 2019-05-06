@@ -123,10 +123,10 @@ module ActiveAdmin
       # Returns a default set of filters for the associations
       def default_association_filters
         if resource_class.respond_to?(:reflect_on_all_associations)
-          poly, not_poly = resource_class.reflect_on_all_associations.partition{ |r| r.macro == :belongs_to && r.options[:polymorphic] }
+          poly, not_poly = resource_class.reflect_on_all_associations.partition { |r| r.macro == :belongs_to && r.options[:polymorphic] }
 
           # remove deeply nested associations
-          not_poly.reject!{ |r| r.chain.length > 2 }
+          not_poly.reject! { |r| r.chain.length > 2 }
 
           filters = poly.map(&:foreign_type) + not_poly.map(&:name)
           filters.map &:to_sym
@@ -140,7 +140,7 @@ module ActiveAdmin
       end
 
       def filters_sidebar_section
-        ActiveAdmin::SidebarSection.new :filters, only: :index, if: ->{ active_admin_config.filters.any? } do
+        ActiveAdmin::SidebarSection.new :filters, only: :index, if: -> { active_admin_config.filters.any? } do
           active_admin_filters_form_for assigns[:search], active_admin_config.filters
         end
       end

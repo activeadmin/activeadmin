@@ -4,7 +4,7 @@ Feature: Decorators
 
   Background:
     Given a user named "John Doe" exists
-    Given a post with the title "A very unique post" exists
+    And a post with the title "A very unique post" exists
     And I am logged in
 
   Scenario: Index page with decorator

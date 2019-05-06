@@ -1,3 +1,4 @@
+@root
 Feature: Namespace root
 
   As a developer
@@ -13,5 +14,5 @@ Feature: Namespace root
     """
       ActiveAdmin.application.root_to = 'stores#index'
     """
-    Given I am logged in with capybara
+    And I am logged in with capybara
     Then I should see the page title "Bookstores"

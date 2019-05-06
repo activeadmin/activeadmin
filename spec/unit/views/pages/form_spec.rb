@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::Pages::Form do
   describe "#title" do
-    let!(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ ActiveAdmin::Namespace.new(application, "Admin") }
-    let!(:http_params){ { controller: "UsersController", action: "edit" } }
+    let!(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
+    let!(:http_params) { { controller: "UsersController", action: "edit" } }
     let!(:params) { ActionController::Parameters.new(http_params) }
 
     let(:helpers) do
@@ -20,7 +20,6 @@ RSpec.describe ActiveAdmin::Views::Pages::Form do
 
     context "when :title is set" do
       it "should show the set page title" do
-
         page = ActiveAdmin::Views::Pages::Form.new(arbre_context)
         expect(page).to receive(:resource)
         expect(page).to receive(:form_presenter).twice.and_return({ title: "My Page Title" })

@@ -1,11 +1,8 @@
-require 'active_admin/helpers/output_safety_helper'
-
 module ActiveAdmin
   module Views
 
     class SidebarSection < Panel
       builder_method :sidebar_section
-      include OutputSafetyHelper
 
       # Takes a ActiveAdmin::SidebarSection instance
       def build(section)

@@ -1,13 +1,12 @@
+@javascript
 Feature: Show - Tabs
 
   Add tabs with different content to the page
 
-  Background:
+  Scenario: Set a method to be called on the resource as the title
     Given a post with the title "Hello World" written by "Jane Doe" exists
 
-  @javascript
-  Scenario: Set a method to be called on the resource as the title
-    Given a show configuration of:
+    And a show configuration of:
     """
       ActiveAdmin.register Post do
         show do
@@ -19,14 +18,30 @@ Feature: Show - Tabs
             tab 'テスト', id: :test_non_ascii do
               span "tab 2"
             end
+
+            tab '🤗' do
+              span "tab 3"
+            end
           end
         end
       end
     """
 
-    Then I should see two tabs "Overview" and "テスト"
-    And I should see the element "#overview span"
-    And I should not see the element "#test_non_ascii span"
-    Then I follow "テスト"
-    And I should see the element "#test_non_ascii span"
-    And I should not see the element "#overview span"
+    Then I should see tabs:
+    | Tab title |
+    | Overview  |
+    | テスト     |
+    | 🤗        |
+    And I should see tab content "tab 1"
+    And I should not see tab content "tab 2"
+    And I should not see tab content "tab 3"
+
+    When I follow "テスト"
+    Then I should not see tab content "tab 1"
+    And I should see tab content "tab 2"
+    And I should not see tab content "tab 3"
+
+    When I follow "🤗"
+    Then I should not see tab content "tab 1"
+    And I should not see tab content "tab 2"
+    And I should see tab content "tab 3"

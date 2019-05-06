@@ -3,12 +3,8 @@ require 'rails_helper'
 RSpec.describe ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper do
   describe "class methods" do
     before :all do
-      begin
-        # The mime type to be used in respond_to |format| style web-services in rails
-        Mime::Type.register "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", :xlsx
-      rescue NameError
-        puts "Mime module not defined. Skipping registration of xlsx"
-      end
+      # The mime type to be used in respond_to |format| style web-services in rails
+      Mime::Type.register "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", :xlsx
     end
 
     subject do
@@ -32,8 +28,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DownloadFormatLinksHelper do
     end
 
     it "raises an exception if you provide an unregisterd mime type extension" do
-      expect{ subject.add_format :hoge }.to raise_error 'Please register the hoge mime type with `Mime::Type.register`'
+      expect { subject.add_format :hoge }.to raise_error 'Please register the hoge mime type with `Mime::Type.register`'
     end
-
   end
 end

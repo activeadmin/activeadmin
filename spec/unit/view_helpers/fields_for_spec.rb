@@ -10,12 +10,12 @@ RSpec.describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
   end
 
   it "should skip the except" do
-    expect(fields_for_params({scope: "All", name: "Greg"}, except: :name)).
+    expect(fields_for_params({ scope: "All", name: "Greg" }, except: :name)).
       to eq [ { scope: "All" } ]
   end
 
   it "should allow an array for the except" do
-    expect(fields_for_params({scope: "All", name: "Greg", age: "12"}, except: [:name, :age])).
+    expect(fields_for_params({ scope: "All", name: "Greg", age: "12" }, except: [:name, :age])).
       to eq [ { scope: "All" } ]
   end
 
@@ -23,12 +23,12 @@ RSpec.describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
     params = fields_for_params(filters: { name: "John", age: "12" })
 
     expect(params.size).to eq 2
-    expect(params).to include({"filters[name]" => "John" })
+    expect(params).to include({ "filters[name]" => "John" })
     expect(params).to include({ "filters[age]" => "12" })
   end
 
   it "should work with nested hashes" do
-    expect(fields_for_params(filters: { user: { name: "John" }})).
+    expect(fields_for_params(filters: { user: { name: "John" } })).
       to eq [ { "filters[user][name]" => "John" } ]
   end
 

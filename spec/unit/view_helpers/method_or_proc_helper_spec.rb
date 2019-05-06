@@ -10,7 +10,6 @@ RSpec.describe MethodOrProcHelper do
   end
 
   describe "#call_method_or_exec_proc" do
-
     it "should call the method in the context when a symbol" do
       expect(context.call_method_or_exec_proc(:receiver_in_context)).to eq receiver
     end
@@ -20,17 +19,15 @@ RSpec.describe MethodOrProcHelper do
     end
 
     it "should exec a proc in the context" do
-      test_proc = Proc.new{ raise "Success" if receiver_in_context }
+      test_proc = Proc.new { raise "Success" if receiver_in_context }
 
       expect {
         context.call_method_or_exec_proc(test_proc)
       }.to raise_error("Success")
     end
-
   end
 
   describe "#call_method_or_proc_on" do
-
     [:hello, 'hello'].each do |key|
       context "when a #{key.class}" do
         it "should call the method on the receiver" do
@@ -48,7 +45,6 @@ RSpec.describe MethodOrProcHelper do
     end
 
     context "when a proc" do
-
       it "should exec the block in the context and pass in the receiver" do
         test_proc = Proc.new do |arg|
           raise "Success!" if arg == receiver_in_context
@@ -68,11 +64,9 @@ RSpec.describe MethodOrProcHelper do
           context.call_method_or_proc_on(receiver, test_proc, "Hello")
         }.to raise_error("Success!")
       end
-
     end
 
     context "when a proc and exec: false" do
-
       it "should call the proc and pass in the receiver" do
         obj_not_in_context = double
 
@@ -84,13 +78,11 @@ RSpec.describe MethodOrProcHelper do
           context.call_method_or_proc_on(receiver, test_proc, exec: false)
         }.to raise_error("Success!")
       end
-
     end
-
   end
 
   describe "#render_or_call_method_or_proc_on" do
-    [ :symbol, Proc.new{} ].each do |key|
+    [ :symbol, Proc.new {} ].each do |key|
       context "when a #{key.class}" do
         it "should call #call_method_or_proc_on" do
           options = { foo: :bar }
@@ -111,7 +103,7 @@ RSpec.describe MethodOrProcHelper do
     let(:args) { [1, 2, 3] }
 
     context "when a Proc" do
-      let(:object) { Proc.new { } }
+      let(:object) { Proc.new {} }
 
       it "should instance_exec the Proc" do
         expect(receiver).to receive(:instance_exec).with(args, &object).and_return("data")
@@ -134,5 +126,4 @@ RSpec.describe MethodOrProcHelper do
       end
     end
   end
-
 end

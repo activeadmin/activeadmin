@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+load File.expand_path("bundle", __dir__)
+
+require "bundler/setup"
+
+%w[--serialize-stdout --combine-stderr --verbose].each do |flag|
+  ARGV << flag unless ARGV.include?(flag)
+end
+
+load Gem.bin_path("parallel_tests", "parallel_rspec")

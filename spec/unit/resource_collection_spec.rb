@@ -22,7 +22,7 @@ RSpec.describe ActiveAdmin::ResourceCollection do
 
   it "should be enumerable" do
     collection.add(resource)
-    collection.each{ |r| expect(r).to eq resource }
+    collection.each { |r| expect(r).to eq resource }
   end
 
   it "should return the available keys" do
@@ -171,5 +171,4 @@ RSpec.describe ActiveAdmin::ResourceCollection do
   end
 
   skip "specs for subclasses of Page and Resource"
-
 end

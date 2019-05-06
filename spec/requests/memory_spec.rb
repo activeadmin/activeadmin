@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Memory Leak", type: :request, if: RUBY_ENGINE == 'ruby' do
-  before do
-    load_defaults!
+  around do |example|
+    with_resources_during(example) { ActiveAdmin.register(Category) }
   end
 
   def count_instances_of(klass)
-    ObjectSpace.each_object(klass) { }
+    ObjectSpace.each_object(klass) {}
   end
 
   [ActiveAdmin::Namespace, ActiveAdmin::Resource].each do |klass|
@@ -15,7 +15,7 @@ RSpec.describe "Memory Leak", type: :request, if: RUBY_ENGINE == 'ruby' do
       GC.start
       count = count_instances_of(klass)
 
-      load_defaults!
+      load_resources { ActiveAdmin.register(Category) }
 
       GC.start
       GC.disable if previously_disabled

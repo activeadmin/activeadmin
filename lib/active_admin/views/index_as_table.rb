@@ -130,9 +130,7 @@ module ActiveAdmin
     # sortable by default. If you are creating a custom column, you may need to give
     # Active Admin a hint for how to sort the table.
     #
-    # If a column is defined using a block, you must pass the key to turn on sorting. The key
-    # is the attribute which gets used to sort objects using Active Record.
-    #
+    # You can pass the key specifying the attribute which gets used to sort objects using Active Record.
     # By default, this is the column on the resource's table that the attribute corresponds to.
     # Otherwise, any attribute that the resource collection responds to can be used.
     #
@@ -376,7 +374,7 @@ module ActiveAdmin
           end
           if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
             item localizer.t(:delete), resource_path(resource), class: "delete_link #{options[:css_class]}", title: localizer.t(:delete),
-              method: :delete, data: {confirm: localizer.t(:delete_confirmation)}
+              method: :delete, data: { confirm: localizer.t(:delete_confirmation) }
           end
         end
 

@@ -8,7 +8,7 @@ RSpec.describe 'Index overriding', type: :controller do
     @controller.instance_eval do
       def index
         super do
-          render ActiveAdmin::Dependency.rails.render_key => 'Rendered from passed block'
+          render body: 'Rendered from passed block'
           return
         end
       end
@@ -19,5 +19,4 @@ RSpec.describe 'Index overriding', type: :controller do
     get :index
     expect(response.body).to eq 'Rendered from passed block'
   end
-
 end
