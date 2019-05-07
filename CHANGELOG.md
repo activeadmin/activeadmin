@@ -35,6 +35,8 @@ _No changes_.
   end
   ```
 
+* Consider authorization when displaying comments in show page. [#5555] by [@amiuhle]
+
 #### Minor
 
 * Add better support for rendering lists. [#5370] by [@dkniffin]
@@ -433,6 +435,7 @@ Please check [0-6-stable] for previous changes.
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
 [#5517]: https://github.com/activeadmin/activeadmin/pull/5517
 [#5537]: https://github.com/activeadmin/activeadmin/pull/5537
+[#5555]: https://github.com/activeadmin/activeadmin/pull/5555
 [#5583]: https://github.com/activeadmin/activeadmin/pull/5583
 [#5608]: https://github.com/activeadmin/activeadmin/pull/5608
 [#5611]: https://github.com/activeadmin/activeadmin/pull/5611
@@ -453,6 +456,7 @@ Please check [0-6-stable] for previous changes.
 [@ajw725]: https://github.com/ajw725
 [@alex-bogomolov]: https://github.com/alex-bogomolov
 [@amiel]: https://github.com/amiel
+[@amiuhle]: https://github.com/amiuhle
 [@andreslemik]: https://github.com/andreslemik
 [@blocknotes]: https://github.com/blocknotes
 [@bolshakov]: https://github.com/bolshakov
