@@ -5,6 +5,7 @@
 ### Bug Fixes
 
 * Ensure application gets reloaded only once. [#5740] by [@jscheid]
+* Crash when rendering comments from a custom controller block. [#5758] by [@deivid-rodriguez]
 
 ### Removals
 
@@ -445,6 +446,7 @@ Please check [0-6-stable] for previous changes.
 [#5738]: https://github.com/activeadmin/activeadmin/pull/5738
 [#5740]: https://github.com/activeadmin/activeadmin/pull/5740
 [#5751]: https://github.com/activeadmin/activeadmin/pull/5751
+[#5758]: https://github.com/activeadmin/activeadmin/pull/5758
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
