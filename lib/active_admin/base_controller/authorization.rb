@@ -18,6 +18,7 @@ module ActiveAdmin
 
         helper_method :authorized?
         helper_method :authorize!
+        helper_method :active_admin_authorization
       end
 
       protected
