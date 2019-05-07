@@ -177,6 +177,25 @@ Feature: Commenting
     And I should see "Displaying comments 51 - 70 of 70 in total"
     And I should not see the pagination "Next" link
 
+  Scenario: Commments through explicit helper from custom controller
+    Given a post with the title "Hello World" written by "Jane Doe" exists
+    And a show configuration of:
+      """
+        ActiveAdmin.register Post do
+          controller do
+            def show
+              @post = Post.find(params[:id])
+              show!
+            end
+          end
+
+          show do |post|
+            active_admin_comments
+          end
+        end
+      """
+    Then I should be able to add a comment
+
   @authorization
   Scenario: Not authorized to list comments
     Given 5 comments added by admin with an email "commenter@example.com"
