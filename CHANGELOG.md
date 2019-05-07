@@ -21,13 +21,13 @@ _No changes_.
 
 #### Minor
 
-* Require arbre `~> 1.2, >= 1.2.1` [#5726] by [@ionut998], and [#5738] by [@deivid-rodriguez]
+* Require arbre `~> 1.2, >= 1.2.1`. [#5726] by [@ionut998], and [#5738] by [@deivid-rodriguez]
 
 ## 2.0.0.rc1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.3..v2.0.0.rc1)
 
 ### Enhancements
 
-* Add your own content to the site `<head>`, like analytics [#5590] by [@buren]
+* Add your own content to the site `<head>`, like analytics. [#5590] by [@buren]
 
   ```ruby
   ActiveAdmin.setup do |config|
