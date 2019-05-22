@@ -137,7 +137,7 @@ RSpec.describe 'defining actions from registration blocks', type: :controller do
       end
 
       it 'writes warning to $stderr' do
-        expect($stderr.string).to include('Warning: method `process` already defined')
+        expect($stderr.string).to include('Warning: method `process` already defined in Admin::PostsController')
       end
     end
 
@@ -149,7 +149,7 @@ RSpec.describe 'defining actions from registration blocks', type: :controller do
       end
 
       it 'writes warning to $stderr' do
-        expect($stderr.string).to include('Warning: method `process` already defined')
+        expect($stderr.string).to include('Warning: method `process` already defined in Admin::PostsController')
       end
     end
   end
