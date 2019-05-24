@@ -57,7 +57,7 @@ module ActiveAdmin
     private
 
     def namespace(object)
-      if ActiveAdmin.application.pundit_policy_namespace
+      if ActiveAdmin.application.pundit_policy_namespace && !object.class.to_s.include?(ActiveAdmin.application.pundit_policy_namespace.to_s.camelize)
         [ActiveAdmin.application.pundit_policy_namespace.to_sym, object]
       else
         object
