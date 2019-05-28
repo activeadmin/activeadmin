@@ -6,6 +6,7 @@
 
 * Ensure application gets reloaded only once. [#5740] by [@jscheid]
 * Crash when rendering comments from a custom controller block. [#5758] by [@deivid-rodriguez]
+* Switch `sass` dependency to `sassc-rails`, since `sass` is no longer supported and since it restores support for directly importing `css` files. [#5504] by [@deivid-rodriguez]
 
 ### Removals
 
@@ -433,6 +434,7 @@ Please check [0-6-stable] for previous changes.
 [#5464]: https://github.com/activeadmin/activeadmin/pull/5464
 [#5486]: https://github.com/activeadmin/activeadmin/pull/5486
 [#5501]: https://github.com/activeadmin/activeadmin/pull/5501
+[#5504]: https://github.com/activeadmin/activeadmin/pull/5504
 [#5517]: https://github.com/activeadmin/activeadmin/pull/5517
 [#5537]: https://github.com/activeadmin/activeadmin/pull/5537
 [#5555]: https://github.com/activeadmin/activeadmin/pull/5555
