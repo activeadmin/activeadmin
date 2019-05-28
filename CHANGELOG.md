@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.1.0..v2.0.0)
+
 ### Bug Fixes
 
 * Ensure application gets reloaded only once. [#5740] by [@jscheid]
