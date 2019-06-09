@@ -12,6 +12,7 @@ require 'active_admin/resource/scope_to'
 require 'active_admin/resource/sidebars'
 require 'active_admin/resource/belongs_to'
 require 'active_admin/resource/ordering'
+require 'active_admin/resource/model'
 
 module ActiveAdmin
 
@@ -102,6 +103,10 @@ module ActiveAdmin
 
     def decorator_class
       ActiveSupport::Dependencies.constantize(decorator_class_name) if decorator_class_name
+    end
+
+    def resource_name_extension
+      @resource_name_extension ||= define_resource_name_extension(self)
     end
 
     def resource_table_name
@@ -203,5 +208,12 @@ module ActiveAdmin
       @default_csv_builder ||= CSVBuilder.default_for_resource(self)
     end
 
+    def define_resource_name_extension(resource)
+      Module.new do
+        define_method :model_name do
+          resource.resource_name
+        end
+      end
+    end
   end # class Resource
 end # module ActiveAdmin

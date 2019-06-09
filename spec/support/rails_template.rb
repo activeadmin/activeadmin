@@ -25,6 +25,10 @@ copy_file File.expand_path('templates/models/user.rb', __dir__), 'app/models/use
 
 generate :migration, "create_users type:string first_name:string last_name:string username:string age:integer encrypted_password:string #{timestamps}"
 
+copy_file File.expand_path('templates/models/blog/user.rb', __dir__), 'app/models/blog/user.rb'
+
+generate :migration, "create_blog_users type:string first_name:string last_name:string username:string age:integer encrypted_password:string #{timestamps}"
+
 copy_file File.expand_path('templates/models/profile.rb', __dir__), 'app/models/profile.rb'
 
 generate :model, 'publisher --migration=false --parent=User'
