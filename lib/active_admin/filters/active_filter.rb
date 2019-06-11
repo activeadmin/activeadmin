@@ -76,7 +76,7 @@ module ActiveAdmin
       end
 
       def name
-        condition.attributes.map(&:name).join("_#{condition.combinator}_")
+        condition_attribute.attr_name
       end
 
       def ransack_predicate_name
