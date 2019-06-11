@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## 2.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.1.0..v2.0.0)
+## 2.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.0.0..v2.1.0)
 
 ### Bug Fixes
 
