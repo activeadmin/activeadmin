@@ -84,14 +84,14 @@ inject_into_file 'app/admin/categories.rb', <<-RUBY, after: "ActiveAdmin.registe
 
   config.create_another = true
 
-  permit_params [:name, :description]
+  permit_params :name, :description
 RUBY
 
 inject_into_file 'app/admin/users.rb', <<-RUBY, after: "ActiveAdmin.register User do\n"
 
   config.create_another = true
 
-  permit_params [:first_name, :last_name, :username, :age]
+  permit_params :first_name, :last_name, :username, :age
 
   index as: :grid do |user|
     div for: user do
@@ -276,7 +276,7 @@ inject_into_file 'app/admin/tags.rb', <<-RUBY, after: "ActiveAdmin.register Tag 
 
   config.create_another = true
 
-  permit_params [:name]
+  permit_params :name
 
   index do
     selectable_column
