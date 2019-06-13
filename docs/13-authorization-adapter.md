@@ -255,7 +255,7 @@ config.authorization_adapter = ActiveAdmin::PunditAdapter
 
 Once that's done, Active Admin will pick up your Pundit policies, and use
 them for authorization. For more information about setting up Pundit, see
-[their documention](https://github.com/varvet/pundit#installation).
+[their documentation](https://github.com/varvet/pundit#installation).
 
 Pundit also has [verify_authorized and/or verify_policy_scoped
 methods](https://github.com/varvet/pundit#ensuring-policies-and-scopes-are-used)
