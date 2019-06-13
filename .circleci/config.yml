@@ -10,7 +10,7 @@ version: 2.1
 .install_bundler: &install_bundler
   run:
     name: Install a specific bundler version
-    command: gem install bundler -v 2.0.1
+    command: gem install bundler -v 2.0.2
 
 .install_build_deps: &install_build_deps
   run:
