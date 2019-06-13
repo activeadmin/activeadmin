@@ -142,3 +142,6 @@ if ENV['RAILS_ENV'] == 'test'
 
   rake "parallel:drop parallel:create parallel:load_schema", env: ENV['RAILS_ENV']
 end
+
+git add: "."
+git commit: "-m 'Bare application'"
