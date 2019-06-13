@@ -44,7 +44,7 @@ module ActiveAdmin
     end
 
     def format_action(action, subject)
-      # https://github.com/elabs/pundit/blob/master/lib/generators/pundit/install/templates/application_policy.rb
+      # https://github.com/varvet/pundit/blob/master/lib/generators/pundit/install/templates/application_policy.rb
       case action
       when Auth::CREATE  then :create?
       when Auth::UPDATE  then :update?
