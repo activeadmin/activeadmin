@@ -244,7 +244,7 @@ To view more details about the API's, visit project pages of
 ## Using the Pundit Adapter
 
 Active Admin also provides an adapter out of the box for
-[Pundit](https://github.com/elabs/pundit).
+[Pundit](https://github.com/varvet/pundit).
 
 To use the Pundit adapter, update the configuration in the Active Admin
 initializer:
@@ -255,7 +255,7 @@ config.authorization_adapter = ActiveAdmin::PunditAdapter
 
 Once that's done, Active Admin will pick up your Pundit policies, and use
 them for authorization. For more information about setting up Pundit, see
-[their documention](https://github.com/elabs/pundit#installation).
+[their documention](https://github.com/varvet/pundit#installation).
 
 Pundit also has [verify_authorized and/or verify_policy_scoped
 methods](https://github.com/varvet/pundit#ensuring-policies-and-scopes-are-used)
