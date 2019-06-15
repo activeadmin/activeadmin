@@ -18,11 +18,13 @@ module ActiveAdmin
       return false if @options[:only]   && !@options[:only].include?(action.to_sym)
       return false if @options[:except] && @options[:except].include?(action.to_sym)
 
-      case condition = @options[:if]
+      condition = @options[:if]
+      condition = !@options[:unless] if @options[:unless]
+      case condition
       when Symbol, String
         render_context.public_send condition
       when Proc
-        render_context.instance_exec &condition
+        render_context.instance_exec(&condition)
       else
         true
       end
