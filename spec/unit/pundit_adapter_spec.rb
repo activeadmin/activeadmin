@@ -130,5 +130,17 @@ RSpec.describe ActiveAdmin::PunditAdapter do
         end
       end
     end
+
+    context "when retrieve_policy is given a page and namespace is :active_admin" do
+      let(:page) { namespace.register_page "Dashboard" }
+
+      subject(:policy) { auth.retrieve_policy(page) }
+
+      before do
+        allow(ActiveAdmin.application).to receive(:pundit_policy_namespace).and_return :active_admin
+      end
+
+      it("should return page policy instance") { is_expected.to be_instance_of(ActiveAdmin::PagePolicy) }
+    end
   end
 end

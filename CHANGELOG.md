@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+* Fix pundit policy retrieving for static pages when the pundit namespace is :active_admin. [#5777] by [@kwent]
+
 ## 2.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.0.0..v2.1.0)
 
 ### Bug Fixes
@@ -454,6 +458,7 @@ Please check [0-6-stable] for previous changes.
 [#5740]: https://github.com/activeadmin/activeadmin/pull/5740
 [#5751]: https://github.com/activeadmin/activeadmin/pull/5751
 [#5758]: https://github.com/activeadmin/activeadmin/pull/5758
+[#5777]: https://github.com/activeadmin/activeadmin/pull/5777
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -490,6 +495,7 @@ Please check [0-6-stable] for previous changes.
 [@johnnyshields]: https://github.com/johnnyshields
 [@kjeldahl]: https://github.com/kjeldahl
 [@kobeumut]: https://github.com/kobeumut
+[@kwent]: https://github.com/kwent
 [@leio10]: https://github.com/leio10
 [@markstory]: https://github.com/markstory
 [@mauriciopasquier]: https://github.com/mauriciopasquier
