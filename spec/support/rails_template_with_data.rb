@@ -1,11 +1,11 @@
 apply File.expand_path('rails_template.rb', __dir__)
 
-inject_into_file 'config/initializers/active_admin.rb', <<-RUBY, after: "ActiveAdmin.setup do |config|\n"
+inject_into_file 'config/initializers/active_admin.rb', <<-RUBY, after: "ActiveAdmin.setup do |config|"
 
   config.comments_menu = { parent: 'Administrative' }
 RUBY
 
-inject_into_file 'app/admin/admin_users.rb', <<-RUBY, after: "ActiveAdmin.register AdminUser do\n"
+inject_into_file 'app/admin/admin_users.rb', <<-RUBY, after: "ActiveAdmin.register AdminUser do"
 
   menu parent: "Administrative", priority: 1
 RUBY
