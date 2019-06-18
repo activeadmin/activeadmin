@@ -4,38 +4,38 @@ create_file 'app/assets/stylesheets/some-random-css.css'
 create_file 'app/assets/javascripts/some-random-js.js'
 create_file 'app/assets/images/a/favicon.ico'
 
-generate :model, 'post title:string body:text published_date:date author_id:integer ' +
-  'position:integer custom_category_id:integer starred:boolean foo_id:integer'
+generate :migration, 'create_posts title:string body:text published_date:date author_id:integer ' +
+  'position:integer custom_category_id:integer starred:boolean foo_id:integer created_at:datetime updated_at:datetime'
 
 copy_file File.expand_path('templates/models/post.rb', __dir__), 'app/models/post.rb'
 copy_file File.expand_path('templates/post_decorator.rb', __dir__), 'app/models/post_decorator.rb'
 
-generate :model, 'blog/post title:string body:text published_date:date author_id:integer ' +
-  'position:integer custom_category_id:integer starred:boolean foo_id:integer'
+generate :migration, 'create_blog_posts title:string body:text published_date:date author_id:integer ' +
+  'position:integer custom_category_id:integer starred:boolean foo_id:integer created_at:datetime updated_at:datetime'
 
 copy_file File.expand_path('templates/models/blog/post.rb', __dir__), 'app/models/blog/post.rb'
 
-generate :model, 'profile user_id:integer bio:text'
+generate :migration, 'create_profiles user_id:integer bio:text created_at:datetime updated_at:datetime'
 
 copy_file File.expand_path('templates/models/user.rb', __dir__), 'app/models/user.rb'
 
-generate :model, 'user type:string first_name:string last_name:string username:string age:integer encrypted_password:string'
+generate :migration, 'create_users type:string first_name:string last_name:string username:string age:integer encrypted_password:string created_at:datetime updated_at:datetime'
 
 copy_file File.expand_path('templates/models/profile.rb', __dir__), 'app/models/profile.rb'
 
 generate :model, 'publisher --migration=false --parent=User'
 
-generate :model, 'category name:string description:text'
+generate :migration, 'create_categories name:string description:text created_at:datetime updated_at:datetime'
 
 copy_file File.expand_path('templates/models/category.rb', __dir__), 'app/models/category.rb'
 
 generate :model, 'store name:string user_id:integer'
 
-generate :model, 'tag name:string'
+generate :migration, 'create_tags name:string created_at:datetime updated_at:datetime'
 
 copy_file File.expand_path('templates/models/tag.rb', __dir__), 'app/models/tag.rb'
 
-generate :model, 'tagging post_id:integer tag_id:integer position:integer'
+generate :migration, 'create_taggings post_id:integer tag_id:integer position:integer created_at:datetime updated_at:datetime'
 
 copy_file File.expand_path('templates/models/tagging.rb', __dir__), 'app/models/tagging.rb'
 
