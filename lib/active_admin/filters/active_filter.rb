@@ -66,8 +66,7 @@ module ActiveAdmin
       def filter_label
         return unless filter
 
-        filter[:label] ||
-          I18n.t(name, scope: ['formtastic', 'labels'], default: '').presence
+        filter[:label] || I18n.t(name, scope: ['formtastic', 'labels'], default: nil)
       end
 
       #@return Ransack::Nodes::Attribute
