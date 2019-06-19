@@ -7,7 +7,7 @@ Then /^I should not see a member link to "([^"]*)"$/ do |name|
 end
 
 Then /^I should see the actions column with the class "([^"]*)" and the title "([^"]*)"$/ do |klass, title|
-  expect(page).to have_css "th#{'.'+klass}", text: title
+  expect(page).to have_css "th#{'.' + klass}", text: title
 end
 
 Then /^I should see a dropdown menu item to "([^"]*)"$/ do |name|
