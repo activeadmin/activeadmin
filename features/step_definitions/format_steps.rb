@@ -21,7 +21,7 @@ end
 
 # Check first rows of the displayed CSV.
 Then /^I should download a CSV file with "([^"]*)" separator for "([^"]*)" containing:$/ do |sep, resource_name, table|
-  body   = page.driver.response.body
+  body = page.driver.response.body
   content_type_header, content_disposition_header = %w[Content-Type Content-Disposition].map do |header_name|
     page.response_headers[header_name]
   end
