@@ -111,6 +111,9 @@ Layout/SpaceAfterComma:
 Layout/SpaceAroundEqualsInParameterDefault:
   Enabled: true
 
+Layout/SpaceAroundOperators:
+  Enabled: true
+
 Layout/SpaceBeforeBlockBraces:
   Enabled: true
 
