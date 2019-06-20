@@ -29,8 +29,20 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     expect(subject.values).to eq([post.title])
   end
 
-  it 'should have valid label' do
-    expect(subject.label).to eq("Title equals")
+  describe 'label' do
+    context 'by default' do
+      it 'should have valid label' do
+        expect(subject.label).to eq("Title equals")
+      end
+    end
+
+    context 'with formtastic translations' do
+      it 'should pick up formtastic label' do
+        with_translation formtastic: { labels: { title: 'Supertitle' } } do
+          expect(subject.label).to eq("Supertitle equals")
+        end
+      end
+    end
   end
 
   it 'should pick predicate name translation' do
