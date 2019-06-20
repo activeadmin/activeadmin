@@ -10,7 +10,7 @@ ActiveAdmin.register <%= class_name %> do
   # or
   #
   # permit_params do
-  #   permitted = [:permitted, :attributes]
+  #   permitted = [<%= @boilerplate.permit_params %>]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
