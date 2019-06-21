@@ -2,10 +2,12 @@ require_relative "application_generator"
 
 desc 'Run a command against the local sample application'
 task :local do
-  app_folder = ActiveAdmin::ApplicationGenerator.new(
+  generator = ActiveAdmin::ApplicationGenerator.new(
     rails_env: 'development',
     template: 'rails_template_with_data'
-  ).generate
+  )
+
+  generator.generate
 
   # Discard the "local" argument (name of the task)
   argv = ARGV[1..-1]
@@ -20,7 +22,7 @@ task :local do
     gemfile = ENV['BUNDLE_GEMFILE'] || File.expand_path("../Gemfile", __dir__)
     env = { 'BUNDLE_GEMFILE' => gemfile }
 
-    Dir.chdir(app_folder) do
+    Dir.chdir(generator.app_dir) do
       Bundler.with_original_env { Kernel.exec(env, command) }
     end
   end

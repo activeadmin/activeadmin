@@ -33,18 +33,16 @@ module ActiveAdmin
 
         Bundler.with_original_env { abort unless Kernel.system(env, command) }
       end
+    end
 
-      app_dir
+    def app_dir
+      @app_dir ||= "#{base_dir}/#{app_name}"
     end
 
     private
 
     def base_dir
       @base_dir ||= rails_env == 'test' ? 'tmp/rails' : '.test-rails-apps'
-    end
-
-    def app_dir
-      @app_dir ||= "#{base_dir}/#{app_name}"
     end
 
     def app_name
