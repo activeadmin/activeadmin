@@ -17,7 +17,7 @@ Feature: Batch Actions
     And I follow "Batch Actions"
     Then I should see the batch action :destroy "Delete Selected"
 
-    Given I click "Delete Selected" and accept confirmation
+    When I click "Delete Selected" and accept confirmation
     Then I should see a flash with "Successfully destroyed 2 posts"
     And I should see 8 posts in the table
 
@@ -82,7 +82,7 @@ Feature: Batch Actions
     And I follow "Batch Actions"
     Then I should see the batch action :destroy "Delete Selected"
 
-    Given I click "Delete Selected" and accept confirmation
+    When I click "Delete Selected" and accept confirmation
     Then I should see a flash with "Successfully destroyed 2 posts"
     And I should see 3 posts in the table
 
