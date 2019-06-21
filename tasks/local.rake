@@ -19,8 +19,7 @@ task :local do
     end
 
     command = ['bundle', 'exec', *argv].join(' ')
-    gemfile = ENV['BUNDLE_GEMFILE'] || File.expand_path("../Gemfile", __dir__)
-    env = { 'BUNDLE_GEMFILE' => gemfile }
+    env = { 'BUNDLE_GEMFILE' => test_application.expanded_gemfile }
 
     Dir.chdir(test_application.app_dir) do
       Bundler.with_original_env { Kernel.exec(env, command) }

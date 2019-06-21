@@ -39,6 +39,12 @@ module ActiveAdmin
       @app_dir ||= "#{base_dir}/#{app_name}"
     end
 
+    def expanded_gemfile
+      return gemfile if Pathname.new(gemfile).absolute?
+
+      File.expand_path(gemfile)
+    end
+
     private
 
     def base_dir
@@ -53,12 +59,6 @@ module ActiveAdmin
 
     def main_app?
       expanded_gemfile == File.expand_path('Gemfile')
-    end
-
-    def expanded_gemfile
-      return gemfile if Pathname.new(gemfile).absolute?
-
-      File.expand_path(gemfile)
     end
 
     def gemfile
