@@ -29,7 +29,7 @@ module ActiveAdmin
 
         command = ['bundle', 'exec', 'rails', 'new', app_dir, *args].join(' ')
 
-        env = { 'BUNDLE_GEMFILE' => ENV['BUNDLE_GEMFILE'], 'RAILS_ENV' => rails_env }
+        env = { 'BUNDLE_GEMFILE' => gemfile_from_env, 'RAILS_ENV' => rails_env }
 
         Bundler.with_original_env { abort unless Kernel.system(env, command) }
       end
@@ -50,6 +50,10 @@ module ActiveAdmin
     def app_name
       require 'rails/version'
       "rails-#{Rails::VERSION::STRING}"
+    end
+
+    def gemfile_from_env
+      ENV["BUNDLE_GEMFILE"]
     end
   end
 end
