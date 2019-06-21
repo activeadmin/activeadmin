@@ -9,7 +9,7 @@ Feature: Batch Actions
       """
     Then I should see the batch action button
     And I should see that the batch action button is disabled
-    And I should see the batch action popover exists
+    And I should see the batch action popover
     And I should see 10 posts in the table
 
     When I check the 1st record
@@ -74,7 +74,7 @@ Feature: Batch Actions
     When I go to the last author's posts
     Then I should see the batch action button
     And I should see that the batch action button is disabled
-    And I should see the batch action popover exists
+    And I should see the batch action popover
     And I should see 5 posts in the table
 
     When I check the 2nd record
