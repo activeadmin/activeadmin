@@ -48,8 +48,23 @@ module ActiveAdmin
     end
 
     def app_name
-      require 'rails/version'
-      "rails-#{Rails::VERSION::STRING}"
+      return "rails_52" if main_app?
+
+      File.basename(gemfile, ".gemfile")
+    end
+
+    def main_app?
+      expanded_gemfile == File.expand_path('Gemfile')
+    end
+
+    def expanded_gemfile
+      return gemfile if Pathname.new(gemfile).absolute?
+
+      File.expand_path(gemfile)
+    end
+
+    def gemfile
+      gemfile_from_env || "Gemfile"
     end
 
     def gemfile_from_env

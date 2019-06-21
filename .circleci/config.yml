@@ -76,7 +76,7 @@ version: 2.1
   persist_to_workspace:
     root: tmp/rails
     paths:
-      - rails-*
+      - rails_*
 
 .restore_test_app_from_workspace: &restore_test_app_from_workspace
   attach_workspace:
