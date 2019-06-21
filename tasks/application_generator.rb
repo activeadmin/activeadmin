@@ -44,10 +44,12 @@ module ActiveAdmin
     end
 
     def app_dir
-      @app_dir ||= begin
-                     require 'rails/version'
-                     "#{base_dir}/rails-#{Rails::VERSION::STRING}"
-                   end
+      @app_dir ||= "#{base_dir}/#{app_name}"
+    end
+
+    def app_name
+      require 'rails/version'
+      "rails-#{Rails::VERSION::STRING}"
     end
   end
 end
