@@ -53,6 +53,10 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
 
 RUBY
 
+gsub_file 'config/boot.rb', /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
+  ENV['BUNDLE_GEMFILE'] = "#{File.expand_path(ENV['BUNDLE_GEMFILE'])}"
+RUBY
+
 # Setup Active Admin
 generate 'active_admin:install'
 
