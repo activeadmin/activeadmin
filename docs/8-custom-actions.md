@@ -27,6 +27,44 @@ ActiveAdmin.register Post do
 end
 ```
 
+To paginate a table using ajax within a page, the following aproach works with Kaminari
+
+```ruby
+ActiveAdmin.register Post do
+  collection_action :member_posts, method: :get do
+    render 'admin/members/member_posts', context: self
+  end
+
+  span id: 'member_posts' do
+    render partial: 'admin/members/member_posts'
+  end
+end
+```
+
+```ruby
+# app/views/admin/members/_member_posts.html.arb
+member = Member.find(params[:id])
+
+panel "#{member.name} Posts" do
+  columns do
+    paginated_collection(member.posts.page(params[:page]).per(20), remote: true, params: {controller: 'admin/members', action: 'member_posts'}, param_name: :page, download_links: false) do
+      table_for(collection, :class => 'index_table') do
+        column 'ID', :id
+
+        column 'Title', :title do |story|
+          link_to(post.title, "/admin/posts/#{post.id}")
+        end
+      end
+    end
+  end
+end
+```
+
+```javascript
+# app/views/admin/members/member_posts.js.erb
+$("#member_posts").html("<%= j (render(template: '/admin/members/_member_posts.html.arb')) %>");
+```
+
 This collection action will generate a route at `/admin/posts/import_csv`
 pointing to the `Admin::PostsController#import_csv` controller action.
 
