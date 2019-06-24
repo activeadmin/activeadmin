@@ -26,6 +26,8 @@ ActiveAdmin.register Post do
 
 end
 ```
+This collection action will generate a route at `/admin/posts/import_csv`
+pointing to the `Admin::PostsController#import_csv` controller action.
 
 To paginate a table using ajax within a page, the following aproach works with Kaminari
 
@@ -64,9 +66,6 @@ end
 # app/views/admin/members/member_posts.js.erb
 $("#member_posts").html("<%= j (render(template: '/admin/members/_member_posts.html.arb')) %>");
 ```
-
-This collection action will generate a route at `/admin/posts/import_csv`
-pointing to the `Admin::PostsController#import_csv` controller action.
 
 ## Member Actions
 
