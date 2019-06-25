@@ -26,6 +26,7 @@ ActiveAdmin.register Post do
 
 end
 ```
+
 This collection action will generate a route at `/admin/posts/import_csv`
 pointing to the `Admin::PostsController#import_csv` controller action.
 
