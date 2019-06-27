@@ -46,7 +46,7 @@ $> rails generate active_admin:resource [MyModelName]
 
 This creates a file at `app/admin/my_model_names.rb` for configuring the
 resource. Refresh your web browser to see the interface. In order to CRUD
-items, tweak the parameter `permit_params` in `app/admin/MyModel.rb`.
+items, tweak `permit_params` in `app/admin/my_model_names.rb`.
 
 ## Usage with devise
 
