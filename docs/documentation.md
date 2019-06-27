@@ -10,7 +10,7 @@ to implement beautiful and elegant interfaces with very little effort.
 
 Active Admin is released as a Ruby Gem. The gem is to be installed within a Ruby
 on Rails application. Active Admin does not provide authentication; this is done
-by other gems (e.g. devise). To install without any authentification, simply
+by other gems (e.g. devise). To install without any authentication,
 add the following to your Gemfile:
 
 ```ruby
