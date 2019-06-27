@@ -35,7 +35,7 @@ $> rake db:migrate
 $> rails server
 ```
 
-Visit `http://localhost:3000/admin` and voila: You&#8217;re on your brand
+Visit `http://localhost:3000/admin` and you'll be on your brand
 new Active Admin dashboard.
 
 To register an already existing model, run:
