@@ -54,7 +54,6 @@ If you want to use the devise gem for (admin) authentification, add it to
 your Gemfile
 
 ```ruby
-# Gemfile
 gem 'activeadmin'
 gem 'devise'
 ```
