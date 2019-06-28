@@ -59,7 +59,7 @@ gem 'activeadmin'
 gem 'devise'
 ```
 
-Update the bundle and run the installer
+Run `bundle install`, and then run the installer
 
 ```bash
 $> rails generate active_admin:install
