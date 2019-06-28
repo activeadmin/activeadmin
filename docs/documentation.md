@@ -50,7 +50,7 @@ items, tweak `permit_params` in `app/admin/my_model_names.rb`.
 
 ## Usage with devise
 
-If you want to use the devise gem for (admin) authentification, add it to
+If you want to use the devise gem for (admin) authentication, add it to
 your Gemfile
 
 ```ruby
