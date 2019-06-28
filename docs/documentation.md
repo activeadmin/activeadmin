@@ -62,7 +62,7 @@ gem 'devise'
 Update the bundle and run the installer
 
 ```bash
-rails generate active_admin:install
+$> rails generate active_admin:install
 ```
 
 Migrate your db
