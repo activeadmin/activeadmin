@@ -10,6 +10,16 @@ RSpec.describe "#find_value" do
   let(:view) { mock_action_view(view_klass) }
   let(:found_value) { view.find_value(resource, attr) }
 
+  context "when given a proc" do
+    let(:resource) { "bar" }
+    let(:attr) { ->(resource) { "foo#{resource}" } }
+
+    it "calls the proc" do
+      expect(attr).to receive(:call).with(resource).and_call_original
+      expect(found_value).to eq("foobar")
+    end
+  end
+
   shared_examples_for "an object that can have values found" do
     shared_examples_for "a time-ish attribute" do
       let(:attr) { "#{attr_base}_during_dst".to_sym }
