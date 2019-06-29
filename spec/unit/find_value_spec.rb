@@ -8,35 +8,9 @@ RSpec.describe "#find_value" do
     end
   end
   let(:view) { mock_action_view(view_klass) }
-  let(:resource) { resource_class.new }
   let(:found_value) { view.find_value(resource, attr) }
 
-  context "when given an object that responds to the attr" do
-    let(:resource_class) do
-      Class.new do
-        def time_during_dst
-          Time.new(2019, 5, 1, 11, 30, 0, "-07:00")
-        end
-
-        def time_not_during_dst
-          Time.new(2019, 12, 1, 11, 30, 0, "-08:00")
-        end
-
-        def datetime_during_dst
-          DateTime.new(2019, 5, 1, 11, 30, 0, "-07:00")
-        end
-
-        def datetime_not_during_dst
-          DateTime.new(2019, 12, 1, 11, 30, 0, "-08:00")
-        end
-
-        def string
-          "foobar"
-        end
-      end
-    end
-    let(:resource_value) { resource.send(attr) }
-
+  shared_examples_for "an object that can have values found" do
     shared_examples_for "a time-ish attribute" do
       let(:attr) { "#{attr_base}_during_dst".to_sym }
       let(:expected_value) { resource_value.utc }
@@ -105,13 +79,48 @@ RSpec.describe "#find_value" do
     end
   end
 
-  # TODO:
-  # context "When given an object that responds to :[]" do
-  #   it "when the value is a Time" do
-  #     it_behaves_like "a time-ish object"
-  #   end
-  #   it "when the value is a DateTime" do
-  #     it_behaves_like "a time-ish object"
-  #   end
-  # end
+  context "when given an object that responds to the attribute" do
+    let(:resource_class) do
+      Class.new do
+        def time_during_dst
+          Time.new(2019, 5, 1, 11, 30, 0, "-07:00")
+        end
+
+        def time_not_during_dst
+          Time.new(2019, 12, 1, 11, 30, 0, "-08:00")
+        end
+
+        def datetime_during_dst
+          DateTime.new(2019, 5, 1, 11, 30, 0, "-07:00")
+        end
+
+        def datetime_not_during_dst
+          DateTime.new(2019, 12, 1, 11, 30, 0, "-08:00")
+        end
+
+        def string
+          "foobar"
+        end
+      end
+    end
+    let(:resource) { resource_class.new }
+    let(:resource_value) { resource.send(attr) }
+
+    it_behaves_like "an object that can have values found"
+  end
+
+  context "when given an object that responds to :[]" do
+    let(:resource) do
+      {
+        time_during_dst: Time.new(2019, 5, 1, 11, 30, 0, "-07:00"),
+        time_not_during_dst: Time.new(2019, 12, 1, 11, 30, 0, "-08:00"),
+        datetime_during_dst: DateTime.new(2019, 5, 1, 11, 30, 0, "-07:00"),
+        datetime_not_during_dst: DateTime.new(2019, 12, 1, 11, 30, 0, "-08:00"),
+        string: "foobar"
+      }
+    end
+    let(:resource_value) { resource[attr] }
+
+    it_behaves_like "an object that can have values found"
+  end
 end
