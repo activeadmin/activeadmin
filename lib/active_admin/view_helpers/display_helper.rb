@@ -61,9 +61,7 @@ module ActiveAdmin
                   elsif resource.respond_to? :[]
                     resource[attr]
                   end
-          if value.is_a?(Date)
-            value.in_time_zone(active_admin_application.display_timezone).to_date
-          elsif value.is_a?(Time)
+          if value.is_a?(Time) || value.is_a?(DateTime)
             value.in_time_zone(active_admin_application.display_timezone)
           else
             value
