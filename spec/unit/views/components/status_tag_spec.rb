@@ -121,11 +121,18 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       describe '#class_list' do
         subject { super().class_list }
         it      { is_expected.to include('status_tag') }
+        it      { is_expected.to include('no') }
+        it      { is_expected.to include('unset') }
       end
 
       describe '#content' do
         subject { super().content }
         it      { is_expected.to eq('No') }
+        it 'uses the unset locale key to customize the label for the `nil` case' do
+          with_translation active_admin: { status_tag: { unset: 'Unknown' } } do
+            expect(subject).to eq('Unknown')
+          end
+        end
       end
     end
 
