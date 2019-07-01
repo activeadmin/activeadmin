@@ -45,6 +45,7 @@ nl:
     status_tag:
       "yes": "Ja"
       "no": "Geen"
+      "unset": "Geen"
     main_content: "Implementeer %{model}#main_content om de content weer te geven."
     logout: "Uitloggen"
     powered_by: "Mogelijk gemaakt door %{active_admin} %{version}"

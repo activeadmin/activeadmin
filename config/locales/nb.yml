@@ -43,6 +43,7 @@ nb:
     status_tag:
       "yes": "Ja"
       "no": "Nei"
+      "unset": "Nei"
     main_content: "Vennligst implementer %{model}#main_content for å vise innhold."
     logout: "Logg ut"
     powered_by: "Powered by %{active_admin} %{version}"

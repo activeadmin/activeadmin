@@ -34,6 +34,7 @@ lv:
     status_tag:
       "yes": "Jā"
       "no": "Nē"
+      "unset": "Nē"
     main_content: "Lūdzu implementēt %{model}#main_content, lai rādītos saturs."
     logout: "Iziet"
     powered_by: "Powered by %{active_admin} %{version}"

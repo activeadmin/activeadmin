@@ -43,6 +43,7 @@ lt:
     status_tag:
       "yes": "Taip"
       "no": "Nėra"
+      "unset": "Nėra"
     main_content: 'Prašome realizuoti %{model}#main_content turiniui vaizduoti.'
     logout: 'Išeiti'
     powered_by: "Powered by %{active_admin} %{version}"
