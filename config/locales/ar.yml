@@ -37,8 +37,9 @@ ar:
       current_filters: "المُرشحات الحاليّة:"
       no_current_filters: "بدون"
     status_tag:
-      'yes': "نعم"
-      'no': "لا"
+      "yes": "نعم"
+      "no": "لا"
+      "unset": "لا"
     main_content: "الرجاء تنفيذ %{model}#main_content لعرض المحتوى."
     logout: "تسجيل الخروج"
     powered_by: "تنفيذ %{active_admin} %{version}"

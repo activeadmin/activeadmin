@@ -45,6 +45,7 @@ it:
     status_tag:
       "yes": "Sì"
       "no": "No"
+      "unset": "No"
     main_content: "Devi implemetare %{model}#main_content per mostrarne il contenuto."
     logout: "Esci"
     powered_by: "Powered by %{active_admin} %{version}"

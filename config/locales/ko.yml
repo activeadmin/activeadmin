@@ -39,6 +39,7 @@ ko:
     status_tag:
       "yes": "있음"
       "no": "없음"
+      "unset": "없음"
     main_content: "내용을 보시려면 %{model}#main_content의 코드를 먼저 구현해 주시기 바랍니다."
     logout: "로그아웃"
     powered_by: "Powered by %{active_admin} %{version}"

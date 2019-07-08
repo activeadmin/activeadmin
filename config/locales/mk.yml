@@ -52,6 +52,7 @@ mk:
     status_tag:
       "yes": "Да"
       "no": "Не"
+      "unset": "Не"
     main_content: "Ве замолуваме имплементирајте %{model}#main_content за да прикажете содржина."
     logout: "Одјави се"
     powered_by: "Овозможено од %{active_admin} %{version}"

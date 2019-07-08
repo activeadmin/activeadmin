@@ -40,6 +40,7 @@ da:
     status_tag:
       "yes": "Ja"
       "no": "Nej"
+      "unset": "Nej"
     main_content: "Implementer venligst %{model}#main_content for at vise noget indhold."
     logout: "Log ud"
     powered_by: "Powered by %{active_admin} %{version}"

@@ -41,6 +41,7 @@ ru:
     status_tag:
       "yes": "Да"
       "no": "Нет"
+      "unset": "Нет"
     main_content: "Создайте %{model}#main_content для отображения содержимого."
     logout: "Выйти"
     powered_by: "Работает на %{active_admin} %{version}"

@@ -42,6 +42,7 @@ he:
     status_tag:
       "yes": "כן"
       "no": "לא"
+      "unset": "לא"
     main_content: "אנא הטמע את %{model}#main_content בכדי להציג תוכן."
     logout: "התנתקות"
     powered_by: "ממונע בעזרת %{active_admin} %{version}"
