@@ -55,10 +55,6 @@ module ActiveAdmin
       Matcher.new name.to_s
     end
 
-    def self.rails_version
-      rails.spec.version
-    end
-
     def self.supports_zeitwerk?
       rails >= "6.0.0.beta3" && RUBY_ENGINE != "jruby"
     end

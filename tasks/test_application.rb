@@ -35,6 +35,10 @@ module ActiveAdmin
       end
     end
 
+    def full_app_dir
+      File.expand_path(app_dir)
+    end
+
     def app_dir
       @app_dir ||= "#{base_dir}/#{app_name}"
     end
