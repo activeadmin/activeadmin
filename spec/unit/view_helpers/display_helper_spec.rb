@@ -13,7 +13,6 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       include MethodOrProcHelper
       include ActionView::Helpers::UrlHelper
       include ActionView::Helpers::TranslationHelper
-      include ActionView::Helpers::SanitizeHelper
     end
   end
 
@@ -58,7 +57,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
         end
 
         it "should sanitize the result of #{m}" do
-          expect(displayed_name).to eq 'alert(1)'
+          expect(displayed_name).to eq '&lt;script&gt;alert(1)&lt;/script&gt;'
         end
       end
     end
@@ -106,7 +105,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       it "should default to `to_s`" do
         result = resource.to_s
 
-        expect(displayed_name).to eq view.sanitize(result)
+        expect(displayed_name).to eq ERB::Util.html_escape(result)
       end
     end
 
