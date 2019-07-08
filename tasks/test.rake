@@ -1,11 +1,11 @@
-require_relative "application_generator"
+require_relative "test_application"
 
 desc "Run the full suite using parallel_tests to run on multiple cores"
 task test: [:setup, :spec, :cucumber]
 
 desc "Create a test rails app for the parallel specs to run against"
 task :setup, [:rails_env, :template] do |_t, opts|
-  ActiveAdmin::ApplicationGenerator.new(opts).generate
+  ActiveAdmin::TestApplication.new(opts).generate
 end
 
 task spec: :"spec:all"

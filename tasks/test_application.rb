@@ -1,7 +1,7 @@
 require 'fileutils'
 
 module ActiveAdmin
-  class ApplicationGenerator
+  class TestApplication
     attr_reader :rails_env, :template
 
     def initialize(opts = {})
