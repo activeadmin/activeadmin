@@ -6,6 +6,7 @@
 
 #### Minor
 
+* The `status_tag` component now supports different labels for `false` and `nil` boolean cases through the locale. Both default to display "No" for backwards compatibility. [#5794] by [@javierjulio]
 * Add Macedonian locale. [#5710] by [@violeta-p]
 
 ### Bug Fixes
@@ -466,6 +467,7 @@ Please check [0-6-stable] for previous changes.
 [#5751]: https://github.com/activeadmin/activeadmin/pull/5751
 [#5758]: https://github.com/activeadmin/activeadmin/pull/5758
 [#5777]: https://github.com/activeadmin/activeadmin/pull/5777
+[#5794]: https://github.com/activeadmin/activeadmin/pull/5794
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
