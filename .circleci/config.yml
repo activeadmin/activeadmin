@@ -71,7 +71,7 @@ version: 2.1
       coverage/test-reporter sum-coverage coverage/codeclimate.*.json --parts 20 --output coverage/codeclimate.total.json
       coverage/test-reporter upload-coverage --input coverage/codeclimate.total.json
 
-.save_test_app_to_workspace: &save_test_app_to_workspace
+.save_test_app: &save_test_app
   persist_to_workspace:
     root: tmp/rails
     paths:
@@ -156,7 +156,7 @@ version: 2.1
   - *create_test_app
   - *format_coverage
   - *save_coverage
-  - *save_test_app_to_workspace
+  - *save_test_app
 
 jobs:
   setup_coverage:
