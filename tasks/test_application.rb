@@ -10,29 +10,25 @@ module ActiveAdmin
     end
 
     def generate
-      if File.exist? app_dir
-        puts "test app #{app_dir} already exists; skipping test app generation"
-      else
-        FileUtils.mkdir_p base_dir
-        args = %W(
-          -m spec/support/#{template}.rb
-          --skip-bootsnap
-          --skip-bundle
-          --skip-gemfile
-          --skip-listen
-          --skip-spring
-          --skip-turbolinks
-          --skip-test-unit
-          --skip-coffee
-          --skip-webpack-install
-        )
+      FileUtils.mkdir_p base_dir
+      args = %W(
+        -m spec/support/#{template}.rb
+        --skip-bootsnap
+        --skip-bundle
+        --skip-gemfile
+        --skip-listen
+        --skip-spring
+        --skip-turbolinks
+        --skip-test-unit
+        --skip-coffee
+        --skip-webpack-install
+      )
 
-        command = ['bundle', 'exec', 'rails', 'new', app_dir, *args].join(' ')
+      command = ['bundle', 'exec', 'rails', 'new', app_dir, *args].join(' ')
 
-        env = { 'BUNDLE_GEMFILE' => expanded_gemfile, 'RAILS_ENV' => rails_env }
+      env = { 'BUNDLE_GEMFILE' => expanded_gemfile, 'RAILS_ENV' => rails_env }
 
-        Bundler.with_original_env { abort unless Kernel.system(env, command) }
-      end
+      Bundler.with_original_env { abort unless Kernel.system(env, command) }
     end
 
     def full_app_dir
