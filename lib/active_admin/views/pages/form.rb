@@ -45,7 +45,7 @@ module ActiveAdmin
 
             if active_admin_config.build_form_with_permitted_params_only
               f.inputs do
-                active_admin_config.permitted_params.each do |param|
+                controller.form_params.each do |param|
                   f.input param
                 end
               end

@@ -171,3 +171,24 @@ Feature: New Page
     When I follow "New Post"
     Then I should see "Title"
     And I should see "Body"
+
+  Scenario: Displaying only dynamic permit params
+    Given 1 post with the title "Hakuna Matata" exists
+    And a configuration of:
+    """
+      ActiveAdmin.register Post do
+        config.build_form_with_permitted_params_only = true
+        permit_params do
+          permitted = [:title]
+          permitted << :body if params[:action] == "new"
+          permitted
+        end
+      end
+    """
+    When I follow "New Post"
+    Then I should see "Title"
+    And I should see "Body"
+    When I click "Cancel"
+    And I click "Edit"
+    Then I should see "Title"
+    And I should not see "Body"

@@ -65,10 +65,6 @@ module ActiveAdmin
       belongs_to_param = config.belongs_to_param
       create_another_param = :create_another if config.create_another
 
-      if config.build_form_with_permitted_params_only
-        config.permitted_params = block ? block.call : args.flatten
-      end
-
       controller do
         define_method :permitted_params do
           permitted_params =
@@ -76,10 +72,14 @@ module ActiveAdmin
               Array.wrap(belongs_to_param) +
               Array.wrap(create_another_param)
 
-          params.permit(*permitted_params, param_key => block ? instance_exec(&block) : args)
+          params.permit(*permitted_params, param_key => form_params)
         end
 
         private :permitted_params
+
+        define_method :form_params do
+          block ? instance_exec(&block) : args.flatten
+        end
       end
     end
 
