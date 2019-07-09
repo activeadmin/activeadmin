@@ -1,10 +1,16 @@
-require_relative "test_application"
-
 desc "Run the full suite using parallel_tests to run on multiple cores"
 task test: [:setup, :spec, :cucumber]
 
 desc "Create a test rails app for the parallel specs to run against"
 task :setup, [:rails_env, :template] do |_t, opts|
+  if ENV["COVERAGE"] == "true"
+    require "simplecov"
+
+    SimpleCov.command_name "test app creation"
+  end
+
+  require_relative "test_application"
+
   ActiveAdmin::TestApplication.new(opts).generate
 end
 

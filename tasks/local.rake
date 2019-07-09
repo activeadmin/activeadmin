@@ -1,7 +1,7 @@
-require_relative "test_application"
-
 desc 'Run a command against the local sample application'
 task :local do
+  require_relative "test_application"
+
   test_application = ActiveAdmin::TestApplication.new(
     rails_env: 'development',
     template: 'rails_template_with_data'

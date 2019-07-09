@@ -46,7 +46,7 @@ version: 2.1
 .create_test_app: &create_test_app
   run:
     name: Create test app
-    command: PARALLEL_TEST_PROCESSORS=4 bin/rake setup
+    command: COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bin/rake setup
 
 .restore_coverage: &restore_coverage
   attach_workspace:
@@ -67,9 +67,8 @@ version: 2.1
   run:
     name: Upload coverage results to Code Climate
     command: |
-      # The parts number is the total jobs count plus the lint job,
-      # This number should match the number of jobs under upload_coverage/requires
-      coverage/test-reporter sum-coverage coverage/codeclimate.*.json --parts 16 --output coverage/codeclimate.total.json
+      # The parts number should match the number of jobs under upload_coverage/requires
+      coverage/test-reporter sum-coverage coverage/codeclimate.*.json --parts 20 --output coverage/codeclimate.total.json
       coverage/test-reporter upload-coverage --input coverage/codeclimate.total.json
 
 .save_test_app_to_workspace: &save_test_app_to_workspace
@@ -152,8 +151,11 @@ version: 2.1
   - *copy_current_gemfile
   - *restore_cache
   - *install_dependencies
+  - *restore_coverage
   - *save_cache
   - *create_test_app
+  - *format_coverage
+  - *save_coverage
   - *save_test_app_to_workspace
 
 jobs:
@@ -519,6 +521,11 @@ workflows:
       - upload_coverage:
           requires:
             - lint_and_docs
+
+            - testapp50
+            - testapp51
+            - testapp52
+            - testapp60
 
             - ruby24rails50
             - ruby24rails51
