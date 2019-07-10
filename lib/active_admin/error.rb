@@ -6,7 +6,9 @@ module ActiveAdmin
     attr_reader :user, :action, :subject
 
     def initialize(user, action, subject = nil)
-      @user, @action, @subject = user, action, subject
+      @user = user
+      @action = action
+      @subject = subject
 
       super()
     end

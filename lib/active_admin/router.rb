@@ -4,7 +4,8 @@ module ActiveAdmin
     attr_reader :namespaces, :router
 
     def initialize(router:, namespaces:)
-      @router, @namespaces = router, namespaces
+      @router = router
+      @namespaces = namespaces
     end
 
     def apply

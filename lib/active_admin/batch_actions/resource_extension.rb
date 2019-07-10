@@ -112,7 +112,11 @@ module ActiveAdmin
     # => You can pass a hash of options to `:form` that will be rendered as form input fields for the user to fill out.
     #
     def initialize(sym, title, options = {}, &block)
-      @sym, @title, @options, @block, @confirm = sym, title, options, block, options[:confirm]
+      @sym = sym
+      @title = title
+      @options = options
+      @block = block
+      @confirm = options[:confirm]
       @block ||= proc {}
     end
 

@@ -32,7 +32,9 @@ module ActiveAdmin
 
     def initialize(options = {}, &block)
       @resource = options.delete(:resource)
-      @columns, @options, @block = [], options, block
+      @columns = []
+      @options = options
+      @block = block
     end
 
     def column(name, options = {}, &block)
