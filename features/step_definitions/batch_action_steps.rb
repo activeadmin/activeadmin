@@ -35,7 +35,8 @@ Given /^I submit the batch action form with "([^"]*)"$/ do |action|
   page.find("#batch_action", visible: false).set action
   form   = page.find "#collection_selection"
   params = page.all("#main_content input", visible: false).each_with_object({}) do |input, obj|
-    key, value = input['name'], input['value']
+    key = input['name']
+    value = input['value']
     if key == 'collection_selection[]'
       (obj[key] ||= []).push value if input.checked?
     else

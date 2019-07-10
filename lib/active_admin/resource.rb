@@ -71,7 +71,8 @@ module ActiveAdmin
         @resource_class_name = "::#{resource_class.name}"
         @options    = options
         @sort_order = options[:sort_order]
-        @member_actions, @collection_actions = [], []
+        @member_actions = []
+        @collection_actions = []
       end
     end
 
