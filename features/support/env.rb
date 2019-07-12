@@ -6,9 +6,9 @@ Dir["#{File.expand_path('../step_definitions', __dir__)}/*.rb"].each do |f|
   require f
 end
 
-require "active_admin/dependency"
+require_relative "../../tasks/test_application"
 
-require_relative "../../tmp/rails/rails-#{ActiveAdmin::Dependency.rails_version}/config/environment"
+require "#{ActiveAdmin::TestApplication.new.full_app_dir}/config/environment.rb"
 
 require_relative 'rails'
 

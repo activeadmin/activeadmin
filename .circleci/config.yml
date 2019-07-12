@@ -46,7 +46,11 @@ version: 2.1
 .create_test_app: &create_test_app
   run:
     name: Create test app
-    command: PARALLEL_TEST_PROCESSORS=4 bin/rake setup
+    command: COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bin/rake setup
+
+.restore_test_reporter: &restore_test_reporter
+  attach_workspace:
+    at: bin
 
 .restore_coverage: &restore_coverage
   attach_workspace:
@@ -55,7 +59,7 @@ version: 2.1
 .format_coverage: &format_coverage
   run:
     name: Format coverage
-    command: coverage/test-reporter format-coverage --input-type simplecov --output coverage/codeclimate.$CIRCLE_JOB.json
+    command: bin/test-reporter format-coverage --input-type simplecov --output coverage/codeclimate.$CIRCLE_JOB.json
 
 .save_coverage: &save_coverage
   persist_to_workspace:
@@ -67,16 +71,15 @@ version: 2.1
   run:
     name: Upload coverage results to Code Climate
     command: |
-      # The parts number is the total jobs count plus the lint job,
-      # This number should match the number of jobs under upload_coverage/requires
-      coverage/test-reporter sum-coverage coverage/codeclimate.*.json --parts 16 --output coverage/codeclimate.total.json
-      coverage/test-reporter upload-coverage --input coverage/codeclimate.total.json
+      # The parts number should match the number of jobs under upload_coverage/requires
+      bin/test-reporter sum-coverage coverage/codeclimate.*.json --parts 20 --output coverage/codeclimate.total.json
+      bin/test-reporter upload-coverage --input coverage/codeclimate.total.json
 
-.save_test_app_to_workspace: &save_test_app_to_workspace
+.save_test_app: &save_test_app
   persist_to_workspace:
     root: tmp/rails
     paths:
-      - rails-*
+      - rails_*
 
 .restore_test_app_from_workspace: &restore_test_app_from_workspace
   attach_workspace:
@@ -137,7 +140,7 @@ version: 2.1
   - *save_cache
   - *restore_test_app_from_workspace
   - *restore_test_times
-  - *restore_coverage
+  - *restore_test_reporter
   - *run_tests
   - *run_features
   - *format_coverage
@@ -151,9 +154,12 @@ version: 2.1
   - *copy_current_gemfile
   - *restore_cache
   - *install_dependencies
+  - *restore_test_reporter
   - *save_cache
   - *create_test_app
-  - *save_test_app_to_workspace
+  - *format_coverage
+  - *save_coverage
+  - *save_test_app
 
 jobs:
   setup_coverage:
@@ -164,12 +170,12 @@ jobs:
       - run:
           name: Download Code Climate test-reporter
           command: |
-            mkdir coverage
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-linux-amd64 > coverage/test-reporter
-            chmod +x coverage/test-reporter
+            mkdir bin
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-linux-amd64 > bin/test-reporter
+            chmod +x  bin/test-reporter
 
       - persist_to_workspace:
-          root: coverage
+          root: bin
           paths:
             - test-reporter
 
@@ -180,6 +186,7 @@ jobs:
           CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
 
     steps:
+      - *restore_test_reporter
       - *restore_coverage
       - *submit_coverage
 
@@ -244,7 +251,7 @@ jobs:
       - *install_dependencies
       - *save_cache
       - *generate_docs
-      - *restore_coverage
+      - *restore_test_reporter
       - *run_lints
       - *run_bug_report_template
       - *format_coverage
@@ -518,6 +525,11 @@ workflows:
       - upload_coverage:
           requires:
             - lint_and_docs
+
+            - testapp50
+            - testapp51
+            - testapp52
+            - testapp60
 
             - ruby24rails50
             - ruby24rails51
