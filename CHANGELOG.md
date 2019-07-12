@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+* Fix CSVBuilder not respecting `ActiveAdmin.application.csv_options = { humanize_name: false }` setting. [#5800] by [@HappyKadaver]
+
 ## 2.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.1.0..v2.2.0)
 
 ### Enhancements
@@ -474,6 +478,7 @@ Please check [0-6-stable] for previous changes.
 [#5758]: https://github.com/activeadmin/activeadmin/pull/5758
 [#5777]: https://github.com/activeadmin/activeadmin/pull/5777
 [#5794]: https://github.com/activeadmin/activeadmin/pull/5794
+[#5800]: https://github.com/activeadmin/activeadmin/pull/5800
 [#5801]: https://github.com/activeadmin/activeadmin/pull/5801
 [#5802]: https://github.com/activeadmin/activeadmin/pull/5802
 
@@ -503,6 +508,7 @@ Please check [0-6-stable] for previous changes.
 [@Fivell]: https://github.com/Fivell
 [@glebtv]: https://github.com/glebtv
 [@gonzedge]: https://github.com/gonzedge
+[@HappyKadaver]: https://github.com/HappyKadaver
 [@innparusu95]: https://github.com/innparusu95
 [@ionut998]: https://github.com/ionut998
 [@jasl]: https://github.com/jasl
