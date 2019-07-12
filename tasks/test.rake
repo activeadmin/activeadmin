@@ -12,7 +12,7 @@ task spec: :"spec:all"
 
 namespace :spec do
   desc "Run all specs"
-  task all: [:regular, :filesystem_changes, :reloading]
+  task all: [:regular, :filesystem_changes]
 
   desc "Run the standard specs in parallel"
   task :regular do
@@ -22,11 +22,6 @@ namespace :spec do
   desc "Run the specs that change the filesystem sequentially"
   task :filesystem_changes do
     sh({ "RSPEC_FILESYSTEM_CHANGES" => "true" }, "bin/rspec")
-  end
-
-  desc "Run the specs that require reloading"
-  task :reloading do
-    sh({ "CLASS_RELOADING" => "true" }, "bin/rspec")
   end
 end
 

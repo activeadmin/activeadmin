@@ -13,6 +13,7 @@
 
 * Fix pundit policy retrieving for static pages when the pundit namespace is :active_admin. [#5777] by [@kwent]
 * Fix show page title not being properly escaped if title's content included HTML. [#5802] by [@deivid-rodriguez]
+* Revert [21b6138f] from [#5740] since it actually caused the performance in development to regress. [#5801] by [@deivid-rodriguez]
 
 ## 2.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.0.0..v2.1.0)
 
@@ -367,6 +368,8 @@ Please check [0-6-stable] for previous changes.
 [#5043]: https://github.com/activeadmin/activeadmin/issues/5043
 [#5198]: https://github.com/activeadmin/activeadmin/issues/5198
 
+[21b6138f]: https://github.com/activeadmin/activeadmin/pull/5740/commits/21b6138fdcf58cd54c3f1d3f60cb1127b174b40f
+
 [#3091]: https://github.com/activeadmin/activeadmin/pull/3091
 [#3435]: https://github.com/activeadmin/activeadmin/pull/3435
 [#4477]: https://github.com/activeadmin/activeadmin/pull/4477
@@ -469,6 +472,7 @@ Please check [0-6-stable] for previous changes.
 [#5758]: https://github.com/activeadmin/activeadmin/pull/5758
 [#5777]: https://github.com/activeadmin/activeadmin/pull/5777
 [#5794]: https://github.com/activeadmin/activeadmin/pull/5794
+[#5801]: https://github.com/activeadmin/activeadmin/pull/5801
 [#5802]: https://github.com/activeadmin/activeadmin/pull/5802
 
 [@5t111111]: https://github.com/5t111111
