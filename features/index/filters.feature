@@ -330,3 +330,14 @@ Feature: Index Filtering
     Then I should not see "Star Signs"
     Then I should see "Constellations"
     And I should not see "Compass and Sextant"
+
+    Given an index configuration of:
+    """
+      ActiveAdmin.register Category
+      ActiveAdmin.register Post do
+        config.namespace.maximum_association_filter_arity = :unlimited
+      end
+    """
+    And I am on the index page for posts
+    Then I should see "Category" within "#filters_sidebar_section label[for="q_custom_category_id"]"
+    And I should not see "Category name starts with" within "#filters_sidebar_section"
