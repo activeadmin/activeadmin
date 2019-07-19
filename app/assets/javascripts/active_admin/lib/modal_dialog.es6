@@ -1,22 +1,36 @@
-ActiveAdmin.modal_dialog = function(message, inputs, callback){
+ActiveAdmin.modal_dialog = function(message, inputs, callback) {
   let html = `<form id="dialog_confirm" title="${message}"><ul>`;
   for (let name in inputs) {
-    var elem, opts, wrapper;
+    var elem, opts, wrapper, klassOptions, attrOptions;
     let type = inputs[name];
-    if (/^(datepicker|checkbox|text|number)$/.test(type)) {
-      wrapper = 'input';
-    } else if (type === 'textarea') {
-      wrapper = 'textarea';
+    if (/^(datepicker|checkbox|text|number|textarea)$/.test(type)) {
+        wrapper = type === 'textarea' ? 'textarea' : 'input';
     } else if ($.isArray(type)) {
-      [wrapper, elem, opts, type] = ['select', 'option', type, ''];
+      if ((/^(datepicker|checkbox|text|number|textarea)$/.test(type[0]))) {
+        wrapper = type[0] === 'textarea' ? 'textarea' : 'input';
+        for (let option in type[1]) {
+          if (/^(klassOptions)$/.test(option)) {
+            klassOptions = type[1][option];
+          } else if (/^(attrOptions)$/.test(option)) {
+            attr = "";
+            for (let attrType in type[1][option]) {
+              attr += `${attrType}="${type[1][option][attrType]}" `
+            }
+            attrOptions = attr;
+          }
+        }
+        type = type[0];
+      } else {
+        [wrapper, elem, opts, type] = ['select', 'option', type, ''];
+      }
     } else {
       throw new Error(`Unsupported input type: {${name}: ${type}}`);
     }
 
-    let klass = type === 'datepicker' ? type : '';
+    let klass = type === 'datepicker' ? type : klassOptions;
     html += `<li>
       <label>${name.charAt(0).toUpperCase() + name.slice(1)}</label>
-      <${wrapper} name="${name}" class="${klass}" type="${type}">` +
+      <${wrapper} name="${name}" class="${klass}" type="${type}" ${attrOptions}>` +
         (opts ? ((() => {
           const result = [];
 
@@ -34,7 +48,7 @@ ActiveAdmin.modal_dialog = function(message, inputs, callback){
         })()).join('') : '') +
       `</${wrapper}>` +
     "</li>";
-    [wrapper, elem, opts, type, klass] = []; // unset any temporary variables
+    [wrapper, elem, opts, type, klass, klassOptions, attrOptions] = []; // unset any temporary variables
   }
 
   html += "</ul></form>";
