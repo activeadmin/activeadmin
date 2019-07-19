@@ -1,7 +1,7 @@
 ActiveAdmin.modal_dialog = function(message, inputs, callback) {
   let html = `<form id="dialog_confirm" title="${message}"><ul>`;
   for (let name in inputs) {
-    var elem, opts, wrapper, klassOptions, attrOptions;
+    var elem, opts, wrapper, klassOptions = '', attrOptions='';
     let type = inputs[name];
     if (/^(datepicker|checkbox|text|number|textarea)$/.test(type)) {
         wrapper = type === 'textarea' ? 'textarea' : 'input';
