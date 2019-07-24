@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Enhancements
+
+* Make optimization to not use expensive COUNT queries also work for decorated actions. [#5811](https://github.com/activeadmin/activeadmin/pull/5811) by [@irmela]
+
 ## 2.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.3.0..v2.3.1)
 
 ### Bug Fixes
@@ -499,6 +503,7 @@ Please check [0-6-stable] for previous changes.
 [#5800]: https://github.com/activeadmin/activeadmin/pull/5800
 [#5801]: https://github.com/activeadmin/activeadmin/pull/5801
 [#5802]: https://github.com/activeadmin/activeadmin/pull/5802
+[#5811]: https://github.com/activeadmin/activeadmin/pull/5811
 [#5816]: https://github.com/activeadmin/activeadmin/pull/5816
 [#5822]: https://github.com/activeadmin/activeadmin/pull/5822
 [#5826]: https://github.com/activeadmin/activeadmin/pull/5826
@@ -577,3 +582,4 @@ Please check [0-6-stable] for previous changes.
 [@ndbroadbent]: https://github.com/ndbroadbent
 [@Kris-LIBIS]: https://github.com/Kris-LIBIS
 [@sgara]: https://github.com/sgara
+[@irmela]: https://github.com/irmela
