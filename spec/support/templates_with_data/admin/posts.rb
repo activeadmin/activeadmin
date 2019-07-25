@@ -1,6 +1,8 @@
 ActiveAdmin.register Post do
   permit_params :custom_category_id, :author_id, :title, :body, :published_date, :position, :starred, taggings_attributes: [ :id, :tag_id, :name, :position, :_destroy ]
 
+  belongs_to :user
+
   includes :author, :category, :taggings
 
   scope :all, default: true
@@ -23,7 +25,7 @@ ActiveAdmin.register Post do
 
   batch_action :set_starred, form: { starred: :checkbox } do |ids, inputs|
     Post.where(id: ids).update_all(starred: inputs['starred'].present?)
-    redirect_to collection_path, notice: "The posts have been updated."
+    redirect_to collection_path(user_id: params["user_id"]), notice: "The posts have been updated."
   end
 
   index do
@@ -57,7 +59,7 @@ ActiveAdmin.register Post do
   end
 
   action_item :toggle_starred, only: :show do
-    link_to 'Toggle Starred', toggle_starred_admin_post_path(post), method: :put
+    link_to 'Toggle Starred', toggle_starred_admin_user_post_path(post.author, post), method: :put
   end
 
   show do |post|
