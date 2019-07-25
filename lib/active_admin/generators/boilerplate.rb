@@ -9,8 +9,16 @@ module ActiveAdmin
         @class_name.constantize.new.attributes.keys
       end
 
+      def assignable_attributes
+        attributes - %w(id created_at updated_at)
+      end
+
+      def permit_params
+        assignable_attributes.map { |a| a.to_sym.inspect }.join(', ')
+      end
+
       def rows
-        attributes.map { |a| row(a) }.join("\n")
+        attributes.map { |a| row(a) }.join("\n  ")
       end
 
       def row(name)
@@ -18,7 +26,7 @@ module ActiveAdmin
       end
 
       def columns
-        attributes.map { |a| column(a) }.join("\n")
+        attributes.map { |a| column(a) }.join("\n  ")
       end
 
       def column(name)
@@ -26,7 +34,7 @@ module ActiveAdmin
       end
 
       def filters
-        attributes.map { |a| filter(a) }.join("\n")
+        attributes.map { |a| filter(a) }.join("\n  ")
       end
 
       def filter(name)
@@ -34,7 +42,7 @@ module ActiveAdmin
       end
 
       def form_inputs
-        attributes.reject { |a| %w(id created_at updated_at).include? a }.map { |a| form_input(a) }.join("\n")
+        assignable_attributes.map { |a| form_input(a) }.join("\n  ")
       end
 
       def form_input(name)
