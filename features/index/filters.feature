@@ -194,7 +194,6 @@ Feature: Index Filtering
     And the "Jane Doe" checkbox should be checked
 
   Scenario: Filtering posts without default scope
-
     Given a post with the title "Hello World" written by "Jane Doe" exists
     And an index configuration of:
     """
