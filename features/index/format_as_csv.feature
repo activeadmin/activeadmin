@@ -79,6 +79,38 @@ Feature: Format as CSV
       | title | body |
       | Hello, World | (.*) |
 
+  Scenario: With humanize_name option turned off globally
+    Given a configuration of:
+    """
+      ActiveAdmin.application.csv_options = { humanize_name: false }
+      ActiveAdmin.register Post do
+      end
+    """
+    And a post exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    Then I should download a CSV file with "," separator for "posts" containing:
+      | id  | title | body | published_date | position | starred | foo  | created_at | updated_at |
+      | (.*)| (.*)  | (.*) | (.*)           | (.*)     | (.*)    | (.*) | (.*)       | (.*)       |
+
+  Scenario: With humanize_name option turned off globally and enabled locally
+    Given a configuration of:
+    """
+      ActiveAdmin.application.csv_options = { humanize_name: false }
+      ActiveAdmin.register Post do
+        csv humanize_name: true do
+          column :title
+          column :body
+        end
+      end
+    """
+    And a post exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    Then I should download a CSV file with "," separator for "posts" containing:
+      | Title | Body |
+      | (.*)  | (.*) |
+
   Scenario: With CSV option customization
     Given a configuration of:
     """
