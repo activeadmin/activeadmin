@@ -29,6 +29,8 @@ module ActiveAdmin
       env = { 'BUNDLE_GEMFILE' => expanded_gemfile, 'RAILS_ENV' => rails_env }
 
       Bundler.with_original_env { abort unless Kernel.system(env, command) }
+
+      add_turbolinks
     end
 
     def full_app_dir
@@ -67,6 +69,13 @@ module ActiveAdmin
 
     def gemfile_from_env
       ENV["BUNDLE_GEMFILE"]
+    end
+
+    def add_turbolinks
+      File.open(File.join(app_dir, 'app', 'assets', 'javascripts', 'active_admin.js'), 'w') do |f|
+        f.write("//= require turbolinks\n")
+        f.write("//= require active_admin/base\n")
+      end
     end
   end
 end
