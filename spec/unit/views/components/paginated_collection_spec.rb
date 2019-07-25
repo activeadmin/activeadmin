@@ -2,10 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::PaginatedCollection do
   describe "creating with the dsl" do
-
-    before :all do
-      load_defaults!
-      reload_routes!
+    around do |example|
+      with_resources_during(example) { ActiveAdmin.register Post }
     end
 
     let(:view) do
@@ -17,7 +15,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     # Helper to render paginated collections within an arbre context
     def paginated_collection(*args)
-      render_arbre_component({paginated_collection_args: args}, view) do
+      render_arbre_component({ paginated_collection_args: args }, view) do
         paginated_collection(*paginated_collection_args)
       end
     end
@@ -32,7 +30,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       allow(collection).to receive(:group_values) { [] }   unless collection.respond_to? :group_values
     end
 
-    let(:pagination){ paginated_collection collection }
+    let(:pagination) { paginated_collection collection }
 
     it "should set :collection as the passed in collection" do
       expect(pagination.find_by_class('pagination_information').first.content).to eq "Displaying <b>all 3</b> posts"
@@ -54,7 +52,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying :param_name option" do
       let(:collection) do
-        posts = 10.times.map{ Post.new }
+        posts = 10.times.map { Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -67,7 +65,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying :params option" do
       let(:collection) do
-        posts = 10.times.map{ Post.new }
+        posts = 10.times.map { Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -80,7 +78,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying download_links: false option" do
       let(:collection) do
-        posts = 10.times.map{ Post.new }
+        posts = 10.times.map { Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -173,7 +171,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when collection comes from find with GROUP BY" do
       let(:collection) do
-        %w{Foo Foo Bar}.each {|title| Post.create(title: title) }
+        %w{Foo Foo Bar}.each { |title| Post.create(title: title) }
         Post.select(:title).group(:title).page(1).per(5)
       end
 
@@ -184,7 +182,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when collection with many pages comes from find with GROUP BY" do
       let(:collection) do
-        %w{Foo Foo Bar Baz}.each {|title| Post.create(title: title) }
+        %w{Foo Foo Bar Baz}.each { |title| Post.create(title: title) }
         Post.select(:title).group(:title).page(1).per(2)
       end
 
@@ -243,7 +241,15 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
         expect(pagination_html.content).to match(/Per page:/)
         expect(pagination_node).to have_css("select option", count: 3)
       end
-    end
 
+      context "with pagination_total: false" do
+        let(:pagination) { paginated_collection(collection, per_page: [1, 2, 3], pagination_total: false) }
+
+        it "should render per_page select tag" do
+          info = pagination.find_by_class('pagination_information').first.content.gsub('&nbsp;', ' ')
+          expect(info).to eq "Displaying posts <b>1 - 5</b>"
+        end
+      end
+    end
   end
 end

@@ -35,6 +35,7 @@ ca:
     status_tag:
       "yes": "Sí"
       "no": "No"
+      "unset": "No"
     main_content: "Implementa %{model}#main_content per mostrar contingut."
     logout: "Desconnecta't"
     powered_by: "Powered by %{active_admin} %{version}"

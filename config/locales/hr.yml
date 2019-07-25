@@ -34,6 +34,7 @@ hr:
     status_tag:
       "yes": "Da"
       "no": "Nema"
+      "unset": "Nema"
     main_content: "Molim Vas, implementirajte %{model}#main_content da biste prikazali sadržaj."
     logout: "Odjavi se"
     powered_by: "Powered by %{active_admin} %{version}"

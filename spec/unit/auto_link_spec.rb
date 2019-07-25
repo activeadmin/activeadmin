@@ -18,8 +18,8 @@ RSpec.describe "#auto_link" do
 
   let(:linked_post) { view.auto_link(post) }
 
-  let(:active_admin_namespace){ ActiveAdmin.application.namespace(:admin) }
-  let(:post){ Post.create! title: "Hello World" }
+  let(:active_admin_namespace) { ActiveAdmin.application.namespace(:admin) }
+  let(:post) { Post.create! title: "Hello World" }
 
   before do
     allow(view).to receive(:authorized?).and_return(true)
@@ -94,10 +94,10 @@ RSpec.describe "#auto_link" do
           actions :all, except: [:show, :edit]
         end
       end
+    end
 
-      it "should return the display name of the object" do
-        expect(linked_post).to eq "Hello World"
-      end
+    it "should return the display name of the object" do
+      expect(linked_post).to eq "Hello World"
     end
   end
 end

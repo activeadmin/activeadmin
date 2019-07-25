@@ -43,7 +43,7 @@ Feature: Commenting
       ActiveAdmin.register Post,      namespace: :new_namespace
       ActiveAdmin.register AdminUser, namespace: :new_namespace
     """
-    Given I am logged in
+    And I am logged in
     When I am on the index page for posts in the new_namespace namespace
     And I follow "View"
     Then I should not see "Comments"
@@ -57,7 +57,7 @@ Feature: Commenting
       end
       ActiveAdmin.register AdminUser, namespace: :new_namespace
     """
-    Given I am logged in
+    And I am logged in
     When I am on the index page for posts in the new_namespace namespace
     And I follow "View"
     Then I should see "Comments"
@@ -89,10 +89,10 @@ Feature: Commenting
     """
     ActiveAdmin.register Post, as: "Article"
     """
-    Given I am logged in
+    And I am logged in
     When I am on the index page for articles
     And I follow "View"
-    When I add a comment "Hello from Comment"
+    And I add a comment "Hello from Comment"
     Then I should see a flash with "Comment was successfully created"
     And I should be in the resource section for articles
 
@@ -111,7 +111,7 @@ Feature: Commenting
         ActiveAdmin.register Post
       """
     When I add a comment "Hello from Comment"
-    When I am on the index page for comments
+    And I am on the index page for comments
     Then I should see a table header with "Body"
     And I should see "Hello from Comment"
 
@@ -120,11 +120,11 @@ Feature: Commenting
     """
       ActiveAdmin.register User
     """
-    Given I am logged in
+    And I am logged in
     And a publisher named "Pragmatic Publishers" exists
     When I am on the index page for users
     And I follow "View"
-    When I add a comment "Hello World"
+    And I add a comment "Hello World"
     Then I should see a flash with "Comment was successfully created"
     And I should be in the resource section for users
     When I am on the index page for comments
@@ -136,11 +136,11 @@ Feature: Commenting
     """
       ActiveAdmin.register Publisher
     """
-    Given I am logged in
+    And I am logged in
     And a publisher named "Pragmatic Publishers" exists
     When I am on the index page for publishers
     And I follow "View"
-    When I add a comment "Hello World"
+    And I add a comment "Hello World"
     Then I should see a flash with "Comment was successfully created"
     And I should be in the resource section for publishers
     And I should see "Hello World"
@@ -151,10 +151,10 @@ Feature: Commenting
       ActiveAdmin.register Post
       ActiveAdmin.register Post, as: 'Foo'
     """
-    Given I am logged in
+    And I am logged in
     When I am on the index page for foos
     And I follow "View"
-    When I add a comment "Bar"
+    And I add a comment "Bar"
     Then I should be in the resource section for foos
 
   Scenario: View comments
@@ -168,11 +168,101 @@ Feature: Commenting
     And I should see 25 comments
     And I should see pagination with 3 pages
     And I should see the pagination "Next" link
-    Then I follow "2"
-    And I should see "Displaying comments 26 - 50 of 70 in total"
+    When I follow "2"
+    Then I should see "Displaying comments 26 - 50 of 70 in total"
     And I should see 25 comments
     And I should see the pagination "Next" link
-    Then I follow "Next"
-    And I should see 20 comments
+    When I follow "Next"
+    Then I should see 20 comments
     And I should see "Displaying comments 51 - 70 of 70 in total"
     And I should not see the pagination "Next" link
+
+  Scenario: Commments through explicit helper from custom controller
+    Given a post with the title "Hello World" written by "Jane Doe" exists
+    And a show configuration of:
+      """
+        ActiveAdmin.register Post do
+          controller do
+            def show
+              @post = Post.find(params[:id])
+              show!
+            end
+          end
+
+          show do |post|
+            active_admin_comments
+          end
+        end
+      """
+    Then I should be able to add a comment
+
+  @authorization
+  Scenario: Not authorized to list comments
+    Given 5 comments added by admin with an email "commenter@example.com"
+    And 3 comments added by admin with an email "admin@example.com"
+    And a show configuration of:
+      """
+        class NoCommentListForASpecificUser < ActiveAdmin::AuthorizationAdapter
+          def authorized?(action, subject = nil)
+            if action == :read && subject == ActiveAdmin::Comment
+              user.email != "admin@example.com"
+            else
+              true
+            end
+          end
+        end
+
+        ActiveAdmin.application.namespace(:admin).authorization_adapter = NoCommentListForASpecificUser
+
+        ActiveAdmin.register Post
+      """
+    Then I should not see "Comments"
+    And I should see 0 comments
+    And I should not be able to add a comment
+
+  @authorization
+  Scenario: Authorized to list and view own comments
+    Given 5 comments added by admin with an email "commenter@example.com"
+    And 3 comments added by admin with an email "admin@example.com"
+    And a show configuration of:
+      """
+        class ListCommentsByCurrentUserOnly < ActiveAdmin::AuthorizationAdapter
+          def scope_collection(collection, action = ActiveAdmin::Authorization::READ)
+            if collection.is_a?(ActiveRecord::Relation) && collection.klass == ActiveAdmin::Comment
+              collection.where(author: user)
+            else
+              collection
+            end
+          end
+        end
+
+        ActiveAdmin.application.namespace(:admin).authorization_adapter = ListCommentsByCurrentUserOnly
+
+        ActiveAdmin.register Post
+      """
+    Then I should see "Comments (3)"
+    And I should see 3 comments
+    And I should be able to add a comment
+
+  @authorization
+  Scenario: Not authorized to create comments
+    Given 5 comments added by admin with an email "commenter@example.com"
+    And a show configuration of:
+      """
+        class NoNewComments < ActiveAdmin::AuthorizationAdapter
+          def authorized?(action, subject = nil)
+            if action == :create && subject == ActiveAdmin::Comment
+              false
+            else
+              true
+            end
+          end
+        end
+
+        ActiveAdmin.application.namespace(:admin).authorization_adapter = NoNewComments
+
+        ActiveAdmin.register Post
+      """
+    Then I should see "Comments (5)"
+    And I should see 5 comments
+    And I should not be able to add a comment

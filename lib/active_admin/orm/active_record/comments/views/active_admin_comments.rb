@@ -11,10 +11,12 @@ module ActiveAdmin
         attr_accessor :resource
 
         def build(resource)
-          @resource = resource
-          @comments = ActiveAdmin::Comment.find_for_resource_in_namespace(resource, active_admin_namespace.name).includes(:author).page(params[:page])
-          super(title, for: resource)
-          build_comments
+          if authorized?(ActiveAdmin::Auth::READ, ActiveAdmin::Comment)
+            @resource = resource
+            @comments = active_admin_authorization.scope_collection(ActiveAdmin::Comment.find_for_resource_in_namespace(resource, active_admin_namespace.name).includes(:author).page(params[:page]))
+            super(title, for: resource)
+            build_comments
+          end
         end
 
         protected
@@ -32,7 +34,10 @@ module ActiveAdmin
           end
 
           text_node paginate @comments
-          build_comment_form
+
+          if authorized?(ActiveAdmin::Auth::CREATE, ActiveAdmin::Comment)
+            build_comment_form
+          end
         end
 
         def build_comment(comment)

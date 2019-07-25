@@ -34,6 +34,7 @@ es-MX:
     status_tag:
       "yes": "Sí"
       "no": "No"
+      "unset": "No"
     main_content: "Por favor implemente %{model}#main_content para mostrar contenido."
     logout: "Salir"
     powered_by: "Powered by %{active_admin} %{version}"

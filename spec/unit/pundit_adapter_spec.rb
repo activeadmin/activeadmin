@@ -6,11 +6,7 @@ class DefaultPolicy < ApplicationPolicy
   end
 
   def method_missing(method, *args, &block)
-    if method.to_s[0...3] == "foo"
-      method.to_s[4...7] == "yes"
-    else
-      super
-    end
+    method.to_s[4...7] == "yes" if method.to_s[0...3] == "foo"
   end
 
   class Scope
@@ -29,9 +25,7 @@ class DefaultPolicy < ApplicationPolicy
 end
 
 RSpec.describe ActiveAdmin::PunditAdapter do
-
   describe "full integration" do
-
     let(:application) { ActiveAdmin::Application.new }
     let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
     let(:resource) { namespace.register(Post) }
@@ -136,6 +130,17 @@ RSpec.describe ActiveAdmin::PunditAdapter do
         end
       end
     end
-  end
 
+    context "when retrieve_policy is given a page and namespace is :active_admin" do
+      let(:page) { namespace.register_page "Dashboard" }
+
+      subject(:policy) { auth.retrieve_policy(page) }
+
+      before do
+        allow(ActiveAdmin.application).to receive(:pundit_policy_namespace).and_return :active_admin
+      end
+
+      it("should return page policy instance") { is_expected.to be_instance_of(ActiveAdmin::PagePolicy) }
+    end
+  end
 end

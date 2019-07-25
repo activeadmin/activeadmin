@@ -1,18 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::AttributesTable do
-
   describe "creating with the dsl" do
     let(:helpers) { mock_action_view }
 
     let(:post) do
       post = Post.new title: "Hello World", body: nil
-      allow(post).to receive(:id){ 1 }
-      allow(post).to receive(:new_record?){ false }
+      allow(post).to receive(:id) { 1 }
+      allow(post).to receive(:new_record?) { false }
       post
     end
 
-    let(:assigns){ { post: post } }
+    let(:assigns) { { post: post } }
 
     # Loop through a few different ways to make the same table
     # and ensure that they produce the same results
@@ -41,8 +40,8 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
       "when you create each row with a custom block" => proc {
         render_arbre_component(assigns) {
           attributes_table_for post do
-            row("Id")   { post.id }
-            row("Title"){ post.title }
+            row("Id") { post.id }
+            row("Title") { post.title }
             row("Body") { post.body }
           end
         }
@@ -51,7 +50,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
         render_arbre_component(assigns) {
           attributes_table_for post do
             row("Id")   { text_node post.id; nil }
-            row("Title"){ text_node post.title; nil }
+            row("Title") { text_node post.title; nil }
             row("Body") { text_node post.body; nil }
           end
         }
@@ -81,7 +80,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
             ["Body" , "<span class=\"empty\">Empty</span>"]
           ].each_with_index do |(title, content), i|
             describe "for #{title}" do
-              let(:current_row){ table.find_by_tag("tr")[i] }
+              let(:current_row) { table.find_by_tag("tr")[i] }
 
               it "should have the title '#{title}'" do
                 expect(current_row.find_by_tag("th").first.content).to eq title
@@ -93,7 +92,6 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
             end
           end
         end # describe rendering rows
-
       end
     end # describe dsl styles
 
@@ -116,7 +114,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
     it "should allow html options for the row itself" do
       table = render_arbre_component(assigns) {
         attributes_table_for(post) do
-          row("Wee", class: "custom_row", style: "custom_style") { }
+          row("Wee", class: "custom_row", style: "custom_style") {}
         end
       }
       expect(table.find_by_tag("tr").first.to_s.split("\n").first.lstrip).
@@ -126,7 +124,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
     it "should allow html content inside the attributes table" do
       table = render_arbre_component(assigns) {
         attributes_table_for(post) do
-          row("ID"){ span(post.id, class: 'id') }
+          row("ID") { span(post.id, class: 'id') }
         end
       }
       expect(table.find_by_tag("td").first.content.chomp.strip).to eq "<span class=\"id\">1</span>"
@@ -209,9 +207,9 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
           ["Title", "Hello World", "Multi Column"],
         ].each_with_index do |set, i|
           describe "for #{set[0]}" do
-            let(:title){ set[0] }
-            let(:content){ set[1] }
-            let(:current_row){ table.find_by_tag("tr")[i] }
+            let(:title) { set[0] }
+            let(:content) { set[1] }
+            let(:current_row) { table.find_by_tag("tr")[i] }
 
             it "should have the title '#{set[0]}'" do
               expect(current_row.find_by_tag("th").first.content).to eq title
@@ -219,7 +217,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
 
             context "with defined attribute name translation" do
               it "should have the translated attribute name in the title" do
-                with_translation activerecord: {attributes: {post: {title: 'Translated Title', id: 'Translated Id'}}} do
+                with_translation activerecord: { attributes: { post: { title: 'Translated Title', id: 'Translated Id' } } } do
                   expect(current_row.find_by_tag("th").first.content).to eq "Translated #{title}"
                 end
               end
@@ -255,7 +253,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
     context "when using an Array of Hashes" do
       let(:table) do
         render_arbre_component nil, helpers do
-          attributes_table_for [{foo: 1}, {foo: 2}] do
+          attributes_table_for [{ foo: 1 }, { foo: 2 }] do
             row :foo
           end
         end
@@ -267,5 +265,4 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
       end
     end
   end
-
 end

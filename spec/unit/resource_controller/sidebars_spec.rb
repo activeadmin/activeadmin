@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::ResourceController::Sidebars, type: :controller do
-  let(:klass){ Admin::PostsController }
+  let(:klass) { Admin::PostsController }
 
   shared_context 'with post config' do
     before do

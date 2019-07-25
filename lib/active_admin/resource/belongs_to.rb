@@ -15,7 +15,9 @@ module ActiveAdmin
       attr_reader :owner
 
       def initialize(owner, target_name, options = {})
-        @owner, @target_name, @options = owner, target_name, options
+        @owner = owner
+        @target_name = target_name
+        @options = options
       end
 
       # Returns the target resource class or raises an exception if it doesn't exist

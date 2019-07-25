@@ -1,18 +1,21 @@
 require 'bundler/gem_tasks'
 
-# Import all our rake tasks
-FileList['tasks/**/*.rake'].each { |task| import task }
+import 'tasks/gemfiles.rake'
+import 'tasks/local.rake'
+import 'tasks/test.rake'
+
+gemfile = ENV['BUNDLE_GEMFILE']
+
+if gemfile.nil? || File.expand_path(gemfile) == File.expand_path('Gemfile')
+  import 'tasks/docs.rake'
+  import 'tasks/lint.rake'
+  import 'tasks/release.rake'
+end
 
 task default: :test
 
-begin
-  require 'jasmine'
-  load 'jasmine/tasks/jasmine.rake'
-rescue LoadError
-  task :jasmine do
-    abort 'Jasmine is not available. In order to run jasmine, you must: (sudo) gem install jasmine'
-  end
-end
+require 'jasmine'
+load 'jasmine/tasks/jasmine.rake'
 
 task :console do
   require 'irb'

@@ -163,7 +163,10 @@ ActiveAdmin.setup do |config|
   #
   # Set the localize format to display dates and times.
   # To understand how to localize your app with I18n, read more at
-  # https://github.com/svenfuchs/i18n/blob/master/lib%2Fi18n%2Fbackend%2Fbase.rb#L52
+  # https://guides.rubyonrails.org/i18n.html
+  #
+  # You can run `bin/rails runner 'puts I18n.t("date.formats")'` to see the
+  # available formats in your application.
   #
   config.localize_format = :long
 
@@ -288,6 +291,13 @@ ActiveAdmin.setup do |config|
   # of those filters by default here.
   #
   # config.include_default_association_filters = true
+
+  # == Head
+  #
+  # You can add your own content to the site head like analytics. Make sure
+  # you only pass content you trust.
+  #
+  # config.head = ''.html_safe
 
   # == Footer
   #

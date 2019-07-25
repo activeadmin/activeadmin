@@ -34,6 +34,7 @@ fa:
     status_tag:
       "yes": "بله"
       "no": "بدون"
+      "unset": "بدون"
     main_content: "لطفا %{model}#main_content را پیاده سازی کنید تا محتوی نمایش داده شود."
     logout: "خروج"
     powered_by: "قدرت گرفته از %{active_admin} %{version}"

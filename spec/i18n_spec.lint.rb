@@ -14,14 +14,24 @@ end
 
 RSpec.describe 'I18n' do
   let(:i18n) { I18n::Tasks::BaseTask.new }
+
   let(:unused_keys) { i18n.unused_keys }
   let(:unused_key_count) { unused_keys.leaves.count }
+  let(:unused_key_failure_msg) do
+    "#{unused_key_count} unused i18n keys, run `i18n-tasks unused` to show them"
+  end
 
-  let(:failure_msg) do
-    "#{unused_key_count} unused i18n keys, run `i18n-tasks unused' to show them"
+  let(:inconsistent_interpolations) { i18n.inconsistent_interpolations }
+  let(:inconsistent_interpolation_key_count) { inconsistent_interpolations.leaves.count }
+  let(:inconsistent_interpolation_failure_msg) do
+    "#{inconsistent_interpolation_key_count} inconsistent interpolations, run `i18n-tasks check-consistent-interpolations` to show them"
   end
 
   it 'does not have unused keys' do
-    expect(unused_keys).to be_empty, failure_msg
+    expect(unused_keys).to be_empty, unused_key_failure_msg
+  end
+
+  it 'does not have inconsistent interpolations' do
+    expect(inconsistent_interpolations).to be_empty, inconsistent_interpolation_failure_msg
   end
 end

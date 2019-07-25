@@ -1,7 +1,9 @@
 <%
-  std_opts = "--format progress --order random"
+  std_format = RUBY_ENGINE == "jruby" && Gem::Version.new(RUBY_ENGINE_VERSION) < Gem::Version.new("9.2") ? "progress" : "pretty"
+  std_opts = "--format #{std_format} --order random"
   default_opts = std_opts + " --format ParallelTests::Gherkin::RuntimeLogger --out tmp/parallel_runtime_cucumber.log"
 %>
 
-default: <%= default_opts %> --require features/support/regular_env.rb features --tags 'not @requires-reloading' --tags 'not @wip'
-class-reloading: CLASS_RELOADING=true <%= std_opts %> --require features/support/reload_env.rb features --tags @requires-reloading
+default: <%= default_opts %> --require features/support/simplecov_regular_env.rb --tags 'not @changes-filesystem' --tags 'not @requires-reloading'
+filesystem-changes: <%= std_opts %> --require features/support/simplecov_changes_env.rb --tags @changes-filesystem --tags 'not @requires-reloading'
+class-reloading: CLASS_RELOADING=true <%= std_opts %> --require features/support/simplecov_reload_env.rb --tags @requires-reloading

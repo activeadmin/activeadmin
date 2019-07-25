@@ -71,7 +71,8 @@ module ActiveAdmin
         @resource_class_name = "::#{resource_class.name}"
         @options    = options
         @sort_order = options[:sort_order]
-        @member_actions, @collection_actions = [], []
+        @member_actions = []
+        @collection_actions = []
       end
     end
 
@@ -181,11 +182,11 @@ module ActiveAdmin
     end
 
     def association_columns
-      @association_columns ||= resource_attributes.select{ |key, value| key != value }.values
+      @association_columns ||= resource_attributes.select { |key, value| key != value }.values
     end
 
     def content_columns
-      @content_columns ||= resource_attributes.select{ |key, value| key == value }.values
+      @content_columns ||= resource_attributes.select { |key, value| key == value }.values
     end
 
     private

@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::CanCanAdapter do
-
   describe "full integration" do
-
-    let(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ ActiveAdmin::Namespace.new(application, "Admin") }
-    let(:resource){ namespace.register(Post) }
+    let(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
+    let(:resource) { namespace.register(Post) }
 
     let :ability_class do
       Class.new do
@@ -16,7 +14,6 @@ RSpec.describe ActiveAdmin::CanCanAdapter do
           can :read, Post
           cannot :update, Post
         end
-
       end
     end
 
@@ -37,7 +34,5 @@ RSpec.describe ActiveAdmin::CanCanAdapter do
       expect(collection).to receive(:accessible_by).with(auth.cancan_ability, :edit)
       auth.scope_collection(collection, :edit)
     end
-
   end
-
 end

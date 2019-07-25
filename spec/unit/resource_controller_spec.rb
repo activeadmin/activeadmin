@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::ResourceController do
-
   let(:controller) { Admin::PostsController.new }
 
   describe "callbacks" do
@@ -36,7 +35,7 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing create" do
-      let(:resource){ double("Resource", save: true) }
+      let(:resource) { double("Resource", save: true) }
 
       before do
         expect(resource).to receive(:save)
@@ -61,8 +60,8 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing update" do
-      let(:resource){ double("Resource", :attributes= => true, save: true) }
-      let(:attributes){ [{}] }
+      let(:resource) { double("Resource", :attributes= => true, save: true) }
+      let(:attributes) { [{}] }
 
       before do
         expect(resource).to receive(:attributes=).with(attributes[0])
@@ -88,7 +87,7 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing destroy" do
-      let(:resource){ double("Resource", destroy: true) }
+      let(:resource) { double("Resource", destroy: true) }
 
       before do
         expect(resource).to receive(:destroy)
@@ -143,7 +142,6 @@ RSpec.describe "A specific resource controller", type: :controller do
 
       controller.send(:authenticate_active_admin_user)
     end
-
   end
 
   describe "retrieving the current user" do
@@ -169,7 +167,7 @@ RSpec.describe "A specific resource controller", type: :controller do
 
   describe 'retrieving the resource' do
     let(:post) { Post.new title: "An incledibly unique Post Title" }
-    let(:http_params){ { id: '1' } }
+    let(:http_params) { { id: '1' } }
 
     before do
       allow(Post).to receive(:find).and_return(post)
@@ -203,7 +201,7 @@ RSpec.describe "A specific resource controller", type: :controller do
       config.decorator_class_name = nil
       request = double 'Request', format: 'application/json'
       allow(controller).to receive(:params) { {} }
-      allow(controller).to receive(:request){ request }
+      allow(controller).to receive(:request) { request }
     end
 
     subject { controller.send :collection }
@@ -231,7 +229,7 @@ RSpec.describe "A specific resource controller", type: :controller do
   end
 
   describe "performing batch_action" do
-    let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", &batch_action_block }
+    let(:batch_action) { ActiveAdmin::BatchAction.new *batch_action_args, &batch_action_block }
     let(:batch_action_block) { proc { self.instance_variable_set :@block_context, self.class } }
     let(:params) { ActionController::Parameters.new(http_params) }
 
@@ -241,6 +239,7 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
 
     describe "when params batch_action matches existing BatchAction" do
+      let(:batch_action_args) { [:flag, "Flag"] }
 
       let(:http_params) do
         { batch_action: "flag", collection_selection: ["1"] }
@@ -257,7 +256,22 @@ RSpec.describe "A specific resource controller", type: :controller do
       end
     end
 
+    describe "when params batch_action matches existing BatchAction and form inputs defined" do
+      let(:batch_action_args) { [:flag, "Flag", { form: { type: ["a", "b"] } }] }
+
+      let(:http_params) do
+        { batch_action: "flag", collection_selection: ["1"], batch_action_inputs: '{ "type": "a", "bogus": "param" }' }
+      end
+
+      it "should filter permitted params" do
+        expect(controller).to receive(:instance_exec).with(["1"], { "type" => "a" })
+        controller.batch_action
+      end
+    end
+
     describe "when params batch_action doesn't match a BatchAction" do
+      let(:batch_action_args) { [:flag, "Flag"] }
+
       let(:http_params) do
         { batch_action: "derp", collection_selection: ["1"] }
       end
@@ -270,6 +284,8 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
 
     describe "when params batch_action is blank" do
+      let(:batch_action_args) { [:flag, "Flag"] }
+
       let(:http_params) do
         { collection_selection: ["1"] }
       end
@@ -280,7 +296,5 @@ RSpec.describe "A specific resource controller", type: :controller do
         }.to raise_error("Couldn't find batch action \"\"")
       end
     end
-
   end
-
 end

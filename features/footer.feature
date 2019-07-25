@@ -1,5 +1,5 @@
 @footer
-Feature: Site title
+Feature: Footer
 
   As a developer
   In order to customize the site footer

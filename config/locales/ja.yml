@@ -44,6 +44,7 @@ ja:
     status_tag:
       "yes": "はい"
       "no": "いいえ"
+      "unset": "いいえ"
     main_content: "内容を表示するために %{model}#main_content を実装してください。"
     logout: "ログアウト"
     powered_by: "Powered by %{active_admin} %{version}"

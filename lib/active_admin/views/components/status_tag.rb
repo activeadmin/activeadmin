@@ -51,8 +51,10 @@ module ActiveAdmin
         case status
         when true, 'true'
           'Yes'
-        when false, 'false', nil
+        when false, 'false'
           'No'
+        when nil
+          'Unset'
         else
           status
         end
@@ -60,6 +62,8 @@ module ActiveAdmin
 
       def status_to_class(status)
         case status
+        when 'Unset'
+          'unset no'
         when String, Symbol
           status.to_s.titleize.gsub(/\s/, '').underscore
         else

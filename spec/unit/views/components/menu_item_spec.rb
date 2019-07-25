@@ -7,7 +7,7 @@ RSpec.describe ActiveAdmin::Views::MenuItem do
     i = ActiveAdmin::MenuItem.new(label: "Dashboard")
     i.add label: "Blog", url: 'blogs'
     i.add label: "Cars", url: 'cars'
-    i.add label: "Restricted", url: 'secret', if: proc{false}
+    i.add label: "Restricted", url: 'secret', if: proc { false }
     i.add label: "Users", priority: 1, url: 'admin_users'
     i.add label: "Settings", priority: 2, url: 'setup'
     i.add label: "Analytics", priority: 44, url: 'reports'

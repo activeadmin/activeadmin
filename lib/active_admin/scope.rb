@@ -28,7 +28,8 @@ module ActiveAdmin
     #   # => Scope with the group :status
     #
     def initialize(name, method = nil, options = {}, &block)
-      @name, @scope_method = name, method.try(:to_sym)
+      @name = name
+      @scope_method = method.try(:to_sym)
 
       if name.is_a? Proc
         raise "A string/symbol is required as the second argument if your label is a proc." unless method
@@ -38,13 +39,16 @@ module ActiveAdmin
         @id = name.to_s.parameterize(separator: "_")
       end
 
-      @scope_method               = nil        if @scope_method == :all
-      @scope_method, @scope_block = nil, block if block_given?
+      @scope_method = nil if @scope_method == :all
+      if block_given?
+        @scope_method = nil
+        @scope_block = block
+      end
 
       @localizer        = options[:localizer]
       @show_count       = options.fetch(:show_count, true)
-      @display_if_block = options[:if]      || proc{ true }
-      @default_block    = options[:default] || proc{ false }
+      @display_if_block = options[:if]      || proc { true }
+      @default_block    = options[:default] || proc { false }
       @group            = options[:group].try(:to_sym)
     end
 

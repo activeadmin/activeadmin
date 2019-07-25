@@ -177,6 +177,19 @@ status_tag 'active', class: 'important', id: 'status_123', label: 'on'
 # => <span class='status_tag active important' id='status_123'>on</span>
 ```
 
+When providing a `true` or `false` value, the `status_tag` will display "Yes"
+or "No". This can be configured through the `"en.active_admin.status_tag"`
+locale.
+
+```ruby
+status_tag true
+# => <span class='status_tag yes'>Yes</span>
+```
+
+In the case that a boolean field is `nil`, it will display "No" as a default.
+But using the `"en.active_admin.status_tag.unset"` locale key, it can be
+configured to display something else.
+
 ## Tabs
 
 The Tabs component is helpful for saving page real estate. The first tab will be

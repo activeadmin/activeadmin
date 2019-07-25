@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::Pages::Index do
   describe "#title" do
-    let!(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ ActiveAdmin::Namespace.new(application, "Admin") }
-    let!(:params){ ActionController::Parameters.new(controller: "UsersController", action: "edit") }
+    let!(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
+    let!(:params) { ActionController::Parameters.new(controller: "UsersController", action: "edit") }
     let(:helpers) do
       helpers = mock_action_view
       allow(helpers).to receive(:active_admin_config).and_return(namespace.register(Post))
@@ -20,7 +20,7 @@ RSpec.describe ActiveAdmin::Views::Pages::Index do
       context "with a Proc" do
         it "should return the value of the assigned Proc" do
           page = ActiveAdmin::Views::Pages::Index.new(arbre_context)
-          allow(page).to receive(:config).and_return(title: ->{ "My Page Title" })
+          allow(page).to receive(:config).and_return(title: -> { "My Page Title" })
           expect(page.title).to eq "My Page Title"
         end
       end
@@ -28,7 +28,7 @@ RSpec.describe ActiveAdmin::Views::Pages::Index do
       context "with a String" do
         it "should return the assigned String" do
           page = ActiveAdmin::Views::Pages::Index.new(arbre_context)
-          allow(page).to receive(:config).and_return(title: ->{ "My Page Title" })
+          allow(page).to receive(:config).and_return(title: -> { "My Page Title" })
           expect(page.title).to eq "My Page Title"
         end
       end

@@ -45,6 +45,7 @@ eo:
     status_tag:
       "yes": "Jes"
       "no": "Ne"
+      "unset": "Ne"
     main_content: "Aldonu %{model}#main_content por montri la enhavon."
     logout: "Elsaluti"
     powered_by: "Povigita de %{active_admin} %{version}"

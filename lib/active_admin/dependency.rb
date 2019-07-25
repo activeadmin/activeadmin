@@ -1,7 +1,7 @@
 module ActiveAdmin
   module Dependency
     module Requirements
-      DEVISE = '>= 3.2', '< 5'
+      DEVISE = '>= 4.0', '< 5'
     end
 
     # Provides a clean interface to check for gem dependencies at runtime.
@@ -53,6 +53,10 @@ module ActiveAdmin
 
     def self.[](name)
       Matcher.new name.to_s
+    end
+
+    def self.supports_zeitwerk?
+      rails >= "6.0.0.beta3" && RUBY_ENGINE != "jruby"
     end
 
     class Matcher

@@ -39,6 +39,7 @@
     status_tag:
       "yes": "是"
       "no": "否"
+      "unset": "否"
     main_content: "請實作 %{model}#main_content 以顯示內容。"
     logout: "登出"
     powered_by: "Powered by %{active_admin} %{version}"

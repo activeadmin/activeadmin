@@ -7,7 +7,7 @@ Feature: Filter Attributes
     """
       ActiveAdmin.register User
     """
-    Given I am logged in
+    And I am logged in
     And a user named "John Doe" exists
     And I am on the index page for users
 

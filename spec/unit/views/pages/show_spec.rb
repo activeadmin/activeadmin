@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::Pages::Show do
-
   describe "the resource" do
     let(:helpers) { double resource: resource }
     let(:arbre_context) { Arbre::Context.new({}, helpers) }
@@ -16,17 +15,15 @@ RSpec.describe ActiveAdmin::Views::Pages::Show do
     end
 
     context 'when you pass a block to main content' do
-      let(:block) { lambda { } }
+      let(:block) { lambda {} }
       let(:resource) { double('resource') }
 
-      before { allow(page).to receive(:active_admin_config).and_return(double(comments?: false, resource_columns: [:field]))}
+      before { allow(page).to receive(:active_admin_config).and_return(double(comments?: false, resource_columns: [:field])) }
 
       it 'appends it to the output' do
         expect(page).to receive(:attributes_table).with(:field).and_yield
         page.default_main_content(&block)
       end
     end
-
   end
-
 end

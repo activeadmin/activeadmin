@@ -32,7 +32,9 @@ module ActiveAdmin
 
     def initialize(options = {}, &block)
       @resource = options.delete(:resource)
-      @columns, @options, @block = [], options, block
+      @columns = []
+      @options = options
+      @block = block
     end
 
     def column(name, options = {}, &block)
@@ -50,7 +52,7 @@ module ActiveAdmin
       csv << bom if bom
 
       if column_names
-        csv << CSV.generate_line(columns.map{ |c| encode c.name, options }, csv_options)
+        csv << CSV.generate_line(columns.map { |c| encode c.name, options }, csv_options)
       end
 
       ActiveRecord::Base.uncached do

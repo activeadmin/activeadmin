@@ -22,8 +22,8 @@ module ActiveAdmin
 
       # Returns the plural version of this resource such as "Bank Accounts"
       def plural_resource_label(options = {})
-        defaults = {count:   Helpers::I18n::PLURAL_MANY_COUNT,
-                    default: resource_label.pluralize.titleize}
+        defaults = { count:   Helpers::I18n::PLURAL_MANY_COUNT,
+                    default: resource_label.pluralize.titleize }
         resource_name.translate defaults.merge options
       end
 
@@ -46,7 +46,7 @@ module ActiveAdmin
       end
 
       def translate(options = {})
-        I18n.t i18n_key, {scope: [:activerecord, :models]}.merge(options)
+        I18n.t i18n_key, { scope: [:activerecord, :models] }.merge(options)
       end
 
       def route_key

@@ -1,43 +1,86 @@
-require 'parallel'
-require_relative "application_generator"
-
 desc "Run the full suite using parallel_tests to run on multiple cores"
 task test: [:setup, :spec, :cucumber]
 
-desc "Create a test rails app for the parallel specs to run against"
-task :setup, [:rails_env, :template] do |_t, opts|
-  ActiveAdmin::ApplicationGenerator.new(opts).generate
-end
+desc "Create a test rails app for the parallel specs to run against if it doesn't exist already"
+task setup: :"setup:create"
 
-desc "Run the specs in parallel"
-task :spec do
-  system("parallel_rspec --serialize-stdout --verbose spec/")
-end
+namespace :setup do
+  desc "Forcefully create a test rails app for the parallel specs to run against"
+  task :force, [:rails_env, :template] => [:require, :rm, :run]
 
-namespace :spec do
+  desc "Create a test rails app for the parallel specs to run against if it doesn't exist already"
+  task :create, [:rails_env, :template] => [:require, :guard, :run]
 
-  %i(unit request).each do |type|
-    desc "Run the #{type} specs in parallel"
-    task type do
-      system("parallel_rspec --serialize-stdout --verbose spec/#{type}")
+  desc "Makes test app creation code available"
+  task :require do
+    if ENV["COVERAGE"] == "true"
+      require "simplecov"
+
+      SimpleCov.command_name "test app creation"
+    end
+
+    require_relative "test_application"
+  end
+
+  desc "Create a test rails app for the parallel specs to run against"
+  task :run, [:rails_env, :template] do |_t, opts|
+    ActiveAdmin::TestApplication.new(opts).generate
+  end
+
+  desc "Aborts if the test app already exists"
+  task :guard, [:rails_env, :template] do |_t, opts|
+    test_app = ActiveAdmin::TestApplication.new(opts)
+
+    app_dir = test_app.app_dir
+
+    if File.exist? app_dir
+      abort "test app #{app_dir} already exists; skipping test app generation"
     end
   end
 
+  task :rm, [:rails_env, :template] do |_t, opts|
+    test_app = ActiveAdmin::TestApplication.new(opts)
+
+    FileUtils.rm_rf test_app.app_dir
+  end
+end
+
+task spec: :"spec:all"
+
+namespace :spec do
+  desc "Run all specs"
+  task all: [:regular, :filesystem_changes]
+
+  desc "Run the standard specs in parallel"
+  task :regular do
+    sh("bin/parallel_rspec spec/")
+  end
+
+  desc "Run the specs that change the filesystem sequentially"
+  task :filesystem_changes do
+    sh({ "RSPEC_FILESYSTEM_CHANGES" => "true" }, "bin/rspec")
+  end
 end
 
 desc "Run the cucumber scenarios in parallel"
-task cucumber: [:"cucumber:regular", :"cucumber:reloading"]
+task cucumber: :"cucumber:all"
 
 namespace :cucumber do
+  desc "Run all cucumber suites"
+  task all: [:regular, :filesystem_changes, :reloading]
 
   desc "Run the standard cucumber scenarios in parallel"
   task :regular do
-    system("parallel_cucumber --serialize-stdout --verbose features/")
+    sh("bin/parallel_cucumber features/")
+  end
+
+  desc "Run the cucumber scenarios that change the filesystem sequentially"
+  task :filesystem_changes do
+    sh("bin/cucumber --profile filesystem-changes")
   end
 
   desc "Run the cucumber scenarios that test reloading"
   task :reloading do
-    system("cucumber --profile class-reloading")
+    sh("bin/cucumber --profile class-reloading")
   end
-
 end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Filters::ResourceExtension do
-
   let(:resource) do
     namespace = ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
     namespace.register(Post)
@@ -64,7 +63,7 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
 
     it "should raise an exception when filters are disabled" do
       resource.filters = false
-      expect{ resource.remove_filter :author }.to raise_error ActiveAdmin::Filters::Disabled
+      expect { resource.remove_filter :author }.to raise_error ActiveAdmin::Filters::Disabled
     end
   end
 
@@ -89,14 +88,14 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
 
     it "should work with specified options" do
       resource.add_filter :title, as: :string
-      expect(resource.filters).to eq title: {as: :string}
+      expect(resource.filters).to eq title: { as: :string }
     end
 
     it "should override an existing filter" do
       resource.add_filter :title, one: :two
       resource.add_filter :title, three: :four
 
-      expect(resource.filters).to eq title: {three: :four}
+      expect(resource.filters).to eq title: { three: :four }
     end
 
     it "should preserve default filters" do
@@ -110,7 +109,7 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
 
     it "should raise an exception when filters are disabled" do
       resource.filters = false
-      expect{ resource.add_filter :title }.to raise_error ActiveAdmin::Filters::Disabled
+      expect { resource.add_filter :title }.to raise_error ActiveAdmin::Filters::Disabled
     end
   end
 
@@ -124,5 +123,4 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
   it "should add a sidebar section for the filters" do
     expect(resource.sidebar_sections.first.name).to eq "filters"
   end
-
 end

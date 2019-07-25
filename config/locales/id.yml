@@ -39,6 +39,7 @@ id:
     status_tag:
       "yes": "Ya"
       "no": "Tidak"
+      "unset": "Tidak"
     main_content: "Harap mengimplementasikan %{model}#main_content untuk menampilkan konten."
     logout: "Keluar"
     powered_by: "Dibuat dengan %{active_admin} %{version}"

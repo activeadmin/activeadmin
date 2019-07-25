@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::IndexList do
-
   describe "#index_list_renderer" do
-
     let(:index_classes) { [ActiveAdmin::Views::IndexAsTable, ActiveAdmin::Views::IndexAsBlock] }
 
     let(:collection) {
@@ -21,14 +19,14 @@ RSpec.describe ActiveAdmin::Views::IndexList do
     end
 
     subject do
-      render_arbre_component({index_classes: index_classes}, helpers) do
+      render_arbre_component({ index_classes: index_classes }, helpers) do
         index_list_renderer(index_classes)
       end
     end
 
     describe '#tag_name' do
       subject { super().tag_name }
-      it { is_expected.to eq 'ul'}
+      it { is_expected.to eq 'ul' }
     end
 
     it "should contain the names of available indexes in links" do

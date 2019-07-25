@@ -45,6 +45,7 @@ tr:
     status_tag:
       "yes": "Evet"
       "no": "Hayır"
+      "unset": "Hayır"
     main_content: "İçeriği görüntülemek için lütfen %{model}#main_content metodunu ekleyin."
     logout: "Çıkış Yap"
     powered_by: "%{active_admin} %{version} tarafından desteklenmektedir."

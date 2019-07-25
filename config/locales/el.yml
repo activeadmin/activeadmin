@@ -34,6 +34,7 @@ el:
     status_tag:
       "yes": "Ναι"
       "no": "Όχι"
+      "unset": "Όχι"
     main_content: "Παρακαλώ υλοποιήστε την %{model}#main_content για να εμφανίσετε περιεχόμενο."
     logout: "Αποσύνδεση"
     powered_by: "Powered by %{active_admin} %{version}"

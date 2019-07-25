@@ -18,7 +18,7 @@ fr:
     previous: "Précédent"
     next: "Suivant"
     download: "Télécharger :"
-    has_many_new: "Ajouter un nouveau %{model}"
+    has_many_new: "Ajouter un(e) %{model}"
     has_many_delete: "Supprimer"
     has_many_remove: "Enlever"
     filters:
@@ -44,6 +44,7 @@ fr:
     status_tag:
       "yes": "Oui"
       "no": "Non"
+      "unset": "Non"
     main_content: "Veuillez implémenter %{model}#main_content pour afficher le contenu."
     logout: "Déconnexion"
     powered_by: "Propulsé par %{active_admin} %{version}"

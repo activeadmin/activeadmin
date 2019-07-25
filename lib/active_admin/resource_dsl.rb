@@ -121,7 +121,7 @@ module ActiveAdmin
     #
     #   ActiveAdmin.register Post do
     #     member_action :comments do
-    #       @post = Post.find(params[:id]
+    #       @post = Post.find(params[:id])
     #       @comments = @post.comments
     #     end
     #   end
@@ -133,14 +133,14 @@ module ActiveAdmin
     # action.
     #
     def action(set, name, options = {}, &block)
-      warn "Warning: method `#{name}` already defined" if controller.method_defined?(name)
+      warn "Warning: method `#{name}` already defined in #{controller.name}" if controller.method_defined?(name)
 
       set << ControllerAction.new(name, options)
       title = options.delete(:title)
 
       controller do
         before_action(only: [name]) { @page_title = title } if title
-        define_method(name, &block || Proc.new{})
+        define_method(name, &block || Proc.new {})
       end
     end
 

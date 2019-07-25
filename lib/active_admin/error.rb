@@ -6,7 +6,9 @@ module ActiveAdmin
     attr_reader :user, :action, :subject
 
     def initialize(user, action, subject = nil)
-      @user, @action, @subject = user, action, subject
+      @user = user
+      @action = action
+      @subject = subject
 
       super()
     end
@@ -22,7 +24,7 @@ module ActiveAdmin
   class ErrorLoading < Error
     # Locates the most recent file and line from the caught exception's backtrace.
     def find_cause(folder, backtrace)
-      backtrace.grep(/\/(#{folder}\/.*\.rb):(\d+)/){ [$1, $2] }.first
+      backtrace.grep(/\/(#{folder}\/.*\.rb):(\d+)/) { [$1, $2] }.first
     end
   end
 

@@ -44,7 +44,7 @@ module ActiveAdmin
     end
 
     def format_action(action, subject)
-      # https://github.com/elabs/pundit/blob/master/lib/generators/pundit/install/templates/application_policy.rb
+      # https://github.com/varvet/pundit/blob/master/lib/generators/pundit/install/templates/application_policy.rb
       case action
       when Auth::CREATE  then :create?
       when Auth::UPDATE  then :update?
@@ -57,8 +57,8 @@ module ActiveAdmin
     private
 
     def namespace(object)
-      if ActiveAdmin.application.pundit_policy_namespace
-        [ActiveAdmin.application.pundit_policy_namespace.to_sym, object]
+      if default_policy_namespace && !object.class.to_s.include?(default_policy_namespace.to_s.camelize)
+        [default_policy_namespace.to_sym, object]
       else
         object
       end
@@ -70,6 +70,10 @@ module ActiveAdmin
 
     def default_policy(user, subject)
       default_policy_class.new(user, subject)
+    end
+
+    def default_policy_namespace
+      ActiveAdmin.application.pundit_policy_namespace
     end
 
   end

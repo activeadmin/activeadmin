@@ -63,6 +63,7 @@ es:
     status_tag:
       "yes": "Sí"
       "no": "No"
+      "unset": "No"
     main_content: "Por favor implemente %{model}#main_content para mostrar contenido."
     logout: "Salir"
     powered_by: "Funciona con %{active_admin} %{version}"
