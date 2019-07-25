@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/activerecord-hackery/ransack
+  revision: e9a2f0277ad1424df184adb83e7f5c682b54a697
+  specs:
+    polyamorous (2.1.1)
+      activerecord (>= 5.0)
+    ransack (2.1.1)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
+      polyamorous (= 2.1.1)
+
 PATH
   remote: ..
   specs:
@@ -269,11 +282,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (12.3.3)
-    ransack (2.1.1)
-      actionpack (>= 5.0)
-      activerecord (>= 5.0)
-      activesupport (>= 5.0)
-      i18n
     regexp_parser (1.6.0)
     request_store (1.4.1)
       rack (>= 1.4)
@@ -371,6 +379,7 @@ DEPENDENCIES
   rails (~> 6.0.0.rc2)
   rails-i18n
   rake
+  ransack!
   rspec-rails
   selenium-webdriver
   simplecov
