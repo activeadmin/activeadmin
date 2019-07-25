@@ -374,6 +374,9 @@ GEM
     thread_safe (0.3.6-java)
     tilt (2.0.9)
     tomlrb (1.2.7)
+    turbolinks (5.2.0)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.4.1)
@@ -424,6 +427,7 @@ DEPENDENCIES
   selenium-webdriver
   simplecov
   sqlite3
+  turbolinks
   yard
 
 BUNDLED WITH
