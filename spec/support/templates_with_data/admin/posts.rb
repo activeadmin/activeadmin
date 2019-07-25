@@ -1,7 +1,7 @@
 ActiveAdmin.register Post do
   permit_params :custom_category_id, :author_id, :title, :body, :published_date, :position, :starred, taggings_attributes: [ :id, :tag_id, :name, :position, :_destroy ]
 
-  belongs_to :user
+  belongs_to :author, class_name: "User", param: "user_id", route_name: "user"
 
   includes :author, :category, :taggings
 
