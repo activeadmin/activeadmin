@@ -123,11 +123,15 @@ module ActiveAdmin
         end
 
         def nested?
-          resource.belongs_to? && resource.belongs_to_config.required?
+          resource.belongs_to? && belongs_to_config.required?
         end
 
         def belongs_to_name
-          resource.belongs_to_config.target.resource_name.singular
+          belongs_to_config.target.resource_name.singular
+        end
+
+        def belongs_to_config
+          resource.belongs_to_config
         end
 
         def routes
