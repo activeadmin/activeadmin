@@ -127,7 +127,7 @@ module ActiveAdmin
         end
 
         def belongs_to_name
-          resource.belongs_to_config.target.resource_name.singular if nested?
+          resource.belongs_to_config.target.resource_name.singular
         end
 
         def routes
