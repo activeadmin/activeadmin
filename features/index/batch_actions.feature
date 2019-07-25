@@ -264,6 +264,3 @@ Feature: Batch Actions
     When I click "Delete Selected" and cancel confirmation
 
     Then I should not see the confirmation dialog
-
-    # Then I should see a flash with "Successfully destroyed 2 posts"
-    # And I should see 8 posts in the table
