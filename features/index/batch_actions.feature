@@ -250,3 +250,20 @@ Feature: Batch Actions
     And I follow "Batch Actions"
     And I click "Action With Form"
     And I should see the select "type" with options "a, b"
+
+  @javascript
+  Scenario: Do not attach click multiple times
+    Given 10 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post
+      """
+    And I check the 1st record
+    And I follow "Batch Actions"
+
+    When I click "Delete Selected" and cancel confirmation
+
+    Then I should not see the confirmation dialog
+
+    # Then I should see a flash with "Successfully destroyed 2 posts"
+    # And I should see 8 posts in the table

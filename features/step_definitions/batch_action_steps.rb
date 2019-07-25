@@ -46,10 +46,15 @@ Given /^I submit the batch action form with "([^"]*)"$/ do |action|
   page.driver.submit form['method'], form['action'], params
 end
 
-When /^I click "(.*?)" and accept confirmation$/ do |link|
+When /^I click "(.*?)" and (accept|cancel) confirmation$/ do |link, maybe|
   click_link(link)
-  expect(page).to have_content("Are you sure you want to delete these posts?")
-  click_button("OK")
+  step("I should see the confirmation dialog")
+  maybe == 'accept' ? click_button("OK") : click_button("Cancel")
+end
+
+When /^I (should|should not) see the confirmation dialog$/ do |maybe|
+  verb = maybe == 'should' ? :to : :to_not
+  expect(page).send verb, have_content("Are you sure you want to delete these posts?")
 end
 
 Then /^I should not see checkboxes in the table$/ do
