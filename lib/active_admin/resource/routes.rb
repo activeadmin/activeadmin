@@ -110,7 +110,7 @@ module ActiveAdmin
         # @return params to pass to instance path
         def route_instance_params(instance)
           if nested?
-            [instance.public_send(belongs_to_name).to_param, instance.to_param]
+            [instance.public_send(belongs_to_target_name).to_param, instance.to_param]
           else
             instance.to_param
           end
@@ -123,11 +123,19 @@ module ActiveAdmin
         end
 
         def nested?
-          resource.belongs_to? && resource.belongs_to_config.required?
+          resource.belongs_to? && belongs_to_config.required?
+        end
+
+        def belongs_to_target_name
+          belongs_to_config.target_name
         end
 
         def belongs_to_name
-          resource.belongs_to_config.target.resource_name.singular if nested?
+          belongs_to_config.target.resource_name.singular
+        end
+
+        def belongs_to_config
+          resource.belongs_to_config
         end
 
         def routes

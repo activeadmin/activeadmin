@@ -194,7 +194,6 @@ Feature: Index Filtering
     And the "Jane Doe" checkbox should be checked
 
   Scenario: Filtering posts without default scope
-
     Given a post with the title "Hello World" written by "Jane Doe" exists
     And an index configuration of:
     """
@@ -249,3 +248,20 @@ Feature: Index Filtering
     """
     And I press "Filter"
     Then I should not see a sidebar titled "Search status:"
+
+  Scenario: Filters and nested resources
+    Given a post with the title "The arrogant president" written by "Jane Doe" exists
+    And a configuration of:
+    """
+      ActiveAdmin.register User
+      ActiveAdmin.register Post do
+        permit_params :user_id
+
+        belongs_to :author, class_name: "User"
+      end
+    """
+    And I am logged in
+    And I am on the index page for users
+    When I select "The arrogant president" from "Posts"
+    And I press "Filter"
+    And I should see 1 user in the table
