@@ -9,7 +9,7 @@ namespace :setup do
   task :force, [:rails_env, :template] => [:require, :rm, :run]
 
   desc "Create a test rails app for the parallel specs to run against if it doesn't exist already"
-  task :create, [:rails_env, :template] => [:require, :guard, :run]
+  task :create, [:rails_env, :template] => [:require, :run]
 
   desc "Makes test app creation code available"
   task :require do
@@ -24,17 +24,14 @@ namespace :setup do
 
   desc "Create a test rails app for the parallel specs to run against"
   task :run, [:rails_env, :template] do |_t, opts|
-    ActiveAdmin::TestApplication.new(opts).generate
-  end
-
-  desc "Aborts if the test app already exists"
-  task :guard, [:rails_env, :template] do |_t, opts|
     test_app = ActiveAdmin::TestApplication.new(opts)
 
     app_dir = test_app.app_dir
 
     if File.exist? app_dir
-      abort "test app #{app_dir} already exists; skipping test app generation"
+      puts "test app #{app_dir} already exists; skipping test app generation"
+    else
+      test_app.generate
     end
   end
 
