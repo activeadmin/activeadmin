@@ -7,7 +7,7 @@ task :local do
     template: 'rails_template_with_data'
   )
 
-  test_application.generate
+  test_application.soft_generate
 
   # Discard the "local" argument (name of the task)
   argv = ARGV[1..-1]

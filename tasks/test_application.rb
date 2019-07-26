@@ -9,6 +9,14 @@ module ActiveAdmin
       @template = opts[:template] || 'rails_template'
     end
 
+    def soft_generate
+      if File.exist? app_dir
+        puts "test app #{app_dir} already exists; skipping test app generation"
+      else
+        generate
+      end
+    end
+
     def generate
       FileUtils.mkdir_p base_dir
       args = %W(
