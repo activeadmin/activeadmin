@@ -304,12 +304,4 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       end
     end
   end
-
-  skip '#exec_columns'
-
-  describe '#build_row' do
-    xit 'renders non-strings'
-    xit 'encodes values correctly'
-    xit 'passes custom encoding options to String#encode!'
-  end
 end
