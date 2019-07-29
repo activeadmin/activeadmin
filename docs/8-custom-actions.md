@@ -33,7 +33,7 @@ pointing to the `Admin::PostsController#import_csv` controller action.
 To paginate a table using ajax within a page, the following aproach works with Kaminari
 
 ```ruby
-ActiveAdmin.register Post do
+ActiveAdmin.register Member do
   collection_action :member_posts, method: :get do
     render 'admin/members/member_posts', context: self
   end
@@ -54,7 +54,7 @@ panel "#{member.name} Posts" do
       table_for(collection, :class => 'index_table') do
         column 'ID', :id
 
-        column 'Title', :title do |story|
+        column 'Title', :title do |post|
           link_to(post.title, "/admin/posts/#{post.id}")
         end
       end
