@@ -56,7 +56,9 @@ Feature: Index Pagination
     Then I should see "Displaying Posts 1 - 10"
     And I should not see "11 in total"
     And I should see the pagination "Next" link
+    And I should not see the pagination "Last" link
 
     When I follow "Next"
     Then I should see "Displaying Posts 11 - 11"
     And I should not see the pagination "Next" link
+    And I should not see the pagination "Last" link

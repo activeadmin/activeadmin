@@ -13,3 +13,7 @@ end
 Then /^I should not see the pagination "Next" link/ do
   expect(page).to_not have_css "a", text: "Next"
 end
+
+Then /^I should not see the pagination "Last" link/ do
+  expect(page).to_not have_css "a", text: "Last"
+end
