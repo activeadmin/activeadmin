@@ -6,6 +6,7 @@
 
 * Fix CSVBuilder not respecting `ActiveAdmin.application.csv_options = { humanize_name: false }` setting. [#5800] by [@HappyKadaver]
 * Fix crash when displaying current filters after filtering by a nested resource. [#5816] by [@deivid-rodriguez]
+* Fix pagination when `pagination_total` is false to not show a "Last" link, since it's incorrect because we don't have the total pages information. [#5822] by [@deivid-rodriguez]
 
 ## 2.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.1.0..v2.2.0)
 
@@ -483,6 +484,7 @@ Please check [0-6-stable] for previous changes.
 [#5801]: https://github.com/activeadmin/activeadmin/pull/5801
 [#5802]: https://github.com/activeadmin/activeadmin/pull/5802
 [#5816]: https://github.com/activeadmin/activeadmin/pull/5816
+[#5822]: https://github.com/activeadmin/activeadmin/pull/5822
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
