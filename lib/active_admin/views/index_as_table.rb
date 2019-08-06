@@ -192,6 +192,13 @@ module ActiveAdmin
     # end
     # ```
     #
+    # You can also define associated objects to include outside of the
+    # `scoped_collection` method:
+    #
+    # ```ruby
+    # includes :publisher
+    # ```
+    #
     # Then it's simple to sort by any Publisher attribute from within the index table:
     #
     # ```ruby
