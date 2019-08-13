@@ -1,6 +1,6 @@
 Feature: Renamed Resource
 
-  Strong attributes for resources renamed with as: 'NewName'
+  Resources renamed with as: 'NewName'
 
   Scenario: Default form with no config
     Given a category named "Music" exists
