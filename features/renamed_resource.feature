@@ -14,7 +14,6 @@ Feature: Renamed Resource
       end
     """
     When I am on the index page for posts
-
     And I follow "New Post"
     And I fill in "Title" with "Hello World"
     And I fill in "Body" with "This is the body"
