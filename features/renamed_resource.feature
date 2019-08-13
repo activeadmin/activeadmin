@@ -24,5 +24,5 @@ Feature: Renamed Resource
     Then I should see "Post was successfully created."
     And I should see the attribute "Title" with "Hello World"
     And I should see the attribute "Body" with "This is the body"
-    #And I should see the attribute "Category" with "Music"
+    And I should see the attribute "Category" with "Music"
     And I should see the attribute "Author" with "John Doe"
