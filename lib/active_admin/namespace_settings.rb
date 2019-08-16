@@ -106,7 +106,8 @@ module ActiveAdmin
 
     # Include association filters by default
     register :include_default_association_filters, true
-    register :maximum_association_filter_arity, 256
+
+    register :maximum_association_filter_arity, :unlimited
 
     register :filter_columns_for_large_association, [
         :display_name,
