@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   class VIP < self
   end
   has_many :posts, foreign_key: 'author_id'
+  has_many :articles, class_name: 'Post', foreign_key: 'author_id'
   has_one :profile
   accepts_nested_attributes_for :profile, allow_destroy: true
   accepts_nested_attributes_for :posts, allow_destroy: true

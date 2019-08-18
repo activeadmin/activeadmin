@@ -21,9 +21,15 @@ module ActiveAdmin
       end
 
       def to_named_resource(record)
-        return record unless record.is_a?(resource_class)
+        if record.is_a?(resource_class)
+          return ActiveAdmin::Model.new(active_admin_config, record)
+        end
 
-        ActiveAdmin::Model.new(active_admin_config, record)
+        if record.is_a?(parent.class)
+          return ActiveAdmin::Model.new(active_admin_config.belongs_to_config.resource, record)
+        end
+
+        record
       end
     end
   end

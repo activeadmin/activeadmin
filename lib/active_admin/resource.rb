@@ -138,6 +138,7 @@ module ActiveAdmin
     def belongs_to(target, options = {})
       @belongs_to = Resource::BelongsTo.new(self, target, options)
       self.menu_item_options = false if @belongs_to.required?
+      options[:class_name] ||= @belongs_to.resource.resource_class_name if @belongs_to.resource
       controller.send :belongs_to, target, options.dup
     end
 

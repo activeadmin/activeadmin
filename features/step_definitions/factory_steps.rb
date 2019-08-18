@@ -19,8 +19,8 @@ Given /^a category named "([^"]*)" exists$/ do |name|
   Category.create! name: name
 end
 
-Given /^a (user|publisher|blog_user) named "([^"]*)" exists$/ do |type, name|
-  create_user name, (type == 'blog_user' ? 'Blog::User' : type)
+Given /^a (user|publisher) named "([^"]*)" exists$/ do |type, name|
+  create_user name, type
 end
 
 Given /^a store named "([^"]*)" exists$/ do |name|
