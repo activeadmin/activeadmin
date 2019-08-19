@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Enhancements
+
+#### Minor
+
+* Bump minimum ransack requirement to make sure everyone gets a version that works ok with all supported versions of Rails. [#5831] by [@deivid-rodriguez]
+
 ### Bug Fixes
 
 * Fix CSVBuilder not respecting `ActiveAdmin.application.csv_options = { humanize_name: false }` setting. [#5800] by [@HappyKadaver]
@@ -487,6 +493,7 @@ Please check [0-6-stable] for previous changes.
 [#5816]: https://github.com/activeadmin/activeadmin/pull/5816
 [#5822]: https://github.com/activeadmin/activeadmin/pull/5822
 [#5826]: https://github.com/activeadmin/activeadmin/pull/5826
+[#5831]: https://github.com/activeadmin/activeadmin/pull/5831
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
