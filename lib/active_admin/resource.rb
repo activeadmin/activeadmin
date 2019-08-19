@@ -12,6 +12,7 @@ require 'active_admin/resource/scope_to'
 require 'active_admin/resource/sidebars'
 require 'active_admin/resource/belongs_to'
 require 'active_admin/resource/ordering'
+require 'active_admin/resource/model'
 
 module ActiveAdmin
 
@@ -104,6 +105,10 @@ module ActiveAdmin
       ActiveSupport::Dependencies.constantize(decorator_class_name) if decorator_class_name
     end
 
+    def resource_name_extension
+      @resource_name_extension ||= define_resource_name_extension(self)
+    end
+
     def resource_table_name
       resource_class.quoted_table_name
     end
@@ -133,6 +138,7 @@ module ActiveAdmin
     def belongs_to(target, options = {})
       @belongs_to = Resource::BelongsTo.new(self, target, options)
       self.menu_item_options = false if @belongs_to.required?
+      options[:class_name] ||= @belongs_to.resource.resource_class_name if @belongs_to.resource
       controller.send :belongs_to, target, options.dup
     end
 
@@ -203,5 +209,12 @@ module ActiveAdmin
       @default_csv_builder ||= CSVBuilder.default_for_resource(self)
     end
 
+    def define_resource_name_extension(resource)
+      Module.new do
+        define_method :model_name do
+          resource.resource_name
+        end
+      end
+    end
   end # class Resource
 end # module ActiveAdmin
