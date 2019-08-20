@@ -615,6 +615,35 @@ body #tidelift a .cta {
   padding-left: 30px;
 }
 
+body .tidelift-buttons a {
+  display: table;
+  width: 200px;
+  border: 2px solid #407985;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: 'Yanone Kaffeesatz', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin: 0 10px;
+}
+
+body .tidelift-buttons a:first-child {
+  float: left;
+  color: #407985;
+  background: #FFF;
+}
+
+body .tidelift-buttons a:last-child {
+  color: #FFF;
+  background: #407985;
+}
+
+body .tidelift-buttons a span {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
 body .clear {
   clear: both;
 }
