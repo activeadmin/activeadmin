@@ -380,7 +380,7 @@ jobs:
 
   jruby92rails50:
     docker:
-      - image: circleci/jruby:9.2.7.0-node-browsers
+      - image: circleci/jruby:9.2.8.0-node-browsers
         user: root
 
     environment:
@@ -392,7 +392,7 @@ jobs:
 
   jruby92rails51:
     docker:
-      - image: circleci/jruby:9.2.7.0-node-browsers
+      - image: circleci/jruby:9.2.8.0-node-browsers
         user: root
 
     environment:
@@ -404,7 +404,7 @@ jobs:
 
   jruby92rails52:
     docker:
-      - image: circleci/jruby:9.2.7.0-node-browsers
+      - image: circleci/jruby:9.2.8.0-node-browsers
         user: root
 
     environment:
@@ -416,7 +416,7 @@ jobs:
 
   jruby92rails60:
     docker:
-    - image: circleci/jruby:9.2.7.0-node-browsers
+    - image: circleci/jruby:9.2.8.0-node-browsers
       user: root
 
     environment:
