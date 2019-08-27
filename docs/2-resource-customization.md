@@ -355,7 +355,7 @@ end
 ```
 
 If you need to completely replace the record retrieving code (e.g., you have a
-custom `to_param` implementation in your models), override the `resource` method
+custom `to_param` implementation in your models), override the `find_resource` method
 on the controller:
 
 ```ruby
