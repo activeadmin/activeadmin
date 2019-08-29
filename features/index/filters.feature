@@ -328,7 +328,7 @@ Feature: Index Filtering
     When I select "Astronomy" from "Category"
     And I press "Filter"
     Then I should not see "Star Signs"
-    Then I should see "Constellations"
+    And I should see "Constellations"
     And I should not see "Compass and Sextant"
 
     Given an index configuration of:
