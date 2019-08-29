@@ -21,6 +21,11 @@ creating elegant backends for website administration.
 * Try the [live demo][demo].
 * The [wiki] includes links to tutorials, articles and sample projects.
 
+## For enterprise
+
+Active Admin for enterprise is available via the Tidelift subscription. [Learn
+More][tidelift_enterprise].
+
 ## Need help?
 
 Please use [StackOverflow][stackoverflow] for help requests and how-to questions.
@@ -96,6 +101,7 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 [inch]: http://inch-ci.org/github/activeadmin/activeadmin
 [tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
 [tidelift]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=readme
+[tidelift_enterprise]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=referral&utm_campaign=github&utm_content=enterprise
 
 [docs]: http://activeadmin.info/0-installation.html
 [demo]: http://demo.activeadmin.info/admin
