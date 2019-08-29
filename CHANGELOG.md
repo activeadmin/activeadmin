@@ -495,6 +495,7 @@ Please check [0-6-stable] for previous changes.
 [#5822]: https://github.com/activeadmin/activeadmin/pull/5822
 [#5826]: https://github.com/activeadmin/activeadmin/pull/5826
 [#5831]: https://github.com/activeadmin/activeadmin/pull/5831
+[#5548]: https://github.com/activeadmin/activeadmin/pull/5548
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
