@@ -374,7 +374,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pundit
-  rails (~> 6.0.0.rc2)
+  rails (~> 6.0.0)
   rails-i18n
   rake
   rspec-rails
