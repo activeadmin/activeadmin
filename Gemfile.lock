@@ -438,7 +438,7 @@ DEPENDENCIES
   rubocop (= 0.63.1)
   rubocop-rspec (~> 1.30)
   simplecov
-  sqlite3
+  sqlite3 (~> 1.4)
   yard
 
 BUNDLED WITH

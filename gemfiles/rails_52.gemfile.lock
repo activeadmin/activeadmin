@@ -357,7 +357,7 @@ DEPENDENCIES
   rake
   rspec-rails
   simplecov
-  sqlite3
+  sqlite3 (~> 1.4)
 
 BUNDLED WITH
    2.0.2

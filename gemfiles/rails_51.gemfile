@@ -4,5 +4,6 @@ eval_gemfile(File.expand_path(File.join("..", "Gemfile.common"), __dir__))
 
 gem "rails", "~> 5.1.7"
 gem "activerecord-jdbcsqlite3-adapter", "~> 51.0", platform: :jruby
+gem "sqlite3", "~> 1.4", platform: :mri
 
 gemspec path: "../"
