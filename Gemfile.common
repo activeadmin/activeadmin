@@ -12,6 +12,7 @@ gem 'draper', '~> 3.1'
 gem "devise", git: "https://github.com/plataformatec/devise"
 
 group :test do
+  gem 'apparition'
   gem 'capybara', '~> 3.14'
 
   gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
@@ -25,5 +26,4 @@ group :test do
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
   gem 'sqlite3', platform: :mri
-  gem 'selenium-webdriver'
 end

@@ -32,11 +32,6 @@ version: 2.1
     name: Install dependencies
     command: bundle install --path /home/circleci/project/vendor/bundle --retry 3 --jobs 3 --verbose
 
-.install_chromedriver: &install_chromedriver
-  run:
-    name: Install chromedriver
-    command: bin/install_chromedriver.sh
-
 .save_cache: &save_cache
   save_cache:
     key: bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
@@ -136,7 +131,6 @@ version: 2.1
   - *copy_current_gemfile
   - *restore_cache
   - *install_dependencies
-  - *install_chromedriver
   - *save_cache
   - *restore_test_app_from_workspace
   - *restore_test_times
