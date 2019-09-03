@@ -9,7 +9,7 @@ gem 'pundit'
 gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
 
 gem 'draper', '~> 3.1'
-gem "devise", git: "https://github.com/plataformatec/devise"
+gem "devise", "~> 4.7"
 
 group :test do
   gem 'apparition'
