@@ -76,6 +76,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    apparition (0.4.0)
+      capybara (~> 3.13, < 4)
+      websocket-driver (>= 0.6.5)
     arbre (1.2.1)
       activesupport (>= 3.0.0)
     arel (7.1.4)
@@ -97,8 +100,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.2)
       xpath (~> 3.2)
-    childprocess (0.9.0)
-      ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
@@ -282,7 +283,6 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
-    rubyzip (1.2.2)
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
@@ -292,9 +292,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (3.141.0)
-      childprocess (~> 0.5)
-      rubyzip (~> 1.2, >= 1.2.2)
     simplecov (0.17.0)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -337,6 +334,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   activerecord-jdbcsqlite3-adapter (~> 50.0)
+  apparition
   cancancan
   capybara (~> 3.14)
   cucumber
@@ -356,7 +354,6 @@ DEPENDENCIES
   rails-i18n
   rake
   rspec-rails
-  selenium-webdriver
   simplecov
   sqlite3
 
