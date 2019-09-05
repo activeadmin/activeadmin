@@ -9,7 +9,7 @@ gem 'pundit'
 gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
 
 gem 'draper', '~> 3.1'
-gem "devise", git: "https://github.com/plataformatec/devise"
+gem "devise", "~> 4.7"
 
 group :test do
   gem 'apparition'
@@ -25,5 +25,4 @@ group :test do
   gem 'parallel_tests', '~> 2.26'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
-  gem 'sqlite3', platform: :mri
 end
