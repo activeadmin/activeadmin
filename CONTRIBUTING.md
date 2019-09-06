@@ -40,7 +40,7 @@ Now you should be able to run the entire suite using:
 bin/rake
 ```
 
-The test run will generate a sample Rails application in `tmp/rails` to run the
+The test run will generate a sample Rails application in `tmp/test_apps` to run the
 tests against.
 
 If your tests are passing locally but they're failing on CircleCI, it's probably
@@ -94,7 +94,7 @@ bin/rake local server
 ```
 
 This will automatically create a Rails app if none already exists, and store it
-in the `.test-rails-apps` folder.
+in the `tmp/development_apps` folder.
 
 You should now be able to open <http://localhost:3000/admin> in your browser.
 You can log in using:
