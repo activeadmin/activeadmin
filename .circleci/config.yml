@@ -15,7 +15,7 @@ version: 2.1
 .install_build_deps: &install_build_deps
   run:
     name: Install build dependencies so that sassc-rails extension builds
-    command: sudo apt install make gcc g++
+    command: apt install make gcc g++
 
 .copy_current_gemfile: &copy_current_gemfile
   run:
