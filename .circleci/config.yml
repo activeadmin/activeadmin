@@ -67,7 +67,7 @@ version: 2.1
     name: Upload coverage results to Code Climate
     command: |
       # The parts number should match the number of jobs under upload_coverage/requires
-      bin/test-reporter sum-coverage coverage/codeclimate.*.json --parts 12 --output coverage/codeclimate.total.json
+      bin/test-reporter sum-coverage coverage/codeclimate.*.json --parts 13 --output coverage/codeclimate.total.json
       bin/test-reporter upload-coverage --input coverage/codeclimate.total.json
 
 .save_test_app: &save_test_app
@@ -306,6 +306,30 @@ jobs:
     steps:
       *test_steps
 
+  ruby27rails60:
+    docker:
+    - image: rubylang/ruby:trunk-nightly-bionic
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+
+    steps:
+      - checkout
+      - *install_bundler
+      - *install_build_deps
+      - *copy_current_gemfile
+      - *restore_cache
+      - *install_dependencies
+      - *save_cache
+      - *restore_test_app_from_workspace
+      - *restore_test_times
+      - *restore_test_reporter
+      - *run_tests
+      - *format_coverage
+      - *save_coverage
+      - *save_test_times
+
   jruby92rails52:
     docker:
       - image: circleci/jruby:9.2.8.0-node-browsers
@@ -386,6 +410,10 @@ workflows:
           requires:
             - testapp60turbolinks
 
+      - ruby27rails60:
+          requires:
+            - testapp60
+
       - jruby92rails52:
           requires:
             - testapp52
@@ -410,6 +438,8 @@ workflows:
             - ruby26rails52
             - ruby26rails60
             - ruby26rails60turbolinks
+
+            - ruby27rails60
 
             - jruby92rails52
             - jruby92rails60
