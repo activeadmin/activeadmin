@@ -1,6 +1,5 @@
 <%
-  std_format = RUBY_ENGINE == "jruby" && Gem::Version.new(RUBY_ENGINE_VERSION) < Gem::Version.new("9.2") ? "progress" : "pretty"
-  std_opts = "--format #{std_format} --order random"
+  std_opts = "--format progress --order random"
   default_opts = std_opts + " --format ParallelTests::Gherkin::RuntimeLogger --out tmp/parallel_runtime_cucumber.log"
 %>
 
