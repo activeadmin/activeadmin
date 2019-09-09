@@ -5,7 +5,7 @@ version: 2.1
 .install_rubygems: &install_rubygems
   run:
     name: Install a specific rubygems version
-    command: gem update --system 3.0.3
+    command: gem update --system 3.0.6
 
 .install_bundler: &install_bundler
   run:
@@ -253,7 +253,7 @@ jobs:
 
   ruby24rails50:
     docker:
-      - image: circleci/ruby:2.4.6-node-browsers
+      - image: circleci/ruby:2.4.7-node-browsers
         user: root
 
     environment:
@@ -264,7 +264,7 @@ jobs:
 
   ruby24rails51:
     docker:
-      - image: circleci/ruby:2.4.6-node-browsers
+      - image: circleci/ruby:2.4.7-node-browsers
         user: root
 
     environment:
@@ -275,7 +275,7 @@ jobs:
 
   ruby24rails52:
     docker:
-      - image: circleci/ruby:2.4.6-node-browsers
+      - image: circleci/ruby:2.4.7-node-browsers
         user: root
 
     environment:
@@ -286,7 +286,7 @@ jobs:
 
   ruby25rails50:
     docker:
-      - image: circleci/ruby:2.5.5-node-browsers
+      - image: circleci/ruby:2.5.6-node-browsers
         user: root
 
     environment:
@@ -297,7 +297,7 @@ jobs:
 
   ruby25rails51:
     docker:
-      - image: circleci/ruby:2.5.5-node-browsers
+      - image: circleci/ruby:2.5.6-node-browsers
         user: root
 
     environment:
@@ -308,7 +308,7 @@ jobs:
 
   ruby25rails52:
     docker:
-      - image: circleci/ruby:2.5.5-node-browsers
+      - image: circleci/ruby:2.5.6-node-browsers
         user: root
 
     environment:
@@ -319,7 +319,7 @@ jobs:
 
   ruby25rails60:
     docker:
-    - image: circleci/ruby:2.5.5-node-browsers
+    - image: circleci/ruby:2.5.6-node-browsers
       user: root
 
     environment:
