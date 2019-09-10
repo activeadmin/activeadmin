@@ -41,6 +41,9 @@ module NavigationHelpers
     when /^the last post's show page$/
       admin_post_path(Post.last)
 
+    when /^the post's show page$/
+      admin_post_path(Post.last)
+
     when /^the last post's edit page$/
       edit_admin_post_path(Post.last)
 
