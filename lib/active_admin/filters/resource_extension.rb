@@ -134,7 +134,7 @@ module ActiveAdmin
           max = namespace.maximum_association_filter_arity
           if max != :unlimited
             high_arity, low_arity = not_poly.partition do |r|
-              r.klass.limit(max + 1).count > max
+              r.klass.reorder(nil).limit(max + 1).count > max
             end
 
             # Remove high-arity associations with no searchable column
