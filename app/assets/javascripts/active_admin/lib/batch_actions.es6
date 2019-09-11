@@ -1,9 +1,13 @@
 const onDOMReady = function() {
+  // Detach any previously attached handlers before re-attaching them.
+  // This avoids double-registered handlers when Turbolinks is enabled
+  $('.batch_actions_selector li a').off('click confirm:complete');
+
   //
   // Use ActiveAdmin.modal_dialog to prompt user if
   // confirmation is required for current Batch Action
   //
-  $('.batch_actions_selector li a').click(function(event){
+  $('.batch_actions_selector li a').on('click', function(event){
     let message;
     event.stopPropagation(); // prevent Rails UJS click event
     event.preventDefault();

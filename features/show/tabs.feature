@@ -6,7 +6,7 @@ Feature: Show - Tabs
   Scenario: Set a method to be called on the resource as the title
     Given a post with the title "Hello World" written by "Jane Doe" exists
 
-    And a show configuration of:
+    And a configuration of:
     """
       ActiveAdmin.register Post do
         show do
@@ -26,6 +26,9 @@ Feature: Show - Tabs
         end
       end
     """
+
+    And I am logged in
+    And I am on the post's show page
 
     Then I should see tabs:
     | Tab title |

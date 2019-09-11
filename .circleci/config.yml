@@ -67,7 +67,7 @@ version: 2.1
     name: Upload coverage results to Code Climate
     command: |
       # The parts number should match the number of jobs under upload_coverage/requires
-      bin/test-reporter sum-coverage coverage/codeclimate.*.json --parts 20 --output coverage/codeclimate.total.json
+      bin/test-reporter sum-coverage coverage/codeclimate.*.json --parts 22 --output coverage/codeclimate.total.json
       bin/test-reporter upload-coverage --input coverage/codeclimate.total.json
 
 .save_test_app: &save_test_app
@@ -228,6 +228,17 @@ jobs:
     steps:
       *test_app_steps
 
+  testapp60turbolinks:
+    docker:
+    - image: circleci/ruby:2.6.3-node
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks.gemfile
+
+    steps:
+      *test_app_steps
+
   lint_and_docs:
     docker:
       - image: circleci/ruby:2.6.3-node
@@ -372,6 +383,17 @@ jobs:
     steps:
       *test_steps
 
+  ruby26rails60turbolinks:
+    docker:
+    - image: circleci/ruby:2.6.3-node-browsers
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks.gemfile
+
+    steps:
+      *test_steps
+
   jruby92rails50:
     docker:
       - image: circleci/jruby:9.2.8.0-node-browsers
@@ -456,6 +478,10 @@ workflows:
           requires:
             - setup_coverage
 
+      - testapp60turbolinks:
+          requires:
+            - setup_coverage
+
       - ruby24rails50:
           requires:
             - testapp50
@@ -500,6 +526,10 @@ workflows:
           requires:
             - testapp60
 
+      - ruby26rails60turbolinks:
+          requires:
+            - testapp60turbolinks
+
       - jruby92rails50:
           requires:
             - testapp50
@@ -524,6 +554,7 @@ workflows:
             - testapp51
             - testapp52
             - testapp60
+            - testapp60turbolinks
 
             - ruby24rails50
             - ruby24rails51
@@ -538,6 +569,7 @@ workflows:
             - ruby26rails51
             - ruby26rails52
             - ruby26rails60
+            - ruby26rails60turbolinks
 
             - jruby92rails50
             - jruby92rails51

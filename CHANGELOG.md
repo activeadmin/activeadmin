@@ -14,6 +14,7 @@
 * Fix crash when displaying current filters after filtering by a nested resource. [#5816] by [@deivid-rodriguez]
 * Fix pagination when `pagination_total` is false to not show a "Last" link, since it's incorrect because we don't have the total pages information. [#5822] by [@deivid-rodriguez]
 * Fix optional nested resources causing incorrect routes to be generated, when renamed resources (through `:as` option) are involved. [#5826] by [@ndbroadbent], [@Kris-LIBIS] and [@deivid-rodriguez]
+* Fix double modal issue in applications using turbolinks 5. [#5842] by [@sgara]
 
 ## 2.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.1.0..v2.2.0)
 
@@ -494,6 +495,7 @@ Please check [0-6-stable] for previous changes.
 [#5822]: https://github.com/activeadmin/activeadmin/pull/5822
 [#5826]: https://github.com/activeadmin/activeadmin/pull/5826
 [#5831]: https://github.com/activeadmin/activeadmin/pull/5831
+[#5842]: https://github.com/activeadmin/activeadmin/pull/5842
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -565,3 +567,4 @@ Please check [0-6-stable] for previous changes.
 [@violeta-p]: https://github.com/violeta-p
 [@ndbroadbent]: https://github.com/ndbroadbent
 [@Kris-LIBIS]: https://github.com/Kris-LIBIS
+[@sgara]: https://github.com/sgara
