@@ -24,6 +24,5 @@ end
 
 gem "rails", "~> 6.0.0"
 gem "activerecord-jdbcsqlite3-adapter", "~> 60.0.rc1", platform: :jruby
-gem "sqlite3", "~> 1.4", platform: :mri
 
 gemspec path: "."
