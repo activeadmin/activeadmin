@@ -67,7 +67,7 @@ version: 2.1
     name: Upload coverage results to Code Climate
     command: |
       # The parts number should match the number of jobs under upload_coverage/requires
-      bin/test-reporter sum-coverage coverage/codeclimate.*.json --parts 22 --output coverage/codeclimate.total.json
+      bin/test-reporter sum-coverage coverage/codeclimate.*.json --parts 12 --output coverage/codeclimate.total.json
       bin/test-reporter upload-coverage --input coverage/codeclimate.total.json
 
 .save_test_app: &save_test_app
@@ -184,28 +184,6 @@ jobs:
       - *restore_coverage
       - *submit_coverage
 
-  testapp50:
-    docker:
-      - image: circleci/ruby:2.6.5-node
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
-
-    steps:
-      *test_app_steps
-
-  testapp51:
-    docker:
-      - image: circleci/ruby:2.6.5-node
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
-
-    steps:
-      *test_app_steps
-
   testapp52:
     docker:
       - image: circleci/ruby:2.6.5-node
@@ -262,28 +240,6 @@ jobs:
       - *format_coverage
       - *save_coverage
 
-  ruby24rails50:
-    docker:
-      - image: circleci/ruby:2.4.8-node-browsers
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
-
-    steps:
-      *test_steps
-
-  ruby24rails51:
-    docker:
-      - image: circleci/ruby:2.4.8-node-browsers
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
-
-    steps:
-      *test_steps
-
   ruby24rails52:
     docker:
       - image: circleci/ruby:2.4.8-node-browsers
@@ -291,28 +247,6 @@ jobs:
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_52.gemfile
-
-    steps:
-      *test_steps
-
-  ruby25rails50:
-    docker:
-      - image: circleci/ruby:2.5.7-node-browsers
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
-
-    steps:
-      *test_steps
-
-  ruby25rails51:
-    docker:
-      - image: circleci/ruby:2.5.7-node-browsers
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
 
     steps:
       *test_steps
@@ -335,28 +269,6 @@ jobs:
 
     environment:
       BUNDLE_GEMFILE: Gemfile
-
-    steps:
-      *test_steps
-
-  ruby26rails50:
-    docker:
-      - image: circleci/ruby:2.6.5-node-browsers
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
-
-    steps:
-      *test_steps
-
-  ruby26rails51:
-    docker:
-      - image: circleci/ruby:2.6.5-node-browsers
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
 
     steps:
       *test_steps
@@ -390,30 +302,6 @@ jobs:
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks.gemfile
-
-    steps:
-      *test_steps
-
-  jruby92rails50:
-    docker:
-      - image: circleci/jruby:9.2.8.0-node-browsers
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_50.gemfile
-      JRUBY_OPTS: -J-Xmx1024m --dev --debug
-
-    steps:
-      *test_steps
-
-  jruby92rails51:
-    docker:
-      - image: circleci/jruby:9.2.8.0-node-browsers
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_51.gemfile
-      JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
       *test_steps
@@ -462,14 +350,6 @@ workflows:
           requires:
             - setup_coverage
 
-      - testapp50:
-          requires:
-            - setup_coverage
-
-      - testapp51:
-          requires:
-            - setup_coverage
-
       - testapp52:
           requires:
             - setup_coverage
@@ -482,25 +362,9 @@ workflows:
           requires:
             - setup_coverage
 
-      - ruby24rails50:
-          requires:
-            - testapp50
-
-      - ruby24rails51:
-          requires:
-            - testapp51
-
       - ruby24rails52:
           requires:
             - testapp52
-
-      - ruby25rails50:
-          requires:
-            - testapp50
-
-      - ruby25rails51:
-          requires:
-            - testapp51
 
       - ruby25rails52:
           requires:
@@ -509,14 +373,6 @@ workflows:
       - ruby25rails60:
           requires:
             - testapp60
-
-      - ruby26rails50:
-          requires:
-            - testapp50
-
-      - ruby26rails51:
-          requires:
-            - testapp51
 
       - ruby26rails52:
           requires:
@@ -530,14 +386,6 @@ workflows:
           requires:
             - testapp60turbolinks
 
-      - jruby92rails50:
-          requires:
-            - testapp50
-
-      - jruby92rails51:
-          requires:
-            - testapp51
-
       - jruby92rails52:
           requires:
             - testapp52
@@ -550,28 +398,18 @@ workflows:
           requires:
             - lint_and_docs
 
-            - testapp50
-            - testapp51
             - testapp52
             - testapp60
             - testapp60turbolinks
 
-            - ruby24rails50
-            - ruby24rails51
             - ruby24rails52
 
-            - ruby25rails50
-            - ruby25rails51
             - ruby25rails52
             - ruby25rails60
 
-            - ruby26rails50
-            - ruby26rails51
             - ruby26rails52
             - ruby26rails60
             - ruby26rails60turbolinks
 
-            - jruby92rails50
-            - jruby92rails51
             - jruby92rails52
             - jruby92rails60

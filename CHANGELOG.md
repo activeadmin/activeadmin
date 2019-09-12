@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Removals
+
+* Support for Rails 5.0 and Rails 5.1 has been dropped. [#5877] by [@deivid-rodriguez]
+
 ## 2.4.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.3.1..v2.4.0)
 
 ### Enhancements
@@ -516,6 +520,7 @@ Please check [0-6-stable] for previous changes.
 [#5842]: https://github.com/activeadmin/activeadmin/pull/5842
 [#5854]: https://github.com/activeadmin/activeadmin/pull/5854
 [#5874]: https://github.com/activeadmin/activeadmin/pull/5874
+[#5877]: https://github.com/activeadmin/activeadmin/pull/5877
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
