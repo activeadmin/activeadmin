@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.2.0..v2.3.0)
+
 ### Enhancements
 
 #### Minor
