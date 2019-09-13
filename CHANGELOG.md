@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+* Revert ransack version pinning because 2.3 has an outstanding bug that affects quite a lot of users. See [this ransack issue](https://github.com/activerecord-hackery/ransack/issues/1039) for more information. [#5854] by [@deivid-rodriguez]
+
 ## 2.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.2.0..v2.3.0)
 
 ### Enhancements
@@ -498,6 +502,7 @@ Please check [0-6-stable] for previous changes.
 [#5826]: https://github.com/activeadmin/activeadmin/pull/5826
 [#5831]: https://github.com/activeadmin/activeadmin/pull/5831
 [#5842]: https://github.com/activeadmin/activeadmin/pull/5842
+[#5854]: https://github.com/activeadmin/activeadmin/pull/5854
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
