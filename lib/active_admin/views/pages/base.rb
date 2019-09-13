@@ -29,7 +29,8 @@ module ActiveAdmin
             text_node(active_admin_namespace.head)
 
             active_admin_application.stylesheets.each do |style, options|
-              text_node stylesheet_link_tag(style, options).html_safe
+              stylesheet_tag = active_admin_namespace.use_webpacker ? stylesheet_pack_tag(style, options) : stylesheet_link_tag(style, options)
+              text_node(stylesheet_tag.html_safe)
             end
 
             active_admin_namespace.meta_tags.each do |name, content|
@@ -37,7 +38,8 @@ module ActiveAdmin
             end
 
             active_admin_application.javascripts.each do |path|
-              text_node(javascript_include_tag(path))
+              javascript_tag = active_admin_namespace.use_webpacker ? javascript_pack_tag(path)) : javascript_include_tag(path)
+              text_node(javascript_tag)
             end
 
             if active_admin_namespace.favicon

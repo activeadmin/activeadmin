@@ -106,5 +106,8 @@ module ActiveAdmin
 
     # Include association filters by default
     register :include_default_association_filters, true
+
+    # Switch between asset pipeline and webpacker assets
+    register :use_webpacker, false
   end
 end

@@ -79,6 +79,19 @@ if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_turbolinks
   append_file 'app/assets/javascripts/active_admin.js', "//= require turbolinks\n"
 end
 
+# Setup webpacker if necessary
+if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_webpacker.gemfile", __dir__)
+  inject_into_file 'config/initializers/active_admin.rb', "\n  config.use_webpacker = true\n", before: /^end/
+  rake "webpacker:install"
+  create_file 'app/javascript/packs/active_admin.scss'
+  create_file 'app/javascript/packs/active_admin/print.scss'
+  create_file 'app/javascript/packs/active_admin.js'
+  append_file 'app/javascript/packs/active_admin.js', "import './active_admin.css';"
+  gsub_file 'config/webpacker.yml', /^.*extract_css.*$/, <<-YML
+  extract_css: true
+  YML
+end
+
 if ENV['RAILS_ENV'] != 'test'
   inject_into_file 'config/routes.rb', "\n  root to: redirect('admin')", after: /.*routes.draw do/
 end
