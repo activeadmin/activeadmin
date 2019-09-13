@@ -541,6 +541,7 @@ Please check [0-6-stable] for previous changes.
 [#5548]: https://github.com/activeadmin/activeadmin/pull/5548
 [#5842]: https://github.com/activeadmin/activeadmin/pull/5842
 [#5854]: https://github.com/activeadmin/activeadmin/pull/5854
+[#5855]: https://github.com/activeadmin/activeadmin/pull/5855
 [#5874]: https://github.com/activeadmin/activeadmin/pull/5874
 [#5877]: https://github.com/activeadmin/activeadmin/pull/5877
 [#5886]: https://github.com/activeadmin/activeadmin/pull/5886
