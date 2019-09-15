@@ -54,6 +54,9 @@ Layout/EndOfLine:
 Layout/ExtraSpacing:
   Enabled: true
 
+Layout/Tab:
+  Enabled: true
+
 Rails:
   Enabled: true
 
