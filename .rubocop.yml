@@ -75,6 +75,10 @@ Layout/ParameterAlignment:
   Enabled: true
   EnforcedStyle: with_fixed_indentation
 
+Layout/IndentationStyle:
+  Enabled: true
+  EnforcedStyle: spaces
+
 Rails/FilePath:
   Enabled: true
   EnforcedStyle: slashes
