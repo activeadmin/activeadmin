@@ -227,6 +227,20 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
     end
 
+    it "makes no expensive COUNT queries when pagination_total is false" do
+      require 'db-query-matchers'
+
+      undecorated_collection = Post.all.page(1).per(30)
+
+      expect { paginated_collection(undecorated_collection, pagination_total: false) }
+        .not_to make_database_queries(matching: "SELECT COUNT(*) FROM \"posts\"")
+
+      decorated_collection = controller_with_decorator("index", PostDecorator).apply_collection_decorator(undecorated_collection)
+
+      expect { paginated_collection(decorated_collection, pagination_total: false) }
+        .not_to make_database_queries(matching: "SELECT COUNT(*) FROM \"posts\"")
+    end
+
     context "when specifying per_page: array option" do
       let(:collection) do
         posts = 10.times.map { Post.new }
