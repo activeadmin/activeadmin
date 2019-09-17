@@ -1,4 +1,24 @@
 sk:
+  activerecord:
+    models:
+      comment:
+        one: "Komentár"
+        few: "Komentáre"
+        many: "Komentárov"
+        other: "Komentáre"
+      active_admin/comment:
+        one: "Komentár"
+        few: "Komentáre"
+        many: "Komentárov"
+        other: "Komentáre"
+    attributes:
+      active_admin/comment:
+        author_type: "Typ autora"
+        body: "Telo"
+        created_at: "Vytvorený"
+        namespace: "Namespace"
+        resource_type: "Typ komentovanej položky"
+        updated_at: "Upravený"
   active_admin:
     dashboard: Úvod
     dashboard_welcome:
@@ -8,6 +28,7 @@ sk:
     edit: "Upraviť"
     delete: "Zmazať"
     delete_confirmation: "Ste si istí, že chcete túto položku zmazať?"
+    create_another: "Vytvoriť ďalší %{model}"
     new_model: "Vytvoriť"
     edit_model: "Upraviť"
     delete_model: "Zmazať"
@@ -20,6 +41,7 @@ sk:
     has_many_new: "Pridať nový"
     has_many_delete: "Zmazať"
     has_many_remove: "Odstrániť"
+    move: "Presunúť"
     filters:
       buttons:
         filter: "Filtrovať"
@@ -31,6 +53,17 @@ sk:
         ends_with: "Končí na"
         greater_than: "Väčší ako"
         less_than: "Menší ako"
+        gteq_datetime: "Od"
+        lteq_datetime: "Do"
+        from: "Od"
+        to: "Do"
+    scopes:
+      all: "Všetko"
+    search_status:
+      headline: "Stav vyhľadávania:"
+      current_scope: "Scope:"
+      current_filters: "Filtre:"
+      no_current_filters: "Žiadne"
     status_tag:
       "yes": "Áno"
       "no": "Nie"
@@ -40,6 +73,7 @@ sk:
     powered_by: "%{active_admin} %{version}"
     sidebars:
       filters: "Filtre"
+      search_status: "Stav vyhľadávania"
     pagination:
       empty: "Nenájdený."
       one: "Zobrazená  <b>1</b> položka"
@@ -70,11 +104,14 @@ sk:
       labels:
         destroy: "Vymazať"
     comments:
+      created_at: "Vytvorený"
       resource_type: "Typ zdroja"
       author_type: "Typ autora"
       body: "Telo"
       author: "Autor"
       add: "Pridať komentár"
+      delete: "Zmazať komentár"
+      delete_confirmation: "Naozaj chcete zmazať tento komentár?"
       resource: "Zdroj"
       no_comments_yet: "Žiadny komentár"
       author_missing: "Anonymný"
@@ -82,6 +119,19 @@ sk:
       errors:
         empty_text: "Komentár nebol uložený, je prázdny."
     devise:
+      username:
+        title: "Užívateľské meno"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Subdoména"
+      password:
+        title: "Heslo"
+      password_confirmation:
+        title: "Potvrdenie hesla"
+      sign_up:
+        title: "Registrácia"
+        submit: "Registrovať"
       login:
         title: "Prihlásenie"
         remember_me: "Zapamätať si ma"
@@ -95,11 +145,20 @@ sk:
       unlock:
         title: "Zaslanie inštrukcií k odomknutiu účtu"
         submit: "Zaslať inštrukcií k odomknutiu účtu"
+      resend_confirmation_instructions:
+        title: "Preposlanie potvrdzovacie inštrukcie"
+        submit: "Preposlať potvrdzovacie inštrukcie"
       links:
         sign_in: "Prihlásiť sa"
         sign_up: "Registrovať sa"
         forgot_your_password: "Zabudli ste heslo?"
         sign_in_with_omniauth_provider: "Prihlásiť sa cez %{provider}"
+        resend_unlock_instructions: "Poslať znovu inštrukcie na odomknutie účtu"
+        resend_confirmation_instructions: "Preposlať potvrdzovacie inštrukcie"
+    unsupported_browser:
+      headline: "ActiveAdmin nepodporuje Internet Explorer vo verzii <= 8."
+      recommendation: "Odporúčame <a href=\"http://browsehappy.com/\">aktualizovať Váš prehliadač</a>."
+      turn_off_compatibility_view: "Ak používate Internet Explorer vo verzii >= 9, uistite sa, že <a href=\"https://support.microsoft.com/en-us/help/17471\">\"režim kompatibility\" je vypnutý</a>"
     access_denied:
       message: "Nemáte oprávnenie k vykonaniu tejto akcie."
     index_list:
