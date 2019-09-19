@@ -1,0 +1,25 @@
+{
+  "extends": "eslint:recommended",
+  "rules": {
+    "semi": ["error", "never"],
+    "quotes": ["error", "double"],
+    "no-unused-vars": ["error", { "vars": "all", "args": "none" }],
+    "no-undef": ["error", { "typeof": true }]
+  },
+  "plugins": [
+    "import"
+  ],
+  "env": {
+    "browser": true,
+    "jquery": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "globals": {
+    "Turbolinks": "readonly",
+    "ActiveAdmin": "writable"
+  }
+}

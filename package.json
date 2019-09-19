@@ -1,7 +1,12 @@
 {
-  "name": "activeadmin",
+  "name": "active_admin",
   "version": "2.1.0",
   "description": "The administration framework for Ruby on Rails.",
+  "main": "app/assets/javascripts/active_admin.js",
+  "files": [
+    "app/assets/javascripts/*.js",
+    "src/*.js"
+  ],
   "repository": {
     "type": "git",
     "url": "activeadmin/activeadmin"
@@ -17,9 +22,33 @@
   },
   "homepage": "htts://activeadmin.info",
   "devDependencies": {
-    "gherkin-lint": "^3.3.3"
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "eslint": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "gherkin-lint": "^3.3.3",
+    "karma": "^4.3.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-qunit": "^4.0.0",
+    "karma-sauce-launcher": "^2.0.2",
+    "mock-socket": "^9.0.0",
+    "qunit": "^2.9.2",
+    "rollup": "^1.21.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-scss": "^1.0.2",
+    "rollup-plugin-uglify": "^6.0.3"
   },
   "scripts": {
-    "lint": "gherkin-lint features"
+    "build": "rollup --config rollup.config.js",
+    "lint": "eslint --fix app/javascript",
+    "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ujs": "^1.2.2",
+    "normalize.css": "^8.0.1"
   }
 }
