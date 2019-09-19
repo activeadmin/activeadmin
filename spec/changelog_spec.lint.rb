@@ -30,6 +30,11 @@ RSpec.describe "Changelog" do
     end
   end
 
+  it 'sorts contributors' do
+    contributors = changelog.scan(/^\[@([[:alnum:]]+)\]: https:\/\/github\.com\/\1$/).flatten
+    expect(contributors).to eq(contributors.sort { |a, b| a.downcase <=> b.downcase })
+  end
+
   describe 'entry' do
     let(:lines) { changelog.each_line }
 
