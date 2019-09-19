@@ -4,7 +4,7 @@
 
 ### Enhancements
 
-* Make optimization to not use expensive COUNT queries also work for decorated actions. [#5811](https://github.com/activeadmin/activeadmin/pull/5811) by [@irmela]
+* Make optimization to not use expensive COUNT queries also work for decorated actions. [#5811] by [@irmela]
 
 ## 2.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.3.0..v2.3.1)
 

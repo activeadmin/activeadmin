@@ -18,6 +18,11 @@ RSpec.describe "Changelog" do
     end
   end
 
+  it 'does not include explicit pr links' do
+    explicit_link_names = changelog.scan(/\[#([0-9]+)\]\(https:\/\/github\.com\/activeadmin\/activeadmin\/pull\/\1\)/).flatten.uniq
+    expect(explicit_link_names).to be_empty
+  end
+
   it 'has definitions for users' do
     implicit_link_names = changelog.scan(/ \[@([[:alnum:]]+)\]/).flatten.uniq
     implicit_link_names.each do |name|
