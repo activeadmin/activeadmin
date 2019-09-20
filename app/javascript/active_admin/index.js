@@ -20,6 +20,4 @@ import './initializers/datepicker';
 import './initializers/filters';
 import './initializers/tabs';
 
-import './styles/active_admin.scss'
-
 window.ActiveAdmin = {}
