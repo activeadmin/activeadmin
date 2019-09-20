@@ -112,6 +112,44 @@ Draper::CollectionDecorator.send :delegate, :per_page_kaminari
 
 If you're getting the error `wrong number of arguments (6 for 4..5)`, [read #2703].
 
+## webpacker
+
+Since rails 6.0 webpacker has become the default asset generator. You can opt in using webpacker for ActiveAdmin assets as well by setting `use_webpacker` after install or manually.
+
+* after installing:
+
+  ```sh
+  rails g active_admin:install --use_webpacker
+  ```
+
+* manually:
+
+  ```ruby
+  ActiveAdmin.setup do |config|
+    config.use_webpacker = true
+  end
+  ```
+
+  And run the generator to get default Active Admin assets:
+
+  ```sh
+  rails g active_admin:webpacker
+  ```
+
+Either way, Active Admin needs jquery to be available through webpack plugin, so if you haven't already, add this to your `config/webpack/environment.js`:
+
+```javascript
+const webpack = require('webpack')
+
+environment.plugins.prepend('Provide',
+  new webpack.ProvidePlugin({
+    "$":"jquery",
+    "jQuery":"jquery",
+    "window.jQuery":"jquery"
+  })
+)
+```
+
 [CHANGELOG]: https://github.com/activeadmin/activeadmin/blob/master/CHANGELOG.md
 [dashboard.rb]: https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/dashboard.rb
 [active_admin.rb]: https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/active_admin.rb.erb

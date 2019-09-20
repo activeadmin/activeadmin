@@ -58,7 +58,7 @@ gsub_file 'config/boot.rb', /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
 RUBY
 
 # Setup Active Admin
-generate 'active_admin:install'
+generate "active_admin:install#{" --use-webpacker" if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_webpacker.gemfile", __dir__)}"
 
 # Force strong parameters to raise exceptions
 inject_into_file 'config/application.rb', after: 'class Application < Rails::Application' do
@@ -81,15 +81,23 @@ end
 
 # Setup webpacker if necessary
 if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_webpacker.gemfile", __dir__)
-  inject_into_file 'config/initializers/active_admin.rb', "\n  config.use_webpacker = true\n", before: /^end/
   rake "webpacker:install"
-  create_file 'app/javascript/packs/active_admin.scss'
-  create_file 'app/javascript/packs/active_admin/print.scss'
-  create_file 'app/javascript/packs/active_admin.js'
-  append_file 'app/javascript/packs/active_admin.js', "import './active_admin.css';"
   gsub_file 'config/webpacker.yml', /^.*extract_css.*$/, <<-YML
   extract_css: true
   YML
+  jquery_env = <<-ENV
+const webpack = require('webpack')
+
+environment.plugins.prepend('Provide',
+  new webpack.ProvidePlugin({
+    "$":"jquery",
+    "jQuery":"jquery",
+    "window.jQuery":"jquery"
+  })
+)
+  ENV
+  inject_into_file 'config/webpack/environment.js', jquery_env, after: "const { environment } = require('@rails/webpacker')"
+  run "yarn add file:../../.."
 end
 
 if ENV['RAILS_ENV'] != 'test'
