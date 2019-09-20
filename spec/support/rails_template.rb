@@ -86,7 +86,7 @@ if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_webpacker.
   extract_css: true
   YML
   jquery_env = <<-ENV
-const webpack = require('webpack')
+\nconst webpack = require('webpack')
 
 environment.plugins.prepend('Provide',
   new webpack.ProvidePlugin({
