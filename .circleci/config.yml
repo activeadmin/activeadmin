@@ -239,6 +239,17 @@ jobs:
     steps:
       *test_app_steps
 
+  testapp60webpacker:
+    docker:
+    - image: circleci/ruby:2.6.3-node
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60_webpacker.gemfile
+
+    steps:
+      *test_app_steps
+
   lint_and_docs:
     docker:
       - image: circleci/ruby:2.6.3-node
@@ -394,6 +405,17 @@ jobs:
     steps:
       *test_steps
 
+  ruby26rails60webpacker:
+    docker:
+    - image: circleci/ruby:2.6.3-node-browsers
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60_webpacker.gemfile
+
+    steps:
+      *test_steps
+
   jruby92rails50:
     docker:
       - image: circleci/jruby:9.2.8.0-node-browsers
@@ -482,6 +504,10 @@ workflows:
           requires:
             - setup_coverage
 
+      - testapp60webpacker:
+          requires:
+            - setup_coverage
+
       - ruby24rails50:
           requires:
             - testapp50
@@ -530,6 +556,10 @@ workflows:
           requires:
             - testapp60turbolinks
 
+      - ruby26rails60webpacker:
+          requires:
+            - testapp60webpacker
+
       - jruby92rails50:
           requires:
             - testapp50
@@ -555,6 +585,7 @@ workflows:
             - testapp52
             - testapp60
             - testapp60turbolinks
+            - testapp60webpacker
 
             - ruby24rails50
             - ruby24rails51
@@ -570,6 +601,7 @@ workflows:
             - ruby26rails52
             - ruby26rails60
             - ruby26rails60turbolinks
+            - ruby26rails60webpacker
 
             - jruby92rails50
             - jruby92rails51

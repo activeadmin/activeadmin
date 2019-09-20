@@ -29,6 +29,7 @@ export default {
     license({
       banner: {
         commentStyle: 'none',
+        // Add rails-style imports for sprockets usage
         content:stripIndent`
           //= require jquery3
           //= require jquery-ui/widgets/datepicker
@@ -42,6 +43,7 @@ export default {
       },
     }),
   ],
+  // Use client's yarn dependencies instead of bundling everything
   external: [
     'jquery',
     'jquery-ui/ui/widgets/datepicker',
