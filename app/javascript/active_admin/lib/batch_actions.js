@@ -1,6 +1,6 @@
-import ModalDialog from "./modal_dialog";
+import ModalDialog from "./modal_dialog"
 
-const onDOMReady = function() {
+const onDOMReady = function () {
   // Detach any previously attached handlers before re-attaching them.
   // This avoids double-registered handlers when Turbolinks is enabled
   $(".batch_actions_selector li a").off("click confirm:complete")
@@ -9,12 +9,12 @@ const onDOMReady = function() {
   // Use ActiveAdmin.modal_dialog to prompt user if
   // confirmation is required for current Batch Action
   //
-  $(".batch_actions_selector li a").on("click", function(event){
+  $(".batch_actions_selector li a").on("click", function (event) {
     let message
     event.stopPropagation() // prevent Rails UJS click event
     event.preventDefault()
     if ((message = $(this).data("confirm"))) {
-      ModalDialog(message, $(this).data("inputs"), inputs => {
+      ModalDialog(message, $(this).data("inputs"), (inputs) => {
         $(this).trigger("confirm:complete", inputs)
       })
     } else {
@@ -22,7 +22,7 @@ const onDOMReady = function() {
     }
   })
 
-  $(".batch_actions_selector li a").on("confirm:complete", function(event, inputs){
+  $(".batch_actions_selector li a").on("confirm:complete", function (event, inputs) {
     let val
     if ((val = JSON.stringify(inputs))) {
       $("#batch_action_inputs").removeAttr("disabled").val(val)
@@ -39,23 +39,22 @@ const onDOMReady = function() {
   //
 
   if ($(".batch_actions_selector").length && $(":checkbox.toggle_all").length) {
-
     if ($(".paginated_collection table.index_table").length) {
       $(".paginated_collection table.index_table").tableCheckboxToggler()
     } else {
       $(".paginated_collection").checkboxToggler()
     }
 
-    $(document).on("change", ".paginated_collection :checkbox", function() {
+    $(document).on("change", ".paginated_collection :checkbox", () => {
       if ($(".paginated_collection :checkbox:checked").length && $(".dropdown_menu_list").children().length) {
-        $(".batch_actions_selector").each(function() { $(this).aaDropdownMenu("enable") })
+        $(".batch_actions_selector").each(function () { $(this).aaDropdownMenu("enable") })
       } else {
-        $(".batch_actions_selector").each(function() { $(this).aaDropdownMenu("disable") })
+        $(".batch_actions_selector").each(function () { $(this).aaDropdownMenu("disable") })
       }
     })
   }
 }
 
-$(document).
-  ready(onDOMReady).
-  on("page:load turbolinks:load", onDOMReady)
+$(document)
+  .ready(onDOMReady)
+  .on("page:load turbolinks:load", onDOMReady)

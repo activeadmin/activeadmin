@@ -1,4 +1,4 @@
-$(function() {
+$(() => {
   // Provides a before-removal hook:
   // $ ->
   //   # This is a good place to tear down JS plugins to prevent memory leaks.
@@ -11,9 +11,9 @@ $(function() {
   //     list_item_count = container.find('.has_many_fields').length
   //     alert("There are now #{list_item_count} items in the list")
   //
-  $(document).on("click", "a.button.has_many_remove", function(event){
+  $(document).on("click", "a.button.has_many_remove", function (event) {
     event.preventDefault()
-    const parent    = $(this).closest(".has_many_container")
+    const parent = $(this).closest(".has_many_container")
     const to_remove = $(this).closest("fieldset")
     recompute_positions(parent)
 
@@ -34,7 +34,7 @@ $(function() {
   //   $(document).on 'has_many_add:after', '.has_many_container', (e, fieldset, container)->
   //     fieldset.find('select').chosen()
   //
-  $(document).on("click", "a.button.has_many_add", function(event){
+  $(document).on("click", "a.button.has_many_add", function (event) {
     let before_add
     event.preventDefault()
     const parent = $(this).closest(".has_many_container")
@@ -42,10 +42,10 @@ $(function() {
 
     if (!before_add.isDefaultPrevented()) {
       let index = parent.data("has_many_index") || (parent.children("fieldset").length - 1)
-      parent.data({has_many_index: ++index})
+      parent.data({ has_many_index: ++index })
 
       const regex = new RegExp($(this).data("placeholder"), "g")
-      const html  = $(this).data("html").replace(regex, index)
+      const html = $(this).data("html").replace(regex, index)
 
       const fieldset = $(html).insertBefore(this)
       recompute_positions(parent)
@@ -53,7 +53,7 @@ $(function() {
     }
   })
 
-  $(document).on("change", ".has_many_container[data-sortable] :input[name$=\"[_destroy]\"]", function() {
+  $(document).on("change", ".has_many_container[data-sortable] :input[name$=\"[_destroy]\"]", function () {
     recompute_positions($(this).closest(".has_many"))
   })
 
@@ -61,31 +61,31 @@ $(function() {
   $(document).on("has_many_add:after", ".has_many_container", init_sortable)
 })
 
-var init_sortable = function() {
+var init_sortable = function () {
   const elems = $(".has_many_container[data-sortable]:not(.ui-sortable)")
   elems.sortable({
     items: "> fieldset",
     handle: "> ol > .handle",
     start: (ev, ui) => {
-      ui.item.css({opacity: 0.3})
+      ui.item.css({ opacity: 0.3 })
     },
-    stop: function (ev, ui) {
-      ui.item.css({opacity: 1.0})
+    stop(ev, ui) {
+      ui.item.css({ opacity: 1.0 })
       recompute_positions($(this))
-    }
+    },
   })
   elems.each(recompute_positions)
 }
 
-var recompute_positions = function(parent){
+var recompute_positions = function (parent) {
   parent = parent instanceof jQuery ? parent : $(this)
   const input_name = parent.data("sortable")
   let position = parseInt(parent.data("sortable-start") || 0, 10)
 
-  parent.children("fieldset").each(function() {
+  parent.children("fieldset").each(function () {
     // We ignore nested inputs, so when defining your has_many, be sure to keep
     // your sortable input at the root of the has_many block.
-    const destroy_input  = $(this).find("> ol > .input > :input[name$='[_destroy]']")
+    const destroy_input = $(this).find("> ol > .input > :input[name$='[_destroy]']")
     const sortable_input = $(this).find(`> ol > .input > :input[name$='[${input_name}]']`)
 
     if (sortable_input.length) {

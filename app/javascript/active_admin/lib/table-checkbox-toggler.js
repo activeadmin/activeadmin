@@ -6,7 +6,7 @@ class TableCheckboxToggler extends CheckboxToggler {
 
     this.$container
       .find("tbody td")
-      .click(event => {
+      .click((event) => {
         if (event.target.type !== "checkbox") {
           this._didClickCell(event.target)
         }

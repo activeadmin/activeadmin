@@ -1,5 +1,4 @@
 (($, ActiveAdmin) => {
-
   class PerPage {
     constructor(element) {
       this.element = element
@@ -8,7 +7,7 @@
     update() {
       const params = ActiveAdmin
         .queryStringToParams()
-        .filter(({name}) => name != "per_page" || name != "page")
+        .filter(({ name }) => name != "per_page" || name != "page")
 
       params.push({ name: "per_page", value: this.element.value })
 
@@ -36,12 +35,11 @@
     }
   }
 
-  $(document).
-    on("change", ".pagination_per_page > select", function(event) {
+  $(document)
+    .on("change", ".pagination_per_page > select", function (event) {
       PerPage._jQueryInterface.call($(this), "update")
     })
 
-  $.fn["perPage"] = PerPage._jQueryInterface
-  $.fn["perPage"].Constructor = PerPage
-
+  $.fn.perPage = PerPage._jQueryInterface
+  $.fn.perPage.Constructor = PerPage
 })(jQuery, window.activeadmin)

@@ -1,7 +1,8 @@
 function ModalDialog(message, inputs, callback) {
   let html = `<form id="dialog_confirm" title="${message}"><ul>`
-  for (let name in inputs) {
-    var elem, opts, wrapper
+  for (const name in inputs) {
+    var elem; var opts; var
+      wrapper
     let type = inputs[name]
     if (/^(datepicker|checkbox|text|number)$/.test(type)) {
       wrapper = "input"
@@ -16,24 +17,24 @@ function ModalDialog(message, inputs, callback) {
     let klass = type === "datepicker" ? type : ""
     html += `<li>
       <label>${name.charAt(0).toUpperCase() + name.slice(1)}</label>
-      <${wrapper} name="${name}" class="${klass}" type="${type}">` +
-        (opts ? ((() => {
-          const result = []
+      <${wrapper} name="${name}" class="${klass}" type="${type}">${
+  opts ? ((() => {
+    const result = []
 
-          opts.forEach(v => {
-            const $elem = $(`<${elem}/>`)
-            if ($.isArray(v)) {
-              $elem.text(v[0]).val(v[1])
-            } else {
-              $elem.text(v)
-            }
-            result.push($elem.wrap("<div>").parent().html())
-          })
+    opts.forEach((v) => {
+      const $elem = $(`<${elem}/>`)
+      if ($.isArray(v)) {
+        $elem.text(v[0]).val(v[1])
+      } else {
+        $elem.text(v)
+      }
+      result.push($elem.wrap("<div>").parent().html())
+    })
 
-          return result
-        })()).join("") : "") +
-      `</${wrapper}>` +
-    "</li>";
+    return result
+  })()).join("") : ""
+}</${wrapper}>`
+    + "</li>";
     [wrapper, elem, opts, type, klass] = [] // unset any temporary variables
   }
 
@@ -55,9 +56,9 @@ function ModalDialog(message, inputs, callback) {
       },
       Cancel() {
         $(this).dialog("close").remove()
-      }
-    }
+      },
+    },
   })
 }
 
-export default ModalDialog;
+export default ModalDialog

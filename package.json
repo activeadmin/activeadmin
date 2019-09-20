@@ -4,7 +4,9 @@
   "description": "The administration framework for Ruby on Rails.",
   "main": "app/assets/javascripts/active_admin.js",
   "files": [
+    "app/assets/images/*",
     "app/assets/javascripts/*.js",
+    "app/assets/stylesheets/*.scss",
     "src/*.js"
   ],
   "repository": {
@@ -24,6 +26,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
+    "common-tags": "^1.8.0",
     "eslint": "^6.4.0",
     "eslint-plugin-import": "^2.18.2",
     "gherkin-lint": "^3.3.3",
@@ -36,12 +39,13 @@
     "rollup": "^1.21.4",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-license": "^0.12.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-uglify": "^6.0.3"
   },
   "scripts": {
     "build": "rollup --config rollup.config.js",
-    "lint": "eslint --fix app/javascript",
+    "lint": "eslint app/javascript",
     "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src"
   },
   "dependencies": {

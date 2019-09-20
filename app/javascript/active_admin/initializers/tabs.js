@@ -1,6 +1,5 @@
-let onDOMReady = () =>
-  $("#active_admin_content .tabs").tabs()
+const onDOMReady = () => $("#active_admin_content .tabs").tabs()
 
-$(document).
-  ready(onDOMReady).
-  on("page:load turbolinks:load", onDOMReady)
+$(document)
+  .ready(onDOMReady)
+  .on("page:load turbolinks:load", onDOMReady)

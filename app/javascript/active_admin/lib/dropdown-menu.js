@@ -1,5 +1,4 @@
 class DropdownMenu {
-
   constructor(options, element) {
     this.options = options
     this.element = element
@@ -8,14 +7,14 @@ class DropdownMenu {
     const defaults = {
       fadeInDuration: 20,
       fadeOutDuration: 100,
-      onClickActionItemCallback: null
+      onClickActionItemCallback: null,
     }
 
     this.options = $.extend(defaults, this.options)
-    this.isOpen  = false
+    this.isOpen = false
 
     this.$menuButton = this.$element.find(".dropdown_menu_button")
-    this.$menuList   = this.$element.find(".dropdown_menu_list_wrapper")
+    this.$menuList = this.$element.find(".dropdown_menu_list_wrapper")
 
     this._buildMenuList()
     this._bind()
@@ -55,11 +54,10 @@ class DropdownMenu {
   option(key, value) {
     if ($.isPlainObject(key)) {
       return this.options = $.extend(true, this.options, key)
-    } else if (key != null) {
+    } if (key != null) {
       return this.options[key]
-    } else {
-      return this.options[key] = value
     }
+    return this.options[key] = value
   }
 
   _buildMenuList() {
@@ -89,7 +87,7 @@ class DropdownMenu {
     this.$menuList.css("top", this.$menuButton.position().top + this.$menuButton.outerHeight() + 10)
 
     const button_left = this.$menuButton.position().left
-    const button_center =  this.$menuButton.outerWidth() / 2
+    const button_center = this.$menuButton.outerWidth() / 2
     const button_right = button_left + (button_center * 2)
     const menu_center = this.$menuList.outerWidth() / 2
     const nipple_center = this.$nipple.outerWidth() / 2

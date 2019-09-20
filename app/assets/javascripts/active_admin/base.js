@@ -1,3 +1,11 @@
+//= require jquery3
+//= require jquery-ui/widgets/datepicker
+//= require jquery-ui/widgets/dialog
+//= require jquery-ui/widgets/sortable
+//= require jquery-ui/widgets/tabs
+//= require jquery-ui/widget
+//= require jquery_ujs
+//= require_self
 (function(factory) {
   typeof define === "function" && define.amd ? define([ "jquery", "jquery-ui/ui/widgets/datepicker", "jquery-ui/ui/widgets/dialog", "jquery-ui/ui/widgets/sortable", "jquery-ui/ui/widgets/tabs", "jquery-ui/ui/widget", "jquery-ujs" ], factory) : factory();
 })(function() {

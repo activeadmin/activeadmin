@@ -3,9 +3,7 @@ import DropdownMenu from "./dropdown-menu"
 import TableCheckboxToggler from "./table-checkbox-toggler"
 
 ((window, $) => {
-
   class ActiveAdmin {
-
     static get turbolinks() {
       return (typeof Turbolinks !== "undefined" && Turbolinks.supported)
     }
@@ -24,18 +22,16 @@ import TableCheckboxToggler from "./table-checkbox-toggler"
 
       return this.queryString()
         .split("&")
-        .map(pair => pair.split("="))
-        .map(([key, value]) => {
-          return { name: decode(key), value: decode(value) }
-        })
+        .map((pair) => pair.split("="))
+        .map(([key, value]) => ({ name: decode(key), value: decode(value) }))
     }
 
     static toQueryString(params) {
       const encode = (value) => encodeURIComponent(value || "")
 
       return params
-        .map(({name, value}) => [ encode(name), encode(value) ])
-        .map(pair => pair.join("="))
+        .map(({ name, value }) => [encode(name), encode(value)])
+        .map((pair) => pair.join("="))
         .join("&")
     }
   }
@@ -52,8 +48,7 @@ import TableCheckboxToggler from "./table-checkbox-toggler"
 
   const onDOMReady = () => $(".dropdown_menu").aaDropdownMenu()
 
-  $(document).
-    ready(onDOMReady).
-    on("page:load turbolinks:load", onDOMReady)
-
+  $(document)
+    .ready(onDOMReady)
+    .on("page:load turbolinks:load", onDOMReady)
 })(window, jQuery)

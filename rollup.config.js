@@ -1,7 +1,9 @@
-import resolve from "rollup-plugin-node-resolve"
-import commonjs from "rollup-plugin-commonjs"
-import babel from "rollup-plugin-babel"
+import resolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
+import babel from "rollup-plugin-babel";
 import { uglify } from "rollup-plugin-uglify";
+import license from "rollup-plugin-license";
+import { stripIndent } from 'common-tags';
 
 const uglifyOptions = {
   mangle: false,
@@ -15,7 +17,7 @@ const uglifyOptions = {
 export default {
   input: "app/javascript/active_admin/index.js",
   output: {
-    file: "app/assets/javascripts/active_admin.js",
+    file: "app/assets/javascripts/active_admin/base.js",
     format: "umd",
     name: "ActiveAdmin"
   },
@@ -23,7 +25,22 @@ export default {
     resolve(),
     commonjs(),
     babel(),
-    uglify(uglifyOptions)
+    uglify(uglifyOptions),
+    license({
+      banner: {
+        commentStyle: 'none',
+        content:stripIndent`
+          //= require jquery3
+          //= require jquery-ui/widgets/datepicker
+          //= require jquery-ui/widgets/dialog
+          //= require jquery-ui/widgets/sortable
+          //= require jquery-ui/widgets/tabs
+          //= require jquery-ui/widget
+          //= require jquery_ujs
+          //= require_self
+        `.trim()
+      },
+    }),
   ],
   external: [
     'jquery',

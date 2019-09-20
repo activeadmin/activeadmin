@@ -33,7 +33,7 @@ table.index_table {
     }
 
     &.sortable a {
-      background: image-url('../images/orderable.png') no-repeat 0 4px; padding-left: 13px;
+      background: '../../images/active_admin/orderable.png' no-repeat 0 4px; padding-left: 13px;
     }
 
     &.sorted-asc a { background-position: 0 -27px; }

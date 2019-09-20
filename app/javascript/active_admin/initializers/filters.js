@@ -1,12 +1,10 @@
 (($, ActiveAdmin) => {
-
   class Filters {
-
     static _clearForm(event) {
       const regex = /^(q\[|q%5B|q%5b|page|utf8|commit)/
       const params = ActiveAdmin
         .queryStringToParams()
-        .filter(({name}) => !name.match(regex))
+        .filter(({ name }) => !name.match(regex))
 
       event.preventDefault()
 
@@ -32,14 +30,12 @@
     }
 
     static _setSearchType() {
-      $(this).siblings("input").prop({name: `q[${this.value}]`})
+      $(this).siblings("input").prop({ name: `q[${this.value}]` })
     }
-
   }
 
-  $(document).
-    on("click", ".clear_filters_btn", Filters._clearForm).
-    on("submit", ".filter_form", Filters._disableEmptyInputFields).
-    on("change", ".filter_form_field.select_and_search select", Filters._setSearchType)
-
+  $(document)
+    .on("click", ".clear_filters_btn", Filters._clearForm)
+    .on("submit", ".filter_form", Filters._disableEmptyInputFields)
+    .on("change", ".filter_form_field.select_and_search select", Filters._setSearchType)
 })(jQuery, window.activeadmin)

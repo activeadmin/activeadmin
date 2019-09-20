@@ -1,5 +1,5 @@
 class CheckboxToggler {
-  constructor(options, container){
+  constructor(options, container) {
     this.options = options
     this.container = container
     this._init()
@@ -26,11 +26,11 @@ class CheckboxToggler {
   }
 
   _bind() {
-    this.checkboxes.change(event => this._didChangeCheckbox(event.target))
+    this.checkboxes.change((event) => this._didChangeCheckbox(event.target))
     this.toggle_all_checkbox.change(() => this._didChangeToggleAllCheckbox())
   }
 
-  _didChangeCheckbox(checkbox){
+  _didChangeCheckbox(checkbox) {
     const numChecked = this.checkboxes.filter(":checked").length
 
     const allChecked = numChecked === this.checkboxes.length
