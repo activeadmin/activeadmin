@@ -5,6 +5,7 @@
 ### Enhancements
 
 * Make optimization to not use expensive COUNT queries also work for decorated actions. [#5811] by [@irmela]
+* Render a text filter instead of a select for large associations (opt-in) [#5548] by [@DanielHeath]
 
 ## 2.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.3.0..v2.3.1)
 
@@ -508,6 +509,7 @@ Please check [0-6-stable] for previous changes.
 [#5822]: https://github.com/activeadmin/activeadmin/pull/5822
 [#5826]: https://github.com/activeadmin/activeadmin/pull/5826
 [#5831]: https://github.com/activeadmin/activeadmin/pull/5831
+[#5548]: https://github.com/activeadmin/activeadmin/pull/5548
 [#5842]: https://github.com/activeadmin/activeadmin/pull/5842
 [#5854]: https://github.com/activeadmin/activeadmin/pull/5854
 
