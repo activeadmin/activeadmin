@@ -74,6 +74,11 @@ directory File.expand_path('templates/admin', __dir__), 'app/admin'
 # Add predefined policies
 directory File.expand_path('templates/policies', __dir__), 'app/policies'
 
+# Require turbolinks if necessary
+if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_turbolinks.gemfile", __dir__)
+  append_file 'app/assets/javascripts/active_admin.js', "//= require turbolinks\n"
+end
+
 if ENV['RAILS_ENV'] != 'test'
   inject_into_file 'config/routes.rb', "\n  root to: redirect('admin')", after: /.*routes.draw do/
 end

@@ -4,7 +4,6 @@ coverage
 .ruby-version
 pkg
 .bundle
-.test-rails-apps
 public
 .rspec_failures
 .rails-version

@@ -4,9 +4,21 @@
 
 ### Enhancements
 
+* Make optimization to not use expensive COUNT queries also work for decorated actions. [#5811] by [@irmela]
+* Render a text filter instead of a select for large associations (opt-in) [#5548] by [@DanielHeath]
+
+## 2.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.3.0..v2.3.1)
+
+### Bug Fixes
+
+* Revert ransack version pinning because 2.3 has an outstanding bug that affects quite a lot of users. See [this ransack issue](https://github.com/activerecord-hackery/ransack/issues/1039) for more information. [#5854] by [@deivid-rodriguez]
+
+## 2.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.2.0..v2.3.0)
+
+### Enhancements
+
 #### Minor
 
-* Render a text filter instead of a select for large associations (opt-in) [#5548] by [@DanielHeath]
 * Bump minimum ransack requirement to make sure everyone gets a version that works ok with all supported versions of Rails. [#5831] by [@deivid-rodriguez]
 
 ### Bug Fixes
@@ -15,6 +27,7 @@
 * Fix crash when displaying current filters after filtering by a nested resource. [#5816] by [@deivid-rodriguez]
 * Fix pagination when `pagination_total` is false to not show a "Last" link, since it's incorrect because we don't have the total pages information. [#5822] by [@deivid-rodriguez]
 * Fix optional nested resources causing incorrect routes to be generated, when renamed resources (through `:as` option) are involved. [#5826] by [@ndbroadbent], [@Kris-LIBIS] and [@deivid-rodriguez]
+* Fix double modal issue in applications using turbolinks 5. [#5842] by [@sgara]
 
 ## 2.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.1.0..v2.2.0)
 
@@ -491,11 +504,14 @@ Please check [0-6-stable] for previous changes.
 [#5800]: https://github.com/activeadmin/activeadmin/pull/5800
 [#5801]: https://github.com/activeadmin/activeadmin/pull/5801
 [#5802]: https://github.com/activeadmin/activeadmin/pull/5802
+[#5811]: https://github.com/activeadmin/activeadmin/pull/5811
 [#5816]: https://github.com/activeadmin/activeadmin/pull/5816
 [#5822]: https://github.com/activeadmin/activeadmin/pull/5822
 [#5826]: https://github.com/activeadmin/activeadmin/pull/5826
 [#5831]: https://github.com/activeadmin/activeadmin/pull/5831
 [#5548]: https://github.com/activeadmin/activeadmin/pull/5548
+[#5842]: https://github.com/activeadmin/activeadmin/pull/5842
+[#5854]: https://github.com/activeadmin/activeadmin/pull/5854
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -504,10 +520,12 @@ Please check [0-6-stable] for previous changes.
 [@amiel]: https://github.com/amiel
 [@amiuhle]: https://github.com/amiuhle
 [@andreslemik]: https://github.com/andreslemik
+[@bartoszkopinski]: https://github.com/bartoszkopinski
 [@blocknotes]: https://github.com/blocknotes
 [@bolshakov]: https://github.com/bolshakov
 [@buren]: https://github.com/buren
 [@chancancode]: https://github.com/chancancode
+[@chrp]: https://github.com/chrp
 [@chumakoff]: https://github.com/chumakoff
 [@craigmcnamara]: https://github.com/craigmcnamara
 [@DanielHeath]: https://github.com/DanielHeath
@@ -526,19 +544,24 @@ Please check [0-6-stable] for previous changes.
 [@HappyKadaver]: https://github.com/HappyKadaver
 [@innparusu95]: https://github.com/innparusu95
 [@ionut998]: https://github.com/ionut998
+[@irmela]: https://github.com/irmela
 [@jasl]: https://github.com/jasl
 [@javierjulio]: https://github.com/javierjulio
 [@jawa]: https://github.com/jawa
 [@JiiHu]: https://github.com/JiiHu
 [@johnnyshields]: https://github.com/johnnyshields
+[@jscheid]: https://github.com/jscheid
 [@kjeldahl]: https://github.com/kjeldahl
 [@kobeumut]: https://github.com/kobeumut
+[@Kris-LIBIS]: https://github.com/Kris-LIBIS
 [@kwent]: https://github.com/kwent
 [@leio10]: https://github.com/leio10
 [@markstory]: https://github.com/markstory
 [@mauriciopasquier]: https://github.com/mauriciopasquier
 [@mconiglio]: https://github.com/mconiglio
+[@ndbroadbent]: https://github.com/ndbroadbent
 [@Nguyenanh]: https://github.com/Nguyenanh
+[@panasyuk]: https://github.com/panasyuk
 [@PChambino]: https://github.com/PChambino
 [@potatosalad]: https://github.com/potatosalad
 [@pranas]: https://github.com/pranas
@@ -546,6 +569,7 @@ Please check [0-6-stable] for previous changes.
 [@RobinvanderVliet]: https://github.com/RobinvanderVliet
 [@rogerkk]: https://github.com/rogerkk
 [@seanlinsley]: https://github.com/seanlinsley
+[@sgara]: https://github.com/sgara
 [@ShallmentMo]: https://github.com/ShallmentMo
 [@shekibobo]: https://github.com/shekibobo
 [@shouya]: https://github.com/shouya
@@ -555,15 +579,9 @@ Please check [0-6-stable] for previous changes.
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
-[@wasifhossain]: https://github.com/wasifhossain
+[@violeta-p]: https://github.com/violeta-p
 [@WaKeMaTTa]: https://github.com/WaKeMaTTa
+[@wasifhossain]: https://github.com/wasifhossain
 [@Wowu]: https://github.com/Wowu
 [@wspurgin]: https://github.com/wspurgin
 [@zorab47]: https://github.com/zorab47
-[@chrp]: https://github.com/chrp
-[@bartoszkopinski]: https://github.com/bartoszkopinski
-[@panasyuk]: https://github.com/panasyuk
-[@jscheid]: https://github.com/jscheid
-[@violeta-p]: https://github.com/violeta-p
-[@ndbroadbent]: https://github.com/ndbroadbent
-[@Kris-LIBIS]: https://github.com/Kris-LIBIS

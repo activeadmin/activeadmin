@@ -32,6 +32,8 @@ module ActiveAdmin
         --skip-webpack-install
       )
 
+      args << "--skip-turbolinks" unless turbolinks_app?
+
       command = ['bundle', 'exec', 'rails', 'new', app_dir, *args].join(' ')
 
       env = { 'BUNDLE_GEMFILE' => expanded_gemfile, 'RAILS_ENV' => rails_env }
@@ -56,17 +58,21 @@ module ActiveAdmin
     private
 
     def base_dir
-      @base_dir ||= rails_env == 'test' ? 'tmp/rails' : '.test-rails-apps'
+      @base_dir ||= "tmp/#{rails_env}_apps"
     end
 
     def app_name
-      return "rails_52" if main_app?
+      return "rails_60" if main_app?
 
       File.basename(gemfile, ".gemfile")
     end
 
     def main_app?
       expanded_gemfile == File.expand_path('Gemfile')
+    end
+
+    def turbolinks_app?
+      expanded_gemfile == File.expand_path('gemfiles/rails_60_turbolinks.gemfile')
     end
 
     def gemfile

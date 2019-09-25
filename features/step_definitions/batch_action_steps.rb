@@ -27,7 +27,7 @@ Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe,
   expect(page).send verb, have_css(selector)
 end
 
-Then /^I should see the batch action popover exists$/ do
+Then /^I should see the batch action popover$/ do
   expect(page).to have_css '.batch_actions_selector'
 end
 
