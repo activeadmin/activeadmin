@@ -110,6 +110,10 @@ if ENV['RAILS_ENV'] == 'test'
   inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'test.sqlite3'
 
   rake "parallel:drop parallel:create parallel:load_schema", env: ENV['RAILS_ENV']
+
+  # Add both assets to test as some specs switch between webpacker and sprockets
+  rake "active_admin:assets"
+  rake "active_admin:webpacker"
 end
 
 git add: "."
