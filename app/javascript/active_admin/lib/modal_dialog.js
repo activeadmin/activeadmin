@@ -1,3 +1,5 @@
+import ActiveAdmin from './active_admin';
+
 ActiveAdmin.modal_dialog = function(message, inputs, callback){
   let html = `<form id="dialog_confirm" title="${message}"><ul>`;
   for (let name in inputs) {

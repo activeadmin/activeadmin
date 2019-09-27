@@ -19,6 +19,3 @@ import "./lib/table-checkbox-toggler"
 import "./initializers/datepicker"
 import "./initializers/filters"
 import "./initializers/tabs"
-
-
-window.ActiveAdmin = {};

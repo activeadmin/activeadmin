@@ -38,51 +38,48 @@
     subClass.prototype.constructor = subClass;
     subClass.__proto__ = superClass;
   }
-  (function(window, $) {
-    var ActiveAdmin = function() {
-      function ActiveAdmin() {}
-      ActiveAdmin.turbolinksVisit = function turbolinksVisit(params) {
-        var path = [ window.location.pathname, "?", this.toQueryString(params) ].join("");
-        Turbolinks.visit(path);
+  var ActiveAdmin = function() {
+    function ActiveAdmin() {}
+    ActiveAdmin.turbolinksVisit = function turbolinksVisit(params) {
+      var path = [ window.location.pathname, "?", this.toQueryString(params) ].join("");
+      Turbolinks.visit(path);
+    };
+    ActiveAdmin.queryString = function queryString() {
+      return (window.location.search || "").replace(/^\?/, "");
+    };
+    ActiveAdmin.queryStringToParams = function queryStringToParams() {
+      var decode = function decode(value) {
+        return decodeURIComponent((value || "").replace(/\+/g, "%20"));
       };
-      ActiveAdmin.queryString = function queryString() {
-        return (window.location.search || "").replace(/^\?/, "");
-      };
-      ActiveAdmin.queryStringToParams = function queryStringToParams() {
-        var decode = function decode(value) {
-          return decodeURIComponent((value || "").replace(/\+/g, "%20"));
+      return this.queryString().split("&").map(function(pair) {
+        return pair.split("=");
+      }).map(function(_ref) {
+        var key = _ref[0], value = _ref[1];
+        return {
+          name: decode(key),
+          value: decode(value)
         };
-        return this.queryString().split("&").map(function(pair) {
-          return pair.split("=");
-        }).map(function(_ref) {
-          var key = _ref[0], value = _ref[1];
-          return {
-            name: decode(key),
-            value: decode(value)
-          };
-        });
+      });
+    };
+    ActiveAdmin.toQueryString = function toQueryString(params) {
+      var encode = function encode(value) {
+        return encodeURIComponent(value || "");
       };
-      ActiveAdmin.toQueryString = function toQueryString(params) {
-        var encode = function encode(value) {
-          return encodeURIComponent(value || "");
-        };
-        return params.map(function(_ref2) {
-          var name = _ref2.name, value = _ref2.value;
-          return [ encode(name), encode(value) ];
-        }).map(function(pair) {
-          return pair.join("=");
-        }).join("&");
-      };
-      _createClass(ActiveAdmin, null, [ {
-        key: "turbolinks",
-        get: function get() {
-          return typeof Turbolinks !== "undefined" && Turbolinks.supported;
-        }
-      } ]);
-      return ActiveAdmin;
-    }();
-    window.activeadmin = ActiveAdmin;
-  })(window, jQuery);
+      return params.map(function(_ref2) {
+        var name = _ref2.name, value = _ref2.value;
+        return [ encode(name), encode(value) ];
+      }).map(function(pair) {
+        return pair.join("=");
+      }).join("&");
+    };
+    _createClass(ActiveAdmin, null, [ {
+      key: "turbolinks",
+      get: function get() {
+        return typeof Turbolinks !== "undefined" && Turbolinks.supported;
+      }
+    } ]);
+    return ActiveAdmin;
+  }();
   var onDOMReady = function onDOMReady() {
     $(".batch_actions_selector li a").off("click confirm:complete");
     $(".batch_actions_selector li a").on("click", function(event) {
@@ -444,7 +441,7 @@
     });
     $.fn["perPage"] = PerPage._jQueryInterface;
     $.fn["perPage"].Constructor = PerPage;
-  })(jQuery, window.activeadmin);
+  })(jQuery, ActiveAdmin);
   ActiveAdmin.TableCheckboxToggler = function(_ActiveAdmin$Checkbox) {
     _inheritsLoose(TableCheckboxToggler, _ActiveAdmin$Checkbox);
     function TableCheckboxToggler() {
@@ -521,10 +518,9 @@
       return Filters;
     }();
     $(document).on("click", ".clear_filters_btn", Filters._clearForm).on("submit", ".filter_form", Filters._disableEmptyInputFields).on("change", ".filter_form_field.select_and_search select", Filters._setSearchType);
-  })(jQuery, window.activeadmin);
+  })(jQuery, ActiveAdmin);
   var onDOMReady$2 = function onDOMReady() {
     return $("#active_admin_content .tabs").tabs();
   };
   $(document).ready(onDOMReady$2).on("page:load turbolinks:load", onDOMReady$2);
-  window.ActiveAdmin = {};
 });
