@@ -297,7 +297,7 @@ jobs:
 
   ruby25rails50:
     docker:
-      - image: circleci/ruby:2.5.6-node-browsers
+      - image: circleci/ruby:2.5.7-node-browsers
         user: root
 
     environment:
@@ -308,7 +308,7 @@ jobs:
 
   ruby25rails51:
     docker:
-      - image: circleci/ruby:2.5.6-node-browsers
+      - image: circleci/ruby:2.5.7-node-browsers
         user: root
 
     environment:
@@ -319,7 +319,7 @@ jobs:
 
   ruby25rails52:
     docker:
-      - image: circleci/ruby:2.5.6-node-browsers
+      - image: circleci/ruby:2.5.7-node-browsers
         user: root
 
     environment:
@@ -330,7 +330,7 @@ jobs:
 
   ruby25rails60:
     docker:
-    - image: circleci/ruby:2.5.6-node-browsers
+    - image: circleci/ruby:2.5.7-node-browsers
       user: root
 
     environment:
