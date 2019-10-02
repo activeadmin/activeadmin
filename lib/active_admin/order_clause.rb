@@ -3,7 +3,7 @@ module ActiveAdmin
     attr_reader :field, :order, :active_admin_config
 
     def initialize(active_admin_config, clause)
-      clause =~ /^([\w\_\.]+)(->'\w+')?_(desc|asc)$/
+      clause =~ /^([\w\.]+)(->'\w+')?_(desc|asc)$/
       @column = $1
       @op = $2
       @order = $3
