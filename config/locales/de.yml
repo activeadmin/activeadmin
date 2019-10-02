@@ -1,4 +1,20 @@
 de:
+  activerecord:
+    models:
+      comment:
+        one: "Kommentar"
+        other: "Kommentare"
+      active_admin/comment:
+        one: "Kommentar"
+        other: "Kommentare"
+    attributes:
+      active_admin/comment:
+        author_type: "Autortyp"
+        body: "Inhalt"
+        created_at: "Erstellt"
+        namespace: "Namensraum"
+        resource_type: "Ressourcentyp"
+        updated_at: "Aktualisiert"
   active_admin:
     dashboard: Übersicht
     dashboard_welcome:
@@ -37,6 +53,8 @@ de:
         lteq_datetime: "Kleiner gleich"
         from: "Von"
         to: "Bis"
+    scopes:
+      all: "Alle"
     search_status:
       headline: "Filter"
       current_scope: "Anwendungsbereich:"
