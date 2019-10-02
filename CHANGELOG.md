@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.4.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.3.1..v2.4.0)
+
 ### Enhancements
 
 * Make optimization to not use expensive COUNT queries also work for decorated actions. [#5811] by [@irmela]
