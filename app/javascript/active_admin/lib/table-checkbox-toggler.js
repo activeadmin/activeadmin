@@ -1,4 +1,4 @@
-import ActiveAdmin from './active_admin';
+import ActiveAdmin from './active-admin';
 
 ActiveAdmin.TableCheckboxToggler = class TableCheckboxToggler extends ActiveAdmin.CheckboxToggler {
   _bind() {

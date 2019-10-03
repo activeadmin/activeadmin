@@ -1,4 +1,4 @@
-import ActiveAdmin from './active_admin';
+import ActiveAdmin from './active-admin';
 
 const onDOMReady = function() {
   // Detach any previously attached handlers before re-attaching them.
