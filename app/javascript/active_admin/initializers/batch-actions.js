@@ -1,4 +1,4 @@
-import ModalDialog from "./modal-dialog";
+import ModalDialog from "../lib/modal-dialog";
 
 const onDOMReady = function() {
   // Detach any previously attached handlers before re-attaching them.

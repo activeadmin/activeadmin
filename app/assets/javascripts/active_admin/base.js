@@ -23,41 +23,6 @@
   $.ui.dialog.prototype._focusTabbable = function() {
     this.uiDialog.focus();
   };
-  function hasTurbolinks() {
-    return typeof Turbolinks !== "undefined" && Turbolinks.supported;
-  }
-  function turbolinksVisit(params) {
-    var path = [ window.location.pathname, "?", toQueryString(params) ].join("");
-    Turbolinks.visit(path);
-  }
-  function queryString() {
-    return (window.location.search || "").replace(/^\?/, "");
-  }
-  function queryStringToParams() {
-    var decode = function decode(value) {
-      return decodeURIComponent((value || "").replace(/\+/g, "%20"));
-    };
-    return queryString().split("&").map(function(pair) {
-      return pair.split("=");
-    }).map(function(_ref) {
-      var key = _ref[0], value = _ref[1];
-      return {
-        name: decode(key),
-        value: decode(value)
-      };
-    });
-  }
-  function toQueryString(params) {
-    var encode = function encode(value) {
-      return encodeURIComponent(value || "");
-    };
-    return params.map(function(_ref2) {
-      var name = _ref2.name, value = _ref2.value;
-      return [ encode(name), encode(value) ];
-    }).map(function(pair) {
-      return pair.join("=");
-    }).join("&");
-  }
   function ModalDialog(message, inputs, callback) {
     var html = '<form id="dialog_confirm" title="' + message + '"><ul>';
     for (var name in inputs) {
@@ -212,6 +177,19 @@
     return CheckboxToggler;
   }();
   $.widget.bridge("checkboxToggler", CheckboxToggler);
+  (function($) {
+    $(document).on("focus", "input.datepicker:not(.hasDatepicker)", function() {
+      var input = $(this);
+      if (input[0].type === "date") {
+        return;
+      }
+      var defaults = {
+        dateFormat: "yy-mm-dd"
+      };
+      var options = input.data("datepicker-options");
+      input.datepicker($.extend(defaults, options));
+    });
+  })(jQuery);
   var DropdownMenu = function() {
     function DropdownMenu(options, element) {
       this.options = options;
@@ -314,6 +292,77 @@
     return $(".dropdown_menu").aaDropdownMenu();
   };
   $(document).ready(onDOMReady$1).on("page:load turbolinks:load", onDOMReady$1);
+  function hasTurbolinks() {
+    return typeof Turbolinks !== "undefined" && Turbolinks.supported;
+  }
+  function turbolinksVisit(params) {
+    var path = [ window.location.pathname, "?", toQueryString(params) ].join("");
+    Turbolinks.visit(path);
+  }
+  function queryString() {
+    return (window.location.search || "").replace(/^\?/, "");
+  }
+  function queryStringToParams() {
+    var decode = function decode(value) {
+      return decodeURIComponent((value || "").replace(/\+/g, "%20"));
+    };
+    return queryString().split("&").map(function(pair) {
+      return pair.split("=");
+    }).map(function(_ref) {
+      var key = _ref[0], value = _ref[1];
+      return {
+        name: decode(key),
+        value: decode(value)
+      };
+    });
+  }
+  function toQueryString(params) {
+    var encode = function encode(value) {
+      return encodeURIComponent(value || "");
+    };
+    return params.map(function(_ref2) {
+      var name = _ref2.name, value = _ref2.value;
+      return [ encode(name), encode(value) ];
+    }).map(function(pair) {
+      return pair.join("=");
+    }).join("&");
+  }
+  var Filters = function() {
+    function Filters() {}
+    Filters._clearForm = function _clearForm(event) {
+      var regex = /^(q\[|q%5B|q%5b|page|utf8|commit)/;
+      var params = queryStringToParams().filter(function(_ref) {
+        var name = _ref.name;
+        return !name.match(regex);
+      });
+      event.preventDefault();
+      if (hasTurbolinks()) {
+        turbolinksVisit(params);
+      } else {
+        window.location.search = toQueryString(params);
+      }
+    };
+    Filters._disableEmptyInputFields = function _disableEmptyInputFields(event) {
+      var params = $(this).find(":input").filter(function(i, input) {
+        return input.value === "";
+      }).prop({
+        disabled: true
+      }).end().serializeArray();
+      if (hasTurbolinks()) {
+        event.preventDefault();
+        turbolinksVisit(params);
+      }
+    };
+    Filters._setSearchType = function _setSearchType() {
+      $(this).siblings("input").prop({
+        name: "q[" + this.value + "]"
+      });
+    };
+    return Filters;
+  }();
+  (function($) {
+    $(document).on("click", ".clear_filters_btn", Filters._clearForm).on("submit", ".filter_form", Filters._disableEmptyInputFields).on("change", ".filter_form_field.select_and_search select", Filters._setSearchType);
+  })(jQuery);
   $(function() {
     $(document).on("click", "a.button.has_many_remove", function(event) {
       event.preventDefault();
@@ -378,42 +427,42 @@
       }
     });
   };
-  (function($) {
-    var PerPage = function() {
-      function PerPage(element) {
-        this.element = element;
+  var PerPage = function() {
+    function PerPage(element) {
+      this.element = element;
+    }
+    var _proto = PerPage.prototype;
+    _proto.update = function update() {
+      var params = queryStringToParams().filter(function(_ref) {
+        var name = _ref.name;
+        return name != "per_page" || name != "page";
+      });
+      params.push({
+        name: "per_page",
+        value: this.element.value
+      });
+      if (hasTurbolinks()) {
+        turbolinksVisit(params);
+      } else {
+        window.location.search = toQueryString(params);
       }
-      var _proto = PerPage.prototype;
-      _proto.update = function update() {
-        var params = queryStringToParams().filter(function(_ref) {
-          var name = _ref.name;
-          return name != "per_page" || name != "page";
-        });
-        params.push({
-          name: "per_page",
-          value: this.element.value
-        });
-        if (hasTurbolinks()) {
-          turbolinksVisit(params);
-        } else {
-          window.location.search = toQueryString(params);
+    };
+    PerPage._jQueryInterface = function _jQueryInterface(config) {
+      return this.each(function() {
+        var $this = $(this);
+        var data = $this.data("perPage");
+        if (!data) {
+          data = new PerPage(this);
+          $this.data("perPage", data);
         }
-      };
-      PerPage._jQueryInterface = function _jQueryInterface(config) {
-        return this.each(function() {
-          var $this = $(this);
-          var data = $this.data("perPage");
-          if (!data) {
-            data = new PerPage(this);
-            $this.data("perPage", data);
-          }
-          if (config === "update") {
-            data[config]();
-          }
-        });
-      };
-      return PerPage;
-    }();
+        if (config === "update") {
+          data[config]();
+        }
+      });
+    };
+    return PerPage;
+  }();
+  (function($) {
     $(document).on("change", ".pagination_per_page > select", function(event) {
       PerPage._jQueryInterface.call($(this), "update");
     });
@@ -453,55 +502,6 @@
     return TableCheckboxToggler;
   }(CheckboxToggler);
   $.widget.bridge("tableCheckboxToggler", TableCheckboxToggler);
-  (function($) {
-    $(document).on("focus", "input.datepicker:not(.hasDatepicker)", function() {
-      var input = $(this);
-      if (input[0].type === "date") {
-        return;
-      }
-      var defaults = {
-        dateFormat: "yy-mm-dd"
-      };
-      var options = input.data("datepicker-options");
-      input.datepicker($.extend(defaults, options));
-    });
-  })(jQuery);
-  (function($) {
-    var Filters = function() {
-      function Filters() {}
-      Filters._clearForm = function _clearForm(event) {
-        var regex = /^(q\[|q%5B|q%5b|page|utf8|commit)/;
-        var params = queryStringToParams().filter(function(_ref) {
-          var name = _ref.name;
-          return !name.match(regex);
-        });
-        event.preventDefault();
-        if (hasTurbolinks()) {
-          turbolinksVisit(params);
-        } else {
-          window.location.search = toQueryString(params);
-        }
-      };
-      Filters._disableEmptyInputFields = function _disableEmptyInputFields(event) {
-        var params = $(this).find(":input").filter(function(i, input) {
-          return input.value === "";
-        }).prop({
-          disabled: true
-        }).end().serializeArray();
-        if (hasTurbolinks()) {
-          event.preventDefault();
-          turbolinksVisit(params);
-        }
-      };
-      Filters._setSearchType = function _setSearchType() {
-        $(this).siblings("input").prop({
-          name: "q[" + this.value + "]"
-        });
-      };
-      return Filters;
-    }();
-    $(document).on("click", ".clear_filters_btn", Filters._clearForm).on("submit", ".filter_form", Filters._disableEmptyInputFields).on("change", ".filter_form_field.select_and_search select", Filters._setSearchType);
-  })(jQuery);
   var onDOMReady$2 = function onDOMReady() {
     return $("#active_admin_content .tabs").tabs();
   };
