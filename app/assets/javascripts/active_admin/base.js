@@ -23,67 +23,100 @@
   $.ui.dialog.prototype._focusTabbable = function() {
     this.uiDialog.focus();
   };
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
+  function hasTurbolinks() {
+    return typeof Turbolinks !== "undefined" && Turbolinks.supported;
   }
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    return Constructor;
+  function turbolinksVisit(params) {
+    var path = [ window.location.pathname, "?", toQueryString(params) ].join("");
+    Turbolinks.visit(path);
   }
-  function _inheritsLoose(subClass, superClass) {
-    subClass.prototype = Object.create(superClass.prototype);
-    subClass.prototype.constructor = subClass;
-    subClass.__proto__ = superClass;
+  function queryString() {
+    return (window.location.search || "").replace(/^\?/, "");
   }
-  var ActiveAdmin = function() {
-    function ActiveAdmin() {}
-    ActiveAdmin.turbolinksVisit = function turbolinksVisit(params) {
-      var path = [ window.location.pathname, "?", this.toQueryString(params) ].join("");
-      Turbolinks.visit(path);
+  function queryStringToParams() {
+    var decode = function decode(value) {
+      return decodeURIComponent((value || "").replace(/\+/g, "%20"));
     };
-    ActiveAdmin.queryString = function queryString() {
-      return (window.location.search || "").replace(/^\?/, "");
-    };
-    ActiveAdmin.queryStringToParams = function queryStringToParams() {
-      var decode = function decode(value) {
-        return decodeURIComponent((value || "").replace(/\+/g, "%20"));
+    return queryString().split("&").map(function(pair) {
+      return pair.split("=");
+    }).map(function(_ref) {
+      var key = _ref[0], value = _ref[1];
+      return {
+        name: decode(key),
+        value: decode(value)
       };
-      return this.queryString().split("&").map(function(pair) {
-        return pair.split("=");
-      }).map(function(_ref) {
-        var key = _ref[0], value = _ref[1];
-        return {
-          name: decode(key),
-          value: decode(value)
-        };
-      });
+    });
+  }
+  function toQueryString(params) {
+    var encode = function encode(value) {
+      return encodeURIComponent(value || "");
     };
-    ActiveAdmin.toQueryString = function toQueryString(params) {
-      var encode = function encode(value) {
-        return encodeURIComponent(value || "");
-      };
-      return params.map(function(_ref2) {
-        var name = _ref2.name, value = _ref2.value;
-        return [ encode(name), encode(value) ];
-      }).map(function(pair) {
-        return pair.join("=");
-      }).join("&");
-    };
-    _createClass(ActiveAdmin, null, [ {
-      key: "turbolinks",
-      get: function get() {
-        return typeof Turbolinks !== "undefined" && Turbolinks.supported;
+    return params.map(function(_ref2) {
+      var name = _ref2.name, value = _ref2.value;
+      return [ encode(name), encode(value) ];
+    }).map(function(pair) {
+      return pair.join("=");
+    }).join("&");
+  }
+  function ModalDialog(message, inputs, callback) {
+    var html = '<form id="dialog_confirm" title="' + message + '"><ul>';
+    for (var name in inputs) {
+      var elem, opts, wrapper;
+      var type = inputs[name];
+      if (/^(datepicker|checkbox|text|number)$/.test(type)) {
+        wrapper = "input";
+      } else if (type === "textarea") {
+        wrapper = "textarea";
+      } else if ($.isArray(type)) {
+        var _ref = [ "select", "option", type, "" ];
+        wrapper = _ref[0];
+        elem = _ref[1];
+        opts = _ref[2];
+        type = _ref[3];
+      } else {
+        throw new Error("Unsupported input type: {" + name + ": " + type + "}");
       }
-    } ]);
-    return ActiveAdmin;
-  }();
+      var klass = type === "datepicker" ? type : "";
+      html += "<li>\n      <label>" + (name.charAt(0).toUpperCase() + name.slice(1)) + "</label>\n      <" + wrapper + ' name="' + name + '" class="' + klass + '" type="' + type + '">' + (opts ? function() {
+        var result = [];
+        opts.forEach(function(v) {
+          var $elem = $("<" + elem + "/>");
+          if ($.isArray(v)) {
+            $elem.text(v[0]).val(v[1]);
+          } else {
+            $elem.text(v);
+          }
+          result.push($elem.wrap("<div>").parent().html());
+        });
+        return result;
+      }().join("") : "") + ("</" + wrapper + ">") + "</li>";
+      var _ref2 = [];
+      wrapper = _ref2[0];
+      elem = _ref2[1];
+      opts = _ref2[2];
+      type = _ref2[3];
+      klass = _ref2[4];
+    }
+    html += "</ul></form>";
+    var form = $(html).appendTo("body");
+    $("body").trigger("modal_dialog:before_open", [ form ]);
+    form.dialog({
+      modal: true,
+      open: function open(event, ui) {
+        $("body").trigger("modal_dialog:after_open", [ form ]);
+      },
+      dialogClass: "active_admin_dialog",
+      buttons: {
+        OK: function OK() {
+          callback($(this).serializeObject());
+          $(this).dialog("close");
+        },
+        Cancel: function Cancel() {
+          $(this).dialog("close").remove();
+        }
+      }
+    });
+  }
   var onDOMReady = function onDOMReady() {
     $(".batch_actions_selector li a").off("click confirm:complete");
     $(".batch_actions_selector li a").on("click", function(event) {
@@ -92,7 +125,7 @@
       event.stopPropagation();
       event.preventDefault();
       if (message = $(this).data("confirm")) {
-        ActiveAdmin.modal_dialog(message, $(this).data("inputs"), function(inputs) {
+        ModalDialog(message, $(this).data("inputs"), function(inputs) {
           $(_this).trigger("confirm:complete", inputs);
         });
       } else {
@@ -129,7 +162,7 @@
     }
   };
   $(document).ready(onDOMReady).on("page:load turbolinks:load", onDOMReady);
-  ActiveAdmin.CheckboxToggler = function() {
+  var CheckboxToggler = function() {
     function CheckboxToggler(options, container) {
       this.options = options;
       this.container = container;
@@ -178,8 +211,8 @@
     };
     return CheckboxToggler;
   }();
-  $.widget.bridge("checkboxToggler", ActiveAdmin.CheckboxToggler);
-  ActiveAdmin.DropdownMenu = function() {
+  $.widget.bridge("checkboxToggler", CheckboxToggler);
+  var DropdownMenu = function() {
     function DropdownMenu(options, element) {
       this.options = options;
       this.element = element;
@@ -276,7 +309,7 @@
     };
     return DropdownMenu;
   }();
-  $.widget.bridge("aaDropdownMenu", ActiveAdmin.DropdownMenu);
+  $.widget.bridge("aaDropdownMenu", DropdownMenu);
   var onDOMReady$1 = function onDOMReady() {
     return $(".dropdown_menu").aaDropdownMenu();
   };
@@ -345,73 +378,14 @@
       }
     });
   };
-  ActiveAdmin.modal_dialog = function(message, inputs, callback) {
-    var html = '<form id="dialog_confirm" title="' + message + '"><ul>';
-    for (var name in inputs) {
-      var elem, opts, wrapper;
-      var type = inputs[name];
-      if (/^(datepicker|checkbox|text|number)$/.test(type)) {
-        wrapper = "input";
-      } else if (type === "textarea") {
-        wrapper = "textarea";
-      } else if ($.isArray(type)) {
-        var _ref = [ "select", "option", type, "" ];
-        wrapper = _ref[0];
-        elem = _ref[1];
-        opts = _ref[2];
-        type = _ref[3];
-      } else {
-        throw new Error("Unsupported input type: {" + name + ": " + type + "}");
-      }
-      var klass = type === "datepicker" ? type : "";
-      html += "<li>\n      <label>" + (name.charAt(0).toUpperCase() + name.slice(1)) + "</label>\n      <" + wrapper + ' name="' + name + '" class="' + klass + '" type="' + type + '">' + (opts ? function() {
-        var result = [];
-        opts.forEach(function(v) {
-          var $elem = $("<" + elem + "/>");
-          if ($.isArray(v)) {
-            $elem.text(v[0]).val(v[1]);
-          } else {
-            $elem.text(v);
-          }
-          result.push($elem.wrap("<div>").parent().html());
-        });
-        return result;
-      }().join("") : "") + ("</" + wrapper + ">") + "</li>";
-      var _ref2 = [];
-      wrapper = _ref2[0];
-      elem = _ref2[1];
-      opts = _ref2[2];
-      type = _ref2[3];
-      klass = _ref2[4];
-    }
-    html += "</ul></form>";
-    var form = $(html).appendTo("body");
-    $("body").trigger("modal_dialog:before_open", [ form ]);
-    form.dialog({
-      modal: true,
-      open: function open(event, ui) {
-        $("body").trigger("modal_dialog:after_open", [ form ]);
-      },
-      dialogClass: "active_admin_dialog",
-      buttons: {
-        OK: function OK() {
-          callback($(this).serializeObject());
-          $(this).dialog("close");
-        },
-        Cancel: function Cancel() {
-          $(this).dialog("close").remove();
-        }
-      }
-    });
-  };
-  (function($, ActiveAdmin) {
+  (function($) {
     var PerPage = function() {
       function PerPage(element) {
         this.element = element;
       }
       var _proto = PerPage.prototype;
       _proto.update = function update() {
-        var params = ActiveAdmin.queryStringToParams().filter(function(_ref) {
+        var params = queryStringToParams().filter(function(_ref) {
           var name = _ref.name;
           return name != "per_page" || name != "page";
         });
@@ -419,10 +393,10 @@
           name: "per_page",
           value: this.element.value
         });
-        if (ActiveAdmin.turbolinks) {
-          ActiveAdmin.turbolinksVisit(params);
+        if (hasTurbolinks()) {
+          turbolinksVisit(params);
         } else {
-          window.location.search = ActiveAdmin.toQueryString(params);
+          window.location.search = toQueryString(params);
         }
       };
       PerPage._jQueryInterface = function _jQueryInterface(config) {
@@ -445,16 +419,21 @@
     });
     $.fn["perPage"] = PerPage._jQueryInterface;
     $.fn["perPage"].Constructor = PerPage;
-  })(jQuery, ActiveAdmin);
-  ActiveAdmin.TableCheckboxToggler = function(_ActiveAdmin$Checkbox) {
-    _inheritsLoose(TableCheckboxToggler, _ActiveAdmin$Checkbox);
+  })(jQuery);
+  function _inheritsLoose(subClass, superClass) {
+    subClass.prototype = Object.create(superClass.prototype);
+    subClass.prototype.constructor = subClass;
+    subClass.__proto__ = superClass;
+  }
+  var TableCheckboxToggler = function(_CheckboxToggler) {
+    _inheritsLoose(TableCheckboxToggler, _CheckboxToggler);
     function TableCheckboxToggler() {
-      return _ActiveAdmin$Checkbox.apply(this, arguments) || this;
+      return _CheckboxToggler.apply(this, arguments) || this;
     }
     var _proto = TableCheckboxToggler.prototype;
     _proto._bind = function _bind() {
       var _this = this;
-      _ActiveAdmin$Checkbox.prototype._bind.apply(this, arguments);
+      _CheckboxToggler.prototype._bind.apply(this, arguments);
       this.$container.find("tbody td").click(function(event) {
         if (event.target.type !== "checkbox") {
           _this._didClickCell(event.target);
@@ -462,18 +441,18 @@
       });
     };
     _proto._didChangeCheckbox = function _didChangeCheckbox(checkbox) {
-      _ActiveAdmin$Checkbox.prototype._didChangeCheckbox.apply(this, arguments);
+      _CheckboxToggler.prototype._didChangeCheckbox.apply(this, arguments);
       $(checkbox).parents("tr").toggleClass("selected", checkbox.checked);
     };
     _proto._didChangeToggleAllCheckbox = function _didChangeToggleAllCheckbox() {
-      this.$container.find("tbody tr").toggleClass("selected", _ActiveAdmin$Checkbox.prototype._didChangeToggleAllCheckbox.apply(this, arguments));
+      this.$container.find("tbody tr").toggleClass("selected", _CheckboxToggler.prototype._didChangeToggleAllCheckbox.apply(this, arguments));
     };
     _proto._didClickCell = function _didClickCell(cell) {
       $(cell).parent("tr").find(":checkbox").click();
     };
     return TableCheckboxToggler;
-  }(ActiveAdmin.CheckboxToggler);
-  $.widget.bridge("tableCheckboxToggler", ActiveAdmin.TableCheckboxToggler);
+  }(CheckboxToggler);
+  $.widget.bridge("tableCheckboxToggler", TableCheckboxToggler);
   (function($) {
     $(document).on("focus", "input.datepicker:not(.hasDatepicker)", function() {
       var input = $(this);
@@ -487,20 +466,20 @@
       input.datepicker($.extend(defaults, options));
     });
   })(jQuery);
-  (function($, ActiveAdmin) {
+  (function($) {
     var Filters = function() {
       function Filters() {}
       Filters._clearForm = function _clearForm(event) {
         var regex = /^(q\[|q%5B|q%5b|page|utf8|commit)/;
-        var params = ActiveAdmin.queryStringToParams().filter(function(_ref) {
+        var params = queryStringToParams().filter(function(_ref) {
           var name = _ref.name;
           return !name.match(regex);
         });
         event.preventDefault();
-        if (ActiveAdmin.turbolinks) {
-          ActiveAdmin.turbolinksVisit(params);
+        if (hasTurbolinks()) {
+          turbolinksVisit(params);
         } else {
-          window.location.search = ActiveAdmin.toQueryString(params);
+          window.location.search = toQueryString(params);
         }
       };
       Filters._disableEmptyInputFields = function _disableEmptyInputFields(event) {
@@ -509,9 +488,9 @@
         }).prop({
           disabled: true
         }).end().serializeArray();
-        if (ActiveAdmin.turbolinks) {
+        if (hasTurbolinks()) {
           event.preventDefault();
-          ActiveAdmin.turbolinksVisit(params);
+          turbolinksVisit(params);
         }
       };
       Filters._setSearchType = function _setSearchType() {
@@ -522,7 +501,7 @@
       return Filters;
     }();
     $(document).on("click", ".clear_filters_btn", Filters._clearForm).on("submit", ".filter_form", Filters._disableEmptyInputFields).on("change", ".filter_form_field.select_and_search select", Filters._setSearchType);
-  })(jQuery, ActiveAdmin);
+  })(jQuery);
   var onDOMReady$2 = function onDOMReady() {
     return $("#active_admin_content .tabs").tabs();
   };

@@ -1,21 +1,20 @@
-import ActiveAdmin from '../lib/utils';
+import { queryStringToParams, hasTurbolinks, turbolinksVisit, toQueryString } from '../lib/utils';
 
-(($, ActiveAdmin) => {
+(($) => {
 
   class Filters {
 
     static _clearForm(event) {
       const regex = /^(q\[|q%5B|q%5b|page|utf8|commit)/;
-      const params = ActiveAdmin
-        .queryStringToParams()
+      const params = queryStringToParams()
         .filter(({name}) => !name.match(regex));
 
       event.preventDefault();
 
-      if (ActiveAdmin.turbolinks) {
-        ActiveAdmin.turbolinksVisit(params);
+      if (hasTurbolinks()) {
+        turbolinksVisit(params);
       } else {
-        window.location.search = ActiveAdmin.toQueryString(params);
+        window.location.search = toQueryString(params);
       }
     }
 
@@ -27,9 +26,9 @@ import ActiveAdmin from '../lib/utils';
         .end()
         .serializeArray();
 
-      if (ActiveAdmin.turbolinks) {
+      if (hasTurbolinks()) {
         event.preventDefault();
-        ActiveAdmin.turbolinksVisit(params);
+        turbolinksVisit(params);
       }
     }
 
@@ -44,4 +43,4 @@ import ActiveAdmin from '../lib/utils';
     on('submit', '.filter_form', Filters._disableEmptyInputFields).
     on('change', '.filter_form_field.select_and_search select', Filters._setSearchType);
 
-})(jQuery, ActiveAdmin);
+})(jQuery);

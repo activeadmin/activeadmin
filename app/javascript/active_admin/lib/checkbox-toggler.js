@@ -1,6 +1,4 @@
-import ActiveAdmin from './utils';
-
-ActiveAdmin.CheckboxToggler = class CheckboxToggler {
+class CheckboxToggler {
   constructor(options, container){
     this.options = options;
     this.container = container;
@@ -48,4 +46,6 @@ ActiveAdmin.CheckboxToggler = class CheckboxToggler {
   }
 };
 
-$.widget.bridge('checkboxToggler', ActiveAdmin.CheckboxToggler);
+$.widget.bridge('checkboxToggler', CheckboxToggler);
+
+export default CheckboxToggler;
