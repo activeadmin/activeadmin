@@ -16,7 +16,7 @@ group :test do
   gem 'capybara', '~> 3.14'
   gem 'db-query-matchers', '0.9.0'
 
-  gem 'simplecov', require: false # Test coverage generator. Go to /coverage/ after running tests
+  gem 'simplecov', '0.17.1', require: false # Test coverage generator. Go to /coverage/ after running tests
   gem 'cucumber-rails', '~> 1.5', require: false
   gem 'cucumber'
   gem 'database_cleaner'
