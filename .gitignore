@@ -7,3 +7,4 @@
 .bundle
 /.rspec_failures
 /node_modules
+/src

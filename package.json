@@ -2,12 +2,11 @@
   "name": "active_admin",
   "version": "2.1.0",
   "description": "The administration framework for Ruby on Rails.",
-  "main": "app/assets/javascripts/active_admin.js",
+  "main": "app/assets/javascripts/active_admin/base.js",
   "files": [
-    "app/assets/images/*",
-    "app/assets/javascripts/*.js",
-    "app/assets/stylesheets/*.scss",
-    "src/*.js"
+    "app/assets/javascripts/active_admin/*.js",
+    "src/**/*.js",
+    "src/**/*.scss"
   ],
   "repository": {
     "type": "git",
@@ -40,7 +39,7 @@
   "scripts": {
     "lint": "gherkin-lint features",
     "build": "rollup --config rollup.config.js",
-    "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src"
+    "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src && cp -R app/assets/stylesheets/active_admin src/scss"
   },
   "dependencies": {
     "jquery": "^3.4.1",
