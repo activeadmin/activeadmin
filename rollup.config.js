@@ -31,6 +31,9 @@ export default {
         commentStyle: 'none',
         // Add rails-style imports for sprockets usage
         content:stripIndent`
+          /**
+           * Warning: This file is auto-generated, do not modify. Instead, make your changes in 'app/javascript/active_admin/' and run \`yarn build\`
+           */
           //= require jquery3
           //= require jquery-ui/widgets/datepicker
           //= require jquery-ui/widgets/dialog
@@ -39,7 +42,7 @@ export default {
           //= require jquery-ui/widget
           //= require jquery_ujs
           //= require_self
-        `.trim()
+        ` + '\n'
       },
     }),
   ],
