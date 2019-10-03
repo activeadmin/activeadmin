@@ -46,6 +46,4 @@ class CheckboxToggler {
   }
 };
 
-$.widget.bridge('checkboxToggler', CheckboxToggler);
-
 export default CheckboxToggler;

@@ -35,6 +35,4 @@ class TableCheckboxToggler extends CheckboxToggler {
   }
 };
 
-$.widget.bridge('tableCheckboxToggler', TableCheckboxToggler);
-
 export default TableCheckboxToggler;

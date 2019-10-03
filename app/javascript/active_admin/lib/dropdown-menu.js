@@ -113,12 +113,4 @@ class DropdownMenu {
   }
 };
 
-$.widget.bridge('aaDropdownMenu', DropdownMenu);
-
-const onDOMReady = () => $('.dropdown_menu').aaDropdownMenu();
-
-$(document).
-  ready(onDOMReady).
-  on('page:load turbolinks:load', onDOMReady);
-
 export default DropdownMenu;
