@@ -1,4 +1,4 @@
-import ActiveAdmin from './active_admin';
+import ActiveAdmin from './utils';
 
 $(function() {
   // Provides a before-removal hook:

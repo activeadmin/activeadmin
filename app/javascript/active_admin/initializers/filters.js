@@ -1,4 +1,4 @@
-import ActiveAdmin from '../lib/active-admin';
+import ActiveAdmin from '../lib/utils';
 
 (($, ActiveAdmin) => {
 

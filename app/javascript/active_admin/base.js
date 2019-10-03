@@ -8,7 +8,7 @@ import "jquery-ujs"
 
 import "./ext/jquery"
 import "./ext/jquery-ui"
-import "./lib/active-admin"
+import "./lib/utils"
 import "./lib/batch-actions"
 import "./lib/checkbox-toggler"
 import "./lib/dropdown-menu"
