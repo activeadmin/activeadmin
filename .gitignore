@@ -1,8 +1,8 @@
-tmp
-coverage
-.yardoc
-.ruby-version
-pkg
+/tmp
+/coverage
+/.yardoc
+/.ruby-version
+/pkg
 .bundle
-.rspec_failures
-node_modules
+/.rspec_failures
+/node_modules
