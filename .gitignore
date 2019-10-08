@@ -5,5 +5,4 @@ coverage
 pkg
 .bundle
 .rspec_failures
-.rbenv-version
 node_modules
