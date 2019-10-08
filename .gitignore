@@ -5,6 +5,5 @@ coverage
 pkg
 .bundle
 .rspec_failures
-.rails-version
 .rbenv-version
 node_modules
