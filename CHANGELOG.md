@@ -5,6 +5,7 @@
 ### Bug Fixes
 
 * Use filter label when condition has a predicate. [#5886] by [@ko-lem]
+* Fix error when routing with array containing symbol. [#5870] by [@jwesorick]
 
 ### Removals
 
@@ -526,6 +527,7 @@ Please check [0-6-stable] for previous changes.
 [#5874]: https://github.com/activeadmin/activeadmin/pull/5874
 [#5877]: https://github.com/activeadmin/activeadmin/pull/5877
 [#5886]: https://github.com/activeadmin/activeadmin/pull/5886
+[#5870]: https://github.com/activeadmin/activeadmin/pull/5870
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -566,6 +568,7 @@ Please check [0-6-stable] for previous changes.
 [@johnnyshields]: https://github.com/johnnyshields
 [@jscheid]: https://github.com/jscheid
 [@juril33t]: https://github.com/juril33t
+[@jwesorick]: https://github.com/jwesorick
 [@kjeldahl]: https://github.com/kjeldahl
 [@ko-lem]: https://github.com/ko-lem
 [@kobeumut]: https://github.com/kobeumut
