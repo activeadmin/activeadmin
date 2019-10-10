@@ -66,12 +66,12 @@ export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
   issue description**:
   * [**ActiveAdmin** master issues][master template]
 
-### 5. Implement your fix or feature
+### Implement your fix or feature
 
 At this point, you're ready to make your changes! Feel free to ask for help;
 everyone is a beginner at first :smile_cat:
 
-### 6. View your changes in a Rails application
+### View your changes in a Rails application
 
 Active Admin is meant to be used by humans, not cucumbers. So make sure to take
 a look at your changes in a browser.
