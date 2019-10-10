@@ -5,15 +5,15 @@ like you that make Active Admin such a great tool.
 
 ### Where do I go from here?
 
-If you've noticed a bug or have a question that doesn't belong on the
-[mailing list][] or [Stack Overflow][], [search the issue tracker][] to see if
-someone else in the community has already created a ticket. If not, go ahead and
-[make one][new issue]!
+If you've noticed a bug or have a question that doesn't belong on the [mailing
+list] or [Stack Overflow], [search the issue tracker] to see if someone else in
+the community has already created a ticket. If not, go ahead and [make one][new
+issue]!
 
 ### Fork & create a branch
 
-If this is something you think you can fix, then [fork Active Admin][] and
-create a branch with a descriptive name.
+If this is something you think you can fix, then [fork Active Admin] and create
+a branch with a descriptive name.
 
 A good branch name would be (where issue #325 is the ticket you're working on):
 
@@ -63,7 +63,7 @@ export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
 
 ### Did you find a bug?
 
-* **Ensure the bug was not already reported** by [searching all issues][].
+* **Ensure the bug was not already reported** by [searching all issues].
 
 * If you're unable to find an open issue addressing the problem,
   [open a new one][new issue]. Be sure to include a **title and clear
