@@ -123,6 +123,7 @@ module ActiveAdmin
           entries_name = I18n.t "active_admin.pagination.entry", count: 2, default: 'entries'
         else
           key = "activerecord.models." + collection.first.class.model_name.i18n_key.to_s
+
           entry_name   = I18n.translate key, count: 1,               default: collection.first.class.name.underscore.sub('_', ' ')
           entries_name = I18n.translate key, count: collection.size, default: entry_name.pluralize
         end

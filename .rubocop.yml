@@ -4,7 +4,9 @@ inherit_mode:
   merge:
     - Include
 
-require: rubocop-rspec
+require:
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   DisabledByDefault: true
@@ -52,9 +54,6 @@ Layout/EndOfLine:
   Enabled: true
 
 Layout/ExtraSpacing:
-  Enabled: true
-
-Rails:
   Enabled: true
 
 Rails/FilePath:

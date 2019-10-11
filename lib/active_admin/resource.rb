@@ -70,7 +70,7 @@ module ActiveAdmin
       def initialize(namespace, resource_class, options = {})
         @namespace = namespace
         @resource_class_name = "::#{resource_class.name}"
-        @options    = options
+        @options = options
         @sort_order = options[:sort_order]
         @member_actions = []
         @collection_actions = []
