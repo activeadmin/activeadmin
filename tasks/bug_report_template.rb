@@ -13,6 +13,7 @@ gemfile(true) do
   # Change Rails version if necessary.
   gem 'rails', '5.2.1.1'
 
+  gem 'sprockets', '3.7.2'
   gem 'sassc-rails', '2.1.1'
   gem 'sqlite3', '1.3.13', platform: :mri
   gem 'activerecord-jdbcsqlite3-adapter', "52.0", platform: :jruby
