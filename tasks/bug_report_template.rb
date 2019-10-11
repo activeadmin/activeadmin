@@ -88,16 +88,16 @@ class BugTest < ActionDispatch::IntegrationTest
 
   def test_admin_root_success?
     get admin_root_url
-    assert_response :success
     assert_match 'Test Me', response.body # has content
     assert_match 'Users', response.body # has 'Your Models' in menu
+    assert_response :success
   end
 
   def test_admin_users
     User.create! full_name: 'John Doe'
     get admin_users_url
-    assert_response :success
     assert_match 'John Doe', response.body # has created row
+    assert_response :success
   end
 
   private
