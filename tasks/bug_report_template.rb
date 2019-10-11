@@ -46,7 +46,6 @@ class TestApp < Rails::Application
 
   config.eager_load = false
   config.logger = Logger.new($stdout)
-  Rails.logger  = config.logger
 
   config.hosts = "www.example.com"
 end
