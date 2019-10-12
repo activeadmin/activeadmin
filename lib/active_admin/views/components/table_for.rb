@@ -13,6 +13,7 @@ module ActiveAdmin
         @collection     = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
         @resource_class = options.delete(:i18n)
         @resource_class ||= @collection.klass if @collection.respond_to? :klass
+
         @columns        = []
         @row_class      = options.delete(:row_class)
 
