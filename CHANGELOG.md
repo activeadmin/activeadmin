@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+* Use filter label when condition has a predicate. [#5886] by [@ko-lem]
+
 ### Removals
 
 * Support for Rails 5.0 and Rails 5.1 has been dropped. [#5877] by [@deivid-rodriguez]
@@ -521,6 +525,7 @@ Please check [0-6-stable] for previous changes.
 [#5854]: https://github.com/activeadmin/activeadmin/pull/5854
 [#5874]: https://github.com/activeadmin/activeadmin/pull/5874
 [#5877]: https://github.com/activeadmin/activeadmin/pull/5877
+[#5886]: https://github.com/activeadmin/activeadmin/pull/5886
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -562,6 +567,7 @@ Please check [0-6-stable] for previous changes.
 [@jscheid]: https://github.com/jscheid
 [@juril33t]: https://github.com/juril33t
 [@kjeldahl]: https://github.com/kjeldahl
+[@ko-lem]: https://github.com/ko-lem
 [@kobeumut]: https://github.com/kobeumut
 [@Kris-LIBIS]: https://github.com/Kris-LIBIS
 [@kwent]: https://github.com/kwent
