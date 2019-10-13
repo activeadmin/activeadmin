@@ -197,7 +197,7 @@ GEM
       actionpack (>= 4.1)
       activesupport (>= 4.1)
     highline (2.0.2)
-    i18n (1.6.0)
+    i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     i18n-spec (0.6.0)
       iso

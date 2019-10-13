@@ -46,7 +46,7 @@ module ActiveAdmin
       end
 
       def translate(options = {})
-        I18n.t i18n_key, { scope: [:activerecord, :models] }.merge(options)
+        I18n.t i18n_key, **{ scope: [:activerecord, :models] }.merge(options)
       end
 
       def route_key
