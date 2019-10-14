@@ -96,7 +96,7 @@ module ActiveAdmin
       end
 
       def filter
-        resource.filters[name.to_sym]
+        resource.filters[name.to_sym] || resource.filters[condition.key.to_sym]
       end
 
       def related_primary_key
