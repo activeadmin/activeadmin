@@ -1,4 +1,18 @@
 GIT
+  remote: https://github.com/deivid-rodriguez/ransack
+  revision: 93f9d48a31f4f5d5016ac62bc6c6630704e2f093
+  branch: add_2.7_support
+  specs:
+    polyamorous (2.3.0)
+      activerecord (>= 5.0)
+    ransack (2.3.0)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
+      polyamorous (= 2.3.0)
+
+GIT
   remote: https://github.com/rails/rails
   revision: 94fe2430da93daf52f63dbc248dcbdc8e8de2c31
   branch: 6-0-stable
@@ -292,8 +306,6 @@ GEM
     parser (2.6.5.0)
       ast (~> 2.4.0)
     phantomjs (2.1.1.0)
-    polyamorous (2.3.0)
-      activerecord (>= 5.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -320,12 +332,6 @@ GEM
       railties (>= 6.0.0, < 7)
     rainbow (3.0.0)
     rake (12.3.3)
-    ransack (2.3.0)
-      actionpack (>= 5.0)
-      activerecord (>= 5.0)
-      activesupport (>= 5.0)
-      i18n
-      polyamorous (= 2.3.0)
     regexp_parser (1.6.0)
     request_store (1.4.1)
       rack (>= 1.4)
@@ -451,6 +457,7 @@ DEPENDENCIES
   rails (~> 6.0.0)!
   rails-i18n
   rake
+  ransack!
   rspec-rails
   rubocop (= 0.75.0)
   rubocop-rails (~> 2.3)

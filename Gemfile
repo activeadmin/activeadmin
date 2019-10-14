@@ -28,4 +28,6 @@ end
 gem "rails", "~> 6.0.0", git: "https://github.com/rails/rails", branch: "6-0-stable"
 gem "activerecord-jdbcsqlite3-adapter", "~> 60.0.rc1", platform: :jruby
 
+gem "ransack", git: "https://github.com/deivid-rodriguez/ransack", branch: "add_2.7_support"
+
 gemspec path: "."
