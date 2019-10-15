@@ -1,3 +1,5 @@
+import ActiveAdmin from './active_admin';
+
 (($, ActiveAdmin) => {
 
   class PerPage {
@@ -44,4 +46,4 @@
   $.fn['perPage'] = PerPage._jQueryInterface
   $.fn['perPage'].Constructor = PerPage
 
-})(jQuery, window.activeadmin);
+})(jQuery, ActiveAdmin);

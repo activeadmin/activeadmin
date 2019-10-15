@@ -34,6 +34,20 @@ Now install the development dependencies:
 bundle install
 ```
 
+Then install javascript dependencies with [Yarn] (requires a current version of [Node.js]):
+
+```sh
+bin/yarn install
+```
+
+JS assets are located in `app/javascript/active_admin`. The config will take care of compiling a complete bundle with [Rollup] using the `build` script and exported to `app/assets/javascripts/active_admin/base.js` ready to be used by Sprockets.
+
+To update javascript bundle run (add `-w` flag for watch mode):
+
+```sh
+bin/yarn build
+```
+
 Now you should be able to run the entire suite using:
 
 ```sh
@@ -219,3 +233,6 @@ Maintainers need to do the following to push out a release:
 [git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
 [interactive rebase]: https://help.github.com/articles/interactive-rebase
 [shortcut reference links]: https://github.github.com/gfm/#shortcut-reference-link
+[Rollup]: https://rollupjs.org/guide/en/#quick-start
+[Yarn]: https://yarnpkg.com/en/docs/install
+[Node.js]: https://nodejs.org/en/

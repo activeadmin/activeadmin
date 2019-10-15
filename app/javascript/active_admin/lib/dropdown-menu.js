@@ -1,3 +1,5 @@
+import ActiveAdmin from './active_admin';
+
 ActiveAdmin.DropdownMenu = class DropdownMenu {
 
   constructor(options, element) {

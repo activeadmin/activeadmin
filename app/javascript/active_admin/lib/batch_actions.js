@@ -1,3 +1,5 @@
+import ActiveAdmin from './active_admin';
+
 const onDOMReady = function() {
   // Detach any previously attached handlers before re-attaching them.
   // This avoids double-registered handlers when Turbolinks is enabled

@@ -1,3 +1,5 @@
+import ActiveAdmin from '../lib/active_admin';
+
 (($, ActiveAdmin) => {
 
   class Filters {
@@ -42,4 +44,4 @@
     on('submit', '.filter_form', Filters._disableEmptyInputFields).
     on('change', '.filter_form_field.select_and_search select', Filters._setSearchType);
 
-})(jQuery, window.activeadmin);
+})(jQuery, ActiveAdmin);

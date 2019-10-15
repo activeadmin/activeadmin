@@ -1,7 +1,13 @@
 {
-  "name": "activeadmin",
+  "name": "active_admin",
   "version": "2.1.0",
   "description": "The administration framework for Ruby on Rails.",
+  "main": "app/assets/javascripts/active_admin/base.js",
+  "files": [
+    "app/assets/javascripts/active_admin/*.js",
+    "src/**/*.js",
+    "src/**/*.scss"
+  ],
   "repository": {
     "type": "git",
     "url": "activeadmin/activeadmin"
@@ -17,9 +23,27 @@
   },
   "homepage": "htts://activeadmin.info",
   "devDependencies": {
-    "gherkin-lint": "^3.3.3"
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "common-tags": "^1.8.0",
+    "eslint": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "gherkin-lint": "^3.3.6",
+    "rollup": "^1.21.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-license": "^0.12.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.3"
   },
   "scripts": {
-    "lint": "gherkin-lint features"
+    "lint": "gherkin-lint features",
+    "build": "rollup --config rollup.config.js",
+    "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src && cp -R app/assets/stylesheets/active_admin src/scss"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ujs": "^1.2.2"
   }
 }

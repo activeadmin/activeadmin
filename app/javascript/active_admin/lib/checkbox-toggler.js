@@ -1,3 +1,5 @@
+import ActiveAdmin from './active_admin';
+
 ActiveAdmin.CheckboxToggler = class CheckboxToggler {
   constructor(options, container){
     this.options = options;
