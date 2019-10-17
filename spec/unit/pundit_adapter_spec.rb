@@ -69,24 +69,24 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       end
 
       it "looks for a namespaced policy" do
-        expect(Pundit).to receive(:policy!).with(anything, [:foobar, Post]).and_return(DefaultPolicy.new(double, double))
+        expect(Pundit).to receive(:policy).with(anything, [:foobar, Post]).and_return(DefaultPolicy.new(double, double))
         auth.authorized?(:read, Post)
       end
 
       it "looks for a namespaced policy scope" do
         collection = double
-        expect(Pundit).to receive(:policy_scope!).with(anything, [:foobar, collection]).and_return(DefaultPolicy::Scope.new(double, double))
+        expect(Pundit).to receive(:policy_scope).with(anything, [:foobar, collection]).and_return(DefaultPolicy::Scope.new(double, double))
         auth.scope_collection(collection, :read)
       end
 
       it "uses the resource when no subject given" do
-        expect(Pundit).to receive(:policy!).with(anything, [:foobar, resource]).and_return(DefaultPolicy::Scope.new(double, double))
+        expect(Pundit).to receive(:policy).with(anything, [:foobar, resource]).and_return(DefaultPolicy::Scope.new(double, double))
         auth.authorized?(:index)
       end
     end
 
     it "uses the resource when no subject given" do
-      expect(Pundit).to receive(:policy!).with(anything, resource).and_return(DefaultPolicy::Scope.new(double, double))
+      expect(Pundit).to receive(:policy).with(anything, resource).and_return(DefaultPolicy::Scope.new(double, double))
       auth.authorized?(:index)
     end
 
@@ -96,7 +96,7 @@ RSpec.describe ActiveAdmin::PunditAdapter do
 
       before do
         allow(ActiveAdmin.application).to receive(:pundit_default_policy).and_return default_policy_klass_name
-        allow(Pundit).to receive(:policy_scope!) { raise Pundit::NotDefinedError.new }
+        allow(Pundit).to receive(:policy_scope).and_return nil
       end
 
       it("should return default policy's scope if defined") { is_expected.to eq(collection) }
@@ -117,7 +117,7 @@ RSpec.describe ActiveAdmin::PunditAdapter do
 
       before do
         allow(ActiveAdmin.application).to receive(:pundit_default_policy).and_return default_policy_klass_name
-        allow(Pundit).to receive(:policy!) { raise Pundit::NotDefinedError.new }
+        allow(Pundit).to receive(:policy).and_return nil
       end
 
       it("should return default policy instance") { is_expected.to be_instance_of(default_policy_klass) }

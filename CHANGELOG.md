@@ -6,6 +6,7 @@
 
 * Use filter label when condition has a predicate. [#5886] by [@ko-lem]
 * Fix error when routing with array containing symbol. [#5870] by [@jwesorick]
+* Fix additional loading with modified scoped_collection and missing Pundit policy. [#5199] by [@filipkis]
 
 ### Removals
 
@@ -528,6 +529,7 @@ Please check [0-6-stable] for previous changes.
 [#5877]: https://github.com/activeadmin/activeadmin/pull/5877
 [#5886]: https://github.com/activeadmin/activeadmin/pull/5886
 [#5870]: https://github.com/activeadmin/activeadmin/pull/5870
+[#5199]: https://github.com/activeadmin/activeadmin/pull/5199
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -554,6 +556,7 @@ Please check [0-6-stable] for previous changes.
 [@eikes]: https://github.com/eikes
 [@f1sherman]: https://github.com/f1sherman
 [@faucct]: https://github.com/faucct
+[@filipkis]: https://github.com/filipkis
 [@Fivell]: https://github.com/Fivell
 [@glebtv]: https://github.com/glebtv
 [@gonzedge]: https://github.com/gonzedge

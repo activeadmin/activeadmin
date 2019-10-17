@@ -20,26 +20,30 @@ module ActiveAdmin
     def scope_collection(collection, action = Auth::READ)
       # scoping is appliable only to read/index action
       # which means there is no way how to scope other actions
-      Pundit.policy_scope!(user, namespace(collection))
-    rescue Pundit::NotDefinedError => e
-      if default_policy_class && default_policy_class.const_defined?(:Scope)
-        default_policy_class::Scope.new(user, collection).resolve
-      else
-        raise e
+      Pundit.policy_scope(user, namespace(collection)).tap do |scope|
+        unless scope
+          if default_policy_class && default_policy_class.const_defined?(:Scope)
+            return default_policy_class::Scope.new(user, collection).resolve
+          else
+            raise Pundit::NotDefinedError, "unable to find scope for `#{collection.class}`"
+          end
+        end
       end
     end
 
     def retrieve_policy(subject)
       case subject
-      when nil   then Pundit.policy!(user, namespace(resource))
-      when Class then Pundit.policy!(user, namespace(subject.new))
-      else Pundit.policy!(user, namespace(subject))
-      end
-    rescue Pundit::NotDefinedError => e
-      if default_policy_class
-        default_policy(user, subject)
-      else
-        raise e
+      when nil   then Pundit.policy(user, namespace(resource))
+      when Class then Pundit.policy(user, namespace(subject.new))
+      else Pundit.policy(user, namespace(subject))
+      end.tap do |policy|
+        unless policy
+          if default_policy_class
+            return default_policy(user, subject)
+          else
+            raise Pundit::NotDefinedError, "unable to find policy for `#{subject}`"
+          end
+        end
       end
     end
 
