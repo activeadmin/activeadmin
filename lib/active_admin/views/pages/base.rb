@@ -33,7 +33,7 @@ module ActiveAdmin
             end
 
             active_admin_namespace.meta_tags.each do |name, content|
-              text_node(tag(:meta, name: name, content: content))
+              text_node(meta(name: name, content: content))
             end
 
             active_admin_application.javascripts.each do |path|
