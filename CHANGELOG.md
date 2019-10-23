@@ -6,6 +6,7 @@
 
 * Use filter label when condition has a predicate. [#5886] by [@ko-lem]
 * Fix error when routing with array containing symbol. [#5870] by [@jwesorick]
+* Fix error when there is a model named Tag that conflicts with TagHelper. [#5890] by [@micred] and [@FabioRos]
 
 ### Removals
 
@@ -528,6 +529,7 @@ Please check [0-6-stable] for previous changes.
 [#5877]: https://github.com/activeadmin/activeadmin/pull/5877
 [#5886]: https://github.com/activeadmin/activeadmin/pull/5886
 [#5870]: https://github.com/activeadmin/activeadmin/pull/5870
+[#5890]: https://github.com/activeadmin/activeadmin/pull/5890
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -553,6 +555,7 @@ Please check [0-6-stable] for previous changes.
 [@drn]: https://github.com/drn
 [@eikes]: https://github.com/eikes
 [@f1sherman]: https://github.com/f1sherman
+[@FabioRos]: https://github.com/FabioRos
 [@faucct]: https://github.com/faucct
 [@Fivell]: https://github.com/Fivell
 [@glebtv]: https://github.com/glebtv
@@ -578,6 +581,7 @@ Please check [0-6-stable] for previous changes.
 [@markstory]: https://github.com/markstory
 [@mauriciopasquier]: https://github.com/mauriciopasquier
 [@mconiglio]: https://github.com/mconiglio
+[@micred]: https://github.com/micred
 [@ndbroadbent]: https://github.com/ndbroadbent
 [@Nguyenanh]: https://github.com/Nguyenanh
 [@panasyuk]: https://github.com/panasyuk
