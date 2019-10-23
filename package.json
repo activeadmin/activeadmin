@@ -1,16 +1,15 @@
 {
-  "name": "active_admin",
-  "version": "2.1.0",
+  "name": "@activeadmin/activeadmin",
+  "version": "2.4.0-alpha-4",
   "description": "The administration framework for Ruby on Rails.",
   "main": "app/assets/javascripts/active_admin/base.js",
   "files": [
     "app/assets/javascripts/active_admin/*.js",
-    "src/**/*.js",
-    "src/**/*.scss"
+    "src/**/*"
   ],
   "repository": {
     "type": "git",
-    "url": "activeadmin/activeadmin"
+    "url": "git+https://github.com/activeadmin/activeadmin.git"
   },
   "keywords": [
     "administration",
