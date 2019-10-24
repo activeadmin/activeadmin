@@ -1,17 +1,21 @@
 source "https://rubygems.org"
 
-# Utility gems used in both development & test environments
-gem 'rake'
-gem 'pry' # Easily debug from your console with `binding.pry`
-gem 'pry-byebug', platform: :mri # Step-by-step debugging
+group :development , :test do
+  gem 'rake'
+  gem 'pry' # Easily debug from your console with `binding.pry`
+  gem 'pry-byebug', platform: :mri # Step-by-step debugging
 
-# Optional dependencies used in both development & test environments
-gem 'cancancan'
-gem 'pundit'
-gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
+  # Optional dependencies used in both development & test environments
+  gem 'cancancan'
+  gem 'pundit'
+  gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
 
-gem 'draper', '~> 3.1'
-gem "devise", "~> 4.7"
+  gem 'draper', '~> 3.1'
+  gem "devise", "~> 4.7"
+
+  gem "rails", "~> 6.0.0"
+  gem "activerecord-jdbcsqlite3-adapter", "~> 60.0.rc1", platform: :jruby
+end
 
 group :test do
   gem 'apparition'
@@ -51,8 +55,5 @@ group :docs do
   gem 'yard'     # Documentation generator
   gem 'kramdown' # Markdown implementation (for yard)
 end
-
-gem "rails", "~> 6.0.0"
-gem "activerecord-jdbcsqlite3-adapter", "~> 60.0.rc1", platform: :jruby
 
 gemspec path: "."
