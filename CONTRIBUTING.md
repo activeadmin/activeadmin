@@ -61,7 +61,7 @@ If you want to test against a Rails version different from the latest, make sure
 you use the correct Gemfile, for example:
 
 ```sh
-export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
+export BUNDLE_GEMFILE=gemfiles/rails_52.gemfile
 ```
 
 ### Did you find a bug?
