@@ -1,5 +1,5 @@
 PATH
-  remote: ..
+  remote: ../..
   specs:
     activeadmin (2.4.0)
       arbre (~> 1.2, >= 1.2.1)

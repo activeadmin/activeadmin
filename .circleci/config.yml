@@ -190,7 +190,7 @@ jobs:
         user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
 
     steps:
       *test_app_steps
@@ -212,7 +212,7 @@ jobs:
       user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks/Gemfile
 
     steps:
       *test_app_steps
@@ -246,7 +246,7 @@ jobs:
         user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
 
     steps:
       *test_steps
@@ -257,7 +257,7 @@ jobs:
         user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
 
     steps:
       *test_steps
@@ -279,7 +279,7 @@ jobs:
         user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
 
     steps:
       *test_steps
@@ -301,7 +301,7 @@ jobs:
       user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks/Gemfile
 
     steps:
       *test_steps
@@ -312,7 +312,7 @@ jobs:
         user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:
