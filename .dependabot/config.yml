@@ -1,0 +1,44 @@
+---
+
+version: 1
+
+update_configs:
+  - package_manager: ruby:bundler
+    directory: /
+    update_schedule: live
+    version_requirement_updates: increase_versions_if_necessary
+
+    automerged_updates:
+      - match:
+          dependency_type: development
+          update_type: all
+
+  - package_manager: ruby:bundler
+    directory: /gemfiles/rails_52
+    update_schedule: live
+    version_requirement_updates: increase_versions_if_necessary
+
+    automerged_updates:
+      - match:
+          dependency_type: development
+          update_type: all
+
+  - package_manager: ruby:bundler
+    directory: /gemfiles/rails_60_turbolinks
+    update_schedule: live
+    version_requirement_updates: increase_versions_if_necessary
+
+    automerged_updates:
+      - match:
+          dependency_type: development
+          update_type: all
+
+  - package_manager: ruby:bundler
+    directory: /docs
+    update_schedule: live
+    version_requirement_updates: increase_versions_if_necessary
+
+    automerged_updates:
+      - match:
+          dependency_type: development
+          update_type: all
