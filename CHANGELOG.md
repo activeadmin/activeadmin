@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+* Adjust #main_content right margin to take into account possible custom values of $sidebar-width and $section-padding [#5887] by [@guigs]
+
 ### Removals
 
 * Support for Rails 5.0 and Rails 5.1 has been dropped. [#5877] by [@deivid-rodriguez]
