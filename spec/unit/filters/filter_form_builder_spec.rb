@@ -171,6 +171,24 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     it "should generate a date less than" do
       expect(body).to have_selector("input.datepicker[name='q[published_date_lteq]']")
     end
+
+    context "with input_html" do
+      let(:body) { filter :published_date, input_html: { 'autocomplete': 'off' } }
+
+      it "should generate provided input html for both ends of date range" do
+        expect(body).to have_selector("input.datepicker[name='q[published_date_gteq]'][autocomplete=off]")
+        expect(body).to have_selector("input.datepicker[name='q[published_date_lteq]'][autocomplete=off]")
+      end
+    end
+
+    context "with input_html overriding the defaults" do
+      let(:body) { filter :published_date, input_html: { 'class': 'custom_class' } }
+
+      it "should override the default attribute values for both ends of date range" do
+        expect(body).to have_selector("input.custom_class[name='q[published_date_gteq]']")
+        expect(body).to have_selector("input.custom_class[name='q[published_date_lteq]']")
+      end
+    end
   end
 
   describe "datetime attribute" do
@@ -181,6 +199,24 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
     it "should generate a date less than" do
       expect(body).to have_selector("input.datepicker[name='q[created_at_lteq_datetime]']")
+    end
+
+    context "with input_html" do
+      let(:body) { filter :created_at, input_html: { 'autocomplete': 'off' } }
+
+      it "should generate provided input html for both ends of date range" do
+        expect(body).to have_selector("input.datepicker[name='q[created_at_gteq_datetime]'][autocomplete=off]")
+        expect(body).to have_selector("input.datepicker[name='q[created_at_lteq_datetime]'][autocomplete=off]")
+      end
+    end
+
+    context "with input_html overriding the defaults" do
+      let(:body) { filter :created_at, input_html: { 'class': 'custom_class' } }
+
+      it "should override the default attribute values for both ends of date range" do
+        expect(body).to have_selector("input.custom_class[name='q[created_at_gteq_datetime]']")
+        expect(body).to have_selector("input.custom_class[name='q[created_at_lteq_datetime]']")
+      end
     end
   end
 
