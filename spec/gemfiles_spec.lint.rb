@@ -15,7 +15,7 @@ RSpec.describe "Gemfile sanity" do
 
   it_behaves_like "a sane gemfile", "Gemfile"
 
-  Dir.glob("gemfiles/*.gemfile").each do |gemfile|
+  Dir.glob("gemfiles/rails_*/Gemfile").each do |gemfile|
     it_behaves_like "a sane gemfile", gemfile
   end
 end

@@ -64,7 +64,7 @@ module ActiveAdmin
     def app_name
       return "rails_60" if main_app?
 
-      File.basename(gemfile, ".gemfile")
+      File.basename(File.dirname(gemfile))
     end
 
     def main_app?
@@ -72,7 +72,7 @@ module ActiveAdmin
     end
 
     def turbolinks_app?
-      expanded_gemfile == File.expand_path('gemfiles/rails_60_turbolinks.gemfile')
+      expanded_gemfile == File.expand_path('gemfiles/rails_60_turbolinks/Gemfile')
     end
 
     def gemfile

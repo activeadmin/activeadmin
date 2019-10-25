@@ -22,7 +22,7 @@ version: 2.1
     name: Cat current Gemfile to a specific file so caching works
     command: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
 
-.restore_cache: &restore_cache
+.restore_gems: &restore_gems
   restore_cache:
     keys:
       - bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
@@ -32,7 +32,7 @@ version: 2.1
     name: Install dependencies
     command: bundle install --path /root/project/vendor/bundle --retry 3 --jobs 3
 
-.save_cache: &save_cache
+.save_gems: &save_gems
   save_cache:
     key: bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
     paths:
@@ -129,9 +129,9 @@ version: 2.1
   - *install_bundler
   - *install_build_deps
   - *copy_current_gemfile
-  - *restore_cache
+  - *restore_gems
   - *install_dependencies
-  - *save_cache
+  - *save_gems
   - *restore_test_app_from_workspace
   - *restore_test_times
   - *restore_test_reporter
@@ -146,10 +146,10 @@ version: 2.1
   - *install_rubygems
   - *install_bundler
   - *copy_current_gemfile
-  - *restore_cache
+  - *restore_gems
   - *install_dependencies
   - *restore_test_reporter
-  - *save_cache
+  - *save_gems
   - *create_test_app
   - *format_coverage
   - *save_coverage
@@ -190,7 +190,7 @@ jobs:
         user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
 
     steps:
       *test_app_steps
@@ -212,7 +212,7 @@ jobs:
       user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks/Gemfile
 
     steps:
       *test_app_steps
@@ -230,9 +230,9 @@ jobs:
       - *install_rubygems
       - *install_bundler
       - *copy_current_gemfile
-      - *restore_cache
+      - *restore_gems
       - *install_dependencies
-      - *save_cache
+      - *save_gems
       - *generate_docs
       - *restore_test_reporter
       - *run_lints
@@ -246,7 +246,7 @@ jobs:
         user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
 
     steps:
       *test_steps
@@ -257,7 +257,7 @@ jobs:
         user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
 
     steps:
       *test_steps
@@ -279,7 +279,7 @@ jobs:
         user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
 
     steps:
       *test_steps
@@ -301,7 +301,7 @@ jobs:
       user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks/Gemfile
 
     steps:
       *test_steps
@@ -312,7 +312,7 @@ jobs:
         user: root
 
     environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52.gemfile
+      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
       JRUBY_OPTS: -J-Xmx1024m --dev --debug
 
     steps:

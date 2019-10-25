@@ -5,7 +5,6 @@ group :development , :test do
   gem 'pry' # Easily debug from your console with `binding.pry`
   gem 'pry-byebug', platform: :mri # Step-by-step debugging
 
-  # Optional dependencies used in both development & test environments
   gem 'cancancan'
   gem 'pundit'
   gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
@@ -13,8 +12,8 @@ group :development , :test do
   gem 'draper', '~> 3.1'
   gem "devise", "~> 4.7"
 
-  gem "rails", "~> 6.0.0"
-  gem "activerecord-jdbcsqlite3-adapter", "~> 60.0.rc1", platform: :jruby
+  gem "rails", "~> 5.2.3"
+  gem "activerecord-jdbcsqlite3-adapter", "~> 52.0", platform: :jruby
 end
 
 group :test do
@@ -35,25 +34,4 @@ group :test do
   gem "sqlite3", "~> 1.4", platform: :mri
 end
 
-group :release do
-  gem 'chandler', '0.9.0' # Github releases from changelog
-end
-
-group :lint do
-  # Code style
-  gem 'rubocop', '0.75.0'
-  gem 'rubocop-rspec', '~> 1.30'
-  gem 'rubocop-rails', '~> 2.3'
-  gem 'mdl', '0.5.0'
-
-  # Translations
-  gem 'i18n-tasks'
-  gem 'i18n-spec'
-end
-
-group :docs do
-  gem 'yard'     # Documentation generator
-  gem 'kramdown' # Markdown implementation (for yard)
-end
-
-gemspec path: "."
+gemspec path: "../.."
