@@ -533,6 +533,7 @@ Please check [0-6-stable] for previous changes.
 [#5870]: https://github.com/activeadmin/activeadmin/pull/5870
 [#5893]: https://github.com/activeadmin/activeadmin/pull/5893
 [#5867]: https://github.com/activeadmin/activeadmin/pull/5867
+[#5887]: https://github.com/activeadmin/activeadmin/pull/5887
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -563,6 +564,7 @@ Please check [0-6-stable] for previous changes.
 [@Fivell]: https://github.com/Fivell
 [@glebtv]: https://github.com/glebtv
 [@gonzedge]: https://github.com/gonzedge
+[@guigs]: https://github.com/guigs
 [@HappyKadaver]: https://github.com/HappyKadaver
 [@innparusu95]: https://github.com/innparusu95
 [@ionut998]: https://github.com/ionut998
