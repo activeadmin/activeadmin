@@ -1,5 +1,4 @@
-ActiveAdmin.DropdownMenu = class DropdownMenu {
-
+class DropdownMenu {
   constructor(options, element) {
     this.options = options;
     this.element = element;
@@ -114,10 +113,4 @@ ActiveAdmin.DropdownMenu = class DropdownMenu {
   }
 };
 
-$.widget.bridge('aaDropdownMenu', ActiveAdmin.DropdownMenu);
-
-const onDOMReady = () => $('.dropdown_menu').aaDropdownMenu();
-
-$(document).
-  ready(onDOMReady).
-  on('page:load turbolinks:load', onDOMReady);
+export default DropdownMenu;

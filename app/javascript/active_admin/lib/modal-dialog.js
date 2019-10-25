@@ -1,4 +1,4 @@
-ActiveAdmin.modal_dialog = function(message, inputs, callback){
+function ModalDialog(message, inputs, callback){
   let html = `<form id="dialog_confirm" title="${message}"><ul>`;
   for (let name in inputs) {
     var elem, opts, wrapper;
@@ -59,3 +59,5 @@ ActiveAdmin.modal_dialog = function(message, inputs, callback){
     }
   });
 };
+
+export default ModalDialog;

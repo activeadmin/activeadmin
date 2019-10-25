@@ -4,7 +4,11 @@
 
 ### Bug Fixes
 
-* Adjust #main_content right margin to take into account possible custom values of $sidebar-width and $section-padding [#5887] by [@guigs]
+* Use filter label when condition has a predicate. [#5886] by [@ko-lem]
+* Fix error when routing with array containing symbol. [#5870] by [@jwesorick]
+* Fix error when there is a model named `Tag` and `meta_tags` have been configured. [#5893] by [@micred], [@FabioRos] and [@deivid-rodriguez]
+* Allow specifying custom input_html for DateRangeInput [#5867] by [@mirelon]
+* Adjust `#main_content` right margin to take into account possible custom values of `$sidebar-width` and `$section-padding` [#5887] by [@guigs]
 
 ### Removals
 
@@ -525,6 +529,10 @@ Please check [0-6-stable] for previous changes.
 [#5854]: https://github.com/activeadmin/activeadmin/pull/5854
 [#5874]: https://github.com/activeadmin/activeadmin/pull/5874
 [#5877]: https://github.com/activeadmin/activeadmin/pull/5877
+[#5886]: https://github.com/activeadmin/activeadmin/pull/5886
+[#5870]: https://github.com/activeadmin/activeadmin/pull/5870
+[#5893]: https://github.com/activeadmin/activeadmin/pull/5893
+[#5867]: https://github.com/activeadmin/activeadmin/pull/5867
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -550,6 +558,7 @@ Please check [0-6-stable] for previous changes.
 [@drn]: https://github.com/drn
 [@eikes]: https://github.com/eikes
 [@f1sherman]: https://github.com/f1sherman
+[@FabioRos]: https://github.com/FabioRos
 [@faucct]: https://github.com/faucct
 [@Fivell]: https://github.com/Fivell
 [@glebtv]: https://github.com/glebtv
@@ -565,7 +574,9 @@ Please check [0-6-stable] for previous changes.
 [@johnnyshields]: https://github.com/johnnyshields
 [@jscheid]: https://github.com/jscheid
 [@juril33t]: https://github.com/juril33t
+[@jwesorick]: https://github.com/jwesorick
 [@kjeldahl]: https://github.com/kjeldahl
+[@ko-lem]: https://github.com/ko-lem
 [@kobeumut]: https://github.com/kobeumut
 [@Kris-LIBIS]: https://github.com/Kris-LIBIS
 [@kwent]: https://github.com/kwent
@@ -573,6 +584,8 @@ Please check [0-6-stable] for previous changes.
 [@markstory]: https://github.com/markstory
 [@mauriciopasquier]: https://github.com/mauriciopasquier
 [@mconiglio]: https://github.com/mconiglio
+[@micred]: https://github.com/micred
+[@mirelon]: https://github.com/mirelon
 [@ndbroadbent]: https://github.com/ndbroadbent
 [@Nguyenanh]: https://github.com/Nguyenanh
 [@panasyuk]: https://github.com/panasyuk

@@ -1,4 +1,6 @@
-ActiveAdmin.TableCheckboxToggler = class TableCheckboxToggler extends ActiveAdmin.CheckboxToggler {
+import CheckboxToggler from "./checkbox-toggler";
+
+class TableCheckboxToggler extends CheckboxToggler {
   _bind() {
     super._bind(...arguments);
 
@@ -33,4 +35,4 @@ ActiveAdmin.TableCheckboxToggler = class TableCheckboxToggler extends ActiveAdmi
   }
 };
 
-$.widget.bridge('tableCheckboxToggler', ActiveAdmin.TableCheckboxToggler);
+export default TableCheckboxToggler;
