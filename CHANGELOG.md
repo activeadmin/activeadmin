@@ -32,8 +32,6 @@
 
 ### Enhancements
 
-#### Minor
-
 * Bump minimum ransack requirement to make sure everyone gets a version that works ok with all supported versions of Rails. [#5831] by [@deivid-rodriguez]
 
 ### Bug Fixes
@@ -47,8 +45,6 @@
 ## 2.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.1.0..v2.2.0)
 
 ### Enhancements
-
-#### Minor
 
 * The `status_tag` component now supports different labels for `false` and `nil` boolean cases through the locale. Both default to display "No" for backwards compatibility. [#5794] by [@javierjulio]
 * Add Macedonian locale. [#5710] by [@violeta-p]
@@ -79,8 +75,6 @@ _No changes_.
 
 ### Enhancements
 
-#### Minor
-
 * Require arbre `~> 1.2, >= 1.2.1`. [#5726] by [@ionut998], and [#5738] by [@deivid-rodriguez]
 
 ## 2.0.0.rc1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.4.3..v2.0.0.rc1)
@@ -96,9 +90,6 @@ _No changes_.
   ```
 
 * Consider authorization when displaying comments in show page. [#5555] by [@amiuhle]
-
-#### Minor
-
 * Add better support for rendering lists. [#5370] by [@dkniffin]
 * Undeprecate `config.register_stylesheet` and `config.register_javascript` for lack of better solution for including external assets. It might be reevaluated in the future. [#5662] by [@deivid-rodriguez]
 
@@ -151,8 +142,6 @@ _No changes_.
 
 ### Enhancements
 
-#### Minor
-
 * Add missing I18n for comments. [#5458], [#5461] by [@mauriciopasquier]
 * Fix batch_actions.delete_confirmation translation in zh-CN.yml. [#5453] by [@ShallmentMo]
 * Add some missing italian translations. [#5433] by [@stefsava]
@@ -190,8 +179,6 @@ _No changes_.
 
 ### Enhancements
 
-#### Major
-
 * Rails 5.2 support [#5343] by [@varyonic], [#5399], [#5401] by [@zorab47]
 
 ## 1.2.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.0..v1.2.1)
@@ -203,8 +190,6 @@ _No changes_.
 ## 1.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.1.0..v1.2.0)
 
 ### Enhancements
-
-#### Minor
 
 * Do not display pagination info when there are no comments. [#5119] by [@alex-bogomolov]
 * Revert generated config files to pluralized. [#5120] by [@varyonic], [#5137] by [@deivid-rodriguez]
@@ -274,8 +259,6 @@ _No changes_.
 
 ### Enhancements
 
-#### Minor
-
 * Support proc as an input_html option value when declaring filters. [#5029] by [@Fivell]
 * Base localization support, better associations handling for active filters sidebar. [#4951] by [@Fivell]
 * Allow AA scopes to return paginated collections. [#4996] by [@Fivell]
@@ -299,16 +282,11 @@ _No changes_.
 
 ### Enhancements
 
-#### Major
-
 * Migration from Metasearch to Ransack. [#1979] by [@seanlinsley]
 * Rails 4 support. [#2326] by many people :heart:
 * Rails 4.2 support. [#3731] by [@gonzedge] and [@timoschilling]
 * Rails 5 support. [#4254] by [@seanlinsley]
 * Rails 5.1 support. [#4882] by [@varyonic]
-
-#### Minor
-
 * "Create another" checkbox for the new resource page. [#4477] by [@bolshakov]
 * Page supports belongs_to. [#4759] by [@Fivell] and [@zorab47]
 * Support for custom sorting strategies. [#4768] by [@Fivell]
