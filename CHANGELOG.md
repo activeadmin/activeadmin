@@ -7,7 +7,7 @@
 * Use filter label when condition has a predicate. [#5886] by [@ko-lem]
 * Fix error when routing with array containing symbol. [#5870] by [@jwesorick]
 * Fix error when there is a model named `Tag` and `meta_tags` have been configured. [#5893] by [@micred], [@FabioRos] and [@deivid-rodriguez]
-* Allow specifying custom input_html for DateRangeInput. [#5867] by [@mirelon]
+* Allow specifying custom `input_html` for `DateRangeInput`. [#5867] by [@mirelon]
 * Adjust `#main_content` right margin to take into account possible custom values of `$sidebar-width` and `$section-padding`. [#5887] by [@guigs]
 
 ### Dependency Changes
@@ -51,7 +51,7 @@
 
 ### Bug Fixes
 
-* Fix pundit policy retrieving for static pages when the pundit namespace is :active_admin. [#5777] by [@kwent]
+* Fix pundit policy retrieving for static pages when the pundit namespace is `:active_admin`. [#5777] by [@kwent]
 * Fix show page title not being properly escaped if title's content included HTML. [#5802] by [@deivid-rodriguez]
 * Revert [21b6138f] from [#5740] since it actually caused the performance in development to regress. [#5801] by [@deivid-rodriguez]
 
