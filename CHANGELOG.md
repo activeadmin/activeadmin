@@ -7,8 +7,8 @@
 * Use filter label when condition has a predicate. [#5886] by [@ko-lem]
 * Fix error when routing with array containing symbol. [#5870] by [@jwesorick]
 * Fix error when there is a model named `Tag` and `meta_tags` have been configured. [#5893] by [@micred], [@FabioRos] and [@deivid-rodriguez]
-* Allow specifying custom input_html for DateRangeInput [#5867] by [@mirelon]
-* Adjust `#main_content` right margin to take into account possible custom values of `$sidebar-width` and `$section-padding` [#5887] by [@guigs]
+* Allow specifying custom input_html for DateRangeInput. [#5867] by [@mirelon]
+* Adjust `#main_content` right margin to take into account possible custom values of `$sidebar-width` and `$section-padding`. [#5887] by [@guigs]
 
 ### Dependency Changes
 
@@ -19,8 +19,8 @@
 ### Enhancements
 
 * Make optimization to not use expensive COUNT queries also work for decorated actions. [#5811] by [@irmela]
-* Render a text filter instead of a select for large associations (opt-in) [#5548] by [@DanielHeath]
-* Improve German translations [#5874] by [@juril33t]
+* Render a text filter instead of a select for large associations (opt-in). [#5548] by [@DanielHeath]
+* Improve German translations. [#5874] by [@juril33t]
 
 ## 2.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.3.0..v2.3.1)
 
