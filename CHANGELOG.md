@@ -10,7 +10,7 @@
 * Allow specifying custom input_html for DateRangeInput [#5867] by [@mirelon]
 * Adjust `#main_content` right margin to take into account possible custom values of `$sidebar-width` and `$section-padding` [#5887] by [@guigs]
 
-### Removals
+### Dependency Changes
 
 * Support for Rails 5.0 and Rails 5.1 has been dropped. [#5877] by [@deivid-rodriguez]
 
@@ -67,7 +67,7 @@
 * Crash when rendering comments from a custom controller block. [#5758] by [@deivid-rodriguez]
 * Switch `sass` dependency to `sassc-rails`, since `sass` is no longer supported and since it restores support for directly importing `css` files. [#5504] by [@deivid-rodriguez]
 
-### Removals
+### Dependency Changes
 
 * Support for ruby 2.3 has been removed. [#5751] by [@deivid-rodriguez]
 
@@ -115,7 +115,7 @@ _No changes_.
 * Sidebar title internationalization. [#5417] by [@WaKeMaTTa]
 * `filter` labels not allowing a `Proc` to be passed. [#5418] by [@WaKeMaTTa]
 
-### Removals
+### Dependency Changes
 
 * Rails 4.2 support has been dropped. [#5104] by [@javierjulio] and [@deivid-rodriguez]
 * Dependency on coffee-rails has been removed. [#5081] by [@javierjulio]
@@ -236,7 +236,7 @@ _No changes_.
 * Fixed [#5043]. Do not crash in sidebar rendering when a default scope is not specified. [#5044] by [@Fivell]
 * Fixed [#3894]. Make tab's component work with non-ascii titles. [#5046] by [@Fivell]
 
-### Removals
+### Dependency Changes
 
 * Ruby 2.1 support has been dropped. [#5003] by [@deivid-rodriguez]
 * Replaced `sass-rails` with `sass` dependency. [#5037] by [@javierjulio]
