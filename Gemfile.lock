@@ -340,7 +340,7 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.0)
-    rubocop (0.75.0)
+    rubocop (0.75.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -434,7 +434,7 @@ DEPENDENCIES
   rails-i18n
   rake
   rspec-rails
-  rubocop (= 0.75.0)
+  rubocop (= 0.75.1)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
   simplecov (= 0.17.1)
