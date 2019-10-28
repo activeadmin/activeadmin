@@ -186,8 +186,8 @@ GEM
       i18n
     jaro_winkler (1.5.3)
     jaro_winkler (1.5.3-java)
-    jasmine (2.9.0)
-      jasmine-core (>= 2.9.0, < 3.0.0)
+    jasmine (2.99.0)
+      jasmine-core (>= 2.99.0, < 3.0.0)
       phantomjs
       rack (>= 1.2.1)
       rake
