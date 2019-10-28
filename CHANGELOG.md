@@ -7,10 +7,10 @@
 * Use filter label when condition has a predicate. [#5886] by [@ko-lem]
 * Fix error when routing with array containing symbol. [#5870] by [@jwesorick]
 * Fix error when there is a model named `Tag` and `meta_tags` have been configured. [#5893] by [@micred], [@FabioRos] and [@deivid-rodriguez]
-* Allow specifying custom input_html for DateRangeInput [#5867] by [@mirelon]
-* Adjust `#main_content` right margin to take into account possible custom values of `$sidebar-width` and `$section-padding` [#5887] by [@guigs]
+* Allow specifying custom `input_html` for `DateRangeInput`. [#5867] by [@mirelon]
+* Adjust `#main_content` right margin to take into account possible custom values of `$sidebar-width` and `$section-padding`. [#5887] by [@guigs]
 
-### Removals
+### Dependency Changes
 
 * Support for Rails 5.0 and Rails 5.1 has been dropped. [#5877] by [@deivid-rodriguez]
 
@@ -19,8 +19,8 @@
 ### Enhancements
 
 * Make optimization to not use expensive COUNT queries also work for decorated actions. [#5811] by [@irmela]
-* Render a text filter instead of a select for large associations (opt-in) [#5548] by [@DanielHeath]
-* Improve German translations [#5874] by [@juril33t]
+* Render a text filter instead of a select for large associations (opt-in). [#5548] by [@DanielHeath]
+* Improve German translations. [#5874] by [@juril33t]
 
 ## 2.3.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.3.0..v2.3.1)
 
@@ -31,8 +31,6 @@
 ## 2.3.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.2.0..v2.3.0)
 
 ### Enhancements
-
-#### Minor
 
 * Bump minimum ransack requirement to make sure everyone gets a version that works ok with all supported versions of Rails. [#5831] by [@deivid-rodriguez]
 
@@ -48,14 +46,12 @@
 
 ### Enhancements
 
-#### Minor
-
 * The `status_tag` component now supports different labels for `false` and `nil` boolean cases through the locale. Both default to display "No" for backwards compatibility. [#5794] by [@javierjulio]
 * Add Macedonian locale. [#5710] by [@violeta-p]
 
 ### Bug Fixes
 
-* Fix pundit policy retrieving for static pages when the pundit namespace is :active_admin. [#5777] by [@kwent]
+* Fix pundit policy retrieving for static pages when the pundit namespace is `:active_admin`. [#5777] by [@kwent]
 * Fix show page title not being properly escaped if title's content included HTML. [#5802] by [@deivid-rodriguez]
 * Revert [21b6138f] from [#5740] since it actually caused the performance in development to regress. [#5801] by [@deivid-rodriguez]
 
@@ -67,7 +63,7 @@
 * Crash when rendering comments from a custom controller block. [#5758] by [@deivid-rodriguez]
 * Switch `sass` dependency to `sassc-rails`, since `sass` is no longer supported and since it restores support for directly importing `css` files. [#5504] by [@deivid-rodriguez]
 
-### Removals
+### Dependency Changes
 
 * Support for ruby 2.3 has been removed. [#5751] by [@deivid-rodriguez]
 
@@ -78,8 +74,6 @@ _No changes_.
 ## 2.0.0.rc2 [☰](https://github.com/activeadmin/activeadmin/compare/v2.0.0.rc1..v2.0.0.rc2)
 
 ### Enhancements
-
-#### Minor
 
 * Require arbre `~> 1.2, >= 1.2.1`. [#5726] by [@ionut998], and [#5738] by [@deivid-rodriguez]
 
@@ -96,9 +90,6 @@ _No changes_.
   ```
 
 * Consider authorization when displaying comments in show page. [#5555] by [@amiuhle]
-
-#### Minor
-
 * Add better support for rendering lists. [#5370] by [@dkniffin]
 * Undeprecate `config.register_stylesheet` and `config.register_javascript` for lack of better solution for including external assets. It might be reevaluated in the future. [#5662] by [@deivid-rodriguez]
 
@@ -115,7 +106,7 @@ _No changes_.
 * Sidebar title internationalization. [#5417] by [@WaKeMaTTa]
 * `filter` labels not allowing a `Proc` to be passed. [#5418] by [@WaKeMaTTa]
 
-### Removals
+### Dependency Changes
 
 * Rails 4.2 support has been dropped. [#5104] by [@javierjulio] and [@deivid-rodriguez]
 * Dependency on coffee-rails has been removed. [#5081] by [@javierjulio]
@@ -150,8 +141,6 @@ _No changes_.
 ## 1.4.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.3.1..v1.4.0)
 
 ### Enhancements
-
-#### Minor
 
 * Add missing I18n for comments. [#5458], [#5461] by [@mauriciopasquier]
 * Fix batch_actions.delete_confirmation translation in zh-CN.yml. [#5453] by [@ShallmentMo]
@@ -190,8 +179,6 @@ _No changes_.
 
 ### Enhancements
 
-#### Major
-
 * Rails 5.2 support [#5343] by [@varyonic], [#5399], [#5401] by [@zorab47]
 
 ## 1.2.1 [☰](https://github.com/activeadmin/activeadmin/compare/v1.2.0..v1.2.1)
@@ -203,8 +190,6 @@ _No changes_.
 ## 1.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v1.1.0..v1.2.0)
 
 ### Enhancements
-
-#### Minor
 
 * Do not display pagination info when there are no comments. [#5119] by [@alex-bogomolov]
 * Revert generated config files to pluralized. [#5120] by [@varyonic], [#5137] by [@deivid-rodriguez]
@@ -236,7 +221,7 @@ _No changes_.
 * Fixed [#5043]. Do not crash in sidebar rendering when a default scope is not specified. [#5044] by [@Fivell]
 * Fixed [#3894]. Make tab's component work with non-ascii titles. [#5046] by [@Fivell]
 
-### Removals
+### Dependency Changes
 
 * Ruby 2.1 support has been dropped. [#5003] by [@deivid-rodriguez]
 * Replaced `sass-rails` with `sass` dependency. [#5037] by [@javierjulio]
@@ -274,8 +259,6 @@ _No changes_.
 
 ### Enhancements
 
-#### Minor
-
 * Support proc as an input_html option value when declaring filters. [#5029] by [@Fivell]
 * Base localization support, better associations handling for active filters sidebar. [#4951] by [@Fivell]
 * Allow AA scopes to return paginated collections. [#4996] by [@Fivell]
@@ -299,16 +282,11 @@ _No changes_.
 
 ### Enhancements
 
-#### Major
-
 * Migration from Metasearch to Ransack. [#1979] by [@seanlinsley]
 * Rails 4 support. [#2326] by many people :heart:
 * Rails 4.2 support. [#3731] by [@gonzedge] and [@timoschilling]
 * Rails 5 support. [#4254] by [@seanlinsley]
 * Rails 5.1 support. [#4882] by [@varyonic]
-
-#### Minor
-
 * "Create another" checkbox for the new resource page. [#4477] by [@bolshakov]
 * Page supports belongs_to. [#4759] by [@Fivell] and [@zorab47]
 * Support for custom sorting strategies. [#4768] by [@Fivell]
