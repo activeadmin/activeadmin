@@ -163,8 +163,8 @@ GEM
       has_scope (~> 0.6)
       railties (>= 5.0, < 6.1)
       responders (>= 2, < 4)
-    jasmine (2.9.0)
-      jasmine-core (>= 2.9.0, < 3.0.0)
+    jasmine (2.99.0)
+      jasmine-core (>= 2.99.0, < 3.0.0)
       phantomjs
       rack (>= 1.2.1)
       rake
