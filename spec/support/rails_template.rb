@@ -49,6 +49,10 @@ gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUB
   config.action_mailer.default_url_options = {host: 'example.com'}
   config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )
 
+  config.assets.configure do |env|
+    env.export_concurrent = false
+  end
+
   config.active_record.maintain_test_schema = false
 
 RUBY
