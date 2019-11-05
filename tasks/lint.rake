@@ -88,8 +88,25 @@ class FixmeLinter
   end
 end
 
+#
+# Checks sass-rails directives
+#
+class SassRailsLinter
+  include LinterMixin
+
+  def applicable_files
+    Dir["app/assets/stylesheets/**/*.scss"]
+  end
+
+  def clean?(file)
+    relative_path = Pathname.new(__FILE__).relative_path_from(Pathname.new(File.dirname(__dir__))).to_s
+
+    file == relative_path || File.read(file, encoding: Encoding::UTF_8) !~ /(asset-url|asset-path|image-url|image-path|asset-data-url)/
+  end
+end
+
 desc "Lints ActiveAdmin code base"
-task lint: ["lint:rubocop", "lint:mdl", "lint:gherkin_lint", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:rspec"]
+task lint: ["lint:rubocop", "lint:mdl", "lint:gherkin_lint", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:sass_rails", "lint:rspec"]
 
 namespace :lint do
   require "rubocop/rake_task"
@@ -136,6 +153,13 @@ namespace :lint do
     puts "Checking for FIXME strings..."
 
     FixmeLinter.new.run
+  end
+
+  desc "Check for sass-rails directives to ensure webpacker compatibility"
+  task :sass_rails do
+    puts ""
+
+    SassRailsLinter.new.run
   end
 
   desc "RSpec specs for linting project files"
