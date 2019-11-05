@@ -118,7 +118,7 @@ GEM
       cucumber-tag_expressions (~> 1.1.0)
       gherkin (~> 5.0)
     cucumber-expressions (6.0.1)
-    cucumber-rails (1.8.0)
+    cucumber-rails (2.0.0)
       capybara (>= 2.12, < 4)
       cucumber (>= 3.0.2, < 4)
       mime-types (>= 2.0, < 4)
@@ -204,12 +204,12 @@ GEM
     method_source (0.9.2)
     mime-types (3.3)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2019.0904)
+    mime-types-data (3.2019.1009)
     mimemagic (0.3.3)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.13.0)
-    multi_json (1.13.1)
+    multi_json (1.14.1)
     multi_test (0.1.2)
     nio4r (2.5.2)
     nio4r (2.5.2-java)
@@ -356,7 +356,7 @@ DEPENDENCIES
   cancancan
   capybara (~> 3.14)
   cucumber
-  cucumber-rails (~> 1.5)
+  cucumber-rails (~> 2.0)
   database_cleaner
   db-query-matchers (= 0.10.0)
   devise (~> 4.7)
