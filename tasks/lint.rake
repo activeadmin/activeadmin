@@ -157,7 +157,7 @@ namespace :lint do
 
   desc "Check for sass-rails directives to ensure webpacker compatibility"
   task :sass_rails do
-    puts ""
+    puts "Checking for sass-rails directives..."
 
     SassRailsLinter.new.run
   end
