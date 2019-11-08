@@ -5,10 +5,10 @@ $primary-color: black;
 $text-color: black;
 
 // Normalize
-@import "active_admin/normalize";
+@import "./normalize";
 
 // Partials
-@import "active_admin/typography";
+@import "./typography";
 
 body {
   font-family: Helvetica, Arial, sans-serif;

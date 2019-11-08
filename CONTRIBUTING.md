@@ -64,6 +64,9 @@ you use the correct Gemfile, for example:
 export BUNDLE_GEMFILE=gemfiles/rails_60/Gemfile
 ```
 
+**Warning** SCSS assets are aimed to be used indifferently with Sprockets **and** webpacker.
+As such, make sure not to use any sass-rails directives such as `asset-url` or `image-url`.
+
 ### Did you find a bug?
 
 * **Ensure the bug was not already reported** by [searching all issues].
