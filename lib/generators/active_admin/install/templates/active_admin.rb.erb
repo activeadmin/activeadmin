@@ -325,4 +325,11 @@ ActiveAdmin.setup do |config|
   # You can inherit it with own class and inject it for all resources
   #
   # config.order_clause = MyOrderClause
+
+  # == Webpacker
+  #
+  # By default, Active Admin uses sprocket's asset pipeline.
+  # You can switch to webpacker here.
+  #
+  <% unless @use_webpacker %># <% end %>config.use_webpacker = true
 end
