@@ -162,6 +162,15 @@ RSpec.describe ActiveAdmin::Application do
       }.to raise_error("found")
     end
 
+    it "should admit both strings and symbols" do
+      expect {
+        application.namespace "admin" do |ns|
+          expect(ns).to eq application.namespaces[:admin]
+          raise "found"
+        end
+      }.to raise_error("found")
+    end
+
     it "should not pollute the global app" do
       expect(application.namespaces).to be_empty
       application.namespace(:brand_new_ns)
