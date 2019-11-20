@@ -9,6 +9,7 @@
 * Fix error when there is a model named `Tag` and `meta_tags` have been configured. [#5893] by [@micred], [@FabioRos] and [@deivid-rodriguez]
 * Allow specifying custom `input_html` for `DateRangeInput`. [#5867] by [@mirelon]
 * Adjust `#main_content` right margin to take into account possible custom values of `$sidebar-width` and `$section-padding`. [#5887] by [@guigs]
+* Improved polymorphic routes generation to avoid problems when multiple `belongs_to` are defined. [#5938] by [@leio10]
 
 ### Dependency Changes
 
@@ -512,6 +513,7 @@ Please check [0-6-stable] for previous changes.
 [#5893]: https://github.com/activeadmin/activeadmin/pull/5893
 [#5867]: https://github.com/activeadmin/activeadmin/pull/5867
 [#5887]: https://github.com/activeadmin/activeadmin/pull/5887
+[#5938]: https://github.com/activeadmin/activeadmin/pull/5938
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
