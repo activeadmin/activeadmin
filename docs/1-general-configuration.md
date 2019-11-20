@@ -106,6 +106,26 @@ ActiveAdmin.setup do |config|
 end
 ```
 
+If you are creating a multi-tenant application you may want to have multiple namespaces mounted to the same path. We can do this using the `route_options` settings on the namespace
+
+```ruby
+config.namespace :site_1 do |admin|
+  admin.route_options = { path: :admin, constraints: ->(request){ request.domain == "site1.com" } }
+end
+
+config.namespace :site_2 do |admin|
+  admin.route_options = { path: :admin, constraints: ->(request){ request.domain == "site2.com" } }
+end
+```
+
+If you would like to mount the namespace to a subdomain instead of path we can use the `route_options` for this as well
+
+```ruby
+config.namespace :admin do |admin|
+  admin.route_options = { path: '', subdomain: 'admin' }
+end
+```
+
 Each setting available in the Active Admin setup block is configurable on a per
 namespace basis.
 
