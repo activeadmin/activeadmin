@@ -124,7 +124,8 @@ namespace :lint do
   task :gherkin_lint do
     puts "Running gherkin-lint..."
 
-    sh("npx", "gherkin-lint")
+    sh("bin/yarn", "install")
+    sh("bin/yarn", "gherkin-lint")
   end
 
   desc "Check for unnecessary trailing blank lines across all repo files"

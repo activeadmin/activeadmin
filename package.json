@@ -37,7 +37,7 @@
     "rollup-plugin-uglify": "^6.0.3"
   },
   "scripts": {
-    "lint": "gherkin-lint features",
+    "gherkin-lint": "gherkin-lint",
     "build": "rollup --config rollup.config.js",
     "prepublishOnly": "rm -rf src && cp -R app/javascript/active_admin src && cp -R app/assets/stylesheets/active_admin src/scss"
   },
