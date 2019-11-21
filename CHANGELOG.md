@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Enhancements
+
+* Azerbaijani translation. [#5078] by [@orkhan]
+
 ### Bug Fixes
 
 * Convert namespace to sym to prevent duplicate namespaces such as :foo and 'foo'. [#5931] by [@westonganger]
@@ -419,6 +423,7 @@ Please check [0-6-stable] for previous changes.
 [#5052]: https://github.com/activeadmin/activeadmin/pull/5052
 [#5060]: https://github.com/activeadmin/activeadmin/pull/5060
 [#5069]: https://github.com/activeadmin/activeadmin/pull/5069
+[#5078]: https://github.com/activeadmin/activeadmin/pull/5078
 [#5081]: https://github.com/activeadmin/activeadmin/pull/5081
 [#5088]: https://github.com/activeadmin/activeadmin/pull/5088
 [#5093]: https://github.com/activeadmin/activeadmin/pull/5093
@@ -572,6 +577,7 @@ Please check [0-6-stable] for previous changes.
 [@mirelon]: https://github.com/mirelon
 [@ndbroadbent]: https://github.com/ndbroadbent
 [@Nguyenanh]: https://github.com/Nguyenanh
+[@orkhan]: https://github.com/orkhan
 [@panasyuk]: https://github.com/panasyuk
 [@PChambino]: https://github.com/PChambino
 [@potatosalad]: https://github.com/potatosalad

@@ -18,13 +18,13 @@ RSpec.describe 'I18n' do
   let(:unused_keys) { i18n.unused_keys }
   let(:unused_key_count) { unused_keys.leaves.count }
   let(:unused_key_failure_msg) do
-    "#{unused_key_count} unused i18n keys, run `i18n-tasks unused` to show them"
+    "#{unused_key_count} unused i18n keys, run `bin/i18n-tasks unused` to show them"
   end
 
   let(:inconsistent_interpolations) { i18n.inconsistent_interpolations }
   let(:inconsistent_interpolation_key_count) { inconsistent_interpolations.leaves.count }
   let(:inconsistent_interpolation_failure_msg) do
-    "#{inconsistent_interpolation_key_count} inconsistent interpolations, run `i18n-tasks check-consistent-interpolations` to show them"
+    "#{inconsistent_interpolation_key_count} inconsistent interpolations, run `bin/i18n-tasks check-consistent-interpolations` to show them"
   end
 
   it 'does not have unused keys' do

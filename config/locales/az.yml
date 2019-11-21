@@ -1,0 +1,138 @@
+az:
+  active_admin:
+    dashboard: "İdarəetmə paneli"
+    dashboard_welcome:
+      welcome: "Active Admin-ə xoş gəlmişsiniz. Bu saytla idarəetmənin standart səhifəsidir."
+      call_to_action: "Buraya nə isə əlavə etmək üçün 'app/admin/dashboard.rb' sənədini dəyişin"
+    view: "Aç"
+    edit: "Dəyiş"
+    delete: "Sil"
+    delete_confirmation: "Siz bunu silmək istədiyinizdən əminsiniz?"
+    new_model: "%{model} yarat"
+    edit_model: "%{model} dəyiş"
+    delete_model: "%{model} sil"
+    details: "%{model} haqqında"
+    cancel: "İmtina"
+    empty: "Boş"
+    previous: "Geri"
+    next: "İrəli"
+    download: "Yüklənmə:"
+    has_many_new: "%{model} əlavə et"
+    has_many_delete: "Sil"
+    has_many_remove: "Yığışdır"
+    filters:
+      buttons:
+        filter: "Filtrlə"
+        clear: "Təmizlə"
+      predicates:
+        contains: "Yerləşir"
+        equals: "Bərabərdir"
+        starts_with: "Başlayır"
+        ends_with: "Bitir"
+        greater_than: "böyük"
+        less_than: "kiçik"
+    search_status:
+      headline: "Axtarışın statusu:"
+      current_scope: "Sahə:"
+      current_filters: "Cari filter:"
+      no_current_filters: "Heç biri"
+    status_tag:
+      "yes": "Bəli"
+      "no": "Xeyr"
+    main_content: "Создайте %{model}#main_content для отображения содержимого."
+    logout: "Çıxış"
+    powered_by: "Работает на %{active_admin} %{version}"
+    sidebars:
+      filters: "Filterlə"
+      search_status: "Axtarışın statusu"
+    pagination:
+      empty: "%{model} tapılmadı"
+      one: "Nəticə: <b>1</b> %{model}"
+      one_page: "Nəticə: <b>%{n}</b> %{model}"
+      multiple: "Nəticə: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> <b>%{total}</b>"
+      multiple_without_total: "Nəticə: %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      entry:
+        one: "yazı"
+        few: "yazı"
+        many: "yazı"
+        other: "yazı"
+    any: "İstənilən"
+    blank_slate:
+      content: "%{resource_name} hələ yoxdur."
+      link: "Yarat"
+    dropdown_actions:
+      button_label: "Əməliyyatlar"
+    batch_actions:
+      button_label: "Qrup əməliyyatları"
+      default_confirmation: "Siz bunu etməyinizə əminsiniz?"
+      delete_confirmation: "Siz %{plural_model} silməyə əminsiniz?"
+      succesfully_destroyed:
+        one: "Uğurla silindi: 1 %{model}"
+        few: "Uğurla silindi: %{count} %{plural_model}"
+        many: "Uğurla silindi: %{count} %{plural_model}"
+        other: "Uğurla silindi: %{count} %{plural_model}"
+      selection_toggle_explanation: "(Hamısını seç / Seçilmişləri sıfırla)"
+      action_label: "%{title} seçilmiş"
+      labels:
+        destroy: "Sil"
+    comments:
+      created_at: "Yaranma tarixi"
+      resource_type: "Resursun tipi"
+      author_type: "Müəllifin tipi"
+      body: "Mətn"
+      author: "Müəllif"
+      add: "Şərh əlavə et"
+      delete: "Şərhi sil"
+      delete_confirmation: "Siz bu şərhi silmək istədiyinizdən əminsiniz?"
+      resource: "Resurs"
+      no_comments_yet: "Hələ şərhlər yoxdur."
+      author_missing: "Naməlum"
+      title_content: "Şərhlər (%{count})"
+      errors:
+        empty_text: "Şərh yadda saxlanılmadı, mətn boş ola bilməz."
+    devise:
+      username:
+        title: "İstifadəçi adı"
+      email:
+        title: "E-poçt"
+      subdomain:
+        title: "Subdomen"
+      password:
+        title: "Şifrə"
+      sign_up:
+        title: "Qeydiyyat"
+        submit: "Qeydiyyatdan keç"
+      login:
+        title: "Giriş"
+        remember_me: "Məni yadda saxla"
+        submit: "Daxil ol"
+      reset_password:
+        title: "Şifrəni unutmusunuz?"
+        submit: "Şifrəni sıfırla"
+      change_password:
+        title: "Şifrənin dəyişdirilməsi"
+        submit: "Şifrəni dəyiş"
+      unlock:
+        title: "Blokdan çıxarma üzrə təlimatı yenidən göndərmək"
+        submit: "Blokdan çıxarma üzrə təlimatı yenidən göndərmək"
+      resend_confirmation_instructions:
+        title: "Aktivləşdirmə ismarışını yenidən göndərmək"
+        submit: "Aktivləşdirmə ismarışını yenidən göndərmək"
+      links:
+        sign_up: "Qeydiyyat"
+        sign_in: "Giriş"
+        forgot_your_password: "Şifrəni unutmusunuz?"
+        sign_in_with_omniauth_provider: "%{provider} vasitəsilə daxil ol"
+        resend_unlock_instructions: "Blokdan çıxarma üzrə təlimatı yenidən göndərilməsi"
+        resend_confirmation_instructions: "Aktivləşdirmə ismarışını yenidən göndərilməsi"
+    unsupported_browser:
+      headline: "Zəhmət olmasa, bilin ki, Active Admin artıq Internet Explorer-in köhnə versiyalarını daha dəstəkləmir və yalnız IE 8 versiyasından başlayaraq dəstəkləyir"
+      recommendation: "Biz sizin brauzerinizin versiyasını yeniləməyi məsləhət görürük (<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, və ya <a href=\"https://mozilla.org/firefox/\">Firefox</a>)."
+      turn_off_compatibility_view: "Əgər siz IE 9  və ya daha yeni versiya istifadə edirsinizsə, əmin olun ki, <a href=\"https://support.microsoft.com/ru-ru/help/17471\">\"Uyğunluğun rejimində baxış\"</a> seçimini söndürmüsünüz."
+    access_denied:
+      message: "Bunu etmək üçün daxil olmalısınız."
+    index_list:
+      table: "Cədvəl"
+      block: "Siyahı"
+      grid: "Tor"
+      blog: "Bloq"
