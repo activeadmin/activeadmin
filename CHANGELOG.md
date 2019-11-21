@@ -4,6 +4,7 @@
 
 ### Bug Fixes
 
+* Convert namespace to sym to prevent duplicate namespaces such as :foo and 'foo'. [#5931] by [@westonganger]
 * Use filter label when condition has a predicate. [#5886] by [@ko-lem]
 * Fix error when routing with array containing symbol. [#5870] by [@jwesorick]
 * Fix error when there is a model named `Tag` and `meta_tags` have been configured. [#5893] by [@micred], [@FabioRos] and [@deivid-rodriguez]
@@ -513,6 +514,7 @@ Please check [0-6-stable] for previous changes.
 [#5893]: https://github.com/activeadmin/activeadmin/pull/5893
 [#5867]: https://github.com/activeadmin/activeadmin/pull/5867
 [#5887]: https://github.com/activeadmin/activeadmin/pull/5887
+[#5931]: https://github.com/activeadmin/activeadmin/pull/5931
 [#5938]: https://github.com/activeadmin/activeadmin/pull/5938
 
 [@5t111111]: https://github.com/5t111111
@@ -591,6 +593,7 @@ Please check [0-6-stable] for previous changes.
 [@violeta-p]: https://github.com/violeta-p
 [@WaKeMaTTa]: https://github.com/WaKeMaTTa
 [@wasifhossain]: https://github.com/wasifhossain
+[@westonganger]: https://github.com/westonganger
 [@Wowu]: https://github.com/Wowu
 [@wspurgin]: https://github.com/wspurgin
 [@zorab47]: https://github.com/zorab47
