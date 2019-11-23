@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.5.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.4.0..v2.5.0)
+
 ### Enhancements
 
 * Azerbaijani translation. [#5078] by [@orkhan]
