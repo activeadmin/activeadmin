@@ -7,7 +7,7 @@ fr:
     view: "Voir"
     edit: "Modifier"
     delete: "Supprimer"
-    delete_confirmation: "Êtes-vous certain de vouloir supprimer ceci ?"
+    delete_confirmation: "Voulez-vous vraiment supprimer ceci ?"
     create_another: "Créer autre %{model}"
     new_model: "Créer %{model}"
     edit_model: "Modifier %{model}"
@@ -69,8 +69,8 @@ fr:
       button_label: "Actions"
     batch_actions:
       button_label: "Actions groupées"
-      default_confirmation: "Êtes-vous sûr de vouloir faire cela ?"
-      delete_confirmation: "Êtes-vous sûr de vouloir supprimer ces %{plural_model} ?"
+      default_confirmation: "Voulez-vous vraiment faire cela ?"
+      delete_confirmation: "Voulez-vous vraiment supprimer ces %{plural_model} ?"
       succesfully_destroyed:
         one: "1 %{model} supprimé"
         other: "%{count} %{plural_model} supprimés"
@@ -86,7 +86,7 @@ fr:
       author: "Auteur"
       add: "Ajouter un commentaire"
       delete: "Supprimer ce commentaire"
-      delete_confirmation: "Êtes-vous sûr de vouloir supprimer ce commentaire ?"
+      delete_confirmation: "Voulez-vous vraiment supprimer ce commentaire ?"
       resource: "Ressource"
       no_comments_yet: "Aucun commentaire actuellement"
       author_missing: "Anonyme"
