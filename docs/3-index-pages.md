@@ -212,7 +212,7 @@ end
 ```
 
 Scopes can be labelled with a translation, e.g.
-`activerecord.scopes.invoice.expired`.
+`active_admin.scopes.scope_method`.
 
 ### Scopes groups
 
