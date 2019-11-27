@@ -23,7 +23,7 @@ es:
     view: "Ver"
     edit: "Editar"
     delete: "Eliminar"
-    delete_confirmation: "¿Está seguro de que quiere eliminar esto?"
+    delete_confirmation: "¿Confirma que desea borrar este elemento?"
     create_another: "Crear otro %{model}"
     new_model: "Añadir %{model}"
     edit_model: "Editar %{model}"
@@ -89,7 +89,7 @@ es:
     batch_actions:
       button_label: "Acciones en masa"
       default_confirmation: "¿Seguro que quieres hacer esto?"
-      delete_confirmation: "Eliminar %{plural_model}: ¿Está seguro?"
+      delete_confirmation: "Se eliminarán %{plural_model}. ¿Desea continuar?"
       succesfully_destroyed:
         one: "Se ha destruido 1 %{model} con éxito"
         other: "Se han destruido %{count} %{plural_model} con éxito"
@@ -105,7 +105,7 @@ es:
       author: "Autor"
       add: "Comentar"
       delete: "Borrar Comentario"
-      delete_confirmation: "¿Está seguro que desea borrar este comentario?"
+      delete_confirmation: "¿Confirma que desea borrar este comentario?"
       resource: "Recurso"
       no_comments_yet: "No hay comentarios aún."
       author_missing: "Anónimo"
