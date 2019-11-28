@@ -92,18 +92,18 @@ Layout/IndentationWidth:
 Naming/PredicateName:
   Enabled: true
 
-  NamePrefixBlacklist:
+  ForbiddenPrefixes:
     - is_
     - have_
 
-  NameWhitelist:
+  AllowedMethods:
     - has_many
     - has_many_actions
 
 Style/TrailingCommaInArguments:
   Enabled: true
 
-Layout/TrailingBlankLines:
+Layout/TrailingEmptyLines:
   Enabled: true
 
 Layout/TrailingWhitespace:
