@@ -1,11 +1,11 @@
-require 'rails_helper'
-require 'fileutils'
+require "rails_helper"
+require "fileutils"
 
 RSpec.describe ActiveAdmin::Application do
   let(:application) { ActiveAdmin::Application.new }
 
   it "should have a default load path of ['app/admin']" do
-    expect(application.load_paths).to eq [File.expand_path('app/admin', application.app_path)]
+    expect(application.load_paths).to eq [File.expand_path("app/admin", application.app_path)]
   end
 
   describe "#prepare" do
@@ -122,7 +122,7 @@ RSpec.describe ActiveAdmin::Application do
   end
 
   describe "files in load path" do
-    it 'it should load sorted files' do
+    it "it should load sorted files" do
       expect(application.files.map { |f| File.basename(f) }).to eq(%w(admin_users.rb dashboard.rb stores.rb))
     end
 

@@ -14,26 +14,26 @@ Given /^a(?:n? (index|show))? configuration of:$/ do |action, config_content|
   load_aa_config(config_content)
 
   case action
-  when 'index'
-    step 'I am logged in'
+  when "index"
+    step "I am logged in"
     case resource = config_content.match(/ActiveAdmin\.register (\w+)/)[1]
-    when 'Post'
-      step 'I am on the index page for posts'
-    when 'Category'
-      step 'I am on the index page for categories'
+    when "Post"
+      step "I am on the index page for posts"
+    when "Category"
+      step "I am on the index page for categories"
     else
       # :nocov:
       raise "#{resource} is not supported"
       # :nocov:
     end
-  when 'show'
+  when "show"
     case resource = config_content.match(/ActiveAdmin\.register (\w+)/)[1]
-    when 'Post'
-      step 'I am logged in'
-      step 'I am on the index page for posts'
+    when "Post"
+      step "I am logged in"
+      step "I am on the index page for posts"
       step 'I follow "View"'
-    when 'Tag'
-      step 'I am logged in'
+    when "Tag"
+      step "I am logged in"
       Tag.create!
       visit admin_tag_path Tag.last
     else

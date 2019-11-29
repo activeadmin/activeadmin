@@ -127,6 +127,10 @@ Naming/PredicateName:
     - has_many
     - has_many_actions
 
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
 Style/TrailingCommaInArguments:
   Enabled: true
 

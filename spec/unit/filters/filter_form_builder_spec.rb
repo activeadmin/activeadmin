@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Filters::ViewHelper do
   # Setup an ActionView::Base object which can be used for
@@ -50,7 +50,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     describe "label as proc" do
-      let(:body) { filter :title, label: proc { 'Title from proc' } }
+      let(:body) { filter :title, label: proc { "Title from proc" } }
 
       it "should render proper label" do
         expect(body).to have_selector("label", text: "Title from proc")
@@ -58,7 +58,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     describe "input html as proc" do
-      let(:body) { filter :title, as: :select, input_html: proc { { 'data-ajax-url': '/' } } }
+      let(:body) { filter :title, as: :select, input_html: proc { { 'data-ajax-url': "/" } } }
 
       it "should render proper label" do
         expect(body).to have_selector('select[data-ajax-url="/"]')
@@ -90,7 +90,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should translate the label for text field" do
-      with_translation activerecord: { attributes: { post: { title: 'Name' } } } do
+      with_translation activerecord: { attributes: { post: { title: "Name" } } } do
         expect(body).to have_selector("label", text: "Name")
       end
     end
@@ -131,7 +131,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
-  describe 'string attribute ended with ransack predicate' do
+  describe "string attribute ended with ransack predicate" do
     let(:scope) { User.ransack }
     let(:body) { filter :reason_of_sign_in }
 
@@ -165,8 +165,8 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should remove original ordering to prevent PostgreSQL error" do
-        expect(scope.object.klass).to receive(:reorder).with('title asc') {
-          m = double distinct: double(pluck: ['A Title'])
+        expect(scope.object.klass).to receive(:reorder).with("title asc") {
+          m = double distinct: double(pluck: ["A Title"])
           expect(m.distinct).to receive(:pluck).with :title
           m
         }
@@ -198,7 +198,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "with input_html" do
-      let(:body) { filter :published_date, input_html: { 'autocomplete': 'off' } }
+      let(:body) { filter :published_date, input_html: { 'autocomplete': "off" } }
 
       it "should generate provided input html for both ends of date range" do
         expect(body).to have_selector("input.datepicker[name='q[published_date_gteq]'][autocomplete=off]")
@@ -207,7 +207,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "with input_html overriding the defaults" do
-      let(:body) { filter :published_date, input_html: { 'class': 'custom_class' } }
+      let(:body) { filter :published_date, input_html: { 'class': "custom_class" } }
 
       it "should override the default attribute values for both ends of date range" do
         expect(body).to have_selector("input.custom_class[name='q[published_date_gteq]']")
@@ -228,7 +228,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "with input_html" do
-      let(:body) { filter :created_at, input_html: { 'autocomplete': 'off' } }
+      let(:body) { filter :created_at, input_html: { 'autocomplete': "off" } }
 
       it "should generate provided input html for both ends of date range" do
         expect(body).to have_selector("input.datepicker[name='q[created_at_gteq_datetime]'][autocomplete=off]")
@@ -237,7 +237,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "with input_html overriding the defaults" do
-      let(:body) { filter :created_at, input_html: { 'class': 'custom_class' } }
+      let(:body) { filter :created_at, input_html: { 'class': "custom_class" } }
 
       it "should override the default attribute values for both ends of date range" do
         expect(body).to have_selector("input.custom_class[name='q[created_at_gteq_datetime]']")
@@ -305,7 +305,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should translate the label for boolean field" do
-        with_translation activerecord: { attributes: { post: { starred: 'Faved' } } } do
+        with_translation activerecord: { attributes: { post: { starred: "Faved" } } } do
           expect(body).to have_selector("label", text: "Faved")
         end
       end
@@ -363,7 +363,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
       context "with a proc" do
         let :body do
-          filter :title, as: :select, collection: proc { ['Title One', 'Title Two'] }
+          filter :title, as: :select, collection: proc { ["Title One", "Title Two"] }
         end
 
         it "should use call the proc as the collection" do
@@ -525,7 +525,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should work as select" do
-      body = filter :custom_title_searcher, as: :select, collection: ['foo']
+      body = filter :custom_title_searcher, as: :select, collection: ["foo"]
       expect(body).to have_selector("select[name='q[custom_title_searcher_eq]']")
     end
 

@@ -1,4 +1,4 @@
-require 'active_admin/settings_node'
+require "active_admin/settings_node"
 
 module ActiveAdmin
   class ApplicationSettings < SettingsNode
@@ -15,7 +15,7 @@ module ActiveAdmin
     # Load paths for admin configurations. Add folders to this load path
     # to load up other resources for administration. External gems can
     # include their paths in this load path to provide active_admin UIs
-    register :load_paths, [File.expand_path('app/admin', Rails.root)]
+    register :load_paths, [File.expand_path("app/admin", Rails.root)]
 
     # Set default localize format for Date/Time values
     register :localize_format, :long
@@ -34,7 +34,7 @@ module ActiveAdmin
                                       :to_s ]
 
     # To make debugging easier, by default don't stream in development
-    register :disable_streaming_in, ['development']
+    register :disable_streaming_in, ["development"]
 
     # Remove sensitive attributes from being displayed, made editable, or exported by default
     register :filter_attributes, [:encrypted_password, :password, :password_confirmation]

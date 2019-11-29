@@ -6,7 +6,7 @@ class PostPoroDecorator
   end
 
   def decorator_method
-    'A method only available on the PORO decorator'
+    "A method only available on the PORO decorator"
   end
 
   private

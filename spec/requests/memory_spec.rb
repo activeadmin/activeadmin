@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe "Memory Leak", type: :request, if: RUBY_ENGINE == 'ruby' do
+RSpec.describe "Memory Leak", type: :request, if: RUBY_ENGINE == "ruby" do
   around do |example|
     with_resources_during(example) { ActiveAdmin.register(Category) }
   end

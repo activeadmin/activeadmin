@@ -1,6 +1,6 @@
 ActiveAdmin::Dependency.pundit!
 
-require 'pundit'
+require "pundit"
 
 # Add a setting to the application to configure the pundit default policy
 ActiveAdmin::Application.inheritable_setting :pundit_default_policy, nil

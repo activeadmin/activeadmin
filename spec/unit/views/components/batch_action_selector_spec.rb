@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'active_admin/batch_actions/views/batch_action_selector'
+require "rails_helper"
+require "active_admin/batch_actions/views/batch_action_selector"
 
 RSpec.describe ActiveAdmin::BatchActions::BatchActionSelector do
   let(:dropdown) do
@@ -17,22 +17,22 @@ RSpec.describe ActiveAdmin::BatchActions::BatchActionSelector do
       dropdown.find_by_class("dropdown_menu_list").first
     end
 
-    describe '#tag_name' do
+    describe "#tag_name" do
       subject { super().tag_name }
       it { is_expected.to eql("ul") }
     end
 
-    describe '#content' do
+    describe "#content" do
       subject { super().content }
       it { is_expected.to include("class=\"batch_action\" data-action=\"action_1\"") }
     end
 
-    describe '#content' do
+    describe "#content" do
       subject { super().content }
       it { is_expected.to include("class=\"batch_action\" data-action=\"action_2\"") }
     end
 
-    describe '#content' do
+    describe "#content" do
       subject { super().content }
       it { is_expected.to include("class=\"batch_action\" data-action=\"action_3\"") }
     end

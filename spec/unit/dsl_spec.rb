@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 module MockModuleToInclude
   def self.included(dsl)
@@ -20,7 +20,7 @@ RSpec.describe ActiveAdmin::DSL do
     end
   end
 
-  describe '#action_item' do
+  describe "#action_item" do
     before do
       @default_items_count = resource_config.action_items.size
 
@@ -71,7 +71,7 @@ RSpec.describe ActiveAdmin::DSL do
       dsl.run_registration_block do
         sidebar :help
       end
-      expect(dsl.config.sidebar_sections.map(&:name)).to match_array ['filters', 'search_status', 'email', 'help']
+      expect(dsl.config.sidebar_sections.map(&:name)).to match_array ["filters", "search_status", "email", "help"]
     end
   end
 

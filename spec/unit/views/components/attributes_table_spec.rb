@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::AttributesTable do
   describe "creating with the dsl" do
@@ -60,8 +60,8 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
         let(:table) { instance_eval &table_decleration }
 
         it "should render a div wrapper with the class '.attributes_table'" do
-          expect(table.tag_name).to eq 'div'
-          expect(table.attr(:class)).to include('attributes_table')
+          expect(table.tag_name).to eq "div"
+          expect(table.attr(:class)).to include("attributes_table")
         end
 
         it "should add id and type class" do
@@ -124,31 +124,31 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
     it "should allow html content inside the attributes table" do
       table = render_arbre_component(assigns) do
         attributes_table_for(post) do
-          row("ID") { span(post.id, class: 'id') }
+          row("ID") { span(post.id, class: "id") }
         end
       end
       expect(table.find_by_tag("td").first.content.chomp.strip).to eq "<span class=\"id\">1</span>"
     end
 
-    context 'an attribute ending in _id' do
+    context "an attribute ending in _id" do
       before do
         post.foo_id = 23
-        post.author = User.new username: 'john_doe', first_name: 'John', last_name: 'Doe'
+        post.author = User.new username: "john_doe", first_name: "John", last_name: "Doe"
       end
-      it 'should call the association if one exists' do
+      it "should call the association if one exists" do
         table = render_arbre_component assigns do
           attributes_table_for post, :author
         end
-        expect(table.find_by_tag('th').first.content).to eq 'Author'
-        expect(table.find_by_tag('td').first.content).to eq 'John Doe'
+        expect(table.find_by_tag("th").first.content).to eq "Author"
+        expect(table.find_by_tag("td").first.content).to eq "John Doe"
       end
 
-      it 'should not attempt to call a nonexistant association' do
+      it "should not attempt to call a nonexistant association" do
         table = render_arbre_component assigns do
           attributes_table_for post, :foo_id
         end
-        expect(table.find_by_tag('th').first.content).to eq 'Foo'
-        expect(table.find_by_tag('td').first.content).to eq '23'
+        expect(table.find_by_tag("th").first.content).to eq "Foo"
+        expect(table.find_by_tag("td").first.content).to eq "23"
       end
     end
 
@@ -218,7 +218,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
 
             context "with defined attribute name translation" do
               it "should have the translated attribute name in the title" do
-                with_translation activerecord: { attributes: { post: { title: 'Translated Title', id: 'Translated Id' } } } do
+                with_translation activerecord: { attributes: { post: { title: "Translated Title", id: "Translated Id" } } } do
                   expect(current_row.find_by_tag("th").first.content).to eq "Translated #{title}"
                 end
               end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::Pages::Layout do
   let(:assigns) { {} }
@@ -6,13 +6,13 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
     helpers = mock_action_view
 
     { active_admin_application: active_admin_application,
-      active_admin_config: double('Config', action_items?: nil, breadcrumb: nil, sidebar_sections?: nil),
+      active_admin_config: double("Config", action_items?: nil, breadcrumb: nil, sidebar_sections?: nil),
       active_admin_namespace: active_admin_namespace,
-      csrf_meta_tag: '',
+      csrf_meta_tag: "",
       current_active_admin_user: nil,
       current_active_admin_user?: false,
-      current_menu: double('Menu', items: []),
-      params: { controller: 'UsersController', action: 'edit' },
+      current_menu: double("Menu", items: []),
+      params: { controller: "UsersController", action: "edit" },
       env: {}
     }.each do |method, returns|
       allow(helpers).to receive(method).and_return returns
@@ -53,7 +53,7 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
 
   describe "the body" do
     it "should have class 'active_admin'" do
-      expect(layout.build.class_list).to include 'active_admin'
+      expect(layout.build.class_list).to include "active_admin"
     end
 
     it "should have namespace class" do

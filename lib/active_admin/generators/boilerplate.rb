@@ -14,7 +14,7 @@ module ActiveAdmin
       end
 
       def permit_params
-        assignable_attributes.map { |a| a.to_sym.inspect }.join(', ')
+        assignable_attributes.map { |a| a.to_sym.inspect }.join(", ")
       end
 
       def rows

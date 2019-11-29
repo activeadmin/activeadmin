@@ -28,7 +28,7 @@ module ActiveAdmin
         elsif title.present?
           classes << "row-#{title.to_s.parameterize(separator: "_")}"
         end
-        options[:class] = classes.join(' ')
+        options[:class] = classes.join(" ")
 
         @table << tr(options) do
           th do
@@ -45,7 +45,7 @@ module ActiveAdmin
       protected
 
       def default_id_for_prefix
-        'attributes_table'
+        "attributes_table"
       end
 
       # Build Colgroups
@@ -75,7 +75,7 @@ module ActiveAdmin
       end
 
       def empty_value
-        span I18n.t('active_admin.empty'), class: "empty"
+        span I18n.t("active_admin.empty"), class: "empty"
       end
 
       def content_for(record, attr)

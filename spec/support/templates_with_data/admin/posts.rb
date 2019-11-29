@@ -24,7 +24,7 @@ ActiveAdmin.register Post do
   end
 
   batch_action :set_starred, form: { starred: :checkbox } do |ids, inputs|
-    Post.where(id: ids).update_all(starred: inputs['starred'].present?)
+    Post.where(id: ids).update_all(starred: inputs["starred"].present?)
     redirect_to collection_path(user_id: params["user_id"]), notice: "The posts have been updated."
   end
 
@@ -59,7 +59,7 @@ ActiveAdmin.register Post do
   end
 
   action_item :toggle_starred, only: :show do
-    link_to 'Toggle Starred', toggle_starred_admin_user_post_path(post.author, post), method: :put
+    link_to "Toggle Starred", toggle_starred_admin_user_post_path(post.author, post), method: :put
   end
 
   show do |post|
@@ -78,7 +78,7 @@ ActiveAdmin.register Post do
 
     columns do
       column do
-        panel 'Tags' do
+        panel "Tags" do
           table_for(post.taggings.order(:position)) do
             column :id do |tagging|
               link_to tagging.tag_id, admin_tag_path(tagging.tag)
@@ -90,7 +90,7 @@ ActiveAdmin.register Post do
         end
       end
       column do
-        panel 'Category' do
+        panel "Category" do
           attributes_table_for post.category do
             row :id do |category|
               link_to category.id, admin_category_path(category)
@@ -105,7 +105,7 @@ ActiveAdmin.register Post do
   form do |f|
     columns do
       column do
-        f.inputs 'Details' do
+        f.inputs "Details" do
           f.input :title
           f.input :author
           f.input :published_date,
@@ -117,7 +117,7 @@ ActiveAdmin.register Post do
         end
       end
       column do
-        f.inputs 'Content' do
+        f.inputs "Content" do
           f.input :body
         end
       end

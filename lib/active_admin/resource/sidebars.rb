@@ -1,4 +1,4 @@
-require 'active_admin/helpers/optional_display'
+require "active_admin/helpers/optional_display"
 
 module ActiveAdmin
 

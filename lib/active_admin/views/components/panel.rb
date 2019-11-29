@@ -29,7 +29,7 @@ module ActiveAdmin
       def header_action(*args)
         action = args[0]
 
-        @title << div(class: 'header_action') do
+        @title << div(class: "header_action") do
           action
         end
       end

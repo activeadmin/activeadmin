@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::ResourceController do
   let(:controller) { Admin::PostsController.new }
@@ -171,9 +171,9 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
   end
 
-  describe 'retrieving the resource' do
+  describe "retrieving the resource" do
     let(:post) { Post.new title: "An incledibly unique Post Title" }
-    let(:http_params) { { id: '1' } }
+    let(:http_params) { { id: "1" } }
 
     before do
       allow(Post).to receive(:find).and_return(post)
@@ -187,41 +187,41 @@ RSpec.describe "A specific resource controller", type: :controller do
       expect(subject).to be_kind_of(Post)
     end
 
-    context 'with a decorator' do
+    context "with a decorator" do
       let(:config) { controller.class.active_admin_config }
 
-      context 'with a Draper decorator' do
-        before { config.decorator_class_name = '::PostDecorator' }
+      context "with a Draper decorator" do
+        before { config.decorator_class_name = "::PostDecorator" }
 
-        it 'returns a PostDecorator' do
+        it "returns a PostDecorator" do
           expect(subject).to be_kind_of(PostDecorator)
         end
 
-        it 'returns a PostDecorator that wraps the post' do
+        it "returns a PostDecorator that wraps the post" do
           expect(subject.title).to eq post.title
         end
       end
 
-      context 'with a PORO decorator' do
-        before { config.decorator_class_name = '::PostPoroDecorator' }
+      context "with a PORO decorator" do
+        before { config.decorator_class_name = "::PostPoroDecorator" }
 
-        it 'returns a PostDecorator' do
+        it "returns a PostDecorator" do
           expect(subject).to be_kind_of(PostPoroDecorator)
         end
 
-        it 'returns a PostDecorator that wraps the post' do
+        it "returns a PostDecorator that wraps the post" do
           expect(subject.title).to eq post.title
         end
       end
     end
   end
 
-  describe 'retrieving the resource collection' do
+  describe "retrieving the resource collection" do
     let(:config) { controller.class.active_admin_config }
     before do
       Post.create!(title: "An incledibly unique Post Title")
       config.decorator_class_name = nil
-      request = double 'Request', format: 'application/json'
+      request = double "Request", format: "application/json"
       allow(controller).to receive(:params) { {} }
       allow(controller).to receive(:request) { request }
     end
@@ -236,15 +236,15 @@ RSpec.describe "A specific resource controller", type: :controller do
       expect(subject.first).to be_kind_of(Post)
     end
 
-    context 'with a decorator' do
-      before { config.decorator_class_name = 'PostDecorator' }
+    context "with a decorator" do
+      before { config.decorator_class_name = "PostDecorator" }
 
-      it 'returns a collection decorator using PostDecorator' do
+      it "returns a collection decorator using PostDecorator" do
         expect(subject).to be_a Draper::CollectionDecorator
         expect(subject.decorator_class).to eq PostDecorator
       end
 
-      it 'returns a collection decorator that wraps the post' do
+      it "returns a collection decorator that wraps the post" do
         expect(subject.first.title).to eq Post.first.title
       end
     end

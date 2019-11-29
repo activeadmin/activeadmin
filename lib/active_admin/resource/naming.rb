@@ -4,7 +4,7 @@ module ActiveAdmin
     module Naming
       def resource_name
         @resource_name ||= begin
-          as = @options[:as].gsub /\s/, '' if @options[:as]
+          as = @options[:as].gsub /\s/, "" if @options[:as]
 
           if as || !resource_class.respond_to?(:model_name)
             Name.new resource_class, as
@@ -17,7 +17,7 @@ module ActiveAdmin
       # Returns the name to call this resource such as "Bank Account"
       def resource_label
         resource_name.translate count: 1,
-                                default: resource_name.to_s.gsub('::', ' ').titleize
+                                default: resource_name.to_s.gsub("::", " ").titleize
       end
 
       # Returns the plural version of this resource such as "Bank Accounts"

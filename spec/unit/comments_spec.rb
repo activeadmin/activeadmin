@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Comments" do
   let(:application) { ActiveAdmin::Application.new }
@@ -53,7 +53,7 @@ RSpec.describe "Comments" do
 
       it "should not return a comment for the same resource in a different namespace" do
         ActiveAdmin.application.namespaces[:public] = ActiveAdmin.application.namespaces[:admin]
-        expect(ActiveAdmin::Comment.find_for_resource_in_namespace(post, 'public')).to eq []
+        expect(ActiveAdmin::Comment.find_for_resource_in_namespace(post, "public")).to eq []
         ActiveAdmin.application.namespaces.instance_variable_get(:@namespaces).delete(:public)
       end
 
@@ -113,7 +113,7 @@ RSpec.describe "Comments" do
 
     describe ".resource_type" do
       let(:post) { Post.create!(title: "Testing.") }
-      let(:post_decorator) { double 'PostDecorator' }
+      let(:post_decorator) { double "PostDecorator" }
 
       before do
         allow(post_decorator).to receive(:model).and_return(post)
@@ -124,7 +124,7 @@ RSpec.describe "Comments" do
         let(:resource) { post_decorator }
 
         it "returns undeorated object class string" do
-          expect(ActiveAdmin::Comment.resource_type resource).to eql 'Post'
+          expect(ActiveAdmin::Comment.resource_type resource).to eql "Post"
         end
       end
 
@@ -132,7 +132,7 @@ RSpec.describe "Comments" do
         let(:resource) { post }
 
         it "returns object class string" do
-          expect(ActiveAdmin::Comment.resource_type resource).to eql 'Post'
+          expect(ActiveAdmin::Comment.resource_type resource).to eql "Post"
         end
       end
     end

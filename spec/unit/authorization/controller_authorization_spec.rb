@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Controller Authorization", type: :controller do
   let(:authorization) { controller.send(:active_admin_authorization) }
@@ -24,14 +24,14 @@ RSpec.describe "Controller Authorization", type: :controller do
   it "should authorize the create action with the new resource" do
     expect(authorization).to receive(:authorized?).with(auth::CREATE, an_instance_of(Post)).and_return true
     post :create
-    expect(response).to redirect_to action: 'show', id: Post.last.id
+    expect(response).to redirect_to action: "show", id: Post.last.id
   end
 
   it "should redirect when the user isn't authorized" do
     expect(authorization).to receive(:authorized?).with(auth::READ, Post).and_return false
     get :index
     expect(response.body).to eq '<html><body>You are being <a href="http://test.host/admin">redirected</a>.</body></html>'
-    expect(response).to redirect_to '/admin'
+    expect(response).to redirect_to "/admin"
   end
 
   private

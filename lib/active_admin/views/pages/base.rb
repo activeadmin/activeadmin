@@ -15,7 +15,7 @@ module ActiveAdmin
         end
 
         def main_content
-          I18n.t('active_admin.main_content', model: title).html_safe
+          I18n.t("active_admin.main_content", model: title).html_safe
         end
 
         private
@@ -65,9 +65,9 @@ module ActiveAdmin
         def body_classes
           Arbre::HTML::ClassList.new [
             params[:action],
-            params[:controller].tr('/', '_'),
-            'active_admin', 'logged_in',
-            active_admin_namespace.name.to_s + '_namespace'
+            params[:controller].tr("/", "_"),
+            "active_admin", "logged_in",
+            active_admin_namespace.name.to_s + "_namespace"
           ]
         end
 
@@ -81,12 +81,12 @@ module ActiveAdmin
           build_flash_messages
           div id: "active_admin_content", class: (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
             build_main_content_wrapper
-            sidebar sidebar_sections_for_action, id: 'sidebar' unless skip_sidebar?
+            sidebar sidebar_sections_for_action, id: "sidebar" unless skip_sidebar?
           end
         end
 
         def build_flash_messages
-          div class: 'flashes' do
+          div class: "flashes" do
             flash_messages.each do |type, messages|
               [*messages].each do |message|
                 div message, class: "flash flash_#{type}"

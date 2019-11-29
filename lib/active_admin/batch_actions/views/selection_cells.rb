@@ -1,4 +1,4 @@
-require 'active_admin/component'
+require "active_admin/component"
 
 module ActiveAdmin
   module BatchActions
@@ -7,7 +7,7 @@ module ActiveAdmin
     class ResourceSelectionToggleCell < ActiveAdmin::Component
       builder_method :resource_selection_toggle_cell
 
-      def build(label_text = '')
+      def build(label_text = "")
         label do
           input type: "checkbox", id: "collection_selection_toggle_all", name: "collection_selection_toggle_all", class: "toggle_all"
           text_node label_text if label_text.present?
@@ -30,7 +30,7 @@ module ActiveAdmin
 
       def build
         super(id: "collection_selection_toggle_panel")
-        resource_selection_toggle_cell(I18n.t('active_admin.batch_actions.selection_toggle_explanation', default: "(Toggle Selection)"))
+        resource_selection_toggle_cell(I18n.t("active_admin.batch_actions.selection_toggle_explanation", default: "(Toggle Selection)"))
       end
     end
 

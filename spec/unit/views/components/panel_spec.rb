@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::Panel do
   let(:arbre_panel) do
@@ -13,21 +13,21 @@ RSpec.describe ActiveAdmin::Views::Panel do
   let(:panel_html) { Capybara.string(arbre_panel.to_s) }
 
   it "should have a title h3" do
-    expect(panel_html).to have_css 'h3', text: "My Title"
+    expect(panel_html).to have_css "h3", text: "My Title"
   end
 
   it "should add panel actions to the panel header" do
-    link = panel_html.find('h3 > div.header_action a')
-    expect(link.text).to eq('My Link')
+    link = panel_html.find("h3 > div.header_action a")
+    expect(link.text).to eq("My Link")
     expect(link[:href]).to eq("https://www.github.com/activeadmin/activeadmin")
   end
 
   it "should have a contents div" do
-    expect(panel_html).to have_css 'div.panel_contents'
+    expect(panel_html).to have_css "div.panel_contents"
   end
 
   it "should add children to the contents div" do
-    expect(panel_html).to have_css 'div.panel_contents > span', text: "Hello World"
+    expect(panel_html).to have_css "div.panel_contents > span", text: "Hello World"
   end
 
   context "with html-safe title" do

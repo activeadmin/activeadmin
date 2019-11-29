@@ -193,11 +193,11 @@ class ReleaseManager
   end
 
   def gem_version_file
-    'lib/active_admin/version.rb'
+    "lib/active_admin/version.rb"
   end
 
   def npm_version_file
-    'package.json'
+    "package.json"
   end
 
   def changelog_file

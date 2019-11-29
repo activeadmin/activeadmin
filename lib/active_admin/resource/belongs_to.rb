@@ -1,4 +1,4 @@
-require 'active_admin/resource'
+require "active_admin/resource"
 
 module ActiveAdmin
   class Resource

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 class DefaultPolicy < ApplicationPolicy
   def respond_to_missing?(method, include_private = false)
@@ -90,7 +90,7 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       auth.authorized?(:index)
     end
 
-    context 'when Pundit is unable to find policy scope' do
+    context "when Pundit is unable to find policy scope" do
       let(:collection) { double("collection", to_sym: :collection) }
       subject(:scope) { auth.scope_collection(collection, :read) }
 

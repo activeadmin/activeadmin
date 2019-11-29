@@ -1,6 +1,6 @@
-require 'csv'
+require "csv"
 
-Around '@csv' do |scenario, block|
+Around "@csv" do |scenario, block|
   default_csv_options = ActiveAdmin.application.csv_options
 
   begin
@@ -25,7 +25,7 @@ Then /^I should download a CSV file with "([^"]*)" separator for "([^"]*)" conta
   content_type_header, content_disposition_header = %w[Content-Type Content-Disposition].map do |header_name|
     page.response_headers[header_name]
   end
-  expect(content_type_header).to eq 'text/csv; charset=utf-8'
+  expect(content_type_header).to eq "text/csv; charset=utf-8"
   expect(content_disposition_header).to match /\Aattachment; filename=".+?\.csv"\z/
 
   csv = CSV.parse(body, col_sep: sep)
@@ -35,7 +35,7 @@ Then /^I should download a CSV file with "([^"]*)" separator for "([^"]*)" conta
       if expected_cell.blank?
         expect(cell).to eq nil
       else
-        expect(cell || '').to match /#{expected_cell}/
+        expect(cell || "").to match /#{expected_cell}/
       end
     end
   end

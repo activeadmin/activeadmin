@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 module ActiveAdmin
   RSpec.describe Resource, "Attributes" do
@@ -11,7 +11,7 @@ module ActiveAdmin
         resource_config.resource_attributes
       end
 
-      it 'should return attributes hash' do
+      it "should return attributes hash" do
         expect(subject).to eq(author_id: :author,
                               body: :body,
                               created_at: :created_at,
@@ -24,7 +24,7 @@ module ActiveAdmin
                               updated_at: :updated_at)
       end
 
-      it 'does not return sensitive attributes' do
+      it "does not return sensitive attributes" do
         keep = ActiveAdmin.application.filter_attributes
         ActiveAdmin.application.filter_attributes = [:published_date]
         expect(subject).to_not include :published_date
@@ -37,7 +37,7 @@ module ActiveAdmin
         resource_config.association_columns
       end
 
-      it 'should return associations' do
+      it "should return associations" do
         expect(subject).to eq([:author, :category])
       end
     end
@@ -47,7 +47,7 @@ module ActiveAdmin
         resource_config.content_columns
       end
 
-      it 'should return columns without associations' do
+      it "should return columns without associations" do
         expect(subject).to eq([:title, :body, :published_date, :position, :starred, :foo_id, :created_at, :updated_at])
       end
     end

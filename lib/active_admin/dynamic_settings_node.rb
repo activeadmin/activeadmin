@@ -1,5 +1,5 @@
-require 'active_admin/dynamic_setting'
-require 'active_admin/settings_node'
+require "active_admin/dynamic_setting"
+require "active_admin/settings_node"
 
 module ActiveAdmin
 

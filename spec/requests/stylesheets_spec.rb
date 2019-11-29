@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Stylesheets", type: :request, unless: ActiveAdmin.application.use_webpacker do
   require "sprockets"

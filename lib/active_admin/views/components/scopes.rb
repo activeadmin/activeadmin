@@ -1,5 +1,5 @@
-require 'active_admin/helpers/collection'
-require 'active_admin/view_helpers/method_or_proc_helper'
+require "active_admin/helpers/collection"
+require "active_admin/view_helpers/method_or_proc_helper"
 
 module ActiveAdmin
   module Views
@@ -17,7 +17,7 @@ module ActiveAdmin
       end
 
       def tag_name
-        'div'
+        "div"
       end
 
       def build(scopes, options = {})
@@ -38,9 +38,9 @@ module ActiveAdmin
         li class: classes_for_scope(scope) do
           params = request.query_parameters.except :page, :scope, :commit, :format
 
-          a href: url_for(scope: scope.id, params: params), class: 'table_tools_button' do
+          a href: url_for(scope: scope.id, params: params), class: "table_tools_button" do
             text_node scope_name(scope)
-            span class: 'count' do
+            span class: "count" do
               "(#{get_scope_count(scope)})"
             end if options[:scope_count] && scope.show_count
           end

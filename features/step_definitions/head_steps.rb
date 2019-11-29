@@ -1,4 +1,4 @@
-Around '@head' do |scenario, block|
+Around "@head" do |scenario, block|
   previous_head = ActiveAdmin.application.head
 
   begin

@@ -1,4 +1,4 @@
-require 'active_admin/component'
+require "active_admin/component"
 
 module ActiveAdmin
   module BatchActions

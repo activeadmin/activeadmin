@@ -10,7 +10,7 @@ module ActiveAdmin
         name.present? ? name : to_s
       }
       def DISPLAY_NAME_FALLBACK.inspect
-        'DISPLAY_NAME_FALLBACK'
+        "DISPLAY_NAME_FALLBACK"
       end
 
       # Attempts to call any known display name methods on the resource.
@@ -85,7 +85,7 @@ module ActiveAdmin
       end
 
       def format_collection(collection)
-        safe_join(collection.map { |item| pretty_format(item) }, ', ')
+        safe_join(collection.map { |item| pretty_format(item) }, ", ")
       end
 
       def boolean_attr?(resource, attr, value)

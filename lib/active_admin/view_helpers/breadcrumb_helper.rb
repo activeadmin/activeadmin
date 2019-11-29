@@ -6,7 +6,7 @@ module ActiveAdmin
       def breadcrumb_links(path = request.path)
         # remove leading "/" and split up the URL
         # and remove last since it's used as the page title
-        parts = path.split('/').select(&:present?)[0..-2]
+        parts = path.split("/").select(&:present?)[0..-2]
 
         parts.each_with_index.map do |part, index|
           # 1. try using `display_name` if we can locate a DB object
@@ -21,7 +21,7 @@ module ActiveAdmin
 
           # Don't create a link if the resource's show action is disabled
           if !config || config.defined_actions.include?(:show)
-            link_to name, '/' + parts[0..index].join('/')
+            link_to name, "/" + parts[0..index].join("/")
           else
             name
           end

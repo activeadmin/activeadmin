@@ -30,7 +30,7 @@ module ActiveAdmin
       end
 
       def tag_name
-        'li'
+        "li"
       end
 
       # Sorts by priority first, then alphabetically by label if needed.
@@ -44,14 +44,14 @@ module ActiveAdmin
       end
 
       def to_s
-        visible? ? super : ''
+        visible? ? super : ""
       end
 
       private
 
       # URL is not nil, empty, or '#'
       def real_url?
-        url && url.present? && url != '#'
+        url && url.present? && url != "#"
       end
     end
   end

@@ -10,8 +10,8 @@ module ActiveAdmin
       end
 
       def build(&block)
-        @menu = ul(class: 'nav nav-tabs', role: "tablist")
-        @tabs_content = div(class: 'tab-content')
+        @menu = ul(class: "nav nav-tabs", role: "tablist")
+        @tabs_content = div(class: "tab-content")
       end
 
       def build_menu_item(title, options, &block)

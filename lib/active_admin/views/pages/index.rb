@@ -1,4 +1,4 @@
-require 'active_admin/helpers/collection'
+require "active_admin/helpers/collection"
 
 module ActiveAdmin
   module Views
@@ -111,7 +111,7 @@ module ActiveAdmin
 
         def render_blank_slate
           blank_slate_content = I18n.t("active_admin.blank_slate.content", resource_name: active_admin_config.plural_resource_label)
-          if controller.action_methods.include?('new') && authorized?(ActiveAdmin::Auth::CREATE, active_admin_config.resource_class)
+          if controller.action_methods.include?("new") && authorized?(ActiveAdmin::Auth::CREATE, active_admin_config.resource_class)
             blank_slate_content = [blank_slate_content, blank_slate_link].compact.join(" ")
           end
           insert_tag(view_factory.blank_slate, blank_slate_content)
@@ -136,7 +136,7 @@ module ActiveAdmin
                                            paginator: paginator,
                                            per_page: per_page,
                                            pagination_total: pagination_total) do
-            div class: 'index_content' do
+            div class: "index_content" do
               insert_tag(renderer_class, config, collection)
             end
           end
