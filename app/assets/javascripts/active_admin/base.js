@@ -10,9 +10,10 @@
 //= require jquery_ujs
 //= require_self
 
-(function(factory) {
-  typeof define === "function" && define.amd ? define([ "jquery", "jquery-ui/ui/widgets/datepicker", "jquery-ui/ui/widgets/dialog", "jquery-ui/ui/widgets/sortable", "jquery-ui/ui/widgets/tabs", "jquery-ui/ui/widget", "jquery-ujs" ], factory) : factory();
-})(function() {
+(function(global, factory) {
+  typeof exports === "object" && typeof module !== "undefined" ? factory(exports, require("jquery"), require("jquery-ui/ui/widgets/datepicker"), require("jquery-ui/ui/widgets/dialog"), require("jquery-ui/ui/widgets/sortable"), require("jquery-ui/ui/widgets/tabs"), require("jquery-ui/ui/widget"), require("jquery-ujs")) : typeof define === "function" && define.amd ? define([ "exports", "jquery", "jquery-ui/ui/widgets/datepicker", "jquery-ui/ui/widgets/dialog", "jquery-ui/ui/widgets/sortable", "jquery-ui/ui/widgets/tabs", "jquery-ui/ui/widget", "jquery-ujs" ], factory) : (global = global || self, 
+  factory(global.ActiveAdmin = {}));
+})(this, function(exports) {
   "use strict";
   $.fn.serializeObject = function() {
     return this.serializeArray().reduce(function(obj, item) {
@@ -506,4 +507,18 @@
     return $("#active_admin_content .tabs").tabs();
   };
   $(document).ready(onDOMReady$2).on("page:load turbolinks:load", onDOMReady$2);
+  exports.CheckboxToggler = CheckboxToggler;
+  exports.DropdownMenu = DropdownMenu;
+  exports.Filters = Filters;
+  exports.ModalDialog = ModalDialog;
+  exports.PerPage = PerPage;
+  exports.TableCheckboxToggler = TableCheckboxToggler;
+  exports.hasTurbolinks = hasTurbolinks;
+  exports.queryString = queryString;
+  exports.queryStringToParams = queryStringToParams;
+  exports.toQueryString = toQueryString;
+  exports.turbolinksVisit = turbolinksVisit;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
 });
