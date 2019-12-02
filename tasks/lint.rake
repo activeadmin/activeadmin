@@ -26,7 +26,7 @@ module LinterMixin
   private
 
   def applicable_files
-    Open3.capture2("git grep -Il ''")[0].split.reject { |file| file =~ %r{vendor/} }
+    Open3.capture2("git grep -Il ''")[0].split.reject { |file| file =~ %r{vendor/|app/assets/javascripts/active_admin/base.js} }
   end
 
   def failure_message_for(offenses)
