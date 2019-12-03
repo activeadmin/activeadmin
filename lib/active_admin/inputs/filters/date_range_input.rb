@@ -33,7 +33,7 @@ module ActiveAdmin
             class: "datepicker",
             maxlength: 10,
             placeholder: placeholder,
-            value: current_value ? current_value.strftime("%Y-%m-%d") : "" }.merge(input_html_options)
+            value: current_value ? current_value.strftime("%Y-%m-%d") : "" }.merge(options[:input_html] || {})
         end
 
         def gt_input_placeholder
