@@ -17,7 +17,7 @@
 * Convert namespace to sym to prevent duplicate namespaces such as :foo and 'foo'. [#5931] by [@westonganger]
 * Use filter label when condition has a predicate. [#5886] by [@ko-lem]
 * Fix error when routing with array containing symbol. [#5870] by [@jwesorick]
-* Fix error when there is a model named `Tag` and `meta_tags` have been configured. [#5893] by [@micred], [@FabioRos] and [@deivid-rodriguez]
+* Fix error when there is a model named `Tag` and `meta_tags` have been configured. [#5895] by [@micred], [@FabioRos] and [@deivid-rodriguez]
 * Allow specifying custom `input_html` for `DateRangeInput`. [#5867] by [@mirelon]
 * Adjust `#main_content` right margin to take into account possible custom values of `$sidebar-width` and `$section-padding`. [#5887] by [@guigs]
 * Improved polymorphic routes generation to avoid problems when multiple `belongs_to` are defined. [#5938] by [@leio10]
@@ -522,7 +522,7 @@ Please check [0-6-stable] for previous changes.
 [#5877]: https://github.com/activeadmin/activeadmin/pull/5877
 [#5886]: https://github.com/activeadmin/activeadmin/pull/5886
 [#5870]: https://github.com/activeadmin/activeadmin/pull/5870
-[#5893]: https://github.com/activeadmin/activeadmin/pull/5893
+[#5895]: https://github.com/activeadmin/activeadmin/pull/5895
 [#5867]: https://github.com/activeadmin/activeadmin/pull/5867
 [#5887]: https://github.com/activeadmin/activeadmin/pull/5887
 [#5931]: https://github.com/activeadmin/activeadmin/pull/5931
