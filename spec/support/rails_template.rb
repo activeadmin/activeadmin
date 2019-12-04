@@ -74,29 +74,14 @@ directory File.expand_path('templates/admin', __dir__), 'app/admin'
 # Add predefined policies
 directory File.expand_path('templates/policies', __dir__), 'app/policies'
 
-# Require turbolinks if necessary
-if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_turbolinks/Gemfile", __dir__)
-  append_file 'app/assets/javascripts/active_admin.js', "//= require turbolinks\n"
-end
-
 # Setup webpacker if necessary
 if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_webpacker/Gemfile", __dir__)
   rake "webpacker:install"
-  gsub_file 'config/webpacker.yml', /^.*extract_css.*$/, <<-YML
-  extract_css: true
-  YML
-  jquery_env = <<-ENV
-\nconst webpack = require('webpack')
-environment.plugins.prepend('Provide',
-  new webpack.ProvidePlugin({
-    "$":"jquery",
-    "jQuery":"jquery",
-    "window.jQuery":"jquery"
-  })
-)
-  ENV
-  inject_into_file 'config/webpack/environment.js', jquery_env, after: "const { environment } = require('@rails/webpacker')"
-  run "yarn add @activeadmin/activeadmin"
+end
+
+# Require turbolinks if necessary
+if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_turbolinks/Gemfile", __dir__)
+  append_file 'app/assets/javascripts/active_admin.js', "//= require turbolinks\n"
 end
 
 if ENV['RAILS_ENV'] != 'test'
