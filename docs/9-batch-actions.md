@@ -154,13 +154,13 @@ batch_action :doit, form: -> { {user: User.pluck(:name, :id)} } do |ids, inputs|
 end
 ```
 
-Under the covers this is powered by the JS `ActiveAdmin.modal_dialog` which you
+Under the covers this is powered by the JS `ActiveAdmin.ModalDialog` which you
 can use yourself:
 
 ```coffee
 if $('body.admin_users').length
   $('a[data-prompt]').click ->
-    ActiveAdmin.modal_dialog $(@).data('prompt'), comment: 'textarea',
+    ActiveAdmin.ModalDialog $(@).data('prompt'), comment: 'textarea',
       (inputs)=>
         $.post "/admin/users/#{$(@).data 'id'}/change_state",
           comment: inputs.comment, state: $(@).data('state'),

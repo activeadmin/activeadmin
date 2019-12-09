@@ -18,10 +18,4 @@ import "./initializers/per-page"
 import "./initializers/table-checkbox-toggler"
 import "./initializers/tabs"
 
-export { default as CheckboxToggler } from "./lib/checkbox-toggler";
-export { default as DropdownMenu } from "./lib/dropdown-menu";
-export { default as Filters } from "./lib/filters";
 export { default as ModalDialog } from "./lib/modal-dialog";
-export { default as PerPage } from "./lib/per-page";
-export { default as TableCheckboxToggler } from "./lib/table-checkbox-toggler";
-export * from "./lib/utils";
