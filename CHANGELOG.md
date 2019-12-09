@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+* Export ModalDialog component to re-enable client side usage. [#5956] by [@sgara]
+
 ### Enhacements
 
 * Display multiple flash messages in separate elements. [#5929] by [@mirelon]
