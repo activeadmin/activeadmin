@@ -5,10 +5,9 @@ like you that make Active Admin such a great tool.
 
 ### Where do I go from here?
 
-If you've noticed a bug or have a question that doesn't belong on the [mailing
-list] or [Stack Overflow], [search the issue tracker] to see if someone else in
-the community has already created a ticket. If not, go ahead and [make one][new
-issue]!
+If you've noticed a bug or have a question that doesn't belong on [Stack
+Overflow], [search the issue tracker] to see if someone else in the community
+has already created a ticket. If not, go ahead and [make one][new issue]!
 
 ### Fork & create a branch
 
@@ -225,7 +224,6 @@ Maintainers need to do the following to push out a release:
 * `bin/rake release`
 
 [chandler]: https://github.com/mattbrictson/chandler#2-configure-credentials
-[mailing list]: http://groups.google.com/group/activeadmin
 [Stack Overflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [search the issue tracker]: https://github.com/activeadmin/activeadmin/issues?q=something
 [new issue]: https://github.com/activeadmin/activeadmin/issues/new
