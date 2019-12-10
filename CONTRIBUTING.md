@@ -5,9 +5,12 @@ like you that make Active Admin such a great tool.
 
 ### Where do I go from here?
 
-If you've noticed a bug or have a question that doesn't belong on [Stack
-Overflow], [search the issue tracker] to see if someone else in the community
-has already created a ticket. If not, go ahead and [make one][new issue]!
+If you've noticed a bug or have a feature request, [make one][new issue]! It's
+generally best if you get confirmation of your bug or approval for your feature
+request this way before starting to code.
+
+If you have a general question about activeadmin, you can post it on [Stack
+Overflow], the issue tracker is only for bugs and feature requests.
 
 ### Fork & create a branch
 
@@ -68,10 +71,7 @@ As such, make sure not to use any sass-rails directives such as `asset-url` or `
 
 ### Did you find a bug?
 
-* **Ensure the bug was not already reported** by [searching all issues].
-
-* If you're unable to find an open issue addressing the problem,
-  [open a new one][new issue]. Be sure to include a **title and clear
+* [Open a new issue][new issue]. Be sure to include a **title and clear
   description**, as much relevant information as possible, and a **code sample**
   or an **executable test case** demonstrating the expected behavior that is not
   occurring.
@@ -225,10 +225,8 @@ Maintainers need to do the following to push out a release:
 
 [chandler]: https://github.com/mattbrictson/chandler#2-configure-credentials
 [Stack Overflow]: http://stackoverflow.com/questions/tagged/activeadmin
-[search the issue tracker]: https://github.com/activeadmin/activeadmin/issues?q=something
 [new issue]: https://github.com/activeadmin/activeadmin/issues/new
 [fork Active Admin]: https://help.github.com/articles/fork-a-repo
-[searching all issues]: https://github.com/activeadmin/activeadmin/issues?q=
 [master template]: https://github.com/activeadmin/activeadmin/blob/master/tasks/bug_report_template.rb
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
 [git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing

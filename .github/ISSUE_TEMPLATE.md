@@ -1,9 +1,5 @@
 [Please follow the guidelines for creating a bug report](https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md#did-you-find-a-bug).
 
-The issue tracker is only for bugs and feature requests. If you need general
-help please post to
-[StackOverflow](http://stackoverflow.com/questions/tagged/activeadmin).
-
 ### Expected behavior
 
 What do you think should happen?
