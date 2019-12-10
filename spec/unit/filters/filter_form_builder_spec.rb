@@ -175,6 +175,11 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       ids = body.find_css("input.datepicker").to_a.map { |n| n[:id] }
       expect(ids).to contain_exactly("q_published_date_lteq", "q_published_date_gteq")
     end
+    it "should generate one label without for attribute" do
+      label = body.find_css("label")
+      expect(label.length).to be(1)
+      expect(label.attr("for")).to be_nil
+    end
 
     context "with input_html" do
       let(:body) { filter :published_date, input_html: { 'autocomplete': 'off' } }
