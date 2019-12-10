@@ -8,7 +8,7 @@ Before submitting your PR make sure that:
 
 * You wrote [good commit messages].
 * The PR relates to *only* one subject with a clear title and description in grammatically correct, complete sentences.
-+ The PR descripion [includes keywords to automatically close issues] if it fixes an existing issue.
+* The PR description [includes keywords to automatically close issues] if it fixes an existing issue.
 * Your feature branch is up-to-date with `master` (if not - rebase it), and does not include merge commits.
 * Related commits are squashed together, and unrelated commits are splitted apart.
 * Your PR includes a regression test if it fixes a bug.
