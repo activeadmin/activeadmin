@@ -507,7 +507,12 @@
     return $("#active_admin_content .tabs").tabs();
   };
   $(document).ready(onDOMReady$2).on("page:load turbolinks:load", onDOMReady$2);
+  function modal_dialog(message, inputs, callback) {
+    console.warn("ActiveAdmin.modal_dialog is deprecated in favor of ActiveAdmin.ModalDialog, please update usage.");
+    return ModalDialog(message, inputs, callback);
+  }
   exports.ModalDialog = ModalDialog;
+  exports.modal_dialog = modal_dialog;
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
