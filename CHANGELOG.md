@@ -6,6 +6,10 @@
 
 * Display multiple flash messages in separate elements. [#5929] by [@mirelon]
 
+### Bug Fixes
+
+* Use default ActionView options instead of default Formtastic options for DateRangeInput [#5957] by [@mirelon]
+
 ## 2.5.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.4.0..v2.5.0)
 
 ### Enhancements
@@ -528,6 +532,7 @@ Please check [0-6-stable] for previous changes.
 [#5931]: https://github.com/activeadmin/activeadmin/pull/5931
 [#5938]: https://github.com/activeadmin/activeadmin/pull/5938
 [#5929]: https://github.com/activeadmin/activeadmin/pull/5929
+[#5957]: https://github.com/activeadmin/activeadmin/pull/5957
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek

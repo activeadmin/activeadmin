@@ -22,17 +22,20 @@ module ActiveAdmin
           column && column.type == :date ? "#{method}_lteq" : "#{method}_lteq_datetime"
         end
 
-        def input_html_options_for(input_name = gt_input_name, placeholder = gt_input_placeholder)
-          current_value = begin
-            #cast value to date object before rendering input
-            @object.public_send(input_name).to_s.to_date
-          rescue
-            nil
-          end
+        def input_html_options
           { size: 12,
             class: "datepicker",
-            maxlength: 10,
-            placeholder: placeholder,
+            maxlength: 10 }.merge(options[:input_html] || {})
+        end
+
+        def input_html_options_for(input_name, placeholder)
+          current_value = begin
+                            #cast value to date object before rendering input
+                            @object.public_send(input_name).to_s.to_date
+                          rescue
+                            nil
+                          end
+          { placeholder: placeholder,
             value: current_value ? current_value.strftime("%Y-%m-%d") : "" }.merge(input_html_options)
         end
 
