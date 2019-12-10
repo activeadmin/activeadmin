@@ -76,11 +76,10 @@ As such, make sure not to use any sass-rails directives such as `asset-url` or `
   or an **executable test case** demonstrating the expected behavior that is not
   occurring.
 
-* If possible, use the relevant bug report templates to create the issue.
-  Simply copy the content of the appropriate template into a .rb file, make the
-  necessary changes to demonstrate the issue, and **paste the content into the
-  issue description**:
-  * [**ActiveAdmin** master issues][master template]
+* If possible, use [our bug report template] to create the issue. Simply copy
+  the content of the appropriate template into a .rb file, make the necessary
+  changes to demonstrate the issue, and **paste the content into the issue
+  description**.
 
 ### Implement your fix or feature
 
@@ -227,7 +226,7 @@ Maintainers need to do the following to push out a release:
 [Stack Overflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [new issue]: https://github.com/activeadmin/activeadmin/issues/new
 [fork Active Admin]: https://help.github.com/articles/fork-a-repo
-[master template]: https://github.com/activeadmin/activeadmin/blob/master/tasks/bug_report_template.rb
+[our bug report template]: https://github.com/activeadmin/activeadmin/blob/master/tasks/bug_report_template.rb
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
 [git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
 [interactive rebase]: https://help.github.com/articles/interactive-rebase
