@@ -93,7 +93,7 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 
 [rubygems_badge]: http://img.shields.io/gem/v/activeadmin.svg
 [rubygems]: https://rubygems.org/gems/activeadmin
-[circle_badge]: https://circleci.com/gh/activeadmin/activeadmin/tree/master.svg
+[circle_badge]: https://circleci.com/gh/activeadmin/activeadmin/tree/master.svg?style=svg
 [circle]: https://circleci.com/gh/activeadmin/activeadmin/tree/master
 [coverage_badge]: https://api.codeclimate.com/v1/badges/779e407d22bacff19733/test_coverage
 [coverage]: https://codeclimate.com/github/activeadmin/activeadmin/test_coverage
