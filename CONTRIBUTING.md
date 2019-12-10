@@ -71,15 +71,15 @@ As such, make sure not to use any sass-rails directives such as `asset-url` or `
 
 ### Did you find a bug?
 
-* [Open a new issue][new issue]. Be sure to include a **title and clear
-  description**, as much relevant information as possible, and a **code sample**
-  or an **executable test case** demonstrating the expected behavior that is not
-  occurring.
+* [Open a new issue][new issue]. Be sure to include a **clear title** sumarizing
+  your problem, and a **clear description** including as much relevant
+  information as possible about it.
 
-* If possible, use [our bug report template] to create the issue. Simply copy
-  the content of the appropriate template into a .rb file, make the necessary
-  changes to demonstrate the issue, and **paste the content into the issue
-  description**.
+* If possible, include a **code sample** or an **executable test case**
+  demonstrating the expected behavior that is not occurring. Ideally, use [our
+  bug report template] to create the issue. Simply copy the content of the
+  appropriate template into a .rb file, make the necessary changes to
+  demonstrate the issue, and **paste the content into the issue description**.
 
 ### Implement your fix or feature
 
