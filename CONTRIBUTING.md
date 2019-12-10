@@ -69,18 +69,6 @@ export BUNDLE_GEMFILE=gemfiles/rails_60/Gemfile
 **Warning** SCSS assets are aimed to be used indifferently with Sprockets **and** webpacker.
 As such, make sure not to use any sass-rails directives such as `asset-url` or `image-url`.
 
-### Did you find a bug?
-
-* [Open a new issue][new issue]. Be sure to include a **clear title** sumarizing
-  your problem, and a **clear description** including as much relevant
-  information as possible about it.
-
-* If possible, include a **code sample** or an **executable test case**
-  demonstrating the expected behavior that is not occurring. Ideally, use [our
-  bug report template] to create the issue. Simply copy the content of the
-  appropriate template into a .rb file, make the necessary changes to
-  demonstrate the issue, and **paste the content into the issue description**.
-
 ### Implement your fix or feature
 
 At this point, you're ready to make your changes! Feel free to ask for help;
@@ -226,7 +214,6 @@ Maintainers need to do the following to push out a release:
 [Stack Overflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [new issue]: https://github.com/activeadmin/activeadmin/issues/new
 [fork Active Admin]: https://help.github.com/articles/fork-a-repo
-[our bug report template]: https://github.com/activeadmin/activeadmin/blob/master/tasks/bug_report_template.rb
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
 [git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
 [interactive rebase]: https://help.github.com/articles/interactive-rebase
