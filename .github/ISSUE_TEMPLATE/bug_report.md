@@ -1,3 +1,13 @@
+---
+
+name: Bug report
+about: Create a bug report to help us improve ActiveAdmin
+title: ""
+labels: ""
+assignees: ""
+
+---
+
 ### Did you find a bug?
 
 Describe your problem with a **clear title** sumarizing it, and a **clear
