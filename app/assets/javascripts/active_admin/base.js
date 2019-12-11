@@ -10,9 +10,10 @@
 //= require jquery_ujs
 //= require_self
 
-(function(factory) {
-  typeof define === "function" && define.amd ? define([ "jquery", "jquery-ui/ui/widgets/datepicker", "jquery-ui/ui/widgets/dialog", "jquery-ui/ui/widgets/sortable", "jquery-ui/ui/widgets/tabs", "jquery-ui/ui/widget", "jquery-ujs" ], factory) : factory();
-})(function() {
+(function(global, factory) {
+  typeof exports === "object" && typeof module !== "undefined" ? factory(exports, require("jquery"), require("jquery-ui/ui/widgets/datepicker"), require("jquery-ui/ui/widgets/dialog"), require("jquery-ui/ui/widgets/sortable"), require("jquery-ui/ui/widgets/tabs"), require("jquery-ui/ui/widget"), require("jquery-ujs")) : typeof define === "function" && define.amd ? define([ "exports", "jquery", "jquery-ui/ui/widgets/datepicker", "jquery-ui/ui/widgets/dialog", "jquery-ui/ui/widgets/sortable", "jquery-ui/ui/widgets/tabs", "jquery-ui/ui/widget", "jquery-ujs" ], factory) : (global = global || self, 
+  factory(global.ActiveAdmin = {}));
+})(this, function(exports) {
   "use strict";
   $.fn.serializeObject = function() {
     return this.serializeArray().reduce(function(obj, item) {
@@ -506,4 +507,13 @@
     return $("#active_admin_content .tabs").tabs();
   };
   $(document).ready(onDOMReady$2).on("page:load turbolinks:load", onDOMReady$2);
+  function modal_dialog(message, inputs, callback) {
+    console.warn("ActiveAdmin.modal_dialog is deprecated in favor of ActiveAdmin.ModalDialog, please update usage.");
+    return ModalDialog(message, inputs, callback);
+  }
+  exports.ModalDialog = ModalDialog;
+  exports.modal_dialog = modal_dialog;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
 });
