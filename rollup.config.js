@@ -2,7 +2,6 @@ import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import babel from "rollup-plugin-babel";
 import { uglify } from "rollup-plugin-uglify";
-import license from "rollup-plugin-license";
 import { stripIndent } from 'common-tags';
 
 const uglifyOptions = {
@@ -10,7 +9,20 @@ const uglifyOptions = {
   compress: false,
   output: {
     beautify: true,
-    indent_level: 2
+    indent_level: 2,
+    preamble: stripIndent`
+      /**
+       * Warning: This file is auto-generated, do not modify. Instead, make your changes in 'app/javascript/active_admin/' and run \`yarn build\`
+       */
+      //= require jquery3
+      //= require jquery-ui/widgets/datepicker
+      //= require jquery-ui/widgets/dialog
+      //= require jquery-ui/widgets/sortable
+      //= require jquery-ui/widgets/tabs
+      //= require jquery-ui/widget
+      //= require jquery_ujs
+      //= require_self
+    ` + '\n'
   }
 }
 
@@ -26,25 +38,6 @@ export default {
     commonjs(),
     babel(),
     uglify(uglifyOptions),
-    license({
-      banner: {
-        commentStyle: 'none',
-        // Add rails-style imports for sprockets usage
-        content:stripIndent`
-          /**
-           * Warning: This file is auto-generated, do not modify. Instead, make your changes in 'app/javascript/active_admin/' and run \`yarn build\`
-           */
-          //= require jquery3
-          //= require jquery-ui/widgets/datepicker
-          //= require jquery-ui/widgets/dialog
-          //= require jquery-ui/widgets/sortable
-          //= require jquery-ui/widgets/tabs
-          //= require jquery-ui/widget
-          //= require jquery_ujs
-          //= require_self
-        ` + '\n'
-      },
-    }),
   ],
   // Use client's yarn dependencies instead of bundling everything
   external: [
