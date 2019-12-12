@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.6.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.5.0..v2.6.0)
+
 ### Enhacements
 
 * Display multiple flash messages in separate elements. [#5929] by [@mirelon]
