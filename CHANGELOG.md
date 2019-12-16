@@ -2,14 +2,18 @@
 
 ## Unreleased
 
+## 2.6.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.5.0..v2.6.0)
+
 ### Enhacements
 
 * Display multiple flash messages in separate elements. [#5929] by [@mirelon]
+* Make delete confirmation messages in French & Spanish gender-neutral. [#5946] by [@cprodhomme]
 
 ### Bug Fixes
 
 * Export ModalDialog component to re-enable client side usage. [#5956] by [@sgara]
 * Use default ActionView options instead of default Formtastic options for DateRangeInput [#5957] by [@mirelon]
+* Fix i18n key in docs example to translate scopes. [#5943] by [@adler99]
 
 ## 2.5.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.4.0..v2.5.0)
 
@@ -533,11 +537,14 @@ Please check [0-6-stable] for previous changes.
 [#5931]: https://github.com/activeadmin/activeadmin/pull/5931
 [#5938]: https://github.com/activeadmin/activeadmin/pull/5938
 [#5929]: https://github.com/activeadmin/activeadmin/pull/5929
+[#5943]: https://github.com/activeadmin/activeadmin/pull/5943
+[#5946]: https://github.com/activeadmin/activeadmin/pull/5946
 [#5956]: https://github.com/activeadmin/activeadmin/pull/5956
 [#5957]: https://github.com/activeadmin/activeadmin/pull/5957
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
+[@adler99]: https://github.com/adler99
 [@ajw725]: https://github.com/ajw725
 [@alex-bogomolov]: https://github.com/alex-bogomolov
 [@amiel]: https://github.com/amiel
@@ -550,6 +557,7 @@ Please check [0-6-stable] for previous changes.
 [@chancancode]: https://github.com/chancancode
 [@chrp]: https://github.com/chrp
 [@chumakoff]: https://github.com/chumakoff
+[@cprodhomme]: https://github.com/cprodhomme
 [@craigmcnamara]: https://github.com/craigmcnamara
 [@DanielHeath]: https://github.com/DanielHeath
 [@deivid-rodriguez]: https://github.com/deivid-rodriguez
