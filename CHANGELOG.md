@@ -5,6 +5,7 @@
 ### Enhancements
 
 * Extend menu to allow for nested submenus. [#5994] by [@taralbass]
+* Add webpacker compatibility with config switch and installation generator. [#5855] by [@sgara]
 
 ## 2.6.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.6.0..v2.6.1)
 
@@ -17,7 +18,7 @@
 
 ## 2.6.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.5.0..v2.6.0)
 
-### Enhacements
+### Enhancements
 
 * Display multiple flash messages in separate elements. [#5929] by [@mirelon]
 * Make delete confirmation messages in French & Spanish gender-neutral. [#5946] by [@cprodhomme]
