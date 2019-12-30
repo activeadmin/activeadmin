@@ -47,6 +47,14 @@ RSpec.describe ActiveAdmin::Menu do
       expect(menu["Admin"]["Projects"]).to be_an_instance_of(ActiveAdmin::MenuItem)
     end
 
+    it "should add a child to a non-root parent if it exists" do
+      menu = Menu.new
+      menu.add parent: "Admin", label: "Users"
+      menu.add parent: ["Admin", "Users"], label: "Projects"
+
+      expect(menu["Admin"]["Users"]["Projects"]).to be_an_instance_of(ActiveAdmin::MenuItem)
+    end
+
     it "should assign children regardless of resource file load order" do
       menu = Menu.new
       menu.add parent: "Users", label: "Posts"
@@ -54,6 +62,27 @@ RSpec.describe ActiveAdmin::Menu do
 
       expect(menu["Users"].url).to eq "/some/url"
       expect(menu["Users"]["Posts"]).to be_a ActiveAdmin::MenuItem
+    end
+  end
+
+  describe "determining if node is current" do
+    let(:menu) { Menu.new }
+    let(:admin_item) { menu.add label: "Admin" }
+    let(:users_item) { menu.add parent: "Admin", label: "Users" }
+    let(:projects_item) { menu.add parent: ["Admin", "Users"], label: "Projects" }
+    let(:posts_item) { menu.add label: "Posts" }
+
+    it "should consider item current in relation to itself" do
+      expect(admin_item.current?(admin_item)).to be true
+    end
+
+    it "should consider item current in relation to a descendent" do
+      expect(admin_item.current?(users_item)).to be true
+      expect(admin_item.current?(projects_item)).to be true
+    end
+
+    it "should not consider item current in relation to a non-self/non-descendant" do
+      expect(admin_item.current?(posts_item)).to be false
     end
   end
 end

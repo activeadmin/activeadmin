@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Enhancements
+
+* Extend menu to allow for nested submenus. [#5994] by [@taralbass]
+
 ## 2.6.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.6.0..v2.6.1)
 
 ### Bug Fixes
@@ -554,6 +558,7 @@ Please check [0-6-stable] for previous changes.
 [#6000]: https://github.com/activeadmin/activeadmin/pull/6000
 [#6002]: https://github.com/activeadmin/activeadmin/pull/6002
 [#6047]: https://github.com/activeadmin/activeadmin/pull/6047
+[#5994]: https://github.com/activeadmin/activeadmin/pull/5994
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -628,6 +633,7 @@ Please check [0-6-stable] for previous changes.
 [@shouya]: https://github.com/shouya
 [@stefsava]: https://github.com/stefsava
 [@stereoscott]: https://github.com/stereoscott
+[@taralbass]: https://github.com/taralbass
 [@tiagotex]: https://github.com/tiagotex
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
