@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+* Fix some ruby 2.7 warnings about keyword args. [#6000] by [@vcsjones]
+
 ## 2.6.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.5.0..v2.6.0)
 
 ### Enhacements
@@ -541,6 +545,7 @@ Please check [0-6-stable] for previous changes.
 [#5946]: https://github.com/activeadmin/activeadmin/pull/5946
 [#5956]: https://github.com/activeadmin/activeadmin/pull/5956
 [#5957]: https://github.com/activeadmin/activeadmin/pull/5957
+[#6000]: https://github.com/activeadmin/activeadmin/pull/6000
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -618,6 +623,7 @@ Please check [0-6-stable] for previous changes.
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
+[@vcsjones]: https://github.com/vcsjones
 [@violeta-p]: https://github.com/violeta-p
 [@WaKeMaTTa]: https://github.com/WaKeMaTTa
 [@wasifhossain]: https://github.com/wasifhossain
