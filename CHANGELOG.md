@@ -6,6 +6,10 @@
 
 * Fix some ruby 2.7 warnings about keyword args. [#6000] by [@vcsjones]
 
+### Enhacements
+
+* Publish @activeadmin/activeadmin package to npm. [#5894] by [@sgara]
+
 ## 2.6.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.5.0..v2.6.0)
 
 ### Enhacements
@@ -535,6 +539,7 @@ Please check [0-6-stable] for previous changes.
 [#5877]: https://github.com/activeadmin/activeadmin/pull/5877
 [#5886]: https://github.com/activeadmin/activeadmin/pull/5886
 [#5870]: https://github.com/activeadmin/activeadmin/pull/5870
+[#5894]: https://github.com/activeadmin/activeadmin/pull/5894
 [#5895]: https://github.com/activeadmin/activeadmin/pull/5895
 [#5867]: https://github.com/activeadmin/activeadmin/pull/5867
 [#5887]: https://github.com/activeadmin/activeadmin/pull/5887
