@@ -3,8 +3,8 @@ require "chandler/tasks"
 root    = File.expand_path("..", __dir__)
 version = File.read("#{root}/VERSION").strip
 
-# See https://github.com/rails/rails/blob/master/tasks/release.rb#L26
-npm_version = version.gsub(/\./).with_index { |s, i| i >= 2 ? "-" : s }
+# See https://github.com/rails/rails/blob/0d0c30e534af7f80ec8b18eb946aaa613ca30444/tasks/release.rb#L26
+npm_version = version.gsub(/\./).with_index { |s, i| i == 2 ? "-" : s }
 
 namespace :activeadmin do
   desc 'Update and synchronize versions between gem and npm package'
@@ -29,7 +29,7 @@ namespace :activeadmin do
 
   desc 'Publish npm package'
   task :npm_push do
-    npm_tag = /[a-z]/.match?(version) ? "pre" : "latest"
+    npm_tag = version.include?("-") ? "pre" : "latest"
     sh "npm publish --tag #{npm_tag}"
   end
 end
