@@ -7,10 +7,6 @@
 * Fix some ruby 2.7 warnings about keyword args. [#6000] by [@vcsjones]
 * Missing `create_another` translation in Vietnamese. [#6002] by [@imcvampire]
 
-### Enhacements
-
-* Publish @activeadmin/activeadmin package to npm. [#5894] by [@sgara]
-
 ## 2.6.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.5.0..v2.6.0)
 
 ### Enhacements
