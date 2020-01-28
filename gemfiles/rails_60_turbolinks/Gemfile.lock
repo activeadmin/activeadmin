@@ -175,8 +175,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jruby-openssl (0.10.2-java)
-    json (2.2.0)
-    json (2.2.0-java)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -309,11 +307,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    simplecov (0.17.1)
+    simplecov (0.18.0)
       docile (~> 1.1)
-      json (>= 1.8, < 3)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.2)
+      simplecov-html (~> 0.11.0)
+    simplecov-html (0.11.0)
     spoon (0.0.6)
       ffi
     sprockets (4.0.0)
@@ -372,7 +369,7 @@ DEPENDENCIES
   rails-i18n
   rake
   rspec-rails
-  simplecov (= 0.17.1)
+  simplecov (= 0.18.0)
   sqlite3 (~> 1.4)
   turbolinks (~> 5.2)
 
