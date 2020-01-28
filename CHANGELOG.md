@@ -5,6 +5,7 @@
 ### Bug Fixes
 
 * Fix some ruby 2.7 warnings about keyword args. [#6000] by [@vcsjones]
+* Missing `create_another` translation in Vietnamese. [#6002] by [@imcvampire]
 
 ### Enhacements
 
@@ -551,6 +552,7 @@ Please check [0-6-stable] for previous changes.
 [#5956]: https://github.com/activeadmin/activeadmin/pull/5956
 [#5957]: https://github.com/activeadmin/activeadmin/pull/5957
 [#6000]: https://github.com/activeadmin/activeadmin/pull/6000
+[#6002]: https://github.com/activeadmin/activeadmin/pull/6002
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -585,6 +587,7 @@ Please check [0-6-stable] for previous changes.
 [@gonzedge]: https://github.com/gonzedge
 [@guigs]: https://github.com/guigs
 [@HappyKadaver]: https://github.com/HappyKadaver
+[@imcvampire]: https://github.com/imcvampire
 [@innparusu95]: https://github.com/innparusu95
 [@ionut998]: https://github.com/ionut998
 [@irmela]: https://github.com/irmela
