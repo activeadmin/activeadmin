@@ -1,40 +1,48 @@
 require "chandler/tasks"
+require_relative "release_manager"
 
-root    = File.expand_path("..", __dir__)
-version = File.read("#{root}/VERSION").strip
-
-# See https://github.com/rails/rails/blob/0d0c30e534af7f80ec8b18eb946aaa613ca30444/tasks/release.rb#L26
-npm_version = version.gsub(/\./).with_index { |s, i| i == 2 ? "-" : s }
-
-namespace :activeadmin do
-  desc 'Update and synchronize versions between gem and npm package'
-  task :update_versions do
-    version_file    = File.join(root, 'lib', 'active_admin', 'version.rb')
-    version_content = File.read(version_file)
-
-    version_content.gsub!(/^(\s*)VERSION(\s*)= .*?$/, "\\1VERSION = '#{version}'")
-    raise "Could not insert VERSION in #{version_file}" unless $1
-
-    File.open(version_file, "w") { |f| f.write version_content }
-
-    require "json"
-    if JSON.parse(File.read("#{root}/package.json"))["version"] != npm_version
-      if sh "which npm"
-        sh "npm version #{npm_version} --no-git-tag-version"
-      else
-        raise "You must have npm installed to release ActiveAdmin."
-      end
-    end
-  end
-
-  desc 'Publish npm package'
-  task :npm_push do
-    npm_tag = version.include?("-") ? "pre" : "latest"
-    sh "npm publish --tag #{npm_tag}"
-  end
+desc 'Publish npm package'
+task :npm_push do
+  npm_tag = version.include?("-") ? "pre" : "latest"
+  sh "npm publish --tag #{npm_tag}"
 end
 
-task "build" => "activeadmin:update_versions"
+namespace :release do
+  desc "Prepare a prerelease"
+  task :prepare_prerelease do
+    ReleaseManager.new.prepare_prerelease
+  end
+
+  desc "Prepare a prerelease for the next patch release"
+  task :prepare_prepatch do
+    ReleaseManager.new.prepare_prepatch
+  end
+
+  desc "Prepare a patch release"
+  task :prepare_patch do
+    ReleaseManager.new.prepare_patch
+  end
+
+  desc "Prepare a prerelease for the next minor release"
+  task :prepare_preminor do
+    ReleaseManager.new.prepare_preminor
+  end
+
+  desc "Prepare a minor release"
+  task :prepare_minor do
+    ReleaseManager.new.prepare_minor
+  end
+
+  desc "Prepare a prerelease for the next major release"
+  task :prepare_premajor do
+    ReleaseManager.new.prepare_premajor
+  end
+
+  desc "Prepare a major release"
+  task :prepare_major do
+    ReleaseManager.new.prepare_major
+  end
+end
 
 #
 # Add chandler as a prerequisite for `rake release`
