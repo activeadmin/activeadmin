@@ -191,12 +191,12 @@ met.
 Maintainers need to do the following to push out a release:
 
 * Make sure all pull requests are in and that changelog is current
-* Update `VERSION` file and changelog with new version number
-* Switch the master branch and make sure it's up to date.
+* Switch to the master branch and make sure it's up to date.
 * Make sure you have [chandler] properly configured. Chandler is used to
   automatically submit github release notes from the changelog right after
   pushing the gem to rubygems.
-* `bin/rake release`
+* Run one of `bin/rake release:prepare_{prerelease,prepatch,patch,preminor,minor,premajor,major}`, push the result and create a PR.
+* Run `bin/rake release` from the target branch once the PR is merged.
 
 [chandler]: https://github.com/mattbrictson/chandler#2-configure-credentials
 [Stack Overflow]: http://stackoverflow.com/questions/tagged/activeadmin
