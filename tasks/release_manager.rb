@@ -2,6 +2,7 @@ class ReleaseManager
   def initialize
     assert_compatible_ruby!
     assert_synced_versioning!
+    assert_clean_state!
   end
 
   def prepare_prerelease
@@ -62,6 +63,12 @@ class ReleaseManager
     raise "Incompatible versions (gem: #{gem_version}, npm: #{npm_version})" if unsynced_versioning
   end
 
+  def assert_clean_state!
+    clean_state = system("git", "diff", "--exit-code", *involved_files)
+
+    raise "Source control changes present in one of #{involved_files}. Commit or discard these first" unless clean_state
+  end
+
   def npmify(version)
     # See https://github.com/rails/rails/blob/0d0c30e534af7f80ec8b18eb946aaa613ca30444/tasks/release.rb#L26
     version.gsub(/\./).with_index { |s, i| i == 2 ? "-" : s }
@@ -119,6 +126,13 @@ class ReleaseManager
 
     cut_changelog(version)
     commit(version)
+  rescue
+    revert_changes
+    raise
+  end
+
+  def revert_changes
+    system "git", "checkout", "--", *involved_files, exception: true
   end
 
   def bump_npm(version)
@@ -146,6 +160,10 @@ class ReleaseManager
     end
   end
 
+  def involved_files
+    [gem_version_file, *lockfiles, npm_version_file, changelog_file]
+  end
+
   def lockfiles
     ["Gemfile.lock", *Dir.glob("gemfiles/rails_*/Gemfile.lock")]
   end
@@ -159,19 +177,19 @@ class ReleaseManager
   end
 
   def commit(version)
-    system "git", "commit", "-am", "Get ready for #{version} release"
+    system "git", "commit", "-am", "Get ready for #{version} release", exception: true
   end
 
   def gem_version_file
-    File.join(root, 'lib', 'active_admin', 'version.rb')
+    'lib/active_admin/version.rb'
   end
 
   def npm_version_file
-    File.join(root, 'package.json')
+    'package.json'
   end
 
   def changelog_file
-    File.join(root, "CHANGELOG.md")
+    "CHANGELOG.md"
   end
 
   def npm_version
@@ -192,9 +210,5 @@ class ReleaseManager
 
   def gem_version_segments
     @gem_version_segments ||= Gem::Version.new(gem_version).segments
-  end
-
-  def root
-    File.expand_path("..", __dir__)
   end
 end
