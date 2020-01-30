@@ -1,5 +1,6 @@
 class ReleaseManager
   def initialize
+    assert_compatible_ruby!
     assert_synced_versioning!
   end
 
@@ -48,6 +49,12 @@ class ReleaseManager
   end
 
   private
+
+  def assert_compatible_ruby!
+    incompatible_ruby = Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.7.0")
+
+    raise "Unsupported ruby version. Use ruby 2.7.0 or higher to release" if incompatible_ruby
+  end
 
   def assert_synced_versioning!
     unsynced_versioning = npmify(gem_version) != npm_version
@@ -115,7 +122,7 @@ class ReleaseManager
   end
 
   def bump_npm(version)
-    system "npm", "version", npmify(version), "--no-git-tag-version"
+    system "npm", "version", npmify(version), "--no-git-tag-version", exception: true
   end
 
   def bump_gem(version)
