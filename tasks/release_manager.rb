@@ -138,7 +138,7 @@ class ReleaseManager
   end
 
   def bump_lockfiles(version)
-    ["Gemfile.lock", *Dir.glob("gemfiles/rails_*/Gemfile.lock")].each do |lockfile|
+    lockfiles.each do |lockfile|
       old_content = File.read(lockfile)
       new_content = old_content.gsub!(/^    activeadmin \(.*\)$/, "    activeadmin (#{version})")
 
@@ -146,8 +146,11 @@ class ReleaseManager
     end
   end
 
+  def lockfiles
+    ["Gemfile.lock", *Dir.glob("gemfiles/rails_*/Gemfile.lock")]
+  end
+
   def cut_changelog(version)
-    changelog_file = File.join(root, "CHANGELOG.md")
     old_content = File.read(changelog_file).split("\n")
     new_entry = "## #{version} [☰](https://github.com/activeadmin/activeadmin/compare/v#{gem_version}..#{version})"
     new_content = [*old_content[0..3], new_entry, "", old_content[4..-1]].join("\n")
@@ -165,6 +168,10 @@ class ReleaseManager
 
   def npm_version_file
     File.join(root, 'package.json')
+  end
+
+  def changelog_file
+    File.join(root, "CHANGELOG.md")
   end
 
   def npm_version
