@@ -1,6 +1,6 @@
 class ReleaseManager
   def initialize
-    raise "Incompatible versions (gem: #{gem_version}, npm: #{npm_version})" if npmify(gem_version) != npm_version
+    assert_synced_versioning!
   end
 
   def prepare_prerelease
@@ -48,6 +48,12 @@ class ReleaseManager
   end
 
   private
+
+  def assert_synced_versioning!
+    unsynced_versioning = npmify(gem_version) != npm_version
+
+    raise "Incompatible versions (gem: #{gem_version}, npm: #{npm_version})" if unsynced_versioning
+  end
 
   def npmify(version)
     # See https://github.com/rails/rails/blob/0d0c30e534af7f80ec8b18eb946aaa613ca30444/tasks/release.rb#L26
