@@ -114,7 +114,7 @@ class ReleaseManager
 
   def bump_gem(version)
     bump_version_file(version)
-    cut_lockfiles(version)
+    bump_lockfiles(version)
   end
 
   def bump_version_file(version)
@@ -124,7 +124,7 @@ class ReleaseManager
     File.open(gem_version_file, "w") { |f| f.puts new_content }
   end
 
-  def cut_lockfiles(version)
+  def bump_lockfiles(version)
     ["Gemfile.lock", *Dir.glob("gemfiles/rails_*/Gemfile.lock")].each do |lockfile|
       old_content = File.read(lockfile)
       new_content = old_content.gsub!(/^    activeadmin \(.*\)$/, "    activeadmin (#{version})")
