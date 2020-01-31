@@ -9,6 +9,7 @@ group :development , :test do
   gem 'cancancan'
   gem 'pundit'
   gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
+  gem 'jquery-rails'
 
   gem 'draper', '~> 3.1'
   gem "devise", "~> 4.7"

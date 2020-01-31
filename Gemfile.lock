@@ -3,14 +3,14 @@ PATH
   specs:
     activeadmin (2.6.0)
       arbre (~> 1.2, >= 1.2.1)
-      formtastic (~> 3.1)
-      formtastic_i18n (~> 0.4)
-      inherited_resources (~> 1.7)
-      jquery-rails (~> 4.2)
-      kaminari (~> 1.0, >= 1.0.1)
+      formtastic (>= 3.1)
+      formtastic_i18n (>= 0.4)
+      inherited_resources (>= 1.7)
+      jquery-rails (>= 1.0)
+      kaminari (~> 1.0, >= 1.1.1)
       railties (>= 5.2, < 6.1)
-      ransack (~> 2.1, >= 2.1.1)
-      sassc-rails (~> 2.1)
+      ransack (>= 2.1, <= 2.3.2)
+      sassc-rails (>= 2.1, <= 2.1.2)
       sprockets (>= 3.0, < 4.1)
 
 GEM
@@ -273,7 +273,7 @@ GEM
     public_suffix (4.0.3)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
-    rack (2.1.1)
+    rack (2.1.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.2.1)
@@ -421,6 +421,7 @@ DEPENDENCIES
   i18n-tasks
   jasmine
   jasmine-core (= 2.99.2)
+  jquery-rails
   jruby-openssl (~> 0.10.1)
   kramdown
   launchy
