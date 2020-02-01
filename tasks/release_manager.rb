@@ -1,6 +1,8 @@
 class ReleaseManager
   def initialize
-    raise "Incompatible versions (gem: #{gem_version}, npm: #{npm_version})" if npmify(gem_version) != npm_version
+    assert_compatible_ruby!
+    assert_synced_versioning!
+    assert_clean_state!
   end
 
   def prepare_prerelease
@@ -48,6 +50,24 @@ class ReleaseManager
   end
 
   private
+
+  def assert_compatible_ruby!
+    incompatible_ruby = Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.7.0")
+
+    raise "Unsupported ruby version. Use ruby 2.7.0 or higher to release" if incompatible_ruby
+  end
+
+  def assert_synced_versioning!
+    unsynced_versioning = npmify(gem_version) != npm_version
+
+    raise "Incompatible versions (gem: #{gem_version}, npm: #{npm_version})" if unsynced_versioning
+  end
+
+  def assert_clean_state!
+    clean_state = system("git", "diff", "--exit-code", *involved_files)
+
+    raise "Source control changes present in one of #{involved_files}. Commit or discard these first" unless clean_state
+  end
 
   def npmify(version)
     # See https://github.com/rails/rails/blob/0d0c30e534af7f80ec8b18eb946aaa613ca30444/tasks/release.rb#L26
@@ -106,15 +126,22 @@ class ReleaseManager
 
     cut_changelog(version)
     commit(version)
+  rescue
+    revert_changes
+    raise
+  end
+
+  def revert_changes
+    system "git", "checkout", "--", *involved_files, exception: true
   end
 
   def bump_npm(version)
-    system "npm", "version", npmify(version), "--no-git-tag-version"
+    system "npm", "version", npmify(version), "--no-git-tag-version", exception: true
   end
 
   def bump_gem(version)
     bump_version_file(version)
-    cut_lockfiles(version)
+    bump_lockfiles(version)
   end
 
   def bump_version_file(version)
@@ -124,8 +151,8 @@ class ReleaseManager
     File.open(gem_version_file, "w") { |f| f.puts new_content }
   end
 
-  def cut_lockfiles(version)
-    ["Gemfile.lock", *Dir.glob("gemfiles/rails_*/Gemfile.lock")].each do |lockfile|
+  def bump_lockfiles(version)
+    lockfiles.each do |lockfile|
       old_content = File.read(lockfile)
       new_content = old_content.gsub!(/^    activeadmin \(.*\)$/, "    activeadmin (#{version})")
 
@@ -133,8 +160,15 @@ class ReleaseManager
     end
   end
 
+  def involved_files
+    [gem_version_file, *lockfiles, npm_version_file, changelog_file]
+  end
+
+  def lockfiles
+    ["Gemfile.lock", *Dir.glob("gemfiles/rails_*/Gemfile.lock")]
+  end
+
   def cut_changelog(version)
-    changelog_file = File.join(root, "CHANGELOG.md")
     old_content = File.read(changelog_file).split("\n")
     new_entry = "## #{version} [☰](https://github.com/activeadmin/activeadmin/compare/v#{gem_version}..#{version})"
     new_content = [*old_content[0..3], new_entry, "", old_content[4..-1]].join("\n")
@@ -143,15 +177,19 @@ class ReleaseManager
   end
 
   def commit(version)
-    system "git", "commit", "-am", "Get ready for #{version} release"
+    system "git", "commit", "-am", "Get ready for #{version} release", exception: true
   end
 
   def gem_version_file
-    File.join(root, 'lib', 'active_admin', 'version.rb')
+    'lib/active_admin/version.rb'
   end
 
   def npm_version_file
-    File.join(root, 'package.json')
+    'package.json'
+  end
+
+  def changelog_file
+    "CHANGELOG.md"
   end
 
   def npm_version
@@ -172,9 +210,5 @@ class ReleaseManager
 
   def gem_version_segments
     @gem_version_segments ||= Gem::Version.new(gem_version).segments
-  end
-
-  def root
-    File.expand_path("..", __dir__)
   end
 end
