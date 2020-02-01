@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.6.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.6.0..2.6.1)
+
 ### Bug Fixes
 
 * Fix some ruby 2.7 warnings about keyword args. [#6000] by [@vcsjones]
