@@ -1,13 +1,13 @@
 require "chandler/tasks"
 require_relative "release_manager"
 
-desc 'Publish npm package'
-task :npm_push do
-  npm_tag = version.include?("-") ? "pre" : "latest"
-  sh "npm publish --tag #{npm_tag}"
-end
-
 namespace :release do
+  desc 'Publish npm package'
+  task :npm_push do
+    npm_tag = version.include?("-") ? "pre" : "latest"
+    sh "npm publish --tag #{npm_tag}"
+  end
+
   desc "Prepare a prerelease"
   task :prepare_prerelease do
     ReleaseManager.new.prepare_prerelease
@@ -47,4 +47,4 @@ end
 #
 # Add chandler as a prerequisite for `rake release`
 #
-task "release:rubygem_push" => ["chandler:push", "activeadmin:npm_push"]
+task "release:rubygem_push" => ["chandler:push", "release:npm_push"]
