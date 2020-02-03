@@ -2,14 +2,14 @@
 
 ## Unreleased
 
+## 2.6.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.6.0..2.6.1)
+
 ### Bug Fixes
 
 * Fix some ruby 2.7 warnings about keyword args. [#6000] by [@vcsjones]
 * Missing `create_another` translation in Vietnamese. [#6002] by [@imcvampire]
-
-### Enhacements
-
-* Publish @activeadmin/activeadmin package to npm. [#5894] by [@sgara]
+* Using "destroy" for user facing message is too robotic, prefer "delete". [#6047] by [@vfonic]
+* Typo in confirmation message for comment deletion. [#6047] by [@vfonic]
 
 ## 2.6.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.5.0..v2.6.0)
 
@@ -553,6 +553,7 @@ Please check [0-6-stable] for previous changes.
 [#5957]: https://github.com/activeadmin/activeadmin/pull/5957
 [#6000]: https://github.com/activeadmin/activeadmin/pull/6000
 [#6002]: https://github.com/activeadmin/activeadmin/pull/6002
+[#6047]: https://github.com/activeadmin/activeadmin/pull/6047
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -632,6 +633,7 @@ Please check [0-6-stable] for previous changes.
 [@TimPetricola]: https://github.com/TimPetricola
 [@varyonic]: https://github.com/varyonic
 [@vcsjones]: https://github.com/vcsjones
+[@vfonic]: https://github.com/vfonic
 [@violeta-p]: https://github.com/violeta-p
 [@WaKeMaTTa]: https://github.com/WaKeMaTTa
 [@wasifhossain]: https://github.com/wasifhossain
