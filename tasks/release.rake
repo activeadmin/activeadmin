@@ -4,8 +4,7 @@ require_relative "release_manager"
 namespace :release do
   desc 'Publish npm package'
   task :npm_push do
-    npm_tag = version.include?("-") ? "pre" : "latest"
-    sh "npm publish --tag #{npm_tag}"
+    ReleaseManager.new.npm_push
   end
 
   desc "Prepare a prerelease"
