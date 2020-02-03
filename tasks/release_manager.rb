@@ -5,6 +5,12 @@ class ReleaseManager
     assert_clean_state!
   end
 
+  def npm_push
+    npm_tag = npmify(version).include?("-") ? "pre" : "latest"
+
+    system "npm", "publish", "--tag", npm_tag, exception: true
+  end
+
   def prepare_prerelease
     raise "Current release is not a prerelease. Use #prepare_prepatch, #prepare_preminor, or #prepare_premajor to start a new prerelease series" unless prerelease?(gem_version)
 
