@@ -176,6 +176,27 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
+  describe "string attribute, as a datalist" do
+    let(:body) { filter :title, as: :datalist }
+    let(:builder) { ActiveAdmin::Inputs::Filters::DatalistInput }
+
+    context "when loading collection from DB" do
+      it "should use pluck for efficiency" do
+        expect_any_instance_of(builder).to receive(:pluck_column) { [] }
+        body
+      end
+
+      it "should remove original ordering to prevent PostgreSQL error" do
+        expect(scope.object.klass).to receive(:reorder).with('title asc') {
+          m = double distinct: double(pluck: ['A Title'])
+          expect(m.distinct).to receive(:pluck).with :title
+          m
+        }
+        body
+      end
+    end
+  end
+
   describe "date attribute" do
     let(:body) { filter :published_date }
 
