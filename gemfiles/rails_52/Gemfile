@@ -9,7 +9,7 @@ group :development , :test do
   gem 'pundit'
   gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
 
-  gem 'draper', '~> 3.1'
+  gem 'draper', '~> 4.0'
   gem "devise", "~> 4.7"
 
   gem "rails", "~> 5.2.3"
