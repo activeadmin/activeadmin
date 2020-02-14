@@ -24,9 +24,11 @@
 <div id="wrapper">
 
   <div id="content_wrapper">
-    <% flash_messages.each do |type, message| %>
-      <%= content_tag :div, message, class: "flash flash_#{type}" %>
-    <% end %>
+    <div class="flashes">
+      <% flash_messages.each do |type, message| %>
+        <%= content_tag :div, message, class: "flash flash_#{type}" %>
+      <% end %>
+    </div>
     <div id="active_admin_content">
       <%= yield %>
     </div>
