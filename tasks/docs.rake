@@ -40,7 +40,7 @@ namespace :docs do
 
       raise <<-MSG.strip_heredoc
         The docs/3-index-pages directory is out of sync.
-        Run rake generate_cops_documentation and commit the results.
+        Run `bin/rake docs:build` and commit the results.
       MSG
     end
   end

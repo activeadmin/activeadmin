@@ -83,12 +83,12 @@ if ENV['RAILS_ENV'] != 'test'
   inject_into_file 'config/routes.rb', "\n  root to: redirect('admin')", after: /.*routes.draw do/
 end
 
-rake "db:drop db:create db:migrate", env: ENV['RAILS_ENV']
+rails_command "db:drop db:create db:migrate", env: ENV['RAILS_ENV']
 
 if ENV['RAILS_ENV'] == 'test'
   inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'test.sqlite3'
 
-  rake "parallel:drop parallel:create parallel:load_schema", env: ENV['RAILS_ENV']
+  rails_command "parallel:drop parallel:create parallel:load_schema", env: ENV['RAILS_ENV']
 end
 
 git add: "."
