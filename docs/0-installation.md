@@ -51,8 +51,8 @@ The generator adds these core files, among others:
 Now, migrate and seed your database before starting the server:
 
 ```sh
-rake db:migrate
-rake db:seed
+rails db:migrate
+rails db:seed
 rails server
 ```
 

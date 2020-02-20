@@ -29,7 +29,7 @@ configurations.
 Migrate your db and start the server:
 
 ```bash
-$> rake db:migrate
+$> rails db:migrate
 $> rails server
 ```
 
