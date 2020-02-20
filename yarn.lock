@@ -1279,15 +1279,16 @@ gensync@^1.0.0-beta.1:
   integrity sha512-r8EC6NO1sngH/zdD9fiRDLdcgnbayXah+mLgManTaIZJqEC1MZstmnox8KpnI2/fxQwrp5OpCOYWLp4rBl4Jcg==
 
 gherkin-lint@^3.3.6:
-  version "3.3.10"
-  resolved "https://registry.yarnpkg.com/gherkin-lint/-/gherkin-lint-3.3.10.tgz#967e718951dc3ccd6762a278b5fa5c71d405d6b0"
-  integrity sha512-1RdG9lT7Ka47G6xwoAKdQIcoR/TXeuc7FwCZWfyHaT2vR7uDnGs+r+BW31kUpSPStCCk3iLH95/tT7qIC1QVYQ==
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/gherkin-lint/-/gherkin-lint-3.4.0.tgz#815a396b5d142b615361cc41b8cca5a701d4cec5"
+  integrity sha512-X6fezL/Ood5zv+/+XICsrfMnWDzPwLN9BUlVY2mR0Kng5YU0KGSYnOpsr/5wiMo8jMHqtNPjl6uUUQhY+dZg9w==
   dependencies:
     commander "2.18.0"
     core-js "3.4.0"
     gherkin "5.1.0"
     glob "7.1.3"
     lodash "4.17.14"
+    strip-json-comments "^3.0.1"
 
 gherkin@5.1.0:
   version "5.1.0"
