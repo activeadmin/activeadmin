@@ -2,7 +2,7 @@ require "open3"
 
 RSpec.describe "local task" do
   let(:local) do
-    Open3.capture2e("bundle exec rake local runner 'AdminUser.first'")
+    Open3.capture2e("bin/rake local runner 'AdminUser.first'")
   end
 
   it "succeeds" do
