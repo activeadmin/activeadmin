@@ -47,7 +47,10 @@ module ActiveAdmin
       #   menu.add parent: 'Dashboard', label: 'My Child Dashboard'
       #
       def add(options)
-        item = if parent = options.delete(:parent)
+        parent_chain = Array.wrap(options.delete(:parent))
+
+        item = if parent = parent_chain.shift
+                 options[:parent] = parent_chain if parent_chain.any?
                  (self[parent] || add(label: parent)).add options
                else
                  _add options.merge parent: self
@@ -60,7 +63,7 @@ module ActiveAdmin
 
       # Whether any children match the given item.
       def include?(item)
-        @children.values.include? item
+        @children.values.include?(item) || @children.values.any? { |child| child.include?(item) }
       end
 
       # Used in the UI to visually distinguish which menu item is selected.
