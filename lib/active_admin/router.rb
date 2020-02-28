@@ -99,9 +99,11 @@ module ActiveAdmin
       page_or_resource_routes(config) if config.belongs_to_config.optional?
 
       # Make the nested belongs_to routes
-      # :only is set to nothing so that we don't clobber any existing routes on the resource
-      router.resources config.belongs_to_config.target.resource_name.plural, only: [] do
-        page_or_resource_routes(config)
+      config.belongs_to_config.targets.each do |target|
+        # :only is set to nothing so that we don't clobber any existing routes on the resource
+        router.resources target.resource_name.plural, only: [] do
+          page_or_resource_routes(config)
+        end
       end
     end
 

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Enhancements
+
+* Allow `belongs_to` with multiple optional parents. [#6115] by [@Looooong]
+
 ## 2.7.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.6.1..v2.7.0)
 
 ### Enhancements
@@ -572,6 +576,7 @@ Please check [0-6-stable] for previous changes.
 [#6149]: https://github.com/activeadmin/activeadmin/pull/6149
 [#6086]: https://github.com/activeadmin/activeadmin/pull/6086
 [#6099]: https://github.com/activeadmin/activeadmin/pull/6099
+[#6115]: https://github.com/activeadmin/activeadmin/pull/6115
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek

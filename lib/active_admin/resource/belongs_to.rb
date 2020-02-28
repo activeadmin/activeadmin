@@ -3,6 +3,7 @@ require 'active_admin/resource'
 module ActiveAdmin
   class Resource
     class BelongsTo
+      class NotSupported < StandardError; end
 
       class TargetNotFound < StandardError
         def initialize(key, namespace)
@@ -14,23 +15,26 @@ module ActiveAdmin
       # The resource which initiated this relationship
       attr_reader :owner
 
-      # The name of the relation
-      attr_reader :target_name
+      # The name of the relations
+      attr_reader :target_names
 
-      def initialize(owner, target_name, options = {})
+      def initialize(owner, target_names, options = {})
+        if target_names.size > 1 && !options[:optional]
+          raise NotSupported, "Belongs to multiple parents must be optional"
+        end
+
         @owner = owner
-        @target_name = target_name
+        @target_names = target_names
         @options = options
       end
 
-      # Returns the target resource class or raises an exception if it doesn't exist
-      def target
-        resource or raise TargetNotFound.new (@options[:class_name] || @target_name.to_s.camelize), namespace
-      end
-
-      def resource
-        namespace.resources[@options[:class_name]] ||
-          namespace.resources[@target_name.to_s.camelize]
+      # Returns the target resource classes or raises an exception if one of the targets doesn't exist
+      def targets
+        target_names.map do |target_name|
+          namespace.resources[@options[:class_name]] ||
+            namespace.resources[target_name.to_s.camelize] ||
+            raise(TargetNotFound.new((@options[:class_name] || target_name.to_s.camelize), namespace))
+        end
       end
 
       def namespace
@@ -46,7 +50,7 @@ module ActiveAdmin
       end
 
       def to_param
-        :"#{@target_name}_id"
+        target_names.map { |target_name| :"#{target_name}_id" }
       end
     end
   end

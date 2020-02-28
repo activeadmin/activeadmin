@@ -9,14 +9,23 @@ module ActiveAdmin
         parts = path.split('/').select(&:present?)[0..-2]
 
         parts.each_with_index.map do |part, index|
+          previous_part = parts[index - 1] if index > 0
+
           # 1. try using `display_name` if we can locate a DB object
           # 2. try using the model name translation
           # 3. default to calling `titlecase` on the URL fragment
-          if part =~ /\A(\d+|[a-f0-9]{24}|(?:[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}))\z/ && parts[index - 1]
-            parent = active_admin_config.belongs_to_config.try :target
-            config = parent && parent.resource_name.route_key == parts[index - 1] ? parent : active_admin_config
+          if part =~ /\A(\d+|[a-f0-9]{24}|(?:[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}))\z/ && previous_part
+            config =
+              if active_admin_config.belongs_to?
+                active_admin_config.belongs_to_config.targets.find(-> { active_admin_config }) do |target|
+                  target.resource_name.route_key == previous_part
+                end
+              else
+                active_admin_config
+              end
             name   = display_name config.find_resource part
           end
+
           name ||= I18n.t "activerecord.models.#{part.singularize}", count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT, default: part.titlecase
 
           # Don't create a link if the resource's show action is disabled

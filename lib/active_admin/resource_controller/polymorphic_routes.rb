@@ -25,9 +25,12 @@ module ActiveAdmin
           return ActiveAdmin::Model.new(active_admin_config, record)
         end
 
-        belongs_to_resource = active_admin_config.belongs_to_config.try(:resource)
-        if belongs_to_resource && record.is_a?(belongs_to_resource.resource_class)
-          return ActiveAdmin::Model.new(belongs_to_resource, record)
+        if active_admin_config.belongs_to?
+          active_admin_config.belongs_to_config.targets.each do |target|
+            if record.is_a?(target.resource_class)
+              return ActiveAdmin::Model.new(target, record)
+            end
+          end
         end
 
         record

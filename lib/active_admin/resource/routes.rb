@@ -127,11 +127,19 @@ module ActiveAdmin
         end
 
         def belongs_to_target_name
-          belongs_to_config.target_name
+          # This method is called when `#nested?` return true.
+          # Since `#nested?` means if `belongs_to` is required,
+          #   it makes sense to get the first target name,
+          #   because the required `belongs_to` "should" have only one target name.
+          belongs_to_config.target_names[0]
         end
 
         def belongs_to_name
-          belongs_to_config.target.resource_name.singular
+          # This method is called when `#nested?` return true.
+          # Since `#nested?` means if `belongs_to` is required,
+          #   it makes sense to get the first target,
+          #   because the required `belongs_to` "should" have only one target.
+          belongs_to_config.targets[0].resource_name.singular
         end
 
         def belongs_to_config

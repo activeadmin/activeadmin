@@ -135,11 +135,19 @@ module ActiveAdmin
       controller.instance_methods.map(&:to_sym) & ResourceController::ACTIVE_ADMIN_ACTIONS
     end
 
-    def belongs_to(target, options = {})
-      @belongs_to = Resource::BelongsTo.new(self, target, options)
+    def belongs_to(targets, options = {})
+      @belongs_to = Resource::BelongsTo.new(self, targets, options.dup)
       self.menu_item_options = false if @belongs_to.required?
-      options[:class_name] ||= @belongs_to.resource.resource_class_name if @belongs_to.resource
-      controller.send :belongs_to, target, options.dup
+
+      # When the app is first booted, if this resource is loaded before parent resource,
+      #   Resource::BelongsTo::TargetNotFound is certain to be raised
+      suppress Resource::BelongsTo::TargetNotFound do
+        if @belongs_to.target_names.count == 1
+          options[:class_name] ||= @belongs_to.targets[0].resource_class_name
+        end
+      end
+
+      controller.send :belongs_to, *targets, options.dup
     end
 
     def belongs_to_config

@@ -23,8 +23,9 @@ module ActiveAdmin
       config.ordering[column] = block
     end
 
-    def belongs_to(target, options = {})
-      config.belongs_to(target, options)
+    def belongs_to(*targets)
+      options = targets.extract_options!
+      config.belongs_to(targets, options)
     end
 
     # Scope collection to a relation

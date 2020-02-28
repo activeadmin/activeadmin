@@ -84,10 +84,11 @@ module ActiveAdmin
       @page_actions = []
     end
 
-    def belongs_to(target, options = {})
-      @belongs_to = Resource::BelongsTo.new(self, target, options)
-      self.navigation_menu_name = target unless @belongs_to.optional?
-      controller.send :belongs_to, target, options.dup
+    def belongs_to(targets, options = {})
+      @belongs_to = Resource::BelongsTo.new(self, targets, options.dup)
+      # Required `belongs_to` "should" have only one target
+      self.navigation_menu_name = targets[0] if @belongs_to.required?
+      controller.send :belongs_to, *targets, options.dup
     end
 
     def belongs_to_config

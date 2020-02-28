@@ -95,5 +95,17 @@ RSpec.describe ActiveAdmin::Namespace, "registering a page" do
         expect(menu["Reports"]).to_not be_nil
       end
     end
+
+    context "with multiple optional parents" do
+      before do
+        namespace.register_page "Reports" do
+          belongs_to :author, :user, optional: true
+        end
+      end
+
+      it "should be in the menu" do
+        expect(menu["Reports"]).to_not be_nil
+      end
+    end
   end # describe "adding as a belongs to"
 end

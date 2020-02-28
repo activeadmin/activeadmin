@@ -90,7 +90,7 @@ module ActiveAdmin
       it "builds a belongs_to relationship" do
         belongs_to = page_config.belongs_to_config
 
-        expect(belongs_to.target).to eq(post_config)
+        expect(belongs_to.targets).to contain_exactly(post_config)
         expect(belongs_to.owner).to eq(page_config)
         expect(belongs_to.optional?).to be_falsy
       end
@@ -114,6 +114,32 @@ module ActiveAdmin
         expect(page_config.navigation_menu_name).to eq(:default)
       end
     end # context "with optional belongs to config" do
+
+    context "with optional belongs to multiple targets config" do
+      let!(:user_config) { namespace.register User }
+      let!(:post_config) { namespace.register Post }
+      let!(:page_config) {
+        namespace.register_page page_name do
+          belongs_to :user, :post, optional: true
+        end
+      }
+
+      it "configures page with belongs_to" do
+        expect(page_config.belongs_to?).to be true
+      end
+
+      it "does not override default navigation menu" do
+        expect(page_config.navigation_menu_name).to eq(:default)
+      end
+
+      it "builds a belongs_to relationship" do
+        belongs_to = page_config.belongs_to_config
+
+        expect(belongs_to.targets).to contain_exactly(user_config, post_config)
+        expect(belongs_to.owner).to eq(page_config)
+        expect(belongs_to.optional?).to be_truthy
+      end
+    end
 
     it "has no belongs_to by default" do
       expect(config.belongs_to?).to be_falsy

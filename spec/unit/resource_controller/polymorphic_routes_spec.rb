@@ -5,13 +5,10 @@ RSpec.describe ActiveAdmin::ResourceController::PolymorphicRoutes, type: :contro
 
   %w(polymorphic_url polymorphic_path).each do |method|
     describe method do
-      let(:add_extra_routes) {}
       let(:params) { {} }
 
       before do
         load_resources { post_config }
-
-        add_extra_routes
 
         @controller = klass.new
 
@@ -54,7 +51,7 @@ RSpec.describe ActiveAdmin::ResourceController::PolymorphicRoutes, type: :contro
         end
       end
 
-      context 'with multiple belongs_to (not fully supported yet)' do
+      context 'with belongs_to multiple optional parents' do
         let(:user) { User.create! }
         let(:category) { Category.create! name: "Category" }
         let(:post) { Post.create! title: "Hello World", author: user, category: category }
@@ -63,23 +60,7 @@ RSpec.describe ActiveAdmin::ResourceController::PolymorphicRoutes, type: :contro
           ActiveAdmin.register User
           ActiveAdmin.register Category
           ActiveAdmin.register Post do
-            belongs_to :category, optional: true
-            belongs_to :user, optional: true
-          end
-        end
-
-        let(:add_extra_routes) do
-          routes.draw do
-            ActiveAdmin.routes(self)
-            namespace :admin do
-              resources :posts
-              resources :users do
-                resources :posts
-              end
-              resources :categories do
-                resources :posts
-              end
-            end
+            belongs_to :category, :user, optional: true
           end
         end
 

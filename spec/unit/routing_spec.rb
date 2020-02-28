@@ -187,6 +187,48 @@ RSpec.describe "Routing", type: :routing do
     end
   end
 
+  describe "belongs to multiple optional parents" do
+    around do |example|
+      with_resources_during(example) do
+        ActiveAdmin.register(Category)
+        ActiveAdmin.register(User)
+        ActiveAdmin.register(Post) { belongs_to :category, :user, optional: true }
+      end
+    end
+
+    it "should route the nested index path belongs to Category" do
+      expect(admin_category_posts_path(1)).to eq "/admin/categories/1/posts"
+    end
+
+    it "should route the nested show path belongs to Category" do
+      expect(admin_category_post_path(1, 2)).to eq "/admin/categories/1/posts/2"
+    end
+
+    it "should route the nested new path belongs to Category" do
+      expect(new_admin_category_post_path(1)).to eq "/admin/categories/1/posts/new"
+    end
+
+    it "should route the nested edit path belongs to Category" do
+      expect(edit_admin_category_post_path(1, 2)).to eq "/admin/categories/1/posts/2/edit"
+    end
+
+    it "should route the nested index path belongs to User" do
+      expect(admin_user_posts_path(1)).to eq "/admin/users/1/posts"
+    end
+
+    it "should route the nested show path belongs to User" do
+      expect(admin_user_post_path(1, 2)).to eq "/admin/users/1/posts/2"
+    end
+
+    it "should route the nested new path belongs to User" do
+      expect(new_admin_user_post_path(1)).to eq "/admin/users/1/posts/new"
+    end
+
+    it "should route the nested edit path belongs to User" do
+      expect(edit_admin_user_post_path(1, 2)).to eq "/admin/users/1/posts/2/edit"
+    end
+  end
+
   describe "page" do
     context "when default namespace" do
       around do |example|

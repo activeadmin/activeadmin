@@ -11,10 +11,11 @@ RSpec.describe "Breadcrumbs" do
 
     let(:user)        { double display_name: 'Jane Doe' }
     let(:user_config) { double find_resource: user, resource_name: double(route_key: 'users'),
-                               defined_actions: actions }
+                               defined_actions: actions, belongs_to?: false }
     let(:post)        { double display_name: 'Hello World' }
     let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
-                               defined_actions: actions, belongs_to_config: double(target: user_config) }
+                               defined_actions: actions, belongs_to?: true,
+                               belongs_to_config: double(targets: [user_config]) }
 
     let :active_admin_config do
       post_config
@@ -226,7 +227,8 @@ RSpec.describe "Breadcrumbs" do
     context "when the 'show' action is disabled" do
       let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
                                  defined_actions: actions - [:show], # this is the change
-                                 belongs_to_config: double(target: user_config) }
+                                 belongs_to?: true,
+                                 belongs_to_config: double(targets: [user_config]) }
 
       let(:path) { "/admin/posts/1/edit" }
 
@@ -243,6 +245,218 @@ RSpec.describe "Breadcrumbs" do
       end
       it "should not link to the show view for the post" do
         expect(trail[2]).to eq "Hello World"
+      end
+    end
+
+    context "when belongs_to multiple optional parents" do
+      let(:category)        { double display_name: 'Classified' }
+      let(:category_config) { double find_resource: category, resource_name: double(route_key: 'categories'),
+                                     defined_actions: actions, belongs_to?: false }
+      let(:post)        { double display_name: 'Hello World' }
+      let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
+                                 defined_actions: actions, belongs_to?: true,
+                                 belongs_to_config: double(targets: [category_config, user_config]) }
+
+      context "when path '/admin/users/1/posts'" do
+        let(:path) { "/admin/users/1/posts" }
+
+        it "should have 3 items" do
+          expect(trail.size).to eq 3
+        end
+        it "should have a link to /admin" do
+          expect(trail[0][:name]).to eq "Admin"
+          expect(trail[0][:path]).to eq "/admin"
+        end
+        it "should have a link to /admin/users" do
+          expect(trail[1][:name]).to eq "Users"
+          expect(trail[1][:path]).to eq "/admin/users"
+        end
+
+        context "when User.find(1) doesn't exist" do
+          before { allow(user_config).to receive(:find_resource) }
+          it "should have a link to /admin/users/1" do
+            expect(trail[2][:name]).to eq "1"
+            expect(trail[2][:path]).to eq "/admin/users/1"
+          end
+        end
+
+        context "when User.find(1) does exist" do
+          it "should have a link to /admin/users/1 using display name" do
+            expect(trail[2][:name]).to eq "Jane Doe"
+            expect(trail[2][:path]).to eq "/admin/users/1"
+          end
+        end
+      end
+
+      context "when path '/admin/users/4e24d6249ccf967313000000/posts'" do
+        let(:path) { "/admin/users/4e24d6249ccf967313000000/posts" }
+
+        it "should have 3 items" do
+          expect(trail.size).to eq 3
+        end
+        it "should have a link to /admin" do
+          expect(trail[0][:name]).to eq "Admin"
+          expect(trail[0][:path]).to eq "/admin"
+        end
+        it "should have a link to /admin/users" do
+          expect(trail[1][:name]).to eq "Users"
+          expect(trail[1][:path]).to eq "/admin/users"
+        end
+
+        context "when User.find(4e24d6249ccf967313000000) doesn't exist" do
+          before { allow(user_config).to receive(:find_resource) }
+          it "should have a link to /admin/users/4e24d6249ccf967313000000" do
+            expect(trail[2][:name]).to eq "4e24d6249ccf967313000000"
+            expect(trail[2][:path]).to eq "/admin/users/4e24d6249ccf967313000000"
+          end
+        end
+
+        context "when User.find(4e24d6249ccf967313000000) does exist" do
+          before do
+            display_name = double(display_name: 'Hello :)')
+            allow(user_config).to receive(:find_resource).and_return(display_name)
+          end
+          it "should have a link to /admin/users/4e24d6249ccf967313000000 using display name" do
+            expect(trail[2][:name]).to eq "Hello :)"
+            expect(trail[2][:path]).to eq "/admin/users/4e24d6249ccf967313000000"
+          end
+        end
+      end
+
+      context "when path '/admin/users/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4/posts'" do
+        let(:path) { "/admin/users/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4/posts" }
+
+        it "should have 3 items" do
+          expect(trail.size).to eq 3
+        end
+        it "should have a link to /admin" do
+          expect(trail[0][:name]).to eq "Admin"
+          expect(trail[0][:path]).to eq "/admin"
+        end
+        it "should have a link to /admin/users" do
+          expect(trail[1][:name]).to eq "Users"
+          expect(trail[1][:path]).to eq "/admin/users"
+        end
+
+        context "when User.find(2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4) doesn't exist" do
+          before { allow(user_config).to receive(:find_resource) }
+          it "should have a link to /admin/users/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4" do
+            expect(trail[2][:name]).to eq "2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4".titlecase
+            expect(trail[2][:path]).to eq "/admin/users/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4"
+          end
+        end
+
+        context "when User.find(2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4) does exist" do
+          before do
+            display_name = double(display_name: 'Hello :)')
+            allow(user_config).to receive(:find_resource).and_return(display_name)
+          end
+          it "should have a link to /admin/users/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4 using display name" do
+            expect(trail[2][:name]).to eq "Hello :)"
+            expect(trail[2][:path]).to eq "/admin/users/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4"
+          end
+        end
+      end
+
+      context "when path '/admin/categories/1/posts'" do
+        let(:path) { "/admin/categories/1/posts" }
+
+        it "should have 3 items" do
+          expect(trail.size).to eq 3
+        end
+        it "should have a link to /admin" do
+          expect(trail[0][:name]).to eq "Admin"
+          expect(trail[0][:path]).to eq "/admin"
+        end
+        it "should have a link to /admin/categories" do
+          expect(trail[1][:name]).to eq "Categories"
+          expect(trail[1][:path]).to eq "/admin/categories"
+        end
+
+        context "when Category.find(1) doesn't exist" do
+          before { allow(category_config).to receive(:find_resource) }
+          it "should have a link to /admin/categories/1" do
+            expect(trail[2][:name]).to eq "1"
+            expect(trail[2][:path]).to eq "/admin/categories/1"
+          end
+        end
+
+        context "when Category.find(1) does exist" do
+          it "should have a link to /admin/categories/1 using display name" do
+            expect(trail[2][:name]).to eq "Classified"
+            expect(trail[2][:path]).to eq "/admin/categories/1"
+          end
+        end
+      end
+
+      context "when path '/admin/categories/4e24d6249ccf967313000000/posts'" do
+        let(:path) { "/admin/categories/4e24d6249ccf967313000000/posts" }
+
+        it "should have 3 items" do
+          expect(trail.size).to eq 3
+        end
+        it "should have a link to /admin" do
+          expect(trail[0][:name]).to eq "Admin"
+          expect(trail[0][:path]).to eq "/admin"
+        end
+        it "should have a link to /admin/categories" do
+          expect(trail[1][:name]).to eq "Categories"
+          expect(trail[1][:path]).to eq "/admin/categories"
+        end
+
+        context "when Category.find(4e24d6249ccf967313000000) doesn't exist" do
+          before { allow(category_config).to receive(:find_resource) }
+          it "should have a link to /admin/categories/4e24d6249ccf967313000000" do
+            expect(trail[2][:name]).to eq "4e24d6249ccf967313000000"
+            expect(trail[2][:path]).to eq "/admin/categories/4e24d6249ccf967313000000"
+          end
+        end
+
+        context "when Category.find(4e24d6249ccf967313000000) does exist" do
+          before do
+            display_name = double(display_name: 'Hello :)')
+            allow(category_config).to receive(:find_resource).and_return(display_name)
+          end
+          it "should have a link to /admin/categories/4e24d6249ccf967313000000 using display name" do
+            expect(trail[2][:name]).to eq "Hello :)"
+            expect(trail[2][:path]).to eq "/admin/categories/4e24d6249ccf967313000000"
+          end
+        end
+      end
+
+      context "when path '/admin/categories/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4/posts'" do
+        let(:path) { "/admin/categories/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4/posts" }
+
+        it "should have 3 items" do
+          expect(trail.size).to eq 3
+        end
+        it "should have a link to /admin" do
+          expect(trail[0][:name]).to eq "Admin"
+          expect(trail[0][:path]).to eq "/admin"
+        end
+        it "should have a link to /admin/categories" do
+          expect(trail[1][:name]).to eq "Categories"
+          expect(trail[1][:path]).to eq "/admin/categories"
+        end
+
+        context "when Category.find(2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4) doesn't exist" do
+          before { allow(category_config).to receive(:find_resource) }
+          it "should have a link to /admin/categories/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4" do
+            expect(trail[2][:name]).to eq "2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4".titlecase
+            expect(trail[2][:path]).to eq "/admin/categories/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4"
+          end
+        end
+
+        context "when Category.find(2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4) does exist" do
+          before do
+            display_name = double(display_name: 'Hello :)')
+            allow(category_config).to receive(:find_resource).and_return(display_name)
+          end
+          it "should have a link to /admin/categories/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4 using display name" do
+            expect(trail[2][:name]).to eq "Hello :)"
+            expect(trail[2][:path]).to eq "/admin/categories/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4"
+          end
+        end
       end
     end
   end

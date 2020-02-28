@@ -17,16 +17,14 @@ module ActiveAdmin
       # Set's @current_tab to be name of the tab to mark as current
       # Get's called through a before filter
       def set_current_tab
-        @current_tab = if current_menu && active_admin_config.belongs_to? && parent?
-                         parent_item = active_admin_config.belongs_to_config.target.menu_item
-                         if current_menu.include? parent_item
-                           parent_item
-                         else
-                           active_admin_config.menu_item
-                         end
-                       else
-                         active_admin_config.menu_item
-                       end
+        @current_tab =
+          if current_menu && active_admin_config.belongs_to? && parent?
+            active_admin_config.belongs_to_config.targets.find(-> { active_admin_config }) do |target|
+              parent.is_a?(target.resource_class) && current_menu.include?(target.menu_item)
+            end.menu_item
+          else
+            active_admin_config.menu_item
+          end
       end
 
     end

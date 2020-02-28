@@ -473,3 +473,13 @@ ActiveAdmin.register Ticket do
   belongs_to :project, optional: true
 end
 ```
+
+You can also declare optional `belongs_to` with multiple parents:
+
+```ruby
+ActiveAdmin.register Project
+ActiveAdmin.register User
+ActiveAdmin.register Ticket do
+  belongs_to :project, :user, optional: true
+end
+```
