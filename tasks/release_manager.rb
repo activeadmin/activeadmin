@@ -16,7 +16,7 @@ class ReleaseManager
 
     new_gem_prerelease = bump_gem_pre_version(:prerelease)
 
-    prepare_version(new_gem_prerelese)
+    prepare_version(new_gem_prerelease)
   end
 
   def prepare_prepatch
