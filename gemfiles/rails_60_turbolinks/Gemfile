@@ -16,6 +16,8 @@ group :development, :test do
   gem "activerecord-jdbcsqlite3-adapter", "~> 60.0", platform: :jruby
 
   gem "turbolinks", "~> 5.2"
+
+  gem "formtastic", github: "justinfrench/formtastic"
 end
 
 group :test do
