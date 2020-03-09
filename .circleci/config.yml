@@ -305,6 +305,39 @@ jobs:
     steps:
       *test_steps
 
+  ruby27rails52:
+    docker:
+      - image: circleci/ruby:2.7.0-node-browsers
+        user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
+
+    steps:
+      *test_steps
+
+  ruby27rails60:
+    docker:
+    - image: circleci/ruby:2.7.0-node-browsers
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: Gemfile
+
+    steps:
+      *test_steps
+
+  ruby27rails60turbolinks:
+    docker:
+    - image: circleci/ruby:2.7.0-node-browsers
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks/Gemfile
+
+    steps:
+      *test_steps
+
   jruby92rails52:
     docker:
       - image: circleci/jruby:9.2.8.0-node-browsers
@@ -385,6 +418,18 @@ workflows:
           requires:
             - testapp60turbolinks
 
+      - ruby27rails52:
+          requires:
+            - testapp52
+
+      - ruby27rails60:
+          requires:
+            - testapp60
+
+      - ruby27rails60turbolinks:
+          requires:
+            - testapp60turbolinks
+
       - jruby92rails52:
           requires:
             - testapp52
@@ -409,6 +454,10 @@ workflows:
             - ruby26rails52
             - ruby26rails60
             - ruby26rails60turbolinks
+
+            - ruby27rails52
+            - ruby27rails60
+            - ruby27rails60turbolinks
 
             - jruby92rails52
             - jruby92rails60
