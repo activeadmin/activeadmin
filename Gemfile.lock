@@ -106,7 +106,7 @@ GEM
       netrc
       octokit (>= 2.2.0)
     coderay (1.1.2)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     crass (1.0.6)
     cucumber (3.1.2)
       builder (>= 2.1.2)
@@ -167,7 +167,7 @@ GEM
       concurrent-ruby (~> 1.0)
     i18n-spec (0.6.0)
       iso
-    i18n-tasks (0.9.30)
+    i18n-tasks (0.9.31)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -243,9 +243,9 @@ GEM
     netrc (0.11.0)
     nio4r (2.5.2)
     nio4r (2.5.2-java)
-    nokogiri (1.10.8)
+    nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
-    nokogiri (1.10.8-java)
+    nokogiri (1.10.9-java)
     octokit (4.15.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
@@ -253,7 +253,7 @@ GEM
     parallel (1.19.1)
     parallel_tests (2.31.0)
       parallel
-    parser (2.7.0.3)
+    parser (2.7.0.4)
       ast (~> 2.4.0)
     phantomjs (2.1.1.0)
     polyamorous (2.3.2)
@@ -271,7 +271,7 @@ GEM
     public_suffix (4.0.3)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
-    rack (2.1.2)
+    rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.2.1)
@@ -398,7 +398,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.24)
-    zeitwerk (2.2.2)
+    zeitwerk (2.3.0)
 
 PLATFORMS
   java
