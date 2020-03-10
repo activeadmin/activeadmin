@@ -204,7 +204,7 @@ Maintainers need to do the following to push out a release:
 [fork Active Admin]: https://help.github.com/articles/fork-a-repo
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
 [git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
-[interactive rebase]: https://help.github.com/articles/interactive-rebase
+[interactive rebase]: https://help.github.com/en/github/using-git/about-git-rebase
 [shortcut reference links]: https://github.github.com/gfm/#shortcut-reference-link
 [Rollup]: https://rollupjs.org/guide/en/#quick-start
 [Yarn]: https://yarnpkg.com/en/docs/install
