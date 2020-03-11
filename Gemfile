@@ -15,6 +15,8 @@ group :development , :test do
 
   gem "rails", "~> 6.0.0"
   gem "activerecord-jdbcsqlite3-adapter", "~> 60.0.rc1", platform: :jruby
+
+  gem "formtastic", github: "justinfrench/formtastic"
 end
 
 group :test do

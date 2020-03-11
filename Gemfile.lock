@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/justinfrench/formtastic.git
+  revision: f95dddae2fe57a9ecadd22a4b53b86eedee659d2
+  specs:
+    formtastic (3.2.0.pre)
+      actionpack (>= 5.2.0)
+
 PATH
   remote: .
   specs:
@@ -153,8 +160,6 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.12.2)
     ffi (1.12.2-java)
-    formtastic (3.1.5)
-      actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
     gherkin (5.1.0)
     globalid (0.4.2)
@@ -417,6 +422,7 @@ DEPENDENCIES
   db-query-matchers (= 0.10.0)
   devise (~> 4.7)
   draper (~> 4.0)
+  formtastic!
   i18n-spec
   i18n-tasks
   jasmine
