@@ -36,10 +36,6 @@ module ActiveAdmin
               text_node(meta(name: name, content: content))
             end
 
-            active_admin_application.javascripts.each do |path|
-              text_node(javascript_include_tag(path))
-            end
-
             if active_admin_namespace.favicon
               text_node(favicon_link_tag(active_admin_namespace.favicon))
             end
@@ -57,6 +53,7 @@ module ActiveAdmin
               build_page_content
               footer active_admin_namespace
             end
+            build_script
           end
         end
 
@@ -122,6 +119,13 @@ module ActiveAdmin
           sidebar_sections_for_action.empty? || assigns[:skip_sidebar] == true
         end
 
+        # Renders the script tags for JavaScript
+        def build_script
+          async = !Rails.configuration.assets.debug
+          active_admin_application.javascripts.each do |path|
+            text_node(javascript_include_tag(path, async: async, defer: async))
+          end
+        end
       end
     end
   end
