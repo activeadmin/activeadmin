@@ -13,7 +13,7 @@ group :development , :test do
   gem 'draper', '~> 4.0'
   gem "devise", "~> 4.7"
 
-  gem "rails", "~> 6.0.0"
+  gem "rails", "~> 6.0.0", github: "rails/rails", branch: "6-0-stable"
   gem "activerecord-jdbcsqlite3-adapter", "~> 60.0.rc1", platform: :jruby
 
   gem "formtastic", github: "justinfrench/formtastic"
