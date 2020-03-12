@@ -75,9 +75,9 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
 
         describe "rendering the rows" do
           [
-            ["Id" , "1"],
-            ["Title" , "Hello World"],
-            ["Body" , "<span class=\"empty\">Empty</span>"]
+            ["Id", "1"],
+            ["Title", "Hello World"],
+            ["Body", "<span class=\"empty\">Empty</span>"]
           ].each_with_index do |(title, content), i|
             describe "for #{title}" do
               let(:current_row) { table.find_by_tag("tr")[i] }
@@ -203,7 +203,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
         end
 
         [
-          ["Id" , "1", "2"],
+          ["Id", "1", "2"],
           ["Title", "Hello World", "Multi Column"],
         ].each_with_index do |set, i|
           describe "for #{set[0]}" do
