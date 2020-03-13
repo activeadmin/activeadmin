@@ -8,6 +8,7 @@ GIT
 GIT
   remote: https://github.com/rails/rails.git
   revision: 3ed7c5864ff4ac349848722fbf682a657eebddbf
+  ref: 3ed7c5864ff4ac349848722fbf682a657eebddbf
   branch: 6-0-stable
   specs:
     actioncable (6.0.2.1)
@@ -324,7 +325,7 @@ GEM
     simplecov-html (0.10.2)
     spoon (0.0.6)
       ffi
-    sprockets (3.7.2)
+    sprockets (4.0.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.2.1)
