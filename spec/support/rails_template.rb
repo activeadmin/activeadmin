@@ -1,7 +1,15 @@
 # Rails template to build the sample app for specs
 
-create_file 'app/assets/stylesheets/some-random-css.css'
-create_file 'app/assets/javascripts/some-random-js.js'
+webpacker_app = ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_webpacker/Gemfile", __dir__)
+
+if webpacker_app
+  create_file 'app/javascript/packs/some-random-css.css'
+  create_file 'app/javascript/packs/some-random-js.js'
+else
+  create_file 'app/assets/stylesheets/some-random-css.css'
+  create_file 'app/assets/javascripts/some-random-js.js'
+end
+
 create_file 'app/assets/images/a/favicon.ico'
 
 require 'active_admin/dependency'
@@ -57,8 +65,14 @@ gsub_file 'config/boot.rb', /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
   ENV['BUNDLE_GEMFILE'] = "#{File.expand_path(ENV['BUNDLE_GEMFILE'])}"
 RUBY
 
+# Setup webpacker if necessary
+if webpacker_app
+  rake "webpacker:install"
+  gsub_file 'config/webpacker.yml', /^(.*)extract_css.*$/, '\1extract_css: true' if ENV['RAILS_ENV'] == 'test'
+end
+
 # Setup Active Admin
-generate "active_admin:install#{" --use-webpacker" if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_webpacker/Gemfile", __dir__)}"
+generate "active_admin:install#{" --use-webpacker" if webpacker_app}"
 
 # Force strong parameters to raise exceptions
 inject_into_file 'config/application.rb', after: 'class Application < Rails::Application' do
@@ -73,11 +87,6 @@ directory File.expand_path('templates/admin', __dir__), 'app/admin'
 
 # Add predefined policies
 directory File.expand_path('templates/policies', __dir__), 'app/policies'
-
-# Setup webpacker if necessary
-if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_webpacker/Gemfile", __dir__)
-  rake "webpacker:install"
-end
 
 # Require turbolinks if necessary
 if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_turbolinks/Gemfile", __dir__)
@@ -95,10 +104,6 @@ if ENV['RAILS_ENV'] == 'test'
 
   rails_command "parallel:drop parallel:create parallel:load_schema", env: ENV['RAILS_ENV']
 end
-
-# Add both assets to test as some specs still rely on sprockets
-generate "active_admin:assets"
-generate "active_admin:webpacker"
 
 git add: "."
 git commit: "-m 'Bare application'"
