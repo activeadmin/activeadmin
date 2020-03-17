@@ -5,7 +5,7 @@
 ### Enhancements
 
 * Extend menu to allow for nested submenus. [#5994] by [@taralbass]
-* Add webpacker compatibility with config switch and installation generator. [#5855] by [@sgara]
+* Add Webpacker compatibility with opt-in config switch and installation generator. [#5855] by [@sgara]
 
 ## 2.6.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.6.0..v2.6.1)
 

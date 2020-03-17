@@ -67,7 +67,7 @@ RUBY
 
 # Setup webpacker if necessary
 if webpacker_app
-  rake "webpacker:install"
+  rails_command "webpacker:install"
   gsub_file 'config/webpacker.yml', /^(.*)extract_css.*$/, '\1extract_css: true' if ENV['RAILS_ENV'] == 'test'
 end
 
