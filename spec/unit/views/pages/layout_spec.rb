@@ -21,7 +21,11 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
     helpers
   end
 
-  let(:active_admin_namespace) { ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :myspace) }
+  let(:active_admin_namespace) do
+    application = ActiveAdmin::Application.new
+    application.use_webpacker = ActiveAdmin.application.use_webpacker
+    ActiveAdmin::Namespace.new(ActiveAdmin.application, :myspace)
+  end
   let(:active_admin_application) { ActiveAdmin.application }
   let(:view_factory) { ActiveAdmin::ViewFactory.new }
 

@@ -112,6 +112,30 @@ Draper::CollectionDecorator.send :delegate, :per_page_kaminari
 
 If you're getting the error `wrong number of arguments (6 for 4..5)`, [read #2703].
 
+## webpacker
+
+For new apps starting with Rails 6.0, Webpacker has become the default asset generator. You can **opt-in to using Webpacker for ActiveAdmin assets** as well by updating your configuration to turn on the `use_webpacker` option, either at installation time or manually.
+
+* at active_admin installation:
+
+  ```sh
+  rails g active_admin:install --use_webpacker
+  ```
+
+* manually:
+
+  ```ruby
+  ActiveAdmin.setup do |config|
+    config.use_webpacker = true
+  end
+  ```
+
+  And run the generator to get default Active Admin assets:
+
+  ```sh
+  rails g active_admin:webpacker
+  ```
+
 [CHANGELOG]: https://github.com/activeadmin/activeadmin/blob/master/CHANGELOG.md
 [dashboard.rb]: https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/dashboard.rb
 [active_admin.rb]: https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/active_admin.rb.erb

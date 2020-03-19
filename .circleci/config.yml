@@ -216,6 +216,17 @@ jobs:
     steps:
       *test_app_steps
 
+  testapp60webpacker:
+    docker:
+    - image: circleci/ruby:2.6.5-node
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60_webpacker/Gemfile
+
+    steps:
+      *test_app_steps
+
   lint_and_docs:
     docker:
       - image: circleci/ruby:2.6.5-node
@@ -305,6 +316,17 @@ jobs:
     steps:
       *test_steps
 
+  ruby26rails60webpacker:
+    docker:
+    - image: circleci/ruby:2.6.5-node-browsers
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60_webpacker/Gemfile
+
+    steps:
+      *test_steps
+
   ruby27rails52:
     docker:
       - image: circleci/ruby:2.7.0-node-browsers
@@ -334,6 +356,17 @@ jobs:
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks/Gemfile
+
+    steps:
+      *test_steps
+
+  ruby27rails60webpacker:
+    docker:
+    - image: circleci/ruby:2.7.0-node-browsers
+      user: root
+
+    environment:
+      BUNDLE_GEMFILE: gemfiles/rails_60_webpacker/Gemfile
 
     steps:
       *test_steps
@@ -394,6 +427,10 @@ workflows:
           requires:
             - setup_coverage
 
+      - testapp60webpacker:
+          requires:
+            - setup_coverage
+
       - ruby24rails52:
           requires:
             - testapp52
@@ -418,6 +455,10 @@ workflows:
           requires:
             - testapp60turbolinks
 
+      - ruby26rails60webpacker:
+          requires:
+            - testapp60webpacker
+
       - ruby27rails52:
           requires:
             - testapp52
@@ -429,6 +470,10 @@ workflows:
       - ruby27rails60turbolinks:
           requires:
             - testapp60turbolinks
+
+      - ruby27rails60webpacker:
+          requires:
+            - testapp60webpacker
 
       - jruby92rails52:
           requires:
@@ -445,6 +490,7 @@ workflows:
             - testapp52
             - testapp60
             - testapp60turbolinks
+            - testapp60webpacker
 
             - ruby24rails52
 
@@ -454,10 +500,12 @@ workflows:
             - ruby26rails52
             - ruby26rails60
             - ruby26rails60turbolinks
+            - ruby26rails60webpacker
 
             - ruby27rails52
             - ruby27rails60
             - ruby27rails60turbolinks
+            - ruby27rails60webpacker
 
             - jruby92rails52
             - jruby92rails60
