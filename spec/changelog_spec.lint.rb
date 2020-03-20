@@ -35,6 +35,11 @@ RSpec.describe "Changelog" do
     expect(contributors).to eq(contributors.sort { |a, b| a.downcase <=> b.downcase })
   end
 
+  it 'has well defined third level entries' do
+    third_level_entries = changelog.scan(/^### (.*)$/).flatten.uniq.sort
+    expect(third_level_entries).to eq(["Breaking Changes", "Bug Fixes", "Dependency Changes", "Deprecations", "Enhancements", "Security Fixes"])
+  end
+
   describe 'entry' do
     let(:lines) { changelog.each_line }
 
