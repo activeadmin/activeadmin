@@ -7,6 +7,10 @@
 * Extend menu to allow for nested submenus. [#5994] by [@taralbass]
 * Add Webpacker compatibility with opt-in config switch and installation generator. [#5855] by [@sgara]
 
+### Bug Fixes
+
+* Fix scopes renderer when resource has only optional scopes and their conditions are false. [#6149] by [@Looooong]
+
 ## 2.6.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.6.0..v2.6.1)
 
 ### Bug Fixes
@@ -561,6 +565,7 @@ Please check [0-6-stable] for previous changes.
 [#6002]: https://github.com/activeadmin/activeadmin/pull/6002
 [#6047]: https://github.com/activeadmin/activeadmin/pull/6047
 [#5994]: https://github.com/activeadmin/activeadmin/pull/5994
+[#6149]: https://github.com/activeadmin/activeadmin/pull/6149
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -613,6 +618,7 @@ Please check [0-6-stable] for previous changes.
 [@Kris-LIBIS]: https://github.com/Kris-LIBIS
 [@kwent]: https://github.com/kwent
 [@leio10]: https://github.com/leio10
+[@Looooong]: https://github.com/Looooong
 [@markstory]: https://github.com/markstory
 [@mauriciopasquier]: https://github.com/mauriciopasquier
 [@mconiglio]: https://github.com/mconiglio
