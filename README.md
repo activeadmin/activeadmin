@@ -101,7 +101,7 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 [inch]: http://inch-ci.org/github/activeadmin/activeadmin
 [tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
 [tidelift]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=readme
-[tidelift_enterprise]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=referral&utm_campaign=github&utm_content=enterprise
+[tidelift_enterprise]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=referral&utm_campaign=enterprise
 [tidelift_support]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=referral&utm_campaign=github&utm_content=support
 
 [docs]: http://activeadmin.info/0-installation.html
