@@ -124,6 +124,9 @@ Layout/SpaceBeforeBlockBraces:
 Layout/SpaceBeforeComma:
   Enabled: true
 
+Layout/SpaceBeforeFirstArg:
+  Enabled: true
+
 Layout/SpaceInsideBlockBraces:
   Enabled: true
 
