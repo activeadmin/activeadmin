@@ -1341,9 +1341,9 @@ gensync@^1.0.0-beta.1:
   integrity sha512-r8EC6NO1sngH/zdD9fiRDLdcgnbayXah+mLgManTaIZJqEC1MZstmnox8KpnI2/fxQwrp5OpCOYWLp4rBl4Jcg==
 
 gherkin-lint@^3.3.6:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/gherkin-lint/-/gherkin-lint-3.4.0.tgz#815a396b5d142b615361cc41b8cca5a701d4cec5"
-  integrity sha512-X6fezL/Ood5zv+/+XICsrfMnWDzPwLN9BUlVY2mR0Kng5YU0KGSYnOpsr/5wiMo8jMHqtNPjl6uUUQhY+dZg9w==
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/gherkin-lint/-/gherkin-lint-3.4.2.tgz#ea6ae99cdbe88f9a908b5581f3929f63ecfcdbb5"
+  integrity sha512-uIGVrJb7EslQOMnSC6TZqbc+IRZbms1uXvKaqiw8Esm6wkc0F2DZmFlbr3VZF+SYxiavLgKY9NUhhFb/AR3jVg==
   dependencies:
     commander "2.18.0"
     core-js "3.4.0"
