@@ -36,7 +36,7 @@ Then "I should see a group {string} with the scopes {string} and {string}" do |g
   expect(page).to     have_css ".scopes .scope-group-#{group} .#{name2}"
 end
 
-Then"I should see an empty group with the scope {string}" do |name|
+Then "I should see an empty group with the scope {string}" do |name|
   name = name.tr(" ", "").underscore.downcase
   expect(page).to     have_css ".scopes .scope-default-group .#{name}"
 end
