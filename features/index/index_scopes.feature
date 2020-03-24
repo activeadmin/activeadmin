@@ -192,6 +192,18 @@ Feature: Index Scoping
     And I should see the scope "Shown with method name"
     And I should see the scope "Default" with the count 3
 
+  Scenario: Viewing resources with only optional scopes and their conditions are false
+    Given 3 posts exist
+    And an index configuration of:
+    """
+    ActiveAdmin.register Post do
+      scope :all, if: proc { false }
+      scope(:hidden, if: proc { false }) { |posts| posts }
+      scope(:hidden_as_well, if: proc { false }) { |posts| posts }
+    end
+    """
+    Then I should see empty scopes
+
   Scenario: Viewing resources with multiple scopes as blocks
     Given 3 posts exist
     And an index configuration of:

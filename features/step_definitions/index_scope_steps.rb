@@ -40,3 +40,7 @@ Then "I should see an empty group with the scope {string}" do |name|
   name = name.tr(" ", "").underscore.downcase
   expect(page).to     have_css ".scopes .scope-default-group .#{name}"
 end
+
+Then "I should see empty scopes" do
+  expect(page.find(".scopes").text).to be_empty
+end

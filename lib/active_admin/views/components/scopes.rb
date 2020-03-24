@@ -26,6 +26,8 @@ module ActiveAdmin
             group_scopes.each do |scope|
               build_scope(scope, options) if call_method_or_exec_proc(scope.display_if_block)
             end
+
+            nil
           end
         end
       end
