@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.7.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.6.1..v2.7.0)
+
 ### Enhancements
 
 * Extend menu to allow for nested submenus. [#5994] by [@taralbass]
