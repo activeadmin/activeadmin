@@ -22,7 +22,7 @@ module ActiveAdmin
       def row(*args, &block)
         title   = args[0]
         options = args.extract_options!
-        data  = args[1] || args[0]
+        data    = args[1] || args[0]
         classes = [:row]
         if options[:class]
           classes << options[:class]
