@@ -350,14 +350,14 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.2)
-    rubocop (0.80.1)
+    rubocop (0.81.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
       rexml
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 1.7)
+      unicode-display_width (>= 1.4.0, < 2.0)
     rubocop-rails (2.5.0)
       activesupport
       rack (>= 1.1)
@@ -400,7 +400,7 @@ GEM
     tomlrb (1.2.8)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
-    unicode-display_width (1.6.1)
+    unicode-display_width (1.7.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     websocket-driver (0.7.1)
@@ -447,7 +447,7 @@ DEPENDENCIES
   rails-i18n
   rake
   rspec-rails
-  rubocop (= 0.80.1)
+  rubocop (= 0.81.0)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
   simplecov (= 0.17.1)
