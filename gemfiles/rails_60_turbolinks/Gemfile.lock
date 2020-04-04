@@ -161,7 +161,7 @@ GEM
       railties (>= 4.2, < 7)
     cucumber-tag_expressions (1.1.1)
     cucumber-wire (0.0.1)
-    database_cleaner (1.8.3)
+    database_cleaner (1.8.4)
     db-query-matchers (0.10.0)
       activesupport (>= 4.0, < 7)
       rspec (~> 3.0)
