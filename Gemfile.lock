@@ -286,7 +286,7 @@ GEM
     parallel (1.19.1)
     parallel_tests (2.32.0)
       parallel
-    parser (2.7.0.5)
+    parser (2.7.1.0)
       ast (~> 2.4.0)
     phantomjs (2.1.1.0)
     polyamorous (2.3.2)
@@ -358,7 +358,7 @@ GEM
       rexml
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-rails (2.5.1)
+    rubocop-rails (2.5.2)
       activesupport
       rack (>= 1.1)
       rubocop (>= 0.72.0)
@@ -398,7 +398,7 @@ GEM
     thread_safe (0.3.6-java)
     tilt (2.0.10)
     tomlrb (1.2.8)
-    tzinfo (1.2.6)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.7.0)
     warden (1.2.8)
