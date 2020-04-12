@@ -8,7 +8,7 @@ module ActiveAdmin
     #
     module Streaming
 
-      def index
+      def index(arg=nil)
         super do |format|
           format.csv { stream_csv }
           yield(format) if block_given?
