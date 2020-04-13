@@ -4,7 +4,7 @@ module ActiveAdmin
 
     class Disabled < RuntimeError
       def initialize
-        super "Can't remove a filter when filters are disabled. Enable filters with 'config.filters = true'"
+        super "Can't add or remove a filter when filters are disabled. Enable filters with 'config.filters = true'"
       end
     end
 
