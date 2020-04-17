@@ -286,7 +286,7 @@ GEM
     parallel (1.19.1)
     parallel_tests (2.32.0)
       parallel
-    parser (2.7.1.0)
+    parser (2.7.1.1)
       ast (~> 2.4.0)
     phantomjs (2.1.1.0)
     polyamorous (2.3.2)
@@ -350,7 +350,7 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.2)
-    rubocop (0.81.0)
+    rubocop (0.82.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
@@ -447,7 +447,7 @@ DEPENDENCIES
   rails-i18n
   rake
   rspec-rails
-  rubocop (= 0.81.0)
+  rubocop (= 0.82.0)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
   simplecov (= 0.17.1)
