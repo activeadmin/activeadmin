@@ -250,17 +250,6 @@ jobs:
       - *format_coverage
       - *save_coverage
 
-  ruby24rails52:
-    docker:
-      - image: circleci/ruby:2.4.8-node-browsers
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
-
-    steps:
-      *test_steps
-
   ruby25rails52:
     docker:
       - image: circleci/ruby:2.5.7-node-browsers
@@ -431,10 +420,6 @@ workflows:
           requires:
             - setup_coverage
 
-      - ruby24rails52:
-          requires:
-            - testapp52
-
       - ruby25rails52:
           requires:
             - testapp52
@@ -491,8 +476,6 @@ workflows:
             - testapp60
             - testapp60turbolinks
             - testapp60webpacker
-
-            - ruby24rails52
 
             - ruby25rails52
             - ruby25rails60
