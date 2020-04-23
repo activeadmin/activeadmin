@@ -167,11 +167,16 @@ module ActiveAdmin
       #
       # @return [void]
       def update_resource(object, attributes)
-        object = assign_attributes(object, attributes)
+        status = nil
+        ActiveRecord::Base.transaction do
+          object = assign_attributes(object, attributes)
 
-        run_update_callbacks object do
-          save_resource(object)
+          run_update_callbacks object do
+            status = save_resource(object)
+            raise ActiveRecord::Rollback unless status
+          end
         end
+        status
       end
 
       # Destroys an object from the database and calls appropriate callbacks.
