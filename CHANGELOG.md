@@ -18,6 +18,7 @@
 * Fix scopes renderer when resource has only optional scopes and their conditions are false. [#6149] by [@Looooong]
 * Fix some missing wrapper markup in "logged out" layout. [#6086] by [@irmela]
 * Fix some typos in Vietnamese translation. [#6099] by [@giapnhdev]
+* Fix autosaving relationships when submitting invalid parameters. [#6202] by [@arbesulo]
 
 ## 2.6.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.6.0..v2.6.1)
 
@@ -577,6 +578,7 @@ Please check [0-6-stable] for previous changes.
 [#6086]: https://github.com/activeadmin/activeadmin/pull/6086
 [#6099]: https://github.com/activeadmin/activeadmin/pull/6099
 [#6198]: https://github.com/activeadmin/activeadmin/pull/6198
+[#6202]: https://github.com/activeadmin/activeadmin/pull/6202
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -586,6 +588,7 @@ Please check [0-6-stable] for previous changes.
 [@amiel]: https://github.com/amiel
 [@amiuhle]: https://github.com/amiuhle
 [@andreslemik]: https://github.com/andreslemik
+[@arbesulo]: https://github.com/arbesulo
 [@bartoszkopinski]: https://github.com/bartoszkopinski
 [@blocknotes]: https://github.com/blocknotes
 [@bolshakov]: https://github.com/bolshakov
