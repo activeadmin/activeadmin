@@ -21,13 +21,13 @@ function ModalDialog(message, inputs, callback){
           const result = [];
 
           opts.forEach(v => {
-            const $elem = $(`<${elem}/>`);
+            const $elem = $(`<${elem}></${elem}>`);
             if ($.isArray(v)) {
               $elem.text(v[0]).val(v[1]);
             } else {
               $elem.text(v);
             }
-            result.push($elem.wrap('<div>').parent().html());
+            result.push($elem.wrap('<div></div>').parent().html());
           });
 
           return result;
