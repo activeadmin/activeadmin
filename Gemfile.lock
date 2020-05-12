@@ -189,8 +189,6 @@ GEM
       responders (>= 2, < 4)
     iso (0.2.2)
       i18n
-    jaro_winkler (1.5.4)
-    jaro_winkler (1.5.4-java)
     jasmine (2.99.0)
       jasmine-core (>= 2.99.0, < 3.0.0)
       phantomjs
@@ -343,8 +341,7 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.2)
-    rubocop (0.82.0)
-      jaro_winkler (~> 1.5.1)
+    rubocop (0.83.0)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
@@ -440,7 +437,7 @@ DEPENDENCIES
   rails-i18n
   rake
   rspec-rails
-  rubocop (= 0.82.0)
+  rubocop (= 0.83.0)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
   simplecov (= 0.17.1)
