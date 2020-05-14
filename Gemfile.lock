@@ -17,7 +17,6 @@ PATH
       kaminari (~> 1.0, >= 1.0.1)
       railties (>= 5.2, < 6.1)
       ransack (~> 2.1, >= 2.1.1)
-      sassc-rails (~> 2.1)
       sprockets (>= 3.0, < 4.1)
 
 GEM
@@ -355,7 +354,7 @@ GEM
     rubocop-rspec (1.39.0)
       rubocop (>= 0.68.1)
     ruby-progressbar (1.10.1)
-    sassc (2.2.1)
+    sassc (2.3.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
@@ -440,6 +439,7 @@ DEPENDENCIES
   rubocop (= 0.83.0)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
+  sassc-rails (~> 2.1)
   simplecov (= 0.17.1)
   sqlite3 (~> 1.4)
   yard
