@@ -472,7 +472,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
         it "should still be hidden on the second render" do
           filters = { body: { verb => proc { verb == :unless } } }
           2.times do
-            body = filter scope, filters
+            body = Capybara.string(render_filter scope, filters)
             expect(body).not_to have_selector("input[name='q[body_contains]']")
           end
         end
