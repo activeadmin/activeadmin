@@ -388,8 +388,8 @@ module ActiveAdmin
         class TableActions < ActiveAdmin::Component
           builder_method :table_actions
 
-          def item *args
-            text_node link_to *args
+          def item *args, **kwargs
+            text_node link_to(*args, **kwargs)
           end
         end
       end # IndexTableFor
