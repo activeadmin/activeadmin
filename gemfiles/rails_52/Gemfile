@@ -15,6 +15,9 @@ group :development, :test do
   gem "rails", "~> 5.2.3"
   gem "activerecord-jdbcsqlite3-adapter", "~> 52.0", platform: :jruby
 
+  gem "sprockets-rails", github: "rails/sprockets-rails", ref: "c269f5e01fdffa5c41350e855183d94ff33d318a"
+  gem "sprockets", github: "rails/sprockets", ref: "2d6b1a8bde0cf870c14a2d193fa9a9be09ef99fc"
+
   gem "formtastic", github: "justinfrench/formtastic"
 end
 
