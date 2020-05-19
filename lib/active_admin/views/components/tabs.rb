@@ -32,7 +32,7 @@ module ActiveAdmin
 
       def fragmentize(string)
         result = string.parameterize
-        result = URI.encode(string) if result.blank?
+        result = CGI.escape(string) if result.blank?
         result
       end
     end

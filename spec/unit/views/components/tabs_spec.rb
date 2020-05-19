@@ -86,11 +86,11 @@ RSpec.describe ActiveAdmin::Views::Tabs do
 
       it "should have tab with id based on URL-encoded string" do
         tab_content = subject.find('.tabs .tab-content div', text: 'content')
-        expect(tab_content['id']).to eq(URI.encode('🤗'))
+        expect(tab_content['id']).to eq(CGI.escape('🤗'))
       end
 
       it "should have link with fragment based on URL-encoded string" do
-        expect(subject).to have_link('🤗', href: "##{URI.encode('🤗')}")
+        expect(subject).to have_link('🤗', href: "##{CGI.escape('🤗')}")
       end
     end
   end
