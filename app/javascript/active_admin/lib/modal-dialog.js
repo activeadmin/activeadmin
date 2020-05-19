@@ -1,14 +1,14 @@
 function ModalDialog(message, inputs, callback){
   let html = `<form id="dialog_confirm" title="${message}"><ul>`;
   for (let name in inputs) {
-    var elem, opts, wrapper;
+    var opts, wrapper;
     let type = inputs[name];
     if (/^(datepicker|checkbox|text|number)$/.test(type)) {
       wrapper = 'input';
     } else if (type === 'textarea') {
       wrapper = 'textarea';
     } else if ($.isArray(type)) {
-      [wrapper, elem, opts, type] = ['select', 'option', type, ''];
+      [wrapper, opts, type] = ['select', type, ''];
     } else {
       throw new Error(`Unsupported input type: {${name}: ${type}}`);
     }
@@ -21,7 +21,7 @@ function ModalDialog(message, inputs, callback){
           const result = [];
 
           opts.forEach(v => {
-            const $elem = $(`<${elem}></${elem}>`);
+            const $elem = $('<option></option>');
             if ($.isArray(v)) {
               $elem.text(v[0]).val(v[1]);
             } else {
@@ -34,7 +34,7 @@ function ModalDialog(message, inputs, callback){
         })()).join('') : '') +
       `</${wrapper}>` +
     "</li>";
-    [wrapper, elem, opts, type, klass] = []; // unset any temporary variables
+    [wrapper, opts, type, klass] = []; // unset any temporary variables
   }
 
   html += "</ul></form>";
