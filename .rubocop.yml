@@ -58,6 +58,9 @@ Layout/ExtraSpacing:
   AllowForAlignment: false
   Enabled: true
 
+Layout/FirstParameterIndentation:
+  Enabled: true
+
 Rails/FilePath:
   Enabled: true
   EnforcedStyle: slashes
