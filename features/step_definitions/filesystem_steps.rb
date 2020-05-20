@@ -6,8 +6,8 @@ module ActiveAdminContentsRollback
   # Records the contents of a file the first time we are
   # about to change it
   def record(filename)
-    contents        = File.read(filename) rescue nil
-    files[filename] = contents            unless files.has_key? filename
+    contents = File.read(filename) rescue nil
+    files[filename] = contents unless files.has_key? filename
   end
 
   # Rolls the recorded files back to their original states
@@ -26,7 +26,7 @@ module ActiveAdminContentsRollback
       begin
         dir = File.dirname(file)
         until dir == Rails.root
-          Dir.rmdir(dir)                        # delete current folder
+          Dir.rmdir(dir) # delete current folder
           dir = dir.split('/')[0..-2].join('/') # select parent folder
         end
       rescue Errno::ENOTEMPTY # Directory not empty

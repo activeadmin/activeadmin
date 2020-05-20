@@ -3,18 +3,18 @@ require 'active_admin/resource_collection'
 
 RSpec.describe ActiveAdmin::ResourceCollection do
   let(:application) { ActiveAdmin::Application.new }
-  let(:namespace)   { ActiveAdmin::Namespace.new application, :admin }
-  let(:collection)  { ActiveAdmin::ResourceCollection.new }
-  let(:resource)    { double resource_name: "MyResource" }
+  let(:namespace) { ActiveAdmin::Namespace.new application, :admin }
+  let(:collection) { ActiveAdmin::ResourceCollection.new }
+  let(:resource) { double resource_name: "MyResource" }
 
-  it { is_expected.to respond_to :[]       }
-  it { is_expected.to respond_to :add      }
-  it { is_expected.to respond_to :each     }
+  it { is_expected.to respond_to :[] }
+  it { is_expected.to respond_to :add }
+  it { is_expected.to respond_to :each }
   it { is_expected.to respond_to :has_key? }
-  it { is_expected.to respond_to :keys     }
-  it { is_expected.to respond_to :values   }
-  it { is_expected.to respond_to :size     }
-  it { is_expected.to respond_to :to_a     }
+  it { is_expected.to respond_to :keys }
+  it { is_expected.to respond_to :values }
+  it { is_expected.to respond_to :size }
+  it { is_expected.to respond_to :to_a }
 
   it "should have no resources when new" do
     expect(collection).to be_empty
@@ -66,7 +66,7 @@ RSpec.describe ActiveAdmin::ResourceCollection do
 
     describe "should store both renamed and non-renamed resources" do
       let(:resource) { ActiveAdmin::Resource.new namespace, Category }
-      let(:renamed)  { ActiveAdmin::Resource.new namespace, Category, as: "Subcategory" }
+      let(:renamed) { ActiveAdmin::Resource.new namespace, Category, as: "Subcategory" }
 
       it "when the renamed version is added first" do
         collection.add renamed
@@ -83,12 +83,12 @@ RSpec.describe ActiveAdmin::ResourceCollection do
   end
 
   describe "#[]" do
-    let(:resource)              { ActiveAdmin::Resource.new namespace, resource_class }
-    let(:inherited_resource)    { ActiveAdmin::Resource.new namespace, inherited_resource_class }
+    let(:resource) { ActiveAdmin::Resource.new namespace, resource_class }
+    let(:inherited_resource) { ActiveAdmin::Resource.new namespace, inherited_resource_class }
 
-    let(:resource_class)           { User }
+    let(:resource_class) { User }
     let(:inherited_resource_class) { Publisher }
-    let(:unregistered_class)       { Category }
+    let(:unregistered_class) { Category }
 
     context "with resources" do
       before do
@@ -133,7 +133,7 @@ RSpec.describe ActiveAdmin::ResourceCollection do
 
     context "with a renamed resource" do
       let(:renamed_resource) { ActiveAdmin::Resource.new namespace, resource_class, as: name }
-      let(:name)             { "Administrators" }
+      let(:name) { "Administrators" }
 
       before do
         collection.add renamed_resource

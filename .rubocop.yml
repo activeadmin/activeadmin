@@ -55,6 +55,7 @@ Layout/EndOfLine:
   Enabled: true
 
 Layout/ExtraSpacing:
+  AllowForAlignment: false
   Enabled: true
 
 Rails/FilePath:

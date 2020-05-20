@@ -7,7 +7,7 @@ RSpec.describe ActiveAdmin::Resource, "authorization" do
 
   describe "authorization_adapter" do
     it "should return AuthorizationAdapter by default" do
-      expect(app.authorization_adapter).to       eq ActiveAdmin::AuthorizationAdapter
+      expect(app.authorization_adapter).to eq ActiveAdmin::AuthorizationAdapter
       expect(namespace.authorization_adapter).to eq ActiveAdmin::AuthorizationAdapter
     end
 

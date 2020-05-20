@@ -320,7 +320,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
         f.inputs name: 'Author', for: :author do |author|
           author.has_many :profile, allow_destroy: true do |profile|
-            profile.inputs  "inputs for profile #{profile.object.bio}" do
+            profile.inputs "inputs for profile #{profile.object.bio}" do
               profile.input :bio
             end
           end

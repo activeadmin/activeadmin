@@ -78,8 +78,8 @@ When /^I (check|uncheck) "([^"]*)"$/ do |action, field|
 end
 
 Then /^I should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|
-  should = negate ? :not_to        : :to
-  have   = is_css ? have_css(text) : have_content(text)
+  should = negate ? :not_to : :to
+  have = is_css ? have_css(text) : have_content(text)
   expect(page).send should, have
 end
 

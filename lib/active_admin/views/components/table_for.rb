@@ -8,14 +8,14 @@ module ActiveAdmin
       end
 
       def build(obj, *attrs)
-        options         = attrs.extract_options!
-        @sortable       = options.delete(:sortable)
-        @collection     = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
+        options = attrs.extract_options!
+        @sortable = options.delete(:sortable)
+        @collection = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
         @resource_class = options.delete(:i18n)
         @resource_class ||= @collection.klass if @collection.respond_to? :klass
 
-        @columns        = []
-        @row_class      = options.delete(:row_class)
+        @columns = []
+        @row_class = options.delete(:row_class)
 
         build_table
         super(options)
@@ -29,7 +29,7 @@ module ActiveAdmin
       def column(*args, &block)
         options = default_options.merge(args.extract_options!)
         title = args[0]
-        data  = args[1] || args[0]
+        data = args[1] || args[0]
 
         col = Column.new(title, data, @resource_class, options, &block)
         @columns << col
@@ -65,12 +65,12 @@ module ActiveAdmin
       end
 
       def build_table_header(col)
-        classes  = Arbre::HTML::ClassList.new
+        classes = Arbre::HTML::ClassList.new
         sort_key = sortable? && col.sortable? && col.sort_key
-        params   = request.query_parameters.except :page, :order, :commit, :format
+        params = request.query_parameters.except :page, :order, :commit, :format
 
-        classes << 'sortable'                         if sort_key
-        classes << "sorted-#{current_sort[1]}"        if sort_key && current_sort[0] == sort_key
+        classes << 'sortable' if sort_key
+        classes << "sorted-#{current_sort[1]}" if sort_key && current_sort[0] == sort_key
         classes << col.html_class
 
         if sort_key

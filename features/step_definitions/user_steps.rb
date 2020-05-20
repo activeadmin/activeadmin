@@ -16,7 +16,7 @@ Given /^I am logged in with capybara$/ do
   step 'log out'
 
   visit new_admin_user_session_path
-  fill_in 'Email',    with: 'admin@example.com'
+  fill_in 'Email', with: 'admin@example.com'
   fill_in 'Password', with: 'password'
   click_button 'Login'
 end
@@ -35,7 +35,7 @@ Given /^"([^"]*)" requests a password reset with token "([^"]*)"( but it expires
 end
 
 Given /^override locale "([^"]*)" with "([^"]*)"$/ do |path, value|
-  keys_value  = path.split('.') + [value]
+  keys_value = path.split('.') + [value]
   locale_hash = keys_value.reverse.inject { |a, n| { n => a } }
   I18n.available_locales
   I18n.backend.store_translations(I18n.locale, locale_hash)

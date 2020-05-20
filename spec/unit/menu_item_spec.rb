@@ -37,7 +37,7 @@ module ActiveAdmin
 
       it "should accept new children" do
         item = MenuItem.new label: "Dashboard"
-        item.add            label: "My Child Dashboard"
+        item.add label: "My Child Dashboard"
         expect(item.items.first).to be_a MenuItem
         expect(item.items.first.label).to eq "My Child Dashboard"
       end

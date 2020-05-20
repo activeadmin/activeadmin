@@ -5,7 +5,7 @@ module ActiveAdmin
       builder_method :attributes_table_for
 
       def build(obj, *attrs)
-        @collection     = Array.wrap(obj)
+        @collection = Array.wrap(obj)
         @resource_class = @collection.first.class
         options = {}
         options[:for] = @collection.first if single_record?
@@ -20,7 +20,7 @@ module ActiveAdmin
       end
 
       def row(*args, &block)
-        title   = args[0]
+        title = args[0]
         options = args.extract_options!
         classes = [:row]
         if options[:class]

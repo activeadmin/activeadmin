@@ -37,9 +37,9 @@ module ActiveAdmin
 
           def to_html
             input_wrapping do
-              label_html  << # your label
+              label_html << # your label
               select_html << # the dropdown that holds the available search methods
-              input_html     # your input field
+              input_html # your input field
             end
           end
 

@@ -32,7 +32,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       end
 
       it 'gets name from I18n' do
-        title_index =  resource.content_columns.index(:title) + 1 # First col is always id
+        title_index = resource.content_columns.index(:title) + 1 # First col is always id
         expect(csv_builder.columns[title_index].name).to eq localized_name
       end
     end

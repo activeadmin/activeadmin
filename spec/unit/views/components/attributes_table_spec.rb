@@ -49,7 +49,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
       "when you create each row with a custom block that returns nil" => proc {
         render_arbre_component(assigns) {
           attributes_table_for post do
-            row("Id")   { text_node post.id; nil }
+            row("Id") { text_node post.id; nil }
             row("Title") { text_node post.title; nil }
             row("Body") { text_node post.body; nil }
           end

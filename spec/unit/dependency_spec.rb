@@ -51,7 +51,7 @@ RSpec.describe ActiveAdmin::Dependency do
 
     describe '`!`' do
       it 'raises an error if requirement not met' do
-        expect { k.foo! '5'            }.to raise_error ActiveAdmin::DependencyError,
+        expect { k.foo! '5' }.to raise_error ActiveAdmin::DependencyError,
           'You provided foo 1.2.3 but we need: 5.'
       end
       it 'accepts multiple arguments' do
@@ -59,7 +59,7 @@ RSpec.describe ActiveAdmin::Dependency do
           'You provided foo 1.2.3 but we need: > 1, < 1.2.'
       end
       it 'raises an error if not provided' do
-        expect { k.bar!                }.to raise_error ActiveAdmin::DependencyError,
+        expect { k.bar! }.to raise_error ActiveAdmin::DependencyError,
           'To use bar you need to specify it in your Gemfile.'
       end
     end
@@ -92,7 +92,7 @@ RSpec.describe ActiveAdmin::Dependency do
       expect { k['a-b'].match! '2.5' }.to raise_error ActiveAdmin::DependencyError,
         'You provided a-b 1.2.3 but we need: 2.5.'
 
-      expect { k['b-c'].match!       }.to raise_error ActiveAdmin::DependencyError,
+      expect { k['b-c'].match! }.to raise_error ActiveAdmin::DependencyError,
         'To use b-c you need to specify it in your Gemfile.'
     end
 

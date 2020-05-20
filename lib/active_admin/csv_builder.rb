@@ -42,11 +42,11 @@ module ActiveAdmin
     end
 
     def build(controller, csv)
-      @collection  = controller.send :find_collection, except: :pagination
-      columns      = exec_columns controller.view_context
-      bom          = options.delete :byte_order_mark
+      @collection = controller.send :find_collection, except: :pagination
+      columns = exec_columns controller.view_context
+      bom = options.delete :byte_order_mark
       column_names = options.delete(:column_names) { true }
-      csv_options  = options.except :encoding_options, :humanize_name
+      csv_options = options.except :encoding_options, :humanize_name
 
       csv << bom if bom
 

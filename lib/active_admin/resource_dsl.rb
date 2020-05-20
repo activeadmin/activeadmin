@@ -183,16 +183,16 @@ module ActiveAdmin
     # == Before / After Destroy
     # Called before and after the object is destroyed from the database.
     #
-    delegate :before_build,   :after_build,   to: :controller
-    delegate :before_create,  :after_create,  to: :controller
-    delegate :before_update,  :after_update,  to: :controller
-    delegate :before_save,    :after_save,    to: :controller
+    delegate :before_build, :after_build, to: :controller
+    delegate :before_create, :after_create, to: :controller
+    delegate :before_update, :after_update, to: :controller
+    delegate :before_save, :after_save, to: :controller
     delegate :before_destroy, :after_destroy, to: :controller
 
     # This code defines both *_filter and *_action for Rails 5.0 and  *_action for Rails >= 5.1
     phases = [
       :before, :skip_before,
-      :after,  :skip_after,
+      :after, :skip_after,
       :around, :skip
     ]
     keywords = if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
