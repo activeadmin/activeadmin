@@ -111,8 +111,8 @@ module ActiveAdmin
         end
       elsif allow_destroy?(form_builder.object)
         form_builder.input(:_destroy, as: :boolean,
-                            wrapper_html: { class: 'has_many_delete' },
-                            label: I18n.t('active_admin.has_many_delete'))
+                                      wrapper_html: { class: 'has_many_delete' },
+                                      label: I18n.t('active_admin.has_many_delete'))
       end
 
       if sortable_column

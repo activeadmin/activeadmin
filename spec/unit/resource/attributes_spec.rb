@@ -13,15 +13,15 @@ module ActiveAdmin
 
       it 'should return attributes hash' do
         expect(subject).to eq(author_id: :author,
-                               body: :body,
-                               created_at: :created_at,
-                               custom_category_id: :category,
-                               foo_id: :foo_id,
-                               position: :position,
-                               published_date: :published_date,
-                               starred: :starred,
-                               title: :title,
-                               updated_at: :updated_at)
+                              body: :body,
+                              created_at: :created_at,
+                              custom_category_id: :category,
+                              foo_id: :foo_id,
+                              position: :position,
+                              published_date: :published_date,
+                              starred: :starred,
+                              title: :title,
+                              updated_at: :updated_at)
       end
 
       it 'does not return sensitive attributes' do

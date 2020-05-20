@@ -27,8 +27,8 @@ module ActiveAdmin
         {
           id: resource_name.plural,
           label: proc { resource.plural_resource_label },
-          url:   proc { resource.route_collection_path(params, url_options) },
-          if:    proc { authorized?(Auth::READ, menu_resource_class) }
+          url: proc { resource.route_collection_path(params, url_options) },
+          if: proc { authorized?(Auth::READ, menu_resource_class) }
         }
       end
 

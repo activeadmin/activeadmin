@@ -927,16 +927,16 @@ RSpec.describe ActiveAdmin::FormBuilder do
   end
 
   { # Testing that the same input can be used multiple times
-    "f.input :title, as: :string"               => "post_title",
-    "f.input :title, as: :text"                 => "post_title",
-    "f.input :created_at, as: :time_select"     => "post_created_at_2i",
+    "f.input :title, as: :string" => "post_title",
+    "f.input :title, as: :text" => "post_title",
+    "f.input :created_at, as: :time_select" => "post_created_at_2i",
     "f.input :created_at, as: :datetime_select" => "post_created_at_2i",
-    "f.input :created_at, as: :date_select"     => "post_created_at_2i",
+    "f.input :created_at, as: :date_select" => "post_created_at_2i",
     # Testing that return values don't screw up the form
-    "f.input :title; nil"                          => "post_title",
-    "f.input :title; []"                           => "post_title",
-    "[:title].each{ |r| f.input r }"               => "post_title",
-    "[:title].map { |r| f.input r }"               => "post_title",
+    "f.input :title; nil" => "post_title",
+    "f.input :title; []" => "post_title",
+    "[:title].each{ |r| f.input r }" => "post_title",
+    "[:title].map { |r| f.input r }" => "post_title",
   }.each do |source, selector|
     it "should properly buffer `#{source}`" do
       body = build_form do |f|
@@ -968,9 +968,9 @@ RSpec.describe ActiveAdmin::FormBuilder do
         build_form do |f|
           f.inputs do
             f.input :created_at, as: :datepicker,
-                                  datepicker_options: {
-                                    min_date: Date.new(2013, 10, 18),
-                                    max_date: "2013-12-31" }
+                                 datepicker_options: {
+                                   min_date: Date.new(2013, 10, 18),
+                                   max_date: "2013-12-31" }
           end
         end
       end
