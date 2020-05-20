@@ -58,6 +58,9 @@ Layout/ExtraSpacing:
   AllowForAlignment: false
   Enabled: true
 
+Layout/FirstArgumentIndentation:
+  Enabled: true
+
 Layout/FirstParameterIndentation:
   Enabled: true
 
