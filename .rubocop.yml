@@ -61,6 +61,10 @@ Layout/ExtraSpacing:
 Layout/FirstArgumentIndentation:
   Enabled: true
 
+Layout/FirstHashElementIndentation:
+  Enabled: true
+  EnforcedStyle: consistent
+
 Layout/FirstParameterIndentation:
   Enabled: true
 
