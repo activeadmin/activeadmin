@@ -64,6 +64,10 @@ Layout/FirstArgumentIndentation:
 Layout/FirstParameterIndentation:
   Enabled: true
 
+Layout/ParameterAlignment:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
+
 Rails/FilePath:
   Enabled: true
   EnforcedStyle: slashes
