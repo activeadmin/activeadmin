@@ -24,7 +24,7 @@ module ActiveAdmin
     include Streaming
     include Sidebars
     include ViewHelpers::DownloadFormatLinksHelper
-    extend  ResourceClassMethods
+    extend ResourceClassMethods
 
     def self.active_admin_config=(config)
       if @active_admin_config = config

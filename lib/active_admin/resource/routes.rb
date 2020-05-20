@@ -98,13 +98,13 @@ module ActiveAdmin
           suffix = options[:suffix] || "path"
           route = []
 
-          route << options[:action]           # "batch_action", "edit" or "new"
-          route << resource.route_prefix      # "admin"
+          route << options[:action] # "batch_action", "edit" or "new"
+          route << resource.route_prefix # "admin"
           route << belongs_to_name if nested? # "category"
-          route << resource_path_name         # "posts" or "post"
-          route << suffix                     # "path" or "index path"
+          route << resource_path_name # "posts" or "post"
+          route << suffix # "path" or "index path"
 
-          route.compact.join('_').to_sym      # :admin_category_posts_path
+          route.compact.join('_').to_sym # :admin_category_posts_path
         end
 
         # @return params to pass to instance path

@@ -51,12 +51,12 @@ module ActiveAdmin
                      html: { class: 'filter_form' } }
         required = { html: { method: :get },
                      as: :q }
-        options  = defaults.deep_merge(options).deep_merge(required)
+        options = defaults.deep_merge(options).deep_merge(required)
 
         form_for search, options do |f|
           filters.each do |attribute, opts|
-            next if opts.key?(:if)     && !call_method_or_proc_on(self, opts[:if])
-            next if opts.key?(:unless) &&  call_method_or_proc_on(self, opts[:unless])
+            next if opts.key?(:if) && !call_method_or_proc_on(self, opts[:if])
+            next if opts.key?(:unless) && call_method_or_proc_on(self, opts[:unless])
 
             filter_opts = opts.except(:if, :unless)
             filter_opts[:input_html] = instance_exec(&filter_opts[:input_html]) if filter_opts[:input_html].is_a?(Proc)

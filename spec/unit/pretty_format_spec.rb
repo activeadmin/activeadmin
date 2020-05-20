@@ -123,7 +123,7 @@ RSpec.describe "#pretty_format" do
   end
 
   context "given an arbitrary object" do
-    let(:obj)  { Class.new.new }
+    let(:obj) { Class.new.new }
 
     it "should delegate to `display_name`" do
       expect(view).to receive(:display_name).with(obj) { "I'm not famous" }

@@ -7,12 +7,12 @@ module ActiveAdmin
       # To disable this menu item, call `menu(false)` from the DSL
       def menu_item_options=(options)
         if options == false
-          @include_in_menu   = false
+          @include_in_menu = false
           @menu_item_options = {}
         else
           @include_in_menu = true
           @navigation_menu_name = options[:menu_name]
-          @menu_item_options    = default_menu_options.merge options
+          @menu_item_options = default_menu_options.merge options
         end
       end
 

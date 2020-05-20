@@ -69,7 +69,7 @@ module ActiveAdmin
     def extract_custom_settings!(options)
       @heading = options.key?(:heading) ? options.delete(:heading) : default_heading
       @sortable_column = options.delete(:sortable)
-      @sortable_start  = options.delete(:sortable_start) || 0
+      @sortable_start = options.delete(:sortable_start) || 0
       @new_record = options.key?(:new_record) ? options.delete(:new_record) : true
       @destroy_option = options.delete(:allow_destroy)
       options
@@ -156,8 +156,8 @@ module ActiveAdmin
 
     # Capture the ADD JS
     def js_for_has_many(class_string, &form_block)
-      assoc_name       = assoc_klass.model_name
-      placeholder      = "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
+      assoc_name = assoc_klass.model_name
+      placeholder = "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
       opts = {
         for: [assoc, assoc_klass.new],
         class: class_string,

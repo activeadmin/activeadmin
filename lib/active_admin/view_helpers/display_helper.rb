@@ -5,7 +5,7 @@ module ActiveAdmin
       DISPLAY_NAME_FALLBACK = -> {
         name = ""
         klass = self.class
-        name << klass.model_name.human         if klass.respond_to? :model_name
+        name << klass.model_name.human if klass.respond_to? :model_name
         name << " ##{send(klass.primary_key)}" if klass.respond_to? :primary_key
         name.present? ? name : to_s
       }
@@ -26,7 +26,7 @@ module ActiveAdmin
         @@display_name_methods_cache ||= {}
         @@display_name_methods_cache[resource.class] ||= begin
           methods = active_admin_application.display_name_methods - association_methods_for(resource)
-          method  = methods.detect { |method| resource.respond_to? method }
+          method = methods.detect { |method| resource.respond_to? method }
 
           if method != :to_s || resource.method(method).source_location
             method
@@ -74,7 +74,7 @@ module ActiveAdmin
           format_collection(object)
         else
           if defined?(::ActiveRecord) && object.is_a?(ActiveRecord::Base) ||
-             defined?(::Mongoid)      && object.class.include?(Mongoid::Document)
+             defined?(::Mongoid) && object.class.include?(Mongoid::Document)
             auto_link object
           elsif defined?(::ActiveRecord) && object.is_a?(ActiveRecord::Relation)
             format_collection(object)

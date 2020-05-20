@@ -7,5 +7,5 @@ require 'active_admin/filters/active_sidebar'
 
 # Add our Extensions
 ActiveAdmin::ResourceDSL.send :include, ActiveAdmin::Filters::DSL
-ActiveAdmin::Resource.send    :include, ActiveAdmin::Filters::ResourceExtension
+ActiveAdmin::Resource.send :include, ActiveAdmin::Filters::ResourceExtension
 ActiveAdmin::ViewHelpers.send :include, ActiveAdmin::Filters::ViewHelper

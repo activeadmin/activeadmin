@@ -212,7 +212,7 @@ module ActiveAdmin
     def unload_resources!
       resources.each do |resource|
         parent = (module_name || 'Object').constantize
-        name   = resource.controller_name.split('::').last
+        name = resource.controller_name.split('::').last
         parent.send(:remove_const, name) if parent.const_defined?(name, false)
 
         # Remove circular references

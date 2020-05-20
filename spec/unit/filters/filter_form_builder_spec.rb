@@ -392,7 +392,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
     context "when using a custom foreign key" do
       let(:scope) { Post.ransack }
-      let(:body)  { filter :category }
+      let(:body) { filter :category }
       it "should ignore that foreign key and let Ransack handle it" do
         expect(Post.reflect_on_association(:category).foreign_key).to eq :custom_category_id
         expect(body).to have_selector("select[name='q[category_id_eq]']")
@@ -457,9 +457,9 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
   describe "conditional display" do
     [:if, :unless].each do |verb|
-      should   = verb == :if ? "should" : "shouldn't"
-      if_true  = verb == :if ? :to      : :to_not
-      if_false = verb == :if ? :to_not  : :to
+      should = verb == :if ? "should" : "shouldn't"
+      if_true = verb == :if ? :to : :to_not
+      if_false = verb == :if ? :to_not : :to
       context "with #{verb.inspect} proc" do
         it "#{should} be displayed if true" do
           body = filter :body, verb => proc { true }
@@ -478,9 +478,9 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
         end
         it "should successfully keep rendering other filters after one is hidden" do
           filters = { body: { verb => proc { verb == :unless } }, author: {} }
-          body    = Capybara.string(render_filter scope, filters)
+          body = Capybara.string(render_filter scope, filters)
           expect(body).not_to have_selector("input[name='q[body_contains]']")
-          expect(body).to     have_selector("select[name='q[author_id_eq]']")
+          expect(body).to have_selector("select[name='q[author_id_eq]']")
         end
       end
     end

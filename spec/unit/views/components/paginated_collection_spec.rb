@@ -9,7 +9,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
     let(:view) do
       view = mock_action_view
       allow(view.request).to receive(:query_parameters).and_return page: '1'
-      allow(view.request).to receive(:path_parameters).and_return  controller: 'admin/posts', action: 'index'
+      allow(view.request).to receive(:path_parameters).and_return controller: 'admin/posts', action: 'index'
       view
     end
 
@@ -27,7 +27,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     before do
       allow(collection).to receive(:except) { collection } unless collection.respond_to? :except
-      allow(collection).to receive(:group_values) { [] }   unless collection.respond_to? :group_values
+      allow(collection).to receive(:group_values) { [] } unless collection.respond_to? :group_values
     end
 
     let(:pagination) { paginated_collection collection }

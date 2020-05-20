@@ -344,9 +344,9 @@ module ActiveAdmin
         #
         # ```
         def actions(options = {}, &block)
-          name          = options.delete(:name)     { '' }
-          defaults      = options.delete(:defaults) { true }
-          dropdown      = options.delete(:dropdown) { false }
+          name = options.delete(:name) { '' }
+          defaults = options.delete(:defaults) { true }
+          dropdown = options.delete(:dropdown) { false }
           dropdown_name = options.delete(:dropdown_name) { I18n.t 'active_admin.dropdown_actions.button_label', default: 'Actions' }
 
           options[:class] ||= 'col-actions'

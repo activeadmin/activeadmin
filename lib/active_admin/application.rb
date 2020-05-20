@@ -46,7 +46,7 @@ module ActiveAdmin
 
     # Event that gets triggered on load of Active Admin
     BeforeLoadEvent = 'active_admin.application.before_load'.freeze
-    AfterLoadEvent  = 'active_admin.application.after_load'.freeze
+    AfterLoadEvent = 'active_admin.application.after_load'.freeze
 
     # Runs before the app's AA initializer
     def setup!
@@ -112,9 +112,9 @@ module ActiveAdmin
     def load!
       unless loaded?
         ActiveSupport::Notifications.publish BeforeLoadEvent, self # before_load hook
-        files.each { |file| load file }                            # load files
-        namespace(default_namespace)                               # init AA resources
-        ActiveSupport::Notifications.publish AfterLoadEvent, self  # after_load hook
+        files.each { |file| load file } # load files
+        namespace(default_namespace) # init AA resources
+        ActiveSupport::Notifications.publish AfterLoadEvent, self # after_load hook
         @@loaded = true
       end
     end
@@ -176,7 +176,7 @@ module ActiveAdmin
     # files from being loaded twice in production.
     def remove_active_admin_load_paths_from_rails_autoload_and_eager_load
       ActiveSupport::Dependencies.autoload_paths -= load_paths
-      Rails.application.config.eager_load_paths  -= load_paths
+      Rails.application.config.eager_load_paths -= load_paths
     end
 
     # Hook into the Rails code reloading mechanism so that things are reloaded
