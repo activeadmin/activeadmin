@@ -30,6 +30,9 @@ AllCops:
 Layout/EndAlignment:
   Enabled: true
 
+Layout/HashAlignment:
+  Enabled: true
+
 Lint/ParenthesesAsGroupedExpression:
   Enabled: true
 
@@ -57,6 +60,20 @@ Layout/EndOfLine:
 Layout/ExtraSpacing:
   AllowForAlignment: false
   Enabled: true
+
+Layout/FirstArgumentIndentation:
+  Enabled: true
+
+Layout/FirstHashElementIndentation:
+  Enabled: true
+  EnforcedStyle: consistent
+
+Layout/FirstParameterIndentation:
+  Enabled: true
+
+Layout/ParameterAlignment:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
 
 Rails/FilePath:
   Enabled: true

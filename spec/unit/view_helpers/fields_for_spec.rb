@@ -5,7 +5,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
 
   it "should skip :action, :controller and :commit" do
     expect(fields_for_params(
-      scope: "All", action: "index", controller: "PostController", commit: "Filter", utf8: "Yes!")).
+             scope: "All", action: "index", controller: "PostController", commit: "Filter", utf8: "Yes!")).
       to eq [ { scope: "All" } ]
   end
 

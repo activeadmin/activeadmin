@@ -19,12 +19,12 @@ Given /^(a|\d+) comments added by admin with an email "([^"]+)"?$/ do |number, e
   comment_text = 'Comment %i'
 
   number.times do |i|
-    ActiveAdmin::Comment.create!(namespace:     'admin',
-                                 body:          comment_text % i,
+    ActiveAdmin::Comment.create!(namespace: 'admin',
+                                 body: comment_text % i,
                                  resource_type: Post.to_s,
-                                 resource_id:   Post.first.id,
-                                 author_type:   admin_user.class.to_s,
-                                 author_id:     admin_user.id)
+                                 resource_id: Post.first.id,
+                                 author_type: admin_user.class.to_s,
+                                 author_id: admin_user.id)
   end
 end
 
