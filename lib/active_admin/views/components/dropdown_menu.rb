@@ -35,9 +35,9 @@ module ActiveAdmin
         super(options)
       end
 
-      def item(*args)
+      def item(*args, **kwargs)
         within @menu do
-          li link_to(*args)
+          li link_to(*args, **kwargs)
         end
       end
 

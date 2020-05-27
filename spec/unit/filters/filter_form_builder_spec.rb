@@ -18,7 +18,9 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
   def render_filter(search, filters)
     render_arbre_component({ filter_args: [search, filters] }, helpers) do
-      text_node active_admin_filters_form_for *assigns[:filter_args]
+      args = assigns[:filter_args]
+      kwargs = args.pop if args.last.is_a?(Hash)
+      text_node active_admin_filters_form_for *args, **kwargs
     end.to_s
   end
 

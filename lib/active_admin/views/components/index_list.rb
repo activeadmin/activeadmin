@@ -37,7 +37,7 @@ module ActiveAdmin
       def build_index_list(index_class)
         li class: classes_for_index(index_class) do
           params = request.query_parameters.except :page, :commit, :format
-          url_with_params = url_for(params.merge(as: index_class.index_name.to_sym))
+          url_with_params = url_for(**params.merge(as: index_class.index_name.to_sym).symbolize_keys)
 
           a href: url_with_params, class: "table_tools_button" do
             name = index_class.index_name

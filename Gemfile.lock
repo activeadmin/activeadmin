@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/activeadmin/arbre.git
+  revision: b546d7a10b95001cb7bd1273bbaa55172de77e98
+  ref: b546d7a10b95001cb7bd1273bbaa55172de77e98
+  specs:
+    arbre (1.2.1)
+      activesupport (>= 3.0.0, < 6.1)
+      ruby2_keywords (>= 0.0.2)
+
+GIT
   remote: https://github.com/justinfrench/formtastic.git
   revision: f95dddae2fe57a9ecadd22a4b53b86eedee659d2
   specs:
@@ -111,8 +120,6 @@ GEM
     apparition (0.5.0)
       capybara (~> 3.13, < 4)
       websocket-driver (>= 0.6.5)
-    arbre (1.2.1)
-      activesupport (>= 3.0.0)
     ast (2.4.0)
     backports (3.15.0)
     bcrypt (3.1.13)
@@ -377,6 +384,7 @@ GEM
     rubocop-rspec (1.39.0)
       rubocop (>= 0.68.1)
     ruby-progressbar (1.10.1)
+    ruby2_keywords (0.0.2)
     sassc (2.2.1)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -426,6 +434,7 @@ DEPENDENCIES
   activeadmin!
   activerecord-jdbcsqlite3-adapter (~> 60.0)
   apparition
+  arbre!
   cancancan
   capybara (~> 3.14)
   chandler (= 0.9.0)
