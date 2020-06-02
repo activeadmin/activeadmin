@@ -22,7 +22,7 @@ group :development, :test do
 
   gem "turbolinks", "~> 5.2"
 
-  gem "formtastic", github: "justinfrench/formtastic"
+  gem "formtastic", github: "deivid-rodriguez/formtastic", ref: "0109c66329da7fb7bf7cdc23c6d59dceefeb13ee"
 end
 
 group :test do

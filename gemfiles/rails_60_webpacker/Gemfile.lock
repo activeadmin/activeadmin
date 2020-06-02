@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: https://github.com/cucumber/cucumber-rails.git
-  revision: 44b8b526816c681458c27faba288145efb998e72
-  ref: 44b8b526816c681458c27faba288145efb998e72
+  revision: 1f89a2573f6276aec18e5eb600265c1d8602e21c
+  ref: 1f89a2573f6276aec18e5eb600265c1d8602e21c
   specs:
     cucumber-rails (2.0.0)
       capybara (>= 2.12, < 4)
@@ -20,8 +20,9 @@ GIT
       rails (>= 4.2, < 7)
 
 GIT
-  remote: https://github.com/justinfrench/formtastic.git
-  revision: 2d9685a81795f76e971c151b0271ff8a54b8d399
+  remote: https://github.com/deivid-rodriguez/formtastic.git
+  revision: 0109c66329da7fb7bf7cdc23c6d59dceefeb13ee
+  ref: 0109c66329da7fb7bf7cdc23c6d59dceefeb13ee
   specs:
     formtastic (3.2.0.pre)
       actionpack (>= 5.2.0)

@@ -20,8 +20,9 @@ GIT
       rails (>= 4.2, < 7)
 
 GIT
-  remote: https://github.com/justinfrench/formtastic.git
-  revision: f95dddae2fe57a9ecadd22a4b53b86eedee659d2
+  remote: https://github.com/deivid-rodriguez/formtastic.git
+  revision: 0109c66329da7fb7bf7cdc23c6d59dceefeb13ee
+  ref: 0109c66329da7fb7bf7cdc23c6d59dceefeb13ee
   specs:
     formtastic (3.2.0.pre)
       actionpack (>= 5.2.0)

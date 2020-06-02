@@ -20,7 +20,7 @@ group :development, :test do
   gem "sprockets-rails", github: "rails/sprockets-rails", ref: "c269f5e01fdffa5c41350e855183d94ff33d318a"
   gem "sprockets", github: "rails/sprockets", ref: "2d6b1a8bde0cf870c14a2d193fa9a9be09ef99fc"
 
-  gem "formtastic", github: "justinfrench/formtastic"
+  gem "formtastic", github: "deivid-rodriguez/formtastic", ref: "0109c66329da7fb7bf7cdc23c6d59dceefeb13ee"
 end
 
 group :test do
