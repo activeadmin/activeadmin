@@ -8,6 +8,18 @@ GIT
       ruby2_keywords (>= 0.0.2)
 
 GIT
+  remote: https://github.com/cucumber/cucumber-rails.git
+  revision: 44b8b526816c681458c27faba288145efb998e72
+  ref: 44b8b526816c681458c27faba288145efb998e72
+  specs:
+    cucumber-rails (2.0.0)
+      capybara (>= 2.12, < 4)
+      cucumber (>= 3.0.2, < 5)
+      mime-types (>= 2.0, < 4)
+      nokogiri (~> 1.8)
+      rails (>= 4.2, < 7)
+
+GIT
   remote: https://github.com/justinfrench/formtastic.git
   revision: f95dddae2fe57a9ecadd22a4b53b86eedee659d2
   specs:
@@ -194,12 +206,6 @@ GEM
       cucumber-tag_expressions (~> 1.1.0)
       gherkin (~> 5.0)
     cucumber-expressions (6.0.1)
-    cucumber-rails (2.0.0)
-      capybara (>= 2.12, < 4)
-      cucumber (>= 3.0.2, < 4)
-      mime-types (>= 2.0, < 4)
-      nokogiri (~> 1.8)
-      railties (>= 4.2, < 7)
     cucumber-tag_expressions (1.1.1)
     cucumber-wire (0.0.1)
     database_cleaner (1.8.5)
@@ -273,9 +279,9 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
-    mime-types (3.3)
+    mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2019.1009)
+    mime-types-data (3.2020.0512)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
@@ -408,7 +414,7 @@ DEPENDENCIES
   cancancan
   capybara (~> 3.14)
   cucumber
-  cucumber-rails (~> 2.0)
+  cucumber-rails (~> 2.0)!
   database_cleaner
   db-query-matchers (= 0.10.0)
   devise
