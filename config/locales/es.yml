@@ -144,7 +144,7 @@ es:
         submit: "Reenviar instrucciones de confirmación"
       links:
         sign_up: "Registrarse"
-        sign_in: "Ingresar"
+        sign_in: "Iniciar Sesión"
         forgot_your_password: "¿Olvidó su contraseña?"
         sign_in_with_omniauth_provider: "Conéctate con %{provider}"
         resend_unlock_instructions: "Reenviar instrucciones de desbloqueo"
