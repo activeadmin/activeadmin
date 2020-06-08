@@ -86,7 +86,8 @@ es-MX:
         title: "Cambie su contraseña"
         submit: "Cambiar mi contraseña"
       links:
-        sign_in: "Registrarse"
+        sign_in: "Iniciar Sesión"
+        sign_up: "Registrarse"
         forgot_your_password: "¿Olvidó su contraseña?"
         sign_in_with_omniauth_provider: "Conéctate con %{provider}"
     index_list:

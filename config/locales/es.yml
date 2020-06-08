@@ -143,8 +143,8 @@ es:
         title: "Reenviar instrucciones de confirmación"
         submit: "Reenviar instrucciones de confirmación"
       links:
-        sign_up: "Ingresar"
-        sign_in: "Registrarse"
+        sign_up: "Registrarse"
+        sign_in: "Iniciar Sesión"
         forgot_your_password: "¿Olvidó su contraseña?"
         sign_in_with_omniauth_provider: "Conéctate con %{provider}"
         resend_unlock_instructions: "Reenviar instrucciones de desbloqueo"
