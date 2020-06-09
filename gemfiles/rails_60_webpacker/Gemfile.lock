@@ -137,7 +137,7 @@ PATH
       formtastic_i18n (~> 0.4)
       inherited_resources (~> 1.7)
       jquery-rails (~> 4.2)
-      kaminari (~> 1.0, >= 1.0.1)
+      kaminari (~> 1.0, >= 1.2.1)
       railties (>= 5.2, < 6.1)
       ransack (~> 2.1, >= 2.1.1)
       sassc-rails (~> 2.1)
