@@ -35,7 +35,7 @@ group :test do
   gem 'jasmine'
   gem 'jasmine-core', '2.99.2' # last release with Ruby 2.2 support.
   gem 'launchy'
-  gem 'parallel_tests', '~> 2.26'
+  gem 'parallel_tests', '~> 3.0'
   gem 'rails-i18n' # Provides default i18n for many languages
   gem 'rspec-rails'
   gem "sqlite3", "~> 1.4", platform: :mri
