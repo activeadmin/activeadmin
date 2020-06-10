@@ -239,7 +239,7 @@ GEM
     nokogiri (1.10.9-java)
     orm_adapter (0.5.0)
     parallel (1.19.1)
-    parallel_tests (2.32.0)
+    parallel_tests (3.0.0)
       parallel
     phantomjs (2.1.1.0)
     polyamorous (2.3.2)
@@ -375,7 +375,7 @@ DEPENDENCIES
   jasmine-core (= 2.99.2)
   jruby-openssl (~> 0.10.1)
   launchy
-  parallel_tests (~> 2.26)
+  parallel_tests (~> 3.0)
   pry
   pry-byebug
   pundit
