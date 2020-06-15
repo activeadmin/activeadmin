@@ -219,7 +219,7 @@ GEM
       cucumber-core (~> 7.0, >= 7.0.0)
       cucumber-cucumber-expressions (~> 10.1, >= 10.1.0)
       cucumber-messages (~> 12.1, >= 12.1.1)
-    database_cleaner (1.8.3)
+    database_cleaner (1.8.5)
     db-query-matchers (0.10.0)
       activesupport (>= 4.0, < 7)
       rspec (~> 3.0)
