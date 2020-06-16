@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Enhancements
+
+* Make source `ActiveAdmin.routes` provides routes in a consistent order. [#6124] by [@jiikko]
+
 ### Dependency Changes
 
 * Support for ruby 2.4 has been removed. [#6198] by [@deivid-rodriguez]
@@ -576,6 +580,7 @@ Please check [0-6-stable] for previous changes.
 [#6149]: https://github.com/activeadmin/activeadmin/pull/6149
 [#6086]: https://github.com/activeadmin/activeadmin/pull/6086
 [#6099]: https://github.com/activeadmin/activeadmin/pull/6099
+[#6124]: https://github.com/activeadmin/activeadmin/pull/6124
 [#6198]: https://github.com/activeadmin/activeadmin/pull/6198
 
 [@5t111111]: https://github.com/5t111111
@@ -620,6 +625,7 @@ Please check [0-6-stable] for previous changes.
 [@javierjulio]: https://github.com/javierjulio
 [@jawa]: https://github.com/jawa
 [@JiiHu]: https://github.com/JiiHu
+[@jiikko]: https://github.com/jiikko
 [@johnnyshields]: https://github.com/johnnyshields
 [@jscheid]: https://github.com/jscheid
 [@juril33t]: https://github.com/juril33t

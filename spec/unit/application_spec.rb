@@ -122,6 +122,10 @@ RSpec.describe ActiveAdmin::Application do
   end
 
   describe "files in load path" do
+    it 'it should load sorted files' do
+      expect(application.files.map { |f| File.basename(f) }).to eq(%w(admin_users.rb dashboard.rb stores.rb))
+    end
+
     it "should load files in the first level directory" do
       expect(application.files).to include(File.expand_path("app/admin/dashboard.rb", application.app_path))
     end
