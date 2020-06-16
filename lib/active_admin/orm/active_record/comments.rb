@@ -64,21 +64,21 @@ ActiveAdmin.after_load do |app|
         def create
           create! do |success, failure|
             success.html do
-              redirect_back fallback_location: active_admin_root
+              redirect_back fallback_location: active_admin_root, allow_other_hosts: false
             end
             failure.html do
               flash[:error] = I18n.t 'active_admin.comments.errors.empty_text'
-              redirect_back fallback_location: active_admin_root
+              redirect_back fallback_location: active_admin_root, allow_other_hosts: false
             end
           end
 
           def destroy
             destroy! do |success, failure|
               success.html do
-                redirect_back fallback_location: active_admin_root
+                redirect_back fallback_location: active_admin_root, allow_other_hosts: false
               end
               failure.html do
-                redirect_back fallback_location: active_admin_root
+                redirect_back fallback_location: active_admin_root, allow_other_hosts: false
               end
             end
           end

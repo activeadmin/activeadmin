@@ -119,7 +119,7 @@ module ActiveAdmin
       end
 
       def redirect_backwards_or_to_root
-        redirect_back fallback_location: active_admin_root
+        redirect_back fallback_location: active_admin_root, allow_other_hosts: false
       end
 
     end
