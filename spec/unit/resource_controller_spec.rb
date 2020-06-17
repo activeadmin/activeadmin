@@ -45,14 +45,17 @@ RSpec.describe ActiveAdmin::ResourceController do
         expect(controller).to receive(:call_before_create).with(resource)
         controller.send :create_resource, resource
       end
+
       it "should call the before save callback" do
         expect(controller).to receive(:call_before_save).with(resource)
         controller.send :create_resource, resource
       end
+
       it "should call the after save callback" do
         expect(controller).to receive(:call_after_save).with(resource)
         controller.send :create_resource, resource
       end
+
       it "should call the after create callback" do
         expect(controller).to receive(:call_after_create).with(resource)
         controller.send :create_resource, resource
@@ -72,14 +75,17 @@ RSpec.describe ActiveAdmin::ResourceController do
         expect(controller).to receive(:call_before_update).with(resource)
         controller.send :update_resource, resource, attributes
       end
+
       it "should call the before save callback" do
         expect(controller).to receive(:call_before_save).with(resource)
         controller.send :update_resource, resource, attributes
       end
+
       it "should call the after save callback" do
         expect(controller).to receive(:call_after_save).with(resource)
         controller.send :update_resource, resource, attributes
       end
+
       it "should call the after create callback" do
         expect(controller).to receive(:call_after_update).with(resource)
         controller.send :update_resource, resource, attributes

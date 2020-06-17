@@ -193,6 +193,7 @@ RSpec.describe "Comments" do
       resource.comments = true
       expect(resource.comments).to eq true
     end
+
     it "should disable comments if set to false" do
       ns = ActiveAdmin::Namespace.new(application, :admin)
       resource = ActiveAdmin::Resource.new(ns, Post)

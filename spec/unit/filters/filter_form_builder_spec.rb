@@ -170,13 +170,16 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     it "should generate a date greater than" do
       expect(body).to have_selector("input.datepicker[name='q[published_date_gteq]']")
     end
+
     it "should generate a date less than" do
       expect(body).to have_selector("input.datepicker[name='q[published_date_lteq]']")
     end
+
     it "should generate two inputs with different ids" do
       ids = body.find_css("input.datepicker").to_a.map { |n| n[:id] }
       expect(ids).to contain_exactly("q_published_date_lteq", "q_published_date_gteq")
     end
+
     it "should generate one label without for attribute" do
       label = body.find_css("label")
       expect(label.length).to be(1)
@@ -208,6 +211,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     it "should generate a date greater than" do
       expect(body).to have_selector("input.datepicker[name='q[created_at_gteq_datetime]']")
     end
+
     it "should generate a date less than" do
       expect(body).to have_selector("input.datepicker[name='q[created_at_lteq_datetime]']")
     end
@@ -238,15 +242,19 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       it "should generate a select option for equal to" do
         expect(body).to have_selector("option[value=id_equals]", text: "Equals")
       end
+
       it "should generate a select option for greater than" do
         expect(body).to have_selector("option[value=id_greater_than]", text: "Greater than")
       end
+
       it "should generate a select option for less than" do
         expect(body).to have_selector("option[value=id_less_than]", text: "Less than")
       end
+
       it "should generate a text field for input" do
         expect(body).to have_selector("input[name='q[id_equals]']")
       end
+
       it "should select the option which is currently being filtered" do
         scope = Post.ransack id_greater_than: 1
         body = Capybara.string(render_filter scope, id: {})
@@ -275,9 +283,11 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       it "should generate a select" do
         expect(body).to have_selector("select[name='q[starred_eq]']")
       end
+
       it "should set the default text to 'Any'" do
         expect(body).to have_selector("option[value='']", text: "Any")
       end
+
       it "should create an option for true and false" do
         expect(body).to have_selector("option[value=true]", text: "Yes")
         expect(body).to have_selector("option[value=false]", text: "No")
@@ -296,9 +306,11 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       it "should generate a select" do
         expect(body).to have_selector("select[name='q[title_present]']")
       end
+
       it "should set the default text to 'Any'" do
         expect(body).to have_selector("option[value='']", text: "Any")
       end
+
       it "should create an option for true and false" do
         expect(body).to have_selector("option[value=true]", text: "Yes")
         expect(body).to have_selector("option[value=false]", text: "No")
@@ -328,9 +340,11 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       it "should generate a select" do
         expect(body).to have_selector("select[name='q[author_id_eq]']")
       end
+
       it "should set the default text to 'Any'" do
         expect(body).to have_selector("option[value='']", text: "Any")
       end
+
       it "should create an option for each related object" do
         expect(body).to have_selector("option[value='#{@john.id}']", text: "John Doe")
         expect(body).to have_selector("option[value='#{@jane.id}']", text: "Jane Doe")
@@ -467,10 +481,12 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
           body = filter :body, verb => proc { true }
           expect(body).send if_true, have_selector("input[name='q[body_contains]']")
         end
+
         it "#{should} be displayed if false" do
           body = filter :body, verb => proc { false }
           expect(body).send if_false, have_selector("input[name='q[body_contains]']")
         end
+
         it "should still be hidden on the second render" do
           filters = { body: { verb => proc { verb == :unless } } }
           2.times do
@@ -478,6 +494,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
             expect(body).not_to have_selector("input[name='q[body_contains]']")
           end
         end
+
         it "should successfully keep rendering other filters after one is hidden" do
           filters = { body: { verb => proc { verb == :unless } }, author: {} }
           body = Capybara.string(render_filter scope, filters)
@@ -543,6 +560,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
         body = filter :author
         expect(body).to have_selector("option", text: "Any")
       end
+
       it "should be able to be disabled" do
         body = filter :author, include_blank: false
         expect(body).to_not have_selector("option", text: "Any")
@@ -554,6 +572,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
         body = filter :author, multiple: true
         expect(body).to_not have_selector("option", text: "Any")
       end
+
       it "should be able to be enabled" do
         body = filter :author, multiple: true, include_blank: true
         expect(body).to have_selector("option", text: "Any")

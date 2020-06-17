@@ -79,6 +79,12 @@ Rails/FilePath:
   Enabled: true
   EnforcedStyle: slashes
 
+RSpec/EmptyLineAfterExample:
+  Enabled: true
+
+RSpec/EmptyLineAfterExampleGroup:
+  Enabled: true
+
 RSpec/HookArgument:
   Enabled: true
 

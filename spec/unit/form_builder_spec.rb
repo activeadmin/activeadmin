@@ -99,12 +99,15 @@ RSpec.describe ActiveAdmin::FormBuilder do
     it "should generate a text input" do
       expect(body).to have_selector("input[type=text][name='post[title]']")
     end
+
     it "should generate a textarea" do
       expect(body).to have_selector("textarea[name='post[body]']")
     end
+
     it "should only generate the form once" do
       expect(body).to have_selector("form", count: 1)
     end
+
     it "should generate actions" do
       expect(body).to have_selector("input[type=submit][value='Submit Me']")
       expect(body).to have_selector("input[type=submit][value='Another Button']")
@@ -221,6 +224,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       expect(body).to have_selector(".inputs > ol > span")
       expect(body).to have_selector("span", count: 2)
     end
+
     it "should allow a simplified syntax" do
       body = build_form do |f|
         div do
@@ -251,6 +255,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     it "should have a title input" do
       expect(body).to have_selector("input[type=text][name='post[title]']")
     end
+
     it "should have a body textarea" do
       expect(body).to have_selector("textarea[name='post[body]']")
     end
@@ -376,6 +381,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       expect(body).to have_selector("[id=post_author_attributes_first_name_input]", count: 1)
       expect(body).to have_selector("[id=post_author_attributes_last_name_input]", count: 1)
     end
+
     it "should add author first and last name fields" do
       expect(body).to have_selector("input[name='post[author_attributes][first_name]']")
       expect(body).to have_selector("input[name='post[author_attributes][last_name]']")

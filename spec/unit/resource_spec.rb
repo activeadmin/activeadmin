@@ -22,6 +22,7 @@ module ActiveAdmin
       it "should return the resource's table name" do
         expect(config.resource_table_name).to eq '"categories"'
       end
+
       context "when the :as option is given" do
         it "should return the resource's table name" do
           expect(config(as: "My Category").resource_table_name).to eq '"categories"'
@@ -39,6 +40,7 @@ module ActiveAdmin
       it 'returns nil by default' do
         expect(config.decorator_class).to eq nil
       end
+
       context 'when a decorator is defined' do
         around do |example|
           with_resources_during(example) { resource }
@@ -59,6 +61,7 @@ module ActiveAdmin
       it "should return a namespaced controller name" do
         expect(config.controller_name).to eq "Admin::CategoriesController"
       end
+
       context "when non namespaced controller" do
         let(:namespace) { ActiveAdmin::Namespace.new(application, :root) }
         it "should return a non namespaced controller name" do
@@ -139,6 +142,7 @@ module ActiveAdmin
             expect(@resource.controller.new.send(:method_for_association_chain)).to eq :categories
           end
         end
+
         context "when passing in the method as an option" do
           before do
             @resource = application.register Category do

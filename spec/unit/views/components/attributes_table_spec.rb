@@ -142,6 +142,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
         expect(table.find_by_tag('th').first.content).to eq 'Author'
         expect(table.find_by_tag('td').first.content).to eq 'John Doe'
       end
+
       it 'should not attempt to call a nonexistant association' do
         table = render_arbre_component assigns do
           attributes_table_for post, :foo_id
