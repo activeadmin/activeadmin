@@ -92,6 +92,7 @@ RSpec.describe ActiveAdmin::Views::IndexAsTable::IndexTableFor do
             expect(index_values).to eq(['1', '2'])
           end
         end
+
         context 'viewing the second page' do
           let(:collection) do
             base_collection.page(2)

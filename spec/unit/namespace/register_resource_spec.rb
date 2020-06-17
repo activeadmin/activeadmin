@@ -130,6 +130,7 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
           expect(menu["Posts"]).to eq nil
         end
       end
+
       context "when optional" do
         before do
           namespace.register Post do
@@ -151,6 +152,7 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
         expect(defined?(One::CategoriesController)).to eq 'constant'
       end
     end
+
     context "when not namespaced" do
       it "should not be namespaced" do
         namespace = ActiveAdmin::Namespace.new(application, :two)

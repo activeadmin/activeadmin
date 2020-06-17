@@ -18,11 +18,13 @@ module ActiveAdmin
           expect(config.resource_name.singular).to eq "category"
         end
       end
+
       context "when a class in a module" do
         it "should underscore the module and the class" do
           expect(Resource.new(namespace, Mock::Resource).resource_name.singular).to eq "mock_resource"
         end
       end
+
       context "when you pass the 'as' option" do
         it "should underscore the passed through string" do
           expect(config(as: "Blog Category").resource_name.singular).to eq "blog_category"

@@ -89,6 +89,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
           controller.send :apply_sorting, chain
         end
       end
+
       context "when params not applicable" do
         let(:http_params) { { order: "published_date_asc" } }
         it "reorders chain" do

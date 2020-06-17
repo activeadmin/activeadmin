@@ -142,6 +142,7 @@ module ActiveAdmin
             expect(@resource.controller.new.send(:method_for_association_chain)).to eq :categories
           end
         end
+
         context "when passing in the method as an option" do
           before do
             @resource = application.register Category do

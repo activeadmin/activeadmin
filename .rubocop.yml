@@ -82,6 +82,9 @@ Rails/FilePath:
 RSpec/EmptyLineAfterExample:
   Enabled: true
 
+RSpec/EmptyLineAfterExampleGroup:
+  Enabled: true
+
 RSpec/HookArgument:
   Enabled: true
 
