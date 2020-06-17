@@ -36,6 +36,7 @@ RSpec.describe "Breadcrumbs" do
       it 'should have one item' do
         expect(trail.size).to eq 1
       end
+
       it 'should have a link to /admin' do
         expect(trail[0][:name]).to eq 'Admin'
         expect(trail[0][:path]).to eq '/admin'
@@ -48,6 +49,7 @@ RSpec.describe "Breadcrumbs" do
       it "should have one item" do
         expect(trail.size).to eq 1
       end
+
       it "should have a link to /admin" do
         expect(trail[0][:name]).to eq "Admin"
         expect(trail[0][:path]).to eq "/admin"
@@ -60,10 +62,12 @@ RSpec.describe "Breadcrumbs" do
       it "should have 2 items" do
         expect(trail.size).to eq 2
       end
+
       it "should have a link to /admin" do
         expect(trail[0][:name]).to eq "Admin"
         expect(trail[0][:path]).to eq "/admin"
       end
+
       it "should have a link to /admin/users" do
         expect(trail[1][:name]).to eq "Users"
         expect(trail[1][:path]).to eq "/admin/users"
@@ -76,10 +80,12 @@ RSpec.describe "Breadcrumbs" do
       it "should have 3 items" do
         expect(trail.size).to eq 3
       end
+
       it "should have a link to /admin" do
         expect(trail[0][:name]).to eq "Admin"
         expect(trail[0][:path]).to eq "/admin"
       end
+
       it "should have a link to /admin/users" do
         expect(trail[1][:name]).to eq "Users"
         expect(trail[1][:path]).to eq "/admin/users"
@@ -107,10 +113,12 @@ RSpec.describe "Breadcrumbs" do
       it "should have 3 items" do
         expect(trail.size).to eq 3
       end
+
       it "should have a link to /admin" do
         expect(trail[0][:name]).to eq "Admin"
         expect(trail[0][:path]).to eq "/admin"
       end
+
       it "should have a link to /admin/users" do
         expect(trail[1][:name]).to eq "Users"
         expect(trail[1][:path]).to eq "/admin/users"
@@ -142,10 +150,12 @@ RSpec.describe "Breadcrumbs" do
       it "should have 3 items" do
         expect(trail.size).to eq 3
       end
+
       it "should have a link to /admin" do
         expect(trail[0][:name]).to eq "Admin"
         expect(trail[0][:path]).to eq "/admin"
       end
+
       it "should have a link to /admin/users" do
         expect(trail[1][:name]).to eq "Users"
         expect(trail[1][:path]).to eq "/admin/users"
@@ -177,18 +187,22 @@ RSpec.describe "Breadcrumbs" do
       it "should have 4 items" do
         expect(trail.size).to eq 4
       end
+
       it "should have a link to /admin" do
         expect(trail[0][:name]).to eq "Admin"
         expect(trail[0][:path]).to eq "/admin"
       end
+
       it "should have a link to /admin/users" do
         expect(trail[1][:name]).to eq "Users"
         expect(trail[1][:path]).to eq "/admin/users"
       end
+
       it "should have a link to /admin/users/1" do
         expect(trail[2][:name]).to eq "Jane Doe"
         expect(trail[2][:path]).to eq "/admin/users/1"
       end
+
       it "should have a link to /admin/users/1/posts" do
         expect(trail[3][:name]).to eq "Posts"
         expect(trail[3][:path]).to eq "/admin/users/1/posts"
@@ -201,22 +215,27 @@ RSpec.describe "Breadcrumbs" do
       it "should have 5 items" do
         expect(trail.size).to eq 5
       end
+
       it "should have a link to /admin" do
         expect(trail[0][:name]).to eq "Admin"
         expect(trail[0][:path]).to eq "/admin"
       end
+
       it "should have a link to /admin/users" do
         expect(trail[1][:name]).to eq "Users"
         expect(trail[1][:path]).to eq "/admin/users"
       end
+
       it "should have a link to /admin/users/1" do
         expect(trail[2][:name]).to eq "Jane Doe"
         expect(trail[2][:path]).to eq "/admin/users/1"
       end
+
       it "should have a link to /admin/users/1/posts" do
         expect(trail[3][:name]).to eq "Posts"
         expect(trail[3][:path]).to eq "/admin/users/1/posts"
       end
+
       it "should have a link to /admin/users/1/posts/1" do
         expect(trail[4][:name]).to eq "Hello World"
         expect(trail[4][:path]).to eq "/admin/users/1/posts/1"
@@ -233,14 +252,17 @@ RSpec.describe "Breadcrumbs" do
       it "should have 3 items" do
         expect(trail.size).to eq 3
       end
+
       it "should have a link to /admin" do
         expect(trail[0][:name]).to eq "Admin"
         expect(trail[0][:path]).to eq "/admin"
       end
+
       it "should have a link to /admin/posts" do
         expect(trail[1][:name]).to eq "Posts"
         expect(trail[1][:path]).to eq "/admin/posts"
       end
+
       it "should not link to the show view for the post" do
         expect(trail[2]).to eq "Hello World"
       end

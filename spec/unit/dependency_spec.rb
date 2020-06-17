@@ -20,28 +20,34 @@ RSpec.describe ActiveAdmin::Dependency do
         expect(k.foo?).to eq true
         expect(k.bar?).to eq false
       end
+
       it '=' do
         expect(k.foo? '= 1.2.3').to eq true
         expect(k.foo? '= 1').to eq false
       end
+
       it '>' do
         expect(k.foo? '> 1').to eq true
         expect(k.foo? '> 2').to eq false
       end
+
       it '<' do
         expect(k.foo? '< 2').to eq true
         expect(k.foo? '< 1').to eq false
       end
+
       it '>=' do
         expect(k.foo? '>= 1.2.3').to eq true
         expect(k.foo? '>= 1.2.2').to eq true
         expect(k.foo? '>= 1.2.4').to eq false
       end
+
       it '<=' do
         expect(k.foo? '<= 1.2.3').to eq true
         expect(k.foo? '<= 1.2.4').to eq true
         expect(k.foo? '<= 1.2.2').to eq false
       end
+
       it '~>' do
         expect(k.foo? '~> 1.2.0').to eq true
         expect(k.foo? '~> 1.1').to eq true
@@ -54,10 +60,12 @@ RSpec.describe ActiveAdmin::Dependency do
         expect { k.foo! '5' }.to raise_error ActiveAdmin::DependencyError,
           'You provided foo 1.2.3 but we need: 5.'
       end
+
       it 'accepts multiple arguments' do
         expect { k.foo! '> 1', '< 1.2' }.to raise_error ActiveAdmin::DependencyError,
           'You provided foo 1.2.3 but we need: > 1, < 1.2.'
       end
+
       it 'raises an error if not provided' do
         expect { k.bar! }.to raise_error ActiveAdmin::DependencyError,
           'To use bar you need to specify it in your Gemfile.'
@@ -104,19 +112,23 @@ RSpec.describe ActiveAdmin::Dependency do
         expect(k['a-b'] == '1.2').to eq false
         expect(k['a-b'] == 1).to eq false
       end
+
       it '>' do
         expect(k['a-b'] > 1).to eq true
         expect(k['a-b'] > 2).to eq false
       end
+
       it '<' do
         expect(k['a-b'] < 2).to eq true
         expect(k['a-b'] < 1).to eq false
       end
+
       it '>=' do
         expect(k['a-b'] >= '1.2.3').to eq true
         expect(k['a-b'] >= '1.2.2').to eq true
         expect(k['a-b'] >= '1.2.4').to eq false
       end
+
       it '<=' do
         expect(k['a-b'] <= '1.2.3').to eq true
         expect(k['a-b'] <= '1.2.4').to eq true

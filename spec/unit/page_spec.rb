@@ -17,6 +17,7 @@ module ActiveAdmin
       it "should return a namespaced controller name" do
         expect(config.controller_name).to eq "Admin::ChocolateILoveYouController"
       end
+
       context "when non namespaced controller" do
         let(:namespace) { ActiveAdmin::Namespace.new(application, :root) }
         it "should return a non namespaced controller name" do

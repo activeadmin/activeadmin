@@ -10,6 +10,7 @@ RSpec.describe "Stylesheets", type: :request, unless: ActiveAdmin.application.us
   it "should successfully render the scss stylesheets using sprockets" do
     expect(css).to_not eq nil
   end
+
   it "should not have any syntax errors" do
     expect(css.to_s).to_not include("Syntax error:")
   end

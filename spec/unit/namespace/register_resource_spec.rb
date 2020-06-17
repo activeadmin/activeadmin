@@ -47,9 +47,11 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
     it "should store the namespaced registered configuration" do
       expect(namespace.resources.keys).to include('Mock::Resource')
     end
+
     it "should create a new controller in the default namespace" do
       expect(defined?(SuperAdmin::MockResourcesController)).to eq 'constant'
     end
+
     it "should create a menu item" do
       expect(menu["Mock Resources"]).to be_an_instance_of(ActiveAdmin::MenuItem)
     end
@@ -100,6 +102,7 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
       it "should generate the parent menu item" do
         expect(menu['Blog']).to_not eq nil
       end
+
       it "should generate its own child item" do
         expect(menu['Blog']['Categories']).to_not eq nil
       end
