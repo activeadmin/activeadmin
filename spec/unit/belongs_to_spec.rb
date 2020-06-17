@@ -4,13 +4,13 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
   before do
     load_resources do
       ActiveAdmin.register User
-      ActiveAdmin.register Post do belongs_to :user end
+      ActiveAdmin.register(Post) { belongs_to :user }
     end
   end
 
   let(:namespace) { ActiveAdmin.application.namespace(:admin) }
   let(:user_config) { ActiveAdmin.register User }
-  let(:post_config) { ActiveAdmin.register Post do belongs_to :user end }
+  let(:post_config) { ActiveAdmin.register(Post) { belongs_to :user } }
   let(:belongs_to) { post_config.belongs_to_config }
 
   it "should have an owner" do
@@ -28,20 +28,20 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
       let(:belongs_to) { ActiveAdmin::Resource::BelongsTo.new post_config, :missing }
 
       it "should raise a ActiveAdmin::BelongsTo::TargetNotFound" do
-        expect {
+        expect do
           belongs_to.target
-        }.to raise_error(ActiveAdmin::Resource::BelongsTo::TargetNotFound)
+        end.to raise_error(ActiveAdmin::Resource::BelongsTo::TargetNotFound)
       end
     end
 
     context "when the resource is on a namespace" do
-      let(:blog_post_config) { ActiveAdmin.register Blog::Post do; end }
+      let(:blog_post_config) { ActiveAdmin.register Blog::Post }
       let(:belongs_to) { ActiveAdmin::Resource::BelongsTo.new blog_post_config, :blog_author, class_name: "Blog::Author" }
       before do
         class Blog::Author
           include ActiveModel::Naming
         end
-        @blog_author_config = ActiveAdmin.register Blog::Author do; end
+        @blog_author_config = ActiveAdmin.register Blog::Author
       end
       it "should return the target resource" do
         expect(belongs_to.target).to eq @blog_author_config

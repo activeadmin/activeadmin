@@ -82,6 +82,9 @@ Rails/FilePath:
 RSpec/HookArgument:
   Enabled: true
 
+Style/BlockDelimiters:
+  Enabled: true
+
 Style/Dir:
   Enabled: true
 

@@ -7,9 +7,9 @@ RSpec.describe ActiveAdmin::Views::Menu do
   let(:helpers) { mock_action_view }
 
   let(:menu_component) do
-    arbre(assigns, helpers) {
+    arbre(assigns, helpers) do
       insert_tag(ActiveAdmin::Views::Menu, active_admin_menu)
-    }.children.first
+    end.children.first
   end
 
   let(:html) { Capybara.string(menu_component.to_s) }

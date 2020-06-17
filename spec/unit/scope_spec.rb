@@ -127,9 +127,9 @@ RSpec.describe ActiveAdmin::Scope do
 
     context "with a proc as the label" do
       it "should raise an exception if a second argument isn't provided" do
-        expect {
+        expect do
           ActiveAdmin::Scope.new proc { Date.today.strftime '%A' }
-        }.to raise_error 'A string/symbol is required as the second argument if your label is a proc.'
+        end.to raise_error 'A string/symbol is required as the second argument if your label is a proc.'
       end
 
       it "should properly render the proc" do

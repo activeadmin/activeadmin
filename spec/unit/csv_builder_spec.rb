@@ -200,7 +200,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       @post1 = Post.create!(title: "Hello1", published_date: Date.today - 2.day)
       @post2 = Post.create!(title: "Hello2", published_date: Date.today - 1.day)
     end
-    let(:dummy_controller) {
+    let(:dummy_controller) do
       class DummyController
         def find_collection(*)
           collection
@@ -218,7 +218,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
         end
       end
       DummyController.new
-    }
+    end
     let(:builder) do
       ActiveAdmin::CSVBuilder.new do
         column "id"

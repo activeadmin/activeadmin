@@ -306,13 +306,13 @@ module ActiveAdmin
     end
 
     describe "delegation" do
-      let(:controller) {
+      let(:controller) do
         Class.new do
           def method_missing(name, *args, &block)
             "called #{name}"
           end
         end.new
-      }
+      end
       let(:resource) { ActiveAdmin::ResourceDSL.new(double) }
 
       before do

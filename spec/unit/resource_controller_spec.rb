@@ -277,9 +277,9 @@ RSpec.describe "A specific resource controller", type: :controller do
       end
 
       it "should raise an error" do
-        expect {
+        expect do
           controller.batch_action
-        }.to raise_error("Couldn't find batch action \"derp\"")
+        end.to raise_error("Couldn't find batch action \"derp\"")
       end
     end
 
@@ -291,9 +291,9 @@ RSpec.describe "A specific resource controller", type: :controller do
       end
 
       it "should raise an error" do
-        expect {
+        expect do
           controller.batch_action
-        }.to raise_error("Couldn't find batch action \"\"")
+        end.to raise_error("Couldn't find batch action \"\"")
       end
     end
   end

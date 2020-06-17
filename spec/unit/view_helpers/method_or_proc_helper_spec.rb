@@ -21,9 +21,9 @@ RSpec.describe MethodOrProcHelper do
     it "should exec a proc in the context" do
       test_proc = Proc.new { raise "Success" if receiver_in_context }
 
-      expect {
+      expect do
         context.call_method_or_exec_proc(test_proc)
-      }.to raise_error("Success")
+      end.to raise_error("Success")
     end
   end
 
@@ -50,9 +50,9 @@ RSpec.describe MethodOrProcHelper do
           raise "Success!" if arg == receiver_in_context
         end
 
-        expect {
+        expect do
           context.call_method_or_proc_on(receiver, test_proc)
-        }.to raise_error("Success!")
+        end.to raise_error("Success!")
       end
 
       it "should receive additional arguments" do
@@ -60,9 +60,9 @@ RSpec.describe MethodOrProcHelper do
           raise "Success!" if arg1 == receiver_in_context && arg2 == "Hello"
         end
 
-        expect {
+        expect do
           context.call_method_or_proc_on(receiver, test_proc, "Hello")
-        }.to raise_error("Success!")
+        end.to raise_error("Success!")
       end
     end
 
@@ -74,9 +74,9 @@ RSpec.describe MethodOrProcHelper do
           raise "Success!" if arg == receiver && obj_not_in_context
         end
 
-        expect {
+        expect do
           context.call_method_or_proc_on(receiver, test_proc, exec: false)
-        }.to raise_error("Success!")
+        end.to raise_error("Success!")
       end
     end
   end

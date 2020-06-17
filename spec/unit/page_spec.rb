@@ -73,11 +73,11 @@ module ActiveAdmin
 
     context "with belongs to config" do
       let!(:post_config) { namespace.register Post }
-      let!(:page_config) {
+      let!(:page_config) do
         namespace.register_page page_name do
           belongs_to :post
         end
-      }
+      end
 
       it "configures page with belongs_to" do
         expect(page_config.belongs_to?).to be true
@@ -104,11 +104,11 @@ module ActiveAdmin
 
     context "with optional belongs to config" do
       let!(:post_config) { namespace.register Post }
-      let!(:page_config) {
+      let!(:page_config) do
         namespace.register_page page_name do
           belongs_to :post, optional: true
         end
-      }
+      end
 
       it "does not override default navigation menu" do
         expect(page_config.navigation_menu_name).to eq(:default)

@@ -17,43 +17,43 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
     # and ensure that they produce the same results
     {
       "when attributes are passed in to the builder methods" => proc {
-        render_arbre_component(assigns) {
+        render_arbre_component(assigns) do
           attributes_table_for post, :id, :title, :body
-        }
+        end
       },
       "when attributes are built using the block" => proc {
-        render_arbre_component(assigns) {
+        render_arbre_component(assigns) do
           attributes_table_for post do
             rows :id, :title, :body
           end
-        }
+        end
       },
       "when each attribute is passed in by itself" => proc {
-        render_arbre_component(assigns) {
+        render_arbre_component(assigns) do
           attributes_table_for post do
             row :id
             row :title
             row :body
           end
-        }
+        end
       },
       "when you create each row with a custom block" => proc {
-        render_arbre_component(assigns) {
+        render_arbre_component(assigns) do
           attributes_table_for post do
             row("Id") { post.id }
             row("Title") { post.title }
             row("Body") { post.body }
           end
-        }
+        end
       },
       "when you create each row with a custom block that returns nil" => proc {
-        render_arbre_component(assigns) {
+        render_arbre_component(assigns) do
           attributes_table_for post do
             row("Id") { text_node post.id; nil }
             row("Title") { text_node post.title; nil }
             row("Body") { text_node post.body; nil }
           end
-        }
+        end
       },
     }.each do |context_title, table_decleration|
       context context_title do
@@ -96,12 +96,12 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
     end # describe dsl styles
 
     it "should add a class for each row based on the col name" do
-      table = render_arbre_component(assigns) {
+      table = render_arbre_component(assigns) do
         attributes_table_for(post) do
           row :title
           row :created_at
         end
-      }
+      end
       expect(table.find_by_tag("tr").first.to_s.
         split("\n").first.lstrip).
           to eq '<tr class="row row-title">'
@@ -112,21 +112,21 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
     end
 
     it "should allow html options for the row itself" do
-      table = render_arbre_component(assigns) {
+      table = render_arbre_component(assigns) do
         attributes_table_for(post) do
           row("Wee", class: "custom_row", style: "custom_style") {}
         end
-      }
+      end
       expect(table.find_by_tag("tr").first.to_s.split("\n").first.lstrip).
         to eq '<tr class="row custom_row" style="custom_style">'
     end
 
     it "should allow html content inside the attributes table" do
-      table = render_arbre_component(assigns) {
+      table = render_arbre_component(assigns) do
         attributes_table_for(post) do
           row("ID") { span(post.id, class: 'id') }
         end
-      }
+      end
       expect(table.find_by_tag("td").first.content.chomp.strip).to eq "<span class=\"id\">1</span>"
     end
 

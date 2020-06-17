@@ -32,9 +32,9 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
 
   context "with a block configuration" do
     it "should be evaluated in the dsl" do
-      expect { |block|
+      expect do |block|
         namespace.register Category, &block
-      }.to yield_control
+      end.to yield_control
     end
   end
 
