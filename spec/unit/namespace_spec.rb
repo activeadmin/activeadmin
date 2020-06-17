@@ -78,9 +78,9 @@ RSpec.describe ActiveAdmin::Namespace do
     end
 
     it "should raise an exception if the menu doesn't exist" do
-      expect {
+      expect do
         namespace.fetch_menu(:not_a_menu_that_exists)
-      }.to raise_error(KeyError)
+      end.to raise_error(KeyError)
     end
   end
 

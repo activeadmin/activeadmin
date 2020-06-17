@@ -37,9 +37,9 @@ Then /^I should see a link to "([^"]*)"$/ do |link|
 end
 
 Then /^an "([^"]*)" exception should be raised when I follow "([^"]*)"$/ do |error, link|
-  expect {
+  expect do
     step "I follow \"#{link}\""
-  }.to raise_error(error.constantize)
+  end.to raise_error(error.constantize)
 end
 
 Then /^I should be in the resource section for (.+)$/ do |resource_name|

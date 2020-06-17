@@ -25,9 +25,9 @@ RSpec.describe ActiveAdmin::MenuCollection do
 
       menus.clear!
 
-      expect {
+      expect do
         menus.fetch(:non_default_menu)
-      }.to raise_error(ActiveAdmin::NoMenuError)
+      end.to raise_error(ActiveAdmin::NoMenuError)
     end
   end
 

@@ -193,7 +193,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
   end
 
   context "the association uses a different primary_key than the related class' primary_key" do
-    let(:resource_klass) {
+    let(:resource_klass) do
       Class.new(Post) do
         belongs_to :kategory, class_name: "Category", primary_key: :name, foreign_key: :title
 
@@ -201,7 +201,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
           "SuperPost"
         end
       end
-    }
+    end
 
     let(:resource) do
       namespace.register(resource_klass)

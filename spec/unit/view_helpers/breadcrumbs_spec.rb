@@ -10,11 +10,15 @@ RSpec.describe "Breadcrumbs" do
     actions = ActiveAdmin::BaseController::ACTIVE_ADMIN_ACTIONS
 
     let(:user) { double display_name: 'Jane Doe' }
-    let(:user_config) { double find_resource: user, resource_name: double(route_key: 'users'),
-                               defined_actions: actions }
+    let(:user_config) do
+      double find_resource: user, resource_name: double(route_key: 'users'),
+             defined_actions: actions
+    end
     let(:post) { double display_name: 'Hello World' }
-    let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
-                               defined_actions: actions, belongs_to_config: double(target: user_config) }
+    let(:post_config) do
+      double find_resource: post, resource_name: double(route_key: 'posts'),
+             defined_actions: actions, belongs_to_config: double(target: user_config)
+    end
 
     let :active_admin_config do
       post_config
@@ -224,9 +228,11 @@ RSpec.describe "Breadcrumbs" do
     end
 
     context "when the 'show' action is disabled" do
-      let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
-                                 defined_actions: actions - [:show], # this is the change
-                                 belongs_to_config: double(target: user_config) }
+      let(:post_config) do
+        double find_resource: post, resource_name: double(route_key: 'posts'),
+               defined_actions: actions - [:show], # this is the change
+               belongs_to_config: double(target: user_config)
+      end
 
       let(:path) { "/admin/posts/1/edit" }
 

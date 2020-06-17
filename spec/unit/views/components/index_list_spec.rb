@@ -4,10 +4,10 @@ RSpec.describe ActiveAdmin::Views::IndexList do
   describe "#index_list_renderer" do
     let(:index_classes) { [ActiveAdmin::Views::IndexAsTable, ActiveAdmin::Views::IndexAsBlock] }
 
-    let(:collection) {
+    let(:collection) do
       Post.create(title: 'First Post', starred: true)
       Post.where(nil)
-    }
+    end
 
     let(:helpers) do
       helpers = mock_action_view

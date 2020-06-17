@@ -354,7 +354,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     context "when given the name of relationship with a primary key other than id" do
-      let(:resource_klass) {
+      let(:resource_klass) do
         Class.new(Post) do
           belongs_to :kategory, class_name: "Category", primary_key: :name, foreign_key: :title
 
@@ -362,7 +362,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
             "SuperPost"
           end
         end
-      }
+      end
 
       let(:scope) do
         resource_klass.ransack

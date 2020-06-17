@@ -58,9 +58,9 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
 
     it "should return only relevant action items" do
       expect(resource.action_items_for(:index).size).to eq 1
-      expect {
+      expect do
         resource.action_items_for(:index).first.call
-      }.to raise_exception(StandardError)
+      end.to raise_exception(StandardError)
     end
   end
 

@@ -113,12 +113,12 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
   context "when polymorphic relationship" do
     it "should raise error" do
-      expect {
+      expect do
         comment = ActiveAdmin::Comment.new
         build_form({ url: "admins/comments" }, comment) do |f|
           f.inputs :resource
         end
-      }.to raise_error(Formtastic::PolymorphicInputWithoutCollectionError)
+      end.to raise_error(Formtastic::PolymorphicInputWithoutCollectionError)
     end
   end
 
