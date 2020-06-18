@@ -7,9 +7,9 @@
 
   <% ActiveAdmin.application.stylesheets.each do |style, options| %>
     <% if ActiveAdmin.application.use_webpacker %>
-      <%= stylesheet_pack_tag style, options %>
+      <%= stylesheet_pack_tag style, **options %>
     <% else %>
-      <%= stylesheet_link_tag style, options %>
+      <%= stylesheet_link_tag style, **options %>
     <% end %>
   <% end %>
   <% ActiveAdmin.application.javascripts.each do |path| %>
