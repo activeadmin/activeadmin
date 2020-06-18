@@ -8,7 +8,7 @@ ja:
     edit: "編集"
     delete: "削除"
     delete_confirmation: "本当に削除しますか？"
-    create_another: "%{model} を追加する"
+    create_another: "%{model} を続けて作成する"
     new_model: "%{model} を作成する"
     edit_model: "%{model} を編集する"
     delete_model: "%{model} を削除する"
@@ -18,7 +18,7 @@ ja:
     previous: "前"
     next: "次"
     download: "ダウンロード:"
-    has_many_new: "新規に %{model} を追加する"
+    has_many_new: "%{model} を追加する"
     has_many_delete: "削除する"
     has_many_remove: "削除する"
     filters:
@@ -26,7 +26,7 @@ ja:
         filter: "絞り込む"
         clear: "条件を削除する"
       predicates:
-        contains: "含まれています"
+        contains: "を含む"
         equals: "等しい"
         starts_with: "で始まる"
         ends_with: "で終わる"
