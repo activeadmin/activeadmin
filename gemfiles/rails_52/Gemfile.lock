@@ -20,14 +20,6 @@ GIT
       rails (>= 4.2, < 7)
 
 GIT
-  remote: https://github.com/justinfrench/formtastic.git
-  revision: dafd61f76455330e88f57a26c5b06785626d0ec5
-  ref: dafd61f76455330e88f57a26c5b06785626d0ec5
-  specs:
-    formtastic (3.2.0.pre)
-      actionpack (>= 5.2.0)
-
-GIT
   remote: https://github.com/rails/sprockets-rails.git
   revision: c269f5e01fdffa5c41350e855183d94ff33d318a
   ref: c269f5e01fdffa5c41350e855183d94ff33d318a
@@ -94,7 +86,7 @@ PATH
   specs:
     activeadmin (2.7.0)
       arbre (~> 1.2, >= 1.2.1)
-      formtastic (~> 3.1)
+      formtastic (>= 3.1, < 5.0)
       formtastic_i18n (~> 0.4)
       inherited_resources (~> 1.7)
       jquery-rails (~> 4.2)
@@ -227,6 +219,8 @@ GEM
     erubi (1.9.0)
     ffi (1.13.1)
     ffi (1.13.1-java)
+    formtastic (4.0.0.rc1)
+      actionpack (>= 5.2.0)
     formtastic_i18n (0.6.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -268,7 +262,7 @@ GEM
     kaminari-core (1.2.1)
     launchy (2.5.0)
       addressable (~> 2.7)
-    loofah (2.5.0)
+    loofah (2.6.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -417,7 +411,7 @@ DEPENDENCIES
   db-query-matchers (= 0.10.0)
   devise
   draper (~> 4.0)
-  formtastic!
+  formtastic (~> 4.0.rc1)
   jasmine
   jasmine-core (= 2.99.2)
   jruby-openssl (~> 0.10.1)

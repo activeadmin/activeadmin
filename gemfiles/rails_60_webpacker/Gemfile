@@ -22,7 +22,7 @@ group :development, :test do
 
   gem "webpacker", "~> 5.1"
 
-  gem "formtastic", github: "justinfrench/formtastic", ref: "dafd61f76455330e88f57a26c5b06785626d0ec5"
+  gem "formtastic", "~> 4.0.rc1"
 end
 
 group :test do
