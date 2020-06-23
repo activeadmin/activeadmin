@@ -8,18 +8,6 @@ GIT
       ruby2_keywords (>= 0.0.2)
 
 GIT
-  remote: https://github.com/cucumber/cucumber-rails.git
-  revision: 1f89a2573f6276aec18e5eb600265c1d8602e21c
-  ref: 1f89a2573f6276aec18e5eb600265c1d8602e21c
-  specs:
-    cucumber-rails (2.0.0)
-      capybara (>= 2.12, < 4)
-      cucumber (>= 3.0.2, < 5)
-      mime-types (>= 2.0, < 4)
-      nokogiri (~> 1.8)
-      rails (>= 4.2, < 7)
-
-GIT
   remote: https://github.com/rails/sprockets-rails.git
   revision: c269f5e01fdffa5c41350e855183d94ff33d318a
   ref: c269f5e01fdffa5c41350e855183d94ff33d318a
@@ -189,10 +177,16 @@ GEM
     cucumber-cucumber-expressions (10.2.0)
     cucumber-gherkin (13.0.0)
       cucumber-messages (~> 12.0, >= 12.0.0)
-    cucumber-html-formatter (6.0.2)
+    cucumber-html-formatter (6.0.3)
       cucumber-messages (~> 12.1, >= 12.1.1)
     cucumber-messages (12.1.1)
       protobuf-cucumber (~> 3.10, >= 3.10.8)
+    cucumber-rails (2.1.0)
+      capybara (>= 2.12, < 4)
+      cucumber (>= 3.0.2, < 5)
+      mime-types (>= 2.0, < 4)
+      nokogiri (~> 1.8)
+      rails (>= 4.2, < 7)
     cucumber-tag-expressions (2.0.4)
     cucumber-wire (3.0.0)
       cucumber-core (~> 7.0, >= 7.0.0)
@@ -208,7 +202,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    diff-lcs (1.3)
+    diff-lcs (1.4)
     docile (1.3.2)
     draper (4.0.1)
       actionpack (>= 5.0)
@@ -406,7 +400,7 @@ DEPENDENCIES
   cancancan
   capybara (~> 3.14)
   cucumber
-  cucumber-rails (~> 2.0)!
+  cucumber-rails (~> 2.0)
   database_cleaner
   db-query-matchers (= 0.10.0)
   devise

@@ -29,7 +29,7 @@ group :test do
   gem 'db-query-matchers', '0.10.0'
 
   gem 'simplecov', '0.17.1', require: false # Test coverage generator. Go to /coverage/ after running tests
-  gem 'cucumber-rails', '~> 2.0', github: 'cucumber/cucumber-rails', ref: '1f89a2573f6276aec18e5eb600265c1d8602e21c', require: false
+  gem 'cucumber-rails', '~> 2.0', require: false
   gem 'cucumber'
   gem 'database_cleaner'
   gem 'jasmine'
