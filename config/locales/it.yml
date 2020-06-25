@@ -42,6 +42,8 @@ it:
       current_scope: "Contesto selezionato:"
       current_filters: "Filtri attivi:"
       no_current_filters: "Nessuno"
+    scopes:
+      all: "Tutti"
     status_tag:
       "yes": "Sì"
       "no": "No"
