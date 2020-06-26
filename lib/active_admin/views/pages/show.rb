@@ -40,13 +40,7 @@ module ActiveAdmin
         protected
 
         def default_title
-          title = display_name(resource)
-
-          if title.blank?
-            title = "#{active_admin_config.resource_label} ##{resource.id}"
-          end
-
-          title
+          display_name(resource)
         end
 
         module DefaultMainContent
