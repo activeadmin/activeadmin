@@ -74,16 +74,8 @@ module ActiveAdmin
           end
         end
 
-        # Draper::CollectionDecorator was introduced in 1.0.0
-        # Draper::Decorator#collection_decorator_class was introduced in 1.3.0
         def self.find_collection_decorator(decorator)
-          if Dependency.draper? '>= 1.3.0'
-            decorator.collection_decorator_class
-          elsif Dependency.draper? '>= 1.0.0'
-            draper_collection_decorator
-          else
-            decorator
-          end
+          decorator.collection_decorator_class
         end
 
         def self.draper_collection_decorator?(decorator)

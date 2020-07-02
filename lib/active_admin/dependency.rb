@@ -6,22 +6,22 @@ module ActiveAdmin
 
     # Provides a clean interface to check for gem dependencies at runtime.
     #
-    # ActiveAdmin::Dependency.draper
-    # => #<ActiveAdmin::Dependency::Matcher for draper 1.2.1>
+    # ActiveAdmin::Dependency.rails
+    # => #<ActiveAdmin::Dependency::Matcher for rails 6.0.3.2>
     #
-    # ActiveAdmin::Dependency.draper?
+    # ActiveAdmin::Dependency.rails?
     # => true
     #
-    # ActiveAdmin::Dependency.draper? '>= 1.5.0'
+    # ActiveAdmin::Dependency.rails? '>= 6.1'
     # => false
     #
-    # ActiveAdmin::Dependency.draper? '= 1.2.1'
+    # ActiveAdmin::Dependency.rails? '= 6.0.3.2'
     # => true
     #
-    # ActiveAdmin::Dependency.draper? '~> 1.2.0'
+    # ActiveAdmin::Dependency.rails? '~> 6.0.3'
     # => true
     #
-    # ActiveAdmin::Dependency.rails? '>= 4.2.7', '<= 5.0.2'
+    # ActiveAdmin::Dependency.rails? '>= 6.0.3', '<= 6.1.0'
     # => true
     #
     # ActiveAdmin::Dependency.rails! '5'
