@@ -79,13 +79,8 @@ module ActiveAdmin
         end
 
         def self.draper_collection_decorator?(decorator)
-          Dependency.draper? && decorator && decorator <= draper_collection_decorator
+          Dependency.draper? && decorator && decorator <= ::Draper::CollectionDecorator
         end
-
-        def self.draper_collection_decorator
-          ::Draper::CollectionDecorator
-        end
-
       end
     end
   end
