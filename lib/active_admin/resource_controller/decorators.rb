@@ -79,9 +79,7 @@ module ActiveAdmin
         end
 
         def self.draper_collection_decorator?(decorator)
-          decorator && decorator <= draper_collection_decorator
-        rescue NameError
-          false
+          Dependency.draper? && decorator && decorator <= draper_collection_decorator
         end
 
         def self.draper_collection_decorator
