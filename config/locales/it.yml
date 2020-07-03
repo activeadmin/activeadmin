@@ -1,4 +1,20 @@
 it:
+  activerecord:
+    models:
+      comment:
+        one: "Commento"
+        other: "Commenti"
+      active_admin/comment:
+        one: "Commento"
+        other: "Commenti"
+    attributes:
+      active_admin/comment:
+        author_type: "Tipo di Autore"
+        body: "Corpo"
+        created_at: "Creato il"
+        namespace: "Namespace"
+        resource_type: "Tipo di risorsa"
+        updated_at: "Aggiornato il"
   active_admin:
     dashboard: Dashboard
     dashboard_welcome:
@@ -37,6 +53,8 @@ it:
         lteq_datetime: "Minore o uguale a"
         from: "Da"
         to: "A"
+    scopes:
+      all: "Tutti"
     search_status:
       headline: "Situazione filtri:"
       current_scope: "Contesto selezionato:"
