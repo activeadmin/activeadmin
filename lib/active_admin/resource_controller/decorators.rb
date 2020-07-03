@@ -52,13 +52,13 @@ module ActiveAdmin
         @cache = {}
 
         def self.wrap(decorator)
-          collection_decorator = find_collection_decorator(decorator)
+          collection_decorator = find_draper_collection_decorator(decorator)
 
-          if draper_collection_decorator? collection_decorator
+          if collection_decorator
             name = "#{collection_decorator.name} of #{decorator} + ActiveAdmin"
             @cache[name] ||= wrap! collection_decorator, name
           else
-            collection_decorator
+            decorator
           end
         end
 
@@ -74,12 +74,10 @@ module ActiveAdmin
           end
         end
 
-        def self.find_collection_decorator(decorator)
-          decorator.collection_decorator_class
-        end
+        def self.find_draper_collection_decorator(decorator)
+          return unless Dependency.draper? && decorator && decorator <= ::Draper::Decorator
 
-        def self.draper_collection_decorator?(decorator)
-          Dependency.draper? && decorator && decorator <= ::Draper::CollectionDecorator
+          decorator.collection_decorator_class
         end
       end
     end
