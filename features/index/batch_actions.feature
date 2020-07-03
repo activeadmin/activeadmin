@@ -60,6 +60,23 @@ Feature: Batch Actions
     Then I should see a flash with "Successfully deleted 2 posts"
     And I should see 3 posts in the table
 
+  Scenario: Use default (destroy) batch action on a PORO decorated resource
+    Given 5 posts exist
+    And an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        decorate_with PostPoroDecorator
+      end
+    """
+    When I check the 2nd record
+    And I check the 4th record
+    And I follow "Batch Actions"
+    Then I should see the batch action :destroy "Delete Selected"
+
+    Given I submit the batch action form with "destroy"
+    Then I should see a flash with "Successfully deleted 2 posts"
+    And I should see 3 posts in the table
+
   @javascript
   Scenario: Use default (destroy) batch action on a nested resource
     Given I am logged in

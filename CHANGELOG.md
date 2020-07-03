@@ -5,6 +5,7 @@
 ### Enhancements
 
 * Make source `ActiveAdmin.routes` provides routes in a consistent order. [#6124] by [@jiikko]
+* Allow using PORO decorators. [#6249] by [@brunvez]
 
 ### Dependency Changes
 
@@ -582,6 +583,7 @@ Please check [0-6-stable] for previous changes.
 [#6099]: https://github.com/activeadmin/activeadmin/pull/6099
 [#6124]: https://github.com/activeadmin/activeadmin/pull/6124
 [#6198]: https://github.com/activeadmin/activeadmin/pull/6198
+[#6249]: https://github.com/activeadmin/activeadmin/pull/6249
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -594,6 +596,7 @@ Please check [0-6-stable] for previous changes.
 [@bartoszkopinski]: https://github.com/bartoszkopinski
 [@blocknotes]: https://github.com/blocknotes
 [@bolshakov]: https://github.com/bolshakov
+[@brunvez]: https://github.com/brunvez
 [@buren]: https://github.com/buren
 [@chancancode]: https://github.com/chancancode
 [@chrp]: https://github.com/chrp

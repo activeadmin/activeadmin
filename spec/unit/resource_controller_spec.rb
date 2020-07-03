@@ -189,13 +189,29 @@ RSpec.describe "A specific resource controller", type: :controller do
 
     context 'with a decorator' do
       let(:config) { controller.class.active_admin_config }
-      before { config.decorator_class_name = '::PostDecorator' }
-      it 'returns a PostDecorator' do
-        expect(subject).to be_kind_of(PostDecorator)
+
+      context 'with a Draper decorator' do
+        before { config.decorator_class_name = '::PostDecorator' }
+
+        it 'returns a PostDecorator' do
+          expect(subject).to be_kind_of(PostDecorator)
+        end
+
+        it 'returns a PostDecorator that wraps the post' do
+          expect(subject.title).to eq post.title
+        end
       end
 
-      it 'returns a PostDecorator that wraps the post' do
-        expect(subject.title).to eq post.title
+      context 'with a PORO decorator' do
+        before { config.decorator_class_name = '::PostPoroDecorator' }
+
+        it 'returns a PostDecorator' do
+          expect(subject).to be_kind_of(PostPoroDecorator)
+        end
+
+        it 'returns a PostDecorator that wraps the post' do
+          expect(subject.title).to eq post.title
+        end
       end
     end
   end

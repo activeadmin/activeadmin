@@ -21,6 +21,7 @@ generate :migration, 'create_posts title:string body:text published_date:date au
 
 copy_file File.expand_path('templates/models/post.rb', __dir__), 'app/models/post.rb'
 copy_file File.expand_path('templates/post_decorator.rb', __dir__), 'app/models/post_decorator.rb'
+copy_file File.expand_path('templates/post_poro_decorator.rb', __dir__), 'app/models/post_poro_decorator.rb'
 
 generate :migration, 'create_blog_posts title:string body:text published_date:date author_id:integer ' +
   "position:integer custom_category_id:integer starred:boolean foo_id:integer #{timestamps}"
