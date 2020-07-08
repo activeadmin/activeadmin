@@ -52,14 +52,9 @@ module ActiveAdmin
         @cache = {}
 
         def self.wrap(decorator)
-          collection_decorator = find_draper_collection_decorator(decorator)
-
-          if collection_decorator
-            name = "#{collection_decorator.name} of #{decorator} + ActiveAdmin"
-            @cache[name] ||= wrap! collection_decorator, name
-          else
-            decorator
-          end
+          collection_decorator = find_collection_decorator(decorator)
+          name = "#{collection_decorator.name} of #{decorator} + ActiveAdmin"
+          @cache[name] ||= wrap! collection_decorator, name
         end
 
         private
@@ -68,16 +63,18 @@ module ActiveAdmin
           ::Class.new parent do
             delegate :reorder, :page, :current_page, :total_pages, :limit_value,
                      :total_count, :total_pages, :offset, :to_key, :group_values,
-                     :except, :find_each, :ransack
+                     :except, :find_each, :ransack, to: :object
 
             define_singleton_method(:name) { name }
           end
         end
 
-        def self.find_draper_collection_decorator(decorator)
-          return unless Dependency.draper? && decorator && decorator <= ::Draper::Decorator
-
-          decorator.collection_decorator_class
+        def self.find_collection_decorator(decorator)
+          if decorator.respond_to?(:collection_decorator_class)
+            decorator.collection_decorator_class
+          else
+            CollectionDecorator
+          end
         end
       end
     end

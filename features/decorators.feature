@@ -26,6 +26,25 @@ Feature: Decorators
     And I should see "A very unique post"
     And I should see "No"
 
+  Scenario: Index page with PORO decorator
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        decorate_with PostPoroDecorator
+
+        index do
+          column(:id)
+          column(:title)
+          column(:decorator_method)
+          column(:starred)
+        end
+      end
+    """
+    When I am on the index page for posts
+    Then I should see "A method only available on the PORO decorator"
+    And I should see "A very unique post"
+    And I should see "No"
+
   Scenario: Show page with decorator
     Given a configuration of:
     """
