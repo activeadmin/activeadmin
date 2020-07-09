@@ -1,3 +1,5 @@
+require_relative "changelog"
+
 class ReleaseManager
   def initialize
     assert_compatible_ruby!
@@ -175,11 +177,9 @@ class ReleaseManager
   end
 
   def cut_changelog(version)
-    old_content = File.read(changelog_file).split("\n")
     new_entry = "## #{version} [☰](https://github.com/activeadmin/activeadmin/compare/v#{gem_version}..v#{version})"
-    new_content = [old_content[0..3], new_entry, "", old_content[4..-1]].join("\n") + "\n"
 
-    File.write(changelog_file, new_content)
+    Changelog.new.cut_version(new_entry)
   end
 
   def commit(version)
