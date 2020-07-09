@@ -35,6 +35,11 @@ RSpec.describe "Changelog" do
     expect(contributors).to eq(contributors.sort { |a, b| a.downcase <=> b.downcase })
   end
 
+  it 'sorts pull requests' do
+    pull_requests = changelog.scan(/^\[#([0-9]+)\]\: https:\/\/github\.com\/activeadmin\/activeadmin\/pull\/\1$/).flatten
+    expect(pull_requests).to eq(pull_requests.sort)
+  end
+
   it 'has well defined third level entries' do
     third_level_entries = changelog.scan(/^### (.*)$/).flatten.uniq.sort
     expect(third_level_entries).to eq(["Breaking Changes", "Bug Fixes", "Dependency Changes", "Deprecations", "Enhancements", "Security Fixes"])
