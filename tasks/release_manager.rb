@@ -177,9 +177,9 @@ class ReleaseManager
   end
 
   def cut_changelog(version)
-    new_entry = "## #{version} [☰](https://github.com/activeadmin/activeadmin/compare/v#{gem_version}..v#{version})"
+    header = "## #{version} [☰](https://github.com/activeadmin/activeadmin/compare/v#{gem_version}..v#{version})"
 
-    Changelog.new.cut_version(new_entry)
+    Changelog.new.cut_version(header)
   end
 
   def commit(version)
