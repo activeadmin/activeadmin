@@ -24,7 +24,7 @@ RSpec.describe "Changelog" do
   end
 
   it 'has definitions for users' do
-    implicit_link_names = changelog.scan(/ \[@([^\]]+)\]/).flatten.uniq
+    implicit_link_names = changelog.scan(/\[@([^\]]+)\]/).flatten.uniq
     implicit_link_names.each do |name|
       expect(changelog).to include("[@#{name}]: https://github.com/#{name}")
     end
