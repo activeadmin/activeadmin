@@ -177,7 +177,7 @@ class ReleaseManager
   def cut_changelog(version)
     old_content = File.read(changelog_file).split("\n")
     new_entry = "## #{version} [☰](https://github.com/activeadmin/activeadmin/compare/v#{gem_version}..v#{version})"
-    new_content = [*old_content[0..3], new_entry, "", old_content[4..-1]].join("\n")
+    new_content = [old_content[0..3], new_entry, "", old_content[4..-1]].join("\n")
 
     File.open(changelog_file, "w") { |f| f.puts(new_content) }
   end
