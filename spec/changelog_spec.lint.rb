@@ -24,14 +24,14 @@ RSpec.describe "Changelog" do
   end
 
   it 'has definitions for users' do
-    implicit_link_names = changelog.scan(/ \[@([[:alnum:]]+)\]/).flatten.uniq
+    implicit_link_names = changelog.scan(/ \[@([^\]]+)\]/).flatten.uniq
     implicit_link_names.each do |name|
       expect(changelog).to include("[@#{name}]: https://github.com/#{name}")
     end
   end
 
   it 'sorts contributors' do
-    contributors = changelog.scan(/^\[@([[:alnum:]]+)\]: https:\/\/github\.com\/\1$/).flatten
+    contributors = changelog.scan(/^\[@([^\]]+)\]: https:\/\/github\.com\/\1$/).flatten
     expect(contributors).to eq(contributors.sort { |a, b| a.downcase <=> b.downcase })
   end
 
