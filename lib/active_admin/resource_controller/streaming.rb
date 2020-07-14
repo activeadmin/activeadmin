@@ -20,6 +20,7 @@ module ActiveAdmin
       def stream_resource(&block)
         headers['X-Accel-Buffering'] = 'no'
         headers['Cache-Control'] = 'no-cache'
+        headers["Last-Modified"] = Time.current.httpdate
 
         if ActiveAdmin.application.disable_streaming_in.include? Rails.env
           self.response_body = block['']
