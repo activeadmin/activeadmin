@@ -12,27 +12,32 @@ RSpec.describe "Changelog" do
   end
 
   it 'has definitions for all issue/pr references' do
-    implicit_link_names = changelog.scan(/\[#([0-9]+)\] /).flatten.uniq
+    implicit_link_names = changelog.scan(/\[#(\d+)\] /).flatten.uniq
     implicit_link_names.each do |name|
       expect(changelog).to include("[##{name}]: https://github.com/activeadmin/activeadmin/pull/#{name}").or include("[##{name}]: https://github.com/activeadmin/activeadmin/issues/#{name}")
     end
   end
 
   it 'does not include explicit pr links' do
-    explicit_link_names = changelog.scan(/\[#([0-9]+)\]\(https:\/\/github\.com\/activeadmin\/activeadmin\/pull\/\1\)/).flatten.uniq
+    explicit_link_names = changelog.scan(/\[#(\d+)\]\(https:\/\/github\.com\/activeadmin\/activeadmin\/pull\/\1\)/).flatten.uniq
     expect(explicit_link_names).to be_empty
   end
 
   it 'has definitions for users' do
-    implicit_link_names = changelog.scan(/ \[@([[:alnum:]]+)\]/).flatten.uniq
+    implicit_link_names = changelog.scan(/\[@([^\]]+)\]/).flatten.uniq
     implicit_link_names.each do |name|
       expect(changelog).to include("[@#{name}]: https://github.com/#{name}")
     end
   end
 
   it 'sorts contributors' do
-    contributors = changelog.scan(/^\[@([[:alnum:]]+)\]: https:\/\/github\.com\/\1$/).flatten
+    contributors = changelog.scan(/^\[@([^\]]+)\]: https:\/\/github\.com\/\1$/).flatten
     expect(contributors).to eq(contributors.sort { |a, b| a.downcase <=> b.downcase })
+  end
+
+  it 'sorts pull requests' do
+    pull_requests = changelog.scan(/^\[#(\d+)\]\: https:\/\/github\.com\/activeadmin\/activeadmin\/pull\/\1$/).flatten
+    expect(pull_requests).to eq(pull_requests.sort)
   end
 
   it 'has well defined third level entries' do
