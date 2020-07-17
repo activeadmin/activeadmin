@@ -1,6 +1,6 @@
 class Changelog
   def cut_version(header)
-    replace_with_lines([content[0..3], header, "", content[4..-1]])
+    replace_with_lines([header, "", content])
   end
 
   def add_references
@@ -38,7 +38,7 @@ class Changelog
   end
 
   def unreleased_section
-    content.drop_while { |line| !unreleased_section_header?(line) }.take_while { |line| !released_section_header?(line) }
+    content.take_while { |line| !released_section_header?(line) }
   end
 
   def pre_user_references
@@ -61,12 +61,8 @@ class Changelog
     content.drop_while { |line| !pull_request_reference?(line) }.take_while { |line| pull_request_reference?(line) }
   end
 
-  def unreleased_section_header?(line)
-    line == "## Unreleased"
-  end
-
   def released_section_header?(line)
-    line.start_with?("## ") && !unreleased_section_header?(line)
+    line.start_with?("## ")
   end
 
   def user_reference?(line)
@@ -78,11 +74,11 @@ class Changelog
   end
 
   def replace_with_lines(new_lines)
-    File.write(changelog_file, new_lines.join("\n") + "\n")
+    File.write(changelog_file, ["# Changelog", "", "## Unreleased", "", *new_lines].join("\n") + "\n")
   end
 
   def content
-    File.read(changelog_file).split("\n")
+    File.read(changelog_file).split("\n")[4..-1]
   end
 
   def changelog_file
