@@ -1,8 +1,8 @@
 require_relative "changelog"
 
 namespace :changelog do
-  desc "Add missing changelog references to the unreleased section"
-  task :add_references do
-    Changelog.new.add_references
+  desc "Sync changelog from latest PR information"
+  task :sync do
+    Changelog.new.sync!
   end
 end

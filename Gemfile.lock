@@ -232,7 +232,7 @@ GEM
       activesupport (>= 5.0)
       request_store (>= 1.0)
     erubi (1.9.0)
-    faraday (1.0.0)
+    faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.13.1)
     ffi (1.13.1-java)
@@ -326,7 +326,7 @@ GEM
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.9-java)
-    octokit (4.15.0)
+    octokit (4.18.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
     orm_adapter (0.5.0)
@@ -499,6 +499,7 @@ DEPENDENCIES
   kramdown
   launchy
   mdl (= 0.6.0)
+  octokit (~> 4.18)
   parallel_tests (~> 3.0)
   pry
   pry-byebug

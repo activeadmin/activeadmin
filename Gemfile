@@ -48,6 +48,7 @@ end
 
 group :release do
   gem 'chandler', '0.9.0' # Github releases from changelog
+  gem 'octokit', '~> 4.18'
 end
 
 group :lint do
