@@ -245,7 +245,7 @@ GEM
       actionpack (>= 4.1)
       activesupport (>= 4.1)
     highline (2.0.3)
-    i18n (1.8.3)
+    i18n (1.8.4)
       concurrent-ruby (~> 1.0)
     i18n-spec (0.6.0)
       iso
@@ -419,12 +419,12 @@ GEM
       rubocop-ast (>= 0.1.0, < 1.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.1.0)
+    rubocop-ast (0.2.0)
       parser (>= 2.7.0.1)
-    rubocop-rails (2.6.0)
+    rubocop-rails (2.7.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
-      rubocop (>= 0.82.0)
+      rubocop (>= 0.87.0)
     rubocop-rspec (1.42.0)
       rubocop (>= 0.87.0)
     ruby-progressbar (1.10.1)
@@ -470,7 +470,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.25)
-    zeitwerk (2.3.1)
+    zeitwerk (2.4.0)
 
 PLATFORMS
   java
