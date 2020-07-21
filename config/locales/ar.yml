@@ -102,7 +102,7 @@ ar:
       login:
         title: "دخول"
         remember_me: "تذكرني"
-        submit: "تسحيل"
+        submit: "تسجيل"
       reset_password:
         title: "هل نسيت كلمة المرور؟"
         submit: "استرجاع كلمة المرور"
