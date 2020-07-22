@@ -1,4 +1,4 @@
-// SASS variable overrides must be declared before loading up Active Admin's styles.
+// Sass variable overrides must be declared before loading up Active Admin's styles.
 //
 // To view the variables that Active Admin provides, take a look at
 // `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
@@ -11,7 +11,7 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 
-// Overriding any non-variable SASS must be done after the fact.
+// Overriding any non-variable Sass must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
