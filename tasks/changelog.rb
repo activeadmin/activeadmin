@@ -1,5 +1,7 @@
 class Changelog
   def cut_version(header)
+    sync!
+
     replace_with_lines([header, "", content])
   end
 
