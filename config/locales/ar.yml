@@ -8,7 +8,7 @@ ar:
     edit: "تعديل"
     delete: "حذف"
     delete_confirmation: "هل تريد تأكيد الحذف؟"
-    new_model: "جديد %{model}"
+    new_model: "%{model} جديد"
     edit_model: "تعديل %{model}"
     delete_model: "حذف %{model}"
     details: "تفاصيل %{model}"
