@@ -8,7 +8,7 @@ ar:
     edit: "تعديل"
     delete: "حذف"
     delete_confirmation: "هل تريد تأكيد الحذف؟"
-    new_model: "جديد %{model}"
+    new_model: "%{model} جديد"
     edit_model: "تعديل %{model}"
     delete_model: "حذف %{model}"
     details: "تفاصيل %{model}"
@@ -97,12 +97,12 @@ ar:
       password:
         title: "كلمة المرور"
       sign_up:
-        title: "تسجيل الدخول"
-        submit: "تسجيل الدخول"
+        title: "تسجيل"
+        submit: "تسجيل"
       login:
-        title: "دخول"
+        title: "تسجيل الدخول"
         remember_me: "تذكرني"
-        submit: "تسحيل"
+        submit: "تسجيل الدخول"
       reset_password:
         title: "هل نسيت كلمة المرور؟"
         submit: "استرجاع كلمة المرور"
@@ -117,7 +117,7 @@ ar:
         submit: "إعادة ارسال تعليمات التأكيد"
       links:
         sign_up: "التسجيل"
-        sign_in: "دخول"
+        sign_in: "تسجيل الدخول"
         forgot_your_password: "هل نسيت كلمة المرور؟"
         sign_in_with_omniauth_provider: "تسجيل الدخول بـ %{provider}"
         resend_unlock_instructions: "إعادة إرسال تعليمات تنشيط الحساب"
