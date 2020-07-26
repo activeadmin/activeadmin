@@ -245,7 +245,7 @@ GEM
       actionpack (>= 4.1)
       activesupport (>= 4.1)
     highline (2.0.3)
-    i18n (1.8.4)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     i18n-spec (0.6.0)
       iso
@@ -421,7 +421,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 2.0)
     rubocop-ast (0.2.0)
       parser (>= 2.7.0.1)
-    rubocop-rails (2.7.0)
+    rubocop-rails (2.7.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 0.87.0)
