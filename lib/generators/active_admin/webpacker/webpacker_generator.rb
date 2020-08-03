@@ -7,7 +7,7 @@ module ActiveAdmin
       def install_assets
         template 'active_admin.js', 'app/javascript/packs/active_admin.js'
         template "active_admin.scss", "app/javascript/stylesheets/active_admin.scss"
-        template 'print.scss', 'app/javascript/packs/active_admin/print.scss'
+        template 'print.scss', 'app/javascript/stylesheets/active_admin/print.scss'
 
         copy_file "#{__dir__}/plugins/jquery.js", Rails.root.join("config/webpack/plugins/jquery.js").to_s
 
