@@ -17,10 +17,12 @@ RSpec.describe "AA installation" do
       expect(File.exist?(path)).to eq true
     end
 
-    it 'active_admin/print.scss' do
-      path = stylesheet_dir + 'active_admin/print.scss'
+    if ActiveAdmin.application.use_webpacker
+      it 'active_admin/print.scss' do
+        path = stylesheet_dir + 'active_admin/print.scss'
 
-      expect(File.exist?(path)).to eq true
+        expect(File.exist?(path)).to eq true
+      end
     end
 
     it 'active_admin.js' do
