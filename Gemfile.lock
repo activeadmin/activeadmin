@@ -410,13 +410,13 @@ GEM
       rspec-expectations (~> 3.9)
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
-    rubocop (0.89.0)
+    rubocop (0.89.1)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.7)
       rexml
-      rubocop-ast (>= 0.1.0, < 1.0)
+      rubocop-ast (>= 0.3.0, < 1.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
     rubocop-ast (0.3.0)
@@ -513,7 +513,7 @@ DEPENDENCIES
   rspec-mocks!
   rspec-rails
   rspec-support!
-  rubocop (= 0.89.0)
+  rubocop (= 0.89.1)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
   simplecov (= 0.17.1)
