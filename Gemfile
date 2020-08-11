@@ -56,7 +56,7 @@ group :lint do
   gem 'rubocop', '0.89.1'
   gem 'rubocop-rspec', '~> 1.30'
   gem 'rubocop-rails', '~> 2.3'
-  gem 'mdl', '0.6.0'
+  gem 'mdl', '0.11.0'
 
   # Translations
   gem 'i18n-tasks'
