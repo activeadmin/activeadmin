@@ -54,7 +54,9 @@ version: 2.1
 .format_coverage: &format_coverage
   run:
     name: Format coverage
-    command: bin/test-reporter format-coverage --output coverage/codeclimate.$CIRCLE_JOB.json
+    command: |
+      bin/prepare_coverage
+      bin/test-reporter format-coverage --output coverage/codeclimate.$CIRCLE_JOB.json
 
 .save_coverage: &save_coverage
   persist_to_workspace:
