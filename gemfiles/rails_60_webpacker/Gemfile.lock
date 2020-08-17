@@ -402,7 +402,7 @@ GEM
       thread_safe (~> 0.1)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webpacker (5.2.0)
+    webpacker (5.2.1)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
