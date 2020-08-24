@@ -106,7 +106,7 @@ class SassRailsLinter
 end
 
 desc "Lints ActiveAdmin code base"
-task lint: ["lint:rubocop", "lint:mdl", "lint:gherkin", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:sass_rails", "lint:rspec"]
+task lint: ["lint:rubocop", "lint:mdl", "lint:eslint", "lint:gherkin", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:sass_rails", "lint:rspec"]
 
 namespace :lint do
   require "rubocop/rake_task"
@@ -118,6 +118,14 @@ namespace :lint do
     puts "Running mdl..."
 
     sh("mdl", "--git-recurse", ".")
+  end
+
+  desc "Checks JS code style with eslint"
+  task :eslint do
+    puts "Linting JS code..."
+
+    sh("bin/yarn", "install")
+    sh("bin/yarn", "eslint")
   end
 
   desc "Checks gherkin code style"

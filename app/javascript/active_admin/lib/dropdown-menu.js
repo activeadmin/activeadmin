@@ -111,6 +111,6 @@ class DropdownMenu {
       this.$nipple.css('left', menu_center - nipple_center);
     }
   }
-};
+}
 
 export default DropdownMenu;

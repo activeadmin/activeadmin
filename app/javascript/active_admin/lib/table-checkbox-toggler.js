@@ -33,6 +33,6 @@ class TableCheckboxToggler extends CheckboxToggler {
       .find(':checkbox')
       .click();
   }
-};
+}
 
 export default TableCheckboxToggler;

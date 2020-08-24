@@ -44,7 +44,7 @@ function ModalDialog(message, inputs, callback){
 
   form.dialog({
     modal: true,
-    open(event, ui) {
+    open(_event, _ui) {
       $('body').trigger('modal_dialog:after_open', [form]);
     },
     dialogClass: 'active_admin_dialog',
@@ -58,6 +58,6 @@ function ModalDialog(message, inputs, callback){
       }
     }
   });
-};
+}
 
 export default ModalDialog;
