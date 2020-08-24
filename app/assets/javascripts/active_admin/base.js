@@ -27,18 +27,17 @@
   function ModalDialog(message, inputs, callback) {
     var html = '<form id="dialog_confirm" title="' + message + '"><ul>';
     for (var name in inputs) {
-      var elem, opts, wrapper;
+      var opts, wrapper;
       var type = inputs[name];
       if (/^(datepicker|checkbox|text|number)$/.test(type)) {
         wrapper = "input";
       } else if (type === "textarea") {
         wrapper = "textarea";
       } else if ($.isArray(type)) {
-        var _ref = [ "select", "option", type, "" ];
+        var _ref = [ "select", type, "" ];
         wrapper = _ref[0];
-        elem = _ref[1];
-        opts = _ref[2];
-        type = _ref[3];
+        opts = _ref[1];
+        type = _ref[2];
       } else {
         throw new Error("Unsupported input type: {" + name + ": " + type + "}");
       }
@@ -46,22 +45,21 @@
       html += "<li>\n      <label>" + (name.charAt(0).toUpperCase() + name.slice(1)) + "</label>\n      <" + wrapper + ' name="' + name + '" class="' + klass + '" type="' + type + '">' + (opts ? function() {
         var result = [];
         opts.forEach(function(v) {
-          var $elem = $("<" + elem + "/>");
+          var $elem = $("<option></option>");
           if ($.isArray(v)) {
             $elem.text(v[0]).val(v[1]);
           } else {
             $elem.text(v);
           }
-          result.push($elem.wrap("<div>").parent().html());
+          result.push($elem.wrap("<div></div>").parent().html());
         });
         return result;
       }().join("") : "") + ("</" + wrapper + ">") + "</li>";
       var _ref2 = [];
       wrapper = _ref2[0];
-      elem = _ref2[1];
-      opts = _ref2[2];
-      type = _ref2[3];
-      klass = _ref2[4];
+      opts = _ref2[1];
+      type = _ref2[2];
+      klass = _ref2[3];
     }
     html += "</ul></form>";
     var form = $(html).appendTo("body");

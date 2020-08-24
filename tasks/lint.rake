@@ -169,9 +169,7 @@ namespace :lint do
 
     sh(
       "bin/rspec",
-      "spec/gemfiles_spec.lint.rb",
-      "spec/changelog_spec.lint.rb",
-      "spec/i18n_spec.lint.rb"
+      *Dir.glob("spec/*.lint.rb")
     )
   end
 end
