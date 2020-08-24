@@ -173,6 +173,7 @@ GEM
     chandler (0.9.0)
       netrc
       octokit (>= 2.2.0)
+    chef-utils (16.4.41)
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
@@ -292,7 +293,10 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    kramdown (1.17.0)
+    kramdown (2.3.0)
+      rexml
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     loofah (2.6.0)
@@ -302,10 +306,12 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
-    mdl (0.6.0)
-      kramdown (~> 1.12, >= 1.12.0)
+    mdl (0.11.0)
+      kramdown (~> 2.3)
+      kramdown-parser-gfm (~> 1.1)
       mixlib-cli (~> 2.1, >= 2.1.1)
-      mixlib-config (~> 2.2, >= 2.2.1)
+      mixlib-config (>= 2.2.1, < 4)
+      mixlib-shellout
     method_source (1.0.0)
     middleware (0.1.0)
     mime-types (3.3.1)
@@ -315,9 +321,11 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
-    mixlib-cli (2.1.1)
-    mixlib-config (2.2.18)
+    mixlib-cli (2.1.8)
+    mixlib-config (3.0.9)
       tomlrb
+    mixlib-shellout (3.1.4)
+      chef-utils
     multi_test (0.1.2)
     multipart-post (2.1.1)
     netrc (0.11.0)
@@ -456,7 +464,7 @@ GEM
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
     tilt (2.0.10)
-    tomlrb (1.2.8)
+    tomlrb (1.3.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.7.0)
@@ -498,7 +506,7 @@ DEPENDENCIES
   jruby-openssl (~> 0.10.1)
   kramdown
   launchy
-  mdl (= 0.6.0)
+  mdl (= 0.11.0)
   octokit (~> 4.18)
   parallel_tests (~> 3.0)
   pry
