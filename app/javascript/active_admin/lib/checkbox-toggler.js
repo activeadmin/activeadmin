@@ -6,7 +6,7 @@ class CheckboxToggler {
     this._bind();
   }
 
-  option(key, value) {
+  option(_key, _value) {
   }
 
   _init() {
@@ -30,7 +30,7 @@ class CheckboxToggler {
     this.toggle_all_checkbox.change(() => this._didChangeToggleAllCheckbox());
   }
 
-  _didChangeCheckbox(checkbox){
+  _didChangeCheckbox(_checkbox){
     const numChecked = this.checkboxes.filter(':checked').length;
 
     const allChecked = numChecked === this.checkboxes.length;
@@ -44,6 +44,6 @@ class CheckboxToggler {
     this.checkboxes.prop({ checked: setting });
     return setting;
   }
-};
+}
 
 export default CheckboxToggler;

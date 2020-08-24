@@ -33,6 +33,6 @@ class PerPage {
       }
     })
   }
-};
+}
 
 export default PerPage;

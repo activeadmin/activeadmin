@@ -38,7 +38,7 @@ export default {
     resolve(),
     commonjs(),
     babel(),
-    terser(terserOptions),
+    terser(terserOptions)
   ],
   // Use client's yarn dependencies instead of bundling everything
   external: [

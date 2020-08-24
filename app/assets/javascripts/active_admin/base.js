@@ -66,7 +66,7 @@
     $("body").trigger("modal_dialog:before_open", [ form ]);
     form.dialog({
       modal: true,
-      open: function open(event, ui) {
+      open: function open(_event, _ui) {
         $("body").trigger("modal_dialog:after_open", [ form ]);
       },
       dialogClass: "active_admin_dialog",
@@ -134,7 +134,7 @@
       this._bind();
     }
     var _proto = CheckboxToggler.prototype;
-    _proto.option = function option(key, value) {};
+    _proto.option = function option(_key, _value) {};
     _proto._init = function _init() {
       if (!this.container) {
         throw new Error("Container element not found");
@@ -157,7 +157,7 @@
         return _this._didChangeToggleAllCheckbox();
       });
     };
-    _proto._didChangeCheckbox = function _didChangeCheckbox(checkbox) {
+    _proto._didChangeCheckbox = function _didChangeCheckbox(_checkbox) {
       var numChecked = this.checkboxes.filter(":checked").length;
       var allChecked = numChecked === this.checkboxes.length;
       var someChecked = numChecked > 0 && numChecked < this.checkboxes.length;
@@ -462,7 +462,7 @@
     return PerPage;
   }();
   (function($) {
-    $(document).on("change", ".pagination_per_page > select", function(event) {
+    $(document).on("change", ".pagination_per_page > select", function(_event) {
       PerPage._jQueryInterface.call($(this), "update");
     });
     $.fn["perPage"] = PerPage._jQueryInterface;
