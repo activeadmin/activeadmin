@@ -1,10 +1,10 @@
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import babel from "rollup-plugin-babel";
-import { uglify } from "rollup-plugin-uglify";
+import { terser } from "rollup-plugin-terser";
 import { stripIndent } from 'common-tags';
 
-const uglifyOptions = {
+const terserOptions = {
   mangle: false,
   compress: false,
   output: {
@@ -22,7 +22,8 @@ const uglifyOptions = {
       //= require jquery-ui/widget
       //= require jquery_ujs
       //= require_self
-    ` + '\n'
+    ` + '\n',
+    wrap_func_args: false
   }
 }
 
@@ -37,7 +38,7 @@ export default {
     resolve(),
     commonjs(),
     babel(),
-    uglify(uglifyOptions),
+    terser(terserOptions),
   ],
   // Use client's yarn dependencies instead of bundling everything
   external: [
