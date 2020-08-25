@@ -164,7 +164,7 @@ jobs:
           name: Download Code Climate test-reporter
           command: |
             mkdir bin
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-linux-amd64 > bin/test-reporter
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.8.0-linux-amd64 > bin/test-reporter
             chmod +x  bin/test-reporter
 
       - persist_to_workspace:
