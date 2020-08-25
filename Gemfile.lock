@@ -279,8 +279,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jruby-openssl (0.10.2-java)
-    json (2.3.0)
-    json (2.3.0-java)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -448,11 +446,10 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
-    simplecov (0.17.1)
+    simplecov (0.19.0)
       docile (~> 1.1)
-      json (>= 1.8, < 3)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.2)
+      simplecov-html (~> 0.11)
+    simplecov-html (0.12.2)
     spoon (0.0.6)
       ffi
     sqlite3 (1.4.2)
@@ -524,7 +521,7 @@ DEPENDENCIES
   rubocop (= 0.89.1)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
-  simplecov (= 0.17.1)
+  simplecov (= 0.19.0)
   sprockets!
   sprockets-rails!
   sqlite3 (~> 1.4)

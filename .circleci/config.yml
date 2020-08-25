@@ -56,7 +56,9 @@ version: 2.1
 .format_coverage: &format_coverage
   run:
     name: Format coverage
-    command: bin/test-reporter format-coverage --output coverage/codeclimate.$CIRCLE_JOB.json
+    command: |
+      bin/prepare_coverage
+      bin/test-reporter format-coverage --output coverage/codeclimate.$CIRCLE_JOB.json
 
 .save_coverage: &save_coverage
   persist_to_workspace:
@@ -166,7 +168,7 @@ jobs:
           name: Download Code Climate test-reporter
           command: |
             mkdir bin
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.6.3-linux-amd64 > bin/test-reporter
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.8.0-linux-amd64 > bin/test-reporter
             chmod +x  bin/test-reporter
 
       - persist_to_workspace:
