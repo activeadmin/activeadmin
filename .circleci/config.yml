@@ -32,7 +32,7 @@ version: 2.1
     name: Install dependencies
     command: |
       bundle config set --local path /root/project/vendor/bundle
-      bundle install --retry 3 --jobs 3
+      bundle install --jobs 3
 
 .save_gems: &save_gems
   save_cache:
