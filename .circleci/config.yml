@@ -252,7 +252,7 @@ jobs:
 
   ruby25rails52:
     docker:
-      - image: circleci/ruby:2.5.7-node-browsers
+      - image: circleci/ruby:2.5.8-node-browsers
         user: root
 
     environment:
@@ -263,7 +263,7 @@ jobs:
 
   ruby25rails60:
     docker:
-    - image: circleci/ruby:2.5.7-node-browsers
+    - image: circleci/ruby:2.5.8-node-browsers
       user: root
 
     environment:
@@ -274,7 +274,7 @@ jobs:
 
   ruby26rails52:
     docker:
-      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/ruby:2.6.6-node-browsers
         user: root
 
     environment:
@@ -285,7 +285,7 @@ jobs:
 
   ruby26rails60:
     docker:
-    - image: circleci/ruby:2.6.5-node-browsers
+    - image: circleci/ruby:2.6.6-node-browsers
       user: root
 
     environment:
@@ -296,7 +296,7 @@ jobs:
 
   ruby26rails60turbolinks:
     docker:
-    - image: circleci/ruby:2.6.5-node-browsers
+    - image: circleci/ruby:2.6.6-node-browsers
       user: root
 
     environment:
@@ -307,7 +307,7 @@ jobs:
 
   ruby26rails60webpacker:
     docker:
-    - image: circleci/ruby:2.6.5-node-browsers
+    - image: circleci/ruby:2.6.6-node-browsers
       user: root
 
     environment:
