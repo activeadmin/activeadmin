@@ -157,7 +157,7 @@ version: 2.1
 jobs:
   setup_coverage:
     docker:
-      - image: circleci/ruby:2.6.5
+      - image: circleci/ruby:2.7.1
 
     steps:
       - run:
@@ -174,7 +174,7 @@ jobs:
 
   upload_coverage:
     docker:
-      - image: circleci/ruby:2.6.5
+      - image: circleci/ruby:2.7.1
         environment:
           CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
 
@@ -185,7 +185,7 @@ jobs:
 
   testapp52:
     docker:
-      - image: circleci/ruby:2.6.5-node
+      - image: circleci/ruby:2.7.1-node
         user: root
 
     environment:
@@ -196,7 +196,7 @@ jobs:
 
   testapp60:
     docker:
-    - image: circleci/ruby:2.6.5-node
+    - image: circleci/ruby:2.7.1-node
       user: root
 
     environment:
@@ -207,7 +207,7 @@ jobs:
 
   testapp60turbolinks:
     docker:
-    - image: circleci/ruby:2.6.5-node
+    - image: circleci/ruby:2.7.1-node
       user: root
 
     environment:
@@ -218,7 +218,7 @@ jobs:
 
   testapp60webpacker:
     docker:
-    - image: circleci/ruby:2.6.5-node
+    - image: circleci/ruby:2.7.1-node
       user: root
 
     environment:
@@ -229,7 +229,7 @@ jobs:
 
   lint_and_docs:
     docker:
-      - image: circleci/ruby:2.6.5-node
+      - image: circleci/ruby:2.7.1-node
         user: root
 
     environment:
