@@ -256,7 +256,7 @@ jobs:
 
   ruby25rails52:
     docker:
-      - image: circleci/ruby:2.5.8-node-browsers
+      - image: circleci/ruby:2.5.8-node-browsers@sha256:8ec7685a1b699535b79bc41717d122162a4d018210782cdc46fcec5c3fac6c50
         user: root
 
     environment:
@@ -267,7 +267,7 @@ jobs:
 
   ruby25rails60:
     docker:
-    - image: circleci/ruby:2.5.8-node-browsers
+    - image: circleci/ruby:2.5.8-node-browsers@sha256:8ec7685a1b699535b79bc41717d122162a4d018210782cdc46fcec5c3fac6c50
       user: root
 
     environment:
@@ -278,7 +278,7 @@ jobs:
 
   ruby26rails52:
     docker:
-      - image: circleci/ruby:2.6.6-node-browsers
+      - image: circleci/ruby:2.6.6-node-browsers@sha256:8d362341980cd7fe89d716ec00061d9669c13e9a75f3e99c835b2e1557e61291
         user: root
 
     environment:
@@ -289,7 +289,7 @@ jobs:
 
   ruby26rails60:
     docker:
-    - image: circleci/ruby:2.6.6-node-browsers
+    - image: circleci/ruby:2.6.6-node-browsers@sha256:8d362341980cd7fe89d716ec00061d9669c13e9a75f3e99c835b2e1557e61291
       user: root
 
     environment:
@@ -300,7 +300,7 @@ jobs:
 
   ruby26rails60turbolinks:
     docker:
-    - image: circleci/ruby:2.6.6-node-browsers
+    - image: circleci/ruby:2.6.6-node-browsers@sha256:8d362341980cd7fe89d716ec00061d9669c13e9a75f3e99c835b2e1557e61291
       user: root
 
     environment:
@@ -311,7 +311,7 @@ jobs:
 
   ruby26rails60webpacker:
     docker:
-    - image: circleci/ruby:2.6.6-node-browsers
+    - image: circleci/ruby:2.6.6-node-browsers@sha256:8d362341980cd7fe89d716ec00061d9669c13e9a75f3e99c835b2e1557e61291
       user: root
 
     environment:
@@ -322,7 +322,7 @@ jobs:
 
   ruby27rails52:
     docker:
-      - image: circleci/ruby:2.7.1-node-browsers
+      - image: circleci/ruby:2.7.1-node-browsers@sha256:919028ba2abddd4a00228549bfc3d4bc9a0a19d48bb9246be5a8503a4afa9416
         user: root
 
     environment:
@@ -333,7 +333,7 @@ jobs:
 
   ruby27rails60:
     docker:
-    - image: circleci/ruby:2.7.1-node-browsers
+    - image: circleci/ruby:2.7.1-node-browsers@sha256:919028ba2abddd4a00228549bfc3d4bc9a0a19d48bb9246be5a8503a4afa9416
       user: root
 
     environment:
@@ -344,7 +344,7 @@ jobs:
 
   ruby27rails60turbolinks:
     docker:
-    - image: circleci/ruby:2.7.1-node-browsers
+    - image: circleci/ruby:2.7.1-node-browsers@sha256:919028ba2abddd4a00228549bfc3d4bc9a0a19d48bb9246be5a8503a4afa9416
       user: root
 
     environment:
@@ -355,7 +355,7 @@ jobs:
 
   ruby27rails60webpacker:
     docker:
-    - image: circleci/ruby:2.7.1-node-browsers
+    - image: circleci/ruby:2.7.1-node-browsers@sha256:919028ba2abddd4a00228549bfc3d4bc9a0a19d48bb9246be5a8503a4afa9416
       user: root
 
     environment:
@@ -366,7 +366,7 @@ jobs:
 
   jruby92rails52:
     docker:
-      - image: circleci/jruby:9.2.11.0-node-browsers
+      - image: circleci/jruby:9.2.11.0-node-browsers@sha256:2e732edc9e27db1953ea0bcee7139770231b3fd12e887b2b735d5d9a2fffd456
         user: root
 
     environment:
@@ -378,7 +378,7 @@ jobs:
 
   jruby92rails60:
     docker:
-    - image: circleci/jruby:9.2.11.0-node-browsers
+    - image: circleci/jruby:9.2.11.0-node-browsers@sha256:2e732edc9e27db1953ea0bcee7139770231b3fd12e887b2b735d5d9a2fffd456
       user: root
 
     environment:
