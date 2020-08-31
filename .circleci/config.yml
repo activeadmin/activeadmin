@@ -200,8 +200,8 @@ jobs:
 
   testapp60:
     docker:
-    - image: circleci/ruby:2.7.1-node
-      user: root
+      - image: circleci/ruby:2.7.1-node
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -211,8 +211,8 @@ jobs:
 
   testapp60turbolinks:
     docker:
-    - image: circleci/ruby:2.7.1-node
-      user: root
+      - image: circleci/ruby:2.7.1-node
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks/Gemfile
@@ -222,8 +222,8 @@ jobs:
 
   testapp60webpacker:
     docker:
-    - image: circleci/ruby:2.7.1-node
-      user: root
+      - image: circleci/ruby:2.7.1-node
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_60_webpacker/Gemfile
@@ -267,8 +267,8 @@ jobs:
 
   ruby25rails60:
     docker:
-    - image: circleci/ruby:2.5.8-node-browsers@sha256:8ec7685a1b699535b79bc41717d122162a4d018210782cdc46fcec5c3fac6c50
-      user: root
+      - image: circleci/ruby:2.5.8-node-browsers@sha256:8ec7685a1b699535b79bc41717d122162a4d018210782cdc46fcec5c3fac6c50
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -289,8 +289,8 @@ jobs:
 
   ruby26rails60:
     docker:
-    - image: circleci/ruby:2.6.6-node-browsers@sha256:8d362341980cd7fe89d716ec00061d9669c13e9a75f3e99c835b2e1557e61291
-      user: root
+      - image: circleci/ruby:2.6.6-node-browsers@sha256:8d362341980cd7fe89d716ec00061d9669c13e9a75f3e99c835b2e1557e61291
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -300,8 +300,8 @@ jobs:
 
   ruby26rails60turbolinks:
     docker:
-    - image: circleci/ruby:2.6.6-node-browsers@sha256:8d362341980cd7fe89d716ec00061d9669c13e9a75f3e99c835b2e1557e61291
-      user: root
+      - image: circleci/ruby:2.6.6-node-browsers@sha256:8d362341980cd7fe89d716ec00061d9669c13e9a75f3e99c835b2e1557e61291
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks/Gemfile
@@ -311,8 +311,8 @@ jobs:
 
   ruby26rails60webpacker:
     docker:
-    - image: circleci/ruby:2.6.6-node-browsers@sha256:8d362341980cd7fe89d716ec00061d9669c13e9a75f3e99c835b2e1557e61291
-      user: root
+      - image: circleci/ruby:2.6.6-node-browsers@sha256:8d362341980cd7fe89d716ec00061d9669c13e9a75f3e99c835b2e1557e61291
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_60_webpacker/Gemfile
@@ -333,8 +333,8 @@ jobs:
 
   ruby27rails60:
     docker:
-    - image: circleci/ruby:2.7.1-node-browsers@sha256:919028ba2abddd4a00228549bfc3d4bc9a0a19d48bb9246be5a8503a4afa9416
-      user: root
+      - image: circleci/ruby:2.7.1-node-browsers@sha256:919028ba2abddd4a00228549bfc3d4bc9a0a19d48bb9246be5a8503a4afa9416
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
@@ -344,8 +344,8 @@ jobs:
 
   ruby27rails60turbolinks:
     docker:
-    - image: circleci/ruby:2.7.1-node-browsers@sha256:919028ba2abddd4a00228549bfc3d4bc9a0a19d48bb9246be5a8503a4afa9416
-      user: root
+      - image: circleci/ruby:2.7.1-node-browsers@sha256:919028ba2abddd4a00228549bfc3d4bc9a0a19d48bb9246be5a8503a4afa9416
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks/Gemfile
@@ -355,8 +355,8 @@ jobs:
 
   ruby27rails60webpacker:
     docker:
-    - image: circleci/ruby:2.7.1-node-browsers@sha256:919028ba2abddd4a00228549bfc3d4bc9a0a19d48bb9246be5a8503a4afa9416
-      user: root
+      - image: circleci/ruby:2.7.1-node-browsers@sha256:919028ba2abddd4a00228549bfc3d4bc9a0a19d48bb9246be5a8503a4afa9416
+        user: root
 
     environment:
       BUNDLE_GEMFILE: gemfiles/rails_60_webpacker/Gemfile
@@ -378,8 +378,8 @@ jobs:
 
   jruby92rails60:
     docker:
-    - image: circleci/jruby:9.2.11.0-node-browsers@sha256:2e732edc9e27db1953ea0bcee7139770231b3fd12e887b2b735d5d9a2fffd456
-      user: root
+      - image: circleci/jruby:9.2.11.0-node-browsers@sha256:2e732edc9e27db1953ea0bcee7139770231b3fd12e887b2b735d5d9a2fffd456
+        user: root
 
     environment:
       BUNDLE_GEMFILE: Gemfile
