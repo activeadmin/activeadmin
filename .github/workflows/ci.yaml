@@ -45,7 +45,6 @@ jobs:
       - name: Configure bundler
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
-          echo "BUNDLE_PATH=$(pwd)/vendor/bundle" >> $GITHUB_ENV
 
       - name: Enable coverage tracking
         run: echo "COVERAGE=true" >> $GITHUB_ENV
@@ -127,13 +126,11 @@ jobs:
       - name: Configure bundler (default)
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
-          echo "BUNDLE_PATH=$(pwd)/vendor/bundle" >> $GITHUB_ENV
         if: matrix.deps == 'rails_61'
 
       - name: Configure bundler (alternative)
         run: |
           echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> $GITHUB_ENV
-          echo "BUNDLE_PATH=$(pwd)/gemfiles/${{ matrix.deps }}/vendor/bundle" >> $GITHUB_ENV
         if: matrix.deps != 'rails_61'
 
       - uses: ruby/setup-ruby@v1
