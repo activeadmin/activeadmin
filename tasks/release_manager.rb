@@ -129,6 +129,8 @@ class ReleaseManager
   end
 
   def prepare_version(version)
+    create_release_branch(version)
+
     bump_gem(version)
     bump_npm(version)
 
@@ -145,6 +147,10 @@ class ReleaseManager
 
   def bump_npm(version)
     system "npm", "version", npmify(version), "--no-git-tag-version", exception: true
+  end
+
+  def create_release_branch(version)
+    system "git", "checkout", "-b", "release/#{version}", exception: true
   end
 
   def bump_gem(version)
