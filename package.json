@@ -28,7 +28,7 @@
     "eslint": "^7.2.0",
     "eslint-plugin-import": "^2.18.2",
     "gherkin-lint": "^3.3.6",
-    "rollup": "^1.21.4",
+    "rollup": "^2.26.8",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
