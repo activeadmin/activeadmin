@@ -63,11 +63,6 @@ module ActiveAdmin
         !!Ransack::Predicate.detect_from_string(method.to_s)
       end
 
-      # Ransack lets you define custom search methods, called ransackers.
-      def ransacker?
-        klass._ransackers.key? method.to_s
-      end
-
       # Ransack supports exposing selected scopes on your model for advanced searches.
       def scope?
         context = Ransack::Context.for klass
