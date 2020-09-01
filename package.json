@@ -27,7 +27,7 @@
     "common-tags": "^1.8.0",
     "eslint": "^7.2.0",
     "eslint-plugin-import": "^2.18.2",
-    "gherkin-lint": "^3.3.6",
+    "gherkin-lint": "^4.1.2",
     "rollup": "^1.21.4",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
