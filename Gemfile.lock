@@ -416,7 +416,7 @@ GEM
       rspec-expectations (~> 3.9)
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
-    rubocop (0.89.1)
+    rubocop (0.90.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
       rainbow (>= 2.2.2, < 4.0)
@@ -518,7 +518,7 @@ DEPENDENCIES
   rspec-mocks!
   rspec-rails
   rspec-support!
-  rubocop (= 0.89.1)
+  rubocop (= 0.90.0)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
   simplecov (= 0.19.0)
