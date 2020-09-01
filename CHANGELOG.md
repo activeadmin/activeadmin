@@ -2,14 +2,27 @@
 
 ## Unreleased
 
+## 2.8.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.7.0..v2.8.0)
+
 ### Enhancements
 
-* Make source `ActiveAdmin.routes` provides routes in a consistent order. [#6124] by [@jiikko]
+* Fix several Arabic translations. [#6368] by [@mshalaby]
 * Allow using PORO decorators. [#6249] by [@brunvez]
+* Add missing `scope/all` italian translation. [#6341] by [@fuzziness]
+* Improve Japanese translation. [#6315] by [@rn0rno]
+* Make sure `ActiveAdmin.routes` provides routes in a consistent order. [#6124] by [@jiikko]
+* Use proper closing tags for HTML in ModalDialog component. [#6221] by [@javierjulio]
+* Fix filter_columns_for_large_association and filter_method_for_large_association examples. [#6232] by [@ndbroadbent]
+
+### Bug Fixes
+
+* Fix comment layout so regardless of size, each is aligned and spaced evenly. [#6393] by [@Ivanov-Anton]
+* Fix es and es-MX sign_in and sign_up translation:. [#6210] by [@roramirez]
 
 ### Dependency Changes
 
-* Support for ruby 2.4 has been removed. [#6198] by [@deivid-rodriguez]
+* Allow formtastic 4. [#6318] by [@deivid-rodriguez]
+* Drop Ruby 2.4 support. [#6198] by [@deivid-rodriguez]
 
 ## 2.7.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.6.1..v2.7.0)
 
@@ -583,7 +596,15 @@ Please check [0-6-stable] for previous changes.
 [#6124]: https://github.com/activeadmin/activeadmin/pull/6124
 [#6149]: https://github.com/activeadmin/activeadmin/pull/6149
 [#6198]: https://github.com/activeadmin/activeadmin/pull/6198
+[#6210]: https://github.com/activeadmin/activeadmin/pull/6210
+[#6221]: https://github.com/activeadmin/activeadmin/pull/6221
+[#6232]: https://github.com/activeadmin/activeadmin/pull/6232
 [#6249]: https://github.com/activeadmin/activeadmin/pull/6249
+[#6315]: https://github.com/activeadmin/activeadmin/pull/6315
+[#6318]: https://github.com/activeadmin/activeadmin/pull/6318
+[#6341]: https://github.com/activeadmin/activeadmin/pull/6341
+[#6368]: https://github.com/activeadmin/activeadmin/pull/6368
+[#6393]: https://github.com/activeadmin/activeadmin/pull/6393
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -615,6 +636,7 @@ Please check [0-6-stable] for previous changes.
 [@FabioRos]: https://github.com/FabioRos
 [@faucct]: https://github.com/faucct
 [@Fivell]: https://github.com/Fivell
+[@fuzziness]: https://github.com/fuzziness
 [@giapnhdev]: https://github.com/giapnhdev
 [@glebtv]: https://github.com/glebtv
 [@gonzedge]: https://github.com/gonzedge
@@ -624,6 +646,7 @@ Please check [0-6-stable] for previous changes.
 [@innparusu95]: https://github.com/innparusu95
 [@ionut998]: https://github.com/ionut998
 [@irmela]: https://github.com/irmela
+[@Ivanov-Anton]: https://github.com/Ivanov-Anton
 [@jasl]: https://github.com/jasl
 [@javierjulio]: https://github.com/javierjulio
 [@jawa]: https://github.com/jawa
@@ -645,6 +668,7 @@ Please check [0-6-stable] for previous changes.
 [@mconiglio]: https://github.com/mconiglio
 [@micred]: https://github.com/micred
 [@mirelon]: https://github.com/mirelon
+[@mshalaby]: https://github.com/mshalaby
 [@ndbroadbent]: https://github.com/ndbroadbent
 [@Nguyenanh]: https://github.com/Nguyenanh
 [@orkhan]: https://github.com/orkhan
@@ -653,8 +677,10 @@ Please check [0-6-stable] for previous changes.
 [@potatosalad]: https://github.com/potatosalad
 [@pranas]: https://github.com/pranas
 [@renotocn]: https://github.com/renotocn
+[@rn0rno]: https://github.com/rn0rno
 [@RobinvanderVliet]: https://github.com/RobinvanderVliet
 [@rogerkk]: https://github.com/rogerkk
+[@roramirez]: https://github.com/roramirez
 [@seanlinsley]: https://github.com/seanlinsley
 [@sgara]: https://github.com/sgara
 [@ShallmentMo]: https://github.com/ShallmentMo
