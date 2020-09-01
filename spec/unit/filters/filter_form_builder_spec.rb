@@ -131,6 +131,17 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
   end
 
+  describe 'string attribute ended with ransack predicate' do
+    let(:scope) { User.ransack }
+    let(:body) { filter :reason_of_sign_in }
+
+    it "should generate a select options" do
+      expect(body).to have_selector("option[value=reason_of_sign_in_starts_with]")
+      expect(body).to have_selector("option[value=reason_of_sign_in_ends_with]")
+      expect(body).to have_selector("option[value=reason_of_sign_in_contains]")
+    end
+  end
+
   describe "text attribute" do
     let(:body) { filter :body }
 
