@@ -6,18 +6,24 @@
 
 ### Enhancements
 
-* Fix several Arabic translations. [#6368] by [@mshalaby]
 * Allow using PORO decorators. [#6249] by [@brunvez]
-* Add missing `scope/all` italian translation. [#6341] by [@fuzziness]
-* Improve Japanese translation. [#6315] by [@rn0rno]
 * Make sure `ActiveAdmin.routes` provides routes in a consistent order. [#6124] by [@jiikko]
 * Use proper closing tags for HTML in ModalDialog component. [#6221] by [@javierjulio]
-* Fix filter_columns_for_large_association and filter_method_for_large_association examples. [#6232] by [@ndbroadbent]
 
 ### Bug Fixes
 
 * Fix comment layout so regardless of size, each is aligned and spaced evenly. [#6393] by [@Ivanov-Anton]
-* Fix es and es-MX sign_in and sign_up translation:. [#6210] by [@roramirez]
+
+### Translation Improvements
+
+* Fix several Arabic translations. [#6368] by [@mshalaby]
+* Add missing `scope/all` italian translation. [#6341] by [@fuzziness]
+* Improve Japanese translation. [#6315] by [@rn0rno]
+* Fix es and es-MX sign_in and sign_up translation. [#6210] by [@roramirez]
+
+### Documentation
+
+* Fix filter_columns_for_large_association and filter_method_for_large_association examples. [#6232] by [@ndbroadbent]
 
 ### Dependency Changes
 
