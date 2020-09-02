@@ -42,7 +42,7 @@ RSpec.describe "Changelog" do
 
   it 'has well defined third level entries' do
     third_level_entries = changelog.scan(/^### (.*)$/).flatten.uniq.sort
-    expect(third_level_entries).to eq(["Breaking Changes", "Bug Fixes", "Dependency Changes", "Deprecations", "Enhancements", "Security Fixes"])
+    expect(third_level_entries).to eq(["Breaking Changes", "Bug Fixes", "Dependency Changes", "Deprecations", "Documentation", "Enhancements", "Security Fixes", "Translation Improvements"])
   end
 
   describe 'entry' do
