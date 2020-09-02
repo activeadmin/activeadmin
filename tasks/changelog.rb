@@ -55,6 +55,8 @@ class Changelog
       "type: deprecation" => "Deprecations",
       "type: enhancement" => "Enhancements",
       "type: bug fix" => "Bug Fixes",
+      "type: i18n" => "Translation Improvements",
+      "type: documentation" => "Documentation",
       "type: dependency change" => "Dependency Changes",
     }
   end
