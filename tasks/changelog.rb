@@ -5,7 +5,21 @@ class Changelog
     replace_with_lines([header, "", content])
   end
 
+  def resync!
+    replace_last_release_section(unreleased_changelog_content)
+
+    add_references
+  end
+
   def sync!
+    replace_unreleased_section(unreleased_changelog_content)
+
+    add_references
+  end
+
+  private
+
+  def unreleased_changelog_content
     lines = []
 
     group_by_labels(pull_requests_since_last_release).each do |label, pulls|
@@ -21,12 +35,8 @@ class Changelog
       lines << ""
     end
 
-    replace_unreleased_section(lines)
-
-    add_references
+    lines
   end
-
-  private
 
   def group_by_labels(pulls)
     grouped_pulls = pulls.group_by do |pull|
@@ -59,6 +69,13 @@ class Changelog
       "type: documentation" => "Documentation",
       "type: dependency change" => "Dependency Changes",
     }
+  end
+
+  def replace_last_release_section(new_content)
+    last_release_header = content[0]
+    full_new_changelog = [last_release_header, "", new_content, released_section_but_last_release]
+
+    replace_with_lines(full_new_changelog)
   end
 
   def replace_unreleased_section(new_content)
@@ -151,6 +168,10 @@ class Changelog
 
   def released_section
     content.drop_while { |line| !released_section_header?(line) }
+  end
+
+  def released_section_but_last_release
+    released_section[1..-1].drop_while { |line| !released_section_header?(line) }
   end
 
   def pre_user_references
