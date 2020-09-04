@@ -5,8 +5,6 @@ group :development, :test do
   gem 'pry' # Easily debug from your console with `binding.pry`
   gem 'pry-byebug', platform: :mri # Step-by-step debugging
 
-  gem 'arbre', github: 'activeadmin/arbre', ref: 'b546d7a10b95001cb7bd1273bbaa55172de77e98'
-
   gem 'cancancan'
   gem 'pundit'
   gem 'jruby-openssl', '~> 0.10.1', platform: :jruby
