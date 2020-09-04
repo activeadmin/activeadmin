@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/activeadmin/arbre.git
-  revision: b546d7a10b95001cb7bd1273bbaa55172de77e98
-  ref: b546d7a10b95001cb7bd1273bbaa55172de77e98
-  specs:
-    arbre (1.2.1)
-      activesupport (>= 3.0.0, < 6.1)
-      ruby2_keywords (>= 0.0.2)
-
-GIT
   remote: https://github.com/rails/sprockets-rails.git
   revision: c269f5e01fdffa5c41350e855183d94ff33d318a
   ref: c269f5e01fdffa5c41350e855183d94ff33d318a
@@ -156,6 +147,9 @@ GEM
     apparition (0.6.0)
       capybara (~> 3.13, < 4)
       websocket-driver (>= 0.6.5)
+    arbre (1.3.0)
+      activesupport (>= 3.0.0, < 6.1)
+      ruby2_keywords (>= 0.0.2, < 1.0)
     ast (2.4.1)
     bcrypt (3.1.13)
     bcrypt (3.1.13-java)
@@ -485,7 +479,6 @@ DEPENDENCIES
   activeadmin!
   activerecord-jdbcsqlite3-adapter (~> 60.0)
   apparition
-  arbre!
   cancancan
   capybara (~> 3.14)
   chandler (= 0.9.0)
