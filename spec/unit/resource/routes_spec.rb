@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Resource::Routes do
   let(:application) { ActiveAdmin.application }
   let(:namespace) { application.namespace(:admin) }
 
   context "when in the admin namespace" do
-    let(:config) { namespace.resource_for('Category') }
+    let(:config) { namespace.resource_for("Category") }
 
     around do |example|
       with_resources_during(example) { ActiveAdmin.register Category }
@@ -14,15 +14,15 @@ RSpec.describe ActiveAdmin::Resource::Routes do
     let(:category) { Category.new { |c| c.id = 123 } }
 
     it "should return the route prefix" do
-      expect(config.route_prefix).to eq 'admin'
+      expect(config.route_prefix).to eq "admin"
     end
 
     it "should return the route collection path" do
-      expect(config.route_collection_path).to eq '/admin/categories'
+      expect(config.route_collection_path).to eq "/admin/categories"
     end
 
     it "should return the route instance path" do
-      expect(config.route_instance_path(category)).to eq '/admin/categories/123'
+      expect(config.route_instance_path(category)).to eq "/admin/categories/123"
     end
   end
 
@@ -61,7 +61,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
   end
 
   context "when the resource belongs to another resource" do
-    let(:config) { namespace.resource_for('Post') }
+    let(:config) { namespace.resource_for("Post") }
 
     let :post do
       Post.new do |p|
@@ -109,7 +109,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
 
       it "should include :scope and :q params" do
         params = ActionController::Parameters.new(category_id: 1, q: { name_equals: "Any" }, scope: :all)
-        additional_params = { locale: 'en' }
+        additional_params = { locale: "en" }
         batch_action_path = "/admin/categories/1/posts/batch_action?locale=en&q%5Bname_equals%5D=Any&scope=all"
 
         expect(config.route_batch_action_path(params, additional_params)).to eq batch_action_path
@@ -122,7 +122,7 @@ RSpec.describe ActiveAdmin::Resource::Routes do
 
       it "should return the plural batch action route with _index and given params" do
         params = ActionController::Parameters.new(q: { name_equals: "Any" }, scope: :all)
-        additional_params = { locale: 'en' }
+        additional_params = { locale: "en" }
         batch_action_path = "/admin/news/batch_action?locale=en&q%5Bname_equals%5D=Any&scope=all"
         expect(config.route_batch_action_path(params, additional_params)).to eq batch_action_path
       end

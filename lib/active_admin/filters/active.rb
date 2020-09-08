@@ -1,4 +1,4 @@
-require 'active_admin/filters/active_filter'
+require "active_admin/filters/active_filter"
 
 module ActiveAdmin
   module Filters

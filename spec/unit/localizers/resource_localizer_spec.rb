@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.shared_examples_for "ActiveAdmin::Localizers::ResourceLocalizer" do
   it "should use proper translation" do
@@ -14,23 +14,23 @@ RSpec.shared_examples_for "ActiveAdmin::Localizers::ResourceLocalizer" do
 end
 
 RSpec.describe ActiveAdmin::Localizers::ResourceLocalizer do
-  let(:action) { 'new_model' }
-  let(:model) { 'Comment' }
-  let(:model_name) { 'comment' }
+  let(:action) { "new_model" }
+  let(:model) { "Comment" }
+  let(:model_name) { "comment" }
 
   it_behaves_like "ActiveAdmin::Localizers::ResourceLocalizer" do
-    let(:translation) { 'New Comment' }
+    let(:translation) { "New Comment" }
   end
 
   describe "model action specified" do
     around do |example|
-      with_translation active_admin: { resources: { comment: { new_model: 'Write comment' } } } do
+      with_translation active_admin: { resources: { comment: { new_model: "Write comment" } } } do
         example.call
       end
     end
 
     it_behaves_like "ActiveAdmin::Localizers::ResourceLocalizer" do
-      let(:translation) { 'Write comment' }
+      let(:translation) { "Write comment" }
     end
   end
 end

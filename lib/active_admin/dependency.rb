@@ -1,7 +1,7 @@
 module ActiveAdmin
   module Dependency
     module Requirements
-      DEVISE = '>= 4.0', '< 5'
+      DEVISE = ">= 4.0", "< 5"
     end
 
     # Provides a clean interface to check for gem dependencies at runtime.
@@ -42,9 +42,9 @@ module ActiveAdmin
     # => false
     #
     def self.method_missing(name, *args)
-      if name[-1] == '?'
+      if name[-1] == "?"
         Matcher.new(name[0..-2]).match? args
-      elsif name[-1] == '!'
+      elsif name[-1] == "!"
         Matcher.new(name[0..-2]).match! args
       else
         Matcher.new name.to_s
@@ -91,7 +91,7 @@ module ActiveAdmin
       end
 
       def inspect
-        info = spec ? "#{spec.name} #{spec.version}" : '(missing)'
+        info = spec ? "#{spec.name} #{spec.version}" : "(missing)"
         "<ActiveAdmin::Dependency::Matcher for #{info}>"
       end
     end

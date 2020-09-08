@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'active_admin/view_helpers/display_helper'
+require "rails_helper"
+require "active_admin/view_helpers/display_helper"
 
 RSpec.describe "#pretty_format" do
   let(:view_klass) do
@@ -12,49 +12,49 @@ RSpec.describe "#pretty_format" do
 
   let(:formatted_obj) { view.pretty_format(obj) }
 
-  shared_examples_for 'an object convertible to string' do
+  shared_examples_for "an object convertible to string" do
     it "should call `to_s` on the given object" do
       expect(formatted_obj).to eq obj.to_s
     end
   end
 
-  context 'when given a string' do
-    let(:obj) { 'hello' }
+  context "when given a string" do
+    let(:obj) { "hello" }
 
-    it_behaves_like 'an object convertible to string'
+    it_behaves_like "an object convertible to string"
   end
 
-  context 'when given an integer' do
+  context "when given an integer" do
     let(:obj) { 23 }
 
-    it_behaves_like 'an object convertible to string'
+    it_behaves_like "an object convertible to string"
   end
 
-  context 'when given a float' do
+  context "when given a float" do
     let(:obj) { 5.67 }
 
-    it_behaves_like 'an object convertible to string'
+    it_behaves_like "an object convertible to string"
   end
 
-  context 'when given an exponential' do
+  context "when given an exponential" do
     let(:obj) { 10**30 }
 
-    it_behaves_like 'an object convertible to string'
+    it_behaves_like "an object convertible to string"
   end
 
-  context 'when given a symbol' do
+  context "when given a symbol" do
     let(:obj) { :foo }
 
-    it_behaves_like 'an object convertible to string'
+    it_behaves_like "an object convertible to string"
   end
 
-  context 'when given an arbre element' do
+  context "when given an arbre element" do
     let(:obj) { Arbre::Element.new.br }
 
-    it_behaves_like 'an object convertible to string'
+    it_behaves_like "an object convertible to string"
   end
 
-  shared_examples_for 'a time-ish object' do
+  shared_examples_for "a time-ish object" do
     it "formats it with the default long format" do
       expect(formatted_obj).to eq "February 28, 1985 20:15"
     end
@@ -101,16 +101,16 @@ RSpec.describe "#pretty_format" do
     end
   end
 
-  context 'when given a Time in utc' do
+  context "when given a Time in utc" do
     let(:obj) { Time.utc(1985, "feb", 28, 20, 15, 1) }
 
-    it_behaves_like 'a time-ish object'
+    it_behaves_like "a time-ish object"
   end
 
-  context 'when given a DateTime' do
+  context "when given a DateTime" do
     let(:obj) { DateTime.new(1985, 2, 28, 20, 15, 1) }
 
-    it_behaves_like 'a time-ish object'
+    it_behaves_like "a time-ish object"
   end
 
   context "given an ActiveRecord object" do

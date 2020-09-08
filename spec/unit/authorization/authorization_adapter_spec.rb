@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::AuthorizationAdapter do
   let(:adapter) { ActiveAdmin::AuthorizationAdapter.new(double, double) }
@@ -36,15 +36,15 @@ RSpec.describe ActiveAdmin::AuthorizationAdapter do
       expect(adapter.authorized?(:read, String)).to eq true
     end
 
-    it 'should match against an instance' do
+    it "should match against an instance" do
       expect(adapter.authorized?(:read, "String")).to eq true
     end
 
-    it 'should not match a different class' do
+    it "should not match a different class" do
       expect(adapter.authorized?(:read, Hash)).to eq false
     end
 
-    it 'should not match a different instance' do
+    it "should not match a different instance" do
       expect(adapter.authorized?(:read, {})).to eq false
     end
   end

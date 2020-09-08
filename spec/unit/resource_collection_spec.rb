@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'active_admin/resource_collection'
+require "rails_helper"
+require "active_admin/resource_collection"
 
 RSpec.describe ActiveAdmin::ResourceCollection do
   let(:application) { ActiveAdmin::Application.new }
@@ -60,7 +60,7 @@ RSpec.describe ActiveAdmin::ResourceCollection do
     it "shouldn't allow a Page/Resource mismatch to occur" do
       expect do
         ActiveAdmin.register User
-        ActiveAdmin.register_page 'User'
+        ActiveAdmin.register_page "User"
       end.to raise_error ActiveAdmin::ResourceCollection::IncorrectClass
     end
 

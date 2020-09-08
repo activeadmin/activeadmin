@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   before do
@@ -75,7 +75,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
         expect(controller.send(:active_admin_config)).to receive(:ordering).twice.and_return(
           {
             published_date: proc do |order_clause|
-              [order_clause.to_sql, 'NULLS LAST'].join(' ') if order_clause.order == 'desc'
+              [order_clause.to_sql, "NULLS LAST"].join(" ") if order_clause.order == "desc"
             end
           }.with_indifferent_access
         )
@@ -202,7 +202,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     let!(:category) { Category.create! }
 
     let(:params) do
-      ActionController::Parameters.new(user: { type: 'User::VIP', posts_attributes: [custom_category_id: category.id] })
+      ActionController::Parameters.new(user: { type: "User::VIP", posts_attributes: [custom_category_id: category.id] })
     end
 
     subject do

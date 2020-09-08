@@ -278,13 +278,13 @@ module ActiveAdmin
         # Display a column for checkbox
         def selectable_column
           return unless active_admin_config.batch_actions.any?
-          column resource_selection_toggle_cell, class: 'col-selectable', sortable: false do |resource|
+          column resource_selection_toggle_cell, class: "col-selectable", sortable: false do |resource|
             resource_selection_cell resource
           end
         end
 
         def index_column(start_value = 1)
-          column '#', class: 'col-index', sortable: false do |resource|
+          column "#", class: "col-index", sortable: false do |resource|
             @collection.offset_value + @collection.index(resource) + start_value
           end
         end
@@ -293,9 +293,9 @@ module ActiveAdmin
         def id_column
           raise "#{resource_class.name} has no primary_key!" unless resource_class.primary_key
           column(resource_class.human_attribute_name(resource_class.primary_key), sortable: resource_class.primary_key) do |resource|
-            if controller.action_methods.include?('show')
+            if controller.action_methods.include?("show")
               link_to resource.id, resource_path(resource), class: "resource_id_link"
-            elsif controller.action_methods.include?('edit')
+            elsif controller.action_methods.include?("edit")
               link_to resource.id, edit_resource_path(resource), class: "resource_id_link"
             else
               resource.id
@@ -304,7 +304,7 @@ module ActiveAdmin
         end
 
         def default_actions
-          raise '`default_actions` is no longer provided in ActiveAdmin 1.x. Use `actions` instead.'
+          raise "`default_actions` is no longer provided in ActiveAdmin 1.x. Use `actions` instead."
         end
 
         # Add links to perform actions.
@@ -344,12 +344,12 @@ module ActiveAdmin
         #
         # ```
         def actions(options = {}, &block)
-          name = options.delete(:name) { '' }
+          name = options.delete(:name) { "" }
           defaults = options.delete(:defaults) { true }
           dropdown = options.delete(:dropdown) { false }
-          dropdown_name = options.delete(:dropdown_name) { I18n.t 'active_admin.dropdown_actions.button_label', default: 'Actions' }
+          dropdown_name = options.delete(:dropdown_name) { I18n.t "active_admin.dropdown_actions.button_label", default: "Actions" }
 
-          options[:class] ||= 'col-actions'
+          options[:class] ||= "col-actions"
 
           column name, options do |resource|
             if dropdown
@@ -373,13 +373,13 @@ module ActiveAdmin
 
         def defaults(resource, options = {})
           localizer = ActiveAdmin::Localizers.resource(active_admin_config)
-          if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
+          if controller.action_methods.include?("show") && authorized?(ActiveAdmin::Auth::READ, resource)
             item localizer.t(:view), resource_path(resource), class: "view_link #{options[:css_class]}", title: localizer.t(:view)
           end
-          if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
+          if controller.action_methods.include?("edit") && authorized?(ActiveAdmin::Auth::UPDATE, resource)
             item localizer.t(:edit), edit_resource_path(resource), class: "edit_link #{options[:css_class]}", title: localizer.t(:edit)
           end
-          if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
+          if controller.action_methods.include?("destroy") && authorized?(ActiveAdmin::Auth::DESTROY, resource)
             item localizer.t(:delete), resource_path(resource), class: "delete_link #{options[:css_class]}", title: localizer.t(:delete),
                                                                 method: :delete, data: { confirm: localizer.t(:delete_confirmation) }
           end

@@ -1,4 +1,4 @@
-require 'active_admin/localizers/resource_localizer'
+require "active_admin/localizers/resource_localizer"
 
 module ActiveAdmin
   module Localizers

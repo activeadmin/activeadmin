@@ -1,4 +1,4 @@
-require 'active_admin/abstract_view_factory'
+require "active_admin/abstract_view_factory"
 
 module ActiveAdmin
   class ViewFactory < AbstractViewFactory

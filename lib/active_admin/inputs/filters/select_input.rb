@@ -7,7 +7,7 @@ module ActiveAdmin
         def input_name
           return method if seems_searchable?
 
-          searchable_method_name + (multiple? ? '_in' : '_eq')
+          searchable_method_name + (multiple? ? "_in" : "_eq")
         end
 
         def searchable_method_name
@@ -22,7 +22,7 @@ module ActiveAdmin
 
         # Provide the AA translation to the blank input field.
         def include_blank
-          I18n.t 'active_admin.any' if super
+          I18n.t "active_admin.any" if super
         end
 
         def input_html_options_name

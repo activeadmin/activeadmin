@@ -3,7 +3,7 @@ module ActiveAdmin
     class DatepickerInput < ::Formtastic::Inputs::StringInput
       def input_html_options
         super.tap do |options|
-          options[:class] = [options[:class], "datepicker"].compact.join(' ')
+          options[:class] = [options[:class], "datepicker"].compact.join(" ")
           options[:data] ||= {}
           options[:data].merge! datepicker_options
         end

@@ -1,4 +1,4 @@
-require 'simplecov' if ENV["COVERAGE"] == "true"
+require "simplecov" if ENV["COVERAGE"] == "true"
 
 RSpec.configure do |config|
   config.disable_monkey_patching!

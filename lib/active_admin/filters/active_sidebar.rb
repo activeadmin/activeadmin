@@ -1,11 +1,11 @@
-require 'active_admin/filters/active'
+require "active_admin/filters/active"
 
 module ActiveAdmin
   module Filters
     class ActiveSidebar < ActiveAdmin::SidebarSection
 
       def initialize
-        super 'search_status', sidebar_options
+        super "search_status", sidebar_options
       end
 
       def block
@@ -13,11 +13,11 @@ module ActiveAdmin
           active_filters = ActiveAdmin::Filters::Active.new(active_admin_config, assigns[:search])
           span do
             if current_scope
-              h4 I18n.t("active_admin.search_status.current_scope"), style: 'display: inline'
-              b scope_name(current_scope), class: 'current_scope_name', style: "display: inline"
+              h4 I18n.t("active_admin.search_status.current_scope"), style: "display: inline"
+              b scope_name(current_scope), class: "current_scope_name", style: "display: inline"
             end
             div style: "margin-top: 10px" do
-              h4 I18n.t("active_admin.search_status.current_filters"), style: 'margin-bottom: 10px'
+              h4 I18n.t("active_admin.search_status.current_filters"), style: "margin-bottom: 10px"
               ul do
                 if active_filters.filters.blank?
                   li I18n.t("active_admin.search_status.no_current_filters")

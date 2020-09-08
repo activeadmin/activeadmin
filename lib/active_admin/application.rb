@@ -1,6 +1,6 @@
-require 'active_admin/router'
-require 'active_admin/application_settings'
-require 'active_admin/namespace_settings'
+require "active_admin/router"
+require "active_admin/application_settings"
+require "active_admin/namespace_settings"
 
 module ActiveAdmin
   class Application
@@ -45,8 +45,8 @@ module ActiveAdmin
     include AssetRegistration
 
     # Event that gets triggered on load of Active Admin
-    BeforeLoadEvent = 'active_admin.application.before_load'.freeze
-    AfterLoadEvent = 'active_admin.application.after_load'.freeze
+    BeforeLoadEvent = "active_admin.application.before_load".freeze
+    AfterLoadEvent = "active_admin.application.after_load".freeze
 
     # Runs before the app's AA initializer
     def setup!
@@ -164,9 +164,9 @@ module ActiveAdmin
     private
 
     def register_default_assets
-      register_stylesheet 'active_admin.css', media: 'screen'
-      register_stylesheet 'active_admin/print.css', media: 'print'
-      register_javascript 'active_admin.js'
+      register_stylesheet "active_admin.css", media: "screen"
+      register_stylesheet "active_admin/print.css", media: "print"
+      register_javascript "active_admin.js"
     end
 
     # Since app/admin is alphabetically before app/models, we have to remove it

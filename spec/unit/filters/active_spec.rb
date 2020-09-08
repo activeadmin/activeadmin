@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Filters::Active do
   let(:resource) do
@@ -16,7 +16,7 @@ RSpec.describe ActiveAdmin::Filters::Active do
     Post.ransack(params[:q])
   end
 
-  it 'should have filters' do
+  it "should have filters" do
     expect(subject.filters.size).to eq(1)
   end
 end

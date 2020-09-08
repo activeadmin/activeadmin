@@ -104,7 +104,7 @@ module ActiveAdmin
           route << resource_path_name # "posts" or "post"
           route << suffix # "path" or "index path"
 
-          route.compact.join('_').to_sym # :admin_category_posts_path
+          route.compact.join("_").to_sym # :admin_category_posts_path
         end
 
         # @return params to pass to instance path

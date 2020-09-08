@@ -2,7 +2,7 @@ unless ActiveAdmin::Dependency.cancan? || ActiveAdmin::Dependency.cancancan?
   ActiveAdmin::Dependency.cancan!
 end
 
-require 'cancan'
+require "cancan"
 
 # Add a setting to the application to configure the ability
 ActiveAdmin::Application.inheritable_setting :cancan_ability_class, "Ability"

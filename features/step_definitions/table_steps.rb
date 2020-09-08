@@ -13,7 +13,7 @@ class HtmlTableToTextHelper
   def to_array
     rows = Nokogiri::HTML(@html).css("#{@selector} tr")
     rows.map do |row|
-      row.css('th, td').map do |td|
+      row.css("th, td").map do |td|
         cell_to_string(td)
       end
     end
@@ -23,13 +23,13 @@ class HtmlTableToTextHelper
 
   def cell_to_string(td)
     str = ""
-    input = td.css('input').last
+    input = td.css("input").last
 
     if input
       str << input_to_string(input)
     end
 
-    str << td.content.strip.gsub("\n", ' ')
+    str << td.content.strip.gsub("\n", " ")
   end
 
   def input_to_string(input)

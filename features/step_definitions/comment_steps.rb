@@ -13,13 +13,13 @@ When /^I add a comment "([^"]*)"$/ do |comment|
 end
 
 Given /^(a|\d+) comments added by admin with an email "([^"]+)"?$/ do |number, email|
-  number = number == 'a' ? 1 : number.to_i
+  number = number == "a" ? 1 : number.to_i
   admin_user = ensure_user_created(email)
 
-  comment_text = 'Comment %i'
+  comment_text = "Comment %i"
 
   number.times do |i|
-    ActiveAdmin::Comment.create!(namespace: 'admin',
+    ActiveAdmin::Comment.create!(namespace: "admin",
                                  body: comment_text % i,
                                  resource_type: Post.to_s,
                                  resource_id: Post.first.id,
@@ -29,5 +29,5 @@ Given /^(a|\d+) comments added by admin with an email "([^"]+)"?$/ do |number, e
 end
 
 Then /^I should see (\d+) comments?$/ do |number|
-  expect(page).to have_selector('div.active_admin_comment', count: number.to_i)
+  expect(page).to have_selector("div.active_admin_comment", count: number.to_i)
 end

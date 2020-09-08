@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :category, foreign_key: :custom_category_id, optional: true
-  belongs_to :author, class_name: 'User', optional: true
+  belongs_to :author, class_name: "User", optional: true
   has_many :taggings
   has_many :tags, through: :taggings
   accepts_nested_attributes_for :author

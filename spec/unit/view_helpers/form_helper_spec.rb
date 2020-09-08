@@ -1,17 +1,17 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::ViewHelpers::FormHelper do
-  describe '.active_admin_form_for' do
+  describe ".active_admin_form_for" do
     let(:view) { mock_action_view }
-    let(:resource) { double 'resource' }
+    let(:resource) { double "resource" }
     let(:default_options) { { builder: ActiveAdmin::FormBuilder } }
 
-    it 'calls semantic_form_for with the ActiveAdmin form builder' do
+    it "calls semantic_form_for with the ActiveAdmin form builder" do
       expect(view).to receive(:semantic_form_for).with(resource, builder: ActiveAdmin::FormBuilder)
       view.active_admin_form_for(resource)
     end
 
-    it 'allows the form builder to be customized' do
+    it "allows the form builder to be customized" do
       # We can't use a stub here because options gets marshalled, and a new
       # instance built. Any constant will work.
       custom_builder = Object

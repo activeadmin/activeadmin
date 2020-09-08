@@ -1,4 +1,4 @@
-Around '@root' do |scenario, block|
+Around "@root" do |scenario, block|
   previous_root = ActiveAdmin.application.root_to
 
   begin

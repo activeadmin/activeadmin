@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::SidebarSection do
   let(:options) { {} }
@@ -35,8 +35,8 @@ RSpec.describe ActiveAdmin::Views::SidebarSection do
     expect(html.find_by_tag("span").first.parent).to eq html.find_by_tag("div").first
   end
 
-  context 'with a custom class attribute' do
-    let(:options) { { class: 'custom_class' } }
+  context "with a custom class attribute" do
+    let(:options) { { class: "custom_class" } }
 
     it "should have 'custom_class' class" do
       expect(html.class_list).to include("custom_class")

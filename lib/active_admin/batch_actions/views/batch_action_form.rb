@@ -1,4 +1,4 @@
-require 'active_admin/component'
+require "active_admin/component"
 
 module ActiveAdmin
   module BatchActions
@@ -30,7 +30,7 @@ module ActiveAdmin
       private
 
       def closing_form_tag
-        '</form>'.html_safe
+        "</form>".html_safe
       end
 
     end

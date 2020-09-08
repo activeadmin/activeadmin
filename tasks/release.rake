@@ -2,7 +2,7 @@ require "chandler/tasks"
 require_relative "release_manager"
 
 namespace :release do
-  desc 'Publish npm package'
+  desc "Publish npm package"
   task :npm_push do
     ReleaseManager.new.npm_push
   end

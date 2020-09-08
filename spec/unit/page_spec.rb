@@ -1,5 +1,5 @@
-require 'rails_helper'
-require File.expand_path('config_shared_examples', __dir__)
+require "rails_helper"
+require File.expand_path("config_shared_examples", __dir__)
 
 module ActiveAdmin
   RSpec.describe Page do

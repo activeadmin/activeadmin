@@ -1,12 +1,12 @@
-require 'fileutils'
+require "fileutils"
 
 module ActiveAdmin
   class TestApplication
     attr_reader :rails_env, :template
 
     def initialize(opts = {})
-      @rails_env = opts[:rails_env] || 'test'
-      @template = opts[:template] || 'rails_template'
+      @rails_env = opts[:rails_env] || "test"
+      @template = opts[:template] || "rails_template"
     end
 
     def soft_generate
@@ -34,9 +34,9 @@ module ActiveAdmin
 
       args << "--skip-turbolinks" unless turbolinks_app?
 
-      command = ['bundle', 'exec', 'rails', 'new', app_dir, *args].join(' ')
+      command = ["bundle", "exec", "rails", "new", app_dir, *args].join(" ")
 
-      env = { 'BUNDLE_GEMFILE' => expanded_gemfile, 'RAILS_ENV' => rails_env }
+      env = { "BUNDLE_GEMFILE" => expanded_gemfile, "RAILS_ENV" => rails_env }
 
       Bundler.with_original_env { abort unless Kernel.system(env, command) }
     end
@@ -68,11 +68,11 @@ module ActiveAdmin
     end
 
     def main_app?
-      expanded_gemfile == File.expand_path('Gemfile')
+      expanded_gemfile == File.expand_path("Gemfile")
     end
 
     def turbolinks_app?
-      expanded_gemfile == File.expand_path('gemfiles/rails_60_turbolinks/Gemfile')
+      expanded_gemfile == File.expand_path("gemfiles/rails_60_turbolinks/Gemfile")
     end
 
     def gemfile

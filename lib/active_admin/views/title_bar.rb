@@ -43,7 +43,7 @@ module ActiveAdmin
       end
 
       def build_title_tag
-        h2(@title, id: 'page_title')
+        h2(@title, id: "page_title")
       end
 
       def build_action_items

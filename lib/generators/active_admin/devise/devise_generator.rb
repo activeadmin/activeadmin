@@ -22,7 +22,7 @@ module ActiveAdmin
           raise ActiveAdmin::GeneratorError, "#{e.message} If you don't want to use devise, run the generator with --skip-users."
         end
 
-        require 'devise'
+        require "devise"
 
         initializer_file =
           File.join(destination_root, "config", "initializers", "devise.rb")

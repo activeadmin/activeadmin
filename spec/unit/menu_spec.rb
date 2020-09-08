@@ -1,6 +1,6 @@
-require 'rails_helper'
-require 'active_admin/menu'
-require 'active_admin/menu_item'
+require "rails_helper"
+require "active_admin/menu"
+require "active_admin/menu_item"
 
 include ActiveAdmin
 
@@ -27,7 +27,7 @@ RSpec.describe ActiveAdmin::Menu do
     end
 
     it "should give access to the menu item as an array" do
-      expect(menu['Dashboard'].label).to eq 'Dashboard'
+      expect(menu["Dashboard"].label).to eq "Dashboard"
     end
   end
 

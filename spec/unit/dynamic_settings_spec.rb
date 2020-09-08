@@ -1,10 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::DynamicSettingsNode do
   subject { ActiveAdmin::DynamicSettingsNode.build }
 
   context "StringSymbolOrProcSetting" do
-    before { subject.register :foo, 'bar', :string_symbol_or_proc }
+    before { subject.register :foo, "bar", :string_symbol_or_proc }
 
     it "should pass through a string" do
       subject.foo = "string"
@@ -20,9 +20,9 @@ RSpec.describe ActiveAdmin::DynamicSettingsNode do
 
     it "should send message if symbol given" do
       ctx = double
-      expect(ctx).to receive(:quux).and_return 'qqq'
+      expect(ctx).to receive(:quux).and_return "qqq"
       subject.foo = :quux
-      expect(subject.foo(ctx)).to eq 'qqq'
+      expect(subject.foo(ctx)).to eq "qqq"
     end
   end
 end

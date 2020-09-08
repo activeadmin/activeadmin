@@ -20,7 +20,7 @@ module ActiveAdmin
     end
 
     def to_sql
-      [table_column, @op, ' ', @order].compact.join
+      [table_column, @op, " ", @order].compact.join
     end
 
     def table

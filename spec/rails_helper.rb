@@ -1,12 +1,12 @@
-require 'spec_helper'
+require "spec_helper"
 
-ENV['RAILS_ENV'] = 'test'
+ENV["RAILS_ENV"] = "test"
 
 require_relative "../tasks/test_application"
 
 require "#{ActiveAdmin::TestApplication.new.full_app_dir}/config/environment.rb"
 
-require 'rspec/rails'
+require "rspec/rails"
 
 # Disabling authentication in specs so that we don't have to worry about
 # it allover the place
@@ -20,7 +20,7 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
 
-  require 'support/active_admin_integration_spec_helper'
+  require "support/active_admin_integration_spec_helper"
   config.include ActiveAdminIntegrationSpecHelper
 end
 

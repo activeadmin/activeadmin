@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Devise::Controller do
   let(:controller_class) do
@@ -22,9 +22,9 @@ RSpec.describe ActiveAdmin::Devise::Controller do
     action_controller_config[:relative_url_root] = previous_relative_url_root
   end
 
-  context 'with a RAILS_RELATIVE_URL_ROOT set' do
+  context "with a RAILS_RELATIVE_URL_ROOT set" do
     around do |example|
-      with_temp_relative_url_root('/foo') { example.call }
+      with_temp_relative_url_root("/foo") { example.call }
     end
 
     it "should set the root path to the default namespace" do
@@ -37,7 +37,7 @@ RSpec.describe ActiveAdmin::Devise::Controller do
     end
   end
 
-  context 'without a RAILS_RELATIVE_URL_ROOT set' do
+  context "without a RAILS_RELATIVE_URL_ROOT set" do
     around do |example|
       with_temp_relative_url_root(nil) { example.call }
     end
@@ -53,7 +53,7 @@ RSpec.describe ActiveAdmin::Devise::Controller do
   end
 
   context "within a scoped route" do
-    SCOPE = '/aa_scoped'
+    SCOPE = "/aa_scoped"
 
     before do
       # Remove existing routes

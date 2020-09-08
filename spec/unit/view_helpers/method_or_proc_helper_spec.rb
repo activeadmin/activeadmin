@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe MethodOrProcHelper do
   let(:receiver) { double }
@@ -28,18 +28,18 @@ RSpec.describe MethodOrProcHelper do
   end
 
   describe "#call_method_or_proc_on" do
-    [:hello, 'hello'].each do |key|
+    [:hello, "hello"].each do |key|
       context "when a #{key.class}" do
         it "should call the method on the receiver" do
-          expect(receiver).to receive(key).and_return 'hello'
+          expect(receiver).to receive(key).and_return "hello"
 
-          expect(context.call_method_or_proc_on(receiver, key)).to eq 'hello'
+          expect(context.call_method_or_proc_on(receiver, key)).to eq "hello"
         end
 
         it "should receive additional arguments" do
-          expect(receiver).to receive(key).with(:world).and_return 'hello world'
+          expect(receiver).to receive(key).with(:world).and_return "hello world"
 
-          expect(context.call_method_or_proc_on(receiver, key, :world)).to eq 'hello world'
+          expect(context.call_method_or_proc_on(receiver, key, :world)).to eq "hello world"
         end
       end
     end

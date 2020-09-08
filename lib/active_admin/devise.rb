@@ -1,6 +1,6 @@
 ActiveAdmin::Dependency.devise! ActiveAdmin::Dependency::Requirements::DEVISE
 
-require 'devise'
+require "devise"
 
 module ActiveAdmin
   module Devise
@@ -9,7 +9,7 @@ module ActiveAdmin
       {
         path: ActiveAdmin.application.default_namespace || "/",
         controllers: ActiveAdmin::Devise.controllers,
-        path_names: { sign_in: 'login', sign_out: "logout" },
+        path_names: { sign_in: "login", sign_out: "logout" },
         sign_out_via: [*::Devise.sign_out_via, ActiveAdmin.application.logout_link_method].uniq
       }
     end
@@ -27,14 +27,14 @@ module ActiveAdmin
     module Controller
       extend ::ActiveSupport::Concern
       included do
-        layout 'active_admin_logged_out'
+        layout "active_admin_logged_out"
         helper ::ActiveAdmin::ViewHelpers
       end
 
       # Redirect to the default namespace on logout
       def root_path
         namespace = ActiveAdmin.application.default_namespace.presence
-        root_path_method = [namespace, :root_path].compact.join('_')
+        root_path_method = [namespace, :root_path].compact.join("_")
 
         path = if Helpers::Routes.respond_to? root_path_method
                  Helpers::Routes.send root_path_method
@@ -45,7 +45,7 @@ module ActiveAdmin
 
         # NOTE: `relative_url_root` is deprecated by Rails.
         #       Remove prefix here if it is removed completely.
-        prefix = Rails.configuration.action_controller[:relative_url_root] || ''
+        prefix = Rails.configuration.action_controller[:relative_url_root] || ""
         prefix + path
       end
     end

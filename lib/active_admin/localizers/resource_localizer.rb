@@ -19,16 +19,16 @@ module ActiveAdmin
 
       def translate(key, options = {})
         scope = options.delete(:scope)
-        specific_key = array_to_key('resources', @model_name, scope, key)
+        specific_key = array_to_key("resources", @model_name, scope, key)
         defaults = [array_to_key(scope, key), key.to_s.titleize]
-        ::I18n.t specific_key, **options.reverse_merge(model: @model, default: defaults, scope: 'active_admin')
+        ::I18n.t specific_key, **options.reverse_merge(model: @model, default: defaults, scope: "active_admin")
       end
       alias_method :t, :translate
 
       protected
 
       def array_to_key(*arr)
-        arr.flatten.compact.join('.').to_sym
+        arr.flatten.compact.join(".").to_sym
       end
     end
   end

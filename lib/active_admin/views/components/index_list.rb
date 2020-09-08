@@ -1,4 +1,4 @@
-require 'active_admin/helpers/collection'
+require "active_admin/helpers/collection"
 
 module ActiveAdmin
   module Views
@@ -15,7 +15,7 @@ module ActiveAdmin
       end
 
       def tag_name
-        'ul'
+        "ul"
       end
 
       # Builds the links for presenting different index views to the user

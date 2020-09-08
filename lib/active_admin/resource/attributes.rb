@@ -36,7 +36,7 @@ module ActiveAdmin
       end
 
       def counter_cache_col?(c)
-        c.name.end_with?('_count')
+        c.name.end_with?("_count")
       end
 
       def filtered_col?(c)

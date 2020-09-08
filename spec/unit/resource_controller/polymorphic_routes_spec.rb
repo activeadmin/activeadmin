@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::ResourceController::PolymorphicRoutes, type: :controller do
   let(:klass) { Admin::PostsController }
@@ -18,16 +18,16 @@ RSpec.describe ActiveAdmin::ResourceController::PolymorphicRoutes, type: :contro
         get :index, params: params
       end
 
-      context 'without belongs_to' do
+      context "without belongs_to" do
         let(:post_config) { ActiveAdmin.register Post }
         let(:post) { Post.create! title: "Hello World" }
 
-        it 'works with no parent' do
+        it "works with no parent" do
           expect(controller.send(method, [:admin, post])).to include("/admin/posts/#{post.id}")
         end
       end
 
-      context 'with belongs_to' do
+      context "with belongs_to" do
         let(:user) { User.create! }
         let(:post) { Post.create! title: "Hello World", author: user }
 
@@ -43,18 +43,18 @@ RSpec.describe ActiveAdmin::ResourceController::PolymorphicRoutes, type: :contro
             let(:filter_param) { current_page.sub(/_?posts/, "").presence }
             let(:params) { filter_param ? { "#{filter_param}_id" => send(filter_param).id } : {} }
 
-            it 'works with no parent' do
+            it "works with no parent" do
               expect(controller.send(method, [:admin, post])).to include("/admin/posts/#{post.id}")
             end
 
-            it 'works with a user as parent' do
+            it "works with a user as parent" do
               expect(controller.send(method, [:admin, user, post])).to include("/admin/users/#{user.id}/posts/#{post.id}")
             end
           end
         end
       end
 
-      context 'with multiple belongs_to (not fully supported yet)' do
+      context "with multiple belongs_to (not fully supported yet)" do
         let(:user) { User.create! }
         let(:category) { Category.create! name: "Category" }
         let(:post) { Post.create! title: "Hello World", author: user, category: category }
@@ -88,15 +88,15 @@ RSpec.describe ActiveAdmin::ResourceController::PolymorphicRoutes, type: :contro
             let(:filter_param) { current_page.sub(/_?posts/, "").presence }
             let(:params) { filter_param ? { "#{filter_param}_id" => send(filter_param).id } : {} }
 
-            it 'works with no parent' do
+            it "works with no parent" do
               expect(controller.send(method, [:admin, post])).to include("/admin/posts/#{post.id}")
             end
 
-            it 'works with a user as parent' do
+            it "works with a user as parent" do
               expect(controller.send(method, [:admin, user, post])).to include("/admin/users/#{user.id}/posts/#{post.id}")
             end
 
-            it 'works with a category as parent' do
+            it "works with a category as parent" do
               expect(controller.send(method, [:admin, category, post])).to include("/admin/categories/#{category.id}/posts/#{post.id}")
             end
           end
