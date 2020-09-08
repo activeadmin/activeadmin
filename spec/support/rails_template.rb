@@ -32,7 +32,7 @@ generate :migration, "create_profiles user_id:integer bio:text #{timestamps}"
 
 copy_file File.expand_path('templates/models/user.rb', __dir__), 'app/models/user.rb'
 
-generate :migration, "create_users type:string first_name:string last_name:string username:string age:integer encrypted_password:string #{timestamps}"
+generate :migration, "create_users type:string first_name:string last_name:string username:string age:integer encrypted_password:string reason_of_sign_in:string #{timestamps}"
 
 copy_file File.expand_path('templates/models/profile.rb', __dir__), 'app/models/profile.rb'
 
