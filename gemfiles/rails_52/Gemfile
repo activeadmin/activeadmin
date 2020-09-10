@@ -22,7 +22,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "apparition"
+  gem "cuprite", "0.11"
   gem "capybara", "~> 3.14"
   gem "db-query-matchers", "0.10.0"
 

@@ -49,8 +49,8 @@ Before "@javascript" do
   Capybara.current_driver = Capybara.javascript_driver
 end
 
-require "capybara/apparition"
-Capybara.javascript_driver = :apparition
+require "capybara/cuprite"
+Capybara.javascript_driver = :cuprite
 
 Capybara.server = :webrick
 
