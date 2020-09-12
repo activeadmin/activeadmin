@@ -1,14 +1,4 @@
 GIT
-  remote: https://github.com/rails/sprockets-rails.git
-  revision: c269f5e01fdffa5c41350e855183d94ff33d318a
-  ref: c269f5e01fdffa5c41350e855183d94ff33d318a
-  specs:
-    sprockets-rails (3.2.1)
-      actionpack (>= 4.0)
-      activesupport (>= 4.0)
-      sprockets (>= 3.0.0)
-
-GIT
   remote: https://github.com/rails/sprockets.git
   revision: 2d6b1a8bde0cf870c14a2d193fa9a9be09ef99fc
   ref: 2d6b1a8bde0cf870c14a2d193fa9a9be09ef99fc
@@ -446,6 +436,10 @@ GEM
     simplecov-html (0.12.2)
     spoon (0.0.6)
       ffi
+    sprockets-rails (3.2.2)
+      actionpack (>= 4.0)
+      activesupport (>= 4.0)
+      sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     sys-uname (1.2.1)
       ffi (>= 1.0.0)
@@ -516,7 +510,7 @@ DEPENDENCIES
   rubocop-rspec (~> 1.30)
   simplecov (= 0.19.0)
   sprockets!
-  sprockets-rails!
+  sprockets-rails
   sqlite3 (~> 1.4)
   yard
 
