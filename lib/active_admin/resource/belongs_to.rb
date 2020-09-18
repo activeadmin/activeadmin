@@ -46,7 +46,7 @@ module ActiveAdmin
       end
 
       def to_param
-        :"#{@target_name}_id"
+        (@options[:param] || "#{@target_name}_id").to_sym
       end
     end
   end

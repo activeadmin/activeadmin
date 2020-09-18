@@ -50,6 +50,27 @@ Feature: Belongs To
     When I press "Update Post"
     Then I should see "Post was successfully updated."
 
+  Scenario: Updating a child resource page with custom configuration
+    Given a configuration of:
+    """
+      ActiveAdmin.register User
+      ActiveAdmin.register Post do
+        belongs_to :author, class_name: "User", param: "user_id", route_name: "user"
+        permit_params :title
+
+        form do |f|
+          f.actions
+        end
+      end
+    """
+    When I go to the last author's last post page
+    And I follow "Edit Post"
+    Then I should see the element "form[action='/admin/users/2/posts/2']"
+    And I should see a link to "Hello World" in the breadcrumb
+
+    When I press "Update Post"
+    Then I should see "Post was successfully updated."
+
   Scenario: Creating a child resource page
     Given a configuration of:
     """
