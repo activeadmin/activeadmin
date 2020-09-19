@@ -138,6 +138,8 @@ uses `column` to build the fields to show with the table.
 
 ```ruby
 table_for order.payments do
+  index_column
+  id_column
   column(:payment_type) { |payment| payment.payment_type.titleize }
   column "Received On",     :created_at
   column "Details & Notes", :payment_details
@@ -149,14 +151,15 @@ The `column` method can take a title as its first argument and data
 (`:your_method`) as its second (or first if no title provided). Column also
 takes a block.
 
-### Internationalization
+The `index_column` nethoe takes an optional offset parameter to allow a developer
+to set the starting number for the index (default is 1).
 
-To customize the internationalization for the component, specify a resource to
-use for translations via the `i18n` named parameter. This is only necessary for
-non-`ActiveRecord::Relation` collections:
+If `table_for` is called with a non-`ActiveRecord::Relation` collection, you must
+specify the resource class in order to use `id_column`. This class is also used
+for translations of column headers.
 
 ```ruby
-table_for payments, i18n: Payment do
+table_for payments, resource_class: Payment do
   # ...
 end
 ```

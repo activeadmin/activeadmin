@@ -11,7 +11,8 @@ module ActiveAdmin
         options = attrs.extract_options!
         @sortable = options.delete(:sortable)
         @collection = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
-        @resource_class = options.delete(:i18n)
+        @resource_class = options.delete(:resource_class)
+        @resource_class ||= options.delete(:i18n) # Deprecated
         @resource_class ||= @collection.klass if @collection.respond_to? :klass
 
         @columns = []
@@ -24,6 +25,22 @@ module ActiveAdmin
 
       def columns(*attrs)
         attrs.each { |attr| column(attr) }
+      end
+
+      def index_column(start_value = 1)
+        column '#', class: 'col-index', sortable: false do |resource|
+          offset_value = @collection.offset_value if @collection.respond_to? :offset_value
+          offset_value ||= 0
+          offset_value + @collection.index(resource) + start_value
+        end
+      end
+
+      def id_column
+        raise "Resource class not specified!" unless @resource_class
+        raise "#{@resource_class.name} has no primary_key!" unless @resource_class.primary_key
+        column(@resource_class.human_attribute_name(@resource_class.primary_key), sortable: @resource_class.primary_key) do |resource|
+          auto_link resource, resource.id
+        end
       end
 
       def column(*args, &block)
