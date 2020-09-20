@@ -28,7 +28,7 @@ module ActiveAdmin
       end
 
       def index_column(start_value = 1)
-        column '#', class: 'col-index', sortable: false do |resource|
+        column '#', class: "col-index", sortable: false do |resource|
           offset_value = @collection.offset_value if @collection.respond_to? :offset_value
           offset_value ||= 0
           offset_value + @collection.index(resource) + start_value
