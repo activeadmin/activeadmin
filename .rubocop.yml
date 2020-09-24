@@ -71,6 +71,9 @@ Layout/FirstHashElementIndentation:
   Enabled: true
   EnforcedStyle: consistent
 
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+
 Layout/FirstParameterIndentation:
   Enabled: true
 

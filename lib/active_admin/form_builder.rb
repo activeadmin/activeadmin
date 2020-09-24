@@ -110,9 +110,10 @@ module ActiveAdmin
           template.link_to I18n.t("active_admin.has_many_remove"), "#", class: "button has_many_remove"
         end
       elsif allow_destroy?(form_builder.object)
-        form_builder.input(:_destroy, as: :boolean,
-                                      wrapper_html: { class: "has_many_delete" },
-                                      label: I18n.t("active_admin.has_many_delete"))
+        form_builder.input(
+          :_destroy, as: :boolean,
+                     wrapper_html: { class: "has_many_delete" },
+                     label: I18n.t("active_admin.has_many_delete"))
       end
 
       if sortable_column
@@ -172,11 +173,12 @@ module ActiveAdmin
     end
 
     def wrap_div_or_li(html)
-      template.content_tag(already_in_an_inputs_block ? :li : :div,
-                           html,
-                           class: "has_many_container #{assoc}",
-                           "data-sortable" => sortable_column,
-                           "data-sortable-start" => sortable_start)
+      template.content_tag(
+        already_in_an_inputs_block ? :li : :div,
+        html,
+        class: "has_many_container #{assoc}",
+        "data-sortable" => sortable_column,
+        "data-sortable-start" => sortable_start)
     end
   end
 end
