@@ -738,13 +738,15 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         context "with allow_destroy as proc" do
-          it_behaves_like("has many with allow_destroy as String, Symbol or Proc",
-                          Proc.new { |child| child.foo? })
+          it_behaves_like(
+            "has many with allow_destroy as String, Symbol or Proc",
+            Proc.new { |child| child.foo? })
         end
 
         context "with allow_destroy as lambda" do
-          it_behaves_like("has many with allow_destroy as String, Symbol or Proc",
-                          lambda { |child| child.foo? })
+          it_behaves_like(
+            "has many with allow_destroy as String, Symbol or Proc",
+            lambda { |child| child.foo? })
         end
 
         context "with allow_destroy as any other expression that evaluates to true" do

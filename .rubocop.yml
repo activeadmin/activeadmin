@@ -39,7 +39,13 @@ Lint/ParenthesesAsGroupedExpression:
 Layout/AccessModifierIndentation:
   Enabled: true
 
+Layout/ArgumentAlignment:
+  Enabled: true
+
 Layout/CaseIndentation:
+  Enabled: true
+
+Layout/ClosingParenthesisIndentation:
   Enabled: true
 
 Layout/CommentIndentation:
@@ -68,12 +74,19 @@ Layout/FirstHashElementIndentation:
   Enabled: true
   EnforcedStyle: consistent
 
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+
 Layout/FirstParameterIndentation:
   Enabled: true
 
 Layout/ParameterAlignment:
   Enabled: true
   EnforcedStyle: with_fixed_indentation
+
+Layout/IndentationStyle:
+  Enabled: true
+  EnforcedStyle: spaces
 
 Rails/FilePath:
   Enabled: true

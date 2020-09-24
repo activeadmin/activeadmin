@@ -12,12 +12,12 @@ module ActiveAdmin
         copy_file "#{__dir__}/plugins/jquery.js", Rails.root.join("config/webpack/plugins/jquery.js").to_s
 
         insert_into_file Rails.root.join("config/webpack/environment.js").to_s,
-          "const jquery = require('./plugins/jquery')\n",
-          after: /require\(('|")@rails\/webpacker\1\);?\n/
+                         "const jquery = require('./plugins/jquery')\n",
+                         after: /require\(('|")@rails\/webpacker\1\);?\n/
 
         insert_into_file Rails.root.join("config/webpack/environment.js").to_s,
-          "environment.plugins.prepend('jquery', jquery)\n",
-          before: "module.exports"
+                         "environment.plugins.prepend('jquery', jquery)\n",
+                         before: "module.exports"
 
         run "yarn add @activeadmin/activeadmin"
       end

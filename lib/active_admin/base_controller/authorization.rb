@@ -52,9 +52,10 @@ module ActiveAdmin
       #                 an ActiveAdmin::AccessDenied.
       def authorize!(action, subject = nil)
         unless authorized? action, subject
-          raise ActiveAdmin::AccessDenied.new(current_active_admin_user,
-                                              action,
-                                              subject)
+          raise ActiveAdmin::AccessDenied.new(
+            current_active_admin_user,
+            action,
+            subject)
         end
       end
 

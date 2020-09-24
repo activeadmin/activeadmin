@@ -130,12 +130,13 @@ module ActiveAdmin
           pagination_total = config.fetch(:pagination_total, true)
           per_page = config.fetch(:per_page, active_admin_config.per_page)
 
-          paginated_collection(collection, entry_name: active_admin_config.resource_label,
-                                           entries_name: active_admin_config.plural_resource_label(count: collection_size),
-                                           download_links: download_links,
-                                           paginator: paginator,
-                                           per_page: per_page,
-                                           pagination_total: pagination_total) do
+          paginated_collection(
+            collection, entry_name: active_admin_config.resource_label,
+                        entries_name: active_admin_config.plural_resource_label(count: collection_size),
+                        download_links: download_links,
+                        paginator: paginator,
+                        per_page: per_page,
+                        pagination_total: pagination_total) do
             div class: "index_content" do
               insert_tag(renderer_class, config, collection)
             end
