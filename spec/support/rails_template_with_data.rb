@@ -36,12 +36,12 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
     user = users[i % users.size]
     cat = categories[i % categories.size]
     published = published_at_values[i % published_at_values.size]
-    Post.create title: "Blog Post \#{i}",
-                body: "Blog post \#{i} is written by \#{user.username} about \#{cat.name}",
-                category: cat,
-                published_date: published,
-                author: user,
-                starred: true
+    Post.create! title: "Blog Post \#{i}",
+                 body: "Blog post \#{i} is written by \#{user.username} about \#{cat.name}",
+                 category: cat,
+                 published_date: published,
+                 author: user,
+                 starred: true
   end
 
   80.times do |i|
