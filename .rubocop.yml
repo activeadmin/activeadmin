@@ -39,6 +39,9 @@ Lint/ParenthesesAsGroupedExpression:
 Layout/AccessModifierIndentation:
   Enabled: true
 
+Layout/ArgumentAlignment:
+  Enabled: true
+
 Layout/CaseIndentation:
   Enabled: true
 

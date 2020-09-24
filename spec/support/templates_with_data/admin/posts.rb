@@ -109,7 +109,7 @@ ActiveAdmin.register Post do
           f.input :title
           f.input :author
           f.input :published_date,
-            hint: f.object.persisted? && "Created at #{f.object.created_at}"
+                  hint: f.object.persisted? && "Created at #{f.object.created_at}"
           f.input :custom_category_id
           f.input :category
           f.input :position

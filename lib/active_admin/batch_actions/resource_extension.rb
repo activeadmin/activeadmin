@@ -69,9 +69,9 @@ module ActiveAdmin
 
           redirect_to active_admin_config.route_collection_path(params),
                       notice: I18n.t("active_admin.batch_actions.succesfully_destroyed",
-                                        count: selected_ids.count,
-                                        model: active_admin_config.resource_label.downcase,
-                                        plural_model: active_admin_config.plural_resource_label(count: selected_ids.count).downcase)
+                                     count: selected_ids.count,
+                                     model: active_admin_config.resource_label.downcase,
+                                     plural_model: active_admin_config.plural_resource_label(count: selected_ids.count).downcase)
         end
       end
 
