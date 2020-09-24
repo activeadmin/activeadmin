@@ -45,6 +45,9 @@ Layout/ArgumentAlignment:
 Layout/CaseIndentation:
   Enabled: true
 
+Layout/ClosingParenthesisIndentation:
+  Enabled: true
+
 Layout/CommentIndentation:
   Enabled: true
 
