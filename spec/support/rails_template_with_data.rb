@@ -30,21 +30,32 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
     Category.create! name: name
   end
 
+  tags = ["Amy Winehouse", "Guitar", "Genius Oddities", "Music Culture"].collect do |name|
+    Tag.create! name: name
+  end
+
   published_at_values = [Time.now.utc - 5.days, Time.now.utc - 1.day, nil, Time.now.utc + 3.days]
 
-  1_000.times do |i|
+  100.times do |i|
     user = users[i % users.size]
     cat = categories[i % categories.size]
     published = published_at_values[i % published_at_values.size]
-    Post.create title: "Blog Post \#{i}",
-                body: "Blog post \#{i} is written by \#{user.username} about \#{cat.name}",
-                category: cat,
-                published_date: published,
-                author: user,
-                starred: true
+    post = Post.create! title: "Blog Post \#{i}",
+                        body: "Blog post \#{i} is written by \#{user.username} about \#{cat.name}",
+                        category: cat,
+                        published_date: published,
+                        author: user,
+                        starred: true
+
+    if rand > 0.4
+      Tagging.create!(
+        tag: tags.sample,
+        post: post
+      )
+    end
   end
 
-  800.times do |i|
+  80.times do |i|
     ActiveAdmin::Comment.create!(
       namespace: :admin,
       author: AdminUser.first,
