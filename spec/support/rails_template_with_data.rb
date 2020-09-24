@@ -32,7 +32,7 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
 
   published_at_values = [Time.now.utc - 5.days, Time.now.utc - 1.day, nil, Time.now.utc + 3.days]
 
-  1_000.times do |i|
+  100.times do |i|
     user = users[i % users.size]
     cat = categories[i % categories.size]
     published = published_at_values[i % published_at_values.size]
@@ -44,7 +44,7 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
                 starred: true
   end
 
-  800.times do |i|
+  80.times do |i|
     ActiveAdmin::Comment.create!(
       namespace: :admin,
       author: AdminUser.first,
