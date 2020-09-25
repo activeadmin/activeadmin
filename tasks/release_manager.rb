@@ -213,7 +213,7 @@ class ReleaseManager
   end
 
   def gem_version
-    @gem_version ||= File.read(gem_version_file).match(/^  VERSION = '(.*)'$/)[1]
+    @gem_version ||= File.read(gem_version_file).match(/^  VERSION = "(.*)"$/)[1]
   end
 
   def prerelease?(version)
