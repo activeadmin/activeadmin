@@ -329,7 +329,7 @@ GEM
     parallel (1.19.2)
     parallel_tests (3.3.0)
       parallel
-    parser (2.7.1.4)
+    parser (2.7.1.5)
       ast (~> 2.4.1)
     phantomjs (2.1.1.0)
     polyamorous (2.3.2)
@@ -406,17 +406,17 @@ GEM
       rspec-expectations (~> 3.9)
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
-    rubocop (0.91.1)
+    rubocop (0.92.0)
       parallel (~> 1.10)
-      parser (>= 2.7.1.1)
+      parser (>= 2.7.1.5)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.7)
       rexml
-      rubocop-ast (>= 0.4.0, < 1.0)
+      rubocop-ast (>= 0.5.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.4.2)
-      parser (>= 2.7.1.4)
+    rubocop-ast (0.5.0)
+      parser (>= 2.7.1.5)
     rubocop-rails (2.8.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
@@ -511,7 +511,7 @@ DEPENDENCIES
   rspec-mocks!
   rspec-rails
   rspec-support!
-  rubocop (= 0.91.1)
+  rubocop (= 0.92.0)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
   simplecov (= 0.19.0)
