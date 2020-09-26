@@ -29,7 +29,7 @@ class Changelog
       lines << ""
 
       pulls.sort_by(&:merged_at).reverse_each do |pull|
-        lines << "* #{pull.title}. [##{pull.number}] by [@#{pull.user.login}]"
+        lines << "* #{pull.title.strip}. [##{pull.number}] by [@#{pull.user.login}]"
       end
 
       lines << ""
