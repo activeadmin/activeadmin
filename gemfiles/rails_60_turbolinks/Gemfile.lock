@@ -53,7 +53,7 @@ GIT
 PATH
   remote: ../..
   specs:
-    activeadmin (2.8.0)
+    activeadmin (2.8.1)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (>= 3.1, < 5.0)
       formtastic_i18n (~> 0.4)
