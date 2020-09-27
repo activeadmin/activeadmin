@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 2.8.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.8.0..v2.8.1)
+
+### Bug Fixes
+
+* Fix `permitted_param` generation for `belongs_to` when `:param` is used. [#6460] by [@deivid-rodriguez]
+* Fix streaming CSV export. [#6451] by [@deivid-rodriguez]
+* Fix input string filter no rendering dropdown input when its column name ends with a ransack predicate. [#6422] by [@Fivell]
+
 ## 2.8.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.7.0..v2.8.0)
 
 ### Enhancements
@@ -611,6 +619,9 @@ Please check [0-6-stable] for previous changes.
 [#6341]: https://github.com/activeadmin/activeadmin/pull/6341
 [#6368]: https://github.com/activeadmin/activeadmin/pull/6368
 [#6393]: https://github.com/activeadmin/activeadmin/pull/6393
+[#6422]: https://github.com/activeadmin/activeadmin/pull/6422
+[#6451]: https://github.com/activeadmin/activeadmin/pull/6451
+[#6460]: https://github.com/activeadmin/activeadmin/pull/6460
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
