@@ -34,7 +34,7 @@
   <div id="content_wrapper">
     <div class="flashes">
       <% flash_messages.each do |type, message| %>
-        <%= content_tag :div, message, class: "flash flash_#{type}" %>
+        <%= content_tag(:div, message, class: "flash flash_#{type}") if message.present? %>
       <% end %>
     </div>
     <div id="active_admin_content">
