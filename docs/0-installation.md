@@ -48,6 +48,9 @@ The generator adds these core files, among others:
 * `app/assets/stylesheets/active_admin.scss`
 * `config/initializers/active_admin.rb`
 
+If you do not want to require the javascript for ActiveAdmin on all pages,
+then make sure that you don't have `require_tree .` in your application.js
+
 Now, migrate and seed your database before starting the server:
 
 ```sh
