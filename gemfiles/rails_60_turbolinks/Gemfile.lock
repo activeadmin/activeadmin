@@ -443,4 +443,4 @@ DEPENDENCIES
   turbolinks (~> 5.2)
 
 BUNDLED WITH
-   2.1.4
+   2.2.0.rc.1
