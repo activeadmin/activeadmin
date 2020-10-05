@@ -5,6 +5,7 @@ inherit_mode:
     - Include
 
 require:
+  - rubocop-packaging
   - rubocop-rails
   - rubocop-rspec
 
@@ -87,6 +88,18 @@ Layout/ParameterAlignment:
 Layout/IndentationStyle:
   Enabled: true
   EnforcedStyle: spaces
+
+Packaging/BundlerSetupInTests:
+  Enabled: true
+
+Packaging/GemspecGit:
+  Enabled: true
+
+Packaging/RequireHardcodingLib:
+  Enabled: true
+
+Packaging/RequireRelativeHardcodingLib:
+  Enabled: true
 
 Rails/FilePath:
   Enabled: true
