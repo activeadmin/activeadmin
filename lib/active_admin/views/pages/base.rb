@@ -38,7 +38,15 @@ module ActiveAdmin
             end
 
             active_admin_application.javascripts.each do |path|
-              javascript_tag = active_admin_namespace.use_webpacker ? javascript_pack_tag(path) : javascript_include_tag(path)
+              if active_admin_namespace.use_webpacker
+                if active_admin_namespace.use_webpacker_chunks
+                  javascript_tag = javascript_packs_with_chunks_tag path.chomp(".js")
+                else
+                  javascript_tag = javascript_pack_tag path
+                end
+              else
+                javascript_tag = javascript_include_tag path
+              end
               text_node(javascript_tag)
             end
 

@@ -14,7 +14,11 @@
   <% end %>
   <% ActiveAdmin.application.javascripts.each do |path| %>
     <% if ActiveAdmin.application.use_webpacker %>
-      <%= javascript_pack_tag path %>
+      <% if ActiveAdmin.application.use_webpacker_chunks %>
+        <%= javascript_packs_with_chunks_tag path.chomp(".js") %>
+      <% else %>
+        <%= javascript_pack_tag path %>
+      <% end %>
     <% else %>
       <%= javascript_include_tag path %>
     <% end %>

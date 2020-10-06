@@ -122,5 +122,8 @@ module ActiveAdmin
 
     # Switch between asset pipeline and webpacker assets
     register :use_webpacker, false
+
+    # Allow webpacker to split js into chunks
+    register :use_webpacker_chunks, false
   end
 end

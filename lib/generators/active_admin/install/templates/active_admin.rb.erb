@@ -332,4 +332,9 @@ ActiveAdmin.setup do |config|
   # You can switch to using Webpacker here.
   #
   <% unless @use_webpacker %># <% end %>config.use_webpacker = true
+  #
+  # Webpack allows you to divide your javascript code in chunks.
+  # When doing so, enable this to load the js code correctly.
+  #
+  # config.use_webpacker_chunks = true
 end
