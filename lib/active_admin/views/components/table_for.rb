@@ -12,7 +12,10 @@ module ActiveAdmin
         @sortable = options.delete(:sortable)
         @collection = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
         @resource_class = options.delete(:resource_class)
-        @resource_class ||= options.delete(:i18n) # Deprecated
+        if options.key? :i18n
+          Deprecation.warn "The `i18n` parameter is deprecated; use `resource_class` instead."
+          @resource_class = options.delete(:i18n)
+        end
         @resource_class ||= @collection.klass if @collection.respond_to? :klass
 
         @columns = []
