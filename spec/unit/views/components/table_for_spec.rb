@@ -116,9 +116,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         expect(table.find_by_tag("tr").size).to eq 4 # 1 for head, 3 for rows
       end
 
-      [1, 2, 4].each_with_index do |content, index|
+      ["1", "2", "4"].each_with_index do |content, index|
         it "should create a cell with #{content}" do
-          expect(table.find_by_tag("td")[index].content).to eq content.to_s
+          expect(table.find_by_tag("td")[index].content).to eq content
         end
       end
     end
@@ -140,9 +140,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
         expect(table.find_by_tag("tr").size).to eq 4 # 1 for head, 3 for rows
       end
 
-      [100, 101, 102].each_with_index do |content, index|
+      ["100", "101", "102"].each_with_index do |content, index|
         it "should create a cell with #{content}" do
-          expect(table.find_by_tag("td")[index].content).to eq content.to_s
+          expect(table.find_by_tag("td")[index].content).to eq content
         end
       end
     end
