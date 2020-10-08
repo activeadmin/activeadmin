@@ -6,6 +6,9 @@
     margin-top: 10px;
     margin-bottom: 40px;
     max-width: 700px;
+    &:after {
+      display: inline-block;
+    }
 
     .active_admin_comment_meta {
       width: 130px;
