@@ -12,7 +12,7 @@ Feature: Belongs To
     """
       ActiveAdmin.register User
       ActiveAdmin.register Post do
-        belongs_to :author, class_name: "User", param: "user_id", route_name: "user"
+        belongs_to :user
       end
     """
     When I go to the last author's posts
@@ -27,7 +27,7 @@ Feature: Belongs To
     """
       ActiveAdmin.register User
       ActiveAdmin.register Post do
-        belongs_to :author, class_name: "User", param: "user_id", route_name: "user"
+        belongs_to :user
         permit_params :title, :body, :published_date
 
         form do |f|
@@ -76,7 +76,7 @@ Feature: Belongs To
     """
       ActiveAdmin.register User
       ActiveAdmin.register Post do
-        belongs_to :author, class_name: "User", param: "user_id", route_name: "user"
+        belongs_to :user
         permit_params :title, :body, :published_date
 
         form do |f|
@@ -108,7 +108,7 @@ Feature: Belongs To
     """
       ActiveAdmin.register User
       ActiveAdmin.register Post do
-        belongs_to :author, class_name: "User", param: "user_id", route_name: "user"
+        belongs_to :user
       end
     """
     When I go to the last author's posts
@@ -121,7 +121,7 @@ Feature: Belongs To
     """
       ActiveAdmin.register User
       ActiveAdmin.register Post do
-        belongs_to :author, class_name: "User", param: "user_id", route_name: "user", optional: true
+        belongs_to :user, optional: true
       end
     """
     When I go to the last author's posts
@@ -136,7 +136,7 @@ Feature: Belongs To
     """
       ActiveAdmin.register User
       ActiveAdmin.register Post do
-        belongs_to :author, class_name: "User", param: "user_id", route_name: "user"
+        belongs_to :user
         navigation_menu :user
       end
     """

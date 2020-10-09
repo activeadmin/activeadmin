@@ -42,7 +42,13 @@ module ActiveAdmin
         raise "Resource class not specified!" unless @resource_class
         raise "#{@resource_class.name} has no primary_key!" unless @resource_class.primary_key
         column(@resource_class.human_attribute_name(@resource_class.primary_key), sortable: @resource_class.primary_key) do |resource|
-          auto_link resource, resource.id
+          if controller.action_methods.include?("show")
+            link_to resource.id, resource_path(resource), class: "resource_id_link"
+          elsif controller.action_methods.include?("edit")
+            link_to resource.id, edit_resource_path(resource), class: "resource_id_link"
+          else
+            resource.id
+          end
         end
       end
 
