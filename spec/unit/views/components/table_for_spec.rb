@@ -377,7 +377,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
     context "when i18n option is specified" do
       around do |example|
         with_translation(activerecord: { attributes: { post: { title: "Name" } } }) do
-          example.call
+          ActiveSupport::Deprecation.silence do
+            example.call
+          end
         end
       end
 
