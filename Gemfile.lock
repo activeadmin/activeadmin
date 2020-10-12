@@ -391,7 +391,7 @@ GEM
       activesupport (>= 5.2.1)
       i18n
       polyamorous (= 2.3.2)
-    regexp_parser (1.8.1)
+    regexp_parser (1.8.2)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)
@@ -406,7 +406,7 @@ GEM
       rspec-expectations (~> 3.9)
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
-    rubocop (0.93.0)
+    rubocop (0.93.1)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
       rainbow (>= 2.2.2, < 4.0)
@@ -513,7 +513,7 @@ DEPENDENCIES
   rspec-mocks!
   rspec-rails
   rspec-support!
-  rubocop (= 0.93.0)
+  rubocop (= 0.93.1)
   rubocop-packaging (= 0.5.0)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
