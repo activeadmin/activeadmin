@@ -3,9 +3,9 @@
 webpacker_app = ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_webpacker/Gemfile", __dir__)
 
 if webpacker_app
-  create_file 'app/javascript/packs/some-random-css.css'
-  create_file 'app/javascript/packs/some-random-js.js'
-  remove_dir 'app/assets'
+  create_file "app/javascript/packs/some-random-css.css"
+  create_file "app/javascript/packs/some-random-js.js"
+  remove_dir "app/assets"
 else
   create_file "app/assets/stylesheets/some-random-css.css"
   create_file "app/assets/javascripts/some-random-js.js"
@@ -64,9 +64,9 @@ unless webpacker_app
   test_env_config += "config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )"
 end
 
-gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, test_env_config
+gsub_file "config/environments/test.rb", /  config.cache_classes = true/, test_env_config
 
-gsub_file 'config/boot.rb', /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
+gsub_file "config/boot.rb", /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
   ENV['BUNDLE_GEMFILE'] = "#{File.expand_path(ENV['BUNDLE_GEMFILE'])}"
 RUBY
 

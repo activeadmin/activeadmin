@@ -77,7 +77,7 @@ module ActiveAdmin
     end
 
     def webpacker_app?
-      expanded_gemfile == File.expand_path('gemfiles/rails_60_webpacker/Gemfile')
+      expanded_gemfile == File.expand_path("gemfiles/rails_60_webpacker/Gemfile")
     end
 
     def gemfile
