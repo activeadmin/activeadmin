@@ -3,8 +3,9 @@
 webpacker_app = ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_webpacker/Gemfile", __dir__)
 
 if webpacker_app
-  create_file "app/javascript/packs/some-random-css.css"
-  create_file "app/javascript/packs/some-random-js.js"
+  create_file 'app/javascript/packs/some-random-css.css'
+  create_file 'app/javascript/packs/some-random-js.js'
+  remove_dir 'app/assets'
 else
   create_file "app/assets/stylesheets/some-random-css.css"
   create_file "app/assets/javascripts/some-random-js.js"

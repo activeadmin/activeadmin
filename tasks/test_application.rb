@@ -33,6 +33,7 @@ module ActiveAdmin
       )
 
       args << "--skip-turbolinks" unless turbolinks_app?
+      args << "--skip-sprockets" if webpacker_app?
 
       command = ["bundle", "exec", "rails", "new", app_dir, *args].join(" ")
 
@@ -73,6 +74,10 @@ module ActiveAdmin
 
     def turbolinks_app?
       expanded_gemfile == File.expand_path("gemfiles/rails_60_turbolinks/Gemfile")
+    end
+
+    def webpacker_app?
+      expanded_gemfile == File.expand_path('gemfiles/rails_60_webpacker/Gemfile')
     end
 
     def gemfile
