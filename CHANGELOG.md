@@ -33,6 +33,10 @@
 
 * Fix filter_columns_for_large_association and filter_method_for_large_association examples. [#6232] by [@ndbroadbent]
 
+### Bug Fixes
+
+* Fix an error if you don't have an app/assets folder and don't use Sprockets. [#6370] by [@hcatlin]
+
 ### Dependency Changes
 
 * Allow formtastic 4. [#6318] by [@deivid-rodriguez]
@@ -622,6 +626,7 @@ Please check [0-6-stable] for previous changes.
 [#6422]: https://github.com/activeadmin/activeadmin/pull/6422
 [#6451]: https://github.com/activeadmin/activeadmin/pull/6451
 [#6460]: https://github.com/activeadmin/activeadmin/pull/6460
+[#6370]: https://github.com/activeadmin/activeadmin/pull/6370
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -659,6 +664,7 @@ Please check [0-6-stable] for previous changes.
 [@gonzedge]: https://github.com/gonzedge
 [@guigs]: https://github.com/guigs
 [@HappyKadaver]: https://github.com/HappyKadaver
+[@hcatlin]: https://github.com/hcatlin
 [@imcvampire]: https://github.com/imcvampire
 [@innparusu95]: https://github.com/innparusu95
 [@ionut998]: https://github.com/ionut998

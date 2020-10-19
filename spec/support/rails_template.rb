@@ -53,17 +53,20 @@ generate :migration, "create_taggings post_id:integer tag_id:integer position:in
 
 copy_file File.expand_path("templates/models/tagging.rb", __dir__), "app/models/tagging.rb"
 
-gsub_file "config/environments/test.rb", /  config.cache_classes = true/, <<-RUBY
-
+test_env_config = <<-RUBY
   config.cache_classes = !ENV['CLASS_RELOADING']
   config.action_mailer.default_url_options = {host: 'example.com'}
-  config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )
-
   config.active_record.maintain_test_schema = false
 
 RUBY
 
-gsub_file "config/boot.rb", /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
+unless webpacker_app
+  test_env_config += "config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )"
+end
+
+gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, test_env_config
+
+gsub_file 'config/boot.rb', /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
   ENV['BUNDLE_GEMFILE'] = "#{File.expand_path(ENV['BUNDLE_GEMFILE'])}"
 RUBY
 

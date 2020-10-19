@@ -6,11 +6,13 @@ module ActiveAdmin
     end
 
     initializer "active_admin.precompile", group: :all do |app|
-      ActiveAdmin.application.stylesheets.each do |path, _|
-        app.config.assets.precompile << path
-      end
-      ActiveAdmin.application.javascripts.each do |path|
-        app.config.assets.precompile << path
+      unless ActiveAdmin.application.use_webpacker
+        ActiveAdmin.application.stylesheets.each do |path, _|
+          app.config.assets.precompile << path
+        end
+        ActiveAdmin.application.javascripts.each do |path|
+          app.config.assets.precompile << path
+        end
       end
     end
 

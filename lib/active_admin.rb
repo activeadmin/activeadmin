@@ -1,15 +1,14 @@
 require "active_support/core_ext"
 require "set"
 
-require "ransack"
-require "ransack_ext"
-require "kaminari"
-require "formtastic"
-require "formtastic_i18n"
-require "inherited_resources"
-require "jquery-rails"
-require "sassc-rails"
-require "arbre"
+require 'ransack'
+require 'ransack_ext'
+require 'kaminari'
+require 'formtastic'
+require 'formtastic_i18n'
+require 'inherited_resources'
+require 'jquery-rails'
+require 'arbre'
 
 require "active_admin/helpers/i18n"
 
