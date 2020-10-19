@@ -622,11 +622,11 @@ Please check [0-6-stable] for previous changes.
 [#6318]: https://github.com/activeadmin/activeadmin/pull/6318
 [#6341]: https://github.com/activeadmin/activeadmin/pull/6341
 [#6368]: https://github.com/activeadmin/activeadmin/pull/6368
+[#6370]: https://github.com/activeadmin/activeadmin/pull/6370
 [#6393]: https://github.com/activeadmin/activeadmin/pull/6393
 [#6422]: https://github.com/activeadmin/activeadmin/pull/6422
 [#6451]: https://github.com/activeadmin/activeadmin/pull/6451
 [#6460]: https://github.com/activeadmin/activeadmin/pull/6460
-[#6370]: https://github.com/activeadmin/activeadmin/pull/6370
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
