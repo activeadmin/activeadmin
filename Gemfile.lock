@@ -416,10 +416,10 @@ GEM
       rubocop-ast (>= 0.6.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.8.0)
+    rubocop-ast (1.0.0)
       parser (>= 2.7.1.5)
-    rubocop-packaging (0.5.0)
-      rubocop (~> 0.89)
+    rubocop-packaging (0.5.1)
+      rubocop (>= 0.89, < 2.0)
     rubocop-rails (2.8.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
@@ -516,7 +516,7 @@ DEPENDENCIES
   rspec-rails
   rspec-support!
   rubocop (= 0.93.1)
-  rubocop-packaging (= 0.5.0)
+  rubocop-packaging (= 0.5.1)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
   simplecov (= 0.19.0)

@@ -52,7 +52,7 @@ end
 group :lint do
   # Code style
   gem "rubocop", "0.93.1"
-  gem "rubocop-packaging", "0.5.0"
+  gem "rubocop-packaging", "0.5.1"
   gem "rubocop-rspec", "~> 1.30"
   gem "rubocop-rails", "~> 2.3"
   gem "mdl", "0.11.0"
