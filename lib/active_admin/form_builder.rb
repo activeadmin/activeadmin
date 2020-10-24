@@ -40,7 +40,7 @@ module ActiveAdmin
     attr_reader :assoc
     attr_reader :options
     attr_reader :heading, :sortable_column, :sortable_start
-    attr_reader :new_record, :destroy_option
+    attr_reader :new_record, :destroy_option, :remove_record
 
     def initialize(has_many_form, assoc, options)
       super has_many_form
@@ -72,6 +72,7 @@ module ActiveAdmin
       @sortable_start = options.delete(:sortable_start) || 0
       @new_record = options.key?(:new_record) ? options.delete(:new_record) : true
       @destroy_option = options.delete(:allow_destroy)
+      @remove_record = options.delete(:remove_record)
       options
     end
 
@@ -107,7 +108,8 @@ module ActiveAdmin
     def has_many_actions(form_builder, contents)
       if form_builder.object.new_record?
         contents << template.content_tag(:li) do
-          template.link_to I18n.t("active_admin.has_many_remove"), "#", class: "button has_many_remove"
+          remove_text = remove_record.is_a?(String) ? remove_record : I18n.t("active_admin.has_many_remove")
+          template.link_to remove_text, "#", class: "button has_many_remove"
         end
       elsif allow_destroy?(form_builder.object)
         form_builder.input(
