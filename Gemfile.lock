@@ -440,10 +440,10 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
-    simplecov (0.19.0)
+    simplecov (0.19.1)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
-    simplecov-html (0.12.2)
+    simplecov-html (0.12.3)
     spoon (0.0.6)
       ffi
     sprockets-rails (3.2.2)
@@ -519,7 +519,7 @@ DEPENDENCIES
   rubocop-packaging (= 0.5.1)
   rubocop-rails (~> 2.3)
   rubocop-rspec (~> 1.30)
-  simplecov (= 0.19.0)
+  simplecov (= 0.19.1)
   sprockets!
   sprockets-rails
   sqlite3 (~> 1.4)
