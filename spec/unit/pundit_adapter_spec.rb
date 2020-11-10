@@ -43,6 +43,14 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       expect(auth.authorized?(:update, Post)).to eq false
     end
 
+    it "should allow differentiating between new and create" do
+      expect(auth.authorized?(:new, Post)).to eq true
+
+      announcement_category = Category.create! name: "Announcements"
+      announcement_post = Post.create! title: "Big announcement", category: announcement_category
+      expect(auth.authorized?(:create, announcement_post)).to eq false
+    end
+
     it "should scope the collection" do
       class RSpec::Mocks::DoublePolicy < ApplicationPolicy
         class Scope < Struct.new(:user, :scope)
