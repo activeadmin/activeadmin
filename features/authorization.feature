@@ -15,7 +15,7 @@ Feature: Authorizing Access
 
         when normalized(Post)
           case action
-          when ActiveAdmin::Auth::UPDATE, ActiveAdmin::Auth::DESTROY
+          when :update, :destroy
             false
           else
             true

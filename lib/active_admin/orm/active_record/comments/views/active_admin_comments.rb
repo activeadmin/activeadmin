@@ -36,7 +36,7 @@ module ActiveAdmin
 
           text_node paginate @comments
 
-          if authorized?(ActiveAdmin::Auth::CREATE, ActiveAdmin::Comment)
+          if authorized?(ActiveAdmin::Auth::NEW, ActiveAdmin::Comment)
             build_comment_form
           end
         end

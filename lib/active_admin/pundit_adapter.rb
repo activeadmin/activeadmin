@@ -44,7 +44,9 @@ module ActiveAdmin
     def format_action(action, subject)
       # https://github.com/varvet/pundit/blob/master/lib/generators/pundit/install/templates/application_policy.rb
       case action
+      when Auth::NEW then :new?
       when Auth::CREATE then :create?
+      when Auth::EDIT then :edit?
       when Auth::UPDATE then :update?
       when Auth::READ then subject.is_a?(Class) ? :index? : :show?
       when Auth::DESTROY then subject.is_a?(Class) ? :destroy_all? : :destroy?
