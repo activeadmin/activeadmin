@@ -7,49 +7,6 @@ GIT
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
 
-GIT
-  remote: https://github.com/rspec/rspec-core.git
-  revision: 119282ec3dde5295b337322fc53301c32d0bf7ec
-  ref: 119282ec3dde5295b337322fc53301c32d0bf7ec
-  specs:
-    rspec-core (3.10.0.pre)
-      rspec-support (= 3.10.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec-expectations.git
-  revision: eb1787f0e1a5ec2c2650048ee60a45d4c9738d78
-  ref: eb1787f0e1a5ec2c2650048ee60a45d4c9738d78
-  specs:
-    rspec-expectations (3.10.0.pre)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.10.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec-mocks.git
-  revision: 1728885f65b25a9676c5ce54133ef8a1283e2e0d
-  ref: 1728885f65b25a9676c5ce54133ef8a1283e2e0d
-  specs:
-    rspec-mocks (3.10.0.pre)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.10.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec-support.git
-  revision: 6553911974ee93855008f8ff41c26cea6652d74d
-  ref: 6553911974ee93855008f8ff41c26cea6652d74d
-  specs:
-    rspec-support (3.10.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec.git
-  revision: 3e6c0fb9c9ec68eddd409cfe7b3eb077b390b302
-  ref: 3e6c0fb9c9ec68eddd409cfe7b3eb077b390b302
-  specs:
-    rspec (3.10.0.pre)
-      rspec-core (= 3.10.0.pre)
-      rspec-expectations (= 3.10.0.pre)
-      rspec-mocks (= 3.10.0.pre)
-
 PATH
   remote: ../..
   specs:
@@ -212,7 +169,7 @@ GEM
       activemodel-serializers-xml (>= 1.0)
       activesupport (>= 5.0)
       request_store (>= 1.0)
-    erubi (1.9.0)
+    erubi (1.10.0)
     ferrum (0.9)
       addressable (~> 2.5)
       cliver (~> 0.3)
@@ -352,6 +309,18 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
+    rspec-core (3.10.0)
+      rspec-support (~> 3.10.0)
+    rspec-expectations (3.10.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-mocks (3.10.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
     rspec-rails (4.0.1)
       actionpack (>= 4.2)
       activesupport (>= 4.2)
@@ -360,6 +329,7 @@ GEM
       rspec-expectations (~> 3.9)
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
+    rspec-support (3.10.0)
     ruby2_keywords (0.0.2)
     sassc (2.2.1)
       ffi (~> 1.9)
@@ -389,7 +359,7 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    tzinfo (1.2.7)
+    tzinfo (1.2.8)
       thread_safe (~> 0.1)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -400,7 +370,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.4.0)
+    zeitwerk (2.4.1)
 
 PLATFORMS
   java
@@ -430,12 +400,7 @@ DEPENDENCIES
   rails (~> 6.0.0)
   rails-i18n
   rake
-  rspec!
-  rspec-core!
-  rspec-expectations!
-  rspec-mocks!
   rspec-rails
-  rspec-support!
   simplecov (= 0.19.1)
   sprockets!
   sprockets-rails
