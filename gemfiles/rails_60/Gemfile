@@ -18,8 +18,6 @@ group :development, :test do
   gem "sprockets-rails"
   gem "sassc-rails", "~> 2.1"
 
-  gem "turbolinks", "~> 5.2"
-
   gem "formtastic", "~> 4.0.rc1"
 end
 

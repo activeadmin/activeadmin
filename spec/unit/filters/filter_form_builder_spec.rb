@@ -421,7 +421,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:scope) { Post.ransack }
       let(:body) { filter :category }
       it "should ignore that foreign key and let Ransack handle it" do
-        expect(Post.reflect_on_association(:category).foreign_key).to eq :custom_category_id
+        expect(Post.reflect_on_association(:category).foreign_key.to_sym).to eq :custom_category_id
         expect(body).to have_selector("select[name='q[category_id_eq]']")
       end
     end

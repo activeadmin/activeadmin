@@ -47,7 +47,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.BUNDLE_PATH }}
-          key: gems-2.7.2-rails_60-${{ hashFiles('current_gemfile.lock') }}
+          key: gems-2.7.2-rails_61-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
         run: bundle install --jobs 3
@@ -88,7 +88,7 @@ jobs:
       matrix:
         ruby: [2.7.2, 2.6.6]
 
-        deps: ["rails_52", "rails_60", "rails_60_turbolinks", "rails_60_webpacker"]
+        deps: ["rails_52", "rails_60", "rails_61", "rails_61_turbolinks", "rails_61_webpacker"]
 
         include:
           - ruby: 2.5.8
@@ -96,6 +96,9 @@ jobs:
 
           - ruby: 2.5.8
             deps: rails_60
+
+          - ruby: 2.5.8
+            deps: rails_61
 
     env:
       COVERAGE: true
@@ -107,13 +110,13 @@ jobs:
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
           echo "BUNDLE_PATH=$(pwd)/vendor/bundle" >> $GITHUB_ENV
-        if: matrix.deps == 'rails_60'
+        if: matrix.deps == 'rails_61'
 
       - name: Configure bundler (alternative)
         run: |
           echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> $GITHUB_ENV
           echo "BUNDLE_PATH=$(pwd)/gemfiles/${{ matrix.deps }}/vendor/bundle" >> $GITHUB_ENV
-        if: matrix.deps != 'rails_60'
+        if: matrix.deps != 'rails_61'
 
       - uses: ruby/setup-ruby@v1
         with:

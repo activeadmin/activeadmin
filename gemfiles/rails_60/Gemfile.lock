@@ -8,7 +8,7 @@ PATH
       inherited_resources (~> 1.7)
       jquery-rails (~> 4.2)
       kaminari (~> 1.0, >= 1.2.1)
-      railties (>= 5.2, < 6.1)
+      railties (>= 5.2, < 6.2)
       ransack (~> 2.1, >= 2.1.1)
 
 GEM
@@ -62,10 +62,10 @@ GEM
     activerecord (6.0.3.4)
       activemodel (= 6.0.3.4)
       activesupport (= 6.0.3.4)
-    activerecord-jdbc-adapter (60.2-java)
+    activerecord-jdbc-adapter (60.0-java)
       activerecord (~> 6.0.0)
-    activerecord-jdbcsqlite3-adapter (60.2-java)
-      activerecord-jdbc-adapter (= 60.2)
+    activerecord-jdbcsqlite3-adapter (60.0-java)
+      activerecord-jdbc-adapter (= 60.0)
       jdbc-sqlite3 (~> 3.8, < 3.30)
     activestorage (6.0.3.4)
       actionpack (= 6.0.3.4)
@@ -97,7 +97,7 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     cliver (0.3.2)
-    coderay (1.1.3)
+    coderay (1.1.2)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
     cucumber (5.2.0)
@@ -124,7 +124,7 @@ GEM
       cucumber-messages (~> 13.0, >= 13.0.1)
     cucumber-html-formatter (9.0.0)
       cucumber-messages (~> 13.0, >= 13.0.1)
-    cucumber-messages (13.2.0)
+    cucumber-messages (13.2.1)
       protobuf-cucumber (~> 3.10, >= 3.10.8)
     cucumber-rails (2.2.0)
       capybara (>= 2.18, < 4)
@@ -207,7 +207,7 @@ GEM
     kaminari-core (1.2.1)
     launchy (2.5.0)
       addressable (~> 2.7)
-    loofah (2.7.0)
+    loofah (2.8.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -253,8 +253,6 @@ GEM
     pundit (2.1.0)
       activesupport (>= 3.0.0)
     rack (2.2.3)
-    rack-proxy (0.6.5)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.3.4)
@@ -319,7 +317,14 @@ GEM
       rspec-support (~> 3.9)
     rspec-support (3.10.0)
     ruby2_keywords (0.0.2)
-    semantic_range (2.3.0)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     simplecov (0.20.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -341,15 +346,11 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
+    tilt (2.0.10)
     tzinfo (1.2.8)
       thread_safe (~> 0.1)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webpacker (5.2.1)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-driver (0.7.3-java)
@@ -389,9 +390,10 @@ DEPENDENCIES
   rails-i18n
   rake
   rspec-rails
+  sassc-rails (~> 2.1)
   simplecov (= 0.20.0)
+  sprockets-rails
   sqlite3 (~> 1.4)
-  webpacker (~> 5.1)
 
 BUNDLED WITH
    2.2.0.rc.2
