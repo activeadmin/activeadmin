@@ -112,6 +112,7 @@ ActiveAdmin.register Post do
     f.inputs do
       f.has_many :comment,
                  new_record: 'Leave Comment',
+                 remove_record: 'Remove Comment',
                  allow_destroy: -> (c) { c.author?(current_admin_user) } do |b|
         b.input :body
       end
@@ -138,6 +139,10 @@ The `:heading` option adds a custom heading. You can hide it entirely by passing
 The `:new_record` option controls the visibility of the new record button (shown
 by default).  If you pass a string, it will be used as the text for the new
 record button.
+
+The `:remove_record` option controls the text of the remove button (shown after
+the new record button is pressed). If you pass a string, it will be used as the
+text for the remove button.
 
 The `:sortable` option adds a hidden field and will enable drag & drop sorting
 of the children. It expects the name of the column that will store the index of
