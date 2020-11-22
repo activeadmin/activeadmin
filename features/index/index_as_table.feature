@@ -289,3 +289,24 @@ Feature: Index as Table
       | Id | Title        | Title Length |
       | 1 | Hello World   | 11 |
       | 2 | Bye bye world | 13 |
+
+  Scenario: Show footer row
+    Given a post with the title "Hello World" exists
+    And a post with the title "Bye bye world" exists
+    And an index configuration of:
+      """
+        ActiveAdmin.register Post do
+
+          index has_footer: true do
+            column :id, footer: 'Total:'
+            column :category, footer: ->(collection) { collection.pluck(:id).sum }
+            column :title, footer: :count
+          end
+        end
+      """
+    When I am on the index page for posts
+    Then I should see the "index_table_posts" table:
+      | Id     | Category | Title         |
+      | 2      |          | Bye bye world |
+      | 1      |          | Hello World   |
+      | Total: | 3        | 2             |
