@@ -56,16 +56,16 @@ task cucumber: :"cucumber:all"
 
 namespace :cucumber do
   desc "Run all cucumber suites"
-  task all: [:regular, :filesystem_changes, :reloading]
+  task all: [:regular, :sequential, :reloading]
 
   desc "Run the standard cucumber scenarios in parallel"
   task :regular do
     sh("bin/parallel_cucumber features/")
   end
 
-  desc "Run the cucumber scenarios that change the filesystem sequentially"
-  task :filesystem_changes do
-    sh("bin/cucumber --profile filesystem-changes")
+  desc "Run the cucumber scenarios that can only be run sequentially"
+  task :sequential do
+    sh("bin/cucumber --profile sequential")
   end
 
   desc "Run the cucumber scenarios that test reloading"

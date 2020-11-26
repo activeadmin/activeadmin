@@ -101,7 +101,7 @@ version: 2.1
     name: Run Cucumber features
     command: |
       COVERAGE=true PARALLEL_TEST_PROCESSORS=4 PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_cucumber features/
-      COVERAGE=true bin/cucumber --profile filesystem-changes
+      COVERAGE=true bin/cucumber --profile sequential
       COVERAGE=true bin/cucumber --profile class-reloading
 
 .save_test_times: &save_test_times
