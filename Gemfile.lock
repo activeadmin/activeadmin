@@ -390,7 +390,7 @@ GEM
       rubocop-ast (>= 0.7.1)
     ruby-progressbar (1.10.1)
     ruby2_keywords (0.0.2)
-    sassc (2.2.1)
+    sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
