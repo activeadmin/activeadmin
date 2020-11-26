@@ -12,43 +12,40 @@ end
 
 create_file "app/assets/images/a/favicon.ico"
 
-require "active_admin/dependency"
+initial_timestamp = Time.now.strftime("%Y%M%d%H%M%S").to_i
 
-timestamps = ActiveAdmin::Dependency.rails?(">= 6.1.0.a") ? "--timestamps" : "created_at:datetime updated_at:datetime"
-
-generate :migration, "create_posts title:string body:text published_date:date author_id:integer " +
-  "position:integer custom_category_id:integer starred:boolean foo_id:integer #{timestamps}"
+template File.expand_path("templates/migrations/create_posts.tt", __dir__), "db/migrate/#{initial_timestamp}_create_posts.rb"
 
 copy_file File.expand_path("templates/models/post.rb", __dir__), "app/models/post.rb"
 copy_file File.expand_path("templates/post_decorator.rb", __dir__), "app/models/post_decorator.rb"
 copy_file File.expand_path("templates/post_poro_decorator.rb", __dir__), "app/models/post_poro_decorator.rb"
 
-generate :migration, "create_blog_posts title:string body:text published_date:date author_id:integer " +
-  "position:integer custom_category_id:integer starred:boolean foo_id:integer #{timestamps}"
+template File.expand_path("templates/migrations/create_blog_posts.tt", __dir__), "db/migrate/#{initial_timestamp + 1}_create_blog_posts.rb"
 
 copy_file File.expand_path("templates/models/blog/post.rb", __dir__), "app/models/blog/post.rb"
 
-generate :migration, "create_profiles user_id:integer bio:text #{timestamps}"
+template File.expand_path("templates/migrations/create_profiles.tt", __dir__), "db/migrate/#{initial_timestamp + 2}_create_profiles.rb"
 
 copy_file File.expand_path("templates/models/user.rb", __dir__), "app/models/user.rb"
 
-generate :migration, "create_users type:string first_name:string last_name:string username:string age:integer encrypted_password:string reason_of_sign_in:string #{timestamps}"
+template File.expand_path("templates/migrations/create_users.tt", __dir__), "db/migrate/#{initial_timestamp + 3}_create_users.rb"
 
 copy_file File.expand_path("templates/models/profile.rb", __dir__), "app/models/profile.rb"
 
-generate :model, "publisher --migration=false --parent=User"
+copy_file File.expand_path("templates/models/publisher.rb", __dir__), "app/models/publisher.rb"
 
-generate :migration, "create_categories name:string description:text #{timestamps}"
+template File.expand_path("templates/migrations/create_categories.tt", __dir__), "db/migrate/#{initial_timestamp + 4}_create_categories.rb"
 
 copy_file File.expand_path("templates/models/category.rb", __dir__), "app/models/category.rb"
 
-generate :model, "store name:string user_id:integer"
+copy_file File.expand_path("templates/models/store.rb", __dir__), "app/models/store.rb"
+template File.expand_path("templates/migrations/create_stores.tt", __dir__), "db/migrate/#{initial_timestamp + 5}_create_stores.rb"
 
-generate :migration, "create_tags name:string #{timestamps}"
+template File.expand_path("templates/migrations/create_tags.tt", __dir__), "db/migrate/#{initial_timestamp + 6}_create_tags.rb"
 
 copy_file File.expand_path("templates/models/tag.rb", __dir__), "app/models/tag.rb"
 
-generate :migration, "create_taggings post_id:integer tag_id:integer position:integer #{timestamps}"
+template File.expand_path("templates/migrations/create_taggings.tt", __dir__), "db/migrate/#{initial_timestamp + 7}_create_taggings.rb"
 
 copy_file File.expand_path("templates/models/tagging.rb", __dir__), "app/models/tagging.rb"
 
