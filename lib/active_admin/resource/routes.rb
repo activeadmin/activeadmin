@@ -42,8 +42,6 @@ module ActiveAdmin
         config[:route_collection_name] == config[:route_instance_name]
       end
 
-      private
-
       class RouteBuilder
         def initialize(resource)
           @resource = resource
