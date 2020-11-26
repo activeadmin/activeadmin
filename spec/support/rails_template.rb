@@ -100,7 +100,10 @@ rails_command "db:drop db:create db:migrate", env: ENV["RAILS_ENV"]
 if ENV["RAILS_ENV"] == "test"
   inject_into_file "config/database.yml", "<%= ENV['TEST_ENV_NUMBER'] %>", after: "test.sqlite3"
 
-  rails_command "parallel:drop parallel:create parallel:load_schema", env: ENV["RAILS_ENV"]
+  require "parallel_tests"
+  ParallelTests.determine_number_of_processes(nil).times do |n|
+    copy_file File.expand_path("db/test.sqlite3", destination_root), "db/test.sqlite3#{n + 1}"
+  end
 end
 
 git add: "."
