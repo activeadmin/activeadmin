@@ -121,8 +121,12 @@ jobs:
         if: matrix.deps != 'rails_60'
 
       - name: Set jruby opts
-        run: echo "JRUBY_OPTS='-J-Xmx1024m --dev --debug'" >> $GITHUB_ENV
+        run: echo "JRUBY_OPTS='-J-Xmx1024m --dev'" >> $GITHUB_ENV
         if: startsWith(matrix.ruby, 'jruby')
+
+      - name: Enable coverage tracking
+        run: echo "COVERAGE=true" >> $GITHUB_ENV
+        if: "!startsWith(matrix.ruby, 'jruby')"
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -153,7 +157,7 @@ jobs:
           git config --global user.name ActiveAdmin
 
       - name: Create test app
-        run: COVERAGE=true bin/rake setup
+        run: bin/rake setup
 
       - name: Restore cached RSpec runtimes
         uses: actions/cache@v2
@@ -163,8 +167,8 @@ jobs:
 
       - name: Run RSpec tests
         run: |
-          COVERAGE=true PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_rspec spec/
-          COVERAGE=true RSPEC_FILESYSTEM_CHANGES=true bin/rspec
+          PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_rspec spec/
+          RSPEC_FILESYSTEM_CHANGES=true bin/rspec
 
       - name: Restore cached cucumber runtimes
         uses: actions/cache@v2
@@ -174,9 +178,9 @@ jobs:
 
       - name: Run Cucumber features
         run: |
-          COVERAGE=true PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_cucumber features/
-          COVERAGE=true bin/cucumber --profile filesystem-changes
-          COVERAGE=true bin/cucumber --profile class-reloading
+          PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_cucumber features/
+          bin/cucumber --profile filesystem-changes
+          bin/cucumber --profile class-reloading
 
       - name: Format coverage
         run: |
