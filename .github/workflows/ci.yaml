@@ -79,6 +79,8 @@ jobs:
   test:
     runs-on: ubuntu-20.04
 
+    timeout-minutes: 15
+
     strategy:
       fail-fast: false
 
