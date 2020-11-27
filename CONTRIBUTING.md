@@ -136,12 +136,12 @@ git push --set-upstream origin 325-add-japanese-translations
 
 Finally, go to GitHub and [make a Pull Request][] :D
 
-CircleCI will run our test suite against all supported Rails versions. We care
-about quality, so your PR won't be merged until all tests pass. It's unlikely,
-but it's possible that your changes pass tests in one Rails version but fail in
-another. In that case, you'll have to setup your development environment (as
-explained in step 3) to use the problematic Rails version, and investigate
-what's going on!
+Github Actions will run our test suite against all supported Rails versions. We
+care about quality, so your PR won't be merged until all tests pass. It's
+unlikely, but it's possible that your changes pass tests in one Rails version
+but fail in another. In that case, you'll have to setup your development
+environment (as explained in step 3) to use the problematic Rails version, and
+investigate what's going on!
 
 ### Keeping your Pull Request updated
 
