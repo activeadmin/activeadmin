@@ -43,7 +43,7 @@ version: 2.1
 .create_test_app: &create_test_app
   run:
     name: Create test app
-    command: COVERAGE=true PARALLEL_TEST_PROCESSORS=4 bin/rake setup
+    command: COVERAGE=true bin/rake setup
 
 .restore_test_reporter: &restore_test_reporter
   attach_workspace:
@@ -73,16 +73,6 @@ version: 2.1
       bin/test-reporter sum-coverage coverage/codeclimate.*.json
       bin/test-reporter upload-coverage
 
-.save_test_app: &save_test_app
-  persist_to_workspace:
-    root: tmp/test_apps
-    paths:
-      - rails_*
-
-.restore_test_app_from_workspace: &restore_test_app_from_workspace
-  attach_workspace:
-    at: tmp/test_apps
-
 .restore_test_times: &restore_test_times
   restore_cache:
     keys:
@@ -93,14 +83,14 @@ version: 2.1
   run:
     name: Run RSpec tests
     command: |
-      COVERAGE=true PARALLEL_TEST_PROCESSORS=4 PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_rspec spec/
+      COVERAGE=true PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_rspec spec/
       COVERAGE=true RSPEC_FILESYSTEM_CHANGES=true bin/rspec
 
 .run_features: &run_features
   run:
     name: Run Cucumber features
     command: |
-      COVERAGE=true PARALLEL_TEST_PROCESSORS=4 PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_cucumber features/
+      COVERAGE=true PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_cucumber features/
       COVERAGE=true bin/cucumber --profile sequential
       COVERAGE=true bin/cucumber --profile class-reloading
 
@@ -135,7 +125,7 @@ version: 2.1
   - *restore_gems
   - *install_dependencies
   - *save_gems
-  - *restore_test_app_from_workspace
+  - *create_test_app
   - *restore_test_times
   - *restore_test_reporter
   - *run_tests
@@ -143,20 +133,6 @@ version: 2.1
   - *format_coverage
   - *save_coverage
   - *save_test_times
-
-.test_app_steps: &test_app_steps
-  - checkout
-  - *install_rubygems
-  - *install_bundler
-  - *copy_current_gemfile
-  - *restore_gems
-  - *install_dependencies
-  - *restore_test_reporter
-  - *save_gems
-  - *create_test_app
-  - *format_coverage
-  - *save_coverage
-  - *save_test_app
 
 jobs:
   setup_coverage:
@@ -186,50 +162,6 @@ jobs:
       - *restore_test_reporter
       - *restore_coverage
       - *submit_coverage
-
-  testapp52:
-    docker:
-      - image: circleci/ruby:2.7.1-node
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_52/Gemfile
-
-    steps:
-      *test_app_steps
-
-  testapp60:
-    docker:
-      - image: circleci/ruby:2.7.1-node
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: Gemfile
-
-    steps:
-      *test_app_steps
-
-  testapp60turbolinks:
-    docker:
-      - image: circleci/ruby:2.7.1-node
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_60_turbolinks/Gemfile
-
-    steps:
-      *test_app_steps
-
-  testapp60webpacker:
-    docker:
-      - image: circleci/ruby:2.7.1-node
-        user: root
-
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_60_webpacker/Gemfile
-
-    steps:
-      *test_app_steps
 
   lint_and_docs:
     docker:
@@ -408,78 +340,57 @@ workflows:
           requires:
             - setup_coverage
 
-      - testapp52:
-          requires:
-            - setup_coverage
-
-      - testapp60:
-          requires:
-            - setup_coverage
-
-      - testapp60turbolinks:
-          requires:
-            - setup_coverage
-
-      - testapp60webpacker:
-          requires:
-            - setup_coverage
-
       - ruby25rails52:
           requires:
-            - testapp52
+            - setup_coverage
 
       - ruby25rails60:
           requires:
-            - testapp60
+            - setup_coverage
 
       - ruby26rails52:
           requires:
-            - testapp52
+            - setup_coverage
 
       - ruby26rails60:
           requires:
-            - testapp60
+            - setup_coverage
 
       - ruby26rails60turbolinks:
           requires:
-            - testapp60turbolinks
+            - setup_coverage
 
       - ruby26rails60webpacker:
           requires:
-            - testapp60webpacker
+            - setup_coverage
 
       - ruby27rails52:
           requires:
-            - testapp52
+            - setup_coverage
 
       - ruby27rails60:
           requires:
-            - testapp60
+            - setup_coverage
 
       - ruby27rails60turbolinks:
           requires:
-            - testapp60turbolinks
+            - setup_coverage
 
       - ruby27rails60webpacker:
           requires:
-            - testapp60webpacker
+            - setup_coverage
 
       - jruby92rails52:
           requires:
-            - testapp52
+            - setup_coverage
 
       - jruby92rails60:
           requires:
-            - testapp60
+            - setup_coverage
 
       - upload_coverage:
           requires:
             - lint_and_docs
-
-            - testapp52
-            - testapp60
-            - testapp60turbolinks
-            - testapp60webpacker
 
             - ruby25rails52
             - ruby25rails60

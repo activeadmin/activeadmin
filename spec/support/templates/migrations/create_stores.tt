@@ -1,0 +1,10 @@
+class CreateStores < ActiveRecord::Migration[<%= Rails::VERSION::MAJOR %>.<%= Rails::VERSION::MINOR %>]
+  def change
+    create_table :stores do |t|
+      t.string :name
+      t.integer :user_id
+      t.datetime :created_at
+      t.datetime :updated_at
+    end
+  end
+end
