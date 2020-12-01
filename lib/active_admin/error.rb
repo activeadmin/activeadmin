@@ -45,8 +45,6 @@ module ActiveAdmin
       raise new exception
     end
 
-    private
-
     def self.database_error_classes
       @classes ||= []
     end

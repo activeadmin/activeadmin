@@ -113,8 +113,6 @@ module ActiveAdmin
         @predicate_association
       end
 
-      private
-
       def find_predicate_association
         condition_attribute.klass.reflect_on_all_associations.
           reject { |r| r.options[:polymorphic] }. #skip polymorphic

@@ -57,8 +57,6 @@ module ActiveAdmin
           @cache[name] ||= wrap! collection_decorator, name
         end
 
-        private
-
         def self.wrap!(parent, name)
           ::Class.new parent do
             delegate :reorder, :page, :current_page, :total_pages, :limit_value,

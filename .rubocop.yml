@@ -192,3 +192,6 @@ Layout/SpaceInsideHashLiteralBraces:
 
 Layout/SpaceInsideParens:
   Enabled: true
+
+Lint/UselessAccessModifier:
+  Enabled: true
