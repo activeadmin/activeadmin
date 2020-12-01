@@ -223,8 +223,6 @@ GEM
     parallel_tests (3.4.0)
       parallel
     phantomjs (2.1.1.0)
-    polyamorous (2.3.2)
-      activerecord (>= 5.2.1)
     protobuf-cucumber (3.10.8)
       activesupport (>= 3.2)
       middleware
@@ -274,11 +272,10 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
     rake (13.0.1)
-    ransack (2.3.2)
-      activerecord (>= 5.2.1)
-      activesupport (>= 5.2.1)
+    ransack (2.4.0)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
       i18n
-      polyamorous (= 2.3.2)
     regexp_parser (1.8.2)
     request_store (1.5.0)
       rack (>= 1.4)
