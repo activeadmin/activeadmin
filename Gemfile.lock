@@ -281,8 +281,6 @@ GEM
     parser (2.7.2.0)
       ast (~> 2.4.1)
     phantomjs (2.1.1.0)
-    polyamorous (2.3.2)
-      activerecord (>= 5.2.1)
     protobuf-cucumber (3.10.8)
       activesupport (>= 3.2)
       middleware
@@ -335,11 +333,10 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (3.0.0)
     rake (13.0.1)
-    ransack (2.3.2)
-      activerecord (>= 5.2.1)
-      activesupport (>= 5.2.1)
+    ransack (2.4.0)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
       i18n
-      polyamorous (= 2.3.2)
     regexp_parser (1.8.2)
     request_store (1.5.0)
       rack (>= 1.4)
@@ -437,7 +434,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.25)
-    zeitwerk (2.4.1)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   java
