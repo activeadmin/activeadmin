@@ -33,7 +33,11 @@ Then /^there should be (\d+) "([^"]*)" tags$/ do |count, tag|
 end
 
 Then /^I should see a link to "([^"]*)"$/ do |link|
-  expect(page).to have_xpath "//a", text: link
+  if Capybara.current_driver == Capybara.javascript_driver
+    expect(page).to have_xpath "//a", text: link, wait: 30
+  else
+    expect(page).to have_xpath "//a", text: link
+  end
 end
 
 Then /^an "([^"]*)" exception should be raised when I follow "([^"]*)"$/ do |error, link|

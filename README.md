@@ -4,7 +4,7 @@
 creating elegant backends for website administration.
 
 [![Version         ][rubygems_badge]][rubygems]
-[![Circle CI       ][circle_badge]][circle]
+[![Github Actions  ][actions_badge]][actions]
 [![Coverage        ][coverage_badge]][coverage]
 [![Tidelift        ][tidelift_badge]][tidelift]
 [![Inch CI         ][inch_badge]][inch]
@@ -93,8 +93,8 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 
 [rubygems_badge]: http://img.shields.io/gem/v/activeadmin.svg
 [rubygems]: https://rubygems.org/gems/activeadmin
-[circle_badge]: https://circleci.com/gh/activeadmin/activeadmin/tree/master.svg?style=svg
-[circle]: https://circleci.com/gh/activeadmin/activeadmin/tree/master
+[actions_badge]: https://github.com/activeadmin/activeadmin/workflows/ci/badge.svg
+[actions]: https://github.com/activeadmin/activeadmin/actions
 [coverage_badge]: https://api.codeclimate.com/v1/badges/779e407d22bacff19733/test_coverage
 [coverage]: https://codeclimate.com/github/activeadmin/activeadmin/test_coverage
 [inch_badge]: http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
