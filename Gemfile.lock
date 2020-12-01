@@ -275,8 +275,8 @@ GEM
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
     orm_adapter (0.5.0)
-    parallel (1.19.2)
-    parallel_tests (3.3.0)
+    parallel (1.20.1)
+    parallel_tests (3.4.0)
       parallel
     parser (2.7.2.0)
       ast (~> 2.4.1)
