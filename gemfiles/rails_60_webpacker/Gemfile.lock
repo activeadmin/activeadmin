@@ -333,10 +333,12 @@ GEM
       sprockets-rails
       tilt
     semantic_range (2.3.0)
-    simplecov (0.19.1)
+    simplecov (0.20.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.2)
     spoon (0.0.6)
       ffi
     sprockets (4.0.2)
@@ -400,7 +402,7 @@ DEPENDENCIES
   rails-i18n
   rake
   rspec-rails
-  simplecov (= 0.19.1)
+  simplecov (= 0.20.0)
   sprockets-rails
   sqlite3 (~> 1.4)
   webpacker (~> 5.1)
