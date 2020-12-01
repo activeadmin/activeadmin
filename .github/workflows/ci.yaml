@@ -96,11 +96,8 @@ jobs:
           - ruby: 2.5.8
             deps: rails_60
 
-          - ruby: jruby-9.2.13.0
-            deps: rails_52
-
-          - ruby: jruby-9.2.13.0
-            deps: rails_60
+    env:
+      COVERAGE: true
 
     steps:
       - uses: actions/checkout@v2
@@ -121,14 +118,6 @@ jobs:
           echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> $GITHUB_ENV
           echo "BUNDLE_PATH=$(pwd)/gemfiles/${{ matrix.deps }}/vendor/bundle" >> $GITHUB_ENV
         if: matrix.deps != 'rails_60'
-
-      - name: Set jruby opts
-        run: echo "JRUBY_OPTS='-J-Xmx1024m --dev'" >> $GITHUB_ENV
-        if: startsWith(matrix.ruby, 'jruby')
-
-      - name: Enable coverage tracking
-        run: echo "COVERAGE=true" >> $GITHUB_ENV
-        if: "!startsWith(matrix.ruby, 'jruby')"
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -188,14 +177,12 @@ jobs:
         run: |
           bin/prepare_coverage
           bin/test-reporter format-coverage --output coverage/codeclimate.${{ matrix.ruby }}.${{ matrix.deps }}.json
-        if: "!startsWith(matrix.ruby, 'jruby')"
 
       - name: Save partial coverage as an artifact
         uses: actions/upload-artifact@v2
         with:
           name: coverage
           path: coverage/codeclimate.${{ matrix.ruby }}.${{ matrix.deps }}.json
-        if: "!startsWith(matrix.ruby, 'jruby')"
 
   upload_coverage:
     runs-on: ubuntu-20.04
