@@ -68,7 +68,7 @@ jobs:
       - name: Format coverage
         run: |
           bin/prepare_coverage
-          bin/test-reporter format-coverage --output coverage/codeclimate.lint.json
+          bin/test-reporter --debug format-coverage --output coverage/codeclimate.lint.json
 
       - name: Save partial coverage as an artifact
         uses: actions/upload-artifact@v2
@@ -176,7 +176,7 @@ jobs:
       - name: Format coverage
         run: |
           bin/prepare_coverage
-          bin/test-reporter format-coverage --output coverage/codeclimate.${{ matrix.ruby }}.${{ matrix.deps }}.json
+          bin/test-reporter --debug format-coverage --output coverage/codeclimate.${{ matrix.ruby }}.${{ matrix.deps }}.json
 
       - name: Save partial coverage as an artifact
         uses: actions/upload-artifact@v2
@@ -209,5 +209,5 @@ jobs:
 
       - name: Upload coverage results to Code Climate
         run: |
-          bin/test-reporter sum-coverage coverage/codeclimate.*.json
-          bin/test-reporter upload-coverage
+          bin/test-reporter --debug sum-coverage coverage/codeclimate.*.json
+          bin/test-reporter --debug upload-coverage
