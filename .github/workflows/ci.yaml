@@ -181,16 +181,8 @@ jobs:
       - lint
       - test
 
-    env:
-      CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
-
     steps:
       - uses: actions/checkout@v2
-
-      - name: Download Code Climate test-reporter
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.8.0-linux-amd64 > bin/test-reporter
-          chmod +x bin/test-reporter
 
       - name: Download partial coverages
         uses: actions/download-artifact@v2
@@ -198,8 +190,10 @@ jobs:
           name: coverage
           path: coverage
 
-      - name: Upload coverage results to Code Climate
-        run: |
-          bin/format_coverage
-          bin/test-reporter --debug sum-coverage coverage/codeclimate.*.json
-          bin/test-reporter --debug upload-coverage
+      - name: Format, sum & upload results to Code Climate
+        uses: paambaati/codeclimate-action@v2.7.4
+        env:
+          CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
+        with:
+          debug: true
+          coverageLocations: coverage/raw.*.json:simplecov
