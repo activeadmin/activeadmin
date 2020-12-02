@@ -21,11 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Download Code Climate test-reporter
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.8.0-linux-amd64 > bin/test-reporter
-          chmod +x bin/test-reporter
-
       - name: Configure bundler
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
@@ -68,13 +63,13 @@ jobs:
       - name: Format coverage
         run: |
           bin/prepare_coverage
-          bin/test-reporter format-coverage --output coverage/codeclimate.lint.json
+          mv coverage/.resultset.json coverage/raw.lint.json
 
       - name: Save partial coverage as an artifact
         uses: actions/upload-artifact@v2
         with:
           name: coverage
-          path: coverage/codeclimate.lint.json
+          path: coverage/raw.lint.json
 
   test:
     runs-on: ubuntu-20.04
@@ -101,11 +96,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Download Code Climate test-reporter
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.8.0-linux-amd64 > bin/test-reporter
-          chmod +x bin/test-reporter
 
       - name: Configure bundler (default)
         run: |
@@ -176,13 +166,13 @@ jobs:
       - name: Format coverage
         run: |
           bin/prepare_coverage
-          bin/test-reporter format-coverage --output coverage/codeclimate.${{ matrix.ruby }}.${{ matrix.deps }}.json
+          mv coverage/.resultset.json coverage/raw.${{ matrix.ruby }}.${{ matrix.deps }}.json
 
       - name: Save partial coverage as an artifact
         uses: actions/upload-artifact@v2
         with:
           name: coverage
-          path: coverage/codeclimate.${{ matrix.ruby }}.${{ matrix.deps }}.json
+          path: coverage/raw.${{ matrix.ruby }}.${{ matrix.deps }}.json
 
   upload_coverage:
     runs-on: ubuntu-20.04
@@ -191,15 +181,8 @@ jobs:
       - lint
       - test
 
-    env:
-      CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
-
     steps:
-      - name: Download Code Climate test-reporter
-        run: |
-          mkdir bin
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.8.0-linux-amd64 > bin/test-reporter
-          chmod +x bin/test-reporter
+      - uses: actions/checkout@v2
 
       - name: Download partial coverages
         uses: actions/download-artifact@v2
@@ -207,7 +190,10 @@ jobs:
           name: coverage
           path: coverage
 
-      - name: Upload coverage results to Code Climate
-        run: |
-          bin/test-reporter sum-coverage coverage/codeclimate.*.json
-          bin/test-reporter upload-coverage
+      - name: Format, sum & upload results to Code Climate
+        uses: paambaati/codeclimate-action@v2.7.4
+        env:
+          CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
+        with:
+          debug: true
+          coverageLocations: coverage/raw.*.json:simplecov
