@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+Dir.glob("coverage/raw.*.json").each do |part|
+  output = part.gsub(/raw/, "codeclimate")
+
+  abort unless system("bin/test-reporter", "--debug", "--format-coverage", part, "-t", "simplecov", "--output", output)
+end
