@@ -7,7 +7,7 @@ group :development, :test do
 
   gem "cancancan"
   gem "pundit"
-  gem "jruby-openssl", "~> 0.10.1", platform: :jruby
+  gem "jruby-openssl", "~> 0.10.5", platform: :jruby
 
   gem "draper", "~> 4.0"
   gem "devise"
