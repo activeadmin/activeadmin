@@ -10,7 +10,6 @@ PATH
       kaminari (~> 1.0, >= 1.2.1)
       railties (>= 5.2, < 6.1)
       ransack (~> 2.1, >= 2.1.1)
-      sprockets (>= 3.0, < 4.1)
 
 GEM
   remote: https://rubygems.org/
@@ -391,7 +390,6 @@ DEPENDENCIES
   rake
   rspec-rails
   simplecov (= 0.20.0)
-  sprockets-rails
   sqlite3 (~> 1.4)
   webpacker (~> 5.1)
 

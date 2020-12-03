@@ -53,11 +53,16 @@ gsub_file "config/environments/test.rb", /  config.cache_classes = true/, <<-RUB
 
   config.cache_classes = !ENV['CLASS_RELOADING']
   config.action_mailer.default_url_options = {host: 'example.com'}
-  config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )
 
   config.active_record.maintain_test_schema = false
 
 RUBY
+
+unless webpacker_app
+  inject_into_file "config/environments/test.rb", after: "  config.action_mailer.default_url_options = {host: 'example.com'}" do
+    "\n  config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )\n"
+  end
+end
 
 gsub_file "config/boot.rb", /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
   ENV['BUNDLE_GEMFILE'] = "#{File.expand_path(ENV['BUNDLE_GEMFILE'])}"
