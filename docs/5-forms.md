@@ -110,7 +110,7 @@ ActiveAdmin.register Post do
       end
     end
     f.inputs do
-      f.has_many :comment,
+      f.has_many :comments,
                  new_record: 'Leave Comment',
                  remove_record: 'Remove Comment',
                  allow_destroy: -> (c) { c.author?(current_admin_user) } do |b|
