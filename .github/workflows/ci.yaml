@@ -52,6 +52,9 @@ jobs:
       - name: Install dependencies
         run: bundle install --jobs 3
 
+      - name: Generate docs
+        run: bin/rake docs:build
+
       - name: Setup git
         run: |
           git config --global user.email activeadmin@ci.dummy
@@ -59,6 +62,9 @@ jobs:
 
       - name: Run lints
         run: bin/rake lint
+
+      - name: Run bug report template
+        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
 
       - name: Format coverage
         run: |
