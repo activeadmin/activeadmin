@@ -44,6 +44,10 @@ module ActiveAdminIntegrationSpecHelper
   class MockActionView < ::ActionView::Base
     include ActiveAdmin::ViewHelpers
     include Rails.application.routes.url_helpers
+
+    def compiled_method_container
+      self.class
+    end
   end
 
   # Returns a fake action view instance to use with our renderers

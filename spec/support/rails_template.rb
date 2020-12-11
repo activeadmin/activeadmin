@@ -1,6 +1,6 @@
 # Rails template to build the sample app for specs
 
-webpacker_app = ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_webpacker/Gemfile", __dir__)
+webpacker_app = ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_61_webpacker/Gemfile", __dir__)
 
 if webpacker_app
   create_file "app/javascript/packs/some-random-css.css"
@@ -92,7 +92,7 @@ directory File.expand_path("templates/admin", __dir__), "app/admin"
 directory File.expand_path("templates/policies", __dir__), "app/policies"
 
 # Require turbolinks if necessary
-if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_60_turbolinks/Gemfile", __dir__)
+if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_61_turbolinks/Gemfile", __dir__)
   append_file "app/assets/javascripts/active_admin.js", "//= require turbolinks\n"
 end
 

@@ -8,7 +8,7 @@ PATH
       inherited_resources (~> 1.7)
       jquery-rails (~> 4.2)
       kaminari (~> 1.0, >= 1.2.1)
-      railties (>= 5.2, < 6.1)
+      railties (>= 5.2, < 6.2)
       ransack (~> 2.1, >= 2.1.1)
 
 GEM
@@ -111,7 +111,7 @@ GEM
       cucumber-messages (~> 13.0, >= 13.0.1)
     cucumber-html-formatter (9.0.0)
       cucumber-messages (~> 13.0, >= 13.0.1)
-    cucumber-messages (13.2.0)
+    cucumber-messages (13.2.1)
       protobuf-cucumber (~> 3.10, >= 3.10.8)
     cucumber-rails (2.2.0)
       capybara (>= 2.18, < 4)
@@ -194,7 +194,7 @@ GEM
     kaminari-core (1.2.1)
     launchy (2.5.0)
       addressable (~> 2.7)
-    loofah (2.7.0)
+    loofah (2.8.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
