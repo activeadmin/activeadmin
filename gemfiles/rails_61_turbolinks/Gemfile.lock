@@ -375,6 +375,7 @@ GEM
 PLATFORMS
   java
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   activeadmin!
@@ -408,4 +409,4 @@ DEPENDENCIES
   turbolinks (~> 5.2)
 
 BUNDLED WITH
-   2.2.0.rc.2
+   2.2.0
