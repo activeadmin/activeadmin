@@ -380,4 +380,4 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
 
 BUNDLED WITH
-   2.2.0.rc.2
+   2.2.0

@@ -35,10 +35,10 @@ jobs:
           bundler: none
 
       - name: Install a specific rubygems version
-        run: gem update --system 3.1.4
+        run: gem update --system 3.2.0
 
       - name: Install a specific bundler version
-        run: gem install bundler -v 2.2.0.rc.2
+        run: gem install bundler -v 2.2.0
 
       - name: Cat current Gemfile to a specific file so caching works
         run: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
@@ -124,10 +124,10 @@ jobs:
           bundler: none
 
       - name: Install a specific rubygems version
-        run: gem update --system 3.1.4
+        run: gem update --system 3.2.0
 
       - name: Install a specific bundler version
-        run: gem install bundler -v 2.2.0.rc.2
+        run: gem install bundler -v 2.2.0
 
       - name: Cat current Gemfile to a specific file so caching works
         run: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
