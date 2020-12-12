@@ -74,7 +74,7 @@ GEM
     bcrypt (3.1.16-java)
     builder (3.2.4)
     byebug (11.1.1)
-    cancancan (3.1.0)
+    cancancan (3.2.0)
     capybara (3.34.0)
       addressable
       mini_mime (>= 0.1.3)
