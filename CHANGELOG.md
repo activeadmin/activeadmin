@@ -2,6 +2,27 @@
 
 ## Unreleased
 
+## 2.9.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.8.1..v2.9.0)
+
+### Enhancements
+
+* Support for Rails 6.1. [#6548] by [@deivid-rodriguez]
+* Add ability to override "Remove" button text on has_many forms. [#6523] by [@littleforest]
+* Drop git in gemspec. [#6462] by [@utkarsh2102]
+
+### Bug Fixes
+
+* Pick up upstream fixes in devise templates. [#6536] by [@munen]
+
+### Documentation
+
+* Fix `has_many` syntax in forms documentation. [#6583] by [@krzcho]
+* Add example of using `default_main_content` in show pages. [#6487] by [@sjieg]
+
+### Dependency Changes
+
+* Remove sassc and sprockets runtime dependencies. [#6584] by [@deivid-rodriguez]
+
 ## 2.8.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.8.0..v2.8.1)
 
 ### Bug Fixes
@@ -622,6 +643,13 @@ Please check [0-6-stable] for previous changes.
 [#6422]: https://github.com/activeadmin/activeadmin/pull/6422
 [#6451]: https://github.com/activeadmin/activeadmin/pull/6451
 [#6460]: https://github.com/activeadmin/activeadmin/pull/6460
+[#6462]: https://github.com/activeadmin/activeadmin/pull/6462
+[#6487]: https://github.com/activeadmin/activeadmin/pull/6487
+[#6523]: https://github.com/activeadmin/activeadmin/pull/6523
+[#6536]: https://github.com/activeadmin/activeadmin/pull/6536
+[#6548]: https://github.com/activeadmin/activeadmin/pull/6548
+[#6583]: https://github.com/activeadmin/activeadmin/pull/6583
+[#6584]: https://github.com/activeadmin/activeadmin/pull/6584
 
 [@5t111111]: https://github.com/5t111111
 [@aarek]: https://github.com/aarek
@@ -677,8 +705,10 @@ Please check [0-6-stable] for previous changes.
 [@ko-lem]: https://github.com/ko-lem
 [@kobeumut]: https://github.com/kobeumut
 [@Kris-LIBIS]: https://github.com/Kris-LIBIS
+[@krzcho]: https://github.com/krzcho
 [@kwent]: https://github.com/kwent
 [@leio10]: https://github.com/leio10
+[@littleforest]: https://github.com/littleforest
 [@Looooong]: https://github.com/Looooong
 [@markstory]: https://github.com/markstory
 [@mauriciopasquier]: https://github.com/mauriciopasquier
@@ -686,6 +716,7 @@ Please check [0-6-stable] for previous changes.
 [@micred]: https://github.com/micred
 [@mirelon]: https://github.com/mirelon
 [@mshalaby]: https://github.com/mshalaby
+[@munen]: https://github.com/munen
 [@ndbroadbent]: https://github.com/ndbroadbent
 [@Nguyenanh]: https://github.com/Nguyenanh
 [@orkhan]: https://github.com/orkhan
@@ -703,12 +734,14 @@ Please check [0-6-stable] for previous changes.
 [@ShallmentMo]: https://github.com/ShallmentMo
 [@shekibobo]: https://github.com/shekibobo
 [@shouya]: https://github.com/shouya
+[@sjieg]: https://github.com/sjieg
 [@stefsava]: https://github.com/stefsava
 [@stereoscott]: https://github.com/stereoscott
 [@taralbass]: https://github.com/taralbass
 [@tiagotex]: https://github.com/tiagotex
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
+[@utkarsh2102]: https://github.com/utkarsh2102
 [@varyonic]: https://github.com/varyonic
 [@vcsjones]: https://github.com/vcsjones
 [@vfonic]: https://github.com/vfonic
