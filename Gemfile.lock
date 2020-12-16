@@ -385,7 +385,7 @@ GEM
       parser (>= 2.7.1.5)
     rubocop-packaging (0.5.1)
       rubocop (>= 0.89, < 2.0)
-    rubocop-rails (2.9.0)
+    rubocop-rails (2.9.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 0.90.0, < 2.0)
