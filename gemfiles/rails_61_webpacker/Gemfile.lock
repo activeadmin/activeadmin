@@ -296,7 +296,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 1.0)
     rake (13.0.1)
-    ransack (2.4.0)
+    ransack (2.4.1)
       activerecord (>= 5.2.4)
       activesupport (>= 5.2.4)
       i18n
@@ -350,7 +350,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
-    tzinfo (2.0.3)
+    tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
