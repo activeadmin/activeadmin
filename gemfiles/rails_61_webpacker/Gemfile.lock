@@ -335,7 +335,7 @@ GEM
     rspec-support (3.10.0)
     ruby2_keywords (0.0.2)
     semantic_range (2.3.0)
-    simplecov (0.21.0)
+    simplecov (0.21.1)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
@@ -404,7 +404,7 @@ DEPENDENCIES
   rails-i18n
   rake
   rspec-rails
-  simplecov (= 0.21.0)
+  simplecov (= 0.21.1)
   sqlite3 (~> 1.4)
   webpacker (~> 5.1)
 
