@@ -331,7 +331,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    simplecov (0.21.0)
+    simplecov (0.21.1)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
@@ -397,7 +397,7 @@ DEPENDENCIES
   rake
   rspec-rails
   sassc-rails (~> 2.1)
-  simplecov (= 0.21.0)
+  simplecov (= 0.21.1)
   sprockets-rails
   sqlite3 (~> 1.4)
 
