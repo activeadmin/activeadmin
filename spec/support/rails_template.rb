@@ -75,7 +75,7 @@ if webpacker_app
 end
 
 # Setup Active Admin
-generate "active_admin:install#{" --use-webpacker" if webpacker_app}"
+generate "active_admin:install --no_interaction#{" --use-webpacker" if webpacker_app}"
 
 # Force strong parameters to raise exceptions
 inject_into_file "config/application.rb", after: "class Application < Rails::Application" do

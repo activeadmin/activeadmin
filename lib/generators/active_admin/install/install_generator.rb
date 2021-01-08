@@ -6,15 +6,34 @@ module ActiveAdmin
       desc "Installs Active Admin and generates the necessary migrations"
       argument :name, type: :string, default: "AdminUser"
 
-      hook_for :users, default: "devise", desc: "Admin user generator to run. Skip with --skip-users"
+      class_option "skip-users", type: :boolean, default: false, desc: "No authentication"
+      class_option :no_interaction, type: :boolean, default: false, desc: "No User Interaction"
       class_option :skip_comments, type: :boolean, default: false, desc: "Skip installation of comments"
       class_option :use_webpacker, type: :boolean, default: false, desc: "Use Webpacker assets instead of Sprockets"
 
       source_root File.expand_path("templates", __dir__)
 
+      def interactive_setup
+        @use_authentication_method = true
+        return if options[:no_interaction]
+
+        unless options["skip-users"]
+          if yes?("Do you want authentication with Devise? [y for yes]")
+            @name = ask("What would you like the user model to be called? [Press Enter for default: AdminUser]")
+          else
+            @use_authentication_method = false
+          end
+        end
+      end
+
+      def setup_devise
+        if @use_authentication_method
+          generate("active_admin:devise", @name) unless options["skip-users"]
+        end
+      end
+
       def copy_initializer
-        @underscored_user_name = name.underscore.gsub("/", "_")
-        @use_authentication_method = options[:users].present?
+        @underscored_user_name = @name.underscore.gsub("/", "_")
         @skip_comments = options[:skip_comments]
         @use_webpacker = options[:use_webpacker]
         template "active_admin.rb.erb", "config/initializers/active_admin.rb"
@@ -23,14 +42,14 @@ module ActiveAdmin
       def setup_directory
         empty_directory "app/admin"
         template "dashboard.rb", "app/admin/dashboard.rb"
-        if options[:users].present?
-          @user_class = name
-          template "admin_users.rb.erb", "app/admin/#{name.underscore.pluralize}.rb"
+        if @use_authentication_method
+          @user_class = @name
+          template "admin_users.rb.erb", "app/admin/#{@name.underscore.pluralize}.rb"
         end
       end
 
       def setup_routes
-        if options[:users] # Ensure Active Admin routes occur after Devise routes so that Devise has higher priority
+        if @use_authentication_method # Ensure Active Admin routes occur after Devise routes so that Devise has higher priority
           inject_into_file "config/routes.rb", "\n  ActiveAdmin.routes(self)", after: /devise_for .*, ActiveAdmin::Devise\.config/
         else
           route "ActiveAdmin.routes(self)"
