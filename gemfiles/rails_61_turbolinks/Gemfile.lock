@@ -150,7 +150,7 @@ GEM
     cuprite (0.11)
       capybara (>= 2.1, < 4)
       ferrum (~> 0.9.0)
-    database_cleaner (1.8.5)
+    database_cleaner (1.99.0)
     db-query-matchers (0.10.0)
       activesupport (>= 4.0, < 7)
       rspec (~> 3.0)
