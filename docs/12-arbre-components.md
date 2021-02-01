@@ -147,7 +147,7 @@ table_for order.payments do
 end
 ```
 
-`column`, `index_column`, and `id_column` works like for [index tables](3-index-pages/index-as-table.md).
+`column`, `index_column`, and `id_column` work like for [index tables](3-index-pages/index-as-table.md).
 
 If `table_for` is called with a non-`ActiveRecord::Relation` collection, you must
 specify the resource class in order to use `id_column`. This class is also used
