@@ -35,7 +35,7 @@ jobs:
           bundler: none
 
       - name: Install a specific rubygems version
-        run: gem update --system 3.2.0
+        run: gem update --system 3.2.14
 
       - name: Install a specific bundler version
         run: gem install bundler -v 2.2.14
@@ -124,7 +124,7 @@ jobs:
           bundler: none
 
       - name: Install a specific rubygems version
-        run: gem update --system 3.2.0
+        run: gem update --system 3.2.14
 
       - name: Install a specific bundler version
         run: gem install bundler -v 2.2.14
