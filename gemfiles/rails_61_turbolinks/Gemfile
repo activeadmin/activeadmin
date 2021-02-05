@@ -26,6 +26,7 @@ end
 group :test do
   gem "cuprite", "0.12"
   gem "capybara", "~> 3.14"
+  gem "webrick", "~> 1.7"
   gem "db-query-matchers", "0.10.0"
 
   gem "simplecov", "0.21.2", require: false # Test coverage generator. Go to /coverage/ after running tests

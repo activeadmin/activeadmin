@@ -362,6 +362,7 @@ GEM
       thread_safe (~> 0.1)
     warden (1.2.9)
       rack (>= 2.0.9)
+    webrick (1.7.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-driver (0.7.3-java)
@@ -405,6 +406,7 @@ DEPENDENCIES
   simplecov (= 0.21.2)
   sprockets-rails
   sqlite3 (~> 1.4)
+  webrick (~> 1.7)
 
 BUNDLED WITH
    2.2.0
