@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/heartcombo/devise.git
+  revision: 5d5636f03ac19e8188d99c044d4b5e90124313af
+  ref: 5d5636f03ac19e8188d99c044d4b5e90124313af
+  specs:
+    devise (4.7.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+
 PATH
   remote: ../..
   specs:
@@ -153,12 +165,6 @@ GEM
     db-query-matchers (0.10.0)
       activesupport (>= 4.0, < 7)
       rspec (~> 3.0)
-    devise (4.7.3)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
     diff-lcs (1.4.4)
     docile (1.3.4)
     draper (4.0.1)
@@ -388,7 +394,7 @@ DEPENDENCIES
   cuprite (= 0.13)
   database_cleaner
   db-query-matchers (= 0.10.0)
-  devise
+  devise!
   draper (~> 4.0)
   formtastic (~> 4.0.rc1)
   jasmine
