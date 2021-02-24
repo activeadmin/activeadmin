@@ -152,9 +152,9 @@ GEM
       cucumber-core (~> 8.0, >= 8.0.1)
       cucumber-cucumber-expressions (~> 10.3, >= 10.3.0)
       cucumber-messages (~> 13.0, >= 13.0.1)
-    cuprite (0.11)
+    cuprite (0.12)
       capybara (>= 2.1, < 4)
-      ferrum (~> 0.9.0)
+      ferrum (~> 0.10.0)
     database_cleaner (2.0.0)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.0)
@@ -182,7 +182,7 @@ GEM
     faraday (1.2.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
-    ferrum (0.9)
+    ferrum (0.10.2)
       addressable (~> 2.5)
       cliver (~> 0.3)
       concurrent-ruby (~> 1.1)
@@ -355,7 +355,7 @@ GEM
       activerecord (>= 5.2.4)
       activesupport (>= 5.2.4)
       i18n
-    regexp_parser (2.0.3)
+    regexp_parser (2.1.1)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)
@@ -469,7 +469,7 @@ DEPENDENCIES
   chandler (= 0.9.0)
   cucumber
   cucumber-rails (~> 2.0)
-  cuprite (= 0.11)
+  cuprite (= 0.12)
   database_cleaner
   db-query-matchers (= 0.10.0)
   devise
