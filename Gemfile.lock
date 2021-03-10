@@ -93,7 +93,7 @@ GEM
     arbre (1.4.0)
       activesupport (>= 3.0.0, < 6.2)
       ruby2_keywords (>= 0.0.2, < 1.0)
-    ast (2.4.1)
+    ast (2.4.2)
     bcrypt (3.1.16)
     bcrypt (3.1.16-java)
     builder (3.2.4)
@@ -202,7 +202,7 @@ GEM
       concurrent-ruby (~> 1.0)
     i18n-spec (0.6.0)
       iso
-    i18n-tasks (0.9.33)
+    i18n-tasks (0.9.34)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -294,7 +294,7 @@ GEM
     parallel (1.20.1)
     parallel_tests (3.5.0)
       parallel
-    parser (2.7.2.0)
+    parser (3.0.0.0)
       ast (~> 2.4.1)
     phantomjs (2.1.1.0)
     protobuf-cucumber (3.10.8)
@@ -434,7 +434,7 @@ GEM
     sqlite3 (1.4.2)
     sys-uname (1.2.2)
       ffi (~> 1.1)
-    terminal-table (2.0.0)
+    terminal-table (3.0.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     thor (1.1.0)
     thread_safe (0.3.6)
