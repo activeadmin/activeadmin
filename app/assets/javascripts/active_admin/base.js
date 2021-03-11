@@ -81,7 +81,7 @@
       }
     });
   }
-  var onDOMReady = function onDOMReady() {
+  var onDOMReady$2 = function onDOMReady() {
     $(".batch_actions_selector li a").off("click confirm:complete");
     $(".batch_actions_selector li a").on("click", function(event) {
       var _this = this;
@@ -125,7 +125,7 @@
       });
     }
   };
-  $(document).ready(onDOMReady).on("page:load turbolinks:load", onDOMReady);
+  $(document).ready(onDOMReady$2).on("page:load turbolinks:load", onDOMReady$2);
   var CheckboxToggler = function() {
     function CheckboxToggler(options, container) {
       this.options = options;
@@ -501,10 +501,10 @@
     return TableCheckboxToggler;
   }(CheckboxToggler);
   $.widget.bridge("tableCheckboxToggler", TableCheckboxToggler);
-  var onDOMReady$2 = function onDOMReady() {
+  var onDOMReady = function onDOMReady() {
     return $("#active_admin_content .tabs").tabs();
   };
-  $(document).ready(onDOMReady$2).on("page:load turbolinks:load", onDOMReady$2);
+  $(document).ready(onDOMReady).on("page:load turbolinks:load", onDOMReady);
   function modal_dialog(message, inputs, callback) {
     console.warn("ActiveAdmin.modal_dialog is deprecated in favor of ActiveAdmin.ModalDialog, please update usage.");
     return ModalDialog(message, inputs, callback);
