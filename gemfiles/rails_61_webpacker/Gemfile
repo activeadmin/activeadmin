@@ -21,7 +21,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "cuprite", "0.12"
+  gem "cuprite", "0.13"
   gem "capybara", "~> 3.14"
   gem "db-query-matchers", "0.10.0"
 
