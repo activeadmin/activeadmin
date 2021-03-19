@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        ruby: [jruby-9.2.13.0]
+        ruby: [jruby-9.2.16.0]
         deps: ["rails_52", "rails_60"]
 
     env:
