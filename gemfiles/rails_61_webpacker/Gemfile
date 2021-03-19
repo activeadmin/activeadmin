@@ -13,7 +13,7 @@ group :development, :test do
   gem "devise"
 
   gem "rails", "~> 6.1.0"
-  gem "activerecord-jdbcsqlite3-adapter", "~> 61.a", github: "jruby/activerecord-jdbc-adapter", platform: :jruby
+  gem "activerecord-jdbcsqlite3-adapter", "~> 61.0", platform: :jruby
 
   gem "webpacker", "~> 5.1"
 
