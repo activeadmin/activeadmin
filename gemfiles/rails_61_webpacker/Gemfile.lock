@@ -84,6 +84,10 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ammeter (1.1.5)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-rails (>= 2.2)
     arbre (1.4.0)
       activesupport (>= 3.0.0, < 6.2)
       ruby2_keywords (>= 0.0.2, < 1.0)
@@ -383,6 +387,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   activerecord-jdbcsqlite3-adapter (~> 61.0)
+  ammeter
   cancancan
   capybara (~> 3.14)
   cucumber

@@ -4,7 +4,7 @@ module ActiveAdmin
   module Generators
     class InstallGenerator < ActiveRecord::Generators::Base
       desc "Installs Active Admin and generates the necessary migrations"
-      argument :name, type: :string, default: "AdminUser"
+      argument :name, type: :string, default: ""
 
       class_option "skip-users", type: :boolean, default: false, desc: "No authentication"
       class_option :no_interaction, type: :boolean, default: false, desc: "No User Interaction"
@@ -15,20 +15,26 @@ module ActiveAdmin
 
       def interactive_setup
         @use_authentication_method = true
-        return if options[:no_interaction]
+        if options["skip-users"]
+          @use_authentication_method = false
+        else
+          return unless @name.strip.empty?
+          set_default_admin_name
 
-        unless options["skip-users"]
-          if yes?("Do you want authentication with Devise? [y for yes]")
-            @name = ask("What would you like the user model to be called? [Press Enter for default: AdminUser]")
-          else
-            @use_authentication_method = false
+          unless options[:no_interaction]
+            if yes?("Do you want authentication with Devise? [y for yes]")
+              @name = ask("What would you like the user model to be called? [Press Enter for default: AdminUser]")
+              set_default_admin_name if @name.strip.empty?
+            else
+              @use_authentication_method = false
+            end
           end
         end
       end
 
       def setup_devise
         if @use_authentication_method
-          generate("active_admin:devise", @name) unless options["skip-users"]
+          generate("active_admin:devise", @name)
         end
       end
 
@@ -68,6 +74,11 @@ module ActiveAdmin
         unless options[:skip_comments]
           migration_template "migrations/create_active_admin_comments.rb.erb", "db/migrate/create_active_admin_comments.rb"
         end
+      end
+
+      private
+      def set_default_admin_name
+        @name = "AdminUser"
       end
     end
   end

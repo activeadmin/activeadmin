@@ -7,6 +7,7 @@ require_relative "../tasks/test_application"
 require "#{ActiveAdmin::TestApplication.new.full_app_dir}/config/environment.rb"
 
 require "rspec/rails"
+require "ammeter/init"
 
 # Disabling authentication in specs so that we don't have to worry about
 # it allover the place

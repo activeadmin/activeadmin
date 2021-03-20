@@ -38,6 +38,7 @@ group :test do
   gem "rails-i18n" # Provides default i18n for many languages
   gem "rspec-rails"
   gem "sqlite3", "~> 1.4", platform: :mri
+  gem "ammeter"
 end
 
 group :release do
