@@ -211,7 +211,9 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2020.1104)
-    mimemagic (0.3.5)
+    mimemagic (0.3.9)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
     minitest (5.14.4)
@@ -227,7 +229,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.20.1)
-    parallel_tests (3.5.2)
+    parallel_tests (3.6.0)
       parallel
     phantomjs (2.1.1.0)
     protobuf-cucumber (3.10.8)
