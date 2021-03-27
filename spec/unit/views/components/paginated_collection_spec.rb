@@ -241,6 +241,15 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
         .not_to make_database_queries(matching: "SELECT COUNT(*) FROM \"posts\"")
     end
 
+    it "makes no COUNT queries to figure out the last element of each page" do
+      require "db-query-matchers"
+
+      undecorated_collection = Post.all.page(1).per(30)
+
+      expect { paginated_collection(undecorated_collection) }
+        .not_to make_database_queries(matching: "SELECT COUNT(*) FROM (SELECT")
+    end
+
     context "when specifying per_page: array option" do
       let(:collection) do
         posts = 10.times.map { Post.new }
