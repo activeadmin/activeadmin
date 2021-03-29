@@ -157,7 +157,7 @@ jobs:
 
       - name: Run RSpec tests
         run: |
-          bin/parallel_rspec spec/
+          bin/parallel_rspec
           RSPEC_FILESYSTEM_CHANGES=true bin/rspec
 
       - name: Restore cached cucumber runtimes
@@ -168,7 +168,7 @@ jobs:
 
       - name: Run Cucumber features
         run: |
-          bin/parallel_cucumber features/
+          bin/parallel_cucumber
           bin/cucumber --profile filesystem-changes
           bin/cucumber --profile class-reloading
 
