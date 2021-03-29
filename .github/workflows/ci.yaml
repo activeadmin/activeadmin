@@ -168,7 +168,7 @@ jobs:
 
       - name: Run Cucumber features
         run: |
-          bin/parallel_cucumber
+          bin/parallel_cucumber --fail-fast
           bin/cucumber --profile filesystem-changes
           bin/cucumber --profile class-reloading
 
