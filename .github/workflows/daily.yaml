@@ -58,7 +58,7 @@ jobs:
           key: gems-jruby-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
-        run: bundle install --jobs 3
+        run: bundle install
 
       - name: Setup git
         run: |

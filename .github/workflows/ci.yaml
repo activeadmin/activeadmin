@@ -50,7 +50,7 @@ jobs:
           key: gems-2.7.2-rails_61-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
-        run: bundle install --jobs 3
+        run: bundle install
 
       - name: Generate docs
         run: bin/rake docs:build
@@ -139,7 +139,7 @@ jobs:
           key: gems-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
-        run: bundle install --jobs 3
+        run: bundle install
 
       - name: Setup git
         run: |
