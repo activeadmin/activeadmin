@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-18.04]
         ruby: [jruby-9.2.16.0]
         deps: ["rails_52", "rails_60"]
 
