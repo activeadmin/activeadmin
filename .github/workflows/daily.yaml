@@ -55,7 +55,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.BUNDLE_PATH }}
-          key: gems-jruby-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
+          key: gems-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
         run: bundle install
