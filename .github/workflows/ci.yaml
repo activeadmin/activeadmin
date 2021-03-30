@@ -12,7 +12,7 @@ on:
 jobs:
   lint:
     name: lint
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
 
     timeout-minutes: 15
 
@@ -21,6 +21,7 @@ jobs:
 
       matrix:
         ruby: [2.7.2]
+        os: [ubuntu-20.04]
 
     steps:
       - uses: actions/checkout@v2
@@ -51,7 +52,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.BUNDLE_PATH }}
-          key: gems-${{ matrix.ruby }}-rails_61-${{ hashFiles('current_gemfile.lock') }}
+          key: gems-${{ matrix.os }}-${{ matrix.ruby }}-rails_61-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
         run: bundle install
@@ -82,7 +83,8 @@ jobs:
           path: coverage/raw.lint.json
 
   test:
-    runs-on: ubuntu-20.04
+    name: test (${{ matrix.ruby }}, ${{ matrix.deps }})
+    runs-on: ${{ matrix.os }}
 
     timeout-minutes: 15
 
@@ -91,17 +93,21 @@ jobs:
 
       matrix:
         ruby: [2.7.2, 2.6.6]
+        os: [ubuntu-20.04]
 
         deps: ["rails_52", "rails_60", "rails_61", "rails_61_turbolinks", "rails_61_webpacker"]
 
         include:
           - ruby: 2.5.8
+            os: ubuntu-20.04
             deps: rails_52
 
           - ruby: 2.5.8
+            os: ubuntu-20.04
             deps: rails_60
 
           - ruby: 2.5.8
+            os: ubuntu-20.04
             deps: rails_61
 
     env:
@@ -140,7 +146,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.BUNDLE_PATH }}
-          key: gems-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
+          key: gems-${{ matrix.os }}-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
         run: bundle install

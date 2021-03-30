@@ -8,7 +8,8 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    name: test (${{ matrix.ruby }}, ${{ matrix.deps }})
+    runs-on: ${{ matrix.os }}
 
     timeout-minutes: 15
 
@@ -16,6 +17,7 @@ jobs:
       fail-fast: false
 
       matrix:
+        os: [ubuntu-20.04]
         ruby: [jruby-9.2.16.0]
         deps: ["rails_52", "rails_60"]
 
@@ -55,7 +57,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.BUNDLE_PATH }}
-          key: gems-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
+          key: gems-${{ matrix.os }}-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
         run: bundle install
