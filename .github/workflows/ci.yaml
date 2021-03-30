@@ -95,7 +95,7 @@ jobs:
         ruby: [2.7.2, 2.6.6]
         os: [ubuntu-20.04]
 
-        deps: ["rails_52", "rails_60", "rails_61", "rails_61_turbolinks", "rails_61_webpacker"]
+        deps: [rails_52, rails_60, rails_61, rails_61_turbolinks, rails_61_webpacker]
 
         include:
           - ruby: 2.5.8
