@@ -8,7 +8,8 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    name: test (${{ matrix.ruby }}, ${{ matrix.deps }})
+    runs-on: ${{ matrix.os }}
 
     timeout-minutes: 15
 
@@ -16,6 +17,7 @@ jobs:
       fail-fast: false
 
       matrix:
+        os: [ubuntu-18.04]
         ruby: [jruby-9.2.16.0]
         deps: ["rails_52", "rails_60"]
 
@@ -43,10 +45,10 @@ jobs:
           bundler: none
 
       - name: Install a specific rubygems version
-        run: gem update --system 3.2.14
+        run: gem update --system 3.2.15
 
       - name: Install a specific bundler version
-        run: gem install bundler -v 2.2.14
+        run: gem install bundler -v 2.2.15
 
       - name: Cat current Gemfile to a specific file so caching works
         run: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
@@ -55,10 +57,10 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.BUNDLE_PATH }}
-          key: gems-jruby-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
+          key: gems-${{ matrix.os }}-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
-        run: bundle install --jobs 3
+        run: bundle install
 
       - name: Setup git
         run: |
@@ -76,7 +78,7 @@ jobs:
 
       - name: Run RSpec tests
         run: |
-          PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_rspec spec/
+          bin/parallel_rspec spec/
           RSPEC_FILESYSTEM_CHANGES=true bin/rspec
 
       - name: Restore cached cucumber runtimes
@@ -87,6 +89,6 @@ jobs:
 
       - name: Run Cucumber features
         run: |
-          PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_cucumber features/
+          bin/parallel_cucumber --fail-fast
           bin/cucumber --profile filesystem-changes
           bin/cucumber --profile class-reloading

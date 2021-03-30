@@ -7,7 +7,7 @@ Given /^(?:I am logged|log) out$/ do
 end
 
 Given /^I am logged in$/ do
-  step "log out"
+  logout(:user)
   login_as ensure_user_created "admin@example.com"
 end
 
