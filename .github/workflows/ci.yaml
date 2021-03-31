@@ -21,7 +21,7 @@ jobs:
 
       matrix:
         ruby: [2.7.2]
-        os: [ubuntu-18.04]
+        os: [ubuntu-20.04]
 
     steps:
       - uses: actions/checkout@v2
@@ -93,21 +93,21 @@ jobs:
 
       matrix:
         ruby: [2.7.2, 2.6.6]
-        os: [ubuntu-18.04]
+        os: [ubuntu-20.04]
 
         deps: [rails_52, rails_60, rails_61, rails_61_turbolinks, rails_61_webpacker]
 
         include:
           - ruby: 2.5.8
-            os: ubuntu-18.04
+            os: ubuntu-20.04
             deps: rails_52
 
           - ruby: 2.5.8
-            os: ubuntu-18.04
+            os: ubuntu-20.04
             deps: rails_60
 
           - ruby: 2.5.8
-            os: ubuntu-18.04
+            os: ubuntu-20.04
             deps: rails_61
 
     env:
@@ -194,7 +194,7 @@ jobs:
           path: coverage/raw.${{ matrix.ruby }}.${{ matrix.deps }}.json
 
   upload_coverage:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     needs:
       - lint
