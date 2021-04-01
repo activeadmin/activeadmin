@@ -225,5 +225,16 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     it "should assign nested attributes once" do
       expect(subject.posts.size).to eq(1)
     end
+
+    context "given authorization scope" do
+      let(:authorization) { controller.send(:active_admin_authorization) }
+
+      it "should apply authorization scope" do
+        expect(authorization).to receive(:scope_collection) do |collection|
+          collection.where(age: "42")
+        end
+        expect(subject.age).to eq(42)
+      end
+    end
   end
 end
