@@ -19,7 +19,7 @@ jobs:
       matrix:
         os: [ubuntu-20.04]
         ruby: [jruby-9.2.16.0]
-        deps: ["rails_52", "rails_60"]
+        deps: ["rails_60"]
 
     env:
       JRUBY_OPTS: -J-Xmx1024m --dev
