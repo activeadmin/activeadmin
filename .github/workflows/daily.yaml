@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: test (${{ matrix.ruby }}, ${{ matrix.deps }})
+    name: test (${{ matrix.ruby.name }}, ${{ matrix.deps }})
     runs-on: ${{ matrix.os }}
 
     timeout-minutes: 15
@@ -18,7 +18,7 @@ jobs:
 
       matrix:
         os: [ubuntu-20.04]
-        ruby: [jruby-9.2.16.0]
+        ruby: [{ name: jruby-9.2, value: jruby-9.2.16.0 }]
         deps: ["rails_52", "rails_60"]
 
     env:
@@ -41,7 +41,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          ruby-version: ${{ matrix.ruby.value }}
           bundler: none
 
       - name: Install a specific rubygems version
@@ -57,7 +57,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.BUNDLE_PATH }}
-          key: gems-${{ matrix.os }}-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
+          key: gems-${{ matrix.os }}-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
         run: bundle install
@@ -74,7 +74,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: tmp/parallel_runtime_rspec.log
-          key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
+          key: runtimes-rspec-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
 
       - name: Run RSpec tests
         run: |
@@ -85,7 +85,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: tmp/parallel_runtime_cucumber.log
-          key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
+          key: runtimes-cucumber-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
 
       - name: Run Cucumber features
         run: |
