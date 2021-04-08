@@ -11,7 +11,7 @@ on:
 
 jobs:
   lint:
-    name: lint (${{ matrix.ruby }})
+    name: lint (${{ matrix.ruby.name }})
     runs-on: ${{ matrix.os }}
 
     timeout-minutes: 15
@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        ruby: [2.7.2]
+        ruby: [{ name: 2.7, value: 2.7.2 }]
         os: [ubuntu-20.04]
 
     steps:
@@ -36,7 +36,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          ruby-version: ${{ matrix.ruby.value }}
           bundler: none
 
       - name: Install a specific rubygems version
@@ -52,7 +52,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.BUNDLE_PATH }}
-          key: gems-${{ matrix.os }}-${{ matrix.ruby }}-rails_61-${{ hashFiles('current_gemfile.lock') }}
+          key: gems-${{ matrix.os }}-${{ matrix.ruby.name }}-rails_61-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
         run: bundle install
@@ -83,7 +83,7 @@ jobs:
           path: coverage/raw.lint.json
 
   test:
-    name: test (${{ matrix.ruby }}, ${{ matrix.deps }})
+    name: test (${{ matrix.ruby.name }}, ${{ matrix.deps }})
     runs-on: ${{ matrix.os }}
 
     timeout-minutes: 15
@@ -92,21 +92,22 @@ jobs:
       fail-fast: false
 
       matrix:
-        ruby: [2.7.2, 2.6.6]
+        ruby: [{ name: 2.7, value: 2.7.2 }, { name: 2.6, value: 2.6.6 }]
+
         os: [ubuntu-20.04]
 
         deps: [rails_52, rails_60, rails_61, rails_61_turbolinks, rails_61_webpacker]
 
         include:
-          - ruby: 2.5.8
+          - ruby: { name: 2.5, value: 2.5.8 }
             os: ubuntu-20.04
             deps: rails_52
 
-          - ruby: 2.5.8
+          - ruby: { name: 2.5, value: 2.5.8 }
             os: ubuntu-20.04
             deps: rails_60
 
-          - ruby: 2.5.8
+          - ruby: { name: 2.5, value: 2.5.8 }
             os: ubuntu-20.04
             deps: rails_61
 
@@ -130,7 +131,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          ruby-version: ${{ matrix.ruby.value }}
           bundler: none
 
       - name: Install a specific rubygems version
@@ -146,7 +147,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.BUNDLE_PATH }}
-          key: gems-${{ matrix.os }}-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
+          key: gems-${{ matrix.os }}-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
 
       - name: Install dependencies
         run: bundle install
@@ -163,7 +164,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: tmp/parallel_runtime_rspec.log
-          key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
+          key: runtimes-rspec-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
 
       - name: Run RSpec tests
         run: |
@@ -174,7 +175,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: tmp/parallel_runtime_cucumber.log
-          key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
+          key: runtimes-cucumber-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
 
       - name: Run Cucumber features
         run: |
@@ -185,13 +186,13 @@ jobs:
       - name: Format coverage
         run: |
           bin/prepare_coverage
-          mv coverage/.resultset.json coverage/raw.${{ matrix.ruby }}.${{ matrix.deps }}.json
+          mv coverage/.resultset.json coverage/raw.${{ matrix.ruby.value }}.${{ matrix.deps }}.json
 
       - name: Save partial coverage as an artifact
         uses: actions/upload-artifact@v2
         with:
           name: coverage
-          path: coverage/raw.${{ matrix.ruby }}.${{ matrix.deps }}.json
+          path: coverage/raw.${{ matrix.ruby.value }}.${{ matrix.deps }}.json
 
   upload_coverage:
     runs-on: ubuntu-20.04
