@@ -194,6 +194,20 @@ en:
         publish: "Publish"
 ```
 
+### Customize the title
+
+If you don't like to set the title by i18n, you also can customize them by passing `title` option.
+
+So this:
+
+```ruby
+ActiveAdmin.register Post do
+  batch_action :publish, title: 'Publish the post' do |ids|
+    # ...
+  end
+end
+```
+
 ### Support for other index types
 
 You can easily use `batch_action` in the other index views, *Grid*, *Block*,
