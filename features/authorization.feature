@@ -15,7 +15,7 @@ Feature: Authorizing Access
 
         when normalized(Post)
           case action
-          when :update, :destroy
+          when :edit, :update, :destroy
             false
           else
             true
