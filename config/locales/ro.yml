@@ -48,6 +48,7 @@ ro:
       multiple_without_total: "Sunt afisate <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
         one: "inregistrare"
+        few: "inregistrari"
         other: "inregistrari"
     any: "Oricare"
     blank_slate:
