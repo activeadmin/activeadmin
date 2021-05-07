@@ -16,8 +16,6 @@ group :development, :test do
   gem "activerecord-jdbcsqlite3-adapter", "~> 61.0", platform: :jruby
 
   gem "webpacker", "~> 5.1"
-
-  gem "formtastic", "~> 4.0.rc1"
 end
 
 group :test do

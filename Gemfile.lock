@@ -474,7 +474,6 @@ DEPENDENCIES
   db-query-matchers (= 0.10.0)
   devise
   draper (~> 4.0)
-  formtastic (~> 4.0.rc1)
   i18n-spec
   i18n-tasks
   jasmine

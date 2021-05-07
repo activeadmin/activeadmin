@@ -17,8 +17,6 @@ group :development, :test do
 
   gem "sprockets-rails"
   gem "sassc-rails", "~> 2.1"
-
-  gem "formtastic", "~> 4.0.rc1"
 end
 
 group :test do
