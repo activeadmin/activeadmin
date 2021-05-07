@@ -1,0 +1,30 @@
+---
+
+pull_request_rules:
+  - name: Automatic merge for dependabot pull requests
+
+    conditions:
+      - author~=^dependabot(|-preview)\[bot\]$
+      - check-success=lint (2.7)
+      - check-success=test (2.7, rails_52)
+      - check-success=test (2.7, rails_60)
+      - check-success=test (2.7, rails_61)
+      - check-success=test (2.7, rails_61_turbolinks)
+      - check-success=test (2.7, rails_61_webpacker)
+      - check-success=test (2.6, rails_52)
+      - check-success=test (2.6, rails_60)
+      - check-success=test (2.6, rails_61)
+      - check-success=test (2.6, rails_61_turbolinks)
+      - check-success=test (2.6, rails_61_webpacker)
+      - check-success=test (2.5, rails_52)
+      - check-success=test (2.5, rails_60)
+      - check-success=test (2.5, rails_61)
+      - check-success=test (2.5, rails_61_turbolinks)
+      - check-success=test (2.5, rails_61_webpacker)
+      - check-success=upload_coverage
+      - check-success=codeclimate/diff-coverage
+      - check-success=codeclimate/total-coverage
+
+    actions:
+      merge:
+        method: merge

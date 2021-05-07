@@ -380,22 +380,21 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
-  activerecord-jdbcsqlite3-adapter (~> 61.0)
+  activerecord-jdbcsqlite3-adapter
   cancancan
-  capybara (~> 3.14)
+  capybara
   cucumber
-  cucumber-rails (~> 2.0)
-  cuprite (= 0.13)
+  cucumber-rails
+  cuprite
   database_cleaner
-  db-query-matchers (= 0.10.0)
+  db-query-matchers
   devise
-  draper (~> 4.0)
-  formtastic (~> 4.0.rc1)
+  draper
   jasmine
-  jasmine-core (= 2.99.2)
-  jruby-openssl (~> 0.10.5)
+  jasmine-core
+  jruby-openssl
   launchy
-  parallel_tests (~> 3.0)
+  parallel_tests
   pry
   pry-byebug
   pundit
@@ -403,10 +402,10 @@ DEPENDENCIES
   rails-i18n
   rake
   rspec-rails
-  simplecov (= 0.21.2)
-  sqlite3 (~> 1.4)
-  webpacker (~> 5.1)
-  webrick (~> 1.7)
+  simplecov
+  sqlite3
+  webpacker
+  webrick
 
 BUNDLED WITH
    2.2.17
