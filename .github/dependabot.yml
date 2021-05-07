@@ -9,8 +9,8 @@ updates:
       interval: daily
     versioning-strategy: lockfile-only
 
-  - package-ecosystem: bundler
-    directory: /gemfiles/rails_52
+  - package-ecosystem: npm
+    directory: /
     schedule:
       interval: daily
     versioning-strategy: lockfile-only
@@ -21,8 +21,8 @@ updates:
       interval: daily
     versioning-strategy: lockfile-only
 
-  - package-ecosystem: npm
-    directory: /
+  - package-ecosystem: bundler
+    directory: /gemfiles/rails_52
     schedule:
       interval: daily
     versioning-strategy: lockfile-only
