@@ -82,6 +82,12 @@ end
 # Setup Active Admin
 generate "active_admin:install#{" --use-webpacker" if webpacker_app}"
 
+if webpacker_app
+  run "yarn  --cwd #{File.expand_path("../..", __dir__)} prepublishOnly"
+  run "yarn --cwd #{File.expand_path("../..", __dir__)} link"
+  run "yarn link @activeadmin/activeadmin"
+end
+
 # Force strong parameters to raise exceptions
 inject_into_file "config/application.rb", after: "class Application < Rails::Application" do
   "\n    config.action_controller.action_on_unpermitted_parameters = :raise\n"
