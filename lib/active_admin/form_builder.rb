@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Provides an intuitive way to build has_many associated records in the same form.
 module Formtastic
   module Inputs

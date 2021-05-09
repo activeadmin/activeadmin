@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This is a common set of Formtastic overrides needed to build a filter form
 # that lets you select from a set of search methods for a given attribute.
 #

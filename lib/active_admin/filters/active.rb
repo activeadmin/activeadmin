@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_admin/filters/active_filter"
 
 module ActiveAdmin

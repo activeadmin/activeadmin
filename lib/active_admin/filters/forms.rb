@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Filters
     # This form builder defines methods to build filter forms such

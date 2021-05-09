@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 require "active_admin/abstract_view_factory"

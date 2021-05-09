@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "open3"
 
 RSpec.describe "JS bundle sanity" do

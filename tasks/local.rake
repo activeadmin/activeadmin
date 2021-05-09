@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 desc "Run a command against the local sample application"
 task :local do
   require_relative "test_application"

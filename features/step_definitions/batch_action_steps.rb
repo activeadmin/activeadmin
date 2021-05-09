@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I (should|should not) see the batch action :([^\s]*) "([^"]*)"$/ do |maybe, sym, title|
   selector = maybe == "should" ? ".batch_actions_selector a.batch_action[href='#'][data-action='#{sym}']" : ".batch_actions_selector a.batch_action"
 

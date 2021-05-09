@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "cucumber/rails/application"
 require "cucumber/rails/action_dispatch"
 require "cucumber/rails/world"

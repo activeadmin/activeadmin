@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ActiveAdmin.register_page "KitchenSink" do
   sidebar "Sample Sidebar" do
     para "Sidebars can also be used on custom pages."

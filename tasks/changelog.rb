@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Changelog
   def cut_version(header)
     sync!

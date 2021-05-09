@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_admin/router"
 require "active_admin/application_settings"
 require "active_admin/namespace_settings"

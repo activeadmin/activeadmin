@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_admin/base_controller/authorization"
 require "active_admin/base_controller/menu"
 

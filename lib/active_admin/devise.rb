@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ActiveAdmin::Dependency.devise! ActiveAdmin::Dependency::Requirements::DEVISE
 
 require "devise"

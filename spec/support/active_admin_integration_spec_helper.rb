@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdminIntegrationSpecHelper
   def with_resources_during(example)
     load_resources { yield }

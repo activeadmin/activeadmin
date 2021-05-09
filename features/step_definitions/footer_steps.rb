@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Around "@footer" do |scenario, block|
   previous_footer = ActiveAdmin.application.footer
 
