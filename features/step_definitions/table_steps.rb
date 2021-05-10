@@ -23,13 +23,14 @@ class HtmlTableToTextHelper
   private
 
   def cell_to_string(td)
+    str = ""
     input = td.css("input").last
 
     if input
-      input_to_string(input) + td.content.strip.gsub("\n", " ")
-    else
-      td.content.strip.gsub("\n", " ")
+      str += input_to_string(input)
     end
+
+    str += td.content.strip.gsub("\n", " ")
   end
 
   def input_to_string(input)

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 Then /^I (should|should not) see the batch action :([^\s]*) "([^"]*)"$/ do |maybe, sym, title|
-  selector = maybe == "should" ? ".batch_actions_selector a.batch_action[href='#'][data-action='#{sym}']" : ".batch_actions_selector a.batch_action"
+  selector = ".batch_actions_selector a.batch_action"
+  selector += "[href='#'][data-action='#{sym}']" if maybe == "should"
 
   verb = maybe == "should" ? :to : :to_not
   expect(page).send verb, have_css(selector, text: title)
@@ -20,7 +21,8 @@ Then /^I should see that the batch action button is disabled$/ do
 end
 
 Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe, type|
-  selector = maybe == "should" && type == "button" ? "div.table_tools .batch_actions_selector .dropdown_menu_button" : "div.table_tools .batch_actions_selector"
+  selector = "div.table_tools .batch_actions_selector"
+  selector += " .dropdown_menu_button" if maybe == "should" && type == "button"
 
   verb = maybe == "should" ? :to : :to_not
   expect(page).send verb, have_css(selector)
