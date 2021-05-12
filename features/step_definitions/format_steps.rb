@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "csv"
 
 Around "@csv" do |scenario, block|

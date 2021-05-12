@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Around "@site_title" do |scenario, block|
   previous_site_title = ActiveAdmin.application.site_title
   previous_site_title_link = ActiveAdmin.application.site_title_link

@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+# frozen_string_literal: true
 # Borrowed from https://gist.github.com/qortex/7e7c49f3731391a91ee898336183acef
 
 # Temporary hack to get CodeClimate to work with SimpleCov 0.18 JSON format until issue is fixed

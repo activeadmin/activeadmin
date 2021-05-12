@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 def it_should_have_view(key, value)

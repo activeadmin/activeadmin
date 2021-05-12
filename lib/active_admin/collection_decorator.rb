@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   # This class decorates a collection of objects delegating
   # mehods to behave like an Array. It's used to decouple ActiveAdmin

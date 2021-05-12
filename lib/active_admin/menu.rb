@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
 
   # Each Namespace builds up it's own menu as the global navigation

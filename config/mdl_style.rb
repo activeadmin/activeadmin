@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 all
 
 exclude_rule "first-header-h1"

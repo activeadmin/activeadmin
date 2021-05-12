@@ -130,7 +130,7 @@ Style/ExpandPathArguments:
 
 Style/FrozenStringLiteralComment:
   Enabled: true
-  EnforcedStyle: never
+  EnforcedStyle: always
 
 Style/HashSyntax:
   Enabled: true

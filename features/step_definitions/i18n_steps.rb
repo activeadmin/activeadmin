@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Given /^String "([^"]*)" corresponds to "([^"]*)"$/ do |translation, key|
   *seq, last_key = key.split(".")
   result = seq.reverse.inject({ last_key.to_sym => translation }) do |temp_result, nested_key|

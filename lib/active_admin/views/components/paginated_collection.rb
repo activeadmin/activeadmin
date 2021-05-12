@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_admin/helpers/collection"
 require "active_admin/view_helpers/download_format_links_helper"
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.shared_examples_for "ActiveAdmin::Localizers::ResourceLocalizer" do

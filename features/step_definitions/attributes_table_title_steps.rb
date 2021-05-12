@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I should see the panel title "([^"]*)"$/ do |title|
   expect(page).to have_css ".panel > h3", text: title
 end

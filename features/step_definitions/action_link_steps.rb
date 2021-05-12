@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I should see a member link to "([^"]*)"$/ do |name|
   expect(page).to have_css("a.member_link", text: name)
 end

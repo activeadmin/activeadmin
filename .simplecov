@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 SimpleCov.start do
   add_filter "tmp/development_apps/"
   add_filter "tmp/test_apps/"

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I should see a flash with "([^"]*)"$/ do |text|
   expect(page).to have_content text
 end

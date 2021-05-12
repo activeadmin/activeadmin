@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ActiveAdmin.register Post do
   permit_params :custom_category_id, :author_id, :title, :body, :published_date, :position, :starred, taggings_attributes: [ :id, :tag_id, :name, :position, :_destroy ]
 

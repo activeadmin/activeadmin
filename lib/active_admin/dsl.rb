@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
 
   # The Active Admin DSL. This class is where all the registration blocks

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I should see a sidebar titled "([^"]*)"$/ do |title|
   expect(page).to have_css ".sidebar_section h3", text: title
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 unless ActiveAdmin::Dependency.cancan? || ActiveAdmin::Dependency.cancancan?
   ActiveAdmin::Dependency.cancan!
 end

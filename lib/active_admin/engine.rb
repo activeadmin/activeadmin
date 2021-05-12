@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class Engine < ::Rails::Engine
     initializer "active_admin.load_app_path" do |app|
