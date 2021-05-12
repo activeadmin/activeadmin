@@ -46,7 +46,9 @@ module ActiveAdmin
         end
 
         def pluck_column
-          klass.reorder("#{method} asc").distinct.pluck method
+          method_name = method_name_for(method)
+
+          klass.reorder("#{method_name} asc").distinct.pluck method_name
         end
 
         def reflection_searchable?

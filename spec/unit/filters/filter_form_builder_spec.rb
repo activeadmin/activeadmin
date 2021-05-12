@@ -156,16 +156,35 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
   end
 
   describe "string attribute, as a select" do
-    let(:body) { filter :title, as: :select }
     let(:builder) { ActiveAdmin::Inputs::Filters::SelectInput }
 
     context "when loading collection from DB" do
+      let(:body) { filter :title, as: :select }
+
       it "should use pluck for efficiency" do
         expect_any_instance_of(builder).to receive(:pluck_column) { [] }
         body
       end
 
       it "should remove original ordering to prevent PostgreSQL error" do
+        expect(scope.object.klass).to receive(:reorder).with("title asc") {
+          m = double distinct: double(pluck: ["A Title"])
+          expect(m.distinct).to receive(:pluck).with :title
+          m
+        }
+        body
+      end
+    end
+
+    context "when loading collection from DB using aliases" do
+      let(:body) { filter :title_alias, as: :select }
+
+      it "should use pluck for efficiency" do
+        expect_any_instance_of(builder).to receive(:pluck_column) { [] }
+        body
+      end
+
+      it "should remove original ordering to prevent PostgreSQL error using the real attribute name" do
         expect(scope.object.klass).to receive(:reorder).with("title asc") {
           m = double distinct: double(pluck: ["A Title"])
           expect(m.distinct).to receive(:pluck).with :title

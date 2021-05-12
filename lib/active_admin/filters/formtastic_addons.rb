@@ -21,11 +21,17 @@ module ActiveAdmin
       end
 
       def column_for(method)
-        klass.columns_hash[method.to_s] if klass.respond_to? :columns_hash
+        method_name = method_name_for(method)
+
+        klass.columns_hash[method_name.to_s] if klass.respond_to? :columns_hash
       end
 
       def column
         column_for method
+      end
+
+      def method_name_for(method)
+        klass.attribute_alias(method)&.to_sym || method
       end
 
       #
