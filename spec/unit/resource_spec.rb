@@ -324,15 +324,20 @@ module ActiveAdmin
         expect(resource).to receive(:controller).and_return(controller)
       end
 
-      context "actions" do
-        [
-          :before_action, :skip_before_action,
-          :after_action, :skip_after_action,
-          :around_action, :skip_action
-        ].each do |method|
-          it "delegates #{method}" do
-            expect(resource.send(method)).to eq "called #{method}"
-          end
+      %w[
+        before_build after_build
+        before_create after_create
+        before_update after_update
+        before_save after_save
+        before_destroy after_destroy
+        skip_before_action skip_around_action skip_after_action
+        append_before_action append_around_action append_after_action
+        prepend_before_action prepend_around_action prepend_after_action
+        before_action around_action after_action
+        actions
+      ].each do |method|
+        it "delegates #{method}" do
+          expect(resource.send(method)).to eq "called #{method}"
         end
       end
     end
