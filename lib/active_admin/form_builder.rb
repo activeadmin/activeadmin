@@ -42,6 +42,7 @@ module ActiveAdmin
     attr_reader :options
     attr_reader :heading, :sortable_column, :sortable_start
     attr_reader :new_records, :destroy_option
+    attr_reader :remove_record
 
     NewRecord = Struct.new(:object, :text)
 
