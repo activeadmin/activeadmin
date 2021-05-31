@@ -1704,9 +1704,9 @@ get-intrinsic@^1.0.2, get-intrinsic@^1.1.1:
     has-symbols "^1.0.1"
 
 gherkin-lint@:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/gherkin-lint/-/gherkin-lint-4.2.1.tgz#42b4e710440397fb6d70f87cd9f623ad39ea86ab"
-  integrity sha512-zKgv5KsDybIsL6uJz/ldQamKOU6gTfjMCZl1xpE+DDvFxQLW2bDjZgmXkKT4+JTw5DenjaLhwAfrtHd/JxU42A==
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/gherkin-lint/-/gherkin-lint-4.2.2.tgz#01e8276902fd7b7394babebd9d1f4d1952648a2f"
+  integrity sha512-+vu0wbrwxaaEdrheU9pH2MYR6zk38u2IkrCIg6IETUw1lkrNVAfIfOCihwrrL2NTJv5Iia/C7hZEBNwjGSkL2Q==
   dependencies:
     commander "5.0.0"
     core-js "3.6.4"
