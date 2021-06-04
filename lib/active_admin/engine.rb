@@ -12,7 +12,7 @@ module ActiveAdmin
         ActiveAdmin.application.stylesheets.each do |path, _|
           app.config.assets.precompile << path
         end
-        ActiveAdmin.application.javascripts.each do |path|
+        ActiveAdmin.application.javascripts.each do |path, _|
           app.config.assets.precompile << path
         end
       end
