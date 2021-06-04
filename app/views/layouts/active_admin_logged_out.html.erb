@@ -12,11 +12,11 @@
       <%= stylesheet_link_tag style, **options %>
     <% end %>
   <% end %>
-  <% ActiveAdmin.application.javascripts.each do |path| %>
+  <% ActiveAdmin.application.javascripts.each do |path, options| %>
     <% if ActiveAdmin.application.use_webpacker %>
-      <%= javascript_pack_tag path %>
+      <%= javascript_pack_tag path, **options %>
     <% else %>
-      <%= javascript_include_tag path %>
+      <%= javascript_include_tag path, **options %>
     <% end %>
   <% end %>
 
