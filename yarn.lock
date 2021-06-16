@@ -1901,13 +1901,11 @@ jquery-ui@^1.12.1:
   integrity sha1-vLQEXI3QU5wTS8FIjN0+dop6nlE=
 
 jquery-ujs@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/jquery-ujs/-/jquery-ujs-1.2.2.tgz#6a8ef1020e6b6dda385b90a4bddc128c21c56397"
-  integrity sha1-ao7xAg5rbdo4W5CkvdwSjCHFY5c=
-  dependencies:
-    jquery ">=1.8.0"
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/jquery-ujs/-/jquery-ujs-1.2.3.tgz#dcac6026ab7268e5ee41faf9d31c997cd4ddd603"
+  integrity sha512-59wvfx5vcCTHMeQT1/OwFiAj+UffLIwjRIoXdpO7Z7BCFGepzq9T9oLVeoItjTqjoXfUrHJvV7QU6pUR+UzOoA==
 
-jquery@>=1.8.0, jquery@^3.4.1:
+jquery@^3.4.1:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
   integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
