@@ -13,6 +13,7 @@ RSpec.describe ActiveAdmin::CanCanAdapter do
 
         def initialize(user)
           can :read, Post
+          can :create, Post
           cannot :update, Post
         end
       end
@@ -28,6 +29,11 @@ RSpec.describe ActiveAdmin::CanCanAdapter do
     it "should initialize the ability stored in the namespace configuration" do
       expect(auth.authorized?(:read, Post)).to eq true
       expect(auth.authorized?(:update, Post)).to eq false
+    end
+
+    it "should treat :new ability the same as :create" do
+      expect(auth.authorized?(:new, Post)).to eq true
+      expect(auth.authorized?(:create, Post)).to eq true
     end
 
     it "should scope the collection with accessible_by" do

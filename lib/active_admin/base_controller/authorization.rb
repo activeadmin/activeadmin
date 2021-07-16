@@ -7,9 +7,9 @@ module ActiveAdmin
       ACTIONS_DICTIONARY = {
         index: ActiveAdmin::Authorization::READ,
         show: ActiveAdmin::Authorization::READ,
-        new: ActiveAdmin::Authorization::CREATE,
+        new: ActiveAdmin::Authorization::NEW,
         create: ActiveAdmin::Authorization::CREATE,
-        edit: ActiveAdmin::Authorization::UPDATE,
+        edit: ActiveAdmin::Authorization::EDIT,
         update: ActiveAdmin::Authorization::UPDATE,
         destroy: ActiveAdmin::Authorization::DESTROY
       }
