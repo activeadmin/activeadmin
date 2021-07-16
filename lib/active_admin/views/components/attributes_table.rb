@@ -23,6 +23,7 @@ module ActiveAdmin
       def row(*args, &block)
         title = args[0]
         options = args.extract_options!
+        data = args[1] || args[0]
         classes = [:row]
         if options[:class]
           classes << options[:class]
@@ -37,7 +38,7 @@ module ActiveAdmin
           end
           @collection.each do |record|
             td do
-              content_for(record, block || title)
+              content_for(record, block || data)
             end
           end
         end
