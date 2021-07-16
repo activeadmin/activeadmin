@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :author
   accepts_nested_attributes_for :taggings, allow_destroy: true
 
+  alias_attribute :title_alias, :title
+
   ransacker :custom_title_searcher do |parent|
     parent.table[:title]
   end
