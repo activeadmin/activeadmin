@@ -103,7 +103,9 @@ module ActiveAdmin
           # you pass in the :total_pages option. We issue a query to determine
           # if there is another page or not, but the limit/offset make this
           # query fast.
-          offset = collection.offset(collection.current_page * collection.limit_value).limit(1).count
+          offset_scope = collection.offset(collection.current_page * collection.limit_value)
+          offset_scope = offset_scope.reorder(nil) if offset_scope.respond_to?(:reorder)
+          offset = offset_scope.limit(1).count
           options[:total_pages] = collection.current_page + offset
           options[:right] = 0
         end

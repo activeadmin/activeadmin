@@ -61,7 +61,7 @@ module ActiveAdmin
         def self.wrap!(parent, name)
           ::Class.new parent do
             delegate :reorder, :page, :current_page, :total_pages, :limit_value,
-                     :total_count, :total_pages, :offset, :to_key, :group_values,
+                     :total_count, :offset, :to_key, :group_values,
                      :except, :find_each, :ransack, to: :object
 
             define_singleton_method(:name) { name }
