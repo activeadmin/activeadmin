@@ -110,6 +110,9 @@ module ActiveAdmin
 
       # Either add/remove the batch action
       unless options == false
+        # Customize the title
+        title = options[:title] if options[:title]
+
         config.add_batch_action(sym, title, options, &block)
       else
         config.remove_batch_action sym
