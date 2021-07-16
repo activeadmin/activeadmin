@@ -32,7 +32,15 @@ module ActiveAdmin
         def input_html_options_for(input_name, placeholder)
           current_value = begin
                             #cast value to date object before rendering input
-                            @object.public_send(input_name).to_s.to_date
+                            raw_value = @object.public_send(input_name)
+                            case raw_value
+                            when Time
+                              raw_value.to_date
+                            when Date
+                              raw_value
+                            else
+                              raw_value.to_s.to_date
+                            end
                           rescue
                             nil
                           end
