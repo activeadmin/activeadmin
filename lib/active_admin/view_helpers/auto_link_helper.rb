@@ -36,7 +36,7 @@ module ActiveAdmin
 
       # Returns the ActiveAdmin::Resource instance for a class
       def active_admin_resource_for(klass)
-        if respond_to? :active_admin_namespace
+        if respond_to? :active_admin_namespace, true
           active_admin_namespace.resource_for klass
         end
       end
