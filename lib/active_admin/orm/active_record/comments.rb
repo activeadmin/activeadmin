@@ -72,15 +72,15 @@ ActiveAdmin.after_load do |app|
               redirect_back fallback_location: active_admin_root
             end
           end
+        end
 
-          def destroy
-            destroy! do |success, failure|
-              success.html do
-                redirect_back fallback_location: active_admin_root
-              end
-              failure.html do
-                redirect_back fallback_location: active_admin_root
-              end
+        def destroy
+          destroy! do |success, failure|
+            success.html do
+              redirect_back fallback_location: active_admin_root
+            end
+            failure.html do
+              redirect_back fallback_location: active_admin_root
             end
           end
         end
