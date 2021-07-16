@@ -39,6 +39,15 @@ module ActiveAdmin
       end
 
       def create_assets
+        js_file = File.join(destination_root, "app", "assets", "javascript", "application.js")
+        css_file = File.join(destination_root, "app", "assets", "stylesheets", "application.css")
+        if File.foreach(css_file).grep(/\*= require_tree \./).any? || File.foreach(js_file).grep(/\/\/= require_tree \./).any?
+          say_status(
+            :warning, "The code #{set_color("require_tree .", :red)} in either application.css or application.js files
+              makes Active Admin styles or scripts to be included in other parts of your app.
+              If that is not desired you can stub active_admin at the end of those files.")
+        end
+
         if options[:use_webpacker]
           generate "active_admin:webpacker"
         else
