@@ -62,7 +62,7 @@ HTTP verbs. In that case, this is the suggested approach:
 ```ruby
 member_action :foo, method: [:get, :post] do
   if request.post?
-    resource.update_attributes! foo: params[:foo] || {}
+    resource.update! foo: params[:foo] || {}
     head :ok
   else
     render :foo
