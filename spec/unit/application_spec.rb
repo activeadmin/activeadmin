@@ -58,8 +58,8 @@ RSpec.describe ActiveAdmin::Application do
   end
 
   it "should set the site's favicon" do
-    application.favicon = "/a/favicon.ico"
-    expect(application.favicon).to eq "/a/favicon.ico"
+    application.favicon = "favicon.ico"
+    expect(application.favicon).to eq "favicon.ico"
   end
 
   it "should store meta tags" do

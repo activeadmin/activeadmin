@@ -6,7 +6,7 @@ Feature: Favicon
     Given a configuration of:
     """
       ActiveAdmin.register Post
-      ActiveAdmin.application.favicon = "a/favicon.ico"
+      ActiveAdmin.application.favicon = "favicon.ico"
     """
 
   Scenario: Logged out views show Favicon
