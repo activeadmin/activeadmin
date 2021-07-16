@@ -11,6 +11,7 @@ module ActiveAdmin
       def build(obj, *attrs)
         options = attrs.extract_options!
         @sortable = options.delete(:sortable)
+        @has_footer = options.delete(:has_footer)
         @collection = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
         @resource_class = options.delete(:i18n)
         @resource_class ||= @collection.klass if @collection.respond_to? :klass
@@ -40,6 +41,11 @@ module ActiveAdmin
           build_table_header(col)
         end
 
+        # Build our footer item
+        within @footer_row do
+          build_table_footer(col)
+        end if @has_footer
+
         # Add a table cell for each item
         @collection.each_with_index do |resource, index|
           within @tbody.children[index] do
@@ -57,12 +63,26 @@ module ActiveAdmin
       def build_table
         build_table_head
         build_table_body
+        build_table_foot if @has_footer
+      end
+
+      def build_table_foot
+        @tfoot = tfoot do
+          @footer_row = tr
+        end
       end
 
       def build_table_head
         @thead = thead do
           @header_row = tr
         end
+      end
+
+      def build_table_footer(col)
+        th class: col.html_class do
+          col.footer_proc(@collection)
+        end
+
       end
 
       def build_table_header(col)
@@ -164,6 +184,22 @@ module ActiveAdmin
             @resource_class.column_names.include?(sort_column_name)
           else
             @title.present?
+          end
+        end
+
+        def footer_proc(collection)
+          if (footer = @options[:footer])
+            case footer
+            when Symbol
+              # For example: collection.send(:sum, :amount)
+              collection.send(footer, self.data)
+            when Proc
+              # Use Proc for calculating
+              instance_exec(collection, &@options[:footer])
+            else
+              # String or number will be print out as is
+              footer.to_s
+            end
           end
         end
 

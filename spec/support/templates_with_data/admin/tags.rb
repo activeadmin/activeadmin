@@ -4,11 +4,11 @@ ActiveAdmin.register Tag do
 
   permit_params :name
 
-  index do
+  index has_footer: true do
     selectable_column
     id_column
-    column :name
-    column :created_at
+    column :name, footer: "Total:"
+    column :created_at, footer: :count
     actions dropdown: true do |tag|
       item "Preview", admin_tag_path(tag)
     end

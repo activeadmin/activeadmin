@@ -242,7 +242,8 @@ module ActiveAdmin
           class: "index_table index",
           i18n: active_admin_config.resource_class,
           paginator: page_presenter[:paginator] != false,
-          row_class: page_presenter[:row_class]
+          row_class: page_presenter[:row_class],
+          has_footer: page_presenter[:has_footer]
         }
 
         table_for collection, table_options do |t|
