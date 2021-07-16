@@ -240,7 +240,7 @@ module ActiveAdmin
           id: "index_table_#{active_admin_config.resource_name.plural}",
           sortable: true,
           class: "index_table index",
-          i18n: active_admin_config.resource_class,
+          resource_class: active_admin_config.resource_class,
           paginator: page_presenter[:paginator] != false,
           row_class: page_presenter[:row_class]
         }
@@ -281,26 +281,6 @@ module ActiveAdmin
           return unless active_admin_config.batch_actions.any?
           column resource_selection_toggle_cell, class: "col-selectable", sortable: false do |resource|
             resource_selection_cell resource
-          end
-        end
-
-        def index_column(start_value = 1)
-          column "#", class: "col-index", sortable: false do |resource|
-            @collection.offset_value + @collection.index(resource) + start_value
-          end
-        end
-
-        # Display a column for the id
-        def id_column
-          raise "#{resource_class.name} has no primary_key!" unless resource_class.primary_key
-          column(resource_class.human_attribute_name(resource_class.primary_key), sortable: resource_class.primary_key) do |resource|
-            if controller.action_methods.include?("show")
-              link_to resource.id, resource_path(resource), class: "resource_id_link"
-            elsif controller.action_methods.include?("edit")
-              link_to resource.id, edit_resource_path(resource), class: "resource_id_link"
-            else
-              resource.id
-            end
           end
         end
 

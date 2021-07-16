@@ -85,7 +85,7 @@ Feature: Batch Actions
     """
       ActiveAdmin.register User
       ActiveAdmin.register Post do
-        belongs_to :user
+        belongs_to :author, class_name: "User", param: "user_id", route_name: "user"
       end
     """
     When I go to the last author's posts

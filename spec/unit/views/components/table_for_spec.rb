@@ -5,9 +5,9 @@ RSpec.describe ActiveAdmin::Views::TableFor do
   describe "creating with the dsl" do
     let(:collection) do
       [
-        Post.new(title: "First Post", starred: true),
-        Post.new(title: "Second Post"),
-        Post.new(title: "Third Post", starred: false)
+        Post.new(id: 1, title: "First Post", starred: true),
+        Post.new(id: 2, title: "Second Post"),
+        Post.new(id: 4, title: "Third Post", starred: false)
       ]
     end
 
@@ -97,6 +97,54 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       it "should add a class for each cell based on the col name" do
         expect(table.find_by_tag("td").first.class_list.to_a.join(" ")).to eq "col col-title"
         expect(table.find_by_tag("td").last.class_list.to_a.join(" ")).to eq "col col-created_at"
+      end
+    end
+
+    context "when creating an id column" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection, resource_class: Post) do
+            id_column
+          end
+        end
+      end
+
+      it "should create a table header based on the primary key" do
+        expect(table.find_by_tag("th").first.content).to eq "Id"
+      end
+
+      it "should create a table row for each element in the collection" do
+        expect(table.find_by_tag("tr").size).to eq 4 # 1 for head, 3 for rows
+      end
+
+      ["1", "2", "4"].each_with_index do |content, index|
+        it "should create a cell with #{content}" do
+          expect(table.find_by_tag("td")[index].content).to eq content
+        end
+      end
+    end
+
+    context "when creating an index column" do
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection) do
+            index_column(100)
+          end
+        end
+      end
+
+      it "should create a table header based on the primary key" do
+        expect(table.find_by_tag("th").first.content).to eq "#"
+      end
+
+      it "should create a table row for each element in the collection" do
+        expect(table.find_by_tag("tr").size).to eq 4 # 1 for head, 3 for rows
+      end
+
+      ["100", "101", "102"].each_with_index do |content, index|
+        it "should create a cell with #{content}" do
+          expect(table.find_by_tag("td")[index].content).to eq content
+        end
       end
     end
 
@@ -307,10 +355,32 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
     end
 
-    context "when i18n option is specified" do
+    context "when resource_class option is specified" do
       around do |example|
         with_translation(activerecord: { attributes: { post: { title: "Name" } } }) do
           example.call
+        end
+      end
+
+      let(:table) do
+        render_arbre_component assigns, helpers do
+          table_for(collection, resource_class: Post) do
+            column :title
+          end
+        end
+      end
+
+      it "should use localized column key" do
+        expect(table.find_by_tag("th").first.content).to eq "Name"
+      end
+    end
+
+    context "when i18n option is specified" do
+      around do |example|
+        with_translation(activerecord: { attributes: { post: { title: "Name" } } }) do
+          ActiveSupport::Deprecation.silence do
+            example.call
+          end
         end
       end
 
@@ -327,7 +397,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
     end
 
-    context "when i18n option is not specified" do
+    context "when neither i18n nor resource_class option is not specified" do
       around do |example|
         with_translation(activerecord: { attributes: { post: { title: "Name" } } }) do
           example.call
