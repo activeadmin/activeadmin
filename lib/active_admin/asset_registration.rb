@@ -14,12 +14,12 @@ module ActiveAdmin
       stylesheets.clear
     end
 
-    def register_javascript(name)
-      javascripts.add name
+    def register_javascript(path, options = {})
+      javascripts[path] = options
     end
 
     def javascripts
-      @javascripts ||= Set.new
+      @javascripts ||= {}
     end
 
     def clear_javascripts!
