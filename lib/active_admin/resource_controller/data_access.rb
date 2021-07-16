@@ -212,10 +212,19 @@ module ActiveAdmin
         end
       end
 
+      def split_search_params(params)
+        params.keys.each do |key|
+          if key.ends_with? "_any" or key.ends_with? "_all"
+            params[key] = params[key].split  # turn into array
+          end
+        end
+        params
+      end
+
       # Applies any Ransack search methods to the currently scoped collection.
       # Both `search` and `ransack` are provided, but we use `ransack` to prevent conflicts.
       def apply_filtering(chain)
-        @search = chain.ransack(params[:q] || {})
+        @search = chain.ransack split_search_params (params[:q] || {})
         @search.result
       end
 
