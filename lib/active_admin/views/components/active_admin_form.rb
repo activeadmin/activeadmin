@@ -28,7 +28,7 @@ module ActiveAdmin
         @resource = resource
         options = options.deep_dup
         options[:builder] ||= ActiveAdmin::FormBuilder
-        form_string = helpers.semantic_form_for(resource, options) do |f|
+        form_string = helpers.send(ActiveAdmin.application.form_helper_method, resource, options) do |f|
           @form_builder = f
         end
 

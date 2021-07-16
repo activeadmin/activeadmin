@@ -44,6 +44,9 @@ module ActiveAdmin
     # is a currently authenticated admin user
     register :authentication_method, false
 
+    # The method to call to create forms
+    register :form_helper_method, :semantic_form_for
+
     # The path to log user's out with. If set to a symbol, we assume
     # that it's a method to call which returns the path
     register :logout_link_path, :destroy_admin_user_session_path

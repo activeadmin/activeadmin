@@ -113,6 +113,10 @@ RSpec.describe ActiveAdmin::Application do
       expect(application.authentication_method).to eq false
     end
 
+    it "should have a default form helper method" do
+      expect(application.form_helper_method).to eq :semantic_form_for
+    end
+
     it "should have a logout link path (Devise's default)" do
       expect(application.logout_link_path).to eq :destroy_admin_user_session_path
     end
