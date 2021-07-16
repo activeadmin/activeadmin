@@ -13,26 +13,16 @@ RSpec.describe ActiveAdmin::Application do
     ]
   end
 
-  expected_actions = (
-    prefixes = %w(skip append prepend) << nil
-    positions = %w(before around after)
-    suffixes = %w(action)
-    base = %w()
-
-    prefixes.each_with_object(base) do |prefix, stack|
-      positions.each do |position|
-        suffixes.each do |suffix|
-          stack << [prefix, position, suffix].compact.join("_").to_sym
-        end
-      end
-    end
-  )
-
-  expected_actions.each do |action|
-    it action do
+  %w[
+    skip_before_action skip_around_action skip_after_action
+    append_before_action append_around_action append_after_action
+    prepend_before_action prepend_around_action prepend_after_action
+    before_action around_action after_action
+  ].each do |filter|
+    it filter do
       args = [:my_filter, { only: :show }]
-      controllers.each { |c| expect(c).to receive(action).with(args) }
-      application.public_send action, args
+      controllers.each { |c| expect(c).to receive(filter).with(args) }
+      application.public_send filter, args
     end
   end
 end
