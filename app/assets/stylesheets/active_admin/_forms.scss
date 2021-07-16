@@ -287,7 +287,8 @@ form.filter_form {
     clear: both;
 
     &.select_and_search {
-      input[type=text] {
+      input[type=text],
+      input[type=number] {
         margin-left: $filter-field-seperator-width + 4;
         width: $side-by-side-filter-input-width;
       }
