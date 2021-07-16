@@ -73,7 +73,7 @@ module ActiveAdmin
           div(page_entries_info(options).html_safe, class: "pagination_information")
 
           formats = build_download_formats @download_links
-          build_download_format_links formats if formats.any?
+          build_download_format_links(@collection, formats) if formats.any?
         end
       end
 

@@ -16,12 +16,11 @@ module ActiveAdmin
         end
       end
 
-      def build_download_format_links(formats = self.class.formats)
-        params = request.query_parameters.except :format, :commit
+      def build_download_format_links(collection, formats = self.class.formats)
         div class: "download_links" do
           span I18n.t("active_admin.download")
           formats.each do |format|
-            a format.upcase, href: url_for(params: params, format: format)
+            a format.upcase, href: polymorphic_path([:admin, collection.name.constantize], params: collection.where_clause.to_h, format: format)
           end
         end
       end
