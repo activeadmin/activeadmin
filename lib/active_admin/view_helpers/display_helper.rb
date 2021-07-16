@@ -64,10 +64,17 @@ module ActiveAdmin
       def find_value(resource, attr)
         if attr.is_a? Proc
           attr.call resource
-        elsif resource.respond_to? attr
-          resource.public_send attr
-        elsif resource.respond_to? :[]
-          resource[attr]
+        else
+          value = if resource.respond_to? attr
+                    resource.public_send attr
+                  elsif resource.respond_to? :[]
+                    resource[attr]
+                  end
+          if value.is_a?(Time) || value.is_a?(DateTime)
+            value.in_time_zone(active_admin_application.display_timezone)
+          else
+            value
+          end
         end
       end
 

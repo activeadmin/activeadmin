@@ -170,6 +170,17 @@ ActiveAdmin.setup do |config|
   #
   config.localize_format = :long
 
+  # == Display Date/Time in Timezone
+  #
+  # Sets the timezone to display dates and times in.
+  # For a list of all the valid values, see
+  # https://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html
+  #
+  # This can still be overridden in specific pages with a block as shown here
+  # https://activeadmin.info/6-show-pages.html
+
+  config.display_timezone = "UTC"
+
   # == Setting a Favicon
   #
   # config.favicon = 'favicon.ico'

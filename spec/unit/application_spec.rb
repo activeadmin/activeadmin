@@ -57,6 +57,15 @@ RSpec.describe ActiveAdmin::Application do
     expect(application.localize_format).to eq :default
   end
 
+  it "should return default display timezone" do
+    expect(application.display_timezone).to eq "UTC"
+  end
+
+  it "should set display timezone" do
+    application.display_timezone = "Eastern Time (US & Canada)"
+    expect(application.display_timezone).to eq "Eastern Time (US & Canada)"
+  end
+
   it "should set the site's favicon" do
     application.favicon = "/a/favicon.ico"
     expect(application.favicon).to eq "/a/favicon.ico"

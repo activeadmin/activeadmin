@@ -21,6 +21,9 @@ module ActiveAdmin
     # Set default localize format for Date/Time values
     register :localize_format, :long
 
+    # Set default timezone for Date/Time value display
+    register :display_timezone, "UTC"
+
     # Active Admin makes educated guesses when displaying objects, this is
     # the list of methods it tries calling in order
     # Note that Formtastic also has 'collection_label_methods' similar to this
