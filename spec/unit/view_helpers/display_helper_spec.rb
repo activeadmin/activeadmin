@@ -192,12 +192,12 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       expect(value).to eq "right"
     end
 
-    it "auto-links ActiveRecord records by association" do
-      post = Post.create! author: User.new
+    it "auto-links ActiveRecord records by association with display name fallback" do
+      post = Post.create! author: User.new(first_name: "", last_name: "")
 
       value = view.format_attribute post, :author
 
-      expect(value).to match /<a href="\/admin\/users\/\d+"> <\/a>/
+      expect(value).to match /<a href="\/admin\/users\/\d+">User \#\d+<\/a>/
     end
 
     it "auto-links ActiveRecord records & uses a display_name method" do
