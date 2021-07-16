@@ -60,6 +60,10 @@ module ActiveAdmin
     # @return [Boolean]
     attr_writer :create_another
 
+    # Generates form inputs based on permitted params whitelist
+    # @return [Boolean]
+    attr_writer :build_form_with_permitted_params_only
+
     # Store a reference to the DSL so that we can dereference it during garbage collection.
     attr_accessor :dsl
 
@@ -173,6 +177,10 @@ module ActiveAdmin
 
     def create_another
       instance_variable_defined?(:@create_another) ? @create_another : namespace.create_another
+    end
+
+    def build_form_with_permitted_params_only
+      instance_variable_defined?(:@build_form_with_permitted_params_only) ? @build_form_with_permitted_params_only : false
     end
 
     def find_resource(id)

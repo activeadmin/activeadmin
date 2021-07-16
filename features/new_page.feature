@@ -135,3 +135,60 @@ Feature: New Page
     When I follow "New Post"
     Then I should not see "Title"
     And I should see "Body"
+
+  Scenario: Displaying only title field defined in permit params
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        config.build_form_with_permitted_params_only = true
+        permit_params :title
+      end
+    """
+    When I follow "New Post"
+    Then I should see "Title"
+    And I should not see "Body"
+
+  Scenario: Displaying only body field defined in permit params
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        config.build_form_with_permitted_params_only = true
+        permit_params :body
+      end
+    """
+    When I follow "New Post"
+    Then I should not see "Title"
+    And I should see "Body"
+
+  Scenario: Displaying only title and body field defined in permit params
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        config.build_form_with_permitted_params_only = true
+        permit_params [:title, :body]
+      end
+    """
+    When I follow "New Post"
+    Then I should see "Title"
+    And I should see "Body"
+
+  Scenario: Displaying only dynamic permit params
+    Given 1 post with the title "Hakuna Matata" exists
+    And a configuration of:
+    """
+      ActiveAdmin.register Post do
+        config.build_form_with_permitted_params_only = true
+        permit_params do
+          permitted = [:title]
+          permitted << :body if params[:action] == "new"
+          permitted
+        end
+      end
+    """
+    When I follow "New Post"
+    Then I should see "Title"
+    And I should see "Body"
+    When I click "Cancel"
+    And I click "Edit"
+    Then I should see "Title"
+    And I should not see "Body"

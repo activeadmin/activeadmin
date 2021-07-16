@@ -74,10 +74,14 @@ module ActiveAdmin
               Array.wrap(belongs_to_param) +
               Array.wrap(create_another_param)
 
-          params.permit(*permitted_params, param_key => block ? instance_exec(&block) : args)
+          params.permit(*permitted_params, param_key => form_params)
         end
 
         private :permitted_params
+
+        define_method :form_params do
+          block ? instance_exec(&block) : args.flatten
+        end
       end
     end
 

@@ -42,6 +42,31 @@ form do |f|
 end
 ```
 
+You can customize the behavior to render only the fields you allow in the `permit_params` method, you will need to set the config option `build_form_with_permitted_params_only` to `true` in order for this to work, otherwise the default behavior will be kept.
+
+```ruby
+ActiveAdmin.register Post do
+  config.build_form_with_permitted_params_only = true
+
+  permit_params [:title, :body]
+end
+```
+
+The form generated will contain only the fields passed as an argument to the `permit_params` method. This method can also receive a block as argument, the following code will work exactly as the example above:
+
+```ruby
+ActiveAdmin.register Post do
+  config.build_form_with_permitted_params_only = true
+
+  permit_params do
+    permitted = []
+    permitted << :title
+    permitted << :body
+    permitted
+  end
+end
+```
+
 ## Partials
 
 If you want to split a custom form into a separate partial use:

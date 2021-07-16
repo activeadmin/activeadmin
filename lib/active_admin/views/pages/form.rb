@@ -43,7 +43,17 @@ module ActiveAdmin
         def default_form_config
           ActiveAdmin::PagePresenter.new do |f|
             f.semantic_errors # show errors on :base by default
-            f.inputs
+
+            if active_admin_config.build_form_with_permitted_params_only
+              f.inputs do
+                controller.form_params.each do |param|
+                  f.input param
+                end
+              end
+            else
+              f.inputs
+            end
+
             f.actions
           end
         end
