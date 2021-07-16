@@ -143,7 +143,7 @@ module ActiveAdmin
                    model: entries_name,
                    total: total,
                    from: offset + 1,
-                   to: offset + collection_size
+                   to: offset + collection.length
           end
         else
           # Do not display total count, in order to prevent a `SELECT count(*)`.
@@ -152,7 +152,7 @@ module ActiveAdmin
           I18n.t "active_admin.pagination.multiple_without_total",
                  model: entries_name,
                  from: offset + 1,
-                 to: offset + collection_size
+                 to: offset + collection.length
         end
       end
 
