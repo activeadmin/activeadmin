@@ -25,7 +25,7 @@ module ActiveAdmin
       end
 
       def reject_col?(c)
-        primary_col?(c) || sti_col?(c) || counter_cache_col?(c) || filtered_col?(c)
+        primary_col?(c) || sti_col?(c) || counter_cache_col?(c) || filtered_col?(c) || hidden_col?(c)
       end
 
       def primary_col?(c)
@@ -42,6 +42,10 @@ module ActiveAdmin
 
       def filtered_col?(c)
         ActiveAdmin.application.filter_attributes.include?(c.name.to_sym)
+      end
+
+      def hidden_col?(c)
+        @hidden_attributes.include?(c.name.to_sym)
       end
     end
   end

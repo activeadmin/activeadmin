@@ -32,6 +32,13 @@ module ActiveAdmin
         expect(subject).to_not include :published_date
         ActiveAdmin.application.filter_attributes = keep
       end
+
+      it "does not return hidden attributes" do
+        keep = resource_config.hidden_attributes
+        resource_config.hidden_attributes = [:created_at]
+        expect(subject).to_not include :created_at
+        resource_config.hidden_attributes = keep
+      end
     end
 
     describe "#association_columns" do

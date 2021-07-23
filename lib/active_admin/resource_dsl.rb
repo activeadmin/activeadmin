@@ -81,6 +81,11 @@ module ActiveAdmin
       end
     end
 
+    # Hides an attribute from the UI
+    def hide_attribute(name)
+      config.hide_attribute(name)
+    end
+
     # Configure the index page for the resource
     def index(options = {}, &block)
       options[:as] ||= :table

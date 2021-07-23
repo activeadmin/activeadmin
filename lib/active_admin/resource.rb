@@ -67,6 +67,9 @@ module ActiveAdmin
     # nil to not decorate.
     attr_accessor :decorator_class_name
 
+    # List of attributes which should be hidden from the UI
+    attr_accessor :hidden_attributes
+
     module Base
       def initialize(namespace, resource_class, options = {})
         @namespace = namespace
@@ -75,6 +78,7 @@ module ActiveAdmin
         @sort_order = options[:sort_order]
         @member_actions = []
         @collection_actions = []
+        @hidden_attributes = []
       end
     end
 
@@ -141,6 +145,12 @@ module ActiveAdmin
       self.menu_item_options = false if @belongs_to.required?
       options[:class_name] ||= @belongs_to.resource.resource_class_name if @belongs_to.resource
       controller.send :belongs_to, target, options.dup
+    end
+
+    def hide_attribute(name)
+      if !@hidden_attributes.include?(name)
+        @hidden_attributes << name
+      end
     end
 
     def belongs_to_config
