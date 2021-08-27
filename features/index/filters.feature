@@ -341,3 +341,20 @@ Feature: Index Filtering
     And I am on the index page for posts
     Then I should see "Category" within "#filters_sidebar_section label[for="q_custom_category_id"]"
     And I should not see "Category name starts with" within "#filters_sidebar_section"
+
+  Scenario: Custom ransackable scopes filters
+    Given an index configuration of:
+    """
+      ActiveAdmin.register Post do
+        filter :fancy_filter, label: "Ransackable Custom Filter", as: :select, collection: ["Starred", "Not Starred"]
+      end
+    """
+    And 1 unstarred post with the title "Hello World" written by "Jane Doe" exists
+    When I select "Starred" from "Ransackable Custom Filter"
+    And I press "Filter"
+    Then I should see current filter "fancy_filter" equal to "Starred" with label "Ransackable Custom Filter"
+    And I should not see "Hello World"
+    When I select "Not Starred" from "Ransackable Custom Filter"
+    And I press "Filter"
+    Then I should see current filter "fancy_filter" equal to "Not Starred" with label "Ransackable Custom Filter"
+    And I should see "Hello World"
