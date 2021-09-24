@@ -123,12 +123,7 @@ RSpec.describe "defining actions from registration blocks", type: :controller do
   end
 
   context "when method with given name is already defined" do
-    around do |example|
-      original_stderr = $stderr
-      $stderr = StringIO.new
-      example.run
-      $stderr = original_stderr
-    end
+    include_context "capture stderr"
 
     describe "defining member action" do
       let :action! do
