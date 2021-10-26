@@ -143,6 +143,18 @@ Feature: Format as CSV
       | 012345 | (.*) |
     And the CSV file should contain "012345" in quotes
 
+  Scenario: With CSV option byte order mark
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        csv byte_order_mark: "\xEF\xBB\xBF" do
+          column :title
+        end
+      end
+    """
+    When I visit the csv index page for posts twice
+    Then the CSV file should start with BOM
+
   Scenario: With default CSV separator option
     Given a configuration of:
     """

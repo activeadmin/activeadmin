@@ -58,6 +58,10 @@ Then /^the encoding of the CSV file should be "([^"]*)"$/ do |text|
   expect(page.driver.response.body.encoding).to be Encoding.find(Encoding.aliases[text] || text)
 end
 
+Then /^the CSV file should start with BOM$/ do
+  expect(page.driver.response.body.bytes).to start_with(239, 187, 191)
+end
+
 Then /^access denied$/ do
   expect(page).to have_content(I18n.t("active_admin.access_denied.message"))
 end
