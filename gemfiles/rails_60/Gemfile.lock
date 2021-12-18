@@ -149,9 +149,6 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    db-query-matchers (0.10.0)
-      activesupport (>= 4.0, < 7)
-      rspec (~> 3.0)
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -304,10 +301,6 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
-    rspec (3.10.0)
-      rspec-core (~> 3.10.0)
-      rspec-expectations (~> 3.10.0)
-      rspec-mocks (~> 3.10.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -384,7 +377,6 @@ DEPENDENCIES
   cucumber-rails
   cuprite
   database_cleaner
-  db-query-matchers
   devise
   draper
   jasmine
