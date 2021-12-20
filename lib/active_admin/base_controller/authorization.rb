@@ -82,7 +82,7 @@ module ActiveAdmin
       def active_admin_authorization_adapter
         adapter = active_admin_namespace.authorization_adapter
         if adapter.is_a? String
-          ActiveSupport::Dependencies.constantize adapter
+          adapter.constantize
         else
           adapter
         end

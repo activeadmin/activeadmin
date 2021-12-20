@@ -218,7 +218,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     end
 
     it "should use the association's primary key to find the associated record" do
-      allow(ActiveSupport::Dependencies).to receive(:constantize).with("::SuperPost").and_return(resource_klass)
+      stub_const("::SuperPost", resource_klass)
 
       resource.add_filter(:kategory)
 
@@ -249,7 +249,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     end
 
     it "should use the association's primary key to find the associated record" do
-      allow(ActiveSupport::Dependencies).to receive(:constantize).with("::#{resource_klass.name}").and_return(resource_klass)
+      stub_const("::#{resource_klass.name}", resource_klass)
 
       expect(subject.values.first).to eq user
     end
