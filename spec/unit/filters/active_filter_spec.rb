@@ -243,7 +243,6 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     end
 
     let(:user) { User.create! first_name: "John", last_name: "Doe" }
-    let(:store) { resource_klass.create! name: "Store 1", user_id: user.id }
 
     let(:search) do
       resource_klass.ransack(user_id_eq: user.id)

@@ -210,7 +210,6 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
         ].each_with_index do |set, i|
           describe "for #{set[0]}" do
             let(:title) { set[0] }
-            let(:content) { set[1] }
             let(:current_row) { table.find_by_tag("tr")[i] }
 
             it "should have the title '#{set[0]}'" do
