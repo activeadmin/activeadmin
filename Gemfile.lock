@@ -205,7 +205,7 @@ GEM
       concurrent-ruby (~> 1.0)
     i18n-spec (0.6.0)
       iso
-    i18n-tasks (0.9.35)
+    i18n-tasks (0.9.36)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -295,7 +295,7 @@ GEM
     parallel (1.21.0)
     parallel_tests (3.7.3)
       parallel
-    parser (3.0.2.0)
+    parser (3.0.3.2)
       ast (~> 2.4.1)
     phantomjs (2.1.1.0)
     pry (0.13.1)
