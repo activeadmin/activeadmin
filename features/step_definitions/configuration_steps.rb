@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdminReloading
   def load_aa_config(config_content)
     ActiveSupport::Notifications.publish ActiveAdmin::Application::BeforeLoadEvent, ActiveAdmin.application

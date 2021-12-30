@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_admin/resource/action_items"
 require "active_admin/resource/attributes"
 require "active_admin/resource/controllers"

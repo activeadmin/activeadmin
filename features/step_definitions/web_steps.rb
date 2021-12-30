@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "uri"
 require File.expand_path(File.join(__dir__, "..", "support", "paths"))
 

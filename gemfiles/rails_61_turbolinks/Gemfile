@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source "https://rubygems.org"
 
 group :development, :test do
@@ -7,39 +8,37 @@ group :development, :test do
 
   gem "cancancan"
   gem "pundit"
-  gem "jruby-openssl", "~> 0.10.5", platform: :jruby
+  gem "jruby-openssl", platform: :jruby
 
-  gem "draper", "~> 4.0"
+  gem "draper"
   gem "devise"
 
   gem "rails", "~> 6.1.0"
-  gem "activerecord-jdbcsqlite3-adapter", "~> 61.0", platform: :jruby
+  gem "activerecord-jdbcsqlite3-adapter", platform: :jruby
 
   gem "sprockets-rails"
-  gem "sassc-rails", "~> 2.1"
+  gem "sassc-rails"
 
-  gem "turbolinks", "~> 5.2"
-
-  gem "formtastic", "~> 4.0.rc1"
+  gem "turbolinks"
 end
 
 group :test do
-  gem "cuprite", "0.13"
-  gem "capybara", "~> 3.14"
-  gem "webrick", "~> 1.7"
-  gem "db-query-matchers", "0.10.0"
+  gem "cuprite"
+  gem "capybara"
+  gem "webrick"
+  gem "db-query-matchers"
 
-  gem "simplecov", "0.21.2", require: false # Test coverage generator. Go to /coverage/ after running tests
-  gem "cucumber-rails", "~> 2.0", require: false
+  gem "simplecov", require: false # Test coverage generator. Go to /coverage/ after running tests
+  gem "cucumber-rails", require: false
   gem "cucumber"
   gem "database_cleaner"
   gem "jasmine"
-  gem "jasmine-core", "2.99.2" # last release with Ruby 2.2 support.
+  gem "jasmine-core"
   gem "launchy"
-  gem "parallel_tests", "~> 3.0"
+  gem "parallel_tests"
   gem "rails-i18n" # Provides default i18n for many languages
   gem "rspec-rails"
-  gem "sqlite3", "~> 1.4", platform: :mri
+  gem "sqlite3", platform: :mri
 end
 
 gemspec path: "../.."

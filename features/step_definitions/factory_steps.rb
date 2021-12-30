@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 def create_user(name, type = "User")
   first_name, last_name = name.split(" ")
   user = type.camelize.constantize.where(first_name: first_name, last_name: last_name).first_or_create(username: name.tr(" ", "").underscore)

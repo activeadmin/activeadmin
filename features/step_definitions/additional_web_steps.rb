@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I should see a table header with "([^"]*)"$/ do |content|
   expect(page).to have_xpath "//th", text: content
 end

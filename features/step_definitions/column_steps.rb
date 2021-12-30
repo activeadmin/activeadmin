@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I should see a columns container$/ do
   expect(page).to have_css ".columns"
 end

@@ -27,7 +27,7 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= link_to t('active_admin.devise.links.sign_in_with_omniauth_provider', provider: provider.to_s.titleize),
-          omniauth_authorize_path(resource_name, provider) %>
+          omniauth_authorize_path(resource_name, provider), method: :post %>
     <br>
   <% end -%>
 <% end -%>

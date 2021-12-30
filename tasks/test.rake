@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 desc "Run the full suite using parallel_tests to run on multiple cores"
 task test: [:setup, :spec, :cucumber]
 

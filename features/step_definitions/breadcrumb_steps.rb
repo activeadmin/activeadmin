@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Around "@breadcrumb" do |scenario, block|
   previous_breadcrumb = ActiveAdmin.application.breadcrumb
 

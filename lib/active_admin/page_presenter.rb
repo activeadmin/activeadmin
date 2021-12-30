@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
 
   # A simple object that gets used to present different aspects of views

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Rails template to build the sample app for specs
 
 webpacker_app = ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_61_webpacker/Gemfile", __dir__)

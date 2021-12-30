@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Views
     class FormtasticProxy < ::Arbre::Rails::Forms::FormBuilderProxy
@@ -16,7 +17,7 @@ module ActiveAdmin
       end
 
       def to_s
-        opening_tag << children.to_s << closing_tag
+        opening_tag + children.to_s + closing_tag
       end
     end
 

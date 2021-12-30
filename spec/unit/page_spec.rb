@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 require File.expand_path("config_shared_examples", __dir__)
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_admin/router"
 require "active_admin/application_settings"
 require "active_admin/namespace_settings"
@@ -164,8 +165,7 @@ module ActiveAdmin
     private
 
     def register_default_assets
-      register_stylesheet "active_admin.css", media: "screen"
-      register_stylesheet "active_admin/print.css", media: "print"
+      register_stylesheet "active_admin.css", media: "all"
       register_javascript "active_admin.js"
     end
 

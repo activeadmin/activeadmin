@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Around "@root" do |scenario, block|
   previous_root = ActiveAdmin.application.root_to
 

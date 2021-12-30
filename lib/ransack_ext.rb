@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This sets up aliases for old Metasearch query methods so they behave
 # identically to the versions given in Ransack.
 #

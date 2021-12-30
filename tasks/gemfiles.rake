@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 desc "Bundle all Gemfiles"
 task :bundle do |_t, opts|
   ["Gemfile", *Dir.glob("gemfiles/rails_*/Gemfile")].each do |gemfile|

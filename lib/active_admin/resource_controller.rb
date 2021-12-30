@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_admin/collection_decorator"
 require "active_admin/resource_controller/action_builder"
 require "active_admin/resource_controller/data_access"

@@ -37,25 +37,10 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby.value }}
-          bundler: none
+          bundler-cache: true
 
       - name: Install a specific rubygems version
-        run: gem update --system 3.2.15
-
-      - name: Install a specific bundler version
-        run: gem install bundler -v 2.2.15
-
-      - name: Cat current Gemfile to a specific file so caching works
-        run: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
-
-      - name: Restore cached dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.BUNDLE_PATH }}
-          key: gems-${{ matrix.os }}-${{ matrix.ruby.name }}-rails_61-${{ hashFiles('current_gemfile.lock') }}
-
-      - name: Install dependencies
-        run: bundle install
+        run: gem update --system 3.2.17
 
       - name: Generate docs
         run: bin/rake docs:build
@@ -132,25 +117,10 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby.value }}
-          bundler: none
+          bundler-cache: true
 
       - name: Install a specific rubygems version
-        run: gem update --system 3.2.15
-
-      - name: Install a specific bundler version
-        run: gem install bundler -v 2.2.15
-
-      - name: Cat current Gemfile to a specific file so caching works
-        run: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
-
-      - name: Restore cached dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.BUNDLE_PATH }}
-          key: gems-${{ matrix.os }}-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
-
-      - name: Install dependencies
-        run: bundle install
+        run: gem update --system 3.2.17
 
       - name: Setup git
         run: |

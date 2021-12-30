@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   # Page is the primary data storage for page configuration in Active Admin
   #
