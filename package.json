@@ -1,6 +1,6 @@
 {
-  "name": "@activeadmin/activeadmin",
-  "version": "2.9.0",
+  "name": "@huiliu-tech/activeadmin",
+  "version": "2.11.0",
   "description": "The administration framework for Ruby on Rails.",
   "main": "app/assets/javascripts/active_admin/base.js",
   "files": [
@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/activeadmin/activeadmin.git"
+    "url": "git+https://github.com/lanzhiheng/activeadmin.git"
   },
   "keywords": [
     "administration",
@@ -44,5 +44,9 @@
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
     "jquery-ujs": "^1.2.2"
+  },
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
   }
 }
