@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 module ActiveAdminReloading
   def load_aa_config(config_content)
-    ActiveSupport::Notifications.publish ActiveAdmin::Application::BeforeLoadEvent, ActiveAdmin.application
+    ActiveSupport::Notifications.instrument ActiveAdmin::Application::BeforeLoadEvent, ActiveAdmin.application
     eval(config_content)
-    ActiveSupport::Notifications.publish ActiveAdmin::Application::AfterLoadEvent, ActiveAdmin.application
+    ActiveSupport::Notifications.instrument ActiveAdmin::Application::AfterLoadEvent, ActiveAdmin.application
     Rails.application.reload_routes!
     ActiveAdmin.application.namespaces.each &:reset_menu!
   end

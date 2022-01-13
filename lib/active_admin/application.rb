@@ -76,7 +76,7 @@ module ActiveAdmin
 
       namespace = namespaces[name.to_sym] ||= begin
         namespace = Namespace.new(self, name)
-        ActiveSupport::Notifications.publish ActiveAdmin::Namespace::RegisterEvent, namespace
+        ActiveSupport::Notifications.instrument ActiveAdmin::Namespace::RegisterEvent, namespace
         namespace
       end
 
@@ -112,10 +112,10 @@ module ActiveAdmin
     # To reload everything simply call `ActiveAdmin.unload!`
     def load!
       unless loaded?
-        ActiveSupport::Notifications.publish BeforeLoadEvent, self # before_load hook
+        ActiveSupport::Notifications.instrument BeforeLoadEvent, self # before_load hook
         files.each { |file| load file } # load files
         namespace(default_namespace) # init AA resources
-        ActiveSupport::Notifications.publish AfterLoadEvent, self # after_load hook
+        ActiveSupport::Notifications.instrument AfterLoadEvent, self # after_load hook
         @@loaded = true
       end
     end
