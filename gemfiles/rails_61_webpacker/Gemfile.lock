@@ -188,10 +188,10 @@ GEM
       activesupport (>= 5.2)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
-    inherited_resources (1.13.0)
-      actionpack (>= 5.2, < 6.2)
+    inherited_resources (1.13.1)
+      actionpack (>= 5.2, < 7.1)
       has_scope (~> 0.6)
-      railties (>= 5.2, < 6.2)
+      railties (>= 5.2, < 7.1)
       responders (>= 2, < 4)
     jasmine (2.99.0)
       jasmine-core (>= 2.99.0, < 3.0.0)
@@ -349,7 +349,7 @@ GEM
     sqlite3 (1.4.2)
     sys-uname (1.2.2)
       ffi (~> 1.1)
-    thor (1.1.0)
+    thor (1.2.1)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
@@ -367,7 +367,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.3)
 
 PLATFORMS
   java
