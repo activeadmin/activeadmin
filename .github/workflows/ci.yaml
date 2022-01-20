@@ -97,7 +97,16 @@ jobs:
 
         os: [ubuntu-20.04]
 
-        deps: [rails_52, rails_60, rails_61, rails_61_turbolinks, rails_61_webpacker]
+        deps: [rails_52, rails_60, rails_61]
+
+        include:
+          - ruby: { name: 2.7, value: 2.7.5 }
+            os: ubuntu-20.04
+            deps: rails_61_turbolinks
+
+          - ruby: { name: 2.7, value: 2.7.5 }
+            os: ubuntu-20.04
+            deps: rails_61_webpacker
 
     env:
       COVERAGE: true
