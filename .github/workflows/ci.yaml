@@ -56,7 +56,7 @@ jobs:
           bundler-cache: true
 
       - name: Install a specific rubygems version
-        run: gem update --system 3.2.17
+        run: gem update --system 3.3.5
 
       - name: Generate docs
         run: bin/rake docs:build
@@ -144,7 +144,7 @@ jobs:
           bundler-cache: true
 
       - name: Install a specific rubygems version
-        run: gem update --system 3.2.17
+        run: gem update --system 3.3.5
 
       - name: Setup git
         run: |
