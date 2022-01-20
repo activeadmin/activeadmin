@@ -39,7 +39,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
 
     context "with formtastic translations" do
       it "should pick up formtastic label" do
-        with_translation formtastic: { labels: { title: "Supertitle" } } do
+        with_translation %i[formtastic labels title], "Supertitle" do
           expect(subject.label).to eq("Supertitle equals")
         end
       end

@@ -309,7 +309,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
 
     context "when i18n option is specified" do
       around do |example|
-        with_translation(activerecord: { attributes: { post: { title: "Name" } } }) do
+        with_translation %i[activerecord attributes post title], "Name" do
           example.call
         end
       end
@@ -329,7 +329,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
 
     context "when i18n option is not specified" do
       around do |example|
-        with_translation(activerecord: { attributes: { post: { title: "Name" } } }) do
+        with_translation %i[activerecord attributes post title], "Name" do
           example.call
         end
       end
