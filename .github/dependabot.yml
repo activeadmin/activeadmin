@@ -22,12 +22,6 @@ updates:
     versioning-strategy: lockfile-only
 
   - package-ecosystem: bundler
-    directory: /gemfiles/rails_52
-    schedule:
-      interval: daily
-    versioning-strategy: lockfile-only
-
-  - package-ecosystem: bundler
     directory: /gemfiles/rails_60
     schedule:
       interval: daily
