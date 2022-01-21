@@ -85,7 +85,7 @@ class FixmeLinter
   def clean?(file)
     relative_path = Pathname.new(__FILE__).relative_path_from(Pathname.new(File.dirname(__dir__))).to_s
 
-    file == relative_path || File.read(file, encoding: Encoding::UTF_8) !~ /(BUG|FIXME)/
+    file == relative_path || file == "yarn.lock" || File.read(file, encoding: Encoding::UTF_8) !~ /(BUG|FIXME)/
   end
 end
 
