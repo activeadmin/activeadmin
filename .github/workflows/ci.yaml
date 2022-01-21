@@ -10,6 +10,22 @@ on:
       - master
 
 jobs:
+  jruby:
+    name: Check Gemfile installs fine on JRuby
+    runs-on: ubuntu-20.04
+
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: jruby-9.3.2.0
+
+      - name: Run bug report template
+        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
+
   lint:
     name: lint (${{ matrix.ruby.name }})
     runs-on: ${{ matrix.os }}
