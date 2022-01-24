@@ -13,7 +13,7 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 7.0.0"
+  gem "rails", "~> 6.1.0"
   gem "activerecord-jdbcsqlite3-adapter", platform: :jruby
 
   gem "net-smtp" # The mail gem, depended on transitively, does not specify this dependency
@@ -63,4 +63,4 @@ group :docs do
   gem "kramdown" # Markdown implementation (for yard)
 end
 
-gemspec path: "."
+gemspec path: "../.."
