@@ -95,7 +95,7 @@ jobs:
 
         os: [ubuntu-20.04]
 
-        deps: [rails_52, rails_60, rails_61]
+        deps: [rails_60, rails_61]
 
         include:
           - ruby: { name: '3.0', value: 3.0.3 }

@@ -86,9 +86,6 @@ module ActiveAdminIntegrationSpecHelper
 
   def view_paths
     paths = ActionController::Base.view_paths
-    # the constructor for ActionView::Base changed from Rails 6
-    # and now expects an instance of ActionView::LookupContext
-    return paths unless Rails::VERSION::MAJOR >= 6
     ActionView::LookupContext.new(paths)
   end
 
