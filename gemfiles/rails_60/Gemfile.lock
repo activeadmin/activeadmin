@@ -182,7 +182,7 @@ GEM
     has_scope (0.8.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
-    i18n (1.9.0)
+    i18n (1.9.1)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.13.1)
       actionpack (>= 5.2, < 7.1)
