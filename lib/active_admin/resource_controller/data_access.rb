@@ -24,9 +24,9 @@ module ActiveAdmin
 
       COLLECTION_APPLIES = [
         :authorization_scope,
-        :sorting,
         :filtering,
         :scoping,
+        :sorting,
         :includes,
         :pagination,
         :collection_decorator
