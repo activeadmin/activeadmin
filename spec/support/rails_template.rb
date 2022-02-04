@@ -50,6 +50,8 @@ template File.expand_path("templates/migrations/create_taggings.tt", __dir__), "
 
 copy_file File.expand_path("templates/models/tagging.rb", __dir__), "app/models/tagging.rb"
 
+copy_file File.expand_path("templates/helpers/time_helper.rb", __dir__), "app/helpers/time_helper.rb"
+
 gsub_file "config/environments/test.rb", /  config.cache_classes = true/, <<-RUBY
 
   config.cache_classes = !ENV['CLASS_RELOADING']
