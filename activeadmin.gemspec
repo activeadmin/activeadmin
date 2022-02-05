@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.extra_rdoc_files = %w[CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md README.md]
 
-  s.required_ruby_version = ">= 2.6"
+  s.required_ruby_version = ">= 2.7"
 
   s.add_dependency "arbre", "~> 1.2", ">= 1.2.1"
   s.add_dependency "formtastic", ">= 3.1", "< 5.0"

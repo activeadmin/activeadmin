@@ -91,7 +91,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        ruby: [{ name: 2.7, value: 2.7.5 }, { name: 2.6, value: 2.6.9 }]
+        ruby: [{ name: 2.7, value: 2.7.5 }]
 
         os: [ubuntu-20.04]
 
