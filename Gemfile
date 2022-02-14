@@ -54,6 +54,7 @@ group :lint do
   # Translations
   gem "i18n-tasks"
   gem "i18n-spec"
+  gem "yalphabetize"
 end
 
 group :docs do

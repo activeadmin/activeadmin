@@ -1,141 +1,141 @@
 he:
   active_admin:
-    dashboard: פנל ניהול
-    dashboard_welcome:
-      welcome: "ברוכים הבאים לאקטיב אדמין. זהו פנל הניהול"
-      call_to_action: "כדי להוסיף אזורים בפנל הניהול, אנא בדוק את,  'app/admin/dashboard.rb'"
-    view: "צפייה"
-    edit: "עריכה"
-    delete: "מחיקה"
-    delete_confirmation: "האם אתה בטוח שאתה רוצה למחוק את זה?"
-    create_another: "צור עוד %{model}"
-    new_model: "%{model} חדש"
-    edit_model: "ערוך %{model}"
-    delete_model: "מחיקת %{model}"
-    details: "פרטים על %{model}"
-    cancel: "ביטול"
-    empty: "ריק"
-    previous: "הקודם"
-    next: "הבא"
-    download: "הורד:"
-    has_many_new: "הוספת %{model} חדש"
-    has_many_delete: "מחיקה"
-    has_many_remove: "להסיר"
-    filters:
-      buttons:
-        filter: "סינון"
-        clear: "איפוס שדות"
-      predicates:
-        contains: "מכיל"
-        equals: "שווה ל"
-        starts_with: "מתחיל עם"
-        ends_with: "מסתיים ב"
-        greater_than: "גדול מ"
-        less_than: "פחות מ"
-        gteq_datetime: "אחרי או בתאריך"
-        lteq_datetime: "לפני או בתאריך"
-    search_status:
-      headline: "תוצאות חיפוש:"
-      current_scope: "תחום:"
-      current_filters: "מסננים:"
-      no_current_filters: "ללא"
-    status_tag:
-      "yes": "כן"
-      "no": "לא"
-      "unset": "לא"
-    main_content: "אנא הטמע את %{model}#main_content בכדי להציג תוכן."
-    logout: "התנתקות"
-    powered_by: "ממונע בעזרת %{active_admin} %{version}"
-    sidebars:
-      filters: "סינון"
-      search_status: "מצב החיפוש"
-    pagination:
-      empty: "אין %{model} בנמצא"
-      one: "מציג <b>1</b> %{model}"
-      one_page: "הצגת <b>כל %{n}</b> %{model}"
-      multiple: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> מתוך <b>%{total}</b> בסך הכל"
-      multiple_without_total: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "בדף: "
-      entry:
-        one: "רשומה בודדה"
-        other: "רשומות"
+    access_denied:
+      message: "אינך רשאי לבצע פעולה זו."
     any: "Any"
-    blank_slate:
-      content: "כרגע אין עוד אף %{resource_name}."
-      link: "צור אחד"
-    dropdown_actions:
-      button_label: "פעולו"
     batch_actions:
+      action_label: "%{title} נבחר"
       button_label: "פעולות מרובות"
       default_confirmation: "אתה בטוח שאתה רוצה לעשות את זה?"
       delete_confirmation: "האם הנך בטוח שאתה רוצה למרוח את %{plural_model}?"
+      labels:
+        destroy: "מחק"
+      selection_toggle_explanation: "(שינוי בחירה)"
       succesfully_destroyed:
         one: "1 %{model} נמחק בהצלחה"
         other: "%{count} %{plural_model} נמחק בהצלחה"
-      selection_toggle_explanation: "(שינוי בחירה)"
-      action_label: "%{title} נבחר"
-      labels:
-        destroy: "מחק"
+    blank_slate:
+      content: "כרגע אין עוד אף %{resource_name}."
+      link: "צור אחד"
+    cancel: "ביטול"
     comments:
-      created_at: "נוצר"
-      resource_type: "סוג רישום"
+      add: "הוסף תגובה"
+      author: 'נוצר ע"י'
+      author_missing: "אנונימי"
       author_type: "סוג מחבר"
       body: "תוכן"
-      author: 'נוצר ע"י'
-      add: "הוסף תגובה"
+      created_at: "נוצר"
       delete: "מחק תגובה"
       delete_confirmation: "האם אתה בטוח שברצונך למחוק תגובה זאת?"
-      resource: "רשומה"
-      no_comments_yet: "אין עדיין תגובות."
-      author_missing: "אנונימי"
-      title_content: "תגובות (%{count})"
       errors:
         empty_text: "התגובה לא נשמרה, שדה התוכן ריק."
+      no_comments_yet: "אין עדיין תגובות."
+      resource: "רשומה"
+      resource_type: "סוג רישום"
+      title_content: "תגובות (%{count})"
+    create_another: "צור עוד %{model}"
+    dashboard: פנל ניהול
+    dashboard_welcome:
+      call_to_action: "כדי להוסיף אזורים בפנל הניהול, אנא בדוק את,  'app/admin/dashboard.rb'"
+      welcome: "ברוכים הבאים לאקטיב אדמין. זהו פנל הניהול"
+    delete: "מחיקה"
+    delete_confirmation: "האם אתה בטוח שאתה רוצה למחוק את זה?"
+    delete_model: "מחיקת %{model}"
+    details: "פרטים על %{model}"
     devise:
-      username:
-        title: "שם משתמש"
+      change_password:
+        submit: "שנה את הסיסמא שלי"
+        title: "שנה את הסיסמא שלך"
       email:
         title: "כתובת דוא״ל"
-      subdomain:
-        title: "תת-דומיין"
+      links:
+        forgot_your_password: "שכחת את הסיסמא שלך?"
+        resend_confirmation_instructions: "שלח שוב הוראות אישור"
+        resend_unlock_instructions: "שלח שוב הוראות שיחרור"
+        sign_in: "כניסה"
+        sign_in_with_omniauth_provider: "%{provider} היכנס עם"
+        sign_up: "הרשמה"
+      login:
+        remember_me: "זכור אותי"
+        submit: "הכנס"
+        title: "כניסה"
       password:
         title: "סיסמא"
       password_confirmation:
         title: "אישור סיסמא"
-      sign_up:
-        title: "הרשמה"
-        submit: "הרשמה"
-      login:
-        title: "כניסה"
-        remember_me: "זכור אותי"
-        submit: "הכנס"
-      reset_password:
-        title: "שכחת סיסמא?"
-        submit: "אפס את הסיסמא שלי"
-      change_password:
-        title: "שנה את הסיסמא שלך"
-        submit: "שנה את הסיסמא שלי"
-      unlock:
-        title: "שלח שוב הוראות שיחרור"
-        submit: "שלח שוב הוראות שיחרור"
       resend_confirmation_instructions:
-        title: "שלח שוב הוראות אישור"
         submit: "שלח שוב הוראות אישור"
-      links:
-        sign_up: "הרשמה"
-        sign_in: "כניסה"
-        forgot_your_password: "שכחת את הסיסמא שלך?"
-        sign_in_with_omniauth_provider: "%{provider} היכנס עם"
-        resend_unlock_instructions: "שלח שוב הוראות שיחרור"
-        resend_confirmation_instructions: "שלח שוב הוראות אישור"
+        title: "שלח שוב הוראות אישור"
+      reset_password:
+        submit: "אפס את הסיסמא שלי"
+        title: "שכחת סיסמא?"
+      sign_up:
+        submit: "הרשמה"
+        title: "הרשמה"
+      subdomain:
+        title: "תת-דומיין"
+      unlock:
+        submit: "שלח שוב הוראות שיחרור"
+        title: "שלח שוב הוראות שיחרור"
+      username:
+        title: "שם משתמש"
+    download: "הורד:"
+    dropdown_actions:
+      button_label: "פעולו"
+    edit: "עריכה"
+    edit_model: "ערוך %{model}"
+    empty: "ריק"
+    filters:
+      buttons:
+        clear: "איפוס שדות"
+        filter: "סינון"
+      predicates:
+        contains: "מכיל"
+        ends_with: "מסתיים ב"
+        equals: "שווה ל"
+        greater_than: "גדול מ"
+        gteq_datetime: "אחרי או בתאריך"
+        less_than: "פחות מ"
+        lteq_datetime: "לפני או בתאריך"
+        starts_with: "מתחיל עם"
+    has_many_delete: "מחיקה"
+    has_many_new: "הוספת %{model} חדש"
+    has_many_remove: "להסיר"
+    index_list:
+      block: "רשימה"
+      blog: "בלוג"
+      grid: "גריד"
+      table: "טבלה"
+    logout: "התנתקות"
+    main_content: "אנא הטמע את %{model}#main_content בכדי להציג תוכן."
+    new_model: "%{model} חדש"
+    next: "הבא"
+    pagination:
+      empty: "אין %{model} בנמצא"
+      entry:
+        one: "רשומה בודדה"
+        other: "רשומות"
+      multiple: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> מתוך <b>%{total}</b> בסך הכל"
+      multiple_without_total: "מציג %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      one: "מציג <b>1</b> %{model}"
+      one_page: "הצגת <b>כל %{n}</b> %{model}"
+      per_page: "בדף: "
+    powered_by: "ממונע בעזרת %{active_admin} %{version}"
+    previous: "הקודם"
+    search_status:
+      current_filters: "מסננים:"
+      current_scope: "תחום:"
+      headline: "תוצאות חיפוש:"
+      no_current_filters: "ללא"
+    sidebars:
+      filters: "סינון"
+      search_status: "מצב החיפוש"
+    status_tag:
+      "no": "לא"
+      "unset": "לא"
+      "yes": "כן"
     unsupported_browser:
       headline: "שים לב ש-ActiveAdmin אינו תומך יותר ב-Internet Explorer גרסא 8 ומטה."
       recommendation: "אנו ממליצים <a href=\"http://browsehappy.com/\">לשדרג את הדפדפן שלך</a> על מנת לשפר את חווית הגלישה."
       turn_off_compatibility_view: "אם אתה משתמש ב- IE 9 ואילך, ודא ש<a href=\"https://support.microsoft.com/he-il/help/17471\">כיבית \"תצוגת תאימות\"</a>."
-    access_denied:
-      message: "אינך רשאי לבצע פעולה זו."
-    index_list:
-      table: "טבלה"
-      block: "רשימה"
-      grid: "גריד"
-      blog: "בלוג"
+    view: "צפייה"

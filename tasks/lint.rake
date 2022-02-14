@@ -107,7 +107,7 @@ class SassRailsLinter
 end
 
 desc "Lints ActiveAdmin code base"
-task lint: ["lint:rubocop", "lint:mdl", "lint:eslint", "lint:gherkin", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:sass_rails", "lint:rspec"]
+task lint: ["lint:rubocop", "lint:mdl", "lint:eslint", "lint:gherkin", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:sass_rails", "lint:rspec", "lint:yalphabetize"]
 
 namespace :lint do
   require "rubocop/rake_task"
@@ -180,5 +180,12 @@ namespace :lint do
       "bin/rspec",
       *Dir.glob("spec/*.lint.rb")
     )
+  end
+
+  desc "Check locale alphabetization using yalphabetize"
+  task :yalphabetize do
+    puts "Running yalphabetize against locales..."
+
+    sh("bundle exec yalphabetize")
   end
 end

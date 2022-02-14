@@ -1,109 +1,109 @@
 cs:
   active_admin:
-    dashboard: Úvod
-    dashboard_welcome:
-      welcome: "Vítejte v Active Admin. Toto je nástěnka."
-      call_to_action: "Pro přidání sekcí na nástěnku se podívejte do souboru 'app/admin/dashboard.rb'"
-    view: "Zobrazit"
-    edit: "Upravit"
-    delete: "Smazat"
-    delete_confirmation: "Jste si jistí, že chcete tuto položku smazat?"
-    new_model: "Vytvořit"
-    edit_model: "Upravit"
-    delete_model: "Smazat"
-    details: "Detaily"
-    cancel: "Zrušit"
-    empty: "Prázdné"
-    previous: "Předchozí"
-    next: "Následující"
-    download: "Stáhnout:"
-    has_many_new: "Přidat nový"
-    has_many_delete: "Smazat"
-    has_many_remove: "Odstranit"
-    filters:
-      buttons:
-        filter: "Filtrovat"
-        clear: "Vyčistit filtry"
-      predicates:
-        contains: "Obsahuje"
-        equals: "Odpovídá"
-        starts_with: "Začíná na"
-        ends_with: "Končí na"
-        greater_than: "Větší než"
-        less_than: "Menší než"
-    status_tag:
-      "yes": "Ano"
-      "no": "Ne"
-      "unset": "Ne"
-    main_content: "Implementujte prosím %{model}#main_content pro zobrazení obsahu."
-    logout: "Odhlásit"
-    powered_by: "%{active_admin} %{version}"
-    sidebars:
-      filters: "Filtry"
-    pagination:
-      empty: "Nenalezen."
-      one: "Zobrazena  <b>1</b> položka"
-      one_page: "Počet zobrazených položek %{n}"
-      multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
-      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      entry:
-        one: "položka"
-        few: "položky"
-        other: "položky"
+    access_denied:
+      message: "Nemáte oprávnění k provedení této akce."
     any: "Kterákoliv"
-    blank_slate:
-      content: "Zatím zde není žádný obsah."
-      link: "Vytvořit"
-    dropdown_actions:
-      button_label: "Akce"
     batch_actions:
+      action_label: "%{title}"
       button_label: "Hromadné akce"
       default_confirmation: "Jste si jisti, že chcete provést?"
       delete_confirmation: "Jste si jisti, že chcete smazat tyto %{plural_model}?"
-      succesfully_destroyed:
-        zero: "Nebyl smazán žádný %{model}"
-        one: "Úspěšně smazán %{model}"
-        few: "Úspěšně smazány %{count} %{plural_model}"
-        other: "Úspěšně smazáno %{count} %{plural_model}"
-      selection_toggle_explanation: "(Změnit výběr)"
-      action_label: "%{title}"
       labels:
         destroy: "Vymazat"
+      selection_toggle_explanation: "(Změnit výběr)"
+      succesfully_destroyed:
+        few: "Úspěšně smazány %{count} %{plural_model}"
+        one: "Úspěšně smazán %{model}"
+        other: "Úspěšně smazáno %{count} %{plural_model}"
+        zero: "Nebyl smazán žádný %{model}"
+    blank_slate:
+      content: "Zatím zde není žádný obsah."
+      link: "Vytvořit"
+    cancel: "Zrušit"
     comments:
-      resource_type: "Typ zdroje"
+      add: "Přidat komentář"
+      author: "Autor"
+      author_missing: "Anonymní"
       author_type: "Typ autora"
       body: "Tělo"
-      author: "Autor"
-      add: "Přidat komentář"
-      resource: "Zdroj"
-      no_comments_yet: "Žádný komentář"
-      author_missing: "Anonymní"
-      title_content: "Komentáře administrátorů (%{count})"
       errors:
         empty_text: "Komentář nebyl uložen, je prázdný."
+      no_comments_yet: "Žádný komentář"
+      resource: "Zdroj"
+      resource_type: "Typ zdroje"
+      title_content: "Komentáře administrátorů (%{count})"
+    dashboard: Úvod
+    dashboard_welcome:
+      call_to_action: "Pro přidání sekcí na nástěnku se podívejte do souboru 'app/admin/dashboard.rb'"
+      welcome: "Vítejte v Active Admin. Toto je nástěnka."
+    delete: "Smazat"
+    delete_confirmation: "Jste si jistí, že chcete tuto položku smazat?"
+    delete_model: "Smazat"
+    details: "Detaily"
     devise:
+      change_password:
+        submit: "Změnit své heslo"
+        title: "Změnit heslo"
+      links:
+        forgot_your_password: "Zapomněli jste heslo?"
+        sign_in: "Přihlásit se"
+        sign_in_with_omniauth_provider: "Přihlásit se přes %{provider}"
+        sign_up: "Registrovat se"
       login:
-        title: "Přihlášení"
         remember_me: "Zapamatovat si mě"
         submit: "Přihlásit"
+        title: "Přihlášení"
       reset_password:
-        title: "Zapomněli jste heslo?"
         submit: "Obnovit heslo"
-      change_password:
-        title: "Změnit heslo"
-        submit: "Změnit své heslo"
+        title: "Zapomněli jste heslo?"
       unlock:
-        title: "Zaslání instrukcí k odemčení účtu"
         submit: "Zaslat instrukce k odemčení účtu"
-      links:
-        sign_in: "Přihlásit se"
-        sign_up: "Registrovat se"
-        forgot_your_password: "Zapomněli jste heslo?"
-        sign_in_with_omniauth_provider: "Přihlásit se přes %{provider}"
-    access_denied:
-      message: "Nemáte oprávnění k provedení této akce."
+        title: "Zaslání instrukcí k odemčení účtu"
+    download: "Stáhnout:"
+    dropdown_actions:
+      button_label: "Akce"
+    edit: "Upravit"
+    edit_model: "Upravit"
+    empty: "Prázdné"
+    filters:
+      buttons:
+        clear: "Vyčistit filtry"
+        filter: "Filtrovat"
+      predicates:
+        contains: "Obsahuje"
+        ends_with: "Končí na"
+        equals: "Odpovídá"
+        greater_than: "Větší než"
+        less_than: "Menší než"
+        starts_with: "Začíná na"
+    has_many_delete: "Smazat"
+    has_many_new: "Přidat nový"
+    has_many_remove: "Odstranit"
     index_list:
-      table: "Tabulka"
       block: "Seznam"
-      grid: "Tabulka"
       blog: "Blog"
+      grid: "Tabulka"
+      table: "Tabulka"
+    logout: "Odhlásit"
+    main_content: "Implementujte prosím %{model}#main_content pro zobrazení obsahu."
+    new_model: "Vytvořit"
+    next: "Následující"
+    pagination:
+      empty: "Nenalezen."
+      entry:
+        few: "položky"
+        one: "položka"
+        other: "položky"
+      multiple: "<b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b>"
+      multiple_without_total: "<b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      one: "Zobrazena  <b>1</b> položka"
+      one_page: "Počet zobrazených položek %{n}"
+    powered_by: "%{active_admin} %{version}"
+    previous: "Předchozí"
+    sidebars:
+      filters: "Filtry"
+    status_tag:
+      "no": "Ne"
+      "unset": "Ne"
+      "yes": "Ano"
+    view: "Zobrazit"

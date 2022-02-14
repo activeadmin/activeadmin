@@ -1,141 +1,141 @@
 fr:
   active_admin:
-    dashboard: "Tableau de bord"
-    dashboard_welcome:
-      welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
-      call_to_action: "Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboard.rb'"
-    view: "Voir"
-    edit: "Modifier"
-    delete: "Supprimer"
-    delete_confirmation: "Voulez-vous vraiment supprimer ceci ?"
-    create_another: "Créer autre %{model}"
-    new_model: "Créer %{model}"
-    edit_model: "Modifier %{model}"
-    delete_model: "Supprimer %{model}"
-    details: "Détails de %{model}"
-    cancel: "Annuler"
-    empty: "Vide"
-    previous: "Précédent"
-    next: "Suivant"
-    download: "Télécharger :"
-    has_many_new: "Ajouter un(e) %{model}"
-    has_many_delete: "Supprimer"
-    has_many_remove: "Enlever"
-    filters:
-      buttons:
-        filter: "Filtrer"
-        clear: "Supprimer les filtres"
-      predicates:
-        contains: "Contient"
-        equals: "Égal à"
-        starts_with: "Commence par"
-        ends_with: "Se termine par"
-        greater_than: "Plus grand que"
-        less_than: "Plus petit que"
-        gteq_datetime: "Ultérieur ou égal à"
-        lteq_datetime: "Antérieur ou égal à"
-        from: "De"
-        to: "À"
-    search_status:
-      headline: "Statut de la recherche :"
-      current_scope: "Etendu du filtre :"
-      current_filters: "Filtres actuels :"
-      no_current_filters: "Aucun filtres"
-    status_tag:
-      "yes": "Oui"
-      "no": "Non"
-      "unset": "Non"
-    main_content: "Veuillez implémenter %{model}#main_content pour afficher le contenu."
-    logout: "Déconnexion"
-    powered_by: "Propulsé par %{active_admin} %{version}"
-    sidebars:
-      filters: "Filtres"
-      search_status: "Statut de la recherche"
-    pagination:
-      empty: "Aucun %{model} trouvé"
-      one: "Affichage de <b>1</b> %{model}"
-      one_page: "Affichage des <b>%{n}</b> %{model}"
-      multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"
-      multiple_without_total: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
-      per_page: "Par page: "
-      entry:
-        one: "entrée"
-        other: "entrées"
+    access_denied:
+      message: "Vous n'êtes pas autorisé à exécuter cette action"
     any: "N'importe lequel"
-    blank_slate:
-      content: "Il n'y a pas encore de %{resource_name}."
-      link: "Créez en un"
-    dropdown_actions:
-      button_label: "Actions"
     batch_actions:
+      action_label: "%{title} les éléments sélectionnés"
       button_label: "Actions groupées"
       default_confirmation: "Voulez-vous vraiment faire cela ?"
       delete_confirmation: "Voulez-vous vraiment supprimer ces %{plural_model} ?"
+      labels:
+        destroy: "Supprimer"
+      selection_toggle_explanation: "(Inverser la sélection)"
       succesfully_destroyed:
         one: "1 %{model} supprimé"
         other: "%{count} %{plural_model} supprimés"
-      selection_toggle_explanation: "(Inverser la sélection)"
-      action_label: "%{title} les éléments sélectionnés"
-      labels:
-        destroy: "Supprimer"
+    blank_slate:
+      content: "Il n'y a pas encore de %{resource_name}."
+      link: "Créez en un"
+    cancel: "Annuler"
     comments:
-      created_at: "Créé le"
-      resource_type: "Type de ressource"
+      add: "Ajouter un commentaire"
+      author: "Auteur"
+      author_missing: "Anonyme"
       author_type: "Profil de l'auteur"
       body: "Corps"
-      author: "Auteur"
-      add: "Ajouter un commentaire"
+      created_at: "Créé le"
       delete: "Supprimer ce commentaire"
       delete_confirmation: "Voulez-vous vraiment supprimer ce commentaire ?"
-      resource: "Ressource"
-      no_comments_yet: "Aucun commentaire actuellement"
-      author_missing: "Anonyme"
-      title_content: "Commentaires (%{count})"
       errors:
         empty_text: "Le commentaire n'a pas été enregistré puisque le texte était vide."
+      no_comments_yet: "Aucun commentaire actuellement"
+      resource: "Ressource"
+      resource_type: "Type de ressource"
+      title_content: "Commentaires (%{count})"
+    create_another: "Créer autre %{model}"
+    dashboard: "Tableau de bord"
+    dashboard_welcome:
+      call_to_action: "Pour ajouter des sections au tableau de bord, consultez 'app/admin/dashboard.rb'"
+      welcome: "Bienvenue dans Active Admin. Ceci est la page par défaut."
+    delete: "Supprimer"
+    delete_confirmation: "Voulez-vous vraiment supprimer ceci ?"
+    delete_model: "Supprimer %{model}"
+    details: "Détails de %{model}"
     devise:
-      username:
-        title: "Nom d'utilisateur"
+      change_password:
+        submit: "Changer mon mot de passe"
+        title: "Changez votre mot de passe"
       email:
         title: "Email"
-      subdomain:
-        title: "Sous-domaine"
-      password:
-        title: "Mot de passe"
-      sign_up:
-        title: "S'inscrire"
-        submit: "S'inscrire"
+      links:
+        forgot_your_password: "Vous avez oublié votre mot de passe ?"
+        resend_confirmation_instructions: "Renvoyer les instructions de confirmation"
+        resend_unlock_instructions: "Renvoyer les informations de déverrouillage"
+        sign_in: "Connectez-vous"
+        sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
+        sign_up: "Inscrivez-vous"
       login:
-        title: "Connexion"
         remember_me: "Garder ma session ouverte"
         submit: "Se connecter"
-      reset_password:
-        title: "Vous avez oublié votre mot de passe ?"
-        submit: "Réinitialiser mon mot de passe"
-      change_password:
-        title: "Changez votre mot de passe"
-        submit: "Changer mon mot de passe"
-      unlock:
-        title: "Renvoyer les informations de déverrouillage"
-        submit: "Renvoyer les informations de déverrouillage"
+        title: "Connexion"
+      password:
+        title: "Mot de passe"
       resend_confirmation_instructions:
-        title: "Renvoyer les instructions de confirmation"
         submit: "Renvoyer les instructions de confirmation"
-      links:
-        sign_up: "Inscrivez-vous"
-        sign_in: "Connectez-vous"
-        forgot_your_password: "Vous avez oublié votre mot de passe ?"
-        sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
-        resend_unlock_instructions: "Renvoyer les informations de déverrouillage"
-        resend_confirmation_instructions: "Renvoyer les instructions de confirmation"
+        title: "Renvoyer les instructions de confirmation"
+      reset_password:
+        submit: "Réinitialiser mon mot de passe"
+        title: "Vous avez oublié votre mot de passe ?"
+      sign_up:
+        submit: "S'inscrire"
+        title: "S'inscrire"
+      subdomain:
+        title: "Sous-domaine"
+      unlock:
+        submit: "Renvoyer les informations de déverrouillage"
+        title: "Renvoyer les informations de déverrouillage"
+      username:
+        title: "Nom d'utilisateur"
+    download: "Télécharger :"
+    dropdown_actions:
+      button_label: "Actions"
+    edit: "Modifier"
+    edit_model: "Modifier %{model}"
+    empty: "Vide"
+    filters:
+      buttons:
+        clear: "Supprimer les filtres"
+        filter: "Filtrer"
+      predicates:
+        contains: "Contient"
+        ends_with: "Se termine par"
+        equals: "Égal à"
+        from: "De"
+        greater_than: "Plus grand que"
+        gteq_datetime: "Ultérieur ou égal à"
+        less_than: "Plus petit que"
+        lteq_datetime: "Antérieur ou égal à"
+        starts_with: "Commence par"
+        to: "À"
+    has_many_delete: "Supprimer"
+    has_many_new: "Ajouter un(e) %{model}"
+    has_many_remove: "Enlever"
+    index_list:
+      block: "Liste"
+      blog: "Blog"
+      grid: "Grille"
+      table: "Tableau"
+    logout: "Déconnexion"
+    main_content: "Veuillez implémenter %{model}#main_content pour afficher le contenu."
+    new_model: "Créer %{model}"
+    next: "Suivant"
+    pagination:
+      empty: "Aucun %{model} trouvé"
+      entry:
+        one: "entrée"
+        other: "entrées"
+      multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"
+      multiple_without_total: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      one: "Affichage de <b>1</b> %{model}"
+      one_page: "Affichage des <b>%{n}</b> %{model}"
+      per_page: "Par page: "
+    powered_by: "Propulsé par %{active_admin} %{version}"
+    previous: "Précédent"
+    search_status:
+      current_filters: "Filtres actuels :"
+      current_scope: "Etendu du filtre :"
+      headline: "Statut de la recherche :"
+      no_current_filters: "Aucun filtres"
+    sidebars:
+      filters: "Filtres"
+      search_status: "Statut de la recherche"
+    status_tag:
+      "no": "Non"
+      "unset": "Non"
+      "yes": "Oui"
     unsupported_browser:
       headline: "Veuillez noter que ActiveAdmin ne supporte plus les versions d'Internet Explorer 8 ou moins."
       recommendation: "Nous vous recommandons de <a href=\"http://browsehappy.com/\">mettre à jour votre navigateur</a> pour améliorer votre expérience."
       turn_off_compatibility_view: "Si vous utilisez IE 9 ou une version ultérieure, assurez-vous d'<a href=\"https://support.microsoft.com/fr-fr/help/17471\">activer \"Affichage de compatibilité\"</a>."
-    access_denied:
-      message: "Vous n'êtes pas autorisé à exécuter cette action"
-    index_list:
-      table: "Tableau"
-      block: "Liste"
-      grid: "Grille"
-      blog: "Blog"
+    view: "Voir"
