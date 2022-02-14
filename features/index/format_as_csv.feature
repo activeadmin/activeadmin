@@ -27,6 +27,20 @@ Feature: Format as CSV
     Then I should download a CSV file for "my-articles" containing:
     | Id  | Title       | Body | Published date | Position | Starred | Foo    | Created at | Updated at |
 
+  Scenario: Default with streaming disabled
+    Given a configuration of:
+    """
+      ActiveAdmin.application.disable_streaming_in = ["test"]
+
+      ActiveAdmin.register Post
+    """
+    And a post with the title "Hello World" exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    Then I should download a CSV file for "posts" containing:
+    | Id  | Title       | Body | Published date | Position | Starred | Foo    |Created at | Updated at |
+    | \d+ | Hello World |      |                |          |         |        |(.*)       | (.*)       |
+
   Scenario: With CSV format customization
     Given a configuration of:
     """
