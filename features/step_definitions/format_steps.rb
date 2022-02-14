@@ -3,10 +3,12 @@ require "csv"
 
 Around "@csv" do |scenario, block|
   default_csv_options = ActiveAdmin.application.csv_options
+  default_disable_streaming_in = ActiveAdmin.application.disable_streaming_in
 
   begin
     block.call
   ensure
+    ActiveAdmin.application.disable_streaming_in = default_disable_streaming_in
     ActiveAdmin.application.csv_options = default_csv_options
   end
 end
