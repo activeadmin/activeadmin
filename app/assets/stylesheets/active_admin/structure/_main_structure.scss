@@ -4,6 +4,7 @@
 
 .index #wrapper {
   display: table;
+  table-layout: fixed;
 }
 
 #active_admin_content {

@@ -63,23 +63,30 @@ table.index_table {
 
 // --------- Tables inside Panels
 
-.panel_contents table {
-  margin-top: 5px;
-  th {
-    padding-top: 10px;
-    background: none;
-    color: $primary-color;
-    @include no-shadow;
-    @include text-shadow;
-    text-transform: uppercase;
-    border-bottom: 1px solid #ccc;
+.panel_contents {
+  overflow-x: auto;
+
+  table {
+    margin-top: 5px;
+    th {
+      padding-top: 10px;
+      background: none;
+      color: $primary-color;
+      @include no-shadow;
+      @include text-shadow;
+      text-transform: uppercase;
+      border-bottom: 1px solid #ccc;
+    }
+    tr.odd td { background: darken($table-stripe-color, 3%); }
+    tr.even td { background: $table-stripe-color; }
   }
-  tr.odd td { background: darken($table-stripe-color, 3%); }
-  tr.even td { background: $table-stripe-color; }
 }
 
 // -------------------------------------- Resource Attributes Table
-.attributes_table { overflow: hidden; }
+.attributes_table {
+  overflow: hidden;
+  overflow-x: auto;
+}
 
 .attributes_table table {
   col.even { background: $table-stripe-color; }
