@@ -5,6 +5,7 @@ Feature: Development Reloading
   As a developer
   I want the application to reload itself in development
 
+  @changes-filesystem
   Scenario: Registering a resource that was not previously registered
     When I am logged in with capybara
     Then I should not see a menu item for "Posts"
