@@ -42,3 +42,19 @@ Feature: Show - Default Content
     And I should see the attribute "Body" with "Empty"
     And I should see the attribute "Created At" with a nicely formatted datetime
     And I should not see the attribute "Author"
+
+  @changes-db-schema
+  Scenario: Columns with "counter cache"-like names
+    Given a new "tagging_count" counter column is added to "posts"
+    And a show configuration of:
+    """
+      ActiveAdmin.register Post
+    """
+    Then I should see the attribute "Title" with "Hello World"
+    And I should see the attribute "Body" with "Empty"
+    And I should see the attribute "Created At" with a nicely formatted datetime
+    And I should see the attribute "Author" with "Jane Doe"
+    And I should see the attribute "Starred" with "No"
+    And I should see the attribute "Tagging Count" with "0"
+    And I should see an action item button "Delete Post"
+    And I should see an action item button "Edit Post"

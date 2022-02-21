@@ -37,7 +37,10 @@ module ActiveAdmin
       end
 
       def counter_cache_col?(c)
-        c.name.end_with?("_count")
+        counter_cache_columns = resource_class.reflect_on_all_associations(:has_many)
+                                              .select(&:has_cached_counter?)
+                                              .map(&:counter_cache_column)
+        counter_cache_columns.include?(c.name)
       end
 
       def filtered_col?(c)
