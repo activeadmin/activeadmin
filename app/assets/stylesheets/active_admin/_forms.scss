@@ -313,7 +313,6 @@ form.filter_form {
 
     &.filter_date_range {
       input[type=text] {
-        box-sizing: border-box;
         width: $date-range-filter-input-width;
 
         + input {
