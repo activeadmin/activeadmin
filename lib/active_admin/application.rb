@@ -150,8 +150,8 @@ module ActiveAdmin
     AbstractController::Callbacks::ClassMethods.public_instance_methods.
       select { |m| m.match(/_action\z/) }.each do |name|
       define_method name do |*args, &block|
-        controllers_for_filters.each do |controller|
-          controller.public_send name, *args, &block
+        ActiveSupport.on_load(:active_admin_controller) do
+          public_send name, *args, &block
         end
       end
     end
