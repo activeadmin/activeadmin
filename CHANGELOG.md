@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 2.10.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.10.0..v2.10.1)
+
+### Bug Fixes
+
+* Fix frozen string error when downloading CSV and streaming disabled. [#7332] by [@deivid-rodriguez]
+
 ## 2.10.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.9.0..v2.10.0)
 
 ### Enhancements
@@ -703,6 +709,7 @@ Please check [0-6-stable] for previous changes.
 [#7236]: https://github.com/activeadmin/activeadmin/pull/7236
 [#7262]: https://github.com/activeadmin/activeadmin/pull/7262
 [#7293]: https://github.com/activeadmin/activeadmin/pull/7293
+[#7332]: https://github.com/activeadmin/activeadmin/pull/7332
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
