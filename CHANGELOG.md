@@ -4,6 +4,12 @@
 
 ## 2.10.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.10.0..v2.10.1)
 
+### Enhancements
+
+* Apply `box-sizing: border-box` globally. [#7349] by [@deivid-rodriguez]
+* Vendor normalize 8.0.1. [#7350] by [@deivid-rodriguez]
+* Remove deprecation warning using controller filters inside initializer. [#7340] by [@mgrunberg]
+
 ### Bug Fixes
 
 * Fix frozen string error when downloading CSV and streaming disabled. [#7332] by [@deivid-rodriguez]
@@ -710,6 +716,9 @@ Please check [0-6-stable] for previous changes.
 [#7262]: https://github.com/activeadmin/activeadmin/pull/7262
 [#7293]: https://github.com/activeadmin/activeadmin/pull/7293
 [#7332]: https://github.com/activeadmin/activeadmin/pull/7332
+[#7340]: https://github.com/activeadmin/activeadmin/pull/7340
+[#7349]: https://github.com/activeadmin/activeadmin/pull/7349
+[#7350]: https://github.com/activeadmin/activeadmin/pull/7350
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
@@ -779,6 +788,7 @@ Please check [0-6-stable] for previous changes.
 [@markstory]: https://github.com/markstory
 [@mauriciopasquier]: https://github.com/mauriciopasquier
 [@mconiglio]: https://github.com/mconiglio
+[@mgrunberg]: https://github.com/mgrunberg
 [@micred]: https://github.com/micred
 [@mirelon]: https://github.com/mirelon
 [@MmKolodziej]: https://github.com/MmKolodziej
