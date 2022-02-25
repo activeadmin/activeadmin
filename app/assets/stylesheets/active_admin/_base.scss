@@ -33,10 +33,14 @@
   @import "./structure/main_structure";
   @import "./structure/title_bar";
 
+  html {
+    box-sizing: border-box;
+  }
+
   *,
   *:before,
   *:after {
-    box-sizing: border-box;
+    box-sizing: inherit;
   }
 
   body {
