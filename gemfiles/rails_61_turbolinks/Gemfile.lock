@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/cucumber/cucumber-rails.git
+  revision: 9d8f2e687d155a7da37e00d53504880b1b2ef9a8
+  specs:
+    cucumber-rails (2.4.0)
+      capybara (>= 2.18, < 4)
+      cucumber (>= 3.2, < 8)
+      mime-types (~> 3.3)
+      nokogiri (~> 1.10)
+      railties (>= 5.0, < 8)
+      rexml (~> 3.0)
+      webrick (~> 1.7)
+
 PATH
   remote: ../..
   specs:
@@ -131,14 +144,6 @@ GEM
     cucumber-html-formatter (17.0.0)
       cucumber-messages (~> 17.1, >= 17.1.0)
     cucumber-messages (17.1.1)
-    cucumber-rails (2.4.0)
-      capybara (>= 2.18, < 4)
-      cucumber (>= 3.2, < 8)
-      mime-types (~> 3.3)
-      nokogiri (~> 1.10)
-      railties (>= 5.0, < 7)
-      rexml (~> 3.0)
-      webrick (~> 1.7)
     cucumber-tag-expressions (4.1.0)
     cucumber-wire (6.2.0)
       cucumber-core (~> 10.1, >= 10.1.0)
@@ -390,7 +395,7 @@ DEPENDENCIES
   cancancan
   capybara
   cucumber
-  cucumber-rails
+  cucumber-rails!
   cuprite
   database_cleaner
   devise
