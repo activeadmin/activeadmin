@@ -40,7 +40,7 @@ module ActiveAdmin
         protected
 
         def default_title
-          title = display_name(resource)
+          title = Nokogiri::HTML.parse(display_name(resource)).text
 
           if title.blank?
             title = "#{active_admin_config.resource_label} ##{resource.id}"
