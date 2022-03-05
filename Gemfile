@@ -8,13 +8,11 @@ group :development, :test do
 
   gem "cancancan"
   gem "pundit"
-  gem "jruby-openssl", platform: :jruby
 
   gem "draper"
   gem "devise"
 
   gem "rails", "~> 7.0.0"
-  gem "activerecord-jdbcsqlite3-adapter", platform: :jruby
 
   gem "net-smtp" # The mail gem, depended on transitively, does not specify this dependency
 
