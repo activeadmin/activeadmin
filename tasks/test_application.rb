@@ -64,7 +64,7 @@ module ActiveAdmin
     end
 
     def app_name
-      return "rails_61" if main_app?
+      return "rails_70" if main_app?
 
       File.basename(File.dirname(gemfile))
     end

@@ -95,7 +95,12 @@ jobs:
 
         os: [ubuntu-20.04]
 
-        deps: [rails_60, rails_61]
+        deps: [rails_60, rails_61, rails_70]
+
+        exclude:
+          - ruby: { name: '2.6', value: 2.6.9 }
+            os: ubuntu-20.04
+            deps: rails_70
 
         include:
           - ruby: { name: '3.0', value: 3.0.3 }
@@ -106,9 +111,17 @@ jobs:
             os: ubuntu-20.04
             deps: rails_61
 
+          - ruby: { name: '3.0', value: 3.0.3 }
+            os: ubuntu-20.04
+            deps: rails_70
+
           - ruby: { name: 3.1, value: 3.1.0 }
             os: ubuntu-20.04
             deps: rails_61
+
+          - ruby: { name: 3.1, value: 3.1.0 }
+            os: ubuntu-20.04
+            deps: rails_70
 
           - ruby: { name: 3.1, value: 3.1.0 }
             os: ubuntu-20.04
@@ -128,13 +141,13 @@ jobs:
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
           echo "BUNDLE_PATH=$(pwd)/vendor/bundle" >> $GITHUB_ENV
-        if: matrix.deps == 'rails_61'
+        if: matrix.deps == 'rails_70'
 
       - name: Configure bundler (alternative)
         run: |
           echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> $GITHUB_ENV
           echo "BUNDLE_PATH=$(pwd)/gemfiles/${{ matrix.deps }}/vendor/bundle" >> $GITHUB_ENV
-        if: matrix.deps != 'rails_61'
+        if: matrix.deps != 'rails_70'
 
       - uses: ruby/setup-ruby@v1
         with:
