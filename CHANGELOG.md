@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 2.11.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.10.1..v2.11.0)
+
+### Enhancements
+
+* Add Rails 7 Support. [#7235] by [@tagliala]
+
+### Bug Fixes
+
+* Fix form SCSS variables no longer being defined in the outermost scope, so no longer being accessible. [#7341] by [@gigorok]
+
 ## 2.10.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.10.0..v2.10.1)
 
 ### Enhancements
@@ -712,11 +722,13 @@ Please check [0-6-stable] for previous changes.
 [#7127]: https://github.com/activeadmin/activeadmin/pull/7127
 [#7181]: https://github.com/activeadmin/activeadmin/pull/7181
 [#7205]: https://github.com/activeadmin/activeadmin/pull/7205
+[#7235]: https://github.com/activeadmin/activeadmin/pull/7235
 [#7236]: https://github.com/activeadmin/activeadmin/pull/7236
 [#7262]: https://github.com/activeadmin/activeadmin/pull/7262
 [#7293]: https://github.com/activeadmin/activeadmin/pull/7293
 [#7332]: https://github.com/activeadmin/activeadmin/pull/7332
 [#7340]: https://github.com/activeadmin/activeadmin/pull/7340
+[#7341]: https://github.com/activeadmin/activeadmin/pull/7341
 [#7349]: https://github.com/activeadmin/activeadmin/pull/7349
 [#7350]: https://github.com/activeadmin/activeadmin/pull/7350
 
@@ -756,6 +768,7 @@ Please check [0-6-stable] for previous changes.
 [@Fs00]: https://github.com/Fs00
 [@fuzziness]: https://github.com/fuzziness
 [@giapnhdev]: https://github.com/giapnhdev
+[@gigorok]: https://github.com/gigorok
 [@glebtv]: https://github.com/glebtv
 [@gonzedge]: https://github.com/gonzedge
 [@guigs]: https://github.com/guigs
@@ -818,6 +831,7 @@ Please check [0-6-stable] for previous changes.
 [@sprql]: https://github.com/sprql
 [@stefsava]: https://github.com/stefsava
 [@stereoscott]: https://github.com/stereoscott
+[@tagliala]: https://github.com/tagliala
 [@taralbass]: https://github.com/taralbass
 [@tiagotex]: https://github.com/tiagotex
 [@timoschilling]: https://github.com/timoschilling
