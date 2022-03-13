@@ -56,7 +56,7 @@ Which looks for something like this:
 
 ```ruby
 # app/views/admin/posts/_form.html.arb
-insert_tag active_admin_form_for resource do |f|
+active_admin_form_for [:admin, resource] do |f|
   inputs :title, :body
   actions
 end
