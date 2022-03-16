@@ -1,0 +1,3 @@
+\\/android {
+    ndkVersion "major.minor.build" // e.g.,  ndkVersion "21.3.6528147"
+}
