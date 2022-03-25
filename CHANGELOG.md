@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 2.11.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.11.0..v2.11.1)
+
+### Enhancements
+
+* Add turbolinks support to has many js. [#7384] by [@amiel]
+
+### Documentation
+
+* Remove `insert_tag` from Form-Partial docs. [#7394] by [@TonyArra]
+
 ## 2.11.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.10.1..v2.11.0)
 
 ### Enhancements
@@ -731,6 +741,8 @@ Please check [0-6-stable] for previous changes.
 [#7341]: https://github.com/activeadmin/activeadmin/pull/7341
 [#7349]: https://github.com/activeadmin/activeadmin/pull/7349
 [#7350]: https://github.com/activeadmin/activeadmin/pull/7350
+[#7384]: https://github.com/activeadmin/activeadmin/pull/7384
+[#7394]: https://github.com/activeadmin/activeadmin/pull/7394
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
@@ -837,6 +849,7 @@ Please check [0-6-stable] for previous changes.
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
 [@tomgilligan]: https://github.com/tomgilligan
+[@TonyArra]: https://github.com/TonyArra
 [@tordans]: https://github.com/tordans
 [@utkarsh2102]: https://github.com/utkarsh2102
 [@varyonic]: https://github.com/varyonic
