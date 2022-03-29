@@ -252,8 +252,8 @@ GEM
     nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    parallel (1.21.0)
-    parallel_tests (3.7.3)
+    parallel (1.22.1)
+    parallel_tests (3.8.1)
       parallel
     phantomjs (2.1.1.0)
     pry (0.13.1)
