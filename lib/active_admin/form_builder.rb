@@ -113,10 +113,8 @@ module ActiveAdmin
           template.link_to remove_text, "#", class: "button has_many_remove"
         end
       elsif allow_destroy?(form_builder.object)
-        form_builder.input(
-          :_destroy, as: :boolean,
-                     wrapper_html: { class: "has_many_delete" },
-                     label: I18n.t("active_admin.has_many_delete"))
+        remove_text = remove_record.is_a?(String) ? remove_record : I18n.t("active_admin.has_many_delete")
+        form_builder.input(:_destroy, as: :boolean, wrapper_html: { class: "has_many_delete" }, label: remove_text)
       end
 
       if sortable_column
