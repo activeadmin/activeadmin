@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 2.11.2 [☰](https://github.com/activeadmin/activeadmin/compare/v2.11.1..v2.11.2)
+
+### Bug Fixes
+
+* Fix disappearing BOM option for `CSVBuilder`. [#7170] by [@Karoid]
+
 ## 2.11.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.11.0..v2.11.1)
 
 ### Enhancements
@@ -730,6 +736,7 @@ Please check [0-6-stable] for previous changes.
 [#6959]: https://github.com/activeadmin/activeadmin/pull/6959
 [#7095]: https://github.com/activeadmin/activeadmin/pull/7095
 [#7127]: https://github.com/activeadmin/activeadmin/pull/7127
+[#7170]: https://github.com/activeadmin/activeadmin/pull/7170
 [#7181]: https://github.com/activeadmin/activeadmin/pull/7181
 [#7205]: https://github.com/activeadmin/activeadmin/pull/7205
 [#7235]: https://github.com/activeadmin/activeadmin/pull/7235
@@ -800,6 +807,7 @@ Please check [0-6-stable] for previous changes.
 [@jscheid]: https://github.com/jscheid
 [@juril33t]: https://github.com/juril33t
 [@jwesorick]: https://github.com/jwesorick
+[@Karoid]: https://github.com/Karoid
 [@kjeldahl]: https://github.com/kjeldahl
 [@ko-lem]: https://github.com/ko-lem
 [@kobeumut]: https://github.com/kobeumut
