@@ -144,6 +144,39 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
     end
   end
 
+  describe "pagination" do
+    let(:collection) do
+      Post.create!
+      Post.all
+    end
+
+    let(:config) do
+      ActiveAdmin.register Post do
+        config.per_page = 1
+      end
+    end
+
+    context "when CSV format requested" do
+      let(:params) do
+        ActionController::Parameters.new(page: 2, format: "csv")
+      end
+
+      it "does not apply it" do
+        expect(controller.send(:apply_pagination, collection).size).to eq(1)
+      end
+    end
+
+    context "when CSV format not requested" do
+      let(:params) do
+        ActionController::Parameters.new(page: 2)
+      end
+
+      it "applies it" do
+        expect(controller.send(:apply_pagination, collection).size).to eq(0)
+      end
+    end
+  end
+
   describe "find_collection" do
     let(:appliers) do
       ActiveAdmin::ResourceController::DataAccess::COLLECTION_APPLIES
@@ -235,6 +268,18 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
           collection.where(age: "42")
         end
         expect(subject.age).to eq(42)
+      end
+    end
+  end
+
+  describe "in_paginated_batches" do
+    it "calls find_collection just once and disables the ActiveRecord query cache" do
+      expect(controller).to receive(:find_collection).once do
+        expect(ActiveRecord::Base.connection.query_cache_enabled).to be_falsy
+        Post.none
+      end
+      ActiveRecord::Base.cache do
+        controller.send(:in_paginated_batches, &Proc.new {})
       end
     end
   end
