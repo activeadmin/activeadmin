@@ -95,4 +95,4 @@ var recompute_positions = function(parent){
 
 $(document).
   ready(init_sortable).
-  on('page:load turbolinks:load', init_sortable);
+  on('page:load turbolinks:load turbo:load', init_sortable);
