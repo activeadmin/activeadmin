@@ -9,7 +9,7 @@ PATH
       jquery-rails (~> 4.2)
       kaminari (~> 1.0, >= 1.2.1)
       railties (>= 6.0, < 7.1)
-      ransack (~> 2.1, >= 2.1.1)
+      ransack (>= 2.1.1, < 4)
 
 GEM
   remote: https://rubygems.org/
@@ -305,7 +305,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
     rake (13.0.6)
-    ransack (2.6.0)
+    ransack (3.0.1)
       activerecord (>= 6.0.4)
       activesupport (>= 6.0.4)
       i18n
