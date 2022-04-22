@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+## 2.12.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.11.2..v2.12.0)
+
+### Enhancements
+
+* Add Ransack 3 compatibility. [#7453] by [@tagliala]
+
+### Bug Fixes
+
+* Fix pundit namespace detection. [#7144] by [@vlad-psh]
+
+### Documentation
+
+* Don't mention webpacker as the default asset generator in Rails. [#7377] by [@jaynetics]
+
+### Performance
+
+* Avoid duplicate work when downloading CSV. [#7336] by [@deivid-rodriguez]
+
 ## 2.11.2 [☰](https://github.com/activeadmin/activeadmin/compare/v2.11.1..v2.11.2)
 
 ### Bug Fixes
@@ -736,6 +754,7 @@ Please check [0-6-stable] for previous changes.
 [#6959]: https://github.com/activeadmin/activeadmin/pull/6959
 [#7095]: https://github.com/activeadmin/activeadmin/pull/7095
 [#7127]: https://github.com/activeadmin/activeadmin/pull/7127
+[#7144]: https://github.com/activeadmin/activeadmin/pull/7144
 [#7170]: https://github.com/activeadmin/activeadmin/pull/7170
 [#7181]: https://github.com/activeadmin/activeadmin/pull/7181
 [#7205]: https://github.com/activeadmin/activeadmin/pull/7205
@@ -744,12 +763,15 @@ Please check [0-6-stable] for previous changes.
 [#7262]: https://github.com/activeadmin/activeadmin/pull/7262
 [#7293]: https://github.com/activeadmin/activeadmin/pull/7293
 [#7332]: https://github.com/activeadmin/activeadmin/pull/7332
+[#7336]: https://github.com/activeadmin/activeadmin/pull/7336
 [#7340]: https://github.com/activeadmin/activeadmin/pull/7340
 [#7341]: https://github.com/activeadmin/activeadmin/pull/7341
 [#7349]: https://github.com/activeadmin/activeadmin/pull/7349
 [#7350]: https://github.com/activeadmin/activeadmin/pull/7350
+[#7377]: https://github.com/activeadmin/activeadmin/pull/7377
 [#7384]: https://github.com/activeadmin/activeadmin/pull/7384
 [#7394]: https://github.com/activeadmin/activeadmin/pull/7394
+[#7453]: https://github.com/activeadmin/activeadmin/pull/7453
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
@@ -801,6 +823,7 @@ Please check [0-6-stable] for previous changes.
 [@javawizard]: https://github.com/javawizard
 [@javierjulio]: https://github.com/javierjulio
 [@jawa]: https://github.com/jawa
+[@jaynetics]: https://github.com/jaynetics
 [@JiiHu]: https://github.com/JiiHu
 [@jiikko]: https://github.com/jiikko
 [@johnnyshields]: https://github.com/johnnyshields

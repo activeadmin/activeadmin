@@ -69,6 +69,7 @@ class Changelog
       "type: i18n" => "Translation Improvements",
       "type: documentation" => "Documentation",
       "type: dependency change" => "Dependency Changes",
+      "type: performance" => "Performance",
     }
   end
 
