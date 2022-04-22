@@ -8,4 +8,4 @@ pull_request_rules:
 
     actions:
       merge:
-        method: merge
+        method: squash
