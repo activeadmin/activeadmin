@@ -91,7 +91,11 @@ jobs:
       fail-fast: false
 
       matrix:
-        ruby: [{ name: 2.7, value: 2.7.5 }, { name: 2.6, value: 2.6.9 }]
+        ruby:
+          - { name: 3.1, value: 3.1.0 }
+          - { name: '3.0', value: 3.0.3 }
+          - { name: 2.7, value: 2.7.5 }
+          - { name: 2.6, value: 2.6.9 }
 
         os: [ubuntu-20.04]
 
@@ -103,22 +107,6 @@ jobs:
             deps: rails_70
 
         include:
-          - ruby: { name: '3.0', value: 3.0.3 }
-            os: ubuntu-20.04
-            deps: rails_61
-
-          - ruby: { name: '3.0', value: 3.0.3 }
-            os: ubuntu-20.04
-            deps: rails_70
-
-          - ruby: { name: 3.1, value: 3.1.0 }
-            os: ubuntu-20.04
-            deps: rails_61
-
-          - ruby: { name: 3.1, value: 3.1.0 }
-            os: ubuntu-20.04
-            deps: rails_70
-
           - ruby: { name: 3.1, value: 3.1.0 }
             os: ubuntu-20.04
             deps: rails_61_turbolinks
