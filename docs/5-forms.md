@@ -182,7 +182,8 @@ To display a list of all validation errors:
 
 ```ruby
 form do |f|
-  f.semantic_errors *f.object.errors.keys
+  f.semantic_errors *f.object.errors.attribute_names
+
   # ...
 end
 ```
