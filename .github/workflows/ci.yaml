@@ -136,7 +136,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby.value }}
-          rubygems: 3.3.5
+          rubygems: 3.3.12
           bundler-cache: true
 
       - name: Setup git
