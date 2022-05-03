@@ -18,8 +18,8 @@ jobs:
 
       matrix:
         os: [ubuntu-20.04]
-        ruby: [{ name: jruby-9.3, value: jruby-9.3.2.0 }]
-        deps: ["rails_60", "rails_61"]
+        ruby: [{ name: jruby-9.3, value: jruby-9.3.4.0 }]
+        deps: ["rails_61"]
 
     env:
       JRUBY_OPTS: -J-Xmx1024m --dev
@@ -42,10 +42,8 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby.value }}
+          rubygems: 3.3.12
           bundler-cache: true
-
-      - name: Install a specific rubygems version
-        run: gem update --system 3.2.17
 
       - name: Setup git
         run: |

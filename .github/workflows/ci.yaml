@@ -21,7 +21,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: jruby-9.3.2.0
+          ruby-version: jruby-9.3.4.0
 
       - name: Run bug report template
         run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
@@ -36,7 +36,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        ruby: [{ name: 3.1, value: 3.1.0 }]
+        ruby: [{ name: 3.1, value: 3.1.2 }]
         os: [ubuntu-20.04]
 
     steps:
@@ -91,43 +91,27 @@ jobs:
       fail-fast: false
 
       matrix:
-        ruby: [{ name: 2.7, value: 2.7.5 }, { name: 2.6, value: 2.6.9 }]
+        ruby:
+          - { name: 3.1, value: 3.1.2 }
+          - { name: '3.0', value: 3.0.4 }
+          - { name: 2.7, value: 2.7.6 }
+          - { name: 2.6, value: 2.6.10 }
 
         os: [ubuntu-20.04]
 
-        deps: [rails_60, rails_61, rails_70]
+        deps: [rails_61, rails_70]
 
         exclude:
-          - ruby: { name: '2.6', value: 2.6.9 }
+          - ruby: { name: '2.6', value: 2.6.10 }
             os: ubuntu-20.04
             deps: rails_70
 
         include:
-          - ruby: { name: '3.0', value: 3.0.3 }
-            os: ubuntu-20.04
-            deps: rails_60
-
-          - ruby: { name: '3.0', value: 3.0.3 }
-            os: ubuntu-20.04
-            deps: rails_61
-
-          - ruby: { name: '3.0', value: 3.0.3 }
-            os: ubuntu-20.04
-            deps: rails_70
-
-          - ruby: { name: 3.1, value: 3.1.0 }
-            os: ubuntu-20.04
-            deps: rails_61
-
-          - ruby: { name: 3.1, value: 3.1.0 }
-            os: ubuntu-20.04
-            deps: rails_70
-
-          - ruby: { name: 3.1, value: 3.1.0 }
+          - ruby: { name: 3.1, value: 3.1.2 }
             os: ubuntu-20.04
             deps: rails_61_turbolinks
 
-          - ruby: { name: 3.1, value: 3.1.0 }
+          - ruby: { name: 3.1, value: 3.1.2 }
             os: ubuntu-20.04
             deps: rails_61_webpacker
 
@@ -152,7 +136,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby.value }}
-          rubygems: 3.3.5
+          rubygems: 3.3.12
           bundler-cache: true
 
       - name: Setup git

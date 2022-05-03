@@ -8,7 +8,7 @@ PATH
       inherited_resources (~> 1.7)
       jquery-rails (~> 4.2)
       kaminari (~> 1.0, >= 1.2.1)
-      railties (>= 6.0, < 7.1)
+      railties (>= 6.1, < 7.1)
       ransack (>= 2.1.1, < 4)
 
 GEM
@@ -529,4 +529,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   2.3.6
+   2.3.12
