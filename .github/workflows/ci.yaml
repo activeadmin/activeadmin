@@ -95,7 +95,7 @@ jobs:
 
         os: [ubuntu-20.04]
 
-        deps: [rails_60, rails_61, rails_70]
+        deps: [rails_61, rails_70]
 
         exclude:
           - ruby: { name: '2.6', value: 2.6.9 }
@@ -103,10 +103,6 @@ jobs:
             deps: rails_70
 
         include:
-          - ruby: { name: '3.0', value: 3.0.3 }
-            os: ubuntu-20.04
-            deps: rails_60
-
           - ruby: { name: '3.0', value: 3.0.3 }
             os: ubuntu-20.04
             deps: rails_61
