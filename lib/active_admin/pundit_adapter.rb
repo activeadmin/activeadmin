@@ -71,10 +71,11 @@ module ActiveAdmin
     # This fallback might be removed in future versions of ActiveAdmin, so
     # pundit_adapter search will work consistently with provided namespaces
     def compat_policy(subject)
+      return unless default_policy_namespace
+
       target = policy_target(subject)
 
-      return unless default_policy_namespace &&
-        target.class.to_s.include?(default_policy_module) &&
+      return unless target.class.to_s.include?(default_policy_module) &&
         (policy = Pundit.policy(user, target))
 
       policy_name = policy.class.to_s
