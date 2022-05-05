@@ -36,7 +36,7 @@ module ActiveAdmin
       if (policy = compat_policy(subject))
         policy
       elsif default_policy_class
-        default_policy(user, subject)
+        default_policy(subject)
       else
         raise e
       end
@@ -100,7 +100,7 @@ module ActiveAdmin
       ActiveAdmin.application.pundit_default_policy && ActiveAdmin.application.pundit_default_policy.constantize
     end
 
-    def default_policy(user, subject)
+    def default_policy(subject)
       default_policy_class.new(user, subject)
     end
 
