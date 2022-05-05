@@ -89,7 +89,7 @@ module ActiveAdmin
     end
 
     def namespace(object)
-      if default_policy_namespace && !object.class.to_s.match?(/^#{default_policy_module}::/)
+      if default_policy_namespace && !object.class.to_s.start_with?("#{default_policy_module}::")
         [default_policy_namespace.to_sym, object]
       else
         object
