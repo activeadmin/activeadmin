@@ -31,14 +31,13 @@ module ActiveAdmin
     end
 
     def retrieve_policy(subject)
-      Pundit.policy!(user, namespace(policy_target(subject)))
-    rescue Pundit::NotDefinedError => e
-      if (policy = compat_policy(subject))
+      target = policy_target(subject)
+      if (policy = Pundit.policy(user, namespace(target)) || compat_policy(subject))
         policy
       elsif default_policy_class
         default_policy(subject)
       else
-        raise e
+        raise Pundit::NotDefinedError, "unable to find a compatible policy for `#{target}`"
       end
     end
 
