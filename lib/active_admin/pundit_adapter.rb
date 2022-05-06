@@ -32,7 +32,7 @@ module ActiveAdmin
 
     def retrieve_policy(subject)
       target = policy_target(subject)
-      if (policy = Pundit.policy(user, namespace(target)) || compat_policy(subject))
+      if (policy = policy(namespace(target)) || compat_policy(subject))
         policy
       elsif default_policy_class
         default_policy(subject)
@@ -75,7 +75,7 @@ module ActiveAdmin
       target = policy_target(subject)
 
       return unless target.class.to_s.include?(default_policy_module) &&
-        (policy = Pundit.policy(user, target))
+        (policy = policy(target))
 
       policy_name = policy.class.to_s
 
@@ -110,6 +110,14 @@ module ActiveAdmin
 
     def default_policy_module
       default_policy_namespace.to_s.camelize
+    end
+
+    def policy(target)
+      policies[target] ||= Pundit.policy(user, target)
+    end
+
+    def policies
+      @policies ||= {}
     end
 
   end
