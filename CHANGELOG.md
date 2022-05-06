@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+## 2.13.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.12.0..v2.13.0)
+
+### Documentation
+
+* Update validation errors documentation to account for deprecated `ActiveModel::Errors#keys`. [#7475] by [@amit]
+
+### Dependency Changes
+
+* Drop rails 6.0 support. [#7476] by [@deivid-rodriguez]
+
+### Performance
+
+* Fix pundit performance. [#7479] by [@deivid-rodriguez]
+
 ## 2.12.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.11.2..v2.12.0)
 
 ### Enhancements
@@ -772,6 +786,9 @@ Please check [0-6-stable] for previous changes.
 [#7384]: https://github.com/activeadmin/activeadmin/pull/7384
 [#7394]: https://github.com/activeadmin/activeadmin/pull/7394
 [#7453]: https://github.com/activeadmin/activeadmin/pull/7453
+[#7475]: https://github.com/activeadmin/activeadmin/pull/7475
+[#7476]: https://github.com/activeadmin/activeadmin/pull/7476
+[#7479]: https://github.com/activeadmin/activeadmin/pull/7479
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
@@ -782,6 +799,7 @@ Please check [0-6-stable] for previous changes.
 [@alejandroperea]: https://github.com/alejandroperea
 [@alex-bogomolov]: https://github.com/alex-bogomolov
 [@amiel]: https://github.com/amiel
+[@amit]: https://github.com/amit
 [@amiuhle]: https://github.com/amiuhle
 [@andreslemik]: https://github.com/andreslemik
 [@bartoszkopinski]: https://github.com/bartoszkopinski
