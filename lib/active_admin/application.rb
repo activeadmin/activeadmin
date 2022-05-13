@@ -126,7 +126,7 @@ module ActiveAdmin
 
     # Returns ALL the files to be loaded
     def files
-      load_paths.flatten.compact.uniq.flat_map { |path| Dir["#{path}/**/*.rb"] }.sort
+      load_paths.flatten.compact.uniq.flat_map { |path| Dir["#{path}/**/*.rb"].sort }
     end
 
     # Creates all the necessary routes for the ActiveAdmin configurations
