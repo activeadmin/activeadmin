@@ -18,7 +18,13 @@ RSpec.describe "Registering an object to administer" do
     end
 
     it "should dispatch a Resource::RegisterEvent" do
-      expect(ActiveSupport::Notifications).to receive(:instrument).with(ActiveAdmin::Resource::RegisterEvent, an_instance_of(ActiveAdmin::Resource))
+      expect(ActiveSupport::Notifications).to(
+        receive(:instrument)
+          .with(
+            ActiveAdmin::Resource::RegisterEvent,
+            hash_including(active_admin_resource: an_instance_of(ActiveAdmin::Resource))
+          )
+      )
 
       application.register Category
     end
@@ -34,8 +40,20 @@ RSpec.describe "Registering an object to administer" do
     end
 
     it "should generate a Namespace::RegisterEvent and a Resource::RegisterEvent" do
-      expect(ActiveSupport::Notifications).to receive(:instrument).with(ActiveAdmin::Namespace::RegisterEvent, an_instance_of(ActiveAdmin::Namespace))
-      expect(ActiveSupport::Notifications).to receive(:instrument).with(ActiveAdmin::Resource::RegisterEvent, an_instance_of(ActiveAdmin::Resource))
+      expect(ActiveSupport::Notifications).to(
+        receive(:instrument)
+          .with(
+            ActiveAdmin::Namespace::RegisterEvent,
+            hash_including(active_admin_namespace: an_instance_of(ActiveAdmin::Namespace))
+          )
+      )
+      expect(ActiveSupport::Notifications).to(
+        receive(:instrument)
+          .with(
+            ActiveAdmin::Resource::RegisterEvent,
+            hash_including(active_admin_resource: an_instance_of(ActiveAdmin::Resource))
+          )
+      )
       application.register Category, namespace: :not_yet_created
     end
   end

@@ -60,7 +60,7 @@ module ActiveAdmin
       settings.respond_to?(method) ? settings.send(method, *args) : super
     end
 
-    # Register a resource into this namespace. The preffered method to access this is to
+    # Register a resource into this namespace. The preferred method to access this is to
     # use the global registration ActiveAdmin.register which delegates to the proper
     # namespace instance.
     def register(resource_class, options = {}, &block)
@@ -72,7 +72,7 @@ module ActiveAdmin
       reset_menu!
 
       # Dispatch a registration event
-      ActiveSupport::Notifications.instrument ActiveAdmin::Resource::RegisterEvent, config
+      ActiveSupport::Notifications.instrument ActiveAdmin::Resource::RegisterEvent, { active_admin_resource: config }
 
       # Return the config
       config
