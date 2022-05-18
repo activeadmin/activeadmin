@@ -13,8 +13,10 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 6.0.0"
+  gem "rails", "~> 6.1.0"
   gem "activerecord-jdbcsqlite3-adapter", platform: :jruby
+
+  gem "net-smtp" # The mail gem, depended on transitively, does not specify this dependency
 
   gem "sprockets-rails"
   gem "sassc-rails"
@@ -24,7 +26,6 @@ group :test do
   gem "cuprite"
   gem "capybara"
   gem "webrick"
-  gem "db-query-matchers"
 
   gem "simplecov", require: false # Test coverage generator. Go to /coverage/ after running tests
   gem "cucumber-rails", require: false
@@ -37,6 +38,29 @@ group :test do
   gem "rails-i18n" # Provides default i18n for many languages
   gem "rspec-rails"
   gem "sqlite3", platform: :mri
+end
+
+group :release do
+  gem "chandler" # Github releases from changelog
+  gem "octokit"
+end
+
+group :lint do
+  # Code style
+  gem "rubocop"
+  gem "rubocop-packaging"
+  gem "rubocop-rspec"
+  gem "rubocop-rails"
+  gem "mdl"
+
+  # Translations
+  gem "i18n-tasks"
+  gem "i18n-spec"
+end
+
+group :docs do
+  gem "yard" # Documentation generator
+  gem "kramdown" # Markdown implementation (for yard)
 end
 
 gemspec path: "../.."

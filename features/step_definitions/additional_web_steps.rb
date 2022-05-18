@@ -29,7 +29,7 @@ Then /^the table "([^"]*)" should have (\d+) columns/ do |selector, count|
   expect(tds.size).to eq count.to_i
 end
 
-Then /^there should be (\d+) "([^"]*)" tags$/ do |count, tag|
+Then /^there should be (\d+) "([^"]*)" tags?$/ do |count, tag|
   expect(page.all(:css, tag).size).to eq count.to_i
 end
 

@@ -250,8 +250,6 @@ form {
 
 // -------------------------------------- Sidebar Forms
 
-$sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
-
 .sidebar_section {
 
   label {
@@ -273,13 +271,6 @@ $sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
 }
 
 // -------------------------------------- Filter Forms
-
-$filter-field-seperator-width: 12px;
-
-$side-by-side-filter-input-width: ($sidebar-inner-content-width / 2) - ($text-input-horizontal-padding * 2) - $filter-field-seperator-width;
-$side-by-side-filter-select-width: ($sidebar-inner-content-width / 2) - $filter-field-seperator-width;
-
-$date-range-filter-input-width: ($sidebar-inner-content-width / 2) - ($filter-field-seperator-width / 2);
 
 form.filter_form {
   .filter_form_field {
@@ -313,7 +304,6 @@ form.filter_form {
 
     &.filter_date_range {
       input[type=text] {
-        box-sizing: border-box;
         width: $date-range-filter-input-width;
 
         + input {

@@ -114,7 +114,7 @@ nl:
         submit: "inloggen"
       reset_password:
         title: "Wachtwoord vergeten?"
-        submit: "Reset mijn wachtwoord vergeten"
+        submit: "Reset mijn wachtwoord"
       change_password:
         title: "Wijzig uw wachtwoord"
         submit: "Mijn wachtwoord wijzigen"

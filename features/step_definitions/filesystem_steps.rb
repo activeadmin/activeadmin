@@ -38,7 +38,7 @@ end
 
 World(ActiveAdminContentsRollback)
 
-After "@changes-filesystem" do
+After "@changes-filesystem or @requires-reloading" do
   rollback!
 end
 

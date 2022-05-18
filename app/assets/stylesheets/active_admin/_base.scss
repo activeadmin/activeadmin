@@ -33,6 +33,16 @@
   @import "./structure/main_structure";
   @import "./structure/title_bar";
 
+  html {
+    box-sizing: border-box;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
   body {
     @include sans-family;
     line-height: 1.5;

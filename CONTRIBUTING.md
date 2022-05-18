@@ -63,7 +63,7 @@ If you want to test against a Rails version different from the latest, make sure
 you use the correct Gemfile, for example:
 
 ```sh
-export BUNDLE_GEMFILE=gemfiles/rails_60/Gemfile
+export BUNDLE_GEMFILE=gemfiles/rails_61/Gemfile
 ```
 
 **Warning** SCSS assets are aimed to be used indifferently with Sprockets **and** webpacker.

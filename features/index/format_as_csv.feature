@@ -27,6 +27,20 @@ Feature: Format as CSV
     Then I should download a CSV file for "my-articles" containing:
     | Id  | Title       | Body | Published date | Position | Starred | Foo    | Created at | Updated at |
 
+  Scenario: Default with streaming disabled
+    Given a configuration of:
+    """
+      ActiveAdmin.application.disable_streaming_in = ["test"]
+
+      ActiveAdmin.register Post
+    """
+    And a post with the title "Hello World" exists
+    When I am on the index page for posts
+    And I follow "CSV"
+    Then I should download a CSV file for "posts" containing:
+    | Id  | Title       | Body | Published date | Position | Starred | Foo    |Created at | Updated at |
+    | \d+ | Hello World |      |                |          |         |        |(.*)       | (.*)       |
+
   Scenario: With CSV format customization
     Given a configuration of:
     """
@@ -128,6 +142,18 @@ Feature: Format as CSV
       | Title  | Body |
       | 012345 | (.*) |
     And the CSV file should contain "012345" in quotes
+
+  Scenario: With CSV option byte order mark
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        csv byte_order_mark: "\xEF\xBB\xBF" do
+          column :title
+        end
+      end
+    """
+    When I visit the csv index page for posts twice
+    Then the CSV file should start with BOM
 
   Scenario: With default CSV separator option
     Given a configuration of:
