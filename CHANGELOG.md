@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## 2.13.1 [☰](https://github.com/activeadmin/activeadmin/compare/v2.13.0..v2.13.1)
+
+### Bug Fixes
+
+* Honor load paths order when loading admin files. [#7488] by [@tf]
+* Fix passing expected hash payload argument. [#7487] by [@ispyropoulos]
+
 ## 2.13.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.12.0..v2.13.0)
 
 ### Documentation
@@ -789,6 +796,8 @@ Please check [0-6-stable] for previous changes.
 [#7475]: https://github.com/activeadmin/activeadmin/pull/7475
 [#7476]: https://github.com/activeadmin/activeadmin/pull/7476
 [#7479]: https://github.com/activeadmin/activeadmin/pull/7479
+[#7487]: https://github.com/activeadmin/activeadmin/pull/7487
+[#7488]: https://github.com/activeadmin/activeadmin/pull/7488
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
@@ -836,6 +845,7 @@ Please check [0-6-stable] for previous changes.
 [@innparusu95]: https://github.com/innparusu95
 [@ionut998]: https://github.com/ionut998
 [@irmela]: https://github.com/irmela
+[@ispyropoulos]: https://github.com/ispyropoulos
 [@Ivanov-Anton]: https://github.com/Ivanov-Anton
 [@jasl]: https://github.com/jasl
 [@javawizard]: https://github.com/javawizard
@@ -894,6 +904,7 @@ Please check [0-6-stable] for previous changes.
 [@stereoscott]: https://github.com/stereoscott
 [@tagliala]: https://github.com/tagliala
 [@taralbass]: https://github.com/taralbass
+[@tf]: https://github.com/tf
 [@tiagotex]: https://github.com/tiagotex
 [@timoschilling]: https://github.com/timoschilling
 [@TimPetricola]: https://github.com/TimPetricola
