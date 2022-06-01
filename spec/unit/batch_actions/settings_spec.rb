@@ -11,40 +11,57 @@ RSpec.describe "Batch Actions Settings" do
 
     expect(app.batch_actions).to eq false
     expect(ns.batch_actions).to eq false
+    expect(app.override_batch_action_selector_label).to eq false
+    expect(ns.override_batch_action_selector_label).to eq false
     expect(post_resource.batch_actions_enabled?).to eq false
   end
 
   it "should be settable to true" do
     app.batch_actions = true
+    app.override_batch_action_selector_label = true
     expect(app.batch_actions).to eq true
+    expect(app.override_batch_action_selector_label).to eq true
   end
 
   it "should be an inheritable_setting" do
     app.batch_actions = true
+    app.override_batch_action_selector_label = true
     expect(ns.batch_actions).to eq true
+    expect(ns.override_batch_action_selector_label).to eq true
   end
 
   it "should be settable at the namespace level" do
     app.batch_actions = true
     ns.batch_actions = false
+    app.override_batch_action_selector_label = true
+    ns.override_batch_action_selector_label = false
 
     expect(app.batch_actions).to eq true
     expect(ns.batch_actions).to eq false
+    expect(app.override_batch_action_selector_label).to eq true
+    expect(ns.override_batch_action_selector_label).to eq false
   end
 
   it "should be settable at the resource level" do
     expect(post_resource.batch_actions_enabled?).to eq false
+    expect(post_resource.override_batch_action_selector_label?).to eq false
     post_resource.batch_actions = true
+    post_resource.override_batch_action_selector_label = true
     expect(post_resource.batch_actions_enabled?).to eq true
+    expect(post_resource.override_batch_action_selector_label?).to eq true
   end
 
   it "should inherit the setting on the resource from the namespace" do
     ns.batch_actions = false
+    ns.override_batch_action_selector_label = false
     expect(post_resource.batch_actions_enabled?).to eq false
+    expect(post_resource.override_batch_action_selector_label?).to eq false
     expect(post_resource.batch_actions).to be_empty
 
     post_resource.batch_actions = true
+    post_resource.override_batch_action_selector_label = true
     expect(post_resource.batch_actions_enabled?).to eq true
+    expect(post_resource.override_batch_action_selector_label?).to eq true
     expect(post_resource.batch_actions).to_not be_empty
   end
 

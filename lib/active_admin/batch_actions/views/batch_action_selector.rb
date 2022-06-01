@@ -25,7 +25,7 @@ module ActiveAdmin
 
       def build_drop_down
         return if batch_actions_to_display.empty?
-        dropdown_menu I18n.t("active_admin.batch_actions.button_label"),
+        dropdown_menu batch_actions_button_label,
                       class: "batch_actions_selector dropdown_menu",
                       button: { class: "disabled" } do
           batch_actions_to_display.each do |batch_action|
@@ -54,6 +54,16 @@ module ActiveAdmin
         end
       end
 
+      def batch_actions_button_label
+        return I18n.t("active_admin.batch_actions.button_label") unless active_admin_config.override_batch_action_selector_label?
+        "#{I18n.t("active_admin.batch_actions.button_label")}: #{batch_actions_titles}"
+      end
+
+      def batch_actions_titles
+        batch_actions_to_display.collect do |batch_action|
+          I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", default: batch_action.title)
+        end.join(", ")
+      end
     end
   end
 end

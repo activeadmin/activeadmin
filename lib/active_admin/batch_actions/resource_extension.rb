@@ -27,6 +27,16 @@ module ActiveAdmin
         @batch_actions_enabled = bool
       end
 
+      # Disable or Enable override batch actions selector label for this resource
+      def override_batch_action_selector_label=(bool)
+        @override_batch_action_selector_label = bool
+      end
+
+      # @return [Boolean] If override batch action selector label is enabled for this resource
+      def override_batch_action_selector_label?
+        @override_batch_action_selector_label.nil? ? namespace.override_batch_action_selector_label : @override_batch_action_selector_label
+      end
+
       # Add a new batch item to a resource
       # @param [String] title
       # @param [Hash] options

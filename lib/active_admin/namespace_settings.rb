@@ -54,6 +54,9 @@ module ActiveAdmin
     # Whether the batch actions are enabled or not
     register :batch_actions, false
 
+    # Whether the batch action selector label is overriden with batch action names or not
+    register :override_batch_action_selector_label, false
+
     # Whether filters are enabled
     register :filters, true
 
