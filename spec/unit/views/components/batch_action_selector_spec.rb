@@ -14,6 +14,10 @@ RSpec.describe ActiveAdmin::BatchActions::BatchActionSelector do
   end
 
   describe "the action list" do
+    before do
+      allow_any_instance_of(ActiveAdmin::BatchActions::BatchActionSelector).to(
+        receive(:active_admin_config).and_return(double(override_batch_action_selector_label?: true)))
+    end
     subject do
       dropdown.find_by_class("dropdown_menu_list").first
     end
