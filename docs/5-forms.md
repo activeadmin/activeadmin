@@ -176,6 +176,28 @@ end
 Datepicker also accepts the `:label` option as a string or proc to display.
 If it's a proc, it will be called each time the datepicker is rendered.
 
+## ActionText Support
+
+To use rich text input, you need install [ActionText javascript and stylesheet](https://guides.rubyonrails.org/v6.1/action_text_overview.html). Download [`trix.js`](https://github.com/basecamp/trix/releases/latest) and save it in `lib/trix.js`. Then set `active_admin.js` as following:
+```js
+//= require active_admin/base
+//= require lib/trix
+//= require actiontext
+```
+
+Import `actiontext.css` into `active_admin.css.scss`:
+```scss
+@import "./actiontext.css";
+```
+
+After ActionText installation you can use rich text input in ActiveAdmin:
+
+```ruby
+form do |f|
+  f.input :description, as: :rich_text_area
+end
+```
+
 ## Displaying Errors
 
 To display a list of all validation errors:

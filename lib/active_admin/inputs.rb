@@ -4,6 +4,7 @@ module ActiveAdmin
     extend ActiveSupport::Autoload
 
     autoload :DatepickerInput
+    autoload :RichTextAreaInput
 
     module Filters
       extend ActiveSupport::Autoload
