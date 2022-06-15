@@ -53,6 +53,48 @@ class PostDecorator
 end
 ```
 
+If you include comments on resources, your decorator class must respond to
+`model` returning a resource, and `decorated?` returning true.
+
+```ruby
+# app/decorators/post_decorator.rb
+class PostDecorator
+  attr_reader :post
+  delegate_missing_to :post
+
+  def initialize(post)
+    @post = post
+  end
+
+  def decorated?
+    true
+  end
+
+  def model
+    post
+  end
+end
+```
+
+If you use any actions with param(e.g. show, edit, destroy), your decorator
+class must respond to `to_param`.
+
+```ruby
+# app/decorators/post_decorator.rb
+class PostDecorator
+  attr_reader :post
+  delegate_missing_to :post
+
+  def initialize(post)
+    @post = post
+  end
+
+  def to_param
+    post.id
+  end
+end
+```
+
 ## Forms
 
 By default, ActiveAdmin does *not* decorate the resource used to render forms.
