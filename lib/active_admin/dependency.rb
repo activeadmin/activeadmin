@@ -56,10 +56,6 @@ module ActiveAdmin
       Matcher.new name.to_s
     end
 
-    def self.supports_zeitwerk?
-      RUBY_ENGINE != "jruby"
-    end
-
     class Matcher
       attr_reader :name
 
