@@ -56,5 +56,4 @@ Given /^I add "([^"]*)" to the "([^"]*)" model$/ do |code, model_name|
 
   str = File.read(path).gsub /^(class .+)$/, "\\1\n  #{code}\n"
   File.open(path, "w+") { |f| f << str }
-  ActiveSupport::Dependencies.clear
 end

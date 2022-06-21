@@ -140,7 +140,6 @@ RSpec.describe ActiveAdmin::Application do
         FileUtils.touch(test_file)
         expect(application.files).to include(test_file)
       ensure
-        ActiveSupport::Dependencies.clear unless ActiveAdmin::Dependency.supports_zeitwerk?
         FileUtils.remove_entry_secure(test_dir, force: true)
       end
     end
@@ -156,7 +155,6 @@ RSpec.describe ActiveAdmin::Application do
         FileUtils.touch(test_file)
         expect(application.files.map { |f| File.basename(f) }).to eq(%w(posts.rb admin_users.rb dashboard.rb stores.rb))
       ensure
-        ActiveSupport::Dependencies.clear unless ActiveAdmin::Dependency.supports_zeitwerk?
         FileUtils.remove_entry_secure(test_dir, force: true)
       end
     end
