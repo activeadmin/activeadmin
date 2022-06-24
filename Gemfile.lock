@@ -100,7 +100,7 @@ GEM
       smart_properties
     builder (3.2.4)
     byebug (11.1.1)
-    cancancan (3.3.0)
+    cancancan (3.4.0)
     capybara (3.36.0)
       addressable
       matrix
