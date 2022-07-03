@@ -6,6 +6,9 @@ on:
   schedule:
     - cron: '1 1 * * *'
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: test (${{ matrix.ruby.name }}, ${{ matrix.deps }})
