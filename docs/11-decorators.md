@@ -53,8 +53,8 @@ class PostDecorator
 end
 ```
 
-If you include comments on resources, your decorator class must respond to
-`model` returning a resource, and `decorated?` returning true.
+If a given resource uses ActiveAdmin's Comments feature, then that resource's decorator class must respond to
+`model` where it returns the model instance and `decorated?` returns `true`.
 
 ```ruby
 # app/decorators/post_decorator.rb
