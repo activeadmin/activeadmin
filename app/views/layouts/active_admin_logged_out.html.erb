@@ -20,7 +20,11 @@
     <% end %>
   <% end %>
 
-  <%= favicon_link_tag ActiveAdmin.application.favicon if ActiveAdmin.application.favicon %>
+  <% if ActiveAdmin.application.use_webpacker %>
+    <%= favicon_pack_tag ActiveAdmin.application.favicon if ActiveAdmin.application.favicon %>
+  <% else %>
+    <%= favicon_link_tag ActiveAdmin.application.favicon if ActiveAdmin.application.favicon %>
+  <% end %>
 
   <% ActiveAdmin.application.meta_tags_for_logged_out_pages.each do |name, content| %>
     <%= tag(:meta, name: name, content: content) %>

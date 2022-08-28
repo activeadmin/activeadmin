@@ -13,6 +13,7 @@ Feature: Site title
     """
       ActiveAdmin.application.site_title = "My Great Site"
       ActiveAdmin.application.site_title_link = "/admin"
+      ActiveAdmin.application.site_title_image = ""
     """
     When I am on the dashboard
     And I should see the site title "My Great Site"
@@ -22,26 +23,27 @@ Feature: Site title
   Scenario: Set the site title image
     Given a configuration of:
     """
-      ActiveAdmin.application.site_title_image = "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+      ActiveAdmin.application.site_title_image = "logo.png"
     """
     When I am on the dashboard
     And I should not see the site title "My Great Site"
-    And I should see the site title image "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+    And I should see the site title image "logo.png"
 
   Scenario: Set the site title image with link
     Given a configuration of:
     """
       ActiveAdmin.application.site_title_link = "http://www.google.com"
-      ActiveAdmin.application.site_title_image = "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+      ActiveAdmin.application.site_title_image = "logo.png"
     """
     When I am on the dashboard
-    And I should see the site title image "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+    And I should see the site title image "logo.png"
     And I should see the site title image linked to "http://www.google.com"
 
   Scenario: Set the site title to a proc
     Given a configuration of:
     """
       ActiveAdmin.application.site_title = proc { "Hello #{controller.current_admin_user.try(:email) || 'you!'}" }
+      ActiveAdmin.application.site_title_image = ""
     """
     When I am on the dashboard
     And I should see the site title "Hello admin@example.com"

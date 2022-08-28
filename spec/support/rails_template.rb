@@ -6,13 +6,13 @@ webpacker_app = ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_
 if webpacker_app
   create_file "app/javascript/packs/some-random-css.css"
   create_file "app/javascript/packs/some-random-js.js"
-  create_file "app/javascript/images/a/favicon.ico"
-  create_file "app/javascript/packs/images.js"
-  append_file "app/javascript/packs/images.js", "import '../images/a/favicon.ico';"
+  create_file "app/javascript/images/favicon.ico"
+  create_file "app/javascript/images/logo.png"
 else
   create_file "app/assets/stylesheets/some-random-css.css"
   create_file "app/assets/javascripts/some-random-js.js"
-  create_file "app/assets/images/a/favicon.ico"
+  create_file "app/assets/images/favicon.ico"
+  create_file "app/assets/images/logo.png"
 end
 
 initial_timestamp = Time.now.strftime("%Y%M%d%H%M%S").to_i
@@ -65,7 +65,7 @@ RUBY
 
 unless webpacker_app
   inject_into_file "config/environments/test.rb", after: "  config.action_mailer.default_url_options = {host: 'example.com'}" do
-    "\n  config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )\n"
+    "\n  config.assets.precompile += %w( some-random-css.css some-random-js.js )\n"
   end
 end
 
@@ -77,10 +77,22 @@ RUBY
 if webpacker_app
   rails_command "webpacker:install"
   gsub_file "config/webpacker.yml", /^(.*)extract_css.*$/, '\1extract_css: true' if ENV["RAILS_ENV"] == "test"
+
+  inject_into_file "app/javascript/packs/application.js", after: "import \"channels\"" do
+    "\n\nrequire.context('../images', true)\n"
+  end
 end
 
 # Setup Active Admin
 generate "active_admin:install#{" --use-webpacker" if webpacker_app}"
+
+# Setup title image and favicon
+inject_into_file "config/initializers/active_admin.rb", after: "  # config.site_title_image = \"logo.png\"" do
+  "\n  config.site_title_image = 'logo.png'\n"
+end
+inject_into_file "config/initializers/active_admin.rb", after: "  # config.favicon = 'favicon.ico'" do
+  "\n  config.favicon = 'favicon.ico'\n"
+end
 
 # Force strong parameters to raise exceptions
 inject_into_file "config/application.rb", after: "class Application < Rails::Application" do

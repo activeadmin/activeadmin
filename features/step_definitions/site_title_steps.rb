@@ -23,7 +23,13 @@ end
 
 Then /^I should see the site title image "([^"]*)"$/ do |image|
   img = page.find("h1#site_title img")
-  expect(img[:src]).to eq(image)
+  if ActiveAdmin.application.use_webpacker
+    result = image.match(/^(?<filename>.+)\.(?<suffix>[A-z0-9]+)$/)
+    expect(img[:src]).to match(%r{^/packs-test/media/images/#{result[:filename]}-[a-z0-9]+.#{result[:suffix]}$})
+  else
+    result = image.match(/^(?<filename>.+)\.(?<suffix>[A-z0-9]+)$/)
+    expect(img[:src]).to match(%r{^/assets/#{result[:filename]}-[a-z0-9]+.#{result[:suffix]}$})
+  end
 end
 
 Then /^I should see the site title image linked to "([^"]*)"$/ do |url|
