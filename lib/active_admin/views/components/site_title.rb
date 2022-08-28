@@ -46,7 +46,11 @@ module ActiveAdmin
       end
 
       def title_image
-        helpers.image_tag(site_title_image, id: "site_title_image", alt: title_text)
+        if active_admin_namespace.use_webpacker
+          helpers.image_pack_tag(site_title_image, id: "site_title_image", alt: title_text)
+        else
+          helpers.image_tag(site_title_image, id: "site_title_image", alt: title_text)
+        end
       end
 
     end
