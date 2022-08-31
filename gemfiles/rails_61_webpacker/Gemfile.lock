@@ -254,7 +254,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.22.1)
-    parallel_tests (3.11.1)
+    parallel_tests (3.12.0)
       parallel
     phantomjs (2.1.1.0)
     pry (0.13.1)
