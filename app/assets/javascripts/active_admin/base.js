@@ -434,7 +434,7 @@
     _proto.update = function update() {
       var params = queryStringToParams().filter(function(_ref) {
         var name = _ref.name;
-        return name != "per_page" || name != "page";
+        return name != "per_page" && name != "page";
       });
       params.push({
         name: "per_page",

@@ -7,7 +7,7 @@ class PerPage {
 
   update() {
     const params = queryStringToParams()
-      .filter(({name}) => name != 'per_page' || name != 'page')
+      .filter(({name}) => name != 'per_page' && name != 'page')
 
     params.push({ name: 'per_page', value: this.element.value });
 
