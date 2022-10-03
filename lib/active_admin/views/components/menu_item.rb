@@ -24,7 +24,7 @@ module ActiveAdmin
           span label, item.html_options
         end
 
-        if item.items.any?
+        if item.items.map { |itm| helpers.render_in_context self, itm.should_display }.any?(true)
           add_class "has_nested"
           @submenu = menu(item)
         end
