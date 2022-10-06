@@ -147,6 +147,18 @@ RSpec.describe "Breadcrumbs" do
           expect(trail[2][:path]).to eq "/admin/users/4e24d6249ccf967313000000"
         end
       end
+
+      context "when User.find(4e24d6249ccf967313000000) does exist and name has non latin charaters" do
+        before do
+          display_name = double(display_name: "%27Stop%21%27+said+Fred")
+          allow(user_config).to receive(:find_resource).and_return(display_name)
+        end
+        it "should have a link to /admin/users/4e24d6249ccf967313000000 using display name" do
+          binding.pry
+          expect(trail[2][:name]).to eq "'Stop!' said Fred"
+          expect(trail[2][:path]).to eq "/admin/users/4e24d6249ccf967313000000"
+        end
+      end
     end
 
     context "when path '/admin/users/2b2f0fc2-9a0d-41b8-b39d-aa21963aaee4/posts'" do

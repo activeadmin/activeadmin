@@ -10,6 +10,7 @@ module ActiveAdmin
         parts = path.split("/").select(&:present?)[0..-2]
 
         parts.each_with_index.map do |part, index|
+          part = CGI.unescape part
           # 1. try using `display_name` if we can locate a DB object
           # 2. try using the model name translation
           # 3. default to calling `titlecase` on the URL fragment
@@ -19,7 +20,7 @@ module ActiveAdmin
             name = display_name config.find_resource part
           end
           name ||= I18n.t "activerecord.models.#{part.singularize}", count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT, default: part.titlecase
-
+          name = CGI.unescape name
           # Don't create a link if the resource's show action is disabled
           if !config || config.defined_actions.include?(:show)
             link_to name, "/" + parts[0..index].join("/")
