@@ -130,9 +130,9 @@ GEM
     cucumber-html-formatter (17.0.0)
       cucumber-messages (~> 17.1, >= 17.1.0)
     cucumber-messages (17.1.1)
-    cucumber-rails (2.5.1)
+    cucumber-rails (2.6.0)
       capybara (>= 2.18, < 4)
-      cucumber (>= 3.2, < 8)
+      cucumber (>= 3.2, < 9)
       mime-types (~> 3.3)
       nokogiri (~> 1.10)
       railties (>= 5.0, < 8)
@@ -374,7 +374,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.0)
+    zeitwerk (2.6.1)
 
 PLATFORMS
   arm64-darwin-21
