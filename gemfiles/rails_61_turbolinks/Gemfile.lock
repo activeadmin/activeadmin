@@ -127,7 +127,7 @@ GEM
     cucumber-html-formatter (19.2.0)
       cucumber-messages (~> 18.0, >= 18.0.0)
     cucumber-messages (18.0.0)
-    cucumber-rails (2.6.0)
+    cucumber-rails (2.6.1)
       capybara (>= 2.18, < 4)
       cucumber (>= 3.2, < 9)
       mime-types (~> 3.3)
