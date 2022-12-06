@@ -72,7 +72,7 @@ module ActiveAdmin
       reset_menu!
 
       # Dispatch a registration event
-      ActiveSupport::Notifications.publish ActiveAdmin::Resource::RegisterEvent, config
+      ActiveSupport::Notifications.instrument ActiveAdmin::Resource::RegisterEvent, config
 
       # Return the config
       config

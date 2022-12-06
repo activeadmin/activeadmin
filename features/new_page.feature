@@ -56,6 +56,36 @@ Feature: New Page
     And I should see the attribute "Title" with "Hello World"
     And I should see the attribute "Body" with "This is the body"
 
+  Scenario: A form where calling a helper method with given kwargs is successful
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        form do |f|
+          f.inputs "Publishing" do
+            f.input :published_date, input_html: { "data-time" => format_time(Time.current, format: :short) }
+          end
+          f.actions
+        end
+      end
+    """
+    And I follow "New Post"
+    Then I should see a fieldset titled "Publishing"
+
+  Scenario: A form where calling a helper method with no kwargs is successful
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post do
+        form do |f|
+          f.inputs "Publishing" do
+            f.input :published_date, input_html: { "data-time" => format_time(Time.current) }
+          end
+          f.actions
+        end
+      end
+    """
+    And I follow "New Post"
+    Then I should see a fieldset titled "Publishing"
+
   Scenario: Generating a custom form decorated with virtual attributes
     Given a configuration of:
     """

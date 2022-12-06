@@ -18,8 +18,8 @@ jobs:
 
       matrix:
         os: [ubuntu-20.04]
-        ruby: [{ name: jruby-9.2, value: jruby-9.2.16.0 }]
-        deps: ["rails_52", "rails_60"]
+        ruby: [{ name: jruby-9.3, value: jruby-9.3.2.0 }]
+        deps: ["rails_60", "rails_61"]
 
     env:
       JRUBY_OPTS: -J-Xmx1024m --dev
@@ -31,13 +31,13 @@ jobs:
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
           echo "BUNDLE_PATH=$(pwd)/vendor/bundle" >> $GITHUB_ENV
-        if: matrix.deps == 'rails_60'
+        if: matrix.deps == 'rails_61'
 
       - name: Configure bundler (alternative)
         run: |
           echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> $GITHUB_ENV
           echo "BUNDLE_PATH=$(pwd)/gemfiles/${{ matrix.deps }}/vendor/bundle" >> $GITHUB_ENV
-        if: matrix.deps != 'rails_60'
+        if: matrix.deps != 'rails_61'
 
       - uses: ruby/setup-ruby@v1
         with:

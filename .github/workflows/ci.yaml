@@ -10,6 +10,22 @@ on:
       - master
 
 jobs:
+  jruby:
+    name: Check Gemfile installs fine on JRuby
+    runs-on: ubuntu-20.04
+
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: jruby-9.3.2.0
+
+      - name: Run bug report template
+        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
+
   lint:
     name: lint (${{ matrix.ruby.name }})
     runs-on: ${{ matrix.os }}
@@ -20,7 +36,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        ruby: [{ name: 2.7, value: 2.7.2 }]
+        ruby: [{ name: 3.1, value: 3.1.0 }]
         os: [ubuntu-20.04]
 
     steps:
@@ -37,10 +53,8 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby.value }}
+          rubygems: 3.3.5
           bundler-cache: true
-
-      - name: Install a specific rubygems version
-        run: gem update --system 3.2.17
 
       - name: Generate docs
         run: bin/rake docs:build
@@ -77,24 +91,32 @@ jobs:
       fail-fast: false
 
       matrix:
-        ruby: [{ name: 2.7, value: 2.7.2 }, { name: 2.6, value: 2.6.6 }]
+        ruby: [{ name: 2.7, value: 2.7.5 }, { name: 2.6, value: 2.6.9 }]
 
         os: [ubuntu-20.04]
 
-        deps: [rails_52, rails_60, rails_61, rails_61_turbolinks, rails_61_webpacker]
+        deps: [rails_60, rails_61]
 
         include:
-          - ruby: { name: 2.5, value: 2.5.8 }
-            os: ubuntu-20.04
-            deps: rails_52
-
-          - ruby: { name: 2.5, value: 2.5.8 }
+          - ruby: { name: '3.0', value: 3.0.3 }
             os: ubuntu-20.04
             deps: rails_60
 
-          - ruby: { name: 2.5, value: 2.5.8 }
+          - ruby: { name: '3.0', value: 3.0.3 }
             os: ubuntu-20.04
             deps: rails_61
+
+          - ruby: { name: 3.1, value: 3.1.0 }
+            os: ubuntu-20.04
+            deps: rails_61
+
+          - ruby: { name: 3.1, value: 3.1.0 }
+            os: ubuntu-20.04
+            deps: rails_61_turbolinks
+
+          - ruby: { name: 3.1, value: 3.1.0 }
+            os: ubuntu-20.04
+            deps: rails_61_webpacker
 
     env:
       COVERAGE: true
@@ -117,10 +139,8 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby.value }}
+          rubygems: 3.3.5
           bundler-cache: true
-
-      - name: Install a specific rubygems version
-        run: gem update --system 3.2.17
 
       - name: Setup git
         run: |

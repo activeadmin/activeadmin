@@ -5,7 +5,6 @@ RSpec.describe ActiveAdmin::ViewHelpers::FormHelper do
   describe ".active_admin_form_for" do
     let(:view) { mock_action_view }
     let(:resource) { double "resource" }
-    let(:default_options) { { builder: ActiveAdmin::FormBuilder } }
 
     it "calls semantic_form_for with the ActiveAdmin form builder" do
       expect(view).to receive(:semantic_form_for).with(resource, builder: ActiveAdmin::FormBuilder)

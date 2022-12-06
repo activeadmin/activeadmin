@@ -39,7 +39,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
 
     context "with formtastic translations" do
       it "should pick up formtastic label" do
-        with_translation formtastic: { labels: { title: "Supertitle" } } do
+        with_translation %i[formtastic labels title], "Supertitle" do
           expect(subject.label).to eq("Supertitle equals")
         end
       end
@@ -243,7 +243,6 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     end
 
     let(:user) { User.create! first_name: "John", last_name: "Doe" }
-    let(:store) { resource_klass.create! name: "Store 1", user_id: user.id }
 
     let(:search) do
       resource_klass.ransack(user_id_eq: user.id)

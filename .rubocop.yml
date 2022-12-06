@@ -11,12 +11,11 @@ require:
 
 AllCops:
   DisabledByDefault: true
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.6
 
   Exclude:
     - tmp/development_apps/**/*
     - tmp/test_apps/**/*
-    - gemfiles/rails_52/vendor/bundle/**/*
     - gemfiles/rails_60/vendor/bundle/**/*
     - gemfiles/rails_61_turbolinks/vendor/bundle/**/*
     - gemfiles/rails_61_webpacker/vendor/bundle/**/*

@@ -25,7 +25,7 @@ RSpec.describe ActiveAdmin::Localizers::ResourceLocalizer do
 
   describe "model action specified" do
     around do |example|
-      with_translation active_admin: { resources: { comment: { new_model: "Write comment" } } } do
+      with_translation %i[active_admin resources comment new_model], "Write comment" do
         example.call
       end
     end

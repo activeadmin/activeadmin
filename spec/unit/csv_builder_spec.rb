@@ -269,8 +269,6 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       end
       DummyController.new
     end
-    let(:encoding) { Encoding::ASCII }
-    let(:opts) { {} }
     let(:builder) do
       ActiveAdmin::CSVBuilder.new(encoding: encoding, encoding_options: opts) do
         column "おはようございます"

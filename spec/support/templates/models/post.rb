@@ -18,4 +18,14 @@ class Post < ActiveRecord::Base
   ransacker :custom_searcher_numeric, type: :numeric do
     # nothing to see here
   end
+
+  class << self
+    def ransackable_scopes(_auth_object = nil)
+      [:fancy_filter]
+    end
+
+    def fancy_filter(value)
+      where(starred: value == "Starred")
+    end
+  end
 end
