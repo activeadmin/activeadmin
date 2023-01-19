@@ -259,7 +259,7 @@ GEM
       activesupport (>= 3.0.0)
     racc (1.6.0)
     racc (1.6.0-java)
-    rack (2.2.4)
+    rack (2.2.6.2)
     rack-proxy (0.7.0)
       rack
     rack-test (2.0.2)
