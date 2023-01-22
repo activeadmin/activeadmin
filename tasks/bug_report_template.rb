@@ -18,6 +18,8 @@ gemfile(true) do
   gem "sassc-rails", "2.1.2"
   gem "sqlite3", "1.4.2", platform: :mri
   gem "activerecord-jdbcsqlite3-adapter", "61.0", platform: :jruby
+
+  gem "timeout", "0.3.1"
 end
 
 require "active_record"
