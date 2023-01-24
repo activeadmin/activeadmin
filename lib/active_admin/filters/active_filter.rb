@@ -19,8 +19,10 @@ module ActiveAdmin
         condition_values = condition.values.map(&:value)
         if related_class
           related_class.where(related_primary_key => condition_values)
-        elsif enum_attribute && enum_attribute.values.first&.is_a?(Integer)
-          enum_attribute.invert.slice(*condition_values.map(&:to_i)).values
+        elsif custom_filter_collection && custom_filter_collection.is_a?(Hash)
+          custom_filter_collection.invert.transform_keys(&:to_s).slice(*condition_values).values
+        elsif enum_attribute
+          enum_attribute.invert.transform_keys(&:to_s).slice(*condition_values).values
         else
           condition_values
         end
@@ -116,6 +118,10 @@ module ActiveAdmin
 
       def enum_attribute
         resource_class.defined_enums[name]
+      end
+
+      def custom_filter_collection
+        resource.filters.dig(name.to_sym, :collection)
       end
     end
   end
