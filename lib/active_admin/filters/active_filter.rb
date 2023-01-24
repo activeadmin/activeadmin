@@ -19,6 +19,8 @@ module ActiveAdmin
         condition_values = condition.values.map(&:value)
         if related_class
           related_class.where(related_primary_key => condition_values)
+        elsif custom_filter_collection && custom_filter_collection.is_a?(Array) && custom_filter_collection.all?(Array)
+          custom_filter_collection.to_h.invert.transform_keys(&:to_s).slice(*condition_values).values
         elsif custom_filter_collection && custom_filter_collection.is_a?(Hash)
           custom_filter_collection.invert.transform_keys(&:to_s).slice(*condition_values).values
         elsif enum_attribute
