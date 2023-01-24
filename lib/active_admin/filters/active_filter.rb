@@ -19,6 +19,8 @@ module ActiveAdmin
         condition_values = condition.values.map(&:value)
         if related_class
           related_class.where(related_primary_key => condition_values)
+        elsif enum_attribute && enum_attribute.values.first&.is_a?(Integer)
+          enum_attribute.invert.slice(*condition_values.map(&:to_i)).values
         else
           condition_values
         end
@@ -110,6 +112,10 @@ module ActiveAdmin
         condition_attribute.klass.reflect_on_all_associations.
           reject { |r| r.options[:polymorphic] }. #skip polymorphic
           detect { |r| r.foreign_key.to_s == name.to_s }
+      end
+
+      def enum_attribute
+        resource_class.defined_enums[name]
       end
     end
   end
