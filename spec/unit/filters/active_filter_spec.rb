@@ -276,11 +276,11 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     end
 
     context 'with custom array collection for filter options' do
-        let(:resource) do
-          namespace.register(resource_klass) do
-            filter :reject_reason, as: :select, collection: [[:not_a_good_fit, '0'], ["\u274c Vetoed", '10']]
-          end
+      let(:resource) do
+        namespace.register(resource_klass) do
+          filter :reject_reason, as: :select, collection: [[:not_a_good_fit, '0'], ["\u274c Vetoed", '10']]
         end
+      end
       let(:search) do
         resource_klass.ransack(reject_reason_eq: '10')
       end
@@ -291,17 +291,33 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     end
 
     context 'with custom hash collection for filter options' do
-        let(:resource) do
-          namespace.register(resource_klass) do
-            filter :reject_reason, as: :select, collection: { requirements_not_met: 0, "\u274c Vetoed" => 10 }
-          end
+      let(:resource) do
+        namespace.register(resource_klass) do
+          filter :reject_reason, as: :select, collection: { requirements_not_met: 0, "\u274c Vetoed" => 10 }
         end
+      end
       let(:search) do
         resource_klass.ransack(reject_reason_eq: '0')
       end
 
       it "should use the queried value as a fallback, even if the lookup failed" do
         expect(subject.values.first).to eq :requirements_not_met.to_s.humanize
+      end
+    end
+
+    context 'filtering by multiple selections' do
+      let(:resource) do
+        namespace.register(resource_klass) do
+          filter :reject_reason, as: :select, collection: { requirements_not_met: 0, "\u274c Vetoed" => 10 }
+        end
+      end
+      let(:search) do
+        resource_klass.ransack(reject_reason_in: ['0','10'])
+      end
+
+      it "should use the queried value as a fallback, even if the lookup failed" do
+        expect(subject.values.first).to eq :requirements_not_met.to_s.humanize
+        expect(subject.values.second).to eq "\u274c Vetoed".to_s.humanize
       end
     end
   end
