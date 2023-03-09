@@ -131,6 +131,30 @@ RSpec.describe "A specific resource controller", type: :controller do
     @controller = Admin::PostsController.new
   end
 
+  describe 'GET :index' do
+    context 'when accepting any content type' do
+      before do
+        request.env['HTTP_ACCEPT'] = '*/*'
+      end
+
+      it 'returns 200 OK' do
+        get :index
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when accepting HTML' do
+      before do
+        request.env['HTTP_ACCEPT'] = 'text/html'
+      end
+
+      it 'returns 200 OK' do
+        get :index
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
+
   describe "authenticating the user" do
     it "should do nothing when no authentication_method set" do
       namespace = controller.class.active_admin_config.namespace
