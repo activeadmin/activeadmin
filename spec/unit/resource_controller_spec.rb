@@ -131,24 +131,24 @@ RSpec.describe "A specific resource controller", type: :controller do
     @controller = Admin::PostsController.new
   end
 
-  describe 'GET :index' do
-    context 'when accepting any content type' do
+  describe "GET :index" do
+    context "when accepting any content type" do
       before do
-        request.env['HTTP_ACCEPT'] = '*/*'
+        request.env["HTTP_ACCEPT"] = "*/*"
       end
 
-      it 'returns 200 OK' do
+      it "returns 200 OK" do
         get :index
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context 'when accepting HTML' do
+    context "when accepting HTML" do
       before do
-        request.env['HTTP_ACCEPT'] = 'text/html'
+        request.env["HTTP_ACCEPT"] = "text/html"
       end
 
-      it 'returns 200 OK' do
+      it "returns 200 OK" do
         get :index
         expect(response).to have_http_status(:ok)
       end
