@@ -192,7 +192,7 @@ jobs:
       - name: Format, sum & upload results to Code Climate
         uses: paambaati/codeclimate-action@v2.7.4
         env:
-          CC_TEST_REPORTER_ID: 8d5fcf7abea6d56c625104a9d1a81140a588a7f546f4fa9de9bc6ffc8feaaf70
+          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TEST_REPORTER_ID }}
         with:
           debug: true
           coverageLocations: coverage/raw.*.json:simplecov
