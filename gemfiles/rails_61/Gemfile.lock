@@ -99,7 +99,6 @@ GEM
       parser (>= 2.4)
       smart_properties
     builder (3.2.4)
-    byebug (11.1.1)
     cancancan (3.4.0)
     capybara (3.36.0)
       addressable
@@ -114,7 +113,6 @@ GEM
       netrc
       octokit (>= 2.2.0)
     chef-utils (16.4.41)
-    coderay (1.1.2)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     cucumber (8.0.0)
@@ -299,16 +297,6 @@ GEM
     parser (3.1.2.1)
       ast (~> 2.4.1)
     phantomjs (2.1.1.0)
-    pry (0.13.1)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
-    pry (0.13.1-java)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
-      spoon (~> 0.0)
-    pry-byebug (3.9.0)
-      byebug (~> 11.0)
-      pry (~> 0.13.0)
     public_suffix (5.0.0)
     pundit (2.2.0)
       activesupport (>= 3.0.0)
@@ -416,8 +404,6 @@ GEM
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.2)
     smart_properties (1.17.0)
-    spoon (0.0.6)
-      ffi
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -481,8 +467,6 @@ DEPENDENCIES
   net-smtp
   octokit
   parallel_tests
-  pry
-  pry-byebug
   pundit
   rails (~> 6.1.0)
   rails-i18n
