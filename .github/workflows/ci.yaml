@@ -42,12 +42,12 @@ jobs:
 
       - name: Configure bundler (default)
         run: |
-          echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
+          echo "BUNDLE_GEMFILE=Gemfile" >> "$GITHUB_ENV"
         if: matrix.deps == 'rails_70'
 
       - name: Configure bundler (alternative)
         run: |
-          echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> $GITHUB_ENV
+          echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> "$GITHUB_ENV"
         if: matrix.deps != 'rails_70'
 
       - uses: ruby/setup-ruby@v1
