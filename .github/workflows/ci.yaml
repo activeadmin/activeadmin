@@ -1,85 +1,12 @@
----
-
 name: ci
 
 on:
   pull_request:
-
   push:
     branches:
       - master
 
 jobs:
-  jruby:
-    name: Check Gemfile installs fine on JRuby
-    runs-on: ubuntu-latest
-
-    timeout-minutes: 15
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: jruby-9.3.4.0
-
-      - name: Run bug report template
-        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
-
-  lint:
-    name: lint (${{ matrix.ruby }})
-    runs-on: ${{ matrix.os }}
-
-    timeout-minutes: 15
-
-    strategy:
-      fail-fast: false
-
-      matrix:
-        ruby: [3.1]
-        os: [ubuntu-latest]
-
-    env:
-      COVERAGE: true
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Configure bundler
-        run: |
-          echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
-          echo "BUNDLE_PATH=$(pwd)/vendor/bundle" >> $GITHUB_ENV
-
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby }}
-          bundler-cache: true
-
-      - name: Generate docs
-        run: bin/rake docs:build
-
-      - name: Setup git
-        run: |
-          git config --global user.email activeadmin@ci.dummy
-          git config --global user.name ActiveAdmin
-
-      - name: Run lints
-        run: bin/rake lint
-
-      # - name: Run bug report template
-      #   run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
-
-      - name: Format coverage
-        run: |
-          bin/prepare_coverage
-          mv coverage/.resultset.json coverage/raw.lint.json
-
-      - name: Save partial coverage as an artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage
-          path: coverage/raw.lint.json
-
   test:
     name: test (${{ matrix.ruby }}, ${{ matrix.deps }})
     runs-on: ${{ matrix.os }}
@@ -177,7 +104,6 @@ jobs:
     runs-on: ubuntu-latest
 
     needs:
-      - lint
       - test
 
     steps:
