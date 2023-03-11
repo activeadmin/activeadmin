@@ -87,17 +87,8 @@ GEM
     arbre (1.5.0)
       activesupport (>= 3.0.0, < 7.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
-    ast (2.4.2)
     bcrypt (3.1.16)
     bcrypt (3.1.16-java)
-    better_html (1.0.16)
-      actionview (>= 4.0)
-      activesupport (>= 4.0)
-      ast (~> 2.0)
-      erubi (~> 1.4)
-      html_tokenizer (~> 0.0.6)
-      parser (>= 2.4)
-      smart_properties
     builder (3.2.4)
     cancancan (3.4.0)
     capybara (3.36.0)
@@ -109,10 +100,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    chandler (0.9.0)
-      netrc
-      octokit (>= 2.2.0)
-    chef-utils (16.4.41)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     cucumber (8.0.0)
@@ -172,10 +159,6 @@ GEM
       request_store (>= 1.0)
       ruby2_keywords
     erubi (1.11.0)
-    faraday (2.3.0)
-      faraday-net_http (~> 2.0)
-      ruby2_keywords (>= 0.0.4)
-    faraday-net_http (2.0.3)
     ferrum (0.13)
       addressable (~> 2.5)
       concurrent-ruby (~> 1.1)
@@ -191,30 +174,13 @@ GEM
     has_scope (0.8.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
-    highline (2.0.3)
-    html_tokenizer (0.0.7)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    i18n-spec (0.6.0)
-      iso
-    i18n-tasks (1.0.12)
-      activesupport (>= 4.0.2)
-      ast (>= 2.1.0)
-      better_html (>= 1.0, < 3.0)
-      erubi
-      highline (>= 2.0.0)
-      i18n
-      parser (>= 2.2.3.0)
-      rails-i18n
-      rainbow (>= 2.2.2, < 4.0)
-      terminal-table (>= 1.5.1)
     inherited_resources (1.13.1)
       actionpack (>= 5.2, < 7.1)
       has_scope (~> 0.6)
       railties (>= 5.2, < 7.1)
       responders (>= 2, < 4)
-    iso (0.2.2)
-      i18n
     jasmine (2.99.0)
       jasmine-core (>= 2.99.0, < 3.0.0)
       phantomjs
@@ -239,10 +205,6 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    kramdown (2.4.0)
-      rexml
-    kramdown-parser-gfm (1.1.0)
-      kramdown (~> 2.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     loofah (2.19.0)
@@ -252,12 +214,6 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
     matrix (0.4.2)
-    mdl (0.11.0)
-      kramdown (~> 2.3)
-      kramdown-parser-gfm (~> 1.1)
-      mixlib-cli (~> 2.1, >= 2.1.1)
-      mixlib-config (>= 2.2.1, < 4)
-      mixlib-shellout
     method_source (1.0.0)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
@@ -265,17 +221,11 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
     minitest (5.16.3)
-    mixlib-cli (2.1.8)
-    mixlib-config (3.0.9)
-      tomlrb
-    mixlib-shellout (3.1.4)
-      chef-utils
     multi_test (1.1.0)
     net-protocol (0.1.3)
       timeout
     net-smtp (0.3.3)
       net-protocol
-    netrc (0.11.0)
     nio4r (2.5.8)
     nio4r (2.5.8-java)
     nokogiri (1.14.2)
@@ -287,15 +237,10 @@ GEM
       racc (~> 1.4)
     nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
-    octokit (4.25.1)
-      faraday (>= 1, < 3)
-      sawyer (~> 0.9)
     orm_adapter (0.5.0)
     parallel (1.22.1)
     parallel_tests (3.13.0)
       parallel
-    parser (3.1.2.1)
-      ast (~> 2.4.1)
     phantomjs (2.1.1.0)
     public_suffix (5.0.0)
     pundit (2.2.0)
@@ -334,7 +279,6 @@ GEM
       method_source
       rake (>= 12.2)
       thor (~> 1.0)
-    rainbow (3.1.1)
     rake (13.0.6)
     ransack (3.0.1)
       activerecord (>= 6.0.4)
@@ -364,27 +308,6 @@ GEM
       rspec-mocks (~> 3.11)
       rspec-support (~> 3.11)
     rspec-support (3.11.1)
-    rubocop (0.93.1)
-      parallel (~> 1.10)
-      parser (>= 2.7.1.5)
-      rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.8)
-      rexml
-      rubocop-ast (>= 0.6.0)
-      ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (1.3.0)
-      parser (>= 2.7.1.5)
-    rubocop-packaging (0.5.1)
-      rubocop (>= 0.89, < 2.0)
-    rubocop-rails (2.9.1)
-      activesupport (>= 4.2.0)
-      rack (>= 1.1)
-      rubocop (>= 0.90.0, < 2.0)
-    rubocop-rspec (1.44.1)
-      rubocop (~> 0.87)
-      rubocop-ast (>= 0.7.1)
-    ruby-progressbar (1.10.1)
     ruby2_keywords (0.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -394,16 +317,12 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sawyer (0.9.2)
-      addressable (>= 2.3.5)
-      faraday (>= 0.17.3, < 3)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.2)
-    smart_properties (1.17.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -415,15 +334,11 @@ GEM
       mini_portile2 (~> 2.8.0)
     sys-uname (1.2.2)
       ffi (~> 1.1)
-    terminal-table (3.0.2)
-      unicode-display_width (>= 1.1.1, < 3)
     thor (1.2.1)
     tilt (2.0.10)
     timeout (0.3.0)
-    tomlrb (1.3.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
-    unicode-display_width (1.8.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     webrick (1.7.0)
@@ -434,8 +349,6 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yard (0.9.28)
-      webrick (~> 1.7.0)
     zeitwerk (2.6.6)
 
 PLATFORMS
@@ -449,39 +362,28 @@ DEPENDENCIES
   activerecord-jdbcsqlite3-adapter
   cancancan
   capybara
-  chandler
   cucumber
   cucumber-rails
   cuprite
   database_cleaner
   devise
   draper
-  i18n-spec
-  i18n-tasks
   jasmine
   jasmine-core
   jruby-openssl
-  kramdown
   launchy
-  mdl
   net-smtp
-  octokit
   parallel_tests
   pundit
   rails (~> 6.1.0)
   rails-i18n
   rake
   rspec-rails
-  rubocop
-  rubocop-packaging
-  rubocop-rails
-  rubocop-rspec
   sassc-rails
   simplecov
   sprockets-rails
   sqlite3
   webrick
-  yard
 
 BUNDLED WITH
    2.4.6

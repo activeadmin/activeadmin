@@ -47,7 +47,6 @@ group :lint do
   gem "rubocop-packaging"
   gem "rubocop-rspec"
   gem "rubocop-rails"
-  gem "mdl"
 
   # Translations
   gem "i18n-tasks"
