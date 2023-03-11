@@ -1,0 +1,42 @@
+name: General Lint
+
+on:
+  pull_request:
+
+env:
+  JRUBY_VERSION: jruby-9.3.4.0
+  RUBY_VERSION: 3.1
+
+jobs:
+  jruby:
+    name: Check Gemfile installs fine on JRuby
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.JRUBY_VERSION }}
+      - name: Run bug report template
+        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+      - name: Generate docs
+        run: bin/rake docs:build
+      - name: Setup git
+        run: |
+          git config --global user.email activeadmin@ci.dummy
+          git config --global user.name ActiveAdmin
+      - name: Run lints
+        run: bin/rake lint
+      # - name: Run bug report template
+      #   run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
