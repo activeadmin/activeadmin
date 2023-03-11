@@ -1,0 +1,23 @@
+name: Markdown Lint
+
+on:
+  pull_request:
+    # If updating `paths` then update markdown-lint-none.yml to match
+    paths:
+      - '.github/workflows/markdown-lint.yml'
+      - '.markdownlint.yml'
+      - '**.md'
+
+jobs:
+  markdownlint:
+    name: Run markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: reviewdog/action-markdownlint@v0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          filter_mode: nofilter # added (default), diff_context, file, nofilter
+          fail_on_error: true
+          markdownlint_flags: --git-recurse .
+          reporter: github-pr-check
