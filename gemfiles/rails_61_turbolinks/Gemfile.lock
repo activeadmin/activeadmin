@@ -100,7 +100,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    concurrent-ruby (1.1.10)
+    concurrent-ruby (1.2.2)
     crass (1.0.6)
     cucumber (8.0.0)
       builder (~> 3.2, >= 3.2.4)
@@ -169,7 +169,7 @@ GEM
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
-    globalid (1.0.0)
+    globalid (1.1.0)
       activesupport (>= 5.0)
     has_scope (0.8.0)
       actionpack (>= 5.2)
@@ -220,7 +220,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
-    minitest (5.16.3)
+    minitest (5.18.0)
     multi_test (1.1.0)
     net-protocol (0.1.3)
       timeout
@@ -247,7 +247,7 @@ GEM
       activesupport (>= 3.0.0)
     racc (1.6.2)
     racc (1.6.2-java)
-    rack (2.2.4)
+    rack (2.2.6.3)
     rack-test (2.0.2)
       rack (>= 1.3)
     rails (6.1.7)
@@ -340,7 +340,7 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    tzinfo (2.0.5)
+    tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -352,7 +352,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.6)
+    zeitwerk (2.6.7)
 
 PLATFORMS
   arm64-darwin-21
