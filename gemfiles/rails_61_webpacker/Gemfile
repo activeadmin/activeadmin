@@ -28,8 +28,6 @@ group :test do
   gem "cucumber-rails", require: false
   gem "cucumber"
   gem "database_cleaner"
-  gem "jasmine"
-  gem "jasmine-core"
   gem "launchy"
   gem "parallel_tests"
   gem "rails-i18n" # Provides default i18n for many languages

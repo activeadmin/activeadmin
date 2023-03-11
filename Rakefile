@@ -16,9 +16,6 @@ end
 
 task default: :test
 
-require "jasmine"
-load "jasmine/tasks/jasmine.rake"
-
 task :console do
   require "irb"
   require "irb/completion"
