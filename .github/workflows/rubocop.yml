@@ -1,0 +1,39 @@
+name: Rubocop
+
+on:
+  pull_request:
+    # If updating `paths` then update rubocop-none.yml to match
+    paths:
+      - '.github/workflows/rubocop.yml'
+      - 'config/rubocop/**/*.yml'
+      - '.rubocop.yml'
+      - '**.arb'
+      - '**.rake'
+      - '**.rb'
+      - '*.gemspec'
+      - 'gemfiles/**/Gemfile*'
+      - 'Gemfile*'
+      - 'Rakefile'
+
+env:
+  RUBY_VERSION: "3.1"
+
+jobs:
+  rubocop:
+    name: Run rubocop
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_WITHOUT: default development test release docs
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+      - uses: reviewdog/action-rubocop@v2
+        with:
+          fail_on_error: true
+          filter_mode: nofilter # added (default), diff_context, file, nofilter
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          skip_install: true
+          use_bundler: true
