@@ -36,7 +36,7 @@ jobs:
         run: |
           git config --global user.email activeadmin@ci.dummy
           git config --global user.name ActiveAdmin
-      - name: Run lints
-        run: bin/rake lint
       # - name: Run bug report template
       #   run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
+      - name: Run lints
+        run: bin/rake lint

@@ -48,7 +48,7 @@ helpers:
 # EXAMPLE:
 #
 spec_files:
-  - **/*[sS]pec.js
+  - "**/*[sS]pec.js"
 
 
 # src_dir
