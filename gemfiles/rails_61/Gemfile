@@ -3,8 +3,6 @@ source "https://rubygems.org"
 
 group :development, :test do
   gem "rake"
-  gem "pry" # Easily debug from your console with `binding.pry`
-  gem "pry-byebug", platform: :mri # Step-by-step debugging
 
   gem "cancancan"
   gem "pundit"

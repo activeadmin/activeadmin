@@ -90,7 +90,6 @@ GEM
     bcrypt (3.1.16)
     bcrypt (3.1.16-java)
     builder (3.2.4)
-    byebug (11.1.1)
     cancancan (3.4.0)
     capybara (3.36.0)
       addressable
@@ -101,7 +100,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    coderay (1.1.2)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     cucumber (8.0.0)
@@ -221,7 +219,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
+    mini_portile2 (2.8.1)
     minitest (5.16.3)
     multi_test (1.1.0)
     net-protocol (0.1.3)
@@ -230,35 +228,25 @@ GEM
       net-protocol
     nio4r (2.5.8)
     nio4r (2.5.8-java)
-    nokogiri (1.13.9)
+    nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.13.9-arm64-darwin)
+    nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.9-java)
+    nokogiri (1.14.2-java)
       racc (~> 1.4)
-    nokogiri (1.13.9-x86_64-linux)
+    nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.22.1)
     parallel_tests (3.13.0)
       parallel
     phantomjs (2.1.1.0)
-    pry (0.13.1)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
-    pry (0.13.1-java)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
-      spoon (~> 0.0)
-    pry-byebug (3.9.0)
-      byebug (~> 11.0)
-      pry (~> 0.13.0)
     public_suffix (5.0.0)
     pundit (2.2.0)
       activesupport (>= 3.0.0)
-    racc (1.6.0)
-    racc (1.6.0-java)
+    racc (1.6.2)
+    racc (1.6.2-java)
     rack (2.2.4)
     rack-test (2.0.2)
       rack (>= 1.3)
@@ -335,8 +323,6 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.2)
-    spoon (0.0.6)
-      ffi
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -346,8 +332,6 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.5.4)
       mini_portile2 (~> 2.8.0)
-    sqlite3 (1.5.4-arm64-darwin)
-    sqlite3 (1.5.4-x86_64-linux)
     sys-uname (1.2.2)
       ffi (~> 1.1)
     thor (1.2.1)
@@ -393,8 +377,6 @@ DEPENDENCIES
   launchy
   net-smtp
   parallel_tests
-  pry
-  pry-byebug
   pundit
   rails (~> 6.1.0)
   rails-i18n
@@ -408,4 +390,4 @@ DEPENDENCIES
   webrick
 
 BUNDLED WITH
-   2.3.12
+   2.4.6
