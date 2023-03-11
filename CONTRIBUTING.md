@@ -55,8 +55,8 @@ Now you should be able to run the entire suite using:
 bin/rake
 ```
 
-The test run will generate a sample Rails application in `tmp/test_apps` to run the
-tests against.
+The task will generate a sample Rails application in `tmp/test_apps` to run the
+test suite against.
 
 If you want to test against a Rails version different from the latest, make sure
 you use the correct Gemfile, for example:
