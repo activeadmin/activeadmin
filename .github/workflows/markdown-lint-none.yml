@@ -1,0 +1,17 @@
+name: Markdown Lint
+
+on:
+  pull_request:
+    # If updating `paths-ignore` then update markdown-lint.yml to match
+    paths-ignore:
+      - '.github/workflows/markdown-lint.yml'
+      - '.markdownlint.yml'
+      - '**.md'
+
+jobs:
+  markdownlint:
+    name: Run markdownlint
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Do nothing"

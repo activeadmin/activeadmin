@@ -25,8 +25,7 @@ git checkout -b 325-add-japanese-translations
 
 ### Get the test suite running
 
-Make sure you're using a recent ruby and have the `bundler` gem installed, at
-least version `1.14.3`.
+Make sure you're using a recent Ruby version.
 
 You'll also need chrome installed in order to run cucumber scenarios.
 
