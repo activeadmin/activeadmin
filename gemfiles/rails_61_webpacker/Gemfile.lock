@@ -208,8 +208,8 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    launchy (2.5.0)
-      addressable (~> 2.7)
+    launchy (2.5.2)
+      addressable (~> 2.8)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
