@@ -335,10 +335,12 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
 
       let(:collection) do
-        Post.create([
-          { title: "First Post", starred: true },
-          { title: "Second Post" },
-        ])
+        Post.create(
+          [
+            { title: "First Post", starred: true },
+            { title: "Second Post" },
+          ]
+        )
         Post.where(starred: true)
       end
 
