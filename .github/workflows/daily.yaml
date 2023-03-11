@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: test (${{ matrix.ruby.name }}, ${{ matrix.deps }})
+    name: test (${{ matrix.ruby }}, ${{ matrix.deps }})
     runs-on: ${{ matrix.os }}
 
     timeout-minutes: 15
@@ -17,15 +17,15 @@ jobs:
       fail-fast: false
 
       matrix:
-        os: [ubuntu-20.04]
-        ruby: [{ name: jruby-9.3, value: jruby-9.3.4.0 }]
+        os: [ubuntu-latest]
+        ruby: [jruby-9.3]
         deps: ["rails_61"]
 
     env:
       JRUBY_OPTS: -J-Xmx1024m --dev
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Configure bundler (default)
         run: |
@@ -41,8 +41,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby.value }}
-          rubygems: 3.3.12
+          ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
 
       - name: Setup git
@@ -54,10 +53,10 @@ jobs:
         run: bin/rake setup
 
       - name: Restore cached RSpec runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tmp/parallel_runtime_rspec.log
-          key: runtimes-rspec-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
+          key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
 
       - name: Run RSpec tests
         run: |
@@ -65,10 +64,10 @@ jobs:
           RSPEC_FILESYSTEM_CHANGES=true bin/rspec
 
       - name: Restore cached cucumber runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tmp/parallel_runtime_cucumber.log
-          key: runtimes-cucumber-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
+          key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
 
       - name: Run Cucumber features
         run: |

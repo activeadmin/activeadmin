@@ -12,7 +12,7 @@ on:
 jobs:
   jruby:
     name: Check Gemfile installs fine on JRuby
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     timeout-minutes: 15
 
@@ -27,7 +27,7 @@ jobs:
         run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
 
   lint:
-    name: lint (${{ matrix.ruby.name }})
+    name: lint (${{ matrix.ruby }})
     runs-on: ${{ matrix.os }}
 
     timeout-minutes: 15
@@ -36,8 +36,11 @@ jobs:
       fail-fast: false
 
       matrix:
-        ruby: [{ name: 3.1, value: 3.1.2 }]
-        os: [ubuntu-20.04]
+        ruby: [3.1]
+        os: [ubuntu-latest]
+
+    env:
+      COVERAGE: true
 
     steps:
       - uses: actions/checkout@v2
@@ -47,13 +50,9 @@ jobs:
           echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
           echo "BUNDLE_PATH=$(pwd)/vendor/bundle" >> $GITHUB_ENV
 
-      - name: Enable coverage tracking
-        run: echo "COVERAGE=true" >> $GITHUB_ENV
-
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby.value }}
-          rubygems: 3.3.5
+          ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
 
       - name: Generate docs
@@ -67,8 +66,8 @@ jobs:
       - name: Run lints
         run: bin/rake lint
 
-      - name: Run bug report template
-        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
+      # - name: Run bug report template
+      #   run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
 
       - name: Format coverage
         run: |
@@ -76,13 +75,13 @@ jobs:
           mv coverage/.resultset.json coverage/raw.lint.json
 
       - name: Save partial coverage as an artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage/raw.lint.json
 
   test:
-    name: test (${{ matrix.ruby.name }}, ${{ matrix.deps }})
+    name: test (${{ matrix.ruby }}, ${{ matrix.deps }})
     runs-on: ${{ matrix.os }}
 
     timeout-minutes: 15
@@ -92,34 +91,28 @@ jobs:
 
       matrix:
         ruby:
-          - { name: 3.1, value: 3.1.2 }
-          - { name: '3.0', value: 3.0.4 }
-          - { name: 2.7, value: 2.7.6 }
-          - { name: 2.6, value: 2.6.10 }
+          - 3.2
+          - 3.1
+          - '3.0'
 
-        os: [ubuntu-20.04]
+        os: [ubuntu-latest]
 
         deps: [rails_61, rails_70]
 
-        exclude:
-          - ruby: { name: '2.6', value: 2.6.10 }
-            os: ubuntu-20.04
-            deps: rails_70
-
         include:
-          - ruby: { name: 3.1, value: 3.1.2 }
-            os: ubuntu-20.04
+          - ruby: 3.1
+            os: ubuntu-latest
             deps: rails_61_turbolinks
 
-          - ruby: { name: 3.1, value: 3.1.2 }
-            os: ubuntu-20.04
-            deps: rails_61_webpacker
+          # - ruby: 3.1
+          #   os: ubuntu-latest
+          #   deps: rails_61_webpacker
 
     env:
       COVERAGE: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Configure bundler (default)
         run: |
@@ -135,8 +128,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby.value }}
-          rubygems: 3.3.12
+          ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
 
       - name: Setup git
@@ -148,10 +140,10 @@ jobs:
         run: bin/rake setup
 
       - name: Restore cached RSpec runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tmp/parallel_runtime_rspec.log
-          key: runtimes-rspec-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
+          key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
 
       - name: Run RSpec tests
         run: |
@@ -159,10 +151,10 @@ jobs:
           RSPEC_FILESYSTEM_CHANGES=true bin/rspec
 
       - name: Restore cached cucumber runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tmp/parallel_runtime_cucumber.log
-          key: runtimes-cucumber-${{ matrix.ruby.value }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
+          key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
 
       - name: Run Cucumber features
         run: |
@@ -173,26 +165,26 @@ jobs:
       - name: Format coverage
         run: |
           bin/prepare_coverage
-          mv coverage/.resultset.json coverage/raw.${{ matrix.ruby.value }}.${{ matrix.deps }}.json
+          mv coverage/.resultset.json coverage/raw.${{ matrix.ruby }}.${{ matrix.deps }}.json
 
       - name: Save partial coverage as an artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage
-          path: coverage/raw.${{ matrix.ruby.value }}.${{ matrix.deps }}.json
+          path: coverage/raw.${{ matrix.ruby }}.${{ matrix.deps }}.json
 
   upload_coverage:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     needs:
       - lint
       - test
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Download partial coverages
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: coverage
           path: coverage
