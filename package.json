@@ -3,6 +3,7 @@
   "version": "2.13.1",
   "description": "The administration framework for Ruby on Rails.",
   "main": "app/assets/javascripts/active_admin/base.js",
+  "type": "module",
   "files": [
     "app/assets/javascripts/active_admin/*.js",
     "src/**/*"

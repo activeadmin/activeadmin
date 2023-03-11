@@ -518,7 +518,4 @@
   }
   exports.ModalDialog = ModalDialog;
   exports.modal_dialog = modal_dialog;
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
 });
