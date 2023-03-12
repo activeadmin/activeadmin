@@ -5,7 +5,8 @@ RSpec.describe "JS bundle sanity" do
   it "is up to date" do
     current_bundle = File.read("app/assets/javascripts/active_admin/base.js")
 
-    output, status = Open3.capture2e("yarn build -o tmp/bundle.js")
+    `bin/yarn install`
+    output, status = Open3.capture2e("bin/yarn build -o tmp/bundle.js")
     expect(status).to be_success, output
 
     new_bundle = File.read("tmp/bundle.js")
