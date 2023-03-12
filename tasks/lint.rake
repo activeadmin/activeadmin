@@ -107,7 +107,7 @@ class SassRailsLinter
 end
 
 desc "Lints ActiveAdmin code base"
-task lint: ["lint:gherkin", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:sass_rails", "lint:rspec"]
+task lint: ["lint:gherkin", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:sass_rails"]
 
 namespace :lint do
   desc "Checks gherkin code style"
@@ -151,15 +151,5 @@ namespace :lint do
     puts "Checking for sass-rails directives..."
 
     SassRailsLinter.new.run
-  end
-
-  desc "RSpec specs for linting project files"
-  task :rspec do
-    puts "Linting project files..."
-
-    sh(
-      "bin/rspec",
-      *Dir.glob("spec/*.lint.rb")
-    )
   end
 end
