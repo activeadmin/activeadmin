@@ -95,8 +95,8 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 [rubygems]: https://rubygems.org/gems/activeadmin
 [actions_badge]: https://github.com/activeadmin/activeadmin/workflows/ci/badge.svg
 [actions]: https://github.com/activeadmin/activeadmin/actions
-[coverage_badge]: https://api.codeclimate.com/v1/badges/779e407d22bacff19733/test_coverage
-[coverage]: https://codeclimate.com/github/activeadmin/activeadmin/test_coverage
+[coverage_badge]: https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg?token=NAjeBdkQXW
+[coverage]: https://codecov.io/gh/activeadmin/activeadmin
 [inch_badge]: http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
 [inch]: http://inch-ci.org/github/activeadmin/activeadmin
 [tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
