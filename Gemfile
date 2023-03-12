@@ -30,9 +30,13 @@ group :test do
   gem "database_cleaner"
   gem "launchy"
   gem "parallel_tests"
-  gem "rails-i18n" # Provides default i18n for many languages
   gem "rspec-rails"
   gem "sqlite3", platform: :mri
+
+  # Translations
+  gem "i18n-tasks"
+  gem "i18n-spec"
+  gem "rails-i18n" # Provides default i18n for many languages
 end
 
 group :release do
@@ -46,10 +50,6 @@ group :lint do
   gem "rubocop-packaging"
   gem "rubocop-rspec"
   gem "rubocop-rails"
-
-  # Translations
-  gem "i18n-tasks"
-  gem "i18n-spec"
 end
 
 group :docs do
