@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-SimpleCov.command_name "lint" if ENV["COVERAGE"] == "true"
-
 require "kramdown"
 
 RSpec.describe "Changelog" do
