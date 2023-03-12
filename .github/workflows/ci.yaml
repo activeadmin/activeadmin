@@ -27,9 +27,9 @@ jobs:
         deps: [rails_61, rails_70]
 
         include:
-          # - ruby: 3.1
-          #   os: ubuntu-latest
-          #   deps: rails_61_webpacker
+          - ruby: 3.1
+            os: ubuntu-latest
+            deps: rails_61_webpacker
           - ruby: 3.1
             os: ubuntu-latest
             deps: rails_61_turbolinks
@@ -54,6 +54,11 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+        if: matrix.deps == 'rails_61_webpacker'
 
       - name: Setup git
         run: |
@@ -85,37 +90,23 @@ jobs:
           bin/parallel_cucumber --fail-fast
           bin/cucumber --profile filesystem-changes
           bin/cucumber --profile class-reloading
-
-      - name: Format coverage
-        run: |
-          bin/prepare_coverage
-          mv coverage/.resultset.json coverage/raw.${{ matrix.ruby }}.${{ matrix.deps }}.json
-
-      - name: Save partial coverage as an artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage
-          path: coverage/raw.${{ matrix.ruby }}.${{ matrix.deps }}.json
-
-  upload_coverage:
-    runs-on: ubuntu-latest
-
-    needs:
-      - test
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Download partial coverages
-        uses: actions/download-artifact@v3
+      - uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: coverage
+          if-no-files-found: error
 
-      - name: Format, sum & upload results to Code Climate
-        uses: paambaati/codeclimate-action@v2.7.4
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TEST_REPORTER_ID }}
+  upload_coverage:
+    name: Upload Coverage
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
         with:
-          debug: true
-          coverageLocations: coverage/raw.*.json:simplecov
+          name: coverage
+          path: coverage
+      - uses: codecov/codecov-action@v3
+        with:
+          directory: coverage
+          fail_ci_if_error: true

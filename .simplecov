@@ -4,8 +4,7 @@ SimpleCov.start do
   add_filter "tmp/test_apps/"
 end
 
-if ENV["CI"] == "true"
-  SimpleCov.formatters = [
-    SimpleCov::Formatter::HTMLFormatter
-  ]
+if ENV["COVERAGE"] == "true"
+  require "simplecov-cobertura"
+  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 end
