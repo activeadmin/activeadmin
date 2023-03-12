@@ -414,7 +414,6 @@ DEPENDENCIES
   i18n-tasks
   jruby-openssl
   launchy
-  net-smtp
   parallel_tests
   pundit
   rails (~> 6.1.0)
