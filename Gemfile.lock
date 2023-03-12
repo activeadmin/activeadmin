@@ -449,7 +449,6 @@ DEPENDENCIES
   i18n-tasks
   kramdown
   launchy
-  net-smtp
   octokit
   parallel_tests
   pundit

@@ -242,6 +242,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.1)
     minitest (5.18.0)
     multi_test (1.1.0)
     net-imap (0.3.4)
@@ -255,6 +256,9 @@ GEM
       net-protocol
     nio4r (2.5.8)
     nio4r (2.5.8-java)
+    nokogiri (1.14.2)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.14.2-java)
@@ -355,6 +359,8 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.6.1)
+      mini_portile2 (~> 2.8.0)
     sqlite3 (1.6.1-arm64-darwin)
     sqlite3 (1.6.1-x86_64-linux)
     sys-uname (1.2.2)
@@ -387,6 +393,7 @@ PLATFORMS
   arm64-darwin-21
   arm64-darwin-22
   java
+  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -404,7 +411,6 @@ DEPENDENCIES
   i18n-tasks
   jruby-openssl
   launchy
-  net-smtp
   parallel_tests
   pundit
   rails (~> 6.1.0)
