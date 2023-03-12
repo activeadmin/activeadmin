@@ -18,8 +18,8 @@ jobs:
 
       matrix:
         os: [ubuntu-latest]
-        ruby: [jruby-9.3]
-        deps: ["rails_61"]
+        ruby: [jruby-9.4]
+        deps: ["rails_70"]
 
     env:
       JRUBY_OPTS: -J-Xmx1024m --dev

@@ -4,8 +4,8 @@ on:
   pull_request:
 
 env:
-  JRUBY_VERSION: jruby-9.3.4.0
-  RUBY_VERSION: 3.1
+  JRUBY_VERSION: jruby-9.4
+  RUBY_VERSION: 3.2
 
 jobs:
   jruby:
@@ -36,7 +36,7 @@ jobs:
         run: |
           git config --global user.email activeadmin@ci.dummy
           git config --global user.name ActiveAdmin
-      # - name: Run bug report template
-      #   run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
+      - name: Run bug report template
+        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
       - name: Run lints
         run: bin/rake lint
