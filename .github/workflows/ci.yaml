@@ -27,9 +27,9 @@ jobs:
         deps: [rails_61, rails_70]
 
         include:
-          # - ruby: 3.1
-          #   os: ubuntu-latest
-          #   deps: rails_61_webpacker
+          - ruby: 3.1
+            os: ubuntu-latest
+            deps: rails_61_webpacker
           - ruby: 3.1
             os: ubuntu-latest
             deps: rails_61_turbolinks
@@ -54,6 +54,11 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+        if: matrix.deps == 'rails_61_webpacker'
 
       - name: Setup git
         run: |
