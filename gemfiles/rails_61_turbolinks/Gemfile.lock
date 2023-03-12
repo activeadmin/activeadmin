@@ -374,7 +374,7 @@ GEM
       unicode-display_width (>= 1.1.1, < 3)
     thor (1.2.1)
     tilt (2.0.10)
-    timeout (0.3.0)
+    timeout (0.3.2)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
