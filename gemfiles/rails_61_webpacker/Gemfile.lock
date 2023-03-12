@@ -87,8 +87,16 @@ GEM
     arbre (1.5.0)
       activesupport (>= 3.0.0, < 7.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
+    ast (2.4.2)
     bcrypt (3.1.18)
     bcrypt (3.1.18-java)
+    better_html (2.0.1)
+      actionview (>= 6.0)
+      activesupport (>= 6.0)
+      ast (~> 2.0)
+      erubi (~> 1.4)
+      parser (>= 2.4)
+      smart_properties
     builder (3.2.4)
     cancancan (3.5.0)
     capybara (3.36.0)
@@ -176,13 +184,29 @@ GEM
     has_scope (0.8.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
+    highline (2.1.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
+    i18n-spec (0.6.0)
+      iso
+    i18n-tasks (1.0.12)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      better_html (>= 1.0, < 3.0)
+      erubi
+      highline (>= 2.0.0)
+      i18n
+      parser (>= 2.2.3.0)
+      rails-i18n
+      rainbow (>= 2.2.2, < 4.0)
+      terminal-table (>= 1.5.1)
     inherited_resources (1.13.1)
       actionpack (>= 5.2, < 7.1)
       has_scope (~> 0.6)
       railties (>= 5.2, < 7.1)
       responders (>= 2, < 4)
+    iso (0.4.0)
+      i18n
     jdbc-sqlite3 (3.28.0)
     jquery-rails (4.5.1)
       rails-dom-testing (>= 1, < 3)
@@ -241,6 +265,8 @@ GEM
     parallel (1.22.1)
     parallel_tests (3.13.0)
       parallel
+    parser (3.2.1.1)
+      ast (~> 2.4.1)
     public_suffix (5.0.1)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
@@ -280,6 +306,7 @@ GEM
       method_source
       rake (>= 12.2)
       thor (~> 1.0)
+    rainbow (3.1.1)
     rake (13.0.6)
     ransack (3.0.1)
       activerecord (>= 6.0.4)
@@ -315,8 +342,12 @@ GEM
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
+    simplecov-cobertura (2.1.0)
+      rexml
+      simplecov (~> 0.19)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
+    smart_properties (1.17.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -328,10 +359,13 @@ GEM
     sqlite3 (1.6.1-x86_64-linux)
     sys-uname (1.2.2)
       ffi (~> 1.1)
+    terminal-table (3.0.2)
+      unicode-display_width (>= 1.1.1, < 3)
     thor (1.2.1)
     timeout (0.3.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.4.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     webpacker (5.4.4)
@@ -366,6 +400,8 @@ DEPENDENCIES
   database_cleaner
   devise
   draper
+  i18n-spec
+  i18n-tasks
   jruby-openssl
   launchy
   net-smtp
@@ -376,6 +412,7 @@ DEPENDENCIES
   rake
   rspec-rails
   simplecov
+  simplecov-cobertura
   sqlite3
   webpacker
   webrick

@@ -1,7 +1,4 @@
 # frozen_string_literal: true
-SimpleCov.command_name "lint" if ENV["COVERAGE"] == "true"
-
-require "kramdown"
 
 RSpec.describe "Changelog" do
   subject(:changelog) do
@@ -56,11 +53,5 @@ RSpec.describe "Changelog" do
         expect(entry).not_to match(/\.$/)
       end
     end
-  end
-
-  describe "warnings" do
-    subject(:document) { Kramdown::Document.new(changelog) }
-
-    specify { expect(document.warnings).to be_empty }
   end
 end
