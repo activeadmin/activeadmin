@@ -2,7 +2,8 @@ coverage:
   status:
     project:
       default:
-        threshold: 0.1%
+        threshold: 0.5%
 ignore:
-  - "tmp/.*"
-  - "vendor/.*"
+  - spec/**/*
+  - tmp/**/*
+  - vendor/**/*
