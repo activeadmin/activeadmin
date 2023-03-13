@@ -4,5 +4,6 @@ coverage:
       default:
         threshold: 0.1%
 ignore:
-  - "tmp/.*"
-  - "vendor/.*"
+  - spec/**/*
+  - tmp/**/*
+  - vendor/**/*
