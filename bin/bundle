@@ -1,0 +1,7 @@
+#!/bin/bash
+
+( set -x; bundle $1 )
+
+for gemfile in gemfiles/*/Gemfile; do
+  ( set -x; BUNDLE_GEMFILE="$gemfile" bundle $1 )
+done
