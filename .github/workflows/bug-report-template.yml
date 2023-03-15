@@ -1,0 +1,29 @@
+name: Bug Reports
+
+on:
+  schedule:
+    # Run every day at noon
+    - cron: '0 12 * * *'
+  pull_request:
+    # If updating `paths` then update bug-report-template-none.yml to match
+    paths:
+      - '.github/workflows/bug-report-template.yml'
+      - 'tasks/bug_report_template.rb'
+
+env:
+  RUBY_VERSION: ruby-3.2
+
+jobs:
+  bug_report_template_test:
+    name: Run bug report template
+    # Don't run scheduled workflow on forks
+    if: ${{ github.event_name == 'pull_request' || github.repository_owner == 'activeadmin' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+      - name: Run bug report template
+        run: ACTIVE_ADMIN_PATH=. bundle exec ruby tasks/bug_report_template.rb

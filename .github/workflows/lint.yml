@@ -10,7 +10,6 @@ jobs:
   lint:
     name: lint
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
@@ -19,7 +18,5 @@ jobs:
           bundler-cache: true
       - name: Generate docs
         run: bin/rake docs:build
-      - name: Run bug report template
-        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
       - name: Run lints
         run: bin/rake lint
