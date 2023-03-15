@@ -2,11 +2,12 @@ name: daily
 
 on:
   schedule:
-    - cron: '1 1 * * *'
+    # Run every day at noon
+    - cron: '0 12 * * *'
 
 jobs:
   jruby_tests:
-    if: ${{ github.repository_owner == 'activeadmin' }}
+    if: ${{ github.repository_owner == 'activeadmin' }} # don't run scheduled workflow on forks
     name: test (${{ matrix.ruby }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
@@ -51,4 +52,4 @@ jobs:
           bin/cucumber --profile filesystem-changes
           bin/cucumber --profile class-reloading
       - name: Run bug report template
-        run: ACTIVE_ADMIN_PATH=. bundle exec ruby tasks/bug_report_template.rb
+        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
