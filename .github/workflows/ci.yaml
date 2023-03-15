@@ -48,7 +48,7 @@ jobs:
         with:
           node-version: '16'
         if: matrix.deps == 'rails_61_webpacker'
-      - name: Setup git
+      - name: Setup git for test app setup
         run: |
           git config --global user.email activeadmin@ci.dummy
           git config --global user.name ActiveAdmin
