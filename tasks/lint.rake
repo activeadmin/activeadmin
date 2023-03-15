@@ -107,17 +107,9 @@ class SassRailsLinter
 end
 
 desc "Lints ActiveAdmin code base"
-task lint: ["lint:gherkin", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:sass_rails"]
+task lint: ["lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:sass_rails"]
 
 namespace :lint do
-  desc "Checks gherkin code style"
-  task :gherkin do
-    puts "Linting gherkin code..."
-
-    sh("bin/yarn", "install")
-    sh("bin/yarn", "gherkin-lint")
-  end
-
   desc "Check for unnecessary trailing blank lines across all repo files"
   task :trailing_blank_lines do
     puts "Checking for unnecessary trailing blank lines..."

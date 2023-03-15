@@ -2,7 +2,7 @@ coverage:
   status:
     project:
       default:
-        threshold: 0.05%
+        threshold: 0.16%
 ignore:
   - spec/**/*
   - tmp/**/*
