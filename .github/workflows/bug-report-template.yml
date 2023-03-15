@@ -26,4 +26,4 @@ jobs:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
       - name: Run bug report template
-        run: ACTIVE_ADMIN_PATH=. bundle exec ruby tasks/bug_report_template.rb
+        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb
