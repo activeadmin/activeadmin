@@ -12,7 +12,7 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: daily
+      interval: monthly
     versioning-strategy: lockfile-only
   - package-ecosystem: bundler
     directory: /docs
