@@ -50,3 +50,5 @@ jobs:
           bin/parallel_cucumber --fail-fast
           bin/cucumber --profile filesystem-changes
           bin/cucumber --profile class-reloading
+      - name: Run bug report template
+        run: ACTIVE_ADMIN_PATH=. bundle exec ruby tasks/bug_report_template.rb
