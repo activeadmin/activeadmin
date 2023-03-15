@@ -17,20 +17,20 @@ updates:
   - package-ecosystem: bundler
     directory: /docs
     schedule:
-      interval: daily
+      interval: monthly
     versioning-strategy: lockfile-only
   - package-ecosystem: bundler
     directory: /gemfiles/rails_61
     schedule:
-      interval: daily
+      interval: monthly
     versioning-strategy: lockfile-only
   - package-ecosystem: bundler
     directory: /gemfiles/rails_61_turbolinks
     schedule:
-      interval: daily
+      interval: monthly
     versioning-strategy: lockfile-only
   - package-ecosystem: bundler
     directory: /gemfiles/rails_61_webpacker
     schedule:
-      interval: daily
+      interval: monthly
     versioning-strategy: lockfile-only
