@@ -118,6 +118,25 @@ RSpec.describe ActiveAdmin::Views::Menu do
     end
   end
 
+  describe "marking 'has_nested'" do
+    it "should not add 'has_nested' when all menu items with an if block return false" do
+      menu.add label: "Workspaces", url: "/workspaces" do |workspaces|
+        workspaces.add label: "Don't Show 1", url: "/", if: proc { false }
+        workspaces.add label: "Don't Show 2", url: "/", if: proc { false }
+      end
+      expect(html).not_to have_selector("li#workspaces.has_nested")
+    end
+
+    it "should add 'has_nested' when any menu item with an if block returns true" do
+      menu.add label: "Workspaces", url: "/workspaces" do |workspaces|
+        workspaces.add label: "Don't Show 1", url: "/", if: proc { false }
+        workspaces.add label: "Don't Show 2", url: "/", if: proc { true }
+      end
+      expect(menu_component.children).not_to be_empty
+      expect(html).to have_selector("li#workspaces.has_nested")
+    end
+  end
+
   describe "returning the menu items to display" do
     it "should return one item with no if block" do
       menu.add label: "Hello World", url: "/"
