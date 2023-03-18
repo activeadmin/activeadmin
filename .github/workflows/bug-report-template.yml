@@ -2,7 +2,7 @@ name: Bug Reports
 
 on:
   schedule:
-    # Run every day at noon
+    # Run every day at noon UTC
     - cron: '0 12 * * *'
   pull_request:
     # If updating `paths` then update bug-report-template-none.yml to match

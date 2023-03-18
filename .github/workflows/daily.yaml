@@ -2,7 +2,7 @@ name: daily
 
 on:
   schedule:
-    # Run every day at noon
+    # Run every day at noon UTC
     - cron: '0 12 * * *'
 
 jobs:
