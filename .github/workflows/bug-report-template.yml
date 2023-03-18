@@ -10,6 +10,10 @@ on:
       - '.github/workflows/bug-report-template.yml'
       - 'tasks/bug_report_template.rb'
 
+concurrency:
+  group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 env:
   RUBY_VERSION: ruby-3.2
 
