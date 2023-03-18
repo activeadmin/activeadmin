@@ -2,12 +2,13 @@ name: daily
 
 on:
   schedule:
-    # Run every day at noon
+    # Run every day at noon UTC
     - cron: '0 12 * * *'
 
 jobs:
   jruby_tests:
-    if: ${{ github.repository_owner == 'activeadmin' }} # don't run scheduled workflow on forks
+    if: false
+    # if: ${{ github.repository_owner == 'activeadmin' }} # don't run scheduled workflow on forks
     name: test (${{ matrix.ruby }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15

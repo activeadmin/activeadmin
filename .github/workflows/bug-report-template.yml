@@ -2,13 +2,17 @@ name: Bug Reports
 
 on:
   schedule:
-    # Run every day at noon
+    # Run every day at noon UTC
     - cron: '0 12 * * *'
   pull_request:
     # If updating `paths` then update bug-report-template-none.yml to match
     paths:
       - '.github/workflows/bug-report-template.yml'
       - 'tasks/bug_report_template.rb'
+
+concurrency:
+  group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
   RUBY_VERSION: ruby-3.2

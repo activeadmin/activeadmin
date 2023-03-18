@@ -8,9 +8,7 @@ on:
 
 concurrency:
   group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
-  # Since `github.head_ref` is only defined on pull_request events,
-  # we only want to cancel in-progress jobs if its a pull request.
-  cancel-in-progress: ${{ github.head_ref != '' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   test:
