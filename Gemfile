@@ -42,8 +42,7 @@ group :release do
   gem "octokit"
 end
 
-group :lint do
-  # Code style
+group :rubocop do
   gem "rubocop"
   gem "rubocop-packaging"
   gem "rubocop-rspec"
