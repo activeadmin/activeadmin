@@ -22,7 +22,7 @@ module ActiveAdmin
 
           # Don't create a link if the resource's show action is disabled
           if !config || config.defined_actions.include?(:show)
-            link_to name, "/" + parts[0..index].join("/")
+            link_to name, ActionDispatch::Http::URL.path_for(url_options.merge(path: "/" + parts[0..index].join("/")))
           else
             name
           end
