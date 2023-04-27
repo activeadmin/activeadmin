@@ -25,7 +25,7 @@ module ActiveAdmin
 
         def build_active_admin_head
           within head do
-            html_title [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
+            html_title sanitize([title, helpers.active_admin_namespace.site_title(self)].compact.join(" | "), tags: [])
 
             text_node(active_admin_namespace.head)
 
