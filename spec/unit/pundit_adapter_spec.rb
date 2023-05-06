@@ -30,7 +30,8 @@ RSpec.describe ActiveAdmin::PunditAdapter do
     let(:application) { ActiveAdmin::Application.new }
     let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
     let(:resource) { namespace.register(Post) }
-    let(:auth) { namespace.authorization_adapter.new(resource, double) }
+    let(:user) { User.new }
+    let(:auth) { namespace.authorization_adapter.new(resource, user) }
     let(:default_policy_klass) { DefaultPolicy }
     let(:default_policy_klass_name) { "DefaultPolicy" }
 
@@ -41,6 +42,16 @@ RSpec.describe ActiveAdmin::PunditAdapter do
     it "should initialize the ability stored in the namespace configuration" do
       expect(auth.authorized?(:read, Post)).to eq true
       expect(auth.authorized?(:update, Post)).to eq false
+    end
+
+    it "should allow differentiating between new and create" do
+      expect(auth.authorized?(:new, Post)).to eq true
+      expect(auth.authorized?(ActiveAdmin::Auth::NEW, Post)).to eq true
+
+      announcement_category = Category.new(name: "Announcements")
+      announcement_post = Post.new(title: "Big announcement", category: announcement_category)
+      expect(auth.authorized?(:create, announcement_post)).to eq false
+      expect(auth.authorized?(ActiveAdmin::Auth::CREATE, announcement_post)).to eq false
     end
 
     it "should scope the collection" do

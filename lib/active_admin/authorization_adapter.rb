@@ -4,7 +4,9 @@ module ActiveAdmin
   # Default Authorization permissions for Active Admin
   module Authorization
     READ = :read
+    NEW = :new
     CREATE = :create
+    EDIT = :edit
     UPDATE = :update
     DESTROY = :destroy
   end

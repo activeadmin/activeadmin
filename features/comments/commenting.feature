@@ -251,7 +251,7 @@ Feature: Commenting
       """
         class NoNewComments < ActiveAdmin::AuthorizationAdapter
           def authorized?(action, subject = nil)
-            if action == :create && subject == ActiveAdmin::Comment
+            if (action == :new || action == :create) && subject == ActiveAdmin::Comment
               false
             else
               true
