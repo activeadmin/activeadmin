@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 Then /^I (should|should not) see the batch action :([^\s]*) "([^"]*)"$/ do |maybe, sym, title|
   selector = ".batch_actions_selector a.batch_action"
-  selector << "[href='#'][data-action='#{sym}']" if maybe == "should"
+  selector += "[href='#'][data-action='#{sym}']" if maybe == "should"
 
   verb = maybe == "should" ? :to : :to_not
   expect(page).send verb, have_css(selector, text: title)
@@ -21,7 +22,7 @@ end
 
 Then /^I (should|should not) see the batch action (button|selector)$/ do |maybe, type|
   selector = "div.table_tools .batch_actions_selector"
-  selector << " .dropdown_menu_button" if maybe == "should" && type == "button"
+  selector += " .dropdown_menu_button" if maybe == "should" && type == "button"
 
   verb = maybe == "should" ? :to : :to_not
   expect(page).send verb, have_css(selector)

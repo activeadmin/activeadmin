@@ -1,5 +1,5 @@
 <%
-  std_opts = "--format progress --order random"
+  std_opts = "--format progress --order random --publish-quiet"
   default_opts = std_opts + " --format ParallelTests::Gherkin::RuntimeLogger --out tmp/parallel_runtime_cucumber.log"
 %>
 

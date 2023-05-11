@@ -1,11 +1,14 @@
+# frozen_string_literal: true
 require "csv"
 
 Around "@csv" do |scenario, block|
   default_csv_options = ActiveAdmin.application.csv_options
+  default_disable_streaming_in = ActiveAdmin.application.disable_streaming_in
 
   begin
     block.call
   ensure
+    ActiveAdmin.application.disable_streaming_in = default_disable_streaming_in
     ActiveAdmin.application.csv_options = default_csv_options
   end
 end
@@ -53,6 +56,10 @@ end
 
 Then /^the encoding of the CSV file should be "([^"]*)"$/ do |text|
   expect(page.driver.response.body.encoding).to be Encoding.find(Encoding.aliases[text] || text)
+end
+
+Then /^the CSV file should start with BOM$/ do
+  expect(page.driver.response.body.bytes).to start_with(239, 187, 191)
 end
 
 Then /^access denied$/ do

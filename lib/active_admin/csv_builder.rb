@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   # CSVBuilder stores CSV configuration
   #
@@ -42,11 +43,10 @@ module ActiveAdmin
     end
 
     def build(controller, csv)
-      @collection = controller.send :find_collection, except: :pagination
       columns = exec_columns controller.view_context
-      bom = options.delete :byte_order_mark
+      bom = options[:byte_order_mark]
       column_names = options.delete(:column_names) { true }
-      csv_options = options.except :encoding_options, :humanize_name
+      csv_options = options.except :encoding_options, :humanize_name, :byte_order_mark
 
       csv << bom if bom
 
@@ -54,13 +54,8 @@ module ActiveAdmin
         csv << CSV.generate_line(columns.map { |c| encode c.name, options }, **csv_options)
       end
 
-      ActiveRecord::Base.uncached do
-        (1..paginated_collection.total_pages).each do |page|
-          paginated_collection(page).each do |resource|
-            resource = controller.send :apply_decorator, resource
-            csv << CSV.generate_line(build_row(resource, columns, options), **csv_options)
-          end
-        end
+      controller.send(:in_paginated_batches) do |resource|
+        csv << CSV.generate_line(build_row(resource, columns, options), **csv_options)
       end
 
       csv
@@ -123,14 +118,6 @@ module ActiveAdmin
 
     def column_transitive_options
       @column_transitive_options ||= @options.slice(*COLUMN_TRANSITIVE_OPTIONS)
-    end
-
-    def paginated_collection(page_no = 1)
-      @collection.public_send(Kaminari.config.page_method_name, page_no).per(batch_size)
-    end
-
-    def batch_size
-      1000
     end
   end
 end

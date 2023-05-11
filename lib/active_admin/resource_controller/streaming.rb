@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "csv"
 
 module ActiveAdmin
@@ -23,14 +24,14 @@ module ActiveAdmin
         headers["Last-Modified"] = Time.current.httpdate
 
         if ActiveAdmin.application.disable_streaming_in.include? Rails.env
-          self.response_body = block[""]
+          self.response_body = block[String.new]
         else
           self.response_body = Enumerator.new &block
         end
       end
 
       def csv_filename
-        "#{resource_collection_name.to_s.gsub('_', '-')}-#{Time.zone.now.to_date.to_s(:default)}.csv"
+        "#{resource_collection_name.to_s.gsub('_', '-')}-#{Time.zone.now.to_date.to_formatted_s(:default)}.csv"
       end
 
       def stream_csv

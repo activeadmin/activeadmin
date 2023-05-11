@@ -1,8 +1,9 @@
 {
   "name": "@activeadmin/activeadmin",
-  "version": "2.9.0",
+  "version": "2.13.1",
   "description": "The administration framework for Ruby on Rails.",
   "main": "app/assets/javascripts/active_admin/base.js",
+  "type": "module",
   "files": [
     "app/assets/javascripts/active_admin/*.js",
     "src/**/*"
@@ -13,6 +14,7 @@
   },
   "keywords": [
     "administration",
+    "administrative",
     "rails"
   ],
   "author": "David Rodríguez <deivid.rodriguez@riseup.net>",
@@ -22,17 +24,17 @@
   },
   "homepage": "htts://activeadmin.info",
   "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
-    "common-tags": "^1.8.0",
-    "eslint": "^7.2.0",
-    "eslint-plugin-import": "^2.18.2",
-    "gherkin-lint": "https://github.com/deivid-rodriguez/gherkin-lint#ignore_no-unused-variables_when_no_examples",
-    "rollup": "^2.26.11",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-terser": "^7.0.0"
+    "@babel/core": "*",
+    "@babel/preset-env": "*",
+    "common-tags": "",
+    "eslint": "*",
+    "eslint-plugin-import": "",
+    "gherkin-lint": "",
+    "rollup": "*",
+    "rollup-plugin-babel": "",
+    "rollup-plugin-commonjs": "",
+    "rollup-plugin-node-resolve": "",
+    "rollup-plugin-terser": ""
   },
   "scripts": {
     "gherkin-lint": "gherkin-lint",

@@ -1,6 +1,4 @@
-SimpleCov.command_name "lint" if ENV["COVERAGE"] == "true"
-
-require "kramdown"
+# frozen_string_literal: true
 
 RSpec.describe "Changelog" do
   subject(:changelog) do
@@ -42,7 +40,7 @@ RSpec.describe "Changelog" do
 
   it "has well defined third level entries" do
     third_level_entries = changelog.scan(/^### (.*)$/).flatten.uniq.sort
-    expect(third_level_entries).to eq(["Breaking Changes", "Bug Fixes", "Dependency Changes", "Deprecations", "Documentation", "Enhancements", "Security Fixes", "Translation Improvements"])
+    expect(third_level_entries).to eq(["Breaking Changes", "Bug Fixes", "Dependency Changes", "Deprecations", "Documentation", "Enhancements", "Performance", "Security Fixes", "Translation Improvements"])
   end
 
   describe "entry" do
@@ -55,11 +53,5 @@ RSpec.describe "Changelog" do
         expect(entry).not_to match(/\.$/)
       end
     end
-  end
-
-  describe "warnings" do
-    subject(:document) { Kramdown::Document.new(changelog) }
-
-    specify { expect(document.warnings).to be_empty }
   end
 end

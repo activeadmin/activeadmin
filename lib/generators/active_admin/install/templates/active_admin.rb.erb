@@ -18,6 +18,23 @@ ActiveAdmin.setup do |config|
   #
   # config.site_title_image = "logo.png"
 
+  # == Load Paths
+  #
+  # By default Active Admin files go inside app/admin/.
+  # You can change this directory.
+  #
+  # eg:
+  #   config.load_paths = [File.join(Rails.root, 'app', 'ui')]
+  #
+  # Or, you can also load more directories.
+  # Useful when setting namespaces with users that are not your main AdminUser entity.
+  #
+  # eg:
+  #   config.load_paths = [
+  #     File.join(Rails.root, 'app', 'admin'),
+  #     File.join(Rails.root, 'app', 'cashier')
+  #   ]
+
   # == Default Namespace
   #
   # Set the default namespace each administration resource

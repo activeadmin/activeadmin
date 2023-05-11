@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::Resource::BelongsTo do
@@ -8,7 +9,6 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
     end
   end
 
-  let(:namespace) { ActiveAdmin.application.namespace(:admin) }
   let(:user_config) { ActiveAdmin.register User }
   let(:post_config) { ActiveAdmin.register(Post) { belongs_to :user } }
   let(:belongs_to) { post_config.belongs_to_config }

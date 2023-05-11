@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Around "@filters" do |scenario, block|
   previous_current_filters = ActiveAdmin.application.current_filters
 

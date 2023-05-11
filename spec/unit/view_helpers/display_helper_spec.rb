@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 require "active_admin/view_helpers/active_admin_application_helper"
 require "active_admin/view_helpers/auto_link_helper"
@@ -132,7 +133,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
         end
 
         it "should translate the model name" do
-          with_translation activerecord: { models: { tagging: { one: "Different" } } } do
+          with_translation %i[activerecord models tagging one], "Different" do
             expect(displayed_name).to eq "Different #1"
           end
         end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "open3"
 
 #
@@ -84,7 +85,7 @@ class FixmeLinter
   def clean?(file)
     relative_path = Pathname.new(__FILE__).relative_path_from(Pathname.new(File.dirname(__dir__))).to_s
 
-    file == relative_path || File.read(file, encoding: Encoding::UTF_8) !~ /(BUG|FIXME)/
+    file == relative_path || file == "yarn.lock" || File.read(file, encoding: Encoding::UTF_8) !~ /(BUG|FIXME)/
   end
 end
 
@@ -106,36 +107,9 @@ class SassRailsLinter
 end
 
 desc "Lints ActiveAdmin code base"
-task lint: ["lint:rubocop", "lint:mdl", "lint:eslint", "lint:gherkin", "lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:sass_rails", "lint:rspec"]
+task lint: ["lint:trailing_blank_lines", "lint:missing_final_new_line", "lint:trailing_whitespace", "lint:fixme", "lint:sass_rails"]
 
 namespace :lint do
-  require "rubocop/rake_task"
-  desc "Checks ruby code style with RuboCop"
-  RuboCop::RakeTask.new
-
-  desc "Checks markdown code style with Markdownlint"
-  task :mdl do
-    puts "Running mdl..."
-
-    sh("mdl", "--git-recurse", ".")
-  end
-
-  desc "Checks JS code style with eslint"
-  task :eslint do
-    puts "Linting JS code..."
-
-    sh("bin/yarn", "install")
-    sh("bin/yarn", "eslint")
-  end
-
-  desc "Checks gherkin code style"
-  task :gherkin do
-    puts "Linting gherkin code..."
-
-    sh("bin/yarn", "install")
-    sh("bin/yarn", "gherkin-lint")
-  end
-
   desc "Check for unnecessary trailing blank lines across all repo files"
   task :trailing_blank_lines do
     puts "Checking for unnecessary trailing blank lines..."
@@ -169,15 +143,5 @@ namespace :lint do
     puts "Checking for sass-rails directives..."
 
     SassRailsLinter.new.run
-  end
-
-  desc "RSpec specs for linting project files"
-  task :rspec do
-    puts "Linting project files..."
-
-    sh(
-      "bin/rspec",
-      *Dir.glob("spec/*.lint.rb")
-    )
   end
 end

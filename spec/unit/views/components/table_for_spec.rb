@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::TableFor do
@@ -356,7 +357,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
 
     context "when resource_class option is specified" do
       around do |example|
-        with_translation(activerecord: { attributes: { post: { title: "Name" } } }) do
+        with_translation %i[activerecord attributes post title], "Name" do
           example.call
         end
       end
@@ -398,16 +399,18 @@ RSpec.describe ActiveAdmin::Views::TableFor do
 
     context "when neither i18n nor resource_class option is not specified" do
       around do |example|
-        with_translation(activerecord: { attributes: { post: { title: "Name" } } }) do
+        with_translation %i[activerecord attributes post title], "Name" do
           example.call
         end
       end
 
       let(:collection) do
-        Post.create([
-          { title: "First Post", starred: true },
-          { title: "Second Post" },
-        ])
+        Post.create(
+          [
+            { title: "First Post", starred: true },
+            { title: "Second Post" },
+          ]
+        )
         Post.where(starred: true)
       end
 

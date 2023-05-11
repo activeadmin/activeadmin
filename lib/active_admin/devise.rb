@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ActiveAdmin::Dependency.devise! ActiveAdmin::Dependency::Requirements::DEVISE
 
 require "devise"
@@ -52,22 +53,32 @@ module ActiveAdmin
 
     class SessionsController < ::Devise::SessionsController
       include ::ActiveAdmin::Devise::Controller
+
+      ActiveSupport.run_load_hooks(:active_admin_controller, self)
     end
 
     class PasswordsController < ::Devise::PasswordsController
       include ::ActiveAdmin::Devise::Controller
+
+      ActiveSupport.run_load_hooks(:active_admin_controller, self)
     end
 
     class UnlocksController < ::Devise::UnlocksController
       include ::ActiveAdmin::Devise::Controller
+
+      ActiveSupport.run_load_hooks(:active_admin_controller, self)
     end
 
     class RegistrationsController < ::Devise::RegistrationsController
       include ::ActiveAdmin::Devise::Controller
+
+      ActiveSupport.run_load_hooks(:active_admin_controller, self)
     end
 
     class ConfirmationsController < ::Devise::ConfirmationsController
       include ::ActiveAdmin::Devise::Controller
+
+      ActiveSupport.run_load_hooks(:active_admin_controller, self)
     end
 
     def self.controllers_for_filters

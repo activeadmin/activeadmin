@@ -1,1 +1,2 @@
+# frozen_string_literal: true
 insert_tag view_factory.layout

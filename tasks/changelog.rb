@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Changelog
   def cut_version(header)
     sync!
@@ -8,13 +9,13 @@ class Changelog
   def resync!
     replace_last_release_section(unreleased_changelog_content)
 
-    add_references
+    add_references(last_release_section)
   end
 
   def sync!
     replace_unreleased_section(unreleased_changelog_content)
 
-    add_references
+    add_references(unreleased_section)
   end
 
   private
@@ -68,6 +69,7 @@ class Changelog
       "type: i18n" => "Translation Improvements",
       "type: documentation" => "Documentation",
       "type: dependency change" => "Dependency Changes",
+      "type: performance" => "Performance",
     }
   end
 
@@ -84,10 +86,10 @@ class Changelog
     replace_with_lines(full_new_changelog)
   end
 
-  def add_references
-    add_user_references
+  def add_references(section)
+    add_user_references(section)
 
-    add_pull_request_references
+    add_pull_request_references(section)
   end
 
   def relevant_label_for(pull)
@@ -136,10 +138,10 @@ class Changelog
     end
   end
 
-  def add_user_references
+  def add_user_references(section)
     new_user_references = user_references
 
-    unreleased_section.join("\n").scan(/\[@.+\]/).each do |user|
+    section.join("\n").scan(/\[@.+\]/).each do |user|
       user_name = user[2..-2]
       new_user_references << "#{user}: https://github.com/#{user_name}"
     end
@@ -149,10 +151,10 @@ class Changelog
     replace_with_lines([pre_user_references, new_unique_user_references])
   end
 
-  def add_pull_request_references
+  def add_pull_request_references(section)
     new_pull_request_references = pull_request_references
 
-    unreleased_section.join("\n").scan(/\[#\d+\]/).each do |pull_request|
+    section.join("\n").scan(/\[#\d+\]/).each do |pull_request|
       pull_request_number = pull_request[2..-2]
       new_pull_request_references << "#{pull_request}: https://github.com/activeadmin/activeadmin/pull/#{pull_request_number}"
     end
@@ -168,6 +170,10 @@ class Changelog
 
   def released_section
     content.drop_while { |line| !released_section_header?(line) }
+  end
+
+  def last_release_section
+    released_section[1..-1].take_while { |line| !released_section_header?(line) }
   end
 
   def released_section_but_last_release

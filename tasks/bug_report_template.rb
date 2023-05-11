@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "bundler/inline"
 
 gemfile(true) do
@@ -11,13 +12,23 @@ gemfile(true) do
   end
 
   # Change Rails version if necessary.
-  gem "rails", "6.0.0"
+  gem "rails", "~> 7.0.0"
 
-  gem "sprockets", "3.7.2"
-  gem "sassc-rails", "2.1.2"
-  gem "sqlite3", "1.4.1", platform: :mri
-  gem "activerecord-jdbcsqlite3-adapter", "60.0", platform: :jruby
-  gem "jruby-openssl", "0.10.5", platform: :jruby
+  gem "sprockets", "~> 3.7"
+  gem "sassc-rails"
+  gem "sqlite3", platform: :mri
+  gem "activerecord-jdbcsqlite3-adapter", platform: :jruby
+
+  # Fixes an issue on CI with default gems when using inline bundle with default
+  # gems that are already activated
+  # Ref: rubygems/rubygems#6386
+  if ENV["CI"]
+    require "net/protocol"
+    require "timeout"
+
+    gem "net-protocol", Net::Protocol::VERSION
+    gem "timeout", Timeout::VERSION
+  end
 end
 
 require "active_record"

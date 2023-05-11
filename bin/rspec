@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
-
-load File.expand_path("bundle", __dir__)
+# frozen_string_literal: true
 
 require "bundler/setup"
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 desc "Run the full suite using parallel_tests to run on multiple cores"
 task test: [:setup, :spec, :cucumber]
 
@@ -42,7 +43,7 @@ namespace :spec do
 
   desc "Run the standard specs in parallel"
   task :regular do
-    sh("bin/parallel_rspec spec/")
+    sh("bin/parallel_rspec")
   end
 
   desc "Run the specs that change the filesystem sequentially"
@@ -60,7 +61,7 @@ namespace :cucumber do
 
   desc "Run the standard cucumber scenarios in parallel"
   task :regular do
-    sh("bin/parallel_cucumber features/")
+    sh("bin/parallel_cucumber")
   end
 
   desc "Run the cucumber scenarios that change the filesystem sequentially"

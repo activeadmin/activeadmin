@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::Filters::ViewHelper do
@@ -90,7 +91,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should translate the label for text field" do
-      with_translation activerecord: { attributes: { post: { title: "Name" } } } do
+      with_translation %i[activerecord attributes post title], "Name" do
         expect(body).to have_selector("label", text: "Name")
       end
     end
@@ -305,7 +306,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should translate the label for boolean field" do
-        with_translation activerecord: { attributes: { post: { starred: "Faved" } } } do
+        with_translation %i[activerecord attributes post starred], "Faved" do
           expect(body).to have_selector("label", text: "Faved")
         end
       end

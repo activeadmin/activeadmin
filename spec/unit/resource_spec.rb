@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 require File.expand_path("config_shared_examples", __dir__)
 
@@ -256,7 +257,7 @@ module ActiveAdmin
         let(:resource) { namespace.register(Post) }
 
         it "can find the resource" do
-          allow(Post).to receive(:find_by).with("id" => "12345") { post }
+          allow(Post).to receive(:find_by).with({ "id" => "12345" }) { post }
           expect(resource.find_resource("12345")).to eq post
         end
       end
@@ -265,12 +266,12 @@ module ActiveAdmin
         let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
 
         it "decorates the resource" do
-          allow(Post).to receive(:find_by).with("id" => "12345") { post }
+          allow(Post).to receive(:find_by).with({ "id" => "12345" }) { post }
           expect(resource.find_resource("12345")).to eq PostDecorator.new(post)
         end
 
         it "does not decorate a not found resource" do
-          allow(Post).to receive(:find_by).with("id" => "54321") { nil }
+          allow(Post).to receive(:find_by).with({ "id" => "54321" }) { nil }
           expect(resource.find_resource("54321")).to equal nil
         end
       end
@@ -280,7 +281,7 @@ module ActiveAdmin
 
         before do
           allow(Post).to receive(:primary_key).and_return "something_else"
-          allow(Post).to receive(:find_by).with("something_else" => "55555") { post }
+          allow(Post).to receive(:find_by).with({ "something_else" => "55555" }) { post }
         end
 
         it "can find the post by the custom primary key" do
@@ -323,15 +324,20 @@ module ActiveAdmin
         expect(resource).to receive(:controller).and_return(controller)
       end
 
-      context "actions" do
-        [
-          :before_action, :skip_before_action,
-          :after_action, :skip_after_action,
-          :around_action, :skip_action
-        ].each do |method|
-          it "delegates #{method}" do
-            expect(resource.send(method)).to eq "called #{method}"
-          end
+      %w[
+        before_build after_build
+        before_create after_create
+        before_update after_update
+        before_save after_save
+        before_destroy after_destroy
+        skip_before_action skip_around_action skip_after_action
+        append_before_action append_around_action append_after_action
+        prepend_before_action prepend_around_action prepend_after_action
+        before_action around_action after_action
+        actions
+      ].each do |method|
+        it "delegates #{method}" do
+          expect(resource.send(method)).to eq "called #{method}"
         end
       end
     end

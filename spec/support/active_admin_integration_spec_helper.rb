@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdminIntegrationSpecHelper
   def with_resources_during(example)
     load_resources { yield }
@@ -85,20 +86,25 @@ module ActiveAdminIntegrationSpecHelper
 
   def view_paths
     paths = ActionController::Base.view_paths
-    # the constructor for ActionView::Base changed from Rails 6
-    # and now expects an instance of ActionView::LookupContext
-    return paths unless Rails::VERSION::MAJOR >= 6
     ActionView::LookupContext.new(paths)
   end
 
-  def with_translation(translation)
-    # If no translations have been loaded, any later calls to `I18n.t` will
-    # cause the full translation hash to be loaded, possibly overwritting what
-    # we've loaded via `store_translations`. We use this hack to prevent that.
-    I18n.backend.send(:init_translations)
-    I18n.backend.store_translations I18n.locale, translation
+  def with_translation(scope, value)
+    previous_value = nil
+
+    previous_scope = scope.each_with_object([]) do |part, subscope|
+      subscope << part
+      previous_value = I18n.t(subscope.join("."), default: nil)
+      break subscope if previous_value.nil?
+    end
+
+    I18n.backend.store_translations I18n.locale, to_translation_hash(scope, value)
     yield
   ensure
-    I18n.backend.reload!
+    I18n.backend.store_translations I18n.locale, to_translation_hash(previous_scope, previous_value)
+  end
+
+  def to_translation_hash(scope, value)
+    scope.reverse.inject(value) { |assigned_value, key| { key => assigned_value } }
   end
 end

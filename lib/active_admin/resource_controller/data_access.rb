@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class ResourceController < BaseController
 
@@ -23,9 +24,9 @@ module ActiveAdmin
 
       COLLECTION_APPLIES = [
         :authorization_scope,
-        :sorting,
         :filtering,
         :scoping,
+        :sorting,
         :includes,
         :pagination,
         :collection_decorator
@@ -128,7 +129,7 @@ module ActiveAdmin
       #
       # @return [ActiveRecord::Base] An un-saved active record base object
       def build_new_resource
-        scoped_collection.send(
+        apply_authorization_scope(scoped_collection).send(
           method_for_build,
           *resource_params.map { |params| params.slice(active_admin_config.resource_class.inheritance_column) }
         )
@@ -249,12 +250,13 @@ module ActiveAdmin
       end
 
       def apply_pagination(chain)
+        # skip pagination if CSV format was requested
+        return chain if params["format"] == "csv"
         # skip pagination if already was paginated by scope
         return chain if chain.respond_to?(:total_pages)
-        page_method_name = Kaminari.config.page_method_name
         page = params[Kaminari.config.param_name]
 
-        chain.public_send(page_method_name, page).per(per_page)
+        paginate(chain, page, per_page)
       end
 
       def collection_applies(options = {})
@@ -262,6 +264,16 @@ module ActiveAdmin
         except = Array(options.fetch(:except, []))
 
         COLLECTION_APPLIES & only - except
+      end
+
+      def in_paginated_batches(&block)
+        ActiveRecord::Base.uncached do
+          (1..paginated_collection.total_pages).each do |page|
+            paginated_collection(page).each do |resource|
+              yield apply_decorator(resource)
+            end
+          end
+        end
       end
 
       def per_page
@@ -316,6 +328,20 @@ module ActiveAdmin
       #   resource after creating this one.
       def create_another?
         params[:create_another].present?
+      end
+
+      def paginated_collection(page_no = 1)
+        paginate(collection, page_no, batch_size)
+      end
+
+      def paginate(chain, page, per_page)
+        page_method_name = Kaminari.config.page_method_name
+
+        chain.public_send(page_method_name, page).per(per_page)
+      end
+
+      def batch_size
+        1000
       end
     end
   end

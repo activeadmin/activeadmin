@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Rails template to build the sample app for specs
 
 webpacker_app = ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_61_webpacker/Gemfile", __dir__)
@@ -5,12 +6,14 @@ webpacker_app = ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_
 if webpacker_app
   create_file "app/javascript/packs/some-random-css.css"
   create_file "app/javascript/packs/some-random-js.js"
+  create_file "app/javascript/images/a/favicon.ico"
+  create_file "app/javascript/packs/images.js"
+  append_file "app/javascript/packs/images.js", "import '../images/a/favicon.ico';"
 else
   create_file "app/assets/stylesheets/some-random-css.css"
   create_file "app/assets/javascripts/some-random-js.js"
+  create_file "app/assets/images/a/favicon.ico"
 end
-
-create_file "app/assets/images/a/favicon.ico"
 
 initial_timestamp = Time.now.strftime("%Y%M%d%H%M%S").to_i
 
@@ -48,6 +51,8 @@ copy_file File.expand_path("templates/models/tag.rb", __dir__), "app/models/tag.
 template File.expand_path("templates/migrations/create_taggings.tt", __dir__), "db/migrate/#{initial_timestamp + 7}_create_taggings.rb"
 
 copy_file File.expand_path("templates/models/tagging.rb", __dir__), "app/models/tagging.rb"
+
+copy_file File.expand_path("templates/helpers/time_helper.rb", __dir__), "app/helpers/time_helper.rb"
 
 gsub_file "config/environments/test.rb", /  config.cache_classes = true/, <<-RUBY
 

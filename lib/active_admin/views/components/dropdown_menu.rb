@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Views
 
@@ -44,17 +45,14 @@ module ActiveAdmin
       private
 
       def build_button(name, button_options)
-        button_options[:class] ||= ""
-        button_options[:class] << " dropdown_menu_button"
-
+        button_options[:class] = "#{button_options[:class]} dropdown_menu_button"
         button_options[:href] = "#"
 
         a name, button_options
       end
 
       def build_menu(options)
-        options[:class] ||= ""
-        options[:class] << " dropdown_menu_list"
+        options[:class] = "#{options[:class]} dropdown_menu_list"
 
         menu_list = nil
 

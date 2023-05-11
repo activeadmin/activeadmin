@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 require "fileutils"
 
@@ -139,7 +140,21 @@ RSpec.describe ActiveAdmin::Application do
         FileUtils.touch(test_file)
         expect(application.files).to include(test_file)
       ensure
-        ActiveSupport::Dependencies.clear unless ActiveAdmin::Dependency.supports_zeitwerk?
+        FileUtils.remove_entry_secure(test_dir, force: true)
+      end
+    end
+
+    it "should honor load paths order", :changes_filesystem do
+      test_dir = File.expand_path("app/other-admin", application.app_path)
+      test_file = File.expand_path("app/other-admin/posts.rb", application.app_path)
+
+      application.load_paths.unshift(test_dir)
+
+      begin
+        FileUtils.mkdir_p(test_dir)
+        FileUtils.touch(test_file)
+        expect(application.files.map { |f| File.basename(f) }).to eq(%w(posts.rb admin_users.rb dashboard.rb stores.rb))
+      ensure
         FileUtils.remove_entry_secure(test_dir, force: true)
       end
     end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I should not see pagination$/ do
   expect(page).to_not have_css ".pagination"
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 require "rspec/mocks/standalone"
 
@@ -496,8 +497,10 @@ RSpec.describe ActiveAdmin::FormBuilder do
       let(:valid_html_id) { /^[A-Za-z]+[\w\-\:\.]*$/ }
 
       it "should translate the association name in header" do
-        with_translation activerecord: { models: { post: { one: "Blog Post", other: "Blog Posts" } } } do
-          expect(body).to have_selector("h3", text: "Blog Posts")
+        with_translation %i[activerecord models post one], "Blog Post" do
+          with_translation %i[activerecord models post other], "Blog Posts" do
+            expect(body).to have_selector("h3", text: "Blog Posts")
+          end
         end
       end
 
@@ -506,13 +509,15 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should translate the association name in has many new button" do
-        with_translation activerecord: { models: { post: { one: "Blog Post", other: "Blog Posts" } } } do
-          expect(body).to have_selector("a", text: "Add New Blog Post")
+        with_translation %i[activerecord models post one], "Blog Post" do
+          with_translation %i[activerecord models post other], "Blog Posts" do
+            expect(body).to have_selector("a", text: "Add New Blog Post")
+          end
         end
       end
 
       it "should translate the attribute name" do
-        with_translation activerecord: { attributes: { post: { title: "A very nice title" } } } do
+        with_translation %i[activerecord attributes post title], "A very nice title" do
           expect(body).to have_selector("label", text: "A very nice title")
         end
       end

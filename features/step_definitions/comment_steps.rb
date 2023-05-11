@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I should see a comment by "([^"]*)"$/ do |name|
   step %{I should see "#{name}" within ".active_admin_comment_author"}
 end

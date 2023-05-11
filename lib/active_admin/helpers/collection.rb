@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Helpers
     module Collection
@@ -5,6 +6,7 @@ module ActiveAdmin
       # 2. correctly handles the Hash returned when `group by` is used
       def collection_size(c = collection)
         return c.count if c.is_a?(Array)
+        return c.length if c.limit_value
 
         c = c.except :select, :order
 

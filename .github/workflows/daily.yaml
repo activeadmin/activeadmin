@@ -1,92 +1,56 @@
----
-
 name: daily
 
 on:
   schedule:
-    - cron: '1 1 * * *'
+    # Run every day at noon UTC
+    - cron: '0 12 * * *'
 
 jobs:
-  test:
-    runs-on: ubuntu-20.04
-
+  jruby_tests:
+    if: false
+    # if: ${{ github.repository_owner == 'activeadmin' }} # don't run scheduled workflow on forks
+    name: test (${{ matrix.ruby }}
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 15
-
     strategy:
       fail-fast: false
-
       matrix:
-        ruby: [jruby-9.2.13.0]
-        deps: ["rails_52", "rails_60"]
-
+        os:
+          - ubuntu-latest
+        ruby:
+          - jruby-9.4
     env:
       JRUBY_OPTS: -J-Xmx1024m --dev
-
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Configure bundler (default)
-        run: |
-          echo "BUNDLE_GEMFILE=Gemfile" >> $GITHUB_ENV
-          echo "BUNDLE_PATH=$(pwd)/vendor/bundle" >> $GITHUB_ENV
-        if: matrix.deps == 'rails_60'
-
-      - name: Configure bundler (alternative)
-        run: |
-          echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> $GITHUB_ENV
-          echo "BUNDLE_PATH=$(pwd)/gemfiles/${{ matrix.deps }}/vendor/bundle" >> $GITHUB_ENV
-        if: matrix.deps != 'rails_60'
-
+      - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler: none
-
-      - name: Install a specific rubygems version
-        run: gem update --system 3.2.0
-
-      - name: Install a specific bundler version
-        run: gem install bundler -v 2.2.0
-
-      - name: Cat current Gemfile to a specific file so caching works
-        run: cat "$BUNDLE_GEMFILE.lock" > current_gemfile.lock
-
-      - name: Restore cached dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.BUNDLE_PATH }}
-          key: gems-jruby-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('current_gemfile.lock') }}
-
-      - name: Install dependencies
-        run: bundle install --jobs 3
-
-      - name: Setup git
+          bundler-cache: true
+      - name: Setup git for test app setup
         run: |
           git config --global user.email activeadmin@ci.dummy
           git config --global user.name ActiveAdmin
-
       - name: Create test app
         run: bin/rake setup
-
       - name: Restore cached RSpec runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tmp/parallel_runtime_rspec.log
-          key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
-
+          key: runtimes-rspec-${{ matrix.ruby }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
       - name: Run RSpec tests
         run: |
-          PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_rspec spec/
+          bin/parallel_rspec spec/
           RSPEC_FILESYSTEM_CHANGES=true bin/rspec
-
       - name: Restore cached cucumber runtimes
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: tmp/parallel_runtime_cucumber.log
-          key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
-
+          key: runtimes-cucumber-${{ matrix.ruby }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
       - name: Run Cucumber features
         run: |
-          PARALLEL_TEST_HEARTBEAT_INTERVAL=3600 bin/parallel_cucumber features/
+          bin/parallel_cucumber --fail-fast
           bin/cucumber --profile filesystem-changes
           bin/cucumber --profile class-reloading
+      - name: Run bug report template
+        run: ACTIVE_ADMIN_PATH=. ruby tasks/bug_report_template.rb

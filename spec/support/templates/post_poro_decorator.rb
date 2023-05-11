@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class PostPoroDecorator
   delegate_missing_to :post
 

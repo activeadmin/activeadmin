@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_admin/orm/active_record/comments/views"
 require "active_admin/orm/active_record/comments/show_page_helper"
 require "active_admin/orm/active_record/comments/namespace_helper"

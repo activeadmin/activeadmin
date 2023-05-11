@@ -29,7 +29,7 @@ After installing the gem, you need to run the generator. Here are your options:
   rails g active_admin:install --skip-users
   ```
 
-* If you want to use an existing user class, provide it as an argument:
+* If you want to customize the name of the generated user class, or if you want to use an existing user class, provide the class name as an argument:
 
   ```sh
   rails g active_admin:install User
@@ -114,7 +114,7 @@ If you're getting the error `wrong number of arguments (6 for 4..5)`, [read #270
 
 ## webpacker
 
-For new apps starting with Rails 6.0, Webpacker has become the default asset generator. You can **opt-in to using Webpacker for ActiveAdmin assets** as well by updating your configuration to turn on the `use_webpacker` option, either at installation time or manually.
+You can **opt-in to using Webpacker for ActiveAdmin assets** as well by updating your configuration to turn on the `use_webpacker` option, either at installation time or manually.
 
 * at active_admin installation:
 

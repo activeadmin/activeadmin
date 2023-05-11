@@ -38,9 +38,9 @@ fr:
         to: "À"
     search_status:
       headline: "Statut de la recherche :"
-      current_scope: "Etendu du filtre :"
+      current_scope: "Périmètre :"
       current_filters: "Filtres actuels :"
-      no_current_filters: "Aucun filtres"
+      no_current_filters: "Aucun filtre"
     status_tag:
       "yes": "Oui"
       "no": "Non"
@@ -52,7 +52,7 @@ fr:
       filters: "Filtres"
       search_status: "Statut de la recherche"
     pagination:
-      empty: "Aucun %{model} trouvé"
+      empty: "Aucun(e) %{model} trouvé(e)"
       one: "Affichage de <b>1</b> %{model}"
       one_page: "Affichage des <b>%{n}</b> %{model}"
       multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"

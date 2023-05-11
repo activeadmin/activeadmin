@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require File.join(__dir__, "lib", "active_admin", "version")
 
 Gem::Specification.new do |s|
@@ -13,11 +14,13 @@ Gem::Specification.new do |s|
     "application patterns to make it simple for developers to implement " \
     "beautiful and elegant interfaces with very little effort."
 
-  s.files = Dir["LICENSE", "{app,config/locales,docs,lib,vendor/assets}/**/{.*,*}"].reject { |f| File.directory?(f) }
+  s.files = Dir["LICENSE", "{app,config/locales,lib,vendor/assets}/**/{.*,*}"].reject { |f| File.directory?(f) }
 
   s.extra_rdoc_files = %w[CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md README.md]
 
-  s.required_ruby_version = ">= 2.5"
+  s.metadata = { "rubygems_mfa_required" => "true" }
+
+  s.required_ruby_version = ">= 2.6"
 
   s.add_dependency "arbre", "~> 1.2", ">= 1.2.1"
   s.add_dependency "formtastic", ">= 3.1", "< 5.0"
@@ -25,6 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency "inherited_resources", "~> 1.7"
   s.add_dependency "jquery-rails", "~> 4.2"
   s.add_dependency "kaminari", "~> 1.0", ">= 1.2.1"
-  s.add_dependency "railties", ">= 5.2", "< 6.2"
-  s.add_dependency "ransack", "~> 2.1", ">= 2.1.1"
+  s.add_dependency "railties", ">= 6.1", "< 7.1"
+  s.add_dependency "ransack", ">= 2.1.1", "< 4"
 end

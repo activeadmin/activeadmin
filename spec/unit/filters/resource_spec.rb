@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::Filters::ResourceExtension do
@@ -11,9 +12,11 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
   end
 
   it "should return the defaults if no filters are set" do
-    expect(resource.filters.keys).to match_array([
-      :author, :body, :category, :created_at, :custom_created_at_searcher, :custom_title_searcher, :custom_searcher_numeric, :position, :published_date, :starred, :taggings, :tags, :title, :updated_at, :foo_id
-    ])
+    expect(resource.filters.keys).to match_array(
+      [
+        :author, :body, :category, :created_at, :custom_created_at_searcher, :custom_title_searcher, :custom_searcher_numeric, :position, :published_date, :starred, :taggings, :tags, :title, :updated_at, :foo_id
+      ]
+    )
   end
 
   it "should not have defaults when filters are disabled on the resource" do
@@ -33,9 +36,11 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
 
   it "should return the defaults without associations if default association filters are disabled on the namespace" do
     resource.namespace.include_default_association_filters = false
-    expect(resource.filters.keys).to match_array([
-      :body, :created_at, :custom_created_at_searcher, :custom_title_searcher, :custom_searcher_numeric, :position, :published_date, :starred, :title, :updated_at, :foo_id
-    ])
+    expect(resource.filters.keys).to match_array(
+      [
+        :body, :created_at, :custom_created_at_searcher, :custom_title_searcher, :custom_searcher_numeric, :position, :published_date, :starred, :title, :updated_at, :foo_id
+      ]
+    )
   end
 
   describe "removing a filter" do
@@ -102,9 +107,11 @@ RSpec.describe ActiveAdmin::Filters::ResourceExtension do
       resource.preserve_default_filters!
       resource.add_filter :count, as: :string
 
-      expect(resource.filters.keys).to match_array([
-        :author, :body, :category, :count, :created_at, :custom_created_at_searcher, :custom_title_searcher, :custom_searcher_numeric, :position, :published_date, :starred, :taggings, :tags, :title, :updated_at, :foo_id
-      ])
+      expect(resource.filters.keys).to match_array(
+        [
+          :author, :body, :category, :count, :created_at, :custom_created_at_searcher, :custom_title_searcher, :custom_searcher_numeric, :position, :published_date, :starred, :taggings, :tags, :title, :updated_at, :foo_id
+        ]
+      )
     end
 
     it "should raise an exception when filters are disabled" do

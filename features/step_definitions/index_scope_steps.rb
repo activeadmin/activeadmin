@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I should( not)? see the scope "([^"]*)"( selected)?$/ do |negate, name, selected|
   should = "I should#{' not' if negate}"
   scope = ".scopes#{' .selected' if selected}"

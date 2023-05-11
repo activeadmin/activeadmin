@@ -1,5 +1,3 @@
----
-
 # The "main" locale
 base_locale: en
 
@@ -14,8 +12,8 @@ data:
 search:
   # Paths or `File.find` patterns to search in
   paths:
-   - app
-   - lib
+    - app
+    - lib
 
   # Files or `File.fnmatch` patterns to exclude from search
   exclude:

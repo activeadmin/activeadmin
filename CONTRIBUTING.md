@@ -25,8 +25,7 @@ git checkout -b 325-add-japanese-translations
 
 ### Get the test suite running
 
-Make sure you're using a recent ruby and have the `bundler` gem installed, at
-least version `1.14.3`.
+Make sure you're using a recent Ruby version.
 
 You'll also need chrome installed in order to run cucumber scenarios.
 
@@ -56,14 +55,14 @@ Now you should be able to run the entire suite using:
 bin/rake
 ```
 
-The test run will generate a sample Rails application in `tmp/test_apps` to run the
-tests against.
+The task will generate a sample Rails application in `tmp/test_apps` to run the
+test suite against.
 
 If you want to test against a Rails version different from the latest, make sure
 you use the correct Gemfile, for example:
 
 ```sh
-export BUNDLE_GEMFILE=gemfiles/rails_60/Gemfile
+export BUNDLE_GEMFILE=gemfiles/rails_61/Gemfile
 ```
 
 **Warning** SCSS assets are aimed to be used indifferently with Sprockets **and** webpacker.

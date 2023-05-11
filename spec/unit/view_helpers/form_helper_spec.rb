@@ -1,13 +1,13 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::ViewHelpers::FormHelper do
   describe ".active_admin_form_for" do
     let(:view) { mock_action_view }
     let(:resource) { double "resource" }
-    let(:default_options) { { builder: ActiveAdmin::FormBuilder } }
 
     it "calls semantic_form_for with the ActiveAdmin form builder" do
-      expect(view).to receive(:semantic_form_for).with(resource, builder: ActiveAdmin::FormBuilder)
+      expect(view).to receive(:semantic_form_for).with(resource, { builder: ActiveAdmin::FormBuilder })
       view.active_admin_form_for(resource)
     end
 
@@ -15,7 +15,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::FormHelper do
       # We can't use a stub here because options gets marshalled, and a new
       # instance built. Any constant will work.
       custom_builder = Object
-      expect(view).to receive(:semantic_form_for).with(resource, builder: custom_builder)
+      expect(view).to receive(:semantic_form_for).with(resource, { builder: custom_builder })
       view.active_admin_form_for(resource, builder: custom_builder)
     end
   end

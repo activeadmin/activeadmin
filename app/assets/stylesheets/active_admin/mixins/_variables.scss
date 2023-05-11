@@ -40,3 +40,12 @@ $text-input-horizontal-padding: 10px !default;
 $text-input-total-padding: $text-input-horizontal-padding * 2 + $border-width * 2;
 
 $blank-slate-border: 1px dashed #DADADA !default;
+
+// Sidebar Forms
+$sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
+
+// Filter Forms
+$filter-field-seperator-width: 12px !default;
+$side-by-side-filter-input-width: ($sidebar-inner-content-width * 0.5) - ($text-input-horizontal-padding * 2) - $filter-field-seperator-width;
+$side-by-side-filter-select-width: ($sidebar-inner-content-width * 0.5) - $filter-field-seperator-width;
+$date-range-filter-input-width: ($sidebar-inner-content-width * 0.5) - ($filter-field-seperator-width * 0.5);

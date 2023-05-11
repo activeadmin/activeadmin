@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Post < ActiveRecord::Base
   belongs_to :category, foreign_key: :custom_category_id, optional: true
   belongs_to :author, class_name: "User", optional: true
@@ -16,5 +17,15 @@ class Post < ActiveRecord::Base
 
   ransacker :custom_searcher_numeric, type: :numeric do
     # nothing to see here
+  end
+
+  class << self
+    def ransackable_scopes(_auth_object = nil)
+      [:fancy_filter]
+    end
+
+    def fancy_filter(value)
+      where(starred: value == "Starred")
+    end
   end
 end

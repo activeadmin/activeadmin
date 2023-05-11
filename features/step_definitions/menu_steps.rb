@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I should see a menu item for "([^"]*)"$/ do |name|
   expect(page).to have_css "#tabs > li > a", text: name
 end

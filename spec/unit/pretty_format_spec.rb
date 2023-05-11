@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 require "active_admin/view_helpers/display_helper"
 
@@ -60,7 +61,7 @@ RSpec.describe "#pretty_format" do
     end
 
     it "formats it with a customized long format" do
-      with_translation time: { formats: { long: "%B %d, %Y, %l:%M%P" } } do
+      with_translation %i[time formats long], "%B %d, %Y, %l:%M%P" do
         expect(formatted_obj).to eq "February 28, 1985,  8:15pm"
       end
     end
@@ -78,7 +79,7 @@ RSpec.describe "#pretty_format" do
       end
 
       it "formats it with i18n custom format" do
-        with_translation time: { formats: { short: "%-m %d %Y" } } do
+        with_translation %i[time formats short], "%-m %d %Y" do
           expect(formatted_obj).to eq "2 28 1985"
         end
       end
@@ -94,7 +95,7 @@ RSpec.describe "#pretty_format" do
       end
 
       it "formats it with a customized long format" do
-        with_translation time: { formats: { long: "El %d de %B de %Y a las %H horas y %M minutos" } } do
+        with_translation %i[time formats long], "El %d de %B de %Y a las %H horas y %M minutos" do
           expect(formatted_obj).to eq "El 28 de febrero de 1985 a las 20 horas y 15 minutos"
         end
       end

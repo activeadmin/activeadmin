@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::AttributesTable do
@@ -102,13 +103,12 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
           row :created_at
         end
       end
-      expect(table.find_by_tag("tr").first.to_s.
-        split("\n").first.lstrip).
-          to eq '<tr class="row row-title">'
 
-      expect(table.find_by_tag("tr").last.to_s.
-        split("\n").first.lstrip).
-          to eq '<tr class="row row-created_at">'
+      expect(table.find_by_tag("tr").first.to_s.split("\n").first.lstrip).
+        to eq '<tr class="row row-title">'
+
+      expect(table.find_by_tag("tr").last.to_s.split("\n").first.lstrip).
+        to eq '<tr class="row row-created_at">'
     end
 
     it "should allow html options for the row itself" do
@@ -209,7 +209,6 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
         ].each_with_index do |set, i|
           describe "for #{set[0]}" do
             let(:title) { set[0] }
-            let(:content) { set[1] }
             let(:current_row) { table.find_by_tag("tr")[i] }
 
             it "should have the title '#{set[0]}'" do
@@ -218,8 +217,10 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
 
             context "with defined attribute name translation" do
               it "should have the translated attribute name in the title" do
-                with_translation activerecord: { attributes: { post: { title: "Translated Title", id: "Translated Id" } } } do
-                  expect(current_row.find_by_tag("th").first.content).to eq "Translated #{title}"
+                with_translation %i[activerecord attributes post title], "Translated Title" do
+                  with_translation %i[activerecord attributes post id], "Translated Id" do
+                    expect(current_row.find_by_tag("th").first.content).to eq "Translated #{title}"
+                  end
                 end
               end
             end

@@ -47,8 +47,9 @@ ro:
       multiple: "Sunt afisate <b>%{from}&nbsp;-&nbsp;%{to}</b> din <b>%{total}</b> inregistrari"
       multiple_without_total: "Sunt afisate <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       entry:
-        one: "inregistrare"
-        other: "inregistrari"
+        one: "înregistrăre"
+        few: "înregistrări"
+        other: "înregistrări"
     any: "Oricare"
     blank_slate:
       content: "Momentan nu exista %{resource_name}."

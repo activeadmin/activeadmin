@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe "Controller Authorization", type: :controller do
@@ -16,7 +17,7 @@ RSpec.describe "Controller Authorization", type: :controller do
   end
 
   it "should authorize the new action" do
-    expect(authorization).to receive(:authorized?).with(auth::CREATE, an_instance_of(Post)).and_return true
+    expect(authorization).to receive(:authorized?).with(auth::NEW, an_instance_of(Post)).and_return true
     get :new
     expect(response).to be_successful
   end

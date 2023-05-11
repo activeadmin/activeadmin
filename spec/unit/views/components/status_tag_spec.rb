@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::StatusTag do
@@ -130,7 +131,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
         it { is_expected.to eq("No") }
 
         it "uses the unset locale key to customize the label for the `nil` case" do
-          with_translation active_admin: { status_tag: { unset: "Unknown" } } do
+          with_translation %i[active_admin status_tag unset], "Unknown" do
             expect(subject).to eq("Unknown")
           end
         end

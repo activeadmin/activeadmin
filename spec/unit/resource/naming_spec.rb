@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 module ActiveAdmin
@@ -10,7 +11,6 @@ module ActiveAdmin
     end
 
     module ::Mock class Resource < ActiveRecord::Base; end; end
-    module NoActiveModel class Resource; end; end
 
     describe "singular resource name" do
       context "when class" do

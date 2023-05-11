@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class BaseController < ::InheritedResources::Base
     module Authorization
@@ -6,9 +7,9 @@ module ActiveAdmin
       ACTIONS_DICTIONARY = {
         index: ActiveAdmin::Authorization::READ,
         show: ActiveAdmin::Authorization::READ,
-        new: ActiveAdmin::Authorization::CREATE,
+        new: ActiveAdmin::Authorization::NEW,
         create: ActiveAdmin::Authorization::CREATE,
-        edit: ActiveAdmin::Authorization::UPDATE,
+        edit: ActiveAdmin::Authorization::EDIT,
         update: ActiveAdmin::Authorization::UPDATE,
         destroy: ActiveAdmin::Authorization::DESTROY
       }
@@ -81,7 +82,7 @@ module ActiveAdmin
       def active_admin_authorization_adapter
         adapter = active_admin_namespace.authorization_adapter
         if adapter.is_a? String
-          ActiveSupport::Dependencies.constantize adapter
+          adapter.constantize
         else
           adapter
         end

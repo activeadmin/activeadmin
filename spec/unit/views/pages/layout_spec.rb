@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::Pages::Layout do
@@ -27,7 +28,6 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
     ActiveAdmin::Namespace.new(ActiveAdmin.application, :myspace)
   end
   let(:active_admin_application) { ActiveAdmin.application }
-  let(:view_factory) { ActiveAdmin::ViewFactory.new }
 
   let(:layout) do
     render_arbre_component assigns, helpers do

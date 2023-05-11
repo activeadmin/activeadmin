@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdminContentsRollback
   def files
     @files ||= {}
@@ -37,7 +38,7 @@ end
 
 World(ActiveAdminContentsRollback)
 
-After "@changes-filesystem" do
+After "@changes-filesystem or @requires-reloading" do
   rollback!
 end
 
@@ -55,5 +56,4 @@ Given /^I add "([^"]*)" to the "([^"]*)" model$/ do |code, model_name|
 
   str = File.read(path).gsub /^(class .+)$/, "\\1\n  #{code}\n"
   File.open(path, "w+") { |f| f << str }
-  ActiveSupport::Dependencies.clear
 end

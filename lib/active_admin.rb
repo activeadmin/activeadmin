@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_support/core_ext"
 require "set"
 
@@ -112,7 +113,7 @@ module ActiveAdmin
     private
 
     def wrap_block_for_active_support_notifications block
-      proc { |event, *args| block.call *args }
+      proc { |_name, _start, _finish, _id, payload| block.call payload[:active_admin_application] }
     end
 
   end

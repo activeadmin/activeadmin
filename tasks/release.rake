@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "chandler/tasks"
 require_relative "release_manager"
 

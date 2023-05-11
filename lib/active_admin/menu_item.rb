@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class MenuItem
     include Menu::MenuNode

@@ -1,4 +1,20 @@
 "zh-CN":
+  activerecord:
+    models:
+      comment:
+        one: "评论"
+        other: "评论"
+      active_admin/comment:
+        one: "评论"
+        other: "评论"
+    attributes:
+      active_admin/comment:
+        author_type: "作者类型"
+        body: "内容"
+        created_at: "创建"
+        namespace: "Namespace"
+        resource_type: "Resource 类型"
+        updated_at: "更新"
   active_admin:
     dashboard: "控制面板"
     dashboard_welcome:
@@ -8,8 +24,8 @@
     edit: "编辑"
     delete: "删除"
     delete_confirmation: "确定删除?"
-    create_another: "新建另一个%{model}"
-    new_model: "新建%{model}"
+    create_another: "新增另一个%{model}"
+    new_model: "新增%{model}"
     edit_model: "编辑%{model}"
     delete_model: "删除%{model}"
     details: "%{model}详情"
@@ -17,10 +33,11 @@
     empty: "未定义"
     previous: "上一个"
     next: "下一个"
-    download: "下载:"
-    has_many_new: "新建一个%{model}"
+    download: "下载："
+    has_many_new: "新增一个%{model}"
     has_many_delete: "删除"
     has_many_remove: "清除"
+    move: "移动"
     filters:
       buttons:
         filter: "过滤"
@@ -28,26 +45,28 @@
       predicates:
         contains: "包含"
         equals: "等于"
-        starts_with: "开头"
-        ends_with: "完与"
+        starts_with: "始于"
+        ends_with: "止于"
         greater_than: "大于"
         less_than: "小于"
         gteq_datetime: "大于等于"
         lteq_datetime: "小于等于"
         from: "起"
         to: "止"
+    scopes:
+      all: "所有"
     search_status:
       headline: "搜索条件："
-      current_scope: "搜索范围："
+      current_scope: "范围："
       current_filters: "过滤条件："
       no_current_filters: "无"
     status_tag:
       "yes": "是"
       "no": "否"
       "unset": "否"
-    main_content: "请执行 %{model}#main_content 来显示内容."
+    main_content: "请执行 %{model}#main_content 来显示内容。"
     logout: "退出"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: "构建程序为 %{active_admin} %{version}"
     sidebars:
       filters: "所有条件"
       search_status: "搜索条件"
@@ -63,14 +82,14 @@
         other: "条目"
     any: "任何"
     blank_slate:
-      content: "暂时还没有%{resource_name}."
-      link: "新建一个"
+      content: "暂时还没有%{resource_name}。"
+      link: "新增一个"
     dropdown_actions:
-      button_label: "行动"
+      button_label: "操作"
     batch_actions:
       button_label: "批处理"
-      default_confirmation: "你确定你要这样做？"
-      delete_confirmation: "你确定要删除这些%{plural_model}?"
+      default_confirmation: "你确定要这样做？"
+      delete_confirmation: "你确定要删除这些%{plural_model}？"
       succesfully_destroyed:
         one: "成功删除 1 %{model}"
         other: "成功删除 %{count} %{plural_model}"
@@ -92,7 +111,7 @@
       author_missing: "匿名"
       title_content: "(%{count})条评论"
       errors:
-        empty_text: "评论保存失败，内空不能为空."
+        empty_text: "评论保存失败，内空不能为空。"
     devise:
       username:
         title: "用户名"
@@ -121,8 +140,8 @@
         title: "重新发送送解锁命令"
         submit: "重新发送送解锁命令"
       resend_confirmation_instructions:
-        title: " 重新发送确认指示"
-        submit: " 重新发送确认指示"
+        title: " 重新发送确认说明"
+        submit: " 重新发送确认说明"
       links:
         sign_up: "注册"
         sign_in: "登录"

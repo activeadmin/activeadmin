@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module ViewHelpers
     module AutoLinkHelper
@@ -28,7 +29,7 @@ module ActiveAdmin
           authorized?(ActiveAdmin::Auth::READ, resource)
           url_for config.route_instance_path resource, url_options
         elsif config.controller.action_methods.include?("edit") &&
-          authorized?(ActiveAdmin::Auth::UPDATE, resource)
+          authorized?(ActiveAdmin::Auth::EDIT, resource)
           url_for config.route_edit_instance_path resource, url_options
         end
       end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Views
     module Pages
@@ -43,7 +44,9 @@ module ActiveAdmin
             end
 
             if active_admin_namespace.favicon
-              text_node(favicon_link_tag(active_admin_namespace.favicon))
+              favicon = active_admin_namespace.favicon
+              favicon_tag = active_admin_namespace.use_webpacker ? favicon_pack_tag(favicon) : favicon_link_tag(favicon)
+              text_node(favicon_tag)
             end
 
             text_node csrf_meta_tag

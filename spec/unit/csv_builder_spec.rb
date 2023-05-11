@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::CSVBuilder do
@@ -202,12 +203,8 @@ RSpec.describe ActiveAdmin::CSVBuilder do
     end
     let(:dummy_controller) do
       class DummyController
-        def find_collection(*)
-          collection
-        end
-
-        def collection
-          Post.order("published_date DESC")
+        def in_paginated_batches(&block)
+          Post.order("published_date DESC").each(&block)
         end
 
         def apply_decorator(resource)
@@ -232,35 +229,13 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       expect(builder).to receive(:build_row).and_return([]).once.ordered { |post| expect(post.id).to eq @post1.id }
       builder.build dummy_controller, []
     end
-
-    it "should generate data ignoring pagination" do
-      expect(dummy_controller).to receive(:find_collection).
-        with(except: :pagination).once.
-        and_call_original
-      expect(builder).to receive(:build_row).and_return([]).twice
-      builder.build dummy_controller, []
-    end
-
-    it "should disable the ActiveRecord query cache" do
-      expect(builder).to receive(:build_row).twice do
-        expect(ActiveRecord::Base.connection.query_cache_enabled).to be_falsy
-        []
-      end
-      ActiveRecord::Base.cache do
-        builder.build dummy_controller, []
-      end
-    end
   end
 
   context "build csv using specified encoding and encoding_options" do
     let(:dummy_controller) do
       class DummyController
-        def find_collection(*)
-          collection
-        end
-
-        def collection
-          Post
+        def in_paginated_batches(&block)
+          Post.all.each(&block)
         end
 
         def view_context
@@ -268,8 +243,6 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       end
       DummyController.new
     end
-    let(:encoding) { Encoding::ASCII }
-    let(:opts) { {} }
     let(:builder) do
       ActiveAdmin::CSVBuilder.new(encoding: encoding, encoding_options: opts) do
         column "おはようございます"

@@ -1,10 +1,9 @@
 #!/usr/bin/env ruby
-
-load File.expand_path("bundle", __dir__)
+# frozen_string_literal: true
 
 require "bundler/setup"
 
-["--serialize-stdout", "--combine-stderr", "--verbose", "--test-options", "-p default"].each do |flag|
+["--serialize-stdout", "--combine-stderr", "--verbose"].each do |flag|
   ARGV << flag unless ARGV.include?(flag)
 end
 

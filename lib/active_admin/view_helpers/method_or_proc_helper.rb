@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Utility methods for internal use.
 # @private
 module MethodOrProcHelper

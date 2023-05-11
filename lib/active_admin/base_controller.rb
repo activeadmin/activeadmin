@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_admin/base_controller/authorization"
 require "active_admin/base_controller/menu"
 
@@ -6,7 +7,6 @@ module ActiveAdmin
   # It implements ActiveAdmin controllers core features.
   class BaseController < ::InheritedResources::Base
     helper ::ActiveAdmin::ViewHelpers
-    helper_method :env
 
     layout :determine_active_admin_layout
 
@@ -77,5 +77,6 @@ module ActiveAdmin
       { controller: controller, action: action }
     end
 
+    ActiveSupport.run_load_hooks(:active_admin_controller, self)
   end
 end

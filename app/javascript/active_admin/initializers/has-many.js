@@ -57,7 +57,6 @@ $(function() {
     recompute_positions($(this).closest('.has_many'));
   });
 
-  init_sortable();
   $(document).on('has_many_add:after', '.has_many_container', init_sortable);
 });
 
@@ -93,3 +92,7 @@ var recompute_positions = function(parent){
     }
   });
 };
+
+$(document).
+  ready(init_sortable).
+  on('page:load turbolinks:load', init_sortable);

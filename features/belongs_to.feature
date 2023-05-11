@@ -103,6 +103,23 @@ Feature: Belongs To
     And I should see the attribute "Body" with "This is the body"
     And I should see the attribute "Author" with "Jane Doe"
 
+  Scenario: Creating a child resource page when belongs to defined after permitted params
+    Given a configuration of:
+    """
+      ActiveAdmin.register User
+      ActiveAdmin.register Post do
+        permit_params :title, :body, :published_date
+        belongs_to :user
+
+        form do |f|
+          f.actions
+        end
+      end
+    """
+    When I go to the last author's posts
+    And I follow "New Post"
+    Then I should see the element "form[action='/admin/users/2/posts']"
+
   Scenario: Viewing a child resource page
     Given a configuration of:
     """

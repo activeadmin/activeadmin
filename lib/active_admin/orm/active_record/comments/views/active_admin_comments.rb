@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "active_admin/views"
 require "active_admin/views/components/panel"
 
@@ -35,7 +36,7 @@ module ActiveAdmin
 
           text_node paginate @comments
 
-          if authorized?(ActiveAdmin::Auth::CREATE, ActiveAdmin::Comment)
+          if authorized?(ActiveAdmin::Auth::NEW, ActiveAdmin::Comment)
             build_comment_form
           end
         end

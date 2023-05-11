@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then /^I should see a table header with "([^"]*)"$/ do |content|
   expect(page).to have_xpath "//th", text: content
 end
@@ -28,7 +29,7 @@ Then /^the table "([^"]*)" should have (\d+) columns/ do |selector, count|
   expect(tds.size).to eq count.to_i
 end
 
-Then /^there should be (\d+) "([^"]*)" tags$/ do |count, tag|
+Then /^there should be (\d+) "([^"]*)" tags?$/ do |count, tag|
   expect(page.all(:css, tag).size).to eq count.to_i
 end
 
