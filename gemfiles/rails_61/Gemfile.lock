@@ -99,7 +99,7 @@ GEM
       smart_properties
     builder (3.2.4)
     cancancan (3.5.0)
-    capybara (3.39.0)
+    capybara (3.39.1)
       addressable
       matrix
       mini_mime (>= 0.1.3)
@@ -256,14 +256,14 @@ GEM
       net-protocol
     nio4r (2.5.9)
     nio4r (2.5.9-java)
-    nokogiri (1.14.3)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.15.2)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.14.3-arm64-darwin)
+    nokogiri (1.15.2-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.14.3-java)
+    nokogiri (1.15.2-java)
       racc (~> 1.4)
-    nokogiri (1.14.3-x86_64-linux)
+    nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.23.0)
