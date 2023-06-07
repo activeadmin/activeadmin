@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Inputs
     module Filters
@@ -16,7 +17,7 @@ module ActiveAdmin
 
         # Provide the AA translation to the blank input field.
         def include_blank
-          I18n.t 'active_admin.any' if super
+          I18n.t "active_admin.any" if super
         end
       end
     end

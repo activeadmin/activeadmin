@@ -1,4 +1,5 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 RSpec.describe "Batch Actions Settings" do
   let(:app) { ActiveAdmin::Application.new }

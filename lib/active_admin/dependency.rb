@@ -1,27 +1,28 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Dependency
     module Requirements
-      DEVISE = '>= 3.2', '< 5'
+      DEVISE = ">= 4.0", "< 5"
     end
 
     # Provides a clean interface to check for gem dependencies at runtime.
     #
-    # ActiveAdmin::Dependency.draper
-    # => #<ActiveAdmin::Dependency::Matcher for draper 1.2.1>
+    # ActiveAdmin::Dependency.rails
+    # => #<ActiveAdmin::Dependency::Matcher for rails 6.0.3.2>
     #
-    # ActiveAdmin::Dependency.draper?
+    # ActiveAdmin::Dependency.rails?
     # => true
     #
-    # ActiveAdmin::Dependency.draper? '>= 1.5.0'
+    # ActiveAdmin::Dependency.rails? '>= 6.1'
     # => false
     #
-    # ActiveAdmin::Dependency.draper? '= 1.2.1'
+    # ActiveAdmin::Dependency.rails? '= 6.0.3.2'
     # => true
     #
-    # ActiveAdmin::Dependency.draper? '~> 1.2.0'
+    # ActiveAdmin::Dependency.rails? '~> 6.0.3'
     # => true
     #
-    # ActiveAdmin::Dependency.rails? '>= 4.2.7', '<= 5.0.2'
+    # ActiveAdmin::Dependency.rails? '>= 6.0.3', '<= 6.1.0'
     # => true
     #
     # ActiveAdmin::Dependency.rails! '5'
@@ -38,13 +39,13 @@ module ActiveAdmin
     #
     # Which is especially useful if you're looking up a gem with dashes in the name.
     #
-    # ActiveAdmin::Dependency['jquery-ui-rails'] < 5
+    # ActiveAdmin::Dependency['jquery-rails'] < 5
     # => false
     #
     def self.method_missing(name, *args)
-      if name[-1] == '?'
+      if name[-1] == "?"
         Matcher.new(name[0..-2]).match? args
-      elsif name[-1] == '!'
+      elsif name[-1] == "!"
         Matcher.new(name[0..-2]).match! args
       else
         Matcher.new name.to_s
@@ -53,10 +54,6 @@ module ActiveAdmin
 
     def self.[](name)
       Matcher.new name.to_s
-    end
-
-    def self.rails5?
-      rails >= '5.x'
     end
 
     class Matcher
@@ -91,72 +88,8 @@ module ActiveAdmin
       end
 
       def inspect
-        info = spec ? "#{spec.name} #{spec.version}" : '(missing)'
+        info = spec ? "#{spec.name} #{spec.version}" : "(missing)"
         "<ActiveAdmin::Dependency::Matcher for #{info}>"
-      end
-
-      def adapter
-        @adapter ||= Adapter.const_get(@name.camelize).new self
-      end
-
-      def method_missing(method, *args, &block)
-        if respond_to_missing?(method)
-          adapter.send method, *args, &block
-        else
-          super
-        end
-      end
-
-      def respond_to_missing?(method, include_private = false)
-        adapter.respond_to?(method) || super
-      rescue NameError
-        # 🐾
-      end
-    end
-
-    # Dependency adapters provide an easy way to wrap the conditional logic
-    # necessary to support multiple versions of a gem.
-    #
-    # ActiveAdmin::Dependency.rails.adapter.parameterize 'a b'
-    # => 'a_b'
-    #
-    # ActiveAdmin::Dependency.rails.parameterize 'a b'
-    # => 'a_b'
-    #
-    # ActiveAdmin::Dependency.devise.adapter
-    # -> NameError: uninitialized constant ActiveAdmin::Dependency::Adapter::Devise
-    #
-    module Adapter
-      class Base
-        def initialize(version)
-          @version = version
-        end
-      end
-
-      class Rails < Base
-        def parameterize(string)
-          if Dependency.rails5?
-            string.parameterize separator: '_'
-          else
-            string.parameterize '_'
-          end
-        end
-
-        def redirect_back(controller, fallback_location)
-          controller.instance_exec do
-            if Dependency.rails5?
-              redirect_back fallback_location: fallback_location
-            elsif controller.request.headers.key? 'HTTP_REFERER'
-              redirect_to :back
-            else
-              redirect_to fallback_location
-            end
-          end
-        end
-
-        def render_key
-          Dependency.rails5? ? :body : :text
-        end
       end
     end
 

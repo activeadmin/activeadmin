@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module ViewHelpers
     module FormHelper
@@ -15,7 +16,7 @@ module ActiveAdmin
       #
       def fields_for_params(params, options = {})
         namespace = options[:namespace]
-        except    = Array.wrap(options[:except]).map &:to_s
+        except = Array.wrap(options[:except]).map &:to_s
 
         params.flat_map do |k, v|
           next if namespace.nil? && %w(controller action commit utf8).include?(k.to_s)
@@ -37,7 +38,7 @@ module ActiveAdmin
               { "#{k}[]" => v }
             end
           when nil
-            { k => '' }
+            { k => "" }
           when TrueClass, FalseClass
             { k => v }
           else

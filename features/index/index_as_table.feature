@@ -20,7 +20,7 @@ Feature: Index as Table
         ActiveAdmin.register Post
       """
     Then I should see "Hello World"
-    Then I should see nicely formatted datetimes
+    And I should see nicely formatted datetimes
     And I should see a link to "View"
     And I should see a link to "Edit"
     And I should see a link to "Delete"
@@ -224,8 +224,8 @@ Feature: Index as Table
       end
       """
     Then I should see a sortable table header with "Author"
-    Then I should see a sortable table header with "published_date"
-    Then I should not see a sortable table header with "Category"
+    And I should see a sortable table header with "published_date"
+    And I should not see a sortable table header with "Category"
 
   Scenario: Columns with block are not sortable by when sortable option equals to false
     Given 1 post exists
@@ -239,7 +239,7 @@ Feature: Index as Table
       end
       """
     Then I should not see a sortable table header with "Author"
-    Then I should not see a sortable table header with "published_date"
+    And I should not see a sortable table header with "published_date"
 
   Scenario: Sorting
     Given a post with the title "Hello World" and body "From the body" exists

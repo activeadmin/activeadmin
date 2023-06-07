@@ -1,4 +1,20 @@
 it:
+  activerecord:
+    models:
+      comment:
+        one: "Commento"
+        other: "Commenti"
+      active_admin/comment:
+        one: "Commento"
+        other: "Commenti"
+    attributes:
+      active_admin/comment:
+        author_type: "Tipo di Autore"
+        body: "Corpo"
+        created_at: "Creato il"
+        namespace: "Namespace"
+        resource_type: "Tipo di risorsa"
+        updated_at: "Aggiornato il"
   active_admin:
     dashboard: Dashboard
     dashboard_welcome:
@@ -8,6 +24,7 @@ it:
     edit: "Modifica"
     delete: "Rimuovi"
     delete_confirmation: "Sei sicuro di volerlo rimuovere?"
+    create_another: "Crea un altro %{model}"
     new_model: "Aggiungi %{model}"
     edit_model: "Modifica %{model}"
     delete_model: "Rimuovi %{model}"
@@ -20,6 +37,7 @@ it:
     has_many_new: "Aggiungi nuovo/a %{model}"
     has_many_delete: "Rimuovi"
     has_many_remove: "Rimuovi"
+    move: "Sposta"
     filters:
       buttons:
         filter: "Filtra"
@@ -31,6 +49,12 @@ it:
         ends_with: "Finisce con"
         greater_than: "Maggiore di"
         less_than: "Minore di"
+        gteq_datetime: "Maggiore o uguale a"
+        lteq_datetime: "Minore o uguale a"
+        from: "Da"
+        to: "A"
+    scopes:
+      all: "Tutti"
     search_status:
       headline: "Situazione filtri:"
       current_scope: "Contesto selezionato:"
@@ -39,6 +63,7 @@ it:
     status_tag:
       "yes": "Sì"
       "no": "No"
+      "unset": "No"
     main_content: "Devi implemetare %{model}#main_content per mostrarne il contenuto."
     logout: "Esci"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -51,6 +76,7 @@ it:
       one_page: "Sto mostrando <b>%{n}</b> %{model}. Lista completa."
       multiple: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{total}</b> in totale"
       multiple_without_total: "Sto mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Oggetti per pagina: "
       entry:
         one: "voce"
         other: "voci"
@@ -62,13 +88,12 @@ it:
       button_label: "Azioni"
     batch_actions:
       button_label: "Azioni multiple"
-      default_confirmation: "Sei sicuro di che voler fare questo?"
+      default_confirmation: "Sei sicuro di che voler proseguire?"
       delete_confirmation: "Sei sicuro di volere cancellare %{plural_model}?"
       succesfully_destroyed:
         one: "Eliminato con successo 1 %{model}"
         other: "Eliminati con successo %{count} %{plural_model}"
-      selection_toggle_explanation: "(Toggle Selection)"
-      link: "Crea uno"
+      selection_toggle_explanation: "(cambia selezione)"
       action_label: "%{title} Selezionati"
       labels:
         destroy: "Elimina"
@@ -78,7 +103,6 @@ it:
       author_type: "Tipo di Autore"
       body: "Corpo"
       author: "Autore"
-      title: "Commento"
       add: "Aggiungi Commento"
       delete: "Cancella Commento"
       delete_confirmation: "Sei sicuro di voler cancellare questo commento?"
@@ -97,6 +121,8 @@ it:
         title: "Sottodominio"
       password:
         title: "Password"
+      password_confirmation:
+        title: "Conferma password"
       sign_up:
         title: "Iscriviti"
         submit: "Iscriviti"
@@ -117,16 +143,16 @@ it:
         title: "Invia di nuovo le istruzioni per la conferma"
         submit: "Invia di nuovo le istruzioni per la conferma"
       links:
-        sign_in: "Iscriviti"
+        sign_up: "Iscriviti"
         sign_in: "Entra"
         forgot_your_password: "Dimenticato la password?"
         sign_in_with_omniauth_provider: "Collegati a %{provider}"
         resend_unlock_instructions: "Invia di nuovo le istruzioni per lo sblocco"
         resend_confirmation_instructions: "Invia di nuovo le istruzioni per la conferma"
     unsupported_browser:
-      headline: "Perfavore, notare che ActiveAdmin non supporta più Internet Explorer 8 o inferiore"
+      headline: "Avviso: ActiveAdmin non supporta Internet Explorer 8 o inferiore"
       recommendation: "Ti raccomandiamo di aggiornare alla versione più recente di <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, o <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Se stai utilizzando Internet Explorer 9 o successivo, assicurati di <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">disabilitare la \"Modalità Compatibilità\"</a>."
+      turn_off_compatibility_view: "Se stai utilizzando Internet Explorer 9 o successivo, assicurati di <a href=\"https://support.microsoft.com/it-it/help/17471\">disabilitare la \"Modalità Compatibilità\"</a>."
     access_denied:
       message: "Non hai le autorizzazioni necessarie per eseguire questa azione."
     index_list:

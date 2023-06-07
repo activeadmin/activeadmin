@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/8-custom-actions.html
 ---
+
 # Custom Controller Actions
 
 Active Admin allows you to override and modify the underlying controller which
@@ -61,7 +62,7 @@ HTTP verbs. In that case, this is the suggested approach:
 ```ruby
 member_action :foo, method: [:get, :post] do
   if request.post?
-    resource.update_attributes! foo: params[:foo] || {}
+    resource.update! foo: params[:foo] || {}
     head :ok
   else
     render :foo
@@ -138,10 +139,23 @@ end
 Actions items also accept the `:if` option to conditionally display them:
 
 ```ruby
-action_item :super_action, only: :show, if: proc{ current_admin_user.super_admin? } do
+action_item :super_action,
+            only: :show,
+            if: proc{ current_admin_user.super_admin? } do
   "Only display this to super admins on the show screen"
 end
 ```
+
+By default action items are positioned in the same order as they defined (after default actions),
+but it’s also possible to specify their position manually:
+
+```ruby
+action_item :help, priority: 0 do
+  "Display this action to the first position"
+end
+```
+
+Default action item priority is 10.
 
 # Modifying the Controller
 

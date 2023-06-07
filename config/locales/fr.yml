@@ -7,7 +7,8 @@ fr:
     view: "Voir"
     edit: "Modifier"
     delete: "Supprimer"
-    delete_confirmation: "Êtes-vous certain de vouloir supprimer ceci ?"
+    delete_confirmation: "Voulez-vous vraiment supprimer ceci ?"
+    create_another: "Créer autre %{model}"
     new_model: "Créer %{model}"
     edit_model: "Modifier %{model}"
     delete_model: "Supprimer %{model}"
@@ -17,7 +18,7 @@ fr:
     previous: "Précédent"
     next: "Suivant"
     download: "Télécharger :"
-    has_many_new: "Ajouter un nouveau %{model}"
+    has_many_new: "Ajouter un(e) %{model}"
     has_many_delete: "Supprimer"
     has_many_remove: "Enlever"
     filters:
@@ -31,14 +32,19 @@ fr:
         ends_with: "Se termine par"
         greater_than: "Plus grand que"
         less_than: "Plus petit que"
+        gteq_datetime: "Ultérieur ou égal à"
+        lteq_datetime: "Antérieur ou égal à"
+        from: "De"
+        to: "À"
     search_status:
       headline: "Statut de la recherche :"
-      current_scope: "Etendu du filtre :"
+      current_scope: "Périmètre :"
       current_filters: "Filtres actuels :"
-      no_current_filters: "Aucun filtres"
+      no_current_filters: "Aucun filtre"
     status_tag:
       "yes": "Oui"
       "no": "Non"
+      "unset": "Non"
     main_content: "Veuillez implémenter %{model}#main_content pour afficher le contenu."
     logout: "Déconnexion"
     powered_by: "Propulsé par %{active_admin} %{version}"
@@ -46,7 +52,7 @@ fr:
       filters: "Filtres"
       search_status: "Statut de la recherche"
     pagination:
-      empty: "Aucun %{model} trouvé"
+      empty: "Aucun(e) %{model} trouvé(e)"
       one: "Affichage de <b>1</b> %{model}"
       one_page: "Affichage des <b>%{n}</b> %{model}"
       multiple: "Affichage de %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur un total de <b>%{total}</b>"
@@ -63,13 +69,12 @@ fr:
       button_label: "Actions"
     batch_actions:
       button_label: "Actions groupées"
-      default_confirmation: "Êtes-vous sûr de vouloir faire cela ?"
-      delete_confirmation: "Êtes-vous sûr de vouloir supprimer ces %{plural_model} ?"
+      default_confirmation: "Voulez-vous vraiment faire cela ?"
+      delete_confirmation: "Voulez-vous vraiment supprimer ces %{plural_model} ?"
       succesfully_destroyed:
         one: "1 %{model} supprimé"
         other: "%{count} %{plural_model} supprimés"
       selection_toggle_explanation: "(Inverser la sélection)"
-      link: "Créer un"
       action_label: "%{title} les éléments sélectionnés"
       labels:
         destroy: "Supprimer"
@@ -79,10 +84,9 @@ fr:
       author_type: "Profil de l'auteur"
       body: "Corps"
       author: "Auteur"
-      title: "Commentaire"
       add: "Ajouter un commentaire"
       delete: "Supprimer ce commentaire"
-      delete_confirmation: "Êtes-vous sûr de vouloir supprimer ce commentaire ?"
+      delete_confirmation: "Voulez-vous vraiment supprimer ce commentaire ?"
       resource: "Ressource"
       no_comments_yet: "Aucun commentaire actuellement"
       author_missing: "Anonyme"
@@ -124,6 +128,10 @@ fr:
         sign_in_with_omniauth_provider: "Connectez-vous avec %{provider}"
         resend_unlock_instructions: "Renvoyer les informations de déverrouillage"
         resend_confirmation_instructions: "Renvoyer les instructions de confirmation"
+    unsupported_browser:
+      headline: "Veuillez noter que ActiveAdmin ne supporte plus les versions d'Internet Explorer 8 ou moins."
+      recommendation: "Nous vous recommandons de <a href=\"http://browsehappy.com/\">mettre à jour votre navigateur</a> pour améliorer votre expérience."
+      turn_off_compatibility_view: "Si vous utilisez IE 9 ou une version ultérieure, assurez-vous d'<a href=\"https://support.microsoft.com/fr-fr/help/17471\">activer \"Affichage de compatibilité\"</a>."
     access_denied:
       message: "Vous n'êtes pas autorisé à exécuter cette action"
     index_list:

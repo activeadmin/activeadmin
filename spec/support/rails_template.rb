@@ -1,182 +1,120 @@
+# frozen_string_literal: true
 # Rails template to build the sample app for specs
 
-copy_file File.expand_path('../templates/manifest.js', __FILE__), 'app/assets/config/manifest.js', force: true
+webpacker_app = ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_61_webpacker/Gemfile", __dir__)
 
-create_file 'app/assets/stylesheets/some-random-css.css'
-create_file 'app/assets/javascripts/some-random-js.js'
-create_file 'app/assets/images/a/favicon.ico'
+if webpacker_app
+  create_file "app/javascript/packs/some-random-css.css"
+  create_file "app/javascript/packs/some-random-js.js"
+  create_file "app/javascript/images/a/favicon.ico"
+  create_file "app/javascript/packs/images.js"
+  append_file "app/javascript/packs/images.js", "import '../images/a/favicon.ico';"
+else
+  create_file "app/assets/stylesheets/some-random-css.css"
+  create_file "app/assets/javascripts/some-random-js.js"
+  create_file "app/assets/images/a/favicon.ico"
+end
 
-generate :model, 'post title:string body:text published_date:date author_id:integer ' +
-  'position:integer custom_category_id:integer starred:boolean foo_id:integer'
-create_file 'app/models/post.rb', <<-RUBY.strip_heredoc, force: true
-  class Post < ActiveRecord::Base
-    belongs_to :category, foreign_key: :custom_category_id
-    belongs_to :author, class_name: 'User'
-    has_many :taggings
-    accepts_nested_attributes_for :author
-    accepts_nested_attributes_for :taggings
+initial_timestamp = Time.now.strftime("%Y%M%d%H%M%S").to_i
 
-    ransacker :custom_title_searcher do |parent|
-      parent.table[:title]
-    end
+template File.expand_path("templates/migrations/create_posts.tt", __dir__), "db/migrate/#{initial_timestamp}_create_posts.rb"
 
-    ransacker :custom_created_at_searcher do |parent|
-      parent.table[:created_at]
-    end
+copy_file File.expand_path("templates/models/post.rb", __dir__), "app/models/post.rb"
+copy_file File.expand_path("templates/post_decorator.rb", __dir__), "app/models/post_decorator.rb"
+copy_file File.expand_path("templates/post_poro_decorator.rb", __dir__), "app/models/post_poro_decorator.rb"
 
-    ransacker :custom_searcher_numeric, type: :numeric do
-      # nothing to see here
-    end
+template File.expand_path("templates/migrations/create_blog_posts.tt", __dir__), "db/migrate/#{initial_timestamp + 1}_create_blog_posts.rb"
 
-    if defined? ProtectedAttributes
-      attr_accessible :id, :title, :body, :starred, :author, :position, :published_date, :author_id, :custom_category_id, :category
-    end
-  end
-RUBY
-copy_file File.expand_path('../templates/post_decorator.rb', __FILE__), 'app/models/post_decorator.rb'
+copy_file File.expand_path("templates/models/blog/post.rb", __dir__), "app/models/blog/post.rb"
 
-generate :model, 'blog/post title:string body:text published_date:date author_id:integer ' +
-  'position:integer custom_category_id:integer starred:boolean foo_id:integer'
-create_file 'app/models/blog/post.rb', <<-RUBY.strip_heredoc, force: true
-  class Blog::Post < ActiveRecord::Base
-    belongs_to :category, foreign_key: :custom_category_id
-    belongs_to :author, class_name: 'User'
-    has_many :taggings
-    accepts_nested_attributes_for :author
-    accepts_nested_attributes_for :taggings
+template File.expand_path("templates/migrations/create_profiles.tt", __dir__), "db/migrate/#{initial_timestamp + 2}_create_profiles.rb"
 
-    if defined? ProtectedAttributes
-      attr_accessible :title, :body, :starred, :author, :position, :published_date, :author_id, :custom_category_id, :category
-    end
-  end
-RUBY
+copy_file File.expand_path("templates/models/user.rb", __dir__), "app/models/user.rb"
 
-generate :model, 'profile user_id:integer bio:text'
+template File.expand_path("templates/migrations/create_users.tt", __dir__), "db/migrate/#{initial_timestamp + 3}_create_users.rb"
 
-generate :model, 'user type:string first_name:string last_name:string username:string age:integer'
-create_file 'app/models/user.rb', <<-RUBY.strip_heredoc, force: true
-  class User < ActiveRecord::Base
-    has_many :posts, foreign_key: 'author_id'
-    has_one :profile
-    accepts_nested_attributes_for :profile, allow_destroy: true
+copy_file File.expand_path("templates/models/profile.rb", __dir__), "app/models/profile.rb"
 
-    ransacker :age_in_five_years, type: :numeric, formatter: proc { |v| v.to_i - 5 } do |parent|
-      parent.table[:age]
-    end
+copy_file File.expand_path("templates/models/publisher.rb", __dir__), "app/models/publisher.rb"
 
-    if defined? ProtectedAttributes
-      attr_accessible :first_name, :last_name, :username,  :age
-    end
+template File.expand_path("templates/migrations/create_categories.tt", __dir__), "db/migrate/#{initial_timestamp + 4}_create_categories.rb"
 
-    def display_name
-      "\#{first_name} \#{last_name}"
-    end
-  end
-RUBY
+copy_file File.expand_path("templates/models/category.rb", __dir__), "app/models/category.rb"
 
-create_file 'app/models/profile.rb', <<-RUBY.strip_heredoc, force: true
-  class Profile < ActiveRecord::Base
-    belongs_to :user
+copy_file File.expand_path("templates/models/store.rb", __dir__), "app/models/store.rb"
+template File.expand_path("templates/migrations/create_stores.tt", __dir__), "db/migrate/#{initial_timestamp + 5}_create_stores.rb"
 
-    if defined? ProtectedAttributes
-      attr_accessible :bio
-    end
-  end
-RUBY
+template File.expand_path("templates/migrations/create_tags.tt", __dir__), "db/migrate/#{initial_timestamp + 6}_create_tags.rb"
 
-generate :model, 'publisher --migration=false --parent=User'
+copy_file File.expand_path("templates/models/tag.rb", __dir__), "app/models/tag.rb"
 
-generate :model, 'category name:string description:text'
-create_file 'app/models/category.rb', <<-RUBY.strip_heredoc, force: true
-  class Category < ActiveRecord::Base
-    has_many :posts, foreign_key: :custom_category_id
-    has_many :authors, through: :posts
-    accepts_nested_attributes_for :posts
+template File.expand_path("templates/migrations/create_taggings.tt", __dir__), "db/migrate/#{initial_timestamp + 7}_create_taggings.rb"
 
-    if defined? ProtectedAttributes
-      attr_accessible :name, :description
-    end
-  end
-RUBY
+copy_file File.expand_path("templates/models/tagging.rb", __dir__), "app/models/tagging.rb"
 
-generate :model, 'store name:string'
+copy_file File.expand_path("templates/helpers/time_helper.rb", __dir__), "app/helpers/time_helper.rb"
 
-# Generate a model with string ids
-generate :model, 'tag name:string'
-gsub_file Dir['db/migrate/*_create_tags.rb'].first, /\:tags do .*/, <<-RUBY.strip_heredoc
-  :tags, id: false, primary_key: :id do |t|
-    t.string :id
-RUBY
-create_file 'app/models/tag.rb', <<-RUBY.strip_heredoc, force: true
-  class Tag < ActiveRecord::Base
-    self.primary_key = :id
-    before_create :set_id
-
-    private
-    def set_id
-      self.id = SecureRandom.uuid
-    end
-
-    if defined? ProtectedAttributes
-      attr_accessible :name
-    end
-  end
-RUBY
-
-generate :model, 'tagging post_id:integer tag_id:integer'
-create_file 'app/models/tagging.rb', <<-RUBY.strip_heredoc, force: true
-  class Tagging < ActiveRecord::Base
-    belongs_to :post
-    belongs_to :tag
-  end
-RUBY
-
-gsub_file 'config/environments/test.rb', /  config.cache_classes = true/, <<-RUBY
+gsub_file "config/environments/test.rb", /  config.cache_classes = true/, <<-RUBY
 
   config.cache_classes = !ENV['CLASS_RELOADING']
   config.action_mailer.default_url_options = {host: 'example.com'}
-  config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )
 
   config.active_record.maintain_test_schema = false
 
-  if Rails::VERSION::MAJOR >= 5
-    config.active_record.belongs_to_required_by_default = false
-  end
-
 RUBY
 
-# Add our local Active Admin to the application
-gem 'activeadmin', path: '../..'
-gem 'devise'
+unless webpacker_app
+  inject_into_file "config/environments/test.rb", after: "  config.action_mailer.default_url_options = {host: 'example.com'}" do
+    "\n  config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )\n"
+  end
+end
 
-run 'bundle install'
+gsub_file "config/boot.rb", /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
+  ENV['BUNDLE_GEMFILE'] = "#{File.expand_path(ENV['BUNDLE_GEMFILE'])}"
+RUBY
+
+# Setup webpacker if necessary
+if webpacker_app
+  rails_command "webpacker:install"
+  gsub_file "config/webpacker.yml", /^(.*)extract_css.*$/, '\1extract_css: true' if ENV["RAILS_ENV"] == "test"
+end
 
 # Setup Active Admin
-generate 'active_admin:install'
+generate "active_admin:install#{" --use-webpacker" if webpacker_app}"
 
 # Force strong parameters to raise exceptions
-inject_into_file 'config/application.rb', <<-RUBY, after: 'class Application < Rails::Application'
-
-    config.action_controller.action_on_unpermitted_parameters = :raise
-
-RUBY
+inject_into_file "config/application.rb", after: "class Application < Rails::Application" do
+  "\n    config.action_controller.action_on_unpermitted_parameters = :raise\n"
+end
 
 # Add some translations
-append_file 'config/locales/en.yml', File.read(File.expand_path('../templates/en.yml', __FILE__))
+append_file "config/locales/en.yml", File.read(File.expand_path("templates/en.yml", __dir__))
 
 # Add predefined admin resources
-directory File.expand_path('../templates/admin', __FILE__), 'app/admin'
+directory File.expand_path("templates/admin", __dir__), "app/admin"
 
 # Add predefined policies
-directory File.expand_path('../templates/policies', __FILE__), 'app/policies'
+directory File.expand_path("templates/policies", __dir__), "app/policies"
 
-if ENV['RAILS_ENV'] != 'test'
-  inject_into_file 'config/routes.rb', "\n  root to: redirect('admin')", after: /.*routes.draw do/
+# Require turbolinks if necessary
+if ENV["BUNDLE_GEMFILE"] == File.expand_path("../../gemfiles/rails_61_turbolinks/Gemfile", __dir__)
+  append_file "app/assets/javascripts/active_admin.js", "//= require turbolinks\n"
 end
 
-rake "db:drop db:create db:migrate", env: 'development'
-rake "db:drop db:create db:migrate", env: 'test'
-
-if ENV['INSTALL_PARALLEL']
-  inject_into_file 'config/database.yml', "<%= ENV['TEST_ENV_NUMBER'] %>", after: 'test.sqlite3'
+if ENV["RAILS_ENV"] != "test"
+  inject_into_file "config/routes.rb", "\n  root to: redirect('admin')", after: /.*routes.draw do/
 end
+
+rails_command "db:drop db:create db:migrate", env: ENV["RAILS_ENV"]
+
+if ENV["RAILS_ENV"] == "test"
+  inject_into_file "config/database.yml", "<%= ENV['TEST_ENV_NUMBER'] %>", after: "test.sqlite3"
+
+  require "parallel_tests"
+  ParallelTests.determine_number_of_processes(nil).times do |n|
+    copy_file File.expand_path("db/test.sqlite3", destination_root), "db/test.sqlite3#{n + 1}"
+  end
+end
+
+git add: "."
+git commit: "-m 'Bare application'"

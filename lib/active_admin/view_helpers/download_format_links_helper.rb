@@ -1,6 +1,8 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module ViewHelpers
     module DownloadFormatLinksHelper
+      private
 
       def build_download_formats(download_links)
         download_links = instance_exec(&download_links) if download_links.is_a?(Proc)
@@ -17,7 +19,7 @@ module ActiveAdmin
       def build_download_format_links(formats = self.class.formats)
         params = request.query_parameters.except :format, :commit
         div class: "download_links" do
-          span I18n.t('active_admin.download')
+          span I18n.t("active_admin.download")
           formats.each do |format|
             a format.upcase, href: url_for(params: params, format: format)
           end

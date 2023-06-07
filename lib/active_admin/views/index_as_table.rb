@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Views
 
@@ -110,7 +111,8 @@ module ActiveAdmin
     # end
     # ```
     #
-    # In addition, you can insert the position of the row in the greater collection by using the index_column special command:
+    # In addition, you can insert the position of the row in the greater
+    # collection by using the index_column special command:
     #
     # ```ruby
     # index do
@@ -120,7 +122,8 @@ module ActiveAdmin
     # end
     # ```
     #
-    # index_column take an optional offset parameter to allow a developer to set the starting number for the index (default is 1).
+    # index_column take an optional offset parameter to allow a developer to set
+    # the starting number for the index (default is 1).
     #
     # ## Sorting
     #
@@ -128,9 +131,7 @@ module ActiveAdmin
     # sortable by default. If you are creating a custom column, you may need to give
     # Active Admin a hint for how to sort the table.
     #
-    # If a column is defined using a block, you must pass the key to turn on sorting. The key
-    # is the attribute which gets used to sort objects using Active Record.
-    #
+    # You can pass the key specifying the attribute which gets used to sort objects using Active Record.
     # By default, this is the column on the resource's table that the attribute corresponds to.
     # Otherwise, any attribute that the resource collection responds to can be used.
     #
@@ -159,6 +160,24 @@ module ActiveAdmin
     # end
     # ```
     #
+    # ## Custom sorting
+    #
+    # It is also possible to use database specific expressions and options for sorting by column
+    #
+    # ```ruby
+    # order_by(:title) do |order_clause|
+    #    if order_clause.order == 'desc'
+    #      [order_clause.to_sql, 'NULLS LAST'].join(' ')
+    #    else
+    #      [order_clause.to_sql, 'NULLS FIRST'].join(' ')
+    #    end
+    # end
+    #
+    # index do
+    #   column :title
+    # end
+    # ```
+    #
     # ## Associated Sorting
     #
     # You're normally able to sort columns alphabetically, but by default you
@@ -172,6 +191,13 @@ module ActiveAdmin
     #     super.includes :publisher # prevents N+1 queries to your database
     #   end
     # end
+    # ```
+    #
+    # You can also define associated objects to include outside of the
+    # `scoped_collection` method:
+    #
+    # ```ruby
+    # includes :publisher
     # ```
     #
     # Then it's simple to sort by any Publisher attribute from within the index table:
@@ -253,13 +279,13 @@ module ActiveAdmin
         # Display a column for checkbox
         def selectable_column
           return unless active_admin_config.batch_actions.any?
-          column resource_selection_toggle_cell, class: 'col-selectable', sortable: false do |resource|
+          column resource_selection_toggle_cell, class: "col-selectable", sortable: false do |resource|
             resource_selection_cell resource
           end
         end
 
         def index_column(start_value = 1)
-          column '#', class: 'col-index', sortable: false do |resource|
+          column "#", class: "col-index", sortable: false do |resource|
             @collection.offset_value + @collection.index(resource) + start_value
           end
         end
@@ -268,9 +294,9 @@ module ActiveAdmin
         def id_column
           raise "#{resource_class.name} has no primary_key!" unless resource_class.primary_key
           column(resource_class.human_attribute_name(resource_class.primary_key), sortable: resource_class.primary_key) do |resource|
-            if controller.action_methods.include?('show')
+            if controller.action_methods.include?("show")
               link_to resource.id, resource_path(resource), class: "resource_id_link"
-            elsif controller.action_methods.include?('edit')
+            elsif controller.action_methods.include?("edit")
               link_to resource.id, edit_resource_path(resource), class: "resource_id_link"
             else
               resource.id
@@ -279,7 +305,7 @@ module ActiveAdmin
         end
 
         def default_actions
-          raise '`default_actions` is no longer provided in ActiveAdmin 1.x. Use `actions` instead.'
+          raise "`default_actions` is no longer provided in ActiveAdmin 1.x. Use `actions` instead."
         end
 
         # Add links to perform actions.
@@ -319,12 +345,12 @@ module ActiveAdmin
         #
         # ```
         def actions(options = {}, &block)
-          name          = options.delete(:name)     { '' }
-          defaults      = options.delete(:defaults) { true }
-          dropdown      = options.delete(:dropdown) { false }
-          dropdown_name = options.delete(:dropdown_name) { I18n.t 'active_admin.dropdown_actions.button_label', default: 'Actions' }
+          name = options.delete(:name) { "" }
+          defaults = options.delete(:defaults) { true }
+          dropdown = options.delete(:dropdown) { false }
+          dropdown_name = options.delete(:dropdown_name) { I18n.t "active_admin.dropdown_actions.button_label", default: "Actions" }
 
-          options[:class] ||= 'col-actions'
+          options[:class] ||= "col-actions"
 
           column name, options do |resource|
             if dropdown
@@ -344,30 +370,31 @@ module ActiveAdmin
           end
         end
 
-      private
+        private
 
         def defaults(resource, options = {})
-          if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
-            item I18n.t('active_admin.view'), resource_path(resource), class: "view_link #{options[:css_class]}", title: I18n.t('active_admin.view')
+          localizer = ActiveAdmin::Localizers.resource(active_admin_config)
+          if controller.action_methods.include?("show") && authorized?(ActiveAdmin::Auth::READ, resource)
+            item localizer.t(:view), resource_path(resource), class: "view_link #{options[:css_class]}", title: localizer.t(:view)
           end
-          if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
-            item I18n.t('active_admin.edit'), edit_resource_path(resource), class: "edit_link #{options[:css_class]}", title: I18n.t('active_admin.edit')
+          if controller.action_methods.include?("edit") && authorized?(ActiveAdmin::Auth::EDIT, resource)
+            item localizer.t(:edit), edit_resource_path(resource), class: "edit_link #{options[:css_class]}", title: localizer.t(:edit)
           end
-          if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
-            item I18n.t('active_admin.delete'), resource_path(resource), class: "delete_link #{options[:css_class]}", title: I18n.t('active_admin.delete'),
-              method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
+          if controller.action_methods.include?("destroy") && authorized?(ActiveAdmin::Auth::DESTROY, resource)
+            item localizer.t(:delete), resource_path(resource), class: "delete_link #{options[:css_class]}", title: localizer.t(:delete),
+                                                                method: :delete, data: { confirm: localizer.t(:delete_confirmation) }
           end
         end
 
         class TableActions < ActiveAdmin::Component
           builder_method :table_actions
 
-          def item *args
-            text_node link_to *args
+          def item *args, **kwargs
+            text_node link_to(*args, **kwargs)
           end
         end
       end # IndexTableFor
 
-    end # IndexAsTable
+    end
   end
 end

@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/0-installation.html
 ---
+
 # Installation
 
 Active Admin is a Ruby Gem.
@@ -10,7 +11,7 @@ gem 'activeadmin'
 
 # Plus integrations with:
 gem 'devise'
-gem 'cancan' # or cancancan
+gem 'cancancan'
 gem 'draper'
 gem 'pundit'
 ```
@@ -22,35 +23,36 @@ that can be injected into your existing Ruby on Rails application.
 
 After installing the gem, you need to run the generator. Here are your options:
 
-- If you don't want to use Devise, run it with `--skip-users`:
+* If you don't want to use Devise, run it with `--skip-users`:
+
   ```sh
   rails g active_admin:install --skip-users
   ```
 
-- If you want to use an existing user class, provide it as an argument:
+* If you want to customize the name of the generated user class, or if you want to use an existing user class, provide the class name as an argument:
+
   ```sh
   rails g active_admin:install User
   ```
 
-- Otherwise, with no arguments we will create an `AdminUser` class to use with Devise:
+* Otherwise, with no arguments we will create an `AdminUser` class to use with Devise:
+
   ```sh
   rails g active_admin:install
   ```
 
 The generator adds these core files, among others:
 
-```
-app/admin/dashboard.rb
-app/assets/javascripts/active_admin.js.coffee
-app/assets/stylesheets/active_admin.scss
-config/initializers/active_admin.rb
-```
+* `app/admin/dashboard.rb`
+* `app/assets/javascripts/active_admin.js`
+* `app/assets/stylesheets/active_admin.scss`
+* `config/initializers/active_admin.rb`
 
 Now, migrate and seed your database before starting the server:
 
 ```sh
-rake db:migrate
-rake db:seed
+rails db:migrate
+rails db:seed
 rails server
 ```
 
@@ -67,7 +69,8 @@ To register an existing model with Active Admin:
 rails generate active_admin:resource MyModel
 ```
 
-This creates a file at `app/admin/my_model.rb` to set up the UI; refresh your browser to see it.
+This creates a file at `app/admin/my_model.rb` to set up the UI; refresh your
+browser to see it.
 
 # Upgrading
 
@@ -98,8 +101,8 @@ Kaminari.configure do |config|
 end
 ```
 
-If you are also using [Draper](https://github.com/drapergem/draper), you may want to
-make sure `per_page_kaminari` is delegated correctly:
+If you are also using [Draper](https://github.com/drapergem/draper), you may
+want to make sure `per_page_kaminari` is delegated correctly:
 
 ```ruby
 Draper::CollectionDecorator.send :delegate, :per_page_kaminari
@@ -108,6 +111,30 @@ Draper::CollectionDecorator.send :delegate, :per_page_kaminari
 ## simple_form
 
 If you're getting the error `wrong number of arguments (6 for 4..5)`, [read #2703].
+
+## webpacker
+
+You can **opt-in to using Webpacker for ActiveAdmin assets** as well by updating your configuration to turn on the `use_webpacker` option, either at installation time or manually.
+
+* at active_admin installation:
+
+  ```sh
+  rails g active_admin:install --use_webpacker
+  ```
+
+* manually:
+
+  ```ruby
+  ActiveAdmin.setup do |config|
+    config.use_webpacker = true
+  end
+  ```
+
+  And run the generator to get default Active Admin assets:
+
+  ```sh
+  rails g active_admin:webpacker
+  ```
 
 [CHANGELOG]: https://github.com/activeadmin/activeadmin/blob/master/CHANGELOG.md
 [dashboard.rb]: https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/dashboard.rb

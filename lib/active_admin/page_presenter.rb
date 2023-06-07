@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
 
   # A simple object that gets used to present different aspects of views
@@ -21,7 +22,8 @@ module ActiveAdmin
     delegate :has_key?, :fetch, to: :options
 
     def initialize(options = {}, &block)
-      @options, @block = options, block
+      @options = options
+      @block = block
     end
 
     def [](key)

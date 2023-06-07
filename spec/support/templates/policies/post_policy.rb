@@ -1,15 +1,14 @@
+# frozen_string_literal: true
 class PostPolicy < ApplicationPolicy
-  class Scope < Struct.new(:user, :scope)
-    def resolve
-      scope
-    end
+  def new?
+    true
+  end
+
+  def create?
+    record.category.nil? || record.category.name != "Announcements" || user.is_a?(User::VIP)
   end
 
   def update?
     record.author == user
-  end
-
-  def destroy?
-    update?
   end
 end

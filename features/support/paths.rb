@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module NavigationHelpers
   # Maps a name to a path. Used by the
   #
@@ -8,8 +9,6 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /the home\s?page/
-      '/'
     when /the dashboard/
       "/admin"
     when /the new post page/
@@ -23,14 +22,9 @@ module NavigationHelpers
     when /the admin password reset form with token "([^"]*)"/
       "/admin/password/edit?reset_password_token=#{$1}"
 
-    # the index page for posts in the root namespace
     # the index page for posts in the user_admin namespace
     when /^the index page for (.*) in the (.*) namespace$/
-      if $2 != 'root'
-        send "#{$2}_#{$1}_path"
-      else
-        send "#{$1}_path"
-      end
+      send "#{$2}_#{$1}_path"
 
     # same as above, except defaults to admin namespace
     when /^the index page for (.*)$/
@@ -48,8 +42,14 @@ module NavigationHelpers
     when /^the last post's show page$/
       admin_post_path(Post.last)
 
+    when /^the post's show page$/
+      admin_post_path(Post.last)
+
     when /^the last post's edit page$/
       edit_admin_post_path(Post.last)
+
+    when /^the last author's show page$/
+      admin_user_path(User.last)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
@@ -61,10 +61,12 @@ module NavigationHelpers
       begin
         page_name =~ /the (.*) page/
         path_components = $1.split(/\s+/)
-        self.send path_components.push('path').join('_')
+        self.send path_components.push("path").join("_")
+        # :nocov:
       rescue Object => e
         raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
           "Now, go and add a mapping in #{__FILE__}"
+        # :nocov:
       end
     end
   end

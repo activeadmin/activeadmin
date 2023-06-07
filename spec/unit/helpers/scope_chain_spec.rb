@@ -1,7 +1,7 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::ScopeChain do
-
   include ActiveAdmin::ScopeChain
 
   describe "#scope_chain" do
@@ -25,7 +25,7 @@ RSpec.describe ActiveAdmin::ScopeChain do
     end
 
     context "when Scope has a name and a scope block" do
-      let(:scope) { ActiveAdmin::Scope.new("My Scope"){|s| :scoped_relation } }
+      let(:scope) { ActiveAdmin::Scope.new("My Scope") { |s| :scoped_relation } }
 
       it "should instance_exec the block and return it" do
         expect(scope_chain(scope, relation)).to eq :scoped_relation
@@ -33,4 +33,3 @@ RSpec.describe ActiveAdmin::ScopeChain do
     end
   end
 end
-

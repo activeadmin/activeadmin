@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class ResourceController < BaseController
     module ResourceClassMethods
@@ -12,6 +13,8 @@ module ActiveAdmin
           def self.resource_class
             @active_admin_config ? @active_admin_config.resource_class : nil
           end
+
+          private
 
           def resource_class
             self.class.resource_class

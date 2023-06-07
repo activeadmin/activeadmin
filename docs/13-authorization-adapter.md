@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/13-authorization-adapter.html
 ---
+
 # Authorization Adapter
 
 Active Admin offers the ability to define and use your own authorization
@@ -9,8 +10,8 @@ taken. By default, '#authorized?' returns true.
 
 ## Setting up your own AuthorizationAdapter
 
-Setting up your own `AuthorizationAdapter` is easy! The following example shows
-how to set up and tie your authorization adapter class to Active Admin:
+The following example shows how to set up and tie your authorization
+adapter class to Active Admin:
 
 ```ruby
 # app/models/only_authors_authorization.rb
@@ -40,7 +41,11 @@ application's `config/initializers/active_admin.rb` and add/modify the line:
 config.authorization_adapter = "OnlyAuthorsAuthorization"
 ```
 
-Authorization adapters can be configured per ActiveAdmin namespace as well, for example:
+Now, whenever a controller action is performed, the `OnlyAuthorsAuthorization`'s
+`#authorized?` method will be called.
+
+Authorization adapters can be configured per ActiveAdmin namespace as well, for
+example:
 
 ```ruby
 ActiveAdmin.setup do |config|
@@ -52,9 +57,6 @@ ActiveAdmin.setup do |config|
   end
 end
 ```
-
-Now, whenever a controller action is performed, the `OnlyAuthorsAuthorization`'s
-`#authorized?` method will be called.
 
 ## Getting Access to the Current User
 
@@ -73,9 +75,9 @@ end
 
 ## Scoping Collections in Authorization Adapters
 
-`ActiveAdmin::AuthorizationAdapter` also provides a hook method (`#scope_collection`)
-for the adapter to scope the resource's collection. For example, you may want to
-centralize the scoping:
+`ActiveAdmin::AuthorizationAdapter` also provides a hook method
+(`#scope_collection`) for the adapter to scope the resource's collection. For
+example, you may want to centralize the scoping:
 
 ```ruby
 class OnlyMyAccount < ActiveAdmin::AuthorizationAdapter
@@ -104,7 +106,9 @@ class OnlyDashboard < ActiveAdmin::AuthorizationAdapter
   def authorized?(action, subject = nil)
     case subject
     when ActiveAdmin::Page
-      action == :read && subject.name == "Dashboard" && subject.namespace.name == :admin
+      action == :read &&
+        subject.name == "Dashboard" &&
+        subject.namespace.name == :admin
     else
       false
     end
@@ -116,24 +120,23 @@ end
 
 By default Active Admin simplifies the controller actions into 4 actions:
 
-  * `:read` - This controls if the user can view the menu item as well as the
-    index and show screens.
-  * `:create` - This controls if the user can view the new screen and submit
-    the form to the create action.
-  * `:update` - This controls if the user can view the edit screen and submit
-    the form to the update action.
-  * `:destroy` - This controls if the user can delete a resource.
+* `:read` - This controls if the user can view the menu item as well as the
+  index and show screens.
+* `:create` - This controls if the user can view the new screen and submit
+  the form to the create action.
+* `:update` - This controls if the user can view the edit screen and submit
+  the form to the update action.
+* `:destroy` - This controls if the user can delete a resource.
 
 Each of these actions is available as a constant. Eg: `:read` is available as
 `ActiveAdmin::Authorization::READ`.
-
 
 ## Checking for Authorization in Controllers and Views
 
 Active Admin provides a helper method to check if the current user is
 authorized to perform an action on a subject.
 
-Simply use the `#authorized?(action, subject) method to check.
+Use the `#authorized?(action, subject)` method to check.
 
 ```ruby
 ActiveAdmin.register Post do
@@ -177,28 +180,28 @@ end
 
 Sub-classing `ActiveAdmin::AuthorizationAdapter` is fairly low level. Many times
 it's nicer to have a simpler DSL for managing authorization. Active Admin
-provides an adapter out of the box for [CanCan](https://github.com/ryanb/cancan)
-and [CanCanCan](https://github.com/CanCanCommunity/cancancan).
+provides an adapter out of the box for [CanCanCan](https://github.com/CanCanCommunity/cancancan).
 
-To use the CanCan adapter, simply update the configuration in the Active Admin
+To use the CanCan adapter, update the configuration in the Active Admin
 initializer:
 
 ```ruby
 config.authorization_adapter = ActiveAdmin::CanCanAdapter
 ```
 
-You can also specify a method to be called on unauthorized access. This is necessary
-in order to prevent a redirect loop that can happen if a user tries to access a page
-they don't have permissions for (see [#2081](https://github.com/activeadmin/activeadmin/issues/2081)).
+You can also specify a method to be called on unauthorized access. This is
+necessary in order to prevent a redirect loop that can happen if a user tries to
+access a page they don't have permissions for (see
+[#2081](https://github.com/activeadmin/activeadmin/issues/2081)).
 
 ```ruby
 config.on_unauthorized_access = :access_denied
 ```
 
-The method `access_denied` would be defined in `application_controller.rb`. Here is one
-example that redirects the user from the page they don't have permission to
-access to a resource they have permission to access (organizations in this case), and
-also displays the error message in the browser:
+The method `access_denied` would be defined in `application_controller.rb`. Here
+is one example that redirects the user from the page they don't have permission
+to access to a resource they have permission to access (organizations in this
+case), and also displays the error message in the browser:
 
 ```ruby
 class ApplicationController < ActionController::Base
@@ -217,7 +220,7 @@ changed from the initializer:
 config.cancan_ability_class = "MyCustomAbility"
 ```
 
-Now you can simply use CanCan or CanCanCan the way that you would expect and
+Now you can simply use CanCanCan the way that you would expect and
 Active Admin will use it for authorization:
 
 ```ruby
@@ -229,23 +232,54 @@ class Ability
     can :manage, Post
     can :read, User
     can :manage, User, id: user.id
-    can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: :admin
+    can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: "admin"
   end
 
 end
 ```
 
-To view more details about the API's, visit project pages of [CanCan](https://github.com/ryanb/cancan) and [CanCanCan](https://github.com/CanCanCommunity/cancancan).
+To view more details about the API's, visit project pages of
+[CanCanCan](https://github.com/CanCanCommunity/cancancan).
 
 ## Using the Pundit Adapter
 
-Active Admin provides an adapter out of the box also for [Pundit](https://github.com/elabs/pundit).
+Active Admin also provides an adapter out of the box for
+[Pundit](https://github.com/varvet/pundit).
 
-To use the Pundit adapter, simply update the configuration in the Active Admin
+To use the Pundit adapter, update the configuration in the Active Admin
 initializer:
 
 ```ruby
 config.authorization_adapter = ActiveAdmin::PunditAdapter
 ```
 
-You can simply use Pundit the way that you would expect and Active Admin will use it for authorization. Check Pundit's documentation to [set up Pundit in your application](https://github.com/elabs/pundit#installation). If you want to use batch actions just ensure that `destroy_all?` method is defined in your policy class. You can use this [template policy](https://github.com/activeadmin/activeadmin/blob/master/spec/support/templates/policies/application_policy.rb) in your application instead of default one generated by Pundit's `rails g pundit:install` command.
+Once that's done, Active Admin will pick up your Pundit policies, and use
+them for authorization. For more information about setting up Pundit, see
+[their documentation](https://github.com/varvet/pundit#installation).
+
+Pundit also has [verify_authorized and/or verify_policy_scoped
+methods](https://github.com/varvet/pundit#ensuring-policies-and-scopes-are-used)
+to enforce usage of `authorized` and `policy_scope`. This conflicts with Active
+Admin's authorization architecture, so if you're using those features, you'll
+want to disable them for Active Admin's controllers:
+
+```ruby
+class ApplicationController < ActionController::Base
+  include Pundit
+  after_action :verify_authorized, except: :index, unless: :active_admin_controller?
+  after_action :verify_policy_scoped, only: :index, unless: :active_admin_controller?
+
+  def active_admin_controller?
+    is_a?(ActiveAdmin::BaseController)
+  end
+end
+```
+
+If you want to use batch actions, ensure that `destroy_all?` method is defined
+in your policy class. You can use this [template
+policy](https://github.com/activeadmin/activeadmin/blob/master/spec/support/templates/policies/application_policy.rb)
+in your application instead of default one generated by Pundit's
+`rails g pundit:install` command.
+
+In addition, there are [example policies](https://github.com/activeadmin/activeadmin/tree/master/spec/support/templates/policies/active_admin)
+for restricting access to ActiveAdmin's pages and comments.

@@ -5,7 +5,7 @@ Feature: Show - Columns
   Background:
     Given a post with the title "Hello World" written by "Jane Doe" exists
 
-  Scenario:
+  Scenario: Empty columns configuration
     Given a show configuration of:
     """
       ActiveAdmin.register Post do
@@ -20,7 +20,7 @@ Feature: Show - Columns
     Then I should see a columns container
     And I should see 0 column
 
-  Scenario:
+  Scenario: Empty colums configuration with empty colums inside
     Given a show configuration of:
     """
       ActiveAdmin.register Post do

@@ -1,4 +1,3 @@
-#encoding: utf-8
 ca:
   active_admin:
     dashboard: Tauler
@@ -35,6 +34,7 @@ ca:
     status_tag:
       "yes": "Sí"
       "no": "No"
+      "unset": "No"
     main_content: "Implementa %{model}#main_content per mostrar contingut."
     logout: "Desconnecta't"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -63,14 +63,12 @@ ca:
         one: "Va destruir amb èxit 1 %{model}"
         other: "Va destruir amb èxit %{count} %{plural_model}"
       selection_toggle_explanation: "(Selecció de Canviar)"
-      link: "crear una"
       action_label: "%{title} seleccionat"
       labels:
         destroy: "esborrar"
     comments:
       body: "Cos"
       author: "autor"
-      title: "comentari"
       add: "Afegeix comentari"
       resource: "Recurs"
       no_comments_yet: "No hi ha comentaris"

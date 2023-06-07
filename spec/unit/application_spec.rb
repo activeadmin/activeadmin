@@ -1,26 +1,20 @@
-require 'rails_helper'
-require 'fileutils'
+# frozen_string_literal: true
+require "rails_helper"
+require "fileutils"
 
 RSpec.describe ActiveAdmin::Application do
-
   let(:application) { ActiveAdmin::Application.new }
 
-  around do |example|
-    old_load_paths = application.load_paths
-    # TODO: Figure out why load paths need to be overriden
-    application.load_paths = [File.expand_path('app/admin', Rails.root)]
-
-    example.call
-
-    application.load_paths = old_load_paths
-  end
-
   it "should have a default load path of ['app/admin']" do
-    expect(application.load_paths).to eq [File.expand_path('app/admin', Rails.root)]
+    expect(application.load_paths).to eq [File.expand_path("app/admin", application.app_path)]
   end
 
-  it "should remove app/admin from the autoload paths (Active Admin deals with loading)" do
-    expect(ActiveSupport::Dependencies.autoload_paths).to_not include(File.join(Rails.root, "app/admin"))
+  describe "#prepare" do
+    before { application.prepare! }
+
+    it "should remove app/admin from the autoload paths" do
+      expect(ActiveSupport::Dependencies.autoload_paths).to_not include(Rails.root.join("app/admin"))
+    end
   end
 
   it "should store the site's title" do
@@ -100,8 +94,17 @@ RSpec.describe ActiveAdmin::Application do
     expect(application.order_clause).to eq ActiveAdmin::OrderClause
   end
 
-  describe "authentication settings" do
+  it "should have default show_count for scopes" do
+    expect(application.scopes_show_count).to eq true
+  end
 
+  it "fails if setting undefined" do
+    expect do
+      application.undefined_setting
+    end.to raise_error(NoMethodError)
+  end
+
+  describe "authentication settings" do
     it "should have no default current_user_method" do
       expect(application.current_user_method).to eq false
     end
@@ -120,13 +123,17 @@ RSpec.describe ActiveAdmin::Application do
   end
 
   describe "files in load path" do
-    it "should load files in the first level directory" do
-      expect(application.files).to include(File.expand_path("app/admin/dashboard.rb", Rails.root))
+    it "it should load sorted files" do
+      expect(application.files.map { |f| File.basename(f) }).to eq(%w(admin_users.rb dashboard.rb stores.rb))
     end
 
-    it "should load files from subdirectories" do
-      test_dir = File.expand_path("app/admin/public", Rails.root)
-      test_file = File.expand_path("app/admin/public/posts.rb", Rails.root)
+    it "should load files in the first level directory" do
+      expect(application.files).to include(File.expand_path("app/admin/dashboard.rb", application.app_path))
+    end
+
+    it "should load files from subdirectories", :changes_filesystem do
+      test_dir = File.expand_path("app/admin/public", application.app_path)
+      test_file = File.expand_path("app/admin/public/posts.rb", application.app_path)
 
       begin
         FileUtils.mkdir_p(test_dir)
@@ -136,10 +143,24 @@ RSpec.describe ActiveAdmin::Application do
         FileUtils.remove_entry_secure(test_dir, force: true)
       end
     end
+
+    it "should honor load paths order", :changes_filesystem do
+      test_dir = File.expand_path("app/other-admin", application.app_path)
+      test_file = File.expand_path("app/other-admin/posts.rb", application.app_path)
+
+      application.load_paths.unshift(test_dir)
+
+      begin
+        FileUtils.mkdir_p(test_dir)
+        FileUtils.touch(test_file)
+        expect(application.files.map { |f| File.basename(f) }).to eq(%w(posts.rb admin_users.rb dashboard.rb stores.rb))
+      ensure
+        FileUtils.remove_entry_secure(test_dir, force: true)
+      end
+    end
   end
 
   describe "#namespace" do
-
     it "should yield a new namespace" do
       application.namespace :new_namespace do |ns|
         expect(ns.name).to eq :new_namespace
@@ -152,12 +173,21 @@ RSpec.describe ActiveAdmin::Application do
     end
 
     it "should yield an existing namespace" do
-      expect {
+      expect do
         application.namespace :admin do |ns|
           expect(ns).to eq application.namespaces[:admin]
           raise "found"
         end
-      }.to raise_error("found")
+      end.to raise_error("found")
+    end
+
+    it "should admit both strings and symbols" do
+      expect do
+        application.namespace "admin" do |ns|
+          expect(ns).to eq application.namespaces[:admin]
+          raise "found"
+        end
+      end.to raise_error("found")
     end
 
     it "should not pollute the global app" do
@@ -172,9 +202,8 @@ RSpec.describe ActiveAdmin::Application do
     it "finds or create the namespace and register the page to it" do
       namespace = double
       expect(application).to receive(:namespace).with("public").and_return namespace
-      expect(namespace).to receive(:register_page).with("My Page", {namespace: "public"})
+      expect(namespace).to receive(:register_page).with("My Page", { namespace: "public" })
       application.register_page("My Page", namespace: "public")
     end
   end
-
 end

@@ -7,10 +7,10 @@ Feature: STI Resource
     And a configuration of:
     """
       ActiveAdmin.register Publisher do
-        permit_params :first_name, :last_name, :username, :age
+        permit_params :first_name, :last_name, :username, :age, :reason_of_sign_in
       end
       ActiveAdmin.register User do
-        permit_params :first_name, :last_name, :username, :age
+        permit_params :first_name, :last_name, :username, :age, :reason_of_sign_in
       end
     """
 

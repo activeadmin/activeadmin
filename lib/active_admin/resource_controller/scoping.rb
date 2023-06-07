@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class ResourceController < BaseController
 
@@ -15,7 +16,7 @@ module ActiveAdmin
       # Collection can be scoped conditionally with an :if or :unless proc.
       def begin_of_association_chain
         return nil unless active_admin_config.scope_to?(self)
-        render_in_context(self, active_admin_config.scope_to_method)
+        MethodOrProcHelper.render_in_context(self, active_admin_config.scope_to_method)
       end
 
       # Overriding from InheritedResources::BaseHelpers

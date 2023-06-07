@@ -1,5 +1,7 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module ScopeChain
+    private
     # Scope an ActiveRecord::Relation chain
     #
     # Example:

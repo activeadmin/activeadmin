@@ -1,0 +1,103 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    name: test (${{ matrix.ruby }}, ${{ matrix.deps }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+          - 3.2
+          - 3.1
+          - '3.0'
+        os:
+          - ubuntu-latest
+        deps:
+          - rails_61
+          - rails_70
+        include:
+          - ruby: 3.1
+            os: ubuntu-latest
+            deps: rails_61_webpacker
+          - ruby: 3.1
+            os: ubuntu-latest
+            deps: rails_61_turbolinks
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure bundler (default)
+        run: |
+          echo "BUNDLE_GEMFILE=Gemfile" >> "$GITHUB_ENV"
+        if: matrix.deps == 'rails_70'
+      - name: Configure bundler (alternative)
+        run: |
+          echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> "$GITHUB_ENV"
+        if: matrix.deps != 'rails_70'
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+        if: matrix.deps == 'rails_61_webpacker'
+      - name: Setup git for test app setup
+        run: |
+          git config --global user.email activeadmin@ci.dummy
+          git config --global user.name ActiveAdmin
+      - name: Create test app
+        run: bin/rake setup
+      - name: Restore cached RSpec runtimes
+        uses: actions/cache@v3
+        with:
+          path: tmp/parallel_runtime_rspec.log
+          key: runtimes-rspec-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_rspec.log') }}
+      - name: Run RSpec tests
+        env:
+          COVERAGE: true
+        run: |
+          bin/parallel_rspec
+          RSPEC_FILESYSTEM_CHANGES=true bin/rspec
+      - name: Restore cached cucumber runtimes
+        uses: actions/cache@v3
+        with:
+          path: tmp/parallel_runtime_cucumber.log
+          key: runtimes-cucumber-${{ matrix.ruby }}-${{ matrix.deps }}-${{ hashFiles('tmp/parallel_runtime_cucumber.log') }}
+      - name: Run Cucumber features
+        env:
+          COVERAGE: true
+        run: |
+          bin/parallel_cucumber --fail-fast
+          bin/cucumber --profile filesystem-changes
+          bin/cucumber --profile class-reloading
+      - uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage
+          if-no-files-found: error
+
+  upload_coverage:
+    name: Upload Coverage
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: coverage
+          path: coverage
+      - uses: codecov/codecov-action@v3
+        with:
+          directory: coverage
+          fail_ci_if_error: true

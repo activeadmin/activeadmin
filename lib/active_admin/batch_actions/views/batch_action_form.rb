@@ -1,4 +1,5 @@
-require 'active_admin/component'
+# frozen_string_literal: true
+require "active_admin/component"
 
 module ActiveAdmin
   module BatchActions
@@ -16,7 +17,7 @@ module ActiveAdmin
         # batch_action        => name of the specific action called
         # batch_action_inputs => a JSON string of any requested confirmation values
         text_node form_tag active_admin_config.route_batch_action_path(params, url_options), id: options[:id]
-        input name: :batch_action,        id: :batch_action,        type: :hidden
+        input name: :batch_action, id: :batch_action, type: :hidden
         input name: :batch_action_inputs, id: :batch_action_inputs, type: :hidden
 
         super(options)
@@ -30,7 +31,7 @@ module ActiveAdmin
       private
 
       def closing_form_tag
-        '</form>'.html_safe
+        "</form>".html_safe
       end
 
     end

@@ -38,6 +38,19 @@ Feature: Menu
     When I follow "Custom Menu"
     Then I should be on the admin dashboard page
 
+  Scenario: Add a non-resource menu item with method delete
+    Given a configuration of:
+    """
+      ActiveAdmin.application.namespace :admin do |admin|
+        admin.build_menu do |menu|
+          menu.add label: "Delete Menu", url: :admin_dashboard_path, html_options: { method: :delete }
+        end
+      end
+    """
+    When I am on the dashboard
+    Then I should see a menu item for "Delete Menu"
+    And I should see the element "a[data-method='delete']:contains('Delete Menu')"
+
   Scenario: Adding a resource as a sub menu item
     Given a configuration of:
     """
@@ -69,4 +82,3 @@ Feature: Menu
     And I should not see a menu item for "Posts"
     And I should see a nested menu item for "Categories"
     And I should see a nested menu item for "Posts"
-

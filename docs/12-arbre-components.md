@@ -1,6 +1,7 @@
 ---
 redirect_from: /docs/12-arbre-components.html
 ---
+
 # Arbre Components
 
 Arbre allows the creation of shareable and extendable HTML components and is
@@ -21,7 +22,7 @@ ActiveAdmin.register Post do
         row :id
         row 'Tags' do
           post.tags.each do |tag|
-            a tag, href: admin_post_path(q: {tagged_with_contains: tag})          
+            a tag, href: admin_post_path(q: {tagged_with_contains: tag})
             text_node "&nbsp;".html_safe
           end
         end
@@ -57,7 +58,7 @@ The Columns component allows you draw content into scalable columns. All you
 need to do is define the number of columns and the component will take care of
 the rest.
 
-#### Simple Columns
+### Simple Columns
 
 To create simple columns, use the `columns` method. Within the block, call
 the #column method to create a new column.
@@ -114,6 +115,21 @@ end
 In the above example, the first column will not grow larger than 200px and will
 not shrink less than 100px.
 
+### Custom Column Class
+
+Pass the `:class` option to the column method to set a custom class.
+
+```ruby
+columns do
+  column class: "important" do
+    span "Column # 1"
+  end
+  column do
+    span "Column # 2"
+  end
+end
+```
+
 ## Table For
 
 Table For provides the ability to create tables like those present
@@ -129,28 +145,50 @@ table_for order.payments do
 end
 ```
 
-the `column` method can take a title as its first argument and data
+The `column` method can take a title as its first argument and data
 (`:your_method`) as its second (or first if no title provided). Column also
 takes a block.
+
+### Internationalization
+
+To customize the internationalization for the component, specify a resource to
+use for translations via the `i18n` named parameter. This is only necessary for
+non-`ActiveRecord::Relation` collections:
+
+```ruby
+table_for payments, i18n: Payment do
+  # ...
+end
+```
 
 ## Status tag
 
 Status tags provide convenient syntactic sugar for styling items that have
 status. A common example of where the status tag could be useful is for orders
 that are complete or in progress. `status_tag` takes a status, like
-"In Progress", a type, which defaults to nil, and a hash of options. The
-status_tag will generate html markup that Active Admin css uses in styling.
+"In Progress", and a hash of options. The status_tag will generate HTML markup
+that Active Admin CSS uses in styling.
 
 ```ruby
 status_tag 'In Progress'
 # => <span class='status_tag in_progress'>In Progress</span>
 
-status_tag 'active', :ok
-# => <span class='status_tag active ok'>Active</span>
-
-status_tag 'active', :ok, class: 'important', id: 'status_123', label: 'on'
-# => <span class='status_tag active ok important' id='status_123'>on</span>
+status_tag 'active', class: 'important', id: 'status_123', label: 'on'
+# => <span class='status_tag active important' id='status_123'>on</span>
 ```
+
+When providing a `true` or `false` value, the `status_tag` will display "Yes"
+or "No". This can be configured through the `"en.active_admin.status_tag"`
+locale.
+
+```ruby
+status_tag true
+# => <span class='status_tag yes'>Yes</span>
+```
+
+In the case that a boolean field is `nil`, it will display "No" as a default.
+But using the `"en.active_admin.status_tag.unset"` locale key, it can be
+configured to display something else.
 
 ## Tabs
 

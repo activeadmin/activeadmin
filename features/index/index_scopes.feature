@@ -32,6 +32,9 @@ Feature: Index Scoping
       """
     Then I should see the scope with label "Neat scope"
     And I should see 3 posts in the table
+    When I follow "Neat scope"
+    And I should see 3 posts in the table
+    And I should see the current scope with label "Neat scope"
 
   Scenario: Viewing resources with one scope as the default
     Given 3 posts exist
@@ -83,7 +86,6 @@ Feature: Index Scoping
     And I should see the scope "All" with no count
     And I should see 3 posts in the table
 
-  @scope
   Scenario: Viewing resources with a scope and scope count turned off for a single scope
     Given 3 posts exist
     And an index configuration of:
@@ -113,14 +115,15 @@ Feature: Index Scoping
     And I should see the scope "Published" with the count 3
     When I follow "Published"
     Then I should see the scope "Published" selected
+    And I should see the current scope with label "Published"
     And I should see 3 posts in the table
 
   Scenario: Viewing resources when scoping and filtering
     Given 2 posts written by "Daft Punk" exist
-    Given 1 published posts written by "Daft Punk" exist
+    And 1 published posts written by "Daft Punk" exist
 
-    Given 1 posts written by "Alfred" exist
-    Given 2 published posts written by "Alfred" exist
+    And 1 posts written by "Alfred" exist
+    And 2 published posts written by "Alfred" exist
 
     And an index configuration of:
       """
@@ -137,6 +140,7 @@ Feature: Index Scoping
 
     When I follow "Published"
     Then I should see the scope "Published" selected
+    And I should see the current scope with label "Published"
     And I should see the scope "All" with the count 6
     And I should see the scope "Published" with the count 3
     And I should see 3 posts in the table
@@ -158,11 +162,25 @@ Feature: Index Scoping
       scope "Shown", if: proc { true } do |posts|
         posts
       end
+      scope "Shown with lambda", if: -> { true } do |posts|
+        posts
+      end
+      scope "Shown with method name", if: :neat_scope? do |posts|
+        posts
+      end
       scope "Default", default: true do |posts|
         posts
       end
       scope 'Today', if: proc { false } do |posts|
         posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day, ::Time.zone.now.end_of_day])
+      end
+
+      controller do
+        def neat_scope?
+          true
+        end
+
+        helper_method :neat_scope?
       end
     end
     """
@@ -170,7 +188,21 @@ Feature: Index Scoping
     And I should not see the scope "All"
     And I should not see the scope "Today"
     And I should see the scope "Shown"
+    And I should see the scope "Shown with lambda"
+    And I should see the scope "Shown with method name"
     And I should see the scope "Default" with the count 3
+
+  Scenario: Viewing resources with only optional scopes and their conditions are false
+    Given 3 posts exist
+    And an index configuration of:
+    """
+    ActiveAdmin.register Post do
+      scope :all, if: proc { false }
+      scope(:hidden, if: proc { false }) { |posts| posts }
+      scope(:hidden_as_well, if: proc { false }) { |posts| posts }
+    end
+    """
+    Then I should see empty scopes
 
   Scenario: Viewing resources with multiple scopes as blocks
     Given 3 posts exist
@@ -196,6 +228,7 @@ Feature: Index Scoping
     Then I should see the scope "Tomorrow" selected
     And I should see the scope "Today" not selected
     And I should see a link to "Today"
+    And I should see the current scope with label "Tomorrow"
 
   Scenario: Viewing resources with scopes when scoping to user
     Given 2 posts written by "Daft Punk" exist
@@ -225,9 +258,9 @@ Feature: Index Scoping
 
   Scenario: Viewing resources when scoping and filtering and group bys and stuff
     Given 2 posts written by "Daft Punk" exist
-    Given 1 published posts written by "Daft Punk" exist
+    And 1 published posts written by "Daft Punk" exist
 
-    Given 1 posts written by "Alfred" exist
+    And 1 posts written by "Alfred" exist
 
     And an index configuration of:
       """
@@ -235,6 +268,9 @@ Feature: Index Scoping
         scope :all, default: true
         scope :published do |posts|
           posts.where("published_date IS NOT NULL")
+        end
+        scope :single do |posts|
+           posts.page(1).per(1)
         end
 
         index do
@@ -253,7 +289,11 @@ Feature: Index Scoping
       """
     Then I should see the scope "All" with the count 2
     And I should see the scope "Published" with the count 1
+    And I should see the scope "Single" with the count 1
     And I should see 2 posts in the table
+
+    When I follow "Single"
+    Then I should see 1 posts in the table
 
     When I follow "Published"
     Then I should see the scope "Published" selected
@@ -268,3 +308,28 @@ Feature: Index Scoping
     And I should see the scope "All" with the count 1
     And I should see the scope "Published" with the count 1
     And I should see 1 posts in the table
+    And I should see the current scope with label "Published"
+
+  Scenario: Viewing resources with grouped scopes
+    Given 3 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope :all
+        scope "Published", group: :status do |posts|
+          posts.where("published_date IS NOT NULL")
+        end
+        scope "Unpublished", group: :status do |posts|
+          posts.where("published_date IS NULL")
+        end
+        scope "Today", group: :date do |posts|
+          posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day, ::Time.zone.now.end_of_day])
+        end
+        scope "Tomorrow", group: :date do |posts|
+          posts.where(["created_at > ? AND created_at < ?", ::Time.zone.now.beginning_of_day + 1.day, ::Time.zone.now.end_of_day + 1.day])
+        end
+      end
+      """
+    Then I should see an empty group with the scope "All"
+    And I should see a group "status" with the scopes "Published" and "Unpublished"
+    And I should see a group "date" with the scopes "Today" and "Tomorrow"

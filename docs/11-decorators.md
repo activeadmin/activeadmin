@@ -1,16 +1,12 @@
 ---
 redirect_from: /docs/11-decorators.html
 ---
+
 # Decorators
 
 Active Admin allows you to use the decorator pattern to provide view-specific
 versions of a resource. [Draper](https://github.com/drapergem/draper) is
 recommended but not required.
-
-To use decorator support without Draper, your decorator must support a variety
-of collection methods to support pagination, filtering, etc. See
-[this github issue discussion](https://github.com/activeadmin/activeadmin/issues/3600)
-and [this gem](https://github.com/kiote/activeadmin-poro-decorator) for more details.
 
 ## Example usage
 
@@ -37,6 +33,61 @@ ActiveAdmin.register Post do
     column :title
     column :image
     actions
+  end
+end
+```
+
+You can pass any decorator class as an argument to `decorate_with`
+as long as it accepts the record to be decorated as a parameter in
+the initializer, and responds to all the necessary methods.
+
+```ruby
+# app/decorators/post_decorator.rb
+class PostDecorator
+  attr_reader :post
+  delegate_missing_to :post
+
+  def initialize(post)
+    @post = post
+  end
+end
+```
+
+If a given resource uses ActiveAdmin's Comments feature, then that resource's decorator class must respond to
+`model` where it returns the model instance and `decorated?` returns `true`.
+
+```ruby
+# app/decorators/post_decorator.rb
+class PostDecorator
+  attr_reader :post
+  delegate_missing_to :post
+
+  def initialize(post)
+    @post = post
+  end
+
+  def decorated?
+    true
+  end
+
+  def model
+    post
+  end
+end
+```
+
+If you use any actions with param(e.g. show, edit, destroy), your decorator
+class must explicitly delegate `to_param` to the decorated model.
+
+```ruby
+# app/decorators/post_decorator.rb
+class PostDecorator
+  attr_reader :post
+  delegate_missing_to :post
+  delegate :to_param, to: :post
+
+  def initialize(post)
+    @post = post
   end
 end
 ```

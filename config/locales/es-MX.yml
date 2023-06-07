@@ -34,6 +34,7 @@ es-MX:
     status_tag:
       "yes": "Sí"
       "no": "No"
+      "unset": "No"
     main_content: "Por favor implemente %{model}#main_content para mostrar contenido."
     logout: "Salir"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -44,6 +45,9 @@ es-MX:
       one: "Mostrando <b>1</b> %{model}"
       one_page: "Mostrando <b>un total de %{n}</b> %{model}"
       multiple: "Mostrando %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de un total de <b>%{total}</b>"
+      entry:
+        one:
+        other:
     blank_slate:
       content: "No hay %{resource_name} aún."
       link: "Añadir"
@@ -58,14 +62,12 @@ es-MX:
         one: "Se ha destruido 1 %{model} con éxito"
         other: "Se han destruido %{count} %{plural_model} con éxito"
       selection_toggle_explanation: "(Cambiar selección)"
-      link: "Añadir"
       action_label: "%{title} seleccionados"
       labels:
         destroy: "Borrar"
     comments:
       body: "Cuerpo"
       author: "Autor"
-      title: "Comentario"
       add: "Comentar"
       resource: "Recurso"
       no_comments_yet: "Aún sin comentarios."
@@ -84,7 +86,8 @@ es-MX:
         title: "Cambie su contraseña"
         submit: "Cambiar mi contraseña"
       links:
-        sign_in: "Registrarse"
+        sign_in: "Iniciar Sesión"
+        sign_up: "Registrarse"
         forgot_your_password: "¿Olvidó su contraseña?"
         sign_in_with_omniauth_provider: "Conéctate con %{provider}"
     index_list:

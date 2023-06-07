@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module ViewHelpers
     module FormHelper
@@ -8,7 +9,7 @@ module ActiveAdmin
         end.content
       end
 
-      def hidden_field_tags_for(params, options={})
+      def hidden_field_tags_for(params, options = {})
         fields_for_params(params.to_unsafe_hash, options).map do |kv|
           k, v = kv.first
           hidden_field_tag k, v, id: sanitize_to_id("hidden_active_admin_#{k}")

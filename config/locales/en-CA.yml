@@ -1,0 +1,139 @@
+"en-CA":
+  active_admin:
+    dashboard: Dashboard
+    dashboard_welcome:
+      welcome: "Welcome to Active Admin. This is the default dashboard page."
+      call_to_action: "To add dashboard sections, checkout 'app/admin/dashboards.rb'"
+    view: "View"
+    edit: "Edit"
+    delete: "Delete"
+    delete_confirmation: "Are you sure you want to delete this?"
+    create_another: "Create another %{model}"
+    new_model: "New %{model}"
+    edit_model: "Edit %{model}"
+    delete_model: "Delete %{model}"
+    details: "%{model} Details"
+    cancel: "Cancel"
+    empty: "Empty"
+    previous: "Previous"
+    next: "Next"
+    download: "Download:"
+    has_many_new: "Add New %{model}"
+    has_many_delete: "Delete"
+    has_many_remove: "Remove"
+    filters:
+      buttons:
+        filter: "Filter"
+        clear: "Clear Filters"
+      predicates:
+        contains: "Contains"
+        equals: "Equals"
+        starts_with: "Starts with"
+        ends_with: "Ends with"
+        greater_than: "Greater than"
+        less_than: "Less than"
+    search_status:
+      headline: "Search status:"
+      current_scope: "Scope:"
+      current_filters: "Current filters:"
+      no_current_filters: "None"
+    status_tag:
+      "yes": "Yes"
+      "no": "No"
+      "unset": "No"
+    main_content: "Please implement %{model}#main_content to display content."
+    logout: "Logout"
+    powered_by: "Powered by %{active_admin} %{version}"
+    sidebars:
+      filters: "Filters"
+      search_status: "Search Status"
+    pagination:
+      empty: "No %{model} found"
+      one: "Displaying <b>1</b> %{model}"
+      one_page: "Displaying <b>all %{n}</b> %{model}"
+      multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
+      multiple_without_total: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Per page: "
+      entry:
+        one: "entry"
+        other: "entries"
+    any: "Any"
+    blank_slate:
+      content: "There are no %{resource_name} yet."
+      link: "Create one"
+    dropdown_actions:
+      button_label: "Actions"
+    batch_actions:
+      button_label: "Batch Actions"
+      default_confirmation: "Are you sure you want to do this?"
+      delete_confirmation: "Are you sure you want to delete these %{plural_model}?"
+      succesfully_destroyed:
+        one: "Successfully deleted 1 %{model}"
+        other: "Successfully deleted %{count} %{plural_model}"
+      selection_toggle_explanation: "(Toggle Selection)"
+      action_label: "%{title} Selected"
+      labels:
+        destroy: "Delete"
+    comments:
+      created_at: "Created"
+      resource_type: "Resource Type"
+      author_type: "Author Type"
+      body: "Body"
+      author: "Author"
+      add: "Add Comment"
+      delete: "Delete Comment"
+      delete_confirmation: "Are you sure you want to delete these comments?"
+      resource: "Resource"
+      no_comments_yet: "No comments yet."
+      author_missing: "Anonymous"
+      title_content: "Comments (%{count})"
+      errors:
+        empty_text: "Comment wasn't saved, text was empty."
+    devise:
+      username:
+        title: "Username"
+      email:
+        title: "Email"
+      subdomain:
+        title: "Subdomain"
+      password:
+        title: "Password"
+      password_confirmation:
+        title: "Confirm Password"
+      sign_up:
+        title: "Sign up"
+        submit: "Sign up"
+      login:
+        title: "Login"
+        remember_me: "Remember me"
+        submit: "Login"
+      reset_password:
+        title: "Forgot your password?"
+        submit: "Reset My Password"
+      change_password:
+        title: "Change your password"
+        submit: "Change my password"
+      unlock:
+        title: "Resend unlock instructions"
+        submit: "Resend unlock instructions"
+      resend_confirmation_instructions:
+        title: "Resend confirmation instructions"
+        submit: "Resend confirmation instructions"
+      links:
+        sign_up: "Sign up"
+        sign_in: "Sign in"
+        forgot_your_password: "Forgot your password?"
+        sign_in_with_omniauth_provider: "Sign in with %{provider}"
+        resend_unlock_instructions: "Resend unlock instructions"
+        resend_confirmation_instructions: "Resend confirmation instructions"
+    unsupported_browser:
+      headline: "Please note that ActiveAdmin no longer supports Internet Explorer versions 8 or less."
+      recommendation: "We recommend upgrading to the latest <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, or <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
+      turn_off_compatibility_view: "If you are using IE 9 or later, make sure you <a href=\"https://support.microsoft.com/en-ca/help/17471\">turn off \"Compatibility View\"</a>."
+    access_denied:
+      message: "You are not authorized to perform this action."
+    index_list:
+      table: "Table"
+      block: "List"
+      grid: "Grid"
+      blog: "Blog"

@@ -64,6 +64,6 @@ Feature: Index as Blog
         end
       end
       """
-      Then I should see "Hello World From Block" within "span.title_span"
-      And I should see a link to "Hello World From Block"
-      And I should see "My great post body From Block" within ".post span.body_span"
+    Then I should see "Hello World From Block" within "span.title_span"
+    And I should see a link to "Hello World From Block"
+    And I should see "My great post body From Block" within ".post span.body_span"

@@ -1,3 +1,4 @@
+@breadcrumb
 Feature: Breadcrumb
 
   Background:

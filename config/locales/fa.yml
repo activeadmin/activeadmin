@@ -34,6 +34,7 @@ fa:
     status_tag:
       "yes": "بله"
       "no": "بدون"
+      "unset": "بدون"
     main_content: "لطفا %{model}#main_content را پیاده سازی کنید تا محتوی نمایش داده شود."
     logout: "خروج"
     powered_by: "قدرت گرفته از %{active_admin} %{version}"
@@ -62,7 +63,6 @@ fa:
         one: "1 %{model} با موفقیت حذف شد"
         other: "%{count} %{plural_model} با موفقت حذف شدند."
       selection_toggle_explanation: "(انتخاب‌ها برعکس شوند)"
-      link: "ایجاد یک رکورد جدید"
       action_label: "%{title} انتخاب شده است"
       labels:
         destroy: "حذف"
@@ -71,7 +71,6 @@ fa:
       author_type: "نوع ایجاد کننده"
       body: "بدنه"
       author: "ایجاد کننده"
-      title: "کامنت"
       add: "افزودن کامنت"
       resource: "رکورد"
       no_comments_yet: "هنوز هیچ کامنتی نوشته نشده."

@@ -1,0 +1,37 @@
+# The "main" locale
+base_locale: en
+
+# Read and write translations
+data:
+  yaml:
+    write:
+      # Do not wrap lines at 80 characters
+      line_width: -1
+
+# Find translate calls
+search:
+  # Paths or `File.find` patterns to search in
+  paths:
+    - app
+    - lib
+
+  # Files or `File.fnmatch` patterns to exclude from search
+  exclude:
+    - app/assets/images
+    - tasks/tmp
+
+  # Guess usages such as t("categories.#{category}.title")
+  strict: false
+
+ignore_inconsistent_interpolations:
+  - active_admin.new_model
+  - active_admin.edit_model
+  - active_admin.delete_model
+  - active_admin.details
+  - active_admin.has_many_new
+  - active_admin.pagination.empty
+  - active_admin.pagination.one
+  - active_admin.pagination.one_page
+  - active_admin.pagination.multiple
+  - active_admin.pagination.multiple_without_total
+  - active_admin.blank_slate.content

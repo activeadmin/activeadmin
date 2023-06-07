@@ -1,0 +1,36 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+  - package-ecosystem: bundler
+    directory: /
+    schedule:
+      interval: daily
+    versioning-strategy: lockfile-only
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+  - package-ecosystem: bundler
+    directory: /docs
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+  - package-ecosystem: bundler
+    directory: /gemfiles/rails_61
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+  - package-ecosystem: bundler
+    directory: /gemfiles/rails_61_turbolinks
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+  - package-ecosystem: bundler
+    directory: /gemfiles/rails_61_webpacker
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only

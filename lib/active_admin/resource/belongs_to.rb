@@ -1,4 +1,5 @@
-require 'active_admin/resource'
+# frozen_string_literal: true
+require "active_admin/resource"
 
 module ActiveAdmin
   class Resource
@@ -14,8 +15,13 @@ module ActiveAdmin
       # The resource which initiated this relationship
       attr_reader :owner
 
+      # The name of the relation
+      attr_reader :target_name
+
       def initialize(owner, target_name, options = {})
-        @owner, @target_name, @options = owner, target_name, options
+        @owner = owner
+        @target_name = target_name
+        @options = options
       end
 
       # Returns the target resource class or raises an exception if it doesn't exist
@@ -41,7 +47,7 @@ module ActiveAdmin
       end
 
       def to_param
-        :"#{@target_name}_id"
+        (@options[:param] || "#{@target_name}_id").to_sym
       end
     end
   end

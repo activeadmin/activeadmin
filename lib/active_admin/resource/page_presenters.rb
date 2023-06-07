@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class Resource
     module PagePresenters
@@ -33,7 +34,7 @@ module ActiveAdmin
       # @param [Symbol, String] action The action to get the config for
       # @param [String] type The string specified in the presenters index_name method
       # @return [PagePresenter, nil]
-      def get_page_presenter(action, type=nil)
+      def get_page_presenter(action, type = nil)
 
         if action.to_s == "index" && type && page_presenters[:index].kind_of?(Hash)
           page_presenters[:index][type.to_sym]

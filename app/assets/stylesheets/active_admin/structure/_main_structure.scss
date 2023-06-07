@@ -15,7 +15,7 @@
     width: 100%;
 
     #main_content{
-      margin-right: 300px;
+      margin-right: $sidebar-width + ($section-padding * 2);
     }
   }
 

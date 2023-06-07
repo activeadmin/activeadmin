@@ -1,4 +1,5 @@
-require 'active_admin/helpers/optional_display'
+# frozen_string_literal: true
+require "active_admin/helpers/optional_display"
 
 module ActiveAdmin
 
@@ -14,7 +15,7 @@ module ActiveAdmin
       end
 
       def sidebar_sections_for(action, render_context = nil)
-        sidebar_sections.select{|section| section.display_on?(action, render_context) }
+        sidebar_sections.select { |section| section.display_on?(action, render_context) }
           .sort_by(&:priority)
       end
 

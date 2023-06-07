@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
 
   # Each Namespace builds up it's own menu as the global navigation
@@ -47,11 +48,14 @@ module ActiveAdmin
       #   menu.add parent: 'Dashboard', label: 'My Child Dashboard'
       #
       def add(options)
-        item = if parent = options.delete(:parent)
-          (self[parent] || add(label: parent)).add options
-        else
-          _add options.merge parent: self
-        end
+        parent_chain = Array.wrap(options.delete(:parent))
+
+        item = if parent = parent_chain.shift
+                 options[:parent] = parent_chain if parent_chain.any?
+                 (self[parent] || add(label: parent)).add options
+               else
+                 _add options.merge parent: self
+               end
 
         yield(item) if block_given?
 
@@ -60,7 +64,7 @@ module ActiveAdmin
 
       # Whether any children match the given item.
       def include?(item)
-        @children.values.include? item
+        @children.values.include?(item) || @children.values.any? { |child| child.include?(item) }
       end
 
       # Used in the UI to visually distinguish which menu item is selected.
@@ -68,14 +72,8 @@ module ActiveAdmin
         self == item || include?(item)
       end
 
-      # Returns sorted array of menu items that should be displayed in this context.
-      # Sorts by priority first, then alphabetically by label if needed.
-      def items(context = nil)
-        @children.values.select{ |i| i.display?(context) }.sort do |a, b|
-          result = a.priority       <=> b.priority
-          result = a.label(context) <=> b.label(context) if result == 0
-          result
-        end
+      def items
+        @children.values
       end
 
       attr_reader :children
@@ -93,7 +91,7 @@ module ActiveAdmin
       def normalize_id(id)
         case id
         when String, Symbol, ActiveModel::Name
-          id.to_s.downcase.tr ' ', '_'
+          id.to_s.downcase.tr " ", "_"
         when ActiveAdmin::Resource::Name
           id.param_key
         else

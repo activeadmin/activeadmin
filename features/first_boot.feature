@@ -10,7 +10,7 @@ Feature: First Boot
       """
     And an admin user "admin@example.com" exists
     When I go to the dashboard
-    When I fill in "Email" with "admin@example.com"
+    And I fill in "Email" with "admin@example.com"
     And I fill in "Password" with "password"
     And I press "Login"
     Then I should be on the the dashboard

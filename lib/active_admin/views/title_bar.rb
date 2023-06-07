@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Views
     class TitleBar < Component
@@ -29,10 +30,10 @@ module ActiveAdmin
         breadcrumb_config = active_admin_config && active_admin_config.breadcrumb
 
         links = if breadcrumb_config.is_a?(Proc)
-          instance_exec(controller, &active_admin_config.breadcrumb)
-        elsif breadcrumb_config.present?
-          breadcrumb_links
-        end
+                  instance_exec(controller, &active_admin_config.breadcrumb)
+                elsif breadcrumb_config.present?
+                  breadcrumb_links
+                end
         return unless links.present? && links.is_a?(::Array)
         span class: "breadcrumb" do
           links.each do |link|
@@ -43,7 +44,7 @@ module ActiveAdmin
       end
 
       def build_title_tag
-        h2(@title, id: 'page_title')
+        h2(@title, id: "page_title")
       end
 
       def build_action_items

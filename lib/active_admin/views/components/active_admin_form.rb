@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Views
     class FormtasticProxy < ::Arbre::Rails::Forms::FormBuilderProxy
@@ -16,7 +17,7 @@ module ActiveAdmin
       end
 
       def to_s
-        opening_tag << children.to_s << closing_tag
+        opening_tag + children.to_s + closing_tag
       end
     end
 
@@ -57,6 +58,12 @@ module ActiveAdmin
           end
           insert_tag(SemanticInputsProxy, form_builder, *args, &wrapped_block)
         else
+          # Set except option to prevent sensitive fields from being shown in forms by default.
+          opts = args.extract_options!
+          opts[:except] ||= []
+          ActiveAdmin.application.filter_attributes.each { |e| opts[:except] << e }
+          args << opts
+
           proxy_call_to_form(:inputs, *args, &block)
         end
       end
@@ -78,7 +85,7 @@ module ActiveAdmin
       end
 
       def add_create_another_checkbox
-        if %w(new create).include?(helpers.action_name) &&  active_admin_config && active_admin_config.create_another
+        if %w(new create).include?(helpers.action_name) && active_admin_config && active_admin_config.create_another
           current_arbre_element.add_child(create_another_checkbox)
         end
       end
@@ -105,15 +112,14 @@ module ActiveAdmin
         create_another = params[:create_another]
         label = @resource.class.model_name.human
         Arbre::Context.new do
-          li do
+          li class: "create_another" do
             input(
               checked: create_another,
-              id: 'create_another',
-              class: 'create_another',
-              name: 'create_another',
-              type: 'checkbox',
+              id: "create_another",
+              name: "create_another",
+              type: "checkbox"
             )
-            label(I18n.t('active_admin.create_another', model: label), for: 'create_another')
+            label(I18n.t("active_admin.create_another", model: label), for: "create_another")
           end
         end
       end
@@ -126,7 +132,7 @@ module ActiveAdmin
         legend = args.shift if args.first.is_a?(::String)
         legend = html_options.delete(:name) if html_options.key?(:name)
         legend_tag = legend ? "<legend><span>#{legend}</span></legend>" : ""
-        fieldset_attrs = html_options.map {|k, v| %Q{#{k}="#{v}"} }.join(" ")
+        fieldset_attrs = html_options.map { |k, v| %Q{#{k}="#{v}"} }.join(" ")
         @opening_tag = "<fieldset #{fieldset_attrs}>#{legend_tag}<ol>"
         @closing_tag = "</ol></fieldset>"
         super(*(args << html_options), &block)

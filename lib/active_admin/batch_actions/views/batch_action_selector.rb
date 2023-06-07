@@ -1,4 +1,5 @@
-require 'active_admin/component'
+# frozen_string_literal: true
+require "active_admin/component"
 
 module ActiveAdmin
   module BatchActions
@@ -31,17 +32,17 @@ module ActiveAdmin
             confirmation_text = render_or_call_method_or_proc_on(self, batch_action.confirm)
 
             options = {
-              :class         => "batch_action",
-              "data-action"  => batch_action.sym,
-              "data-confirm" => confirmation_text,
-              "data-inputs"  => render_in_context(self, batch_action.inputs).to_json
+              class: "batch_action",
+              "data-action": batch_action.sym,
+              "data-confirm": confirmation_text,
+              "data-inputs": render_in_context(self, batch_action.inputs).to_json
             }
 
             default_title = render_or_call_method_or_proc_on(self, batch_action.title)
             title = I18n.t("active_admin.batch_actions.labels.#{batch_action.sym}", default: default_title)
             label = I18n.t("active_admin.batch_actions.action_label", title: title)
 
-            item label, "#", options
+            item label, "#", **options
           end
         end
       end

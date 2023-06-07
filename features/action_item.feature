@@ -25,7 +25,7 @@ Feature: Action Item
     Then I should see an action item link to "Embiggen"
 
     When I am on the index page for posts
-    When I follow "New Post"
+    And I follow "New Post"
     Then I should see an action item link to "Embiggen"
 
   Scenario: Create an member action with if clause that returns true
@@ -47,7 +47,7 @@ Feature: Action Item
     Then I should see an action item link to "Embiggen"
 
     When I am on the index page for posts
-    When I follow "New Post"
+    And I follow "New Post"
     Then I should see an action item link to "Embiggen"
 
   Scenario: Create an member action with if clause that returns false
@@ -69,5 +69,5 @@ Feature: Action Item
     Then I should not see an action item link to "Embiggen"
 
     When I am on the index page for posts
-    When I follow "New Post"
+    And I follow "New Post"
     Then I should not see an action item link to "Embiggen"

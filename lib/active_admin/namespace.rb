@@ -1,4 +1,5 @@
-require 'active_admin/resource_collection'
+# frozen_string_literal: true
+require "active_admin/resource_collection"
 
 module ActiveAdmin
 
@@ -25,7 +26,13 @@ module ActiveAdmin
   # resource will be accessible from "/posts" and the controller will be PostsController.
   #
   class Namespace
-    RegisterEvent = 'active_admin.namespace.register'.freeze
+    class << self
+      def setting(name, default)
+        Deprecation.warn "This method does not do anything and will be removed."
+      end
+    end
+
+    RegisterEvent = "active_admin.namespace.register".freeze
 
     attr_reader :application, :resources, :menus
 
@@ -41,7 +48,19 @@ module ActiveAdmin
       @name.to_sym
     end
 
-    # Register a resource into this namespace. The preffered method to access this is to
+    def settings
+      @settings ||= SettingsNode.build(application.namespace_settings)
+    end
+
+    def respond_to_missing?(method, include_private = false)
+      settings.respond_to?(method) || super
+    end
+
+    def method_missing(method, *args)
+      settings.respond_to?(method) ? settings.send(method, *args) : super
+    end
+
+    # Register a resource into this namespace. The preferred method to access this is to
     # use the global registration ActiveAdmin.register which delegates to the proper
     # namespace instance.
     def register(resource_class, options = {}, &block)
@@ -53,7 +72,7 @@ module ActiveAdmin
       reset_menu!
 
       # Dispatch a registration event
-      ActiveSupport::Notifications.publish ActiveAdmin::Resource::RegisterEvent, config
+      ActiveSupport::Notifications.instrument ActiveAdmin::Resource::RegisterEvent, { active_admin_resource: config }
 
       # Return the config
       config
@@ -100,12 +119,6 @@ module ActiveAdmin
       resources[klass]
     end
 
-    # Override from ActiveAdmin::Settings to inherit default attributes
-    # from the application
-    def read_default_setting(name)
-      application.public_send name
-    end
-
     def fetch_menu(name)
       @menus.fetch(name)
     end
@@ -137,10 +150,10 @@ module ActiveAdmin
     def add_logout_button_to_menu(menu, priority = 20, html_options = {})
       if logout_link_path
         html_options = html_options.reverse_merge(method: logout_link_method || :get)
-        menu.add id: 'logout', priority: priority, html_options: html_options,
-          label: ->{ I18n.t 'active_admin.logout' },
-          url:   ->{ render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
-          if:    :current_active_admin_user?
+        menu.add id: "logout", priority: priority, html_options: html_options,
+                 label: -> { I18n.t "active_admin.logout" },
+                 url: -> { render_or_call_method_or_proc_on self, active_admin_namespace.logout_link_path },
+                 if: :current_active_admin_user?
       end
     end
 
@@ -152,10 +165,10 @@ module ActiveAdmin
     #
     def add_current_user_to_menu(menu, priority = 10, html_options = {})
       if current_user_method
-        menu.add id: 'current_user', priority: priority, html_options: html_options,
-          label: -> { display_name current_active_admin_user },
-          url:   -> { auto_url_for(current_active_admin_user) },
-          if:    :current_active_admin_user?
+        menu.add id: "current_user", priority: priority, html_options: html_options,
+                 label: -> { display_name current_active_admin_user },
+                 url: -> { auto_url_for(current_active_admin_user) },
+                 if: :current_active_admin_user?
       end
     end
 
@@ -199,8 +212,8 @@ module ActiveAdmin
 
     def unload_resources!
       resources.each do |resource|
-        parent = (module_name || 'Object').constantize
-        name   = resource.controller_name.split('::').last
+        parent = (module_name || "Object").constantize
+        name = resource.controller_name.split("::").last
         parent.send(:remove_const, name) if parent.const_defined?(name, false)
 
         # Remove circular references
@@ -219,7 +232,7 @@ module ActiveAdmin
       end
     end
 
-    # TODO replace `eval` with `Class.new`
+    # TODO: replace `eval` with `Class.new`
     def register_resource_controller(config)
       eval "class ::#{config.controller_name} < ActiveAdmin::ResourceController; end"
       config.controller.active_admin_config = config

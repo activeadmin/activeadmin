@@ -1,16 +1,16 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class BaseController < ::InheritedResources::Base
     module Authorization
-      include MethodOrProcHelper
       extend ActiveSupport::Concern
 
       ACTIONS_DICTIONARY = {
-        index:   ActiveAdmin::Authorization::READ,
-        show:    ActiveAdmin::Authorization::READ,
-        new:     ActiveAdmin::Authorization::CREATE,
-        create:  ActiveAdmin::Authorization::CREATE,
-        edit:    ActiveAdmin::Authorization::UPDATE,
-        update:  ActiveAdmin::Authorization::UPDATE,
+        index: ActiveAdmin::Authorization::READ,
+        show: ActiveAdmin::Authorization::READ,
+        new: ActiveAdmin::Authorization::NEW,
+        create: ActiveAdmin::Authorization::CREATE,
+        edit: ActiveAdmin::Authorization::EDIT,
+        update: ActiveAdmin::Authorization::UPDATE,
         destroy: ActiveAdmin::Authorization::DESTROY
       }
 
@@ -19,6 +19,7 @@ module ActiveAdmin
 
         helper_method :authorized?
         helper_method :authorize!
+        helper_method :active_admin_authorization
       end
 
       protected
@@ -38,7 +39,6 @@ module ActiveAdmin
         active_admin_authorization.authorized?(action, subject)
       end
 
-
       # Authorize the action and subject. Available in the controller
       # as well as all the views. If the action is not allowd, it raises
       # an ActiveAdmin::AccessDenied exception.
@@ -53,9 +53,10 @@ module ActiveAdmin
       #                 an ActiveAdmin::AccessDenied.
       def authorize!(action, subject = nil)
         unless authorized? action, subject
-          raise ActiveAdmin::AccessDenied.new(current_active_admin_user,
-                                              action,
-                                              subject)
+          raise ActiveAdmin::AccessDenied.new(
+            current_active_admin_user,
+            action,
+            subject)
         end
       end
 
@@ -81,7 +82,7 @@ module ActiveAdmin
       def active_admin_authorization_adapter
         adapter = active_admin_namespace.authorization_adapter
         if adapter.is_a? String
-          ActiveSupport::Dependencies.constantize adapter
+          adapter.constantize
         else
           adapter
         end
@@ -101,7 +102,7 @@ module ActiveAdmin
       end
 
       def dispatch_active_admin_access_denied(exception)
-        call_method_or_exec_proc active_admin_namespace.on_unauthorized_access, exception
+        instance_exec(self, exception, &active_admin_namespace.on_unauthorized_access.to_proc)
       end
 
       def rescue_active_admin_access_denied(exception)
@@ -113,16 +114,14 @@ module ActiveAdmin
             redirect_backwards_or_to_root
           end
 
-          body = ActiveAdmin::Dependency.rails.render_key
-
-          format.csv  { render body =>        error,           status: :unauthorized }
-          format.json { render json: { error: error },         status: :unauthorized }
-          format.xml  { render xml: "<error>#{error}</error>", status: :unauthorized }
+          format.csv { render body: error, status: :unauthorized }
+          format.json { render json: { error: error }, status: :unauthorized }
+          format.xml { render xml: "<error>#{error}</error>", status: :unauthorized }
         end
       end
 
       def redirect_backwards_or_to_root
-        ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
+        redirect_back fallback_location: active_admin_root
       end
 
     end

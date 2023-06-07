@@ -1,25 +1,29 @@
-desc 'Runs a command agains the local sample application'
-task local: :enforce_version do
-  Rake::Task['setup'].invoke(false,
-                             '.test-rails-apps',
-                             'rails_template_with_data')
+# frozen_string_literal: true
+desc "Run a command against the local sample application"
+task :local do
+  require_relative "test_application"
 
-  app_folder = ".test-rails-apps/rails-#{Rails::VERSION::STRING}"
+  test_application = ActiveAdmin::TestApplication.new(
+    rails_env: "development",
+    template: "rails_template_with_data"
+  )
+
+  test_application.soft_generate
 
   # Discard the "local" argument (name of the task)
   argv = ARGV[1..-1]
 
-  # If it's a rails command, or we're using Rails 5, auto add the rails script
-  rails_commands = %w(generate console server dbconsole g c s runner)
+  if argv.any?
+    # If it's a rails command, auto add the rails script
+    if %w(generate console server dbconsole g c s routes runner).include?(argv[0]) || argv[0] =~ /db:/
+      argv.unshift("rails")
+    end
 
-  if Rails::VERSION::MAJOR >= 5 || rails_commands.include?(argv[0])
-    argv.unshift('rails')
-  end
+    command = ["bundle", "exec", *argv].join(" ")
+    env = { "BUNDLE_GEMFILE" => test_application.expanded_gemfile, "RAILS_ENV" => "development" }
 
-  command = ['bundle', 'exec', *argv].join(' ')
-  env = { 'BUNDLE_GEMFILE' => ENV['BUNDLE_GEMFILE'] }
-
-  Dir.chdir(app_folder) do
-    Bundler.with_clean_env { Kernel.exec(env, command) }
+    Dir.chdir(test_application.app_dir) do
+      Bundler.with_original_env { Kernel.exec(env, command) }
+    end
   end
 end

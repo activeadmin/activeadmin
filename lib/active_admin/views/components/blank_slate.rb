@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Views
     # Build a Blank Slate
@@ -5,7 +6,7 @@ module ActiveAdmin
       builder_method :blank_slate
 
       def default_class_name
-        'blank_slate_container'
+        "blank_slate_container"
       end
 
       def build(content)

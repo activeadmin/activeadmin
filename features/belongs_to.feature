@@ -43,9 +43,30 @@ Feature: Belongs To
       end
     """
     When I go to the last author's last post page
-    Then I follow "Edit Post"
+    And I follow "Edit Post"
     Then I should see the element "form[action='/admin/users/2/posts/2']"
-    Then I should see a link to "Hello World" in the breadcrumb
+    And I should see a link to "Hello World" in the breadcrumb
+
+    When I press "Update Post"
+    Then I should see "Post was successfully updated."
+
+  Scenario: Updating a child resource page with custom configuration
+    Given a configuration of:
+    """
+      ActiveAdmin.register User
+      ActiveAdmin.register Post do
+        belongs_to :author, class_name: "User", param: "user_id", route_name: "user"
+        permit_params :title
+
+        form do |f|
+          f.actions
+        end
+      end
+    """
+    When I go to the last author's last post page
+    And I follow "Edit Post"
+    Then I should see the element "form[action='/admin/users/2/posts/2']"
+    And I should see a link to "Hello World" in the breadcrumb
 
     When I press "Update Post"
     Then I should see "Post was successfully updated."
@@ -71,16 +92,33 @@ Feature: Belongs To
       end
     """
     When I go to the last author's posts
-    Then I follow "New Post"
+    And I follow "New Post"
     Then I should see the element "form[action='/admin/users/2/posts']"
-    Then I fill in "Title" with "Hello World"
-    Then I fill in "Body" with "This is the body"
+    When I fill in "Title" with "Hello World"
+    And I fill in "Body" with "This is the body"
 
-    When I press "Create Post"
+    And I press "Create Post"
     Then I should see "Post was successfully created."
     And I should see the attribute "Title" with "Hello World"
     And I should see the attribute "Body" with "This is the body"
     And I should see the attribute "Author" with "Jane Doe"
+
+  Scenario: Creating a child resource page when belongs to defined after permitted params
+    Given a configuration of:
+    """
+      ActiveAdmin.register User
+      ActiveAdmin.register Post do
+        permit_params :title, :body, :published_date
+        belongs_to :user
+
+        form do |f|
+          f.actions
+        end
+      end
+    """
+    When I go to the last author's posts
+    And I follow "New Post"
+    Then I should see the element "form[action='/admin/users/2/posts']"
 
   Scenario: Viewing a child resource page
     Given a configuration of:

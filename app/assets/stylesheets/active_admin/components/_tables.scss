@@ -1,9 +1,12 @@
-//= depend_on_asset "active_admin/orderable.png"
 // ----------------------------------- Tables
 
 table tr {
   td {
     vertical-align: top;
+  }
+
+  th {
+    text-align: left;
   }
 }
 
@@ -18,7 +21,6 @@ table.index_table {
   th {
     @include section-header;
     border-right: none;
-    text-align: left;
     padding-left: $cell-horizontal-padding;
     padding-right: $cell-horizontal-padding;
 
@@ -30,7 +32,7 @@ table.index_table {
     }
 
     &.sortable a {
-      background: image-url('active_admin/orderable.png') no-repeat 0 4px; padding-left: 13px;
+      background: url($orderable-icon-url) no-repeat 0 4px; padding-left: 13px;
     }
 
     &.sorted-asc a { background-position: 0 -27px; }

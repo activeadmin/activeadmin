@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
 
   class Resource
@@ -18,13 +19,13 @@ module ActiveAdmin
 
       def foreign_methods
         @foreign_methods ||= resource_class.reflect_on_all_associations.
-          select{ |r| r.macro == :belongs_to }.
-          reject{ |r| r.chain.length > 2 && !r.options[:polymorphic] }.
-          index_by{ |r| r.foreign_key.to_sym }
+          select { |r| r.macro == :belongs_to }.
+          reject { |r| r.chain.length > 2 && !r.options[:polymorphic] }.
+          index_by { |r| r.foreign_key.to_sym }
       end
 
       def reject_col?(c)
-        primary_col?(c) || sti_col?(c) || counter_cache_col?(c)
+        primary_col?(c) || sti_col?(c) || counter_cache_col?(c) || filtered_col?(c)
       end
 
       def primary_col?(c)
@@ -36,9 +37,12 @@ module ActiveAdmin
       end
 
       def counter_cache_col?(c)
-        c.name.end_with?('_count')
+        c.name.end_with?("_count")
       end
 
+      def filtered_col?(c)
+        ActiveAdmin.application.filter_attributes.include?(c.name.to_sym)
+      end
     end
   end
 end

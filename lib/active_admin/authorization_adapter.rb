@@ -1,15 +1,17 @@
+# frozen_string_literal: true
 module ActiveAdmin
 
   # Default Authorization permissions for Active Admin
   module Authorization
-    READ    = :read
-    CREATE  = :create
-    UPDATE  = :update
+    READ = :read
+    NEW = :new
+    CREATE = :create
+    EDIT = :edit
+    UPDATE = :update
     DESTROY = :destroy
   end
 
   Auth = Authorization
-
 
   # Active Admin's default authorization adapter. This adapter returns true
   # for all requests to `#authorized?`. It should be the starting point for
@@ -18,7 +20,6 @@ module ActiveAdmin
   # To view an example subclass, check out `ActiveAdmin::CanCanAdapter`
   class AuthorizationAdapter
     attr_reader :resource, :user
-
 
     # Initialize a new authorization adapter. This happens on each and
     # every request to a controller.
@@ -53,7 +54,6 @@ module ActiveAdmin
     def authorized?(action, subject = nil)
       true
     end
-
 
     # A hook method for authorization libraries to scope the collection. By
     # default, we just return the same collection. The returned scope is used

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
 
   # Shareable module to give a #display_on?(action) method
@@ -15,7 +16,7 @@ module ActiveAdmin
 
   module OptionalDisplay
     def display_on?(action, render_context = self)
-      return false if @options[:only]   && !@options[:only].include?(action.to_sym)
+      return false if @options[:only] && !@options[:only].include?(action.to_sym)
       return false if @options[:except] && @options[:except].include?(action.to_sym)
 
       case condition = @options[:if]
@@ -31,7 +32,7 @@ module ActiveAdmin
     private
 
     def normalize_display_options!
-      @options[:only]   = Array(@options[:only])   if @options[:only]
+      @options[:only] = Array(@options[:only]) if @options[:only]
       @options[:except] = Array(@options[:except]) if @options[:except]
     end
   end

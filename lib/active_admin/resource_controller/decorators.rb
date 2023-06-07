@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class ResourceController < BaseController
     module Decorators
 
-    protected
+      protected
 
       def apply_decorator(resource)
         decorate? ? decorator_class.new(resource) : resource
@@ -24,11 +25,11 @@ module ActiveAdmin
         end
       end
 
-    private
+      private
 
       def decorate?
         case action_name
-        when 'new', 'edit', 'create', 'update'
+        when "new", "edit", "create", "update"
           form = active_admin_config.get_page_presenter :form
           form && form.options[:decorate] && decorator_class.present?
         else
@@ -53,49 +54,27 @@ module ActiveAdmin
 
         def self.wrap(decorator)
           collection_decorator = find_collection_decorator(decorator)
-
-          if draper_collection_decorator? collection_decorator
-            name = "#{collection_decorator.name} of #{decorator} + ActiveAdmin"
-            @cache[name] ||= wrap! collection_decorator, name
-          else
-            collection_decorator
-          end
+          name = "#{collection_decorator.name} of #{decorator} + ActiveAdmin"
+          @cache[name] ||= wrap! collection_decorator, name
         end
-
-      private
 
         def self.wrap!(parent, name)
           ::Class.new parent do
             delegate :reorder, :page, :current_page, :total_pages, :limit_value,
-                     :total_count, :total_pages, :to_key, :group_values, :except,
-                     :find_each, :ransack
+                     :total_count, :total_pages, :offset, :to_key, :group_values,
+                     :except, :find_each, :ransack, to: :object
 
             define_singleton_method(:name) { name }
           end
         end
 
-        # Draper::CollectionDecorator was introduced in 1.0.0
-        # Draper::Decorator#collection_decorator_class was introduced in 1.3.0
         def self.find_collection_decorator(decorator)
-          if Dependency.draper?    '>= 1.3.0'
+          if decorator.respond_to?(:collection_decorator_class)
             decorator.collection_decorator_class
-          elsif Dependency.draper? '>= 1.0.0'
-            draper_collection_decorator
           else
-            decorator
+            CollectionDecorator
           end
         end
-
-        def self.draper_collection_decorator?(decorator)
-          decorator && decorator <= draper_collection_decorator
-        rescue NameError
-          false
-        end
-
-        def self.draper_collection_decorator
-          ::Draper::CollectionDecorator
-        end
-
       end
     end
   end

@@ -1,7 +1,7 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::ResourceController do
-
   let(:controller) { Admin::PostsController.new }
 
   describe "callbacks" do
@@ -20,6 +20,8 @@ RSpec.describe ActiveAdmin::ResourceController do
         after_destroy :call_after_destroy
 
         controller do
+          private
+
           def call_after_build(obj); end
           def call_before_save(obj); end
           def call_after_save(obj); end
@@ -34,7 +36,7 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing create" do
-      let(:resource){ double("Resource", save: true) }
+      let(:resource) { double("Resource", save: true) }
 
       before do
         expect(resource).to receive(:save)
@@ -44,14 +46,17 @@ RSpec.describe ActiveAdmin::ResourceController do
         expect(controller).to receive(:call_before_create).with(resource)
         controller.send :create_resource, resource
       end
+
       it "should call the before save callback" do
         expect(controller).to receive(:call_before_save).with(resource)
         controller.send :create_resource, resource
       end
+
       it "should call the after save callback" do
         expect(controller).to receive(:call_after_save).with(resource)
         controller.send :create_resource, resource
       end
+
       it "should call the after create callback" do
         expect(controller).to receive(:call_after_create).with(resource)
         controller.send :create_resource, resource
@@ -59,8 +64,8 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing update" do
-      let(:resource){ double("Resource", :attributes= => true, save: true) }
-      let(:attributes){ [{}] }
+      let(:resource) { double("Resource", :attributes= => true, save: true) }
+      let(:attributes) { [{}] }
 
       before do
         expect(resource).to receive(:attributes=).with(attributes[0])
@@ -71,14 +76,17 @@ RSpec.describe ActiveAdmin::ResourceController do
         expect(controller).to receive(:call_before_update).with(resource)
         controller.send :update_resource, resource, attributes
       end
+
       it "should call the before save callback" do
         expect(controller).to receive(:call_before_save).with(resource)
         controller.send :update_resource, resource, attributes
       end
+
       it "should call the after save callback" do
         expect(controller).to receive(:call_after_save).with(resource)
         controller.send :update_resource, resource, attributes
       end
+
       it "should call the after create callback" do
         expect(controller).to receive(:call_after_update).with(resource)
         controller.send :update_resource, resource, attributes
@@ -86,7 +94,7 @@ RSpec.describe ActiveAdmin::ResourceController do
     end
 
     describe "performing destroy" do
-      let(:resource){ double("Resource", destroy: true) }
+      let(:resource) { double("Resource", destroy: true) }
 
       before do
         expect(resource).to receive(:destroy)
@@ -101,6 +109,17 @@ RSpec.describe ActiveAdmin::ResourceController do
         expect(controller).to receive(:call_after_destroy).with(resource)
         controller.send :destroy_resource, resource
       end
+    end
+  end
+
+  describe "action methods" do
+    before do
+      load_resources { ActiveAdmin.register Post }
+    end
+
+    it "should have actual action methods" do
+      controller.class.clear_action_methods! # make controller recalculate :action_methods on the next call
+      expect(controller.action_methods.sort).to eq ["batch_action", "create", "destroy", "edit", "index", "new", "show", "update"]
     end
   end
 end
@@ -130,7 +149,6 @@ RSpec.describe "A specific resource controller", type: :controller do
 
       controller.send(:authenticate_active_admin_user)
     end
-
   end
 
   describe "retrieving the current user" do
@@ -154,14 +172,14 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
   end
 
-  describe 'retrieving the resource' do
+  describe "retrieving the resource" do
     let(:post) { Post.new title: "An incledibly unique Post Title" }
-    let(:http_params){ { id: '1' } }
+    let(:http_params) { { id: "1" } }
 
     before do
       allow(Post).to receive(:find).and_return(post)
       controller.class_eval { public :resource }
-      allow(controller).to receive(:params).and_return( ActionController::Parameters.new(http_params) )
+      allow(controller).to receive(:params).and_return(ActionController::Parameters.new(http_params))
     end
 
     subject { controller.resource }
@@ -170,27 +188,43 @@ RSpec.describe "A specific resource controller", type: :controller do
       expect(subject).to be_kind_of(Post)
     end
 
-    context 'with a decorator' do
+    context "with a decorator" do
       let(:config) { controller.class.active_admin_config }
-      before { config.decorator_class_name = '::PostDecorator' }
-      it 'returns a PostDecorator' do
-        expect(subject).to be_kind_of(PostDecorator)
+
+      context "with a Draper decorator" do
+        before { config.decorator_class_name = "::PostDecorator" }
+
+        it "returns a PostDecorator" do
+          expect(subject).to be_kind_of(PostDecorator)
+        end
+
+        it "returns a PostDecorator that wraps the post" do
+          expect(subject.title).to eq post.title
+        end
       end
 
-      it 'returns a PostDecorator that wraps the post' do
-        expect(subject.title).to eq post.title
+      context "with a PORO decorator" do
+        before { config.decorator_class_name = "::PostPoroDecorator" }
+
+        it "returns a PostDecorator" do
+          expect(subject).to be_kind_of(PostPoroDecorator)
+        end
+
+        it "returns a PostDecorator that wraps the post" do
+          expect(subject.title).to eq post.title
+        end
       end
     end
   end
 
-  describe 'retrieving the resource collection' do
+  describe "retrieving the resource collection" do
     let(:config) { controller.class.active_admin_config }
     before do
-      Post.create!(title: "An incledibly unique Post Title") if Post.count == 0
+      Post.create!(title: "An incledibly unique Post Title")
       config.decorator_class_name = nil
-      request = double 'Request', format: 'application/json'
+      request = double "Request", format: "application/json"
       allow(controller).to receive(:params) { {} }
-      allow(controller).to receive(:request){ request }
+      allow(controller).to receive(:request) { request }
     end
 
     subject { controller.send :collection }
@@ -203,24 +237,23 @@ RSpec.describe "A specific resource controller", type: :controller do
       expect(subject.first).to be_kind_of(Post)
     end
 
-    context 'with a decorator' do
-      before { config.decorator_class_name = 'PostDecorator' }
+    context "with a decorator" do
+      before { config.decorator_class_name = "PostDecorator" }
 
-      it 'returns a collection decorator using PostDecorator' do
+      it "returns a collection decorator using PostDecorator" do
         expect(subject).to be_a Draper::CollectionDecorator
         expect(subject.decorator_class).to eq PostDecorator
       end
 
-      it 'returns a collection decorator that wraps the post' do
+      it "returns a collection decorator that wraps the post" do
         expect(subject.first.title).to eq Post.first.title
       end
     end
   end
 
-
   describe "performing batch_action" do
-    let(:batch_action) { ActiveAdmin::BatchAction.new :flag, "Flag", &batch_action_block }
-    let(:batch_action_block) { proc { } }
+    let(:batch_action) { ActiveAdmin::BatchAction.new *batch_action_args, &batch_action_block }
+    let(:batch_action_block) { proc { self.instance_variable_set :@block_context, self.class } }
     let(:params) { ActionController::Parameters.new(http_params) }
 
     before do
@@ -229,6 +262,7 @@ RSpec.describe "A specific resource controller", type: :controller do
     end
 
     describe "when params batch_action matches existing BatchAction" do
+      let(:batch_action_args) { [:flag, "Flag"] }
 
       let(:http_params) do
         { batch_action: "flag", collection_selection: ["1"] }
@@ -240,35 +274,50 @@ RSpec.describe "A specific resource controller", type: :controller do
       end
 
       it "should call the block in controller scope" do
-        expect(controller).to receive(:render_in_context).with(controller, nil).and_return({})
+        controller.batch_action
+        expect(controller.instance_variable_get(:@block_context)).to eq Admin::PostsController
+      end
+    end
+
+    describe "when params batch_action matches existing BatchAction and form inputs defined" do
+      let(:batch_action_args) { [:flag, "Flag", { form: { type: ["a", "b"] } }] }
+
+      let(:http_params) do
+        { batch_action: "flag", collection_selection: ["1"], batch_action_inputs: '{ "type": "a", "bogus": "param" }' }
+      end
+
+      it "should filter permitted params" do
+        expect(controller).to receive(:instance_exec).with(["1"], { "type" => "a" })
         controller.batch_action
       end
     end
 
     describe "when params batch_action doesn't match a BatchAction" do
+      let(:batch_action_args) { [:flag, "Flag"] }
+
       let(:http_params) do
         { batch_action: "derp", collection_selection: ["1"] }
       end
 
       it "should raise an error" do
-        expect {
+        expect do
           controller.batch_action
-        }.to raise_error("Couldn't find batch action \"derp\"")
+        end.to raise_error("Couldn't find batch action \"derp\"")
       end
     end
 
     describe "when params batch_action is blank" do
+      let(:batch_action_args) { [:flag, "Flag"] }
+
       let(:http_params) do
         { collection_selection: ["1"] }
       end
 
       it "should raise an error" do
-        expect {
+        expect do
           controller.batch_action
-        }.to raise_error("Couldn't find batch action \"\"")
+        end.to raise_error("Couldn't find batch action \"\"")
       end
     end
-
   end
-
 end

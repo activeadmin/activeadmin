@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   # Page is the primary data storage for page configuration in Active Admin
   #
@@ -65,7 +66,7 @@ module ActiveAdmin
     end
 
     def controller_name
-      [namespace.module_name, camelized_resource_name + "Controller"].compact.join('::')
+      [namespace.module_name, camelized_resource_name + "Controller"].compact.join("::")
     end
 
     # Override from `ActiveAdmin::Resource::Controllers`

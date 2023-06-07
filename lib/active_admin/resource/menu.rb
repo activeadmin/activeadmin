@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class Resource
 
@@ -7,12 +8,12 @@ module ActiveAdmin
       # To disable this menu item, call `menu(false)` from the DSL
       def menu_item_options=(options)
         if options == false
-          @include_in_menu   = false
+          @include_in_menu = false
           @menu_item_options = {}
         else
           @include_in_menu = true
           @navigation_menu_name = options[:menu_name]
-          @menu_item_options    = default_menu_options.merge options
+          @menu_item_options = default_menu_options.merge options
         end
       end
 
@@ -26,9 +27,9 @@ module ActiveAdmin
         resource = self
         {
           id: resource_name.plural,
-          label: proc{ resource.plural_resource_label },
-          url:   proc{ resource.route_collection_path(params, url_options) },
-          if:    proc{ authorized?(Auth::READ, menu_resource_class) }
+          label: proc { resource.plural_resource_label },
+          url: proc { resource.route_collection_path(params, url_options) },
+          if: proc { authorized?(Auth::READ, menu_resource_class) }
         }
       end
 

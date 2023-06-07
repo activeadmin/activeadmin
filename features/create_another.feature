@@ -41,7 +41,7 @@ Feature: Create Another checkbox
     """
     When I am on the new post page
     Then I should see the element ".create_another"
-    Then the "Create another Post" checkbox should not be checked
+    And the "Create another Post" checkbox should not be checked
 
   Scenario: Application config of true and a resource config of false
     Given a configuration of:

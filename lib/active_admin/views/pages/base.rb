@@ -1,44 +1,52 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Views
     module Pages
       class Base < Arbre::HTML::Document
 
         def build(*args)
-          super
-          add_classes_to_body
+          set_attribute :lang, I18n.locale
           build_active_admin_head
           build_page
+        end
+
+        alias_method :html_title, :title # Arbre::HTML::Title
+        def title
+          self.class.name
+        end
+
+        def main_content
+          I18n.t("active_admin.main_content", model: title).html_safe
         end
 
         private
 
         delegate :active_admin_config, :controller, :params, to: :helpers
 
-        def add_classes_to_body
-          @body.add_class(params[:action])
-          @body.add_class(params[:controller].tr('/', '_'))
-          @body.add_class("active_admin")
-          @body.add_class("logged_in")
-          @body.add_class(active_admin_namespace.name.to_s + "_namespace")
-        end
-
         def build_active_admin_head
-          within @head do
-            insert_tag Arbre::HTML::Title, [title, render_or_call_method_or_proc_on(self, active_admin_namespace.site_title)].compact.join(" | ")
+          within head do
+            html_title [title, helpers.active_admin_namespace.site_title(self)].compact.join(" | ")
+
+            text_node(active_admin_namespace.head)
+
             active_admin_application.stylesheets.each do |style, options|
-              text_node stylesheet_link_tag(style, options).html_safe
-            end
-
-            active_admin_application.javascripts.each do |path|
-              text_node(javascript_include_tag(path))
-            end
-
-            if active_admin_namespace.favicon
-              text_node(favicon_link_tag(active_admin_namespace.favicon))
+              stylesheet_tag = active_admin_namespace.use_webpacker ? stylesheet_pack_tag(style, **options) : stylesheet_link_tag(style, **options)
+              text_node(stylesheet_tag.html_safe) if stylesheet_tag
             end
 
             active_admin_namespace.meta_tags.each do |name, content|
-              text_node(tag(:meta, name: name, content: content))
+              text_node(meta(name: name, content: content))
+            end
+
+            active_admin_application.javascripts.each do |path|
+              javascript_tag = active_admin_namespace.use_webpacker ? javascript_pack_tag(path) : javascript_include_tag(path)
+              text_node(javascript_tag)
+            end
+
+            if active_admin_namespace.favicon
+              favicon = active_admin_namespace.favicon
+              favicon_tag = active_admin_namespace.use_webpacker ? favicon_pack_tag(favicon) : favicon_link_tag(favicon)
+              text_node(favicon_tag)
             end
 
             text_node csrf_meta_tag
@@ -46,43 +54,46 @@ module ActiveAdmin
         end
 
         def build_page
-          within @body do
+          within body(class: body_classes) do
             div id: "wrapper" do
               build_unsupported_browser
-              build_header
-              build_title_bar
+              header active_admin_namespace, current_menu
+              title_bar title, action_items_for_action
               build_page_content
-              build_footer
+              footer active_admin_namespace
             end
           end
         end
 
+        def body_classes
+          Arbre::HTML::ClassList.new [
+            params[:action],
+            params[:controller].tr("/", "_"),
+            "active_admin", "logged_in",
+            active_admin_namespace.name.to_s + "_namespace"
+          ]
+        end
+
         def build_unsupported_browser
           if active_admin_namespace.unsupported_browser_matcher =~ controller.request.user_agent
-            insert_tag view_factory.unsupported_browser
+            unsupported_browser
           end
-        end
-
-        def build_header
-          insert_tag view_factory.header, active_admin_namespace, current_menu
-        end
-
-        def build_title_bar
-          insert_tag view_factory.title_bar, title, action_items_for_action
         end
 
         def build_page_content
           build_flash_messages
           div id: "active_admin_content", class: (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
             build_main_content_wrapper
-            build_sidebar unless skip_sidebar?
+            sidebar sidebar_sections_for_action, id: "sidebar" unless skip_sidebar?
           end
         end
 
         def build_flash_messages
-          div class: 'flashes' do
-            flash_messages.each do |type, message|
-              div message, class: "flash flash_#{type}"
+          div class: "flashes" do
+            flash_messages.each do |type, messages|
+              [*messages].each do |message|
+                div message, class: "flash flash_#{type}"
+              end
             end
           end
         end
@@ -93,19 +104,6 @@ module ActiveAdmin
               main_content
             end
           end
-        end
-
-        def main_content
-          I18n.t('active_admin.main_content', model: title).html_safe
-        end
-
-        def title
-          self.class.name
-        end
-
-        # Set's the page title for the layout to render
-        def set_page_title
-          set_ivar_on_view "@page_title", title
         end
 
         # Returns the sidebar sections to render for the current action
@@ -125,22 +123,8 @@ module ActiveAdmin
           end
         end
 
-        # Renders the sidebar
-        def build_sidebar
-          div id: "sidebar" do
-            sidebar_sections_for_action.collect do |section|
-              sidebar_section(section)
-            end
-          end
-        end
-
         def skip_sidebar?
           sidebar_sections_for_action.empty? || assigns[:skip_sidebar] == true
-        end
-
-        # Renders the content for the footer
-        def build_footer
-          insert_tag view_factory.footer, active_admin_namespace
         end
 
       end

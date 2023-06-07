@@ -24,5 +24,5 @@ $secondary-gradient-stop: #dfe1e2 !default;
 }
 
 @mixin no-gradient {
-  background-color: none;
+  background: none;
 }

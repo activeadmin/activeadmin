@@ -1,8 +1,8 @@
-require 'rails_helper'
-require 'active_admin/batch_actions/views/batch_action_selector'
+# frozen_string_literal: true
+require "rails_helper"
+require "active_admin/batch_actions/views/batch_action_selector"
 
 RSpec.describe ActiveAdmin::BatchActions::BatchActionSelector do
-
   let(:dropdown) do
     render_arbre_component do
       batch_action_selector [
@@ -18,26 +18,24 @@ RSpec.describe ActiveAdmin::BatchActions::BatchActionSelector do
       dropdown.find_by_class("dropdown_menu_list").first
     end
 
-    describe '#tag_name' do
+    describe "#tag_name" do
       subject { super().tag_name }
       it { is_expected.to eql("ul") }
     end
 
-    describe '#content' do
+    describe "#content" do
       subject { super().content }
-      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_1\"") }
+      it { is_expected.to include("class=\"batch_action\" data-action=\"action_1\"") }
     end
 
-    describe '#content' do
+    describe "#content" do
       subject { super().content }
-      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_2\"") }
+      it { is_expected.to include("class=\"batch_action\" data-action=\"action_2\"") }
     end
 
-    describe '#content' do
+    describe "#content" do
       subject { super().content }
-      it{ is_expected.to include("class=\"batch_action\" data-action=\"action_3\"") }
+      it { is_expected.to include("class=\"batch_action\" data-action=\"action_3\"") }
     end
-
   end
-
 end

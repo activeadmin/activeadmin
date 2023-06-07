@@ -1,7 +1,7 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::Columns do
-
   describe "Rendering zero columns" do
     let(:cols) do
       render_arbre_component do
@@ -81,7 +81,6 @@ RSpec.describe ActiveAdmin::Views::Columns do
       expect(cols.children.size).to eq 4
     end
 
-
     (0..2).to_a.each do |index|
       it "should have column #{index + 1} with width 49% and margin 2%" do
         expect(cols.children[index].attr(:style)).to eq "width: 23.5%; margin-right: 2%;"
@@ -93,14 +92,13 @@ RSpec.describe ActiveAdmin::Views::Columns do
     end
   end
 
-
   describe "Column Spans" do
     let(:cols) do
       render_arbre_component do
         columns do
-          column(span: 2){ "Hello World" }
-          column(){ "Hello World" }
-          column(){ "Hello World" }
+          column(span: 2) { "Hello World" }
+          column() { "Hello World" }
+          column() { "Hello World" }
         end
       end
     end
@@ -115,12 +113,11 @@ RSpec.describe ActiveAdmin::Views::Columns do
   end
 
   describe "Column max width" do
-
     let(:cols) do
       render_arbre_component do
         columns do
-          column(max_width: "100px"){ "Hello World" }
-          column(){ "Hello World" }
+          column(max_width: "100px") { "Hello World" }
+          column() { "Hello World" }
         end
       end
     end
@@ -137,8 +134,8 @@ RSpec.describe ActiveAdmin::Views::Columns do
       let(:cols) do
         render_arbre_component do
           columns do
-            column(max_width: 100){ "Hello World" }
-            column(){ "Hello World" }
+            column(max_width: 100) { "Hello World" }
+            column() { "Hello World" }
           end
         end
       end
@@ -147,16 +144,14 @@ RSpec.describe ActiveAdmin::Views::Columns do
         expect(cols.children.first.attr(:style)).to eq "width: 49.0%; max-width: 100px; margin-right: 2%;"
       end
     end
-
   end
 
   describe "Column min width" do
-
     let(:cols) do
       render_arbre_component do
         columns do
-          column(min_width: "100px"){ "Hello World" }
-          column(){ "Hello World" }
+          column(min_width: "100px") { "Hello World" }
+          column() { "Hello World" }
         end
       end
     end
@@ -173,8 +168,8 @@ RSpec.describe ActiveAdmin::Views::Columns do
       let(:cols) do
         render_arbre_component do
           columns do
-            column(min_width: 100){ "Hello World" }
-            column(){ "Hello World" }
+            column(min_width: 100) { "Hello World" }
+            column() { "Hello World" }
           end
         end
       end
@@ -183,7 +178,5 @@ RSpec.describe ActiveAdmin::Views::Columns do
         expect(cols.children.first.attr(:style)).to eq "width: 49.0%; min-width: 100px; margin-right: 2%;"
       end
     end
-
   end
-
 end

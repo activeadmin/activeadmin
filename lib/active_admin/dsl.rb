@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
 
   # The Active Admin DSL. This class is where all the registration blocks
@@ -83,14 +84,7 @@ module ActiveAdmin
     #                         this action item on.
     #                 :except: A single or array of controller actions not to
     #                          display this action item on.
-    def action_item(name = nil, options = {}, &block)
-      if name.is_a?(Hash)
-        options = name
-        name = nil
-      end
-
-      Deprecation.warn "using `action_item` without a name is deprecated! Use `action_item(:edit)`." unless name
-
+    def action_item(name, options = {}, &block)
       config.add_action_item(name, options, &block)
     end
 
@@ -108,7 +102,7 @@ module ActiveAdmin
     def batch_action(title, options = {}, &block)
       # Create symbol & title information
       if title.is_a? String
-        sym = title.titleize.tr(' ', '').underscore.to_sym
+        sym = title.titleize.tr(" ", "").underscore.to_sym
       else
         sym = title
         title = sym.to_s.titleize
@@ -116,7 +110,7 @@ module ActiveAdmin
 
       # Either add/remove the batch action
       unless options == false
-        config.add_batch_action( sym, title, options, &block )
+        config.add_batch_action(sym, title, options, &block)
       else
         config.remove_batch_action sym
       end
@@ -137,7 +131,7 @@ module ActiveAdmin
     # Pass a block returning the name of a menu you want rendered for the request, being
     # executed in the context of the controller
     #
-    def navigation_menu(menu_name=nil, &block)
+    def navigation_menu(menu_name = nil, &block)
       config.navigation_menu_name = menu_name || block
     end
 

@@ -8,6 +8,7 @@ ja:
     edit: "編集"
     delete: "削除"
     delete_confirmation: "本当に削除しますか？"
+    create_another: "%{model} を続けて作成する"
     new_model: "%{model} を作成する"
     edit_model: "%{model} を編集する"
     delete_model: "%{model} を削除する"
@@ -17,7 +18,7 @@ ja:
     previous: "前"
     next: "次"
     download: "ダウンロード:"
-    has_many_new: "新規に %{model} を追加する"
+    has_many_new: "%{model} を追加する"
     has_many_delete: "削除する"
     has_many_remove: "削除する"
     filters:
@@ -25,12 +26,16 @@ ja:
         filter: "絞り込む"
         clear: "条件を削除する"
       predicates:
-        contains: "含まれています"
+        contains: "を含む"
         equals: "等しい"
         starts_with: "で始まる"
         ends_with: "で終わる"
         greater_than: "より大きい"
         less_than: "より小さい"
+        gteq_datetime: "以上"
+        lteq_datetime: "以下"
+        from: "開始"
+        to: "終了"
     search_status:
       headline: "検索条件:"
       current_scope: "範囲:"
@@ -39,6 +44,7 @@ ja:
     status_tag:
       "yes": "はい"
       "no": "いいえ"
+      "unset": "いいえ"
     main_content: "内容を表示するために %{model}#main_content を実装してください。"
     logout: "ログアウト"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -69,7 +75,6 @@ ja:
         one: "1件の %{model} を削除しました"
         other: "%{count}件の %{plural_model} を削除しました"
       selection_toggle_explanation: "(選択)"
-      link: "作成する"
       action_label: "選択した行を%{title}"
       labels:
         destroy: "削除する"
@@ -79,7 +84,6 @@ ja:
       author_type: "作成者種別"
       body: "本文"
       author: "作成者"
-      title: "コメント"
       add: "コメントを追加"
       delete: "コメントを削除"
       delete_confirmation: "本当にコメントを削除しますか？"
@@ -127,7 +131,7 @@ ja:
     unsupported_browser:
       headline: "ActiveAdminは、Internet Explorer 8以下はサポートはしていません。"
       recommendation: "最新版の<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>、<a href=\"https://chrome.google.com/\">Google Chrome</a>、もしくは<a href=\"https://mozilla.org/firefox/\">Firefox</a>を使うことを推奨します。"
-      turn_off_compatibility_view: "Internet Explorer 9以降を使っている場合、<a href=\"http://windows.microsoft.com/ja-JP/windows7/webpages-look-incorrect-in-Internet-Explorer\">互換表示をオフ</a>にしてください。"
+      turn_off_compatibility_view: "Internet Explorer 9以降を使っている場合、<a href=\"https://support.microsoft.com/ja-jp/help/17471\">互換表示をオフ</a>にしてください。"
     access_denied:
       message: "アクションを実行する権限がありません"
     index_list:

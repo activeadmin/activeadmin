@@ -1,11 +1,12 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 require "rspec/mocks/standalone"
 
 RSpec.describe ActiveAdmin::FormBuilder do
   # Setup an ActionView::Base object which can be used for
   # generating the form for.
   let(:helpers) do
-    view = action_view
+    view = mock_action_view
     def view.posts_path
       "/posts"
     end
@@ -15,35 +16,30 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     def view.url_for(*args)
-      if args.first == {action: "index"}
+      if args.first == { action: "index" }
         posts_path
       else
         super
       end
     end
 
-    def view.a_helper_method
-      "A Helper Method"
-    end
-
-    def view.fa_icon(*args)
-      args.inspect
-    end
-
     def view.action_name
-      'edit'
+      "edit"
     end
 
     view
   end
 
-  def build_form(options = {}, form_object = Post.new, &block)
-    options = {url: helpers.posts_path}.merge(options)
+  def form_html(options = {}, form_object = Post.new, &block)
+    options = { url: helpers.posts_path }.merge(options)
 
-    form = render_arbre_component({form_object: form_object, form_options: options, form_block: block}, helpers) do
+    form = render_arbre_component({ form_object: form_object, form_options: options, form_block: block }, helpers) do
       active_admin_form_for(assigns[:form_object], assigns[:form_options], &assigns[:form_block])
     end.to_s
+  end
 
+  def build_form(options = {}, form_object = Post.new, &block)
+    form = form_html(options, form_object, &block)
     Capybara.string(form)
   end
 
@@ -66,7 +62,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     context "it with custom settings" do
       let :body do
         build_form do |f|
-          f.inputs class: "custom_class", name: 'custom_name', custom_attr: 'custom_attr' do
+          f.inputs class: "custom_class", name: "custom_name", custom_attr: "custom_attr" do
             f.input :title
             f.input :body
           end
@@ -78,7 +74,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should generate a fieldset with a custom legend" do
-        expect(body).to have_css("legend", text: 'custom_name')
+        expect(body).to have_css("legend", text: "custom_name")
       end
 
       it "should generate a fieldset with a custom attributes" do
@@ -101,15 +97,18 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
 
-   it "should generate a text input" do
+    it "should generate a text input" do
       expect(body).to have_selector("input[type=text][name='post[title]']")
     end
+
     it "should generate a textarea" do
       expect(body).to have_selector("textarea[name='post[body]']")
     end
+
     it "should only generate the form once" do
       expect(body).to have_selector("form", count: 1)
     end
+
     it "should generate actions" do
       expect(body).to have_selector("input[type=submit][value='Submit Me']")
       expect(body).to have_selector("input[type=submit][value='Another Button']")
@@ -118,12 +117,12 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
   context "when polymorphic relationship" do
     it "should raise error" do
-      expect {
+      expect do
         comment = ActiveAdmin::Comment.new
-        build_form({url: "admins/comments"}, comment) do |f|
+        build_form({ url: "admins/comments" }, comment) do |f|
           f.inputs :resource
         end
-      }.to raise_error(Formtastic::PolymorphicInputWithoutCollectionError)
+      end.to raise_error(Formtastic::PolymorphicInputWithoutCollectionError)
     end
   end
 
@@ -204,21 +203,20 @@ RSpec.describe ActiveAdmin::FormBuilder do
       expect(body).to have_selector("[type=submit]", count: 2)
       expect(body).to have_selector("[class=cancel]", count: 0)
     end
-
   end
 
   context "with Arbre inside" do
     it "should render the Arbre in the expected place" do
       body = build_form do |f|
         div do
-          h1 'Heading'
+          h1 "Heading"
         end
         f.inputs do
-          span 'Top note'
+          span "Top note"
           f.input :title
-          span 'Bottom note'
+          span "Bottom note"
         end
-        h3 'Footer'
+        h3 "Footer"
         f.actions
       end
 
@@ -227,17 +225,18 @@ RSpec.describe ActiveAdmin::FormBuilder do
       expect(body).to have_selector(".inputs > ol > span")
       expect(body).to have_selector("span", count: 2)
     end
+
     it "should allow a simplified syntax" do
       body = build_form do |f|
         div do
-          h1 'Heading'
+          h1 "Heading"
         end
         inputs do
-          span 'Top note'
+          span "Top note"
           input :title
-          span 'Bottom note'
+          span "Bottom note"
         end
-        h3 'Footer'
+        h3 "Footer"
         actions
       end
 
@@ -257,6 +256,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     it "should have a title input" do
       expect(body).to have_selector("input[type=text][name='post[title]']")
     end
+
     it "should have a body textarea" do
       expect(body).to have_selector("textarea[name='post[body]']")
     end
@@ -309,14 +309,12 @@ RSpec.describe ActiveAdmin::FormBuilder do
         expect(body).to have_selector("[type=radio]", count: 2)
       end
     end
-
   end
 
   context "with inputs component inside has_many" do
-
     def user
       u = User.new
-      u.profile = Profile.new(bio: 'bio')
+      u.profile = Profile.new(bio: "bio")
       u
     end
 
@@ -326,9 +324,9 @@ RSpec.describe ActiveAdmin::FormBuilder do
         f.form_builder.instance_eval do
           @object.author = author
         end
-        f.inputs name: 'Author', for: :author do |author|
+        f.inputs name: "Author", for: :author do |author|
           author.has_many :profile, allow_destroy: true do |profile|
-            profile.inputs  "inputs for profile #{profile.object.bio}" do
+            profile.inputs "inputs for profile #{profile.object.bio}" do
               profile.input :bio
             end
           end
@@ -353,7 +351,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         f.form_builder.instance_eval do
           @object.author = author
         end
-        f.inputs name: 'Author', for: :author do |author|
+        f.inputs name: "Author", for: :author do |author|
           author.has_many :profile, allow_destroy: true do |profile|
             profile.input :bio
           end
@@ -384,6 +382,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       expect(body).to have_selector("[id=post_author_attributes_first_name_input]", count: 1)
       expect(body).to have_selector("[id=post_author_attributes_last_name_input]", count: 1)
     end
+
     it "should add author first and last name fields" do
       expect(body).to have_selector("input[name='post[author_attributes][first_name]']")
       expect(body).to have_selector("input[name='post[author_attributes][last_name]']")
@@ -400,7 +399,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         f.form_builder.instance_eval do
           @object.author = User.new
         end
-        f.inputs name: 'Author', for: :author do |author|
+        f.inputs name: "Author", for: :author do |author|
           author.inputs :first_name, :last_name
         end
       end
@@ -419,7 +418,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         f.form_builder.instance_eval do
           @object.author = User.new
         end
-        f.inputs name: 'Author', for: :author do |author|
+        f.inputs name: "Author", for: :author do |author|
           author.input :first_name
           author.input :last_name
         end
@@ -435,7 +434,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         f.form_builder.instance_eval do
           @object.author = User.new
         end
-        f.inputs name: 'Author', for: :author do |author|
+        f.inputs name: "Author", for: :author do |author|
           author.input :first_name
           author.input :last_name
         end
@@ -485,7 +484,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
   context "with has many inputs" do
     describe "with simple block" do
       let :body do
-        build_form({url: '/categories'}, Category.new) do |f|
+        build_form({ url: "/categories" }, Category.new) do |f|
           f.object.posts.build
           f.has_many :posts do |p|
             p.input :title
@@ -498,8 +497,10 @@ RSpec.describe ActiveAdmin::FormBuilder do
       let(:valid_html_id) { /^[A-Za-z]+[\w\-\:\.]*$/ }
 
       it "should translate the association name in header" do
-        with_translation activerecord: {models: {post: {one: 'Blog Post', other: 'Blog Posts'}}} do
-          expect(body).to have_selector("h3", text: "Blog Posts")
+        with_translation %i[activerecord models post one], "Blog Post" do
+          with_translation %i[activerecord models post other], "Blog Posts" do
+            expect(body).to have_selector("h3", text: "Blog Posts")
+          end
         end
       end
 
@@ -508,13 +509,15 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should translate the association name in has many new button" do
-        with_translation activerecord: {models: {post: {one: 'Blog Post', other: 'Blog Posts'}}} do
-          expect(body).to have_selector("a", text: "Add New Blog Post")
+        with_translation %i[activerecord models post one], "Blog Post" do
+          with_translation %i[activerecord models post other], "Blog Posts" do
+            expect(body).to have_selector("a", text: "Add New Blog Post")
+          end
         end
       end
 
       it "should translate the attribute name" do
-        with_translation activerecord: {attributes: {post: {title: 'A very nice title'}}} do
+        with_translation %i[activerecord attributes post title], "A very nice title" do
           expect(body).to have_selector("label", text: "A very nice title")
         end
       end
@@ -537,14 +540,14 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should set an HTML-id valid placeholder" do
-        link = body.find('.has_many_container > a.button.has_many_add')
+        link = body.find(".has_many_container > a.button.has_many_add")
         expect(link[:'data-placeholder']).to match valid_html_id
       end
 
       describe "with namespaced model" do
         it "should set an HTML-id valid placeholder" do
           allow(Post).to receive(:name).and_return "ActiveAdmin::Post"
-          link = body.find('.has_many_container > a.button.has_many_add')
+          link = body.find(".has_many_container > a.button.has_many_add")
           expect(link[:'data-placeholder']).to match valid_html_id
         end
       end
@@ -552,7 +555,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
     describe "with complex block" do
       let :body do
-        build_form({url: '/categories'}, Category.new) do |f|
+        build_form({ url: "/categories" }, Category.new) do |f|
           f.object.posts.build
           f.has_many :posts do |p, i|
             p.input :title, label: "Title #{i}"
@@ -571,7 +574,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
     describe "without heading and new record link" do
       let :body do
-        build_form({url: '/categories'}, Category.new) do |f|
+        build_form({ url: "/categories" }, Category.new) do |f|
           f.object.posts.build
           f.has_many :posts, heading: false, new_record: false do |p|
             p.input :title
@@ -594,7 +597,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
     describe "with custom heading" do
       let :body do
-        build_form({url: '/categories'}, Category.new) do |f|
+        build_form({ url: "/categories" }, Category.new) do |f|
           f.object.posts.build
           f.has_many :posts, heading: "Test heading" do |p|
             p.input :title
@@ -609,9 +612,9 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
     describe "with custom new record link" do
       let :body do
-        build_form({url: '/categories'}, Category.new) do |f|
+        build_form({ url: "/categories" }, Category.new) do |f|
           f.object.posts.build
-          f.has_many :posts, new_record: 'My Custom New Post' do |p|
+          f.has_many :posts, new_record: "My Custom New Post" do |p|
             p.input :title
           end
         end
@@ -637,7 +640,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "should wrap the destroy field in an li with class 'has_many_delete'" do
-          expect(body).to have_selector(".has_many_container > fieldset > ol > li.has_many_delete > input", count: 1)
+          expect(body).to have_selector(".has_many_container > fieldset > ol > li.has_many_delete > input", count: 1, visible: false)
         end
       end
 
@@ -647,7 +650,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "should not have a boolean field for _destroy" do
-          expect(body).not_to have_selector("input[name='category[posts_attributes][#{child_num}][_destroy]']")
+          expect(body).not_to have_selector("input[name='category[posts_attributes][#{child_num}][_destroy]']", visible: :all)
         end
 
         it "should not have a check box with 'Remove' as its label" do
@@ -658,7 +661,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       shared_examples_for "has many with allow_destroy as String, Symbol or Proc" do |allow_destroy_option|
         let :body do
           s = self
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: "/categories" }, Category.new) do |f|
             s.instance_exec do
               allow(f.object.posts.build).to receive(:foo?).and_return(true)
               allow(f.object.posts.build).to receive(:foo?).and_return(false)
@@ -673,11 +676,11 @@ RSpec.describe ActiveAdmin::FormBuilder do
           end
         end
 
-        context 'for the child that responds with true' do
+        context "for the child that responds with true" do
           it_behaves_like "has many with allow_destroy = true", 0
         end
 
-        context 'for the child that responds with false' do
+        context "for the child that responds with false" do
           it_behaves_like "has many with allow_destroy = false", 1
         end
       end
@@ -686,7 +689,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         context "with allow_destroy = true" do
           let :body do
             s = self
-            build_form({url: '/categories'}, Category.new) do |f|
+            build_form({ url: "/categories" }, Category.new) do |f|
               s.instance_exec do
                 allow(f.object.posts.build).to receive(:new_record?).and_return(false)
               end
@@ -702,7 +705,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         context "with allow_destroy = false" do
           let :body do
             s = self
-            build_form({url: '/categories'}, Category.new) do |f|
+            build_form({ url: "/categories" }, Category.new) do |f|
               s.instance_exec do
                 allow(f.object.posts.build).to receive(:new_record?).and_return(false)
               end
@@ -718,7 +721,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         context "with allow_destroy = nil" do
           let :body do
             s = self
-            build_form({url: '/categories'}, Category.new) do |f|
+            build_form({ url: "/categories" }, Category.new) do |f|
               s.instance_exec do
                 allow(f.object.posts.build).to receive(:new_record?).and_return(false)
               end
@@ -740,19 +743,21 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         context "with allow_destroy as proc" do
-          it_behaves_like("has many with allow_destroy as String, Symbol or Proc",
-                          Proc.new { |child| child.foo? })
+          it_behaves_like(
+            "has many with allow_destroy as String, Symbol or Proc",
+            Proc.new { |child| child.foo? })
         end
 
         context "with allow_destroy as lambda" do
-          it_behaves_like("has many with allow_destroy as String, Symbol or Proc",
-                          lambda { |child| child.foo? })
+          it_behaves_like(
+            "has many with allow_destroy as String, Symbol or Proc",
+            lambda { |child| child.foo? })
         end
 
         context "with allow_destroy as any other expression that evaluates to true" do
           let :body do
             s = self
-            build_form({url: '/categories'}, Category.new) do |f|
+            build_form({ url: "/categories" }, Category.new) do |f|
               s.instance_exec do
                 allow(f.object.posts.build).to receive(:new_record?).and_return(false)
               end
@@ -769,7 +774,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       context "with a new post" do
         context "with allow_destroy = true" do
           let :body do
-            build_form({url: '/categories'}, Category.new) do |f|
+            build_form({ url: "/categories" }, Category.new) do |f|
               f.object.posts.build
               f.has_many :posts, allow_destroy: true do |p|
                 p.input :title
@@ -786,7 +791,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       # TODO: it doesn't make any sense to use your foreign key as something that's sortable (and therefore editable)
       context "with a new post" do
         let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: "/categories" }, Category.new) do |f|
             f.object.posts.build
             f.has_many :posts, sortable: :position do |p|
               p.input :title
@@ -797,12 +802,11 @@ RSpec.describe ActiveAdmin::FormBuilder do
         it "shows the nested fields for unsaved records" do
           expect(body).to have_selector("fieldset.inputs.has_many_fields")
         end
-
       end
 
       context "with post returning nil for the sortable attribute" do
         let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: "/categories" }, Category.new) do |f|
             f.object.posts.build position: 3
             f.object.posts.build
             f.has_many :posts, sortable: :position do |p|
@@ -814,18 +818,17 @@ RSpec.describe ActiveAdmin::FormBuilder do
         it "shows the nested fields for unsaved records" do
           expect(body).to have_selector("fieldset.inputs.has_many_fields")
         end
-
       end
 
       context "with existing and new posts" do
         let! :category do
-          Category.create name: 'Name'
+          Category.create name: "Name"
         end
         let! :post do
           category.posts.create
         end
         let :body do
-          build_form({url: '/categories'}, category) do |f|
+          build_form({ url: "/categories" }, category) do |f|
             f.object.posts.build
             f.has_many :posts, sortable: :position do |p|
               p.input :title
@@ -840,7 +843,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
       context "without sortable_start set" do
         let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: "/categories" }, Category.new) do |f|
             f.object.posts.build
             f.has_many :posts, sortable: :position do |p|
               p.input :title
@@ -855,7 +858,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
       context "with sortable_start set" do
         let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: "/categories" }, Category.new) do |f|
             f.object.posts.build
             f.has_many :posts, sortable: :position, sortable_start: 15 do |p|
               p.input :title
@@ -872,7 +875,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     describe "with nesting" do
       context "in an inputs block" do
         let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+          build_form({ url: "/categories" }, Category.new) do |f|
             f.inputs "Field Wrapper" do
               f.object.posts.build
               f.has_many :posts do |p|
@@ -896,20 +899,25 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       context "in another has_many block" do
-        let :body do
-          build_form({url: '/categories'}, Category.new) do |f|
+        let :body_html do
+          form_html({ url: "/categories" }, Category.new) do |f|
             f.object.posts.build
             f.has_many :posts do |p|
               p.object.taggings.build
+              p.input :title
+
               p.has_many :taggings do |t|
                 t.input :tag
+                t.input :position
               end
             end
           end
         end
+        let(:body) { Capybara.string body_html }
 
-        it "should wrap the inner has_many fieldset in an ol > li" do
-          expect(body).to have_selector(".has_many_container ol > li.has_many_container > fieldset")
+        it "displays the input between the outer and inner has_many" do
+          expect(body).to have_selector(".has_many_container ol > li:first-child input#category_posts_attributes_0_title")
+          expect(body).to have_selector(".has_many_container ol > li:nth-child(2).has_many_container > fieldset")
         end
 
         it "should not contain invalid li children" do
@@ -919,7 +927,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     it "should render the block if it returns nil" do
-      body = build_form({url: '/categories'}, Category.new) do |f|
+      body = build_form({ url: "/categories" }, Category.new) do |f|
         f.object.posts.build
         f.has_many :posts do |p|
           p.input :title
@@ -932,30 +940,30 @@ RSpec.describe ActiveAdmin::FormBuilder do
   end
 
   { # Testing that the same input can be used multiple times
-    "f.input :title, as: :string"               => "post_title",
-    "f.input :title, as: :text"                 => "post_title",
-    "f.input :created_at, as: :time_select"     => "post_created_at_2i",
+    "f.input :title, as: :string" => "post_title",
+    "f.input :title, as: :text" => "post_title",
+    "f.input :created_at, as: :time_select" => "post_created_at_2i",
     "f.input :created_at, as: :datetime_select" => "post_created_at_2i",
-    "f.input :created_at, as: :date_select"     => "post_created_at_2i",
+    "f.input :created_at, as: :date_select" => "post_created_at_2i",
     # Testing that return values don't screw up the form
-    "f.input :title; nil"                          => "post_title",
-    "f.input :title; []"                           => "post_title",
-    "[:title].each{ |r| f.input r }"               => "post_title",
-    "[:title].map { |r| f.input r }"               => "post_title",
+    "f.input :title; nil" => "post_title",
+    "f.input :title; []" => "post_title",
+    "[:title].each{ |r| f.input r }" => "post_title",
+    "[:title].map { |r| f.input r }" => "post_title",
   }.each do |source, selector|
-   it "should properly buffer `#{source}`" do
-     body = build_form do |f|
-       f.inputs do
-         eval source
-         eval source
-       end
-     end
-     expect(body).to have_selector("[id=#{selector}]", count: 2)
-   end
+    it "should properly buffer `#{source}`" do
+      body = build_form do |f|
+        f.inputs do
+          eval source
+          eval source
+        end
+      end
+      expect(body).to have_selector("[id=#{selector}]", count: 2, visible: :all)
+    end
   end
 
   describe "datepicker input" do
-    context 'with default options' do
+    context "with default options" do
       let :body do
         build_form do |f|
           f.inputs do
@@ -968,22 +976,36 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
 
-    context 'with date range options' do
+    context "with date range options" do
       let :body do
         build_form do |f|
           f.inputs do
             f.input :created_at, as: :datepicker,
-                                  datepicker_options: {
-                                    min_date: Date.new(2013, 10, 18),
-                                    max_date: "2013-12-31" }
+                                 datepicker_options: {
+                                   min_date: Date.new(2013, 10, 18),
+                                   max_date: "2013-12-31" }
           end
         end
       end
 
-      it 'should generate a datepicker text input with data min and max dates' do
+      it "should generate a datepicker text input with data min and max dates" do
         selector = "input.datepicker[type=text][name='post[created_at]']"
         expect(body).to have_selector(selector)
-        expect(body.find(selector)["data-datepicker-options"]).to eq({ minDate: '2013-10-18', maxDate: '2013-12-31' }.to_json)
+        expect(body.find(selector)["data-datepicker-options"]).to eq({ minDate: "2013-10-18", maxDate: "2013-12-31" }.to_json)
+      end
+    end
+
+    describe "with label as proc" do
+      let :body do
+        build_form do |f|
+          f.inputs do
+            f.input :created_at, as: :datepicker, label: proc { "Title from proc" }
+          end
+        end
+      end
+
+      it "should render proper label" do
+        expect(body).to have_selector("label", text: "Title from proc")
       end
     end
   end

@@ -1,17 +1,15 @@
+# frozen_string_literal: true
 module ActiveAdminIntegrationSpecHelper
-  extend self
+  def with_resources_during(example)
+    load_resources { yield }
 
-  def load_defaults!
-    ActiveAdmin.unload!
-    ActiveAdmin.load!
-    ActiveAdmin.register(Category)
-    ActiveAdmin.register(User)
-    ActiveAdmin.register(Post){ belongs_to :user, optional: true }
-    reload_menus!
+    example.run
+
+    load_resources {}
   end
 
   def reload_menus!
-    ActiveAdmin.application.namespaces.each{|n| n.reset_menu! }
+    ActiveAdmin.application.namespaces.each { |n| n.reset_menu! }
   end
 
   # Sometimes we need to reload the routes within
@@ -43,31 +41,70 @@ module ActiveAdminIntegrationSpecHelper
     arbre(assigns, helpers, &block).children.first
   end
 
-  # Returns a fake action view instance to use with our renderers
-  def mock_action_view(assigns = {})
-    controller = ActionView::TestCase::TestController.new
-    #this line needed because of rails bug https://github.com/rails/rails/commit/d8e98897b5703ac49bf0764da71a06d64ecda9b0
-    controller.params = ActionController::Parameters.new
-    MockActionView.new(ActionController::Base.view_paths, assigns, controller)
-  end
-  alias_method :action_view, :mock_action_view
-
   # A mock action view to test view helpers
   class MockActionView < ::ActionView::Base
     include ActiveAdmin::ViewHelpers
     include Rails.application.routes.url_helpers
+
+    def compiled_method_container
+      self.class
+    end
   end
 
-  def with_translation(translation)
-    # If no translations have been loaded, any later calls to `I18n.t` will
-    # cause the full translation hash to be loaded, possibly overwritting what
-    # we've loaded via `store_translations`. We use this hack to prevent that.
-    # @todo Might not be necessary anymore once
-    # https://github.com/svenfuchs/i18n/pull/353 lands.
-    I18n.backend.send(:init_translations)
-    I18n.backend.store_translations I18n.locale, translation
+  # Returns a fake action view instance to use with our renderers
+  def mock_action_view(base = MockActionView)
+    controller = ActionView::TestCase::TestController.new
+
+    base.new(view_paths, {}, controller)
+  end
+
+  # Instantiates a fake decorated controller ready to unit test for a specific action
+  def controller_with_decorator(action, decorator_class)
+    method = action == "index" ? :apply_collection_decorator : :apply_decorator
+
+    controller_class = Class.new do
+      include ActiveAdmin::ResourceController::Decorators
+
+      public method
+    end
+
+    active_admin_config = double(decorator_class: decorator_class)
+
+    if action != "index"
+      form_presenter = double(options: { decorate: !decorator_class.nil? })
+
+      allow(active_admin_config).to receive(:get_page_presenter).with(:form).and_return(form_presenter)
+    end
+
+    controller = controller_class.new
+
+    allow(controller).to receive(:active_admin_config).and_return(active_admin_config)
+    allow(controller).to receive(:action_name).and_return(action)
+
+    controller
+  end
+
+  def view_paths
+    paths = ActionController::Base.view_paths
+    ActionView::LookupContext.new(paths)
+  end
+
+  def with_translation(scope, value)
+    previous_value = nil
+
+    previous_scope = scope.each_with_object([]) do |part, subscope|
+      subscope << part
+      previous_value = I18n.t(subscope.join("."), default: nil)
+      break subscope if previous_value.nil?
+    end
+
+    I18n.backend.store_translations I18n.locale, to_translation_hash(scope, value)
     yield
   ensure
-    I18n.backend.reload!
+    I18n.backend.store_translations I18n.locale, to_translation_hash(previous_scope, previous_value)
+  end
+
+  def to_translation_hash(scope, value)
+    scope.reverse.inject(value) { |assigned_value, key| { key => assigned_value } }
   end
 end

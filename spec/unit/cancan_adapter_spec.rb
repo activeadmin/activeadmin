@@ -1,12 +1,11 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::CanCanAdapter do
-
   describe "full integration" do
-
-    let(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ ActiveAdmin::Namespace.new(application, "Admin") }
-    let(:resource){ namespace.register(Post) }
+    let(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
+    let(:resource) { namespace.register(Post) }
 
     let :ability_class do
       Class.new do
@@ -14,9 +13,9 @@ RSpec.describe ActiveAdmin::CanCanAdapter do
 
         def initialize(user)
           can :read, Post
+          can :create, Post
           cannot :update, Post
         end
-
       end
     end
 
@@ -32,12 +31,15 @@ RSpec.describe ActiveAdmin::CanCanAdapter do
       expect(auth.authorized?(:update, Post)).to eq false
     end
 
+    it "should treat :new ability the same as :create" do
+      expect(auth.authorized?(:new, Post)).to eq true
+      expect(auth.authorized?(:create, Post)).to eq true
+    end
+
     it "should scope the collection with accessible_by" do
       collection = double
       expect(collection).to receive(:accessible_by).with(auth.cancan_ability, :edit)
       auth.scope_collection(collection, :edit)
     end
-
   end
-
 end

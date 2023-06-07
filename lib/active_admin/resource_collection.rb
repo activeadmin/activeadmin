@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   # This is a container for resources, which acts much like a Hash.
   # It's assumed that an added resource responds to `resource_name`.
@@ -38,12 +39,12 @@ module ActiveAdmin
         r.resource_class.to_s == obj.to_s
       end ||
       if obj.respond_to? :base_class
-        resources.detect{ |r| r.resource_class.to_s == obj.base_class.to_s }
+        resources.detect { |r| r.resource_class.to_s == obj.base_class.to_s }
       end
     end
 
     def resources
-      select{ |r| r.class <= Resource } # can otherwise be a Page
+      select { |r| r.class <= Resource } # can otherwise be a Page
     end
 
     def raise_if_mismatched!(existing, given)

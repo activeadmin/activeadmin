@@ -1,5 +1,6 @@
-require 'active_admin/helpers/collection'
-require 'active_admin/view_helpers/download_format_links_helper'
+# frozen_string_literal: true
+require "active_admin/helpers/collection"
+require "active_admin/view_helpers/download_format_links_helper"
 
 module ActiveAdmin
   module Views
@@ -38,12 +39,12 @@ module ActiveAdmin
       #   download_links => Download links override (false or [:csv, :pdf])
       #
       def build(collection, options = {})
-        @collection     = collection
-        @params         = options.delete(:params)
-        @param_name     = options.delete(:param_name)
+        @collection = collection
+        @params = options.delete(:params)
+        @param_name = options.delete(:param_name)
         @download_links = options.delete(:download_links)
-        @display_total  = options.delete(:pagination_total) { true }
-        @per_page       = options.delete(:per_page)
+        @display_total = options.delete(:pagination_total) { true }
+        @per_page = options.delete(:per_page)
 
         unless collection.respond_to?(:total_pages)
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
@@ -92,22 +93,22 @@ module ActiveAdmin
       end
 
       def build_pagination
-        options = {}
-        options[:params]     = @params     if @params
+        options = { theme: @display_total ? "active_admin" : "active_admin_countless" }
+        options[:params] = @params if @params
         options[:param_name] = @param_name if @param_name
 
-        if !@display_total && collection.respond_to?(:offset)
+        if !@display_total
           # The #paginate method in kaminari will query the resource with a
           # count(*) to determine how many pages there should be unless
           # you pass in the :total_pages option. We issue a query to determine
           # if there is another page or not, but the limit/offset make this
           # query fast.
-          offset = collection.offset(collection.current_page * @per_page.to_i).limit(1).count
+          offset = collection.offset(collection.current_page * collection.limit_value).limit(1).count
           options[:total_pages] = collection.current_page + offset
           options[:right] = 0
         end
 
-        text_node paginate collection, options
+        text_node paginate collection, **options
       end
 
       include ::ActiveAdmin::Helpers::Collection
@@ -116,27 +117,28 @@ module ActiveAdmin
       # modified from will_paginate
       def page_entries_info(options = {})
         if options[:entry_name]
-          entry_name   = options[:entry_name]
+          entry_name = options[:entry_name]
           entries_name = options[:entries_name] || entry_name.pluralize
         elsif collection_is_empty?
-          entry_name   = I18n.t "active_admin.pagination.entry", count: 1, default: 'entry'
-          entries_name = I18n.t "active_admin.pagination.entry", count: 2, default: 'entries'
+          entry_name = I18n.t "active_admin.pagination.entry", count: 1, default: "entry"
+          entries_name = I18n.t "active_admin.pagination.entry", count: 2, default: "entries"
         else
           key = "activerecord.models." + collection.first.class.model_name.i18n_key.to_s
-          entry_name   = I18n.translate key, count: 1,               default: collection.first.class.name.underscore.sub('_', ' ')
+
+          entry_name = I18n.translate key, count: 1, default: collection.first.class.name.underscore.sub("_", " ")
           entries_name = I18n.translate key, count: collection.size, default: entry_name.pluralize
         end
 
         if @display_total
           if collection.total_pages < 2
             case collection_size
-            when 0; I18n.t("active_admin.pagination.empty",    model: entries_name)
-            when 1; I18n.t("active_admin.pagination.one",      model: entry_name)
-            else;   I18n.t("active_admin.pagination.one_page", model: entries_name, n: collection.total_count)
+            when 0; I18n.t("active_admin.pagination.empty", model: entries_name)
+            when 1; I18n.t("active_admin.pagination.one", model: entry_name)
+            else; I18n.t("active_admin.pagination.one_page", model: entries_name, n: collection.total_count)
             end
           else
             offset = (collection.current_page - 1) * collection.limit_value
-            total  = collection.total_count
+            total = collection.total_count
             I18n.t "active_admin.pagination.multiple",
                    model: entries_name,
                    total: total,

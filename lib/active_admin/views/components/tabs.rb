@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Views
     class Tabs < ActiveAdmin::Component
@@ -10,18 +11,30 @@ module ActiveAdmin
       end
 
       def build(&block)
-        @menu = ul(class: 'nav nav-tabs', role: "tablist")
-        @tabs_content = div(class: 'tab-content')
+        @menu = ul(class: "nav nav-tabs", role: "tablist")
+        @tabs_content = div(class: "tab-content")
       end
 
       def build_menu_item(title, options, &block)
-        options = options.reverse_merge({})
-        li { link_to title, "##{title.parameterize}", options }
+        fragment = options.fetch(:id, fragmentize(title))
+
+        html_options = options.fetch(:html_options, {})
+        li html_options do
+          link_to title, "##{fragment}"
+        end
       end
 
       def build_content_item(title, options, &block)
-        options = options.reverse_merge(id: title.parameterize)
+        options = options.reverse_merge(id: fragmentize(title))
         div(options, &block)
+      end
+
+      private
+
+      def fragmentize(string)
+        result = string.parameterize
+        result = CGI.escape(string) if result.blank?
+        result
       end
     end
   end

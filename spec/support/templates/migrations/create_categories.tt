@@ -1,0 +1,10 @@
+class CreateCategories < ActiveRecord::Migration[<%= Rails::VERSION::MAJOR %>.<%= Rails::VERSION::MINOR %>]
+  def change
+    create_table :categories do |t|
+      t.string :name
+      t.text :description
+      t.datetime :created_at
+      t.datetime :updated_at
+    end
+  end
+end

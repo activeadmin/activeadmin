@@ -1,11 +1,11 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
-require 'active_admin/abstract_view_factory'
+require "active_admin/abstract_view_factory"
 
 RSpec.describe ActiveAdmin::AbstractViewFactory do
-
-  let(:view_factory){ ActiveAdmin::AbstractViewFactory.new }
-  let(:view){ Class.new }
+  let(:view_factory) { ActiveAdmin::AbstractViewFactory.new }
+  let(:view) { ActiveAdmin::Component }
 
   describe "registering a new view key" do
     before do
@@ -52,6 +52,7 @@ RSpec.describe ActiveAdmin::AbstractViewFactory do
     it "should generate a getter method" do
       expect(view_factory.my_default_view_class).to eq view
     end
+
     it "should be settable view a setter method and not change default" do
       view_factory.my_default_view_class = "Some Obj"
       expect(view_factory.my_default_view_class).to eq "Some Obj"
@@ -61,7 +62,7 @@ RSpec.describe ActiveAdmin::AbstractViewFactory do
 
   describe "subclassing the ViewFactory" do
     let(:subclass) do
-      ActiveAdmin::AbstractViewFactory.register my_subclassed_view: "From Parent"
+      ActiveAdmin::AbstractViewFactory.register my_subclassed_view: view
       Class.new(ActiveAdmin::AbstractViewFactory) do
         def my_subclassed_view
           "From Subclass"
@@ -74,6 +75,4 @@ RSpec.describe ActiveAdmin::AbstractViewFactory do
       expect(factory.my_subclassed_view).to eq "From Subclass"
     end
   end
-
-
 end

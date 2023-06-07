@@ -1,11 +1,10 @@
-require 'active_admin/filters/active'
-
+# frozen_string_literal: true
 module ActiveAdmin
   module Filters
 
     class Disabled < RuntimeError
-      def initialize
-        super "Can't remove a filter when filters are disabled. Enable filters with 'config.filters = true'"
+      def initialize(action)
+        super "Cannot #{action} a filter when filters are disabled. Enable filters with 'config.filters = true'"
       end
     end
 
@@ -62,7 +61,7 @@ module ActiveAdmin
       #
       # @param [Symbol] attributes The attributes to not filter on
       def remove_filter(*attributes)
-        raise Disabled unless filters_enabled?
+        raise Disabled, "remove" unless filters_enabled?
 
         attributes.each { |attribute| (@filters_to_remove ||= []) << attribute.to_sym }
       end
@@ -74,7 +73,7 @@ module ActiveAdmin
       # @param [Hash] options The set of options that are passed through to
       #                       ransack for the field definition.
       def add_filter(attribute, options = {})
-        raise Disabled unless filters_enabled?
+        raise Disabled, "add" unless filters_enabled?
 
         (@filters ||= {})[attribute.to_sym] = options
       end
@@ -85,7 +84,7 @@ module ActiveAdmin
         @filters_to_remove = nil
       end
 
-    private
+      private
 
       # Collapses the waveform, if you will, of which filters should be displayed.
       # Removes filters and adds in default filters as desired.
@@ -125,16 +124,40 @@ module ActiveAdmin
       # Returns a default set of filters for the associations
       def default_association_filters
         if resource_class.respond_to?(:reflect_on_all_associations)
-          poly, not_poly = resource_class.reflect_on_all_associations.partition{ |r| r.macro == :belongs_to && r.options[:polymorphic] }
+          poly, not_poly = resource_class.reflect_on_all_associations.partition { |r| r.macro == :belongs_to && r.options[:polymorphic] }
 
           # remove deeply nested associations
-          not_poly.reject!{ |r| r.chain.length > 2 }
+          not_poly.reject! { |r| r.chain.length > 2 }
 
           filters = poly.map(&:foreign_type) + not_poly.map(&:name)
+
+          # Check high-arity associations for filterable columns
+          max = namespace.maximum_association_filter_arity
+          if max != :unlimited
+            high_arity, low_arity = not_poly.partition do |r|
+              r.klass.reorder(nil).limit(max + 1).count > max
+            end
+
+            # Remove high-arity associations with no searchable column
+            high_arity = high_arity.select(&method(:searchable_column_for))
+
+            high_arity = high_arity.map { |r| r.name.to_s + "_" + searchable_column_for(r) + namespace.filter_method_for_large_association }
+
+            filters = poly.map(&:foreign_type) + low_arity.map(&:name) + high_arity
+          end
+
           filters.map &:to_sym
         else
           []
         end
+      end
+
+      def search_columns
+        @search_columns ||= namespace.filter_columns_for_large_association.map(&:to_s)
+      end
+
+      def searchable_column_for(relation)
+        relation.klass.column_names.find { |name| search_columns.include?(name) }
       end
 
       def add_filters_sidebar_section
@@ -142,41 +165,15 @@ module ActiveAdmin
       end
 
       def filters_sidebar_section
-        ActiveAdmin::SidebarSection.new :filters, only: :index, if: ->{ active_admin_config.filters.any? } do
-          active_admin_filters_form_for assigns[:search], active_admin_config.filters
+        ActiveAdmin::SidebarSection.new :filters, only: :index, if: -> { active_admin_config.filters.any? } do
+          active_admin_filters_form_for assigns[:search], **active_admin_config.filters
         end
       end
 
       def add_search_status_sidebar_section
-        self.sidebar_sections << search_status_section
+        self.sidebar_sections << ActiveAdmin::Filters::ActiveSidebar.new
       end
 
-      def search_status_section
-        ActiveAdmin::SidebarSection.new I18n.t("active_admin.search_status.headline"), only: :index, if: -> {active_admin_config.current_filters_enabled? && (params[:q] || params[:scope]) } do
-          active = ActiveAdmin::Filters::Active.new(resource_class, params)
-
-          span do
-            h4 I18n.t("active_admin.search_status.current_scope"), style: 'display: inline'
-            b active.scope, style: "display: inline"
-
-            div style: "margin-top: 10px" do
-              h4 I18n.t("active_admin.search_status.current_filters"), style: 'margin-bottom: 10px'
-              ul do
-                if active.filters.blank?
-                  li I18n.t("active_admin.search_status.no_current_filters")
-                else
-                  active.filters.each do |filter|
-                    li do
-                      span filter.body
-                      b filter.value
-                    end
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
     end
 
   end

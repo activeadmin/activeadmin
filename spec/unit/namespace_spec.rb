@@ -1,11 +1,11 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Namespace do
-
-  let(:application){ ActiveAdmin::Application.new }
+  let(:application) { ActiveAdmin::Application.new }
 
   context "when new" do
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
 
     it "should have an application instance" do
       expect(namespace.application).to eq application
@@ -37,7 +37,11 @@ RSpec.describe ActiveAdmin::Namespace do
         ActiveAdmin.application.namespaces.instance_variable_get(:@namespaces).delete(:root)
 
         # To force Admin::PostsController to not be there
-        Admin.send(:remove_const, 'PostsController')
+        Admin.send(:remove_const, "PostsController")
+      end
+
+      after do
+        load_resources {}
       end
 
       it "should not crash" do
@@ -47,10 +51,12 @@ RSpec.describe ActiveAdmin::Namespace do
   end
 
   describe "settings" do
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
 
     it "should inherit the site title from the application" do
-      ActiveAdmin::Namespace.setting :site_title, "Not the Same"
+      ActiveSupport::Deprecation.silence do
+        ActiveAdmin::Namespace.setting :site_title, "Not the Same"
+      end
       expect(namespace.site_title).to eq application.site_title
     end
 
@@ -61,9 +67,8 @@ RSpec.describe ActiveAdmin::Namespace do
     end
   end
 
-
   describe "#fetch_menu" do
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
 
     it "returns the menu" do
       expect(namespace.fetch_menu(:default)).to be_an_instance_of(ActiveAdmin::Menu)
@@ -74,14 +79,14 @@ RSpec.describe ActiveAdmin::Namespace do
     end
 
     it "should raise an exception if the menu doesn't exist" do
-      expect {
+      expect do
         namespace.fetch_menu(:not_a_menu_that_exists)
-      }.to raise_error(KeyError)
+      end.to raise_error(KeyError)
     end
   end
 
   describe "#build_menu" do
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
 
     it "should set the block as a menu build callback" do
       namespace.build_menu do |menu|
@@ -101,7 +106,7 @@ RSpec.describe ActiveAdmin::Namespace do
   end
 
   describe "utility navigation" do
-    let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
+    let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
     let(:menu) do
       namespace.build_menu :utility_navigation do |menu|
         menu.add label: "ActiveAdmin.info", url: "http://www.activeadmin.info", html_options: { target: :blank }
@@ -119,7 +124,5 @@ RSpec.describe ActiveAdmin::Namespace do
       expect(menu["ActiveAdmin.info"]).to_not eq nil
       expect(menu["ActiveAdmin.info"].html_options).to include(target: :blank)
     end
-
   end
-
 end

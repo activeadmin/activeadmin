@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   # This is the class where all the register_page blocks are evaluated.
   class PageDSL < DSL
@@ -21,7 +22,7 @@ module ActiveAdmin
     def page_action(name, options = {}, &block)
       config.page_actions << ControllerAction.new(name, options)
       controller do
-        define_method(name, &block || Proc.new{})
+        define_method(name, &block || Proc.new {})
       end
     end
 

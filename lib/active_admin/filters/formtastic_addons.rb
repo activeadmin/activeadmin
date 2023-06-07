@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Filters
     module FormtasticAddons
@@ -37,7 +38,7 @@ module ActiveAdmin
       end
 
       def polymorphic_foreign_type?(method)
-        klass.reflect_on_all_associations.select{ |r| r.macro == :belongs_to && r.options[:polymorphic] }
+        klass.reflect_on_all_associations.select { |r| r.macro == :belongs_to && r.options[:polymorphic] }
           .map(&:foreign_type).include? method.to_s
       end
 
@@ -54,18 +55,13 @@ module ActiveAdmin
       end
 
       def seems_searchable?
-        has_predicate? || scope?
+        column_for(method).nil? && (has_predicate? || scope?)
       end
 
       # If the given method has a predicate (like _eq or _lteq), it's pretty
       # likely we're dealing with a valid search method.
       def has_predicate?
         !!Ransack::Predicate.detect_from_string(method.to_s)
-      end
-
-      # Ransack lets you define custom search methods, called ransackers.
-      def ransacker?
-        klass._ransackers.key? method.to_s
       end
 
       # Ransack supports exposing selected scopes on your model for advanced searches.

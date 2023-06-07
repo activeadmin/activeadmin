@@ -1,21 +1,16 @@
-# -*- coding: UTF-8 -*-
-
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 module ActiveAdmin
   RSpec.describe Resource, "Naming" do
-
-    before { load_defaults! }
-
-    let(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ Namespace.new(application, :admin) }
+    let(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { Namespace.new(application, :admin) }
 
     def config(options = {})
       @config ||= Resource.new(namespace, Category, options)
     end
 
     module ::Mock class Resource < ActiveRecord::Base; end; end
-    module NoActiveModel class Resource; end; end
 
     describe "singular resource name" do
       context "when class" do
@@ -23,11 +18,13 @@ module ActiveAdmin
           expect(config.resource_name.singular).to eq "category"
         end
       end
+
       context "when a class in a module" do
         it "should underscore the module and the class" do
           expect(Resource.new(namespace, Mock::Resource).resource_name.singular).to eq "mock_resource"
         end
       end
+
       context "when you pass the 'as' option" do
         it "should underscore the passed through string" do
           expect(config(as: "Blog Category").resource_name.singular).to eq "blog_category"
@@ -86,7 +83,7 @@ module ActiveAdmin
         context "when the :as option is given" do
           describe "singular label" do
             it "should translate the custom name" do
-              config = config(as: 'My Category')
+              config = config(as: "My Category")
               expect(config.resource_name).to receive(:translate).and_return "Translated category"
               expect(config.resource_label).to eq "Translated category"
             end
@@ -94,13 +91,12 @@ module ActiveAdmin
 
           describe "plural label" do
             it "should translate the custom name" do
-              config = config(as: 'My Category')
+              config = config(as: "My Category")
               expect(config.resource_name).to receive(:translate).at_least(:once).and_return "Translated categories"
               expect(config.plural_resource_label).to eq "Translated categories"
             end
           end
         end
-
       end
     end
 

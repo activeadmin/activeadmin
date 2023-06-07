@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
 
   DEFAULT_MENU = :default
@@ -85,8 +86,6 @@ module ActiveAdmin
       menu_name ||= DEFAULT_MENU
       @menus[menu_name] ||= ActiveAdmin::Menu.new
     end
-
-
 
   end
 

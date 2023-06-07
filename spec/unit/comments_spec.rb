@@ -1,25 +1,49 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 RSpec.describe "Comments" do
   let(:application) { ActiveAdmin::Application.new }
 
   describe ActiveAdmin::Comment do
-    subject(:comment){ ActiveAdmin::Comment.new }
+    let(:comment) { ActiveAdmin::Comment.new }
 
-    it "has valid Associations and Validations" do
-      expect(comment).to belong_to :resource
-      expect(comment).to belong_to :author
-      expect(comment).to validate_presence_of :resource
-      expect(comment).to validate_presence_of :body
-      expect(comment).to validate_presence_of :namespace
+    let(:user) { User.create!(first_name: "John", last_name: "Doe") }
+
+    let(:post) { Post.create!(title: "Hello World") }
+
+    it "belongs to a resource" do
+      comment.assign_attributes(resource_type: "Post", resource_id: post.id)
+
+      expect(comment.resource).to eq(post)
+    end
+
+    it "belongs to an author" do
+      comment.assign_attributes(author_type: "User", author_id: user.id)
+
+      expect(comment.author).to eq(user)
+    end
+
+    it "needs a body" do
+      expect(comment).to_not be_valid
+      expect(comment.errors[:body]).to eq(["can't be blank"])
+    end
+
+    it "needs a namespace" do
+      expect(comment).to_not be_valid
+      expect(comment.errors[:namespace]).to eq(["can't be blank"])
+    end
+
+    it "needs a resource" do
+      expect(comment).to_not be_valid
+      expect(comment.errors[:resource]).to eq(["can't be blank"])
     end
 
     describe ".find_for_resource_in_namespace" do
-      let(:post) { Post.create!(title: "Hello World") }
       let(:namespace_name) { "admin" }
 
       before do
-        @comment = ActiveAdmin::Comment.create! resource: post,
+        @comment = ActiveAdmin::Comment.create! author: user,
+                                                resource: post,
                                                 body: "A Comment",
                                                 namespace: namespace_name
       end
@@ -30,7 +54,7 @@ RSpec.describe "Comments" do
 
       it "should not return a comment for the same resource in a different namespace" do
         ActiveAdmin.application.namespaces[:public] = ActiveAdmin.application.namespaces[:admin]
-        expect(ActiveAdmin::Comment.find_for_resource_in_namespace(post, 'public')).to eq []
+        expect(ActiveAdmin::Comment.find_for_resource_in_namespace(post, "public")).to eq []
         ActiveAdmin.application.namespaces.instance_variable_get(:@namespaces).delete(:public)
       end
 
@@ -40,12 +64,14 @@ RSpec.describe "Comments" do
       end
 
       it "should return the most recent comment first by default" do
-        another_comment = ActiveAdmin::Comment.create! resource: post,
+        another_comment = ActiveAdmin::Comment.create! author: user,
+                                                       resource: post,
                                                        body: "Another Comment",
                                                        namespace: namespace_name,
                                                        created_at: @comment.created_at + 20.minutes
 
-        yet_another_comment = ActiveAdmin::Comment.create! resource: post,
+        yet_another_comment = ActiveAdmin::Comment.create! author: user,
+                                                           resource: post,
                                                            body: "Yet Another Comment",
                                                            namespace: namespace_name,
                                                            created_at: @comment.created_at + 10.minutes
@@ -69,6 +95,7 @@ RSpec.describe "Comments" do
 
         it "should return the correctly ordered comments" do
           another_comment = ActiveAdmin::Comment.create!(
+            author: user,
             resource: post,
             body: "Another Comment",
             namespace: namespace_name,
@@ -87,7 +114,7 @@ RSpec.describe "Comments" do
 
     describe ".resource_type" do
       let(:post) { Post.create!(title: "Testing.") }
-      let(:post_decorator) { double 'PostDecorator' }
+      let(:post_decorator) { double "PostDecorator" }
 
       before do
         allow(post_decorator).to receive(:model).and_return(post)
@@ -98,7 +125,7 @@ RSpec.describe "Comments" do
         let(:resource) { post_decorator }
 
         it "returns undeorated object class string" do
-          expect(ActiveAdmin::Comment.resource_type resource).to eql 'Post'
+          expect(ActiveAdmin::Comment.resource_type resource).to eql "Post"
         end
       end
 
@@ -106,7 +133,7 @@ RSpec.describe "Comments" do
         let(:resource) { post }
 
         it "returns object class string" do
-          expect(ActiveAdmin::Comment.resource_type resource).to eql 'Post'
+          expect(ActiveAdmin::Comment.resource_type resource).to eql "Post"
         end
       end
     end
@@ -117,6 +144,7 @@ RSpec.describe "Comments" do
 
       it "should allow commenting" do
         comment = ActiveAdmin::Comment.create!(
+          author: user,
           resource: tag,
           body: "Another Comment",
           namespace: namespace_name)
@@ -131,6 +159,7 @@ RSpec.describe "Comments" do
 
       it "should assign child class as commented resource" do
         comment = ActiveAdmin::Comment.create!(
+          author: user,
           resource: publisher,
           body: "Lorem Ipsum",
           namespace: namespace_name)
@@ -143,7 +172,6 @@ RSpec.describe "Comments" do
 
   describe ActiveAdmin::Comments::NamespaceHelper do
     describe "#comments?" do
-
       it "should have comments when the namespace allows comments" do
         ns = ActiveAdmin::Namespace.new(application, :admin)
         ns.comments = true
@@ -166,6 +194,7 @@ RSpec.describe "Comments" do
       resource.comments = true
       expect(resource.comments).to eq true
     end
+
     it "should disable comments if set to false" do
       ns = ActiveAdmin::Namespace.new(application, :admin)
       resource = ActiveAdmin::Resource.new(ns, Post)

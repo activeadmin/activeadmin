@@ -1,10 +1,13 @@
-require 'active_admin/resource_controller/action_builder'
-require 'active_admin/resource_controller/data_access'
-require 'active_admin/resource_controller/decorators'
-require 'active_admin/resource_controller/scoping'
-require 'active_admin/resource_controller/streaming'
-require 'active_admin/resource_controller/sidebars'
-require 'active_admin/resource_controller/resource_class_methods'
+# frozen_string_literal: true
+require "active_admin/collection_decorator"
+require "active_admin/resource_controller/action_builder"
+require "active_admin/resource_controller/data_access"
+require "active_admin/resource_controller/decorators"
+require "active_admin/resource_controller/polymorphic_routes"
+require "active_admin/resource_controller/scoping"
+require "active_admin/resource_controller/streaming"
+require "active_admin/resource_controller/sidebars"
+require "active_admin/resource_controller/resource_class_methods"
 
 module ActiveAdmin
   # All Resources Controller inherits from this controller.
@@ -18,17 +21,18 @@ module ActiveAdmin
     include ActionBuilder
     include Decorators
     include DataAccess
+    include PolymorphicRoutes
     include Scoping
     include Streaming
     include Sidebars
     include ViewHelpers::DownloadFormatLinksHelper
-    extend  ResourceClassMethods
+    extend ResourceClassMethods
 
     def self.active_admin_config=(config)
       if @active_admin_config = config
         defaults resource_class: config.resource_class,
-                 route_prefix:   config.route_prefix,
-                 instance_name:  config.resource_name.singular
+                 route_prefix: config.route_prefix,
+                 instance_name: config.resource_name.singular
       end
     end
 
@@ -52,7 +56,7 @@ module ActiveAdmin
     def restrict_format_access!
       unless request.format.html?
         presenter = active_admin_config.get_page_presenter(:index)
-        download_formats  = (presenter || {}).fetch(:download_links, active_admin_config.namespace.download_links)
+        download_formats = (presenter || {}).fetch(:download_links, active_admin_config.namespace.download_links)
         unless build_download_formats(download_formats).include?(request.format.symbol)
           raise ActiveAdmin::AccessDenied.new(current_active_admin_user, :index)
         end

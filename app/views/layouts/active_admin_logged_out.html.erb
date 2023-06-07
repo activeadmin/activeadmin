@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%=I18n.locale%>">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
-  <title><%= [@page_title, render_or_call_method_or_proc_on(self, ActiveAdmin.application.site_title)].compact.join(" | ") %></title>
+  <title><%= [@page_title, ActiveAdmin.application.site_title(self)].compact.join(" | ") %></title>
 
   <% ActiveAdmin.application.stylesheets.each do |style, options| %>
-    <%= stylesheet_link_tag style, options %>
+    <% if ActiveAdmin.application.use_webpacker %>
+      <%= stylesheet_pack_tag style, **options %>
+    <% else %>
+      <%= stylesheet_link_tag style, **options %>
+    <% end %>
   <% end %>
   <% ActiveAdmin.application.javascripts.each do |path| %>
-    <%= javascript_include_tag path %>
+    <% if ActiveAdmin.application.use_webpacker %>
+      <%= javascript_pack_tag path %>
+    <% else %>
+      <%= javascript_include_tag path %>
+    <% end %>
   <% end %>
 
   <%= favicon_link_tag ActiveAdmin.application.favicon if ActiveAdmin.application.favicon %>
@@ -24,9 +32,11 @@
 <div id="wrapper">
 
   <div id="content_wrapper">
-    <% flash_messages.each do |type, message| %>
-      <%= content_tag :div, message, class: "flash flash_#{type}" %>
-    <% end %>
+    <div class="flashes">
+      <% flash_messages.each do |type, message| %>
+        <%= content_tag :div, message, class: "flash flash_#{type}" %>
+      <% end %>
+    </div>
     <div id="active_admin_content">
       <%= yield %>
     </div>

@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 module ActiveAdmin
   class OrderClause
     attr_reader :field, :order, :active_admin_config
 
     def initialize(active_admin_config, clause)
-      clause =~ /^([\w\_\.]+)(->'\w+')?_(desc|asc)$/
+      clause =~ /^([\w\.]+)(->'\w+')?_(desc|asc)$/
       @column = $1
       @op = $2
       @order = $3
@@ -16,11 +17,11 @@ module ActiveAdmin
     end
 
     def apply(chain)
-      chain.reorder(sql)
+      chain.reorder(Arel.sql sql)
     end
 
     def to_sql
-      [table_column, @op, ' ', @order].compact.join
+      [table_column, @op, " ", @order].compact.join
     end
 
     def table

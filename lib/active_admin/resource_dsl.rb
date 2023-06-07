@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   # This is the class where all the register blocks are evaluated.
   class ResourceDSL < DSL
@@ -62,11 +63,12 @@ module ActiveAdmin
     #
     def permit_params(*args, &block)
       param_key = config.param_key.to_sym
-      belongs_to_param = config.belongs_to_param
-      create_another_param = :create_another if config.create_another
 
       controller do
         define_method :permitted_params do
+          belongs_to_param = active_admin_config.belongs_to_param
+          create_another_param = :create_another if active_admin_config.create_another
+
           permitted_params =
             active_admin_namespace.permitted_params +
               Array.wrap(belongs_to_param) +
@@ -74,6 +76,8 @@ module ActiveAdmin
 
           params.permit(*permitted_params, param_key => block ? instance_exec(&block) : args)
         end
+
+        private :permitted_params
       end
     end
 
@@ -105,7 +109,7 @@ module ActiveAdmin
     #     column :name
     #   end
     #
-    def csv(options={}, &block)
+    def csv(options = {}, &block)
       options[:resource] = config
 
       config.csv_builder = CSVBuilder.new(options, &block)
@@ -119,7 +123,7 @@ module ActiveAdmin
     #
     #   ActiveAdmin.register Post do
     #     member_action :comments do
-    #       @post = Post.find(params[:id]
+    #       @post = Post.find(params[:id])
     #       @comments = @post.comments
     #     end
     #   end
@@ -131,12 +135,14 @@ module ActiveAdmin
     # action.
     #
     def action(set, name, options = {}, &block)
+      warn "Warning: method `#{name}` already defined in #{controller.name}" if controller.method_defined?(name)
+
       set << ControllerAction.new(name, options)
       title = options.delete(:title)
 
       controller do
         before_action(only: [name]) { @page_title = title } if title
-        define_method(name, &block || Proc.new{})
+        define_method(name, &block || Proc.new {})
       end
     end
 
@@ -179,31 +185,15 @@ module ActiveAdmin
     # == Before / After Destroy
     # Called before and after the object is destroyed from the database.
     #
-    delegate :before_build,   :after_build,   to: :controller
-    delegate :before_create,  :after_create,  to: :controller
-    delegate :before_update,  :after_update,  to: :controller
-    delegate :before_save,    :after_save,    to: :controller
+    delegate :before_build, :after_build, to: :controller
+    delegate :before_create, :after_create, to: :controller
+    delegate :before_update, :after_update, to: :controller
+    delegate :before_save, :after_save, to: :controller
     delegate :before_destroy, :after_destroy, to: :controller
 
-    # This code defines both *_filter and *_action for Rails 4.0 to Rails 5 and  *_action for Rails >= 5.1
-    phases = [
-      :before, :skip_before,
-      :after,  :skip_after,
-      :around, :skip
-    ]
-    keywords = if Rails::VERSION::MAJOR == 5 && Rails::VERSION::MINOR >= 1
-                       [:action]
-                     else
-                       [:action, :filter]
-                     end
-
-    keywords.each do |name|
-       phases.each do |action|
-        define_method "#{action}_#{name}" do |*args, &block|
-          controller.public_send "#{action}_action", *args, &block
-        end
-      end
-    end
+    standard_rails_filters =
+      AbstractController::Callbacks::ClassMethods.public_instance_methods.select { |m| m.match(/_action\z/) }
+    delegate *standard_rails_filters, to: :controller
 
     # Specify which actions to create in the controller
     #

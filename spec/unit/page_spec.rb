@@ -1,16 +1,13 @@
-# encoding: utf-8
-
-require 'rails_helper'
-require File.expand_path('config_shared_examples', File.dirname(__FILE__))
+# frozen_string_literal: true
+require "rails_helper"
+require File.expand_path("config_shared_examples", __dir__)
 
 module ActiveAdmin
   RSpec.describe Page do
-
     it_should_behave_like "ActiveAdmin::Resource"
-    before { load_defaults! }
 
-    let(:application){ ActiveAdmin::Application.new }
-    let(:namespace){ Namespace.new(application, :admin) }
+    let(:application) { ActiveAdmin::Application.new }
+    let(:namespace) { Namespace.new(application, :admin) }
     let(:page_name) { "Chocolate I lØve You!" }
 
     def config(options = {})
@@ -21,8 +18,9 @@ module ActiveAdmin
       it "should return a namespaced controller name" do
         expect(config.controller_name).to eq "Admin::ChocolateILoveYouController"
       end
+
       context "when non namespaced controller" do
-        let(:namespace){ ActiveAdmin::Namespace.new(application, :root) }
+        let(:namespace) { ActiveAdmin::Namespace.new(application, :root) }
         it "should return a non namespaced controller name" do
           expect(config.controller_name).to eq "ChocolateILoveYouController"
         end
@@ -35,11 +33,7 @@ module ActiveAdmin
       end
 
       it "returns the singular, lowercase name" do
-        if RUBY_VERSION >= '2.4.0'
-          expect(config.resource_name.singular).to eq "chocolate i løve you!"
-        else
-          expect(config.resource_name.singular).to eq "chocolate i lØve you!"
-        end
+        expect(config.resource_name.singular).to eq "chocolate i løve you!"
       end
     end
 
@@ -71,7 +65,6 @@ module ActiveAdmin
       expect(config.belongs_to?).to eq false
     end
 
-
     it "should not have any action_items" do
       expect(config.action_items?).to eq false
     end
@@ -82,11 +75,11 @@ module ActiveAdmin
 
     context "with belongs to config" do
       let!(:post_config) { namespace.register Post }
-      let!(:page_config) {
+      let!(:page_config) do
         namespace.register_page page_name do
           belongs_to :post
         end
-      }
+      end
 
       it "configures page with belongs_to" do
         expect(page_config.belongs_to?).to be true
@@ -113,11 +106,11 @@ module ActiveAdmin
 
     context "with optional belongs to config" do
       let!(:post_config) { namespace.register Post }
-      let!(:page_config) {
+      let!(:page_config) do
         namespace.register_page page_name do
           belongs_to :post, optional: true
         end
-      }
+      end
 
       it "does not override default navigation menu" do
         expect(page_config.navigation_menu_name).to eq(:default)

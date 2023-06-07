@@ -3,7 +3,8 @@ redirect_from: /docs/6-show-pages.html
 ---
 # Customize the Show Page
 
-The show block is rendered within the context of the view and uses [Arbre](https://github.com/activeadmin/arbre) syntax.
+The show block is rendered within the context of the view and uses
+[Arbre](https://github.com/activeadmin/arbre) syntax.
 
 With the `show` block, you can render anything you want.
 
@@ -76,5 +77,17 @@ ActiveAdmin.register Book do
       row('Published?') { |b| status_tag b.published? }
     end
   end
+end
+```
+
+If you want to keep the default show data, but add something extra to it:
+
+```ruby
+show do
+  div do
+    h3 'Some custom charts about this object'
+    render partial: 'charts'
+  end
+  default_main_content
 end
 ```

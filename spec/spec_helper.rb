@@ -1,12 +1,15 @@
-require 'simplecov'
+# frozen_string_literal: true
+require "simplecov" if ENV["COVERAGE"] == "true"
 
-SimpleCov.start do
-  add_filter 'spec/'
-  add_filter 'features/'
-  add_filter 'bundle/' # for Travis
-end
+require_relative "support/matchers/perform_database_query_matcher"
+require_relative "support/shared_contexts/capture_stderr"
 
-if ENV['CI'] == 'true'
-  require 'codecov'
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+RSpec.configure do |config|
+  config.disable_monkey_patching!
+  config.filter_run focus: true
+  config.filter_run_excluding changes_filesystem: true
+  config.run_all_when_everything_filtered = true
+  config.color = true
+  config.order = :random
+  config.example_status_persistence_file_path = ".rspec_failures"
 end

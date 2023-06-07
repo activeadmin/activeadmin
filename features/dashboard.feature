@@ -9,7 +9,7 @@ Feature: Dashboard
         end
       end
       """
-    Given I am logged in
+    And I am logged in
     When I go to the dashboard
     Then I should see the Active Admin layout
     And I should not see the default welcome message

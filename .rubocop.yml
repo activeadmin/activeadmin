@@ -1,27 +1,198 @@
 ---
 
+inherit_mode:
+  merge:
+    - Include
+
+require:
+  - rubocop-packaging
+  - rubocop-rails
+  - rubocop-rspec
+
 AllCops:
   DisabledByDefault: true
+  TargetRubyVersion: 2.6
 
   Exclude:
-    - spec/rails/**/*
-    - gemfiles/vendor/bundle/**/*
+    - tmp/development_apps/**/*
+    - tmp/test_apps/**/*
+    - gemfiles/rails_61/vendor/bundle/**/*
+    - gemfiles/rails_61_turbolinks/vendor/bundle/**/*
+    - gemfiles/rails_61_webpacker/vendor/bundle/**/*
+    - vendor/bundle/**/*
 
   Include:
-    - "**/*.rake"
-    - "**/Gemfile"
-    - "gemfiles/*.gemfile"
-    - "**/Rakefile"
+    - gemfiles/*/Gemfile
+    - .simplecov
 
   DisplayCopNames: true
 
   StyleGuideCopsOnly: false
 
+Layout/EndAlignment:
+  Enabled: true
+
+Layout/HashAlignment:
+  Enabled: true
+
+Lint/ParenthesesAsGroupedExpression:
+  Enabled: true
+
+Layout/AccessModifierIndentation:
+  Enabled: true
+
+Layout/ArgumentAlignment:
+  Enabled: true
+
+Layout/CaseIndentation:
+  Enabled: true
+
+Layout/ClosingParenthesisIndentation:
+  Enabled: true
+
+Layout/CommentIndentation:
+  Enabled: true
+
+Layout/ElseAlignment:
+  Enabled: true
+
+Layout/EmptyLines:
+  Enabled: true
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: true
+
+Layout/EndOfLine:
+  Enabled: true
+
+Layout/ExtraSpacing:
+  AllowForAlignment: false
+  Enabled: true
+
+Layout/FirstArgumentIndentation:
+  Enabled: true
+
+Layout/FirstHashElementIndentation:
+  Enabled: true
+  EnforcedStyle: consistent
+
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+
+Layout/FirstParameterIndentation:
+  Enabled: true
+
+Layout/ParameterAlignment:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
+
+Layout/IndentationStyle:
+  Enabled: true
+  EnforcedStyle: spaces
+
+Packaging/BundlerSetupInTests:
+  Enabled: true
+
+Packaging/GemspecGit:
+  Enabled: true
+
+Packaging/RequireHardcodingLib:
+  Enabled: true
+
+Packaging/RequireRelativeHardcodingLib:
+  Enabled: true
+
+Rails/FilePath:
+  Enabled: true
+  EnforcedStyle: slashes
+
+RSpec/EmptyLineAfterExample:
+  Enabled: true
+
+RSpec/EmptyLineAfterExampleGroup:
+  Enabled: true
+
+RSpec/HookArgument:
+  Enabled: true
+
+Style/BlockDelimiters:
+  Enabled: true
+
+Style/Dir:
+  Enabled: true
+
+Style/Encoding:
+  Enabled: true
+
+Style/ExpandPathArguments:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always
+
 Style/HashSyntax:
   Enabled: true
 
-Style/TrailingWhitespace:
+Style/ParallelAssignment:
   Enabled: true
 
-Style/SpaceAfterComma:
+Layout/IndentationConsistency:
+  Enabled: true
+
+Layout/IndentationWidth:
+  Enabled: true
+
+Naming/PredicateName:
+  Enabled: true
+
+  ForbiddenPrefixes:
+    - is_
+    - have_
+
+  AllowedMethods:
+    - has_many
+    - has_many_actions
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/TrailingCommaInArguments:
+  Enabled: true
+
+Layout/TrailingEmptyLines:
+  Enabled: true
+
+Layout/TrailingWhitespace:
+  Enabled: true
+
+Layout/SpaceAfterComma:
+  Enabled: true
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: true
+
+Layout/SpaceAroundOperators:
+  Enabled: true
+
+Layout/SpaceBeforeBlockBraces:
+  Enabled: true
+
+Layout/SpaceBeforeComma:
+  Enabled: true
+
+Layout/SpaceBeforeFirstArg:
+  Enabled: true
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+Layout/SpaceInsideParens:
+  Enabled: true
+
+Lint/UselessAccessModifier:
   Enabled: true

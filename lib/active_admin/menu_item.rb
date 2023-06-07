@@ -1,9 +1,7 @@
-require 'active_admin/view_helpers/method_or_proc_helper'
-
+# frozen_string_literal: true
 module ActiveAdmin
   class MenuItem
     include Menu::MenuNode
-    include MethodOrProcHelper
 
     attr_reader :html_options, :parent, :priority
 
@@ -48,13 +46,13 @@ module ActiveAdmin
     #
     def initialize(options = {})
       super() # MenuNode
-      @label          = options[:label]
-      @dirty_id       = options[:id]           || options[:label]
-      @url            = options[:url]          || '#'
-      @priority       = options[:priority]     || 10
-      @html_options   = options[:html_options] || {}
-      @should_display = options[:if]           || proc{true}
-      @parent         = options[:parent]
+      @label = options[:label]
+      @dirty_id = options[:id] || options[:label]
+      @url = options[:url] || "#"
+      @priority = options[:priority] || 10
+      @html_options = options[:html_options] || {}
+      @should_display = options[:if] || proc { true }
+      @parent = options[:parent]
 
       yield(self) if block_given? # Builder style syntax
     end
@@ -63,35 +61,10 @@ module ActiveAdmin
       @id ||= normalize_id @dirty_id
     end
 
-    def label(context = nil)
-      render_in_context context, @label
-    end
-
-    def url(context = nil)
-      render_in_context context, @url
-    end
+    attr_reader :label
+    attr_reader :url
 
     # Don't display if the :if option passed says so
-    # Don't display if the link isn't real, we have children, and none of the children are being displayed.
-    def display?(context = nil)
-      return false unless render_in_context(context, @should_display)
-      return false if     !real_url?(context) && @children.any? && !items(context).any?
-      true
-    end
-
-    # Returns an array of the ancestry of this menu item.
-    # The first item is the immediate parent of the item.
-    def ancestors
-      parent ? [parent, parent.ancestors].flatten : []
-    end
-
-    private
-
-    # URL is not nil, empty, or '#'
-    def real_url?(context = nil)
-      url = url context
-      url.present? && url != '#'
-    end
-
+    attr_reader :should_display
   end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ActiveAdmin
   module Views
 
@@ -29,7 +30,7 @@ module ActiveAdmin
       def header_action(*args)
         action = args[0]
 
-        @title << div(class: 'header_action') do
+        @title << div(class: "header_action") do
           action
         end
       end

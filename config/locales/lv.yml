@@ -34,6 +34,7 @@ lv:
     status_tag:
       "yes": "Jā"
       "no": "Nē"
+      "unset": "Nē"
     main_content: "Lūdzu implementēt %{model}#main_content, lai rādītos saturs."
     logout: "Iziet"
     powered_by: "Powered by %{active_admin} %{version}"
@@ -59,17 +60,15 @@ lv:
       default_confirmation: "Vai tiešām vēlaties to darīt?"
       delete_confirmation: "Vai tiešām vēlaties dzēst šos %{plural_model}?"
       succesfully_destroyed:
-        one: "Successfully destroyed 1 %{model}"
-        other: "Successfully destroyed %{count} %{plural_model}"
+        one: "Successfully deleted 1 %{model}"
+        other: "Successfully deleted %{count} %{plural_model}"
       selection_toggle_explanation: "(Toggle Selection)"
-      link: "Create one"
       action_label: "%{title} Selected"
       labels:
         destroy: "Delete"
     comments:
       body: "Saturs"
       author: "Autors"
-      title: "Komentārs"
       add: "Pievienot komentāru"
       resource: "Resurss"
       no_comments_yet: "Nav neviena komentāra."

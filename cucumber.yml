@@ -1,3 +1,8 @@
-default: --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags ~@requires-reloading --tags ~@wip
-wip: --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags @wip:3 --wip features
-class-reloading: CLASS_RELOADING=true --format 'progress' --require features/support/env.rb --require features/step_definitions features --tags @requires-reloading
+<%
+  std_opts = "--format progress --order random --publish-quiet"
+  default_opts = std_opts + " --format ParallelTests::Gherkin::RuntimeLogger --out tmp/parallel_runtime_cucumber.log"
+%>
+
+default: <%= default_opts %> --require features/support/simplecov_regular_env.rb --tags 'not @changes-filesystem' --tags 'not @requires-reloading'
+filesystem-changes: <%= std_opts %> --require features/support/simplecov_changes_env.rb --tags @changes-filesystem
+class-reloading: CLASS_RELOADING=true <%= std_opts %> --require features/support/simplecov_reload_env.rb --tags @requires-reloading

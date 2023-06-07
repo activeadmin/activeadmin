@@ -1,0 +1,134 @@
+mk:
+  activerecord:
+    models:
+      comment:
+        one: "Коментар"
+        other: "Коментари"
+      active_admin/comment:
+        one: "Коментар"
+        other: "Коментари"
+  active_admin:
+    dashboard: "Почетна"
+    dashboard_welcome:
+      welcome: "Добредојдовте во Active Admin. Ова е стандардна верзија на почетната страна."
+      call_to_action: "За да додадете секции на почетната страна, прегледајте го 'app/admin/dashboard.rb'."
+    view: "Прегледај"
+    edit: "Измени"
+    delete: "Избриши"
+    delete_confirmation: "Дали сте сигурни дека сакате да го избришете записот?"
+    create_another: "Креирај нов %{model}"
+    new_model: "Додај нов %{model}"
+    edit_model: "Измени %{model}"
+    delete_model: "Избриши %{model}"
+    details: "Детали за %{model}"
+    cancel: "Откажи"
+    empty: "Празно"
+    previous: "Претходно"
+    next: "Следно"
+    download: "Преземи во понудените формати:"
+    has_many_new: "Додај нов %{model}"
+    has_many_delete: "Избриши"
+    has_many_remove: "Отстрани"
+    move: "Премести"
+    filters:
+      buttons:
+        filter: "Пребарај"
+        clear: "Исчисти филтри"
+      predicates:
+        contains: "Содржи"
+        equals: "Е еднакво со"
+        starts_with: "Започнува со"
+        ends_with: "Завршува сo"
+        greater_than: "Е поголемо од"
+        less_than: "Е помало од"
+        gteq_datetime: "Е поголемо или еднакво со"
+        lteq_datetime: "Е помало или еднакво со"
+        from: "Од"
+        to: "До"
+    search_status:
+      headline: "Пронајдени резултати:"
+      current_filters: "Резултати врз основа на следниве филтри:"
+      no_current_filters: "Моментално нема филтри"
+    status_tag:
+      "yes": "Да"
+      "no": "Не"
+      "unset": "Не"
+    main_content: "Ве замолуваме имплементирајте %{model}#main_content за да прикажете содржина."
+    logout: "Одјави се"
+    powered_by: "Овозможено од %{active_admin} %{version}"
+    sidebars:
+      filters: "Филтри за пребарување"
+      search_status: "Резултати од пребарување"
+    pagination:
+      empty: "Нема пронајдени записи за %{model}"
+      one: "Прикажан <b>1</b> %{model}"
+      one_page: "Прикажани <b>сите %{n}</b> %{model}"
+      multiple: "Прикажани %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> од вкупно <b>%{total}</b>"
+      multiple_without_total: "Прикажани %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      per_page: "Прикази на записи по страна:"
+      entry:
+        one: "запис"
+        other: "записи"
+    any: "Било кој"
+    blank_slate:
+      content: "Не се креирани записи од типот на %{resource_name}."
+      link: "Креирај нов"
+    dropdown_actions:
+      button_label: "Активности"
+    batch_actions:
+      button_label: "Групни активности"
+      default_confirmation: "Дали сте сигурни?"
+      delete_confirmation: "Дали сте сигурни дека сакате да ги избришете %{plural_model}?"
+      succesfully_destroyed:
+        one: "Успешно е избришан 1 %{model}"
+        other: "Успешно се избришани %{count} %{plural_model}"
+      selection_toggle_explanation: "(Toggle Selection)"
+      action_label: "%{title} го селектираното"
+      labels:
+        destroy: "Избриши"
+    devise:
+      username:
+        title: "Корисничко име"
+      email:
+        title: "Е-маил"
+      password:
+        title: "Лозинка"
+      password_confirmation:
+        title: "Потврди Лозинка"
+      sign_up:
+        title: "Креирај профил"
+        submit: "Креирај"
+      login:
+        title: "Најави се"
+        remember_me: "Запомни ме"
+        submit: "Најави се"
+      reset_password:
+        title: "Ја заборавивте Вашата лозинка?"
+        submit: "Промени лозинка"
+      change_password:
+        title: "Променете ја лозинката"
+        submit: "Промени лозинка"
+      unlock:
+        title: "Повторно испраќање на инструкции за отклучување на профил"
+        submit: "Испрати инструкции"
+      resend_confirmation_instructions:
+        title: "Повторно испраќање на инструкции за потврдување на профил"
+        submit: "Инспрати инструкции"
+      links:
+        sign_up: "Креирај профил"
+        sign_in: "Најави се"
+        forgot_your_password: "Ја заборавивте Вашата лозинка?"
+        sign_in_with_omniauth_provider: "Најави се со %{provider}"
+        resend_unlock_instructions: "Повторно испрати инструкции за отклучување на профил"
+        resend_confirmation_instructions: "Повторно испрати инструкции за потврдување на профил"
+    unsupported_browser:
+      headline: "Ве замолуваме, имајте во предвид дека ActiveAdmin не нуди поддршка за Internet Explorer 8 верзијата или претходни верзии."
+      recommendation: "Ви порачуваме да го <a href=\"http://browsehappy.com/\"> ажурирате Вашиот пребарувач</a> за да си го подобрите пребарувањето."
+      turn_off_compatibility_view: "Доколку користите IE 9 или понова верзија, Ве замолуваме <a href=\"https://support.microsoft.com/en-us/help/17471\">да исклучите \"Compatibility View\"</a>."
+    access_denied:
+      message: "Немате овластување да ја извршите оваа активност."
+    index_list:
+      table: "Табела"
+      block: "Листа"
+      grid: "Грид"
+      blog: "Блог"
