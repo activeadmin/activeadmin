@@ -50,6 +50,15 @@ module ActiveAdmin
           raise(StandardError, "Collection is not a paginated scope. Set collection.page(params[:page]).per(10) before calling :paginated_collection.")
         end
 
+        unless @display_total
+          # The #paginate method in kaminari will query the resource with a
+          # count(*) to determine how many pages there should be unless
+          # you pass in the :total_pages option. We issue a query to determine
+          # if there is another page or not, but the limit/offset make this
+          # query fast.
+          @has_next_page = collection.offset(collection.current_page * collection.limit_value).limit(1).count > 0
+        end
+
         @contents = div(class: "paginated_collection_contents")
         build_pagination_with_formats(options)
         @built = true
@@ -98,13 +107,7 @@ module ActiveAdmin
         options[:param_name] = @param_name if @param_name
 
         if !@display_total
-          # The #paginate method in kaminari will query the resource with a
-          # count(*) to determine how many pages there should be unless
-          # you pass in the :total_pages option. We issue a query to determine
-          # if there is another page or not, but the limit/offset make this
-          # query fast.
-          offset = collection.offset(collection.current_page * collection.limit_value).limit(1).count
-          options[:total_pages] = collection.current_page + offset
+          options[:total_pages] = collection.current_page + (@has_next_page ? 1 : 0)
           options[:right] = 0
         end
 
@@ -129,13 +132,18 @@ module ActiveAdmin
           entries_name = I18n.translate key, count: collection.size, default: entry_name.pluralize
         end
 
+        case
+        when collection_size == 0
+          return I18n.t("active_admin.pagination.empty", model: entries_name)
+        when collection_size == 1
+          return I18n.t("active_admin.pagination.one", model: entry_name)
+        when collection.current_page == 1 && ((collection_size < collection.limit_value) || (!@display_total && !@has_next_page))
+          return I18n.t("active_admin.pagination.one_page", model: entries_name, n: collection_size)
+        end
+
         if @display_total
           if collection.total_pages < 2
-            case collection_size
-            when 0; I18n.t("active_admin.pagination.empty", model: entries_name)
-            when 1; I18n.t("active_admin.pagination.one", model: entry_name)
-            else; I18n.t("active_admin.pagination.one_page", model: entries_name, n: collection.total_count)
-            end
+            I18n.t("active_admin.pagination.one_page", model: entries_name, n: collection.total_count)
           else
             offset = (collection.current_page - 1) * collection.limit_value
             total = collection.total_count

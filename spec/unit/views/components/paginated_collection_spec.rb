@@ -168,6 +168,14 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       it "should display 'No entries found'" do
         expect(pagination.find_by_class("pagination_information").first.content).to eq "No entries found"
       end
+
+      context "with :pagination_total set to false" do
+        let(:pagination) { paginated_collection(collection, pagination_total: false) }
+
+        it "should display 'No entries found'" do
+          expect(pagination.find_by_class("pagination_information").first.content).to eq "No entries found"
+        end
+      end
     end
 
     context "when collection comes from find with GROUP BY" do
@@ -216,6 +224,45 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
           info = pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")
           expect(info).to eq "Displaying posts <b>1 - 30</b>"
         end
+
+        describe "one item" do
+          let(:collection) do
+            Kaminari.paginate_array([Post.new]).page(1).per(30)
+          end
+
+          it "should not show the total item counts" do
+            expect(collection).not_to receive(:total_pages)
+            pagination = paginated_collection(collection, pagination_total: false)
+            info = pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")
+            expect(info).to eq "Displaying <b>1</b> post"
+          end
+        end
+
+        describe "fewer than page size items" do
+          let(:collection) do
+            Kaminari.paginate_array([Post.new] * 29).page(1).per(30)
+          end
+
+          it "should not show the total item counts" do
+            expect(collection).not_to receive(:total_pages)
+            pagination = paginated_collection(collection, pagination_total: false)
+            info = pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")
+            expect(info).to eq "Displaying <b>all 29</b> posts"
+          end
+        end
+
+        describe "page size items" do
+          let(:collection) do
+            Kaminari.paginate_array([Post.new] * 30).page(1).per(30)
+          end
+
+          it "should not show the total item counts" do
+            expect(collection).not_to receive(:total_pages)
+            pagination = paginated_collection(collection, pagination_total: false)
+            info = pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")
+            expect(info).to eq "Displaying <b>all 30</b> posts"
+          end
+        end
       end
 
       describe "set to true" do
@@ -224,6 +271,39 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
         it "should show the total item counts" do
           info = pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")
           expect(info).to eq "Displaying posts <b>1 - 30</b> of <b>256</b> in total"
+        end
+
+        describe "one item" do
+          let(:collection) do
+            Kaminari.paginate_array([Post.new]).page(1).per(30)
+          end
+
+          it "should not show the total item counts" do
+            info = pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")
+            expect(info).to eq "Displaying <b>1</b> post"
+          end
+        end
+
+        describe "fewer than page size items" do
+          let(:collection) do
+            Kaminari.paginate_array([Post.new] * 29).page(1).per(30)
+          end
+
+          it "should not show the total item counts" do
+            info = pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")
+            expect(info).to eq "Displaying <b>all 29</b> posts"
+          end
+        end
+
+        describe "page size items" do
+          let(:collection) do
+            Kaminari.paginate_array([Post.new] * 30).page(1).per(30)
+          end
+
+          it "should not show the total item counts" do
+            info = pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")
+            expect(info).to eq "Displaying <b>all 30</b> posts"
+          end
         end
       end
     end
