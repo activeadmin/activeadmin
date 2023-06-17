@@ -10,6 +10,7 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
       active_admin_config: double("Config", action_items?: nil, breadcrumb: nil, sidebar_sections?: nil),
       active_admin_namespace: active_admin_namespace,
       csrf_meta_tags: "",
+      csp_meta_tag: "",
       current_active_admin_user: nil,
       current_active_admin_user?: false,
       current_menu: double("Menu", items: []),
