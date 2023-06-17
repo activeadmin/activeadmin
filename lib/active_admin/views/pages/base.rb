@@ -49,7 +49,7 @@ module ActiveAdmin
               text_node(favicon_tag)
             end
 
-            text_node csrf_meta_tag
+            text_node csrf_meta_tags
           end
         end
 
