@@ -35,12 +35,12 @@ RSpec.describe ActiveAdmin::AssetRegistration do
 
   it "should register a javascript file" do
     register_javascript "active_admin.js"
-    expect(javascripts).to eq ["active_admin.js"].to_set
+    expect(javascripts.keys).to eq ["active_admin.js"]
   end
 
   it "should clear all existing javascripts" do
     register_javascript "active_admin.js"
-    expect(javascripts).to eq ["active_admin.js"].to_set
+    expect(javascripts.keys).to eq ["active_admin.js"]
     clear_javascripts!
     expect(javascripts).to be_empty
   end
@@ -48,6 +48,6 @@ RSpec.describe ActiveAdmin::AssetRegistration do
   it "shouldn't register a javascript twice" do
     register_javascript "active_admin.js"
     register_javascript "active_admin.js"
-    expect(javascripts.length).to eq 1
+    expect(javascripts.size).to eq 1
   end
 end
