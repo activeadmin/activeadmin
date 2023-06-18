@@ -50,6 +50,7 @@ module ActiveAdmin
             end
 
             text_node csrf_meta_tags
+            text_node csp_meta_tag
           end
         end
 
