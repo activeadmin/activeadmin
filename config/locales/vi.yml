@@ -1,4 +1,20 @@
 vi:
+  activerecord:
+    models:
+      comment:
+        one: "Bình luận"
+        other: "Các bình luận"
+      active_admin/comment:
+        one: "Bình luận"
+        other: "Các bình luận"
+    attributes:
+      active_admin/comment:
+        author_type: "Loại tác giả"
+        body: "Nội dung"
+        created_at: "Đã tạo"
+        namespace: "Namespace"
+        resource_type: "Resource type"
+        updated_at: "Đã cập nhật"
   active_admin:
     dashboard: Bảng điều khiển
     dashboard_welcome:
@@ -21,6 +37,7 @@ vi:
     has_many_new: "Thêm mới %{model}"
     has_many_delete: "Xóa"
     has_many_remove: "Hủy bỏ"
+    move: "Di chuyển"
     filters:
       buttons:
         filter: "Lọc"
@@ -36,6 +53,8 @@ vi:
         lteq_datetime: "Nhỏ hơn hoặc bằng"
         from: "Từ"
         to: "Đến"
+    scopes:
+      all: "Tất cả"
     search_status:
       headline: "Danh sách tìm kiếm:"
       current_scope: "Phạm vi:"
@@ -47,7 +66,7 @@ vi:
       "unset": "Không Có"
     main_content: "Xin bổ sung %{model}#main_content để hiển thị nội dung."
     logout: "Đăng xuất"
-    powered_by: "Powered by %{active_admin} %{version}"
+    powered_by: "Bản quyền bởi %{active_admin} %{version}"
     sidebars:
       filters: "Bộ Lọc"
       search_status: "Trạng thái tìm kiếm"
@@ -75,12 +94,13 @@ vi:
         one: "Đã xóa thành công 1 %{model}"
         other: "Đã xóa thành công %{count} %{plural_model}"
       selection_toggle_explanation: "(Thay đổi lựa chọn)"
-      action_label: "%{title} được chọn"
+      action_label: "%{title} đã được chọn"
       labels:
         destroy: "Xóa"
     comments:
       created_at: "Đã tạo"
       resource_type: "Resource Type"
+      author_type: "Loại tác giả"
       body: "Nội dung"
       author: "Tác giả"
       add: "Thêm bình luận"
@@ -117,15 +137,22 @@ vi:
         title: "Thay đổi mật khẩu của bạn"
         submit: "Thay đổi mật khẩu của tôi"
       unlock:
-        title: "Gởi lại hướng dẫn mở khoá"
-        submit: "Gởi lại hướng dẫn mở khoá"
+        title: "Gửi lại hướng dẫn mở khoá"
+        submit: "Gửi lại hướng dẫn mở khoá"
       resend_confirmation_instructions:
-        title: "Gởi lại hướng dẫn xác nhận"
-        submit: "Gởi lại hướng dẫn xác nhận"
+        title: "Gửi lại hướng dẫn xác nhận"
+        submit: "Gửi lại hướng dẫn xác nhận"
       links:
+        sign_up: "Đăng ký"
         sign_in: "Đăng nhập"
         forgot_your_password: "Quên mật khẩu của bạn?"
         sign_in_with_omniauth_provider: "Đăng nhập với %{provider}"
+        resend_unlock_instructions: "Gửi lại hướng dẫn mở khoá"
+        resend_confirmation_instructions: "Gửi lại hướng dẫn xác nhận"
+    unsupported_browser:
+      headline: "Vui lòng lưu ý rằng ActiveAdmin không còn hỗ trợ trên Internet Explorer các phiên bản 8 và thấp hơn."
+      recommendation: "Chúng tôi khuyên bạn hãy vào <a href=\"http://browsehappy.com/\">nâng cấp trình duyệt của bạn </a> để cải thiện trải nghiệm của bạn."
+      turn_off_compatibility_view: "Nếu bạn đang sử dụng IE 9 hoặc mới hơn, hãy chắc chắn bạn <a href=\"https://support.microsoft.com/en-us/help/17471\">tắt \"Compatibility View\"</a>."
     access_denied:
       message: "Bạn không có quyền thực hiện tính năng này"
     index_list:
