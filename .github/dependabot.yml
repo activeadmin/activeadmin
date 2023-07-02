@@ -24,13 +24,3 @@ updates:
     schedule:
       interval: monthly
     versioning-strategy: lockfile-only
-  - package-ecosystem: bundler
-    directory: /gemfiles/rails_61_turbolinks
-    schedule:
-      interval: monthly
-    versioning-strategy: lockfile-only
-  - package-ecosystem: bundler
-    directory: /gemfiles/rails_61_webpacker
-    schedule:
-      interval: monthly
-    versioning-strategy: lockfile-only
