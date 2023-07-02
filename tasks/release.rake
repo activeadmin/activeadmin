@@ -44,4 +44,4 @@ namespace :release do
   end
 end
 
-task(:release).enhance ["chandler:push", "release:npm_push"]
+task(:release).enhance ["release:npm_push", "chandler:push"]
