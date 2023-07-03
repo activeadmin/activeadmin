@@ -123,10 +123,6 @@ nl:
         sign_in_with_omniauth_provider: "Log in met %{provider}"
         resend_unlock_instructions: "Ontgrendelinstructies opnieuw versturen"
         resend_confirmation_instructions: "Bevestigingsinstructies opnieuw versturen"
-    unsupported_browser:
-      headline: "Opgelet, ActiveAdmin bied geen support meer voor Internet Explorer 8 of lager"
-      recommendation: "Wij raden aan om te upgraden naar de nieuwste <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, of <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Als u IE 9 of nieuwer gebruikt, zorg ervoor dat u <a href=\"https://support.microsoft.com/nl-nl/help/17471\"> \"Compatibility View\" uit zet</a>."
     access_denied:
       message: "U bent niet gemachtigd voor deze actie."
     index_list:

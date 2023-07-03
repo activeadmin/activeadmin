@@ -118,10 +118,6 @@ az:
         sign_in_with_omniauth_provider: "%{provider} vasitəsilə daxil ol"
         resend_unlock_instructions: "Blokdan çıxarma üzrə təlimatı yenidən göndərilməsi"
         resend_confirmation_instructions: "Aktivləşdirmə ismarışını yenidən göndərilməsi"
-    unsupported_browser:
-      headline: "Zəhmət olmasa, bilin ki, Active Admin artıq Internet Explorer-in köhnə versiyalarını daha dəstəkləmir və yalnız IE 8 versiyasından başlayaraq dəstəkləyir"
-      recommendation: "Biz sizin brauzerinizin versiyasını yeniləməyi məsləhət görürük (<a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, və ya <a href=\"https://mozilla.org/firefox/\">Firefox</a>)."
-      turn_off_compatibility_view: "Əgər siz IE 9  və ya daha yeni versiya istifadə edirsinizsə, əmin olun ki, <a href=\"https://support.microsoft.com/ru-ru/help/17471\">\"Uyğunluğun rejimində baxış\"</a> seçimini söndürmüsünüz."
     access_denied:
       message: "Bunu etmək üçün daxil olmalısınız."
     index_list:

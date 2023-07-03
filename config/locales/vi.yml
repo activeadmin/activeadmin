@@ -141,10 +141,6 @@ vi:
         sign_in_with_omniauth_provider: "Đăng nhập với %{provider}"
         resend_unlock_instructions: "Gửi lại hướng dẫn mở khoá"
         resend_confirmation_instructions: "Gửi lại hướng dẫn xác nhận"
-    unsupported_browser:
-      headline: "Vui lòng lưu ý rằng ActiveAdmin không còn hỗ trợ trên Internet Explorer các phiên bản 8 và thấp hơn."
-      recommendation: "Chúng tôi khuyên bạn hãy vào <a href=\"http://browsehappy.com/\">nâng cấp trình duyệt của bạn </a> để cải thiện trải nghiệm của bạn."
-      turn_off_compatibility_view: "Nếu bạn đang sử dụng IE 9 hoặc mới hơn, hãy chắc chắn bạn <a href=\"https://support.microsoft.com/en-us/help/17471\">tắt \"Compatibility View\"</a>."
     access_denied:
       message: "Bạn không có quyền thực hiện tính năng này"
     index_list:

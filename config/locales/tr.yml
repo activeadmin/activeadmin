@@ -120,10 +120,6 @@ tr:
         sign_in_with_omniauth_provider: "%{provider} ile giriş yapın"
         resend_unlock_instructions: "Hesap geri açma talimatlarını tekrar gönder"
         resend_confirmation_instructions: "Onaylama talimatlarını tekrar gönder"
-    unsupported_browser:
-      headline: "ActiveAdmin Internet Explorer 8 ve altı artık desteklememektedir."
-      recommendation: "Son sürüm <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, ya da <a href=\"https://mozilla.org/firefox/\">Firefox</a> tarayıcılarından birine geçmenizi tavsiye ederiz."
-      turn_off_compatibility_view: "IE 9 ya da üstünü kullanıyorsanız, <a href=\"http://windows.microsoft.com/tr-tr/internet-explorer/use-compatibility-view\">\"Uyumluluk Görünümü\"</a>nü kapatmayı unutmayın."
     access_denied:
       message: "Bu işlemi gerçekleştirmek için yetkiniz yok."
     index_list:

@@ -57,7 +57,6 @@ module ActiveAdmin
         def build_page
           within body(class: body_classes) do
             div id: "wrapper" do
-              build_unsupported_browser
               header active_admin_namespace, current_menu
               title_bar title, action_items_for_action
               build_page_content
@@ -73,12 +72,6 @@ module ActiveAdmin
             "active_admin", "logged_in",
             active_admin_namespace.name.to_s + "_namespace"
           ]
-        end
-
-        def build_unsupported_browser
-          if active_admin_namespace.unsupported_browser_matcher =~ controller.request.user_agent
-            unsupported_browser
-          end
         end
 
         def build_page_content

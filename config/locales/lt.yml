@@ -121,10 +121,6 @@ lt:
         sign_in_with_omniauth_provider: 'Prisijungti su %{provider}'
         resend_unlock_instructions: "Persiųsti pakartotinio atrakinimo instrukcijas"
         resend_confirmation_instructions: "Persiųsti patvirtinimo instrukcijas"
-    unsupported_browser:
-      headline: "Atkreipiame dėmesį, kad ActiveAdmin nebepalaiko Internet Explorer 8 arba žemesnių versijų."
-      recommendation: "Rekomenduojame atsinaujinti į naujausią <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, arba <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Jei naudojate IE 9 ar vėlesnę versiją, įsitikinkite kad <a href=\"http://windows.microsoft.com/en-US/windows7/webpages-look-incorrect-in-Internet-Explorer\">išjungėte \"Suderinamumo rodinį\"</a>."
     access_denied:
       message: 'Jūs nesate įgaliotas atlikti šį veiksmą.'
     index_list:

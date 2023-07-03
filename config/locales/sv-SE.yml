@@ -141,10 +141,6 @@
         sign_in_with_omniauth_provider: "Logga in med %{provider}"
         resend_unlock_instructions: "Skicka upplåsningsinstruktioner igen"
         resend_confirmation_instructions: "Skicka bekräftningsinstruktioner igen"
-    unsupported_browser:
-      headline: "Observera att ActiveAdmin inte längre stödjer Internet Explorer version 8 eller lägre."
-      recommendation: "Vi rekommenderar att du uppgraderar till den senaste versionen av <a href=\"http://windows.microsoft.com/ie\">Internet Explorer</a>, <a href=\"https://chrome.google.com/\">Google Chrome</a>, eller <a href=\"https://mozilla.org/firefox/\">Firefox</a>."
-      turn_off_compatibility_view: "Om du använder IE 9 eller senare, se till att <a href=\"https://support.microsoft.com/sv-se/help/17471\">stänga av \"Compatibility View\"</a>."
     access_denied:
       message: "Du har inte behörighet att utföra denna åtgärd."
     index_list:

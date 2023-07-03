@@ -147,10 +147,6 @@ pl:
         sign_in_with_omniauth_provider: "Zaloguj się z %{provider}"
         resend_unlock_instructions: "Ponownie wyślij instrukcję odblokowania konta"
         resend_confirmation_instructions: "Ponownie wyślij instrukcje aktywacji"
-    unsupported_browser:
-      headline: "ActiveAdmin nie wspiera przeglądarki Internet Explorer w wersjach 8 i niższych."
-      recommendation: "Polecamy <a href=\"http://browsehappy.com/\">aktualizację przeglądarki</a>."
-      turn_off_compatibility_view: "Jeśli używasz Internet Explorera w wersji 9 lub nowszej, upewnij się, że <a href=\"https://support.microsoft.com/en-us/help/17471\">\"tryb zgodności\" został wyłączony.</a>."
     access_denied:
       message: "Nie masz uprawnień wystarczających do wykonania tej akcji."
     index_list:
