@@ -102,10 +102,6 @@ module ActiveAdmin
         form_builder.object
       end
 
-      def form_buffers
-        raise "'form_buffers' has been removed from ActiveAdmin::FormBuilder, please read https://github.com/activeadmin/activeadmin/blob/master/docs/5-forms.md for details."
-      end
-
       private
 
       def create_another_checkbox

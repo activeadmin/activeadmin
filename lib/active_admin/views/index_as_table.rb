@@ -304,10 +304,6 @@ module ActiveAdmin
           end
         end
 
-        def default_actions
-          raise "`default_actions` is no longer provided in ActiveAdmin 1.x. Use `actions` instead."
-        end
-
         # Add links to perform actions.
         #
         # ```ruby
