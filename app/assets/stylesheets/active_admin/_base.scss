@@ -1,10 +1,10 @@
 /* Active Admin CSS */
 @media screen {
   // Normalize
-  @import "./normalize";
+  // @import "./normalize";
 
   // Partials
-  @import "./typography";
+  // @import "./typography";
   @import "./header";
   @import "./forms";
   @import "./components/comments";
@@ -30,25 +30,25 @@
   @import "./structure/main_structure";
   @import "./structure/title_bar";
 
-  html {
-    box-sizing: border-box;
-  }
+  // html {
+  //   box-sizing: border-box;
+  // }
 
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
+  // *,
+  // *:before,
+  // *:after {
+  //   box-sizing: inherit;
+  // }
 
-  body {
-    @include sans-family;
-    line-height: 1.5;
-    font-size: 72%;
-    background: $body-background-color;
-    color: $text-color;
-  }
+  // body {
+  //   @include sans-family;
+  //   line-height: 1.5;
+  //   font-size: 72%;
+  //   background: $body-background-color;
+  //   color: $text-color;
+  // }
 }
 
-@media print {
-  @import "./print";
-}
+// @media print {
+//   @import "./print";
+// }
