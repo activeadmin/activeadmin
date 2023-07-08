@@ -55,7 +55,7 @@ module ActiveAdmin
         end
 
         def build_page
-          within body(class: body_classes) do
+          within body(data_attributes) do
             div id: "wrapper" do
               header active_admin_namespace, current_menu
               title_bar title, action_items_for_action
@@ -65,13 +65,13 @@ module ActiveAdmin
           end
         end
 
-        def body_classes
-          Arbre::HTML::ClassList.new [
-            params[:action],
-            params[:controller].tr("/", "_"),
-            "active_admin", "logged_in",
-            active_admin_namespace.name.to_s + "_namespace"
-          ]
+        def data_attributes
+          {
+            "data-rails-action": params[:action],
+            "data-rails-controller": params[:controller].tr("/", "_"),
+            "data-active-admin-namespace": active_admin_namespace.name.to_s,
+            "data-active-admin-logged-in": "true"
+          }
         end
 
         def build_page_content
