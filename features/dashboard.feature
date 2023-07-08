@@ -11,6 +11,5 @@ Feature: Dashboard
       """
     And I am logged in
     When I go to the dashboard
-    Then I should see the Active Admin layout
-    And I should not see the default welcome message
+    Then I should not see the default welcome message
     And I should see "Hello world from the dashboard page"

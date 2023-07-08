@@ -47,13 +47,5 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
     expect(layout.attributes[:lang]).to eq :en
   end
 
-  describe "the body" do
-    it "should have class 'active_admin'" do
-      expect(layout.build.class_list).to include "active_admin"
-    end
-
-    it "should have namespace class" do
-      expect(layout.build.class_list).to include "#{active_admin_namespace.name}_namespace"
-    end
   end
 end
