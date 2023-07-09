@@ -52,7 +52,7 @@ Then /^I should be in the resource section for (.+)$/ do |resource_name|
 end
 
 Then /^I should see the page title "([^"]*)"$/ do |title|
-  within("h2#page_title") do
+  within(".page-title-bar-heading") do
     expect(page).to have_content title
   end
 end
