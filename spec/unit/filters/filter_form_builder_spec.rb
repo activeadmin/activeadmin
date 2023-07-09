@@ -429,7 +429,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
   end # belongs to
 
   describe "has_and_belongs_to_many" do
-    skip "add HABTM models so this can be tested"
+    # skip "add HABTM models so this can be tested"
   end
 
   describe "has_many :through" do

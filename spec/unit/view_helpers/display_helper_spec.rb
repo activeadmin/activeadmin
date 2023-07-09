@@ -208,8 +208,6 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       expect(value).to match /<a href="\/admin\/users\/\d+">A B<\/a>/
     end
 
-    pending "auto-links Mongoid records"
-
     it "calls status_tag for boolean values" do
       post = Post.new starred: true
 
