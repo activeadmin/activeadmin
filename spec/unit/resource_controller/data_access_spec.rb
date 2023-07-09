@@ -2,8 +2,10 @@
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::ResourceController::DataAccess do
-  before do
-    load_resources { config }
+  around do |example|
+    with_resources_during(example) do
+      config
+    end
   end
 
   let(:config) do

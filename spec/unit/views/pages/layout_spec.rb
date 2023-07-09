@@ -2,6 +2,8 @@
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::Pages::Layout do
+  let(:active_admin_application) { ActiveAdmin::Application.new }
+  let(:active_admin_namespace) { ActiveAdmin::Namespace.new(active_admin_application, :myspace) }
   let(:assigns) { {} }
   let(:helpers) do
     helpers = mock_action_view
@@ -22,13 +24,6 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
 
     helpers
   end
-
-  let(:active_admin_namespace) do
-    application = ActiveAdmin::Application.new
-    application.use_webpacker = ActiveAdmin.application.use_webpacker
-    ActiveAdmin::Namespace.new(ActiveAdmin.application, :myspace)
-  end
-  let(:active_admin_application) { ActiveAdmin.application }
 
   let(:layout) do
     render_arbre_component assigns, helpers do

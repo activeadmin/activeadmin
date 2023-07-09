@@ -2,8 +2,8 @@
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::Resource::BelongsTo do
-  before do
-    load_resources do
+  around do |example|
+    with_resources_during(example) do
       ActiveAdmin.register User
       ActiveAdmin.register(Post) { belongs_to :user }
     end
