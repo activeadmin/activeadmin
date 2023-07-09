@@ -1,4 +1,11 @@
 en:
+  views:
+    pagination:
+      first: "First"
+      last: "Last"
+      previous: "Previous"
+      next: "Next"
+      # truncate: "&hellip;"
   activerecord:
     models:
       comment:
@@ -64,10 +71,10 @@ en:
       search_status: "Search Status"
     pagination:
       empty: "No %{model} found"
-      one: "Displaying <b>1</b> %{model}"
-      one_page: "Displaying <b>all %{n}</b> %{model}"
-      multiple: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b> in total"
-      multiple_without_total: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b>"
+      one: "Showing <b>1</b> %{model}"
+      one_page: "Showing <b>all %{n}</b> %{model}"
+      multiple: "Showing <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{total}</b>"
+      multiple_without_total: "Showing <b>%{from}&nbsp;-&nbsp;%{to}</b>"
       per_page: "Per page: "
       entry:
         one: "entry"
