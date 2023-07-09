@@ -38,9 +38,13 @@ module ActiveAdmin
 
           def to_html
             input_wrapping do
-              label_html << # your label
-              select_html << # the dropdown that holds the available search methods
-              input_html # your input field
+              [
+                label_html, # your label
+                '<div class="filter-input-group">',
+                select_html, # the dropdown that holds the available search methods
+                input_html, # your input field
+                '</div>'
+              ].join("\n").html_safe
             end
           end
 
