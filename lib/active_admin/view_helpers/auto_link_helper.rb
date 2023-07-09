@@ -12,9 +12,9 @@ module ActiveAdmin
       # You can pass in the content to display
       #   eg: auto_link(@post, "My Link")
       #
-      def auto_link(resource, content = display_name(resource))
+      def auto_link(resource, content = display_name(resource), **html_options)
         if url = auto_url_for(resource)
-          link_to content, url
+          link_to content, url, html_options
         else
           content
         end
