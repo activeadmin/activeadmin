@@ -277,7 +277,7 @@ module ActiveAdmin
       end
 
       def per_page
-        if active_admin_config.paginate
+        if active_admin_config.paginate(controller: self)
           dynamic_per_page || configured_per_page
         else
           active_admin_config.max_per_page

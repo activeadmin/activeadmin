@@ -20,8 +20,12 @@ module ActiveAdmin
         @max_per_page = namespace.max_per_page
       end
 
-      def paginate
-        @paginate.is_a?(Proc) ? instance_eval(&@paginate) : @paginate
+      def paginate(controller: nil)
+        if @paginate.is_a?(Proc)
+          controller ? controller.instance_eval(&@paginate) : @paginate.call
+        else
+          @paginate
+        end
       end
     end
   end
