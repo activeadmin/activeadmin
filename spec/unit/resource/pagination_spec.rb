@@ -19,6 +19,11 @@ module ActiveAdmin
         config.paginate = false
         expect(config.paginate).to eq false
       end
+
+      it "should be settable to executable Proc" do
+        config.paginate = proc { false }
+        expect(config.paginate).to eq false
+      end
     end
 
     describe "#per_page" do
