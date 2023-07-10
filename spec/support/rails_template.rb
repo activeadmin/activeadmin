@@ -44,6 +44,19 @@ copy_file File.expand_path("templates/models/tagging.rb", __dir__), "app/models/
 
 copy_file File.expand_path("templates/helpers/time_helper.rb", __dir__), "app/helpers/time_helper.rb"
 
+inject_into_file "app/models/application_record.rb", before: "end" do
+  <<-RUBY
+
+  def self.ransackable_attributes(auth_object=nil)
+    authorizable_ransackable_attributes
+  end
+
+  def self.ransackable_associations(auth_object=nil)
+    authorizable_ransackable_associations
+  end
+  RUBY
+end
+
 gsub_file "config/environments/test.rb", /  config.cache_classes = true/, <<-RUBY
 
   config.cache_classes = !ENV['CLASS_RELOADING']

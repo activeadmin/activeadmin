@@ -38,6 +38,14 @@ RSpec.describe "Comments" do
       expect(comment.errors[:resource]).to eq(["can't be blank"])
     end
 
+    it "authorizes default ransackable attributes" do
+      expect(described_class.ransackable_attributes).to eq described_class.authorizable_ransackable_attributes
+    end
+
+    it "authorizes default ransackable associations" do
+      expect(described_class.ransackable_associations).to eq described_class.authorizable_ransackable_associations
+    end
+
     describe ".find_for_resource_in_namespace" do
       let(:namespace_name) { "admin" }
 

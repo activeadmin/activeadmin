@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
   belongs_to :category, foreign_key: :custom_category_id, optional: true
   belongs_to :author, class_name: "User", optional: true
   has_many :taggings
@@ -21,7 +21,7 @@ class Post < ActiveRecord::Base
 
   class << self
     def ransackable_scopes(_auth_object = nil)
-      [:fancy_filter]
+      super + [:fancy_filter]
     end
 
     def fancy_filter(value)
