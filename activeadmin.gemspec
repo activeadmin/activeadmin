@@ -18,7 +18,16 @@ Gem::Specification.new do |s|
 
   s.extra_rdoc_files = %w[CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md README.md]
 
-  s.metadata = { "rubygems_mfa_required" => "true" }
+  s.metadata = {
+    "bug_tracker_uri" => "https://github.com/activeadmin/activeadmin/issues",
+    "changelog_uri" => "https://github.com/activeadmin/activeadmin/blob/master/CHANGELOG.md",
+    "documentation_uri" => "https://activeadmin.info",
+    "homepage_uri" => "https://activeadmin.info",
+    "mailing_list_uri" => "https://groups.google.com/group/activeadmin",
+    "rubygems_mfa_required" => "true",
+    "source_code_uri" => "https://github.com/activeadmin/activeadmin",
+    "wiki_uri" => "https://github.com/activeadmin/activeadmin/wiki"
+  }
 
   s.required_ruby_version = ">= 2.7"
 
