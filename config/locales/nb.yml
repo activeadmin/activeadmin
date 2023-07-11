@@ -25,14 +25,6 @@ nb:
         filter: "Filter"
         clear: "Fjern filter"
       predicates:
-        contains: "Inneholder"
-        equals: "Er lik"
-        starts_with: "Starter med"
-        ends_with: "Slutter med"
-        greater_than: "Større enn"
-        less_than: "Mindre enn"
-        gteq_datetime: "Større enn eller lik"
-        lteq_datetime: "Mindre enn eller lik"
         from: "Fra"
         to: "Til"
     search_status:

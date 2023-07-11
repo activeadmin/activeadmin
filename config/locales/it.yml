@@ -43,14 +43,6 @@ it:
         filter: "Filtra"
         clear: "Rimuovi filtri"
       predicates:
-        contains: "Contiene"
-        equals: "Uguale a"
-        starts_with: "Inizia con"
-        ends_with: "Finisce con"
-        greater_than: "Maggiore di"
-        less_than: "Minore di"
-        gteq_datetime: "Maggiore o uguale a"
-        lteq_datetime: "Minore o uguale a"
         from: "Da"
         to: "A"
     scopes:

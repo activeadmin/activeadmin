@@ -24,13 +24,6 @@ fi:
       buttons:
         filter: "Hae"
         clear: "Tyhjennä valinnat"
-      predicates:
-        contains: "Sisältää"
-        equals: "On yhtä kuin"
-        starts_with: "Alkaa"
-        ends_with: "Päättyy"
-        greater_than: "Suurempi kuin"
-        less_than: "Pienempi kuin"
     status_tag:
       "yes": "Kyllä"
       "no": "Ei"

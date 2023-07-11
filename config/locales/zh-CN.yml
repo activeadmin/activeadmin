@@ -43,14 +43,6 @@
         filter: "过滤"
         clear: "清除条件"
       predicates:
-        contains: "包含"
-        equals: "等于"
-        starts_with: "始于"
-        ends_with: "止于"
-        greater_than: "大于"
-        less_than: "小于"
-        gteq_datetime: "大于等于"
-        lteq_datetime: "小于等于"
         from: "起"
         to: "止"
     scopes:

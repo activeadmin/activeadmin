@@ -24,13 +24,6 @@ ro:
       buttons:
         filter: "Cautati"
         clear: "Stergeti filtrele"
-      predicates:
-        contains: "Conține"
-        equals: "Egal Cu"
-        starts_with: "începe cu"
-        ends_with: "se termină cu"
-        greater_than: "Mai Mare Decat"
-        less_than: "Mai Mic Decat"
     status_tag:
       "yes": "Da"
       "no": "Nu"

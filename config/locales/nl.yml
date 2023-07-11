@@ -27,15 +27,7 @@ nl:
         filter: "Filter"
         clear: "Maak Filters Ongedaan"
       predicates:
-        contains: "Bevat"
-        equals: "Gelijk aan"
-        starts_with: "Begint met"
-        ends_with: "Eindigt op"
-        greater_than: "Groter dan"
-        less_than: "Kleiner dan"
         from: Van
-        gteq_datetime: Groter of gelijk aan
-        lteq_datetime: Kleiner of gelijk aan
         to: Tot
     search_status:
       current_scope: "Scope:"

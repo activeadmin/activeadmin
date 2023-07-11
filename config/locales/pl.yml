@@ -47,14 +47,6 @@ pl:
         filter: "Filtruj"
         clear: "Wyczyść Filtry"
       predicates:
-        contains: "Zawiera"
-        equals: "Równe"
-        starts_with: "Zaczyna się"
-        ends_with: "Kończy się"
-        greater_than: "Większe niż"
-        less_than: "Mniejsze niż"
-        gteq_datetime: "Większe lub równe"
-        lteq_datetime: "Mniejsze lub równe"
         from: "Od"
         to: "Do"
     scopes:

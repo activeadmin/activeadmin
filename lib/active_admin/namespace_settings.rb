@@ -119,7 +119,7 @@ module ActiveAdmin
         :title,
         :email,
     ]
-    register :filter_method_for_large_association, "_starts_with"
+    register :filter_method_for_large_association, "_start"
 
     # Switch between asset pipeline and webpacker assets
     register :use_webpacker, false
