@@ -12,7 +12,11 @@ module ActiveAdmin
         options = attrs.extract_options!
         @sortable = options.delete(:sortable)
         @collection = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
-        @resource_class = options.delete(:i18n)
+        @resource_class = options.delete(:resource_class)
+        if options.key? :i18n
+          Deprecation.warn "The `i18n` parameter is deprecated; use `resource_class` instead."
+          @resource_class = options.delete(:i18n)
+        end
         @resource_class ||= @collection.klass if @collection.respond_to? :klass
 
         @columns = []
@@ -25,6 +29,30 @@ module ActiveAdmin
 
       def columns(*attrs)
         attrs.each { |attr| column(attr) }
+      end
+
+      def index_column(start_value = 1)
+        column "#", class: "col-index", sortable: false do |resource|
+          offset_value = @collection.offset_value if @collection.respond_to? :offset_value
+          offset_value ||= 0
+          offset_value + @collection.index(resource) + start_value
+        end
+      end
+
+      def id_column
+        raise "Resource class not specified!" unless @resource_class
+        raise "#{@resource_class.name} has no primary_key!" unless @resource_class.primary_key
+        config = active_admin_resource_for(@resource_class)
+
+        column(@resource_class.human_attribute_name(@resource_class.primary_key), sortable: @resource_class.primary_key) do |resource|
+          if config && config.controller.action_methods.include?("show")
+            link_to resource.id, config.route_instance_path(resource), class: "resource_id_link"
+          elsif config && config.controller.action_methods.include?("edit")
+            link_to resource.id, config.route_edit_instance_path(resource), class: "resource_id_link"
+          else
+            resource.id
+          end
+        end
       end
 
       def column(*args, &block)
