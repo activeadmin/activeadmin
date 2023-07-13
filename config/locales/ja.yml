@@ -26,14 +26,6 @@ ja:
         filter: "絞り込む"
         clear: "条件を削除する"
       predicates:
-        contains: "を含む"
-        equals: "等しい"
-        starts_with: "で始まる"
-        ends_with: "で終わる"
-        greater_than: "より大きい"
-        less_than: "より小さい"
-        gteq_datetime: "以上"
-        lteq_datetime: "以下"
         from: "開始"
         to: "終了"
     search_status:

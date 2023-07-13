@@ -25,13 +25,6 @@ da:
       buttons:
         filter: "Filtrer"
         clear: "Ryd filtre"
-      predicates:
-        contains: "Indeholder"
-        equals: "Lig"
-        starts_with: "Begynder med"
-        ends_with: "Slutter med"
-        greater_than: "Større end"
-        less_than: "Mindre end"
     search_status:
       headline: "Søgestatus:"
       current_scope: "Perspektiv:"

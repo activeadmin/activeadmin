@@ -24,13 +24,6 @@ es-MX:
       buttons:
         filter: "Filtrar"
         clear: "Quitar Filtros"
-      predicates:
-        contains: "Contiene"
-        equals: "Igual a"
-        starts_with: "Empieza con"
-        ends_with: "Termina con"
-        greater_than: "Mayor que"
-        less_than: "Menor que"
     status_tag:
       "yes": "Sí"
       "no": "No"

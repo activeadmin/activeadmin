@@ -13,8 +13,8 @@ RSpec.describe ActiveAdmin::Views::IndexList do
     let(:helpers) do
       helpers = mock_action_view
       allow(helpers).to receive(:url_for) { |url| "/?#{ url.to_query }" }
-      allow(helpers.request).to receive(:query_parameters).and_return as: "table", q: { title_contains: "terms" }
-      allow(helpers).to receive(:params).and_return(ActionController::Parameters.new(as: "table", q: { title_contains: "terms" }))
+      allow(helpers.request).to receive(:query_parameters).and_return as: "table", q: { title_cont: "terms" }
+      allow(helpers).to receive(:params).and_return(ActionController::Parameters.new(as: "table", q: { title_cont: "terms" }))
       allow(helpers).to receive(:collection).and_return(collection)
       helpers
     end
@@ -40,9 +40,9 @@ RSpec.describe ActiveAdmin::Views::IndexList do
     it "should maintain index filter parameters" do
       a_tags = subject.find_by_tag("a")
       expect(a_tags.first.attributes[:href])
-        .to eq("/?#{ { as: "table", q: { title_contains: "terms" } }.to_query }")
+        .to eq("/?#{ { as: "table", q: { title_cont: "terms" } }.to_query }")
       expect(a_tags.last.attributes[:href])
-        .to eq("/?#{ { as: "block", q: { title_contains: "terms" } }.to_query }")
+        .to eq("/?#{ { as: "block", q: { title_cont: "terms" } }.to_query }")
     end
   end
 end

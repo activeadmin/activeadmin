@@ -15,12 +15,12 @@ module ActiveAdmin
         end
 
         def gt_input_name
-          column && column.type == :date ? "#{method}_gteq" : "#{method}_gteq_datetime"
+          "#{method}_gteq"
         end
         alias :input_name :gt_input_name
 
         def lt_input_name
-          column && column.type == :date ? "#{method}_lteq" : "#{method}_lteq_datetime"
+          "#{method}_lteq"
         end
 
         def input_html_options

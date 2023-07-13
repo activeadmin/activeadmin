@@ -43,14 +43,6 @@
         filter: "Filtrera"
         clear: "Rensa filter"
       predicates:
-        contains: "Innehåller"
-        equals: "Lika med"
-        starts_with: "Börjar med"
-        ends_with: "Slutar med"
-        greater_than: "Större än"
-        less_than: "Mindre än"
-        gteq_datetime: "Större än eller lika med"
-        lteq_datetime: "Mindre än eller lika med"
         from: "Från"
         to: "Till"
     scopes:

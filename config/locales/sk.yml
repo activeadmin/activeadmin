@@ -47,14 +47,6 @@ sk:
         filter: "Filtrovať"
         clear: "Vyčistiť filtre"
       predicates:
-        contains: "Obsahuje"
-        equals: "Je presne"
-        starts_with: "Začína na"
-        ends_with: "Končí na"
-        greater_than: "Väčší ako"
-        less_than: "Menší ako"
-        gteq_datetime: "Od"
-        lteq_datetime: "Do"
         from: "Od"
         to: "Do"
     scopes:

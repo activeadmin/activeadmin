@@ -25,14 +25,6 @@ lt:
         filter: 'Filtras'
         clear: 'Išvalyti filtrus'
       predicates:
-        contains: "Sudėtyje yra"
-        equals: 'lygus'
-        starts_with: "Prasideda nuo"
-        ends_with: "Baigiasi"
-        greater_than: 'didesnis nei'
-        less_than: 'mažiau nei'
-        gteq_datetime: "daugiau arba lygu nei"
-        lteq_datetime: "mažiau arba lygu nei"
         from: "Nuo"
         to: "Iki"
     search_status:

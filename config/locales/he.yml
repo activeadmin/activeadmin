@@ -25,15 +25,6 @@ he:
       buttons:
         filter: "סינון"
         clear: "איפוס שדות"
-      predicates:
-        contains: "מכיל"
-        equals: "שווה ל"
-        starts_with: "מתחיל עם"
-        ends_with: "מסתיים ב"
-        greater_than: "גדול מ"
-        less_than: "פחות מ"
-        gteq_datetime: "אחרי או בתאריך"
-        lteq_datetime: "לפני או בתאריך"
     search_status:
       headline: "תוצאות חיפוש:"
       current_scope: "תחום:"

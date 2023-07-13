@@ -27,14 +27,6 @@ eo:
         filter: "Filtri"
         clear: "Viŝi filtrilojn"
       predicates:
-        contains: "Enhavas"
-        equals: "Egalas al"
-        starts_with: "Komenciĝas per"
-        ends_with: "Finiĝas per"
-        greater_than: "Pli grandas ol"
-        less_than: "Malpli grandas ol"
-        gteq_datetime: "Pli grandas ol aŭ egalas al"
-        lteq_datetime: "Malpli grandas ol aŭ egalas al"
         from: "De"
         to: "Al"
     search_status:

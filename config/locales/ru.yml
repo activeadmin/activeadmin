@@ -25,12 +25,6 @@ ru:
         filter: "Фильтровать"
         clear: "Очистить"
       predicates:
-        contains: "Содержит"
-        equals: "Равно"
-        starts_with: "Начинается с"
-        ends_with: "Заканчивается"
-        greater_than: "больше"
-        less_than: "меньше"
         from: "От"
         to: "До"
     search_status:

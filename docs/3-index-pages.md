@@ -108,19 +108,18 @@ filter :author, as: :check_boxes, collection: proc { Author.all }
 To override options for string or numeric filter pass `filters` option.
 
 ```ruby
-  filter :title, filters: [:starts_with, :ends_with]
+  filter :title, filters: [:start, :end]
 ```
 
-Also, if you don't need the select with the options 'contains', 'equals',
-'starts_with' or 'ends_with' just add the option to the filter name with an
-underscore.
+Also, if you don't need the select with the options 'cont', 'eq', 'start' or
+'end' just add the option to the filter name with an underscore.
 
 For example:
 
 ```ruby
-filter :name_equals
+filter :name_eq
 # or
-filter :name_contains
+filter :name_cont
 ```
 
 You can change the filter label by passing a label option:

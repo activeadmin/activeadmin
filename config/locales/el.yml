@@ -24,13 +24,6 @@ el:
       buttons:
         filter: "Φίλτρα"
         clear: "Καθαρισμός Φίλτρων"
-      predicates:
-        contains: "Περιέχει"
-        equals: "Είναι ίσο με"
-        starts_with: "Αρχίζει με"
-        ends_with: "Καταλήγει σε"
-        greater_than: "Μεγαλύτερο από"
-        less_than: "Μικρότερο από"
     status_tag:
       "yes": "Ναι"
       "no": "Όχι"

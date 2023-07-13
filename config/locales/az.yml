@@ -24,13 +24,6 @@ az:
       buttons:
         filter: "Filtrlə"
         clear: "Təmizlə"
-      predicates:
-        contains: "Yerləşir"
-        equals: "Bərabərdir"
-        starts_with: "Başlayır"
-        ends_with: "Bitir"
-        greater_than: "böyük"
-        less_than: "kiçik"
     search_status:
       headline: "Axtarışın statusu:"
       current_scope: "Sahə:"

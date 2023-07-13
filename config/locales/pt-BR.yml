@@ -26,14 +26,6 @@ pt-BR:
         filter: "Filtrar"
         clear: "Limpar Filtros"
       predicates:
-        contains: "Contém"
-        equals: "Igual A"
-        starts_with: "Começa com"
-        ends_with: "Termina com"
-        greater_than: "Maior Que"
-        less_than: "Menor Que"
-        gteq_datetime: "Maior ou igual a"
-        lteq_datetime: "Menor ou igual a"
         from: "A partir de"
         to: "Até"
     search_status:

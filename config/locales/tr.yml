@@ -26,17 +26,6 @@ tr:
       buttons:
         filter: "Filtrele"
         clear: "Filtreleri Temizle"
-      predicates:
-        contains: "İçerir"
-        equals: "Eşittir"
-        starts_with: "İle başlar"
-        ends_with: "İle biter"
-        greater_than: "Büyüktür"
-        less_than: "Küçüktür"
-        gteq_datetime: "Büyük yada eşit"
-        lteq_datetime: "Küçük yada eşit"
-        from: "Başlangıç"
-        to: "Bitiş"
     search_status:
       headline: "Arama"
       current_scope: "Kapsam:"

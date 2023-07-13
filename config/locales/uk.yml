@@ -25,12 +25,6 @@ uk:
         filter: "Фільтрувати"
         clear: "Очистити"
       predicates:
-        contains: "Містить"
-        equals: "="
-        starts_with: "Починається з"
-        ends_with: "Закінчується"
-        greater_than: "більше"
-        less_than: "менше"
         from: "від"
         to: "до"
     search_status:

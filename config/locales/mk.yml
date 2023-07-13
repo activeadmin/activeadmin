@@ -35,14 +35,6 @@ mk:
         filter: "Пребарај"
         clear: "Исчисти филтри"
       predicates:
-        contains: "Содржи"
-        equals: "Е еднакво со"
-        starts_with: "Започнува со"
-        ends_with: "Завршува сo"
-        greater_than: "Е поголемо од"
-        less_than: "Е помало од"
-        gteq_datetime: "Е поголемо или еднакво со"
-        lteq_datetime: "Е помало или еднакво со"
         from: "Од"
         to: "До"
     search_status:

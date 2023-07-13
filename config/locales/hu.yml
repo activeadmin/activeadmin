@@ -25,14 +25,6 @@ hu:
         filter: "Szűrés"
         clear: "Feltételek törlése"
       predicates:
-        contains: "Tartalmazza"
-        equals: "Pontosan"
-        starts_with: "kezdődik"
-        ends_with: "végződik"
-        greater_than: "Nagyobb, mint"
-        less_than: "Kisebb, mint"
-        gteq_datetime: "Nagyobb vagy egyenlő, mint"
-        lteq_datetime: "Kisebb vagy egyenlő, mint"
         from: "-tól"
         to: "-ig"
     status_tag:

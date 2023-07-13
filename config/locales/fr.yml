@@ -26,14 +26,6 @@ fr:
         filter: "Filtrer"
         clear: "Supprimer les filtres"
       predicates:
-        contains: "Contient"
-        equals: "Égal à"
-        starts_with: "Commence par"
-        ends_with: "Se termine par"
-        greater_than: "Plus grand que"
-        less_than: "Plus petit que"
-        gteq_datetime: "Ultérieur ou égal à"
-        lteq_datetime: "Antérieur ou égal à"
         from: "De"
         to: "À"
     search_status:

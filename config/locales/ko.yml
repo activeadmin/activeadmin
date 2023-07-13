@@ -24,13 +24,6 @@ ko:
       buttons:
         filter: "필터"
         clear: "필터 초기화"
-      predicates:
-        contains: "포함하는 문구"
-        equals: "일치하는 문구"
-        starts_with: "시작하는 문구"
-        ends_with: "종료하는 문구"
-        greater_than: "초과"
-        less_than: "미만"
     search_status:
       headline: "검색 상태:"
       current_scope: "검색 범위:"

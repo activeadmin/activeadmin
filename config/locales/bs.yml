@@ -24,13 +24,6 @@ bs:
       buttons:
         filter: "Filtriraj"
         clear: "Ukloni filtere"
-      predicates:
-        contains: "Sadrži"
-        equals: "Jednako"
-        starts_with: "počinje s"
-        ends_with: "Završava sa"
-        greater_than: "Veće od"
-        less_than: "Manje od"
     status_tag:
       "yes": "Da"
       "no": "Nema"
