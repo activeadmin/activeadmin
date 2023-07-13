@@ -46,6 +46,4 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
   it "should have lang attribute on the html element" do
     expect(layout.attributes[:lang]).to eq :en
   end
-
-  end
 end
