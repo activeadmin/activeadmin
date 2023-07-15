@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+## 3.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.14.0..v3.0.0)
+
+### Breaking Changes
+
+* Remove custom Ransack predicates that were MetaSearch backports. [#8010] by [@javierjulio]
+* Require Ransack v4. [#8009] by [@javierjulio]
+
+### Enhancements
+
+* Use display name fallback if blank display name result. [#6342] by [@javierjulio]
+
+### Translation Improvements
+
+* Improve Swedish translations. [#7993] by [@carlottostromstedt]
+
 ## 2.14.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.13.1..v2.14.0)
 
 ### Enhancements
@@ -784,6 +799,7 @@ Please check [0-6-stable] for previous changes.
 [#6315]: https://github.com/activeadmin/activeadmin/pull/6315
 [#6318]: https://github.com/activeadmin/activeadmin/pull/6318
 [#6341]: https://github.com/activeadmin/activeadmin/pull/6341
+[#6342]: https://github.com/activeadmin/activeadmin/pull/6342
 [#6368]: https://github.com/activeadmin/activeadmin/pull/6368
 [#6393]: https://github.com/activeadmin/activeadmin/pull/6393
 [#6422]: https://github.com/activeadmin/activeadmin/pull/6422
@@ -845,6 +861,9 @@ Please check [0-6-stable] for previous changes.
 [#7984]: https://github.com/activeadmin/activeadmin/pull/7984
 [#7985]: https://github.com/activeadmin/activeadmin/pull/7985
 [#7986]: https://github.com/activeadmin/activeadmin/pull/7986
+[#7993]: https://github.com/activeadmin/activeadmin/pull/7993
+[#8009]: https://github.com/activeadmin/activeadmin/pull/8009
+[#8010]: https://github.com/activeadmin/activeadmin/pull/8010
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
@@ -865,6 +884,7 @@ Please check [0-6-stable] for previous changes.
 [@brunoarueira]: https://github.com/brunoarueira
 [@brunvez]: https://github.com/brunvez
 [@buren]: https://github.com/buren
+[@carlottostromstedt]: https://github.com/carlottostromstedt
 [@chancancode]: https://github.com/chancancode
 [@chrp]: https://github.com/chrp
 [@chumakoff]: https://github.com/chumakoff
