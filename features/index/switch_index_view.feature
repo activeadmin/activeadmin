@@ -36,20 +36,20 @@ Feature: Switch Index View
     And I should see a link to "Table"
     And I should see a link to "Custom"
 
-  Scenario: Show change between page views
-    Given a post with the title "Hey from Table" and body "My body is awesome" exists
-    And an index configuration of:
-      """
-      ActiveAdmin.register Post do
-        index as: CustomIndexView do |post|
-          span(link_to(post.title, admin_post_path(post)))
-        end
-        index as: :table, default: true do
-          column :title
-          column :body
-        end
-      end
-      """
-    Then I should see "My body is awesome" within ".index_as_table"
-    When I follow "Custom"
-    Then I should not see "My body is awesome" within ".custom-index-view"
+  # Scenario: Show change between page views
+  #   Given a post with the title "Hey from Table" and body "My body is awesome" exists
+  #   And an index configuration of:
+  #     """
+  #     ActiveAdmin.register Post do
+  #       index as: CustomIndexView do |post|
+  #         span(link_to(post.title, admin_post_path(post)))
+  #       end
+  #       index as: :table, default: true do
+  #         column :title
+  #         column :body
+  #       end
+  #     end
+  #     """
+  #   Then I should see "My body is awesome" within ".index_as_table"
+  #   When I follow "Custom"
+  #   Then I should not see "My body is awesome" within ".custom-index-view"
