@@ -164,31 +164,38 @@ end
 ## Status tag
 
 Status tags provide convenient syntactic sugar for styling items that have
-status. A common example of where the status tag could be useful is for orders
-that are complete or in progress. `status_tag` takes a status, like
-"In Progress", and a hash of options. The status_tag will generate HTML markup
-that Active Admin CSS uses in styling.
+status. A common usage is for boolean fields or a named status like "Complete"
+or "In progress". The `status_tag` will generate HTML markup and a base style
+is applied. Customize with your own CSS classes and styles.
 
 ```ruby
 status_tag 'In Progress'
-# => <span class='status_tag in_progress'>In Progress</span>
+# => <span class="status-tag" data-status="in_progress">In Progress</span>
 
-status_tag 'active', class: 'important', id: 'status_123', label: 'on'
-# => <span class='status_tag active important' id='status_123'>on</span>
+status_tag 'Active', class: 'important', id: 'status_123', label: 'on'
+# => <span class="status-tag important" id="status_123" data-status="active">on</span>
 ```
 
-When providing a `true` or `false` value, the `status_tag` will display "Yes"
-or "No". This can be configured through the `"en.active_admin.status_tag"`
-locale.
+When providing a `true`, `false`, or `nil` value, the `status_tag` will display
+"Yes", "No", or "Unknown" by default.
 
 ```ruby
 status_tag true
-# => <span class='status_tag yes'>Yes</span>
+# => <span class="status-tag" data-status="yes">Yes</span>
 ```
 
-In the case that a boolean field is `nil`, it will display "No" as a default.
-But using the `"en.active_admin.status_tag.unset"` locale key, it can be
-configured to display something else.
+```ruby
+status_tag false
+# => <span class="status-tag" data-status="yes">No</span>
+```
+
+```ruby
+status_tag nil
+# => <span class="status-tag" data-status="unset">Unknown</span>
+```
+
+The default labels can be configured through the `"en.active_admin.status_tag"`
+locale.
 
 ## Tabs
 
