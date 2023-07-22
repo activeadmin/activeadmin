@@ -107,13 +107,6 @@ with the db:
 bin/rake local db:migrate
 ```
 
-### Get the style right
-
-Your patch should follow the same conventions & pass the same code quality
-checks as the rest of the project. `bin/rake lint` will give you feedback in
-this regard. You can check & fix style issues by running each linter
-individually. Run `bin/rake -T lint` to see the available linters.
-
 ### Make a Pull Request
 
 At this point, you should switch back to your master branch and make sure it's
