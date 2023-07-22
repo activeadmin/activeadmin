@@ -30,7 +30,7 @@ module ActiveAdmin
             text_node(active_admin_namespace.head)
 
             active_admin_application.stylesheets.each do |style, options|
-              stylesheet_tag = active_admin_namespace.use_webpacker ? stylesheet_pack_tag(style, **options) : stylesheet_link_tag(style, **options)
+              stylesheet_tag = stylesheet_link_tag(style, **options)
               text_node(stylesheet_tag.html_safe) if stylesheet_tag
             end
 
@@ -39,13 +39,13 @@ module ActiveAdmin
             end
 
             active_admin_application.javascripts.each do |path, options|
-              javascript_tag = active_admin_namespace.use_webpacker ? javascript_pack_tag(path, **options) : javascript_include_tag(path, **options)
+              javascript_tag = javascript_include_tag(path, **options)
               text_node(javascript_tag)
             end
 
             if active_admin_namespace.favicon
               favicon = active_admin_namespace.favicon
-              favicon_tag = active_admin_namespace.use_webpacker ? favicon_pack_tag(favicon) : favicon_link_tag(favicon)
+              favicon_tag = favicon_link_tag(favicon)
               text_node(favicon_tag)
             end
 

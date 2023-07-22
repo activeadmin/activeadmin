@@ -6,18 +6,10 @@
   <title><%= [@page_title, ActiveAdmin.application.site_title(self)].compact.join(" | ") %></title>
 
   <% ActiveAdmin.application.stylesheets.each do |style, options| %>
-    <% if ActiveAdmin.application.use_webpacker %>
-      <%= stylesheet_pack_tag style, **options %>
-    <% else %>
-      <%= stylesheet_link_tag style, **options %>
-    <% end %>
+    <%= stylesheet_link_tag style, **options %>
   <% end %>
   <% ActiveAdmin.application.javascripts.each do |path, options| %>
-    <% if ActiveAdmin.application.use_webpacker %>
-      <%= javascript_pack_tag path, **options %>
-    <% else %>
-      <%= javascript_include_tag path, **options %>
-    <% end %>
+    <%= javascript_include_tag path, **options %>
   <% end %>
 
   <%= favicon_link_tag ActiveAdmin.application.favicon if ActiveAdmin.application.favicon %>

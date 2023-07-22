@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe "Stylesheets", type: :request, unless: ActiveAdmin.application.use_webpacker do
+RSpec.describe "Stylesheets", type: :request do
   require "sprockets"
 
   let(:css) do
