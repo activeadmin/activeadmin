@@ -17,27 +17,12 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       it { is_expected.to eq "span" }
     end
 
-    describe "#class_list" do
-      subject { super().class_list }
-      it { is_expected.to include("status_tag") }
-    end
-
     context "when status is 'completed'" do
       subject { status_tag("completed") }
 
-      describe "#tag_name" do
-        subject { super().tag_name }
-        it { is_expected.to eq "span" }
-      end
-
       describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("status_tag") }
-      end
-
-      describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("completed") }
+        subject { super().class_list.to_a }
+        it { is_expected.to contain_exactly("status_tag") }
       end
 
       describe "#content" do
@@ -50,8 +35,8 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       subject { status_tag("in_progress") }
 
       describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("in_progress") }
+        subject { super().class_list.to_a }
+        it { is_expected.to contain_exactly("status_tag") }
       end
 
       describe "#content" do
@@ -64,8 +49,8 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       subject { status_tag("In progress") }
 
       describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("in_progress") }
+        subject { super().class_list.to_a }
+        it { is_expected.to contain_exactly("status_tag") }
       end
 
       describe "#content" do
@@ -78,8 +63,8 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       subject { status_tag("") }
 
       describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("status_tag") }
+        subject { super().class_list.to_a }
+        it { is_expected.to contain_exactly("status_tag") }
       end
 
       describe "#content" do
@@ -92,8 +77,8 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       subject { status_tag("false") }
 
       describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("status_tag") }
+        subject { super().class_list.to_a }
+        it { is_expected.to contain_exactly("status_tag", "no") }
       end
 
       describe "#content" do
@@ -106,8 +91,8 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       subject { status_tag(false) }
 
       describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("status_tag") }
+        subject { super().class_list.to_a }
+        it { is_expected.to contain_exactly("status_tag", "no") }
       end
 
       describe "#content" do
@@ -120,20 +105,30 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       subject { status_tag(nil) }
 
       describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("status_tag") }
-        it { is_expected.to include("no") }
-        it { is_expected.to include("unset") }
+        subject { super().class_list.to_a }
+        it { is_expected.to contain_exactly("status_tag", "unset") }
       end
 
       describe "#content" do
         subject { super().content }
-        it { is_expected.to eq("No") }
+        it { is_expected.to eq("Unknown") }
+      end
 
-        it "uses the unset locale key to customize the label for the `nil` case" do
-          with_translation %i[active_admin status_tag unset], "Unknown" do
-            expect(subject).to eq("Unknown")
+      describe "with locale override" do
+        around do |example|
+          with_translation %i[active_admin status_tag unset], "Unspecified" do
+            example.run
           end
+        end
+
+        describe "#class_list" do
+          subject { super().class_list.to_a }
+          it { is_expected.to contain_exactly("status_tag", "unset") }
+        end
+
+        describe "#content" do
+          subject { super().content}
+          it { is_expected.to eq("Unspecified") }
         end
       end
     end
@@ -141,19 +136,14 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
     context "when status is 'Active' and class is 'ok'" do
       subject { status_tag("Active", class: "ok") }
 
-      describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("status_tag") }
+      describe "#content" do
+        subject { super().content }
+        it { is_expected.to eq "Active" }
       end
 
       describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("active") }
-      end
-
-      describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("ok") }
+        subject { super().class_list.to_a }
+        it { is_expected.to contain_exactly("status_tag", "ok") }
       end
     end
 
@@ -166,18 +156,8 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       end
 
       describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("status_tag") }
-      end
-
-      describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("active") }
-      end
-
-      describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.not_to include("on") }
+        subject { super().class_list.to_a }
+        it { is_expected.to contain_exactly("status_tag") }
       end
     end
 
@@ -190,23 +170,8 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       end
 
       describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("status_tag") }
-      end
-
-      describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("so_useless") }
-      end
-
-      describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("woot") }
-      end
-
-      describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.to include("awesome") }
+        subject { super().class_list.to_a }
+        it { is_expected.to contain_exactly("status_tag", "woot", "awesome") }
       end
 
       describe "#id" do
@@ -224,8 +189,8 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
       end
 
       describe "#class_list" do
-        subject { super().class_list }
-        it { is_expected.not_to include("42") }
+        subject { super().class_list.to_a }
+        it { is_expected.to contain_exactly("status_tag") }
       end
     end
   end
