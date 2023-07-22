@@ -12,7 +12,7 @@ Feature: Switch Index View
         index as: :table do
           column :title
         end
-        index as: :custom do |post|
+        index as: CustomIndexView do |post|
           span(link_to(post.title, admin_post_path(post)))
         end
       end
@@ -24,7 +24,7 @@ Feature: Switch Index View
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index as: :custom do |post|
+        index as: CustomIndexView do |post|
           span(link_to(post.title, admin_post_path(post)))
         end
         index as: :table, default: true do
@@ -41,7 +41,7 @@ Feature: Switch Index View
     And an index configuration of:
       """
       ActiveAdmin.register Post do
-        index as: :custom do |post|
+        index as: CustomIndexView do |post|
           span(link_to(post.title, admin_post_path(post)))
         end
         index as: :table, default: true do
@@ -52,4 +52,4 @@ Feature: Switch Index View
       """
     Then I should see "My body is awesome" within ".index_as_table"
     When I follow "Custom"
-    Then I should not see "My body is awesome" within ".index_as_custom"
+    Then I should not see "My body is awesome" within ".custom-index-view"

@@ -94,20 +94,16 @@ Around "@locale_manipulation" do |scenario, block|
   I18n.with_locale(:en, &block)
 end
 
-module ActiveAdmin
-  module Views
-    class IndexAsCustom < ActiveAdmin::Component
-      def build(page_presenter, collection)
-        add_class "index"
-        resource_selection_toggle_panel if active_admin_config.batch_actions.any?
-        collection.each do |obj|
-          instance_exec(obj, &page_presenter.block)
-        end
-      end
-
-      def self.index_name
-        "custom"
-      end
+class CustomIndexView < ActiveAdmin::Component
+  def build(page_presenter, collection)
+    add_class "custom-index-view"
+    resource_selection_toggle_panel if active_admin_config.batch_actions.any?
+    collection.each do |obj|
+      instance_exec(obj, &page_presenter.block)
     end
+  end
+
+  def self.index_name
+    "custom"
   end
 end
