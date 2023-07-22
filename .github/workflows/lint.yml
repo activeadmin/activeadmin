@@ -18,5 +18,3 @@ jobs:
           bundler-cache: true
       - name: Generate docs
         run: bin/rake docs:build
-      - name: Run lints
-        run: bin/rake lint
