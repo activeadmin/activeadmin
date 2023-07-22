@@ -4,7 +4,7 @@ ActiveAdmin.register User do
 
   permit_params :first_name, :last_name, :username, :age
 
-  index as: :grid do |user|
+  index as: ActiveAdmin::Views::CustomIndex do |user|
     div for: user do
       resource_selection_cell user
       h2 link_to(user.display_name, admin_user_path(user)), style: "margin-bottom: 0"

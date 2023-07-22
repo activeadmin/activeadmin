@@ -2,8 +2,24 @@
 require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::IndexList do
+  let(:custom_index_as) do
+    Class.new(ActiveAdmin::Component) do
+      def build(page_presenter, collection)
+        add_class "index"
+        resource_selection_toggle_panel if active_admin_config.batch_actions.any?
+        collection.each do |obj|
+          instance_exec(obj, &page_presenter.block)
+        end
+      end
+
+      def self.index_name
+        "block"
+      end
+    end
+  end
+
   describe "#index_list_renderer" do
-    let(:index_classes) { [ActiveAdmin::Views::IndexAsTable, ActiveAdmin::Views::IndexAsBlock] }
+    let(:index_classes) { [ActiveAdmin::Views::IndexAsTable, custom_index_as] }
 
     let(:collection) do
       Post.create(title: "First Post", starred: true)

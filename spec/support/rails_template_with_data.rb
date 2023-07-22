@@ -11,11 +11,7 @@ inject_into_file "app/admin/admin_users.rb", <<-RUBY, after: "ActiveAdmin.regist
   menu parent: "Administrative", priority: 1
 RUBY
 
-copy_file File.expand_path("templates_with_data/admin/kitchen_sink.rb", __dir__), "app/admin/kitchen_sink.rb"
-
-%w{posts users categories tags}.each do |resource|
-  copy_file File.expand_path("templates_with_data/admin/#{resource}.rb", __dir__), "app/admin/#{resource}.rb"
-end
+directory File.expand_path("templates_with_data/admin", __dir__), "app/admin"
 
 append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
   users = ["Jimi Hendrix", "Jimmy Page", "Yngwie Malmsteen", "Eric Clapton", "Kirk Hammett"].collect do |name|

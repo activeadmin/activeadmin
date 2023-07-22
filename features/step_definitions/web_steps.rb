@@ -24,9 +24,6 @@ module WithinHelpers
     #  when /the header/
     #    [:xpath, "//header"]
 
-    when "index grid"
-      [:css, "table.index_grid"]
-
     when /^the "([^"]*)" sidebar$/
       [:css, "##{$1.tr(" ", '').underscore}_sidebar_section"]
 
@@ -68,6 +65,10 @@ end
 
 When /^I follow "([^"]*)"$/ do |link|
   first(:link, link).click
+end
+
+When /^I click "(.*?)"$/ do |link|
+  click_link(link)
 end
 
 When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
