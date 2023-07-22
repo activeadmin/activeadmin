@@ -4,6 +4,7 @@ coverage:
       default:
         threshold: 0.1%
 ignore:
+  - features/**/*
   - spec/**/*
   - tmp/**/*
   - vendor/**/*
