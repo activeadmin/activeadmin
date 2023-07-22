@@ -127,7 +127,7 @@ RSpec.describe ActiveAdmin::Views::StatusTag do
         end
 
         describe "#content" do
-          subject { super().content}
+          subject { super().content }
           it { is_expected.to eq("Unspecified") }
         end
       end
