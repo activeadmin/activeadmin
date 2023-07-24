@@ -1,6 +1,6 @@
 import { delegate } from "@rails/ujs";
 
-const setPerPage = function(event) {
+const setPerPage = function(_event) {
   const params = new URLSearchParams(window.location.search)
   params.set("per_page", this.value)
   window.location.search = params

@@ -4,8 +4,9 @@ const batchActionClick = function(event) {
   event.preventDefault()
   // console.log("batchActionClick", event)
   let batchAction = document.getElementById("batch_action")
-  if (batchAction)
+  if (batchAction) {
     batchAction.value = this.dataset.action
+  }
 }
 
 const batchActionConfirmComplete = function(event) {
@@ -45,7 +46,7 @@ const toggleDropdown = function(condition) {
   }
 }
 
-const toggleAllChange = function(event) {
+const toggleAllChange = function(_event) {
   const checkboxes = document.querySelectorAll("input[type=checkbox].collection_selection")
   for (const checkbox of checkboxes) {
     checkbox.checked = this.checked
@@ -61,7 +62,7 @@ const toggleAllChange = function(event) {
 
 delegate(document, "input[type=checkbox].toggle_all", "change", toggleAllChange)
 
-const toggleCheckboxChange = function(event) {
+const toggleCheckboxChange = function(_event) {
   const numChecked = document.querySelectorAll("input[type=checkbox].collection_selection:checked").length;
   const allChecked = numChecked === document.querySelectorAll("input[type=checkbox].collection_selection").length;
   const someChecked = (numChecked > 0) && (numChecked < document.querySelectorAll("input[type=checkbox].collection_selection").length);

@@ -14,7 +14,7 @@ const hasManyAddClick = function(event) {
   event.preventDefault()
   const parent = this.closest(".has_many_container")
 
-  let index = parseInt(parent.dataset.has_many_index || (parent.querySelectorAll('fieldset').length - 1))
+  let index = parseInt(parent.dataset.has_many_index || (parent.querySelectorAll('fieldset').length - 1), 10)
   parent.dataset.has_many_index = ++index
 
   const regex = new RegExp(this.dataset.placeholder, 'g')
