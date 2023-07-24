@@ -288,14 +288,14 @@ config.namespace :admin do |admin|
 
     menu.add label: "Sites" do |sites|
       sites.add label: "Google",
-                url: "http://google.com",
+                url: "https://google.com",
                 html_options: { target: :blank }
 
       sites.add label: "Facebook",
-                url: "http://facebook.com"
+                url: "https://facebook.com"
 
       sites.add label: "Github",
-                url: "http://github.com"
+                url: "https://github.com"
     end
   end
 end

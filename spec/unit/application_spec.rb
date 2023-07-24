@@ -31,8 +31,8 @@ RSpec.describe ActiveAdmin::Application do
   end
 
   it "should set the site's title link" do
-    application.site_title_link = "http://www.mygreatsite.com"
-    expect(application.site_title_link).to eq "http://www.mygreatsite.com"
+    application.site_title_link = "https://mygreatsite.example.com"
+    expect(application.site_title_link).to eq "https://mygreatsite.example.com"
   end
 
   it "should store the site's title image" do
@@ -40,8 +40,8 @@ RSpec.describe ActiveAdmin::Application do
   end
 
   it "should set the site's title image" do
-    application.site_title_image = "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
-    expect(application.site_title_image).to eq "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+    application.site_title_image = "https://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+    expect(application.site_title_image).to eq "https://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
   end
 
   it "should store the site's favicon" do

@@ -154,7 +154,7 @@ in the list.
 ## Datepicker
 
 ActiveAdmin offers the `datepicker` input, which uses the [jQuery UI
-datepicker](http://jqueryui.com/datepicker/).  The datepicker input accepts any
+datepicker](https://jqueryui.com/datepicker/).  The datepicker input accepts any
 of the options available to the standard jQueryUI Datepicker. For example:
 
 ```ruby

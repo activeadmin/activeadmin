@@ -175,11 +175,11 @@ Maintainers need to do the following to push out a release:
 * Run `bin/rake release` from the target branch once the PR is merged.
 
 [chandler]: https://github.com/mattbrictson/chandler#2-configure-credentials
-[Stack Overflow]: http://stackoverflow.com/questions/tagged/activeadmin
+[Stack Overflow]: https://stackoverflow.com/questions/tagged/activeadmin
 [new issue]: https://github.com/activeadmin/activeadmin/issues/new
 [fork Active Admin]: https://help.github.com/articles/fork-a-repo
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
-[git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
+[git rebasing]: https://git-scm.com/book/en/Git-Branching-Rebasing
 [interactive rebase]: https://help.github.com/en/github/using-git/about-git-rebase
 [shortcut reference links]: https://github.github.com/gfm/#shortcut-reference-link
 [Rollup]: https://rollupjs.org/guide/en/#quick-start

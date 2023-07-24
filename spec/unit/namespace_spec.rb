@@ -109,7 +109,7 @@ RSpec.describe ActiveAdmin::Namespace do
     let(:namespace) { ActiveAdmin::Namespace.new(application, :admin) }
     let(:menu) do
       namespace.build_menu :utility_navigation do |menu|
-        menu.add label: "ActiveAdmin.info", url: "http://www.activeadmin.info", html_options: { target: :blank }
+        menu.add label: "ActiveAdmin.info", url: "https://www.activeadmin.info", html_options: { target: :blank }
         namespace.add_logout_button_to_menu menu, 1, class: "matt"
       end
       namespace.fetch_menu(:utility_navigation)

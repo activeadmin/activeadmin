@@ -91,23 +91,23 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 [Kaminari]: https://github.com/kaminari/kaminari
 [Ransack]: https://github.com/activerecord-hackery/ransack
 
-[rubygems_badge]: http://img.shields.io/gem/v/activeadmin.svg
+[rubygems_badge]: https://img.shields.io/gem/v/activeadmin.svg
 [rubygems]: https://rubygems.org/gems/activeadmin
 [actions_badge]: https://github.com/activeadmin/activeadmin/workflows/ci/badge.svg
 [actions]: https://github.com/activeadmin/activeadmin/actions
 [coverage_badge]: https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg?token=NAjeBdkQXW
 [coverage]: https://codecov.io/gh/activeadmin/activeadmin
-[inch_badge]: http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
-[inch]: http://inch-ci.org/github/activeadmin/activeadmin
+[inch_badge]: https://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
+[inch]: https://inch-ci.org/github/activeadmin/activeadmin
 [tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
 [tidelift]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=readme
 [tidelift_enterprise]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=referral&utm_campaign=enterprise
 [tidelift_support]: https://tidelift.com/subscription/pkg/rubygems-activeadmin?utm_source=rubygems-activeadmin&utm_medium=referral&utm_campaign=github&utm_content=support
 
-[docs]: http://activeadmin.info/0-installation.html
-[demo]: http://demo.activeadmin.info/admin
+[docs]: https://activeadmin.info/0-installation.html
+[demo]: https://demo.activeadmin.info/admin
 [wiki]: https://github.com/activeadmin/activeadmin/wiki
-[stackoverflow]: http://stackoverflow.com/questions/tagged/activeadmin
+[stackoverflow]: https://stackoverflow.com/questions/tagged/activeadmin
 [contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
 [Liberapay]: https://liberapay.com/Active-Admin/donate
 [Tidelift security contact]: https://tidelift.com/security
