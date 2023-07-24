@@ -1,4 +1,5 @@
 app/assets/**/*.js
+coverage/**/*.js
 vendor/**/*.js
 lib/generators/**/*.js
 tmp/**/*.js
