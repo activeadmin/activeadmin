@@ -4,8 +4,9 @@ const batchActionClick = function(event) {
   event.preventDefault()
   // console.log("batchActionClick", event)
   let batchAction = document.getElementById("batch_action")
-  if (batchAction)
+  if (batchAction) {
     batchAction.value = this.dataset.action
+  }
 }
 
 const batchActionConfirmComplete = function(event) {
