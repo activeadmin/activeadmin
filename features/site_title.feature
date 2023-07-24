@@ -22,21 +22,21 @@ Feature: Site title
   Scenario: Set the site title image
     Given a configuration of:
     """
-      ActiveAdmin.application.site_title_image = "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+      ActiveAdmin.application.site_title_image = "https://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
     """
     When I am on the dashboard
     And I should not see the site title "My Great Site"
-    And I should see the site title image "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+    And I should see the site title image "https://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
 
   Scenario: Set the site title image with link
     Given a configuration of:
     """
-      ActiveAdmin.application.site_title_link = "http://www.google.com"
-      ActiveAdmin.application.site_title_image = "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+      ActiveAdmin.application.site_title_link = "https://www.google.com"
+      ActiveAdmin.application.site_title_image = "https://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
     """
     When I am on the dashboard
-    And I should see the site title image "http://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
-    And I should see the site title image linked to "http://www.google.com"
+    And I should see the site title image "https://railscasts.com/assets/episodes/stills/284-active-admin.png?1316476106"
+    And I should see the site title image linked to "https://www.google.com"
 
   Scenario: Set the site title to a proc
     Given a configuration of:

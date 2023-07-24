@@ -586,7 +586,7 @@ _No changes_.
 
 * Prevents access to formats that the user not permitted to see. [#4867] by [@Fivell] and [@timoschilling]
 * Prevents potential DOS attack via Ruby symbols. [#1926] by [@seanlinsley]
-  * [this isn't an issue for those using Ruby >= 2.2](http://rubykaigi.org/2014/presentation/S-NarihiroNakamura)
+  * [this isn't an issue for those using Ruby >= 2.2](https://rubykaigi.org/2014/presentation/S-NarihiroNakamura)
 
 ### Bug Fixes
 

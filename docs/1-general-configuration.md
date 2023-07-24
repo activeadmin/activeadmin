@@ -40,7 +40,7 @@ If you want, you can customize it.
 config.site_title       = "My Admin Site"
 config.site_title_link  = "/"
 config.site_title_image = "site_image.png"
-config.site_title_image = "http://www.google.com/images/logos/google_logo_41.png"
+config.site_title_image = "https://www.google.com/images/logos/google_logo_41.png"
 config.site_title_image = ->(context) { context.current_user.company.logo_url }
 ```
 
@@ -205,7 +205,7 @@ menu in the system; you can provide your own menu to be rendered in its place.
 ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
     admin.build_menu :utility_navigation do |menu|
-      menu.add label: "ActiveAdmin.info", url: "http://www.activeadmin.info",
+      menu.add label: "ActiveAdmin.info", url: "https://www.activeadmin.info",
                                           html_options: { target: :blank }
       admin.add_current_user_to_menu  menu
       admin.add_logout_button_to_menu menu

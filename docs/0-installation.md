@@ -16,7 +16,7 @@ gem 'draper'
 gem 'pundit'
 ```
 
-More accurately, it's a [Rails Engine](http://guides.rubyonrails.org/engines.html)
+More accurately, it's a [Rails Engine](https://guides.rubyonrails.org/engines.html)
 that can be injected into your existing Ruby on Rails application.
 
 ## Setting up Active Admin
