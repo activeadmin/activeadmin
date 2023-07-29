@@ -58,12 +58,9 @@ inject_into_file "app/models/application_record.rb", before: "end" do
 end
 
 gsub_file "config/environments/test.rb", /  config.cache_classes = true/, <<-RUBY
-
   config.cache_classes = !ENV['CLASS_RELOADING']
   config.action_mailer.default_url_options = {host: 'example.com'}
-
   config.active_record.maintain_test_schema = false
-
 RUBY
 
 inject_into_file "config/environments/test.rb", after: "  config.action_mailer.default_url_options = {host: 'example.com'}" do
@@ -90,6 +87,14 @@ directory File.expand_path("templates/admin", __dir__), "app/admin"
 
 # Add predefined policies
 directory File.expand_path("templates/policies", __dir__), "app/policies"
+
+inject_into_file "config/initializers/active_admin.rb", before: /^end$/ do
+  <<-RUBY
+  config.clear_stylesheets!
+  config.register_stylesheet 'active_admin_old.css', media: "all"
+  config.register_stylesheet 'active_admin.css', media: "all"
+  RUBY
+end
 
 if ENV["RAILS_ENV"] != "test"
   inject_into_file "config/routes.rb", "\n  root to: redirect('admin')", after: /.*routes.draw do/

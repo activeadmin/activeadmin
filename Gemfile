@@ -14,6 +14,9 @@ group :development, :test do
 
   gem "sprockets-rails"
   gem "sassc-rails"
+
+  gem "cssbundling-rails"
+  gem "jsbundling-rails"
 end
 
 group :test do

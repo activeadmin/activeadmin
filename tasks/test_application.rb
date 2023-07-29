@@ -37,13 +37,20 @@ module ActiveAdmin
         --skip-test
         --skip-system-test
         --skip-webpack-install
+        --javascript=esbuild
+        --css=tailwind
       )
 
       command = ["bundle", "exec", "rails", "new", app_dir, *args].join(" ")
 
       env = { "BUNDLE_GEMFILE" => expanded_gemfile, "RAILS_ENV" => rails_env }
 
-      Bundler.with_original_env { abort unless Kernel.system(env, command) }
+      Bundler.with_original_env do
+        Kernel.system(env, command)
+        Dir.chdir(app_dir) do
+          Kernel.system("yarn install")
+        end
+      end
     end
 
     def full_app_dir
