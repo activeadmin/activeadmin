@@ -3,7 +3,6 @@ require "active_admin/component"
 
 module ActiveAdmin
   module BatchActions
-
     # Build a BatchActionForm
     class BatchActionForm < ActiveAdmin::Component
       builder_method :batch_action_form
@@ -33,7 +32,6 @@ module ActiveAdmin
       def closing_form_tag
         "</form>".html_safe
       end
-
     end
   end
 end

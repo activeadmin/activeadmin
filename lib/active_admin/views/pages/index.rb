@@ -28,6 +28,13 @@ module ActiveAdmin
             build_table_tools
             build_collection
           end
+          if active_admin_config.batch_actions.any?
+            active_admin_config.batch_actions.each do |batch_action|
+              if batch_action.partial.present?
+                render(batch_action.partial)
+              end
+            end
+          end
         end
 
         protected
