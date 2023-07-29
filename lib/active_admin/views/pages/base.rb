@@ -76,7 +76,7 @@ module ActiveAdmin
 
         def build_page_content
           build_flash_messages
-          div id: "active_admin_content", class: (skip_sidebar? ? "without_sidebar" : "with_sidebar") do
+          div class: "page-content-container" do
             build_main_content_wrapper
             sidebar sidebar_sections_for_action, id: "sidebar" unless skip_sidebar?
           end
@@ -93,10 +93,8 @@ module ActiveAdmin
         end
 
         def build_main_content_wrapper
-          div id: "main_content_wrapper" do
-            div id: "main_content" do
-              main_content
-            end
+          div class: "main-content-container" do
+            main_content
           end
         end
 
