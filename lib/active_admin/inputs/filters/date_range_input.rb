@@ -8,8 +8,10 @@ module ActiveAdmin
         def to_html
           input_wrapping do
             [ label_html,
-              builder.text_field(gt_input_name, input_html_options_for(gt_input_name, gt_input_placeholder)),
-              builder.text_field(lt_input_name, input_html_options_for(lt_input_name, lt_input_placeholder)),
+              "<div>",
+              builder.date_field(gt_input_name, input_html_options_for(gt_input_name, gt_input_placeholder)),
+              builder.date_field(lt_input_name, input_html_options_for(lt_input_name, lt_input_placeholder)),
+              "</div>"
             ].join("\n").html_safe
           end
         end
