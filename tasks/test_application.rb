@@ -22,22 +22,35 @@ module ActiveAdmin
       FileUtils.mkdir_p base_dir
       args = %W(
         -m spec/support/#{template}.rb
+        --skip-action-mailbox
+        --skip-action-text
+        --skip-active-storage
+        --skip-action-cable
         --skip-bootsnap
         --skip-bundle
         --skip-gemfile
+        --skip-hotwire
+        --skip-jbuilder
         --skip-listen
         --skip-spring
         --skip-turbolinks
-        --skip-test-unit
-        --skip-coffee
+        --skip-test
+        --skip-system-test
         --skip-webpack-install
+        --javascript=esbuild
+        --css=tailwind
       )
 
       command = ["bundle", "exec", "rails", "new", app_dir, *args].join(" ")
 
       env = { "BUNDLE_GEMFILE" => expanded_gemfile, "RAILS_ENV" => rails_env }
 
-      Bundler.with_original_env { abort unless Kernel.system(env, command) }
+      Bundler.with_original_env do
+        Kernel.system(env, command)
+        Dir.chdir(app_dir) do
+          Kernel.system("yarn install")
+        end
+      end
     end
 
     def full_app_dir

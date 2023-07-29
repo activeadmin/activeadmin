@@ -10,31 +10,29 @@ module ActiveAdmin
         @tabs_content << build_content_item(title, options, &block)
       end
 
-      def build(&block)
-        @menu = ul(class: "nav nav-tabs", role: "tablist")
-        @tabs_content = div(class: "tab-content")
+      def build(attributes = {}, &block)
+        super(attributes)
+        @menu = nav(class: "tabs-nav", role: "tablist", "data-tabs-toggle": "#tabs-container-#{object_id}")
+        @tabs_content = div(class: "tabs-content", id: "tabs-container-#{object_id}")
       end
 
       def build_menu_item(title, options, &block)
         fragment = options.fetch(:id, fragmentize(title))
-
-        html_options = options.fetch(:html_options, {})
-        li html_options do
-          link_to title, "##{fragment}"
+        html_options = options.fetch(:html_options, {}).merge("data-tabs-target": "##{fragment}", role: "tab", "aria-controls": fragment)
+        button html_options do
+          title
         end
       end
 
       def build_content_item(title, options, &block)
-        options = options.reverse_merge(id: fragmentize(title))
+        options = options.reverse_merge(id: fragmentize(title), class: "hidden", role: "tabpanel", "aria-labelledby": "#{title}-tab")
         div(options, &block)
       end
 
       private
 
       def fragmentize(string)
-        result = string.parameterize
-        result = CGI.escape(string) if result.blank?
-        result
+        "tabs-#{string.parameterize}-#{object_id}"
       end
     end
   end

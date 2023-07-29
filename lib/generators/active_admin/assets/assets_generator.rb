@@ -6,8 +6,13 @@ module ActiveAdmin
       source_root File.expand_path("templates", __dir__)
 
       def install_assets
-        template "active_admin.js", "app/assets/javascripts/active_admin.js"
-        template "active_admin.scss", "app/assets/stylesheets/active_admin.scss"
+        template "active_admin_old.scss", "app/assets/stylesheets/active_admin_old.scss"
+        template "active_admin.js", "app/javascript/active_admin.js"
+        template "active_admin.css", "app/assets/stylesheets/active_admin.css"
+        template "package.json", "package.json"
+        template "tailwind.config.js", "tailwind.config.js"
+        template "Procfile.dev", "Procfile.dev"
+        template "builds/.keep", "app/assets/builds/.keep"
       end
 
     end

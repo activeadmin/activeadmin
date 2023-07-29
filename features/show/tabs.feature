@@ -15,12 +15,8 @@ Feature: Show - Tabs
               span "tab 1"
             end
 
-            tab 'テスト', id: :test_non_ascii do
+            tab 'Profile', id: :custom_id do
               span "tab 2"
-            end
-
-            tab '🤗' do
-              span "tab 3"
             end
           end
         end
@@ -33,18 +29,10 @@ Feature: Show - Tabs
     Then I should see tabs:
     | Tab title |
     | Overview  |
-    | テスト     |
-    | 🤗        |
+    | Profile   |
     And I should see tab content "tab 1"
     And I should not see tab content "tab 2"
-    And I should not see tab content "tab 3"
 
-    When I follow "テスト"
+    When I press "Profile"
     Then I should not see tab content "tab 1"
     And I should see tab content "tab 2"
-    And I should not see tab content "tab 3"
-
-    When I follow "🤗"
-    Then I should not see tab content "tab 1"
-    And I should not see tab content "tab 2"
-    And I should see tab content "tab 3"

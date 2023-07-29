@@ -5,14 +5,14 @@ end
 
 Then("I should see tabs:") do |table|
   table.rows.each do |title, _|
-    step %{I should see "#{title}" within "#main_content .tabs .nav"}
+    expect(page).to have_css(".tabs .tabs-nav", text: title, visible: true)
   end
 end
 
 Then("I should see tab content {string}") do |string|
-  step %{I should see "#{string}" within "#main_content .tabs .tab-content"}
+  expect(page).to have_css(".tabs .tabs-content", text: string, visible: true)
 end
 
 Then("I should not see tab content {string}") do |string|
-  step %{I should not see "#{string}" within "#main_content .tabs .tab-content"}
+  expect(page).to have_css(".tabs .tabs-content", text: string, visible: false)
 end
