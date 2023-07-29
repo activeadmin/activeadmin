@@ -18,6 +18,7 @@ You can also use [Arbre](https://github.com/activeadmin/arbre) to define HTML co
 
 ```ruby
 sidebar :help do
+  h3 "Help"
   ul do
     li "Second List First Item"
     li "Second List Second Item"
