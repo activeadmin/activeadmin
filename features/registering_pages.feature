@@ -83,7 +83,7 @@ Feature: Registering Pages
     """
     When I go to the dashboard
     And I follow "Status"
-    Then I should see a sidebar titled "Help"
+    Then I should see "Need help? Email us at help@example.com"
 
   Scenario: Adding an action item to a page
     Given a configuration of:

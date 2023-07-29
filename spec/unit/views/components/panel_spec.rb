@@ -5,7 +5,6 @@ RSpec.describe ActiveAdmin::Views::Panel do
   let(:arbre_panel) do
     render_arbre_component do
       panel "My Title" do
-        header_action link_to("My Link", "https://www.github.com/activeadmin/activeadmin")
         span("Hello World")
       end
     end
@@ -17,18 +16,12 @@ RSpec.describe ActiveAdmin::Views::Panel do
     expect(panel_html).to have_css "h3", text: "My Title"
   end
 
-  it "should add panel actions to the panel header" do
-    link = panel_html.find("h3 > div.header_action a")
-    expect(link.text).to eq("My Link")
-    expect(link[:href]).to eq("https://www.github.com/activeadmin/activeadmin")
-  end
-
   it "should have a contents div" do
-    expect(panel_html).to have_css "div.panel_contents"
+    expect(panel_html).to have_css "div.panel-body"
   end
 
   it "should add children to the contents div" do
-    expect(panel_html).to have_css "div.panel_contents > span", text: "Hello World"
+    expect(panel_html).to have_css "div.panel-body > span", text: "Hello World"
   end
 
   context "with html-safe title" do

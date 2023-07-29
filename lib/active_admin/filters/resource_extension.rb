@@ -165,7 +165,9 @@ module ActiveAdmin
       end
 
       def filters_sidebar_section
-        ActiveAdmin::SidebarSection.new :filters, only: :index, if: -> { active_admin_config.filters.any? } do
+        name = :filters
+        ActiveAdmin::SidebarSection.new name, only: :index, if: -> { active_admin_config.filters.any? } do
+          h3 I18n.t("active_admin.sidebars.#{name}", default: name.to_s.titlecase)
           active_admin_filters_form_for assigns[:search], **active_admin_config.filters
         end
       end

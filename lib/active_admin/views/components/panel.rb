@@ -9,7 +9,7 @@ module ActiveAdmin
         super(attributes)
         add_class "panel"
         @title = h3(title.to_s)
-        @contents = div(class: "panel_contents")
+        @contents = div(class: "panel-body")
       end
 
       def add_child(child)
@@ -25,14 +25,6 @@ module ActiveAdmin
       # correcly appends string values, etc.
       def children?
         @contents.children?
-      end
-
-      def header_action(*args)
-        action = args[0]
-
-        @title << div(class: "header_action") do
-          action
-        end
       end
     end
   end
