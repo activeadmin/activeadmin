@@ -160,8 +160,8 @@ module.exports = plugin(
       [`[type='checkbox']:checked`]: {
         'background-image': `url("${svgToTinyDataUri(
           `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-    <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M1 5.917 5.724 10.5 15 1.5"/>
-    </svg>`
+            <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M1 5.917 5.724 10.5 15 1.5"/>
+          </svg>`
         )}")`,
         'background-repeat': `no-repeat`,
         'background-size': `0.55em 0.55em`,
@@ -494,12 +494,12 @@ module.exports = plugin(
       },
     });
     addComponents({
+      /* .link-default {
+        @apply text-blue-600 underline dark:text-white hover:no-underline;
+      } */
       '#header': {
         '@apply bg-gray-100 border-b border-gray-200 dark:border-gray-700 dark:bg-gray-800 p-4 flex items-center': {}
       },
-      // '': {
-      //   '': {}
-      // },
       '#utility_nav': {
         '@apply flex flex-wrap ms-auto': {}
       },
@@ -524,6 +524,9 @@ module.exports = plugin(
       '.page-title-bar-heading': {
         '@apply text-2xl font-semibold': {}
       },
+      '.page-title-bar-actions': {
+        '@apply flex gap-2 flex-wrap justify-end': {}
+      },
       '.breadcrumb-arrow': {
         'background-image': `url("${svgToTinyDataUri(
           `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="${theme('colors.gray.500', colors.gray[500])}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/></svg>`
@@ -542,8 +545,66 @@ module.exports = plugin(
       ':where(.breadcrumbs-item) + .breadcrumbs-item:before': {
         '@apply px-2 content-[""] breadcrumb-arrow': {}
       },
-      '.page-title-bar-actions': {
-        '@apply flex gap-2 flex-wrap justify-end': {}
+      '.page-content-container': {
+        '@apply px-2.5 lg:px-5 grid gap-4 lg:gap-6 md:grid-cols-1 md:grid-flow-col md:auto-cols-[minmax(0,250px)] lg:auto-cols-[minmax(0,280px)]': {}
+      },
+      '.main-content-container': {
+        /* @apply shadow-md sm:rounded-lg; */
+        /* @apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800; */
+        /* overflow: auto; */
+        '': {}
+      },
+      '.table_tools': {
+        '@apply mb-0 p-4': {}
+      },
+      '.paginated_collection': {
+        '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
+      },
+      '.paginated-collection-footer': {
+        '@apply p-4 grid grid-flow-col auto-cols-fr gap-2': {}
+      },
+      '.index_as_table': {
+        '@apply relative overflow-x-auto': {}
+      },
+      '.index_table': {
+        '@apply w-full text-sm text-left text-gray-800 dark:text-gray-300': {}
+      },
+      '.index_table :where(thead)': {
+        '@apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400': {}
+      },
+      '.index_table :where(thead > tr > th)': {
+        '@apply px-5 py-3 whitespace-nowrap': {}
+      },
+      '.index_table :where(tbody > tr)': {
+        '@apply bg-white border-b dark:bg-gray-800 dark:border-gray-700': {}
+      },
+      '.index_table :where(td)': {
+        '@apply px-5 py-3': {}
+      },
+      '.flash_notice': {
+        '@apply flex p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400': {}
+      },
+      '.view_link, .edit_link': {
+        '@apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 no-underline': {}
+      },
+      '.delete_link': {
+        '@apply focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 no-underline': {}
+      },
+      '.filter_form :where(label)': {
+        '@apply block mb-1.5 text-sm': {}
+      },
+      '.filter-input-group': {
+        //   display: grid;
+        //   grid-auto-columns: minmax(0, 1fr);
+        //   grid-auto-flow: column;
+        //   gap: 0.5rem;
+        '@apply grid grid-cols-2 gap-2': {}
+      },
+      '.filter_form_field': {
+        '@apply mb-4': {}
+      },
+      '.clear_filters_btn': {
+        '@apply text-blue-700 hover:bg-gray-100 hover:text-blue-600 font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 transition-colors no-underline': {}
       },
       '.columns': {
         display: 'grid',
@@ -563,6 +624,70 @@ module.exports = plugin(
       '.dropdown_menu :where(ul > li > a)': {
         '@apply block px-2.5 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white': {}
       },
+      '.panel': {
+        '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
+      },
+      '.panel + :where(.panel)': {
+        '@apply mt-6': {}
+      },
+      '.panel > :where(h3)': {
+        '@apply font-bold bg-gray-100 rounded-t-lg p-3': {}
+      },
+      '.panel-body': {
+        '@apply py-6 px-4': {}
+      },
+      // form fieldset.inputs
+      '.inputs': {
+        '@apply border rounded-lg shadow-sm p-4': {}
+      },
+      '.attributes_table': {
+        '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
+      },
+      '.attributes_table > :where(table)': {
+        '@apply w-full text-sm text-left text-gray-800 dark:text-gray-300': {}
+      },
+      '.attributes_table :where(tbody > tr)': {
+        '@apply bg-white border-b dark:bg-gray-800 dark:border-gray-700': {}
+      },
+      '.attributes_table :where(tbody > tr > th)': {
+        '@apply w-40 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400': {}
+      },
+      '.attributes_table :where(tbody > tr > th, tbody > tr > td)': {
+        '@apply px-5 py-3': {}
+      },
+      ':where(.sidebar) .attributes_table :where(tbody > tr > th)': {
+        '@apply w-auto w-min': {}
+      },
+      ':where(.sidebar) .attributes_table :where(tbody > tr > th, tbody > tr > td)': {
+        '@apply px-2.5 py-2': {}
+      },
+      '.status_tag': {
+        '@apply bg-gray-200 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400': {}
+      },
+      '.status_tag:where(.yes)': {
+        '@apply bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300': {}
+      },
+      '.tabs-nav': {
+        '@apply flex flex-wrap mb-2 text-sm font-medium text-center border-b border-gray-200 dark:border-gray-700': {}
+      },
+      '.tabs-nav > :where(button)': {
+        '@apply inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300': {}
+      },
+      '.tabs-content': {
+        '@apply p-4 mb-6': {}
+      },
+      // '': {
+      //   '': {}
+      // },
+      // '': {
+      //   '': {}
+      // },
+      // '': {
+      //   '': {}
+      // },
+      // '': {
+      //   '': {}
+      // },
     });
   }
 )
