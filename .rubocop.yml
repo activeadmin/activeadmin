@@ -153,8 +153,7 @@ Naming/PredicateName:
     - has_many_actions
 
 Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
+  Enabled: false
 
 Style/TrailingCommaInArguments:
   Enabled: true
