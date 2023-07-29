@@ -38,7 +38,7 @@ A panel is a component that takes up all available horizontal space and takes a
 title and a hash of attributes as arguments. If a sidebar is present, a panel
 will take up the remaining space.
 
-This will create two stacked panels:
+This will create two vertically stacked panels:
 
 ```ruby
 show do
@@ -47,7 +47,7 @@ show do
   end
 
   panel "Post Tags" do
-    render partial: "tags",    locals: {post: post}
+    render partial: "tags", locals: {post: post}
   end
 end
 ```

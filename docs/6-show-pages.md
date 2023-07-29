@@ -69,7 +69,8 @@ ActiveAdmin.register Book do
     active_admin_comments_for(resource)
   end
 
-  sidebar "Details", only: :show do
+  sidebar :details, only: :show do
+    h3 "Details"
     attributes_table_for book do
       row :title
       row :author
