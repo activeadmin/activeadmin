@@ -10,11 +10,10 @@ module ActiveAdmin
       end
 
       def block
-        -> { active_filters_sidebar_content }
-      end
-
-      def title
-        I18n.t("active_admin.search_status.headline")
+        -> {
+          h3 I18n.t("active_admin.search_status.headline")
+          active_filters_sidebar_content
+        }
       end
 
       protected

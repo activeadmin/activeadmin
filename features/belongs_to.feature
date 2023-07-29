@@ -18,7 +18,7 @@ Feature: Belongs To
     When I go to the last author's posts
     Then the "Users" tab should be selected
     And I should not see a menu item for "Posts"
-    And I should see "Displaying 1 Post"
+    And I should see "Showing 1 Post"
     And I should see a link to "Users" in the breadcrumb
     And I should see a link to "Jane Doe" in the breadcrumb
 

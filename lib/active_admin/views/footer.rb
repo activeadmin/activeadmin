@@ -2,9 +2,8 @@
 module ActiveAdmin
   module Views
     class Footer < Component
-
       def build(namespace)
-        super id: "footer"
+        super class: "page-footer"
         @namespace = namespace
 
         if footer_text.present?
@@ -24,7 +23,8 @@ module ActiveAdmin
         I18n.t(
           "active_admin.powered_by",
           active_admin: link_to("Active Admin", "https://activeadmin.info"),
-          version: ActiveAdmin::VERSION).html_safe
+          version: ActiveAdmin::VERSION
+        ).html_safe
       end
 
     end

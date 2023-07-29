@@ -19,8 +19,8 @@ module ActiveAdmin
     # posts in one of the following formats:
     #
     # * "No Posts found"
-    # * "Displaying all 10 Posts"
-    # * "Displaying Posts 1 - 30 of 31 in total"
+    # * "Showing all 10 Posts"
+    # * "Showing Posts 1 - 30 of 31 in total"
     #
     # It will also generate pagination links.
     #
@@ -67,7 +67,7 @@ module ActiveAdmin
       protected
 
       def build_pagination_with_formats(options)
-        div id: "index_footer" do
+        div class: "paginated-collection-footer" do
           build_per_page_select if @per_page.is_a?(Array)
           build_pagination
           div(page_entries_info(options).html_safe, class: "pagination_information")

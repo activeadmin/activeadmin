@@ -166,7 +166,8 @@ Feature: Commenting
     Then I should see "Comments (70)"
     And I should see "Displaying comments 1 - 25 of 70 in total"
     And I should see 25 comments
-    And I should see pagination with 3 pages
+    And I should see pagination page 2 link
+    And I should see pagination page 3 link
     And I should see the pagination "Next" link
     When I follow "2"
     Then I should see "Displaying comments 26 - 50 of 70 in total"

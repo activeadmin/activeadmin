@@ -19,7 +19,7 @@ end
 
 Then /^I should( not)? see a link to download "([^"]*)"$/ do |negate, format|
   method = negate ? :to_not : :to
-  expect(page).send method, have_css("#index_footer a", text: format)
+  expect(page).send method, have_css(".download_links a", text: format)
 end
 
 # Check first rows of the displayed CSV.

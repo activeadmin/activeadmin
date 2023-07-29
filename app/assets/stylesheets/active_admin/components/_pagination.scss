@@ -23,24 +23,25 @@
 }
 
 .pagination_information {
-  float: right;
-  margin-bottom: 5px;
-  color: #b3bcc1;
-  b { color: #5c6469; }
+  // float: right;
+  // margin-bottom: 5px;
+  // color: #b3bcc1;
+  // b { color: #5c6469; }
 }
 
 .download_links {
-  float: left;
+  // float: left;
+  justify-self: end;
 }
 
 .pagination_per_page {
   float: right;
   margin-left: 4px;
-  select {
-    @include light-button;
-    @include rounded(0px);
-    padding: 1px 5px;
-  }
+  // select {
+  //   @include light-button;
+  //   @include rounded(0px);
+  //   padding: 1px 5px;
+  // }
 }
 
 .comments {

@@ -971,27 +971,9 @@ RSpec.describe ActiveAdmin::FormBuilder do
           end
         end
       end
-      it "should generate a text input with the class of datepicker" do
-        expect(body).to have_selector("input.datepicker[type=text][name='post[created_at]']")
-      end
-    end
 
-    context "with date range options" do
-      let :body do
-        build_form do |f|
-          f.inputs do
-            f.input :created_at, as: :datepicker,
-                                 datepicker_options: {
-                                   min_date: Date.new(2013, 10, 18),
-                                   max_date: "2013-12-31" }
-          end
-        end
-      end
-
-      it "should generate a datepicker text input with data min and max dates" do
-        selector = "input.datepicker[type=text][name='post[created_at]']"
-        expect(body).to have_selector(selector)
-        expect(body.find(selector)["data-datepicker-options"]).to eq({ minDate: "2013-10-18", maxDate: "2013-12-31" }.to_json)
+      it "should generate a date input with the class of datepicker" do
+        expect(body).to have_selector("input.datepicker[type=date][name='post[created_at]']")
       end
     end
 
