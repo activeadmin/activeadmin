@@ -149,11 +149,12 @@ module.exports = plugin(
         `[type='checkbox']:checked`,
         `[type='radio']:checked`,
         `.dark [type='checkbox']:checked`,
+        `.dark [type='checkbox']:indeterminate`,
         `.dark [type='radio']:checked`,
       ]]: {
         'border-color': `transparent`,
         'background-color': `currentColor`,
-        'background-size': `0.55em 0.55em`,
+        'background-size': `0.65rem 0.65rem`,
         'background-position': `center`,
         'background-repeat': `no-repeat`,
       },
@@ -164,30 +165,30 @@ module.exports = plugin(
           </svg>`
         )}")`,
         'background-repeat': `no-repeat`,
-        'background-size': `0.55em 0.55em`,
+        'background-size': `0.65rem 0.65rem`,
         'print-color-adjust': `exact`,
       },
       [`[type='radio']:checked`]: {
         'background-image': `url("${svgToTinyDataUri(
           `<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>`
         )}")`,
-        'background-size': `1em 1em`,
+        'background-size': `1rem 1rem`,
       },
       [`.dark [type='radio']:checked`]: {
         'background-image': `url("${svgToTinyDataUri(
           `<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>`
         )}")`,
-        'background-size': `1em 1em`,
+        'background-size': `1rem 1rem`,
       },
       [`[type='checkbox']:indeterminate`]: {
         'background-image': `url("${svgToTinyDataUri(
-          `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 8h8"/></svg>`
+          `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16"><path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M2 8h12"/></svg>`
         )}")`,
         'background-color': `currentColor`,
         'border-color': `transparent`,
         'background-position': `center`,
         'background-repeat': `no-repeat`,
-        'background-size': `.75em .75em`,
+        'background-size': `.65rem .65rem`,
         'print-color-adjust': `exact`,
       },
       [[
