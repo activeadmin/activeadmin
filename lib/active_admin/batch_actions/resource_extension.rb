@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 module ActiveAdmin
-
   module BatchActions
     module ResourceExtension
       def initialize(*)
@@ -84,7 +83,7 @@ module ActiveAdmin
 
     include Comparable
 
-    attr_reader :block, :title, :sym
+    attr_reader :block, :title, :sym, :partial, :link_html_options
 
     DEFAULT_CONFIRM_MESSAGE = proc { I18n.t "active_admin.batch_actions.default_confirmation" }
 
@@ -110,8 +109,8 @@ module ActiveAdmin
     #   BatchAction.new(:flag, confirm: "Are you sure?") { |selection| }
     # => You can pass a custom confirmation message through `:confirm`
     #
-    #   BatchAction.new(:flag, form: {foo: :text, bar: :checkbox}) { |selection, inputs| }
-    # => You can pass a hash of options to `:form` that will be rendered as form input fields for the user to fill out.
+    #   BatchAction.new(:flag, partial: "flag_form", link_html_options: { "data-modal-toggle": "flag-form-modal" }) { |selection, inputs| }
+    # => Pass a partial that contains a modal and with a data attribute that opens the modal with the form for the user to fill out.
     #
     def initialize(sym, title, options = {}, &block)
       @sym = sym
@@ -119,21 +118,17 @@ module ActiveAdmin
       @options = options
       @block = block
       @confirm = options[:confirm]
+      @partial = options[:partial]
+      @link_html_options = options[:link_html_options] || {}
       @block ||= proc {}
     end
 
     def confirm
       if @confirm == true
         DEFAULT_CONFIRM_MESSAGE
-      elsif !@confirm && @options[:form]
-        DEFAULT_CONFIRM_MESSAGE
       else
         @confirm
       end
-    end
-
-    def inputs
-      @options[:form]
     end
 
     # Returns the display if block. If the block was not explicitly defined
@@ -151,7 +146,5 @@ module ActiveAdmin
     def <=>(other)
       self.priority <=> other.priority
     end
-
   end
-
 end

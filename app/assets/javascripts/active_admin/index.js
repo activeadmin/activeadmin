@@ -78,7 +78,6 @@ Rails.delegate(document, "a.button.has_many_add", "click", hasManyAddClick)
 
 const batchActionClick = function(event) {
   event.preventDefault()
-  // console.log("batchActionClick", event)
   let batchAction = document.getElementById("batch_action")
   if (batchAction) {
     batchAction.value = this.dataset.action
@@ -86,8 +85,12 @@ const batchActionClick = function(event) {
 }
 
 const batchActionConfirmComplete = function(event) {
-  // console.log('batchActionConfirmComplete', event.detail)
+  event.preventDefault()
   if (event.detail[0] === true) {
+    let batchAction = document.getElementById("batch_action")
+    if (batchAction) {
+      batchAction.value = this.dataset.action
+    }
     let form = document.getElementById("collection_selection")
     if (form) {
       form.submit()
@@ -97,23 +100,18 @@ const batchActionConfirmComplete = function(event) {
 
 const batchActionFormSubmit = function(event) {
   event.preventDefault();
-  // console.log("batchActionFormSubmit", this)
   let json = JSON.stringify(Object.fromEntries(new FormData(this).entries()));
   let inputsField = document.getElementById('batch_action_inputs')
-  if (json && inputsField) {
-    inputsField.value = json
-  }
   let form = document.getElementById("collection_selection")
-  if (form) {
+  if (json && inputsField && form) {
+    inputsField.value = json
     form.submit()
   }
 }
 
-Rails.delegate(document, ".batch_actions_selector li a", "click", batchActionClick)
-
-Rails.delegate(document, "form.batch-action-form", "submit", batchActionFormSubmit)
-
-Rails.delegate(document, ".batch_actions_selector li a", "confirm:complete", batchActionConfirmComplete)
+Rails.delegate(document, "[data-batch-action-item]", "confirm:complete", batchActionConfirmComplete)
+Rails.delegate(document, "[data-batch-action-item]", "click", batchActionClick)
+Rails.delegate(document, "form[data-batch-action-form]", "submit", batchActionFormSubmit)
 
 const toggleDropdown = function(condition) {
   const button = document.querySelector(".batch_actions_selector > button")
