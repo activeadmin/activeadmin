@@ -4,6 +4,8 @@ ActiveAdmin.register Post do
 
   belongs_to :author, class_name: "User", param: "user_id", route_name: "user"
 
+  config.per_page = [ 5, 10, 20 ]
+
   includes :author, :category, :taggings
 
   scope :all, default: true
