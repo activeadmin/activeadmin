@@ -3,8 +3,6 @@ env:
   es6: true
 extends:
   - 'eslint:recommended'
-  - 'plugin:import/errors'
-  - 'plugin:import/warnings'
 globals:
   $: false
   Atomics: readonly
@@ -16,7 +14,9 @@ parserOptions:
   sourceType: module
 rules:
   accessor-pairs: error
-  array-bracket-newline: error
+  array-bracket-newline:
+    - error
+    - consistent
   array-bracket-spacing: 'off'
   array-callback-return: error
   array-element-newline: 'off'

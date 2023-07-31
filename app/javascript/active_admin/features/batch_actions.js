@@ -1,8 +1,7 @@
-import { delegate } from "@rails/ujs";
+import Rails from '@rails/ujs';
 
 const batchActionClick = function(event) {
   event.preventDefault()
-  // console.log("batchActionClick", event)
   let batchAction = document.getElementById("batch_action")
   if (batchAction) {
     batchAction.value = this.dataset.action
@@ -10,8 +9,12 @@ const batchActionClick = function(event) {
 }
 
 const batchActionConfirmComplete = function(event) {
-  // console.log('batchActionConfirmComplete', event.detail)
+  event.preventDefault()
   if (event.detail[0] === true) {
+    let batchAction = document.getElementById("batch_action")
+    if (batchAction) {
+      batchAction.value = this.dataset.action
+    }
     let form = document.getElementById("collection_selection")
     if (form) {
       form.submit()
@@ -21,23 +24,18 @@ const batchActionConfirmComplete = function(event) {
 
 const batchActionFormSubmit = function(event) {
   event.preventDefault();
-  // console.log("batchActionFormSubmit", this)
   let json = JSON.stringify(Object.fromEntries(new FormData(this).entries()));
   let inputsField = document.getElementById('batch_action_inputs')
-  if (json && inputsField) {
-    inputsField.value = json
-  }
   let form = document.getElementById("collection_selection")
-  if (form) {
+  if (json && inputsField && form) {
+    inputsField.value = json
     form.submit()
   }
 }
 
-delegate(document, ".batch_actions_selector li a", "click", batchActionClick)
-
-delegate(document, "form.batch-action-form", "submit", batchActionFormSubmit)
-
-delegate(document, ".batch_actions_selector li a", "confirm:complete", batchActionConfirmComplete)
+Rails.delegate(document, "[data-batch-action-item]", "confirm:complete", batchActionConfirmComplete)
+Rails.delegate(document, "[data-batch-action-item]", "click", batchActionClick)
+Rails.delegate(document, "form[data-batch-action-form]", "submit", batchActionFormSubmit)
 
 const toggleDropdown = function(condition) {
   const button = document.querySelector(".batch_actions_selector > button")
@@ -60,7 +58,7 @@ const toggleAllChange = function(event) {
   toggleDropdown(!this.checked)
 }
 
-delegate(document, "input[type=checkbox].toggle_all", "change", toggleAllChange)
+Rails.delegate(document, "input[type=checkbox].toggle_all", "change", toggleAllChange)
 
 const toggleCheckboxChange = function(event) {
   const numChecked = document.querySelectorAll("input[type=checkbox].collection_selection:checked").length;
@@ -76,7 +74,7 @@ const toggleCheckboxChange = function(event) {
   toggleDropdown(numChecked === 0)
 }
 
-delegate(document, "input[type=checkbox].collection_selection", "change", toggleCheckboxChange)
+Rails.delegate(document, "input[type=checkbox].collection_selection", "change", toggleCheckboxChange)
 
 const tableRowClick = function(event) {
   if (event.target.type !== "checkbox") {
@@ -84,4 +82,4 @@ const tableRowClick = function(event) {
   }
 }
 
-delegate(document, ".paginated_collection tbody td", "click", tableRowClick)
+Rails.delegate(document, ".paginated_collection tbody td", "click", tableRowClick)

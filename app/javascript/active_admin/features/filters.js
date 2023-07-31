@@ -1,5 +1,4 @@
-import { delegate } from "@rails/ujs";
-import { next } from "../utils/dom"
+import Rails from '@rails/ujs';
 
 const disableEmptyFields = function(event) {
   Array.from(this.querySelectorAll("input, select, textarea"))
@@ -7,7 +6,15 @@ const disableEmptyFields = function(event) {
     .forEach((el) => el.disabled = true)
 };
 
-delegate(document, ".filter_form", "submit", disableEmptyFields)
+Rails.delegate(document, ".filter_form", "submit", disableEmptyFields)
+
+const next = function next(el, selector) {
+  const nextEl = el.nextElementSibling;
+  if (!selector || (nextEl && nextEl.matches(selector))) {
+    return nextEl;
+  }
+  return null;
+}
 
 const setSearchType = function(event) {
   const input = next(this, "input")
@@ -16,4 +23,4 @@ const setSearchType = function(event) {
   }
 };
 
-delegate(document, ".filter_form_field.select_and_search select", "change", setSearchType)
+Rails.delegate(document, ".filter_form_field.select_and_search select", "change", setSearchType)
