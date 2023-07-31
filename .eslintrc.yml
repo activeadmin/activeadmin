@@ -4,11 +4,8 @@ env:
 extends:
   - 'eslint:recommended'
 globals:
-  $: false
   Atomics: readonly
-  jQuery: false
   SharedArrayBuffer: readonly
-  Turbolinks: false
 parserOptions:
   ecmaVersion: 2018
   sourceType: module
