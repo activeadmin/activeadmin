@@ -1,8 +1,13 @@
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
-import babel from "rollup-plugin-babel";
-import { terser } from "rollup-plugin-terser";
-import { stripIndent } from 'common-tags';
+import terser from "@rollup/plugin-terser";
+
+const banner = `
+/**
+ Warning: This file is auto-generated, do not modify.
+ Make your changes in 'app/javascript/active_admin' and run \`yarn build\`.
+ */
+//= require rails-ujs
+//= require flowbite
+`
 
 const terserOptions = {
   mangle: false,
@@ -10,44 +15,26 @@ const terserOptions = {
   output: {
     beautify: true,
     indent_level: 2,
-    preamble: stripIndent`
-      /**
-       * Warning: This file is auto-generated, do not modify. Instead, make your changes in 'app/javascript/active_admin/' and run \`yarn build\`
-       */
-      //= require jquery3
-      //= require jquery-ui/widgets/datepicker
-      //= require jquery-ui/widgets/dialog
-      //= require jquery-ui/widgets/sortable
-      //= require jquery-ui/widgets/tabs
-      //= require jquery-ui/widget
-      //= require jquery_ujs
-      //= require_self
-    ` + '\n',
-    wrap_func_args: false
+    comments: "all"
   }
 }
 
 export default {
-  input: "app/javascript/active_admin/base.js",
+  input: "app/javascript/active_admin/index.js",
   output: {
-    file: "app/assets/javascripts/active_admin/base.js",
+    file: "app/assets/javascripts/active_admin.js",
     format: "umd",
-    name: "ActiveAdmin"
+    banner: banner,
+    globals: {
+      "@rails/ujs": "Rails"
+    }
   },
   plugins: [
-    resolve(),
-    commonjs(),
-    babel(),
     terser(terserOptions)
   ],
   // Use client's yarn dependencies instead of bundling everything
   external: [
-    'jquery',
-    'jquery-ui/ui/widgets/datepicker',
-    'jquery-ui/ui/widgets/dialog',
-    'jquery-ui/ui/widgets/sortable',
-    'jquery-ui/ui/widgets/tabs',
-    'jquery-ui/ui/widget',
-    'jquery-ujs'
+    '@rails/ujs',
+    'flowbite'
   ]
 }

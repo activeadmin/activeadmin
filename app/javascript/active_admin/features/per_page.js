@@ -1,4 +1,4 @@
-import { delegate } from "@rails/ujs";
+import Rails from '@rails/ujs';
 
 const setPerPage = function(event) {
   const params = new URLSearchParams(window.location.search)
@@ -6,4 +6,4 @@ const setPerPage = function(event) {
   window.location.search = params
 }
 
-delegate(document, ".pagination_per_page > select", "change", setPerPage)
+Rails.delegate(document, ".pagination_per_page > select", "change", setPerPage)

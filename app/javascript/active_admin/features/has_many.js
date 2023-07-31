@@ -1,4 +1,4 @@
-import { delegate } from "@rails/ujs";
+import Rails from '@rails/ujs';
 
 const hasManyRemoveClick = function(event) {
   event.preventDefault()
@@ -8,7 +8,7 @@ const hasManyRemoveClick = function(event) {
   }
 }
 
-delegate(document, "a.button.has_many_remove", "click", hasManyRemoveClick)
+Rails.delegate(document, "a.button.has_many_remove", "click", hasManyRemoveClick)
 
 const hasManyAddClick = function(event) {
   event.preventDefault()
@@ -25,4 +25,4 @@ const hasManyAddClick = function(event) {
   this.before(tempEl.firstChild)
 }
 
-delegate(document, "a.button.has_many_add", "click", hasManyAddClick)
+Rails.delegate(document, "a.button.has_many_add", "click", hasManyAddClick)
