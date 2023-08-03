@@ -183,6 +183,14 @@ preserve_default_filters!
 remove_filter :id
 ```
 
+### Allow Filtering Attributes
+
+By default, filtering on any model attributes is denied, this is a security
+feature to prevent users from filtering (reading by guessing) attributes that
+shouldn't be accessible by them.
+To allow filtering on attributes, follow the [Ransack Authorization guide]
+to extend `ransackable_attributes` class method.
+
 ## Index Scopes
 
 You can define custom scopes for your index page. This will add a tab bar above
@@ -325,3 +333,5 @@ that you want to show up under the index collection.
 
 You'll need to use a PDF rendering library like PDFKit or WickedPDF to get the
 PDF generation you want.
+
+[Ransack Authorization guide]: https://activerecord-hackery.github.io/ransack/going-further/other-notes/#authorization-allowlistingdenylisting
