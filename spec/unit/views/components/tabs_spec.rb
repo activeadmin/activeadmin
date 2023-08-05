@@ -36,7 +36,7 @@ RSpec.describe ActiveAdmin::Views::Tabs do
       end
 
       it "should have button with specific css class" do
-        expect(subject).to have_selector("button.some_css_class")
+        expect(subject).to have_button(class: "some_css_class")
       end
     end
 

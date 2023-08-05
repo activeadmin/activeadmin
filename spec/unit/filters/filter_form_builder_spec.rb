@@ -47,7 +47,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should generate a clear filters link" do
-      expect(body).to have_selector("a.clear_filters_btn", text: "Clear Filters")
+      expect(body).to have_link("Clear Filters", class: "clear_filters_btn")
     end
 
     describe "label as proc" do
@@ -83,7 +83,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should generate a text field for input" do
-      expect(body).to have_selector("input[name='q[title_cont]']")
+      expect(body).to have_field("q[title_cont]")
     end
 
     it "should have a proper label" do
@@ -121,11 +121,11 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
           let(:body) { filter :"title_#{predicate}" }
 
           it "shouldn't include a select field" do
-            expect(body).not_to have_selector("select")
+            expect(body).not_to have_select
           end
 
           it "should build correctly" do
-            expect(body).to have_selector("input[name='q[title_#{predicate}]']")
+            expect(body).to have_field("q[title_#{predicate}]")
           end
         end
       end
@@ -147,7 +147,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :body }
 
     it "should generate a search field for a text attribute" do
-      expect(body).to have_selector("input[name='q[body_cont]']")
+      expect(body).to have_field("q[body_cont]")
     end
 
     it "should have a proper label" do
@@ -180,11 +180,11 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :published_date }
 
     it "should generate a date greater than" do
-      expect(body).to have_selector("input.datepicker[name='q[published_date_gteq]']")
+      expect(body).to have_field("q[published_date_gteq]", class: "datepicker")
     end
 
     it "should generate a date less than" do
-      expect(body).to have_selector("input.datepicker[name='q[published_date_lteq]']")
+      expect(body).to have_field("q[published_date_lteq]", class: "datepicker")
     end
 
     it "should generate two inputs with different ids" do
@@ -211,8 +211,8 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :published_date, input_html: { 'class': "custom_class" } }
 
       it "should override the default attribute values for both ends of date range" do
-        expect(body).to have_selector("input.custom_class[name='q[published_date_gteq]']")
-        expect(body).to have_selector("input.custom_class[name='q[published_date_lteq]']")
+        expect(body).to have_field("q[published_date_gteq]", class: "custom_class")
+        expect(body).to have_field("q[published_date_lteq]", class: "custom_class")
       end
     end
   end
@@ -221,11 +221,11 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     let(:body) { filter :created_at }
 
     it "should generate a date greater than" do
-      expect(body).to have_selector("input.datepicker[name='q[created_at_gteq]']")
+      expect(body).to have_field("q[created_at_gteq]", class: "datepicker")
     end
 
     it "should generate a date less than" do
-      expect(body).to have_selector("input.datepicker[name='q[created_at_lteq]']")
+      expect(body).to have_field("q[created_at_lteq]", class: "datepicker")
     end
 
     context "with input_html" do
@@ -241,8 +241,8 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :created_at, input_html: { 'class': "custom_class" } }
 
       it "should override the default attribute values for both ends of date range" do
-        expect(body).to have_selector("input.custom_class[name='q[created_at_gteq]']")
-        expect(body).to have_selector("input.custom_class[name='q[created_at_lteq]']")
+        expect(body).to have_field("q[created_at_gteq]", class: "custom_class")
+        expect(body).to have_field("q[created_at_lteq]", class: "custom_class")
       end
     end
   end
@@ -264,7 +264,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should generate a text field for input" do
-        expect(body).to have_selector("input[name='q[id_eq]']")
+        expect(body).to have_field("q[id_eq]")
       end
 
       it "should select the option which is currently being filtered" do
@@ -293,7 +293,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :starred }
 
       it "should generate a select" do
-        expect(body).to have_selector("select[name='q[starred_eq]']")
+        expect(body).to have_select("q[starred_eq]")
       end
 
       it "should set the default text to 'Any'" do
@@ -316,7 +316,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :title_present, as: :boolean }
 
       it "should generate a select" do
-        expect(body).to have_selector("select[name='q[title_present]']")
+        expect(body).to have_select("q[title_present]")
       end
 
       it "should set the default text to 'Any'" do
@@ -342,7 +342,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       it "should generate a numeric filter" do
         expect(body).to have_selector("label", text: "Author") # really this should be Author ID :/)
         expect(body).to have_selector("option[value=author_id_lt]")
-        expect(body).to have_selector("input#q_author_id[name='q[author_id_eq]']")
+        expect(body).to have_field("q[author_id_eq]", id: "q_author_id")
       end
     end
 
@@ -350,7 +350,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :author }
 
       it "should generate a select" do
-        expect(body).to have_selector("select[name='q[author_id_eq]']")
+        expect(body).to have_select("q[author_id_eq]")
       end
 
       it "should set the default text to 'Any'" do
@@ -397,7 +397,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :kategory }
 
       it "should use the association primary key" do
-        expect(body).to have_selector("select[name='q[kategory_name_eq]']")
+        expect(body).to have_select("q[kategory_name_eq]")
       end
     end
 
@@ -423,7 +423,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :category }
       it "should ignore that foreign key and let Ransack handle it" do
         expect(Post.reflect_on_association(:category).foreign_key.to_sym).to eq :custom_category_id
-        expect(body).to have_selector("select[name='q[category_id_eq]']")
+        expect(body).to have_select("q[category_id_eq]")
       end
     end
   end # belongs to
@@ -460,7 +460,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :authors }
 
       it "should generate a select" do
-        expect(body).to have_selector("select[name='q[posts_author_id_eq]']")
+        expect(body).to have_select("q[posts_author_id_eq]")
       end
 
       it "should set the default text to 'Any'" do
@@ -477,8 +477,8 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :authors, as: :check_boxes }
 
       it "should create a check box for each related object" do
-        expect(body).to have_selector("input[name='q[posts_author_id_in][]'][type=checkbox][value='#{john.id}']")
-        expect(body).to have_selector("input[name='q[posts_author_id_in][]'][type=checkbox][value='#{jane.id}']")
+        expect(body).to have_field("q[posts_author_id_in][]", type: "checkbox", with: john.id)
+        expect(body).to have_field("q[posts_author_id_in][]", type: "checkbox", with: jane.id)
       end
     end
   end
@@ -491,27 +491,27 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       context "with #{verb.inspect} proc" do
         it "#{should} be displayed if true" do
           body = filter :body, verb => proc { true }
-          expect(body).send if_true, have_selector("input[name='q[body_cont]']")
+          expect(body).send if_true, have_field("q[body_cont]")
         end
 
         it "#{should} be displayed if false" do
           body = filter :body, verb => proc { false }
-          expect(body).send if_false, have_selector("input[name='q[body_cont]']")
+          expect(body).send if_false, have_field("q[body_cont]")
         end
 
         it "should still be hidden on the second render" do
           filters = { body: { verb => proc { verb == :unless } } }
           2.times do
             body = Capybara.string(render_filter scope, filters)
-            expect(body).not_to have_selector("input[name='q[body_cont]']")
+            expect(body).not_to have_field("q[body_cont]")
           end
         end
 
         it "should successfully keep rendering other filters after one is hidden" do
           filters = { body: { verb => proc { verb == :unless } }, author: {} }
           body = Capybara.string(render_filter scope, filters)
-          expect(body).not_to have_selector("input[name='q[body_cont]']")
-          expect(body).to have_selector("select[name='q[author_id_eq]']")
+          expect(body).not_to have_field("q[body_cont]")
+          expect(body).to have_select("q[author_id_eq]")
         end
       end
     end
@@ -527,7 +527,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
     it "should work as select" do
       body = filter :custom_title_searcher, as: :select, collection: ["foo"]
-      expect(body).to have_selector("select[name='q[custom_title_searcher_eq]']")
+      expect(body).to have_select("q[custom_title_searcher_eq]")
     end
 
     it "should work as string" do
@@ -543,8 +543,8 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :custom_created_at_searcher, as: :date_range }
 
       it "should work as date_range" do
-        expect(body).to have_selector("input[name='q[custom_created_at_searcher_gteq]'][value='2010-10-01']")
-        expect(body).to have_selector("input[name='q[custom_created_at_searcher_lteq]'][value='2010-10-02']")
+        expect(body).to have_field("q[custom_created_at_searcher_gteq]", with: "2010-10-01")
+        expect(body).to have_field("q[custom_created_at_searcher_lteq]", with: "2010-10-02")
       end
 
       context "filter value can't be casted to date" do
@@ -552,8 +552,8 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
         let(:lteq) { "Ooops" }
 
         it "should work display empty filter values" do
-          expect(body).to have_selector("input[name='q[custom_created_at_searcher_gteq]'][value='']")
-          expect(body).to have_selector("input[name='q[custom_created_at_searcher_lteq]'][value='']")
+          expect(body).to have_field("q[custom_created_at_searcher_gteq]", with: "")
+          expect(body).to have_field("q[custom_created_at_searcher_lteq]", with: "")
         end
       end
     end

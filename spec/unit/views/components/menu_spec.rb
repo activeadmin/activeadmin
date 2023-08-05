@@ -60,7 +60,7 @@ RSpec.describe ActiveAdmin::Views::Menu do
     end
 
     it "should generate a link for each item" do
-      expect(html).to have_selector("a[href='/admin/posts']", text: "Blog Posts")
+      expect(html).to have_link("Blog Posts", href: "/admin/posts")
     end
 
     it "should generate a nested list for children" do
@@ -77,23 +77,23 @@ RSpec.describe ActiveAdmin::Views::Menu do
     end
 
     it "should not generate a link for user administration" do
-      expect(html).to_not have_selector("a[href='/admin/user-administration']", text: "User administration")
+      expect(html).to_not have_link("User administration", href: "/admin/user-administration")
     end
 
     it "should generate the administration parent menu" do
-      expect(html).to have_selector("a[href='/admin/administration']", text: "Administration")
+      expect(html).to have_link("Administration", href: "/admin/administration")
     end
 
     it "should not generate a link for order management" do
-      expect(html).to_not have_selector("a[href='/admin/order-management']", text: "Order management")
+      expect(html).to_not have_link("Order management", href: "/admin/order-management")
     end
 
     it "should not generate a link for bill management" do
-      expect(html).to_not have_selector("a[href='/admin/bill-management']", text: "Bill management")
+      expect(html).to_not have_link("Bill management", href: "/admin/bill-management")
     end
 
     it "should not generate the management parent menu" do
-      expect(html).to_not have_selector("a[href='#']", text: "Management")
+      expect(html).to_not have_link("Management", href: "#")
     end
 
     context "when url is nil" do

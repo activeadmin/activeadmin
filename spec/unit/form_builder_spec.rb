@@ -98,7 +98,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     it "should generate a text input" do
-      expect(body).to have_selector("input[type=text][name='post[title]']")
+      expect(body).to have_field("post[title]", type: "text")
     end
 
     it "should generate a textarea" do
@@ -254,7 +254,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
     it "should have a title input" do
-      expect(body).to have_selector("input[type=text][name='post[title]']")
+      expect(body).to have_field("post[title]", type: "text")
     end
 
     it "should have a body textarea" do
@@ -471,13 +471,13 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
     it "should render four inputs" do
-      expect(body).to have_selector("input[name='post[title]']", count: 1)
+      expect(body).to have_field("post[title]", count: 1)
       expect(body).to have_selector("textarea[name='post[body]']", count: 1)
-      expect(body).to have_selector("select[name='post[author_id]']", count: 1)
-      expect(body).to have_selector("select[name='post[created_at(1i)]']", count: 1)
-      expect(body).to have_selector("select[name='post[created_at(2i)]']", count: 1)
-      expect(body).to have_selector("select[name='post[created_at(3i)]']", count: 1)
-      expect(body).to have_selector("select[name='post[created_at(4i)]']", count: 1)
+      expect(body).to have_select("post[author_id]", count: 1)
+      expect(body).to have_select("post[created_at(1i)]", count: 1)
+      expect(body).to have_select("post[created_at(2i)]", count: 1)
+      expect(body).to have_select("post[created_at(3i)]", count: 1)
+      expect(body).to have_select("post[created_at(4i)]", count: 1)
     end
   end
 
@@ -973,7 +973,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should generate a date input with the class of datepicker" do
-        expect(body).to have_selector("input.datepicker[type=date][name='post[created_at]']")
+        expect(body).to have_field("post[created_at]", type: "date", class: "datepicker")
       end
     end
 
