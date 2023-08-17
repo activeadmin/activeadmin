@@ -22,8 +22,9 @@ module ActiveAdmin
       end
 
       def build(scopes, options = {})
+        super({ role: "toolbar" })
         scopes.group_by(&:group).each do |group, group_scopes|
-          ul class: "table_tools_segmented_control #{group_class(group)}" do
+          div class: "scopes-group table_tools_segmented_control #{group_class(group)}", role: "group" do
             group_scopes.each do |scope|
               build_scope(scope, options) if call_method_or_exec_proc(scope.display_if_block)
             end
@@ -36,15 +37,13 @@ module ActiveAdmin
       protected
 
       def build_scope(scope, options)
-        li class: classes_for_scope(scope) do
-          params = request.query_parameters.except :page, :scope, :commit, :format
+        params = request.query_parameters.except :page, :scope, :commit, :format
 
-          a href: url_for(scope: scope.id, params: params), class: "table_tools_button" do
-            text_node scope_name(scope)
-            span class: "count" do
-              "(#{get_scope_count(scope)})"
-            end if options[:scope_count] && scope.show_count
-          end
+        a href: url_for(scope: scope.id, params: params), class: "#{classes_for_scope(scope)} table_tools_button" do
+          text_node scope_name(scope)
+          span class: "count" do
+            "#{get_scope_count(scope)}"
+          end if options[:scope_count] && scope.show_count
         end
       end
 
