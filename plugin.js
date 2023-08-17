@@ -564,6 +564,9 @@ module.exports = plugin(
       '.paginated-collection-footer': {
         '@apply p-4 grid grid-flow-col auto-cols-fr gap-2': {}
       },
+      '.pagination_per_page > select': {
+        '@apply w-auto w-min': {}
+      },
       '.index_as_table': {
         '@apply relative overflow-x-auto': {}
       },
