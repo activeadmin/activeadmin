@@ -219,11 +219,10 @@ form {
 
   /* Buttons */
 
-  input[type=submit], input[type=button], button {
-    @include dark-button;
-    cursor: pointer;
-
-  }
+  // input[type=submit], input[type=button], button {
+  //   @include dark-button;
+  //   cursor: pointer;
+  // }
 
   .buttons, .actions {
     margin-top: 15px;
