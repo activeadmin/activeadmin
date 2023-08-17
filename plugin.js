@@ -499,7 +499,7 @@ module.exports = plugin(
         @apply text-blue-600 underline dark:text-white hover:no-underline;
       } */
       '#header': {
-        '@apply bg-gray-100 border-b border-gray-200 dark:border-gray-700 dark:bg-gray-800 p-4 flex items-center': {}
+        '@apply border-b border-gray-200 dark:border-gray-700 dark:bg-gray-800 p-2 flex items-center': {}
       },
       '#utility_nav': {
         '@apply flex flex-wrap ms-auto': {}
@@ -517,7 +517,7 @@ module.exports = plugin(
         '@apply text-blue-600 underline dark:text-white hover:no-underline': {}
       },
       '.page-title-bar': {
-        '@apply bg-gray-200 p-4 mb-8 gap-4 items-center flex justify-between dark:border-t dark:border-gray-700 dark:bg-gray-800': {}
+        '@apply bg-gray-50 border-b p-4 mb-8 gap-4 items-center flex justify-between dark:border-gray-700 dark:bg-gray-800': {}
       },
       '.page-title-bar-content': {
         '@apply flex flex-col gap-3 pt-1': {}
@@ -547,7 +547,7 @@ module.exports = plugin(
         '@apply px-2 content-[""] breadcrumb-arrow': {}
       },
       '.page-content-container': {
-        '@apply px-2.5 lg:px-5 grid gap-4 lg:gap-6 md:grid-cols-1 md:grid-flow-col md:auto-cols-[minmax(0,250px)] lg:auto-cols-[minmax(0,280px)]': {}
+        '@apply px-2.5 lg:px-5 lg:grid lg:gap-4 lg:gap-6 lg:grid-cols-1 lg:grid-flow-col lg:auto-cols-[minmax(0,280px)]': {}
       },
       '.main-content-container': {
         /* @apply shadow-md sm:rounded-lg; */
@@ -556,7 +556,7 @@ module.exports = plugin(
         '': {}
       },
       '.table_tools': {
-        '@apply mb-0 p-4': {}
+        '@apply mb-4': {}
       },
       '.paginated_collection': {
         '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
