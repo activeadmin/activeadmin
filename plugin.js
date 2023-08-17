@@ -632,7 +632,10 @@ module.exports = plugin(
         '@apply relative': {}
       },
       '.dropdown_menu_button': {
-        '@apply disabled:bg-blue-400 disabled:hover:bg-blue-400 disabled:hover:dark:bg-blue-500 disabled:dark:bg-blue-500 disabled:cursor-not-allowed': {}
+        '@apply transition-colors transition-opacity rounded-lg inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white disabled:opacity-30 disabled:pointer-events-none': {}
+      },
+      '.dropdown-menu-button-arrow': {
+        '@apply w-2.5 h-2.5 ms-1.5': {}
       },
       '.dropdown_menu :where(ul)': {
         '@apply z-10 hidden bg-white rounded shadow dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
