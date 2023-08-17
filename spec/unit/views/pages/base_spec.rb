@@ -16,13 +16,16 @@ RSpec.describe ActiveAdmin::Views::Pages::Base do
   describe "build_flash_messages" do
     class PageWithFlashMessages < ActiveAdmin::Views::Pages::Base
       def flash_messages
-        { alert: "Alert message", notice: ["First notice message", "Second notice message"] }
+        { alert: "Alert message", notice: ["First notice message", "Second notice message"] }.with_indifferent_access
       end
     end
 
     it "shows all flash messages" do
       div = PageWithFlashMessages.new.send :build_flash_messages
-      expect(div.get_elements_by_tag_name("div").map(&:content)).to contain_exactly("Alert message", "First notice message", "Second notice message")
+      messages = div.get_elements_by_class_name("flash").map(&:content)
+      expect(messages.first).to include("Alert message")
+      expect(messages.second).to include("First notice message")
+      expect(messages.third).to include("Second notice message")
     end
   end
 end

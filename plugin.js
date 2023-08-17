@@ -585,8 +585,20 @@ module.exports = plugin(
       '.index_table :where(td)': {
         '@apply px-5 py-3': {}
       },
+      '.flashes': {
+        '@apply px-2.5 lg:px-5 mb-8': {}
+      },
+      '.flash': {
+        '@apply flex items-center gap-3 p-4 mb-2 rounded-lg': {}
+      },
+      '.flash-icon': {
+        '@apply w-5 h-5 shrink-0': {}
+      },
+      '.flash_alert': {
+        '@apply bg-red-50 text-red-800 dark:bg-red-800 dark:text-red-300': {}
+      },
       '.flash_notice': {
-        '@apply flex p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400': {}
+        '@apply bg-green-50 text-green-800 dark:bg-green-800 dark:text-green-400': {}
       },
       '.view_link, .edit_link': {
         '@apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 no-underline': {}
