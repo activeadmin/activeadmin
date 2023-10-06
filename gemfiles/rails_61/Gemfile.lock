@@ -210,7 +210,7 @@ GEM
       i18n
     jdbc-sqlite3 (3.28.0)
     jruby-openssl (0.14.2-java)
-    jsbundling-rails (1.1.2)
+    jsbundling-rails (1.2.1)
       railties (>= 6.0.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -241,7 +241,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.0808)
     mini_mime (1.1.5)
-    minitest (5.19.0)
+    minitest (5.20.0)
     multi_test (1.1.0)
     net-imap (0.3.7)
       date
@@ -384,7 +384,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.11)
+    zeitwerk (2.6.12)
 
 PLATFORMS
   arm64-darwin-21
