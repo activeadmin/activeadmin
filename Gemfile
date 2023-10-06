@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 source "https://rubygems.org"
 
+gem "inherited_resources", github: "tomascco/inherited_resources", branch: "chore/add-rails-71-support"
+
 group :development, :test do
   gem "rake"
 
@@ -10,7 +12,7 @@ group :development, :test do
   gem "draper"
   gem "devise"
 
-  gem "rails", "~> 7.0.0"
+  gem "rails", "~> 7.1.0"
 
   gem "sprockets-rails"
   gem "sassc-rails"
