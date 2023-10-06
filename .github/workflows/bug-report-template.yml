@@ -24,7 +24,7 @@ jobs:
     if: ${{ github.event_name == 'pull_request' || github.repository_owner == 'activeadmin' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
