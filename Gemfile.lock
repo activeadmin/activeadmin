@@ -493,6 +493,7 @@ DEPENDENCIES
   ransack (>= 4.1.0)
   rspec-rails
   rubocop
+  rubocop-capybara
   rubocop-packaging
   rubocop-performance
   rubocop-rails

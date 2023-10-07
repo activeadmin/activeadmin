@@ -5,6 +5,7 @@ inherit_mode:
     - Include
 
 require:
+  - rubocop-capybara
   - rubocop-packaging
   - rubocop-performance
   - rubocop-rails
@@ -27,6 +28,39 @@ AllCops:
   DisplayCopNames: true
 
   StyleGuideCopsOnly: false
+
+Capybara:
+  Enabled: true
+
+Capybara/ClickLinkOrButtonStyle:
+  Enabled: true
+
+Capybara/CurrentPathExpectation:
+  Enabled: true
+
+Capybara/MatchStyle:
+  Enabled: true
+
+Capybara/NegationMatcher:
+  Enabled: true
+
+Capybara/RSpec/HaveSelector:
+  Enabled: true
+
+Capybara/RSpec/PredicateMatcher:
+  Enabled: true
+
+Capybara/SpecificActions:
+  Enabled: true
+
+Capybara/SpecificFinders:
+  Enabled: true
+
+Capybara/SpecificMatcher:
+  Enabled: true
+
+Capybara/VisibilityMatcher:
+  Enabled: true
 
 Layout/EndAlignment:
   Enabled: true
