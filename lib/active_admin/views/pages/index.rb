@@ -113,8 +113,11 @@ module ActiveAdmin
         # Returns the actual class for renderering the main content on the index
         # page. To set this, use the :as option in the page_presenter block.
         def find_index_renderer_class(klass)
-          klass.is_a?(Class) ? klass :
+          if klass.is_a?(Class)
+            klass
+          else
             ::ActiveAdmin::Views.const_get("IndexAs" + klass.to_s.camelcase)
+          end
         end
 
         def render_blank_slate

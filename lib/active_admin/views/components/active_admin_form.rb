@@ -73,9 +73,11 @@ module ActiveAdmin
       end
 
       def actions(*args, &block)
-        block_given? ?
-          insert_tag(SemanticActionsProxy, form_builder, *args, &block) :
+        if block_given?
+          insert_tag(SemanticActionsProxy, form_builder, *args, &block)
+        else
           actions(*args) { commit_action_with_cancel_link }
+        end
       end
 
       def commit_action_with_cancel_link

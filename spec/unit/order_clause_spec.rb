@@ -28,6 +28,15 @@ RSpec.describe ActiveAdmin::OrderClause do
     end
   end
 
+  describe "posts.id_asc" do
+    let(:clause) { "posts.id_asc" }
+
+    describe "#table_column" do
+      subject { super().table_column }
+      it { is_expected.to eq("posts.id") }
+    end
+  end
+
   describe "virtual_column_asc" do
     let(:clause) { "virtual_column_asc" }
 
