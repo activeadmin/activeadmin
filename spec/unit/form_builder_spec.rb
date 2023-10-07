@@ -55,7 +55,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should generate a fieldset with a inputs class" do
-        expect(body).to have_selector("fieldset.inputs")
+        expect(body).to have_css("fieldset.inputs")
       end
     end
 
@@ -70,7 +70,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should generate a fieldset with a inputs and custom class" do
-        expect(body).to have_selector("fieldset.custom_class")
+        expect(body).to have_css("fieldset.custom_class")
       end
 
       it "should generate a fieldset with a custom legend" do
@@ -78,7 +78,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should generate a fieldset with a custom attributes" do
-        expect(body).to have_selector("fieldset[custom_attr='custom_attr']")
+        expect(body).to have_css("fieldset[custom_attr='custom_attr']")
       end
     end
   end
@@ -102,16 +102,16 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     it "should generate a textarea" do
-      expect(body).to have_selector("textarea[name='post[body]']")
+      expect(body).to have_css("textarea[name='post[body]']")
     end
 
     it "should only generate the form once" do
-      expect(body).to have_selector("form", count: 1)
+      expect(body).to have_css("form", count: 1)
     end
 
     it "should generate actions" do
-      expect(body).to have_selector("input[type=submit][value='Submit Me']")
-      expect(body).to have_selector("input[type=submit][value='Another Button']")
+      expect(body).to have_css("input[type=submit][value='Submit Me']")
+      expect(body).to have_css("input[type=submit][value='Another Button']")
     end
   end
 
@@ -134,7 +134,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
     it "should pass the options on to the form" do
-      expect(body).to have_selector("form[enctype='multipart/form-data']")
+      expect(body).to have_css("form[enctype='multipart/form-data']")
     end
   end
 
@@ -146,7 +146,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     it "adds multipart attribute automatically" do
-      expect(body).to have_selector("form[enctype='multipart/form-data']")
+      expect(body).to have_css("form[enctype='multipart/form-data']")
     end
   end
 
@@ -158,7 +158,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
         f.actions
       end
-      expect(body).to have_selector("[id=post_title]", count: 1)
+      expect(body).to have_css("[id=post_title]", count: 1)
     end
 
     context "create another checkbox" do
@@ -173,14 +173,14 @@ RSpec.describe ActiveAdmin::FormBuilder do
           expect(helpers).to receive(:action_name) { action_name }
           allow(helpers).to receive(:active_admin_config) { instance_double(ActiveAdmin::Resource, create_another: true) }
 
-          is_expected.to have_selector("[type=checkbox]", count: 1)
-                            .and have_selector("[name=create_another]", count: 1)
+          is_expected.to have_css("[type=checkbox]", count: 1)
+                            .and have_css("[name=create_another]", count: 1)
         end
       end
 
       %w(show edit update).each do |action_name|
         it "doesn't generate create another checkbox on #{action_name} page" do
-          is_expected.not_to have_selector("[name=create_another]", count: 1)
+          is_expected.not_to have_css("[name=create_another]", count: 1)
         end
       end
     end
@@ -189,8 +189,8 @@ RSpec.describe ActiveAdmin::FormBuilder do
       body = build_form do |f|
         f.actions
       end
-      expect(body).to have_selector("[type=submit]", count: 1)
-      expect(body).to have_selector("[class=cancel]", count: 1)
+      expect(body).to have_css("[type=submit]", count: 1)
+      expect(body).to have_css("[class=cancel]", count: 1)
     end
 
     it "should generate multiple actions" do
@@ -200,8 +200,8 @@ RSpec.describe ActiveAdmin::FormBuilder do
           f.action :submit, label: "Create & Edit"
         end
       end
-      expect(body).to have_selector("[type=submit]", count: 2)
-      expect(body).to have_selector("[class=cancel]", count: 0)
+      expect(body).to have_css("[type=submit]", count: 2)
+      expect(body).to have_css("[class=cancel]", count: 0)
     end
   end
 
@@ -220,10 +220,10 @@ RSpec.describe ActiveAdmin::FormBuilder do
         f.actions
       end
 
-      expect(body).to have_selector("div > h1")
-      expect(body).to have_selector("h1", count: 1)
-      expect(body).to have_selector(".inputs > ol > span")
-      expect(body).to have_selector("span", count: 2)
+      expect(body).to have_css("div > h1")
+      expect(body).to have_css("h1", count: 1)
+      expect(body).to have_css(".inputs > ol > span")
+      expect(body).to have_css("span", count: 2)
     end
 
     it "should allow a simplified syntax" do
@@ -240,10 +240,10 @@ RSpec.describe ActiveAdmin::FormBuilder do
         actions
       end
 
-      expect(body).to have_selector("div > h1")
-      expect(body).to have_selector("h1", count: 1)
-      expect(body).to have_selector(".inputs > ol > span")
-      expect(body).to have_selector("span", count: 2)
+      expect(body).to have_css("div > h1")
+      expect(body).to have_css("h1", count: 1)
+      expect(body).to have_css(".inputs > ol > span")
+      expect(body).to have_css("span", count: 2)
     end
   end
 
@@ -258,7 +258,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     it "should have a body textarea" do
-      expect(body).to have_selector("textarea[name='post[body]']")
+      expect(body).to have_css("textarea[name='post[body]']")
     end
   end
 
@@ -278,7 +278,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
     end
     it "should generate a nested text input once" do
-      expect(body).to have_selector("[id=post_author_attributes_first_name_input]", count: 1)
+      expect(body).to have_css("[id=post_author_attributes_first_name_input]", count: 1)
     end
   end
 
@@ -295,7 +295,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
       end
       it "should create 2 options" do
-        expect(body).to have_selector("option", count: 2)
+        expect(body).to have_css("option", count: 2)
       end
     end
 
@@ -306,7 +306,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
       end
       it "should create 2 radio buttons" do
-        expect(body).to have_selector("[type=radio]", count: 2)
+        expect(body).to have_css("[type=radio]", count: 2)
       end
     end
   end
@@ -335,8 +335,8 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     it "should see the profile fields for an existing profile" do
-      expect(body).to have_selector("[id='post_author_attributes_profile_attributes_bio']", count: 1)
-      expect(body).to have_selector("textarea[name='post[author_attributes][profile_attributes][bio]']")
+      expect(body).to have_css("[id='post_author_attributes_profile_attributes_bio']", count: 1)
+      expect(body).to have_css("textarea[name='post[author_attributes][profile_attributes][bio]']")
     end
   end
 
@@ -363,7 +363,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       def user
         User.new
       end
-      expect(body).to have_selector("a[contains(data-html,'post[author_attributes][profile_attributes][bio]')]")
+      expect(body).to have_css("a[contains(data-html,'post[author_attributes][profile_attributes][bio]')]")
     end
 
     it "should see the profile fields for an existing profile" do
@@ -372,20 +372,20 @@ RSpec.describe ActiveAdmin::FormBuilder do
         u.profile = Profile.new
         u
       end
-      expect(body).to have_selector("[id='post_author_attributes_profile_attributes_bio']", count: 1)
-      expect(body).to have_selector("textarea[name='post[author_attributes][profile_attributes][bio]']")
+      expect(body).to have_css("[id='post_author_attributes_profile_attributes_bio']", count: 1)
+      expect(body).to have_css("textarea[name='post[author_attributes][profile_attributes][bio]']")
     end
   end
 
   shared_examples :inputs_with_for_expectation do
     it "should generate a nested text input once" do
-      expect(body).to have_selector("[id=post_author_attributes_first_name_input]", count: 1)
-      expect(body).to have_selector("[id=post_author_attributes_last_name_input]", count: 1)
+      expect(body).to have_css("[id=post_author_attributes_first_name_input]", count: 1)
+      expect(body).to have_css("[id=post_author_attributes_last_name_input]", count: 1)
     end
 
     it "should add author first and last name fields" do
-      expect(body).to have_selector("input[name='post[author_attributes][first_name]']")
-      expect(body).to have_selector("input[name='post[author_attributes][last_name]']")
+      expect(body).to have_css("input[name='post[author_attributes][first_name]']")
+      expect(body).to have_css("input[name='post[author_attributes][last_name]']")
     end
   end
 
@@ -453,7 +453,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       body = build_form do |f|
         f.input :title, wrapper_html: { class: "important" }
       end
-      expect(body).to have_selector("li[class='important string input optional stringish']")
+      expect(body).to have_css("li[class='important string input optional stringish']")
     end
   end
 
@@ -472,7 +472,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
     it "should render four inputs" do
       expect(body).to have_field("post[title]", count: 1)
-      expect(body).to have_selector("textarea[name='post[body]']", count: 1)
+      expect(body).to have_css("textarea[name='post[body]']", count: 1)
       expect(body).to have_select("post[author_id]", count: 1)
       expect(body).to have_select("post[created_at(1i)]", count: 1)
       expect(body).to have_select("post[created_at(2i)]", count: 1)
@@ -499,44 +499,44 @@ RSpec.describe ActiveAdmin::FormBuilder do
       it "should translate the association name in header" do
         with_translation %i[activerecord models post one], "Blog Post" do
           with_translation %i[activerecord models post other], "Blog Posts" do
-            expect(body).to have_selector("h3", text: "Blog Posts")
+            expect(body).to have_css("h3", text: "Blog Posts")
           end
         end
       end
 
       it "should use model name when there is no translation for given model in header" do
-        expect(body).to have_selector("h3", text: "Post")
+        expect(body).to have_css("h3", text: "Post")
       end
 
       it "should translate the association name in has many new button" do
         with_translation %i[activerecord models post one], "Blog Post" do
           with_translation %i[activerecord models post other], "Blog Posts" do
-            expect(body).to have_selector("a", text: "Add New Blog Post")
+            expect(body).to have_css("a", text: "Add New Blog Post")
           end
         end
       end
 
       it "should translate the attribute name" do
         with_translation %i[activerecord attributes post title], "A very nice title" do
-          expect(body).to have_selector("label", text: "A very nice title")
+          expect(body).to have_css("label", text: "A very nice title")
         end
       end
 
       it "should use model name when there is no translation for given model in has many new button" do
-        expect(body).to have_selector("a", text: "Add New Post")
+        expect(body).to have_css("a", text: "Add New Post")
       end
 
       it "should render the nested form" do
-        expect(body).to have_selector("input[name='category[posts_attributes][0][title]']")
-        expect(body).to have_selector("textarea[name='category[posts_attributes][0][body]']")
+        expect(body).to have_css("input[name='category[posts_attributes][0][title]']")
+        expect(body).to have_css("textarea[name='category[posts_attributes][0][body]']")
       end
 
       it "should add a link to remove new nested records" do
-        expect(body).to have_selector(".has_many_container > fieldset > ol > li > a.button.has_many_remove[href='#']", text: "Remove")
+        expect(body).to have_css(".has_many_container > fieldset > ol > li > a.button.has_many_remove[href='#']", text: "Remove")
       end
 
       it "should add a link to add new nested records" do
-        expect(body).to have_selector(".has_many_container > a.button.has_many_add[href='#']", text: "Add New Post")
+        expect(body).to have_css(".has_many_container > a.button.has_many_add[href='#']", text: "Add New Post")
       end
 
       it "should set an HTML-id valid placeholder" do
@@ -564,11 +564,11 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should accept a block with a second argument" do
-        expect(body).to have_selector("label", text: "Title 1")
+        expect(body).to have_css("label", text: "Title 1")
       end
 
       it "should add a custom header" do
-        expect(body).to have_selector("h3", text: "Post")
+        expect(body).to have_css("h3", text: "Post")
       end
     end
 
@@ -583,15 +583,15 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should not add a header" do
-        expect(body).not_to have_selector("h3", text: "Post")
+        expect(body).not_to have_css("h3", text: "Post")
       end
 
       it "should not add link to new nested records" do
-        expect(body).not_to have_selector("a", text: "Add New Post")
+        expect(body).not_to have_css("a", text: "Add New Post")
       end
 
       it "should render the nested form" do
-        expect(body).to have_selector("input[name='category[posts_attributes][0][title]']")
+        expect(body).to have_css("input[name='category[posts_attributes][0][title]']")
       end
     end
 
@@ -606,7 +606,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should add a custom header" do
-        expect(body).to have_selector("h3", text: "Test heading")
+        expect(body).to have_css("h3", text: "Test heading")
       end
     end
 
@@ -621,7 +621,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should add a custom new record link" do
-        expect(body).to have_selector("a", text: "My Custom New Post")
+        expect(body).to have_css("a", text: "My Custom New Post")
       end
     end
 
@@ -640,7 +640,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "should wrap the destroy field in an li with class 'has_many_delete'" do
-          expect(body).to have_selector(".has_many_container > fieldset > ol > li.has_many_delete > input", count: 1, visible: :hidden)
+          expect(body).to have_css(".has_many_container > fieldset > ol > li.has_many_delete > input", count: 1, visible: :hidden)
         end
       end
 
@@ -800,7 +800,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "shows the nested fields for unsaved records" do
-          expect(body).to have_selector("fieldset.inputs.has_many_fields")
+          expect(body).to have_css("fieldset.inputs.has_many_fields")
         end
       end
 
@@ -816,7 +816,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "shows the nested fields for unsaved records" do
-          expect(body).to have_selector("fieldset.inputs.has_many_fields")
+          expect(body).to have_css("fieldset.inputs.has_many_fields")
         end
       end
 
@@ -837,7 +837,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "shows the nested fields for saved and unsaved records" do
-          expect(body).to have_selector("fieldset.inputs.has_many_fields")
+          expect(body).to have_css("fieldset.inputs.has_many_fields")
         end
       end
 
@@ -852,7 +852,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "defaults to 0" do
-          expect(body).to have_selector("div.has_many_container[data-sortable-start='0']")
+          expect(body).to have_css("div.has_many_container[data-sortable-start='0']")
         end
       end
 
@@ -867,7 +867,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "sets the data attribute" do
-          expect(body).to have_selector("div.has_many_container[data-sortable-start='15']")
+          expect(body).to have_css("div.has_many_container[data-sortable-start='15']")
         end
       end
     end
@@ -886,15 +886,15 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
 
         it "should wrap the has_many fieldset in an li" do
-          expect(body).to have_selector("ol > li.has_many_container")
+          expect(body).to have_css("ol > li.has_many_container")
         end
 
         it "should have a direct fieldset child" do
-          expect(body).to have_selector("li.has_many_container > fieldset")
+          expect(body).to have_css("li.has_many_container > fieldset")
         end
 
         it "should not contain invalid li children" do
-          expect(body).not_to have_selector("div.has_many_container > li")
+          expect(body).not_to have_css("div.has_many_container > li")
         end
       end
 
@@ -916,12 +916,12 @@ RSpec.describe ActiveAdmin::FormBuilder do
         let(:body) { Capybara.string body_html }
 
         it "displays the input between the outer and inner has_many" do
-          expect(body).to have_selector(".has_many_container ol > li:first-child input#category_posts_attributes_0_title")
-          expect(body).to have_selector(".has_many_container ol > li:nth-child(2).has_many_container > fieldset")
+          expect(body).to have_css(".has_many_container ol > li:first-child input#category_posts_attributes_0_title")
+          expect(body).to have_css(".has_many_container ol > li:nth-child(2).has_many_container > fieldset")
         end
 
         it "should not contain invalid li children" do
-          expect(body).not_to have_selector(".has_many_container div.has_many_container > li")
+          expect(body).not_to have_css(".has_many_container div.has_many_container > li")
         end
       end
     end
@@ -935,7 +935,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
       end
 
-      expect(body).to have_selector("input[name='category[posts_attributes][0][title]']")
+      expect(body).to have_css("input[name='category[posts_attributes][0][title]']")
     end
   end
 
@@ -987,7 +987,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should render proper label" do
-        expect(body).to have_selector("label", text: "Title from proc")
+        expect(body).to have_css("label", text: "Title from proc")
       end
     end
   end
