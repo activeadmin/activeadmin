@@ -27,7 +27,7 @@
     "@rollup/plugin-terser": "^0.4.3",
     "eslint": "^8.46.0",
     "gherkin-lint": "^4.2.2",
-    "rollup": "^3.27.0"
+    "rollup": "^4.0.2"
   },
   "scripts": {
     "gherkin-lint": "gherkin-lint",
