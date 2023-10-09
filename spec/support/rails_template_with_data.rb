@@ -18,52 +18,64 @@ copy_file File.expand_path("templates_with_data/admin/kitchen_sink.rb", __dir__)
 end
 
 append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
-  users = ["Jimi Hendrix", "Jimmy Page", "Yngwie Malmsteen", "Eric Clapton", "Kirk Hammett"].collect do |name|
+  user_data = ["Jimi Hendrix", "Jimmy Page", "Yngwie Malmsteen", "Eric Clapton", "Kirk Hammett"].map do |name|
     first, last = name.split(" ")
-    User.create!  first_name: first,
-                  last_name: last,
-                  username: [first,last].join('-').downcase,
-                  age: rand(80),
-                  encrypted_password: SecureRandom.hex
+    {
+      first_name: first,
+      last_name: last,
+      username: name.downcase.gsub(" ", ""),
+      age: rand(80),
+      encrypted_password: SecureRandom.hex
+    }
   end
+  User.insert_all(user_data)
+  user_ids = User.pluck(:id)
 
-  categories = ["Rock", "Pop Rock", "Alt-Country", "Blues", "Dub-Step"].collect do |name|
-    Category.create! name: name
-  end
+  category_data = ["Rock", "Pop Rock", "Alt-Country", "Blues", "Dub-Step"].map { |i| { name: i } }
+  Category.insert_all(category_data)
+  category_ids = Category.pluck(:id)
 
-  tags = ["Amy Winehouse", "Guitar", "Genius Oddities", "Music Culture"].collect do |name|
-    Tag.create! name: name
-  end
+  tag_data = ["Amy Winehouse", "Guitar", "Genius Oddities", "Music Culture"].map { |i| { name: i } }
+  Tag.insert_all(tag_data)
+  tag_ids = Tag.pluck(:id)
 
-  published_at_values = [Time.now.utc - 5.days, Time.now.utc - 1.day, nil, Time.now.utc + 3.days]
+  published_at_values = [5.days.ago, 1.day.ago, nil, 3.days.from_now]
 
-  100.times do |i|
-    user = users[i % users.size]
-    cat = categories[i % categories.size]
+  post_data = Array.new(100) do |i|
+    user_id = user_ids[i % user_ids.size]
+    category_id = category_ids[i % category_ids.size]
     published = published_at_values[i % published_at_values.size]
-    post = Post.create! title: "Blog Post \#{i}",
-                        body: "Blog post \#{i} is written by \#{user.username} about \#{cat.name}",
-                        category: cat,
-                        published_date: published,
-                        author: user,
-                        starred: true
-
-    if rand > 0.4
-      Tagging.create!(
-        tag: tags.sample,
-        post: post
-      )
-    end
+    {
+      title: "Blog Post \#{i}",
+      body: "A sample blog post \#{i}.",
+      custom_category_id: category_id,
+      published_date: published,
+      author_id: user_id,
+      starred: true
+    }
   end
+  Post.insert_all(post_data)
+  post_ids = Post.pluck(:id)
 
-  80.times do |i|
-    ActiveAdmin::Comment.create!(
+  tagging_data = post_ids.select { rand > 0.4 }.map do |id|
+    {
+      tag_id: tag_ids.sample,
+      post_id: id
+    }
+  end
+  Tagging.insert_all(tagging_data)
+
+  comment_data = Array.new(80) do |i|
+    {
       namespace: :admin,
-      author: AdminUser.first,
+      author_type: "AdminUser",
+      author_id: AdminUser.first.id,
       body: "Test comment \#{i}",
-      resource: categories.sample
-    )
+      resource_type: "Category",
+      resource_id: category_ids.sample
+    }
   end
+  ActiveAdmin::Comment.insert_all(comment_data)
 RUBY
 
 rails_command "db:seed"
