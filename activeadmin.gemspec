@@ -32,11 +32,11 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.6"
 
   s.add_dependency "arbre", "~> 1.2", ">= 1.2.1"
-  s.add_dependency "formtastic", ">= 3.1", "< 5.0"
-  s.add_dependency "formtastic_i18n", "~> 0.4"
+  s.add_dependency "formtastic", ">= 3.1"
+  s.add_dependency "formtastic_i18n", ">= 0.4"
   s.add_dependency "inherited_resources", "~> 1.7"
-  s.add_dependency "jquery-rails", "~> 4.2"
-  s.add_dependency "kaminari", "~> 1.0", ">= 1.2.1"
-  s.add_dependency "railties", ">= 6.1", "< 7.1"
-  s.add_dependency "ransack", ">= 4.0", "< 5"
+  s.add_dependency "jquery-rails", ">= 4.2"
+  s.add_dependency "kaminari", ">= 1.2.1"
+  s.add_dependency "railties", ">= 6.1"
+  s.add_dependency "ransack", ">= 4.0"
 end

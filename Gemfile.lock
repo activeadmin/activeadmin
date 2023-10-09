@@ -3,13 +3,13 @@ PATH
   specs:
     activeadmin (3.0.0)
       arbre (~> 1.2, >= 1.2.1)
-      formtastic (>= 3.1, < 5.0)
-      formtastic_i18n (~> 0.4)
+      formtastic (>= 3.1)
+      formtastic_i18n (>= 0.4)
       inherited_resources (~> 1.7)
-      jquery-rails (~> 4.2)
-      kaminari (~> 1.0, >= 1.2.1)
-      railties (>= 6.1, < 7.1)
-      ransack (>= 4.0, < 5)
+      jquery-rails (>= 4.2)
+      kaminari (>= 1.2.1)
+      railties (>= 6.1)
+      ransack (>= 4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -254,7 +254,7 @@ GEM
     mini_portile2 (2.8.4)
     minitest (5.20.0)
     multi_test (1.1.0)
-    net-imap (0.4.0)
+    net-imap (0.4.1)
       date
       net-protocol
     net-pop (0.1.2)
