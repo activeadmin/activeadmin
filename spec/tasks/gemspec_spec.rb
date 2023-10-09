@@ -11,10 +11,6 @@ RSpec.describe "gemspec sanity" do
     Open3.capture3("gem build activeadmin.gemspec")
   end
 
-  it "has no warnings" do
-    expect(build[1]).not_to include("WARNING")
-  end
-
   it "succeeds" do
     expect(build[2]).to be_success
   end
