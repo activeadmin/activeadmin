@@ -12,6 +12,7 @@ require_relative "../../tasks/test_application"
 require "#{ActiveAdmin::TestApplication.new.full_app_dir}/config/environment.rb"
 
 require_relative "rails"
+require_relative "../../spec/support/active_support_deprecation"
 
 require "rspec/mocks"
 World(RSpec::Mocks::ExampleMethods)
@@ -71,7 +72,7 @@ Before do
 end
 
 # Force deprecations to raise an exception.
-ActiveSupport::Deprecation.behavior = :raise
+ActiveAdmin::DeprecationHelper.behavior = :raise
 
 After "@authorization" do |scenario, block|
   # Reset back to the default auth adapter
