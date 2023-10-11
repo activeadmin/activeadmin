@@ -195,8 +195,8 @@ GEM
       webrick (~> 1.7)
       websocket-driver (>= 0.6, < 0.8)
     ffi (1.16.3)
-    formtastic (4.0.0)
-      actionpack (>= 5.2.0)
+    formtastic (5.0.0)
+      actionpack (>= 6.0.0)
     formtastic_i18n (0.7.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -252,7 +252,7 @@ GEM
     language_server-protocol (3.17.0.3)
     launchy (2.5.2)
       addressable (~> 2.8)
-    loofah (2.21.3)
+    loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -266,7 +266,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.1003)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.4)
+    mini_portile2 (2.8.5)
     minitest (5.20.0)
     multi_test (1.1.0)
     mutex_m (0.1.2)
@@ -478,6 +478,7 @@ DEPENDENCIES
   database_cleaner
   devise
   draper
+  formtastic (>= 5.0.0)
   i18n-spec
   i18n-tasks
   kramdown
