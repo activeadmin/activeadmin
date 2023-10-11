@@ -65,6 +65,7 @@ inject_into_file "config/environments/test.rb", after: "Rails.application.config
   config.cache_classes = !ENV['CLASS_RELOADING']
   RUBY
 end
+gsub_file "config/environments/test.rb", /config.enable_reloading = false/, "config.enable_reloading = !!ENV['CLASS_RELOADING']"
 
 inject_into_file "config/environments/test.rb", after: "config.cache_classes = !ENV['CLASS_RELOADING']" do
   "\n" + <<-RUBY
