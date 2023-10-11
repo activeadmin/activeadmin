@@ -346,7 +346,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.0.6)
-    ransack (4.0.0)
+    ransack (4.1.0)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
@@ -488,6 +488,7 @@ DEPENDENCIES
   rails (~> 7.1.0)
   rails-i18n
   rake
+  ransack (>= 4.1.0)
   rspec-rails
   rubocop
   rubocop-packaging

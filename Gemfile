@@ -14,6 +14,7 @@ group :development, :test do
 
   gem "sprockets-rails"
   gem "sassc-rails"
+  gem "ransack", ">= 4.1.0"
 end
 
 group :test do
