@@ -31,7 +31,7 @@ module ActiveAdmin
       end
 
       def csv_filename
-        "#{resource_collection_name.to_s.gsub('_', '-')}-#{Time.zone.now.to_date.to_formatted_s(:default)}.csv"
+        "#{resource_collection_name.to_s.gsub('_', '-')}-#{Time.zone.now.to_date.to_s}.csv"
       end
 
       def stream_csv
