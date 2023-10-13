@@ -5,6 +5,10 @@ RSpec.describe ActiveAdmin::Views::Tabs do
   describe "creating with the dsl" do
     context "when creating tabs with a symbol" do
       before do
+        # string.parameterize calls I18n.transliterate which calls I18n.t with 'i18n.transliterate.rule'.
+        # We need to stub it to avoid errors if transliteration cache is not warmed up before this tests.
+        # rspec ./spec/unit/views/components/tabs_spec.rb:42 --seed 57923
+        allow(I18n).to receive(:t).with("i18n.transliterate.rule".to_sym, anything).and_call_original
         expect(I18n).to receive(:t).at_least(:once).with(:tab_key).and_return "テスト"
       end
 
