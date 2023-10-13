@@ -28,7 +28,7 @@ module ActiveAdmin
   class Namespace
     class << self
       def setting(name, default)
-        Deprecation.warn "This method does not do anything and will be removed."
+        ActiveAdmin.deprecator.warn "This method does not do anything and will be removed."
       end
     end
 

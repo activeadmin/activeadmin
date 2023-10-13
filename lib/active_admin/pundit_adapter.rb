@@ -77,7 +77,7 @@ module ActiveAdmin
 
       policy_name = policy.class.to_s
 
-      Deprecation.warn "You have `pundit_policy_namespace` configured as `#{default_policy_namespace}`, " \
+      ActiveAdmin.deprecator.warn "You have `pundit_policy_namespace` configured as `#{default_policy_namespace}`, " \
         "but ActiveAdmin was unable to find policy #{default_policy_module}::#{policy_name}. " \
         "#{policy_name} will be used instead. " \
         "This behavior will be removed in future versions of ActiveAdmin. " \
