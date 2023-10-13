@@ -26,4 +26,4 @@ RSpec.configure do |config|
 end
 
 # Force deprecations to raise an exception.
-ActiveSupport::Deprecation.behavior = :raise
+ActiveAdmin::DeprecationHelper.behavior = :raise
