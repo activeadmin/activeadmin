@@ -384,8 +384,8 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     it "should add author first and last name fields" do
-      expect(body).to have_css("input[name='post[author_attributes][first_name]']")
-      expect(body).to have_css("input[name='post[author_attributes][last_name]']")
+      expect(body).to have_field("post[author_attributes][first_name]")
+      expect(body).to have_field("post[author_attributes][last_name]")
     end
   end
 
@@ -527,7 +527,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should render the nested form" do
-        expect(body).to have_css("input[name='category[posts_attributes][0][title]']")
+        expect(body).to have_field("category[posts_attributes][0][title]")
         expect(body).to have_css("textarea[name='category[posts_attributes][0][body]']")
       end
 
@@ -591,7 +591,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
       end
 
       it "should render the nested form" do
-        expect(body).to have_css("input[name='category[posts_attributes][0][title]']")
+        expect(body).to have_field("category[posts_attributes][0][title]")
       end
     end
 
@@ -628,11 +628,11 @@ RSpec.describe ActiveAdmin::FormBuilder do
     describe "with allow destroy" do
       shared_examples_for "has many with allow_destroy = true" do |child_num|
         it "should render the nested form" do
-          expect(body).to have_selector("input[name='category[posts_attributes][#{child_num}][title]']")
+          expect(body).to have_field("category[posts_attributes][#{child_num}][title]")
         end
 
         it "should include a boolean field for _destroy" do
-          expect(body).to have_selector("input[name='category[posts_attributes][#{child_num}][_destroy]']")
+          expect(body).to have_field("category[posts_attributes][#{child_num}][_destroy]")
         end
 
         it "should have a check box with 'Remove' as its label" do
@@ -646,11 +646,11 @@ RSpec.describe ActiveAdmin::FormBuilder do
 
       shared_examples_for "has many with allow_destroy = false" do |child_num|
         it "should render the nested form" do
-          expect(body).to have_selector("input[name='category[posts_attributes][#{child_num}][title]']")
+          expect(body).to have_field("category[posts_attributes][#{child_num}][title]")
         end
 
         it "should not have a boolean field for _destroy" do
-          expect(body).not_to have_selector("input[name='category[posts_attributes][#{child_num}][_destroy]']", visible: :all)
+          expect(body).not_to have_field("category[posts_attributes][#{child_num}][_destroy]", visible: :all)
         end
 
         it "should not have a check box with 'Remove' as its label" do
@@ -935,7 +935,7 @@ RSpec.describe ActiveAdmin::FormBuilder do
         end
       end
 
-      expect(body).to have_css("input[name='category[posts_attributes][0][title]']")
+      expect(body).to have_field("category[posts_attributes][0][title]")
     end
   end
 

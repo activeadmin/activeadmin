@@ -405,8 +405,8 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       let(:body) { filter :author, as: :check_boxes }
 
       it "should create a check box for each related object" do
-        expect(body).to have_selector("input[type=checkbox][name='q[author_id_in][]'][value='#{@jane.id}']")
-        expect(body).to have_selector("input[type=checkbox][name='q[author_id_in][]'][value='#{@jane.id}']")
+        expect(body).to have_field("q[author_id_in][]", type: :checkbox, with: @jane.id)
+        expect(body).to have_field("q[author_id_in][]", type: :checkbox, with: @jane.id)
       end
     end
 
