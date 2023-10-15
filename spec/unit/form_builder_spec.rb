@@ -110,8 +110,8 @@ RSpec.describe ActiveAdmin::FormBuilder do
     end
 
     it "should generate actions" do
-      expect(body).to have_css("input[type=submit][value='Submit Me']")
-      expect(body).to have_css("input[type=submit][value='Another Button']")
+      expect(body).to have_button("Submit Me")
+      expect(body).to have_button("Another Button")
     end
   end
 

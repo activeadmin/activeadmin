@@ -39,7 +39,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should generate a filter button" do
-      expect(body).to have_css("input[type=submit][value=Filter]")
+      expect(body).to have_button('Filter')
     end
 
     it "should only generate the form once" do
