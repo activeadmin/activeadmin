@@ -148,7 +148,7 @@ module ActiveAdmin
     #   ActiveAdmin.before_action :authenticate_admin!
     #
     AbstractController::Callbacks::ClassMethods.public_instance_methods.
-      select { |m| m.match(/_action\z/) }.each do |name|
+      select { |m| m.end_with?('_action') }.each do |name|
       define_method name do |*args, &block|
         ActiveSupport.on_load(:active_admin_controller) do
           public_send name, *args, &block

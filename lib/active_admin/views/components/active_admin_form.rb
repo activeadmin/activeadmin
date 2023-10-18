@@ -37,7 +37,7 @@ module ActiveAdmin
 
         # Rails sets multipart automatically if a file field is present,
         # but the form tag has already been rendered before the block eval.
-        if multipart? && @opening_tag !~ /multipart/
+        if multipart? && !@opening_tag.include?('multipart')
           @opening_tag.sub!(/<form/, '<form enctype="multipart/form-data"')
         end
       end

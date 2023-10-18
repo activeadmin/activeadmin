@@ -29,7 +29,7 @@ module ActiveAdmin
     end
 
     def table_column
-      if (@column =~ /\./)
+      if (@column.include?('.'))
         @column
       else
         [table, active_admin_config.resource_quoted_column_name(@column)].compact.join(".")
