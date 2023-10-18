@@ -28,7 +28,7 @@ module ActiveAdmin
 
         def build_comments
           if @comments.any?
-            @comments.each(&method(:build_comment))
+            @comments.each { |comment| build_comment(comment) }
             div page_entries_info(@comments).html_safe, class: "pagination_information"
           else
             build_empty_message

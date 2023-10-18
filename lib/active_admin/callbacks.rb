@@ -3,6 +3,8 @@ module ActiveAdmin
   module Callbacks
     extend ActiveSupport::Concern
 
+    CALLBACK_TYPES = %i[before after].freeze
+
     private
 
     # Simple callback system. Implements before and after callbacks for
@@ -58,7 +60,7 @@ module ActiveAdmin
       #
       def define_active_admin_callbacks(*names)
         names.each do |name|
-          [:before, :after].each do |type|
+          CALLBACK_TYPES.each do |type|
             callback_name = "#{type}_#{name}_callbacks"
             callback_ivar = "@#{callback_name}"
 

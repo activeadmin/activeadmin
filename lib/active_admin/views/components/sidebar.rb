@@ -7,7 +7,7 @@ module ActiveAdmin
 
       def build(sections, attributes = {})
         super(attributes)
-        sections.map(&method(:sidebar_section))
+        sections.map { |section| sidebar_section(section) }
       end
     end
   end
