@@ -30,7 +30,7 @@ RSpec.describe "Changelog" do
 
   it "sorts contributors" do
     contributors = changelog.scan(/^\[@([^\]]+)\]: https:\/\/github\.com\/\1$/).flatten
-    expect(contributors).to eq(contributors.sort { |a, b| a.downcase <=> b.downcase })
+    expect(contributors).to eq(contributors.sort_by(&:downcase))
   end
 
   it "sorts pull requests" do

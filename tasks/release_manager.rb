@@ -87,7 +87,7 @@ class ReleaseManager
     phase = :looking_for_prerelease_part
 
     gem_version_segments.map do |segment|
-      if segment =~ /[a-z]/
+      if /[a-z]/.match?(segment)
         phase = :bumping_pre_release
         segment
       else
