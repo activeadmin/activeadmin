@@ -133,6 +133,8 @@ Performance/ChainArrayAllocation:
 
 Performance/CollectionLiteralInLoop:
   Enabled: true
+  Exclude:
+    - spec/**/*
 
 Performance/CompareWithBlock:
   Enabled: true
@@ -186,6 +188,9 @@ Performance/MethodObjectAsBlock:
 
 Performance/OpenStruct:
   Enabled: true
+  Exclude:
+    - features/**/*
+    - spec/**/*
 
 Performance/RangeInclude:
   Enabled: true
