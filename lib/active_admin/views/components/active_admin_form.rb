@@ -33,7 +33,7 @@ module ActiveAdmin
         end
 
         @opening_tag, @closing_tag = split_string_on(form_string, "</form>")
-        instance_eval(&block) if block_given?
+        instance_eval(&block) if block
 
         # Rails sets multipart automatically if a file field is present,
         # but the form tag has already been rendered before the block eval.
@@ -43,10 +43,10 @@ module ActiveAdmin
       end
 
       def inputs(*args, &block)
-        if block_given?
+        if block
           form_builder.template.assigns[:has_many_block] = true
         end
-        if block_given? && block.arity == 0
+        if block && block.arity == 0
           wrapped_block = proc do
             wrap_it = form_builder.already_in_an_inputs_block ? true : false
             form_builder.already_in_an_inputs_block = true
@@ -73,7 +73,7 @@ module ActiveAdmin
       end
 
       def actions(*args, &block)
-        if block_given?
+        if block
           insert_tag(SemanticActionsProxy, form_builder, *args, &block)
         else
           actions(*args) { commit_action_with_cancel_link }

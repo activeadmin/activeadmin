@@ -38,7 +38,7 @@ module ActiveAdmin
 
       def item(*args, **kwargs, &block)
         within @menu do
-          if block_given?
+          if block
             li &block
           else
             li link_to(*args, **kwargs)
