@@ -595,11 +595,8 @@ module.exports = plugin(
       '.index_table': {
         '@apply w-full text-sm text-left text-gray-800 dark:text-gray-300': {}
       },
-      '.index_table :where(thead)': {
-        '@apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400': {}
-      },
       '.index_table :where(thead > tr > th)': {
-        '@apply px-5 py-3 whitespace-nowrap': {}
+        '@apply px-5 py-3 whitespace-nowrap text-xs text-gray-700 uppercase bg-gray-50 border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300': {}
       },
       '.index_table :where(tbody > tr)': {
         '@apply bg-white border-b dark:bg-gray-800 dark:border-gray-700': {}
