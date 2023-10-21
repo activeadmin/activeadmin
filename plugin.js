@@ -666,7 +666,7 @@ module.exports = plugin(
         '@apply z-10 hidden bg-white rounded shadow dark:bg-gray-700 py-1 text-sm text-gray-700 dark:text-gray-200': {}
       },
       '.dropdown_menu :where(ul > li > a)': {
-        '@apply block px-2.5 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white': {}
+        '@apply block px-2.5 py-2 no-underline hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white': {}
       },
       '.panel': {
         '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
