@@ -34,7 +34,7 @@ ActiveAdmin.register Post do
   index do
     selectable_column
     id_column
-    column :title
+    column :title, class: "min-w-[150px]"
     column :published_date
     column :author
     column :category

@@ -10,6 +10,8 @@ task :local do
 
   test_application.soft_generate
 
+  system "bin/yarn build"
+
   # Discard the "local" argument (name of the task)
   argv = ARGV[1..-1]
 

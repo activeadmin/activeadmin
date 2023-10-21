@@ -77,7 +77,8 @@ const toggleCheckboxChange = function(event) {
 Rails.delegate(document, "input[type=checkbox].collection_selection", "change", toggleCheckboxChange)
 
 const tableRowClick = function(event) {
-  if (event.target.type !== "checkbox") {
+  const type = event.target.type;
+  if (typeof type === "undefined" || (type !== "checkbox" && type !== "button" && type !== "")) {
     event.target.closest("tr").querySelector("input[type=checkbox]").click()
   }
 }
