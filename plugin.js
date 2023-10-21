@@ -619,12 +619,15 @@ module.exports = plugin(
       '.flash_notice': {
         '@apply bg-green-50 text-green-800 dark:bg-green-800 dark:text-green-400': {}
       },
-      '.view_link, .edit_link': {
-        '@apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 no-underline': {}
+      '.view_link, .edit_link, .delete_link': {
+        '@apply me-2': {}
       },
-      '.delete_link': {
-        '@apply focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 no-underline': {}
-      },
+      // '.view_link, .edit_link': {
+      //   '@apply text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-3 py-1.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 no-underline': {}
+      // },
+      // '.delete_link': {
+      //   '@apply focus:outline-none text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-md text-sm px-3 py-1.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 no-underline': {}
+      // },
       '.filter_form :where(label)': {
         '@apply block mb-1.5 text-sm': {}
       },
