@@ -11,8 +11,10 @@ module ActiveAdmin
         active_filters = ActiveAdmin::Filters::Active.new(active_admin_config, assigns[:search])
         active_scopes = assigns[:search].instance_variable_get("@scope_args")
 
-        scope_block(current_scope)
-        filters_list(active_filters, active_scopes)
+        div class: "mt-6" do
+          scope_block(current_scope)
+          filters_list(active_filters, active_scopes)
+        end
       end
 
       def scope_block(current_scope)

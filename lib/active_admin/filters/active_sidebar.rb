@@ -11,8 +11,10 @@ module ActiveAdmin
 
       def block
         -> {
-          h3 I18n.t("active_admin.search_status.headline")
-          active_filters_sidebar_content
+          div class: "mt-6" do
+            h3 I18n.t("active_admin.search_status.headline")
+            active_filters_sidebar_content
+          end
         }
       end
 
