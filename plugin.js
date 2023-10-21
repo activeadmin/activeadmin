@@ -581,7 +581,7 @@ module.exports = plugin(
         '@apply inline-flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-500 px-2 py-1 text-xs font-medium ms-2 leading-none': {}
       },
       '.paginated_collection': {
-        '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800': {}
+        '@apply bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800 overflow-hidden': {}
       },
       '.paginated-collection-footer': {
         '@apply p-4 grid grid-flow-col auto-cols-fr gap-2': {}
