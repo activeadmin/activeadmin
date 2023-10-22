@@ -43,6 +43,8 @@ module ActiveAdmin
           else
             super
           end
+        rescue ActiveRecord::QueryCanceled => error
+          raise ActiveRecord::QueryCanceled.new "#{error.message.strip} while querying the values for the ActiveAdmin :#{method} filter"
         end
 
         def pluck_column
