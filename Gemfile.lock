@@ -19,7 +19,7 @@ PATH
       jquery-rails (>= 4.2)
       kaminari (>= 1.2.1)
       railties (>= 6.1)
-      ransack (>= 4.1)
+      ransack (>= 4.0)
 
 GEM
   remote: https://rubygems.org/

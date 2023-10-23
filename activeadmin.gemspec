@@ -38,5 +38,5 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails", ">= 4.2"
   s.add_dependency "kaminari", ">= 1.2.1"
   s.add_dependency "railties", ">= 6.1"
-  s.add_dependency "ransack", ">= 4.1"
+  s.add_dependency "ransack", ">= 4.0"
 end
