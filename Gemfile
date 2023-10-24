@@ -50,6 +50,7 @@ end
 group :rubocop do
   gem "rubocop"
   gem "rubocop-packaging"
+  gem "rubocop-performance"
   gem "rubocop-rspec"
   gem "rubocop-rails"
 end

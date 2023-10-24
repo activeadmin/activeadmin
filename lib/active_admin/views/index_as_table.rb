@@ -352,12 +352,12 @@ module ActiveAdmin
             if dropdown
               dropdown_menu dropdown_name do
                 defaults(resource) if defaults
-                instance_exec(resource, &block) if block_given?
+                instance_exec(resource, &block) if block
               end
             else
               table_actions do
                 defaults(resource, css_class: :member_link) if defaults
-                if block_given?
+                if block
                   block_result = instance_exec(resource, &block)
                   text_node block_result unless block_result.is_a? Arbre::Element
                 end

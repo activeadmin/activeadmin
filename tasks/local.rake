@@ -19,7 +19,7 @@ task :local do
     if %w(server s).include?(argv[0])
       command = "foreman start -f Procfile.dev"
     # If it's a rails command, auto add the rails script
-    elsif %w(generate console dbconsole g c routes runner).include?(argv[0]) || argv[0] =~ /db:/
+    elsif %w(generate console dbconsole g c routes runner).include?(argv[0]) || argv[0].include?('db:')
       argv.unshift("rails")
       command = ["bundle", "exec", *argv].join(" ")
     end

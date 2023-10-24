@@ -41,7 +41,7 @@ module ActiveAdmin
       end
 
       @scope_method = nil if @scope_method == :all
-      if block_given?
+      if block
         @scope_method = nil
         @scope_block = block
       end

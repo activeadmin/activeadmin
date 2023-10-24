@@ -64,7 +64,7 @@ module ActiveAdmin
 
       # Whether any children match the given item.
       def include?(item)
-        @children.values.include?(item) || @children.values.any? { |child| child.include?(item) }
+        @children.value?(item) || @children.values.any? { |child| child.include?(item) }
       end
 
       # Used in the UI to visually distinguish which menu item is selected.

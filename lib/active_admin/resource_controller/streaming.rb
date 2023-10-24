@@ -24,14 +24,14 @@ module ActiveAdmin
         headers["Last-Modified"] = Time.current.httpdate
 
         if ActiveAdmin.application.disable_streaming_in.include? Rails.env
-          self.response_body = block[String.new]
+          self.response_body = block[String.new] # rubocop:disable Performance/UnfreezeString to preserve encoding
         else
           self.response_body = Enumerator.new &block
         end
       end
 
       def csv_filename
-        "#{resource_collection_name.to_s.gsub('_', '-')}-#{Time.zone.now.to_date.to_s}.csv"
+        "#{resource_collection_name.to_s.tr('_', '-')}-#{Time.zone.now.to_date.to_s}.csv"
       end
 
       def stream_csv

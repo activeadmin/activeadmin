@@ -30,7 +30,7 @@ class HtmlTableToTextHelper
       str += input_to_string(input)
     end
 
-    str += td.content.strip.gsub("\n", " ")
+    str += td.content.strip.tr("\n", " ")
   end
 
   def input_to_string(input)
@@ -78,7 +78,7 @@ module TableMatchHelper
   end
 
   def assert_cells_match(cell, expected_cell)
-    if expected_cell =~ /^\/.*\/$/
+    if /^\/.*\/$/.match?(expected_cell)
       expect(cell).to match /#{expected_cell[1..-2]}/
     else
       expect((cell || "").strip).to eq expected_cell

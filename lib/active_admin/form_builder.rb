@@ -161,7 +161,7 @@ module ActiveAdmin
     # Capture the ADD JS
     def js_for_has_many(class_string, &form_block)
       assoc_name = assoc_klass.model_name
-      placeholder = "NEW_#{assoc_name.to_s.underscore.upcase.gsub(/\//, '_')}_RECORD"
+      placeholder = "NEW_#{assoc_name.to_s.underscore.upcase.tr('/', '_')}_RECORD"
       opts = {
         for: [assoc, assoc_klass.new],
         class: class_string,

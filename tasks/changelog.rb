@@ -146,7 +146,7 @@ class Changelog
       new_user_references << "#{user}: https://github.com/#{user_name}"
     end
 
-    new_unique_user_references = new_user_references.sort { |a, b| a.downcase <=> b.downcase }.uniq
+    new_unique_user_references = new_user_references.sort_by(&:downcase).uniq
 
     replace_with_lines([pre_user_references, new_unique_user_references])
   end

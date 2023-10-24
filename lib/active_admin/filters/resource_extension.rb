@@ -98,7 +98,7 @@ module ActiveAdmin
         end
 
         if @filters_to_remove
-          @filters_to_remove.each &filters.method(:delete)
+          @filters_to_remove.each { |filter| filters.delete(filter) }
         end
 
         filters
@@ -139,7 +139,7 @@ module ActiveAdmin
             end
 
             # Remove high-arity associations with no searchable column
-            high_arity = high_arity.select(&method(:searchable_column_for))
+            high_arity = high_arity.select { |r| searchable_column_for(r) }
 
             high_arity = high_arity.map { |r| r.name.to_s + "_" + searchable_column_for(r) + namespace.filter_method_for_large_association }
 

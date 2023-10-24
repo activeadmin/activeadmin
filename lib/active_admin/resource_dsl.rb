@@ -192,7 +192,7 @@ module ActiveAdmin
     delegate :before_destroy, :after_destroy, to: :controller
 
     standard_rails_filters =
-      AbstractController::Callbacks::ClassMethods.public_instance_methods.select { |m| m.match(/_action\z/) }
+      AbstractController::Callbacks::ClassMethods.public_instance_methods.select { |m| m.end_with?('_action') }
     delegate *standard_rails_filters, to: :controller
 
     # Specify which actions to create in the controller

@@ -53,7 +53,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying :param_name option" do
       let(:collection) do
-        posts = 10.times.map { Post.new }
+        posts = Array.new(10) { Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -66,7 +66,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying :params option" do
       let(:collection) do
-        posts = 10.times.map { Post.new }
+        posts = Array.new(10) { Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -79,7 +79,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying download_links: false option" do
       let(:collection) do
-        posts = 10.times.map { Post.new }
+        posts = Array.new(10) { Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 
@@ -249,7 +249,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
     context "when specifying per_page: array option" do
       let(:collection) do
-        posts = 10.times.map { Post.new }
+        posts = Array.new(10) { Post.new }
         Kaminari.paginate_array(posts).page(1).per(5)
       end
 

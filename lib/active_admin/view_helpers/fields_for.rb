@@ -2,6 +2,7 @@
 module ActiveAdmin
   module ViewHelpers
     module FormHelper
+      RESERVED_PARAMS = %w(controller action commit utf8).freeze
 
       # Flatten a params Hash to an array of fields.
       #
@@ -19,7 +20,7 @@ module ActiveAdmin
         except = Array.wrap(options[:except]).map &:to_s
 
         params.flat_map do |k, v|
-          next if namespace.nil? && %w(controller action commit utf8).include?(k.to_s)
+          next if namespace.nil? && RESERVED_PARAMS.include?(k.to_s)
           next if except.include?(k.to_s)
 
           if namespace
