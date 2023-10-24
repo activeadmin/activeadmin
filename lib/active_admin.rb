@@ -60,7 +60,7 @@ module ActiveAdmin
     end
 
     def deprecator
-      @deprecator ||= ActiveSupport::Deprecation.new("4.0", "active-admin")
+      @deprecator ||= ActiveSupport::Deprecation.new("4.1", "active-admin")
     end
 
     # Gets called within the initializer
