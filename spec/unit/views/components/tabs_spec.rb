@@ -28,15 +28,15 @@ RSpec.describe ActiveAdmin::Views::Tabs do
       end
 
       it "should have tab with id based on options" do
-        expect(subject).to have_selector("#something_unique")
+        expect(subject).to have_css("#something_unique")
       end
 
       it "should have link with fragment based on options" do
-        expect(subject).to have_selector('[data-tabs-target="#something_unique"]')
+        expect(subject).to have_css('[data-tabs-target="#something_unique"]')
       end
 
       it "should have button with specific css class" do
-        expect(subject).to have_selector("button.some_css_class")
+        expect(subject).to have_button(class: "some_css_class")
       end
     end
 

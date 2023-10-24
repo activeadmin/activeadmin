@@ -33,8 +33,8 @@ Then /^I should see the batch action popover$/ do
 end
 
 Given /^I submit the batch action form with "([^"]*)"$/ do |action|
-  page.find("#batch_action", visible: false).set action
-  form = page.find "#collection_selection"
+  page.find_by_id('batch_action', visible: false).set action
+  form = page.find_by_id 'collection_selection'
   params = page.all("#collection_selection input", visible: false).each_with_object({}) do |input, obj|
     key = input["name"]
     value = input["value"]

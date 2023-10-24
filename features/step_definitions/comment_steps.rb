@@ -31,5 +31,5 @@ Given /^(a|\d+) comments added by admin with an email "([^"]+)"?$/ do |number, e
 end
 
 Then /^I should see (\d+) comments?$/ do |number|
-  expect(page).to have_selector("div.active_admin_comment", count: number.to_i)
+  expect(page).to have_css("div.active_admin_comment", count: number.to_i)
 end
