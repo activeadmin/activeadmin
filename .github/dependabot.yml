@@ -14,13 +14,34 @@ updates:
     schedule:
       interval: monthly
     versioning-strategy: lockfile-only
+    groups:
+      npm:
+        patterns:
+          - "*"
   - package-ecosystem: bundler
     directory: /docs
     schedule:
       interval: monthly
     versioning-strategy: lockfile-only
+    groups:
+      docs:
+        patterns:
+          - "*"
   - package-ecosystem: bundler
     directory: /gemfiles/rails_61
     schedule:
       interval: monthly
     versioning-strategy: lockfile-only
+    groups:
+      rails_61:
+        patterns:
+          - "*"
+  - package-ecosystem: bundler
+    directory: /gemfiles/rails_70
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+    groups:
+      rails_70:
+        patterns:
+          - "*"
