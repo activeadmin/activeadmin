@@ -6,5 +6,4 @@ spec/**/*.js
 src/**/*.js
 coverage/**/*.js
 rails_70/**/*.js
-rails_71/**/*.js
 plugin.js
