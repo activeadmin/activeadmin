@@ -25,7 +25,6 @@ module ActiveAdmin
   autoload :ControllerAction, "active_admin/controller_action"
   autoload :CSVBuilder, "active_admin/csv_builder"
   autoload :Dependency, "active_admin/dependency"
-  autoload :Deprecation, "active_admin/deprecation"
   autoload :Devise, "active_admin/devise"
   autoload :DSL, "active_admin/dsl"
   autoload :FormBuilder, "active_admin/form_builder"
@@ -58,6 +57,10 @@ module ActiveAdmin
 
     def application
       @application ||= ::ActiveAdmin::Application.new
+    end
+
+    def deprecator
+      @deprecator ||= ActiveSupport::Deprecation.new("4.1", "active-admin")
     end
 
     # Gets called within the initializer

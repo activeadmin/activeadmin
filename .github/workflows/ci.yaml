@@ -27,16 +27,17 @@ jobs:
         deps:
           - rails_61
           - rails_70
+          - rails_71
     steps:
       - uses: actions/checkout@v4
       - name: Configure bundler (default)
         run: |
           echo "BUNDLE_GEMFILE=Gemfile" >> "$GITHUB_ENV"
-        if: matrix.deps == 'rails_70'
+        if: matrix.deps == 'rails_71'
       - name: Configure bundler (alternative)
         run: |
           echo "BUNDLE_GEMFILE=gemfiles/${{ matrix.deps }}/Gemfile" >> "$GITHUB_ENV"
-        if: matrix.deps != 'rails_70'
+        if: matrix.deps != 'rails_71'
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}

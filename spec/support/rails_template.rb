@@ -57,11 +57,22 @@ inject_into_file "app/models/application_record.rb", before: "end" do
   RUBY
 end
 
-gsub_file "config/environments/test.rb", /  config.cache_classes = true/, <<-RUBY
+# Make sure we can turn on class reloading in feature specs.
+# Write this rule in a way that works even when the file doesn't set `config.cache_classes` (e.g. Rails 7.1).
+gsub_file "config/environments/test.rb", /  config.cache_classes = true/, ""
+inject_into_file "config/environments/test.rb", after: "Rails.application.configure do" do
+  "\n" + <<-RUBY
   config.cache_classes = !ENV['CLASS_RELOADING']
+  RUBY
+end
+gsub_file "config/environments/test.rb", /config.enable_reloading = false/, "config.enable_reloading = !!ENV['CLASS_RELOADING']"
+
+inject_into_file "config/environments/test.rb", after: "config.cache_classes = !ENV['CLASS_RELOADING']" do
+  "\n" + <<-RUBY
   config.action_mailer.default_url_options = {host: 'example.com'}
   config.active_record.maintain_test_schema = false
-RUBY
+  RUBY
+end
 
 inject_into_file "config/environments/test.rb", after: "  config.action_mailer.default_url_options = {host: 'example.com'}" do
   "\n  config.assets.precompile += %w( some-random-css.css some-random-js.js a/favicon.ico )\n"
@@ -70,6 +81,10 @@ end
 gsub_file "config/boot.rb", /^.*BUNDLE_GEMFILE.*$/, <<-RUBY
   ENV['BUNDLE_GEMFILE'] = "#{File.expand_path(ENV['BUNDLE_GEMFILE'])}"
 RUBY
+
+# In https://github.com/rails/rails/pull/46699, Rails 7.1 changed sqlite directory from db/ storage/.
+# Since we test we deal with rails 6.1 and 7.0, let's go back to db/
+gsub_file "config/database.yml", /storage\/(.+)\.sqlite3$/, 'db/\1.sqlite3'
 
 # Setup Active Admin
 generate "active_admin:install"
@@ -99,7 +114,10 @@ if ENV["RAILS_ENV"] != "test"
   inject_into_file "config/routes.rb", "\n  root to: redirect('admin')", after: /.*routes.draw do/
 end
 
-rails_command "db:drop db:create db:migrate", env: ENV["RAILS_ENV"]
+# Rails 7.1 doesn't write test.sqlite3 files if we run db:drop, db:create and db:migrate in a single command.
+# That's why we run it in two steps.
+rails_command "db:drop db:create", env: ENV["RAILS_ENV"]
+rails_command "db:migrate", env: ENV["RAILS_ENV"]
 
 if ENV["RAILS_ENV"] == "test"
   inject_into_file "config/database.yml", "<%= ENV['TEST_ENV_NUMBER'] %>", after: "test.sqlite3"
@@ -107,6 +125,15 @@ if ENV["RAILS_ENV"] == "test"
   require "parallel_tests"
   ParallelTests.determine_number_of_processes(nil).times do |n|
     copy_file File.expand_path("db/test.sqlite3", destination_root), "db/test.sqlite3#{n + 1}"
+
+    # Copy Write-Ahead-Log (-wal) and Wal-Index (-shm) files.
+    # Files were introduced by rails 7.1 sqlite3 optimizations (https://github.com/rails/rails/pull/49349/files).
+    %w(shm wal).each do |suffix|
+      file = File.expand_path("db/test.sqlite3-#{suffix}", destination_root)
+      if File.exist?(file)
+        copy_file File.expand_path("db/test.sqlite3-#{suffix}", destination_root), "db/test.sqlite3#{n + 1}-#{suffix}", mode: :preserve
+      end
+    end
   end
 end
 
