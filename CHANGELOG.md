@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+## 3.1.0 [☰](https://github.com/activeadmin/activeadmin/compare/v3.0.0..v3.1.0)
+
+### Enhancements
+
+* Support Rails 7.1. [#8102] by [@mgrunberg]
+* Remove deprecated usage of ActiveSupport::Deprecation singleton. [#8106] by [@mgrunberg]
+* Replace to_formatted_s with to_s to convert date to string. [#8105] by [@mgrunberg]
+* Remove upper bound dependency limits from gemspec. [#8098] by [@javierjulio]
+
 ## 3.0.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.14.0..v3.0.0)
 
 ### Breaking Changes
@@ -864,6 +873,11 @@ Please check [0-6-stable] for previous changes.
 [#7993]: https://github.com/activeadmin/activeadmin/pull/7993
 [#8009]: https://github.com/activeadmin/activeadmin/pull/8009
 [#8010]: https://github.com/activeadmin/activeadmin/pull/8010
+[#8098]: https://github.com/activeadmin/activeadmin/pull/8098
+[#8102]: https://github.com/activeadmin/activeadmin/pull/8102
+[#8105]: https://github.com/activeadmin/activeadmin/pull/8105
+[#8106]: https://github.com/activeadmin/activeadmin/pull/8106
+
 
 [@1000ship]: https://github.com/1000ship
 [@5t111111]: https://github.com/5t111111
