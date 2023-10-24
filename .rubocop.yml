@@ -188,9 +188,6 @@ Performance/MethodObjectAsBlock:
 
 Performance/OpenStruct:
   Enabled: true
-  Exclude:
-    - features/**/*
-    - spec/**/*
 
 Performance/RangeInclude:
   Enabled: true
