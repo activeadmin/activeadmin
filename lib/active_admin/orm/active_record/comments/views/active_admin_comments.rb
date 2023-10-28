@@ -27,6 +27,10 @@ module ActiveAdmin
         end
 
         def build_comments
+          if authorized?(ActiveAdmin::Auth::NEW, ActiveAdmin::Comment)
+            build_comment_form
+          end
+
           if @comments.any?
             @comments.each { |comment| build_comment(comment) }
             div class: "paginated-collection-pagination" do
@@ -36,10 +40,6 @@ module ActiveAdmin
             end
           else
             build_empty_message
-          end
-
-          if authorized?(ActiveAdmin::Auth::NEW, ActiveAdmin::Comment)
-            build_comment_form
           end
         end
 
