@@ -29,12 +29,14 @@ module ActiveAdmin
         def build_comments
           if @comments.any?
             @comments.each { |comment| build_comment(comment) }
-            div page_entries_info(@comments).html_safe, class: "pagination_information"
+            div class: "paginated-collection-pagination" do
+              div page_entries_info(@comments).html_safe
+              options = { theme: :active_admin, outer_window: 1, window: 2 }
+              text_node paginate(@comments, **options)
+            end
           else
             build_empty_message
           end
-
-          text_node paginate @comments
 
           if authorized?(ActiveAdmin::Auth::NEW, ActiveAdmin::Comment)
             build_comment_form
