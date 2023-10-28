@@ -8,7 +8,7 @@ Feature: Index Filtering
       ActiveAdmin.register Post
     """
     When I am on the index page for posts
-    Then I should see "Showing all 3 Posts"
+    Then I should see "Showing all 3"
     And I should see the following filters:
      | Author         | select     |
      | Category       | select     |
@@ -42,7 +42,7 @@ Feature: Index Filtering
       ActiveAdmin.register Post
     """
     When I am on the index page for posts
-    Then I should see "Showing all 3 Posts"
+    Then I should see "Showing all 3"
 
     When I fill in "Title" with "THIS IS NOT AN EXISTING TITLE!!"
     And I press "Filter"
@@ -64,10 +64,10 @@ Feature: Index Filtering
     And I press "Filter"
 
     Then I follow "2"
-    And I should see "Showing 3 - 4 of 7"
+    And I should see "Showing 3-4 of 7"
 
     And I follow "3"
-    And I should see "Showing 5 - 6 of 7"
+    And I should see "Showing 5-6 of 7"
 
   Scenario: Filtering posts while not on the first page
     Given 9 posts exist
@@ -78,7 +78,7 @@ Feature: Index Filtering
       end
     """
     When I follow "2"
-    Then I should see "Showing 6 - 9 of 9"
+    Then I should see "Showing 6-9 of 9"
 
     When I fill in "Title" with "Hello World 2"
     And I press "Filter"

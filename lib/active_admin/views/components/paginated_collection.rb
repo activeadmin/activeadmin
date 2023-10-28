@@ -67,20 +67,23 @@ module ActiveAdmin
       protected
 
       def build_pagination_with_formats(options)
-        div class: "paginated-collection-footer" do
-          build_per_page_select if @per_page.is_a?(Array)
+        div class: "paginated-collection-pagination" do
+          div page_entries_info(options).html_safe, class: "pagination_information"
           build_pagination
-          div(page_entries_info(options).html_safe, class: "pagination_information")
-
-          formats = build_download_formats @download_links
-          build_download_format_links formats if formats.any?
+        end
+        formats = build_download_formats @download_links
+        if @per_page.is_a?(Array) || formats.any?
+          div class: "paginated-collection-footer" do
+            build_per_page_select if @per_page.is_a?(Array)
+            build_download_format_links formats if formats.any?
+          end
         end
       end
 
       def build_per_page_select
-        div class: "pagination_per_page" do
+        div do
           text_node I18n.t("active_admin.pagination.per_page")
-          select do
+          select class: "pagination-per-page" do
             @per_page.each do |per_page|
               option(
                 per_page,
@@ -93,7 +96,7 @@ module ActiveAdmin
       end
 
       def build_pagination
-        options = { theme: @display_total ? "active_admin" : "active_admin_countless" }
+        options = { theme: :active_admin, outer_window: 1, window: 2 }
         options[:params] = @params if @params
         options[:param_name] = @param_name if @param_name
 
