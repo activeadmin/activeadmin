@@ -485,7 +485,7 @@ module.exports = plugin(
         visibility: 'hidden',
       },
       'body': {
-        '@apply bg-white dark:bg-gray-900 dark:text-white': {}
+        '@apply bg-white dark:bg-gray-950 dark:text-white': {}
       },
       'a': {
         '@apply text-blue-600 dark:text-blue-500 underline underline-offset-[.2rem]': {}
