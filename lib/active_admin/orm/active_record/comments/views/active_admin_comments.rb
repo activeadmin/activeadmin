@@ -85,7 +85,7 @@ module ActiveAdmin
             f.inputs do
               f.input :resource_type, as: :hidden, input_html: { value: ActiveAdmin::Comment.resource_type(parent.resource) }
               f.input :resource_id, as: :hidden, input_html: { value: parent.resource.id }
-              f.input :body, label: false, input_html: { size: "80x8" }
+              f.input :body, label: false, input_html: { size: "80x4" }
             end
             f.actions do
               f.action :submit, label: I18n.t("active_admin.comments.add")
