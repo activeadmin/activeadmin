@@ -699,7 +699,7 @@ module.exports = plugin(
         '@apply mt-6': {}
       },
       '.panel > :where(h3)': {
-        '@apply font-bold bg-gray-100 rounded-t-lg p-3': {}
+        '@apply font-bold bg-gray-100 dark:bg-gray-900 rounded-t-lg p-3': {}
       },
       '.panel-body': {
         '@apply py-6 px-4': {}
