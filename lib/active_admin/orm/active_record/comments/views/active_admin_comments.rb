@@ -44,18 +44,20 @@ module ActiveAdmin
         end
 
         def build_comment(comment)
-          div for: comment do
-            div class: "active_admin_comment_meta" do
-              h4 class: "active_admin_comment_author" do
+          div id: dom_id_for(comment), class: "comment-container" do
+            div class: "comment-header" do
+              span class: "comment-author" do
                 comment.author ? auto_link(comment.author) : I18n.t("active_admin.comments.author_missing")
               end
-              span pretty_format comment.created_at
-              if authorized?(ActiveAdmin::Auth::DESTROY, comment)
-                text_node link_to I18n.t("active_admin.comments.delete"), comments_url(comment.id), method: :delete, data: { confirm: I18n.t("active_admin.comments.delete_confirmation") }
+              span class: "comment-date" do
+                pretty_format comment.created_at
               end
             end
-            div class: "active_admin_comment_body" do
+            div class: "comment-body" do
               simple_format comment.body
+            end
+            if authorized?(ActiveAdmin::Auth::DESTROY, comment)
+              text_node link_to I18n.t("active_admin.comments.delete"), comments_url(comment.id), method: :delete, data: { confirm: I18n.t("active_admin.comments.delete_confirmation") }
             end
           end
         end
@@ -81,7 +83,7 @@ module ActiveAdmin
         end
 
         def build_comment_form
-          active_admin_form_for(ActiveAdmin::Comment.new, url: comment_form_url) do |f|
+          active_admin_form_for(ActiveAdmin::Comment.new, url: comment_form_url, html: { class: "comment-form" }) do |f|
             f.inputs do
               f.input :resource_type, as: :hidden, input_html: { value: ActiveAdmin::Comment.resource_type(parent.resource) }
               f.input :resource_id, as: :hidden, input_html: { value: parent.resource.id }

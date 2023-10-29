@@ -744,6 +744,27 @@ module.exports = plugin(
       '.tabs-content': {
         '@apply p-4 mb-6': {}
       },
+      '.comment-form': {
+        '@apply mb-8 max-w-[700px]': {}
+      },
+      '.comment-form fieldset.inputs, .comment-form fieldset ol > li': {
+        '@apply p-0': {}
+      },
+      '.comment-container': {
+        '@apply border-t dark:border-gray-600 py-4 mb-4 max-w-[700px]': {}
+      },
+      '.comment-header': {
+        '@apply flex gap-4 items-end mb-2': {}
+      },
+      '.comment-author': {
+        '@apply font-semibold': {}
+      },
+      '.comment-date': {
+        '@apply text-xs text-gray-400': {}
+      },
+      '.comment-body': {
+        '@apply mb-4 break-keep': {}
+      },
       // '': {
       //   '': {}
       // },
