@@ -248,31 +248,6 @@ module.exports = plugin(
         visibility: 'visible',
         transform: 'rotate(45deg)',
       },
-      [`[data-tooltip-style^='light'] + .tooltip > .tooltip-arrow:before`]:
-      {
-        'border-style': 'solid',
-        'border-color': colors.gray[200],
-      },
-      [`[data-tooltip-style^='light'] + .tooltip[data-popper-placement^='top'] > .tooltip-arrow:before`]:
-      {
-        'border-bottom-width': '1px',
-        'border-right-width': '1px',
-      },
-      [`[data-tooltip-style^='light'] + .tooltip[data-popper-placement^='right'] > .tooltip-arrow:before`]:
-      {
-        'border-bottom-width': '1px',
-        'border-left-width': '1px',
-      },
-      [`[data-tooltip-style^='light'] + .tooltip[data-popper-placement^='bottom'] > .tooltip-arrow:before`]:
-      {
-        'border-top-width': '1px',
-        'border-left-width': '1px',
-      },
-      [`[data-tooltip-style^='light'] + .tooltip[data-popper-placement^='left'] > .tooltip-arrow:before`]:
-      {
-        'border-top-width': '1px',
-        'border-right-width': '1px',
-      },
       [`.tooltip[data-popper-placement^='top'] > .tooltip-arrow`]: {
         bottom: '-4px',
       },
@@ -302,71 +277,6 @@ module.exports = plugin(
         visibility: 'visible',
         transform: 'rotate(45deg)',
       },
-      ['[data-popper-arrow]:after']: {
-        content: '""',
-        visibility: 'visible',
-        transform: 'rotate(45deg)',
-        position: 'absolute',
-        width: '9px',
-        height: '9px',
-        background: 'inherit',
-      },
-      [`[role="tooltip"] > [data-popper-arrow]:before`]: {
-        'border-style': 'solid',
-        'border-color': colors.gray[200],
-      },
-      [`.dark [role="tooltip"] > [data-popper-arrow]:before`]: {
-        'border-style': 'solid',
-        'border-color': colors.gray[600],
-      },
-      [`[role="tooltip"] > [data-popper-arrow]:after`]: {
-        'border-style': 'solid',
-        'border-color': colors.gray[200],
-      },
-      [`.dark [role="tooltip"] > [data-popper-arrow]:after`]: {
-        'border-style': 'solid',
-        'border-color': colors.gray[600],
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='top'] > [data-popper-arrow]:before`]:
-      {
-        'border-bottom-width': '1px',
-        'border-right-width': '1px',
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='top'] > [data-popper-arrow]:after`]:
-      {
-        'border-bottom-width': '1px',
-        'border-right-width': '1px',
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='right'] > [data-popper-arrow]:before`]:
-      {
-        'border-bottom-width': '1px',
-        'border-left-width': '1px',
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='right'] > [data-popper-arrow]:after`]:
-      {
-        'border-bottom-width': '1px',
-        'border-left-width': '1px',
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='bottom'] > [data-popper-arrow]:before`]:
-      {
-        'border-top-width': '1px',
-        'border-left-width': '1px',
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='bottom'] > [data-popper-arrow]:after`]:
-      {
-        'border-top-width': '1px',
-        'border-left-width': '1px',
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='left'] > [data-popper-arrow]:before`]:
-      {
-        'border-top-width': '1px',
-        'border-right-width': '1px',
-      },
-      [`[data-popover][role="tooltip"][data-popper-placement^='left'] > [data-popper-arrow]:after`]:
-      {
-        'border-top-width': '1px',
-        'border-right-width': '1px',
-      },
       [`[data-popover][role="tooltip"][data-popper-placement^='top'] > [data-popper-arrow]`]:
       {
         bottom: '-5px',
@@ -384,9 +294,6 @@ module.exports = plugin(
         left: '-5px',
       },
       ['[role="tooltip"].invisible > [data-popper-arrow]:before']: {
-        visibility: 'hidden',
-      },
-      ['[role="tooltip"].invisible > [data-popper-arrow]:after']: {
         visibility: 'hidden',
       },
       'body': {
