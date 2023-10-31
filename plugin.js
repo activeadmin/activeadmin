@@ -100,7 +100,7 @@ module.exports = plugin(
         'background-position': `right ${spacing[3]} center`,
         'background-repeat': `no-repeat`,
         'background-size': `0.75em 0.75em`,
-        'padding-right': spacing[10],
+        'padding-right': spacing[8],
         'print-color-adjust': `exact`,
       },
       ['[multiple]']: {
