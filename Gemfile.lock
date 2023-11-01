@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/cucumber/cucumber-rails.git
-  revision: 9879b81609b0871a0dc3bf675ace7bd0cd88c3cc
+  revision: d73a14c69b64118c84be31f4efa8e779a674776a
   branch: main
   specs:
     cucumber-rails (3.0.0.rc.1)
