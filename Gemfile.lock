@@ -341,7 +341,7 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
-    rake (13.0.6)
+    rake (13.1.0)
     ransack (4.1.0)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
