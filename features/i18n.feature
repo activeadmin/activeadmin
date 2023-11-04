@@ -41,7 +41,7 @@ Feature: Internationalization
     And a store named "Hello words" exists
     When I go to the dashboard
     And I follow "Bookstores"
-    Then I should see "Download this:"
+    Then I should see "Export:"
 
   Scenario: Overriding resource details table title
     Given a configuration of:
