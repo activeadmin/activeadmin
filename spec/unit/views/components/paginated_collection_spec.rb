@@ -34,7 +34,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
     let(:pagination) { paginated_collection collection }
 
     it "should set :collection as the passed in collection" do
-      expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 3</b> posts"
+      expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 3</b>"
     end
 
     it "should raise error if collection has no pagination scope" do
@@ -60,7 +60,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, param_name: :post_page) }
 
       it "should customize the page number parameter in pagination links" do
-        expect(pagination.children.last.content).to match(/\/admin\/posts\?post_page=2/)
+        expect(pagination.to_s).to match(/\/admin\/posts\?post_page=2/)
       end
     end
 
@@ -73,7 +73,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, param_name: :post_page, params: { anchor: "here" }) }
 
       it "should pass it through to Kaminari" do
-        expect(pagination.children.last.content).to match(/\/admin\/posts\?post_page=2#here/)
+        expect(pagination.to_s).to match(/\/admin\/posts\?post_page=2#here/)
       end
     end
 
@@ -99,7 +99,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, entry_name: "message") }
 
       it "should use :entry_name as the collection name" do
-        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>1</b> message"
+        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>1</b> of <b>1</b>"
       end
     end
 
@@ -107,7 +107,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, entry_name: "message") }
 
       it "should use :entry_name as the collection name" do
-        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 3</b> messages"
+        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 3</b>"
       end
     end
 
@@ -120,7 +120,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, entry_name: "singular", entries_name: "plural") }
 
       it "should use :entry_name as the collection name" do
-        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>1</b> singular"
+        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>1</b> of <b>1</b>"
       end
     end
 
@@ -128,7 +128,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       let(:pagination) { paginated_collection(collection, entry_name: "singular", entries_name: "plural") }
 
       it "should use :entries_name as the collection name" do
-        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 3</b> plural"
+        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 3</b>"
       end
     end
 
@@ -139,23 +139,23 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should use 'post' as the collection name when there is no I18n translation" do
-        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>1</b> post"
+        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>1</b> of <b>1</b>"
       end
 
       it "should use 'Singular' as the collection name when there is an I18n translation" do
         allow(I18n).to receive(:translate) { "Singular" }
-        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>1</b> Singular"
+        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>1</b> of <b>1</b>"
       end
     end
 
     context "when omitting :entry_name with multiple items" do
       it "should use 'posts' as the collection name when there is no I18n translation" do
-        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 3</b> posts"
+        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 3</b>"
       end
 
       it "should use 'Plural' as the collection name when there is an I18n translation" do
         allow(I18n).to receive(:translate) { "Plural" }
-        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 3</b> Plural"
+        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 3</b>"
       end
     end
 
@@ -177,7 +177,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should display proper message (including number and not hash)" do
-        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 2</b> posts"
+        expect(pagination.find_by_class("pagination_information").first.content).to eq "Showing <b>all 2</b>"
       end
     end
 
@@ -189,7 +189,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
       it "should display proper message (including number and not hash)" do
         expect(pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")).
-          to eq "Showing <b>1 - 2</b> of <b>3</b>"
+          to eq "Showing <b>1-2</b> of <b>3</b>"
       end
     end
 
@@ -200,7 +200,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
       it "should show the proper item counts" do
         expect(pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")).
-          to eq "Showing <b>61 - 81</b> of <b>81</b>"
+          to eq "Showing <b>61-81</b> of <b>81</b>"
       end
     end
 
@@ -214,7 +214,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
           expect(collection).not_to receive(:total_pages)
           pagination = paginated_collection(collection, pagination_total: false)
           info = pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")
-          expect(info).to eq "Showing <b>1 - 30</b>"
+          expect(info).to eq "Showing <b>1-30</b>"
         end
       end
 
@@ -223,7 +223,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
         it "should show the total item counts" do
           info = pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")
-          expect(info).to eq "Showing <b>1 - 30</b> of <b>256</b>"
+          expect(info).to eq "Showing <b>1-30</b> of <b>256</b>"
         end
       end
     end
@@ -254,11 +254,11 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       let(:pagination) { paginated_collection(collection, per_page: [1, 2, 3]) }
-      let(:pagination_html) { pagination.find_by_class("pagination_per_page").first }
+      let(:pagination_html) { pagination.find_by_class("paginated-collection-footer").first }
       let(:pagination_node) { Capybara.string(pagination_html.to_s) }
 
       it "should render per_page select tag" do
-        expect(pagination_html.content).to match(/Per page:/)
+        expect(pagination_html.content).to match(/Per page/)
         expect(pagination_node).to have_css("select option", count: 3)
       end
 
@@ -267,7 +267,7 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
 
         it "should render per_page select tag" do
           info = pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")
-          expect(info).to eq "Showing <b>1 - 5</b>"
+          expect(info).to eq "Showing <b>1-5</b>"
         end
       end
     end

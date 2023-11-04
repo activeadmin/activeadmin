@@ -122,7 +122,7 @@
     params.set("per_page", this.value);
     window.location.search = params;
   };
-  Rails.delegate(document, ".pagination_per_page > select", "change", setPerPage);
+  Rails.delegate(document, ".pagination-per-page", "change", setPerPage);
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
     if (localStorage.getItem("color-theme") === "dark" || !("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.documentElement.classList.add("dark");

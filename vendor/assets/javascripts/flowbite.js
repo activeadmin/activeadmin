@@ -2103,7 +2103,7 @@ var popper_lite_createPopper = /*#__PURE__*/popperGenerator({
 /***/ }),
 
 /***/ 902:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
 var __assign = (this && this.__assign) || function () {
@@ -2119,6 +2119,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initAccordions = void 0;
+var instances_1 = __webpack_require__(423);
 var Default = {
     alwaysOpen: false,
     activeClasses: 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white',
@@ -2128,26 +2129,51 @@ var Default = {
     onToggle: function () { },
 };
 var Accordion = /** @class */ (function () {
-    function Accordion(items, options) {
+    function Accordion(accordionEl, items, options) {
+        if (accordionEl === void 0) { accordionEl = null; }
         if (items === void 0) { items = []; }
         if (options === void 0) { options = Default; }
+        this._accordionEl = accordionEl;
         this._items = items;
         this._options = __assign(__assign({}, Default), options);
-        this._init();
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('Accordion', this, this._accordionEl.id, true);
     }
-    Accordion.prototype._init = function () {
+    Accordion.prototype.init = function () {
         var _this = this;
-        if (this._items.length) {
+        if (this._items.length && !this._initialized) {
             // show accordion item based on click
-            this._items.map(function (item) {
+            this._items.forEach(function (item) {
                 if (item.active) {
                     _this.open(item.id);
                 }
-                item.triggerEl.addEventListener('click', function () {
+                var clickHandler = function () {
                     _this.toggle(item.id);
-                });
+                };
+                item.triggerEl.addEventListener('click', clickHandler);
+                // Store the clickHandler in a property of the item for removal later
+                item.clickHandler = clickHandler;
             });
+            this._initialized = true;
         }
+    };
+    Accordion.prototype.destroy = function () {
+        if (this._items.length && this._initialized) {
+            this._items.forEach(function (item) {
+                item.triggerEl.removeEventListener('click', item.clickHandler);
+                // Clean up by deleting the clickHandler property from the item
+                delete item.clickHandler;
+            });
+            this._initialized = false;
+        }
+    };
+    Accordion.prototype.removeInstance = function () {
+        instances_1.default.removeInstance('Accordion', this._accordionEl.id);
+    };
+    Accordion.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
     };
     Accordion.prototype.getItem = function (id) {
         return this._items.filter(function (item) { return item.id === id; })[0];
@@ -2238,7 +2264,7 @@ function initAccordions() {
                 items.push(item);
             }
         });
-        new Accordion(items, {
+        new Accordion($accordionEl, items, {
             alwaysOpen: alwaysOpen === 'open' ? true : false,
             activeClasses: activeClasses
                 ? activeClasses
@@ -2260,7 +2286,7 @@ exports["default"] = Accordion;
 /***/ }),
 
 /***/ 33:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
 var __assign = (this && this.__assign) || function () {
@@ -2276,6 +2302,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initCarousels = void 0;
+var instances_1 = __webpack_require__(423);
 var Default = {
     defaultPosition: 0,
     indicators: {
@@ -2289,37 +2316,56 @@ var Default = {
     onChange: function () { },
 };
 var Carousel = /** @class */ (function () {
-    function Carousel(items, options) {
+    function Carousel(carouselEl, items, options) {
+        if (carouselEl === void 0) { carouselEl = null; }
         if (items === void 0) { items = []; }
         if (options === void 0) { options = Default; }
+        this._carouselEl = carouselEl;
         this._items = items;
         this._options = __assign(__assign(__assign({}, Default), options), { indicators: __assign(__assign({}, Default.indicators), options.indicators) });
         this._activeItem = this.getItem(this._options.defaultPosition);
         this._indicators = this._options.indicators.items;
         this._intervalDuration = this._options.interval;
         this._intervalInstance = null;
-        this._init();
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('Carousel', this, this._carouselEl.id, true);
     }
     /**
      * initialize carousel and items based on active one
      */
-    Carousel.prototype._init = function () {
+    Carousel.prototype.init = function () {
         var _this = this;
-        this._items.map(function (item) {
-            item.el.classList.add('absolute', 'inset-0', 'transition-transform', 'transform');
-        });
-        // if no active item is set then first position is default
-        if (this._getActiveItem()) {
-            this.slideTo(this._getActiveItem().position);
-        }
-        else {
-            this.slideTo(0);
-        }
-        this._indicators.map(function (indicator, position) {
-            indicator.el.addEventListener('click', function () {
-                _this.slideTo(position);
+        if (this._items.length && !this._initialized) {
+            this._items.map(function (item) {
+                item.el.classList.add('absolute', 'inset-0', 'transition-transform', 'transform');
             });
-        });
+            // if no active item is set then first position is default
+            if (this._getActiveItem()) {
+                this.slideTo(this._getActiveItem().position);
+            }
+            else {
+                this.slideTo(0);
+            }
+            this._indicators.map(function (indicator, position) {
+                indicator.el.addEventListener('click', function () {
+                    _this.slideTo(position);
+                });
+            });
+            this._initialized = true;
+        }
+    };
+    Carousel.prototype.destroy = function () {
+        if (this._initialized) {
+            this._initialized = false;
+        }
+    };
+    Carousel.prototype.removeInstance = function () {
+        instances_1.default.removeInstance('Carousel', this._carouselEl.id);
+    };
+    Carousel.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
     };
     Carousel.prototype.getItem = function (position) {
         return this._items[position];
@@ -2476,7 +2522,7 @@ function initCarousels() {
                 });
             });
         }
-        var carousel = new Carousel(items, {
+        var carousel = new Carousel($carouselEl, items, {
             defaultPosition: defaultPosition,
             indicators: {
                 items: indicators,
@@ -2512,7 +2558,7 @@ exports["default"] = Carousel;
 /***/ }),
 
 /***/ 922:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
 var __assign = (this && this.__assign) || function () {
@@ -2528,6 +2574,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initCollapses = void 0;
+var instances_1 = __webpack_require__(423);
 var Default = {
     onCollapse: function () { },
     onExpand: function () { },
@@ -2542,11 +2589,13 @@ var Collapse = /** @class */ (function () {
         this._triggerEl = triggerEl;
         this._options = __assign(__assign({}, Default), options);
         this._visible = false;
-        this._init();
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('Collapse', this, this._targetEl.id, true);
     }
-    Collapse.prototype._init = function () {
+    Collapse.prototype.init = function () {
         var _this = this;
-        if (this._triggerEl) {
+        if (this._triggerEl && this._targetEl && !this._initialized) {
             if (this._triggerEl.hasAttribute('aria-expanded')) {
                 this._visible =
                     this._triggerEl.getAttribute('aria-expanded') === 'true';
@@ -2555,10 +2604,25 @@ var Collapse = /** @class */ (function () {
                 // fix until v2 not to break previous single collapses which became dismiss
                 this._visible = !this._targetEl.classList.contains('hidden');
             }
-            this._triggerEl.addEventListener('click', function () {
+            this._clickHandler = function () {
                 _this.toggle();
-            });
+            };
+            this._triggerEl.addEventListener('click', this._clickHandler);
+            this._initialized = true;
         }
+    };
+    Collapse.prototype.destroy = function () {
+        if (this._triggerEl && this._initialized) {
+            this._triggerEl.removeEventListener('click', this._clickHandler);
+            this._initialized = false;
+        }
+    };
+    Collapse.prototype.removeInstance = function () {
+        instances_1.default.removeInstance('Collapse', this._targetEl.id);
+    };
+    Collapse.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
     };
     Collapse.prototype.collapse = function () {
         this._targetEl.classList.add('hidden');
@@ -2616,7 +2680,7 @@ exports["default"] = Collapse;
 /***/ }),
 
 /***/ 556:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
 var __assign = (this && this.__assign) || function () {
@@ -2632,6 +2696,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initDials = void 0;
+var instances_1 = __webpack_require__(423);
 var Default = {
     triggerType: 'hover',
     onShow: function () { },
@@ -2649,28 +2714,52 @@ var Dial = /** @class */ (function () {
         this._targetEl = targetEl;
         this._options = __assign(__assign({}, Default), options);
         this._visible = false;
-        this._init();
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('Dial', this, this._targetEl.id, true);
     }
-    Dial.prototype._init = function () {
+    Dial.prototype.init = function () {
         var _this = this;
-        if (this._triggerEl) {
+        if (this._triggerEl && this._targetEl && !this._initialized) {
+            var triggerEventTypes = this._getTriggerEventTypes(this._options.triggerType);
+            this._showEventHandler = function () {
+                _this.show();
+            };
+            triggerEventTypes.showEvents.forEach(function (ev) {
+                _this._triggerEl.addEventListener(ev, _this._showEventHandler);
+                _this._targetEl.addEventListener(ev, _this._showEventHandler);
+            });
+            this._hideEventHandler = function () {
+                if (!_this._parentEl.matches(':hover')) {
+                    _this.hide();
+                }
+            };
+            triggerEventTypes.hideEvents.forEach(function (ev) {
+                _this._parentEl.addEventListener(ev, _this._hideEventHandler);
+            });
+            this._initialized = true;
+        }
+    };
+    Dial.prototype.destroy = function () {
+        var _this = this;
+        if (this._initialized) {
             var triggerEventTypes = this._getTriggerEventTypes(this._options.triggerType);
             triggerEventTypes.showEvents.forEach(function (ev) {
-                _this._triggerEl.addEventListener(ev, function () {
-                    _this.show();
-                });
-                _this._targetEl.addEventListener(ev, function () {
-                    _this.show();
-                });
+                _this._triggerEl.removeEventListener(ev, _this._showEventHandler);
+                _this._targetEl.removeEventListener(ev, _this._showEventHandler);
             });
             triggerEventTypes.hideEvents.forEach(function (ev) {
-                _this._parentEl.addEventListener(ev, function () {
-                    if (!_this._parentEl.matches(':hover')) {
-                        _this.hide();
-                    }
-                });
+                _this._parentEl.removeEventListener(ev, _this._hideEventHandler);
             });
+            this._initialized = false;
         }
+    };
+    Dial.prototype.removeInstance = function () {
+        instances_1.default.removeInstance('Dial', this._targetEl.id);
+    };
+    Dial.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
     };
     Dial.prototype.hide = function () {
         this._targetEl.classList.add('hidden');
@@ -2764,7 +2853,7 @@ exports["default"] = Dial;
 /***/ }),
 
 /***/ 791:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
 var __assign = (this && this.__assign) || function () {
@@ -2780,6 +2869,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initDismisses = void 0;
+var instances_1 = __webpack_require__(423);
 var Default = {
     transition: 'transition-opacity',
     duration: 300,
@@ -2794,15 +2884,32 @@ var Dismiss = /** @class */ (function () {
         this._targetEl = targetEl;
         this._triggerEl = triggerEl;
         this._options = __assign(__assign({}, Default), options);
-        this._init();
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('Dismiss', this, this._targetEl.id, true);
     }
-    Dismiss.prototype._init = function () {
+    Dismiss.prototype.init = function () {
         var _this = this;
-        if (this._triggerEl) {
-            this._triggerEl.addEventListener('click', function () {
+        if (this._triggerEl && this._targetEl && !this._initialized) {
+            this._clickHandler = function () {
                 _this.hide();
-            });
+            };
+            this._triggerEl.addEventListener('click', this._clickHandler);
+            this._initialized = true;
         }
+    };
+    Dismiss.prototype.destroy = function () {
+        if (this._triggerEl && this._initialized) {
+            this._triggerEl.removeEventListener('click', this._clickHandler);
+            this._initialized = false;
+        }
+    };
+    Dismiss.prototype.removeInstance = function () {
+        instances_1.default.removeInstance('Dismiss', this._targetEl.id);
+    };
+    Dismiss.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
     };
     Dismiss.prototype.hide = function () {
         var _this = this;
@@ -2838,7 +2945,7 @@ exports["default"] = Dismiss;
 /***/ }),
 
 /***/ 340:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
 var __assign = (this && this.__assign) || function () {
@@ -2854,6 +2961,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initDrawers = void 0;
+var instances_1 = __webpack_require__(423);
 var Default = {
     placement: 'left',
     bodyScrolling: false,
@@ -2872,29 +2980,48 @@ var Drawer = /** @class */ (function () {
         this._targetEl = targetEl;
         this._options = __assign(__assign({}, Default), options);
         this._visible = false;
-        this._init();
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('Drawer', this, this._targetEl.id, true);
     }
-    Drawer.prototype._init = function () {
+    Drawer.prototype.init = function () {
         var _this = this;
         // set initial accessibility attributes
-        if (this._targetEl) {
+        if (this._targetEl && !this._initialized) {
             this._targetEl.setAttribute('aria-hidden', 'true');
             this._targetEl.classList.add('transition-transform');
-        }
-        // set base placement classes
-        this._getPlacementClasses(this._options.placement).base.map(function (c) {
-            _this._targetEl.classList.add(c);
-        });
-        // add keyboard event listener to document
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape') {
-                // if 'Escape' key is pressed
-                if (_this.isVisible()) {
-                    // if the Drawer is visible
-                    _this.hide(); // hide the Drawer
+            // set base placement classes
+            this._getPlacementClasses(this._options.placement).base.map(function (c) {
+                _this._targetEl.classList.add(c);
+            });
+            this._handleEscapeKey = function (event) {
+                if (event.key === 'Escape') {
+                    // if 'Escape' key is pressed
+                    if (_this.isVisible()) {
+                        // if the Drawer is visible
+                        _this.hide(); // hide the Drawer
+                    }
                 }
-            }
-        });
+            };
+            // add keyboard event listener to document
+            document.addEventListener('keydown', this._handleEscapeKey);
+            this._initialized = true;
+        }
+    };
+    Drawer.prototype.destroy = function () {
+        if (this._initialized) {
+            this.hide();
+            // Remove the keyboard event listener
+            document.removeEventListener('keydown', this._handleEscapeKey);
+            this._initialized = false;
+        }
+    };
+    Drawer.prototype.removeInstance = function () {
+        instances_1.default.removeInstance('Drawer', this._targetEl.id);
+    };
+    Drawer.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
     };
     Drawer.prototype.hide = function () {
         var _this = this;
@@ -3039,13 +3166,7 @@ var Drawer = /** @class */ (function () {
     };
     return Drawer;
 }());
-var getDrawerInstance = function (id, instances) {
-    if (instances.some(function (drawerInstance) { return drawerInstance.id === id; })) {
-        return instances.find(function (drawerInstance) { return drawerInstance.id === id; });
-    }
-};
 function initDrawers() {
-    var drawerInstances = [];
     document.querySelectorAll('[data-drawer-target]').forEach(function ($triggerEl) {
         // mandatory
         var drawerId = $triggerEl.getAttribute('data-drawer-target');
@@ -3057,30 +3178,25 @@ function initDrawers() {
             var backdrop = $triggerEl.getAttribute('data-drawer-backdrop');
             var edge = $triggerEl.getAttribute('data-drawer-edge');
             var edgeOffset = $triggerEl.getAttribute('data-drawer-edge-offset');
-            if (!getDrawerInstance(drawerId, drawerInstances)) {
-                drawerInstances.push({
-                    id: drawerId,
-                    object: new Drawer($drawerEl, {
-                        placement: placement ? placement : Default.placement,
-                        bodyScrolling: bodyScrolling
-                            ? bodyScrolling === 'true'
-                                ? true
-                                : false
-                            : Default.bodyScrolling,
-                        backdrop: backdrop
-                            ? backdrop === 'true'
-                                ? true
-                                : false
-                            : Default.backdrop,
-                        edge: edge
-                            ? edge === 'true'
-                                ? true
-                                : false
-                            : Default.edge,
-                        edgeOffset: edgeOffset
-                            ? edgeOffset
-                            : Default.edgeOffset,
-                    }),
+            if (!instances_1.default.instanceExists('Drawer', $drawerEl.getAttribute('id'))) {
+                new Drawer($drawerEl, {
+                    placement: placement ? placement : Default.placement,
+                    bodyScrolling: bodyScrolling
+                        ? bodyScrolling === 'true'
+                            ? true
+                            : false
+                        : Default.bodyScrolling,
+                    backdrop: backdrop
+                        ? backdrop === 'true'
+                            ? true
+                            : false
+                        : Default.backdrop,
+                    edge: edge
+                        ? edge === 'true'
+                            ? true
+                            : false
+                        : Default.edge,
+                    edgeOffset: edgeOffset ? edgeOffset : Default.edgeOffset,
                 });
             }
         }
@@ -3092,10 +3208,10 @@ function initDrawers() {
         var drawerId = $triggerEl.getAttribute('data-drawer-toggle');
         var $drawerEl = document.getElementById(drawerId);
         if ($drawerEl) {
-            var drawer_1 = getDrawerInstance(drawerId, drawerInstances);
+            var drawer_1 = instances_1.default.getInstance('Drawer', $drawerEl.getAttribute('id'));
             if (drawer_1) {
                 $triggerEl.addEventListener('click', function () {
-                    drawer_1.object.toggle();
+                    drawer_1.toggle();
                 });
             }
             else {
@@ -3114,10 +3230,10 @@ function initDrawers() {
             : $triggerEl.getAttribute('data-drawer-hide');
         var $drawerEl = document.getElementById(drawerId);
         if ($drawerEl) {
-            var drawer_2 = getDrawerInstance(drawerId, drawerInstances);
+            var drawer_2 = instances_1.default.getInstance('Drawer', $drawerEl.getAttribute('id'));
             if (drawer_2) {
                 $triggerEl.addEventListener('click', function () {
-                    drawer_2.object.hide();
+                    drawer_2.hide();
                 });
             }
             else {
@@ -3132,10 +3248,10 @@ function initDrawers() {
         var drawerId = $triggerEl.getAttribute('data-drawer-show');
         var $drawerEl = document.getElementById(drawerId);
         if ($drawerEl) {
-            var drawer_3 = getDrawerInstance(drawerId, drawerInstances);
+            var drawer_3 = instances_1.default.getInstance('Drawer', $drawerEl.getAttribute('id'));
             if (drawer_3) {
                 $triggerEl.addEventListener('click', function () {
-                    drawer_3.object.show();
+                    drawer_3.show();
                 });
             }
             else {
@@ -3185,12 +3301,14 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initDropdowns = void 0;
 /* eslint-disable @typescript-eslint/no-empty-function */
 var core_1 = __webpack_require__(853);
+var instances_1 = __webpack_require__(423);
 var Default = {
     placement: 'bottom',
     triggerType: 'click',
     offsetSkidding: 0,
     offsetDistance: 10,
     delay: 300,
+    ignoreClickOutsideClass: false,
     onShow: function () { },
     onHide: function () { },
     onToggle: function () { },
@@ -3203,58 +3321,90 @@ var Dropdown = /** @class */ (function () {
         this._targetEl = targetElement;
         this._triggerEl = triggerElement;
         this._options = __assign(__assign({}, Default), options);
-        this._popperInstance = this._createPopperInstance();
+        this._popperInstance = null;
         this._visible = false;
-        this._init();
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('Dropdown', this, this._targetEl.id, true);
     }
-    Dropdown.prototype._init = function () {
-        if (this._triggerEl) {
+    Dropdown.prototype.init = function () {
+        if (this._triggerEl && this._targetEl && !this._initialized) {
+            this._popperInstance = this._createPopperInstance();
             this._setupEventListeners();
+            this._initialized = true;
         }
+    };
+    Dropdown.prototype.destroy = function () {
+        var _this = this;
+        var triggerEvents = this._getTriggerEvents();
+        // Remove click event listeners for trigger element
+        if (this._options.triggerType === 'click') {
+            triggerEvents.showEvents.forEach(function (ev) {
+                _this._triggerEl.removeEventListener(ev, _this._clickHandler);
+            });
+        }
+        // Remove hover event listeners for trigger and target elements
+        if (this._options.triggerType === 'hover') {
+            triggerEvents.showEvents.forEach(function (ev) {
+                _this._triggerEl.removeEventListener(ev, _this._hoverShowTriggerElHandler);
+                _this._targetEl.removeEventListener(ev, _this._hoverShowTargetElHandler);
+            });
+            triggerEvents.hideEvents.forEach(function (ev) {
+                _this._triggerEl.removeEventListener(ev, _this._hoverHideHandler);
+                _this._targetEl.removeEventListener(ev, _this._hoverHideHandler);
+            });
+        }
+        this._popperInstance.destroy();
+        this._initialized = false;
+    };
+    Dropdown.prototype.removeInstance = function () {
+        instances_1.default.removeInstance('Dropdown', this._targetEl.id);
+    };
+    Dropdown.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
     };
     Dropdown.prototype._setupEventListeners = function () {
         var _this = this;
         var triggerEvents = this._getTriggerEvents();
+        this._clickHandler = function () {
+            _this.toggle();
+        };
         // click event handling for trigger element
         if (this._options.triggerType === 'click') {
             triggerEvents.showEvents.forEach(function (ev) {
-                _this._triggerEl.addEventListener(ev, function () {
-                    _this.toggle();
-                });
+                _this._triggerEl.addEventListener(ev, _this._clickHandler);
             });
         }
+        this._hoverShowTriggerElHandler = function (ev) {
+            if (ev.type === 'click') {
+                _this.toggle();
+            }
+            else {
+                setTimeout(function () {
+                    _this.show();
+                }, _this._options.delay);
+            }
+        };
+        this._hoverShowTargetElHandler = function () {
+            _this.show();
+        };
+        this._hoverHideHandler = function () {
+            setTimeout(function () {
+                if (!_this._targetEl.matches(':hover')) {
+                    _this.hide();
+                }
+            }, _this._options.delay);
+        };
         // hover event handling for trigger element
         if (this._options.triggerType === 'hover') {
             triggerEvents.showEvents.forEach(function (ev) {
-                _this._triggerEl.addEventListener(ev, function () {
-                    if (ev === 'click') {
-                        _this.toggle();
-                    }
-                    else {
-                        setTimeout(function () {
-                            _this.show();
-                        }, _this._options.delay);
-                    }
-                });
-                _this._targetEl.addEventListener(ev, function () {
-                    _this.show();
-                });
+                _this._triggerEl.addEventListener(ev, _this._hoverShowTriggerElHandler);
+                _this._targetEl.addEventListener(ev, _this._hoverShowTargetElHandler);
             });
             triggerEvents.hideEvents.forEach(function (ev) {
-                _this._triggerEl.addEventListener(ev, function () {
-                    setTimeout(function () {
-                        if (!_this._targetEl.matches(':hover')) {
-                            _this.hide();
-                        }
-                    }, _this._options.delay);
-                });
-                _this._targetEl.addEventListener(ev, function () {
-                    setTimeout(function () {
-                        if (!_this._triggerEl.matches(':hover')) {
-                            _this.hide();
-                        }
-                    }, _this._options.delay);
-                });
+                _this._triggerEl.addEventListener(ev, _this._hoverHideHandler);
+                _this._targetEl.addEventListener(ev, _this._hoverHideHandler);
             });
         }
     };
@@ -3286,9 +3436,23 @@ var Dropdown = /** @class */ (function () {
     };
     Dropdown.prototype._handleClickOutside = function (ev, targetEl) {
         var clickedEl = ev.target;
+        // Ignore clicks on the trigger element (ie. a datepicker input)
+        var ignoreClickOutsideClass = this._options.ignoreClickOutsideClass;
+        var isIgnored = false;
+        if (ignoreClickOutsideClass) {
+            var ignoredClickOutsideEls = document.querySelectorAll(".".concat(ignoreClickOutsideClass));
+            ignoredClickOutsideEls.forEach(function (el) {
+                if (el.contains(clickedEl)) {
+                    isIgnored = true;
+                    return;
+                }
+            });
+        }
+        // Ignore clicks on the target element (ie. dropdown itself)
         if (clickedEl !== targetEl &&
             !targetEl.contains(clickedEl) &&
             !this._triggerEl.contains(clickedEl) &&
+            !isIgnored &&
             this.isVisible()) {
             this.hide();
         }
@@ -3369,6 +3533,7 @@ function initDropdowns() {
             var offsetDistance = $triggerEl.getAttribute('data-dropdown-offset-distance');
             var triggerType = $triggerEl.getAttribute('data-dropdown-trigger');
             var delay = $triggerEl.getAttribute('data-dropdown-delay');
+            var ignoreClickOutsideClass = $triggerEl.getAttribute('data-dropdown-ignore-click-outside-class');
             new Dropdown($dropdownEl, $triggerEl, {
                 placement: placement ? placement : Default.placement,
                 triggerType: triggerType
@@ -3381,6 +3546,9 @@ function initDropdowns() {
                     ? parseInt(offsetDistance)
                     : Default.offsetDistance,
                 delay: delay ? parseInt(delay) : Default.delay,
+                ignoreClickOutsideClass: ignoreClickOutsideClass
+                    ? ignoreClickOutsideClass
+                    : Default.ignoreClickOutsideClass,
             });
         }
         else {
@@ -3437,7 +3605,7 @@ if (typeof window !== 'undefined') {
 /***/ }),
 
 /***/ 16:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
 var __assign = (this && this.__assign) || function () {
@@ -3453,6 +3621,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initModals = void 0;
+var instances_1 = __webpack_require__(423);
 var Default = {
     placement: 'center',
     backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
@@ -3470,15 +3639,31 @@ var Modal = /** @class */ (function () {
         this._options = __assign(__assign({}, Default), options);
         this._isHidden = true;
         this._backdropEl = null;
-        this._init();
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('Modal', this, this._targetEl.id, true);
     }
-    Modal.prototype._init = function () {
+    Modal.prototype.init = function () {
         var _this = this;
-        if (this._targetEl) {
+        if (this._targetEl && !this._initialized) {
             this._getPlacementClasses().map(function (c) {
                 _this._targetEl.classList.add(c);
             });
+            this._initialized = true;
         }
+    };
+    Modal.prototype.destroy = function () {
+        if (this._initialized) {
+            this.hide();
+            this._initialized = false;
+        }
+    };
+    Modal.prototype.removeInstance = function () {
+        instances_1.default.removeInstance('Modal', this._targetEl.id);
+    };
+    Modal.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
     };
     Modal.prototype._createBackdrop = function () {
         var _a;
@@ -3568,12 +3753,12 @@ var Modal = /** @class */ (function () {
             this._targetEl.removeAttribute('aria-hidden');
             this._createBackdrop();
             this._isHidden = false;
-            // prevent body scroll
-            document.body.classList.add('overflow-hidden');
             // Add keyboard event listener to the document
             if (this._options.closable) {
                 this._setupModalCloseEventListeners();
             }
+            // prevent body scroll
+            document.body.classList.add('overflow-hidden');
             // callback function
             this._options.onShow(this);
         }
@@ -3604,14 +3789,7 @@ var Modal = /** @class */ (function () {
     };
     return Modal;
 }());
-var getModalInstance = function (id, instances) {
-    if (instances.some(function (modalInstance) { return modalInstance.id === id; })) {
-        return instances.find(function (modalInstance) { return modalInstance.id === id; });
-    }
-    return null;
-};
 function initModals() {
-    var modalInstances = [];
     // initiate modal based on data-modal-target
     document.querySelectorAll('[data-modal-target]').forEach(function ($triggerEl) {
         var modalId = $triggerEl.getAttribute('data-modal-target');
@@ -3619,15 +3797,10 @@ function initModals() {
         if ($modalEl) {
             var placement = $modalEl.getAttribute('data-modal-placement');
             var backdrop = $modalEl.getAttribute('data-modal-backdrop');
-            if (!getModalInstance(modalId, modalInstances)) {
-                modalInstances.push({
-                    id: modalId,
-                    object: new Modal($modalEl, {
-                        placement: placement
-                            ? placement
-                            : Default.placement,
-                        backdrop: backdrop ? backdrop : Default.backdrop,
-                    }),
+            if (instances_1.default.instanceExists('Modal', $modalEl.getAttribute('id'))) {
+                new Modal($modalEl, {
+                    placement: placement ? placement : Default.placement,
+                    backdrop: backdrop ? backdrop : Default.backdrop,
                 });
             }
         }
@@ -3642,21 +3815,22 @@ function initModals() {
         if ($modalEl) {
             var placement = $modalEl.getAttribute('data-modal-placement');
             var backdrop = $modalEl.getAttribute('data-modal-backdrop');
-            var modal_1 = getModalInstance(modalId, modalInstances);
-            if (!modal_1) {
-                modal_1 = {
-                    id: modalId,
-                    object: new Modal($modalEl, {
+            var modal_1;
+            if (instances_1.default.instanceExists('Modal', $modalEl.getAttribute('id'))) {
+                modal_1 = instances_1.default.getInstance('Modal', $modalEl.getAttribute('id'));
+            }
+            else {
+                {
+                    modal_1 = new Modal($modalEl, {
                         placement: placement
                             ? placement
                             : Default.placement,
                         backdrop: backdrop ? backdrop : Default.backdrop,
-                    }),
-                };
-                modalInstances.push(modal_1);
+                    });
+                }
             }
             $triggerEl.addEventListener('click', function () {
-                modal_1.object.toggle();
+                modal_1.toggle();
             });
         }
         else {
@@ -3668,12 +3842,10 @@ function initModals() {
         var modalId = $triggerEl.getAttribute('data-modal-show');
         var $modalEl = document.getElementById(modalId);
         if ($modalEl) {
-            var modal_2 = getModalInstance(modalId, modalInstances);
-            if (modal_2) {
+            if (instances_1.default.instanceExists('Modal', $modalEl.getAttribute('id'))) {
+                var modal_2 = instances_1.default.getInstance('Modal', $modalEl.getAttribute('id'));
                 $triggerEl.addEventListener('click', function () {
-                    if (modal_2.object.isHidden) {
-                        modal_2.object.show();
-                    }
+                    modal_2.show();
                 });
             }
             else {
@@ -3689,12 +3861,10 @@ function initModals() {
         var modalId = $triggerEl.getAttribute('data-modal-hide');
         var $modalEl = document.getElementById(modalId);
         if ($modalEl) {
-            var modal_3 = getModalInstance(modalId, modalInstances);
-            if (modal_3) {
+            if (instances_1.default.instanceExists('Modal', $modalEl.getAttribute('id'))) {
+                var modal_3 = instances_1.default.getInstance('Modal', $modalEl.getAttribute('id'));
                 $triggerEl.addEventListener('click', function () {
-                    if (modal_3.object.isVisible) {
-                        modal_3.object.hide();
-                    }
+                    modal_3.hide();
                 });
             }
             else {
@@ -3744,6 +3914,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initPopovers = void 0;
 /* eslint-disable @typescript-eslint/no-empty-function */
 var core_1 = __webpack_require__(853);
+var instances_1 = __webpack_require__(423);
 var Default = {
     placement: 'top',
     offset: 10,
@@ -3760,41 +3931,70 @@ var Popover = /** @class */ (function () {
         this._targetEl = targetEl;
         this._triggerEl = triggerEl;
         this._options = __assign(__assign({}, Default), options);
-        this._popperInstance = this._createPopperInstance();
+        this._popperInstance = null;
         this._visible = false;
-        this._init();
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('Popover', this, this._targetEl.id, true);
     }
-    Popover.prototype._init = function () {
-        if (this._triggerEl) {
+    Popover.prototype.init = function () {
+        if (this._triggerEl && this._targetEl && !this._initialized) {
             this._setupEventListeners();
+            this._popperInstance = this._createPopperInstance();
+            this._initialized = true;
         }
+    };
+    Popover.prototype.destroy = function () {
+        var _this = this;
+        if (this._initialized) {
+            // remove event listeners associated with the trigger element and target element
+            var triggerEvents = this._getTriggerEvents();
+            triggerEvents.showEvents.forEach(function (ev) {
+                _this._triggerEl.removeEventListener(ev, _this._showHandler);
+                _this._targetEl.removeEventListener(ev, _this._showHandler);
+            });
+            triggerEvents.hideEvents.forEach(function (ev) {
+                _this._triggerEl.removeEventListener(ev, _this._hideHandler);
+                _this._targetEl.removeEventListener(ev, _this._hideHandler);
+            });
+            // remove event listeners for keydown
+            this._removeKeydownListener();
+            // remove event listeners for click outside
+            this._removeClickOutsideListener();
+            // destroy the Popper instance if you have one (assuming this._popperInstance is the Popper instance)
+            if (this._popperInstance) {
+                this._popperInstance.destroy();
+            }
+            this._initialized = false;
+        }
+    };
+    Popover.prototype.removeInstance = function () {
+        instances_1.default.removeInstance('Popover', this._targetEl.id);
+    };
+    Popover.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
     };
     Popover.prototype._setupEventListeners = function () {
         var _this = this;
         var triggerEvents = this._getTriggerEvents();
+        this._showHandler = function () {
+            _this.show();
+        };
+        this._hideHandler = function () {
+            setTimeout(function () {
+                if (!_this._targetEl.matches(':hover')) {
+                    _this.hide();
+                }
+            }, 100);
+        };
         triggerEvents.showEvents.forEach(function (ev) {
-            _this._triggerEl.addEventListener(ev, function () {
-                _this.show();
-            });
-            _this._targetEl.addEventListener(ev, function () {
-                _this.show();
-            });
+            _this._triggerEl.addEventListener(ev, _this._showHandler);
+            _this._targetEl.addEventListener(ev, _this._showHandler);
         });
         triggerEvents.hideEvents.forEach(function (ev) {
-            _this._triggerEl.addEventListener(ev, function () {
-                setTimeout(function () {
-                    if (!_this._targetEl.matches(':hover')) {
-                        _this.hide();
-                    }
-                }, 100);
-            });
-            _this._targetEl.addEventListener(ev, function () {
-                setTimeout(function () {
-                    if (!_this._triggerEl.matches(':hover')) {
-                        _this.hide();
-                    }
-                }, 100);
-            });
+            _this._triggerEl.addEventListener(ev, _this._hideHandler);
+            _this._targetEl.addEventListener(ev, _this._hideHandler);
         });
     };
     Popover.prototype._createPopperInstance = function () {
@@ -3945,7 +4145,7 @@ exports["default"] = Popover;
 /***/ }),
 
 /***/ 247:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
 var __assign = (this && this.__assign) || function () {
@@ -3961,6 +4161,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initTabs = void 0;
+var instances_1 = __webpack_require__(423);
 var Default = {
     defaultTabId: null,
     activeClasses: 'text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500',
@@ -3968,20 +4169,24 @@ var Default = {
     onShow: function () { },
 };
 var Tabs = /** @class */ (function () {
-    function Tabs(items, options) {
+    function Tabs(accordionEl, items, options) {
+        if (accordionEl === void 0) { accordionEl = null; }
         if (items === void 0) { items = []; }
         if (options === void 0) { options = Default; }
+        this._accordionEl = accordionEl;
         this._items = items;
         this._activeTab = options ? this.getTab(options.defaultTabId) : null;
         this._options = __assign(__assign({}, Default), options);
-        this._init();
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('Tabs', this, this._accordionEl.id, true);
     }
-    Tabs.prototype._init = function () {
+    Tabs.prototype.init = function () {
         var _this = this;
-        if (this._items.length) {
+        if (this._items.length && !this._initialized) {
             // set the first tab as active if not set by explicitly
             if (!this._activeTab) {
-                this._setActiveTab(this._items[0]);
+                this.setActiveTab(this._items[0]);
             }
             // force show the first default tab
             this.show(this._activeTab.id, true);
@@ -3993,10 +4198,23 @@ var Tabs = /** @class */ (function () {
             });
         }
     };
+    Tabs.prototype.destroy = function () {
+        if (this._initialized) {
+            this._initialized = false;
+        }
+    };
+    Tabs.prototype.removeInstance = function () {
+        this.destroy();
+        instances_1.default.removeInstance('Tabs', this._accordionEl.id);
+    };
+    Tabs.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
+    };
     Tabs.prototype.getActiveTab = function () {
         return this._activeTab;
     };
-    Tabs.prototype._setActiveTab = function (tab) {
+    Tabs.prototype.setActiveTab = function (tab) {
         this._activeTab = tab;
     };
     Tabs.prototype.getTab = function (id) {
@@ -4026,17 +4244,17 @@ var Tabs = /** @class */ (function () {
         (_b = tab.triggerEl.classList).remove.apply(_b, this._options.inactiveClasses.split(' '));
         tab.triggerEl.setAttribute('aria-selected', 'true');
         tab.targetEl.classList.remove('hidden');
-        this._setActiveTab(tab);
+        this.setActiveTab(tab);
         // callback function
         this._options.onShow(this, tab);
     };
     return Tabs;
 }());
 function initTabs() {
-    document.querySelectorAll('[data-tabs-toggle]').forEach(function ($triggerEl) {
+    document.querySelectorAll('[data-tabs-toggle]').forEach(function ($parentEl) {
         var tabItems = [];
         var defaultTabId = null;
-        $triggerEl
+        $parentEl
             .querySelectorAll('[role="tab"]')
             .forEach(function ($triggerEl) {
             var isActive = $triggerEl.getAttribute('aria-selected') === 'true';
@@ -4050,7 +4268,7 @@ function initTabs() {
                 defaultTabId = tab.id;
             }
         });
-        new Tabs(tabItems, {
+        new Tabs($parentEl, tabItems, {
             defaultTabId: defaultTabId,
         });
     });
@@ -4093,6 +4311,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.initTooltips = void 0;
 /* eslint-disable @typescript-eslint/no-empty-function */
 var core_1 = __webpack_require__(853);
+var instances_1 = __webpack_require__(423);
 var Default = {
     placement: 'top',
     triggerType: 'hover',
@@ -4108,27 +4327,62 @@ var Tooltip = /** @class */ (function () {
         this._targetEl = targetEl;
         this._triggerEl = triggerEl;
         this._options = __assign(__assign({}, Default), options);
-        this._popperInstance = this._createPopperInstance();
+        this._popperInstance = null;
         this._visible = false;
-        this._init();
+        this._initialized = false;
+        this.init();
+        instances_1.default.addInstance('Tooltip', this, this._targetEl.id, true);
     }
-    Tooltip.prototype._init = function () {
-        if (this._triggerEl) {
+    Tooltip.prototype.init = function () {
+        if (this._triggerEl && this._targetEl && !this._initialized) {
             this._setupEventListeners();
+            this._popperInstance = this._createPopperInstance();
+            this._initialized = true;
         }
+    };
+    Tooltip.prototype.destroy = function () {
+        var _this = this;
+        if (this._initialized) {
+            // remove event listeners associated with the trigger element
+            var triggerEvents = this._getTriggerEvents();
+            triggerEvents.showEvents.forEach(function (ev) {
+                _this._triggerEl.removeEventListener(ev, _this._showHandler);
+            });
+            triggerEvents.hideEvents.forEach(function (ev) {
+                _this._triggerEl.removeEventListener(ev, _this._hideHandler);
+            });
+            // remove event listeners for keydown
+            this._removeKeydownListener();
+            // remove event listeners for click outside
+            this._removeClickOutsideListener();
+            // destroy the Popper instance if you have one (assuming this._popperInstance is the Popper instance)
+            if (this._popperInstance) {
+                this._popperInstance.destroy();
+            }
+            this._initialized = false;
+        }
+    };
+    Tooltip.prototype.removeInstance = function () {
+        instances_1.default.removeInstance('Tooltip', this._targetEl.id);
+    };
+    Tooltip.prototype.destroyAndRemoveInstance = function () {
+        this.destroy();
+        this.removeInstance();
     };
     Tooltip.prototype._setupEventListeners = function () {
         var _this = this;
         var triggerEvents = this._getTriggerEvents();
+        this._showHandler = function () {
+            _this.show();
+        };
+        this._hideHandler = function () {
+            _this.hide();
+        };
         triggerEvents.showEvents.forEach(function (ev) {
-            _this._triggerEl.addEventListener(ev, function () {
-                _this.show();
-            });
+            _this._triggerEl.addEventListener(ev, _this._showHandler);
         });
         triggerEvents.hideEvents.forEach(function (ev) {
-            _this._triggerEl.addEventListener(ev, function () {
-                _this.hide();
-            });
+            _this._triggerEl.addEventListener(ev, _this._hideHandler);
         });
     };
     Tooltip.prototype._createPopperInstance = function () {
@@ -4297,6 +4551,113 @@ var Events = /** @class */ (function () {
     return Events;
 }());
 exports["default"] = Events;
+
+
+/***/ }),
+
+/***/ 423:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var Instances = /** @class */ (function () {
+    function Instances() {
+        this._instances = {
+            Accordion: {},
+            Carousel: {},
+            Collapse: {},
+            Dial: {},
+            Dismiss: {},
+            Drawer: {},
+            Dropdown: {},
+            Modal: {},
+            Popover: {},
+            Tabs: {},
+            Tooltip: {},
+        };
+    }
+    Instances.prototype.addInstance = function (component, instance, id, forceOverride) {
+        if (forceOverride === void 0) { forceOverride = false; }
+        if (!this._instances[component]) {
+            console.warn("Flowbite: Component ".concat(component, " does not exist."));
+            return false;
+        }
+        if (this._instances[component][id] && !forceOverride) {
+            console.warn("Flowbite: Instance with ID ".concat(id, " already exists."));
+            return;
+        }
+        this._instances[component][id ? id : this._generateRandomId()] =
+            instance;
+    };
+    Instances.prototype.getAllInstances = function () {
+        return this._instances;
+    };
+    Instances.prototype.getInstances = function (component) {
+        if (!this._instances[component]) {
+            console.warn("Flowbite: Component ".concat(component, " does not exist."));
+            return false;
+        }
+        return this._instances[component];
+    };
+    Instances.prototype.getInstance = function (component, id) {
+        if (!this._componentAndInstanceCheck(component, id)) {
+            return;
+        }
+        if (!this._instances[component][id]) {
+            console.warn("Flowbite: Instance with ID ".concat(id, " does not exist."));
+            return;
+        }
+        return this._instances[component][id];
+    };
+    Instances.prototype.destroyAndRemoveInstance = function (component, id) {
+        if (!this._componentAndInstanceCheck(component, id)) {
+            return;
+        }
+        this.destroyInstanceObject(component, id);
+        this.removeInstance(component, id);
+    };
+    Instances.prototype.removeInstance = function (component, id) {
+        if (!this._componentAndInstanceCheck(component, id)) {
+            return;
+        }
+        this._instances[component][id].removeInstance();
+    };
+    Instances.prototype.destroyInstanceObject = function (component, id) {
+        if (!this._componentAndInstanceCheck(component, id)) {
+            return;
+        }
+        this._instances[component][id].destroy();
+    };
+    Instances.prototype.instanceExists = function (component, id) {
+        if (!this._instances[component]) {
+            return false;
+        }
+        if (!this._instances[component][id]) {
+            return false;
+        }
+        return true;
+    };
+    Instances.prototype._generateRandomId = function () {
+        return Math.random().toString(36).substr(2, 9);
+    };
+    Instances.prototype._componentAndInstanceCheck = function (component, id) {
+        if (!this._instances[component]) {
+            console.warn("Flowbite: Component ".concat(component, " does not exist."));
+            return false;
+        }
+        if (!this._instances[component][id]) {
+            console.warn("Flowbite: Instance with ID ".concat(id, " already exists."));
+            return false;
+        }
+        return true;
+    };
+    return Instances;
+}());
+var instances = new Instances();
+exports["default"] = instances;
+if (typeof window !== 'undefined') {
+    window.FlowbiteInstances = instances;
+}
 
 
 /***/ })

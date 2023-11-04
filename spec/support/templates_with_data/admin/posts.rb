@@ -35,13 +35,13 @@ ActiveAdmin.register Post do
     selectable_column
     id_column
     column :title, class: "min-w-[150px]"
-    column :published_date
+    column :published_date, class: "min-w-[170px]"
     column :author
     column :category
     column :starred
     column :position
-    column :created_at
-    column :updated_at
+    column :created_at, class: "min-w-[200px]"
+    column :updated_at, class: "min-w-[200px]"
   end
 
   sidebar :author, only: :show do

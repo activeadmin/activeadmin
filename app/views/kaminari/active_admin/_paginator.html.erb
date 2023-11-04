@@ -7,8 +7,7 @@
     paginator:     the paginator that renders the pagination tags inside
 -%>
 <%= paginator.render do -%>
-  <nav class="pagination inline-flex -space-x-px text-sm">
-    <%= first_page_tag unless current_page.first? %>
+  <nav class="pagination">
     <%= prev_page_tag unless current_page.first? %>
     <% each_page do |page| -%>
       <% if page.display_tag? -%>
@@ -19,7 +18,6 @@
     <% end -%>
     <% unless current_page.out_of_range? %>
       <%= next_page_tag unless current_page.last? %>
-      <%= last_page_tag unless current_page.last? %>
     <% end %>
   </nav>
 <% end -%>

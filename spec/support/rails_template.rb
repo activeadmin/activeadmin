@@ -89,6 +89,10 @@ gsub_file "config/database.yml", /storage\/(.+)\.sqlite3$/, 'db/\1.sqlite3'
 # Setup Active Admin
 generate "active_admin:install"
 
+gsub_file "tailwind.config.js", /^.*const gemPath.*$/, <<~JS
+  const gemPath = '../../../';
+JS
+
 # Force strong parameters to raise exceptions
 inject_into_file "config/application.rb", after: "class Application < Rails::Application" do
   "\n    config.action_controller.action_on_unpermitted_parameters = :raise\n"

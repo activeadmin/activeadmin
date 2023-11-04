@@ -13,7 +13,23 @@ RUBY
 
 directory File.expand_path("templates_with_data/admin", __dir__), "app/admin"
 
-append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
+append_file "db/seeds.rb", "\n\n" + <<~RUBY
+  texts = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "Sed metus lacus, sagittis et feugiat a, vestibulum non risus.",
+    "Vestibulum eu eleifend orci, eget ornare velit.",
+    "Proin rhoncus velit imperdiet sapien iaculis tempor.",
+    "Morbi a semper justo.",
+    "Donec at sagittis nunc.",
+    "Proin vitae accumsan elit, ut tincidunt tellus.",
+    "Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+    "Morbi suscipit ex quis est tincidunt ultrices. Integer blandit scelerisque nisi.",
+    "Aenean lacinia molestie maximus.",
+    "Mauris blandit sem nec nisl sollicitudin scelerisque.",
+    "Praesent ac nisi eu dui consectetur aliquet vitae ac ante.",
+    "Vivamus vel arcu eget lacus luctus tempus."
+  ]
+
   user_data = ["Jimi Hendrix", "Jimmy Page", "Yngwie Malmsteen", "Eric Clapton", "Kirk Hammett"].map do |name|
     first, last = name.split(" ")
     {
@@ -37,13 +53,13 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
 
   published_at_values = [5.days.ago, 1.day.ago, nil, 3.days.from_now]
 
-  post_data = Array.new(100) do |i|
+  post_data = Array.new(800) do |i|
     user_id = user_ids[i % user_ids.size]
     category_id = category_ids[i % category_ids.size]
     published = published_at_values[i % published_at_values.size]
     {
       title: "Blog Post \#{i}",
-      body: "A sample blog post \#{i}.",
+      body: texts.shuffle.slice(0, rand(1..texts.size)).join(" "),
       custom_category_id: category_id,
       published_date: published,
       author_id: user_id,
@@ -61,12 +77,13 @@ append_file "db/seeds.rb", "\n\n" + <<-RUBY.strip_heredoc
   end
   Tagging.insert_all(tagging_data)
 
-  comment_data = Array.new(80) do |i|
+  admin_user_id = AdminUser.first.id
+  comment_data = Array.new(800) do |i|
     {
       namespace: :admin,
       author_type: "AdminUser",
-      author_id: AdminUser.first.id,
-      body: "Test comment \#{i}",
+      author_id: admin_user_id,
+      body: texts.shuffle.slice(0, rand(1..texts.size)).join(" "),
       resource_type: "Category",
       resource_id: category_ids.sample
     }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 Then /^I should see a comment by "([^"]*)"$/ do |name|
-  step %{I should see "#{name}" within ".active_admin_comment_author"}
+  step %{I should see "#{name}" within ".comment-header"}
 end
 
 Then /^I should( not)? be able to add a comment$/ do |negate|
@@ -31,5 +31,5 @@ Given /^(a|\d+) comments added by admin with an email "([^"]+)"?$/ do |number, e
 end
 
 Then /^I should see (\d+) comments?$/ do |number|
-  expect(page).to have_css("div.active_admin_comment", count: number.to_i)
+  expect(page).to have_css(".comment-container", count: number.to_i)
 end

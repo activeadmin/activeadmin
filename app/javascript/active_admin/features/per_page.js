@@ -6,4 +6,4 @@ const setPerPage = function(event) {
   window.location.search = params
 }
 
-Rails.delegate(document, ".pagination_per_page > select", "change", setPerPage)
+Rails.delegate(document, ".pagination-per-page", "change", setPerPage)
