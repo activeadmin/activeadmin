@@ -34,6 +34,8 @@ module ActiveAdmin
               text_node(stylesheet_tag.html_safe) if stylesheet_tag
             end
 
+            text_node(meta(name: "viewport", content: "width=device-width, initial-scale=1"))
+
             active_admin_namespace.meta_tags.each do |name, content|
               text_node(meta(name: name, content: content))
             end
