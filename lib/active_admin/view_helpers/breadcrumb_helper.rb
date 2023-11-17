@@ -2,6 +2,7 @@
 module ActiveAdmin
   module ViewHelpers
     module BreadcrumbHelper
+      ID_FORMAT_REGEXP = /\A(\d+|[a-f0-9]{24}|(?:[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}))\z/.freeze
 
       # Returns an array of links to use in a breadcrumb
       def breadcrumb_links(path = request.path)
@@ -13,7 +14,7 @@ module ActiveAdmin
           # 1. try using `display_name` if we can locate a DB object
           # 2. try using the model name translation
           # 3. default to calling `titlecase` on the URL fragment
-          if part =~ /\A(\d+|[a-f0-9]{24}|(?:[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}))\z/ && parts[index - 1]
+          if ID_FORMAT_REGEXP.match?(part) && parts[index - 1]
             parent = active_admin_config.belongs_to_config.try :target
             config = parent && parent.resource_name.route_key == parts[index - 1] ? parent : active_admin_config
             name = display_name config.find_resource part
