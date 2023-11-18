@@ -5,32 +5,32 @@ form {
   // ol, ul { list-style: none }
 
   fieldset {
-    border: 0;
-    padding: 10px 0;
-    margin-bottom: 20px;
+    // border: 0;
+    // padding: 10px 0;
+    // margin-bottom: 20px;
 
     // &.inputs { @include section-background; }
 
-    legend {
-      width: 100%;
-      span { display: block; @include section-header; }
-    }
+    // legend {
+    //   width: 100%;
+    //   span { display: block; @include section-header; }
+    // }
 
-    ol > li {
-      padding: 10px;
-      label {
-        display: block;
-        width: 20%;
-        float: left;
-        font-size: 1.0em;
-        font-weight: bold;
-        color: $form-label-color;
-        abbr {
-          border: none;
-          color:  $required-field-marker-color;
-        }
-      }
-    }
+    // ol > li {
+    //   padding: 10px 0;
+    //   label {
+    //     display: block;
+    //     width: 20%;
+    //     float: left;
+    //     font-size: 1.0em;
+    //     font-weight: bold;
+    //     color: $form-label-color;
+    //     abbr {
+    //       border: none;
+    //       color:  $required-field-marker-color;
+    //     }
+    //   }
+    // }
 
     ol > li.has_many_container {
       padding: 20px 10px;
@@ -79,31 +79,31 @@ form {
 
   /* Nested Fieldsets and Legends */
 
-  fieldset > ol > li {
-    fieldset {
-      position:relative;
-      padding: 0;
-      margin-bottom: 0;
+  // fieldset > ol > li {
+  //   fieldset {
+  //     position:relative;
+  //     padding: 0;
+  //     margin-bottom: 0;
 
-      &:not(.inputs) ol {
-        float: left;
-        width: 74%;
-        margin: 0;
-        padding: 0 0 0 20%;
+  //     &:not(.inputs) ol {
+  //       float: left;
+  //       width: 74%;
+  //       margin: 0;
+  //       padding: 0 0 0 20%;
 
-        li {
-          padding: 0;
-          border: 0;
-        }
-      }
+  //       li {
+  //         padding: 0;
+  //         border: 0;
+  //       }
+  //     }
 
-      &.inputs ol {
-        float: left;
-        width: 100%;
-        margin: 0;
-      }
-    }
-  }
+  //     &.inputs ol {
+  //       float: left;
+  //       width: 100%;
+  //       margin: 0;
+  //     }
+  //   }
+  // }
 
   /* Text Fields */
   // input[type=text],
@@ -136,86 +136,86 @@ form {
   fieldset > ol > li {
 
     /* Hints */
-    p.inline-hints {
-      font-size: 0.95em;
-      font-style: italic;
-      color:#666;
-      margin: 0.5em 0 0 20%;
-    }
+    // p.inline-hints {
+    //   font-size: 0.95em;
+    //   font-style: italic;
+    //   color:#666;
+    //   margin: 0.5em 0 0 20%;
+    // }
 
     /* Date and Time Fields */
-    &.date_select, &.time_select, &.datetime_select {
-      fieldset ol li {
-        float:left; width:auto; margin:0 0.5em 0 0;
-        label { display: none; }
-        input { display:inline; margin:0; padding:0;  }
-      }
-    }
+    // &.date_select, &.time_select, &.datetime_select {
+    //   fieldset ol li {
+    //     float:left; width:auto; margin:0 0.5em 0 0;
+    //     label { display: none; }
+    //     input { display:inline; margin:0; padding:0;  }
+    //   }
+    // }
 
     /* Check Boxes or Radio fields */
-    &.check_boxes, &.radio {
-      fieldset ol {
-        margin-bottom:-0.6em;
-        li {
-          margin:0.1em 0 0.5em 0;
-          label {
-            float:none;
-            width:100%;
-            input { margin-right:0.2em; }
-          }
-        }
-      }
-    }
+    // &.check_boxes, &.radio {
+    //   fieldset ol {
+    //     margin-bottom:-0.6em;
+    //     li {
+    //       margin:0.1em 0 0.5em 0;
+    //       label {
+    //         float:none;
+    //         width:100%;
+    //         input { margin-right:0.2em; }
+    //       }
+    //     }
+    //   }
+    // }
 
     /* Boolean Field */
-    &.boolean {
-      min-height: 1.1em;
-      label {
-        width: 100%;
-        padding-left:20%;
-        padding-right: 10px;
-        text-transform: none !important;
-        font-weight: normal;
-        input { margin:0 0.5em 0 0.2em; }
-      }
-    }
+    // &.boolean {
+    //   min-height: 1.1em;
+    //   label {
+    //     width: 100%;
+    //     padding-left:20%;
+    //     padding-right: 10px;
+    //     text-transform: none !important;
+    //     font-weight: normal;
+    //     input { margin:0 0.5em 0 0.2em; }
+    //   }
+    // }
 
     /* Hidden fields */
-    &.hidden {
-      padding: 0;
-    }
+    // &.hidden {
+    //   padding: 0;
+    // }
 
     /* Errors */
-    p.inline-errors {
-      color: $error-color;
-      font-weight: bold;
-      margin:0.3em 0 0 20%;
-    }
-    ul.errors {
-      color: $error-color;
-      margin:0.5em 0 0 20%;
-      list-style:square;
-      li { padding:0; border:none; display:list-item; }
-    }
+    // p.inline-errors {
+    //   color: $error-color;
+    //   font-weight: bold;
+    //   margin:0.3em 0 0 20%;
+    // }
+    // ul.errors {
+    //   color: $error-color;
+    //   margin:0.5em 0 0 20%;
+    //   list-style:square;
+    //   li { padding:0; border:none; display:list-item; }
+    // }
 
-    &.error {
-      input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
-        border: $border-width solid $error-color;
-      }
-    }
+    // &.error {
+    //   input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
+    //     border: $border-width solid $error-color;
+    //   }
+    // }
   }
 
   /* semantic_errors */
-  ul.errors {
-    background: lighten($error-color, 60%);
-    @include rounded(4px);
-    color: $error-color;
-    font-weight: bold;
-    margin-bottom: 10px;
-    padding: 10px;
-    list-style:square;
-    li { margin-left:15px; padding:0; border:none; display:list-item; }
-  }
+  // ul.errors {
+  //   background: lighten($error-color, 60%);
+  //   @include rounded(4px);
+  //   color: $error-color;
+  //   font-weight: bold;
+  //   margin-bottom: 10px;
+  //   padding: 10px;
+  //   list-style:square;
+  //   li { margin-left:15px; padding:0; border:none; display:list-item; }
+  // }
 
   /* Buttons */
 
@@ -287,20 +287,20 @@ form.filter_form {
     //   }
     // }
 
-    &.filter_check_boxes {
-      label { margin-bottom: 3px; }
-      fieldset {
-        margin-bottom: 0px;
-        padding-bottom: 0px;
-      }
-      .check_boxes_wrapper label {
-        font-weight: normal;
-        margin-bottom: 3px;
-        text-transform: none;
-        font-size: 1.0em;
-        input { vertical-align: baseline; }
-      }
-    }
+    // &.filter_check_boxes {
+    //   label { margin-bottom: 3px; }
+    //   fieldset {
+    //     margin-bottom: 0px;
+    //     padding-bottom: 0px;
+    //   }
+    //   .check_boxes_wrapper label {
+    //     font-weight: normal;
+    //     margin-bottom: 3px;
+    //     text-transform: none;
+    //     font-size: 1.0em;
+    //     input { vertical-align: baseline; }
+    //   }
+    // }
 
     // &.filter_date_range {
     //   input[type=text] {
