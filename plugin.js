@@ -483,6 +483,9 @@ module.exports = plugin(
       '.filter_form_field': {
         '@apply mb-4': {}
       },
+      '.filter_form_field :where(.choices > label)': {
+        '@apply flex gap-2 items-center mb-1': {}
+      },
       '.clear_filters_btn': {
         '@apply text-blue-700 hover:bg-gray-100 hover:text-blue-600 font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 transition-colors no-underline': {}
       },
