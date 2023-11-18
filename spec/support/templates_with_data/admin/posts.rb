@@ -2,6 +2,22 @@
 ActiveAdmin.register Post do
   permit_params :custom_category_id, :author_id, :title, :body, :published_date, :position, :starred, taggings_attributes: [ :id, :tag_id, :name, :position, :_destroy ]
 
+  filter :author
+  filter :category, as: :check_boxes
+  filter :taggings
+  filter :tags, as: :check_boxes
+  filter :title
+  filter :body
+  filter :published_date
+  filter :position
+  filter :starred
+  filter :foo_id
+  filter :created_at
+  filter :updated_at
+  filter :custom_title_searcher
+  filter :custom_created_at_searcher
+  filter :custom_searcher_numeric
+
   belongs_to :author, class_name: "User", param: "user_id", route_name: "user"
 
   config.per_page = [ 5, 10, 20 ]
