@@ -108,13 +108,14 @@ ActiveAdmin.register Post do
   form do |f|
     columns do
       column do
+        f.semantic_errors(*f.object.errors.attribute_names)
         f.inputs "Details" do
           f.input :title
           f.input :author
           f.input :published_date,
                   hint: f.object.persisted? && "Created at #{f.object.created_at}"
           f.input :custom_category_id
-          f.input :category
+          f.input :category, hint: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt porttitor massa eu consequat. Suspendisse potenti. Curabitur gravida sem vel elit auctor ultrices."
           f.input :position
           f.input :starred
         end
